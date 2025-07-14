@@ -69,7 +69,7 @@ function loadJsonFile(filePath: string): TranslationContent | null {
     const content = fs.readFileSync(filePath, 'utf8')
     return JSON.parse(content)
   } catch (error) {
-    console.error(`Error loading ${filePath}: ${(error as Error).message}`)
+    console.error(`Error loading ${filePath}: ${error instanceof Error ? error.message : error}`)
     return null
   }
 }
