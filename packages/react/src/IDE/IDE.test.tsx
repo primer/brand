@@ -1,4 +1,4 @@
-import React, {render, cleanup, act} from '@testing-library/react'
+import React, {render, cleanup, act, waitFor, prettyDOM} from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import '@testing-library/jest-dom'
 
@@ -36,8 +36,14 @@ describe('IDE', () => {
   const files: IDEEditorFile[] = [
     {name: 'File 1', alternativeText: 'Alt for File 1', code: 'Code for File 1'},
     {name: 'File 2', alternativeText: 'Alt for File 2', code: 'Code for File 2'},
-    {name: 'File 3', alternativeText: 'Alt for File 3', code: 'Code for File 3'},
+    {
+      name: 'File 3',
+      alternativeText: 'Alt for File 3',
+      code: ['Code for File 3 line 1', 'Code for File 3 line 2', 'Code for File 3 line 3'],
+    },
   ]
+
+  const wait = (ms: number) => new Promise(resolve => setTimeout(resolve, ms))
 
   beforeEach(() => {
     Element.prototype.scrollIntoView = jest.fn()
@@ -72,9 +78,12 @@ describe('IDE', () => {
         <IDE.Editor size="large" activeTab={0} files={files} />
       </IDE>,
     )
-    const results = await axe(container)
 
-    expect(results).toHaveNoViolations()
+    await act(async () => {
+      const results = await axe(container)
+
+      expect(results).toHaveNoViolations()
+    })
   })
 
   it('sets the default variant correctly', async () => {
@@ -234,5 +243,212 @@ describe('IDE', () => {
 
     // final <pre> contains the text Copilot
     expect(editorContent.children[codeAsArr.length].textContent).toBe('Copilot')
+  })
+
+  it('plays the chat animation by default', async () => {
+    const {getByText} = render(
+      <IDE>
+        <IDE.Chat script={chatScript} alternativeText={chatScriptAlt} animationDelay={300} />
+      </IDE>,
+    )
+
+    const message1Parent = getByText(chatScript[0].message).closest('.IDE__Chat-message')
+    const message2Parent = getByText(chatScript[1].message).closest('.IDE__Chat-message')
+    const message3Parent = getByText(chatScript[2].message).closest('.IDE__Chat-message')
+
+    expect(message1Parent).not.toHaveClass('IDE__Chat-message--visible')
+    expect(message2Parent).not.toHaveClass('IDE__Chat-message--visible')
+    expect(message3Parent).not.toHaveClass('IDE__Chat-message--visible')
+
+    await waitFor(() => expect(message1Parent).toHaveClass('IDE__Chat-message--visible'))
+    await waitFor(() => expect(message2Parent).toHaveClass('IDE__Chat-message--visible'))
+    await waitFor(() => expect(message3Parent).toHaveClass('IDE__Chat-message--visible'))
+  })
+
+  it('allows the chat animation to be paused', async () => {
+    const user = userEvent.setup()
+
+    const {getByText, getByRole} = render(
+      <IDE>
+        <IDE.Chat script={chatScript} alternativeText={chatScriptAlt} animationDelay={300} />
+      </IDE>,
+    )
+
+    const pauseButton = getByRole('button', {name: 'Pause animation'})
+    expect(pauseButton).toBeInTheDocument()
+
+    const message1Parent = getByText(chatScript[0].message).closest('.IDE__Chat-message')
+    const message2Parent = getByText(chatScript[1].message).closest('.IDE__Chat-message')
+    const message3Parent = getByText(chatScript[2].message).closest('.IDE__Chat-message')
+
+    expect(message1Parent).not.toHaveClass('IDE__Chat-message--visible')
+    expect(message2Parent).not.toHaveClass('IDE__Chat-message--visible')
+    expect(message3Parent).not.toHaveClass('IDE__Chat-message--visible')
+
+    await waitFor(() => expect(message1Parent).toHaveClass('IDE__Chat-message--visible'))
+
+    await user.click(pauseButton)
+
+    await act(async () => {
+      await wait(1000)
+    })
+
+    expect(message2Parent).not.toHaveClass('IDE__Chat-message--visible')
+    expect(message3Parent).not.toHaveClass('IDE__Chat-message--visible')
+
+    const playButton = getByRole('button', {name: 'Play animation'})
+    expect(playButton).toBeInTheDocument()
+  })
+
+  it('plays the editor animation by default', async () => {
+    const {getByText} = render(
+      <IDE>
+        <IDE.Editor size="large" activeTab={2} files={files} />
+      </IDE>,
+    )
+
+    const code = files[2].code as string[]
+
+    const line1 = getByText(code[0])
+    const line2 = getByText(code[1])
+    const line3 = getByText(code[2])
+
+    expect(line1).not.toHaveClass('Animation--active')
+    expect(line2).not.toHaveClass('Animation--active')
+    expect(line3).not.toHaveClass('Animation--active')
+
+    await waitFor(() => expect(line1).toHaveClass('Animation--active'))
+    await waitFor(() => expect(line2).toHaveClass('Animation--active'))
+    await waitFor(() => expect(line3).toHaveClass('Animation--active'))
+  })
+
+  it('allows the editor animation to be paused', async () => {
+    const user = userEvent.setup()
+
+    const {getByRole, getByText} = render(
+      <IDE>
+        <IDE.Editor size="large" activeTab={2} files={files} />
+      </IDE>,
+    )
+
+    const code = files[2].code as string[]
+
+    const pauseButton = getByRole('button', {name: 'Pause animation'})
+    expect(pauseButton).toBeInTheDocument()
+
+    const line1 = getByText(code[0])
+    const line2 = getByText(code[1])
+    const line3 = getByText(code[2])
+
+    expect(line1).not.toHaveClass('Animation--active')
+    expect(line2).not.toHaveClass('Animation--active')
+    expect(line3).not.toHaveClass('Animation--active')
+
+    await waitFor(() => expect(line1).toHaveClass('Animation--active'))
+
+    await user.click(pauseButton)
+
+    await act(async () => {
+      await wait(1000)
+    })
+
+    expect(line2).not.toHaveClass('Animation--active')
+    expect(line3).not.toHaveClass('Animation--active')
+
+    const playButton = getByRole('button', {name: 'Play animation'})
+    expect(playButton).toBeInTheDocument()
+  })
+
+  it('plays the chat animation when both the chat and editor are present', async () => {
+    const {getByText} = render(
+      <IDE>
+        <IDE.Chat script={chatScript} alternativeText={chatScriptAlt} animationDelay={300} />
+        <IDE.Editor size="large" activeTab={2} files={files} />
+      </IDE>,
+    )
+
+    const message1Parent = getByText(chatScript[0].message).closest('.IDE__Chat-message')
+    const message2Parent = getByText(chatScript[1].message).closest('.IDE__Chat-message')
+    const message3Parent = getByText(chatScript[2].message).closest('.IDE__Chat-message')
+
+    expect(message1Parent).not.toHaveClass('IDE__Chat-message--visible')
+    expect(message2Parent).not.toHaveClass('IDE__Chat-message--visible')
+    expect(message3Parent).not.toHaveClass('IDE__Chat-message--visible')
+
+    await waitFor(() => expect(message1Parent).toHaveClass('IDE__Chat-message--visible'))
+    await waitFor(() => expect(message2Parent).toHaveClass('IDE__Chat-message--visible'))
+    await waitFor(() => expect(message3Parent).toHaveClass('IDE__Chat-message--visible'))
+  })
+
+  it('plays editor animation when both the chat and editor are present', async () => {
+    const {getByText} = render(
+      <IDE>
+        <IDE.Chat script={chatScript} alternativeText={chatScriptAlt} animationDelay={300} />
+        <IDE.Editor size="large" activeTab={2} files={files} />
+      </IDE>,
+    )
+
+    const code = files[2].code as string[]
+
+    const line1 = getByText(code[0])
+    const line2 = getByText(code[1])
+    const line3 = getByText(code[2])
+
+    expect(line1).not.toHaveClass('Animation--active')
+    expect(line2).not.toHaveClass('Animation--active')
+    expect(line3).not.toHaveClass('Animation--active')
+
+    await waitFor(() => expect(line1).toHaveClass('Animation--active'))
+    await waitFor(() => expect(line2).toHaveClass('Animation--active'))
+    await waitFor(() => expect(line3).toHaveClass('Animation--active'))
+  })
+
+  it('allows the chat and editor animations to be paused when both the chat and editor are present', async () => {
+    const user = userEvent.setup()
+
+    const {getByRole, getByText} = render(
+      <IDE>
+        <IDE.Chat script={chatScript} alternativeText={chatScriptAlt} animationDelay={300} />
+        <IDE.Editor size="large" activeTab={2} files={files} />
+      </IDE>,
+    )
+
+    const code = files[2].code as string[]
+
+    const pauseButton = getByRole('button', {name: 'Pause animation'})
+    expect(pauseButton).toBeInTheDocument()
+
+    const line1 = getByText(code[0])
+    const line2 = getByText(code[1])
+    const line3 = getByText(code[2])
+
+    expect(line1).not.toHaveClass('Animation--active')
+    expect(line2).not.toHaveClass('Animation--active')
+    expect(line3).not.toHaveClass('Animation--active')
+
+    const message1Parent = getByText(chatScript[0].message).closest('.IDE__Chat-message')
+    const message2Parent = getByText(chatScript[1].message).closest('.IDE__Chat-message')
+    const message3Parent = getByText(chatScript[2].message).closest('.IDE__Chat-message')
+
+    expect(message1Parent).not.toHaveClass('IDE__Chat-message--visible')
+    expect(message2Parent).not.toHaveClass('IDE__Chat-message--visible')
+    expect(message3Parent).not.toHaveClass('IDE__Chat-message--visible')
+
+    await waitFor(() => expect(message1Parent).toHaveClass('IDE__Chat-message--visible'))
+    await waitFor(() => expect(line1).toHaveClass('Animation--active'))
+
+    await user.click(pauseButton)
+
+    await act(async () => {
+      await wait(1000)
+    })
+
+    expect(line2).not.toHaveClass('Animation--active')
+    expect(line3).not.toHaveClass('Animation--active')
+    expect(message2Parent).not.toHaveClass('IDE__Chat-message--visible')
+    expect(message3Parent).not.toHaveClass('IDE__Chat-message--visible')
+
+    const playButton = getByRole('button', {name: 'Play animation'})
+    expect(playButton).toBeInTheDocument()
   })
 })
