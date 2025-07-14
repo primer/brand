@@ -21,7 +21,7 @@ export const SingleSelection = () => {
 
   return (
     <ActionMenu onSelect={newValue => setSelectedItem(newValue)} selectionVariant="single">
-      <ActionMenu.Button>{selectedItem}</ActionMenu.Button>
+      <ActionMenu.Button>Select a GitHub feature</ActionMenu.Button>
       <ActionMenu.Overlay aria-label="GitHub features">
         <ActionMenu.Item value="Copilot" selected={'Copilot' === selectedItem}>
           Copilot
@@ -42,7 +42,7 @@ export const SingleSelectionSmallOpen = () => {
 
   return (
     <ActionMenu size="small" onSelect={newValue => setSelectedItem(newValue)} selectionVariant="single" open>
-      <ActionMenu.Button>{selectedItem}</ActionMenu.Button>
+      <ActionMenu.Button>Select a GitHub feature</ActionMenu.Button>
       <ActionMenu.Overlay aria-label="GitHub features">
         <ActionMenu.Item value="Copilot" selected={'Copilot' === selectedItem}>
           Copilot
@@ -300,7 +300,7 @@ export const InStack = () => {
   return (
     <Stack direction="horizontal">
       <ActionMenu onSelect={newValue => setSelectedOne(newValue)} selectionVariant="single">
-        <ActionMenu.Button>{selectedOne}</ActionMenu.Button>
+        <ActionMenu.Button>Select a GitHub feature</ActionMenu.Button>
         <ActionMenu.Overlay aria-label="GitHub features">
           <ActionMenu.Item value="Copilot" selected={'Copilot' === selectedOne}>
             Copilot
@@ -314,7 +314,7 @@ export const InStack = () => {
         </ActionMenu.Overlay>
       </ActionMenu>
       <ActionMenu onSelect={newValue => setSelectedTwo(newValue)} selectionVariant="single">
-        <ActionMenu.Button>{selectedTwo}</ActionMenu.Button>
+        <ActionMenu.Button>Select a country</ActionMenu.Button>
         <ActionMenu.Overlay aria-label="Countries">
           {countries.map((country, index) => (
             <ActionMenu.Item key={index} value={country} selected={country === selectedTwo}>
@@ -334,7 +334,7 @@ export const Sizes = () => {
     <Stack direction="horizontal" alignItems="center" gap={112}>
       {sizes.map(size => (
         <ActionMenu key={size?.toString()} size={size}>
-          <ActionMenu.Button>{size}</ActionMenu.Button>
+          <ActionMenu.Button>Select a size</ActionMenu.Button>
           <ActionMenu.Overlay aria-label="GitHub features">
             <ActionMenu.Item value="Copilot">Copilot</ActionMenu.Item>
             <ActionMenu.Item value="Copilot">Advanced Security</ActionMenu.Item>
@@ -350,7 +350,7 @@ export const OpenByDefault = () => {
 
   return (
     <ActionMenu onSelect={newValue => setSelectedItem(newValue)} selectionVariant="single" open>
-      <ActionMenu.Button>{selectedItem}</ActionMenu.Button>
+      <ActionMenu.Button>Select a GitHub feature</ActionMenu.Button>
       <ActionMenu.Overlay aria-label="GitHub features">
         <ActionMenu.Item value="Copilot" selected={'Copilot' === selectedItem}>
           Copilot
@@ -371,8 +371,8 @@ export const LongerButtonText = () => {
 
   return (
     <ActionMenu onSelect={newValue => setSelected(newValue)} selectionVariant="single">
-      <ActionMenu.Button>{selected}</ActionMenu.Button>
-      <ActionMenu.Overlay aria-label="GitHub features">
+      <ActionMenu.Button>Select a location</ActionMenu.Button>
+      <ActionMenu.Overlay aria-label="Locations">
         <ActionMenu.Item
           value="Europe, Middle East and Africa"
           selected={'Europe, Middle East and Africa' === selected}
@@ -395,8 +395,8 @@ export const LongerLists = () => {
 
   return (
     <ActionMenu onSelect={newValue => setSelectedItem(newValue)} selectionVariant="single">
-      <ActionMenu.Button>{selectedItem}</ActionMenu.Button>
-      <ActionMenu.Overlay aria-label="GitHub features">
+      <ActionMenu.Button>Select a country</ActionMenu.Button>
+      <ActionMenu.Overlay aria-label="Countries">
         {countries.map((country, index) => (
           <ActionMenu.Item key={index} value={country} selected={country === selectedItem}>
             {country}
@@ -412,7 +412,7 @@ export const LongerListsOpen = () => {
 
   return (
     <ActionMenu onSelect={newValue => setSelectedItem(newValue)} selectionVariant="single" open>
-      <ActionMenu.Button>{selectedItem}</ActionMenu.Button>
+      <ActionMenu.Button>Select a country</ActionMenu.Button>
       <ActionMenu.Overlay aria-label="Countries">
         {countries.map((country, index) => (
           <ActionMenu.Item key={index} value={country} selected={country === selectedItem}>
@@ -432,7 +432,7 @@ export const MenuAlignment = () => {
   return (
     <div style={{marginLeft: 150}}>
       <ActionMenu onSelect={newValue => setSelectedItem(newValue)} selectionVariant="single" menuAlignment="end" open>
-        <ActionMenu.Button>{selectedItem}</ActionMenu.Button>
+        <ActionMenu.Button>Select a country</ActionMenu.Button>
         <ActionMenu.Overlay aria-label="Countries">
           {countries.map((country, index) => (
             <ActionMenu.Item key={index} value={country} selected={country === selectedItem}>
@@ -510,7 +510,7 @@ export const DisabledItem = () => {
 
   return (
     <ActionMenu onSelect={newValue => setSelectedItem(newValue)} selectionVariant="single" open>
-      <ActionMenu.Button>{selectedItem}</ActionMenu.Button>
+      <ActionMenu.Button>Select a GitHub feature</ActionMenu.Button>
       <ActionMenu.Overlay aria-label="GitHub features">
         <ActionMenu.Item value="Copilot" selected={'Copilot' === selectedItem}>
           Copilot
@@ -541,7 +541,7 @@ export const KeyboardNavigation = () => {
   return (
     <Stack direction="horizontal" gap="spacious" alignItems="flex-start">
       <ActionMenu onSelect={newValue => setSelectedItem(newValue)} selectionVariant="single">
-        <ActionMenu.Button>{selectedItem}</ActionMenu.Button>
+        <ActionMenu.Button>Select a GitHub feature</ActionMenu.Button>
         <ActionMenu.Overlay aria-label="GitHub features">
           <ActionMenu.Item
             value="Copilot"
