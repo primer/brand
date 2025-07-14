@@ -14,8 +14,98 @@ test.describe('Visual Comparison: FAQ', () => {
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
+  test('FAQ / Default (fr)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-faq--default&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('FAQ / Default (de)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-faq--default&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('FAQ / Default (ja)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-faq--default&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('FAQ / Default (es)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-faq--default&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('FAQ / Default (pt-BR)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-faq--default&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
   test('FAQ / All Closed', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-faq-features--all-closed&viewMode=story')
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('FAQ / All Closed (fr)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-faq-features--all-closed&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('FAQ / All Closed (de)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-faq-features--all-closed&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('FAQ / All Closed (ja)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-faq-features--all-closed&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('FAQ / All Closed (es)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-faq-features--all-closed&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('FAQ / All Closed (pt-BR)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-faq-features--all-closed&viewMode=story',
+    )
 
     await page.waitForTimeout(500)
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
@@ -28,9 +118,99 @@ test.describe('Visual Comparison: FAQ', () => {
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
+  test('FAQ / All Open (fr)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-faq-features--all-open&viewMode=story',
+    )
+
+    await page.waitForTimeout(1000)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('FAQ / All Open (de)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-faq-features--all-open&viewMode=story',
+    )
+
+    await page.waitForTimeout(1000)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('FAQ / All Open (ja)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-faq-features--all-open&viewMode=story',
+    )
+
+    await page.waitForTimeout(1000)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('FAQ / All Open (es)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-faq-features--all-open&viewMode=story',
+    )
+
+    await page.waitForTimeout(1000)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('FAQ / All Open (pt-BR)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-faq-features--all-open&viewMode=story',
+    )
+
+    await page.waitForTimeout(1000)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
   test('FAQ / Reversed Toggles', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-faq-features--reversed-toggles&viewMode=story',
+    )
+
+    await page.waitForTimeout(4000)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('FAQ / Reversed Toggles (fr)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-faq-features--reversed-toggles&viewMode=story',
+    )
+
+    await page.waitForTimeout(4000)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('FAQ / Reversed Toggles (de)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-faq-features--reversed-toggles&viewMode=story',
+    )
+
+    await page.waitForTimeout(4000)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('FAQ / Reversed Toggles (ja)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-faq-features--reversed-toggles&viewMode=story',
+    )
+
+    await page.waitForTimeout(4000)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('FAQ / Reversed Toggles (es)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-faq-features--reversed-toggles&viewMode=story',
+    )
+
+    await page.waitForTimeout(4000)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('FAQ / Reversed Toggles (pt-BR)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-faq-features--reversed-toggles&viewMode=story',
     )
 
     await page.waitForTimeout(4000)
@@ -46,6 +226,51 @@ test.describe('Visual Comparison: FAQ', () => {
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
+  test('FAQ / Heading Left Aligned (fr)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-faq-features--heading-left-aligned&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('FAQ / Heading Left Aligned (de)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-faq-features--heading-left-aligned&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('FAQ / Heading Left Aligned (ja)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-faq-features--heading-left-aligned&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('FAQ / Heading Left Aligned (es)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-faq-features--heading-left-aligned&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('FAQ / Heading Left Aligned (pt-BR)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-faq-features--heading-left-aligned&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
   test('FAQ / With Subheadings', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-faq-features--with-subheadings&viewMode=story',
@@ -55,8 +280,98 @@ test.describe('Visual Comparison: FAQ', () => {
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
+  test('FAQ / With Subheadings (fr)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-faq-features--with-subheadings&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('FAQ / With Subheadings (de)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-faq-features--with-subheadings&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('FAQ / With Subheadings (ja)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-faq-features--with-subheadings&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('FAQ / With Subheadings (es)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-faq-features--with-subheadings&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('FAQ / With Subheadings (pt-BR)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-faq-features--with-subheadings&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
   test('FAQ / Groups', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-faq-features--groups&viewMode=story')
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('FAQ / Groups (fr)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-faq-features--groups&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('FAQ / Groups (de)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-faq-features--groups&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('FAQ / Groups (ja)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-faq-features--groups&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('FAQ / Groups (es)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-faq-features--groups&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('FAQ / Groups (pt-BR)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-faq-features--groups&viewMode=story',
+    )
 
     await page.waitForTimeout(500)
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
@@ -73,6 +388,51 @@ test.describe('Visual Comparison: FAQ', () => {
       await page.waitForTimeout(500)
       expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
     })
+
+    test('FAQ / Group narrow view (mobile) (fr)', async ({page}) => {
+      await page.goto(
+        'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-faq-features--groups-narrow&viewMode=story',
+      )
+
+      await page.waitForTimeout(500)
+      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    })
+
+    test('FAQ / Group narrow view (mobile) (de)', async ({page}) => {
+      await page.goto(
+        'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-faq-features--groups-narrow&viewMode=story',
+      )
+
+      await page.waitForTimeout(500)
+      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    })
+
+    test('FAQ / Group narrow view (mobile) (ja)', async ({page}) => {
+      await page.goto(
+        'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-faq-features--groups-narrow&viewMode=story',
+      )
+
+      await page.waitForTimeout(500)
+      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    })
+
+    test('FAQ / Group narrow view (mobile) (es)', async ({page}) => {
+      await page.goto(
+        'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-faq-features--groups-narrow&viewMode=story',
+      )
+
+      await page.waitForTimeout(500)
+      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    })
+
+    test('FAQ / Group narrow view (mobile) (pt-BR)', async ({page}) => {
+      await page.goto(
+        'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-faq-features--groups-narrow&viewMode=story',
+      )
+
+      await page.waitForTimeout(500)
+      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    })
   })
   test('FAQ / Dynamic Data Example', async ({page}) => {
     await page.goto(
@@ -83,8 +443,98 @@ test.describe('Visual Comparison: FAQ', () => {
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
+  test('FAQ / Dynamic Data Example (fr)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-faq-features--dynamic-data-example&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('FAQ / Dynamic Data Example (de)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-faq-features--dynamic-data-example&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('FAQ / Dynamic Data Example (ja)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-faq-features--dynamic-data-example&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('FAQ / Dynamic Data Example (es)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-faq-features--dynamic-data-example&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('FAQ / Dynamic Data Example (pt-BR)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-faq-features--dynamic-data-example&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
   test('FAQ / With Prose', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-faq-features--with-prose&viewMode=story')
+
+    await page.waitForTimeout(2000)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('FAQ / With Prose (fr)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-faq-features--with-prose&viewMode=story',
+    )
+
+    await page.waitForTimeout(2000)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('FAQ / With Prose (de)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-faq-features--with-prose&viewMode=story',
+    )
+
+    await page.waitForTimeout(2000)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('FAQ / With Prose (ja)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-faq-features--with-prose&viewMode=story',
+    )
+
+    await page.waitForTimeout(2000)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('FAQ / With Prose (es)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-faq-features--with-prose&viewMode=story',
+    )
+
+    await page.waitForTimeout(2000)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('FAQ / With Prose (pt-BR)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-faq-features--with-prose&viewMode=story',
+    )
 
     await page.waitForTimeout(2000)
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()

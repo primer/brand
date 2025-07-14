@@ -1,1 +1,3 @@
 a11y-violations.json
+playwright-test-results/
+playwright-report/

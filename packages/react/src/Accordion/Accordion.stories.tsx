@@ -1,6 +1,7 @@
 import React from 'react'
 import type {Meta, StoryObj} from '@storybook/react'
 import {Accordion, AccordionHeadingProps, AccordionRootProps, AccordionToggleColors} from '.'
+import {useTranslation} from 'react-i18next'
 
 type AccordionStoryProps = AccordionRootProps & Pick<AccordionHeadingProps, 'toggleColor'>
 
@@ -36,13 +37,15 @@ export default meta
 type Story = StoryObj<AccordionStoryProps>
 
 export const Default: Story = {
-  render: ({toggleColor, ...props}) => {
+  render: function Component({toggleColor, ...props}) {
+    const {t} = useTranslation('Accordion')
+
     return (
       <Accordion {...props}>
-        <Accordion.Heading toggleColor={toggleColor}>Heading</Accordion.Heading>
+        <Accordion.Heading toggleColor={toggleColor}>{t('heading')}</Accordion.Heading>
         <Accordion.Content>
-          <p>Some description</p>
-          <p>Some description</p>
+          <p>{t('description')}</p>
+          <p>{t('description')}</p>
         </Accordion.Content>
       </Accordion>
     )
