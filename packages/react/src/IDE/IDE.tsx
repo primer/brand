@@ -267,7 +267,6 @@ const _Chat = memo(
 
         const animations: IDEChatAnimation[] = []
 
-        // Show first message immediately
         if (defaultMessages[0]) {
           animations.push({
             delay: 0,
@@ -276,16 +275,14 @@ const _Chat = memo(
           })
         }
 
-        // Add initial delay before starting newer messages
         animations.push({
           delay: delay / 4,
           action: 'delay',
         })
 
-        // Schedule newer messages with consistent delays between them
         for (const [index, message] of newerMessages.entries()) {
           animations.push({
-            delay, // Each message waits for the same delay
+            delay,
             action: 'show',
             element: message as HTMLElement,
             shouldScroll: index % 2 === 0,
@@ -295,7 +292,6 @@ const _Chat = memo(
           })
         }
 
-        // Mark animation as complete
         animations.push({
           delay: 100,
           isDone: true,
@@ -307,18 +303,15 @@ const _Chat = memo(
       const resetAnimation = useCallback(() => {
         setAnimationIsDone?.(false)
 
-        // Reset all message visibility states
         const allMessages = document.querySelectorAll(`.${styles['IDE__Chat-message']}`)
         for (const message of allMessages) {
           message.classList.remove(styles['IDE__Chat-message--visible'], styles['IDE__Chat-message--faded'])
         }
 
-        // Scroll back to top when restarting
         if (messagesRef.current) {
           messagesRef.current.scrollTop = 0
         }
 
-        // Reschedule animations when resetting
         scheduleAnimations()
       }, [scheduleAnimations, setAnimationIsDone])
 
@@ -567,7 +560,7 @@ type IDEAnimation = {
   delay: number
   isDone?: boolean
   tab: string | null
-} & ({element: HTMLElement} | {isDone: true})
+} & ({elements: HTMLElement[]} | {isDone: true})
 
 type IDEChatAnimation = {
   delay: number
@@ -632,19 +625,24 @@ const _Editor = memo(
       const scheduleAnimations = useCallback(() => {
         if (!presRef.current) return
 
-        const pres = presRef.current.querySelectorAll('pre')
+        const pres = presRef.current.querySelectorAll<HTMLPreElement>('pre:not([data-has-suggestion="true"])')
+        const copilotSuggestions = presRef.current.querySelectorAll<HTMLPreElement>('pre[data-has-suggestion="true"]')
 
         const animations: IDEAnimation[] = []
 
         for (const pre of pres) {
-          const isCopilotSuggestion = pre.getAttribute('data-has-suggestion') === 'true'
-
           animations.push({
-            delay: isCopilotSuggestion ? 300 : 200,
-            element: pre,
+            delay: 200,
+            elements: [pre],
             tab: tabs.activeTab,
           })
         }
+
+        animations.push({
+          delay: 1000,
+          elements: Array.from(copilotSuggestions),
+          tab: tabs.activeTab,
+        })
 
         animations.push({
           delay: 200,
@@ -666,7 +664,6 @@ const _Editor = memo(
           }
         }
 
-        // Reschedule animations when resetting
         scheduleAnimations()
       }, [scheduleAnimations, setAnimationIsDone])
 
@@ -720,7 +717,9 @@ const _Editor = memo(
           nextAnimation.delay -= diff
 
           if (nextAnimation.delay <= 0) {
-            nextAnimation.element.classList.add(animationStyles['Animation--active'])
+            for (const element of nextAnimation.elements) {
+              element.classList.add(animationStyles['Animation--active'])
+            }
             setScheduledAnimations(current => current.slice(1))
           }
 
