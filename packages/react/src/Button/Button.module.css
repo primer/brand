@@ -99,7 +99,6 @@
 
 .Button--accent {
   color: var(--brand-button-accent-fgColor-rest);
-  background-color: var(--brand-button-accent-bgColor-rest);
 }
 
 .Button--size-small.Button--accent {
