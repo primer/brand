@@ -250,7 +250,7 @@ const AnchorNavVariantData = {
   ['Reliability']: 'reliability',
 }
 
-export const AnchorNavVariantTemplate: StoryFn<typeof SubNav> = args => (
+const AnchorNavVariantTemplate: StoryFn<typeof SubNav> = args => (
   <main>
     <Box paddingBlockStart={64} backgroundColor="subtle" style={{position: 'relative', zIndex: 32}}></Box>
     <SubNav {...args}>
@@ -291,7 +291,7 @@ export const AnchorNavVariantTemplate: StoryFn<typeof SubNav> = args => (
   </main>
 )
 
-const AnchorNavVariant = AnchorNavVariantTemplate.bind({})
+export const AnchorNavVariant = AnchorNavVariantTemplate.bind({})
 
 AnchorNavVariant.parameters = {
   layout: 'fullscreen',
