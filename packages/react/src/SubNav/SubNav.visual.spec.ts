@@ -1109,4 +1109,58 @@ test.describe('Visual Comparison: SubNav', () => {
     await page.waitForTimeout(500)
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
+
+  test('SubNav / Anchor Nav Variant Keyboard Navigation', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-subnav-features--anchor-nav-variant-keyboard-navigation&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('SubNav / Anchor Nav Variant Keyboard Navigation (fr)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-subnav-features--anchor-nav-variant-keyboard-navigation&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('SubNav / Anchor Nav Variant Keyboard Navigation (de)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-subnav-features--anchor-nav-variant-keyboard-navigation&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('SubNav / Anchor Nav Variant Keyboard Navigation (ja)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-subnav-features--anchor-nav-variant-keyboard-navigation&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('SubNav / Anchor Nav Variant Keyboard Navigation (es)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-subnav-features--anchor-nav-variant-keyboard-navigation&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('SubNav / Anchor Nav Variant Keyboard Navigation (pt-BR)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-subnav-features--anchor-nav-variant-keyboard-navigation&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
 })
