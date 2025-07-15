@@ -90,7 +90,6 @@
   visibility: hidden;
   background-color: var(--brand-color-canvas-default);
   border: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
-  border-radius: var(--brand-borderRadius-large);
   max-height: 460px;
   overflow-y: auto;
   box-shadow: 0px 100px 80px rgba(0, 0, 0, 0.01), 0px 41px 33px rgba(0, 0, 0, 0.02), 0px 22px 17px rgba(0, 0, 0, 0.02),
