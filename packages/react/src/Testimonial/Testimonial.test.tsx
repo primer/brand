@@ -357,7 +357,6 @@ describe('Testimonial', () => {
     const logo = getByRole('img', {name: logoAlt})
     expect(logo).toBeInTheDocument()
     expect(logo).toHaveAttribute('src', logoSrc)
-    expect(logo).toBeInTheDocument()
   })
 
   it('renders logo container', () => {
