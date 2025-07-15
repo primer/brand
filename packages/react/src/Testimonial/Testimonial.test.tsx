@@ -1,0 +1,516 @@
+import React from 'react'
+import {render} from '@testing-library/react'
+import '@testing-library/jest-dom'
+import {axe, toHaveNoViolations} from 'jest-axe'
+import {Testimonial} from './Testimonial'
+
+expect.extend(toHaveNoViolations)
+
+const leftDoubleQuote = '“'
+
+describe('Testimonial', () => {
+  const mockQuote = 'GitHub helps us ensure that we have our security controls baked into our pipelines.'
+  const mockName = 'David Ross'
+  const mockPosition = 'Staff Security Engineer'
+  const mockAvatarSrc = '/images/avatar-mona.png'
+  const mockAvatarAlt = 'David Ross avatar'
+
+  const DefaultTestimonial = () => (
+    <Testimonial>
+      <Testimonial.Quote>{mockQuote}</Testimonial.Quote>
+      <Testimonial.Name position={mockPosition}>{mockName}</Testimonial.Name>
+      <Testimonial.Avatar src={mockAvatarSrc} alt={mockAvatarAlt} />
+    </Testimonial>
+  )
+
+  it('has no accessibility violations', async () => {
+    const {container} = render(<DefaultTestimonial />)
+    const results = await axe(container)
+    expect(results).toHaveNoViolations()
+  })
+
+  it('renders with default props', () => {
+    const {getByRole, getByText} = render(<DefaultTestimonial />)
+
+    expect(getByRole('figure')).toBeInTheDocument()
+    expect(getByText(mockQuote)).toBeInTheDocument()
+    expect(getByText(mockName)).toBeInTheDocument()
+    expect(getByText(mockPosition)).toBeInTheDocument()
+    expect(getByRole('img', {name: mockAvatarAlt})).toBeInTheDocument()
+  })
+
+  it('renders quote mark with default color', () => {
+    const {getByText} = render(<DefaultTestimonial />)
+
+    const quoteMark = getByText(leftDoubleQuote)
+    expect(quoteMark).toHaveClass('Testimonial__quoteMark--default')
+  })
+
+  it('applies custom className', () => {
+    const {getByRole} = render(
+      <Testimonial className="custom-testimonial">
+        <Testimonial.Quote>Quote text</Testimonial.Quote>
+        <Testimonial.Name>Name</Testimonial.Name>
+      </Testimonial>,
+    )
+
+    expect(getByRole('figure')).toHaveClass('custom-testimonial')
+  })
+
+  it('supports RefObject for Testimonial component', () => {
+    const refObject = React.createRef<HTMLElement>()
+    const {getByRole} = render(
+      <Testimonial ref={refObject}>
+        <Testimonial.Quote>Quote text</Testimonial.Quote>
+        <Testimonial.Name>Name</Testimonial.Name>
+      </Testimonial>,
+    )
+
+    const figure = getByRole('figure')
+    expect(refObject.current).toBe(figure)
+  })
+
+  it('supports functional ref for Testimonial component', () => {
+    const mockRef = jest.fn()
+    const {getByRole} = render(
+      <Testimonial ref={mockRef}>
+        <Testimonial.Quote>Quote text</Testimonial.Quote>
+        <Testimonial.Name>Name</Testimonial.Name>
+      </Testimonial>,
+    )
+
+    const figure = getByRole('figure')
+    expect(mockRef).toHaveBeenCalledWith(figure)
+  })
+
+  it.each(['minimal', 'default', 'subtle'] as const)('renders %s variant', variant => {
+    const {getByRole} = render(
+      <Testimonial variant={variant}>
+        <Testimonial.Quote>Quote text</Testimonial.Quote>
+        <Testimonial.Name>Name</Testimonial.Name>
+      </Testimonial>,
+    )
+
+    expect(getByRole('figure')).toHaveClass(`Testimonial--variant-${variant}`)
+  })
+
+  it.each(['small', 'large'] as const)('renders %s size', size => {
+    const {getByRole} = render(
+      <Testimonial size={size}>
+        <Testimonial.Quote>Quote text</Testimonial.Quote>
+        <Testimonial.Name>Name</Testimonial.Name>
+      </Testimonial>,
+    )
+
+    expect(getByRole('figure')).toHaveClass(`Testimonial--size-${size}`)
+  })
+
+  it('applies border class when hasBorder is true', () => {
+    const {getByRole} = render(
+      <Testimonial hasBorder>
+        <Testimonial.Quote>Quote text</Testimonial.Quote>
+        <Testimonial.Name>Name</Testimonial.Name>
+      </Testimonial>,
+    )
+
+    expect(getByRole('figure')).toHaveClass('Testimonial--border')
+  })
+
+  it('does not apply border class when hasBorder is false', () => {
+    const {getByRole} = render(
+      <Testimonial hasBorder={false}>
+        <Testimonial.Quote>Quote text</Testimonial.Quote>
+        <Testimonial.Name>Name</Testimonial.Name>
+      </Testimonial>,
+    )
+
+    expect(getByRole('figure')).not.toHaveClass('Testimonial--border')
+  })
+
+  it('applies custom quote mark color', () => {
+    const {getByText} = render(
+      <Testimonial quoteMarkColor="blue">
+        <Testimonial.Quote>Quote text</Testimonial.Quote>
+        <Testimonial.Name>Name</Testimonial.Name>
+      </Testimonial>,
+    )
+
+    const quoteMark = getByText(leftDoubleQuote)
+    expect(quoteMark).toHaveClass('Testimonial__quoteMark--blue')
+  })
+
+  it('applies custom color as CSS variable', () => {
+    const {getByRole} = render(
+      <Testimonial quoteMarkColor="green">
+        <Testimonial.Quote>Quote text</Testimonial.Quote>
+        <Testimonial.Name>Name</Testimonial.Name>
+      </Testimonial>,
+    )
+
+    const figure = getByRole('figure')
+    expect(figure).toHaveStyle({'--testimonial-accent-color': 'green'})
+  })
+
+  it('renders quote in blockquote element', () => {
+    const {getByText} = render(
+      <Testimonial>
+        <Testimonial.Quote>{mockQuote}</Testimonial.Quote>
+        <Testimonial.Name>Name</Testimonial.Name>
+      </Testimonial>,
+    )
+
+    expect(getByText(mockQuote).closest('blockquote')).toBeInTheDocument()
+  })
+
+  it('applies muted variant when quote contains bold text', () => {
+    const {getByText} = render(
+      <Testimonial>
+        <Testimonial.Quote>
+          This is <b>bold</b> text
+        </Testimonial.Quote>
+        <Testimonial.Name>Name</Testimonial.Name>
+      </Testimonial>,
+    )
+
+    const quoteText = getByText('This is', {exact: false})
+    expect(quoteText).toHaveClass('Testimonial-quote--muted')
+  })
+
+  it('applies muted variant when quote contains emphasized text', () => {
+    const {getByText} = render(
+      <Testimonial>
+        <Testimonial.Quote>
+          This is <em>emphasized</em> text
+        </Testimonial.Quote>
+        <Testimonial.Name>Name</Testimonial.Name>
+      </Testimonial>,
+    )
+
+    const quoteText = getByText('This is', {exact: false})
+    expect(quoteText).toHaveClass('Testimonial-quote--muted')
+  })
+
+  it('does not apply muted variant for simple quote text', () => {
+    const {getByText} = render(
+      <Testimonial>
+        <Testimonial.Quote>Simple quote text</Testimonial.Quote>
+        <Testimonial.Name>Name</Testimonial.Name>
+      </Testimonial>,
+    )
+
+    const quoteText = getByText('Simple quote text').closest('.Testimonial-quote')
+    expect(quoteText).not.toHaveClass('Testimonial-quote--muted')
+  })
+
+  it('supports RefObject for Testimonial.Quote component', () => {
+    const refObject = React.createRef<HTMLElement>()
+    const {getByText} = render(
+      <Testimonial>
+        <Testimonial.Quote ref={refObject}>Quote text</Testimonial.Quote>
+        <Testimonial.Name>Name</Testimonial.Name>
+      </Testimonial>,
+    )
+
+    const blockquote = getByText('Quote text').closest('blockquote')
+    expect(refObject.current).toBe(blockquote)
+  })
+
+  it('supports functional ref for Testimonial.Quote component', () => {
+    const mockRef = jest.fn()
+    const {getByText} = render(
+      <Testimonial>
+        <Testimonial.Quote ref={mockRef}>Quote text</Testimonial.Quote>
+        <Testimonial.Name>Name</Testimonial.Name>
+      </Testimonial>,
+    )
+
+    const blockquote = getByText('Quote text').closest('blockquote')
+    expect(mockRef).toHaveBeenCalledWith(blockquote)
+  })
+
+  it('renders name in figcaption element', () => {
+    const {getByText} = render(
+      <Testimonial>
+        <Testimonial.Quote>Quote text</Testimonial.Quote>
+        <Testimonial.Name>{mockName}</Testimonial.Name>
+      </Testimonial>,
+    )
+
+    expect(getByText(mockName).closest('figcaption')).toBeInTheDocument()
+  })
+
+  it('renders name without position', () => {
+    const {getByText, queryByText} = render(
+      <Testimonial>
+        <Testimonial.Quote>Quote text</Testimonial.Quote>
+        <Testimonial.Name>{mockName}</Testimonial.Name>
+      </Testimonial>,
+    )
+
+    expect(getByText(mockName)).toBeInTheDocument()
+    expect(queryByText(mockPosition)).not.toBeInTheDocument()
+  })
+
+  it('renders name with position', () => {
+    const {getByText} = render(
+      <Testimonial>
+        <Testimonial.Quote>Quote text</Testimonial.Quote>
+        <Testimonial.Name position={mockPosition}>{mockName}</Testimonial.Name>
+      </Testimonial>,
+    )
+
+    expect(getByText(mockName)).toBeInTheDocument()
+    expect(getByText(mockPosition)).toBeInTheDocument()
+  })
+
+  it('applies custom className to name', () => {
+    const {getByText} = render(
+      <Testimonial>
+        <Testimonial.Quote>Quote text</Testimonial.Quote>
+        <Testimonial.Name className="custom-name">{mockName}</Testimonial.Name>
+      </Testimonial>,
+    )
+
+    expect(getByText(mockName).closest('figcaption')).toHaveClass('custom-name')
+  })
+
+  it('supports RefObject for Testimonial.Name component', () => {
+    const refObject = React.createRef<HTMLElement>()
+    const {getByText} = render(
+      <Testimonial>
+        <Testimonial.Quote>Quote text</Testimonial.Quote>
+        <Testimonial.Name ref={refObject}>{mockName}</Testimonial.Name>
+      </Testimonial>,
+    )
+
+    const figcaption = getByText(mockName).closest('figcaption')
+    expect(refObject.current).toBe(figcaption)
+  })
+
+  it('supports functional ref for Testimonial.Name component', () => {
+    const mockRef = jest.fn()
+    const {getByText} = render(
+      <Testimonial>
+        <Testimonial.Quote>Quote text</Testimonial.Quote>
+        <Testimonial.Name ref={mockRef}>{mockName}</Testimonial.Name>
+      </Testimonial>,
+    )
+
+    const figcaption = getByText(mockName).closest('figcaption')
+    expect(mockRef).toHaveBeenCalledWith(figcaption)
+  })
+
+  it('renders avatar image', () => {
+    const {getByRole} = render(
+      <Testimonial>
+        <Testimonial.Quote>Quote text</Testimonial.Quote>
+        <Testimonial.Name>Name</Testimonial.Name>
+        <Testimonial.Avatar src={mockAvatarSrc} alt={mockAvatarAlt} />
+      </Testimonial>,
+    )
+
+    const avatar = getByRole('img', {name: mockAvatarAlt})
+    expect(avatar).toBeInTheDocument()
+    expect(avatar).toHaveAttribute('src', mockAvatarSrc)
+  })
+
+  it('applies testimonial avatar class', () => {
+    const {getByAltText} = render(
+      <Testimonial>
+        <Testimonial.Quote>Quote text</Testimonial.Quote>
+        <Testimonial.Name>Name</Testimonial.Name>
+        <Testimonial.Avatar src={mockAvatarSrc} alt={mockAvatarAlt} />
+      </Testimonial>,
+    )
+
+    const avatarContainer = getByAltText(mockAvatarAlt)
+    expect(avatarContainer).toBeInTheDocument()
+  })
+
+  it('uses fixed avatar size of 48px', () => {
+    const {getByAltText} = render(
+      <Testimonial>
+        <Testimonial.Quote>Quote text</Testimonial.Quote>
+        <Testimonial.Name>Name</Testimonial.Name>
+        <Testimonial.Avatar src={mockAvatarSrc} alt={mockAvatarAlt} size={64} />
+      </Testimonial>,
+    )
+
+    const avatarContainer = getByAltText(mockAvatarAlt)
+    expect(avatarContainer).toBeInTheDocument()
+  })
+
+  it('renders logo with img element', () => {
+    const logoSrc = '/logo.png'
+    const logoAlt = 'Company logo'
+
+    const {getByRole} = render(
+      <Testimonial>
+        <Testimonial.Quote>Quote text</Testimonial.Quote>
+        <Testimonial.Name>Name</Testimonial.Name>
+        <Testimonial.Logo>
+          <img src={logoSrc} alt={logoAlt} />
+        </Testimonial.Logo>
+      </Testimonial>,
+    )
+
+    const logo = getByRole('img', {name: logoAlt})
+    expect(logo).toBeInTheDocument()
+    expect(logo).toHaveAttribute('src', logoSrc)
+    expect(logo).toBeInTheDocument()
+  })
+
+  it('renders logo container', () => {
+    const {getByRole} = render(
+      <Testimonial>
+        <Testimonial.Quote>Quote text</Testimonial.Quote>
+        <Testimonial.Name>Name</Testimonial.Name>
+        <Testimonial.Logo>
+          <img src="/logo.png" alt="Logo" />
+        </Testimonial.Logo>
+      </Testimonial>,
+    )
+
+    const logoContainer = getByRole('img', {name: 'Logo'}).closest('div')
+    expect(logoContainer).toBeInTheDocument()
+  })
+
+  it('supports RefObject for Testimonial.Logo component', () => {
+    const refObject = React.createRef<HTMLImageElement>()
+    const {getByRole} = render(
+      <Testimonial>
+        <Testimonial.Quote>Quote text</Testimonial.Quote>
+        <Testimonial.Name>Name</Testimonial.Name>
+        <Testimonial.Logo ref={refObject}>
+          <img src="/logo.png" alt="Logo" />
+        </Testimonial.Logo>
+      </Testimonial>,
+    )
+
+    const img = getByRole('img', {name: 'Logo'})
+    expect(refObject.current).toBe(img)
+  })
+
+  it('supports functional ref for Testimonial.Logo component', () => {
+    const mockRef = jest.fn()
+    const {getByRole} = render(
+      <Testimonial>
+        <Testimonial.Quote>Quote text</Testimonial.Quote>
+        <Testimonial.Name>Name</Testimonial.Name>
+        <Testimonial.Logo ref={mockRef}>
+          <img src="/logo.png" alt="Logo" />
+        </Testimonial.Logo>
+      </Testimonial>,
+    )
+
+    const img = getByRole('img', {name: 'Logo'})
+    expect(mockRef).toHaveBeenCalledWith(img)
+  })
+
+  it('renders quote before media section', () => {
+    const {getByRole, getByText} = render(<DefaultTestimonial />)
+
+    const figure = getByRole('figure')
+    const quote = getByText(mockQuote)
+    const name = getByText(mockName)
+
+    const figureChildren = Array.from(figure.children)
+    const quoteIndex = figureChildren.findIndex(child => child.contains(quote))
+    const nameIndex = figureChildren.findIndex(child => child.contains(name))
+
+    expect(quoteIndex).toBeLessThan(nameIndex)
+  })
+
+  it('renders avatar, logo, and name in media section', () => {
+    const {container, getByRole, getByText} = render(
+      <Testimonial>
+        <Testimonial.Quote>Quote text</Testimonial.Quote>
+        <Testimonial.Avatar src={mockAvatarSrc} alt={mockAvatarAlt} />
+        <Testimonial.Logo>
+          <img src="/logo.png" alt="Logo" />
+        </Testimonial.Logo>
+        <Testimonial.Name>{mockName}</Testimonial.Name>
+      </Testimonial>,
+    )
+
+    const mediaSection = container.querySelector('.Testimonial__media')
+    expect(mediaSection).toBeInTheDocument()
+
+    const avatar = getByRole('img', {name: mockAvatarAlt})
+    const logo = getByRole('img', {name: 'Logo'})
+    const name = getByText(mockName)
+
+    expect(mediaSection).toContainElement(avatar)
+    expect(mediaSection).toContainElement(logo)
+    expect(mediaSection).toContainElement(name)
+  })
+
+  it('uses semantic HTML structure', () => {
+    const {getByRole, getByText} = render(<DefaultTestimonial />)
+
+    expect(getByRole('figure')).toBeInTheDocument()
+    expect(getByText(mockQuote).closest('blockquote')).toBeInTheDocument()
+    expect(getByText(mockName).closest('figcaption')).toBeInTheDocument()
+  })
+
+  it('hides quote mark from screen readers', () => {
+    const {getByText} = render(<DefaultTestimonial />)
+
+    const quoteMark = getByText(leftDoubleQuote)
+    expect(quoteMark).toHaveAttribute('aria-hidden', 'true')
+  })
+
+  it('renders with only quote and name', () => {
+    const {getByRole, getByText} = render(
+      <Testimonial>
+        <Testimonial.Quote>Quote text</Testimonial.Quote>
+        <Testimonial.Name>Name</Testimonial.Name>
+      </Testimonial>,
+    )
+
+    expect(getByRole('figure')).toBeInTheDocument()
+    expect(getByText('Quote text')).toBeInTheDocument()
+    expect(getByText('Name')).toBeInTheDocument()
+  })
+
+  it('handles mixed children types', () => {
+    const {getByText, queryByText} = render(
+      <Testimonial>
+        <div>Invalid child</div>
+        <Testimonial.Quote>Quote text</Testimonial.Quote>
+        <span>Another invalid child</span>
+        <Testimonial.Name>Name</Testimonial.Name>
+      </Testimonial>,
+    )
+
+    expect(getByText('Quote text')).toBeInTheDocument()
+    expect(getByText('Name')).toBeInTheDocument()
+    expect(queryByText('Invalid child')).not.toBeInTheDocument()
+    expect(queryByText('Another invalid child')).not.toBeInTheDocument()
+  })
+
+  it('handles empty quote content', () => {
+    const {getByRole, getByText} = render(
+      <Testimonial>
+        <Testimonial.Quote></Testimonial.Quote>
+        <Testimonial.Name>Name</Testimonial.Name>
+      </Testimonial>,
+    )
+
+    expect(getByRole('figure')).toBeInTheDocument()
+    expect(getByText('Name')).toBeInTheDocument()
+  })
+
+  it('applies animation classes when animate prop is provided', () => {
+    const {getByRole} = render(
+      <Testimonial animate="fade-in">
+        <Testimonial.Quote>Quote text</Testimonial.Quote>
+        <Testimonial.Name>Name</Testimonial.Name>
+      </Testimonial>,
+    )
+
+    const figure = getByRole('figure')
+    expect(figure).toHaveClass('Animation')
+    expect(figure).toHaveClass('Animation--fade-in')
+  })
+})
