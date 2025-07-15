@@ -1,5 +1,25 @@
 # @primer/react-brand
 
+## 0.56.3
+
+### Patch Changes
+
+- [#1084](https://github.com/primer/brand/pull/1084) [`d0757df`](https://github.com/primer/brand/commit/d0757df2f749e3e5daf3c69d398fbc221f0543f2) Thanks [@joshfarrant](https://github.com/joshfarrant)! - Improved keyboard navigation in `SubNav` anchor variant.
+
+  The anchor-based submenu now appears after the main `SubNav` items in the focus order, and becomes visible when focussed.
+
+- [#1085](https://github.com/primer/brand/pull/1085) [`61e9adc`](https://github.com/primer/brand/commit/61e9adc3e6fdf7b594f6fad27ebcf032342ddc72) Thanks [@joshfarrant](https://github.com/joshfarrant)! - Minor internal refactoring to `VideoPlayer` component
+
+- [#1072](https://github.com/primer/brand/pull/1072) [`775e640`](https://github.com/primer/brand/commit/775e64090300f558e5f245312b4c5f7ede33d717) Thanks [@joshfarrant](https://github.com/joshfarrant)! - Fixed a bug in the `SubNav` component where the separator could appear on a new line during initial render in Safari.
+
+- [#1082](https://github.com/primer/brand/pull/1082) [`6531558`](https://github.com/primer/brand/commit/6531558bf22b2251ae7febcafd159b8441030c78) Thanks [@joshfarrant](https://github.com/joshfarrant)! - Internal refactoring to `SubdomainNavBar` component to remove an unused prop — `showOnlyOnNarrow` — which was leaking into the DOM.
+
+- [#1097](https://github.com/primer/brand/pull/1097) [`d7a954f`](https://github.com/primer/brand/commit/d7a954fb1d4dbbe2ef5d4327094a3036c3b8a4c1) Thanks [@rezrah](https://github.com/rezrah)! - Add support for privacy-enhanced Youtube embeds in the `Prose` component. Now supports the `youtube-nocookie.com` hostname.
+
+- [#1089](https://github.com/primer/brand/pull/1089) [`afd46c1`](https://github.com/primer/brand/commit/afd46c1f8d76b9d6f7843f065f4306fdc2238c49) Thanks [@joshfarrant](https://github.com/joshfarrant)! - Improved focus styles for links inside `Timeline.Item`.
+
+- [#1087](https://github.com/primer/brand/pull/1087) [`35f3e3e`](https://github.com/primer/brand/commit/35f3e3e799213a211f111e56b0f16c343e948256) Thanks [@joshfarrant](https://github.com/joshfarrant)! - Added visually-hidden, non-breaking spaces between each text item in the `EyebrowBanner` component. This improves announcements in screen readers, where they would previously be announced without a pause.
+
 ## 0.56.2
 
 ### Patch Changes
