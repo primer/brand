@@ -90,7 +90,7 @@ export default function HomepageComponent() {
                   </Card>
                 </Grid.Column>
                 <Grid.Column span={{xsmall: 12, large: 6, xlarge: 4}}>
-                  <Card href="https://primer.style/brand/storybook" hasBorder fullWidth ctaText="Go to Storybook">
+                  <Card href="/brand/storybook" hasBorder fullWidth ctaText="Go to Storybook">
                     <Card.Heading as="h2">Storybook</Card.Heading>
                     <Card.Description>For GitHub Staff only</Card.Description>
                   </Card>
