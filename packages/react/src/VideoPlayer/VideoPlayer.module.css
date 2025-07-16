@@ -31,6 +31,12 @@
   height: 100%;
 }
 
+@media (forced-colors: active) {
+  .VideoPlayer__container {
+    border: var(--brand-borderWidth-thin) solid ButtonBorder;
+  }
+}
+
 /* ---------------------------------------------------------- */
 /* 2. Player                                                  */
 /* ---------------------------------------------------------- */
@@ -87,6 +93,13 @@
   color: var(--brand-videoPlayer-playButton-fgColor-rest);
 }
 
+@media (forced-colors: active) {
+  .VideoPlayer__playButton {
+    color: Highlight;
+    opacity: 1;
+  }
+}
+
 /* ---------------------------------------------------------- */
 /* 4. Title                                                   */
 /* ---------------------------------------------------------- */
@@ -112,6 +125,13 @@
 .VideoPlayer__title.VideoPlayer__title--hidden {
   opacity: 0;
   visibility: hidden;
+}
+
+@media (forced-colors: active) {
+  .VideoPlayer__title {
+    background: Canvas;
+    color: CanvasText;
+  }
 }
 
 /* ---------------------------------------------------------- */
@@ -224,6 +244,27 @@
   color: var(--brand-videoPlayer-closedCaption-fgColor-disabled);
 }
 
+@media (forced-colors: active) {
+  .VideoPlayer__iconControl svg {
+    color: ButtonText;
+  }
+
+  .VideoPlayer__iconControl:focus-visible {
+    outline: var(--brand-borderWidth-thick) solid Highlight;
+    outline-offset: var(--base-size-2);
+  }
+
+  .VideoPlayer__closedCaption:not(.VideoPlayer__ccOff) {
+    background: Highlight;
+    border-color: Highlight;
+  }
+
+  .VideoPlayer__closedCaption:not(.VideoPlayer__ccOff) .VideoPlayer__ccText {
+    background-color: Highlight;
+    color: HighlightText;
+  }
+}
+
 /* ---------------------------------------------------------- */
 /* 6. Range Element                                           */
 /* ---------------------------------------------------------- */
@@ -301,6 +342,28 @@
 .VideoPlayer__rangeProgress::-ms-fill-upper {
   background-color: var(--brand-videoPlayer-range-bgColor-default);
   border: none;
+}
+
+@media (forced-colors: active) {
+  .VideoPlayer__rangeProgress::-webkit-progress-bar {
+    background-color: FieldText;
+  }
+
+  .VideoPlayer__rangeProgress::-webkit-progress-value {
+    background-color: Highlight;
+  }
+
+  .VideoPlayer__rangeProgress::-moz-progress-bar {
+    background: Highlight;
+  }
+
+  .VideoPlayer__rangeProgress::-ms-fill-lower {
+    background-color: Highlight;
+  }
+
+  .VideoPlayer__rangeProgress::-ms-fill-upper {
+    background-color: FieldText;
+  }
 }
 
 /* ---------------------------------------------------------- */
