@@ -1,2 +1,2 @@
 cd ../../apps/storybook && npx storybook build && cd ../../packages/e2e
-docker run --rm --ipc=host -v ${PWD%/*/*}:/tests mcr.microsoft.com/playwright:v1.52.0-noble /bin/bash -c "cd tests && npm install && npx playwright install && npx start-server-and-test 'npx http-server ./apps/storybook/storybook-static -p 6006' 6006 'cd packages/e2e && npx playwright test --update-snapshots'"
+docker run --rm --ipc=host -e LANGUAGE="${LANGUAGE}" -v ${PWD%/*/*}:/tests mcr.microsoft.com/playwright:v1.52.0-noble /bin/bash -c "cd tests && npm install && npx playwright install && npx start-server-and-test 'npx http-server ./apps/storybook/storybook-static -p 6006 -s' 6006 'cd packages/e2e && npx playwright test --update-snapshots --reporter=list'"
