@@ -375,37 +375,18 @@
 
 .Prose table th,
 .Prose table td {
-  padding: var(--base-size-16) 0;
+  padding-block: var(--base-size-16);
+  padding-inline: var(--base-size-12);
   text-align: left;
   vertical-align: top;
   border-bottom: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
 }
 
-.Prose table th:not(:first-child):not(:last-child),
-.Prose table td:not(:first-child):not(:last-child) {
-  padding-inline: var(--base-size-12);
-}
-
-@media screen and (min-width: 48rem) {
-  .Prose table th,
-  .Prose table td {
-    padding: var(--base-size-16) var(--base-size-8);
-  }
-
-  .Prose table th:not(:first-child):not(:last-child),
-  .Prose table td:not(:first-child):not(:last-child) {
-    padding-inline: var(--base-size-16);
-  }
-
-  .Prose table th:first-child,
-  .Prose table td:first-child {
-    padding-left: 0;
-  }
-
-  .Prose table th:last-child,
-  .Prose table td:last-child {
-    padding-right: 0;
-  }
+.Prose table th:first-child,
+.Prose table td:first-child,
+.Prose table th:last-child,
+.Prose table td:last-child {
+  padding-inline: 0;
 }
 
 .Prose table th {
@@ -432,13 +413,33 @@
   margin-block-start: 0;
 }
 
-@media (min-width: 48rem) {
+@media screen and (min-width: 48rem) {
+  .Prose table th,
+  .Prose table td {
+    padding: var(--base-size-16) var(--base-size-8);
+  }
+
+  .Prose table th:not(:first-child):not(:last-child),
+  .Prose table td:not(:first-child):not(:last-child) {
+    padding-inline: var(--base-size-16);
+  }
+
+  .Prose table th:first-child,
+  .Prose table td:first-child {
+    padding-inline-start: 0;
+  }
+
+  .Prose table th:last-child,
+  .Prose table td:last-child {
+    padding-inline-end: 0;
+  }
+
   .Prose table tbody tr:hover {
     background-color: var(--brand-color-canvas-subtle);
   }
 }
 
-@media (max-width: 48rem) {
+@media screen and (max-width: 47.99rem) {
   .Prose table:has(td[data-label]) {
     border-collapse: separate;
     border-spacing: 0;
