@@ -4,11 +4,11 @@
 
 Improvements to the styling of various components when viewed in Windows High Contrast Mode.
 
-- `FAQGroup`: Improved selected styles for selected tab
-- `Pagination`: Improved selected styles for current page item
-- `VideoPlayer`: Made all controls and text visible and legible
-- `Checkbox`: Improved focus and checked styles
-- `Radio`: Improved focus and checked styles
-- `TextInput`: Improved focus styles
-- `Textarea`: Improved focus styles
-- `ActionMenu`: Improved focus styles
+- `FAQGroup`: Improved appearance for the selected tab
+- `Pagination`: Improved appearance for the current page item
+- `VideoPlayer`: Improved legibility for all text and controls
+- `Checkbox`: Improved focus and checked appearance
+- `Radio`: Improved focus and checked appearance
+- `TextInput`: Improved focus appearance
+- `Textarea`: Improved focus appearance
+- `ActionMenu`: Improved focus appearance
