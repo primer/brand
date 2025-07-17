@@ -5,6 +5,15 @@
         "value": "var(--base-size-24)"
       }
     },
+    "items1": {
+      "container": {
+        "padding": {
+          "inline": {
+            "value": "var(--base-size-32)"
+          }
+        }
+      }
+    },
     "items2": {
       "gap": {
         "value": "var(--base-size-96)"
