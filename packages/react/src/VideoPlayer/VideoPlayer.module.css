@@ -193,10 +193,13 @@
 }
 
 .VideoPlayer__iconControl:focus-visible {
-  border-color: var(--brand-color-focus);
-  outline: none;
-  box-shadow: 0 0 0 0.125rem var(--brand-color-focus);
+  outline: var(--brand-borderWidth-thick) solid var(--brand-color-focus);
+  outline-offset: var(--base-size-6);
   opacity: 1;
+}
+
+.VideoPlayer__iconControl:not(.VideoPlayer__closedCaption):focus-visible {
+  border-radius: var(--brand-borderRadius-small);
 }
 
 .VideoPlayer__iconControl svg {
@@ -250,8 +253,11 @@
   }
 
   .VideoPlayer__iconControl:focus-visible {
-    outline: var(--brand-borderWidth-thick) solid Highlight;
-    outline-offset: var(--base-size-2);
+    outline-color: Highlight;
+  }
+
+  .VideoPlayer__closedCaption:focus-visible {
+    outline: none;
   }
 
   .VideoPlayer__closedCaption:not(.VideoPlayer__ccOff) {
@@ -295,7 +301,8 @@
 
 .VideoPlayer__rangeInput:focus-visible {
   outline: var(--brand-borderWidth-thick) solid var(--brand-color-focus);
-  outline-offset: var(--base-size-4);
+  outline-offset: var(--base-size-8);
+  border-radius: var(--brand-borderRadius-small);
   opacity: 1;
 }
 
