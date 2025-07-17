@@ -352,3 +352,164 @@
     transition: none !important;
   }
 }
+
+/* Tables */
+
+.Prose table {
+  --spacing: var(--base-size-32);
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+  font-size: var(--brand-text-size-200);
+  line-height: var(--brand-text-lineHeight-200);
+}
+
+.Prose table caption {
+  text-align: left;
+  padding-block-end: var(--base-size-24);
+  font-size: var(--brand-text-size-100);
+  font-weight: var(--brand-text-weight-600);
+  line-height: var(--brand-text-lineHeight-100);
+  color: var(--brand-color-text-muted);
+}
+
+.Prose table th,
+.Prose table td {
+  padding: var(--base-size-16) 0;
+  text-align: left;
+  vertical-align: top;
+  border-bottom: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
+}
+
+.Prose table th:not(:first-child):not(:last-child),
+.Prose table td:not(:first-child):not(:last-child) {
+  padding-inline: var(--base-size-12);
+}
+
+@media screen and (min-width: 48rem) {
+  .Prose table th,
+  .Prose table td {
+    padding: var(--base-size-16) var(--base-size-8);
+  }
+
+  .Prose table th:not(:first-child):not(:last-child),
+  .Prose table td:not(:first-child):not(:last-child) {
+    padding-inline: var(--base-size-16);
+  }
+
+  .Prose table th:first-child,
+  .Prose table td:first-child {
+    padding-left: 0;
+  }
+
+  .Prose table th:last-child,
+  .Prose table td:last-child {
+    padding-right: 0;
+  }
+}
+
+.Prose table th {
+  font-size: var(--brand-text-size-100);
+  font-weight: var(--brand-text-weight-100);
+  line-height: var(--brand-text-lineHeight-100);
+  color: var(--brand-color-text-muted);
+}
+
+.Prose table thead th {
+  border-bottom: var(--brand-borderWidth-thick) solid var(--brand-color-border-default);
+}
+
+.Prose table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.Prose--editorial table {
+  --spacing: var(--base-size-48);
+}
+
+.Prose td > ul:first-child,
+.Prose td > ol:first-child {
+  margin-block-start: 0;
+}
+
+@media (min-width: 48rem) {
+  .Prose table tbody tr:hover {
+    background-color: var(--brand-color-canvas-subtle);
+  }
+}
+
+@media (max-width: 48rem) {
+  .Prose table:has(td[data-label]) {
+    border-collapse: separate;
+    border-spacing: 0;
+    width: 100%;
+    background: none;
+    box-shadow: none;
+    font-size: var(--brand-text-size-200); /* inherit from Prose */
+  }
+
+  /* Visually hidden only */
+  .Prose table:has(td[data-label]) thead {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+  }
+
+  .Prose table:has(td[data-label]) tbody,
+  .Prose table:has(td[data-label]) tr {
+    display: block;
+    width: 100%;
+  }
+
+  .Prose table:has(td[data-label]) th:not(:first-child):not(:last-child),
+  .Prose table:has(td[data-label]) td:not(:first-child):not(:last-child) {
+    padding-inline: 0;
+  }
+
+  .Prose table:has(td[data-label]) tr {
+    border-block-start: var(--brand-borderWidth-thicker) solid var(--brand-color-border-muted);
+    padding-block-start: var(--base-size-20);
+    margin-block-end: var(--spacing);
+  }
+
+  .Prose td[data-label] {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 0;
+    margin: 0 0 var(--base-size-16, 16px) 0;
+    border: none;
+    align-items: flex-start;
+  }
+
+  .Prose td[data-label]:not(:last-child) {
+    border-block-end: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
+    padding-block-end: var(--base-size-20);
+  }
+
+  .Prose td[data-label]::before {
+    content: attr(data-label);
+    color: var(--brand-color-text-muted);
+    margin-bottom: var(--base-size-4);
+    text-align: left;
+  }
+
+  .Prose table:has(td[data-label]) td:not([data-label]) {
+    display: block;
+    width: 100%;
+    padding: 0;
+    margin-block-end: var(--base-size-16);
+    border: none;
+  }
+
+  .Prose table:has(td[data-label]) td:not([data-label]):not(:last-child) {
+    border-block-end: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
+    padding-block-end: var(--base-size-20);
+  }
+
+  .Prose td[data-label]:last-child {
+    margin-bottom: 0;
+  }
+}
