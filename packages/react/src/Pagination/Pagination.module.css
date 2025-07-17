@@ -115,6 +115,14 @@
   }
 }
 
+@media (forced-colors: active) {
+  .Pagination__item[aria-current],
+  .Pagination__item[aria-current]:hover {
+    border-color: Highlight;
+    border-width: var(--brand-borderWidth-thicker);
+  }
+}
+
 /* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
 @media (prefers-reduced-motion: reduce) {
   .Pagination,

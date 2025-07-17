@@ -50,3 +50,11 @@
   font-size: var(--brand-text-size-200);
   line-height: var(--brand-text-lineHeight-200);
 }
+
+@media (forced-colors: active) {
+  .FAQGroup__tablist-button[aria-selected='true'] {
+    border-color: Highlight;
+    border-width: var(--brand-borderWidth-thicker);
+    color: HighlightText;
+  }
+}

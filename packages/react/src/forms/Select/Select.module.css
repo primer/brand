@@ -34,6 +34,13 @@
   box-shadow: 0 0 0 2px var(--brand-color-focus);
 }
 
+@media (forced-colors: active) {
+  .Select:focus-visible {
+    outline: var(--brand-borderWidth-thick) solid Highlight;
+    outline-offset: var(--base-size-2);
+  }
+}
+
 .Select[disabled] {
   -webkit-text-fill-color: var(--brand-control-color-fg-disabled);
   color: var(--brand-control-color-fg-disabled);

@@ -111,6 +111,17 @@ Fixes safari bug where outline doesn't respect border-radius
   opacity: 1;
 }
 
+@media (forced-colors: active) {
+  .Radio-input:focus + .Radio {
+    outline: var(--brand-borderWidth-thick) solid Highlight;
+    outline-offset: var(--base-size-4);
+  }
+
+  .Radio-input:checked + .Radio .Radio-dot {
+    background-color: Highlight;
+  }
+}
+
 /* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
 @media (prefers-reduced-motion: reduce) {
   .Radio,
