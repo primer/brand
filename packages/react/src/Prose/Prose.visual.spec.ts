@@ -608,14 +608,14 @@ test.describe('Visual Comparison: Prose', () => {
       expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
     })
   })
-  test('Prose / With a mixed data set table ', async ({page}) => {
+  test('Prose / With a mixed data set table', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-prose-features--mixed-data&viewMode=story')
 
     await page.waitForTimeout(500)
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
-  test('Prose / With a mixed data set table  (fr)', async ({page}) => {
+  test('Prose / With a mixed data set table (fr)', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-prose-features--mixed-data&viewMode=story',
     )
@@ -624,7 +624,7 @@ test.describe('Visual Comparison: Prose', () => {
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
-  test('Prose / With a mixed data set table  (de)', async ({page}) => {
+  test('Prose / With a mixed data set table (de)', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-prose-features--mixed-data&viewMode=story',
     )
@@ -633,7 +633,7 @@ test.describe('Visual Comparison: Prose', () => {
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
-  test('Prose / With a mixed data set table  (ja)', async ({page}) => {
+  test('Prose / With a mixed data set table (ja)', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-prose-features--mixed-data&viewMode=story',
     )
@@ -642,7 +642,7 @@ test.describe('Visual Comparison: Prose', () => {
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
-  test('Prose / With a mixed data set table  (es)', async ({page}) => {
+  test('Prose / With a mixed data set table (es)', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-prose-features--mixed-data&viewMode=story',
     )
@@ -651,7 +651,7 @@ test.describe('Visual Comparison: Prose', () => {
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
-  test('Prose / With a mixed data set table  (pt-BR)', async ({page}) => {
+  test('Prose / With a mixed data set table (pt-BR)', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-prose-features--mixed-data&viewMode=story',
     )

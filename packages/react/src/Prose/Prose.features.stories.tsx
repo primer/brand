@@ -393,7 +393,7 @@ export const MixedData = () => {
   const {t} = useTranslation('Prose')
   return <Prose html={stressTestMarkup(t)} />
 }
-MixedData.storyName = 'With a mixed data set table '
+MixedData.storyName = 'With a mixed data set table'
 
 export const MixedDataNarrow = () => {
   const {t} = useTranslation('Prose')

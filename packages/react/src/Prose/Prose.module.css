@@ -493,7 +493,7 @@
   .Prose td[data-label]::before {
     content: attr(data-label);
     color: var(--brand-color-text-muted);
-    margin-bottom: var(--base-size-4);
+    margin-block-end: var(--base-size-4);
     text-align: left;
     font-weight: var(--brand-text-weight-400);
   }
@@ -512,6 +512,6 @@
   }
 
   .Prose td[data-label]:last-child {
-    margin-bottom: 0;
+    margin-block-end: 0;
   }
 }
