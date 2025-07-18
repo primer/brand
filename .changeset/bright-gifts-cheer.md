@@ -3,4 +3,4 @@
 '@primer/react-brand': patch
 ---
 
-Updated the layout of single item PricingOptions
+Updated the layout of single item `PricingOptions`
