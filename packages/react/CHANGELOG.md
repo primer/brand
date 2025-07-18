@@ -1,5 +1,24 @@
 # @primer/react-brand
 
+## 0.56.4
+
+### Patch Changes
+
+- [#1111](https://github.com/primer/brand/pull/1111) [`8dc3fc9`](https://github.com/primer/brand/commit/8dc3fc96bf504735785de124695fdb05d6828b3c) Thanks [@joshfarrant](https://github.com/joshfarrant)! - Improvements to the styling of various components when viewed in Windows High Contrast Mode.
+
+  - `FAQGroup`: Improved appearance for the selected tab
+  - `Pagination`: Improved appearance for the current page item
+  - `VideoPlayer`: Improved legibility for all text and controls
+  - `Checkbox`: Improved focus and checked appearance
+  - `Radio`: Improved focus and checked appearance
+  - `TextInput`: Improved focus appearance
+  - `Textarea`: Improved focus appearance
+  - `ActionMenu`: Improved focus appearance
+
+- [#1102](https://github.com/primer/brand/pull/1102) [`5ef7878`](https://github.com/primer/brand/commit/5ef787898226a43577bf38e7c366fcb9f2f5f637) Thanks [@joshfarrant](https://github.com/joshfarrant)! - The `Button` component now automatically applies semantically correct disabled attributes based on the rendered element type. E.g. `disabled` for button elements and `aria-disabled` for other elements.
+
+  ⚠️ Please review usage of `Button` in your application code or tests, to ensure that you are not relying on the previously incorrect markup. For example, if you previously targeted `a[disabled]`, you should now target `a[aria-disabled]` instead.
+
 ## 0.56.3
 
 ### Patch Changes
