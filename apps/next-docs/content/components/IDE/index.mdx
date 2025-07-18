@@ -31,7 +31,6 @@ The `IDE` does not automatically apply syntax highlighting to code snippets. Usa
 ```jsx live
 <IDE height={500}>
   <IDE.Editor
-    showReplayButton={false}
     files={[
       {
         name: 'index.js',
@@ -212,7 +211,6 @@ When using the `glass` variant, pay close attention to the background image behi
 >
   <IDE height={400} variant="glass">
     <IDE.Editor
-      showReplayButton={false}
       files={[
         {
           name: 'index.js',
@@ -283,7 +281,6 @@ In both cases, the goal is to provide a meaningful summary of the content that w
 | `showLineNumbers`  | `boolean`              |         | `false`  | Show line numbers in the editor |
 | `size`             | <IDEEditorSizeProp />  |         | `false`  | Controls editor text size       |
 | `triggerAnimation` | `boolean`              |         | `false`  | Trigger animation externally    |
-| `showReplayButton` | `boolean`              |         | `false`  | Show replay button              |
 
 Supported file extensions in the editor include: <IDEFileExtensionsList />
 

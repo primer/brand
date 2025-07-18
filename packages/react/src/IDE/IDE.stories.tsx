@@ -27,7 +27,6 @@ export default {
   args: {
     showChat: true,
     height: 800,
-    showReplayButton: false,
   },
   argTypes: {
     showChat: {
@@ -42,13 +41,6 @@ export default {
       description: 'adjust the height of the IDE',
       control: {
         type: 'number',
-      },
-      showReplayButton: {
-        name: 'show replay button',
-        description: 'toggle replay button visibility',
-        control: {
-          type: 'boolean',
-        },
       },
     },
     className: {table: {disable: true}},
@@ -74,15 +66,14 @@ export default {
 
 type StoryProps = {
   showChat: boolean
-  showReplayButton: boolean
   height: number
 } & IDEProps
 
-const Template: StoryFn<StoryProps> = ({showChat, showReplayButton, ...args}) => {
+const Template: StoryFn<StoryProps> = ({showChat, ...args}) => {
   return (
     <IDE {...args}>
       {showChat && <IDE.Chat script={chatScript} alternativeText={chatScriptAlt}></IDE.Chat>}
-      <IDE.Editor files={defaultFiles} showReplayButton={showReplayButton} />
+      <IDE.Editor files={defaultFiles} />
     </IDE>
   )
 }

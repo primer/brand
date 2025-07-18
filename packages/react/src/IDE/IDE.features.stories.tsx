@@ -59,16 +59,6 @@ export const EditorOnly = args => {
   )
 }
 
-export const EditorNoReplayButton = args => {
-  return (
-    <IDE {...args}>
-      <IDE.Editor size="large" activeTab={0} files={files} showReplayButton={false} />
-    </IDE>
-  )
-}
-
-EditorNoReplayButton.storyName = 'Editor Only (no replay button)'
-
 export const EditorCustomIcons = args => {
   return (
     <IDE {...args}>
@@ -76,7 +66,6 @@ export const EditorCustomIcons = args => {
         size="large"
         activeTab={0}
         files={files}
-        showReplayButton={false}
         tabIcons={{
           ...Object.keys(IDEDefaultIconMap).reduce((acc, key) => {
             acc[key] = 'https://github.com/primer/brand/assets/13340707/fede56eb-578f-4d17-b045-5f6fdfae28cf'
@@ -87,8 +76,6 @@ export const EditorCustomIcons = args => {
     </IDE>
   )
 }
-
-EditorNoReplayButton.storyName = 'Editor Only (no replay button)'
 
 export const ChatOnly = args => {
   return (
@@ -238,7 +225,7 @@ PerspectiveExampleLight.decorators = [
 export const AllGlass = args => (
   <IDE {...args} variant="glass">
     <IDE.Chat script={chatScript} alternativeText={chatScriptAlt}></IDE.Chat>
-    <IDE.Editor size="large" files={files} showReplayButton={false} />
+    <IDE.Editor size="large" files={files} />
   </IDE>
 )
 
