@@ -144,6 +144,20 @@ const _IDERoot = memo(
     // If a child exists, we need to account for its animation state
     const allAnimationsAreDone = (!hasChatChild || chatAnimationIsDone) && (!hasEditorChild || editorAnimationIsDone)
 
+    const onPlayPause = useCallback(
+      isPlaying => {
+        if (allAnimationsAreDone) {
+          setChatAnimationIsDone(false)
+          setEditorAnimationIsDone(false)
+          chatRef.current?.resetAnimation()
+          editorRef.current?.resetAnimation()
+        } else {
+          setAnimationIsPaused(!isPlaying)
+        }
+      },
+      [allAnimationsAreDone],
+    )
+
     return (
       <section
         data-testid={testId || testIds.root}
@@ -163,19 +177,7 @@ const _IDERoot = memo(
               {ClonedChatChild}
               {ClonedEditorChild}
             </div>
-            <PlayPauseButton
-              isPlaying={!animationIsPaused && !allAnimationsAreDone}
-              onPlayPause={isPlaying => {
-                if (allAnimationsAreDone) {
-                  setChatAnimationIsDone(false)
-                  setEditorAnimationIsDone(false)
-                  chatRef.current?.resetAnimation()
-                  editorRef.current?.resetAnimation()
-                } else {
-                  setAnimationIsPaused(!isPlaying)
-                }
-              }}
-            />
+            <PlayPauseButton isPlaying={!animationIsPaused && !allAnimationsAreDone} onPlayPause={onPlayPause} />
           </div>
         </div>
       </section>
