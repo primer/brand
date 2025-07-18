@@ -26,43 +26,36 @@ const ExampleHtmlMarkup = (t: (key: string) => string) => `
     <figure>
       <blockquote>
         <p>Nulla ac odio eu magna hendrerit porta. Donec nec eros quis tortor tincidunt vulputate. Aenean id pharetra diam, sit amet auctor leo. Aliquam erat volutpat.</p>
-        <figcaption>Lisa Vanderschuit, Engineering Program Manager, Shopify</figcaption>
+        <figcaption>${t('lisa_vanderschuit_attribution')}</figcaption>
       </blockquote>
     </figure>
     <p>Integer pellentesque pretium nulla viverra molestie. Praesent quis pretium sapien. Sed convallis eget lectus et pulvinar:</p>
     <ul>
-      <li>
-        Vivamus eu risus nec lectus consequat rutrum at vel lacus.
-      </li>
-      <li>Donec at dolor ut metus imperdiet congue vel porta nunc.
-      </li>
+      <li> Vivamus eu risus nec lectus consequat rutrum at vel lacus.</li>
+      <li>Donec at dolor ut metus imperdiet congue vel porta nunc.</li>
       <li>Quisque eu tortor suscipit, congue quam in, bibendum tellus.</li>
     </ul>
     <h3>${t('heading_level_3')}</h3>
     <p>Pellentesque non ornare ligula. Suspendisse nibh purus, pretium id tortor sit amet, tincidunt gravida augue. Ut malesuada, nisl vel dignissim mollis</p>
     <img
       src="${placeholderImage}"
-      alt="placeholder, blank area with a gray background color"
+      alt="${t('placeholder_alt_text')}"
       />
     <h4>${t('heading_level_4')}</h4>
     <p>
-      Secure code as you write it. Automatically review every change to your codebase and identify vulnerabilities
-      before they reach production. <a href="/#">${t('learn_more_here')}.</a>
+      ${t('secure_code_paragraph')} <a href="/#">${t('learn_more_here')}.</a>
     </p>
     <pre><code>const myVariable = [1, 2, 3];\nif (Array.isArray(myVariable)) {\n  console.log('It is an array!');\n} else {\n  console.log('It is not an array.');\n}</code></pre>
     <h5>${t('heading_level_5')}</h5>
     <ol>
-      <li>
-        Vivamus eu risus nec lectus consequat rutrum at vel lacus.
-      </li>
-      <li>Donec at dolor ut metus imperdiet congue vel porta nunc.
-      </li>
+      <li> Vivamus eu risus nec lectus consequat rutrum at vel lacus.</li>
+      <li>Donec at dolor ut metus imperdiet congue vel porta nunc.</li>
       <li>Quisque eu tortor suscipit, congue quam in, bibendum tellus.</li>
     </ol>
     <h6>${t('heading_level_6')}</h6>
     <p>Pellentesque non ornare ligula. Suspendisse nibh purus, pretium id tortor sit amet, tincidunt gravida augue.</p>
-    <p><code>for-each-ref</code> is extremely useful for listing references, finding which references point at a given object (with <code>--points-at</code>), which references have been merged into a given branch (with <code>--merged</code>), or which references contain a given commit (with <code>--contains</code>).</p>
-    <p>Nunc velit odio, posuere eu felis eget, consectetur fermentum nisi. Aenean tempor odio id ornare ultrices. Quisque blandit condimentum tellus, semper efficitur sapien dapibus nec. </p>
+    <p><code>for-each-ref</code> ${t('for_each_ref_paragraph')}</p>
+    <p>Nunc velit odio, posuere eu felis eget, consectetur fermentum nisi. Aenean tempor odio id ornare ultrices. Quisque blandit condimentum tellus, semper efficitur sapien dapibus nec.</p>
 `
 
 export const FullWidth: StoryFn = () => {
@@ -190,7 +183,7 @@ const proseMarkup = (t: (key: string) => string) => `
     </tr>
   </tbody>
 </table>
-<p>Nunc velit odio, posuere eu felis eget, consectetur fermentum nisi. Aenean tempor odio id ornare ultrices. Quisque blandit condimentum tellus, semper efficitur sapien dapibus nec. </p>
+<p>Nunc velit odio, posuere eu felis eget, consectetur fermentum nisi. Aenean tempor odio id ornare ultrices. Quisque blandit condimentum tellus, semper efficitur sapien dapibus nec.</p>
 `
 
 export const DefaultTable = args => {
@@ -252,7 +245,7 @@ const dataLabelsMarkup = (t: (key: string) => string) => `
     </tr>
   </tbody>
 </table>
-<p>Nunc velit odio, posuere eu felis eget, consectetur fermentum nisi. Aenean tempor odio id ornare ultrices. Quisque blandit condimentum tellus, semper efficitur sapien dapibus nec. </p>`
+<p>Nunc velit odio, posuere eu felis eget, consectetur fermentum nisi. Aenean tempor odio id ornare ultrices. Quisque blandit condimentum tellus, semper efficitur sapien dapibus nec.</p>`
 
 export const TableWithDataLabels = () => {
   const {t} = useTranslation('Prose')

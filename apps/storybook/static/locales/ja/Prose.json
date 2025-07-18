@@ -52,5 +52,9 @@
   "minutes": "分",
   "day": "日",
   "kloc": "KLOC",
-  "developers": "開発者"
+  "developers": "開発者",
+  "lisa_vanderschuit_attribution": "Lisa Vanderschuit、エンジニアリングプログラムマネージャー、Shopify",
+  "placeholder_alt_text": "プレースホルダー、灰色の背景色を持つ空白領域",
+  "secure_code_paragraph": "コードを書く際にセキュリティを確保してください。コードベースのすべての変更を自動的にレビューし、本番環境に到達する前に脆弱性を特定します。",
+  "for_each_ref_paragraph": "は参照をリストアップし、どの参照が特定のオブジェクトを指しているか（--points-atで）、どの参照が特定のブランチにマージされているか（--mergedで）、またはどの参照が特定のコミットを含んでいるか（--containsで）を見つけるのに非常に便利です。"
 }

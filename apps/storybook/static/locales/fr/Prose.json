@@ -52,5 +52,9 @@
   "minutes": "minutes",
   "day": "jour",
   "kloc": "KLOC",
-  "developers": "développeurs"
+  "developers": "développeurs",
+  "lisa_vanderschuit_attribution": "Lisa Vanderschuit, Gestionnaire de programme d'ingénierie, Shopify",
+  "placeholder_alt_text": "espace réservé, zone vide avec une couleur d'arrière-plan grise",
+  "secure_code_paragraph": "Sécurisez le code au fur et à mesure que vous l'écrivez. Examinez automatiquement chaque modification apportée à votre base de code et identifiez les vulnérabilités avant qu'elles n'atteignent la production.",
+  "for_each_ref_paragraph": "est extrêmement utile pour lister les références, trouver quelles références pointent vers un objet donné (avec --points-at), quelles références ont été fusionnées dans une branche donnée (avec --merged), ou quelles références contiennent un commit donné (avec --contains)."
 }

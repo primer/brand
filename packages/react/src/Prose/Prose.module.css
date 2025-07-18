@@ -368,7 +368,7 @@
   text-align: left;
   padding-block-end: var(--base-size-24);
   font-size: var(--brand-text-size-100);
-  font-weight: var(--brand-text-weight-600);
+  font-weight: var(--brand-text-weight-100);
   line-height: var(--brand-text-lineHeight-100);
   color: var(--brand-color-text-muted);
 }
@@ -391,7 +391,7 @@
 
 .Prose table th {
   font-size: var(--brand-text-size-100);
-  font-weight: var(--brand-text-weight-100);
+  font-weight: var(--brand-text-weight-400);
   line-height: var(--brand-text-lineHeight-100);
   color: var(--brand-color-text-muted);
 }
@@ -495,6 +495,7 @@
     color: var(--brand-color-text-muted);
     margin-bottom: var(--base-size-4);
     text-align: left;
+    font-weight: var(--brand-text-weight-400);
   }
 
   .Prose table:has(td[data-label]) td:not([data-label]) {

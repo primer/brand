@@ -52,5 +52,9 @@
   "minutes": "minutes",
   "day": "day",
   "kloc": "KLOC",
-  "developers": "developers"
+  "developers": "developers",
+  "lisa_vanderschuit_attribution": "Lisa Vanderschuit, Engineering Program Manager, Shopify",
+  "placeholder_alt_text": "placeholder, blank area with a gray background color",
+  "secure_code_paragraph": "Secure code as you write it. Automatically review every change to your codebase and identify vulnerabilities before they reach production.",
+  "for_each_ref_paragraph": "is extremely useful for listing references, finding which references point at a given object (with --points-at), which references have been merged into a given branch (with --merged), or which references contain a given commit (with --contains)."
 }
