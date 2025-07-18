@@ -165,8 +165,9 @@ const drawScatterplot = (data, height, width) => {
     name: 'parse_expenses.py',
     alternativeText:
       'Python function parsing expense records from a string format. Copilot suggests implementing date parsing logic and expense record processing.',
-    suggestedLineStart: 3,
-    code: `import datetime
+    suggestedLineStart: 2,
+    code: hljs.highlight(
+      `import datetime
 
 def parse_expenses(expenses_string):
 """Parse the list of expenses and return the list of triples (date, value, currency).
@@ -185,9 +186,9 @@ date, value, currency = line.split(" ")
 expenses.append((datetime.datetime.strptime(date, "%Y-%m-%d"),
           float(value),
           currency))
-return expenses`
-      .split('\n')
-      .map(line => hljs.highlight(line, {language: 'python'}).value),
+return expenses`,
+      {language: 'python'},
+    ).value,
     highlighter: 'hljs',
   },
 ]
