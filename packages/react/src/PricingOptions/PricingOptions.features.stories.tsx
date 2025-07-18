@@ -165,26 +165,6 @@ export const CardsGradientVariant: StoryFn<typeof PricingOptions> = () => {
   )
 }
 
-export const OneOption: StoryFn<typeof PricingOptions> = () => {
-  return (
-    <PricingOptions>
-      <PricingOptions.Item>
-        <PricingOptions.Heading>Copilot Individual</PricingOptions.Heading>
-        <PricingOptions.Description>
-          Code completions, Chat, and more for indie developers and freelancers.
-        </PricingOptions.Description>
-        <PricingOptions.Price trailingText="per month / $100 per year">10</PricingOptions.Price>
-        <PricingOptions.PrimaryAction as="a" href="#">
-          Buy now
-        </PricingOptions.PrimaryAction>
-        <PricingOptions.SecondaryAction as="a" href="#">
-          Contact sales
-        </PricingOptions.SecondaryAction>
-      </PricingOptions.Item>
-    </PricingOptions>
-  )
-}
-
 export const LeadingComponent: StoryFn<typeof PricingOptions> = () => {
   const Image = () => (
     <Box marginBlockEnd={24}>
@@ -253,6 +233,32 @@ export const LeadingComponent: StoryFn<typeof PricingOptions> = () => {
         </PricingOptions.Item>
       </PricingOptions>
     </Stack>
+  )
+}
+
+export const OneOption: StoryFn<typeof PricingOptions> = () => {
+  return (
+    <PricingOptions>
+      <PricingOptions.Item>
+        <PricingOptions.Heading>Copilot Individual</PricingOptions.Heading>
+        <PricingOptions.Description>
+          Code completions, Chat, and more for indie developers and freelancers.
+        </PricingOptions.Description>
+        <PricingOptions.Price trailingText="per month / $100 per year">10</PricingOptions.Price>
+        <PricingOptions.PrimaryAction as="a" href="#">
+          Buy now
+        </PricingOptions.PrimaryAction>
+        <PricingOptions.SecondaryAction as="a" href="#">
+          Contact sales
+        </PricingOptions.SecondaryAction>
+        <PricingOptions.FeatureList>
+          <PricingOptions.FeatureListItem>Code completions</PricingOptions.FeatureListItem>
+          <PricingOptions.FeatureListItem>Chat in IDE and Mobile</PricingOptions.FeatureListItem>
+          <PricingOptions.FeatureListItem>CLI assistance</PricingOptions.FeatureListItem>
+          <PricingOptions.FeatureListItem>Security vulnerability filter</PricingOptions.FeatureListItem>
+        </PricingOptions.FeatureList>
+      </PricingOptions.Item>
+    </PricingOptions>
   )
 }
 
