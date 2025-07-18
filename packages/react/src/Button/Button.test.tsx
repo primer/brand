@@ -49,11 +49,7 @@ describe('Button', () => {
   })
 
   it('sets the disabled attribute to true when disabled prop is true and component is rendered as a button', () => {
-    const {getByRole} = render(
-      <Button variant="primary" size="medium" disabled>
-        Primary Button
-      </Button>,
-    )
+    const {getByRole} = render(<Button disabled>Primary Button</Button>)
     const btnEl = getByRole('button')
 
     expect(btnEl).toHaveAttribute('disabled')
@@ -61,23 +57,19 @@ describe('Button', () => {
   })
 
   it('sets the aria-disabled attribute to true when disabled prop is true and component is rendered as a link', () => {
-    const {getByText} = render(
-      <Button variant="primary" size="medium" disabled as="a">
+    const {getByRole} = render(
+      <Button disabled as="a" href="#">
         Primary Button
       </Button>,
     )
-    const linkEl = getByText('Primary Button').closest('a')
+    const linkEl = getByRole('link', {name: 'Primary Button'})
 
     expect(linkEl).toHaveAttribute('aria-disabled')
     expect(linkEl).not.toHaveAttribute('disabled')
   })
 
   it('sets neither the disabled nor the aria-disabled attribute when disabled prop is false and component is rendered as a button', () => {
-    const {getByRole} = render(
-      <Button variant="primary" size="medium" disabled={false}>
-        Primary Button
-      </Button>,
-    )
+    const {getByRole} = render(<Button disabled={false}>Primary Button</Button>)
     const btnEl = getByRole('button')
 
     expect(btnEl).not.toHaveAttribute('aria-disabled')
@@ -85,23 +77,19 @@ describe('Button', () => {
   })
 
   it('sets neither the disabled nor the aria-disabled attribute when disabled prop is false and component is rendered as a link', () => {
-    const {getByText} = render(
-      <Button variant="primary" size="medium" disabled={false} as="a">
+    const {getByRole} = render(
+      <Button disabled={false} as="a" href="#">
         Primary Button
       </Button>,
     )
-    const linkEl = getByText('Primary Button').closest('a')
+    const linkEl = getByRole('link', {name: 'Primary Button'})
 
     expect(linkEl).not.toHaveAttribute('aria-disabled')
     expect(linkEl).not.toHaveAttribute('disabled')
   })
 
   it('sets neither the disabled nor the aria-disabled attribute when disabled prop is undefined and component is rendered as a button', () => {
-    const {getByRole} = render(
-      <Button variant="primary" size="medium" disabled={undefined}>
-        Primary Button
-      </Button>,
-    )
+    const {getByRole} = render(<Button disabled={undefined}>Primary Button</Button>)
     const btnEl = getByRole('button')
 
     expect(btnEl).not.toHaveAttribute('aria-disabled')
@@ -109,12 +97,12 @@ describe('Button', () => {
   })
 
   it('sets neither the disabled nor the aria-disabled attribute when disabled prop is undefined and component is rendered as a link', () => {
-    const {getByText} = render(
-      <Button variant="primary" size="medium" disabled={undefined} as="a">
+    const {getByRole} = render(
+      <Button disabled={undefined} as="a" href="#">
         Primary Button
       </Button>,
     )
-    const linkEl = getByText('Primary Button').closest('a')
+    const linkEl = getByRole('link', {name: 'Primary Button'})
 
     expect(linkEl).not.toHaveAttribute('aria-disabled')
     expect(linkEl).not.toHaveAttribute('disabled')
