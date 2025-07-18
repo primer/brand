@@ -390,7 +390,7 @@ pre.IDE__Chat-copilot-indicator {
   margin: 0;
   padding: 0;
   border: none;
-  border-radius: var(--base-size-48);
+  border-radius: var(--brand-borderRadius-full);
   background-color: var(--brand-IDE-playPauseControl-rest);
   transition: background-color var(--brand-animation-duration-faster);
 }
