@@ -54,8 +54,8 @@ const App = () => {
 
   return (
     <ActionMenu onSelect={newValue => setSelection(newValue)} selectionVariant="single">
-      <ActionMenu.Button aria-label="Select a GitHub feature">{selection}</ActionMenu.Button>
-      <ActionMenu.Overlay>
+      <ActionMenu.Button>Select a GitHub feature</ActionMenu.Button>
+      <ActionMenu.Overlay aria-label="GitHub features">
         <ActionMenu.Item value="Copilot" selected={'Copilot' === selection}>
           Copilot
         </ActionMenu.Item>
