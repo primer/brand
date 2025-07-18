@@ -265,7 +265,7 @@ describe('IDE', () => {
     await waitFor(() => expect(message3Parent).toHaveClass('IDE__Chat-message--visible'))
   })
 
-  it('allows the chat animation to be paused', async () => {
+  it('allows the chat animation to be paused and resumed', async () => {
     const user = userEvent.setup()
 
     const {getByText, getByRole} = render(
@@ -298,6 +298,11 @@ describe('IDE', () => {
 
     const playButton = getByRole('button', {name: 'Play animation'})
     expect(playButton).toBeInTheDocument()
+
+    await user.click(playButton)
+
+    await waitFor(() => expect(message2Parent).toHaveClass('IDE__Chat-message--visible'))
+    await waitFor(() => expect(message3Parent).toHaveClass('IDE__Chat-message--visible'))
   })
 
   it('plays the editor animation by default', async () => {
@@ -322,7 +327,7 @@ describe('IDE', () => {
     await waitFor(() => expect(line3).toHaveClass('Animation--active'))
   })
 
-  it('allows the editor animation to be paused', async () => {
+  it('allows the editor animation to be paused and resumed', async () => {
     const user = userEvent.setup()
 
     const {getByRole, getByText} = render(
@@ -357,6 +362,11 @@ describe('IDE', () => {
 
     const playButton = getByRole('button', {name: 'Play animation'})
     expect(playButton).toBeInTheDocument()
+
+    await user.click(playButton)
+
+    await waitFor(() => expect(line2).toHaveClass('Animation--active'))
+    await waitFor(() => expect(line3).toHaveClass('Animation--active'))
   })
 
   it('plays the chat animation when both the chat and editor are present', async () => {
@@ -403,7 +413,7 @@ describe('IDE', () => {
     await waitFor(() => expect(line3).toHaveClass('Animation--active'))
   })
 
-  it('allows the chat and editor animations to be paused when both the chat and editor are present', async () => {
+  it('allows the chat and editor animations to be paused and resumed when both the chat and editor are present', async () => {
     const user = userEvent.setup()
 
     const {getByRole, getByText} = render(
@@ -450,5 +460,12 @@ describe('IDE', () => {
 
     const playButton = getByRole('button', {name: 'Play animation'})
     expect(playButton).toBeInTheDocument()
+
+    await user.click(playButton)
+
+    await waitFor(() => expect(message2Parent).toHaveClass('IDE__Chat-message--visible'))
+    await waitFor(() => expect(message3Parent).toHaveClass('IDE__Chat-message--visible'))
+    await waitFor(() => expect(line2).toHaveClass('Animation--active'))
+    await waitFor(() => expect(line3).toHaveClass('Animation--active'))
   })
 })
