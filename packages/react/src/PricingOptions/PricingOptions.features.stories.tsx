@@ -5,7 +5,7 @@ import {INITIAL_VIEWPORTS} from '@storybook/addon-viewport'
 import {PricingOptions} from '.'
 import {Box, Grid, InlineLink, Stack} from '..'
 import imageExample from '../fixtures/images/bento/3.png'
-import {CopilotIcon, SparkleFillIcon} from '@primer/octicons-react'
+import {SparkleFillIcon} from '@primer/octicons-react'
 
 const decorators = Story => (
   <Box backgroundColor="default" paddingBlockStart="spacious" paddingBlockEnd="spacious" style={{minHeight: '100vh'}}>
@@ -169,12 +169,6 @@ export const LeadingComponent: StoryFn<typeof PricingOptions> = () => {
   const Image = () => (
     <Box marginBlockEnd={24}>
       <img src={imageExample} alt="Copilot Individual" />
-    </Box>
-  )
-
-  const IconVisual = () => (
-    <Box>
-      <CopilotIcon size={24} />
     </Box>
   )
 
