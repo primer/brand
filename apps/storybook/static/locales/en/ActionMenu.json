@@ -1,0 +1,23 @@
+{
+  "select_github_feature": "Select a GitHub feature",
+  "github_features": "GitHub features",
+  "select_country": "Select a country",
+  "countries": "Countries",
+  "select_location": "Select a location",
+  "locations": "Locations",
+  "select_size": "Select a size",
+  "advanced_security": "Advanced Security",
+  "open_menu": "Open menu",
+  "install_copilot_vscode": "Install Copilot in Visual Studio Code",
+  "alternative_options": "Alternative options",
+  "alternative_editors": "Alternative editors",
+  "see_plans_pricing": "See plans & pricing",
+  "label": "Label",
+  "actions": "Actions",
+  "copy_link": "Copy link",
+  "quote_reply": "Quote reply",
+  "edit_comment": "Edit comment",
+  "europe_middle_east_africa": "Europe, Middle East and Africa",
+  "americas": "Americas",
+  "asia_pacific": "Asia Pacific"
+}
