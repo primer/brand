@@ -331,4 +331,390 @@ test.describe('Visual Comparison: Prose', () => {
     await page.waitForTimeout(500)
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
+
+  test('Prose / With a table (default)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-prose-features--default-table&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('Prose / With a table (default) (fr)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-prose-features--default-table&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('Prose / With a table (default) (de)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-prose-features--default-table&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('Prose / With a table (default) (ja)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-prose-features--default-table&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('Prose / With a table (default) (es)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-prose-features--default-table&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('Prose / With a table (default) (pt-BR)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-prose-features--default-table&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('Prose / With a table (editorial variant)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-prose-features--editorial-table&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('Prose / With a table (editorial variant) (fr)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-prose-features--editorial-table&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('Prose / With a table (editorial variant) (de)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-prose-features--editorial-table&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('Prose / With a table (editorial variant) (ja)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-prose-features--editorial-table&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('Prose / With a table (editorial variant) (es)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-prose-features--editorial-table&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('Prose / With a table (editorial variant) (pt-BR)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-prose-features--editorial-table&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  // eslint-disable-next-line i18n-text/no-en
+  test.describe('Mobile viewport test for With a table (narrow)', () => {
+    test.use({viewport: {width: 360, height: 800}})
+    test('Prose / With a table (narrow)', async ({page}) => {
+      await page.goto(
+        'http://localhost:6006/iframe.html?args=&id=components-prose-features--default-table-narrow-view&viewMode=story',
+      )
+
+      await page.waitForTimeout(500)
+      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    })
+
+    test('Prose / With a table (narrow) (fr)', async ({page}) => {
+      await page.goto(
+        'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-prose-features--default-table-narrow-view&viewMode=story',
+      )
+
+      await page.waitForTimeout(500)
+      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    })
+
+    test('Prose / With a table (narrow) (de)', async ({page}) => {
+      await page.goto(
+        'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-prose-features--default-table-narrow-view&viewMode=story',
+      )
+
+      await page.waitForTimeout(500)
+      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    })
+
+    test('Prose / With a table (narrow) (ja)', async ({page}) => {
+      await page.goto(
+        'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-prose-features--default-table-narrow-view&viewMode=story',
+      )
+
+      await page.waitForTimeout(500)
+      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    })
+
+    test('Prose / With a table (narrow) (es)', async ({page}) => {
+      await page.goto(
+        'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-prose-features--default-table-narrow-view&viewMode=story',
+      )
+
+      await page.waitForTimeout(500)
+      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    })
+
+    test('Prose / With a table (narrow) (pt-BR)', async ({page}) => {
+      await page.goto(
+        'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-prose-features--default-table-narrow-view&viewMode=story',
+      )
+
+      await page.waitForTimeout(500)
+      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    })
+  })
+  test('Prose / With a vertically-stacked table', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-prose-features--table-with-data-labels&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('Prose / With a vertically-stacked table (fr)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-prose-features--table-with-data-labels&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('Prose / With a vertically-stacked table (de)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-prose-features--table-with-data-labels&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('Prose / With a vertically-stacked table (ja)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-prose-features--table-with-data-labels&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('Prose / With a vertically-stacked table (es)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-prose-features--table-with-data-labels&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('Prose / With a vertically-stacked table (pt-BR)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-prose-features--table-with-data-labels&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  // eslint-disable-next-line i18n-text/no-en
+  test.describe('Mobile viewport test for With a vertically-stacked table (narrow)', () => {
+    test.use({viewport: {width: 360, height: 800}})
+    test('Prose / With a vertically-stacked table (narrow)', async ({page}) => {
+      await page.goto(
+        'http://localhost:6006/iframe.html?args=&id=components-prose-features--table-with-data-labels-narrow-view&viewMode=story',
+      )
+
+      await page.waitForTimeout(500)
+      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    })
+
+    test('Prose / With a vertically-stacked table (narrow) (fr)', async ({page}) => {
+      await page.goto(
+        'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-prose-features--table-with-data-labels-narrow-view&viewMode=story',
+      )
+
+      await page.waitForTimeout(500)
+      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    })
+
+    test('Prose / With a vertically-stacked table (narrow) (de)', async ({page}) => {
+      await page.goto(
+        'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-prose-features--table-with-data-labels-narrow-view&viewMode=story',
+      )
+
+      await page.waitForTimeout(500)
+      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    })
+
+    test('Prose / With a vertically-stacked table (narrow) (ja)', async ({page}) => {
+      await page.goto(
+        'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-prose-features--table-with-data-labels-narrow-view&viewMode=story',
+      )
+
+      await page.waitForTimeout(500)
+      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    })
+
+    test('Prose / With a vertically-stacked table (narrow) (es)', async ({page}) => {
+      await page.goto(
+        'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-prose-features--table-with-data-labels-narrow-view&viewMode=story',
+      )
+
+      await page.waitForTimeout(500)
+      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    })
+
+    test('Prose / With a vertically-stacked table (narrow) (pt-BR)', async ({page}) => {
+      await page.goto(
+        'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-prose-features--table-with-data-labels-narrow-view&viewMode=story',
+      )
+
+      await page.waitForTimeout(500)
+      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    })
+  })
+  test('Prose / With a mixed data set table', async ({page}) => {
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-prose-features--mixed-data&viewMode=story')
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('Prose / With a mixed data set table (fr)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-prose-features--mixed-data&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('Prose / With a mixed data set table (de)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-prose-features--mixed-data&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('Prose / With a mixed data set table (ja)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-prose-features--mixed-data&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('Prose / With a mixed data set table (es)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-prose-features--mixed-data&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('Prose / With a mixed data set table (pt-BR)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-prose-features--mixed-data&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  // eslint-disable-next-line i18n-text/no-en
+  test.describe('Mobile viewport test for With a mixed data set table (narrow)', () => {
+    test.use({viewport: {width: 360, height: 800}})
+    test('Prose / With a mixed data set table (narrow)', async ({page}) => {
+      await page.goto(
+        'http://localhost:6006/iframe.html?args=&id=components-prose-features--mixed-data-narrow&viewMode=story',
+      )
+
+      await page.waitForTimeout(500)
+      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    })
+
+    test('Prose / With a mixed data set table (narrow) (fr)', async ({page}) => {
+      await page.goto(
+        'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-prose-features--mixed-data-narrow&viewMode=story',
+      )
+
+      await page.waitForTimeout(500)
+      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    })
+
+    test('Prose / With a mixed data set table (narrow) (de)', async ({page}) => {
+      await page.goto(
+        'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-prose-features--mixed-data-narrow&viewMode=story',
+      )
+
+      await page.waitForTimeout(500)
+      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    })
+
+    test('Prose / With a mixed data set table (narrow) (ja)', async ({page}) => {
+      await page.goto(
+        'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-prose-features--mixed-data-narrow&viewMode=story',
+      )
+
+      await page.waitForTimeout(500)
+      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    })
+
+    test('Prose / With a mixed data set table (narrow) (es)', async ({page}) => {
+      await page.goto(
+        'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-prose-features--mixed-data-narrow&viewMode=story',
+      )
+
+      await page.waitForTimeout(500)
+      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    })
+
+    test('Prose / With a mixed data set table (narrow) (pt-BR)', async ({page}) => {
+      await page.goto(
+        'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-prose-features--mixed-data-narrow&viewMode=story',
+      )
+
+      await page.waitForTimeout(500)
+      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    })
+  })
 })
