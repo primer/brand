@@ -149,7 +149,7 @@
   }
 
   .PricingOptions--layout-default.PricingOptions--items1 {
-    --brand-pricing-options-container-padding-inline: var(--brand-PricingOptions-items1-container-padding-inline);
+    --brand-pricing-options-container-padding-inline: var(--brand-PricingOptions-items1-container-paddingInline);
   }
 
   .PricingOptions--layout-default.PricingOptions--items2 {

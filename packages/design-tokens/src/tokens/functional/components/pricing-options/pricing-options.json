@@ -7,10 +7,8 @@
     },
     "items1": {
       "container": {
-        "padding": {
-          "inline": {
-            "value": "var(--base-size-32)"
-          }
+        "paddingInline": {
+          "value": "var(--base-size-32)"
         }
       }
     },
