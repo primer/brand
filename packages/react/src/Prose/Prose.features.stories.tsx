@@ -224,23 +224,23 @@ const dataLabelsMarkup = (t: (key: string) => string) => `
   </thead>
   <tbody>
     <tr>
-      <td>${t('singapore')}</td>
-      <td data-label="${t('number_of_developers')}">>${t('developers')}</td>
+      <td data-label="${t('country')}">${t('singapore')}</td>
+      <td data-label="${t('number_of_developers')}">>1M ${t('developers')}</td>
       <td data-label="${t('yoy_growth')}">39%</td>
     </tr>
     <tr>
-      <td>${t('india')}</td>
-      <td data-label="${t('number_of_developers')}">>${t('developers')}</td>
+      <td data-label="${t('country')}">${t('india')}</td>
+      <td data-label="${t('number_of_developers')}">>13.2M ${t('developers')}</td>
       <td data-label="${t('yoy_growth')}">36%</td>
     </tr>
     <tr>
-      <td>${t('hong_kong_sar')}</td>
-      <td data-label="${t('number_of_developers')}">>${t('developers')}</td>
+      <td data-label="${t('country')}">${t('hong_kong_sar')}</td>
+      <td data-label="${t('number_of_developers')}">>1.6M ${t('developers')}</td>
       <td data-label="${t('yoy_growth')}">35%</td>
     </tr>
     <tr>
-      <td>${t('vietnam')}</td>
-      <td data-label="${t('number_of_developers')}">>${t('developers')}</td>
+      <td data-label="${t('country')}">${t('vietnam')}</td>
+      <td data-label="${t('number_of_developers')}">>1.5M ${t('developers')}</td>
       <td data-label="${t('yoy_growth')}">34%</td>
     </tr>
   </tbody>
