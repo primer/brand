@@ -10,7 +10,6 @@ export default {
 
 const Template: StoryFn<typeof ActionMenu> = args => {
   const {t} = useTranslation('ActionMenu')
-  
   return (
     <ActionMenu {...args} onSelect={newValue => alert(newValue)}>
       <ActionMenu.Button>{t('open_menu')}</ActionMenu.Button>
