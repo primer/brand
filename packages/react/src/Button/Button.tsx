@@ -169,8 +169,8 @@ export const _Button = forwardRef(
         onMouseLeave={handleOnMouseLeave}
         onFocus={handleOnFocus}
         onBlur={handleOnBlur}
-        disabled={disabled}
-        aria-disabled={ariaDisabled}
+        disabled={(isDisabled && Component === 'button') || undefined}
+        aria-disabled={(isDisabled && Component !== 'button') || undefined}
         style={{...animationInlineStyles, ...style}}
         {...props}
       >

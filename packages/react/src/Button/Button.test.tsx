@@ -48,16 +48,64 @@ describe('Button', () => {
     expect(btnEl.classList).toContain(disabledClass)
   })
 
-  it('renders aria-disabled state', async () => {
+  it('sets the disabled attribute to true when disabled prop is true and component is rendered as a button', () => {
+    const {getByRole} = render(<Button disabled>Primary Button</Button>)
+    const btnEl = getByRole('button')
+
+    expect(btnEl).toHaveAttribute('disabled')
+    expect(btnEl).not.toHaveAttribute('aria-disabled')
+  })
+
+  it('sets the aria-disabled attribute to true when disabled prop is true and component is rendered as a link', () => {
     const {getByRole} = render(
-      <Button variant="primary" size="medium" aria-disabled="true">
+      <Button disabled as="a" href="#">
         Primary Button
       </Button>,
     )
+    const linkEl = getByRole('link', {name: 'Primary Button'})
+
+    expect(linkEl).toHaveAttribute('aria-disabled')
+    expect(linkEl).not.toHaveAttribute('disabled')
+  })
+
+  it('sets neither the disabled nor the aria-disabled attribute when disabled prop is false and component is rendered as a button', () => {
+    const {getByRole} = render(<Button disabled={false}>Primary Button</Button>)
     const btnEl = getByRole('button')
 
-    expect(btnEl).toHaveAttribute('aria-disabled')
-    expect(btnEl.classList).toContain(disabledClass)
+    expect(btnEl).not.toHaveAttribute('aria-disabled')
+    expect(btnEl).not.toHaveAttribute('disabled')
+  })
+
+  it('sets neither the disabled nor the aria-disabled attribute when disabled prop is false and component is rendered as a link', () => {
+    const {getByRole} = render(
+      <Button disabled={false} as="a" href="#">
+        Primary Button
+      </Button>,
+    )
+    const linkEl = getByRole('link', {name: 'Primary Button'})
+
+    expect(linkEl).not.toHaveAttribute('aria-disabled')
+    expect(linkEl).not.toHaveAttribute('disabled')
+  })
+
+  it('sets neither the disabled nor the aria-disabled attribute when disabled prop is undefined and component is rendered as a button', () => {
+    const {getByRole} = render(<Button disabled={undefined}>Primary Button</Button>)
+    const btnEl = getByRole('button')
+
+    expect(btnEl).not.toHaveAttribute('aria-disabled')
+    expect(btnEl).not.toHaveAttribute('disabled')
+  })
+
+  it('sets neither the disabled nor the aria-disabled attribute when disabled prop is undefined and component is rendered as a link', () => {
+    const {getByRole} = render(
+      <Button disabled={undefined} as="a" href="#">
+        Primary Button
+      </Button>,
+    )
+    const linkEl = getByRole('link', {name: 'Primary Button'})
+
+    expect(linkEl).not.toHaveAttribute('aria-disabled')
+    expect(linkEl).not.toHaveAttribute('disabled')
   })
 
   it('triggers focus event if not disabled and aria-disabled equals false', async () => {
