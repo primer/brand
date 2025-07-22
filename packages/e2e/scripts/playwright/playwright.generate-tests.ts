@@ -55,10 +55,14 @@
     'components-minimalfooter-features--filtered-social-links': 5000, // for external social imagery to load
     'components-minimalfooter-features--default-narrow': 5000, // for external social imagery to load
     'components-minimalfooter-features--maximum-links': 5000, // for external social imagery to load
-    'components-actionmenu-features--open-by-default': 1000, // for the menu to open
-    'components-actionmenu-features--longer-lists-open': 1000, // for the menu to open
-    'components-actionmenu-features--menu-alignment': 1000, // for the menu to open
+    'components-actionmenu-features--single-selection-small-open': 1500, // for the menu to open
+    'components-actionmenu-features--split-button-mode-open': 1500, // for the menu to open
+    'components-actionmenu-features--split-button-alternative-menu-alignment': 1500, // for the menu to open
+    'components-actionmenu-features--open-by-default': 1500, // for the menu to open
+    'components-actionmenu-features--longer-lists-open': 1500, // for the menu to open
+    'components-actionmenu-features--menu-alignment': 1500, // for the menu to open
     'components-actionmenu-features--disabled-item': 1000, // flakey test,
+    'components-actionmenu-features--anchored-positioning': 1500, // for the menu to open
     'components-box-features--animation': 6000, // for the animation
     'components-ide--playground': 2000, // for the animation
     'components-ide--default': 2000, // for the animation
@@ -146,6 +150,7 @@
     'components-hero-features--with-youtube-video-block-end-default', // for loading a remote video
     'components-hero-features--with-youtube-video-inline-end', // for loading a remote video
     'components-logosuite-features--marquee', // for the animation
+    'components-subnav-features--anchor-nav-variant-keyboard-navigation', // for being an interaction test-only
   ]
 
   const categorisedStories = Object.keys((stories as typeof StoryIndex).entries).reduce((acc, key) => {
