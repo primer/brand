@@ -53,13 +53,26 @@ jobs:
           npm run test -- --coverage --coverageReporters=json-summary --passWithNoTests
         continue-on-error: true
 
-      - name: Compare coverage and comment on PR
+      - name: Generate coverage report
+        id: coverage-report
         uses: actions/github-script@v7
         with:
           script: |
             const script = require('./packages/repo-configs/scripts/compare-unit-test-coverage-prs');
+            const result = await script();
 
-            global.github = github;
-            global.context = context;
+            if (result) {
+              core.setOutput('has-coverage-changes', 'true');
+              core.setOutput('coverage-comment', result);
+            } else {
+              core.setOutput('has-coverage-changes', 'false');
+              console.log('No coverage changes to report');
+            }
 
-            await script();
+      - name: Comment on PR with coverage changes
+        if: steps.coverage-report.outputs.has-coverage-changes == 'true'
+        uses: phulsechinmay/rewritable-pr-comment@v0.2.1
+        with:
+          message: ${{ steps.coverage-report.outputs.coverage-comment }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          COMMENT_IDENTIFIER: 'coverage-report'

@@ -4,9 +4,6 @@
 const fs = require('fs')
 
 async function init() {
-  const github = global.github
-  const context = global.context
-
   let currentCoverage = {}
   try {
     const currentCoverageData = fs.readFileSync('packages/react/coverage/coverage-summary.json', 'utf8')
@@ -40,56 +37,78 @@ async function init() {
 
   const componentChanges = []
 
-  const currentFiles = Object.keys(currentCoverage).filter(key => key !== 'total')
-  const mainFiles = Object.keys(mainCoverage).filter(key => key !== 'total')
-  const allFiles = [...new Set([...currentFiles, ...mainFiles])]
+  // Only compare components if we have main coverage data
+  if (mainCoverage.total) {
+    const currentFiles = Object.keys(currentCoverage).filter(key => key !== 'total')
+    const mainFiles = Object.keys(mainCoverage).filter(key => key !== 'total')
+    const allFiles = [...new Set([...currentFiles, ...mainFiles])]
 
-  for (const filePath of allFiles) {
-    const current = currentCoverage[filePath]
-    const main = mainCoverage[filePath]
+    // Group files by component to avoid duplicates
+    const componentMap = new Map()
 
-    if (!filePath.includes('src/') || filePath.includes('.test.') || filePath.includes('.spec.')) {
-      continue
+    for (const filePath of allFiles) {
+      const current = currentCoverage[filePath]
+      const main = mainCoverage[filePath]
+
+      if (!filePath.includes('src/') || filePath.includes('.test.') || filePath.includes('.spec.')) {
+        continue
+      }
+
+      const componentMatch = filePath.match(/src\/([^/]+)/)
+      if (!componentMatch) continue
+
+      const componentName = componentMatch[1]
+
+      if (['hooks', 'css', 'test-utils', 'fixtures', 'recipes', 'animation'].includes(componentName)) {
+        continue
+      }
+
+      const currentPct = current?.lines?.pct || 0
+      const mainPct = main?.lines?.pct || 0
+
+      // Calculate coverage difference
+      const diff = currentPct - mainPct
+
+      // Only include if there's a significant change OR if component is truly new/removed
+      if (Math.abs(diff) > 0.1 || (!main && current) || (main && !current)) {
+        const key = `${componentName}-${filePath}`
+
+        // Avoid duplicate entries for the same component file
+        if (!componentMap.has(key)) {
+          componentMap.set(key, {
+            component: componentName,
+            file: filePath,
+            current: currentPct,
+            main: mainPct,
+            diff,
+            isNew: !main && current,
+            isRemoved: main && !current,
+          })
+        }
+      }
     }
 
-    const componentMatch = filePath.match(/src\/([^/]+)/)
-    if (!componentMatch) continue
-
-    const componentName = componentMatch[1]
-
-    if (['hooks', 'css', 'test-utils', 'fixtures', 'recipes', 'animation'].includes(componentName)) {
-      continue
-    }
-
-    const currentPct = current?.lines?.pct || 0
-    const mainPct = main?.lines?.pct || 0
-
-    // Calculate coverage difference
-    const diff = currentPct - mainPct
-
-    if (Math.abs(diff) > 0.1 || !main || !current || (main && current && diff !== 0)) {
-      componentChanges.push({
-        component: componentName,
-        file: filePath,
-        current: currentPct,
-        main: mainPct,
-        diff,
-        isNew: !main,
-        isRemoved: !current,
-      })
-    }
+    componentChanges.push(...componentMap.values())
+  } else {
+    // eslint-disable-next-line no-console
+    console.log('No main branch coverage data available, skipping component comparison')
   }
 
   // Sort by largest change first
   componentChanges.sort((a, b) => Math.abs(b.diff) - Math.abs(a.diff))
 
-  const hasSignificantTotalChange = Math.abs(totalLinesDiff.diff) > 0.1 || totalLinesDiff.isNew
+  const hasSignificantTotalChange = Math.abs(totalLinesDiff.diff) > 0.1 && mainCoverage.total
   const hasComponentChanges = componentChanges.length > 0
 
-  // Bail out if nothing to report
-  if (!hasSignificantTotalChange && !hasComponentChanges) {
-    // eslint-disable-next-line no-console
-    console.log('No significant coverage changes detected. Skipping comment creation.')
+  // Bail out if nothing to report or if there's no main branch coverage to compare against
+  if ((!hasSignificantTotalChange && !hasComponentChanges) || !mainCoverage.total) {
+    if (!mainCoverage.total) {
+      // eslint-disable-next-line no-console
+      console.log('No main branch coverage found for comparison. This is expected for workflow/infrastructure changes.')
+    } else {
+      // eslint-disable-next-line no-console
+      console.log('No significant coverage changes detected. Skipping comment creation.')
+    }
     return
   }
 
@@ -108,12 +127,14 @@ async function init() {
   let commentBody = `## Components coverage report\n\n`
 
   const totalSign = totalLinesDiff.diff > 0 ? '+' : ''
-  const totalEmoji = totalLinesDiff.isNew ? '🆕' : totalLinesDiff.diff > 0 ? '�' : totalLinesDiff.diff < 0 ? '�' : '➡️'
+  const totalEmoji = totalLinesDiff.diff > 0 ? '🟢' : totalLinesDiff.diff < 0 ? '🔴' : '➡️'
 
   commentBody += `### Overall Coverage\n`
   commentBody += `**Lines**: ${formatCoverage(totalLinesDiff.value)}`
-  if (!totalLinesDiff.isNew) {
+  if (mainCoverage.total) {
     commentBody += ` (${totalSign}${totalLinesDiff.diff.toFixed(1)}%) ${totalEmoji}`
+  } else {
+    commentBody += ` (baseline)`
   }
   commentBody += `\n\n`
 
@@ -134,7 +155,7 @@ async function init() {
     commentBody += `### No component coverage changes\n\n`
   }
 
-  // Summraize
+  // Summarize
   const significantDecrease = componentChanges.some(c => c.diff < -1.0)
   const significantIncrease = componentChanges.some(c => c.diff > 1.0)
   const newComponents = componentChanges.some(c => c.isNew)
@@ -164,47 +185,14 @@ async function init() {
   commentBody += `- **Current PR**: ${currentTotal.lines?.covered || 0}/${
     currentTotal.lines?.total || 0
   } lines covered\n`
-  if (!totalLinesDiff.isNew) {
+  if (mainCoverage.total) {
     commentBody += `- **Main branch**: ${mainTotal.lines?.covered || 0}/${mainTotal.lines?.total || 0} lines covered\n`
   }
   commentBody += `- **Components searched**: ${componentChanges.length > 0 ? componentChanges.length : 'No changes'}\n`
   commentBody += `\n</details>`
 
-  // Find existing coverage comment
-  const {data: comments} = await github.rest.issues.listComments({
-    owner: context.repo.owner,
-    repo: context.repo.repo,
-    // eslint-disable-next-line camelcase
-    issue_number: context.issue.number,
-  })
-
-  const existingComment = comments.find(
-    comment => comment.body.includes('📊 React Components Coverage Report') && comment.user.type === 'Bot',
-  )
-
-  if (existingComment) {
-    // Update existing comment
-    await github.rest.issues.updateComment({
-      owner: context.repo.owner,
-      repo: context.repo.repo,
-      // eslint-disable-next-line camelcase
-      comment_id: existingComment.id,
-      body: commentBody,
-    })
-    // eslint-disable-next-line no-console
-    console.log('Updated existing React coverage comment')
-  } else {
-    // Create new comment
-    await github.rest.issues.createComment({
-      owner: context.repo.owner,
-      repo: context.repo.repo,
-      // eslint-disable-next-line camelcase
-      issue_number: context.issue.number,
-      body: commentBody,
-    })
-    // eslint-disable-next-line no-console
-    console.log('Created new React coverage comment')
-  }
+  // Output the comment body to be used by the GitHub Action
+  return commentBody
 }
 
 // eslint-disable-next-line import/no-commonjs
