@@ -1,11 +1,11 @@
-name: Test Coverage Comment
+name: Report test coverage changes
 
 on: pull_request
 
 jobs:
   coverage-comment:
     if: ${{ github.repository == 'primer/brand' }}
-    name: Generate and comment test coverage
+    name: Generate and comment about test coverage changes
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -36,13 +36,13 @@ jobs:
       - name: Run React unit tests with coverage
         run: cd packages/react && npm run test -- --coverage --coverageReporters=json-summary --coverageReporters=lcov
 
-      - name: Store coverage for main branch
+      - name: Checkout the main branch
         uses: actions/checkout@v4
         with:
           ref: ${{ github.base_ref }}
           path: main
 
-      - name: Install dependencies for main branch
+      - name: Install dependencies for the main branch
         run: |
           cd main
           npm ci
