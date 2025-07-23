@@ -1,0 +1,211 @@
+#!/usr/bin/env node
+
+// eslint-disable-next-line import/no-nodejs-modules, import/no-commonjs
+const fs = require('fs')
+
+async function init() {
+  const github = global.github
+  const context = global.context
+
+  let currentCoverage = {}
+  try {
+    const currentCoverageData = fs.readFileSync('packages/react/coverage/coverage-summary.json', 'utf8')
+    currentCoverage = JSON.parse(currentCoverageData)
+  } catch (error) {
+    // eslint-disable-next-line no-console
+    console.log('No current React coverage found')
+    return
+  }
+
+  let mainCoverage = {}
+  try {
+    const mainCoverageData = fs.readFileSync('main/packages/react/coverage/coverage-summary.json', 'utf8')
+    mainCoverage = JSON.parse(mainCoverageData)
+  } catch (error) {
+    // eslint-disable-next-line no-console
+    console.log('No main branch React coverage found, will show current coverage only')
+  }
+
+  // Calculate differences for total coverage
+  const calculateDiff = (current, mainBranch) => {
+    if (!mainBranch) return {value: current, diff: 0, isNew: true}
+    const diff = current - mainBranch
+    return {value: current, diff, isNew: false}
+  }
+
+  const currentTotal = currentCoverage.total || {}
+  const mainTotal = mainCoverage.total || {}
+
+  const totalLinesDiff = calculateDiff(currentTotal.lines?.pct || 0, mainTotal.lines?.pct)
+
+  const componentChanges = []
+
+  const currentFiles = Object.keys(currentCoverage).filter(key => key !== 'total')
+  const mainFiles = Object.keys(mainCoverage).filter(key => key !== 'total')
+  const allFiles = [...new Set([...currentFiles, ...mainFiles])]
+
+  for (const filePath of allFiles) {
+    const current = currentCoverage[filePath]
+    const main = mainCoverage[filePath]
+
+    if (!filePath.includes('src/') || filePath.includes('.test.') || filePath.includes('.spec.')) {
+      continue
+    }
+
+    const componentMatch = filePath.match(/src\/([^/]+)/)
+    if (!componentMatch) continue
+
+    const componentName = componentMatch[1]
+
+    if (['hooks', 'css', 'test-utils', 'fixtures', 'recipes', 'animation'].includes(componentName)) {
+      continue
+    }
+
+    const currentPct = current?.lines?.pct || 0
+    const mainPct = main?.lines?.pct || 0
+
+    // Calculate coverage difference
+    const diff = currentPct - mainPct
+
+    if (Math.abs(diff) > 0.1 || !main || !current || (main && current && diff !== 0)) {
+      componentChanges.push({
+        component: componentName,
+        file: filePath,
+        current: currentPct,
+        main: mainPct,
+        diff,
+        isNew: !main,
+        isRemoved: !current,
+      })
+    }
+  }
+
+  // Sort by largest change first
+  componentChanges.sort((a, b) => Math.abs(b.diff) - Math.abs(a.diff))
+
+  const hasSignificantTotalChange = Math.abs(totalLinesDiff.diff) > 0.1 || totalLinesDiff.isNew
+  const hasComponentChanges = componentChanges.length > 0
+
+  // Bail out if nothing to report
+  if (!hasSignificantTotalChange && !hasComponentChanges) {
+    // eslint-disable-next-line no-console
+    console.log('No significant coverage changes detected. Skipping comment creation.')
+    return
+  }
+
+  const formatDiff = (diff, isNew = false, isRemoved = false) => {
+    if (isNew) return `🆕 ${diff.toFixed(1)}%`
+    if (isRemoved) return `🗑️ Removed`
+    if (Math.abs(diff) < 0.1) return `${diff.toFixed(1)}% ➡️`
+
+    const sign = diff > 0 ? '+' : ''
+    const color = diff > 0 ? '🟢' : '🔴'
+    return `${sign}${diff.toFixed(1)}% ${color}`
+  }
+
+  const formatCoverage = pct => `${pct.toFixed(1)}%`
+
+  let commentBody = `## Components coverage report\n\n`
+
+  const totalSign = totalLinesDiff.diff > 0 ? '+' : ''
+  const totalEmoji = totalLinesDiff.isNew ? '🆕' : totalLinesDiff.diff > 0 ? '�' : totalLinesDiff.diff < 0 ? '�' : '➡️'
+
+  commentBody += `### Overall Coverage\n`
+  commentBody += `**Lines**: ${formatCoverage(totalLinesDiff.value)}`
+  if (!totalLinesDiff.isNew) {
+    commentBody += ` (${totalSign}${totalLinesDiff.diff.toFixed(1)}%) ${totalEmoji}`
+  }
+  commentBody += `\n\n`
+
+  // Table
+  if (componentChanges.length > 0) {
+    commentBody += `### ⚠️ Component changes\n\n`
+    commentBody += `| Component | Coverage | Change |\n`
+    commentBody += `|-----------|----------|--------|\n`
+
+    for (const change of componentChanges) {
+      const coverageDisplay = change.isRemoved ? 'N/A' : formatCoverage(change.current)
+      const changeDisplay = formatDiff(change.diff, change.isNew, change.isRemoved)
+
+      commentBody += `| **${change.component}** | ${coverageDisplay} | ${changeDisplay} |\n`
+    }
+    commentBody += `\n`
+  } else {
+    commentBody += `### No component coverage changes\n\n`
+  }
+
+  // Summraize
+  const significantDecrease = componentChanges.some(c => c.diff < -1.0)
+  const significantIncrease = componentChanges.some(c => c.diff > 1.0)
+  const newComponents = componentChanges.some(c => c.isNew)
+  const removedComponents = componentChanges.some(c => c.isRemoved)
+
+  if (significantDecrease) {
+    commentBody += `⚠️ **Coverage decreased** - This could mean:\n`
+    commentBody += `- New features were added without corresponding tests\n`
+    commentBody += `- Tests were removed or modified\n`
+  } else if (significantIncrease) {
+    commentBody += `**Coverage increased** - This could mean:\n`
+    commentBody += `- New tests were added\n`
+    commentBody += `- Test coverage was improved\n`
+    commentBody += `- Great work on testing!\n\n`
+  } else if (newComponents) {
+    commentBody += `**New components detected** - Make sure they have adequate test coverage.\n\n`
+  } else if (removedComponents) {
+    commentBody += `**Components removed** - Coverage data updated accordingly.\n\n`
+  } else {
+    // eslint-disable-next-line i18n-text/no-en
+    commentBody += `Nothing to see here \n\n`
+  }
+
+  // eslint-disable-next-line github/unescaped-html-literal
+  commentBody += `<details>\n<summary>Coverage details</summary>\n\n`
+  commentBody += `**React Package Coverage**:\n`
+  commentBody += `- **Current PR**: ${currentTotal.lines?.covered || 0}/${
+    currentTotal.lines?.total || 0
+  } lines covered\n`
+  if (!totalLinesDiff.isNew) {
+    commentBody += `- **Main branch**: ${mainTotal.lines?.covered || 0}/${mainTotal.lines?.total || 0} lines covered\n`
+  }
+  commentBody += `- **Components searched**: ${componentChanges.length > 0 ? componentChanges.length : 'No changes'}\n`
+  commentBody += `\n</details>`
+
+  // Find existing coverage comment
+  const {data: comments} = await github.rest.issues.listComments({
+    owner: context.repo.owner,
+    repo: context.repo.repo,
+    // eslint-disable-next-line camelcase
+    issue_number: context.issue.number,
+  })
+
+  const existingComment = comments.find(
+    comment => comment.body.includes('📊 React Components Coverage Report') && comment.user.type === 'Bot',
+  )
+
+  if (existingComment) {
+    // Update existing comment
+    await github.rest.issues.updateComment({
+      owner: context.repo.owner,
+      repo: context.repo.repo,
+      // eslint-disable-next-line camelcase
+      comment_id: existingComment.id,
+      body: commentBody,
+    })
+    // eslint-disable-next-line no-console
+    console.log('Updated existing React coverage comment')
+  } else {
+    // Create new comment
+    await github.rest.issues.createComment({
+      owner: context.repo.owner,
+      repo: context.repo.repo,
+      // eslint-disable-next-line camelcase
+      issue_number: context.issue.number,
+      body: commentBody,
+    })
+    // eslint-disable-next-line no-console
+    console.log('Created new React coverage comment')
+  }
+}
+
+// eslint-disable-next-line import/no-commonjs
+module.exports = init

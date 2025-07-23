@@ -1,0 +1,65 @@
+name: Test Coverage Comment
+
+on: pull_request
+
+jobs:
+  coverage-comment:
+    if: ${{ github.repository == 'primer/brand' }}
+    name: Generate and comment test coverage
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Cache dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build:lib
+
+      - name: Run React unit tests with coverage
+        run: cd packages/react && npm run test -- --coverage --coverageReporters=json-summary --coverageReporters=lcov
+
+      - name: Store coverage for main branch
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.base_ref }}
+          path: main
+
+      - name: Install dependencies for main branch
+        run: |
+          cd main
+          npm ci
+
+      - name: Run React tests on main branch
+        run: |
+          cd main/packages/react
+          npm run test -- --coverage --coverageReporters=json-summary --passWithNoTests
+        continue-on-error: true
+
+      - name: Compare coverage and comment on PR
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const script = require('./packages/repo-configs/scripts/compare-unit-test-coverage-prs');
+
+            global.github = github;
+            global.context = context;
+
+            await script();
