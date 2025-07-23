@@ -69,36 +69,80 @@ async function init() {
       // Calculate coverage difference
       const diff = currentPct - mainPct
 
+      // Extract relative path from absolute path for consistent grouping
+      const relativePath = filePath.replace(/^.*\/packages\/react\//, 'packages/react/')
+      
+      // Use only component name as key to group all files from the same component
+      const key = componentName
+
       // Only include if there's a significant change OR if component is truly new/removed
       if (Math.abs(diff) > 0.1 || (!main && current) || (main && !current)) {
-        const key = `${componentName}-${filePath}`
-
         // Avoid duplicate entries for the same component file
         if (!componentMap.has(key)) {
           componentMap.set(key, {
             component: componentName,
-            file: filePath,
-            current: currentPct,
-            main: mainPct,
-            diff,
-            isNew: !main && current,
-            isRemoved: main && !current,
+            file: relativePath,
+            currentTotal: currentPct,
+            mainTotal: mainPct,
+            currentCount: current ? 1 : 0,
+            mainCount: main ? 1 : 0,
+            totalCurrent: currentPct,
+            totalMain: mainPct,
           })
+        } else {
+          // Aggregate coverage data for the same component
+          const existing = componentMap.get(key)
+          
+          if (current) {
+            existing.currentTotal += currentPct
+            existing.currentCount += 1
+          }
+          if (main) {
+            existing.mainTotal += mainPct
+            existing.mainCount += 1
+          }
         }
       }
     }
 
-    componentChanges.push(...componentMap.values())
+    // Calculate average coverage for each component and determine significant changes
+    for (const [, data] of componentMap.entries()) {
+      const avgCurrent = data.currentCount > 0 ? data.currentTotal / data.currentCount : 0
+      const avgMain = data.mainCount > 0 ? data.mainTotal / data.mainCount : 0
+      const diff = avgCurrent - avgMain
+      
+      // Only keep components with significant changes
+      if (
+        Math.abs(diff) > 0.1 ||
+        (data.currentCount > 0 && data.mainCount === 0) ||
+        (data.mainCount > 0 && data.currentCount === 0)
+      ) {
+        componentChanges.push({
+          component: data.component,
+          file: data.file,
+          current: avgCurrent,
+          main: avgMain,
+          diff,
+          isNew: data.currentCount > 0 && data.mainCount === 0,
+          isRemoved: data.mainCount > 0 && data.currentCount === 0,
+        })
+      }
+    }
   } else {
     // eslint-disable-next-line no-console
     console.log('No main branch coverage data available, skipping component comparison')
   }
 
+  // Filter out components with no significant changes after merging
+  const significantChanges = componentChanges.filter(change => {
+    return Math.abs(change.diff) > 0.1 || change.isNew || change.isRemoved
+  })
+
   // Sort by largest change first
-  componentChanges.sort((a, b) => Math.abs(b.diff) - Math.abs(a.diff))
+  significantChanges.sort((a, b) => Math.abs(b.diff) - Math.abs(a.diff))
 
   const hasSignificantTotalChange = Math.abs(totalLinesDiff.diff) > 0.1 && mainCoverage.total
-  const hasComponentChanges = componentChanges.length > 0
+  const hasComponentChanges = significantChanges.length > 0
 
   // Bail out if nothing to report or if there's no main branch coverage to compare against
   if ((!hasSignificantTotalChange && !hasComponentChanges) || !mainCoverage.total) {
@@ -139,12 +183,12 @@ async function init() {
   commentBody += `\n\n`
 
   // Table
-  if (componentChanges.length > 0) {
+  if (significantChanges.length > 0) {
     commentBody += `### ⚠️ Component changes\n\n`
     commentBody += `| Component | Coverage | Change |\n`
     commentBody += `|-----------|----------|--------|\n`
 
-    for (const change of componentChanges) {
+    for (const change of significantChanges) {
       const coverageDisplay = change.isRemoved ? 'N/A' : formatCoverage(change.current)
       const changeDisplay = formatDiff(change.diff, change.isNew, change.isRemoved)
 
@@ -156,10 +200,10 @@ async function init() {
   }
 
   // Summarize
-  const significantDecrease = componentChanges.some(c => c.diff < -1.0)
-  const significantIncrease = componentChanges.some(c => c.diff > 1.0)
-  const newComponents = componentChanges.some(c => c.isNew)
-  const removedComponents = componentChanges.some(c => c.isRemoved)
+  const significantDecrease = significantChanges.some(c => c.diff < -1.0)
+  const significantIncrease = significantChanges.some(c => c.diff > 1.0)
+  const newComponents = significantChanges.some(c => c.isNew)
+  const removedComponents = significantChanges.some(c => c.isRemoved)
 
   if (significantDecrease) {
     commentBody += `⚠️ **Coverage decreased** - This could mean:\n`
@@ -188,7 +232,9 @@ async function init() {
   if (mainCoverage.total) {
     commentBody += `- **Main branch**: ${mainTotal.lines?.covered || 0}/${mainTotal.lines?.total || 0} lines covered\n`
   }
-  commentBody += `- **Components searched**: ${componentChanges.length > 0 ? componentChanges.length : 'No changes'}\n`
+  commentBody += `- **Components searched**: ${
+    significantChanges.length > 0 ? significantChanges.length : 'No changes'
+  }\n`
   commentBody += `\n</details>`
 
   // Output the comment body to be used by the GitHub Action
