@@ -36,95 +36,63 @@ async function init() {
   const totalLinesDiff = calculateDiff(currentTotal.lines?.pct || 0, mainTotal.lines?.pct)
 
   const componentChanges = []
+  let totalComponentsSearched = 0
 
   // Only compare components if we have main coverage data
   if (mainCoverage.total) {
-    const currentFiles = Object.keys(currentCoverage).filter(key => key !== 'total')
-    const mainFiles = Object.keys(mainCoverage).filter(key => key !== 'total')
-    const allFiles = [...new Set([...currentFiles, ...mainFiles])]
+    // Normalize file paths to handle different absolute paths and main/ subfolder
+    const normalizeFilePath = filePath => {
+      // Extract the relative path from packages/react/ onwards, handling both:
+      const match = filePath.match(/(?:main\/)?packages\/react\/(.+)$/)
+      return match ? `/packages/react/${match[1]}` : filePath
+    }
 
-    // Group files by component to avoid duplicates
-    const componentMap = new Map()
+    // Create normalized maps for comparison - include ALL files Jest reports
+    const currentNormalized = {}
+    const mainNormalized = {}
 
-    for (const filePath of allFiles) {
-      const current = currentCoverage[filePath]
-      const main = mainCoverage[filePath]
-
-      if (!filePath.includes('src/') || filePath.includes('.test.') || filePath.includes('.spec.')) {
-        continue
-      }
-
-      const componentMatch = filePath.match(/src\/([^/]+)/)
-      if (!componentMatch) continue
-
-      const componentName = componentMatch[1]
-
-      if (['hooks', 'css', 'test-utils', 'fixtures', 'recipes', 'animation'].includes(componentName)) {
-        continue
-      }
-
-      const currentPct = current?.lines?.pct || 0
-      const mainPct = main?.lines?.pct || 0
-
-      // Calculate coverage difference
-      const diff = currentPct - mainPct
-
-      // Extract relative path from absolute path for consistent grouping
-      const relativePath = filePath.replace(/^.*\/packages\/react\//, 'packages/react/')
-      
-      // Use only component name as key to group all files from the same component
-      const key = componentName
-
-      // Only include if there's a significant change OR if component is truly new/removed
-      if (Math.abs(diff) > 0.1 || (!main && current) || (main && !current)) {
-        // Avoid duplicate entries for the same component file
-        if (!componentMap.has(key)) {
-          componentMap.set(key, {
-            component: componentName,
-            file: relativePath,
-            currentTotal: currentPct,
-            mainTotal: mainPct,
-            currentCount: current ? 1 : 0,
-            mainCount: main ? 1 : 0,
-            totalCurrent: currentPct,
-            totalMain: mainPct,
-          })
-        } else {
-          // Aggregate coverage data for the same component
-          const existing = componentMap.get(key)
-          
-          if (current) {
-            existing.currentTotal += currentPct
-            existing.currentCount += 1
-          }
-          if (main) {
-            existing.mainTotal += mainPct
-            existing.mainCount += 1
-          }
-        }
+    // Process current coverage files
+    for (const filePath of Object.keys(currentCoverage)) {
+      if (filePath !== 'total') {
+        const normalizedPath = normalizeFilePath(filePath)
+        currentNormalized[normalizedPath] = currentCoverage[filePath]
       }
     }
 
-    // Calculate average coverage for each component and determine significant changes
-    for (const [, data] of componentMap.entries()) {
-      const avgCurrent = data.currentCount > 0 ? data.currentTotal / data.currentCount : 0
-      const avgMain = data.mainCount > 0 ? data.mainTotal / data.mainCount : 0
-      const diff = avgCurrent - avgMain
-      
-      // Only keep components with significant changes
-      if (
-        Math.abs(diff) > 0.1 ||
-        (data.currentCount > 0 && data.mainCount === 0) ||
-        (data.mainCount > 0 && data.currentCount === 0)
-      ) {
+    // Process main coverage files
+    for (const filePath of Object.keys(mainCoverage)) {
+      if (filePath !== 'total') {
+        const normalizedPath = normalizeFilePath(filePath)
+        mainNormalized[normalizedPath] = mainCoverage[filePath]
+      }
+    }
+
+    // Get all unique normalized file paths
+    const allFiles = [...new Set([...Object.keys(currentNormalized), ...Object.keys(mainNormalized)])]
+    totalComponentsSearched = allFiles.length
+
+    for (const filePath of allFiles) {
+      const current = currentNormalized[filePath]
+      const main = mainNormalized[filePath]
+
+      // Extract component/file name for display
+      const fileMatch = filePath.match(/\/([^/]+)$/)
+      const fileName = fileMatch ? fileMatch[1] : filePath
+
+      const currentPct = current?.lines?.pct || 0
+      const mainPct = main?.lines?.pct || 0
+      const diff = currentPct - mainPct
+
+      // Only include if there's a significant change OR if file is truly new/removed
+      if (Math.abs(diff) > 0.1 || (!main && current) || (main && !current)) {
         componentChanges.push({
-          component: data.component,
-          file: data.file,
-          current: avgCurrent,
-          main: avgMain,
+          component: fileName,
+          file: filePath,
+          current: currentPct,
+          main: mainPct,
           diff,
-          isNew: data.currentCount > 0 && data.mainCount === 0,
-          isRemoved: data.mainCount > 0 && data.currentCount === 0,
+          isNew: !main && current,
+          isRemoved: main && !current,
         })
       }
     }
@@ -184,9 +152,9 @@ async function init() {
 
   // Table
   if (significantChanges.length > 0) {
-    commentBody += `### ⚠️ Component changes\n\n`
-    commentBody += `| Component | Coverage | Change |\n`
-    commentBody += `|-----------|----------|--------|\n`
+    commentBody += `### ⚠️ File changes\n\n`
+    commentBody += `| File | Coverage | Change |\n`
+    commentBody += `|------|----------|--------|\n`
 
     for (const change of significantChanges) {
       const coverageDisplay = change.isRemoved ? 'N/A' : formatCoverage(change.current)
@@ -196,7 +164,7 @@ async function init() {
     }
     commentBody += `\n`
   } else {
-    commentBody += `### No component coverage changes\n\n`
+    commentBody += `### No file coverage changes\n\n`
   }
 
   // Summarize
@@ -215,9 +183,9 @@ async function init() {
     commentBody += `- Test coverage was improved\n`
     commentBody += `- Great work on testing!\n\n`
   } else if (newComponents) {
-    commentBody += `**New components detected** - Make sure they have adequate test coverage.\n\n`
+    commentBody += `**New files detected** - Make sure they have adequate test coverage.\n\n`
   } else if (removedComponents) {
-    commentBody += `**Components removed** - Coverage data updated accordingly.\n\n`
+    commentBody += `**Files removed** - Coverage data updated accordingly.\n\n`
   } else {
     // eslint-disable-next-line i18n-text/no-en
     commentBody += `Nothing to see here \n\n`
@@ -232,9 +200,7 @@ async function init() {
   if (mainCoverage.total) {
     commentBody += `- **Main branch**: ${mainTotal.lines?.covered || 0}/${mainTotal.lines?.total || 0} lines covered\n`
   }
-  commentBody += `- **Components searched**: ${
-    significantChanges.length > 0 ? significantChanges.length : 'No changes'
-  }\n`
+  commentBody += `- **Files searched**: ${totalComponentsSearched > 0 ? totalComponentsSearched : 'No changes'}\n`
   commentBody += `\n</details>`
 
   // Output the comment body to be used by the GitHub Action

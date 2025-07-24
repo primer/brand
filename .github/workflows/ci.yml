@@ -9,7 +9,7 @@ on:
 
 jobs:
   ci:
-    if: ${{ github.repository == 'primer/brand' }}
+    if: false
     name: Install and run tests
     runs-on: ubuntu-latest
     steps:

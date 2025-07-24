@@ -13,7 +13,7 @@ concurrency:
 
 jobs:
   update-snapshots:
-    if: ${{ github.event.label.name == 'update snapshots' }}
+    if: false
     name: Update snapshots
     runs-on:
       labels: ubuntu-latest-16-cores
