@@ -10,7 +10,7 @@ test.describe('Visual Comparison: IDE', () => {
   test('IDE / Default', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-ide--default&viewMode=story')
 
-    await page.waitForTimeout(2000)
+    await page.waitForTimeout(3000)
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
@@ -19,7 +19,7 @@ test.describe('Visual Comparison: IDE', () => {
       'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-ide--default&viewMode=story',
     )
 
-    await page.waitForTimeout(2000)
+    await page.waitForTimeout(3000)
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
@@ -28,7 +28,7 @@ test.describe('Visual Comparison: IDE', () => {
       'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-ide--default&viewMode=story',
     )
 
-    await page.waitForTimeout(2000)
+    await page.waitForTimeout(3000)
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
@@ -37,7 +37,7 @@ test.describe('Visual Comparison: IDE', () => {
       'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-ide--default&viewMode=story',
     )
 
-    await page.waitForTimeout(2000)
+    await page.waitForTimeout(3000)
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
@@ -46,7 +46,7 @@ test.describe('Visual Comparison: IDE', () => {
       'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-ide--default&viewMode=story',
     )
 
-    await page.waitForTimeout(2000)
+    await page.waitForTimeout(3000)
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
@@ -55,14 +55,14 @@ test.describe('Visual Comparison: IDE', () => {
       'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-ide--default&viewMode=story',
     )
 
-    await page.waitForTimeout(2000)
+    await page.waitForTimeout(3000)
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('IDE / Playground', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-ide--playground&viewMode=story')
 
-    await page.waitForTimeout(2000)
+    await page.waitForTimeout(3000)
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
@@ -71,7 +71,7 @@ test.describe('Visual Comparison: IDE', () => {
       'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-ide--playground&viewMode=story',
     )
 
-    await page.waitForTimeout(2000)
+    await page.waitForTimeout(3000)
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
@@ -80,7 +80,7 @@ test.describe('Visual Comparison: IDE', () => {
       'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-ide--playground&viewMode=story',
     )
 
-    await page.waitForTimeout(2000)
+    await page.waitForTimeout(3000)
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
@@ -89,7 +89,7 @@ test.describe('Visual Comparison: IDE', () => {
       'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-ide--playground&viewMode=story',
     )
 
-    await page.waitForTimeout(2000)
+    await page.waitForTimeout(3000)
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
@@ -98,7 +98,7 @@ test.describe('Visual Comparison: IDE', () => {
       'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-ide--playground&viewMode=story',
     )
 
-    await page.waitForTimeout(2000)
+    await page.waitForTimeout(3000)
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
@@ -107,7 +107,7 @@ test.describe('Visual Comparison: IDE', () => {
       'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-ide--playground&viewMode=story',
     )
 
-    await page.waitForTimeout(2000)
+    await page.waitForTimeout(3000)
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 })
