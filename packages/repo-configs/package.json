@@ -1,6 +1,6 @@
 {
   "name": "@primer/brand-config",
-  "version": "0.56.3",
+  "version": "0.57.0",
   "private": true,
   "description": "General-purpose configurations for maintaining Primer Brand",
   "homepage": "https://primer.style/brand",

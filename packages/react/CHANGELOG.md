@@ -1,5 +1,36 @@
 # @primer/react-brand
 
+## 0.57.0
+
+### Minor Changes
+
+- [#1101](https://github.com/primer/brand/pull/1101) [`7d344dc`](https://github.com/primer/brand/commit/7d344dca19e2b2b143f64a81d9fcdc92024c4326) Thanks [@joshfarrant](https://github.com/joshfarrant)! - Added play/pause control to the `IDE` component.
+
+  ⚠️ Removed the `showReplayButton` prop as the play/pause control replaces its functionality, and is always visible.
+
+### Patch Changes
+
+- [#1113](https://github.com/primer/brand/pull/1113) [`30d9f1f`](https://github.com/primer/brand/commit/30d9f1fb154fb23fb78c6902b0f85bb0db8e0f70) Thanks [@danielguillan](https://github.com/danielguillan)! - Updated the layout of single item `PricingOptions`
+
+- [#1111](https://github.com/primer/brand/pull/1111) [`8dc3fc9`](https://github.com/primer/brand/commit/8dc3fc96bf504735785de124695fdb05d6828b3c) Thanks [@joshfarrant](https://github.com/joshfarrant)! - Improvements to the styling of various components when viewed in Windows High Contrast Mode.
+
+  - `FAQGroup`: Improved appearance for the selected tab
+  - `Pagination`: Improved appearance for the current page item
+  - `VideoPlayer`: Improved legibility for all text and controls
+  - `Checkbox`: Improved focus and checked appearance
+  - `Radio`: Improved focus and checked appearance
+  - `TextInput`: Improved focus appearance
+  - `Textarea`: Improved focus appearance
+  - `ActionMenu`: Improved focus appearance
+
+- [#1114](https://github.com/primer/brand/pull/1114) [`3a62a9e`](https://github.com/primer/brand/commit/3a62a9ec0f6d653730b59c18d3e4fd94862b5c80) Thanks [@rezrah](https://github.com/rezrah)! - Added support for `<table>` elements in the `Prose` component. Tables now render with improved visual appearance.
+
+  :link: [Refer to Prose documentation for usage examples](https://primer.style/brand/components/Prose/)
+
+- [#1102](https://github.com/primer/brand/pull/1102) [`5ef7878`](https://github.com/primer/brand/commit/5ef787898226a43577bf38e7c366fcb9f2f5f637) Thanks [@joshfarrant](https://github.com/joshfarrant)! - The `Button` component now automatically applies semantically correct disabled attributes based on the rendered element type. E.g. `disabled` for button elements and `aria-disabled` for other elements.
+
+  ⚠️ Please review usage of `Button` in your application code or tests, to ensure that you are not relying on the previously incorrect markup. For example, if you previously targeted `a[disabled]`, you should now target `a[aria-disabled]` instead.
+
 ## 0.56.3
 
 ### Patch Changes

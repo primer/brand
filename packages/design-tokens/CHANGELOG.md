@@ -1,5 +1,11 @@
 # @primer/brand-primitives
 
+## 0.57.0
+
+### Patch Changes
+
+- [#1113](https://github.com/primer/brand/pull/1113) [`30d9f1f`](https://github.com/primer/brand/commit/30d9f1fb154fb23fb78c6902b0f85bb0db8e0f70) Thanks [@danielguillan](https://github.com/danielguillan)! - Updated the layout of single item `PricingOptions`
+
 ## 0.56.3
 
 ## 0.56.2
