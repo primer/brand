@@ -25,7 +25,6 @@
 }
 
 .ActionMenu__button > span:first-of-type {
-  max-width: 200px;
   overflow: hidden;
 }
 
