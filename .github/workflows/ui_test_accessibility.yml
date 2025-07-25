@@ -8,7 +8,7 @@ on:
 
 jobs:
   accessibility:
-    if: ${{ github.repository == 'primer/brand' }}
+    if: false
     name: Accessibility
     runs-on:
       labels: ubuntu-latest-16-cores

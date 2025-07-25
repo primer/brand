@@ -12,7 +12,7 @@ permissions:
 
 jobs:
   deploy:
-    if: ${{ github.repository == 'primer/brand' }}
+    if: false
     name: Preview
     # SHA for security hardening. Points at 2.2.0 release
     uses: primer/.github/.github/workflows/deploy_preview.yml@91fde6cc969a502562fdacdac48e35859b3a40b4
@@ -32,7 +32,7 @@ jobs:
       output_dir: apps/next-docs/out/
 
   deploy-storybook:
-    if: ${{ github.repository == 'primer/brand' }}
+    if: false
     name: Preview Storybook
     runs-on:
       labels: ubuntu-latest-16-cores
