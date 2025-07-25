@@ -4,4 +4,4 @@
 
 Added play/pause control to the `IDE` component.
 
-Removed the `showReplayButton` prop as the play/pause control replaces its functionality, and is always visible.
+⚠️ Removed the `showReplayButton` prop as the play/pause control replaces its functionality, and is always visible.
