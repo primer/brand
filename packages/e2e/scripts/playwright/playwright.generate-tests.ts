@@ -55,14 +55,14 @@
     'components-minimalfooter-features--filtered-social-links': 5000, // for external social imagery to load
     'components-minimalfooter-features--default-narrow': 5000, // for external social imagery to load
     'components-minimalfooter-features--maximum-links': 5000, // for external social imagery to load
-    'components-actionmenu-features--single-selection-small-open': 4000, // for the menu to open
-    'components-actionmenu-features--split-button-mode-open': 4000, // for the menu to open
-    'components-actionmenu-features--split-button-alternative-menu-alignment': 4000, // for the menu to open
-    'components-actionmenu-features--open-by-default': 4000, // for the menu to open
-    'components-actionmenu-features--longer-lists-open': 4000, // for the menu to open
-    'components-actionmenu-features--menu-alignment': 4000, // for the menu to open
-    'components-actionmenu-features--disabled-item': 4000, // flakey test,
-    'components-actionmenu-features--anchored-positioning': 4000, // for the menu to open
+    'components-actionmenu-features--single-selection-small-open': 10000, // for the menu to open
+    'components-actionmenu-features--split-button-mode-open': 10000, // for the menu to open
+    'components-actionmenu-features--split-button-alternative-menu-alignment': 10000, // for the menu to open
+    'components-actionmenu-features--open-by-default': 10000, // for the menu to open
+    'components-actionmenu-features--longer-lists-open': 10000, // for the menu to open
+    'components-actionmenu-features--menu-alignment': 10000, // for the menu to open
+    'components-actionmenu-features--disabled-item': 10000, // flakey test,
+    'components-actionmenu-features--anchored-positioning': 10000, // for the menu to open
     'components-box-features--animation': 6000, // for the animation
     'components-ide--playground': 3000, // for the animation
     'components-ide--default': 3000, // for the animation

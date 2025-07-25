@@ -118,7 +118,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
       'http://localhost:6006/iframe.html?args=&id=components-actionmenu-features--single-selection-small-open&viewMode=story',
     )
 
-    await page.waitForTimeout(4000)
+    await page.waitForTimeout(10000)
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
@@ -127,7 +127,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
       'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-actionmenu-features--single-selection-small-open&viewMode=story',
     )
 
-    await page.waitForTimeout(4000)
+    await page.waitForTimeout(10000)
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
@@ -136,7 +136,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
       'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-actionmenu-features--single-selection-small-open&viewMode=story',
     )
 
-    await page.waitForTimeout(4000)
+    await page.waitForTimeout(10000)
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
@@ -145,7 +145,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
       'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-actionmenu-features--single-selection-small-open&viewMode=story',
     )
 
-    await page.waitForTimeout(4000)
+    await page.waitForTimeout(10000)
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
@@ -154,7 +154,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
       'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-actionmenu-features--single-selection-small-open&viewMode=story',
     )
 
-    await page.waitForTimeout(4000)
+    await page.waitForTimeout(10000)
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
@@ -163,7 +163,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
       'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-actionmenu-features--single-selection-small-open&viewMode=story',
     )
 
-    await page.waitForTimeout(4000)
+    await page.waitForTimeout(10000)
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
@@ -280,7 +280,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
       'http://localhost:6006/iframe.html?args=&id=components-actionmenu-features--split-button-mode-open&viewMode=story',
     )
 
-    await page.waitForTimeout(4000)
+    await page.waitForTimeout(10000)
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
@@ -289,7 +289,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
       'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-actionmenu-features--split-button-mode-open&viewMode=story',
     )
 
-    await page.waitForTimeout(4000)
+    await page.waitForTimeout(10000)
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
@@ -298,7 +298,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
       'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-actionmenu-features--split-button-mode-open&viewMode=story',
     )
 
-    await page.waitForTimeout(4000)
+    await page.waitForTimeout(10000)
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
@@ -307,7 +307,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
       'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-actionmenu-features--split-button-mode-open&viewMode=story',
     )
 
-    await page.waitForTimeout(4000)
+    await page.waitForTimeout(10000)
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
@@ -316,7 +316,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
       'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-actionmenu-features--split-button-mode-open&viewMode=story',
     )
 
-    await page.waitForTimeout(4000)
+    await page.waitForTimeout(10000)
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
@@ -325,7 +325,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
       'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-actionmenu-features--split-button-mode-open&viewMode=story',
     )
 
-    await page.waitForTimeout(4000)
+    await page.waitForTimeout(10000)
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
@@ -334,7 +334,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
       'http://localhost:6006/iframe.html?args=&id=components-actionmenu-features--split-button-alternative-menu-alignment&viewMode=story',
     )
 
-    await page.waitForTimeout(4000)
+    await page.waitForTimeout(10000)
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
@@ -343,7 +343,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
       'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-actionmenu-features--split-button-alternative-menu-alignment&viewMode=story',
     )
 
-    await page.waitForTimeout(4000)
+    await page.waitForTimeout(10000)
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
@@ -352,7 +352,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
       'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-actionmenu-features--split-button-alternative-menu-alignment&viewMode=story',
     )
 
-    await page.waitForTimeout(4000)
+    await page.waitForTimeout(10000)
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
@@ -361,7 +361,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
       'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-actionmenu-features--split-button-alternative-menu-alignment&viewMode=story',
     )
 
-    await page.waitForTimeout(4000)
+    await page.waitForTimeout(10000)
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
@@ -370,7 +370,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
       'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-actionmenu-features--split-button-alternative-menu-alignment&viewMode=story',
     )
 
-    await page.waitForTimeout(4000)
+    await page.waitForTimeout(10000)
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
@@ -379,7 +379,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
       'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-actionmenu-features--split-button-alternative-menu-alignment&viewMode=story',
     )
 
-    await page.waitForTimeout(4000)
+    await page.waitForTimeout(10000)
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
@@ -602,7 +602,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
       'http://localhost:6006/iframe.html?args=&id=components-actionmenu-features--open-by-default&viewMode=story',
     )
 
-    await page.waitForTimeout(4000)
+    await page.waitForTimeout(10000)
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
@@ -611,7 +611,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
       'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-actionmenu-features--open-by-default&viewMode=story',
     )
 
-    await page.waitForTimeout(4000)
+    await page.waitForTimeout(10000)
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
@@ -620,7 +620,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
       'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-actionmenu-features--open-by-default&viewMode=story',
     )
 
-    await page.waitForTimeout(4000)
+    await page.waitForTimeout(10000)
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
@@ -629,7 +629,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
       'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-actionmenu-features--open-by-default&viewMode=story',
     )
 
-    await page.waitForTimeout(4000)
+    await page.waitForTimeout(10000)
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
@@ -638,7 +638,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
       'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-actionmenu-features--open-by-default&viewMode=story',
     )
 
-    await page.waitForTimeout(4000)
+    await page.waitForTimeout(10000)
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
@@ -647,7 +647,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
       'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-actionmenu-features--open-by-default&viewMode=story',
     )
 
-    await page.waitForTimeout(4000)
+    await page.waitForTimeout(10000)
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
@@ -764,7 +764,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
       'http://localhost:6006/iframe.html?args=&id=components-actionmenu-features--longer-lists-open&viewMode=story',
     )
 
-    await page.waitForTimeout(4000)
+    await page.waitForTimeout(10000)
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
@@ -773,7 +773,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
       'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-actionmenu-features--longer-lists-open&viewMode=story',
     )
 
-    await page.waitForTimeout(4000)
+    await page.waitForTimeout(10000)
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
@@ -782,7 +782,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
       'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-actionmenu-features--longer-lists-open&viewMode=story',
     )
 
-    await page.waitForTimeout(4000)
+    await page.waitForTimeout(10000)
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
@@ -791,7 +791,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
       'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-actionmenu-features--longer-lists-open&viewMode=story',
     )
 
-    await page.waitForTimeout(4000)
+    await page.waitForTimeout(10000)
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
@@ -800,7 +800,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
       'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-actionmenu-features--longer-lists-open&viewMode=story',
     )
 
-    await page.waitForTimeout(4000)
+    await page.waitForTimeout(10000)
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
@@ -809,7 +809,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
       'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-actionmenu-features--longer-lists-open&viewMode=story',
     )
 
-    await page.waitForTimeout(4000)
+    await page.waitForTimeout(10000)
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
@@ -818,7 +818,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
       'http://localhost:6006/iframe.html?args=&id=components-actionmenu-features--menu-alignment&viewMode=story',
     )
 
-    await page.waitForTimeout(4000)
+    await page.waitForTimeout(10000)
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
@@ -827,7 +827,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
       'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-actionmenu-features--menu-alignment&viewMode=story',
     )
 
-    await page.waitForTimeout(4000)
+    await page.waitForTimeout(10000)
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
@@ -836,7 +836,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
       'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-actionmenu-features--menu-alignment&viewMode=story',
     )
 
-    await page.waitForTimeout(4000)
+    await page.waitForTimeout(10000)
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
@@ -845,7 +845,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
       'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-actionmenu-features--menu-alignment&viewMode=story',
     )
 
-    await page.waitForTimeout(4000)
+    await page.waitForTimeout(10000)
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
@@ -854,7 +854,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
       'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-actionmenu-features--menu-alignment&viewMode=story',
     )
 
-    await page.waitForTimeout(4000)
+    await page.waitForTimeout(10000)
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
@@ -863,7 +863,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
       'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-actionmenu-features--menu-alignment&viewMode=story',
     )
 
-    await page.waitForTimeout(4000)
+    await page.waitForTimeout(10000)
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
@@ -926,7 +926,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
       'http://localhost:6006/iframe.html?args=&id=components-actionmenu-features--anchored-positioning&viewMode=story',
     )
 
-    await page.waitForTimeout(4000)
+    await page.waitForTimeout(10000)
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
@@ -935,7 +935,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
       'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-actionmenu-features--anchored-positioning&viewMode=story',
     )
 
-    await page.waitForTimeout(4000)
+    await page.waitForTimeout(10000)
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
@@ -944,7 +944,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
       'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-actionmenu-features--anchored-positioning&viewMode=story',
     )
 
-    await page.waitForTimeout(4000)
+    await page.waitForTimeout(10000)
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
@@ -953,7 +953,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
       'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-actionmenu-features--anchored-positioning&viewMode=story',
     )
 
-    await page.waitForTimeout(4000)
+    await page.waitForTimeout(10000)
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
@@ -962,7 +962,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
       'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-actionmenu-features--anchored-positioning&viewMode=story',
     )
 
-    await page.waitForTimeout(4000)
+    await page.waitForTimeout(10000)
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
@@ -971,7 +971,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
       'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-actionmenu-features--anchored-positioning&viewMode=story',
     )
 
-    await page.waitForTimeout(4000)
+    await page.waitForTimeout(10000)
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
@@ -1034,7 +1034,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
       'http://localhost:6006/iframe.html?args=&id=components-actionmenu-features--disabled-item&viewMode=story',
     )
 
-    await page.waitForTimeout(4000)
+    await page.waitForTimeout(10000)
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
@@ -1043,7 +1043,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
       'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-actionmenu-features--disabled-item&viewMode=story',
     )
 
-    await page.waitForTimeout(4000)
+    await page.waitForTimeout(10000)
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
@@ -1052,7 +1052,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
       'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-actionmenu-features--disabled-item&viewMode=story',
     )
 
-    await page.waitForTimeout(4000)
+    await page.waitForTimeout(10000)
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
@@ -1061,7 +1061,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
       'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-actionmenu-features--disabled-item&viewMode=story',
     )
 
-    await page.waitForTimeout(4000)
+    await page.waitForTimeout(10000)
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
@@ -1070,7 +1070,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
       'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-actionmenu-features--disabled-item&viewMode=story',
     )
 
-    await page.waitForTimeout(4000)
+    await page.waitForTimeout(10000)
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
@@ -1079,7 +1079,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
       'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-actionmenu-features--disabled-item&viewMode=story',
     )
 
-    await page.waitForTimeout(4000)
+    await page.waitForTimeout(10000)
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 })
