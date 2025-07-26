@@ -11,7 +11,7 @@ test.describe('Visual Comparison: LogoSuite', () => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-logosuite--playground&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('LogoSuite / Playground (fr)', async ({page}) => {
@@ -20,7 +20,7 @@ test.describe('Visual Comparison: LogoSuite', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('LogoSuite / Playground (de)', async ({page}) => {
@@ -29,7 +29,7 @@ test.describe('Visual Comparison: LogoSuite', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('LogoSuite / Playground (ja)', async ({page}) => {
@@ -38,7 +38,7 @@ test.describe('Visual Comparison: LogoSuite', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('LogoSuite / Playground (es)', async ({page}) => {
@@ -47,7 +47,7 @@ test.describe('Visual Comparison: LogoSuite', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('LogoSuite / Playground (pt-BR)', async ({page}) => {
@@ -56,7 +56,7 @@ test.describe('Visual Comparison: LogoSuite', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('LogoSuite / With Links', async ({page}) => {
@@ -65,7 +65,7 @@ test.describe('Visual Comparison: LogoSuite', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('LogoSuite / With Links (fr)', async ({page}) => {
@@ -74,7 +74,7 @@ test.describe('Visual Comparison: LogoSuite', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('LogoSuite / With Links (de)', async ({page}) => {
@@ -83,7 +83,7 @@ test.describe('Visual Comparison: LogoSuite', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('LogoSuite / With Links (ja)', async ({page}) => {
@@ -92,7 +92,7 @@ test.describe('Visual Comparison: LogoSuite', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('LogoSuite / With Links (es)', async ({page}) => {
@@ -101,7 +101,7 @@ test.describe('Visual Comparison: LogoSuite', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('LogoSuite / With Links (pt-BR)', async ({page}) => {
@@ -110,7 +110,7 @@ test.describe('Visual Comparison: LogoSuite', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('LogoSuite / Align Start', async ({page}) => {
@@ -119,7 +119,7 @@ test.describe('Visual Comparison: LogoSuite', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('LogoSuite / Align Start (fr)', async ({page}) => {
@@ -128,7 +128,7 @@ test.describe('Visual Comparison: LogoSuite', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('LogoSuite / Align Start (de)', async ({page}) => {
@@ -137,7 +137,7 @@ test.describe('Visual Comparison: LogoSuite', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('LogoSuite / Align Start (ja)', async ({page}) => {
@@ -146,7 +146,7 @@ test.describe('Visual Comparison: LogoSuite', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('LogoSuite / Align Start (es)', async ({page}) => {
@@ -155,7 +155,7 @@ test.describe('Visual Comparison: LogoSuite', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('LogoSuite / Align Start (pt-BR)', async ({page}) => {
@@ -164,7 +164,7 @@ test.describe('Visual Comparison: LogoSuite', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('LogoSuite / Align Center', async ({page}) => {
@@ -173,7 +173,7 @@ test.describe('Visual Comparison: LogoSuite', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('LogoSuite / Align Center (fr)', async ({page}) => {
@@ -182,7 +182,7 @@ test.describe('Visual Comparison: LogoSuite', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('LogoSuite / Align Center (de)', async ({page}) => {
@@ -191,7 +191,7 @@ test.describe('Visual Comparison: LogoSuite', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('LogoSuite / Align Center (ja)', async ({page}) => {
@@ -200,7 +200,7 @@ test.describe('Visual Comparison: LogoSuite', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('LogoSuite / Align Center (es)', async ({page}) => {
@@ -209,7 +209,7 @@ test.describe('Visual Comparison: LogoSuite', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('LogoSuite / Align Center (pt-BR)', async ({page}) => {
@@ -218,7 +218,7 @@ test.describe('Visual Comparison: LogoSuite', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('LogoSuite / Align Justify', async ({page}) => {
@@ -227,7 +227,7 @@ test.describe('Visual Comparison: LogoSuite', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('LogoSuite / Align Justify (fr)', async ({page}) => {
@@ -236,7 +236,7 @@ test.describe('Visual Comparison: LogoSuite', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('LogoSuite / Align Justify (de)', async ({page}) => {
@@ -245,7 +245,7 @@ test.describe('Visual Comparison: LogoSuite', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('LogoSuite / Align Justify (ja)', async ({page}) => {
@@ -254,7 +254,7 @@ test.describe('Visual Comparison: LogoSuite', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('LogoSuite / Align Justify (es)', async ({page}) => {
@@ -263,7 +263,7 @@ test.describe('Visual Comparison: LogoSuite', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('LogoSuite / Align Justify (pt-BR)', async ({page}) => {
@@ -272,7 +272,7 @@ test.describe('Visual Comparison: LogoSuite', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('LogoSuite / Default Variant', async ({page}) => {
@@ -281,7 +281,7 @@ test.describe('Visual Comparison: LogoSuite', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('LogoSuite / Default Variant (fr)', async ({page}) => {
@@ -290,7 +290,7 @@ test.describe('Visual Comparison: LogoSuite', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('LogoSuite / Default Variant (de)', async ({page}) => {
@@ -299,7 +299,7 @@ test.describe('Visual Comparison: LogoSuite', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('LogoSuite / Default Variant (ja)', async ({page}) => {
@@ -308,7 +308,7 @@ test.describe('Visual Comparison: LogoSuite', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('LogoSuite / Default Variant (es)', async ({page}) => {
@@ -317,7 +317,7 @@ test.describe('Visual Comparison: LogoSuite', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('LogoSuite / Default Variant (pt-BR)', async ({page}) => {
@@ -326,7 +326,7 @@ test.describe('Visual Comparison: LogoSuite', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('LogoSuite / Emphasis Variant', async ({page}) => {
@@ -335,7 +335,7 @@ test.describe('Visual Comparison: LogoSuite', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('LogoSuite / Emphasis Variant (fr)', async ({page}) => {
@@ -344,7 +344,7 @@ test.describe('Visual Comparison: LogoSuite', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('LogoSuite / Emphasis Variant (de)', async ({page}) => {
@@ -353,7 +353,7 @@ test.describe('Visual Comparison: LogoSuite', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('LogoSuite / Emphasis Variant (ja)', async ({page}) => {
@@ -362,7 +362,7 @@ test.describe('Visual Comparison: LogoSuite', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('LogoSuite / Emphasis Variant (es)', async ({page}) => {
@@ -371,7 +371,7 @@ test.describe('Visual Comparison: LogoSuite', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('LogoSuite / Emphasis Variant (pt-BR)', async ({page}) => {
@@ -380,7 +380,7 @@ test.describe('Visual Comparison: LogoSuite', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('LogoSuite / Muted Variant', async ({page}) => {
@@ -389,7 +389,7 @@ test.describe('Visual Comparison: LogoSuite', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('LogoSuite / Muted Variant (fr)', async ({page}) => {
@@ -398,7 +398,7 @@ test.describe('Visual Comparison: LogoSuite', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('LogoSuite / Muted Variant (de)', async ({page}) => {
@@ -407,7 +407,7 @@ test.describe('Visual Comparison: LogoSuite', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('LogoSuite / Muted Variant (ja)', async ({page}) => {
@@ -416,7 +416,7 @@ test.describe('Visual Comparison: LogoSuite', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('LogoSuite / Muted Variant (es)', async ({page}) => {
@@ -425,7 +425,7 @@ test.describe('Visual Comparison: LogoSuite', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('LogoSuite / Muted Variant (pt-BR)', async ({page}) => {
@@ -434,7 +434,7 @@ test.describe('Visual Comparison: LogoSuite', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('LogoSuite / Without Divider', async ({page}) => {
@@ -443,7 +443,7 @@ test.describe('Visual Comparison: LogoSuite', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('LogoSuite / Without Divider (fr)', async ({page}) => {
@@ -452,7 +452,7 @@ test.describe('Visual Comparison: LogoSuite', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('LogoSuite / Without Divider (de)', async ({page}) => {
@@ -461,7 +461,7 @@ test.describe('Visual Comparison: LogoSuite', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('LogoSuite / Without Divider (ja)', async ({page}) => {
@@ -470,7 +470,7 @@ test.describe('Visual Comparison: LogoSuite', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('LogoSuite / Without Divider (es)', async ({page}) => {
@@ -479,7 +479,7 @@ test.describe('Visual Comparison: LogoSuite', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('LogoSuite / Without Divider (pt-BR)', async ({page}) => {
@@ -488,7 +488,7 @@ test.describe('Visual Comparison: LogoSuite', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('LogoSuite / Condensed Gap', async ({page}) => {
@@ -497,7 +497,7 @@ test.describe('Visual Comparison: LogoSuite', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('LogoSuite / Condensed Gap (fr)', async ({page}) => {
@@ -506,7 +506,7 @@ test.describe('Visual Comparison: LogoSuite', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('LogoSuite / Condensed Gap (de)', async ({page}) => {
@@ -515,7 +515,7 @@ test.describe('Visual Comparison: LogoSuite', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('LogoSuite / Condensed Gap (ja)', async ({page}) => {
@@ -524,7 +524,7 @@ test.describe('Visual Comparison: LogoSuite', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('LogoSuite / Condensed Gap (es)', async ({page}) => {
@@ -533,7 +533,7 @@ test.describe('Visual Comparison: LogoSuite', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('LogoSuite / Condensed Gap (pt-BR)', async ({page}) => {
@@ -542,7 +542,7 @@ test.describe('Visual Comparison: LogoSuite', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('LogoSuite / Idle Marquee Speed', async ({page}) => {
@@ -551,7 +551,7 @@ test.describe('Visual Comparison: LogoSuite', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('LogoSuite / Idle Marquee Speed (fr)', async ({page}) => {
@@ -560,7 +560,7 @@ test.describe('Visual Comparison: LogoSuite', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('LogoSuite / Idle Marquee Speed (de)', async ({page}) => {
@@ -569,7 +569,7 @@ test.describe('Visual Comparison: LogoSuite', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('LogoSuite / Idle Marquee Speed (ja)', async ({page}) => {
@@ -578,7 +578,7 @@ test.describe('Visual Comparison: LogoSuite', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('LogoSuite / Idle Marquee Speed (es)', async ({page}) => {
@@ -587,7 +587,7 @@ test.describe('Visual Comparison: LogoSuite', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('LogoSuite / Idle Marquee Speed (pt-BR)', async ({page}) => {
@@ -596,7 +596,7 @@ test.describe('Visual Comparison: LogoSuite', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('LogoSuite / Visible Heading', async ({page}) => {
@@ -605,7 +605,7 @@ test.describe('Visual Comparison: LogoSuite', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('LogoSuite / Visible Heading (fr)', async ({page}) => {
@@ -614,7 +614,7 @@ test.describe('Visual Comparison: LogoSuite', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('LogoSuite / Visible Heading (de)', async ({page}) => {
@@ -623,7 +623,7 @@ test.describe('Visual Comparison: LogoSuite', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('LogoSuite / Visible Heading (ja)', async ({page}) => {
@@ -632,7 +632,7 @@ test.describe('Visual Comparison: LogoSuite', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('LogoSuite / Visible Heading (es)', async ({page}) => {
@@ -641,7 +641,7 @@ test.describe('Visual Comparison: LogoSuite', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('LogoSuite / Visible Heading (pt-BR)', async ({page}) => {
@@ -650,7 +650,7 @@ test.describe('Visual Comparison: LogoSuite', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('LogoSuite / Heading Level', async ({page}) => {
@@ -659,7 +659,7 @@ test.describe('Visual Comparison: LogoSuite', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('LogoSuite / Heading Level (fr)', async ({page}) => {
@@ -668,7 +668,7 @@ test.describe('Visual Comparison: LogoSuite', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('LogoSuite / Heading Level (de)', async ({page}) => {
@@ -677,7 +677,7 @@ test.describe('Visual Comparison: LogoSuite', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('LogoSuite / Heading Level (ja)', async ({page}) => {
@@ -686,7 +686,7 @@ test.describe('Visual Comparison: LogoSuite', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('LogoSuite / Heading Level (es)', async ({page}) => {
@@ -695,7 +695,7 @@ test.describe('Visual Comparison: LogoSuite', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('LogoSuite / Heading Level (pt-BR)', async ({page}) => {
@@ -704,7 +704,7 @@ test.describe('Visual Comparison: LogoSuite', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('LogoSuite / Visible Heading With Description', async ({page}) => {
@@ -713,7 +713,7 @@ test.describe('Visual Comparison: LogoSuite', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('LogoSuite / Visible Heading With Description (fr)', async ({page}) => {
@@ -722,7 +722,7 @@ test.describe('Visual Comparison: LogoSuite', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('LogoSuite / Visible Heading With Description (de)', async ({page}) => {
@@ -731,7 +731,7 @@ test.describe('Visual Comparison: LogoSuite', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('LogoSuite / Visible Heading With Description (ja)', async ({page}) => {
@@ -740,7 +740,7 @@ test.describe('Visual Comparison: LogoSuite', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('LogoSuite / Visible Heading With Description (es)', async ({page}) => {
@@ -749,7 +749,7 @@ test.describe('Visual Comparison: LogoSuite', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('LogoSuite / Visible Heading With Description (pt-BR)', async ({page}) => {
@@ -758,7 +758,7 @@ test.describe('Visual Comparison: LogoSuite', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('LogoSuite / With Raster Logos', async ({page}) => {
@@ -767,7 +767,7 @@ test.describe('Visual Comparison: LogoSuite', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('LogoSuite / With Raster Logos (fr)', async ({page}) => {
@@ -776,7 +776,7 @@ test.describe('Visual Comparison: LogoSuite', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('LogoSuite / With Raster Logos (de)', async ({page}) => {
@@ -785,7 +785,7 @@ test.describe('Visual Comparison: LogoSuite', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('LogoSuite / With Raster Logos (ja)', async ({page}) => {
@@ -794,7 +794,7 @@ test.describe('Visual Comparison: LogoSuite', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('LogoSuite / With Raster Logos (es)', async ({page}) => {
@@ -803,7 +803,7 @@ test.describe('Visual Comparison: LogoSuite', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('LogoSuite / With Raster Logos (pt-BR)', async ({page}) => {
@@ -812,6 +812,6 @@ test.describe('Visual Comparison: LogoSuite', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 })

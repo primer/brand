@@ -212,7 +212,7 @@
             await page.goto('http://localhost:${port}/iframe.html?${localeParam}args=&id=${id}&viewMode=story')
 
             ${timeout ? `await page.waitForTimeout(${timeout})` : ''}
-            expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+            await expect(page).toHaveScreenshot({ fullPage: true })
           });
 
           `

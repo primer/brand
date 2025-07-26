@@ -11,7 +11,7 @@ test.describe('Visual Comparison: Prose', () => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-prose--default&viewMode=story')
 
     await page.waitForTimeout(4000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Prose / Default (fr)', async ({page}) => {
@@ -20,7 +20,7 @@ test.describe('Visual Comparison: Prose', () => {
     )
 
     await page.waitForTimeout(4000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Prose / Default (de)', async ({page}) => {
@@ -29,7 +29,7 @@ test.describe('Visual Comparison: Prose', () => {
     )
 
     await page.waitForTimeout(4000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Prose / Default (ja)', async ({page}) => {
@@ -38,7 +38,7 @@ test.describe('Visual Comparison: Prose', () => {
     )
 
     await page.waitForTimeout(4000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Prose / Default (es)', async ({page}) => {
@@ -47,7 +47,7 @@ test.describe('Visual Comparison: Prose', () => {
     )
 
     await page.waitForTimeout(4000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Prose / Default (pt-BR)', async ({page}) => {
@@ -56,14 +56,14 @@ test.describe('Visual Comparison: Prose', () => {
     )
 
     await page.waitForTimeout(4000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Prose / Playground', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-prose--playground&viewMode=story')
 
     await page.waitForTimeout(4000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Prose / Playground (fr)', async ({page}) => {
@@ -72,7 +72,7 @@ test.describe('Visual Comparison: Prose', () => {
     )
 
     await page.waitForTimeout(4000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Prose / Playground (de)', async ({page}) => {
@@ -81,7 +81,7 @@ test.describe('Visual Comparison: Prose', () => {
     )
 
     await page.waitForTimeout(4000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Prose / Playground (ja)', async ({page}) => {
@@ -90,7 +90,7 @@ test.describe('Visual Comparison: Prose', () => {
     )
 
     await page.waitForTimeout(4000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Prose / Playground (es)', async ({page}) => {
@@ -99,7 +99,7 @@ test.describe('Visual Comparison: Prose', () => {
     )
 
     await page.waitForTimeout(4000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Prose / Playground (pt-BR)', async ({page}) => {
@@ -108,14 +108,14 @@ test.describe('Visual Comparison: Prose', () => {
     )
 
     await page.waitForTimeout(4000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Prose / Full Width', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-prose-features--full-width&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Prose / Full Width (fr)', async ({page}) => {
@@ -124,7 +124,7 @@ test.describe('Visual Comparison: Prose', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Prose / Full Width (de)', async ({page}) => {
@@ -133,7 +133,7 @@ test.describe('Visual Comparison: Prose', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Prose / Full Width (ja)', async ({page}) => {
@@ -142,7 +142,7 @@ test.describe('Visual Comparison: Prose', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Prose / Full Width (es)', async ({page}) => {
@@ -151,7 +151,7 @@ test.describe('Visual Comparison: Prose', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Prose / Full Width (pt-BR)', async ({page}) => {
@@ -160,7 +160,7 @@ test.describe('Visual Comparison: Prose', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   // eslint-disable-next-line i18n-text/no-en
@@ -172,7 +172,7 @@ test.describe('Visual Comparison: Prose', () => {
       )
 
       await page.waitForTimeout(500)
-      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+      await expect(page).toHaveScreenshot({fullPage: true})
     })
 
     test('Prose / Narrow view, full width (mobile) (fr)', async ({page}) => {
@@ -181,7 +181,7 @@ test.describe('Visual Comparison: Prose', () => {
       )
 
       await page.waitForTimeout(500)
-      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+      await expect(page).toHaveScreenshot({fullPage: true})
     })
 
     test('Prose / Narrow view, full width (mobile) (de)', async ({page}) => {
@@ -190,7 +190,7 @@ test.describe('Visual Comparison: Prose', () => {
       )
 
       await page.waitForTimeout(500)
-      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+      await expect(page).toHaveScreenshot({fullPage: true})
     })
 
     test('Prose / Narrow view, full width (mobile) (ja)', async ({page}) => {
@@ -199,7 +199,7 @@ test.describe('Visual Comparison: Prose', () => {
       )
 
       await page.waitForTimeout(500)
-      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+      await expect(page).toHaveScreenshot({fullPage: true})
     })
 
     test('Prose / Narrow view, full width (mobile) (es)', async ({page}) => {
@@ -208,7 +208,7 @@ test.describe('Visual Comparison: Prose', () => {
       )
 
       await page.waitForTimeout(500)
-      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+      await expect(page).toHaveScreenshot({fullPage: true})
     })
 
     test('Prose / Narrow view, full width (mobile) (pt-BR)', async ({page}) => {
@@ -217,7 +217,7 @@ test.describe('Visual Comparison: Prose', () => {
       )
 
       await page.waitForTimeout(500)
-      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+      await expect(page).toHaveScreenshot({fullPage: true})
     })
   })
 
@@ -230,7 +230,7 @@ test.describe('Visual Comparison: Prose', () => {
       )
 
       await page.waitForTimeout(500)
-      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+      await expect(page).toHaveScreenshot({fullPage: true})
     })
 
     test('Prose / Regular view, full width (tablet) (fr)', async ({page}) => {
@@ -239,7 +239,7 @@ test.describe('Visual Comparison: Prose', () => {
       )
 
       await page.waitForTimeout(500)
-      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+      await expect(page).toHaveScreenshot({fullPage: true})
     })
 
     test('Prose / Regular view, full width (tablet) (de)', async ({page}) => {
@@ -248,7 +248,7 @@ test.describe('Visual Comparison: Prose', () => {
       )
 
       await page.waitForTimeout(500)
-      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+      await expect(page).toHaveScreenshot({fullPage: true})
     })
 
     test('Prose / Regular view, full width (tablet) (ja)', async ({page}) => {
@@ -257,7 +257,7 @@ test.describe('Visual Comparison: Prose', () => {
       )
 
       await page.waitForTimeout(500)
-      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+      await expect(page).toHaveScreenshot({fullPage: true})
     })
 
     test('Prose / Regular view, full width (tablet) (es)', async ({page}) => {
@@ -266,7 +266,7 @@ test.describe('Visual Comparison: Prose', () => {
       )
 
       await page.waitForTimeout(500)
-      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+      await expect(page).toHaveScreenshot({fullPage: true})
     })
 
     test('Prose / Regular view, full width (tablet) (pt-BR)', async ({page}) => {
@@ -275,7 +275,7 @@ test.describe('Visual Comparison: Prose', () => {
       )
 
       await page.waitForTimeout(500)
-      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+      await expect(page).toHaveScreenshot({fullPage: true})
     })
   })
   test('Prose / Unordered List', async ({page}) => {
@@ -284,7 +284,7 @@ test.describe('Visual Comparison: Prose', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Prose / Unordered List (fr)', async ({page}) => {
@@ -293,7 +293,7 @@ test.describe('Visual Comparison: Prose', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Prose / Unordered List (de)', async ({page}) => {
@@ -302,7 +302,7 @@ test.describe('Visual Comparison: Prose', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Prose / Unordered List (ja)', async ({page}) => {
@@ -311,7 +311,7 @@ test.describe('Visual Comparison: Prose', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Prose / Unordered List (es)', async ({page}) => {
@@ -320,7 +320,7 @@ test.describe('Visual Comparison: Prose', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Prose / Unordered List (pt-BR)', async ({page}) => {
@@ -329,7 +329,7 @@ test.describe('Visual Comparison: Prose', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Prose / With a table (default)', async ({page}) => {
@@ -338,7 +338,7 @@ test.describe('Visual Comparison: Prose', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Prose / With a table (default) (fr)', async ({page}) => {
@@ -347,7 +347,7 @@ test.describe('Visual Comparison: Prose', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Prose / With a table (default) (de)', async ({page}) => {
@@ -356,7 +356,7 @@ test.describe('Visual Comparison: Prose', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Prose / With a table (default) (ja)', async ({page}) => {
@@ -365,7 +365,7 @@ test.describe('Visual Comparison: Prose', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Prose / With a table (default) (es)', async ({page}) => {
@@ -374,7 +374,7 @@ test.describe('Visual Comparison: Prose', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Prose / With a table (default) (pt-BR)', async ({page}) => {
@@ -383,7 +383,7 @@ test.describe('Visual Comparison: Prose', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Prose / With a table (editorial variant)', async ({page}) => {
@@ -392,7 +392,7 @@ test.describe('Visual Comparison: Prose', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Prose / With a table (editorial variant) (fr)', async ({page}) => {
@@ -401,7 +401,7 @@ test.describe('Visual Comparison: Prose', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Prose / With a table (editorial variant) (de)', async ({page}) => {
@@ -410,7 +410,7 @@ test.describe('Visual Comparison: Prose', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Prose / With a table (editorial variant) (ja)', async ({page}) => {
@@ -419,7 +419,7 @@ test.describe('Visual Comparison: Prose', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Prose / With a table (editorial variant) (es)', async ({page}) => {
@@ -428,7 +428,7 @@ test.describe('Visual Comparison: Prose', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Prose / With a table (editorial variant) (pt-BR)', async ({page}) => {
@@ -437,7 +437,7 @@ test.describe('Visual Comparison: Prose', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   // eslint-disable-next-line i18n-text/no-en
@@ -449,7 +449,7 @@ test.describe('Visual Comparison: Prose', () => {
       )
 
       await page.waitForTimeout(500)
-      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+      await expect(page).toHaveScreenshot({fullPage: true})
     })
 
     test('Prose / With a table (narrow) (fr)', async ({page}) => {
@@ -458,7 +458,7 @@ test.describe('Visual Comparison: Prose', () => {
       )
 
       await page.waitForTimeout(500)
-      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+      await expect(page).toHaveScreenshot({fullPage: true})
     })
 
     test('Prose / With a table (narrow) (de)', async ({page}) => {
@@ -467,7 +467,7 @@ test.describe('Visual Comparison: Prose', () => {
       )
 
       await page.waitForTimeout(500)
-      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+      await expect(page).toHaveScreenshot({fullPage: true})
     })
 
     test('Prose / With a table (narrow) (ja)', async ({page}) => {
@@ -476,7 +476,7 @@ test.describe('Visual Comparison: Prose', () => {
       )
 
       await page.waitForTimeout(500)
-      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+      await expect(page).toHaveScreenshot({fullPage: true})
     })
 
     test('Prose / With a table (narrow) (es)', async ({page}) => {
@@ -485,7 +485,7 @@ test.describe('Visual Comparison: Prose', () => {
       )
 
       await page.waitForTimeout(500)
-      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+      await expect(page).toHaveScreenshot({fullPage: true})
     })
 
     test('Prose / With a table (narrow) (pt-BR)', async ({page}) => {
@@ -494,7 +494,7 @@ test.describe('Visual Comparison: Prose', () => {
       )
 
       await page.waitForTimeout(500)
-      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+      await expect(page).toHaveScreenshot({fullPage: true})
     })
   })
   test('Prose / With a vertically-stacked table', async ({page}) => {
@@ -503,7 +503,7 @@ test.describe('Visual Comparison: Prose', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Prose / With a vertically-stacked table (fr)', async ({page}) => {
@@ -512,7 +512,7 @@ test.describe('Visual Comparison: Prose', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Prose / With a vertically-stacked table (de)', async ({page}) => {
@@ -521,7 +521,7 @@ test.describe('Visual Comparison: Prose', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Prose / With a vertically-stacked table (ja)', async ({page}) => {
@@ -530,7 +530,7 @@ test.describe('Visual Comparison: Prose', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Prose / With a vertically-stacked table (es)', async ({page}) => {
@@ -539,7 +539,7 @@ test.describe('Visual Comparison: Prose', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Prose / With a vertically-stacked table (pt-BR)', async ({page}) => {
@@ -548,7 +548,7 @@ test.describe('Visual Comparison: Prose', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   // eslint-disable-next-line i18n-text/no-en
@@ -560,7 +560,7 @@ test.describe('Visual Comparison: Prose', () => {
       )
 
       await page.waitForTimeout(500)
-      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+      await expect(page).toHaveScreenshot({fullPage: true})
     })
 
     test('Prose / With a vertically-stacked table (narrow) (fr)', async ({page}) => {
@@ -569,7 +569,7 @@ test.describe('Visual Comparison: Prose', () => {
       )
 
       await page.waitForTimeout(500)
-      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+      await expect(page).toHaveScreenshot({fullPage: true})
     })
 
     test('Prose / With a vertically-stacked table (narrow) (de)', async ({page}) => {
@@ -578,7 +578,7 @@ test.describe('Visual Comparison: Prose', () => {
       )
 
       await page.waitForTimeout(500)
-      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+      await expect(page).toHaveScreenshot({fullPage: true})
     })
 
     test('Prose / With a vertically-stacked table (narrow) (ja)', async ({page}) => {
@@ -587,7 +587,7 @@ test.describe('Visual Comparison: Prose', () => {
       )
 
       await page.waitForTimeout(500)
-      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+      await expect(page).toHaveScreenshot({fullPage: true})
     })
 
     test('Prose / With a vertically-stacked table (narrow) (es)', async ({page}) => {
@@ -596,7 +596,7 @@ test.describe('Visual Comparison: Prose', () => {
       )
 
       await page.waitForTimeout(500)
-      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+      await expect(page).toHaveScreenshot({fullPage: true})
     })
 
     test('Prose / With a vertically-stacked table (narrow) (pt-BR)', async ({page}) => {
@@ -605,14 +605,14 @@ test.describe('Visual Comparison: Prose', () => {
       )
 
       await page.waitForTimeout(500)
-      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+      await expect(page).toHaveScreenshot({fullPage: true})
     })
   })
   test('Prose / With a mixed data set table', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-prose-features--mixed-data&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Prose / With a mixed data set table (fr)', async ({page}) => {
@@ -621,7 +621,7 @@ test.describe('Visual Comparison: Prose', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Prose / With a mixed data set table (de)', async ({page}) => {
@@ -630,7 +630,7 @@ test.describe('Visual Comparison: Prose', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Prose / With a mixed data set table (ja)', async ({page}) => {
@@ -639,7 +639,7 @@ test.describe('Visual Comparison: Prose', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Prose / With a mixed data set table (es)', async ({page}) => {
@@ -648,7 +648,7 @@ test.describe('Visual Comparison: Prose', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Prose / With a mixed data set table (pt-BR)', async ({page}) => {
@@ -657,7 +657,7 @@ test.describe('Visual Comparison: Prose', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   // eslint-disable-next-line i18n-text/no-en
@@ -669,7 +669,7 @@ test.describe('Visual Comparison: Prose', () => {
       )
 
       await page.waitForTimeout(500)
-      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+      await expect(page).toHaveScreenshot({fullPage: true})
     })
 
     test('Prose / With a mixed data set table (narrow) (fr)', async ({page}) => {
@@ -678,7 +678,7 @@ test.describe('Visual Comparison: Prose', () => {
       )
 
       await page.waitForTimeout(500)
-      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+      await expect(page).toHaveScreenshot({fullPage: true})
     })
 
     test('Prose / With a mixed data set table (narrow) (de)', async ({page}) => {
@@ -687,7 +687,7 @@ test.describe('Visual Comparison: Prose', () => {
       )
 
       await page.waitForTimeout(500)
-      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+      await expect(page).toHaveScreenshot({fullPage: true})
     })
 
     test('Prose / With a mixed data set table (narrow) (ja)', async ({page}) => {
@@ -696,7 +696,7 @@ test.describe('Visual Comparison: Prose', () => {
       )
 
       await page.waitForTimeout(500)
-      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+      await expect(page).toHaveScreenshot({fullPage: true})
     })
 
     test('Prose / With a mixed data set table (narrow) (es)', async ({page}) => {
@@ -705,7 +705,7 @@ test.describe('Visual Comparison: Prose', () => {
       )
 
       await page.waitForTimeout(500)
-      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+      await expect(page).toHaveScreenshot({fullPage: true})
     })
 
     test('Prose / With a mixed data set table (narrow) (pt-BR)', async ({page}) => {
@@ -714,7 +714,7 @@ test.describe('Visual Comparison: Prose', () => {
       )
 
       await page.waitForTimeout(500)
-      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+      await expect(page).toHaveScreenshot({fullPage: true})
     })
   })
 })

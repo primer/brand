@@ -11,7 +11,7 @@ test.describe('Visual Comparison: Select', () => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-forms-select--default&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Select / Default (fr)', async ({page}) => {
@@ -20,7 +20,7 @@ test.describe('Visual Comparison: Select', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Select / Default (de)', async ({page}) => {
@@ -29,7 +29,7 @@ test.describe('Visual Comparison: Select', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Select / Default (ja)', async ({page}) => {
@@ -38,7 +38,7 @@ test.describe('Visual Comparison: Select', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Select / Default (es)', async ({page}) => {
@@ -47,7 +47,7 @@ test.describe('Visual Comparison: Select', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Select / Default (pt-BR)', async ({page}) => {
@@ -56,14 +56,14 @@ test.describe('Visual Comparison: Select', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Select / Playground', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-forms-select--playground&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Select / Playground (fr)', async ({page}) => {
@@ -72,7 +72,7 @@ test.describe('Visual Comparison: Select', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Select / Playground (de)', async ({page}) => {
@@ -81,7 +81,7 @@ test.describe('Visual Comparison: Select', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Select / Playground (ja)', async ({page}) => {
@@ -90,7 +90,7 @@ test.describe('Visual Comparison: Select', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Select / Playground (es)', async ({page}) => {
@@ -99,7 +99,7 @@ test.describe('Visual Comparison: Select', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Select / Playground (pt-BR)', async ({page}) => {
@@ -108,7 +108,7 @@ test.describe('Visual Comparison: Select', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Select / Full Width', async ({page}) => {
@@ -117,7 +117,7 @@ test.describe('Visual Comparison: Select', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Select / Full Width (fr)', async ({page}) => {
@@ -126,7 +126,7 @@ test.describe('Visual Comparison: Select', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Select / Full Width (de)', async ({page}) => {
@@ -135,7 +135,7 @@ test.describe('Visual Comparison: Select', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Select / Full Width (ja)', async ({page}) => {
@@ -144,7 +144,7 @@ test.describe('Visual Comparison: Select', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Select / Full Width (es)', async ({page}) => {
@@ -153,7 +153,7 @@ test.describe('Visual Comparison: Select', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Select / Full Width (pt-BR)', async ({page}) => {
@@ -162,7 +162,7 @@ test.describe('Visual Comparison: Select', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Select / Full Width Focussed', async ({page}) => {
@@ -171,7 +171,7 @@ test.describe('Visual Comparison: Select', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Select / Full Width Focussed (fr)', async ({page}) => {
@@ -180,7 +180,7 @@ test.describe('Visual Comparison: Select', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Select / Full Width Focussed (de)', async ({page}) => {
@@ -189,7 +189,7 @@ test.describe('Visual Comparison: Select', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Select / Full Width Focussed (ja)', async ({page}) => {
@@ -198,7 +198,7 @@ test.describe('Visual Comparison: Select', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Select / Full Width Focussed (es)', async ({page}) => {
@@ -207,7 +207,7 @@ test.describe('Visual Comparison: Select', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Select / Full Width Focussed (pt-BR)', async ({page}) => {
@@ -216,7 +216,7 @@ test.describe('Visual Comparison: Select', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Select / Disabled', async ({page}) => {
@@ -225,7 +225,7 @@ test.describe('Visual Comparison: Select', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Select / Disabled (fr)', async ({page}) => {
@@ -234,7 +234,7 @@ test.describe('Visual Comparison: Select', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Select / Disabled (de)', async ({page}) => {
@@ -243,7 +243,7 @@ test.describe('Visual Comparison: Select', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Select / Disabled (ja)', async ({page}) => {
@@ -252,7 +252,7 @@ test.describe('Visual Comparison: Select', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Select / Disabled (es)', async ({page}) => {
@@ -261,7 +261,7 @@ test.describe('Visual Comparison: Select', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Select / Disabled (pt-BR)', async ({page}) => {
@@ -270,14 +270,14 @@ test.describe('Visual Comparison: Select', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Select / Large', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-forms-select-features--large&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Select / Large (fr)', async ({page}) => {
@@ -286,7 +286,7 @@ test.describe('Visual Comparison: Select', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Select / Large (de)', async ({page}) => {
@@ -295,7 +295,7 @@ test.describe('Visual Comparison: Select', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Select / Large (ja)', async ({page}) => {
@@ -304,7 +304,7 @@ test.describe('Visual Comparison: Select', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Select / Large (es)', async ({page}) => {
@@ -313,7 +313,7 @@ test.describe('Visual Comparison: Select', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Select / Large (pt-BR)', async ({page}) => {
@@ -322,7 +322,7 @@ test.describe('Visual Comparison: Select', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Select / Large Full Width', async ({page}) => {
@@ -331,7 +331,7 @@ test.describe('Visual Comparison: Select', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Select / Large Full Width (fr)', async ({page}) => {
@@ -340,7 +340,7 @@ test.describe('Visual Comparison: Select', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Select / Large Full Width (de)', async ({page}) => {
@@ -349,7 +349,7 @@ test.describe('Visual Comparison: Select', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Select / Large Full Width (ja)', async ({page}) => {
@@ -358,7 +358,7 @@ test.describe('Visual Comparison: Select', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Select / Large Full Width (es)', async ({page}) => {
@@ -367,7 +367,7 @@ test.describe('Visual Comparison: Select', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Select / Large Full Width (pt-BR)', async ({page}) => {
@@ -376,7 +376,7 @@ test.describe('Visual Comparison: Select', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Select / Validation Success', async ({page}) => {
@@ -385,7 +385,7 @@ test.describe('Visual Comparison: Select', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Select / Validation Success (fr)', async ({page}) => {
@@ -394,7 +394,7 @@ test.describe('Visual Comparison: Select', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Select / Validation Success (de)', async ({page}) => {
@@ -403,7 +403,7 @@ test.describe('Visual Comparison: Select', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Select / Validation Success (ja)', async ({page}) => {
@@ -412,7 +412,7 @@ test.describe('Visual Comparison: Select', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Select / Validation Success (es)', async ({page}) => {
@@ -421,7 +421,7 @@ test.describe('Visual Comparison: Select', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Select / Validation Success (pt-BR)', async ({page}) => {
@@ -430,7 +430,7 @@ test.describe('Visual Comparison: Select', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Select / Validation Error', async ({page}) => {
@@ -439,7 +439,7 @@ test.describe('Visual Comparison: Select', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Select / Validation Error (fr)', async ({page}) => {
@@ -448,7 +448,7 @@ test.describe('Visual Comparison: Select', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Select / Validation Error (de)', async ({page}) => {
@@ -457,7 +457,7 @@ test.describe('Visual Comparison: Select', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Select / Validation Error (ja)', async ({page}) => {
@@ -466,7 +466,7 @@ test.describe('Visual Comparison: Select', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Select / Validation Error (es)', async ({page}) => {
@@ -475,7 +475,7 @@ test.describe('Visual Comparison: Select', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Select / Validation Error (pt-BR)', async ({page}) => {
@@ -484,6 +484,6 @@ test.describe('Visual Comparison: Select', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 })

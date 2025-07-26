@@ -11,7 +11,7 @@ test.describe('Visual Comparison: AnchorNav', () => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-anchornav--default&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('AnchorNav / Default (fr)', async ({page}) => {
@@ -20,7 +20,7 @@ test.describe('Visual Comparison: AnchorNav', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('AnchorNav / Default (de)', async ({page}) => {
@@ -29,7 +29,7 @@ test.describe('Visual Comparison: AnchorNav', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('AnchorNav / Default (ja)', async ({page}) => {
@@ -38,7 +38,7 @@ test.describe('Visual Comparison: AnchorNav', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('AnchorNav / Default (es)', async ({page}) => {
@@ -47,7 +47,7 @@ test.describe('Visual Comparison: AnchorNav', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('AnchorNav / Default (pt-BR)', async ({page}) => {
@@ -56,14 +56,14 @@ test.describe('Visual Comparison: AnchorNav', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('AnchorNav / Playground', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-anchornav--playground&viewMode=story')
 
     await page.waitForTimeout(2000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('AnchorNav / Playground (fr)', async ({page}) => {
@@ -72,7 +72,7 @@ test.describe('Visual Comparison: AnchorNav', () => {
     )
 
     await page.waitForTimeout(2000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('AnchorNav / Playground (de)', async ({page}) => {
@@ -81,7 +81,7 @@ test.describe('Visual Comparison: AnchorNav', () => {
     )
 
     await page.waitForTimeout(2000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('AnchorNav / Playground (ja)', async ({page}) => {
@@ -90,7 +90,7 @@ test.describe('Visual Comparison: AnchorNav', () => {
     )
 
     await page.waitForTimeout(2000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('AnchorNav / Playground (es)', async ({page}) => {
@@ -99,7 +99,7 @@ test.describe('Visual Comparison: AnchorNav', () => {
     )
 
     await page.waitForTimeout(2000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('AnchorNav / Playground (pt-BR)', async ({page}) => {
@@ -108,7 +108,7 @@ test.describe('Visual Comparison: AnchorNav', () => {
     )
 
     await page.waitForTimeout(2000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('AnchorNav / Fewer anchor links', async ({page}) => {
@@ -117,7 +117,7 @@ test.describe('Visual Comparison: AnchorNav', () => {
     )
 
     await page.waitForTimeout(2000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('AnchorNav / Fewer anchor links (fr)', async ({page}) => {
@@ -126,7 +126,7 @@ test.describe('Visual Comparison: AnchorNav', () => {
     )
 
     await page.waitForTimeout(2000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('AnchorNav / Fewer anchor links (de)', async ({page}) => {
@@ -135,7 +135,7 @@ test.describe('Visual Comparison: AnchorNav', () => {
     )
 
     await page.waitForTimeout(2000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('AnchorNav / Fewer anchor links (ja)', async ({page}) => {
@@ -144,7 +144,7 @@ test.describe('Visual Comparison: AnchorNav', () => {
     )
 
     await page.waitForTimeout(2000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('AnchorNav / Fewer anchor links (es)', async ({page}) => {
@@ -153,7 +153,7 @@ test.describe('Visual Comparison: AnchorNav', () => {
     )
 
     await page.waitForTimeout(2000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('AnchorNav / Fewer anchor links (pt-BR)', async ({page}) => {
@@ -162,7 +162,7 @@ test.describe('Visual Comparison: AnchorNav', () => {
     )
 
     await page.waitForTimeout(2000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('AnchorNav / Shorter labels', async ({page}) => {
@@ -171,7 +171,7 @@ test.describe('Visual Comparison: AnchorNav', () => {
     )
 
     await page.waitForTimeout(2000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('AnchorNav / Shorter labels (fr)', async ({page}) => {
@@ -180,7 +180,7 @@ test.describe('Visual Comparison: AnchorNav', () => {
     )
 
     await page.waitForTimeout(2000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('AnchorNav / Shorter labels (de)', async ({page}) => {
@@ -189,7 +189,7 @@ test.describe('Visual Comparison: AnchorNav', () => {
     )
 
     await page.waitForTimeout(2000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('AnchorNav / Shorter labels (ja)', async ({page}) => {
@@ -198,7 +198,7 @@ test.describe('Visual Comparison: AnchorNav', () => {
     )
 
     await page.waitForTimeout(2000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('AnchorNav / Shorter labels (es)', async ({page}) => {
@@ -207,7 +207,7 @@ test.describe('Visual Comparison: AnchorNav', () => {
     )
 
     await page.waitForTimeout(2000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('AnchorNav / Shorter labels (pt-BR)', async ({page}) => {
@@ -216,7 +216,7 @@ test.describe('Visual Comparison: AnchorNav', () => {
     )
 
     await page.waitForTimeout(2000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('AnchorNav / Longer labels', async ({page}) => {
@@ -225,7 +225,7 @@ test.describe('Visual Comparison: AnchorNav', () => {
     )
 
     await page.waitForTimeout(2000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('AnchorNav / Longer labels (fr)', async ({page}) => {
@@ -234,7 +234,7 @@ test.describe('Visual Comparison: AnchorNav', () => {
     )
 
     await page.waitForTimeout(2000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('AnchorNav / Longer labels (de)', async ({page}) => {
@@ -243,7 +243,7 @@ test.describe('Visual Comparison: AnchorNav', () => {
     )
 
     await page.waitForTimeout(2000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('AnchorNav / Longer labels (ja)', async ({page}) => {
@@ -252,7 +252,7 @@ test.describe('Visual Comparison: AnchorNav', () => {
     )
 
     await page.waitForTimeout(2000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('AnchorNav / Longer labels (es)', async ({page}) => {
@@ -261,7 +261,7 @@ test.describe('Visual Comparison: AnchorNav', () => {
     )
 
     await page.waitForTimeout(2000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('AnchorNav / Longer labels (pt-BR)', async ({page}) => {
@@ -270,7 +270,7 @@ test.describe('Visual Comparison: AnchorNav', () => {
     )
 
     await page.waitForTimeout(2000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('AnchorNav / Custom Background', async ({page}) => {
@@ -279,7 +279,7 @@ test.describe('Visual Comparison: AnchorNav', () => {
     )
 
     await page.waitForTimeout(2000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('AnchorNav / Custom Background (fr)', async ({page}) => {
@@ -288,7 +288,7 @@ test.describe('Visual Comparison: AnchorNav', () => {
     )
 
     await page.waitForTimeout(2000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('AnchorNav / Custom Background (de)', async ({page}) => {
@@ -297,7 +297,7 @@ test.describe('Visual Comparison: AnchorNav', () => {
     )
 
     await page.waitForTimeout(2000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('AnchorNav / Custom Background (ja)', async ({page}) => {
@@ -306,7 +306,7 @@ test.describe('Visual Comparison: AnchorNav', () => {
     )
 
     await page.waitForTimeout(2000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('AnchorNav / Custom Background (es)', async ({page}) => {
@@ -315,7 +315,7 @@ test.describe('Visual Comparison: AnchorNav', () => {
     )
 
     await page.waitForTimeout(2000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('AnchorNav / Custom Background (pt-BR)', async ({page}) => {
@@ -324,7 +324,7 @@ test.describe('Visual Comparison: AnchorNav', () => {
     )
 
     await page.waitForTimeout(2000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   // eslint-disable-next-line i18n-text/no-en
@@ -336,7 +336,7 @@ test.describe('Visual Comparison: AnchorNav', () => {
       )
 
       await page.waitForTimeout(2000)
-      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+      await expect(page).toHaveScreenshot({fullPage: true})
     })
 
     test('AnchorNav / Narrow view, menu closed (mobile) (fr)', async ({page}) => {
@@ -345,7 +345,7 @@ test.describe('Visual Comparison: AnchorNav', () => {
       )
 
       await page.waitForTimeout(2000)
-      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+      await expect(page).toHaveScreenshot({fullPage: true})
     })
 
     test('AnchorNav / Narrow view, menu closed (mobile) (de)', async ({page}) => {
@@ -354,7 +354,7 @@ test.describe('Visual Comparison: AnchorNav', () => {
       )
 
       await page.waitForTimeout(2000)
-      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+      await expect(page).toHaveScreenshot({fullPage: true})
     })
 
     test('AnchorNav / Narrow view, menu closed (mobile) (ja)', async ({page}) => {
@@ -363,7 +363,7 @@ test.describe('Visual Comparison: AnchorNav', () => {
       )
 
       await page.waitForTimeout(2000)
-      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+      await expect(page).toHaveScreenshot({fullPage: true})
     })
 
     test('AnchorNav / Narrow view, menu closed (mobile) (es)', async ({page}) => {
@@ -372,7 +372,7 @@ test.describe('Visual Comparison: AnchorNav', () => {
       )
 
       await page.waitForTimeout(2000)
-      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+      await expect(page).toHaveScreenshot({fullPage: true})
     })
 
     test('AnchorNav / Narrow view, menu closed (mobile) (pt-BR)', async ({page}) => {
@@ -381,7 +381,7 @@ test.describe('Visual Comparison: AnchorNav', () => {
       )
 
       await page.waitForTimeout(2000)
-      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+      await expect(page).toHaveScreenshot({fullPage: true})
     })
   })
 
@@ -394,7 +394,7 @@ test.describe('Visual Comparison: AnchorNav', () => {
       )
 
       await page.waitForTimeout(2000)
-      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+      await expect(page).toHaveScreenshot({fullPage: true})
     })
 
     test('AnchorNav / Narrow view, menu open (mobile) (fr)', async ({page}) => {
@@ -403,7 +403,7 @@ test.describe('Visual Comparison: AnchorNav', () => {
       )
 
       await page.waitForTimeout(2000)
-      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+      await expect(page).toHaveScreenshot({fullPage: true})
     })
 
     test('AnchorNav / Narrow view, menu open (mobile) (de)', async ({page}) => {
@@ -412,7 +412,7 @@ test.describe('Visual Comparison: AnchorNav', () => {
       )
 
       await page.waitForTimeout(2000)
-      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+      await expect(page).toHaveScreenshot({fullPage: true})
     })
 
     test('AnchorNav / Narrow view, menu open (mobile) (ja)', async ({page}) => {
@@ -421,7 +421,7 @@ test.describe('Visual Comparison: AnchorNav', () => {
       )
 
       await page.waitForTimeout(2000)
-      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+      await expect(page).toHaveScreenshot({fullPage: true})
     })
 
     test('AnchorNav / Narrow view, menu open (mobile) (es)', async ({page}) => {
@@ -430,7 +430,7 @@ test.describe('Visual Comparison: AnchorNav', () => {
       )
 
       await page.waitForTimeout(2000)
-      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+      await expect(page).toHaveScreenshot({fullPage: true})
     })
 
     test('AnchorNav / Narrow view, menu open (mobile) (pt-BR)', async ({page}) => {
@@ -439,7 +439,7 @@ test.describe('Visual Comparison: AnchorNav', () => {
       )
 
       await page.waitForTimeout(2000)
-      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+      await expect(page).toHaveScreenshot({fullPage: true})
     })
   })
 
@@ -452,7 +452,7 @@ test.describe('Visual Comparison: AnchorNav', () => {
       )
 
       await page.waitForTimeout(2000)
-      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+      await expect(page).toHaveScreenshot({fullPage: true})
     })
 
     test('AnchorNav / Regular view, menu closed (tablet) (fr)', async ({page}) => {
@@ -461,7 +461,7 @@ test.describe('Visual Comparison: AnchorNav', () => {
       )
 
       await page.waitForTimeout(2000)
-      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+      await expect(page).toHaveScreenshot({fullPage: true})
     })
 
     test('AnchorNav / Regular view, menu closed (tablet) (de)', async ({page}) => {
@@ -470,7 +470,7 @@ test.describe('Visual Comparison: AnchorNav', () => {
       )
 
       await page.waitForTimeout(2000)
-      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+      await expect(page).toHaveScreenshot({fullPage: true})
     })
 
     test('AnchorNav / Regular view, menu closed (tablet) (ja)', async ({page}) => {
@@ -479,7 +479,7 @@ test.describe('Visual Comparison: AnchorNav', () => {
       )
 
       await page.waitForTimeout(2000)
-      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+      await expect(page).toHaveScreenshot({fullPage: true})
     })
 
     test('AnchorNav / Regular view, menu closed (tablet) (es)', async ({page}) => {
@@ -488,7 +488,7 @@ test.describe('Visual Comparison: AnchorNav', () => {
       )
 
       await page.waitForTimeout(2000)
-      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+      await expect(page).toHaveScreenshot({fullPage: true})
     })
 
     test('AnchorNav / Regular view, menu closed (tablet) (pt-BR)', async ({page}) => {
@@ -497,7 +497,7 @@ test.describe('Visual Comparison: AnchorNav', () => {
       )
 
       await page.waitForTimeout(2000)
-      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+      await expect(page).toHaveScreenshot({fullPage: true})
     })
   })
 
@@ -510,7 +510,7 @@ test.describe('Visual Comparison: AnchorNav', () => {
       )
 
       await page.waitForTimeout(2000)
-      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+      await expect(page).toHaveScreenshot({fullPage: true})
     })
 
     test('AnchorNav / Regular view, menu open (tablet) (fr)', async ({page}) => {
@@ -519,7 +519,7 @@ test.describe('Visual Comparison: AnchorNav', () => {
       )
 
       await page.waitForTimeout(2000)
-      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+      await expect(page).toHaveScreenshot({fullPage: true})
     })
 
     test('AnchorNav / Regular view, menu open (tablet) (de)', async ({page}) => {
@@ -528,7 +528,7 @@ test.describe('Visual Comparison: AnchorNav', () => {
       )
 
       await page.waitForTimeout(2000)
-      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+      await expect(page).toHaveScreenshot({fullPage: true})
     })
 
     test('AnchorNav / Regular view, menu open (tablet) (ja)', async ({page}) => {
@@ -537,7 +537,7 @@ test.describe('Visual Comparison: AnchorNav', () => {
       )
 
       await page.waitForTimeout(2000)
-      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+      await expect(page).toHaveScreenshot({fullPage: true})
     })
 
     test('AnchorNav / Regular view, menu open (tablet) (es)', async ({page}) => {
@@ -546,7 +546,7 @@ test.describe('Visual Comparison: AnchorNav', () => {
       )
 
       await page.waitForTimeout(2000)
-      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+      await expect(page).toHaveScreenshot({fullPage: true})
     })
 
     test('AnchorNav / Regular view, menu open (tablet) (pt-BR)', async ({page}) => {
@@ -555,7 +555,7 @@ test.describe('Visual Comparison: AnchorNav', () => {
       )
 
       await page.waitForTimeout(2000)
-      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+      await expect(page).toHaveScreenshot({fullPage: true})
     })
   })
   test('AnchorNav / Hide until sticky', async ({page}) => {
@@ -564,7 +564,7 @@ test.describe('Visual Comparison: AnchorNav', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('AnchorNav / Hide until sticky (fr)', async ({page}) => {
@@ -573,7 +573,7 @@ test.describe('Visual Comparison: AnchorNav', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('AnchorNav / Hide until sticky (de)', async ({page}) => {
@@ -582,7 +582,7 @@ test.describe('Visual Comparison: AnchorNav', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('AnchorNav / Hide until sticky (ja)', async ({page}) => {
@@ -591,7 +591,7 @@ test.describe('Visual Comparison: AnchorNav', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('AnchorNav / Hide until sticky (es)', async ({page}) => {
@@ -600,7 +600,7 @@ test.describe('Visual Comparison: AnchorNav', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('AnchorNav / Hide until sticky (pt-BR)', async ({page}) => {
@@ -609,7 +609,7 @@ test.describe('Visual Comparison: AnchorNav', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('AnchorNav / With optional primary CTA', async ({page}) => {
@@ -618,7 +618,7 @@ test.describe('Visual Comparison: AnchorNav', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('AnchorNav / With optional primary CTA (fr)', async ({page}) => {
@@ -627,7 +627,7 @@ test.describe('Visual Comparison: AnchorNav', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('AnchorNav / With optional primary CTA (de)', async ({page}) => {
@@ -636,7 +636,7 @@ test.describe('Visual Comparison: AnchorNav', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('AnchorNav / With optional primary CTA (ja)', async ({page}) => {
@@ -645,7 +645,7 @@ test.describe('Visual Comparison: AnchorNav', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('AnchorNav / With optional primary CTA (es)', async ({page}) => {
@@ -654,7 +654,7 @@ test.describe('Visual Comparison: AnchorNav', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('AnchorNav / With optional primary CTA (pt-BR)', async ({page}) => {
@@ -663,7 +663,7 @@ test.describe('Visual Comparison: AnchorNav', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('AnchorNav / With larger CTAs', async ({page}) => {
@@ -672,7 +672,7 @@ test.describe('Visual Comparison: AnchorNav', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('AnchorNav / With larger CTAs (fr)', async ({page}) => {
@@ -681,7 +681,7 @@ test.describe('Visual Comparison: AnchorNav', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('AnchorNav / With larger CTAs (de)', async ({page}) => {
@@ -690,7 +690,7 @@ test.describe('Visual Comparison: AnchorNav', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('AnchorNav / With larger CTAs (ja)', async ({page}) => {
@@ -699,7 +699,7 @@ test.describe('Visual Comparison: AnchorNav', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('AnchorNav / With larger CTAs (es)', async ({page}) => {
@@ -708,7 +708,7 @@ test.describe('Visual Comparison: AnchorNav', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('AnchorNav / With larger CTAs (pt-BR)', async ({page}) => {
@@ -717,6 +717,6 @@ test.describe('Visual Comparison: AnchorNav', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 })

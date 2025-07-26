@@ -11,7 +11,7 @@ test.describe('Visual Comparison: Footnotes', () => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-footnotes--default&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Footnotes / Default (fr)', async ({page}) => {
@@ -20,7 +20,7 @@ test.describe('Visual Comparison: Footnotes', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Footnotes / Default (de)', async ({page}) => {
@@ -29,7 +29,7 @@ test.describe('Visual Comparison: Footnotes', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Footnotes / Default (ja)', async ({page}) => {
@@ -38,7 +38,7 @@ test.describe('Visual Comparison: Footnotes', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Footnotes / Default (es)', async ({page}) => {
@@ -47,7 +47,7 @@ test.describe('Visual Comparison: Footnotes', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Footnotes / Default (pt-BR)', async ({page}) => {
@@ -56,14 +56,14 @@ test.describe('Visual Comparison: Footnotes', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Footnotes / Playground', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-footnotes--playground&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Footnotes / Playground (fr)', async ({page}) => {
@@ -72,7 +72,7 @@ test.describe('Visual Comparison: Footnotes', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Footnotes / Playground (de)', async ({page}) => {
@@ -81,7 +81,7 @@ test.describe('Visual Comparison: Footnotes', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Footnotes / Playground (ja)', async ({page}) => {
@@ -90,7 +90,7 @@ test.describe('Visual Comparison: Footnotes', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Footnotes / Playground (es)', async ({page}) => {
@@ -99,7 +99,7 @@ test.describe('Visual Comparison: Footnotes', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Footnotes / Playground (pt-BR)', async ({page}) => {
@@ -108,7 +108,7 @@ test.describe('Visual Comparison: Footnotes', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Footnotes / Rivers With Citations', async ({page}) => {
@@ -117,7 +117,7 @@ test.describe('Visual Comparison: Footnotes', () => {
     )
 
     await page.waitForTimeout(3000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Footnotes / Rivers With Citations (fr)', async ({page}) => {
@@ -126,7 +126,7 @@ test.describe('Visual Comparison: Footnotes', () => {
     )
 
     await page.waitForTimeout(3000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Footnotes / Rivers With Citations (de)', async ({page}) => {
@@ -135,7 +135,7 @@ test.describe('Visual Comparison: Footnotes', () => {
     )
 
     await page.waitForTimeout(3000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Footnotes / Rivers With Citations (ja)', async ({page}) => {
@@ -144,7 +144,7 @@ test.describe('Visual Comparison: Footnotes', () => {
     )
 
     await page.waitForTimeout(3000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Footnotes / Rivers With Citations (es)', async ({page}) => {
@@ -153,7 +153,7 @@ test.describe('Visual Comparison: Footnotes', () => {
     )
 
     await page.waitForTimeout(3000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Footnotes / Rivers With Citations (pt-BR)', async ({page}) => {
@@ -162,7 +162,7 @@ test.describe('Visual Comparison: Footnotes', () => {
     )
 
     await page.waitForTimeout(3000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Footnotes / Citations With Link', async ({page}) => {
@@ -171,7 +171,7 @@ test.describe('Visual Comparison: Footnotes', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Footnotes / Citations With Link (fr)', async ({page}) => {
@@ -180,7 +180,7 @@ test.describe('Visual Comparison: Footnotes', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Footnotes / Citations With Link (de)', async ({page}) => {
@@ -189,7 +189,7 @@ test.describe('Visual Comparison: Footnotes', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Footnotes / Citations With Link (ja)', async ({page}) => {
@@ -198,7 +198,7 @@ test.describe('Visual Comparison: Footnotes', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Footnotes / Citations With Link (es)', async ({page}) => {
@@ -207,7 +207,7 @@ test.describe('Visual Comparison: Footnotes', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Footnotes / Citations With Link (pt-BR)', async ({page}) => {
@@ -216,7 +216,7 @@ test.describe('Visual Comparison: Footnotes', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Footnotes / Disclaimer Variant', async ({page}) => {
@@ -225,7 +225,7 @@ test.describe('Visual Comparison: Footnotes', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Footnotes / Disclaimer Variant (fr)', async ({page}) => {
@@ -234,7 +234,7 @@ test.describe('Visual Comparison: Footnotes', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Footnotes / Disclaimer Variant (de)', async ({page}) => {
@@ -243,7 +243,7 @@ test.describe('Visual Comparison: Footnotes', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Footnotes / Disclaimer Variant (ja)', async ({page}) => {
@@ -252,7 +252,7 @@ test.describe('Visual Comparison: Footnotes', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Footnotes / Disclaimer Variant (es)', async ({page}) => {
@@ -261,7 +261,7 @@ test.describe('Visual Comparison: Footnotes', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Footnotes / Disclaimer Variant (pt-BR)', async ({page}) => {
@@ -270,6 +270,6 @@ test.describe('Visual Comparison: Footnotes', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 })

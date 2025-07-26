@@ -11,7 +11,7 @@ test.describe('Visual Comparison: Statistic', () => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-statistic--default&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Statistic / Default (fr)', async ({page}) => {
@@ -20,7 +20,7 @@ test.describe('Visual Comparison: Statistic', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Statistic / Default (de)', async ({page}) => {
@@ -29,7 +29,7 @@ test.describe('Visual Comparison: Statistic', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Statistic / Default (ja)', async ({page}) => {
@@ -38,7 +38,7 @@ test.describe('Visual Comparison: Statistic', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Statistic / Default (es)', async ({page}) => {
@@ -47,7 +47,7 @@ test.describe('Visual Comparison: Statistic', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Statistic / Default (pt-BR)', async ({page}) => {
@@ -56,14 +56,14 @@ test.describe('Visual Comparison: Statistic', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Statistic / Playground', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-statistic--playground&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Statistic / Playground (fr)', async ({page}) => {
@@ -72,7 +72,7 @@ test.describe('Visual Comparison: Statistic', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Statistic / Playground (de)', async ({page}) => {
@@ -81,7 +81,7 @@ test.describe('Visual Comparison: Statistic', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Statistic / Playground (ja)', async ({page}) => {
@@ -90,7 +90,7 @@ test.describe('Visual Comparison: Statistic', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Statistic / Playground (es)', async ({page}) => {
@@ -99,7 +99,7 @@ test.describe('Visual Comparison: Statistic', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Statistic / Playground (pt-BR)', async ({page}) => {
@@ -108,7 +108,7 @@ test.describe('Visual Comparison: Statistic', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Statistic / Boxed Variant', async ({page}) => {
@@ -117,7 +117,7 @@ test.describe('Visual Comparison: Statistic', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Statistic / Boxed Variant (fr)', async ({page}) => {
@@ -126,7 +126,7 @@ test.describe('Visual Comparison: Statistic', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Statistic / Boxed Variant (de)', async ({page}) => {
@@ -135,7 +135,7 @@ test.describe('Visual Comparison: Statistic', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Statistic / Boxed Variant (ja)', async ({page}) => {
@@ -144,7 +144,7 @@ test.describe('Visual Comparison: Statistic', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Statistic / Boxed Variant (es)', async ({page}) => {
@@ -153,7 +153,7 @@ test.describe('Visual Comparison: Statistic', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Statistic / Boxed Variant (pt-BR)', async ({page}) => {
@@ -162,7 +162,7 @@ test.describe('Visual Comparison: Statistic', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Statistic / No Description', async ({page}) => {
@@ -171,7 +171,7 @@ test.describe('Visual Comparison: Statistic', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Statistic / No Description (fr)', async ({page}) => {
@@ -180,7 +180,7 @@ test.describe('Visual Comparison: Statistic', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Statistic / No Description (de)', async ({page}) => {
@@ -189,7 +189,7 @@ test.describe('Visual Comparison: Statistic', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Statistic / No Description (ja)', async ({page}) => {
@@ -198,7 +198,7 @@ test.describe('Visual Comparison: Statistic', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Statistic / No Description (es)', async ({page}) => {
@@ -207,7 +207,7 @@ test.describe('Visual Comparison: Statistic', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Statistic / No Description (pt-BR)', async ({page}) => {
@@ -216,14 +216,14 @@ test.describe('Visual Comparison: Statistic', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Statistic / Sizes', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-statistic-features--sizes&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Statistic / Sizes (fr)', async ({page}) => {
@@ -232,7 +232,7 @@ test.describe('Visual Comparison: Statistic', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Statistic / Sizes (de)', async ({page}) => {
@@ -241,7 +241,7 @@ test.describe('Visual Comparison: Statistic', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Statistic / Sizes (ja)', async ({page}) => {
@@ -250,7 +250,7 @@ test.describe('Visual Comparison: Statistic', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Statistic / Sizes (es)', async ({page}) => {
@@ -259,7 +259,7 @@ test.describe('Visual Comparison: Statistic', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Statistic / Sizes (pt-BR)', async ({page}) => {
@@ -268,7 +268,7 @@ test.describe('Visual Comparison: Statistic', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Statistic / Custom Heading Size', async ({page}) => {
@@ -277,7 +277,7 @@ test.describe('Visual Comparison: Statistic', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Statistic / Custom Heading Size (fr)', async ({page}) => {
@@ -286,7 +286,7 @@ test.describe('Visual Comparison: Statistic', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Statistic / Custom Heading Size (de)', async ({page}) => {
@@ -295,7 +295,7 @@ test.describe('Visual Comparison: Statistic', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Statistic / Custom Heading Size (ja)', async ({page}) => {
@@ -304,7 +304,7 @@ test.describe('Visual Comparison: Statistic', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Statistic / Custom Heading Size (es)', async ({page}) => {
@@ -313,7 +313,7 @@ test.describe('Visual Comparison: Statistic', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Statistic / Custom Heading Size (pt-BR)', async ({page}) => {
@@ -322,14 +322,14 @@ test.describe('Visual Comparison: Statistic', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Statistic / Padding', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-statistic-features--padding&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Statistic / Padding (fr)', async ({page}) => {
@@ -338,7 +338,7 @@ test.describe('Visual Comparison: Statistic', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Statistic / Padding (de)', async ({page}) => {
@@ -347,7 +347,7 @@ test.describe('Visual Comparison: Statistic', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Statistic / Padding (ja)', async ({page}) => {
@@ -356,7 +356,7 @@ test.describe('Visual Comparison: Statistic', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Statistic / Padding (es)', async ({page}) => {
@@ -365,7 +365,7 @@ test.describe('Visual Comparison: Statistic', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Statistic / Padding (pt-BR)', async ({page}) => {
@@ -374,7 +374,7 @@ test.describe('Visual Comparison: Statistic', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Statistic / Accent Description', async ({page}) => {
@@ -383,7 +383,7 @@ test.describe('Visual Comparison: Statistic', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Statistic / Accent Description (fr)', async ({page}) => {
@@ -392,7 +392,7 @@ test.describe('Visual Comparison: Statistic', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Statistic / Accent Description (de)', async ({page}) => {
@@ -401,7 +401,7 @@ test.describe('Visual Comparison: Statistic', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Statistic / Accent Description (ja)', async ({page}) => {
@@ -410,7 +410,7 @@ test.describe('Visual Comparison: Statistic', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Statistic / Accent Description (es)', async ({page}) => {
@@ -419,7 +419,7 @@ test.describe('Visual Comparison: Statistic', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Statistic / Accent Description (pt-BR)', async ({page}) => {
@@ -428,7 +428,7 @@ test.describe('Visual Comparison: Statistic', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Statistic / Custom Footnote', async ({page}) => {
@@ -437,7 +437,7 @@ test.describe('Visual Comparison: Statistic', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Statistic / Custom Footnote (fr)', async ({page}) => {
@@ -446,7 +446,7 @@ test.describe('Visual Comparison: Statistic', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Statistic / Custom Footnote (de)', async ({page}) => {
@@ -455,7 +455,7 @@ test.describe('Visual Comparison: Statistic', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Statistic / Custom Footnote (ja)', async ({page}) => {
@@ -464,7 +464,7 @@ test.describe('Visual Comparison: Statistic', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Statistic / Custom Footnote (es)', async ({page}) => {
@@ -473,7 +473,7 @@ test.describe('Visual Comparison: Statistic', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Statistic / Custom Footnote (pt-BR)', async ({page}) => {
@@ -482,7 +482,7 @@ test.describe('Visual Comparison: Statistic', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Statistic / Custom Intro', async ({page}) => {
@@ -491,7 +491,7 @@ test.describe('Visual Comparison: Statistic', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Statistic / Custom Intro (fr)', async ({page}) => {
@@ -500,7 +500,7 @@ test.describe('Visual Comparison: Statistic', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Statistic / Custom Intro (de)', async ({page}) => {
@@ -509,7 +509,7 @@ test.describe('Visual Comparison: Statistic', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Statistic / Custom Intro (ja)', async ({page}) => {
@@ -518,7 +518,7 @@ test.describe('Visual Comparison: Statistic', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Statistic / Custom Intro (es)', async ({page}) => {
@@ -527,7 +527,7 @@ test.describe('Visual Comparison: Statistic', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Statistic / Custom Intro (pt-BR)', async ({page}) => {
@@ -536,6 +536,6 @@ test.describe('Visual Comparison: Statistic', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 })

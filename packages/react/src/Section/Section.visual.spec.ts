@@ -11,7 +11,7 @@ test.describe('Visual Comparison: Section', () => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-section--default&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Section / Default (fr)', async ({page}) => {
@@ -20,7 +20,7 @@ test.describe('Visual Comparison: Section', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Section / Default (de)', async ({page}) => {
@@ -29,7 +29,7 @@ test.describe('Visual Comparison: Section', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Section / Default (ja)', async ({page}) => {
@@ -38,7 +38,7 @@ test.describe('Visual Comparison: Section', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Section / Default (es)', async ({page}) => {
@@ -47,7 +47,7 @@ test.describe('Visual Comparison: Section', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Section / Default (pt-BR)', async ({page}) => {
@@ -56,14 +56,14 @@ test.describe('Visual Comparison: Section', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Section / Playground', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-section--playground&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Section / Playground (fr)', async ({page}) => {
@@ -72,7 +72,7 @@ test.describe('Visual Comparison: Section', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Section / Playground (de)', async ({page}) => {
@@ -81,7 +81,7 @@ test.describe('Visual Comparison: Section', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Section / Playground (ja)', async ({page}) => {
@@ -90,7 +90,7 @@ test.describe('Visual Comparison: Section', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Section / Playground (es)', async ({page}) => {
@@ -99,7 +99,7 @@ test.describe('Visual Comparison: Section', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Section / Playground (pt-BR)', async ({page}) => {
@@ -108,7 +108,7 @@ test.describe('Visual Comparison: Section', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Section / Default Padding', async ({page}) => {
@@ -117,7 +117,7 @@ test.describe('Visual Comparison: Section', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Section / Default Padding (fr)', async ({page}) => {
@@ -126,7 +126,7 @@ test.describe('Visual Comparison: Section', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Section / Default Padding (de)', async ({page}) => {
@@ -135,7 +135,7 @@ test.describe('Visual Comparison: Section', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Section / Default Padding (ja)', async ({page}) => {
@@ -144,7 +144,7 @@ test.describe('Visual Comparison: Section', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Section / Default Padding (es)', async ({page}) => {
@@ -153,7 +153,7 @@ test.describe('Visual Comparison: Section', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Section / Default Padding (pt-BR)', async ({page}) => {
@@ -162,7 +162,7 @@ test.describe('Visual Comparison: Section', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Section / Padding Variants', async ({page}) => {
@@ -171,7 +171,7 @@ test.describe('Visual Comparison: Section', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Section / Padding Variants (fr)', async ({page}) => {
@@ -180,7 +180,7 @@ test.describe('Visual Comparison: Section', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Section / Padding Variants (de)', async ({page}) => {
@@ -189,7 +189,7 @@ test.describe('Visual Comparison: Section', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Section / Padding Variants (ja)', async ({page}) => {
@@ -198,7 +198,7 @@ test.describe('Visual Comparison: Section', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Section / Padding Variants (es)', async ({page}) => {
@@ -207,7 +207,7 @@ test.describe('Visual Comparison: Section', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Section / Padding Variants (pt-BR)', async ({page}) => {
@@ -216,7 +216,7 @@ test.describe('Visual Comparison: Section', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Section / Independent Padding', async ({page}) => {
@@ -225,7 +225,7 @@ test.describe('Visual Comparison: Section', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Section / Independent Padding (fr)', async ({page}) => {
@@ -234,7 +234,7 @@ test.describe('Visual Comparison: Section', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Section / Independent Padding (de)', async ({page}) => {
@@ -243,7 +243,7 @@ test.describe('Visual Comparison: Section', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Section / Independent Padding (ja)', async ({page}) => {
@@ -252,7 +252,7 @@ test.describe('Visual Comparison: Section', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Section / Independent Padding (es)', async ({page}) => {
@@ -261,7 +261,7 @@ test.describe('Visual Comparison: Section', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Section / Independent Padding (pt-BR)', async ({page}) => {
@@ -270,7 +270,7 @@ test.describe('Visual Comparison: Section', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Section / Responsive Padding', async ({page}) => {
@@ -279,7 +279,7 @@ test.describe('Visual Comparison: Section', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Section / Responsive Padding (fr)', async ({page}) => {
@@ -288,7 +288,7 @@ test.describe('Visual Comparison: Section', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Section / Responsive Padding (de)', async ({page}) => {
@@ -297,7 +297,7 @@ test.describe('Visual Comparison: Section', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Section / Responsive Padding (ja)', async ({page}) => {
@@ -306,7 +306,7 @@ test.describe('Visual Comparison: Section', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Section / Responsive Padding (es)', async ({page}) => {
@@ -315,7 +315,7 @@ test.describe('Visual Comparison: Section', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Section / Responsive Padding (pt-BR)', async ({page}) => {
@@ -324,7 +324,7 @@ test.describe('Visual Comparison: Section', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Section / With Full Width Container', async ({page}) => {
@@ -333,7 +333,7 @@ test.describe('Visual Comparison: Section', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Section / With Full Width Container (fr)', async ({page}) => {
@@ -342,7 +342,7 @@ test.describe('Visual Comparison: Section', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Section / With Full Width Container (de)', async ({page}) => {
@@ -351,7 +351,7 @@ test.describe('Visual Comparison: Section', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Section / With Full Width Container (ja)', async ({page}) => {
@@ -360,7 +360,7 @@ test.describe('Visual Comparison: Section', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Section / With Full Width Container (es)', async ({page}) => {
@@ -369,7 +369,7 @@ test.describe('Visual Comparison: Section', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Section / With Full Width Container (pt-BR)', async ({page}) => {
@@ -378,7 +378,7 @@ test.describe('Visual Comparison: Section', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Section / Background Color', async ({page}) => {
@@ -387,7 +387,7 @@ test.describe('Visual Comparison: Section', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Section / Background Color (fr)', async ({page}) => {
@@ -396,7 +396,7 @@ test.describe('Visual Comparison: Section', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Section / Background Color (de)', async ({page}) => {
@@ -405,7 +405,7 @@ test.describe('Visual Comparison: Section', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Section / Background Color (ja)', async ({page}) => {
@@ -414,7 +414,7 @@ test.describe('Visual Comparison: Section', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Section / Background Color (es)', async ({page}) => {
@@ -423,7 +423,7 @@ test.describe('Visual Comparison: Section', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Section / Background Color (pt-BR)', async ({page}) => {
@@ -432,7 +432,7 @@ test.describe('Visual Comparison: Section', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Section / Custom Background Color', async ({page}) => {
@@ -441,7 +441,7 @@ test.describe('Visual Comparison: Section', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Section / Custom Background Color (fr)', async ({page}) => {
@@ -450,7 +450,7 @@ test.describe('Visual Comparison: Section', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Section / Custom Background Color (de)', async ({page}) => {
@@ -459,7 +459,7 @@ test.describe('Visual Comparison: Section', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Section / Custom Background Color (ja)', async ({page}) => {
@@ -468,7 +468,7 @@ test.describe('Visual Comparison: Section', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Section / Custom Background Color (es)', async ({page}) => {
@@ -477,7 +477,7 @@ test.describe('Visual Comparison: Section', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Section / Custom Background Color (pt-BR)', async ({page}) => {
@@ -486,7 +486,7 @@ test.describe('Visual Comparison: Section', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Section / Responsive Background Color', async ({page}) => {
@@ -495,7 +495,7 @@ test.describe('Visual Comparison: Section', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Section / Responsive Background Color (fr)', async ({page}) => {
@@ -504,7 +504,7 @@ test.describe('Visual Comparison: Section', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Section / Responsive Background Color (de)', async ({page}) => {
@@ -513,7 +513,7 @@ test.describe('Visual Comparison: Section', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Section / Responsive Background Color (ja)', async ({page}) => {
@@ -522,7 +522,7 @@ test.describe('Visual Comparison: Section', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Section / Responsive Background Color (es)', async ({page}) => {
@@ -531,7 +531,7 @@ test.describe('Visual Comparison: Section', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Section / Responsive Background Color (pt-BR)', async ({page}) => {
@@ -540,7 +540,7 @@ test.describe('Visual Comparison: Section', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Section / Background Image', async ({page}) => {
@@ -549,7 +549,7 @@ test.describe('Visual Comparison: Section', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Section / Background Image (fr)', async ({page}) => {
@@ -558,7 +558,7 @@ test.describe('Visual Comparison: Section', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Section / Background Image (de)', async ({page}) => {
@@ -567,7 +567,7 @@ test.describe('Visual Comparison: Section', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Section / Background Image (ja)', async ({page}) => {
@@ -576,7 +576,7 @@ test.describe('Visual Comparison: Section', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Section / Background Image (es)', async ({page}) => {
@@ -585,7 +585,7 @@ test.describe('Visual Comparison: Section', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Section / Background Image (pt-BR)', async ({page}) => {
@@ -594,7 +594,7 @@ test.describe('Visual Comparison: Section', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Section / Multiple Background Images', async ({page}) => {
@@ -603,7 +603,7 @@ test.describe('Visual Comparison: Section', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Section / Multiple Background Images (fr)', async ({page}) => {
@@ -612,7 +612,7 @@ test.describe('Visual Comparison: Section', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Section / Multiple Background Images (de)', async ({page}) => {
@@ -621,7 +621,7 @@ test.describe('Visual Comparison: Section', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Section / Multiple Background Images (ja)', async ({page}) => {
@@ -630,7 +630,7 @@ test.describe('Visual Comparison: Section', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Section / Multiple Background Images (es)', async ({page}) => {
@@ -639,7 +639,7 @@ test.describe('Visual Comparison: Section', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Section / Multiple Background Images (pt-BR)', async ({page}) => {
@@ -648,14 +648,14 @@ test.describe('Visual Comparison: Section', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Section / Rounded', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-section-features--rounded&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Section / Rounded (fr)', async ({page}) => {
@@ -664,7 +664,7 @@ test.describe('Visual Comparison: Section', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Section / Rounded (de)', async ({page}) => {
@@ -673,7 +673,7 @@ test.describe('Visual Comparison: Section', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Section / Rounded (ja)', async ({page}) => {
@@ -682,7 +682,7 @@ test.describe('Visual Comparison: Section', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Section / Rounded (es)', async ({page}) => {
@@ -691,7 +691,7 @@ test.describe('Visual Comparison: Section', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Section / Rounded (pt-BR)', async ({page}) => {
@@ -700,6 +700,6 @@ test.describe('Visual Comparison: Section', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 })

@@ -11,7 +11,7 @@ test.describe('Visual Comparison: RadioGroup', () => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-forms-radiogroup--playground&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('RadioGroup / Playground (fr)', async ({page}) => {
@@ -20,7 +20,7 @@ test.describe('Visual Comparison: RadioGroup', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('RadioGroup / Playground (de)', async ({page}) => {
@@ -29,7 +29,7 @@ test.describe('Visual Comparison: RadioGroup', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('RadioGroup / Playground (ja)', async ({page}) => {
@@ -38,7 +38,7 @@ test.describe('Visual Comparison: RadioGroup', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('RadioGroup / Playground (es)', async ({page}) => {
@@ -47,7 +47,7 @@ test.describe('Visual Comparison: RadioGroup', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('RadioGroup / Playground (pt-BR)', async ({page}) => {
@@ -56,7 +56,7 @@ test.describe('Visual Comparison: RadioGroup', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('RadioGroup / Inline', async ({page}) => {
@@ -65,7 +65,7 @@ test.describe('Visual Comparison: RadioGroup', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('RadioGroup / Inline (fr)', async ({page}) => {
@@ -74,7 +74,7 @@ test.describe('Visual Comparison: RadioGroup', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('RadioGroup / Inline (de)', async ({page}) => {
@@ -83,7 +83,7 @@ test.describe('Visual Comparison: RadioGroup', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('RadioGroup / Inline (ja)', async ({page}) => {
@@ -92,7 +92,7 @@ test.describe('Visual Comparison: RadioGroup', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('RadioGroup / Inline (es)', async ({page}) => {
@@ -101,7 +101,7 @@ test.describe('Visual Comparison: RadioGroup', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('RadioGroup / Inline (pt-BR)', async ({page}) => {
@@ -110,6 +110,6 @@ test.describe('Visual Comparison: RadioGroup', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 })

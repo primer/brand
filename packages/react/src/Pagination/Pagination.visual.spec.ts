@@ -11,7 +11,7 @@ test.describe('Visual Comparison: Pagination', () => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-pagination--default&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Pagination / Default (fr)', async ({page}) => {
@@ -20,7 +20,7 @@ test.describe('Visual Comparison: Pagination', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Pagination / Default (de)', async ({page}) => {
@@ -29,7 +29,7 @@ test.describe('Visual Comparison: Pagination', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Pagination / Default (ja)', async ({page}) => {
@@ -38,7 +38,7 @@ test.describe('Visual Comparison: Pagination', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Pagination / Default (es)', async ({page}) => {
@@ -47,7 +47,7 @@ test.describe('Visual Comparison: Pagination', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Pagination / Default (pt-BR)', async ({page}) => {
@@ -56,14 +56,14 @@ test.describe('Visual Comparison: Pagination', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Pagination / Playground', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-pagination--playground&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Pagination / Playground (fr)', async ({page}) => {
@@ -72,7 +72,7 @@ test.describe('Visual Comparison: Pagination', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Pagination / Playground (de)', async ({page}) => {
@@ -81,7 +81,7 @@ test.describe('Visual Comparison: Pagination', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Pagination / Playground (ja)', async ({page}) => {
@@ -90,7 +90,7 @@ test.describe('Visual Comparison: Pagination', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Pagination / Playground (es)', async ({page}) => {
@@ -99,7 +99,7 @@ test.describe('Visual Comparison: Pagination', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Pagination / Playground (pt-BR)', async ({page}) => {
@@ -108,7 +108,7 @@ test.describe('Visual Comparison: Pagination', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Pagination / Larger Page Count Margin', async ({page}) => {
@@ -117,7 +117,7 @@ test.describe('Visual Comparison: Pagination', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Pagination / Larger Page Count Margin (fr)', async ({page}) => {
@@ -126,7 +126,7 @@ test.describe('Visual Comparison: Pagination', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Pagination / Larger Page Count Margin (de)', async ({page}) => {
@@ -135,7 +135,7 @@ test.describe('Visual Comparison: Pagination', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Pagination / Larger Page Count Margin (ja)', async ({page}) => {
@@ -144,7 +144,7 @@ test.describe('Visual Comparison: Pagination', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Pagination / Larger Page Count Margin (es)', async ({page}) => {
@@ -153,7 +153,7 @@ test.describe('Visual Comparison: Pagination', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Pagination / Larger Page Count Margin (pt-BR)', async ({page}) => {
@@ -162,7 +162,7 @@ test.describe('Visual Comparison: Pagination', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Pagination / Hide Page Numbers', async ({page}) => {
@@ -171,7 +171,7 @@ test.describe('Visual Comparison: Pagination', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Pagination / Hide Page Numbers (fr)', async ({page}) => {
@@ -180,7 +180,7 @@ test.describe('Visual Comparison: Pagination', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Pagination / Hide Page Numbers (de)', async ({page}) => {
@@ -189,7 +189,7 @@ test.describe('Visual Comparison: Pagination', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Pagination / Hide Page Numbers (ja)', async ({page}) => {
@@ -198,7 +198,7 @@ test.describe('Visual Comparison: Pagination', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Pagination / Hide Page Numbers (es)', async ({page}) => {
@@ -207,7 +207,7 @@ test.describe('Visual Comparison: Pagination', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Pagination / Hide Page Numbers (pt-BR)', async ({page}) => {
@@ -216,7 +216,7 @@ test.describe('Visual Comparison: Pagination', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   // eslint-disable-next-line i18n-text/no-en
@@ -228,7 +228,7 @@ test.describe('Visual Comparison: Pagination', () => {
       )
 
       await page.waitForTimeout(500)
-      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+      await expect(page).toHaveScreenshot({fullPage: true})
     })
 
     test('Pagination / Narrow Page Numbers Hidden By Default (fr)', async ({page}) => {
@@ -237,7 +237,7 @@ test.describe('Visual Comparison: Pagination', () => {
       )
 
       await page.waitForTimeout(500)
-      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+      await expect(page).toHaveScreenshot({fullPage: true})
     })
 
     test('Pagination / Narrow Page Numbers Hidden By Default (de)', async ({page}) => {
@@ -246,7 +246,7 @@ test.describe('Visual Comparison: Pagination', () => {
       )
 
       await page.waitForTimeout(500)
-      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+      await expect(page).toHaveScreenshot({fullPage: true})
     })
 
     test('Pagination / Narrow Page Numbers Hidden By Default (ja)', async ({page}) => {
@@ -255,7 +255,7 @@ test.describe('Visual Comparison: Pagination', () => {
       )
 
       await page.waitForTimeout(500)
-      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+      await expect(page).toHaveScreenshot({fullPage: true})
     })
 
     test('Pagination / Narrow Page Numbers Hidden By Default (es)', async ({page}) => {
@@ -264,7 +264,7 @@ test.describe('Visual Comparison: Pagination', () => {
       )
 
       await page.waitForTimeout(500)
-      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+      await expect(page).toHaveScreenshot({fullPage: true})
     })
 
     test('Pagination / Narrow Page Numbers Hidden By Default (pt-BR)', async ({page}) => {
@@ -273,7 +273,7 @@ test.describe('Visual Comparison: Pagination', () => {
       )
 
       await page.waitForTimeout(500)
-      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+      await expect(page).toHaveScreenshot({fullPage: true})
     })
   })
   test('Pagination / Higher Surrounding Page Count', async ({page}) => {
@@ -282,7 +282,7 @@ test.describe('Visual Comparison: Pagination', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Pagination / Higher Surrounding Page Count (fr)', async ({page}) => {
@@ -291,7 +291,7 @@ test.describe('Visual Comparison: Pagination', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Pagination / Higher Surrounding Page Count (de)', async ({page}) => {
@@ -300,7 +300,7 @@ test.describe('Visual Comparison: Pagination', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Pagination / Higher Surrounding Page Count (ja)', async ({page}) => {
@@ -309,7 +309,7 @@ test.describe('Visual Comparison: Pagination', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Pagination / Higher Surrounding Page Count (es)', async ({page}) => {
@@ -318,7 +318,7 @@ test.describe('Visual Comparison: Pagination', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Pagination / Higher Surrounding Page Count (pt-BR)', async ({page}) => {
@@ -327,7 +327,7 @@ test.describe('Visual Comparison: Pagination', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Pagination / Page Handlers', async ({page}) => {
@@ -336,7 +336,7 @@ test.describe('Visual Comparison: Pagination', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Pagination / Page Handlers (fr)', async ({page}) => {
@@ -345,7 +345,7 @@ test.describe('Visual Comparison: Pagination', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Pagination / Page Handlers (de)', async ({page}) => {
@@ -354,7 +354,7 @@ test.describe('Visual Comparison: Pagination', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Pagination / Page Handlers (ja)', async ({page}) => {
@@ -363,7 +363,7 @@ test.describe('Visual Comparison: Pagination', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Pagination / Page Handlers (es)', async ({page}) => {
@@ -372,7 +372,7 @@ test.describe('Visual Comparison: Pagination', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Pagination / Page Handlers (pt-BR)', async ({page}) => {
@@ -381,7 +381,7 @@ test.describe('Visual Comparison: Pagination', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Pagination / Custom Attribute Forwarding', async ({page}) => {
@@ -390,7 +390,7 @@ test.describe('Visual Comparison: Pagination', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Pagination / Custom Attribute Forwarding (fr)', async ({page}) => {
@@ -399,7 +399,7 @@ test.describe('Visual Comparison: Pagination', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Pagination / Custom Attribute Forwarding (de)', async ({page}) => {
@@ -408,7 +408,7 @@ test.describe('Visual Comparison: Pagination', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Pagination / Custom Attribute Forwarding (ja)', async ({page}) => {
@@ -417,7 +417,7 @@ test.describe('Visual Comparison: Pagination', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Pagination / Custom Attribute Forwarding (es)', async ({page}) => {
@@ -426,7 +426,7 @@ test.describe('Visual Comparison: Pagination', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Pagination / Custom Attribute Forwarding (pt-BR)', async ({page}) => {
@@ -435,6 +435,6 @@ test.describe('Visual Comparison: Pagination', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 })

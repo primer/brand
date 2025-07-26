@@ -11,7 +11,7 @@ test.describe('Visual Comparison: ExpandableArrow', () => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-expandablearrow--default&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('ExpandableArrow / Default (fr)', async ({page}) => {
@@ -20,7 +20,7 @@ test.describe('Visual Comparison: ExpandableArrow', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('ExpandableArrow / Default (de)', async ({page}) => {
@@ -29,7 +29,7 @@ test.describe('Visual Comparison: ExpandableArrow', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('ExpandableArrow / Default (ja)', async ({page}) => {
@@ -38,7 +38,7 @@ test.describe('Visual Comparison: ExpandableArrow', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('ExpandableArrow / Default (es)', async ({page}) => {
@@ -47,7 +47,7 @@ test.describe('Visual Comparison: ExpandableArrow', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('ExpandableArrow / Default (pt-BR)', async ({page}) => {
@@ -56,14 +56,14 @@ test.describe('Visual Comparison: ExpandableArrow', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('ExpandableArrow / Expanded', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-expandablearrow--expanded&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('ExpandableArrow / Expanded (fr)', async ({page}) => {
@@ -72,7 +72,7 @@ test.describe('Visual Comparison: ExpandableArrow', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('ExpandableArrow / Expanded (de)', async ({page}) => {
@@ -81,7 +81,7 @@ test.describe('Visual Comparison: ExpandableArrow', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('ExpandableArrow / Expanded (ja)', async ({page}) => {
@@ -90,7 +90,7 @@ test.describe('Visual Comparison: ExpandableArrow', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('ExpandableArrow / Expanded (es)', async ({page}) => {
@@ -99,7 +99,7 @@ test.describe('Visual Comparison: ExpandableArrow', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('ExpandableArrow / Expanded (pt-BR)', async ({page}) => {
@@ -108,7 +108,7 @@ test.describe('Visual Comparison: ExpandableArrow', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('ExpandableArrow / Expand On Hover', async ({page}) => {
@@ -117,7 +117,7 @@ test.describe('Visual Comparison: ExpandableArrow', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('ExpandableArrow / Expand On Hover (fr)', async ({page}) => {
@@ -126,7 +126,7 @@ test.describe('Visual Comparison: ExpandableArrow', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('ExpandableArrow / Expand On Hover (de)', async ({page}) => {
@@ -135,7 +135,7 @@ test.describe('Visual Comparison: ExpandableArrow', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('ExpandableArrow / Expand On Hover (ja)', async ({page}) => {
@@ -144,7 +144,7 @@ test.describe('Visual Comparison: ExpandableArrow', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('ExpandableArrow / Expand On Hover (es)', async ({page}) => {
@@ -153,7 +153,7 @@ test.describe('Visual Comparison: ExpandableArrow', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('ExpandableArrow / Expand On Hover (pt-BR)', async ({page}) => {
@@ -162,6 +162,6 @@ test.describe('Visual Comparison: ExpandableArrow', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 })

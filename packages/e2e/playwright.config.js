@@ -7,6 +7,7 @@ const config = {
   fullyParallel: true,
   retries: process.env.CI ? 3 : 1,
   timeout: 15000,
+  maxFailures: 5,
   use: {
     screenshot: 'only-on-failure',
     headless: true,

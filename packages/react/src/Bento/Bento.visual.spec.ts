@@ -11,7 +11,7 @@ test.describe('Visual Comparison: Bento', () => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-bento--default&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Default (fr)', async ({page}) => {
@@ -20,7 +20,7 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Default (de)', async ({page}) => {
@@ -29,7 +29,7 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Default (ja)', async ({page}) => {
@@ -38,7 +38,7 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Default (es)', async ({page}) => {
@@ -47,7 +47,7 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Default (pt-BR)', async ({page}) => {
@@ -56,7 +56,7 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Layout Example 1', async ({page}) => {
@@ -65,7 +65,7 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Layout Example 1 (fr)', async ({page}) => {
@@ -74,7 +74,7 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Layout Example 1 (de)', async ({page}) => {
@@ -83,7 +83,7 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Layout Example 1 (ja)', async ({page}) => {
@@ -92,7 +92,7 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Layout Example 1 (es)', async ({page}) => {
@@ -101,7 +101,7 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Layout Example 1 (pt-BR)', async ({page}) => {
@@ -110,7 +110,7 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Layout Example 2', async ({page}) => {
@@ -119,7 +119,7 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Layout Example 2 (fr)', async ({page}) => {
@@ -128,7 +128,7 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Layout Example 2 (de)', async ({page}) => {
@@ -137,7 +137,7 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Layout Example 2 (ja)', async ({page}) => {
@@ -146,7 +146,7 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Layout Example 2 (es)', async ({page}) => {
@@ -155,7 +155,7 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Layout Example 2 (pt-BR)', async ({page}) => {
@@ -164,7 +164,7 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Image Gallery', async ({page}) => {
@@ -173,7 +173,7 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Image Gallery (fr)', async ({page}) => {
@@ -182,7 +182,7 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Image Gallery (de)', async ({page}) => {
@@ -191,7 +191,7 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Image Gallery (ja)', async ({page}) => {
@@ -200,7 +200,7 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Image Gallery (es)', async ({page}) => {
@@ -209,7 +209,7 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Image Gallery (pt-BR)', async ({page}) => {
@@ -218,14 +218,14 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Mixed', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-bento-features--mixed&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Mixed (fr)', async ({page}) => {
@@ -234,7 +234,7 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Mixed (de)', async ({page}) => {
@@ -243,7 +243,7 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Mixed (ja)', async ({page}) => {
@@ -252,7 +252,7 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Mixed (es)', async ({page}) => {
@@ -261,7 +261,7 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Mixed (pt-BR)', async ({page}) => {
@@ -270,14 +270,14 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Mixed 2', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-bento-features--mixed-2&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Mixed 2 (fr)', async ({page}) => {
@@ -286,7 +286,7 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Mixed 2 (de)', async ({page}) => {
@@ -295,7 +295,7 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Mixed 2 (ja)', async ({page}) => {
@@ -304,7 +304,7 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Mixed 2 (es)', async ({page}) => {
@@ -313,7 +313,7 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Mixed 2 (pt-BR)', async ({page}) => {
@@ -322,14 +322,14 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Mixed 3', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-bento-features--mixed-3&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Mixed 3 (fr)', async ({page}) => {
@@ -338,7 +338,7 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Mixed 3 (de)', async ({page}) => {
@@ -347,7 +347,7 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Mixed 3 (ja)', async ({page}) => {
@@ -356,7 +356,7 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Mixed 3 (es)', async ({page}) => {
@@ -365,7 +365,7 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Mixed 3 (pt-BR)', async ({page}) => {
@@ -374,7 +374,7 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Heading With Emphasized Text', async ({page}) => {
@@ -383,7 +383,7 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Heading With Emphasized Text (fr)', async ({page}) => {
@@ -392,7 +392,7 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Heading With Emphasized Text (de)', async ({page}) => {
@@ -401,7 +401,7 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Heading With Emphasized Text (ja)', async ({page}) => {
@@ -410,7 +410,7 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Heading With Emphasized Text (es)', async ({page}) => {
@@ -419,7 +419,7 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Heading With Emphasized Text (pt-BR)', async ({page}) => {
@@ -428,14 +428,14 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / With Label', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-bento-item--with-label&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / With Label (fr)', async ({page}) => {
@@ -444,7 +444,7 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / With Label (de)', async ({page}) => {
@@ -453,7 +453,7 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / With Label (ja)', async ({page}) => {
@@ -462,7 +462,7 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / With Label (es)', async ({page}) => {
@@ -471,7 +471,7 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / With Label (pt-BR)', async ({page}) => {
@@ -480,7 +480,7 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Visual Position Bottom', async ({page}) => {
@@ -489,7 +489,7 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Visual Position Bottom (fr)', async ({page}) => {
@@ -498,7 +498,7 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Visual Position Bottom (de)', async ({page}) => {
@@ -507,7 +507,7 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Visual Position Bottom (ja)', async ({page}) => {
@@ -516,7 +516,7 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Visual Position Bottom (es)', async ({page}) => {
@@ -525,7 +525,7 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Visual Position Bottom (pt-BR)', async ({page}) => {
@@ -534,14 +534,14 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Flow Column', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-bento-item--flow-column&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Flow Column (fr)', async ({page}) => {
@@ -550,7 +550,7 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Flow Column (de)', async ({page}) => {
@@ -559,7 +559,7 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Flow Column (ja)', async ({page}) => {
@@ -568,7 +568,7 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Flow Column (es)', async ({page}) => {
@@ -577,7 +577,7 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Flow Column (pt-BR)', async ({page}) => {
@@ -586,7 +586,7 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Flow Column Visual First', async ({page}) => {
@@ -595,7 +595,7 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Flow Column Visual First (fr)', async ({page}) => {
@@ -604,7 +604,7 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Flow Column Visual First (de)', async ({page}) => {
@@ -613,7 +613,7 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Flow Column Visual First (ja)', async ({page}) => {
@@ -622,7 +622,7 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Flow Column Visual First (es)', async ({page}) => {
@@ -631,7 +631,7 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Flow Column Visual First (pt-BR)', async ({page}) => {
@@ -640,7 +640,7 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Flow Row Visual First', async ({page}) => {
@@ -649,7 +649,7 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Flow Row Visual First (fr)', async ({page}) => {
@@ -658,7 +658,7 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Flow Row Visual First (de)', async ({page}) => {
@@ -667,7 +667,7 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Flow Row Visual First (ja)', async ({page}) => {
@@ -676,7 +676,7 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Flow Row Visual First (es)', async ({page}) => {
@@ -685,7 +685,7 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Flow Row Visual First (pt-BR)', async ({page}) => {
@@ -694,7 +694,7 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Content Padding Condensed', async ({page}) => {
@@ -703,7 +703,7 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Content Padding Condensed (fr)', async ({page}) => {
@@ -712,7 +712,7 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Content Padding Condensed (de)', async ({page}) => {
@@ -721,7 +721,7 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Content Padding Condensed (ja)', async ({page}) => {
@@ -730,7 +730,7 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Content Padding Condensed (es)', async ({page}) => {
@@ -739,7 +739,7 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Content Padding Condensed (pt-BR)', async ({page}) => {
@@ -748,7 +748,7 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Content Padding Normal', async ({page}) => {
@@ -757,7 +757,7 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Content Padding Normal (fr)', async ({page}) => {
@@ -766,7 +766,7 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Content Padding Normal (de)', async ({page}) => {
@@ -775,7 +775,7 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Content Padding Normal (ja)', async ({page}) => {
@@ -784,7 +784,7 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Content Padding Normal (es)', async ({page}) => {
@@ -793,7 +793,7 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Content Padding Normal (pt-BR)', async ({page}) => {
@@ -802,7 +802,7 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Content Padding Spacious', async ({page}) => {
@@ -811,7 +811,7 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Content Padding Spacious (fr)', async ({page}) => {
@@ -820,7 +820,7 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Content Padding Spacious (de)', async ({page}) => {
@@ -829,7 +829,7 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Content Padding Spacious (ja)', async ({page}) => {
@@ -838,7 +838,7 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Content Padding Spacious (es)', async ({page}) => {
@@ -847,7 +847,7 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Content Padding Spacious (pt-BR)', async ({page}) => {
@@ -856,7 +856,7 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Visual Padding Condensed', async ({page}) => {
@@ -865,7 +865,7 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Visual Padding Condensed (fr)', async ({page}) => {
@@ -874,7 +874,7 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Visual Padding Condensed (de)', async ({page}) => {
@@ -883,7 +883,7 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Visual Padding Condensed (ja)', async ({page}) => {
@@ -892,7 +892,7 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Visual Padding Condensed (es)', async ({page}) => {
@@ -901,7 +901,7 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Visual Padding Condensed (pt-BR)', async ({page}) => {
@@ -910,7 +910,7 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Visual Padding Normal', async ({page}) => {
@@ -919,7 +919,7 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Visual Padding Normal (fr)', async ({page}) => {
@@ -928,7 +928,7 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Visual Padding Normal (de)', async ({page}) => {
@@ -937,7 +937,7 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Visual Padding Normal (ja)', async ({page}) => {
@@ -946,7 +946,7 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Visual Padding Normal (es)', async ({page}) => {
@@ -955,7 +955,7 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Visual Padding Normal (pt-BR)', async ({page}) => {
@@ -964,7 +964,7 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Visual Padding Spacious', async ({page}) => {
@@ -973,7 +973,7 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Visual Padding Spacious (fr)', async ({page}) => {
@@ -982,7 +982,7 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Visual Padding Spacious (de)', async ({page}) => {
@@ -991,7 +991,7 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Visual Padding Spacious (ja)', async ({page}) => {
@@ -1000,7 +1000,7 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Visual Padding Spacious (es)', async ({page}) => {
@@ -1009,7 +1009,7 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Visual Padding Spacious (pt-BR)', async ({page}) => {
@@ -1018,14 +1018,14 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Order Reversed', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-bento-item--order-reversed&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Order Reversed (fr)', async ({page}) => {
@@ -1034,7 +1034,7 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Order Reversed (de)', async ({page}) => {
@@ -1043,7 +1043,7 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Order Reversed (ja)', async ({page}) => {
@@ -1052,7 +1052,7 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Order Reversed (es)', async ({page}) => {
@@ -1061,7 +1061,7 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Order Reversed (pt-BR)', async ({page}) => {
@@ -1070,7 +1070,7 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Visual As Background', async ({page}) => {
@@ -1079,7 +1079,7 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Visual As Background (fr)', async ({page}) => {
@@ -1088,7 +1088,7 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Visual As Background (de)', async ({page}) => {
@@ -1097,7 +1097,7 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Visual As Background (ja)', async ({page}) => {
@@ -1106,7 +1106,7 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Visual As Background (es)', async ({page}) => {
@@ -1115,7 +1115,7 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Visual As Background (pt-BR)', async ({page}) => {
@@ -1124,14 +1124,14 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / No Visual', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-bento-item--no-visual&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / No Visual (fr)', async ({page}) => {
@@ -1140,7 +1140,7 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / No Visual (de)', async ({page}) => {
@@ -1149,7 +1149,7 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / No Visual (ja)', async ({page}) => {
@@ -1158,7 +1158,7 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / No Visual (es)', async ({page}) => {
@@ -1167,7 +1167,7 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / No Visual (pt-BR)', async ({page}) => {
@@ -1176,14 +1176,14 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / No Content', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-bento-item--no-content&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / No Content (fr)', async ({page}) => {
@@ -1192,7 +1192,7 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / No Content (de)', async ({page}) => {
@@ -1201,7 +1201,7 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / No Content (ja)', async ({page}) => {
@@ -1210,7 +1210,7 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / No Content (es)', async ({page}) => {
@@ -1219,7 +1219,7 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / No Content (pt-BR)', async ({page}) => {
@@ -1228,14 +1228,14 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Dark Mode Item', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-bento-item--dark-mode-item&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Dark Mode Item (fr)', async ({page}) => {
@@ -1244,7 +1244,7 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Dark Mode Item (de)', async ({page}) => {
@@ -1253,7 +1253,7 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Dark Mode Item (ja)', async ({page}) => {
@@ -1262,7 +1262,7 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Dark Mode Item (es)', async ({page}) => {
@@ -1271,7 +1271,7 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Dark Mode Item (pt-BR)', async ({page}) => {
@@ -1280,14 +1280,14 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Responsive Flow', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-bento-item--responsive-flow&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Responsive Flow (fr)', async ({page}) => {
@@ -1296,7 +1296,7 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Responsive Flow (de)', async ({page}) => {
@@ -1305,7 +1305,7 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Responsive Flow (ja)', async ({page}) => {
@@ -1314,7 +1314,7 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Responsive Flow (es)', async ({page}) => {
@@ -1323,7 +1323,7 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Responsive Flow (pt-BR)', async ({page}) => {
@@ -1332,7 +1332,7 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Vertical Align Start', async ({page}) => {
@@ -1341,7 +1341,7 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Vertical Align Start (fr)', async ({page}) => {
@@ -1350,7 +1350,7 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Vertical Align Start (de)', async ({page}) => {
@@ -1359,7 +1359,7 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Vertical Align Start (ja)', async ({page}) => {
@@ -1368,7 +1368,7 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Vertical Align Start (es)', async ({page}) => {
@@ -1377,7 +1377,7 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Vertical Align Start (pt-BR)', async ({page}) => {
@@ -1386,7 +1386,7 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Vertical Align Center', async ({page}) => {
@@ -1395,7 +1395,7 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Vertical Align Center (fr)', async ({page}) => {
@@ -1404,7 +1404,7 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Vertical Align Center (de)', async ({page}) => {
@@ -1413,7 +1413,7 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Vertical Align Center (ja)', async ({page}) => {
@@ -1422,7 +1422,7 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Vertical Align Center (es)', async ({page}) => {
@@ -1431,7 +1431,7 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Vertical Align Center (pt-BR)', async ({page}) => {
@@ -1440,7 +1440,7 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Vertical Align End', async ({page}) => {
@@ -1449,7 +1449,7 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Vertical Align End (fr)', async ({page}) => {
@@ -1458,7 +1458,7 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Vertical Align End (de)', async ({page}) => {
@@ -1467,7 +1467,7 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Vertical Align End (ja)', async ({page}) => {
@@ -1476,7 +1476,7 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Vertical Align End (es)', async ({page}) => {
@@ -1485,7 +1485,7 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Vertical Align End (pt-BR)', async ({page}) => {
@@ -1494,7 +1494,7 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Horizontal Align Start', async ({page}) => {
@@ -1503,7 +1503,7 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Horizontal Align Start (fr)', async ({page}) => {
@@ -1512,7 +1512,7 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Horizontal Align Start (de)', async ({page}) => {
@@ -1521,7 +1521,7 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Horizontal Align Start (ja)', async ({page}) => {
@@ -1530,7 +1530,7 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Horizontal Align Start (es)', async ({page}) => {
@@ -1539,7 +1539,7 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Horizontal Align Start (pt-BR)', async ({page}) => {
@@ -1548,7 +1548,7 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Horizontal Align Center', async ({page}) => {
@@ -1557,7 +1557,7 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Horizontal Align Center (fr)', async ({page}) => {
@@ -1566,7 +1566,7 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Horizontal Align Center (de)', async ({page}) => {
@@ -1575,7 +1575,7 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Horizontal Align Center (ja)', async ({page}) => {
@@ -1584,7 +1584,7 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Horizontal Align Center (es)', async ({page}) => {
@@ -1593,7 +1593,7 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Horizontal Align Center (pt-BR)', async ({page}) => {
@@ -1602,7 +1602,7 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Responsive Horizontal Align', async ({page}) => {
@@ -1611,7 +1611,7 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Responsive Horizontal Align (fr)', async ({page}) => {
@@ -1620,7 +1620,7 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Responsive Horizontal Align (de)', async ({page}) => {
@@ -1629,7 +1629,7 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Responsive Horizontal Align (ja)', async ({page}) => {
@@ -1638,7 +1638,7 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Responsive Horizontal Align (es)', async ({page}) => {
@@ -1647,7 +1647,7 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Responsive Horizontal Align (pt-BR)', async ({page}) => {
@@ -1656,7 +1656,7 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Responsive Vertical Align', async ({page}) => {
@@ -1665,7 +1665,7 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Responsive Vertical Align (fr)', async ({page}) => {
@@ -1674,7 +1674,7 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Responsive Vertical Align (de)', async ({page}) => {
@@ -1683,7 +1683,7 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Responsive Vertical Align (ja)', async ({page}) => {
@@ -1692,7 +1692,7 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Responsive Vertical Align (es)', async ({page}) => {
@@ -1701,7 +1701,7 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Responsive Vertical Align (pt-BR)', async ({page}) => {
@@ -1710,6 +1710,6 @@ test.describe('Visual Comparison: Bento', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 })

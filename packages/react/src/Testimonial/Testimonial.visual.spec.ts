@@ -11,7 +11,7 @@ test.describe('Visual Comparison: Testimonial', () => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-testimonial--playground&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Testimonial / Playground (fr)', async ({page}) => {
@@ -20,7 +20,7 @@ test.describe('Visual Comparison: Testimonial', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Testimonial / Playground (de)', async ({page}) => {
@@ -29,7 +29,7 @@ test.describe('Visual Comparison: Testimonial', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Testimonial / Playground (ja)', async ({page}) => {
@@ -38,7 +38,7 @@ test.describe('Visual Comparison: Testimonial', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Testimonial / Playground (es)', async ({page}) => {
@@ -47,7 +47,7 @@ test.describe('Visual Comparison: Testimonial', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Testimonial / Playground (pt-BR)', async ({page}) => {
@@ -56,7 +56,7 @@ test.describe('Visual Comparison: Testimonial', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Testimonial / With Frosted Glass', async ({page}) => {
@@ -65,7 +65,7 @@ test.describe('Visual Comparison: Testimonial', () => {
     )
 
     await page.waitForTimeout(4000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Testimonial / With Frosted Glass (fr)', async ({page}) => {
@@ -74,7 +74,7 @@ test.describe('Visual Comparison: Testimonial', () => {
     )
 
     await page.waitForTimeout(4000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Testimonial / With Frosted Glass (de)', async ({page}) => {
@@ -83,7 +83,7 @@ test.describe('Visual Comparison: Testimonial', () => {
     )
 
     await page.waitForTimeout(4000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Testimonial / With Frosted Glass (ja)', async ({page}) => {
@@ -92,7 +92,7 @@ test.describe('Visual Comparison: Testimonial', () => {
     )
 
     await page.waitForTimeout(4000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Testimonial / With Frosted Glass (es)', async ({page}) => {
@@ -101,7 +101,7 @@ test.describe('Visual Comparison: Testimonial', () => {
     )
 
     await page.waitForTimeout(4000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Testimonial / With Frosted Glass (pt-BR)', async ({page}) => {
@@ -110,7 +110,7 @@ test.describe('Visual Comparison: Testimonial', () => {
     )
 
     await page.waitForTimeout(4000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Testimonial / With Frosted Glass Dark', async ({page}) => {
@@ -119,7 +119,7 @@ test.describe('Visual Comparison: Testimonial', () => {
     )
 
     await page.waitForTimeout(4000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Testimonial / With Frosted Glass Dark (fr)', async ({page}) => {
@@ -128,7 +128,7 @@ test.describe('Visual Comparison: Testimonial', () => {
     )
 
     await page.waitForTimeout(4000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Testimonial / With Frosted Glass Dark (de)', async ({page}) => {
@@ -137,7 +137,7 @@ test.describe('Visual Comparison: Testimonial', () => {
     )
 
     await page.waitForTimeout(4000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Testimonial / With Frosted Glass Dark (ja)', async ({page}) => {
@@ -146,7 +146,7 @@ test.describe('Visual Comparison: Testimonial', () => {
     )
 
     await page.waitForTimeout(4000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Testimonial / With Frosted Glass Dark (es)', async ({page}) => {
@@ -155,7 +155,7 @@ test.describe('Visual Comparison: Testimonial', () => {
     )
 
     await page.waitForTimeout(4000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Testimonial / With Frosted Glass Dark (pt-BR)', async ({page}) => {
@@ -164,14 +164,14 @@ test.describe('Visual Comparison: Testimonial', () => {
     )
 
     await page.waitForTimeout(4000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Testimonial / Duo', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-testimonial-examples--duo&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Testimonial / Duo (fr)', async ({page}) => {
@@ -180,7 +180,7 @@ test.describe('Visual Comparison: Testimonial', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Testimonial / Duo (de)', async ({page}) => {
@@ -189,7 +189,7 @@ test.describe('Visual Comparison: Testimonial', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Testimonial / Duo (ja)', async ({page}) => {
@@ -198,7 +198,7 @@ test.describe('Visual Comparison: Testimonial', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Testimonial / Duo (es)', async ({page}) => {
@@ -207,7 +207,7 @@ test.describe('Visual Comparison: Testimonial', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Testimonial / Duo (pt-BR)', async ({page}) => {
@@ -216,14 +216,14 @@ test.describe('Visual Comparison: Testimonial', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Testimonial / Trio', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-testimonial-examples--trio&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Testimonial / Trio (fr)', async ({page}) => {
@@ -232,7 +232,7 @@ test.describe('Visual Comparison: Testimonial', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Testimonial / Trio (de)', async ({page}) => {
@@ -241,7 +241,7 @@ test.describe('Visual Comparison: Testimonial', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Testimonial / Trio (ja)', async ({page}) => {
@@ -250,7 +250,7 @@ test.describe('Visual Comparison: Testimonial', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Testimonial / Trio (es)', async ({page}) => {
@@ -259,7 +259,7 @@ test.describe('Visual Comparison: Testimonial', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Testimonial / Trio (pt-BR)', async ({page}) => {
@@ -268,14 +268,14 @@ test.describe('Visual Comparison: Testimonial', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Testimonial / Avatar', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-testimonial-features--avatar&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Testimonial / Avatar (fr)', async ({page}) => {
@@ -284,7 +284,7 @@ test.describe('Visual Comparison: Testimonial', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Testimonial / Avatar (de)', async ({page}) => {
@@ -293,7 +293,7 @@ test.describe('Visual Comparison: Testimonial', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Testimonial / Avatar (ja)', async ({page}) => {
@@ -302,7 +302,7 @@ test.describe('Visual Comparison: Testimonial', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Testimonial / Avatar (es)', async ({page}) => {
@@ -311,7 +311,7 @@ test.describe('Visual Comparison: Testimonial', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Testimonial / Avatar (pt-BR)', async ({page}) => {
@@ -320,7 +320,7 @@ test.describe('Visual Comparison: Testimonial', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Testimonial / Colored Quote Mark', async ({page}) => {
@@ -329,7 +329,7 @@ test.describe('Visual Comparison: Testimonial', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Testimonial / Colored Quote Mark (fr)', async ({page}) => {
@@ -338,7 +338,7 @@ test.describe('Visual Comparison: Testimonial', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Testimonial / Colored Quote Mark (de)', async ({page}) => {
@@ -347,7 +347,7 @@ test.describe('Visual Comparison: Testimonial', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Testimonial / Colored Quote Mark (ja)', async ({page}) => {
@@ -356,7 +356,7 @@ test.describe('Visual Comparison: Testimonial', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Testimonial / Colored Quote Mark (es)', async ({page}) => {
@@ -365,7 +365,7 @@ test.describe('Visual Comparison: Testimonial', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Testimonial / Colored Quote Mark (pt-BR)', async ({page}) => {
@@ -374,14 +374,14 @@ test.describe('Visual Comparison: Testimonial', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Testimonial / Large', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-testimonial-features--large&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Testimonial / Large (fr)', async ({page}) => {
@@ -390,7 +390,7 @@ test.describe('Visual Comparison: Testimonial', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Testimonial / Large (de)', async ({page}) => {
@@ -399,7 +399,7 @@ test.describe('Visual Comparison: Testimonial', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Testimonial / Large (ja)', async ({page}) => {
@@ -408,7 +408,7 @@ test.describe('Visual Comparison: Testimonial', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Testimonial / Large (es)', async ({page}) => {
@@ -417,7 +417,7 @@ test.describe('Visual Comparison: Testimonial', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Testimonial / Large (pt-BR)', async ({page}) => {
@@ -426,7 +426,7 @@ test.describe('Visual Comparison: Testimonial', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Testimonial / Large Highlighted Portion', async ({page}) => {
@@ -435,7 +435,7 @@ test.describe('Visual Comparison: Testimonial', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Testimonial / Large Highlighted Portion (fr)', async ({page}) => {
@@ -444,7 +444,7 @@ test.describe('Visual Comparison: Testimonial', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Testimonial / Large Highlighted Portion (de)', async ({page}) => {
@@ -453,7 +453,7 @@ test.describe('Visual Comparison: Testimonial', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Testimonial / Large Highlighted Portion (ja)', async ({page}) => {
@@ -462,7 +462,7 @@ test.describe('Visual Comparison: Testimonial', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Testimonial / Large Highlighted Portion (es)', async ({page}) => {
@@ -471,7 +471,7 @@ test.describe('Visual Comparison: Testimonial', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Testimonial / Large Highlighted Portion (pt-BR)', async ({page}) => {
@@ -480,7 +480,7 @@ test.describe('Visual Comparison: Testimonial', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Testimonial / Variants', async ({page}) => {
@@ -489,7 +489,7 @@ test.describe('Visual Comparison: Testimonial', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Testimonial / Variants (fr)', async ({page}) => {
@@ -498,7 +498,7 @@ test.describe('Visual Comparison: Testimonial', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Testimonial / Variants (de)', async ({page}) => {
@@ -507,7 +507,7 @@ test.describe('Visual Comparison: Testimonial', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Testimonial / Variants (ja)', async ({page}) => {
@@ -516,7 +516,7 @@ test.describe('Visual Comparison: Testimonial', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Testimonial / Variants (es)', async ({page}) => {
@@ -525,7 +525,7 @@ test.describe('Visual Comparison: Testimonial', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Testimonial / Variants (pt-BR)', async ({page}) => {
@@ -534,7 +534,7 @@ test.describe('Visual Comparison: Testimonial', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Testimonial / Variants Without Border', async ({page}) => {
@@ -543,7 +543,7 @@ test.describe('Visual Comparison: Testimonial', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Testimonial / Variants Without Border (fr)', async ({page}) => {
@@ -552,7 +552,7 @@ test.describe('Visual Comparison: Testimonial', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Testimonial / Variants Without Border (de)', async ({page}) => {
@@ -561,7 +561,7 @@ test.describe('Visual Comparison: Testimonial', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Testimonial / Variants Without Border (ja)', async ({page}) => {
@@ -570,7 +570,7 @@ test.describe('Visual Comparison: Testimonial', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Testimonial / Variants Without Border (es)', async ({page}) => {
@@ -579,7 +579,7 @@ test.describe('Visual Comparison: Testimonial', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Testimonial / Variants Without Border (pt-BR)', async ({page}) => {
@@ -588,6 +588,6 @@ test.describe('Visual Comparison: Testimonial', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 })

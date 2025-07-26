@@ -11,7 +11,7 @@ test.describe('Visual Comparison: CTABanner', () => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-ctabanner--default&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('CTABanner / Default (fr)', async ({page}) => {
@@ -20,7 +20,7 @@ test.describe('Visual Comparison: CTABanner', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('CTABanner / Default (de)', async ({page}) => {
@@ -29,7 +29,7 @@ test.describe('Visual Comparison: CTABanner', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('CTABanner / Default (ja)', async ({page}) => {
@@ -38,7 +38,7 @@ test.describe('Visual Comparison: CTABanner', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('CTABanner / Default (es)', async ({page}) => {
@@ -47,7 +47,7 @@ test.describe('Visual Comparison: CTABanner', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('CTABanner / Default (pt-BR)', async ({page}) => {
@@ -56,14 +56,14 @@ test.describe('Visual Comparison: CTABanner', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('CTABanner / Playground', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-ctabanner--playground&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('CTABanner / Playground (fr)', async ({page}) => {
@@ -72,7 +72,7 @@ test.describe('Visual Comparison: CTABanner', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('CTABanner / Playground (de)', async ({page}) => {
@@ -81,7 +81,7 @@ test.describe('Visual Comparison: CTABanner', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('CTABanner / Playground (ja)', async ({page}) => {
@@ -90,7 +90,7 @@ test.describe('Visual Comparison: CTABanner', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('CTABanner / Playground (es)', async ({page}) => {
@@ -99,7 +99,7 @@ test.describe('Visual Comparison: CTABanner', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('CTABanner / Playground (pt-BR)', async ({page}) => {
@@ -108,7 +108,7 @@ test.describe('Visual Comparison: CTABanner', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('CTABanner / With Accent Button', async ({page}) => {
@@ -117,7 +117,7 @@ test.describe('Visual Comparison: CTABanner', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('CTABanner / With Accent Button (fr)', async ({page}) => {
@@ -126,7 +126,7 @@ test.describe('Visual Comparison: CTABanner', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('CTABanner / With Accent Button (de)', async ({page}) => {
@@ -135,7 +135,7 @@ test.describe('Visual Comparison: CTABanner', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('CTABanner / With Accent Button (ja)', async ({page}) => {
@@ -144,7 +144,7 @@ test.describe('Visual Comparison: CTABanner', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('CTABanner / With Accent Button (es)', async ({page}) => {
@@ -153,7 +153,7 @@ test.describe('Visual Comparison: CTABanner', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('CTABanner / With Accent Button (pt-BR)', async ({page}) => {
@@ -162,7 +162,7 @@ test.describe('Visual Comparison: CTABanner', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('CTABanner / With Border', async ({page}) => {
@@ -171,7 +171,7 @@ test.describe('Visual Comparison: CTABanner', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('CTABanner / With Border (fr)', async ({page}) => {
@@ -180,7 +180,7 @@ test.describe('Visual Comparison: CTABanner', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('CTABanner / With Border (de)', async ({page}) => {
@@ -189,7 +189,7 @@ test.describe('Visual Comparison: CTABanner', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('CTABanner / With Border (ja)', async ({page}) => {
@@ -198,7 +198,7 @@ test.describe('Visual Comparison: CTABanner', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('CTABanner / With Border (es)', async ({page}) => {
@@ -207,7 +207,7 @@ test.describe('Visual Comparison: CTABanner', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('CTABanner / With Border (pt-BR)', async ({page}) => {
@@ -216,7 +216,7 @@ test.describe('Visual Comparison: CTABanner', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('CTABanner / With No Shadow', async ({page}) => {
@@ -225,7 +225,7 @@ test.describe('Visual Comparison: CTABanner', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('CTABanner / With No Shadow (fr)', async ({page}) => {
@@ -234,7 +234,7 @@ test.describe('Visual Comparison: CTABanner', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('CTABanner / With No Shadow (de)', async ({page}) => {
@@ -243,7 +243,7 @@ test.describe('Visual Comparison: CTABanner', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('CTABanner / With No Shadow (ja)', async ({page}) => {
@@ -252,7 +252,7 @@ test.describe('Visual Comparison: CTABanner', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('CTABanner / With No Shadow (es)', async ({page}) => {
@@ -261,7 +261,7 @@ test.describe('Visual Comparison: CTABanner', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('CTABanner / With No Shadow (pt-BR)', async ({page}) => {
@@ -270,7 +270,7 @@ test.describe('Visual Comparison: CTABanner', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('CTABanner / Aligned Center', async ({page}) => {
@@ -279,7 +279,7 @@ test.describe('Visual Comparison: CTABanner', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('CTABanner / Aligned Center (fr)', async ({page}) => {
@@ -288,7 +288,7 @@ test.describe('Visual Comparison: CTABanner', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('CTABanner / Aligned Center (de)', async ({page}) => {
@@ -297,7 +297,7 @@ test.describe('Visual Comparison: CTABanner', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('CTABanner / Aligned Center (ja)', async ({page}) => {
@@ -306,7 +306,7 @@ test.describe('Visual Comparison: CTABanner', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('CTABanner / Aligned Center (es)', async ({page}) => {
@@ -315,7 +315,7 @@ test.describe('Visual Comparison: CTABanner', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('CTABanner / Aligned Center (pt-BR)', async ({page}) => {
@@ -324,7 +324,7 @@ test.describe('Visual Comparison: CTABanner', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('CTABanner / With Trailing Component', async ({page}) => {
@@ -333,7 +333,7 @@ test.describe('Visual Comparison: CTABanner', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('CTABanner / With Trailing Component (fr)', async ({page}) => {
@@ -342,7 +342,7 @@ test.describe('Visual Comparison: CTABanner', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('CTABanner / With Trailing Component (de)', async ({page}) => {
@@ -351,7 +351,7 @@ test.describe('Visual Comparison: CTABanner', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('CTABanner / With Trailing Component (ja)', async ({page}) => {
@@ -360,7 +360,7 @@ test.describe('Visual Comparison: CTABanner', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('CTABanner / With Trailing Component (es)', async ({page}) => {
@@ -369,7 +369,7 @@ test.describe('Visual Comparison: CTABanner', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('CTABanner / With Trailing Component (pt-BR)', async ({page}) => {
@@ -378,7 +378,7 @@ test.describe('Visual Comparison: CTABanner', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('CTABanner / Custom Shadow', async ({page}) => {
@@ -387,7 +387,7 @@ test.describe('Visual Comparison: CTABanner', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('CTABanner / Custom Shadow (fr)', async ({page}) => {
@@ -396,7 +396,7 @@ test.describe('Visual Comparison: CTABanner', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('CTABanner / Custom Shadow (de)', async ({page}) => {
@@ -405,7 +405,7 @@ test.describe('Visual Comparison: CTABanner', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('CTABanner / Custom Shadow (ja)', async ({page}) => {
@@ -414,7 +414,7 @@ test.describe('Visual Comparison: CTABanner', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('CTABanner / Custom Shadow (es)', async ({page}) => {
@@ -423,7 +423,7 @@ test.describe('Visual Comparison: CTABanner', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('CTABanner / Custom Shadow (pt-BR)', async ({page}) => {
@@ -432,7 +432,7 @@ test.describe('Visual Comparison: CTABanner', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('CTABanner / Custom Background Colors', async ({page}) => {
@@ -441,7 +441,7 @@ test.describe('Visual Comparison: CTABanner', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('CTABanner / Custom Background Colors (fr)', async ({page}) => {
@@ -450,7 +450,7 @@ test.describe('Visual Comparison: CTABanner', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('CTABanner / Custom Background Colors (de)', async ({page}) => {
@@ -459,7 +459,7 @@ test.describe('Visual Comparison: CTABanner', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('CTABanner / Custom Background Colors (ja)', async ({page}) => {
@@ -468,7 +468,7 @@ test.describe('Visual Comparison: CTABanner', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('CTABanner / Custom Background Colors (es)', async ({page}) => {
@@ -477,7 +477,7 @@ test.describe('Visual Comparison: CTABanner', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('CTABanner / Custom Background Colors (pt-BR)', async ({page}) => {
@@ -486,7 +486,7 @@ test.describe('Visual Comparison: CTABanner', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('CTABanner / Responsive Background Image', async ({page}) => {
@@ -495,7 +495,7 @@ test.describe('Visual Comparison: CTABanner', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('CTABanner / Responsive Background Image (fr)', async ({page}) => {
@@ -504,7 +504,7 @@ test.describe('Visual Comparison: CTABanner', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('CTABanner / Responsive Background Image (de)', async ({page}) => {
@@ -513,7 +513,7 @@ test.describe('Visual Comparison: CTABanner', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('CTABanner / Responsive Background Image (ja)', async ({page}) => {
@@ -522,7 +522,7 @@ test.describe('Visual Comparison: CTABanner', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('CTABanner / Responsive Background Image (es)', async ({page}) => {
@@ -531,7 +531,7 @@ test.describe('Visual Comparison: CTABanner', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('CTABanner / Responsive Background Image (pt-BR)', async ({page}) => {
@@ -540,7 +540,7 @@ test.describe('Visual Comparison: CTABanner', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('CTABanner / Responsive Background Image Dark', async ({page}) => {
@@ -549,7 +549,7 @@ test.describe('Visual Comparison: CTABanner', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('CTABanner / Responsive Background Image Dark (fr)', async ({page}) => {
@@ -558,7 +558,7 @@ test.describe('Visual Comparison: CTABanner', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('CTABanner / Responsive Background Image Dark (de)', async ({page}) => {
@@ -567,7 +567,7 @@ test.describe('Visual Comparison: CTABanner', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('CTABanner / Responsive Background Image Dark (ja)', async ({page}) => {
@@ -576,7 +576,7 @@ test.describe('Visual Comparison: CTABanner', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('CTABanner / Responsive Background Image Dark (es)', async ({page}) => {
@@ -585,7 +585,7 @@ test.describe('Visual Comparison: CTABanner', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('CTABanner / Responsive Background Image Dark (pt-BR)', async ({page}) => {
@@ -594,6 +594,6 @@ test.describe('Visual Comparison: CTABanner', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 })
