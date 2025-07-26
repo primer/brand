@@ -146,6 +146,7 @@
     'components-hero-features--with-youtube-video-block-end-default', // for loading a remote video
     'components-hero-features--with-youtube-video-inline-end', // for loading a remote video
     'components-logosuite-features--marquee', // for the animation
+    'components-subnav-features--anchor-nav-variant-keyboard-navigation', // for being an interaction test-only
   ]
 
   const categorisedStories = Object.keys((stories as typeof StoryIndex).entries).reduce((acc, key) => {
