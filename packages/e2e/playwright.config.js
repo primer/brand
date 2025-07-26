@@ -11,7 +11,6 @@ const config = {
   use: {
     screenshot: 'only-on-failure',
     headless: true,
-    deviceScaleFactor: 1,
     env: {
       NODE_ENV: 'test',
     },
@@ -25,8 +24,6 @@ const config = {
     toHaveScreenshot: {
       maxDiffPixels: 20,
       animations: 'disabled',
-      mode: 'rgb',
-      threshold: 0.2,
     },
   },
 }
