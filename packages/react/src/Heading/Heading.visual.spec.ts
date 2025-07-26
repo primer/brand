@@ -11,7 +11,7 @@ test.describe('Visual Comparison: Heading', () => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-heading--default&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Heading / Default (fr)', async ({page}) => {
@@ -20,7 +20,7 @@ test.describe('Visual Comparison: Heading', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Heading / Default (de)', async ({page}) => {
@@ -29,7 +29,7 @@ test.describe('Visual Comparison: Heading', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Heading / Default (ja)', async ({page}) => {
@@ -38,7 +38,7 @@ test.describe('Visual Comparison: Heading', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Heading / Default (es)', async ({page}) => {
@@ -47,7 +47,7 @@ test.describe('Visual Comparison: Heading', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Heading / Default (pt-BR)', async ({page}) => {
@@ -56,14 +56,14 @@ test.describe('Visual Comparison: Heading', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Heading / Playground', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-heading--playground&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Heading / Playground (fr)', async ({page}) => {
@@ -72,7 +72,7 @@ test.describe('Visual Comparison: Heading', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Heading / Playground (de)', async ({page}) => {
@@ -81,7 +81,7 @@ test.describe('Visual Comparison: Heading', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Heading / Playground (ja)', async ({page}) => {
@@ -90,7 +90,7 @@ test.describe('Visual Comparison: Heading', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Heading / Playground (es)', async ({page}) => {
@@ -99,7 +99,7 @@ test.describe('Visual Comparison: Heading', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Heading / Playground (pt-BR)', async ({page}) => {
@@ -108,14 +108,14 @@ test.describe('Visual Comparison: Heading', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Heading / Scale (sizes)', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-heading--scale&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Heading / Scale (sizes) (fr)', async ({page}) => {
@@ -124,7 +124,7 @@ test.describe('Visual Comparison: Heading', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Heading / Scale (sizes) (de)', async ({page}) => {
@@ -133,7 +133,7 @@ test.describe('Visual Comparison: Heading', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Heading / Scale (sizes) (ja)', async ({page}) => {
@@ -142,7 +142,7 @@ test.describe('Visual Comparison: Heading', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Heading / Scale (sizes) (es)', async ({page}) => {
@@ -151,7 +151,7 @@ test.describe('Visual Comparison: Heading', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Heading / Scale (sizes) (pt-BR)', async ({page}) => {
@@ -160,14 +160,14 @@ test.describe('Visual Comparison: Heading', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Heading / Levels', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-heading--levels&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Heading / Levels (fr)', async ({page}) => {
@@ -176,7 +176,7 @@ test.describe('Visual Comparison: Heading', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Heading / Levels (de)', async ({page}) => {
@@ -185,7 +185,7 @@ test.describe('Visual Comparison: Heading', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Heading / Levels (ja)', async ({page}) => {
@@ -194,7 +194,7 @@ test.describe('Visual Comparison: Heading', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Heading / Levels (es)', async ({page}) => {
@@ -203,7 +203,7 @@ test.describe('Visual Comparison: Heading', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Heading / Levels (pt-BR)', async ({page}) => {
@@ -212,14 +212,14 @@ test.describe('Visual Comparison: Heading', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Heading / Override Size', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-heading--override-size&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Heading / Override Size (fr)', async ({page}) => {
@@ -228,7 +228,7 @@ test.describe('Visual Comparison: Heading', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Heading / Override Size (de)', async ({page}) => {
@@ -237,7 +237,7 @@ test.describe('Visual Comparison: Heading', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Heading / Override Size (ja)', async ({page}) => {
@@ -246,7 +246,7 @@ test.describe('Visual Comparison: Heading', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Heading / Override Size (es)', async ({page}) => {
@@ -255,7 +255,7 @@ test.describe('Visual Comparison: Heading', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Heading / Override Size (pt-BR)', async ({page}) => {
@@ -264,14 +264,14 @@ test.describe('Visual Comparison: Heading', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Heading / Override Weight', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-heading--override-weight&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Heading / Override Weight (fr)', async ({page}) => {
@@ -280,7 +280,7 @@ test.describe('Visual Comparison: Heading', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Heading / Override Weight (de)', async ({page}) => {
@@ -289,7 +289,7 @@ test.describe('Visual Comparison: Heading', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Heading / Override Weight (ja)', async ({page}) => {
@@ -298,7 +298,7 @@ test.describe('Visual Comparison: Heading', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Heading / Override Weight (es)', async ({page}) => {
@@ -307,7 +307,7 @@ test.describe('Visual Comparison: Heading', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Heading / Override Weight (pt-BR)', async ({page}) => {
@@ -316,7 +316,7 @@ test.describe('Visual Comparison: Heading', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Heading / Override Weight Responsive', async ({page}) => {
@@ -325,7 +325,7 @@ test.describe('Visual Comparison: Heading', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Heading / Override Weight Responsive (fr)', async ({page}) => {
@@ -334,7 +334,7 @@ test.describe('Visual Comparison: Heading', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Heading / Override Weight Responsive (de)', async ({page}) => {
@@ -343,7 +343,7 @@ test.describe('Visual Comparison: Heading', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Heading / Override Weight Responsive (ja)', async ({page}) => {
@@ -352,7 +352,7 @@ test.describe('Visual Comparison: Heading', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Heading / Override Weight Responsive (es)', async ({page}) => {
@@ -361,7 +361,7 @@ test.describe('Visual Comparison: Heading', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Heading / Override Weight Responsive (pt-BR)', async ({page}) => {
@@ -370,14 +370,14 @@ test.describe('Visual Comparison: Heading', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Heading / Override Stretch', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-heading--override-stretch&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Heading / Override Stretch (fr)', async ({page}) => {
@@ -386,7 +386,7 @@ test.describe('Visual Comparison: Heading', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Heading / Override Stretch (de)', async ({page}) => {
@@ -395,7 +395,7 @@ test.describe('Visual Comparison: Heading', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Heading / Override Stretch (ja)', async ({page}) => {
@@ -404,7 +404,7 @@ test.describe('Visual Comparison: Heading', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Heading / Override Stretch (es)', async ({page}) => {
@@ -413,7 +413,7 @@ test.describe('Visual Comparison: Heading', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Heading / Override Stretch (pt-BR)', async ({page}) => {
@@ -422,7 +422,7 @@ test.describe('Visual Comparison: Heading', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Heading / Override Stretch Responsive', async ({page}) => {
@@ -431,7 +431,7 @@ test.describe('Visual Comparison: Heading', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Heading / Override Stretch Responsive (fr)', async ({page}) => {
@@ -440,7 +440,7 @@ test.describe('Visual Comparison: Heading', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Heading / Override Stretch Responsive (de)', async ({page}) => {
@@ -449,7 +449,7 @@ test.describe('Visual Comparison: Heading', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Heading / Override Stretch Responsive (ja)', async ({page}) => {
@@ -458,7 +458,7 @@ test.describe('Visual Comparison: Heading', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Heading / Override Stretch Responsive (es)', async ({page}) => {
@@ -467,7 +467,7 @@ test.describe('Visual Comparison: Heading', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Heading / Override Stretch Responsive (pt-BR)', async ({page}) => {
@@ -476,7 +476,7 @@ test.describe('Visual Comparison: Heading', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Heading / Override Letter Spacing', async ({page}) => {
@@ -485,7 +485,7 @@ test.describe('Visual Comparison: Heading', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Heading / Override Letter Spacing (fr)', async ({page}) => {
@@ -494,7 +494,7 @@ test.describe('Visual Comparison: Heading', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Heading / Override Letter Spacing (de)', async ({page}) => {
@@ -503,7 +503,7 @@ test.describe('Visual Comparison: Heading', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Heading / Override Letter Spacing (ja)', async ({page}) => {
@@ -512,7 +512,7 @@ test.describe('Visual Comparison: Heading', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Heading / Override Letter Spacing (es)', async ({page}) => {
@@ -521,7 +521,7 @@ test.describe('Visual Comparison: Heading', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Heading / Override Letter Spacing (pt-BR)', async ({page}) => {
@@ -530,14 +530,14 @@ test.describe('Visual Comparison: Heading', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Heading / Mona Sans', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-heading--mona-sans&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Heading / Mona Sans (fr)', async ({page}) => {
@@ -546,7 +546,7 @@ test.describe('Visual Comparison: Heading', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Heading / Mona Sans (de)', async ({page}) => {
@@ -555,7 +555,7 @@ test.describe('Visual Comparison: Heading', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Heading / Mona Sans (ja)', async ({page}) => {
@@ -564,7 +564,7 @@ test.describe('Visual Comparison: Heading', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Heading / Mona Sans (es)', async ({page}) => {
@@ -573,7 +573,7 @@ test.describe('Visual Comparison: Heading', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Heading / Mona Sans (pt-BR)', async ({page}) => {
@@ -582,14 +582,14 @@ test.describe('Visual Comparison: Heading', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Heading / Hubot Sans', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-heading--hubot-sans&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Heading / Hubot Sans (fr)', async ({page}) => {
@@ -598,7 +598,7 @@ test.describe('Visual Comparison: Heading', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Heading / Hubot Sans (de)', async ({page}) => {
@@ -607,7 +607,7 @@ test.describe('Visual Comparison: Heading', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Heading / Hubot Sans (ja)', async ({page}) => {
@@ -616,7 +616,7 @@ test.describe('Visual Comparison: Heading', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Heading / Hubot Sans (es)', async ({page}) => {
@@ -625,7 +625,7 @@ test.describe('Visual Comparison: Heading', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Heading / Hubot Sans (pt-BR)', async ({page}) => {
@@ -634,6 +634,6 @@ test.describe('Visual Comparison: Heading', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 })

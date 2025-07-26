@@ -11,7 +11,7 @@ test.describe('Visual Comparison: Label', () => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-label--default&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Label / Default (fr)', async ({page}) => {
@@ -20,7 +20,7 @@ test.describe('Visual Comparison: Label', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Label / Default (de)', async ({page}) => {
@@ -29,7 +29,7 @@ test.describe('Visual Comparison: Label', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Label / Default (ja)', async ({page}) => {
@@ -38,7 +38,7 @@ test.describe('Visual Comparison: Label', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Label / Default (es)', async ({page}) => {
@@ -47,7 +47,7 @@ test.describe('Visual Comparison: Label', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Label / Default (pt-BR)', async ({page}) => {
@@ -56,14 +56,14 @@ test.describe('Visual Comparison: Label', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Label / Playground', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-label--playground&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Label / Playground (fr)', async ({page}) => {
@@ -72,7 +72,7 @@ test.describe('Visual Comparison: Label', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Label / Playground (de)', async ({page}) => {
@@ -81,7 +81,7 @@ test.describe('Visual Comparison: Label', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Label / Playground (ja)', async ({page}) => {
@@ -90,7 +90,7 @@ test.describe('Visual Comparison: Label', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Label / Playground (es)', async ({page}) => {
@@ -99,7 +99,7 @@ test.describe('Visual Comparison: Label', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Label / Playground (pt-BR)', async ({page}) => {
@@ -108,14 +108,14 @@ test.describe('Visual Comparison: Label', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Label / Sizes', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-label-features--sizes&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Label / Sizes (fr)', async ({page}) => {
@@ -124,7 +124,7 @@ test.describe('Visual Comparison: Label', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Label / Sizes (de)', async ({page}) => {
@@ -133,7 +133,7 @@ test.describe('Visual Comparison: Label', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Label / Sizes (ja)', async ({page}) => {
@@ -142,7 +142,7 @@ test.describe('Visual Comparison: Label', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Label / Sizes (es)', async ({page}) => {
@@ -151,7 +151,7 @@ test.describe('Visual Comparison: Label', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Label / Sizes (pt-BR)', async ({page}) => {
@@ -160,14 +160,14 @@ test.describe('Visual Comparison: Label', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Label / Color', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-label-features--color&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Label / Color (fr)', async ({page}) => {
@@ -176,7 +176,7 @@ test.describe('Visual Comparison: Label', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Label / Color (de)', async ({page}) => {
@@ -185,7 +185,7 @@ test.describe('Visual Comparison: Label', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Label / Color (ja)', async ({page}) => {
@@ -194,7 +194,7 @@ test.describe('Visual Comparison: Label', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Label / Color (es)', async ({page}) => {
@@ -203,7 +203,7 @@ test.describe('Visual Comparison: Label', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Label / Color (pt-BR)', async ({page}) => {
@@ -212,7 +212,7 @@ test.describe('Visual Comparison: Label', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Label / Leading visual (native)', async ({page}) => {
@@ -221,7 +221,7 @@ test.describe('Visual Comparison: Label', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Label / Leading visual (native) (fr)', async ({page}) => {
@@ -230,7 +230,7 @@ test.describe('Visual Comparison: Label', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Label / Leading visual (native) (de)', async ({page}) => {
@@ -239,7 +239,7 @@ test.describe('Visual Comparison: Label', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Label / Leading visual (native) (ja)', async ({page}) => {
@@ -248,7 +248,7 @@ test.describe('Visual Comparison: Label', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Label / Leading visual (native) (es)', async ({page}) => {
@@ -257,7 +257,7 @@ test.describe('Visual Comparison: Label', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Label / Leading visual (native) (pt-BR)', async ({page}) => {
@@ -266,14 +266,14 @@ test.describe('Visual Comparison: Label', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Label / With an Octicon', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-label-features--with-octicon&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Label / With an Octicon (fr)', async ({page}) => {
@@ -282,7 +282,7 @@ test.describe('Visual Comparison: Label', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Label / With an Octicon (de)', async ({page}) => {
@@ -291,7 +291,7 @@ test.describe('Visual Comparison: Label', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Label / With an Octicon (ja)', async ({page}) => {
@@ -300,7 +300,7 @@ test.describe('Visual Comparison: Label', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Label / With an Octicon (es)', async ({page}) => {
@@ -309,7 +309,7 @@ test.describe('Visual Comparison: Label', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Label / With an Octicon (pt-BR)', async ({page}) => {
@@ -318,7 +318,7 @@ test.describe('Visual Comparison: Label', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Label / With an Octicon (large)', async ({page}) => {
@@ -327,7 +327,7 @@ test.describe('Visual Comparison: Label', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Label / With an Octicon (large) (fr)', async ({page}) => {
@@ -336,7 +336,7 @@ test.describe('Visual Comparison: Label', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Label / With an Octicon (large) (de)', async ({page}) => {
@@ -345,7 +345,7 @@ test.describe('Visual Comparison: Label', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Label / With an Octicon (large) (ja)', async ({page}) => {
@@ -354,7 +354,7 @@ test.describe('Visual Comparison: Label', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Label / With an Octicon (large) (es)', async ({page}) => {
@@ -363,7 +363,7 @@ test.describe('Visual Comparison: Label', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Label / With an Octicon (large) (pt-BR)', async ({page}) => {
@@ -372,7 +372,7 @@ test.describe('Visual Comparison: Label', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Label / With an Octicon and color', async ({page}) => {
@@ -381,7 +381,7 @@ test.describe('Visual Comparison: Label', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Label / With an Octicon and color (fr)', async ({page}) => {
@@ -390,7 +390,7 @@ test.describe('Visual Comparison: Label', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Label / With an Octicon and color (de)', async ({page}) => {
@@ -399,7 +399,7 @@ test.describe('Visual Comparison: Label', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Label / With an Octicon and color (ja)', async ({page}) => {
@@ -408,7 +408,7 @@ test.describe('Visual Comparison: Label', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Label / With an Octicon and color (es)', async ({page}) => {
@@ -417,7 +417,7 @@ test.describe('Visual Comparison: Label', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Label / With an Octicon and color (pt-BR)', async ({page}) => {
@@ -426,14 +426,14 @@ test.describe('Visual Comparison: Label', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Label / With Reflow', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-label-features--with-reflow&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Label / With Reflow (fr)', async ({page}) => {
@@ -442,7 +442,7 @@ test.describe('Visual Comparison: Label', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Label / With Reflow (de)', async ({page}) => {
@@ -451,7 +451,7 @@ test.describe('Visual Comparison: Label', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Label / With Reflow (ja)', async ({page}) => {
@@ -460,7 +460,7 @@ test.describe('Visual Comparison: Label', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Label / With Reflow (es)', async ({page}) => {
@@ -469,7 +469,7 @@ test.describe('Visual Comparison: Label', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Label / With Reflow (pt-BR)', async ({page}) => {
@@ -478,6 +478,6 @@ test.describe('Visual Comparison: Label', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 })

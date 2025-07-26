@@ -11,7 +11,7 @@ test.describe('Visual Comparison: Accordion', () => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-accordion--default&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Accordion / Default (fr)', async ({page}) => {
@@ -20,7 +20,7 @@ test.describe('Visual Comparison: Accordion', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Accordion / Default (de)', async ({page}) => {
@@ -29,7 +29,7 @@ test.describe('Visual Comparison: Accordion', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Accordion / Default (ja)', async ({page}) => {
@@ -38,7 +38,7 @@ test.describe('Visual Comparison: Accordion', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Accordion / Default (es)', async ({page}) => {
@@ -47,7 +47,7 @@ test.describe('Visual Comparison: Accordion', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Accordion / Default (pt-BR)', async ({page}) => {
@@ -56,7 +56,7 @@ test.describe('Visual Comparison: Accordion', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Accordion / Composition', async ({page}) => {
@@ -65,7 +65,7 @@ test.describe('Visual Comparison: Accordion', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Accordion / Composition (fr)', async ({page}) => {
@@ -74,7 +74,7 @@ test.describe('Visual Comparison: Accordion', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Accordion / Composition (de)', async ({page}) => {
@@ -83,7 +83,7 @@ test.describe('Visual Comparison: Accordion', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Accordion / Composition (ja)', async ({page}) => {
@@ -92,7 +92,7 @@ test.describe('Visual Comparison: Accordion', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Accordion / Composition (es)', async ({page}) => {
@@ -101,7 +101,7 @@ test.describe('Visual Comparison: Accordion', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Accordion / Composition (pt-BR)', async ({page}) => {
@@ -110,7 +110,7 @@ test.describe('Visual Comparison: Accordion', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Accordion / Toggle Colors', async ({page}) => {
@@ -119,7 +119,7 @@ test.describe('Visual Comparison: Accordion', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Accordion / Toggle Colors (fr)', async ({page}) => {
@@ -128,7 +128,7 @@ test.describe('Visual Comparison: Accordion', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Accordion / Toggle Colors (de)', async ({page}) => {
@@ -137,7 +137,7 @@ test.describe('Visual Comparison: Accordion', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Accordion / Toggle Colors (ja)', async ({page}) => {
@@ -146,7 +146,7 @@ test.describe('Visual Comparison: Accordion', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Accordion / Toggle Colors (es)', async ({page}) => {
@@ -155,7 +155,7 @@ test.describe('Visual Comparison: Accordion', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Accordion / Toggle Colors (pt-BR)', async ({page}) => {
@@ -164,7 +164,7 @@ test.describe('Visual Comparison: Accordion', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Accordion / Always Exactly One Panel Open', async ({page}) => {
@@ -173,7 +173,7 @@ test.describe('Visual Comparison: Accordion', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Accordion / Always Exactly One Panel Open (fr)', async ({page}) => {
@@ -182,7 +182,7 @@ test.describe('Visual Comparison: Accordion', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Accordion / Always Exactly One Panel Open (de)', async ({page}) => {
@@ -191,7 +191,7 @@ test.describe('Visual Comparison: Accordion', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Accordion / Always Exactly One Panel Open (ja)', async ({page}) => {
@@ -200,7 +200,7 @@ test.describe('Visual Comparison: Accordion', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Accordion / Always Exactly One Panel Open (es)', async ({page}) => {
@@ -209,7 +209,7 @@ test.describe('Visual Comparison: Accordion', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Accordion / Always Exactly One Panel Open (pt-BR)', async ({page}) => {
@@ -218,7 +218,7 @@ test.describe('Visual Comparison: Accordion', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Accordion / Exclusive Using Name Attribute', async ({page}) => {
@@ -227,7 +227,7 @@ test.describe('Visual Comparison: Accordion', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Accordion / Exclusive Using Name Attribute (fr)', async ({page}) => {
@@ -236,7 +236,7 @@ test.describe('Visual Comparison: Accordion', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Accordion / Exclusive Using Name Attribute (de)', async ({page}) => {
@@ -245,7 +245,7 @@ test.describe('Visual Comparison: Accordion', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Accordion / Exclusive Using Name Attribute (ja)', async ({page}) => {
@@ -254,7 +254,7 @@ test.describe('Visual Comparison: Accordion', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Accordion / Exclusive Using Name Attribute (es)', async ({page}) => {
@@ -263,7 +263,7 @@ test.describe('Visual Comparison: Accordion', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Accordion / Exclusive Using Name Attribute (pt-BR)', async ({page}) => {
@@ -272,7 +272,7 @@ test.describe('Visual Comparison: Accordion', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Accordion / Exclusive Without Using Name Attribute', async ({page}) => {
@@ -281,7 +281,7 @@ test.describe('Visual Comparison: Accordion', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Accordion / Exclusive Without Using Name Attribute (fr)', async ({page}) => {
@@ -290,7 +290,7 @@ test.describe('Visual Comparison: Accordion', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Accordion / Exclusive Without Using Name Attribute (de)', async ({page}) => {
@@ -299,7 +299,7 @@ test.describe('Visual Comparison: Accordion', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Accordion / Exclusive Without Using Name Attribute (ja)', async ({page}) => {
@@ -308,7 +308,7 @@ test.describe('Visual Comparison: Accordion', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Accordion / Exclusive Without Using Name Attribute (es)', async ({page}) => {
@@ -317,7 +317,7 @@ test.describe('Visual Comparison: Accordion', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Accordion / Exclusive Without Using Name Attribute (pt-BR)', async ({page}) => {
@@ -326,6 +326,6 @@ test.describe('Visual Comparison: Accordion', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 })

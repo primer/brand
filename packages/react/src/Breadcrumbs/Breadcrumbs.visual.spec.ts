@@ -11,7 +11,7 @@ test.describe('Visual Comparison: Breadcrumbs', () => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-breadcrumbs--default&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Breadcrumbs / Default (fr)', async ({page}) => {
@@ -20,7 +20,7 @@ test.describe('Visual Comparison: Breadcrumbs', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Breadcrumbs / Default (de)', async ({page}) => {
@@ -29,7 +29,7 @@ test.describe('Visual Comparison: Breadcrumbs', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Breadcrumbs / Default (ja)', async ({page}) => {
@@ -38,7 +38,7 @@ test.describe('Visual Comparison: Breadcrumbs', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Breadcrumbs / Default (es)', async ({page}) => {
@@ -47,7 +47,7 @@ test.describe('Visual Comparison: Breadcrumbs', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Breadcrumbs / Default (pt-BR)', async ({page}) => {
@@ -56,14 +56,14 @@ test.describe('Visual Comparison: Breadcrumbs', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Breadcrumbs / Playground', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-breadcrumbs--playground&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Breadcrumbs / Playground (fr)', async ({page}) => {
@@ -72,7 +72,7 @@ test.describe('Visual Comparison: Breadcrumbs', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Breadcrumbs / Playground (de)', async ({page}) => {
@@ -81,7 +81,7 @@ test.describe('Visual Comparison: Breadcrumbs', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Breadcrumbs / Playground (ja)', async ({page}) => {
@@ -90,7 +90,7 @@ test.describe('Visual Comparison: Breadcrumbs', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Breadcrumbs / Playground (es)', async ({page}) => {
@@ -99,7 +99,7 @@ test.describe('Visual Comparison: Breadcrumbs', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Breadcrumbs / Playground (pt-BR)', async ({page}) => {
@@ -108,14 +108,14 @@ test.describe('Visual Comparison: Breadcrumbs', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Breadcrumbs / Accent variant', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-breadcrumbs-features--accent&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Breadcrumbs / Accent variant (fr)', async ({page}) => {
@@ -124,7 +124,7 @@ test.describe('Visual Comparison: Breadcrumbs', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Breadcrumbs / Accent variant (de)', async ({page}) => {
@@ -133,7 +133,7 @@ test.describe('Visual Comparison: Breadcrumbs', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Breadcrumbs / Accent variant (ja)', async ({page}) => {
@@ -142,7 +142,7 @@ test.describe('Visual Comparison: Breadcrumbs', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Breadcrumbs / Accent variant (es)', async ({page}) => {
@@ -151,7 +151,7 @@ test.describe('Visual Comparison: Breadcrumbs', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Breadcrumbs / Accent variant (pt-BR)', async ({page}) => {
@@ -160,7 +160,7 @@ test.describe('Visual Comparison: Breadcrumbs', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Breadcrumbs / Long Links', async ({page}) => {
@@ -169,7 +169,7 @@ test.describe('Visual Comparison: Breadcrumbs', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Breadcrumbs / Long Links (fr)', async ({page}) => {
@@ -178,7 +178,7 @@ test.describe('Visual Comparison: Breadcrumbs', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Breadcrumbs / Long Links (de)', async ({page}) => {
@@ -187,7 +187,7 @@ test.describe('Visual Comparison: Breadcrumbs', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Breadcrumbs / Long Links (ja)', async ({page}) => {
@@ -196,7 +196,7 @@ test.describe('Visual Comparison: Breadcrumbs', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Breadcrumbs / Long Links (es)', async ({page}) => {
@@ -205,7 +205,7 @@ test.describe('Visual Comparison: Breadcrumbs', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Breadcrumbs / Long Links (pt-BR)', async ({page}) => {
@@ -214,7 +214,7 @@ test.describe('Visual Comparison: Breadcrumbs', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   // eslint-disable-next-line i18n-text/no-en
@@ -226,7 +226,7 @@ test.describe('Visual Comparison: Breadcrumbs', () => {
       )
 
       await page.waitForTimeout(500)
-      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+      await expect(page).toHaveScreenshot({fullPage: true})
     })
 
     test('Breadcrumbs / Long links (narrow viewport) (fr)', async ({page}) => {
@@ -235,7 +235,7 @@ test.describe('Visual Comparison: Breadcrumbs', () => {
       )
 
       await page.waitForTimeout(500)
-      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+      await expect(page).toHaveScreenshot({fullPage: true})
     })
 
     test('Breadcrumbs / Long links (narrow viewport) (de)', async ({page}) => {
@@ -244,7 +244,7 @@ test.describe('Visual Comparison: Breadcrumbs', () => {
       )
 
       await page.waitForTimeout(500)
-      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+      await expect(page).toHaveScreenshot({fullPage: true})
     })
 
     test('Breadcrumbs / Long links (narrow viewport) (ja)', async ({page}) => {
@@ -253,7 +253,7 @@ test.describe('Visual Comparison: Breadcrumbs', () => {
       )
 
       await page.waitForTimeout(500)
-      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+      await expect(page).toHaveScreenshot({fullPage: true})
     })
 
     test('Breadcrumbs / Long links (narrow viewport) (es)', async ({page}) => {
@@ -262,7 +262,7 @@ test.describe('Visual Comparison: Breadcrumbs', () => {
       )
 
       await page.waitForTimeout(500)
-      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+      await expect(page).toHaveScreenshot({fullPage: true})
     })
 
     test('Breadcrumbs / Long links (narrow viewport) (pt-BR)', async ({page}) => {
@@ -271,7 +271,7 @@ test.describe('Visual Comparison: Breadcrumbs', () => {
       )
 
       await page.waitForTimeout(500)
-      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+      await expect(page).toHaveScreenshot({fullPage: true})
     })
   })
 })

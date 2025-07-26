@@ -11,7 +11,7 @@ test.describe('Visual Comparison: Card', () => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-card--default&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Card / Default (fr)', async ({page}) => {
@@ -20,7 +20,7 @@ test.describe('Visual Comparison: Card', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Card / Default (de)', async ({page}) => {
@@ -29,7 +29,7 @@ test.describe('Visual Comparison: Card', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Card / Default (ja)', async ({page}) => {
@@ -38,7 +38,7 @@ test.describe('Visual Comparison: Card', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Card / Default (es)', async ({page}) => {
@@ -47,7 +47,7 @@ test.describe('Visual Comparison: Card', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Card / Default (pt-BR)', async ({page}) => {
@@ -56,14 +56,14 @@ test.describe('Visual Comparison: Card', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Card / Playground', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-card--playground&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Card / Playground (fr)', async ({page}) => {
@@ -72,7 +72,7 @@ test.describe('Visual Comparison: Card', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Card / Playground (de)', async ({page}) => {
@@ -81,7 +81,7 @@ test.describe('Visual Comparison: Card', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Card / Playground (ja)', async ({page}) => {
@@ -90,7 +90,7 @@ test.describe('Visual Comparison: Card', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Card / Playground (es)', async ({page}) => {
@@ -99,7 +99,7 @@ test.describe('Visual Comparison: Card', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Card / Playground (pt-BR)', async ({page}) => {
@@ -108,14 +108,14 @@ test.describe('Visual Comparison: Card', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Card / Minimal', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-card-features--minimal&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Card / Minimal (fr)', async ({page}) => {
@@ -124,7 +124,7 @@ test.describe('Visual Comparison: Card', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Card / Minimal (de)', async ({page}) => {
@@ -133,7 +133,7 @@ test.describe('Visual Comparison: Card', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Card / Minimal (ja)', async ({page}) => {
@@ -142,7 +142,7 @@ test.describe('Visual Comparison: Card', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Card / Minimal (es)', async ({page}) => {
@@ -151,7 +151,7 @@ test.describe('Visual Comparison: Card', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Card / Minimal (pt-BR)', async ({page}) => {
@@ -160,14 +160,14 @@ test.describe('Visual Comparison: Card', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Card / Minimal Dark', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-card-features--minimal-dark&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Card / Minimal Dark (fr)', async ({page}) => {
@@ -176,7 +176,7 @@ test.describe('Visual Comparison: Card', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Card / Minimal Dark (de)', async ({page}) => {
@@ -185,7 +185,7 @@ test.describe('Visual Comparison: Card', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Card / Minimal Dark (ja)', async ({page}) => {
@@ -194,7 +194,7 @@ test.describe('Visual Comparison: Card', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Card / Minimal Dark (es)', async ({page}) => {
@@ -203,7 +203,7 @@ test.describe('Visual Comparison: Card', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Card / Minimal Dark (pt-BR)', async ({page}) => {
@@ -212,14 +212,14 @@ test.describe('Visual Comparison: Card', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Card / CTA Text', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-card-features--cta-text&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Card / CTA Text (fr)', async ({page}) => {
@@ -228,7 +228,7 @@ test.describe('Visual Comparison: Card', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Card / CTA Text (de)', async ({page}) => {
@@ -237,7 +237,7 @@ test.describe('Visual Comparison: Card', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Card / CTA Text (ja)', async ({page}) => {
@@ -246,7 +246,7 @@ test.describe('Visual Comparison: Card', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Card / CTA Text (es)', async ({page}) => {
@@ -255,7 +255,7 @@ test.describe('Visual Comparison: Card', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Card / CTA Text (pt-BR)', async ({page}) => {
@@ -264,7 +264,7 @@ test.describe('Visual Comparison: Card', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Card / Align center', async ({page}) => {
@@ -273,7 +273,7 @@ test.describe('Visual Comparison: Card', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Card / Align center (fr)', async ({page}) => {
@@ -282,7 +282,7 @@ test.describe('Visual Comparison: Card', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Card / Align center (de)', async ({page}) => {
@@ -291,7 +291,7 @@ test.describe('Visual Comparison: Card', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Card / Align center (ja)', async ({page}) => {
@@ -300,7 +300,7 @@ test.describe('Visual Comparison: Card', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Card / Align center (es)', async ({page}) => {
@@ -309,7 +309,7 @@ test.describe('Visual Comparison: Card', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Card / Align center (pt-BR)', async ({page}) => {
@@ -318,14 +318,14 @@ test.describe('Visual Comparison: Card', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Card / Full Width', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-card-features--full-width&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Card / Full Width (fr)', async ({page}) => {
@@ -334,7 +334,7 @@ test.describe('Visual Comparison: Card', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Card / Full Width (de)', async ({page}) => {
@@ -343,7 +343,7 @@ test.describe('Visual Comparison: Card', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Card / Full Width (ja)', async ({page}) => {
@@ -352,7 +352,7 @@ test.describe('Visual Comparison: Card', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Card / Full Width (es)', async ({page}) => {
@@ -361,7 +361,7 @@ test.describe('Visual Comparison: Card', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Card / Full Width (pt-BR)', async ({page}) => {
@@ -370,14 +370,14 @@ test.describe('Visual Comparison: Card', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Card / Label', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-card-features--label&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Card / Label (fr)', async ({page}) => {
@@ -386,7 +386,7 @@ test.describe('Visual Comparison: Card', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Card / Label (de)', async ({page}) => {
@@ -395,7 +395,7 @@ test.describe('Visual Comparison: Card', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Card / Label (ja)', async ({page}) => {
@@ -404,7 +404,7 @@ test.describe('Visual Comparison: Card', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Card / Label (es)', async ({page}) => {
@@ -413,7 +413,7 @@ test.describe('Visual Comparison: Card', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Card / Label (pt-BR)', async ({page}) => {
@@ -422,14 +422,14 @@ test.describe('Visual Comparison: Card', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Card / Icon', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-card-features--icon&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Card / Icon (fr)', async ({page}) => {
@@ -438,7 +438,7 @@ test.describe('Visual Comparison: Card', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Card / Icon (de)', async ({page}) => {
@@ -447,7 +447,7 @@ test.describe('Visual Comparison: Card', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Card / Icon (ja)', async ({page}) => {
@@ -456,7 +456,7 @@ test.describe('Visual Comparison: Card', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Card / Icon (es)', async ({page}) => {
@@ -465,7 +465,7 @@ test.describe('Visual Comparison: Card', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Card / Icon (pt-BR)', async ({page}) => {
@@ -474,14 +474,14 @@ test.describe('Visual Comparison: Card', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Card / Border', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-card-features--border&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Card / Border (fr)', async ({page}) => {
@@ -490,7 +490,7 @@ test.describe('Visual Comparison: Card', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Card / Border (de)', async ({page}) => {
@@ -499,7 +499,7 @@ test.describe('Visual Comparison: Card', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Card / Border (ja)', async ({page}) => {
@@ -508,7 +508,7 @@ test.describe('Visual Comparison: Card', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Card / Border (es)', async ({page}) => {
@@ -517,7 +517,7 @@ test.describe('Visual Comparison: Card', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Card / Border (pt-BR)', async ({page}) => {
@@ -526,14 +526,14 @@ test.describe('Visual Comparison: Card', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Card / Icon Colors', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-card-features--icon-colors&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Card / Icon Colors (fr)', async ({page}) => {
@@ -542,7 +542,7 @@ test.describe('Visual Comparison: Card', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Card / Icon Colors (de)', async ({page}) => {
@@ -551,7 +551,7 @@ test.describe('Visual Comparison: Card', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Card / Icon Colors (ja)', async ({page}) => {
@@ -560,7 +560,7 @@ test.describe('Visual Comparison: Card', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Card / Icon Colors (es)', async ({page}) => {
@@ -569,7 +569,7 @@ test.describe('Visual Comparison: Card', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Card / Icon Colors (pt-BR)', async ({page}) => {
@@ -578,14 +578,14 @@ test.describe('Visual Comparison: Card', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Card / Icon (native)', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-card-features--with-icon-svg&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Card / Icon (native) (fr)', async ({page}) => {
@@ -594,7 +594,7 @@ test.describe('Visual Comparison: Card', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Card / Icon (native) (de)', async ({page}) => {
@@ -603,7 +603,7 @@ test.describe('Visual Comparison: Card', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Card / Icon (native) (ja)', async ({page}) => {
@@ -612,7 +612,7 @@ test.describe('Visual Comparison: Card', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Card / Icon (native) (es)', async ({page}) => {
@@ -621,7 +621,7 @@ test.describe('Visual Comparison: Card', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Card / Icon (native) (pt-BR)', async ({page}) => {
@@ -630,7 +630,7 @@ test.describe('Visual Comparison: Card', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Card / Icon And Label', async ({page}) => {
@@ -639,7 +639,7 @@ test.describe('Visual Comparison: Card', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Card / Icon And Label (fr)', async ({page}) => {
@@ -648,7 +648,7 @@ test.describe('Visual Comparison: Card', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Card / Icon And Label (de)', async ({page}) => {
@@ -657,7 +657,7 @@ test.describe('Visual Comparison: Card', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Card / Icon And Label (ja)', async ({page}) => {
@@ -666,7 +666,7 @@ test.describe('Visual Comparison: Card', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Card / Icon And Label (es)', async ({page}) => {
@@ -675,7 +675,7 @@ test.describe('Visual Comparison: Card', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Card / Icon And Label (pt-BR)', async ({page}) => {
@@ -684,7 +684,7 @@ test.describe('Visual Comparison: Card', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Card / Icon And Label With Fragment', async ({page}) => {
@@ -693,7 +693,7 @@ test.describe('Visual Comparison: Card', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Card / Icon And Label With Fragment (fr)', async ({page}) => {
@@ -702,7 +702,7 @@ test.describe('Visual Comparison: Card', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Card / Icon And Label With Fragment (de)', async ({page}) => {
@@ -711,7 +711,7 @@ test.describe('Visual Comparison: Card', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Card / Icon And Label With Fragment (ja)', async ({page}) => {
@@ -720,7 +720,7 @@ test.describe('Visual Comparison: Card', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Card / Icon And Label With Fragment (es)', async ({page}) => {
@@ -729,7 +729,7 @@ test.describe('Visual Comparison: Card', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Card / Icon And Label With Fragment (pt-BR)', async ({page}) => {
@@ -738,14 +738,14 @@ test.describe('Visual Comparison: Card', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Card / Image', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-card-features--image&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Card / Image (fr)', async ({page}) => {
@@ -754,7 +754,7 @@ test.describe('Visual Comparison: Card', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Card / Image (de)', async ({page}) => {
@@ -763,7 +763,7 @@ test.describe('Visual Comparison: Card', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Card / Image (ja)', async ({page}) => {
@@ -772,7 +772,7 @@ test.describe('Visual Comparison: Card', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Card / Image (es)', async ({page}) => {
@@ -781,7 +781,7 @@ test.describe('Visual Comparison: Card', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Card / Image (pt-BR)', async ({page}) => {
@@ -790,7 +790,7 @@ test.describe('Visual Comparison: Card', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Card / Image And Label', async ({page}) => {
@@ -799,7 +799,7 @@ test.describe('Visual Comparison: Card', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Card / Image And Label (fr)', async ({page}) => {
@@ -808,7 +808,7 @@ test.describe('Visual Comparison: Card', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Card / Image And Label (de)', async ({page}) => {
@@ -817,7 +817,7 @@ test.describe('Visual Comparison: Card', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Card / Image And Label (ja)', async ({page}) => {
@@ -826,7 +826,7 @@ test.describe('Visual Comparison: Card', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Card / Image And Label (es)', async ({page}) => {
@@ -835,7 +835,7 @@ test.describe('Visual Comparison: Card', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Card / Image And Label (pt-BR)', async ({page}) => {
@@ -844,7 +844,7 @@ test.describe('Visual Comparison: Card', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Card / Image Using Picture Element', async ({page}) => {
@@ -853,7 +853,7 @@ test.describe('Visual Comparison: Card', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Card / Image Using Picture Element (fr)', async ({page}) => {
@@ -862,7 +862,7 @@ test.describe('Visual Comparison: Card', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Card / Image Using Picture Element (de)', async ({page}) => {
@@ -871,7 +871,7 @@ test.describe('Visual Comparison: Card', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Card / Image Using Picture Element (ja)', async ({page}) => {
@@ -880,7 +880,7 @@ test.describe('Visual Comparison: Card', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Card / Image Using Picture Element (es)', async ({page}) => {
@@ -889,7 +889,7 @@ test.describe('Visual Comparison: Card', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Card / Image Using Picture Element (pt-BR)', async ({page}) => {
@@ -898,14 +898,14 @@ test.describe('Visual Comparison: Card', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Card / Stacked', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-card-features--stacked&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Card / Stacked (fr)', async ({page}) => {
@@ -914,7 +914,7 @@ test.describe('Visual Comparison: Card', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Card / Stacked (de)', async ({page}) => {
@@ -923,7 +923,7 @@ test.describe('Visual Comparison: Card', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Card / Stacked (ja)', async ({page}) => {
@@ -932,7 +932,7 @@ test.describe('Visual Comparison: Card', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Card / Stacked (es)', async ({page}) => {
@@ -941,7 +941,7 @@ test.describe('Visual Comparison: Card', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Card / Stacked (pt-BR)', async ({page}) => {
@@ -950,7 +950,7 @@ test.describe('Visual Comparison: Card', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Card / Torchlight Variant', async ({page}) => {
@@ -959,7 +959,7 @@ test.describe('Visual Comparison: Card', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Card / Torchlight Variant (fr)', async ({page}) => {
@@ -968,7 +968,7 @@ test.describe('Visual Comparison: Card', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Card / Torchlight Variant (de)', async ({page}) => {
@@ -977,7 +977,7 @@ test.describe('Visual Comparison: Card', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Card / Torchlight Variant (ja)', async ({page}) => {
@@ -986,7 +986,7 @@ test.describe('Visual Comparison: Card', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Card / Torchlight Variant (es)', async ({page}) => {
@@ -995,7 +995,7 @@ test.describe('Visual Comparison: Card', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Card / Torchlight Variant (pt-BR)', async ({page}) => {
@@ -1004,6 +1004,6 @@ test.describe('Visual Comparison: Card', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 })

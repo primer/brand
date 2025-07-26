@@ -11,7 +11,7 @@ test.describe('Visual Comparison: ComparisonTable', () => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-comparisontable--playground&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('ComparisonTable / Playground (fr)', async ({page}) => {
@@ -20,7 +20,7 @@ test.describe('Visual Comparison: ComparisonTable', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('ComparisonTable / Playground (de)', async ({page}) => {
@@ -29,7 +29,7 @@ test.describe('Visual Comparison: ComparisonTable', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('ComparisonTable / Playground (ja)', async ({page}) => {
@@ -38,7 +38,7 @@ test.describe('Visual Comparison: ComparisonTable', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('ComparisonTable / Playground (es)', async ({page}) => {
@@ -47,7 +47,7 @@ test.describe('Visual Comparison: ComparisonTable', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('ComparisonTable / Playground (pt-BR)', async ({page}) => {
@@ -56,7 +56,7 @@ test.describe('Visual Comparison: ComparisonTable', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   // eslint-disable-next-line i18n-text/no-en
@@ -68,7 +68,7 @@ test.describe('Visual Comparison: ComparisonTable', () => {
       )
 
       await page.waitForTimeout(500)
-      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+      await expect(page).toHaveScreenshot({fullPage: true})
     })
 
     test('ComparisonTable / Playground (mobile) (fr)', async ({page}) => {
@@ -77,7 +77,7 @@ test.describe('Visual Comparison: ComparisonTable', () => {
       )
 
       await page.waitForTimeout(500)
-      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+      await expect(page).toHaveScreenshot({fullPage: true})
     })
 
     test('ComparisonTable / Playground (mobile) (de)', async ({page}) => {
@@ -86,7 +86,7 @@ test.describe('Visual Comparison: ComparisonTable', () => {
       )
 
       await page.waitForTimeout(500)
-      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+      await expect(page).toHaveScreenshot({fullPage: true})
     })
 
     test('ComparisonTable / Playground (mobile) (ja)', async ({page}) => {
@@ -95,7 +95,7 @@ test.describe('Visual Comparison: ComparisonTable', () => {
       )
 
       await page.waitForTimeout(500)
-      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+      await expect(page).toHaveScreenshot({fullPage: true})
     })
 
     test('ComparisonTable / Playground (mobile) (es)', async ({page}) => {
@@ -104,7 +104,7 @@ test.describe('Visual Comparison: ComparisonTable', () => {
       )
 
       await page.waitForTimeout(500)
-      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+      await expect(page).toHaveScreenshot({fullPage: true})
     })
 
     test('ComparisonTable / Playground (mobile) (pt-BR)', async ({page}) => {
@@ -113,14 +113,14 @@ test.describe('Visual Comparison: ComparisonTable', () => {
       )
 
       await page.waitForTimeout(500)
-      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+      await expect(page).toHaveScreenshot({fullPage: true})
     })
   })
   test('ComparisonTable / Minimal', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-comparisontable--minimal&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('ComparisonTable / Minimal (fr)', async ({page}) => {
@@ -129,7 +129,7 @@ test.describe('Visual Comparison: ComparisonTable', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('ComparisonTable / Minimal (de)', async ({page}) => {
@@ -138,7 +138,7 @@ test.describe('Visual Comparison: ComparisonTable', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('ComparisonTable / Minimal (ja)', async ({page}) => {
@@ -147,7 +147,7 @@ test.describe('Visual Comparison: ComparisonTable', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('ComparisonTable / Minimal (es)', async ({page}) => {
@@ -156,7 +156,7 @@ test.describe('Visual Comparison: ComparisonTable', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('ComparisonTable / Minimal (pt-BR)', async ({page}) => {
@@ -165,6 +165,6 @@ test.describe('Visual Comparison: ComparisonTable', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 })

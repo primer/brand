@@ -11,7 +11,7 @@ test.describe('Visual Comparison: Link', () => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-link--default&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Link / Default (fr)', async ({page}) => {
@@ -20,7 +20,7 @@ test.describe('Visual Comparison: Link', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Link / Default (de)', async ({page}) => {
@@ -29,7 +29,7 @@ test.describe('Visual Comparison: Link', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Link / Default (ja)', async ({page}) => {
@@ -38,7 +38,7 @@ test.describe('Visual Comparison: Link', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Link / Default (es)', async ({page}) => {
@@ -47,7 +47,7 @@ test.describe('Visual Comparison: Link', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Link / Default (pt-BR)', async ({page}) => {
@@ -56,14 +56,14 @@ test.describe('Visual Comparison: Link', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Link / Large', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-link-features--large&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Link / Large (fr)', async ({page}) => {
@@ -72,7 +72,7 @@ test.describe('Visual Comparison: Link', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Link / Large (de)', async ({page}) => {
@@ -81,7 +81,7 @@ test.describe('Visual Comparison: Link', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Link / Large (ja)', async ({page}) => {
@@ -90,7 +90,7 @@ test.describe('Visual Comparison: Link', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Link / Large (es)', async ({page}) => {
@@ -99,7 +99,7 @@ test.describe('Visual Comparison: Link', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Link / Large (pt-BR)', async ({page}) => {
@@ -108,14 +108,14 @@ test.describe('Visual Comparison: Link', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Link / Arrow Start', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-link-features--arrow-start&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Link / Arrow Start (fr)', async ({page}) => {
@@ -124,7 +124,7 @@ test.describe('Visual Comparison: Link', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Link / Arrow Start (de)', async ({page}) => {
@@ -133,7 +133,7 @@ test.describe('Visual Comparison: Link', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Link / Arrow Start (ja)', async ({page}) => {
@@ -142,7 +142,7 @@ test.describe('Visual Comparison: Link', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Link / Arrow Start (es)', async ({page}) => {
@@ -151,7 +151,7 @@ test.describe('Visual Comparison: Link', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Link / Arrow Start (pt-BR)', async ({page}) => {
@@ -160,14 +160,14 @@ test.describe('Visual Comparison: Link', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Link / No Arrow', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-link-features--no-arrow&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Link / No Arrow (fr)', async ({page}) => {
@@ -176,7 +176,7 @@ test.describe('Visual Comparison: Link', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Link / No Arrow (de)', async ({page}) => {
@@ -185,7 +185,7 @@ test.describe('Visual Comparison: Link', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Link / No Arrow (ja)', async ({page}) => {
@@ -194,7 +194,7 @@ test.describe('Visual Comparison: Link', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Link / No Arrow (es)', async ({page}) => {
@@ -203,7 +203,7 @@ test.describe('Visual Comparison: Link', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Link / No Arrow (pt-BR)', async ({page}) => {
@@ -212,14 +212,14 @@ test.describe('Visual Comparison: Link', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Link / Accent', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-link-features--accent&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Link / Accent (fr)', async ({page}) => {
@@ -228,7 +228,7 @@ test.describe('Visual Comparison: Link', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Link / Accent (de)', async ({page}) => {
@@ -237,7 +237,7 @@ test.describe('Visual Comparison: Link', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Link / Accent (ja)', async ({page}) => {
@@ -246,7 +246,7 @@ test.describe('Visual Comparison: Link', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Link / Accent (es)', async ({page}) => {
@@ -255,7 +255,7 @@ test.describe('Visual Comparison: Link', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Link / Accent (pt-BR)', async ({page}) => {
@@ -264,14 +264,14 @@ test.describe('Visual Comparison: Link', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Link / External Link', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-link-features--external-link&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Link / External Link (fr)', async ({page}) => {
@@ -280,7 +280,7 @@ test.describe('Visual Comparison: Link', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Link / External Link (de)', async ({page}) => {
@@ -289,7 +289,7 @@ test.describe('Visual Comparison: Link', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Link / External Link (ja)', async ({page}) => {
@@ -298,7 +298,7 @@ test.describe('Visual Comparison: Link', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Link / External Link (es)', async ({page}) => {
@@ -307,7 +307,7 @@ test.describe('Visual Comparison: Link', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Link / External Link (pt-BR)', async ({page}) => {
@@ -316,6 +316,6 @@ test.describe('Visual Comparison: Link', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 })

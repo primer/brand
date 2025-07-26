@@ -13,7 +13,7 @@ test.describe('Visual Comparison: animation', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('animation / Animation On Press (fr)', async ({page}) => {
@@ -22,7 +22,7 @@ test.describe('Visual Comparison: animation', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('animation / Animation On Press (de)', async ({page}) => {
@@ -31,7 +31,7 @@ test.describe('Visual Comparison: animation', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('animation / Animation On Press (ja)', async ({page}) => {
@@ -40,7 +40,7 @@ test.describe('Visual Comparison: animation', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('animation / Animation On Press (es)', async ({page}) => {
@@ -49,7 +49,7 @@ test.describe('Visual Comparison: animation', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('animation / Animation On Press (pt-BR)', async ({page}) => {
@@ -58,6 +58,6 @@ test.describe('Visual Comparison: animation', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 })

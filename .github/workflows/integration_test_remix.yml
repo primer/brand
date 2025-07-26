@@ -13,7 +13,9 @@ env:
 
 jobs:
   test:
-    if: ${{ github.repository == 'primer/brand' }}
+    # Disabled as create-remix is no longer active.
+    # TODO: Migrate to react-router@v7
+    if: false
     name: Remix.run
     runs-on:
       labels: ubuntu-latest-16-cores

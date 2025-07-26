@@ -13,7 +13,7 @@ test.describe('Visual Comparison: TextRevealAnimation', () => {
     )
 
     await page.waitForTimeout(3000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('TextRevealAnimation / Playground (fr)', async ({page}) => {
@@ -22,7 +22,7 @@ test.describe('Visual Comparison: TextRevealAnimation', () => {
     )
 
     await page.waitForTimeout(3000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('TextRevealAnimation / Playground (de)', async ({page}) => {
@@ -31,7 +31,7 @@ test.describe('Visual Comparison: TextRevealAnimation', () => {
     )
 
     await page.waitForTimeout(3000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('TextRevealAnimation / Playground (ja)', async ({page}) => {
@@ -40,7 +40,7 @@ test.describe('Visual Comparison: TextRevealAnimation', () => {
     )
 
     await page.waitForTimeout(3000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('TextRevealAnimation / Playground (es)', async ({page}) => {
@@ -49,7 +49,7 @@ test.describe('Visual Comparison: TextRevealAnimation', () => {
     )
 
     await page.waitForTimeout(3000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('TextRevealAnimation / Playground (pt-BR)', async ({page}) => {
@@ -58,7 +58,7 @@ test.describe('Visual Comparison: TextRevealAnimation', () => {
     )
 
     await page.waitForTimeout(3000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('TextRevealAnimation / With Large Testimonial', async ({page}) => {
@@ -67,7 +67,7 @@ test.describe('Visual Comparison: TextRevealAnimation', () => {
     )
 
     await page.waitForTimeout(3000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('TextRevealAnimation / With Large Testimonial (fr)', async ({page}) => {
@@ -76,7 +76,7 @@ test.describe('Visual Comparison: TextRevealAnimation', () => {
     )
 
     await page.waitForTimeout(3000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('TextRevealAnimation / With Large Testimonial (de)', async ({page}) => {
@@ -85,7 +85,7 @@ test.describe('Visual Comparison: TextRevealAnimation', () => {
     )
 
     await page.waitForTimeout(3000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('TextRevealAnimation / With Large Testimonial (ja)', async ({page}) => {
@@ -94,7 +94,7 @@ test.describe('Visual Comparison: TextRevealAnimation', () => {
     )
 
     await page.waitForTimeout(3000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('TextRevealAnimation / With Large Testimonial (es)', async ({page}) => {
@@ -103,7 +103,7 @@ test.describe('Visual Comparison: TextRevealAnimation', () => {
     )
 
     await page.waitForTimeout(3000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('TextRevealAnimation / With Large Testimonial (pt-BR)', async ({page}) => {
@@ -112,7 +112,7 @@ test.describe('Visual Comparison: TextRevealAnimation', () => {
     )
 
     await page.waitForTimeout(3000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('TextRevealAnimation / With Hero', async ({page}) => {
@@ -121,7 +121,7 @@ test.describe('Visual Comparison: TextRevealAnimation', () => {
     )
 
     await page.waitForTimeout(3000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('TextRevealAnimation / With Hero (fr)', async ({page}) => {
@@ -130,7 +130,7 @@ test.describe('Visual Comparison: TextRevealAnimation', () => {
     )
 
     await page.waitForTimeout(3000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('TextRevealAnimation / With Hero (de)', async ({page}) => {
@@ -139,7 +139,7 @@ test.describe('Visual Comparison: TextRevealAnimation', () => {
     )
 
     await page.waitForTimeout(3000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('TextRevealAnimation / With Hero (ja)', async ({page}) => {
@@ -148,7 +148,7 @@ test.describe('Visual Comparison: TextRevealAnimation', () => {
     )
 
     await page.waitForTimeout(3000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('TextRevealAnimation / With Hero (es)', async ({page}) => {
@@ -157,7 +157,7 @@ test.describe('Visual Comparison: TextRevealAnimation', () => {
     )
 
     await page.waitForTimeout(3000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('TextRevealAnimation / With Hero (pt-BR)', async ({page}) => {
@@ -166,7 +166,7 @@ test.describe('Visual Comparison: TextRevealAnimation', () => {
     )
 
     await page.waitForTimeout(3000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('TextRevealAnimation / Animation On Scroll', async ({page}) => {
@@ -175,7 +175,7 @@ test.describe('Visual Comparison: TextRevealAnimation', () => {
     )
 
     await page.waitForTimeout(3000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('TextRevealAnimation / Animation On Scroll (fr)', async ({page}) => {
@@ -184,7 +184,7 @@ test.describe('Visual Comparison: TextRevealAnimation', () => {
     )
 
     await page.waitForTimeout(3000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('TextRevealAnimation / Animation On Scroll (de)', async ({page}) => {
@@ -193,7 +193,7 @@ test.describe('Visual Comparison: TextRevealAnimation', () => {
     )
 
     await page.waitForTimeout(3000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('TextRevealAnimation / Animation On Scroll (ja)', async ({page}) => {
@@ -202,7 +202,7 @@ test.describe('Visual Comparison: TextRevealAnimation', () => {
     )
 
     await page.waitForTimeout(3000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('TextRevealAnimation / Animation On Scroll (es)', async ({page}) => {
@@ -211,7 +211,7 @@ test.describe('Visual Comparison: TextRevealAnimation', () => {
     )
 
     await page.waitForTimeout(3000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('TextRevealAnimation / Animation On Scroll (pt-BR)', async ({page}) => {
@@ -220,6 +220,6 @@ test.describe('Visual Comparison: TextRevealAnimation', () => {
     )
 
     await page.waitForTimeout(3000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 })

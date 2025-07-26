@@ -9,7 +9,7 @@ on:
 
 jobs:
   release-canary:
-    if: ${{ github.repository == 'primer/brand' }}
+    if: false
     name: Canary
     runs-on: ubuntu-latest
     steps:

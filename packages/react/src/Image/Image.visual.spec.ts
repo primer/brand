@@ -11,7 +11,7 @@ test.describe('Visual Comparison: Image', () => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-image--default&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Image / Default (fr)', async ({page}) => {
@@ -20,7 +20,7 @@ test.describe('Visual Comparison: Image', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Image / Default (de)', async ({page}) => {
@@ -29,7 +29,7 @@ test.describe('Visual Comparison: Image', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Image / Default (ja)', async ({page}) => {
@@ -38,7 +38,7 @@ test.describe('Visual Comparison: Image', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Image / Default (es)', async ({page}) => {
@@ -47,7 +47,7 @@ test.describe('Visual Comparison: Image', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Image / Default (pt-BR)', async ({page}) => {
@@ -56,14 +56,14 @@ test.describe('Visual Comparison: Image', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Image / Playground', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-image--playground&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Image / Playground (fr)', async ({page}) => {
@@ -72,7 +72,7 @@ test.describe('Visual Comparison: Image', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Image / Playground (de)', async ({page}) => {
@@ -81,7 +81,7 @@ test.describe('Visual Comparison: Image', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Image / Playground (ja)', async ({page}) => {
@@ -90,7 +90,7 @@ test.describe('Visual Comparison: Image', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Image / Playground (es)', async ({page}) => {
@@ -99,7 +99,7 @@ test.describe('Visual Comparison: Image', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Image / Playground (pt-BR)', async ({page}) => {
@@ -108,7 +108,7 @@ test.describe('Visual Comparison: Image', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Image / Custom Picture Aspect Ratio', async ({page}) => {
@@ -117,7 +117,7 @@ test.describe('Visual Comparison: Image', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Image / Custom Picture Aspect Ratio (fr)', async ({page}) => {
@@ -126,7 +126,7 @@ test.describe('Visual Comparison: Image', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Image / Custom Picture Aspect Ratio (de)', async ({page}) => {
@@ -135,7 +135,7 @@ test.describe('Visual Comparison: Image', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Image / Custom Picture Aspect Ratio (ja)', async ({page}) => {
@@ -144,7 +144,7 @@ test.describe('Visual Comparison: Image', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Image / Custom Picture Aspect Ratio (es)', async ({page}) => {
@@ -153,7 +153,7 @@ test.describe('Visual Comparison: Image', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Image / Custom Picture Aspect Ratio (pt-BR)', async ({page}) => {
@@ -162,7 +162,7 @@ test.describe('Visual Comparison: Image', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Image / Custom Image Aspect Ratio', async ({page}) => {
@@ -171,7 +171,7 @@ test.describe('Visual Comparison: Image', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Image / Custom Image Aspect Ratio (fr)', async ({page}) => {
@@ -180,7 +180,7 @@ test.describe('Visual Comparison: Image', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Image / Custom Image Aspect Ratio (de)', async ({page}) => {
@@ -189,7 +189,7 @@ test.describe('Visual Comparison: Image', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Image / Custom Image Aspect Ratio (ja)', async ({page}) => {
@@ -198,7 +198,7 @@ test.describe('Visual Comparison: Image', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Image / Custom Image Aspect Ratio (es)', async ({page}) => {
@@ -207,7 +207,7 @@ test.describe('Visual Comparison: Image', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Image / Custom Image Aspect Ratio (pt-BR)', async ({page}) => {
@@ -216,7 +216,7 @@ test.describe('Visual Comparison: Image', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Image / Custom Image Height', async ({page}) => {
@@ -225,7 +225,7 @@ test.describe('Visual Comparison: Image', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Image / Custom Image Height (fr)', async ({page}) => {
@@ -234,7 +234,7 @@ test.describe('Visual Comparison: Image', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Image / Custom Image Height (de)', async ({page}) => {
@@ -243,7 +243,7 @@ test.describe('Visual Comparison: Image', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Image / Custom Image Height (ja)', async ({page}) => {
@@ -252,7 +252,7 @@ test.describe('Visual Comparison: Image', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Image / Custom Image Height (es)', async ({page}) => {
@@ -261,7 +261,7 @@ test.describe('Visual Comparison: Image', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Image / Custom Image Height (pt-BR)', async ({page}) => {
@@ -270,7 +270,7 @@ test.describe('Visual Comparison: Image', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Image / Custom Image Width', async ({page}) => {
@@ -279,7 +279,7 @@ test.describe('Visual Comparison: Image', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Image / Custom Image Width (fr)', async ({page}) => {
@@ -288,7 +288,7 @@ test.describe('Visual Comparison: Image', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Image / Custom Image Width (de)', async ({page}) => {
@@ -297,7 +297,7 @@ test.describe('Visual Comparison: Image', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Image / Custom Image Width (ja)', async ({page}) => {
@@ -306,7 +306,7 @@ test.describe('Visual Comparison: Image', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Image / Custom Image Width (es)', async ({page}) => {
@@ -315,7 +315,7 @@ test.describe('Visual Comparison: Image', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Image / Custom Image Width (pt-BR)', async ({page}) => {
@@ -324,7 +324,7 @@ test.describe('Visual Comparison: Image', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Image / Custom Image Width And Height', async ({page}) => {
@@ -333,7 +333,7 @@ test.describe('Visual Comparison: Image', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Image / Custom Image Width And Height (fr)', async ({page}) => {
@@ -342,7 +342,7 @@ test.describe('Visual Comparison: Image', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Image / Custom Image Width And Height (de)', async ({page}) => {
@@ -351,7 +351,7 @@ test.describe('Visual Comparison: Image', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Image / Custom Image Width And Height (ja)', async ({page}) => {
@@ -360,7 +360,7 @@ test.describe('Visual Comparison: Image', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Image / Custom Image Width And Height (es)', async ({page}) => {
@@ -369,7 +369,7 @@ test.describe('Visual Comparison: Image', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Image / Custom Image Width And Height (pt-BR)', async ({page}) => {
@@ -378,14 +378,14 @@ test.describe('Visual Comparison: Image', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Image / Custom Class', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-image-features--custom-class&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Image / Custom Class (fr)', async ({page}) => {
@@ -394,7 +394,7 @@ test.describe('Visual Comparison: Image', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Image / Custom Class (de)', async ({page}) => {
@@ -403,7 +403,7 @@ test.describe('Visual Comparison: Image', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Image / Custom Class (ja)', async ({page}) => {
@@ -412,7 +412,7 @@ test.describe('Visual Comparison: Image', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Image / Custom Class (es)', async ({page}) => {
@@ -421,7 +421,7 @@ test.describe('Visual Comparison: Image', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Image / Custom Class (pt-BR)', async ({page}) => {
@@ -430,7 +430,7 @@ test.describe('Visual Comparison: Image', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Image / Custom Class On Picture', async ({page}) => {
@@ -439,7 +439,7 @@ test.describe('Visual Comparison: Image', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Image / Custom Class On Picture (fr)', async ({page}) => {
@@ -448,7 +448,7 @@ test.describe('Visual Comparison: Image', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Image / Custom Class On Picture (de)', async ({page}) => {
@@ -457,7 +457,7 @@ test.describe('Visual Comparison: Image', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Image / Custom Class On Picture (ja)', async ({page}) => {
@@ -466,7 +466,7 @@ test.describe('Visual Comparison: Image', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Image / Custom Class On Picture (es)', async ({page}) => {
@@ -475,7 +475,7 @@ test.describe('Visual Comparison: Image', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Image / Custom Class On Picture (pt-BR)', async ({page}) => {
@@ -484,7 +484,7 @@ test.describe('Visual Comparison: Image', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Image / Custom Class With Aspect Ratio', async ({page}) => {
@@ -493,7 +493,7 @@ test.describe('Visual Comparison: Image', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Image / Custom Class With Aspect Ratio (fr)', async ({page}) => {
@@ -502,7 +502,7 @@ test.describe('Visual Comparison: Image', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Image / Custom Class With Aspect Ratio (de)', async ({page}) => {
@@ -511,7 +511,7 @@ test.describe('Visual Comparison: Image', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Image / Custom Class With Aspect Ratio (ja)', async ({page}) => {
@@ -520,7 +520,7 @@ test.describe('Visual Comparison: Image', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Image / Custom Class With Aspect Ratio (es)', async ({page}) => {
@@ -529,7 +529,7 @@ test.describe('Visual Comparison: Image', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Image / Custom Class With Aspect Ratio (pt-BR)', async ({page}) => {
@@ -538,7 +538,7 @@ test.describe('Visual Comparison: Image', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Image / Border Radius Options', async ({page}) => {
@@ -547,7 +547,7 @@ test.describe('Visual Comparison: Image', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Image / Border Radius Options (fr)', async ({page}) => {
@@ -556,7 +556,7 @@ test.describe('Visual Comparison: Image', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Image / Border Radius Options (de)', async ({page}) => {
@@ -565,7 +565,7 @@ test.describe('Visual Comparison: Image', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Image / Border Radius Options (ja)', async ({page}) => {
@@ -574,7 +574,7 @@ test.describe('Visual Comparison: Image', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Image / Border Radius Options (es)', async ({page}) => {
@@ -583,7 +583,7 @@ test.describe('Visual Comparison: Image', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Image / Border Radius Options (pt-BR)', async ({page}) => {
@@ -592,6 +592,6 @@ test.describe('Visual Comparison: Image', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 })

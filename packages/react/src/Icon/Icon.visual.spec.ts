@@ -11,7 +11,7 @@ test.describe('Visual Comparison: Icon', () => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-icon--playground&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Icon / Playground (fr)', async ({page}) => {
@@ -20,7 +20,7 @@ test.describe('Visual Comparison: Icon', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Icon / Playground (de)', async ({page}) => {
@@ -29,7 +29,7 @@ test.describe('Visual Comparison: Icon', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Icon / Playground (ja)', async ({page}) => {
@@ -38,7 +38,7 @@ test.describe('Visual Comparison: Icon', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Icon / Playground (es)', async ({page}) => {
@@ -47,7 +47,7 @@ test.describe('Visual Comparison: Icon', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Icon / Playground (pt-BR)', async ({page}) => {
@@ -56,7 +56,7 @@ test.describe('Visual Comparison: Icon', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Icon / With Background', async ({page}) => {
@@ -65,7 +65,7 @@ test.describe('Visual Comparison: Icon', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Icon / With Background (fr)', async ({page}) => {
@@ -74,7 +74,7 @@ test.describe('Visual Comparison: Icon', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Icon / With Background (de)', async ({page}) => {
@@ -83,7 +83,7 @@ test.describe('Visual Comparison: Icon', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Icon / With Background (ja)', async ({page}) => {
@@ -92,7 +92,7 @@ test.describe('Visual Comparison: Icon', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Icon / With Background (es)', async ({page}) => {
@@ -101,7 +101,7 @@ test.describe('Visual Comparison: Icon', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Icon / With Background (pt-BR)', async ({page}) => {
@@ -110,14 +110,14 @@ test.describe('Visual Comparison: Icon', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Icon / Colors', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-icon-features--colors&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Icon / Colors (fr)', async ({page}) => {
@@ -126,7 +126,7 @@ test.describe('Visual Comparison: Icon', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Icon / Colors (de)', async ({page}) => {
@@ -135,7 +135,7 @@ test.describe('Visual Comparison: Icon', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Icon / Colors (ja)', async ({page}) => {
@@ -144,7 +144,7 @@ test.describe('Visual Comparison: Icon', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Icon / Colors (es)', async ({page}) => {
@@ -153,7 +153,7 @@ test.describe('Visual Comparison: Icon', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Icon / Colors (pt-BR)', async ({page}) => {
@@ -162,14 +162,14 @@ test.describe('Visual Comparison: Icon', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Icon / Sizes', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-icon-features--sizes&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Icon / Sizes (fr)', async ({page}) => {
@@ -178,7 +178,7 @@ test.describe('Visual Comparison: Icon', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Icon / Sizes (de)', async ({page}) => {
@@ -187,7 +187,7 @@ test.describe('Visual Comparison: Icon', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Icon / Sizes (ja)', async ({page}) => {
@@ -196,7 +196,7 @@ test.describe('Visual Comparison: Icon', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Icon / Sizes (es)', async ({page}) => {
@@ -205,7 +205,7 @@ test.describe('Visual Comparison: Icon', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Icon / Sizes (pt-BR)', async ({page}) => {
@@ -214,14 +214,14 @@ test.describe('Visual Comparison: Icon', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Icon / Accepts JSX', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-icon-features--accepts-jsx&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Icon / Accepts JSX (fr)', async ({page}) => {
@@ -230,7 +230,7 @@ test.describe('Visual Comparison: Icon', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Icon / Accepts JSX (de)', async ({page}) => {
@@ -239,7 +239,7 @@ test.describe('Visual Comparison: Icon', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Icon / Accepts JSX (ja)', async ({page}) => {
@@ -248,7 +248,7 @@ test.describe('Visual Comparison: Icon', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Icon / Accepts JSX (es)', async ({page}) => {
@@ -257,7 +257,7 @@ test.describe('Visual Comparison: Icon', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Icon / Accepts JSX (pt-BR)', async ({page}) => {
@@ -266,6 +266,6 @@ test.describe('Visual Comparison: Icon', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 })

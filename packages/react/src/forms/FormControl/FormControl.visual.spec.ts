@@ -13,7 +13,7 @@ test.describe('Visual Comparison: FormControl', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('FormControl / w/ TextInput - Playground (fr)', async ({page}) => {
@@ -22,7 +22,7 @@ test.describe('Visual Comparison: FormControl', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('FormControl / w/ TextInput - Playground (de)', async ({page}) => {
@@ -31,7 +31,7 @@ test.describe('Visual Comparison: FormControl', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('FormControl / w/ TextInput - Playground (ja)', async ({page}) => {
@@ -40,7 +40,7 @@ test.describe('Visual Comparison: FormControl', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('FormControl / w/ TextInput - Playground (es)', async ({page}) => {
@@ -49,7 +49,7 @@ test.describe('Visual Comparison: FormControl', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('FormControl / w/ TextInput - Playground (pt-BR)', async ({page}) => {
@@ -58,7 +58,7 @@ test.describe('Visual Comparison: FormControl', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('FormControl / w/ Textarea - Playground', async ({page}) => {
@@ -67,7 +67,7 @@ test.describe('Visual Comparison: FormControl', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('FormControl / w/ Textarea - Playground (fr)', async ({page}) => {
@@ -76,7 +76,7 @@ test.describe('Visual Comparison: FormControl', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('FormControl / w/ Textarea - Playground (de)', async ({page}) => {
@@ -85,7 +85,7 @@ test.describe('Visual Comparison: FormControl', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('FormControl / w/ Textarea - Playground (ja)', async ({page}) => {
@@ -94,7 +94,7 @@ test.describe('Visual Comparison: FormControl', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('FormControl / w/ Textarea - Playground (es)', async ({page}) => {
@@ -103,7 +103,7 @@ test.describe('Visual Comparison: FormControl', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('FormControl / w/ Textarea - Playground (pt-BR)', async ({page}) => {
@@ -112,7 +112,7 @@ test.describe('Visual Comparison: FormControl', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('FormControl / w/ Select - Playground', async ({page}) => {
@@ -121,7 +121,7 @@ test.describe('Visual Comparison: FormControl', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('FormControl / w/ Select - Playground (fr)', async ({page}) => {
@@ -130,7 +130,7 @@ test.describe('Visual Comparison: FormControl', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('FormControl / w/ Select - Playground (de)', async ({page}) => {
@@ -139,7 +139,7 @@ test.describe('Visual Comparison: FormControl', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('FormControl / w/ Select - Playground (ja)', async ({page}) => {
@@ -148,7 +148,7 @@ test.describe('Visual Comparison: FormControl', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('FormControl / w/ Select - Playground (es)', async ({page}) => {
@@ -157,7 +157,7 @@ test.describe('Visual Comparison: FormControl', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('FormControl / w/ Select - Playground (pt-BR)', async ({page}) => {
@@ -166,7 +166,7 @@ test.describe('Visual Comparison: FormControl', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('FormControl / w/ Checkbox - Playground', async ({page}) => {
@@ -175,7 +175,7 @@ test.describe('Visual Comparison: FormControl', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('FormControl / w/ Checkbox - Playground (fr)', async ({page}) => {
@@ -184,7 +184,7 @@ test.describe('Visual Comparison: FormControl', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('FormControl / w/ Checkbox - Playground (de)', async ({page}) => {
@@ -193,7 +193,7 @@ test.describe('Visual Comparison: FormControl', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('FormControl / w/ Checkbox - Playground (ja)', async ({page}) => {
@@ -202,7 +202,7 @@ test.describe('Visual Comparison: FormControl', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('FormControl / w/ Checkbox - Playground (es)', async ({page}) => {
@@ -211,7 +211,7 @@ test.describe('Visual Comparison: FormControl', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('FormControl / w/ Checkbox - Playground (pt-BR)', async ({page}) => {
@@ -220,7 +220,7 @@ test.describe('Visual Comparison: FormControl', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('FormControl / w/ Radio - Playground', async ({page}) => {
@@ -229,7 +229,7 @@ test.describe('Visual Comparison: FormControl', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('FormControl / w/ Radio - Playground (fr)', async ({page}) => {
@@ -238,7 +238,7 @@ test.describe('Visual Comparison: FormControl', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('FormControl / w/ Radio - Playground (de)', async ({page}) => {
@@ -247,7 +247,7 @@ test.describe('Visual Comparison: FormControl', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('FormControl / w/ Radio - Playground (ja)', async ({page}) => {
@@ -256,7 +256,7 @@ test.describe('Visual Comparison: FormControl', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('FormControl / w/ Radio - Playground (es)', async ({page}) => {
@@ -265,7 +265,7 @@ test.describe('Visual Comparison: FormControl', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('FormControl / w/ Radio - Playground (pt-BR)', async ({page}) => {
@@ -274,7 +274,7 @@ test.describe('Visual Comparison: FormControl', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('FormControl / w/ Success Validation - Playground', async ({page}) => {
@@ -283,7 +283,7 @@ test.describe('Visual Comparison: FormControl', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('FormControl / w/ Success Validation - Playground (fr)', async ({page}) => {
@@ -292,7 +292,7 @@ test.describe('Visual Comparison: FormControl', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('FormControl / w/ Success Validation - Playground (de)', async ({page}) => {
@@ -301,7 +301,7 @@ test.describe('Visual Comparison: FormControl', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('FormControl / w/ Success Validation - Playground (ja)', async ({page}) => {
@@ -310,7 +310,7 @@ test.describe('Visual Comparison: FormControl', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('FormControl / w/ Success Validation - Playground (es)', async ({page}) => {
@@ -319,7 +319,7 @@ test.describe('Visual Comparison: FormControl', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('FormControl / w/ Success Validation - Playground (pt-BR)', async ({page}) => {
@@ -328,7 +328,7 @@ test.describe('Visual Comparison: FormControl', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('FormControl / w/ Error Validation - Playground', async ({page}) => {
@@ -337,7 +337,7 @@ test.describe('Visual Comparison: FormControl', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('FormControl / w/ Error Validation - Playground (fr)', async ({page}) => {
@@ -346,7 +346,7 @@ test.describe('Visual Comparison: FormControl', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('FormControl / w/ Error Validation - Playground (de)', async ({page}) => {
@@ -355,7 +355,7 @@ test.describe('Visual Comparison: FormControl', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('FormControl / w/ Error Validation - Playground (ja)', async ({page}) => {
@@ -364,7 +364,7 @@ test.describe('Visual Comparison: FormControl', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('FormControl / w/ Error Validation - Playground (es)', async ({page}) => {
@@ -373,7 +373,7 @@ test.describe('Visual Comparison: FormControl', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('FormControl / w/ Error Validation - Playground (pt-BR)', async ({page}) => {
@@ -382,7 +382,7 @@ test.describe('Visual Comparison: FormControl', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('FormControl / w/ Checkbox with Error Validation - Playground', async ({page}) => {
@@ -391,7 +391,7 @@ test.describe('Visual Comparison: FormControl', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('FormControl / w/ Checkbox with Error Validation - Playground (fr)', async ({page}) => {
@@ -400,7 +400,7 @@ test.describe('Visual Comparison: FormControl', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('FormControl / w/ Checkbox with Error Validation - Playground (de)', async ({page}) => {
@@ -409,7 +409,7 @@ test.describe('Visual Comparison: FormControl', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('FormControl / w/ Checkbox with Error Validation - Playground (ja)', async ({page}) => {
@@ -418,7 +418,7 @@ test.describe('Visual Comparison: FormControl', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('FormControl / w/ Checkbox with Error Validation - Playground (es)', async ({page}) => {
@@ -427,7 +427,7 @@ test.describe('Visual Comparison: FormControl', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('FormControl / w/ Checkbox with Error Validation - Playground (pt-BR)', async ({page}) => {
@@ -436,6 +436,6 @@ test.describe('Visual Comparison: FormControl', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 })

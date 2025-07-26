@@ -11,7 +11,7 @@ test.describe('Visual Comparison: PricingOptions', () => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-pricingoptions--default&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('PricingOptions / Default (fr)', async ({page}) => {
@@ -20,7 +20,7 @@ test.describe('Visual Comparison: PricingOptions', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('PricingOptions / Default (de)', async ({page}) => {
@@ -29,7 +29,7 @@ test.describe('Visual Comparison: PricingOptions', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('PricingOptions / Default (ja)', async ({page}) => {
@@ -38,7 +38,7 @@ test.describe('Visual Comparison: PricingOptions', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('PricingOptions / Default (es)', async ({page}) => {
@@ -47,7 +47,7 @@ test.describe('Visual Comparison: PricingOptions', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('PricingOptions / Default (pt-BR)', async ({page}) => {
@@ -56,7 +56,7 @@ test.describe('Visual Comparison: PricingOptions', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('PricingOptions / Copilot Individual Plans', async ({page}) => {
@@ -65,7 +65,7 @@ test.describe('Visual Comparison: PricingOptions', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('PricingOptions / Copilot Individual Plans (fr)', async ({page}) => {
@@ -74,7 +74,7 @@ test.describe('Visual Comparison: PricingOptions', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('PricingOptions / Copilot Individual Plans (de)', async ({page}) => {
@@ -83,7 +83,7 @@ test.describe('Visual Comparison: PricingOptions', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('PricingOptions / Copilot Individual Plans (ja)', async ({page}) => {
@@ -92,7 +92,7 @@ test.describe('Visual Comparison: PricingOptions', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('PricingOptions / Copilot Individual Plans (es)', async ({page}) => {
@@ -101,7 +101,7 @@ test.describe('Visual Comparison: PricingOptions', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('PricingOptions / Copilot Individual Plans (pt-BR)', async ({page}) => {
@@ -110,7 +110,7 @@ test.describe('Visual Comparison: PricingOptions', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('PricingOptions / Copilot Business Plans', async ({page}) => {
@@ -119,7 +119,7 @@ test.describe('Visual Comparison: PricingOptions', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('PricingOptions / Copilot Business Plans (fr)', async ({page}) => {
@@ -128,7 +128,7 @@ test.describe('Visual Comparison: PricingOptions', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('PricingOptions / Copilot Business Plans (de)', async ({page}) => {
@@ -137,7 +137,7 @@ test.describe('Visual Comparison: PricingOptions', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('PricingOptions / Copilot Business Plans (ja)', async ({page}) => {
@@ -146,7 +146,7 @@ test.describe('Visual Comparison: PricingOptions', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('PricingOptions / Copilot Business Plans (es)', async ({page}) => {
@@ -155,7 +155,7 @@ test.describe('Visual Comparison: PricingOptions', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('PricingOptions / Copilot Business Plans (pt-BR)', async ({page}) => {
@@ -164,7 +164,7 @@ test.describe('Visual Comparison: PricingOptions', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('PricingOptions / Cards Variant', async ({page}) => {
@@ -173,7 +173,7 @@ test.describe('Visual Comparison: PricingOptions', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('PricingOptions / Cards Variant (fr)', async ({page}) => {
@@ -182,7 +182,7 @@ test.describe('Visual Comparison: PricingOptions', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('PricingOptions / Cards Variant (de)', async ({page}) => {
@@ -191,7 +191,7 @@ test.describe('Visual Comparison: PricingOptions', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('PricingOptions / Cards Variant (ja)', async ({page}) => {
@@ -200,7 +200,7 @@ test.describe('Visual Comparison: PricingOptions', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('PricingOptions / Cards Variant (es)', async ({page}) => {
@@ -209,7 +209,7 @@ test.describe('Visual Comparison: PricingOptions', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('PricingOptions / Cards Variant (pt-BR)', async ({page}) => {
@@ -218,7 +218,7 @@ test.describe('Visual Comparison: PricingOptions', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('PricingOptions / Default Gradient Variant', async ({page}) => {
@@ -227,7 +227,7 @@ test.describe('Visual Comparison: PricingOptions', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('PricingOptions / Default Gradient Variant (fr)', async ({page}) => {
@@ -236,7 +236,7 @@ test.describe('Visual Comparison: PricingOptions', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('PricingOptions / Default Gradient Variant (de)', async ({page}) => {
@@ -245,7 +245,7 @@ test.describe('Visual Comparison: PricingOptions', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('PricingOptions / Default Gradient Variant (ja)', async ({page}) => {
@@ -254,7 +254,7 @@ test.describe('Visual Comparison: PricingOptions', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('PricingOptions / Default Gradient Variant (es)', async ({page}) => {
@@ -263,7 +263,7 @@ test.describe('Visual Comparison: PricingOptions', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('PricingOptions / Default Gradient Variant (pt-BR)', async ({page}) => {
@@ -272,7 +272,7 @@ test.describe('Visual Comparison: PricingOptions', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('PricingOptions / Cards Gradient Variant', async ({page}) => {
@@ -281,7 +281,7 @@ test.describe('Visual Comparison: PricingOptions', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('PricingOptions / Cards Gradient Variant (fr)', async ({page}) => {
@@ -290,7 +290,7 @@ test.describe('Visual Comparison: PricingOptions', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('PricingOptions / Cards Gradient Variant (de)', async ({page}) => {
@@ -299,7 +299,7 @@ test.describe('Visual Comparison: PricingOptions', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('PricingOptions / Cards Gradient Variant (ja)', async ({page}) => {
@@ -308,7 +308,7 @@ test.describe('Visual Comparison: PricingOptions', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('PricingOptions / Cards Gradient Variant (es)', async ({page}) => {
@@ -317,7 +317,7 @@ test.describe('Visual Comparison: PricingOptions', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('PricingOptions / Cards Gradient Variant (pt-BR)', async ({page}) => {
@@ -326,61 +326,7 @@ test.describe('Visual Comparison: PricingOptions', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
-  })
-
-  test('PricingOptions / One Option', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-pricingoptions-features--one-option&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
-  })
-
-  test('PricingOptions / One Option (fr)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-pricingoptions-features--one-option&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
-  })
-
-  test('PricingOptions / One Option (de)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-pricingoptions-features--one-option&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
-  })
-
-  test('PricingOptions / One Option (ja)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-pricingoptions-features--one-option&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
-  })
-
-  test('PricingOptions / One Option (es)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-pricingoptions-features--one-option&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
-  })
-
-  test('PricingOptions / One Option (pt-BR)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-pricingoptions-features--one-option&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('PricingOptions / Leading Component', async ({page}) => {
@@ -389,7 +335,7 @@ test.describe('Visual Comparison: PricingOptions', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('PricingOptions / Leading Component (fr)', async ({page}) => {
@@ -398,7 +344,7 @@ test.describe('Visual Comparison: PricingOptions', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('PricingOptions / Leading Component (de)', async ({page}) => {
@@ -407,7 +353,7 @@ test.describe('Visual Comparison: PricingOptions', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('PricingOptions / Leading Component (ja)', async ({page}) => {
@@ -416,7 +362,7 @@ test.describe('Visual Comparison: PricingOptions', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('PricingOptions / Leading Component (es)', async ({page}) => {
@@ -425,7 +371,7 @@ test.describe('Visual Comparison: PricingOptions', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('PricingOptions / Leading Component (pt-BR)', async ({page}) => {
@@ -434,7 +380,61 @@ test.describe('Visual Comparison: PricingOptions', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
+  test('PricingOptions / One Option', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-pricingoptions-features--one-option&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
+  test('PricingOptions / One Option (fr)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-pricingoptions-features--one-option&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
+  test('PricingOptions / One Option (de)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-pricingoptions-features--one-option&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
+  test('PricingOptions / One Option (ja)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-pricingoptions-features--one-option&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
+  test('PricingOptions / One Option (es)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-pricingoptions-features--one-option&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
+  test('PricingOptions / One Option (pt-BR)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-pricingoptions-features--one-option&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('PricingOptions / Two Options', async ({page}) => {
@@ -443,7 +443,7 @@ test.describe('Visual Comparison: PricingOptions', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('PricingOptions / Two Options (fr)', async ({page}) => {
@@ -452,7 +452,7 @@ test.describe('Visual Comparison: PricingOptions', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('PricingOptions / Two Options (de)', async ({page}) => {
@@ -461,7 +461,7 @@ test.describe('Visual Comparison: PricingOptions', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('PricingOptions / Two Options (ja)', async ({page}) => {
@@ -470,7 +470,7 @@ test.describe('Visual Comparison: PricingOptions', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('PricingOptions / Two Options (es)', async ({page}) => {
@@ -479,7 +479,7 @@ test.describe('Visual Comparison: PricingOptions', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('PricingOptions / Two Options (pt-BR)', async ({page}) => {
@@ -488,7 +488,7 @@ test.describe('Visual Comparison: PricingOptions', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('PricingOptions / Three Options', async ({page}) => {
@@ -497,7 +497,7 @@ test.describe('Visual Comparison: PricingOptions', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('PricingOptions / Three Options (fr)', async ({page}) => {
@@ -506,7 +506,7 @@ test.describe('Visual Comparison: PricingOptions', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('PricingOptions / Three Options (de)', async ({page}) => {
@@ -515,7 +515,7 @@ test.describe('Visual Comparison: PricingOptions', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('PricingOptions / Three Options (ja)', async ({page}) => {
@@ -524,7 +524,7 @@ test.describe('Visual Comparison: PricingOptions', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('PricingOptions / Three Options (es)', async ({page}) => {
@@ -533,7 +533,7 @@ test.describe('Visual Comparison: PricingOptions', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('PricingOptions / Three Options (pt-BR)', async ({page}) => {
@@ -542,7 +542,7 @@ test.describe('Visual Comparison: PricingOptions', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('PricingOptions / Four Options', async ({page}) => {
@@ -551,7 +551,7 @@ test.describe('Visual Comparison: PricingOptions', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('PricingOptions / Four Options (fr)', async ({page}) => {
@@ -560,7 +560,7 @@ test.describe('Visual Comparison: PricingOptions', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('PricingOptions / Four Options (de)', async ({page}) => {
@@ -569,7 +569,7 @@ test.describe('Visual Comparison: PricingOptions', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('PricingOptions / Four Options (ja)', async ({page}) => {
@@ -578,7 +578,7 @@ test.describe('Visual Comparison: PricingOptions', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('PricingOptions / Four Options (es)', async ({page}) => {
@@ -587,7 +587,7 @@ test.describe('Visual Comparison: PricingOptions', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('PricingOptions / Four Options (pt-BR)', async ({page}) => {
@@ -596,7 +596,7 @@ test.describe('Visual Comparison: PricingOptions', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('PricingOptions / With Feature Sets', async ({page}) => {
@@ -605,7 +605,7 @@ test.describe('Visual Comparison: PricingOptions', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('PricingOptions / With Feature Sets (fr)', async ({page}) => {
@@ -614,7 +614,7 @@ test.describe('Visual Comparison: PricingOptions', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('PricingOptions / With Feature Sets (de)', async ({page}) => {
@@ -623,7 +623,7 @@ test.describe('Visual Comparison: PricingOptions', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('PricingOptions / With Feature Sets (ja)', async ({page}) => {
@@ -632,7 +632,7 @@ test.describe('Visual Comparison: PricingOptions', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('PricingOptions / With Feature Sets (es)', async ({page}) => {
@@ -641,7 +641,7 @@ test.describe('Visual Comparison: PricingOptions', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('PricingOptions / With Feature Sets (pt-BR)', async ({page}) => {
@@ -650,7 +650,7 @@ test.describe('Visual Comparison: PricingOptions', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('PricingOptions / With Included And Excluded Features', async ({page}) => {
@@ -659,7 +659,7 @@ test.describe('Visual Comparison: PricingOptions', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('PricingOptions / With Included And Excluded Features (fr)', async ({page}) => {
@@ -668,7 +668,7 @@ test.describe('Visual Comparison: PricingOptions', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('PricingOptions / With Included And Excluded Features (de)', async ({page}) => {
@@ -677,7 +677,7 @@ test.describe('Visual Comparison: PricingOptions', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('PricingOptions / With Included And Excluded Features (ja)', async ({page}) => {
@@ -686,7 +686,7 @@ test.describe('Visual Comparison: PricingOptions', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('PricingOptions / With Included And Excluded Features (es)', async ({page}) => {
@@ -695,7 +695,7 @@ test.describe('Visual Comparison: PricingOptions', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('PricingOptions / With Included And Excluded Features (pt-BR)', async ({page}) => {
@@ -704,7 +704,7 @@ test.describe('Visual Comparison: PricingOptions', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('PricingOptions / Without Features', async ({page}) => {
@@ -713,7 +713,7 @@ test.describe('Visual Comparison: PricingOptions', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('PricingOptions / Without Features (fr)', async ({page}) => {
@@ -722,7 +722,7 @@ test.describe('Visual Comparison: PricingOptions', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('PricingOptions / Without Features (de)', async ({page}) => {
@@ -731,7 +731,7 @@ test.describe('Visual Comparison: PricingOptions', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('PricingOptions / Without Features (ja)', async ({page}) => {
@@ -740,7 +740,7 @@ test.describe('Visual Comparison: PricingOptions', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('PricingOptions / Without Features (es)', async ({page}) => {
@@ -749,7 +749,7 @@ test.describe('Visual Comparison: PricingOptions', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('PricingOptions / Without Features (pt-BR)', async ({page}) => {
@@ -758,7 +758,7 @@ test.describe('Visual Comparison: PricingOptions', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('PricingOptions / Center Aligned', async ({page}) => {
@@ -767,7 +767,7 @@ test.describe('Visual Comparison: PricingOptions', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('PricingOptions / Center Aligned (fr)', async ({page}) => {
@@ -776,7 +776,7 @@ test.describe('Visual Comparison: PricingOptions', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('PricingOptions / Center Aligned (de)', async ({page}) => {
@@ -785,7 +785,7 @@ test.describe('Visual Comparison: PricingOptions', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('PricingOptions / Center Aligned (ja)', async ({page}) => {
@@ -794,7 +794,7 @@ test.describe('Visual Comparison: PricingOptions', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('PricingOptions / Center Aligned (es)', async ({page}) => {
@@ -803,7 +803,7 @@ test.describe('Visual Comparison: PricingOptions', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('PricingOptions / Center Aligned (pt-BR)', async ({page}) => {
@@ -812,7 +812,7 @@ test.describe('Visual Comparison: PricingOptions', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('PricingOptions / Collapsed Features', async ({page}) => {
@@ -821,7 +821,7 @@ test.describe('Visual Comparison: PricingOptions', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('PricingOptions / Collapsed Features (fr)', async ({page}) => {
@@ -830,7 +830,7 @@ test.describe('Visual Comparison: PricingOptions', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('PricingOptions / Collapsed Features (de)', async ({page}) => {
@@ -839,7 +839,7 @@ test.describe('Visual Comparison: PricingOptions', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('PricingOptions / Collapsed Features (ja)', async ({page}) => {
@@ -848,7 +848,7 @@ test.describe('Visual Comparison: PricingOptions', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('PricingOptions / Collapsed Features (es)', async ({page}) => {
@@ -857,7 +857,7 @@ test.describe('Visual Comparison: PricingOptions', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('PricingOptions / Collapsed Features (pt-BR)', async ({page}) => {
@@ -866,7 +866,7 @@ test.describe('Visual Comparison: PricingOptions', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('PricingOptions / With Custom Feature List Heading', async ({page}) => {
@@ -875,7 +875,7 @@ test.describe('Visual Comparison: PricingOptions', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('PricingOptions / With Custom Feature List Heading (fr)', async ({page}) => {
@@ -884,7 +884,7 @@ test.describe('Visual Comparison: PricingOptions', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('PricingOptions / With Custom Feature List Heading (de)', async ({page}) => {
@@ -893,7 +893,7 @@ test.describe('Visual Comparison: PricingOptions', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('PricingOptions / With Custom Feature List Heading (ja)', async ({page}) => {
@@ -902,7 +902,7 @@ test.describe('Visual Comparison: PricingOptions', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('PricingOptions / With Custom Feature List Heading (es)', async ({page}) => {
@@ -911,7 +911,7 @@ test.describe('Visual Comparison: PricingOptions', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('PricingOptions / With Custom Feature List Heading (pt-BR)', async ({page}) => {
@@ -920,7 +920,7 @@ test.describe('Visual Comparison: PricingOptions', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('PricingOptions / With Custom Feature List Item Leading Visual', async ({page}) => {
@@ -929,7 +929,7 @@ test.describe('Visual Comparison: PricingOptions', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('PricingOptions / With Custom Feature List Item Leading Visual (fr)', async ({page}) => {
@@ -938,7 +938,7 @@ test.describe('Visual Comparison: PricingOptions', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('PricingOptions / With Custom Feature List Item Leading Visual (de)', async ({page}) => {
@@ -947,7 +947,7 @@ test.describe('Visual Comparison: PricingOptions', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('PricingOptions / With Custom Feature List Item Leading Visual (ja)', async ({page}) => {
@@ -956,7 +956,7 @@ test.describe('Visual Comparison: PricingOptions', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('PricingOptions / With Custom Feature List Item Leading Visual (es)', async ({page}) => {
@@ -965,7 +965,7 @@ test.describe('Visual Comparison: PricingOptions', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('PricingOptions / With Custom Feature List Item Leading Visual (pt-BR)', async ({page}) => {
@@ -974,7 +974,7 @@ test.describe('Visual Comparison: PricingOptions', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('PricingOptions / Collapsed Features No Dividers', async ({page}) => {
@@ -983,7 +983,7 @@ test.describe('Visual Comparison: PricingOptions', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('PricingOptions / Collapsed Features No Dividers (fr)', async ({page}) => {
@@ -992,7 +992,7 @@ test.describe('Visual Comparison: PricingOptions', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('PricingOptions / Collapsed Features No Dividers (de)', async ({page}) => {
@@ -1001,7 +1001,7 @@ test.describe('Visual Comparison: PricingOptions', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('PricingOptions / Collapsed Features No Dividers (ja)', async ({page}) => {
@@ -1010,7 +1010,7 @@ test.describe('Visual Comparison: PricingOptions', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('PricingOptions / Collapsed Features No Dividers (es)', async ({page}) => {
@@ -1019,7 +1019,7 @@ test.describe('Visual Comparison: PricingOptions', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('PricingOptions / Collapsed Features No Dividers (pt-BR)', async ({page}) => {
@@ -1028,7 +1028,7 @@ test.describe('Visual Comparison: PricingOptions', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   // eslint-disable-next-line i18n-text/no-en
@@ -1040,7 +1040,7 @@ test.describe('Visual Comparison: PricingOptions', () => {
       )
 
       await page.waitForTimeout(500)
-      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+      await expect(page).toHaveScreenshot({fullPage: true})
     })
 
     test('PricingOptions / Expanded Narrow (fr)', async ({page}) => {
@@ -1049,7 +1049,7 @@ test.describe('Visual Comparison: PricingOptions', () => {
       )
 
       await page.waitForTimeout(500)
-      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+      await expect(page).toHaveScreenshot({fullPage: true})
     })
 
     test('PricingOptions / Expanded Narrow (de)', async ({page}) => {
@@ -1058,7 +1058,7 @@ test.describe('Visual Comparison: PricingOptions', () => {
       )
 
       await page.waitForTimeout(500)
-      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+      await expect(page).toHaveScreenshot({fullPage: true})
     })
 
     test('PricingOptions / Expanded Narrow (ja)', async ({page}) => {
@@ -1067,7 +1067,7 @@ test.describe('Visual Comparison: PricingOptions', () => {
       )
 
       await page.waitForTimeout(500)
-      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+      await expect(page).toHaveScreenshot({fullPage: true})
     })
 
     test('PricingOptions / Expanded Narrow (es)', async ({page}) => {
@@ -1076,7 +1076,7 @@ test.describe('Visual Comparison: PricingOptions', () => {
       )
 
       await page.waitForTimeout(500)
-      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+      await expect(page).toHaveScreenshot({fullPage: true})
     })
 
     test('PricingOptions / Expanded Narrow (pt-BR)', async ({page}) => {
@@ -1085,7 +1085,7 @@ test.describe('Visual Comparison: PricingOptions', () => {
       )
 
       await page.waitForTimeout(500)
-      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+      await expect(page).toHaveScreenshot({fullPage: true})
     })
   })
 
@@ -1098,7 +1098,7 @@ test.describe('Visual Comparison: PricingOptions', () => {
       )
 
       await page.waitForTimeout(500)
-      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+      await expect(page).toHaveScreenshot({fullPage: true})
     })
 
     test('PricingOptions / Expanded Tablet (fr)', async ({page}) => {
@@ -1107,7 +1107,7 @@ test.describe('Visual Comparison: PricingOptions', () => {
       )
 
       await page.waitForTimeout(500)
-      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+      await expect(page).toHaveScreenshot({fullPage: true})
     })
 
     test('PricingOptions / Expanded Tablet (de)', async ({page}) => {
@@ -1116,7 +1116,7 @@ test.describe('Visual Comparison: PricingOptions', () => {
       )
 
       await page.waitForTimeout(500)
-      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+      await expect(page).toHaveScreenshot({fullPage: true})
     })
 
     test('PricingOptions / Expanded Tablet (ja)', async ({page}) => {
@@ -1125,7 +1125,7 @@ test.describe('Visual Comparison: PricingOptions', () => {
       )
 
       await page.waitForTimeout(500)
-      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+      await expect(page).toHaveScreenshot({fullPage: true})
     })
 
     test('PricingOptions / Expanded Tablet (es)', async ({page}) => {
@@ -1134,7 +1134,7 @@ test.describe('Visual Comparison: PricingOptions', () => {
       )
 
       await page.waitForTimeout(500)
-      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+      await expect(page).toHaveScreenshot({fullPage: true})
     })
 
     test('PricingOptions / Expanded Tablet (pt-BR)', async ({page}) => {
@@ -1143,7 +1143,7 @@ test.describe('Visual Comparison: PricingOptions', () => {
       )
 
       await page.waitForTimeout(500)
-      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+      await expect(page).toHaveScreenshot({fullPage: true})
     })
   })
 })

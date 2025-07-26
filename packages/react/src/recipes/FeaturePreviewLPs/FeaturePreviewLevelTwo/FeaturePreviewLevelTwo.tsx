@@ -41,7 +41,7 @@ import emptyBrowserLightFull from '../fixtures/images/fg/empty-browser-full-ligh
 import emptyBrowserDarkFull from '../fixtures/images/fg/empty-browser-full-dark.png'
 import monaAvatar from '../../../fixtures/images/avatar-mona.png'
 import {Themes, themeDetailsMap} from '../helpers'
-import {files} from '../../../IDE/fixtures/content'
+import {defaultFiles} from '../../../IDE/fixtures/content'
 
 import pinterestLogo from '../../../fixtures/images/logos/pinterest.png'
 import shopifyLogo from '../../../fixtures/images/logos/shopify.png'
@@ -414,7 +414,7 @@ export function FeaturePreviewLevelTwo({
                       >
                         <Box padding={48} paddingBlockEnd={4}>
                           <IDE height={600} variant="glass">
-                            <IDE.Editor files={files} />
+                            <IDE.Editor files={defaultFiles} />
                           </IDE>
                         </Box>
                       </RiverBreakout.Visual>

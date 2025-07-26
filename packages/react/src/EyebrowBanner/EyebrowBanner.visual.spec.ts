@@ -11,7 +11,7 @@ test.describe('Visual Comparison: EyebrowBanner', () => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-eyebrowbanner--default&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('EyebrowBanner / Default (fr)', async ({page}) => {
@@ -20,7 +20,7 @@ test.describe('Visual Comparison: EyebrowBanner', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('EyebrowBanner / Default (de)', async ({page}) => {
@@ -29,7 +29,7 @@ test.describe('Visual Comparison: EyebrowBanner', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('EyebrowBanner / Default (ja)', async ({page}) => {
@@ -38,7 +38,7 @@ test.describe('Visual Comparison: EyebrowBanner', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('EyebrowBanner / Default (es)', async ({page}) => {
@@ -47,7 +47,7 @@ test.describe('Visual Comparison: EyebrowBanner', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('EyebrowBanner / Default (pt-BR)', async ({page}) => {
@@ -56,14 +56,14 @@ test.describe('Visual Comparison: EyebrowBanner', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('EyebrowBanner / Playground', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-eyebrowbanner--playground&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('EyebrowBanner / Playground (fr)', async ({page}) => {
@@ -72,7 +72,7 @@ test.describe('Visual Comparison: EyebrowBanner', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('EyebrowBanner / Playground (de)', async ({page}) => {
@@ -81,7 +81,7 @@ test.describe('Visual Comparison: EyebrowBanner', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('EyebrowBanner / Playground (ja)', async ({page}) => {
@@ -90,7 +90,7 @@ test.describe('Visual Comparison: EyebrowBanner', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('EyebrowBanner / Playground (es)', async ({page}) => {
@@ -99,7 +99,7 @@ test.describe('Visual Comparison: EyebrowBanner', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('EyebrowBanner / Playground (pt-BR)', async ({page}) => {
@@ -108,7 +108,7 @@ test.describe('Visual Comparison: EyebrowBanner', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('EyebrowBanner / Variations', async ({page}) => {
@@ -117,7 +117,7 @@ test.describe('Visual Comparison: EyebrowBanner', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('EyebrowBanner / Variations (fr)', async ({page}) => {
@@ -126,7 +126,7 @@ test.describe('Visual Comparison: EyebrowBanner', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('EyebrowBanner / Variations (de)', async ({page}) => {
@@ -135,7 +135,7 @@ test.describe('Visual Comparison: EyebrowBanner', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('EyebrowBanner / Variations (ja)', async ({page}) => {
@@ -144,7 +144,7 @@ test.describe('Visual Comparison: EyebrowBanner', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('EyebrowBanner / Variations (es)', async ({page}) => {
@@ -153,7 +153,7 @@ test.describe('Visual Comparison: EyebrowBanner', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('EyebrowBanner / Variations (pt-BR)', async ({page}) => {
@@ -162,7 +162,7 @@ test.describe('Visual Comparison: EyebrowBanner', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('EyebrowBanner / On Custom Background Dark', async ({page}) => {
@@ -171,7 +171,7 @@ test.describe('Visual Comparison: EyebrowBanner', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('EyebrowBanner / On Custom Background Dark (fr)', async ({page}) => {
@@ -180,7 +180,7 @@ test.describe('Visual Comparison: EyebrowBanner', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('EyebrowBanner / On Custom Background Dark (de)', async ({page}) => {
@@ -189,7 +189,7 @@ test.describe('Visual Comparison: EyebrowBanner', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('EyebrowBanner / On Custom Background Dark (ja)', async ({page}) => {
@@ -198,7 +198,7 @@ test.describe('Visual Comparison: EyebrowBanner', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('EyebrowBanner / On Custom Background Dark (es)', async ({page}) => {
@@ -207,7 +207,7 @@ test.describe('Visual Comparison: EyebrowBanner', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('EyebrowBanner / On Custom Background Dark (pt-BR)', async ({page}) => {
@@ -216,7 +216,7 @@ test.describe('Visual Comparison: EyebrowBanner', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('EyebrowBanner / On Custom Background Light', async ({page}) => {
@@ -225,7 +225,7 @@ test.describe('Visual Comparison: EyebrowBanner', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('EyebrowBanner / On Custom Background Light (fr)', async ({page}) => {
@@ -234,7 +234,7 @@ test.describe('Visual Comparison: EyebrowBanner', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('EyebrowBanner / On Custom Background Light (de)', async ({page}) => {
@@ -243,7 +243,7 @@ test.describe('Visual Comparison: EyebrowBanner', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('EyebrowBanner / On Custom Background Light (ja)', async ({page}) => {
@@ -252,7 +252,7 @@ test.describe('Visual Comparison: EyebrowBanner', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('EyebrowBanner / On Custom Background Light (es)', async ({page}) => {
@@ -261,7 +261,7 @@ test.describe('Visual Comparison: EyebrowBanner', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('EyebrowBanner / On Custom Background Light (pt-BR)', async ({page}) => {
@@ -270,7 +270,7 @@ test.describe('Visual Comparison: EyebrowBanner', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('EyebrowBanner / Labels', async ({page}) => {
@@ -279,7 +279,7 @@ test.describe('Visual Comparison: EyebrowBanner', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('EyebrowBanner / Labels (fr)', async ({page}) => {
@@ -288,7 +288,7 @@ test.describe('Visual Comparison: EyebrowBanner', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('EyebrowBanner / Labels (de)', async ({page}) => {
@@ -297,7 +297,7 @@ test.describe('Visual Comparison: EyebrowBanner', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('EyebrowBanner / Labels (ja)', async ({page}) => {
@@ -306,7 +306,7 @@ test.describe('Visual Comparison: EyebrowBanner', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('EyebrowBanner / Labels (es)', async ({page}) => {
@@ -315,7 +315,7 @@ test.describe('Visual Comparison: EyebrowBanner', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('EyebrowBanner / Labels (pt-BR)', async ({page}) => {
@@ -324,7 +324,7 @@ test.describe('Visual Comparison: EyebrowBanner', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('EyebrowBanner / Labels Dark', async ({page}) => {
@@ -333,7 +333,7 @@ test.describe('Visual Comparison: EyebrowBanner', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('EyebrowBanner / Labels Dark (fr)', async ({page}) => {
@@ -342,7 +342,7 @@ test.describe('Visual Comparison: EyebrowBanner', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('EyebrowBanner / Labels Dark (de)', async ({page}) => {
@@ -351,7 +351,7 @@ test.describe('Visual Comparison: EyebrowBanner', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('EyebrowBanner / Labels Dark (ja)', async ({page}) => {
@@ -360,7 +360,7 @@ test.describe('Visual Comparison: EyebrowBanner', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('EyebrowBanner / Labels Dark (es)', async ({page}) => {
@@ -369,7 +369,7 @@ test.describe('Visual Comparison: EyebrowBanner', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('EyebrowBanner / Labels Dark (pt-BR)', async ({page}) => {
@@ -378,7 +378,7 @@ test.describe('Visual Comparison: EyebrowBanner', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('EyebrowBanner / Icons', async ({page}) => {
@@ -387,7 +387,7 @@ test.describe('Visual Comparison: EyebrowBanner', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('EyebrowBanner / Icons (fr)', async ({page}) => {
@@ -396,7 +396,7 @@ test.describe('Visual Comparison: EyebrowBanner', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('EyebrowBanner / Icons (de)', async ({page}) => {
@@ -405,7 +405,7 @@ test.describe('Visual Comparison: EyebrowBanner', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('EyebrowBanner / Icons (ja)', async ({page}) => {
@@ -414,7 +414,7 @@ test.describe('Visual Comparison: EyebrowBanner', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('EyebrowBanner / Icons (es)', async ({page}) => {
@@ -423,7 +423,7 @@ test.describe('Visual Comparison: EyebrowBanner', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('EyebrowBanner / Icons (pt-BR)', async ({page}) => {
@@ -432,7 +432,7 @@ test.describe('Visual Comparison: EyebrowBanner', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('EyebrowBanner / Icons Dark', async ({page}) => {
@@ -441,7 +441,7 @@ test.describe('Visual Comparison: EyebrowBanner', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('EyebrowBanner / Icons Dark (fr)', async ({page}) => {
@@ -450,7 +450,7 @@ test.describe('Visual Comparison: EyebrowBanner', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('EyebrowBanner / Icons Dark (de)', async ({page}) => {
@@ -459,7 +459,7 @@ test.describe('Visual Comparison: EyebrowBanner', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('EyebrowBanner / Icons Dark (ja)', async ({page}) => {
@@ -468,7 +468,7 @@ test.describe('Visual Comparison: EyebrowBanner', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('EyebrowBanner / Icons Dark (es)', async ({page}) => {
@@ -477,7 +477,7 @@ test.describe('Visual Comparison: EyebrowBanner', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('EyebrowBanner / Icons Dark (pt-BR)', async ({page}) => {
@@ -486,6 +486,6 @@ test.describe('Visual Comparison: EyebrowBanner', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 })

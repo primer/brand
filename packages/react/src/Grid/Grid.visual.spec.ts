@@ -11,7 +11,7 @@ test.describe('Visual Comparison: Grid', () => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-grid--default&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Grid / Default (fr)', async ({page}) => {
@@ -20,7 +20,7 @@ test.describe('Visual Comparison: Grid', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Grid / Default (de)', async ({page}) => {
@@ -29,7 +29,7 @@ test.describe('Visual Comparison: Grid', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Grid / Default (ja)', async ({page}) => {
@@ -38,7 +38,7 @@ test.describe('Visual Comparison: Grid', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Grid / Default (es)', async ({page}) => {
@@ -47,7 +47,7 @@ test.describe('Visual Comparison: Grid', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Grid / Default (pt-BR)', async ({page}) => {
@@ -56,14 +56,14 @@ test.describe('Visual Comparison: Grid', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Grid / Playground', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-grid--playground&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Grid / Playground (fr)', async ({page}) => {
@@ -72,7 +72,7 @@ test.describe('Visual Comparison: Grid', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Grid / Playground (de)', async ({page}) => {
@@ -81,7 +81,7 @@ test.describe('Visual Comparison: Grid', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Grid / Playground (ja)', async ({page}) => {
@@ -90,7 +90,7 @@ test.describe('Visual Comparison: Grid', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Grid / Playground (es)', async ({page}) => {
@@ -99,7 +99,7 @@ test.describe('Visual Comparison: Grid', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Grid / Playground (pt-BR)', async ({page}) => {
@@ -108,14 +108,14 @@ test.describe('Visual Comparison: Grid', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Grid / Asymmetry', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-grid-features--asymmetry&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Grid / Asymmetry (fr)', async ({page}) => {
@@ -124,7 +124,7 @@ test.describe('Visual Comparison: Grid', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Grid / Asymmetry (de)', async ({page}) => {
@@ -133,7 +133,7 @@ test.describe('Visual Comparison: Grid', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Grid / Asymmetry (ja)', async ({page}) => {
@@ -142,7 +142,7 @@ test.describe('Visual Comparison: Grid', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Grid / Asymmetry (es)', async ({page}) => {
@@ -151,7 +151,7 @@ test.describe('Visual Comparison: Grid', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Grid / Asymmetry (pt-BR)', async ({page}) => {
@@ -160,14 +160,14 @@ test.describe('Visual Comparison: Grid', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Grid / Nesting', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-grid-features--nesting&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Grid / Nesting (fr)', async ({page}) => {
@@ -176,7 +176,7 @@ test.describe('Visual Comparison: Grid', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Grid / Nesting (de)', async ({page}) => {
@@ -185,7 +185,7 @@ test.describe('Visual Comparison: Grid', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Grid / Nesting (ja)', async ({page}) => {
@@ -194,7 +194,7 @@ test.describe('Visual Comparison: Grid', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Grid / Nesting (es)', async ({page}) => {
@@ -203,7 +203,7 @@ test.describe('Visual Comparison: Grid', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Grid / Nesting (pt-BR)', async ({page}) => {
@@ -212,14 +212,14 @@ test.describe('Visual Comparison: Grid', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Grid / Responsive', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-grid-features--responsive&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Grid / Responsive (fr)', async ({page}) => {
@@ -228,7 +228,7 @@ test.describe('Visual Comparison: Grid', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Grid / Responsive (de)', async ({page}) => {
@@ -237,7 +237,7 @@ test.describe('Visual Comparison: Grid', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Grid / Responsive (ja)', async ({page}) => {
@@ -246,7 +246,7 @@ test.describe('Visual Comparison: Grid', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Grid / Responsive (es)', async ({page}) => {
@@ -255,7 +255,7 @@ test.describe('Visual Comparison: Grid', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Grid / Responsive (pt-BR)', async ({page}) => {
@@ -264,14 +264,14 @@ test.describe('Visual Comparison: Grid', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Grid / Centering', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-grid-features--centering&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Grid / Centering (fr)', async ({page}) => {
@@ -280,7 +280,7 @@ test.describe('Visual Comparison: Grid', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Grid / Centering (de)', async ({page}) => {
@@ -289,7 +289,7 @@ test.describe('Visual Comparison: Grid', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Grid / Centering (ja)', async ({page}) => {
@@ -298,7 +298,7 @@ test.describe('Visual Comparison: Grid', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Grid / Centering (es)', async ({page}) => {
@@ -307,7 +307,7 @@ test.describe('Visual Comparison: Grid', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Grid / Centering (pt-BR)', async ({page}) => {
@@ -316,14 +316,14 @@ test.describe('Visual Comparison: Grid', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Grid / Ratio: 50:50', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-grid-features--fifty-fifty&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Grid / Ratio: 50:50 (fr)', async ({page}) => {
@@ -332,7 +332,7 @@ test.describe('Visual Comparison: Grid', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Grid / Ratio: 50:50 (de)', async ({page}) => {
@@ -341,7 +341,7 @@ test.describe('Visual Comparison: Grid', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Grid / Ratio: 50:50 (ja)', async ({page}) => {
@@ -350,7 +350,7 @@ test.describe('Visual Comparison: Grid', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Grid / Ratio: 50:50 (es)', async ({page}) => {
@@ -359,7 +359,7 @@ test.describe('Visual Comparison: Grid', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Grid / Ratio: 50:50 (pt-BR)', async ({page}) => {
@@ -368,14 +368,14 @@ test.describe('Visual Comparison: Grid', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Grid / Ratio: 60:40', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-grid-features--sixty-forty&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Grid / Ratio: 60:40 (fr)', async ({page}) => {
@@ -384,7 +384,7 @@ test.describe('Visual Comparison: Grid', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Grid / Ratio: 60:40 (de)', async ({page}) => {
@@ -393,7 +393,7 @@ test.describe('Visual Comparison: Grid', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Grid / Ratio: 60:40 (ja)', async ({page}) => {
@@ -402,7 +402,7 @@ test.describe('Visual Comparison: Grid', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Grid / Ratio: 60:40 (es)', async ({page}) => {
@@ -411,7 +411,7 @@ test.describe('Visual Comparison: Grid', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Grid / Ratio: 60:40 (pt-BR)', async ({page}) => {
@@ -420,14 +420,14 @@ test.describe('Visual Comparison: Grid', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Grid / Ratio: 40:60', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-grid-features--forty-sixty&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Grid / Ratio: 40:60 (fr)', async ({page}) => {
@@ -436,7 +436,7 @@ test.describe('Visual Comparison: Grid', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Grid / Ratio: 40:60 (de)', async ({page}) => {
@@ -445,7 +445,7 @@ test.describe('Visual Comparison: Grid', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Grid / Ratio: 40:60 (ja)', async ({page}) => {
@@ -454,7 +454,7 @@ test.describe('Visual Comparison: Grid', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Grid / Ratio: 40:60 (es)', async ({page}) => {
@@ -463,7 +463,7 @@ test.describe('Visual Comparison: Grid', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Grid / Ratio: 40:60 (pt-BR)', async ({page}) => {
@@ -472,7 +472,7 @@ test.describe('Visual Comparison: Grid', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Grid / Responsive Min Width', async ({page}) => {
@@ -481,7 +481,7 @@ test.describe('Visual Comparison: Grid', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Grid / Responsive Min Width (fr)', async ({page}) => {
@@ -490,7 +490,7 @@ test.describe('Visual Comparison: Grid', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Grid / Responsive Min Width (de)', async ({page}) => {
@@ -499,7 +499,7 @@ test.describe('Visual Comparison: Grid', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Grid / Responsive Min Width (ja)', async ({page}) => {
@@ -508,7 +508,7 @@ test.describe('Visual Comparison: Grid', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Grid / Responsive Min Width (es)', async ({page}) => {
@@ -517,7 +517,7 @@ test.describe('Visual Comparison: Grid', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Grid / Responsive Min Width (pt-BR)', async ({page}) => {
@@ -526,6 +526,6 @@ test.describe('Visual Comparison: Grid', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 })

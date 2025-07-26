@@ -13,7 +13,7 @@ test.describe('Visual Comparison: FeaturePreviewLevelTwo', () => {
     )
 
     await page.waitForTimeout(4000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('FeaturePreviewLevelTwo / Playground (fr)', async ({page}) => {
@@ -22,7 +22,7 @@ test.describe('Visual Comparison: FeaturePreviewLevelTwo', () => {
     )
 
     await page.waitForTimeout(4000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('FeaturePreviewLevelTwo / Playground (de)', async ({page}) => {
@@ -31,7 +31,7 @@ test.describe('Visual Comparison: FeaturePreviewLevelTwo', () => {
     )
 
     await page.waitForTimeout(4000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('FeaturePreviewLevelTwo / Playground (ja)', async ({page}) => {
@@ -40,7 +40,7 @@ test.describe('Visual Comparison: FeaturePreviewLevelTwo', () => {
     )
 
     await page.waitForTimeout(4000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('FeaturePreviewLevelTwo / Playground (es)', async ({page}) => {
@@ -49,7 +49,7 @@ test.describe('Visual Comparison: FeaturePreviewLevelTwo', () => {
     )
 
     await page.waitForTimeout(4000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('FeaturePreviewLevelTwo / Playground (pt-BR)', async ({page}) => {
@@ -58,7 +58,7 @@ test.describe('Visual Comparison: FeaturePreviewLevelTwo', () => {
     )
 
     await page.waitForTimeout(4000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('FeaturePreviewLevelTwo / Minimal', async ({page}) => {
@@ -67,7 +67,7 @@ test.describe('Visual Comparison: FeaturePreviewLevelTwo', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('FeaturePreviewLevelTwo / Minimal (fr)', async ({page}) => {
@@ -76,7 +76,7 @@ test.describe('Visual Comparison: FeaturePreviewLevelTwo', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('FeaturePreviewLevelTwo / Minimal (de)', async ({page}) => {
@@ -85,7 +85,7 @@ test.describe('Visual Comparison: FeaturePreviewLevelTwo', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('FeaturePreviewLevelTwo / Minimal (ja)', async ({page}) => {
@@ -94,7 +94,7 @@ test.describe('Visual Comparison: FeaturePreviewLevelTwo', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('FeaturePreviewLevelTwo / Minimal (es)', async ({page}) => {
@@ -103,7 +103,7 @@ test.describe('Visual Comparison: FeaturePreviewLevelTwo', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('FeaturePreviewLevelTwo / Minimal (pt-BR)', async ({page}) => {
@@ -112,7 +112,7 @@ test.describe('Visual Comparison: FeaturePreviewLevelTwo', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('FeaturePreviewLevelTwo / 2.1 variant', async ({page}) => {
@@ -121,7 +121,7 @@ test.describe('Visual Comparison: FeaturePreviewLevelTwo', () => {
     )
 
     await page.waitForTimeout(4000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('FeaturePreviewLevelTwo / 2.1 variant (fr)', async ({page}) => {
@@ -130,7 +130,7 @@ test.describe('Visual Comparison: FeaturePreviewLevelTwo', () => {
     )
 
     await page.waitForTimeout(4000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('FeaturePreviewLevelTwo / 2.1 variant (de)', async ({page}) => {
@@ -139,7 +139,7 @@ test.describe('Visual Comparison: FeaturePreviewLevelTwo', () => {
     )
 
     await page.waitForTimeout(4000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('FeaturePreviewLevelTwo / 2.1 variant (ja)', async ({page}) => {
@@ -148,7 +148,7 @@ test.describe('Visual Comparison: FeaturePreviewLevelTwo', () => {
     )
 
     await page.waitForTimeout(4000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('FeaturePreviewLevelTwo / 2.1 variant (es)', async ({page}) => {
@@ -157,7 +157,7 @@ test.describe('Visual Comparison: FeaturePreviewLevelTwo', () => {
     )
 
     await page.waitForTimeout(4000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('FeaturePreviewLevelTwo / 2.1 variant (pt-BR)', async ({page}) => {
@@ -166,7 +166,7 @@ test.describe('Visual Comparison: FeaturePreviewLevelTwo', () => {
     )
 
     await page.waitForTimeout(4000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('FeaturePreviewLevelTwo / 2.2 variant', async ({page}) => {
@@ -175,7 +175,7 @@ test.describe('Visual Comparison: FeaturePreviewLevelTwo', () => {
     )
 
     await page.waitForTimeout(4000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('FeaturePreviewLevelTwo / 2.2 variant (fr)', async ({page}) => {
@@ -184,7 +184,7 @@ test.describe('Visual Comparison: FeaturePreviewLevelTwo', () => {
     )
 
     await page.waitForTimeout(4000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('FeaturePreviewLevelTwo / 2.2 variant (de)', async ({page}) => {
@@ -193,7 +193,7 @@ test.describe('Visual Comparison: FeaturePreviewLevelTwo', () => {
     )
 
     await page.waitForTimeout(4000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('FeaturePreviewLevelTwo / 2.2 variant (ja)', async ({page}) => {
@@ -202,7 +202,7 @@ test.describe('Visual Comparison: FeaturePreviewLevelTwo', () => {
     )
 
     await page.waitForTimeout(4000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('FeaturePreviewLevelTwo / 2.2 variant (es)', async ({page}) => {
@@ -211,7 +211,7 @@ test.describe('Visual Comparison: FeaturePreviewLevelTwo', () => {
     )
 
     await page.waitForTimeout(4000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('FeaturePreviewLevelTwo / 2.2 variant (pt-BR)', async ({page}) => {
@@ -220,7 +220,7 @@ test.describe('Visual Comparison: FeaturePreviewLevelTwo', () => {
     )
 
     await page.waitForTimeout(4000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('FeaturePreviewLevelTwo / 2.3 variant', async ({page}) => {
@@ -229,7 +229,7 @@ test.describe('Visual Comparison: FeaturePreviewLevelTwo', () => {
     )
 
     await page.waitForTimeout(4000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('FeaturePreviewLevelTwo / 2.3 variant (fr)', async ({page}) => {
@@ -238,7 +238,7 @@ test.describe('Visual Comparison: FeaturePreviewLevelTwo', () => {
     )
 
     await page.waitForTimeout(4000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('FeaturePreviewLevelTwo / 2.3 variant (de)', async ({page}) => {
@@ -247,7 +247,7 @@ test.describe('Visual Comparison: FeaturePreviewLevelTwo', () => {
     )
 
     await page.waitForTimeout(4000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('FeaturePreviewLevelTwo / 2.3 variant (ja)', async ({page}) => {
@@ -256,7 +256,7 @@ test.describe('Visual Comparison: FeaturePreviewLevelTwo', () => {
     )
 
     await page.waitForTimeout(4000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('FeaturePreviewLevelTwo / 2.3 variant (es)', async ({page}) => {
@@ -265,7 +265,7 @@ test.describe('Visual Comparison: FeaturePreviewLevelTwo', () => {
     )
 
     await page.waitForTimeout(4000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('FeaturePreviewLevelTwo / 2.3 variant (pt-BR)', async ({page}) => {
@@ -274,7 +274,7 @@ test.describe('Visual Comparison: FeaturePreviewLevelTwo', () => {
     )
 
     await page.waitForTimeout(4000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('FeaturePreviewLevelTwo / 2.4 variant', async ({page}) => {
@@ -283,7 +283,7 @@ test.describe('Visual Comparison: FeaturePreviewLevelTwo', () => {
     )
 
     await page.waitForTimeout(4000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('FeaturePreviewLevelTwo / 2.4 variant (fr)', async ({page}) => {
@@ -292,7 +292,7 @@ test.describe('Visual Comparison: FeaturePreviewLevelTwo', () => {
     )
 
     await page.waitForTimeout(4000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('FeaturePreviewLevelTwo / 2.4 variant (de)', async ({page}) => {
@@ -301,7 +301,7 @@ test.describe('Visual Comparison: FeaturePreviewLevelTwo', () => {
     )
 
     await page.waitForTimeout(4000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('FeaturePreviewLevelTwo / 2.4 variant (ja)', async ({page}) => {
@@ -310,7 +310,7 @@ test.describe('Visual Comparison: FeaturePreviewLevelTwo', () => {
     )
 
     await page.waitForTimeout(4000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('FeaturePreviewLevelTwo / 2.4 variant (es)', async ({page}) => {
@@ -319,7 +319,7 @@ test.describe('Visual Comparison: FeaturePreviewLevelTwo', () => {
     )
 
     await page.waitForTimeout(4000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('FeaturePreviewLevelTwo / 2.4 variant (pt-BR)', async ({page}) => {
@@ -328,6 +328,6 @@ test.describe('Visual Comparison: FeaturePreviewLevelTwo', () => {
     )
 
     await page.waitForTimeout(4000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 })

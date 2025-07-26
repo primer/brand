@@ -5,8 +5,9 @@ const config = {
   outputDir: './playwright-test-results',
   workers: process.env.CI ? 16 : Math.max(4, Math.min(12, require('os').cpus().length)),
   fullyParallel: true,
-  retries: process.env.CI ? 2 : 1,
+  retries: process.env.CI ? 3 : 1,
   timeout: 15000,
+  maxFailures: 5,
   use: {
     screenshot: 'only-on-failure',
     headless: true,

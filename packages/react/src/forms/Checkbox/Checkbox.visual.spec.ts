@@ -11,7 +11,7 @@ test.describe('Visual Comparison: Checkbox', () => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-forms-checkbox--playground&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Checkbox / Checkbox - Playground (fr)', async ({page}) => {
@@ -20,7 +20,7 @@ test.describe('Visual Comparison: Checkbox', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Checkbox / Checkbox - Playground (de)', async ({page}) => {
@@ -29,7 +29,7 @@ test.describe('Visual Comparison: Checkbox', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Checkbox / Checkbox - Playground (ja)', async ({page}) => {
@@ -38,7 +38,7 @@ test.describe('Visual Comparison: Checkbox', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Checkbox / Checkbox - Playground (es)', async ({page}) => {
@@ -47,7 +47,7 @@ test.describe('Visual Comparison: Checkbox', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Checkbox / Checkbox - Playground (pt-BR)', async ({page}) => {
@@ -56,14 +56,14 @@ test.describe('Visual Comparison: Checkbox', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Checkbox / Checkbox - Variants', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-forms-checkbox--variants&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Checkbox / Checkbox - Variants (fr)', async ({page}) => {
@@ -72,7 +72,7 @@ test.describe('Visual Comparison: Checkbox', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Checkbox / Checkbox - Variants (de)', async ({page}) => {
@@ -81,7 +81,7 @@ test.describe('Visual Comparison: Checkbox', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Checkbox / Checkbox - Variants (ja)', async ({page}) => {
@@ -90,7 +90,7 @@ test.describe('Visual Comparison: Checkbox', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Checkbox / Checkbox - Variants (es)', async ({page}) => {
@@ -99,7 +99,7 @@ test.describe('Visual Comparison: Checkbox', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Checkbox / Checkbox - Variants (pt-BR)', async ({page}) => {
@@ -108,14 +108,14 @@ test.describe('Visual Comparison: Checkbox', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Checkbox / Checkbox - Ref Callback', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-forms-checkbox--ref-callback&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Checkbox / Checkbox - Ref Callback (fr)', async ({page}) => {
@@ -124,7 +124,7 @@ test.describe('Visual Comparison: Checkbox', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Checkbox / Checkbox - Ref Callback (de)', async ({page}) => {
@@ -133,7 +133,7 @@ test.describe('Visual Comparison: Checkbox', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Checkbox / Checkbox - Ref Callback (ja)', async ({page}) => {
@@ -142,7 +142,7 @@ test.describe('Visual Comparison: Checkbox', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Checkbox / Checkbox - Ref Callback (es)', async ({page}) => {
@@ -151,7 +151,7 @@ test.describe('Visual Comparison: Checkbox', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Checkbox / Checkbox - Ref Callback (pt-BR)', async ({page}) => {
@@ -160,6 +160,6 @@ test.describe('Visual Comparison: Checkbox', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 })

@@ -11,7 +11,7 @@ test.describe('Visual Comparison: ButtonGroup', () => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-buttongroup--playground&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('ButtonGroup / Playground (fr)', async ({page}) => {
@@ -20,7 +20,7 @@ test.describe('Visual Comparison: ButtonGroup', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('ButtonGroup / Playground (de)', async ({page}) => {
@@ -29,7 +29,7 @@ test.describe('Visual Comparison: ButtonGroup', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('ButtonGroup / Playground (ja)', async ({page}) => {
@@ -38,7 +38,7 @@ test.describe('Visual Comparison: ButtonGroup', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('ButtonGroup / Playground (es)', async ({page}) => {
@@ -47,7 +47,7 @@ test.describe('Visual Comparison: ButtonGroup', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('ButtonGroup / Playground (pt-BR)', async ({page}) => {
@@ -56,7 +56,7 @@ test.describe('Visual Comparison: ButtonGroup', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('ButtonGroup / Single Button Group', async ({page}) => {
@@ -65,7 +65,7 @@ test.describe('Visual Comparison: ButtonGroup', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('ButtonGroup / Single Button Group (fr)', async ({page}) => {
@@ -74,7 +74,7 @@ test.describe('Visual Comparison: ButtonGroup', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('ButtonGroup / Single Button Group (de)', async ({page}) => {
@@ -83,7 +83,7 @@ test.describe('Visual Comparison: ButtonGroup', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('ButtonGroup / Single Button Group (ja)', async ({page}) => {
@@ -92,7 +92,7 @@ test.describe('Visual Comparison: ButtonGroup', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('ButtonGroup / Single Button Group (es)', async ({page}) => {
@@ -101,7 +101,7 @@ test.describe('Visual Comparison: ButtonGroup', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('ButtonGroup / Single Button Group (pt-BR)', async ({page}) => {
@@ -110,7 +110,7 @@ test.describe('Visual Comparison: ButtonGroup', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('ButtonGroup / Large Button Group', async ({page}) => {
@@ -119,7 +119,7 @@ test.describe('Visual Comparison: ButtonGroup', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('ButtonGroup / Large Button Group (fr)', async ({page}) => {
@@ -128,7 +128,7 @@ test.describe('Visual Comparison: ButtonGroup', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('ButtonGroup / Large Button Group (de)', async ({page}) => {
@@ -137,7 +137,7 @@ test.describe('Visual Comparison: ButtonGroup', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('ButtonGroup / Large Button Group (ja)', async ({page}) => {
@@ -146,7 +146,7 @@ test.describe('Visual Comparison: ButtonGroup', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('ButtonGroup / Large Button Group (es)', async ({page}) => {
@@ -155,7 +155,7 @@ test.describe('Visual Comparison: ButtonGroup', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('ButtonGroup / Large Button Group (pt-BR)', async ({page}) => {
@@ -164,7 +164,7 @@ test.describe('Visual Comparison: ButtonGroup', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('ButtonGroup / Link Button Group', async ({page}) => {
@@ -173,7 +173,7 @@ test.describe('Visual Comparison: ButtonGroup', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('ButtonGroup / Link Button Group (fr)', async ({page}) => {
@@ -182,7 +182,7 @@ test.describe('Visual Comparison: ButtonGroup', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('ButtonGroup / Link Button Group (de)', async ({page}) => {
@@ -191,7 +191,7 @@ test.describe('Visual Comparison: ButtonGroup', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('ButtonGroup / Link Button Group (ja)', async ({page}) => {
@@ -200,7 +200,7 @@ test.describe('Visual Comparison: ButtonGroup', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('ButtonGroup / Link Button Group (es)', async ({page}) => {
@@ -209,7 +209,7 @@ test.describe('Visual Comparison: ButtonGroup', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('ButtonGroup / Link Button Group (pt-BR)', async ({page}) => {
@@ -218,6 +218,6 @@ test.describe('Visual Comparison: ButtonGroup', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 })
