@@ -7,7 +7,7 @@ const config = {
   fullyParallel: true,
   retries: process.env.CI ? 3 : 1,
   timeout: 15000,
-  maxFailures: 5,
+  maxFailures: 2,
   use: {
     screenshot: 'only-on-failure',
     headless: true,
@@ -22,7 +22,7 @@ const config = {
   },
   expect: {
     toHaveScreenshot: {
-      maxDiffPixels: 100,
+      maxDiffPixelRatio: 0.015,
       animations: 'disabled',
     },
   },
