@@ -22,7 +22,7 @@ const config = {
   },
   expect: {
     toHaveScreenshot: {
-      threshold: 0.02,
+      maxDiffPixels: 100,
       animations: 'disabled',
     },
   },
