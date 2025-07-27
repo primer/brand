@@ -42,7 +42,7 @@ export const SingleSelectionSmallOpen = () => {
 
   return (
     <ActionMenu size="small" onSelect={newValue => setSelectedItem(newValue)} selectionVariant="single" open>
-      <ActionMenu.Button>Select a GitHub now feature</ActionMenu.Button>
+      <ActionMenu.Button>Select a GitHub feature</ActionMenu.Button>
       <ActionMenu.Overlay aria-label="GitHub features">
         <ActionMenu.Item value="Copilot" selected={'Copilot' === selectedItem}>
           Copilot
