@@ -279,7 +279,7 @@
     animation: fade-in 0.3s var(--brand-animation-easing-glide) forwards;
   }
 
-  .SubNav__heading-separator--main.SubNav__heading-separator--has-adjacent-label,
+  .SubNav__heading-separator--main:not(.SubNav__heading-separator--has-adjacent-label),
   .SubNav__heading-separator--subheading-active,
   .SubNav__subheading-container-active {
     display: none;
@@ -294,10 +294,6 @@
   .SubNav__heading-separator {
     margin-inline-end: var(--base-size-16);
     z-index: 9998;
-  }
-
-  .SubNav__heading-separator:not(.SubNav__heading-separator--has-adjacent-label) {
-    display: none;
   }
 
   .SubNav__links-overlay {
