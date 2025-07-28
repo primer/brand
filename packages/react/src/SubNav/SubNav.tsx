@@ -125,10 +125,6 @@ type SeparatorProps = {
 } & BaseProps<HTMLSpanElement>
 
 function Separator({activeLinklabel, className, ...props}: SeparatorProps) {
-  const {isLarge} = useWindowSize()
-
-  if (!isLarge && !activeLinklabel) return null
-
   return (
     <span
       role="separator"
@@ -354,7 +350,7 @@ const _SubNavRoot = memo(
                     </>
                   )}
 
-                  <Separator activeLinklabel={activeLinklabel} className={clsx('SubNav__heading-separator--main')} />
+                  <Separator activeLinklabel={activeLinklabel} className={styles['SubNav__heading-separator--main']} />
 
                   {!isLarge && (!SubHeadingChild || subHeadingIsActive) && NarrowButton}
 
