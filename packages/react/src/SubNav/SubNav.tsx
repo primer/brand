@@ -307,7 +307,6 @@ const _SubNavRoot = memo(
             SubHeadingChild && styles['SubNav--has-sub-heading'],
             SubHeadingChild && subHeadingIsActive && styles['SubNav--subHeadingActive'],
             hasAnchoredNav && styles['SubNav__container--with-anchor-nav'],
-            subHeadingIsActive && styles['SubNav--subheading-active'],
           )}
         >
           <SubNavProvider>
