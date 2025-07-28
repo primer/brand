@@ -307,8 +307,6 @@ const _SubNavRoot = memo(
             SubHeadingChild && styles['SubNav--has-sub-heading'],
             SubHeadingChild && subHeadingIsActive && styles['SubNav--subHeadingActive'],
             hasAnchoredNav && styles['SubNav__container--with-anchor-nav'],
-            // Add conditional CSS classes for separator visibility
-            activeLinklabel && styles['SubNav--has-active-link'],
             subHeadingIsActive && styles['SubNav--subheading-active'],
           )}
         >
