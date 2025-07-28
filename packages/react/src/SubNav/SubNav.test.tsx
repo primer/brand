@@ -174,7 +174,7 @@ describe('SubNav', () => {
     expect(separator).toBeInTheDocument()
   })
 
-  it('does not render a separator when there are no links with `aria-current="page"` set', () => {
+  it('does not render a trailing separator after the heading when there are no links with `aria-current="page"` set on narrow viewports', () => {
     const {queryByRole} = render(
       <MockSubNavFixture
         data={[

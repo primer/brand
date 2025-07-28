@@ -19,6 +19,8 @@ declare const styles: {
   readonly "SubNav__heading-label": string;
   readonly "SubNav__heading-separator": string;
   readonly "SubNav__heading-separator--has-adjacent-label": string;
+  readonly "SubNav__heading-separator--main": string;
+  readonly "SubNav__heading-separator--subheading-active": string;
   readonly "SubNav__link": string;
   readonly "SubNav__link--expanded": string;
   readonly "SubNav__link--has-sub-menu": string;
@@ -38,6 +40,7 @@ declare const styles: {
   readonly "SubNav__sub-menu-list": string;
   readonly "SubNav__sub-menu-toggle": string;
   readonly "SubNav__subHeading": string;
+  readonly "SubNav__subheading-container-active": string;
   readonly "fade-in": string;
   readonly "fade-in-down": string;
 };

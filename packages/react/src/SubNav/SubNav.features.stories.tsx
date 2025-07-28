@@ -508,3 +508,49 @@ AnchorNavVariantKeyboardNavigation.play = async ({canvasElement}) => {
   await userEvent.tab({shift: true})
   expect(getByRole('link', {name: 'Premium Support'})).toHaveFocus()
 }
+
+export const NoActiveLinks = args => (
+  <main>
+    <Box paddingBlockStart={64} backgroundColor="subtle" style={{position: 'relative', zIndex: 32}}></Box>
+    <SubNav {...args}>
+      <SubNav.Heading href="#">Features</SubNav.Heading>
+      <SubNav.Link href="#">Actions</SubNav.Link>
+      <SubNav.Link href="#">Packages</SubNav.Link>
+      <SubNav.Link href="#">Security</SubNav.Link>
+      <SubNav.Link href="#">Codespaces</SubNav.Link>
+      <SubNav.Link href="#">Copilot</SubNav.Link>
+      <SubNav.Link href="#">Code review</SubNav.Link>
+      <SubNav.Link href="#">Search</SubNav.Link>
+      <SubNav.Link href="#">Issues</SubNav.Link>
+      <SubNav.Link href="#">Discussions</SubNav.Link>
+      <SubNav.Action href="#">Get started</SubNav.Action>
+    </SubNav>
+    <Grid>
+      <Grid.Column>
+        <Hero align="center">
+          <Hero.Label>GitHub Features</Hero.Label>
+          <Hero.Heading>Choose the tools that work best for your team.</Hero.Heading>
+          <Hero.Description>
+            This story demonstrates the SubNav component when no links have aria-current=&quot;page&quot; set, which
+            should result in no separator being visible according to the test expectations.
+          </Hero.Description>
+          <Hero.PrimaryAction href="#">Explore features</Hero.PrimaryAction>
+        </Hero>
+      </Grid.Column>
+    </Grid>
+  </main>
+)
+NoActiveLinks.parameters = {
+  layout: 'fullscreen',
+}
+NoActiveLinks.storyName = 'With no aria-current set'
+
+export const NoActiveLinksNarrow = () => <NoActiveLinks />
+NoActiveLinksNarrow.parameters = {
+  layout: 'fullscreen',
+  viewport: {
+    defaultViewport: 'iphonex',
+  },
+}
+
+NoActiveLinksNarrow.storyName = 'With no aria-current set (narrow)'
