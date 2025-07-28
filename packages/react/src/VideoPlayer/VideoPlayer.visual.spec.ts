@@ -11,7 +11,7 @@ test.describe('Visual Comparison: VideoPlayer', () => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-videoplayer--default&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('VideoPlayer / Default (fr)', async ({page}) => {
@@ -20,7 +20,7 @@ test.describe('Visual Comparison: VideoPlayer', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('VideoPlayer / Default (de)', async ({page}) => {
@@ -29,7 +29,7 @@ test.describe('Visual Comparison: VideoPlayer', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('VideoPlayer / Default (ja)', async ({page}) => {
@@ -38,7 +38,7 @@ test.describe('Visual Comparison: VideoPlayer', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('VideoPlayer / Default (es)', async ({page}) => {
@@ -47,7 +47,7 @@ test.describe('Visual Comparison: VideoPlayer', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('VideoPlayer / Default (pt-BR)', async ({page}) => {
@@ -56,14 +56,14 @@ test.describe('Visual Comparison: VideoPlayer', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('VideoPlayer / Playground', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-videoplayer--playground&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('VideoPlayer / Playground (fr)', async ({page}) => {
@@ -72,7 +72,7 @@ test.describe('Visual Comparison: VideoPlayer', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('VideoPlayer / Playground (de)', async ({page}) => {
@@ -81,7 +81,7 @@ test.describe('Visual Comparison: VideoPlayer', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('VideoPlayer / Playground (ja)', async ({page}) => {
@@ -90,7 +90,7 @@ test.describe('Visual Comparison: VideoPlayer', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('VideoPlayer / Playground (es)', async ({page}) => {
@@ -99,7 +99,7 @@ test.describe('Visual Comparison: VideoPlayer', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('VideoPlayer / Playground (pt-BR)', async ({page}) => {
@@ -108,7 +108,7 @@ test.describe('Visual Comparison: VideoPlayer', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('VideoPlayer / With Poster', async ({page}) => {
@@ -117,7 +117,7 @@ test.describe('Visual Comparison: VideoPlayer', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('VideoPlayer / With Poster (fr)', async ({page}) => {
@@ -126,7 +126,7 @@ test.describe('Visual Comparison: VideoPlayer', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('VideoPlayer / With Poster (de)', async ({page}) => {
@@ -135,7 +135,7 @@ test.describe('Visual Comparison: VideoPlayer', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('VideoPlayer / With Poster (ja)', async ({page}) => {
@@ -144,7 +144,7 @@ test.describe('Visual Comparison: VideoPlayer', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('VideoPlayer / With Poster (es)', async ({page}) => {
@@ -153,7 +153,7 @@ test.describe('Visual Comparison: VideoPlayer', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('VideoPlayer / With Poster (pt-BR)', async ({page}) => {
@@ -162,7 +162,7 @@ test.describe('Visual Comparison: VideoPlayer', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('VideoPlayer / Without Branding', async ({page}) => {
@@ -171,7 +171,7 @@ test.describe('Visual Comparison: VideoPlayer', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('VideoPlayer / Without Branding (fr)', async ({page}) => {
@@ -180,7 +180,7 @@ test.describe('Visual Comparison: VideoPlayer', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('VideoPlayer / Without Branding (de)', async ({page}) => {
@@ -189,7 +189,7 @@ test.describe('Visual Comparison: VideoPlayer', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('VideoPlayer / Without Branding (ja)', async ({page}) => {
@@ -198,7 +198,7 @@ test.describe('Visual Comparison: VideoPlayer', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('VideoPlayer / Without Branding (es)', async ({page}) => {
@@ -207,7 +207,7 @@ test.describe('Visual Comparison: VideoPlayer', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('VideoPlayer / Without Branding (pt-BR)', async ({page}) => {
@@ -216,7 +216,7 @@ test.describe('Visual Comparison: VideoPlayer', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('VideoPlayer / With Visually Hidden Title', async ({page}) => {
@@ -225,7 +225,7 @@ test.describe('Visual Comparison: VideoPlayer', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('VideoPlayer / With Visually Hidden Title (fr)', async ({page}) => {
@@ -234,7 +234,7 @@ test.describe('Visual Comparison: VideoPlayer', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('VideoPlayer / With Visually Hidden Title (de)', async ({page}) => {
@@ -243,7 +243,7 @@ test.describe('Visual Comparison: VideoPlayer', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('VideoPlayer / With Visually Hidden Title (ja)', async ({page}) => {
@@ -252,7 +252,7 @@ test.describe('Visual Comparison: VideoPlayer', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('VideoPlayer / With Visually Hidden Title (es)', async ({page}) => {
@@ -261,7 +261,7 @@ test.describe('Visual Comparison: VideoPlayer', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('VideoPlayer / With Visually Hidden Title (pt-BR)', async ({page}) => {
@@ -270,7 +270,7 @@ test.describe('Visual Comparison: VideoPlayer', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('VideoPlayer / With Some Hidden Controls', async ({page}) => {
@@ -279,7 +279,7 @@ test.describe('Visual Comparison: VideoPlayer', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('VideoPlayer / With Some Hidden Controls (fr)', async ({page}) => {
@@ -288,7 +288,7 @@ test.describe('Visual Comparison: VideoPlayer', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('VideoPlayer / With Some Hidden Controls (de)', async ({page}) => {
@@ -297,7 +297,7 @@ test.describe('Visual Comparison: VideoPlayer', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('VideoPlayer / With Some Hidden Controls (ja)', async ({page}) => {
@@ -306,7 +306,7 @@ test.describe('Visual Comparison: VideoPlayer', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('VideoPlayer / With Some Hidden Controls (es)', async ({page}) => {
@@ -315,7 +315,7 @@ test.describe('Visual Comparison: VideoPlayer', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('VideoPlayer / With Some Hidden Controls (pt-BR)', async ({page}) => {
@@ -324,7 +324,7 @@ test.describe('Visual Comparison: VideoPlayer', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('VideoPlayer / Minimal', async ({page}) => {
@@ -333,7 +333,7 @@ test.describe('Visual Comparison: VideoPlayer', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('VideoPlayer / Minimal (fr)', async ({page}) => {
@@ -342,7 +342,7 @@ test.describe('Visual Comparison: VideoPlayer', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('VideoPlayer / Minimal (de)', async ({page}) => {
@@ -351,7 +351,7 @@ test.describe('Visual Comparison: VideoPlayer', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('VideoPlayer / Minimal (ja)', async ({page}) => {
@@ -360,7 +360,7 @@ test.describe('Visual Comparison: VideoPlayer', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('VideoPlayer / Minimal (es)', async ({page}) => {
@@ -369,7 +369,7 @@ test.describe('Visual Comparison: VideoPlayer', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('VideoPlayer / Minimal (pt-BR)', async ({page}) => {
@@ -378,7 +378,7 @@ test.describe('Visual Comparison: VideoPlayer', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('VideoPlayer / Controlled Programmatically', async ({page}) => {
@@ -387,7 +387,7 @@ test.describe('Visual Comparison: VideoPlayer', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('VideoPlayer / Controlled Programmatically (fr)', async ({page}) => {
@@ -396,7 +396,7 @@ test.describe('Visual Comparison: VideoPlayer', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('VideoPlayer / Controlled Programmatically (de)', async ({page}) => {
@@ -405,7 +405,7 @@ test.describe('Visual Comparison: VideoPlayer', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('VideoPlayer / Controlled Programmatically (ja)', async ({page}) => {
@@ -414,7 +414,7 @@ test.describe('Visual Comparison: VideoPlayer', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('VideoPlayer / Controlled Programmatically (es)', async ({page}) => {
@@ -423,7 +423,7 @@ test.describe('Visual Comparison: VideoPlayer', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('VideoPlayer / Controlled Programmatically (pt-BR)', async ({page}) => {
@@ -432,7 +432,7 @@ test.describe('Visual Comparison: VideoPlayer', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('VideoPlayer / Custom Play Icon', async ({page}) => {
@@ -441,7 +441,7 @@ test.describe('Visual Comparison: VideoPlayer', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('VideoPlayer / Custom Play Icon (fr)', async ({page}) => {
@@ -450,7 +450,7 @@ test.describe('Visual Comparison: VideoPlayer', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('VideoPlayer / Custom Play Icon (de)', async ({page}) => {
@@ -459,7 +459,7 @@ test.describe('Visual Comparison: VideoPlayer', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('VideoPlayer / Custom Play Icon (ja)', async ({page}) => {
@@ -468,7 +468,7 @@ test.describe('Visual Comparison: VideoPlayer', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('VideoPlayer / Custom Play Icon (es)', async ({page}) => {
@@ -477,7 +477,7 @@ test.describe('Visual Comparison: VideoPlayer', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('VideoPlayer / Custom Play Icon (pt-BR)', async ({page}) => {
@@ -486,7 +486,7 @@ test.describe('Visual Comparison: VideoPlayer', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('VideoPlayer / Tooltip Visible On Focus', async ({page}) => {
@@ -495,7 +495,7 @@ test.describe('Visual Comparison: VideoPlayer', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('VideoPlayer / Tooltip Visible On Focus (fr)', async ({page}) => {
@@ -504,7 +504,7 @@ test.describe('Visual Comparison: VideoPlayer', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('VideoPlayer / Tooltip Visible On Focus (de)', async ({page}) => {
@@ -513,7 +513,7 @@ test.describe('Visual Comparison: VideoPlayer', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('VideoPlayer / Tooltip Visible On Focus (ja)', async ({page}) => {
@@ -522,7 +522,7 @@ test.describe('Visual Comparison: VideoPlayer', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('VideoPlayer / Tooltip Visible On Focus (es)', async ({page}) => {
@@ -531,7 +531,7 @@ test.describe('Visual Comparison: VideoPlayer', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('VideoPlayer / Tooltip Visible On Focus (pt-BR)', async ({page}) => {
@@ -540,6 +540,6 @@ test.describe('Visual Comparison: VideoPlayer', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 })

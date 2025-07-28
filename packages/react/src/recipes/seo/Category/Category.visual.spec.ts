@@ -11,7 +11,7 @@ test.describe('Visual Comparison: Category', () => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=recipes-seo-category-page--playground&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Category / Playground (fr)', async ({page}) => {
@@ -20,7 +20,7 @@ test.describe('Visual Comparison: Category', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Category / Playground (de)', async ({page}) => {
@@ -29,7 +29,7 @@ test.describe('Visual Comparison: Category', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Category / Playground (ja)', async ({page}) => {
@@ -38,7 +38,7 @@ test.describe('Visual Comparison: Category', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Category / Playground (es)', async ({page}) => {
@@ -47,7 +47,7 @@ test.describe('Visual Comparison: Category', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Category / Playground (pt-BR)', async ({page}) => {
@@ -56,6 +56,6 @@ test.describe('Visual Comparison: Category', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 })

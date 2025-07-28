@@ -11,7 +11,7 @@ test.describe('Visual Comparison: RiverAccordion', () => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-riveraccordion--default&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('RiverAccordion / Default (fr)', async ({page}) => {
@@ -20,7 +20,7 @@ test.describe('Visual Comparison: RiverAccordion', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('RiverAccordion / Default (de)', async ({page}) => {
@@ -29,7 +29,7 @@ test.describe('Visual Comparison: RiverAccordion', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('RiverAccordion / Default (ja)', async ({page}) => {
@@ -38,7 +38,7 @@ test.describe('Visual Comparison: RiverAccordion', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('RiverAccordion / Default (es)', async ({page}) => {
@@ -47,7 +47,7 @@ test.describe('Visual Comparison: RiverAccordion', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('RiverAccordion / Default (pt-BR)', async ({page}) => {
@@ -56,7 +56,7 @@ test.describe('Visual Comparison: RiverAccordion', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('RiverAccordion / Align Start', async ({page}) => {
@@ -65,7 +65,7 @@ test.describe('Visual Comparison: RiverAccordion', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('RiverAccordion / Align Start (fr)', async ({page}) => {
@@ -74,7 +74,7 @@ test.describe('Visual Comparison: RiverAccordion', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('RiverAccordion / Align Start (de)', async ({page}) => {
@@ -83,7 +83,7 @@ test.describe('Visual Comparison: RiverAccordion', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('RiverAccordion / Align Start (ja)', async ({page}) => {
@@ -92,7 +92,7 @@ test.describe('Visual Comparison: RiverAccordion', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('RiverAccordion / Align Start (es)', async ({page}) => {
@@ -101,7 +101,7 @@ test.describe('Visual Comparison: RiverAccordion', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('RiverAccordion / Align Start (pt-BR)', async ({page}) => {
@@ -110,7 +110,7 @@ test.describe('Visual Comparison: RiverAccordion', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('RiverAccordion / Align End', async ({page}) => {
@@ -119,7 +119,7 @@ test.describe('Visual Comparison: RiverAccordion', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('RiverAccordion / Align End (fr)', async ({page}) => {
@@ -128,7 +128,7 @@ test.describe('Visual Comparison: RiverAccordion', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('RiverAccordion / Align End (de)', async ({page}) => {
@@ -137,7 +137,7 @@ test.describe('Visual Comparison: RiverAccordion', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('RiverAccordion / Align End (ja)', async ({page}) => {
@@ -146,7 +146,7 @@ test.describe('Visual Comparison: RiverAccordion', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('RiverAccordion / Align End (es)', async ({page}) => {
@@ -155,7 +155,7 @@ test.describe('Visual Comparison: RiverAccordion', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('RiverAccordion / Align End (pt-BR)', async ({page}) => {
@@ -164,6 +164,6 @@ test.describe('Visual Comparison: RiverAccordion', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 })

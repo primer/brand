@@ -11,7 +11,7 @@ test.describe('Visual Comparison: Timeline', () => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-timeline--default&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Timeline / Default (fr)', async ({page}) => {
@@ -20,7 +20,7 @@ test.describe('Visual Comparison: Timeline', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Timeline / Default (de)', async ({page}) => {
@@ -29,7 +29,7 @@ test.describe('Visual Comparison: Timeline', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Timeline / Default (ja)', async ({page}) => {
@@ -38,7 +38,7 @@ test.describe('Visual Comparison: Timeline', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Timeline / Default (es)', async ({page}) => {
@@ -47,7 +47,7 @@ test.describe('Visual Comparison: Timeline', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Timeline / Default (pt-BR)', async ({page}) => {
@@ -56,7 +56,7 @@ test.describe('Visual Comparison: Timeline', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Timeline / With Emphasis', async ({page}) => {
@@ -65,7 +65,7 @@ test.describe('Visual Comparison: Timeline', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Timeline / With Emphasis (fr)', async ({page}) => {
@@ -74,7 +74,7 @@ test.describe('Visual Comparison: Timeline', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Timeline / With Emphasis (de)', async ({page}) => {
@@ -83,7 +83,7 @@ test.describe('Visual Comparison: Timeline', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Timeline / With Emphasis (ja)', async ({page}) => {
@@ -92,7 +92,7 @@ test.describe('Visual Comparison: Timeline', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Timeline / With Emphasis (es)', async ({page}) => {
@@ -101,7 +101,7 @@ test.describe('Visual Comparison: Timeline', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Timeline / With Emphasis (pt-BR)', async ({page}) => {
@@ -110,7 +110,7 @@ test.describe('Visual Comparison: Timeline', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Timeline / With Shorter Text', async ({page}) => {
@@ -119,7 +119,7 @@ test.describe('Visual Comparison: Timeline', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Timeline / With Shorter Text (fr)', async ({page}) => {
@@ -128,7 +128,7 @@ test.describe('Visual Comparison: Timeline', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Timeline / With Shorter Text (de)', async ({page}) => {
@@ -137,7 +137,7 @@ test.describe('Visual Comparison: Timeline', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Timeline / With Shorter Text (ja)', async ({page}) => {
@@ -146,7 +146,7 @@ test.describe('Visual Comparison: Timeline', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Timeline / With Shorter Text (es)', async ({page}) => {
@@ -155,7 +155,7 @@ test.describe('Visual Comparison: Timeline', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Timeline / With Shorter Text (pt-BR)', async ({page}) => {
@@ -164,7 +164,7 @@ test.describe('Visual Comparison: Timeline', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Timeline / With Links', async ({page}) => {
@@ -173,7 +173,7 @@ test.describe('Visual Comparison: Timeline', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Timeline / With Links (fr)', async ({page}) => {
@@ -182,7 +182,7 @@ test.describe('Visual Comparison: Timeline', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Timeline / With Links (de)', async ({page}) => {
@@ -191,7 +191,7 @@ test.describe('Visual Comparison: Timeline', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Timeline / With Links (ja)', async ({page}) => {
@@ -200,7 +200,7 @@ test.describe('Visual Comparison: Timeline', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Timeline / With Links (es)', async ({page}) => {
@@ -209,7 +209,7 @@ test.describe('Visual Comparison: Timeline', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Timeline / With Links (pt-BR)', async ({page}) => {
@@ -218,7 +218,7 @@ test.describe('Visual Comparison: Timeline', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Timeline / With Longer Text', async ({page}) => {
@@ -227,7 +227,7 @@ test.describe('Visual Comparison: Timeline', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Timeline / With Longer Text (fr)', async ({page}) => {
@@ -236,7 +236,7 @@ test.describe('Visual Comparison: Timeline', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Timeline / With Longer Text (de)', async ({page}) => {
@@ -245,7 +245,7 @@ test.describe('Visual Comparison: Timeline', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Timeline / With Longer Text (ja)', async ({page}) => {
@@ -254,7 +254,7 @@ test.describe('Visual Comparison: Timeline', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Timeline / With Longer Text (es)', async ({page}) => {
@@ -263,7 +263,7 @@ test.describe('Visual Comparison: Timeline', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Timeline / With Longer Text (pt-BR)', async ({page}) => {
@@ -272,6 +272,6 @@ test.describe('Visual Comparison: Timeline', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 })

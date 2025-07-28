@@ -11,7 +11,7 @@ test.describe('Visual Comparison: Hero', () => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-hero--default&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Hero / Default (fr)', async ({page}) => {
@@ -20,7 +20,7 @@ test.describe('Visual Comparison: Hero', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Hero / Default (de)', async ({page}) => {
@@ -29,7 +29,7 @@ test.describe('Visual Comparison: Hero', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Hero / Default (ja)', async ({page}) => {
@@ -38,7 +38,7 @@ test.describe('Visual Comparison: Hero', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Hero / Default (es)', async ({page}) => {
@@ -47,7 +47,7 @@ test.describe('Visual Comparison: Hero', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Hero / Default (pt-BR)', async ({page}) => {
@@ -56,14 +56,14 @@ test.describe('Visual Comparison: Hero', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Hero / Centered', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-hero-features--centered&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Hero / Centered (fr)', async ({page}) => {
@@ -72,7 +72,7 @@ test.describe('Visual Comparison: Hero', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Hero / Centered (de)', async ({page}) => {
@@ -81,7 +81,7 @@ test.describe('Visual Comparison: Hero', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Hero / Centered (ja)', async ({page}) => {
@@ -90,7 +90,7 @@ test.describe('Visual Comparison: Hero', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Hero / Centered (es)', async ({page}) => {
@@ -99,7 +99,7 @@ test.describe('Visual Comparison: Hero', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Hero / Centered (pt-BR)', async ({page}) => {
@@ -108,7 +108,7 @@ test.describe('Visual Comparison: Hero', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Hero / With Muted Descriptions', async ({page}) => {
@@ -117,7 +117,7 @@ test.describe('Visual Comparison: Hero', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Hero / With Muted Descriptions (fr)', async ({page}) => {
@@ -126,7 +126,7 @@ test.describe('Visual Comparison: Hero', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Hero / With Muted Descriptions (de)', async ({page}) => {
@@ -135,7 +135,7 @@ test.describe('Visual Comparison: Hero', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Hero / With Muted Descriptions (ja)', async ({page}) => {
@@ -144,7 +144,7 @@ test.describe('Visual Comparison: Hero', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Hero / With Muted Descriptions (es)', async ({page}) => {
@@ -153,7 +153,7 @@ test.describe('Visual Comparison: Hero', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Hero / With Muted Descriptions (pt-BR)', async ({page}) => {
@@ -162,7 +162,7 @@ test.describe('Visual Comparison: Hero', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Hero / With Accent Button', async ({page}) => {
@@ -171,7 +171,7 @@ test.describe('Visual Comparison: Hero', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Hero / With Accent Button (fr)', async ({page}) => {
@@ -180,7 +180,7 @@ test.describe('Visual Comparison: Hero', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Hero / With Accent Button (de)', async ({page}) => {
@@ -189,7 +189,7 @@ test.describe('Visual Comparison: Hero', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Hero / With Accent Button (ja)', async ({page}) => {
@@ -198,7 +198,7 @@ test.describe('Visual Comparison: Hero', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Hero / With Accent Button (es)', async ({page}) => {
@@ -207,7 +207,7 @@ test.describe('Visual Comparison: Hero', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Hero / With Accent Button (pt-BR)', async ({page}) => {
@@ -216,7 +216,7 @@ test.describe('Visual Comparison: Hero', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Hero / With an image (left + bottom)', async ({page}) => {
@@ -225,7 +225,7 @@ test.describe('Visual Comparison: Hero', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Hero / With an image (left + bottom) (fr)', async ({page}) => {
@@ -234,7 +234,7 @@ test.describe('Visual Comparison: Hero', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Hero / With an image (left + bottom) (de)', async ({page}) => {
@@ -243,7 +243,7 @@ test.describe('Visual Comparison: Hero', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Hero / With an image (left + bottom) (ja)', async ({page}) => {
@@ -252,7 +252,7 @@ test.describe('Visual Comparison: Hero', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Hero / With an image (left + bottom) (es)', async ({page}) => {
@@ -261,7 +261,7 @@ test.describe('Visual Comparison: Hero', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Hero / With an image (left + bottom) (pt-BR)', async ({page}) => {
@@ -270,7 +270,7 @@ test.describe('Visual Comparison: Hero', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Hero / With an image (centered + bottom)', async ({page}) => {
@@ -279,7 +279,7 @@ test.describe('Visual Comparison: Hero', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Hero / With an image (centered + bottom) (fr)', async ({page}) => {
@@ -288,7 +288,7 @@ test.describe('Visual Comparison: Hero', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Hero / With an image (centered + bottom) (de)', async ({page}) => {
@@ -297,7 +297,7 @@ test.describe('Visual Comparison: Hero', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Hero / With an image (centered + bottom) (ja)', async ({page}) => {
@@ -306,7 +306,7 @@ test.describe('Visual Comparison: Hero', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Hero / With an image (centered + bottom) (es)', async ({page}) => {
@@ -315,7 +315,7 @@ test.describe('Visual Comparison: Hero', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Hero / With an image (centered + bottom) (pt-BR)', async ({page}) => {
@@ -324,7 +324,7 @@ test.describe('Visual Comparison: Hero', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Hero / With an image (right)', async ({page}) => {
@@ -333,7 +333,7 @@ test.describe('Visual Comparison: Hero', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Hero / With an image (right) (fr)', async ({page}) => {
@@ -342,7 +342,7 @@ test.describe('Visual Comparison: Hero', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Hero / With an image (right) (de)', async ({page}) => {
@@ -351,7 +351,7 @@ test.describe('Visual Comparison: Hero', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Hero / With an image (right) (ja)', async ({page}) => {
@@ -360,7 +360,7 @@ test.describe('Visual Comparison: Hero', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Hero / With an image (right) (es)', async ({page}) => {
@@ -369,7 +369,7 @@ test.describe('Visual Comparison: Hero', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Hero / With an image (right) (pt-BR)', async ({page}) => {
@@ -378,7 +378,7 @@ test.describe('Visual Comparison: Hero', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Hero / With a VideoPlayer (bottom)', async ({page}) => {
@@ -387,7 +387,7 @@ test.describe('Visual Comparison: Hero', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Hero / With a VideoPlayer (bottom) (fr)', async ({page}) => {
@@ -396,7 +396,7 @@ test.describe('Visual Comparison: Hero', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Hero / With a VideoPlayer (bottom) (de)', async ({page}) => {
@@ -405,7 +405,7 @@ test.describe('Visual Comparison: Hero', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Hero / With a VideoPlayer (bottom) (ja)', async ({page}) => {
@@ -414,7 +414,7 @@ test.describe('Visual Comparison: Hero', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Hero / With a VideoPlayer (bottom) (es)', async ({page}) => {
@@ -423,7 +423,7 @@ test.describe('Visual Comparison: Hero', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Hero / With a VideoPlayer (bottom) (pt-BR)', async ({page}) => {
@@ -432,7 +432,7 @@ test.describe('Visual Comparison: Hero', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Hero / With a VideoPlayer (right)', async ({page}) => {
@@ -441,7 +441,7 @@ test.describe('Visual Comparison: Hero', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Hero / With a VideoPlayer (right) (fr)', async ({page}) => {
@@ -450,7 +450,7 @@ test.describe('Visual Comparison: Hero', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Hero / With a VideoPlayer (right) (de)', async ({page}) => {
@@ -459,7 +459,7 @@ test.describe('Visual Comparison: Hero', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Hero / With a VideoPlayer (right) (ja)', async ({page}) => {
@@ -468,7 +468,7 @@ test.describe('Visual Comparison: Hero', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Hero / With a VideoPlayer (right) (es)', async ({page}) => {
@@ -477,7 +477,7 @@ test.describe('Visual Comparison: Hero', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Hero / With a VideoPlayer (right) (pt-BR)', async ({page}) => {
@@ -486,7 +486,7 @@ test.describe('Visual Comparison: Hero', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Hero / Without Description', async ({page}) => {
@@ -495,7 +495,7 @@ test.describe('Visual Comparison: Hero', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Hero / Without Description (fr)', async ({page}) => {
@@ -504,7 +504,7 @@ test.describe('Visual Comparison: Hero', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Hero / Without Description (de)', async ({page}) => {
@@ -513,7 +513,7 @@ test.describe('Visual Comparison: Hero', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Hero / Without Description (ja)', async ({page}) => {
@@ -522,7 +522,7 @@ test.describe('Visual Comparison: Hero', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Hero / Without Description (es)', async ({page}) => {
@@ -531,7 +531,7 @@ test.describe('Visual Comparison: Hero', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Hero / Without Description (pt-BR)', async ({page}) => {
@@ -540,7 +540,7 @@ test.describe('Visual Comparison: Hero', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Hero / With Secondary Action', async ({page}) => {
@@ -549,7 +549,7 @@ test.describe('Visual Comparison: Hero', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Hero / With Secondary Action (fr)', async ({page}) => {
@@ -558,7 +558,7 @@ test.describe('Visual Comparison: Hero', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Hero / With Secondary Action (de)', async ({page}) => {
@@ -567,7 +567,7 @@ test.describe('Visual Comparison: Hero', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Hero / With Secondary Action (ja)', async ({page}) => {
@@ -576,7 +576,7 @@ test.describe('Visual Comparison: Hero', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Hero / With Secondary Action (es)', async ({page}) => {
@@ -585,7 +585,7 @@ test.describe('Visual Comparison: Hero', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Hero / With Secondary Action (pt-BR)', async ({page}) => {
@@ -594,14 +594,14 @@ test.describe('Visual Comparison: Hero', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Hero / Codespaces', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-hero-features--codespaces&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Hero / Codespaces (fr)', async ({page}) => {
@@ -610,7 +610,7 @@ test.describe('Visual Comparison: Hero', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Hero / Codespaces (de)', async ({page}) => {
@@ -619,7 +619,7 @@ test.describe('Visual Comparison: Hero', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Hero / Codespaces (ja)', async ({page}) => {
@@ -628,7 +628,7 @@ test.describe('Visual Comparison: Hero', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Hero / Codespaces (es)', async ({page}) => {
@@ -637,7 +637,7 @@ test.describe('Visual Comparison: Hero', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Hero / Codespaces (pt-BR)', async ({page}) => {
@@ -646,14 +646,14 @@ test.describe('Visual Comparison: Hero', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Hero / Issues', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-hero-features--issues&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Hero / Issues (fr)', async ({page}) => {
@@ -662,7 +662,7 @@ test.describe('Visual Comparison: Hero', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Hero / Issues (de)', async ({page}) => {
@@ -671,7 +671,7 @@ test.describe('Visual Comparison: Hero', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Hero / Issues (ja)', async ({page}) => {
@@ -680,7 +680,7 @@ test.describe('Visual Comparison: Hero', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Hero / Issues (es)', async ({page}) => {
@@ -689,7 +689,7 @@ test.describe('Visual Comparison: Hero', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Hero / Issues (pt-BR)', async ({page}) => {
@@ -698,7 +698,7 @@ test.describe('Visual Comparison: Hero', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Hero / With Trailing Component', async ({page}) => {
@@ -707,7 +707,7 @@ test.describe('Visual Comparison: Hero', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Hero / With Trailing Component (fr)', async ({page}) => {
@@ -716,7 +716,7 @@ test.describe('Visual Comparison: Hero', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Hero / With Trailing Component (de)', async ({page}) => {
@@ -725,7 +725,7 @@ test.describe('Visual Comparison: Hero', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Hero / With Trailing Component (ja)', async ({page}) => {
@@ -734,7 +734,7 @@ test.describe('Visual Comparison: Hero', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Hero / With Trailing Component (es)', async ({page}) => {
@@ -743,7 +743,7 @@ test.describe('Visual Comparison: Hero', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Hero / With Trailing Component (pt-BR)', async ({page}) => {
@@ -752,7 +752,7 @@ test.describe('Visual Comparison: Hero', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Hero / With Custom Classnames', async ({page}) => {
@@ -761,7 +761,7 @@ test.describe('Visual Comparison: Hero', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Hero / With Custom Classnames (fr)', async ({page}) => {
@@ -770,7 +770,7 @@ test.describe('Visual Comparison: Hero', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Hero / With Custom Classnames (de)', async ({page}) => {
@@ -779,7 +779,7 @@ test.describe('Visual Comparison: Hero', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Hero / With Custom Classnames (ja)', async ({page}) => {
@@ -788,7 +788,7 @@ test.describe('Visual Comparison: Hero', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Hero / With Custom Classnames (es)', async ({page}) => {
@@ -797,7 +797,7 @@ test.describe('Visual Comparison: Hero', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Hero / With Custom Classnames (pt-BR)', async ({page}) => {
@@ -806,7 +806,7 @@ test.describe('Visual Comparison: Hero', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Hero / With Custom Heading And Description Sizes', async ({page}) => {
@@ -815,7 +815,7 @@ test.describe('Visual Comparison: Hero', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Hero / With Custom Heading And Description Sizes (fr)', async ({page}) => {
@@ -824,7 +824,7 @@ test.describe('Visual Comparison: Hero', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Hero / With Custom Heading And Description Sizes (de)', async ({page}) => {
@@ -833,7 +833,7 @@ test.describe('Visual Comparison: Hero', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Hero / With Custom Heading And Description Sizes (ja)', async ({page}) => {
@@ -842,7 +842,7 @@ test.describe('Visual Comparison: Hero', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Hero / With Custom Heading And Description Sizes (es)', async ({page}) => {
@@ -851,7 +851,7 @@ test.describe('Visual Comparison: Hero', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Hero / With Custom Heading And Description Sizes (pt-BR)', async ({page}) => {
@@ -860,7 +860,7 @@ test.describe('Visual Comparison: Hero', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Hero / With custom icon and variant', async ({page}) => {
@@ -869,7 +869,7 @@ test.describe('Visual Comparison: Hero', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Hero / With custom icon and variant (fr)', async ({page}) => {
@@ -878,7 +878,7 @@ test.describe('Visual Comparison: Hero', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Hero / With custom icon and variant (de)', async ({page}) => {
@@ -887,7 +887,7 @@ test.describe('Visual Comparison: Hero', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Hero / With custom icon and variant (ja)', async ({page}) => {
@@ -896,7 +896,7 @@ test.describe('Visual Comparison: Hero', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Hero / With custom icon and variant (es)', async ({page}) => {
@@ -905,7 +905,7 @@ test.describe('Visual Comparison: Hero', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Hero / With custom icon and variant (pt-BR)', async ({page}) => {
@@ -914,7 +914,7 @@ test.describe('Visual Comparison: Hero', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   // eslint-disable-next-line i18n-text/no-en
@@ -924,7 +924,7 @@ test.describe('Visual Comparison: Hero', () => {
       await page.goto('http://localhost:6006/iframe.html?args=&id=components-hero-features--narrow-view&viewMode=story')
 
       await page.waitForTimeout(500)
-      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+      await expect(page).toHaveScreenshot({fullPage: true})
     })
 
     test('Hero / Narrow View (fr)', async ({page}) => {
@@ -933,7 +933,7 @@ test.describe('Visual Comparison: Hero', () => {
       )
 
       await page.waitForTimeout(500)
-      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+      await expect(page).toHaveScreenshot({fullPage: true})
     })
 
     test('Hero / Narrow View (de)', async ({page}) => {
@@ -942,7 +942,7 @@ test.describe('Visual Comparison: Hero', () => {
       )
 
       await page.waitForTimeout(500)
-      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+      await expect(page).toHaveScreenshot({fullPage: true})
     })
 
     test('Hero / Narrow View (ja)', async ({page}) => {
@@ -951,7 +951,7 @@ test.describe('Visual Comparison: Hero', () => {
       )
 
       await page.waitForTimeout(500)
-      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+      await expect(page).toHaveScreenshot({fullPage: true})
     })
 
     test('Hero / Narrow View (es)', async ({page}) => {
@@ -960,7 +960,7 @@ test.describe('Visual Comparison: Hero', () => {
       )
 
       await page.waitForTimeout(500)
-      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+      await expect(page).toHaveScreenshot({fullPage: true})
     })
 
     test('Hero / Narrow View (pt-BR)', async ({page}) => {
@@ -969,7 +969,7 @@ test.describe('Visual Comparison: Hero', () => {
       )
 
       await page.waitForTimeout(500)
-      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+      await expect(page).toHaveScreenshot({fullPage: true})
     })
   })
 
@@ -982,7 +982,7 @@ test.describe('Visual Comparison: Hero', () => {
       )
 
       await page.waitForTimeout(500)
-      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+      await expect(page).toHaveScreenshot({fullPage: true})
     })
 
     test('Hero / Narrow View Centered (fr)', async ({page}) => {
@@ -991,7 +991,7 @@ test.describe('Visual Comparison: Hero', () => {
       )
 
       await page.waitForTimeout(500)
-      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+      await expect(page).toHaveScreenshot({fullPage: true})
     })
 
     test('Hero / Narrow View Centered (de)', async ({page}) => {
@@ -1000,7 +1000,7 @@ test.describe('Visual Comparison: Hero', () => {
       )
 
       await page.waitForTimeout(500)
-      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+      await expect(page).toHaveScreenshot({fullPage: true})
     })
 
     test('Hero / Narrow View Centered (ja)', async ({page}) => {
@@ -1009,7 +1009,7 @@ test.describe('Visual Comparison: Hero', () => {
       )
 
       await page.waitForTimeout(500)
-      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+      await expect(page).toHaveScreenshot({fullPage: true})
     })
 
     test('Hero / Narrow View Centered (es)', async ({page}) => {
@@ -1018,7 +1018,7 @@ test.describe('Visual Comparison: Hero', () => {
       )
 
       await page.waitForTimeout(500)
-      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+      await expect(page).toHaveScreenshot({fullPage: true})
     })
 
     test('Hero / Narrow View Centered (pt-BR)', async ({page}) => {
@@ -1027,14 +1027,14 @@ test.describe('Visual Comparison: Hero', () => {
       )
 
       await page.waitForTimeout(500)
-      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+      await expect(page).toHaveScreenshot({fullPage: true})
     })
   })
   test('Hero / Eyebrow', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-hero-features--eyebrow&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Hero / Eyebrow (fr)', async ({page}) => {
@@ -1043,7 +1043,7 @@ test.describe('Visual Comparison: Hero', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Hero / Eyebrow (de)', async ({page}) => {
@@ -1052,7 +1052,7 @@ test.describe('Visual Comparison: Hero', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Hero / Eyebrow (ja)', async ({page}) => {
@@ -1061,7 +1061,7 @@ test.describe('Visual Comparison: Hero', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Hero / Eyebrow (es)', async ({page}) => {
@@ -1070,7 +1070,7 @@ test.describe('Visual Comparison: Hero', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Hero / Eyebrow (pt-BR)', async ({page}) => {
@@ -1079,7 +1079,7 @@ test.describe('Visual Comparison: Hero', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Hero / Eyebrow Centered', async ({page}) => {
@@ -1088,7 +1088,7 @@ test.describe('Visual Comparison: Hero', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Hero / Eyebrow Centered (fr)', async ({page}) => {
@@ -1097,7 +1097,7 @@ test.describe('Visual Comparison: Hero', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Hero / Eyebrow Centered (de)', async ({page}) => {
@@ -1106,7 +1106,7 @@ test.describe('Visual Comparison: Hero', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Hero / Eyebrow Centered (ja)', async ({page}) => {
@@ -1115,7 +1115,7 @@ test.describe('Visual Comparison: Hero', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Hero / Eyebrow Centered (es)', async ({page}) => {
@@ -1124,7 +1124,7 @@ test.describe('Visual Comparison: Hero', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Hero / Eyebrow Centered (pt-BR)', async ({page}) => {
@@ -1133,6 +1133,6 @@ test.describe('Visual Comparison: Hero', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 })

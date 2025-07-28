@@ -13,7 +13,7 @@ test.describe('Visual Comparison: CheckboxGroup', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('CheckboxGroup / Playground (fr)', async ({page}) => {
@@ -22,7 +22,7 @@ test.describe('Visual Comparison: CheckboxGroup', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('CheckboxGroup / Playground (de)', async ({page}) => {
@@ -31,7 +31,7 @@ test.describe('Visual Comparison: CheckboxGroup', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('CheckboxGroup / Playground (ja)', async ({page}) => {
@@ -40,7 +40,7 @@ test.describe('Visual Comparison: CheckboxGroup', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('CheckboxGroup / Playground (es)', async ({page}) => {
@@ -49,7 +49,7 @@ test.describe('Visual Comparison: CheckboxGroup', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('CheckboxGroup / Playground (pt-BR)', async ({page}) => {
@@ -58,7 +58,7 @@ test.describe('Visual Comparison: CheckboxGroup', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('CheckboxGroup / Inline', async ({page}) => {
@@ -67,7 +67,7 @@ test.describe('Visual Comparison: CheckboxGroup', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('CheckboxGroup / Inline (fr)', async ({page}) => {
@@ -76,7 +76,7 @@ test.describe('Visual Comparison: CheckboxGroup', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('CheckboxGroup / Inline (de)', async ({page}) => {
@@ -85,7 +85,7 @@ test.describe('Visual Comparison: CheckboxGroup', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('CheckboxGroup / Inline (ja)', async ({page}) => {
@@ -94,7 +94,7 @@ test.describe('Visual Comparison: CheckboxGroup', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('CheckboxGroup / Inline (es)', async ({page}) => {
@@ -103,7 +103,7 @@ test.describe('Visual Comparison: CheckboxGroup', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('CheckboxGroup / Inline (pt-BR)', async ({page}) => {
@@ -112,6 +112,6 @@ test.describe('Visual Comparison: CheckboxGroup', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 })

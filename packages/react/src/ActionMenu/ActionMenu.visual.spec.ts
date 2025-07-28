@@ -11,7 +11,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-actionmenu--default&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('ActionMenu / Default (fr)', async ({page}) => {
@@ -20,7 +20,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('ActionMenu / Default (de)', async ({page}) => {
@@ -29,7 +29,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('ActionMenu / Default (ja)', async ({page}) => {
@@ -38,7 +38,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('ActionMenu / Default (es)', async ({page}) => {
@@ -47,7 +47,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('ActionMenu / Default (pt-BR)', async ({page}) => {
@@ -56,7 +56,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('ActionMenu / Single Selection', async ({page}) => {
@@ -65,7 +65,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('ActionMenu / Single Selection (fr)', async ({page}) => {
@@ -74,7 +74,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('ActionMenu / Single Selection (de)', async ({page}) => {
@@ -83,7 +83,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('ActionMenu / Single Selection (ja)', async ({page}) => {
@@ -92,7 +92,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('ActionMenu / Single Selection (es)', async ({page}) => {
@@ -101,7 +101,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('ActionMenu / Single Selection (pt-BR)', async ({page}) => {
@@ -110,7 +110,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('ActionMenu / Single Selection Small Open', async ({page}) => {
@@ -119,7 +119,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('ActionMenu / Single Selection Small Open (fr)', async ({page}) => {
@@ -128,7 +128,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('ActionMenu / Single Selection Small Open (de)', async ({page}) => {
@@ -137,7 +137,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('ActionMenu / Single Selection Small Open (ja)', async ({page}) => {
@@ -146,7 +146,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('ActionMenu / Single Selection Small Open (es)', async ({page}) => {
@@ -155,7 +155,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('ActionMenu / Single Selection Small Open (pt-BR)', async ({page}) => {
@@ -164,7 +164,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('ActionMenu / Split Button Mode', async ({page}) => {
@@ -173,7 +173,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('ActionMenu / Split Button Mode (fr)', async ({page}) => {
@@ -182,7 +182,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('ActionMenu / Split Button Mode (de)', async ({page}) => {
@@ -191,7 +191,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('ActionMenu / Split Button Mode (ja)', async ({page}) => {
@@ -200,7 +200,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('ActionMenu / Split Button Mode (es)', async ({page}) => {
@@ -209,7 +209,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('ActionMenu / Split Button Mode (pt-BR)', async ({page}) => {
@@ -218,7 +218,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('ActionMenu / Split Button Mode Disabled', async ({page}) => {
@@ -227,7 +227,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('ActionMenu / Split Button Mode Disabled (fr)', async ({page}) => {
@@ -236,7 +236,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('ActionMenu / Split Button Mode Disabled (de)', async ({page}) => {
@@ -245,7 +245,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('ActionMenu / Split Button Mode Disabled (ja)', async ({page}) => {
@@ -254,7 +254,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('ActionMenu / Split Button Mode Disabled (es)', async ({page}) => {
@@ -263,7 +263,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('ActionMenu / Split Button Mode Disabled (pt-BR)', async ({page}) => {
@@ -272,7 +272,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('ActionMenu / Split Button Mode Open', async ({page}) => {
@@ -281,7 +281,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('ActionMenu / Split Button Mode Open (fr)', async ({page}) => {
@@ -290,7 +290,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('ActionMenu / Split Button Mode Open (de)', async ({page}) => {
@@ -299,7 +299,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('ActionMenu / Split Button Mode Open (ja)', async ({page}) => {
@@ -308,7 +308,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('ActionMenu / Split Button Mode Open (es)', async ({page}) => {
@@ -317,7 +317,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('ActionMenu / Split Button Mode Open (pt-BR)', async ({page}) => {
@@ -326,7 +326,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('ActionMenu / Split Button Alternative Menu Alignment', async ({page}) => {
@@ -335,7 +335,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('ActionMenu / Split Button Alternative Menu Alignment (fr)', async ({page}) => {
@@ -344,7 +344,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('ActionMenu / Split Button Alternative Menu Alignment (de)', async ({page}) => {
@@ -353,7 +353,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('ActionMenu / Split Button Alternative Menu Alignment (ja)', async ({page}) => {
@@ -362,7 +362,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('ActionMenu / Split Button Alternative Menu Alignment (es)', async ({page}) => {
@@ -371,7 +371,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('ActionMenu / Split Button Alternative Menu Alignment (pt-BR)', async ({page}) => {
@@ -380,7 +380,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('ActionMenu / Split Button Mode All Variants', async ({page}) => {
@@ -389,7 +389,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('ActionMenu / Split Button Mode All Variants (fr)', async ({page}) => {
@@ -398,7 +398,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('ActionMenu / Split Button Mode All Variants (de)', async ({page}) => {
@@ -407,7 +407,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('ActionMenu / Split Button Mode All Variants (ja)', async ({page}) => {
@@ -416,7 +416,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('ActionMenu / Split Button Mode All Variants (es)', async ({page}) => {
@@ -425,7 +425,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('ActionMenu / Split Button Mode All Variants (pt-BR)', async ({page}) => {
@@ -434,7 +434,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('ActionMenu / Split Button Mode In Hero', async ({page}) => {
@@ -443,7 +443,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('ActionMenu / Split Button Mode In Hero (fr)', async ({page}) => {
@@ -452,7 +452,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('ActionMenu / Split Button Mode In Hero (de)', async ({page}) => {
@@ -461,7 +461,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('ActionMenu / Split Button Mode In Hero (ja)', async ({page}) => {
@@ -470,7 +470,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('ActionMenu / Split Button Mode In Hero (es)', async ({page}) => {
@@ -479,7 +479,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('ActionMenu / Split Button Mode In Hero (pt-BR)', async ({page}) => {
@@ -488,7 +488,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('ActionMenu / In Stack', async ({page}) => {
@@ -497,7 +497,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('ActionMenu / In Stack (fr)', async ({page}) => {
@@ -506,7 +506,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('ActionMenu / In Stack (de)', async ({page}) => {
@@ -515,7 +515,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('ActionMenu / In Stack (ja)', async ({page}) => {
@@ -524,7 +524,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('ActionMenu / In Stack (es)', async ({page}) => {
@@ -533,7 +533,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('ActionMenu / In Stack (pt-BR)', async ({page}) => {
@@ -542,14 +542,14 @@ test.describe('Visual Comparison: ActionMenu', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('ActionMenu / Sizes', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-actionmenu-features--sizes&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('ActionMenu / Sizes (fr)', async ({page}) => {
@@ -558,7 +558,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('ActionMenu / Sizes (de)', async ({page}) => {
@@ -567,7 +567,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('ActionMenu / Sizes (ja)', async ({page}) => {
@@ -576,7 +576,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('ActionMenu / Sizes (es)', async ({page}) => {
@@ -585,7 +585,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('ActionMenu / Sizes (pt-BR)', async ({page}) => {
@@ -594,7 +594,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('ActionMenu / Open By Default', async ({page}) => {
@@ -603,7 +603,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
     )
 
     await page.waitForTimeout(1000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('ActionMenu / Open By Default (fr)', async ({page}) => {
@@ -612,7 +612,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
     )
 
     await page.waitForTimeout(1000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('ActionMenu / Open By Default (de)', async ({page}) => {
@@ -621,7 +621,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
     )
 
     await page.waitForTimeout(1000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('ActionMenu / Open By Default (ja)', async ({page}) => {
@@ -630,7 +630,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
     )
 
     await page.waitForTimeout(1000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('ActionMenu / Open By Default (es)', async ({page}) => {
@@ -639,7 +639,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
     )
 
     await page.waitForTimeout(1000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('ActionMenu / Open By Default (pt-BR)', async ({page}) => {
@@ -648,7 +648,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
     )
 
     await page.waitForTimeout(1000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('ActionMenu / Longer Button Text', async ({page}) => {
@@ -657,7 +657,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('ActionMenu / Longer Button Text (fr)', async ({page}) => {
@@ -666,7 +666,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('ActionMenu / Longer Button Text (de)', async ({page}) => {
@@ -675,7 +675,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('ActionMenu / Longer Button Text (ja)', async ({page}) => {
@@ -684,7 +684,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('ActionMenu / Longer Button Text (es)', async ({page}) => {
@@ -693,7 +693,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('ActionMenu / Longer Button Text (pt-BR)', async ({page}) => {
@@ -702,7 +702,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('ActionMenu / Longer Lists', async ({page}) => {
@@ -711,7 +711,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('ActionMenu / Longer Lists (fr)', async ({page}) => {
@@ -720,7 +720,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('ActionMenu / Longer Lists (de)', async ({page}) => {
@@ -729,7 +729,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('ActionMenu / Longer Lists (ja)', async ({page}) => {
@@ -738,7 +738,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('ActionMenu / Longer Lists (es)', async ({page}) => {
@@ -747,7 +747,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('ActionMenu / Longer Lists (pt-BR)', async ({page}) => {
@@ -756,7 +756,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('ActionMenu / Longer lists (open)', async ({page}) => {
@@ -765,7 +765,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
     )
 
     await page.waitForTimeout(1000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('ActionMenu / Longer lists (open) (fr)', async ({page}) => {
@@ -774,7 +774,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
     )
 
     await page.waitForTimeout(1000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('ActionMenu / Longer lists (open) (de)', async ({page}) => {
@@ -783,7 +783,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
     )
 
     await page.waitForTimeout(1000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('ActionMenu / Longer lists (open) (ja)', async ({page}) => {
@@ -792,7 +792,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
     )
 
     await page.waitForTimeout(1000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('ActionMenu / Longer lists (open) (es)', async ({page}) => {
@@ -801,7 +801,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
     )
 
     await page.waitForTimeout(1000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('ActionMenu / Longer lists (open) (pt-BR)', async ({page}) => {
@@ -810,7 +810,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
     )
 
     await page.waitForTimeout(1000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('ActionMenu / Menu alignment (end)', async ({page}) => {
@@ -819,7 +819,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
     )
 
     await page.waitForTimeout(1000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('ActionMenu / Menu alignment (end) (fr)', async ({page}) => {
@@ -828,7 +828,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
     )
 
     await page.waitForTimeout(1000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('ActionMenu / Menu alignment (end) (de)', async ({page}) => {
@@ -837,7 +837,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
     )
 
     await page.waitForTimeout(1000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('ActionMenu / Menu alignment (end) (ja)', async ({page}) => {
@@ -846,7 +846,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
     )
 
     await page.waitForTimeout(1000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('ActionMenu / Menu alignment (end) (es)', async ({page}) => {
@@ -855,7 +855,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
     )
 
     await page.waitForTimeout(1000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('ActionMenu / Menu alignment (end) (pt-BR)', async ({page}) => {
@@ -864,7 +864,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
     )
 
     await page.waitForTimeout(1000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('ActionMenu / Disabled Menu', async ({page}) => {
@@ -873,7 +873,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('ActionMenu / Disabled Menu (fr)', async ({page}) => {
@@ -882,7 +882,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('ActionMenu / Disabled Menu (de)', async ({page}) => {
@@ -891,7 +891,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('ActionMenu / Disabled Menu (ja)', async ({page}) => {
@@ -900,7 +900,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('ActionMenu / Disabled Menu (es)', async ({page}) => {
@@ -909,7 +909,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('ActionMenu / Disabled Menu (pt-BR)', async ({page}) => {
@@ -918,7 +918,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('ActionMenu / Anchored Positioning', async ({page}) => {
@@ -927,7 +927,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('ActionMenu / Anchored Positioning (fr)', async ({page}) => {
@@ -936,7 +936,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('ActionMenu / Anchored Positioning (de)', async ({page}) => {
@@ -945,7 +945,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('ActionMenu / Anchored Positioning (ja)', async ({page}) => {
@@ -954,7 +954,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('ActionMenu / Anchored Positioning (es)', async ({page}) => {
@@ -963,7 +963,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('ActionMenu / Anchored Positioning (pt-BR)', async ({page}) => {
@@ -972,7 +972,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('ActionMenu / Anchored Positioning Overrides', async ({page}) => {
@@ -981,7 +981,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('ActionMenu / Anchored Positioning Overrides (fr)', async ({page}) => {
@@ -990,7 +990,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('ActionMenu / Anchored Positioning Overrides (de)', async ({page}) => {
@@ -999,7 +999,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('ActionMenu / Anchored Positioning Overrides (ja)', async ({page}) => {
@@ -1008,7 +1008,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('ActionMenu / Anchored Positioning Overrides (es)', async ({page}) => {
@@ -1017,7 +1017,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('ActionMenu / Anchored Positioning Overrides (pt-BR)', async ({page}) => {
@@ -1026,7 +1026,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('ActionMenu / Disabled Item', async ({page}) => {
@@ -1035,7 +1035,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
     )
 
     await page.waitForTimeout(1000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('ActionMenu / Disabled Item (fr)', async ({page}) => {
@@ -1044,7 +1044,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
     )
 
     await page.waitForTimeout(1000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('ActionMenu / Disabled Item (de)', async ({page}) => {
@@ -1053,7 +1053,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
     )
 
     await page.waitForTimeout(1000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('ActionMenu / Disabled Item (ja)', async ({page}) => {
@@ -1062,7 +1062,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
     )
 
     await page.waitForTimeout(1000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('ActionMenu / Disabled Item (es)', async ({page}) => {
@@ -1071,7 +1071,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
     )
 
     await page.waitForTimeout(1000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('ActionMenu / Disabled Item (pt-BR)', async ({page}) => {
@@ -1080,6 +1080,6 @@ test.describe('Visual Comparison: ActionMenu', () => {
     )
 
     await page.waitForTimeout(1000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 })

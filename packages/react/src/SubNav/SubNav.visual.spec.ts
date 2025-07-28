@@ -11,7 +11,7 @@ test.describe('Visual Comparison: SubNav', () => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-subnav--default&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('SubNav / Default (fr)', async ({page}) => {
@@ -20,7 +20,7 @@ test.describe('Visual Comparison: SubNav', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('SubNav / Default (de)', async ({page}) => {
@@ -29,7 +29,7 @@ test.describe('Visual Comparison: SubNav', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('SubNav / Default (ja)', async ({page}) => {
@@ -38,7 +38,7 @@ test.describe('Visual Comparison: SubNav', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('SubNav / Default (es)', async ({page}) => {
@@ -47,7 +47,7 @@ test.describe('Visual Comparison: SubNav', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('SubNav / Default (pt-BR)', async ({page}) => {
@@ -56,7 +56,7 @@ test.describe('Visual Comparison: SubNav', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('SubNav / Dropdown Variant', async ({page}) => {
@@ -65,7 +65,7 @@ test.describe('Visual Comparison: SubNav', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('SubNav / Dropdown Variant (fr)', async ({page}) => {
@@ -74,7 +74,7 @@ test.describe('Visual Comparison: SubNav', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('SubNav / Dropdown Variant (de)', async ({page}) => {
@@ -83,7 +83,7 @@ test.describe('Visual Comparison: SubNav', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('SubNav / Dropdown Variant (ja)', async ({page}) => {
@@ -92,7 +92,7 @@ test.describe('Visual Comparison: SubNav', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('SubNav / Dropdown Variant (es)', async ({page}) => {
@@ -101,7 +101,7 @@ test.describe('Visual Comparison: SubNav', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('SubNav / Dropdown Variant (pt-BR)', async ({page}) => {
@@ -110,7 +110,7 @@ test.describe('Visual Comparison: SubNav', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   // eslint-disable-next-line i18n-text/no-en
@@ -122,7 +122,7 @@ test.describe('Visual Comparison: SubNav', () => {
       )
 
       await page.waitForTimeout(500)
-      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+      await expect(page).toHaveScreenshot({fullPage: true})
     })
 
     test('SubNav / Narrow Dropdown Variant (fr)', async ({page}) => {
@@ -131,7 +131,7 @@ test.describe('Visual Comparison: SubNav', () => {
       )
 
       await page.waitForTimeout(500)
-      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+      await expect(page).toHaveScreenshot({fullPage: true})
     })
 
     test('SubNav / Narrow Dropdown Variant (de)', async ({page}) => {
@@ -140,7 +140,7 @@ test.describe('Visual Comparison: SubNav', () => {
       )
 
       await page.waitForTimeout(500)
-      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+      await expect(page).toHaveScreenshot({fullPage: true})
     })
 
     test('SubNav / Narrow Dropdown Variant (ja)', async ({page}) => {
@@ -149,7 +149,7 @@ test.describe('Visual Comparison: SubNav', () => {
       )
 
       await page.waitForTimeout(500)
-      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+      await expect(page).toHaveScreenshot({fullPage: true})
     })
 
     test('SubNav / Narrow Dropdown Variant (es)', async ({page}) => {
@@ -158,7 +158,7 @@ test.describe('Visual Comparison: SubNav', () => {
       )
 
       await page.waitForTimeout(500)
-      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+      await expect(page).toHaveScreenshot({fullPage: true})
     })
 
     test('SubNav / Narrow Dropdown Variant (pt-BR)', async ({page}) => {
@@ -167,7 +167,7 @@ test.describe('Visual Comparison: SubNav', () => {
       )
 
       await page.waitForTimeout(500)
-      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+      await expect(page).toHaveScreenshot({fullPage: true})
     })
   })
 
@@ -180,7 +180,7 @@ test.describe('Visual Comparison: SubNav', () => {
       )
 
       await page.waitForTimeout(500)
-      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+      await expect(page).toHaveScreenshot({fullPage: true})
     })
 
     test('SubNav / Narrow Dropdown Variant Menu Open (fr)', async ({page}) => {
@@ -189,7 +189,7 @@ test.describe('Visual Comparison: SubNav', () => {
       )
 
       await page.waitForTimeout(500)
-      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+      await expect(page).toHaveScreenshot({fullPage: true})
     })
 
     test('SubNav / Narrow Dropdown Variant Menu Open (de)', async ({page}) => {
@@ -198,7 +198,7 @@ test.describe('Visual Comparison: SubNav', () => {
       )
 
       await page.waitForTimeout(500)
-      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+      await expect(page).toHaveScreenshot({fullPage: true})
     })
 
     test('SubNav / Narrow Dropdown Variant Menu Open (ja)', async ({page}) => {
@@ -207,7 +207,7 @@ test.describe('Visual Comparison: SubNav', () => {
       )
 
       await page.waitForTimeout(500)
-      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+      await expect(page).toHaveScreenshot({fullPage: true})
     })
 
     test('SubNav / Narrow Dropdown Variant Menu Open (es)', async ({page}) => {
@@ -216,7 +216,7 @@ test.describe('Visual Comparison: SubNav', () => {
       )
 
       await page.waitForTimeout(500)
-      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+      await expect(page).toHaveScreenshot({fullPage: true})
     })
 
     test('SubNav / Narrow Dropdown Variant Menu Open (pt-BR)', async ({page}) => {
@@ -225,14 +225,14 @@ test.describe('Visual Comparison: SubNav', () => {
       )
 
       await page.waitForTimeout(500)
-      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+      await expect(page).toHaveScreenshot({fullPage: true})
     })
   })
   test('SubNav / With Shadow', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-subnav-features--with-shadow&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('SubNav / With Shadow (fr)', async ({page}) => {
@@ -241,7 +241,7 @@ test.describe('Visual Comparison: SubNav', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('SubNav / With Shadow (de)', async ({page}) => {
@@ -250,7 +250,7 @@ test.describe('Visual Comparison: SubNav', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('SubNav / With Shadow (ja)', async ({page}) => {
@@ -259,7 +259,7 @@ test.describe('Visual Comparison: SubNav', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('SubNav / With Shadow (es)', async ({page}) => {
@@ -268,7 +268,7 @@ test.describe('Visual Comparison: SubNav', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('SubNav / With Shadow (pt-BR)', async ({page}) => {
@@ -277,14 +277,14 @@ test.describe('Visual Comparison: SubNav', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('SubNav / Sub Heading', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-subnav-features--sub-heading&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('SubNav / Sub Heading (fr)', async ({page}) => {
@@ -293,7 +293,7 @@ test.describe('Visual Comparison: SubNav', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('SubNav / Sub Heading (de)', async ({page}) => {
@@ -302,7 +302,7 @@ test.describe('Visual Comparison: SubNav', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('SubNav / Sub Heading (ja)', async ({page}) => {
@@ -311,7 +311,7 @@ test.describe('Visual Comparison: SubNav', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('SubNav / Sub Heading (es)', async ({page}) => {
@@ -320,7 +320,7 @@ test.describe('Visual Comparison: SubNav', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('SubNav / Sub Heading (pt-BR)', async ({page}) => {
@@ -329,7 +329,7 @@ test.describe('Visual Comparison: SubNav', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   // eslint-disable-next-line i18n-text/no-en
@@ -341,7 +341,7 @@ test.describe('Visual Comparison: SubNav', () => {
       )
 
       await page.waitForTimeout(500)
-      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+      await expect(page).toHaveScreenshot({fullPage: true})
     })
 
     test('SubNav / Sub Heading Narrow (fr)', async ({page}) => {
@@ -350,7 +350,7 @@ test.describe('Visual Comparison: SubNav', () => {
       )
 
       await page.waitForTimeout(500)
-      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+      await expect(page).toHaveScreenshot({fullPage: true})
     })
 
     test('SubNav / Sub Heading Narrow (de)', async ({page}) => {
@@ -359,7 +359,7 @@ test.describe('Visual Comparison: SubNav', () => {
       )
 
       await page.waitForTimeout(500)
-      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+      await expect(page).toHaveScreenshot({fullPage: true})
     })
 
     test('SubNav / Sub Heading Narrow (ja)', async ({page}) => {
@@ -368,7 +368,7 @@ test.describe('Visual Comparison: SubNav', () => {
       )
 
       await page.waitForTimeout(500)
-      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+      await expect(page).toHaveScreenshot({fullPage: true})
     })
 
     test('SubNav / Sub Heading Narrow (es)', async ({page}) => {
@@ -377,7 +377,7 @@ test.describe('Visual Comparison: SubNav', () => {
       )
 
       await page.waitForTimeout(500)
-      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+      await expect(page).toHaveScreenshot({fullPage: true})
     })
 
     test('SubNav / Sub Heading Narrow (pt-BR)', async ({page}) => {
@@ -386,7 +386,7 @@ test.describe('Visual Comparison: SubNav', () => {
       )
 
       await page.waitForTimeout(500)
-      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+      await expect(page).toHaveScreenshot({fullPage: true})
     })
   })
 
@@ -399,7 +399,7 @@ test.describe('Visual Comparison: SubNav', () => {
       )
 
       await page.waitForTimeout(500)
-      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+      await expect(page).toHaveScreenshot({fullPage: true})
     })
 
     test('SubNav / Sub Heading Narrow Open (fr)', async ({page}) => {
@@ -408,7 +408,7 @@ test.describe('Visual Comparison: SubNav', () => {
       )
 
       await page.waitForTimeout(500)
-      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+      await expect(page).toHaveScreenshot({fullPage: true})
     })
 
     test('SubNav / Sub Heading Narrow Open (de)', async ({page}) => {
@@ -417,7 +417,7 @@ test.describe('Visual Comparison: SubNav', () => {
       )
 
       await page.waitForTimeout(500)
-      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+      await expect(page).toHaveScreenshot({fullPage: true})
     })
 
     test('SubNav / Sub Heading Narrow Open (ja)', async ({page}) => {
@@ -426,7 +426,7 @@ test.describe('Visual Comparison: SubNav', () => {
       )
 
       await page.waitForTimeout(500)
-      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+      await expect(page).toHaveScreenshot({fullPage: true})
     })
 
     test('SubNav / Sub Heading Narrow Open (es)', async ({page}) => {
@@ -435,7 +435,7 @@ test.describe('Visual Comparison: SubNav', () => {
       )
 
       await page.waitForTimeout(500)
-      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+      await expect(page).toHaveScreenshot({fullPage: true})
     })
 
     test('SubNav / Sub Heading Narrow Open (pt-BR)', async ({page}) => {
@@ -444,7 +444,7 @@ test.describe('Visual Comparison: SubNav', () => {
       )
 
       await page.waitForTimeout(500)
-      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+      await expect(page).toHaveScreenshot({fullPage: true})
     })
   })
   test('SubNav / Active Sub Heading', async ({page}) => {
@@ -453,7 +453,7 @@ test.describe('Visual Comparison: SubNav', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('SubNav / Active Sub Heading (fr)', async ({page}) => {
@@ -462,7 +462,7 @@ test.describe('Visual Comparison: SubNav', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('SubNav / Active Sub Heading (de)', async ({page}) => {
@@ -471,7 +471,7 @@ test.describe('Visual Comparison: SubNav', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('SubNav / Active Sub Heading (ja)', async ({page}) => {
@@ -480,7 +480,7 @@ test.describe('Visual Comparison: SubNav', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('SubNav / Active Sub Heading (es)', async ({page}) => {
@@ -489,7 +489,7 @@ test.describe('Visual Comparison: SubNav', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('SubNav / Active Sub Heading (pt-BR)', async ({page}) => {
@@ -498,7 +498,7 @@ test.describe('Visual Comparison: SubNav', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   // eslint-disable-next-line i18n-text/no-en
@@ -510,7 +510,7 @@ test.describe('Visual Comparison: SubNav', () => {
       )
 
       await page.waitForTimeout(500)
-      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+      await expect(page).toHaveScreenshot({fullPage: true})
     })
 
     test('SubNav / Active Sub Heading Narrow (fr)', async ({page}) => {
@@ -519,7 +519,7 @@ test.describe('Visual Comparison: SubNav', () => {
       )
 
       await page.waitForTimeout(500)
-      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+      await expect(page).toHaveScreenshot({fullPage: true})
     })
 
     test('SubNav / Active Sub Heading Narrow (de)', async ({page}) => {
@@ -528,7 +528,7 @@ test.describe('Visual Comparison: SubNav', () => {
       )
 
       await page.waitForTimeout(500)
-      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+      await expect(page).toHaveScreenshot({fullPage: true})
     })
 
     test('SubNav / Active Sub Heading Narrow (ja)', async ({page}) => {
@@ -537,7 +537,7 @@ test.describe('Visual Comparison: SubNav', () => {
       )
 
       await page.waitForTimeout(500)
-      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+      await expect(page).toHaveScreenshot({fullPage: true})
     })
 
     test('SubNav / Active Sub Heading Narrow (es)', async ({page}) => {
@@ -546,7 +546,7 @@ test.describe('Visual Comparison: SubNav', () => {
       )
 
       await page.waitForTimeout(500)
-      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+      await expect(page).toHaveScreenshot({fullPage: true})
     })
 
     test('SubNav / Active Sub Heading Narrow (pt-BR)', async ({page}) => {
@@ -555,7 +555,7 @@ test.describe('Visual Comparison: SubNav', () => {
       )
 
       await page.waitForTimeout(500)
-      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+      await expect(page).toHaveScreenshot({fullPage: true})
     })
   })
 
@@ -568,7 +568,7 @@ test.describe('Visual Comparison: SubNav', () => {
       )
 
       await page.waitForTimeout(500)
-      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+      await expect(page).toHaveScreenshot({fullPage: true})
     })
 
     test('SubNav / Active Sub Heading Narrow Open (fr)', async ({page}) => {
@@ -577,7 +577,7 @@ test.describe('Visual Comparison: SubNav', () => {
       )
 
       await page.waitForTimeout(500)
-      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+      await expect(page).toHaveScreenshot({fullPage: true})
     })
 
     test('SubNav / Active Sub Heading Narrow Open (de)', async ({page}) => {
@@ -586,7 +586,7 @@ test.describe('Visual Comparison: SubNav', () => {
       )
 
       await page.waitForTimeout(500)
-      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+      await expect(page).toHaveScreenshot({fullPage: true})
     })
 
     test('SubNav / Active Sub Heading Narrow Open (ja)', async ({page}) => {
@@ -595,7 +595,7 @@ test.describe('Visual Comparison: SubNav', () => {
       )
 
       await page.waitForTimeout(500)
-      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+      await expect(page).toHaveScreenshot({fullPage: true})
     })
 
     test('SubNav / Active Sub Heading Narrow Open (es)', async ({page}) => {
@@ -604,7 +604,7 @@ test.describe('Visual Comparison: SubNav', () => {
       )
 
       await page.waitForTimeout(500)
-      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+      await expect(page).toHaveScreenshot({fullPage: true})
     })
 
     test('SubNav / Active Sub Heading Narrow Open (pt-BR)', async ({page}) => {
@@ -613,14 +613,14 @@ test.describe('Visual Comparison: SubNav', () => {
       )
 
       await page.waitForTimeout(500)
-      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+      await expect(page).toHaveScreenshot({fullPage: true})
     })
   })
   test('SubNav / Full Width', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-subnav-features--full-width&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('SubNav / Full Width (fr)', async ({page}) => {
@@ -629,7 +629,7 @@ test.describe('Visual Comparison: SubNav', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('SubNav / Full Width (de)', async ({page}) => {
@@ -638,7 +638,7 @@ test.describe('Visual Comparison: SubNav', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('SubNav / Full Width (ja)', async ({page}) => {
@@ -647,7 +647,7 @@ test.describe('Visual Comparison: SubNav', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('SubNav / Full Width (es)', async ({page}) => {
@@ -656,7 +656,7 @@ test.describe('Visual Comparison: SubNav', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('SubNav / Full Width (pt-BR)', async ({page}) => {
@@ -665,7 +665,7 @@ test.describe('Visual Comparison: SubNav', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   // eslint-disable-next-line i18n-text/no-en
@@ -677,7 +677,7 @@ test.describe('Visual Comparison: SubNav', () => {
       )
 
       await page.waitForTimeout(500)
-      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+      await expect(page).toHaveScreenshot({fullPage: true})
     })
 
     test('SubNav / Full Width Narrow (fr)', async ({page}) => {
@@ -686,7 +686,7 @@ test.describe('Visual Comparison: SubNav', () => {
       )
 
       await page.waitForTimeout(500)
-      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+      await expect(page).toHaveScreenshot({fullPage: true})
     })
 
     test('SubNav / Full Width Narrow (de)', async ({page}) => {
@@ -695,7 +695,7 @@ test.describe('Visual Comparison: SubNav', () => {
       )
 
       await page.waitForTimeout(500)
-      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+      await expect(page).toHaveScreenshot({fullPage: true})
     })
 
     test('SubNav / Full Width Narrow (ja)', async ({page}) => {
@@ -704,7 +704,7 @@ test.describe('Visual Comparison: SubNav', () => {
       )
 
       await page.waitForTimeout(500)
-      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+      await expect(page).toHaveScreenshot({fullPage: true})
     })
 
     test('SubNav / Full Width Narrow (es)', async ({page}) => {
@@ -713,7 +713,7 @@ test.describe('Visual Comparison: SubNav', () => {
       )
 
       await page.waitForTimeout(500)
-      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+      await expect(page).toHaveScreenshot({fullPage: true})
     })
 
     test('SubNav / Full Width Narrow (pt-BR)', async ({page}) => {
@@ -722,7 +722,7 @@ test.describe('Visual Comparison: SubNav', () => {
       )
 
       await page.waitForTimeout(500)
-      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+      await expect(page).toHaveScreenshot({fullPage: true})
     })
   })
   test('SubNav / Longer Heading', async ({page}) => {
@@ -731,7 +731,7 @@ test.describe('Visual Comparison: SubNav', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('SubNav / Longer Heading (fr)', async ({page}) => {
@@ -740,7 +740,7 @@ test.describe('Visual Comparison: SubNav', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('SubNav / Longer Heading (de)', async ({page}) => {
@@ -749,7 +749,7 @@ test.describe('Visual Comparison: SubNav', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('SubNav / Longer Heading (ja)', async ({page}) => {
@@ -758,7 +758,7 @@ test.describe('Visual Comparison: SubNav', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('SubNav / Longer Heading (es)', async ({page}) => {
@@ -767,7 +767,7 @@ test.describe('Visual Comparison: SubNav', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('SubNav / Longer Heading (pt-BR)', async ({page}) => {
@@ -776,7 +776,7 @@ test.describe('Visual Comparison: SubNav', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('SubNav / Anchor Nav Variant', async ({page}) => {
@@ -784,8 +784,8 @@ test.describe('Visual Comparison: SubNav', () => {
       'http://localhost:6006/iframe.html?args=&id=components-subnav-features--anchor-nav-variant&viewMode=story',
     )
 
-    await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await page.waitForTimeout(1000)
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('SubNav / Anchor Nav Variant (fr)', async ({page}) => {
@@ -793,8 +793,8 @@ test.describe('Visual Comparison: SubNav', () => {
       'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-subnav-features--anchor-nav-variant&viewMode=story',
     )
 
-    await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await page.waitForTimeout(1000)
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('SubNav / Anchor Nav Variant (de)', async ({page}) => {
@@ -802,8 +802,8 @@ test.describe('Visual Comparison: SubNav', () => {
       'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-subnav-features--anchor-nav-variant&viewMode=story',
     )
 
-    await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await page.waitForTimeout(1000)
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('SubNav / Anchor Nav Variant (ja)', async ({page}) => {
@@ -811,8 +811,8 @@ test.describe('Visual Comparison: SubNav', () => {
       'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-subnav-features--anchor-nav-variant&viewMode=story',
     )
 
-    await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await page.waitForTimeout(1000)
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('SubNav / Anchor Nav Variant (es)', async ({page}) => {
@@ -820,8 +820,8 @@ test.describe('Visual Comparison: SubNav', () => {
       'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-subnav-features--anchor-nav-variant&viewMode=story',
     )
 
-    await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await page.waitForTimeout(1000)
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('SubNav / Anchor Nav Variant (pt-BR)', async ({page}) => {
@@ -829,8 +829,8 @@ test.describe('Visual Comparison: SubNav', () => {
       'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-subnav-features--anchor-nav-variant&viewMode=story',
     )
 
-    await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await page.waitForTimeout(1000)
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   // eslint-disable-next-line i18n-text/no-en
@@ -842,7 +842,7 @@ test.describe('Visual Comparison: SubNav', () => {
       )
 
       await page.waitForTimeout(500)
-      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+      await expect(page).toHaveScreenshot({fullPage: true})
     })
 
     test('SubNav / Narrow Anchor Nav Variant (fr)', async ({page}) => {
@@ -851,7 +851,7 @@ test.describe('Visual Comparison: SubNav', () => {
       )
 
       await page.waitForTimeout(500)
-      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+      await expect(page).toHaveScreenshot({fullPage: true})
     })
 
     test('SubNav / Narrow Anchor Nav Variant (de)', async ({page}) => {
@@ -860,7 +860,7 @@ test.describe('Visual Comparison: SubNav', () => {
       )
 
       await page.waitForTimeout(500)
-      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+      await expect(page).toHaveScreenshot({fullPage: true})
     })
 
     test('SubNav / Narrow Anchor Nav Variant (ja)', async ({page}) => {
@@ -869,7 +869,7 @@ test.describe('Visual Comparison: SubNav', () => {
       )
 
       await page.waitForTimeout(500)
-      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+      await expect(page).toHaveScreenshot({fullPage: true})
     })
 
     test('SubNav / Narrow Anchor Nav Variant (es)', async ({page}) => {
@@ -878,7 +878,7 @@ test.describe('Visual Comparison: SubNav', () => {
       )
 
       await page.waitForTimeout(500)
-      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+      await expect(page).toHaveScreenshot({fullPage: true})
     })
 
     test('SubNav / Narrow Anchor Nav Variant (pt-BR)', async ({page}) => {
@@ -887,7 +887,7 @@ test.describe('Visual Comparison: SubNav', () => {
       )
 
       await page.waitForTimeout(500)
-      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+      await expect(page).toHaveScreenshot({fullPage: true})
     })
   })
 
@@ -900,7 +900,7 @@ test.describe('Visual Comparison: SubNav', () => {
       )
 
       await page.waitForTimeout(500)
-      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+      await expect(page).toHaveScreenshot({fullPage: true})
     })
 
     test('SubNav / Narrow Anchor Nav Variant Menu Open (fr)', async ({page}) => {
@@ -909,7 +909,7 @@ test.describe('Visual Comparison: SubNav', () => {
       )
 
       await page.waitForTimeout(500)
-      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+      await expect(page).toHaveScreenshot({fullPage: true})
     })
 
     test('SubNav / Narrow Anchor Nav Variant Menu Open (de)', async ({page}) => {
@@ -918,7 +918,7 @@ test.describe('Visual Comparison: SubNav', () => {
       )
 
       await page.waitForTimeout(500)
-      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+      await expect(page).toHaveScreenshot({fullPage: true})
     })
 
     test('SubNav / Narrow Anchor Nav Variant Menu Open (ja)', async ({page}) => {
@@ -927,7 +927,7 @@ test.describe('Visual Comparison: SubNav', () => {
       )
 
       await page.waitForTimeout(500)
-      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+      await expect(page).toHaveScreenshot({fullPage: true})
     })
 
     test('SubNav / Narrow Anchor Nav Variant Menu Open (es)', async ({page}) => {
@@ -936,7 +936,7 @@ test.describe('Visual Comparison: SubNav', () => {
       )
 
       await page.waitForTimeout(500)
-      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+      await expect(page).toHaveScreenshot({fullPage: true})
     })
 
     test('SubNav / Narrow Anchor Nav Variant Menu Open (pt-BR)', async ({page}) => {
@@ -945,7 +945,7 @@ test.describe('Visual Comparison: SubNav', () => {
       )
 
       await page.waitForTimeout(500)
-      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+      await expect(page).toHaveScreenshot({fullPage: true})
     })
   })
   test('SubNav / Anchor Nav Default Link Variant', async ({page}) => {
@@ -954,7 +954,7 @@ test.describe('Visual Comparison: SubNav', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('SubNav / Anchor Nav Default Link Variant (fr)', async ({page}) => {
@@ -963,7 +963,7 @@ test.describe('Visual Comparison: SubNav', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('SubNav / Anchor Nav Default Link Variant (de)', async ({page}) => {
@@ -972,7 +972,7 @@ test.describe('Visual Comparison: SubNav', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('SubNav / Anchor Nav Default Link Variant (ja)', async ({page}) => {
@@ -981,7 +981,7 @@ test.describe('Visual Comparison: SubNav', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('SubNav / Anchor Nav Default Link Variant (es)', async ({page}) => {
@@ -990,7 +990,7 @@ test.describe('Visual Comparison: SubNav', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('SubNav / Anchor Nav Default Link Variant (pt-BR)', async ({page}) => {
@@ -999,7 +999,7 @@ test.describe('Visual Comparison: SubNav', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('SubNav / Forwarded Refs', async ({page}) => {
@@ -1008,7 +1008,7 @@ test.describe('Visual Comparison: SubNav', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('SubNav / Forwarded Refs (fr)', async ({page}) => {
@@ -1017,7 +1017,7 @@ test.describe('Visual Comparison: SubNav', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('SubNav / Forwarded Refs (de)', async ({page}) => {
@@ -1026,7 +1026,7 @@ test.describe('Visual Comparison: SubNav', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('SubNav / Forwarded Refs (ja)', async ({page}) => {
@@ -1035,7 +1035,7 @@ test.describe('Visual Comparison: SubNav', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('SubNav / Forwarded Refs (es)', async ({page}) => {
@@ -1044,7 +1044,7 @@ test.describe('Visual Comparison: SubNav', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('SubNav / Forwarded Refs (pt-BR)', async ({page}) => {
@@ -1053,7 +1053,7 @@ test.describe('Visual Comparison: SubNav', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('SubNav / Keyboard Navigation', async ({page}) => {
@@ -1062,7 +1062,7 @@ test.describe('Visual Comparison: SubNav', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('SubNav / Keyboard Navigation (fr)', async ({page}) => {
@@ -1071,7 +1071,7 @@ test.describe('Visual Comparison: SubNav', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('SubNav / Keyboard Navigation (de)', async ({page}) => {
@@ -1080,7 +1080,7 @@ test.describe('Visual Comparison: SubNav', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('SubNav / Keyboard Navigation (ja)', async ({page}) => {
@@ -1089,7 +1089,7 @@ test.describe('Visual Comparison: SubNav', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('SubNav / Keyboard Navigation (es)', async ({page}) => {
@@ -1098,7 +1098,7 @@ test.describe('Visual Comparison: SubNav', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('SubNav / Keyboard Navigation (pt-BR)', async ({page}) => {
@@ -1107,60 +1107,6 @@ test.describe('Visual Comparison: SubNav', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
-  })
-
-  test('SubNav / Anchor Nav Variant Keyboard Navigation', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-subnav-features--anchor-nav-variant-keyboard-navigation&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
-  })
-
-  test('SubNav / Anchor Nav Variant Keyboard Navigation (fr)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-subnav-features--anchor-nav-variant-keyboard-navigation&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
-  })
-
-  test('SubNav / Anchor Nav Variant Keyboard Navigation (de)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-subnav-features--anchor-nav-variant-keyboard-navigation&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
-  })
-
-  test('SubNav / Anchor Nav Variant Keyboard Navigation (ja)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-subnav-features--anchor-nav-variant-keyboard-navigation&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
-  })
-
-  test('SubNav / Anchor Nav Variant Keyboard Navigation (es)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-subnav-features--anchor-nav-variant-keyboard-navigation&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
-  })
-
-  test('SubNav / Anchor Nav Variant Keyboard Navigation (pt-BR)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-subnav-features--anchor-nav-variant-keyboard-navigation&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 })

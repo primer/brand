@@ -11,7 +11,7 @@ test.describe('Visual Comparison: FAQ', () => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-faq--default&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('FAQ / Default (fr)', async ({page}) => {
@@ -20,7 +20,7 @@ test.describe('Visual Comparison: FAQ', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('FAQ / Default (de)', async ({page}) => {
@@ -29,7 +29,7 @@ test.describe('Visual Comparison: FAQ', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('FAQ / Default (ja)', async ({page}) => {
@@ -38,7 +38,7 @@ test.describe('Visual Comparison: FAQ', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('FAQ / Default (es)', async ({page}) => {
@@ -47,7 +47,7 @@ test.describe('Visual Comparison: FAQ', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('FAQ / Default (pt-BR)', async ({page}) => {
@@ -56,14 +56,14 @@ test.describe('Visual Comparison: FAQ', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('FAQ / All Closed', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-faq-features--all-closed&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('FAQ / All Closed (fr)', async ({page}) => {
@@ -72,7 +72,7 @@ test.describe('Visual Comparison: FAQ', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('FAQ / All Closed (de)', async ({page}) => {
@@ -81,7 +81,7 @@ test.describe('Visual Comparison: FAQ', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('FAQ / All Closed (ja)', async ({page}) => {
@@ -90,7 +90,7 @@ test.describe('Visual Comparison: FAQ', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('FAQ / All Closed (es)', async ({page}) => {
@@ -99,7 +99,7 @@ test.describe('Visual Comparison: FAQ', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('FAQ / All Closed (pt-BR)', async ({page}) => {
@@ -108,14 +108,14 @@ test.describe('Visual Comparison: FAQ', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('FAQ / All Open', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-faq-features--all-open&viewMode=story')
 
     await page.waitForTimeout(1000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('FAQ / All Open (fr)', async ({page}) => {
@@ -124,7 +124,7 @@ test.describe('Visual Comparison: FAQ', () => {
     )
 
     await page.waitForTimeout(1000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('FAQ / All Open (de)', async ({page}) => {
@@ -133,7 +133,7 @@ test.describe('Visual Comparison: FAQ', () => {
     )
 
     await page.waitForTimeout(1000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('FAQ / All Open (ja)', async ({page}) => {
@@ -142,7 +142,7 @@ test.describe('Visual Comparison: FAQ', () => {
     )
 
     await page.waitForTimeout(1000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('FAQ / All Open (es)', async ({page}) => {
@@ -151,7 +151,7 @@ test.describe('Visual Comparison: FAQ', () => {
     )
 
     await page.waitForTimeout(1000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('FAQ / All Open (pt-BR)', async ({page}) => {
@@ -160,7 +160,7 @@ test.describe('Visual Comparison: FAQ', () => {
     )
 
     await page.waitForTimeout(1000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('FAQ / Reversed Toggles', async ({page}) => {
@@ -169,7 +169,7 @@ test.describe('Visual Comparison: FAQ', () => {
     )
 
     await page.waitForTimeout(4000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('FAQ / Reversed Toggles (fr)', async ({page}) => {
@@ -178,7 +178,7 @@ test.describe('Visual Comparison: FAQ', () => {
     )
 
     await page.waitForTimeout(4000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('FAQ / Reversed Toggles (de)', async ({page}) => {
@@ -187,7 +187,7 @@ test.describe('Visual Comparison: FAQ', () => {
     )
 
     await page.waitForTimeout(4000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('FAQ / Reversed Toggles (ja)', async ({page}) => {
@@ -196,7 +196,7 @@ test.describe('Visual Comparison: FAQ', () => {
     )
 
     await page.waitForTimeout(4000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('FAQ / Reversed Toggles (es)', async ({page}) => {
@@ -205,7 +205,7 @@ test.describe('Visual Comparison: FAQ', () => {
     )
 
     await page.waitForTimeout(4000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('FAQ / Reversed Toggles (pt-BR)', async ({page}) => {
@@ -214,7 +214,7 @@ test.describe('Visual Comparison: FAQ', () => {
     )
 
     await page.waitForTimeout(4000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('FAQ / Heading Left Aligned', async ({page}) => {
@@ -223,7 +223,7 @@ test.describe('Visual Comparison: FAQ', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('FAQ / Heading Left Aligned (fr)', async ({page}) => {
@@ -232,7 +232,7 @@ test.describe('Visual Comparison: FAQ', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('FAQ / Heading Left Aligned (de)', async ({page}) => {
@@ -241,7 +241,7 @@ test.describe('Visual Comparison: FAQ', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('FAQ / Heading Left Aligned (ja)', async ({page}) => {
@@ -250,7 +250,7 @@ test.describe('Visual Comparison: FAQ', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('FAQ / Heading Left Aligned (es)', async ({page}) => {
@@ -259,7 +259,7 @@ test.describe('Visual Comparison: FAQ', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('FAQ / Heading Left Aligned (pt-BR)', async ({page}) => {
@@ -268,7 +268,7 @@ test.describe('Visual Comparison: FAQ', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('FAQ / With Subheadings', async ({page}) => {
@@ -277,7 +277,7 @@ test.describe('Visual Comparison: FAQ', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('FAQ / With Subheadings (fr)', async ({page}) => {
@@ -286,7 +286,7 @@ test.describe('Visual Comparison: FAQ', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('FAQ / With Subheadings (de)', async ({page}) => {
@@ -295,7 +295,7 @@ test.describe('Visual Comparison: FAQ', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('FAQ / With Subheadings (ja)', async ({page}) => {
@@ -304,7 +304,7 @@ test.describe('Visual Comparison: FAQ', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('FAQ / With Subheadings (es)', async ({page}) => {
@@ -313,7 +313,7 @@ test.describe('Visual Comparison: FAQ', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('FAQ / With Subheadings (pt-BR)', async ({page}) => {
@@ -322,14 +322,14 @@ test.describe('Visual Comparison: FAQ', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('FAQ / Groups', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-faq-features--groups&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('FAQ / Groups (fr)', async ({page}) => {
@@ -338,7 +338,7 @@ test.describe('Visual Comparison: FAQ', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('FAQ / Groups (de)', async ({page}) => {
@@ -347,7 +347,7 @@ test.describe('Visual Comparison: FAQ', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('FAQ / Groups (ja)', async ({page}) => {
@@ -356,7 +356,7 @@ test.describe('Visual Comparison: FAQ', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('FAQ / Groups (es)', async ({page}) => {
@@ -365,7 +365,7 @@ test.describe('Visual Comparison: FAQ', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('FAQ / Groups (pt-BR)', async ({page}) => {
@@ -374,7 +374,7 @@ test.describe('Visual Comparison: FAQ', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   // eslint-disable-next-line i18n-text/no-en
@@ -386,7 +386,7 @@ test.describe('Visual Comparison: FAQ', () => {
       )
 
       await page.waitForTimeout(500)
-      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+      await expect(page).toHaveScreenshot({fullPage: true})
     })
 
     test('FAQ / Group narrow view (mobile) (fr)', async ({page}) => {
@@ -395,7 +395,7 @@ test.describe('Visual Comparison: FAQ', () => {
       )
 
       await page.waitForTimeout(500)
-      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+      await expect(page).toHaveScreenshot({fullPage: true})
     })
 
     test('FAQ / Group narrow view (mobile) (de)', async ({page}) => {
@@ -404,7 +404,7 @@ test.describe('Visual Comparison: FAQ', () => {
       )
 
       await page.waitForTimeout(500)
-      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+      await expect(page).toHaveScreenshot({fullPage: true})
     })
 
     test('FAQ / Group narrow view (mobile) (ja)', async ({page}) => {
@@ -413,7 +413,7 @@ test.describe('Visual Comparison: FAQ', () => {
       )
 
       await page.waitForTimeout(500)
-      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+      await expect(page).toHaveScreenshot({fullPage: true})
     })
 
     test('FAQ / Group narrow view (mobile) (es)', async ({page}) => {
@@ -422,7 +422,7 @@ test.describe('Visual Comparison: FAQ', () => {
       )
 
       await page.waitForTimeout(500)
-      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+      await expect(page).toHaveScreenshot({fullPage: true})
     })
 
     test('FAQ / Group narrow view (mobile) (pt-BR)', async ({page}) => {
@@ -431,7 +431,7 @@ test.describe('Visual Comparison: FAQ', () => {
       )
 
       await page.waitForTimeout(500)
-      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+      await expect(page).toHaveScreenshot({fullPage: true})
     })
   })
   test('FAQ / Dynamic Data Example', async ({page}) => {
@@ -440,7 +440,7 @@ test.describe('Visual Comparison: FAQ', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('FAQ / Dynamic Data Example (fr)', async ({page}) => {
@@ -449,7 +449,7 @@ test.describe('Visual Comparison: FAQ', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('FAQ / Dynamic Data Example (de)', async ({page}) => {
@@ -458,7 +458,7 @@ test.describe('Visual Comparison: FAQ', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('FAQ / Dynamic Data Example (ja)', async ({page}) => {
@@ -467,7 +467,7 @@ test.describe('Visual Comparison: FAQ', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('FAQ / Dynamic Data Example (es)', async ({page}) => {
@@ -476,7 +476,7 @@ test.describe('Visual Comparison: FAQ', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('FAQ / Dynamic Data Example (pt-BR)', async ({page}) => {
@@ -485,14 +485,14 @@ test.describe('Visual Comparison: FAQ', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('FAQ / With Prose', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-faq-features--with-prose&viewMode=story')
 
     await page.waitForTimeout(2000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('FAQ / With Prose (fr)', async ({page}) => {
@@ -501,7 +501,7 @@ test.describe('Visual Comparison: FAQ', () => {
     )
 
     await page.waitForTimeout(2000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('FAQ / With Prose (de)', async ({page}) => {
@@ -510,7 +510,7 @@ test.describe('Visual Comparison: FAQ', () => {
     )
 
     await page.waitForTimeout(2000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('FAQ / With Prose (ja)', async ({page}) => {
@@ -519,7 +519,7 @@ test.describe('Visual Comparison: FAQ', () => {
     )
 
     await page.waitForTimeout(2000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('FAQ / With Prose (es)', async ({page}) => {
@@ -528,7 +528,7 @@ test.describe('Visual Comparison: FAQ', () => {
     )
 
     await page.waitForTimeout(2000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('FAQ / With Prose (pt-BR)', async ({page}) => {
@@ -537,6 +537,6 @@ test.describe('Visual Comparison: FAQ', () => {
     )
 
     await page.waitForTimeout(2000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 })

@@ -11,7 +11,7 @@ test.describe('Visual Comparison: CategoryPage', () => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=recipes-solutions-categorypage--light&viewMode=story')
 
     await page.waitForTimeout(4000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('CategoryPage / Light (fr)', async ({page}) => {
@@ -20,7 +20,7 @@ test.describe('Visual Comparison: CategoryPage', () => {
     )
 
     await page.waitForTimeout(4000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('CategoryPage / Light (de)', async ({page}) => {
@@ -29,7 +29,7 @@ test.describe('Visual Comparison: CategoryPage', () => {
     )
 
     await page.waitForTimeout(4000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('CategoryPage / Light (ja)', async ({page}) => {
@@ -38,7 +38,7 @@ test.describe('Visual Comparison: CategoryPage', () => {
     )
 
     await page.waitForTimeout(4000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('CategoryPage / Light (es)', async ({page}) => {
@@ -47,7 +47,7 @@ test.describe('Visual Comparison: CategoryPage', () => {
     )
 
     await page.waitForTimeout(4000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('CategoryPage / Light (pt-BR)', async ({page}) => {
@@ -56,14 +56,14 @@ test.describe('Visual Comparison: CategoryPage', () => {
     )
 
     await page.waitForTimeout(4000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('CategoryPage / Dark', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=recipes-solutions-categorypage--dark&viewMode=story')
 
     await page.waitForTimeout(4000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('CategoryPage / Dark (fr)', async ({page}) => {
@@ -72,7 +72,7 @@ test.describe('Visual Comparison: CategoryPage', () => {
     )
 
     await page.waitForTimeout(4000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('CategoryPage / Dark (de)', async ({page}) => {
@@ -81,7 +81,7 @@ test.describe('Visual Comparison: CategoryPage', () => {
     )
 
     await page.waitForTimeout(4000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('CategoryPage / Dark (ja)', async ({page}) => {
@@ -90,7 +90,7 @@ test.describe('Visual Comparison: CategoryPage', () => {
     )
 
     await page.waitForTimeout(4000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('CategoryPage / Dark (es)', async ({page}) => {
@@ -99,7 +99,7 @@ test.describe('Visual Comparison: CategoryPage', () => {
     )
 
     await page.waitForTimeout(4000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('CategoryPage / Dark (pt-BR)', async ({page}) => {
@@ -108,6 +108,6 @@ test.describe('Visual Comparison: CategoryPage', () => {
     )
 
     await page.waitForTimeout(4000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 })

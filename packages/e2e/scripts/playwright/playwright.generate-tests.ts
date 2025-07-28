@@ -106,7 +106,8 @@
     'components-testimonial-examples--with-frosted-glass': 4000, // for animation to complete
     'components-testimonial-examples--with-frosted-glass-dark': 4000, // for animation to complete
     'components-prose--playground': 4000, // for videos to load
-    'components-prose--default': 4000, // for videos to load
+    'components-prose--default': 4000, // for videos to load,
+    'components-subnav-features--anchor-nav-variant': 1000, // for being flakey across translations
   }
 
   /**
@@ -146,6 +147,7 @@
     'components-hero-features--with-youtube-video-block-end-default', // for loading a remote video
     'components-hero-features--with-youtube-video-inline-end', // for loading a remote video
     'components-logosuite-features--marquee', // for the animation
+    'components-subnav-features--anchor-nav-variant-keyboard-navigation', // for being an interaction test-only
   ]
 
   const categorisedStories = Object.keys((stories as typeof StoryIndex).entries).reduce((acc, key) => {
@@ -212,7 +214,7 @@
             await page.goto('http://localhost:${port}/iframe.html?${localeParam}args=&id=${id}&viewMode=story')
 
             ${timeout ? `await page.waitForTimeout(${timeout})` : ''}
-            expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+            await expect(page).toHaveScreenshot({ fullPage: true })
           });
 
           `
