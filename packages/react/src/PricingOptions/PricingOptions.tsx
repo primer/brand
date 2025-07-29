@@ -75,7 +75,7 @@ const PricingOptionsProvider = ({children, align = 'start'}: PropsWithChildren<{
   const [allFeatureListsExpanded, setAllFeatureListsExpanded] = React.useState(false)
   const [featureListUserInteracted, setFeatureListUserInteracted] = React.useState(false)
 
-  const updateFeatureListExpanded = newValue => {
+  const updateFeatureListExpanded = (newValue: boolean) => {
     setAllFeatureListsExpanded(() => newValue)
   }
 
@@ -499,7 +499,7 @@ const PricingOptionsFeatureList = forwardRef<HTMLDivElement, PricingOptionsFeatu
             <ChevronDownIcon className={styles['PricingOptions__feature-list-accordion-chevron']} />
             {FeatureListHeading}
           </Accordion.Heading>
-          <Accordion.Content className={clsx(styles['PricingOptions__feature-list-accordion-content'])}>
+          <Accordion.Content className={styles['PricingOptions__feature-list-accordion-content']}>
             {FeatureListItems}
           </Accordion.Content>
         </Accordion>
