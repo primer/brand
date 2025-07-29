@@ -124,15 +124,17 @@ type SeparatorProps = {
   activeLinklabel?: string
 } & BaseProps<HTMLSpanElement>
 
-function Separator({activeLinklabel}: SeparatorProps) {
+function Separator({activeLinklabel, className, ...props}: SeparatorProps) {
   return (
     <span
       role="separator"
       className={clsx(
         styles['SubNav__heading-separator'],
         activeLinklabel && styles['SubNav__heading-separator--has-adjacent-label'],
+        className,
       )}
       aria-hidden
+      {...props}
     >
       <svg xmlns="http://www.w3.org/2000/svg" width="8" height="16" viewBox="0 0 8 16" fill="none" aria-hidden>
         <g clipPath="url(#clip0_50_1307)">
@@ -323,14 +325,29 @@ const _SubNavRoot = memo(
               <div ref={innerRootRef} className={styles['SubNav--header-container-outer']}>
                 <div className={styles['SubNav__header-container']}>
                   {HeadingChild && <div className={styles['SubNav__heading-container']}>{HeadingChild}</div>}
-                  {SubHeadingChild && (isLarge || !subHeadingIsActive) && (
+
+                  {SubHeadingChild && (
                     <>
-                      <Separator activeLinklabel={activeLinklabel} />
-                      <div className={styles['SubNav__heading-container']}>{SubHeadingChild}</div>
+                      <Separator
+                        activeLinklabel={activeLinklabel}
+                        className={clsx(
+                          styles['SubNav__heading-separator--subheading'],
+                          subHeadingIsActive && styles['SubNav__heading-separator--subheading-active'],
+                        )}
+                      />
+                      <div
+                        className={clsx(
+                          styles['SubNav__heading-container'],
+                          styles['SubNav__subheading-container'],
+                          subHeadingIsActive && styles['SubNav__subheading-container-active'],
+                        )}
+                      >
+                        {SubHeadingChild}
+                      </div>
                     </>
                   )}
 
-                  {isLarge || activeLinklabel ? <Separator activeLinklabel={activeLinklabel} /> : null}
+                  <Separator activeLinklabel={activeLinklabel} className={styles['SubNav__heading-separator--main']} />
 
                   {!isLarge && (!SubHeadingChild || subHeadingIsActive) && NarrowButton}
 

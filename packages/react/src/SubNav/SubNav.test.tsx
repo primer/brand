@@ -174,19 +174,6 @@ describe('SubNav', () => {
     expect(separator).toBeInTheDocument()
   })
 
-  it('does not render a separator when there are no links with `aria-current="page"` set', () => {
-    const {queryByRole} = render(
-      <MockSubNavFixture
-        data={[
-          {title: 'page one', href: '#page1'},
-          {title: 'page two', href: '#page2'},
-        ]}
-      />,
-    )
-
-    expect(queryByRole('separator', {hidden: true})).not.toBeInTheDocument()
-  })
-
   it('shows the aria-current text next to the button by default', () => {
     const {getByRole} = render(<MockSubNavFixture />)
 
