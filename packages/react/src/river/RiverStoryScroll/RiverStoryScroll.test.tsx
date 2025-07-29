@@ -89,9 +89,11 @@ const runInteractionTest = (width: number, height: number) => {
 
     const {container} = render(<RiverStoryScroll>{MockRiverChildren}</RiverStoryScroll>)
 
-    const observerCalls = mockIntersectionObserver.mock.calls
-      .map(([fn]) => fn)
-      .filter(fn => fn.name === (isLandscape ? 'observerCallback' : 'observerCallbackPortrait'))
+    // This is a bit funky, but we need to grab the observer callbacks to mock the scroll behavior
+    const allObserverCalls = mockIntersectionObserver.mock.calls.map(([fn]) => fn)
+    const observerCalls = isLandscape
+      ? [allObserverCalls[0], allObserverCalls[2], allObserverCalls[4]]
+      : [allObserverCalls[1], allObserverCalls[3], allObserverCalls[5]]
 
     const firstSectionCallback = observerCalls[0]
     const secondSectionCallback = observerCalls[1]
@@ -193,7 +195,20 @@ describe('RiverStoryScroll', () => {
 
     jest.spyOn(HTMLMediaElement.prototype, 'pause').mockReturnValue(undefined)
     jest.spyOn(HTMLMediaElement.prototype, 'play').mockReturnValue(Promise.resolve())
-    jest.spyOn(console, 'error').mockImplementation(() => null)
+
+    // Mock console.error to suppress expected errors but allow other errors through
+    jest.spyOn(console, 'error').mockImplementation((message: unknown, ...args: unknown[]) => {
+      const messageStr = String(message)
+      if (
+        messageStr.includes('Error playing the video:') ||
+        messageStr.includes('setVisibilityStates function must be implemented') ||
+        messageStr.includes('TestComponent')
+      ) {
+        return
+      }
+      // eslint-disable-next-line no-console
+      console.warn('Unexpected console.error in test:', message, ...args)
+    })
   })
 
   afterEach(() => {
@@ -363,26 +378,28 @@ describe('RiverStoryScroll', () => {
   })
 
   it('handles video play errors in RiverStoryScrollResponder', () => {
-    const childWithVideo = (
-      <River key={0}>
-        <River.Content>
-          <Heading>Test heading</Heading>
-          <Text>Test content</Text>
-        </River.Content>
-        <River.Visual>
-          <video>
-            <source src="/test.mp4" type="video/mp4" />
-            <track kind="captions" />
-          </video>
-        </River.Visual>
-      </River>
-    )
-
-    const mockPlay = jest.fn().mockRejectedValue(new Error('Play failed'))
+    const mockPlay = jest.fn().mockRejectedValue(null)
     HTMLVideoElement.prototype.play = mockPlay
     HTMLVideoElement.prototype.pause = jest.fn()
 
-    const {container} = render(<RiverStoryScroll>{[childWithVideo]}</RiverStoryScroll>)
+    const {container} = render(
+      <RiverStoryScroll>
+        {[
+          <River key={0}>
+            <River.Content>
+              <Heading>Test heading</Heading>
+              <Text>Test content</Text>
+            </River.Content>
+            <River.Visual>
+              <video>
+                <source src="/test.mp4" type="video/mp4" />
+                <track kind="captions" />
+              </video>
+            </River.Visual>
+          </River>,
+        ]}
+      </RiverStoryScroll>,
+    )
 
     const observerCallback = mockIntersectionObserver.mock.calls[0][0]
     act(() => {
