@@ -57,24 +57,32 @@ type PricingOptionsContextValue = {
   align: AlignOptions
   allFeatureListsExpanded: boolean
   updateFeatureListExpanded: Dispatch<boolean>
+  userHasInteracted: boolean
+  setUserHasInteracted: Dispatch<boolean>
 }
 
 const PricingOptionsContext = React.createContext<PricingOptionsContextValue>({
   align: 'start',
   allFeatureListsExpanded: false,
+  userHasInteracted: false,
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   updateFeatureListExpanded: () => {},
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  setUserHasInteracted: () => {},
 })
 
 const PricingOptionsProvider = ({children, align = 'start'}: PropsWithChildren<{align: AlignOptions}>) => {
   const [allFeatureListsExpanded, setAllFeatureListsExpanded] = React.useState(false)
+  const [userHasInteracted, setUserHasInteracted] = React.useState(false)
 
   const updateFeatureListExpanded = newValue => {
     setAllFeatureListsExpanded(() => newValue)
   }
 
   return (
-    <PricingOptionsContext.Provider value={{allFeatureListsExpanded, updateFeatureListExpanded, align}}>
+    <PricingOptionsContext.Provider
+      value={{allFeatureListsExpanded, updateFeatureListExpanded, align, userHasInteracted, setUserHasInteracted}}
+    >
       {children}
     </PricingOptionsContext.Provider>
   )
@@ -382,35 +390,46 @@ type ResponsiveExpandableProps = {
   wide: boolean
 }
 
-const defaultExpanded: ExpandedProp = {
-  narrow: false,
-  regular: true,
-  wide: true,
-}
-
 type ValidFeatureListChildren = {
   Heading: React.ReactElement<PricingOptionsFeatureListGroupHeadingProps> | null
   Items: React.ReactElement<PricingOptionsFeatureListItemProps>[]
 }[]
 
 const PricingOptionsFeatureList = forwardRef<HTMLDivElement, PricingOptionsFeatureListProps>(
-  (
-    {
-      children,
-      className,
-      'data-testid': testId,
-      hasDivider = true,
-      expanded = defaultExpanded,
-      accordionAs = 'h4',
-      ...rest
-    },
-    ref,
-  ) => {
-    const runOnce = React.useRef(false)
-    const [isAccordionOpen, setIsAccordionOpen] = React.useState<boolean>(false)
-    const {allFeatureListsExpanded, updateFeatureListExpanded} = usePricingOptions()
+  ({children, className, 'data-testid': testId, hasDivider = true, expanded, accordionAs = 'h4', ...rest}, ref) => {
+    const {allFeatureListsExpanded, updateFeatureListExpanded, userHasInteracted, setUserHasInteracted} =
+      usePricingOptions()
+    const {isMedium: isRegular, isXLarge: isWide, isSmall: isNarrow} = useWindowSize()
 
-    const {isMedium: isRegular, isXLarge: isWide} = useWindowSize()
+    React.useEffect(() => {
+      if (expanded === undefined || typeof expanded === 'object') {
+        setUserHasInteracted(false)
+      }
+    }, [isRegular, isWide, isNarrow, setUserHasInteracted, expanded])
+
+    const shouldBeOpen = React.useMemo(() => {
+      if (userHasInteracted) {
+        return allFeatureListsExpanded
+      }
+
+      // Important: Fixes layout shift by ensuring that explicit values are preserved.
+      if (typeof expanded === 'boolean') {
+        return expanded
+      }
+      // If undefined, should follow some default responsive logic
+      if (expanded === undefined) {
+        if (isWide) return true
+        if (isRegular) return true
+        return false
+      }
+
+      // finally handle responsive objects, and go from largest to smallest viewports
+      const {narrow, regular, wide} = expanded
+      if (isWide) return wide
+      if (isRegular) return regular
+      if (isNarrow) return narrow
+      return narrow
+    }, [expanded, allFeatureListsExpanded, isRegular, isWide, isNarrow, userHasInteracted])
 
     let FeatureListHeading = (
       <PricingOptions.FeatureListHeading>{pricingOptionsDefaultFeatureListHeading}</PricingOptions.FeatureListHeading>
@@ -444,27 +463,6 @@ const PricingOptionsFeatureList = forwardRef<HTMLDivElement, PricingOptionsFeatu
       </div>
     ))
 
-    React.useEffect(() => {
-      if (!runOnce.current) {
-        if (typeof expanded === 'boolean') {
-          return setIsAccordionOpen(expanded)
-        } else if (typeof expanded === 'object') {
-          const {narrow, regular, wide} = expanded
-          if (isRegular) return setIsAccordionOpen(regular)
-          if (isWide) return setIsAccordionOpen(wide)
-          return setIsAccordionOpen(narrow)
-        }
-        runOnce.current = true
-      }
-    }, [expanded, isRegular, isWide])
-
-    React.useEffect(() => {
-      if (isAccordionOpen && !runOnce.current) {
-        updateFeatureListExpanded(true)
-        runOnce.current = true
-      }
-    }, [isAccordionOpen, updateFeatureListExpanded])
-
     return (
       <div
         ref={ref}
@@ -477,8 +475,9 @@ const PricingOptionsFeatureList = forwardRef<HTMLDivElement, PricingOptionsFeatu
       >
         <Accordion
           className={styles['PricingOptions__feature-list-accordion']}
-          open={allFeatureListsExpanded}
+          open={shouldBeOpen}
           onToggle={event => {
+            setUserHasInteracted(true)
             updateFeatureListExpanded(event.currentTarget.open)
           }}
         >
@@ -490,7 +489,7 @@ const PricingOptionsFeatureList = forwardRef<HTMLDivElement, PricingOptionsFeatu
             <ChevronDownIcon className={styles['PricingOptions__feature-list-accordion-chevron']} />
             {FeatureListHeading}
           </Accordion.Heading>
-          <Accordion.Content className={styles['PricingOptions__feature-list-accordion-content']}>
+          <Accordion.Content className={clsx(styles['PricingOptions__feature-list-accordion-content'])}>
             {FeatureListItems}
           </Accordion.Content>
         </Accordion>
