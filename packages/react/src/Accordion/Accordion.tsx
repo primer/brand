@@ -80,6 +80,8 @@ export const AccordionRoot = forwardRef<HTMLDetailsElement, AccordionRootProps>(
 
     useEffect(() => {
       const detailsElement = ref.current
+      // This can't practically be tested, so ignoring it from coverage
+      /* istanbul ignore next */
       if (!detailsElement) return
 
       detailsElement.addEventListener('toggle', handleToggle)
