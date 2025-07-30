@@ -203,15 +203,20 @@ function _AnchorNav({children, enableDefaultBgColor = false, hideUntilSticky = f
   const hasTwoActions = Action.length > 0 && SecondaryAction.length > 0
 
   return (
-    <div ref={wrapperRef}>
+    <div
+      ref={wrapperRef}
+      className={clsx(
+        styles.AnchorNavWrapper,
+        hideUntilSticky && styles['AnchorNav--hide-until-sticky'],
+        navShouldFix && styles['AnchorNav--stuck'],
+      )}
+    >
       <nav
         ref={rootRef}
         aria-label="Anchored navigation"
         data-sticky={navShouldFix.toString()}
         className={clsx(
           styles.AnchorNav,
-          hideUntilSticky && styles['AnchorNav--hide-until-sticky'],
-          navShouldFix && styles['AnchorNav--stuck'],
           menuOpen && styles['AnchorNav--expanded'],
           enableDefaultBgColor && styles['AnchorNav--with-default-background-color'],
         )}

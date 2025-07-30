@@ -18,6 +18,7 @@ declare const styles: {
   readonly "AnchorNav-menu-button": string;
   readonly "AnchorNav-menu-button-arrow": string;
   readonly "AnchorNav-overlay--expanded": string;
+  readonly "AnchorNavWrapper": string;
   readonly "AnchorNav__actionsContainer": string;
   readonly "AnchorNav__actionsContainer--multiple": string;
   readonly "AnchorNav__actionsContainer--no-offset": string;
