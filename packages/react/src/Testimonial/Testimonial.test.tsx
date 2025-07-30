@@ -32,11 +32,17 @@ describe('Testimonial', () => {
   it('renders with default props', () => {
     const {getByRole, getByText} = render(<DefaultTestimonial />)
 
-    expect(getByRole('figure')).toBeInTheDocument()
-    expect(getByText(mockQuote)).toBeInTheDocument()
-    expect(getByText(mockName)).toBeInTheDocument()
-    expect(getByText(mockPosition)).toBeInTheDocument()
-    expect(getByRole('img', {name: mockAvatarAlt})).toBeInTheDocument()
+    const figure = getByRole('figure')
+    const quote = getByText(mockQuote)
+    const name = getByText(mockName)
+    const position = getByText(mockPosition)
+    const avatar = getByRole('img', {name: mockAvatarAlt})
+
+    expect(figure).toBeInTheDocument()
+    expect(quote).toBeInTheDocument()
+    expect(name).toBeInTheDocument()
+    expect(position).toBeInTheDocument()
+    expect(avatar).toBeInTheDocument()
   })
 
   it('renders quote mark with default color', () => {
@@ -54,7 +60,8 @@ describe('Testimonial', () => {
       </Testimonial>,
     )
 
-    expect(getByRole('figure')).toHaveClass('custom-testimonial')
+    const figure = getByRole('figure')
+    expect(figure).toHaveClass('custom-testimonial')
   })
 
   it('supports RefObject for Testimonial component', () => {
@@ -91,7 +98,8 @@ describe('Testimonial', () => {
       </Testimonial>,
     )
 
-    expect(getByRole('figure')).toHaveClass(`Testimonial--variant-${variant}`)
+    const figure = getByRole('figure')
+    expect(figure).toHaveClass(`Testimonial--variant-${variant}`)
   })
 
   it.each(['small', 'large'] as const)('renders %s size', size => {
@@ -102,7 +110,8 @@ describe('Testimonial', () => {
       </Testimonial>,
     )
 
-    expect(getByRole('figure')).toHaveClass(`Testimonial--size-${size}`)
+    const figure = getByRole('figure')
+    expect(figure).toHaveClass(`Testimonial--size-${size}`)
   })
 
   it('applies border class when hasBorder is true', () => {
@@ -113,7 +122,8 @@ describe('Testimonial', () => {
       </Testimonial>,
     )
 
-    expect(getByRole('figure')).toHaveClass('Testimonial--border')
+    const figure = getByRole('figure')
+    expect(figure).toHaveClass('Testimonial--border')
   })
 
   it('does not apply border class when hasBorder is false', () => {
@@ -124,7 +134,8 @@ describe('Testimonial', () => {
       </Testimonial>,
     )
 
-    expect(getByRole('figure')).not.toHaveClass('Testimonial--border')
+    const figure = getByRole('figure')
+    expect(figure).not.toHaveClass('Testimonial--border')
   })
 
   it('applies custom quote mark color', () => {
@@ -159,7 +170,8 @@ describe('Testimonial', () => {
       </Testimonial>,
     )
 
-    expect(getByText(mockQuote).closest('blockquote')).toBeInTheDocument()
+    const blockquote = getByText(mockQuote).closest('blockquote')
+    expect(blockquote).toBeInTheDocument()
   })
 
   it('applies muted variant when quote contains bold text', () => {
@@ -236,7 +248,8 @@ describe('Testimonial', () => {
       </Testimonial>,
     )
 
-    expect(getByText(mockName).closest('figcaption')).toBeInTheDocument()
+    const figcaption = getByText(mockName).closest('figcaption')
+    expect(figcaption).toBeInTheDocument()
   })
 
   it('renders name without position', () => {
@@ -247,8 +260,10 @@ describe('Testimonial', () => {
       </Testimonial>,
     )
 
-    expect(getByText(mockName)).toBeInTheDocument()
-    expect(queryByText(mockPosition)).not.toBeInTheDocument()
+    const name = getByText(mockName)
+    const position = queryByText(mockPosition)
+    expect(name).toBeInTheDocument()
+    expect(position).not.toBeInTheDocument()
   })
 
   it('renders name with position', () => {
@@ -259,8 +274,10 @@ describe('Testimonial', () => {
       </Testimonial>,
     )
 
-    expect(getByText(mockName)).toBeInTheDocument()
-    expect(getByText(mockPosition)).toBeInTheDocument()
+    const name = getByText(mockName)
+    const position = getByText(mockPosition)
+    expect(name).toBeInTheDocument()
+    expect(position).toBeInTheDocument()
   })
 
   it('applies custom className to name', () => {
@@ -271,7 +288,8 @@ describe('Testimonial', () => {
       </Testimonial>,
     )
 
-    expect(getByText(mockName).closest('figcaption')).toHaveClass('custom-name')
+    const figcaption = getByText(mockName).closest('figcaption')
+    expect(figcaption).toHaveClass('custom-name')
   })
 
   it('supports RefObject for Testimonial.Name component', () => {
@@ -447,9 +465,15 @@ describe('Testimonial', () => {
   it('uses semantic HTML structure', () => {
     const {getByRole, getByText} = render(<DefaultTestimonial />)
 
-    expect(getByRole('figure')).toBeInTheDocument()
-    expect(getByText(mockQuote).closest('blockquote')).toBeInTheDocument()
-    expect(getByText(mockName).closest('figcaption')).toBeInTheDocument()
+    const figure = getByRole('figure')
+    const quote = getByText(mockQuote)
+    const blockquote = quote.closest('blockquote')
+    const name = getByText(mockName)
+    const figcaption = name.closest('figcaption')
+
+    expect(figure).toBeInTheDocument()
+    expect(blockquote).toBeInTheDocument()
+    expect(figcaption).toBeInTheDocument()
   })
 
   it('hides quote mark from screen readers', () => {
@@ -467,9 +491,13 @@ describe('Testimonial', () => {
       </Testimonial>,
     )
 
-    expect(getByRole('figure')).toBeInTheDocument()
-    expect(getByText('Quote text')).toBeInTheDocument()
-    expect(getByText('Name')).toBeInTheDocument()
+    const figure = getByRole('figure')
+    const quote = getByText('Quote text')
+    const name = getByText('Name')
+
+    expect(figure).toBeInTheDocument()
+    expect(quote).toBeInTheDocument()
+    expect(name).toBeInTheDocument()
   })
 
   it('handles mixed children types', () => {
@@ -482,10 +510,15 @@ describe('Testimonial', () => {
       </Testimonial>,
     )
 
-    expect(getByText('Quote text')).toBeInTheDocument()
-    expect(getByText('Name')).toBeInTheDocument()
-    expect(queryByText('Invalid child')).not.toBeInTheDocument()
-    expect(queryByText('Another invalid child')).not.toBeInTheDocument()
+    const quote = getByText('Quote text')
+    const name = getByText('Name')
+    const invalidChild = queryByText('Invalid child')
+    const anotherInvalidChild = queryByText('Another invalid child')
+
+    expect(quote).toBeInTheDocument()
+    expect(name).toBeInTheDocument()
+    expect(invalidChild).not.toBeInTheDocument()
+    expect(anotherInvalidChild).not.toBeInTheDocument()
   })
 
   it('handles empty quote content', () => {
@@ -496,8 +529,11 @@ describe('Testimonial', () => {
       </Testimonial>,
     )
 
-    expect(getByRole('figure')).toBeInTheDocument()
-    expect(getByText('Name')).toBeInTheDocument()
+    const figure = getByRole('figure')
+    const name = getByText('Name')
+
+    expect(figure).toBeInTheDocument()
+    expect(name).toBeInTheDocument()
   })
 
   it('applies animation classes when animate prop is provided', () => {
