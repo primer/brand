@@ -42,7 +42,6 @@ const MockAnchorNavFixture = ({data = mockData, withSecondAction = false, ...res
 describe('AnchorNav', () => {
   let mockIntersectionObserver: jest.Mock
   let addEventListenerSpy: jest.SpyInstance
-  let removeEventListenerSpy: jest.SpyInstance
   let scrollListener: EventListener | null
 
   const setScrollPosition = (position: number) => {
@@ -78,8 +77,8 @@ describe('AnchorNav', () => {
     top: y,
     bottom: y + 50,
     left: 0,
-    right: 100,
-    width: 100,
+    right: 0,
+    width: 0,
     height: 50,
     x: 0,
     toJSON: () => ({}),
@@ -96,18 +95,11 @@ describe('AnchorNav', () => {
       const mockEntry = {
         isIntersecting: true,
         boundingClientRect: mockRect(),
-        intersectionRatio: 1,
-        intersectionRect: mockRect(),
-        rootBounds: mockRect(),
-        target: document.createElement('nav'),
-        time: Date.now(),
         ...entry,
       }
       callback([mockEntry])
     }
   }
-
-  afterEach(cleanup)
 
   beforeEach(() => {
     scrollListener = null
@@ -133,19 +125,12 @@ describe('AnchorNav', () => {
           scrollListener = typeof listener === 'function' ? listener : listener.handleEvent
         }
       })
-
-    removeEventListenerSpy = jest.spyOn(window, 'removeEventListener').mockImplementation((type: string) => {
-      if (type === 'scroll') {
-        scrollListener = null
-      }
-    })
   })
 
   afterEach(() => {
     cleanup()
 
     addEventListenerSpy.mockRestore()
-    removeEventListenerSpy.mockRestore()
 
     jest.clearAllMocks()
   })
@@ -205,7 +190,6 @@ describe('AnchorNav', () => {
     const {getByTestId} = render(<MockAnchorNavFixture />)
     const actionEl = getByTestId(AnchorNav.testIds.action)
     expect(actionEl).toBeInTheDocument() // renders
-    expect(actionEl).toBeInTheDocument() // renders as an anchor
     expect(actionEl).toHaveAttribute('href', '#') // renders with correct href
   })
 
@@ -213,7 +197,6 @@ describe('AnchorNav', () => {
     const {getByTestId} = render(<MockAnchorNavFixture withSecondAction />)
     const secondaryActionEl = getByTestId(AnchorNav.testIds.secondaryAction)
     expect(secondaryActionEl).toBeInTheDocument() // renders
-    expect(secondaryActionEl).toBeInTheDocument() // renders as an anchor
     expect(secondaryActionEl).toHaveAttribute('href', '#') // renders with correct href
   })
 
@@ -259,7 +242,6 @@ describe('AnchorNav', () => {
   it('shows an equivalent height spacer when nav is sticky and hides it when not', async () => {
     const MockPage = () => (
       <div style={{height: '200vh'}}>
-        <div style={{height: '100px'}}>Before nav</div>
         <MockAnchorNavFixture />
         <div style={{height: '100vh'}}>After nav</div>
       </div>
