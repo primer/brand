@@ -175,7 +175,7 @@ describe('Testimonial', () => {
     expect(blockquote).toBeInTheDocument()
   })
 
-  it('applies muted variant when quote contains bold text', () => {
+  it('applies muted text color when the quote contains bold text', () => {
     const {getByText} = render(
       <Testimonial>
         <Testimonial.Quote>
@@ -189,7 +189,7 @@ describe('Testimonial', () => {
     expect(quoteText).toHaveClass('Testimonial-quote--muted')
   })
 
-  it('applies muted variant when quote contains emphasized text', () => {
+  it('applies muted text color when the quote contains emphasized text', () => {
     const {getByText} = render(
       <Testimonial>
         <Testimonial.Quote>
