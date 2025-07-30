@@ -437,9 +437,8 @@ const PricingOptionsFeatureList = forwardRef<HTMLDivElement, PricingOptionsFeatu
       const {narrow, regular, wide} = expanded
       if (isWide) return wide
       if (isRegular) return regular
-      if (isNarrow) return narrow
       return narrow
-    }, [expanded, allFeatureListsExpanded, isRegular, isWide, isNarrow, featureListUserInteracted])
+    }, [expanded, allFeatureListsExpanded, isRegular, isWide, featureListUserInteracted])
 
     let FeatureListHeading = (
       <PricingOptions.FeatureListHeading>{pricingOptionsDefaultFeatureListHeading}</PricingOptions.FeatureListHeading>
