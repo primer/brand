@@ -266,7 +266,8 @@ HideUntilSticky.storyName = 'Hide until sticky'
 export const AnchorNavPrimaryActions = () => {
   const data = ['link1', 'link2', 'link3']
   return (
-    <>
+    <div style={{backgroundColor: 'var(--brand-color-canvas-default)'}}>
+      <RedlineBackground height={75}></RedlineBackground>
       <AnchorNav>
         {data.map((link, index) => (
           <AnchorNav.Link href={link} key={index}>
@@ -302,7 +303,7 @@ export const AnchorNavPrimaryActions = () => {
           </RedlineBackground>
         ))}
       </Stack>
-    </>
+    </div>
   )
 }
 AnchorNavPrimaryActions.storyName = 'With optional primary CTA'
@@ -310,7 +311,8 @@ AnchorNavPrimaryActions.storyName = 'With optional primary CTA'
 export const AnchorNavLargerActions = () => {
   const data = ['link1', 'link2', 'link3']
   return (
-    <>
+    <div style={{backgroundColor: 'var(--brand-color-canvas-default)'}}>
+      <RedlineBackground height={75}></RedlineBackground>
       <AnchorNav>
         {data.map((link, index) => (
           <AnchorNav.Link href={link} key={index}>
@@ -349,7 +351,7 @@ export const AnchorNavLargerActions = () => {
           </RedlineBackground>
         ))}
       </Stack>
-    </>
+    </div>
   )
 }
 AnchorNavLargerActions.storyName = 'With larger CTAs'
