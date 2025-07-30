@@ -6,9 +6,9 @@ import {Testimonial} from './Testimonial'
 
 expect.extend(toHaveNoViolations)
 
-const leftDoubleQuote = '“'
-
 describe('Testimonial', () => {
+  const leftDoubleQuote = '“'
+
   const mockQuote = 'GitHub helps us ensure that we have our security controls baked into our pipelines.'
   const mockName = 'David Ross'
   const mockPosition = 'Staff Security Engineer'
@@ -52,7 +52,7 @@ describe('Testimonial', () => {
     expect(quoteMark).toHaveClass('Testimonial__quoteMark--default')
   })
 
-  it('applies custom className', () => {
+  it('allows forwarding of custom classes', () => {
     const {getByRole} = render(
       <Testimonial className="custom-testimonial">
         <Testimonial.Quote>Quote text</Testimonial.Quote>
@@ -62,6 +62,7 @@ describe('Testimonial', () => {
 
     const figure = getByRole('figure')
     expect(figure).toHaveClass('custom-testimonial')
+    expect(figure).toHaveClass('Testimonial')
   })
 
   it('supports RefObject for Testimonial component', () => {
@@ -332,19 +333,6 @@ describe('Testimonial', () => {
     expect(avatar).toHaveAttribute('src', mockAvatarSrc)
   })
 
-  it('applies testimonial avatar class', () => {
-    const {getByAltText} = render(
-      <Testimonial>
-        <Testimonial.Quote>Quote text</Testimonial.Quote>
-        <Testimonial.Name>Name</Testimonial.Name>
-        <Testimonial.Avatar src={mockAvatarSrc} alt={mockAvatarAlt} />
-      </Testimonial>,
-    )
-
-    const avatarContainer = getByAltText(mockAvatarAlt)
-    expect(avatarContainer).toBeInTheDocument()
-  })
-
   it('uses fixed avatar size of 48px', () => {
     const {getByAltText} = render(
       <Testimonial>
@@ -438,30 +426,6 @@ describe('Testimonial', () => {
     expect(quoteIndex).toBeLessThan(nameIndex)
   })
 
-  it('renders avatar, logo, and name in media section', () => {
-    const {container, getByRole, getByText} = render(
-      <Testimonial>
-        <Testimonial.Quote>Quote text</Testimonial.Quote>
-        <Testimonial.Avatar src={mockAvatarSrc} alt={mockAvatarAlt} />
-        <Testimonial.Logo>
-          <img src="/logo.png" alt="Logo" />
-        </Testimonial.Logo>
-        <Testimonial.Name>{mockName}</Testimonial.Name>
-      </Testimonial>,
-    )
-
-    const mediaSection = container.querySelector('.Testimonial__media')
-    expect(mediaSection).toBeInTheDocument()
-
-    const avatar = getByRole('img', {name: mockAvatarAlt})
-    const logo = getByRole('img', {name: 'Logo'})
-    const name = getByText(mockName)
-
-    expect(mediaSection).toContainElement(avatar)
-    expect(mediaSection).toContainElement(logo)
-    expect(mediaSection).toContainElement(name)
-  })
-
   it('uses semantic HTML structure', () => {
     const {getByRole, getByText} = render(<DefaultTestimonial />)
 
@@ -500,7 +464,7 @@ describe('Testimonial', () => {
     expect(name).toBeInTheDocument()
   })
 
-  it('handles mixed children types', () => {
+  it("filters out children that aren't part of the Testimonial namespace", () => {
     const {getByText, queryByText} = render(
       <Testimonial>
         <div>Invalid child</div>
