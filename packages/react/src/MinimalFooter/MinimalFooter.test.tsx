@@ -7,18 +7,29 @@ import {Text} from '../'
 
 expect.extend(toHaveNoViolations)
 
+const socialLinkData = {
+  x: 'https://x.com/github',
+  github: 'https://github.com/github',
+  linkedin: 'https://www.linkedin.com/company/github',
+  youtube: 'https://www.youtube.com/github',
+  facebook: 'https://www.facebook.com/GitHub',
+  twitch: 'https://www.twitch.tv/github',
+  tiktok: 'https://www.tiktok.com/@github',
+  instagram: 'https://www.instagram.com/github/',
+} as const
+
 // Helper function to filter social links
 const getSocialLinks = (links: HTMLElement[]) => {
   return links.filter(
     link =>
-      link.getAttribute('href')?.includes('x.com') ||
-      link.getAttribute('href')?.includes('github.com/github') ||
-      link.getAttribute('href')?.includes('linkedin.com') ||
-      link.getAttribute('href')?.includes('youtube.com') ||
-      link.getAttribute('href')?.includes('facebook.com') ||
-      link.getAttribute('href')?.includes('twitch.tv') ||
-      link.getAttribute('href')?.includes('tiktok.com') ||
-      link.getAttribute('href')?.includes('instagram.com'),
+      link.getAttribute('href') === socialLinkData.x ||
+      link.getAttribute('href') === socialLinkData.github ||
+      link.getAttribute('href') === socialLinkData.linkedin ||
+      link.getAttribute('href') === socialLinkData.youtube ||
+      link.getAttribute('href') === socialLinkData.facebook ||
+      link.getAttribute('href') === socialLinkData.twitch ||
+      link.getAttribute('href') === socialLinkData.tiktok ||
+      link.getAttribute('href') === socialLinkData.instagram,
   )
 }
 
@@ -31,25 +42,29 @@ describe('MinimalFooter', () => {
 
   it('renders as a footer element', () => {
     const {getByRole} = render(<MinimalFooter />)
-    expect(getByRole('contentinfo')).toBeInTheDocument()
+    const footer = getByRole('contentinfo')
+    expect(footer).toBeInTheDocument()
   })
 
   it('renders default copyright statement', () => {
     const {getByText} = render(<MinimalFooter />)
     const currentYear = new Date().getFullYear()
-    expect(getByText(`© ${currentYear} GitHub. All rights reserved.`)).toBeInTheDocument()
+    const copyrightText = getByText(`© ${currentYear} GitHub. All rights reserved.`)
+    expect(copyrightText).toBeInTheDocument()
   })
 
   it('renders custom copyright statement', () => {
     const customCopyright = 'Custom Copyright 2024'
     const {getByText} = render(<MinimalFooter copyrightStatement={customCopyright} />)
-    expect(getByText(customCopyright)).toBeInTheDocument()
+    const copyrightText = getByText(customCopyright)
+    expect(copyrightText).toBeInTheDocument()
   })
 
   it('renders copyright statement as React element', () => {
     const customCopyright = <span>Custom Copyright 2024</span>
     const {getByText} = render(<MinimalFooter copyrightStatement={customCopyright} />)
-    expect(getByText('Custom Copyright 2024')).toBeInTheDocument()
+    const copyrightText = getByText('Custom Copyright 2024')
+    expect(copyrightText).toBeInTheDocument()
   })
 
   it('renders GitHub logo with default href', () => {
@@ -65,9 +80,11 @@ describe('MinimalFooter', () => {
     expect(logoLink).toHaveAttribute('href', customHref)
   })
 
-  it('applies custom className', () => {
+  it('allows forwarding of custom classes', () => {
     const {getByRole} = render(<MinimalFooter className="custom-footer" />)
-    expect(getByRole('contentinfo')).toHaveClass('custom-footer')
+    const footer = getByRole('contentinfo')
+    expect(footer).toHaveClass('Footer')
+    expect(footer).toHaveClass('custom-footer')
   })
 
   it('renders all social links by default', () => {
@@ -76,7 +93,7 @@ describe('MinimalFooter', () => {
     expect(socialLinks).toHaveLength(8)
   })
 
-  it('renders specific social links when provided', () => {
+  it('can optionally render a subset of social links', () => {
     const {getByRole} = render(<MinimalFooter socialLinks={['x', 'github', 'linkedin']} />)
     const xLink = getByRole('link', {name: 'GitHub on X'})
     const githubLink = getByRole('link', {name: 'GitHub on GitHub'})
@@ -110,7 +127,7 @@ describe('MinimalFooter', () => {
   })
 
   it('renders link children with maximum of 5 links', () => {
-    const {getByText, queryByText} = render(
+    const {getByRole, queryByRole} = render(
       <MinimalFooter>
         <MinimalFooter.Link href="/link1">Link 1</MinimalFooter.Link>
         <MinimalFooter.Link href="/link2">Link 2</MinimalFooter.Link>
@@ -121,16 +138,23 @@ describe('MinimalFooter', () => {
       </MinimalFooter>,
     )
 
-    expect(getByText('Link 1')).toBeInTheDocument()
-    expect(getByText('Link 2')).toBeInTheDocument()
-    expect(getByText('Link 3')).toBeInTheDocument()
-    expect(getByText('Link 4')).toBeInTheDocument()
-    expect(getByText('Link 5')).toBeInTheDocument()
-    expect(queryByText('Link 6')).not.toBeInTheDocument()
+    const link1 = getByRole('link', {name: 'Link 1'})
+    const link2 = getByRole('link', {name: 'Link 2'})
+    const link3 = getByRole('link', {name: 'Link 3'})
+    const link4 = getByRole('link', {name: 'Link 4'})
+    const link5 = getByRole('link', {name: 'Link 5'})
+    const link6 = queryByRole('link', {name: 'Link 6'})
+    
+    expect(link1).toBeInTheDocument()
+    expect(link2).toBeInTheDocument()
+    expect(link3).toBeInTheDocument()
+    expect(link4).toBeInTheDocument()
+    expect(link5).toBeInTheDocument()
+    expect(link6).not.toBeInTheDocument()
   })
 
   it('ignores non-Link children', () => {
-    const {getByText, queryByText} = render(
+    const {getByRole, queryByText} = render(
       <MinimalFooter>
         <div>Invalid child</div>
         <MinimalFooter.Link href="/valid">Valid Link</MinimalFooter.Link>
@@ -138,9 +162,13 @@ describe('MinimalFooter', () => {
       </MinimalFooter>,
     )
 
-    expect(getByText('Valid Link')).toBeInTheDocument()
-    expect(queryByText('Invalid child')).not.toBeInTheDocument()
-    expect(queryByText('Another invalid child')).not.toBeInTheDocument()
+    const validLink = getByRole('link', {name: 'Valid Link'})
+    const invalidChild = queryByText('Invalid child')
+    const anotherInvalidChild = queryByText('Another invalid child')
+    
+    expect(validLink).toBeInTheDocument()
+    expect(invalidChild).not.toBeInTheDocument()
+    expect(anotherInvalidChild).not.toBeInTheDocument()
   })
 
   it('renders footnotes section', () => {
@@ -153,8 +181,11 @@ describe('MinimalFooter', () => {
       </MinimalFooter>,
     )
 
-    expect(getByText('Footnote 1')).toBeInTheDocument()
-    expect(getByText('Footnote 2')).toBeInTheDocument()
+    const footnote1 = getByText('Footnote 1')
+    const footnote2 = getByText('Footnote 2')
+    
+    expect(footnote1).toBeInTheDocument()
+    expect(footnote2).toBeInTheDocument()
   })
 
   it('renders footnotes with correct styling', () => {
@@ -193,8 +224,11 @@ describe('MinimalFooter', () => {
       </MinimalFooter>,
     )
 
-    expect(queryByText('Non-text child')).not.toBeInTheDocument()
-    expect(getByText('Valid text')).toBeInTheDocument()
+    const nonTextChild = queryByText('Non-text child')
+    const validText = getByText('Valid text')
+    
+    expect(nonTextChild).not.toBeInTheDocument()
+    expect(validText).toBeInTheDocument()
   })
 
   it('renders links with analytics data attributes', () => {
@@ -218,7 +252,8 @@ describe('MinimalFooter', () => {
       </MinimalFooter>,
     )
 
-    expect(getByRole('button', {name: /Button Link/})).toBeInTheDocument()
+    const buttonLink = getByRole('button', {name: /Button Link/})
+    expect(buttonLink).toBeInTheDocument()
   })
 
   it('does not add analytics data for button links', () => {
@@ -248,7 +283,8 @@ describe('MinimalFooter', () => {
 
   it('renders empty footer without children', () => {
     const {getByRole} = render(<MinimalFooter />)
-    expect(getByRole('contentinfo')).toBeInTheDocument()
+    const footer = getByRole('contentinfo')
+    expect(footer).toBeInTheDocument()
   })
 
   it('renders GitHub logo with analytics data', () => {
@@ -282,20 +318,23 @@ describe('MinimalFooter', () => {
       />,
     )
 
-    expect(getByRole('link', {name: 'GitHub on X'})).toHaveAttribute('href', 'https://x.com/github')
-    expect(getByRole('link', {name: 'GitHub on GitHub'})).toHaveAttribute('href', 'https://github.com/github')
-    expect(getByRole('link', {name: 'GitHub on LinkedIn'})).toHaveAttribute(
-      'href',
-      'https://www.linkedin.com/company/github',
-    )
-    expect(getByRole('link', {name: 'GitHub on YouTube'})).toHaveAttribute('href', 'https://www.youtube.com/github')
-    expect(getByRole('link', {name: 'GitHub on Facebook'})).toHaveAttribute('href', 'https://www.facebook.com/GitHub')
-    expect(getByRole('link', {name: 'GitHub on Twitch'})).toHaveAttribute('href', 'https://www.twitch.tv/github')
-    expect(getByRole('link', {name: 'GitHub on TikTok'})).toHaveAttribute('href', 'https://www.tiktok.com/@github')
-    expect(getByRole('link', {name: 'GitHub on Instagram'})).toHaveAttribute(
-      'href',
-      'https://www.instagram.com/github/',
-    )
+    const xLink = getByRole('link', {name: 'GitHub on X'})
+    const githubLink = getByRole('link', {name: 'GitHub on GitHub'})
+    const linkedinLink = getByRole('link', {name: 'GitHub on LinkedIn'})
+    const youtubeLink = getByRole('link', {name: 'GitHub on YouTube'})
+    const facebookLink = getByRole('link', {name: 'GitHub on Facebook'})
+    const twitchLink = getByRole('link', {name: 'GitHub on Twitch'})
+    const tiktokLink = getByRole('link', {name: 'GitHub on TikTok'})
+    const instagramLink = getByRole('link', {name: 'GitHub on Instagram'})
+    
+    expect(xLink).toHaveAttribute('href', 'https://x.com/github')
+    expect(githubLink).toHaveAttribute('href', 'https://github.com/github')
+    expect(linkedinLink).toHaveAttribute('href', 'https://www.linkedin.com/company/github')
+    expect(youtubeLink).toHaveAttribute('href', 'https://www.youtube.com/github')
+    expect(facebookLink).toHaveAttribute('href', 'https://www.facebook.com/GitHub')
+    expect(twitchLink).toHaveAttribute('href', 'https://www.twitch.tv/github')
+    expect(tiktokLink).toHaveAttribute('href', 'https://www.tiktok.com/@github')
+    expect(instagramLink).toHaveAttribute('href', 'https://www.instagram.com/github/')
   })
 
   it('passes through additional props to footer element', () => {
@@ -312,7 +351,8 @@ describe('MinimalFooter', () => {
       </MinimalFooter>,
     )
 
-    expect(getByRole('contentinfo')).toBeInTheDocument()
+    const footer = getByRole('contentinfo')
+    expect(footer).toBeInTheDocument()
   })
 
   it('maintains proper HTML structure', () => {
@@ -402,27 +442,39 @@ describe('MinimalFooter', () => {
       </MinimalFooter>,
     )
 
-    expect(getByText('Only footnotes')).toBeInTheDocument()
-    expect(getByRole('link', {name: 'GitHub'})).toBeInTheDocument()
-    expect(getSocialLinks(queryAllByRole('link'))).toHaveLength(0)
+    const footnoteText = getByText('Only footnotes')
+    const githubLink = getByRole('link', {name: 'GitHub'})
+    const allLinks = queryAllByRole('link')
+    const socialLinks = getSocialLinks(allLinks)
+    
+    expect(footnoteText).toBeInTheDocument()
+    expect(githubLink).toBeInTheDocument()
+    expect(socialLinks).toHaveLength(0)
   })
 
   it('renders component with only social links', () => {
     const {getByRole, getAllByRole} = render(<MinimalFooter socialLinks={['x']} />)
 
-    expect(getByRole('link', {name: 'GitHub'})).toBeInTheDocument()
-    expect(getSocialLinks(getAllByRole('link'))).toHaveLength(1)
+    const githubLink = getByRole('link', {name: 'GitHub'})
+    const allLinks = getAllByRole('link')
+    const socialLinks = getSocialLinks(allLinks)
+    
+    expect(githubLink).toBeInTheDocument()
+    expect(socialLinks).toHaveLength(1)
   })
 
   it('renders component with only footer links', () => {
-    const {getByText, getByRole} = render(
+    const {getByRole} = render(
       <MinimalFooter socialLinks={false}>
         <MinimalFooter.Link href="/test">Single Link</MinimalFooter.Link>
       </MinimalFooter>,
     )
 
-    expect(getByText('Single Link')).toBeInTheDocument()
-    expect(getByRole('link', {name: 'GitHub'})).toBeInTheDocument()
+    const singleLink = getByRole('link', {name: 'Single Link'})
+    const githubLink = getByRole('link', {name: 'GitHub'})
+    
+    expect(singleLink).toBeInTheDocument()
+    expect(githubLink).toBeInTheDocument()
   })
 
   it('renders mixed content types in footnotes correctly', () => {
@@ -436,13 +488,17 @@ describe('MinimalFooter', () => {
       </MinimalFooter>,
     )
 
-    expect(getByText('First footnote')).toBeInTheDocument()
-    expect(getByText('Second footnote')).toBeInTheDocument()
-    expect(getByText('Third footnote')).toBeInTheDocument()
+    const firstFootnote = getByText('First footnote')
+    const secondFootnote = getByText('Second footnote')
+    const thirdFootnote = getByText('Third footnote')
+    
+    expect(firstFootnote).toBeInTheDocument()
+    expect(secondFootnote).toBeInTheDocument()
+    expect(thirdFootnote).toBeInTheDocument()
 
-    expect(getByText('First footnote').tagName).toBe('P')
-    expect(getByText('Second footnote').tagName).toBe('P')
-    expect(getByText('Third footnote').tagName).toBe('P')
+    expect(firstFootnote.tagName).toBe('P')
+    expect(secondFootnote.tagName).toBe('P')
+    expect(thirdFootnote.tagName).toBe('P')
   })
 
   it('calculates current year correctly for copyright', () => {
@@ -450,7 +506,9 @@ describe('MinimalFooter', () => {
     const currentYear = new Date().getFullYear()
     const expectedCopyright = `© ${currentYear} GitHub. All rights reserved.`
 
-    expect(getByText(expectedCopyright)).toBeInTheDocument()
+    const copyrightText = getByText(expectedCopyright)
+
+    expect(copyrightText).toBeInTheDocument()
   })
 
   it('handles complex footnote content with links', () => {
@@ -464,8 +522,11 @@ describe('MinimalFooter', () => {
       </MinimalFooter>,
     )
 
-    expect(getByText(/For more information, see our/)).toBeInTheDocument()
-    expect(getByRole('link', {name: 'Privacy Policy'})).toHaveAttribute('href', '/privacy')
+    const footnoteText = getByText(/For more information, see our/)
+    const privacyLink = getByRole('link', {name: 'Privacy Policy'})
+    
+    expect(footnoteText).toBeInTheDocument()
+    expect(privacyLink).toHaveAttribute('href', '/privacy')
   })
 
   it('forwards additional HTML attributes', () => {
