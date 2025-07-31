@@ -444,3 +444,7 @@
 .PricingOptions__feature-list-accordion[open] .PricingOptions__feature-list-accordion-chevron {
   transform: rotate(180deg);
 }
+
+.PricingOptions__feature-list-accordion-content {
+  animation: none !important;
+}

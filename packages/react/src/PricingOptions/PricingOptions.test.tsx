@@ -1,19 +1,59 @@
-import React, {render, cleanup} from '@testing-library/react'
+import React from 'react'
+import {render, cleanup} from '@testing-library/react'
+
 import '@testing-library/jest-dom'
+import userEvent from '@testing-library/user-event'
 
 import {axe, toHaveNoViolations} from 'jest-axe'
 
 import {PricingOptions} from './PricingOptions'
+import {useWindowSize} from '../hooks/useWindowSize'
 import '../test-utils/mocks/match-media-mock'
+
+jest.mock('../hooks/useWindowSize')
 
 expect.extend(toHaveNoViolations)
 
 describe('PricingOptions', () => {
   const testId = 'test'
+  const mockUseWindowSize = useWindowSize as jest.Mock
+
+  const smallBreakpoint = {
+    isSmall: true,
+    isMedium: false,
+    isXLarge: false,
+  }
+
+  const mediumBreakpoint = {
+    isSmall: true,
+    isMedium: true,
+    isXLarge: false,
+  }
+
+  const xlargeBreakpoint = {
+    isSmall: true,
+    isMedium: true,
+    isXLarge: true,
+  }
+
+  const mockLabel = 'Mock label'
+  const mockHeading = 'Mock heading'
+  const mockDescription = 'Mock description'
+  const mockPrice = 'Mock price'
+  const mockPrimaryAction = 'Mock primary action'
+  const mockSecondaryAction = 'Mock secondary action'
+  const mockFeaturedListTitle = 'Mock featured list title'
+  const mockFeaturedListHeading = 'Mock featured list heading'
+  const mockFeatureListItem = 'Mock feature list item'
+  const mockFootnote = 'Mock footnote'
+
+  beforeEach(() => {
+    // Reset mocks before each test
+    jest.resetAllMocks()
+  })
 
   afterEach(() => {
     cleanup()
-    jest.clearAllMocks()
   })
 
   it('renders correctly into the document', async () => {
@@ -66,28 +106,8 @@ describe('PricingOptions', () => {
 
     expect(results).toHaveNoViolations()
   })
-})
 
-describe('PricingOptions.Item', () => {
-  const testId = 'test'
-
-  const mockLabel = 'Mock label'
-  const mockHeading = 'Mock heading'
-  const mockDescription = 'Mock description'
-  const mockPrice = 'Mock price'
-  const mockPrimaryAction = 'Mock primary action'
-  const mockSecondaryAction = 'Mock secondary action'
-  const mockFeaturedListTitle = 'Mock featured list title'
-  const mockFeaturedListHeading = 'Mock featured list heading'
-  const mockFeatureListItem = 'Mock feature list item'
-  const mockFootnote = 'Mock footnote'
-
-  afterEach(() => {
-    cleanup()
-    jest.clearAllMocks()
-  })
-
-  it('renders correctly into the document', () => {
+  it('renders a PricingOptions.Item correctly into the document', () => {
     const expectedClass = 'PricingOptions__Item'
 
     const {getByTestId} = render(<PricingOptions.Item data-testid={testId} className={expectedClass} />)
@@ -96,7 +116,7 @@ describe('PricingOptions.Item', () => {
     expect(PricingOptionsItemEl.classList).toContain(expectedClass)
   })
 
-  it('removes children that are not allowed', () => {
+  it('removes children that are not allowed from PricingOptions.Item', () => {
     const {getByText} = render(
       <PricingOptions.Item>
         <div>Not allowed</div>
@@ -106,7 +126,9 @@ describe('PricingOptions.Item', () => {
     expect(() => getByText('Not allowed')).toThrow()
   })
 
-  it('renders children that are allowed', () => {
+  it('renders allowed children in PricingOptions.Item', () => {
+    mockUseWindowSize.mockReturnValue(mediumBreakpoint)
+
     const {getByText} = render(
       <PricingOptions.Item>
         <PricingOptions.Label>{mockLabel}</PricingOptions.Label>
@@ -140,7 +162,9 @@ describe('PricingOptions.Item', () => {
     expect(getByText(mockFootnote)).toBeInTheDocument()
   })
 
-  it('renders markup in the expected order', () => {
+  it('renders PricingOptions.Item markup in the expected order', () => {
+    mockUseWindowSize.mockReturnValue(mediumBreakpoint)
+
     const {getByTestId} = render(
       <PricingOptions.Item data-testid={testId}>
         <PricingOptions.Footnote>{mockFootnote}</PricingOptions.Footnote>
@@ -173,7 +197,7 @@ describe('PricingOptions.Item', () => {
     expect(testIdsInOrder).toEqual(expectedOrder)
   })
 
-  it('renders the PricingOptions.Heading with a h3 by default', () => {
+  it('renders the PricingOptions.Heading within PricingOptions.Item with a h3 by default', () => {
     const {getByRole} = render(
       <PricingOptions.Item>
         <PricingOptions.Heading>Mock heading</PricingOptions.Heading>
@@ -184,7 +208,7 @@ describe('PricingOptions.Item', () => {
   })
 
   it.each(['h1', 'h2', 'h3', 'h4', 'h5', 'h6'] as const)(
-    'optionally renders the PricingOptions.Heading with different levels',
+    'optionally renders the PricingOptions.Heading within PricingOptions.Item with different levels',
     size => {
       const {getByRole} = render(
         <PricingOptions.Item>
@@ -198,6 +222,8 @@ describe('PricingOptions.Item', () => {
   )
 
   it('renders the PricingOptions.FeatureList accordion heading with the correct default level', () => {
+    mockUseWindowSize.mockReturnValue(mediumBreakpoint)
+
     const expectedHeadingTag = 'h4'
 
     const {getByRole} = render(
@@ -222,6 +248,8 @@ describe('PricingOptions.Item', () => {
   })
 
   it('renders the PricingOptions.FeatureList accordion heading with an alternative level', () => {
+    mockUseWindowSize.mockReturnValue(mediumBreakpoint)
+
     const expectedHeadingTag = 'h6'
 
     const {getByRole} = render(
@@ -243,5 +271,227 @@ describe('PricingOptions.Item', () => {
     )
     const PricingOptionsItemEl = getByRole('heading', {name: "What's included"})
     expect(PricingOptionsItemEl.tagName).toBe(expectedHeadingTag.toUpperCase())
+  })
+
+  it('respects expanded={true} when explicitly set', () => {
+    mockUseWindowSize.mockReturnValue(mediumBreakpoint)
+
+    const {getByRole} = render(
+      <PricingOptions>
+        <PricingOptions.Item>
+          <PricingOptions.FeatureList expanded={true}>
+            <PricingOptions.FeatureListGroupHeading>Features</PricingOptions.FeatureListGroupHeading>
+            <PricingOptions.FeatureListItem>Feature 1</PricingOptions.FeatureListItem>
+          </PricingOptions.FeatureList>
+        </PricingOptions.Item>
+      </PricingOptions>,
+    )
+
+    const accordion = getByRole('group')
+    expect(accordion).toHaveAttribute('open')
+  })
+
+  it('respects expanded={false} when explicitly set', () => {
+    mockUseWindowSize.mockReturnValue(mediumBreakpoint)
+
+    const {getByRole} = render(
+      <PricingOptions>
+        <PricingOptions.Item>
+          <PricingOptions.FeatureList expanded={false}>
+            <PricingOptions.FeatureListGroupHeading>Features</PricingOptions.FeatureListGroupHeading>
+            <PricingOptions.FeatureListItem>Feature 1</PricingOptions.FeatureListItem>
+          </PricingOptions.FeatureList>
+        </PricingOptions.Item>
+      </PricingOptions>,
+    )
+
+    const accordion = getByRole('group')
+    expect(accordion).not.toHaveAttribute('open')
+  })
+
+  it('is collapsed on narrow viewport when expanded is undefined', () => {
+    mockUseWindowSize.mockReturnValue(smallBreakpoint)
+
+    const {getByRole} = render(
+      <PricingOptions.Item>
+        <PricingOptions.FeatureList>
+          <PricingOptions.FeatureListGroupHeading>Features</PricingOptions.FeatureListGroupHeading>
+          <PricingOptions.FeatureListItem>Feature 1</PricingOptions.FeatureListItem>
+        </PricingOptions.FeatureList>
+      </PricingOptions.Item>,
+    )
+
+    const accordion = getByRole('group')
+    expect(accordion).not.toHaveAttribute('open')
+  })
+
+  it('is expanded on regular viewport when expanded is undefined', () => {
+    mockUseWindowSize.mockReturnValue(mediumBreakpoint)
+
+    const {getByRole} = render(
+      <PricingOptions.Item>
+        <PricingOptions.FeatureList>
+          <PricingOptions.FeatureListGroupHeading>Features</PricingOptions.FeatureListGroupHeading>
+          <PricingOptions.FeatureListItem>Feature 1</PricingOptions.FeatureListItem>
+        </PricingOptions.FeatureList>
+      </PricingOptions.Item>,
+    )
+
+    const accordion = getByRole('group')
+    expect(accordion).toHaveAttribute('open')
+  })
+
+  it('is expanded on wide viewport when expanded is undefined', () => {
+    mockUseWindowSize.mockReturnValue(xlargeBreakpoint)
+
+    const {getByRole} = render(
+      <PricingOptions.Item>
+        <PricingOptions.FeatureList>
+          <PricingOptions.FeatureListGroupHeading>Features</PricingOptions.FeatureListGroupHeading>
+          <PricingOptions.FeatureListItem>Feature 1</PricingOptions.FeatureListItem>
+        </PricingOptions.FeatureList>
+      </PricingOptions.Item>,
+    )
+
+    const accordion = getByRole('group')
+    expect(accordion).toHaveAttribute('open')
+  })
+
+  it('uses the narrow responsive value on narrow viewport for responsive object', () => {
+    mockUseWindowSize.mockReturnValue(smallBreakpoint)
+
+    const mockResponsiveObject = {
+      narrow: false,
+      regular: true,
+      wide: true,
+    }
+
+    const {getByRole} = render(
+      <PricingOptions>
+        <PricingOptions.Item>
+          <PricingOptions.FeatureList expanded={mockResponsiveObject}>
+            <PricingOptions.FeatureListGroupHeading>Features</PricingOptions.FeatureListGroupHeading>
+            <PricingOptions.FeatureListItem>Feature 1</PricingOptions.FeatureListItem>
+          </PricingOptions.FeatureList>
+        </PricingOptions.Item>
+      </PricingOptions>,
+    )
+
+    const accordion = getByRole('group')
+    expect(accordion).not.toHaveAttribute('open')
+  })
+
+  it('uses the regular responsive value on regular viewports for responsive object', () => {
+    mockUseWindowSize.mockReturnValue(mediumBreakpoint)
+
+    const mockResponsiveObject = {
+      narrow: false,
+      regular: true,
+      wide: false,
+    }
+
+    const {getByRole} = render(
+      <PricingOptions>
+        <PricingOptions.Item>
+          <PricingOptions.FeatureList expanded={mockResponsiveObject}>
+            <PricingOptions.FeatureListGroupHeading>Features</PricingOptions.FeatureListGroupHeading>
+            <PricingOptions.FeatureListItem>Feature 1</PricingOptions.FeatureListItem>
+          </PricingOptions.FeatureList>
+        </PricingOptions.Item>
+      </PricingOptions>,
+    )
+
+    const accordion = getByRole('group')
+    expect(accordion).toHaveAttribute('open')
+  })
+
+  it('uses wide value on wide viewport for responsive object', () => {
+    mockUseWindowSize.mockReturnValue(xlargeBreakpoint)
+
+    const mockResponsiveObject = {
+      narrow: false,
+      regular: false,
+      wide: true,
+    }
+
+    const {getByRole} = render(
+      <PricingOptions>
+        <PricingOptions.Item>
+          <PricingOptions.FeatureList expanded={mockResponsiveObject}>
+            <PricingOptions.FeatureListGroupHeading>Features</PricingOptions.FeatureListGroupHeading>
+            <PricingOptions.FeatureListItem>Feature 1</PricingOptions.FeatureListItem>
+          </PricingOptions.FeatureList>
+        </PricingOptions.Item>
+      </PricingOptions>,
+    )
+
+    const accordion = getByRole('group')
+    expect(accordion).toHaveAttribute('open')
+  })
+
+  it('overrides responsive behavior when user clicks accordion', async () => {
+    mockUseWindowSize.mockReturnValue(mediumBreakpoint)
+
+    const user = userEvent.setup()
+
+    const mockResponsiveObject = {
+      narrow: true,
+      regular: true,
+      wide: true,
+    }
+
+    const {getByRole, getByText} = render(
+      <PricingOptions.Item>
+        <PricingOptions.FeatureList expanded={mockResponsiveObject}>
+          <PricingOptions.FeatureListGroupHeading>Features</PricingOptions.FeatureListGroupHeading>
+          <PricingOptions.FeatureListItem>Feature 1</PricingOptions.FeatureListItem>
+        </PricingOptions.FeatureList>
+      </PricingOptions.Item>,
+    )
+
+    const accordion = getByRole('group')
+    const accordionToggle = getByText("What's included")
+
+    expect(accordion).toHaveAttribute('open')
+
+    await user.click(accordionToggle)
+    expect(accordion).not.toHaveAttribute('open')
+
+    await user.click(accordionToggle)
+    expect(accordion).toHaveAttribute('open')
+  })
+
+  it('synchronizes all feature lists when one is toggled', async () => {
+    mockUseWindowSize.mockReturnValue(mediumBreakpoint)
+
+    const user = userEvent.setup()
+
+    const {getAllByRole, getAllByText} = render(
+      <PricingOptions>
+        <PricingOptions.Item>
+          <PricingOptions.FeatureList>
+            <PricingOptions.FeatureListGroupHeading>Features</PricingOptions.FeatureListGroupHeading>
+            <PricingOptions.FeatureListItem>Feature 1</PricingOptions.FeatureListItem>
+          </PricingOptions.FeatureList>
+        </PricingOptions.Item>
+        <PricingOptions.Item>
+          <PricingOptions.FeatureList>
+            <PricingOptions.FeatureListGroupHeading>Features</PricingOptions.FeatureListGroupHeading>
+            <PricingOptions.FeatureListItem>Feature 2</PricingOptions.FeatureListItem>
+          </PricingOptions.FeatureList>
+        </PricingOptions.Item>
+      </PricingOptions>,
+    )
+
+    const [accordionOne, accordionTwo] = getAllByRole('group')
+    const [firstSummary] = getAllByText("What's included")
+
+    expect(accordionOne).toHaveAttribute('open')
+    expect(accordionTwo).toHaveAttribute('open')
+
+    await user.click(firstSummary)
+
+    expect(accordionOne).not.toHaveAttribute('open')
+    expect(accordionTwo).not.toHaveAttribute('open')
   })
 })
