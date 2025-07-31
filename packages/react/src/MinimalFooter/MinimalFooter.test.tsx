@@ -3,7 +3,7 @@ import {render} from '@testing-library/react'
 import '@testing-library/jest-dom'
 import {axe, toHaveNoViolations} from 'jest-axe'
 import {MinimalFooter} from './MinimalFooter'
-import {Text} from '../'
+import {Text, ThemeProvider} from '../'
 
 expect.extend(toHaveNoViolations)
 
@@ -514,5 +514,88 @@ describe('MinimalFooter', () => {
     const footer = getByRole('contentinfo')
     expect(footer).toHaveAttribute('data-testid', 'custom-footer')
     expect(footer).toHaveAttribute('aria-labelledby', 'footer-heading')
+  })
+
+  it('handles invalid React elements in children when looking for footnotes', () => {
+    const {getByRole} = render(
+      <MinimalFooter>
+        Some text
+        <div>Some other text</div>
+        {null}
+        <MinimalFooter.Link href="/test">Valid Link</MinimalFooter.Link>
+      </MinimalFooter>,
+    )
+
+    const footer = getByRole('contentinfo')
+    const validLink = getByRole('link', {name: 'Valid Link'})
+
+    expect(footer).toBeInTheDocument()
+    expect(validLink).toBeInTheDocument()
+  })
+
+  it('handles invalid React elements in footnotes children', () => {
+    const {getByText} = render(
+      <MinimalFooter>
+        <MinimalFooter.Footnotes>
+          Some text
+          <div>Some other text</div>
+          {null}
+          <Text>Valid footnote</Text>
+        </MinimalFooter.Footnotes>
+      </MinimalFooter>,
+    )
+
+    const validFootnote = getByText('Valid footnote')
+    expect(validFootnote).toBeInTheDocument()
+  })
+
+  describe('Color modes', () => {
+    let originalMatchMedia: typeof window.matchMedia
+
+    beforeEach(() => {
+      originalMatchMedia = window.matchMedia
+      Object.defineProperty(window, 'matchMedia', {
+        writable: true,
+        value: jest.fn().mockImplementation(query => ({
+          matches: false,
+          media: query,
+          onchange: null,
+          addListener: jest.fn(),
+          removeListener: jest.fn(),
+          addEventListener: jest.fn(),
+          removeEventListener: jest.fn(),
+          dispatchEvent: jest.fn(),
+        })),
+      })
+    })
+
+    afterEach(() => {
+      Object.defineProperty(window, 'matchMedia', {
+        writable: true,
+        value: originalMatchMedia,
+      })
+    })
+
+    it('renders GitHub logo with white fill in dark mode', () => {
+      const {container} = render(
+        <ThemeProvider colorMode="dark">
+          <MinimalFooter />
+        </ThemeProvider>,
+      )
+
+      const logoIcon = container.querySelector('svg')
+      expect(logoIcon).toHaveAttribute('fill', 'white')
+    })
+
+    it('renders GitHub logo with black fill in light mode', () => {
+      const {container} = render(
+        <ThemeProvider colorMode="light">
+          <MinimalFooter />
+        </ThemeProvider>,
+      )
+
+      const logoIcon = container.querySelector('svg')
+      expect(logoIcon).toHaveAttribute('fill', 'black')
+    })
   })
 })
