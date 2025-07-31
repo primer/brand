@@ -1129,3 +1129,38 @@ ExpandedTablet.parameters = {
     defaultViewport: 'ipad',
   },
 }
+
+export const HideFeatureListOnNarrowAndRegular: StoryFn<typeof PricingOptions> = () => {
+  return (
+    <PricingOptions>
+      <PricingOptions.Item>
+        <PricingOptions.Heading>Copilot Individual</PricingOptions.Heading>
+        <PricingOptions.Description>
+          Code completions, Chat, and more for indie developers and freelancers.
+        </PricingOptions.Description>
+        <PricingOptions.Price trailingText="per month / $100 per year">10</PricingOptions.Price>
+        <PricingOptions.FeatureList expanded={{narrow: false, regular: false, wide: true}}>
+          <PricingOptions.FeatureListItem>Code completions</PricingOptions.FeatureListItem>
+          <PricingOptions.FeatureListItem>Chat in IDE and Mobile</PricingOptions.FeatureListItem>
+          <PricingOptions.FeatureListItem>CLI assistance</PricingOptions.FeatureListItem>
+          <PricingOptions.FeatureListItem>Security vulnerability filter</PricingOptions.FeatureListItem>
+        </PricingOptions.FeatureList>
+        <PricingOptions.Footnote>
+          Free for verified students, teachers, and maintainers of popular open source projects.
+        </PricingOptions.Footnote>
+        <PricingOptions.PrimaryAction as="a" href="#">
+          Start a free trial
+        </PricingOptions.PrimaryAction>
+      </PricingOptions.Item>
+    </PricingOptions>
+  )
+}
+HideFeatureListOnNarrowAndRegular.storyName = 'Hide feature list on all viewports except wide'
+
+export const HideFeatureListOnNarrowAndRegularNarrow = () => <HideFeatureListOnNarrowAndRegular />
+HideFeatureListOnNarrowAndRegularNarrow.parameters = {
+  viewport: {
+    defaultViewport: 'iphonexr',
+  },
+}
+HideFeatureListOnNarrowAndRegularNarrow.storyName = 'Hide feature list on all viewports except wide (narrow)'
