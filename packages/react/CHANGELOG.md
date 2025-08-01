@@ -1,5 +1,19 @@
 # @primer/react-brand
 
+## 0.57.1
+
+### Patch Changes
+
+- [#1121](https://github.com/primer/brand/pull/1121) [`cb34663`](https://github.com/primer/brand/commit/cb34663848fed90ed5da01d142496f664a700983) Thanks [@rezrah](https://github.com/rezrah)! - Fix layout shift in the `PricingOptions` feature list accordion
+
+  The feature lists now respect their explicit `expanded` prop values on the initial render, and no longer apply default animations. This prevents layout shift in certain SSR contexts where the component was incorrectly relying on the client-side `window` size even when explicitly passed `expanded={true}` or `expanded={false}`, which shouldn't depend on viewport size.
+
+- [#1120](https://github.com/primer/brand/pull/1120) [`c7d36b9`](https://github.com/primer/brand/commit/c7d36b9abde56de2e5d6e2f181c1d74d146278ae) Thanks [@rezrah](https://github.com/rezrah)! - Fix layout shift in `SubNav` by ensuring separator visibility is determined pre-hydration.
+
+- [#1124](https://github.com/primer/brand/pull/1124) [`826cd81`](https://github.com/primer/brand/commit/826cd81e3f9c5647a1a734428bfbd624469c09d8) Thanks [@rezrah](https://github.com/rezrah)! - Fixed page layout shift caused by the `AnchorNav` component in a sticky state.
+
+  Previously the `AnchorNav` would remove its computed height from the underlying page in sticky state. Now that lost space is compensated for to create a smoother scrolling experience.
+
 ## 0.57.0
 
 ### Minor Changes
