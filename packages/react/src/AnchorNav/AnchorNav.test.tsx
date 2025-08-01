@@ -1,4 +1,4 @@
-import React, {render, cleanup, fireEvent} from '@testing-library/react'
+import React, {render, cleanup, fireEvent, act} from '@testing-library/react'
 import '@testing-library/jest-dom'
 import {axe, toHaveNoViolations} from 'jest-axe'
 
@@ -40,17 +40,99 @@ const MockAnchorNavFixture = ({data = mockData, withSecondAction = false, ...res
 }
 
 describe('AnchorNav', () => {
-  afterEach(cleanup)
+  let mockIntersectionObserver: jest.Mock
+  let addEventListenerSpy: jest.SpyInstance
+  let scrollListener: EventListener | null
+
+  const setScrollPosition = (position: number) => {
+    Object.defineProperty(window, 'pageYOffset', {
+      writable: true,
+      configurable: true,
+      value: position,
+    })
+  }
+
+  const triggerScrollEvent = async () => {
+    if (scrollListener) {
+      scrollListener(new Event('scroll'))
+    }
+  }
+
+  const simulateNavBecomingSticky = async (navYPosition: number, scrollToPosition: number) => {
+    await act(async () => {
+      triggerObserverByRootMargin('0px 0px -100%', {
+        boundingClientRect: mockRect(navYPosition),
+        isIntersecting: true,
+      })
+    })
+
+    await act(async () => {
+      setScrollPosition(scrollToPosition)
+      await triggerScrollEvent()
+    })
+  }
+
+  const mockRect = (y = 100): DOMRectReadOnly => ({
+    y,
+    top: y,
+    bottom: y + 50,
+    left: 0,
+    right: 0,
+    width: 0,
+    height: 50,
+    x: 0,
+    toJSON: () => ({}),
+  })
+
+  const triggerObserverByRootMargin = (rootMargin: string, entry: Partial<IntersectionObserverEntry>) => {
+    const observerCall = mockIntersectionObserver.mock.calls.find(call => {
+      const options = call[1]
+      return options && options.rootMargin === rootMargin
+    })
+
+    if (observerCall) {
+      const [callback] = observerCall
+      const mockEntry = {
+        isIntersecting: true,
+        boundingClientRect: mockRect(),
+        ...entry,
+      }
+      callback([mockEntry])
+    }
+  }
 
   beforeEach(() => {
-    // IntersectionObserver isn't available in test environment
-    const mockIntersectionObserver = jest.fn()
+    scrollListener = null
+
+    mockIntersectionObserver = jest.fn()
     mockIntersectionObserver.mockReturnValue({
-      observe: () => null,
-      unobserve: () => null,
-      disconnect: () => null,
+      observe: jest.fn(),
+      unobserve: jest.fn(),
+      disconnect: jest.fn(),
     })
     window.IntersectionObserver = mockIntersectionObserver
+
+    Object.defineProperty(window, 'pageYOffset', {
+      writable: true,
+      configurable: true,
+      value: 0,
+    })
+
+    addEventListenerSpy = jest
+      .spyOn(window, 'addEventListener')
+      .mockImplementation((type: string, listener: EventListenerOrEventListenerObject) => {
+        if (type === 'scroll') {
+          scrollListener = typeof listener === 'function' ? listener : listener.handleEvent
+        }
+      })
+  })
+
+  afterEach(() => {
+    cleanup()
+
+    addEventListenerSpy.mockRestore()
+
+    jest.clearAllMocks()
   })
 
   it('renders the root element correctly into the document', () => {
@@ -108,7 +190,6 @@ describe('AnchorNav', () => {
     const {getByTestId} = render(<MockAnchorNavFixture />)
     const actionEl = getByTestId(AnchorNav.testIds.action)
     expect(actionEl).toBeInTheDocument() // renders
-    expect(actionEl).toBeInTheDocument() // renders as an anchor
     expect(actionEl).toHaveAttribute('href', '#') // renders with correct href
   })
 
@@ -116,7 +197,6 @@ describe('AnchorNav', () => {
     const {getByTestId} = render(<MockAnchorNavFixture withSecondAction />)
     const secondaryActionEl = getByTestId(AnchorNav.testIds.secondaryAction)
     expect(secondaryActionEl).toBeInTheDocument() // renders
-    expect(secondaryActionEl).toBeInTheDocument() // renders as an anchor
     expect(secondaryActionEl).toHaveAttribute('href', '#') // renders with correct href
   })
 
@@ -157,5 +237,33 @@ describe('AnchorNav', () => {
     const results = await axe(container)
 
     expect(results).toHaveNoViolations()
+  })
+
+  it('shows an equivalent height spacer when nav is sticky and hides it when not', async () => {
+    const MockPage = () => (
+      <div style={{height: '200vh'}}>
+        <MockAnchorNavFixture />
+        <div style={{height: '100vh'}}>After nav</div>
+      </div>
+    )
+
+    const {getByTestId, queryByTestId} = render(<MockPage />)
+    const rootEl = getByTestId(AnchorNav.testIds.root)
+    const navPosition = 100
+
+    expect(rootEl).not.toHaveClass('AnchorNav--stuck')
+    expect(queryByTestId(AnchorNav.testIds.navSpacer)).not.toBeInTheDocument()
+
+    await simulateNavBecomingSticky(navPosition, navPosition + 50)
+    expect(rootEl).toHaveClass('AnchorNav--stuck')
+    expect(getByTestId(AnchorNav.testIds.navSpacer)).toBeInTheDocument()
+
+    await act(async () => {
+      setScrollPosition(navPosition - 50)
+      await triggerScrollEvent()
+    })
+
+    expect(rootEl).not.toHaveClass('AnchorNav--stuck')
+    expect(queryByTestId(AnchorNav.testIds.navSpacer)).not.toBeInTheDocument()
   })
 })

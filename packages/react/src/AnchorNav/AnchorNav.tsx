@@ -32,6 +32,9 @@ const testIds = {
   get secondaryAction() {
     return `${this.root}-secondary-action`
   },
+  get navSpacer() {
+    return `${this.root}-nav-spacer`
+  },
 }
 
 export type AnchorNavProps = BaseProps<HTMLElement> & {
@@ -56,6 +59,7 @@ function _AnchorNav({children, enableDefaultBgColor = false, hideUntilSticky = f
   const [intersectionEntry, setIntersectionEntry] = useState<IntersectionObserverEntry>()
   const [initialYOffset, setInitialYOffset] = useState<undefined | number>()
   const [navShouldFix, setNavShouldFix] = useState<boolean>(false)
+  const [navHeight, setNavHeight] = useState<number>(0)
 
   const wrapperRef = useRef<HTMLDivElement | null>(null)
   const rootRef = useRef<HTMLElement | null>(null)
@@ -87,6 +91,13 @@ function _AnchorNav({children, enableDefaultBgColor = false, hideUntilSticky = f
 
   useKeyboardEscape(closeMenuCallback)
   useExpandedMenu(menuOpen, linkContainerRef, !isLarge)
+
+  useEffect(() => {
+    if (wrapperRef.current) {
+      const height = wrapperRef.current.offsetHeight
+      setNavHeight(height)
+    }
+  }, [isLarge])
 
   useEffect(() => {
     const queryResult = window.matchMedia('(prefers-reduced-motion: reduce)')
@@ -271,6 +282,7 @@ function _AnchorNav({children, enableDefaultBgColor = false, hideUntilSticky = f
           aria-hidden
         />
       </nav>
+      {navShouldFix && <div style={{height: navHeight}} aria-hidden="true" data-testid={testIds.navSpacer} />}
     </div>
   )
 }
