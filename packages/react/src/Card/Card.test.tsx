@@ -246,7 +246,7 @@ describe('Card', () => {
     expect(cardEl.parentElement).toHaveClass('Card--fullWidth')
   })
 
-  it('renders card contents in a logical order, regardless of the order they are passed in', () => {
+  it('renders the card contents in a logical order, regardless of the order they are passed in', () => {
     const {getByText, getByAltText, getByLabelText} = render(
       <Card href={mockHref}>
         <Card.Description>{mockDescription}</Card.Description>
@@ -270,5 +270,61 @@ describe('Card', () => {
     expect(isAfter(image, icon)).toBe(true)
     expect(isAfter(icon, label)).toBe(true)
     expect(isAfter(label, description)).toBe(true)
+  })
+
+  it('renders custom CTA text when provided', () => {
+    const customCtaText = 'Get started'
+
+    const {getByText} = render(
+      <Card href={mockHref} ctaText={customCtaText}>
+        <Card.Heading>{mockHeading}</Card.Heading>
+      </Card>,
+    )
+
+    const ctaEl = getByText(customCtaText)
+    expect(ctaEl).toBeInTheDocument()
+  })
+
+  it('applies center alignment when align="center"', () => {
+    const mockTestId = 'test'
+
+    const {getByTestId} = render(
+      <Card href={mockHref} data-testid={mockTestId} align="center">
+        <Card.Heading>{mockHeading}</Card.Heading>
+      </Card>,
+    )
+
+    const cardEl = getByTestId(mockTestId)
+    expect(cardEl.parentElement).toHaveClass('Card--align-center')
+  })
+
+  it('disables animation when disableAnimation=true', () => {
+    const mockTestId = 'test'
+
+    const {getByTestId} = render(
+      <Card href={mockHref} data-testid={mockTestId} disableAnimation>
+        <Card.Heading>{mockHeading}</Card.Heading>
+      </Card>,
+    )
+
+    const cardEl = getByTestId(mockTestId)
+    expect(cardEl).toHaveClass('Card--disableAnimation')
+  })
+
+  it('renders label with custom color', () => {
+    const mockTestId = 'label'
+
+    const {getByTestId} = render(
+      <Card href={mockHref}>
+        <Card.Label data-testid={mockTestId} color="green">
+          {mockLabel}
+        </Card.Label>
+        <Card.Heading>{mockHeading}</Card.Heading>
+      </Card>,
+    )
+
+    const labelEl = getByTestId(mockTestId)
+    expect(labelEl).toBeInTheDocument()
+    expect(labelEl).toHaveTextContent(mockLabel)
   })
 })
