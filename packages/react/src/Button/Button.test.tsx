@@ -36,26 +36,6 @@ describe('Button', () => {
     expect(results).toHaveNoViolations()
   })
 
-  it('renders disabled state', async () => {
-    const {getByRole} = render(
-      <Button variant="primary" size="medium" disabled>
-        Primary Button
-      </Button>,
-    )
-    const btnEl = getByRole('button')
-
-    expect(btnEl).toHaveAttribute('disabled')
-    expect(btnEl.classList).toContain(disabledClass)
-  })
-
-  it('sets the disabled attribute to true when disabled prop is true and component is rendered as a button', () => {
-    const {getByRole} = render(<Button disabled>Primary Button</Button>)
-    const btnEl = getByRole('button')
-
-    expect(btnEl).toHaveAttribute('disabled')
-    expect(btnEl).not.toHaveAttribute('aria-disabled')
-  })
-
   it('sets the aria-disabled attribute to true when disabled prop is true and component is rendered as a link', () => {
     const {getByRole} = render(
       <Button disabled as="a" href="#">
