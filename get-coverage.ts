@@ -43,17 +43,24 @@ function calculateCoverage(coverage: FileCoverage): {statements: number; functio
   }
 }
 
-function processCoverageData(coverageData: CoverageData): Record<string, ComponentCoverage> {
+function processCoverageData(coverageData: CoverageData, workspace: string, branchPath: string): Record<string, ComponentCoverage> {
   const components: Record<string, ComponentCoverage> = {}
 
   Object.entries(coverageData).forEach(([filePath, coverage]) => {
-    // Only include .tsx files (components), skip test files
+    // Only include .tsx files (components), skip test files and stories
     if (filePath.includes('.tsx') && !filePath.includes('.test.') && !filePath.includes('.stories.')) {
       const componentName = getComponentName(filePath)
-      const coverageData = calculateCoverage(coverage)
-      components[componentName] = {
-        component: componentName,
-        ...coverageData,
+      
+      // Check if there's a corresponding test file
+      const testFilePath = filePath.replace('.tsx', '.test.tsx')
+      
+      // Only include components that have dedicated test files
+      if (fs.existsSync(testFilePath)) {
+        const coverageData = calculateCoverage(coverage)
+        components[componentName] = {
+          component: componentName,
+          ...coverageData,
+        }
       }
     }
   })
@@ -79,8 +86,8 @@ function main() {
   const currentCoverage = loadCoverageData(currentCoveragePath)
   const mainCoverage = loadCoverageData(mainCoveragePath)
 
-  const currentComponents = processCoverageData(currentCoverage)
-  const mainComponents = processCoverageData(mainCoverage)
+  const currentComponents = processCoverageData(currentCoverage, workspace, basePath)
+  const mainComponents = processCoverageData(mainCoverage, workspace, `${workspace}/main`)
 
   // Debug: Check Button coverage specifically
   console.error(`Current Button coverage:`, currentComponents['Button'])
@@ -155,7 +162,6 @@ function generateGitHubCommentHtml(
 ): string {
   const summaryStats = {
     newComponents: differences.filter(d => !d.main).length,
-    removedComponents: differences.filter(d => !d.current).length,
     improvedCoverage: differences.filter(
       d => d.current && d.main && (d.diff.statements > 0 || d.diff.functions > 0 || d.diff.branches > 0),
     ).length,
@@ -167,14 +173,14 @@ function generateGitHubCommentHtml(
   if (differences.length === 0) {
     return `### 🟢 No unit test coverage changes found
 
-All components maintain the same coverage as the main branch.`
+All components with tests maintain the same coverage as the main branch.`
   }
 
   let html = `### 🟢 Unit test coverage changes found
 
 Unit test coverage has been updated through this PR.
 
-**Changes:** ${summaryStats.newComponents} new, ${summaryStats.removedComponents} removed, ${summaryStats.improvedCoverage} improved, ${summaryStats.decreasedCoverage} decreased
+**Changes:** ${summaryStats.newComponents} new tests, ${summaryStats.improvedCoverage} improved, ${summaryStats.decreasedCoverage} decreased
 
 <table>
 <thead>
