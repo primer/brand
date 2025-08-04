@@ -129,10 +129,8 @@ function main() {
   // Sort by biggest statement coverage change
   differences.sort((a, b) => Math.abs(b.diff.statements) - Math.abs(a.diff.statements))
 
-  // Generate GitHub comment HTML
   const commentHtml = generateGitHubCommentHtml(differences)
 
-  // Output the HTML to console (for GitHub Action to capture)
   console.log(commentHtml)
 }
 
@@ -152,14 +150,16 @@ function generateGitHubCommentHtml(
   }
 
   if (differences.length === 0) {
-    return `## 📊 Test Coverage Report
+    return `### 🟢 No unit test coverage changes found
 
-✅ **No coverage changes detected** - All components maintain the same coverage as main branch.`
+All components maintain the same coverage as the main branch.`
   }
 
-  let html = `## 📊 Test Coverage Report
+  let html = `### 🟢 Unit test coverage changes found
 
-**Summary:** ${summaryStats.newComponents} new, ${summaryStats.removedComponents} removed, ${summaryStats.improvedCoverage} improved, ${summaryStats.decreasedCoverage} decreased
+Unit test coverage has been updated through this PR.
+
+**Changes:** ${summaryStats.newComponents} new, ${summaryStats.removedComponents} removed, ${summaryStats.improvedCoverage} improved, ${summaryStats.decreasedCoverage} decreased
 
 <table>
 <thead>
@@ -180,18 +180,18 @@ function generateGitHubCommentHtml(
     let branchesStr = ''
 
     if (!main) {
-      statusText = '🆕 NEW'
+      statusText = 'NEW'
       statementsStr = `${current!.statements}%`
       functionsStr = `${current!.functions}%`
       branchesStr = `${current!.branches}%`
     } else if (!current) {
-      statusText = '❌ REMOVED'
+      statusText = 'REMOVED'
       statementsStr = `${main.statements}%`
       functionsStr = `${main.functions}%`
       branchesStr = `${main.branches}%`
     } else {
       const diffStr = diff.statements > 0 ? `+${diff.statements.toFixed(1)}` : diff.statements.toFixed(1)
-      statusText = diff.statements > 0 ? `📈 ${diffStr}%` : `📉 ${diffStr}%`
+      statusText = diff.statements > 0 ? `${diffStr}%` : `${diffStr}%`
       statementsStr = `${current.statements}%`
       functionsStr = `${current.functions}%`
       branchesStr = `${current.branches}%`
