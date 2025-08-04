@@ -2,39 +2,21 @@
 
 import * as fs from 'fs'
 import * as path from 'path'
-
-interface FileCoverage {
+type FileCoverage = {
   s: Record<string, number> // statements
   f: Record<string, number> // functions
   b: Record<string, number> // branches
 }
 
-interface CoverageData {
+type CoverageData = {
   [filePath: string]: FileCoverage
 }
 
-interface ComponentCoverage {
+type ComponentCoverage = {
   component: string
   statements: number
   functions: number
   branches: number
-}
-
-function getComponentName(filePath: string): string {
-  // Extract component name from path like "src/Button/Button.tsx" -> "Button"
-  const match = filePath.match(/src\/([^/]+)\/[^/]+\.tsx?$/)
-  if (match) {
-    return match[1]
-  }
-
-  // Handle files directly in src like "src/utils.ts" -> "utils"
-  const directMatch = filePath.match(/src\/([^/]+)\.tsx?$/)
-  if (directMatch) {
-    return directMatch[1].replace(/\.tsx?$/, '')
-  }
-
-  // Fallback to filename
-  return path.basename(filePath, path.extname(filePath))
 }
 
 function calculateCoverage(coverage: FileCoverage): {statements: number; functions: number; branches: number} {
@@ -61,39 +43,12 @@ function calculateCoverage(coverage: FileCoverage): {statements: number; functio
   }
 }
 
-function loadCoverageData(filePath: string): CoverageData {
-  try {
-    if (!fs.existsSync(filePath)) {
-      console.warn(`Coverage file not found: ${filePath}`)
-      return {}
-    }
-    const content = fs.readFileSync(filePath, 'utf8')
-    return JSON.parse(content)
-  } catch (error) {
-    console.error(`Error loading coverage data from ${filePath}:`, error)
-    return {}
-  }
-}
-
 function main() {
-  // Use GitHub Actions workspace paths, with fallback to local paths for development
-  const workspace = process.env.GITHUB_WORKSPACE || '/Users/rezrah/dev/github/brand'
-  const isGitHubActions = process.env.GITHUB_ACTIONS === 'true'
+  const workspace = process.env.GITHUB_WORKSPACE || process.cwd()
 
-  const currentCoveragePath = isGitHubActions
-    ? `${workspace}/current/packages/react/coverage/coverage-final.json`
-    : `${workspace}/packages/react/coverage/coverage-final.json`
+  const currentCoveragePath = `${workspace}/current/packages/react/coverage/coverage-final.json`
 
-  const mainCoveragePath = isGitHubActions
-    ? `${workspace}/main/packages/react/coverage/coverage-final.json`
-    : `${workspace}/main/packages/react/coverage/coverage-final.json`
-
-  // Debug output for GitHub Actions
-  if (process.env.GITHUB_ACTIONS) {
-    console.error(`Workspace: ${workspace}`)
-    console.error(`Current coverage path: ${currentCoveragePath}`)
-    console.error(`Main coverage path: ${mainCoveragePath}`)
-  }
+  const mainCoveragePath = `${workspace}/main/packages/react/coverage/coverage-final.json`
 
   const currentCoverage = loadCoverageData(currentCoveragePath)
   const mainCoverage = loadCoverageData(mainCoveragePath)
@@ -258,6 +213,34 @@ function generateGitHubCommentHtml(
 </table>`
 
   return html
+}
+
+function getComponentName(filePath: string): string {
+  const component = filePath.match(/src\/([^/]+)\/[^/]+\.tsx?$/)
+  if (component) {
+    return component[1] // component name
+  }
+
+  const helpers = filePath.match(/src\/([^/]+)\.tsx?$/)
+  if (helpers) {
+    return helpers[1].replace(/\.tsx?$/, '') // file name
+  }
+
+  return path.basename(filePath, path.extname(filePath))
+}
+
+function loadCoverageData(filePath: string): CoverageData {
+  try {
+    if (!fs.existsSync(filePath)) {
+      console.warn(`Coverage file not found: ${filePath}`)
+      return {}
+    }
+    const content = fs.readFileSync(filePath, 'utf8')
+    return JSON.parse(content)
+  } catch (error) {
+    console.error(`Error loading coverage data from ${filePath}:`, error)
+    return {}
+  }
 }
 
 main()
