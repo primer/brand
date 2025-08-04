@@ -53,7 +53,6 @@ function main() {
   const currentCoverage = loadCoverageData(currentCoveragePath)
   const mainCoverage = loadCoverageData(mainCoveragePath)
 
-  // Process current branch coverage
   const currentComponents: Record<string, ComponentCoverage> = {}
   Object.entries(currentCoverage).forEach(([filePath, coverage]) => {
     // Only include .tsx files (components), skip test files
