@@ -298,7 +298,7 @@ export const SplitButtonModeInHero = () => {
           )}
         >
           <Hero.Label>{t('label')}</Hero.Label>
-          <Hero.Heading>This is my super sweet hero heading</Hero.Heading>
+          <Hero.Heading>{t('hero_heading')}</Hero.Heading>
           <Hero.Description>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
             turpis felis nam pulvinar risus elementum.
