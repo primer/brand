@@ -10,6 +10,7 @@ storybook-static
 coverage
 playwright-test-results/
 playwright-report/
+main/
 
 # misc
 .DS_Store
