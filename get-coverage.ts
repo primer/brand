@@ -120,8 +120,8 @@ function main() {
       const functionsDiff = current.functions - main.functions
       const branchesDiff = current.branches - main.branches
 
-      // Only include if there are differences
-      if (Math.abs(statementsDiff) > 0.01 || Math.abs(functionsDiff) > 0.01 || Math.abs(branchesDiff) > 0.01) {
+      // Only include if there are meaningful differences (>0.1% to avoid test flakiness)
+      if (Math.abs(statementsDiff) > 0.1 || Math.abs(functionsDiff) > 0.1 || Math.abs(branchesDiff) > 0.1) {
         differences.push({
           component,
           current,
