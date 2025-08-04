@@ -335,7 +335,7 @@ describe('Testimonial', () => {
     expect(avatar).toHaveAttribute('src', mockAvatarSrc)
   })
 
-  it('uses fixed avatar size of 48px', () => {
+  it('renders the avatar with a size of 48px, regardless of the passed "size" prop', () => {
     const {getByAltText} = render(
       <Testimonial>
         <Testimonial.Quote>Quote text</Testimonial.Quote>
@@ -344,8 +344,8 @@ describe('Testimonial', () => {
       </Testimonial>,
     )
 
-    const avatarContainer = getByAltText(mockAvatarAlt)
-    expect(avatarContainer).toBeInTheDocument()
+    const avatarContainer = getByAltText(mockAvatarAlt).parentElement
+    expect(avatarContainer).toHaveClass('Avatar--size-48')
   })
 
   it('renders logo with img element', () => {
