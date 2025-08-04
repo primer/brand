@@ -37,9 +37,9 @@ function calculateCoverage(coverage: FileCoverage): {statements: number; functio
   const branchesPercent = branchesTotal > 0 ? (branchesCovered / branchesTotal) * 100 : 0
 
   return {
-    statements: Math.round(statementsPercent * 10) / 10, // Round to 1 decimal
-    functions: Math.round(functionsPercent * 10) / 10,
-    branches: Math.round(branchesPercent * 10) / 10,
+    statements: statementsPercent, // Keep full precision
+    functions: functionsPercent,
+    branches: branchesPercent,
   }
 }
 
@@ -82,6 +82,14 @@ function main() {
   const currentComponents = processCoverageData(currentCoverage)
   const mainComponents = processCoverageData(mainCoverage)
 
+  // Debug: Check Button coverage specifically
+  console.error(`Current Button coverage:`, currentComponents['Button'])
+  console.error(`Main Button coverage:`, mainComponents['Button'])
+  console.error(`Current Testimonial coverage:`, currentComponents['Testimonial'])
+  console.error(`Main Testimonial coverage:`, mainComponents['Testimonial'])
+  console.error(`Total current components:`, Object.keys(currentComponents).length)
+  console.error(`Total main components:`, Object.keys(mainComponents).length)
+
   // Find differences
   const allComponents = new Set([...Object.keys(currentComponents), ...Object.keys(mainComponents)])
 
@@ -102,7 +110,7 @@ function main() {
       const branchesDiff = current.branches - main.branches
 
       // Only include if there are differences
-      if (Math.abs(statementsDiff) > 0.1 || Math.abs(functionsDiff) > 0.1 || Math.abs(branchesDiff) > 0.1) {
+      if (Math.abs(statementsDiff) > 0.01 || Math.abs(functionsDiff) > 0.01 || Math.abs(branchesDiff) > 0.01) {
         differences.push({
           component,
           current,
@@ -148,8 +156,12 @@ function generateGitHubCommentHtml(
   const summaryStats = {
     newComponents: differences.filter(d => !d.main).length,
     removedComponents: differences.filter(d => !d.current).length,
-    improvedCoverage: differences.filter(d => d.current && d.main && d.diff.statements > 0).length,
-    decreasedCoverage: differences.filter(d => d.current && d.main && d.diff.statements < 0).length,
+    improvedCoverage: differences.filter(
+      d => d.current && d.main && (d.diff.statements > 0 || d.diff.functions > 0 || d.diff.branches > 0),
+    ).length,
+    decreasedCoverage: differences.filter(
+      d => d.current && d.main && (d.diff.statements < 0 || d.diff.functions < 0 || d.diff.branches < 0),
+    ).length,
   }
 
   if (differences.length === 0) {
@@ -184,20 +196,26 @@ Unit test coverage has been updated through this PR.
 
     if (!main) {
       statusText = 'NEW'
-      statementsStr = `${current!.statements}%`
-      functionsStr = `${current!.functions}%`
-      branchesStr = `${current!.branches}%`
+      statementsStr = `${current!.statements.toFixed(1)}%`
+      functionsStr = `${current!.functions.toFixed(1)}%`
+      branchesStr = `${current!.branches.toFixed(1)}%`
     } else if (!current) {
       statusText = 'REMOVED'
-      statementsStr = `${main.statements}%`
-      functionsStr = `${main.functions}%`
-      branchesStr = `${main.branches}%`
+      statementsStr = `${main.statements.toFixed(1)}%`
+      functionsStr = `${main.functions.toFixed(1)}%`
+      branchesStr = `${main.branches.toFixed(1)}%`
     } else {
-      const diffStr = diff.statements > 0 ? `+${diff.statements.toFixed(1)}` : diff.statements.toFixed(1)
-      statusText = diff.statements > 0 ? `${diffStr}%` : `${diffStr}%`
-      statementsStr = `${current.statements}%`
-      functionsStr = `${current.functions}%`
-      branchesStr = `${current.branches}%`
+      // Find the most significant change to display
+      const maxChange = Math.max(Math.abs(diff.statements), Math.abs(diff.functions), Math.abs(diff.branches))
+      let significantDiff = diff.statements
+      if (Math.abs(diff.functions) === maxChange) significantDiff = diff.functions
+      if (Math.abs(diff.branches) === maxChange) significantDiff = diff.branches
+
+      const diffStr = significantDiff > 0 ? `+${significantDiff.toFixed(1)}` : significantDiff.toFixed(1)
+      statusText = `${diffStr}%`
+      statementsStr = `${current.statements.toFixed(1)}%`
+      functionsStr = `${current.functions.toFixed(1)}%`
+      branchesStr = `${current.branches.toFixed(1)}%`
     }
 
     html += `
