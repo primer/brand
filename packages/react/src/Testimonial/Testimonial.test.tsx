@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import {render} from '@testing-library/react'
 import '@testing-library/jest-dom'
 import {axe, toHaveNoViolations} from 'jest-axe'
@@ -65,17 +65,28 @@ describe('Testimonial', () => {
     expect(figure).toHaveClass('Testimonial')
   })
 
-  it('supports RefObject for Testimonial component', () => {
-    const refObject = React.createRef<HTMLElement>()
-    const {getByRole} = render(
-      <Testimonial ref={refObject}>
-        <Testimonial.Quote>Quote text</Testimonial.Quote>
-        <Testimonial.Name>Name</Testimonial.Name>
-      </Testimonial>,
-    )
+  it('supports RefObject for the root Testimonial component', () => {
+    const MockComponent = () => {
+      const ref = React.useRef<HTMLDivElement>(null)
 
-    const figure = getByRole('figure')
-    expect(refObject.current).toBe(figure)
+      useEffect(() => {
+        if (ref.current) {
+          ref.current.classList.add('test-class')
+        }
+      }, [ref])
+
+      return (
+        <Testimonial ref={ref}>
+          <Testimonial.Quote>Quote text</Testimonial.Quote>
+          <Testimonial.Name>Name</Testimonial.Name>
+        </Testimonial>
+      )
+    }
+
+    const {container} = render(<MockComponent />)
+
+    const el = container.querySelector('.Testimonial')
+    expect(el).toHaveClass('test-class')
   })
 
   it('supports functional ref for Testimonial component', () => {
@@ -140,7 +151,7 @@ describe('Testimonial', () => {
   })
 
   it('applies custom quote mark color', () => {
-    const {getByText} = render(
+    const {getByRole, getByText} = render(
       <Testimonial quoteMarkColor="blue">
         <Testimonial.Quote>Quote text</Testimonial.Quote>
         <Testimonial.Name>Name</Testimonial.Name>
@@ -149,18 +160,9 @@ describe('Testimonial', () => {
 
     const quoteMark = getByText(leftDoubleQuote)
     expect(quoteMark).toHaveClass('Testimonial__quoteMark--blue')
-  })
-
-  it('applies custom color as CSS variable', () => {
-    const {getByRole} = render(
-      <Testimonial quoteMarkColor="green">
-        <Testimonial.Quote>Quote text</Testimonial.Quote>
-        <Testimonial.Name>Name</Testimonial.Name>
-      </Testimonial>,
-    )
-
     const figure = getByRole('figure')
-    expect(figure).toHaveStyle({'--testimonial-accent-color': 'green'})
+
+    expect(figure).toHaveStyle({'--testimonial-accent-color': 'blue'})
   })
 
   it('renders quote in blockquote element', () => {
