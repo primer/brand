@@ -224,9 +224,19 @@ Unit test coverage has been updated through this PR.
 
       const diffStr = significantDiff > 0 ? `+${significantDiff.toFixed(1)}` : significantDiff.toFixed(1)
       statusText = `${diffStr}%`
-      statementsStr = `${current.statements.toFixed(1)}%`
-      functionsStr = `${current.functions.toFixed(1)}%`
-      branchesStr = `${current.branches.toFixed(1)}%`
+      
+      // Show before/after with strikethrough for changed values
+      statementsStr = Math.abs(diff.statements) > 0.1 
+        ? `<del>${main.statements.toFixed(1)}%</del> ${current.statements.toFixed(1)}%`
+        : `${current.statements.toFixed(1)}%`
+      
+      functionsStr = Math.abs(diff.functions) > 0.1 
+        ? `<del>${main.functions.toFixed(1)}%</del> ${current.functions.toFixed(1)}%`
+        : `${current.functions.toFixed(1)}%`
+      
+      branchesStr = Math.abs(diff.branches) > 0.1 
+        ? `<del>${main.branches.toFixed(1)}%</del> ${current.branches.toFixed(1)}%`
+        : `${current.branches.toFixed(1)}%`
     }
 
     html += `

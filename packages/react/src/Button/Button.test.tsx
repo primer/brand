@@ -2,7 +2,7 @@ import React, {render, cleanup, act} from '@testing-library/react'
 import '@testing-library/jest-dom'
 import userEvent from '@testing-library/user-event'
 
-import {Button, ButtonSizes, ButtonVariants} from './Button'
+import {Button} from './Button'
 import {axe, toHaveNoViolations} from 'jest-axe'
 import {SearchIcon} from '@primer/octicons-react'
 
