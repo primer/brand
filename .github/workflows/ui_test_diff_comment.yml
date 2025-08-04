@@ -69,7 +69,7 @@ jobs:
           script: |
             const { execSync } = require('child_process');
 
-            const output = execSync('npx tsx simple-coverage-diff.ts', { 
+            const output = execSync('npx tsx get-coverage-diff.ts', { 
               encoding: 'utf8',
               cwd: 'current'
             });
