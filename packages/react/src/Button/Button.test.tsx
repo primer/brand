@@ -9,7 +9,6 @@ import {SearchIcon} from '@primer/octicons-react'
 expect.extend(toHaveNoViolations)
 
 describe('Button', () => {
-  const disabledClass = 'Button--disabled'
   afterEach(() => {
     cleanup()
   })

@@ -43,41 +43,44 @@ function calculateCoverage(coverage: FileCoverage): {statements: number; functio
   }
 }
 
-function main() {
-  const workspace = process.env.GITHUB_WORKSPACE || process.cwd()
+function processCoverageData(coverageData: CoverageData): Record<string, ComponentCoverage> {
+  const components: Record<string, ComponentCoverage> = {}
 
-  const currentCoveragePath = `${workspace}/current/packages/react/coverage/coverage-final.json`
-
-  const mainCoveragePath = `${workspace}/main/packages/react/coverage/coverage-final.json`
-
-  const currentCoverage = loadCoverageData(currentCoveragePath)
-  const mainCoverage = loadCoverageData(mainCoveragePath)
-
-  const currentComponents: Record<string, ComponentCoverage> = {}
-  Object.entries(currentCoverage).forEach(([filePath, coverage]) => {
+  Object.entries(coverageData).forEach(([filePath, coverage]) => {
     // Only include .tsx files (components), skip test files
     if (filePath.includes('.tsx') && !filePath.includes('.test.') && !filePath.includes('.stories.')) {
       const componentName = getComponentName(filePath)
       const coverageData = calculateCoverage(coverage)
-      currentComponents[componentName] = {
+      components[componentName] = {
         component: componentName,
         ...coverageData,
       }
     }
   })
 
-  // Process main branch coverage
-  const mainComponents: Record<string, ComponentCoverage> = {}
-  Object.entries(mainCoverage).forEach(([filePath, coverage]) => {
-    if (filePath.includes('.tsx') && !filePath.includes('.test.') && !filePath.includes('.stories.')) {
-      const componentName = getComponentName(filePath)
-      const coverageData = calculateCoverage(coverage)
-      mainComponents[componentName] = {
-        component: componentName,
-        ...coverageData,
-      }
-    }
-  })
+  return components
+}
+
+function main() {
+  const workspace = process.env.GITHUB_WORKSPACE || process.cwd()
+  const isGitHubActions = process.env.GITHUB_ACTIONS === 'true'
+
+  // Build paths based on environment
+  const sharedPathname = `packages/react/coverage/coverage-final.json`
+  const basePath = isGitHubActions ? `${workspace}/current` : workspace
+  const currentCoveragePath = `${basePath}/${sharedPathname}`
+  const mainCoveragePath = `${workspace}/main/${sharedPathname}`
+
+  // Debug
+  console.error(`Environment: ${isGitHubActions ? 'GitHub Actions' : 'Local'}`)
+  console.error(`Current coverage: ${currentCoveragePath}`)
+  console.error(`Main coverage: ${mainCoveragePath}`)
+
+  const currentCoverage = loadCoverageData(currentCoveragePath)
+  const mainCoverage = loadCoverageData(mainCoveragePath)
+
+  const currentComponents = processCoverageData(currentCoverage)
+  const mainComponents = processCoverageData(mainCoverage)
 
   // Find differences
   const allComponents = new Set([...Object.keys(currentComponents), ...Object.keys(mainComponents)])
