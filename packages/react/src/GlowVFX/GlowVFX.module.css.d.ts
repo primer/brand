@@ -19,6 +19,8 @@ declare const styles: {
   readonly "GlowVFX--spectrum-aurora": string;
   readonly "GlowVFX--spectrum-matrix": string;
   readonly "GlowVFX--spectrum-solar": string;
+  readonly "glowVFX-ambiance": string;
+  readonly "glowVFX-enter": string;
 };
 export = styles;
 

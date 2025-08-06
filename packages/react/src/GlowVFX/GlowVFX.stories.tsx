@@ -1,7 +1,7 @@
 import React from 'react'
 import type {Meta, StoryFn} from '@storybook/react'
 import {GlowVFX, GlowVFXSpectrum, GlowVFXIntensity, GlowVFXPosition} from './'
-import {Box, Text, Button} from '..'
+import {Box, Text, Stack} from '..'
 
 export default {
   title: 'Components/GlowVFX',
@@ -26,6 +26,15 @@ export default {
       options: GlowVFXIntensity,
       description: 'Controls the glow intensity',
     },
+    position: {
+      control: {type: 'radio'},
+      options: GlowVFXPosition,
+      description: 'Position of the glow effect (9-point anchoring)',
+    },
+    inset: {
+      control: {type: 'boolean'},
+      description: 'Applies inset positioning',
+    },
     showFrame: {
       control: {type: 'boolean'},
       description: 'Shows a frame around the glow',
@@ -38,76 +47,50 @@ export default {
       control: {type: 'boolean'},
       description: 'Animates ambient glow movement',
     },
-    position: {
-      control: {type: 'radio'},
-      options: GlowVFXPosition,
-      description: 'Position of the glow effect (9-point anchoring)',
-    },
-    inset: {
-      control: {type: 'boolean'},
-      description: 'Applies inset positioning',
-    },
   },
 } as Meta<typeof GlowVFX>
 
 export const Default = () => (
-  <Box padding="spacious" style={{minHeight: '400px', backgroundColor: '#1a1a1a'}}>
-    <GlowVFX>
-      <Box
-        padding="normal"
-        style={{
-          backgroundColor: 'rgba(255, 255, 255, 0.1)',
-          borderRadius: '8px',
-          backdropFilter: 'blur(10px)',
-          border: '1px solid rgba(255, 255, 255, 0.2)',
-        }}
-      >
-        <Text size="300" style={{color: 'white'}}>
-          Welcome to the future of design
-        </Text>
-        <br />
-        <Button variant="primary" size="medium">
-          Get started
-        </Button>
-      </Box>
-    </GlowVFX>
-  </Box>
+  <GlowVFX>
+    <Box
+      padding="spacious"
+      style={{
+        backgroundColor: 'rgba(0, 0, 0, .8)',
+        borderRadius: '16px',
+      }}
+    >
+      <Stack>
+        <Text size="300">Welcome to the future of design</Text>
+      </Stack>
+    </Box>
+  </GlowVFX>
 )
 
 export const Playground: StoryFn<typeof GlowVFX> = args => (
   <Box
     padding="spacious"
     style={{
-      minHeight: '500px',
-      backgroundColor: '#1a1a1a',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
+      minHeight: '100vh',
+      display: 'grid',
+      placeItems: 'center',
     }}
   >
     <GlowVFX {...args}>
       <Box
-        padding="normal"
+        padding="spacious"
         style={{
-          backgroundColor: 'rgba(255, 255, 255, 0.1)',
-          borderRadius: '12px',
-          backdropFilter: 'blur(10px)',
-          border: '1px solid rgba(255, 255, 255, 0.2)',
-          textAlign: 'center',
-          minWidth: '300px',
+          display: 'grid',
+          placeItems: 'center',
+          backgroundColor: 'rgba(0, 0, 0, 1)',
+          borderRadius: '16px',
+          height: 800,
+          maxWidth: '100%',
+          width: 1280,
         }}
       >
-        <Text size="400" style={{color: 'white', fontWeight: 'bold'}}>
-          GlowVFX Component
-        </Text>
-        <br />
-        <Text size="200" style={{color: 'rgba(255, 255, 255, 0.8)'}}>
-          Adjust the controls to see different glow effects
-        </Text>
-        <br />
-        <Button variant="primary" size="medium">
-          Experience the glow
-        </Button>
+        <Stack>
+          <Text size="300">GlowVFX demo</Text>
+        </Stack>
       </Box>
     </GlowVFX>
   </Box>

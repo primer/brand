@@ -1,84 +1,222 @@
 /* GlowVFX base styles */
 .GlowVFX {
+  --glowVFX-position-x: 50%; /* Anchor X */
+  --glowVFX-position-y: 0%; /* Anchor Y */
+
   position: relative;
-}
-
-/* Spectrum variations */
-.GlowVFX--spectrum-aurora {
-  /* TODO: Add aurora spectrum styles */
-}
-
-.GlowVFX--spectrum-solar {
-  /* TODO: Add solar spectrum styles */
-}
-
-.GlowVFX--spectrum-matrix {
-  /* TODO: Add matrix spectrum styles */
+  display: inline-block;
+  max-width: 100%;
+  isolation: isolate; /* Create stacking context */
+  border-radius: inherit;
 }
 
 /* Intensity variations */
 .GlowVFX--intensity-low {
-  /* TODO: Add low intensity styles */
+  --glowVFX-blur: 24px;
+  --glowVFX-spread: 20px;
+  --glowVFX-opacity: 1;
+  --glowVFX-scale: 1;
 }
 
 .GlowVFX--intensity-medium {
-  /* TODO: Add medium intensity styles */
+  --glowVFX-blur: 32px;
+  --glowVFX-spread: 40px;
+  --glowVFX-opacity: 1;
+  --glowVFX-scale: 1.2;
 }
 
 .GlowVFX--intensity-high {
-  /* TODO: Add high intensity styles */
+  --glowVFX-blur: 40px;
+  --glowVFX-spread: 80px;
+  --glowVFX-opacity: 1;
+  --glowVFX-scale: 1.4;
 }
 
-/* Position variations */
+/* Position variations with subtle perspective transforms */
 .GlowVFX--position-top-left {
-  /* TODO: Add top-left position styles */
+  --glowVFX-position-x: 0%;
+  --glowVFX-position-y: 0%;
+  --glowVFX-transform: perspective(1200px) rotateX(-15deg) rotateY(8deg) rotateZ(-12deg);
+  --glowVFX-transform-origin: 0% 0%;
 }
 
 .GlowVFX--position-top-center {
-  /* TODO: Add top-center position styles */
+  --glowVFX-position-x: 50%;
+  --glowVFX-position-y: 0%;
+  --glowVFX-transform: perspective(1500px) rotateX(-18deg) scaleY(0.95);
+  --glowVFX-transform-origin: 50% 0%;
 }
 
 .GlowVFX--position-top-right {
-  /* TODO: Add top-right position styles */
+  --glowVFX-position-x: 100%;
+  --glowVFX-position-y: 0%;
+  --glowVFX-transform: perspective(1200px) rotateX(-15deg) rotateY(-8deg) rotateZ(12deg);
+  --glowVFX-transform-origin: 100% 0%;
 }
 
 .GlowVFX--position-center-left {
-  /* TODO: Add center-left position styles */
+  --glowVFX-position-x: 0%;
+  --glowVFX-position-y: 50%;
+  --glowVFX-transform: perspective(1200px) rotateY(-20deg) scaleX(1.2);
+  --glowVFX-transform-origin: 0% 50%;
 }
 
 .GlowVFX--position-center {
-  /* TODO: Add center position styles */
+  --glowVFX-position-x: 50%;
+  --glowVFX-position-y: 50%;
+  --glowVFX-transform: none;
+  --glowVFX-transform-origin: 50% 50%;
 }
 
 .GlowVFX--position-center-right {
-  /* TODO: Add center-right position styles */
+  --glowVFX-position-x: 100%;
+  --glowVFX-position-y: 50%;
+  --glowVFX-transform: perspective(1200px) rotateY(20deg) scaleX(1.2);
+  --glowVFX-transform-origin: 100% 50%;
 }
 
 .GlowVFX--position-bottom-left {
-  /* TODO: Add bottom-left position styles */
+  --glowVFX-position-x: 0%;
+  --glowVFX-position-y: 100%;
+  --glowVFX-transform: perspective(1200px) rotateX(15deg) rotateY(8deg) rotateZ(12deg);
+  --glowVFX-transform-origin: 0% 100%;
 }
 
 .GlowVFX--position-bottom-center {
-  /* TODO: Add bottom-center position styles */
+  --glowVFX-position-x: 50%;
+  --glowVFX-position-y: 100%;
+  --glowVFX-transform: perspective(1200px) rotateX(18deg) scaleY(1.2);
+  --glowVFX-transform-origin: 50% 100%;
 }
 
 .GlowVFX--position-bottom-right {
-  /* TODO: Add bottom-right position styles */
+  --glowVFX-position-x: 100%;
+  --glowVFX-position-y: 100%;
+  --glowVFX-transform: perspective(1200px) rotateX(15deg) rotateY(-8deg) rotateZ(-12deg);
+  --glowVFX-transform-origin: 100% 100%;
+}
+
+/* Spectrum variations */
+.GlowVFX--spectrum-aurora {
+  --glowVFX-stop1: #00ffff;
+  --glowVFX-stop2: #0099ff;
+  --glowVFX-stop3: #6633ff;
+  --glowVFX-stop4: #9933ff;
+}
+
+.GlowVFX--spectrum-solar {
+  --glowVFX-stop1: #ffff00;
+  --glowVFX-stop2: #ff9900;
+  --glowVFX-stop3: #ff3366;
+  --glowVFX-stop4: #cc0066;
+}
+
+.GlowVFX--spectrum-matrix {
+  --glowVFX-stop1: #00ff00;
+  --glowVFX-stop2: #00cc33;
+  --glowVFX-stop3: #009966;
+  --glowVFX-stop4: #006644;
+}
+
+/* Dark mode variants */
+@media (prefers-color-scheme: dark) {
+  .GlowVFX--spectrum-aurora {
+    --glowVFX-stop1: #00cccc;
+    --glowVFX-stop2: #0066cc;
+    --glowVFX-stop3: #4400cc;
+    --glowVFX-stop4: #6600cc;
+  }
+}
+
+/* The Glow Effect */
+.GlowVFX > *:first-child::before {
+  content: '';
+  position: absolute;
+  top: calc(var(--glowVFX-spread) * -1);
+  left: calc(var(--glowVFX-spread) * -1);
+  width: calc(100% + var(--glowVFX-spread) * 2);
+  height: calc(100% + var(--glowVFX-spread) * 2);
+  background: radial-gradient(
+    ellipse at var(--glowVFX-position-x) var(--glowVFX-position-y),
+    var(--glowVFX-stop1) 0%,
+    var(--glowVFX-stop2) 25%,
+    var(--glowVFX-stop3) 50%,
+    var(--glowVFX-stop4) 75%,
+    transparent 100%
+  );
+  filter: blur(var(--glowVFX-blur));
+  opacity: var(--glowVFX-opacity);
+  transform: var(--glowVFX-transform, none);
+  transform-origin: var(--glowVFX-transform-origin, 50% 50%);
+  z-index: -1;
+  pointer-events: none;
 }
 
 /* Feature modifiers */
-.GlowVFX--show-frame {
-  /* TODO: Add frame styles */
+.GlowVFX--inset > *:first-child::before {
+  inset: 0;
+  z-index: 1;
+  mix-blend-mode: screen;
 }
 
-.GlowVFX--animate-entry {
-  /* TODO: Add entry animation styles */
+/* Animation keyframes */
+@keyframes glowVFX-enter {
+  from {
+    opacity: 0;
+    transform: var(--glowVFX-transform, none) scale(0.9);
+  }
+  to {
+    opacity: var(--glowVFX-opacity);
+    transform: var(--glowVFX-transform, none) scale(1);
+  }
 }
 
-.GlowVFX--animate-ambiance {
-  /* TODO: Add ambiance animation styles */
+@keyframes glowVFX-ambiance {
+  0%,
+  100% {
+    opacity: var(--glowVFX-opacity);
+    filter: blur(var(--glowVFX-blur));
+    transform: var(--glowVFX-transform, none);
+  }
+  50% {
+    opacity: calc(var(--glowVFX-opacity) * 0.7);
+    filter: blur(calc(var(--glowVFX-blur) * 1.2));
+    transform: var(--glowVFX-transform, none) scale(1.05);
+  }
 }
 
-.GlowVFX--inset {
-  /* TODO: Add inset styles */
+/* Animation variants */
+.GlowVFX--animate-entry.GlowVFX--animate-ambiance > *:first-child::before {
+  animation: glowVFX-enter 1.2s cubic-bezier(0.4, 0, 0.2, 1) forwards, glowVFX-ambiance 4s ease-in-out 1.2s infinite;
+}
+
+.GlowVFX--animate-entry:not(.GlowVFX--animate-ambiance) > *:first-child::before {
+  animation: glowVFX-enter 1.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.GlowVFX--animate-ambiance:not(.GlowVFX--animate-entry) > *:first-child::before {
+  animation: glowVFX-ambiance 4s ease-in-out infinite;
+}
+
+/* Frame variant */
+.GlowVFX--show-frame > *:first-child::after {
+  content: '';
+  position: absolute;
+  inset: -10px;
+  border: 10px solid rgba(255, 255, 255, 0.8);
+  border-radius: inherit;
+  mix-blend-mode: difference;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .GlowVFX--animate-ambiance > *:first-child::before {
+    animation: none;
+  }
+
+  .GlowVFX--animate-entry > *:first-child::before {
+    animation: glowVFX-enter 0.3s ease-out forwards;
+  }
 }
