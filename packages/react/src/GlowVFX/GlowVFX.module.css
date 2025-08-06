@@ -1,0 +1,84 @@
+/* GlowVFX base styles */
+.GlowVFX {
+  position: relative;
+}
+
+/* Spectrum variations */
+.GlowVFX--spectrum-aurora {
+  /* TODO: Add aurora spectrum styles */
+}
+
+.GlowVFX--spectrum-solar {
+  /* TODO: Add solar spectrum styles */
+}
+
+.GlowVFX--spectrum-matrix {
+  /* TODO: Add matrix spectrum styles */
+}
+
+/* Intensity variations */
+.GlowVFX--intensity-low {
+  /* TODO: Add low intensity styles */
+}
+
+.GlowVFX--intensity-medium {
+  /* TODO: Add medium intensity styles */
+}
+
+.GlowVFX--intensity-high {
+  /* TODO: Add high intensity styles */
+}
+
+/* Position variations */
+.GlowVFX--position-top-left {
+  /* TODO: Add top-left position styles */
+}
+
+.GlowVFX--position-top-center {
+  /* TODO: Add top-center position styles */
+}
+
+.GlowVFX--position-top-right {
+  /* TODO: Add top-right position styles */
+}
+
+.GlowVFX--position-center-left {
+  /* TODO: Add center-left position styles */
+}
+
+.GlowVFX--position-center {
+  /* TODO: Add center position styles */
+}
+
+.GlowVFX--position-center-right {
+  /* TODO: Add center-right position styles */
+}
+
+.GlowVFX--position-bottom-left {
+  /* TODO: Add bottom-left position styles */
+}
+
+.GlowVFX--position-bottom-center {
+  /* TODO: Add bottom-center position styles */
+}
+
+.GlowVFX--position-bottom-right {
+  /* TODO: Add bottom-right position styles */
+}
+
+/* Feature modifiers */
+.GlowVFX--show-frame {
+  /* TODO: Add frame styles */
+}
+
+.GlowVFX--animate-entry {
+  /* TODO: Add entry animation styles */
+}
+
+.GlowVFX--animate-ambiance {
+  /* TODO: Add ambiance animation styles */
+}
+
+.GlowVFX--inset {
+  /* TODO: Add inset styles */
+}
