@@ -1,16 +1,3 @@
-/**
- * Custom overrides
- * Should be fixed in the respective components
- */
-
-.Hero {
-  /* In this template, the vertical spacing in Hero
-   * at wider viewports uses the same value
-   * as that used in narrower viewports.
-   */
-  padding: var(--brand-Hero-narrow-padding);
-}
-
 @media screen and (min-width: 48rem) {
   .FlexSection {
     --brand-River-spacing-outer: var(--base-size-48);
