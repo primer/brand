@@ -12,7 +12,6 @@ import {
   CTABanner,
   Grid,
   Heading,
-  IDE,
   Image,
   Link,
   LogoSuite,
@@ -29,7 +28,6 @@ import {
   Timeline,
 } from '../../..'
 
-import {defaultFiles} from '../../../IDE/fixtures/content'
 import monaAvatar from '../../../fixtures/images/avatar-mona.png'
 import pinterestLogo from '../../../fixtures/images/logos/pinterest.png'
 import shopifyLogo from '../../../fixtures/images/logos/shopify.png'
@@ -43,6 +41,14 @@ import emptyBrowserDarkFull from '../fixtures/images/fg/empty-browser-full-dark.
 import emptyBrowserLightFull from '../fixtures/images/fg/empty-browser-full-light.png'
 
 import styles from './FlexSection.module.css'
+
+type RiverProps = {
+  visible: boolean
+  type: 'start' | 'end' | 'breakout'
+  title: string
+  description: string
+  ctaText: string
+}
 
 type FlexSectionProps = {
   gridOverlay?: boolean
@@ -59,24 +65,6 @@ type FlexSectionProps = {
 
   logoSuiteVisible: boolean
 
-  riverOneVisible: boolean
-  riverOneType: 'start' | 'end' | 'breakout'
-  riverOneTitle: string
-  riverOneDescription: string
-  riverOneCtaText: string
-
-  riverTwoVisible: boolean
-  riverTwoType: 'start' | 'end' | 'breakout'
-  riverTwoTitle: string
-  riverTwoDescription: string
-  riverTwoCtaText: string
-
-  riverThreeVisible: boolean
-  riverThreeType: 'start' | 'end' | 'breakout'
-  riverThreeTitle: string
-  riverThreeDescription: string
-  riverThreeCtaText: string
-
   testimonialVisible: boolean
   testimonialQuantity: number
 
@@ -84,6 +72,13 @@ type FlexSectionProps = {
   ctaBannerShowBg: boolean
 
   cardsVisible: boolean
+
+  prose?: {
+    visible: boolean
+    text: string
+  }
+
+  rivers?: RiverProps[]
 }
 
 export function FlexSection({accentColor, variant, gridOverlay = false, colorMode, ...args}: FlexSectionProps) {
@@ -135,7 +130,7 @@ export function FlexSection({accentColor, variant, gridOverlay = false, colorMod
         backgroundColor: 'var(--brand-color-canvas-default)',
       }}
     >
-      <Section paddingBlockStart={'spacious'} paddingBlockEnd={'none'}>
+      <Section paddingBlockStart={'spacious'} paddingBlockEnd={'spacious'}>
         <Box>
           <Stack direction="vertical" padding="none" gap={'normal'}>
             <Grid enableOverlay={enableGridOverlay}>
@@ -296,224 +291,84 @@ export function FlexSection({accentColor, variant, gridOverlay = false, colorMod
               </Bento>
             </Box>
 
-            <Stack alignItems={'center'}>
-              <Prose
-                html={`
-                    <p>
-                      <a href="https://docs.github.com/en/enterprise-server@3.5/admin/overview/about-github-enterprise-server">GitHub Enterprise Server</a>
-                      is the self-hosted version of GitHub Enterprise. It is installed on-premises or on a private
-                      cloud and provides organizations with a secure and customizable source code management and
-                      collaboration platform.
-                    </p>
+            {args.prose && args.prose?.visible && (
+              <Stack alignItems={'center'}>
+                <Prose html={args.prose.text} />
+              </Stack>
+            )}
 
-                    <p>
-                      One of the key advantages of GitHub Enterprise Server is that it provides organizations with
-                      complete control over their source code and data. Organizations can choose where to store their
-                      repositories and can control who has access to them. Administrators can also customize the
-                      platform to meet specific needs, such as integrating other tools or implementing custom
-                      workflows.
-                    </p>
+            {args.rivers && args.rivers.length > 0 && (
+              <Grid>
+                <Grid.Column span={{medium: 12}}>
+                  {args.rivers.map(river => {
+                    if (!river.visible) return null
 
-                    <p>
-                      GitHub Enterprise Server also offers enhanced security and compliance features. Organizations
-                      can configure their instance to meet their specific security requirements, such as using LDAP or
-                      SAML for authentication, setting up two-factor authentication, or implementing network security
-                      measures. Compliance features are also included, such as audit logs, access controls, and
-                      vulnerability scanning.
-                    </p>
-                  `}
-              />
-            </Stack>
+                    return (
+                      <>
+                        {river.type === 'breakout' ? (
+                          <RiverBreakout>
+                            <RiverBreakout.A11yHeading as="h3">{river.title}</RiverBreakout.A11yHeading>
+                            <RiverBreakout.Visual
+                              className={styles.FlexSection__heroImageContainer}
+                              style={{
+                                backgroundImage: `url(${themeDetailsMap[accentColor][selectedColorMode].images.heroVisualBg})`,
+                              }}
+                            >
+                              <Image
+                                src={isLightMode ? emptyBrowserLightFull : emptyBrowserDarkFull}
+                                alt="placeholder, blank area with a gray background color"
+                              />
+                            </RiverBreakout.Visual>
 
-            <Grid enableOverlay={enableGridOverlay}>
-              <Grid.Column>
-                {args.riverOneVisible && (
-                  <>
-                    {args.riverOneType === 'breakout' ? (
-                      <RiverBreakout>
-                        <RiverBreakout.A11yHeading as={args.sectionIntroVisible ? 'h3' : 'h2'}>
-                          {args.riverOneTitle}
-                        </RiverBreakout.A11yHeading>
-                        <RiverBreakout.Visual
-                          className={styles.FlexSection__heroImageContainer}
-                          style={{
-                            backgroundImage: `url(${themeDetailsMap[accentColor][selectedColorMode].images.heroVisualBg})`,
-                          }}
-                        >
-                          <Image
-                            src={isLightMode ? emptyBrowserLightFull : emptyBrowserDarkFull}
-                            alt="placeholder, blank area with a gray background color"
-                          />
-                        </RiverBreakout.Visual>
+                            <RiverBreakout.Content
+                              trailingComponent={() => (
+                                <Box>
+                                  <Timeline fullWidth>
+                                    <Timeline.Item>
+                                      <b>This is what it is and it&apos;s great. </b>That&apos;s why and how the
+                                      greatness happens here, we love sub bullets, they allow for more specific
+                                      technical details.
+                                    </Timeline.Item>
+                                    <Timeline.Item>
+                                      <b>This is what it is and it&apos;s great. </b>That&apos;s why and how the
+                                      greatness happens here, we love sub bullets, they allow for more specific
+                                      technical details.
+                                    </Timeline.Item>
+                                  </Timeline>
+                                </Box>
+                              )}
+                            >
+                              <Text>{river.description}</Text>
+                              <Link href="#">{river.ctaText}</Link>
+                            </RiverBreakout.Content>
+                          </RiverBreakout>
+                        ) : (
+                          <River align={river.type}>
+                            <River.Visual
+                              className={styles.FlexSection__heroImageContainer}
+                              style={{
+                                backgroundImage: `url(${themeDetailsMap[accentColor][selectedColorMode].images.riverVisualBgs[0]})`,
+                              }}
+                            >
+                              <Image
+                                src={isLightMode ? emptyBrowserLightFull : emptyBrowserDarkFull}
+                                alt="placeholder, blank area with a gray background color"
+                              />
+                            </River.Visual>
 
-                        <RiverBreakout.Content
-                          trailingComponent={() => (
-                            <Box>
-                              <Timeline fullWidth>
-                                <Timeline.Item>
-                                  <b>This is what it is and it&apos;s great. </b>That&apos;s why and how the greatness
-                                  happens here, we love sub bullets, they allow for more specific technical details.
-                                </Timeline.Item>
-                                <Timeline.Item>
-                                  <b>This is what it is and it&apos;s great. </b>That&apos;s why and how the greatness
-                                  happens here, we love sub bullets, they allow for more specific technical details.
-                                </Timeline.Item>
-                              </Timeline>
-                            </Box>
-                          )}
-                        >
-                          <Text>{args.riverOneDescription}</Text>
-                          <Link href="#">{args.riverOneCtaText}</Link>
-                        </RiverBreakout.Content>
-                      </RiverBreakout>
-                    ) : (
-                      <River align={args.riverOneType}>
-                        <River.Visual
-                          className={styles.FlexSection__heroImageContainer}
-                          style={{
-                            backgroundImage: `url(${themeDetailsMap[accentColor][selectedColorMode].images.riverVisualBgs[0]})`,
-                          }}
-                        >
-                          <Image
-                            src={isLightMode ? emptyBrowserLightFull : emptyBrowserDarkFull}
-                            alt="placeholder, blank area with a gray background color"
-                          />
-                        </River.Visual>
-
-                        <River.Content className={clsx(args.riverOneType === 'end' && styles.RiverContent)}>
-                          <Heading as={args.sectionIntroVisible ? 'h3' : 'h2'}>{args.riverOneTitle}</Heading>
-                          <Text>{args.riverOneDescription}</Text>
-                          <Link href="#">{args.riverOneCtaText}</Link>
-                        </River.Content>
-                      </River>
-                    )}
-                  </>
-                )}
-
-                {args.riverTwoVisible && (
-                  <>
-                    {args.riverTwoType === 'breakout' ? (
-                      <RiverBreakout id="breakout-with-ide">
-                        <RiverBreakout.A11yHeading as={args.sectionIntroVisible ? 'h3' : 'h2'}>
-                          {args.riverTwoTitle}
-                        </RiverBreakout.A11yHeading>
-                        <RiverBreakout.Visual
-                          className={styles.FlexSection__heroImageContainer}
-                          style={{
-                            backgroundImage: `url(${themeDetailsMap[accentColor][selectedColorMode].images.heroVisualBg})`,
-                          }}
-                        >
-                          <Box padding={48} paddingBlockEnd={4}>
-                            <IDE height={600} variant="glass">
-                              <IDE.Editor files={defaultFiles} />
-                            </IDE>
-                          </Box>
-                        </RiverBreakout.Visual>
-                        <RiverBreakout.Content
-                          trailingComponent={() => (
-                            <Box>
-                              <Timeline fullWidth>
-                                <Timeline.Item>
-                                  <b>This is what it is and it&apos;s great. </b>That&apos;s why and how the greatness
-                                  happens here, we love sub bullets, they allow for more specific technical details.
-                                </Timeline.Item>
-                                <Timeline.Item>
-                                  <b>This is what it is and it&apos;s great. </b>That&apos;s why and how the greatness
-                                  happens here, we love sub bullets, they allow for more specific technical details.
-                                </Timeline.Item>
-                              </Timeline>
-                            </Box>
-                          )}
-                        >
-                          <Text>{args.riverTwoDescription}</Text>
-                          <Link href="#">{args.riverTwoCtaText}</Link>
-                        </RiverBreakout.Content>
-                      </RiverBreakout>
-                    ) : (
-                      <River align={args.riverTwoType}>
-                        <River.Visual
-                          className={styles.FlexSection__heroImageContainer}
-                          style={{
-                            backgroundImage: `url(${themeDetailsMap[accentColor][selectedColorMode].images.riverVisualBgs[0]})`,
-                          }}
-                        >
-                          <Image
-                            src={isLightMode ? emptyBrowserLightFull : emptyBrowserDarkFull}
-                            alt="placeholder, blank area with a gray background color"
-                          />
-                        </River.Visual>
-                        <River.Content className={clsx(args.riverTwoType === 'end' && styles.RiverContent)}>
-                          <Heading as={args.sectionIntroVisible ? 'h3' : 'h2'}>{args.riverTwoTitle}</Heading>
-                          <Text>{args.riverTwoDescription}</Text>
-                          <Link href="#">{args.riverTwoCtaText}</Link>
-                        </River.Content>
-                      </River>
-                    )}
-                  </>
-                )}
-
-                {args.riverThreeVisible && (
-                  <>
-                    {args.riverThreeType === 'breakout' ? (
-                      <RiverBreakout>
-                        <RiverBreakout.A11yHeading as={args.sectionIntroVisible ? 'h3' : 'h2'}>
-                          {args.riverThreeTitle}
-                        </RiverBreakout.A11yHeading>
-                        <RiverBreakout.Visual
-                          className={styles.FlexSection__heroImageContainer}
-                          style={{
-                            backgroundImage: `url(${themeDetailsMap[accentColor][selectedColorMode].images.heroVisualBg})`,
-                          }}
-                        >
-                          <Image
-                            src={isLightMode ? emptyBrowserLightFull : emptyBrowserDarkFull}
-                            alt="placeholder, blank area with a gray background color"
-                          />
-                        </RiverBreakout.Visual>
-                        <RiverBreakout.Content
-                          trailingComponent={() => (
-                            <Box>
-                              <Timeline fullWidth>
-                                <Timeline.Item>
-                                  <b>This is what it is and it&apos;s great. </b>That&apos;s why and how the greatness
-                                  happens here, we love sub bullets, they allow for more specific technical details.
-                                </Timeline.Item>
-                                <Timeline.Item>
-                                  <b>This is what it is and it&apos;s great. </b>That&apos;s why and how the greatness
-                                  happens here, we love sub bullets, they allow for more specific technical details.
-                                </Timeline.Item>
-                              </Timeline>
-                            </Box>
-                          )}
-                        >
-                          <Text>{args.riverThreeDescription}</Text>
-                          <Link href="#">{args.riverThreeCtaText}</Link>
-                        </RiverBreakout.Content>
-                      </RiverBreakout>
-                    ) : (
-                      <River align={args.riverThreeType}>
-                        <River.Visual
-                          className={styles.FlexSection__heroImageContainer}
-                          style={{
-                            backgroundImage: `url(${themeDetailsMap[accentColor][selectedColorMode].images.riverVisualBgs[0]})`,
-                          }}
-                        >
-                          <Image
-                            src={isLightMode ? emptyBrowserLightFull : emptyBrowserDarkFull}
-                            alt="placeholder, blank area with a gray background color"
-                          />
-                        </River.Visual>
-                        <River.Content className={clsx(args.riverThreeType === 'end' && styles.RiverContent)}>
-                          <Heading as={args.sectionIntroVisible ? 'h3' : 'h2'}>{args.riverThreeTitle}</Heading>
-                          <Text>{args.riverThreeDescription}</Text>
-                          <Link href="#">{args.riverThreeCtaText}</Link>
-                        </River.Content>
-                      </River>
-                    )}
-                  </>
-                )}
-              </Grid.Column>
-            </Grid>
+                            <River.Content className={clsx(river.type === 'end' && styles.RiverContent)}>
+                              <Heading as="h3">{river.title}</Heading>
+                              <Text>{river.description}</Text>
+                              <Link href="#">{river.ctaText}</Link>
+                            </River.Content>
+                          </River>
+                        )}
+                      </>
+                    )
+                  })}
+                </Grid.Column>
+              </Grid>
+            )}
 
             <Grid enableOverlay={enableGridOverlay}>
               {args.testimonialVisible && (
