@@ -28,7 +28,6 @@ export default {
     },
   },
   args: {
-    subNavVisible: false,
     gridOverlay: false,
     colorMode: ColorModesEnum.LIGHT,
     accentColor: 'ai',
@@ -114,81 +113,6 @@ export default {
       options: Object.keys(themeDetailsMap),
       table: {
         category: 'Theming',
-      },
-    },
-    /**
-     * Hero
-     */
-    subNavVisible: {
-      name: 'sub nav visible',
-      control: 'boolean',
-      table: {
-        category: 'Section: Hero',
-      },
-    },
-    heroAlign: {
-      control: 'inline-radio',
-      options: ['start', 'center'],
-      name: 'align',
-      table: {
-        category: 'Section: Hero',
-      },
-    },
-    heroBg: {
-      control: 'boolean',
-      name: 'has background',
-      table: {
-        category: 'Section: Hero',
-      },
-    },
-    showHeroVisual: {
-      control: 'boolean',
-      name: 'show visual',
-      table: {
-        category: 'Section: Hero',
-      },
-    },
-    heroVisualPosition: {
-      control: 'inline-radio',
-      options: ['block-end', 'inline-end'],
-      name: 'visual position',
-      table: {
-        category: 'Section: Hero',
-      },
-    },
-    heroLabel: {
-      control: 'text',
-      name: 'label',
-      table: {
-        category: 'Section: Hero',
-      },
-    },
-    heroTitle: {
-      control: 'text',
-      name: 'title',
-      table: {
-        category: 'Section: Hero',
-      },
-    },
-    heroDescription: {
-      control: 'text',
-      name: 'description',
-      table: {
-        category: 'Section: Hero',
-      },
-    },
-    heroCtaTextPrimary: {
-      control: 'text',
-      name: 'primary CTA text',
-      table: {
-        category: 'Section: Hero',
-      },
-    },
-    heroCtaTextSecondary: {
-      control: 'text',
-      name: 'secondary CTA text',
-      table: {
-        category: 'Section: Hero',
       },
     },
     /**
