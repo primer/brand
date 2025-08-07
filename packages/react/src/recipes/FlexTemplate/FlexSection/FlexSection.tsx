@@ -1,30 +1,25 @@
-import {MoonIcon, SunIcon, ZapIcon} from '@primer/octicons-react'
 import React, {useEffect} from 'react'
-
 import clsx from 'clsx'
+
+import {ZapIcon} from '@primer/octicons-react'
+
 import {
   Box,
   Button,
   CTABanner,
   Card,
   ColorModesEnum,
-  FAQ,
-  FAQGroup,
   Grid,
   Heading,
-  Hero,
   Image,
   Link,
   LogoSuite,
-  MinimalFooter,
   Pillar,
   River,
   RiverBreakout,
   Section,
   SectionIntro,
   Stack,
-  SubNav,
-  SubdomainNavBar,
   Testimonial,
   Text,
   ThemeProvider,
@@ -32,38 +27,25 @@ import {
   IDE,
 } from '../../..'
 
-import styles from './FlexSection.module.css'
-
-import emptyBrowser from '../fixtures/images/fg/empty-browser.png'
-import emptyBrowserDark from '../fixtures/images/fg/empty-browser-dark.png'
-
-import emptyBrowserLightFull from '../fixtures/images/fg/empty-browser-full-light.png'
-import emptyBrowserDarkFull from '../fixtures/images/fg/empty-browser-full-dark.png'
-import monaAvatar from '../../../fixtures/images/avatar-mona.png'
-import {Themes, themeDetailsMap} from '../helpers'
 import {defaultFiles} from '../../../IDE/fixtures/content'
-
+import monaAvatar from '../../../fixtures/images/avatar-mona.png'
 import pinterestLogo from '../../../fixtures/images/logos/pinterest.png'
 import shopifyLogo from '../../../fixtures/images/logos/shopify.png'
 import twilioLogo from '../../../fixtures/images/logos/twilio.png'
 import uberLogo from '../../../fixtures/images/logos/uber.png'
 import vercelLogo from '../../../fixtures/images/logos/vercel.png'
 
+import {Themes, themeDetailsMap} from '../helpers'
+import emptyBrowserDarkFull from '../fixtures/images/fg/empty-browser-full-dark.png'
+import emptyBrowserLightFull from '../fixtures/images/fg/empty-browser-full-light.png'
+
+import styles from './FlexSection.module.css'
+
 type FlexSectionProps = {
   gridOverlay?: boolean
-  variant?: 'Maximum' | 'Minimum'
+  variant?: 'Default' | 'Maximum' | 'Minimum'
   colorMode?: ColorModesEnum.LIGHT | ColorModesEnum.DARK
   accentColor: Themes
-
-  subNavVisible: boolean
-  heroAlign: 'start' | 'center'
-  heroBg: boolean
-  showHeroVisual: boolean
-  heroLabel: string
-  heroTitle: string
-  heroDescription: string
-  heroCtaTextPrimary: string
-  heroCtaTextSecondary: string
 
   sectionIntroAlign: 'start' | 'center'
   sectionIntroText: string | React.ReactElement[]
@@ -98,9 +80,6 @@ type FlexSectionProps = {
   ctaBannerVisible: boolean
   ctaBannerShowBg: boolean
 
-  faqVisible: boolean
-  faqType: 'group' | 'single'
-
   cardsVisible: boolean
 }
 
@@ -117,11 +96,6 @@ export function FlexSection({accentColor, variant, gridOverlay = false, colorMod
   useEffect(() => {
     setIsLightMode(colorMode === ColorModesEnum.LIGHT)
   }, [colorMode])
-
-  const handleMode = e => {
-    e.preventDefault()
-    setIsLightMode(!isLightMode)
-  }
 
   const renderPiller = () => (
     <Pillar>
@@ -158,79 +132,8 @@ export function FlexSection({accentColor, variant, gridOverlay = false, colorMod
         backgroundColor: 'var(--brand-color-canvas-default)',
       }}
     >
-      <SubdomainNavBar title="" fixed={false} fullWidth>
-        <SubdomainNavBar.SecondaryAction
-          aria-label={isLightMode ? 'Switch to dark mode' : 'Switch to light mode'}
-          href="#"
-          onClick={handleMode}
-          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-          // @ts-ignore
-          variant="invisible"
-        >
-          {isLightMode ? <MoonIcon size={24} /> : <SunIcon size={24} />}
-        </SubdomainNavBar.SecondaryAction>
-      </SubdomainNavBar>
-      {args.subNavVisible && (
-        <SubNav>
-          <SubNav.Heading href="#">Heading</SubNav.Heading>
-          <SubNav.Link href="#">Link</SubNav.Link>
-          <SubNav.Link href="#">Link</SubNav.Link>
-          <SubNav.Link href="#">Link</SubNav.Link>
-          <SubNav.Link href="#" aria-current="page">
-            Link
-            <SubNav.SubMenu>
-              <SubNav.Link href="#">Link feature one</SubNav.Link>
-              <SubNav.Link href="#">Link feature two</SubNav.Link>
-              <SubNav.Link href="#">Link feature three</SubNav.Link>
-              <SubNav.Link href="#">Link feature four</SubNav.Link>
-            </SubNav.SubMenu>
-          </SubNav.Link>
-          <SubNav.Link href="#">Link</SubNav.Link>
-          <SubNav.Link href="#">Link</SubNav.Link>
-          <SubNav.Action href="#" variant="secondary">
-            Optional CTA
-          </SubNav.Action>
-        </SubNav>
-      )}
       <div className={styles.FlexSection}>
-        <Section
-          backgroundColor={args.heroBg ? 'subtle' : 'default'}
-          paddingBlockStart="condensed"
-          paddingBlockEnd={args.heroBg ? 'condensed' : 'none'}
-        >
-          <Grid enableOverlay={enableGridOverlay}>
-            <Grid.Column>
-              <Box paddingBlockEnd={{wide: 8}}>
-                <Hero
-                  align={args.heroAlign}
-                  className={styles.Hero}
-                  imageContainerClassName={styles.FlexSection__heroImageContainer}
-                  imageContainerStyle={{
-                    backgroundImage: `url(${themeDetailsMap[accentColor][selectedColorMode].images.heroVisualBg})`,
-                  }}
-                >
-                  {args.heroLabel && <Hero.Label>{args.heroLabel}</Hero.Label>}
-                  {args.heroTitle && <Hero.Heading>{args.heroTitle}</Hero.Heading>}
-                  {args.heroDescription && <Hero.Description>{args.heroDescription}</Hero.Description>}
-                  {args.heroCtaTextPrimary && (
-                    <Hero.PrimaryAction href="#">{args.heroCtaTextPrimary}</Hero.PrimaryAction>
-                  )}
-                  {args.heroCtaTextSecondary && (
-                    <Hero.SecondaryAction href="#">{args.heroCtaTextSecondary}</Hero.SecondaryAction>
-                  )}
-                  {args.showHeroVisual && (
-                    <Hero.Image
-                      src={isLightMode ? emptyBrowser : emptyBrowserDark}
-                      alt="placeholder, blank area with a gray background color"
-                    />
-                  )}
-                </Hero>
-              </Box>
-            </Grid.Column>
-          </Grid>
-        </Section>
-
-        <Section paddingBlockStart={args.heroBg ? 'normal' : 'none'} paddingBlockEnd="none">
+        <Section>
           <Grid enableOverlay={enableGridOverlay}>
             <Grid.Column>
               {args.sectionIntroText && args.sectionIntroVisible && (
@@ -247,6 +150,7 @@ export function FlexSection({accentColor, variant, gridOverlay = false, colorMod
                   </Grid.Column>
                 </Grid>
               )}
+
               {args.pillarVisible && (
                 <Box
                   marginBlockEnd={{
@@ -272,6 +176,7 @@ export function FlexSection({accentColor, variant, gridOverlay = false, colorMod
                         renderPiller()
                       )}
                     </Grid.Column>
+
                     <Grid.Column span={{medium: 4}}>
                       {args.pillarBackground ? (
                         <Box
@@ -288,6 +193,7 @@ export function FlexSection({accentColor, variant, gridOverlay = false, colorMod
                         renderPiller()
                       )}
                     </Grid.Column>
+
                     <Grid.Column span={{medium: 4}}>
                       {args.pillarBackground ? (
                         <Box
@@ -310,12 +216,13 @@ export function FlexSection({accentColor, variant, gridOverlay = false, colorMod
             </Grid.Column>
           </Grid>
         </Section>
+
         {args.logoSuiteVisible && (
           <Section paddingBlockStart="condensed" paddingBlockEnd="none">
             <Grid>
               <Grid.Column>
-                <LogoSuite align="start">
-                  <LogoSuite.Heading as="h3" size="6">
+                <LogoSuite align="start" hasDivider={true}>
+                  <LogoSuite.Heading as="h3" size="6" visuallyHidden>
                     Trusted by devs across the world
                   </LogoSuite.Heading>
                   <LogoSuite.Logobar variant="muted" marquee={process.env.NODE_ENV !== 'test'}>
@@ -330,6 +237,40 @@ export function FlexSection({accentColor, variant, gridOverlay = false, colorMod
             </Grid>
           </Section>
         )}
+
+        {args.cardsVisible && (
+          <Box marginBlockStart={args.ctaBannerVisible ? 128 : undefined}>
+            <Stack direction="vertical" padding="none" gap={64} alignItems="center">
+              <Grid>
+                <Grid.Column span={{medium: 4}}>
+                  <Card href="#" hasBorder>
+                    <Card.Heading>Collaboration is the key to DevOps success</Card.Heading>
+                    <Card.Description>
+                      Everything you need to know about getting started with GitHub Actions.
+                    </Card.Description>
+                  </Card>
+                </Grid.Column>
+                <Grid.Column span={{medium: 4}}>
+                  <Card href="#" hasBorder>
+                    <Card.Heading>Collaboration is the key to DevOps success</Card.Heading>
+                    <Card.Description>
+                      Everything you need to know about getting started with GitHub Actions.
+                    </Card.Description>
+                  </Card>
+                </Grid.Column>
+                <Grid.Column span={{medium: 4}}>
+                  <Card href="#" hasBorder>
+                    <Card.Heading>Collaboration is the key to DevOps success</Card.Heading>
+                    <Card.Description>
+                      Everything you need to know about getting started with GitHub Actions.
+                    </Card.Description>
+                  </Card>
+                </Grid.Column>
+              </Grid>
+            </Stack>
+          </Box>
+        )}
+
         <Section paddingBlockStart="condensed">
           <Grid enableOverlay={enableGridOverlay}>
             <Grid.Column>
@@ -351,6 +292,7 @@ export function FlexSection({accentColor, variant, gridOverlay = false, colorMod
                           alt="placeholder, blank area with a gray background color"
                         />
                       </RiverBreakout.Visual>
+
                       <RiverBreakout.Content
                         trailingComponent={() => (
                           <Box>
@@ -384,6 +326,7 @@ export function FlexSection({accentColor, variant, gridOverlay = false, colorMod
                           alt="placeholder, blank area with a gray background color"
                         />
                       </River.Visual>
+
                       <River.Content className={clsx(args.riverOneType === 'end' && styles.RiverContent)}>
                         <Heading as={args.sectionIntroVisible ? 'h3' : 'h2'}>{args.riverOneTitle}</Heading>
                         <Text>{args.riverOneDescription}</Text>
@@ -393,6 +336,7 @@ export function FlexSection({accentColor, variant, gridOverlay = false, colorMod
                   )}
                 </>
               )}
+
               {args.riverTwoVisible && (
                 <>
                   {args.riverTwoType === 'breakout' ? (
@@ -454,6 +398,7 @@ export function FlexSection({accentColor, variant, gridOverlay = false, colorMod
                   )}
                 </>
               )}
+
               {args.riverThreeVisible && (
                 <>
                   {args.riverThreeType === 'breakout' ? (
@@ -574,233 +519,10 @@ export function FlexSection({accentColor, variant, gridOverlay = false, colorMod
                   </Box>
                 </Grid.Column>
               )}
-              {args.cardsVisible && (
-                <Box marginBlockStart={args.ctaBannerVisible ? 128 : undefined}>
-                  <Stack direction="vertical" padding="none" gap={64} alignItems="center">
-                    <Heading as="h2" size="3">
-                      Go further with these
-                    </Heading>
-                    <Grid>
-                      <Grid.Column span={{medium: 4}}>
-                        <Card href="#">
-                          <Card.Heading>Collaboration is the key to DevOps success</Card.Heading>
-                          <Card.Description>
-                            Everything you need to know about getting started with GitHub Actions.
-                          </Card.Description>
-                        </Card>
-                      </Grid.Column>
-                      <Grid.Column span={{medium: 4}}>
-                        <Card href="#">
-                          <Card.Heading>Collaboration is the key to DevOps success</Card.Heading>
-                          <Card.Description>
-                            Everything you need to know about getting started with GitHub Actions.
-                          </Card.Description>
-                        </Card>
-                      </Grid.Column>
-                      <Grid.Column span={{medium: 4}}>
-                        <Card href="#">
-                          <Card.Heading>Collaboration is the key to DevOps success</Card.Heading>
-                          <Card.Description>
-                            Everything you need to know about getting started with GitHub Actions.
-                          </Card.Description>
-                        </Card>
-                      </Grid.Column>
-                    </Grid>
-                  </Stack>
-                </Box>
-              )}
-              {args.faqVisible && (
-                <Box marginBlockStart={args.cardsVisible || args.ctaBannerVisible ? 128 : undefined}>
-                  {args.faqType === 'single' ? (
-                    <FAQ>
-                      <FAQ.Heading as="h2" size="3">
-                        Frequently asked questions
-                      </FAQ.Heading>
-                      <FAQ.Item>
-                        <FAQ.Question>What is this feature?</FAQ.Question>
-                        <FAQ.Answer>
-                          <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id.
-                            Aliquam luctus sed turpis felis nam pulvinar risus elementum.
-                          </p>
-                        </FAQ.Answer>
-                      </FAQ.Item>
-                      <FAQ.Item>
-                        <FAQ.Question>When is it release planned?</FAQ.Question>
-                        <FAQ.Answer>
-                          <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id.
-                            Aliquam luctus sed turpis felis nam pulvinar risus elementum.
-                          </p>
-                        </FAQ.Answer>
-                      </FAQ.Item>
-                      <FAQ.Item>
-                        <FAQ.Question>Where is it available?</FAQ.Question>
-                        <FAQ.Answer>
-                          <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id.
-                            Aliquam luctus sed turpis felis nam pulvinar risus elementum.
-                          </p>
-                        </FAQ.Answer>
-                      </FAQ.Item>
-                      <FAQ.Item>
-                        <FAQ.Question>Who is it for?</FAQ.Question>
-                        <FAQ.Answer>
-                          <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id.
-                            Aliquam luctus sed turpis felis nam pulvinar risus elementum.
-                          </p>
-                        </FAQ.Answer>
-                      </FAQ.Item>
-                      <FAQ.Item>
-                        <FAQ.Question>What can I expect?</FAQ.Question>
-                        <FAQ.Answer>
-                          <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id.
-                            Aliquam luctus sed turpis felis nam pulvinar risus elementum.
-                          </p>
-                        </FAQ.Answer>
-                      </FAQ.Item>
-                      <FAQ.Item>
-                        <FAQ.Question>What&apos;s the difference between this & that?</FAQ.Question>
-                        <FAQ.Answer>
-                          <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id.
-                            Aliquam luctus sed turpis felis nam pulvinar risus elementum.
-                          </p>
-                        </FAQ.Answer>
-                      </FAQ.Item>
-                      <FAQ.Item>
-                        <FAQ.Question>Is this free?</FAQ.Question>
-                        <FAQ.Answer>
-                          <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id.
-                            Aliquam luctus sed turpis felis nam pulvinar risus elementum.
-                          </p>
-                        </FAQ.Answer>
-                      </FAQ.Item>
-                      <FAQ.Item>
-                        <FAQ.Question>Is this release invite-only?</FAQ.Question>
-                        <FAQ.Answer>
-                          <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id.
-                            Aliquam luctus sed turpis felis nam pulvinar risus elementum.
-                          </p>
-                        </FAQ.Answer>
-                      </FAQ.Item>
-                    </FAQ>
-                  ) : (
-                    <FAQGroup>
-                      <FAQGroup.Heading as="h2" size="3">
-                        Frequently asked
-                        <br />
-                        questions
-                      </FAQGroup.Heading>
-                      <FAQ>
-                        <FAQ.Heading>Using GitHub Enterprise</FAQ.Heading>
-                        <FAQ.Item>
-                          <FAQ.Question>What is GitHub Enterprise?</FAQ.Question>
-                          <FAQ.Answer>
-                            <p>
-                              Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id.
-                              Aliquam luctus sed turpis felis nam pulvinar risus elementum.
-                            </p>
-                          </FAQ.Answer>
-                        </FAQ.Item>
-                        <FAQ.Item>
-                          <FAQ.Question>How can GitHub Enterprise be deployed?</FAQ.Question>
-                          <FAQ.Answer>
-                            <p>
-                              Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id.
-                              Aliquam luctus sed turpis felis nam pulvinar risus elementum.
-                            </p>
-                          </FAQ.Answer>
-                        </FAQ.Item>
-                        <FAQ.Item>
-                          <FAQ.Question>What is GitHub Enterprise Cloud?</FAQ.Question>
-                          <FAQ.Answer>
-                            <p>
-                              Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id.
-                              Aliquam luctus sed turpis felis nam pulvinar risus elementum.
-                            </p>
-                          </FAQ.Answer>
-                        </FAQ.Item>
-                      </FAQ>
-
-                      <FAQ>
-                        <FAQ.Heading>About GitHub Enterprise</FAQ.Heading>
-                        <FAQ.Item>
-                          <FAQ.Question>What is the difference between GitHub and GitHub Enterprise?</FAQ.Question>
-                          <FAQ.Answer>
-                            <p>
-                              Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id.
-                              Aliquam luctus sed turpis felis nam pulvinar risus elementum.
-                            </p>
-                          </FAQ.Answer>
-                        </FAQ.Item>
-                        <FAQ.Item>
-                          <FAQ.Question>Why should organizations use GitHub Enterprise?</FAQ.Question>
-                          <FAQ.Answer>
-                            <p>
-                              Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id.
-                              Aliquam luctus sed turpis felis nam pulvinar risus elementum.
-                            </p>
-                          </FAQ.Answer>
-                        </FAQ.Item>
-                        <FAQ.Item>
-                          <FAQ.Question>Who uses GitHub Enterprise?</FAQ.Question>
-                          <FAQ.Answer>
-                            <p>
-                              Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id.
-                              Aliquam luctus sed turpis felis nam pulvinar risus elementum.
-                            </p>
-                          </FAQ.Answer>
-                        </FAQ.Item>
-                      </FAQ>
-                    </FAQGroup>
-                  )}
-                </Box>
-              )}
             </Grid.Column>
           </Grid>
         </Section>
       </div>
-      <MinimalFooter>
-        <MinimalFooter.Link href="https://github.com/organizations/enterprise_plan">
-          Try GitHub for free
-        </MinimalFooter.Link>
-        <MinimalFooter.Link href="https://github.com/enterprise">Enterprise</MinimalFooter.Link>
-        <MinimalFooter.Link href="https://github.com/enterprise/contact">Email us</MinimalFooter.Link>
-      </MinimalFooter>
-      {enableGridOverlay && (
-        <Grid
-          enableOverlay={enableGridOverlay}
-          style={{
-            zIndex: 1,
-            position: 'fixed',
-            top: 0,
-            left: '50%',
-            transform: 'translate(-50%, 0)',
-            maxWidth: '1280px',
-            bottom: 0,
-            width: '100%',
-            height: '100%',
-          }}
-        >
-          <Grid.Column span={1}></Grid.Column>
-          <Grid.Column span={1}></Grid.Column>
-          <Grid.Column span={1}></Grid.Column>
-          <Grid.Column span={1}></Grid.Column>
-          <Grid.Column span={1}></Grid.Column>
-          <Grid.Column span={1}></Grid.Column>
-          <Grid.Column span={1}></Grid.Column>
-          <Grid.Column span={1}></Grid.Column>
-          <Grid.Column span={1}></Grid.Column>
-          <Grid.Column span={1}></Grid.Column>
-          <Grid.Column span={1}></Grid.Column>
-          <Grid.Column span={1}></Grid.Column>
-        </Grid>
-      )}
     </ThemeProvider>
   )
 }

@@ -42,7 +42,7 @@ export default {
     heroCtaTextPrimary: 'Primary CTA',
     heroCtaTextSecondary: 'Secondary CTA',
 
-    sectionIntroAlign: 'start',
+    sectionIntroAlign: 'center',
     sectionIntroVisible: true,
     sectionIntroText: [
       <b key="highlighted-text">Here we explain why this came to be.</b>,
@@ -56,21 +56,21 @@ export default {
     logoSuiteVisible: true,
 
     riverOneVisible: true,
-    riverOneType: 'end',
+    riverOneType: 'breakout',
     riverOneTitle: 'Dive into the first sub feature with a river',
     riverOneDescription:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis felis nam pulvinar.',
     riverOneCtaText: 'Learn more',
 
     riverTwoVisible: true,
-    riverTwoType: 'breakout',
+    riverTwoType: 'start',
     riverTwoTitle: 'Dive into the first sub feature with a river',
     riverTwoDescription:
       'Here we explain why this came to be. This is a short statement about the intention of the feature and why we think its cool, keep it real.',
     riverTwoCtaText: 'Learn more',
 
     riverThreeVisible: true,
-    riverThreeType: 'end',
+    riverThreeType: 'start',
     riverThreeTitle: 'Dive into the first sub feature with a river',
     riverThreeDescription:
       'Here we explain why this came to be. This is a short statement about the intention of the feature and why we think its cool, keep it real.',
@@ -440,8 +440,6 @@ export const LevelTwoMinimal: StoryFn<typeof FlexSection> = args => <FlexSection
 LevelTwoMinimal.storyName = 'Minimal'
 LevelTwoMinimal.args = {
   variant: 'Minimum',
-  heroLabel: undefined,
-  heroCtaTextSecondary: undefined,
   sectionIntroVisible: false,
   pillarVisible: false,
   logoSuiteVisible: false,
@@ -449,9 +447,7 @@ LevelTwoMinimal.args = {
   riverTwoType: 'end',
   riverOneVisible: false,
   testimonialVisible: false,
-  faqVisible: false,
   cardsVisible: false,
-  faqType: 'single',
   testimonialQuantity: 1,
   ctaBannerShowBg: false,
 }
