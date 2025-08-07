@@ -4,17 +4,20 @@ import clsx from 'clsx'
 import {ZapIcon} from '@primer/octicons-react'
 
 import {
+  Bento,
   Box,
   Button,
-  CTABanner,
   Card,
   ColorModesEnum,
+  CTABanner,
   Grid,
   Heading,
+  IDE,
   Image,
   Link,
   LogoSuite,
   Pillar,
+  Prose,
   River,
   RiverBreakout,
   Section,
@@ -24,7 +27,6 @@ import {
   Text,
   ThemeProvider,
   Timeline,
-  IDE,
 } from '../../..'
 
 import {defaultFiles} from '../../../IDE/fixtures/content'
@@ -34,6 +36,7 @@ import shopifyLogo from '../../../fixtures/images/logos/shopify.png'
 import twilioLogo from '../../../fixtures/images/logos/twilio.png'
 import uberLogo from '../../../fixtures/images/logos/uber.png'
 import vercelLogo from '../../../fixtures/images/logos/vercel.png'
+import placeholderImage from '../../../fixtures/images/placeholder.png'
 
 import {Themes, themeDetailsMap} from '../helpers'
 import emptyBrowserDarkFull from '../fixtures/images/fg/empty-browser-full-dark.png'
@@ -270,6 +273,65 @@ export function FlexSection({accentColor, variant, gridOverlay = false, colorMod
             </Stack>
           </Box>
         )}
+
+        <Section paddingBlockStart="normal" paddingBlockEnd="normal">
+          <Box>
+            <Bento>
+              <Bento.Item
+                rowSpan={5}
+                flow={{
+                  xsmall: 'row',
+                  small: 'row',
+                  medium: 'column',
+                  large: 'column',
+                  xlarge: 'column',
+                  xxlarge: 'column',
+                }}
+              >
+                <Bento.Content>
+                  <Bento.Heading size="4">
+                    <b>This is my super-sweet</b> bento heading
+                  </Bento.Heading>
+                  <Link href="#">Read customer story</Link>
+                </Bento.Content>
+                <Bento.Visual position="50% 100%" padding="normal">
+                  <img alt="placeholder, blank area with an gray background color" src={placeholderImage} />
+                </Bento.Visual>
+              </Bento.Item>
+            </Bento>
+          </Box>
+        </Section>
+
+        <Section paddingBlockStart="normal" paddingBlockEnd="normal">
+          <Stack alignItems={'center'}>
+            <Prose
+              html={`
+                <p>
+                  <a href="https://docs.github.com/en/enterprise-server@3.5/admin/overview/about-github-enterprise-server">GitHub Enterprise Server</a>
+                  is the self-hosted version of GitHub Enterprise. It is installed on-premises or on a private
+                  cloud and provides organizations with a secure and customizable source code management and
+                  collaboration platform.
+                </p>
+
+                <p>
+                  One of the key advantages of GitHub Enterprise Server is that it provides organizations with
+                  complete control over their source code and data. Organizations can choose where to store their
+                  repositories and can control who has access to them. Administrators can also customize the
+                  platform to meet specific needs, such as integrating other tools or implementing custom
+                  workflows.
+                </p>
+
+                <p>
+                  GitHub Enterprise Server also offers enhanced security and compliance features. Organizations
+                  can configure their instance to meet their specific security requirements, such as using LDAP or
+                  SAML for authentication, setting up two-factor authentication, or implementing network security
+                  measures. Compliance features are also included, such as audit logs, access controls, and
+                  vulnerability scanning.
+                </p>
+              `}
+            />
+          </Stack>
+        </Section>
 
         <Section paddingBlockStart="condensed">
           <Grid enableOverlay={enableGridOverlay}>
