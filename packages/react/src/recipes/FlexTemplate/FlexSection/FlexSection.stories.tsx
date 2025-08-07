@@ -31,15 +31,6 @@ export default {
     gridOverlay: false,
     colorMode: ColorModesEnum.LIGHT,
     accentColor: 'ai',
-    heroAlign: 'start',
-    heroBg: false,
-    showHeroVisual: true,
-    heroLabel: 'Label',
-    heroTitle: 'Expressive headline about a sweet feature',
-    heroDescription:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis felis nam pulvinar.',
-    heroCtaTextPrimary: 'Primary CTA',
-    heroCtaTextSecondary: 'Secondary CTA',
 
     sectionIntroAlign: 'center',
     sectionIntroVisible: true,
@@ -54,35 +45,74 @@ export default {
 
     logoSuiteVisible: true,
 
-    riverOneVisible: true,
-    riverOneType: 'breakout',
-    riverOneTitle: 'Dive into the first sub feature with a river',
-    riverOneDescription:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis felis nam pulvinar.',
-    riverOneCtaText: 'Learn more',
+    prose: {
+      visible: true,
+      text: `
+        <p>
+          <a href="https://docs.github.com/en/enterprise-server@3.5/admin/overview/about-github-enterprise-server">GitHub Enterprise Server</a>
+          is the self-hosted version of GitHub Enterprise. It is installed on-premises or on a private
+          cloud and provides organizations with a secure and customizable source code management and
+          collaboration platform.
+        </p>
 
-    riverTwoVisible: true,
-    riverTwoType: 'start',
-    riverTwoTitle: 'Dive into the first sub feature with a river',
-    riverTwoDescription:
-      'Here we explain why this came to be. This is a short statement about the intention of the feature and why we think its cool, keep it real.',
-    riverTwoCtaText: 'Learn more',
+        <p>
+          One of the key advantages of GitHub Enterprise Server is that it provides organizations with
+          complete control over their source code and data. Organizations can choose where to store their
+          repositories and can control who has access to them. Administrators can also customize the
+          platform to meet specific needs, such as integrating other tools or implementing custom
+          workflows.
+        </p>
 
-    riverThreeVisible: true,
-    riverThreeType: 'start',
-    riverThreeTitle: 'Dive into the first sub feature with a river',
-    riverThreeDescription:
-      'Here we explain why this came to be. This is a short statement about the intention of the feature and why we think its cool, keep it real.',
-    riverThreeCtaText: 'Learn more',
+        <p>
+          GitHub Enterprise Server also offers enhanced security and compliance features. Organizations
+          can configure their instance to meet their specific security requirements, such as using LDAP or
+          SAML for authentication, setting up two-factor authentication, or implementing network security
+          measures. Compliance features are also included, such as audit logs, access controls, and
+          vulnerability scanning.
+        </p>
+      `,
+    },
+
+    rivers: [
+      {
+        visible: true,
+        type: 'breakout',
+        title: 'Dive into the first sub feature with a river',
+        description:
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis felis nam pulvinar.',
+        ctaText: 'Learn more',
+      },
+      {
+        visible: true,
+        type: 'start',
+        title: 'Dive into the first sub feature with a river',
+        description:
+          'Here we explain why this came to be. This is a short statement about the intention of the feature and why we think its cool, keep it real.',
+        ctaText: 'Learn more',
+      },
+      {
+        visible: true,
+        type: 'start',
+        title: 'Dive into the first sub feature with a river',
+        description:
+          'Here we explain why this came to be. This is a short statement about the intention of the feature and why we think its cool, keep it real.',
+        ctaText: 'Learn more',
+      },
+      {
+        visible: true,
+        type: 'start',
+        title: 'Dive into the first sub feature with a river',
+        description:
+          'Here we explain why this came to be. This is a short statement about the intention of the feature and why we think its cool, keep it real.',
+        ctaText: 'Learn more',
+      },
+    ],
 
     testimonialVisible: true,
     testimonialQuantity: 1,
 
     ctaBannerVisible: true,
     ctaBannerShowBg: true,
-
-    faqVisible: true,
-    faqType: 'group',
 
     cardsVisible: true,
   },
@@ -168,125 +198,6 @@ export default {
       },
     },
     /**
-     * River one
-     */
-    riverOneVisible: {
-      control: 'boolean',
-      name: 'river 1 visible',
-      table: {
-        category: 'Section: Rivers (1)',
-      },
-    },
-    riverOneType: {
-      control: 'inline-radio',
-      options: ['start', 'end', 'breakout'],
-      name: 'river 1 type',
-      table: {
-        category: 'Section: Rivers (1)',
-      },
-    },
-    riverOneTitle: {
-      control: 'text',
-      name: 'river 1 title',
-      table: {
-        category: 'Section: Rivers (1)',
-      },
-    },
-    riverOneDescription: {
-      control: 'text',
-      name: 'river 1 description',
-      table: {
-        category: 'Section: Rivers (1)',
-      },
-    },
-    riverOneCtaText: {
-      control: 'text',
-      name: 'river 1 CTA text',
-      table: {
-        category: 'Section: Rivers (1)',
-      },
-    },
-
-    /**
-     * River two
-     */
-    riverTwoVisible: {
-      control: 'boolean',
-      name: 'river 2 visible',
-      table: {
-        category: 'Section: Rivers (2)',
-      },
-    },
-    riverTwoType: {
-      control: 'inline-radio',
-      options: ['start', 'end', 'breakout'],
-      name: 'river 2 type',
-      table: {
-        category: 'Section: Rivers (2)',
-      },
-    },
-    riverTwoTitle: {
-      control: 'text',
-      name: 'river 2 title',
-      table: {
-        category: 'Section: Rivers (2)',
-      },
-    },
-    riverTwoDescription: {
-      control: 'text',
-      name: 'river 2 description',
-      table: {
-        category: 'Section: Rivers (2)',
-      },
-    },
-    riverTwoCtaText: {
-      control: 'text',
-      name: 'river 2 CTA text',
-      table: {
-        category: 'Section: Rivers (2)',
-      },
-    },
-
-    /**
-     * River three
-     */
-    riverThreeVisible: {
-      control: 'boolean',
-      name: 'river 3 visible',
-      table: {
-        category: 'Section: Rivers (3)',
-      },
-    },
-    riverThreeType: {
-      control: 'inline-radio',
-      options: ['start', 'end', 'breakout'],
-      name: 'river 3 type',
-      table: {
-        category: 'Section: Rivers (3)',
-      },
-    },
-    riverThreeTitle: {
-      control: 'text',
-      name: 'river 3 title',
-      table: {
-        category: 'Section: Rivers (3)',
-      },
-    },
-    riverThreeDescription: {
-      control: 'text',
-      name: 'river 3 description',
-      table: {
-        category: 'Section: Rivers (3)',
-      },
-    },
-    riverThreeCtaText: {
-      control: 'text',
-      name: 'river 3 CTA text',
-      table: {
-        category: 'Section: Rivers (3)',
-      },
-    },
-    /**
      * Testimonial
      */
     testimonialVisible: {
@@ -322,24 +233,6 @@ export default {
       },
     },
     /**
-     * FAQ
-     */
-    faqVisible: {
-      control: 'boolean',
-      name: 'visible',
-      table: {
-        category: 'Section: FAQ',
-      },
-    },
-    faqType: {
-      control: 'inline-radio',
-      options: ['single', 'group'],
-      name: 'type',
-      table: {
-        category: 'Section: FAQ',
-      },
-    },
-    /**
      * Cards
      */
     cardsVisible: {
@@ -352,26 +245,9 @@ export default {
   },
 } as Meta<typeof FlexSection>
 
-export const LevelTwoPlayground: StoryFn<typeof FlexSection> = args => <FlexSection {...args} />
+export const FlexSectionDefault: StoryFn<typeof FlexSection> = args => <FlexSection {...args} />
 
-LevelTwoPlayground.storyName = 'Playground'
-LevelTwoPlayground.args = {
-  variant: 'Maximum',
-}
-
-export const LevelTwoMinimal: StoryFn<typeof FlexSection> = args => <FlexSection {...args} />
-
-LevelTwoMinimal.storyName = 'Minimal'
-LevelTwoMinimal.args = {
-  variant: 'Minimum',
-  sectionIntroVisible: false,
-  pillarVisible: false,
-  logoSuiteVisible: false,
-  riverOneType: 'end',
-  riverTwoType: 'end',
-  riverOneVisible: false,
-  testimonialVisible: false,
-  cardsVisible: false,
-  testimonialQuantity: 1,
-  ctaBannerShowBg: false,
+FlexSectionDefault.storyName = 'Default'
+FlexSectionDefault.args = {
+  variant: 'Default',
 }
