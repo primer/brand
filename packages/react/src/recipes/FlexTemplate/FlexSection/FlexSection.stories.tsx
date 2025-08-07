@@ -145,6 +145,19 @@ export default {
         category: 'Theming',
       },
     },
+
+    /**
+     * Rivers
+     */
+    rivers: {
+      control: 'object',
+      name: 'Rivers',
+      description: 'Array of rivers to display in the section',
+      table: {
+        category: 'Rivers',
+      },
+    },
+
     /**
      * Section intro
      */
