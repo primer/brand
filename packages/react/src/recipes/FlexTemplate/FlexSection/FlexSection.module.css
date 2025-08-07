@@ -1,0 +1,57 @@
+/**
+ * Custom overrides
+ * Should be fixed in the respective components
+ */
+
+.Hero {
+  /* In this template, the vertical spacing in Hero
+   * at wider viewports uses the same value
+   * as that used in narrower viewports.
+   */
+  padding: var(--brand-Hero-narrow-padding);
+}
+
+@media screen and (min-width: 48rem) {
+  .FlexSection {
+    --brand-River-spacing-outer: var(--base-size-48);
+  }
+}
+
+.FlexSection__heroBg {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: right center;
+}
+
+.FlexSection__heroImageContainer {
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: var(--brand-borderRadius-large);
+  overflow: hidden;
+}
+
+.FlexSection__ctaBanner {
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: var(--brand-borderRadius-large);
+  overflow: hidden;
+}
+
+.FlexSection__heroImageContainer img {
+  display: block;
+}
+
+.FlexSection__trailingSection {
+  --brand-color-canvas-subtle: var(--base-color-scale-gray-1);
+}
+
+[data-color-mode='dark'] .FlexSection__trailingSection {
+  --brand-color-canvas-subtle: var(--base-color-scale-gray-7);
+}
+
+@media screen and (min-width: 48rem) {
+  /* This will eventually be fixed by using the Grid inside the River */
+  .RiverContent {
+    padding-inline-start: calc(var(--brand-River-spacing-inner) * 2);
+  }
+}
