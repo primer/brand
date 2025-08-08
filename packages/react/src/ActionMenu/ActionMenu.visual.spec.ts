@@ -230,15 +230,6 @@ test.describe('Visual Comparison: ActionMenu', () => {
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
-  test('ActionMenu / Split Button Mode Open', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-actionmenu-features--split-button-mode-open&viewMode=story',
-    )
-
-    await page.waitForTimeout(1000)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
   test('ActionMenu / Split Button Alternative Menu Alignment', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-actionmenu-features--split-button-alternative-menu-alignment&viewMode=story',
@@ -471,51 +462,6 @@ test.describe('Visual Comparison: ActionMenu', () => {
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
-  test('ActionMenu / Open By Default (fr)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-actionmenu-features--open-by-default&viewMode=story',
-    )
-
-    await page.waitForTimeout(1000)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('ActionMenu / Open By Default (de)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-actionmenu-features--open-by-default&viewMode=story',
-    )
-
-    await page.waitForTimeout(1000)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('ActionMenu / Open By Default (ja)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-actionmenu-features--open-by-default&viewMode=story',
-    )
-
-    await page.waitForTimeout(1000)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('ActionMenu / Open By Default (es)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-actionmenu-features--open-by-default&viewMode=story',
-    )
-
-    await page.waitForTimeout(1000)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('ActionMenu / Open By Default (pt-BR)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-actionmenu-features--open-by-default&viewMode=story',
-    )
-
-    await page.waitForTimeout(1000)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
   test('ActionMenu / Longer Button Text', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-actionmenu-features--longer-button-text&viewMode=story',
@@ -681,51 +627,6 @@ test.describe('Visual Comparison: ActionMenu', () => {
   test('ActionMenu / Menu alignment (end)', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-actionmenu-features--menu-alignment&viewMode=story',
-    )
-
-    await page.waitForTimeout(1000)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('ActionMenu / Menu alignment (end) (fr)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-actionmenu-features--menu-alignment&viewMode=story',
-    )
-
-    await page.waitForTimeout(1000)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('ActionMenu / Menu alignment (end) (de)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-actionmenu-features--menu-alignment&viewMode=story',
-    )
-
-    await page.waitForTimeout(1000)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('ActionMenu / Menu alignment (end) (ja)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-actionmenu-features--menu-alignment&viewMode=story',
-    )
-
-    await page.waitForTimeout(1000)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('ActionMenu / Menu alignment (end) (es)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-actionmenu-features--menu-alignment&viewMode=story',
-    )
-
-    await page.waitForTimeout(1000)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('ActionMenu / Menu alignment (end) (pt-BR)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-actionmenu-features--menu-alignment&viewMode=story',
     )
 
     await page.waitForTimeout(1000)

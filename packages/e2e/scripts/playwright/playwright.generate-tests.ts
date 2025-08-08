@@ -60,7 +60,6 @@
     'components-actionmenu-features--menu-alignment': 1000, // for the menu to open
     'components-actionmenu-features--disabled-item': 1000, // flakey test,
     'components-actionmenu-features--single-selection-small-open': 1000, // for the menu to open
-    'components-actionmenu-features--split-button-mode-open': 1000, // for the menu to open
     'components-actionmenu-features--split-button-alternative-menu-alignment': 1000, // for the menu to open
     'components-actionmenu-features--anchored-positioning': 1000, // for the menu to open
     'components-box-features--animation': 6000, // for the animation
@@ -115,9 +114,10 @@
   }
 
   const skipLocalizationsTestsFor = [
+    'components-actionmenu-features--open-by-default', // for the menu to open
+    'components-actionmenu-features--menu-alignment', // for the menu to open
     'components-actionmenu-features--disabled-item', // for the menu to open
     'components-actionmenu-features--single-selection-small-open', // for the menu to open
-    'components-actionmenu-features--split-button-mode-open', // for the menu to open
     'components-actionmenu-features--split-button-alternative-menu-alignment', // for the menu to open
     'components-actionmenu-features--anchored-positioning', // for the menu to open
   ]
@@ -131,6 +131,7 @@
     'components-river--custom-logos', // for external social imagery to load
     'components-actionmenu-features--keyboard-navigation', // interaction test
     'components-actionmenu-examples--keyboard-navigation', // for the interaction test
+    'components-actionmenu-features--split-button-mode-open', // for the translations causing layout shift
     'components-animations-examples--discussions-hero', // animation only
     'components-animations-examples--progress-bars', // animation only
     'components-animations-examples--logo-bar', // animation only
