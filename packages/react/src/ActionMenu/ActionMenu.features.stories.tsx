@@ -4,6 +4,7 @@ import {expect, userEvent, within, waitFor} from '@storybook/test'
 import {ActionMenu, actionMenuOverlaySides, ActionMenuProps, ActionMenuSizes} from './ActionMenu'
 import {countries} from '../test-utils/fixtures/data'
 import {Heading, Stack, Text, OrderedList, Box, Grid, Section, ThemeProvider, Button, ButtonVariants, Hero} from '../'
+import {useTranslation} from 'react-i18next'
 
 import styles from './ActionMenu.stories.module.css'
 import {VisualStudioCodeLogo} from '../fixtures/third-party-logos/VisualStudioCodeLogo'
@@ -17,12 +18,13 @@ export default {
 } as Meta<typeof ActionMenu>
 
 export const SingleSelection = () => {
+  const {t} = useTranslation('ActionMenu')
   const [selectedItem, setSelectedItem] = React.useState('Copilot')
 
   return (
     <ActionMenu onSelect={newValue => setSelectedItem(newValue)} selectionVariant="single">
-      <ActionMenu.Button>Select a GitHub feature</ActionMenu.Button>
-      <ActionMenu.Overlay aria-label="GitHub features">
+      <ActionMenu.Button>{t('select_github_feature')}</ActionMenu.Button>
+      <ActionMenu.Overlay aria-label={t('github_features')}>
         <ActionMenu.Item value="Copilot" selected={'Copilot' === selectedItem}>
           Copilot
         </ActionMenu.Item>
@@ -38,12 +40,13 @@ export const SingleSelection = () => {
 }
 
 export const SingleSelectionSmallOpen = () => {
+  const {t} = useTranslation('ActionMenu')
   const [selectedItem, setSelectedItem] = React.useState('Copilot')
 
   return (
     <ActionMenu size="small" onSelect={newValue => setSelectedItem(newValue)} selectionVariant="single" open>
-      <ActionMenu.Button>Select a GitHub feature</ActionMenu.Button>
-      <ActionMenu.Overlay aria-label="GitHub features">
+      <ActionMenu.Button>{t('select_github_feature')}</ActionMenu.Button>
+      <ActionMenu.Overlay aria-label={t('github_features')}>
         <ActionMenu.Item value="Copilot" selected={'Copilot' === selectedItem}>
           Copilot
         </ActionMenu.Item>
@@ -59,12 +62,14 @@ export const SingleSelectionSmallOpen = () => {
 }
 
 export const SplitButtonMode = () => {
+  const {t} = useTranslation('ActionMenu')
+
   return (
     <ActionMenu mode="split-button">
       <ActionMenu.Button variant="primary" as="a" href="#option1" leadingVisual={<VisualStudioCodeLogo />}>
-        Install Copilot in Visual Studio Code
+        {t('install_copilot_vscode')}
       </ActionMenu.Button>
-      <ActionMenu.Overlay aria-label="Alternative options">
+      <ActionMenu.Overlay aria-label={t('alternative_options')}>
         <ActionMenu.Item as="a" href="#0" leadingVisual={<VisualStudioCodeLogo />}>
           Visual Studio Code
         </ActionMenu.Item>
@@ -83,12 +88,14 @@ export const SplitButtonMode = () => {
 }
 
 export const SplitButtonModeDisabled = () => {
+  const {t} = useTranslation('ActionMenu')
+
   return (
     <ActionMenu mode="split-button" disabled>
       <ActionMenu.Button variant="primary" as="a" href="#option1" leadingVisual={<VisualStudioCodeLogo />}>
-        Install Copilot in Visual Studio Code
+        {t('install_copilot_vscode')}
       </ActionMenu.Button>
-      <ActionMenu.Overlay aria-label="Alternative options">
+      <ActionMenu.Overlay aria-label={t('alternative_options')}>
         <ActionMenu.Item as="a" href="#0" leadingVisual={<VisualStudioCodeLogo />}>
           Visual Studio Code
         </ActionMenu.Item>
@@ -107,12 +114,14 @@ export const SplitButtonModeDisabled = () => {
 }
 
 export const SplitButtonModeOpen = () => {
+  const {t} = useTranslation('ActionMenu')
+
   return (
     <ActionMenu mode="split-button" open>
       <ActionMenu.Button variant="primary" as="a" href="#option1" leadingVisual={<VisualStudioCodeLogo />}>
-        Install Copilot in Visual Studio Code
+        {t('install_copilot_vscode')}
       </ActionMenu.Button>
-      <ActionMenu.Overlay aria-label="Alternative options">
+      <ActionMenu.Overlay aria-label={t('alternative_options')}>
         <ActionMenu.Item as="a" href="#0" leadingVisual={<VisualStudioCodeLogo />}>
           Visual Studio Code
         </ActionMenu.Item>
@@ -130,29 +139,34 @@ export const SplitButtonModeOpen = () => {
   )
 }
 
-export const SplitButtonAlternativeMenuAlignment = () => (
-  <ActionMenu mode="split-button" open menuAlignment="start">
-    <ActionMenu.Button variant="primary" as="a" href="#option1" leadingVisual={<VisualStudioCodeLogo />}>
-      Install Copilot in Visual Studio Code
-    </ActionMenu.Button>
-    <ActionMenu.Overlay aria-label="Alternative options">
-      <ActionMenu.Item as="a" href="#0" leadingVisual={<VisualStudioCodeLogo />}>
-        Visual Studio Code
-      </ActionMenu.Item>
-      <ActionMenu.Item as="a" href="#1" leadingVisual={<VisualStudioLogo />}>
-        Visual Studio
-      </ActionMenu.Item>
-      <ActionMenu.Item as="a" href="#2" leadingVisual={<NeoVimLogo />}>
-        Neovim
-      </ActionMenu.Item>
-      <ActionMenu.Item as="a" href="#3" leadingVisual={<JetBrainsLogo />}>
-        JetBrains
-      </ActionMenu.Item>
-    </ActionMenu.Overlay>
-  </ActionMenu>
-)
+export const SplitButtonAlternativeMenuAlignment = () => {
+  const {t} = useTranslation('ActionMenu')
+
+  return (
+    <ActionMenu mode="split-button" open menuAlignment="start">
+      <ActionMenu.Button variant="primary" as="a" href="#option1" leadingVisual={<VisualStudioCodeLogo />}>
+        {t('install_copilot_vscode')}
+      </ActionMenu.Button>
+      <ActionMenu.Overlay aria-label={t('alternative_options')}>
+        <ActionMenu.Item as="a" href="#0" leadingVisual={<VisualStudioCodeLogo />}>
+          Visual Studio Code
+        </ActionMenu.Item>
+        <ActionMenu.Item as="a" href="#1" leadingVisual={<VisualStudioLogo />}>
+          Visual Studio
+        </ActionMenu.Item>
+        <ActionMenu.Item as="a" href="#2" leadingVisual={<NeoVimLogo />}>
+          Neovim
+        </ActionMenu.Item>
+        <ActionMenu.Item as="a" href="#3" leadingVisual={<JetBrainsLogo />}>
+          JetBrains
+        </ActionMenu.Item>
+      </ActionMenu.Overlay>
+    </ActionMenu>
+  )
+}
 
 export const SplitButtonModeAllVariants = () => {
+  const {t} = useTranslation('ActionMenu')
   /**
    * TODO: Only show examples for action menu button variants that are design approved
    */
@@ -180,9 +194,9 @@ export const SplitButtonModeAllVariants = () => {
                 {ActionMenuSizes.map(size => (
                   <ActionMenu mode="split-button" size={size} key={size}>
                     <ActionMenu.Button variant={variant} as="a" href="#vscode" leadingVisual={<VisualStudioCodeLogo />}>
-                      Install Copilot in Visual Studio Code
+                      {t('install_copilot_vscode')}
                     </ActionMenu.Button>
-                    <ActionMenu.Overlay aria-label="Alternative editors">
+                    <ActionMenu.Overlay aria-label={t('alternative_editors')}>
                       <ActionMenu.Item as="a" href="#0" leadingVisual={<VisualStudioCodeLogo />}>
                         Visual Studio Code
                       </ActionMenu.Item>
@@ -223,9 +237,9 @@ export const SplitButtonModeAllVariants = () => {
                 {ActionMenuSizes.map(size => (
                   <ActionMenu mode="split-button" size={size} key={size}>
                     <ActionMenu.Button variant={variant} as="a" href="#vscode" leadingVisual={<VisualStudioCodeLogo />}>
-                      Install Copilot in Visual Studio Code
+                      {t('install_copilot_vscode')}
                     </ActionMenu.Button>
-                    <ActionMenu.Overlay aria-label="Alternative editors">
+                    <ActionMenu.Overlay aria-label={t('alternative_editors')}>
                       <ActionMenu.Item as="a" href="#0" leadingVisual={<VisualStudioCodeLogo />}>
                         Visual Studio Code
                       </ActionMenu.Item>
@@ -251,6 +265,8 @@ export const SplitButtonModeAllVariants = () => {
 }
 
 export const SplitButtonModeInHero = () => {
+  const {t} = useTranslation('ActionMenu')
+
   return (
     <ThemeProvider colorMode="dark">
       <Section backgroundColor="subtle">
@@ -260,9 +276,9 @@ export const SplitButtonModeInHero = () => {
             <Stack direction={{narrow: 'vertical', regular: 'horizontal'}} gap="condensed" padding="none">
               <ActionMenu mode="split-button">
                 <ActionMenu.Button variant="primary" as="a" href="#vscode" leadingVisual={<VisualStudioCodeLogo />}>
-                  Install Copilot in Visual Studio Code
+                  {t('install_copilot_vscode')}
                 </ActionMenu.Button>
-                <ActionMenu.Overlay aria-label="Alternative editors">
+                <ActionMenu.Overlay aria-label={t('alternative_editors')}>
                   <ActionMenu.Item as="a" href="#0" leadingVisual={<VisualStudioCodeLogo />}>
                     Visual Studio Code
                   </ActionMenu.Item>
@@ -277,12 +293,12 @@ export const SplitButtonModeInHero = () => {
                   </ActionMenu.Item>
                 </ActionMenu.Overlay>
               </ActionMenu>
-              <Button variant="secondary">See plans & pricing</Button>
+              <Button variant="secondary">{t('see_plans_pricing')}</Button>
             </Stack>
           )}
         >
-          <Hero.Label>Label</Hero.Label>
-          <Hero.Heading>This is my super sweet hero heading</Hero.Heading>
+          <Hero.Label>{t('label')}</Hero.Label>
+          <Hero.Heading>{t('hero_heading')}</Hero.Heading>
           <Hero.Description>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
             turpis felis nam pulvinar risus elementum.
@@ -294,14 +310,15 @@ export const SplitButtonModeInHero = () => {
 }
 
 export const InStack = () => {
+  const {t} = useTranslation('ActionMenu')
   const [selectedOne, setSelectedOne] = React.useState('Copilot')
   const [selectedTwo, setSelectedTwo] = React.useState('Afghanistan')
 
   return (
     <Stack direction="horizontal">
       <ActionMenu onSelect={newValue => setSelectedOne(newValue)} selectionVariant="single">
-        <ActionMenu.Button>Select a GitHub feature</ActionMenu.Button>
-        <ActionMenu.Overlay aria-label="GitHub features">
+        <ActionMenu.Button>{t('select_github_feature')}</ActionMenu.Button>
+        <ActionMenu.Overlay aria-label={t('github_features')}>
           <ActionMenu.Item value="Copilot" selected={'Copilot' === selectedOne}>
             Copilot
           </ActionMenu.Item>
@@ -314,8 +331,8 @@ export const InStack = () => {
         </ActionMenu.Overlay>
       </ActionMenu>
       <ActionMenu onSelect={newValue => setSelectedTwo(newValue)} selectionVariant="single">
-        <ActionMenu.Button>Select a country</ActionMenu.Button>
-        <ActionMenu.Overlay aria-label="Countries">
+        <ActionMenu.Button>{t('select_country')}</ActionMenu.Button>
+        <ActionMenu.Overlay aria-label={t('countries')}>
           {countries.map((country, index) => (
             <ActionMenu.Item key={index} value={country} selected={country === selectedTwo}>
               {country}
@@ -328,16 +345,17 @@ export const InStack = () => {
 }
 
 export const Sizes = () => {
+  const {t} = useTranslation('ActionMenu')
   const sizes = ['small', 'medium'] as ActionMenuProps['size'][]
 
   return (
     <Stack direction="horizontal" alignItems="center" gap={112}>
       {sizes.map(size => (
         <ActionMenu key={size?.toString()} size={size}>
-          <ActionMenu.Button>Select a size</ActionMenu.Button>
-          <ActionMenu.Overlay aria-label="GitHub features">
+          <ActionMenu.Button>{t('select_size')}</ActionMenu.Button>
+          <ActionMenu.Overlay aria-label={t('github_features')}>
             <ActionMenu.Item value="Copilot">Copilot</ActionMenu.Item>
-            <ActionMenu.Item value="Copilot">Advanced Security</ActionMenu.Item>
+            <ActionMenu.Item value="Copilot">{t('advanced_security')}</ActionMenu.Item>
           </ActionMenu.Overlay>
         </ActionMenu>
       ))}
@@ -346,12 +364,13 @@ export const Sizes = () => {
 }
 
 export const OpenByDefault = () => {
+  const {t} = useTranslation('ActionMenu')
   const [selectedItem, setSelectedItem] = React.useState('Copilot')
 
   return (
     <ActionMenu onSelect={newValue => setSelectedItem(newValue)} selectionVariant="single" open>
-      <ActionMenu.Button>Select a GitHub feature</ActionMenu.Button>
-      <ActionMenu.Overlay aria-label="GitHub features">
+      <ActionMenu.Button>{t('select_github_feature')}</ActionMenu.Button>
+      <ActionMenu.Overlay aria-label={t('github_features')}>
         <ActionMenu.Item value="Copilot" selected={'Copilot' === selectedItem}>
           Copilot
         </ActionMenu.Item>
@@ -367,23 +386,24 @@ export const OpenByDefault = () => {
 }
 
 export const LongerButtonText = () => {
+  const {t} = useTranslation('ActionMenu')
   const [selected, setSelected] = React.useState('Europe, Middle East and Africa')
 
   return (
     <ActionMenu onSelect={newValue => setSelected(newValue)} selectionVariant="single">
-      <ActionMenu.Button>Select a location</ActionMenu.Button>
-      <ActionMenu.Overlay aria-label="Locations">
+      <ActionMenu.Button>{t('select_location')}</ActionMenu.Button>
+      <ActionMenu.Overlay aria-label={t('locations')}>
         <ActionMenu.Item
           value="Europe, Middle East and Africa"
           selected={'Europe, Middle East and Africa' === selected}
         >
-          Europe, Middle East and Africa
+          {t('europe_middle_east_africa')}
         </ActionMenu.Item>
         <ActionMenu.Item value="Americas" selected={'Americas' === selected}>
-          Americas
+          {t('americas')}
         </ActionMenu.Item>
         <ActionMenu.Item value="Asia Pacific" selected={'Asia Pacific' === selected}>
-          Asia Pacific
+          {t('asia_pacific')}
         </ActionMenu.Item>
       </ActionMenu.Overlay>
     </ActionMenu>
@@ -391,12 +411,13 @@ export const LongerButtonText = () => {
 }
 
 export const LongerLists = () => {
+  const {t} = useTranslation('ActionMenu')
   const [selectedItem, setSelectedItem] = React.useState('United States')
 
   return (
     <ActionMenu onSelect={newValue => setSelectedItem(newValue)} selectionVariant="single">
-      <ActionMenu.Button>Select a country</ActionMenu.Button>
-      <ActionMenu.Overlay aria-label="Countries">
+      <ActionMenu.Button>{t('select_country')}</ActionMenu.Button>
+      <ActionMenu.Overlay aria-label={t('countries')}>
         {countries.map((country, index) => (
           <ActionMenu.Item key={index} value={country} selected={country === selectedItem}>
             {country}
@@ -408,12 +429,13 @@ export const LongerLists = () => {
 }
 
 export const LongerListsOpen = () => {
+  const {t} = useTranslation('ActionMenu')
   const [selectedItem, setSelectedItem] = React.useState('United States')
 
   return (
     <ActionMenu onSelect={newValue => setSelectedItem(newValue)} selectionVariant="single" open>
-      <ActionMenu.Button>Select a country</ActionMenu.Button>
-      <ActionMenu.Overlay aria-label="Countries">
+      <ActionMenu.Button>{t('select_country')}</ActionMenu.Button>
+      <ActionMenu.Overlay aria-label={t('countries')}>
         {countries.map((country, index) => (
           <ActionMenu.Item key={index} value={country} selected={country === selectedItem}>
             {country}
@@ -427,13 +449,14 @@ export const LongerListsOpen = () => {
 LongerListsOpen.storyName = 'Longer lists (open)'
 
 export const MenuAlignment = () => {
+  const {t} = useTranslation('ActionMenu')
   const [selectedItem, setSelectedItem] = React.useState('United States')
 
   return (
     <div style={{marginLeft: 150}}>
       <ActionMenu onSelect={newValue => setSelectedItem(newValue)} selectionVariant="single" menuAlignment="end" open>
-        <ActionMenu.Button>Select a country</ActionMenu.Button>
-        <ActionMenu.Overlay aria-label="Countries">
+        <ActionMenu.Button>{t('select_country')}</ActionMenu.Button>
+        <ActionMenu.Overlay aria-label={t('countries')}>
           {countries.map((country, index) => (
             <ActionMenu.Item key={index} value={country} selected={country === selectedItem}>
               {country}
@@ -448,12 +471,13 @@ export const MenuAlignment = () => {
 MenuAlignment.storyName = 'Menu alignment (end)'
 
 export const DisabledMenu = () => {
+  const {t} = useTranslation('ActionMenu')
   const [selectedItem] = React.useState('Copilot')
 
   return (
     <ActionMenu selectionVariant="single" disabled>
-      <ActionMenu.Button>Open menu</ActionMenu.Button>
-      <ActionMenu.Overlay aria-label="GitHub features">
+      <ActionMenu.Button>{t('open_menu')}</ActionMenu.Button>
+      <ActionMenu.Overlay aria-label={t('github_features')}>
         <ActionMenu.Item value="Copilot" selected={'Copilot' === selectedItem}>
           Copilot
         </ActionMenu.Item>
@@ -469,11 +493,13 @@ export const DisabledMenu = () => {
 }
 
 export const AnchoredPositioning = () => {
+  const {t} = useTranslation('ActionMenu')
+
   return (
     <Box style={{height: '90dvh', display: 'flex', alignItems: 'flex-end', justifyContent: 'flex-end'}}>
       <ActionMenu selectionVariant="single" open>
-        <ActionMenu.Button>Open menu</ActionMenu.Button>
-        <ActionMenu.Overlay aria-label="GitHub features">
+        <ActionMenu.Button>{t('open_menu')}</ActionMenu.Button>
+        <ActionMenu.Overlay aria-label={t('github_features')}>
           <ActionMenu.Item value="Copilot">Copilot</ActionMenu.Item>
           <ActionMenu.Item value="Codespaces">Codespaces</ActionMenu.Item>
           <ActionMenu.Item value="CodeQL">CodeQL</ActionMenu.Item>
@@ -484,14 +510,16 @@ export const AnchoredPositioning = () => {
 }
 
 export const AnchoredPositioningOverrides = () => {
+  const {t} = useTranslation('ActionMenu')
+
   return (
     <Grid enableOverlay>
       {actionMenuOverlaySides.map(side => (
         <Grid.Column key={side} span={{large: 4}}>
           <Stack direction="vertical" padding="condensed">
             <ActionMenu selectionVariant="single" menuSide={side}>
-              <ActionMenu.Button>Open menu</ActionMenu.Button>
-              <ActionMenu.Overlay aria-label="GitHub features">
+              <ActionMenu.Button>{t('open_menu')}</ActionMenu.Button>
+              <ActionMenu.Overlay aria-label={t('github_features')}>
                 <ActionMenu.Item value="Copilot">Copilot</ActionMenu.Item>
                 <ActionMenu.Item value="Codespaces">Codespaces</ActionMenu.Item>
                 <ActionMenu.Item value="CodeQL">CodeQL</ActionMenu.Item>
@@ -506,12 +534,13 @@ export const AnchoredPositioningOverrides = () => {
 }
 
 export const DisabledItem = () => {
+  const {t} = useTranslation('ActionMenu')
   const [selectedItem, setSelectedItem] = React.useState('Copilot')
 
   return (
     <ActionMenu onSelect={newValue => setSelectedItem(newValue)} selectionVariant="single" open>
-      <ActionMenu.Button>Select a GitHub feature</ActionMenu.Button>
-      <ActionMenu.Overlay aria-label="GitHub features">
+      <ActionMenu.Button>{t('select_github_feature')}</ActionMenu.Button>
+      <ActionMenu.Overlay aria-label={t('github_features')}>
         <ActionMenu.Item value="Copilot" selected={'Copilot' === selectedItem}>
           Copilot
         </ActionMenu.Item>
@@ -536,13 +565,14 @@ const possibleKeysToUnicode = {
 }
 
 export const KeyboardNavigation = () => {
+  const {t} = useTranslation('ActionMenu')
   const [selectedItem, setSelectedItem] = React.useState('Copilot')
 
   return (
     <Stack direction="horizontal" gap="spacious" alignItems="flex-start">
       <ActionMenu onSelect={newValue => setSelectedItem(newValue)} selectionVariant="single">
-        <ActionMenu.Button>Select a GitHub feature</ActionMenu.Button>
-        <ActionMenu.Overlay aria-label="GitHub features">
+        <ActionMenu.Button>{t('select_github_feature')}</ActionMenu.Button>
+        <ActionMenu.Overlay aria-label={t('github_features')}>
           <ActionMenu.Item
             value="Copilot"
             selected={'Copilot' === selectedItem}
