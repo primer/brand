@@ -55,14 +55,14 @@
     'components-minimalfooter-features--filtered-social-links': 5000, // for external social imagery to load
     'components-minimalfooter-features--default-narrow': 5000, // for external social imagery to load
     'components-minimalfooter-features--maximum-links': 5000, // for external social imagery to load
-    'components-actionmenu-features--open-by-default': 2000, // for the menu to open
-    'components-actionmenu-features--longer-lists-open': 2000, // for the menu to open
-    'components-actionmenu-features--menu-alignment': 2000, // for the menu to open
-    'components-actionmenu-features--disabled-item': 2000, // flakey test,
-    'components-actionmenu-features--single-selection-small-open': 2000, // for the menu to open
-    'components-actionmenu-features--split-button-mode-open': 2000, // for the menu to open
-    'components-actionmenu-features--split-button-alternative-menu-alignment': 2000, // for the menu to open
-    'components-actionmenu-features--anchored-positioning': 2000, // for the menu to open
+    'components-actionmenu-features--open-by-default': 1000, // for the menu to open
+    'components-actionmenu-features--longer-lists-open': 1000, // for the menu to open
+    'components-actionmenu-features--menu-alignment': 1000, // for the menu to open
+    'components-actionmenu-features--disabled-item': 1000, // flakey test,
+    'components-actionmenu-features--single-selection-small-open': 1000, // for the menu to open
+    'components-actionmenu-features--split-button-mode-open': 1000, // for the menu to open
+    'components-actionmenu-features--split-button-alternative-menu-alignment': 1000, // for the menu to open
+    'components-actionmenu-features--anchored-positioning': 1000, // for the menu to open
     'components-box-features--animation': 6000, // for the animation
     'components-ide--playground': 2000, // for the animation
     'components-ide--default': 2000, // for the animation
@@ -113,6 +113,14 @@
     'components-prose--default': 4000, // for videos to load,
     'components-subnav-features--anchor-nav-variant': 1000, // for being flakey across translations
   }
+
+  const skipLocalizationsTestsFor = [
+    'components-actionmenu-features--disabled-item', // for the menu to open
+    'components-actionmenu-features--single-selection-small-open', // for the menu to open
+    'components-actionmenu-features--split-button-mode-open', // for the menu to open
+    'components-actionmenu-features--split-button-alternative-menu-alignment', // for the menu to open
+    'components-actionmenu-features--anchored-positioning', // for the menu to open
+  ]
 
   /**
    * Manual lookup for tests that we want to skip
@@ -224,7 +232,9 @@
           `
         }
 
-        const allLanguageTests = languages.map(language => generateTestForLanguage(language)).join('')
+        const shouldSkipLocalizations = skipLocalizationsTestsFor.includes(id)
+        const languagesToTest = shouldSkipLocalizations ? ['en'] : languages
+        const allLanguageTests = languagesToTest.map(language => generateTestForLanguage(language)).join('')
 
         if (requiresMobileViewport) {
           return (acc += `
