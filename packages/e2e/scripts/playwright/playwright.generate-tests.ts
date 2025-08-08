@@ -55,10 +55,14 @@
     'components-minimalfooter-features--filtered-social-links': 5000, // for external social imagery to load
     'components-minimalfooter-features--default-narrow': 5000, // for external social imagery to load
     'components-minimalfooter-features--maximum-links': 5000, // for external social imagery to load
-    'components-actionmenu-features--open-by-default': 1000, // for the menu to open
-    'components-actionmenu-features--longer-lists-open': 1000, // for the menu to open
-    'components-actionmenu-features--menu-alignment': 1000, // for the menu to open
-    'components-actionmenu-features--disabled-item': 1000, // flakey test,
+    'components-actionmenu-features--open-by-default': 2000, // for the menu to open
+    'components-actionmenu-features--longer-lists-open': 2000, // for the menu to open
+    'components-actionmenu-features--menu-alignment': 2000, // for the menu to open
+    'components-actionmenu-features--disabled-item': 2000, // flakey test,
+    'components-actionmenu-features--single-selection-small-open': 2000, // for the menu to open
+    'components-actionmenu-features--split-button-mode-open': 2000, // for the menu to open
+    'components-actionmenu-features--split-button-alternative-menu-alignment': 2000, // for the menu to open
+    'components-actionmenu-features--anchored-positioning': 2000, // for the menu to open
     'components-box-features--animation': 6000, // for the animation
     'components-ide--playground': 2000, // for the animation
     'components-ide--default': 2000, // for the animation
