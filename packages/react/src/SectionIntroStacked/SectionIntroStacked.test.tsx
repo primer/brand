@@ -1,12 +1,12 @@
 import React, {render, cleanup} from '@testing-library/react'
 import '@testing-library/jest-dom'
 
-import {StackedSectionIntro} from './StackedSectionIntro'
+import {SectionIntroStacked} from './SectionIntroStacked'
 import {axe, toHaveNoViolations} from 'jest-axe'
 
 expect.extend(toHaveNoViolations)
 
-describe('StackedSectionIntro', () => {
+describe('SectionIntroStacked', () => {
   const mockHeading = 'Mock heading'
   const mockLinkText = 'Call to action'
 

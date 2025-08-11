@@ -1,4 +1,4 @@
-.StackedSectionIntro {
+.SectionIntroStacked {
   --brand-Grid-spacing-row: var(--base-size-48);
   display: flex;
   flex-direction: column;
@@ -6,29 +6,29 @@
   align-items: flex-start;
 }
 
-.StackedSectionIntro-heading--muted,
-.StackedSectionIntroItem__item-text--muted {
+.SectionIntroStacked-heading--muted,
+.SectionIntroStackedItem__item-text--muted {
   color: var(--brand-color-text-muted);
 }
 
-.StackedSectionIntro-heading--muted em,
-.StackedSectionIntro-heading--muted b,
-.StackedSectionIntroItem__item-text em,
-.StackedSectionIntroItem__item-text b {
+.SectionIntroStacked-heading--muted em,
+.SectionIntroStacked-heading--muted b,
+.SectionIntroStackedItem__item-text em,
+.SectionIntroStackedItem__item-text b {
   color: var(--brand-color-text-default);
   font-style: normal;
   font-weight: var(--base-text-weight-semibold);
 }
 
-.StackedSectionIntro--full-width .StackedSectionIntro-heading {
+.SectionIntroStacked--full-width .SectionIntroStacked-heading {
   max-width: none;
 }
 
-.StackedSectionIntro-link {
+.SectionIntroStacked-link {
   margin-top: var(--base-size-16);
 }
 
-.StackedSectionIntro-items {
+.SectionIntroStacked-items {
   margin: 0;
   padding: 0;
   list-style: none;
@@ -38,17 +38,17 @@
 }
 
 @media screen and (max-width: 63.25rem) {
-  .StackedSectionIntro-heading {
+  .SectionIntroStacked-heading {
     font-size: var(--brand-text-size-600);
   }
 }
 
 @media screen and (min-width: 48rem) {
-  .StackedSectionIntro-item {
+  .SectionIntroStacked-item {
     gap: var(--base-size-40);
   }
 
-  .StackedSectionIntro-items {
+  .SectionIntroStacked-items {
     /* Optical alignment with adjacent content */
     position: relative;
     top: var(--base-size-2);

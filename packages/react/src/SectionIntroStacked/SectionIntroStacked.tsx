@@ -6,18 +6,18 @@ import {Heading, HeadingProps, defaultHeadingTag} from '../Heading'
 import {Text} from '../Text'
 import {useAnimation} from '../animation'
 
-import styles from './StackedSectionIntro.module.css'
+import styles from './SectionIntroStacked.module.css'
 
 import type {BaseProps} from '../component-helpers'
 
-export type StackedSectionIntroProps = React.HTMLAttributes<HTMLElement> &
+export type SectionIntroStackedProps = React.HTMLAttributes<HTMLElement> &
   BaseProps<HTMLElement> & {
     children: React.ReactElement<
-      StackedSectionIntroHeadingProps | StackedSectionIntroItemsProps | StackedSectionIntroLinkProps
+      SectionIntroStackedHeadingProps | SectionIntroStackedItemsProps | SectionIntroStackedLinkProps
     >[]
   }
 
-const Root = forwardRef<HTMLElement, PropsWithChildren<StackedSectionIntroProps>>(
+const Root = forwardRef<HTMLElement, PropsWithChildren<SectionIntroStackedProps>>(
   ({animate, className, children, style, ...props}, ref) => {
     const {classes: animationClasses, styles: animationInlineStyles} = useAnimation(animate)
 
@@ -32,7 +32,7 @@ const Root = forwardRef<HTMLElement, PropsWithChildren<StackedSectionIntroProps>
       <header
         ref={ref}
         className={clsx(
-          styles.StackedSectionIntro,
+          styles.SectionIntroStacked,
 
           animationClasses,
           className,
@@ -51,7 +51,7 @@ const Root = forwardRef<HTMLElement, PropsWithChildren<StackedSectionIntroProps>
   },
 )
 
-type StackedSectionIntroHeadingProps = BaseProps<HTMLHeadingElement> & HeadingProps
+type SectionIntroStackedHeadingProps = BaseProps<HTMLHeadingElement> & HeadingProps
 
 const defaultHeadingSize = '5'
 
@@ -63,7 +63,7 @@ const _Heading = forwardRef(
       className,
       children,
       ...props
-    }: PropsWithChildren<StackedSectionIntroHeadingProps>,
+    }: PropsWithChildren<SectionIntroStackedHeadingProps>,
     ref: Ref<HTMLHeadingElement>,
   ) => {
     const childrenArray = useMemo(() => React.Children.toArray(children), [children])
@@ -81,8 +81,8 @@ const _Heading = forwardRef(
       <Heading
         ref={ref}
         className={clsx(
-          styles[`StackedSectionIntro-heading`],
-          defaultColor === 'muted' && styles[`StackedSectionIntro-heading--muted`],
+          styles[`SectionIntroStacked-heading`],
+          defaultColor === 'muted' && styles[`SectionIntroStacked-heading--muted`],
           className,
         )}
         size={size}
@@ -95,14 +95,14 @@ const _Heading = forwardRef(
   },
 )
 
-type StackedSectionIntroLinkProps = Omit<LinkProps, 'size'> & BaseProps<HTMLAnchorElement>
+type SectionIntroStackedLinkProps = Omit<LinkProps, 'size'> & BaseProps<HTMLAnchorElement>
 
 const _Link = forwardRef(
-  ({className, children, variant = 'accent', ...props}: StackedSectionIntroLinkProps, ref: Ref<HTMLAnchorElement>) => {
+  ({className, children, variant = 'accent', ...props}: SectionIntroStackedLinkProps, ref: Ref<HTMLAnchorElement>) => {
     return (
       <Link
         ref={ref}
-        className={clsx(styles['StackedSectionIntro-link'], className)}
+        className={clsx(styles['SectionIntroStacked-link'], className)}
         size="large"
         variant={variant}
         {...props}
@@ -113,12 +113,12 @@ const _Link = forwardRef(
   },
 )
 
-type StackedSectionIntroItemsProps = BaseProps<HTMLUListElement>
+type SectionIntroStackedItemsProps = BaseProps<HTMLUListElement>
 
-const _Items = ({animate, className, children, ...rest}: PropsWithChildren<StackedSectionIntroItemsProps>) => {
+const _Items = ({animate, className, children, ...rest}: PropsWithChildren<SectionIntroStackedItemsProps>) => {
   const {classes: animationClasses, styles: animationInlineStyles} = useAnimation(animate)
 
-  const timelineClassName = clsx(animationClasses, styles['StackedSectionIntro-items'], className)
+  const timelineClassName = clsx(animationClasses, styles['SectionIntroStacked-items'], className)
 
   return (
     <ul className={timelineClassName} style={{...animationInlineStyles}} {...rest}>
@@ -127,10 +127,10 @@ const _Items = ({animate, className, children, ...rest}: PropsWithChildren<Stack
   )
 }
 
-export type StackedSectionIntroItemProps = BaseProps<HTMLLIElement>
+export type SectionIntroStackedItemProps = BaseProps<HTMLLIElement>
 
-const _Item = ({className, children, ...rest}: PropsWithChildren<StackedSectionIntroItemProps>) => {
-  const itemClassName = clsx(styles['StackedSectionIntroItem-item'], className)
+const _Item = ({className, children, ...rest}: PropsWithChildren<SectionIntroStackedItemProps>) => {
+  const itemClassName = clsx(styles['SectionIntroStackedItem-item'], className)
   const childrenArray = useMemo(() => React.Children.toArray(children), [children])
 
   const getConditionalVariant = useCallback(() => {
@@ -146,8 +146,8 @@ const _Item = ({className, children, ...rest}: PropsWithChildren<StackedSectionI
       <Text
         as="span"
         className={clsx(
-          styles['StackedSectionIntroItem__item-text'],
-          defaultColor === 'muted' && styles[`StackedSectionIntroItem__item-text--muted`],
+          styles['SectionIntroStackedItem__item-text'],
+          defaultColor === 'muted' && styles[`SectionIntroStackedItem__item-text--muted`],
         )}
         size="350"
         weight="medium"
@@ -158,7 +158,7 @@ const _Item = ({className, children, ...rest}: PropsWithChildren<StackedSectionI
   )
 }
 
-export const StackedSectionIntro = Object.assign(Root, {
+export const SectionIntroStacked = Object.assign(Root, {
   Heading: _Heading,
   Link: _Link,
   Items: _Items,
