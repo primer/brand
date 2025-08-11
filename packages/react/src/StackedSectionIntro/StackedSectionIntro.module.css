@@ -47,4 +47,10 @@
   .StackedSectionIntro-item {
     gap: var(--base-size-40);
   }
+
+  .StackedSectionIntro-items {
+    /* Optical alignment with adjacent content */
+    position: relative;
+    top: var(--base-size-2);
+  }
 }
