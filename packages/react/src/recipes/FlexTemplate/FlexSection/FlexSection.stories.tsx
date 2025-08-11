@@ -2,9 +2,72 @@ import React from 'react'
 import {INITIAL_VIEWPORTS} from '@storybook/addon-viewport'
 import {Meta, StoryFn} from '@storybook/react'
 
-import {ColorModesEnum} from '../../../ThemeProvider'
-import {themeDetailsMap} from '../helpers'
 import {FlexSection} from './FlexSection'
+
+// Function to generate mock data based on story args
+const createMockData = (args: Record<string, unknown>) => ({
+  fields: {
+    id: args.sectionId,
+    anchorNav: args.showAnchorNav,
+    introContent: args.showIntroContent
+      ? {
+          sys: {
+            contentType: {
+              sys: {
+                id: args.introContentType,
+              },
+            },
+          },
+        }
+      : null,
+
+    logoSuite: args.showLogosuite,
+    cards: args.showCards,
+    prose: args.showProse
+      ? {
+          fields: {
+            content: args.proseContent,
+          },
+        }
+      : null,
+    pillars: args.showPillars
+      ? {
+          fields: {
+            heading: args.pillarsHeading,
+            items: [
+              {
+                title: args.pillar1Title,
+                description: args.pillar1Description,
+                icon: 'zap',
+              },
+              {
+                title: args.pillar2Title,
+                description: args.pillar2Description,
+                icon: 'rocket',
+              },
+              {
+                title: args.pillar3Title,
+                description: args.pillar3Description,
+                icon: 'shield',
+              },
+            ],
+          },
+        }
+      : null,
+    visualSettings: {
+      fields: {
+        backgroundColor: args.backgroundColor,
+        paddingBlockStart: args.paddingBlockStart,
+        colorMode: args.colorMode,
+        paddingBlockEnd: args.paddingBlockEnd,
+        roundedCorners: args.roundedCorners,
+        verticalGap: args.verticalGap,
+        hasBorderBottom: args.hasBorderBottom,
+        enableRiverStoryScroll: args.enableRiverStoryScroll,
+      },
+    },
+  },
+})
 
 export default {
   title: 'Recipes/FlexTemplate/FlexSection',
@@ -14,253 +77,191 @@ export default {
       viewports: INITIAL_VIEWPORTS,
     },
     layout: 'fullscreen',
-    a11y: {
-      config: {
-        rules: [
-          // disable color-contrast rule as the IDE is presentational
-          {
-            id: 'color-contrast',
-            enabled: false,
-            element: 'breakout-with-ide',
-          },
-        ],
-      },
-    },
   },
   args: {
-    gridOverlay: false,
-    colorMode: ColorModesEnum.LIGHT,
-    accentColor: 'ai',
+    // Section settings
+    sectionId: 'example-section',
+    showAnchorNav: true,
+    showLogosuite: true,
+    showCards: true,
 
-    sectionIntroAlign: 'center',
-    sectionIntroVisible: true,
-    sectionIntroText: [
-      <b key="highlighted-text">Here we explain why this came to be.</b>,
-      ` This is a short statement about the intention
-    of the feature and why we think it's cool, keep it real.`,
-    ],
+    // Intro content
+    showIntroContent: true,
+    introContentType: 'introStackedItems',
 
-    pillarVisible: true,
-    pillarBackground: false,
+    // Prose content
+    showProse: true,
+    proseContent:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
 
-    logoSuiteVisible: true,
+    // Pillars content
+    showPillars: true,
+    pillarsHeading: 'Key Features',
+    pillar1Title: 'Powerful Performance',
+    pillar1Description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+    pillar2Title: 'Easy Integration',
+    pillar2Description: 'Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+    pillar3Title: 'Secure & Reliable',
+    pillar3Description: 'Ut enim ad minim veniam, quis nostrud exercitation ullamco.',
 
-    prose: {
-      visible: true,
-      text: `
-        <p>
-          <a href="https://docs.github.com/en/enterprise-server@3.5/admin/overview/about-github-enterprise-server">GitHub Enterprise Server</a>
-          is the self-hosted version of GitHub Enterprise. It is installed on-premises or on a private
-          cloud and provides organizations with a secure and customizable source code management and
-          collaboration platform.
-        </p>
-
-        <p>
-          One of the key advantages of GitHub Enterprise Server is that it provides organizations with
-          complete control over their source code and data. Organizations can choose where to store their
-          repositories and can control who has access to them. Administrators can also customize the
-          platform to meet specific needs, such as integrating other tools or implementing custom
-          workflows.
-        </p>
-
-        <p>
-          GitHub Enterprise Server also offers enhanced security and compliance features. Organizations
-          can configure their instance to meet their specific security requirements, such as using LDAP or
-          SAML for authentication, setting up two-factor authentication, or implementing network security
-          measures. Compliance features are also included, such as audit logs, access controls, and
-          vulnerability scanning.
-        </p>
-      `,
-    },
-
-    rivers: [
-      {
-        visible: true,
-        type: 'breakout',
-        title: 'Dive into the first sub feature with a river',
-        description:
-          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis felis nam pulvinar.',
-        ctaText: 'Learn more',
-      },
-      {
-        visible: true,
-        type: 'start',
-        title: 'Dive into the first sub feature with a river',
-        description:
-          'Here we explain why this came to be. This is a short statement about the intention of the feature and why we think its cool, keep it real.',
-        ctaText: 'Learn more',
-      },
-      {
-        visible: true,
-        type: 'start',
-        title: 'Dive into the first sub feature with a river',
-        description:
-          'Here we explain why this came to be. This is a short statement about the intention of the feature and why we think its cool, keep it real.',
-        ctaText: 'Learn more',
-      },
-      {
-        visible: true,
-        type: 'start',
-        title: 'Dive into the first sub feature with a river',
-        description:
-          'Here we explain why this came to be. This is a short statement about the intention of the feature and why we think its cool, keep it real.',
-        ctaText: 'Learn more',
-      },
-    ],
-
-    testimonialVisible: true,
-    testimonialQuantity: 1,
-
-    ctaBannerVisible: true,
-    ctaBannerShowBg: true,
-
-    cardsVisible: true,
+    // Visual settings
+    backgroundColor: 'default',
+    paddingBlockStart: 'spacious',
+    colorMode: 'inherit',
+    paddingBlockEnd: 'spacious',
+    roundedCorners: false,
+    verticalGap: 'normal',
+    hasBorderBottom: false,
+    enableRiverStoryScroll: false,
   },
   argTypes: {
-    variant: {
-      table: {
-        disable: true,
-      },
+    // Section controls
+    sectionId: {
+      control: 'text',
+      description: 'Unique identifier for the section',
+      table: {category: 'Section'},
     },
-    gridOverlay: {
-      name: 'enable grid overlay',
+    showLogosuite: {
       control: 'boolean',
-      table: {
-        category: 'General',
-      },
+      description: 'Show logo suite',
+      table: {category: 'Section'},
+    },
+    showCards: {
+      control: 'boolean',
+      description: 'Show cards',
+      table: {category: 'Section'},
+    },
+    showAnchorNav: {
+      control: 'boolean',
+      description: 'Show anchor navigation',
+      table: {category: 'Section'},
+    },
+
+    // Intro content controls
+    showIntroContent: {
+      control: 'boolean',
+      description: 'Show intro content section',
+      table: {category: 'Intro Content'},
+    },
+    introContentType: {
+      control: {type: 'radio'},
+      options: ['introStackedItems', 'primerComponentSectionIntro'],
+      description: 'Type of intro content to display',
+      table: {category: 'Intro Content'},
+      if: {arg: 'showIntroContent'},
+    },
+
+    // Prose controls
+    showProse: {
+      control: 'boolean',
+      description: 'Show prose content section',
+      table: {category: 'Prose Content'},
+    },
+    proseContent: {
+      control: 'text',
+      description: 'Prose content text',
+      table: {category: 'Prose Content'},
+      if: {arg: 'showProse'},
+    },
+
+    // Pillars controls
+    showPillars: {
+      control: 'boolean',
+      description: 'Show pillars section',
+      table: {category: 'Pillars'},
+    },
+    pillarsHeading: {
+      control: 'text',
+      description: 'Pillars section heading',
+      table: {category: 'Pillars'},
+      if: {arg: 'showPillars'},
+    },
+    pillar1Title: {
+      control: 'text',
+      description: 'First pillar title',
+      table: {category: 'Pillars'},
+      if: {arg: 'showPillars'},
+    },
+    pillar1Description: {
+      control: 'text',
+      description: 'First pillar description',
+      table: {category: 'Pillars'},
+      if: {arg: 'showPillars'},
+    },
+    pillar2Title: {
+      control: 'text',
+      description: 'Second pillar title',
+      table: {category: 'Pillars'},
+      if: {arg: 'showPillars'},
+    },
+    pillar2Description: {
+      control: 'text',
+      description: 'Second pillar description',
+      table: {category: 'Pillars'},
+      if: {arg: 'showPillars'},
+    },
+    pillar3Title: {
+      control: 'text',
+      description: 'Third pillar title',
+      table: {category: 'Pillars'},
+      if: {arg: 'showPillars'},
+    },
+    pillar3Description: {
+      control: 'text',
+      description: 'Third pillar description',
+      table: {category: 'Pillars'},
+      if: {arg: 'showPillars'},
+    },
+
+    // Visual settings controls
+    backgroundColor: {
+      control: {type: 'select'},
+      options: ['default', 'subtle'],
+      description: 'Section background color',
+      table: {category: 'Visual Settings'},
+    },
+    paddingBlockStart: {
+      control: {type: 'select'},
+      options: ['none', 'condensed', 'normal', 'spacious'],
+      description: 'Top padding of the section',
+      table: {category: 'Visual Settings'},
+    },
+    paddingBlockEnd: {
+      control: {type: 'select'},
+      options: ['none', 'condensed', 'normal', 'spacious'],
+      description: 'Bottom padding of the section',
+      table: {category: 'Visual Settings'},
     },
     colorMode: {
-      name: 'mode',
-      control: 'inline-radio',
-      options: [ColorModesEnum.LIGHT, ColorModesEnum.DARK],
-      table: {
-        category: 'Theming',
-      },
+      control: {type: 'select'},
+      options: ['inherit', 'light', 'dark'],
+      description: 'Color mode for the section',
+      table: {category: 'Visual Settings'},
     },
-    accentColor: {
-      name: 'theme',
-      control: 'radio',
-      options: Object.keys(themeDetailsMap),
-      table: {
-        category: 'Theming',
-      },
+    verticalGap: {
+      control: {type: 'select'},
+      options: ['none', 'condensed', 'normal', 'spacious'],
+      description: 'Vertical gap between elements',
+      table: {category: 'Visual Settings'},
     },
-
-    /**
-     * Rivers
-     */
-    rivers: {
-      control: 'object',
-      name: 'Rivers',
-      description: 'Array of rivers to display in the section',
-      table: {
-        category: 'Rivers',
-      },
-    },
-
-    /**
-     * Section intro
-     */
-    sectionIntroAlign: {
-      control: 'inline-radio',
-      options: ['start', 'center'],
-      name: 'align',
-      table: {
-        category: 'Section: Introduce',
-      },
-    },
-    sectionIntroText: {
-      control: 'text',
-      name: 'text',
-      table: {
-        category: 'Section: Introduce',
-      },
-    },
-    sectionIntroVisible: {
+    roundedCorners: {
       control: 'boolean',
-      name: 'visible',
-      table: {
-        category: 'Section: Introduce',
-      },
+      description: 'Enable rounded corners',
+      table: {category: 'Visual Settings'},
     },
-    /**
-     * Pillars
-     */
-    pillarVisible: {
+    hasBorderBottom: {
       control: 'boolean',
-      name: 'visible',
-      table: {
-        category: 'Section: Pillars',
-      },
+      description: 'Show bottom border',
+      table: {category: 'Visual Settings'},
     },
-    pillarBackground: {
+    enableRiverStoryScroll: {
       control: 'boolean',
-      name: 'hasBackground',
-      table: {
-        category: 'Section: Pillars',
-      },
-    },
-    /**
-     * LogoSuite
-     */
-    logoSuiteVisible: {
-      control: 'boolean',
-      name: 'visible',
-      table: {
-        category: 'Section: LogoSuite',
-      },
-    },
-    /**
-     * Testimonial
-     */
-    testimonialVisible: {
-      control: 'boolean',
-      name: 'visible',
-      table: {
-        category: 'Section: Testimonial',
-      },
-    },
-    testimonialQuantity: {
-      control: 'inline-radio',
-      options: [1, 2],
-      name: 'quantity',
-      table: {
-        category: 'Section: Testimonial',
-      },
-    },
-    /**
-     * CTABanner
-     */
-    ctaBannerVisible: {
-      control: 'boolean',
-      name: 'visible',
-      table: {
-        category: 'Section: CTABanner',
-      },
-    },
-    ctaBannerShowBg: {
-      control: 'boolean',
-      name: 'showBg',
-      table: {
-        category: 'Section: CTABanner',
-      },
-    },
-    /**
-     * Cards
-     */
-    cardsVisible: {
-      control: 'boolean',
-      name: 'visible',
-      table: {
-        category: 'Section: Cards',
-      },
+      description: 'Enable river story scroll',
+      table: {category: 'Visual Settings'},
     },
   },
 } as Meta<typeof FlexSection>
 
-export const FlexSectionDefault: StoryFn<typeof FlexSection> = args => <FlexSection {...args} />
+export const FlexSectionDefault: StoryFn<typeof FlexSection> = args => <FlexSection component={createMockData(args)} />
 
 FlexSectionDefault.storyName = 'Default'
-FlexSectionDefault.args = {
-  variant: 'Default',
-}

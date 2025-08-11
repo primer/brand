@@ -1,10 +1,16 @@
 declare const styles: {
-  readonly "FlexSection": string;
-  readonly "FlexSection__ctaBanner": string;
-  readonly "FlexSection__heroBg": string;
-  readonly "FlexSection__heroImageContainer": string;
-  readonly "FlexSection__trailingSection": string;
-  readonly "RiverContent": string;
+  readonly "heightFull": string;
+  readonly "normalizeMargin": string;
+  readonly "normalizePadding": string;
+  readonly "paddingBottom-condensed": string;
+  readonly "paddingBottom-none": string;
+  readonly "paddingBottom-normal": string;
+  readonly "paddingBottom-spacious": string;
+  readonly "riverBreakoutNoCta": string;
+  readonly "section": string;
+  readonly "sectionIntro": string;
+  readonly "stackedItemHeading": string;
+  readonly "stackedItemText": string;
 };
 export = styles;
 
