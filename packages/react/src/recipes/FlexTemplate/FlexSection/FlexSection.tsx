@@ -4,6 +4,7 @@ import clsx from 'clsx'
 import {ZapIcon} from '@primer/octicons-react'
 
 import {
+  AnchorNav,
   Bento,
   Box,
   Button,
@@ -42,389 +43,415 @@ import emptyBrowserLightFull from '../fixtures/images/fg/empty-browser-full-ligh
 
 import styles from './FlexSection.module.css'
 
-type RiverProps = {
-  visible: boolean
-  type: 'start' | 'end' | 'breakout'
-  title: string
-  description: string
-  ctaText: string
-}
-
 type FlexSectionProps = {
-  gridOverlay?: boolean
-  variant?: 'Default' | 'Maximum' | 'Minimum'
-  colorMode?: ColorModesEnum.LIGHT | ColorModesEnum.DARK
-  accentColor: Themes
-
-  sectionIntroAlign: 'start' | 'center'
-  sectionIntroText: string | React.ReactElement[]
-  sectionIntroVisible: boolean
-
-  pillarVisible: boolean
-  pillarBackground: boolean
-
-  logoSuiteVisible: boolean
-
-  testimonialVisible: boolean
-  testimonialQuantity: number
-
-  ctaBannerVisible: boolean
-  ctaBannerShowBg: boolean
-
-  cardsVisible: boolean
-
-  prose?: {
-    visible: boolean
-    text: string
-  }
-
-  rivers?: RiverProps[]
+  component
+  className?: string
 }
 
-export function FlexSection({accentColor, variant, gridOverlay = false, colorMode, ...args}: FlexSectionProps) {
-  const [enableGridOverlay, setGridOverlay] = React.useState(gridOverlay)
-  const [isLightMode, setIsLightMode] = React.useState(colorMode === ColorModesEnum.LIGHT)
-  const selectedColorMode = isLightMode ? ColorModesEnum.LIGHT : ColorModesEnum.DARK
-  const accentColorValue = themeDetailsMap[accentColor][selectedColorMode].color
+export function FlexSection({component, className}: FlexSectionProps) {
+  const {
+    breakoutBanner,
+    cards,
+    featuredBento,
+    id,
+    anchorNav,
+    introContent,
+    logoSuite,
+    pillars,
+    prose,
+    pricingOptions,
+    rivers,
+    segmentedControlPanel,
+    statistics,
+    testimonials,
+    visualSettings,
+  } = component.fields
 
-  useEffect(() => {
-    setGridOverlay(gridOverlay)
-  }, [gridOverlay])
-
-  useEffect(() => {
-    setIsLightMode(colorMode === ColorModesEnum.LIGHT)
-  }, [colorMode])
-
-  const renderPiller = () => (
-    <Pillar>
-      <Pillar.Icon icon={<ZapIcon />} />
-      <Pillar.Heading as="h3">Here is a core value proposition of this new feature on one or two lines</Pillar.Heading>
-      <Pillar.Description>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id aliquam luctus sed turpis.
-      </Pillar.Description>
-    </Pillar>
-  )
-
-  const renderTestimonial = (num: FlexSectionProps['testimonialQuantity']) => {
-    return (
-      <Testimonial size={num === 1 ? 'large' : 'small'} quoteMarkColor="default">
-        <Testimonial.Quote>
-          <b>We&apos;ve used GitHub from the inception of Datadog. It&apos;s a high-quality product,</b> and a lot of
-          our engineers contribute to open source so there&apos;s a sense of community there. GitHub is ingrained in the
-          DNA of our engineering, it&apos;s become part of the culture.”
-        </Testimonial.Quote>
-        <Testimonial.Name position="Staff Software Engineer">David Ross</Testimonial.Name>
-        <Testimonial.Avatar src={monaAvatar} alt="circular avatar for mona, GitHub's mascot" />
-      </Testimonial>
-    )
-  }
+  const {
+    backgroundColor = 'default',
+    paddingBlockStart = 'spacious',
+    colorMode = 'inherit',
+    paddingBlockEnd = 'spacious',
+    roundedCorners = false,
+    verticalGap = 'normal',
+    backgroundImage,
+    backgroundImagePosition,
+    backgroundImageSize,
+    testimonialBackgroundImageVariant,
+    hasBorderBottom = false,
+    enableRiverStoryScroll = false,
+  } = visualSettings?.fields ?? {}
 
   return (
-    <ThemeProvider
-      colorMode={selectedColorMode}
-      style={{
-        ['--brand-Testimonial-quoteMarkColor-default' as string]: accentColorValue,
-        ['--brand-Pillar-icon-color-default' as string]: accentColorValue,
-        ['--brand-Label-color-default' as string]: accentColorValue,
-        ['--brand-color-accent-primary' as string]: accentColorValue,
-        backgroundColor: 'var(--brand-color-canvas-default)',
-      }}
+    <Section
+      className={clsx(className, styles.section, testimonialBackgroundImageVariant && 'overflow-hidden')}
+      backgroundColor={backgroundColor}
+      backgroundImageSrc={backgroundImage?.fields.file.url}
+      backgroundImagePosition={backgroundImagePosition}
+      backgroundImageSize={backgroundImageSize}
+      paddingBlockStart={paddingBlockStart}
+      paddingBlockEnd="none"
+      rounded={roundedCorners}
+      id={id}
     >
-      <Section paddingBlockStart={'spacious'} paddingBlockEnd={'spacious'}>
-        <Box>
-          <Stack direction="vertical" padding="none" gap={'normal'}>
-            <Grid enableOverlay={enableGridOverlay}>
-              <Grid.Column>
-                {args.sectionIntroText && args.sectionIntroVisible && (
-                  <Grid enableOverlay={enableGridOverlay}>
-                    <Grid.Column
-                      span={{medium: args.sectionIntroAlign === 'center' ? 8 : 9}}
-                      start={{medium: args.sectionIntroAlign === 'center' ? 3 : 1}}
-                    >
-                      <Box marginBlockEnd={40}>
-                        <SectionIntro fullWidth align={args.sectionIntroAlign}>
-                          <SectionIntro.Heading>{args.sectionIntroText}</SectionIntro.Heading>
-                        </SectionIntro>
+      <Box
+        borderBlockEndWidth="thin"
+        borderColor="muted"
+        borderStyle={hasBorderBottom ? 'solid' : 'none'}
+        className={styles[`paddingBottom-${paddingBlockEnd}`]}
+      >
+        <Stack padding="none" gap={verticalGap} direction="vertical">
+          {anchorNav && (
+            <AnchorNav>
+              <AnchorNav.Link href="#basic-section1">Section one</AnchorNav.Link>
+              <AnchorNav.Link href="#basic-section2">Section two</AnchorNav.Link>
+              <AnchorNav.Link href="#basic-section3">Section three</AnchorNav.Link>
+              <AnchorNav.Link href="#basic-section4">Section four</AnchorNav.Link>
+              <AnchorNav.Link href="#basic-section5">Section five</AnchorNav.Link>
+              <AnchorNav.Action href="#">Sign up</AnchorNav.Action>
+            </AnchorNav>
+          )}
+          {introContent && (
+            <>
+              {introContent.sys.contentType.sys.id === 'introStackedItems' && (
+                <Box marginBlockEnd={40} style={{['--brand-Grid-spacing-row' as string]: 'var(--base-size-48)'}}>
+                  <Grid>
+                    <Grid.Column span={{large: 5}}>
+                      <Box className={styles.sectionIntro}>
+                        <Heading className={styles.stackedItemHeading} as="h2">
+                          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        </Heading>
+                        <Link href="#">Learn more</Link>
                       </Box>
                     </Grid.Column>
-                  </Grid>
-                )}
-
-                {args.pillarVisible && (
-                  <Box
-                    marginBlockEnd={{
-                      narrow: 16,
-                      regular: 16,
-                      wide: 48,
-                    }}
-                  >
-                    <Grid enableOverlay={enableGridOverlay}>
-                      <Grid.Column span={{medium: 4}}>
-                        {args.pillarBackground ? (
-                          <Box
-                            paddingInlineStart={32}
-                            paddingInlineEnd={32}
-                            paddingBlockStart={32}
-                            paddingBlockEnd={8}
-                            backgroundColor="subtle"
-                            borderRadius="large"
-                          >
-                            {renderPiller()}
-                          </Box>
-                        ) : (
-                          renderPiller()
-                        )}
-                      </Grid.Column>
-
-                      <Grid.Column span={{medium: 4}}>
-                        {args.pillarBackground ? (
-                          <Box
-                            paddingInlineStart={32}
-                            paddingInlineEnd={32}
-                            paddingBlockStart={32}
-                            paddingBlockEnd={8}
-                            backgroundColor="subtle"
-                            borderRadius="large"
-                          >
-                            {renderPiller()}
-                          </Box>
-                        ) : (
-                          renderPiller()
-                        )}
-                      </Grid.Column>
-
-                      <Grid.Column span={{medium: 4}}>
-                        {args.pillarBackground ? (
-                          <Box
-                            paddingInlineStart={32}
-                            paddingInlineEnd={32}
-                            paddingBlockStart={32}
-                            paddingBlockEnd={8}
-                            backgroundColor="subtle"
-                            borderRadius="large"
-                          >
-                            {renderPiller()}
-                          </Box>
-                        ) : (
-                          renderPiller()
-                        )}
-                      </Grid.Column>
-                    </Grid>
-                  </Box>
-                )}
-              </Grid.Column>
-            </Grid>
-
-            {args.logoSuiteVisible && (
-              <Grid>
-                <Grid.Column>
-                  <LogoSuite align="start" hasDivider={true}>
-                    <LogoSuite.Heading as="h3" size="6" visuallyHidden>
-                      Trusted by devs across the world
-                    </LogoSuite.Heading>
-                    <LogoSuite.Logobar variant="muted" marquee={process.env.NODE_ENV !== 'test'}>
-                      <Image alt="Uber" src={uberLogo} />
-                      <Image alt="Vercel" src={vercelLogo} />
-                      <Image alt="Shopify" src={shopifyLogo} />
-                      <Image alt="Pinterest" src={pinterestLogo} />
-                      <Image alt="Twilio" src={twilioLogo} />
-                    </LogoSuite.Logobar>
-                  </LogoSuite>
-                </Grid.Column>
-              </Grid>
-            )}
-
-            {args.cardsVisible && (
-              <Stack direction="vertical" padding="none" gap={64} alignItems="center">
-                <Grid>
-                  <Grid.Column span={{medium: 4}}>
-                    <Card href="#" hasBorder>
-                      <Card.Heading>Collaboration is the key to DevOps success</Card.Heading>
-                      <Card.Description>
-                        Everything you need to know about getting started with GitHub Actions.
-                      </Card.Description>
-                    </Card>
-                  </Grid.Column>
-                  <Grid.Column span={{medium: 4}}>
-                    <Card href="#" hasBorder>
-                      <Card.Heading>Collaboration is the key to DevOps success</Card.Heading>
-                      <Card.Description>
-                        Everything you need to know about getting started with GitHub Actions.
-                      </Card.Description>
-                    </Card>
-                  </Grid.Column>
-                  <Grid.Column span={{medium: 4}}>
-                    <Card href="#" hasBorder>
-                      <Card.Heading>Collaboration is the key to DevOps success</Card.Heading>
-                      <Card.Description>
-                        Everything you need to know about getting started with GitHub Actions.
-                      </Card.Description>
-                    </Card>
-                  </Grid.Column>
-                </Grid>
-              </Stack>
-            )}
-
-            <Box>
-              <Bento>
-                <Bento.Item
-                  rowSpan={5}
-                  flow={{
-                    xsmall: 'row',
-                    small: 'row',
-                    medium: 'column',
-                    large: 'column',
-                    xlarge: 'column',
-                    xxlarge: 'column',
-                  }}
-                >
-                  <Bento.Content>
-                    <Bento.Heading size="4">
-                      <b>This is my super-sweet</b> bento heading
-                    </Bento.Heading>
-                    <Link href="#">Read customer story</Link>
-                  </Bento.Content>
-                  <Bento.Visual position="50% 100%" padding="normal">
-                    <img alt="placeholder, blank area with an gray background color" src={placeholderImage} />
-                  </Bento.Visual>
-                </Bento.Item>
-              </Bento>
-            </Box>
-
-            {args.prose && args.prose?.visible && (
-              <Stack alignItems={'center'}>
-                <Prose html={args.prose.text} />
-              </Stack>
-            )}
-
-            {args.rivers && args.rivers.length > 0 && (
-              <Grid>
-                <Grid.Column span={{medium: 12}}>
-                  {args.rivers.map(river => {
-                    if (!river.visible) return null
-
-                    return (
-                      <>
-                        {river.type === 'breakout' ? (
-                          <RiverBreakout>
-                            <RiverBreakout.A11yHeading as="h3">{river.title}</RiverBreakout.A11yHeading>
-                            <RiverBreakout.Visual
-                              className={styles.FlexSection__heroImageContainer}
-                              style={{
-                                backgroundImage: `url(${themeDetailsMap[accentColor][selectedColorMode].images.heroVisualBg})`,
-                              }}
-                            >
-                              <Image
-                                src={isLightMode ? emptyBrowserLightFull : emptyBrowserDarkFull}
-                                alt="placeholder, blank area with a gray background color"
-                              />
-                            </RiverBreakout.Visual>
-
-                            <RiverBreakout.Content
-                              trailingComponent={() => (
-                                <Box>
-                                  <Timeline fullWidth>
-                                    <Timeline.Item>
-                                      <b>This is what it is and it&apos;s great. </b>That&apos;s why and how the
-                                      greatness happens here, we love sub bullets, they allow for more specific
-                                      technical details.
-                                    </Timeline.Item>
-                                    <Timeline.Item>
-                                      <b>This is what it is and it&apos;s great. </b>That&apos;s why and how the
-                                      greatness happens here, we love sub bullets, they allow for more specific
-                                      technical details.
-                                    </Timeline.Item>
-                                  </Timeline>
-                                </Box>
-                              )}
-                            >
-                              <Text>{river.description}</Text>
-                              <Link href="#">{river.ctaText}</Link>
-                            </RiverBreakout.Content>
-                          </RiverBreakout>
-                        ) : (
-                          <River align={river.type}>
-                            <River.Visual
-                              className={styles.FlexSection__heroImageContainer}
-                              style={{
-                                backgroundImage: `url(${themeDetailsMap[accentColor][selectedColorMode].images.riverVisualBgs[0]})`,
-                              }}
-                            >
-                              <Image
-                                src={isLightMode ? emptyBrowserLightFull : emptyBrowserDarkFull}
-                                alt="placeholder, blank area with a gray background color"
-                              />
-                            </River.Visual>
-
-                            <River.Content className={clsx(river.type === 'end' && styles.RiverContent)}>
-                              <Heading as="h3">{river.title}</Heading>
-                              <Text>{river.description}</Text>
-                              <Link href="#">{river.ctaText}</Link>
-                            </River.Content>
-                          </River>
-                        )}
-                      </>
-                    )
-                  })}
-                </Grid.Column>
-              </Grid>
-            )}
-
-            <Grid enableOverlay={enableGridOverlay}>
-              {args.testimonialVisible && (
-                <>
-                  {args.testimonialQuantity === 1 ? (
-                    <Grid.Column start={{medium: 2}} span={{medium: 10}}>
-                      <Box marginBlockEnd={112}>{renderTestimonial(args.testimonialQuantity)}</Box>
+                    <Grid.Column span={{large: 6}} start={{large: 7}}>
+                      <Stack direction="vertical" padding="none">
+                        <Text as="p" className={styles.stackedItemText} variant="muted">
+                          <Text className={styles.stackedItemText} weight="semibold">
+                            Lorem ipsum dolor sit amet,
+                          </Text>{' '}
+                          consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis felis nam
+                          pulvinar.
+                        </Text>
+                        <Text as="p" className={styles.stackedItemText} variant="muted">
+                          <Text className={styles.stackedItemText} weight="semibold">
+                            Lorem ipsum dolor sit amet,
+                          </Text>{' '}
+                          consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis felis nam
+                          pulvinar.
+                        </Text>
+                        <Text as="p" className={styles.stackedItemText} variant="muted">
+                          <Text className={styles.stackedItemText} weight="semibold">
+                            Lorem ipsum dolor sit amet,
+                          </Text>{' '}
+                          consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis felis nam
+                          pulvinar.
+                        </Text>
+                      </Stack>
                     </Grid.Column>
-                  ) : (
-                    <>
-                      <Grid.Column span={6}>
-                        <Box marginBlockEnd={112}>{renderTestimonial(args.testimonialQuantity)}</Box>
-                      </Grid.Column>
-                      <Grid.Column span={6}>
-                        <Box marginBlockEnd={112}>{renderTestimonial(args.testimonialQuantity)}</Box>
-                      </Grid.Column>
-                    </>
-                  )}
-                </>
+                  </Grid>
+                </Box>
               )}
 
-              <Grid.Column>
-                {args.ctaBannerVisible && (
+              {introContent.sys.contentType.sys.id === 'primerComponentSectionIntro' && (
+                <Grid className={styles.sectionIntro}>
                   <Grid.Column>
-                    <Box>
-                      <CTABanner
-                        className={styles.FlexSection__ctaBanner}
-                        align="center"
-                        hasShadow={false}
-                        hasBackground={args.ctaBannerShowBg ? false : true}
-                        style={
-                          args.ctaBannerShowBg
-                            ? {
-                                backgroundImage: `url(${themeDetailsMap[accentColor][selectedColorMode].images.ctaBannerBg})`,
-                              }
-                            : {}
-                        }
-                      >
-                        <CTABanner.Heading>Get it, it&apos;s super nice</CTABanner.Heading>
-                        <CTABanner.Description>
-                          Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam
-                          luctus sed turpis felis nam pulvinar.
-                        </CTABanner.Description>
-                        <CTABanner.ButtonGroup>
-                          <Button>Primary Action</Button>
-                          <Button>Secondary Action</Button>
-                        </CTABanner.ButtonGroup>
-                      </CTABanner>
-                    </Box>
+                    <SectionIntro className={styles.normalizePadding} align="start" fullWidth={false}>
+                      <SectionIntro.Label size="medium" color="default">
+                        ContentfulSectionIntro
+                      </SectionIntro.Label>
+                      <SectionIntro.Heading size="3">
+                        Lorem ipsum dolor sit amet, <em>consectetur adipiscing elit</em>
+                      </SectionIntro.Heading>
+                      <SectionIntro.Description>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut
+                        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                        laboris nisi ut aliquip ex ea commodo consequat.
+                      </SectionIntro.Description>
+                      <SectionIntro.Link variant="accent" href="#">
+                        Learn more about our features
+                      </SectionIntro.Link>
+                    </SectionIntro>
                   </Grid.Column>
-                )}
+                </Grid>
+              )}
+            </>
+          )}
+
+          {pillars && (
+            <Grid className={styles.normalizeMargin}>
+              <Grid.Column
+                span={{
+                  xsmall: 12,
+                  small: 12,
+                  medium: 6,
+                  large: 4,
+                  xlarge: 4,
+                  xxlarge: 4,
+                }}
+              >
+                <Box
+                  borderRadius="large"
+                  paddingBlockStart={32}
+                  paddingBlockEnd={40}
+                  backgroundColor={backgroundColor === 'default' ? 'subtle' : 'default'}
+                  style={{
+                    height: '100%',
+                    paddingInlineStart: 32,
+                    paddingInlineEnd: 32,
+                  }}
+                >
+                  <Pillar align="start">
+                    <Pillar.Icon color="default" icon={<ZapIcon />} />
+                    <Pillar.Heading as="h3">Powerful Performance</Pillar.Heading>
+                    <Pillar.Description>
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut
+                      labore et dolore magna aliqua.
+                    </Pillar.Description>
+                    <Pillar.Link href="#">Learn more</Pillar.Link>
+                  </Pillar>
+                </Box>
+              </Grid.Column>
+              <Grid.Column
+                span={{
+                  xsmall: 12,
+                  small: 12,
+                  medium: 6,
+                  large: 4,
+                  xlarge: 4,
+                  xxlarge: 4,
+                }}
+              >
+                <Box
+                  borderRadius="large"
+                  paddingBlockStart={32}
+                  paddingBlockEnd={40}
+                  backgroundColor={backgroundColor === 'default' ? 'subtle' : 'default'}
+                  style={{
+                    height: '100%',
+                    paddingInlineStart: 32,
+                    paddingInlineEnd: 32,
+                  }}
+                >
+                  <Pillar align="start">
+                    <Pillar.Icon color="default" icon={<ZapIcon />} />
+                    <Pillar.Heading as="h3">Easy Integration</Pillar.Heading>
+                    <Pillar.Description>
+                      Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                      consequat.
+                    </Pillar.Description>
+                    <Pillar.Link href="#">Get started</Pillar.Link>
+                  </Pillar>
+                </Box>
+              </Grid.Column>
+              <Grid.Column
+                span={{
+                  xsmall: 12,
+                  small: 12,
+                  medium: 6,
+                  large: 4,
+                  xlarge: 4,
+                  xxlarge: 4,
+                }}
+              >
+                <Box
+                  borderRadius="large"
+                  paddingBlockStart={32}
+                  paddingBlockEnd={40}
+                  backgroundColor={backgroundColor === 'default' ? 'subtle' : 'default'}
+                  style={{
+                    height: '100%',
+                    paddingInlineStart: 32,
+                    paddingInlineEnd: 32,
+                  }}
+                >
+                  <Pillar align="start">
+                    <Pillar.Icon color="default" icon={<ZapIcon />} />
+                    <Pillar.Heading as="h3">Secure & Reliable</Pillar.Heading>
+                    <Pillar.Description>
+                      Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+                      pariatur.
+                    </Pillar.Description>
+                    <Pillar.Link href="#">Read more</Pillar.Link>
+                  </Pillar>
+                </Box>
               </Grid.Column>
             </Grid>
-          </Stack>
-        </Box>
-      </Section>
-    </ThemeProvider>
+          )}
+
+          {logoSuite && (
+            <Grid className={styles.normalizeMargin}>
+              <Grid.Column>
+                <LogoSuite align="start">
+                  <LogoSuite.Heading as="h3" size="6">
+                    Trusted by devs across the world
+                  </LogoSuite.Heading>
+                  <LogoSuite.Logobar variant="muted" marquee={process.env.NODE_ENV !== 'test'}>
+                    <Image alt="Uber" src={uberLogo} />
+                    <Image alt="Vercel" src={vercelLogo} />
+                    <Image alt="Shopify" src={shopifyLogo} />
+                    <Image alt="Pinterest" src={pinterestLogo} />
+                    <Image alt="Twilio" src={twilioLogo} />
+                  </LogoSuite.Logobar>
+                </LogoSuite>
+              </Grid.Column>
+            </Grid>
+          )}
+
+          {cards && (
+            <Grid className={clsx(styles.normalizeMargin, 'mx-0')}>
+              <Grid.Column
+                span={{
+                  xsmall: 12,
+                  small: 12,
+                  medium: 6,
+                  large: 4,
+                  xlarge: 4,
+                  xxlarge: 4,
+                }}
+              >
+                <Box className={styles.heightFull}>
+                  <Card href="#" hasBorder={false} fullWidth>
+                    <Card.Image src={placeholderImage} alt="Placeholder card image" aspectRatio="16:9" />
+                    <Card.Heading>Card Title One</Card.Heading>
+                    <Card.Description>
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt.
+                    </Card.Description>
+                  </Card>
+                </Box>
+              </Grid.Column>
+              <Grid.Column
+                span={{
+                  xsmall: 12,
+                  small: 12,
+                  medium: 6,
+                  large: 4,
+                  xlarge: 4,
+                  xxlarge: 4,
+                }}
+              >
+                <Box className={styles.heightFull}>
+                  <Card href="#" hasBorder={false} fullWidth>
+                    <Card.Image src={placeholderImage} alt="Placeholder card image" aspectRatio="16:9" />
+                    <Card.Heading>Card Title Two</Card.Heading>
+                    <Card.Description>
+                      Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip.
+                    </Card.Description>
+                  </Card>
+                </Box>
+              </Grid.Column>
+              <Grid.Column
+                span={{
+                  xsmall: 12,
+                  small: 12,
+                  medium: 6,
+                  large: 4,
+                  xlarge: 4,
+                  xxlarge: 4,
+                }}
+              >
+                <Box className={styles.heightFull}>
+                  <Card href="#" hasBorder={false} fullWidth>
+                    <Card.Image src={placeholderImage} alt="Placeholder card image" aspectRatio="16:9" />
+                    <Card.Heading>Card Title Three</Card.Heading>
+                    <Card.Description>
+                      Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore.
+                    </Card.Description>
+                  </Card>
+                </Box>
+              </Grid.Column>
+            </Grid>
+          )}
+
+          {/* {featuredBento && (
+            <Grid className={styles.normalizeMargin}>
+              <Grid.Column>
+                <ContentfulFeaturedBento
+                  itemBgColor={backgroundColor === 'default' ? 'subtle' : 'default'}
+                  className={styles.normalizePadding}
+                  component={featuredBento}
+                />
+              </Grid.Column>
+            </Grid>
+          )}
+
+          {prose && (
+            <Grid className={styles.normalizeMargin}>
+              <Grid.Column>
+                <ContentfulProse component={prose} />
+              </Grid.Column>
+            </Grid>
+          )}
+
+          {rivers && rivers.length > 0 && (
+            <RiverStoryScroll disabled={!enableRiverStoryScroll}>
+              {rivers.map(river =>
+                isRiverAccordion(river) ? (
+                  <ContentfulRiverAccordion
+                    key={river.sys.id}
+                    className={clsx(styles.normalizeMargin, styles.normalizePadding, 'px-3')}
+                    component={river}
+                  />
+                ) : isRiverBreakout(river) ? (
+                  <ContentfulRiverBreakout
+                    key={river.sys.id}
+                    className={clsx(styles.normalizeMargin, styles.normalizePadding, 'px-3', {
+                      [styles.riverBreakoutNoCta]: !river.fields.callToAction,
+                    })}
+                    component={river}
+                  />
+                ) : (
+                  <ContentfulRiver
+                    key={river.sys.id}
+                    className={clsx(styles.normalizeMargin, styles.normalizePadding, 'px-3')}
+                    component={river}
+                  />
+                ),
+              )}
+            </RiverStoryScroll>
+          )}
+
+          {testimonials && testimonials.length > 0 && (
+            <FlexSectionTestimonials
+              testimonials={testimonials}
+              backgroundImageVariant={testimonialBackgroundImageVariant}
+              className={styles.normalizeMargin}
+            />
+          )}
+
+          {breakoutBanner && (
+            <Grid className={clsx(styles.normalizeMargin, 'mx-0')}>
+              <Grid.Column>
+                <ContentfulBreakoutBanner className={styles.normalizeMargin} component={breakoutBanner} />
+              </Grid.Column>
+            </Grid>
+          )}
+
+          {statistics && (
+            <ContentfulStatistics
+              className={styles.normalizeMargin}
+              component={statistics}
+              statisticBgColor={backgroundColor === 'default' ? 'subtle' : 'default'}
+            />
+          )}
+
+          {pricingOptions && (
+            <Grid className={clsx(styles.normalizeMargin, 'mx-0')}>
+              <Grid.Column>
+                <ContentfulPricingOptions component={pricingOptions} />
+              </Grid.Column>
+            </Grid>
+          )}
+
+          {segmentedControlPanel && (
+            <Grid className={clsx(styles.normalizeMargin, 'mx-0')}>
+              <Grid.Column>
+                <ContentfulSegmentedControlPanel component={segmentedControlPanel} />
+              </Grid.Column>
+            </Grid>
+          )} */}
+        </Stack>
+      </Box>
+    </Section>
   )
 }
