@@ -36,8 +36,8 @@ const Root = forwardRef<HTMLElement, PropsWithChildren<SectionIntroStackedProps>
         style={{...animationInlineStyles, ...style}}
       >
         <Grid fullWidth>
-          <Grid.Column span={{medium: 5}}>{otherChildren}</Grid.Column>
-          <Grid.Column span={{medium: 6}} start={{medium: 7}}>
+          <Grid.Column span={{medium: 6}}>{otherChildren}</Grid.Column>
+          <Grid.Column span={{medium: 5}} start={{medium: 8}}>
             {items}
           </Grid.Column>
         </Grid>
