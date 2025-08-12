@@ -1,0 +1,85 @@
+name: Unit test coverage diff
+
+on:
+  pull_request:
+    paths:
+      - 'packages/react/**'
+      - '.github/workflows/ui_test_diff_comment.yml'
+
+jobs:
+  coverage-diff:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout current branch
+        uses: actions/checkout@v4
+        with:
+          path: current
+
+      - name: Checkout main branch
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          path: main
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Cache dependencies (current)
+        uses: actions/cache@v4
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-current-${{ hashFiles('current/**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-current-
+
+      - name: Cache dependencies (main)
+        uses: actions/cache@v4
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-main-${{ hashFiles('main/**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-main-
+
+      - name: Install dependencies (current branch)
+        working-directory: current
+        run: npm ci
+
+      - name: Install dependencies (main branch)
+        working-directory: main
+        run: npm ci
+
+      - name: Run tests with coverage (current branch)
+        working-directory: current/packages/react
+        run: npm run test -- --coverage --coverageReporters=json-summary --coverageReporters=json --passWithNoTests --watchAll=false
+
+      - name: Run tests with coverage (main branch)
+        working-directory: main/packages/react
+        run: npm run test -- --coverage --coverageReporters=json-summary --coverageReporters=json --passWithNoTests --watchAll=false
+
+      - name: Install tsx for script execution
+        working-directory: current
+        run: npm install -g tsx
+
+      - name: Generate coverage diff comment
+        id: coverage-diff
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const { execSync } = require('child_process');
+
+            const output = execSync('npx tsx packages/repo-configs/scripts/get-coverage.ts', { 
+              encoding: 'utf8',
+              cwd: 'current'
+            });
+
+            core.setOutput('comment-body', output.trim());
+            return output;
+
+      - name: Post coverage diff comment
+        uses: phulsechinmay/rewritable-pr-comment@v0.3.0
+        with:
+          message: ${{ steps.coverage-diff.outputs.comment-body }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          COMMENT_IDENTIFIER: 'test-coverage-diff'
