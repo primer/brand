@@ -82,24 +82,11 @@ function main() {
   const currentCoveragePath = `${basePath}/${sharedPathname}`
   const mainCoveragePath = `${workspace}/main/${sharedPathname}`
 
-  // Debug
-  console.error(`Environment: ${isGitHubActions ? 'GitHub Actions' : 'Local'}`)
-  console.error(`Current coverage: ${currentCoveragePath}`)
-  console.error(`Main coverage: ${mainCoveragePath}`)
-
   const currentCoverage = loadCoverageData(currentCoveragePath)
   const mainCoverage = loadCoverageData(mainCoveragePath)
 
   const currentComponents = processCoverageData(currentCoverage, workspace, basePath)
   const mainComponents = processCoverageData(mainCoverage, workspace, `${workspace}/main`)
-
-  // Debug: Check Button coverage specifically
-  console.error(`Current Button coverage:`, currentComponents['Button'])
-  console.error(`Main Button coverage:`, mainComponents['Button'])
-  console.error(`Current Testimonial coverage:`, currentComponents['Testimonial'])
-  console.error(`Main Testimonial coverage:`, mainComponents['Testimonial'])
-  console.error(`Total current components:`, Object.keys(currentComponents).length)
-  console.error(`Total main components:`, Object.keys(mainComponents).length)
 
   // Find differences
   const allComponents = new Set([...Object.keys(currentComponents), ...Object.keys(mainComponents)])
@@ -224,19 +211,22 @@ Unit test coverage has been updated through this PR.
 
       const diffStr = significantDiff > 0 ? `+${significantDiff.toFixed(1)}` : significantDiff.toFixed(1)
       statusText = `${diffStr}%`
-      
+
       // Show before/after with strikethrough for changed values
-      statementsStr = Math.abs(diff.statements) > 0.1 
-        ? `<del>${main.statements.toFixed(1)}%</del> ${current.statements.toFixed(1)}%`
-        : `${current.statements.toFixed(1)}%`
-      
-      functionsStr = Math.abs(diff.functions) > 0.1 
-        ? `<del>${main.functions.toFixed(1)}%</del> ${current.functions.toFixed(1)}%`
-        : `${current.functions.toFixed(1)}%`
-      
-      branchesStr = Math.abs(diff.branches) > 0.1 
-        ? `<del>${main.branches.toFixed(1)}%</del> ${current.branches.toFixed(1)}%`
-        : `${current.branches.toFixed(1)}%`
+      statementsStr =
+        Math.abs(diff.statements) > 0.1
+          ? `<del>${main.statements.toFixed(1)}%</del> ${current.statements.toFixed(1)}%`
+          : `${current.statements.toFixed(1)}%`
+
+      functionsStr =
+        Math.abs(diff.functions) > 0.1
+          ? `<del>${main.functions.toFixed(1)}%</del> ${current.functions.toFixed(1)}%`
+          : `${current.functions.toFixed(1)}%`
+
+      branchesStr =
+        Math.abs(diff.branches) > 0.1
+          ? `<del>${main.branches.toFixed(1)}%</del> ${current.branches.toFixed(1)}%`
+          : `${current.branches.toFixed(1)}%`
     }
 
     html += `

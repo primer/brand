@@ -4,7 +4,7 @@ on:
   pull_request:
     paths:
       - 'packages/react/**'
-      - '.github/workflows/test_coverage_diff.yml'
+      - '.github/workflows/ui_test_diff_comment.yml'
 
 jobs:
   coverage-diff:
