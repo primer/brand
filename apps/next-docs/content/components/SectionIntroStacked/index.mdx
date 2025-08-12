@@ -1,0 +1,108 @@
+---
+title: Section intro stacked
+description: Use this section intro component to provide a heading, link and itemized content in a stacked layout.
+keywords: ['heading', 'intro', 'section']
+show-tabs: false
+ready: true
+source: https://github.com/primer/brand/blob/main/packages/react/src/SectionIntroStacked/SectionIntroStacked.tsx
+storybook: '/brand/storybook/?path=/story/components-SectionIntroStacked--playground'
+thumbnail: '/images/thumbnails/section-intro-stacked-thumbnail.png'
+thumbnail_darkMode: '/images/thumbnails/section-intro-stacked-thumbnail-dark.png'
+---
+
+import {Label} from '@primer/react'
+
+```js
+import {SectionIntroStacked} from '@primer/react-brand'
+```
+
+## Examples
+
+### Default
+
+```jsx live
+<section>
+  <SectionIntroStacked>
+    <SectionIntroStacked.Heading>
+      <b>Over 90% of Fortune 100 companies and more than 150 million developers rely on GitHub</b> to deliver scalable,
+      reliable, and secure solutions for teams of all sizes.
+    </SectionIntroStacked.Heading>
+    <SectionIntroStacked.Link href="#">Explore GitHub</SectionIntroStacked.Link>
+    <SectionIntroStacked.Items>
+      <SectionIntroStacked.Item>
+        <b>Designed for developers</b>, GitHub offers seamless collaboration tools that make teamwork smarter, faster,
+        and more secure.
+      </SectionIntroStacked.Item>
+      <SectionIntroStacked.Item>
+        <b>Leverage GitHub Copilot to automate tasks</b>, and enhance productivity with smart, context-aware code
+        suggestions.
+      </SectionIntroStacked.Item>
+      <SectionIntroStacked.Item>
+        <b>GitHub Enterprise scales with your organization</b>, delivering the performance and security needed for teams
+        of any size.
+      </SectionIntroStacked.Item>
+    </SectionIntroStacked.Items>
+  </SectionIntroStacked>
+</section>
+```
+
+## Component props
+
+### SectionIntroStacked <Label>Required</Label>
+
+| name        | type                       | default     | required | description                                                                                                                                                          |
+| ----------- | -------------------------- | ----------- | -------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `children`  | `ReactNode`, `ReactNode[]` | `undefined` | `true`   | Content to include within the section intro component. Accepts `SectionIntroStacked.Heading`, `SectionIntroStacked.Link`, and `SectionIntroStacked.Items` components |
+| `className` | `string`                   |             | `false`  | Sets a custom class on the root element                                                                                                                              |
+| `id`        | `string`                   |             | `false`  | Sets a custom id on the root element                                                                                                                                 |
+| `animate`   | `AnimateProps`             |             | `false`  | Animation configuration for the component                                                                                                                            |
+
+Forwards all standard HTML attributes for `<header>` elements.
+
+### SectionIntroStacked.Heading <Label>Required</Label>
+
+Required node that is used to provide a heading for the section.
+
+| name        | type                       | default     | required | description                                           |
+| ----------- | -------------------------- | ----------- | -------- | ----------------------------------------------------- |
+| `children`  | `ReactNode`, `ReactNode[]` | `undefined` | `true`   | Content to be displayed inside the heading component. |
+| `className` | `string`                   |             | `false`  | Sets a custom class on the root element               |
+| `id`        | `string`                   |             | `false`  | Sets a custom id on the root element                  |
+| `animate`   | `AnimateProps`             |             | `false`  | Animation configuration for the component             |
+
+Forwards all props from the [Heading component](/components/Heading), including `as`, `size`, and `weight`.
+
+### SectionIntroStacked.Link
+
+Optional node that can be used to provide a link.
+
+| name        | type                       | default     | required | description                             |
+| ----------- | -------------------------- | ----------- | -------- | --------------------------------------- |
+| `children`  | `ReactNode`, `ReactNode[]` | `undefined` | `true`   | Content to be displayed inside the link |
+| `href`      | `string`                   | `undefined` | `true`   | The URL that the link points to         |
+| `variant`   | `default`, `accent`        | `accent`    | `false`  | Visual style variant for the link       |
+| `className` | `string`                   |             | `false`  | Sets a custom class on the root element |
+| `id`        | `string`                   |             | `false`  | Sets a custom id on the root element    |
+
+Forwards most props from the [Link component](/components/Link), but with a fixed `size` of `large`.
+
+### SectionIntroStacked.Items <Label>Required</Label>
+
+Container for a list of items.
+
+| name        | type                       | default     | required | description                               |
+| ----------- | -------------------------- | ----------- | -------- | ----------------------------------------- |
+| `children`  | `ReactNode`, `ReactNode[]` | `undefined` | `true`   | `SectionIntroStacked.Item` components     |
+| `className` | `string`                   |             | `false`  | Sets a custom class on the root element   |
+| `id`        | `string`                   |             | `false`  | Sets a custom id on the root element      |
+| `animate`   | `AnimateProps`             |             | `false`  | Animation configuration for the component |
+
+### SectionIntroStacked.Item <Label>Required</Label>
+
+Individual item within the items list.
+
+| name        | type                       | default     | required | description                             |
+| ----------- | -------------------------- | ----------- | -------- | --------------------------------------- |
+| `children`  | `ReactNode`, `ReactNode[]` | `undefined` | `true`   | Content to be displayed inside the item |
+| `className` | `string`                   |             | `false`  | Sets a custom class on the root element |
+| `id`        | `string`                   |             | `false`  | Sets a custom id on the root element    |

@@ -49,6 +49,7 @@ export * from './BreakoutBanner'
 export * from './Footnotes'
 export * from './Icon'
 export * from './FrostedGlassVFX'
+export * from './SectionIntroStacked'
 
 // hooks
 export * from './hooks/useWindowSize'
