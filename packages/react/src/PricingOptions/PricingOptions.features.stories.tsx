@@ -928,7 +928,7 @@ export const WithCustomFeatureListItemLeadingVisual: StoryFn<typeof PricingOptio
           Buy now
         </PricingOptions.PrimaryAction>
 
-        <PricingOptions.FeatureList expanded={false} hasDivider={false}>
+        <PricingOptions.FeatureList hasDivider={false}>
           <PricingOptions.FeatureListItem
             leadingVisual={SparkleFillIcon}
             leadingVisualFill="var(--base-color-scale-purple-5)"

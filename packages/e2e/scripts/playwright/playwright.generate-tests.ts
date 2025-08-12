@@ -59,6 +59,9 @@
     'components-actionmenu-features--longer-lists-open': 1000, // for the menu to open
     'components-actionmenu-features--menu-alignment': 1000, // for the menu to open
     'components-actionmenu-features--disabled-item': 1000, // flakey test,
+    'components-actionmenu-features--single-selection-small-open': 1000, // for the menu to open
+    'components-actionmenu-features--split-button-alternative-menu-alignment': 1000, // for the menu to open
+    'components-actionmenu-features--anchored-positioning': 1000, // for the menu to open
     'components-box-features--animation': 6000, // for the animation
     'components-ide--playground': 2000, // for the animation
     'components-ide--default': 2000, // for the animation
@@ -110,6 +113,15 @@
     'components-subnav-features--anchor-nav-variant': 1000, // for being flakey across translations
   }
 
+  const skipLocalizationsTestsFor = [
+    'components-actionmenu-features--open-by-default', // for the menu to open
+    'components-actionmenu-features--menu-alignment', // for the menu to open
+    'components-actionmenu-features--disabled-item', // for the menu to open
+    'components-actionmenu-features--single-selection-small-open', // for the menu to open
+    'components-actionmenu-features--split-button-alternative-menu-alignment', // for the menu to open
+    'components-actionmenu-features--anchored-positioning', // for the menu to open
+  ]
+
   /**
    * Manual lookup for tests that we want to skip
    * Only add tests here that aren't suitable for visual regression testing
@@ -119,6 +131,7 @@
     'components-river--custom-logos', // for external social imagery to load
     'components-actionmenu-features--keyboard-navigation', // interaction test
     'components-actionmenu-examples--keyboard-navigation', // for the interaction test
+    'components-actionmenu-features--split-button-mode-open', // for the translations causing layout shift
     'components-animations-examples--discussions-hero', // animation only
     'components-animations-examples--progress-bars', // animation only
     'components-animations-examples--logo-bar', // animation only
@@ -220,7 +233,9 @@
           `
         }
 
-        const allLanguageTests = languages.map(language => generateTestForLanguage(language)).join('')
+        const shouldSkipLocalizations = skipLocalizationsTestsFor.includes(id)
+        const languagesToTest = shouldSkipLocalizations ? ['en'] : languages
+        const allLanguageTests = languagesToTest.map(language => generateTestForLanguage(language)).join('')
 
         if (requiresMobileViewport) {
           return (acc += `
