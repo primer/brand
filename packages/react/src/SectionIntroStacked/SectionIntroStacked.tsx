@@ -10,12 +10,7 @@ import styles from './SectionIntroStacked.module.css'
 
 import type {BaseProps} from '../component-helpers'
 
-export type SectionIntroStackedProps = React.HTMLAttributes<HTMLElement> &
-  BaseProps<HTMLElement> & {
-    children: React.ReactElement<
-      SectionIntroStackedHeadingProps | SectionIntroStackedItemsProps | SectionIntroStackedLinkProps
-    >[]
-  }
+export type SectionIntroStackedProps = React.HTMLAttributes<HTMLElement> & BaseProps<HTMLElement> & PropsWithChildren
 
 const Root = forwardRef<HTMLElement, PropsWithChildren<SectionIntroStackedProps>>(
   ({animate, className, children, style, ...props}, ref) => {
