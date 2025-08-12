@@ -3,10 +3,16 @@ import {Meta} from '@storybook/react'
 import {useTranslation} from 'react-i18next'
 import {SectionIntroStacked} from '.'
 import {Grid} from '../Grid'
+import {INITIAL_VIEWPORTS} from '@storybook/addon-viewport'
 
 export default {
   title: 'Components/SectionIntroStacked/Features',
   component: SectionIntroStacked,
+  parameters: {
+    viewport: {
+      viewports: INITIAL_VIEWPORTS,
+    },
+  },
 } as Meta<typeof SectionIntroStacked>
 
 export const WithEmphasizedText = () => {
@@ -66,3 +72,11 @@ export const InGrid = () => {
     </Grid>
   )
 }
+
+export const InGridNarrow = () => <InGrid />
+InGridNarrow.parameters = {
+  viewport: {
+    defaultViewport: 'iphonexr',
+  },
+}
+InGridNarrow.storyName = 'Narrow view, menu closed (mobile)'

@@ -12,6 +12,7 @@ import {
   MinimalFooter,
   Pillar,
   SectionIntro,
+  SectionIntroStacked,
   Image,
   SubdomainNavBar,
   Text,
@@ -287,35 +288,24 @@ export function SolutionPage({
                   )}
                   {args.introVariant === 'editorial list' && (
                     <Box marginBlockEnd={40}>
-                      <Grid>
-                        <Grid.Column span={{medium: 5}}>
-                          <Box className={styles.sectionIntro}>
-                            <Box marginBlockEnd={24}>
-                              <Heading as="h2" size="3">
-                                {args.sectionIntroText}
-                              </Heading>
-                            </Box>
-
-                            <Link>{args.sectionIntroCTAText}</Link>
-                          </Box>
-                        </Grid.Column>
-                        <Grid.Column span={{medium: 6}} start={{medium: 7}}>
-                          <Stack direction="vertical" padding="none" gap={24}>
-                            <Text as="p" variant="muted">
-                              <Text variant="default">Lorem ipsum dolor sit amet,</Text> consectetur adipiscing elit. In
-                              sapien sit ullamcorper id. Aliquam luctus sed turpis felis nam pulvinar.
-                            </Text>
-                            <Text as="p" variant="muted">
-                              <Text variant="default">Lorem ipsum dolor sit amet,</Text> consectetur adipiscing elit. In
-                              sapien sit ullamcorper id. Aliquam luctus sed turpis felis nam pulvinar.
-                            </Text>
-                            <Text as="p" variant="muted">
-                              <Text variant="default">Lorem ipsum dolor sit amet,</Text> consectetur adipiscing elit. In
-                              sapien sit ullamcorper id. Aliquam luctus sed turpis felis nam pulvinar.
-                            </Text>
-                          </Stack>
-                        </Grid.Column>
-                      </Grid>
+                      <SectionIntroStacked>
+                        <SectionIntroStacked.Heading>{args.sectionIntroText}</SectionIntroStacked.Heading>
+                        <SectionIntroStacked.Link href="#">{args.sectionIntroCTAText}</SectionIntroStacked.Link>
+                        <SectionIntroStacked.Items>
+                          <SectionIntroStacked.Item>
+                            <b>Lorem ipsum dolor sit amet,</b> consectetur adipiscing elit. In sapien sit ullamcorper
+                            id. Aliquam luctus sed turpis felis nam pulvinar.
+                          </SectionIntroStacked.Item>
+                          <SectionIntroStacked.Item>
+                            <b>Lorem ipsum dolor sit amet,</b> consectetur adipiscing elit. In sapien sit ullamcorper
+                            id. Aliquam luctus sed turpis felis nam pulvinar.
+                          </SectionIntroStacked.Item>
+                          <SectionIntroStacked.Item>
+                            <b>Lorem ipsum dolor sit amet,</b> consectetur adipiscing elit. In sapien sit ullamcorper
+                            id. Aliquam luctus sed turpis felis nam pulvinar.
+                          </SectionIntroStacked.Item>
+                        </SectionIntroStacked.Items>
+                      </SectionIntroStacked>
                     </Box>
                   )}
                 </Box>

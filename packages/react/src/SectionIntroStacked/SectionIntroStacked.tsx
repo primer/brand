@@ -90,15 +90,18 @@ const _Heading = forwardRef(
   },
 )
 
-type SectionIntroStackedLinkProps = Omit<LinkProps, 'size'> & BaseProps<HTMLAnchorElement>
+type SectionIntroStackedLinkProps = LinkProps & BaseProps<HTMLAnchorElement>
 
 const _Link = forwardRef(
-  ({className, children, variant = 'accent', ...props}: SectionIntroStackedLinkProps, ref: Ref<HTMLAnchorElement>) => {
+  (
+    {className, children, variant = 'accent', size = 'large', ...props}: SectionIntroStackedLinkProps,
+    ref: Ref<HTMLAnchorElement>,
+  ) => {
     return (
       <Link
         ref={ref}
         className={clsx(styles['SectionIntroStacked-link'], className)}
-        size="large"
+        size={size}
         variant={variant}
         {...props}
       >

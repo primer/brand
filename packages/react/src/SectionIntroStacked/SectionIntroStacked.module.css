@@ -44,7 +44,7 @@
 }
 
 @media screen and (min-width: 48rem) {
-  .SectionIntroStacked-item {
+  .SectionIntroStackedItem-item {
     gap: var(--base-size-40);
   }
 
