@@ -54,7 +54,6 @@ npm run build                  # Full production build (~5-10 minutes)
 ### Commands With Known Issues
 
 - **Visual tests**: E2E tests can be flaky and may require multiple runs
-- **Watch modes**: Some watch commands in packages may not work reliably
 
 ## File Structure & Architecture
 
@@ -65,7 +64,7 @@ packages/
 ├── react/           # Main React components (@primer/react-brand)
 ├── design-tokens/   # Design tokens (@primer/brand-primitives)
 ├── css/             # CSS distribution (@primer/brand-css)
-├── fonts/           # Font files
+├── fonts/           # Font files, rarely changes
 ├── e2e/             # E2E tests and visual regression
 └── repo-configs/    # Shared configuration
 
