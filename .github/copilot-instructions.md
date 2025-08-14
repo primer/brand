@@ -107,13 +107,13 @@ apps/
 
 ### Release Process
 
-- **Changesets**: Use `npx changeset` to add release notes. Never select `major`. `minor` is for big new features, components or breaking changes, `patch` is for small fixes.
+- **Changesets**: Use `npx changeset` to add release notes. Doesn't strictly follow SemVer. Don't use `major`. `minor` is instead for breaking changes, and big new features. `patch` is for small fixes.
 
 ## General notes
 
 - Stick to existing conventions in the repo where possible, before creating new precedents.
 - This project has no dependency, and minimal relation to `@primer/react`.
-- When adding new features, add Unit Tests to existing files to prevent drops in regression
+- When adding new features, add Unit Tests to existing files to prevent drops in coverage.
 - Always ensure code is accessible and complies with WCAG 2.1 standards.
 
 **Trust these instructions** - they are based on verified testing of the actual codebase. Only search for additional information if these instructions are incomplete or proven incorrect.
