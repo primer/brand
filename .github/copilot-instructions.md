@@ -51,12 +51,6 @@ npm run start                  # Builds library and starts storybook server (por
 npm run build                  # Full production build (~5-10 minutes)
 ```
 
-### Commands With Known Issues
-
-- **Visual tests**: E2E tests can be flaky and may require multiple runs
-
-## File Structure & Architecture
-
 ### Workspace Layout
 
 ```
@@ -66,7 +60,7 @@ packages/
 ├── css/             # CSS distribution (@primer/brand-css)
 ├── fonts/           # Font files, rarely changes
 ├── e2e/             # E2E tests and visual regression
-└── repo-configs/    # Shared configuration
+└── repo-configs/    # Shared scripts
 
 apps/
 ├── storybook/       # Component documentation/playground
@@ -111,9 +105,9 @@ apps/
 
 ## General notes
 
-- Stick to existing conventions in the repo where possible, before creating new precedents.
-- This project has no dependency, and minimal relation to `@primer/react`.
-- When adding new features, add Unit Tests to existing files to prevent drops in coverage.
+- Stick to existing conventions in the repo where possible. Avoid setting new precedents.
+- This project has no dependency - or relation to - `@primer/react`.
+- Add Unit Tests for new features which have existing tests files to prevent drops in coverage.
 - Always ensure code is accessible and complies with WCAG 2.1 standards.
 - In `**/*.module.css` files, never hardcode pixel values. Instead use size tokens from `packages/design-tokens/lib/design-tokens/css/tokens/base/size/size.css` after running `npm run build:lib`. Other CSS variables available in ``packages/design-tokens/lib/design-tokens/css/tokens/**`.
 
