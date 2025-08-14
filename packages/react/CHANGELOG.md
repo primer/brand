@@ -1,5 +1,15 @@
 # @primer/react-brand
 
+## 0.57.2
+
+### Patch Changes
+
+- [#1129](https://github.com/primer/brand/pull/1129) [`81bb018`](https://github.com/primer/brand/commit/81bb0180838ca63400dfab23d7d2bbbb690d4abd) Thanks [@rezrah](https://github.com/rezrah)! - Added new `SectionIntroStacked` component.
+
+  This component is an alternative header pattern to `SectionIntro`.
+
+  :link: [Read the documentation for usage examples](https://primer.style/brand/components/SectionIntroStacked/)
+
 ## 0.57.1
 
 ### Patch Changes
