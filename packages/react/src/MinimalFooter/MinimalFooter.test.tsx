@@ -549,53 +549,51 @@ describe('MinimalFooter', () => {
     expect(validFootnote).toBeInTheDocument()
   })
 
-  describe('Color modes', () => {
-    let originalMatchMedia: typeof window.matchMedia
+  let originalMatchMedia: typeof window.matchMedia
 
-    beforeEach(() => {
-      originalMatchMedia = window.matchMedia
-      Object.defineProperty(window, 'matchMedia', {
-        writable: true,
-        value: jest.fn().mockImplementation(query => ({
-          matches: false,
-          media: query,
-          onchange: null,
-          addListener: jest.fn(),
-          removeListener: jest.fn(),
-          addEventListener: jest.fn(),
-          removeEventListener: jest.fn(),
-          dispatchEvent: jest.fn(),
-        })),
-      })
+  beforeEach(() => {
+    originalMatchMedia = window.matchMedia
+    Object.defineProperty(window, 'matchMedia', {
+      writable: true,
+      value: jest.fn().mockImplementation(query => ({
+        matches: false,
+        media: query,
+        onchange: null,
+        addListener: jest.fn(),
+        removeListener: jest.fn(),
+        addEventListener: jest.fn(),
+        removeEventListener: jest.fn(),
+        dispatchEvent: jest.fn(),
+      })),
     })
+  })
 
-    afterEach(() => {
-      Object.defineProperty(window, 'matchMedia', {
-        writable: true,
-        value: originalMatchMedia,
-      })
+  afterEach(() => {
+    Object.defineProperty(window, 'matchMedia', {
+      writable: true,
+      value: originalMatchMedia,
     })
+  })
 
-    it('renders GitHub logo with white fill in dark mode', () => {
-      const {container} = render(
-        <ThemeProvider colorMode="dark">
-          <MinimalFooter />
-        </ThemeProvider>,
-      )
+  it('renders GitHub logo with white fill in dark mode', () => {
+    const {container} = render(
+      <ThemeProvider colorMode="dark">
+        <MinimalFooter />
+      </ThemeProvider>,
+    )
 
-      const logoIcon = container.querySelector('svg')
-      expect(logoIcon).toHaveAttribute('fill', 'white')
-    })
+    const logoIcon = container.querySelector('svg')
+    expect(logoIcon).toHaveAttribute('fill', 'white')
+  })
 
-    it('renders GitHub logo with black fill in light mode', () => {
-      const {container} = render(
-        <ThemeProvider colorMode="light">
-          <MinimalFooter />
-        </ThemeProvider>,
-      )
+  it('renders GitHub logo with black fill in light mode', () => {
+    const {container} = render(
+      <ThemeProvider colorMode="light">
+        <MinimalFooter />
+      </ThemeProvider>,
+    )
 
-      const logoIcon = container.querySelector('svg')
-      expect(logoIcon).toHaveAttribute('fill', 'black')
-    })
+    const logoIcon = container.querySelector('svg')
+    expect(logoIcon).toHaveAttribute('fill', 'black')
   })
 })
