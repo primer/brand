@@ -77,6 +77,10 @@ const _TabsRoot = memo(function TabsRoot({
         isActive: activeTab === tabId,
         variant,
         'data-value': tabId,
+        style: {
+          ...tab.props.style,
+          gridRow: index + 1, // Position each tab in its own grid row
+        },
       })
     })
 
@@ -113,8 +117,12 @@ const _TabsRoot = memo(function TabsRoot({
     const offsetX = activeTabButton.offsetLeft - containerPadding
     const width = activeTabButton.offsetWidth
 
+    // Set CSS custom properties for slider positioning
     sliderElement.style.setProperty('--slider-x', `${offsetX}px`)
     sliderElement.style.setProperty('--slider-width', `${width}px`)
+    
+    // Set active tab index for mobile grid positioning (1-based)
+    sliderElement.style.setProperty('--active-tab-index', String(parseInt(activeTab) + 1))
   }, [activeTab])
 
   const tabListProps = getTabListProps({label: ariaLabel})
