@@ -33,7 +33,7 @@ describe('Animate', () => {
 
   it('renders children correctly', () => {
     const {getByText} = render(<Animate>Test content</Animate>)
-    
+
     const content = getByText('Test content')
     expect(content).toBeInTheDocument()
   })
@@ -50,7 +50,7 @@ describe('Animate', () => {
     const child1 = getByText('Child 1')
     const child2 = getByText('Child 2')
     const testText = getByText('Test text')
-    
+
     expect(child1).toBeInTheDocument()
     expect(child2).toBeInTheDocument()
     expect(testText).toBeInTheDocument()
@@ -58,7 +58,7 @@ describe('Animate', () => {
 
   it.each(['div', 'span', 'section'] as const)('renders as %s element when specified with as prop', element => {
     const {container} = render(<Animate as={element}>Content</Animate>)
-    
+
     const firstChild = container.firstChild
     expect(firstChild?.nodeName).toBe(element.toUpperCase())
   })
@@ -109,7 +109,7 @@ describe('Animate', () => {
     })
 
     const {container} = render(<Animate animate="fade-in">Content</Animate>)
-    
+
     const element = container.firstChild as HTMLElement
     expect(element.style.transitionDuration).toBe('500ms')
     expect(element.style.transitionDelay).toBe('200ms')
@@ -134,7 +134,7 @@ describe('Animate', () => {
         Content
       </Animate>,
     )
-    
+
     const element = container.firstChild as HTMLElement
     expect(element.style.transitionDuration).toBe('600ms') // Custom style overrides
     expect(element.style.backgroundColor).toBe('red') // Custom style applied
@@ -147,7 +147,7 @@ describe('Animate', () => {
         Content
       </Animate>,
     )
-    
+
     const element = container.firstChild as HTMLElement
     expect(element).toHaveAttribute('data-testid', 'animate-element')
     expect(element).toHaveAttribute('id', 'test-id')
@@ -164,7 +164,7 @@ describe('Animate', () => {
 
     const content = getByText('Content without animation')
     const firstChild = container.firstChild
-    
+
     expect(content).toBeInTheDocument()
     expect(firstChild?.nodeName).toBe('DIV')
     expect(mockUseAnimation).toHaveBeenCalledWith(undefined)
@@ -177,13 +177,13 @@ describe('Animate', () => {
       delay: 200,
     }
 
-    const {container} = render(<Animate animate={animateProps}>Content</Animate>)
+    render(<Animate animate={animateProps}>Content</Animate>)
 
     expect(mockUseAnimation).toHaveBeenCalledWith(animateProps)
   })
 
   it('calls useAnimation hook with string animate prop', () => {
-    const {container} = render(<Animate animate="slide-in-up">Content</Animate>)
+    render(<Animate animate="slide-in-up">Content</Animate>)
 
     expect(mockUseAnimation).toHaveBeenCalledWith('slide-in-up')
   })
