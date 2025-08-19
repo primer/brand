@@ -1,0 +1,96 @@
+.Tabs {
+  position: relative;
+  display: flex;
+  gap: var(--base-size-4);
+  background-color: var(--brand-color-canvas-backdrop);
+  border-radius: var(--brand-borderRadius-large);
+  padding: var(--brand-Tabs-container-padding);
+  width: fit-content;
+}
+
+.Tabs-container {
+  display: grid;
+}
+
+.Tabs-container--align-start {
+  justify-items: flex-start;
+}
+
+.Tabs-container--align-center {
+  justify-items: center;
+}
+
+.Tabs--default,
+.Tabs--accent {
+  border: var(--brand-borderWidth-thick) solid var(--brand-color-border-muted);
+  border-radius: var(--brand-borderRadius-full);
+}
+
+.Tabs__item {
+  position: relative;
+  z-index: 1;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  padding: var(--base-size-8) var(--base-size-16);
+  border-radius: var(--brand-borderRadius-full);
+  transition: color var(--brand-animation-duration-fast) ease-in-out;
+  white-space: nowrap;
+  font-family: var(--brand-fontStack-sansSerif);
+  font-weight: var(--brand-text-weight-600);
+  font-size: var(--brand-text-size-100);
+  line-height: var(--brand-text-lineHeight-100);
+  letter-spacing: var(--brand-text-letterSpacing-100);
+  color: var(--brand-color-text-default);
+}
+
+.Tabs__slider {
+  position: absolute;
+  top: var(--base-size-4);
+  bottom: var(--base-size-4);
+  transition: all var(--brand-animation-duration-fast) var(--brand-animation-easing-glide);
+  z-index: 0;
+  transform: translateX(var(--slider-x, 0px));
+  width: var(--slider-width);
+}
+
+.Tabs--default .Tabs__slider {
+  border-radius: var(--brand-borderRadius-full);
+  border: var(--brand-borderWidth-thin) solid var(--brand-color-border-default);
+  background: var(--brand-color-canvas-subtle);
+}
+
+.Tabs--accent .Tabs__slider {
+  border-radius: var(--brand-borderRadius-full);
+  border: var(--brand-borderWidth-thin) solid transparent;
+  background: var(--brand-Tabs-item-accent-bgColor-rest);
+}
+
+.Tabs--underline .Tabs__slider {
+  border-bottom: var(--brand-borderWidth-thick) solid var(--brand-Tabs-item-underline-rest);
+}
+
+.Tabs__item:focus-visible {
+  outline: var(--base-size-2) solid var(--brand-color-focus);
+  outline-offset: var(--base-size-2);
+}
+
+.Tabs__item.active {
+  color: var(--brand-color-text-default);
+}
+
+.Tabs--accent .Tabs__item {
+  transition: color var(--brand-animation-duration-faster) ease;
+}
+
+.Tabs--accent .Tabs__item.active {
+  color: var(--brand-Tabs-item-accent-fgColor-rest);
+}
+
+.Tabs__panelContainer {
+  margin-top: var(--base-size-16);
+}
+
+.Tabs__panel {
+  color: var(--brand-color-text-default);
+}

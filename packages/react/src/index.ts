@@ -50,6 +50,7 @@ export * from './Footnotes'
 export * from './Icon'
 export * from './FrostedGlassVFX'
 export * from './SectionIntroStacked'
+export * from './Tabs'
 
 // hooks
 export * from './hooks/useWindowSize'

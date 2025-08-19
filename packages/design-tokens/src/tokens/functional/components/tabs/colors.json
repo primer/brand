@@ -1,0 +1,26 @@
+{
+  "Tabs": {
+    "item": {
+      "accent": {
+        "bgColor": {
+          "rest": {
+            "value": "var(--base-color-scale-green-5)",
+            "dark": "var(--base-color-scale-green-5)"
+          }
+        },
+        "fgColor": {
+          "rest": {
+            "value": "var(--base-color-scale-white-0)",
+            "dark": "var(--base-color-scale-white-0)"
+          }
+        }
+      },
+      "underline": {
+        "rest": {
+          "value": "var(--base-color-scale-black-0)",
+          "dark": "var(--base-color-scale-white-0)"
+        }
+      }
+    }
+  }
+}
