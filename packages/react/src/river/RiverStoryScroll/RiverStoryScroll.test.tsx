@@ -227,29 +227,37 @@ describe('RiverStoryScroll', () => {
   it('renders correctly with children', () => {
     const {container} = render(<RiverStoryScroll>{MockRiverChildren}</RiverStoryScroll>)
 
-    expect(container.firstChild).toHaveClass('RiverStoryScroll')
-    expect(container.firstChild).toHaveClass('RiverStoryScroll--enabled')
+    const firstChild = container.firstChild
+    expect(firstChild).toHaveClass('RiverStoryScroll')
+    expect(firstChild).toHaveClass('RiverStoryScroll--enabled')
   })
 
   it('renders without children', () => {
     const {container} = render(<RiverStoryScroll />)
 
-    expect(container.firstChild).toHaveClass('RiverStoryScroll')
+    const firstChild = container.firstChild
+    expect(firstChild).toHaveClass('RiverStoryScroll')
   })
 
   it('renders empty children array', () => {
     const {container} = render(<RiverStoryScroll>{[]}</RiverStoryScroll>)
 
-    expect(container.firstChild).toHaveClass('RiverStoryScroll')
+    const firstChild = container.firstChild
+    expect(firstChild).toHaveClass('RiverStoryScroll')
   })
 
   it('renders children directly when disabled prop is true', () => {
     const {container, getByText} = render(<RiverStoryScroll disabled>{MockRiverChildren}</RiverStoryScroll>)
 
-    expect(container.querySelector('.RiverStoryScroll')).not.toBeInTheDocument()
-    expect(getByText('First heading')).toBeInTheDocument()
-    expect(getByText('Second heading')).toBeInTheDocument()
-    expect(getByText('Third heading')).toBeInTheDocument()
+    const riverStoryScroll = container.querySelector('.RiverStoryScroll')
+    const firstHeading = getByText('First heading')
+    const secondHeading = getByText('Second heading')
+    const thirdHeading = getByText('Third heading')
+    
+    expect(riverStoryScroll).not.toBeInTheDocument()
+    expect(firstHeading).toBeInTheDocument()
+    expect(secondHeading).toBeInTheDocument()
+    expect(thirdHeading).toBeInTheDocument()
   })
 
   it('renders children directly when prefers-reduced-motion is enabled', () => {
@@ -261,16 +269,22 @@ describe('RiverStoryScroll', () => {
 
     const {container, getByText} = render(<RiverStoryScroll>{MockRiverChildren}</RiverStoryScroll>)
 
-    expect(container.querySelector('.RiverStoryScroll')).not.toBeInTheDocument()
-    expect(getByText('First heading')).toBeInTheDocument()
-    expect(getByText('Second heading')).toBeInTheDocument()
-    expect(getByText('Third heading')).toBeInTheDocument()
+    const riverStoryScroll = container.querySelector('.RiverStoryScroll')
+    const firstHeading = getByText('First heading')
+    const secondHeading = getByText('Second heading')
+    const thirdHeading = getByText('Third heading')
+    
+    expect(riverStoryScroll).not.toBeInTheDocument()
+    expect(firstHeading).toBeInTheDocument()
+    expect(secondHeading).toBeInTheDocument()
+    expect(thirdHeading).toBeInTheDocument()
   })
 
   it('applies enabled classes when not disabled and motion not reduced', () => {
     const {container} = render(<RiverStoryScroll>{MockRiverChildren}</RiverStoryScroll>)
 
-    expect(container.firstChild).toHaveClass('RiverStoryScroll--enabled')
+    const firstChild = container.firstChild
+    expect(firstChild).toHaveClass('RiverStoryScroll--enabled')
   })
 
   it('cleans up media query listener on unmount', () => {
@@ -297,7 +311,8 @@ describe('RiverStoryScroll', () => {
 
     const {container, rerender} = render(<RiverStoryScroll>{MockRiverChildren}</RiverStoryScroll>)
 
-    expect(container.firstChild).toHaveClass('RiverStoryScroll--enabled')
+    const firstChild = container.firstChild
+    expect(firstChild).toHaveClass('RiverStoryScroll--enabled')
     expect(addEventListenerSpy).toHaveBeenCalledWith('change', expect.any(Function))
 
     const listener = addEventListenerSpy.mock.calls[0][1]
@@ -308,7 +323,8 @@ describe('RiverStoryScroll', () => {
 
     rerender(<RiverStoryScroll>{MockRiverChildren}</RiverStoryScroll>)
 
-    expect(container.querySelector('.RiverStoryScroll')).not.toBeInTheDocument()
+    const riverStoryScroll = container.querySelector('.RiverStoryScroll')
+    expect(riverStoryScroll).not.toBeInTheDocument()
   })
 
   it('renders tracker components for each child', () => {
@@ -343,7 +359,8 @@ describe('RiverStoryScroll', () => {
 
     const {getByTitle} = render(<RiverStoryScroll>{[childWithVideoNoSrc]}</RiverStoryScroll>)
 
-    expect(getByTitle('Test video')).toBeInTheDocument()
+    const testVideo = getByTitle('Test video')
+    expect(testVideo).toBeInTheDocument()
   })
 
   it('handles video element without source element', () => {
@@ -363,7 +380,8 @@ describe('RiverStoryScroll', () => {
 
     const {getByTitle} = render(<RiverStoryScroll>{[childWithVideoNoSource]}</RiverStoryScroll>)
 
-    expect(getByTitle('Test video')).toBeInTheDocument()
+    const testVideo = getByTitle('Test video')
+    expect(testVideo).toBeInTheDocument()
   })
 
   it('throws error when using StoryScrollContext outside provider', () => {
@@ -407,7 +425,8 @@ describe('RiverStoryScroll', () => {
     })
 
     // Check that the RiverStoryScroll is still rendered
-    expect(container.firstChild).toHaveClass('RiverStoryScroll')
+    const firstChild = container.firstChild
+    expect(firstChild).toHaveClass('RiverStoryScroll')
   })
 
   it('scrolls through content and shows correct visibility states when large landscape', () => {
@@ -429,6 +448,7 @@ describe('RiverStoryScroll', () => {
   it('sets the correct class on RiverStoryScrollTracker when className is not provided', () => {
     const {container} = render(<RiverStoryScrollTracker index={0} />)
 
-    expect((container.firstChild as HTMLElement).className).toBe('outside-viewport')
+    const firstChild = container.firstChild as HTMLElement
+    expect(firstChild.className).toBe('outside-viewport')
   })
 })
