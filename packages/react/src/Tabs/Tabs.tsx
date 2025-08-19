@@ -18,7 +18,7 @@ import {Animate, AnimationProvider, AnimationVariants} from '../animation'
  * Design tokens
  */
 import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/tabs/base.css'
-import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/tabs/colors.css'
+import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/tabs/colors-with-modes.css'
 
 /** * Main Stylesheet (as a CSS Module) */
 import styles from './Tabs.module.css'
@@ -38,7 +38,7 @@ export type TabsProps = {
   children: ReactNode
   value?: string
   onChange?: (activeTab: string) => void
-  variant?: 'default' | 'accent' | 'minimal' | 'underline'
+  variant?: 'default' | 'accent' | 'underline'
   className?: string
   'aria-label': string
 } & BaseProps<HTMLDivElement> &
@@ -54,15 +54,13 @@ const _TabsRoot = memo(function TabsRoot({
   'aria-label': ariaLabel,
 }: TabsProps) {
   const {activeTab, getTabListProps, getTabProps, getTabPanelProps} = useTabs({
-    defaultTab: value ? String(value) : undefined,
+    defaultTab: value ? value : undefined,
     onTabActivate: onChange ? (id: string) => onChange(id) : undefined,
   })
   const tabsContainerRef = useRef<HTMLDivElement>(null)
   const sliderRef = useRef<HTMLDivElement>(null)
 
   const childrenArray = Children.toArray(children)
-
-  const arrIndexes = childrenArray.map((_, index) => String(index))
 
   const tabs = childrenArray
     .filter((child): child is React.ReactElement => isValidElement(child) && child.type === TabsItem)
@@ -74,7 +72,7 @@ const _TabsRoot = memo(function TabsRoot({
         ...tabProps,
         id: tab.props.id ?? tabProps.id,
         'aria-controls': tab.props['aria-controls'] ?? tabProps['aria-controls'],
-        value: String(value),
+        value: tabId,
         key: tabProps.id,
         isActive: activeTab === tabId,
         variant,
@@ -185,7 +183,7 @@ const TabsPanel = memo(function TabsPanel({
   className,
   ...rest
 }: TabsPanelProps) {
-  const isActive = String(value) === String(activeValue)
+  const isActive = value === activeValue
 
   const conditionalRender = animation ? (
     <AnimationProvider>

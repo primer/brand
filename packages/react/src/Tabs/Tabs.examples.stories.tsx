@@ -36,7 +36,7 @@ export const WithPricingOptions: Story = {
       <Grid>
         <Grid.Column>
           <Tabs {...args} aria-label="Copilot plans" variant="accent">
-            <Tabs.Item>For inviduals</Tabs.Item>
+            <Tabs.Item>For individuals</Tabs.Item>
             <Tabs.Item>For businesses</Tabs.Item>
 
             <Tabs.Panel>
