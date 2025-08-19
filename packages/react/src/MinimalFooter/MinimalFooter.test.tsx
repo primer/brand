@@ -1,5 +1,5 @@
 import React from 'react'
-import {render} from '@testing-library/react'
+import {render, cleanup} from '@testing-library/react'
 import '@testing-library/jest-dom'
 import {axe, toHaveNoViolations} from 'jest-axe'
 import {MinimalFooter} from './MinimalFooter'
@@ -14,6 +14,27 @@ const socialLinkAccessibleNames = (
 const isSocialLink = (accessibleName: string): boolean => socialLinkAccessibleNames.includes(accessibleName)
 
 describe('MinimalFooter', () => {
+  beforeAll(() => {
+    Object.defineProperty(window, 'matchMedia', {
+      writable: true,
+      value: jest.fn().mockImplementation(query => ({
+        matches: false,
+        media: query,
+        onchange: null,
+        addListener: jest.fn(), // Deprecated
+        removeListener: jest.fn(), // Deprecated
+        dispatchEvent: jest.fn(),
+        addEventListener: jest.fn(),
+        removeEventListener: jest.fn(),
+      })),
+    })
+  })
+
+  afterEach(() => {
+    cleanup()
+    jest.clearAllMocks()
+  })
+
   it('has no accessibility violations', async () => {
     const {container} = render(<MinimalFooter />)
     const results = await axe(container)
@@ -547,32 +568,6 @@ describe('MinimalFooter', () => {
 
     const validFootnote = getByText('Valid footnote')
     expect(validFootnote).toBeInTheDocument()
-  })
-
-  let originalMatchMedia: typeof window.matchMedia
-
-  beforeEach(() => {
-    originalMatchMedia = window.matchMedia
-    Object.defineProperty(window, 'matchMedia', {
-      writable: true,
-      value: jest.fn().mockImplementation(query => ({
-        matches: false,
-        media: query,
-        onchange: null,
-        addListener: jest.fn(),
-        removeListener: jest.fn(),
-        addEventListener: jest.fn(),
-        removeEventListener: jest.fn(),
-        dispatchEvent: jest.fn(),
-      })),
-    })
-  })
-
-  afterEach(() => {
-    Object.defineProperty(window, 'matchMedia', {
-      writable: true,
-      value: originalMatchMedia,
-    })
   })
 
   it('renders GitHub logo with white fill in dark mode', () => {
