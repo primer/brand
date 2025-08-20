@@ -78,112 +78,6 @@ const withWindowDimensions = (width: number, height: number, testFn: () => void)
   }
 }
 
-const runInteractionTest = (width: number, height: number) => {
-  withWindowDimensions(width, height, () => {
-    const isLandscape = width > height
-    const isLarge = width >= 1012
-
-    if (!isLarge) {
-      mockUseWindowSize.mockImplementation(() => ({isLarge: false}))
-    }
-
-    const {container} = render(<RiverStoryScroll>{MockRiverChildren}</RiverStoryScroll>)
-
-    // This is a bit funky, but we need to grab the observer callbacks to mock the scroll behavior
-    const allObserverCalls = mockIntersectionObserver.mock.calls.map(([fn]) => fn)
-    const observerCalls = isLandscape
-      ? [allObserverCalls[0], allObserverCalls[2], allObserverCalls[4]]
-      : [allObserverCalls[1], allObserverCalls[3], allObserverCalls[5]]
-
-    const firstSectionCallback = observerCalls[0]
-    const secondSectionCallback = observerCalls[1]
-    const thirdSectionCallback = observerCalls[2]
-
-    // Scroll first section into view
-    act(() => {
-      firstSectionCallback([{isIntersecting: true}])
-    })
-
-    let insideViewport = container.querySelector('.in-viewport') as HTMLElement
-
-    // Check that only the first section is visible
-    expect(within(insideViewport).getByText('First heading')).toBeInTheDocument()
-    expect(within(insideViewport).getByText('First text content')).toBeInTheDocument()
-    expect(within(insideViewport).getByAltText('Placeholder 1')).toBeInTheDocument()
-
-    expect(within(insideViewport).queryByText('Second heading')).not.toBeInTheDocument()
-    expect(within(insideViewport).queryByText('Second text content')).not.toBeInTheDocument()
-    expect(within(insideViewport).queryByTitle('Example video')).not.toBeInTheDocument()
-
-    expect(within(insideViewport).queryByText('Third heading')).not.toBeInTheDocument()
-    expect(within(insideViewport).queryByText('Third text content')).not.toBeInTheDocument()
-    expect(within(insideViewport).queryByAltText('Placeholder 2')).not.toBeInTheDocument()
-
-    // Scroll second section into view
-    act(() => {
-      firstSectionCallback([{isIntersecting: false}])
-      secondSectionCallback([{isIntersecting: true}])
-    })
-
-    insideViewport = container.querySelector('.in-viewport') as HTMLElement
-
-    // Check that only the second section is visible
-    expect(within(insideViewport).queryByText('First heading')).not.toBeInTheDocument()
-    expect(within(insideViewport).queryByText('First text content')).not.toBeInTheDocument()
-    expect(within(insideViewport).queryByAltText('Placeholder 1')).not.toBeInTheDocument()
-
-    expect(within(insideViewport).getByText('Second heading')).toBeInTheDocument()
-    expect(within(insideViewport).getByText('Second text content')).toBeInTheDocument()
-    expect(within(insideViewport).getByTitle('Example video')).toBeInTheDocument()
-
-    expect(within(insideViewport).queryByText('Third heading')).not.toBeInTheDocument()
-    expect(within(insideViewport).queryByText('Third text content')).not.toBeInTheDocument()
-    expect(within(insideViewport).queryByAltText('Placeholder 2')).not.toBeInTheDocument()
-
-    // Scroll third section into view
-    act(() => {
-      secondSectionCallback([{isIntersecting: false}])
-      thirdSectionCallback([{isIntersecting: true}])
-    })
-
-    insideViewport = container.querySelector('.in-viewport') as HTMLElement
-
-    // Check that only the third section is visible
-    expect(within(insideViewport).queryByText('First heading')).not.toBeInTheDocument()
-    expect(within(insideViewport).queryByText('First text content')).not.toBeInTheDocument()
-    expect(within(insideViewport).queryByAltText('Placeholder 1')).not.toBeInTheDocument()
-
-    expect(within(insideViewport).queryByText('Second heading')).not.toBeInTheDocument()
-    expect(within(insideViewport).queryByText('Second text content')).not.toBeInTheDocument()
-    expect(within(insideViewport).queryByTitle('Example video')).not.toBeInTheDocument()
-
-    expect(within(insideViewport).getByText('Third heading')).toBeInTheDocument()
-    expect(within(insideViewport).getByText('Third text content')).toBeInTheDocument()
-    expect(within(insideViewport).getByAltText('Placeholder 2')).toBeInTheDocument()
-
-    // Scroll back to first section
-    act(() => {
-      thirdSectionCallback([{isIntersecting: false}])
-      firstSectionCallback([{isIntersecting: true}])
-    })
-
-    insideViewport = container.querySelector('.in-viewport') as HTMLElement
-
-    // Check that only the first section is visible again
-    expect(within(insideViewport).getByText('First heading')).toBeInTheDocument()
-    expect(within(insideViewport).getByText('First text content')).toBeInTheDocument()
-    expect(within(insideViewport).getByAltText('Placeholder 1')).toBeInTheDocument()
-
-    expect(within(insideViewport).queryByText('Second heading')).not.toBeInTheDocument()
-    expect(within(insideViewport).queryByText('Second text content')).not.toBeInTheDocument()
-    expect(within(insideViewport).queryByTitle('Example video')).not.toBeInTheDocument()
-
-    expect(within(insideViewport).queryByText('Third heading')).not.toBeInTheDocument()
-    expect(within(insideViewport).queryByText('Third text content')).not.toBeInTheDocument()
-    expect(within(insideViewport).queryByAltText('Placeholder 2')).not.toBeInTheDocument()
-  })
-}
-
 describe('RiverStoryScroll', () => {
   beforeEach(() => {
     mockMatchMedia.mockReturnValue({
@@ -253,7 +147,7 @@ describe('RiverStoryScroll', () => {
     const firstHeading = getByText('First heading')
     const secondHeading = getByText('Second heading')
     const thirdHeading = getByText('Third heading')
-    
+
     expect(riverStoryScroll).not.toBeInTheDocument()
     expect(firstHeading).toBeInTheDocument()
     expect(secondHeading).toBeInTheDocument()
@@ -273,7 +167,7 @@ describe('RiverStoryScroll', () => {
     const firstHeading = getByText('First heading')
     const secondHeading = getByText('Second heading')
     const thirdHeading = getByText('Third heading')
-    
+
     expect(riverStoryScroll).not.toBeInTheDocument()
     expect(firstHeading).toBeInTheDocument()
     expect(secondHeading).toBeInTheDocument()
@@ -429,21 +323,119 @@ describe('RiverStoryScroll', () => {
     expect(firstChild).toHaveClass('RiverStoryScroll')
   })
 
-  it('scrolls through content and shows correct visibility states when large landscape', () => {
-    runInteractionTest(1920, 1080)
-  })
+  it.each([
+    {width: 1920, height: 1080}, // Large landscape
+    {width: 1080, height: 1920}, // Large portrait
+    {width: 375, height: 667}, // Small portrait
+    {width: 667, height: 375}, // Small landscape
+  ])(
+    'scrolls through content and shows correct visibility states when width=$width and height=$height',
+    ({width, height}) => {
+      withWindowDimensions(width, height, () => {
+        const isLandscape = width > height
+        const isLarge = width >= 1012
 
-  it('scrolls through content and shows correct visibility states when large portrait', () => {
-    runInteractionTest(1080, 1920)
-  })
+        if (!isLarge) {
+          mockUseWindowSize.mockImplementation(() => ({isLarge: false}))
+        }
 
-  it('scrolls through content and shows correct visibility states when small portrait', () => {
-    runInteractionTest(375, 667)
-  })
+        const {container} = render(<RiverStoryScroll>{MockRiverChildren}</RiverStoryScroll>)
 
-  it('scrolls through content and shows correct visibility states when small landscape', () => {
-    runInteractionTest(667, 375)
-  })
+        // This is a bit funky, but we need to grab the observer callbacks to mock the scroll behavior
+        const allObserverCalls = mockIntersectionObserver.mock.calls.map(([fn]) => fn)
+        const observerCalls = isLandscape
+          ? [allObserverCalls[0], allObserverCalls[2], allObserverCalls[4]]
+          : [allObserverCalls[1], allObserverCalls[3], allObserverCalls[5]]
+
+        const firstSectionCallback = observerCalls[0]
+        const secondSectionCallback = observerCalls[1]
+        const thirdSectionCallback = observerCalls[2]
+
+        // Scroll first section into view
+        act(() => {
+          firstSectionCallback([{isIntersecting: true}])
+        })
+
+        let insideViewport = container.querySelector('.in-viewport') as HTMLElement
+
+        // Check that only the first section is visible
+        expect(within(insideViewport).getByText('First heading')).toBeInTheDocument()
+        expect(within(insideViewport).getByText('First text content')).toBeInTheDocument()
+        expect(within(insideViewport).getByAltText('Placeholder 1')).toBeInTheDocument()
+
+        expect(within(insideViewport).queryByText('Second heading')).not.toBeInTheDocument()
+        expect(within(insideViewport).queryByText('Second text content')).not.toBeInTheDocument()
+        expect(within(insideViewport).queryByTitle('Example video')).not.toBeInTheDocument()
+
+        expect(within(insideViewport).queryByText('Third heading')).not.toBeInTheDocument()
+        expect(within(insideViewport).queryByText('Third text content')).not.toBeInTheDocument()
+        expect(within(insideViewport).queryByAltText('Placeholder 2')).not.toBeInTheDocument()
+
+        // Scroll second section into view
+        act(() => {
+          firstSectionCallback([{isIntersecting: false}])
+          secondSectionCallback([{isIntersecting: true}])
+        })
+
+        insideViewport = container.querySelector('.in-viewport') as HTMLElement
+
+        // Check that only the second section is visible
+        expect(within(insideViewport).queryByText('First heading')).not.toBeInTheDocument()
+        expect(within(insideViewport).queryByText('First text content')).not.toBeInTheDocument()
+        expect(within(insideViewport).queryByAltText('Placeholder 1')).not.toBeInTheDocument()
+
+        expect(within(insideViewport).getByText('Second heading')).toBeInTheDocument()
+        expect(within(insideViewport).getByText('Second text content')).toBeInTheDocument()
+        expect(within(insideViewport).getByTitle('Example video')).toBeInTheDocument()
+
+        expect(within(insideViewport).queryByText('Third heading')).not.toBeInTheDocument()
+        expect(within(insideViewport).queryByText('Third text content')).not.toBeInTheDocument()
+        expect(within(insideViewport).queryByAltText('Placeholder 2')).not.toBeInTheDocument()
+
+        // Scroll third section into view
+        act(() => {
+          secondSectionCallback([{isIntersecting: false}])
+          thirdSectionCallback([{isIntersecting: true}])
+        })
+
+        insideViewport = container.querySelector('.in-viewport') as HTMLElement
+
+        // Check that only the third section is visible
+        expect(within(insideViewport).queryByText('First heading')).not.toBeInTheDocument()
+        expect(within(insideViewport).queryByText('First text content')).not.toBeInTheDocument()
+        expect(within(insideViewport).queryByAltText('Placeholder 1')).not.toBeInTheDocument()
+
+        expect(within(insideViewport).queryByText('Second heading')).not.toBeInTheDocument()
+        expect(within(insideViewport).queryByText('Second text content')).not.toBeInTheDocument()
+        expect(within(insideViewport).queryByTitle('Example video')).not.toBeInTheDocument()
+
+        expect(within(insideViewport).getByText('Third heading')).toBeInTheDocument()
+        expect(within(insideViewport).getByText('Third text content')).toBeInTheDocument()
+        expect(within(insideViewport).getByAltText('Placeholder 2')).toBeInTheDocument()
+
+        // Scroll back to first section
+        act(() => {
+          thirdSectionCallback([{isIntersecting: false}])
+          firstSectionCallback([{isIntersecting: true}])
+        })
+
+        insideViewport = container.querySelector('.in-viewport') as HTMLElement
+
+        // Check that only the first section is visible again
+        expect(within(insideViewport).getByText('First heading')).toBeInTheDocument()
+        expect(within(insideViewport).getByText('First text content')).toBeInTheDocument()
+        expect(within(insideViewport).getByAltText('Placeholder 1')).toBeInTheDocument()
+
+        expect(within(insideViewport).queryByText('Second heading')).not.toBeInTheDocument()
+        expect(within(insideViewport).queryByText('Second text content')).not.toBeInTheDocument()
+        expect(within(insideViewport).queryByTitle('Example video')).not.toBeInTheDocument()
+
+        expect(within(insideViewport).queryByText('Third heading')).not.toBeInTheDocument()
+        expect(within(insideViewport).queryByText('Third text content')).not.toBeInTheDocument()
+        expect(within(insideViewport).queryByAltText('Placeholder 2')).not.toBeInTheDocument()
+      })
+    },
+  )
 
   it('sets the correct class on RiverStoryScrollTracker when className is not provided', () => {
     const {container} = render(<RiverStoryScrollTracker index={0} />)
