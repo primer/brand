@@ -18,6 +18,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    position: relative;
   }
 
   .Tabs-container--align-start {
@@ -33,8 +34,30 @@
     max-width: 100%;
     overflow-x: auto;
     overflow-y: hidden;
-
+    scrollbar-width: none;
     -ms-overflow-style: none;
+    position: relative;
+  }
+
+  .Tabs::after {
+    content: '';
+    position: absolute;
+    right: -1px;
+    top: 0;
+    bottom: 0;
+    background: linear-gradient(to left, var(--brand-color-canvas-default) 30%, transparent);
+    width: var(--base-size-48);
+    z-index: 2;
+    pointer-events: none;
+    transition: opacity var(--brand-animation-duration-default) var(--brand-animation-easing-default),
+      visibility var(--brand-animation-duration-default) var(--brand-animation-easing-default);
+    transform: translateX(var(--scroll-offset, 0px));
+    opacity: calc(var(--has-overflow, 0) * var(--can-scroll-right, 0));
+  }
+
+  .Tabs--lastTabIsActive::after {
+    opacity: 0;
+    visibility: hidden;
   }
 
   .Tabs::-webkit-scrollbar {
@@ -52,7 +75,7 @@
 
 .Tabs--default,
 .Tabs--accent {
-  border: var(--brand-borderWidth-thin) solid var(--brand-color-border-default);
+  border: var(--brand-Tabs-list-borderWidth-active) solid var(--brand-color-border-default);
   border-radius: var(--brand-borderRadius-full);
 }
 
@@ -84,14 +107,14 @@
   bottom: var(--base-size-4);
   transition: all var(--brand-animation-duration-fast) var(--brand-animation-easing-glide);
   z-index: 0;
-  transform: translateX(var(--slider-x, 0px));
-  width: var(--slider-width);
+  transform: translateX(var(--brand-Tabs-slider-x, 0px));
+  width: var(--brand-Tabs-slider-width);
 }
 
 .Tabs--default .Tabs__slider {
   border-radius: var(--brand-borderRadius-full);
-  border: var(--brand-borderWidth-thin) solid var(--brand-color-border-default);
-  background: var(--brand-color-canvas-subtle);
+  border: var(--brand-borderWidth-thin) solid var(--brand-Tabs-item-default-borderColor-active);
+  background: var(--brand-Tabs-item-default-bgColor-active);
 }
 
 .Tabs--accent .Tabs__slider {
@@ -133,4 +156,33 @@
 
 .Tabs__panel {
   color: var(--brand-color-text-default);
+}
+
+.Tabs__controls {
+  margin-block-end: var(--base-size-12);
+}
+
+.Tabs__indicator {
+  width: var(--base-size-6);
+  border-radius: var(--brand-borderRadius-full);
+  background-color: var(--brand-color-text-muted);
+  height: var(--base-size-6);
+  transition: width var(--brand-animation-duration-default) var(--brand-animation-easing-default);
+}
+
+.Tabs__indicator--active {
+  background-color: var(--brand-color-text-default);
+  width: var(--base-size-24);
+}
+
+.Tabs__control {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+@media screen and (min-width: 48rem) {
+  .Tabs__controls {
+    display: none;
+  }
 }

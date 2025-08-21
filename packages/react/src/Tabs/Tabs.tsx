@@ -8,11 +8,15 @@ import React, {
   useRef,
   useEffect,
   HTMLAttributes,
+  useCallback,
 } from 'react'
 import clsx from 'clsx'
+import {ChevronLeftIcon, ChevronRightIcon} from '@primer/octicons-react'
 import {useTabs} from '../hooks/useTabs'
 import {BaseProps} from '../component-helpers'
 import {Animate, AnimationProvider, AnimationVariants} from '../animation'
+import {Text} from '../Text'
+import {Stack} from '../Stack'
 
 /**
  * Design tokens
@@ -53,7 +57,7 @@ const _TabsRoot = memo(function TabsRoot({
   className,
   'aria-label': ariaLabel,
 }: TabsProps) {
-  const {activeTab, getTabListProps, getTabProps, getTabPanelProps} = useTabs({
+  const {activeTab, activateTab, getTabListProps, getTabProps, getTabPanelProps} = useTabs({
     defaultTab: value ? value : undefined,
     onTabActivate: onChange ? (id: string) => onChange(id) : undefined,
   })
@@ -113,19 +117,115 @@ const _TabsRoot = memo(function TabsRoot({
     const offsetX = activeTabButton.offsetLeft - containerPadding
     const width = activeTabButton.offsetWidth
 
-    // Set CSS custom properties for slider positioning
-    sliderElement.style.setProperty('--slider-x', `${offsetX}px`)
-    sliderElement.style.setProperty('--slider-width', `${width}px`)
+    sliderElement.style.setProperty('--brand-Tabs-slider-x', `${offsetX}px`)
+    sliderElement.style.setProperty('--brand-Tabs-slider-width', `${width}px`)
+
+    // On narrow viewports this will scroll the active tab into the center.
+    // Important because we show a gradient in dark mode.
+    const tabsContainer = tabsContainerRef.current
+    const containerWidth = tabsContainer.clientWidth
+    const tabLeft = activeTabButton.offsetLeft - containerPadding
+    const tabWidth = activeTabButton.offsetWidth
+    const tabCenter = tabLeft + tabWidth / 2
+
+    const targetScrollLeft = tabCenter - containerWidth / 2
+
+    const maxScrollLeft = tabsContainer.scrollWidth - containerWidth // defines boudnary
+    const finalScrollLeft = Math.max(0, Math.min(targetScrollLeft, maxScrollLeft))
+
+    tabsContainer.scrollTo({
+      left: finalScrollLeft,
+      behavior: 'smooth',
+    })
   }, [activeTab])
+
+  // Tracks overflow state for mobile gradient visibility
+  // Should only appear when enough items trigger an overflow
+  useEffect(() => {
+    const tabsContainer = tabsContainerRef.current
+    if (!tabsContainer) return
+
+    const updateScrollState = () => {
+      const {scrollLeft, scrollWidth, clientWidth} = tabsContainer
+      const hasOverflow = scrollWidth > clientWidth
+      const canScrollRight = hasOverflow && scrollLeft < scrollWidth - clientWidth - 1
+
+      tabsContainer.style.setProperty('--scroll-offset', `${scrollLeft}px`)
+      tabsContainer.style.setProperty('--has-overflow', hasOverflow ? '1' : '0')
+      tabsContainer.style.setProperty('--can-scroll-right', canScrollRight ? '1' : '0')
+    }
+
+    updateScrollState()
+    const resizeObserver = new ResizeObserver(updateScrollState)
+    resizeObserver.observe(tabsContainer)
+
+    // eslint-disable-next-line github/prefer-observers
+    tabsContainer.addEventListener('scroll', updateScrollState)
+
+    return () => {
+      tabsContainer.removeEventListener('scroll', updateScrollState)
+      resizeObserver.disconnect()
+    }
+  }, [tabs])
 
   const tabListProps = getTabListProps({label: ariaLabel})
 
+  const handleNextTabControl = useCallback(() => {
+    if (activeTab && activeTab !== String(tabs.length - 1)) {
+      activateTab(String(Number(activeTab) + 1))
+    }
+  }, [activeTab, activateTab, tabs])
+
+  const handlePrevTabControl = useCallback(() => {
+    if (activeTab && activeTab !== '0') {
+      activateTab(String(Number(activeTab) - 1))
+    }
+  }, [activeTab, activateTab])
+
+  const hasMoreThanTwoTabs = tabs.length > 2
+  const isLastTabActive = String(tabs.length - 1) === activeTab
+
   return (
     <div className={clsx(styles['Tabs-container'], styles[`Tabs-container--align-${align}`])}>
+      {/* Narrow only indicators and controls */}
+      <nav className={styles.Tabs__controls}>
+        <Stack direction="horizontal" padding="none" justifyContent="space-between">
+          <button onClick={handlePrevTabControl} className={styles.Tabs__control}>
+            <Text size="100">
+              <ChevronLeftIcon size={16} />
+            </Text>
+          </button>
+          <Stack direction="horizontal" padding="none" justifyContent="space-between" alignItems="center">
+            {tabs.map((_, index) => {
+              return (
+                <div
+                  key={index}
+                  className={clsx(
+                    styles.Tabs__indicator,
+                    activeTab && Number(activeTab) === index && styles['Tabs__indicator--active'],
+                  )}
+                />
+              )
+            })}
+          </Stack>
+          <button onClick={handleNextTabControl} className={styles.Tabs__control}>
+            <Text size="100">
+              <ChevronRightIcon size={16} />
+            </Text>
+          </button>
+        </Stack>
+      </nav>
+
       <div
         {...tabListProps}
         ref={tabsContainerRef}
-        className={clsx(styles.Tabs, styles[`Tabs--${variant}`], className)}
+        className={clsx(
+          styles.Tabs,
+          styles[`Tabs--${variant}`],
+          hasMoreThanTwoTabs && styles['Tabs--hasMoreThanTwoTabs'],
+          isLastTabActive && styles['Tabs--lastTabIsActive'],
+          className,
+        )}
         data-testid={testIds.root}
       >
         <div ref={sliderRef} className={styles.Tabs__slider} aria-hidden />
