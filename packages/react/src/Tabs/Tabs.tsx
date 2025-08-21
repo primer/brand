@@ -77,10 +77,6 @@ const _TabsRoot = memo(function TabsRoot({
         isActive: activeTab === tabId,
         variant,
         'data-value': tabId,
-        style: {
-          ...tab.props.style,
-          gridRow: index + 1,
-        },
       })
     })
 
@@ -120,8 +116,6 @@ const _TabsRoot = memo(function TabsRoot({
     // Set CSS custom properties for slider positioning
     sliderElement.style.setProperty('--slider-x', `${offsetX}px`)
     sliderElement.style.setProperty('--slider-width', `${width}px`)
-
-    sliderElement.style.setProperty('--active-tab-index', String(parseInt(activeTab) + 1))
   }, [activeTab])
 
   const tabListProps = getTabListProps({label: ariaLabel})
