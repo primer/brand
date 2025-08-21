@@ -42,7 +42,7 @@
   },
   "dependencies": {
     "@oddbird/popover-polyfill": "0.5.2",
-    "@primer/behaviors": "1.8.0"
+    "@primer/behaviors": "^1.8.2"
   },
   "devDependencies": {
     "@figma/code-connect": "1.2.4",
