@@ -1,13 +1,17 @@
-import {useCallback, useState, useRef, type HTMLAttributes, type KeyboardEvent} from 'react'
+import {useCallback, useState, useRef, type KeyboardEvent} from 'react'
 import {useId} from '../hooks/useId'
 
 export type OnTabActivate = (id: string, activeTabRef?: HTMLElement) => void
+
+type Orientation = 'horizontal' | 'vertical'
+type TabId = `tabs-${string}-tab-${string}`
+type TabPanelId = `tabs-${string}-panel-${string}`
 
 export type UseTabsOptions = {
   defaultTab?: string
   autoActivate?: boolean
   onTabActivate?: OnTabActivate
-  orientation?: 'horizontal' | 'vertical'
+  orientation?: Orientation
 }
 
 export type TabState = {
@@ -16,19 +20,41 @@ export type TabState = {
   tabs: Set<string>
 }
 
-export type TabListProps = {
-  label?: string
-  labelledBy?: string
+type TabListProps = {
+  role: 'tablist'
+  'aria-orientation': Orientation
 }
+
+type TabProps = {
+  role: 'tab'
+  id: TabId
+  'aria-controls': TabPanelId
+  'aria-selected': boolean
+  tabIndex: 0 | -1
+  onClick: () => void
+  onKeyDown: (event: KeyboardEvent) => void
+  onFocus: () => void
+  ref: (element: HTMLElement | null) => void
+}
+
+type TabPanelProps = {
+  role: 'tabpanel'
+  id: TabPanelId
+  'aria-labelledby': TabId
+  hidden: boolean
+  tabIndex: 0
+}
+
+type LabelOrLabelledBy = {label: string; labelledBy?: never} | {labelledBy: string; label?: never}
 
 export type UseTabs = {
   activeTab: string | null
   focusedTab: string | null
   activateTab: (id: string) => void
   focusTab: (id: string) => void
-  getTabListProps: (props?: TabListProps) => HTMLAttributes<HTMLElement>
-  getTabProps: (id: string) => HTMLAttributes<HTMLElement>
-  getTabPanelProps: (id: string) => HTMLAttributes<HTMLElement>
+  getTabListProps: (props: LabelOrLabelledBy) => TabListProps
+  getTabProps: (id: string) => TabProps
+  getTabPanelProps: (id: string) => TabPanelProps
 }
 
 export const useTabs = ({
@@ -62,8 +88,8 @@ export const useTabs = ({
   // Refs to store tab elements for focus management
   const tabRefs = useRef<Map<string, HTMLElement>>(new Map())
 
-  const getTabId = useCallback((id: string) => `tabs-${uniqueId}-tab-${id}`, [uniqueId])
-  const getPanelId = useCallback((id: string) => `tabs-${uniqueId}-panel-${id}`, [uniqueId])
+  const getTabId = useCallback<(id: string) => TabId>(id => `tabs-${uniqueId}-tab-${id}`, [uniqueId])
+  const getPanelId = useCallback<(id: string) => TabPanelId>(id => `tabs-${uniqueId}-panel-${id}`, [uniqueId])
 
   const registerTab = useCallback(
     (id: string, element: HTMLElement) => {
@@ -177,8 +203,8 @@ export const useTabs = ({
     [setTabState],
   )
 
-  const getTabListProps = useCallback(
-    ({label, labelledBy}: TabListProps = {}) => ({
+  const getTabListProps = useCallback<UseTabs['getTabListProps']>(
+    ({label, labelledBy}) => ({
       role: 'tablist',
       'aria-orientation': orientation,
       ...(label && {'aria-label': label}),
@@ -187,7 +213,7 @@ export const useTabs = ({
     [orientation],
   )
 
-  const getTabProps = useCallback(
+  const getTabProps = useCallback<UseTabs['getTabProps']>(
     (id: string) => ({
       role: 'tab',
       id: getTabId(id),
@@ -204,7 +230,7 @@ export const useTabs = ({
     [tabState.activeTab, getTabId, getPanelId, onTabClick, onTabKeyDown, onTabFocus, registerTab],
   )
 
-  const getTabPanelProps = useCallback(
+  const getTabPanelProps = useCallback<UseTabs['getTabPanelProps']>(
     (id: string) => ({
       role: 'tabpanel',
       id: getPanelId(id),
