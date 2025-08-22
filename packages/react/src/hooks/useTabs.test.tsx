@@ -66,6 +66,10 @@ const mockKeyboardEvent = (key: string) =>
   } as unknown as React.KeyboardEvent<HTMLElement>)
 
 describe('useTabs', () => {
+  afterEach(() => {
+    jest.restoreAllMocks()
+  })
+
   it('returns an object with the expected shape', () => {
     const {result} = renderUseTabsHook()
 
@@ -1094,8 +1098,6 @@ describe('useTabs', () => {
     })
 
     expect(focusSpy).toHaveBeenCalledTimes(1)
-
-    focusSpy.mockRestore()
   })
 
   it('calls element.focus() when keyboard navigation occurs', () => {
@@ -1117,8 +1119,6 @@ describe('useTabs', () => {
     })
 
     expect(focusSpy).toHaveBeenCalledTimes(1)
-
-    focusSpy.mockRestore()
   })
 
   it('calls preventDefault on arrow key events', () => {
