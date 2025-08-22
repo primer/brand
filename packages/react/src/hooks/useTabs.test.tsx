@@ -84,14 +84,15 @@ describe('useTabs', () => {
     })
   })
 
-  it('returns an object with the expected shape from getTabListProps when called with no arguments', () => {
+  it('returns an object with the expected shape from getTabListProps', () => {
     const {result} = renderUseTabsHook()
 
-    const tabListProps = result.current.getTabListProps()
+    const tabListProps = result.current.getTabListProps({label: 'Test tabs'})
 
     expect(tabListProps).toEqual({
       role: expect.any(String),
       'aria-orientation': expect.any(String),
+      'aria-label': expect.any(String),
     })
   })
 
@@ -166,7 +167,7 @@ describe('useTabs', () => {
   it('sets the role of the tab list to "tablist"', () => {
     const {result} = renderUseTabsHook()
 
-    const tabListProps = result.current.getTabListProps()
+    const tabListProps = result.current.getTabListProps({label: 'Test tabs'})
 
     expect(tabListProps.role).toBe('tablist')
   })
@@ -174,7 +175,7 @@ describe('useTabs', () => {
   it('sets the aria-orientation of the tab list to "horizontal" by default', () => {
     const {result} = renderUseTabsHook()
 
-    const tabListProps = result.current.getTabListProps()
+    const tabListProps = result.current.getTabListProps({label: 'Test tabs'})
 
     expect(tabListProps['aria-orientation']).toBe('horizontal')
   })
@@ -182,7 +183,7 @@ describe('useTabs', () => {
   it('sets the aria-orientation of the tab list to "vertical" when specified', () => {
     const {result} = renderUseTabsHook({orientation: 'vertical'})
 
-    const tabListProps = result.current.getTabListProps()
+    const tabListProps = result.current.getTabListProps({label: 'Test tabs'})
 
     expect(tabListProps['aria-orientation']).toBe('vertical')
   })
@@ -267,7 +268,6 @@ describe('useTabs', () => {
     const tabProps = result.current.getTabProps('test-2')
 
     act(() => {
-      // @ts-expect-error The type for onClick isn't correct
       tabProps.onClick?.()
     })
 
@@ -282,7 +282,6 @@ describe('useTabs', () => {
     const tabProps = result.current.getTabProps('test-2')
 
     act(() => {
-      // @ts-expect-error The type for onClick isn't correct
       tabProps.onClick?.()
     })
 
@@ -297,7 +296,6 @@ describe('useTabs', () => {
     const tabProps = result.current.getTabProps('test-2')
 
     act(() => {
-      // @ts-expect-error The type for onFocus isn't correct
       tabProps.onFocus?.()
     })
 
@@ -312,7 +310,6 @@ describe('useTabs', () => {
     const tabProps = result.current.getTabProps('test-2')
 
     act(() => {
-      // @ts-expect-error The type for onFocus isn't correct
       tabProps.onFocus?.()
     })
 
@@ -373,7 +370,6 @@ describe('useTabs', () => {
     const tabProps = result.current.getTabProps('test-2')
 
     act(() => {
-      // @ts-expect-error The type for onFocus isn't correct
       tabProps.onFocus?.()
     })
 
@@ -392,7 +388,6 @@ describe('useTabs', () => {
     const tabProps = result.current.getTabProps('test-2')
 
     act(() => {
-      // @ts-expect-error The type for onFocus isn't correct
       tabProps.onFocus?.()
     })
 
@@ -411,7 +406,6 @@ describe('useTabs', () => {
     const tabProps = result.current.getTabProps('test-2')
 
     act(() => {
-      // @ts-expect-error The type for onFocus isn't correct
       tabProps.onFocus?.()
     })
 
@@ -430,7 +424,6 @@ describe('useTabs', () => {
     const tabProps = result.current.getTabProps('test-2')
 
     act(() => {
-      // @ts-expect-error The type for onFocus isn't correct
       tabProps.onFocus?.()
     })
 
@@ -449,7 +442,6 @@ describe('useTabs', () => {
     const tabProps = result.current.getTabProps('test-2')
 
     act(() => {
-      // @ts-expect-error The type for onFocus isn't correct
       tabProps.onFocus?.()
     })
 
@@ -468,7 +460,6 @@ describe('useTabs', () => {
     const tabProps = result.current.getTabProps('test-2')
 
     act(() => {
-      // @ts-expect-error The type for onFocus isn't correct
       tabProps.onFocus?.()
     })
 
@@ -487,7 +478,6 @@ describe('useTabs', () => {
     const tabProps = result.current.getTabProps('test-2')
 
     act(() => {
-      // @ts-expect-error The type for onFocus isn't correct
       tabProps.onFocus?.()
     })
 
@@ -506,7 +496,6 @@ describe('useTabs', () => {
     const tabProps = result.current.getTabProps('test-2')
 
     act(() => {
-      // @ts-expect-error The type for onFocus isn't correct
       tabProps.onFocus?.()
     })
 
@@ -525,7 +514,6 @@ describe('useTabs', () => {
     const tabProps = result.current.getTabProps('test-3')
 
     act(() => {
-      // @ts-expect-error The type for onFocus isn't correct
       tabProps.onFocus?.()
     })
 
@@ -544,7 +532,6 @@ describe('useTabs', () => {
     const tabProps = result.current.getTabProps('test-1')
 
     act(() => {
-      // @ts-expect-error The type for onFocus isn't correct
       tabProps.onFocus?.()
     })
 
@@ -563,7 +550,6 @@ describe('useTabs', () => {
     const tabProps = result.current.getTabProps('test-1')
 
     act(() => {
-      // @ts-expect-error The type for onFocus isn't correct
       tabProps.onFocus?.()
     })
 
@@ -582,7 +568,6 @@ describe('useTabs', () => {
     const tabProps = result.current.getTabProps('test-3')
 
     act(() => {
-      // @ts-expect-error The type for onFocus isn't correct
       tabProps.onFocus?.()
     })
 
@@ -601,7 +586,6 @@ describe('useTabs', () => {
     const tabProps = result.current.getTabProps('test-1')
 
     act(() => {
-      // @ts-expect-error The type for onFocus isn't correct
       tabProps.onFocus?.()
     })
 
@@ -620,7 +604,6 @@ describe('useTabs', () => {
     const tabProps = result.current.getTabProps('test-3')
 
     act(() => {
-      // @ts-expect-error The type for onFocus isn't correct
       tabProps.onFocus?.()
     })
 
@@ -639,7 +622,6 @@ describe('useTabs', () => {
     const tabProps = result.current.getTabProps('test-2')
 
     act(() => {
-      // @ts-expect-error The type for onFocus isn't correct
       tabProps.onFocus?.()
     })
 
@@ -660,7 +642,6 @@ describe('useTabs', () => {
     const tabProps = result.current.getTabProps('test-2')
 
     act(() => {
-      // @ts-expect-error The type for onFocus isn't correct
       tabProps.onFocus?.()
     })
 
@@ -681,7 +662,6 @@ describe('useTabs', () => {
     const tabProps = result.current.getTabProps('test-2')
 
     act(() => {
-      // @ts-expect-error The type for onFocus isn't correct
       tabProps.onFocus?.()
     })
 
@@ -702,7 +682,6 @@ describe('useTabs', () => {
     const tabProps = result.current.getTabProps('test-2')
 
     act(() => {
-      // @ts-expect-error The type for onFocus isn't correct
       tabProps.onFocus?.()
     })
 
@@ -723,7 +702,6 @@ describe('useTabs', () => {
     const tabProps = result.current.getTabProps('test-3')
 
     act(() => {
-      // @ts-expect-error The type for onFocus isn't correct
       tabProps.onFocus?.()
     })
 
@@ -744,7 +722,6 @@ describe('useTabs', () => {
     const tabProps = result.current.getTabProps('test-1')
 
     act(() => {
-      // @ts-expect-error The type for onFocus isn't correct
       tabProps.onFocus?.()
     })
 
@@ -765,7 +742,6 @@ describe('useTabs', () => {
     const tab2Props = result.current.getTabProps('test-2')
 
     act(() => {
-      // @ts-expect-error The type for onFocus isn't correct
       tab2Props.onFocus?.()
     })
 
@@ -785,7 +761,6 @@ describe('useTabs', () => {
     const tab2Props = result.current.getTabProps('test-2')
 
     act(() => {
-      // @ts-expect-error The type for onFocus isn't correct
       tab2Props.onFocus?.()
     })
 
@@ -876,7 +851,6 @@ describe('useTabs', () => {
     const tabProps = result.current.getTabProps('test-2')
 
     act(() => {
-      // @ts-expect-error The type for onClick isn't correct
       tabProps.onClick?.()
     })
 
@@ -890,7 +864,6 @@ describe('useTabs', () => {
     const tabProps = result.current.getTabProps('test-2')
 
     act(() => {
-      // @ts-expect-error The type for onFocus isn't correct
       tabProps.onFocus?.()
     })
 
@@ -908,7 +881,6 @@ describe('useTabs', () => {
     const tabProps = result.current.getTabProps('test-2')
 
     act(() => {
-      // @ts-expect-error The type for onFocus isn't correct
       tabProps.onFocus?.()
     })
 
@@ -926,7 +898,6 @@ describe('useTabs', () => {
     const tabProps = result.current.getTabProps('test-2')
 
     act(() => {
-      // @ts-expect-error The type for onFocus isn't correct
       tabProps.onFocus?.()
     })
 
@@ -944,7 +915,6 @@ describe('useTabs', () => {
     const tabProps = result.current.getTabProps('test-2')
 
     act(() => {
-      // @ts-expect-error The type for onFocus isn't correct
       tabProps.onFocus?.()
     })
 
@@ -962,7 +932,6 @@ describe('useTabs', () => {
     const tabProps = result.current.getTabProps('test-2')
 
     act(() => {
-      // @ts-expect-error The type for onFocus isn't correct
       tabProps.onFocus?.()
     })
 
@@ -980,7 +949,6 @@ describe('useTabs', () => {
     const tabProps = result.current.getTabProps('test-2')
 
     act(() => {
-      // @ts-expect-error The type for onFocus isn't correct
       tabProps.onFocus?.()
     })
 
@@ -1013,7 +981,6 @@ describe('useTabs', () => {
     const horizontalTabProps = result.current.getTabProps('test-3')
 
     act(() => {
-      // @ts-expect-error The type for onFocus isn't correct
       horizontalTabProps.onFocus?.()
     })
 
@@ -1048,7 +1015,6 @@ describe('useTabs', () => {
     const verticalTabProps = result.current.getTabProps('test-3')
 
     act(() => {
-      // @ts-expect-error The type for onFocus isn't correct
       verticalTabProps.onFocus?.()
     })
 
@@ -1080,11 +1046,11 @@ describe('useTabs', () => {
   it('updates the aria-orientation attribute when orientation changes', () => {
     const {result, rerender} = renderUseTabsHook({orientation: 'horizontal'})
 
-    expect(result.current.getTabListProps()['aria-orientation']).toBe('horizontal')
+    expect(result.current.getTabListProps({label: 'Test tabs'})['aria-orientation']).toBe('horizontal')
 
     rerender({useTabsOptions: {orientation: 'vertical'}})
 
-    expect(result.current.getTabListProps()['aria-orientation']).toBe('vertical')
+    expect(result.current.getTabListProps({label: 'Test tabs'})['aria-orientation']).toBe('vertical')
   })
 
   it('calls element.focus() when focusTab is called', () => {
@@ -1106,7 +1072,6 @@ describe('useTabs', () => {
     const tabProps = result.current.getTabProps('test-2')
 
     act(() => {
-      // @ts-expect-error The type for onFocus isn't correct
       tabProps.onFocus?.()
     })
 
@@ -1127,7 +1092,6 @@ describe('useTabs', () => {
     const tabProps = result.current.getTabProps('test-2')
 
     act(() => {
-      // @ts-expect-error The type for onFocus isn't correct
       tabProps.onFocus?.()
     })
 
@@ -1152,7 +1116,6 @@ describe('useTabs', () => {
     const tabProps = result.current.getTabProps('test-2')
 
     act(() => {
-      // @ts-expect-error The type for onFocus isn't correct
       tabProps.onFocus?.()
     })
 
@@ -1177,7 +1140,6 @@ describe('useTabs', () => {
     const tabProps = result.current.getTabProps('test-2')
 
     act(() => {
-      // @ts-expect-error The type for onFocus isn't correct
       tabProps.onFocus?.()
     })
 
@@ -1202,7 +1164,6 @@ describe('useTabs', () => {
     const tabProps = result.current.getTabProps('test-2')
 
     act(() => {
-      // @ts-expect-error The type for onFocus isn't correct
       tabProps.onFocus?.()
     })
 
