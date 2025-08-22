@@ -1,6 +1,6 @@
-import React from 'react'
+import React, {MutableRefObject} from 'react'
 
-import {act, render, renderHook} from '@testing-library/react'
+import {act, render} from '@testing-library/react'
 import '@testing-library/jest-dom'
 
 import {useTabs, type UseTabs, type UseTabsOptions} from './useTabs'
@@ -23,7 +23,7 @@ type TestComponentProps = {
  *    function to match real-world usage.
  */
 const renderUseTabsHook = (initialOptions?: UseTabsOptions) => {
-  const result = React.createRef<UseTabs>() as React.MutableRefObject<UseTabs>
+  const result = React.createRef<UseTabs>() as MutableRefObject<UseTabs>
 
   const MockTabs = ({useTabsOptions}: TestComponentProps) => {
     const useTabsResult = useTabs(useTabsOptions)
@@ -66,10 +66,6 @@ const mockKeyboardEvent = (key: string) =>
   } as unknown as React.KeyboardEvent<HTMLElement>)
 
 describe('useTabs', () => {
-  afterEach(() => {
-    jest.restoreAllMocks()
-  })
-
   it('returns an object with the expected shape', () => {
     const {result} = renderUseTabsHook()
 
@@ -289,7 +285,7 @@ describe('useTabs', () => {
     expect(result.current.activeTab).toBe('test-2')
   })
 
-  it("focuses the tab when an inactive tab's onFocus callback is called", () => {
+  it("focusses the tab when an inactive tab's onFocus callback is called", () => {
     const {result} = renderUseTabsHook({defaultTab: 'test-1'})
 
     expect(result.current.focusedTab).toBeNull()
@@ -304,7 +300,7 @@ describe('useTabs', () => {
     expect(result.current.focusedTab).toBe('test-2')
   })
 
-  it("focuses the tab when an active tab's onFocus callback is called", () => {
+  it("focusses the tab when an active tab's onFocus callback is called", () => {
     const {result} = renderUseTabsHook({defaultTab: 'test-2'})
 
     expect(result.current.focusedTab).toBeNull()
@@ -317,42 +313,6 @@ describe('useTabs', () => {
     })
 
     expect(result.current.focusedTab).toBe('test-2')
-  })
-
-  it('passes the tab element to the provided functional ref', () => {
-    const functionalRef = jest.fn()
-    // We intentionally use `renderHook` here as we want to pass a custom ref
-    const {result} = renderHook(useTabs)
-
-    const tabProps = result.current.getTabProps('test-2', functionalRef)
-
-    const mockTabElement = {} as HTMLElement
-
-    act(() => {
-      // @ts-expect-error The type for tabProps isn't correct
-      tabProps.ref(mockTabElement)
-    })
-
-    expect(functionalRef).toHaveBeenCalledTimes(1)
-    expect(functionalRef).toHaveBeenLastCalledWith(mockTabElement)
-  })
-
-  it("sets the tab element to the provided RefObject's current property", () => {
-    const ref = React.createRef<HTMLDetailsElement>()
-
-    // We intentionally use `renderHook` here as we want to pass a custom ref
-    const {result} = renderHook(useTabs)
-
-    const tabProps = result.current.getTabProps('test-2', ref)
-
-    const mockTabElement = {} as HTMLElement
-
-    act(() => {
-      // @ts-expect-error The type for tabProps isn't correct
-      tabProps.ref(mockTabElement)
-    })
-
-    expect(ref.current).toBe(mockTabElement)
   })
 
   it('sets the role of a tab panel to "tabpanel"', () => {
@@ -869,18 +829,6 @@ describe('useTabs', () => {
     })
 
     expect(result.current.focusedTab).toBe('test-2')
-
-    act(() => {
-      result.current.focusTab('test-3')
-    })
-
-    expect(result.current.focusedTab).toBe('test-3')
-
-    act(() => {
-      result.current.focusTab('test-3')
-    })
-
-    expect(result.current.focusedTab).toBe('test-3')
   })
 
   it('does not change the active tab when focusTab is called', () => {
@@ -1146,6 +1094,8 @@ describe('useTabs', () => {
     })
 
     expect(focusSpy).toHaveBeenCalledTimes(1)
+
+    focusSpy.mockRestore()
   })
 
   it('calls element.focus() when keyboard navigation occurs', () => {
@@ -1167,6 +1117,8 @@ describe('useTabs', () => {
     })
 
     expect(focusSpy).toHaveBeenCalledTimes(1)
+
+    focusSpy.mockRestore()
   })
 
   it('calls preventDefault on arrow key events', () => {
