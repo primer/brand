@@ -285,7 +285,7 @@ describe('useTabs', () => {
     expect(result.current.activeTab).toBe('test-2')
   })
 
-  it("focusses the tab when an inactive tab's onFocus callback is called", () => {
+  it("focuses the tab when an inactive tab's onFocus callback is called", () => {
     const {result} = renderUseTabsHook({defaultTab: 'test-1'})
 
     expect(result.current.focusedTab).toBeNull()
@@ -300,7 +300,7 @@ describe('useTabs', () => {
     expect(result.current.focusedTab).toBe('test-2')
   })
 
-  it("focusses the tab when an active tab's onFocus callback is called", () => {
+  it("focuses the tab when an active tab's onFocus callback is called", () => {
     const {result} = renderUseTabsHook({defaultTab: 'test-2'})
 
     expect(result.current.focusedTab).toBeNull()
