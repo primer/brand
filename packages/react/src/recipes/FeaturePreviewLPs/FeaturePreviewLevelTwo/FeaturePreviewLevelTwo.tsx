@@ -30,6 +30,7 @@ import {
   ThemeProvider,
   Timeline,
   IDE,
+  InlineLink,
 } from '../../..'
 
 import styles from './FeaturePreviewLevelTwo.module.css'
@@ -767,6 +768,29 @@ export function FeaturePreviewLevelTwo({
                   )}
                 </Box>
               )}
+              <Grid>
+                <Grid.Column span={{medium: 10}} start={{medium: 2}}>
+                  <Box marginBlockStart={{narrow: 64, regular: 128}}>
+                    <Stack direction="vertical" padding="none">
+                      <Text as="p" variant="muted" size="100">
+                        <sup>1</sup> The Total Economic Impact™ Of GitHub Enterprise Cloud and Advanced Security, a
+                        commissioned study conducted by Forrester Consulting, 2022. Results are for a composite
+                        organization based on interviewed customers.
+                        <br />
+                        <br />
+                        <sup>2</sup> GitHub, Octoverse 2022 The state of open source software.{' '}
+                        <InlineLink
+                          href="https://docs.github.com/en/site-policy/privacy-policies/github-privacy-statement"
+                          target="_blank"
+                        >
+                          Published by GitHub.
+                        </InlineLink>
+                        .
+                      </Text>
+                    </Stack>
+                  </Box>
+                </Grid.Column>
+              </Grid>
             </Grid.Column>
           </Grid>
         </Section>
