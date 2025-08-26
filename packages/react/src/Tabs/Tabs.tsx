@@ -106,24 +106,39 @@ const _TabsRoot = memo(function TabsRoot({
 
     if (!activeTab) return
 
-    const sliderElement = sliderRef.current
+    const updateSliderPosition = () => {
+      const sliderElement = sliderRef.current
+      const tabsContainer = tabsContainerRef.current
+      if (!sliderElement || !tabsContainer) return
 
-    const containerPaddingRem = window
-      .getComputedStyle(tabsContainerRef.current)
-      .getPropertyValue('--brand-Tabs-container-padding')
+      const containerPaddingRem = window
+        .getComputedStyle(tabsContainer)
+        .getPropertyValue('--brand-Tabs-container-padding')
 
-    const containerPadding = parseFloat(containerPaddingRem) * 16 // base size
+      const containerPadding = parseFloat(containerPaddingRem) * 16 // base size
 
-    const offsetX = activeTabButton.offsetLeft - containerPadding
-    const width = activeTabButton.offsetWidth
+      const offsetX = activeTabButton.offsetLeft - containerPadding
+      const width = activeTabButton.offsetWidth
 
-    sliderElement.style.setProperty('--brand-Tabs-slider-x', `${offsetX}px`)
-    sliderElement.style.setProperty('--brand-Tabs-slider-width', `${width}px`)
+      sliderElement.style.setProperty('--brand-Tabs-slider-x', `${offsetX}px`)
+      sliderElement.style.setProperty('--brand-Tabs-slider-width', `${width}px`)
+    }
+
+    // Initial calculation
+    updateSliderPosition()
+
+    // Recalculate on container resize (handles breakpoint changes)
+    const resizeObserver = new ResizeObserver(updateSliderPosition)
+    resizeObserver.observe(tabsContainerRef.current)
 
     // On narrow viewports this will scroll the active tab into the center.
     // Important because we show a gradient in dark mode.
     const tabsContainer = tabsContainerRef.current
     const containerWidth = tabsContainer.clientWidth
+    const containerPaddingRem = window
+      .getComputedStyle(tabsContainer)
+      .getPropertyValue('--brand-Tabs-container-padding')
+    const containerPadding = parseFloat(containerPaddingRem) * 16
     const tabLeft = activeTabButton.offsetLeft - containerPadding
     const tabWidth = activeTabButton.offsetWidth
     const tabCenter = tabLeft + tabWidth / 2
@@ -137,6 +152,10 @@ const _TabsRoot = memo(function TabsRoot({
       left: finalScrollLeft,
       behavior: 'smooth',
     })
+
+    return () => {
+      resizeObserver.disconnect()
+    }
   }, [activeTab])
 
   // Tracks overflow state for mobile gradient visibility
@@ -182,39 +201,41 @@ const _TabsRoot = memo(function TabsRoot({
     }
   }, [activeTab, activateTab])
 
-  const hasMoreThanTwoTabs = tabs.length > 2
+  const hasMoreThanTwoTabs = tabs.length >= 3
   const isLastTabActive = String(tabs.length - 1) === activeTab
 
   return (
     <div className={clsx(styles['Tabs-container'], styles[`Tabs-container--align-${align}`])}>
       {/* Narrow only indicators and controls */}
-      <nav className={styles.Tabs__controls}>
-        <Stack direction="horizontal" padding="none" justifyContent="space-between">
-          <button onClick={handlePrevTabControl} className={styles.Tabs__control}>
-            <Text size="100">
-              <ChevronLeftIcon size={16} />
-            </Text>
-          </button>
-          <Stack direction="horizontal" padding="none" justifyContent="space-between" alignItems="center">
-            {tabs.map((_, index) => {
-              return (
-                <div
-                  key={index}
-                  className={clsx(
-                    styles.Tabs__indicator,
-                    activeTab && Number(activeTab) === index && styles['Tabs__indicator--active'],
-                  )}
-                />
-              )
-            })}
+      {tabs.length >= 3 && (
+        <nav className={styles.Tabs__controls}>
+          <Stack direction="horizontal" padding="none" justifyContent="space-between">
+            <button onClick={handlePrevTabControl} className={styles.Tabs__control}>
+              <Text size="100">
+                <ChevronLeftIcon size={16} />
+              </Text>
+            </button>
+            <Stack direction="horizontal" padding="none" justifyContent="space-between" alignItems="center">
+              {tabs.map((_, index) => {
+                return (
+                  <div
+                    key={index}
+                    className={clsx(
+                      styles.Tabs__indicator,
+                      activeTab && Number(activeTab) === index && styles['Tabs__indicator--active'],
+                    )}
+                  />
+                )
+              })}
+            </Stack>
+            <button onClick={handleNextTabControl} className={styles.Tabs__control}>
+              <Text size="100">
+                <ChevronRightIcon size={16} />
+              </Text>
+            </button>
           </Stack>
-          <button onClick={handleNextTabControl} className={styles.Tabs__control}>
-            <Text size="100">
-              <ChevronRightIcon size={16} />
-            </Text>
-          </button>
-        </Stack>
-      </nav>
+        </nav>
+      )}
 
       <div
         {...tabListProps}

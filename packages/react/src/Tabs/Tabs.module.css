@@ -89,7 +89,7 @@
   border: 0;
   background: transparent;
   cursor: pointer;
-  padding: var(--base-size-8) var(--base-size-24);
+  padding: var(--base-size-8) var(--base-size-16);
   border-radius: var(--brand-borderRadius-full);
   transition: color var(--brand-animation-duration-fast) ease-in-out;
   white-space: nowrap;
@@ -184,5 +184,9 @@
 @media screen and (min-width: 48rem) {
   .Tabs__controls {
     display: none;
+  }
+
+  .Tabs__item {
+    padding-inline: var(--base-size-24);
   }
 }
