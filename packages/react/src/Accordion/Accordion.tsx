@@ -80,7 +80,7 @@ export const AccordionRoot = forwardRef<HTMLDetailsElement, AccordionRootProps>(
 
     useEffect(() => {
       const detailsElement = ref.current
-      /* istanbul ignore next */
+      // TODO Remove this early return and instead wrap whole function in an if
       if (!detailsElement) return
 
       detailsElement.addEventListener('toggle', handleToggle)
