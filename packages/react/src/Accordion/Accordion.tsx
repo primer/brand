@@ -80,6 +80,7 @@ export const AccordionRoot = forwardRef<HTMLDetailsElement, AccordionRootProps>(
 
     useEffect(() => {
       const detailsElement = ref.current
+      // TODO Remove this early return and instead wrap whole function in an if
       if (!detailsElement) return
 
       detailsElement.addEventListener('toggle', handleToggle)
@@ -112,6 +113,11 @@ export type AccordionHeadingProps = HTMLAttributes<HTMLElement> & {
   toggleColor?: (typeof AccordionToggleColors)[number]
 }
 
+/**
+ * TODO This type is incorrect
+ * The ref is applied to the summary, not the heading, so the correct type is
+ * `forwardRef<HTMLElement, AccordionHeadingProps>`
+ */
 export const AccordionHeading = forwardRef<HTMLHeadingElement, AccordionHeadingProps>(
   ({children, className, as = 'h4', toggleColor, reversedToggles, ...rest}, ref) => {
     const {variant} = useAccordionContext()
