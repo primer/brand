@@ -8,6 +8,7 @@ declare const styles: {
   readonly "Tabs-container--align-center": string;
   readonly "Tabs-container--align-start": string;
   readonly "Tabs__control": string;
+  readonly "Tabs__control-icon": string;
   readonly "Tabs__controls": string;
   readonly "Tabs__indicator": string;
   readonly "Tabs__indicator--active": string;

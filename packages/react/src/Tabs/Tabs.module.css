@@ -179,6 +179,16 @@
   background-color: transparent;
   border: none;
   cursor: pointer;
+  height: var(--base-size-24);
+  width: var(--base-size-24);
+  display: flex;
+  align-content: center;
+}
+
+.Tabs__control-icon {
+  vertical-align: middle !important; /* Required to override dotcom styles */
+  position: relative;
+  top: calc(var(--base-size-2) / -2);
 }
 
 @media screen and (min-width: 48rem) {

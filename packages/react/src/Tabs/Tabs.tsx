@@ -208,14 +208,14 @@ const _TabsRoot = memo(function TabsRoot({
     <div className={clsx(styles['Tabs-container'], styles[`Tabs-container--align-${align}`])}>
       {/* Narrow only indicators and controls */}
       {tabs.length >= 3 && (
-        <nav className={styles.Tabs__controls}>
+        <nav className={styles.Tabs__controls} aria-label="Tab navigation controls">
           <Stack direction="horizontal" padding="none" justifyContent="space-between">
             <button onClick={handlePrevTabControl} className={styles.Tabs__control}>
               <Text size="100">
-                <ChevronLeftIcon size={16} />
+                <ChevronLeftIcon size={16} className={styles['Tabs__control-icon']} />
               </Text>
             </button>
-            <Stack direction="horizontal" padding="none" justifyContent="space-between" alignItems="center">
+            <Stack direction="horizontal" gap={4} padding="none" justifyContent="space-between" alignItems="center">
               {tabs.map((_, index) => {
                 return (
                   <div
@@ -230,7 +230,7 @@ const _TabsRoot = memo(function TabsRoot({
             </Stack>
             <button onClick={handleNextTabControl} className={styles.Tabs__control}>
               <Text size="100">
-                <ChevronRightIcon size={16} />
+                <ChevronRightIcon size={16} className={styles['Tabs__control-icon']} />
               </Text>
             </button>
           </Stack>
