@@ -208,9 +208,14 @@ const _TabsRoot = memo(function TabsRoot({
     <div className={clsx(styles['Tabs-container'], styles[`Tabs-container--align-${align}`])}>
       {/* Narrow only indicators and controls */}
       {tabs.length >= 3 && (
-        <nav className={styles.Tabs__controls} aria-label="Tab navigation controls">
+        <div className={styles.Tabs__controls} role="toolbar" aria-label="Tab navigation">
           <Stack direction="horizontal" padding="none" justifyContent="space-between">
-            <button onClick={handlePrevTabControl} className={styles.Tabs__control}>
+            <button
+              onClick={handlePrevTabControl}
+              className={styles.Tabs__control}
+              aria-label="Previous tab"
+              aria-controls={tabListProps.id}
+            >
               <Text size="100">
                 <ChevronLeftIcon size={16} className={styles['Tabs__control-icon']} />
               </Text>
@@ -228,13 +233,18 @@ const _TabsRoot = memo(function TabsRoot({
                 )
               })}
             </Stack>
-            <button onClick={handleNextTabControl} className={styles.Tabs__control}>
+            <button
+              onClick={handleNextTabControl}
+              className={styles.Tabs__control}
+              aria-label="Next tab"
+              aria-controls={tabListProps.id}
+            >
               <Text size="100">
                 <ChevronRightIcon size={16} className={styles['Tabs__control-icon']} />
               </Text>
             </button>
           </Stack>
-        </nav>
+        </div>
       )}
 
       <div
