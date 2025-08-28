@@ -1,5 +1,11 @@
 # @primer/react-brand
 
+## 0.57.3
+
+### Patch Changes
+
+- [#1133](https://github.com/primer/brand/pull/1133) [`23a0d50`](https://github.com/primer/brand/commit/23a0d50c8f5f2ca4f8f63bc105cad44da5662962) Thanks [@joshfarrant](https://github.com/joshfarrant)! - Added some comments to the `Accordion` component. This is a no-op update.
+
 ## 0.57.2
 
 ### Patch Changes
