@@ -1,0 +1,48 @@
+{
+  "Tabs": {
+    "item": {
+      "accent": {
+        "bgColor": {
+          "rest": {
+            "value": "var(--base-color-scale-green-5)",
+            "dark": "var(--base-color-scale-green-5)"
+          }
+        },
+        "fgColor": {
+          "rest": {
+            "value": "var(--base-color-scale-white-0)",
+            "dark": "var(--base-color-scale-white-0)"
+          }
+        }
+      },
+      "default": {
+        "bgColor": {
+          "active": {
+            "value": "linear-gradient(180deg, rgba(255, 255, 255, 0.12) 0%, rgba(153, 153, 153, 0.12) 100%)",
+            "dark": "linear-gradient(180deg, rgba(255, 255, 255, 0.12) 0%, rgba(153, 153, 153, 0.12) 100%)"
+          }
+        },
+        "borderColor": {
+          "active": {
+            "value": "var(--brand-color-border-default)",
+            "dark": "var(--base-color-scale-white-0)"
+          }
+        }
+      },
+      "underline": {
+        "rest": {
+          "value": "var(--base-color-scale-black-0)",
+          "dark": "var(--base-color-scale-white-0)"
+        }
+      }
+    },
+    "list": {
+      "borderWidth": {
+        "active": {
+          "value": "var(--brand-borderWidth-thin)",
+          "dark": "var(--brand-borderWidth-thick)"
+        }
+      }
+    }
+  }
+}
