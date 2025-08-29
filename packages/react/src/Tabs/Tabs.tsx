@@ -322,7 +322,6 @@ const _TabsRoot = forwardRef<HTMLDivElement, TabsProps>(
 export type TabsItemProps = {
   children: ReactNode
   value?: string
-  disabled?: boolean
   className?: string
   isActive?: boolean
   variant?: 'default' | 'accent'
@@ -330,13 +329,12 @@ export type TabsItemProps = {
 }
 
 const TabsItem = forwardRef<HTMLButtonElement, TabsItemProps & React.ComponentPropsWithoutRef<'button'>>(
-  ({children, value, disabled, className, isActive, variant, ...props}, ref) => {
+  ({children, value, className, isActive, variant, ...props}, ref) => {
     const tabRef = useProvidedRefOrCreate(ref)
 
     return (
       <button
         ref={tabRef}
-        disabled={disabled}
         className={clsx(
           styles.Tabs__item,
           isActive && styles.active,
