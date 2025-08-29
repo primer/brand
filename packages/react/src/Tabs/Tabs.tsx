@@ -173,10 +173,8 @@ const _TabsRoot = forwardRef<HTMLDivElement, TabsProps>(
         sliderElement.style.setProperty('--brand-Tabs-slider-width', `${width}px`)
       }
 
-      // Initial calculation
       updateSliderPosition()
 
-      // Recalculate on container resize (handles breakpoint changes)
       const resizeObserver = new ResizeObserver(updateSliderPosition)
       resizeObserver.observe(tabsContainerRef.current)
 
@@ -207,8 +205,9 @@ const _TabsRoot = forwardRef<HTMLDivElement, TabsProps>(
       }
     }, [activeTab])
 
-    // Tracks overflow state for mobile gradient visibility
+    // Tracks the overflow state for mobile gradient visibility
     // Should only appear when enough items trigger an overflow
+    // Related to gradient functionality
     useEffect(() => {
       const tabsContainer = tabsContainerRef.current
       if (!tabsContainer) return
@@ -395,5 +394,3 @@ export const Tabs = Object.assign(_TabsRoot, {
   Panel: TabsPanel,
   testIds,
 })
-
-export default Tabs
