@@ -15,6 +15,41 @@ export default meta
 
 type Story = StoryObj<MetaProps>
 
+export const DefaultVariantNarrow: Story = {
+  parameters: {
+    viewport: {
+      defaultViewport: 'mobile1',
+    },
+  },
+  render: args => {
+    return (
+      <Tabs {...args} aria-label="Tabs in default variant">
+        <Tabs.Item>Tab one</Tabs.Item>
+        <Tabs.Item>Tab two</Tabs.Item>
+        <Tabs.Item>Tab three</Tabs.Item>
+        <Tabs.Item>Tab four</Tabs.Item>
+        <Tabs.Item>Tab five</Tabs.Item>
+
+        <Tabs.Panel>
+          <Text>Panel one</Text>
+        </Tabs.Panel>
+        <Tabs.Panel>
+          <Text>Panel two</Text>
+        </Tabs.Panel>
+        <Tabs.Panel>
+          <Text>Panel three</Text>
+        </Tabs.Panel>
+        <Tabs.Panel>
+          <Text>Panel four</Text>
+        </Tabs.Panel>
+        <Tabs.Panel>
+          <Text>Panel five</Text>
+        </Tabs.Panel>
+      </Tabs>
+    )
+  },
+}
+
 export const CustomPanels: StoryFn<typeof Tabs> = args => {
   const [activeTab, setActiveTab] = useState<string>('0')
 
@@ -93,7 +128,7 @@ export const CustomPanels: StoryFn<typeof Tabs> = args => {
 export const CustomActiveTab: Story = {
   render: args => {
     return (
-      <Tabs {...args} value="2" aria-label="Tabs in default variant">
+      <Tabs {...args} defaultActiveTab="2" aria-label="Tabs in default variant">
         <Tabs.Item>Tab one</Tabs.Item>
         <Tabs.Item>Tab two</Tabs.Item>
         <Tabs.Item>Tab three</Tabs.Item>
@@ -141,7 +176,61 @@ export const AccentVariant: Story = {
   },
 }
 
+export const AccentVariantNarrow: Story = {
+  parameters: {
+    viewport: {
+      defaultViewport: 'mobile1',
+    },
+  },
+  render: args => {
+    return (
+      <Tabs {...args} variant="accent" aria-label="Tabs with accent variant">
+        <Tabs.Item>Tab one</Tabs.Item>
+        <Tabs.Item>Tab two</Tabs.Item>
+        <Tabs.Item>Tab three</Tabs.Item>
+
+        <Tabs.Panel>
+          <Text>Panel one</Text>
+        </Tabs.Panel>
+        <Tabs.Panel>
+          <Text>Panel two</Text>
+        </Tabs.Panel>
+        <Tabs.Panel>
+          <Text>Panel three</Text>
+        </Tabs.Panel>
+      </Tabs>
+    )
+  },
+}
+
 export const UnderlineVariant: Story = {
+  render: args => {
+    return (
+      <Tabs {...args} variant="underline" aria-label="Tabs with underline variant">
+        <Tabs.Item>Tab one</Tabs.Item>
+        <Tabs.Item>Tab two</Tabs.Item>
+        <Tabs.Item>Tab three</Tabs.Item>
+
+        <Tabs.Panel>
+          <Text>Panel one</Text>
+        </Tabs.Panel>
+        <Tabs.Panel>
+          <Text>Panel two</Text>
+        </Tabs.Panel>
+        <Tabs.Panel>
+          <Text>Panel three</Text>
+        </Tabs.Panel>
+      </Tabs>
+    )
+  },
+}
+
+export const UnderlineVariantNarrow: Story = {
+  parameters: {
+    viewport: {
+      defaultViewport: 'mobile1',
+    },
+  },
   render: args => {
     return (
       <Tabs {...args} variant="underline" aria-label="Tabs with underline variant">
