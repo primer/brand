@@ -324,9 +324,14 @@ export type TabsItemProps = {
   className?: string
   isActive?: boolean
   variant?: 'default' | 'accent'
-}
+} & Omit<HTMLAttributes<HTMLButtonElement>, 'id'> & {
+    /**
+     * id props are not supported in this component as they will interfere with the internally-generated ARIA attributes.
+     */
+    id?: never
+  }
 
-const TabsItem = forwardRef<HTMLButtonElement, TabsItemProps & React.ComponentPropsWithoutRef<'button'>>(
+const TabsItem = forwardRef<HTMLButtonElement, React.ComponentPropsWithoutRef<'button'> & TabsItemProps>(
   ({children, className, isActive, variant, ...props}, ref) => {
     const tabRef = useProvidedRefOrCreate(ref)
 
@@ -353,7 +358,13 @@ export type TabsPanelProps = {
   className?: string
   animation?: (typeof AnimationVariants)[number] | false
   hidden?: boolean
-} & React.HTMLAttributes<HTMLDivElement>
+} & React.HTMLAttributes<HTMLDivElement> &
+  Omit<HTMLAttributes<HTMLButtonElement>, 'id'> & {
+    /**
+     * id props are not supported in this component as they will interfere with the internally-generated ARIA attributes.
+     */
+    id?: never
+  }
 
 const TabsPanel = memo(function TabsPanel({
   children,
