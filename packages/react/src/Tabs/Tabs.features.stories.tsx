@@ -51,6 +51,7 @@ export const DefaultVariantNarrow: Story = {
 }
 
 export const CustomPanels: StoryFn<typeof Tabs> = args => {
+  const {'aria-labelledby': _, ...restArgs} = args
   const [activeTab, setActiveTab] = useState<string>('0')
 
   const handleTabChange = useCallback((id: string) => {
@@ -59,7 +60,7 @@ export const CustomPanels: StoryFn<typeof Tabs> = args => {
 
   return (
     <Stack alignItems="center">
-      <Tabs {...args} onChange={handleTabChange} aria-label="Lifecycle tabs">
+      <Tabs {...restArgs} onChange={handleTabChange} aria-label="Lifecycle tabs">
         <Tabs.Item id="tab-1" aria-controls="panel-1">
           Code
         </Tabs.Item>
@@ -74,7 +75,7 @@ export const CustomPanels: StoryFn<typeof Tabs> = args => {
         </Tabs.Item>
       </Tabs>
       <Box padding="condensed">
-        <Box id="panel-1" aria-labelledby="tab-1" role="tabpanel" hidden={activeTab !== '0'}>
+        <Box id="panel-1" aria-labelledby="tab-1" role="tabpanel" tabIndex={0} hidden={activeTab !== '0'}>
           <Stack direction="vertical" alignItems="center">
             <Text>
               <Icon icon={CodeIcon} size={24} hasBackground color="green" />
@@ -85,7 +86,7 @@ export const CustomPanels: StoryFn<typeof Tabs> = args => {
             </Text>
           </Stack>
         </Box>
-        <Box id="panel-2" aria-labelledby="tab-2" role="tabpanel" hidden={activeTab !== '1'}>
+        <Box id="panel-2" aria-labelledby="tab-2" role="tabpanel" tabIndex={0} hidden={activeTab !== '1'}>
           <Stack direction="vertical" alignItems="center">
             <Text>
               <Icon icon={PencilIcon} size={24} hasBackground color="blue" />
@@ -96,7 +97,7 @@ export const CustomPanels: StoryFn<typeof Tabs> = args => {
             </Text>
           </Stack>
         </Box>
-        <Box id="panel-3" aria-labelledby="tab-3" role="tabpanel" hidden={activeTab !== '2'}>
+        <Box id="panel-3" aria-labelledby="tab-3" role="tabpanel" tabIndex={0} hidden={activeTab !== '2'}>
           <Stack direction="vertical" alignItems="center">
             <Text>
               <Icon icon={PeopleIcon} size={24} hasBackground color="yellow" />
@@ -108,7 +109,7 @@ export const CustomPanels: StoryFn<typeof Tabs> = args => {
             </Text>
           </Stack>
         </Box>
-        <Box id="panel-4" aria-labelledby="tab-4" role="tabpanel" hidden={activeTab !== '3'}>
+        <Box id="panel-4" aria-labelledby="tab-4" role="tabpanel" tabIndex={0} hidden={activeTab !== '3'}>
           <Stack direction="vertical" alignItems="center">
             <Text>
               <Icon icon={HubotIcon} size={24} hasBackground color="purple" />

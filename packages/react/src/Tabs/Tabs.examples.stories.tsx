@@ -32,10 +32,11 @@ type Story = StoryObj<MetaProps>
 
 export const WithPricingOptions: Story = {
   render: args => {
+    const {'aria-labelledby': _, ...restArgs} = args
     return (
       <Grid>
         <Grid.Column>
-          <Tabs {...args} aria-label="Copilot plans" variant="accent">
+          <Tabs {...restArgs} aria-label="Copilot plans" variant="accent">
             <Tabs.Item>For individuals</Tabs.Item>
             <Tabs.Item>For businesses</Tabs.Item>
 
@@ -177,6 +178,8 @@ export const WithPricingOptions: Story = {
 }
 
 export const WithCustomPanels: StoryFn<typeof Tabs> = args => {
+  const {'aria-labelledby': _, ...restArgs} = args
+
   const [activeTab, setActiveTab] = useState<string>('0')
 
   const handleTabChange = useCallback((id: string) => {
@@ -215,7 +218,7 @@ export const WithCustomPanels: StoryFn<typeof Tabs> = args => {
             </Animate>
           </Box>
         </Box>
-        <Tabs {...args} onChange={handleTabChange} aria-label="Software development lifecycle">
+        <Tabs {...restArgs} onChange={handleTabChange} aria-label="Software development lifecycle">
           <Tabs.Item id="tab-1" aria-controls="panel-1">
             Code
           </Tabs.Item>

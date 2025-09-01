@@ -199,7 +199,7 @@ export const useTabs = ({
   )
 
   const getTabProps = useCallback(
-    (id: string, externalRef?: React.Ref<HTMLElement>) => ({
+    (id: string, externalRef?: React.ForwardedRef<HTMLElement>) => ({
       role: 'tab',
       id: getTabId(id),
       'aria-controls': getPanelId(id),
@@ -211,12 +211,14 @@ export const useTabs = ({
       ref: (element: HTMLElement | null) => {
         if (element) registerTab(id, element)
 
-        if (externalRef) {
-          if (typeof externalRef === 'function') {
-            externalRef(element)
-          } else {
-            ;(externalRef as {current: HTMLElement | null}).current = element
-          }
+        if (!externalRef) return
+        if (typeof externalRef === 'function') {
+          externalRef(element)
+          return
+        }
+        if ('current' in externalRef) {
+          externalRef.current = element
+          return
         }
       },
     }),

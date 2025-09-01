@@ -99,41 +99,61 @@ function CustomPanels() {
   return (
     <Stack alignItems="center">
       <Tabs onChange={handleTabChange} aria-label="Lifecycle tabs">
-        <Tabs.Item>Code</Tabs.Item>
-        <Tabs.Item>Plan</Tabs.Item>
-        <Tabs.Item>Collaborate</Tabs.Item>
-        <Tabs.Item>Automate</Tabs.Item>
+        <Tabs.Item id="tab-1" aria-controls="panel-1">
+          Code
+        </Tabs.Item>
+        <Tabs.Item id="tab-2" aria-controls="panel-2">
+          Plan
+        </Tabs.Item>
+        <Tabs.Item id="tab-3" aria-controls="panel-3">
+          Collaborate
+        </Tabs.Item>
+        <Tabs.Item id="tab-4" aria-controls="panel-4">
+          Automate
+        </Tabs.Item>
       </Tabs>
       <Box padding="condensed">
-        <Box role="tabpanel" hidden={activeTab !== '0'}>
+        <Box id="panel-1" aria-labelledby="tab-1" role="tabpanel" tabIndex={0} hidden={activeTab !== '0'}>
           <Stack direction="vertical" alignItems="center">
+            <Text>
+              <Icon icon={CodeIcon} size={24} hasBackground color="green" />
+            </Text>
             <Heading size="5">Code</Heading>
-            <Text variant="muted" align="center">
+            <Text variant="muted">
               Code quickly and more securely with GitHub Copilot embedded throughout your workflows.
             </Text>
           </Stack>
         </Box>
-        <Box role="tabpanel" hidden={activeTab !== '1'}>
+        <Box id="panel-2" aria-labelledby="tab-2" role="tabpanel" tabIndex={0} hidden={activeTab !== '1'}>
           <Stack direction="vertical" alignItems="center">
+            <Text>
+              <Icon icon={PencilIcon} size={24} hasBackground color="blue" />
+            </Text>
             <Heading size="5">Plan</Heading>
-            <Text variant="muted" align="center">
+            <Text variant="muted">
               Track and coordinate your work with GitHub Issues, GitHub Projects, and insights.
             </Text>
           </Stack>
         </Box>
-        <Box role="tabpanel" hidden={activeTab !== '2'}>
+        <Box id="panel-3" aria-labelledby="tab-3" role="tabpanel" tabIndex={0} hidden={activeTab !== '2'}>
           <Stack direction="vertical" alignItems="center">
+            <Text>
+              <Icon icon={PeopleIcon} size={24} hasBackground color="yellow" />
+            </Text>
             <Heading size="5">Collaborate</Heading>
-            <Text variant="muted" align="center">
+            <Text variant="muted">
               Collaborate in real time with your team and GitHub Copilot across GitHub Issues, GitHub Discussions, and
               pull requests.
             </Text>
           </Stack>
         </Box>
-        <Box role="tabpanel" hidden={activeTab !== '3'}>
+        <Box id="panel-4" aria-labelledby="tab-4" role="tabpanel" tabIndex={0} hidden={activeTab !== '3'}>
           <Stack direction="vertical" alignItems="center">
+            <Text>
+              <Icon icon={HubotIcon} size={24} hasBackground color="purple" />
+            </Text>
             <Heading size="5">Automate</Heading>
-            <Text variant="muted" align="center">
+            <Text variant="muted">
               Streamline your workflows with automated CI/CD, testing, planning, project management, issue labeling,
               approvals, onboarding, and more.
             </Text>

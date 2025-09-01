@@ -38,6 +38,14 @@ const testIds = {
   },
 }
 
+/**
+ * Accessible label for the entire tabs component, used by screen readers to describe the tab group.
+ * Note: Only use one of `aria-label` or `aria-labelled` by. Not both or neither.
+ */
+type LabelOrLabelledBy =
+  | {'aria-label': string; 'aria-labelledby'?: never}
+  | {'aria-labelledby': string; 'aria-label'?: never}
+
 export type TabsProps = {
   /**
    * Visual style variant of the tabs. Affects the appearance and styling theme.
@@ -65,21 +73,18 @@ export type TabsProps = {
    */
   className?: string
   /**
-   * Accessible label for the entire tabs component, used by screen readers to describe the tab group.
-   */
-  'aria-label': string
-  /**
    * @param internalAccessibleLabels - Customizable labels for screen readers to improve accessibility. These are applied internally using the aria-label attribute.
    * @param internalAccessibleLabels.controls - Label for the tab navigation controls, used by screen readers. Default is "Tab navigation controls".
    * @param internalAccessibleLabels.controlsNext - Label for the "next tab" control button, used by screen readers. Default is "Next tab".
    * @param internalAccessibleLabels.controlsPrev - Label for the "previous tab" control button, used by screen readers. Default is "Previous tab".
    */
   internalAccessibleLabels?: {
-    ['controls']: string
+    controls: string
     controlsNext: string
     controlsPrev: string
   }
-} & BaseProps<HTMLDivElement> &
+} & LabelOrLabelledBy &
+  BaseProps<HTMLDivElement> &
   Omit<HTMLAttributes<HTMLDivElement>, 'onChange'>
 
 const defaultInternalAccessibleLabels = {
@@ -104,7 +109,7 @@ const _TabsRoot = forwardRef<HTMLDivElement, TabsProps>(
     ref,
   ) => {
     const {activeTab, activateTab, getTabListProps, getTabProps, getTabPanelProps} = useTabs({
-      defaultTab: defaultActiveTab ? defaultActiveTab : undefined,
+      defaultTab: defaultActiveTab,
       onTabActivate: onChange ? (id: string) => onChange(id) : undefined,
     })
     const tabsContainerRef = useRef<HTMLDivElement>(null)
@@ -127,7 +132,6 @@ const _TabsRoot = forwardRef<HTMLDivElement, TabsProps>(
           key: tabProps.id,
           isActive: activeTab === tabId,
           variant,
-          'data-value': tabId,
         })
       })
 
@@ -136,22 +140,18 @@ const _TabsRoot = forwardRef<HTMLDivElement, TabsProps>(
       .map((child, index) => {
         const panelId = String(index)
         const tabPanelProps = getTabPanelProps(panelId)
-        const isActive = activeTab === panelId
 
         return cloneElement(child, {
           ...tabPanelProps,
           id: child.props.id ?? tabPanelProps.id,
           key: String(index),
-          value: String(index),
-          activeValue: activeTab,
-          hidden: !isActive,
         })
       })
 
     useEffect(() => {
       if (!tabsContainerRef.current || !sliderRef.current) return
 
-      const activeTabButton = tabsContainerRef.current.querySelector(`[data-value="${activeTab}"]`) as HTMLButtonElement
+      const activeTabButton = tabsContainerRef.current.querySelector(`[aria-selected="true"]`) as HTMLButtonElement
 
       if (!activeTab) return
 
@@ -321,15 +321,13 @@ const _TabsRoot = forwardRef<HTMLDivElement, TabsProps>(
 
 export type TabsItemProps = {
   children: ReactNode
-  value?: string
   className?: string
   isActive?: boolean
   variant?: 'default' | 'accent'
-  'data-value'?: string
 }
 
 const TabsItem = forwardRef<HTMLButtonElement, TabsItemProps & React.ComponentPropsWithoutRef<'button'>>(
-  ({children, value, className, isActive, variant, ...props}, ref) => {
+  ({children, className, isActive, variant, ...props}, ref) => {
     const tabRef = useProvidedRefOrCreate(ref)
 
     return (
@@ -354,8 +352,6 @@ export type TabsPanelProps = {
   children: ReactNode
   className?: string
   animation?: (typeof AnimationVariants)[number] | false
-  activeValue?: string
-  value?: string
   hidden?: boolean
 } & React.HTMLAttributes<HTMLDivElement>
 
@@ -363,8 +359,7 @@ const TabsPanel = memo(function TabsPanel({
   children,
   animation = false,
   className,
-  activeValue,
-  value,
+
   hidden,
   ...rest
 }: TabsPanelProps) {

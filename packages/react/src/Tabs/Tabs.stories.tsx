@@ -19,7 +19,7 @@ const meta: Meta<MetaProps> = {
       control: {type: 'inline-radio'},
     },
     variant: {
-      options: ['default', 'accent', 'minimal', 'underline'],
+      options: ['default', 'accent', 'underline'],
       control: {type: 'select'},
     },
     onChange: {
