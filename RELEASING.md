@@ -1,12 +1,19 @@
 # Releasing a new version of Primer Brand
 
+> [!NOTE]  
+> Releases are managed by Primer Brand core maintainers (GitHub staff). Please reach out to #primer-brand for general questions, or support on an upcoming release.
+> <br /><br />
+> 🚨 If you need to fast-track a release, please refer to the [emergency release documentation in our playbook](https://github.com/github/primer-brand/blob/main/playbooks/RELEASES.md).
+
+
+
 ## Prepare the release
 
 The Primer Brand release process is automated using [Changesets] and GitHub Actions.
 
 1. Visit the pull requests page and find the latest, open ["release tracking" pull request from primer-css](https://github.com/primer/brand/pulls/primer-css). If there isn't one, we'll need to build the next release by merging in PRs with changeset files.
 
-## Test the release candidate (GitHub staff only):
+## Test the release candidate:
 
 1. Ensure test automation checks have completed and passed
 
