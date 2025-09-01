@@ -190,7 +190,7 @@ export const WithCustomPanels: StoryFn<typeof Tabs> = args => {
     <AnimationProvider autoStaggerChildren={false}>
       <Stack alignItems="center">
         <Box padding="condensed">
-          <Box id="panel-1" aria-labelledby="tab-1" role="tabpanel" hidden={activeTab !== '0'}>
+          <Box id="panel-1-a" aria-labelledby="tab-1" role="tabpanel" tabIndex={0} hidden={activeTab !== '0'}>
             <Animate animate="slide-in-up">
               <Image
                 borderRadius="medium"
@@ -199,7 +199,7 @@ export const WithCustomPanels: StoryFn<typeof Tabs> = args => {
               />
             </Animate>
           </Box>
-          <Box id="panel-2" aria-labelledby="tab-2" role="tabpanel" hidden={activeTab !== '1'}>
+          <Box id="panel-2-a" aria-labelledby="tab-2" role="tabpanel" tabIndex={0} hidden={activeTab !== '1'}>
             <Animate animate="slide-in-up">
               <Image
                 borderRadius="medium"
@@ -208,7 +208,7 @@ export const WithCustomPanels: StoryFn<typeof Tabs> = args => {
               />
             </Animate>
           </Box>
-          <Box id="panel-3" aria-labelledby="tab-3" role="tabpanel" hidden={activeTab !== '2'}>
+          <Box id="panel-3-a" aria-labelledby="tab-3" role="tabpanel" tabIndex={0} hidden={activeTab !== '2'}>
             <Animate animate="slide-in-up">
               <Image
                 borderRadius="medium"
@@ -219,32 +219,32 @@ export const WithCustomPanels: StoryFn<typeof Tabs> = args => {
           </Box>
         </Box>
         <Tabs {...restArgs} onChange={handleTabChange} aria-label="Software development lifecycle">
-          <Tabs.Item id="tab-1" aria-controls="panel-1">
+          <Tabs.Item id="tab-1" aria-controls="panel-1-a panel-1-b">
             Code
           </Tabs.Item>
-          <Tabs.Item id="tab-2" aria-controls="panel-2">
+          <Tabs.Item id="tab-2" aria-controls="panel-2-a panel-2-b">
             Plan
           </Tabs.Item>
-          <Tabs.Item id="tab-3" aria-controls="panel-3">
+          <Tabs.Item id="tab-3" aria-controls="panel-3-a panel-3-b">
             Collaborate
           </Tabs.Item>
         </Tabs>
         <Box padding="condensed">
-          <Box id="panel-1" aria-labelledby="tab-1" role="tabpanel" hidden={activeTab !== '0'}>
+          <Box id="panel-1-b" aria-labelledby="tab-1" role="tabpanel" tabIndex={0} hidden={activeTab !== '0'}>
             <Animate animate="slide-in-up">
               <Text size="100" variant="muted">
                 Code quickly and more securely with GitHub Copilot embedded throughout your workflows.
               </Text>
             </Animate>
           </Box>
-          <Box id="panel-2" aria-labelledby="tab-2" role="tabpanel" hidden={activeTab !== '1'}>
+          <Box id="panel-2-b" aria-labelledby="tab-2" role="tabpanel" tabIndex={0} hidden={activeTab !== '1'}>
             <Animate animate="slide-in-up">
               <Text size="100" variant="muted">
                 Track and coordinate your work with GitHub Issues, GitHub Projects, and insights.
               </Text>
             </Animate>
           </Box>
-          <Box id="panel-3" aria-labelledby="tab-3" role="tabpanel" hidden={activeTab !== '2'}>
+          <Box id="panel-3-b" aria-labelledby="tab-3" role="tabpanel" tabIndex={0} hidden={activeTab !== '2'}>
             <Animate animate="slide-in-up">
               <Text size="100" variant="muted">
                 Collaborate in real time with your team and GitHub Copilot across GitHub Issues, GitHub Discussions, and

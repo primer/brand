@@ -110,7 +110,7 @@ const _TabsRoot = forwardRef<HTMLDivElement, TabsProps>(
   ) => {
     const {activeTab, activateTab, getTabListProps, getTabProps, getTabPanelProps} = useTabs({
       defaultTab: defaultActiveTab,
-      onTabActivate: onChange ? (id: string) => onChange(id) : undefined,
+      onTabActivate: onChange,
     })
     const tabsContainerRef = useRef<HTMLDivElement>(null)
     const sliderRef = useRef<HTMLDivElement>(null)

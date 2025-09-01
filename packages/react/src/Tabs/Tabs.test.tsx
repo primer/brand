@@ -200,12 +200,12 @@ describe('Tabs', () => {
     const [, tabTwo, tabThree] = tabs
 
     await user.click(tabTwo)
-    expect(mockChangeHandler).toHaveBeenCalledWith('1')
+    expect(mockChangeHandler).toHaveBeenCalledTimes(1)
+    expect(mockChangeHandler.mock.lastCall[0]).toBe('1')
 
     await user.click(tabThree)
-    expect(mockChangeHandler).toHaveBeenCalledWith('2')
-
     expect(mockChangeHandler).toHaveBeenCalledTimes(2)
+    expect(mockChangeHandler.mock.lastCall[0]).toBe('2')
   })
 
   it('supports keyboard navigation', async () => {
@@ -357,13 +357,16 @@ describe('Tabs', () => {
     const nextButton = getByRole('button', {name: 'Next tab'})
 
     await user.click(nextButton)
-    expect(mockChangeHandler).toHaveBeenCalledWith('1')
+    expect(mockChangeHandler).toHaveBeenCalledTimes(1)
+    expect(mockChangeHandler.mock.lastCall[0]).toBe('1')
 
     await user.click(nextButton)
-    expect(mockChangeHandler).toHaveBeenCalledWith('2')
+    expect(mockChangeHandler).toHaveBeenCalledTimes(2)
+    expect(mockChangeHandler.mock.lastCall[0]).toBe('2')
 
     await user.click(prevButton)
-    expect(mockChangeHandler).toHaveBeenCalledWith('1')
+    expect(mockChangeHandler).toHaveBeenCalledTimes(3)
+    expect(mockChangeHandler.mock.lastCall[0]).toBe('1')
   })
 
   it('supports custom internal accessible labels for l10n', () => {
