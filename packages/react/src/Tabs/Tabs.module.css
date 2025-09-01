@@ -132,7 +132,7 @@
   outline-offset: var(--base-size-2);
 }
 
-.Tabs__item.active {
+.Tabs__item--active {
   color: var(--brand-color-text-default);
 }
 
@@ -146,7 +146,7 @@
   transition: color var(--brand-animation-duration-faster) ease;
 }
 
-.Tabs--accent .Tabs__item.active {
+.Tabs--accent .Tabs__item--active {
   color: var(--brand-Tabs-item-accent-fgColor-rest);
 }
 

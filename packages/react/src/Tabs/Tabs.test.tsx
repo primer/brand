@@ -407,6 +407,7 @@ describe('Tabs', () => {
 
     const tabsContainer = getByTestId('Tabs')
     expect(tabsContainer).toHaveClass('custom-class')
+    expect(tabsContainer).toHaveClass('Tabs-container') // also doesn't overwrite the base class
   })
 
   it('supports RefObject for the root Tabs component', () => {

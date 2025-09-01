@@ -335,7 +335,7 @@ const TabsItem = forwardRef<HTMLButtonElement, TabsItemProps & React.ComponentPr
         ref={tabRef}
         className={clsx(
           styles.Tabs__item,
-          isActive && styles.active,
+          isActive && styles['Tabs__item--active'],
           variant && styles[`Tabs__item--${variant}`],
           className,
         )}

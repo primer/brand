@@ -13,10 +13,10 @@ declare const styles: {
   readonly "Tabs__indicator": string;
   readonly "Tabs__indicator--active": string;
   readonly "Tabs__item": string;
+  readonly "Tabs__item--active": string;
   readonly "Tabs__panel": string;
   readonly "Tabs__panelContainer": string;
   readonly "Tabs__slider": string;
-  readonly "active": string;
 };
 export = styles;
 
