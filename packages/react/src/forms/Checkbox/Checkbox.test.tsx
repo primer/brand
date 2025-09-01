@@ -150,7 +150,8 @@ describe('Checkbox', () => {
   })
 
   it('is checked when checked prop is true', () => {
-    const {getByRole} = render(<Checkbox value="test" checked onChange={jest.fn()} />)
+    const mockOnChange = jest.fn()
+    const {getByRole} = render(<Checkbox value="test" checked onChange={mockOnChange} />)
 
     const checkbox = getByRole('checkbox')
     expect(checkbox).toBeChecked()
@@ -158,7 +159,8 @@ describe('Checkbox', () => {
   })
 
   it('is unchecked when checked prop is false', () => {
-    const {getByRole} = render(<Checkbox value="test" checked={false} onChange={jest.fn()} />)
+    const mockOnChange = jest.fn()
+    const {getByRole} = render(<Checkbox value="test" checked={false} onChange={mockOnChange} />)
 
     const checkbox = getByRole('checkbox')
     expect(checkbox).not.toBeChecked()
@@ -182,7 +184,8 @@ describe('Checkbox', () => {
   })
 
   it('has indeterminate state when indeterminate prop is true', () => {
-    const {getByRole, container} = render(<Checkbox value="test" indeterminate onChange={jest.fn()} />)
+    const mockOnChange = jest.fn()
+    const {getByRole, container} = render(<Checkbox value="test" indeterminate onChange={mockOnChange} />)
 
     const checkbox = getByRole('checkbox') as HTMLInputElement
 
