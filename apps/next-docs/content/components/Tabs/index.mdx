@@ -1,0 +1,248 @@
+---
+title: Tabs
+description: Use Tabs to display a list of tabs with associated content panels.
+keywords: ['tabs', 'tab panels', 'navigation', 'tabbed interface']
+show-tabs: false
+ready: true
+source: https://github.com/primer/brand/blob/main/packages/react/src/Tabs/Tabs.tsx
+storybook: '/brand/storybook/?path=/story/components-Tabs--playground'
+thumbnail: '/images/thumbnails/tabs-thumbnail.png'
+thumbnail_darkMode: '/images/thumbnails/tabs-thumbnail-dark.png'
+---
+
+import {Label} from '@primer/react'
+
+```js
+import {Tabs} from '@primer/react-brand'
+```
+
+## Examples
+
+### Default
+
+```jsx live
+<Tabs aria-label="Example tabs">
+  <Tabs.Item>Tab one</Tabs.Item>
+  <Tabs.Item>Tab two</Tabs.Item>
+  <Tabs.Item>Tab three</Tabs.Item>
+  <Tabs.Item>Tab four</Tabs.Item>
+  <Tabs.Item>Tab five</Tabs.Item>
+
+  <Tabs.Panel>
+    <Text>Panel one</Text>
+  </Tabs.Panel>
+  <Tabs.Panel>
+    <Text>Panel two</Text>
+  </Tabs.Panel>
+  <Tabs.Panel>
+    <Text>Panel three</Text>
+  </Tabs.Panel>
+  <Tabs.Panel>
+    <Text>Panel four</Text>
+  </Tabs.Panel>
+  <Tabs.Panel>
+    <Text>Panel five</Text>
+  </Tabs.Panel>
+</Tabs>
+```
+
+### Accent variant
+
+```jsx live
+<Tabs variant="accent" aria-label="Tabs with accent variant">
+  <Tabs.Item>Tab one</Tabs.Item>
+  <Tabs.Item>Tab two</Tabs.Item>
+  <Tabs.Item>Tab three</Tabs.Item>
+
+  <Tabs.Panel>
+    <Text>Panel one</Text>
+  </Tabs.Panel>
+  <Tabs.Panel>
+    <Text>Panel two</Text>
+  </Tabs.Panel>
+  <Tabs.Panel>
+    <Text>Panel three</Text>
+  </Tabs.Panel>
+</Tabs>
+```
+
+### Underline variant
+
+```jsx live
+<Tabs variant="underline" aria-label="Tabs with underline variant">
+  <Tabs.Item>Tab one</Tabs.Item>
+  <Tabs.Item>Tab two</Tabs.Item>
+  <Tabs.Item>Tab three</Tabs.Item>
+
+  <Tabs.Panel>
+    <Text>Panel one</Text>
+  </Tabs.Panel>
+  <Tabs.Panel>
+    <Text>Panel two</Text>
+  </Tabs.Panel>
+  <Tabs.Panel>
+    <Text>Panel three</Text>
+  </Tabs.Panel>
+</Tabs>
+```
+
+### Custom panels
+
+```jsx live
+function CustomPanels() {
+  const [activeTab, setActiveTab] = React.useState('0')
+
+  const handleTabChange = React.useCallback(id => {
+    setActiveTab(id)
+  }, [])
+
+  return (
+    <Stack alignItems="center">
+      <Tabs onChange={handleTabChange} aria-label="Lifecycle tabs">
+        <Tabs.Item id="tab-1" aria-controls="panel-1">
+          Code
+        </Tabs.Item>
+        <Tabs.Item id="tab-2" aria-controls="panel-2">
+          Plan
+        </Tabs.Item>
+        <Tabs.Item id="tab-3" aria-controls="panel-3">
+          Collaborate
+        </Tabs.Item>
+        <Tabs.Item id="tab-4" aria-controls="panel-4">
+          Automate
+        </Tabs.Item>
+      </Tabs>
+      <Box padding="condensed">
+        <Box id="panel-1" aria-labelledby="tab-1" role="tabpanel" tabIndex={0} hidden={activeTab !== '0'}>
+          <Stack direction="vertical" alignItems="center">
+            <Text>
+              <Icon icon={CodeIcon} size={24} hasBackground color="green" />
+            </Text>
+            <Heading size="5">Code</Heading>
+            <Text variant="muted">
+              Code quickly and more securely with GitHub Copilot embedded throughout your workflows.
+            </Text>
+          </Stack>
+        </Box>
+        <Box id="panel-2" aria-labelledby="tab-2" role="tabpanel" tabIndex={0} hidden={activeTab !== '1'}>
+          <Stack direction="vertical" alignItems="center">
+            <Text>
+              <Icon icon={PencilIcon} size={24} hasBackground color="blue" />
+            </Text>
+            <Heading size="5">Plan</Heading>
+            <Text variant="muted">
+              Track and coordinate your work with GitHub Issues, GitHub Projects, and insights.
+            </Text>
+          </Stack>
+        </Box>
+        <Box id="panel-3" aria-labelledby="tab-3" role="tabpanel" tabIndex={0} hidden={activeTab !== '2'}>
+          <Stack direction="vertical" alignItems="center">
+            <Text>
+              <Icon icon={PeopleIcon} size={24} hasBackground color="yellow" />
+            </Text>
+            <Heading size="5">Collaborate</Heading>
+            <Text variant="muted">
+              Collaborate in real time with your team and GitHub Copilot across GitHub Issues, GitHub Discussions, and
+              pull requests.
+            </Text>
+          </Stack>
+        </Box>
+        <Box id="panel-4" aria-labelledby="tab-4" role="tabpanel" tabIndex={0} hidden={activeTab !== '3'}>
+          <Stack direction="vertical" alignItems="center">
+            <Text>
+              <Icon icon={HubotIcon} size={24} hasBackground color="purple" />
+            </Text>
+            <Heading size="5">Automate</Heading>
+            <Text variant="muted">
+              Streamline your workflows with automated CI/CD, testing, planning, project management, issue labeling,
+              approvals, onboarding, and more.
+            </Text>
+          </Stack>
+        </Box>
+      </Box>
+    </Stack>
+  )
+}
+```
+
+### Start alignment
+
+```jsx live
+<Tabs align="start" aria-label="Start aligned tabs">
+  <Tabs.Item>Tab one</Tabs.Item>
+  <Tabs.Item>Tab two</Tabs.Item>
+  <Tabs.Item>Tab three</Tabs.Item>
+
+  <Tabs.Panel>
+    <Text>Panel one</Text>
+  </Tabs.Panel>
+  <Tabs.Panel>
+    <Text>Panel two</Text>
+  </Tabs.Panel>
+  <Tabs.Panel>
+    <Text>Panel three</Text>
+  </Tabs.Panel>
+</Tabs>
+```
+
+### Custom default active tab
+
+```jsx live
+<Tabs defaultActiveTab="2" aria-label="Tabs with custom default">
+  <Tabs.Item>Tab one</Tabs.Item>
+  <Tabs.Item>Tab two</Tabs.Item>
+  <Tabs.Item>Tab three</Tabs.Item>
+
+  <Tabs.Panel>
+    <Text>Panel one</Text>
+  </Tabs.Panel>
+  <Tabs.Panel>
+    <Text>Panel two</Text>
+  </Tabs.Panel>
+  <Tabs.Panel>
+    <Text>Panel three (active by default)</Text>
+  </Tabs.Panel>
+</Tabs>
+```
+
+## Component props
+
+### Tabs <Label>Required</Label>
+
+| name                                           | type                                       | default          | required | description                                                                                                             |
+| ---------------------------------------------- | ------------------------------------------ | ---------------- | -------- | ----------------------------------------------------------------------------------------------------------------------- |
+| `children`                                     | `ReactNode`                                | `undefined`      | `true`   | Named children to be rendered as tab items and panels. Must include `Tabs.Item`, and optionally `Tabs.Panel` components |
+| `aria-label`                                   | `string`                                   | `undefined`      | `true`   | Accessible label for the tab list element, used by screen readers to describe the tab group                             |
+| `variant`                                      | `'default'` \| `'accent'` \| `'underline'` | `'default'`      | `false`  | Visual style variant of the tabs. Affects the appearance and styling theme                                              |
+| `align`                                        | `'start'` \| `'center'`                    | `'center'`       | `false`  | Horizontal alignment of the tab navigation                                                                              |
+| `defaultActiveTab`                             | `string`                                   | `'0'`            | `false`  | Sets the default active tab. "0" (first tab) by default                                                                 |
+| `onChange`                                     | `(activeTab: string) => void`              | `undefined`      | `false`  | Callback function triggered when the active tab changes. Receives the new active tab identifier                         |
+| `className`                                    | `string`                                   | `undefined`      | `false`  | Additional CSS class names to apply to the tabs container for custom styling                                            |
+| `internalAccessibleLabels`                     | `object`                                   | `undefined`      | `false`  | Customizable `aria-label` values for screen readers to improve accessibility. Defaults to English.                      |
+| `internalAccessibleLabels`<br/>`.controlsNext` | `string`                                   | `'Next tab'`     | `false`  | Label for the "next tab" control button, used by screen readers                                                         |
+| `internalAccessibleLabels`<br/>`.controlsPrev` | `string`                                   | `'Previous tab'` | `false`  | Label for the "previous tab" control button, used by screen readers                                                     |
+
+Forwards all standard HTML attributes for `<div>` elements.
+
+### Tabs.Item <Label>Required</Label>
+
+Individual tab item that users can click to switch between panels.
+
+| name        | type        | default     | required | description                                   |
+| ----------- | ----------- | ----------- | -------- | --------------------------------------------- |
+| `children`  | `ReactNode` | `undefined` | `true`   | Content to be displayed inside the tab button |
+| `className` | `string`    | `undefined` | `false`  | Sets a custom class on the tab button element |
+
+Forwards all standard HTML attributes for `<button>` elements.
+
+### Tabs.Panel
+
+Content panel associated with each tab. Hidden when not active.
+
+| name        | type                                                         | default     | required | description                                      |
+| ----------- | ------------------------------------------------------------ | ----------- | -------- | ------------------------------------------------ |
+| `children`  | `ReactNode`                                                  | `undefined` | `true`   | Content to be displayed inside the panel         |
+| `animation` | `'slide-in-up'` \| `'scale-in-up'` \| `'fade-in'` \| `false` | `false`     | `false`  | Optional animation when the panel becomes active |
+| `className` | `string`                                                     | `undefined` | `false`  | Sets a custom class on the panel element         |
+
+Forwards all standard HTML attributes for `<div>` elements.

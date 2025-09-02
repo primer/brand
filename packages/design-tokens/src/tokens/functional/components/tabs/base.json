@@ -1,0 +1,9 @@
+{
+  "Tabs": {
+    "container": {
+      "padding": {
+        "value": "{base.size.4}"
+      }
+    }
+  }
+}

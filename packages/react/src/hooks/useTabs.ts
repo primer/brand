@@ -27,7 +27,7 @@ export type UseTabs = {
   activateTab: (id: string) => void
   focusTab: (id: string) => void
   getTabListProps: (props?: TabListProps) => HTMLAttributes<HTMLElement>
-  getTabProps: (id: string) => HTMLAttributes<HTMLElement>
+  getTabProps: (id: string, externalRef?: React.Ref<HTMLElement>) => HTMLAttributes<HTMLElement>
   getTabPanelProps: (id: string) => HTMLAttributes<HTMLElement>
 }
 
@@ -49,7 +49,8 @@ export const useTabs = ({
       _setTabState(prev => {
         const nextState = updater(prev)
 
-        if (nextState.activeTab && nextState.activeTab !== prev.activeTab) {
+        // Only call onTabActivate when activeTab changes from one tab to another (not on mount)
+        if (nextState.activeTab && nextState.activeTab !== prev.activeTab && prev.activeTab !== null) {
           onTabActivate?.(nextState.activeTab, tabRefs.current.get(nextState.activeTab))
         }
 
@@ -86,10 +87,15 @@ export const useTabs = ({
       const element = tabRefs.current.get(id)
       if (element) {
         element.focus()
-        setTabState(prev => ({
-          ...prev,
-          focusedTab: id,
-        }))
+        setTabState(prev => {
+          if (prev.focusedTab === id) {
+            return prev
+          }
+          return {
+            ...prev,
+            focusedTab: id,
+          }
+        })
       }
     },
     [setTabState],
@@ -169,10 +175,15 @@ export const useTabs = ({
 
   const onTabFocus = useCallback(
     (id: string) => {
-      setTabState(prev => ({
-        ...prev,
-        focusedTab: id,
-      }))
+      setTabState(prev => {
+        if (prev.focusedTab === id) {
+          return prev
+        }
+        return {
+          ...prev,
+          focusedTab: id,
+        }
+      })
     },
     [setTabState],
   )
@@ -188,7 +199,7 @@ export const useTabs = ({
   )
 
   const getTabProps = useCallback(
-    (id: string) => ({
+    (id: string, externalRef?: React.ForwardedRef<HTMLElement>) => ({
       role: 'tab',
       id: getTabId(id),
       'aria-controls': getPanelId(id),
@@ -199,6 +210,16 @@ export const useTabs = ({
       onFocus: () => onTabFocus(id),
       ref: (element: HTMLElement | null) => {
         if (element) registerTab(id, element)
+
+        if (!externalRef) return
+        if (typeof externalRef === 'function') {
+          externalRef(element)
+          return
+        }
+        if ('current' in externalRef) {
+          externalRef.current = element
+          return
+        }
       },
     }),
     [tabState.activeTab, getTabId, getPanelId, onTabClick, onTabKeyDown, onTabFocus, registerTab],
