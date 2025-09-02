@@ -327,8 +327,8 @@ describe('Tabs', () => {
     )
 
     // Should show controls with 3+ tabs
-    const indicaatorsEl = queryByTestId(Tabs.testIds.indicators)
-    expect(indicaatorsEl).toBeInTheDocument()
+    const indicatorsEl = queryByTestId(Tabs.testIds.indicators)
+    expect(indicatorsEl).toBeInTheDocument()
 
     const prevButton = getByRole('button', {name: 'Previous tab'})
     const nextButton = getByRole('button', {name: 'Next tab'})
@@ -488,5 +488,36 @@ describe('Tabs', () => {
     expect(panelOne).toHaveAttribute('tabIndex', '0')
     expect(panelTwo).toHaveAttribute('tabIndex', '0')
     expect(panelThree).toHaveAttribute('tabIndex', '0')
+  })
+
+  it('renders Tabs.Panel with animation classes when animation prop is provided', () => {
+    const {getByTestId} = render(
+      <Tabs aria-label="Test tabs">
+        <Tabs.Item>Tab one</Tabs.Item>
+        <Tabs.Panel animation="fade-in">Panel with animation</Tabs.Panel>
+      </Tabs>,
+    )
+
+    const panel = getByTestId('Tabs-panel')
+    expect(panel).toHaveTextContent('Panel with animation')
+
+    const animatedElement = panel.querySelector('.Animation--fade-in')
+    expect(animatedElement).toBeInTheDocument()
+    expect(animatedElement).toHaveClass('Animation')
+  })
+
+  it('renders Tabs.Panel without animation classes when animation prop is false', () => {
+    const {getByTestId} = render(
+      <Tabs aria-label="Test tabs">
+        <Tabs.Item>Tab one</Tabs.Item>
+        <Tabs.Panel animation={false}>Panel without animation</Tabs.Panel>
+      </Tabs>,
+    )
+
+    const panel = getByTestId('Tabs-panel')
+    expect(panel).toHaveTextContent('Panel without animation')
+
+    const animatedElement = panel.querySelector('[class*="Animation"]')
+    expect(animatedElement).not.toBeInTheDocument()
   })
 })
