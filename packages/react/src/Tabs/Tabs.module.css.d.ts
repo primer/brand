@@ -1,8 +1,12 @@
 declare const styles: {
+  readonly "Tablist__wrapper": string;
+  readonly "Tablist__wrapper--accent": string;
+  readonly "Tablist__wrapper--default": string;
+  readonly "Tablist__wrapper--lastTabIsActive": string;
+  readonly "Tablist__wrapper--underline": string;
   readonly "Tabs": string;
   readonly "Tabs--accent": string;
   readonly "Tabs--default": string;
-  readonly "Tabs--lastTabIsActive": string;
   readonly "Tabs--underline": string;
   readonly "Tabs-container": string;
   readonly "Tabs-container--align-center": string;

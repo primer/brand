@@ -29,35 +29,49 @@
     align-items: center;
   }
 
-  .Tabs {
+  .Tablist__wrapper {
+    position: relative;
     width: fit-content;
     max-width: 100%;
-    overflow-x: auto;
-    overflow-y: hidden;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-    position: relative;
+    overflow: hidden;
   }
 
-  .Tabs::after {
+  .Tablist__wrapper::after {
     content: '';
     position: absolute;
-    right: -1px;
-    top: 0;
-    bottom: 0;
+    right: var(--brand-Tabs-list-borderWidth-active);
+    top: var(--base-size-2);
+    bottom: var(--base-size-2);
     background: linear-gradient(to left, var(--brand-color-canvas-default) 30%, transparent);
     width: var(--base-size-48);
     z-index: 2;
     pointer-events: none;
     transition: opacity var(--brand-animation-duration-default) var(--brand-animation-easing-default),
       visibility var(--brand-animation-duration-default) var(--brand-animation-easing-default);
-    transform: translateX(var(--scroll-offset, 0px));
     opacity: calc(var(--has-overflow, 0) * var(--can-scroll-right, 0));
+    border-radius: inherit;
   }
 
-  .Tabs--lastTabIsActive::after {
+  .Tablist__wrapper--default::after,
+  .Tablist__wrapper--accent::after {
+    border-radius: var(--brand-borderRadius-full);
+  }
+
+  .Tablist__wrapper--underline::after {
+    border-radius: var(--brand-borderRadius-large);
+  }
+
+  .Tablist__wrapper--lastTabIsActive::after {
     opacity: 0;
     visibility: hidden;
+  }
+
+  .Tabs {
+    max-width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
   }
 
   .Tabs::-webkit-scrollbar {

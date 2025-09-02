@@ -113,6 +113,7 @@ const _TabsRoot = forwardRef<HTMLDivElement, TabsProps>(
       onTabActivate: onChange,
     })
     const tabsContainerRef = useRef<HTMLDivElement>(null)
+    const tabsWrapperRef = useRef<HTMLDivElement>(null)
     const sliderRef = useRef<HTMLDivElement>(null)
 
     const childrenArray = Children.toArray(children)
@@ -210,16 +211,18 @@ const _TabsRoot = forwardRef<HTMLDivElement, TabsProps>(
     // Related to gradient functionality
     useEffect(() => {
       const tabsContainer = tabsContainerRef.current
-      if (!tabsContainer) return
+      const wrapperElement = tabsWrapperRef.current
+      if (!tabsContainer || !wrapperElement) return
 
       const updateScrollState = () => {
         const {scrollLeft, scrollWidth, clientWidth} = tabsContainer
         const hasOverflow = scrollWidth > clientWidth
         const canScrollRight = hasOverflow && scrollLeft < scrollWidth - clientWidth - 1
 
-        tabsContainer.style.setProperty('--scroll-offset', `${scrollLeft}px`)
-        tabsContainer.style.setProperty('--has-overflow', hasOverflow ? '1' : '0')
-        tabsContainer.style.setProperty('--can-scroll-right', canScrollRight ? '1' : '0')
+        // Set CSS variables on the wrapper element for the gradient
+        wrapperElement.style.setProperty('--scroll-offset', `${scrollLeft}px`)
+        wrapperElement.style.setProperty('--has-overflow', hasOverflow ? '1' : '0')
+        wrapperElement.style.setProperty('--can-scroll-right', canScrollRight ? '1' : '0')
       }
 
       updateScrollState()
@@ -254,7 +257,12 @@ const _TabsRoot = forwardRef<HTMLDivElement, TabsProps>(
 
     return (
       <div
-        className={clsx(styles['Tabs-container'], styles[`Tabs-container--align-${align}`], className)}
+        className={clsx(
+          styles['Tabs-container'],
+          styles[`Tabs-container--align-${align}`],
+          isLastTabActive && styles['Tabs-container--lastTabIsActive'],
+          className,
+        )}
         ref={ref}
         data-testid={testIds.root}
         {...props}
@@ -299,18 +307,25 @@ const _TabsRoot = forwardRef<HTMLDivElement, TabsProps>(
         )}
 
         <div
-          {...tabListProps}
-          ref={tabsContainerRef}
+          ref={tabsWrapperRef}
           className={clsx(
-            styles.Tabs,
-            styles[`Tabs--${variant}`],
-            hasMoreThanTwoTabs && styles['Tabs--hasMoreThanTwoTabs'],
-            isLastTabActive && styles['Tabs--lastTabIsActive'],
-            className,
+            styles['Tablist__wrapper'],
+            styles[`Tablist__wrapper--${variant}`],
+            isLastTabActive && styles['Tablist__wrapper--lastTabIsActive'],
           )}
         >
-          <div ref={sliderRef} className={styles.Tabs__slider} aria-hidden />
-          {tabs}
+          <div
+            {...tabListProps}
+            ref={tabsContainerRef}
+            className={clsx(
+              styles.Tabs,
+              styles[`Tabs--${variant}`],
+              hasMoreThanTwoTabs && styles['Tabs--hasMoreThanTwoTabs'],
+            )}
+          >
+            <div ref={sliderRef} className={styles.Tabs__slider} aria-hidden />
+            {tabs}
+          </div>
         </div>
 
         {panels.length > 0 && <div className={styles['Tabs__panelContainer']}>{panels}</div>}
