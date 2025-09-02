@@ -6,6 +6,7 @@
   border-radius: var(--brand-borderRadius-large);
   padding: var(--brand-Tabs-container-padding);
   width: fit-content;
+  min-height: var(--base-size-48);
 }
 
 .Tabs-container {
