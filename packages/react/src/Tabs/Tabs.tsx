@@ -36,6 +36,9 @@ const testIds = {
   get panel() {
     return `${this.root}-panel`
   },
+  get indicators() {
+    return `${this.root}-indicators`
+  },
 }
 
 /**
@@ -266,7 +269,7 @@ const _TabsRoot = forwardRef<HTMLDivElement, TabsProps>(
       >
         {/* Narrow only indicators and controls */}
         {tabs.length >= 3 && (
-          <div className={styles.Tabs__controls}>
+          <div className={styles.Tabs__controls} data-testid={testIds.indicators}>
             <Stack direction="horizontal" padding="none" justifyContent="space-between">
               <button
                 onClick={handlePrevTabControl}

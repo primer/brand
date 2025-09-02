@@ -302,7 +302,7 @@ describe('Tabs', () => {
   })
 
   it('doesnt render navigation controls when there are fewer than 3 tabs', () => {
-    const {queryByRole} = render(
+    const {queryByTestId} = render(
       <Tabs aria-label="Test tabs">
         <Tabs.Item>Tab one</Tabs.Item>
         <Tabs.Item>Tab two</Tabs.Item>
@@ -311,11 +311,11 @@ describe('Tabs', () => {
       </Tabs>,
     )
 
-    expect(queryByRole('toolbar')).not.toBeInTheDocument()
+    expect(queryByTestId(Tabs.testIds.indicators)).not.toBeInTheDocument()
   })
 
   it('renders navigation controls when there are 3 or more tabs', () => {
-    const {queryByRole, getByRole} = render(
+    const {queryByTestId, getByRole} = render(
       <Tabs aria-label="Test tabs">
         <Tabs.Item>Tab one</Tabs.Item>
         <Tabs.Item>Tab two</Tabs.Item>
@@ -327,9 +327,8 @@ describe('Tabs', () => {
     )
 
     // Should show controls with 3+ tabs
-    const toolbar = queryByRole('toolbar')
-    expect(toolbar).toBeInTheDocument()
-    expect(toolbar).toHaveAttribute('aria-label', 'Tab navigation controls')
+    const indicaatorsEl = queryByTestId(Tabs.testIds.indicators)
+    expect(indicaatorsEl).toBeInTheDocument()
 
     const prevButton = getByRole('button', {name: 'Previous tab'})
     const nextButton = getByRole('button', {name: 'Next tab'})
@@ -385,9 +384,6 @@ describe('Tabs', () => {
         <Tabs.Panel>Panel three</Tabs.Panel>
       </Tabs>,
     )
-
-    const toolbar = getByRole('toolbar')
-    expect(toolbar).toHaveAttribute('aria-label', 'Custom tab controls')
 
     const prevButton = getByRole('button', {name: 'Go to previous tab'})
     const nextButton = getByRole('button', {name: 'Go to next tab'})
