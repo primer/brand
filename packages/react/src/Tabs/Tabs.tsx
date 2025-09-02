@@ -74,12 +74,10 @@ export type TabsProps = {
   className?: string
   /**
    * @param internalAccessibleLabels - Customizable labels for screen readers to improve accessibility. These are applied internally using the aria-label attribute.
-   * @param internalAccessibleLabels.controls - Label for the tab navigation controls, used by screen readers. Default is "Tab navigation controls".
    * @param internalAccessibleLabels.controlsNext - Label for the "next tab" control button, used by screen readers. Default is "Next tab".
    * @param internalAccessibleLabels.controlsPrev - Label for the "previous tab" control button, used by screen readers. Default is "Previous tab".
    */
   internalAccessibleLabels?: {
-    controls: string
     controlsNext: string
     controlsPrev: string
   }
@@ -88,7 +86,6 @@ export type TabsProps = {
   Omit<HTMLAttributes<HTMLDivElement>, 'onChange'>
 
 const defaultInternalAccessibleLabels = {
-  controls: 'Tab navigation controls',
   controlsNext: 'Next tab',
   controlsPrev: 'Previous tab',
 }
@@ -269,7 +266,7 @@ const _TabsRoot = forwardRef<HTMLDivElement, TabsProps>(
       >
         {/* Narrow only indicators and controls */}
         {tabs.length >= 3 && (
-          <div className={styles.Tabs__controls} role="toolbar" aria-label={internalAccessibleLabels.controls}>
+          <div className={styles.Tabs__controls}>
             <Stack direction="horizontal" padding="none" justifyContent="space-between">
               <button
                 onClick={handlePrevTabControl}

@@ -371,7 +371,6 @@ describe('Tabs', () => {
 
   it('supports custom internal accessible labels for l10n', () => {
     const customLabels = {
-      controls: 'Custom tab controls',
       controlsNext: 'Go to next tab',
       controlsPrev: 'Go to previous tab',
     }
