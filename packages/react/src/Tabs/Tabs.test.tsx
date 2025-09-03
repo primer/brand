@@ -232,13 +232,19 @@ describe('Tabs', () => {
     })
 
     await user.keyboard('{ArrowRight}')
+    expect(tabOne).toHaveAttribute('aria-selected', 'false')
     expect(tabTwo).toHaveAttribute('aria-selected', 'true')
+    expect(tabThree).toHaveAttribute('aria-selected', 'false')
 
     await user.keyboard('{ArrowRight}')
+    expect(tabOne).toHaveAttribute('aria-selected', 'false')
+    expect(tabTwo).toHaveAttribute('aria-selected', 'false')
     expect(tabThree).toHaveAttribute('aria-selected', 'true')
 
     await user.keyboard('{ArrowLeft}')
+    expect(tabOne).toHaveAttribute('aria-selected', 'false')
     expect(tabTwo).toHaveAttribute('aria-selected', 'true')
+    expect(tabThree).toHaveAttribute('aria-selected', 'false')
   })
 
   it.each(['default', 'accent', 'underline'] as const)('renders %s variant correctly', variant => {
@@ -316,7 +322,7 @@ describe('Tabs', () => {
     const user = userEvent.setup()
     const mockChangeHandler = jest.fn()
 
-    const {getByRole} = render(
+    const {getAllByRole, getByRole} = render(
       <Tabs aria-label="Test tabs" onChange={mockChangeHandler}>
         <Tabs.Item>Tab one</Tabs.Item>
         <Tabs.Item>Tab two</Tabs.Item>
@@ -327,20 +333,36 @@ describe('Tabs', () => {
       </Tabs>,
     )
 
+    const tabs = getAllByRole('tab')
+    const [tabOne, tabTwo, tabThree] = tabs
+
     const prevButton = getByRole('button', {name: 'Previous tab'})
     const nextButton = getByRole('button', {name: 'Next tab'})
+
+    expect(tabOne).toHaveAttribute('aria-selected', 'true')
+    expect(tabTwo).toHaveAttribute('aria-selected', 'false')
+    expect(tabThree).toHaveAttribute('aria-selected', 'false')
 
     await user.click(nextButton)
     expect(mockChangeHandler).toHaveBeenCalledTimes(1)
     expect(mockChangeHandler.mock.lastCall[0]).toBe('1')
+    expect(tabOne).toHaveAttribute('aria-selected', 'false')
+    expect(tabTwo).toHaveAttribute('aria-selected', 'true')
+    expect(tabThree).toHaveAttribute('aria-selected', 'false')
 
     await user.click(nextButton)
     expect(mockChangeHandler).toHaveBeenCalledTimes(2)
     expect(mockChangeHandler.mock.lastCall[0]).toBe('2')
+    expect(tabOne).toHaveAttribute('aria-selected', 'false')
+    expect(tabTwo).toHaveAttribute('aria-selected', 'false')
+    expect(tabThree).toHaveAttribute('aria-selected', 'true')
 
     await user.click(prevButton)
     expect(mockChangeHandler).toHaveBeenCalledTimes(3)
     expect(mockChangeHandler.mock.lastCall[0]).toBe('1')
+    expect(tabOne).toHaveAttribute('aria-selected', 'false')
+    expect(tabTwo).toHaveAttribute('aria-selected', 'true')
+    expect(tabThree).toHaveAttribute('aria-selected', 'false')
   })
 
   it('supports custom internal accessible labels for l10n', () => {
