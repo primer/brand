@@ -669,6 +669,26 @@ describe('Tabs', () => {
     expect(panelThree).toHaveAttribute('tabIndex', '0')
   })
 
+  it('applies aria-labelledby to the tablist', () => {
+    const {getByLabelText} = render(
+      <>
+        <h1 id="test-heading">Tabs demo</h1>
+        <Tabs aria-labelledby="test-heading">
+          <Tabs.Item>Tab one</Tabs.Item>
+          <Tabs.Item>Tab two</Tabs.Item>
+          <Tabs.Item>Tab three</Tabs.Item>
+
+          <Tabs.Panel>Panel one</Tabs.Panel>
+          <Tabs.Panel>Panel two</Tabs.Panel>
+          <Tabs.Panel>Panel three</Tabs.Panel>
+        </Tabs>
+      </>,
+    )
+
+    const tablist = getByLabelText('Tabs demo')
+    expect(tablist).toHaveRole('tablist')
+  })
+
   it('renders Tabs.Panel with animation classes when animation prop is provided', () => {
     const {getByTestId} = render(
       <Tabs aria-label="Test tabs">

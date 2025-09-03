@@ -86,7 +86,7 @@ export type TabsProps = {
   }
 } & LabelOrLabelledBy &
   BaseProps<HTMLDivElement> &
-  Omit<HTMLAttributes<HTMLDivElement>, 'onChange'>
+  Omit<HTMLAttributes<HTMLDivElement>, 'onChange' | 'aria-label' | 'aria-labelledby'>
 
 const defaultInternalAccessibleLabels = {
   controlsNext: 'Next tab',
@@ -103,6 +103,7 @@ const _TabsRoot = forwardRef<HTMLDivElement, TabsProps>(
       variant = 'default',
       className,
       'aria-label': ariaLabel,
+      'aria-labelledby': ariaLabelledBy,
       internalAccessibleLabels = defaultInternalAccessibleLabels,
       ...props
     },
@@ -244,7 +245,12 @@ const _TabsRoot = forwardRef<HTMLDivElement, TabsProps>(
       }
     }, [tabs])
 
-    const tabListProps = getTabListProps({label: ariaLabel})
+    /**
+     * The LabelOrLabelledBy type guarantees that, if ariaLabel isn't a string,
+     * then ariaLabelledBy is guaranteed to be a string, and vice versa.
+     */
+    const accessibleLabel = typeof ariaLabel === 'string' ? {label: ariaLabel} : {labelledBy: ariaLabelledBy}
+    const tabListProps = getTabListProps(accessibleLabel)
 
     const handleNextTabControl = useCallback(() => {
       if (activeTab && activeTab !== String(tabs.length - 1)) {
