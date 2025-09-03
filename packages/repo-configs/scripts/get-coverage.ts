@@ -257,7 +257,7 @@ function getComponentName(filePath: string): string {
   // Handle hooks directory specifically
   const hook = filePath.match(/src\/hooks\/([^/]+)\.tsx?$/)
   if (hook) {
-    return hook[1].replace(/\.tsx?$/, '') // hook name
+    return hook[1] // hook name
   }
 
   const component = filePath.match(/src\/([^/]+)\/[^/]+\.tsx?$/)
