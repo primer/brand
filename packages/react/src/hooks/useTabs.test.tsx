@@ -1,6 +1,6 @@
-import React, {MutableRefObject} from 'react'
+import React, {createRef, MutableRefObject} from 'react'
 
-import {act, render} from '@testing-library/react'
+import {act, render, renderHook} from '@testing-library/react'
 import '@testing-library/jest-dom'
 
 import {useTabs, type UseTabs, type UseTabsOptions} from './useTabs'
@@ -317,6 +317,42 @@ describe('useTabs', () => {
     })
 
     expect(result.current.focusedTab).toBe('test-2')
+  })
+
+  it('passes the tab element to the provided functional ref', () => {
+    const functionalRef = jest.fn()
+    // We intentionally use `renderHook` here as we want to pass a custom ref
+    const {result} = renderHook(useTabs)
+
+    const tabProps = result.current.getTabProps('test-2', functionalRef)
+
+    const mockTabElement = {} as HTMLElement
+
+    act(() => {
+      // @ts-expect-error The type for tabProps isn't correct
+      tabProps.ref(mockTabElement)
+    })
+
+    expect(functionalRef).toHaveBeenCalledTimes(1)
+    expect(functionalRef).toHaveBeenLastCalledWith(mockTabElement)
+  })
+
+  it("sets the tab element to the provided RefObject's current property", () => {
+    const ref = createRef<HTMLDetailsElement>()
+
+    // We intentionally use `renderHook` here as we want to pass a custom ref
+    const {result} = renderHook(useTabs)
+
+    const tabProps = result.current.getTabProps('test-2', ref)
+
+    const mockTabElement = {} as HTMLElement
+
+    act(() => {
+      // @ts-expect-error The type for tabProps isn't correct
+      tabProps.ref(mockTabElement)
+    })
+
+    expect(ref.current).toBe(mockTabElement)
   })
 
   it('sets the role of a tab panel to "tabpanel"', () => {
