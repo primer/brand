@@ -150,6 +150,7 @@ const _TabsRoot = forwardRef<HTMLDivElement, TabsProps>(
       })
 
     useEffect(() => {
+      /* istanbul ignore next */
       if (!tabsContainerRef.current || !sliderRef.current) return
 
       const activeTabButton = tabsContainerRef.current.querySelector(`[aria-selected="true"]`) as HTMLButtonElement
@@ -159,6 +160,7 @@ const _TabsRoot = forwardRef<HTMLDivElement, TabsProps>(
       const updateSliderPosition = () => {
         const sliderElement = sliderRef.current
         const tabsContainer = tabsContainerRef.current
+        /* istanbul ignore next */
         if (!sliderElement || !tabsContainer) return
 
         const containerPaddingRem = window
@@ -212,11 +214,15 @@ const _TabsRoot = forwardRef<HTMLDivElement, TabsProps>(
     useEffect(() => {
       const tabsContainer = tabsContainerRef.current
       const wrapperElement = tabsWrapperRef.current
+      /* istanbul ignore next */
       if (!tabsContainer || !wrapperElement) return
 
+      // This relies heavily on layout and measurement and, as such, isn't practical to test
+      /* istanbul ignore next */
       const updateScrollState = () => {
         const {scrollLeft, scrollWidth, clientWidth} = tabsContainer
         const hasOverflow = scrollWidth > clientWidth
+
         const canScrollRight = hasOverflow && scrollLeft < scrollWidth - clientWidth - 1
 
         // Set CSS variables on the wrapper element for the gradient
