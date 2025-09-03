@@ -326,7 +326,6 @@ describe('useTabs', () => {
     const mockTabElement = {} as HTMLElement
 
     act(() => {
-      // @ts-expect-error The type for tabProps isn't correct
       tabProps.ref(mockTabElement)
     })
 
@@ -345,7 +344,6 @@ describe('useTabs', () => {
     const mockTabElement = {} as HTMLElement
 
     act(() => {
-      // @ts-expect-error The type for tabProps isn't correct
       tabProps.ref(mockTabElement)
     })
 
