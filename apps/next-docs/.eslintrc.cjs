@@ -13,6 +13,12 @@ module.exports = {
         // 'no-unused-vars': 'off',
       },
     },
+    {
+      files: ['next-env.d.ts'],
+      rules: {
+        '@typescript-eslint/triple-slash-reference': 'off',
+      },
+    },
   ],
   rules: {
     '@next/next/no-img-element': 'off',
