@@ -869,6 +869,18 @@ describe('useTabs', () => {
     })
 
     expect(result.current.focusedTab).toBe('test-2')
+
+    act(() => {
+      result.current.focusTab('test-3')
+    })
+
+    expect(result.current.focusedTab).toBe('test-3')
+
+    act(() => {
+      result.current.focusTab('test-3')
+    })
+
+    expect(result.current.focusedTab).toBe('test-3')
   })
 
   it('does not change the active tab when focusTab is called', () => {
