@@ -241,40 +241,15 @@ describe('Tabs', () => {
     expect(tabTwo).toHaveAttribute('aria-selected', 'true')
   })
 
-  it('renders default variant correctly', () => {
+  it.each(['default', 'accent', 'underline'] as const)('renders %s variant correctly', variant => {
     const {getByRole} = render(
-      <Tabs aria-label="Test tabs" variant="default">
+      <Tabs aria-label="Test tabs" variant={variant}>
         <Tabs.Item>Tab one</Tabs.Item>
         <Tabs.Panel>Panel one</Tabs.Panel>
       </Tabs>,
     )
-
     const tabsContainer = getByRole('tablist')
-    expect(tabsContainer).toHaveClass('Tabs--default')
-  })
-
-  it('renders accent variant correctly', () => {
-    const {getByRole} = render(
-      <Tabs aria-label="Test tabs" variant="accent">
-        <Tabs.Item>Tab one</Tabs.Item>
-        <Tabs.Panel>Panel one</Tabs.Panel>
-      </Tabs>,
-    )
-
-    const tabsContainer = getByRole('tablist')
-    expect(tabsContainer).toHaveClass('Tabs--accent')
-  })
-
-  it('renders underline variant correctly', () => {
-    const {getByRole} = render(
-      <Tabs aria-label="Test tabs" variant="underline">
-        <Tabs.Item>Tab one</Tabs.Item>
-        <Tabs.Panel>Panel one</Tabs.Panel>
-      </Tabs>,
-    )
-
-    const tabsContainer = getByRole('tablist')
-    expect(tabsContainer).toHaveClass('Tabs--underline')
+    expect(tabsContainer).toHaveClass(`Tabs--${variant}`)
   })
 
   it('renders center alignment by default', () => {
