@@ -41,7 +41,7 @@ npm install @primer/react-brand
 
 ## Usage
 
-See our [getting started guide](https://primer.github.io/brand/getting-started) for more information.
+See our [getting started guide](https://primer.style/brand/introduction/getting-started/) for more information.
 
 ## Contributing
 
