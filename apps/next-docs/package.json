@@ -32,8 +32,8 @@
   },
   "dependencies": {
     "@primer/doctocat-nextjs": "0.6.0",
-    "@primer/octicons-react": "19.15.1",
-    "next": "15.2.4",
+    "@primer/octicons-react": "19.16.0",
+    "next": "15.5.2",
     "react": ">=17 <= 18",
     "react-dom": ">=17 <= 18"
   },
@@ -42,8 +42,8 @@
     "@primer/brand-primitives": "^0.57.2",
     "@primer/react": "37.11.2",
     "@primer/react-brand": "0.57.2",
-    "@types/node": "18.11.10",
-    "eslint-config-next": "15.2.4",
+    "@types/node": "22.13.14",
+    "eslint-config-next": "15.5.2",
     "prettier": "^3.5.1",
     "styled-components": "^5.3.11",
     "typescript": "5.8.2"

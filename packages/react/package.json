@@ -47,7 +47,7 @@
   "devDependencies": {
     "@figma/code-connect": "1.2.4",
     "@juggle/resize-observer": "^3.4.0",
-    "@primer/octicons-react": "19.15.1",
+    "@primer/octicons-react": "19.16.0",
     "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "6.6.3",
     "@testing-library/react": "16.2.0",
