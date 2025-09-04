@@ -51,14 +51,21 @@ function processCoverageData(
   const components: Record<string, ComponentCoverage> = {}
 
   Object.entries(coverageData).forEach(([filePath, coverage]) => {
-    // Only include .tsx files (components), skip test files and stories
-    if (filePath.includes('.tsx') && !filePath.includes('.test.') && !filePath.includes('.stories.')) {
+    // Include .tsx files (components) and .ts/.tsx files from hooks directory, skip test files and stories
+    const isComponent = filePath.includes('.tsx') && !filePath.includes('.test.') && !filePath.includes('.stories.')
+    const isHook =
+      (filePath.includes('.ts') || filePath.includes('.tsx')) &&
+      filePath.includes('/hooks/') &&
+      !filePath.includes('.test.') &&
+      !filePath.includes('.stories.')
+
+    if (isComponent || isHook) {
       const componentName = getComponentName(filePath)
 
       // Check if there's a corresponding test file
-      const testFilePath = filePath.replace('.tsx', '.test.tsx')
+      const testFilePath = filePath.replace(/\.(ts|tsx)$/, '.test.tsx')
 
-      // Only include components that have dedicated test files
+      // Only include components/hooks that have dedicated test files
       if (fs.existsSync(testFilePath)) {
         const coverageData = calculateCoverage(coverage)
         components[componentName] = {
@@ -165,7 +172,7 @@ function generateGitHubCommentHtml(
   if (differences.length === 0) {
     return `### 🟢 No unit test coverage changes found
 
-All components with tests maintain the same coverage as the main branch.`
+All components and hooks with tests maintain the same coverage as the main branch.`
   }
 
   let html = `### 🟢 Unit test coverage changes found
@@ -177,7 +184,7 @@ Unit test coverage has been updated through this PR.
 <table>
 <thead>
 <tr>
-<th>Component</th>
+<th>Component/Hook</th>
 <th>Statements</th>
 <th>Functions</th>
 <th>Branches</th>
@@ -247,6 +254,12 @@ Unit test coverage has been updated through this PR.
 }
 
 function getComponentName(filePath: string): string {
+  // Handle hooks directory specifically
+  const hook = filePath.match(/src\/hooks\/([^/]+)\.tsx?$/)
+  if (hook) {
+    return hook[1] // hook name
+  }
+
   const component = filePath.match(/src\/([^/]+)\/[^/]+\.tsx?$/)
   if (component) {
     return component[1] // component name
