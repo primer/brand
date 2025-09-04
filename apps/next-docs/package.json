@@ -46,7 +46,8 @@
     "eslint-config-next": "15.5.2",
     "prettier": "^3.5.1",
     "styled-components": "^5.3.11",
-    "typescript": "5.8.2"
+    "typescript": "5.8.2",
+    "@swc/core": "^1.13.5"
   },
   "peerDependencies": {
     "react": ">=17 <= 18",
@@ -55,5 +56,8 @@
   "engines": {
     "node": ">=16.0.0",
     "npm": ">=8.0.0"
+  },
+  "overrides": {
+    "sharp": "0.30.4"
   }
 }
