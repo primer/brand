@@ -1,6 +1,6 @@
 module.exports = {
   // extends: ['next/core-web-vitals'], // Reenable after upgrading prettier to v3+
-  ignorePatterns: ['out/', '.next/', 'node_modules/'],
+  ignorePatterns: ['out/', '.next/', 'node_modules/', 'next-env.d.ts'],
   parserOptions: {
     tsconfigRootDir: __dirname,
   },
