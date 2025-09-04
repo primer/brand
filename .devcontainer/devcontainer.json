@@ -1,8 +1,31 @@
 {
   "name": "Primer Brand",
-  "image": "mcr.microsoft.com/vscode/devcontainers/typescript-node:20",
-  "extensions": ["esbenp.prettier-vscode", "dbaeumer.vscode-eslint"],
+  "image": "mcr.microsoft.com/vscode/devcontainers/typescript-node:22",
+  "customizations": {
+    "vscode": {
+      "extensions": ["esbenp.prettier-vscode", "dbaeumer.vscode-eslint", "ms-vscode.vscode-typescript-next"]
+    }
+  },
+
   "forwardPorts": [8000, 6006],
   "postCreateCommand": ["/bin/bash", "-c", "npm install"],
-  "remoteUser": "node"
+  "remoteUser": "node",
+  "features": {
+    "ghcr.io/devcontainers/features/common-utils:2": {
+      "installZsh": true,
+      "configureZshAsDefaultShell": true,
+      "installOhMyZsh": true
+    },
+    "ghcr.io/devcontainers/features/sshd:1": {
+      "version": "latest"
+    },
+    "ghcr.io/devcontainers/features/github-cli": {
+      "version": "latest"
+    }
+  },
+  "hostRequirements": {
+    "cpus": 4,
+    "memory": "16gb",
+    "storage": "64gb"
+  }
 }
