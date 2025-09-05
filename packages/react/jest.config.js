@@ -8,6 +8,9 @@ module.exports = {
   collectCoverage: true,
   collectCoverageFrom: [
     'src/**/*.{js,jsx,ts,tsx}',
+    '!src/recipes/**/*',
+    '!src/fixtures/**/*',
+    '!src/test-utils/**/*',
     '!**/*.stories.{js,jsx,ts,tsx}',
     '!**/*.visual.spec.{js,jsx,ts,tsx}',
     '!**/*.d.ts',
