@@ -1,5 +1,7 @@
 # @primer/brand-primitives
 
+## 0.58.0
+
 ## 0.57.2
 
 ## 0.57.1
