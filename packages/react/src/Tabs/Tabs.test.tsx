@@ -232,49 +232,30 @@ describe('Tabs', () => {
     })
 
     await user.keyboard('{ArrowRight}')
+    expect(tabOne).toHaveAttribute('aria-selected', 'false')
     expect(tabTwo).toHaveAttribute('aria-selected', 'true')
+    expect(tabThree).toHaveAttribute('aria-selected', 'false')
 
     await user.keyboard('{ArrowRight}')
+    expect(tabOne).toHaveAttribute('aria-selected', 'false')
+    expect(tabTwo).toHaveAttribute('aria-selected', 'false')
     expect(tabThree).toHaveAttribute('aria-selected', 'true')
 
     await user.keyboard('{ArrowLeft}')
+    expect(tabOne).toHaveAttribute('aria-selected', 'false')
     expect(tabTwo).toHaveAttribute('aria-selected', 'true')
+    expect(tabThree).toHaveAttribute('aria-selected', 'false')
   })
 
-  it('renders default variant correctly', () => {
+  it.each(['default', 'accent', 'underline'] as const)('renders %s variant correctly', variant => {
     const {getByRole} = render(
-      <Tabs aria-label="Test tabs" variant="default">
+      <Tabs aria-label="Test tabs" variant={variant}>
         <Tabs.Item>Tab one</Tabs.Item>
         <Tabs.Panel>Panel one</Tabs.Panel>
       </Tabs>,
     )
-
     const tabsContainer = getByRole('tablist')
-    expect(tabsContainer).toHaveClass('Tabs--default')
-  })
-
-  it('renders accent variant correctly', () => {
-    const {getByRole} = render(
-      <Tabs aria-label="Test tabs" variant="accent">
-        <Tabs.Item>Tab one</Tabs.Item>
-        <Tabs.Panel>Panel one</Tabs.Panel>
-      </Tabs>,
-    )
-
-    const tabsContainer = getByRole('tablist')
-    expect(tabsContainer).toHaveClass('Tabs--accent')
-  })
-
-  it('renders underline variant correctly', () => {
-    const {getByRole} = render(
-      <Tabs aria-label="Test tabs" variant="underline">
-        <Tabs.Item>Tab one</Tabs.Item>
-        <Tabs.Panel>Panel one</Tabs.Panel>
-      </Tabs>,
-    )
-
-    const tabsContainer = getByRole('tablist')
-    expect(tabsContainer).toHaveClass('Tabs--underline')
+    expect(tabsContainer).toHaveClass(`Tabs--${variant}`)
   })
 
   it('renders center alignment by default', () => {
@@ -341,7 +322,7 @@ describe('Tabs', () => {
     const user = userEvent.setup()
     const mockChangeHandler = jest.fn()
 
-    const {getByRole} = render(
+    const {getAllByRole, getByRole} = render(
       <Tabs aria-label="Test tabs" onChange={mockChangeHandler}>
         <Tabs.Item>Tab one</Tabs.Item>
         <Tabs.Item>Tab two</Tabs.Item>
@@ -352,20 +333,36 @@ describe('Tabs', () => {
       </Tabs>,
     )
 
+    const tabs = getAllByRole('tab')
+    const [tabOne, tabTwo, tabThree] = tabs
+
     const prevButton = getByRole('button', {name: 'Previous tab'})
     const nextButton = getByRole('button', {name: 'Next tab'})
+
+    expect(tabOne).toHaveAttribute('aria-selected', 'true')
+    expect(tabTwo).toHaveAttribute('aria-selected', 'false')
+    expect(tabThree).toHaveAttribute('aria-selected', 'false')
 
     await user.click(nextButton)
     expect(mockChangeHandler).toHaveBeenCalledTimes(1)
     expect(mockChangeHandler.mock.lastCall[0]).toBe('1')
+    expect(tabOne).toHaveAttribute('aria-selected', 'false')
+    expect(tabTwo).toHaveAttribute('aria-selected', 'true')
+    expect(tabThree).toHaveAttribute('aria-selected', 'false')
 
     await user.click(nextButton)
     expect(mockChangeHandler).toHaveBeenCalledTimes(2)
     expect(mockChangeHandler.mock.lastCall[0]).toBe('2')
+    expect(tabOne).toHaveAttribute('aria-selected', 'false')
+    expect(tabTwo).toHaveAttribute('aria-selected', 'false')
+    expect(tabThree).toHaveAttribute('aria-selected', 'true')
 
     await user.click(prevButton)
     expect(mockChangeHandler).toHaveBeenCalledTimes(3)
     expect(mockChangeHandler.mock.lastCall[0]).toBe('1')
+    expect(tabOne).toHaveAttribute('aria-selected', 'false')
+    expect(tabTwo).toHaveAttribute('aria-selected', 'true')
+    expect(tabThree).toHaveAttribute('aria-selected', 'false')
   })
 
   it('supports custom internal accessible labels for l10n', () => {
@@ -405,36 +402,218 @@ describe('Tabs', () => {
     expect(tabsContainer).toHaveClass('Tabs-container') // also doesn't overwrite the base class
   })
 
-  it('supports RefObject for the root Tabs component', () => {
+  it('supports RefObject for the root Tabs component', async () => {
+    const user = userEvent.setup()
     const refObject = React.createRef<HTMLDivElement>()
 
-    const {getByTestId} = render(
+    const {getAllByRole, getByTestId} = render(
       <Tabs ref={refObject} aria-label="Test tabs">
         <Tabs.Item>Tab one</Tabs.Item>
+        <Tabs.Item>Tab two</Tabs.Item>
+        <Tabs.Item>Tab three</Tabs.Item>
         <Tabs.Panel>Panel one</Tabs.Panel>
+        <Tabs.Panel>Panel two</Tabs.Panel>
+        <Tabs.Panel>Panel three</Tabs.Panel>
       </Tabs>,
     )
 
     const tabsElement = getByTestId(Tabs.testIds.root)
+
+    const tabs = getAllByRole('tab')
+    const panels = getAllByRole('tabpanel', {hidden: true})
+
+    const [tabOne, tabTwo, tabThree] = tabs
+    const [panelOne, panelTwo, panelThree] = panels
+
     expect(refObject.current).toBe(tabsElement)
+
+    expect(tabOne).toHaveAttribute('aria-selected', 'true')
+    expect(tabTwo).toHaveAttribute('aria-selected', 'false')
+    expect(tabThree).toHaveAttribute('aria-selected', 'false')
+
+    expect(panelOne).not.toHaveAttribute('hidden')
+    expect(panelTwo).toHaveAttribute('hidden')
+    expect(panelThree).toHaveAttribute('hidden')
+
+    await user.click(tabTwo)
+
+    expect(tabOne).toHaveAttribute('aria-selected', 'false')
+    expect(tabTwo).toHaveAttribute('aria-selected', 'true')
+    expect(tabThree).toHaveAttribute('aria-selected', 'false')
+
+    expect(panelOne).toHaveAttribute('hidden')
+    expect(panelTwo).not.toHaveAttribute('hidden')
+    expect(panelThree).toHaveAttribute('hidden')
+
+    await user.click(tabThree)
+
+    expect(tabOne).toHaveAttribute('aria-selected', 'false')
+    expect(tabTwo).toHaveAttribute('aria-selected', 'false')
+    expect(tabThree).toHaveAttribute('aria-selected', 'true')
+
+    expect(panelOne).toHaveAttribute('hidden')
+    expect(panelTwo).toHaveAttribute('hidden')
+    expect(panelThree).not.toHaveAttribute('hidden')
   })
 
-  it('supports RefObject for Tabs.Item child component', () => {
+  it('supports a functional ref for the root Tabs component', async () => {
+    const user = userEvent.setup()
+    const functionalRef = jest.fn()
+
+    const {getAllByRole, getByTestId} = render(
+      <Tabs ref={functionalRef} aria-label="Test tabs">
+        <Tabs.Item>Tab one</Tabs.Item>
+        <Tabs.Item>Tab two</Tabs.Item>
+        <Tabs.Item>Tab three</Tabs.Item>
+        <Tabs.Panel>Panel one</Tabs.Panel>
+        <Tabs.Panel>Panel two</Tabs.Panel>
+        <Tabs.Panel>Panel three</Tabs.Panel>
+      </Tabs>,
+    )
+
+    const tabsElement = getByTestId(Tabs.testIds.root)
+
+    const tabs = getAllByRole('tab')
+    const panels = getAllByRole('tabpanel', {hidden: true})
+
+    const [tabOne, tabTwo, tabThree] = tabs
+    const [panelOne, panelTwo, panelThree] = panels
+
+    expect(functionalRef).toHaveBeenCalledTimes(1)
+    expect(functionalRef).toHaveBeenCalledWith(tabsElement)
+
+    expect(tabOne).toHaveAttribute('aria-selected', 'true')
+    expect(tabTwo).toHaveAttribute('aria-selected', 'false')
+    expect(tabThree).toHaveAttribute('aria-selected', 'false')
+
+    expect(panelOne).not.toHaveAttribute('hidden')
+    expect(panelTwo).toHaveAttribute('hidden')
+    expect(panelThree).toHaveAttribute('hidden')
+
+    await user.click(tabTwo)
+
+    expect(tabOne).toHaveAttribute('aria-selected', 'false')
+    expect(tabTwo).toHaveAttribute('aria-selected', 'true')
+    expect(tabThree).toHaveAttribute('aria-selected', 'false')
+
+    expect(panelOne).toHaveAttribute('hidden')
+    expect(panelTwo).not.toHaveAttribute('hidden')
+    expect(panelThree).toHaveAttribute('hidden')
+
+    await user.click(tabThree)
+
+    expect(tabOne).toHaveAttribute('aria-selected', 'false')
+    expect(tabTwo).toHaveAttribute('aria-selected', 'false')
+    expect(tabThree).toHaveAttribute('aria-selected', 'true')
+
+    expect(panelOne).toHaveAttribute('hidden')
+    expect(panelTwo).toHaveAttribute('hidden')
+    expect(panelThree).not.toHaveAttribute('hidden')
+  })
+
+  it('supports RefObject for Tabs.Item child component', async () => {
+    const user = userEvent.setup()
     const refObject = React.createRef<HTMLButtonElement>()
 
     const {getAllByRole} = render(
       <Tabs aria-label="Test tabs">
-        <Tabs.Item ref={refObject}>Tab one</Tabs.Item>
-        <Tabs.Item>Tab two</Tabs.Item>
+        <Tabs.Item>Tab one</Tabs.Item>
+        <Tabs.Item ref={refObject}>Tab two</Tabs.Item>
+        <Tabs.Item>Tab three</Tabs.Item>
         <Tabs.Panel>Panel one</Tabs.Panel>
         <Tabs.Panel>Panel two</Tabs.Panel>
+        <Tabs.Panel>Panel three</Tabs.Panel>
       </Tabs>,
     )
 
     const tabs = getAllByRole('tab')
-    const [tabOne] = tabs
+    const panels = getAllByRole('tabpanel', {hidden: true})
 
-    expect(refObject.current).toBe(tabOne)
+    const [tabOne, tabTwo, tabThree] = tabs
+    const [panelOne, panelTwo, panelThree] = panels
+
+    expect(refObject.current).toBe(tabTwo)
+
+    expect(tabOne).toHaveAttribute('aria-selected', 'true')
+    expect(tabTwo).toHaveAttribute('aria-selected', 'false')
+    expect(tabThree).toHaveAttribute('aria-selected', 'false')
+
+    expect(panelOne).not.toHaveAttribute('hidden')
+    expect(panelTwo).toHaveAttribute('hidden')
+    expect(panelThree).toHaveAttribute('hidden')
+
+    await user.click(tabTwo)
+
+    expect(tabOne).toHaveAttribute('aria-selected', 'false')
+    expect(tabTwo).toHaveAttribute('aria-selected', 'true')
+    expect(tabThree).toHaveAttribute('aria-selected', 'false')
+
+    expect(panelOne).toHaveAttribute('hidden')
+    expect(panelTwo).not.toHaveAttribute('hidden')
+    expect(panelThree).toHaveAttribute('hidden')
+
+    await user.click(tabThree)
+
+    expect(tabOne).toHaveAttribute('aria-selected', 'false')
+    expect(tabTwo).toHaveAttribute('aria-selected', 'false')
+    expect(tabThree).toHaveAttribute('aria-selected', 'true')
+
+    expect(panelOne).toHaveAttribute('hidden')
+    expect(panelTwo).toHaveAttribute('hidden')
+    expect(panelThree).not.toHaveAttribute('hidden')
+  })
+
+  it('supports a functional ref for Tabs.Item child component', async () => {
+    const user = userEvent.setup()
+    const functionalRef = jest.fn()
+
+    const {getAllByRole} = render(
+      <Tabs aria-label="Test tabs">
+        <Tabs.Item>Tab one</Tabs.Item>
+        <Tabs.Item ref={functionalRef}>Tab two</Tabs.Item>
+        <Tabs.Item>Tab three</Tabs.Item>
+        <Tabs.Panel>Panel one</Tabs.Panel>
+        <Tabs.Panel>Panel two</Tabs.Panel>
+        <Tabs.Panel>Panel three</Tabs.Panel>
+      </Tabs>,
+    )
+
+    const tabs = getAllByRole('tab')
+    const panels = getAllByRole('tabpanel', {hidden: true})
+
+    const [tabOne, tabTwo, tabThree] = tabs
+    const [panelOne, panelTwo, panelThree] = panels
+
+    expect(functionalRef).toHaveBeenCalledTimes(1)
+    expect(functionalRef).toHaveBeenCalledWith(tabTwo)
+
+    expect(tabOne).toHaveAttribute('aria-selected', 'true')
+    expect(tabTwo).toHaveAttribute('aria-selected', 'false')
+    expect(tabThree).toHaveAttribute('aria-selected', 'false')
+
+    expect(panelOne).not.toHaveAttribute('hidden')
+    expect(panelTwo).toHaveAttribute('hidden')
+    expect(panelThree).toHaveAttribute('hidden')
+
+    await user.click(tabTwo)
+
+    expect(tabOne).toHaveAttribute('aria-selected', 'false')
+    expect(tabTwo).toHaveAttribute('aria-selected', 'true')
+    expect(tabThree).toHaveAttribute('aria-selected', 'false')
+
+    expect(panelOne).toHaveAttribute('hidden')
+    expect(panelTwo).not.toHaveAttribute('hidden')
+    expect(panelThree).toHaveAttribute('hidden')
+
+    await user.click(tabThree)
+
+    expect(tabOne).toHaveAttribute('aria-selected', 'false')
+    expect(tabTwo).toHaveAttribute('aria-selected', 'false')
+    expect(tabThree).toHaveAttribute('aria-selected', 'true')
+
+    expect(panelOne).toHaveAttribute('hidden')
+    expect(panelTwo).toHaveAttribute('hidden')
+    expect(panelThree).not.toHaveAttribute('hidden')
   })
 
   it('has no a11y violations', async () => {
@@ -488,6 +667,26 @@ describe('Tabs', () => {
     expect(panelOne).toHaveAttribute('tabIndex', '0')
     expect(panelTwo).toHaveAttribute('tabIndex', '0')
     expect(panelThree).toHaveAttribute('tabIndex', '0')
+  })
+
+  it('applies aria-labelledby to the tablist', () => {
+    const {getByLabelText} = render(
+      <>
+        <h1 id="test-heading">Tabs demo</h1>
+        <Tabs aria-labelledby="test-heading">
+          <Tabs.Item>Tab one</Tabs.Item>
+          <Tabs.Item>Tab two</Tabs.Item>
+          <Tabs.Item>Tab three</Tabs.Item>
+
+          <Tabs.Panel>Panel one</Tabs.Panel>
+          <Tabs.Panel>Panel two</Tabs.Panel>
+          <Tabs.Panel>Panel three</Tabs.Panel>
+        </Tabs>
+      </>,
+    )
+
+    const tablist = getByLabelText('Tabs demo')
+    expect(tablist).toHaveRole('tablist')
   })
 
   it('renders Tabs.Panel with animation classes when animation prop is provided', () => {

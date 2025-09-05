@@ -86,7 +86,7 @@ export type TabsProps = {
   }
 } & LabelOrLabelledBy &
   BaseProps<HTMLDivElement> &
-  Omit<HTMLAttributes<HTMLDivElement>, 'onChange'>
+  Omit<HTMLAttributes<HTMLDivElement>, 'onChange' | 'aria-label' | 'aria-labelledby'>
 
 const defaultInternalAccessibleLabels = {
   controlsNext: 'Next tab',
@@ -103,6 +103,7 @@ const _TabsRoot = forwardRef<HTMLDivElement, TabsProps>(
       variant = 'default',
       className,
       'aria-label': ariaLabel,
+      'aria-labelledby': ariaLabelledBy,
       internalAccessibleLabels = defaultInternalAccessibleLabels,
       ...props
     },
@@ -150,6 +151,7 @@ const _TabsRoot = forwardRef<HTMLDivElement, TabsProps>(
       })
 
     useEffect(() => {
+      /* istanbul ignore next */
       if (!tabsContainerRef.current || !sliderRef.current) return
 
       const activeTabButton = tabsContainerRef.current.querySelector(`[aria-selected="true"]`) as HTMLButtonElement
@@ -159,6 +161,7 @@ const _TabsRoot = forwardRef<HTMLDivElement, TabsProps>(
       const updateSliderPosition = () => {
         const sliderElement = sliderRef.current
         const tabsContainer = tabsContainerRef.current
+        /* istanbul ignore next */
         if (!sliderElement || !tabsContainer) return
 
         const containerPaddingRem = window
@@ -212,11 +215,15 @@ const _TabsRoot = forwardRef<HTMLDivElement, TabsProps>(
     useEffect(() => {
       const tabsContainer = tabsContainerRef.current
       const wrapperElement = tabsWrapperRef.current
+      /* istanbul ignore next */
       if (!tabsContainer || !wrapperElement) return
 
+      // This relies heavily on layout and measurement and, as such, isn't practical to test
+      /* istanbul ignore next */
       const updateScrollState = () => {
         const {scrollLeft, scrollWidth, clientWidth} = tabsContainer
         const hasOverflow = scrollWidth > clientWidth
+
         const canScrollRight = hasOverflow && scrollLeft < scrollWidth - clientWidth - 1
 
         // Set CSS variables on the wrapper element for the gradient
@@ -238,7 +245,12 @@ const _TabsRoot = forwardRef<HTMLDivElement, TabsProps>(
       }
     }, [tabs])
 
-    const tabListProps = getTabListProps({label: ariaLabel})
+    /**
+     * The LabelOrLabelledBy type guarantees that, if ariaLabel isn't a string,
+     * then ariaLabelledBy is guaranteed to be a string, and vice versa.
+     */
+    const accessibleLabel = typeof ariaLabel === 'string' ? {label: ariaLabel} : {labelledBy: ariaLabelledBy}
+    const tabListProps = getTabListProps(accessibleLabel)
 
     const handleNextTabControl = useCallback(() => {
       if (activeTab && activeTab !== String(tabs.length - 1)) {
