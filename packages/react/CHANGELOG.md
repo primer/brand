@@ -1,5 +1,47 @@
 # @primer/react-brand
 
+## 0.58.0
+
+### Minor Changes
+
+- [#1151](https://github.com/primer/brand/pull/1151) [`3e39ae1`](https://github.com/primer/brand/commit/3e39ae100ad5a26bb6b4eeab63bd7fe390d25cd7) Thanks [@rezrah](https://github.com/rezrah)! - Updated the minimum Node.js dependency for `@primer/react-brand` to match the current LTS version: `v22`
+
+  Also updated `webpack` and various other internal dependencies.
+
+- [#1132](https://github.com/primer/brand/pull/1132) [`072f640`](https://github.com/primer/brand/commit/072f640b29ebee05fd65e5d4a25e101fc46d4f0e) Thanks [@rezrah](https://github.com/rezrah)! - Added new `Tabs` component.
+
+  Example:
+
+  ```jsx
+  <Tabs {...args} aria-label="Tabs">
+    <Tabs.Item>Tab one</Tabs.Item>
+    <Tabs.Item>Tab two</Tabs.Item>
+
+    <Tabs.Panel>
+      <Text>Panel one</Text>
+    </Tabs.Panel>
+    <Tabs.Panel>
+      <Text>Panel two</Text>
+    </Tabs.Panel>
+  </Tabs>
+  ```
+
+### Patch Changes
+
+- [#1133](https://github.com/primer/brand/pull/1133) [`23a0d50`](https://github.com/primer/brand/commit/23a0d50c8f5f2ca4f8f63bc105cad44da5662962) Thanks [@joshfarrant](https://github.com/joshfarrant)! - Added some comments to the `Accordion` component. This is a no-op update.
+
+- [#1132](https://github.com/primer/brand/pull/1132) [`072f640`](https://github.com/primer/brand/commit/072f640b29ebee05fd65e5d4a25e101fc46d4f0e) Thanks [@rezrah](https://github.com/rezrah)! - Updates to `useTabs` hook:
+
+  - Added an optional `externalRef` parameter to `getTabProps` function for improved forwardRef support.
+  - Fixed `onTabActivate` callback to only trigger when switching between tabs (not on initial mount)
+  - Optimized focus state management by preventing unnecessary state updates when focus doesn't change.
+  - Removed redundant state updates in `focusTab` and `onTabFocus` functions
+
+  This affects the following components, which use this hook:
+
+  - `Tabs` component
+  - `IDE` component
+
 ## 0.57.2
 
 ### Patch Changes
