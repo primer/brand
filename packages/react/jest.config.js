@@ -2,6 +2,40 @@ const path = require('node:path')
 
 const ROOT_DIR = path.resolve(__dirname, '..', '..')
 
+const componentsWith100PercentCoverage = Object.fromEntries(
+  [
+    './src/animation/Animate/',
+    './src/Avatar/',
+    './src/Box/',
+    './src/Breadcrumbs/',
+    './src/ButtonGroup/',
+    './src/ExpandableArrow/',
+    './src/Footnotes/',
+    './src/forms/Checkbox/',
+    './src/forms/CheckboxGroup/',
+    './src/forms/RadioGroup/',
+    './src/forms/Textarea/',
+    './src/Icon/',
+    './src/InlineLink/',
+    './src/list/OrderedList/',
+    './src/list/UnorderedList/',
+    './src/MinimalFooter/',
+    './src/Prose/',
+    './src/river/RiverStoryScroll/',
+    './src/Section/',
+    './src/Tabs/',
+    './src/Testimonial/',
+  ].map(component => [
+    component,
+    {
+      statements: 100,
+      branches: 100,
+      functions: 100,
+      lines: 100,
+    },
+  ]),
+)
+
 /* eslint-disable github/unescaped-html-literal */
 module.exports = {
   cacheDirectory: '.test',
@@ -15,6 +49,15 @@ module.exports = {
     '!**/*.visual.spec.{js,jsx,ts,tsx}',
     '!**/*.d.ts',
   ],
+  coverageThreshold: {
+    ...componentsWith100PercentCoverage,
+    './src/Accordion/': {
+      statements: 97.91,
+      branches: 94.11,
+      functions: 100,
+      lines: 100,
+    },
+  },
   maxWorkers: '50%',
   moduleNameMapper: {
     // We need to specify this package subpath because it does not provide a `require` conditional export path
