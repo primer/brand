@@ -98,6 +98,7 @@
 
 .Card__outer:has(.Card--variant-minimal):focus-within {
   outline-offset: var(--base-size-16);
+  border-radius: var(--brand-borderRadius-small);
 }
 
 .Card--icon {
