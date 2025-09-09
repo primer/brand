@@ -2,4 +2,4 @@
 '@primer/react-brand': patch
 ---
 
-Ensures SVGs in the Icon component are properly aligned vertically
+Ensures the `svg` in the `Icon` component is properly aligned vertically
