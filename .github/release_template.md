@@ -11,13 +11,13 @@ Please ensure these items are checked before merging.
 
 #### Dotcom
 
-- Performed successful integration test with `github/github`, as a primary consumer of Primer Brand
-  - [ ] Install RC: `bin/npm install --save --save-exact @primer/react-brand@{RC_VERSION}`
-        Important: Verify that each workspace package has been updated correctly in their respective `package.json` files
+- Performed successful integration test with `github/github-ui`, as a primary consumer of Primer Brand
+  - [ ] Install RC: `npm install @primer/react-brand@{RC_VERSION} -w @github-ui/swp-core`
   - [ ] Run development server
   - [ ] Manually verify release-specific bugfixes and/or features on the following pages:
     - `/home`
     - `/features/copilot`
+    - `/features/copilot/plans`
     - `/features/copilot/tutorials`
     - `/features/preview`
     - `/enterprise`
