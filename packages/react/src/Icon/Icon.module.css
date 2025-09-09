@@ -3,6 +3,10 @@
   padding: 0;
 }
 
+.Icon > svg {
+  display: block;
+}
+
 .Icon--size-20 {
   width: var(--base-size-20);
   height: var(--base-size-20);
