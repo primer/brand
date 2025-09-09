@@ -4,7 +4,7 @@
 }
 
 .Icon > svg {
-  display: block;
+  display: block; /* Ensure SVG is unafffected by text styles and font metrics, maintaining vertical alignment */ 
 }
 
 .Icon--size-20 {
