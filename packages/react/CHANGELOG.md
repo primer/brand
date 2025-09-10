@@ -1,5 +1,13 @@
 # @primer/react-brand
 
+## 0.58.1
+
+### Patch Changes
+
+- [#1156](https://github.com/primer/brand/pull/1156) [`fc489e8`](https://github.com/primer/brand/commit/fc489e81c7ff7bfb58a2ca8606d450842486161b) Thanks [@danielguillan](https://github.com/danielguillan)! - Ensures the `svg` in the `Icon` component is properly aligned vertically
+
+- [#1157](https://github.com/primer/brand/pull/1157) [`766850f`](https://github.com/primer/brand/commit/766850fbad01d180554eb9a20d254e80734f8630) Thanks [@danielguillan](https://github.com/danielguillan)! - Improves the appearance of the focus ring on the `minimal` variant of `Card`.
+
 ## 0.58.0
 
 ### Minor Changes
