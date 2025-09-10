@@ -101,7 +101,9 @@
 }
 
 .Card__outer:has(.Card--variant-minimal):focus-within {
-  outline-offset: var(--base-size-16);
+  outline-offset: var(
+    --base-size-12
+  ); /* This value is adjusted so that, when combined with the container's border radius, the total border radius equals `var(--brand-borderRadius-medium)` */
 }
 
 .Card--icon {
