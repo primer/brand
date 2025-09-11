@@ -4,8 +4,44 @@ import {Meta, StoryFn} from '@storybook/react'
 
 import {FlexSection} from './FlexSection'
 
+type FlexSectionStoryArgs = {
+  sectionId: 'example-section'
+  showAnchorNav: boolean
+  showLogosuite: boolean
+  showCards: boolean
+  showBento: boolean
+
+  showIntroContent: boolean
+  introContentType: string
+
+  showProse: boolean
+  proseContent: string
+
+  showPillars: boolean
+  pillarsHeading: string
+  pillar1Title: string
+  pillar1Description: string
+  pillar2Title: string
+  pillar2Description: string
+  pillar3Title: string
+  pillar3Description: string
+
+  showBentoIcon: boolean
+  showBentoFootnotes: boolean
+  bentoHeadingLevel: string
+
+  backgroundColor: string
+  paddingBlockStart: string
+  colorMode: string
+  paddingBlockEnd: string
+  roundedCorners: boolean
+  verticalGap: string
+  hasBorderBottom: boolean
+  enableRiverStoryScroll: boolean
+}
+
 // Function to generate mock data based on story args
-const createMockData = (args: Record<string, unknown>) => ({
+const createMockData = (args: FlexSectionStoryArgs) => ({
   fields: {
     id: args.sectionId,
     anchorNav: args.showAnchorNav,
@@ -54,6 +90,15 @@ const createMockData = (args: Record<string, unknown>) => ({
           },
         }
       : null,
+    featuredBento: args.showBento
+      ? {
+          fields: {
+            headingLevel: args.bentoHeadingLevel,
+            showIcon: args.showBentoIcon,
+            showFootnotes: args.showBentoFootnotes,
+          },
+        }
+      : null,
     visualSettings: {
       fields: {
         backgroundColor: args.backgroundColor,
@@ -69,7 +114,7 @@ const createMockData = (args: Record<string, unknown>) => ({
   },
 })
 
-export default {
+const meta: Meta<FlexSectionStoryArgs> = {
   title: 'Recipes/FlexTemplate/FlexSection',
   component: FlexSection,
   parameters: {
@@ -84,6 +129,7 @@ export default {
     showAnchorNav: true,
     showLogosuite: true,
     showCards: true,
+    showBento: true,
 
     // Intro content
     showIntroContent: true,
@@ -103,6 +149,11 @@ export default {
     pillar2Description: 'Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
     pillar3Title: 'Secure & Reliable',
     pillar3Description: 'Ut enim ad minim veniam, quis nostrud exercitation ullamco.',
+
+    // Bento content
+    showBentoIcon: true,
+    showBentoFootnotes: true,
+    bentoHeadingLevel: 'h3',
 
     // Visual settings
     backgroundColor: 'default',
@@ -148,7 +199,7 @@ export default {
       options: ['introStackedItems', 'primerComponentSectionIntro'],
       description: 'Type of intro content to display',
       table: {category: 'Intro Content'},
-      if: {arg: 'showIntroContent'},
+      if: {arg: 'showIntroContent', truthy: true},
     },
 
     // Prose controls
@@ -161,7 +212,7 @@ export default {
       control: 'text',
       description: 'Prose content text',
       table: {category: 'Prose Content'},
-      if: {arg: 'showProse'},
+      if: {arg: 'showProse', truthy: true},
     },
 
     // Pillars controls
@@ -174,43 +225,70 @@ export default {
       control: 'text',
       description: 'Pillars section heading',
       table: {category: 'Pillars'},
-      if: {arg: 'showPillars'},
+      if: {arg: 'showPillars', truthy: true},
     },
     pillar1Title: {
       control: 'text',
       description: 'First pillar title',
       table: {category: 'Pillars'},
-      if: {arg: 'showPillars'},
+      if: {arg: 'showPillars', truthy: true},
     },
     pillar1Description: {
       control: 'text',
       description: 'First pillar description',
       table: {category: 'Pillars'},
-      if: {arg: 'showPillars'},
+      if: {arg: 'showPillars', truthy: true},
     },
     pillar2Title: {
       control: 'text',
       description: 'Second pillar title',
       table: {category: 'Pillars'},
-      if: {arg: 'showPillars'},
+      if: {arg: 'showPillars', truthy: true},
     },
     pillar2Description: {
       control: 'text',
       description: 'Second pillar description',
       table: {category: 'Pillars'},
-      if: {arg: 'showPillars'},
+      if: {arg: 'showPillars', truthy: true},
     },
     pillar3Title: {
       control: 'text',
       description: 'Third pillar title',
       table: {category: 'Pillars'},
-      if: {arg: 'showPillars'},
+      if: {arg: 'showPillars', truthy: true},
     },
     pillar3Description: {
       control: 'text',
       description: 'Third pillar description',
       table: {category: 'Pillars'},
-      if: {arg: 'showPillars'},
+      if: {arg: 'showPillars', truthy: true},
+    },
+
+    // Bento controls
+    showBento: {
+      control: 'boolean',
+      description: 'Show featured Bento section',
+      table: {category: 'Bento'},
+    },
+    showBentoIcon: {
+      control: 'boolean',
+      description: 'Show icon in Bento',
+      table: {category: 'Bento'},
+      if: {arg: 'showBento', truthy: true},
+    },
+    showBentoFootnotes: {
+      control: 'boolean',
+      description: 'Show footnotes in Bento',
+      table: {category: 'Bento'},
+      if: {arg: 'showBento', truthy: true},
+    },
+
+    bentoHeadingLevel: {
+      control: {type: 'select'},
+      options: ['h2', 'h3', 'h4', 'h5', 'h6'],
+      description: 'Heading level for Bento title',
+      table: {category: 'Bento'},
+      if: {arg: 'showBento', truthy: true},
     },
 
     // Visual settings controls
@@ -260,7 +338,9 @@ export default {
       table: {category: 'Visual Settings'},
     },
   },
-} as Meta<typeof FlexSection>
+}
+
+export default meta
 
 export const FlexSectionDefault: StoryFn<typeof FlexSection> = args => <FlexSection component={createMockData(args)} />
 

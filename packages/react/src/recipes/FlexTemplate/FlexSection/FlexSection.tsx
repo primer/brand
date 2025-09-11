@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react'
 import clsx from 'clsx'
 
-import {ZapIcon} from '@primer/octicons-react'
+import {GlobeIcon, ZapIcon} from '@primer/octicons-react'
 
 import {
   AnchorNav,
@@ -13,7 +13,9 @@ import {
   CTABanner,
   Grid,
   Heading,
+  Icon,
   Image,
+  InlineLink,
   Link,
   LogoSuite,
   Pillar,
@@ -363,18 +365,56 @@ export function FlexSection({component, className}: FlexSectionProps) {
             </Grid>
           )}
 
-          {/* {featuredBento && (
+          {featuredBento && (
             <Grid className={styles.normalizeMargin}>
               <Grid.Column>
-                <ContentfulFeaturedBento
-                  itemBgColor={backgroundColor === 'default' ? 'subtle' : 'default'}
-                  className={styles.normalizePadding}
-                  component={featuredBento}
-                />
+                <Box className={styles.normalizeMargin}>
+                  <Bento>
+                    <Bento.Item
+                      className={styles.featuredBentoItem}
+                      bgColor={backgroundColor === 'default' ? 'subtle' : 'default'}
+                    >
+                      <Bento.Content
+                        className={styles.featuredBentoContent}
+                        leadingVisual={
+                          featuredBento.fields.showIcon ? (
+                            <Icon icon={GlobeIcon} color="purple" size="medium" hasBackground />
+                          ) : undefined
+                        }
+                      >
+                        <Bento.Heading as={featuredBento.fields.headingLevel}>
+                          <em>Lorem ipsum dolor sit</em> amet consectetur adipiscing elit
+                          {featuredBento.fields.showFootnotes ? (
+                            <>
+                              {' '}
+                              <InlineLink
+                                id="inline-link-1"
+                                href="#footnote-1"
+                                className={styles.footnoteInlineLink}
+                                aria-label="Footnote 1"
+                              >
+                                1
+                              </InlineLink>
+                            </>
+                          ) : null}
+                        </Bento.Heading>
+                        <Link href="#" variant="accent">
+                          Learn more
+                        </Link>
+                      </Bento.Content>
+                      <Bento.Visual className={styles.featuredBentoVisual} position="50% 100%" padding="normal">
+                        <picture className={styles.imageFillMedia}>
+                          <img className={styles.imageFillMedia} src={placeholderImage} alt="Placeholder" />
+                        </picture>
+                      </Bento.Visual>
+                    </Bento.Item>
+                  </Bento>
+                </Box>
               </Grid.Column>
             </Grid>
           )}
 
+          {/*
           {prose && (
             <Grid className={styles.normalizeMargin}>
               <Grid.Column>
