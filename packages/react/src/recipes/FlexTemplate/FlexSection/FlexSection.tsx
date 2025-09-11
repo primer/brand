@@ -113,6 +113,7 @@ export function FlexSection({component, className}: FlexSectionProps) {
               <AnchorNav.Action href="#">Sign up</AnchorNav.Action>
             </AnchorNav>
           )}
+
           {introContent && (
             <>
               {introContent.sys.contentType.sys.id === 'introStackedItems' && (
@@ -414,14 +415,15 @@ export function FlexSection({component, className}: FlexSectionProps) {
             </Grid>
           )}
 
-          {/*
           {prose && (
             <Grid className={styles.normalizeMargin}>
               <Grid.Column>
-                <ContentfulProse component={prose} />
+                <Prose html={prose.fields.content} />
               </Grid.Column>
             </Grid>
           )}
+
+          {/*
 
           {rivers && rivers.length > 0 && (
             <RiverStoryScroll disabled={!enableRiverStoryScroll}>
