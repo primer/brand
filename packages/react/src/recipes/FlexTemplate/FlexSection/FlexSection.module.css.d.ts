@@ -1,5 +1,10 @@
 declare const styles: {
+  readonly "featuredBentoContent": string;
+  readonly "featuredBentoItem": string;
+  readonly "featuredBentoVisual": string;
+  readonly "footnoteInlineLink": string;
   readonly "heightFull": string;
+  readonly "imageFillMedia": string;
   readonly "normalizeMargin": string;
   readonly "normalizePadding": string;
   readonly "paddingBottom-condensed": string;
