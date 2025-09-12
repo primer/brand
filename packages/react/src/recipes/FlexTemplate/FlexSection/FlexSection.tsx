@@ -7,6 +7,7 @@ import {
   AnchorNav,
   Bento,
   Box,
+  BreakoutBanner,
   Button,
   Card,
   ColorModesEnum,
@@ -38,12 +39,15 @@ import twilioLogo from '../../../fixtures/images/logos/twilio.png'
 import uberLogo from '../../../fixtures/images/logos/uber.png'
 import vercelLogo from '../../../fixtures/images/logos/vercel.png'
 import placeholderImage from '../../../fixtures/images/placeholder.png'
+import lightNarrowBg from '../../../fixtures/images/light-vertical-banner.png'
+import lightWideBg from '../../../fixtures/images/light-horizontal-banner.png'
 
-import {Themes, themeDetailsMap} from '../helpers'
+import {Themes, backgroundStylesMap, themeDetailsMap} from './helpers'
 import emptyBrowserDarkFull from '../fixtures/images/fg/empty-browser-full-dark.png'
 import emptyBrowserLightFull from '../fixtures/images/fg/empty-browser-full-light.png'
 
 import styles from './FlexSection.module.css'
+import ForresterResearch from '../fixtures/images/logos/ForresterResearch'
 
 type FlexSectionProps = {
   component
@@ -423,9 +427,7 @@ export function FlexSection({component, className}: FlexSectionProps) {
             </Grid>
           )}
 
-          {/*
-
-          {rivers && rivers.length > 0 && (
+          {/* {rivers && rivers.length > 0 && (
             <RiverStoryScroll disabled={!enableRiverStoryScroll}>
               {rivers.map(river =>
                 isRiverAccordion(river) ? (
@@ -451,41 +453,82 @@ export function FlexSection({component, className}: FlexSectionProps) {
                 ),
               )}
             </RiverStoryScroll>
-          )}
+          )} */}
 
-          {testimonials && testimonials.length > 0 && (
+          {/* {testimonials && testimonials.length > 0 && (
             <FlexSectionTestimonials
               testimonials={testimonials}
               backgroundImageVariant={testimonialBackgroundImageVariant}
               className={styles.normalizeMargin}
             />
-          )}
+          )} */}
 
           {breakoutBanner && (
             <Grid className={clsx(styles.normalizeMargin, 'mx-0')}>
               <Grid.Column>
-                <ContentfulBreakoutBanner className={styles.normalizeMargin} component={breakoutBanner} />
+                <BreakoutBanner
+                  className={clsx(styles.wrapper, styles.normalizeMargin)}
+                  align={breakoutBanner.fields.align}
+                  backgroundColor={backgroundColor}
+                  backgroundImageSrc={{
+                    narrow: lightNarrowBg,
+                    regular: lightWideBg,
+                    wide: lightWideBg,
+                  }}
+                  backgroundImagePosition={{
+                    narrow: 'bottom',
+                    regular: 'right',
+                    wide: 'right',
+                  }}
+                  {...(breakoutBanner.fields.showLogo && {
+                    leadingVisual: (
+                      <Box className={styles.logoWrapper}>
+                        <ForresterResearch />
+                      </Box>
+                    ),
+                  })}
+                >
+                  <BreakoutBanner.Heading as={breakoutBanner.fields.headingLevel}>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    {breakoutBanner.fields.showFootnotes ? (
+                      <>
+                        {' '}
+                        <InlineLink
+                          id="inline-link-2"
+                          href="#footnote-2"
+                          className={styles.footnoteInlineLink}
+                          aria-label="Footnote 2"
+                        >
+                          2
+                        </InlineLink>
+                      </>
+                    ) : null}
+                  </BreakoutBanner.Heading>
+                  <BreakoutBanner.LinkGroup>
+                    <Link href="#">Learn more</Link>
+                  </BreakoutBanner.LinkGroup>
+                </BreakoutBanner>
               </Grid.Column>
             </Grid>
           )}
 
-          {statistics && (
+          {/* {statistics && (
             <ContentfulStatistics
               className={styles.normalizeMargin}
               component={statistics}
               statisticBgColor={backgroundColor === 'default' ? 'subtle' : 'default'}
             />
-          )}
+          )} */}
 
-          {pricingOptions && (
+          {/* {pricingOptions && (
             <Grid className={clsx(styles.normalizeMargin, 'mx-0')}>
               <Grid.Column>
                 <ContentfulPricingOptions component={pricingOptions} />
               </Grid.Column>
             </Grid>
-          )}
+          )} */}
 
-          {segmentedControlPanel && (
+          {/* {segmentedControlPanel && (
             <Grid className={clsx(styles.normalizeMargin, 'mx-0')}>
               <Grid.Column>
                 <ContentfulSegmentedControlPanel component={segmentedControlPanel} />

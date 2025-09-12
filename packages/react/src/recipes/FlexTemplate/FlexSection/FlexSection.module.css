@@ -104,6 +104,112 @@
   object-position: '50% 100%';
 }
 
+/* Breakout Banner Styles */
+
+.wrapper {
+  margin-block-end: var(--base-size-64);
+}
+
+/* --breakpoint-medium */
+@media (min-width: 48rem) {
+  .wrapper {
+    margin-block-end: var(--base-size-128);
+  }
+}
+
+.logoWrapper {
+  height: 2rem;
+}
+
+.logoWrapper > svg {
+  width: auto;
+  height: 100%;
+}
+
+/* END Breakout Banner Styles */
+
+.testimonialBackgroundImageShape {
+  position: absolute;
+  max-width: 100%;
+  transform-origin: center;
+}
+
+.productivity {
+  .left {
+    bottom: 0;
+    left: -356px;
+    transform: rotate(-30deg);
+  }
+
+  .right {
+    right: -332px;
+    bottom: 0;
+    transform: rotate(-30deg);
+  }
+}
+
+.collaboration {
+  .left {
+    top: -20px;
+    left: -290px;
+    transform: rotate(30deg);
+  }
+
+  .right {
+    top: 16px;
+    right: -332px;
+    transform: rotate(-30deg);
+  }
+}
+
+.ai {
+  .left {
+    top: 120px;
+    left: -356px;
+    transform: rotate(-30deg);
+  }
+
+  .right {
+    right: -300px;
+    bottom: 24px;
+    transform: rotate(-30deg);
+  }
+}
+
+.security {
+  .left {
+    top: 24px;
+    left: -300px;
+    transform: rotate(30deg);
+  }
+
+  .right {
+    top: 48px;
+    right: -356px;
+    transform: rotate(-30deg);
+  }
+}
+
+.enterprise {
+  .left {
+    bottom: -60px;
+    left: -260px;
+    transform: rotate(60deg);
+  }
+
+  .right {
+    right: -320px;
+    top: 72px;
+    transform: rotate(-170deg);
+  }
+}
+
+@media (max-width: 1011px) {
+  .testimonialBackgroundImageShape {
+    display: none;
+  }
+}
+
 @media (max-width: 767px) {
   .featuredBentoItem {
     grid-template-rows: none;
