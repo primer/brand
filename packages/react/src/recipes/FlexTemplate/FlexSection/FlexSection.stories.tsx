@@ -10,6 +10,7 @@ type FlexSectionStoryArgs = {
   showLogosuite: boolean
   showCards: boolean
   showBento: boolean
+  showBreakoutBanner: boolean
 
   showIntroContent: boolean
   introContentType: string
@@ -26,9 +27,14 @@ type FlexSectionStoryArgs = {
   pillar3Title: string
   pillar3Description: string
 
-  showBentoIcon: boolean
-  showBentoFootnotes: boolean
+  bentoShowIcon: boolean
+  bentoShowFootnotes: boolean
   bentoHeadingLevel: string
+
+  breakoutBannerAlign: string
+  breakoutBannerShowLogo: boolean
+  breakoutBannerShowFootnotes: boolean
+  breakoutBannerHeadingLevel: string
 
   backgroundColor: string
   paddingBlockStart: string
@@ -94,8 +100,18 @@ const createMockData = (args: FlexSectionStoryArgs) => ({
       ? {
           fields: {
             headingLevel: args.bentoHeadingLevel,
-            showIcon: args.showBentoIcon,
-            showFootnotes: args.showBentoFootnotes,
+            showIcon: args.bentoShowIcon,
+            showFootnotes: args.bentoShowFootnotes,
+          },
+        }
+      : null,
+    breakoutBanner: args.showBreakoutBanner
+      ? {
+          fields: {
+            align: args.breakoutBannerAlign,
+            showLogo: args.breakoutBannerShowLogo,
+            headingLevel: args.breakoutBannerHeadingLevel,
+            showFootnotes: args.breakoutBannerShowFootnotes,
           },
         }
       : null,
@@ -130,6 +146,7 @@ const meta: Meta<FlexSectionStoryArgs> = {
     showLogosuite: true,
     showCards: true,
     showBento: true,
+    showBreakoutBanner: true,
 
     // Intro content
     showIntroContent: true,
@@ -151,9 +168,15 @@ const meta: Meta<FlexSectionStoryArgs> = {
     pillar3Description: 'Ut enim ad minim veniam, quis nostrud exercitation ullamco.',
 
     // Bento content
-    showBentoIcon: true,
-    showBentoFootnotes: true,
+    bentoShowIcon: true,
+    bentoShowFootnotes: true,
     bentoHeadingLevel: 'h3',
+
+    // Breakout banner content
+    breakoutBannerAlign: 'start',
+    breakoutBannerShowLogo: true,
+    breakoutBannerShowFootnotes: false,
+    breakoutBannerHeadingLevel: 'h3',
 
     // Visual settings
     backgroundColor: 'default',
@@ -270,25 +293,63 @@ const meta: Meta<FlexSectionStoryArgs> = {
       description: 'Show featured Bento section',
       table: {category: 'Bento'},
     },
-    showBentoIcon: {
+    bentoShowIcon: {
       control: 'boolean',
       description: 'Show icon in Bento',
       table: {category: 'Bento'},
       if: {arg: 'showBento', truthy: true},
     },
-    showBentoFootnotes: {
+    bentoShowFootnotes: {
       control: 'boolean',
       description: 'Show footnotes in Bento',
       table: {category: 'Bento'},
       if: {arg: 'showBento', truthy: true},
     },
-
     bentoHeadingLevel: {
       control: {type: 'select'},
       options: ['h2', 'h3', 'h4', 'h5', 'h6'],
       description: 'Heading level for Bento title',
       table: {category: 'Bento'},
       if: {arg: 'showBento', truthy: true},
+    },
+
+    // Breakout banner controls
+    showBreakoutBanner: {
+      control: 'boolean',
+      description: 'Show breakout banner section',
+      table: {category: 'Breakout Banner'},
+    },
+    breakoutBannerAlign: {
+      control: {type: 'select'},
+      options: ['start', 'center'],
+      description: 'Alignment of breakout banner content',
+      table: {category: 'Breakout Banner'},
+      if: {arg: 'showBreakoutBanner', truthy: true},
+    },
+    breakoutBannerShowLogo: {
+      control: 'boolean',
+      description: 'Show logo in breakout banner',
+      table: {category: 'Breakout Banner'},
+      if: {arg: 'showBreakoutBanner', truthy: true},
+    },
+    breakoutBannerShowFootnotes: {
+      control: 'boolean',
+      description: 'Show footnotes in breakout banner',
+      table: {category: 'Breakout Banner'},
+      if: {arg: 'showBreakoutBanner', truthy: true},
+    },
+    breakoutBannerHeadingLevel: {
+      control: {type: 'select'},
+      options: ['h2', 'h3', 'h4', 'h5', 'h6'],
+      description: 'Heading level for breakout banner title',
+      table: {category: 'Breakout Banner'},
+      if: {arg: 'showBreakoutBanner', truthy: true},
+    },
+
+    enableRiverStoryScroll: {
+      control: 'boolean',
+      description: 'Enable river story scroll',
+      table: {category: 'River'},
     },
 
     // Visual settings controls
@@ -330,11 +391,6 @@ const meta: Meta<FlexSectionStoryArgs> = {
     hasBorderBottom: {
       control: 'boolean',
       description: 'Show bottom border',
-      table: {category: 'Visual Settings'},
-    },
-    enableRiverStoryScroll: {
-      control: 'boolean',
-      description: 'Enable river story scroll',
       table: {category: 'Visual Settings'},
     },
   },
