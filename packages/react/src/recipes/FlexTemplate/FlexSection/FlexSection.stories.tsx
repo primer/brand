@@ -11,6 +11,7 @@ type FlexSectionStoryArgs = {
   showCards: boolean
   showBento: boolean
   showBreakoutBanner: boolean
+  showStatistics: boolean
 
   showIntroContent: boolean
   introContentType: string
@@ -35,6 +36,14 @@ type FlexSectionStoryArgs = {
   breakoutBannerShowLogo: boolean
   breakoutBannerShowFootnotes: boolean
   breakoutBannerHeadingLevel: string
+
+  statisticsCount: number
+  statisticsVariant: string
+  statisticsSize: string
+  statisticsShowHeadingFootnotes: boolean
+  statisticsShowDescription: boolean
+  statisticsDescriptionVariant: string
+  statisticsShowDescriptionFootnotes: boolean
 
   backgroundColor: string
   paddingBlockStart: string
@@ -115,6 +124,20 @@ const createMockData = (args: FlexSectionStoryArgs) => ({
           },
         }
       : null,
+
+    statistics: args.showStatistics
+      ? {
+          fields: {
+            count: args.statisticsCount,
+            variant: args.statisticsVariant,
+            size: args.statisticsSize,
+            showHeadingFootnotes: args.statisticsShowHeadingFootnotes,
+            showDescription: args.statisticsShowDescription,
+            descriptionVariant: args.statisticsDescriptionVariant,
+            showDescriptionFootnotes: args.statisticsShowDescriptionFootnotes,
+          },
+        }
+      : null,
     visualSettings: {
       fields: {
         backgroundColor: args.backgroundColor,
@@ -177,6 +200,16 @@ const meta: Meta<FlexSectionStoryArgs> = {
     breakoutBannerShowLogo: true,
     breakoutBannerShowFootnotes: false,
     breakoutBannerHeadingLevel: 'h3',
+
+    // Statistics content
+    showStatistics: true,
+    statisticsCount: 4,
+    statisticsVariant: 'default',
+    statisticsSize: 'medium',
+    statisticsShowHeadingFootnotes: true,
+    statisticsShowDescription: true,
+    statisticsDescriptionVariant: 'muted',
+    statisticsShowDescriptionFootnotes: false,
 
     // Visual settings
     backgroundColor: 'default',
@@ -344,6 +377,59 @@ const meta: Meta<FlexSectionStoryArgs> = {
       description: 'Heading level for breakout banner title',
       table: {category: 'Breakout Banner'},
       if: {arg: 'showBreakoutBanner', truthy: true},
+    },
+
+    // Statistics controls
+    showStatistics: {
+      control: 'boolean',
+      description: 'Show statistics section',
+      table: {category: 'Statistics'},
+    },
+    statisticsCount: {
+      control: {type: 'inline-radio'},
+      options: [3, 4],
+      description: 'Number of statistics to display',
+      table: {category: 'Statistics'},
+      if: {arg: 'showStatistics', truthy: true},
+    },
+    statisticsVariant: {
+      control: {type: 'select'},
+      options: ['default', 'boxed'],
+      description: 'Visual variant for statistics',
+      table: {category: 'Statistics'},
+      if: {arg: 'showStatistics', truthy: true},
+    },
+    statisticsSize: {
+      control: {type: 'select'},
+      options: ['small', 'medium', 'large'],
+      description: 'Size of the statistics',
+      table: {category: 'Statistics'},
+      if: {arg: 'showStatistics', truthy: true},
+    },
+    statisticsShowHeadingFootnotes: {
+      control: 'boolean',
+      description: 'Show footnotes for statistic headings',
+      table: {category: 'Statistics'},
+      if: {arg: 'showStatistics', truthy: true},
+    },
+    statisticsShowDescription: {
+      control: 'boolean',
+      description: 'Show description for statistics',
+      table: {category: 'Statistics'},
+      if: {arg: 'showStatistics', truthy: true},
+    },
+    statisticsDescriptionVariant: {
+      control: {type: 'select'},
+      options: ['default', 'muted', 'accent'],
+      description: 'Text variant for statistics description',
+      table: {category: 'Statistics'},
+      if: {arg: 'statisticsShowDescription', truthy: true},
+    },
+    statisticsShowDescriptionFootnotes: {
+      control: 'boolean',
+      description: 'Show footnotes for statistics description',
+      table: {category: 'Statistics'},
+      if: {arg: 'statisticsShowDescription', truthy: true},
     },
 
     enableRiverStoryScroll: {
