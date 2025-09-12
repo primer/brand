@@ -92,6 +92,13 @@
 
 .footnoteInlineLink {
   scroll-margin-top: 80px;
+}
+
+.footnoteSizeSmall {
+  font-size: 0.875rem;
+}
+
+.footnoteSizeLarge {
   font-size: 1.125rem;
 }
 
@@ -127,6 +134,10 @@
 }
 
 /* END Breakout Banner Styles */
+
+.statistic {
+  height: 100%;
+}
 
 .testimonialBackgroundImageShape {
   position: absolute;

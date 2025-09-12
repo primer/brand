@@ -6,6 +6,8 @@ declare const styles: {
   readonly "featuredBentoItem": string;
   readonly "featuredBentoVisual": string;
   readonly "footnoteInlineLink": string;
+  readonly "footnoteSizeLarge": string;
+  readonly "footnoteSizeSmall": string;
   readonly "heightFull": string;
   readonly "imageFillMedia": string;
   readonly "left": string;
@@ -24,6 +26,7 @@ declare const styles: {
   readonly "security": string;
   readonly "stackedItemHeading": string;
   readonly "stackedItemText": string;
+  readonly "statistic": string;
   readonly "testimonialBackgroundImageShape": string;
   readonly "wrapper": string;
 };

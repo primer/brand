@@ -26,6 +26,7 @@ import {
   Section,
   SectionIntro,
   Stack,
+  Statistic,
   Testimonial,
   Text,
   ThemeProvider,
@@ -395,7 +396,7 @@ export function FlexSection({component, className}: FlexSectionProps) {
                               <InlineLink
                                 id="inline-link-1"
                                 href="#footnote-1"
-                                className={styles.footnoteInlineLink}
+                                className={clsx(styles.footnoteInlineLink, styles.footnoteSizeLarge)}
                                 aria-label="Footnote 1"
                               >
                                 1
@@ -496,7 +497,7 @@ export function FlexSection({component, className}: FlexSectionProps) {
                         <InlineLink
                           id="inline-link-2"
                           href="#footnote-2"
-                          className={styles.footnoteInlineLink}
+                          className={clsx(styles.footnoteInlineLink, styles.footnoteSizeLarge)}
                           aria-label="Footnote 2"
                         >
                           2
@@ -512,13 +513,62 @@ export function FlexSection({component, className}: FlexSectionProps) {
             </Grid>
           )}
 
-          {/* {statistics && (
-            <ContentfulStatistics
-              className={styles.normalizeMargin}
-              component={statistics}
-              statisticBgColor={backgroundColor === 'default' ? 'subtle' : 'default'}
-            />
-          )} */}
+          {statistics && (
+            <Grid className={styles.normalizeMargin} fullWidth>
+              {Array(statistics.fields.count)
+                .fill(null)
+                .map((_, i) => (
+                  <Grid.Column span={{medium: 6, large: statistics.fields.count === 3 ? 4 : 3}} key={i}>
+                    <Statistic
+                      className={styles.statistic}
+                      variant={statistics.fields.variant}
+                      size={statistics.fields.size}
+                      style={{
+                        backgroundColor:
+                          statistics.fields.variant === 'boxed'
+                            ? `var(--brand-color-canvas-${backgroundColor === 'default' ? 'subtle' : 'default'})`
+                            : undefined,
+                      }}
+                    >
+                      <Statistic.Heading as="p">
+                        $2M+
+                        {statistics.fields.showHeadingFootnotes ? (
+                          <>
+                            {' '}
+                            <InlineLink
+                              id="inline-link-3"
+                              href="#footnote-3"
+                              className={clsx(styles.footnoteInlineLink, styles.footnoteSizeLarge)}
+                              aria-label="Footnote 3"
+                            >
+                              3
+                            </InlineLink>
+                          </>
+                        ) : null}
+                      </Statistic.Heading>
+                      {statistics.fields.showDescription && (
+                        <Statistic.Description variant={statistics.fields.descriptionVariant}>
+                          Given back to our maintainers
+                          {statistics.fields.showDescriptionFootnotes ? (
+                            <>
+                              {' '}
+                              <InlineLink
+                                id="inline-link-4"
+                                href="#footnote-4"
+                                className={clsx(styles.footnoteInlineLink, styles.footnoteSizeSmall)}
+                                aria-label="Footnote 4"
+                              >
+                                4
+                              </InlineLink>
+                            </>
+                          ) : null}
+                        </Statistic.Description>
+                      )}
+                    </Statistic>
+                  </Grid.Column>
+                ))}
+            </Grid>
+          )}
 
           {/* {pricingOptions && (
             <Grid className={clsx(styles.normalizeMargin, 'mx-0')}>
