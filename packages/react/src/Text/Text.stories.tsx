@@ -122,7 +122,7 @@ export const Alignment = () => (
 )
 
 const TypeFixture = ({font}: {font: (typeof TextFontVariants)[number]}) => (
-  <Stack direction="vertical" gap={{wide: 48}}>
+  <Box>
     <Grid>
       <Grid.Column
         span={{
@@ -232,7 +232,7 @@ const TypeFixture = ({font}: {font: (typeof TextFontVariants)[number]}) => (
         </Stack>
       </Grid.Column>
     </Grid>
-  </Stack>
+  </Box>
 )
 
 export const MonaSans: StoryFn<typeof Text> = () => {
@@ -241,4 +241,8 @@ export const MonaSans: StoryFn<typeof Text> = () => {
 
 export const HubotSans: StoryFn<typeof Text> = () => {
   return <TypeFixture font="hubot-sans" />
+}
+
+export const Monospace: StoryFn<typeof Text> = () => {
+  return <TypeFixture font="monospace" />
 }
