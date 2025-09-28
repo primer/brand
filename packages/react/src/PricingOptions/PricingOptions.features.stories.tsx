@@ -1,6 +1,5 @@
 import React from 'react'
-import {StoryFn, Meta} from '@storybook/react'
-import {INITIAL_VIEWPORTS} from 'storybook/viewport'
+import type {Meta, StoryObj} from '@storybook/react'
 
 import {PricingOptions} from '.'
 import {Box, Grid, InlineLink, Stack} from '..'
@@ -21,15 +20,12 @@ export default {
   title: 'Components/PricingOptions/Features',
   component: PricingOptions,
   decorators: [decorators],
-  parameters: {
-    viewport: {
-      viewports: INITIAL_VIEWPORTS,
-    },
-  },
-} as Meta<typeof PricingOptions>
+} satisfies Meta<typeof PricingOptions>
 
-export const CardsVariant: StoryFn<typeof PricingOptions> = () => {
-  return (
+type Story = StoryObj<typeof PricingOptions>
+
+export const CardsVariant: Story = {
+  render: () => (
     <PricingOptions variant="cards">
       <PricingOptions.Item>
         <PricingOptions.Heading>Free</PricingOptions.Heading>
@@ -106,11 +102,11 @@ export const CardsVariant: StoryFn<typeof PricingOptions> = () => {
         </PricingOptions.PrimaryAction>
       </PricingOptions.Item>
     </PricingOptions>
-  )
+  ),
 }
 
-export const DefaultGradientVariant: StoryFn<typeof PricingOptions> = () => {
-  return (
+export const DefaultGradientVariant: Story = {
+  render: () => (
     <PricingOptions variant="default-gradient">
       <PricingOptions.Item>
         <PricingOptions.Heading>Copilot Individual</PricingOptions.Heading>
@@ -134,11 +130,11 @@ export const DefaultGradientVariant: StoryFn<typeof PricingOptions> = () => {
         </PricingOptions.PrimaryAction>
       </PricingOptions.Item>
     </PricingOptions>
-  )
+  ),
 }
 
-export const CardsGradientVariant: StoryFn<typeof PricingOptions> = () => {
-  return (
+export const CardsGradientVariant: Story = {
+  render: () => (
     <PricingOptions variant="cards-gradient">
       <PricingOptions.Item>
         <PricingOptions.Heading>Copilot Individual</PricingOptions.Heading>
@@ -162,61 +158,63 @@ export const CardsGradientVariant: StoryFn<typeof PricingOptions> = () => {
         </PricingOptions.PrimaryAction>
       </PricingOptions.Item>
     </PricingOptions>
-  )
+  ),
 }
 
-export const LeadingComponent: StoryFn<typeof PricingOptions> = () => {
-  const Image = () => (
-    <Box marginBlockEnd={24}>
-      <img src={imageExample} alt="Copilot Individual" />
-    </Box>
-  )
+export const LeadingComponent: Story = {
+  render: () => {
+    const Image = () => (
+      <Box marginBlockEnd={24}>
+        <img src={imageExample} alt="Copilot Individual" />
+      </Box>
+    )
 
-  return (
-    <Stack direction="vertical">
-      <PricingOptions variant="cards">
-        <PricingOptions.Item leadingComponent={<Image />}>
-          <PricingOptions.Heading>Copilot</PricingOptions.Heading>
-          <PricingOptions.Description>Copilot in the coding environment.</PricingOptions.Description>
-          <PricingOptions.Price trailingText="per month / $100 per year">10</PricingOptions.Price>
-          <PricingOptions.FeatureList>
-            <PricingOptions.FeatureListItem>Everything in Copilot Business plus:</PricingOptions.FeatureListItem>
-            <PricingOptions.FeatureListItem>Chat in IDE and Mobile</PricingOptions.FeatureListItem>
-            <PricingOptions.FeatureListItem>CLI assistance</PricingOptions.FeatureListItem>
-            <PricingOptions.FeatureListItem>Code completions</PricingOptions.FeatureListItem>
-          </PricingOptions.FeatureList>
-          <PricingOptions.PrimaryAction as="a" href="#">
-            Buy now
-          </PricingOptions.PrimaryAction>
-          <PricingOptions.SecondaryAction as="a" href="#">
-            Contact sales
-          </PricingOptions.SecondaryAction>
-        </PricingOptions.Item>
-        <PricingOptions.Item leadingComponent={<Image />}>
-          <PricingOptions.Label>Recommended</PricingOptions.Label>
-          <PricingOptions.Heading>Copilot Business</PricingOptions.Heading>
-          <PricingOptions.Description>
-            Copilot personalized to your organization throughout the software development lifecycle. Requires GitHub
-            Enterprise Cloud.
-          </PricingOptions.Description>
-          <PricingOptions.Price trailingText="per user / month">39</PricingOptions.Price>
-          <PricingOptions.FeatureList>
-            <PricingOptions.FeatureListItem>Everything in Copilot Business plus:</PricingOptions.FeatureListItem>
-            <PricingOptions.FeatureListItem>Chat in IDE and Mobile</PricingOptions.FeatureListItem>
-            <PricingOptions.FeatureListItem>CLI assistance</PricingOptions.FeatureListItem>
-            <PricingOptions.FeatureListItem>Code completions</PricingOptions.FeatureListItem>
-          </PricingOptions.FeatureList>
-          <PricingOptions.PrimaryAction as="a" href="#">
-            Join waitlist
-          </PricingOptions.PrimaryAction>
-        </PricingOptions.Item>
-      </PricingOptions>
-    </Stack>
-  )
+    return (
+      <Stack direction="vertical">
+        <PricingOptions variant="cards">
+          <PricingOptions.Item leadingComponent={<Image />}>
+            <PricingOptions.Heading>Copilot</PricingOptions.Heading>
+            <PricingOptions.Description>Copilot in the coding environment.</PricingOptions.Description>
+            <PricingOptions.Price trailingText="per month / $100 per year">10</PricingOptions.Price>
+            <PricingOptions.FeatureList>
+              <PricingOptions.FeatureListItem>Everything in Copilot Business plus:</PricingOptions.FeatureListItem>
+              <PricingOptions.FeatureListItem>Chat in IDE and Mobile</PricingOptions.FeatureListItem>
+              <PricingOptions.FeatureListItem>CLI assistance</PricingOptions.FeatureListItem>
+              <PricingOptions.FeatureListItem>Code completions</PricingOptions.FeatureListItem>
+            </PricingOptions.FeatureList>
+            <PricingOptions.PrimaryAction as="a" href="#">
+              Buy now
+            </PricingOptions.PrimaryAction>
+            <PricingOptions.SecondaryAction as="a" href="#">
+              Contact sales
+            </PricingOptions.SecondaryAction>
+          </PricingOptions.Item>
+          <PricingOptions.Item leadingComponent={<Image />}>
+            <PricingOptions.Label>Recommended</PricingOptions.Label>
+            <PricingOptions.Heading>Copilot Business</PricingOptions.Heading>
+            <PricingOptions.Description>
+              Copilot personalized to your organization throughout the software development lifecycle. Requires GitHub
+              Enterprise Cloud.
+            </PricingOptions.Description>
+            <PricingOptions.Price trailingText="per user / month">39</PricingOptions.Price>
+            <PricingOptions.FeatureList>
+              <PricingOptions.FeatureListItem>Everything in Copilot Business plus:</PricingOptions.FeatureListItem>
+              <PricingOptions.FeatureListItem>Chat in IDE and Mobile</PricingOptions.FeatureListItem>
+              <PricingOptions.FeatureListItem>CLI assistance</PricingOptions.FeatureListItem>
+              <PricingOptions.FeatureListItem>Code completions</PricingOptions.FeatureListItem>
+            </PricingOptions.FeatureList>
+            <PricingOptions.PrimaryAction as="a" href="#">
+              Join waitlist
+            </PricingOptions.PrimaryAction>
+          </PricingOptions.Item>
+        </PricingOptions>
+      </Stack>
+    )
+  },
 }
 
-export const OneOption: StoryFn<typeof PricingOptions> = () => {
-  return (
+export const OneOption: Story = {
+  render: () => (
     <PricingOptions>
       <PricingOptions.Item>
         <PricingOptions.Heading>Copilot Individual</PricingOptions.Heading>
@@ -238,11 +236,11 @@ export const OneOption: StoryFn<typeof PricingOptions> = () => {
         </PricingOptions.FeatureList>
       </PricingOptions.Item>
     </PricingOptions>
-  )
+  ),
 }
 
-export const TwoOptions: StoryFn<typeof PricingOptions> = () => {
-  return (
+export const TwoOptions: Story = {
+  render: () => (
     <PricingOptions>
       <PricingOptions.Item>
         <PricingOptions.Heading>Copilot</PricingOptions.Heading>
@@ -280,11 +278,11 @@ export const TwoOptions: StoryFn<typeof PricingOptions> = () => {
         </PricingOptions.PrimaryAction>
       </PricingOptions.Item>
     </PricingOptions>
-  )
+  ),
 }
 
-export const ThreeOptions: StoryFn<typeof PricingOptions> = () => {
-  return (
+export const ThreeOptions: Story = {
+  render: () => (
     <PricingOptions>
       <PricingOptions.Item>
         <PricingOptions.Heading>Copilot Individual</PricingOptions.Heading>
@@ -350,11 +348,11 @@ export const ThreeOptions: StoryFn<typeof PricingOptions> = () => {
         </PricingOptions.PrimaryAction>
       </PricingOptions.Item>
     </PricingOptions>
-  )
+  ),
 }
 
-export const FourOptions: StoryFn<typeof PricingOptions> = () => {
-  return (
+export const FourOptions: Story = {
+  render: () => (
     <PricingOptions>
       <PricingOptions.Item>
         <PricingOptions.Heading>Free</PricingOptions.Heading>
@@ -435,11 +433,11 @@ export const FourOptions: StoryFn<typeof PricingOptions> = () => {
         </PricingOptions.PrimaryAction>
       </PricingOptions.Item>
     </PricingOptions>
-  )
+  ),
 }
 
-export const WithFeatureSets: StoryFn<typeof PricingOptions> = () => {
-  return (
+export const WithFeatureSets: Story = {
+  render: () => (
     <PricingOptions>
       <PricingOptions.Item>
         <PricingOptions.Heading>Copilot Individual</PricingOptions.Heading>
@@ -519,11 +517,11 @@ export const WithFeatureSets: StoryFn<typeof PricingOptions> = () => {
         </PricingOptions.PrimaryAction>
       </PricingOptions.Item>
     </PricingOptions>
-  )
+  ),
 }
 
-export const WithIncludedAndExcludedFeatures: StoryFn<typeof PricingOptions> = () => {
-  return (
+export const WithIncludedAndExcludedFeatures: Story = {
+  render: () => (
     <PricingOptions>
       <PricingOptions.Item>
         <PricingOptions.Heading>Copilot Individual</PricingOptions.Heading>
@@ -612,11 +610,11 @@ export const WithIncludedAndExcludedFeatures: StoryFn<typeof PricingOptions> = (
         </PricingOptions.PrimaryAction>
       </PricingOptions.Item>
     </PricingOptions>
-  )
+  ),
 }
 
-export const WithoutFeatures: StoryFn<typeof PricingOptions> = () => {
-  return (
+export const WithoutFeatures: Story = {
+  render: () => (
     <PricingOptions>
       <PricingOptions.Item>
         <PricingOptions.Heading>Copilot Individual</PricingOptions.Heading>
@@ -652,11 +650,11 @@ export const WithoutFeatures: StoryFn<typeof PricingOptions> = () => {
         </PricingOptions.PrimaryAction>
       </PricingOptions.Item>
     </PricingOptions>
-  )
+  ),
 }
 
-export const CenterAligned: StoryFn<typeof PricingOptions> = () => {
-  return (
+export const CenterAligned: Story = {
+  render: () => (
     <PricingOptions align="center">
       <PricingOptions.Item>
         <PricingOptions.Heading>Copilot Individual</PricingOptions.Heading>
@@ -728,11 +726,11 @@ export const CenterAligned: StoryFn<typeof PricingOptions> = () => {
         </PricingOptions.PrimaryAction>
       </PricingOptions.Item>
     </PricingOptions>
-  )
+  ),
 }
 
-export const CollapsedFeatures: StoryFn<typeof PricingOptions> = () => {
-  return (
+export const CollapsedFeatures: Story = {
+  render: () => (
     <PricingOptions>
       <PricingOptions.Item>
         <PricingOptions.Heading>Copilot Individual</PricingOptions.Heading>
@@ -799,11 +797,11 @@ export const CollapsedFeatures: StoryFn<typeof PricingOptions> = () => {
         </PricingOptions.PrimaryAction>
       </PricingOptions.Item>
     </PricingOptions>
-  )
+  ),
 }
 
-export const WithCustomFeatureListHeading: StoryFn<typeof PricingOptions> = () => {
-  return (
+export const WithCustomFeatureListHeading: Story = {
+  render: () => (
     <PricingOptions>
       <PricingOptions.Item>
         <PricingOptions.Heading>Copilot Individual</PricingOptions.Heading>
@@ -873,11 +871,11 @@ export const WithCustomFeatureListHeading: StoryFn<typeof PricingOptions> = () =
         </PricingOptions.PrimaryAction>
       </PricingOptions.Item>
     </PricingOptions>
-  )
+  ),
 }
 
-export const WithCustomFeatureListItemLeadingVisual: StoryFn<typeof PricingOptions> = () => {
-  return (
+export const WithCustomFeatureListItemLeadingVisual: Story = {
+  render: () => (
     <PricingOptions>
       <PricingOptions.Item>
         <PricingOptions.Heading>Copilot Individual</PricingOptions.Heading>
@@ -980,10 +978,10 @@ export const WithCustomFeatureListItemLeadingVisual: StoryFn<typeof PricingOptio
         </PricingOptions.FeatureList>
       </PricingOptions.Item>
     </PricingOptions>
-  )
+  ),
 }
-export const CollapsedFeaturesNoDividers: StoryFn<typeof PricingOptions> = () => {
-  return (
+export const CollapsedFeaturesNoDividers: Story = {
+  render: () => (
     <PricingOptions>
       <PricingOptions.Item>
         <PricingOptions.Heading>Copilot Individual</PricingOptions.Heading>
@@ -1047,11 +1045,11 @@ export const CollapsedFeaturesNoDividers: StoryFn<typeof PricingOptions> = () =>
         </PricingOptions.PrimaryAction>
       </PricingOptions.Item>
     </PricingOptions>
-  )
+  ),
 }
 
-export const ExpandedNarrow: StoryFn<typeof PricingOptions> = () => {
-  return (
+export const ExpandedNarrow: Story = {
+  render: () => (
     <PricingOptions>
       <PricingOptions.Item>
         <PricingOptions.Heading>Copilot Individual</PricingOptions.Heading>
@@ -1115,23 +1113,22 @@ export const ExpandedNarrow: StoryFn<typeof PricingOptions> = () => {
         </PricingOptions.PrimaryAction>
       </PricingOptions.Item>
     </PricingOptions>
-  )
-}
-ExpandedNarrow.parameters = {
-  viewport: {
-    defaultViewport: 'iphonexr',
+  ),
+  globals: {
+    viewport: {value: 'iphonexr'},
   },
 }
 
-export const ExpandedTablet = () => <ExpandedNarrow />
-ExpandedTablet.parameters = {
-  viewport: {
-    defaultViewport: 'ipad',
+export const ExpandedTablet: Story = {
+  ...ExpandedNarrow,
+  globals: {
+    viewport: {value: 'ipad'},
   },
 }
 
-export const HideFeatureListOnNarrowAndRegular: StoryFn<typeof PricingOptions> = () => {
-  return (
+export const HideFeatureListOnNarrowAndRegular: Story = {
+  name: 'Hide feature list on all viewports except wide',
+  render: () => (
     <PricingOptions>
       <PricingOptions.Item>
         <PricingOptions.Heading>Copilot Individual</PricingOptions.Heading>
@@ -1153,14 +1150,13 @@ export const HideFeatureListOnNarrowAndRegular: StoryFn<typeof PricingOptions> =
         </PricingOptions.PrimaryAction>
       </PricingOptions.Item>
     </PricingOptions>
-  )
+  ),
 }
-HideFeatureListOnNarrowAndRegular.storyName = 'Hide feature list on all viewports except wide'
 
-export const HideFeatureListOnNarrowAndRegularNarrow = () => <HideFeatureListOnNarrowAndRegular />
-HideFeatureListOnNarrowAndRegularNarrow.parameters = {
-  viewport: {
-    defaultViewport: 'iphonexr',
+export const HideFeatureListOnNarrowAndRegularNarrow = {
+  ...HideFeatureListOnNarrowAndRegular,
+  name: 'Hide feature list on all viewports except wide (narrow)',
+  globals: {
+    viewport: {value: 'iphonexr'},
   },
 }
-HideFeatureListOnNarrowAndRegularNarrow.storyName = 'Hide feature list on all viewports except wide (narrow)'
