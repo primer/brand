@@ -1,6 +1,6 @@
 import React from 'react'
-import {StoryFn, Meta} from '@storybook/react'
-import {INITIAL_VIEWPORTS} from '@storybook/addon-viewport'
+import {Meta, StoryFn} from '@storybook/react'
+import {INITIAL_VIEWPORTS} from 'storybook/viewport'
 
 import {Hero} from '.'
 

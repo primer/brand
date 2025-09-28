@@ -1,6 +1,6 @@
 import React from 'react'
 import {Meta, StoryFn} from '@storybook/react'
-import {INITIAL_VIEWPORTS} from '@storybook/addon-viewport'
+import {INITIAL_VIEWPORTS} from 'storybook/viewport'
 import {Prose} from './Prose'
 import placeholderImage from '../fixtures/images/placeholder.png'
 import {ThemeProvider} from '../ThemeProvider'

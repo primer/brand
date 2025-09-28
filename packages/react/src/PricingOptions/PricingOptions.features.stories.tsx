@@ -1,6 +1,6 @@
 import React from 'react'
 import {StoryFn, Meta} from '@storybook/react'
-import {INITIAL_VIEWPORTS} from '@storybook/addon-viewport'
+import {INITIAL_VIEWPORTS} from 'storybook/viewport'
 
 import {PricingOptions} from '.'
 import {Box, Grid, InlineLink, Stack} from '..'

@@ -3,7 +3,7 @@ import {Meta} from '@storybook/react'
 import {useTranslation} from 'react-i18next'
 import {SectionIntroStacked} from '.'
 import {Grid} from '../Grid'
-import {INITIAL_VIEWPORTS} from '@storybook/addon-viewport'
+import {INITIAL_VIEWPORTS} from 'storybook/viewport'
 
 export default {
   title: 'Components/SectionIntroStacked/Features',

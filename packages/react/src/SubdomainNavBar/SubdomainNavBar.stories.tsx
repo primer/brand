@@ -1,6 +1,6 @@
 import {Meta, StoryFn} from '@storybook/react'
-import {expect, userEvent, within} from '@storybook/test'
-import {INITIAL_VIEWPORTS} from '@storybook/addon-viewport'
+import {expect, userEvent, within} from 'storybook/test'
+import {INITIAL_VIEWPORTS} from 'storybook/viewport'
 
 import React, {useEffect, useState} from 'react'
 import {Hero, River, Heading, Text, Link} from '../'

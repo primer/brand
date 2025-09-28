@@ -1,4 +1,4 @@
-import {INITIAL_VIEWPORTS} from '@storybook/addon-viewport'
+import {INITIAL_VIEWPORTS} from 'storybook/viewport'
 import {Meta, StoryObj} from '@storybook/react'
 
 import {Article} from './Article'

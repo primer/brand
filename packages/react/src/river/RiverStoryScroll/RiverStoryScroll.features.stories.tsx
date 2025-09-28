@@ -1,6 +1,6 @@
 import React from 'react'
 import {StoryFn, Meta} from '@storybook/react'
-import {INITIAL_VIEWPORTS} from '@storybook/addon-viewport'
+import {INITIAL_VIEWPORTS} from 'storybook/viewport'
 
 import {RiverStoryScroll, RiverStoryScrollProps} from '.'
 import {Heading, Text, Link, River, Box, Timeline, VideoPlayer} from '../..'

@@ -1,6 +1,6 @@
 import React from 'react'
-import {INITIAL_VIEWPORTS} from '@storybook/addon-viewport'
-import {Meta} from '@storybook/react'
+import {INITIAL_VIEWPORTS} from 'storybook/viewport'
+import {Meta, StoryFn} from '@storybook/react'
 import {Breadcrumbs} from '.'
 
 export default {
