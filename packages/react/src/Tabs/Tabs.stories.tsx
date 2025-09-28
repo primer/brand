@@ -7,7 +7,7 @@ export type MetaProps = TabsProps
 
 const meta: Meta<MetaProps> = {
   title: 'Components/Tabs',
-  component: Tabs,
+  component: Tabs as Meta<TabsProps>['component'],
   args: {
     align: 'center',
     variant: 'default',

@@ -1,20 +1,24 @@
 import React from 'react'
 import type {Meta, StoryObj} from '@storybook/react'
-import {Prose} from './Prose'
+import {Prose, ProseProps} from './Prose'
 import placeholderImage from '../fixtures/images/placeholder.png'
 import {ThemeProvider} from '../ThemeProvider'
 import {Box} from '../Box'
 import {useTranslation} from 'react-i18next'
 
+type ComponentAndStoryProps = ProseProps & {
+  darkMode?: boolean
+}
+
 export default {
   title: 'Components/Prose/Features',
-  component: Prose,
+  component: Prose as Meta<ComponentAndStoryProps>['component'], // because Prose applies forwardRef
   parameters: {
     layout: 'fullscreen',
   },
-} satisfies Meta<typeof Prose>
+} satisfies Meta<ComponentAndStoryProps>
 
-type Story = StoryObj<typeof Prose>
+type Story = StoryObj<ComponentAndStoryProps>
 
 const ExampleHtmlMarkup = (t: (key: string) => string) => `
     <h1>${t('heading_level_1')}</h1>
@@ -103,8 +107,8 @@ export const UnorderedList: Story = {
     darkMode: true,
   },
   argTypes: {
-    colorMode: {
-      darkMode: 'boolean',
+    darkMode: {
+      control: 'boolean',
     },
   },
   decorators: [
@@ -191,7 +195,7 @@ export const DefaultTable: Story = {
   name: 'With a table (default)',
   render: function DefaultTableComponent(args) {
     const {t} = useTranslation('Prose')
-    return <Prose html={proseMarkup(t)} {...args} />
+    return <Prose {...args} html={proseMarkup(t)} />
   },
 }
 

@@ -2,9 +2,15 @@ import React from 'react'
 import type {Meta, StoryObj} from '@storybook/react'
 import {expect, userEvent, within} from 'storybook/test'
 
-import {AnchorNav} from '.'
+import {AnchorNav, AnchorNavProps} from '.'
 import {Heading, Text, Stack} from '../'
 import {RedlineBackground} from '../component-helpers'
+
+type ComponentAndStoryProps = AnchorNavProps & {
+  data: {[key: string]: string}
+  sectionHeight: number
+  offset: number
+}
 
 const meta = {
   title: 'Components/AnchorNav/Features',
@@ -63,13 +69,13 @@ const meta = {
       },
     },
   },
-} satisfies Meta<typeof AnchorNav>
+} satisfies Meta<ComponentAndStoryProps>
 
 export default meta
-type Story = StoryObj<typeof meta>
+type Story = StoryObj<ComponentAndStoryProps>
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-const renderTemplate = (args: any) => {
+const renderTemplate = (args: ComponentAndStoryProps) => {
   const storyData = Object.entries(args.data) as [string, string][]
   return (
     <div style={{backgroundColor: 'var(--brand-color-canvas-default)'}}>
@@ -164,7 +170,7 @@ export const LongerLabels: Story = {
 }
 
 export const CustomBackground: Story = {
-  render: ({data, ...args}: {data: {[key: string]: string}; offset: number}) => {
+  render: ({data, ...args}: ComponentAndStoryProps) => {
     return (
       <div style={{backgroundColor: 'var(--base-color-scale-green-0)', paddingTop: args.offset}}>
         <AnchorNav {...args}>

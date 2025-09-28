@@ -9,6 +9,10 @@ import placeholder1 from '../../fixtures/images/placeholder-1.png'
 import placeholder2 from '../../fixtures/images/placeholder-2.png'
 import placeholder3 from '../../fixtures/images/placeholder-3.png'
 
+type ComponentAndStoryProps = RiverStoryScrollProps & {
+  withTrailingComponent: boolean
+}
+
 export default {
   title: 'Components/RiverStoryScroll/features',
   component: RiverStoryScroll,
@@ -31,15 +35,11 @@ export default {
       </Container>
     ),
   ],
-} satisfies Meta<typeof RiverStoryScroll>
+} satisfies Meta<ComponentAndStoryProps>
 
-type Story = StoryObj<typeof RiverStoryScroll>
+type Story = StoryObj<ComponentAndStoryProps>
 
-type TemplateProps = {
-  withTrailingComponent: boolean
-} & RiverStoryScrollProps
-
-const TemplateComponent = (args: TemplateProps) => {
+const TemplateComponent = (args: ComponentAndStoryProps) => {
   return (
     <RiverStoryScroll {...args} align={args.align} imageTextRatio={args.imageTextRatio}>
       <River>
@@ -175,7 +175,7 @@ export const EnterpriseExample: Story = {
           )}
         >
           <Heading size="5" as="h3" weight="medium">
-            Leverage the industry's most flexible secure development platform.
+            Leverage the industry&apos;s most flexible secure development platform.
           </Heading>
         </River.Content>
       </River>
@@ -238,7 +238,7 @@ export const EnterpriseExampleNarrow: Story = {
           )}
         >
           <Heading size="5" as="h3" weight="medium">
-            Leverage the industry's most flexible secure development platform.
+            Leverage the industry&apos;s most flexible secure development platform.
           </Heading>
         </River.Content>
       </River>
