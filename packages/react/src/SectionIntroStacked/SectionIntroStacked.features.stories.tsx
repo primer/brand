@@ -1,82 +1,109 @@
 import React from 'react'
-import {Meta} from '@storybook/react'
+import type {Meta, StoryObj} from '@storybook/react'
 import {useTranslation} from 'react-i18next'
 import {SectionIntroStacked} from '.'
 import {Grid} from '../Grid'
-import {INITIAL_VIEWPORTS} from 'storybook/viewport'
 
 export default {
   title: 'Components/SectionIntroStacked/Features',
   component: SectionIntroStacked,
-  parameters: {
-    viewport: {
-      viewports: INITIAL_VIEWPORTS,
-    },
-  },
-} as Meta<typeof SectionIntroStacked>
+} satisfies Meta<typeof SectionIntroStacked>
 
-export const WithEmphasizedText = () => {
-  const {t} = useTranslation('SectionIntroStacked')
+type Story = StoryObj<typeof SectionIntroStacked>
 
-  return (
-    <SectionIntroStacked>
-      <SectionIntroStacked.Heading>
-        <b>{t('playground_heading_emphasis')}</b>
-        {t('playground_heading_suffix')}
-      </SectionIntroStacked.Heading>
-      <SectionIntroStacked.Link href="#">{t('explore_github')}</SectionIntroStacked.Link>
+export const WithEmphasizedText: Story = {
+  render: function WithEmphasizedTextComponent() {
+    const {t} = useTranslation('SectionIntroStacked')
 
-      <SectionIntroStacked.Items>
-        <SectionIntroStacked.Item>
-          <b>{t('developer_first')}</b>
-          {t('developer_first_description')}
-        </SectionIntroStacked.Item>
-        <SectionIntroStacked.Item>
-          <b>{t('enterprise_grade')}</b>
-          {t('enterprise_grade_description')}
-        </SectionIntroStacked.Item>
-        <SectionIntroStacked.Item>
-          <b>{t('ai_powered')}</b>
-          {t('ai_powered_description')}
-        </SectionIntroStacked.Item>
-      </SectionIntroStacked.Items>
-    </SectionIntroStacked>
-  )
-}
+    return (
+      <SectionIntroStacked>
+        <SectionIntroStacked.Heading>
+          <b>{t('playground_heading_emphasis')}</b>
+          {t('playground_heading_suffix')}
+        </SectionIntroStacked.Heading>
+        <SectionIntroStacked.Link href="#">{t('explore_github')}</SectionIntroStacked.Link>
 
-export const InGrid = () => {
-  const {t} = useTranslation('SectionIntroStacked')
-
-  return (
-    <Grid>
-      <Grid.Column>
-        <SectionIntroStacked>
-          <SectionIntroStacked.Heading>{t('enterprise_platform_heading')}</SectionIntroStacked.Heading>
-          <SectionIntroStacked.Link href="#">{t('explore_github_enterprise')}</SectionIntroStacked.Link>
-          <SectionIntroStacked.Items>
-            <SectionIntroStacked.Item>
-              <b>{t('lorem_ipsum')}</b>
-              {t('lorem_ipsum_description')}
-            </SectionIntroStacked.Item>
-            <SectionIntroStacked.Item>
-              <b>{t('lorem_ipsum')}</b>
-              {t('lorem_ipsum_description')}
-            </SectionIntroStacked.Item>
-            <SectionIntroStacked.Item>
-              <b>{t('lorem_ipsum')}</b>
-              {t('lorem_ipsum_description')}
-            </SectionIntroStacked.Item>
-          </SectionIntroStacked.Items>
-        </SectionIntroStacked>
-      </Grid.Column>
-    </Grid>
-  )
-}
-
-export const InGridNarrow = () => <InGrid />
-InGridNarrow.parameters = {
-  viewport: {
-    defaultViewport: 'iphonexr',
+        <SectionIntroStacked.Items>
+          <SectionIntroStacked.Item>
+            <b>{t('developer_first')}</b>
+            {t('developer_first_description')}
+          </SectionIntroStacked.Item>
+          <SectionIntroStacked.Item>
+            <b>{t('enterprise_grade')}</b>
+            {t('enterprise_grade_description')}
+          </SectionIntroStacked.Item>
+          <SectionIntroStacked.Item>
+            <b>{t('ai_powered')}</b>
+            {t('ai_powered_description')}
+          </SectionIntroStacked.Item>
+        </SectionIntroStacked.Items>
+      </SectionIntroStacked>
+    )
   },
 }
-InGridNarrow.storyName = 'Narrow view, menu closed (mobile)'
+
+export const InGrid: Story = {
+  render: function InGridComponent() {
+    const {t} = useTranslation('SectionIntroStacked')
+
+    return (
+      <Grid>
+        <Grid.Column>
+          <SectionIntroStacked>
+            <SectionIntroStacked.Heading>{t('enterprise_platform_heading')}</SectionIntroStacked.Heading>
+            <SectionIntroStacked.Link href="#">{t('explore_github_enterprise')}</SectionIntroStacked.Link>
+            <SectionIntroStacked.Items>
+              <SectionIntroStacked.Item>
+                <b>{t('lorem_ipsum')}</b>
+                {t('lorem_ipsum_description')}
+              </SectionIntroStacked.Item>
+              <SectionIntroStacked.Item>
+                <b>{t('lorem_ipsum')}</b>
+                {t('lorem_ipsum_description')}
+              </SectionIntroStacked.Item>
+              <SectionIntroStacked.Item>
+                <b>{t('lorem_ipsum')}</b>
+                {t('lorem_ipsum_description')}
+              </SectionIntroStacked.Item>
+            </SectionIntroStacked.Items>
+          </SectionIntroStacked>
+        </Grid.Column>
+      </Grid>
+    )
+  },
+}
+
+export const InGridNarrow: Story = {
+  name: 'Narrow view, menu closed (mobile)',
+  globals: {
+    viewport: {value: 'iphonexr'},
+  },
+  render: function InGridNarrowComponent() {
+    const {t} = useTranslation('SectionIntroStacked')
+
+    return (
+      <Grid>
+        <Grid.Column>
+          <SectionIntroStacked>
+            <SectionIntroStacked.Heading>{t('enterprise_platform_heading')}</SectionIntroStacked.Heading>
+            <SectionIntroStacked.Link href="#">{t('explore_github_enterprise')}</SectionIntroStacked.Link>
+            <SectionIntroStacked.Items>
+              <SectionIntroStacked.Item>
+                <b>{t('lorem_ipsum')}</b>
+                {t('lorem_ipsum_description')}
+              </SectionIntroStacked.Item>
+              <SectionIntroStacked.Item>
+                <b>{t('lorem_ipsum')}</b>
+                {t('lorem_ipsum_description')}
+              </SectionIntroStacked.Item>
+              <SectionIntroStacked.Item>
+                <b>{t('lorem_ipsum')}</b>
+                {t('lorem_ipsum_description')}
+              </SectionIntroStacked.Item>
+            </SectionIntroStacked.Items>
+          </SectionIntroStacked>
+        </Grid.Column>
+      </Grid>
+    )
+  },
+}

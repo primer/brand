@@ -1,6 +1,5 @@
 import React from 'react'
-import {Meta, StoryFn} from '@storybook/react'
-import {INITIAL_VIEWPORTS} from 'storybook/viewport'
+import type {Meta, StoryObj} from '@storybook/react'
 import {Prose} from './Prose'
 import placeholderImage from '../fixtures/images/placeholder.png'
 import {ThemeProvider} from '../ThemeProvider'
@@ -12,11 +11,10 @@ export default {
   component: Prose,
   parameters: {
     layout: 'fullscreen',
-    viewport: {
-      viewports: INITIAL_VIEWPORTS,
-    },
   },
-} as Meta
+} satisfies Meta<typeof Prose>
+
+type Story = StoryObj<typeof Prose>
 
 const ExampleHtmlMarkup = (t: (key: string) => string) => `
     <h1>${t('heading_level_1')}</h1>
@@ -58,32 +56,34 @@ const ExampleHtmlMarkup = (t: (key: string) => string) => `
     <p>Nunc velit odio, posuere eu felis eget, consectetur fermentum nisi. Aenean tempor odio id ornare ultrices. Quisque blandit condimentum tellus, semper efficitur sapien dapibus nec.</p>
 `
 
-export const FullWidth: StoryFn = () => {
-  const {t} = useTranslation('Prose')
-  return <Prose enableFullWidth html={ExampleHtmlMarkup(t)} />
-}
-
-export const NarrowViewFullWidth: StoryFn = () => {
-  const {t} = useTranslation('Prose')
-  return <Prose enableFullWidth html={ExampleHtmlMarkup(t)} />
-}
-NarrowViewFullWidth.parameters = {
-  viewport: {
-    defaultViewport: 'iphonexr',
+export const FullWidth: Story = {
+  render: function FullWidthComponent() {
+    const {t} = useTranslation('Prose')
+    return <Prose enableFullWidth html={ExampleHtmlMarkup(t)} />
   },
 }
-NarrowViewFullWidth.storyName = 'Narrow view, full width (mobile)'
 
-export const RegularViewFullWidth: StoryFn = () => {
-  const {t} = useTranslation('Prose')
-  return <Prose enableFullWidth html={ExampleHtmlMarkup(t)} />
-}
-RegularViewFullWidth.parameters = {
-  viewport: {
-    defaultViewport: 'ipad10p',
+export const NarrowViewFullWidth: Story = {
+  name: 'Narrow view, full width (mobile)',
+  globals: {
+    viewport: {value: 'iphonexr'},
+  },
+  render: function NarrowViewFullWidthComponent() {
+    const {t} = useTranslation('Prose')
+    return <Prose enableFullWidth html={ExampleHtmlMarkup(t)} />
   },
 }
-RegularViewFullWidth.storyName = 'Regular view, full width (tablet)'
+
+export const RegularViewFullWidth: Story = {
+  name: 'Regular view, full width (tablet)',
+  globals: {
+    viewport: {value: 'ipad10p'},
+  },
+  render: function RegularViewFullWidthComponent() {
+    const {t} = useTranslation('Prose')
+    return <Prose enableFullWidth html={ExampleHtmlMarkup(t)} />
+  },
+}
 
 const UnorderedListHtmlMarkup = `
 <ul>
@@ -98,25 +98,26 @@ const UnorderedListHtmlMarkup = `
   </li>
 </ul>
 `
-const UnorderedListStory: StoryFn = args => <Prose {...args} html={UnorderedListHtmlMarkup} />
-export const UnorderedList = UnorderedListStory.bind({})
-UnorderedList.args = {
-  darkMode: true,
-}
-UnorderedList.argTypes = {
-  colorMode: {
-    darkMode: 'boolean',
+export const UnorderedList: Story = {
+  args: {
+    darkMode: true,
   },
+  argTypes: {
+    colorMode: {
+      darkMode: 'boolean',
+    },
+  },
+  decorators: [
+    (Story, {args: {darkMode}}) => (
+      <ThemeProvider colorMode={darkMode ? 'dark' : 'light'}>
+        <Box backgroundColor="default">
+          <Story />
+        </Box>
+      </ThemeProvider>
+    ),
+  ],
+  render: args => <Prose {...args} html={UnorderedListHtmlMarkup} />,
 }
-UnorderedList.decorators = [
-  (Story, {args: {darkMode}}) => (
-    <ThemeProvider colorMode={darkMode ? 'dark' : 'light'}>
-      <Box backgroundColor="default">
-        <Story />
-      </Box>
-    </ThemeProvider>
-  ),
-]
 
 const proseMarkup = (t: (key: string) => string) => `
 <h2>${t('heading')}</h2>
@@ -186,28 +187,32 @@ const proseMarkup = (t: (key: string) => string) => `
 <p>Nunc velit odio, posuere eu felis eget, consectetur fermentum nisi. Aenean tempor odio id ornare ultrices. Quisque blandit condimentum tellus, semper efficitur sapien dapibus nec.</p>
 `
 
-export const DefaultTable = args => {
-  const {t} = useTranslation('Prose')
-  return <Prose html={proseMarkup(t)} {...args} />
-}
-DefaultTable.storyName = 'With a table (default)'
-
-export const EditorialTable = () => {
-  const {t} = useTranslation('Prose')
-  return <Prose html={proseMarkup(t)} variant="editorial" />
-}
-EditorialTable.storyName = 'With a table (editorial variant)'
-
-export const DefaultTableNarrowView = () => {
-  const {t} = useTranslation('Prose')
-  return <Prose html={proseMarkup(t)} enableFullWidth />
-}
-DefaultTableNarrowView.parameters = {
-  viewport: {
-    defaultViewport: 'iphonexr',
+export const DefaultTable: Story = {
+  name: 'With a table (default)',
+  render: function DefaultTableComponent(args) {
+    const {t} = useTranslation('Prose')
+    return <Prose html={proseMarkup(t)} {...args} />
   },
 }
-DefaultTableNarrowView.storyName = 'With a table (narrow)'
+
+export const EditorialTable: Story = {
+  name: 'With a table (editorial variant)',
+  render: function EditorialTableComponent() {
+    const {t} = useTranslation('Prose')
+    return <Prose html={proseMarkup(t)} variant="editorial" />
+  },
+}
+
+export const DefaultTableNarrowView: Story = {
+  name: 'With a table (narrow)',
+  globals: {
+    viewport: {value: 'iphonexr'},
+  },
+  render: function DefaultTableNarrowViewComponent() {
+    const {t} = useTranslation('Prose')
+    return <Prose html={proseMarkup(t)} enableFullWidth />
+  },
+}
 
 const dataLabelsMarkup = (t: (key: string) => string) => `
 <h2>${t('vertically_stacked_layout')}</h2>
@@ -247,22 +252,24 @@ const dataLabelsMarkup = (t: (key: string) => string) => `
 </table>
 <p>Nunc velit odio, posuere eu felis eget, consectetur fermentum nisi. Aenean tempor odio id ornare ultrices. Quisque blandit condimentum tellus, semper efficitur sapien dapibus nec.</p>`
 
-export const TableWithDataLabels = () => {
-  const {t} = useTranslation('Prose')
-  return <Prose html={dataLabelsMarkup(t)} />
-}
-TableWithDataLabels.storyName = 'With a vertically-stacked table'
-
-export const TableWithDataLabelsNarrowView = () => {
-  const {t} = useTranslation('Prose')
-  return <Prose html={dataLabelsMarkup(t)} enableFullWidth />
-}
-TableWithDataLabelsNarrowView.parameters = {
-  viewport: {
-    defaultViewport: 'iphonexr',
+export const TableWithDataLabels: Story = {
+  name: 'With a vertically-stacked table',
+  render: function TableWithDataLabelsComponent() {
+    const {t} = useTranslation('Prose')
+    return <Prose html={dataLabelsMarkup(t)} />
   },
 }
-TableWithDataLabelsNarrowView.storyName = 'With a vertically-stacked table (narrow)'
+
+export const TableWithDataLabelsNarrowView: Story = {
+  name: 'With a vertically-stacked table (narrow)',
+  globals: {
+    viewport: {value: 'iphonexr'},
+  },
+  render: function TableWithDataLabelsNarrowViewComponent() {
+    const {t} = useTranslation('Prose')
+    return <Prose html={dataLabelsMarkup(t)} enableFullWidth />
+  },
+}
 
 const stressTestMarkup = (t: (key: string) => string) => `
 <p>${t('stress_test_intro')}</p>
@@ -389,19 +396,21 @@ const stressTestMarkup = (t: (key: string) => string) => `
 </table>
 `
 
-export const MixedData = () => {
-  const {t} = useTranslation('Prose')
-  return <Prose html={stressTestMarkup(t)} />
-}
-MixedData.storyName = 'With a mixed data set table'
-
-export const MixedDataNarrow = () => {
-  const {t} = useTranslation('Prose')
-  return <Prose html={stressTestMarkup(t)} enableFullWidth />
-}
-MixedDataNarrow.parameters = {
-  viewport: {
-    defaultViewport: 'iphonexr',
+export const MixedData: Story = {
+  name: 'With a mixed data set table',
+  render: function MixedDataComponent() {
+    const {t} = useTranslation('Prose')
+    return <Prose html={stressTestMarkup(t)} />
   },
 }
-MixedDataNarrow.storyName = 'With a mixed data set table (narrow)'
+
+export const MixedDataNarrow: Story = {
+  name: 'With a mixed data set table (narrow)',
+  globals: {
+    viewport: {value: 'iphonexr'},
+  },
+  render: function MixedDataNarrowComponent() {
+    const {t} = useTranslation('Prose')
+    return <Prose html={stressTestMarkup(t)} enableFullWidth />
+  },
+}
