@@ -128,7 +128,6 @@ export const Disabled: Story = {
 export const DisabledNarrow: Story = {
   args: {
     disabled: true,
-    withTrailingComponent: true,
   },
   globals: {
     viewport: {value: 'iphonexr'},
