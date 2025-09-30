@@ -108,12 +108,9 @@ export const useTabs = ({
     [setTabState],
   )
 
-  const focusTab = useCallback(
-    (id: string) => {
-      tabRefs.current.get(id)?.focus()
-    },
-    [setTabState],
-  )
+  const focusTab = useCallback((id: string) => {
+    tabRefs.current.get(id)?.focus()
+  }, [])
 
   const activateTab = useCallback(
     (id: string) => {
