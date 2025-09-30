@@ -1,4 +1,4 @@
-import React, {createRef, MutableRefObject} from 'react'
+import React from 'react'
 
 import {act, render, renderHook} from '@testing-library/react'
 import '@testing-library/jest-dom'
@@ -23,7 +23,7 @@ type TestComponentProps = {
  *    function to match real-world usage.
  */
 const renderUseTabsHook = (initialOptions?: UseTabsOptions) => {
-  const result = React.createRef<UseTabs>() as MutableRefObject<UseTabs>
+  const result = React.createRef<UseTabs>() as React.MutableRefObject<UseTabs>
 
   const MockTabs = ({useTabsOptions}: TestComponentProps) => {
     const useTabsResult = useTabs(useTabsOptions)
@@ -334,7 +334,7 @@ describe('useTabs', () => {
   })
 
   it("sets the tab element to the provided RefObject's current property", () => {
-    const ref = createRef<HTMLDetailsElement>()
+    const ref = React.createRef<HTMLDetailsElement>()
 
     // We intentionally use `renderHook` here as we want to pass a custom ref
     const {result} = renderHook(useTabs)
