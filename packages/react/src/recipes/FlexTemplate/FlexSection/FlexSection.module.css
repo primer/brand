@@ -171,6 +171,12 @@
   height: 100%;
 }
 
+/* Testimonial Styles */
+
+.position-relative {
+  position: relative;
+}
+
 .testimonialBackgroundImageShape {
   position: absolute;
   max-width: 100%;
@@ -252,6 +258,8 @@
     display: none;
   }
 }
+
+/* END Testimonial Styles */
 
 @media (max-width: 767px) {
   .featuredBentoItem {

@@ -11,8 +11,8 @@ import securityDarkRiverBg1 from '../fixtures/images/security/river-bg-dark-1.pn
 import securityLightRiverBg2 from '../fixtures/images/security/river-bg-light-2.png'
 import securityDarkRiverBg2 from '../fixtures/images/security/river-bg-dark-2.png'
 import securitySideBySideFormBg from '../fixtures/images/security/form-bg.png'
-import securityLeft from '../fixtures/images/security-shape-left.webp'
-import securityRight from '../fixtures/images/security-shape-right.webp'
+import securityLeft from '../fixtures/images/security/security-shape-left.webp'
+import securityRight from '../fixtures/images/security/security-shape-right.webp'
 
 import aiLightHeroBg from '../fixtures/images/ai/hero-light.png'
 import aiDarkHeroBg from '../fixtures/images/ai/hero-dark.png'
@@ -25,8 +25,8 @@ import aiDarkRiverBg1 from '../fixtures/images/ai/river-bg-dark-1.png'
 import aiLightRiverBg2 from '../fixtures/images/ai/river-bg-light-2.png'
 import aiDarkRiverBg2 from '../fixtures/images/ai/river-bg-dark-2.png'
 import aiSideBySideFormBg from '../fixtures/images/ai/form-bg.png'
-import aILeft from '../fixtures/images/ai-shape-left.webp'
-import aIRight from '../fixtures/images/ai-shape-right.webp'
+import aILeft from '../fixtures/images/ai/ai-shape-left.webp'
+import aIRight from '../fixtures/images/ai/ai-shape-right.webp'
 
 import collaborationLightHeroBg from '../fixtures/images/collaboration/hero-light.png'
 import collaborationDarkHeroBg from '../fixtures/images/collaboration/hero-dark.png'
@@ -39,8 +39,8 @@ import collaborationDarkRiverBg1 from '../fixtures/images/collaboration/river-bg
 import collaborationLightRiverBg2 from '../fixtures/images/collaboration/river-bg-light-2.png'
 import collaborationDarkRiverBg2 from '../fixtures/images/collaboration/river-bg-dark-2.png'
 import collaborationSideBySideFormBg from '../fixtures/images/collaboration/form-bg.png'
-import collaborationLeft from '../fixtures/images/collaboration-shape-left.webp'
-import collaborationRight from '../fixtures/images/collaboration-shape-right.webp'
+import collaborationLeft from '../fixtures/images/collaboration/collaboration-shape-left.webp'
+import collaborationRight from '../fixtures/images/collaboration/collaboration-shape-right.webp'
 
 import productivityLightHeroVisualBg from '../fixtures/images/productivity/hero-visual-bg-light.png'
 import productivityDarkHeroVisualBg from '../fixtures/images/productivity/hero-visual-bg-dark.png'
@@ -51,11 +51,11 @@ import productivityDarkRiverBg1 from '../fixtures/images/productivity/river-bg-d
 import productivityLightRiverBg2 from '../fixtures/images/productivity/river-bg-light-2.png'
 import productivityDarkRiverBg2 from '../fixtures/images/productivity/river-bg-dark-2.png'
 import productivitySideBySideFormBg from '../fixtures/images/productivity/form-bg.png'
-import productivityLeft from '../fixtures/images/productivity-shape-left.webp'
-import productivityRight from '../fixtures/images/productivity-shape-right.webp'
+import productivityLeft from '../fixtures/images/productivity/productivity-shape-left.webp'
+import productivityRight from '../fixtures/images/productivity/productivity-shape-right.webp'
 
-import enterpriseLeft from '../fixtures/images/enterprise-shape-left.webp'
-import enterpriseRight from '../fixtures/images/enterprise-shape-right.webp'
+import enterpriseLeft from '../fixtures/images/enterprise/enterprise-shape-left.webp'
+import enterpriseRight from '../fixtures/images/enterprise/enterprise-shape-right.webp'
 
 import {ColorModesEnum} from '../../../ThemeProvider'
 
