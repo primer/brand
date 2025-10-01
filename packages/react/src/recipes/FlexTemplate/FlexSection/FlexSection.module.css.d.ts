@@ -1,4 +1,5 @@
 declare const styles: {
+  readonly "active": string;
   readonly "ai": string;
   readonly "collaboration": string;
   readonly "enterprise": string;
@@ -24,6 +25,9 @@ declare const styles: {
   readonly "section": string;
   readonly "sectionIntro": string;
   readonly "security": string;
+  readonly "segmentedControlButton": string;
+  readonly "segmentedControlContainer": string;
+  readonly "segmentedControlPanelGrid": string;
   readonly "stackedItemHeading": string;
   readonly "stackedItemText": string;
   readonly "statistic": string;
