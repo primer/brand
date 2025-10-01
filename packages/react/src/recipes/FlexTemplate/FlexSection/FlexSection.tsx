@@ -19,6 +19,7 @@ import {
   iconColors,
   Image,
   InlineLink,
+  Label,
   Link,
   LogoSuite,
   Pillar,
@@ -26,6 +27,7 @@ import {
   Prose,
   River,
   RiverBreakout,
+  RiverStoryScroll,
   Section,
   SectionIntro,
   Stack,
@@ -432,33 +434,41 @@ export function FlexSection({component, className}: FlexSectionProps) {
             </Grid>
           )}
 
-          {/* {rivers && rivers.length > 0 && (
+          {rivers && (
             <RiverStoryScroll disabled={!enableRiverStoryScroll}>
-              {rivers.map(river =>
-                isRiverAccordion(river) ? (
-                  <ContentfulRiverAccordion
-                    key={river.sys.id}
-                    className={clsx(styles.normalizeMargin, styles.normalizePadding, 'px-3')}
-                    component={river}
-                  />
-                ) : isRiverBreakout(river) ? (
-                  <ContentfulRiverBreakout
-                    key={river.sys.id}
-                    className={clsx(styles.normalizeMargin, styles.normalizePadding, 'px-3', {
-                      [styles.riverBreakoutNoCta]: !river.fields.callToAction,
-                    })}
-                    component={river}
-                  />
-                ) : (
-                  <ContentfulRiver
-                    key={river.sys.id}
-                    className={clsx(styles.normalizeMargin, styles.normalizePadding, 'px-3')}
-                    component={river}
-                  />
-                ),
-              )}
+              {/* {rivers.map(river =>
+              isRiverAccordion(river) ? (
+                <ContentfulRiverAccordion
+                  key={river.sys.id}
+                  className={clsx(styles.normalizeMargin, styles.normalizePadding, 'px-3')}
+                  component={river}
+                />
+              ) : isRiverBreakout(river) ? (
+                <ContentfulRiverBreakout
+                  key={river.sys.id}
+                  className={clsx(styles.normalizeMargin, styles.normalizePadding, 'px-3', {
+                    [styles.riverBreakoutNoCta]: !river.fields.callToAction,
+                  })}
+                  component={river}
+                />
+              ) : (
+                <ContentfulRiver
+                  key={river.sys.id}
+                  className={clsx(styles.normalizeMargin, styles.normalizePadding, 'px-3')}
+                  component={river}
+                />
+              ),
+            )} */}
+
+              {Array.from({length: 3}).map((_, index) => (
+                <ContentfulRiver
+                  key={index}
+                  className={clsx(styles.normalizeMargin, styles.normalizePadding, 'px-3')}
+                  rivers={rivers}
+                />
+              ))}
             </RiverStoryScroll>
-          )} */}
+          )}
 
           {testimonials && testimonials.fields.testimonialCount > 0 && (
             <FlexSectionTestimonials testimonials={testimonials} className={styles.normalizeMargin} />
@@ -692,13 +702,8 @@ export function FlexSection({component, className}: FlexSectionProps) {
   )
 }
 
-type FlexSectionTestimonialsProps = {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  testimonials: any
-  className?: string
-}
-
-function FlexSectionTestimonials({testimonials, className}: FlexSectionTestimonialsProps) {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function FlexSectionTestimonials({testimonials, className}: any) {
   const isMinimalVariant = testimonials.fields.variant === 'minimal'
 
   const set =
@@ -777,7 +782,7 @@ function ContentfulTestimonials({testimonials, className}: any) {
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const ContentfulTestimonialContent = ({className, size, variant, quoteMarkColor, displayedAuthorImage}: any) => {
+const ContentfulTestimonialContent = ({className, size, variant, quoteMarkColor, displayedAuthorImage}: any) => {
   return (
     <Testimonial className={className} size={size} variant={variant} quoteMarkColor={quoteMarkColor}>
       <Testimonial.Quote>
@@ -802,5 +807,94 @@ export const ContentfulTestimonialContent = ({className, size, variant, quoteMar
        */
       null}
     </Testimonial>
+  )
+}
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function ContentfulRiver({rivers, className}: any) {
+  /**
+   * We use an empty fragment if `props.content.cta` is not defined for compliance
+   * with `River.Content` types (`River.Content` does not accept `null` as children).
+   */
+  const ctaLink = rivers.fields.hasCta ? (
+    <Link variant={rivers.fields.ctaVariant ?? 'accent'} href="#">
+      Learn more
+    </Link>
+  ) : (
+    <></>
+  )
+
+  const getTrailingComponent = rivers.fields.hasTrailingComponent
+    ? () => (
+        <Timeline>
+          <Timeline.Item>
+            GitHub Codespaces offers a complete dev environment in seconds, so you can code, build, test, and open pull
+            requests from any repo anywhere.
+          </Timeline.Item>
+          <Timeline.Item>
+            GitHub Copilot is your AI pair programmer that empowers you to complete tasks 55% faster by turning natural
+            language prompts into coding suggestions.
+          </Timeline.Item>
+          <Timeline.Item>
+            GitHub Actions automates your build, test, and deployment workflow with simple and secure CI/CD.
+          </Timeline.Item>
+        </Timeline>
+      )
+    : undefined
+
+  return (
+    <River className={className} align={rivers.fields.align} imageTextRatio={rivers.fields.imageTextRatio}>
+      <River.Visual hasShadow={rivers.fields.hasShadow} className="width-full">
+        {rivers.fields.visualType === 'image' ? (
+          <img src={placeholderImage} alt="placeholder, blank area with a gray background color" />
+        ) : rivers.fields.visualType === 'video' ? (
+          <video
+            loop
+            playsInline
+            autoPlay
+            muted
+            poster="https://github.githubassets.com/images/modules/site/issues/issue-tasks-progress-placeholder.png"
+          >
+            <source
+              type="video/mp4; codecs=hevc,mp4a.40.2"
+              src="https://github.githubassets.com/images/modules/site/issues/issue-tasks-progress.hevc.mp4"
+            />
+            <source
+              type="video/mp4; codecs=avc1.4D401E,mp4a.40.2"
+              src="https://github.githubassets.com/images/modules/site/issues/issue-tasks-progress.h264.mp4"
+            />
+          </video>
+        ) : null}
+      </River.Visual>
+
+      <River.Content trailingComponent={getTrailingComponent}>
+        {rivers.fields.hasLabel && (
+          <Label
+            size={rivers.fields.labelSize}
+            color={rivers.fields.labelColor}
+            {...(rivers.fields.hasLeadingVisual ? {leadingVisual: <ZapIcon />} : {})}
+          >
+            Label
+          </Label>
+        )}
+
+        <Heading>Heading</Heading>
+        <Text>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus
+          <sup>
+            <InlineLink
+              href=""
+              className={clsx(styles.footnoteInlineLink, styles.footnoteSizeSmall)}
+              aria-label="Footnote 5"
+            >
+              5
+            </InlineLink>
+          </sup>{' '}
+          sed turpis felis nam pulvinar risus elementum.
+        </Text>
+
+        {ctaLink}
+      </River.Content>
+    </River>
   )
 }

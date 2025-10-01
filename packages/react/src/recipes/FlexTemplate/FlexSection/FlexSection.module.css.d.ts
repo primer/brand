@@ -21,6 +21,7 @@ declare const styles: {
   readonly "paddingBottom-spacious": string;
   readonly "position-relative": string;
   readonly "productivity": string;
+  readonly "px-3": string;
   readonly "right": string;
   readonly "riverBreakoutNoCta": string;
   readonly "section": string;
