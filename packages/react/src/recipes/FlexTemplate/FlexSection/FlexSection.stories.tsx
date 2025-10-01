@@ -3,7 +3,7 @@ import {INITIAL_VIEWPORTS} from '@storybook/addon-viewport'
 import {Meta, StoryFn} from '@storybook/react'
 
 import {FlexSection} from './FlexSection'
-import {TestimonialQuoteMarkColors} from '../../..'
+import {LabelColors, TestimonialQuoteMarkColors} from '../../..'
 
 type FlexSectionStoryArgs = {
   sectionId: 'example-section'
@@ -16,6 +16,7 @@ type FlexSectionStoryArgs = {
   showPricingOptions: boolean
   showSegmentedControlPanel: boolean
   showTestimonials: boolean
+  showRivers: boolean
 
   showIntroContent: boolean
   introContentType: string
@@ -60,6 +61,18 @@ type FlexSectionStoryArgs = {
   testimonialVariant: string
   testimonialDisplayedAuthorImage: 'logo' | 'avatar'
   testimonialQuoteMarkColor: string
+
+  riverAlign: string
+  riverCtaVariant: string
+  riverHasCta: boolean
+  riverHasLeadingVisual: boolean
+  riverHasShadow: boolean
+  riverHasTrailingComponent: boolean
+  riverImageTextRatio: string
+  riverHasLabel: boolean
+  riverLabelColor: string
+  riverLabelSize: string
+  riverVisualType: 'image' | 'video'
 
   backgroundColor: string
   paddingBlockStart: string
@@ -181,6 +194,23 @@ const createMockData = (args: FlexSectionStoryArgs) => ({
           },
         }
       : null,
+    rivers: args.showRivers
+      ? {
+          fields: {
+            align: args.riverAlign,
+            ctaVariant: args.riverCtaVariant,
+            hasCta: args.riverHasCta,
+            hasLeadingVisual: args.riverHasLeadingVisual,
+            hasShadow: args.riverHasShadow,
+            hasTrailingComponent: args.riverHasTrailingComponent,
+            imageTextRatio: args.riverImageTextRatio,
+            label: args.riverHasLabel,
+            labelColor: args.riverLabelColor,
+            labelSize: args.riverLabelSize,
+            visualType: args.riverVisualType,
+          },
+        }
+      : null,
     visualSettings: {
       fields: {
         backgroundColor: args.backgroundColor,
@@ -272,6 +302,20 @@ const meta: Meta<FlexSectionStoryArgs> = {
     testimonialVariant: 'minimal',
     testimonialDisplayedAuthorImage: 'avatar',
     testimonialQuoteMarkColor: 'accent',
+
+    // Rivers content
+    showRivers: true,
+    riverAlign: 'start',
+    riverCtaVariant: 'default',
+    riverHasCta: true,
+    riverHasLeadingVisual: true,
+    riverHasShadow: false,
+    riverHasTrailingComponent: false,
+    riverImageTextRatio: '50:50',
+    riverHasLabel: true,
+    riverLabelColor: 'default',
+    riverLabelSize: 'medium',
+    riverVisualType: 'image',
 
     // Visual settings
     backgroundColor: 'default',
@@ -581,6 +625,85 @@ const meta: Meta<FlexSectionStoryArgs> = {
       description: 'Color of the quote mark in testimonials',
       table: {category: 'Testimonials'},
       if: {arg: 'showTestimonials', truthy: true},
+    },
+
+    // Rivers controls
+    showRivers: {
+      control: 'boolean',
+      description: 'Show rivers section',
+      table: {category: 'River'},
+    },
+    riverAlign: {
+      control: {type: 'select'},
+      options: ['start', 'center', 'end'],
+      description: 'Alignment of river content',
+      table: {category: 'River'},
+      if: {arg: 'showRivers', truthy: true},
+    },
+    riverCtaVariant: {
+      control: {type: 'select'},
+      options: ['default', 'accent'],
+      description: 'Variant for river CTA link',
+      table: {category: 'River'},
+      if: {arg: 'showRivers', truthy: true},
+    },
+    riverHasCta: {
+      control: 'boolean',
+      description: 'Show CTA link in river',
+      table: {category: 'River'},
+      if: {arg: 'showRivers', truthy: true},
+    },
+    riverHasLeadingVisual: {
+      control: 'boolean',
+      description: 'Show leading visual in river',
+      table: {category: 'River'},
+      if: {arg: 'showRivers', truthy: true},
+    },
+    riverHasShadow: {
+      control: 'boolean',
+      description: 'Enable shadow on river visual',
+      table: {category: 'River'},
+      if: {arg: 'showRivers', truthy: true},
+    },
+    riverHasTrailingComponent: {
+      control: 'boolean',
+      description: 'Show trailing component in river',
+      table: {category: 'River'},
+      if: {arg: 'showRivers', truthy: true},
+    },
+    riverImageTextRatio: {
+      control: {type: 'select'},
+      options: ['50:50', '60:40'],
+      description: 'Image to text ratio in river',
+      table: {category: 'River'},
+      if: {arg: 'showRivers', truthy: true},
+    },
+    riverHasLabel: {
+      control: 'boolean',
+      description: 'Show label in river',
+      table: {category: 'River'},
+      if: {arg: 'showRivers', truthy: true},
+    },
+    riverLabelColor: {
+      control: {type: 'select'},
+      options: LabelColors,
+      description: 'Color of the river label',
+      table: {category: 'River'},
+      if: {arg: 'riverHasLabel', truthy: true},
+    },
+    riverLabelSize: {
+      control: {type: 'select'},
+      options: ['small', 'medium', 'large'],
+      description: 'Size of the river label',
+      table: {category: 'River'},
+      if: {arg: 'riverHasLabel', truthy: true},
+    },
+    riverVisualType: {
+      control: {type: 'radio'},
+      options: ['image', 'video'],
+      description: 'Type of visual to display in river',
+      table: {category: 'River'},
+      if: {arg: 'showRivers', truthy: true},
     },
 
     enableRiverStoryScroll: {

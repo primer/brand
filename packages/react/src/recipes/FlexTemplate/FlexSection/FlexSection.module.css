@@ -177,6 +177,11 @@
   position: relative;
 }
 
+.px-3 {
+  padding-left: var(--base-size-16) !important;
+  padding-right: var(--base-size-16) !important;
+}
+
 .testimonialBackgroundImageShape {
   position: absolute;
   max-width: 100%;
