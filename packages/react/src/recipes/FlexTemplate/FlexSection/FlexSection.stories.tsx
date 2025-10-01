@@ -13,6 +13,7 @@ type FlexSectionStoryArgs = {
   showBreakoutBanner: boolean
   showStatistics: boolean
   showPricingOptions: boolean
+  showSegmentedControlPanel: boolean
 
   showIntroContent: boolean
   introContentType: string
@@ -156,6 +157,11 @@ const createMockData = (args: FlexSectionStoryArgs) => ({
           },
         }
       : null,
+    segmentedControlPanel: args.showSegmentedControlPanel
+      ? {
+          fields: {},
+        }
+      : null,
     visualSettings: {
       fields: {
         backgroundColor: args.backgroundColor,
@@ -237,6 +243,9 @@ const meta: Meta<FlexSectionStoryArgs> = {
     pricingOptionsShowFeatureList: true,
     pricingOptionsHeadingLevel: 'h3',
 
+    // Segmented control panel
+    showSegmentedControlPanel: true,
+
     // Visual settings
     backgroundColor: 'default',
     paddingBlockStart: 'spacious',
@@ -257,17 +266,17 @@ const meta: Meta<FlexSectionStoryArgs> = {
     showLogosuite: {
       control: 'boolean',
       description: 'Show logo suite',
-      table: {category: 'Section'},
+      table: {category: 'Logo Suite'},
     },
     showCards: {
       control: 'boolean',
       description: 'Show cards',
-      table: {category: 'Section'},
+      table: {category: 'Cards'},
     },
     showAnchorNav: {
       control: 'boolean',
       description: 'Show anchor navigation',
-      table: {category: 'Section'},
+      table: {category: 'Anchor Nav'},
     },
 
     // Intro content controls
@@ -496,6 +505,13 @@ const meta: Meta<FlexSectionStoryArgs> = {
       description: 'Heading level for pricing options title',
       table: {category: 'Pricing Options'},
       if: {arg: 'showPricingOptions', truthy: true},
+    },
+
+    // Segmented control panel
+    showSegmentedControlPanel: {
+      control: 'boolean',
+      description: 'Show segmented control panel',
+      table: {category: 'Segmented Control Panel'},
     },
 
     enableRiverStoryScroll: {

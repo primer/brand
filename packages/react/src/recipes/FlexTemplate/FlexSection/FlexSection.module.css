@@ -135,6 +135,38 @@
 
 /* END Breakout Banner Styles */
 
+.segmentedControlPanelGrid {
+  row-gap: var(--base-size-48);
+}
+
+.segmentedControlContainer {
+  display: flex;
+  gap: var(--base-size-4);
+  width: fit-content;
+  padding: var(--base-size-8);
+  margin: 0 auto;
+  border: 0.0625rem solid var(--base-color-scale-gray-5);
+  border-radius: 624.9375rem;
+}
+
+.segmentedControlButton {
+  cursor: pointer;
+  border: none;
+  background: transparent;
+  color: var(--brand-color-text-default);
+  border-radius: 624.9375rem;
+  font-size: 1rem;
+  font-weight: var(--base-text-weight-medium);
+  font-family: var(--brand-body-fontFamily);
+  padding: var(--base-size-8) var(--base-size-20);
+  transition: background-color 0.2s;
+}
+
+.segmentedControlButton.active {
+  background-color: var(--base-color-scale-green-5);
+  color: var(--base-color-scale-white-0);
+}
+
 .statistic {
   height: 100%;
 }

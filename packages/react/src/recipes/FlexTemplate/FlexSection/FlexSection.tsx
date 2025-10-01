@@ -58,6 +58,7 @@ type FlexSectionProps = {
 }
 
 export function FlexSection({component, className}: FlexSectionProps) {
+  const [selectedSegmentedControlItem, setSelectedSegmentedControlItem] = React.useState(0)
   const {
     breakoutBanner,
     cards,
@@ -309,7 +310,7 @@ export function FlexSection({component, className}: FlexSectionProps) {
           )}
 
           {cards && (
-            <Grid className={clsx(styles.normalizeMargin, 'mx-0')}>
+            <Grid className={styles.normalizeMargin}>
               <Grid.Column
                 span={{
                   xsmall: 12,
@@ -467,7 +468,7 @@ export function FlexSection({component, className}: FlexSectionProps) {
           )} */}
 
           {breakoutBanner && (
-            <Grid className={clsx(styles.normalizeMargin, 'mx-0')}>
+            <Grid className={styles.normalizeMargin}>
               <Grid.Column>
                 <BreakoutBanner
                   className={clsx(styles.wrapper, styles.normalizeMargin)}
@@ -573,7 +574,7 @@ export function FlexSection({component, className}: FlexSectionProps) {
           )}
 
           {pricingOptions && (
-            <Grid className={clsx(styles.normalizeMargin, 'mx-0')}>
+            <Grid className={styles.normalizeMargin}>
               <Grid.Column>
                 <PricingOptions variant={pricingOptions.fields.variant} align={pricingOptions.fields.align}>
                   {Array.from({length: 3}).map((_, i) => (
@@ -644,13 +645,50 @@ export function FlexSection({component, className}: FlexSectionProps) {
             </Grid>
           )}
 
-          {/* {segmentedControlPanel && (
-            <Grid className={clsx(styles.normalizeMargin, 'mx-0')}>
+          {segmentedControlPanel && (
+            <Grid className={styles.normalizeMargin}>
               <Grid.Column>
-                <ContentfulSegmentedControlPanel component={segmentedControlPanel} />
+                <Grid className={styles.segmentedControlPanelGrid}>
+                  <Grid.Column span={12}>
+                    <div
+                      className={styles.segmentedControlContainer}
+                      role="tablist"
+                      aria-label="Demo segmented control panel"
+                    >
+                      {Array.from({length: 3}).map((_, i) => (
+                        <button
+                          key={i}
+                          className={`${styles.segmentedControlButton} ${
+                            selectedSegmentedControlItem === i ? styles.active : ''
+                          }`}
+                          id={`${i}-tab`}
+                          onClick={() => setSelectedSegmentedControlItem(i)}
+                          role="tab"
+                          aria-selected={selectedSegmentedControlItem === i}
+                          aria-controls={`${i}-tab-panel`}
+                        >
+                          Label {i}
+                        </button>
+                      ))}
+                    </div>
+                  </Grid.Column>
+                  <Grid.Column span={12}>
+                    {Array.from({length: 3}).map((_, i) => (
+                      <div
+                        key={`${i}-tab-panel`}
+                        id={`${i}-tab-panel`}
+                        role="tabpanel"
+                        aria-labelledby={`${i}-tab`}
+                        hidden={selectedSegmentedControlItem !== i}
+                      >
+                        <Text>Content for tab {i}</Text>
+                      </div>
+                    ))}
+                  </Grid.Column>
+                </Grid>
               </Grid.Column>
             </Grid>
-          )} */}
+          )}
         </Stack>
       </Box>
     </Section>
