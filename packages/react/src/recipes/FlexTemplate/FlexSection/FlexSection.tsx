@@ -12,6 +12,7 @@ import {
   Card,
   ColorModesEnum,
   CTABanner,
+  FrostedGlassVFX,
   Grid,
   Heading,
   Icon,
@@ -459,13 +460,9 @@ export function FlexSection({component, className}: FlexSectionProps) {
             </RiverStoryScroll>
           )} */}
 
-          {/* {testimonials && testimonials.length > 0 && (
-            <FlexSectionTestimonials
-              testimonials={testimonials}
-              backgroundImageVariant={testimonialBackgroundImageVariant}
-              className={styles.normalizeMargin}
-            />
-          )} */}
+          {testimonials && testimonials.fields.testimonialCount > 0 && (
+            <FlexSectionTestimonials testimonials={testimonials} className={styles.normalizeMargin} />
+          )}
 
           {breakoutBanner && (
             <Grid className={styles.normalizeMargin}>
@@ -692,5 +689,118 @@ export function FlexSection({component, className}: FlexSectionProps) {
         </Stack>
       </Box>
     </Section>
+  )
+}
+
+type FlexSectionTestimonialsProps = {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  testimonials: any
+  className?: string
+}
+
+function FlexSectionTestimonials({testimonials, className}: FlexSectionTestimonialsProps) {
+  const isMinimalVariant = testimonials.fields.variant === 'minimal'
+
+  const set =
+    !isMinimalVariant && testimonials.fields.backgroundImageVariant
+      ? backgroundStylesMap[testimonials.fields.backgroundImageVariant]
+      : undefined
+
+  return set ? (
+    <Grid>
+      <Grid.Column>
+        <Box
+          className={clsx(styles['position-relative'], set.className)}
+          marginBlockStart={{narrow: 'none', wide: set.marginBlockStart}}
+          marginBlockEnd={{narrow: 'none', wide: set.marginBlockEnd}}
+        >
+          <Image
+            src={set.left.image}
+            alt=""
+            className={clsx(styles.testimonialBackgroundImageShape, styles.left)}
+            width={set.left.width}
+            loading="lazy"
+          />
+          <Image
+            src={set.right.image}
+            alt=""
+            className={clsx(styles.testimonialBackgroundImageShape, styles.right)}
+            width={set.right.width}
+            loading="lazy"
+          />
+
+          <ContentfulTestimonials className={className} testimonials={testimonials} />
+        </Box>
+      </Grid.Column>
+    </Grid>
+  ) : (
+    <ContentfulTestimonials className={className} testimonials={testimonials} />
+  )
+}
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function ContentfulTestimonials({testimonials, className}: any) {
+  const isSingleTestimonial = testimonials.fields.testimonialCount === 1
+  // The default variant is 'minimal', so if the variant is not set, we should treat it as 'minimal'.
+  const isMinimalVariant = testimonials.fields.variant === 'minimal'
+  const span = isSingleTestimonial ? (isMinimalVariant ? 10 : 12) : 6
+
+  return (
+    <Grid className={className}>
+      {Array.from({length: testimonials.fields.testimonialCount}).map((_, i) => (
+        <Grid.Column
+          start={isSingleTestimonial && isMinimalVariant ? {medium: 2} : undefined}
+          span={{medium: span}}
+          key={i}
+        >
+          {testimonials.fields.variant === 'frosted-glass' ? (
+            <FrostedGlassVFX className="height-full">
+              <ContentfulTestimonialContent
+                variant="default"
+                size={isSingleTestimonial ? 'large' : 'small'}
+                quoteMarkColor={testimonials.fields.quoteMarkColor}
+                displayedAuthorImage={testimonials.fields.displayedAuthorImage}
+              />
+            </FrostedGlassVFX>
+          ) : (
+            <ContentfulTestimonialContent
+              className="height-full"
+              size={isSingleTestimonial ? 'large' : 'small'}
+              quoteMarkColor={testimonials.fields.quoteMarkColor}
+              displayedAuthorImage={testimonials.fields.displayedAuthorImage}
+            />
+          )}
+        </Grid.Column>
+      ))}
+    </Grid>
+  )
+}
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const ContentfulTestimonialContent = ({className, size, variant, quoteMarkColor, displayedAuthorImage}: any) => {
+  return (
+    <Testimonial className={className} size={size} variant={variant} quoteMarkColor={quoteMarkColor}>
+      <Testimonial.Quote>
+        <em>GitHub helps us ensure</em> that we have our security controls baked into our pipelines all the way from the
+        first line of code we&apos;re writing.
+      </Testimonial.Quote>
+
+      <Testimonial.Name position="Staff Security Engineer">David Ross</Testimonial.Name>
+
+      {displayedAuthorImage === 'logo' ? (
+        <Testimonial.Logo>
+          <img
+            src="https://github.githubassets.com/images/modules/logos_page/GitHub-Logo.png"
+            alt="GitHub logo"
+            width={60}
+          />
+        </Testimonial.Logo>
+      ) : displayedAuthorImage === 'avatar' ? (
+        <Testimonial.Avatar alt="The testimonial author" src={monaAvatar} />
+      ) : /**
+       * If neither logo nor author's photo exist or none is selected, we don't render anything.
+       */
+      null}
+    </Testimonial>
   )
 }

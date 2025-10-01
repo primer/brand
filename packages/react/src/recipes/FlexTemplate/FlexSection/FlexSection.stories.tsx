@@ -3,6 +3,7 @@ import {INITIAL_VIEWPORTS} from '@storybook/addon-viewport'
 import {Meta, StoryFn} from '@storybook/react'
 
 import {FlexSection} from './FlexSection'
+import {TestimonialQuoteMarkColors} from '../../..'
 
 type FlexSectionStoryArgs = {
   sectionId: 'example-section'
@@ -14,6 +15,7 @@ type FlexSectionStoryArgs = {
   showStatistics: boolean
   showPricingOptions: boolean
   showSegmentedControlPanel: boolean
+  showTestimonials: boolean
 
   showIntroContent: boolean
   introContentType: string
@@ -52,6 +54,12 @@ type FlexSectionStoryArgs = {
   pricingOptionsShowFootnotes: boolean
   pricingOptionsShowFeatureList: boolean
   pricingOptionsHeadingLevel: string
+
+  testimonialCount: number
+  testimonialBackgroundImageVariant: 'Productivity' | 'Collaboration' | 'AI' | 'Security' | 'Enterprise' | undefined
+  testimonialVariant: string
+  testimonialDisplayedAuthorImage: 'logo' | 'avatar'
+  testimonialQuoteMarkColor: string
 
   backgroundColor: string
   paddingBlockStart: string
@@ -162,6 +170,17 @@ const createMockData = (args: FlexSectionStoryArgs) => ({
           fields: {},
         }
       : null,
+    testimonials: args.showTestimonials
+      ? {
+          fields: {
+            testimonialCount: args.testimonialCount,
+            backgroundImageVariant: args.testimonialBackgroundImageVariant,
+            variant: args.testimonialVariant,
+            displayedAuthorImage: args.testimonialDisplayedAuthorImage,
+            quoteMarkColor: args.testimonialQuoteMarkColor,
+          },
+        }
+      : null,
     visualSettings: {
       fields: {
         backgroundColor: args.backgroundColor,
@@ -245,6 +264,14 @@ const meta: Meta<FlexSectionStoryArgs> = {
 
     // Segmented control panel
     showSegmentedControlPanel: true,
+
+    // Testimonials content
+    showTestimonials: true,
+    testimonialCount: 2,
+    testimonialBackgroundImageVariant: 'Productivity',
+    testimonialVariant: 'minimal',
+    testimonialDisplayedAuthorImage: 'avatar',
+    testimonialQuoteMarkColor: 'accent',
 
     // Visual settings
     backgroundColor: 'default',
@@ -512,6 +539,48 @@ const meta: Meta<FlexSectionStoryArgs> = {
       control: 'boolean',
       description: 'Show segmented control panel',
       table: {category: 'Segmented Control Panel'},
+    },
+
+    // Testimonials controls
+    showTestimonials: {
+      control: 'boolean',
+      description: 'Show testimonials section',
+      table: {category: 'Testimonials'},
+    },
+    testimonialCount: {
+      control: {type: 'inline-radio'},
+      options: [1, 2, 3, 4],
+      description: 'Number of testimonials to display',
+      table: {category: 'Testimonials'},
+      if: {arg: 'showTestimonials', truthy: true},
+    },
+    testimonialBackgroundImageVariant: {
+      control: {type: 'select'},
+      options: ['Productivity', 'Collaboration', 'AI', 'Security', 'Enterprise', undefined],
+      description: 'Background image variant for testimonials',
+      table: {category: 'Testimonials'},
+      if: {arg: 'showTestimonials', truthy: true},
+    },
+    testimonialVariant: {
+      control: {type: 'select'},
+      options: ['minimal', 'frosted-glass'],
+      description: 'Visual variant for testimonials',
+      table: {category: 'Testimonials'},
+      if: {arg: 'showTestimonials', truthy: true},
+    },
+    testimonialDisplayedAuthorImage: {
+      control: {type: 'radio'},
+      options: ['logo', 'avatar'],
+      description: 'Type of author image to display in testimonials',
+      table: {category: 'Testimonials'},
+      if: {arg: 'showTestimonials', truthy: true},
+    },
+    testimonialQuoteMarkColor: {
+      control: {type: 'select'},
+      options: TestimonialQuoteMarkColors,
+      description: 'Color of the quote mark in testimonials',
+      table: {category: 'Testimonials'},
+      if: {arg: 'showTestimonials', truthy: true},
     },
 
     enableRiverStoryScroll: {

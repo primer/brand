@@ -19,6 +19,7 @@ declare const styles: {
   readonly "paddingBottom-none": string;
   readonly "paddingBottom-normal": string;
   readonly "paddingBottom-spacious": string;
+  readonly "position-relative": string;
   readonly "productivity": string;
   readonly "right": string;
   readonly "riverBreakoutNoCta": string;
