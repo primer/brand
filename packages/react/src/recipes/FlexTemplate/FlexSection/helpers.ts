@@ -1,4 +1,4 @@
-import type {BoxSpacingValues} from '@primer/react-brand'
+import type {BoxSpacingValues} from '../../../'
 
 import securityLightHeroBg from '../fixtures/images/security/hero-light.png'
 import securityDarkHeroBg from '../fixtures/images/security/hero-dark.png'

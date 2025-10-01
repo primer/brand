@@ -15,11 +15,13 @@ import {
   Grid,
   Heading,
   Icon,
+  iconColors,
   Image,
   InlineLink,
   Link,
   LogoSuite,
   Pillar,
+  PricingOptions,
   Prose,
   River,
   RiverBreakout,
@@ -570,13 +572,77 @@ export function FlexSection({component, className}: FlexSectionProps) {
             </Grid>
           )}
 
-          {/* {pricingOptions && (
+          {pricingOptions && (
             <Grid className={clsx(styles.normalizeMargin, 'mx-0')}>
               <Grid.Column>
-                <ContentfulPricingOptions component={pricingOptions} />
+                <PricingOptions variant={pricingOptions.fields.variant} align={pricingOptions.fields.align}>
+                  {Array.from({length: 3}).map((_, i) => (
+                    <PricingOptions.Item key={i}>
+                      <PricingOptions.Label>Label</PricingOptions.Label>
+                      <PricingOptions.Heading as={pricingOptions.fields.headingLevel}>Heading</PricingOptions.Heading>
+                      <PricingOptions.Description>Description</PricingOptions.Description>
+
+                      <PricingOptions.Price
+                        currencyCode="USD"
+                        currencySymbol="$"
+                        originalPrice="10"
+                        trailingText="per month / $90 per year"
+                      >
+                        8
+                      </PricingOptions.Price>
+
+                      {pricingOptions.fields.showFeatureList && (
+                        <PricingOptions.FeatureList>
+                          <PricingOptions.FeatureListHeading>Heading</PricingOptions.FeatureListHeading>
+
+                          <PricingOptions.FeatureListGroupHeading>Chat</PricingOptions.FeatureListGroupHeading>
+                          <PricingOptions.FeatureListItem
+                            leadingVisual={ZapIcon}
+                            leadingVisualFill="var(--base-color-scale-purple-5)"
+                          >
+                            Unlimited messages, interactions, and history
+                          </PricingOptions.FeatureListItem>
+                          <PricingOptions.FeatureListItem>
+                            Context-aware coding support and explanations
+                          </PricingOptions.FeatureListItem>
+                          <PricingOptions.FeatureListItem>
+                            Debugging and security remediation assistance
+                          </PricingOptions.FeatureListItem>
+                          <PricingOptions.FeatureListItem>
+                            Repository-based semantic search
+                          </PricingOptions.FeatureListItem>
+                          <PricingOptions.FeatureListItem variant="excluded">
+                            Access your knowledge base
+                          </PricingOptions.FeatureListItem>
+                          <PricingOptions.FeatureListGroupHeading>
+                            Code completion
+                          </PricingOptions.FeatureListGroupHeading>
+                          <PricingOptions.FeatureListItem>Code suggestions as you type</PricingOptions.FeatureListItem>
+                          <PricingOptions.FeatureListItem>Comments to code</PricingOptions.FeatureListItem>
+                          <PricingOptions.FeatureListItem variant="excluded">
+                            Fine-tuned models (coming soon)
+                          </PricingOptions.FeatureListItem>
+                        </PricingOptions.FeatureList>
+                      )}
+
+                      <PricingOptions.PrimaryAction as="a" href="#" hasArrow={false} variant="accent">
+                        Buy now
+                      </PricingOptions.PrimaryAction>
+                      <PricingOptions.SecondaryAction as="a" href="#" hasArrow={false} variant="subtle">
+                        Contact sales
+                      </PricingOptions.SecondaryAction>
+
+                      {pricingOptions.fields.showFootnotes && (
+                        <PricingOptions.Footnote>
+                          Lorem ipsum dolor sit amet <InlineLink href="#">consectetur adipiscing</InlineLink> elit.
+                        </PricingOptions.Footnote>
+                      )}
+                    </PricingOptions.Item>
+                  ))}
+                </PricingOptions>
               </Grid.Column>
             </Grid>
-          )} */}
+          )}
 
           {/* {segmentedControlPanel && (
             <Grid className={clsx(styles.normalizeMargin, 'mx-0')}>
