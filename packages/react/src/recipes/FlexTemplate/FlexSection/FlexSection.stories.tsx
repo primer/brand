@@ -12,6 +12,7 @@ type FlexSectionStoryArgs = {
   showBento: boolean
   showBreakoutBanner: boolean
   showStatistics: boolean
+  showPricingOptions: boolean
 
   showIntroContent: boolean
   introContentType: string
@@ -44,6 +45,12 @@ type FlexSectionStoryArgs = {
   statisticsShowDescription: boolean
   statisticsDescriptionVariant: string
   statisticsShowDescriptionFootnotes: boolean
+
+  pricingOptionsVariant: string
+  pricingOptionsAlign: string
+  pricingOptionsShowFootnotes: boolean
+  pricingOptionsShowFeatureList: boolean
+  pricingOptionsHeadingLevel: string
 
   backgroundColor: string
   paddingBlockStart: string
@@ -138,6 +145,17 @@ const createMockData = (args: FlexSectionStoryArgs) => ({
           },
         }
       : null,
+    pricingOptions: args.showPricingOptions
+      ? {
+          fields: {
+            variant: args.pricingOptionsVariant,
+            align: args.pricingOptionsAlign,
+            showFootnotes: args.pricingOptionsShowFootnotes,
+            showFeatureList: args.pricingOptionsShowFeatureList,
+            headingLevel: args.pricingOptionsHeadingLevel,
+          },
+        }
+      : null,
     visualSettings: {
       fields: {
         backgroundColor: args.backgroundColor,
@@ -210,6 +228,14 @@ const meta: Meta<FlexSectionStoryArgs> = {
     statisticsShowDescription: true,
     statisticsDescriptionVariant: 'muted',
     statisticsShowDescriptionFootnotes: false,
+
+    // Pricing options content
+    showPricingOptions: true,
+    pricingOptionsVariant: 'default',
+    pricingOptionsAlign: 'start',
+    pricingOptionsShowFootnotes: true,
+    pricingOptionsShowFeatureList: true,
+    pricingOptionsHeadingLevel: 'h3',
 
     // Visual settings
     backgroundColor: 'default',
@@ -430,6 +456,46 @@ const meta: Meta<FlexSectionStoryArgs> = {
       description: 'Show footnotes for statistics description',
       table: {category: 'Statistics'},
       if: {arg: 'statisticsShowDescription', truthy: true},
+    },
+
+    // Pricing options controls
+    showPricingOptions: {
+      control: 'boolean',
+      description: 'Show pricing options section',
+      table: {category: 'Pricing Options'},
+    },
+    pricingOptionsVariant: {
+      control: {type: 'select'},
+      options: ['default', 'default-gradient', 'cards', 'cards-gradient'],
+      description: 'Variant for pricing options',
+      table: {category: 'Pricing Options'},
+      if: {arg: 'showPricingOptions', truthy: true},
+    },
+    pricingOptionsAlign: {
+      control: {type: 'select'},
+      options: ['start', 'center'],
+      description: 'Alignment of pricing options',
+      table: {category: 'Pricing Options'},
+      if: {arg: 'showPricingOptions', truthy: true},
+    },
+    pricingOptionsShowFootnotes: {
+      control: 'boolean',
+      description: 'Show footnotes in pricing options',
+      table: {category: 'Pricing Options'},
+      if: {arg: 'showPricingOptions', truthy: true},
+    },
+    pricingOptionsShowFeatureList: {
+      control: 'boolean',
+      description: 'Show feature list in pricing options',
+      table: {category: 'Pricing Options'},
+      if: {arg: 'showPricingOptions', truthy: true},
+    },
+    pricingOptionsHeadingLevel: {
+      control: {type: 'select'},
+      options: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'],
+      description: 'Heading level for pricing options title',
+      table: {category: 'Pricing Options'},
+      if: {arg: 'showPricingOptions', truthy: true},
     },
 
     enableRiverStoryScroll: {
