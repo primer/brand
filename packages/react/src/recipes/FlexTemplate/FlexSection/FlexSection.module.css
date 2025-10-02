@@ -86,6 +86,10 @@
   }
 }
 
+.width-full {
+  width: 100%;
+}
+
 .heightFull {
   height: 100%;
 }

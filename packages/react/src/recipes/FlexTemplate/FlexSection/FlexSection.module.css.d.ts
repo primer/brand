@@ -34,6 +34,7 @@ declare const styles: {
   readonly "stackedItemText": string;
   readonly "statistic": string;
   readonly "testimonialBackgroundImageShape": string;
+  readonly "width-full": string;
   readonly "wrapper": string;
 };
 export = styles;

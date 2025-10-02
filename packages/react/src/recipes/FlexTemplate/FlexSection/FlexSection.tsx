@@ -26,6 +26,7 @@ import {
   PricingOptions,
   Prose,
   River,
+  RiverAccordion,
   RiverBreakout,
   RiverStoryScroll,
   Section,
@@ -436,34 +437,18 @@ export function FlexSection({component, className}: FlexSectionProps) {
 
           {rivers && (
             <RiverStoryScroll disabled={!enableRiverStoryScroll}>
-              {/* {rivers.map(river =>
-              isRiverAccordion(river) ? (
-                <ContentfulRiverAccordion
-                  key={river.sys.id}
-                  className={clsx(styles.normalizeMargin, styles.normalizePadding, 'px-3')}
-                  component={river}
-                />
-              ) : isRiverBreakout(river) ? (
-                <ContentfulRiverBreakout
-                  key={river.sys.id}
-                  className={clsx(styles.normalizeMargin, styles.normalizePadding, 'px-3', {
-                    [styles.riverBreakoutNoCta]: !river.fields.callToAction,
-                  })}
-                  component={river}
-                />
-              ) : (
-                <ContentfulRiver
-                  key={river.sys.id}
-                  className={clsx(styles.normalizeMargin, styles.normalizePadding, 'px-3')}
-                  component={river}
-                />
-              ),
-            )} */}
-
-              {rivers.fields.type === 'riverBreakout'
-                ? Array.from({length: 3}).map((_, index) => (
+              {rivers.fields.type === 'riverAccordion'
+                ? [
+                    <ContentfulRiverAccordion
+                      key="0"
+                      className={clsx(styles.normalizeMargin, styles.normalizePadding, 'px-3')}
+                      rivers={rivers}
+                    />,
+                  ]
+                : rivers.fields.type === 'riverBreakout'
+                ? Array.from({length: 3}).map((_, i) => (
                     <ContentfulRiverBreakout
-                      key={index}
+                      key={i}
                       className={clsx(styles.normalizeMargin, styles.normalizePadding, 'px-3', {
                         [styles.riverBreakoutNoCta]: !rivers.fields.riverHasCta,
                       })}
@@ -471,9 +456,9 @@ export function FlexSection({component, className}: FlexSectionProps) {
                     />
                   ))
                 : rivers.fields.type === 'river'
-                ? Array.from({length: 3}).map((_, index) => (
+                ? Array.from({length: 3}).map((_, i) => (
                     <ContentfulRiver
-                      key={index}
+                      key={i}
                       className={clsx(styles.normalizeMargin, styles.normalizePadding, 'px-3')}
                       rivers={rivers}
                     />
@@ -771,7 +756,7 @@ function ContentfulTestimonials({testimonials, className}: any) {
           key={i}
         >
           {testimonials.fields.variant === 'frosted-glass' ? (
-            <FrostedGlassVFX className="height-full">
+            <FrostedGlassVFX className={styles['height-full']}>
               <ContentfulTestimonialContent
                 variant="default"
                 size={isSingleTestimonial ? 'large' : 'small'}
@@ -781,7 +766,7 @@ function ContentfulTestimonials({testimonials, className}: any) {
             </FrostedGlassVFX>
           ) : (
             <ContentfulTestimonialContent
-              className="height-full"
+              className={styles['height-full']}
               size={isSingleTestimonial ? 'large' : 'small'}
               quoteMarkColor={testimonials.fields.quoteMarkColor}
               displayedAuthorImage={testimonials.fields.displayedAuthorImage}
@@ -856,7 +841,7 @@ function ContentfulRiver({rivers, className}: any) {
 
   return (
     <River className={className} align={rivers.fields.align} imageTextRatio={rivers.fields.imageTextRatio}>
-      <River.Visual hasShadow={rivers.fields.hasShadow} className="width-full">
+      <River.Visual hasShadow={rivers.fields.hasShadow} className={styles['width-full']}>
         {rivers.fields.visualType === 'image' ? (
           <img src={placeholderImage} alt="placeholder, blank area with a gray background color" />
         ) : rivers.fields.visualType === 'video' ? (
@@ -987,5 +972,48 @@ function ContentfulRiverBreakout({rivers, className}: any) {
         {ctaLink}
       </RiverBreakout.Content>
     </RiverBreakout>
+  )
+}
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export function ContentfulRiverAccordion({rivers, className}: any) {
+  return (
+    <RiverAccordion align={rivers.fields.align} className={className}>
+      {Array.from({length: 3}).map((_, i) => {
+        return (
+          <RiverAccordion.Item key={i}>
+            <RiverAccordion.Heading>Heading {i + 1}</RiverAccordion.Heading>
+            <RiverAccordion.Content>
+              <Text>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum repellendus veniam
+                <sup>
+                  <InlineLink
+                    href=""
+                    className={clsx(styles.footnoteInlineLink, styles.footnoteSizeSmall)}
+                    aria-label="Footnote 7"
+                  >
+                    7
+                  </InlineLink>
+                </sup>{' '}
+                repellat unde ex aut minus iusto, ad a vero optio at eligendi, ratione commodi minima! Laboriosam quas
+                numquam totam.
+              </Text>
+              {rivers.fields.hasCta ? (
+                <Link variant={rivers.fields.ctaVariant ?? 'accent'} href="#">
+                  Learn more
+                </Link>
+              ) : null}
+            </RiverAccordion.Content>
+            <RiverAccordion.Visual className={styles['width-full']}>
+              <img
+                src={placeholderImage}
+                alt="placeholder, blank area with a gray background color"
+                className={styles['width-full']}
+              />
+            </RiverAccordion.Visual>
+          </RiverAccordion.Item>
+        )
+      })}
+    </RiverAccordion>
   )
 }
