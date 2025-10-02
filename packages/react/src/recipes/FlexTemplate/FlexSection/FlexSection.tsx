@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react'
+import React from 'react'
 import clsx from 'clsx'
 
 import {GlobeIcon, ZapIcon} from '@primer/octicons-react'
@@ -8,15 +8,11 @@ import {
   Bento,
   Box,
   BreakoutBanner,
-  Button,
   Card,
-  ColorModesEnum,
-  CTABanner,
   FrostedGlassVFX,
   Grid,
   Heading,
   Icon,
-  iconColors,
   Image,
   InlineLink,
   Label,
@@ -35,7 +31,6 @@ import {
   Statistic,
   Testimonial,
   Text,
-  ThemeProvider,
   Timeline,
 } from '../../..'
 
@@ -49,9 +44,7 @@ import placeholderImage from '../../../fixtures/images/placeholder.png'
 import lightNarrowBg from '../../../fixtures/images/light-vertical-banner.png'
 import lightWideBg from '../../../fixtures/images/light-horizontal-banner.png'
 
-import {Themes, backgroundStylesMap, themeDetailsMap} from './helpers'
-import emptyBrowserDarkFull from '../fixtures/images/fg/empty-browser-full-dark.png'
-import emptyBrowserLightFull from '../fixtures/images/fg/empty-browser-full-light.png'
+import {backgroundStylesMap} from './helpers'
 
 import styles from './FlexSection.module.css'
 import ForresterResearch from '../fixtures/images/logos/ForresterResearch'
@@ -84,7 +77,6 @@ export function FlexSection({component, className}: FlexSectionProps) {
   const {
     backgroundColor = 'default',
     paddingBlockStart = 'spacious',
-    colorMode = 'inherit',
     paddingBlockEnd = 'spacious',
     roundedCorners = false,
     verticalGap = 'normal',
