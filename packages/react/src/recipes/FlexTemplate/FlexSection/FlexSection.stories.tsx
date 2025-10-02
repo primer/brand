@@ -768,6 +768,7 @@ const meta: Meta<FlexSectionStoryArgs> = {
 
 export default meta
 
+// @ts-expect-error As this is purely a demo component the types are not exact
 export const FlexSectionDefault: StoryFn<typeof FlexSection> = args => <FlexSection component={createMockData(args)} />
 
 FlexSectionDefault.storyName = 'Default'
