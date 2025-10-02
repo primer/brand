@@ -62,6 +62,7 @@ type FlexSectionStoryArgs = {
   testimonialDisplayedAuthorImage: 'logo' | 'avatar'
   testimonialQuoteMarkColor: string
 
+  riverType: 'river' | 'riverBreakout' | 'riverAccordion'
   riverAlign: string
   riverCtaVariant: string
   riverHasCta: boolean
@@ -197,6 +198,7 @@ const createMockData = (args: FlexSectionStoryArgs) => ({
     rivers: args.showRivers
       ? {
           fields: {
+            type: args.riverType,
             align: args.riverAlign,
             ctaVariant: args.riverCtaVariant,
             hasCta: args.riverHasCta,
@@ -305,6 +307,7 @@ const meta: Meta<FlexSectionStoryArgs> = {
 
     // Rivers content
     showRivers: true,
+    riverType: 'river',
     riverAlign: 'start',
     riverCtaVariant: 'default',
     riverHasCta: true,
@@ -632,6 +635,13 @@ const meta: Meta<FlexSectionStoryArgs> = {
       control: 'boolean',
       description: 'Show rivers section',
       table: {category: 'River'},
+    },
+    riverType: {
+      control: {type: 'radio'},
+      options: ['river', 'riverBreakout', 'riverAccordion'],
+      description: 'Type of river layout',
+      table: {category: 'River'},
+      if: {arg: 'showRivers', truthy: true},
     },
     riverAlign: {
       control: {type: 'select'},
