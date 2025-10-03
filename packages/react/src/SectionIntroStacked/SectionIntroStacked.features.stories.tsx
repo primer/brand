@@ -42,35 +42,36 @@ export const WithEmphasizedText: Story = {
   },
 }
 
-export const InGrid: Story = {
-  render: function InGridComponent() {
-    const {t} = useTranslation('SectionIntroStacked')
+const InGridTemplate = () => {
+  const {t} = useTranslation('SectionIntroStacked')
+  return (
+    <Grid>
+      <Grid.Column>
+        <SectionIntroStacked>
+          <SectionIntroStacked.Heading>{t('enterprise_platform_heading')}</SectionIntroStacked.Heading>
+          <SectionIntroStacked.Link href="#">{t('explore_github_enterprise')}</SectionIntroStacked.Link>
+          <SectionIntroStacked.Items>
+            <SectionIntroStacked.Item>
+              <b>{t('lorem_ipsum')}</b>
+              {t('lorem_ipsum_description')}
+            </SectionIntroStacked.Item>
+            <SectionIntroStacked.Item>
+              <b>{t('lorem_ipsum')}</b>
+              {t('lorem_ipsum_description')}
+            </SectionIntroStacked.Item>
+            <SectionIntroStacked.Item>
+              <b>{t('lorem_ipsum')}</b>
+              {t('lorem_ipsum_description')}
+            </SectionIntroStacked.Item>
+          </SectionIntroStacked.Items>
+        </SectionIntroStacked>
+      </Grid.Column>
+    </Grid>
+  )
+}
 
-    return (
-      <Grid>
-        <Grid.Column>
-          <SectionIntroStacked>
-            <SectionIntroStacked.Heading>{t('enterprise_platform_heading')}</SectionIntroStacked.Heading>
-            <SectionIntroStacked.Link href="#">{t('explore_github_enterprise')}</SectionIntroStacked.Link>
-            <SectionIntroStacked.Items>
-              <SectionIntroStacked.Item>
-                <b>{t('lorem_ipsum')}</b>
-                {t('lorem_ipsum_description')}
-              </SectionIntroStacked.Item>
-              <SectionIntroStacked.Item>
-                <b>{t('lorem_ipsum')}</b>
-                {t('lorem_ipsum_description')}
-              </SectionIntroStacked.Item>
-              <SectionIntroStacked.Item>
-                <b>{t('lorem_ipsum')}</b>
-                {t('lorem_ipsum_description')}
-              </SectionIntroStacked.Item>
-            </SectionIntroStacked.Items>
-          </SectionIntroStacked>
-        </Grid.Column>
-      </Grid>
-    )
-  },
+export const InGrid: Story = {
+  render: InGridTemplate,
 }
 
 export const InGridNarrow: Story = {
@@ -78,32 +79,5 @@ export const InGridNarrow: Story = {
   globals: {
     viewport: {value: 'iphonexr'},
   },
-  render: function InGridNarrowComponent() {
-    const {t} = useTranslation('SectionIntroStacked')
-
-    return (
-      <Grid>
-        <Grid.Column>
-          <SectionIntroStacked>
-            <SectionIntroStacked.Heading>{t('enterprise_platform_heading')}</SectionIntroStacked.Heading>
-            <SectionIntroStacked.Link href="#">{t('explore_github_enterprise')}</SectionIntroStacked.Link>
-            <SectionIntroStacked.Items>
-              <SectionIntroStacked.Item>
-                <b>{t('lorem_ipsum')}</b>
-                {t('lorem_ipsum_description')}
-              </SectionIntroStacked.Item>
-              <SectionIntroStacked.Item>
-                <b>{t('lorem_ipsum')}</b>
-                {t('lorem_ipsum_description')}
-              </SectionIntroStacked.Item>
-              <SectionIntroStacked.Item>
-                <b>{t('lorem_ipsum')}</b>
-                {t('lorem_ipsum_description')}
-              </SectionIntroStacked.Item>
-            </SectionIntroStacked.Items>
-          </SectionIntroStacked>
-        </Grid.Column>
-      </Grid>
-    )
-  },
+  render: InGridTemplate,
 }
