@@ -532,22 +532,7 @@ export function FlexSection({component, className}: FlexSectionProps) {
                             : undefined,
                       }}
                     >
-                      <Statistic.Heading as="p">
-                        $2M+
-                        {statistics.fields.showHeadingFootnotes ? (
-                          <>
-                            {' '}
-                            <InlineLink
-                              id="inline-link-3"
-                              href="#footnote-3"
-                              className={clsx(styles.footnoteInlineLink, styles.footnoteSizeLarge)}
-                              aria-label="Footnote 3"
-                            >
-                              3
-                            </InlineLink>
-                          </>
-                        ) : null}
-                      </Statistic.Heading>
+                      <Statistic.Heading as="p">$2M+</Statistic.Heading>
                       {statistics.fields.showDescription && (
                         <Statistic.Description variant={statistics.fields.descriptionVariant}>
                           Given back to our maintainers
