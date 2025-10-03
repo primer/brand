@@ -480,7 +480,7 @@ export function FlexSection({component, className}: FlexSectionProps) {
           )}
 
           {breakoutBanner && (
-            <Grid className={styles.normalizeMargin}>
+            <Grid className={clsx(styles.normalizeMargin, styles['mx-0'])}>
               <Grid.Column>
                 <BreakoutBanner
                   className={clsx(styles.wrapper, styles.normalizeMargin)}
