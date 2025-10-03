@@ -1,28 +1,31 @@
 import React from 'react'
-import {Meta, StoryFn} from '@storybook/react'
+import type {Meta, StoryObj} from '@storybook/react'
 import {SubNav} from './SubNav'
 
-export default {
+const meta = {
   title: 'Components/SubNav',
   component: SubNav,
   parameters: {
     layout: 'fullscreen',
   },
-} as Meta<typeof SubNav>
+} satisfies Meta<typeof SubNav>
 
-const Template: StoryFn<typeof SubNav> = args => (
-  <main>
-    <SubNav {...args}>
-      <SubNav.Heading href="#">Heading</SubNav.Heading>
-      <SubNav.Link href="#">Link </SubNav.Link>
-      <SubNav.Link href="#">Link</SubNav.Link>
-      <SubNav.Link href="#">Link</SubNav.Link>
-      <SubNav.Link href="#">Link</SubNav.Link>
-      <SubNav.Link href="#">Link</SubNav.Link>
-      <SubNav.Link href="#">Link</SubNav.Link>
-      <SubNav.Action href="#">Primary CTA</SubNav.Action>
-    </SubNav>
-  </main>
-)
+export default meta
+type Story = StoryObj<typeof SubNav>
 
-export const Default = Template.bind({})
+export const Default: Story = {
+  render: args => (
+    <main>
+      <SubNav {...args}>
+        <SubNav.Heading href="#">Heading</SubNav.Heading>
+        <SubNav.Link href="#">Link </SubNav.Link>
+        <SubNav.Link href="#">Link</SubNav.Link>
+        <SubNav.Link href="#">Link</SubNav.Link>
+        <SubNav.Link href="#">Link</SubNav.Link>
+        <SubNav.Link href="#">Link</SubNav.Link>
+        <SubNav.Link href="#">Link</SubNav.Link>
+        <SubNav.Action href="#">Primary CTA</SubNav.Action>
+      </SubNav>
+    </main>
+  ),
+}

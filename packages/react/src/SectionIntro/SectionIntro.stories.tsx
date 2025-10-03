@@ -1,8 +1,8 @@
 import React from 'react'
-import {StoryFn, Meta} from '@storybook/react'
+import type {Meta, StoryObj} from '@storybook/react'
 import {SectionIntro} from '.'
 
-export default {
+const meta = {
   title: 'Components/SectionIntro',
   component: SectionIntro,
   args: {
@@ -22,28 +22,35 @@ export default {
       },
     },
   },
-} as Meta<typeof SectionIntro>
+} satisfies Meta<typeof SectionIntro>
 
-export const Playground: StoryFn<typeof SectionIntro> = args => (
-  <SectionIntro {...args}>
-    <SectionIntro.Label>Label</SectionIntro.Label>
-    <SectionIntro.Heading>This is my super sweet SectionIntro heading</SectionIntro.Heading>
-    <SectionIntro.Description>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit id. Aliquam luctus sed turpis felis nam
-      pulvinar risus elementum.
-    </SectionIntro.Description>
-    <SectionIntro.Link href="#">Call to action</SectionIntro.Link>
-  </SectionIntro>
-)
+export default meta
+type Story = StoryObj<typeof SectionIntro>
 
-export const Default = () => (
-  <SectionIntro>
-    <SectionIntro.Label>Label</SectionIntro.Label>
-    <SectionIntro.Heading>This is my super sweet SectionIntro heading</SectionIntro.Heading>
-    <SectionIntro.Description>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit id. Aliquam luctus sed turpis felis nam
-      pulvinar risus elementum.
-    </SectionIntro.Description>
-    <SectionIntro.Link href="#">Call to action</SectionIntro.Link>
-  </SectionIntro>
-)
+export const Playground: Story = {
+  render: args => (
+    <SectionIntro {...args}>
+      <SectionIntro.Label>Label</SectionIntro.Label>
+      <SectionIntro.Heading>This is my super sweet SectionIntro heading</SectionIntro.Heading>
+      <SectionIntro.Description>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit id. Aliquam luctus sed turpis felis nam
+        pulvinar risus elementum.
+      </SectionIntro.Description>
+      <SectionIntro.Link href="#">Call to action</SectionIntro.Link>
+    </SectionIntro>
+  ),
+}
+
+export const Default: Story = {
+  render: () => (
+    <SectionIntro>
+      <SectionIntro.Label>Label</SectionIntro.Label>
+      <SectionIntro.Heading>This is my super sweet SectionIntro heading</SectionIntro.Heading>
+      <SectionIntro.Description>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit id. Aliquam luctus sed turpis felis nam
+        pulvinar risus elementum.
+      </SectionIntro.Description>
+      <SectionIntro.Link href="#">Call to action</SectionIntro.Link>
+    </SectionIntro>
+  ),
+}
