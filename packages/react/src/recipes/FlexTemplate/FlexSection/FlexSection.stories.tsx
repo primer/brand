@@ -45,7 +45,6 @@ type FlexSectionStoryArgs = {
   statisticsCount: number
   statisticsVariant: string
   statisticsSize: string
-  statisticsShowHeadingFootnotes: boolean
   statisticsShowDescription: boolean
   statisticsDescriptionVariant: string
   statisticsShowDescriptionFootnotes: boolean
@@ -161,7 +160,6 @@ const createMockData = (args: FlexSectionStoryArgs) => ({
             count: args.statisticsCount,
             variant: args.statisticsVariant,
             size: args.statisticsSize,
-            showHeadingFootnotes: args.statisticsShowHeadingFootnotes,
             showDescription: args.statisticsShowDescription,
             descriptionVariant: args.statisticsDescriptionVariant,
             showDescriptionFootnotes: args.statisticsShowDescriptionFootnotes,
@@ -281,7 +279,6 @@ const meta: Meta<FlexSectionStoryArgs> = {
     statisticsCount: 4,
     statisticsVariant: 'default',
     statisticsSize: 'medium',
-    statisticsShowHeadingFootnotes: true,
     statisticsShowDescription: true,
     statisticsDescriptionVariant: 'muted',
     statisticsShowDescriptionFootnotes: false,
@@ -515,12 +512,7 @@ const meta: Meta<FlexSectionStoryArgs> = {
       table: {category: 'Statistics'},
       if: {arg: 'showStatistics', truthy: true},
     },
-    statisticsShowHeadingFootnotes: {
-      control: 'boolean',
-      description: 'Show footnotes for statistic headings',
-      table: {category: 'Statistics'},
-      if: {arg: 'showStatistics', truthy: true},
-    },
+
     statisticsShowDescription: {
       control: 'boolean',
       description: 'Show description for statistics',
