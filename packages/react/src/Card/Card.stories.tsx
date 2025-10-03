@@ -1,10 +1,10 @@
 import React from 'react'
-import {Meta, StoryFn} from '@storybook/react'
+import type {Meta, StoryObj} from '@storybook/react'
 import {Card, CardIconColors} from '.'
 import {LabelColors} from '../Label'
 import {CopilotIcon} from '@primer/octicons-react'
 
-export default {
+const meta = {
   title: 'Components/Card',
   component: Card,
   args: {
@@ -78,23 +78,28 @@ export default {
       },
     },
   },
-} as Meta<typeof Card>
+} satisfies Meta<typeof Card>
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const Template: StoryFn<typeof Card> = (_, storyArgs: any) => (
-  <Card href="https://github.com" hasBorder={storyArgs.args.hasBorder} fullWidth={storyArgs.args.fullWidth}>
-    <Card.Icon hasBackground={storyArgs.args.iconHasBackground} icon={CopilotIcon} color={storyArgs.args.iconColor} />
-    <Card.Heading>{storyArgs.args.heading}</Card.Heading>
-    <Card.Label color={storyArgs.args.labelColor}>Beta</Card.Label>
-    <Card.Description>{storyArgs.args.description}</Card.Description>
-  </Card>
-)
+export default meta
+type Story = StoryObj<typeof Card>
 
-export const Default = () => (
-  <Card href="https://github.com">
-    <Card.Heading>Collaboration is the key to DevOps success</Card.Heading>
-    <Card.Description>Everything you need to know about getting started with GitHub Actions.</Card.Description>
-  </Card>
-)
+export const Default: Story = {
+  render: () => (
+    <Card href="https://github.com">
+      <Card.Heading>Collaboration is the key to DevOps success</Card.Heading>
+      <Card.Description>Everything you need to know about getting started with GitHub Actions.</Card.Description>
+    </Card>
+  ),
+}
 
-export const Playground = Template.bind({})
+export const Playground: Story = {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  render: (_, storyArgs: any) => (
+    <Card href="https://github.com" hasBorder={storyArgs.args.hasBorder} fullWidth={storyArgs.args.fullWidth}>
+      <Card.Icon hasBackground={storyArgs.args.iconHasBackground} icon={CopilotIcon} color={storyArgs.args.iconColor} />
+      <Card.Heading>{storyArgs.args.heading}</Card.Heading>
+      <Card.Label color={storyArgs.args.labelColor}>Beta</Card.Label>
+      <Card.Description>{storyArgs.args.description}</Card.Description>
+    </Card>
+  ),
+}
