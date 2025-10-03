@@ -2,7 +2,7 @@ import React from 'react'
 import type {Meta, StoryObj} from '@storybook/react'
 
 import {RiverStoryScroll, RiverStoryScrollProps} from '.'
-import {Heading, Text, Link, River, Box, Timeline, VideoPlayer} from '../..'
+import {Heading, Text, Link, River, Box, Timeline} from '../..'
 import {Container} from '../../component-helpers'
 
 import placeholder1 from '../../fixtures/images/placeholder-1.png'
@@ -135,294 +135,151 @@ export const DisabledNarrow: Story = {
   render: TemplateComponent,
 }
 
+const EnterpriseTemplate = () => (
+  <RiverStoryScroll>
+    <River>
+      <River.Visual>
+        <img
+          src="https://github.com/images/modules/site/enterprise/2023/devops.png"
+          alt="placeholder, blank area with a gray background color"
+        />
+      </River.Visual>
+      <River.Content>
+        <Heading size="5" as="h3" weight="medium">
+          Consolidate DevSecOps processes and enable unparalleled collaboration.
+        </Heading>
+        <Link href="https://resources.github.com/forrester/" variant="accent">
+          Learn more about the ROI of GitHub
+        </Link>
+      </River.Content>
+    </River>
+    <River>
+      <River.Visual>
+        <img
+          src="https://github.com/images/modules/site/enterprise/2023/platform.png"
+          alt="placeholder, blank area with a gray background color"
+        />
+      </River.Visual>
+      <River.Content
+        trailingComponent={() => (
+          <Box marginBlockStart={24} paddingBlockStart={24}>
+            <Heading as="h4" size="3">
+              17,000+
+            </Heading>
+            <Text as="p" size="300" weight="light" variant="muted">
+              Third-party tools support your favorite languages and frameworks <sup>1</sup>
+            </Text>
+          </Box>
+        )}
+      >
+        <Heading size="5" as="h3" weight="medium">
+          Leverage the industry&apos;s most flexible secure development platform.
+        </Heading>
+      </River.Content>
+    </River>
+    <River>
+      <River.Visual>
+        <img
+          src="https://github.com/images/modules/site/enterprise/2023/ai.png"
+          alt="placeholder, blank area with a gray background color"
+        />
+      </River.Visual>
+      <River.Content>
+        <Heading size="5" as="h3" weight="medium">
+          Unlocking innovation at scale with AI-driven software development.
+        </Heading>
+      </River.Content>
+    </River>
+  </RiverStoryScroll>
+)
+
 export const EnterpriseExample: Story = {
-  render: () => (
-    <RiverStoryScroll>
-      <River>
-        <River.Visual>
-          <img
-            src="https://github.com/images/modules/site/enterprise/2023/devops.png"
-            alt="placeholder, blank area with a gray background color"
-          />
-        </River.Visual>
-        <River.Content>
-          <Heading size="5" as="h3" weight="medium">
-            Consolidate DevSecOps processes and enable unparalleled collaboration.
-          </Heading>
-          <Link href="https://resources.github.com/forrester/" variant="accent">
-            Learn more about the ROI of GitHub
-          </Link>
-        </River.Content>
-      </River>
-      <River>
-        <River.Visual>
-          <img
-            src="https://github.com/images/modules/site/enterprise/2023/platform.png"
-            alt="placeholder, blank area with a gray background color"
-          />
-        </River.Visual>
-        <River.Content
-          trailingComponent={() => (
-            <Box marginBlockStart={24} paddingBlockStart={24}>
-              <Heading as="h4" size="3">
-                17,000+
-              </Heading>
-              <Text as="p" size="300" weight="light" variant="muted">
-                Third-party tools support your favorite languages and frameworks <sup>1</sup>
-              </Text>
-            </Box>
-          )}
-        >
-          <Heading size="5" as="h3" weight="medium">
-            Leverage the industry&apos;s most flexible secure development platform.
-          </Heading>
-        </River.Content>
-      </River>
-      <River>
-        <River.Visual>
-          <img
-            src="https://github.com/images/modules/site/enterprise/2023/ai.png"
-            alt="placeholder, blank area with a gray background color"
-          />
-        </River.Visual>
-        <River.Content>
-          <Heading size="5" as="h3" weight="medium">
-            Unlocking innovation at scale with AI-driven software development.
-          </Heading>
-        </River.Content>
-      </River>
-    </RiverStoryScroll>
-  ),
+  render: EnterpriseTemplate,
 }
 
 export const EnterpriseExampleNarrow: Story = {
   globals: {
     viewport: {value: 'iphonexr'},
   },
-  render: () => (
-    <RiverStoryScroll>
-      <River>
-        <River.Visual>
-          <img
-            src="https://github.com/images/modules/site/enterprise/2023/devops.png"
-            alt="placeholder, blank area with a gray background color"
-          />
-        </River.Visual>
-        <River.Content>
-          <Heading size="5" as="h3" weight="medium">
-            Consolidate DevSecOps processes and enable unparalleled collaboration.
-          </Heading>
-          <Link href="https://resources.github.com/forrester/" variant="accent">
-            Learn more about the ROI of GitHub
-          </Link>
-        </River.Content>
-      </River>
-      <River>
-        <River.Visual>
-          <img
-            src="https://github.com/images/modules/site/enterprise/2023/platform.png"
-            alt="placeholder, blank area with a gray background color"
-          />
-        </River.Visual>
-        <River.Content
-          trailingComponent={() => (
-            <Box marginBlockStart={24} paddingBlockStart={24}>
-              <Heading as="h4" size="3">
-                17,000+
-              </Heading>
-              <Text as="p" size="300" weight="light" variant="muted">
-                Third-party tools support your favorite languages and frameworks <sup>1</sup>
-              </Text>
-            </Box>
-          )}
-        >
-          <Heading size="5" as="h3" weight="medium">
-            Leverage the industry&apos;s most flexible secure development platform.
-          </Heading>
-        </River.Content>
-      </River>
-      <River>
-        <River.Visual>
-          <img
-            src="https://github.com/images/modules/site/enterprise/2023/ai.png"
-            alt="placeholder, blank area with a gray background color"
-          />
-        </River.Visual>
-        <River.Content>
-          <Heading size="5" as="h3" weight="medium">
-            Unlocking innovation at scale with AI-driven software development.
-          </Heading>
-        </River.Content>
-      </River>
-    </RiverStoryScroll>
-  ),
+  render: EnterpriseTemplate,
 }
 
+const VideoExample = (args: ComponentAndStoryProps) => (
+  <RiverStoryScroll {...args} align={args.align} imageTextRatio={args.imageTextRatio}>
+    <River>
+      <River.Visual>
+        <video autoPlay muted loop>
+          <source src="./videos/1.mp4" type="video/mp4" />
+          <track kind="captions" />
+        </video>
+      </River.Visual>
+      <River.Content trailingComponent={args.withTrailingComponent ? TimelineExample : undefined}>
+        <Heading>Heading 1</Heading>
+        <Text size="300">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
+          turpis felis nam pulvinar risus elementum.
+        </Text>
+        <Link href="#">Call to action</Link>
+      </River.Content>
+    </River>
+    <River>
+      <River.Visual>
+        <video autoPlay muted loop>
+          <source src="./videos/2.mp4" type="video/mp4" />
+          <track kind="captions" />
+        </video>
+      </River.Visual>
+      <River.Content trailingComponent={args.withTrailingComponent ? TimelineExample : undefined}>
+        <Heading>Heading 2</Heading>
+        <Text size="300">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
+          turpis felis nam pulvinar risus elementum.
+        </Text>
+        <Link href="#">Call to action</Link>
+      </River.Content>
+    </River>
+    <River>
+      <River.Visual>
+        <video autoPlay muted loop>
+          <source src="./videos/3.mp4" type="video/mp4" />
+          <track kind="captions" />
+        </video>
+      </River.Visual>
+      <River.Content trailingComponent={args.withTrailingComponent ? TimelineExample : undefined}>
+        <Heading>Heading 3 </Heading>
+        <Text size="300">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
+          turpis felis nam pulvinar risus elementum.
+        </Text>
+        <Link href="#">Call to action</Link>
+      </River.Content>
+    </River>
+    <River>
+      <River.Visual>
+        <video autoPlay muted loop>
+          <source src="./videos/4.mp4" type="video/mp4" />
+          <track kind="captions" />
+        </video>
+      </River.Visual>
+      <River.Content trailingComponent={args.withTrailingComponent ? TimelineExample : undefined}>
+        <Heading>Heading 4</Heading>
+        <Text size="300">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
+          turpis felis nam pulvinar risus elementum.
+        </Text>
+        <Link href="#">Call to action</Link>
+      </River.Content>
+    </River>
+  </RiverStoryScroll>
+)
+
 export const Video: Story = {
-  render: args => (
-    <RiverStoryScroll {...args} align={args.align} imageTextRatio={args.imageTextRatio}>
-      <River>
-        <River.Visual>
-          <VideoPlayer title="Example">
-            <VideoPlayer.Source
-              src="https://githubnext.com/assets/projects/copilot-workspace/features-river-1.mp4"
-              type="video/mp4; codecs=avc1.4d002a"
-            />
-            <VideoPlayer.Track src="./example.vtt" default />
-          </VideoPlayer>
-        </River.Visual>
-        <River.Content trailingComponent={args.withTrailingComponent ? TimelineExample : undefined}>
-          <Heading>Heading 1</Heading>
-          <Text size="300">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
-            turpis felis nam pulvinar risus elementum.
-          </Text>
-          <Link href="#">Call to action</Link>
-        </River.Content>
-      </River>
-      <River>
-        <River.Visual>
-          <VideoPlayer title="Example">
-            <VideoPlayer.Source
-              src="https://githubnext.com/assets/projects/copilot-workspace/features-river-2.mp4"
-              type="video/mp4; codecs=avc1.4d002a"
-            />
-            <VideoPlayer.Track src="./example.vtt" default />
-          </VideoPlayer>
-        </River.Visual>
-        <River.Content trailingComponent={args.withTrailingComponent ? TimelineExample : undefined}>
-          <Heading>Heading 2</Heading>
-          <Text size="300">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
-            turpis felis nam pulvinar risus elementum.
-          </Text>
-          <Link href="#">Call to action</Link>
-        </River.Content>
-      </River>
-      <River>
-        <River.Visual>
-          <VideoPlayer title="Example">
-            <VideoPlayer.Source
-              src="https://githubnext.com/assets/projects/copilot-workspace/features-river-3.mp4"
-              type="video/mp4; codecs=avc1.4d002a"
-            />
-            <VideoPlayer.Track src="./example.vtt" default />
-          </VideoPlayer>
-        </River.Visual>
-        <River.Content trailingComponent={args.withTrailingComponent ? TimelineExample : undefined}>
-          <Heading>Heading 3 </Heading>
-          <Text size="300">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
-            turpis felis nam pulvinar risus elementum.
-          </Text>
-          <Link href="#">Call to action</Link>
-        </River.Content>
-      </River>
-      <River>
-        <River.Visual>
-          <VideoPlayer title="Example">
-            <VideoPlayer.Source
-              src="https://githubnext.com/assets/projects/copilot-workspace/features-river-4.mp4"
-              type="video/mp4; codecs=avc1.4d002a"
-            />
-            <VideoPlayer.Track src="./example.vtt" default />
-          </VideoPlayer>
-        </River.Visual>
-        <River.Content trailingComponent={args.withTrailingComponent ? TimelineExample : undefined}>
-          <Heading>Heading 4</Heading>
-          <Text size="300">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
-            turpis felis nam pulvinar risus elementum.
-          </Text>
-          <Link href="#">Call to action</Link>
-        </River.Content>
-      </River>
-    </RiverStoryScroll>
-  ),
+  render: VideoExample,
 }
 
 export const VideoNarrow: Story = {
   globals: {
     viewport: {value: 'iphonexr'},
   },
-  render: args => (
-    <RiverStoryScroll {...args} align={args.align} imageTextRatio={args.imageTextRatio}>
-      <River>
-        <River.Visual>
-          <VideoPlayer title="Example">
-            <VideoPlayer.Source
-              src="https://githubnext.com/assets/projects/copilot-workspace/features-river-1.mp4"
-              type="video/mp4; codecs=avc1.4d002a"
-            />
-            <VideoPlayer.Track src="./example.vtt" default />
-          </VideoPlayer>
-        </River.Visual>
-        <River.Content trailingComponent={args.withTrailingComponent ? TimelineExample : undefined}>
-          <Heading>Heading 1</Heading>
-          <Text size="300">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
-            turpis felis nam pulvinar risus elementum.
-          </Text>
-          <Link href="#">Call to action</Link>
-        </River.Content>
-      </River>
-      <River>
-        <River.Visual>
-          <VideoPlayer title="Example">
-            <VideoPlayer.Source
-              src="https://githubnext.com/assets/projects/copilot-workspace/features-river-2.mp4"
-              type="video/mp4; codecs=avc1.4d002a"
-            />
-            <VideoPlayer.Track src="./example.vtt" default />
-          </VideoPlayer>
-        </River.Visual>
-        <River.Content trailingComponent={args.withTrailingComponent ? TimelineExample : undefined}>
-          <Heading>Heading 2</Heading>
-          <Text size="300">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
-            turpis felis nam pulvinar risus elementum.
-          </Text>
-          <Link href="#">Call to action</Link>
-        </River.Content>
-      </River>
-      <River>
-        <River.Visual>
-          <VideoPlayer title="Example">
-            <VideoPlayer.Source
-              src="https://githubnext.com/assets/projects/copilot-workspace/features-river-3.mp4"
-              type="video/mp4; codecs=avc1.4d002a"
-            />
-            <VideoPlayer.Track src="./example.vtt" default />
-          </VideoPlayer>
-        </River.Visual>
-        <River.Content trailingComponent={args.withTrailingComponent ? TimelineExample : undefined}>
-          <Heading>Heading 3 </Heading>
-          <Text size="300">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
-            turpis felis nam pulvinar risus elementum.
-          </Text>
-          <Link href="#">Call to action</Link>
-        </River.Content>
-      </River>
-      <River>
-        <River.Visual>
-          <VideoPlayer title="Example">
-            <VideoPlayer.Source
-              src="https://githubnext.com/assets/projects/copilot-workspace/features-river-4.mp4"
-              type="video/mp4; codecs=avc1.4d002a"
-            />
-            <VideoPlayer.Track src="./example.vtt" default />
-          </VideoPlayer>
-        </River.Visual>
-        <River.Content trailingComponent={args.withTrailingComponent ? TimelineExample : undefined}>
-          <Heading>Heading 4</Heading>
-          <Text size="300">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
-            turpis felis nam pulvinar risus elementum.
-          </Text>
-          <Link href="#">Call to action</Link>
-        </River.Content>
-      </River>
-    </RiverStoryScroll>
-  ),
+  render: VideoExample,
 }
