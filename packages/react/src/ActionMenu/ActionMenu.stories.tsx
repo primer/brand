@@ -11,7 +11,7 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof ActionMenu>
 
-const DefaultStory = (args: typeof ActionMenu) => {
+const DefaultStory = args => {
   const {t} = useTranslation('ActionMenu')
   return (
     <ActionMenu {...args} onSelect={newValue => alert(newValue)}>

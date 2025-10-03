@@ -1,12 +1,20 @@
 import React from 'react'
 import type {Meta, StoryObj} from '@storybook/react'
-import {Card, CardIconColors} from '.'
+import {Card, CardIconColors, CardProps} from '.'
 import {LabelColors} from '../Label'
 import {CopilotIcon} from '@primer/octicons-react'
 
+type StoryProps = CardProps & {
+  iconColor: (typeof CardIconColors)[number]
+  labelColor: (typeof LabelColors)[number]
+  iconHasBackground: boolean
+  heading: string
+  description: string
+}
+
 const meta = {
   title: 'Components/Card',
-  component: Card,
+  component: Card as Meta<StoryProps>['component'],
   args: {
     iconColor: 'default',
     labelColor: 'default',
@@ -78,10 +86,10 @@ const meta = {
       },
     },
   },
-} satisfies Meta<typeof Card>
+} satisfies Meta<StoryProps>
 
 export default meta
-type Story = StoryObj<typeof Card>
+type Story = StoryObj<StoryProps>
 
 export const Default: Story = {
   render: () => (
@@ -93,13 +101,12 @@ export const Default: Story = {
 }
 
 export const Playground: Story = {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  render: (_, storyArgs: any) => (
-    <Card href="https://github.com" hasBorder={storyArgs.args.hasBorder} fullWidth={storyArgs.args.fullWidth}>
-      <Card.Icon hasBackground={storyArgs.args.iconHasBackground} icon={CopilotIcon} color={storyArgs.args.iconColor} />
-      <Card.Heading>{storyArgs.args.heading}</Card.Heading>
-      <Card.Label color={storyArgs.args.labelColor}>Beta</Card.Label>
-      <Card.Description>{storyArgs.args.description}</Card.Description>
+  render: args => (
+    <Card href="https://github.com" hasBorder={args.hasBorder} fullWidth={args.fullWidth}>
+      <Card.Icon hasBackground={args.iconHasBackground} icon={CopilotIcon} color={args.iconColor} />
+      <Card.Heading>{args.heading}</Card.Heading>
+      <Card.Label color={args.labelColor}>Beta</Card.Label>
+      <Card.Description>{args.description}</Card.Description>
     </Card>
   ),
 }

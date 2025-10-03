@@ -11,7 +11,6 @@ const meta = {
   component: Grid,
   args: {
     as: 'div',
-    gap: 'normal',
     enableOverlay: true,
     columns: [6, 6],
   },
@@ -21,10 +20,7 @@ const meta = {
     },
     columns: {
       control: {
-        type: 'array',
-        items: {
-          type: 'number',
-        },
+        type: 'object',
       },
       description:
         'An array of numbers where the index position maps to the column number and the value maps to the `span` prop.',
