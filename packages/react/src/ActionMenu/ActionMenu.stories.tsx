@@ -11,20 +11,22 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof ActionMenu>
 
+const DefaultStory = (args: typeof ActionMenu) => {
+  const {t} = useTranslation('ActionMenu')
+  return (
+    <ActionMenu {...args} onSelect={newValue => alert(newValue)}>
+      <ActionMenu.Button>{t('open_menu')}</ActionMenu.Button>
+      <ActionMenu.Overlay aria-label={t('actions')}>
+        <ActionMenu.Item value="Copy link pressed" selected>
+          {t('copy_link')}
+        </ActionMenu.Item>
+        <ActionMenu.Item value="Quote reply pressed">{t('quote_reply')}</ActionMenu.Item>
+        <ActionMenu.Item value="Edit comment pressed">{t('edit_comment')}</ActionMenu.Item>
+      </ActionMenu.Overlay>
+    </ActionMenu>
+  )
+}
+
 export const Default: Story = {
-  render: args => {
-    const {t} = useTranslation('ActionMenu')
-    return (
-      <ActionMenu {...args} onSelect={newValue => alert(newValue)}>
-        <ActionMenu.Button>{t('open_menu')}</ActionMenu.Button>
-        <ActionMenu.Overlay aria-label={t('actions')}>
-          <ActionMenu.Item value="Copy link pressed" selected>
-            {t('copy_link')}
-          </ActionMenu.Item>
-          <ActionMenu.Item value="Quote reply pressed">{t('quote_reply')}</ActionMenu.Item>
-          <ActionMenu.Item value="Edit comment pressed">{t('edit_comment')}</ActionMenu.Item>
-        </ActionMenu.Overlay>
-      </ActionMenu>
-    )
-  },
+  render: DefaultStory,
 }
