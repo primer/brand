@@ -13,6 +13,7 @@ declare const styles: {
   readonly "imageFillMedia": string;
   readonly "left": string;
   readonly "logoWrapper": string;
+  readonly "mx-0": string;
   readonly "normalizeMargin": string;
   readonly "normalizePadding": string;
   readonly "paddingBottom-condensed": string;

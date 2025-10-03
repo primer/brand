@@ -181,6 +181,11 @@
   position: relative;
 }
 
+.mx-0 {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
 .px-3 {
   padding-left: var(--base-size-16) !important;
   padding-right: var(--base-size-16) !important;
