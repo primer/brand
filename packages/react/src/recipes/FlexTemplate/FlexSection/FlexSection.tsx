@@ -32,6 +32,7 @@ import {
   Testimonial,
   Text,
   Timeline,
+  useTheme,
 } from '../../..'
 
 import monaAvatar from '../../../fixtures/images/avatar-mona.png'
@@ -43,8 +44,10 @@ import vercelLogo from '../../../fixtures/images/logos/vercel.png'
 import placeholderImage from '../../../fixtures/images/placeholder.png'
 import lightNarrowBg from '../../../fixtures/images/light-vertical-banner.png'
 import lightWideBg from '../../../fixtures/images/light-horizontal-banner.png'
-
-import {backgroundStylesMap} from './helpers'
+import startShapeLight from '../../../fixtures/images/testimonial-bg-1.png'
+import endShapeLight from '../../../fixtures/images/testimonial-bg-2.png'
+import startShapeDark from '../../../fixtures/images/testimonial-bg-1-dark.png'
+import endShapeDark from '../../../fixtures/images/testimonial-bg-2-dark.png'
 
 import styles from './FlexSection.module.css'
 import ForresterResearch from '../fixtures/images/logos/ForresterResearch'
@@ -691,8 +694,68 @@ export function FlexSection({component, className}: FlexSectionProps) {
   )
 }
 
+export const backgroundStylesMap = {
+  Productivity: {
+    className: styles.productivity,
+    marginBlockStart: 'none',
+    marginBlockEnd: 16,
+    left: {
+      width: 444,
+    },
+    right: {
+      width: 574,
+    },
+  },
+  Collaboration: {
+    className: styles.collaboration,
+    marginBlockStart: 24,
+    marginBlockEnd: 'none',
+    left: {
+      width: 426,
+    },
+    right: {
+      width: 417,
+    },
+  },
+  AI: {
+    className: styles.ai,
+    marginBlockStart: 'none',
+    marginBlockEnd: 'none',
+    left: {
+      width: 424,
+    },
+    right: {
+      width: 433,
+    },
+  },
+  Security: {
+    className: styles.security,
+    marginBlockStart: 8,
+    marginBlockEnd: 'none',
+    left: {
+      width: 349,
+    },
+    right: {
+      width: 521,
+    },
+  },
+  Enterprise: {
+    className: styles.enterprise,
+    marginBlockStart: 'none',
+    marginBlockEnd: 128,
+    left: {
+      width: 418,
+    },
+    right: {
+      width: 433,
+    },
+  },
+}
+
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function FlexSectionTestimonials({testimonials, className}: any) {
+  const {colorMode} = useTheme()
+
   const isMinimalVariant = testimonials.fields.variant === 'minimal'
 
   const set =
@@ -709,14 +772,14 @@ function FlexSectionTestimonials({testimonials, className}: any) {
           marginBlockEnd={{narrow: 'none', wide: set.marginBlockEnd}}
         >
           <Image
-            src={set.left.image}
+            src={colorMode === 'light' ? startShapeLight : startShapeDark}
             alt=""
             className={clsx(styles.testimonialBackgroundImageShape, styles.left)}
             width={set.left.width}
             loading="lazy"
           />
           <Image
-            src={set.right.image}
+            src={colorMode === 'light' ? endShapeLight : endShapeDark}
             alt=""
             className={clsx(styles.testimonialBackgroundImageShape, styles.right)}
             width={set.right.width}
