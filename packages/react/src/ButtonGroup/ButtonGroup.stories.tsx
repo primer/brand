@@ -1,9 +1,9 @@
 import React from 'react'
-import {Meta, StoryFn} from '@storybook/react'
+import type {Meta, StoryObj} from '@storybook/react'
 import {ButtonGroup} from '.'
 import {Button} from '../Button'
 
-export default {
+const meta = {
   title: 'Components/ButtonGroup',
   component: ButtonGroup,
   subcomponents: {Button},
@@ -32,31 +32,42 @@ export default {
       },
     },
   },
-} as Meta<typeof ButtonGroup>
+} satisfies Meta<typeof ButtonGroup>
 
-const Template: StoryFn<typeof ButtonGroup> = args => (
-  <ButtonGroup {...args}>
-    <Button>This is one button</Button>
-    <Button>This is another button</Button>
-  </ButtonGroup>
-)
+export default meta
+type Story = StoryObj<typeof ButtonGroup>
 
-export const Playground = Template.bind({})
-
-const SingleButtonTemplate: StoryFn<typeof ButtonGroup> = args => (
-  <ButtonGroup {...args}>
-    <Button>This is one button</Button>
-  </ButtonGroup>
-)
-
-export const SingleButtonGroup = SingleButtonTemplate.bind({})
-
-export const LargeButtonGroup = Template.bind({})
-LargeButtonGroup.args = {
-  buttonSize: 'large',
+const Template: Story = {
+  render: args => (
+    <ButtonGroup {...args}>
+      <Button>This is one button</Button>
+      <Button>This is another button</Button>
+    </ButtonGroup>
+  ),
 }
 
-export const LinkButtonGroup = Template.bind({})
-LinkButtonGroup.args = {
-  buttonsAs: 'a',
+export const Playground: Story = {
+  ...Template,
+}
+
+export const SingleButtonGroup: Story = {
+  render: args => (
+    <ButtonGroup {...args}>
+      <Button>This is one button</Button>
+    </ButtonGroup>
+  ),
+}
+
+export const LargeButtonGroup: Story = {
+  ...Template,
+  args: {
+    buttonSize: 'large',
+  },
+}
+
+export const LinkButtonGroup: Story = {
+  ...Template,
+  args: {
+    buttonsAs: 'a',
+  },
 }
