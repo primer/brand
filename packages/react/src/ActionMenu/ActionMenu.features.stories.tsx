@@ -1,6 +1,6 @@
 import {Meta} from '@storybook/react'
 import React from 'react'
-import {expect, userEvent, within, waitFor} from '@storybook/test'
+import {expect, userEvent, within, waitFor} from 'storybook/test'
 import {ActionMenu, actionMenuOverlaySides, ActionMenuProps, ActionMenuSizes} from './ActionMenu'
 import {countries} from '../test-utils/fixtures/data'
 import {Heading, Stack, Text, OrderedList, Box, Grid, Section, ThemeProvider, Button, ButtonVariants, Hero} from '../'

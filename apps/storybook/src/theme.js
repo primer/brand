@@ -1,4 +1,4 @@
-import {create} from '@storybook/theming/create'
+import {create} from 'storybook/theming'
 import monaImage from './images/mona-recipes.png'
 
 export default create({

@@ -23,7 +23,7 @@ export type MetaProps = TabsProps
 
 const meta: Meta<MetaProps> = {
   title: 'Components/Tabs/Examples',
-  component: Tabs,
+  component: Tabs as Meta<TabsProps>['component'], // because Tabs has a discriminated union for aria-* that breaks the strict types for Storybook
 }
 
 export default meta
