@@ -318,7 +318,7 @@ const meta: Meta<FlexSectionStoryArgs> = {
     riverVisualType: 'image',
 
     // Visual settings
-    backgroundColor: 'default',
+    backgroundColor: 'subtle',
     paddingBlockStart: 'spacious',
     colorMode: 'inherit',
     paddingBlockEnd: 'spacious',
