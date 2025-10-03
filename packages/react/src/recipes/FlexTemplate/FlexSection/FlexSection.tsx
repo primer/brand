@@ -381,6 +381,15 @@ export function FlexSection({component, className}: FlexSectionProps) {
                     <Bento.Item
                       className={styles.featuredBentoItem}
                       bgColor={backgroundColor === 'default' ? 'subtle' : 'default'}
+                      flow={{
+                        xsmall: 'row',
+                        small: 'row',
+                        medium: 'column',
+                        large: 'column',
+                        xlarge: 'column',
+                        xxlarge: 'column',
+                      }}
+                      rowSpan={5}
                     >
                       <Bento.Content
                         className={styles.featuredBentoContent}
@@ -389,8 +398,12 @@ export function FlexSection({component, className}: FlexSectionProps) {
                             <Icon icon={GlobeIcon} color="purple" size="medium" hasBackground />
                           ) : undefined
                         }
+                        padding={{
+                          xsmall: 'normal',
+                          small: 'spacious',
+                        }}
                       >
-                        <Bento.Heading as={featuredBento.fields.headingLevel}>
+                        <Bento.Heading as={featuredBento.fields.headingLevel} size="4">
                           <em>Lorem ipsum dolor sit</em> amet consectetur adipiscing elit
                           {featuredBento.fields.showFootnotes ? (
                             <>
