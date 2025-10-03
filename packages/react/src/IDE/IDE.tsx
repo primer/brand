@@ -700,7 +700,11 @@ const _Editor = memo(
           data-testid={testId || testIds.editor}
           {...rest}
         >
-          <div className={styles['IDE__Editor-tabs']} data-testid={testIds.editorTabs} {...tabs.getTabListProps()}>
+          <div
+            className={styles['IDE__Editor-tabs']}
+            data-testid={testIds.editorTabs}
+            {...tabs.getTabListProps({label: 'files'})}
+          >
             {files.map((file, index) => {
               const language = file.name.split('.').pop()
               const isActiveTab = tabs.activeTab === index.toString()

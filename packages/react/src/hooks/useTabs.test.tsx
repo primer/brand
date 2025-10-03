@@ -84,14 +84,15 @@ describe('useTabs', () => {
     })
   })
 
-  it('returns an object with the expected shape from getTabListProps when called with no arguments', () => {
+  it('returns an object with the expected shape from getTabListProps', () => {
     const {result} = renderUseTabsHook()
 
-    const tabListProps = result.current.getTabListProps()
+    const tabListProps = result.current.getTabListProps({label: 'Test tabs'})
 
     expect(tabListProps).toEqual({
       role: expect.any(String),
       'aria-orientation': expect.any(String),
+      'aria-label': expect.any(String),
     })
   })
 
@@ -166,7 +167,7 @@ describe('useTabs', () => {
   it('sets the role of the tab list to "tablist"', () => {
     const {result} = renderUseTabsHook()
 
-    const tabListProps = result.current.getTabListProps()
+    const tabListProps = result.current.getTabListProps({label: 'Test tabs'})
 
     expect(tabListProps.role).toBe('tablist')
   })
@@ -174,7 +175,7 @@ describe('useTabs', () => {
   it('sets the aria-orientation of the tab list to "horizontal" by default', () => {
     const {result} = renderUseTabsHook()
 
-    const tabListProps = result.current.getTabListProps()
+    const tabListProps = result.current.getTabListProps({label: 'Test tabs'})
 
     expect(tabListProps['aria-orientation']).toBe('horizontal')
   })
@@ -182,7 +183,7 @@ describe('useTabs', () => {
   it('sets the aria-orientation of the tab list to "vertical" when specified', () => {
     const {result} = renderUseTabsHook({orientation: 'vertical'})
 
-    const tabListProps = result.current.getTabListProps()
+    const tabListProps = result.current.getTabListProps({label: 'Test tabs'})
 
     expect(tabListProps['aria-orientation']).toBe('vertical')
   })
@@ -267,8 +268,7 @@ describe('useTabs', () => {
     const tabProps = result.current.getTabProps('test-2')
 
     act(() => {
-      // @ts-expect-error The type for onClick isn't correct
-      tabProps.onClick?.()
+      tabProps.onClick()
     })
 
     expect(result.current.activeTab).toBe('test-2')
@@ -282,8 +282,7 @@ describe('useTabs', () => {
     const tabProps = result.current.getTabProps('test-2')
 
     act(() => {
-      // @ts-expect-error The type for onClick isn't correct
-      tabProps.onClick?.()
+      tabProps.onClick()
     })
 
     expect(result.current.activeTab).toBe('test-2')
@@ -297,8 +296,7 @@ describe('useTabs', () => {
     const tabProps = result.current.getTabProps('test-2')
 
     act(() => {
-      // @ts-expect-error The type for onFocus isn't correct
-      tabProps.onFocus?.()
+      tabProps.onFocus()
     })
 
     expect(result.current.focusedTab).toBe('test-2')
@@ -312,8 +310,7 @@ describe('useTabs', () => {
     const tabProps = result.current.getTabProps('test-2')
 
     act(() => {
-      // @ts-expect-error The type for onFocus isn't correct
-      tabProps.onFocus?.()
+      tabProps.onFocus()
     })
 
     expect(result.current.focusedTab).toBe('test-2')
@@ -329,7 +326,6 @@ describe('useTabs', () => {
     const mockTabElement = {} as HTMLElement
 
     act(() => {
-      // @ts-expect-error The type for tabProps isn't correct
       tabProps.ref(mockTabElement)
     })
 
@@ -348,7 +344,6 @@ describe('useTabs', () => {
     const mockTabElement = {} as HTMLElement
 
     act(() => {
-      // @ts-expect-error The type for tabProps isn't correct
       tabProps.ref(mockTabElement)
     })
 
@@ -409,14 +404,13 @@ describe('useTabs', () => {
     const tabProps = result.current.getTabProps('test-2')
 
     act(() => {
-      // @ts-expect-error The type for onFocus isn't correct
-      tabProps.onFocus?.()
+      tabProps.onFocus()
     })
 
     expect(result.current.focusedTab).toBe('test-2')
 
     act(() => {
-      tabProps.onKeyDown?.(mockKeyboardEvent('ArrowLeft'))
+      tabProps.onKeyDown(mockKeyboardEvent('ArrowLeft'))
     })
 
     expect(result.current.focusedTab).toBe('test-1')
@@ -428,14 +422,13 @@ describe('useTabs', () => {
     const tabProps = result.current.getTabProps('test-2')
 
     act(() => {
-      // @ts-expect-error The type for onFocus isn't correct
-      tabProps.onFocus?.()
+      tabProps.onFocus()
     })
 
     expect(result.current.focusedTab).toBe('test-2')
 
     act(() => {
-      tabProps.onKeyDown?.(mockKeyboardEvent('ArrowRight'))
+      tabProps.onKeyDown(mockKeyboardEvent('ArrowRight'))
     })
 
     expect(result.current.focusedTab).toBe('test-3')
@@ -447,14 +440,13 @@ describe('useTabs', () => {
     const tabProps = result.current.getTabProps('test-2')
 
     act(() => {
-      // @ts-expect-error The type for onFocus isn't correct
-      tabProps.onFocus?.()
+      tabProps.onFocus()
     })
 
     expect(result.current.focusedTab).toBe('test-2')
 
     act(() => {
-      tabProps.onKeyDown?.(mockKeyboardEvent('ArrowUp'))
+      tabProps.onKeyDown(mockKeyboardEvent('ArrowUp'))
     })
 
     expect(result.current.focusedTab).toBe('test-1')
@@ -466,14 +458,13 @@ describe('useTabs', () => {
     const tabProps = result.current.getTabProps('test-2')
 
     act(() => {
-      // @ts-expect-error The type for onFocus isn't correct
-      tabProps.onFocus?.()
+      tabProps.onFocus()
     })
 
     expect(result.current.focusedTab).toBe('test-2')
 
     act(() => {
-      tabProps.onKeyDown?.(mockKeyboardEvent('ArrowDown'))
+      tabProps.onKeyDown(mockKeyboardEvent('ArrowDown'))
     })
 
     expect(result.current.focusedTab).toBe('test-3')
@@ -485,14 +476,13 @@ describe('useTabs', () => {
     const tabProps = result.current.getTabProps('test-2')
 
     act(() => {
-      // @ts-expect-error The type for onFocus isn't correct
-      tabProps.onFocus?.()
+      tabProps.onFocus()
     })
 
     expect(result.current.focusedTab).toBe('test-2')
 
     act(() => {
-      tabProps.onKeyDown?.(mockKeyboardEvent('ArrowUp'))
+      tabProps.onKeyDown(mockKeyboardEvent('ArrowUp'))
     })
 
     expect(result.current.focusedTab).toBe('test-2')
@@ -504,14 +494,13 @@ describe('useTabs', () => {
     const tabProps = result.current.getTabProps('test-2')
 
     act(() => {
-      // @ts-expect-error The type for onFocus isn't correct
-      tabProps.onFocus?.()
+      tabProps.onFocus()
     })
 
     expect(result.current.focusedTab).toBe('test-2')
 
     act(() => {
-      tabProps.onKeyDown?.(mockKeyboardEvent('ArrowDown'))
+      tabProps.onKeyDown(mockKeyboardEvent('ArrowDown'))
     })
 
     expect(result.current.focusedTab).toBe('test-2')
@@ -523,14 +512,13 @@ describe('useTabs', () => {
     const tabProps = result.current.getTabProps('test-2')
 
     act(() => {
-      // @ts-expect-error The type for onFocus isn't correct
-      tabProps.onFocus?.()
+      tabProps.onFocus()
     })
 
     expect(result.current.focusedTab).toBe('test-2')
 
     act(() => {
-      tabProps.onKeyDown?.(mockKeyboardEvent('ArrowLeft'))
+      tabProps.onKeyDown(mockKeyboardEvent('ArrowLeft'))
     })
 
     expect(result.current.focusedTab).toBe('test-2')
@@ -542,14 +530,13 @@ describe('useTabs', () => {
     const tabProps = result.current.getTabProps('test-2')
 
     act(() => {
-      // @ts-expect-error The type for onFocus isn't correct
-      tabProps.onFocus?.()
+      tabProps.onFocus()
     })
 
     expect(result.current.focusedTab).toBe('test-2')
 
     act(() => {
-      tabProps.onKeyDown?.(mockKeyboardEvent('ArrowRight'))
+      tabProps.onKeyDown(mockKeyboardEvent('ArrowRight'))
     })
 
     expect(result.current.focusedTab).toBe('test-2')
@@ -561,14 +548,13 @@ describe('useTabs', () => {
     const tabProps = result.current.getTabProps('test-3')
 
     act(() => {
-      // @ts-expect-error The type for onFocus isn't correct
-      tabProps.onFocus?.()
+      tabProps.onFocus()
     })
 
     expect(result.current.focusedTab).toBe('test-3')
 
     act(() => {
-      tabProps.onKeyDown?.(mockKeyboardEvent('Home'))
+      tabProps.onKeyDown(mockKeyboardEvent('Home'))
     })
 
     expect(result.current.focusedTab).toBe('test-1')
@@ -580,14 +566,13 @@ describe('useTabs', () => {
     const tabProps = result.current.getTabProps('test-1')
 
     act(() => {
-      // @ts-expect-error The type for onFocus isn't correct
-      tabProps.onFocus?.()
+      tabProps.onFocus()
     })
 
     expect(result.current.focusedTab).toBe('test-1')
 
     act(() => {
-      tabProps.onKeyDown?.(mockKeyboardEvent('End'))
+      tabProps.onKeyDown(mockKeyboardEvent('End'))
     })
 
     expect(result.current.focusedTab).toBe('test-3')
@@ -599,14 +584,13 @@ describe('useTabs', () => {
     const tabProps = result.current.getTabProps('test-1')
 
     act(() => {
-      // @ts-expect-error The type for onFocus isn't correct
-      tabProps.onFocus?.()
+      tabProps.onFocus()
     })
 
     expect(result.current.focusedTab).toBe('test-1')
 
     act(() => {
-      tabProps.onKeyDown?.(mockKeyboardEvent('ArrowLeft'))
+      tabProps.onKeyDown(mockKeyboardEvent('ArrowLeft'))
     })
 
     expect(result.current.focusedTab).toBe('test-3')
@@ -618,14 +602,13 @@ describe('useTabs', () => {
     const tabProps = result.current.getTabProps('test-3')
 
     act(() => {
-      // @ts-expect-error The type for onFocus isn't correct
-      tabProps.onFocus?.()
+      tabProps.onFocus()
     })
 
     expect(result.current.focusedTab).toBe('test-3')
 
     act(() => {
-      tabProps.onKeyDown?.(mockKeyboardEvent('ArrowRight'))
+      tabProps.onKeyDown(mockKeyboardEvent('ArrowRight'))
     })
 
     expect(result.current.focusedTab).toBe('test-1')
@@ -637,14 +620,13 @@ describe('useTabs', () => {
     const tabProps = result.current.getTabProps('test-1')
 
     act(() => {
-      // @ts-expect-error The type for onFocus isn't correct
-      tabProps.onFocus?.()
+      tabProps.onFocus()
     })
 
     expect(result.current.focusedTab).toBe('test-1')
 
     act(() => {
-      tabProps.onKeyDown?.(mockKeyboardEvent('ArrowUp'))
+      tabProps.onKeyDown(mockKeyboardEvent('ArrowUp'))
     })
 
     expect(result.current.focusedTab).toBe('test-3')
@@ -656,14 +638,13 @@ describe('useTabs', () => {
     const tabProps = result.current.getTabProps('test-3')
 
     act(() => {
-      // @ts-expect-error The type for onFocus isn't correct
-      tabProps.onFocus?.()
+      tabProps.onFocus()
     })
 
     expect(result.current.focusedTab).toBe('test-3')
 
     act(() => {
-      tabProps.onKeyDown?.(mockKeyboardEvent('ArrowDown'))
+      tabProps.onKeyDown(mockKeyboardEvent('ArrowDown'))
     })
 
     expect(result.current.focusedTab).toBe('test-1')
@@ -675,15 +656,14 @@ describe('useTabs', () => {
     const tabProps = result.current.getTabProps('test-2')
 
     act(() => {
-      // @ts-expect-error The type for onFocus isn't correct
-      tabProps.onFocus?.()
+      tabProps.onFocus()
     })
 
     expect(result.current.focusedTab).toBe('test-2')
     expect(result.current.activeTab).toBe('test-2')
 
     act(() => {
-      tabProps.onKeyDown?.(mockKeyboardEvent('ArrowLeft'))
+      tabProps.onKeyDown(mockKeyboardEvent('ArrowLeft'))
     })
 
     expect(result.current.focusedTab).toBe('test-1')
@@ -696,15 +676,14 @@ describe('useTabs', () => {
     const tabProps = result.current.getTabProps('test-2')
 
     act(() => {
-      // @ts-expect-error The type for onFocus isn't correct
-      tabProps.onFocus?.()
+      tabProps.onFocus()
     })
 
     expect(result.current.focusedTab).toBe('test-2')
     expect(result.current.activeTab).toBe('test-2')
 
     act(() => {
-      tabProps.onKeyDown?.(mockKeyboardEvent('ArrowRight'))
+      tabProps.onKeyDown(mockKeyboardEvent('ArrowRight'))
     })
 
     expect(result.current.focusedTab).toBe('test-3')
@@ -717,15 +696,14 @@ describe('useTabs', () => {
     const tabProps = result.current.getTabProps('test-2')
 
     act(() => {
-      // @ts-expect-error The type for onFocus isn't correct
-      tabProps.onFocus?.()
+      tabProps.onFocus()
     })
 
     expect(result.current.focusedTab).toBe('test-2')
     expect(result.current.activeTab).toBe('test-2')
 
     act(() => {
-      tabProps.onKeyDown?.(mockKeyboardEvent('ArrowUp'))
+      tabProps.onKeyDown(mockKeyboardEvent('ArrowUp'))
     })
 
     expect(result.current.focusedTab).toBe('test-1')
@@ -738,15 +716,14 @@ describe('useTabs', () => {
     const tabProps = result.current.getTabProps('test-2')
 
     act(() => {
-      // @ts-expect-error The type for onFocus isn't correct
-      tabProps.onFocus?.()
+      tabProps.onFocus()
     })
 
     expect(result.current.focusedTab).toBe('test-2')
     expect(result.current.activeTab).toBe('test-2')
 
     act(() => {
-      tabProps.onKeyDown?.(mockKeyboardEvent('ArrowDown'))
+      tabProps.onKeyDown(mockKeyboardEvent('ArrowDown'))
     })
 
     expect(result.current.focusedTab).toBe('test-3')
@@ -759,15 +736,14 @@ describe('useTabs', () => {
     const tabProps = result.current.getTabProps('test-3')
 
     act(() => {
-      // @ts-expect-error The type for onFocus isn't correct
-      tabProps.onFocus?.()
+      tabProps.onFocus()
     })
 
     expect(result.current.focusedTab).toBe('test-3')
     expect(result.current.activeTab).toBe('test-3')
 
     act(() => {
-      tabProps.onKeyDown?.(mockKeyboardEvent('Home'))
+      tabProps.onKeyDown(mockKeyboardEvent('Home'))
     })
 
     expect(result.current.focusedTab).toBe('test-1')
@@ -780,15 +756,14 @@ describe('useTabs', () => {
     const tabProps = result.current.getTabProps('test-1')
 
     act(() => {
-      // @ts-expect-error The type for onFocus isn't correct
-      tabProps.onFocus?.()
+      tabProps.onFocus()
     })
 
     expect(result.current.focusedTab).toBe('test-1')
     expect(result.current.activeTab).toBe('test-1')
 
     act(() => {
-      tabProps.onKeyDown?.(mockKeyboardEvent('End'))
+      tabProps.onKeyDown(mockKeyboardEvent('End'))
     })
 
     expect(result.current.focusedTab).toBe('test-3')
@@ -801,15 +776,14 @@ describe('useTabs', () => {
     const tab2Props = result.current.getTabProps('test-2')
 
     act(() => {
-      // @ts-expect-error The type for onFocus isn't correct
-      tab2Props.onFocus?.()
+      tab2Props.onFocus()
     })
 
     expect(result.current.focusedTab).toBe('test-2')
     expect(result.current.activeTab).toBe('test-1')
 
     act(() => {
-      tab2Props.onKeyDown?.(mockKeyboardEvent(' '))
+      tab2Props.onKeyDown(mockKeyboardEvent(' '))
     })
 
     expect(result.current.activeTab).toBe('test-2')
@@ -821,15 +795,14 @@ describe('useTabs', () => {
     const tab2Props = result.current.getTabProps('test-2')
 
     act(() => {
-      // @ts-expect-error The type for onFocus isn't correct
-      tab2Props.onFocus?.()
+      tab2Props.onFocus()
     })
 
     expect(result.current.focusedTab).toBe('test-2')
     expect(result.current.activeTab).toBe('test-1')
 
     act(() => {
-      tab2Props.onKeyDown?.(mockKeyboardEvent('Enter'))
+      tab2Props.onKeyDown(mockKeyboardEvent('Enter'))
     })
 
     expect(result.current.activeTab).toBe('test-2')
@@ -924,8 +897,7 @@ describe('useTabs', () => {
     const tabProps = result.current.getTabProps('test-2')
 
     act(() => {
-      // @ts-expect-error The type for onClick isn't correct
-      tabProps.onClick?.()
+      tabProps.onClick()
     })
 
     expect(onTabActivate).toHaveBeenLastCalledWith('test-2', expect.any(HTMLElement))
@@ -938,12 +910,11 @@ describe('useTabs', () => {
     const tabProps = result.current.getTabProps('test-2')
 
     act(() => {
-      // @ts-expect-error The type for onFocus isn't correct
-      tabProps.onFocus?.()
+      tabProps.onFocus()
     })
 
     act(() => {
-      tabProps.onKeyDown?.(mockKeyboardEvent('ArrowRight'))
+      tabProps.onKeyDown(mockKeyboardEvent('ArrowRight'))
     })
 
     expect(onTabActivate).toHaveBeenLastCalledWith('test-3', expect.any(HTMLElement))
@@ -956,12 +927,11 @@ describe('useTabs', () => {
     const tabProps = result.current.getTabProps('test-2')
 
     act(() => {
-      // @ts-expect-error The type for onFocus isn't correct
-      tabProps.onFocus?.()
+      tabProps.onFocus()
     })
 
     act(() => {
-      tabProps.onKeyDown?.(mockKeyboardEvent('ArrowRight'))
+      tabProps.onKeyDown(mockKeyboardEvent('ArrowRight'))
     })
 
     expect(onTabActivate).not.toHaveBeenCalled()
@@ -974,12 +944,11 @@ describe('useTabs', () => {
     const tabProps = result.current.getTabProps('test-2')
 
     act(() => {
-      // @ts-expect-error The type for onFocus isn't correct
-      tabProps.onFocus?.()
+      tabProps.onFocus()
     })
 
     act(() => {
-      tabProps.onKeyDown?.(mockKeyboardEvent(' '))
+      tabProps.onKeyDown(mockKeyboardEvent(' '))
     })
 
     expect(onTabActivate).toHaveBeenLastCalledWith('test-2', expect.any(HTMLElement))
@@ -992,12 +961,11 @@ describe('useTabs', () => {
     const tabProps = result.current.getTabProps('test-2')
 
     act(() => {
-      // @ts-expect-error The type for onFocus isn't correct
-      tabProps.onFocus?.()
+      tabProps.onFocus()
     })
 
     act(() => {
-      tabProps.onKeyDown?.(mockKeyboardEvent('Enter'))
+      tabProps.onKeyDown(mockKeyboardEvent('Enter'))
     })
 
     expect(onTabActivate).toHaveBeenLastCalledWith('test-2', expect.any(HTMLElement))
@@ -1010,12 +978,11 @@ describe('useTabs', () => {
     const tabProps = result.current.getTabProps('test-2')
 
     act(() => {
-      // @ts-expect-error The type for onFocus isn't correct
-      tabProps.onFocus?.()
+      tabProps.onFocus()
     })
 
     act(() => {
-      tabProps.onKeyDown?.(mockKeyboardEvent(' '))
+      tabProps.onKeyDown(mockKeyboardEvent(' '))
     })
 
     expect(onTabActivate).not.toHaveBeenCalled()
@@ -1028,12 +995,11 @@ describe('useTabs', () => {
     const tabProps = result.current.getTabProps('test-2')
 
     act(() => {
-      // @ts-expect-error The type for onFocus isn't correct
-      tabProps.onFocus?.()
+      tabProps.onFocus()
     })
 
     act(() => {
-      tabProps.onKeyDown?.(mockKeyboardEvent('Enter'))
+      tabProps.onKeyDown(mockKeyboardEvent('Enter'))
     })
 
     expect(onTabActivate).not.toHaveBeenCalled()
@@ -1061,12 +1027,11 @@ describe('useTabs', () => {
     const horizontalTabProps = result.current.getTabProps('test-3')
 
     act(() => {
-      // @ts-expect-error The type for onFocus isn't correct
-      horizontalTabProps.onFocus?.()
+      horizontalTabProps.onFocus()
     })
 
     act(() => {
-      horizontalTabProps.onKeyDown?.(mockKeyboardEvent('ArrowLeft'))
+      horizontalTabProps.onKeyDown(mockKeyboardEvent('ArrowLeft'))
     })
 
     expect(result.current.focusedTab).toBe('test-2')
@@ -1078,13 +1043,13 @@ describe('useTabs', () => {
     expect(result.current.focusedTab).toBe('test-2')
 
     act(() => {
-      verticalTabProps.onKeyDown?.(mockKeyboardEvent('ArrowLeft'))
+      verticalTabProps.onKeyDown(mockKeyboardEvent('ArrowLeft'))
     })
 
     expect(result.current.focusedTab).toBe('test-2')
 
     act(() => {
-      verticalTabProps.onKeyDown?.(mockKeyboardEvent('ArrowUp'))
+      verticalTabProps.onKeyDown(mockKeyboardEvent('ArrowUp'))
     })
 
     expect(result.current.focusedTab).toBe('test-1')
@@ -1096,12 +1061,11 @@ describe('useTabs', () => {
     const verticalTabProps = result.current.getTabProps('test-3')
 
     act(() => {
-      // @ts-expect-error The type for onFocus isn't correct
-      verticalTabProps.onFocus?.()
+      verticalTabProps.onFocus()
     })
 
     act(() => {
-      verticalTabProps.onKeyDown?.(mockKeyboardEvent('ArrowUp'))
+      verticalTabProps.onKeyDown(mockKeyboardEvent('ArrowUp'))
     })
 
     expect(result.current.focusedTab).toBe('test-2')
@@ -1113,13 +1077,13 @@ describe('useTabs', () => {
     expect(result.current.focusedTab).toBe('test-2')
 
     act(() => {
-      horizontalTabProps.onKeyDown?.(mockKeyboardEvent('ArrowUp'))
+      horizontalTabProps.onKeyDown(mockKeyboardEvent('ArrowUp'))
     })
 
     expect(result.current.focusedTab).toBe('test-2')
 
     act(() => {
-      horizontalTabProps.onKeyDown?.(mockKeyboardEvent('ArrowLeft'))
+      horizontalTabProps.onKeyDown(mockKeyboardEvent('ArrowLeft'))
     })
 
     expect(result.current.focusedTab).toBe('test-1')
@@ -1128,11 +1092,11 @@ describe('useTabs', () => {
   it('updates the aria-orientation attribute when orientation changes', () => {
     const {result, rerender} = renderUseTabsHook({orientation: 'horizontal'})
 
-    expect(result.current.getTabListProps()['aria-orientation']).toBe('horizontal')
+    expect(result.current.getTabListProps({label: 'Test tabs'})['aria-orientation']).toBe('horizontal')
 
     rerender({useTabsOptions: {orientation: 'vertical'}})
 
-    expect(result.current.getTabListProps()['aria-orientation']).toBe('vertical')
+    expect(result.current.getTabListProps({label: 'Test tabs'})['aria-orientation']).toBe('vertical')
   })
 
   it('calls element.focus() when focusTab is called', () => {
@@ -1154,8 +1118,7 @@ describe('useTabs', () => {
     const tabProps = result.current.getTabProps('test-2')
 
     act(() => {
-      // @ts-expect-error The type for onFocus isn't correct
-      tabProps.onFocus?.()
+      tabProps.onFocus()
     })
 
     const tab3 = getAllByRole('tab')[2]
@@ -1163,7 +1126,7 @@ describe('useTabs', () => {
     const focusSpy = jest.spyOn(tab3, 'focus')
 
     act(() => {
-      tabProps.onKeyDown?.(mockKeyboardEvent('ArrowRight'))
+      tabProps.onKeyDown(mockKeyboardEvent('ArrowRight'))
     })
 
     expect(focusSpy).toHaveBeenCalledTimes(1)
@@ -1175,19 +1138,18 @@ describe('useTabs', () => {
     const tabProps = result.current.getTabProps('test-2')
 
     act(() => {
-      // @ts-expect-error The type for onFocus isn't correct
-      tabProps.onFocus?.()
+      tabProps.onFocus()
     })
 
     const leftArrowEvent = mockKeyboardEvent('ArrowLeft')
     const rightArrowEvent = mockKeyboardEvent('ArrowRight')
 
     act(() => {
-      tabProps.onKeyDown?.(leftArrowEvent)
+      tabProps.onKeyDown(leftArrowEvent)
     })
 
     act(() => {
-      tabProps.onKeyDown?.(rightArrowEvent)
+      tabProps.onKeyDown(rightArrowEvent)
     })
 
     expect(leftArrowEvent.preventDefault).toHaveBeenCalledTimes(1)
@@ -1200,19 +1162,18 @@ describe('useTabs', () => {
     const tabProps = result.current.getTabProps('test-2')
 
     act(() => {
-      // @ts-expect-error The type for onFocus isn't correct
-      tabProps.onFocus?.()
+      tabProps.onFocus()
     })
 
     const homeEvent = mockKeyboardEvent('Home')
     const endEvent = mockKeyboardEvent('End')
 
     act(() => {
-      tabProps.onKeyDown?.(homeEvent)
+      tabProps.onKeyDown(homeEvent)
     })
 
     act(() => {
-      tabProps.onKeyDown?.(endEvent)
+      tabProps.onKeyDown(endEvent)
     })
 
     expect(homeEvent.preventDefault).toHaveBeenCalledTimes(1)
@@ -1225,19 +1186,18 @@ describe('useTabs', () => {
     const tabProps = result.current.getTabProps('test-2')
 
     act(() => {
-      // @ts-expect-error The type for onFocus isn't correct
-      tabProps.onFocus?.()
+      tabProps.onFocus()
     })
 
     const spaceEvent = mockKeyboardEvent(' ')
     const enterEvent = mockKeyboardEvent('Enter')
 
     act(() => {
-      tabProps.onKeyDown?.(spaceEvent)
+      tabProps.onKeyDown(spaceEvent)
     })
 
     act(() => {
-      tabProps.onKeyDown?.(enterEvent)
+      tabProps.onKeyDown(enterEvent)
     })
 
     expect(spaceEvent.preventDefault).toHaveBeenCalledTimes(1)
@@ -1250,8 +1210,7 @@ describe('useTabs', () => {
     const tabProps = result.current.getTabProps('test-2')
 
     act(() => {
-      // @ts-expect-error The type for onFocus isn't correct
-      tabProps.onFocus?.()
+      tabProps.onFocus()
     })
 
     const tabEvent = mockKeyboardEvent('Tab')
@@ -1259,15 +1218,15 @@ describe('useTabs', () => {
     const letterEvent = mockKeyboardEvent('a')
 
     act(() => {
-      tabProps.onKeyDown?.(tabEvent)
+      tabProps.onKeyDown(tabEvent)
     })
 
     act(() => {
-      tabProps.onKeyDown?.(escapeEvent)
+      tabProps.onKeyDown(escapeEvent)
     })
 
     act(() => {
-      tabProps.onKeyDown?.(letterEvent)
+      tabProps.onKeyDown(letterEvent)
     })
 
     expect(tabEvent.preventDefault).not.toHaveBeenCalled()
