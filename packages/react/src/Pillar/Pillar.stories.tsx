@@ -1,11 +1,17 @@
 import React from 'react'
-import {Meta, StoryFn} from '@storybook/react'
-import {Pillar, PillarIconColors} from '.'
+import type {Meta, StoryObj} from '@storybook/react'
+import {Pillar, PillarIconColors, PillarProps} from '.'
 import {CopilotIcon} from '@primer/octicons-react'
 
-export default {
+type PlaygroundProps = PillarProps & {
+  heading: string
+  description: string
+  iconColor: (typeof PillarIconColors)[number]
+}
+
+const meta = {
   title: 'Components/Pillar',
-  component: Pillar,
+  component: Pillar as Meta<PlaygroundProps>['component'],
   args: {
     heading: 'Collaboration is the key to DevOps success',
     description: 'Everything you need to know about getting started with GitHub Actions.',
@@ -37,22 +43,26 @@ export default {
       },
     },
   },
-} as Meta<typeof Pillar>
+} satisfies Meta<PlaygroundProps>
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const Template: StoryFn<typeof Pillar> = (_, storyArgs: any) => (
-  <Pillar>
-    <Pillar.Icon icon={<CopilotIcon />} color={storyArgs.args.iconColor} />
-    <Pillar.Heading>{storyArgs.args.heading}</Pillar.Heading>
-    <Pillar.Description>{storyArgs.args.description}</Pillar.Description>
-  </Pillar>
-)
+export default meta
+type Story = StoryObj<PlaygroundProps>
 
-export const Default = () => (
-  <Pillar>
-    <Pillar.Heading>Collaboration is the key to DevOps success</Pillar.Heading>
-    <Pillar.Description>Everything you need to know about getting started with GitHub Actions.</Pillar.Description>
-  </Pillar>
-)
+export const Default: Story = {
+  render: () => (
+    <Pillar>
+      <Pillar.Heading>Collaboration is the key to DevOps success</Pillar.Heading>
+      <Pillar.Description>Everything you need to know about getting started with GitHub Actions.</Pillar.Description>
+    </Pillar>
+  ),
+}
 
-export const Playground = Template.bind({})
+export const Playground: Story = {
+  render: args => (
+    <Pillar>
+      <Pillar.Icon icon={<CopilotIcon />} color={args.iconColor} />
+      <Pillar.Heading>{args.heading}</Pillar.Heading>
+      <Pillar.Description>{args.description}</Pillar.Description>
+    </Pillar>
+  ),
+}

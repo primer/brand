@@ -1,5 +1,5 @@
 import React from 'react'
-import {StoryFn, Meta} from '@storybook/react'
+import type {Meta, StoryObj} from '@storybook/react'
 import {SunIcon, MoonIcon} from '@primer/octicons-react'
 import {ThemeProvider} from '.'
 import {useTheme} from '..'
@@ -24,45 +24,52 @@ function ControlsHint() {
   )
 }
 
-export default {
+const meta = {
   title: 'Components/ThemeProvider',
   component: ThemeProvider,
-} as Meta<typeof ThemeProvider>
+} satisfies Meta<typeof ThemeProvider>
 
-export const Default: StoryFn<typeof ThemeProvider> = args => {
-  return (
-    <ThemeProvider {...args}>
-      <>
-        <Container>
-          <ActiveColorMode />
-        </Container>
-        <ControlsHint />
-      </>
-    </ThemeProvider>
-  )
+export default meta
+type Story = StoryObj<typeof ThemeProvider>
+
+export const Default: Story = {
+  render: args => {
+    return (
+      <ThemeProvider {...args}>
+        <>
+          <Container>
+            <ActiveColorMode />
+          </Container>
+          <ControlsHint />
+        </>
+      </ThemeProvider>
+    )
+  },
 }
 
-export const Nested: StoryFn<typeof ThemeProvider> = args => (
-  <div className={styles['story-example']}>
-    <ThemeProvider {...args}>
-      <>
-        <Container>
-          <Text>Parent: &apos;default&apos;</Text> (<ActiveColorMode />)
-        </Container>
-        <ThemeProvider colorMode="dark">
-          <>
-            <Container>
-              <MoonIcon /> <Text>Child: always &apos;dark&apos;</Text>
-            </Container>
-            <ThemeProvider colorMode="light">
+export const Nested: Story = {
+  render: args => (
+    <div className={styles['story-example']}>
+      <ThemeProvider {...args}>
+        <>
+          <Container>
+            <Text>Parent: &apos;default&apos;</Text> (<ActiveColorMode />)
+          </Container>
+          <ThemeProvider colorMode="dark">
+            <>
               <Container>
-                <SunIcon /> <Text>Child: always &apos;light&apos;</Text>
+                <MoonIcon /> <Text>Child: always &apos;dark&apos;</Text>
               </Container>
-            </ThemeProvider>
-          </>
-        </ThemeProvider>
-        <ControlsHint />
-      </>
-    </ThemeProvider>
-  </div>
-)
+              <ThemeProvider colorMode="light">
+                <Container>
+                  <SunIcon /> <Text>Child: always &apos;light&apos;</Text>
+                </Container>
+              </ThemeProvider>
+            </>
+          </ThemeProvider>
+          <ControlsHint />
+        </>
+      </ThemeProvider>
+    </div>
+  ),
+}

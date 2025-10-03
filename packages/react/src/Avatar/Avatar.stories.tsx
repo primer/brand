@@ -1,10 +1,10 @@
 import React from 'react'
-import {StoryFn, Meta} from '@storybook/react'
+import type {Meta, StoryObj} from '@storybook/react'
 
 import {Avatar, AvatarSizes, AvatarShapes} from '.'
 import placeholderAvatar from '../fixtures/images/avatar-mona.png'
 
-export default {
+const meta = {
   title: 'Components/Avatar',
   component: Avatar,
   args: {
@@ -43,8 +43,15 @@ export default {
       },
     },
   },
-} as Meta<typeof Avatar>
+} satisfies Meta<typeof Avatar>
 
-export const Playground: StoryFn<typeof Avatar> = args => <Avatar {...args} />
+export default meta
+type Story = StoryObj<typeof Avatar>
 
-export const Default = () => <Avatar src={placeholderAvatar} alt="A random avatar picture" />
+export const Playground: Story = {
+  render: args => <Avatar {...args} />,
+}
+
+export const Default: Story = {
+  render: () => <Avatar src={placeholderAvatar} alt="A random avatar picture" />,
+}

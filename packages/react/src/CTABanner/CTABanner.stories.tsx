@@ -1,9 +1,9 @@
 import React from 'react'
-import {Meta, StoryFn} from '@storybook/react'
+import type {Meta, StoryObj} from '@storybook/react'
 import {CTABanner} from '.'
 import {Button} from '../Button'
 
-export default {
+const meta = {
   title: 'Components/CTABanner',
   component: CTABanner,
   args: {
@@ -44,20 +44,27 @@ export default {
       },
     },
   },
-} as Meta<typeof CTABanner>
+} satisfies Meta<typeof CTABanner>
 
-export const Playground: StoryFn<typeof CTABanner> = args => (
-  <CTABanner {...args}>
-    <CTABanner.Heading>Where the most ambitious teams build great things</CTABanner.Heading>
-    <CTABanner.Description>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis
-      felis nam pulvinar risus elementum.
-    </CTABanner.Description>
-    <CTABanner.ButtonGroup>
-      <Button>Primary Action</Button>
-      <Button>Secondary Action</Button>
-    </CTABanner.ButtonGroup>
-  </CTABanner>
-)
+export default meta
+type Story = StoryObj<typeof CTABanner>
 
-export const Default = Playground.bind({})
+export const Playground: Story = {
+  render: args => (
+    <CTABanner {...args}>
+      <CTABanner.Heading>Where the most ambitious teams build great things</CTABanner.Heading>
+      <CTABanner.Description>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis
+        felis nam pulvinar risus elementum.
+      </CTABanner.Description>
+      <CTABanner.ButtonGroup>
+        <Button>Primary Action</Button>
+        <Button>Secondary Action</Button>
+      </CTABanner.ButtonGroup>
+    </CTABanner>
+  ),
+}
+
+export const Default: Story = {
+  ...Playground,
+}

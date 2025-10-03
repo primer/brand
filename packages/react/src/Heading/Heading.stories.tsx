@@ -1,5 +1,5 @@
 import React from 'react'
-import {Meta, StoryFn} from '@storybook/react'
+import type {Meta, StoryObj} from '@storybook/react'
 import {Stack, Grid, Text, Box} from '../'
 import {
   Heading,
@@ -13,12 +13,13 @@ import {
 
 import styles from './Heading.stories.module.css'
 
-export default {
+const meta = {
   title: 'Components/Heading',
   component: Heading,
-} as Meta<typeof Heading>
+} satisfies Meta<typeof Heading>
 
-const Template: StoryFn<typeof Heading> = args => <Heading {...args} />
+export default meta
+type Story = StoryObj<typeof Heading>
 
 const tagMap = {
   display: 'h1',
@@ -32,142 +33,161 @@ const tagMap = {
   'subhead-medium': 'h6',
 }
 
-export const Default = Template.bind({})
-Default.args = {
-  children: 'Heading',
-  as: 'h1',
+export const Default: Story = {
+  render: args => <Heading {...args} />,
+  args: {
+    children: 'Heading',
+    as: 'h1',
+  },
 }
 
-export const Playground = Template.bind({})
-Playground.argTypes = {
-  children: {
-    control: {
-      type: 'text',
+export const Playground: Story = {
+  render: args => <Heading {...args} />,
+  argTypes: {
+    children: {
+      control: {
+        type: 'text',
+      },
+    },
+    size: {
+      control: {
+        type: 'radio',
+      },
+      options: HeadingSizes,
+    },
+    weight: {
+      control: {
+        type: 'radio',
+      },
+      options: HeadingWeights,
+    },
+    stretch: {
+      control: {
+        type: 'radio',
+      },
+      options: HeadingStretch,
+    },
+    letterSpacing: {
+      control: {
+        type: 'radio',
+      },
+      options: HeadingLetterSpacing,
+    },
+    font: {
+      control: {
+        type: 'radio',
+      },
+      options: HeadingFontVariants,
     },
   },
-  size: {
-    control: {
-      type: 'radio',
-    },
-    options: HeadingSizes,
+  args: {
+    children: 'Heading',
   },
-  weight: {
-    control: {
-      type: 'radio',
-    },
-    options: HeadingWeights,
-  },
-  stretch: {
-    control: {
-      type: 'radio',
-    },
-    options: HeadingStretch,
-  },
-  letterSpacing: {
-    control: {
-      type: 'radio',
-    },
-    options: HeadingLetterSpacing,
-  },
-  font: {
-    control: {
-      type: 'radio',
-    },
-    options: HeadingFontVariants,
-  },
-}
-Playground.args = {
-  children: 'Heading',
 }
 
-export const Scale: StoryFn<typeof Heading> = () => {
-  return (
+export const Scale: Story = {
+  render: () => {
+    return (
+      <>
+        {HeadingSizes.map(size => (
+          <Heading key={size} size={size} as={tagMap[size] as (typeof HeadingTags)[number]}>
+            Heading ({size})
+          </Heading>
+        ))}
+      </>
+    )
+  },
+  name: 'Scale (sizes)',
+}
+
+export const Levels: Story = {
+  render: () => {
+    return (
+      <>
+        {HeadingTags.map(tag => (
+          <Heading key={tag} as={tag}>
+            Heading ({tag})
+          </Heading>
+        ))}
+      </>
+    )
+  },
+}
+
+export const OverrideSize: Story = {
+  render: args => <Heading {...args} />,
+  args: {
+    children: 'This h2 will appear visually identical to a h4',
+    as: 'h2',
+    size: '4',
+  },
+}
+
+export const OverrideWeight: Story = {
+  render: () => (
     <>
-      {HeadingSizes.map(size => (
-        <Heading key={size} size={size} as={tagMap[size] as (typeof HeadingTags)[number]}>
-          Heading ({size})
+      {HeadingWeights.map(weight => (
+        <Heading key={weight} as="h3" weight={weight}>
+          {weight}
         </Heading>
       ))}
     </>
-  )
+  ),
 }
 
-Scale.storyName = 'Scale (sizes)'
+export const OverrideWeightResponsive: Story = {
+  render: () => (
+    <Heading
+      as="h1"
+      weight={{
+        narrow: 'extrabold',
+        regular: 'semibold',
+        wide: 'normal',
+      }}
+    >
+      Responsive heading weights
+    </Heading>
+  ),
+}
 
-export const Levels: StoryFn<typeof Heading> = () => {
-  return (
+export const OverrideStretch: Story = {
+  render: () => (
     <>
-      {HeadingTags.map(tag => (
-        <Heading key={tag} as={tag}>
-          Heading ({tag})
+      {HeadingStretch.map(stretch => (
+        <Heading key={stretch} as="h3" stretch={stretch}>
+          {stretch}
         </Heading>
       ))}
     </>
-  )
+  ),
 }
 
-export const OverrideSize = Template.bind({})
-OverrideSize.args = {
-  children: 'This h2 will appear visually identical to a h4',
-  as: 'h2',
-  size: '4',
+export const OverrideStretchResponsive: Story = {
+  render: () => (
+    <Heading
+      as="h1"
+      stretch={{
+        narrow: 'condensed',
+        regular: 'normal',
+        wide: 'expanded',
+      }}
+    >
+      Responsive heading stretch
+    </Heading>
+  ),
 }
 
-export const OverrideWeight = () => (
-  <>
-    {HeadingWeights.map(weight => (
-      <Heading key={weight} as="h3" weight={weight}>
-        {weight}
-      </Heading>
-    ))}
-  </>
-)
-
-export const OverrideWeightResponsive = () => (
-  <Heading
-    as="h1"
-    weight={{
-      narrow: 'extrabold',
-      regular: 'semibold',
-      wide: 'normal',
-    }}
-  >
-    Responsive heading weights
-  </Heading>
-)
-
-export const OverrideStretch = () => (
-  <>
-    {HeadingStretch.map(stretch => (
-      <Heading key={stretch} as="h3" stretch={stretch}>
-        {stretch}
-      </Heading>
-    ))}
-  </>
-)
-
-export const OverrideStretchResponsive = () => (
-  <Heading
-    as="h1"
-    stretch={{
-      narrow: 'condensed',
-      regular: 'normal',
-      wide: 'expanded',
-    }}
-  >
-    Responsive heading stretch
-  </Heading>
-)
-
-export const OverrideLetterSpacing = () => (
-  <>
-    {HeadingLetterSpacing.map(spacing => (
-      <Heading key={spacing} as="h3" letterSpacing={spacing}>
-        {spacing}
-      </Heading>
-    ))}
-  </>
-)
+export const OverrideLetterSpacing: Story = {
+  render: () => (
+    <>
+      {HeadingLetterSpacing.map(spacing => (
+        <Heading key={spacing} as="h3" letterSpacing={spacing}>
+          {spacing}
+        </Heading>
+      ))}
+    </>
+  ),
+}
 
 const TypeFixture = ({font}: {font: (typeof HeadingFontVariants)[number]}) => (
   <Stack direction="vertical" padding="none" gap="spacious">
@@ -239,10 +259,14 @@ const TypeFixture = ({font}: {font: (typeof HeadingFontVariants)[number]}) => (
   </Stack>
 )
 
-export const MonaSans: StoryFn<typeof Heading> = () => {
-  return <TypeFixture font="mona-sans" />
+export const MonaSans: Story = {
+  render: () => {
+    return <TypeFixture font="mona-sans" />
+  },
 }
 
-export const HubotSans: StoryFn<typeof Heading> = () => {
-  return <TypeFixture font="hubot-sans" />
+export const HubotSans: Story = {
+  render: () => {
+    return <TypeFixture font="hubot-sans" />
+  },
 }

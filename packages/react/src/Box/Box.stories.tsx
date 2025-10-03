@@ -1,18 +1,21 @@
 import React from 'react'
 
-import {Meta, StoryFn} from '@storybook/react'
+import type {Meta, StoryObj} from '@storybook/react'
 import {Box} from './Box'
 import {Text} from '../'
 
-export default {
+const meta = {
   title: 'Components/Box',
   component: Box,
-} as Meta<typeof Box>
+} satisfies Meta<typeof Box>
 
-const Template: StoryFn<typeof Box> = args => (
-  <Box {...args}>
-    <Text>Default Box</Text>
-  </Box>
-)
+export default meta
+type Story = StoryObj<typeof Box>
 
-export const Default = Template.bind({})
+export const Default: Story = {
+  render: args => (
+    <Box {...args}>
+      <Text>Default Box</Text>
+    </Box>
+  ),
+}

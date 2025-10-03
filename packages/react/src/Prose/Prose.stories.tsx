@@ -1,10 +1,10 @@
 import React from 'react'
-import {Meta, StoryFn} from '@storybook/react'
+import type {Meta, StoryObj} from '@storybook/react'
 import {Prose} from './Prose'
 import placeholderImage from '../fixtures/images/placeholder.png'
 import posterImage from '../fixtures/images/example-poster.png'
 
-const meta: Meta<typeof Prose> = {
+const meta = {
   title: 'Components/Prose',
   component: Prose,
   args: {
@@ -18,9 +18,10 @@ const meta: Meta<typeof Prose> = {
       },
     },
   },
-}
+} satisfies Meta<typeof Prose>
 
 export default meta
+type Story = StoryObj<typeof Prose>
 
 const ExampleHtmlMarkup = `
 <h2>Heading level 2</h2>
@@ -81,7 +82,11 @@ const ExampleHtmlMarkup = `
     <p>Nunc velit odio, posuere eu felis eget, consectetur fermentum nisi. Aenean tempor odio id ornare ultrices. Quisque blandit condimentum tellus, semper efficitur sapien dapibus nec. </p>
     `
 
-export const Playground: StoryFn<typeof Prose> = args => <Prose {...args} html={ExampleHtmlMarkup} />
+export const Playground: Story = {
+  render: args => <Prose {...args} html={ExampleHtmlMarkup} />,
+}
 
-export const Default = Playground.bind({})
-Default.args = {}
+export const Default: Story = {
+  ...Playground,
+  args: {},
+}

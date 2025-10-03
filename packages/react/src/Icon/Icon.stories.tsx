@@ -1,10 +1,10 @@
 import React from 'react'
-import {Meta, StoryFn} from '@storybook/react'
+import type {Meta, StoryObj} from '@storybook/react'
 import {Icon, iconColors, iconSizes} from '.'
 // eslint-disable-next-line import/no-namespace
 import * as octicons from '@primer/octicons-react'
 
-const meta: Meta<typeof Icon> = {
+const meta = {
   title: 'Components/Icon',
   component: Icon,
   args: {
@@ -47,7 +47,11 @@ const meta: Meta<typeof Icon> = {
       options: [...iconSizes],
     },
   },
-}
-export default meta
+} satisfies Meta<typeof Icon>
 
-export const Playground: StoryFn<typeof Icon> = props => <Icon {...props} />
+export default meta
+type Story = StoryObj<typeof Icon>
+
+export const Playground: Story = {
+  render: props => <Icon {...props} />,
+}

@@ -1,9 +1,9 @@
-import {Meta, StoryFn} from '@storybook/react'
+import type {Meta, StoryObj} from '@storybook/react'
 import React from 'react'
 import {ChevronDownIcon, SearchIcon} from '@primer/octicons-react'
 import {Button, ButtonVariants, ButtonSizes, defaultButtonVariant, defaultButtonSize} from '.'
 
-export default {
+const meta = {
   title: 'Components/Button',
   component: Button,
   args: {
@@ -83,15 +83,21 @@ export default {
       description: 'Octicon',
     },
   },
-} as Meta<typeof Button>
+} satisfies Meta<typeof Button>
 
-const Template: StoryFn<typeof Button> = args => (
-  <Button
-    {...args}
-    leadingVisual={args.leadingVisual ? <SearchIcon /> : undefined}
-    trailingVisual={args.trailingVisual ? <ChevronDownIcon /> : undefined}
-  />
-)
+export default meta
+type Story = StoryObj<typeof Button>
 
-export const Playground = Template.bind({})
-export const Default = () => <Button>Default</Button>
+export const Playground: Story = {
+  render: args => (
+    <Button
+      {...args}
+      leadingVisual={args.leadingVisual ? <SearchIcon /> : undefined}
+      trailingVisual={args.trailingVisual ? <ChevronDownIcon /> : undefined}
+    />
+  ),
+}
+
+export const Default: Story = {
+  render: () => <Button>Default</Button>,
+}

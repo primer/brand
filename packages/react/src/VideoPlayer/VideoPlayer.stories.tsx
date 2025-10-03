@@ -1,9 +1,9 @@
-import {Meta, StoryFn} from '@storybook/react'
+import type {Meta, StoryObj} from '@storybook/react'
 import React from 'react'
 import posterImage from '../fixtures/images/example-poster.png'
 import {VideoPlayer} from '.'
 
-const meta: Meta<typeof VideoPlayer> = {
+const meta = {
   title: 'Components/VideoPlayer',
   component: VideoPlayer,
   args: {
@@ -52,15 +52,20 @@ const meta: Meta<typeof VideoPlayer> = {
       type: 'boolean',
     },
   },
-}
+} satisfies Meta<typeof VideoPlayer>
 
 export default meta
+type Story = StoryObj<typeof VideoPlayer>
 
-export const Playground: StoryFn<typeof VideoPlayer> = args => (
-  <VideoPlayer {...args}>
-    <VideoPlayer.Source src="./example.mp4" type="video/mp4" />
-    <VideoPlayer.Track src="./example.vtt" default />
-  </VideoPlayer>
-)
+export const Playground: Story = {
+  render: args => (
+    <VideoPlayer {...args}>
+      <VideoPlayer.Source src="./example.mp4" type="video/mp4" />
+      <VideoPlayer.Track src="./example.vtt" default />
+    </VideoPlayer>
+  ),
+}
 
-export const Default = Playground.bind({})
+export const Default: Story = {
+  ...Playground,
+}
