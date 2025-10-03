@@ -50,7 +50,6 @@ import startShapeDark from '../../../fixtures/images/testimonial-bg-1-dark.png'
 import endShapeDark from '../../../fixtures/images/testimonial-bg-2-dark.png'
 
 import styles from './FlexSection.module.css'
-import ForresterResearch from '../fixtures/images/logos/ForresterResearch'
 
 type FlexSectionProps = {
   component
@@ -499,7 +498,11 @@ export function FlexSection({component, className}: FlexSectionProps) {
                   {...(breakoutBanner.fields.showLogo && {
                     leadingVisual: (
                       <Box className={styles.logoWrapper}>
-                        <ForresterResearch />
+                        <img
+                          src="https://github.githubassets.com/images/modules/logos_page/GitHub-Logo.png"
+                          alt="GitHub logo"
+                          height={32}
+                        />
                       </Box>
                     ),
                   })}
