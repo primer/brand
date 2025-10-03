@@ -1,5 +1,6 @@
 import React, {Suspense} from 'react'
 import {I18nextProvider} from 'react-i18next'
+import {INITIAL_VIEWPORTS} from 'storybook/viewport'
 import {ThemeProvider} from '../../../packages/react/src'
 import i18n from './i18n'
 import styles from './preview.module.css'
@@ -110,14 +111,14 @@ const ThemeProviderDecorator = (Story, context) => {
 export const decorators = [ThemeProviderDecorator, withI18next]
 
 export const parameters = {
+  viewport: {
+    options: INITIAL_VIEWPORTS,
+  },
   controls: {
     matchers: {
       color: /(background|color)$/i,
       date: /Date$/,
     },
-  },
-  viewport: {
-    defaultViewport: 'reset',
   },
   options: {
     storySort: (a, b) => {

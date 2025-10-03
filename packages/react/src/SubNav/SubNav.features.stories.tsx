@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react'
 import type {Meta, StoryFn} from '@storybook/react'
-import {INITIAL_VIEWPORTS} from '@storybook/addon-viewport'
+import {INITIAL_VIEWPORTS} from 'storybook/viewport'
 import {linkTo} from '@storybook/addon-links'
 
 import {SubNav} from './SubNav'
@@ -11,7 +11,7 @@ import {Heading} from '../Heading'
 import {Text} from '../Text'
 import {RedlineBackground} from '../component-helpers'
 import {Stack} from '../Stack'
-import {expect, userEvent, within} from '@storybook/test'
+import {expect, userEvent, within} from 'storybook/test'
 import {Button} from '../Button'
 import {waitFor} from '@testing-library/dom'
 

@@ -1,14 +1,17 @@
 import React from 'react'
-import {StoryFn, Meta} from '@storybook/react'
-import {INITIAL_VIEWPORTS} from '@storybook/addon-viewport'
+import type {Meta, StoryObj} from '@storybook/react'
 
 import {RiverStoryScroll, RiverStoryScrollProps} from '.'
-import {Heading, Text, Link, River, Box, Timeline, VideoPlayer} from '../..'
+import {Heading, Text, Link, River, Box, Timeline} from '../..'
 import {Container} from '../../component-helpers'
 
 import placeholder1 from '../../fixtures/images/placeholder-1.png'
 import placeholder2 from '../../fixtures/images/placeholder-2.png'
 import placeholder3 from '../../fixtures/images/placeholder-3.png'
+
+type ComponentAndStoryProps = RiverStoryScrollProps & {
+  withTrailingComponent: boolean
+}
 
 export default {
   title: 'Components/RiverStoryScroll/features',
@@ -32,18 +35,11 @@ export default {
       </Container>
     ),
   ],
-  parameters: {
-    viewport: {
-      viewports: INITIAL_VIEWPORTS,
-    },
-  },
-} as Meta<typeof RiverStoryScroll>
+} satisfies Meta<ComponentAndStoryProps>
 
-type TemplateProps = {
-  withTrailingComponent: boolean
-} & RiverStoryScrollProps
+type Story = StoryObj<ComponentAndStoryProps>
 
-const Template: StoryFn<TemplateProps> = args => {
+const TemplateComponent = (args: ComponentAndStoryProps) => {
   return (
     <RiverStoryScroll {...args} align={args.align} imageTextRatio={args.imageTextRatio}>
       <River>
@@ -95,9 +91,11 @@ const Template: StoryFn<TemplateProps> = args => {
   )
 }
 
-export const WithTimeline = Template.bind({})
-WithTimeline.args = {
-  withTrailingComponent: true,
+export const WithTimeline: Story = {
+  args: {
+    withTrailingComponent: true,
+  },
+  render: TemplateComponent,
 }
 
 function TimelineExample() {
@@ -110,30 +108,34 @@ function TimelineExample() {
   )
 }
 
-export const WithTimelineNarrow = () => <WithTimeline withTrailingComponent />
-
-WithTimelineNarrow.parameters = {
-  viewport: {
-    defaultViewport: 'iphonexr',
+export const WithTimelineNarrow: Story = {
+  globals: {
+    viewport: {value: 'iphonexr'},
   },
-}
-
-export const Disabled = Template.bind({})
-Disabled.args = {
-  disabled: true,
-}
-
-export const DisabledNarrow = args => <Disabled withTrailingComponent {...args} />
-DisabledNarrow.args = {
-  disabled: true,
-}
-DisabledNarrow.parameters = {
-  viewport: {
-    defaultViewport: 'iphonexr',
+  args: {
+    withTrailingComponent: true,
   },
+  render: TemplateComponent,
 }
 
-export const EnterpriseExample = () => (
+export const Disabled: Story = {
+  args: {
+    disabled: true,
+  },
+  render: TemplateComponent,
+}
+
+export const DisabledNarrow: Story = {
+  args: {
+    disabled: true,
+  },
+  globals: {
+    viewport: {value: 'iphonexr'},
+  },
+  render: TemplateComponent,
+}
+
+const EnterpriseTemplate = () => (
   <RiverStoryScroll>
     <River>
       <River.Visual>
@@ -171,7 +173,7 @@ export const EnterpriseExample = () => (
         )}
       >
         <Heading size="5" as="h3" weight="medium">
-          Leverage the industry’s most flexible secure development platform.
+          Leverage the industry&apos;s most flexible secure development platform.
         </Heading>
       </River.Content>
     </River>
@@ -191,25 +193,25 @@ export const EnterpriseExample = () => (
   </RiverStoryScroll>
 )
 
-export const EnterpriseExampleNarrow = () => <EnterpriseExample />
-
-EnterpriseExampleNarrow.parameters = {
-  viewport: {
-    defaultViewport: 'iphonexr',
-  },
+export const EnterpriseExample: Story = {
+  render: EnterpriseTemplate,
 }
 
-export const Video = args => (
+export const EnterpriseExampleNarrow: Story = {
+  globals: {
+    viewport: {value: 'iphonexr'},
+  },
+  render: EnterpriseTemplate,
+}
+
+const VideoExample = (args: ComponentAndStoryProps) => (
   <RiverStoryScroll {...args} align={args.align} imageTextRatio={args.imageTextRatio}>
     <River>
       <River.Visual>
-        <VideoPlayer title="Example">
-          <VideoPlayer.Source
-            src="https://githubnext.com/assets/projects/copilot-workspace/features-river-1.mp4"
-            type="video/mp4; codecs=avc1.4d002a"
-          />
-          <VideoPlayer.Track src="./example.vtt" default />
-        </VideoPlayer>
+        <video autoPlay muted loop>
+          <source src="./videos/1.mp4" type="video/mp4" />
+          <track kind="captions" />
+        </video>
       </River.Visual>
       <River.Content trailingComponent={args.withTrailingComponent ? TimelineExample : undefined}>
         <Heading>Heading 1</Heading>
@@ -222,13 +224,10 @@ export const Video = args => (
     </River>
     <River>
       <River.Visual>
-        <VideoPlayer title="Example">
-          <VideoPlayer.Source
-            src="https://githubnext.com/assets/projects/copilot-workspace/features-river-2.mp4"
-            type="video/mp4; codecs=avc1.4d002a"
-          />
-          <VideoPlayer.Track src="./example.vtt" default />
-        </VideoPlayer>
+        <video autoPlay muted loop>
+          <source src="./videos/2.mp4" type="video/mp4" />
+          <track kind="captions" />
+        </video>
       </River.Visual>
       <River.Content trailingComponent={args.withTrailingComponent ? TimelineExample : undefined}>
         <Heading>Heading 2</Heading>
@@ -241,13 +240,10 @@ export const Video = args => (
     </River>
     <River>
       <River.Visual>
-        <VideoPlayer title="Example">
-          <VideoPlayer.Source
-            src="https://githubnext.com/assets/projects/copilot-workspace/features-river-3.mp4"
-            type="video/mp4; codecs=avc1.4d002a"
-          />
-          <VideoPlayer.Track src="./example.vtt" default />
-        </VideoPlayer>
+        <video autoPlay muted loop>
+          <source src="./videos/3.mp4" type="video/mp4" />
+          <track kind="captions" />
+        </video>
       </River.Visual>
       <River.Content trailingComponent={args.withTrailingComponent ? TimelineExample : undefined}>
         <Heading>Heading 3 </Heading>
@@ -260,13 +256,10 @@ export const Video = args => (
     </River>
     <River>
       <River.Visual>
-        <VideoPlayer title="Example">
-          <VideoPlayer.Source
-            src="https://githubnext.com/assets/projects/copilot-workspace/features-river-4.mp4"
-            type="video/mp4; codecs=avc1.4d002a"
-          />
-          <VideoPlayer.Track src="./example.vtt" default />
-        </VideoPlayer>
+        <video autoPlay muted loop>
+          <source src="./videos/4.mp4" type="video/mp4" />
+          <track kind="captions" />
+        </video>
       </River.Visual>
       <River.Content trailingComponent={args.withTrailingComponent ? TimelineExample : undefined}>
         <Heading>Heading 4</Heading>
@@ -280,10 +273,13 @@ export const Video = args => (
   </RiverStoryScroll>
 )
 
-export const VideoNarrow = () => <Video />
+export const Video: Story = {
+  render: VideoExample,
+}
 
-VideoNarrow.parameters = {
-  viewport: {
-    defaultViewport: 'iphonexr',
+export const VideoNarrow: Story = {
+  globals: {
+    viewport: {value: 'iphonexr'},
   },
+  render: VideoExample,
 }

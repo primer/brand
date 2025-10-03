@@ -114,9 +114,16 @@ module.exports = {
     },
     // rules which apply only to TSX storybook stories
     {
-      files: ['**/*.stories.{ts,tsx}'],
+      files: ['**/*.stories.{ts,tsx}', '**/storybook/**/*.{js,ts}'],
       rules: {
         'i18n-text/no-en': 0,
+        // TODO: Review removal when ESLint v9 is complete. Storybook v9 package exports not resolving on v8.
+        'import/no-unresolved': [
+          'error',
+          {
+            ignore: ['storybook/test', 'storybook/theming', 'storybook/viewport', 'storybook/actions'],
+          },
+        ],
       },
     },
     // rules which apply only to TS scripts
