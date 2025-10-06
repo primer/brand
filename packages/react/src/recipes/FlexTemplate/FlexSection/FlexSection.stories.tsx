@@ -1,6 +1,6 @@
 import React from 'react'
 import {INITIAL_VIEWPORTS} from '@storybook/addon-viewport'
-import {Meta, StoryFn} from '@storybook/react'
+import {Meta, StoryObj} from '@storybook/react'
 
 import {FlexSection} from './FlexSection'
 import {LabelColors, TestimonialQuoteMarkColors} from '../../..'
@@ -760,7 +760,7 @@ const meta: Meta<FlexSectionStoryArgs> = {
 
 export default meta
 
-// @ts-expect-error As this is purely a demo component the types are not exact
-export const FlexSectionDefault: StoryFn<typeof FlexSection> = args => <FlexSection component={createMockData(args)} />
-
-FlexSectionDefault.storyName = 'Default'
+export const Default: StoryObj<typeof FlexSection> = {
+  // @ts-expect-error As this is purely a demo component the types are not exact
+  render: args => <FlexSection component={createMockData(args)} />,
+}
