@@ -228,6 +228,7 @@ const createMockData = (args: FlexSectionStoryArgs) => ({
 
 const meta: Meta<FlexSectionStoryArgs> = {
   title: 'Recipes/FlexTemplate/FlexSection',
+  // @ts-expect-error As this is purely a demo component the types are not exact
   component: FlexSection,
   parameters: {
     viewport: {
