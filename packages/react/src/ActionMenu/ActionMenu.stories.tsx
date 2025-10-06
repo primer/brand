@@ -1,14 +1,17 @@
-import {Meta, StoryFn} from '@storybook/react'
+import type {Meta, StoryObj} from '@storybook/react'
 import React from 'react'
 import {ActionMenu} from './ActionMenu'
 import {useTranslation} from 'react-i18next'
 
-export default {
+const meta = {
   title: 'Components/ActionMenu',
   component: ActionMenu,
-} as Meta<typeof ActionMenu>
+} satisfies Meta<typeof ActionMenu>
 
-const Template: StoryFn<typeof ActionMenu> = args => {
+export default meta
+type Story = StoryObj<typeof ActionMenu>
+
+const DefaultStory = args => {
   const {t} = useTranslation('ActionMenu')
   return (
     <ActionMenu {...args} onSelect={newValue => alert(newValue)}>
@@ -24,4 +27,6 @@ const Template: StoryFn<typeof ActionMenu> = args => {
   )
 }
 
-export const Default = Template.bind({})
+export const Default: Story = {
+  render: DefaultStory,
+}

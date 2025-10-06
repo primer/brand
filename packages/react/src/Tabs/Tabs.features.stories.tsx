@@ -8,7 +8,7 @@ export type MetaProps = TabsProps
 
 const meta: Meta<MetaProps> = {
   title: 'Components/Tabs/Features',
-  component: Tabs,
+  component: Tabs as Meta<TabsProps>['component'],
 }
 
 export default meta

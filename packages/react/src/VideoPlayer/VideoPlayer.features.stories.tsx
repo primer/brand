@@ -8,7 +8,7 @@ import {Stack} from '../Stack'
 import {Button} from '../Button'
 import {useVideo} from './hooks'
 import styles from './VideoPlayer.stories.module.css'
-import {expect, userEvent, waitFor, within} from '@storybook/test'
+import {expect, userEvent, waitFor, within} from 'storybook/test'
 
 export default {
   title: 'Components/VideoPlayer/Features',

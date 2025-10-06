@@ -1,6 +1,6 @@
 import React from 'react'
 
-import type {Meta, StoryFn} from '@storybook/react'
+import type {Meta, StoryObj} from '@storybook/react'
 import {LogoSuite, type LogoSuiteHeadingProps, type LogoSuiteLogoBarProps, type LogoSuiteProps} from './LogoSuite'
 import {logos} from './LogoSuite.fixtures'
 
@@ -14,7 +14,7 @@ type StoryProps = Required<
   description: string
 }
 
-const meta: Meta<StoryProps> = {
+const meta = {
   title: 'Components/LogoSuite',
   component: LogoSuite,
   args: {
@@ -103,26 +103,19 @@ const meta: Meta<StoryProps> = {
       },
     },
   },
-}
+} satisfies Meta<StoryProps>
 
 export default meta
+type Story = StoryObj<StoryProps>
 
-export const Playground: StoryFn<StoryProps> = ({
-  hasDivider,
-  logoCount,
-  align,
-  visuallyHidden,
-  marquee,
-  marqueeSpeed,
-  variant,
-  heading,
-  description,
-}) => (
-  <LogoSuite align={align} hasDivider={hasDivider}>
-    <LogoSuite.Heading visuallyHidden={visuallyHidden}>{heading}</LogoSuite.Heading>
-    <LogoSuite.Description>{description}</LogoSuite.Description>
-    <LogoSuite.Logobar variant={variant} marquee={marquee} marqueeSpeed={marqueeSpeed}>
-      {logos.slice(0, logoCount)}
-    </LogoSuite.Logobar>
-  </LogoSuite>
-)
+export const Playground: Story = {
+  render: ({hasDivider, logoCount, align, visuallyHidden, marquee, marqueeSpeed, variant, heading, description}) => (
+    <LogoSuite align={align} hasDivider={hasDivider}>
+      <LogoSuite.Heading visuallyHidden={visuallyHidden}>{heading}</LogoSuite.Heading>
+      <LogoSuite.Description>{description}</LogoSuite.Description>
+      <LogoSuite.Logobar variant={variant} marquee={marquee} marqueeSpeed={marqueeSpeed}>
+        {logos.slice(0, logoCount)}
+      </LogoSuite.Logobar>
+    </LogoSuite>
+  ),
+}

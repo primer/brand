@@ -1,8 +1,8 @@
-import {Meta, StoryFn} from '@storybook/react'
+import type {Meta, StoryObj} from '@storybook/react'
 import React from 'react'
 import {MonaSans} from '.'
 
-export default {
+const meta = {
   title: 'Misc/MonaSans',
   component: MonaSans,
   parameters: {
@@ -19,11 +19,14 @@ export default {
     width: {control: {type: 'range', min: 75, max: 125, step: 5}},
     italic: {control: {type: 'range', min: 1, max: 10, step: 1}},
   },
-} as Meta<typeof MonaSans>
+} satisfies Meta<typeof MonaSans>
 
-const Template: StoryFn<typeof MonaSans> = args => <MonaSans {...args} />
+export default meta
+type Story = StoryObj<typeof MonaSans>
 
-export const Playground = Template.bind({})
-Playground.args = {
-  children: 'Mona Sans',
+export const Playground: Story = {
+  render: args => <MonaSans {...args} />,
+  args: {
+    children: 'Mona Sans',
+  },
 }

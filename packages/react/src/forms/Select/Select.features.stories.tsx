@@ -1,6 +1,6 @@
 import React from 'react'
 import {Meta, StoryFn} from '@storybook/react'
-import {userEvent, waitFor} from '@storybook/test'
+import {userEvent, waitFor} from 'storybook/test'
 
 import {Select} from '.'
 
