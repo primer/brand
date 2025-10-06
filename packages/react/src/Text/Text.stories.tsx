@@ -1,125 +1,141 @@
-import {Meta, StoryFn} from '@storybook/react'
+import type {Meta, StoryObj} from '@storybook/react'
 import React from 'react'
 import {Text, TextFontVariants, TextSizes, TextWeights} from '.'
 import {Stack, Box, Grid, ThemeProvider} from '../'
 
 import styles from './Text.stories.module.css'
 
-export default {
+const meta = {
   title: 'Components/Text',
   component: Text,
-} as Meta<typeof Text>
+} satisfies Meta<typeof Text>
 
-const Template: StoryFn<typeof Text> = args => <Text {...args} />
+export default meta
+type Story = StoryObj<typeof Text>
 
-export const Default = Template.bind({})
-Default.args = {
-  children: 'Text',
-  size: '200',
-}
-
-export const Playground = Template.bind({})
-Playground.argTypes = {
-  children: {
-    control: {
-      type: 'text',
-    },
-  },
-  size: {
-    control: {
-      type: 'radio',
-    },
-    options: TextSizes,
-  },
-  weight: {
-    control: {
-      type: 'radio',
-    },
-    options: TextWeights,
+export const Default: Story = {
+  render: args => <Text {...args} />,
+  args: {
+    children: 'Text',
+    size: '200',
   },
 }
-Playground.args = {
-  children: 'Text',
-  size: '200',
+
+export const Playground: Story = {
+  render: args => <Text {...args} />,
+  argTypes: {
+    children: {
+      control: {
+        type: 'text',
+      },
+    },
+    size: {
+      control: {
+        type: 'radio',
+      },
+      options: TextSizes,
+    },
+    weight: {
+      control: {
+        type: 'radio',
+      },
+      options: TextWeights,
+    },
+  },
+  args: {
+    children: 'Text',
+    size: '200',
+  },
 }
 
-export const AntiAliasingOff = () => (
-  <ThemeProvider colorMode="dark">
-    <Box padding="spacious" backgroundColor="default">
-      <Text as="p" size="200" weight="light">
-        Anti aliasing is disabled for light text at 16px or smaller on a dark backgrounds.
-      </Text>
-      <Text as="p" size="200">
-        Anti aliasing is enabled for medium text at 16px or larger on a dark backgrounds.
-      </Text>
-    </Box>
-  </ThemeProvider>
-)
-AntiAliasingOff.args = {
-  size: '200',
-  weight: 'light',
+export const AntiAliasingOff: Story = {
+  render: () => (
+    <ThemeProvider colorMode="dark">
+      <Box padding="spacious" backgroundColor="default">
+        <Text as="p" size="200" weight="light">
+          Anti aliasing is disabled for light text at 16px or smaller on a dark backgrounds.
+        </Text>
+        <Text as="p" size="200">
+          Anti aliasing is enabled for medium text at 16px or larger on a dark backgrounds.
+        </Text>
+      </Box>
+    </ThemeProvider>
+  ),
+  args: {
+    size: '200',
+    weight: 'light',
+  },
 }
 
-export const Scale: StoryFn<typeof Text> = args => (
-  <>
-    {TextSizes.map(size => (
-      <Text key={size} size={size} {...args}>
-        Text {size}
-      </Text>
-    ))}
-  </>
-)
-
-Scale.args = {
-  as: 'div',
+export const Scale: Story = {
+  render: args => (
+    <>
+      {TextSizes.map(size => (
+        <Text key={size} size={size} {...args}>
+          Text {size}
+        </Text>
+      ))}
+    </>
+  ),
+  args: {
+    as: 'div',
+  },
 }
 
-export const OverrideWeight = () => (
-  <>
-    {TextWeights.map(weight => (
-      <Text key={weight} as="p" weight={weight} size="500">
-        {weight}
+export const OverrideWeight: Story = {
+  render: () => (
+    <>
+      {TextWeights.map(weight => (
+        <Text key={weight} as="p" weight={weight} size="500">
+          {weight}
+        </Text>
+      ))}
+    </>
+  ),
+}
+
+export const OverrideWeightResponsive: Story = {
+  render: () => (
+    <Text
+      as="p"
+      weight={{
+        narrow: 'extrabold',
+        regular: 'semibold',
+        wide: 'normal',
+      }}
+    >
+      Responsive text weights
+    </Text>
+  ),
+}
+
+export const Composition: Story = {
+  render: () => (
+    <Text as="p" size="500" variant="muted" weight="medium">
+      <Text as="strong" size="500" variant="default">
+        Registration for our global enterprise event
+      </Text>{' '}
+      on improving collaboration, security practices, and developer productivity is right around the corner.
+    </Text>
+  ),
+}
+
+export const Alignment: Story = {
+  render: () => (
+    <Stack direction="vertical">
+      <Text as="p">Default</Text>
+      <Text as="p" align="start">
+        Start
       </Text>
-    ))}
-  </>
-)
-
-export const OverrideWeightResponsive = () => (
-  <Text
-    as="p"
-    weight={{
-      narrow: 'extrabold',
-      regular: 'semibold',
-      wide: 'normal',
-    }}
-  >
-    Responsive text weights
-  </Text>
-)
-
-export const Composition = () => (
-  <Text as="p" size="500" variant="muted" weight="medium">
-    <Text as="strong" size="500" variant="default">
-      Registration for our global enterprise event
-    </Text>{' '}
-    on improving collaboration, security practices, and developer productivity is right around the corner.
-  </Text>
-)
-
-export const Alignment = () => (
-  <Stack direction="vertical">
-    <Text as="p">Default</Text>
-    <Text as="p" align="start">
-      Start
-    </Text>
-    <Text as="p" align="center">
-      Center
-    </Text>
-    <Text as="p" align="end">
-      End
-    </Text>
-  </Stack>
-)
+      <Text as="p" align="center">
+        Center
+      </Text>
+      <Text as="p" align="end">
+        End
+      </Text>
+    </Stack>
+  ),
+}
 
 const TypeFixture = ({font}: {font: (typeof TextFontVariants)[number]}) => (
   <Stack direction="vertical" gap={{wide: 48}}>
@@ -235,10 +251,14 @@ const TypeFixture = ({font}: {font: (typeof TextFontVariants)[number]}) => (
   </Stack>
 )
 
-export const MonaSans: StoryFn<typeof Text> = () => {
-  return <TypeFixture font="mona-sans" />
+export const MonaSans: Story = {
+  render: () => {
+    return <TypeFixture font="mona-sans" />
+  },
 }
 
-export const HubotSans: StoryFn<typeof Text> = () => {
-  return <TypeFixture font="hubot-sans" />
+export const HubotSans: Story = {
+  render: () => {
+    return <TypeFixture font="hubot-sans" />
+  },
 }

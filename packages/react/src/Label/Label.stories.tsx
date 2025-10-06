@@ -1,8 +1,8 @@
-import {Meta, StoryFn} from '@storybook/react'
+import type {Meta, StoryObj} from '@storybook/react'
 import React from 'react'
 import {Label, LabelColors, LabelSizes, defaultLabelColor, defaultLabelSize} from '.'
 
-export default {
+const meta = {
   title: 'Components/Label',
   component: Label,
   args: {
@@ -35,9 +35,15 @@ export default {
       },
     },
   },
-} as Meta<typeof Label>
+} satisfies Meta<typeof Label>
 
-const Template: StoryFn<typeof Label> = args => <Label {...args} />
+export default meta
+type Story = StoryObj<typeof Label>
 
-export const Default = () => <Label>Default</Label>
-export const Playground = Template.bind({})
+export const Default: Story = {
+  render: () => <Label>Default</Label>,
+}
+
+export const Playground: Story = {
+  render: args => <Label {...args} />,
+}

@@ -1,9 +1,9 @@
 import React from 'react'
-import {Meta, StoryFn} from '@storybook/react'
+import type {Meta, StoryObj} from '@storybook/react'
 import {Image} from './'
 import placeholderImage from '../fixtures/images/placeholder.png'
 
-export default {
+const meta = {
   title: 'Components/Image',
   component: Image,
   args: {
@@ -69,8 +69,15 @@ export default {
       },
     },
   },
-} as Meta<typeof Image>
+} satisfies Meta<typeof Image>
 
-export const Playground: StoryFn<typeof Image> = args => <Image {...args} />
+export default meta
+type Story = StoryObj<typeof Image>
 
-export const Default = Playground.bind({})
+export const Playground: Story = {
+  render: args => <Image {...args} />,
+}
+
+export const Default: Story = {
+  ...Playground,
+}
