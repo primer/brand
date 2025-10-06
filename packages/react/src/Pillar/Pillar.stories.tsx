@@ -1,9 +1,9 @@
 import React from 'react'
 import type {Meta, StoryObj} from '@storybook/react'
-import {Pillar, PillarIconColors, PillarProps} from '.'
+import {Pillar, PillarIconColors} from '.'
 import {CopilotIcon} from '@primer/octicons-react'
 
-type PlaygroundProps = PillarProps & {
+type StoryProps = {
   heading: string
   description: string
   iconColor: (typeof PillarIconColors)[number]
@@ -11,7 +11,7 @@ type PlaygroundProps = PillarProps & {
 
 const meta = {
   title: 'Components/Pillar',
-  component: Pillar as Meta<PlaygroundProps>['component'],
+  component: Pillar,
   args: {
     heading: 'Collaboration is the key to DevOps success',
     description: 'Everything you need to know about getting started with GitHub Actions.',
@@ -43,10 +43,10 @@ const meta = {
       },
     },
   },
-} satisfies Meta<PlaygroundProps>
+} as Meta<typeof Pillar>
 
 export default meta
-type Story = StoryObj<PlaygroundProps>
+type Story = StoryObj<StoryProps>
 
 export const Default: Story = {
   render: () => (

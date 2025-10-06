@@ -1,20 +1,22 @@
 import React from 'react'
 import type {Meta, StoryObj} from '@storybook/react'
-import {Card, CardIconColors, CardProps} from '.'
+import {Card, CardIconColors} from '.'
 import {LabelColors} from '../Label'
 import {CopilotIcon} from '@primer/octicons-react'
 
-type StoryProps = CardProps & {
+type StoryProps = {
   iconColor: (typeof CardIconColors)[number]
   labelColor: (typeof LabelColors)[number]
   iconHasBackground: boolean
   heading: string
   description: string
+  hasBorder?: boolean
+  fullWidth?: boolean
 }
 
 const meta = {
   title: 'Components/Card',
-  component: Card as Meta<StoryProps>['component'],
+  component: Card,
   args: {
     iconColor: 'default',
     labelColor: 'default',
@@ -86,7 +88,7 @@ const meta = {
       },
     },
   },
-} satisfies Meta<StoryProps>
+} as Meta<typeof Card>
 
 export default meta
 type Story = StoryObj<StoryProps>
