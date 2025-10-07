@@ -400,10 +400,13 @@
 }
 
 .PricingOptions__feature-list-item,
-.PricingOptions__feature-list-item span,
-.PricingOptions__feature-list-group-heading {
+.PricingOptions__feature-list-item span {
   font-size: var(--featutre-list-font-size) !important;
   line-height: var(--featutre-list-line-height) !important;
+}
+
+.PricingOptions__feature-list-group-heading {
+  font-size: var(--featutre-list-font-size) !important;
 }
 
 .PricingOptions--items4 .PricingOptions__feature-list {
