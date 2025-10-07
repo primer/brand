@@ -184,4 +184,54 @@ describe('Statistic', () => {
     expect(rootEl).toHaveClass('Statistic--regular-padding-normal')
     expect(rootEl).toHaveClass('Statistic--wide-padding-spacious')
   })
+
+  it('renders user-provided footnote links correctly in the heading', () => {
+    const {getByText, container} = render(
+      <Statistic>
+        <Statistic.Heading>
+          $2M+{' '}
+          <sup>
+            <a href="#footnote">1</a>
+          </sup>
+        </Statistic.Heading>
+        <Statistic.Description>Given back to our maintainers</Statistic.Description>
+      </Statistic>,
+    )
+
+    const heading = getByText('$2M+')
+    const footnoteLink = getByText('1')
+    const description = getByText('Given back to our maintainers')
+
+    expect(heading).toBeInTheDocument()
+    expect(footnoteLink).toBeInTheDocument()
+    expect(description).toBeInTheDocument()
+
+    expect(footnoteLink.closest('sup')).toBeInTheDocument()
+    expect(container.textContent).toBe('$2M+ 1 Given back to our maintainers')
+  })
+
+  it('renders user-provided footnote links correctly in the description', () => {
+    const {getByText, container} = render(
+      <Statistic>
+        <Statistic.Heading>$2M+</Statistic.Heading>
+        <Statistic.Description>
+          Given back to our maintainers{' '}
+          <sup>
+            <a href="#footnote">1</a>
+          </sup>
+        </Statistic.Description>
+      </Statistic>,
+    )
+
+    const heading = getByText('$2M+')
+    const footnoteLink = getByText('1')
+    const description = getByText('Given back to our maintainers')
+
+    expect(heading).toBeInTheDocument()
+    expect(footnoteLink).toBeInTheDocument()
+    expect(description).toBeInTheDocument()
+
+    expect(footnoteLink.closest('sup')).toBeInTheDocument()
+    expect(container.textContent).toBe('$2M+ Given back to our maintainers 1')
+  })
 })

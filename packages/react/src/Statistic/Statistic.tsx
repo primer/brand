@@ -132,8 +132,7 @@ const _Statistic = forwardRef<HTMLDivElement, PropsWithChildren<StatisticProps>>
         ? React.cloneElement(HeadingChild as React.ReactElement<TextProps>, {
             children: (
               <>
-                {`${HeadingChild.props.children} `}
-                {DescriptionChild}
+                {HeadingChild.props.children} {DescriptionChild}
               </>
             ),
           })
