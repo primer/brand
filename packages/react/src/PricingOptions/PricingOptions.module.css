@@ -400,7 +400,8 @@
 }
 
 .PricingOptions__feature-list-item,
-s.PricingOptions__feature-list-item span {
+.PricingOptions__feature-list-item span,
+.PricingOptions__feature-list-group-heading {
   font-size: var(--featutre-list-font-size) !important;
   line-height: var(--featutre-list-line-height) !important;
 }
