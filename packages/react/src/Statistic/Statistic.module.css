@@ -80,10 +80,12 @@
 
 .Statistic__heading sup {
   font-size: var(--brand-text-size-100);
+  line-height: 0;
+  font-weight: var(--brand-text-weight-100);
+  font-stretch: normal;
   vertical-align: top;
   top: var(--base-size-6); /* Optical align to heading top */
   position: relative;
-  line-height: 0;
 }
 
 .Statistic__heading sup a {
