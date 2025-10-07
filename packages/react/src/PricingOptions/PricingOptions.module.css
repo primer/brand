@@ -361,8 +361,8 @@
 /* ---------------------------------------------------------- */
 
 .PricingOptions__feature-list {
-  --featutre-list-font-size: var(--brand-text-size-200);
-  --featutre-list-line-height: var(--brand-text-lineHeight-200);
+  --feature-list-font-size: var(--brand-text-size-200);
+  --feature-list-line-height: var(--brand-text-lineHeight-200);
 
   display: flex;
   flex-direction: column;
@@ -401,17 +401,17 @@
 
 .PricingOptions__feature-list-item,
 .PricingOptions__feature-list-item span {
-  font-size: var(--featutre-list-font-size) !important;
-  line-height: var(--featutre-list-line-height) !important;
+  font-size: var(--feature-list-font-size) !important;
+  line-height: var(--feature-list-line-height) !important;
 }
 
 .PricingOptions__feature-list-group-heading {
-  font-size: var(--featutre-list-font-size) !important;
+  font-size: var(--feature-list-font-size) !important;
 }
 
 .PricingOptions--items4 .PricingOptions__feature-list {
-  --featutre-list-font-size: var(--brand-text-size-100);
-  --featutre-list-line-height: var(--brand-text-lineHeight-100);
+  --feature-list-font-size: var(--brand-text-size-100);
+  --feature-list-line-height: var(--brand-text-lineHeight-100);
 }
 
 /*
@@ -439,8 +439,8 @@
 
 /* Accordion heading styling */
 .PricingOptions__feature-list-accordion .PricingOptions__feature-list-accordion-heading :is(h1, h2, h3, h4, h5, h6) {
-  font-size: var(--featutre-list-font-size);
-  line-height: var(--featutre-list-line-height);
+  font-size: var(--feature-list-font-size);
+  line-height: var(--feature-list-line-height);
   gap: var(--base-size-8);
   display: inline-flex;
   align-items: center;
