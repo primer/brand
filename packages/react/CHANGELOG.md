@@ -1,5 +1,19 @@
 # @primer/react-brand
 
+## 0.58.2
+
+### Patch Changes
+
+- [#1168](https://github.com/primer/brand/pull/1168) [`6674211`](https://github.com/primer/brand/commit/66742111b3d8b6481a0f9a07cf1aa62d3372934d) Thanks [@danielguillan](https://github.com/danielguillan)! - Makes `PricingOptions` feature list text size smaller when there are 4 items
+
+- [#1138](https://github.com/primer/brand/pull/1138) [`bb23073`](https://github.com/primer/brand/commit/bb230733a4d69cc580b190c300e7852add366058) Thanks [@joshfarrant](https://github.com/joshfarrant)! - - Added an `aria-label` to the list of tabs in the `IDE` component.
+
+  - Improved types in `useTabs` hook, which is used internally in the `IDE` and `Tabs` components.
+
+- [#1170](https://github.com/primer/brand/pull/1170) [`97994b8`](https://github.com/primer/brand/commit/97994b8a6a7fb9aa014a3687807ca2e10bf9599b) Thanks [@rezrah](https://github.com/rezrah)! - Improved footnote support to the `Statistic` component.
+
+  Also fixes rendering of more complex `children` in both `Statistic.Heading` and `Statistic.Description`, where it would previously render `[object Object]`.
+
 ## 0.58.1
 
 ### Patch Changes
