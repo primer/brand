@@ -2,7 +2,7 @@ import React from 'react'
 import {Meta} from '@storybook/react'
 
 import {Statistic} from '.'
-import {AnimationProvider, Box, Grid, Stack, Testimonial, Text} from '../'
+import {AnimationProvider, Box, Grid, InlineLink, Stack, Testimonial, Text} from '../'
 import monaAvatar from '../fixtures/images/avatar-mona.png'
 
 export default {
@@ -153,4 +153,67 @@ export const Animations = () => (
       </Statistic>
     </Stack>
   </AnimationProvider>
+)
+
+export const WithFootnote = args => (
+  <Stack direction="vertical" gap="spacious">
+    <Stack direction="horizontal" gap="spacious" padding="none">
+      <Statistic variant="boxed" size="small">
+        <Statistic.Heading>
+          {args.heading}{' '}
+          <sup>
+            <InlineLink href="#link-to-footnote-1">1</InlineLink>
+          </sup>
+        </Statistic.Heading>
+        <Statistic.Description>{args.description}</Statistic.Description>
+      </Statistic>
+      <Statistic variant="boxed" size="medium">
+        <Statistic.Heading>
+          {args.heading}{' '}
+          <sup>
+            <InlineLink href="#link-to-footnote-1">2</InlineLink>
+          </sup>
+        </Statistic.Heading>
+        <Statistic.Description>{args.description}</Statistic.Description>
+      </Statistic>
+      <Statistic variant="boxed" size="large">
+        <Statistic.Heading>
+          {args.heading}{' '}
+          <sup>
+            <InlineLink href="#link-to-footnote-1">3</InlineLink>
+          </sup>
+        </Statistic.Heading>
+        <Statistic.Description>{args.description}</Statistic.Description>
+      </Statistic>
+    </Stack>
+    <Stack direction="horizontal" gap="spacious" padding="none">
+      <Statistic variant="boxed" size="small">
+        <Statistic.Heading>{args.heading}</Statistic.Heading>
+        <Statistic.Description>
+          {args.description}{' '}
+          <sup>
+            <InlineLink href="#link-to-footnote-1">4</InlineLink>
+          </sup>
+        </Statistic.Description>
+      </Statistic>
+      <Statistic variant="boxed" size="medium">
+        <Statistic.Heading>{args.heading}</Statistic.Heading>
+        <Statistic.Description>
+          {args.description}{' '}
+          <sup>
+            <InlineLink href="#link-to-footnote-1">5</InlineLink>
+          </sup>
+        </Statistic.Description>
+      </Statistic>
+      <Statistic variant="boxed" size="large">
+        <Statistic.Heading>{args.heading}</Statistic.Heading>
+        <Statistic.Description>
+          {args.description}{' '}
+          <sup>
+            <InlineLink href="#link-to-footnote-1">6</InlineLink>
+          </sup>
+        </Statistic.Description>
+      </Statistic>
+    </Stack>
+  </Stack>
 )
