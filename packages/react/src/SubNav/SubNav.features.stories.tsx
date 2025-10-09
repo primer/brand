@@ -1,9 +1,8 @@
 import React, {useEffect} from 'react'
-import type {Meta, StoryFn} from '@storybook/react'
-import {INITIAL_VIEWPORTS} from 'storybook/viewport'
+import type {Meta, StoryObj} from '@storybook/react'
 import {linkTo} from '@storybook/addon-links'
 
-import {SubNav} from './SubNav'
+import {SubNav, SubNavProps} from './SubNav'
 import {Box} from '../Box'
 import {Hero} from '../Hero'
 import {Grid} from '../Grid'
@@ -15,85 +14,84 @@ import {expect, userEvent, within} from 'storybook/test'
 import {Button} from '../Button'
 import {waitFor} from '@testing-library/dom'
 
-export default {
+const meta = {
   title: 'Components/SubNav/Features',
   component: SubNav,
   parameters: {
     layout: 'fullscreen',
-    viewport: {
-      viewports: INITIAL_VIEWPORTS,
-    },
   },
-} as Meta<typeof SubNav>
+} satisfies Meta<typeof SubNav>
 
-export const DropdownVariant = ({hasShadow, ...args}) => (
-  <main>
-    <Box paddingBlockStart={64} backgroundColor="subtle" style={{position: 'relative', zIndex: 32}}></Box>
-    <SubNav {...args} hasShadow={hasShadow}>
-      <SubNav.Heading href="#">Features</SubNav.Heading>
-      <SubNav.Link href="#">Actions</SubNav.Link>
-      <SubNav.Link href="#">Packages</SubNav.Link>
-      <SubNav.Link href="#">Security</SubNav.Link>
-      <SubNav.Link href="#">Codespaces</SubNav.Link>
-      <SubNav.Link href="#" aria-current="page">
-        Copilot
-        <SubNav.SubMenu>
-          <SubNav.Link href="#">Copilot feature page one</SubNav.Link>
-          <SubNav.Link href="#">Copilot feature page two</SubNav.Link>
-          <SubNav.Link href="#">Copilot feature page three</SubNav.Link>
-          <SubNav.Link href="#">Copilot feature page four</SubNav.Link>
-        </SubNav.SubMenu>
-      </SubNav.Link>
-      <SubNav.Link href="#">Code review</SubNav.Link>
-      <SubNav.Link href="#">Search</SubNav.Link>
-      <SubNav.Link href="#">Issues</SubNav.Link>
-      <SubNav.Link href="#">Discussions</SubNav.Link>
-    </SubNav>
-    <Grid>
-      <Grid.Column>
-        <Hero align="center">
-          <Hero.Label>Copilot Enterprise</Hero.Label>
-          <Hero.Heading>The world&apos;s most widely adopted AI tool.</Hero.Heading>
-          <Hero.PrimaryAction href="#">Get started with Copilot</Hero.PrimaryAction>
-        </Hero>
-      </Grid.Column>
-    </Grid>
-  </main>
-)
-DropdownVariant.parameters = {
-  layout: 'fullscreen',
+export default meta
+type Story = StoryObj<SubNavProps>
+
+const DropdownTemplate = (args: SubNavProps) => {
+  return (
+    <main>
+      <Box paddingBlockStart={64} backgroundColor="subtle" style={{position: 'relative', zIndex: 32}}></Box>
+      <SubNav {...args}>
+        <SubNav.Heading href="#">Features</SubNav.Heading>
+        <SubNav.Link href="#">Actions</SubNav.Link>
+        <SubNav.Link href="#">Packages</SubNav.Link>
+        <SubNav.Link href="#">Security</SubNav.Link>
+        <SubNav.Link href="#">Codespaces</SubNav.Link>
+        <SubNav.Link href="#" aria-current="page">
+          Copilot
+          <SubNav.SubMenu>
+            <SubNav.Link href="#">Copilot feature page one</SubNav.Link>
+            <SubNav.Link href="#">Copilot feature page two</SubNav.Link>
+            <SubNav.Link href="#">Copilot feature page three</SubNav.Link>
+            <SubNav.Link href="#">Copilot feature page four</SubNav.Link>
+          </SubNav.SubMenu>
+        </SubNav.Link>
+        <SubNav.Link href="#">Code review</SubNav.Link>
+        <SubNav.Link href="#">Search</SubNav.Link>
+        <SubNav.Link href="#">Issues</SubNav.Link>
+        <SubNav.Link href="#">Discussions</SubNav.Link>
+      </SubNav>
+      <Grid>
+        <Grid.Column>
+          <Hero align="center">
+            <Hero.Label>Copilot Enterprise</Hero.Label>
+            <Hero.Heading>The world&apos;s most widely adopted AI tool.</Hero.Heading>
+            <Hero.PrimaryAction href="#">Get started with Copilot</Hero.PrimaryAction>
+          </Hero>
+        </Grid.Column>
+      </Grid>
+    </main>
+  )
 }
 
-export const NarrowDropdownVariant = args => <DropdownVariant {...args} />
-NarrowDropdownVariant.parameters = {
-  layout: 'fullscreen',
-  viewport: {
-    defaultViewport: 'iphonex',
-  },
+export const DropdownVariant: Story = {
+  render: DropdownTemplate,
 }
 
-export const NarrowDropdownVariantMenuOpen = args => <NarrowDropdownVariant {...args} />
-
-NarrowDropdownVariantMenuOpen.parameters = {
-  layout: 'fullscreen',
-  viewport: {
-    defaultViewport: 'iphonex',
+export const NarrowDropdownVariant: Story = {
+  render: args => <DropdownTemplate {...args} />,
+  globals: {
+    viewport: {value: 'iphonex'},
   },
 }
-NarrowDropdownVariantMenuOpen.play = async ({canvasElement}) => {
-  const canvas = within(canvasElement)
-  await userEvent.click(canvas.getByTestId('SubNav-root-button'))
-  const overlayMenu = canvas.getByTestId('SubNav-root-overlay')
-  const firstLink = within(overlayMenu).getAllByRole('link')[0]
-  expect(firstLink).toHaveFocus()
+
+export const NarrowDropdownVariantMenuOpen: Story = {
+  render: args => <DropdownTemplate {...args} />,
+  globals: {
+    viewport: {value: 'iphonex'},
+  },
+  play: async ({canvasElement}) => {
+    const canvas = within(canvasElement)
+    await userEvent.click(canvas.getByTestId('SubNav-root-button'))
+    const overlayMenu = canvas.getByTestId('SubNav-root-overlay')
+    const firstLink = within(overlayMenu).getAllByRole('link')[0]
+    expect(firstLink).toHaveFocus()
+  },
 }
 
-export const WithShadow = args => <DropdownVariant {...args} hasShadow={true} />
-WithShadow.parameters = {
-  layout: 'fullscreen',
+export const WithShadow: Story = {
+  render: args => <DropdownTemplate {...args} hasShadow />,
 }
 
-export const SubHeading = args => (
+const SubHeadingTemplate = (args: SubNavProps) => (
   <SubNav {...args}>
     <SubNav.Heading href="#">AI</SubNav.Heading>
     <SubNav.SubHeading href="#">Copilot</SubNav.SubHeading>
@@ -115,31 +113,30 @@ export const SubHeading = args => (
     <SubNav.Action href="#">Call to action</SubNav.Action>
   </SubNav>
 )
-SubHeading.parameters = {
-  layout: 'fullscreen',
+
+export const SubHeading: Story = {
+  render: SubHeadingTemplate,
 }
 
-export const SubHeadingNarrow = args => <SubHeading {...args} />
-SubHeadingNarrow.parameters = {
-  layout: 'fullscreen',
-  viewport: {
-    defaultViewport: 'iphonex',
+export const SubHeadingNarrow: Story = {
+  render: SubHeadingTemplate,
+  globals: {
+    viewport: {value: 'iphonex'},
   },
 }
 
-export const SubHeadingNarrowOpen = args => <SubHeading {...args} />
-SubHeadingNarrowOpen.parameters = {
-  layout: 'fullscreen',
-  viewport: {
-    defaultViewport: 'iphonex',
+export const SubHeadingNarrowOpen: Story = {
+  render: SubHeadingTemplate,
+  globals: {
+    viewport: {value: 'iphonex'},
+  },
+  play: async ({canvasElement}) => {
+    const canvas = within(canvasElement)
+    await userEvent.click(canvas.getByTestId('SubNav-root-button'))
   },
 }
-SubHeadingNarrowOpen.play = async ({canvasElement}) => {
-  const canvas = within(canvasElement)
-  await userEvent.click(canvas.getByTestId('SubNav-root-button'))
-}
 
-export const ActiveSubHeading = args => (
+const ActiveSubHeadingTemplate = (args: SubNavProps) => (
   <SubNav {...args}>
     <SubNav.Heading href="#">AI</SubNav.Heading>
     <SubNav.SubHeading href="#" aria-current="page">
@@ -161,31 +158,30 @@ export const ActiveSubHeading = args => (
     <SubNav.Action href="#">Call to action</SubNav.Action>
   </SubNav>
 )
-ActiveSubHeading.parameters = {
-  layout: 'fullscreen',
+
+export const ActiveSubHeading: Story = {
+  render: ActiveSubHeadingTemplate,
 }
 
-export const ActiveSubHeadingNarrow = args => <ActiveSubHeading {...args} />
-ActiveSubHeadingNarrow.parameters = {
-  layout: 'fullscreen',
-  viewport: {
-    defaultViewport: 'iphonex',
+export const ActiveSubHeadingNarrow: Story = {
+  render: ActiveSubHeadingTemplate,
+  globals: {
+    viewport: {value: 'iphonex'},
   },
 }
 
-export const ActiveSubHeadingNarrowOpen = args => <ActiveSubHeading {...args} />
-ActiveSubHeadingNarrowOpen.parameters = {
-  layout: 'fullscreen',
-  viewport: {
-    defaultViewport: 'iphonex',
+export const ActiveSubHeadingNarrowOpen: Story = {
+  render: ActiveSubHeadingTemplate,
+  globals: {
+    viewport: {value: 'iphonex'},
+  },
+  play: async ({canvasElement}) => {
+    const canvas = within(canvasElement)
+    await userEvent.click(canvas.getByTestId('SubNav-root-button'))
   },
 }
-ActiveSubHeadingNarrowOpen.play = async ({canvasElement}) => {
-  const canvas = within(canvasElement)
-  await userEvent.click(canvas.getByTestId('SubNav-root-button'))
-}
 
-export const FullWidth = args => (
+const FullWidthTemplate = (args: SubNavProps) => (
   <SubNav {...args} fullWidth>
     <SubNav.Heading href="#">Features</SubNav.Heading>
     <SubNav.Link href="#">Actions</SubNav.Link>
@@ -206,19 +202,19 @@ export const FullWidth = args => (
     <SubNav.Action href="#">Call to action</SubNav.Action>
   </SubNav>
 )
-FullWidth.parameters = {
-  layout: 'fullscreen',
+
+export const FullWidth: Story = {
+  render: FullWidthTemplate,
 }
 
-export const FullWidthNarrow = args => <FullWidth {...args} />
-FullWidthNarrow.parameters = {
-  layout: 'fullscreen',
-  viewport: {
-    defaultViewport: 'iphonex',
+export const FullWidthNarrow: Story = {
+  render: FullWidthTemplate,
+  globals: {
+    viewport: {value: 'iphonex'},
   },
 }
 
-export const LongerHeading = args => (
+const LongerHeadingTemplate = (args: SubNavProps) => (
   <SubNav {...args} fullWidth>
     <SubNav.Heading href="#">A longer heading</SubNav.Heading>
     <SubNav.Link href="#">Actions</SubNav.Link>
@@ -239,8 +235,9 @@ export const LongerHeading = args => (
     <SubNav.Action href="#">Call to action</SubNav.Action>
   </SubNav>
 )
-LongerHeading.parameters = {
-  layout: 'fullscreen',
+
+export const LongerHeading: Story = {
+  render: LongerHeadingTemplate,
 }
 
 const AnchorNavVariantData = {
@@ -250,7 +247,7 @@ const AnchorNavVariantData = {
   ['Reliability']: 'reliability',
 }
 
-const AnchorNavVariantTemplate: StoryFn<typeof SubNav> = args => (
+const AnchorNavVariantTemplate = (args: SubNavProps) => (
   <main>
     <Box paddingBlockStart={64} backgroundColor="subtle" style={{position: 'relative', zIndex: 32}}></Box>
     <SubNav {...args}>
@@ -291,71 +288,57 @@ const AnchorNavVariantTemplate: StoryFn<typeof SubNav> = args => (
   </main>
 )
 
-export const AnchorNavVariant = AnchorNavVariantTemplate.bind({})
-
-AnchorNavVariant.parameters = {
-  layout: 'fullscreen',
+export const AnchorNavVariant: Story = {
+  render: AnchorNavVariantTemplate,
 }
 
-const customViewports = {
-  Narrow: {
-    name: 'Narrow',
-    styles: {
-      width: '280px',
-      height: '600px',
-    },
+export const NarrowAnchorNavVariant: Story = {
+  render: AnchorNavVariantTemplate,
+  globals: {
+    viewport: {value: 'iphone5'},
   },
 }
 
-export const NarrowAnchorNavVariant = args => <AnchorNavVariant {...args} />
-NarrowAnchorNavVariant.parameters = {
-  layout: 'fullscreen',
-  viewport: {
-    viewports: customViewports,
-    defaultViewport: 'Narrow',
+export const NarrowAnchorNavVariantMenuOpen: Story = {
+  render: AnchorNavVariantTemplate,
+  globals: {
+    viewport: {value: 'iphone5'},
+  },
+  play: async ({canvasElement}) => {
+    const canvas = within(canvasElement)
+    await userEvent.click(canvas.getByTestId('SubNav-root-button'))
+    const overlayMenu = canvas.getByTestId('SubNav-root-overlay')
+    const firstLink = within(overlayMenu).getAllByRole('link')[0]
+    expect(firstLink).toHaveFocus()
   },
 }
 
-export const NarrowAnchorNavVariantMenuOpen = args => <NarrowAnchorNavVariant {...args} />
-NarrowAnchorNavVariantMenuOpen.parameters = {
-  layout: 'fullscreen',
-  viewport: {
-    viewports: customViewports,
-    defaultViewport: 'Narrow',
-  },
+export const AnchorNavDefaultLinkVariant: Story = {
+  render: args => (
+    <SubNav {...args}>
+      <SubNav.Heading href="#">Heading</SubNav.Heading>
+      <SubNav.Link href="#" variant="default">
+        Link
+      </SubNav.Link>
+      <SubNav.Link href="#" variant="default">
+        Link
+      </SubNav.Link>
+      <SubNav.Link href="#" variant="default">
+        Link
+      </SubNav.Link>
+      <SubNav.Link href="#" variant="default">
+        Link
+      </SubNav.Link>
+      <SubNav.Link href="#" variant="default">
+        Link
+      </SubNav.Link>
+      <SubNav.Link href="#" variant="default">
+        Link
+      </SubNav.Link>
+      <SubNav.Action href="#">Primary CTA</SubNav.Action>
+    </SubNav>
+  ),
 }
-NarrowAnchorNavVariantMenuOpen.play = async ({canvasElement}) => {
-  const canvas = within(canvasElement)
-  await userEvent.click(canvas.getByTestId('SubNav-root-button'))
-  const overlayMenu = canvas.getByTestId('SubNav-root-overlay')
-  const firstLink = within(overlayMenu).getAllByRole('link')[0]
-  expect(firstLink).toHaveFocus()
-}
-
-export const AnchorNavDefaultLinkVariant = args => (
-  <SubNav {...args}>
-    <SubNav.Heading href="#">Heading</SubNav.Heading>
-    <SubNav.Link href="#" variant="default">
-      Link
-    </SubNav.Link>
-    <SubNav.Link href="#" variant="default">
-      Link
-    </SubNav.Link>
-    <SubNav.Link href="#" variant="default">
-      Link
-    </SubNav.Link>
-    <SubNav.Link href="#" variant="default">
-      Link
-    </SubNav.Link>
-    <SubNav.Link href="#" variant="default">
-      Link
-    </SubNav.Link>
-    <SubNav.Link href="#" variant="default">
-      Link
-    </SubNav.Link>
-    <SubNav.Action href="#">Primary CTA</SubNav.Action>
-  </SubNav>
-)
 
 export const ForwardedRefs = () => {
   const subNavRef = React.useRef<HTMLDivElement>(null)
@@ -388,128 +371,127 @@ export const ForwardedRefs = () => {
   )
 }
 
-export const KeyboardNavigation = args => <NarrowDropdownVariant {...args} />
+export const KeyboardNavigation: Story = {
+  render: DropdownTemplate,
+  globals: {
+    viewport: {value: 'iphonex'},
+  },
+  play: async ({canvasElement}) => {
+    const {getByRole} = within(canvasElement)
 
-KeyboardNavigation.parameters = {
-  layout: 'fullscreen',
-  viewport: {
-    defaultViewport: 'iphonex',
+    const expandButton = getByRole('button', {name: 'Navigation menu. Current page: Copilot'})
+    await userEvent.click(expandButton)
+    expect(expandButton).toHaveFocus()
+
+    await userEvent.tab()
+    expect(getByRole('link', {name: 'Actions'})).toHaveFocus()
+
+    await userEvent.tab()
+    expect(getByRole('link', {name: 'Packages'})).toHaveFocus()
+
+    await userEvent.tab()
+    expect(getByRole('link', {name: 'Security'})).toHaveFocus()
+
+    await userEvent.tab()
+    expect(getByRole('link', {name: 'Codespaces'})).toHaveFocus()
+
+    await userEvent.tab()
+    expect(getByRole('link', {name: 'Copilot'})).toHaveFocus()
+
+    await userEvent.tab()
+    expect(getByRole('link', {name: 'Copilot feature page one'})).toHaveFocus()
+
+    await userEvent.tab()
+    expect(getByRole('link', {name: 'Copilot feature page two'})).toHaveFocus()
+
+    await userEvent.tab()
+    expect(getByRole('link', {name: 'Copilot feature page three'})).toHaveFocus()
+
+    await userEvent.tab()
+    expect(getByRole('link', {name: 'Copilot feature page four'})).toHaveFocus()
+
+    await userEvent.tab()
+    expect(getByRole('link', {name: 'Code review'})).toHaveFocus()
+
+    await userEvent.tab()
+    expect(getByRole('link', {name: 'Search'})).toHaveFocus()
+
+    await userEvent.tab()
+    expect(getByRole('link', {name: 'Issues'})).toHaveFocus()
+
+    await userEvent.tab()
+    expect(getByRole('link', {name: 'Discussions'})).toHaveFocus()
+
+    await userEvent.tab()
+    // We have to wait here because the focus trap we're using takes a moment to update the focus
+    waitFor(() => {
+      expect(getByRole('link', {name: 'Features'})).toHaveFocus()
+    })
+
+    await userEvent.tab()
+    expect(expandButton).toHaveFocus()
+
+    await userEvent.tab({shift: true})
+    expect(getByRole('link', {name: 'Features'})).toHaveFocus()
+
+    await userEvent.tab({shift: true})
+    expect(getByRole('link', {name: 'Discussions'})).toHaveFocus()
   },
 }
-KeyboardNavigation.play = async ({canvasElement}) => {
-  const {getByRole} = within(canvasElement)
 
-  const expandButton = getByRole('button', {name: 'Navigation menu. Current page: Copilot'})
-  await userEvent.click(expandButton)
-  expect(expandButton).toHaveFocus()
+export const AnchorNavVariantKeyboardNavigation: Story = {
+  render: AnchorNavVariantTemplate,
+  play: async ({canvasElement}) => {
+    const {getByRole, getAllByRole} = within(canvasElement)
 
-  await userEvent.tab()
-  expect(getByRole('link', {name: 'Actions'})).toHaveFocus()
+    await userEvent.tab()
+    expect(getByRole('link', {name: 'Enterprise'})).toHaveFocus()
 
-  await userEvent.tab()
-  expect(getByRole('link', {name: 'Packages'})).toHaveFocus()
+    await userEvent.tab()
+    expect(getByRole('link', {name: 'Overview'})).toHaveFocus()
 
-  await userEvent.tab()
-  expect(getByRole('link', {name: 'Security'})).toHaveFocus()
+    await userEvent.tab()
+    expect(getByRole('link', {name: 'Advanced Security'})).toHaveFocus()
 
-  await userEvent.tab()
-  expect(getByRole('link', {name: 'Codespaces'})).toHaveFocus()
+    await userEvent.tab()
+    expect(getByRole('link', {name: 'Copilot Enterprise'})).toHaveFocus()
 
-  await userEvent.tab()
-  expect(getByRole('link', {name: 'Copilot'})).toHaveFocus()
+    await userEvent.tab()
+    expect(getByRole('link', {name: 'Premium Support'})).toHaveFocus()
 
-  await userEvent.tab()
-  expect(getByRole('link', {name: 'Copilot feature page one'})).toHaveFocus()
+    await userEvent.tab()
+    expect(getByRole('link', {name: 'Scale'})).toHaveFocus()
 
-  await userEvent.tab()
-  expect(getByRole('link', {name: 'Copilot feature page two'})).toHaveFocus()
+    await userEvent.tab()
+    expect(getByRole('link', {name: 'AI'})).toHaveFocus()
 
-  await userEvent.tab()
-  expect(getByRole('link', {name: 'Copilot feature page three'})).toHaveFocus()
+    await userEvent.tab()
+    expect(getByRole('link', {name: 'Security'})).toHaveFocus()
 
-  await userEvent.tab()
-  expect(getByRole('link', {name: 'Copilot feature page four'})).toHaveFocus()
+    await userEvent.tab()
+    expect(getByRole('link', {name: 'Reliability'})).toHaveFocus()
 
-  await userEvent.tab()
-  expect(getByRole('link', {name: 'Code review'})).toHaveFocus()
+    await userEvent.tab()
+    expect(getAllByRole('button', {name: 'Learn more'})[0]).toHaveFocus()
 
-  await userEvent.tab()
-  expect(getByRole('link', {name: 'Search'})).toHaveFocus()
+    await userEvent.tab({shift: true})
+    expect(getByRole('link', {name: 'Reliability'})).toHaveFocus()
 
-  await userEvent.tab()
-  expect(getByRole('link', {name: 'Issues'})).toHaveFocus()
+    await userEvent.tab({shift: true})
+    expect(getByRole('link', {name: 'Security'})).toHaveFocus()
 
-  await userEvent.tab()
-  expect(getByRole('link', {name: 'Discussions'})).toHaveFocus()
+    await userEvent.tab({shift: true})
+    expect(getByRole('link', {name: 'AI'})).toHaveFocus()
 
-  await userEvent.tab()
-  // We have to wait here because the focus trap we're using takes a moment to update the focus
-  waitFor(() => {
-    expect(getByRole('link', {name: 'Features'})).toHaveFocus()
-  })
+    await userEvent.tab({shift: true})
+    expect(getByRole('link', {name: 'Scale'})).toHaveFocus()
 
-  await userEvent.tab()
-  expect(expandButton).toHaveFocus()
-
-  await userEvent.tab({shift: true})
-  expect(getByRole('link', {name: 'Features'})).toHaveFocus()
-
-  await userEvent.tab({shift: true})
-  expect(getByRole('link', {name: 'Discussions'})).toHaveFocus()
+    await userEvent.tab({shift: true})
+    expect(getByRole('link', {name: 'Premium Support'})).toHaveFocus()
+  },
 }
 
-export const AnchorNavVariantKeyboardNavigation = AnchorNavVariant.bind({})
-
-AnchorNavVariantKeyboardNavigation.play = async ({canvasElement}) => {
-  const {getByRole, getAllByRole} = within(canvasElement)
-
-  await userEvent.tab()
-  expect(getByRole('link', {name: 'Enterprise'})).toHaveFocus()
-
-  await userEvent.tab()
-  expect(getByRole('link', {name: 'Overview'})).toHaveFocus()
-
-  await userEvent.tab()
-  expect(getByRole('link', {name: 'Advanced Security'})).toHaveFocus()
-
-  await userEvent.tab()
-  expect(getByRole('link', {name: 'Copilot Enterprise'})).toHaveFocus()
-
-  await userEvent.tab()
-  expect(getByRole('link', {name: 'Premium Support'})).toHaveFocus()
-
-  await userEvent.tab()
-  expect(getByRole('link', {name: 'Scale'})).toHaveFocus()
-
-  await userEvent.tab()
-  expect(getByRole('link', {name: 'AI'})).toHaveFocus()
-
-  await userEvent.tab()
-  expect(getByRole('link', {name: 'Security'})).toHaveFocus()
-
-  await userEvent.tab()
-  expect(getByRole('link', {name: 'Reliability'})).toHaveFocus()
-
-  await userEvent.tab()
-  expect(getAllByRole('button', {name: 'Learn more'})[0]).toHaveFocus()
-
-  await userEvent.tab({shift: true})
-  expect(getByRole('link', {name: 'Reliability'})).toHaveFocus()
-
-  await userEvent.tab({shift: true})
-  expect(getByRole('link', {name: 'Security'})).toHaveFocus()
-
-  await userEvent.tab({shift: true})
-  expect(getByRole('link', {name: 'AI'})).toHaveFocus()
-
-  await userEvent.tab({shift: true})
-  expect(getByRole('link', {name: 'Scale'})).toHaveFocus()
-
-  await userEvent.tab({shift: true})
-  expect(getByRole('link', {name: 'Premium Support'})).toHaveFocus()
-}
-
-export const NoActiveLinks = args => (
+const NoActiveLinksTemplate = (args: SubNavProps) => (
   <main>
     <Box paddingBlockStart={64} backgroundColor="subtle" style={{position: 'relative', zIndex: 32}}></Box>
     <SubNav {...args}>
@@ -540,17 +522,16 @@ export const NoActiveLinks = args => (
     </Grid>
   </main>
 )
-NoActiveLinks.parameters = {
-  layout: 'fullscreen',
-}
-NoActiveLinks.storyName = 'With no aria-current set'
 
-export const NoActiveLinksNarrow = () => <NoActiveLinks />
-NoActiveLinksNarrow.parameters = {
-  layout: 'fullscreen',
-  viewport: {
-    defaultViewport: 'iphonex',
+export const NoActiveLinks: Story = {
+  name: 'With no aria-current set',
+  render: NoActiveLinksTemplate,
+}
+
+export const NoActiveLinksNarrow: Story = {
+  name: 'With no aria-current set (narrow)',
+  render: NoActiveLinksTemplate,
+  globals: {
+    viewport: {value: 'iphonex'},
   },
 }
-
-NoActiveLinksNarrow.storyName = 'With no aria-current set (narrow)'

@@ -158,7 +158,7 @@ export type SubNavProps = {
    */
   fullWidth?: boolean
   'data-testid'?: string
-} & PropsWithChildren<BaseProps<HTMLElement>>
+} & PropsWithChildren<BaseProps<HTMLDivElement>>
 
 const _SubNavRoot = memo(
   forwardRef<HTMLDivElement, SubNavProps>(
