@@ -1,4 +1,4 @@
-import type {Meta, StoryObj} from '@storybook/react'
+import {Meta, StoryFn} from '@storybook/react'
 import React from 'react'
 import {IDE, IDEProps} from './IDE'
 
@@ -13,12 +13,7 @@ import {chatScript, chatScriptAlt, defaultFiles} from './fixtures/content'
 hljs.registerLanguage('javascript', javascript)
 hljs.registerLanguage('python', python)
 
-type StoryProps = {
-  showChat: boolean
-  height: number
-} & IDEProps
-
-const meta = {
+export default {
   title: 'Components/IDE',
   component: IDE,
   decorators: [
@@ -67,25 +62,22 @@ const meta = {
       },
     },
   },
-} satisfies Meta<StoryProps>
+} as Meta<typeof IDE>
 
-export default meta
-type Story = StoryObj<StoryProps>
+type StoryProps = {
+  showChat: boolean
+  height: number
+} & IDEProps
 
-export const Default: Story = {
-  render: ({showChat, ...args}) => (
+const Template: StoryFn<StoryProps> = ({showChat, ...args}) => {
+  return (
     <IDE {...args}>
       {showChat && <IDE.Chat script={chatScript} alternativeText={chatScriptAlt}></IDE.Chat>}
       <IDE.Editor files={defaultFiles} />
     </IDE>
-  ),
+  )
 }
 
-export const Playground: Story = {
-  render: ({showChat, ...args}) => (
-    <IDE {...args}>
-      {showChat && <IDE.Chat script={chatScript} alternativeText={chatScriptAlt}></IDE.Chat>}
-      <IDE.Editor files={defaultFiles} />
-    </IDE>
-  ),
-}
+export const Default = Template.bind({})
+
+export const Playground = Template.bind({})
