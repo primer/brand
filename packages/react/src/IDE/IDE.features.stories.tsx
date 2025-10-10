@@ -1,4 +1,4 @@
-import {Meta} from '@storybook/react'
+import type {Meta, StoryObj} from '@storybook/react'
 import React from 'react'
 import {IDE, IDEDefaultIconMap} from './IDE'
 
@@ -25,8 +25,8 @@ import './IDE.stories.hljs.theme.css'
 hljs.registerLanguage('javascript', javascript)
 hljs.registerLanguage('python', python)
 
-export default {
-  title: 'Components/IDE/features',
+const meta = {
+  title: 'Components/IDE/Features',
   component: IDE,
   decorators: [
     Story => (
@@ -49,18 +49,21 @@ export default {
       },
     },
   },
-} as Meta<typeof IDE>
+} satisfies Meta<typeof IDE>
 
-export const EditorOnly = args => {
-  return (
+export default meta
+type Story = StoryObj<typeof IDE>
+
+export const EditorOnly: Story = {
+  render: args => (
     <IDE {...args}>
       <IDE.Editor size="large" activeTab={0} files={files} />
     </IDE>
-  )
+  ),
 }
 
-export const EditorCustomIcons = args => {
-  return (
+export const EditorCustomIcons: Story = {
+  render: args => (
     <IDE {...args}>
       <IDE.Editor
         size="large"
@@ -74,18 +77,18 @@ export const EditorCustomIcons = args => {
         }}
       />
     </IDE>
-  )
+  ),
 }
 
-export const ChatOnly = args => {
-  return (
+export const ChatOnly: Story = {
+  render: args => (
     <IDE {...args}>
       <IDE.Chat script={chatScript} alternativeText={chatScriptAlt}></IDE.Chat>
     </IDE>
-  )
+  ),
 }
 
-export const WithRiver = args => {
+const WithRiverTemplate = args => {
   const [animationPlaying, setAnimationPlaying] = React.useState(false)
   const handleReplay = e => {
     e.preventDefault()
@@ -184,74 +187,84 @@ export const WithRiver = args => {
     </div>
   )
 }
-WithRiver.parameters = {
-  layout: 'fullscreen',
+
+export const WithRiver: Story = {
+  render: WithRiverTemplate,
+  parameters: {
+    layout: 'fullscreen',
+  },
 }
 
-export const PerspectiveExample = args => {
-  return (
+export const PerspectiveExample: Story = {
+  render: args => (
     <IDE {...args} className={storyStyles.perspective}>
       <IDE.Editor size="large" activeTab={0} files={files} />
     </IDE>
-  )
+  ),
+  parameters: {
+    layout: 'fullscreen',
+  },
+  decorators: [
+    Story => (
+      <ThemeProvider colorMode="dark">
+        <div style={{backgroundColor: 'black', minHeight: '100dvh', overflow: 'hidden'}}>
+          <Story />
+        </div>
+      </ThemeProvider>
+    ),
+  ],
 }
 
-PerspectiveExample.parameters = {
-  layout: 'fullscreen',
+export const PerspectiveExampleLight: Story = {
+  render: args => (
+    <IDE {...args} className={storyStyles.perspective}>
+      <IDE.Editor size="large" activeTab={0} files={files} />
+    </IDE>
+  ),
+  parameters: {
+    layout: 'fullscreen',
+  },
+  decorators: [
+    Story => (
+      <ThemeProvider colorMode="light">
+        <div style={{backgroundColor: 'white', minHeight: '100dvh', overflow: 'hidden'}}>
+          <Story />
+        </div>
+      </ThemeProvider>
+    ),
+  ],
 }
 
-PerspectiveExample.decorators = [
-  Story => (
-    <ThemeProvider colorMode="dark">
-      <div style={{backgroundColor: 'black', minHeight: '100dvh', overflow: 'hidden'}}>
-        <Story />
-      </div>
-    </ThemeProvider>
+export const AllGlass: Story = {
+  render: args => (
+    <IDE {...args} variant="glass">
+      <IDE.Chat script={chatScript} alternativeText={chatScriptAlt}></IDE.Chat>
+      <IDE.Editor size="large" files={files} />
+    </IDE>
   ),
-]
-
-export const PerspectiveExampleLight = () => <PerspectiveExample />
-
-PerspectiveExampleLight.decorators = [
-  Story => (
-    <ThemeProvider colorMode="light">
-      <div style={{backgroundColor: 'white', minHeight: '100dvh', overflow: 'hidden'}}>
-        <Story />
-      </div>
-    </ThemeProvider>
-  ),
-]
-
-export const AllGlass = args => (
-  <IDE {...args} variant="glass">
-    <IDE.Chat script={chatScript} alternativeText={chatScriptAlt}></IDE.Chat>
-    <IDE.Editor size="large" files={files} />
-  </IDE>
-)
-
-AllGlass.parameters = {
-  layout: 'fullscreen',
+  parameters: {
+    layout: 'fullscreen',
+  },
+  decorators: [
+    Story => (
+      <ThemeProvider colorMode="light">
+        <div
+          style={{
+            backgroundImage: `url(https://github.com/primer/brand/assets/13340707/7fe496dc-f6e0-417e-9453-32cec638ca68)`,
+            backgroundSize: 'cover',
+            minHeight: '100dvh',
+            overflow: 'hidden',
+            paddingTop: 'var(--base-size-112)',
+          }}
+          className={storyStyles.riverVisual}
+        >
+          <Grid>
+            <Grid.Column>
+              <Story />
+            </Grid.Column>
+          </Grid>
+        </div>
+      </ThemeProvider>
+    ),
+  ],
 }
-
-AllGlass.decorators = [
-  Story => (
-    <ThemeProvider colorMode="light">
-      <div
-        style={{
-          backgroundImage: `url(https://github.com/primer/brand/assets/13340707/7fe496dc-f6e0-417e-9453-32cec638ca68)`,
-          backgroundSize: 'cover',
-          minHeight: '100dvh',
-          overflow: 'hidden',
-          paddingTop: 'var(--base-size-112)',
-        }}
-        className={storyStyles.riverVisual}
-      >
-        <Grid>
-          <Grid.Column>
-            <Story />
-          </Grid.Column>
-        </Grid>
-      </div>
-    </ThemeProvider>
-  ),
-]
