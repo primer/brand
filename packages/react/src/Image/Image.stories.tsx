@@ -79,5 +79,5 @@ export const Playground: Story = {
 }
 
 export const Default: Story = {
-  ...Playground,
+  render: args => <Image {...args} />,
 }
