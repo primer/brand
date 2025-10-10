@@ -1,5 +1,5 @@
 import React from 'react'
-import {Meta, StoryFn} from '@storybook/react'
+import type {Meta, StoryObj} from '@storybook/react'
 
 import placeholderImage from '../fixtures/images/placeholder.png'
 import style from './Image.stories.module.css'
@@ -7,77 +7,96 @@ import style from './Image.stories.module.css'
 import {Image, ImageBorderRadiusOptions} from './Image'
 import {Stack} from '../Stack'
 
-export default {
+const meta = {
   title: 'Components/Image/Features',
   component: Image,
-} as Meta<typeof Image>
+} satisfies Meta<typeof Image>
 
-export const CustomPictureAspectRatio: StoryFn<typeof Image> = () => (
-  <Image
-    src={placeholderImage}
-    alt="placeholder, blank area with a gray background color"
-    aspectRatio="custom"
-    as="picture"
-  />
-)
+export default meta
+type Story = StoryObj<typeof Image>
 
-export const CustomImageAspectRatio: StoryFn<typeof Image> = () => (
-  <Image src={placeholderImage} alt="placeholder, blank area with a gray background color" aspectRatio="custom" />
-)
+export const CustomPictureAspectRatio: Story = {
+  render: () => (
+    <Image
+      src={placeholderImage}
+      alt="placeholder, blank area with a gray background color"
+      aspectRatio="custom"
+      as="picture"
+    />
+  ),
+}
 
-export const CustomImageHeight: StoryFn<typeof Image> = () => (
-  <Image src={placeholderImage} alt="placeholder, blank area with a gray background color" height={200} />
-)
+export const CustomImageAspectRatio: Story = {
+  render: () => (
+    <Image src={placeholderImage} alt="placeholder, blank area with a gray background color" aspectRatio="custom" />
+  ),
+}
 
-export const CustomImageWidth: StoryFn<typeof Image> = () => (
-  <Image src={placeholderImage} alt="placeholder, blank area with a gray background color" width={200} />
-)
+export const CustomImageHeight: Story = {
+  render: () => (
+    <Image src={placeholderImage} alt="placeholder, blank area with a gray background color" height={200} />
+  ),
+}
 
-export const CustomImageWidthAndHeight: StoryFn<typeof Image> = () => (
-  <Image src={placeholderImage} alt="placeholder, blank area with a gray background color" height={200} width={200} />
-)
+export const CustomImageWidth: Story = {
+  render: () => <Image src={placeholderImage} alt="placeholder, blank area with a gray background color" width={200} />,
+}
 
-export const CustomClass: StoryFn<typeof Image> = () => (
-  <Image
-    src={placeholderImage}
-    className={style['custom-image']}
-    alt="placeholder, blank area with a gray background color"
-    height={200}
-    width={200}
-  />
-)
+export const CustomImageWidthAndHeight: Story = {
+  render: () => (
+    <Image src={placeholderImage} alt="placeholder, blank area with a gray background color" height={200} width={200} />
+  ),
+}
 
-export const CustomClassOnPicture: StoryFn<typeof Image> = () => (
-  <Image
-    src={placeholderImage}
-    className={style['custom-image']}
-    alt="placeholder, blank area with a gray background color"
-    height={200}
-    width={200}
-    as="picture"
-  />
-)
+export const CustomClass: Story = {
+  render: () => (
+    <Image
+      src={placeholderImage}
+      className={style['custom-image']}
+      alt="placeholder, blank area with a gray background color"
+      height={200}
+      width={200}
+    />
+  ),
+}
 
-export const CustomClassWithAspectRatio: StoryFn<typeof Image> = () => (
-  <Image
-    src={placeholderImage}
-    className={style['custom-image']}
-    alt="placeholder, blank area with a gray background color"
-    aspectRatio="custom"
-  />
-)
+export const CustomClassOnPicture: Story = {
+  render: () => (
+    <Image
+      src={placeholderImage}
+      className={style['custom-image']}
+      alt="placeholder, blank area with a gray background color"
+      height={200}
+      width={200}
+      as="picture"
+    />
+  ),
+}
 
-export const BorderRadiusOptions: StoryFn<typeof Image> = () => (
-  <Stack direction="horizontal">
-    {ImageBorderRadiusOptions.map(borderRadius => (
-      <Image
-        key={borderRadius}
-        src={placeholderImage}
-        width={200}
-        height={200}
-        alt="placeholder, blank area with a gray background color"
-        borderRadius={borderRadius}
-      />
-    ))}
-  </Stack>
-)
+export const CustomClassWithAspectRatio: Story = {
+  render: () => (
+    <Image
+      src={placeholderImage}
+      className={style['custom-image']}
+      alt="placeholder, blank area with a gray background color"
+      aspectRatio="custom"
+    />
+  ),
+}
+
+export const BorderRadiusOptions: Story = {
+  render: () => (
+    <Stack direction="horizontal">
+      {ImageBorderRadiusOptions.map(borderRadius => (
+        <Image
+          key={borderRadius}
+          src={placeholderImage}
+          width={200}
+          height={200}
+          alt="placeholder, blank area with a gray background color"
+          borderRadius={borderRadius}
+        />
+      ))}
+    </Stack>
+  ),
+}
