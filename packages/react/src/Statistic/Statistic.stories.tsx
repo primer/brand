@@ -1,10 +1,15 @@
 import React from 'react'
-import {Meta} from '@storybook/react'
-import {Statistic} from '.'
+import type {Meta, StoryObj} from '@storybook/react'
+import {Statistic, StatisticProps} from '.'
 
-export default {
+type StoryProps = {
+  heading: string
+  description: string
+} & StatisticProps
+
+const meta = {
   title: 'Components/Statistic',
-  component: Statistic,
+  component: Statistic as Meta<StoryProps>['component'], // because Statistic applies forwardRef
   args: {
     heading: '$2M+',
     description: 'Given back to our maintainers',
@@ -28,18 +33,25 @@ export default {
       options: ['default', 'boxed'],
     },
   },
-} as Meta<typeof Statistic>
+} satisfies Meta<StoryProps>
 
-export const Playground = args => (
-  <Statistic {...args}>
-    <Statistic.Heading>{args.heading}</Statistic.Heading>
-    <Statistic.Description>{args.description}</Statistic.Description>
-  </Statistic>
-)
+export default meta
+type Story = StoryObj<StoryProps>
 
-export const Default = args => (
-  <Statistic>
-    <Statistic.Heading>{args.heading}</Statistic.Heading>
-    <Statistic.Description>{args.description}</Statistic.Description>
-  </Statistic>
-)
+export const Playground: Story = {
+  render: args => (
+    <Statistic {...args}>
+      <Statistic.Heading>{args.heading}</Statistic.Heading>
+      <Statistic.Description>{args.description}</Statistic.Description>
+    </Statistic>
+  ),
+}
+
+export const Default: Story = {
+  render: args => (
+    <Statistic>
+      <Statistic.Heading>{args.heading}</Statistic.Heading>
+      <Statistic.Description>{args.description}</Statistic.Description>
+    </Statistic>
+  ),
+}
