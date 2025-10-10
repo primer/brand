@@ -1,5 +1,11 @@
 # @primer/react-brand
 
+## 0.58.3
+
+### Patch Changes
+
+- [#1174](https://github.com/primer/brand/pull/1174) [`ec9ad69`](https://github.com/primer/brand/commit/ec9ad69c22c34703c3aaa67288d60d88ee8b70ce) Thanks [@rezrah](https://github.com/rezrah)! - Internal refactoring to `SubNav` types. Updates the `ref` type from `HTMLElement` to `HTMLDivElement` to match the runtime `forwardRef` value.
+
 ## 0.58.2
 
 ### Patch Changes
