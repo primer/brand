@@ -1,28 +1,26 @@
 import React from 'react'
 import type {Meta, StoryObj} from '@storybook/react'
 
-import {Statistic} from '.'
+import {Statistic, StatisticProps} from '.'
 import {AnimationProvider, Box, Grid, InlineLink, Stack, Testimonial, Text} from '../'
 import monaAvatar from '../fixtures/images/avatar-mona.png'
 
+type StoryProps = {
+  heading: string
+  description: string
+} & StatisticProps
+
 const meta = {
   title: 'Components/Statistic/Features',
-  component: Statistic,
-} satisfies Meta<typeof Statistic>
+  component: Statistic as Meta<StoryProps>['component'], // because Statistic applies forwardRef,
+  args: {
+    heading: '100M+',
+    description: 'Developers',
+  },
+} satisfies Meta<StoryProps>
 
 export default meta
-type Story = StoryObj<typeof Statistic>
-
-export const CustomHeadingSize: Story = {
-  render: () => (
-    <Stack direction="vertical" gap="spacious" padding="none">
-      <Statistic size="small">
-        <Statistic.Heading size="100">Smallest size</Statistic.Heading>
-        <Statistic.Description>w/ size 100 text override</Statistic.Description>
-      </Statistic>
-    </Stack>
-  ),
-}
+type Story = StoryObj<StoryProps>
 
 export const BoxedVariant: Story = {
   render: () => (
@@ -55,6 +53,17 @@ export const Sizes: Story = {
       <Statistic size="large">
         <Statistic.Heading>100M+</Statistic.Heading>
         <Statistic.Description>Developers</Statistic.Description>
+      </Statistic>
+    </Stack>
+  ),
+}
+
+export const CustomHeadingSize: Story = {
+  render: () => (
+    <Stack direction="vertical" gap="spacious" padding="none">
+      <Statistic size="small">
+        <Statistic.Heading size="100">Smallest size</Statistic.Heading>
+        <Statistic.Description>w/ size 100 text override</Statistic.Description>
       </Statistic>
     </Stack>
   ),
