@@ -75,6 +75,24 @@
 
 .Statistic__heading {
   font-stretch: 75%;
+  position: relative;
+}
+
+.Statistic__heading sup {
+  font-size: var(--brand-text-size-100);
+  line-height: 0;
+  font-weight: var(--brand-text-weight-100);
+  font-stretch: normal;
+  vertical-align: top;
+  top: var(--base-size-6); /* Optical align to heading top */
+  position: relative;
+}
+
+.Statistic__heading sup a {
+  /* Targets footnote links. Specificity not ideal, but these are passed through by the user */
+  padding: var(--base-size-4);
+  display: inline-block;
+  line-height: 1;
 }
 
 /*
@@ -85,7 +103,23 @@
 }
 
 .Statistic__description {
+  position: relative;
   display: block;
   margin-block-start: var(--base-size-8);
   font-stretch: normal;
+}
+
+.Statistic__description sup {
+  font-size: var(--brand-text-size-100);
+  vertical-align: top;
+  top: 0;
+  position: relative;
+  line-height: 0;
+}
+
+.Statistic__description sup a {
+  /* Targets footnote links. Specificity not ideal, but these are passed through by the user */
+  padding: var(--base-size-4);
+  display: inline-block;
+  line-height: 1;
 }

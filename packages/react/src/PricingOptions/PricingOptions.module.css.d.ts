@@ -17,6 +17,7 @@ declare const styles: {
   readonly "PricingOptions__feature-list-accordion-content": string;
   readonly "PricingOptions__feature-list-accordion-heading": string;
   readonly "PricingOptions__feature-list-group-heading": string;
+  readonly "PricingOptions__feature-list-item": string;
   readonly "PricingOptions__feature-list-item--excluded": string;
   readonly "PricingOptions__feature-list-set": string;
   readonly "PricingOptions__footnote": string;

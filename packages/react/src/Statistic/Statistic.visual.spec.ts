@@ -538,4 +538,58 @@ test.describe('Visual Comparison: Statistic', () => {
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
   })
+
+  test('Statistic / With Footnote', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-statistic-features--with-footnote&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
+  test('Statistic / With Footnote (fr)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-statistic-features--with-footnote&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
+  test('Statistic / With Footnote (de)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-statistic-features--with-footnote&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
+  test('Statistic / With Footnote (ja)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-statistic-features--with-footnote&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
+  test('Statistic / With Footnote (es)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-statistic-features--with-footnote&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
+  test('Statistic / With Footnote (pt-BR)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-statistic-features--with-footnote&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
 })

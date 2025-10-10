@@ -13,7 +13,7 @@
 }
 
 .ListItem__leading-visual {
-  margin: var(--base-size-4) 0;
+  height: 1lh;
 }
 
 .ListItem__leading-visual--muted {
