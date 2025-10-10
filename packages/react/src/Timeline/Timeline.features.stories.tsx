@@ -1,15 +1,18 @@
 import React from 'react'
-import {StoryFn, Meta} from '@storybook/react'
+import type {Meta, StoryObj} from '@storybook/react'
 
 import {Timeline} from '.'
 
-export default {
-  title: 'Components/Timeline/features',
+const meta = {
+  title: 'Components/Timeline/Features',
   component: Timeline,
-} as Meta<typeof Timeline>
+} satisfies Meta<typeof Timeline>
 
-export const WithEmphasis: StoryFn<typeof Timeline> = () => {
-  return (
+export default meta
+type Story = StoryObj<typeof meta>
+
+export const WithEmphasis: Story = {
+  render: () => (
     <Timeline>
       <Timeline.Item>
         <b>GitHub Codespaces</b> offers a complete dev environment in seconds, so you can code, build, test, and open
@@ -23,11 +26,11 @@ export const WithEmphasis: StoryFn<typeof Timeline> = () => {
         <b>GitHub Actions</b> automates your build, test, and deployment workflow with simple and secure CI/CD.
       </Timeline.Item>
     </Timeline>
-  )
+  ),
 }
 
-export const WithShorterText: StoryFn<typeof Timeline> = () => {
-  return (
+export const WithShorterText: Story = {
+  render: () => (
     <Timeline>
       <Timeline.Item>
         <b>GitHub Codespaces</b> offers a complete dev environment in seconds.
@@ -39,11 +42,11 @@ export const WithShorterText: StoryFn<typeof Timeline> = () => {
         <b>GitHub Actions</b> automates your build, test, and deployment workflows.
       </Timeline.Item>
     </Timeline>
-  )
+  ),
 }
 
-export const WithLinks: StoryFn<typeof Timeline> = () => {
-  return (
+export const WithLinks: Story = {
+  render: () => (
     <Timeline>
       <Timeline.Item>
         <b>GitHub Codespaces</b> offers a <a href="/">complete dev environment</a> in seconds.
@@ -55,11 +58,11 @@ export const WithLinks: StoryFn<typeof Timeline> = () => {
         <b>GitHub Actions</b> automates your build, test, and deployment workflows.
       </Timeline.Item>
     </Timeline>
-  )
+  ),
 }
 
-export const WithLongerText: StoryFn<typeof Timeline> = () => {
-  return (
+export const WithLongerText: Story = {
+  render: () => (
     <Timeline>
       <Timeline.Item>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam vel nisi consequat, tempus nisl non, ultrices arcu.
@@ -79,5 +82,5 @@ export const WithLongerText: StoryFn<typeof Timeline> = () => {
         Sed sed nunc lorem.
       </Timeline.Item>
     </Timeline>
-  )
+  ),
 }
