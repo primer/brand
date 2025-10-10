@@ -13,6 +13,17 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof Statistic>
 
+export const CustomHeadingSize: Story = {
+  render: () => (
+    <Stack direction="vertical" gap="spacious" padding="none">
+      <Statistic size="small">
+        <Statistic.Heading size="100">Smallest size</Statistic.Heading>
+        <Statistic.Description>w/ size 100 text override</Statistic.Description>
+      </Statistic>
+    </Stack>
+  ),
+}
+
 export const BoxedVariant: Story = {
   render: () => (
     <Statistic variant="boxed">
@@ -44,17 +55,6 @@ export const Sizes: Story = {
       <Statistic size="large">
         <Statistic.Heading>100M+</Statistic.Heading>
         <Statistic.Description>Developers</Statistic.Description>
-      </Statistic>
-    </Stack>
-  ),
-}
-
-export const CustomHeadingSize: Story = {
-  render: () => (
-    <Stack direction="vertical" gap="spacious" padding="none">
-      <Statistic size="small">
-        <Statistic.Heading size="100">Smallest size</Statistic.Heading>
-        <Statistic.Description>w/ size 100 text override</Statistic.Description>
       </Statistic>
     </Stack>
   ),
