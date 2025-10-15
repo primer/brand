@@ -7,6 +7,7 @@ Replaced logical `end` values with physical `flex-end` across multiple component
 This change affects the following components:
 
 - `Bento`
-- `Card`
+- `Text`
+- `SubNav`
 - `Select`
 - `RiverAccordion`
