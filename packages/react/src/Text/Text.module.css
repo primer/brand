@@ -215,7 +215,7 @@
 }
 
 .Text-align--end {
-  text-align: end;
+  text-align: flex-end;
 }
 
 .Text-align--center {
