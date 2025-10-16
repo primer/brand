@@ -337,7 +337,7 @@
     order: 1;
     z-index: 9999;
     padding: 0;
-    justify-content: end;
+    justify-content: flex-end;
   }
 
   .SubNav--has-sub-heading:not(.SubNav--subHeadingActive) .SubNav__overlay-toggle {

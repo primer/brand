@@ -399,7 +399,7 @@
 }
 
 .Bento__Item--verticalAlign-end {
-  justify-content: end;
+  justify-content: flex-end;
 }
 
 .Bento__Item--verticalAlign-end .Bento__call-to-action {
@@ -666,7 +666,7 @@
   }
 
   .Bento__Item--xsmall-verticalAlign-end {
-    justify-content: end;
+    justify-content: flex-end;
   }
 
   .Bento__Item--xsmall-verticalAlign-end .Bento__call-to-action {
@@ -952,7 +952,7 @@
   }
 
   .Bento__Item--small-verticalAlign-end {
-    justify-content: end;
+    justify-content: flex-end;
   }
 
   .Bento__Item--small-verticalAlign-end .Bento__call-to-action {
@@ -1238,7 +1238,7 @@
   }
 
   .Bento__Item--medium-verticalAlign-end {
-    justify-content: end;
+    justify-content: flex-end;
   }
 
   .Bento__Item--medium-verticalAlign-end .Bento__call-to-action {
@@ -1524,7 +1524,7 @@
   }
 
   .Bento__Item--large-verticalAlign-end {
-    justify-content: end;
+    justify-content: flex-end;
   }
 
   .Bento__Item--large-verticalAlign-end .Bento__call-to-action {
@@ -1810,7 +1810,7 @@
   }
 
   .Bento__Item--xlarge-verticalAlign-end {
-    justify-content: end;
+    justify-content: flex-end;
   }
 
   .Bento__Item--xlarge-verticalAlign-end .Bento__call-to-action {
@@ -2096,7 +2096,7 @@
   }
 
   .Bento__Item--xxlarge-verticalAlign-end {
-    justify-content: end;
+    justify-content: flex-end;
   }
 
   .Bento__Item--xxlarge-verticalAlign-end .Bento__call-to-action {
