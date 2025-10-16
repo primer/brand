@@ -119,7 +119,7 @@
   -webkit-mask-repeat: no-repeat;
   grid-column: 2;
   grid-row: 1;
-  place-self: center end;
+  place-self: center flex-end;
 }
 
 .Select-wrapper--disabled {
