@@ -10,4 +10,4 @@ This change affects the following components:
 - `Text`
 - `SubNav`
 - `Select`
-- `RiverAccordion`
+- `RiverBreakout`
