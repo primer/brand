@@ -186,35 +186,6 @@ export const WithFootnote: Story = {
     <Stack direction="vertical" gap="spacious">
       <Stack direction="horizontal" gap="spacious" padding="none">
         <Statistic variant="boxed" size="small">
-          <Statistic.Heading>
-            100M+{' '}
-            <sup>
-              <InlineLink href="#link-to-footnote-1">1</InlineLink>
-            </sup>
-          </Statistic.Heading>
-          <Statistic.Description>Developers</Statistic.Description>
-        </Statistic>
-        <Statistic variant="boxed" size="medium">
-          <Statistic.Heading>
-            100M+{' '}
-            <sup>
-              <InlineLink href="#link-to-footnote-1">2</InlineLink>
-            </sup>
-          </Statistic.Heading>
-          <Statistic.Description>Developers</Statistic.Description>
-        </Statistic>
-        <Statistic variant="boxed" size="large">
-          <Statistic.Heading>
-            100M+{' '}
-            <sup>
-              <InlineLink href="#link-to-footnote-1">3</InlineLink>
-            </sup>
-          </Statistic.Heading>
-          <Statistic.Description>Developers</Statistic.Description>
-        </Statistic>
-      </Stack>
-      <Stack direction="horizontal" gap="spacious" padding="none">
-        <Statistic variant="boxed" size="small">
           <Statistic.Heading>100M+</Statistic.Heading>
           <Statistic.Description>
             Developers{' '}
