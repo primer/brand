@@ -1,5 +1,22 @@
 # @primer/react-brand
 
+## 0.59.0
+
+### Minor Changes
+
+- [#1178](https://github.com/primer/brand/pull/1178) [`f49bfd4`](https://github.com/primer/brand/commit/f49bfd4df34a787baa7525fef2e154db21ff1a37) Thanks [@rezrah](https://github.com/rezrah)! - Replaced `end` values with `flex-end` across multiple components to resolve downstream compilation issues with older browserslist configs.
+
+  This change affects the following components:
+
+  - `Bento`
+  - `SubNav`
+  - `Select`
+  - `RiverBreakout`
+
+### Patch Changes
+
+- [#1174](https://github.com/primer/brand/pull/1174) [`ec9ad69`](https://github.com/primer/brand/commit/ec9ad69c22c34703c3aaa67288d60d88ee8b70ce) Thanks [@rezrah](https://github.com/rezrah)! - Internal refactoring to `SubNav` types. Updates the `ref` type from `HTMLElement` to `HTMLDivElement` to match the runtime `forwardRef` value.
+
 ## 0.58.2
 
 ### Patch Changes
