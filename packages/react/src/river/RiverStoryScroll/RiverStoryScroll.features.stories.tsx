@@ -9,6 +9,10 @@ import placeholder1 from '../../fixtures/images/placeholder-1.png'
 import placeholder2 from '../../fixtures/images/placeholder-2.png'
 import placeholder3 from '../../fixtures/images/placeholder-3.png'
 
+import enterprise1 from '../../fixtures/images/enterprise-devops.webp'
+import enterprise2 from '../../fixtures/images/enterprise-platform.webp'
+import enterprise3 from '../../fixtures/images/enterprise-ai.webp'
+
 type ComponentAndStoryProps = RiverStoryScrollProps & {
   withTrailingComponent: boolean
 }
@@ -140,8 +144,8 @@ const EnterpriseTemplate = () => (
     <River>
       <River.Visual>
         <img
-          src="https://github.com/images/modules/site/enterprise/2023/devops.png"
-          alt="placeholder, blank area with a gray background color"
+          src={enterprise1}
+          alt="A notification panel from a development operations tool showing statuses such as 'Changes requested,' 'Some checks were not successful,' and 'Merging is blocked."
         />
       </River.Visual>
       <River.Content>
@@ -156,8 +160,8 @@ const EnterpriseTemplate = () => (
     <River>
       <River.Visual>
         <img
-          src="https://github.com/images/modules/site/enterprise/2023/platform.png"
-          alt="placeholder, blank area with a gray background color"
+          src={enterprise2}
+          alt="A collection of application icons for various development tools like Imgbot, AccessLint, WakaTime, Circle CI, Cirrus CI and Code Climate."
         />
       </River.Visual>
       <River.Content
@@ -180,8 +184,8 @@ const EnterpriseTemplate = () => (
     <River>
       <River.Visual>
         <img
-          src="https://github.com/images/modules/site/enterprise/2023/ai.png"
-          alt="placeholder, blank area with a gray background color"
+          src={enterprise3}
+          alt="A user interface element with a search bar inviting to 'Ask a question or type '/' for topics'."
         />
       </River.Visual>
       <River.Content>

@@ -2,6 +2,9 @@ import React from 'react'
 import {Meta} from '@storybook/react'
 import {Footnotes} from '.'
 import {Box, Grid, Heading, InlineLink, River, RiverBreakout, Section, Text, ThemeProvider, Timeline} from '../'
+import placeholder1 from '../fixtures/images/placeholder-1.png'
+import placeholder2 from '../fixtures/images/placeholder-2.png'
+import placeholder3 from '../fixtures/images/placeholder-3.png'
 
 const meta: Meta<typeof Footnotes> = {
   title: 'Components/Footnotes/Examples',
@@ -20,8 +23,8 @@ export const RiversWithCitations = () => (
             <River>
               <River.Visual>
                 <img
-                  src="https://github.com/images/modules/site/enterprise/2023/platform.png"
-                  alt="placeholder, blank area with a gray background color"
+                  src={placeholder1}
+                  alt="placeholder, blank area with a orange background color and number 1 on it"
                 />
               </River.Visual>
               <River.Content
@@ -60,8 +63,8 @@ export const RiversWithCitations = () => (
               <RiverBreakout.A11yHeading>Accelerate workflows</RiverBreakout.A11yHeading>
               <RiverBreakout.Visual>
                 <img
-                  src="https://images.ctfassets.net/8aevphvgewt8/6Ia7O6lk8a6gu4xyNCoIY7/306a31600b13f49a59abb3d106703e51/advisories.webp"
-                  alt="placeholder, blank area with a gray background color"
+                  src={placeholder2}
+                  alt="placeholder, blank area with a violet background color and number 2 on it"
                 />
               </RiverBreakout.Visual>
               <RiverBreakout.Content
@@ -102,8 +105,8 @@ export const RiversWithCitations = () => (
             <River>
               <River.Visual>
                 <img
-                  src="https://github.com/images/modules/site/enterprise/2023/ai.png"
-                  alt="placeholder, blank area with a gray background color"
+                  src={placeholder3}
+                  alt="placeholder, blank area with a green background color and number 3 on it"
                 />
               </River.Visual>
               <River.Content>
