@@ -17,7 +17,7 @@ type Story = StoryObj<MetaProps>
 
 export const DefaultVariantNarrow: Story = {
   globals: {
-    viewport: {value: 'mobile1'},
+    viewport: {value: 'iphone5'},
   },
   render: args => {
     return (
@@ -181,7 +181,7 @@ export const AccentVariant: Story = {
 
 export const AccentVariantNarrow: Story = {
   globals: {
-    viewport: {value: 'mobile1'},
+    viewport: {value: 'iphone5'},
   },
   render: args => {
     return (
@@ -228,7 +228,7 @@ export const UnderlineVariant: Story = {
 
 export const UnderlineVariantNarrow: Story = {
   globals: {
-    viewport: {value: 'mobile1'},
+    viewport: {value: 'iphone5'},
   },
   render: args => {
     return (
