@@ -5,13 +5,9 @@ import {INITIAL_VIEWPORTS} from 'storybook/viewport'
 import {Text, InlineLink} from '../'
 import {ComparisonTable} from '.'
 
-type StoryArgs = React.ComponentProps<typeof ComparisonTable> & {
-  footnote?: string
-}
-
 const meta = {
   title: 'Components/ComparisonTable',
-  component: ComparisonTable as Meta<StoryArgs>['component'],
+  component: ComparisonTable,
   args: {
     variant: 'default',
     as: 'section',
@@ -63,13 +59,16 @@ const meta = {
       viewports: INITIAL_VIEWPORTS,
     },
   },
-} satisfies Meta<StoryArgs>
+} satisfies Meta<typeof ComparisonTable>
 
 export default meta
 
-type Story = StoryObj<StoryArgs>
+type Story = StoryObj<typeof ComparisonTable>
 
-const ComparisonTableTemplate = ({footnote, ...args}: StoryArgs) => (
+const ComparisonTableTemplate = ({
+  footnote,
+  ...args
+}: React.ComponentProps<typeof ComparisonTable> & {footnote?: string}) => (
   <ComparisonTable {...args}>
     <ComparisonTable.Row>
       <ComparisonTable.Cell>Use case</ComparisonTable.Cell>

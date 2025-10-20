@@ -731,7 +731,7 @@ export const FullWidth: Story = {
 }
 
 export const NoTitle: Story = {
-  render: ({showSearch, numLinks, ...rest}: StoryArgs) => <SubdomainNavBar {...rest} />,
+  render: (args: StoryArgs) => <SubdomainNavBar {...args} />,
   args: {
     title: '',
   },
