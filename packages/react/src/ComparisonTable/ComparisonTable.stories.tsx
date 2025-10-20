@@ -1,13 +1,17 @@
 import React from 'react'
-import {Meta, StoryFn} from '@storybook/react'
+import type {Meta, StoryObj} from '@storybook/react'
 import {INITIAL_VIEWPORTS} from 'storybook/viewport'
 
 import {Text, InlineLink} from '../'
 import {ComparisonTable} from '.'
 
-export default {
+type StoryArgs = React.ComponentProps<typeof ComparisonTable> & {
+  footnote?: string
+}
+
+const meta = {
   title: 'Components/ComparisonTable',
-  component: ComparisonTable,
+  component: ComparisonTable as Meta<StoryArgs>['component'],
   args: {
     variant: 'default',
     as: 'section',
@@ -59,10 +63,14 @@ export default {
       viewports: INITIAL_VIEWPORTS,
     },
   },
-} as Meta<typeof ComparisonTable>
+} satisfies Meta<StoryArgs>
 
-const Template: StoryFn<typeof ComparisonTable> = args => (
-  <ComparisonTable featuredColumn={args.featuredColumn} heading={args.heading} variant={args.variant} as={args.as}>
+export default meta
+
+type Story = StoryObj<StoryArgs>
+
+const ComparisonTableTemplate = ({footnote, ...args}: StoryArgs) => (
+  <ComparisonTable {...args}>
     <ComparisonTable.Row>
       <ComparisonTable.Cell>Use case</ComparisonTable.Cell>
       <ComparisonTable.Cell>GitHub</ComparisonTable.Cell>
@@ -92,69 +100,73 @@ const Template: StoryFn<typeof ComparisonTable> = args => (
         <Text as="p">CloudBees is the cloud alternative</Text>
       </ComparisonTable.Cell>
     </ComparisonTable.Row>
-    {args.footnote && <ComparisonTable.Footnote>{args.footnote}</ComparisonTable.Footnote>}
+    {footnote && <ComparisonTable.Footnote>{footnote}</ComparisonTable.Footnote>}
   </ComparisonTable>
 )
 
-export const Playground = Template.bind({})
-Playground.args = {
-  heading: 'GitHub vs Jenkins',
-}
-
-export const PlaygroundMobile = Template.bind({})
-PlaygroundMobile.args = {
-  heading: 'GitHub vs Jenkins',
-}
-PlaygroundMobile.parameters = {
-  viewport: {
-    defaultViewport: 'iphonex',
+export const Playground: Story = {
+  render: args => <ComparisonTableTemplate {...args} />,
+  args: {
+    heading: 'GitHub vs Jenkins',
   },
 }
-PlaygroundMobile.storyName = 'Playground (mobile)'
 
-export const Minimal = () => (
-  <ComparisonTable heading="What is containerization?  " variant="minimal">
-    <ComparisonTable.Row>
-      <ComparisonTable.Cell></ComparisonTable.Cell>
-      <ComparisonTable.Cell>Containerization</ComparisonTable.Cell>
-      <ComparisonTable.Cell>Virtualization</ComparisonTable.Cell>
-    </ComparisonTable.Row>
-    <ComparisonTable.Row>
-      <ComparisonTable.Cell>Operating system (OS) </ComparisonTable.Cell>
-      <ComparisonTable.Cell>
-        Containers use the host OS, meaning all containers must be compatible with that OS.
-      </ComparisonTable.Cell>
-      <ComparisonTable.Cell>
-        VMs are effectively separate computers that run their own OS. For example, a VM can run Windows even if the host
-        OS is Ubuntu.
-      </ComparisonTable.Cell>
-    </ComparisonTable.Row>
-    <ComparisonTable.Row>
-      <ComparisonTable.Cell>Computing resources </ComparisonTable.Cell>
-      <ComparisonTable.Cell>
-        Containers are lightweight, taking only the resources needed to run the application and the container manager.{' '}
-      </ComparisonTable.Cell>
-      <ComparisonTable.Cell>
-        VMs emulate a full computer, meaning that they replicate much of the host environment. That uses more memory,
-        CPU cycles, and disk space.
-      </ComparisonTable.Cell>
-    </ComparisonTable.Row>
-    <ComparisonTable.Row>
-      <ComparisonTable.Cell>Shareability </ComparisonTable.Cell>
-      <ComparisonTable.Cell>
-        Container images are relatively small in size, making them easy to share.
-      </ComparisonTable.Cell>
-      <ComparisonTable.Cell>VM images are often much larger as they include a full OS.</ComparisonTable.Cell>
-    </ComparisonTable.Row>
-    <ComparisonTable.Row>
-      <ComparisonTable.Cell>Security</ComparisonTable.Cell>
-      <ComparisonTable.Cell>
-        Containers might be isolated only very lightly from each other. A process in one container could access memory
-        used by another container, for example.
-      </ComparisonTable.Cell>
-      <ComparisonTable.Cell>
-        By running a separate OS, VMs running on the same hardware are more isolated from one another than containers.
-      </ComparisonTable.Cell>
-    </ComparisonTable.Row>
-  </ComparisonTable>
-)
+export const PlaygroundMobile: Story = {
+  render: args => <ComparisonTableTemplate {...args} />,
+  args: {
+    heading: 'GitHub vs Jenkins',
+  },
+  globals: {
+    viewport: {value: 'iphonex'},
+  },
+  name: 'Playground (mobile)',
+}
+
+export const Minimal: Story = {
+  render: () => (
+    <ComparisonTable heading="What is containerization?  " variant="minimal">
+      <ComparisonTable.Row>
+        <ComparisonTable.Cell></ComparisonTable.Cell>
+        <ComparisonTable.Cell>Containerization</ComparisonTable.Cell>
+        <ComparisonTable.Cell>Virtualization</ComparisonTable.Cell>
+      </ComparisonTable.Row>
+      <ComparisonTable.Row>
+        <ComparisonTable.Cell>Operating system (OS) </ComparisonTable.Cell>
+        <ComparisonTable.Cell>
+          Containers use the host OS, meaning all containers must be compatible with that OS.
+        </ComparisonTable.Cell>
+        <ComparisonTable.Cell>
+          VMs are effectively separate computers that run their own OS. For example, a VM can run Windows even if the
+          host OS is Ubuntu.
+        </ComparisonTable.Cell>
+      </ComparisonTable.Row>
+      <ComparisonTable.Row>
+        <ComparisonTable.Cell>Computing resources </ComparisonTable.Cell>
+        <ComparisonTable.Cell>
+          Containers are lightweight, taking only the resources needed to run the application and the container manager.{' '}
+        </ComparisonTable.Cell>
+        <ComparisonTable.Cell>
+          VMs emulate a full computer, meaning that they replicate much of the host environment. That uses more memory,
+          CPU cycles, and disk space.
+        </ComparisonTable.Cell>
+      </ComparisonTable.Row>
+      <ComparisonTable.Row>
+        <ComparisonTable.Cell>Shareability </ComparisonTable.Cell>
+        <ComparisonTable.Cell>
+          Container images are relatively small in size, making them easy to share.
+        </ComparisonTable.Cell>
+        <ComparisonTable.Cell>VM images are often much larger as they include a full OS.</ComparisonTable.Cell>
+      </ComparisonTable.Row>
+      <ComparisonTable.Row>
+        <ComparisonTable.Cell>Security</ComparisonTable.Cell>
+        <ComparisonTable.Cell>
+          Containers might be isolated only very lightly from each other. A process in one container could access memory
+          used by another container, for example.
+        </ComparisonTable.Cell>
+        <ComparisonTable.Cell>
+          By running a separate OS, VMs running on the same hardware are more isolated from one another than containers.
+        </ComparisonTable.Cell>
+      </ComparisonTable.Row>
+    </ComparisonTable>
+  ),
+}

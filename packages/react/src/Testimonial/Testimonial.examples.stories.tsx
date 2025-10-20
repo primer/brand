@@ -1,5 +1,5 @@
 import React from 'react'
-import type {StoryObj} from '@storybook/react'
+import type {Meta, StoryObj} from '@storybook/react'
 import clsx from 'clsx'
 
 import {Testimonial, TestimonialProps} from '.'
@@ -14,7 +14,11 @@ import styles from './Testimonial.stories.module.css'
 
 type MetaProps = TestimonialProps
 
-const meta = {component: Testimonial, title: 'Components/Testimonial/Examples'}
+const meta = {
+  component: Testimonial as Meta<MetaProps>['component'],
+  title: 'Components/Testimonial/Examples',
+} satisfies Meta<MetaProps>
+
 export default meta
 
 type Story = StoryObj<MetaProps>
@@ -120,10 +124,8 @@ export const WithFrostedGlassDark: Story = {
 }
 
 export const Duo: Story = {
-  parameters: {
-    viewport: {
-      defaultViewport: 'ipad12p',
-    },
+  globals: {
+    viewport: {value: 'ipad12p'},
   },
   render: args => (
     <Stack
