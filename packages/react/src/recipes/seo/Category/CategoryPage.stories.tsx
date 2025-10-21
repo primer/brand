@@ -1,10 +1,10 @@
 import React from 'react'
 import {INITIAL_VIEWPORTS} from 'storybook/viewport'
-import {Meta, StoryFn} from '@storybook/react'
+import type {Meta, StoryObj} from '@storybook/react'
 
 import {CategoryPage} from './CategoryPage'
 
-export default {
+const meta = {
   title: 'Recipes/SEO/Category page',
   component: CategoryPage,
   parameters: {
@@ -27,5 +27,11 @@ export default {
   },
 } as Meta<typeof CategoryPage>
 
-export const Playground: StoryFn<typeof CategoryPage> = args => <CategoryPage {...args} />
-Playground.args = {}
+export default meta
+
+type Story = StoryObj<typeof CategoryPage>
+
+export const Playground: Story = {
+  render: args => <CategoryPage {...args} />,
+  args: {},
+}

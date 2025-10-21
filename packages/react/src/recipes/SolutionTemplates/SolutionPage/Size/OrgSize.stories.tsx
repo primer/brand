@@ -1,12 +1,12 @@
 import React from 'react'
 import {INITIAL_VIEWPORTS} from 'storybook/viewport'
-import {Meta, StoryFn} from '@storybook/react'
+import type {Meta, StoryObj} from '@storybook/react'
 
 import {SolutionPage} from '../SolutionPage'
 import {sharedArgTypes} from '../../helpers'
 import {ColorModesEnum} from '../../../../ThemeProvider'
 
-export default {
+const meta = {
   title: 'Recipes/Solutions/Solution: Org size',
   component: SolutionPage,
   args: {
@@ -44,6 +44,10 @@ export default {
   },
 } as Meta<typeof SolutionPage>
 
+export default meta
+
+type Story = StoryObj<typeof SolutionPage>
+
 const maximumArgs = {
   variant: 'size',
   logoBarVisible: true,
@@ -55,18 +59,22 @@ const maximumArgs = {
   jtbdBentosVisible: true,
 }
 
-export const Maximum: StoryFn<typeof SolutionPage> = args => <SolutionPage {...args} />
-Maximum.args = {
-  ...maximumArgs,
-  variant: 'size',
+export const Maximum: Story = {
+  name: 'Maximum Light',
+  render: args => <SolutionPage {...args} />,
+  args: {
+    ...maximumArgs,
+    variant: 'size',
+  },
 }
-Maximum.storyName = 'Maximum Light'
 
-export const MaximumDark = Maximum.bind({})
-MaximumDark.args = {
-  ...maximumArgs,
-  variant: 'size',
-  colorMode: ColorModesEnum.DARK,
+export const MaximumDark: Story = {
+  render: args => <SolutionPage {...args} />,
+  args: {
+    ...maximumArgs,
+    variant: 'size',
+    colorMode: ColorModesEnum.DARK,
+  },
 }
 
 const minimumArgs = {
@@ -76,16 +84,20 @@ const minimumArgs = {
   jtbd3Visible: false,
   jtbdBentosVisible: false,
 }
-export const Minimum: StoryFn<typeof SolutionPage> = args => <SolutionPage {...args} />
-Minimum.args = {
-  ...minimumArgs,
-  variant: 'size',
+export const Minimum: Story = {
+  name: 'Minimum Light',
+  render: args => <SolutionPage {...args} />,
+  args: {
+    ...minimumArgs,
+    variant: 'size',
+  },
 }
-Minimum.storyName = 'Minimum Light'
 
-export const MinimumDark = Minimum.bind({})
-MinimumDark.args = {
-  ...minimumArgs,
-  variant: 'size',
-  colorMode: ColorModesEnum.DARK,
+export const MinimumDark: Story = {
+  render: args => <SolutionPage {...args} />,
+  args: {
+    ...minimumArgs,
+    variant: 'size',
+    colorMode: ColorModesEnum.DARK,
+  },
 }

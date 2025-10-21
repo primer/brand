@@ -1,6 +1,6 @@
 import React from 'react'
 import {INITIAL_VIEWPORTS} from 'storybook/viewport'
-import {Meta, StoryFn} from '@storybook/react'
+import type {Meta, StoryObj} from '@storybook/react'
 
 import {FeaturePreviewLevelOne} from './FeaturePreviewLevelOne'
 import {FeaturePreviewLevelOneSideBySide} from './FeaturePreviewLevelOneSideBySide'
@@ -8,7 +8,7 @@ import {FeaturePreviewLevelOneSideBySide} from './FeaturePreviewLevelOneSideBySi
 import {themeDetailsMap} from '../helpers'
 import {ColorModesEnum} from '../../../ThemeProvider'
 
-export default {
+const meta = {
   title: 'Recipes/Feature previews/Level 1',
   component: FeaturePreviewLevelOne,
   parameters: {
@@ -78,26 +78,29 @@ export default {
   },
 } as Meta<typeof FeaturePreviewLevelOne>
 
-export const LevelOneDefault: StoryFn<typeof FeaturePreviewLevelOne> = args => <FeaturePreviewLevelOne {...args} />
+export default meta
 
-LevelOneDefault.storyName = 'Default'
+type Story = StoryObj<typeof FeaturePreviewLevelOne>
 
-export const LevelOneSideBySide: StoryFn<typeof FeaturePreviewLevelOneSideBySide> = args => (
-  <FeaturePreviewLevelOneSideBySide {...args} />
-)
-
-LevelOneSideBySide.storyName = 'Side-by-side'
-LevelOneSideBySide.args = {
-  heroLabel: 'Label',
+export const LevelOneDefault: Story = {
+  name: 'Default',
+  render: args => <FeaturePreviewLevelOne {...args} />,
 }
 
-export const LevelOneSideBySideEnterprise: StoryFn<typeof FeaturePreviewLevelOneSideBySide> = args => (
-  <FeaturePreviewLevelOneSideBySide {...args} isEnterprise />
-)
+export const LevelOneSideBySide: Story = {
+  name: 'Side-by-side',
+  render: args => <FeaturePreviewLevelOneSideBySide {...args} isEnterprise={false} />,
+  args: {
+    heroLabel: 'Label',
+  },
+}
 
-LevelOneSideBySideEnterprise.storyName = 'Side-by-side - Enteprise'
-LevelOneSideBySideEnterprise.args = {
-  heroLabel: 'Label',
-  formType: 'extended',
-  colorMode: ColorModesEnum.DARK,
+export const LevelOneSideBySideEnterprise: Story = {
+  name: 'Side-by-side - Enteprise',
+  render: args => <FeaturePreviewLevelOneSideBySide {...args} isEnterprise />,
+  args: {
+    heroLabel: 'Label',
+    formType: 'extended',
+    colorMode: ColorModesEnum.DARK,
+  },
 }

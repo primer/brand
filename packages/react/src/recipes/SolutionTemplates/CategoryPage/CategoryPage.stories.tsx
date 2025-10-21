@@ -1,11 +1,11 @@
 import React from 'react'
 import {INITIAL_VIEWPORTS} from 'storybook/viewport'
-import {Meta, StoryFn} from '@storybook/react'
+import type {Meta, StoryObj} from '@storybook/react'
 
 import {CategoryPage} from './CategoryPage'
 import {ColorModesEnum} from '../../../ThemeProvider'
 
-export default {
+const meta = {
   title: 'Recipes/Solutions/CategoryPage',
   component: CategoryPage,
   args: {
@@ -23,12 +23,20 @@ export default {
   },
 } as Meta<typeof CategoryPage>
 
-export const Light: StoryFn<typeof CategoryPage> = args => <CategoryPage {...args} />
-Light.args = {
-  colorMode: ColorModesEnum.LIGHT,
+export default meta
+
+type Story = StoryObj<typeof CategoryPage>
+
+export const Light: Story = {
+  render: args => <CategoryPage {...args} />,
+  args: {
+    colorMode: ColorModesEnum.LIGHT,
+  },
 }
 
-export const Dark: StoryFn<typeof CategoryPage> = args => <CategoryPage {...args} />
-Dark.args = {
-  colorMode: ColorModesEnum.DARK,
+export const Dark: Story = {
+  render: args => <CategoryPage {...args} />,
+  args: {
+    colorMode: ColorModesEnum.DARK,
+  },
 }
