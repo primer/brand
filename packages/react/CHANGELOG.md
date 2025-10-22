@@ -1,5 +1,11 @@
 # @primer/react-brand
 
+## 0.59.1
+
+### Patch Changes
+
+- [#1183](https://github.com/primer/brand/pull/1183) [`01f5f05`](https://github.com/primer/brand/commit/01f5f05e76b6cb8225d697e6fdda7d539cabf482) Thanks [@rezrah](https://github.com/rezrah)! - Fixed an `AnchorNav` bug on narrow viewports where tabbing outside of the opened menu didn't close it.
+
 ## 0.59.0
 
 ### Minor Changes
