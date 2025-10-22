@@ -346,7 +346,6 @@ describe('AnchorNav', () => {
 
     expect(menuButton).toHaveAttribute('aria-expanded', 'true')
 
-    // Tab through all links to reach action button
     await user.tab() // Normal link
     await user.tab() // Normal link
     await user.tab() // Normal link
