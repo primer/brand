@@ -64,6 +64,7 @@ function _AnchorNav({children, enableDefaultBgColor = false, hideUntilSticky = f
   const wrapperRef = useRef<HTMLDivElement | null>(null)
   const rootRef = useRef<HTMLElement | null>(null)
   const linkContainerRef = useRef<HTMLDivElement | null>(null)
+  const innerContainerRef = useRef<HTMLDivElement | null>(null)
 
   const {isLarge} = useWindowSize()
   const idForLinkContainer = useId()
@@ -90,7 +91,7 @@ function _AnchorNav({children, enableDefaultBgColor = false, hideUntilSticky = f
   }
 
   useKeyboardEscape(closeMenuCallback)
-  useExpandedMenu(menuOpen, linkContainerRef, !isLarge)
+  useExpandedMenu(menuOpen, linkContainerRef, innerContainerRef, !isLarge, closeMenuCallback)
 
   useEffect(() => {
     if (wrapperRef.current) {
@@ -229,6 +230,7 @@ function _AnchorNav({children, enableDefaultBgColor = false, hideUntilSticky = f
         {...rest}
       >
         <div
+          ref={innerContainerRef}
           className={clsx(
             styles['AnchorNav-inner-container'],
             menuOpen && styles['AnchorNav-inner-container--expanded'],
