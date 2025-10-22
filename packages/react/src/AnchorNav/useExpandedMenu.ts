@@ -27,17 +27,18 @@ export const useExpandedMenu = (
 
   // Close the menu when focus moves outside the menu container
   useEffect(() => {
-    if (innerContainerRef.current && open && isNarrow) {
+    const element = innerContainerRef.current
+    if (element && open && isNarrow) {
       const handleFocusOut = (event: FocusEvent) => {
-        if (!innerContainerRef.current?.contains(event.relatedTarget as Node)) {
+        if (!element.contains(event.relatedTarget as Node)) {
           closeMenuCallback()
         }
       }
 
-      document.addEventListener('focusout', handleFocusOut)
+      element.addEventListener('focusout', handleFocusOut)
 
       return () => {
-        document.removeEventListener('focusout', handleFocusOut)
+        element.removeEventListener('focusout', handleFocusOut)
       }
     }
   }, [open, isNarrow, innerContainerRef, closeMenuCallback])

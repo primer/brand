@@ -111,7 +111,7 @@ describe('AnchorNav', () => {
   beforeEach(() => {
     scrollListener = null
 
-    mockUseWindowSize.mockImplementation(() => ({isLarge: true})) // assumes
+    mockUseWindowSize.mockImplementation(() => ({isLarge: true})) // assumes large viewport by default
 
     mockIntersectionObserver = jest.fn()
     mockIntersectionObserver.mockReturnValue({
