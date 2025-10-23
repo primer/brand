@@ -1,12 +1,12 @@
 import React from 'react'
 import {INITIAL_VIEWPORTS} from 'storybook/viewport'
-import {Meta, StoryFn} from '@storybook/react'
+import type {Meta, StoryObj} from '@storybook/react'
 
 import {ColorModesEnum} from '../../../ThemeProvider'
 import {themeDetailsMap} from '../helpers'
 import {FeaturePreviewLevelTwo} from './FeaturePreviewLevelTwo'
 
-export default {
+const meta = {
   title: 'Recipes/Feature previews/Level 2',
   component: FeaturePreviewLevelTwo,
   parameters: {
@@ -428,82 +428,91 @@ export default {
   },
 } as Meta<typeof FeaturePreviewLevelTwo>
 
-export const LevelTwoPlayground: StoryFn<typeof FeaturePreviewLevelTwo> = args => <FeaturePreviewLevelTwo {...args} />
+export default meta
+type Story = StoryObj<typeof FeaturePreviewLevelTwo>
 
-LevelTwoPlayground.storyName = 'Playground'
-LevelTwoPlayground.args = {
-  variant: 'Maximum',
+export const LevelTwoPlayground: Story = {
+  name: 'Playground',
+  args: {
+    variant: 'Maximum',
+  },
+  render: args => <FeaturePreviewLevelTwo {...args} />,
 }
 
-export const LevelTwoMinimal: StoryFn<typeof FeaturePreviewLevelTwo> = args => <FeaturePreviewLevelTwo {...args} />
-
-LevelTwoMinimal.storyName = 'Minimal'
-LevelTwoMinimal.args = {
-  variant: 'Minimum',
-  heroLabel: undefined,
-  heroCtaTextSecondary: undefined,
-  sectionIntroVisible: false,
-  pillarVisible: false,
-  logoSuiteVisible: false,
-  riverOneType: 'end',
-  riverTwoType: 'end',
-  riverOneVisible: false,
-  testimonialVisible: false,
-  faqVisible: false,
-  cardsVisible: false,
-  faqType: 'single',
-  testimonialQuantity: 1,
-  ctaBannerShowBg: false,
+export const LevelTwoMinimal: Story = {
+  name: 'Minimal',
+  args: {
+    variant: 'Minimum',
+    heroLabel: undefined,
+    heroCtaTextSecondary: undefined,
+    sectionIntroVisible: false,
+    pillarVisible: false,
+    logoSuiteVisible: false,
+    riverOneType: 'end',
+    riverTwoType: 'end',
+    riverOneVisible: false,
+    testimonialVisible: false,
+    faqVisible: false,
+    cardsVisible: false,
+    faqType: 'single',
+    testimonialQuantity: 1,
+    ctaBannerShowBg: false,
+  },
+  render: args => <FeaturePreviewLevelTwo {...args} />,
 }
 
-export const LevelTwoPointOne: StoryFn<typeof FeaturePreviewLevelTwo> = args => <FeaturePreviewLevelTwo {...args} />
-
-LevelTwoPointOne.storyName = '2.1 variant'
-LevelTwoPointOne.args = {
-  pillarBackground: true,
-  riverThreeVisible: false,
-  faqVisible: false,
+export const LevelTwoPointOne: Story = {
+  name: '2.1 variant',
+  args: {
+    pillarBackground: true,
+    riverThreeVisible: false,
+    faqVisible: false,
+  },
+  render: args => <FeaturePreviewLevelTwo {...args} />,
 }
 
-export const LevelTwoPointTwo: StoryFn<typeof FeaturePreviewLevelTwo> = args => <FeaturePreviewLevelTwo {...args} />
-
-LevelTwoPointTwo.storyName = '2.2 variant'
-LevelTwoPointTwo.args = {
-  showHeroVisual: false,
-  heroAlign: 'start',
-  heroBg: true,
-  sectionIntroAlign: 'start',
-  pillarBackground: true,
-  testimonialVisible: false,
-  faqVisible: false,
-  cardsVisible: false,
+export const LevelTwoPointTwo: Story = {
+  name: '2.2 variant',
+  args: {
+    showHeroVisual: false,
+    heroAlign: 'start',
+    heroBg: true,
+    sectionIntroAlign: 'start',
+    pillarBackground: true,
+    testimonialVisible: false,
+    faqVisible: false,
+    cardsVisible: false,
+  },
+  render: args => <FeaturePreviewLevelTwo {...args} />,
 }
 
-export const LevelTwoPointThree: StoryFn<typeof FeaturePreviewLevelTwo> = args => <FeaturePreviewLevelTwo {...args} />
-
-LevelTwoPointThree.storyName = '2.3 variant'
-LevelTwoPointThree.args = {
-  showHeroVisual: false,
-  heroLabel: '',
-  heroAlign: 'center',
-  heroBg: true,
-  sectionIntroAlign: 'center',
-  sectionIntroText: [
-    <b key="highlighted-statement">Highlighted statement in 4-6 words max.</b>,
-    <br key="separator" />,
-    <span key="body-text">The rest of body text should be between 80 to 100 characters.</span>,
-  ],
-  pillarBackground: true,
-  riverOneVisible: false,
-  testimonialVisible: false,
-  faqVisible: false,
-  ctaBannerVisible: false,
+export const LevelTwoPointThree: Story = {
+  name: '2.3 variant',
+  args: {
+    showHeroVisual: false,
+    heroLabel: '',
+    heroAlign: 'center',
+    heroBg: true,
+    sectionIntroAlign: 'center',
+    sectionIntroText: [
+      <b key="highlighted-statement">Highlighted statement in 4-6 words max.</b>,
+      <br key="separator" />,
+      <span key="body-text">The rest of body text should be between 80 to 100 characters.</span>,
+    ],
+    pillarBackground: true,
+    riverOneVisible: false,
+    testimonialVisible: false,
+    faqVisible: false,
+    ctaBannerVisible: false,
+  },
+  render: args => <FeaturePreviewLevelTwo {...args} />,
 }
 
-export const LevelTwoPointFour: StoryFn<typeof FeaturePreviewLevelTwo> = args => <FeaturePreviewLevelTwo {...args} />
-
-LevelTwoPointFour.storyName = '2.4 variant'
-LevelTwoPointFour.args = {
-  variant: 'Maximum',
-  subNavVisible: true,
+export const LevelTwoPointFour: Story = {
+  name: '2.4 variant',
+  args: {
+    variant: 'Maximum',
+    subNavVisible: true,
+  },
+  render: args => <FeaturePreviewLevelTwo {...args} />,
 }

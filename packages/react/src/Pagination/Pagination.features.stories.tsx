@@ -4,7 +4,7 @@ import {INITIAL_VIEWPORTS} from 'storybook/viewport'
 import {Pagination} from './Pagination'
 import baseMeta from './Pagination.stories'
 
-const meta: Meta<typeof Pagination> = {
+const meta = {
   ...baseMeta,
   title: 'Components/Pagination/Features',
   parameters: {
@@ -12,7 +12,8 @@ const meta: Meta<typeof Pagination> = {
       viewports: INITIAL_VIEWPORTS,
     },
   },
-}
+} satisfies Meta<typeof Pagination>
+
 export default meta
 
 type Story = StoryObj<typeof Pagination>
@@ -39,10 +40,8 @@ export const NarrowPageNumbersHiddenByDefault: Story = {
     currentPage: 5,
     marginPageCount: 4,
   },
-  parameters: {
-    viewport: {
-      defaultViewport: 'iphonexr',
-    },
+  globals: {
+    viewport: {value: 'iphonexr'},
   },
 }
 

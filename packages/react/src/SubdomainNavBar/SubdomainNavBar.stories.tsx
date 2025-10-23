@@ -1,4 +1,4 @@
-import {Meta, StoryFn} from '@storybook/react'
+import type {Meta, StoryObj} from '@storybook/react'
 import {expect, userEvent, within} from 'storybook/test'
 import {INITIAL_VIEWPORTS} from 'storybook/viewport'
 
@@ -9,12 +9,16 @@ import placeholderImage from '../fixtures/images/placeholder.png'
 import {SubdomainNavBar, SubdomainNavBarProps} from '.'
 import {waitFor} from '@testing-library/dom'
 
-type CustomStoryArgs = {showSearch: boolean; numLinks: number; title: string; fullWidth: boolean}
-type Args = CustomStoryArgs & SubdomainNavBarProps
+type StoryArgs = {
+  showSearch: boolean
+  numLinks: number
+  title: string
+  fullWidth: boolean
+} & SubdomainNavBarProps
 
-export default {
+const meta = {
   title: 'Components/SubdomainNavBar',
-  component: SubdomainNavBar,
+  component: SubdomainNavBar as Meta<StoryArgs>['component'],
   args: {
     showSearch: true,
     numLinks: 6,
@@ -22,7 +26,6 @@ export default {
     titleHref: '/',
   },
   argTypes: {
-    onSubmit: {action: true},
     showSearch: {
       control: 'boolean',
     },
@@ -41,7 +44,11 @@ export default {
       viewports: INITIAL_VIEWPORTS,
     },
   },
-} as Meta<typeof SubdomainNavBar>
+} satisfies Meta<StoryArgs>
+
+export default meta
+
+type Story = StoryObj<StoryArgs>
 
 const mockSearchData = [
   {
@@ -368,7 +375,7 @@ const mockSearchData = [
   },
 ]
 
-const Template: StoryFn<Args> = ({showSearch, numLinks, ...args}) => {
+const SubdomainNavBarTemplate = ({showSearch, numLinks, ...args}: StoryArgs) => {
   const inputRef = React.useRef<HTMLInputElement | null>(null)
   const [searchResults, setSearchResults] = React.useState<
     {title: string; description: string; date: string; url: string}[] | undefined
@@ -483,128 +490,24 @@ const Template: StoryFn<Args> = ({showSearch, numLinks, ...args}) => {
   )
 }
 
-export const Playground = Template.bind({})
+const MobileNoLinksExample = () => <SubdomainNavBar title="Subdomain" />
 
-Playground.parameters = {
-  a11y: {
-    config: {
-      rules: [{id: 'heading-order', enabled: false}], // disable heading-order rule because the headings used are for mock layout
-    },
-  },
-}
+const ReversedButtonOrderExample = () => (
+  <SubdomainNavBar title="Subdomain">
+    <SubdomainNavBar.Link href="#Collections">Collections</SubdomainNavBar.Link>
+    <SubdomainNavBar.Link href="#Topics" isExternal>
+      Topics
+    </SubdomainNavBar.Link>
+    <SubdomainNavBar.Link href="#Articles">Articles</SubdomainNavBar.Link>
+    <SubdomainNavBar.Link href="#Events">Events</SubdomainNavBar.Link>
+    <SubdomainNavBar.Link href="#Video">Video</SubdomainNavBar.Link>
 
-export const NoSearch = Template.bind({})
-NoSearch.args = {
-  showSearch: false,
-}
+    <SubdomainNavBar.SecondaryAction href="#">Secondary CTA</SubdomainNavBar.SecondaryAction>
+    <SubdomainNavBar.PrimaryAction href="#">Primary CTA</SubdomainNavBar.PrimaryAction>
+  </SubdomainNavBar>
+)
 
-export const SearchOpen = Template.bind({})
-SearchOpen.parameters = {
-  axe: {
-    timeout: 5000,
-  },
-}
-SearchOpen.play = async ({canvasElement}) => {
-  const canvas = within(canvasElement)
-  await userEvent.click(canvas.getByLabelText('Toggle search bar'))
-
-  await expect(canvas.getByRole('combobox')).toHaveFocus()
-}
-
-export const SearchResultsVisible = Template.bind({})
-
-SearchResultsVisible.play = async ({canvasElement}) => {
-  const canvas = within(canvasElement)
-
-  await userEvent.click(canvas.getByLabelText('Toggle search bar'))
-  await userEvent.type(canvas.getByRole('combobox'), 'devops')
-  await expect(canvas.getByRole('combobox')).toHaveFocus()
-}
-
-export const OverflowMenuOpen = Template.bind({})
-OverflowMenuOpen.play = async ({canvasElement}) => {
-  const canvas = within(canvasElement)
-  await waitFor(async () => {
-    const overflowMenu = await canvas.getByText('More')
-    await userEvent.click(overflowMenu)
-  })
-}
-
-export const MobileView = Template.bind({})
-MobileView.parameters = {
-  viewport: {
-    defaultViewport: 'iphonex',
-  },
-}
-
-export const MobileMenuOpen = Template.bind({})
-MobileMenuOpen.parameters = {
-  viewport: {
-    defaultViewport: 'iphonex',
-  },
-}
-MobileMenuOpen.play = async ({canvasElement}) => {
-  const canvas = within(canvasElement)
-  await userEvent.click(canvas.getByLabelText('Menu'))
-}
-
-export const MobileMenuOpenManyItems = Template.bind({})
-MobileMenuOpenManyItems.args = {numLinks: 10}
-MobileMenuOpenManyItems.parameters = {
-  viewport: {
-    defaultViewport: 'iphone5',
-  },
-}
-MobileMenuOpenManyItems.play = async ({canvasElement}) => {
-  const canvas = within(canvasElement)
-  await userEvent.click(canvas.getByLabelText('Menu'))
-}
-
-export const MobileSearchResultsVisible = Template.bind({})
-MobileSearchResultsVisible.parameters = {
-  viewport: {
-    defaultViewport: 'iphonex',
-  },
-}
-MobileSearchResultsVisible.play = async ({canvasElement}) => {
-  const canvas = within(canvasElement)
-
-  await userEvent.click(canvas.getByLabelText('Toggle search bar'))
-  await userEvent.type(canvas.getByRole('combobox'), 'devops')
-  await expect(canvas.getByRole('combobox')).toHaveFocus()
-}
-
-export const MobileNoLinks = () => {
-  return <SubdomainNavBar title="Subdomain" />
-}
-MobileNoLinks.parameters = {
-  viewport: {
-    defaultViewport: 'iphonex',
-  },
-}
-
-export const NoOverflow = Template.bind({})
-NoOverflow.args = {
-  numLinks: 1,
-}
-NoOverflow.storyName = 'No overflow menu (1 link)'
-
-export const LongerTitle = Template.bind({})
-LongerTitle.args = {
-  title: 'Brand and Marketing',
-}
-
-export const FullWidth = Template.bind({})
-FullWidth.args = {
-  fullWidth: true,
-}
-
-export const NoTitle = args => <SubdomainNavBar {...args} />
-NoTitle.args = {
-  title: '',
-}
-
-export const ConditionalRendering = () => {
+const ConditionalRenderingExample = () => {
   const [links, setLinks] = useState(['collections', 'topics', 'articles', 'events', 'video'])
   const [showLinks, setShowLinks] = useState(false)
 
@@ -639,96 +542,228 @@ export const ConditionalRendering = () => {
   )
 }
 
-export const SkipToMainTag = () => {
-  return (
-    <>
-      <SubdomainNavBar title="Skip to Main Tag" />
-      <main
-        style={{
-          maxWidth: 1280,
-          margin: '100px auto',
-        }}
-      >
-        <Hero align="center">
-          <Hero.Heading>This is the main content</Hero.Heading>
-          <Hero.Description>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
-            turpis felis nam pulvinar risus elementum.
-          </Hero.Description>
-          <Hero.PrimaryAction href="#">Primary action</Hero.PrimaryAction>
-          <Hero.SecondaryAction href="#">Secondary action</Hero.SecondaryAction>
-        </Hero>
-      </main>
-    </>
-  )
-}
+const SkipToMainTagExample = () => (
+  <>
+    <SubdomainNavBar title="Skip to Main Tag" />
+    <main
+      style={{
+        maxWidth: 1280,
+        margin: '100px auto',
+      }}
+    >
+      <Hero align="center">
+        <Hero.Heading>This is the main content</Hero.Heading>
+        <Hero.Description>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
+          turpis felis nam pulvinar risus elementum.
+        </Hero.Description>
+        <Hero.PrimaryAction href="#">Primary action</Hero.PrimaryAction>
+        <Hero.SecondaryAction href="#">Secondary action</Hero.SecondaryAction>
+      </Hero>
+    </main>
+  </>
+)
 
-export const skipToMainTagWithId = () => {
-  return (
-    <>
-      <SubdomainNavBar title="Skip to Main Tag with ID" />
-      <main
-        id="the-main-tag"
-        style={{
-          maxWidth: 1280,
-          margin: '100px auto',
-        }}
-      >
-        <Hero align="center">
-          <Hero.Heading>This is the main content</Hero.Heading>
-          <Hero.Description>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
-            turpis felis nam pulvinar risus elementum.
-          </Hero.Description>
-          <Hero.PrimaryAction href="#">Primary action</Hero.PrimaryAction>
-          <Hero.SecondaryAction href="#">Secondary action</Hero.SecondaryAction>
-        </Hero>
-      </main>
-    </>
-  )
-}
+const SkipToMainTagWithIdExample = () => (
+  <>
+    <SubdomainNavBar title="Skip to Main Tag with ID" />
+    <main
+      id="the-main-tag"
+      style={{
+        maxWidth: 1280,
+        margin: '100px auto',
+      }}
+    >
+      <Hero align="center">
+        <Hero.Heading>This is the main content</Hero.Heading>
+        <Hero.Description>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
+          turpis felis nam pulvinar risus elementum.
+        </Hero.Description>
+        <Hero.PrimaryAction href="#">Primary action</Hero.PrimaryAction>
+        <Hero.SecondaryAction href="#">Secondary action</Hero.SecondaryAction>
+      </Hero>
+    </main>
+  </>
+)
 
-export const ExternalLink = () => {
-  return (
-    <SubdomainNavBar title="Subdomain">
-      <SubdomainNavBar.Link href="#Collections">Collections</SubdomainNavBar.Link>
-      <SubdomainNavBar.Link href="#Topics" isExternal>
-        Topics
-      </SubdomainNavBar.Link>
-      <SubdomainNavBar.Link href="#Articles">Articles</SubdomainNavBar.Link>
-      <SubdomainNavBar.Link href="#Events">Events</SubdomainNavBar.Link>
-      <SubdomainNavBar.Link href="#Video">Video</SubdomainNavBar.Link>
+const ExternalLinkExample = () => (
+  <SubdomainNavBar title="Subdomain">
+    <SubdomainNavBar.Link href="#Collections">Collections</SubdomainNavBar.Link>
+    <SubdomainNavBar.Link href="#Topics" isExternal>
+      Topics
+    </SubdomainNavBar.Link>
+    <SubdomainNavBar.Link href="#Articles">Articles</SubdomainNavBar.Link>
+    <SubdomainNavBar.Link href="#Events">Events</SubdomainNavBar.Link>
+    <SubdomainNavBar.Link href="#Video">Video</SubdomainNavBar.Link>
 
-      <SubdomainNavBar.PrimaryAction href="#">Primary CTA</SubdomainNavBar.PrimaryAction>
-      <SubdomainNavBar.SecondaryAction href="#">Secondary CTA</SubdomainNavBar.SecondaryAction>
-    </SubdomainNavBar>
-  )
-}
+    <SubdomainNavBar.PrimaryAction href="#">Primary CTA</SubdomainNavBar.PrimaryAction>
+    <SubdomainNavBar.SecondaryAction href="#">Secondary CTA</SubdomainNavBar.SecondaryAction>
+  </SubdomainNavBar>
+)
 
-export const ReversedButtonOrder = () => {
-  return (
-    <SubdomainNavBar title="Subdomain">
-      <SubdomainNavBar.Link href="#Collections">Collections</SubdomainNavBar.Link>
-      <SubdomainNavBar.Link href="#Topics" isExternal>
-        Topics
-      </SubdomainNavBar.Link>
-      <SubdomainNavBar.Link href="#Articles">Articles</SubdomainNavBar.Link>
-      <SubdomainNavBar.Link href="#Events">Events</SubdomainNavBar.Link>
-      <SubdomainNavBar.Link href="#Video">Video</SubdomainNavBar.Link>
-
-      <SubdomainNavBar.SecondaryAction href="#">Secondary CTA</SubdomainNavBar.SecondaryAction>
-      <SubdomainNavBar.PrimaryAction href="#">Primary CTA</SubdomainNavBar.PrimaryAction>
-    </SubdomainNavBar>
-  )
-}
-
-export const ReversedButtonOrderNarrow = () => <ReversedButtonOrder />
-ReversedButtonOrderNarrow.parameters = {
-  viewport: {
-    defaultViewport: 'iphonex',
+export const Playground: Story = {
+  render: (args: StoryArgs) => <SubdomainNavBarTemplate {...args} />,
+  parameters: {
+    a11y: {
+      config: {
+        rules: [{id: 'heading-order', enabled: false}],
+      },
+    },
   },
 }
-ReversedButtonOrderNarrow.play = async ({canvasElement}) => {
-  const canvas = within(canvasElement)
-  await userEvent.click(canvas.getByLabelText('Menu'))
+
+export const NoSearch: Story = {
+  render: (args: StoryArgs) => <SubdomainNavBarTemplate {...args} />,
+  args: {
+    showSearch: false,
+  },
+}
+
+export const SearchOpen: Story = {
+  render: (args: StoryArgs) => <SubdomainNavBarTemplate {...args} />,
+  parameters: {
+    axe: {
+      timeout: 5000,
+    },
+  },
+  play: async ({canvasElement}) => {
+    const canvas = within(canvasElement)
+    await userEvent.click(canvas.getByLabelText('Toggle search bar'))
+
+    await expect(canvas.getByRole('combobox')).toHaveFocus()
+  },
+}
+
+export const SearchResultsVisible: Story = {
+  render: (args: StoryArgs) => <SubdomainNavBarTemplate {...args} />,
+  play: async ({canvasElement}) => {
+    const canvas = within(canvasElement)
+
+    await userEvent.click(canvas.getByLabelText('Toggle search bar'))
+    await userEvent.type(canvas.getByRole('combobox'), 'devops')
+    await expect(canvas.getByRole('combobox')).toHaveFocus()
+  },
+}
+
+export const OverflowMenuOpen: Story = {
+  render: (args: StoryArgs) => <SubdomainNavBarTemplate {...args} />,
+  play: async ({canvasElement}) => {
+    const canvas = within(canvasElement)
+    await waitFor(async () => {
+      const overflowMenu = await canvas.getByText('More')
+      await userEvent.click(overflowMenu)
+    })
+  },
+}
+
+export const MobileView: Story = {
+  render: (args: StoryArgs) => <SubdomainNavBarTemplate {...args} />,
+  globals: {
+    viewport: {value: 'iphonex'},
+  },
+}
+
+export const MobileMenuOpen: Story = {
+  render: (args: StoryArgs) => <SubdomainNavBarTemplate {...args} />,
+  globals: {
+    viewport: {value: 'iphonex'},
+  },
+  play: async ({canvasElement}) => {
+    const canvas = within(canvasElement)
+    await userEvent.click(canvas.getByLabelText('Menu'))
+  },
+}
+
+export const MobileMenuOpenManyItems: Story = {
+  render: (args: StoryArgs) => <SubdomainNavBarTemplate {...args} />,
+  args: {numLinks: 10},
+  globals: {
+    viewport: {value: 'iphone5'},
+  },
+  play: async ({canvasElement}) => {
+    const canvas = within(canvasElement)
+    await userEvent.click(canvas.getByLabelText('Menu'))
+  },
+}
+
+export const MobileSearchResultsVisible: Story = {
+  render: (args: StoryArgs) => <SubdomainNavBarTemplate {...args} />,
+  globals: {
+    viewport: {value: 'iphonex'},
+  },
+  play: async ({canvasElement}) => {
+    const canvas = within(canvasElement)
+
+    await userEvent.click(canvas.getByLabelText('Toggle search bar'))
+    await userEvent.type(canvas.getByRole('combobox'), 'devops')
+    await expect(canvas.getByRole('combobox')).toHaveFocus()
+  },
+}
+
+export const MobileNoLinks: Story = {
+  render: () => <MobileNoLinksExample />,
+  globals: {
+    viewport: {value: 'iphonex'},
+  },
+}
+
+export const NoOverflow: Story = {
+  name: 'No overflow menu (1 link)',
+  render: (args: StoryArgs) => <SubdomainNavBarTemplate {...args} />,
+  args: {
+    numLinks: 1,
+  },
+}
+
+export const LongerTitle: Story = {
+  render: (args: StoryArgs) => <SubdomainNavBarTemplate {...args} />,
+  args: {
+    title: 'Brand and Marketing',
+  },
+}
+
+export const FullWidth: Story = {
+  render: (args: StoryArgs) => <SubdomainNavBarTemplate {...args} />,
+  args: {
+    fullWidth: true,
+  },
+}
+
+export const NoTitle: Story = {
+  render: (args: StoryArgs) => <SubdomainNavBar {...args} />,
+  args: {
+    title: '',
+  },
+}
+
+export const ConditionalRendering: Story = {
+  render: () => <ConditionalRenderingExample />,
+}
+
+export const SkipToMainTag: Story = {
+  render: () => <SkipToMainTagExample />,
+}
+
+export const skipToMainTagWithId: Story = {
+  render: () => <SkipToMainTagWithIdExample />,
+}
+
+export const ExternalLink: Story = {
+  render: () => <ExternalLinkExample />,
+}
+
+export const ReversedButtonOrder: Story = {
+  render: () => <ReversedButtonOrderExample />,
+}
+
+export const ReversedButtonOrderNarrow: Story = {
+  render: () => <ReversedButtonOrderExample />,
+  globals: {
+    viewport: {value: 'iphonex'},
+  },
+  play: async ({canvasElement}) => {
+    const canvas = within(canvasElement)
+    await userEvent.click(canvas.getByLabelText('Menu'))
+  },
 }

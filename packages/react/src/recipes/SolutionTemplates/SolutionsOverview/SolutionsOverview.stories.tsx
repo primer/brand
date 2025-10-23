@@ -1,11 +1,11 @@
 import React from 'react'
 import {INITIAL_VIEWPORTS} from 'storybook/viewport'
-import {Meta, StoryFn} from '@storybook/react'
+import type {Meta, StoryObj} from '@storybook/react'
 
 import {SolutionsOverview} from './SolutionsOverview'
 import {ColorModesEnum} from '../../../ThemeProvider'
 
-export default {
+const meta = {
   title: 'Recipes/Solutions/Overview',
   component: SolutionsOverview,
   args: {
@@ -26,12 +26,20 @@ export default {
   },
 } as Meta<typeof SolutionsOverview>
 
-export const Light: StoryFn<typeof SolutionsOverview> = args => <SolutionsOverview {...args} />
-Light.args = {
-  colorMode: ColorModesEnum.LIGHT,
+export default meta
+
+type Story = StoryObj<typeof SolutionsOverview>
+
+export const Light: Story = {
+  render: args => <SolutionsOverview {...args} />,
+  args: {
+    colorMode: ColorModesEnum.LIGHT,
+  },
 }
 
-export const Dark: StoryFn<typeof SolutionsOverview> = args => <SolutionsOverview {...args} />
-Dark.args = {
-  colorMode: ColorModesEnum.DARK,
+export const Dark: Story = {
+  render: args => <SolutionsOverview {...args} />,
+  args: {
+    colorMode: ColorModesEnum.DARK,
+  },
 }

@@ -1,25 +1,23 @@
 import React, {useCallback, useState} from 'react'
-import type {Meta, StoryObj, StoryFn} from '@storybook/react'
+import type {Meta, StoryObj} from '@storybook/react'
 
 import {Tabs, type TabsProps, Text, Box, Stack, Icon, Heading} from '../'
 import {CodeIcon, HubotIcon, PencilIcon, PeopleIcon} from '@primer/octicons-react'
 
 export type MetaProps = TabsProps
 
-const meta: Meta<MetaProps> = {
+const meta = {
   title: 'Components/Tabs/Features',
   component: Tabs as Meta<TabsProps>['component'],
-}
+} satisfies Meta<MetaProps>
 
 export default meta
 
 type Story = StoryObj<MetaProps>
 
 export const DefaultVariantNarrow: Story = {
-  parameters: {
-    viewport: {
-      defaultViewport: 'mobile1',
-    },
+  globals: {
+    viewport: {value: 'iphone5'},
   },
   render: args => {
     return (
@@ -50,7 +48,7 @@ export const DefaultVariantNarrow: Story = {
   },
 }
 
-export const CustomPanels: StoryFn<typeof Tabs> = args => {
+const CustomPanelsExample = (args: MetaProps) => {
   const {'aria-labelledby': _, ...restArgs} = args
   const [activeTab, setActiveTab] = useState<string>('0')
 
@@ -126,6 +124,10 @@ export const CustomPanels: StoryFn<typeof Tabs> = args => {
   )
 }
 
+export const CustomPanels: Story = {
+  render: args => <CustomPanelsExample {...args} />,
+}
+
 export const CustomActiveTab: Story = {
   render: args => {
     return (
@@ -178,10 +180,8 @@ export const AccentVariant: Story = {
 }
 
 export const AccentVariantNarrow: Story = {
-  parameters: {
-    viewport: {
-      defaultViewport: 'mobile1',
-    },
+  globals: {
+    viewport: {value: 'iphone5'},
   },
   render: args => {
     return (
@@ -227,10 +227,8 @@ export const UnderlineVariant: Story = {
 }
 
 export const UnderlineVariantNarrow: Story = {
-  parameters: {
-    viewport: {
-      defaultViewport: 'mobile1',
-    },
+  globals: {
+    viewport: {value: 'iphone5'},
   },
   render: args => {
     return (

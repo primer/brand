@@ -1,12 +1,12 @@
 import React from 'react'
 import {INITIAL_VIEWPORTS} from 'storybook/viewport'
-import {Meta, StoryFn} from '@storybook/react'
+import type {Meta, StoryObj} from '@storybook/react'
 
 import {ColorModesEnum} from '../../../ThemeProvider'
 import {themeDetailsMap} from '../helpers'
 import {FeaturePreviewLevelZero} from './FeaturePreviewLevelZero'
 
-export default {
+const meta = {
   title: 'Recipes/Feature previews/Level0',
   component: FeaturePreviewLevelZero,
   parameters: {
@@ -109,6 +109,11 @@ export default {
   },
 } as Meta<typeof FeaturePreviewLevelZero>
 
-export const LevelZero: StoryFn<typeof FeaturePreviewLevelZero> = args => <FeaturePreviewLevelZero {...args} />
+export default meta
 
-LevelZero.storyName = 'Level 0'
+type Story = StoryObj<typeof FeaturePreviewLevelZero>
+
+export const LevelZero: Story = {
+  name: 'Level 0',
+  render: args => <FeaturePreviewLevelZero {...args} />,
+}

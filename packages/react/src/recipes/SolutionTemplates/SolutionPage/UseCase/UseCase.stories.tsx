@@ -1,12 +1,12 @@
 import React from 'react'
 import {INITIAL_VIEWPORTS} from 'storybook/viewport'
-import {Meta, StoryFn} from '@storybook/react'
+import type {Meta, StoryObj} from '@storybook/react'
 
 import {SolutionPage} from '../SolutionPage'
 import {sharedArgTypes} from '../../helpers'
 import {ColorModesEnum} from '../../../../ThemeProvider'
 
-export default {
+const meta = {
   title: 'Recipes/Solutions/Solution: Use case',
   component: SolutionPage,
   args: {
@@ -41,6 +41,10 @@ export default {
   },
 } as Meta<typeof SolutionPage>
 
+export default meta
+
+type Story = StoryObj<typeof SolutionPage>
+
 const maximumArgs = {
   variant: 'use-case',
   logoBarVisible: true,
@@ -51,31 +55,39 @@ const maximumArgs = {
   statisticsVisible: true,
   breakoutBannerVisible: true,
 }
-export const Maximum: StoryFn<typeof SolutionPage> = args => <SolutionPage {...args} />
-Maximum.args = {
-  ...maximumArgs,
-  variant: 'use-case',
-}
-Maximum.storyName = 'Maximum Light'
-
-export const MaximumDark: StoryFn<typeof SolutionPage> = args => <Maximum {...args} />
-MaximumDark.args = {
-  ...maximumArgs,
-  variant: 'use-case',
-  colorMode: ColorModesEnum.DARK,
+export const Maximum: Story = {
+  name: 'Maximum Light',
+  render: args => <SolutionPage {...args} />,
+  args: {
+    ...maximumArgs,
+    variant: 'use-case',
+  },
 }
 
-export const Minimum: StoryFn<typeof SolutionPage> = args => <SolutionPage {...args} />
-Minimum.args = {
-  variant: 'use-case',
-  riverVisible: true,
+export const MaximumDark: Story = {
+  render: args => <SolutionPage {...args} />,
+  args: {
+    ...maximumArgs,
+    variant: 'use-case',
+    colorMode: ColorModesEnum.DARK,
+  },
 }
-Minimum.storyName = 'Minimum Light'
 
-export const MinimumDark = Minimum.bind({})
-MinimumDark.args = {
-  variant: 'use-case',
-  colorMode: ColorModesEnum.DARK,
-  riverVisible: true,
+export const Minimum: Story = {
+  name: 'Minimum Light',
+  render: args => <SolutionPage {...args} />,
+  args: {
+    variant: 'use-case',
+    riverVisible: true,
+  },
 }
-MinimumDark.storyName = 'Minimum Dark'
+
+export const MinimumDark: Story = {
+  name: 'Minimum Dark',
+  render: args => <SolutionPage {...args} />,
+  args: {
+    variant: 'use-case',
+    colorMode: ColorModesEnum.DARK,
+    riverVisible: true,
+  },
+}

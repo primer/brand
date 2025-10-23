@@ -1,5 +1,5 @@
 import React from 'react'
-import {Meta} from '@storybook/react'
+import type {Meta, StoryObj} from '@storybook/react'
 import {INITIAL_VIEWPORTS} from 'storybook/viewport'
 import {
   Testimonial,
@@ -11,9 +11,17 @@ import {
 } from '.'
 import monaAvatar from '../fixtures/images/avatar-mona.png'
 
-export default {
+type StoryArgs = {
+  type: string
+  position?: string
+  width: number
+  name: string
+  quote: string
+} & TestimonialProps
+
+const meta = {
   title: 'Components/Testimonial',
-  component: Testimonial,
+  component: Testimonial as Meta<StoryArgs>['component'],
   args: {
     quoteMarkColor: defaultQuoteMarkColor,
     name: 'David Ross',
@@ -66,17 +74,13 @@ export default {
       viewports: INITIAL_VIEWPORTS,
     },
   },
-} as Meta<typeof Testimonial>
+} satisfies Meta<StoryArgs>
 
-type PlaygroundProps = TestimonialProps & {
-  type: string
-  position?: string
-  width: number
-  name: string
-  quote: string
-}
+export default meta
 
-const Template = (args: PlaygroundProps) => {
+type Story = StoryObj<StoryArgs>
+
+const PlaygroundExample = (args: StoryArgs) => {
   const {type, width, name, position, quote} = args
   return (
     <div style={{width, maxWidth: '100%'}}>
@@ -100,4 +104,6 @@ const Template = (args: PlaygroundProps) => {
   )
 }
 
-export const Playground = Template.bind({})
+export const Playground: Story = {
+  render: args => <PlaygroundExample {...args} />,
+}
