@@ -1,9 +1,16 @@
-import React, {render, cleanup, fireEvent, act} from '@testing-library/react'
+import React from 'react'
+import {render, cleanup, act} from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
+
 import '@testing-library/jest-dom'
 import {axe, toHaveNoViolations} from 'jest-axe'
 
 import {AnchorNav} from './AnchorNav'
 import '../test-utils/mocks/match-media-mock'
+import {useWindowSize} from '../hooks/useWindowSize'
+
+jest.mock('../hooks/useWindowSize')
+const mockUseWindowSize = useWindowSize as jest.Mock
 
 expect.extend(toHaveNoViolations)
 
@@ -103,6 +110,8 @@ describe('AnchorNav', () => {
 
   beforeEach(() => {
     scrollListener = null
+
+    mockUseWindowSize.mockImplementation(() => ({isLarge: true})) // assumes large viewport by default
 
     mockIntersectionObserver = jest.fn()
     mockIntersectionObserver.mockReturnValue({
@@ -214,13 +223,14 @@ describe('AnchorNav', () => {
     expect(secondaryActionEl).toHaveClass('Button--secondary')
   })
 
-  it('applies correct behaviors when menu button is toggled', () => {
+  it('applies correct behaviors when menu button is toggled', async () => {
+    const user = userEvent.setup()
     const {getByTestId} = render(<MockAnchorNavFixture />)
     const menuButton = getByTestId(AnchorNav.testIds.menuButton)
 
     expect(menuButton).toHaveAttribute('aria-expanded', 'false') // aria attribute before menu open
 
-    fireEvent.click(menuButton) // toggle menu button
+    await user.click(menuButton) // toggle menu button
 
     expect(menuButton).toHaveAttribute('aria-expanded', 'true') // aria attribute before menu open
   })
@@ -265,5 +275,84 @@ describe('AnchorNav', () => {
 
     expect(rootEl).not.toHaveClass('AnchorNav--stuck')
     expect(queryByTestId(AnchorNav.testIds.navSpacer)).not.toBeInTheDocument()
+  })
+
+  it('moves focus to first link immediately when menu is opened', async () => {
+    mockUseWindowSize.mockImplementation(() => ({isLarge: false}))
+    const user = userEvent.setup()
+
+    const {getByRole} = render(<MockAnchorNavFixture />)
+    const menuButton = getByRole('button', {name: /navigation menu/i})
+    const firstLink = getByRole('link', {name: 'Section one'})
+
+    await user.click(menuButton)
+
+    expect(document.activeElement).toBe(firstLink)
+  })
+
+  it('closes menu when focus leaves the expanded menu on narrow viewports', async () => {
+    mockUseWindowSize.mockImplementation(() => ({isLarge: false}))
+    const user = userEvent.setup()
+
+    const {getByRole} = render(
+      <>
+        <MockAnchorNavFixture />
+        <button>Button outside nav</button>
+      </>,
+    )
+    const menuButton = getByRole('button', {name: /navigation menu/i})
+
+    await user.click(menuButton)
+
+    expect(menuButton).toHaveAttribute('aria-expanded', 'true')
+
+    await user.tab() // Normal link
+    await user.tab() // Normal link
+    await user.tab() // Normal link
+    await user.tab() // Normal link
+    await user.tab() // Button
+    await user.tab() // Button
+
+    expect(menuButton).toHaveAttribute('aria-expanded', 'false')
+  })
+
+  it('keeps the narrow expanded menu open when tabbing between links', async () => {
+    mockUseWindowSize.mockImplementation(() => ({isLarge: false}))
+    const user = userEvent.setup()
+
+    const {getByRole} = render(<MockAnchorNavFixture />)
+    const menuButton = getByRole('button', {name: /navigation menu/i})
+    const secondLink = getByRole('link', {name: 'Section two'})
+
+    await user.click(menuButton)
+
+    expect(menuButton).toHaveAttribute('aria-expanded', 'true')
+
+    await user.tab() // tabs to second link
+
+    expect(document.activeElement).toBe(secondLink)
+    expect(menuButton).toHaveAttribute('aria-expanded', 'true')
+  })
+
+  it('keeps the expanded narrow menu open when tabbing to action buttons (which are outside of the linkContainer)', async () => {
+    mockUseWindowSize.mockImplementation(() => ({isLarge: false}))
+    const user = userEvent.setup()
+
+    const {getByRole} = render(<MockAnchorNavFixture />)
+    const menuButton = getByRole('button', {name: /navigation menu/i})
+    const actionButton = getByRole('link', {name: 'Action'})
+
+    await user.click(menuButton)
+
+    expect(menuButton).toHaveAttribute('aria-expanded', 'true')
+
+    await user.tab() // Normal link
+    await user.tab() // Normal link
+    await user.tab() // Normal link
+    await user.tab() // Normal link
+    await user.tab() // Button
+
+    expect(document.activeElement).toBe(actionButton)
+    expect(menuButton).toHaveAttribute('aria-expanded', 'true')
   })
 })

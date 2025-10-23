@@ -1,7 +1,13 @@
 import React, {useEffect} from 'react'
 import styles from './AnchorNav.module.css'
 
-export const useExpandedMenu = (open: boolean, containerRef: React.RefObject<HTMLElement>, isNarrow: boolean) => {
+export const useExpandedMenu = (
+  open: boolean,
+  linkContainerRef: React.RefObject<HTMLElement>,
+  innerContainerRef: React.RefObject<HTMLElement>,
+  isNarrow: boolean,
+  closeMenuCallback: () => void,
+) => {
   // Prevent background scroll when menu is open
   useEffect(() => {
     if (open && isNarrow) {
@@ -13,9 +19,27 @@ export const useExpandedMenu = (open: boolean, containerRef: React.RefObject<HTM
 
   // Move focus to the first menu item when the menu opens
   useEffect(() => {
-    if (open) {
-      const firstChildOfMenu = containerRef.current?.firstChild as HTMLElement
-      firstChildOfMenu.focus()
+    if (open && isNarrow) {
+      const firstLink = linkContainerRef.current?.firstChild as HTMLElement | null
+      firstLink?.focus()
     }
-  }, [open, containerRef])
+  }, [open, isNarrow, linkContainerRef])
+
+  // Close the menu when focus moves outside the menu container
+  useEffect(() => {
+    const element = innerContainerRef.current
+    if (element && open && isNarrow) {
+      const handleFocusOut = (event: FocusEvent) => {
+        if (!element.contains(event.relatedTarget as Node)) {
+          closeMenuCallback()
+        }
+      }
+
+      element.addEventListener('focusout', handleFocusOut)
+
+      return () => {
+        element.removeEventListener('focusout', handleFocusOut)
+      }
+    }
+  }, [open, isNarrow, innerContainerRef, closeMenuCallback])
 }
