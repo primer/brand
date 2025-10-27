@@ -1,5 +1,5 @@
 import React, {forwardRef, useMemo} from 'react'
-import clsx from 'clsx'
+import {clsx} from 'clsx'
 import styles from './Avatar.module.css'
 
 import type {BaseProps} from '../component-helpers'

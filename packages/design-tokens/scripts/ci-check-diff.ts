@@ -1,4 +1,4 @@
-// eslint-disable-next-line import/no-commonjs, @typescript-eslint/no-var-requires
+// eslint-disable-next-line import/no-commonjs
 const fs = require('fs')
 
 const cleanLine = (line: string) => line.trim().replace(/\s+/g, ' ').replace(/\t/g, '').trim()
@@ -23,7 +23,7 @@ try {
       beforeAfterArr.push({after: line.replace('> --', '--').trim()})
     }
   }
-} catch (err) {
+} catch {
   throw new Error('error converting diff.txt')
 }
 
@@ -57,7 +57,7 @@ if (beforeAfterArr.length > 0) {
   try {
     fs.writeFileSync('diff.md', template.trim())
     // file written successfully
-  } catch (err) {
+  } catch (_err) {
     throw new Error()
   }
 }

@@ -1,4 +1,4 @@
-import clsx from 'clsx'
+import {clsx} from 'clsx'
 import React, {useCallback} from 'react'
 import {ExpandableArrow} from '../ExpandableArrow'
 import {LinkExternalIcon} from '@primer/octicons-react'

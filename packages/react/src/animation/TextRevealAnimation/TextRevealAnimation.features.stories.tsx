@@ -1,5 +1,5 @@
 import React from 'react'
-import {Meta, StoryFn} from '@storybook/react'
+import type {Meta, StoryFn} from '@storybook/react'
 import {ArrowDownIcon} from '@primer/octicons-react'
 import {TextRevealAnimation} from '.'
 import {Testimonial, Box, AnimationProvider, Text, Grid} from '../..'

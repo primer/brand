@@ -1,5 +1,5 @@
 import React from 'react'
-import {StoryFn, Meta} from '@storybook/react'
+import type {StoryFn, Meta} from '@storybook/react'
 
 import {River} from '.'
 import {Heading, Text, Link, Image} from '../../'
@@ -7,7 +7,7 @@ import {Container} from '../../component-helpers'
 import placeholderImage from '../../fixtures/images/placeholder.png'
 
 import styles from './River.stories.module.css'
-import clsx from 'clsx'
+import {clsx} from 'clsx'
 
 export default {
   title: 'Components/River',

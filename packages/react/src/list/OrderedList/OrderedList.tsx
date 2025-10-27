@@ -1,5 +1,5 @@
 import React, {PropsWithChildren} from 'react'
-import clsx from 'clsx'
+import {clsx} from 'clsx'
 import type {BaseProps} from '../../component-helpers'
 import {ListContext} from '../listContext'
 import {ListItem} from '../ListItem/ListItem'

@@ -1,4 +1,4 @@
-import clsx from 'clsx'
+import {clsx} from 'clsx'
 import React, {ReactElement, useCallback, useEffect, useMemo, useRef, useState} from 'react'
 import {ChevronDownIcon, ChevronUpIcon} from '@primer/octicons-react'
 import {useId} from '../hooks/useId'
@@ -52,7 +52,7 @@ export type AnchorNavProps = BaseProps<HTMLElement> & {
   hideUntilSticky?: boolean
 } & React.ComponentPropsWithoutRef<'nav'>
 
-function _AnchorNav({children, enableDefaultBgColor = false, hideUntilSticky = false, ...rest}: AnchorNavProps) {
+function AnchorNavBase({children, enableDefaultBgColor = false, hideUntilSticky = false, ...rest}: AnchorNavProps) {
   const [menuOpen, setMenuOpen] = useState(false)
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false)
   const [currentActiveNavItem, setCurrentActiveNavItem] = useState<string | null>()
@@ -110,7 +110,7 @@ function _AnchorNav({children, enableDefaultBgColor = false, hideUntilSticky = f
     const handler = () => {
       if (initialYOffset) {
         const isPastInitialYOffset = window.pageYOffset > initialYOffset
-        isPastInitialYOffset ? setNavShouldFix(true) : setNavShouldFix(false)
+        setNavShouldFix(isPastInitialYOffset)
       }
     }
     // eslint-disable-next-line github/prefer-observers
@@ -152,10 +152,10 @@ function _AnchorNav({children, enableDefaultBgColor = false, hideUntilSticky = f
     [setCurrentActiveNavItem],
   )
 
-  const numLinks = ValidChildren.filter(child => React.isValidElement(child) && child.type === _AnchorNavLink).length
+  const numLinks = ValidChildren.filter(child => React.isValidElement(child) && child.type === NavLinkBase).length
   const Links = ValidChildren.map((child, index) => {
     if (React.isValidElement(child)) {
-      if (child.type === _AnchorNavLink) {
+      if (child.type === NavLinkBase) {
         const defaultProps: AnchorNavLinkProps = {
           href: child.props.href,
           toggleMenuCallback,
@@ -176,14 +176,14 @@ function _AnchorNav({children, enableDefaultBgColor = false, hideUntilSticky = f
     .slice(0, 5)
 
   const Action = ValidChildren.map(child => {
-    if (React.isValidElement(child) && child.type === _AnchorNavAction) {
+    if (React.isValidElement(child) && child.type === ActionBase) {
       return React.cloneElement(child)
     }
     return null
   }).filter(Boolean)
 
   const SecondaryAction = ValidChildren.map(child => {
-    if (React.isValidElement(child) && child.type === _AnchorNavActionSecondary) {
+    if (React.isValidElement(child) && child.type === SecondaryActionBase) {
       return React.cloneElement(child)
     }
     return null
@@ -316,7 +316,7 @@ type AnchorNavLinkProps = BaseProps<HTMLAnchorElement> & {
   updateCurrentActiveNav?: (id: string | null) => void // internal prop, not exposed in docs
 } & Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, 'href'>
 
-function _AnchorNavLink({
+function NavLinkBase({
   alignment = 'start',
   children,
   href,
@@ -407,7 +407,7 @@ type AnchorNavActionProps = {
 } & Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, 'href'> &
   ButtonBaseProps
 
-function _AnchorNavAction({children, href, variant = 'secondary', size = 'small', ...rest}: AnchorNavActionProps) {
+function ActionBase({children, href, variant = 'secondary', size = 'small', ...rest}: AnchorNavActionProps) {
   return (
     <Button
       as="a"
@@ -424,13 +424,7 @@ function _AnchorNavAction({children, href, variant = 'secondary', size = 'small'
   )
 }
 
-function _AnchorNavActionSecondary({
-  children,
-  href,
-  variant = 'secondary',
-  size = 'small',
-  ...rest
-}: AnchorNavActionProps) {
+function SecondaryActionBase({children, href, variant = 'secondary', size = 'small', ...rest}: AnchorNavActionProps) {
   return (
     <Button
       as="a"
@@ -451,9 +445,9 @@ function _AnchorNavActionSecondary({
  * AnchorNav allows users to navigate to different sections of a page.
  * @see https://primer.style/brand/components/AnchorNav
  */
-export const AnchorNav = Object.assign(_AnchorNav, {
-  Link: _AnchorNavLink,
-  Action: _AnchorNavAction,
-  SecondaryAction: _AnchorNavActionSecondary,
+export const AnchorNav = Object.assign(AnchorNavBase, {
+  Link: NavLinkBase,
+  Action: ActionBase,
+  SecondaryAction: SecondaryActionBase,
   testIds,
 })

@@ -1,5 +1,5 @@
 import React, {forwardRef} from 'react'
-import clsx from 'clsx'
+import {clsx} from 'clsx'
 import type {BaseProps} from '../component-helpers'
 import styles from './Prose.module.css'
 import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/prose/base.css'

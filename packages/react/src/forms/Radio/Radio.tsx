@@ -1,5 +1,5 @@
 import React, {forwardRef, useCallback, type InputHTMLAttributes, type ReactElement, type RefObject} from 'react'
-import clsx from 'clsx'
+import {clsx} from 'clsx'
 import {useId} from '../../hooks/useId'
 import {useProvidedRefOrCreate} from '../../hooks/useRef'
 
@@ -24,7 +24,7 @@ export type RadioProps = {
 } & Exclude<InputHTMLAttributes<HTMLInputElement>, 'value'> &
   BaseProps<HTMLInputElement>
 
-const _Radio = (
+const RadioInternal = (
   {checked, className, disabled, id, onChange, required, value, ...rest}: RadioProps,
   ref,
 ): ReactElement => {
@@ -60,4 +60,4 @@ const _Radio = (
   )
 }
 
-export const Radio = forwardRef(_Radio)
+export const Radio = forwardRef(RadioInternal)

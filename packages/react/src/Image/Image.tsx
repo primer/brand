@@ -1,5 +1,5 @@
 import React from 'react'
-import clsx from 'clsx'
+import {clsx} from 'clsx'
 import styles from './Image.module.css'
 import {BaseProps} from '../component-helpers'
 import {useAnimation} from '../animation'

@@ -49,7 +49,7 @@ import lightWideBg from '../../../fixtures/images/light-horizontal-banner.png'
 import darkNarrowBg from '../../../fixtures/images/dark-vertical-banner.png'
 import darkWideBg from '../../../fixtures/images/dark-horizontal-banner.png'
 
-import clsx from 'clsx'
+import {clsx} from 'clsx'
 
 import styles from './SolutionPage.module.css'
 import parallaxStyles from '../parallax.module.css'

@@ -1,5 +1,5 @@
 import React from 'react'
-import {Meta, StoryFn} from '@storybook/react'
+import type {Meta, StoryFn} from '@storybook/react'
 import {Bento} from '.'
 import {Box, Grid, Image, Link, ThemeProvider} from '../'
 
@@ -25,7 +25,7 @@ import timerImage from '../fixtures/images/bento/timer.png'
 import mixed2GradientBg from '../fixtures/images/bento/mixed-2-gradient-bg.png'
 
 import styles from './Bento.features.stories.module.css'
-import clsx from 'clsx'
+import {clsx} from 'clsx'
 
 export default {
   title: 'Components/Bento/features',

@@ -1,5 +1,5 @@
 import React, {useState, useCallback, useRef, PropsWithChildren, forwardRef, useMemo, useEffect} from 'react'
-import clsx from 'clsx'
+import {clsx} from 'clsx'
 import {ChevronLeftIcon, LinkExternalIcon, MarkGithubIcon, SearchIcon, XIcon} from '@primer/octicons-react'
 
 import {Button, FormControl, Text, TextInput} from '..'

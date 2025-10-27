@@ -1,6 +1,6 @@
 import React from 'react'
 import {ReplyIcon} from '@primer/octicons-react'
-import clsx from 'clsx'
+import {clsx} from 'clsx'
 
 import {Heading, InlineLink, Text} from '../'
 import type {BaseProps} from '../component-helpers'

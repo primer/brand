@@ -1,5 +1,5 @@
 import React, {PropsWithChildren, forwardRef, type Ref, useMemo} from 'react'
-import clsx from 'clsx'
+import {clsx} from 'clsx'
 import styles from './Heading.module.css'
 import type {BaseProps} from '../component-helpers'
 import {useAnimation} from '..'

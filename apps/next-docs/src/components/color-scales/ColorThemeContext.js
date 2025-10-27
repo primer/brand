@@ -1,6 +1,6 @@
 'use client'
 import React from 'react'
-// eslint-disable-next-line import/no-unresolved
+
 import {ColorModesEnum} from '@primer/react-brand/lib'
 
 export const availableModes = Object.values(ColorModesEnum).filter(mode => mode !== 'auto')

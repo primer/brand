@@ -1,6 +1,6 @@
 import React, {forwardRef, ReactElement, useCallback, useMemo, type Ref} from 'react'
-import clsx from 'clsx'
-import {Icon} from '@primer/octicons-react'
+import {clsx} from 'clsx'
+import type {Icon} from '@primer/octicons-react'
 
 import type {BaseProps} from '../component-helpers'
 import {Heading, HeadingProps, Text, Stack, Link, LinkProps, StackProps} from '../'

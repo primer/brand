@@ -1,6 +1,6 @@
 import React, {type ReactElement, type SVGAttributes} from 'react'
 import styles from './Icon.module.css'
-import clsx from 'clsx'
+import {clsx} from 'clsx'
 import {type Icon as OcticonProps} from '@primer/octicons-react'
 import {Colors} from '../constants'
 

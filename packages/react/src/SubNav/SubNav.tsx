@@ -17,7 +17,7 @@ import React, {
 } from 'react'
 import {Button, ButtonSizes, ButtonVariants, Text, TextProps, ThemeProvider, useWindowSize} from '..'
 
-import {default as clsx} from 'clsx'
+import {clsx} from 'clsx'
 import {ChevronDownIcon, ChevronUpIcon} from '@primer/octicons-react'
 import {useId} from '../hooks/useId'
 import {useKeyboardEscape} from '../hooks/useKeyboardEscape'
@@ -160,7 +160,7 @@ export type SubNavProps = {
   'data-testid'?: string
 } & PropsWithChildren<BaseProps<HTMLDivElement>>
 
-const _SubNavRoot = memo(
+const SubNavRoot = memo(
   forwardRef<HTMLDivElement, SubNavProps>(
     ({id, children, className, 'data-testid': testId, fullWidth, hasShadow}, ref) => {
       const rootRef = useProvidedRefOrCreate<HTMLDivElement>(ref as RefObject<HTMLDivElement>)
@@ -208,7 +208,7 @@ const _SubNavRoot = memo(
       useEffect(() => {
         // check if there is an anchored nav in the SubNav.SubMenu child
         const hasAnchorVariant = childrenArr.some(child => {
-          if (isValidElement(child) && child.type === SubNavLink) {
+          if (isValidElement(child) && child.type === LinkBase) {
             const [, subMenu] = child.props.children
             if (subMenu?.props?.variant === 'anchor') {
               return true
@@ -226,28 +226,28 @@ const _SubNavRoot = memo(
       } = childrenArr.reduce(
         (acc: {heading?: ReactNode; subheading?: ReactNode; links: ReactElement[]; action?: ReactNode}, child) => {
           if (isValidElement(child)) {
-            if (child.type === SubNavHeading) {
+            if (child.type === HeadingBase) {
               acc.heading = child
-            } else if (child.type === SubNavSubHeading) {
+            } else if (child.type === SubHeadingBase) {
               acc.subheading = child
-            } else if (child.type === SubNavLink) {
+            } else if (child.type === LinkBase) {
               const [link, subMenu] = child.props.children
 
               if (subMenu?.props?.variant === 'anchor') {
                 acc.links.push(
-                  React.cloneElement(child as ReactElement<SubNavLinkProps>, {
+                  React.cloneElement(child as ReactElement<LinkBaseProps>, {
                     children: [link],
                     onClick: child.props['aria-current'] ? closeMenuCallback : child.props.onClick,
                   }),
                 )
               } else {
                 acc.links.push(
-                  React.cloneElement(child as ReactElement<SubNavLinkProps>, {
+                  React.cloneElement(child as ReactElement<LinkBaseProps>, {
                     onClick: child.props['aria-current'] ? closeMenuCallback : child.props.onClick,
                   }),
                 )
               }
-            } else if (child.type === _SubNavAction) {
+            } else if (child.type === ActionBase) {
               acc.action = child
             }
           }
@@ -377,13 +377,13 @@ const _SubNavRoot = memo(
   ),
 )
 
-type SubNavHeadingProps = {
+type HeadingBaseProps = {
   href: string
   'data-testid'?: string
 } & PropsWithChildren<React.HTMLProps<HTMLAnchorElement>> &
   BaseProps<HTMLAnchorElement>
 
-const SubNavHeading = ({href, children, className, 'data-testid': testID, ...props}: SubNavHeadingProps) => {
+const HeadingBase = ({href, children, className, 'data-testid': testID, ...props}: HeadingBaseProps) => {
   return (
     <a
       href={href}
@@ -396,13 +396,13 @@ const SubNavHeading = ({href, children, className, 'data-testid': testID, ...pro
   )
 }
 
-type SubNavSubHeadingProps = {
+type SubHeadingBaseProps = {
   href: string
   'data-testid'?: string
 } & PropsWithChildren<React.HTMLProps<HTMLAnchorElement>> &
   BaseProps<HTMLAnchorElement>
 
-const SubNavSubHeading = ({href, children, className, 'data-testid': testID, ...props}: SubNavSubHeadingProps) => {
+const SubHeadingBase = ({href, children, className, 'data-testid': testID, ...props}: SubHeadingBaseProps) => {
   return (
     <a
       href={href}
@@ -415,7 +415,7 @@ const SubNavSubHeading = ({href, children, className, 'data-testid': testID, ...
   )
 }
 
-type SubNavLinkProps = {
+type LinkBaseProps = {
   href: string
   'data-testid'?: string
   variant?: TextProps['variant']
@@ -423,7 +423,7 @@ type SubNavLinkProps = {
 } & PropsWithChildren<React.HTMLProps<HTMLAnchorElement>> &
   BaseProps<HTMLAnchorElement>
 
-const SubNavLinkWithSubmenu = forwardRef<HTMLDivElement, SubNavLinkProps>(
+const LinkBaseWithSubmenu = forwardRef<HTMLDivElement, LinkBaseProps>(
   (
     {children, href, 'aria-current': ariaCurrent, 'data-testid': testId, className, _subMenuVariant, variant, ...props},
     forwardedRef,
@@ -498,19 +498,20 @@ const SubNavLinkWithSubmenu = forwardRef<HTMLDivElement, SubNavLinkProps>(
   },
 )
 
-const SubNavLink = forwardRef<HTMLAnchorElement | HTMLDivElement, SubNavLinkProps>((props, ref) => {
+const LinkBase = forwardRef<HTMLAnchorElement | HTMLDivElement, LinkBaseProps>((props, ref) => {
   const [isInView, setIsInView] = useState(false)
   const childrenArr = Children.toArray(props.children)
 
   const hasSubMenu = childrenArr.some(child => {
     if (isValidElement(child)) {
-      return child.type === _SubMenu
+      return child.type === SubMenuBase
     }
   })
 
   useEffect(() => {
     if (hasSubMenu) return
     const targetId = props.href.replace('#', '')
+    if (!targetId) return
     const target = document.getElementById(targetId)
     if (!target) return
 
@@ -529,13 +530,13 @@ const SubNavLink = forwardRef<HTMLAnchorElement | HTMLDivElement, SubNavLinkProp
   if (hasSubMenu) {
     const isAnchorVariantSubMenu = childrenArr.some(child => {
       if (isValidElement(child)) {
-        return child.type === _SubMenu && child.props.variant === 'anchor'
+        return child.type === SubMenuBase && child.props.variant === 'anchor'
       }
     })
 
     return (
       <li>
-        <SubNavLinkWithSubmenu
+        <LinkBaseWithSubmenu
           {...props}
           ref={ref as RefObject<HTMLDivElement>}
           _subMenuVariant={isAnchorVariantSubMenu ? 'anchor' : undefined}
@@ -580,7 +581,7 @@ type SubMenuProps = {
 } & React.HTMLAttributes<HTMLUListElement> &
   BaseProps<HTMLUListElement>
 
-function _SubMenu({children, className, variant = 'dropdown', ...props}: SubMenuProps) {
+function SubMenuBase({children, className, variant = 'dropdown', ...props}: SubMenuProps) {
   const context = React.useContext(SubNavContext)
   const navRef = useRef<HTMLElement>(null)
 
@@ -621,7 +622,7 @@ function _SubMenu({children, className, variant = 'dropdown', ...props}: SubMenu
         <ul className={styles['SubNav__sub-menu-list']} {...props}>
           {React.Children.map(children, child => {
             if (isValidElement(child)) {
-              return React.cloneElement(child as React.ReactElement<SubNavLinkProps>, {
+              return React.cloneElement(child as React.ReactElement<LinkBaseProps>, {
                 onClick: e => {
                   if (child.props.onClick) {
                     child.props.onClick(e)
@@ -662,7 +663,7 @@ type SubNavActionProps = {
   variant?: (typeof ButtonVariants)[number]
 } & Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, 'href'>
 
-function _SubNavAction({children, href, variant = 'primary', size = 'small', ...rest}: SubNavActionProps) {
+function ActionBase({children, href, variant = 'primary', size = 'small', ...rest}: SubNavActionProps) {
   return (
     <Button
       className={styles['SubNav__action']}
@@ -683,11 +684,11 @@ function _SubNavAction({children, href, variant = 'primary', size = 'small', ...
  * Use SubNav to display a secondary navigation beneath a primary header.
  * @see https://primer.style/brand/components/SubNav
  */
-export const SubNav = Object.assign(_SubNavRoot, {
-  Heading: SubNavHeading,
-  SubHeading: SubNavSubHeading,
-  Link: SubNavLink,
-  Action: _SubNavAction,
-  SubMenu: _SubMenu,
+export const SubNav = Object.assign(SubNavRoot, {
+  Heading: HeadingBase,
+  SubHeading: SubHeadingBase,
+  Link: LinkBase,
+  Action: ActionBase,
+  SubMenu: SubMenuBase,
   testIds,
 })

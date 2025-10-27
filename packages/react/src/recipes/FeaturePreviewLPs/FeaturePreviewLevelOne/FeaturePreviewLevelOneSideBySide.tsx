@@ -17,7 +17,7 @@ import {FormExample} from './components/FormExample'
 import enterpriseVideo from '../fixtures/images/other/enterprise.mp4'
 
 import styles from './FeaturePreviewLevelOne.module.css'
-import clsx from 'clsx'
+import {clsx} from 'clsx'
 
 type FeaturePreviewLevelOneSideBySideProps = {
   colorMode?: ColorModesEnum.LIGHT | ColorModesEnum.DARK

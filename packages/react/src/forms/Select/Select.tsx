@@ -1,5 +1,5 @@
 import React, {forwardRef} from 'react'
-import clsx from 'clsx'
+import {clsx} from 'clsx'
 
 import type {BaseProps} from '../../component-helpers'
 import type {FormInputSizes, FormValidationStatus} from '../form-types'

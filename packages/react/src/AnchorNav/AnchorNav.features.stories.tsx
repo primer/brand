@@ -74,7 +74,6 @@ const meta = {
 export default meta
 type Story = StoryObj<ComponentAndStoryProps>
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const renderTemplate = (args: ComponentAndStoryProps) => {
   const storyData = Object.entries(args.data) as [string, string][]
   return (

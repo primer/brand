@@ -27,7 +27,7 @@
     "check": "tsc --noEmit",
     "build": "rm -rf out .next && next build",
     "build:prod": "scripts/build",
-    "lint": "eslint '**/*.{js,ts,tsx,md,mdx}' --max-warnings=0 --config ./.eslintrc.cjs",
+    "lint": "eslint '**/*.{js,ts,tsx,md,mdx}' --max-warnings=0",
     "start": "next start"
   },
   "dependencies": {
@@ -44,7 +44,6 @@
     "@primer/react-brand": "0.59.1",
     "@types/node": "22.18.1",
     "eslint-config-next": "15.5.2",
-    "prettier": "^3.5.1",
     "styled-components": "^5.3.11",
     "typescript": "5.8.2",
     "@swc/core": "^1.13.5"

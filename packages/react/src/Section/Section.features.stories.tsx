@@ -1,5 +1,5 @@
 import React from 'react'
-import {StoryFn, Meta} from '@storybook/react'
+import type {StoryFn, Meta} from '@storybook/react'
 import {Section} from '.'
 import {Hero, Stack, SectionIntro, Text, ThemeProvider} from '..'
 import styles from './Section.features.module.css'

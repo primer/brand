@@ -1,6 +1,6 @@
 import React, {PropsWithChildren, forwardRef, useCallback} from 'react'
-import clsx from 'clsx'
-import {Icon as IconProps} from '@primer/octicons-react'
+import {clsx} from 'clsx'
+import {type Icon as IconProps} from '@primer/octicons-react'
 
 import {Text} from '../Text'
 import {Colors, BiColorGradients} from '../constants'

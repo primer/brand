@@ -31,11 +31,11 @@
     "clean": "rm -rf lib",
     "format": "prettier --check '**/*.{js,jsx,ts,tsx,md,mdx,css,json}'",
     "format:fix": "prettier --write '**/*.{js,jsx,ts,tsx,md,mdx,css,json}'",
-    "lint": "eslint '**/*.{js,ts,tsx,md,mdx}' --max-warnings=0 --config ../../.eslintrc.js",
+    "lint": "eslint '**/*.{js,ts,tsx,md,mdx}' --max-warnings=0",
     "test:axe": "playwright test --config=scripts/playwright",
     "test:visual": "NODE_ENV=test scripts/playwright/run-visual-tests",
     "test:visual:update": "NODE_ENV=test npm run test:visual:generate && npm run test:visual:update-snapshots",
-    "test:visual:generate": "NODE_ENV=test cd ../../apps/storybook && npx storybook build && cd ../../packages/e2e && ts-node scripts/playwright/playwright.generate-tests.ts",
+    "test:visual:generate": "NODE_ENV=test cd ../../apps/storybook && npx storybook build && cd ../../packages/e2e && npx tsx scripts/playwright/playwright.generate-tests.ts",
     "test:visual:update-snapshots": "NODE_ENV=test scripts/playwright/update-visual-snapshots"
   },
   "devDependencies": {

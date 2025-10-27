@@ -319,7 +319,6 @@ describe('LogoSuite', () => {
   })
 
   it('logs a warning message when HeadingChild is not provided', () => {
-    // eslint-disable-next-line @typescript-eslint/no-empty-function
     const consoleWarnSpy = jest.spyOn(console, 'warn').mockImplementation(() => {})
     render(<LogoSuite />)
     expect(consoleWarnSpy).toHaveBeenCalledWith(

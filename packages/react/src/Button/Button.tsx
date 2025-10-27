@@ -1,4 +1,4 @@
-import clsx from 'clsx'
+import {clsx} from 'clsx'
 import React, {forwardRef, useCallback, type Ref, ReactElement} from 'react'
 import type {Icon} from '@primer/octicons-react'
 

@@ -1,5 +1,5 @@
 import React, {type HTMLAttributes, useEffect, useState} from 'react'
-import clsx from 'clsx'
+import {clsx} from 'clsx'
 
 import {Text} from '../../../Text'
 import styles from './Captions.module.css'

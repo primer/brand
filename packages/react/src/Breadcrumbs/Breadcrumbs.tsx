@@ -1,5 +1,5 @@
 import React, {forwardRef} from 'react'
-import clsx from 'clsx'
+import {clsx} from 'clsx'
 import {BaseProps} from '../component-helpers'
 
 /**

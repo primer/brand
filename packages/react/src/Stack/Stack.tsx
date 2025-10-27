@@ -1,5 +1,5 @@
 import React, {forwardRef, useMemo} from 'react'
-import clsx from 'clsx'
+import {clsx} from 'clsx'
 
 import type {BaseProps} from '../component-helpers'
 import {BaseSizeScale} from '../constants'
@@ -103,7 +103,7 @@ export type StackProps = BaseProps<HTMLElement> & {
 } & BaseProps<HTMLDivElement> &
   React.HTMLAttributes<HTMLDivElement>
 
-const _Stack = (
+const StackBase = (
   {
     animate,
     children,
@@ -213,4 +213,4 @@ const _Stack = (
  * Stack enables layout of its immediate children along the vertical or horizontal axis
  * @see https://primer.style/brand/components/Stack
  */
-export const Stack = forwardRef(_Stack)
+export const Stack = forwardRef(StackBase)
