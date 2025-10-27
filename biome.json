@@ -201,7 +201,7 @@
       }
     },
     {"includes": ["**/*.figma.tsx"], "linter": {"rules": {}}},
-    {"includes": ["**/*.module.css.d.ts"], "formatter": {"enabled": false}}
+    {"includes": ["**/*.css.d.ts"], "formatter": {"enabled": false}}
   ],
   "assist": {
     "enabled": false,
