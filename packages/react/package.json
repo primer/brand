@@ -2,13 +2,7 @@
   "name": "@primer/react-brand",
   "version": "0.59.0",
   "description": "Primer Brand is a GitHub's design system for creating React-based marketing websites and digital experiences.",
-  "keywords": [
-    "primer",
-    "react",
-    "components",
-    "library",
-    "design-system"
-  ],
+  "keywords": ["primer", "react", "components", "library", "design-system"],
   "homepage": "https://primer.style/brand",
   "bugs": {
     "url": "https://github.com/primer/brand/issues"
@@ -21,20 +15,17 @@
   "author": "GitHub, Inc.",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
-  "files": [
-    "lib",
-    "fonts"
-  ],
+  "files": ["lib", "fonts"],
   "scripts": {
     "build": "npm run clean && npm run build:css-types && webpack && scripts/postbuild",
     "build:css-types": "tcm -p 'src/**/*.css' .",
     "build:types": "tsc --project tsconfig.build.json",
     "check": "tsc --noEmit",
     "clean": "rm -rf lib && rm -rf fonts",
-    "format": "prettier --check '**/*.{js,jsx,ts,tsx,md,mdx,css,json}'",
-    "format:fix": "prettier --write '**/*.{js,jsx,ts,tsx,md,mdx,css,json}'",
-    "lint": "eslint '**/*.{js,ts,tsx,md,mdx}' --max-warnings=0",
-    "lint:fix": "npm run lint -- --fix",
+    "format": "biome format .",
+    "format:fix": "biome format --write .",
+    "lint": "biome lint .",
+    "lint:fix": "biome lint --write .",
     "release": "npm run build && changeset publish",
     "start": "npm run start:css-types",
     "start:css-types": "tcm -w -p 'src/**/*.css' .",

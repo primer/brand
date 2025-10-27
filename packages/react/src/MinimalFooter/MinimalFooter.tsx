@@ -75,6 +75,7 @@ const socialLinkData = {
 } as const
 
 type SocialLinkName = keyof typeof socialLinkData
+// biome-ignore lint/correctness/noUnusedVariables: TODO - Use or remove this type alias
 type SocialLink = (typeof socialLinkData)[SocialLinkName]
 
 const socialLinkNames = Object.keys(socialLinkData) as SocialLinkName[]

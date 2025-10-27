@@ -3,7 +3,7 @@ import {Grid, Card, Stack, InlineLink, Text, Heading} from '@primer/react-brand/
 import clsx from 'clsx'
 import Image from 'next/image'
 import NextLink from 'next/link'
-// eslint-disable-next-line import/extensions
+
 import packageInfo from '../package.json'
 
 import mona from '../src/images/mona-home.png'

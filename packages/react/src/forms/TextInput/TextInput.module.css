@@ -127,25 +127,33 @@
  */
 .TextInput--has-leading-visual--medium {
   padding-inline-start: calc(
-    var(--brand-control-medium-paddingInline-condensed) + var(--base-size-16) + var(--brand-control-medium-gap)
+    var(--brand-control-medium-paddingInline-condensed) +
+    var(--base-size-16) +
+    var(--brand-control-medium-gap)
   );
 }
 
 .TextInput--has-leading-visual--large {
   padding-inline-start: calc(
-    var(--brand-control-large-paddingInline-condensed) + var(--base-size-20) + var(--brand-control-large-gap)
+    var(--brand-control-large-paddingInline-condensed) +
+    var(--base-size-20) +
+    var(--brand-control-large-gap)
   );
 }
 
 .TextInput--has-trailing-visual--medium {
   padding-inline-end: calc(
-    var(--brand-control-medium-paddingInline-condensed) + var(--base-size-16) + var(--brand-control-medium-gap)
+    var(--brand-control-medium-paddingInline-condensed) +
+    var(--base-size-16) +
+    var(--brand-control-medium-gap)
   );
 }
 
 .TextInput--has-trailing-visual--large {
   padding-inline-end: calc(
-    var(--brand-control-medium-paddingInline-condensed) + var(--base-size-20) + var(--brand-control-medium-gap)
+    var(--brand-control-medium-paddingInline-condensed) +
+    var(--base-size-20) +
+    var(--brand-control-medium-gap)
   );
 }
 

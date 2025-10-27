@@ -2,13 +2,7 @@
   "name": "@primer/brand-css",
   "version": "0.59.0",
   "description": "CSS stylesheets for Primer Brand components",
-  "keywords": [
-    "primer",
-    "css",
-    "components",
-    "library",
-    "design-system"
-  ],
+  "keywords": ["primer", "css", "components", "library", "design-system"],
   "type": "module",
   "homepage": "https://primer.style/brand",
   "bugs": {
@@ -20,13 +14,14 @@
   },
   "license": "UNLICENSED",
   "author": "GitHub, Inc.",
-  "files": [
-    "components"
-  ],
+  "files": ["components"],
   "scripts": {
     "clean": "rm -rf components",
     "check": "tsc --noEmit",
     "build": "npm run clean && tsx scripts/build.ts",
+    "format": "biome format .",
+    "format:fix": "biome format --write .",
+    "lint": "biome lint .",
     "prepublishOnly": "npm run build"
   },
   "devDependencies": {

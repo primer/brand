@@ -49,8 +49,8 @@ export type GridProps<T extends keyof JSX.IntrinsicElements = 'div'> = React.HTM
 } & (T extends 'span'
     ? BaseProps<HTMLSpanElement>
     : T extends 'section'
-    ? BaseProps<HTMLElement>
-    : BaseProps<HTMLDivElement>)
+      ? BaseProps<HTMLElement>
+      : BaseProps<HTMLDivElement>)
 
 const _GridRoot = memo(
   ({
@@ -93,8 +93,8 @@ type GridColumnProps<T extends keyof JSX.IntrinsicElements = 'div'> = {
 } & (T extends 'span'
   ? BaseProps<HTMLSpanElement> & React.HTMLAttributes<HTMLSpanElement>
   : T extends 'section'
-  ? BaseProps<HTMLElement> & React.HTMLAttributes<HTMLElement>
-  : BaseProps<HTMLDivElement> & React.HTMLAttributes<HTMLDivElement>)
+    ? BaseProps<HTMLElement> & React.HTMLAttributes<HTMLElement>
+    : BaseProps<HTMLDivElement> & React.HTMLAttributes<HTMLDivElement>)
 
 const Column = memo(
   ({children, as = 'div', span = 12, start, className, ...rest}: PropsWithChildren<GridColumnProps>) => {

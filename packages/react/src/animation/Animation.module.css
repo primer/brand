@@ -32,7 +32,8 @@
 .Animation--slide-in-up {
   opacity: 0;
   transform: translateY(var(--brand-animation-variant-slideInUp-distance));
-  transition: opacity var(--brand-animation-duration-default) var(--brand-animation-easing-default),
+  transition:
+    opacity var(--brand-animation-duration-default) var(--brand-animation-easing-default),
     transform var(--brand-animation-duration-default) var(--brand-animation-easing-default);
 }
 
@@ -47,7 +48,8 @@
 .Animation--slide-in-down {
   opacity: 0;
   transform: translateY(var(--brand-animation-variant-slideInDown-distance));
-  transition: opacity var(--brand-animation-duration-default) var(--brand-animation-easing-default),
+  transition:
+    opacity var(--brand-animation-duration-default) var(--brand-animation-easing-default),
     transform var(--brand-animation-duration-default) var(--brand-animation-easing-default);
 }
 
@@ -62,7 +64,8 @@
 .Animation--slide-in-left {
   opacity: 0;
   transform: translateX(var(--brand-animation-variant-slideInLeft-distance));
-  transition: opacity var(--brand-animation-duration-default) var(--brand-animation-easing-default),
+  transition:
+    opacity var(--brand-animation-duration-default) var(--brand-animation-easing-default),
     transform var(--brand-animation-duration-default) var(--brand-animation-easing-default);
 }
 
@@ -77,7 +80,8 @@
 .Animation--slide-in-right {
   opacity: 0;
   transform: translateX(var(--brand-animation-variant-slideInRight-distance));
-  transition: opacity var(--brand-animation-duration-default) var(--brand-animation-easing-default),
+  transition:
+    opacity var(--brand-animation-duration-default) var(--brand-animation-easing-default),
     transform var(--brand-animation-duration-default) var(--brand-animation-easing-default);
 }
 
@@ -92,7 +96,8 @@
 .Animation--scale-in {
   opacity: 0;
   transform: scale(var(--brand-animation-variant-scaleIn-start));
-  transition: opacity var(--brand-animation-duration-extended) var(--brand-animation-easing-default),
+  transition:
+    opacity var(--brand-animation-duration-extended) var(--brand-animation-easing-default),
     transform var(--brand-animation-duration-extended) var(--brand-animation-easing-default);
 }
 
@@ -108,7 +113,8 @@
   opacity: 0;
   transform: scale(var(--brand-animation-variant-scaleInUp-start))
     translateY(var(--brand-animation-variant-scaleInUp-distance));
-  transition: opacity var(--brand-animation-duration-extended) var(--brand-animation-easing-default),
+  transition:
+    opacity var(--brand-animation-duration-extended) var(--brand-animation-easing-default),
     transform var(--brand-animation-duration-extended) var(--brand-animation-easing-default);
 }
 
@@ -124,7 +130,8 @@
   opacity: 0;
   transform: translateY(var(--brand-animation-variant-scaleInDown-distance))
     scale(var(--brand-animation-variant-scaleInDown-start));
-  transition: opacity var(--brand-animation-duration-extended) var(--brand-animation-easing-default),
+  transition:
+    opacity var(--brand-animation-duration-extended) var(--brand-animation-easing-default),
     transform var(--brand-animation-duration-extended) var(--brand-animation-easing-default);
 }
 
@@ -140,7 +147,8 @@
   opacity: 0;
   transform: scale(var(--brand-animation-variant-scaleInRight-start))
     translateX(var(--brand-animation-variant-scaleInRight-distance));
-  transition: opacity var(--brand-animation-duration-default) var(--brand-animation-easing-default),
+  transition:
+    opacity var(--brand-animation-duration-default) var(--brand-animation-easing-default),
     transform var(--brand-animation-duration-default) var(--brand-animation-easing-default);
 }
 
@@ -156,7 +164,8 @@
   opacity: 0;
   transform: scale(var(--brand-animation-variant-scaleInLeft-start))
     translateX(var(--brand-animation-variant-scaleInLeft-distance));
-  transition: opacity var(--brand-animation-duration-extended) var(--brand-animation-easing-default),
+  transition:
+    opacity var(--brand-animation-duration-extended) var(--brand-animation-easing-default),
     transform var(--brand-animation-duration-extended) var(--brand-animation-easing-default);
 }
 

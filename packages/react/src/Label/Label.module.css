@@ -44,9 +44,11 @@
   padding: var(--brand-borderWidth-thin);
   border-radius: inherit;
   background: var(--brand-Label-background);
-  -webkit-mask: linear-gradient(var(--brand-color-canvas-default), var(--brand-color-canvas-default)) content-box,
+  -webkit-mask:
+    linear-gradient(var(--brand-color-canvas-default), var(--brand-color-canvas-default)) content-box,
     linear-gradient(var(--brand-color-canvas-default), var(--brand-color-canvas-default));
-  mask: linear-gradient(var(--brand-color-canvas-default), var(--brand-color-canvas-default)) content-box,
+  mask:
+    linear-gradient(var(--brand-color-canvas-default), var(--brand-color-canvas-default)) content-box,
     linear-gradient(var(--brand-color-canvas-default), var(--brand-color-canvas-default));
   -webkit-mask-composite: xor;
   mask-composite: exclude;

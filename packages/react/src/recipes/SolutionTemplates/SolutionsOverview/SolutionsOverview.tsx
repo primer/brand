@@ -95,7 +95,6 @@ export function SolutionsOverview({
             aria-label={isLightMode ? 'Switch to dark mode' : 'Switch to light mode'}
             href="#"
             onClick={handleMode}
-            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
             // @ts-ignore
             variant="invisible"
           >

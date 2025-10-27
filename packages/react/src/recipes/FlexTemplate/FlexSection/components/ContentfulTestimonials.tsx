@@ -5,7 +5,7 @@ import {ContentfulTestimonialContent} from './ContentfulTestimonialContent'
 
 import styles from '../FlexSection.module.css'
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
+// biome-ignore lint/suspicious/noExplicitAny: TODO - Add proper types for Contentful data
 export function ContentfulTestimonials({testimonials, className}: any) {
   const isSingleTestimonial = testimonials.fields.testimonialCount === 1
   // The default variant is 'minimal', so if the variant is not set, we should treat it as 'minimal'.

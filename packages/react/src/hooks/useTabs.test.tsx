@@ -63,7 +63,7 @@ const mockKeyboardEvent = (key: string) =>
   ({
     key,
     preventDefault: jest.fn(),
-  } as unknown as React.KeyboardEvent<HTMLElement>)
+  }) as unknown as React.KeyboardEvent<HTMLElement>
 
 describe('useTabs', () => {
   afterEach(() => {

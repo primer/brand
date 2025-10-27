@@ -31,7 +31,8 @@
 .AnchorNav--hide-until-sticky:not(.AnchorNav--stuck) {
   opacity: 0;
   visibility: hidden;
-  transition: visibility var(--brand-animation-duration-default) var(--brand-animation-easing-default),
+  transition:
+    visibility var(--brand-animation-duration-default) var(--brand-animation-easing-default),
     opacity var(--brand-animation-duration-default) var(--brand-animation-easing-default);
 }
 
@@ -45,7 +46,9 @@
 }
 
 .AnchorNav--stuck {
-  box-shadow: 0 3px 6px rgba(140, 149, 159, 0.15), 0 1px 1px rgba(0, 0, 0, 0.1); /* TODO: replace with a global token */
+  box-shadow:
+    0 3px 6px rgba(140, 149, 159, 0.15),
+    0 1px 1px rgba(0, 0, 0, 0.1); /* TODO: replace with a global token */
   position: fixed;
 }
 
@@ -165,7 +168,9 @@
     width: 2px;
     height: 50%;
     background-color: var(--brand-AnchorNav-link-underline-default);
-    transition: opacity var(--brand-animation-duration-fast), transform var(--brand-animation-duration-fast);
+    transition:
+      opacity var(--brand-animation-duration-fast),
+      transform var(--brand-animation-duration-fast);
     opacity: 1;
     transform: scale(0);
     transform-origin: left;
@@ -262,7 +267,9 @@
     width: 100%;
     height: 2px;
     background-color: var(--brand-AnchorNav-link-underline-default);
-    transition: opacity var(--brand-animation-duration-fast), transform var(--brand-animation-duration-fast),
+    transition:
+      opacity var(--brand-animation-duration-fast),
+      transform var(--brand-animation-duration-fast),
       background-color var(--brand-animation-duration-fast);
     opacity: 1;
     transform: scale(0);

@@ -47,7 +47,8 @@
     width: var(--base-size-48);
     z-index: 2;
     pointer-events: none;
-    transition: opacity var(--brand-animation-duration-default) var(--brand-animation-easing-default),
+    transition:
+      opacity var(--brand-animation-duration-default) var(--brand-animation-easing-default),
       visibility var(--brand-animation-duration-default) var(--brand-animation-easing-default);
     opacity: calc(var(--has-overflow, 0) * var(--can-scroll-right, 0));
     border-radius: inherit;

@@ -125,8 +125,8 @@
 
 .Bento__Item--visual-as-background .Bento__Visual {
   order: -1;
-  grid-row: 1 /-1;
-  grid-column: 1 /-1;
+  grid-row: 1 / -1;
+  grid-column: 1 / -1;
 }
 
 .Bento__Visual--fill > img {
@@ -187,100 +187,100 @@
 
 /* Column Span */
 .Bento__Item--column-span-1 {
-  grid-column: auto/span 1;
+  grid-column: auto / span 1;
 }
 
 .Bento__Item--column-span-2 {
-  grid-column: auto/span 2;
+  grid-column: auto / span 2;
 }
 
 .Bento__Item--column-span-3 {
-  grid-column: auto/span 3;
+  grid-column: auto / span 3;
 }
 
 .Bento__Item--column-span-4 {
-  grid-column: auto/span 4;
+  grid-column: auto / span 4;
 }
 
 .Bento__Item--column-span-5 {
-  grid-column: auto/span 5;
+  grid-column: auto / span 5;
 }
 
 .Bento__Item--column-span-6 {
-  grid-column: auto/span 6;
+  grid-column: auto / span 6;
 }
 
 .Bento__Item--column-span-7 {
-  grid-column: auto/span 7;
+  grid-column: auto / span 7;
 }
 
 .Bento__Item--column-span-8 {
-  grid-column: auto/span 8;
+  grid-column: auto / span 8;
 }
 
 .Bento__Item--column-span-9 {
-  grid-column: auto/span 9;
+  grid-column: auto / span 9;
 }
 
 .Bento__Item--column-span-10 {
-  grid-column: auto/span 10;
+  grid-column: auto / span 10;
 }
 
 .Bento__Item--column-span-11 {
-  grid-column: auto/span 11;
+  grid-column: auto / span 11;
 }
 
 .Bento__Item--column-span-12 {
-  grid-column: auto/span 12;
+  grid-column: auto / span 12;
 }
 
 /* Row Span */
 .Bento__Item--row-span-1 {
-  grid-row: auto/span 1;
+  grid-row: auto / span 1;
 }
 
 .Bento__Item--row-span-2 {
-  grid-row: auto/span 2;
+  grid-row: auto / span 2;
 }
 
 .Bento__Item--row-span-3 {
-  grid-row: auto/span 3;
+  grid-row: auto / span 3;
 }
 
 .Bento__Item--row-span-4 {
-  grid-row: auto/span 4;
+  grid-row: auto / span 4;
 }
 
 .Bento__Item--row-span-5 {
-  grid-row: auto/span 5;
+  grid-row: auto / span 5;
 }
 
 .Bento__Item--row-span-6 {
-  grid-row: auto/span 6;
+  grid-row: auto / span 6;
 }
 
 .Bento__Item--row-span-7 {
-  grid-row: auto/span 7;
+  grid-row: auto / span 7;
 }
 
 .Bento__Item--row-span-8 {
-  grid-row: auto/span 8;
+  grid-row: auto / span 8;
 }
 
 .Bento__Item--row-span-9 {
-  grid-row: auto/span 9;
+  grid-row: auto / span 9;
 }
 
 .Bento__Item--row-span-10 {
-  grid-row: auto/span 10;
+  grid-row: auto / span 10;
 }
 
 .Bento__Item--row-span-11 {
-  grid-row: auto/span 11;
+  grid-row: auto / span 11;
 }
 
 .Bento__Item--row-span-12 {
-  grid-row: auto/span 12;
+  grid-row: auto / span 12;
 }
 
 /* Column Start */
@@ -423,100 +423,100 @@
 @media screen and (min-width: 0) {
   /* xsmall Column Span */
   .Bento__Item--xsmall-column-span-1 {
-    grid-column: auto/span 1;
+    grid-column: auto / span 1;
   }
 
   .Bento__Item--xsmall-column-span-2 {
-    grid-column: auto/span 2;
+    grid-column: auto / span 2;
   }
 
   .Bento__Item--xsmall-column-span-3 {
-    grid-column: auto/span 3;
+    grid-column: auto / span 3;
   }
 
   .Bento__Item--xsmall-column-span-4 {
-    grid-column: auto/span 4;
+    grid-column: auto / span 4;
   }
 
   .Bento__Item--xsmall-column-span-5 {
-    grid-column: auto/span 5;
+    grid-column: auto / span 5;
   }
 
   .Bento__Item--xsmall-column-span-6 {
-    grid-column: auto/span 6;
+    grid-column: auto / span 6;
   }
 
   .Bento__Item--xsmall-column-span-7 {
-    grid-column: auto/span 7;
+    grid-column: auto / span 7;
   }
 
   .Bento__Item--xsmall-column-span-8 {
-    grid-column: auto/span 8;
+    grid-column: auto / span 8;
   }
 
   .Bento__Item--xsmall-column-span-9 {
-    grid-column: auto/span 9;
+    grid-column: auto / span 9;
   }
 
   .Bento__Item--xsmall-column-span-10 {
-    grid-column: auto/span 10;
+    grid-column: auto / span 10;
   }
 
   .Bento__Item--xsmall-column-span-11 {
-    grid-column: auto/span 11;
+    grid-column: auto / span 11;
   }
 
   .Bento__Item--xsmall-column-span-12 {
-    grid-column: auto/span 12;
+    grid-column: auto / span 12;
   }
 
   /* xsmall Row Span */
   .Bento__Item--xsmall-row-span-1 {
-    grid-row: auto/span 1;
+    grid-row: auto / span 1;
   }
 
   .Bento__Item--xsmall-row-span-2 {
-    grid-row: auto/span 2;
+    grid-row: auto / span 2;
   }
 
   .Bento__Item--xsmall-row-span-3 {
-    grid-row: auto/span 3;
+    grid-row: auto / span 3;
   }
 
   .Bento__Item--xsmall-row-span-4 {
-    grid-row: auto/span 4;
+    grid-row: auto / span 4;
   }
 
   .Bento__Item--xsmall-row-span-5 {
-    grid-row: auto/span 5;
+    grid-row: auto / span 5;
   }
 
   .Bento__Item--xsmall-row-span-6 {
-    grid-row: auto/span 6;
+    grid-row: auto / span 6;
   }
 
   .Bento__Item--xsmall-row-span-7 {
-    grid-row: auto/span 7;
+    grid-row: auto / span 7;
   }
 
   .Bento__Item--xsmall-row-span-8 {
-    grid-row: auto/span 8;
+    grid-row: auto / span 8;
   }
 
   .Bento__Item--xsmall-row-span-9 {
-    grid-row: auto/span 9;
+    grid-row: auto / span 9;
   }
 
   .Bento__Item--xsmall-row-span-10 {
-    grid-row: auto/span 10;
+    grid-row: auto / span 10;
   }
 
   .Bento__Item--xsmall-row-span-11 {
-    grid-row: auto/span 11;
+    grid-row: auto / span 11;
   }
 
   .Bento__Item--xsmall-row-span-12 {
-    grid-row: auto/span 12;
+    grid-row: auto / span 12;
   }
 
   /* xsmall Column Start */
@@ -711,100 +711,100 @@
 @media screen and (min-width: 34rem) {
   /* SMALL Column Span */
   .Bento__Item--small-column-span-1 {
-    grid-column: auto/span 1;
+    grid-column: auto / span 1;
   }
 
   .Bento__Item--small-column-span-2 {
-    grid-column: auto/span 2;
+    grid-column: auto / span 2;
   }
 
   .Bento__Item--small-column-span-3 {
-    grid-column: auto/span 3;
+    grid-column: auto / span 3;
   }
 
   .Bento__Item--small-column-span-4 {
-    grid-column: auto/span 4;
+    grid-column: auto / span 4;
   }
 
   .Bento__Item--small-column-span-5 {
-    grid-column: auto/span 5;
+    grid-column: auto / span 5;
   }
 
   .Bento__Item--small-column-span-6 {
-    grid-column: auto/span 6;
+    grid-column: auto / span 6;
   }
 
   .Bento__Item--small-column-span-7 {
-    grid-column: auto/span 7;
+    grid-column: auto / span 7;
   }
 
   .Bento__Item--small-column-span-8 {
-    grid-column: auto/span 8;
+    grid-column: auto / span 8;
   }
 
   .Bento__Item--small-column-span-9 {
-    grid-column: auto/span 9;
+    grid-column: auto / span 9;
   }
 
   .Bento__Item--small-column-span-10 {
-    grid-column: auto/span 10;
+    grid-column: auto / span 10;
   }
 
   .Bento__Item--small-column-span-11 {
-    grid-column: auto/span 11;
+    grid-column: auto / span 11;
   }
 
   .Bento__Item--small-column-span-12 {
-    grid-column: auto/span 12;
+    grid-column: auto / span 12;
   }
 
   /* SMALL Row Span */
   .Bento__Item--small-row-span-1 {
-    grid-row: auto/span 1;
+    grid-row: auto / span 1;
   }
 
   .Bento__Item--small-row-span-2 {
-    grid-row: auto/span 2;
+    grid-row: auto / span 2;
   }
 
   .Bento__Item--small-row-span-3 {
-    grid-row: auto/span 3;
+    grid-row: auto / span 3;
   }
 
   .Bento__Item--small-row-span-4 {
-    grid-row: auto/span 4;
+    grid-row: auto / span 4;
   }
 
   .Bento__Item--small-row-span-5 {
-    grid-row: auto/span 5;
+    grid-row: auto / span 5;
   }
 
   .Bento__Item--small-row-span-6 {
-    grid-row: auto/span 6;
+    grid-row: auto / span 6;
   }
 
   .Bento__Item--small-row-span-7 {
-    grid-row: auto/span 7;
+    grid-row: auto / span 7;
   }
 
   .Bento__Item--small-row-span-8 {
-    grid-row: auto/span 8;
+    grid-row: auto / span 8;
   }
 
   .Bento__Item--small-row-span-9 {
-    grid-row: auto/span 9;
+    grid-row: auto / span 9;
   }
 
   .Bento__Item--small-row-span-10 {
-    grid-row: auto/span 10;
+    grid-row: auto / span 10;
   }
 
   .Bento__Item--small-row-span-11 {
-    grid-row: auto/span 11;
+    grid-row: auto / span 11;
   }
 
   .Bento__Item--small-row-span-12 {
-    grid-row: auto/span 12;
+    grid-row: auto / span 12;
   }
 
   /* SMALL Column Start */
@@ -997,100 +997,100 @@
 @media screen and (min-width: 48rem) {
   /* MEDIUM Column Span */
   .Bento__Item--medium-column-span-1 {
-    grid-column: auto/span 1;
+    grid-column: auto / span 1;
   }
 
   .Bento__Item--medium-column-span-2 {
-    grid-column: auto/span 2;
+    grid-column: auto / span 2;
   }
 
   .Bento__Item--medium-column-span-3 {
-    grid-column: auto/span 3;
+    grid-column: auto / span 3;
   }
 
   .Bento__Item--medium-column-span-4 {
-    grid-column: auto/span 4;
+    grid-column: auto / span 4;
   }
 
   .Bento__Item--medium-column-span-5 {
-    grid-column: auto/span 5;
+    grid-column: auto / span 5;
   }
 
   .Bento__Item--medium-column-span-6 {
-    grid-column: auto/span 6;
+    grid-column: auto / span 6;
   }
 
   .Bento__Item--medium-column-span-7 {
-    grid-column: auto/span 7;
+    grid-column: auto / span 7;
   }
 
   .Bento__Item--medium-column-span-8 {
-    grid-column: auto/span 8;
+    grid-column: auto / span 8;
   }
 
   .Bento__Item--medium-column-span-9 {
-    grid-column: auto/span 9;
+    grid-column: auto / span 9;
   }
 
   .Bento__Item--medium-column-span-10 {
-    grid-column: auto/span 10;
+    grid-column: auto / span 10;
   }
 
   .Bento__Item--medium-column-span-11 {
-    grid-column: auto/span 11;
+    grid-column: auto / span 11;
   }
 
   .Bento__Item--medium-column-span-12 {
-    grid-column: auto/span 12;
+    grid-column: auto / span 12;
   }
 
   /* MEDIUM Row Span */
   .Bento__Item--medium-row-span-1 {
-    grid-row: auto/span 1;
+    grid-row: auto / span 1;
   }
 
   .Bento__Item--medium-row-span-2 {
-    grid-row: auto/span 2;
+    grid-row: auto / span 2;
   }
 
   .Bento__Item--medium-row-span-3 {
-    grid-row: auto/span 3;
+    grid-row: auto / span 3;
   }
 
   .Bento__Item--medium-row-span-4 {
-    grid-row: auto/span 4;
+    grid-row: auto / span 4;
   }
 
   .Bento__Item--medium-row-span-5 {
-    grid-row: auto/span 5;
+    grid-row: auto / span 5;
   }
 
   .Bento__Item--medium-row-span-6 {
-    grid-row: auto/span 6;
+    grid-row: auto / span 6;
   }
 
   .Bento__Item--medium-row-span-7 {
-    grid-row: auto/span 7;
+    grid-row: auto / span 7;
   }
 
   .Bento__Item--medium-row-span-8 {
-    grid-row: auto/span 8;
+    grid-row: auto / span 8;
   }
 
   .Bento__Item--medium-row-span-9 {
-    grid-row: auto/span 9;
+    grid-row: auto / span 9;
   }
 
   .Bento__Item--medium-row-span-10 {
-    grid-row: auto/span 10;
+    grid-row: auto / span 10;
   }
 
   .Bento__Item--medium-row-span-11 {
-    grid-row: auto/span 11;
+    grid-row: auto / span 11;
   }
 
   .Bento__Item--medium-row-span-12 {
-    grid-row: auto/span 12;
+    grid-row: auto / span 12;
   }
 
   /* MEDIUM Column Start */
@@ -1283,100 +1283,100 @@
 @media screen and (min-width: 63.25rem) {
   /* LARGE Column Span */
   .Bento__Item--large-column-span-1 {
-    grid-column: auto/span 1;
+    grid-column: auto / span 1;
   }
 
   .Bento__Item--large-column-span-2 {
-    grid-column: auto/span 2;
+    grid-column: auto / span 2;
   }
 
   .Bento__Item--large-column-span-3 {
-    grid-column: auto/span 3;
+    grid-column: auto / span 3;
   }
 
   .Bento__Item--large-column-span-4 {
-    grid-column: auto/span 4;
+    grid-column: auto / span 4;
   }
 
   .Bento__Item--large-column-span-5 {
-    grid-column: auto/span 5;
+    grid-column: auto / span 5;
   }
 
   .Bento__Item--large-column-span-6 {
-    grid-column: auto/span 6;
+    grid-column: auto / span 6;
   }
 
   .Bento__Item--large-column-span-7 {
-    grid-column: auto/span 7;
+    grid-column: auto / span 7;
   }
 
   .Bento__Item--large-column-span-8 {
-    grid-column: auto/span 8;
+    grid-column: auto / span 8;
   }
 
   .Bento__Item--large-column-span-9 {
-    grid-column: auto/span 9;
+    grid-column: auto / span 9;
   }
 
   .Bento__Item--large-column-span-10 {
-    grid-column: auto/span 10;
+    grid-column: auto / span 10;
   }
 
   .Bento__Item--large-column-span-11 {
-    grid-column: auto/span 11;
+    grid-column: auto / span 11;
   }
 
   .Bento__Item--large-column-span-12 {
-    grid-column: auto/span 12;
+    grid-column: auto / span 12;
   }
 
   /* LARGE Row Span */
   .Bento__Item--large-row-span-1 {
-    grid-row: auto/span 1;
+    grid-row: auto / span 1;
   }
 
   .Bento__Item--large-row-span-2 {
-    grid-row: auto/span 2;
+    grid-row: auto / span 2;
   }
 
   .Bento__Item--large-row-span-3 {
-    grid-row: auto/span 3;
+    grid-row: auto / span 3;
   }
 
   .Bento__Item--large-row-span-4 {
-    grid-row: auto/span 4;
+    grid-row: auto / span 4;
   }
 
   .Bento__Item--large-row-span-5 {
-    grid-row: auto/span 5;
+    grid-row: auto / span 5;
   }
 
   .Bento__Item--large-row-span-6 {
-    grid-row: auto/span 6;
+    grid-row: auto / span 6;
   }
 
   .Bento__Item--large-row-span-7 {
-    grid-row: auto/span 7;
+    grid-row: auto / span 7;
   }
 
   .Bento__Item--large-row-span-8 {
-    grid-row: auto/span 8;
+    grid-row: auto / span 8;
   }
 
   .Bento__Item--large-row-span-9 {
-    grid-row: auto/span 9;
+    grid-row: auto / span 9;
   }
 
   .Bento__Item--large-row-span-10 {
-    grid-row: auto/span 10;
+    grid-row: auto / span 10;
   }
 
   .Bento__Item--large-row-span-11 {
-    grid-row: auto/span 11;
+    grid-row: auto / span 11;
   }
 
   .Bento__Item--large-row-span-12 {
-    grid-row: auto/span 12;
+    grid-row: auto / span 12;
   }
 
   /* LARGE Column Start */
@@ -1569,100 +1569,100 @@
 @media screen and (min-width: 80rem) {
   /* XLARGE Column Span */
   .Bento__Item--xlarge-column-span-1 {
-    grid-column: auto/span 1;
+    grid-column: auto / span 1;
   }
 
   .Bento__Item--xlarge-column-span-2 {
-    grid-column: auto/span 2;
+    grid-column: auto / span 2;
   }
 
   .Bento__Item--xlarge-column-span-3 {
-    grid-column: auto/span 3;
+    grid-column: auto / span 3;
   }
 
   .Bento__Item--xlarge-column-span-4 {
-    grid-column: auto/span 4;
+    grid-column: auto / span 4;
   }
 
   .Bento__Item--xlarge-column-span-5 {
-    grid-column: auto/span 5;
+    grid-column: auto / span 5;
   }
 
   .Bento__Item--xlarge-column-span-6 {
-    grid-column: auto/span 6;
+    grid-column: auto / span 6;
   }
 
   .Bento__Item--xlarge-column-span-7 {
-    grid-column: auto/span 7;
+    grid-column: auto / span 7;
   }
 
   .Bento__Item--xlarge-column-span-8 {
-    grid-column: auto/span 8;
+    grid-column: auto / span 8;
   }
 
   .Bento__Item--xlarge-column-span-9 {
-    grid-column: auto/span 9;
+    grid-column: auto / span 9;
   }
 
   .Bento__Item--xlarge-column-span-10 {
-    grid-column: auto/span 10;
+    grid-column: auto / span 10;
   }
 
   .Bento__Item--xlarge-column-span-11 {
-    grid-column: auto/span 11;
+    grid-column: auto / span 11;
   }
 
   .Bento__Item--xlarge-column-span-12 {
-    grid-column: auto/span 12;
+    grid-column: auto / span 12;
   }
 
   /* XLARGE Row Span */
   .Bento__Item--xlarge-row-span-1 {
-    grid-row: auto/span 1;
+    grid-row: auto / span 1;
   }
 
   .Bento__Item--xlarge-row-span-2 {
-    grid-row: auto/span 2;
+    grid-row: auto / span 2;
   }
 
   .Bento__Item--xlarge-row-span-3 {
-    grid-row: auto/span 3;
+    grid-row: auto / span 3;
   }
 
   .Bento__Item--xlarge-row-span-4 {
-    grid-row: auto/span 4;
+    grid-row: auto / span 4;
   }
 
   .Bento__Item--xlarge-row-span-5 {
-    grid-row: auto/span 5;
+    grid-row: auto / span 5;
   }
 
   .Bento__Item--xlarge-row-span-6 {
-    grid-row: auto/span 6;
+    grid-row: auto / span 6;
   }
 
   .Bento__Item--xlarge-row-span-7 {
-    grid-row: auto/span 7;
+    grid-row: auto / span 7;
   }
 
   .Bento__Item--xlarge-row-span-8 {
-    grid-row: auto/span 8;
+    grid-row: auto / span 8;
   }
 
   .Bento__Item--xlarge-row-span-9 {
-    grid-row: auto/span 9;
+    grid-row: auto / span 9;
   }
 
   .Bento__Item--xlarge-row-span-10 {
-    grid-row: auto/span 10;
+    grid-row: auto / span 10;
   }
 
   .Bento__Item--xlarge-row-span-11 {
-    grid-row: auto/span 11;
+    grid-row: auto / span 11;
   }
 
   .Bento__Item--xlarge-row-span-12 {
-    grid-row: auto/span 12;
+    grid-row: auto / span 12;
   }
 
   /* XLARGE Column Start */
@@ -1855,100 +1855,100 @@
 @media screen and (min-width: 87.5rem) {
   /* XXLARGE Column Span */
   .Bento__Item--xxlarge-column-span-1 {
-    grid-column: auto/span 1;
+    grid-column: auto / span 1;
   }
 
   .Bento__Item--xxlarge-column-span-2 {
-    grid-column: auto/span 2;
+    grid-column: auto / span 2;
   }
 
   .Bento__Item--xxlarge-column-span-3 {
-    grid-column: auto/span 3;
+    grid-column: auto / span 3;
   }
 
   .Bento__Item--xxlarge-column-span-4 {
-    grid-column: auto/span 4;
+    grid-column: auto / span 4;
   }
 
   .Bento__Item--xxlarge-column-span-5 {
-    grid-column: auto/span 5;
+    grid-column: auto / span 5;
   }
 
   .Bento__Item--xxlarge-column-span-6 {
-    grid-column: auto/span 6;
+    grid-column: auto / span 6;
   }
 
   .Bento__Item--xxlarge-column-span-7 {
-    grid-column: auto/span 7;
+    grid-column: auto / span 7;
   }
 
   .Bento__Item--xxlarge-column-span-8 {
-    grid-column: auto/span 8;
+    grid-column: auto / span 8;
   }
 
   .Bento__Item--xxlarge-column-span-9 {
-    grid-column: auto/span 9;
+    grid-column: auto / span 9;
   }
 
   .Bento__Item--xxlarge-column-span-10 {
-    grid-column: auto/span 10;
+    grid-column: auto / span 10;
   }
 
   .Bento__Item--xxlarge-column-span-11 {
-    grid-column: auto/span 11;
+    grid-column: auto / span 11;
   }
 
   .Bento__Item--xxlarge-column-span-12 {
-    grid-column: auto/span 12;
+    grid-column: auto / span 12;
   }
 
   /* XXLARGE Row Span */
   .Bento__Item--xxlarge-row-span-1 {
-    grid-column: auto/span 1;
+    grid-column: auto / span 1;
   }
 
   .Bento__Item--xxlarge-row-span-2 {
-    grid-column: auto/span 2;
+    grid-column: auto / span 2;
   }
 
   .Bento__Item--xxlarge-row-span-3 {
-    grid-column: auto/span 3;
+    grid-column: auto / span 3;
   }
 
   .Bento__Item--xxlarge-row-span-4 {
-    grid-column: auto/span 4;
+    grid-column: auto / span 4;
   }
 
   .Bento__Item--xxlarge-row-span-5 {
-    grid-column: auto/span 5;
+    grid-column: auto / span 5;
   }
 
   .Bento__Item--xxlarge-row-span-6 {
-    grid-column: auto/span 6;
+    grid-column: auto / span 6;
   }
 
   .Bento__Item--xxlarge-row-span-7 {
-    grid-column: auto/span 7;
+    grid-column: auto / span 7;
   }
 
   .Bento__Item--xxlarge-row-span-8 {
-    grid-column: auto/span 8;
+    grid-column: auto / span 8;
   }
 
   .Bento__Item--xxlarge-row-span-9 {
-    grid-column: auto/span 9;
+    grid-column: auto / span 9;
   }
 
   .Bento__Item--xxlarge-row-span-10 {
-    grid-column: auto/span 10;
+    grid-column: auto / span 10;
   }
 
   .Bento__Item--xxlarge-row-span-11 {
-    grid-column: auto/span 11;
+    grid-column: auto / span 11;
   }
 
   .Bento__Item--xxlarge-row-span-12 {
-    grid-column: auto/span 12;
+    grid-column: auto / span 12;
   }
 
   /* XXLARGE Column Start */

@@ -37,8 +37,8 @@
 }
 
 /**
-* Chat
-*/
+ * Chat
+ */
 .IDE__Chat {
   display: grid;
   grid-area: pane;
@@ -137,7 +137,8 @@
 
   opacity: 0;
   transform: translateY(var(--brand-animation-variant-slideInDown-distance));
-  transition: opacity var(--brand-animation-duration-default) var(--brand-animation-easing-default),
+  transition:
+    opacity var(--brand-animation-duration-default) var(--brand-animation-easing-default),
     transform var(--brand-animation-duration-default) var(--brand-animation-easing-default);
 }
 
@@ -159,8 +160,8 @@
 }
 
 /**
-* Editor
-*/
+ * Editor
+ */
 
 .IDE__Editor {
   grid-area: editor;
@@ -324,7 +325,9 @@ img.IDE__Editor-tab-icon {
   z-index: 1;
   font-family: var(--brand-fontStack-monospace);
   font-weight: var(--brand-text-weight-200);
-  font-feature-settings: 'liga' 0, 'calt' 0;
+  font-feature-settings:
+    'liga' 0,
+    'calt' 0;
   font-variation-settings: normal;
   letter-spacing: 0;
   flex: 0 0 var(--brand-IDE-lineNumber-width);

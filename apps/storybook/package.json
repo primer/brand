@@ -3,13 +3,7 @@
   "version": "0.59.0",
   "private": true,
   "description": "Primer Brand Storybook",
-  "keywords": [
-    "primer",
-    "react",
-    "components",
-    "library",
-    "design-system"
-  ],
+  "keywords": ["primer", "react", "components", "library", "design-system"],
   "homepage": "https://primer.style/brand",
   "bugs": {
     "url": "https://github.com/primer/brand/issues"
@@ -27,9 +21,9 @@
     "start": "npm run check-translations && storybook dev -p 6006",
     "start:axe": "storybook dev -p 6006 --no-version-updates",
     "check-translations": "tsx scripts/validate-translation-keys.ts",
-    "format": "prettier --check '**/*.{js,jsx,ts,tsx,md,mdx,css,json}'",
-    "format:fix": "prettier --write '**/*.{js,jsx,ts,tsx,md,mdx,css,json}'",
-    "lint": "eslint '**/*.{js,ts,tsx,md,mdx}' --max-warnings=0 --config ./.eslintrc.js"
+    "format": "biome format .",
+    "format:fix": "biome format --write .",
+    "lint": "biome lint ."
   },
   "devDependencies": {
     "@babel/preset-env": "7.26.9",

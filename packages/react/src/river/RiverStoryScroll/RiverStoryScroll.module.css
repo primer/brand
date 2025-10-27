@@ -214,7 +214,10 @@
   }
 
   .RiverStoryScroll__visual-scroll-responder {
-    transition: 0.5s var(--ease) transform, 0.5s var(--ease) filter, 0.5s var(--ease) opacity;
+    transition:
+      0.5s var(--ease) transform,
+      0.5s var(--ease) filter,
+      0.5s var(--ease) opacity;
     pointer-events: auto;
   }
 
@@ -340,7 +343,8 @@
     border-radius: var(--brand-borderRadius-large);
     opacity: 0.55;
     background: var(--brand-RiverStoryScroll-pagination-fgColor);
-    transition: opacity var(--brand-animation-duration-default) var(--ease),
+    transition:
+      opacity var(--brand-animation-duration-default) var(--ease),
       height var(--brand-animation-duration-default) var(--ease);
   }
 
@@ -441,7 +445,8 @@
 
   .RiverStoryScroll__tracker::after {
     content: '';
-    transition: opacity var(--brand-animation-duration-extended) var(--brand-animation-easing-default),
+    transition:
+      opacity var(--brand-animation-duration-extended) var(--brand-animation-easing-default),
       visibility var(--brand-animation-duration-extended) var(--brand-animation-easing-default);
     opacity: 0;
     visibility: hidden;
