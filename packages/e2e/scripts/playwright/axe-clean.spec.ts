@@ -10,7 +10,7 @@ import {test, expect} from '@playwright/test'
 import {injectAxe, getViolations} from 'axe-playwright'
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-// eslint-disable-next-line import/extensions
+// eslint-disable-next-line import/extensions, import/no-unresolved
 import IndexData from '../../../../apps/storybook/storybook-static/index.json'
 
 declare const __dirname: string
