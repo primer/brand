@@ -7,15 +7,8 @@
   --brand-pricing-options-container-padding-inline: 0;
 
   /* prettier-ignore */
-  --brand-pricing-options-template-areas: 
-    'leadingComponent'
-    'header'
-    'description'
-    'price'
-    'actions'
-    'feature-list'
-    'footnote'
-    ;
+  --brand-pricing-options-template-areas: 'leadingComponent' 'header' 'description' 'price' 'actions' 'feature-list'
+    'footnote';
 
   display: grid;
   row-gap: var(--brand-pricing-options-item-gap, 0);

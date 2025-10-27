@@ -3,7 +3,7 @@ import colors from '@primer/brand-primitives/lib/design-tokens/js/module/tokens/
 import React from 'react'
 import {Box as PRCBox, Text, ThemeProvider as PRCThemeProvider} from '@primer/react'
 import {readableColor} from 'color2k'
-// eslint-disable-next-line import/no-unresolved
+
 import {ColorModesEnum} from '../../../../../packages/react/src/ThemeProvider'
 import {useColorTheme} from './ColorThemeContext'
 

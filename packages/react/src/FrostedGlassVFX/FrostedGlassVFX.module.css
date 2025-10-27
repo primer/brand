@@ -26,7 +26,8 @@
   inset: 0;
   padding: var(--brand-borderWidth-thin);
   background: var(--brand-FrostedGlassVFX-borderMask);
-  mask: linear-gradient(var(--base-color-scale-black-0) 0 0) exclude,
+  mask:
+    linear-gradient(var(--base-color-scale-black-0) 0 0) exclude,
     linear-gradient(var(--base-color-scale-black-0) 0 0) content-box;
 }
 

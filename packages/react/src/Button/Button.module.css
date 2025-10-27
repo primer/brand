@@ -139,7 +139,9 @@
 /* secondary */
 
 .Button--secondary {
-  transition: background-color, border-color 200ms;
+  transition:
+    background-color,
+    border-color 200ms;
   border-color: var(--brand-button-secondary-borderColor-rest);
   color: var(--brand-button-secondary-fgColor-rest);
 }
@@ -172,7 +174,9 @@
 .Button--subtle {
   background-color: var(--brand-button-subtle-bgColor-rest);
   color: var(--brand-color-text-default);
-  transition: background-color, border-color var(--brand-animation-duration-faster);
+  transition:
+    background-color,
+    border-color var(--brand-animation-duration-faster);
 }
 
 .Button--subtle:not(.Button[disabled], .Button[aria-disabled='true'], [aria-expanded='true']):hover {

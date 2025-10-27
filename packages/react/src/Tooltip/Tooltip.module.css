@@ -42,7 +42,7 @@
   overflow: visible;
 }
 
-.Tooltip[popover]:popover-open, /* selector in chrome is :popover-open */
+.Tooltip[popover]:popover-open /* selector in chrome is :popover-open */,
 .Tooltip[popover].\:popover-open {
   /* selector in firefox and safari is \:popover-open */
   display: block;
@@ -65,8 +65,9 @@
 
 /* Directional styles */
 .Tooltip[data-direction='n'] {
-  border-image: conic-gradient(var(--c) 0 0) fill 0 / var(--r) calc(100% - var(--p) - var(--b) / 2) 0
-    calc(var(--p) - var(--b) / 2) / 0 0 var(--h) 0;
+  border-image:
+    conic-gradient(var(--c) 0 0) fill 0 / var(--r) calc(100% - var(--p) - var(--b) / 2) 0 calc(var(--p) - var(--b) / 2)
+    / 0 0 var(--h) 0;
   clip-path: polygon(
     0 100%,
     0 0,
@@ -79,9 +80,9 @@
 }
 
 .Tooltip[data-direction='s'] {
-  border-image: conic-gradient(var(--c) 0 0) fill 0/ 0 calc(100% - var(--p) - var(--b) / 2) var(--r) calc(
-      var(--p) - var(--b) / 2
-    ) / var(--h) 0 0 0;
+  border-image:
+    conic-gradient(var(--c) 0 0) fill 0 / 0 calc(100% - var(--p) - var(--b) / 2) var(--r) calc(var(--p) - var(--b) / 2)
+    / var(--h) 0 0 0;
   clip-path: polygon(
     0 0,
     0 100%,
@@ -94,8 +95,9 @@
 }
 
 .Tooltip[data-direction='w'] {
-  border-image: conic-gradient(var(--c) 0 0) fill 0 / calc(var(--p) - var(--b) / 2) 0
-    calc(100% - var(--p) - var(--b) / 2) var(--r) / 0 var(--h) 0 0;
+  border-image:
+    conic-gradient(var(--c) 0 0) fill 0 / calc(var(--p) - var(--b) / 2) 0 calc(100% - var(--p) - var(--b) / 2) var(--r)
+    / 0 var(--h) 0 0;
   clip-path: polygon(
     100% 100%,
     0 100%,
@@ -108,8 +110,9 @@
 }
 
 .Tooltip[data-direction='e'] {
-  border-image: conic-gradient(var(--c) 0 0) fill 0 / calc(var(--p) - var(--b) / 2) var(--r)
-    calc(100% - var(--p) - var(--b) / 2) 0/ 0 0 0 var(--h);
+  border-image:
+    conic-gradient(var(--c) 0 0) fill 0 / calc(var(--p) - var(--b) / 2) var(--r) calc(100% - var(--p) - var(--b) / 2)
+    0 / 0 0 0 var(--h);
   clip-path: polygon(
     0 100%,
     100% 100%,

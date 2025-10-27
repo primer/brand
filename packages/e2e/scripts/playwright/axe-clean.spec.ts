@@ -8,9 +8,8 @@ import type {StoryIndex} from '@storybook/types'
 import {chromium, Browser, Page} from 'playwright'
 import {test, expect} from '@playwright/test'
 import {injectAxe, getViolations} from 'axe-playwright'
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+
 // @ts-ignore
-// eslint-disable-next-line import/extensions, import/no-unresolved
 import IndexData from '../../../../apps/storybook/storybook-static/index.json'
 
 declare const __dirname: string
@@ -109,7 +108,7 @@ const storybookRoutes = Object.values((IndexData as StoryIndex).entries)
         name: story.title,
         component: story.importPath,
         story: story.name,
-      } as const),
+      }) as const,
   )
   .filter(({id}) => {
     return !testsToSkip.includes(id)
@@ -144,7 +143,6 @@ for (const story of storybookRoutes) {
     })
 
     test('it completes AXE page validation', async () => {
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
       let violations = await getViolations(page, null, {
         detailedReport: true,

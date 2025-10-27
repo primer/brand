@@ -4,7 +4,7 @@ import {Testimonial} from '../../../..'
 
 import monaAvatar from '../../../../fixtures/images/avatar-mona.png'
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
+// biome-ignore lint/suspicious/noExplicitAny: TODO - Add proper types for Contentful data
 export function ContentfulTestimonialContent({className, size, variant, quoteMarkColor, displayedAuthorImage}: any) {
   return (
     <Testimonial className={className} size={size} variant={variant} quoteMarkColor={quoteMarkColor}>

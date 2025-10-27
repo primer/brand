@@ -127,6 +127,7 @@ type SeparatorProps = {
 function Separator({activeLinklabel, className, ...props}: SeparatorProps) {
   return (
     <span
+      // biome-ignore lint/a11y/useAriaPropsForRole: Decorative separator doesn't need aria-valuenow
       role="separator"
       className={clsx(
         styles['SubNav__heading-separator'],
@@ -615,7 +616,6 @@ function _SubMenu({children, className, variant = 'dropdown', ...props}: SubMenu
       <nav
         ref={navRef}
         className={clsx(styles['SubNav__sub-menu'], styles['SubNav__sub-menu--anchor'], className)}
-        role="navigation"
         aria-label="Sub navigation"
       >
         <ul className={styles['SubNav__sub-menu-list']} {...props}>

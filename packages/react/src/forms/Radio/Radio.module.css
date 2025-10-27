@@ -70,7 +70,9 @@ Fixes safari bug where outline doesn't respect border-radius
   display: block;
   transform: scale(0.7);
   opacity: 0;
-  transition: transform 0.35s var(--brand-animation-easing-glide), opacity 0.35s var(--brand-animation-easing-glide);
+  transition:
+    transform 0.35s var(--brand-animation-easing-glide),
+    opacity 0.35s var(--brand-animation-easing-glide);
 }
 @media (prefers-reduced-motion) {
   .Radio-dot {

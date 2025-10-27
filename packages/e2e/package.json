@@ -3,13 +3,7 @@
   "version": "0.59.1",
   "private": true,
   "description": "Primer Brand is a GitHub's design system for creating React-based marketing websites and digital experiences.",
-  "keywords": [
-    "primer",
-    "react",
-    "components",
-    "library",
-    "design-system"
-  ],
+  "keywords": ["primer", "react", "components", "library", "design-system"],
   "homepage": "https://primer.style/brand",
   "bugs": {
     "url": "https://github.com/primer/brand/issues"
@@ -22,16 +16,13 @@
   "author": "GitHub, Inc.",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
-  "files": [
-    "lib",
-    "fonts"
-  ],
+  "files": ["lib", "fonts"],
   "scripts": {
     "check": "tsc --noEmit",
     "clean": "rm -rf lib",
-    "format": "prettier --check '**/*.{js,jsx,ts,tsx,md,mdx,css,json}'",
-    "format:fix": "prettier --write '**/*.{js,jsx,ts,tsx,md,mdx,css,json}'",
-    "lint": "eslint '**/*.{js,ts,tsx,md,mdx}' --max-warnings=0 --config ../../.eslintrc.js",
+    "format": "biome format .",
+    "format:fix": "biome format --write .",
+    "lint": "biome lint .",
     "test:axe": "playwright test --config=scripts/playwright",
     "test:visual": "NODE_ENV=test scripts/playwright/run-visual-tests",
     "test:visual:update": "NODE_ENV=test npm run test:visual:generate && npm run test:visual:update-snapshots",

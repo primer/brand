@@ -55,7 +55,8 @@
   height: 100%;
   opacity: 0;
   scale: 1.05;
-  transition: opacity var(--brand-animation-duration-default) var(--brand-animation-easing-default),
+  transition:
+    opacity var(--brand-animation-duration-default) var(--brand-animation-easing-default),
     scale var(--brand-animation-duration-default) var(--brand-animation-easing-default);
 }
 
@@ -65,18 +66,38 @@
 }
 
 /* Show the visual when the corresponding accordion item is open */
-.RiverAccordion:has(.RiverAccordion__item--open:nth-child(1)) .RiverAccordion__visualsContainer .RiverAccordion__visual:nth-child(1),
-.RiverAccordion:has(.RiverAccordion__item--open:nth-child(2)) .RiverAccordion__visualsContainer .RiverAccordion__visual:nth-child(2),
-.RiverAccordion:has(.RiverAccordion__item--open:nth-child(3)) .RiverAccordion__visualsContainer .RiverAccordion__visual:nth-child(3),
-.RiverAccordion:has(.RiverAccordion__item--open:nth-child(4)) .RiverAccordion__visualsContainer .RiverAccordion__visual:nth-child(4),
-.RiverAccordion:has(.RiverAccordion__item--open:nth-child(5)) .RiverAccordion__visualsContainer .RiverAccordion__visual:nth-child(5),
-.RiverAccordion:has(.RiverAccordion__item--open:nth-child(6)) .RiverAccordion__visualsContainer .RiverAccordion__visual:nth-child(6),
-.RiverAccordion:has(.RiverAccordion__item--open:nth-child(7)) .RiverAccordion__visualsContainer .RiverAccordion__visual:nth-child(7),
-.RiverAccordion:has(.RiverAccordion__item--open:nth-child(8)) .RiverAccordion__visualsContainer .RiverAccordion__visual:nth-child(8),
-.RiverAccordion:has(.RiverAccordion__item--open:nth-child(9)) .RiverAccordion__visualsContainer .RiverAccordion__visual:nth-child(9),
-.RiverAccordion:has(.RiverAccordion__item--open:nth-child(10)) .RiverAccordion__visualsContainer .RiverAccordion__visual:nth-child(10),
+.RiverAccordion:has(.RiverAccordion__item--open:nth-child(1)) .RiverAccordion__visualsContainer
+  .RiverAccordion__visual:nth-child(1),
+.RiverAccordion:has(.RiverAccordion__item--open:nth-child(2))
+  .RiverAccordion__visualsContainer
+  .RiverAccordion__visual:nth-child(2),
+.RiverAccordion:has(.RiverAccordion__item--open:nth-child(3))
+  .RiverAccordion__visualsContainer
+  .RiverAccordion__visual:nth-child(3),
+.RiverAccordion:has(.RiverAccordion__item--open:nth-child(4))
+  .RiverAccordion__visualsContainer
+  .RiverAccordion__visual:nth-child(4),
+.RiverAccordion:has(.RiverAccordion__item--open:nth-child(5))
+  .RiverAccordion__visualsContainer
+  .RiverAccordion__visual:nth-child(5),
+.RiverAccordion:has(.RiverAccordion__item--open:nth-child(6))
+  .RiverAccordion__visualsContainer
+  .RiverAccordion__visual:nth-child(6),
+.RiverAccordion:has(.RiverAccordion__item--open:nth-child(7))
+  .RiverAccordion__visualsContainer
+  .RiverAccordion__visual:nth-child(7),
+.RiverAccordion:has(.RiverAccordion__item--open:nth-child(8))
+  .RiverAccordion__visualsContainer
+  .RiverAccordion__visual:nth-child(8),
+.RiverAccordion:has(.RiverAccordion__item--open:nth-child(9))
+  .RiverAccordion__visualsContainer
+  .RiverAccordion__visual:nth-child(9),
+.RiverAccordion:has(.RiverAccordion__item--open:nth-child(10))
+  .RiverAccordion__visualsContainer
+  .RiverAccordion__visual:nth-child(10),
 /* Just in case all accordions are somehow closed, show the first visual */
-.RiverAccordion:not(:has(.RiverAccordion__item--open)) .RiverAccordion__visualsContainer .RiverAccordion__visual:nth-child(1) {
+  .RiverAccordion:not(:has(.RiverAccordion__item--open)) .RiverAccordion__visualsContainer
+  .RiverAccordion__visual:nth-child(1) {
   opacity: 1;
   scale: 1;
   z-index: 1;
@@ -136,7 +157,8 @@
 .RiverAccordion__panel {
   display: grid;
   grid-template-rows: 0fr;
-  transition: grid-template-rows var(--brand-animation-duration-default) var(--brand-animation-easing-default),
+  transition:
+    grid-template-rows var(--brand-animation-duration-default) var(--brand-animation-easing-default),
     margin-block-start var(--brand-animation-duration-default) var(--brand-animation-easing-default),
     padding-block-end var(--brand-animation-duration-default) var(--brand-animation-easing-default);
   margin-block-start: var(--base-size-32);

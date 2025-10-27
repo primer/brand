@@ -43,6 +43,7 @@ const aspectRatioResolver = (ratio?: ImageAspectRatio) => {
 }
 
 const objectWithoutKey = (object, key) => {
+  // biome-ignore lint/correctness/noUnusedVariables: deletedKey is intentionally unused in destructuring pattern
   const {[key]: deletedKey, ...otherKeys} = object
   return otherKeys
 }

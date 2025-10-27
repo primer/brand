@@ -104,7 +104,8 @@
   opacity: 0;
   background-color: transparent;
   transform: translateY(var(--brand-animation-variant-slideInDown-distance));
-  transition: opacity var(--brand-animation-duration-default) var(--brand-animation-easing-default),
+  transition:
+    opacity var(--brand-animation-duration-default) var(--brand-animation-easing-default),
     background-color var(--brand-animation-duration-default) var(--brand-animation-easing-default);
 }
 
@@ -128,7 +129,8 @@
 .SubNav__sub-menu--anchor {
   opacity: 0;
   transform: translateY(var(--brand-animation-variant-slideInDown-distance));
-  transition: opacity var(--brand-animation-duration-default) var(--brand-animation-easing-default),
+  transition:
+    opacity var(--brand-animation-duration-default) var(--brand-animation-easing-default),
     height var(--brand-animation-duration-default) var(--brand-animation-easing-default),
     transform var(--brand-animation-duration-default) var(--brand-animation-easing-default);
 }
@@ -199,7 +201,9 @@
   height: 2px;
   border-width: 2px;
   border-bottom: var(--base-size-2) solid var(--brand-color-text-muted);
-  transition: opacity var(--brand-animation-duration-fast), transform var(--brand-animation-duration-fast),
+  transition:
+    opacity var(--brand-animation-duration-fast),
+    transform var(--brand-animation-duration-fast),
     border-color var(--brand-animation-duration-fast);
   opacity: 1;
   transform: scale(0);
@@ -257,7 +261,8 @@
   .SubNav--open::after {
     opacity: 0.3;
     visibility: visible;
-    transition: visibility var(--brand-animation-duration-default) var(--brand-animation-easing-default),
+    transition:
+      visibility var(--brand-animation-duration-default) var(--brand-animation-easing-default),
       opacity var(--brand-animation-duration-default) var(--brand-animation-easing-default);
   }
 
@@ -694,8 +699,7 @@
   }
 
   /* Show underline on submenu parent when child has aria-current */
-  .SubNav__link--has-sub-menu:has(.SubNav__link[aria-current]:not([aria-current='false']))
-    > .SubNav__link
+  .SubNav__link--has-sub-menu:has(.SubNav__link[aria-current]:not([aria-current='false'])) > .SubNav__link
     .SubNav__link-label::after {
     opacity: 1;
     transform: scale(0.8, 1);

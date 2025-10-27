@@ -10,7 +10,7 @@
 .river-logos {
   display: grid;
   width: 120%;
-  grid-template: auto/repeat(7, 1fr);
+  grid-template: auto / repeat(7, 1fr);
   grid-gap: 1rem;
   gap: 1rem;
   align-self: center;

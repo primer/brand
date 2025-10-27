@@ -9,7 +9,7 @@ import placeholderImage from '../../../../fixtures/images/placeholder.png'
 
 import styles from '../FlexSection.module.css'
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
+// biome-ignore lint/suspicious/noExplicitAny: TODO - Add proper types for Contentful data
 export function ContentfulRiver({rivers, className}: any) {
   /**
    * We use an empty fragment if `props.content.cta` is not defined for compliance

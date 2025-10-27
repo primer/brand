@@ -3,13 +3,7 @@
   "version": "0.59.1",
   "private": true,
   "description": "Primer Brand is a GitHub's design system for creating React-based marketing websites and digital experiences.",
-  "keywords": [
-    "primer",
-    "react",
-    "components",
-    "library",
-    "design-system"
-  ],
+  "keywords": ["primer", "react", "components", "library", "design-system"],
   "homepage": "https://primer.style/brand",
   "bugs": {
     "url": "https://github.com/primer/brand/issues"
@@ -22,9 +16,7 @@
   "author": "GitHub, Inc.",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
-  "files": [
-    "fonts"
-  ],
+  "files": ["fonts"],
   "engines": {
     "node": ">=22.0.0",
     "npm": ">=8.0.0"

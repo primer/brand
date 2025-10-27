@@ -2,13 +2,7 @@
   "name": "@primer/brand-primitives",
   "version": "0.59.1",
   "description": "Color, spacing, and typography primitives for the Primer Brand Design System  ",
-  "keywords": [
-    "primer",
-    "design-tokens",
-    "components",
-    "library",
-    "design-system"
-  ],
+  "keywords": ["primer", "design-tokens", "components", "library", "design-system"],
   "homepage": "https://primer.style/brand",
   "bugs": {
     "url": "https://github.com/primer/brand/issues"
@@ -19,17 +13,15 @@
   },
   "license": "MIT",
   "author": "GitHub, Inc.",
-  "files": [
-    "lib"
-  ],
+  "files": ["lib"],
   "scripts": {
     "build": "npm run clean && node scripts/build-tokens.js",
     "check": "tsc --noEmit",
     "clean": "rm -rf lib",
-    "format": "prettier --check '**/*.{js,jsx,ts,tsx,md,mdx,css,json}'",
-    "format:fix": "prettier --write '**/*.{js,jsx,ts,tsx,md,mdx,css,json}'",
-    "lint": "eslint '**/*.{js,ts,tsx,md,mdx}' --max-warnings=0 --config ../../.eslintrc.js",
-    "lint:fix": "npm run lint -- --fix",
+    "format": "biome format .",
+    "format:fix": "biome format --write .",
+    "lint": "biome lint .",
+    "lint:fix": "biome lint --write .",
     "test": "jest"
   },
   "devDependencies": {

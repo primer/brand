@@ -91,7 +91,7 @@ function buildPrimitives(
 
             // prettier-ignore
             // eslint-disable-next-line prettier/prettier, no-useless-escape
-            mutableContent = mutableContent.replace(/\\"\$value\\\"/g, '\\"value\\"')
+            mutableContent = mutableContent.replace(/\\"\$value\\"/g, '\\"value\\"')
 
             if (filePath.includes('/functional/')) {
               mutableContent = mutableContent.replace(/<namespace>/g, namespace)

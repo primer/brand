@@ -441,24 +441,24 @@ export function FlexSection({component, className}: FlexSectionProps) {
                     />,
                   ]
                 : rivers.fields.type === 'riverBreakout'
-                ? Array.from({length: 3}).map((_, i) => (
-                    <ContentfulRiverBreakout
-                      key={i}
-                      className={clsx(styles.normalizeMargin, styles.normalizePadding, 'px-3', {
-                        [styles.riverBreakoutNoCta]: !rivers.fields.riverHasCta,
-                      })}
-                      rivers={rivers}
-                    />
-                  ))
-                : rivers.fields.type === 'river'
-                ? Array.from({length: 3}).map((_, i) => (
-                    <ContentfulRiver
-                      key={i}
-                      className={clsx(styles.normalizeMargin, styles.normalizePadding, 'px-3')}
-                      rivers={rivers}
-                    />
-                  ))
-                : []}
+                  ? Array.from({length: 3}).map((_, i) => (
+                      <ContentfulRiverBreakout
+                        key={i}
+                        className={clsx(styles.normalizeMargin, styles.normalizePadding, 'px-3', {
+                          [styles.riverBreakoutNoCta]: !rivers.fields.riverHasCta,
+                        })}
+                        rivers={rivers}
+                      />
+                    ))
+                  : rivers.fields.type === 'river'
+                    ? Array.from({length: 3}).map((_, i) => (
+                        <ContentfulRiver
+                          key={i}
+                          className={clsx(styles.normalizeMargin, styles.normalizePadding, 'px-3')}
+                          rivers={rivers}
+                        />
+                      ))
+                    : []}
             </RiverStoryScroll>
           )}
 

@@ -212,6 +212,7 @@ function Root({
                 </li>
                 {title && isSmall && (
                   <>
+                    {/* biome-ignore lint/a11y/useAriaPropsForRole: Decorative separator doesn't need aria-valuenow */}
                     <li role="separator" className={styles['SubdomainNavBar-title-separator']} aria-hidden>
                       /
                     </li>

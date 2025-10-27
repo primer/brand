@@ -76,7 +76,9 @@
 
 .Accordion__summary--default .Accordion__summary--collapsed::before,
 .Accordion__summary--default .Accordion__summary--expanded::after {
-  transition: transform var(--brand-animation-duration-fast) ease, opacity var(--brand-animation-duration-faster) ease;
+  transition:
+    transform var(--brand-animation-duration-fast) ease,
+    opacity var(--brand-animation-duration-faster) ease;
   display: block;
   background: linear-gradient(
     -70deg,

@@ -69,7 +69,7 @@ const backgroundStylesMap = {
   },
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
+// biome-ignore lint/suspicious/noExplicitAny: TODO - Add proper types for Contentful data
 export function FlexSectionTestimonials({testimonials, className}: any) {
   const {colorMode} = useTheme()
 

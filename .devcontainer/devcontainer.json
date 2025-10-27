@@ -3,7 +3,7 @@
   "image": "mcr.microsoft.com/vscode/devcontainers/typescript-node:22",
   "customizations": {
     "vscode": {
-      "extensions": ["esbenp.prettier-vscode", "dbaeumer.vscode-eslint", "ms-vscode.vscode-typescript-next"]
+      "extensions": ["biomejs.biome", "ms-vscode.vscode-typescript-next"]
     }
   },
 

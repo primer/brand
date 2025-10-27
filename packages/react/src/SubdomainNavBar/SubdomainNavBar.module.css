@@ -9,7 +9,8 @@
   -webkit-backdrop-filter: blur(16px);
   backdrop-filter: blur(16px);
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-  transition: background-color var(--brand-animation-duration-fast) var(--brand-animation-easing-default),
+  transition:
+    background-color var(--brand-animation-duration-fast) var(--brand-animation-easing-default),
     border-color var(--brand-animation-duration-fast) var(--brand-animation-easing-default);
   height: 75px;
 }
@@ -81,7 +82,9 @@
   position: absolute;
   left: calc(-32px + 5px);
   opacity: 0;
-  transition: opacity var(--brand-animation-duration-fast), transform var(--brand-animation-duration-fast) ease;
+  transition:
+    opacity var(--brand-animation-duration-fast),
+    transform var(--brand-animation-duration-fast) ease;
   transform: translateX(5px);
   color: var(--brand-color-text-muted);
 }
@@ -293,7 +296,9 @@
     height: 2px;
     background-color: var(--brand-SubdomainNavBar-border-nav-default);
     opacity: 0;
-    transition: opacity var(--brand-animation-duration-fast), transform var(--brand-animation-duration-fast);
+    transition:
+      opacity var(--brand-animation-duration-fast),
+      transform var(--brand-animation-duration-fast);
     transform: scale(0);
     transform-origin: center;
   }
@@ -363,7 +368,9 @@
   top: var(--base-size-48);
   background-color: var(--base-color-scale-white-0);
   border-radius: var(--brand-borderRadius-large);
-  animation: fade-in-down 0.25s, enlarge-shadow 250ms forwards;
+  animation:
+    fade-in-down 0.25s,
+    enlarge-shadow 250ms forwards;
   animation-timing-function: var(--brand-animation-easing-default);
   box-shadow: 0px 8px 24px rgba(1, 4, 9, 0.15);
   overflow: hidden;
@@ -404,7 +411,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: border 250ms var(--brand-animation-easing-default), box-shadow 250ms ease;
+  transition:
+    border 250ms var(--brand-animation-easing-default),
+    box-shadow 250ms ease;
   border-radius: var(--brand-borderRadius-medium);
   box-shadow: 0 0 0 2px transparent;
 }
