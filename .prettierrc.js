@@ -4,8 +4,8 @@ module.exports = {
     {
       files: 'src/tokens/**/*.js',
       options: {
-        singleQuote: false
-      }
-    }
-  ]
+        singleQuote: false,
+      },
+    },
+  ],
 }

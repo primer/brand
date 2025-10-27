@@ -143,7 +143,6 @@ for (const story of storybookRoutes) {
     })
 
     test('it completes AXE page validation', async () => {
-      
       // @ts-ignore
       let violations = await getViolations(page, null, {
         detailedReport: true,
