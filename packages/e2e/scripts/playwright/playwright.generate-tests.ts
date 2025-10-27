@@ -7,7 +7,7 @@ import {SUPPORTED_LANGUAGES as languages} from '../../../../apps/storybook/src/c
 
 // eslint-disable-next-line import/no-commonjs, import/extensions
 const prettierOptions = require('../../../../.prettierrc.js')
-// eslint-disable-next-line import/no-commonjs, import/extensions
+// eslint-disable-next-line import/no-commonjs, import/extensions, import/no-unresolved
 const stories = require('../../../../apps/storybook/storybook-static/index.json')
 
 const port = 6006

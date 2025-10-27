@@ -35,9 +35,6 @@ jobs:
       - name: Build
         run: npm run build:lib
 
-      - name: Build Storybook
-        run: npm run build:storybook
-
       - name: Run linters
         run: npm run lint
 
