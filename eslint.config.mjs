@@ -10,7 +10,7 @@ import eslintCommentsPlugin from 'eslint-plugin-eslint-comments'
 import {FlatCompat} from '@eslint/eslintrc'
 import {fileURLToPath} from 'url'
 import {dirname} from 'path'
-import {noEnglishTextRule} from './packages/repo-configs/custom-lint-rules/no-english-text.mjs'
+import {noEnglishTextRule} from './packages/repo-configs/custom-lint-rules/no-english-text.js'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
@@ -20,7 +20,6 @@ const compat = new FlatCompat({
 })
 
 export default tseslint.config(
-  // Base JavaScript recommended rules
   js.configs.recommended,
 
   // Ignore patterns
@@ -45,7 +44,8 @@ export default tseslint.config(
 
   // Use FlatCompat to extend github plugin configs
   ...compat.extends('plugin:github/recommended', 'plugin:github/browser').map(config => {
-    // Override the i18n-text plugin with our custom implementation
+    // We've vendored the i18n-text rule for `no english-text`, as OSS version doesn't work with ESLint v9.
+    // It's also been turned off in our house rules, so this makes sure that we use our custom implementation.
     if (config.plugins && config.plugins['i18n-text']) {
       return {
         ...config,
@@ -62,12 +62,10 @@ export default tseslint.config(
     }
     return config
   }),
-
-  // Override problematic rules from github plugin
   {
     rules: {
-      'i18n-text/no-en': 'error', // Re-enable with custom implementation that's compatible with flat config
-      'no-prototype-builtins': 'off', // TODO: Fix hasOwnProperty usage after ESLint v9 migration
+      'i18n-text/no-en': 'error', // Turns back on, as it's otherwise disabled in GitHub plugin
+      'no-prototype-builtins': 'off', // TODO: Replace hasOwnProperty usage after ESLint v9 migration
     },
   },
 
@@ -93,27 +91,13 @@ export default tseslint.config(
       },
       globals: {
         __DEV__: 'readonly',
-        // Node.js globals
+        // Node.js globals for CommonJS files
         module: 'readonly',
         require: 'readonly',
         process: 'readonly',
         __dirname: 'readonly',
         __filename: 'readonly',
         exports: 'readonly',
-        // Browser globals
-        window: 'readonly',
-        document: 'readonly',
-        navigator: 'readonly',
-        // Test globals
-        describe: 'readonly',
-        it: 'readonly',
-        test: 'readonly',
-        expect: 'readonly',
-        beforeEach: 'readonly',
-        afterEach: 'readonly',
-        beforeAll: 'readonly',
-        afterAll: 'readonly',
-        jest: 'readonly',
       },
     },
     settings: {
