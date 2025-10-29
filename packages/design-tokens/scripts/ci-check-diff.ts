@@ -23,8 +23,8 @@ try {
       beforeAfterArr.push({after: line.replace('> --', '--').trim()})
     }
   }
-} catch {
-  throw new Error('error converting diff.txt')
+} catch (err) {
+  throw new Error('error converting diff.txt', {cause: err})
 }
 
 if (beforeAfterArr.length > 0) {
@@ -57,7 +57,7 @@ if (beforeAfterArr.length > 0) {
   try {
     fs.writeFileSync('diff.md', template.trim())
     // file written successfully
-  } catch (_err) {
-    throw new Error('Failed to write diff.md file')
+  } catch (err) {
+    throw new Error('Failed to write diff.md file', {cause: err})
   }
 }
