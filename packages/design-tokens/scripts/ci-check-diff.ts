@@ -58,6 +58,6 @@ if (beforeAfterArr.length > 0) {
     fs.writeFileSync('diff.md', template.trim())
     // file written successfully
   } catch (_err) {
-    throw new Error()
+    throw new Error('Failed to write diff.md file')
   }
 }

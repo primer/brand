@@ -511,7 +511,6 @@ const LinkBase = forwardRef<HTMLAnchorElement | HTMLDivElement, LinkBaseProps>((
   useEffect(() => {
     if (hasSubMenu) return
     const targetId = props.href.replace('#', '')
-    if (!targetId) return
     const target = document.getElementById(targetId)
     if (!target) return
 

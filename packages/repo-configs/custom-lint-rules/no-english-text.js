@@ -19,7 +19,7 @@ export const noEnglishTextRule = {
     }
 
     function isConsole(node) {
-      return node.callee.type === 'MemberExpression' && node.callee.object.name === 'console'
+      return node.callee.type === 'MemberExpression' && node.callee.object && node.callee.object.name === 'console'
     }
 
     function isInvariant(node) {
@@ -36,7 +36,8 @@ export const noEnglishTextRule = {
 
     function isAssert(node) {
       const direct = node.callee.type === 'Identifier' && node.callee.name === 'assert'
-      const member = node.callee.type === 'MemberExpression' && node.callee.object.name === 'assert'
+      const member =
+        node.callee.type === 'MemberExpression' && node.callee.object && node.callee.object.name === 'assert'
       return direct || member
     }
 
