@@ -1,5 +1,5 @@
 import React from 'react'
-import {Meta} from '@storybook/react'
+import type {Meta} from '@storybook/react'
 
 import {BreakoutBanner} from './BreakoutBanner'
 import {Link} from '../Link'

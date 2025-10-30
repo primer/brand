@@ -1,5 +1,5 @@
 import React, {useState, useEffect, useCallback, type HTMLAttributes, type FormEvent} from 'react'
-import clsx from 'clsx'
+import {clsx} from 'clsx'
 
 import {Range} from '../'
 import styles from '../../VideoPlayer.module.css'

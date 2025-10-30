@@ -7,7 +7,7 @@ import React, {
   useMemo,
   useCallback,
 } from 'react'
-import clsx from 'clsx'
+import {clsx} from 'clsx'
 import {BaseProps} from '../component-helpers'
 import {Text, Avatar as BaseAvatar, useAnimation} from '../'
 import type {AvatarProps} from '../'
@@ -59,7 +59,7 @@ export type TestimonialProps = {
  * Testimonial parent element
  * <Testimonial>
  */
-function _Root(
+function TestimonialBase(
   {
     quoteMarkColor = 'default',
     animate,
@@ -133,7 +133,7 @@ function _Root(
   )
 }
 
-const Root = forwardRef(_Root)
+const Root = forwardRef(TestimonialBase)
 
 /**
  * Testimonial quote child element
@@ -141,7 +141,7 @@ const Root = forwardRef(_Root)
  */
 type QuoteProps = React.HTMLAttributes<HTMLElement> & BaseProps<HTMLElement>
 
-function _Quote({children, className}: QuoteProps, ref) {
+function QuoteBase({children, className}: QuoteProps, ref) {
   const childrenArray = useMemo(() => React.Children.toArray(children), [children])
 
   // TODO: when Firefox supports :has() selector, we should use that instead of JS
@@ -169,7 +169,7 @@ function _Quote({children, className}: QuoteProps, ref) {
   )
 }
 
-const Quote = forwardRef(_Quote)
+const Quote = forwardRef(QuoteBase)
 
 /**
  * Testimonial name child element

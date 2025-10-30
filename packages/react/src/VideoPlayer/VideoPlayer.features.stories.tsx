@@ -1,5 +1,5 @@
 import React from 'react'
-import {Meta} from '@storybook/react'
+import type {Meta} from '@storybook/react'
 import {PlayIcon} from '@primer/octicons-react'
 
 import posterImage from '../fixtures/images/example-poster.png'

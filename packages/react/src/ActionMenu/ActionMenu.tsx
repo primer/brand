@@ -18,11 +18,11 @@ import {useAnchoredPosition} from '../hooks/useAnchoredPosition'
 import {useOnClickOutside} from '../hooks/useOnClickOutside'
 import {useKeyboardEscape} from '../hooks/useKeyboardEscape'
 
-import {default as clsx} from 'clsx'
-import {CheckIcon, ChevronDownIcon, Icon} from '@primer/octicons-react'
+import {clsx} from 'clsx'
+import {CheckIcon, ChevronDownIcon, type Icon} from '@primer/octicons-react'
 import {useId} from '../hooks/useId'
 
-import {FocusKeys, PositionSettings, focusZone} from '@primer/behaviors'
+import {FocusKeys, type PositionSettings, focusZone} from '@primer/behaviors'
 import type {BaseProps} from '../component-helpers'
 
 /**
@@ -561,6 +561,7 @@ const ActionMenuItem = ({
   }
 
   return (
+    // eslint-disable-next-line jsx-a11y/role-supports-aria-props
     <li
       // This role will be overridden by the role prop in `liProps`. It's just here to keep the linter happy
       role="menuitem"

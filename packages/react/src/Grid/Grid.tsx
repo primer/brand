@@ -1,6 +1,6 @@
 import React, {HTMLAttributes, PropsWithChildren, memo} from 'react'
 
-import {default as clsx} from 'clsx'
+import {clsx} from 'clsx'
 
 import type {BaseProps} from '../component-helpers'
 

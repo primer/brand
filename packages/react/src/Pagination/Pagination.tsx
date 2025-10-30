@@ -1,7 +1,7 @@
 import React, {memo, useCallback} from 'react'
 import {Link, LinkProps, useWindowSize} from '..'
 
-import {default as clsx} from 'clsx'
+import {clsx} from 'clsx'
 
 import {buildPaginationModel, PageType} from './model'
 

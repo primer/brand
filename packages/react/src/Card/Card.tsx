@@ -1,6 +1,6 @@
 import React, {RefObject, forwardRef} from 'react'
 import {isFragment} from 'react-is'
-import clsx from 'clsx'
+import {clsx} from 'clsx'
 import {Heading, HeadingProps, Text, useTheme, CardSkewEffect, Image, type ImageProps, Label, LabelColors} from '..'
 import {Icon, type IconProps} from '../Icon'
 import {ExpandableArrow} from '../ExpandableArrow'

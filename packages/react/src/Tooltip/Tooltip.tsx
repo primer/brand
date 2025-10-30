@@ -1,10 +1,8 @@
 import React, {Children, useEffect, useRef, useState} from 'react'
-import clsx from 'clsx'
+import {clsx} from 'clsx'
 import {useId} from '../hooks/useId'
 import {getAnchoredPosition} from '@primer/behaviors'
 import type {AnchorSide, AnchorAlignment} from '@primer/behaviors'
-// @oddbird/popover-polyfill/fn import is mysteriously failing in eslint despite resolving correctly in the build
-// eslint-disable-next-line import/no-unresolved
 import {isSupported, apply} from '@oddbird/popover-polyfill/fn'
 import {useProvidedRefOrCreate} from '../hooks/useRef'
 

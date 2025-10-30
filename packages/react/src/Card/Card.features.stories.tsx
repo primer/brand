@@ -1,5 +1,5 @@
 import React from 'react'
-import {StoryFn, Meta} from '@storybook/react'
+import type {StoryFn, Meta} from '@storybook/react'
 import {Card, CardIconColors} from '.'
 import {Stack, LabelColors, Grid, ThemeProvider, Box, Section} from '..'
 import placeholderImage from '../fixtures/images/placeholder.png'

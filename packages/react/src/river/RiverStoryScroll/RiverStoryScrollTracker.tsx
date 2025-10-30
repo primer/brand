@@ -1,5 +1,5 @@
 import React, {useEffect, useRef, useState} from 'react'
-import clsx from 'clsx'
+import {clsx} from 'clsx'
 
 import {useWindowSize} from '../../'
 import {useStoryScrollContext} from './RiverStoryScrollProvider'

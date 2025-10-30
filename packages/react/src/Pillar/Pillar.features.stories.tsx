@@ -1,6 +1,6 @@
 import React from 'react'
-import {StoryFn, Meta} from '@storybook/react'
-import clsx from 'clsx'
+import type {StoryFn, Meta} from '@storybook/react'
+import {clsx} from 'clsx'
 import {Pillar, PillarIconColors} from '.'
 import {Stack, Grid, FrostedGlassVFX, Box, ThemeProvider, Image} from '..'
 import {CopilotIcon, RocketIcon, GitBranchIcon} from '@primer/octicons-react'

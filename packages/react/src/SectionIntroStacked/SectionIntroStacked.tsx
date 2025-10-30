@@ -1,5 +1,5 @@
 import React, {forwardRef, PropsWithChildren, useMemo, type Ref, useCallback} from 'react'
-import clsx from 'clsx'
+import {clsx} from 'clsx'
 import {Grid} from '../Grid'
 import {Link, LinkProps} from '../Link'
 import {Heading, HeadingProps, defaultHeadingTag} from '../Heading'
@@ -19,7 +19,7 @@ const Root = forwardRef<HTMLElement, PropsWithChildren<SectionIntroStackedProps>
     const childrenArray = React.Children.toArray(children)
 
     // extract Items and everything else into two separate arrays
-    const items = childrenArray.filter(child => React.isValidElement(child) && child.type === _Items)
+    const items = childrenArray.filter(child => React.isValidElement(child) && child.type === ItemsBase)
 
     const otherChildren = childrenArray.filter(child => !items.includes(child))
 
@@ -113,7 +113,7 @@ const _Link = forwardRef(
 
 type SectionIntroStackedItemsProps = BaseProps<HTMLUListElement>
 
-const _Items = ({animate, className, children, ...rest}: PropsWithChildren<SectionIntroStackedItemsProps>) => {
+const ItemsBase = ({animate, className, children, ...rest}: PropsWithChildren<SectionIntroStackedItemsProps>) => {
   const {classes: animationClasses, styles: animationInlineStyles} = useAnimation(animate)
 
   const timelineClassName = clsx(animationClasses, styles['SectionIntroStacked-items'], className)
@@ -127,7 +127,7 @@ const _Items = ({animate, className, children, ...rest}: PropsWithChildren<Secti
 
 export type SectionIntroStackedItemProps = BaseProps<HTMLLIElement>
 
-const _Item = ({className, children, ...rest}: PropsWithChildren<SectionIntroStackedItemProps>) => {
+const ItemBase = ({className, children, ...rest}: PropsWithChildren<SectionIntroStackedItemProps>) => {
   const itemClassName = clsx(styles['SectionIntroStackedItem-item'], className)
   const childrenArray = useMemo(() => React.Children.toArray(children), [children])
 
@@ -159,6 +159,6 @@ const _Item = ({className, children, ...rest}: PropsWithChildren<SectionIntroSta
 export const SectionIntroStacked = Object.assign(Root, {
   Heading: _Heading,
   Link: _Link,
-  Items: _Items,
-  Item: _Item,
+  Items: ItemsBase,
+  Item: ItemBase,
 })

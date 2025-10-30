@@ -1,6 +1,6 @@
 'use client'
 import {Grid, Card, Stack, InlineLink, Text, Heading} from '@primer/react-brand/lib'
-import clsx from 'clsx'
+import {clsx} from 'clsx'
 import Image from 'next/image'
 import NextLink from 'next/link'
 // eslint-disable-next-line import/extensions

@@ -1,5 +1,5 @@
 import React, {PropsWithChildren} from 'react'
-import clsx from 'clsx'
+import {clsx} from 'clsx'
 import {LogoGithubIcon} from '@primer/octicons-react'
 
 import {ColorModesEnum, Stack, Text, useTheme} from '../'

@@ -1,4 +1,4 @@
-import clsx from 'clsx'
+import {clsx} from 'clsx'
 import React, {forwardRef, useMemo, type Ref} from 'react'
 import {Text} from '../Text'
 
@@ -14,7 +14,7 @@ import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/compone
 
 /** * Main Stylesheet (as a CSS Module) */
 import styles from './Label.module.css'
-import {Icon} from '@primer/octicons-react'
+import type {Icon} from '@primer/octicons-react'
 
 const Gradients = [...BiColorGradients, ...TriColorGradients] as const
 

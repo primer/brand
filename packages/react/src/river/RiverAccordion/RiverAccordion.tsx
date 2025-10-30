@@ -1,5 +1,5 @@
 import React, {createContext, forwardRef, useCallback, useContext, useMemo, useState} from 'react'
-import clsx from 'clsx'
+import {clsx} from 'clsx'
 import {PlusIcon} from '@primer/octicons-react'
 
 import {Heading, type HeadingProps, Link, Text} from '../..'

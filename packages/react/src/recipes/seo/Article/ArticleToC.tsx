@@ -1,6 +1,6 @@
 import React, {useCallback, useEffect, useState} from 'react'
 import {ChevronDownIcon, ChevronUpIcon} from '@primer/octicons-react'
-import clsx from 'clsx'
+import {clsx} from 'clsx'
 import {Box, Button, Heading, HeadingProps, Stack, Text} from '../../../'
 
 import styles from './Article.module.css'

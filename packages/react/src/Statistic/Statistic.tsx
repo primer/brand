@@ -1,5 +1,5 @@
 import React, {PropsWithChildren, forwardRef, useMemo} from 'react'
-import clsx from 'clsx'
+import {clsx} from 'clsx'
 
 import {Text, TextProps, useAnimation} from '../'
 

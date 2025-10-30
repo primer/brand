@@ -1,5 +1,5 @@
 import React, {forwardRef, useCallback, type InputHTMLAttributes, type ReactElement, type RefObject} from 'react'
-import clsx from 'clsx'
+import {clsx} from 'clsx'
 import {useId} from '../../hooks/useId'
 
 import type {BaseProps} from '../../component-helpers'
@@ -34,7 +34,7 @@ export type CheckboxProps = {
 } & Exclude<InputHTMLAttributes<HTMLInputElement>, 'value'> &
   BaseProps<HTMLInputElement>
 
-const _Checkbox = (
+const CheckboxInternal = (
   {
     checked,
     className,
@@ -118,4 +118,4 @@ const _Checkbox = (
   )
 }
 
-export const Checkbox = forwardRef(_Checkbox)
+export const Checkbox = forwardRef(CheckboxInternal)

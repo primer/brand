@@ -1,5 +1,5 @@
 import React from 'react'
-import {Meta} from '@storybook/react'
+import type {Meta} from '@storybook/react'
 import {ActionMenu} from '../ActionMenu'
 import {Button} from '../Button'
 

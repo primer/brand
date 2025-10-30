@@ -1,6 +1,6 @@
 import React from 'react'
 import type {Meta, StoryObj} from '@storybook/react'
-import clsx from 'clsx'
+import {clsx} from 'clsx'
 
 import {Testimonial, TestimonialProps} from '.'
 import {Box, FrostedGlassVFX, Grid, Image, Stack, ThemeProvider} from '../'

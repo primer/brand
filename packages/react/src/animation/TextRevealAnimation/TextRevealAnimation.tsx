@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react'
-import clsx from 'clsx'
+import {clsx} from 'clsx'
 import {useTextRevealAnimationLines} from './useTextRevealAnimationLines'
 
 import styles from './TextRevealAnimation.module.css'

@@ -1,5 +1,5 @@
 import React, {forwardRef, PropsWithChildren, useCallback, useMemo} from 'react'
-import clsx from 'clsx'
+import {clsx} from 'clsx'
 import type {BaseProps} from '../component-helpers'
 
 import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/section/section.css'

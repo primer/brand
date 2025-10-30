@@ -1,4 +1,4 @@
-import {default as clsx} from 'clsx'
+import {clsx} from 'clsx'
 import React, {type PropsWithChildren, type Ref, forwardRef, useCallback, useEffect, useMemo, useState} from 'react'
 import type {BaseProps} from '../component-helpers'
 import {Heading, HeadingProps, defaultHeadingTag, Text, TextProps} from '../'
@@ -35,7 +35,7 @@ export type LogoSuiteProps = {
 } & BaseProps<HTMLDivElement> &
   React.HTMLAttributes<HTMLDivElement>
 
-const _LogoSuite = ({
+const LogoSuiteBase = ({
   align = 'center',
   children,
   className,
@@ -300,7 +300,7 @@ const _LogoBar = forwardRef(
  * Use LogoSuite to present a list of logos, such as sponsors or vendors.
  * @see https://primer.style/brand/components/LogoSuite
  */
-export const LogoSuite = Object.assign(_LogoSuite, {
+export const LogoSuite = Object.assign(LogoSuiteBase, {
   Heading: _Heading,
   Description: _Description,
   Logobar: _LogoBar,

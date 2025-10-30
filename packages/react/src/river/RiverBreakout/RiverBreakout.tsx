@@ -1,5 +1,5 @@
 import React, {Ref, forwardRef} from 'react'
-import clsx from 'clsx'
+import {clsx} from 'clsx'
 import {River, RiverProps} from '../River'
 import {useAnimation} from '../../animation'
 import findElementInChildren from '../../findElementInChildren'

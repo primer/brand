@@ -1,5 +1,5 @@
 import React, {forwardRef, PropsWithChildren, HTMLAttributes, type Ref} from 'react'
-import clsx from 'clsx'
+import {clsx} from 'clsx'
 import {Heading, HeadingProps, Text, Image, type ImageProps, Link, LinkProps} from '..'
 import type {BaseProps} from '../component-helpers'
 import {Colors} from '../constants'
@@ -14,7 +14,7 @@ import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/compone
  * Main stylesheet (as a CSS Module)
  */
 import styles from './Pillar.module.css'
-import {Icon as IconProps} from '@primer/octicons-react'
+import type {Icon as IconProps} from '@primer/octicons-react'
 
 export const PillarIconColors = Colors
 

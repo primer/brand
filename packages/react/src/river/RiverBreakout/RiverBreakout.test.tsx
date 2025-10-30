@@ -38,7 +38,6 @@ describe('RiverBreakout', () => {
   })
 
   it('warns if a11y heading is not passed', () => {
-    // eslint-disable-next-line @typescript-eslint/no-empty-function
     const consoleWarnSpy = jest.spyOn(console, 'warn').mockImplementation(() => {})
     render(
       <RiverBreakout>

@@ -1,5 +1,5 @@
 import React from 'react'
-import {Meta} from '@storybook/react'
+import type {Meta} from '@storybook/react'
 import {Label} from '.'
 import {Box, Stack} from '../'
 import {CopilotIcon} from '@primer/octicons-react'

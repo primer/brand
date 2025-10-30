@@ -1,3 +1,4 @@
+const {describe, it, expect} = require('@jest/globals')
 const colorModeAttributes = require('./color-mode-attributes')
 
 // eslint-disable-next-line i18n-text/no-en

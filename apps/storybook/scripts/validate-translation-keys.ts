@@ -10,8 +10,8 @@ import * as path from 'path'
 import {SUPPORTED_LANGUAGES} from '../src/constants'
 
 type TranslationContent = Record<string, string>
-type TranslationFiles = Record<string, Record<string, string>>
-type KeysByLanguage = Record<string, Set<string>>
+type TranslationFiles = Record<string, Record<string, string> | undefined>
+type KeysByLanguage = Record<string, Set<string> | undefined>
 
 type ValidationResult = {
   componentName: string
@@ -48,7 +48,14 @@ const LANGUAGES_DIR = path.join(__dirname, '..', 'static', 'locales')
   for (const componentName of componentNames) {
     console.log(`\nComponent: ${componentName}\n`)
 
-    const result = validateEachComponentTranslationFile(componentName, translationFiles[componentName])
+    const componentFiles = translationFiles[componentName]
+    if (componentFiles === undefined) {
+      console.error(`❌ No translation files found for ${componentName}`)
+      hasErrors = true
+      continue
+    }
+
+    const result = validateEachComponentTranslationFile(componentName, componentFiles)
 
     if (result.hasErrors) {
       hasErrors = true
@@ -167,7 +174,6 @@ function getTranslationFiles(languagesDir: string): TranslationFiles {
       const componentName = path.basename(file, '.json')
       const filePath = path.join(languagePath, file)
 
-      // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
       if (files[componentName] === undefined) {
         files[componentName] = {}
       }
@@ -228,7 +234,6 @@ function validateEachComponentTranslationFile(
   const referenceLanguage = REFERENCE_LANGUAGE
   const referenceKeys = keysByLanguage[referenceLanguage]
 
-  // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
   if (referenceKeys === undefined) {
     console.error(`❌ Failed to load reference language '${referenceLanguage}' for ${componentName}`)
     return {
@@ -249,7 +254,7 @@ function validateEachComponentTranslationFile(
     if (language === referenceLanguage) continue
 
     const currentKeys = keysByLanguage[language]
-    // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+
     if (currentKeys === undefined) continue
 
     const result = validateLanguageKeys(language, currentKeys, referenceKeys, componentName)

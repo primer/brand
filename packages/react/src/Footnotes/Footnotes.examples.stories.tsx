@@ -1,5 +1,5 @@
 import React from 'react'
-import {Meta} from '@storybook/react'
+import type {Meta} from '@storybook/react'
 import {Footnotes} from '.'
 import {Box, Grid, Heading, InlineLink, River, RiverBreakout, Section, Text, ThemeProvider, Timeline} from '../'
 import placeholder1 from '../fixtures/images/placeholder-1.png'

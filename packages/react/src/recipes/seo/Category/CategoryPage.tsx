@@ -1,5 +1,5 @@
 import {MoonIcon, SunIcon} from '@primer/octicons-react'
-import clsx from 'clsx'
+import {clsx} from 'clsx'
 import React, {PropsWithChildren, useCallback, useEffect} from 'react'
 import {
   AnimationProvider,
