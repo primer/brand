@@ -1,0 +1,22 @@
+.ctaBannerCards {
+  margin-block-start: var(--brand-Section-padding-spacious);
+}
+
+.ctaBannerSectionIntro {
+  margin-block-end: var(--brand-Section-padding-condensed);
+  padding-block-start: 0;
+}
+
+.trailingSectionGrid {
+  row-gap: var(--base-size-128);
+}
+
+.footerPlaceholder {
+  display: flex;
+  flex-direction: column;
+  gap: var(--base-size-32);
+}
+
+.footerSubPlaceholder {
+  margin-block-start: auto;
+}

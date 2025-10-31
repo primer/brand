@@ -13,15 +13,16 @@ export function ContentfulRiverBreakout({rivers, className}: any) {
    * We use an empty fragment if `props.content.cta` is not defined for compliance
    * with `River.Content` types (`River.Content` does not accept `null` as children).
    */
-  const ctaLink = rivers.fields.hasCta ? (
-    <Link variant={rivers.fields.ctaVariant ?? 'accent'} href="#">
-      Learn more
-    </Link>
-  ) : (
-    <></>
-  )
+  const ctaLink =
+    rivers.ctaText && rivers.ctaHref ? (
+      <Link variant={rivers.ctaVariant ?? 'accent'} href={rivers.ctaHref}>
+        {rivers.ctaText}
+      </Link>
+    ) : (
+      <></>
+    )
 
-  const getTrailingComponent = rivers.fields.hasTrailingComponent
+  const getTrailingComponent = rivers.hasTrailingComponent
     ? () => (
         <Timeline>
           <Timeline.Item>
@@ -41,44 +42,58 @@ export function ContentfulRiverBreakout({rivers, className}: any) {
 
   return (
     <RiverBreakout className={className}>
-      <RiverBreakout.A11yHeading>Accessible heading</RiverBreakout.A11yHeading>
-      <RiverBreakout.Visual hasShadow={rivers.fields.riverHasShadow}>
-        {rivers.fields.visualType === 'image' ? (
-          <img src={placeholderImage} alt="placeholder, blank area with a gray background color" />
-        ) : rivers.fields.visualType === 'video' ? (
+      <RiverBreakout.A11yHeading>{rivers.a11yHeading ?? 'Accessible heading'}</RiverBreakout.A11yHeading>
+      <RiverBreakout.Visual hasShadow={rivers.hasShadow ?? false}>
+        {rivers.visualType === 'image' ? (
+          <img
+            src={rivers.imageSrc ?? placeholderImage}
+            alt={rivers.imageAlt ?? 'placeholder, blank area with a gray background color'}
+          />
+        ) : rivers.visualType === 'video' ? (
           <video
             loop
             playsInline
             autoPlay
             muted
-            poster="https://github.githubassets.com/images/modules/site/issues/issue-tasks-progress-placeholder.png"
+            poster={
+              rivers.videoPoster ??
+              'https://github.githubassets.com/images/modules/site/issues/issue-tasks-progress-placeholder.png'
+            }
           >
             <source
               type="video/mp4; codecs=hevc,mp4a.40.2"
-              src="https://github.githubassets.com/images/modules/site/issues/issue-tasks-progress.hevc.mp4"
+              src={
+                rivers.videoSrcHevc ??
+                'https://github.githubassets.com/images/modules/site/issues/issue-tasks-progress.hevc.mp4'
+              }
             />
             <source
               type="video/mp4; codecs=avc1.4D401E,mp4a.40.2"
-              src="https://github.githubassets.com/images/modules/site/issues/issue-tasks-progress.h264.mp4"
+              src={
+                rivers.videoSrcH264 ??
+                'https://github.githubassets.com/images/modules/site/issues/issue-tasks-progress.h264.mp4'
+              }
             />
           </video>
         ) : null}
       </RiverBreakout.Visual>
       <RiverBreakout.Content trailingComponent={getTrailingComponent}>
-        <Text>
-          <em>Accelerate your workflows</em> and scale your business fast with access to millions of open source
-          projects on GitHub, the largest
-          <sup>
-            <InlineLink
-              href=""
-              className={clsx(styles.footnoteInlineLink, styles.footnoteSizeLarge)}
-              aria-label="Footnote 6"
-            >
-              6
-            </InlineLink>
-          </sup>{' '}
-          source code host.
-        </Text>
+        {rivers.description && (
+          <Text>
+            {rivers.description}
+            {rivers.footnoteId && rivers.footnoteHref && (
+              <sup>
+                <InlineLink
+                  href={rivers.footnoteHref}
+                  className={clsx(styles.footnoteInlineLink, styles.footnoteSizeLarge)}
+                  aria-label={`Footnote ${rivers.footnoteId}`}
+                >
+                  {rivers.footnoteId}
+                </InlineLink>
+              </sup>
+            )}
+          </Text>
+        )}
 
         {ctaLink}
       </RiverBreakout.Content>
