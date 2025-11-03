@@ -22,6 +22,7 @@ import {
   RiverStoryScroll,
   Section,
   SectionIntro,
+  SectionIntroStacked,
   Stack,
   Statistic,
   Text,
@@ -42,7 +43,6 @@ import darkWideBg from '../../../fixtures/images/dark-horizontal-banner.png'
 import styles from './FlexSection.module.css'
 import {FlexSectionTestimonials, ContentfulRiver, ContentfulRiverBreakout, ContentfulRiverAccordion} from './components'
 import type {
-  FlexTemplatePillarItem,
   FlexTemplatePillarsConfig,
   FlexTemplateSection,
   FlexTemplateTestimonialsConfig,
@@ -68,6 +68,7 @@ export function FlexSection({component, className}: FlexSectionProps) {
     pricingOptions,
     rivers,
     sectionIntro,
+    sectionIntroStacked,
     segmentedControlPanel,
     statistics,
     testimonials,
@@ -85,7 +86,6 @@ export function FlexSection({component, className}: FlexSectionProps) {
     backgroundImage,
     backgroundImagePosition,
     backgroundImageSize,
-    testimonialBackgroundImageVariant,
     hasBorderBottom = false,
     enableRiverStoryScroll = false,
   } = visualSettings ?? {}
@@ -94,7 +94,11 @@ export function FlexSection({component, className}: FlexSectionProps) {
 
   return (
     <Section
-      className={clsx(className, styles.section, testimonialBackgroundImageVariant && 'overflow-hidden')}
+      className={clsx(
+        className,
+        styles.section,
+        testimonialsFields?.['variant'] === 'frosted-glass' && styles['overflow-hidden'],
+      )}
       backgroundColor={backgroundColor}
       backgroundImageSrc={backgroundImage?.file.url}
       backgroundImagePosition={backgroundImagePosition}
@@ -120,6 +124,35 @@ export function FlexSection({component, className}: FlexSectionProps) {
               <AnchorNav.Link href="#basic-section5">Section five</AnchorNav.Link>
               <AnchorNav.Action href="#">Sign up</AnchorNav.Action>
             </AnchorNav>
+          )}
+
+          {sectionIntroStacked && (
+            <Grid className={styles.sectionIntro}>
+              <Grid.Column>
+                <SectionIntroStacked className={styles.normalizePadding}>
+                  {sectionIntroStacked.heading ? (
+                    <SectionIntroStacked.Heading size={sectionIntroStacked.headingSize ?? '5'}>
+                      {sectionIntroStacked.heading}
+                    </SectionIntroStacked.Heading>
+                  ) : null}
+                  {sectionIntroStacked.linkText && sectionIntroStacked.linkHref ? (
+                    <SectionIntroStacked.Link
+                      variant={sectionIntroStacked.linkVariant ?? 'accent'}
+                      href={sectionIntroStacked.linkHref}
+                    >
+                      {sectionIntroStacked.linkText}
+                    </SectionIntroStacked.Link>
+                  ) : null}
+                  {sectionIntroStacked.items && sectionIntroStacked.items.length > 0 ? (
+                    <SectionIntroStacked.Items>
+                      {sectionIntroStacked.items.map((item, index) => (
+                        <SectionIntroStacked.Item key={index}>{item.text}</SectionIntroStacked.Item>
+                      ))}
+                    </SectionIntroStacked.Items>
+                  ) : null}
+                </SectionIntroStacked>
+              </Grid.Column>
+            </Grid>
           )}
 
           {sectionIntro && (
@@ -176,8 +209,6 @@ export function FlexSection({component, className}: FlexSectionProps) {
               )}
 
               {pillarsFields.items.map((pillarItem, index) => {
-                if (!pillarItem) return null
-
                 const heading = pillarItem.heading ?? pillarItem.title
                 const itemBackgroundColor =
                   pillarItem.backgroundColor ??
@@ -225,10 +256,13 @@ export function FlexSection({component, className}: FlexSectionProps) {
           {logoSuite && (
             <Grid className={styles.normalizeMargin}>
               <Grid.Column>
-                <LogoSuite align="start">
-                  <LogoSuite.Heading as="h3" size="6">
-                    Trusted by devs across the world
-                  </LogoSuite.Heading>
+                <LogoSuite align="start" hasDivider={false}>
+                  {logoSuite.heading && (
+                    <LogoSuite.Heading as="h3" size="6">
+                      {logoSuite.heading}
+                    </LogoSuite.Heading>
+                  )}
+
                   <LogoSuite.Logobar variant="muted" marquee={process.env.NODE_ENV !== 'test'}>
                     <Image alt="Uber" src={uberLogo} />
                     <Image alt="Vercel" src={vercelLogo} />
@@ -243,66 +277,34 @@ export function FlexSection({component, className}: FlexSectionProps) {
 
           {cards && (
             <Grid className={styles.normalizeMargin}>
-              <Grid.Column
-                span={{
-                  xsmall: 12,
-                  small: 12,
-                  medium: 6,
-                  large: 4,
-                  xlarge: 4,
-                  xxlarge: 4,
-                }}
-              >
-                <Box className={styles.heightFull}>
-                  <Card href="#" hasBorder={false} fullWidth>
-                    <Card.Image src={placeholderImage} alt="Placeholder card image" aspectRatio="16:9" />
-                    <Card.Heading>Card Title One</Card.Heading>
-                    <Card.Description>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt.
-                    </Card.Description>
-                  </Card>
-                </Box>
-              </Grid.Column>
-              <Grid.Column
-                span={{
-                  xsmall: 12,
-                  small: 12,
-                  medium: 6,
-                  large: 4,
-                  xlarge: 4,
-                  xxlarge: 4,
-                }}
-              >
-                <Box className={styles.heightFull}>
-                  <Card href="#" hasBorder={false} fullWidth>
-                    <Card.Image src={placeholderImage} alt="Placeholder card image" aspectRatio="16:9" />
-                    <Card.Heading>Card Title Two</Card.Heading>
-                    <Card.Description>
-                      Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip.
-                    </Card.Description>
-                  </Card>
-                </Box>
-              </Grid.Column>
-              <Grid.Column
-                span={{
-                  xsmall: 12,
-                  small: 12,
-                  medium: 6,
-                  large: 4,
-                  xlarge: 4,
-                  xxlarge: 4,
-                }}
-              >
-                <Box className={styles.heightFull}>
-                  <Card href="#" hasBorder={false} fullWidth>
-                    <Card.Image src={placeholderImage} alt="Placeholder card image" aspectRatio="16:9" />
-                    <Card.Heading>Card Title Three</Card.Heading>
-                    <Card.Description>
-                      Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore.
-                    </Card.Description>
-                  </Card>
-                </Box>
-              </Grid.Column>
+              {(cards.items && cards.items.length > 0 ? cards.items : Array(3).fill({})).map((card, index) => (
+                <Grid.Column
+                  key={index}
+                  span={{
+                    xsmall: 12,
+                    small: 12,
+                    medium: 6,
+                    large: 4,
+                    xlarge: 4,
+                    xxlarge: 4,
+                  }}
+                >
+                  <Box className={styles.heightFull}>
+                    <Card href={card.href ?? '#'} hasBorder={false} fullWidth>
+                      <Card.Image
+                        src={card.imageSrc ?? placeholderImage}
+                        // eslint-disable-next-line i18n-text/no-en
+                        alt={card.imageAlt ?? 'Placeholder card image'}
+                        aspectRatio="16:9"
+                      />
+                      {/* eslint-disable-next-line i18n-text/no-en */}
+                      <Card.Heading>{card.heading ?? `Card Title ${index + 1}`}</Card.Heading>
+                      {/* eslint-disable-next-line i18n-text/no-en */}
+                      <Card.Description>{card.description ?? 'Card description'}</Card.Description>
+                    </Card>
+                  </Box>
+                </Grid.Column>
+              ))}
             </Grid>
           )}
 
@@ -337,7 +339,11 @@ export function FlexSection({component, className}: FlexSectionProps) {
                         }}
                       >
                         <Bento.Heading as={featuredBento.headingLevel} size="4">
-                          <em>Lorem ipsum dolor sit</em> amet consectetur adipiscing elit
+                          {featuredBento.heading ?? (
+                            <>
+                              <em>Lorem ipsum dolor sit</em> amet consectetur adipiscing elit
+                            </>
+                          )}
                           {featuredBento.showFootnotes ? (
                             <>
                               {' '}
@@ -352,13 +358,17 @@ export function FlexSection({component, className}: FlexSectionProps) {
                             </>
                           ) : null}
                         </Bento.Heading>
-                        <Link href="#" variant="accent">
-                          Learn more
+                        <Link href={featuredBento.linkHref ?? '#'} variant="accent">
+                          {featuredBento.linkText ?? 'Learn more'}
                         </Link>
                       </Bento.Content>
                       <Bento.Visual className={styles.featuredBentoVisual} position="50% 100%" padding="normal">
                         <picture className={styles.imageFillMedia}>
-                          <img className={styles.imageFillMedia} src={placeholderImage} alt="Placeholder" />
+                          <img
+                            className={styles.imageFillMedia}
+                            src={featuredBento.imageSrc ?? placeholderImage}
+                            alt={featuredBento.imageAlt ?? 'Placeholder'}
+                          />
                         </picture>
                       </Bento.Visual>
                     </Bento.Item>
@@ -473,43 +483,49 @@ export function FlexSection({component, className}: FlexSectionProps) {
 
           {statistics && (
             <Grid className={styles.normalizeMargin} fullWidth>
-              {Array(statistics.count)
-                .fill(null)
-                .map((_, i) => (
-                  <Grid.Column span={{medium: 6, large: statistics.count === 3 ? 4 : 3}} key={i}>
-                    <Statistic
-                      className={styles.statistic}
-                      variant={statistics.variant}
-                      size={statistics.size}
-                      style={{
-                        backgroundColor:
-                          statistics.variant === 'boxed'
-                            ? `var(--brand-color-canvas-${backgroundColor === 'default' ? 'subtle' : 'default'})`
-                            : undefined,
-                      }}
-                    >
-                      <Statistic.Heading as="p">$2M+</Statistic.Heading>
-                      {statistics.showDescription && (
-                        <Statistic.Description variant={statistics.descriptionVariant}>
-                          Given back to our maintainers
-                          {statistics.showDescriptionFootnotes ? (
-                            <>
-                              {' '}
-                              <InlineLink
-                                id="inline-link-4"
-                                href="#footnote-4"
-                                className={clsx(styles.footnoteInlineLink, styles.footnoteSizeSmall)}
-                                aria-label="Footnote 4"
-                              >
-                                4
-                              </InlineLink>
-                            </>
-                          ) : null}
-                        </Statistic.Description>
-                      )}
-                    </Statistic>
-                  </Grid.Column>
-                ))}
+              {(statistics.items && statistics.items.length > 0
+                ? statistics.items
+                : Array(statistics.count ?? 3)
+                    .fill(null)
+                    .map(() => ({
+                      value: '$2M+',
+                      description: 'Given back to our maintainers',
+                    }))
+              ).map((stat, i) => (
+                <Grid.Column span={{medium: 6, large: (statistics.count ?? 3) === 3 ? 4 : 3}} key={i}>
+                  <Statistic
+                    className={styles.statistic}
+                    variant={statistics.variant}
+                    size={statistics.size}
+                    style={{
+                      backgroundColor:
+                        statistics.variant === 'boxed'
+                          ? `var(--brand-color-canvas-${backgroundColor === 'default' ? 'subtle' : 'default'})`
+                          : undefined,
+                    }}
+                  >
+                    <Statistic.Heading as="p">{stat.value ?? '$2M+'}</Statistic.Heading>
+                    {statistics.showDescription && (
+                      <Statistic.Description variant={statistics.descriptionVariant}>
+                        {stat.description ?? 'Given back to our maintainers'}
+                        {statistics.showDescriptionFootnotes ? (
+                          <>
+                            {' '}
+                            <InlineLink
+                              id="inline-link-4"
+                              href="#footnote-4"
+                              className={clsx(styles.footnoteInlineLink, styles.footnoteSizeSmall)}
+                              aria-label="Footnote 4"
+                            >
+                              4
+                            </InlineLink>
+                          </>
+                        ) : null}
+                      </Statistic.Description>
+                    )}
+                  </Statistic>
+                </Grid.Column>
+              ))}
             </Grid>
           )}
 

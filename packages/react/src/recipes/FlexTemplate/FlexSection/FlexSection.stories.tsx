@@ -19,7 +19,14 @@ type FlexSectionStoryArgs = {
   showRivers: boolean
 
   showIntroContent: boolean
-  introContentType: string
+  introContentType: 'sectionIntro' | 'sectionIntroStacked'
+  sectionIntroAlign: 'start' | 'center'
+  sectionIntroHeading: string
+  sectionIntroDescription: string
+  sectionIntroStackedHeading: string
+  sectionIntroStackedItem1: string
+  sectionIntroStackedItem2: string
+  sectionIntroStackedItem3: string
 
   showProse: boolean
   proseContent: string
@@ -88,20 +95,28 @@ type FlexSectionStoryArgs = {
 const createMockData = (args: FlexSectionStoryArgs) => ({
   id: args.sectionId,
   anchorNav: args.showAnchorNav,
-  introContent: args.showIntroContent
-    ? {
-        sys: {
-          contentType: {
-            sys: {
-              id: args.introContentType,
-            },
-          },
-        },
-      }
-    : null,
+  sectionIntro:
+    args.showIntroContent && args.introContentType === 'sectionIntro'
+      ? {
+          align: args.sectionIntroAlign,
+          heading: args.sectionIntroHeading,
+          description: args.sectionIntroDescription,
+        }
+      : undefined,
+  sectionIntroStacked:
+    args.showIntroContent && args.introContentType === 'sectionIntroStacked'
+      ? {
+          heading: args.sectionIntroStackedHeading,
+          items: [
+            {text: args.sectionIntroStackedItem1},
+            {text: args.sectionIntroStackedItem2},
+            {text: args.sectionIntroStackedItem3},
+          ],
+        }
+      : undefined,
 
-  logoSuite: args.showLogosuite,
-  cards: args.showCards,
+  logoSuite: args.showLogosuite ? {} : undefined,
+  cards: args.showCards ? {} : undefined,
   prose: args.showProse
     ? {
         content: args.proseContent,
@@ -194,7 +209,7 @@ const createMockData = (args: FlexSectionStoryArgs) => ({
           'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis felis nam pulvinar risus elementum.',
         ...(args.riverType === 'riverAccordion'
           ? {
-              items: Array.from({length: 3}).map((_, j) => ({
+              items: Array.from({length: 3}).map((__unused, j) => ({
                 heading: `Accordion Item ${j + 1}`,
                 description:
                   'Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum repellendus veniam repellat unde ex aut minus iusto.',
@@ -238,7 +253,14 @@ const meta: Meta<FlexSectionStoryArgs> = {
 
     // Intro content
     showIntroContent: true,
-    introContentType: 'introStackedItems',
+    introContentType: 'sectionIntro',
+    sectionIntroAlign: 'center',
+    sectionIntroHeading: 'Section Introduction',
+    sectionIntroDescription: 'This section showcases all available FlexSection components',
+    sectionIntroStackedHeading: 'Stacked Introduction Heading',
+    sectionIntroStackedItem1: 'First key point about this section',
+    sectionIntroStackedItem2: 'Second important feature to highlight',
+    sectionIntroStackedItem3: 'Third benefit or characteristic',
 
     // Prose content
     showProse: true,
@@ -350,10 +372,53 @@ const meta: Meta<FlexSectionStoryArgs> = {
     },
     introContentType: {
       control: {type: 'radio'},
-      options: ['introStackedItems', 'primerComponentSectionIntro'],
+      options: ['sectionIntro', 'sectionIntroStacked'],
       description: 'Type of intro content to display',
       table: {category: 'Intro Content'},
       if: {arg: 'showIntroContent', truthy: true},
+    },
+    sectionIntroAlign: {
+      control: {type: 'select'},
+      options: ['start', 'center'],
+      description: 'Alignment for section intro',
+      table: {category: 'Intro Content'},
+      if: {arg: 'introContentType', eq: 'sectionIntro'},
+    },
+    sectionIntroHeading: {
+      control: 'text',
+      description: 'Heading for section intro',
+      table: {category: 'Intro Content'},
+      if: {arg: 'introContentType', eq: 'sectionIntro'},
+    },
+    sectionIntroDescription: {
+      control: 'text',
+      description: 'Description for section intro',
+      table: {category: 'Intro Content'},
+      if: {arg: 'introContentType', eq: 'sectionIntro'},
+    },
+    sectionIntroStackedHeading: {
+      control: 'text',
+      description: 'Heading for stacked intro',
+      table: {category: 'Intro Content'},
+      if: {arg: 'introContentType', eq: 'sectionIntroStacked'},
+    },
+    sectionIntroStackedItem1: {
+      control: 'text',
+      description: 'First item in stacked intro',
+      table: {category: 'Intro Content'},
+      if: {arg: 'introContentType', eq: 'sectionIntroStacked'},
+    },
+    sectionIntroStackedItem2: {
+      control: 'text',
+      description: 'Second item in stacked intro',
+      table: {category: 'Intro Content'},
+      if: {arg: 'introContentType', eq: 'sectionIntroStacked'},
+    },
+    sectionIntroStackedItem3: {
+      control: 'text',
+      description: 'Third item in stacked intro',
+      table: {category: 'Intro Content'},
+      if: {arg: 'introContentType', eq: 'sectionIntroStacked'},
     },
 
     // Prose controls

@@ -4,6 +4,7 @@ import {BoxSpacingValues} from '../../Box/Box'
 import {Icon} from '@primer/octicons-react'
 import {IconColor} from '../../Icon'
 import type {ColorMode} from '../../ThemeProvider'
+import {TestimonialProps} from '../../Testimonial'
 
 export type FlexTemplateLink = {
   href: string
@@ -133,6 +134,19 @@ export type FlexTemplateSectionIntro = {
   fullWidth?: boolean
 }
 
+export type FlexTemplateSectionIntroStackedItem = {
+  text: string
+}
+
+export type FlexTemplateSectionIntroStacked = {
+  heading?: string
+  headingSize?: '1' | '2' | '3' | '4' | '5' | '6'
+  linkText?: string
+  linkHref?: string
+  linkVariant?: 'default' | 'accent'
+  items?: FlexTemplateSectionIntroStackedItem[]
+}
+
 export type FlexTemplateVisualSettings = {
   backgroundColor?: 'default' | 'subtle'
   paddingBlockStart?: 'none' | 'condensed' | 'normal' | 'spacious'
@@ -176,14 +190,28 @@ export type FlexTemplatePillarsConfig = {
   items?: FlexTemplatePillarItem[]
 }
 
+export type FlexTemplateCardItem = {
+  heading?: string
+  description?: string
+  href?: string
+  imageSrc?: string
+  imageAlt?: string
+  ctaText?: string
+}
+
 export type FlexTemplateCardsConfig = {
-  // Add cards configuration fields as needed
+  items?: FlexTemplateCardItem[]
 }
 
 export type FlexTemplateFeaturedBentoConfig = {
   showIcon?: boolean
   showFootnotes?: boolean
   headingLevel?: 'h2' | 'h3' | 'h4'
+  heading?: string
+  linkText?: string
+  linkHref?: string
+  imageSrc?: string
+  imageAlt?: string
 }
 
 export type FlexTemplateBreakoutBannerConfig = {
@@ -197,6 +225,11 @@ export type FlexTemplateProseConfig = {
   content?: string
 }
 
+export type FlexTemplateStatisticItem = {
+  value?: string
+  description?: string
+}
+
 export type FlexTemplateStatisticsConfig = {
   count?: number
   variant?: 'default' | 'boxed'
@@ -204,6 +237,7 @@ export type FlexTemplateStatisticsConfig = {
   showDescription?: boolean
   descriptionVariant?: 'default' | 'muted'
   showDescriptionFootnotes?: boolean
+  items?: FlexTemplateStatisticItem[]
 }
 
 export type FlexTemplatePricingOptionsConfig = {
@@ -218,20 +252,33 @@ export type FlexTemplateSegmentedControlPanelConfig = {
   // Add configuration fields as needed
 }
 
+export type FlexTemplateTestimonialItem = {
+  quote?: string
+  authorName?: string
+  authorTitle?: string
+  authorImage?: string
+}
+
 export type FlexTemplateTestimonialsConfig = {
   testimonialCount?: number
   backgroundImageVariant?: string
   variant?: 'default' | 'frosted-glass'
   displayedAuthorImage?: 'avatar' | 'logo'
-  quoteMarkColor?: 'default' | 'accent'
+  quoteMarkColor?: TestimonialProps['quoteMarkColor']
+  items?: FlexTemplateTestimonialItem[]
+}
+
+export type FlexTemplateLogoSuiteConfig = {
+  heading?: string
 }
 
 export type FlexTemplateSection = {
   id: string
   sectionIntro?: FlexTemplateSectionIntro
+  sectionIntroStacked?: FlexTemplateSectionIntroStacked
   anchorNav?: boolean
-  logoSuite?: boolean
-  cards?: boolean
+  logoSuite?: FlexTemplateLogoSuiteConfig
+  cards?: FlexTemplateCardsConfig
   pillars?: FlexTemplatePillarsConfig
   featuredBento?: FlexTemplateFeaturedBentoConfig
   breakoutBanner?: FlexTemplateBreakoutBannerConfig

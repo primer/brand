@@ -3,7 +3,7 @@ import {INITIAL_VIEWPORTS} from 'storybook/viewport'
 import type {Meta, StoryObj} from '@storybook/react'
 
 import {FlexTemplate, type FlexTemplateProps} from './FlexTemplate'
-import type {FlexTemplatePage, FlexTemplateSection, FlexTemplateFootnote} from './FlexTemplate.types'
+import type {FlexTemplateSection, FlexTemplateFootnote} from './FlexTemplate.types'
 import {exampleProseHTML} from './fixtures/content'
 
 import placeholderImage from '../../fixtures/images/placeholder.png'
@@ -71,8 +71,8 @@ const meta = {
               linkHref: '#',
               linkVariant: 'accent',
             },
-            logoSuite: true,
-            cards: true,
+            logoSuite: {},
+            cards: {},
             pillars: {
               heading: 'Key Features',
               items: [
@@ -145,7 +145,7 @@ const meta = {
               backgroundImageVariant: 'Collaboration',
               variant: 'frosted-glass',
               displayedAuthorImage: 'logo',
-              quoteMarkColor: 'accent',
+              quoteMarkColor: 'purple',
             },
             visualSettings: {
               backgroundColor: 'default',

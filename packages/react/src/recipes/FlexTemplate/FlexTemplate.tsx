@@ -6,6 +6,7 @@ import {FlexTemplateTrailingSection} from './FlexTemplateTrailingSection'
 import type {FlexTemplatePage, FlexTemplateData, FlexTemplateSection} from './FlexTemplate.types'
 
 import styles from './FlexTemplate.module.css'
+import {RedlineBackground} from '../../component-helpers'
 
 export type FlexTemplateProps = {
   page: FlexTemplatePage
@@ -13,7 +14,7 @@ export type FlexTemplateProps = {
 }
 
 export function FlexTemplate({page, className}: FlexTemplateProps) {
-  const templateFields: FlexTemplateData = page.template ?? {}
+  const templateFields: FlexTemplateData = page.template
 
   const heroFields = templateFields.hero ?? {}
   const heroBackgroundImage = templateFields.heroBackgroundImage
@@ -26,11 +27,11 @@ export function FlexTemplate({page, className}: FlexTemplateProps) {
   const heroPrimaryAction = heroFields.callToActionPrimary
   const heroSecondaryAction = heroFields.callToActionSecondary
 
-  const heroImageAlt = heroFields.image?.description ?? heroBackgroundImage?.image?.description ?? 'Hero illustration'
+  const heroImageAlt = heroFields.image?.description ?? (heroBackgroundImage?.image.description || '')
 
   const heroImagePositionSource = heroFields.imagePosition ?? heroBackgroundImage?.imagePosition
   const heroImagePosition = heroImagePositionSource?.includes('inline') ? 'inline-end' : 'block-end'
-  const heroImageSrc = heroFields.imageSrc || heroBackgroundImage?.image?.file?.url
+  const heroImageSrc = heroFields.imageSrc || heroBackgroundImage?.image.file.url
 
   const heroDescriptionVariant = heroFields.descriptionVariant === 'default' ? 'default' : 'muted'
 
@@ -43,13 +44,7 @@ export function FlexTemplate({page, className}: FlexTemplateProps) {
   return (
     <div className={className}>
       {/** Fake global header spacer */}
-      <Box
-        style={{
-          // based on computed height of the dotcom global header (inc. banner)
-          height: 72 + 32 + 42,
-        }}
-        backgroundColor="default"
-      />
+      <RedlineBackground height={72 + 32 + 42} />
       <div>
         {subnavFields ? (
           <SubNav hasShadow={Boolean(subnavFields.hasShadow)}>
@@ -70,7 +65,7 @@ export function FlexTemplate({page, className}: FlexTemplateProps) {
               </SubNav.SubHeading>
             ) : null}
             {subnavLinks.map((link, index) => {
-              if (!link?.text) return null
+              if (!link.text) return null
               return (
                 <SubNav.Link
                   key={`${link.text}-${index}`}
@@ -133,16 +128,12 @@ export function FlexTemplate({page, className}: FlexTemplateProps) {
         {/**
          * Fake global footer spacer
          */}
-        <Box
-          backgroundColor="subtle"
-          paddingBlockStart={40}
-          style={{height: 600, display: 'flex', flexDirection: 'column', gap: 'var(--base-size-32)'}}
-        >
-          <Box
-            padding="condensed"
+        {/** Fake global header spacer */}
+        <RedlineBackground style={{height: 600, display: 'flex', flexDirection: 'column', gap: 'var(--base-size-32)'}}>
+          <RedlineBackground
             style={{height: 84, marginTop: 'auto', backgroundColor: 'var(--brand-color-border-default)'}}
           />
-        </Box>
+        </RedlineBackground>
       </div>
     </div>
   )
