@@ -2,26 +2,169 @@ name: Release
 
 on:
   push:
-    branches:
-      - main
-      - next-minor
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  id-token: write # Required for OIDC
+  contents: read
+  checks: write
+  statuses: write
 
 jobs:
-  release:
+  release-main:
     if: github.ref_name == 'main'
-    name: Release
+    name: Main
 
-    uses: primer/.github/.github/workflows/release.yml@2a60f4cc62889bd218f3019ce4a090ff89b71cca # SHA for security hardening. Points at v2.1.1 release
+    uses: primer/.github/.github/workflows/release.yml@9a17d09825dbc0d56439378f2a8da325c91855ba # SHA for security hardening. Points at v2.1.1 release
     secrets:
       gh_token: ${{ secrets.GPR_AUTH_TOKEN_SHARED }}
-      npm_token: ${{ secrets.NPM_AUTH_TOKEN_SHARED }}
 
   release-next-minor:
     if: github.ref_name == 'next-minor'
     name: Next minor
-    uses: primer/.github/.github/workflows/release.yml@2a60f4cc62889bd218f3019ce4a090ff89b71cca # SHA for security hardening. Points at v2.1.1 release
+    uses: primer/.github/.github/workflows/release.yml@9a17d09825dbc0d56439378f2a8da325c91855ba # SHA for security hardening. Points at v2.1.1 release
     with:
       title: Release tracking (next minor)
     secrets:
       gh_token: ${{ secrets.GPR_AUTH_TOKEN_SHARED }}
-      npm_token: ${{ secrets.NPM_AUTH_TOKEN_SHARED }}
+
+  release-candidate:
+    if: ${{ github.repository == 'primer/brand' && github.ref_name == 'changeset-release/main' }}
+    name: Candidate
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          # This makes Actions fetch all Git history so that Changesets can generate changelogs with the correct commits
+          fetch-depth: 0
+
+      - name: Set up Node
+        uses: actions/setup-node@v6
+        with:
+          node-version: 24
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build:lib
+
+      - name: Publish release candidate
+        run: |
+          npm exec --workspaces -- ../../packages/repo-configs/scripts/prepare-release-candidate
+          npx changeset publish --tag next
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Output canary version
+        uses: actions/github-script@v4.0.2
+        with:
+          script: |
+            const paths = ['react', 'design-tokens', 'css'].forEach((path) => {
+              const package = require(`${process.env.GITHUB_WORKSPACE}/packages/${path}/package.json`)
+              github.repos.createCommitStatus({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                sha: context.sha,
+                state: 'success',
+                context: `Published ${package.name}`,
+                description: package.version,
+                target_url: `https://unpkg.com/${package.name}@${package.version}/`
+              })
+            })
+
+  release-candidate-next-minor:
+    if: ${{ github.repository == 'primer/brand' && github.ref_name == 'changeset-release/next-minor' }}
+    name: Next minor candidate (@next-minor)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          # This makes Actions fetch all Git history so that Changesets can generate changelogs with the correct commits
+          fetch-depth: 0
+
+      - name: Set up Node
+        uses: actions/setup-node@v6
+        with:
+          node-version: 24
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build:lib
+
+      - name: Publish release candidate
+        run: |
+          npm exec --workspaces -- ../../packages/repo-configs/scripts/prepare-release-candidate
+          npx changeset publish --tag next-minor
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Output canary version
+        uses: actions/github-script@v4.0.2
+        with:
+          script: |
+            const paths = ['react', 'design-tokens', 'css'].forEach((path) => {
+              const package = require(`${process.env.GITHUB_WORKSPACE}/packages/${path}/package.json`)
+              github.repos.createCommitStatus({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                sha: context.sha,
+                state: 'success',
+                context: `Published ${package.name}`,
+                description: package.version,
+                target_url: `https://unpkg.com/${package.name}@${package.version}/`
+              })
+            })
+
+  release-canary:
+    if: ${{ github.repository == 'primer/brand' && github.ref_name != 'main' && github.ref_name != 'next-minor' && github.ref_name != 'changeset-release/main' && github.ref_name != 'changeset-release/next-minor' }}
+    name: Canary
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          # This makes Actions fetch all Git history so that Changesets can generate changelogs with the correct commits
+          fetch-depth: 0
+
+      - name: Set up Node
+        uses: actions/setup-node@v6
+        with:
+          node-version: 24
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build:lib
+
+      - name: Publish canary release
+        run: |
+          npm exec --workspaces -- ../../packages/repo-configs/scripts/prepare-canary
+          npx changeset publish --tag canary
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Output canary version
+        uses: actions/github-script@v4.0.2
+        with:
+          script: |
+            const paths = ['react', 'design-tokens', 'css'].forEach((path) => {
+              const package = require(`${process.env.GITHUB_WORKSPACE}/packages/${path}/package.json`)
+              github.repos.createCommitStatus({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                sha: context.sha,
+                state: 'success',
+                context: `Published ${package.name}`,
+                description: package.version,
+                target_url: `https://unpkg.com/${package.name}@${package.version}/`
+              })
+            })
