@@ -94,7 +94,7 @@ export function FlexTemplate({page, className}: FlexTemplateProps) {
                 {heroDescription ? (
                   <Hero.Description variant={heroDescriptionVariant}>{heroDescription}</Hero.Description>
                 ) : null}
-                {heroPrimaryAction?.href && heroPrimaryAction?.text ? (
+                {heroPrimaryAction?.href && heroPrimaryAction.text ? (
                   <Hero.PrimaryAction
                     variant={heroFields.callToActionPrimaryVariant ?? 'primary'}
                     href={heroPrimaryAction.href}
@@ -103,7 +103,7 @@ export function FlexTemplate({page, className}: FlexTemplateProps) {
                     {heroPrimaryAction.text}
                   </Hero.PrimaryAction>
                 ) : null}
-                {heroSecondaryAction?.href && heroSecondaryAction?.text ? (
+                {heroSecondaryAction?.href && heroSecondaryAction.text ? (
                   <Hero.SecondaryAction
                     variant={heroFields.callToActionSecondaryVariant ?? 'secondary'}
                     href={heroSecondaryAction.href}

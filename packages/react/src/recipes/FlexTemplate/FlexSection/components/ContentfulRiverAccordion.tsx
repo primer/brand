@@ -2,20 +2,25 @@ import React from 'react'
 import clsx from 'clsx'
 
 import {InlineLink, Link, RiverAccordion, Text} from '../../../..'
+import type {FlexTemplateRiverAccordionItem, FlexTemplateRiverItem} from '../../FlexTemplate.types'
 
 import placeholderImage from '../../../../fixtures/images/placeholder.png'
 
 import styles from '../FlexSection.module.css'
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export function ContentfulRiverAccordion({rivers, className}: any) {
+type ContentfulRiverAccordionProps = {
+  rivers: FlexTemplateRiverItem
+} & React.HTMLAttributes<HTMLDivElement>
+
+export function ContentfulRiverAccordion({rivers, className}: ContentfulRiverAccordionProps) {
   const items = rivers.items || []
 
   return (
-    <RiverAccordion align={rivers.align ?? 'start'} className={className}>
-      {items.map((item: any, i: number) => {
+    <RiverAccordion align={rivers.align === 'center' ? 'start' : rivers.align ?? 'start'} className={className}>
+      {items.map((item: FlexTemplateRiverAccordionItem, i: number) => {
         return (
           <RiverAccordion.Item key={i}>
+            {/* eslint-disable-next-line i18n-text/no-en */}
             <RiverAccordion.Heading>{item.heading ?? `Heading ${i + 1}`}</RiverAccordion.Heading>
             <RiverAccordion.Content>
               {item.description && (

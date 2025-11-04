@@ -1,7 +1,7 @@
 import React from 'react'
 import clsx from 'clsx'
 
-import {GlobeIcon, MarkGithubIcon, ZapIcon} from '@primer/octicons-react'
+import {GlobeIcon, ZapIcon} from '@primer/octicons-react'
 
 import {
   AnchorNav,
@@ -44,6 +44,7 @@ import styles from './FlexSection.module.css'
 import {FlexSectionTestimonials, ContentfulRiver, ContentfulRiverBreakout, ContentfulRiverAccordion} from './components'
 import type {
   FlexTemplatePillarsConfig,
+  FlexTemplateRiverItem,
   FlexTemplateSection,
   FlexTemplateTestimonialsConfig,
 } from '../FlexTemplate.types'
@@ -359,6 +360,7 @@ export function FlexSection({component, className}: FlexSectionProps) {
                           ) : null}
                         </Bento.Heading>
                         <Link href={featuredBento.linkHref ?? '#'} variant="accent">
+                          {/* eslint-disable-next-line i18n-text/no-en  */}
                           {featuredBento.linkText ?? 'Learn more'}
                         </Link>
                       </Bento.Content>
@@ -388,7 +390,7 @@ export function FlexSection({component, className}: FlexSectionProps) {
 
           {rivers && rivers.length > 0 && (
             <RiverStoryScroll disabled={!enableRiverStoryScroll}>
-              {rivers.map((river: any, i: number) => {
+              {rivers.map((river: FlexTemplateRiverItem, i: number) => {
                 const riverType = river.type ?? 'river'
 
                 if (riverType === 'riverAccordion') {
@@ -507,6 +509,7 @@ export function FlexSection({component, className}: FlexSectionProps) {
                     <Statistic.Heading as="p">{stat.value ?? '$2M+'}</Statistic.Heading>
                     {statistics.showDescription && (
                       <Statistic.Description variant={statistics.descriptionVariant}>
+                        {/* eslint-disable-next-line i18n-text/no-en */}
                         {stat.description ?? 'Given back to our maintainers'}
                         {statistics.showDescriptionFootnotes ? (
                           <>

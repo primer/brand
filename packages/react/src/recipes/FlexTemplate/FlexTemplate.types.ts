@@ -97,13 +97,19 @@ export type FlexTemplateRiverItem = {
   hasShadow?: boolean
   visualType?: 'image' | 'video'
   type?: 'river' | 'riverBreakout' | 'riverAccordion'
+  items?: FlexTemplateRiverAccordionItem[]
 }
 
 export type FlexTemplateRiverAccordionItem = {
-  heading: string
+  heading?: string
   description?: string
   ctaText?: string
   ctaHref?: string
+  ctaVariant?: 'default' | 'accent'
+  imageSrc?: string
+  imageAlt?: string
+  footnoteId?: string
+  footnoteHref?: string
 }
 
 export type FlexTemplateSectionIntro = {

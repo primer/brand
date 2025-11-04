@@ -1,4 +1,3 @@
-import React from 'react'
 import {INITIAL_VIEWPORTS} from 'storybook/viewport'
 import type {Meta, StoryObj} from '@storybook/react'
 

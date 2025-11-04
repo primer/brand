@@ -38,8 +38,8 @@ export function FlexTemplateTrailingSection({template}: FlexTemplateTrailingSect
 
   const resolvedFaqEntries = (faqFields?.faqs ?? [])
     .map<ResolvedFaqEntry | null>((faqEntry, faqIndex) => {
-      const blocks = faqEntry.blocks ?? []
-      const questions = blocks.flatMap(block => block.questions ?? [])
+      const blocks = faqEntry.blocks
+      const questions = blocks.flatMap(block => block.questions)
       const questionsWithCopy = questions.filter(questionEntry => Boolean(questionEntry.question))
 
       if (questionsWithCopy.length === 0) return null
@@ -82,7 +82,7 @@ export function FlexTemplateTrailingSection({template}: FlexTemplateTrailingSect
   const secondaryButtonLabel = ctaBannerFields?.callToActionSecondary?.text
 
   if (primaryButtonLabel) {
-    const primaryButtonVariant = ctaBannerFields?.callToActionPrimary?.variant ?? 'primary'
+    const primaryButtonVariant = ctaBannerFields.callToActionPrimary?.variant ?? 'primary'
     ctaButtons.push(
       <Button key="primary" variant={primaryButtonVariant}>
         {primaryButtonLabel}

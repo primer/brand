@@ -42,6 +42,7 @@ export function ContentfulRiverBreakout({rivers, className}: any) {
 
   return (
     <RiverBreakout className={className}>
+      {/* eslint-disable-next-line i18n-text/no-en */}
       <RiverBreakout.A11yHeading>{rivers.a11yHeading ?? 'Accessible heading'}</RiverBreakout.A11yHeading>
       <RiverBreakout.Visual hasShadow={rivers.hasShadow ?? false}>
         {rivers.visualType === 'image' ? (
