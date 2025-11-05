@@ -1,6 +1,6 @@
 import React, {forwardRef, HTMLAttributes, PropsWithChildren, useMemo, Ref, Dispatch} from 'react'
 import {CheckIcon, ChevronDownIcon, XIcon} from '@primer/octicons-react'
-import clsx from 'clsx'
+import {clsx} from 'clsx'
 import type {ListItemProps} from '../list/ListItem/ListItem'
 import type {BaseProps} from '../component-helpers'
 
@@ -65,9 +65,7 @@ const PricingOptionsContext = React.createContext<PricingOptionsContextValue>({
   align: 'start',
   allFeatureListsExpanded: false,
   featureListUserInteracted: false,
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
   updateFeatureListExpanded: () => {},
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
   setFeatureListUserInteracted: () => {},
 })
 

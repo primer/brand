@@ -1,5 +1,5 @@
 import React, {forwardRef, PropsWithChildren, useMemo, type Ref, useCallback} from 'react'
-import clsx from 'clsx'
+import {clsx} from 'clsx'
 import {Link, LinkProps} from '../Link'
 import {Heading, HeadingProps, defaultHeadingTag} from '../Heading'
 import {Text} from '../Text'

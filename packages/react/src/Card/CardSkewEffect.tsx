@@ -1,5 +1,5 @@
 import React, {useRef, useEffect, PropsWithChildren} from 'react'
-import clsx from 'clsx'
+import {clsx} from 'clsx'
 
 import {useTheme} from '../'
 import {BaseProps} from '../component-helpers'

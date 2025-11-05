@@ -1,5 +1,5 @@
 import React from 'react'
-import clsx from 'clsx'
+import {clsx} from 'clsx'
 
 import {InlineLink, Link, RiverAccordion, Text} from '../../../..'
 import type {FlexTemplateRiverAccordionItem, FlexTemplateRiverItem} from '../../FlexTemplate.types'

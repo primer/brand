@@ -1,11 +1,11 @@
 import React from 'react'
-import {Meta} from '@storybook/react'
+import type {Meta} from '@storybook/react'
 import {AnimationProvider} from './AnimationProvider/AnimationProvider'
 import {Label, Image, Text, Stack, Animate, Heading, ThemeProvider, LogoSuite} from '..'
 import {CheckCircleFillIcon, RocketIcon} from '@primer/octicons-react'
 
 import styles from './Animation.stories.module.css'
-import clsx from 'clsx'
+import {clsx} from 'clsx'
 
 export default {
   title: 'Components/Animations/Examples',

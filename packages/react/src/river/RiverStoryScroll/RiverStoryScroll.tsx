@@ -1,4 +1,4 @@
-import clsx from 'clsx'
+import {clsx} from 'clsx'
 import React, {useEffect, useRef} from 'react'
 import type {RiverProps} from '../../'
 import {RiverStoryScrollProvider} from './RiverStoryScrollProvider'

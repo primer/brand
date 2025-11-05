@@ -2,7 +2,7 @@
  * Ported from primer/primitives, as it was removed in v8 release and we still need it
  */
 const glob = require('fast-glob')
-const {PrimerStyleDictionary: StyleDictionary} = require('@primer/primitives/dist/build/PrimerStyleDictionary.js')
+const {PrimerStyleDictionary: StyleDictionary} = require('@primer/primitives/dist/build/PrimerStyleDictionary')
 
 const {fileHeader} = StyleDictionary.formatHelpers
 
@@ -89,8 +89,7 @@ function buildPrimitives(
           try {
             let mutableContent = JSON.stringify(contents)
 
-            // prettier-ignore
-            // eslint-disable-next-line prettier/prettier, no-useless-escape
+            // eslint-disable-next-line no-useless-escape
             mutableContent = mutableContent.replace(/\\"\$value\\\"/g, '\\"value\\"')
 
             if (filePath.includes('/functional/')) {

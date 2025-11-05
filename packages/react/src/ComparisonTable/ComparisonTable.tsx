@@ -1,4 +1,4 @@
-import clsx from 'clsx'
+import {clsx} from 'clsx'
 import React, {forwardRef, type Ref, useMemo, PropsWithChildren} from 'react'
 import {Heading, Text, useAnimation} from '../'
 

@@ -1,5 +1,5 @@
 import {INITIAL_VIEWPORTS} from 'storybook/viewport'
-import {Meta, StoryObj} from '@storybook/react'
+import type {Meta, StoryObj} from '@storybook/react'
 
 import {Article} from './Article'
 import {themes} from '../helpers'

@@ -1,4 +1,4 @@
-import {Meta} from '@storybook/react'
+import type {Meta} from '@storybook/react'
 import React from 'react'
 import {expect, userEvent, within, waitFor} from 'storybook/test'
 import {ActionMenu, actionMenuOverlaySides, ActionMenuProps, ActionMenuSizes} from './ActionMenu'

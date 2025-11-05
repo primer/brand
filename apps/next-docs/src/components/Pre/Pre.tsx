@@ -1,4 +1,3 @@
-// eslint-disable-next-line filenames/match-regex
 'use client'
 import React, {PropsWithChildren} from 'react'
 import {CodeBlock} from '@primer/doctocat-nextjs/components'

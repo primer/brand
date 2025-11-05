@@ -1,5 +1,5 @@
 import React, {useCallback, useRef, useState} from 'react'
-import clsx from 'clsx'
+import {clsx} from 'clsx'
 import {ChevronDownIcon} from '@primer/octicons-react'
 
 import {BaseProps} from '../component-helpers'

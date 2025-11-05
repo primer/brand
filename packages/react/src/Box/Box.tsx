@@ -1,4 +1,4 @@
-import {default as clsx} from 'clsx'
+import {clsx} from 'clsx'
 import React, {PropsWithChildren, useMemo} from 'react'
 import {AnimateProps, useAnimation} from '../animation'
 import type {BaseProps} from '../component-helpers'

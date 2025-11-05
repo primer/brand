@@ -1,6 +1,6 @@
 import React, {type Ref, useContext} from 'react'
-import clsx from 'clsx'
-import {CheckIcon, DashIcon, Icon, IconProps, XIcon} from '@primer/octicons-react'
+import {clsx} from 'clsx'
+import {CheckIcon, DashIcon, type Icon, type IconProps, XIcon} from '@primer/octicons-react'
 import {Text, TextProps} from '../../Text'
 import type {BaseProps} from '../../component-helpers'
 import {ListContext} from '../listContext'

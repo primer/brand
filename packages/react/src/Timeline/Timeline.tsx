@@ -1,5 +1,5 @@
 import React, {PropsWithChildren, useMemo, useCallback} from 'react'
-import clsx from 'clsx'
+import {clsx} from 'clsx'
 import styles from './Timeline.module.css'
 import {BaseProps} from '../component-helpers'
 import {useAnimation} from '../animation'
@@ -15,13 +15,7 @@ export type TimelineProps = {
   fullWidth?: boolean
 } & BaseProps<HTMLUListElement>
 
-const _TimelineRoot = ({
-  animate,
-  className,
-  children,
-  fullWidth = false,
-  ...rest
-}: PropsWithChildren<TimelineProps>) => {
+const TimelineBase = ({animate, className, children, fullWidth = false, ...rest}: PropsWithChildren<TimelineProps>) => {
   const {classes: animationClasses, styles: animationInlineStyles} = useAnimation(animate)
 
   const timelineClassName = clsx(
@@ -66,6 +60,6 @@ const Item = ({className, children, ...rest}: PropsWithChildren<TimelineItemProp
  * Use Timeline to display a list of connected items as a vertical timeline.
  * @see https://primer.style/brand/components/Timeline
  */
-export const Timeline = Object.assign(_TimelineRoot, {
+export const Timeline = Object.assign(TimelineBase, {
   Item,
 })

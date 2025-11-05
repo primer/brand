@@ -1,6 +1,6 @@
 import React, {PropsWithChildren} from 'react'
 import {useId} from '../../hooks/useId'
-import clsx from 'clsx'
+import {clsx} from 'clsx'
 import {AlertFillIcon, CheckCircleFillIcon} from '@primer/octicons-react'
 
 import type {BaseProps} from '../../component-helpers'

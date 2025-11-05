@@ -1,6 +1,6 @@
 import React, {type ReactElement} from 'react'
 import {useId} from '../hooks/useId'
-import clsx from 'clsx'
+import {clsx} from 'clsx'
 
 import {FAQSubheadingProps, FAQRootProps, FAQ} from './'
 import {Accordion, Button, Grid, Heading, Stack, Box} from '../'
@@ -17,7 +17,7 @@ import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/compone
  */
 import styles from './FAQGroup.module.css'
 
-function _Heading({children, className, as = 'h3', ...rest}: FAQSubheadingProps) {
+function HeadingBase({children, className, as = 'h3', ...rest}: FAQSubheadingProps) {
   return (
     <Heading as={as} className={clsx(className)} {...rest}>
       {children}
@@ -31,7 +31,7 @@ export type FAQGroupProps = React.PropsWithChildren<{
   tabAttributes?: (children: ReactElement, index: number) => Record<string, unknown>
 }>
 
-function _FAQGroup({children, id, defaultSelectedIndex = 0, tabAttributes, ...rest}: FAQGroupProps) {
+function FAQGroupBase({children, id, defaultSelectedIndex = 0, tabAttributes, ...rest}: FAQGroupProps) {
   const [selectedIndex, setSelectedIndex] = React.useState(defaultSelectedIndex)
   const [hasInteracted, setHasInteracted] = React.useState(false)
   const instanceId = useId(id)
@@ -164,7 +164,7 @@ function _FAQGroup({children, id, defaultSelectedIndex = 0, tabAttributes, ...re
   })
 
   const GroupHeading = React.Children.toArray(children).find(
-    child => React.isValidElement(child) && child.type === _Heading,
+    child => React.isValidElement(child) && child.type === HeadingBase,
   )
 
   return (
@@ -204,6 +204,6 @@ function _FAQGroup({children, id, defaultSelectedIndex = 0, tabAttributes, ...re
  * FAQGroup component:
  * {@link https://primer.style/brand/components/FAQ#grouped-faqs See usage examples}.
  */
-export const FAQGroup = Object.assign(_FAQGroup, {
-  Heading: _Heading,
+export const FAQGroup = Object.assign(FAQGroupBase, {
+  Heading: HeadingBase,
 })

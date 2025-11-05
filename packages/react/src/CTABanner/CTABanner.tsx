@@ -1,5 +1,5 @@
 import React, {forwardRef, useCallback, useMemo, type Ref} from 'react'
-import clsx from 'clsx'
+import {clsx} from 'clsx'
 import type {BaseProps} from '../component-helpers'
 import {Heading, HeadingProps} from '../Heading'
 import {Text, TextProps} from '../Text'

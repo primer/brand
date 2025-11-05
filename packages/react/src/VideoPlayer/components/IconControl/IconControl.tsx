@@ -1,5 +1,5 @@
 import React, {type HTMLAttributes} from 'react'
-import clsx from 'clsx'
+import {clsx} from 'clsx'
 
 import {VideoTooltip} from '../'
 import styles from '../../VideoPlayer.module.css'

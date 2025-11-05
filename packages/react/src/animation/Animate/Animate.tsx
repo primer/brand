@@ -1,7 +1,7 @@
 import React, {HTMLAttributes, PropsWithChildren} from 'react'
 import {useAnimation} from '..'
 import type {BaseProps} from '../../component-helpers'
-import clsx from 'clsx'
+import {clsx} from 'clsx'
 
 export type BoxProps<T extends keyof JSX.IntrinsicElements = 'div'> = React.HTMLAttributes<T> & {
   as?: T | 'div' | 'span' | 'section'

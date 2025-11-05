@@ -10,7 +10,7 @@ import React, {
   HTMLAttributes,
   useCallback,
 } from 'react'
-import clsx from 'clsx'
+import {clsx} from 'clsx'
 import {ChevronLeftIcon, ChevronRightIcon} from '@primer/octicons-react'
 import {useTabs} from '../hooks/useTabs'
 import {useProvidedRefOrCreate} from '../hooks/useRef'

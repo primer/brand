@@ -1,5 +1,5 @@
 import React from 'react'
-import {Meta} from '@storybook/react'
+import type {Meta} from '@storybook/react'
 import {EyebrowBanner, EyebrowBannerIconColors, EyebrowBannerLabelColors} from '.'
 import {Stack} from '../Stack'
 import {MarkGithubIcon, SparkleFillIcon} from '@primer/octicons-react'

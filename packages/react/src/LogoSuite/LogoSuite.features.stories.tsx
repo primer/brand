@@ -1,5 +1,5 @@
 import React from 'react'
-import {Meta} from '@storybook/react'
+import type {Meta} from '@storybook/react'
 import {userEvent, within} from 'storybook/test'
 import {LogoSuite} from './LogoSuite'
 import {Grid} from '../Grid'

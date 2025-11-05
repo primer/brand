@@ -1,5 +1,5 @@
 import React, {useState, useEffect, DOMAttributes, useRef} from 'react'
-import clsx from 'clsx'
+import {clsx} from 'clsx'
 import {useId} from '../../../hooks/useId'
 
 import {VideoTooltip} from '../'

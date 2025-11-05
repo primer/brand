@@ -1,9 +1,9 @@
 'use client'
 import colors from '@primer/brand-primitives/lib/design-tokens/js/module/tokens/base/colors/light'
 import React from 'react'
-import {Box as PRCBox, Text, ThemeProvider as PRCThemeProvider} from '@primer/react'
+import {Box as PRCBox, ThemeProvider as PRCThemeProvider} from '@primer/react'
+import {Text} from '@primer/react-brand'
 import {readableColor} from 'color2k'
-// eslint-disable-next-line import/no-unresolved
 import {ColorModesEnum} from '../../../../../packages/react/src/ThemeProvider'
 import {useColorTheme} from './ColorThemeContext'
 
@@ -33,7 +33,6 @@ export function ColorScales() {
             <PRCBox
               key={`${key}-${value}`}
               sx={{
-                color: readableColor(value),
                 bg: value,
                 p: 2,
                 display: 'flex',
@@ -42,10 +41,12 @@ export function ColorScales() {
                 fontSize: 1,
               }}
             >
-              <Text>
+              <Text font="monospace" size="100" style={{color: readableColor(value)}}>
                 {name}.{key}
               </Text>
-              <Text>{value}</Text>
+              <Text font="monospace" size="100" style={{color: readableColor(value)}}>
+                {value}
+              </Text>
             </PRCBox>
           )
         })}

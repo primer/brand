@@ -1,5 +1,5 @@
 import React from 'react'
-import {Meta} from '@storybook/react'
+import type {Meta} from '@storybook/react'
 import {FormControl} from '.'
 import {CheckIcon, SearchIcon} from '@primer/octicons-react'
 import {Checkbox, Select, TextInput, Textarea, Radio} from '../'
@@ -206,7 +206,6 @@ export const TextInputPlayground = args => {
       {args.hint.length ? <FormControl.Hint>{args.hint}</FormControl.Hint> : null}
 
       {args.validationStatus && args.validationStatus === 'error' && (
-        // eslint-disable-next-line i18n-text/no-en
         <FormControl.Validation>{args.validationText || 'This is an error message'}</FormControl.Validation>
       )}
       {args.validationStatus && args.validationStatus === 'success' && (
@@ -238,7 +237,6 @@ export const TextareaPlayground = args => {
       {args.hint.length ? <FormControl.Hint>{args.hint}</FormControl.Hint> : null}
 
       {args.validationStatus && args.validationStatus === 'error' && (
-        // eslint-disable-next-line i18n-text/no-en
         <FormControl.Validation>{args.validationText || 'This is an error message'}</FormControl.Validation>
       )}
       {args.validationStatus && args.validationStatus === 'success' && (
@@ -273,7 +271,6 @@ export const SelectPlayground = args => {
       {args.hint.length ? <FormControl.Hint>{args.hint}</FormControl.Hint> : null}
 
       {args.validationStatus && args.validationStatus === 'error' && (
-        // eslint-disable-next-line i18n-text/no-en
         <FormControl.Validation>{args.validationText || 'This is an error message'}</FormControl.Validation>
       )}
       {args.validationStatus && args.validationStatus === 'success' && (
@@ -300,7 +297,6 @@ export const CheckboxPlayground = args => {
       {args.hint.length ? <FormControl.Hint>{args.hint}</FormControl.Hint> : null}
 
       {args.validationStatus && args.validationStatus === 'error' && (
-        // eslint-disable-next-line i18n-text/no-en
         <FormControl.Validation>{args.validationText || 'This is an error message'}</FormControl.Validation>
       )}
       {args.validationStatus && args.validationStatus === 'success' && (

@@ -1,7 +1,7 @@
 import {MoonIcon, SunIcon, ZapIcon} from '@primer/octicons-react'
 import React, {useEffect} from 'react'
 
-import clsx from 'clsx'
+import {clsx} from 'clsx'
 import {
   Box,
   Button,

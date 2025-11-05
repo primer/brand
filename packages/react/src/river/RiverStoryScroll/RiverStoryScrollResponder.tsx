@@ -2,7 +2,7 @@ import React, {useEffect, useRef} from 'react'
 import {useStoryScrollContext} from './RiverStoryScrollProvider' // Adjust the import path as necessary
 
 import styles from './RiverStoryScroll.module.css'
-import clsx from 'clsx'
+import {clsx} from 'clsx'
 
 type RiverStoryScrollResponderProps = {
   index: number

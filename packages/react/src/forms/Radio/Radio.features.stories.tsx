@@ -1,5 +1,5 @@
 import React from 'react'
-import {Meta, StoryFn} from '@storybook/react'
+import type {Meta, StoryFn} from '@storybook/react'
 import {Radio} from '.'
 import {FormControl, Stack, ThemeProvider} from '../..'
 

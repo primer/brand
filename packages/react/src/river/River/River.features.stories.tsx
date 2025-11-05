@@ -1,5 +1,5 @@
 import React from 'react'
-import {Meta, StoryFn} from '@storybook/react'
+import type {Meta, StoryFn} from '@storybook/react'
 import {River} from '.'
 import {Heading, Label, Link, Stack, Text, Timeline} from '../../'
 import {Container} from '../../component-helpers'

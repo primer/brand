@@ -1,5 +1,5 @@
 import React, {forwardRef, type Ref} from 'react'
-import clsx from 'clsx'
+import {clsx} from 'clsx'
 import {Button, FormControl} from '../'
 
 import styles from './CTAForm.module.css'

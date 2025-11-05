@@ -12,7 +12,7 @@ import React, {
   type RefObject,
   type SyntheticEvent,
 } from 'react'
-import clsx from 'clsx'
+import {clsx} from 'clsx'
 
 import {Heading, type HeadingProps} from '../'
 import {ChevronDownIcon, ChevronUpIcon} from '@primer/octicons-react'

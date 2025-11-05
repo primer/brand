@@ -1,5 +1,5 @@
 import React, {forwardRef, useMemo} from 'react'
-import clsx from 'clsx'
+import {clsx} from 'clsx'
 import {useId} from '../../hooks/useId'
 
 import type {BaseProps} from '../../component-helpers'
@@ -7,7 +7,7 @@ import type {FormInputSizes, FormValidationStatus} from '../form-types'
 import {Text} from '../../Text'
 
 import styles from './TextInput.module.css'
-import {Icon} from '@primer/octicons-react'
+import type {Icon} from '@primer/octicons-react'
 
 type VisualType = React.ReactElement | React.ReactNode | Icon
 
@@ -59,7 +59,7 @@ export type TextInputProps = {
 } & Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size' | 'type'> &
   BaseProps<HTMLInputElement>
 
-const _TextInput = (
+const TextInputInternal = (
   {
     className,
     disabled,
@@ -217,6 +217,6 @@ const _TextInput = (
   )
 }
 
-export const TextInput = forwardRef(_TextInput)
+export const TextInput = forwardRef(TextInputInternal)
 
 TextInput.displayName = 'TextInput'

@@ -1,5 +1,5 @@
 import React, {forwardRef, PropsWithChildren, useMemo} from 'react'
-import clsx from 'clsx'
+import {clsx} from 'clsx'
 import {Button, ButtonBaseProps} from '../Button'
 import {Heading, HeadingProps} from '../Heading'
 import {Text, TextSizes, TextWeightVariants, ResponsiveWeightMap, TextProps} from '../Text'

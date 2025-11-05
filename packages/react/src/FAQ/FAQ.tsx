@@ -1,6 +1,6 @@
 import React, {forwardRef, PropsWithChildren} from 'react'
 import {isFragment} from 'react-is'
-import clsx from 'clsx'
+import {clsx} from 'clsx'
 
 import {useAnimation, Heading, AccordionHeading, AccordionContent, AccordionRoot, HeadingProps} from '..'
 import type {BaseProps} from '../component-helpers'

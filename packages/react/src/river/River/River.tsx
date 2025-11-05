@@ -1,5 +1,5 @@
 import React, {forwardRef, PropsWithChildren, useMemo, type Ref} from 'react'
-import clsx from 'clsx'
+import {clsx} from 'clsx'
 import {Heading, LinkProps, HeadingProps, TextProps, Text, Link, useAnimation, Label, LabelProps} from '../../'
 
 import type {BaseProps} from '../../component-helpers'

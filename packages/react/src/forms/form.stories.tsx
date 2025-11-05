@@ -63,7 +63,6 @@ export const GitHubEnterprise = args => {
               <FormControl.Label>First name</FormControl.Label>
               <TextInput disabled={args.disabled} required autoComplete="given-name" />
               {args.validationStatus && args.validationStatus === 'error' && (
-                // eslint-disable-next-line i18n-text/no-en
                 <FormControl.Validation>{args.validationText || 'This is an error message'}</FormControl.Validation>
               )}
               {args.validationStatus && args.validationStatus === 'success' && (
@@ -74,7 +73,6 @@ export const GitHubEnterprise = args => {
               <FormControl.Label>Last name</FormControl.Label>
               <TextInput disabled={args.disabled} required autoComplete="family-name" />
               {args.validationStatus && args.validationStatus === 'error' && (
-                // eslint-disable-next-line i18n-text/no-en
                 <FormControl.Validation>{args.validationText || 'This is an error message'}</FormControl.Validation>
               )}
               {args.validationStatus && args.validationStatus === 'success' && (
@@ -87,7 +85,6 @@ export const GitHubEnterprise = args => {
             <FormControl.Label>Enterprise name</FormControl.Label>
             <TextInput disabled={args.disabled} required />
             {args.validationStatus && args.validationStatus === 'error' && (
-              // eslint-disable-next-line i18n-text/no-en
               <FormControl.Validation>{args.validationText || 'This is an error message'}</FormControl.Validation>
             )}
             {args.validationStatus && args.validationStatus === 'success' && (
@@ -99,7 +96,6 @@ export const GitHubEnterprise = args => {
             <FormControl.Label>Enterprise URL</FormControl.Label>
             <TextInput disabled={args.disabled} leadingText="github.com/" required />
             {args.validationStatus && args.validationStatus === 'error' && (
-              // eslint-disable-next-line i18n-text/no-en
               <FormControl.Validation>{args.validationText || 'This is an error message'}</FormControl.Validation>
             )}
             {args.validationStatus && args.validationStatus === 'success' && (
@@ -117,7 +113,6 @@ export const GitHubEnterprise = args => {
               <Select.Option value="uk">United Kingdom</Select.Option>
             </Select>
             {args.validationStatus && args.validationStatus === 'error' && (
-              // eslint-disable-next-line i18n-text/no-en
               <FormControl.Validation>{args.validationText || 'This is an error message'}</FormControl.Validation>
             )}
             {args.validationStatus && args.validationStatus === 'success' && (

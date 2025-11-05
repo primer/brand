@@ -1,5 +1,5 @@
 import React, {ReactHTML, ReactElement, forwardRef, useCallback, useMemo, Ref, PropsWithChildren} from 'react'
-import clsx from 'clsx'
+import {clsx} from 'clsx'
 import {useWindowSize, BreakpointSize} from '../hooks/useWindowSize'
 import type {BaseProps} from '../component-helpers'
 import findElementInChildren from '../findElementInChildren'
@@ -145,8 +145,12 @@ const Item = ({
   )
 
   if (!visualAsBackground && React.Children.toArray(children).length >= 1) {
-    flow === 'column' && bentoItemClassArray.push(styles['Bento-column-padding-override'])
-    flow === 'row' && bentoItemClassArray.push(styles['Bento-row-padding-override'])
+    if (flow === 'column') {
+      bentoItemClassArray.push(styles['Bento-column-padding-override'])
+    }
+    if (flow === 'row') {
+      bentoItemClassArray.push(styles['Bento-row-padding-override'])
+    }
   }
 
   const colorModeProp = colorMode ? {'data-color-mode': colorMode} : {}
