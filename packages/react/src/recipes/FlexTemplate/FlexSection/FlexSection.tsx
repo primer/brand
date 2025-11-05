@@ -194,7 +194,7 @@ export function FlexSection({component, className}: FlexSectionProps) {
             <Grid className={styles.normalizeMargin}>
               {(pillarsFields.heading || pillarsFields.description) && (
                 <Grid.Column span={12}>
-                  <Stack direction="vertical" gap="condensed">
+                  <Stack direction="vertical" gap="condensed" padding="none">
                     {pillarsFields.heading && (
                       <Heading as={pillarsFields.headingLevel ?? 'h3'} size="4">
                         {pillarsFields.heading}

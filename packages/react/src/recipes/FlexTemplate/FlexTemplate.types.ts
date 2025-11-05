@@ -1,7 +1,7 @@
 import type {ReactNode} from 'react'
 import type {CTABannerProps} from '../../CTABanner/CTABanner'
 import {BoxSpacingValues} from '../../Box/Box'
-import {Icon} from '@primer/octicons-react'
+import type {Icon} from '@primer/octicons-react'
 import {IconColor} from '../../Icon'
 import type {ColorMode} from '../../ThemeProvider'
 import {TestimonialProps} from '../../Testimonial'
@@ -254,9 +254,7 @@ export type FlexTemplatePricingOptionsConfig = {
   headingLevel?: 'h2' | 'h3' | 'h4'
 }
 
-export type FlexTemplateSegmentedControlPanelConfig = {
-  // Add configuration fields as needed
-}
+export type FlexTemplateSegmentedControlPanelConfig = Record<string, unknown>
 
 export type FlexTemplateTestimonialItem = {
   quote?: string

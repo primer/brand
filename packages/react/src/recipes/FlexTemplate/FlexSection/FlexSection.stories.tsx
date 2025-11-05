@@ -24,9 +24,9 @@ type FlexSectionStoryArgs = {
   sectionIntroHeading: string
   sectionIntroDescription: string
   sectionIntroStackedHeading: string
-  sectionIntroStackedItem1: string
-  sectionIntroStackedItem2: string
-  sectionIntroStackedItem3: string
+  sectionIntroStackedItem1: string | React.ReactNode
+  sectionIntroStackedItem2: string | React.ReactNode
+  sectionIntroStackedItem3: string | React.ReactNode
 
   showProse: boolean
   proseContent: string
@@ -253,14 +253,29 @@ const meta: Meta<FlexSectionStoryArgs> = {
 
     // Intro content
     showIntroContent: true,
-    introContentType: 'sectionIntro',
+    introContentType: 'sectionIntroStacked',
     sectionIntroAlign: 'center',
     sectionIntroHeading: 'Section Introduction',
     sectionIntroDescription: 'This section showcases all available FlexSection components',
-    sectionIntroStackedHeading: 'Stacked Introduction Heading',
-    sectionIntroStackedItem1: 'First key point about this section',
-    sectionIntroStackedItem2: 'Second important feature to highlight',
-    sectionIntroStackedItem3: 'Third benefit or characteristic',
+    sectionIntroStackedHeading: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+    sectionIntroStackedItem1: (
+      <>
+        <b>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</b> In sapien sit ullamcorper id. Aliquam luctus sed
+        turpis felis nam pulvinar risus elementum.
+      </>
+    ),
+    sectionIntroStackedItem2: (
+      <>
+        <b>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</b> In sapien sit ullamcorper id. Aliquam luctus sed
+        turpis felis nam pulvinar risus elementum.
+      </>
+    ),
+    sectionIntroStackedItem3: (
+      <>
+        <b>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</b> In sapien sit ullamcorper id. Aliquam luctus sed
+        turpis felis nam pulvinar risus elementum.
+      </>
+    ),
 
     // Prose content
     showProse: true,
