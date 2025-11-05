@@ -18,14 +18,14 @@ jobs:
     if: github.ref_name == 'main'
     name: Main
 
-    uses: primer/.github/.github/workflows/release.yml@9a17d09825dbc0d56439378f2a8da325c91855ba # SHA for security hardening. Points at v2.1.1 release
+    uses: primer/.github/.github/workflows/release.yml@9a17d09825dbc0d56439378f2a8da325c91855ba # SHA for security hardening. Points at v2.3.1 release
     secrets:
       gh_token: ${{ secrets.GPR_AUTH_TOKEN_SHARED }}
 
   release-next-minor:
     if: github.ref_name == 'next-minor'
     name: Next minor
-    uses: primer/.github/.github/workflows/release.yml@9a17d09825dbc0d56439378f2a8da325c91855ba # SHA for security hardening. Points at v2.1.1 release
+    uses: primer/.github/.github/workflows/release.yml@9a17d09825dbc0d56439378f2a8da325c91855ba # SHA for security hardening. Points at v2.3.1 release
     with:
       title: Release tracking (next minor)
     secrets:
@@ -124,7 +124,8 @@ jobs:
             })
 
   release-canary:
-    if: ${{ github.repository == 'primer/brand' && github.ref_name != 'main' && github.ref_name != 'next-minor' && github.ref_name != 'changeset-release/main' && github.ref_name != 'changeset-release/next-minor' }}
+    if: ${{ github.repository == 'primer/brand' && github.ref_name != 'main' && github.ref_name != 'next-minor' && !startsWith(github.ref_name, 'changeset-release/') }}
+
     name: Canary
     runs-on: ubuntu-latest
     steps:
