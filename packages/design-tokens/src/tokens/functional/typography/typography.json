@@ -33,7 +33,48 @@
         "value": "var(--base-text-weight-semibold)"
       },
       "700": {
-        "value": "var(--base-text-weight-semibold)"
+        "value": "var(--base-text-weight-semibold)",
+        "responsive": {
+          "768px": {
+            "value": "var(--base-text-weight-semibold)"
+          },
+          "1012px": {
+            "value": "var(--base-text-weight-regular)"
+          }
+        }
+      },
+      "800": {
+        "value": "var(--base-text-weight-normal)",
+        "responsive": {
+          "768px": {
+            "value": "var(--base-text-weight-normal)"
+          },
+          "1012px": {
+            "value": "var(--base-text-weight-light)"
+          }
+        }
+      },
+      "900": {
+        "value": "var(--base-text-weight-normal)",
+        "responsive": {
+          "768px": {
+            "value": "var(--base-text-weight-light)"
+          },
+          "1012px": {
+            "value": "var(--base-text-weight-light)"
+          }
+        }
+      },
+      "1000": {
+        "value": "var(--base-text-weight-light)",
+        "responsive": {
+          "768px": {
+            "value": "var(--base-text-weight-light)"
+          },
+          "1012px": {
+            "value": "var(--base-text-weight-extralight)"
+          }
+        }
       }
     },
     "letterSpacing": {
@@ -59,37 +100,89 @@
   "text": {
     "weight": {
       "100": {
-        "value": "var(--base-text-weight-normal)"
+        "value": "var(--base-text-weight-regular)"
       },
       "200": {
-        "value": "var(--base-text-weight-normal)"
+        "value": "var(--base-text-weight-regular)"
       },
       "300": {
-        "value": "var(--base-text-weight-normal)"
+        "value": "var(--base-text-weight-regular)"
       },
       "350": {
-        "value": "var(--base-text-weight-semibold)"
+        "value": "var(--base-text-weight-medium)",
+        "responsive": {
+          "768px": {
+            "value": "var(--base-text-weight-semibold)"
+          }
+        }
       },
       "400": {
-        "value": "var(--base-text-weight-semibold)"
+        "value": "var(--base-text-weight-semibold)",
+        "responsive": {
+          "768px": {
+            "value": "var(--base-text-weight-semibold)"
+          }
+        }
       },
       "500": {
-        "value": "var(--base-text-weight-semibold)"
+        "value": "var(--base-text-weight-semibold)",
+        "responsive": {
+          "768px": {
+            "value": "var(--base-text-weight-semibold)"
+          }
+        }
       },
       "600": {
-        "value": "var(--base-text-weight-semibold)"
+        "value": "var(--base-text-weight-semibold)",
+        "responsive": {
+          "768px": {
+            "value": "var(--base-text-weight-semibold)"
+          }
+        }
       },
       "700": {
-        "value": "var(--base-text-weight-semibold)"
+        "value": "var(--base-text-weight-semibold)",
+        "responsive": {
+          "768px": {
+            "value": "var(--base-text-weight-semibold)"
+          },
+          "1012px": {
+            "value": "var(--base-text-weight-regular)"
+          }
+        }
       },
       "800": {
-        "value": "var(--base-text-weight-semibold)"
+        "value": "var(--base-text-weight-normal)",
+        "responsive": {
+          "768px": {
+            "value": "var(--base-text-weight-normal)"
+          },
+          "1012px": {
+            "value": "var(--base-text-weight-light)"
+          }
+        }
       },
       "900": {
-        "value": "var(--base-text-weight-semibold)"
+        "value": "var(--base-text-weight-normal)",
+        "responsive": {
+          "768px": {
+            "value": "var(--base-text-weight-light)"
+          },
+          "1012px": {
+            "value": "var(--base-text-weight-light)"
+          }
+        }
       },
       "1000": {
-        "value": "var(--base-text-weight-bold)"
+        "value": "var(--base-text-weight-light)",
+        "responsive": {
+          "768px": {
+            "value": "var(--base-text-weight-light)"
+          },
+          "1012px": {
+            "value": "var(--base-text-weight-extralight)"
+          }
+        }
       }
     },
     "size": {
@@ -113,16 +206,22 @@
       "400": {
         "value": "20px",
         "responsive": {
+          "768px": {
+            "value": "20px"
+          },
           "1012px": {
-            "value": "24px"
+            "value": "22px"
           }
         }
       },
       "500": {
         "value": "22px",
         "responsive": {
+          "768px": {
+            "value": "24px"
+          },
           "1012px": {
-            "value": "32px"
+            "value": "28px"
           }
         }
       },
@@ -130,10 +229,10 @@
         "value": "24px",
         "responsive": {
           "768px": {
-            "value": "32px"
+            "value": "28px"
           },
           "1012px": {
-            "value": "40px"
+            "value": "34px"
           }
         }
       },
@@ -141,10 +240,10 @@
         "value": "28px",
         "responsive": {
           "768px": {
-            "value": "36px"
+            "value": "34px"
           },
           "1012px": {
-            "value": "48px"
+            "value": "40px"
           }
         }
       },
@@ -152,10 +251,10 @@
         "value": "32px",
         "responsive": {
           "768px": {
-            "value": "36px"
+            "value": "40px"
           },
           "1012px": {
-            "value": "64px"
+            "value": "48px"
           }
         }
       },
@@ -166,7 +265,7 @@
             "value": "48px"
           },
           "1012px": {
-            "value": "72px"
+            "value": "56px"
           }
         }
       },
@@ -174,10 +273,10 @@
         "value": "40px",
         "responsive": {
           "768px": {
-            "value": "64px"
+            "value": "56px"
           },
           "1012px": {
-            "value": "96px"
+            "value": "64px"
           }
         }
       }
@@ -193,21 +292,21 @@
         "value": "1.5"
       },
       "350": {
-        "value": "1.3"
+        "value": "1.5"
       },
       "400": {
-        "value": "1.3"
+        "value": "1.4"
       },
       "500": {
         "value": "1.3",
         "responsive": {
           "1012px": {
-            "value": "1.2"
+            "value": "1.35"
           }
         }
       },
       "600": {
-        "value": "1.2"
+        "value": "1.3"
       },
       "700": {
         "value": "1.2"
@@ -215,70 +314,63 @@
       "800": {
         "value": "1.2",
         "responsive": {
+          "768px": {
+            "value": "1.2"
+          },
           "1012px": {
-            "value": "1"
+            "value": "1.18"
           }
         }
       },
       "900": {
-        "value": "1.1",
+        "value": "1.2",
         "responsive": {
           "768px": {
-            "value": "1.05"
+            "value": "1.2"
           },
           "1012px": {
-            "value": "1"
+            "value": "1.1"
           }
         }
       },
       "1000": {
-        "value": "1.1",
+        "value": "1.149",
         "responsive": {
           "768px": {
-            "value": "1.05"
+            "value": "1.08"
           },
           "1012px": {
-            "value": "1"
+            "value": "1.08"
           }
         }
       }
     },
     "letterSpacing": {
       "400": {
-        "value": "-0.01em"
+        "value": "0"
       },
       "500": {
-        "value": "-0.01em"
+        "value": "0"
       },
       "600": {
-        "value": "-0.02em"
+        "value": "0"
       },
       "700": {
-        "value": "-0.02em",
-        "responsive": {
-          "1012px": {
-            "value": "-0.03em"
-          }
-        }
+        "value": "0"
       },
       "800": {
-        "value": "-0.02em",
-        "responsive": {
-          "1012px": {
-            "value": "-0.03em"
-          }
-        }
+        "value": "0"
       },
       "900": {
-        "value": "-0.02em",
-        "responsive": {
-          "768px": {
-            "value": "-0.03em"
-          }
-        }
+        "value": "0"
       },
       "1000": {
-        "value": "-0.03em"
+        "value": "0",
+        "responsive": {
+          "1012px": {
+            "value": "-0.035em"
+          }
+        }
       }
     },
     "style": {

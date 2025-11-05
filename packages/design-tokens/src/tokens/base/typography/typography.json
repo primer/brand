@@ -3,27 +3,78 @@
     "text": {
       "weight": {
         "extralight": {
-          "value": 200
+          "value": 400
         },
         "light": {
-          "value": 300
+          "value": 425
+        },
+        "regular": {
+          "value": 450
         },
         "normal": {
-          "value": 450
+          "value": 475
         },
         "medium": {
           "value": 500
         },
         "semibold": {
-          "value": 600
+          "value": 525
         },
         "bold": {
-          "value": 700
+          "value": 537
         },
         "extrabold": {
-          "value": 800
+          "value": 543
         },
         "heavy": {
+          "value": 550
+        },
+        "410": {
+          "value": 410
+        },
+        "425": {
+          "value": 425
+        },
+        "450": {
+          "value": 450
+        },
+        "460": {
+          "value": 460
+        },
+        "480": {
+          "value": 480
+        },
+        "500": {
+          "value": 500
+        },
+        "550": {
+          "value": 550
+        },
+        "legacy-extralight": {
+          "value": 200
+        },
+        "legacy-light": {
+          "value": 300
+        },
+        "legacy-regular": {
+          "value": 400
+        },
+        "legacy-normal": {
+          "value": 450
+        },
+        "legacy-medium": {
+          "value": 500
+        },
+        "legacy-semibold": {
+          "value": 600
+        },
+        "legacy-bold": {
+          "value": 700
+        },
+        "legacy-extrabold": {
+          "value": 800
+        },
+        "legacy-heavy": {
           "value": 900
         }
       }
