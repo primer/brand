@@ -5,4 +5,4 @@ echo "$( jq '.version = "0.0.0"' package.json )" > package.json
 echo -e "---\n$( jq .name package.json ): patch\n---\n\nFake entry to force publishing" > ../../.changeset/force-snapshot-release.md
 
 cd ../../
-yarn changeset version --snapshot
+npx changeset version --snapshot
