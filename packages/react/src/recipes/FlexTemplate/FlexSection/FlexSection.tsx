@@ -22,9 +22,11 @@ import {
   RiverStoryScroll,
   Section,
   SectionIntro,
+  SectionIntroStacked,
   Stack,
   Statistic,
   Text,
+  useTheme,
 } from '../../..'
 
 import pinterestLogo from '../../../fixtures/images/logos/pinterest.png'
@@ -35,16 +37,25 @@ import vercelLogo from '../../../fixtures/images/logos/vercel.png'
 import placeholderImage from '../../../fixtures/images/placeholder.png'
 import lightNarrowBg from '../../../fixtures/images/light-vertical-banner.png'
 import lightWideBg from '../../../fixtures/images/light-horizontal-banner.png'
+import darkNarrowBg from '../../../fixtures/images/dark-vertical-banner.png'
+import darkWideBg from '../../../fixtures/images/dark-horizontal-banner.png'
 
 import styles from './FlexSection.module.css'
 import {FlexSectionTestimonials, ContentfulRiver, ContentfulRiverBreakout, ContentfulRiverAccordion} from './components'
+import type {
+  FlexTemplatePillarsConfig,
+  FlexTemplateRiverItem,
+  FlexTemplateSection,
+  FlexTemplateTestimonialsConfig,
+} from '../FlexTemplate.types'
 
 type FlexSectionProps = {
-  component
+  component: FlexTemplateSection
   className?: string
 }
 
 export function FlexSection({component, className}: FlexSectionProps) {
+  const {colorMode} = useTheme()
   const [selectedSegmentedControlItem, setSelectedSegmentedControlItem] = React.useState(0)
   const {
     breakoutBanner,
@@ -52,17 +63,20 @@ export function FlexSection({component, className}: FlexSectionProps) {
     featuredBento,
     id,
     anchorNav,
-    introContent,
     logoSuite,
     pillars,
     prose,
     pricingOptions,
     rivers,
+    sectionIntro,
+    sectionIntroStacked,
     segmentedControlPanel,
     statistics,
     testimonials,
     visualSettings,
-  } = component.fields
+  } = component
+
+  const testimonialsFields = testimonials as FlexTemplateTestimonialsConfig | undefined
 
   const {
     backgroundColor = 'default',
@@ -73,28 +87,33 @@ export function FlexSection({component, className}: FlexSectionProps) {
     backgroundImage,
     backgroundImagePosition,
     backgroundImageSize,
-    testimonialBackgroundImageVariant,
     hasBorderBottom = false,
     enableRiverStoryScroll = false,
-  } = visualSettings?.fields ?? {}
+  } = visualSettings ?? {}
+
+  const pillarsFields = pillars as FlexTemplatePillarsConfig | undefined
 
   return (
     <Section
-      className={clsx(className, styles.section, testimonialBackgroundImageVariant && 'overflow-hidden')}
+      className={clsx(
+        className,
+        styles.section,
+        testimonialsFields?.['variant'] === 'frosted-glass' && styles['overflow-hidden'],
+      )}
       backgroundColor={backgroundColor}
-      backgroundImageSrc={backgroundImage?.fields.file.url}
+      backgroundImageSrc={backgroundImage?.file.url}
       backgroundImagePosition={backgroundImagePosition}
       backgroundImageSize={backgroundImageSize}
-      paddingBlockStart={paddingBlockStart}
-      paddingBlockEnd="none"
       rounded={roundedCorners}
       id={id}
+      paddingBlockEnd="none"
+      paddingBlockStart={paddingBlockStart === 'none' ? 'none' : paddingBlockStart}
     >
       <Box
         borderBlockEndWidth="thin"
         borderColor="muted"
         borderStyle={hasBorderBottom ? 'solid' : 'none'}
-        className={styles[`paddingBottom-${paddingBlockEnd}`]}
+        paddingBlockEnd={paddingBlockEnd}
       >
         <Stack padding="none" gap={verticalGap} direction="vertical">
           {anchorNav && (
@@ -108,181 +127,143 @@ export function FlexSection({component, className}: FlexSectionProps) {
             </AnchorNav>
           )}
 
-          {introContent && (
-            <>
-              {introContent.sys.contentType.sys.id === 'introStackedItems' && (
-                <Box marginBlockEnd={40} style={{['--brand-Grid-spacing-row' as string]: 'var(--base-size-48)'}}>
-                  <Grid>
-                    <Grid.Column span={{large: 5}}>
-                      <Box className={styles.sectionIntro}>
-                        <Heading className={styles.stackedItemHeading} as="h2">
-                          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                        </Heading>
-                        <Link href="#">Learn more</Link>
-                      </Box>
-                    </Grid.Column>
-                    <Grid.Column span={{large: 6}} start={{large: 7}}>
-                      <Stack direction="vertical" padding="none">
-                        <Text as="p" className={styles.stackedItemText} variant="muted">
-                          <Text className={styles.stackedItemText} weight="semibold">
-                            Lorem ipsum dolor sit amet,
-                          </Text>{' '}
-                          consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis felis nam
-                          pulvinar.
-                        </Text>
-                        <Text as="p" className={styles.stackedItemText} variant="muted">
-                          <Text className={styles.stackedItemText} weight="semibold">
-                            Lorem ipsum dolor sit amet,
-                          </Text>{' '}
-                          consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis felis nam
-                          pulvinar.
-                        </Text>
-                        <Text as="p" className={styles.stackedItemText} variant="muted">
-                          <Text className={styles.stackedItemText} weight="semibold">
-                            Lorem ipsum dolor sit amet,
-                          </Text>{' '}
-                          consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis felis nam
-                          pulvinar.
-                        </Text>
-                      </Stack>
-                    </Grid.Column>
-                  </Grid>
-                </Box>
-              )}
-
-              {introContent.sys.contentType.sys.id === 'primerComponentSectionIntro' && (
-                <Grid className={styles.sectionIntro}>
-                  <Grid.Column>
-                    <SectionIntro className={styles.normalizePadding} align="start" fullWidth={false}>
-                      <SectionIntro.Label size="medium" color="default">
-                        ContentfulSectionIntro
-                      </SectionIntro.Label>
-                      <SectionIntro.Heading size="3">
-                        Lorem ipsum dolor sit amet, <em>consectetur adipiscing elit</em>
-                      </SectionIntro.Heading>
-                      <SectionIntro.Description>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut
-                        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                        laboris nisi ut aliquip ex ea commodo consequat.
-                      </SectionIntro.Description>
-                      <SectionIntro.Link variant="accent" href="#">
-                        Learn more about our features
-                      </SectionIntro.Link>
-                    </SectionIntro>
-                  </Grid.Column>
-                </Grid>
-              )}
-            </>
+          {sectionIntroStacked && (
+            <Grid className={styles.sectionIntro}>
+              <Grid.Column>
+                <SectionIntroStacked className={styles.normalizePadding}>
+                  {sectionIntroStacked.heading ? (
+                    <SectionIntroStacked.Heading size={sectionIntroStacked.headingSize ?? '5'}>
+                      {sectionIntroStacked.heading}
+                    </SectionIntroStacked.Heading>
+                  ) : null}
+                  {sectionIntroStacked.linkText && sectionIntroStacked.linkHref ? (
+                    <SectionIntroStacked.Link
+                      variant={sectionIntroStacked.linkVariant ?? 'accent'}
+                      href={sectionIntroStacked.linkHref}
+                    >
+                      {sectionIntroStacked.linkText}
+                    </SectionIntroStacked.Link>
+                  ) : null}
+                  {sectionIntroStacked.items && sectionIntroStacked.items.length > 0 ? (
+                    <SectionIntroStacked.Items>
+                      {sectionIntroStacked.items.map((item, index) => (
+                        <SectionIntroStacked.Item key={index}>{item.text}</SectionIntroStacked.Item>
+                      ))}
+                    </SectionIntroStacked.Items>
+                  ) : null}
+                </SectionIntroStacked>
+              </Grid.Column>
+            </Grid>
           )}
 
-          {pillars && (
+          {sectionIntro && (
+            <Grid className={styles.sectionIntro}>
+              <Grid.Column>
+                <SectionIntro
+                  className={styles.normalizePadding}
+                  align={sectionIntro.align ?? 'start'}
+                  fullWidth={sectionIntro.fullWidth ?? false}
+                >
+                  {sectionIntro.label ? (
+                    <SectionIntro.Label
+                      size={sectionIntro.labelSize ?? 'medium'}
+                      color={sectionIntro.labelColor ?? 'default'}
+                    >
+                      {typeof sectionIntro.label === 'string' ? sectionIntro.label : sectionIntro.label.text}
+                    </SectionIntro.Label>
+                  ) : null}
+                  {sectionIntro.heading ? (
+                    <SectionIntro.Heading size={sectionIntro.headingSize ?? '3'}>
+                      {sectionIntro.heading}
+                    </SectionIntro.Heading>
+                  ) : null}
+                  {sectionIntro.description ? (
+                    <SectionIntro.Description>{sectionIntro.description}</SectionIntro.Description>
+                  ) : null}
+                  {sectionIntro.linkText && sectionIntro.linkHref ? (
+                    <SectionIntro.Link variant={sectionIntro.linkVariant ?? 'accent'} href={sectionIntro.linkHref}>
+                      {sectionIntro.linkText}
+                    </SectionIntro.Link>
+                  ) : null}
+                </SectionIntro>
+              </Grid.Column>
+            </Grid>
+          )}
+
+          {pillars && pillarsFields?.items && (
             <Grid className={styles.normalizeMargin}>
-              <Grid.Column
-                span={{
-                  xsmall: 12,
-                  small: 12,
-                  medium: 6,
-                  large: 4,
-                  xlarge: 4,
-                  xxlarge: 4,
-                }}
-              >
-                <Box
-                  borderRadius="large"
-                  paddingBlockStart={32}
-                  paddingBlockEnd={40}
-                  backgroundColor={backgroundColor === 'default' ? 'subtle' : 'default'}
-                  style={{
-                    height: '100%',
-                    paddingInlineStart: 32,
-                    paddingInlineEnd: 32,
-                  }}
-                >
-                  <Pillar align="start">
-                    <Pillar.Icon color="default" icon={<ZapIcon />} />
-                    <Pillar.Heading as="h3">Powerful Performance</Pillar.Heading>
-                    <Pillar.Description>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut
-                      labore et dolore magna aliqua.
-                    </Pillar.Description>
-                    <Pillar.Link href="#">Learn more</Pillar.Link>
-                  </Pillar>
-                </Box>
-              </Grid.Column>
-              <Grid.Column
-                span={{
-                  xsmall: 12,
-                  small: 12,
-                  medium: 6,
-                  large: 4,
-                  xlarge: 4,
-                  xxlarge: 4,
-                }}
-              >
-                <Box
-                  borderRadius="large"
-                  paddingBlockStart={32}
-                  paddingBlockEnd={40}
-                  backgroundColor={backgroundColor === 'default' ? 'subtle' : 'default'}
-                  style={{
-                    height: '100%',
-                    paddingInlineStart: 32,
-                    paddingInlineEnd: 32,
-                  }}
-                >
-                  <Pillar align="start">
-                    <Pillar.Icon color="default" icon={<ZapIcon />} />
-                    <Pillar.Heading as="h3">Easy Integration</Pillar.Heading>
-                    <Pillar.Description>
-                      Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                      consequat.
-                    </Pillar.Description>
-                    <Pillar.Link href="#">Get started</Pillar.Link>
-                  </Pillar>
-                </Box>
-              </Grid.Column>
-              <Grid.Column
-                span={{
-                  xsmall: 12,
-                  small: 12,
-                  medium: 6,
-                  large: 4,
-                  xlarge: 4,
-                  xxlarge: 4,
-                }}
-              >
-                <Box
-                  borderRadius="large"
-                  paddingBlockStart={32}
-                  paddingBlockEnd={40}
-                  backgroundColor={backgroundColor === 'default' ? 'subtle' : 'default'}
-                  style={{
-                    height: '100%',
-                    paddingInlineStart: 32,
-                    paddingInlineEnd: 32,
-                  }}
-                >
-                  <Pillar align="start">
-                    <Pillar.Icon color="default" icon={<ZapIcon />} />
-                    <Pillar.Heading as="h3">Secure & Reliable</Pillar.Heading>
-                    <Pillar.Description>
-                      Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-                      pariatur.
-                    </Pillar.Description>
-                    <Pillar.Link href="#">Read more</Pillar.Link>
-                  </Pillar>
-                </Box>
-              </Grid.Column>
+              {(pillarsFields.heading || pillarsFields.description) && (
+                <Grid.Column span={12}>
+                  <Stack direction="vertical" gap="condensed" padding="none">
+                    {pillarsFields.heading && (
+                      <Heading as={pillarsFields.headingLevel ?? 'h3'} size="4">
+                        {pillarsFields.heading}
+                      </Heading>
+                    )}
+                    {pillarsFields.description && (
+                      <Text variant="muted" size="300">
+                        {pillarsFields.description}
+                      </Text>
+                    )}
+                  </Stack>
+                </Grid.Column>
+              )}
+
+              {pillarsFields.items.map((pillarItem, index) => {
+                const heading = pillarItem.heading ?? pillarItem.title
+                const itemBackgroundColor =
+                  pillarItem.backgroundColor ??
+                  pillarsFields.itemBackgroundColor ??
+                  (backgroundColor === 'default' ? 'subtle' : 'default')
+
+                return (
+                  <Grid.Column
+                    key={heading ?? pillarItem.description ?? `pillar-${index}`}
+                    span={{xsmall: 12, small: 12, medium: 6, large: 4, xlarge: 4, xxlarge: 4}}
+                  >
+                    <Box
+                      className={styles.heightFull}
+                      borderRadius="large"
+                      paddingBlockStart={32}
+                      paddingBlockEnd={40}
+                      paddingInlineStart={32}
+                      paddingInlineEnd={32}
+                      backgroundColor={itemBackgroundColor}
+                    >
+                      <Pillar
+                        align={pillarItem.align ?? pillarsFields.align ?? 'start'}
+                        hasBorder={pillarItem.hasBorder ?? false}
+                      >
+                        {pillarItem.icon && (
+                          <Pillar.Icon color={pillarItem.iconColor ?? 'default'} icon={pillarItem.icon} />
+                        )}
+                        {heading && (
+                          <Pillar.Heading as={pillarItem.headingLevel ?? pillarsFields.headingLevel ?? 'h3'}>
+                            {heading}
+                          </Pillar.Heading>
+                        )}
+                        {pillarItem.description && <Pillar.Description>{pillarItem.description}</Pillar.Description>}
+                        {pillarItem.linkHref && pillarItem.linkText && (
+                          <Pillar.Link href={pillarItem.linkHref}>{pillarItem.linkText}</Pillar.Link>
+                        )}
+                      </Pillar>
+                    </Box>
+                  </Grid.Column>
+                )
+              })}
             </Grid>
           )}
 
           {logoSuite && (
             <Grid className={styles.normalizeMargin}>
               <Grid.Column>
-                <LogoSuite align="start">
-                  <LogoSuite.Heading as="h3" size="6">
-                    Trusted by devs across the world
-                  </LogoSuite.Heading>
+                <LogoSuite align="start" hasDivider={false}>
+                  {logoSuite.heading && (
+                    <LogoSuite.Heading as="h3" size="6">
+                      {logoSuite.heading}
+                    </LogoSuite.Heading>
+                  )}
+
                   <LogoSuite.Logobar variant="muted" marquee={process.env.NODE_ENV !== 'test'}>
                     <Image alt="Uber" src={uberLogo} />
                     <Image alt="Vercel" src={vercelLogo} />
@@ -297,66 +278,34 @@ export function FlexSection({component, className}: FlexSectionProps) {
 
           {cards && (
             <Grid className={styles.normalizeMargin}>
-              <Grid.Column
-                span={{
-                  xsmall: 12,
-                  small: 12,
-                  medium: 6,
-                  large: 4,
-                  xlarge: 4,
-                  xxlarge: 4,
-                }}
-              >
-                <Box className={styles.heightFull}>
-                  <Card href="#" hasBorder={false} fullWidth>
-                    <Card.Image src={placeholderImage} alt="Placeholder card image" aspectRatio="16:9" />
-                    <Card.Heading>Card Title One</Card.Heading>
-                    <Card.Description>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt.
-                    </Card.Description>
-                  </Card>
-                </Box>
-              </Grid.Column>
-              <Grid.Column
-                span={{
-                  xsmall: 12,
-                  small: 12,
-                  medium: 6,
-                  large: 4,
-                  xlarge: 4,
-                  xxlarge: 4,
-                }}
-              >
-                <Box className={styles.heightFull}>
-                  <Card href="#" hasBorder={false} fullWidth>
-                    <Card.Image src={placeholderImage} alt="Placeholder card image" aspectRatio="16:9" />
-                    <Card.Heading>Card Title Two</Card.Heading>
-                    <Card.Description>
-                      Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip.
-                    </Card.Description>
-                  </Card>
-                </Box>
-              </Grid.Column>
-              <Grid.Column
-                span={{
-                  xsmall: 12,
-                  small: 12,
-                  medium: 6,
-                  large: 4,
-                  xlarge: 4,
-                  xxlarge: 4,
-                }}
-              >
-                <Box className={styles.heightFull}>
-                  <Card href="#" hasBorder={false} fullWidth>
-                    <Card.Image src={placeholderImage} alt="Placeholder card image" aspectRatio="16:9" />
-                    <Card.Heading>Card Title Three</Card.Heading>
-                    <Card.Description>
-                      Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore.
-                    </Card.Description>
-                  </Card>
-                </Box>
-              </Grid.Column>
+              {(cards.items && cards.items.length > 0 ? cards.items : Array(3).fill({})).map((card, index) => (
+                <Grid.Column
+                  key={index}
+                  span={{
+                    xsmall: 12,
+                    small: 12,
+                    medium: 6,
+                    large: 4,
+                    xlarge: 4,
+                    xxlarge: 4,
+                  }}
+                >
+                  <Box className={styles.heightFull}>
+                    <Card href={card.href ?? '#'} hasBorder={false} fullWidth>
+                      <Card.Image
+                        src={card.imageSrc ?? placeholderImage}
+                        // eslint-disable-next-line i18n-text/no-en
+                        alt={card.imageAlt ?? 'Placeholder card image'}
+                        aspectRatio="16:9"
+                      />
+                      {/* eslint-disable-next-line i18n-text/no-en */}
+                      <Card.Heading>{card.heading ?? `Card Title ${index + 1}`}</Card.Heading>
+                      {/* eslint-disable-next-line i18n-text/no-en */}
+                      <Card.Description>{card.description ?? 'Card description'}</Card.Description>
+                    </Card>
+                  </Box>
+                </Grid.Column>
+              ))}
             </Grid>
           )}
 
@@ -381,7 +330,7 @@ export function FlexSection({component, className}: FlexSectionProps) {
                       <Bento.Content
                         className={styles.featuredBentoContent}
                         leadingVisual={
-                          featuredBento.fields.showIcon ? (
+                          featuredBento.showIcon ? (
                             <Icon icon={GlobeIcon} color="purple" size="medium" hasBackground />
                           ) : undefined
                         }
@@ -390,9 +339,13 @@ export function FlexSection({component, className}: FlexSectionProps) {
                           small: 'spacious',
                         }}
                       >
-                        <Bento.Heading as={featuredBento.fields.headingLevel} size="4">
-                          <em>Lorem ipsum dolor sit</em> amet consectetur adipiscing elit
-                          {featuredBento.fields.showFootnotes ? (
+                        <Bento.Heading as={featuredBento.headingLevel} size="4">
+                          {featuredBento.heading ?? (
+                            <>
+                              <em>Lorem ipsum dolor sit</em> amet consectetur adipiscing elit
+                            </>
+                          )}
+                          {featuredBento.showFootnotes ? (
                             <>
                               {' '}
                               <InlineLink
@@ -406,13 +359,18 @@ export function FlexSection({component, className}: FlexSectionProps) {
                             </>
                           ) : null}
                         </Bento.Heading>
-                        <Link href="#" variant="accent">
-                          Learn more
+                        <Link href={featuredBento.linkHref ?? '#'} variant="accent">
+                          {/* eslint-disable-next-line i18n-text/no-en  */}
+                          {featuredBento.linkText ?? 'Learn more'}
                         </Link>
                       </Bento.Content>
                       <Bento.Visual className={styles.featuredBentoVisual} position="50% 100%" padding="normal">
                         <picture className={styles.imageFillMedia}>
-                          <img className={styles.imageFillMedia} src={placeholderImage} alt="Placeholder" />
+                          <img
+                            className={styles.imageFillMedia}
+                            src={featuredBento.imageSrc ?? placeholderImage}
+                            alt={featuredBento.imageAlt ?? 'Placeholder'}
+                          />
                         </picture>
                       </Bento.Visual>
                     </Bento.Item>
@@ -422,48 +380,54 @@ export function FlexSection({component, className}: FlexSectionProps) {
             </Grid>
           )}
 
-          {prose && (
+          {prose && prose.content && (
             <Grid className={styles.normalizeMargin}>
               <Grid.Column>
-                <Prose html={prose.fields.content} />
+                <Prose html={prose.content} />
               </Grid.Column>
             </Grid>
           )}
 
-          {rivers && (
+          {rivers && rivers.length > 0 && (
             <RiverStoryScroll disabled={!enableRiverStoryScroll}>
-              {rivers.fields.type === 'riverAccordion'
-                ? [
+              {rivers.map((river: FlexTemplateRiverItem, i: number) => {
+                const riverType = river.type ?? 'river'
+
+                if (riverType === 'riverAccordion') {
+                  return (
                     <ContentfulRiverAccordion
-                      key="0"
-                      className={clsx(styles.normalizeMargin, styles.normalizePadding, 'px-3')}
-                      rivers={rivers}
-                    />,
-                  ]
-                : rivers.fields.type === 'riverBreakout'
-                ? Array.from({length: 3}).map((_, i) => (
+                      key={i}
+                      className={clsx(styles.normalizeMargin, styles.normalizePadding, styles['px-3'])}
+                      rivers={river}
+                    />
+                  )
+                }
+
+                if (riverType === 'riverBreakout') {
+                  return (
                     <ContentfulRiverBreakout
                       key={i}
-                      className={clsx(styles.normalizeMargin, styles.normalizePadding, 'px-3', {
-                        [styles.riverBreakoutNoCta]: !rivers.fields.riverHasCta,
+                      className={clsx(styles.normalizeMargin, styles.normalizePadding, styles['px-3'], {
+                        [styles.riverBreakoutNoCta]: !river.ctaText,
                       })}
-                      rivers={rivers}
+                      rivers={river}
                     />
-                  ))
-                : rivers.fields.type === 'river'
-                ? Array.from({length: 3}).map((_, i) => (
-                    <ContentfulRiver
-                      key={i}
-                      className={clsx(styles.normalizeMargin, styles.normalizePadding, 'px-3')}
-                      rivers={rivers}
-                    />
-                  ))
-                : []}
+                  )
+                }
+
+                return (
+                  <ContentfulRiver
+                    key={i}
+                    className={clsx(styles.normalizeMargin, styles.normalizePadding, styles['px-3'])}
+                    river={river}
+                  />
+                )
+              })}
             </RiverStoryScroll>
           )}
 
-          {testimonials && testimonials.fields.testimonialCount > 0 && (
-            <FlexSectionTestimonials testimonials={testimonials} className={styles.normalizeMargin} />
+          {testimonialsFields && testimonialsFields.testimonialCount && testimonialsFields.testimonialCount > 0 && (
+            <FlexSectionTestimonials testimonials={testimonialsFields} className={styles.normalizeMargin} />
           )}
 
           {breakoutBanner && (
@@ -471,19 +435,19 @@ export function FlexSection({component, className}: FlexSectionProps) {
               <Grid.Column>
                 <BreakoutBanner
                   className={clsx(styles.wrapper, styles.normalizeMargin)}
-                  align={breakoutBanner.fields.align}
+                  align={breakoutBanner.align}
                   backgroundColor={backgroundColor}
                   backgroundImageSrc={{
-                    narrow: lightNarrowBg,
-                    regular: lightWideBg,
-                    wide: lightWideBg,
+                    narrow: colorMode === 'dark' ? darkNarrowBg : lightNarrowBg,
+                    regular: colorMode === 'dark' ? darkWideBg : lightWideBg,
+                    wide: colorMode === 'dark' ? darkWideBg : lightWideBg,
                   }}
                   backgroundImagePosition={{
                     narrow: 'bottom',
                     regular: 'right',
                     wide: 'right',
                   }}
-                  {...(breakoutBanner.fields.showLogo && {
+                  {...(breakoutBanner.showLogo && {
                     leadingVisual: (
                       <Box className={styles.logoWrapper}>
                         <img
@@ -495,9 +459,9 @@ export function FlexSection({component, className}: FlexSectionProps) {
                     ),
                   })}
                 >
-                  <BreakoutBanner.Heading as={breakoutBanner.fields.headingLevel}>
+                  <BreakoutBanner.Heading as={breakoutBanner.headingLevel}>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    {breakoutBanner.fields.showFootnotes ? (
+                    {breakoutBanner.showFootnotes ? (
                       <>
                         {' '}
                         <InlineLink
@@ -521,54 +485,61 @@ export function FlexSection({component, className}: FlexSectionProps) {
 
           {statistics && (
             <Grid className={styles.normalizeMargin} fullWidth>
-              {Array(statistics.fields.count)
-                .fill(null)
-                .map((_, i) => (
-                  <Grid.Column span={{medium: 6, large: statistics.fields.count === 3 ? 4 : 3}} key={i}>
-                    <Statistic
-                      className={styles.statistic}
-                      variant={statistics.fields.variant}
-                      size={statistics.fields.size}
-                      style={{
-                        backgroundColor:
-                          statistics.fields.variant === 'boxed'
-                            ? `var(--brand-color-canvas-${backgroundColor === 'default' ? 'subtle' : 'default'})`
-                            : undefined,
-                      }}
-                    >
-                      <Statistic.Heading as="p">$2M+</Statistic.Heading>
-                      {statistics.fields.showDescription && (
-                        <Statistic.Description variant={statistics.fields.descriptionVariant}>
-                          Given back to our maintainers
-                          {statistics.fields.showDescriptionFootnotes ? (
-                            <>
-                              {' '}
-                              <InlineLink
-                                id="inline-link-4"
-                                href="#footnote-4"
-                                className={clsx(styles.footnoteInlineLink, styles.footnoteSizeSmall)}
-                                aria-label="Footnote 4"
-                              >
-                                4
-                              </InlineLink>
-                            </>
-                          ) : null}
-                        </Statistic.Description>
-                      )}
-                    </Statistic>
-                  </Grid.Column>
-                ))}
+              {(statistics.items && statistics.items.length > 0
+                ? statistics.items
+                : Array(statistics.count ?? 3)
+                    .fill(null)
+                    .map(() => ({
+                      value: '$2M+',
+                      description: 'Given back to our maintainers',
+                    }))
+              ).map((stat, i) => (
+                <Grid.Column span={{medium: 6, large: (statistics.count ?? 3) === 3 ? 4 : 3}} key={i}>
+                  <Statistic
+                    className={styles.statistic}
+                    variant={statistics.variant}
+                    size={statistics.size}
+                    style={{
+                      backgroundColor:
+                        statistics.variant === 'boxed'
+                          ? `var(--brand-color-canvas-${backgroundColor === 'default' ? 'subtle' : 'default'})`
+                          : undefined,
+                    }}
+                  >
+                    <Statistic.Heading as="p">{stat.value ?? '$2M+'}</Statistic.Heading>
+                    {statistics.showDescription && (
+                      <Statistic.Description variant={statistics.descriptionVariant}>
+                        {/* eslint-disable-next-line i18n-text/no-en */}
+                        {stat.description ?? 'Given back to our maintainers'}
+                        {statistics.showDescriptionFootnotes ? (
+                          <>
+                            {' '}
+                            <InlineLink
+                              id="inline-link-4"
+                              href="#footnote-4"
+                              className={clsx(styles.footnoteInlineLink, styles.footnoteSizeSmall)}
+                              aria-label="Footnote 4"
+                            >
+                              4
+                            </InlineLink>
+                          </>
+                        ) : null}
+                      </Statistic.Description>
+                    )}
+                  </Statistic>
+                </Grid.Column>
+              ))}
             </Grid>
           )}
 
           {pricingOptions && (
             <Grid className={styles.normalizeMargin}>
               <Grid.Column>
-                <PricingOptions variant={pricingOptions.fields.variant} align={pricingOptions.fields.align}>
+                <PricingOptions variant={pricingOptions.variant} align={pricingOptions.align}>
                   {Array.from({length: 3}).map((_, i) => (
                     <PricingOptions.Item key={i}>
                       <PricingOptions.Label>Label</PricingOptions.Label>
-                      <PricingOptions.Heading as={pricingOptions.fields.headingLevel}>Heading</PricingOptions.Heading>
+                      <PricingOptions.Heading as={pricingOptions.headingLevel}>Heading</PricingOptions.Heading>
                       <PricingOptions.Description>Description</PricingOptions.Description>
 
                       <PricingOptions.Price
@@ -580,7 +551,7 @@ export function FlexSection({component, className}: FlexSectionProps) {
                         8
                       </PricingOptions.Price>
 
-                      {pricingOptions.fields.showFeatureList && (
+                      {pricingOptions.showFeatureList && (
                         <PricingOptions.FeatureList>
                           <PricingOptions.FeatureListHeading>Heading</PricingOptions.FeatureListHeading>
 
@@ -621,7 +592,7 @@ export function FlexSection({component, className}: FlexSectionProps) {
                         Contact sales
                       </PricingOptions.SecondaryAction>
 
-                      {pricingOptions.fields.showFootnotes && (
+                      {pricingOptions.showFootnotes && (
                         <PricingOptions.Footnote>
                           Lorem ipsum dolor sit amet <InlineLink href="#">consectetur adipiscing</InlineLink> elit.
                         </PricingOptions.Footnote>

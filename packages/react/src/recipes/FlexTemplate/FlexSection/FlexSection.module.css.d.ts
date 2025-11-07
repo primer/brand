@@ -16,6 +16,7 @@ declare const styles: {
   readonly "mx-0": string;
   readonly "normalizeMargin": string;
   readonly "normalizePadding": string;
+  readonly "overflow-hidden": string;
   readonly "paddingBottom-condensed": string;
   readonly "paddingBottom-none": string;
   readonly "paddingBottom-normal": string;

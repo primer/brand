@@ -19,7 +19,14 @@ type FlexSectionStoryArgs = {
   showRivers: boolean
 
   showIntroContent: boolean
-  introContentType: string
+  introContentType: 'sectionIntro' | 'sectionIntroStacked'
+  sectionIntroAlign: 'start' | 'center'
+  sectionIntroHeading: string
+  sectionIntroDescription: string
+  sectionIntroStackedHeading: string
+  sectionIntroStackedItem1: string | React.ReactNode
+  sectionIntroStackedItem2: string | React.ReactNode
+  sectionIntroStackedItem3: string | React.ReactNode
 
   showProse: boolean
   proseContent: string
@@ -86,143 +93,143 @@ type FlexSectionStoryArgs = {
 
 // Function to generate mock data based on story args
 const createMockData = (args: FlexSectionStoryArgs) => ({
-  fields: {
-    id: args.sectionId,
-    anchorNav: args.showAnchorNav,
-    introContent: args.showIntroContent
+  id: args.sectionId,
+  anchorNav: args.showAnchorNav,
+  sectionIntro:
+    args.showIntroContent && args.introContentType === 'sectionIntro'
       ? {
-          sys: {
-            contentType: {
-              sys: {
-                id: args.introContentType,
-              },
-            },
-          },
+          align: args.sectionIntroAlign,
+          heading: args.sectionIntroHeading,
+          description: args.sectionIntroDescription,
         }
-      : null,
+      : undefined,
+  sectionIntroStacked:
+    args.showIntroContent && args.introContentType === 'sectionIntroStacked'
+      ? {
+          heading: args.sectionIntroStackedHeading,
+          items: [
+            {text: args.sectionIntroStackedItem1},
+            {text: args.sectionIntroStackedItem2},
+            {text: args.sectionIntroStackedItem3},
+          ],
+        }
+      : undefined,
 
-    logoSuite: args.showLogosuite,
-    cards: args.showCards,
-    prose: args.showProse
-      ? {
-          fields: {
-            content: args.proseContent,
+  logoSuite: args.showLogosuite ? {} : undefined,
+  cards: args.showCards ? {} : undefined,
+  prose: args.showProse
+    ? {
+        content: args.proseContent,
+      }
+    : null,
+  pillars: args.showPillars
+    ? {
+        heading: args.pillarsHeading,
+        items: [
+          {
+            heading: args.pillar1Title,
+            description: args.pillar1Description,
+            icon: 'zap',
           },
-        }
-      : null,
-    pillars: args.showPillars
-      ? {
-          fields: {
-            heading: args.pillarsHeading,
-            items: [
-              {
-                title: args.pillar1Title,
-                description: args.pillar1Description,
-                icon: 'zap',
-              },
-              {
-                title: args.pillar2Title,
-                description: args.pillar2Description,
-                icon: 'rocket',
-              },
-              {
-                title: args.pillar3Title,
-                description: args.pillar3Description,
-                icon: 'shield',
-              },
-            ],
+          {
+            heading: args.pillar2Title,
+            description: args.pillar2Description,
+            icon: 'rocket',
           },
-        }
-      : null,
-    featuredBento: args.showBento
-      ? {
-          fields: {
-            headingLevel: args.bentoHeadingLevel,
-            showIcon: args.bentoShowIcon,
-            showFootnotes: args.bentoShowFootnotes,
+          {
+            heading: args.pillar3Title,
+            description: args.pillar3Description,
+            icon: 'shield',
           },
-        }
-      : null,
-    breakoutBanner: args.showBreakoutBanner
-      ? {
-          fields: {
-            align: args.breakoutBannerAlign,
-            showLogo: args.breakoutBannerShowLogo,
-            headingLevel: args.breakoutBannerHeadingLevel,
-            showFootnotes: args.breakoutBannerShowFootnotes,
-          },
-        }
-      : null,
+        ],
+      }
+    : null,
+  featuredBento: args.showBento
+    ? {
+        headingLevel: args.bentoHeadingLevel,
+        showIcon: args.bentoShowIcon,
+        showFootnotes: args.bentoShowFootnotes,
+      }
+    : null,
+  breakoutBanner: args.showBreakoutBanner
+    ? {
+        align: args.breakoutBannerAlign,
+        showLogo: args.breakoutBannerShowLogo,
+        headingLevel: args.breakoutBannerHeadingLevel,
+        showFootnotes: args.breakoutBannerShowFootnotes,
+      }
+    : null,
 
-    statistics: args.showStatistics
-      ? {
-          fields: {
-            count: args.statisticsCount,
-            variant: args.statisticsVariant,
-            size: args.statisticsSize,
-            showDescription: args.statisticsShowDescription,
-            descriptionVariant: args.statisticsDescriptionVariant,
-            showDescriptionFootnotes: args.statisticsShowDescriptionFootnotes,
-          },
-        }
-      : null,
-    pricingOptions: args.showPricingOptions
-      ? {
-          fields: {
-            variant: args.pricingOptionsVariant,
-            align: args.pricingOptionsAlign,
-            showFootnotes: args.pricingOptionsShowFootnotes,
-            showFeatureList: args.pricingOptionsShowFeatureList,
-            headingLevel: args.pricingOptionsHeadingLevel,
-          },
-        }
-      : null,
-    segmentedControlPanel: args.showSegmentedControlPanel
-      ? {
-          fields: {},
-        }
-      : null,
-    testimonials: args.showTestimonials
-      ? {
-          fields: {
-            testimonialCount: args.testimonialCount,
-            backgroundImageVariant: args.testimonialBackgroundImageVariant,
-            variant: args.testimonialVariant,
-            displayedAuthorImage: args.testimonialDisplayedAuthorImage,
-            quoteMarkColor: args.testimonialQuoteMarkColor,
-          },
-        }
-      : null,
-    rivers: args.showRivers
-      ? {
-          fields: {
-            type: args.riverType,
-            align: args.riverAlign,
-            ctaVariant: args.riverCtaVariant,
-            hasCta: args.riverHasCta,
-            hasLeadingVisual: args.riverHasLeadingVisual,
-            hasShadow: args.riverHasShadow,
-            hasTrailingComponent: args.riverHasTrailingComponent,
-            imageTextRatio: args.riverImageTextRatio,
-            label: args.riverHasLabel,
-            labelColor: args.riverLabelColor,
-            labelSize: args.riverLabelSize,
-            visualType: args.riverVisualType,
-          },
-        }
-      : null,
-    visualSettings: {
-      fields: {
-        backgroundColor: args.backgroundColor,
-        paddingBlockStart: args.paddingBlockStart,
-        colorMode: args.colorMode,
-        paddingBlockEnd: args.paddingBlockEnd,
-        roundedCorners: args.roundedCorners,
-        verticalGap: args.verticalGap,
-        hasBorderBottom: args.hasBorderBottom,
-        enableRiverStoryScroll: args.enableRiverStoryScroll,
-      },
-    },
+  statistics: args.showStatistics
+    ? {
+        count: args.statisticsCount,
+        variant: args.statisticsVariant,
+        size: args.statisticsSize,
+        showDescription: args.statisticsShowDescription,
+        descriptionVariant: args.statisticsDescriptionVariant,
+        showDescriptionFootnotes: args.statisticsShowDescriptionFootnotes,
+      }
+    : null,
+  pricingOptions: args.showPricingOptions
+    ? {
+        variant: args.pricingOptionsVariant,
+        align: args.pricingOptionsAlign,
+        showFootnotes: args.pricingOptionsShowFootnotes,
+        showFeatureList: args.pricingOptionsShowFeatureList,
+        headingLevel: args.pricingOptionsHeadingLevel,
+      }
+    : null,
+  segmentedControlPanel: args.showSegmentedControlPanel ? {} : null,
+  testimonials: args.showTestimonials
+    ? {
+        testimonialCount: args.testimonialCount,
+        backgroundImageVariant: args.testimonialBackgroundImageVariant,
+        variant: args.testimonialVariant,
+        displayedAuthorImage: args.testimonialDisplayedAuthorImage,
+        quoteMarkColor: args.testimonialQuoteMarkColor,
+      }
+    : null,
+  rivers: args.showRivers
+    ? Array.from({length: 3}).map((_, i) => ({
+        type: args.riverType,
+        align: args.riverAlign,
+        ctaVariant: args.riverCtaVariant,
+        ctaText: args.riverHasCta ? 'Learn more' : undefined,
+        ctaHref: args.riverHasCta ? '#' : undefined,
+        hasLeadingVisual: args.riverHasLeadingVisual,
+        hasShadow: args.riverHasShadow,
+        hasTrailingComponent: args.riverHasTrailingComponent,
+        imageTextRatio: args.riverImageTextRatio,
+        label: args.riverHasLabel ? `Label ${i + 1}` : undefined,
+        labelColor: args.riverLabelColor,
+        labelSize: args.riverLabelSize,
+        visualType: args.riverVisualType,
+        heading: `Heading ${i + 1}`,
+        description:
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis felis nam pulvinar risus elementum.',
+        ...(args.riverType === 'riverAccordion'
+          ? {
+              // eslint-disable-next-line @typescript-eslint/no-shadow
+              items: Array.from({length: 3}).map((_, j) => ({
+                heading: `Accordion Item ${j + 1}`,
+                description:
+                  'Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum repellendus veniam repellat unde ex aut minus iusto.',
+                ctaText: args.riverHasCta ? 'Learn more' : undefined,
+                ctaHref: args.riverHasCta ? '#' : undefined,
+                ctaVariant: args.riverCtaVariant,
+              })),
+            }
+          : {}),
+      }))
+    : null,
+  visualSettings: {
+    backgroundColor: args.backgroundColor,
+    paddingBlockStart: args.paddingBlockStart,
+    paddingBlockEnd: args.paddingBlockEnd,
+    roundedCorners: args.roundedCorners,
+    verticalGap: args.verticalGap,
+    hasBorderBottom: args.hasBorderBottom,
+    enableRiverStoryScroll: args.enableRiverStoryScroll,
   },
 })
 
@@ -247,7 +254,29 @@ const meta: Meta<FlexSectionStoryArgs> = {
 
     // Intro content
     showIntroContent: true,
-    introContentType: 'introStackedItems',
+    introContentType: 'sectionIntroStacked',
+    sectionIntroAlign: 'center',
+    sectionIntroHeading: 'Section Introduction',
+    sectionIntroDescription: 'This section showcases all available FlexSection components',
+    sectionIntroStackedHeading: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+    sectionIntroStackedItem1: (
+      <>
+        <b>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</b> In sapien sit ullamcorper id. Aliquam luctus sed
+        turpis felis nam pulvinar risus elementum.
+      </>
+    ),
+    sectionIntroStackedItem2: (
+      <>
+        <b>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</b> In sapien sit ullamcorper id. Aliquam luctus sed
+        turpis felis nam pulvinar risus elementum.
+      </>
+    ),
+    sectionIntroStackedItem3: (
+      <>
+        <b>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</b> In sapien sit ullamcorper id. Aliquam luctus sed
+        turpis felis nam pulvinar risus elementum.
+      </>
+    ),
 
     // Prose content
     showProse: true,
@@ -359,10 +388,53 @@ const meta: Meta<FlexSectionStoryArgs> = {
     },
     introContentType: {
       control: {type: 'radio'},
-      options: ['introStackedItems', 'primerComponentSectionIntro'],
+      options: ['sectionIntro', 'sectionIntroStacked'],
       description: 'Type of intro content to display',
       table: {category: 'Intro Content'},
       if: {arg: 'showIntroContent', truthy: true},
+    },
+    sectionIntroAlign: {
+      control: {type: 'select'},
+      options: ['start', 'center'],
+      description: 'Alignment for section intro',
+      table: {category: 'Intro Content'},
+      if: {arg: 'introContentType', eq: 'sectionIntro'},
+    },
+    sectionIntroHeading: {
+      control: 'text',
+      description: 'Heading for section intro',
+      table: {category: 'Intro Content'},
+      if: {arg: 'introContentType', eq: 'sectionIntro'},
+    },
+    sectionIntroDescription: {
+      control: 'text',
+      description: 'Description for section intro',
+      table: {category: 'Intro Content'},
+      if: {arg: 'introContentType', eq: 'sectionIntro'},
+    },
+    sectionIntroStackedHeading: {
+      control: 'text',
+      description: 'Heading for stacked intro',
+      table: {category: 'Intro Content'},
+      if: {arg: 'introContentType', eq: 'sectionIntroStacked'},
+    },
+    sectionIntroStackedItem1: {
+      control: 'text',
+      description: 'First item in stacked intro',
+      table: {category: 'Intro Content'},
+      if: {arg: 'introContentType', eq: 'sectionIntroStacked'},
+    },
+    sectionIntroStackedItem2: {
+      control: 'text',
+      description: 'Second item in stacked intro',
+      table: {category: 'Intro Content'},
+      if: {arg: 'introContentType', eq: 'sectionIntroStacked'},
+    },
+    sectionIntroStackedItem3: {
+      control: 'text',
+      description: 'Third item in stacked intro',
+      table: {category: 'Intro Content'},
+      if: {arg: 'introContentType', eq: 'sectionIntroStacked'},
     },
 
     // Prose controls
