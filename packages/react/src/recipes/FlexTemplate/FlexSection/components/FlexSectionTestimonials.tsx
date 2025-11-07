@@ -3,6 +3,7 @@ import {clsx} from 'clsx'
 
 import {Box, Grid, Image, useTheme} from '../../../..'
 import {ContentfulTestimonials} from './ContentfulTestimonials'
+import type {FlexTemplateTestimonialsConfig} from '../../FlexTemplate.types'
 
 import startShapeLight from '../../../../fixtures/images/testimonial-bg-1.png'
 import endShapeLight from '../../../../fixtures/images/testimonial-bg-2.png'
@@ -69,16 +70,19 @@ const backgroundStylesMap = {
   },
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export function FlexSectionTestimonials({testimonials, className}: any) {
+type FlexSectionTestimonialsProps = {
+  testimonials: FlexTemplateTestimonialsConfig
+  className?: string
+}
+
+export function FlexSectionTestimonials({testimonials, className}: FlexSectionTestimonialsProps) {
   const {colorMode} = useTheme()
 
-  const isMinimalVariant = testimonials.fields.variant === 'minimal'
+  const variant = testimonials.variant ?? 'minimal'
+  const backgroundVariant = testimonials.backgroundImageVariant
+  const isMinimalVariant = variant === 'minimal'
 
-  const set =
-    !isMinimalVariant && testimonials.fields.backgroundImageVariant
-      ? backgroundStylesMap[testimonials.fields.backgroundImageVariant]
-      : undefined
+  const set = !isMinimalVariant && backgroundVariant ? backgroundStylesMap[backgroundVariant] : undefined
 
   return set ? (
     <Grid>

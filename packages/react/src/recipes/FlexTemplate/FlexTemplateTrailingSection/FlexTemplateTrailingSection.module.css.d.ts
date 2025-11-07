@@ -1,0 +1,7 @@
+declare const styles: {
+  readonly "ctaBannerCards": string;
+  readonly "ctaBannerSectionIntro": string;
+  readonly "trailingSectionGrid": string;
+};
+export = styles;
+
