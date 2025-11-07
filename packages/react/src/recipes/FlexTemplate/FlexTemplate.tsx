@@ -128,7 +128,6 @@ export function FlexTemplate({page, className}: FlexTemplateProps) {
         {/**
          * Fake global footer spacer
          */}
-        {/** Fake global header spacer */}
         <RedlineBackground style={{height: 600, display: 'flex', flexDirection: 'column', gap: 'var(--base-size-32)'}}>
           <RedlineBackground
             style={{height: 84, marginTop: 'auto', backgroundColor: 'var(--brand-color-border-default)'}}

@@ -5,6 +5,7 @@ import type {Icon} from '@primer/octicons-react'
 import {IconColor} from '../../Icon'
 import type {ColorMode} from '../../ThemeProvider'
 import {TestimonialProps} from '../../Testimonial'
+import {LabelProps} from '../../Label'
 
 export type FlexTemplateLink = {
   href: string
@@ -87,16 +88,27 @@ export type FlexTemplateRiverItem = {
   heading?: string
   description?: string
   label?: string
+  labelSize?: LabelProps
+  labelColor?: LabelProps['color']
   ctaText?: string
   ctaHref?: string
+  ctaVariant?: 'primary' | 'secondary' | 'accent'
   imageSrc?: string
   imageAlt?: string
   videoSrc?: string
+  videoPoster?: string
+  videoSrcHevc?: string
+  videoSrcH264?: string
   align?: 'start' | 'center' | 'end'
   imageTextRatio?: '50:50' | '60:40'
   hasShadow?: boolean
+  hasLeadingVisual?: boolean
+  hasTrailingComponent?: boolean
   visualType?: 'image' | 'video'
   type?: 'river' | 'riverBreakout' | 'riverAccordion'
+  a11yHeading?: string
+  footnoteId?: string
+  footnoteHref?: string
   items?: FlexTemplateRiverAccordionItem[]
 }
 
@@ -118,22 +130,8 @@ export type FlexTemplateSectionIntro = {
   headingSize?: '1' | '2' | '3' | '4' | '5' | '6'
   description?: string
   label?: string | FlexTemplateLabel
-  labelSize?: 'small' | 'medium' | 'large'
-  labelColor?:
-    | 'default'
-    | 'blue'
-    | 'coral'
-    | 'green'
-    | 'gray'
-    | 'indigo'
-    | 'lemon'
-    | 'lime'
-    | 'orange'
-    | 'pink'
-    | 'purple'
-    | 'red'
-    | 'teal'
-    | 'yellow'
+  labelSize?: LabelProps['size']
+  labelColor?: LabelProps['color']
   linkText?: string
   linkHref?: string
   linkVariant?: 'default' | 'accent'

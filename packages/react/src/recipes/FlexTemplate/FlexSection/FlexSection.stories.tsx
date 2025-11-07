@@ -209,7 +209,8 @@ const createMockData = (args: FlexSectionStoryArgs) => ({
           'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis felis nam pulvinar risus elementum.',
         ...(args.riverType === 'riverAccordion'
           ? {
-              items: Array.from({length: 3}).map((__unused, j) => ({
+              // eslint-disable-next-line @typescript-eslint/no-shadow
+              items: Array.from({length: 3}).map((_, j) => ({
                 heading: `Accordion Item ${j + 1}`,
                 description:
                   'Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum repellendus veniam repellat unde ex aut minus iusto.',
