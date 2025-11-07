@@ -83,6 +83,7 @@ Agents.args = {
                 icon: <CopilotIcon />,
                 iconColor: 'purple',
                 heading: 'Put Copilot to work in the background',
+                headingLevel: 'h2',
                 description:
                   'As your team codes, Copilot writes pull requests, handles edits, and responds to @mentions in real time.',
               },
@@ -90,6 +91,7 @@ Agents.args = {
                 icon: <WorkflowIcon />,
                 iconColor: 'purple',
                 heading: 'Choose the right agent for the job',
+                headingLevel: 'h2',
                 description:
                   'Some tasks need a specialist. Choose from Copilot or custom agents to get the work done right.',
               },
@@ -97,6 +99,7 @@ Agents.args = {
                 icon: <TasklistIcon />,
                 iconColor: 'purple',
                 heading: 'Manage agents and tasks together',
+                headingLevel: 'h2',
                 description:
                   'See and steer tasks from one unified view. It’s like a mission control center for everything your agents touch.',
               },
