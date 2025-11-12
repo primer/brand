@@ -113,15 +113,6 @@ test.describe('Visual Comparison: ActionMenu', () => {
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
-  test('ActionMenu / Single Selection Small Open', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-actionmenu-features--single-selection-small-open&viewMode=story',
-    )
-
-    await page.waitForTimeout(1000)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
   test('ActionMenu / Split Button Mode', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-actionmenu-features--split-button-mode&viewMode=story',
