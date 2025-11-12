@@ -39,7 +39,9 @@ jobs:
 
       - name: Create release pull request or publish to npm
         id: changesets
-        uses: changesets/action@v1
+        # Uses SHA for security hardening
+        # Please keep this up-to-date if you're changing the SHA below
+        uses: changesets/action@e0145edc7d9d8679003495b11f87bd8ef63c0cba
         with:
           title: Release tracking
           publish: npm run release
@@ -70,7 +72,9 @@ jobs:
 
       - name: Create release pull request or publish to npm
         id: changesets
-        uses: changesets/action@v1
+        # Uses SHA for security hardening
+        # Please keep this up-to-date if you're changing the SHA below
+        uses: changesets/action@e0145edc7d9d8679003495b11f87bd8ef63c0cba
         with:
           title: Release tracking (next minor)
           publish: npm run release
