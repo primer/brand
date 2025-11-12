@@ -20,7 +20,7 @@ jobs:
 
     uses: primer/.github/.github/workflows/release.yml@9a17d09825dbc0d56439378f2a8da325c91855ba # SHA for security hardening. Points at v2.3.1 release
     secrets:
-      gh_token: ${{ secrets.GPR_AUTH_TOKEN_SHARED }}
+      gh_token: ${{ secrets.GITHUB_TOKEN }}
 
   release-next-minor:
     if: github.ref_name == 'next-minor'
@@ -29,7 +29,7 @@ jobs:
     with:
       title: Release tracking (next minor)
     secrets:
-      gh_token: ${{ secrets.GPR_AUTH_TOKEN_SHARED }}
+      gh_token: ${{ secrets.GITHUB_TOKEN }}
 
   release-candidate:
     if: ${{ github.repository == 'primer/brand' && github.ref_name == 'changeset-release/main' }}
