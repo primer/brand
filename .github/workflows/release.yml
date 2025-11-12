@@ -9,27 +9,77 @@ concurrency:
 
 permissions:
   id-token: write # Required for OIDC
-  contents: read
+  contents: write
+  pull-requests: write
   checks: write
   statuses: write
 
 jobs:
   release-main:
-    if: github.ref_name == 'main'
+    if: ${{ github.repository == 'primer/brand' && github.ref_name == 'main' }}
     name: Main
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          # This makes Actions fetch all Git history so that Changesets can generate changelogs with the correct commits
+          fetch-depth: 0
 
-    uses: primer/.github/.github/workflows/release.yml@9a17d09825dbc0d56439378f2a8da325c91855ba # SHA for security hardening. Points at v2.3.1 release
-    secrets:
-      gh_token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Set up Node
+        uses: actions/setup-node@v6
+        with:
+          node-version: 24
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build:lib
+
+      - name: Create release pull request or publish to npm
+        id: changesets
+        # Uses SHA for security hardening
+        # Please keep this up-to-date if you're changing the SHA below
+        uses: changesets/action@e0145edc7d9d8679003495b11f87bd8ef63c0cba
+        with:
+          title: Release tracking
+          publish: npm run release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   release-next-minor:
-    if: github.ref_name == 'next-minor'
+    if: ${{ github.repository == 'primer/brand' && github.ref_name == 'next-minor' }}
     name: Next minor
-    uses: primer/.github/.github/workflows/release.yml@9a17d09825dbc0d56439378f2a8da325c91855ba # SHA for security hardening. Points at v2.3.1 release
-    with:
-      title: Release tracking (next minor)
-    secrets:
-      gh_token: ${{ secrets.GITHUB_TOKEN }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          # This makes Actions fetch all Git history so that Changesets can generate changelogs with the correct commits
+          fetch-depth: 0
+
+      - name: Set up Node
+        uses: actions/setup-node@v6
+        with:
+          node-version: 24
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build:lib
+
+      - name: Create release pull request or publish to npm
+        id: changesets
+        # Uses SHA for security hardening
+        # Please keep this up-to-date if you're changing the SHA below
+        uses: changesets/action@e0145edc7d9d8679003495b11f87bd8ef63c0cba
+        with:
+          title: Release tracking (next minor)
+          publish: npm run release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   release-candidate:
     if: ${{ github.repository == 'primer/brand' && github.ref_name == 'changeset-release/main' }}
