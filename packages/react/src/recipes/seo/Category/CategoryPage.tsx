@@ -36,7 +36,7 @@ const NavListHeading = (props: HeadingProps) => (
       size="subhead-medium"
       font="monospace"
       className={styles.navListHeading}
-      weight="medium"
+      weight="normal"
       stretch="expanded"
       {...props}
     />

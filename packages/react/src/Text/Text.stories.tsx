@@ -138,7 +138,7 @@ export const Alignment: Story = {
 }
 
 const TypeFixture = ({font}: {font: (typeof TextFontVariants)[number]}) => (
-  <Stack direction="vertical" gap={{wide: 48}}>
+  <Box>
     <Grid>
       <Grid.Column
         span={{
@@ -213,42 +213,54 @@ const TypeFixture = ({font}: {font: (typeof TextFontVariants)[number]}) => (
             <Text font={font} size="700" weight="extralight">
               If a squirrel tells you to ship it, you must ship it.
             </Text>
-            <Text>Weight: extralight, Stretch: condensed</Text>
+            <Text>Weight: extralight</Text>
+          </Stack>
+          <Stack direction="vertical" padding="none" gap="condensed">
+            <Text font={font} size="700" weight="light">
+              Code speaks louder than words.
+            </Text>
+            <Text>Weight: light</Text>
+          </Stack>
+          <Stack direction="vertical" padding="none" gap="condensed">
+            <Text font={font} size="700" weight="normal">
+              Build for everyone, everywhere.
+            </Text>
+            <Text>Weight: normal</Text>
           </Stack>
           <Stack direction="vertical" padding="none" gap="condensed">
             <Text font={font} size="700" weight="medium">
-              Fast, flexible, open source and free
+              Fast, flexible, open source and free.
             </Text>
-            <Text>Weight: medium, Stretch: condensed</Text>
+            <Text>Weight: medium</Text>
           </Stack>
           <Stack direction="vertical" padding="none" gap="condensed">
-            <Text font={font} size="700" weight="heavy">
-              The next big thing is a lot of small things.
-            </Text>
-            <Text>Weight: heavy, Stretch: condensed</Text>
-          </Stack>
-          <Stack direction="vertical" padding="none" gap="condensed">
-            <Text font={font} size="700" weight="extralight">
-              Demos, not memos.
-            </Text>
-            <Text>Weight: extralight, Stretch: condensed</Text>
-          </Stack>
-          <Stack direction="vertical" padding="none" gap="condensed">
-            <Text font={font} size="700" weight="medium">
+            <Text font={font} size="700" weight="semibold">
               Where the world builds software.
             </Text>
-            <Text>Weight: medium, Stretch: expanded</Text>
+            <Text>Weight: semibold</Text>
+          </Stack>
+          <Stack direction="vertical" padding="none" gap="condensed">
+            <Text font={font} size="700" weight="bold">
+              Demos, not memos.
+            </Text>
+            <Text>Weight: bold</Text>
+          </Stack>
+          <Stack direction="vertical" padding="none" gap="condensed">
+            <Text font={font} size="700" weight="extrabold">
+              The next big thing is a lot of small things.
+            </Text>
+            <Text>Weight: extrabold</Text>
           </Stack>
           <Stack direction="vertical" padding="none" gap="condensed">
             <Text font={font} size="700" weight="heavy">
               One font file, infinite possibilities.
             </Text>
-            <Text>Weight: heavy, Stretch: expanded</Text>
+            <Text>Weight: heavy</Text>
           </Stack>
         </Stack>
       </Grid.Column>
     </Grid>
-  </Stack>
+  </Box>
 )
 
 export const MonaSans: Story = {
@@ -261,4 +273,8 @@ export const HubotSans: Story = {
   render: () => {
     return <TypeFixture font="hubot-sans" />
   },
+}
+
+export const Monospace: StoryFn<typeof Text> = () => {
+  return <TypeFixture font="monospace" />
 }
