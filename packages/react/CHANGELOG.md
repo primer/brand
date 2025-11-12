@@ -1,5 +1,11 @@
 # @primer/react-brand
 
+## 0.59.2
+
+### Patch Changes
+
+- [#1187](https://github.com/primer/brand/pull/1187) [`168a187`](https://github.com/primer/brand/commit/168a1873c3154264f3c66fa4cab9793e11c8a68e) Thanks [@rezrah](https://github.com/rezrah)! - No-op upgrade to our internal linting toolchain (ESLint v9), which affects the source code organization of this package. No functional impact is expected.
+
 ## 0.59.1
 
 ### Patch Changes
