@@ -4,11 +4,11 @@
 
 Improved typographic defaults for all text design tokens:
 
-- Replaced heading weight values with explict font axis values ranging between `410` to `550`.
+- Replaced heading weight values with explicit font axis values ranging between `410` to `550`.
 - Backfilled `--brand-text.subhead-*` letter-spacing tokens and moved its weight settings to numeric axis values with breakpoint-specific adjustments.
 - Expanded the `--brand-text-weight-*` collection with named grades (`extralight` through `heavy`) mapped to Mona Sans numeric values while keeping the legacy numeric steps for compatibility.
 - Loosened text `line-heights` for body sizes (e.g `200`) and added refined responsive values at 768px/1012px to improve readability across breakpoints.
-- Updated text `letter-spacing` so sizes `100`–`80`0 now default to neutral or slightly positive tracking, reserving negative spacing only for the largest size at the widest viewport.
+- Updated text `letter-spacing` so sizes `100`–`800` now default to neutral or slightly positive tracking, reserving negative spacing only for the largest size at the widest viewport.
 
 <details>
   <summary>Open to see all changes</summary>
@@ -571,6 +571,5 @@ Improved typographic defaults for all text design tokens:
 ```diff
 + --brand-text-display-shorthand: var(--brand-text-display-weight) var(--brand-text-display-size)/var(--brand-text-display-lineHeight) var(--brand-f
 ```
-
 
   </details>
