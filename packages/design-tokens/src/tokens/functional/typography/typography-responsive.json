@@ -276,7 +276,7 @@
         "value": "var(--base-text-weight-normal)"
       },
       "1000": {
-        "value": "var(--base-text-weight-bold)"
+        "value": "var(--base-text-weight-normal)"
       }
     },
     "size": {
@@ -293,7 +293,7 @@
         "$type": "dimension"
       },
       "350": {
-        "value": "18x",
+        "value": "18px",
         "$type": "dimension",
         "responsive": {
           "1012px": {
