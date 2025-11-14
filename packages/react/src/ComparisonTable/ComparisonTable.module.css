@@ -59,7 +59,7 @@
 }
 
 .ComparisonTable-cell-heading {
-  font-weight: var(--base-text-weight-semibold);
+  font-weight: var(--base-text-weight-medium);
   font-size: var(--brand-text-size-200);
   line-height: var(--brand-text-lineHeight-200);
 }

@@ -135,7 +135,7 @@ export function CategoryPage({accentColor, variant, gridOverlay = false, colorMo
         <Grid enableOverlay={enableGridOverlay}>
           <Grid.Column>
             <Box marginBlockStart={{narrow: 64, wide: 112}} marginBlockEnd={{narrow: 32, wide: 64}}>
-              <Heading as="h1" size="1" stretch="condensed" weight="semibold" font="hubot-sans">
+              <Heading as="h1" size="1" stretch="condensed" weight="medium" font="hubot-sans">
                 {activeCategory}
               </Heading>
             </Box>

@@ -187,7 +187,7 @@ function _Name({children, className, position}: NameProps, ref) {
         {children}
       </Text>
       {position && (
-        <Text size="200" className={clsx(styles['Testimonial-position'])} variant="muted">
+        <Text size="100" className={clsx(styles['Testimonial-position'])} variant="muted">
           {position}
         </Text>
       )}

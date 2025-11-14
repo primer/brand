@@ -471,7 +471,7 @@ const LinkBaseWithSubmenu = forwardRef<HTMLDivElement, LinkBaseProps>(
           <Text
             as="span"
             size="200"
-            weight="semibold"
+            weight="medium"
             className={styles['SubNav__link-label']}
             variant={ariaCurrent === 'page' || variant === 'default' ? 'default' : 'muted'}
           >
@@ -564,7 +564,6 @@ const LinkBase = forwardRef<HTMLAnchorElement | HTMLDivElement, LinkBaseProps>((
         <Text
           as="span"
           size="100"
-          weight="semibold"
           className={styles['SubNav__link-label']}
           variant={ariaCurrent === 'page' || variant === 'default' ? 'default' : 'muted'}
         >

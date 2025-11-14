@@ -394,7 +394,7 @@ const _Chat = memo(
                       ) : (
                         <CopilotIcon size={24} />
                       )}
-                      <Text as="p" size="100" weight="bold" className={styles['IDE__Chat-message-handle']}>
+                      <Text as="p" size="100" weight="medium" className={styles['IDE__Chat-message-handle']}>
                         {message.handle}
                       </Text>
                     </div>

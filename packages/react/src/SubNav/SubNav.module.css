@@ -23,7 +23,7 @@
 
 .SubNav__heading {
   display: block;
-  font-weight: var(--base-text-weight-semibold);
+  font-weight: var(--base-text-weight-medium);
   color: var(--brand-color-text-default);
   font-family: var(--brand-heading-fontFamily);
   text-decoration: none;
@@ -423,7 +423,7 @@
 
   .SubNav__link-label {
     font-size: var(--brand-text-size-200);
-    font-weight: var(--base-text-weight-semibold);
+    font-weight: var(--base-text-weight-medium);
     padding-block-end: var(--base-size-6);
   }
 

@@ -217,7 +217,6 @@ const RiverAccordionContent = ({className, children, ...props}: RiverAccordionCo
         return React.cloneElement(child, {
           as: child.props.as ?? 'p',
           variant: child.props.variant ?? 'muted',
-          weight: child.props.weight ?? 'medium',
           size: child.props.size ?? '200',
         })
       }
