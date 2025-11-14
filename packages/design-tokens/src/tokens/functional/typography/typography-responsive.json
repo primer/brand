@@ -85,40 +85,30 @@
     },
     "letterSpacing": {
       "400": {
-        "value": "-0.01em"
+        "value": "0"
       },
       "500": {
-        "value": "-0.01em"
+        "value": "0"
       },
       "600": {
-        "value": "-0.02em"
+        "value": "0"
       },
       "700": {
-        "value": "-0.02em",
-        "responsive": {
-          "1012px": {
-            "value": "-0.03em"
-          }
-        }
+        "value": "0"
       },
       "800": {
-        "value": "-0.02em",
-        "responsive": {
-          "1012px": {
-            "value": "-0.03em"
-          }
-        }
+        "value": "0"
       },
       "900": {
-        "value": "-0.02em",
-        "responsive": {
-          "768px": {
-            "value": "-0.03em"
-          }
-        }
+        "value": "0"
       },
       "1000": {
-        "value": "-0.03em"
+        "value": "0",
+        "responsive": {
+          "1012px": {
+            "value": "-0.224px"
+          }
+        }
       }
     },
     "lineHeight": {

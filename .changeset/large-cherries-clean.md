@@ -2,6 +2,10 @@
 '@primer/brand-primitives': minor
 ---
 
+> [!WARNING]  
+> This release contains various breaking changes.
+> Review these notes carefully and validate the updated typography in your project before upgrading.
+
 Improved typographic defaults for all text design tokens:
 
 - Replaced heading weight values with explicit font axis values ranging between `410` to `550`.
@@ -9,6 +13,17 @@ Improved typographic defaults for all text design tokens:
 - Expanded the `--brand-text-weight-*` collection with named grades (`extralight` through `heavy`) mapped to Mona Sans numeric values while keeping the legacy numeric steps for compatibility.
 - Loosened text `line-heights` for body sizes (e.g `200`) and added refined responsive values at 768px/1012px to improve readability across breakpoints.
 - Updated text `letter-spacing` so sizes `100`–`800` now default to neutral or slightly positive tracking, reserving negative spacing only for the largest size at the widest viewport.
+- A stylesheet for typography design tokens has been removed from the package. A replacement stylesheet with responsive values is available as a replacement.
+
+  ```diff
+  - @primer/brand-primitives/lib/design-tokens/css/tokens/functional/typography/typography.css
+  ```
+
+  Prefer:
+
+  ```diff
+  + @primer/brand-primitives/lib/design-tokens/css/tokens/functional/typography/typography-responsive.css
+  ```
 
 <details>
   <summary>Open to see all changes</summary>
@@ -530,6 +545,5 @@ Improved typographic defaults for all text design tokens:
   ```diff
   + --brand-text-display-shorthand: var(--brand-text-display-weight) var(--brand-text-display-size)/var(--brand-text-display-lineHeight) var(--brand-fontStack-sansSerifDisplay);
   ```
-
 
 </details>

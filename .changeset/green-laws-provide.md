@@ -21,6 +21,18 @@ Improved typographic defaults for all `Text` and `Heading` instances.
   + @primer/react-brand/fonts/MonaSansVF[wdth,wght,opsz].woff2
   ```
 
+- A stylesheet for typography design tokens has been removed from the package. A replacement stylesheet with responsive values is available as a replacement.
+
+  ```diff
+  - @primer/react-brand/lib/design-tokens/css/tokens/functional/typography/typography.css
+  ```
+
+  Prefer:
+
+  ```diff
+  + @primer/react-brand/lib/design-tokens/css/tokens/functional/typography/typography-responsive.css
+  ```
+
 Additional components affected by changes to font weights:
 
 - `Button`
