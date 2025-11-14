@@ -165,7 +165,7 @@ const _Statistic = forwardRef<HTMLDivElement, PropsWithChildren<StatisticProps>>
 type StatisticHeadingProps = TextProps
 
 const StatisticHeading = forwardRef<HTMLParagraphElement, StatisticHeadingProps>(
-  ({as = 'p', className, children, font = 'hubot-sans', weight = 'semibold', size = '1000', ...rest}, ref) => {
+  ({as = 'p', className, children, font = 'hubot-sans', weight = 'medium', size = '1000', ...rest}, ref) => {
     return (
       <Text
         as={as}
