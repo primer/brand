@@ -274,7 +274,7 @@
   }
 
   .SubdomainNavBar-link--title {
-    font-weight: var(--base-text-weight-normal);
+    font-weight: var(--base-text-weight-medium);
   }
 }
 
