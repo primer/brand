@@ -62,7 +62,7 @@ const ControlGroupLabel = forwardRef<HTMLLegendElement, ControlGroupLabelProps>(
         className={clsx(styles.ControlGroup__label, visuallyHidden && 'visually-hidden', className)}
         {...props}
       >
-        <Text as="span" weight="semibold" size="100">
+        <Text as="span" weight="medium" size="100">
           {children}
         </Text>
       </legend>

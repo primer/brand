@@ -8,8 +8,11 @@
         "light": {
           "value": 300
         },
+        "regular": {
+          "value": 400
+        },
         "normal": {
-          "value": 450
+          "value": 400
         },
         "medium": {
           "value": 500

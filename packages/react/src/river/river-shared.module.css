@@ -41,7 +41,7 @@
 
 .River__text strong,
 .River__text b {
-  font-weight: var(--base-text-weight-semibold);
+  font-weight: var(--base-text-weight-normal);
   color: var(--brand-color-text-default);
 }
 

@@ -37,16 +37,18 @@ function mediaQueryFormat({dictionary, file, options}) {
 
   const renderMediaQueries = tokenMap => {
     return Object.keys(tokenMap)
+      .sort((a, b) => parseFloat(a) - parseFloat(b))
       .map(breakpoint => {
         return `
               @media (min-width: ${breakpoint}) {
                 ${selector} {\n
                 ${responsiveTokens[breakpoint]
                   .map(token => {
-                    if (token.responsive[breakpoint].value.includes('px')) {
-                      return `--${token.name}: ${getRemValue(token.name, token.responsive[breakpoint].value)};`
+                    const value = token.responsive[breakpoint].value
+                    if (typeof value === 'string' && value.includes('px')) {
+                      return `--${token.name}: ${getRemValue(token.name, value)};`
                     }
-                    return `--${token.name}: ${token.responsive[breakpoint].value};`
+                    return `--${token.name}: ${value};`
                   })
                   .filter(function (strVal) {
                     return !!strVal

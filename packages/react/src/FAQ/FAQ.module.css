@@ -26,7 +26,7 @@
 
 .FAQ__heading--large {
   /*Visual appearance as a h2*/
-  font-weight: var(--brand-text-weight-800);
+  font-weight: var(--brand-text-weight-normal);
   font-size: var(--brand-text-size-800);
   line-height: var(--brand-text-lineHeight-800);
   letter-spacing: var(--brand-text-letterSpacing-800);
@@ -37,7 +37,7 @@
 }
 
 .FAQ.details__summary {
-  font-weight: var(--brand-text-weight-800);
+  font-weight: var(--brand-text-weight-normal);
   font-size: var(--brand-text-size-800);
   line-height: var(--brand-text-lineHeight-800);
   letter-spacing: var(--brand-text-letterSpacing-800);

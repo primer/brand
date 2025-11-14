@@ -139,11 +139,11 @@ export type FlexTemplateSectionIntro = {
 }
 
 export type FlexTemplateSectionIntroStackedItem = {
-  text: string
+  text: string | ReactNode
 }
 
 export type FlexTemplateSectionIntroStacked = {
-  heading?: string
+  heading?: string | ReactNode
   headingSize?: '1' | '2' | '3' | '4' | '5' | '6'
   linkText?: string
   linkHref?: string

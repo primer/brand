@@ -22,7 +22,7 @@
 
 .FormControl-label {
   color: var(--brand-color-text-default);
-  font-weight: var(--base-text-weight-semibold);
+  font-weight: var(--base-text-weight-medium);
   font-family: var(--brand-body-fontFamily);
 }
 
@@ -53,7 +53,7 @@
 .FormControl-label--checkbox {
   cursor: pointer;
   font-size: var(--brand-text-size-100);
-  font-weight: var(--base-text-weight-semibold);
+  font-weight: var(--base-text-weight-medium);
   line-height: var(--base-size-24); /* FIXME */
   position: relative;
   top: 2px;

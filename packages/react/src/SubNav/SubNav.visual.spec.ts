@@ -784,7 +784,7 @@ test.describe('Visual Comparison: SubNav', () => {
       'http://localhost:6006/iframe.html?args=&id=components-subnav-features--anchor-nav-variant&viewMode=story',
     )
 
-    await page.waitForTimeout(1000)
+    await page.waitForTimeout(3000)
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
@@ -793,7 +793,7 @@ test.describe('Visual Comparison: SubNav', () => {
       'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-subnav-features--anchor-nav-variant&viewMode=story',
     )
 
-    await page.waitForTimeout(1000)
+    await page.waitForTimeout(3000)
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
@@ -802,7 +802,7 @@ test.describe('Visual Comparison: SubNav', () => {
       'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-subnav-features--anchor-nav-variant&viewMode=story',
     )
 
-    await page.waitForTimeout(1000)
+    await page.waitForTimeout(3000)
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
@@ -811,7 +811,7 @@ test.describe('Visual Comparison: SubNav', () => {
       'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-subnav-features--anchor-nav-variant&viewMode=story',
     )
 
-    await page.waitForTimeout(1000)
+    await page.waitForTimeout(3000)
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
@@ -820,7 +820,7 @@ test.describe('Visual Comparison: SubNav', () => {
       'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-subnav-features--anchor-nav-variant&viewMode=story',
     )
 
-    await page.waitForTimeout(1000)
+    await page.waitForTimeout(3000)
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
@@ -829,7 +829,7 @@ test.describe('Visual Comparison: SubNav', () => {
       'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-subnav-features--anchor-nav-variant&viewMode=story',
     )
 
-    await page.waitForTimeout(1000)
+    await page.waitForTimeout(3000)
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 

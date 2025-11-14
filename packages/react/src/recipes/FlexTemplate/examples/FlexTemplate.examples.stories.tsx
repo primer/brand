@@ -292,22 +292,33 @@ CopilotBusiness.args = {
           id: 'overview',
           anchorNav: false,
           sectionIntroStacked: {
-            heading:
-              "GitHub Copilot equips you to build the future, whether you're charged with scaling operations or boosting developer productivity.",
+            heading: [
+              <b key="bold">GitHub Copilot equips you to build the future</b>,
+              ', whether you are charged with scaling operations or boosting developer productivity.',
+            ],
             items: [
               {
-                text: 'AI that grows with you. Use your code as context while setting boundaries for what to exclude and governance on use.',
+                text: [
+                  <b key="bold">AI that grows with you.</b>,
+                  ' Use your code as context while setting boundaries for what to exclude and governance on use.',
+                ],
               },
               {
-                text: 'Velocity with quality. Developers want tools without toil, and GitHub Copilot provides AI assistance from the IDE to GitHub to the CLI and more, with agents to review and suggest.',
+                text: [
+                  <b key="bold">Velocity with quality.</b>,
+                  ' Developers want tools without toil, and GitHub Copilot provides AI assistance from the IDE to GitHub to the CLI and more, with agents to review and suggest.',
+                ],
               },
               {
-                text: 'Choose your AI adventure. From choice of model to third-party integrations, GitHub Copilot meets your challenges your way.',
+                text: [
+                  <b key="bold">Choose your AI adventure.</b>,
+                  ' From choice of model to third-party integrations, GitHub Copilot meets your challenges your way.',
+                ],
               },
             ],
           },
           visualSettings: {
-            paddingBlockStart: 'normal',
+            paddingBlockStart: 'none',
             paddingBlockEnd: 'normal',
           },
         },

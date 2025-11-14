@@ -188,7 +188,7 @@ export const _Button = forwardRef(
           <Text
             as="span"
             size={size === 'small' ? '100' : size === 'medium' ? '200' : '400'}
-            weight="semibold"
+            weight="medium"
             className={clsx(
               styles['Button--label'],
               styles[`Button--label-${size}`],

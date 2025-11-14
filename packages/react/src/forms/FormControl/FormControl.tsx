@@ -225,7 +225,6 @@ const FormControlValidation = ({children, validationStatus, className, ...props}
     <Text
       as="span"
       size="100"
-      weight="medium"
       className={clsx(
         styles['FormControl-validation'],
         validationStatus && styles['FormControl-validation--animate-in'],
@@ -252,16 +251,7 @@ const FormControlValidation = ({children, validationStatus, className, ...props}
 type FormControlHintProps = PropsWithChildren<BaseProps<HTMLSpanElement>>
 
 const FormControlHint = ({className, ...rest}: FormControlHintProps) => {
-  return (
-    <Text
-      as="span"
-      size="100"
-      weight="medium"
-      variant="muted"
-      className={clsx(styles['FormControl-hint'], className)}
-      {...rest}
-    />
-  )
+  return <Text as="span" size="100" variant="muted" className={clsx(styles['FormControl-hint'], className)} {...rest} />
 }
 
 /**

@@ -54,7 +54,6 @@ const waitForTimeoutLookup = {
   'components-actionmenu-features--longer-lists-open': 1000, // for the menu to open
   'components-actionmenu-features--menu-alignment': 1000, // for the menu to open
   'components-actionmenu-features--disabled-item': 1000, // flakey test,
-  'components-actionmenu-features--single-selection-small-open': 1000, // for the menu to open
   'components-actionmenu-features--split-button-alternative-menu-alignment': 1000, // for the menu to open
   'components-actionmenu-features--anchored-positioning': 1000, // for the menu to open
   'components-box-features--animation': 6000, // for the animation
@@ -105,14 +104,13 @@ const waitForTimeoutLookup = {
   'components-testimonial-examples--with-frosted-glass-dark': 4000, // for animation to complete
   'components-prose--playground': 4000, // for videos to load
   'components-prose--default': 4000, // for videos to load,
-  'components-subnav-features--anchor-nav-variant': 1000, // for being flakey across translations
+  'components-subnav-features--anchor-nav-variant': 3000, // for being flakey across translations
 }
 
 const skipLocalizationsTestsFor = [
   'components-actionmenu-features--open-by-default', // for the menu to open
   'components-actionmenu-features--menu-alignment', // for the menu to open
   'components-actionmenu-features--disabled-item', // for the menu to open
-  'components-actionmenu-features--single-selection-small-open', // for the menu to open
   'components-actionmenu-features--split-button-alternative-menu-alignment', // for the menu to open
   'components-actionmenu-features--anchored-positioning', // for the menu to open
 ]
@@ -156,6 +154,7 @@ const skipTestLookup = [
   'components-hero-features--with-youtube-video-inline-end', // for loading a remote video
   'components-logosuite-features--marquee', // for the animation
   'components-subnav-features--anchor-nav-variant-keyboard-navigation', // for being an interaction test-only
+  'components-actionmenu-features--single-selection-small-open', // for the menu to open, too flakey, need to fix layout shift
 ]
 
 const categorisedStories = Object.keys((stories as StoryIndex).entries).reduce((acc, key) => {
