@@ -93,7 +93,7 @@
 
 .Prose h4 {
   --spacing: var(--base-size-48);
-  font-weight: var(--brand-text-weight-350);
+  font-weight: var(--brand-heading-weight-400);
   font-size: var(--brand-text-size-300);
   line-height: var(--brand-text-lineHeight-300);
   font-family: var(--brand-heading-fontFamily);

@@ -50,35 +50,35 @@
         }
       },
       "800": {
-        "value": 450,
+        "value": 465,
         "responsive": {
           "768px": {
-            "value": 450
+            "value": 465
           },
           "1012px": {
-            "value": 425
+            "value": 440
           }
         }
       },
       "900": {
-        "value": 425,
+        "value": 440,
         "responsive": {
           "768px": {
-            "value": 425
+            "value": 440
           },
           "1012px": {
-            "value": 425
+            "value": 440
           }
         }
       },
       "1000": {
-        "value": 425,
+        "value": 440,
         "responsive": {
           "768px": {
-            "value": 425
+            "value": 440
           },
           "1012px": {
-            "value": 410
+            "value": 425
           }
         }
       }

@@ -188,7 +188,7 @@
 }
 
 .Label__label {
-  font-weight: var(--base-text-weight-semibold);
+  font-weight: var(--base-text-weight-medium);
   line-height: inherit;
 }
 

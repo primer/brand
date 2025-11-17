@@ -147,7 +147,7 @@ export const ArticleToC = ({content = 'real-world'}) => {
                       <Text
                         variant={currVisibleHeading === id ? 'default' : 'muted'}
                         size="100"
-                        weight={currVisibleHeading === id ? 'bold' : 'normal'}
+                        weight={currVisibleHeading === id ? 'medium' : 'normal'}
                       >
                         {text}
                       </Text>
