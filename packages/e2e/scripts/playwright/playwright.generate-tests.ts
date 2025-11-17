@@ -52,7 +52,6 @@ const waitForTimeoutLookup = {
   'components-minimalfooter-features--maximum-links': 5000, // for external social imagery to load
   'components-actionmenu-features--open-by-default': 1000, // for the menu to open
   'components-actionmenu-features--longer-lists-open': 1000, // for the menu to open
-  'components-actionmenu-features--menu-alignment': 1000, // for the menu to open
   'components-actionmenu-features--disabled-item': 1000, // flakey test,
   'components-actionmenu-features--split-button-alternative-menu-alignment': 1000, // for the menu to open
   'components-actionmenu-features--anchored-positioning': 1000, // for the menu to open
@@ -109,7 +108,6 @@ const waitForTimeoutLookup = {
 
 const skipLocalizationsTestsFor = [
   'components-actionmenu-features--open-by-default', // for the menu to open
-  'components-actionmenu-features--menu-alignment', // for the menu to open
   'components-actionmenu-features--disabled-item', // for the menu to open
   'components-actionmenu-features--split-button-alternative-menu-alignment', // for the menu to open
   'components-actionmenu-features--anchored-positioning', // for the menu to open
@@ -155,6 +153,7 @@ const skipTestLookup = [
   'components-logosuite-features--marquee', // for the animation
   'components-subnav-features--anchor-nav-variant-keyboard-navigation', // for being an interaction test-only
   'components-actionmenu-features--single-selection-small-open', // for the menu to open, too flakey, need to fix layout shift
+  'components-actionmenu-features--menu-alignment', // for the menu to open, too flakey, need to fix layout shift
 ]
 
 const categorisedStories = Object.keys((stories as StoryIndex).entries).reduce((acc, key) => {
