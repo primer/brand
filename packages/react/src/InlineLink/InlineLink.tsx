@@ -29,7 +29,7 @@ export const InlineLink = forwardRef(
     const classes = clsx(styles.InlineLink, className)
 
     return (
-      <a href={href} className={classes} {...rest} ref={ref}>
+      <a ref={ref} href={href} className={classes} {...rest}>
         {children}
       </a>
     )

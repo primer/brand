@@ -1,4 +1,4 @@
-import {useCallback, useState, useRef, type KeyboardEvent} from 'react'
+import {useCallback, useState, useRef, type KeyboardEvent, type MutableRefObject, type Ref} from 'react'
 import {useId} from '../hooks/useId'
 
 export type OnTabActivate = (id: string, activeTabRef?: HTMLElement) => void
@@ -53,7 +53,7 @@ export type UseTabs = {
   activateTab: (id: string) => void
   focusTab: (id: string) => void
   getTabListProps: (props: LabelOrLabelledBy) => TabListProps
-  getTabProps: (id: string, externalRef?: React.Ref<HTMLElement>) => TabProps
+  getTabProps: <T extends HTMLElement = HTMLElement>(id: string, externalRef?: Ref<T>) => TabProps
   getTabPanelProps: (id: string) => TabPanelProps
 }
 
@@ -210,7 +210,7 @@ export const useTabs = ({
   )
 
   const getTabProps = useCallback<UseTabs['getTabProps']>(
-    (id: string, externalRef?: React.ForwardedRef<HTMLElement>) => ({
+    <T extends HTMLElement = HTMLElement>(id: string, externalRef?: Ref<T>) => ({
       role: 'tab',
       id: getTabId(id),
       'aria-controls': getPanelId(id),
@@ -224,11 +224,11 @@ export const useTabs = ({
 
         if (!externalRef) return
         if (typeof externalRef === 'function') {
-          externalRef(element)
+          externalRef(element as T | null)
           return
         }
         if ('current' in externalRef) {
-          externalRef.current = element
+          ;(externalRef as MutableRefObject<T | null>).current = element as T | null
           return
         }
       },

@@ -1,4 +1,4 @@
-import React, {useCallback, useRef, useState} from 'react'
+import React, {forwardRef, useCallback, useRef, useState, PropsWithChildren} from 'react'
 import {clsx} from 'clsx'
 import {ChevronDownIcon} from '@primer/octicons-react'
 
@@ -6,38 +6,52 @@ import {BaseProps} from '../component-helpers'
 import {useVisibilityObserver} from './useVisibilityObserver'
 import {useOnClickOutside} from '../hooks/useOnClickOutside'
 import type {VisibilityMap} from './useVisibilityObserver'
+import type {SubdomainNavBarLinkProps} from './SubdomainNavBar'
 
 import styles from './SubdomainNavBar.module.css'
 import {useKeyboardEscape} from '../hooks/useKeyboardEscape'
 import {useWindowSize} from '../hooks/useWindowSize'
+import {useProvidedRefOrCreate} from '../hooks/useRef'
 
-export function NavigationVisbilityObserver({children, className, ...rest}) {
-  const navRef = useRef<HTMLUListElement | null>(null)
-  const [visibilityMap] = useVisibilityObserver(navRef, children)
-  const {isMedium} = useWindowSize()
+type NavigationVisibilityObserverProps = PropsWithChildren<
+  BaseProps<HTMLUListElement> & React.HTMLAttributes<HTMLUListElement>
+>
 
-  const showOverflow = Object.values(visibilityMap).includes(false)
+export const NavigationVisbilityObserver = forwardRef<HTMLUListElement, NavigationVisibilityObserverProps>(
+  ({children, className, ...rest}, forwardedRef) => {
+    const navRef = useProvidedRefOrCreate<HTMLUListElement>(
+      forwardedRef as React.RefObject<HTMLUListElement> | React.RefCallback<HTMLUListElement> | null,
+    )
+    const [visibilityMap] = useVisibilityObserver(navRef, children)
+    const {isMedium} = useWindowSize()
 
-  return (
-    <ul className={clsx(styles['SubdomainNavBar-primary-nav-list'], className)} ref={navRef} {...rest}>
-      {React.Children.map(children, child => {
-        return React.cloneElement(child, {
-          className: clsx(
-            child.props.className,
-            isMedium &&
-              !!visibilityMap[child.props['data-navitemid']] &&
-              styles['SubdomainNavBar-primary-nav-list-item--visible'],
-            isMedium &&
-              !visibilityMap[child.props['data-navitemid']] &&
-              styles['SubdomainNavBar-primary-nav-list-item--invisible'],
-          ),
-        })
-      })}
+    const showOverflow = Object.values(visibilityMap).includes(false)
 
-      {showOverflow && <AnchoredOverlay visibilityMap={visibilityMap}>{children}</AnchoredOverlay>}
-    </ul>
-  )
-}
+    return (
+      <ul className={clsx(styles['SubdomainNavBar-primary-nav-list'], className)} ref={navRef} {...rest}>
+        {React.Children.map(children, child => {
+          if (React.isValidElement<SubdomainNavBarLinkProps>(child)) {
+            const visibilityKey = child.props['data-navitemid']
+            if (!visibilityKey) {
+              return child
+            }
+            const isVisible = visibilityMap[visibilityKey]
+            return React.cloneElement(child, {
+              className: clsx(
+                child.props.className,
+                isMedium && isVisible && styles['SubdomainNavBar-primary-nav-list-item--visible'],
+                isMedium && isVisible === false && styles['SubdomainNavBar-primary-nav-list-item--invisible'],
+              ),
+            })
+          }
+          return child
+        })}
+
+        {showOverflow && <AnchoredOverlay visibilityMap={visibilityMap}>{children}</AnchoredOverlay>}
+      </ul>
+    )
+  },
+)
 
 type AnchoredOverlayProps = {
   visibilityMap: VisibilityMap
@@ -85,19 +99,20 @@ function AnchoredOverlay({children, className, visibilityMap}: React.PropsWithCh
       >
         <ul className={clsx(styles['SubdomainNavBar-overflow-menu-list'])}>
           {React.Children.map(children, child => {
-            if (React.isValidElement(child)) {
+            if (React.isValidElement<SubdomainNavBarLinkProps>(child)) {
               const navItemChild = child.props['data-navitemid']
-
-              if (!visibilityMap[navItemChild]) {
-                return (
-                  <React.Fragment>
-                    {React.cloneElement(child as React.ReactElement, {
-                      onClick: handleClose,
-                      className: clsx(styles['SubdomainNavBar-overflow-menu-item'], child.props.className),
-                    })}
-                  </React.Fragment>
-                )
+              if (!navItemChild || visibilityMap[navItemChild]) {
+                return null
               }
+
+              return (
+                <React.Fragment>
+                  {React.cloneElement(child, {
+                    onClick: handleClose,
+                    className: clsx(styles['SubdomainNavBar-overflow-menu-item'], child.props.className),
+                  })}
+                </React.Fragment>
+              )
             }
             return null
           })}

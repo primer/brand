@@ -12,7 +12,7 @@ import React, {useRef, useMemo} from 'react'
 export function useProvidedRefOrCreate<TRef>(
   providedRef?: React.RefObject<TRef> | React.RefCallback<TRef> | null,
 ): React.RefObject<TRef> {
-  const createdRef = useRef<TRef>(null)
+  const createdRef = useRef<TRef | null>(null)
   const wrapperRef = useRef<React.MutableRefObject<TRef | null> | null>(null)
 
   const finalRef = useMemo(() => {
@@ -48,5 +48,5 @@ export function useProvidedRefOrCreate<TRef>(
     return createdRef
   }, [providedRef, createdRef])
 
-  return finalRef
+  return finalRef as React.RefObject<TRef>
 }

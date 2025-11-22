@@ -57,8 +57,8 @@ const Root = forwardRef<HTMLElement, PropsWithChildren<HeroProps>>(
     const {HeroActions, HeroChildren, HeroImageChild, HeroVideoChild} = useMemo(() => {
       const result = React.Children.toArray(children).reduce<{
         HeroActions: React.ReactElement[]
-        HeroImageChild?: React.ReactElement
-        HeroVideoChild?: React.ReactElement
+        HeroImageChild?: React.ReactElement<HeroImageProps>
+        HeroVideoChild?: React.ReactElement<HeroVideoProps>
         HeroChildren: React.ReactElement[]
       }>(
         (acc, child) => {
@@ -66,9 +66,9 @@ const Root = forwardRef<HTMLElement, PropsWithChildren<HeroProps>>(
             if (child.type === HeroPrimaryAction || child.type === HeroSecondaryAction) {
               acc.HeroActions.push(child)
             } else if (child.type === HeroImage) {
-              acc.HeroImageChild = child
+              acc.HeroImageChild = child as React.ReactElement<HeroImageProps>
             } else if (child.type === HeroVideo) {
-              acc.HeroVideoChild = child
+              acc.HeroVideoChild = child as React.ReactElement<HeroVideoProps>
             } else {
               acc.HeroChildren.push(child)
             }
@@ -271,7 +271,7 @@ type HeroActions = {
 const HeroPrimaryAction = forwardRef<HTMLAnchorElement | HTMLButtonElement, PropsWithChildren<HeroActions>>(
   ({href, as = 'a', children, ...rest}, ref) => {
     return (
-      <Button as={as} variant="primary" size="medium" href={href} {...rest} ref={ref as React.Ref<HTMLButtonElement>}>
+      <Button ref={ref as React.Ref<HTMLButtonElement>} as={as} variant="primary" size="medium" href={href} {...rest}>
         {children}
       </Button>
     )
@@ -281,7 +281,7 @@ const HeroPrimaryAction = forwardRef<HTMLAnchorElement | HTMLButtonElement, Prop
 const HeroSecondaryAction = forwardRef<HTMLAnchorElement | HTMLButtonElement, PropsWithChildren<HeroActions>>(
   ({href, as = 'a', children, ...rest}, ref) => {
     return (
-      <Button as={as} variant="secondary" size="medium" href={href} {...rest} ref={ref as React.Ref<HTMLButtonElement>}>
+      <Button ref={ref as React.Ref<HTMLButtonElement>} as={as} variant="secondary" size="medium" href={href} {...rest}>
         {children}
       </Button>
     )

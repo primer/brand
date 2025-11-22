@@ -6,6 +6,7 @@ import React, {
   CSSProperties,
   useMemo,
   useCallback,
+  ComponentPropsWithRef,
 } from 'react'
 import {clsx} from 'clsx'
 import {BaseProps} from '../component-helpers'
@@ -212,10 +213,13 @@ function _Logo({children, ...rest}: LogoProps, ref) {
       {React.Children.map(children, child => {
         if (React.isValidElement(child)) {
           if (child.type === 'img') {
-            return React.cloneElement(child, {
+            const imageChild = child as React.ReactElement<ComponentPropsWithRef<'img'>>
+            const imageProps: ComponentPropsWithRef<'img'> = {
               className: clsx(styles['Testimonial-logo-image']),
-              ref,
-            })
+              ref: ref as ComponentPropsWithRef<'img'>['ref'],
+            }
+
+            return React.cloneElement(imageChild, imageProps)
           }
         }
       })}

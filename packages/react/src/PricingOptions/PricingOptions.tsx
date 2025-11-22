@@ -593,14 +593,14 @@ const PricingOptionsPrimaryAction = forwardRef<
 >(({as, children, className, 'data-testid': testId, ...rest}, ref) => {
   return (
     <Button
+      ref={ref as React.Ref<HTMLButtonElement>}
       as={as}
       data-testid={testId || testIds.primaryAction}
       className={clsx(styles['PricingOptions__primary-action'], className)}
       size="medium"
       variant="primary"
-      {...rest}
-      ref={ref as React.Ref<HTMLButtonElement>}
       block
+      {...rest}
     >
       {children}
     </Button>
@@ -613,13 +613,13 @@ const PricingOptionsSecondaryAction = forwardRef<
 >(({as, children, className, 'data-testid': testId, ...rest}, ref) => {
   return (
     <Button
+      ref={ref as React.Ref<HTMLButtonElement>}
       as={as}
       className={clsx(styles['PricingOptions__primary-action'], className)}
       data-testid={testId || testIds.secondaryAction}
       variant="secondary"
-      {...rest}
-      ref={ref as React.Ref<HTMLButtonElement>}
       block
+      {...rest}
     >
       {children}
     </Button>

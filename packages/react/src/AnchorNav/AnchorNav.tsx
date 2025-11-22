@@ -154,20 +154,18 @@ function AnchorNavBase({children, enableDefaultBgColor = false, hideUntilSticky 
 
   const numLinks = ValidChildren.filter(child => React.isValidElement(child) && child.type === NavLinkBase).length
   const Links = ValidChildren.map((child, index) => {
-    if (React.isValidElement(child)) {
-      if (child.type === NavLinkBase) {
-        const defaultProps: AnchorNavLinkProps = {
-          href: child.props.href,
-          toggleMenuCallback,
-          prefersReducedMotion,
-          updateCurrentActiveNav: handleUpdateToCurrentActiveNavItem,
-          alignment: numLinks < 4 ? 'start' : 'center',
-        }
-        return React.cloneElement(child as React.ReactElement<AnchorNavLinkProps>, {
-          isActive: index === 0,
-          ...defaultProps,
-        })
+    if (React.isValidElement<AnchorNavLinkProps>(child) && child.type === NavLinkBase) {
+      const defaultProps: AnchorNavLinkProps = {
+        href: child.props.href,
+        toggleMenuCallback,
+        prefersReducedMotion,
+        updateCurrentActiveNav: handleUpdateToCurrentActiveNavItem,
+        alignment: numLinks < 4 ? 'start' : 'center',
       }
+      return React.cloneElement(child, {
+        isActive: index === 0,
+        ...defaultProps,
+      })
     }
 
     return null
@@ -175,31 +173,23 @@ function AnchorNavBase({children, enableDefaultBgColor = false, hideUntilSticky 
     .filter(Boolean)
     .slice(0, 5)
 
-  const Action = ValidChildren.map(child => {
-    if (React.isValidElement(child) && child.type === ActionBase) {
-      return React.cloneElement(child)
+  const Action = ValidChildren.reduce<React.ReactElement<AnchorNavActionProps>[]>((acc, child) => {
+    if (React.isValidElement<AnchorNavActionProps>(child) && child.type === ActionBase) {
+      acc.push(React.cloneElement(child))
     }
-    return null
-  }).filter(Boolean)
+    return acc
+  }, [])
 
-  const SecondaryAction = ValidChildren.map(child => {
-    if (React.isValidElement(child) && child.type === SecondaryActionBase) {
-      return React.cloneElement(child)
+  const SecondaryAction = ValidChildren.reduce<React.ReactElement<AnchorNavActionProps>[]>((acc, child) => {
+    if (React.isValidElement<AnchorNavActionProps>(child) && child.type === SecondaryActionBase) {
+      acc.push(React.cloneElement(child))
     }
-    return null
-  }).filter(Boolean)
+    return acc
+  }, [])
 
   const hasLargerSizeActions =
-    Action.some(action => {
-      if (React.isValidElement<AnchorNavActionProps>(action) && action.props.size) {
-        return action.props.size !== 'small'
-      }
-    }) ||
-    SecondaryAction.some(action => {
-      if (React.isValidElement<AnchorNavActionProps>(action) && action.props.size) {
-        return action.props.size !== 'small'
-      }
-    })
+    Action.some(action => action.props.size && action.props.size !== 'small') ||
+    SecondaryAction.some(action => action.props.size && action.props.size !== 'small')
 
   /* On page load, the rootMargin positions and/or thresholds of the IntersectionObserver
    * may not be met depending on the position of the AnchorNav on the page.
@@ -270,8 +260,8 @@ function AnchorNavBase({children, enableDefaultBgColor = false, hideUntilSticky 
               hasTwoActions && styles['AnchorNav__actionsContainer--multiple'],
             )}
           >
-            {Action.length && SecondaryAction.length && React.isValidElement(Action[0])
-              ? React.cloneElement(Action[0] as ReactElement, {
+            {Action.length && SecondaryAction.length && React.isValidElement<AnchorNavActionProps>(Action[0])
+              ? React.cloneElement(Action[0], {
                   variant: 'primary',
                 })
               : Action}

@@ -4,8 +4,8 @@ import type {AnchorPosition, PositionSettings} from '@primer/behaviors'
 import {useResizeObserver} from './useResizeObserver'
 
 export type AnchoredPositionHookSettings = Partial<PositionSettings> & {
-  floatingElementRef?: React.RefObject<Element>
-  anchorElementRef?: React.RefObject<Element>
+  floatingElementRef?: React.RefObject<Element | null>
+  anchorElementRef?: React.RefObject<Element | null>
 }
 
 /**
@@ -21,12 +21,12 @@ export function useAnchoredPosition(
   settings?: AnchoredPositionHookSettings,
   dependencies: React.DependencyList = [],
 ): {
-  floatingElementRef: RefObject<Element> | undefined
-  anchorElementRef: RefObject<Element> | undefined
+  floatingElementRef: RefObject<Element | null> | undefined
+  anchorElementRef: RefObject<Element | null> | undefined
   position: AnchorPosition | undefined
 } {
-  const floatingElementRef = settings?.floatingElementRef as RefObject<Element>
-  const anchorElementRef = settings?.anchorElementRef as RefObject<Element>
+  const floatingElementRef = settings?.floatingElementRef as RefObject<Element | null>
+  const anchorElementRef = settings?.anchorElementRef as RefObject<Element | null>
 
   const [position, setPosition] = useState<AnchorPosition | undefined>(undefined)
 

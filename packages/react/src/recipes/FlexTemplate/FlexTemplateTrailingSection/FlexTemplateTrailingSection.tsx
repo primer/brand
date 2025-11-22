@@ -8,6 +8,7 @@ import {
   Footnotes,
   CTABanner,
   Button,
+  type PrimerBrandButtonType,
   Card,
   Box,
   SectionIntro,
@@ -77,14 +78,13 @@ export function FlexTemplateTrailingSection({template}: FlexTemplateTrailingSect
   const trailingSectionBackgroundColor = visualSettings.trailingSectionBackgroundColor || 'default'
   const trailingSectionRoundedCorners = visualSettings.trailingSectionRoundedCorners || false
 
-  const ctaButtons: React.ReactElement[] = []
   const primaryButtonLabel = ctaBannerFields?.callToActionPrimary?.text
   const secondaryButtonLabel = ctaBannerFields?.callToActionSecondary?.text
+  const ctaButtons: PrimerBrandButtonType[] = []
 
   if (primaryButtonLabel) {
-    const primaryButtonVariant = ctaBannerFields.callToActionPrimary?.variant ?? 'primary'
     ctaButtons.push(
-      <Button key="primary" variant={primaryButtonVariant}>
+      <Button key="primary" variant={ctaBannerFields.callToActionPrimary?.variant ?? 'primary'}>
         {primaryButtonLabel}
       </Button>,
     )

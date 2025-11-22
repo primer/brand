@@ -1,5 +1,5 @@
 import React from 'react'
-import {Hero} from './Hero'
+import {Hero, HeroProps} from './Hero'
 import figma from '@figma/code-connect'
 
 figma.connect(
@@ -57,7 +57,7 @@ figma.connect(
       secondaryActionClosingTag,
       secondaryActionOpeningTag,
     }) => (
-      <Hero align={align}>
+      <Hero align={align as HeroProps['align']}>
         <Hero.Heading>{heading}</Hero.Heading>
         {descriptionOpeningTag}
         {description}

@@ -13,14 +13,12 @@ const Root = forwardRef(
 const _Input = forwardRef(
   ({className, children, ...rest}: React.HTMLAttributes<HTMLDivElement>, ref: Ref<HTMLDivElement>) => {
     const transformedChildren = React.Children.toArray(children).map(child => {
-      if (React.isValidElement(child) && typeof child.type !== 'string') {
-        if (child.type === FormControl) {
-          return React.cloneElement(child, {
-            fullWidth: true,
-            required: true,
-            ...child.props,
-          })
-        }
+      if (React.isValidElement<React.ComponentProps<typeof FormControl>>(child) && child.type === FormControl) {
+        return React.cloneElement(child, {
+          fullWidth: true,
+          required: true,
+          ...child.props,
+        })
       }
       return child
     })
@@ -36,14 +34,12 @@ const _Input = forwardRef(
 const _Confirm = forwardRef(
   ({className, children, ...rest}: React.HTMLAttributes<HTMLDivElement>, ref: Ref<HTMLDivElement>) => {
     const transformedChildren = React.Children.toArray(children).map(child => {
-      if (React.isValidElement(child) && typeof child.type !== 'string') {
-        if (child.type === FormControl) {
-          return React.cloneElement(child, {
-            fullWidth: true,
-            size: 'large',
-            ...child.props,
-          })
-        }
+      if (React.isValidElement<React.ComponentProps<typeof FormControl>>(child) && child.type === FormControl) {
+        return React.cloneElement(child, {
+          fullWidth: true,
+          size: 'large',
+          ...child.props,
+        })
       }
       return child
     })

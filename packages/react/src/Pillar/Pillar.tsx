@@ -1,4 +1,4 @@
-import React, {forwardRef, PropsWithChildren, HTMLAttributes, type Ref} from 'react'
+import React, {forwardRef, PropsWithChildren, HTMLAttributes, type Ref, type JSX} from 'react'
 import {clsx} from 'clsx'
 import {Heading, HeadingProps, Text, Image, type ImageProps, Link, LinkProps} from '..'
 import type {BaseProps} from '../component-helpers'
@@ -14,7 +14,6 @@ import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/compone
  * Main stylesheet (as a CSS Module)
  */
 import styles from './Pillar.module.css'
-import type {Icon as IconProps} from '@primer/octicons-react'
 
 export const PillarIconColors = Colors
 
@@ -97,24 +96,27 @@ function PillarImage({className, ...rest}: PillarImageProps) {
   )
 }
 
+type IconComponent = React.ComponentType<{size?: number}>
+
 type PillarIconProps = BaseProps<HTMLSpanElement> & {
-  icon: React.ReactNode | IconProps
+  icon: React.ReactNode | IconComponent
   color?: (typeof PillarIconColors)[number]
 }
 
 function PillarIcon({icon: Icon, className, color = defaultPillarIconColor, ...rest}: PillarIconProps) {
   return (
-    <span className={clsx(styles.Pillar__icon, styles[`Pillar__icon--color-${color}`], className)} {...rest}>
-      {typeof Icon === 'function' ? (
-        <Icon size={32} />
-      ) : (
-        React.isValidElement(Icon) &&
-        React.cloneElement(Icon as React.ReactElement, {
-          ['aria-hidden']: 'true',
-          focusable: 'false',
-          size: 32,
-        })
-      )}
+    <span
+      className={clsx(styles.Pillar__icon, styles[`Pillar__icon--color-${color}`], className)}
+      {...rest}
+      aria-hidden="true"
+    >
+      {typeof Icon === 'function'
+        ? React.createElement(Icon as IconComponent, {size: 32})
+        : React.isValidElement<{size?: number}>(Icon)
+        ? React.cloneElement(Icon, {
+            size: 32,
+          })
+        : null}
     </span>
   )
 }

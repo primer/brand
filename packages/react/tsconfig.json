@@ -3,7 +3,7 @@
     "declaration": true,
     "target": "esnext",
     "module": "esnext",
-    "lib": ["esnext", "dom"],
+    "lib": ["esnext", "dom", "dom.iterable"],
     "emitDeclarationOnly": false,
     "skipLibCheck": false,
     "sourceMap": true,
@@ -14,7 +14,8 @@
     "outDir": "lib",
     "jsx": "react-jsx",
     "plugins": [{"name": "typescript-plugin-css-modules"}],
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "types": ["node", "react", "react-dom", "chai"]
   },
   "include": ["src/**/*", "scripts/**/*"],
   "exclude": ["integration-tests/**/*"]

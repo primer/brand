@@ -174,9 +174,11 @@ export const _Button = forwardRef(
         style={{...animationInlineStyles, ...style}}
         {...props}
       >
-        {LeadingVisualComponent && (
+        {React.isValidElement<{className?: string; ['aria-hidden']?: string; focusable?: string}>(
+          LeadingVisualComponent,
+        ) && (
           <span className={styles['Button__leading-visual']} data-testid={testIds.leadingVisual}>
-            {React.cloneElement(LeadingVisualComponent as React.ReactElement, {
+            {React.cloneElement(LeadingVisualComponent, {
               className: clsx(styles['Button__icon-visual'], isDisabled && styles['Button__icon-visual--disabled']),
               ['aria-hidden']: 'true',
               focusable: 'false',
@@ -210,9 +212,11 @@ export const _Button = forwardRef(
             />
           </span>
         )}
-        {TrailingVisualComponent && (
+        {React.isValidElement<{className?: string; ['aria-hidden']?: string; focusable?: string}>(
+          TrailingVisualComponent,
+        ) && (
           <span className={clsx(styles['Button__trailing-visual'])} data-testid={testIds.trailingVisual}>
-            {React.cloneElement(TrailingVisualComponent as React.ReactElement, {
+            {React.cloneElement(TrailingVisualComponent, {
               className: clsx(styles['Button__icon-visual'], isDisabled && styles['Button__icon-visual--disabled']),
               ['aria-hidden']: 'true',
               focusable: 'false',

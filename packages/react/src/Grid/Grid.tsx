@@ -1,4 +1,5 @@
 import React, {HTMLAttributes, PropsWithChildren, memo} from 'react'
+import type {JSX} from 'react'
 
 import {clsx} from 'clsx'
 

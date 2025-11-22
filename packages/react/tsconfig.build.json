@@ -3,5 +3,14 @@
   "compilerOptions": {
     "rootDir": "src"
   },
-  "exclude": ["scripts/**/*", "src/**/*.stories.tsx", "src/**/*.test.tsx"]
+  "exclude": [
+    "scripts/**/*",
+    "src/**/*.stories.tsx",
+    "src/**/*.stories.ts",
+    "src/**/*.test.tsx",
+    "src/**/*.test.ts",
+    "src/**/*.spec.tsx",
+    "src/**/*.spec.ts",
+    "src/test-utils/**/*"
+  ]
 }

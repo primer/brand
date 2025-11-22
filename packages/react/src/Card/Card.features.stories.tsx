@@ -23,7 +23,7 @@ export const Minimal: StoryFn<typeof Card> = () => {
   )
 }
 
-export const MinimalDark: StoryFn<typeof Card> = args => <Minimal {...args} />
+export const MinimalDark: StoryFn<typeof Card> = (args, context) => Minimal(args, context)
 MinimalDark.decorators = [
   Story => (
     <ThemeProvider colorMode="dark">

@@ -4,7 +4,6 @@ import fs from 'fs'
 import path from 'path'
 import {Result} from 'axe-core'
 
-import type {StoryIndex} from '@storybook/types'
 import {chromium, Browser, Page} from 'playwright'
 import {test, expect} from '@playwright/test'
 import {injectAxe, getViolations} from 'axe-playwright'
@@ -12,6 +11,18 @@ import {injectAxe, getViolations} from 'axe-playwright'
 // @ts-ignore
 // eslint-disable-next-line import/extensions, import/no-unresolved
 import IndexData from '../../../../apps/storybook/storybook-static/index.json'
+
+type StoryIndex = {
+  entries: Record<
+    string,
+    {
+      id: string
+      title: string
+      name: string
+      importPath: string
+    }
+  >
+}
 
 declare const __dirname: string
 

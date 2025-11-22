@@ -10,7 +10,7 @@ import React, {
   type KeyboardEvent,
   type ReactElement,
   type RefObject,
-  type SyntheticEvent,
+  type ToggleEvent,
 } from 'react'
 import {clsx} from 'clsx'
 
@@ -50,13 +50,13 @@ const useAccordionContext = (): AccordionContextType => {
 }
 
 export const AccordionRoot = forwardRef<HTMLDetailsElement, AccordionRootProps>(
-  ({className, variant = 'default', open, onToggle, onKeyDown, handleOpen, ...rest}, forwardedRef) => {
+  ({children, className, variant = 'default', open, onToggle, onKeyDown, handleOpen, ...rest}, forwardedRef) => {
     const ref = useProvidedRefOrCreate(forwardedRef as RefObject<HTMLDetailsElement>)
     const accordionContextValue = useMemo(() => ({variant}), [variant])
 
     const handleToggle = useCallback<(event: Event) => void>(
       event => {
-        const toggleEvent = event as unknown as SyntheticEvent<HTMLDetailsElement>
+        const toggleEvent = event as unknown as ToggleEvent<HTMLDetailsElement>
         onToggle?.(toggleEvent)
         handleOpen?.(toggleEvent.currentTarget.open)
       },
@@ -99,7 +99,9 @@ export const AccordionRoot = forwardRef<HTMLDetailsElement, AccordionRootProps>(
           ref={ref}
           open={open}
           {...rest}
-        />
+        >
+          {children}
+        </details>
       </AccordionContext.Provider>
     )
   },

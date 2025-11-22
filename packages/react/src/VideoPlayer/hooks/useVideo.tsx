@@ -40,7 +40,7 @@ export type UseVideoContext = VideoState & {
   toggleFullScreen: () => void
   setDuration: (duration: number) => void
   isFullScreen: boolean
-  fullscreenRef: RefObject<HTMLDivElement>
+  fullscreenRef: RefObject<HTMLDivElement | null>
 }
 
 type Action =

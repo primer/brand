@@ -104,41 +104,47 @@ const _Statistic = forwardRef<HTMLDivElement, PropsWithChildren<StatisticProps>>
     const {classes: animationClasses, styles: animationInlineStyles} = useAnimation(animate)
     const paddingClasses = useMemo(() => classBuilder('padding', padding), [padding])
 
-    let HeadingChild = useMemo(
-      () =>
-        React.Children.toArray(children).find(child => {
-          if (React.isValidElement(child) && child.type === StatisticHeading) {
-            return child
-          }
-        }),
-      [children],
-    )
+    type HeadingElement = React.ReactElement<React.ComponentProps<typeof StatisticHeading>>
+    type DescriptionElement = React.ReactElement<React.ComponentProps<typeof StatisticDescription>>
 
-    const DescriptionChild = useMemo(
-      () =>
-        React.Children.toArray(children).find(child => {
-          if (React.isValidElement(child) && child.type === StatisticDescription) {
-            return child
-          }
-        }),
-      [children],
-    )
+    const headingChild = useMemo(() => {
+      const candidate = React.Children.toArray(children).find(child => {
+        return (
+          React.isValidElement<React.ComponentProps<typeof StatisticHeading>>(child) && child.type === StatisticHeading
+        )
+      })
+
+      return React.isValidElement<React.ComponentProps<typeof StatisticHeading>>(candidate)
+        ? (candidate as HeadingElement)
+        : undefined
+    }, [children])
+
+    const descriptionChild = useMemo(() => {
+      const candidate = React.Children.toArray(children).find(child => {
+        return (
+          React.isValidElement<React.ComponentProps<typeof StatisticDescription>>(child) &&
+          child.type === StatisticDescription
+        )
+      })
+
+      return React.isValidElement<React.ComponentProps<typeof StatisticDescription>>(candidate)
+        ? (candidate as DescriptionElement)
+        : undefined
+    }, [children])
+
+    let headingToRender = headingChild
 
     /**
      * To aid assistive technology, we append the optional description to the heading
      */
-    if (DescriptionChild) {
-      const updatedHeadingChild = React.isValidElement(HeadingChild)
-        ? React.cloneElement(HeadingChild as React.ReactElement<TextProps>, {
-            children: (
-              <>
-                {HeadingChild.props.children} {DescriptionChild}
-              </>
-            ),
-          })
-        : HeadingChild
-
-      HeadingChild = updatedHeadingChild
+    if (descriptionChild && headingToRender) {
+      headingToRender = React.cloneElement(headingToRender, {
+        children: (
+          <>
+            {headingToRender.props.children} {descriptionChild}
+          </>
+        ),
+      })
     }
 
     return (
@@ -151,9 +157,9 @@ const _Statistic = forwardRef<HTMLDivElement, PropsWithChildren<StatisticProps>>
       >
         {LeadingComponent && <LeadingComponent />}
 
-        {React.isValidElement(HeadingChild) &&
-          React.cloneElement(HeadingChild as React.ReactElement<TextProps>, {
-            size: HeadingChild.props.size || _HeadingSizeMap[size],
+        {headingToRender &&
+          React.cloneElement(headingToRender, {
+            size: headingToRender.props.size || _HeadingSizeMap[size],
           })}
 
         {TrailingComponent && <TrailingComponent />}

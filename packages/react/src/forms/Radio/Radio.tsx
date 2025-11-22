@@ -1,4 +1,4 @@
-import React, {forwardRef, useCallback, type InputHTMLAttributes, type ReactElement, type RefObject} from 'react'
+import React, {forwardRef, useCallback, type InputHTMLAttributes, type ReactElement} from 'react'
 import {clsx} from 'clsx'
 import {useId} from '../../hooks/useId'
 import {useProvidedRefOrCreate} from '../../hooks/useRef'
@@ -28,7 +28,7 @@ const RadioInternal = (
   {checked, className, disabled, id, onChange, required, value, ...rest}: RadioProps,
   ref,
 ): ReactElement => {
-  const inputRef: RefObject<HTMLInputElement> | null = useProvidedRefOrCreate<HTMLInputElement>(ref || null)
+  const inputRef = useProvidedRefOrCreate<HTMLInputElement>(ref || null)
   const uniqueId = useId(id)
 
   const onClick = useCallback(() => {

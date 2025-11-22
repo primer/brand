@@ -8,7 +8,7 @@ import {useCallback, useEffect, useState, type RefObject} from 'react'
  * @returns The ref to be applied to the container element.
  */
 export const useContainsFocus = <T extends HTMLElement>(
-  containerRef?: RefObject<T>,
+  containerRef?: RefObject<T | null>,
   onFocusChange?: (isFocussed: boolean) => void,
 ) => {
   const [isChildFocused, setIsChildFocused] = useState(false)

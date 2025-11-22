@@ -273,44 +273,42 @@ const _ActionMenuRoot = memo(
       Button?: ReactElement<ActionMenuButtonProps>
       Overlay?: ReactElement<ActionMenuOverlayProps>
     }>((acc, child) => {
-      if (isValidElement(child)) {
-        if (child.type === ActionMenuButton) {
-          acc['Button'] = cloneElement(child as ReactElement<ActionMenuButtonProps>, {
-            onClick: toggleMenu,
-            ref: anchorElementRef as React.RefObject<HTMLButtonElement>,
-            className: clsx(child.props.className, styles[`ActionMenu__button--${mode}`], showMenu),
-            menuOpen: showMenu,
-            disabled,
-            id: `${instanceId}-button`,
-            size,
-            _mode: mode,
-          })
-        } else if (child.type === ActionMenuOverlay) {
-          acc['Overlay'] = cloneElement(child as ReactElement<ActionMenuOverlayProps>, {
-            ref: floatingElementRef as React.RefObject<HTMLUListElement>,
-            className: clsx(
-              styles.ActionMenu__menu,
-              position && styles['ActionMenu__menu--visible'],
-              position && styles[`ActionMenu__menu--pos-${position.anchorSide}`],
-              styles[`ActionMenu__menu--${size}`],
-              mode === 'split-button' && 'ActionMenu__menu--split',
-            ),
-            style: {
-              top: `${position?.top ?? 0}px`,
-              left: `${position?.left ?? 0}px`,
-            },
-            id: `${instanceId}-menu`,
-            children: Children.map(child.props.children, item => {
-              if (isValidElement(item)) {
-                return cloneElement(item as ReactElement<ActionMenuItemBaseProps>, {
-                  handler: handleItemSelection,
-                  type: mode === 'split-button' ? 'link' : selectionVariant,
-                })
-              }
-              return item
-            }),
-          })
-        }
+      if (isValidElement<ActionMenuButtonProps>(child) && child.type === ActionMenuButton) {
+        acc.Button = cloneElement(child, {
+          onClick: toggleMenu,
+          ref: anchorElementRef as React.RefObject<HTMLButtonElement>,
+          className: clsx(child.props.className, styles[`ActionMenu__button--${mode}`], showMenu),
+          menuOpen: showMenu,
+          disabled,
+          id: `${instanceId}-button`,
+          size,
+          _mode: mode,
+        })
+      } else if (isValidElement<ActionMenuOverlayProps>(child) && child.type === ActionMenuOverlay) {
+        acc.Overlay = cloneElement(child, {
+          ref: floatingElementRef as React.RefObject<HTMLUListElement>,
+          className: clsx(
+            styles.ActionMenu__menu,
+            position && styles['ActionMenu__menu--visible'],
+            position && styles[`ActionMenu__menu--pos-${position.anchorSide}`],
+            styles[`ActionMenu__menu--${size}`],
+            mode === 'split-button' && 'ActionMenu__menu--split',
+          ),
+          style: {
+            top: `${position?.top ?? 0}px`,
+            left: `${position?.left ?? 0}px`,
+          },
+          id: `${instanceId}-menu`,
+          children: Children.map(child.props.children, item => {
+            if (isValidElement<ActionMenuItemBaseProps>(item)) {
+              return cloneElement(item, {
+                handler: handleItemSelection,
+                type: mode === 'split-button' ? 'link' : selectionVariant,
+              })
+            }
+            return item
+          }),
+        })
       }
       return acc
     }, {})
@@ -330,15 +328,12 @@ const _ActionMenuRoot = memo(
   },
 )
 
-type ActionMenuButtonProps = PropsWithChildren<Ref<HTMLButtonElement>> & {
-  id?: string
+type ActionMenuButtonProps = PropsWithChildren<
+  BaseProps<HTMLButtonElement> & Pick<React.ButtonHTMLAttributes<HTMLButtonElement>, 'id' | 'disabled' | 'onClick'>
+> & {
   as?: ButtonProps<'a'>['as']
   href?: ButtonProps<'a'>['href']
-  ref?: React.RefObject<HTMLButtonElement>
-  className?: string
   menuOpen?: boolean
-  disabled?: boolean
-  onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void
   'data-testid'?: string
   size?: ActionMenuSizes
   _mode?: ActionMenuButtonModes
@@ -509,8 +504,8 @@ const ActionMenuItem = ({
   const contents = useMemo(
     () => (
       <>
-        {LeadingVisual && React.isValidElement(LeadingVisual)
-          ? React.cloneElement(LeadingVisual as React.ReactElement, {
+        {React.isValidElement<{width?: number; height?: number}>(LeadingVisual)
+          ? React.cloneElement(LeadingVisual, {
               width: LeadingVisual.props.width || 20,
               height: LeadingVisual.props.width || 20,
             })
@@ -575,11 +570,11 @@ const ActionMenuItem = ({
   )
 }
 
-type ActionMenuOverlayProps = PropsWithChildren<Ref<HTMLUListElement>> & {
+type ActionMenuOverlayProps = PropsWithChildren<
+  BaseProps<HTMLUListElement> & React.HTMLAttributes<HTMLUListElement>
+> & {
   'aria-label': string
   id?: string
-  ref?: React.RefObject<HTMLUListElement>
-  className?: string
   'data-testid'?: string
   menuOpen?: boolean
   style?: React.CSSProperties

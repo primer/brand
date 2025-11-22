@@ -1,14 +1,24 @@
 /* eslint import/no-nodejs-modules: ["error", {"allow": ["path", "fs"]}] */
-import type {StoryIndex} from '@storybook/types'
 import fs from 'fs'
 import path from 'path'
 import prettier from 'prettier'
 import {SUPPORTED_LANGUAGES as languages} from '../../../../apps/storybook/src/constants'
 
+type StoryIndex = {
+  entries: Record<
+    string,
+    {
+      id: string
+      name: string
+      importPath: string
+    }
+  >
+}
+
 // eslint-disable-next-line import/no-commonjs, import/extensions
 const prettierOptions = require('../../../../.prettierrc.js')
 // eslint-disable-next-line import/no-commonjs, import/extensions
-const stories = require('../../../../apps/storybook/storybook-static/index.json')
+const stories = require('../../../../apps/storybook/storybook-static/index.json') as StoryIndex
 
 const port = 6006
 

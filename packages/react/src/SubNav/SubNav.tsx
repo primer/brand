@@ -64,7 +64,7 @@ export const SubNavSubMenuVariants = ['dropdown', 'anchor'] as const
 type SubMenuVariants = (typeof SubNavSubMenuVariants)[number]
 
 type SubNavContextType = {
-  portalRef: RefObject<HTMLDivElement>
+  portalRef: RefObject<HTMLDivElement | null>
 }
 
 const SubNavContext = createContext<SubNavContextType | undefined>(undefined)
@@ -121,7 +121,7 @@ function SubNavProvider({children}: {children: React.ReactNode}) {
 }
 
 type SeparatorProps = {
-  activeLinklabel?: string
+  activeLinklabel?: React.ReactNode
 } & BaseProps<HTMLSpanElement>
 
 function Separator({activeLinklabel, className, ...props}: SeparatorProps) {
@@ -200,20 +200,24 @@ const SubNavRoot = memo(
       }, [isOpenAtNarrow, isLarge])
 
       const activeLink = childrenArr.find(child => {
-        if (isValidElement(child)) {
-          return child.props['aria-current']
-        }
-      }) as React.ReactElement | undefined
+        return isValidElement<LinkBaseProps>(child) && child.type === LinkBase && Boolean(child.props['aria-current'])
+      }) as React.ReactElement<LinkBaseProps> | undefined
 
       useEffect(() => {
         // check if there is an anchored nav in the SubNav.SubMenu child
         const hasAnchorVariant = childrenArr.some(child => {
-          if (isValidElement(child) && child.type === LinkBase) {
-            const [, subMenu] = child.props.children
-            if (subMenu?.props?.variant === 'anchor') {
+          if (isValidElement<LinkBaseProps>(child) && child.type === LinkBase) {
+            const childNodes = Children.toArray(child.props.children)
+            const maybeSubMenu = childNodes[1]
+            if (
+              isValidElement<SubMenuProps>(maybeSubMenu) &&
+              maybeSubMenu.type === SubMenuBase &&
+              maybeSubMenu.props.variant === 'anchor'
+            ) {
               return true
             }
           }
+          return false
         })
         setHasAnchoredNav(hasAnchorVariant)
       }, [childrenArr])
@@ -224,31 +228,37 @@ const SubNavRoot = memo(
         links: LinkChildren,
         action: ActionChild,
       } = childrenArr.reduce(
-        (acc: {heading?: ReactNode; subheading?: ReactNode; links: ReactElement[]; action?: ReactNode}, child) => {
+        (
+          acc: {
+            heading?: React.ReactElement<HeadingBaseProps>
+            subheading?: React.ReactElement<SubHeadingBaseProps>
+            links: React.ReactElement<LinkBaseProps>[]
+            action?: React.ReactElement<SubNavActionProps>
+          },
+          child,
+        ) => {
           if (isValidElement(child)) {
             if (child.type === HeadingBase) {
-              acc.heading = child
+              acc.heading = child as React.ReactElement<HeadingBaseProps>
             } else if (child.type === SubHeadingBase) {
-              acc.subheading = child
+              acc.subheading = child as React.ReactElement<SubHeadingBaseProps>
             } else if (child.type === LinkBase) {
-              const [link, subMenu] = child.props.children
+              const linkChild = child as React.ReactElement<LinkBaseProps>
+              const childNodes = Children.toArray(linkChild.props.children)
+              const [link, subMenu] = childNodes
+              const isAnchorVariant =
+                isValidElement<SubMenuProps>(subMenu) &&
+                subMenu.type === SubMenuBase &&
+                subMenu.props.variant === 'anchor'
 
-              if (subMenu?.props?.variant === 'anchor') {
-                acc.links.push(
-                  React.cloneElement(child as ReactElement<LinkBaseProps>, {
-                    children: [link],
-                    onClick: child.props['aria-current'] ? closeMenuCallback : child.props.onClick,
-                  }),
-                )
-              } else {
-                acc.links.push(
-                  React.cloneElement(child as ReactElement<LinkBaseProps>, {
-                    onClick: child.props['aria-current'] ? closeMenuCallback : child.props.onClick,
-                  }),
-                )
-              }
+              acc.links.push(
+                React.cloneElement(linkChild, {
+                  ...(isAnchorVariant ? {children: [link]} : {}),
+                  onClick: linkChild.props['aria-current'] ? closeMenuCallback : linkChild.props.onClick,
+                }),
+              )
             } else if (child.type === ActionBase) {
-              acc.action = child
+              acc.action = child as React.ReactElement<SubNavActionProps>
             }
           }
           return acc
@@ -256,13 +266,22 @@ const SubNavRoot = memo(
         {heading: undefined, subheading: undefined, links: [], action: undefined},
       )
 
-      const activeLinklabel =
-        typeof activeLink?.props.children === 'string' ? activeLink.props.children : activeLink?.props.children[0]
+      const activeLinkChildren = activeLink ? Children.toArray(activeLink.props.children) : []
+      const activeLinklabel = activeLinkChildren[0]
 
       // needed to prevent rendering of anchor subnav inside the narrow <button> element
-      const MaybeSubNav = activeLink?.props.children?.[1]?.props?.variant === 'anchor' && activeLink.props.children?.[1]
+      const maybeSubMenu = activeLinkChildren[1]
+      const MaybeSubNav =
+        isValidElement<SubMenuProps>(maybeSubMenu) &&
+        maybeSubMenu.type === SubMenuBase &&
+        maybeSubMenu.props.variant === 'anchor'
+          ? maybeSubMenu
+          : null
 
-      const subHeadingIsActive = isValidElement(SubHeadingChild) && SubHeadingChild.props['aria-current']
+      const subHeadingIsActive =
+        isValidElement<SubHeadingBaseProps>(SubHeadingChild) &&
+        SubHeadingChild.type === SubHeadingBase &&
+        Boolean(SubHeadingChild.props['aria-current'])
 
       const NarrowButton = useMemo(
         () => (
@@ -528,16 +547,14 @@ const LinkBase = forwardRef<HTMLAnchorElement | HTMLDivElement, LinkBaseProps>((
 
   if (hasSubMenu) {
     const isAnchorVariantSubMenu = childrenArr.some(child => {
-      if (isValidElement(child)) {
-        return child.type === SubMenuBase && child.props.variant === 'anchor'
-      }
+      return isValidElement<SubMenuProps>(child) && child.type === SubMenuBase && child.props.variant === 'anchor'
     })
 
     return (
       <li>
         <LinkBaseWithSubmenu
-          {...props}
           ref={ref as RefObject<HTMLDivElement>}
+          {...props}
           _subMenuVariant={isAnchorVariantSubMenu ? 'anchor' : undefined}
         />
       </li>
@@ -620,15 +637,14 @@ function SubMenuBase({children, className, variant = 'dropdown', ...props}: SubM
       >
         <ul className={styles['SubNav__sub-menu-list']} {...props}>
           {React.Children.map(children, child => {
-            if (isValidElement(child)) {
-              return React.cloneElement(child as React.ReactElement<LinkBaseProps>, {
+            if (isValidElement<LinkBaseProps>(child) && child.type === LinkBase) {
+              return React.cloneElement(child, {
                 onClick: e => {
-                  if (child.props.onClick) {
-                    child.props.onClick(e)
-                  }
+                  child.props.onClick?.(e)
                 },
               })
             }
+            return null
           })}
         </ul>
       </nav>,

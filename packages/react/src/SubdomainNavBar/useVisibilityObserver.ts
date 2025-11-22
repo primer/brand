@@ -4,7 +4,7 @@ export type VisibilityMap = {
   [key: string]: boolean
 }
 
-export function useVisibilityObserver(navigationRef: RefObject<HTMLUListElement>, children) {
+export function useVisibilityObserver(navigationRef: RefObject<HTMLUListElement | null>, children) {
   const [visibilityMap, setVisibilityMap] = useState<VisibilityMap>({})
   const handleIntersection = (entries: IntersectionObserverEntry[]) => {
     const updatedEntries = {}

@@ -1,4 +1,4 @@
-import React, {HTMLAttributes, PropsWithChildren} from 'react'
+import React, {HTMLAttributes, PropsWithChildren, type JSX} from 'react'
 import {useAnimation} from '..'
 import type {BaseProps} from '../../component-helpers'
 import {clsx} from 'clsx'
