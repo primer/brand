@@ -28,9 +28,6 @@ declare const __dirname: string
 
 const {describe, beforeAll, afterAll} = test
 
-let browser: Browser
-let page: Page
-
 const allViolations: Result[] = []
 
 const hostname = 'http://localhost:6006/iframe.html?viewMode=story'
@@ -131,6 +128,9 @@ describe.configure({mode: 'parallel'})
 for (const story of storybookRoutes) {
   // eslint-disable-next-line i18n-text/no-en
   describe(`Web page accessibility test for ${story.name} - ${story.story}`, () => {
+    let browser: Browser
+    let page: Page
+
     beforeAll(async () => {
       browser = await chromium.launch()
       page = await browser.newPage()
