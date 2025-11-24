@@ -11,7 +11,6 @@ import React, {
   useRef,
   useState,
   type PropsWithChildren,
-  type ReactElement,
   type ReactNode,
   type RefObject,
 } from 'react'
@@ -200,7 +199,7 @@ const SubNavRoot = memo(
       }, [isOpenAtNarrow, isLarge])
 
       const activeLink = childrenArr.find(child => {
-        return isValidElement<LinkBaseProps>(child) && child.type === LinkBase && Boolean(child.props['aria-current'])
+        return isValidElement<LinkBaseProps>(child) && Boolean(child.props['aria-current'])
       }) as React.ReactElement<LinkBaseProps> | undefined
 
       useEffect(() => {
