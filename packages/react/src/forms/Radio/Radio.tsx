@@ -28,7 +28,7 @@ const RadioInternal = (
   {checked, className, disabled, id, onChange, required, value, ...rest}: RadioProps,
   ref,
 ): ReactElement => {
-  const inputRef = useProvidedRefOrCreate<HTMLInputElement>(ref || null)
+  const inputRef = useProvidedRefOrCreate<HTMLInputElement | null>(ref || null)
   const uniqueId = useId(id)
 
   const onClick = useCallback(() => {

@@ -51,7 +51,7 @@ const useAccordionContext = (): AccordionContextType => {
 
 export const AccordionRoot = forwardRef<HTMLDetailsElement, AccordionRootProps>(
   ({children, className, variant = 'default', open, onToggle, onKeyDown, handleOpen, ...rest}, forwardedRef) => {
-    const ref = useProvidedRefOrCreate(forwardedRef as RefObject<HTMLDetailsElement>)
+    const ref = useProvidedRefOrCreate(forwardedRef as RefObject<HTMLDetailsElement | null>)
     const accordionContextValue = useMemo(() => ({variant}), [variant])
 
     const handleToggle = useCallback<(event: Event) => void>(
@@ -80,15 +80,14 @@ export const AccordionRoot = forwardRef<HTMLDetailsElement, AccordionRootProps>(
 
     useEffect(() => {
       const detailsElement = ref.current
-      // TODO Remove this early return and instead wrap whole function in an if
-      if (!detailsElement) return
+      if (detailsElement) {
+        detailsElement.addEventListener('toggle', handleToggle)
+        detailsElement.addEventListener('keydown', handleKeyDown)
 
-      detailsElement.addEventListener('toggle', handleToggle)
-      detailsElement.addEventListener('keydown', handleKeyDown)
-
-      return () => {
-        detailsElement.removeEventListener('toggle', handleToggle)
-        detailsElement.removeEventListener('keydown', handleKeyDown)
+        return () => {
+          detailsElement.removeEventListener('toggle', handleToggle)
+          detailsElement.removeEventListener('keydown', handleKeyDown)
+        }
       }
     }, [handleToggle, handleKeyDown, ref])
 

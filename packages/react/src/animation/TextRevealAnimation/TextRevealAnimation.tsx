@@ -13,7 +13,7 @@ export type TextRevealAnimationProps = BaseProps<HTMLSpanElement> &
 
 export const TextRevealAnimation = React.forwardRef<HTMLSpanElement, TextRevealAnimationProps>(
   function TextRevealAnimation({children, ...rest}, forwardedRef) {
-    const spanRef = useProvidedRefOrCreate<HTMLSpanElement>(
+    const spanRef = useProvidedRefOrCreate<HTMLSpanElement | null>(
       forwardedRef as React.RefObject<HTMLSpanElement> | React.RefCallback<HTMLSpanElement> | null,
     )
     const {lines} = useTextRevealAnimationLines(children || '', spanRef)

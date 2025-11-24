@@ -86,7 +86,7 @@ const Root = forwardRef<HTMLElement, PropsWithChildren<HeroProps>>(
       return result
     }, [children])
 
-    const mediaPosition = HeroImageChild?.props?.position || HeroVideoChild?.props?.position || 'block-end'
+    const mediaPosition = HeroImageChild?.props.position || HeroVideoChild?.props.position || 'block-end'
 
     const heroLayoutClass = HeroImageChild ? styles['Hero--layout-image'] : styles['Hero--layout-default']
     return (

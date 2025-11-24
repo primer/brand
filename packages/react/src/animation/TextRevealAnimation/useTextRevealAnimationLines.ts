@@ -1,6 +1,6 @@
 import {useRef, useEffect, useState, RefObject} from 'react'
 
-export const useTextRevealAnimationLines = (text?: string, providedRef?: RefObject<HTMLElement>) => {
+export const useTextRevealAnimationLines = (text?: string, providedRef?: RefObject<HTMLElement | null>) => {
   const internalRef = useRef<HTMLElement>(null)
   const ref = providedRef ?? internalRef
   const [lines, setLines] = useState<string[]>()
