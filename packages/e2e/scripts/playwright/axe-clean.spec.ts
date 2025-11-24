@@ -123,7 +123,7 @@ const storybookRoutes = Object.values((IndexData as StoryIndex).entries)
     return !testsToSkip.includes(id)
   })
 
-describe.configure({mode: 'parallel'})
+//describe.configure({mode: 'parallel'})
 
 for (const story of storybookRoutes) {
   // eslint-disable-next-line i18n-text/no-en
