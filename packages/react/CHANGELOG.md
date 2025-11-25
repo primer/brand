@@ -1,5 +1,21 @@
 # @primer/react-brand
 
+## 0.60.0
+
+### Minor Changes
+
+- [#1195](https://github.com/primer/brand/pull/1195) [`55474b4`](https://github.com/primer/brand/commit/55474b49d00c4973d1df85b104719a2de2514ed2) Thanks [@rezrah](https://github.com/rezrah)! - Improved support for React v19.
+
+  All components now have improved support for React v19 type signatures, in addition to continued backwards compatibility with React v18.
+
+  As part of this change, the following has changed:
+
+  - Refs as props are now handled correctly in `FAQGroup`, `ActionMenu`, `Bento`, `Button`/`ButtonGroup`, and other compound components.
+  - Removed internal type casting on various components. This ensures that props are inferred correctly using the new JSX runtime in React v19.
+  - Removed internal dependency on `react-is` for `Fragment` detection
+
+  No changes to component behavior or presentation is expected as part of this change.
+
 ## 0.59.2
 
 ### Patch Changes
