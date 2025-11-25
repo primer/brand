@@ -42,11 +42,13 @@
     "@primer/brand-primitives": "^0.59.2",
     "@primer/react": "37.11.2",
     "@primer/react-brand": "0.59.2",
+    "@swc/core": "^1.13.5",
     "@types/node": "22.18.1",
+    "@types/react": "^18.3.27",
+    "@types/react-dom": "^18.3.7",
     "eslint-config-next": "15.5.2",
     "styled-components": "^5.3.11",
-    "typescript": "5.8.2",
-    "@swc/core": "^1.13.5"
+    "typescript": "5.8.2"
   },
   "peerDependencies": {
     "react": ">=17 <= 18",
@@ -57,6 +59,7 @@
     "npm": ">=8.0.0"
   },
   "overrides": {
+    "motion-dom": "12.6.1",
     "sharp": "0.30.4"
   }
 }

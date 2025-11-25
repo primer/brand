@@ -20,7 +20,9 @@
         "name": "next"
       }
     ],
-    "strict": false
+    "strict": false,
+    "types": ["react", "react-dom"],
+    "typeRoots": ["./node_modules/@types"]
   },
   "include": ["next-env.d.ts", ".next/types/**/*.ts", "**/*.ts", "**/*.tsx", "../../packages/react/src/global.d.ts"],
   "exclude": ["node_modules", "../../node_modules"]

@@ -35,6 +35,9 @@ module.exports = {
   setupFilesAfterEnv: ['./src/test-utils/setupTests.ts'],
   testEnvironment: 'jsdom',
   testMatch: ['<rootDir>/(src)/**/*.test.[jt]s?(x)'],
+  transform: {
+    '^.+\\.(ts|tsx)$': ['ts-jest', {tsconfig: './tsconfig.test.json'}],
+  },
   globals: {
     window: {},
   },

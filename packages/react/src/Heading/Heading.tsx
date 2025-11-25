@@ -119,7 +119,7 @@ export const Heading = forwardRef(
     }
 
     return (
-      <HeadingComponent className={headingClassNames} style={{...animationInlineStyles, ...style}} ref={ref} {...rest}>
+      <HeadingComponent ref={ref} className={headingClassNames} style={{...animationInlineStyles, ...style}} {...rest}>
         {children}
       </HeadingComponent>
     )

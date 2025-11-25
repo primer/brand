@@ -36,6 +36,25 @@ describe('FAQ', () => {
     expect(answerEl).toBeInTheDocument()
   })
 
+  it('renders items provided within fragments', () => {
+    const {getByText} = render(
+      <FAQ>
+        <FAQ.Heading>{mockHeading}</FAQ.Heading>
+        <>
+          <FAQ.Item>
+            <FAQ.Question>{mockQuestion}</FAQ.Question>
+            <FAQ.Answer>
+              <p>{mockFAQAnswer}</p>
+            </FAQ.Answer>
+          </FAQ.Item>
+        </>
+      </FAQ>,
+    )
+
+    expect(getByText(mockQuestion)).toBeInTheDocument()
+    expect(getByText(mockFAQAnswer)).not.toBeVisible()
+  })
+
   it('has no a11y violations', async () => {
     const {container} = render(
       <FAQ>

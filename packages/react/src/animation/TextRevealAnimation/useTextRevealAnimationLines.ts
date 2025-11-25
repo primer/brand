@@ -1,7 +1,8 @@
-import {useRef, useEffect, useState} from 'react'
+import {useRef, useEffect, useState, RefObject} from 'react'
 
-export const useTextRevealAnimationLines = (text?: string) => {
-  const ref = useRef<HTMLElement>(null)
+export const useTextRevealAnimationLines = (text?: string, providedRef?: RefObject<HTMLElement | null>) => {
+  const internalRef = useRef<HTMLElement>(null)
+  const ref = providedRef ?? internalRef
   const [lines, setLines] = useState<string[]>()
 
   useEffect(() => {
@@ -50,7 +51,7 @@ export const useTextRevealAnimationLines = (text?: string) => {
     }
 
     wrapLines()
-  }, [text])
+  }, [text, ref])
 
   return {ref, lines}
 }

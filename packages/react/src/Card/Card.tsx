@@ -1,5 +1,5 @@
 import React, {RefObject, forwardRef} from 'react'
-import {isFragment} from 'react-is'
+
 import {clsx} from 'clsx'
 import {Heading, HeadingProps, Text, useTheme, CardSkewEffect, Image, type ImageProps, Label, LabelColors} from '..'
 import {Icon, type IconProps} from '../Icon'
@@ -7,6 +7,7 @@ import {ExpandableArrow} from '../ExpandableArrow'
 import type {BaseProps} from '../component-helpers'
 import {useProvidedRefOrCreate} from '../hooks/useRef'
 import {Colors} from '../constants'
+import {isFragmentElement} from '../utils/isFragmentElement'
 
 /**
  * Design tokens
@@ -92,9 +93,15 @@ const CardRoot = forwardRef<HTMLDivElement, CardProps>(
     const cardRef = useProvidedRefOrCreate(ref as RefObject<HTMLDivElement>)
     const {colorMode} = useTheme()
 
-    const children = isFragment(childrenMaybeWrappedInFragment)
-      ? childrenMaybeWrappedInFragment.props.children
-      : childrenMaybeWrappedInFragment
+    let children: React.ReactNode | null
+
+    if (childrenMaybeWrappedInFragment == null) {
+      children = null
+    } else if (isFragmentElement(childrenMaybeWrappedInFragment)) {
+      children = childrenMaybeWrappedInFragment.props.children ?? null
+    } else {
+      children = childrenMaybeWrappedInFragment
+    }
 
     const {cardImage, cardIcon, cardLabel, cardHeading, cardDescription} = React.Children.toArray(children).reduce<{
       cardHeading?: ReturnType<typeof CardHeading>

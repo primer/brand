@@ -76,10 +76,13 @@ const _IDERoot = memo(
 
     const childrenArray = useMemo(() => Children.toArray(children), [children])
 
-    const ChatChild = childrenArray.find(child => isValidElement(child) && child.type === IDE.Chat)
+    const ChatChild = childrenArray.find(
+      (child): child is React.ReactElement<React.ComponentProps<typeof IDE.Chat>> =>
+        isValidElement(child) && child.type === IDE.Chat,
+    )
     const hasChatChild = !!ChatChild
     const ClonedChatChild = hasChatChild
-      ? React.cloneElement(ChatChild as React.ReactElement, {
+      ? React.cloneElement(ChatChild, {
           ref: chatRef,
           'data-testid': testId || testIds.chat,
           animationIsPaused,
@@ -87,10 +90,13 @@ const _IDERoot = memo(
         })
       : null
 
-    const EditorChild = childrenArray.find(child => isValidElement(child) && child.type === IDE.Editor)
+    const EditorChild = childrenArray.find(
+      (child): child is React.ReactElement<React.ComponentProps<typeof IDE.Editor>> =>
+        isValidElement(child) && child.type === IDE.Editor,
+    )
     const hasEditorChild = !!EditorChild
     const ClonedEditorChild = hasEditorChild
-      ? React.cloneElement(EditorChild as React.ReactElement, {
+      ? React.cloneElement(EditorChild, {
           ref: editorRef,
           'data-testid': testId || testIds.editor,
           animationIsPaused,
@@ -374,7 +380,7 @@ const _Chat = memo(
       }, [scheduledAnimations, scrollIntoParentView, animationIsPaused, setAnimationIsDone])
 
       return (
-        <section className={styles.IDE__Chat} data-testid={testId || testIds.chat} {...rest} ref={ref}>
+        <section ref={ref} className={styles.IDE__Chat} data-testid={testId || testIds.chat} {...rest}>
           <span className="visually-hidden">{alternativeText}</span>
           <div className={styles['IDE__Chat-wrapper']} aria-hidden>
             <div ref={messagesRef} className={styles['IDE__Chat-messages']}>

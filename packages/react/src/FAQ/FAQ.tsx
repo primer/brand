@@ -1,9 +1,9 @@
 import React, {forwardRef, PropsWithChildren} from 'react'
-import {isFragment} from 'react-is'
 import {clsx} from 'clsx'
 
 import {useAnimation, Heading, AccordionHeading, AccordionContent, AccordionRoot, HeadingProps} from '..'
 import type {BaseProps} from '../component-helpers'
+import {isFragmentElement} from '../utils/isFragmentElement'
 
 /**
  * Design tokens
@@ -25,7 +25,7 @@ const FAQRoot = forwardRef<HTMLElement, FAQRootProps>(({children, style, animate
   const filteredChildren = React.Children.toArray(children).filter(child => {
     if (React.isValidElement(child) && typeof child.type !== 'string') {
       if (
-        isFragment(child) ||
+        isFragmentElement(child) ||
         (child as React.ReactElement).type === FAQHeading ||
         (child as React.ReactElement).type === FAQSubheading ||
         (child as React.ReactElement).type === AccordionRoot
@@ -48,14 +48,12 @@ const FAQRoot = forwardRef<HTMLElement, FAQRootProps>(({children, style, animate
       {...rest}
     >
       {React.Children.toArray(filteredChildren).map(child => {
-        if (React.isValidElement(child) && typeof child.type !== 'string') {
-          if (child.type === FAQHeading) {
-            return React.cloneElement(child as React.ReactElement, {
-              align: hasSubheading ? 'start' : child.props.align,
-              size: hasSubheading ? '3' : child.props.size,
-              weight: hasSubheading ? 'semibold' : child.props.weight,
-            })
-          }
+        if (React.isValidElement<FAQHeadingProps>(child) && child.type === FAQHeading) {
+          return React.cloneElement(child, {
+            align: hasSubheading ? 'start' : child.props.align,
+            size: hasSubheading ? '3' : child.props.size,
+            weight: hasSubheading ? 'semibold' : child.props.weight,
+          })
         }
         return child
       })}

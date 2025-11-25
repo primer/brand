@@ -25,7 +25,7 @@ export type SubdomainNavBarProps = {
    */
   children?:
     | React.ReactNode
-    | React.ReactElement<LinkProps>
+    | React.ReactElement<SubdomainNavBarLinkProps>
     | React.ReactElement<SearchProps>
     | React.ReactElement<CTAActionProps>
   /**
@@ -143,19 +143,18 @@ function Root({
     () =>
       React.Children.toArray(children)
         .map((child, index) => {
-          if (React.isValidElement(child) && typeof child.type !== 'string') {
-            if (child.type === Link) {
-              return React.cloneElement(child as React.ReactElement, {
-                'data-navitemid': child.props.children,
-                href: child.props.href,
-                children: child.props.children,
-                style: {
-                  [`--animation-order`]: index,
-                },
-              })
-            }
-            return null
+          if (React.isValidElement<SubdomainNavBarLinkProps>(child) && child.type === Link) {
+            const navItemId = typeof child.props.children === 'string' ? child.props.children : `${index}`
+            return React.cloneElement(child, {
+              'data-navitemid': navItemId,
+              href: child.props.href,
+              children: child.props.children,
+              style: {
+                '--animation-order': index,
+              } as React.CSSProperties,
+            })
           }
+          return null
         })
         .filter(Boolean),
     [children],
@@ -246,16 +245,14 @@ function Root({
             <div className={clsx(styles['SubdomainNavBar-secondary-nav'])}>
               {React.Children.toArray(children)
                 .map(child => {
-                  if (React.isValidElement(child) && typeof child.type !== 'string') {
-                    if (child.type === Search) {
-                      return React.cloneElement(child as React.ReactElement, {
-                        active: searchVisible,
-                        handlerFn: handleSearchVisibility,
-                        title,
-                      })
-                    }
-                    return null
+                  if (React.isValidElement<SearchProps>(child) && child.type === Search) {
+                    return React.cloneElement(child, {
+                      active: searchVisible,
+                      handlerFn: handleSearchVisibility,
+                      title,
+                    })
                   }
+                  return null
                 })
                 .filter(Boolean)}
 
@@ -289,12 +286,13 @@ function Root({
                   <div className={styles['SubdomainNavBar-button-area-inner']}>
                     {React.Children.toArray(children)
                       .map(child => {
-                        if (React.isValidElement(child) && typeof child.type !== 'string') {
-                          if (child.type === PrimaryAction || child.type === SecondaryAction) {
-                            return child
-                          }
-                          return null
+                        if (
+                          React.isValidElement<CTAActionProps>(child) &&
+                          (child.type === PrimaryAction || child.type === SecondaryAction)
+                        ) {
+                          return child
                         }
+                        return null
                       })
                       .filter(Boolean)}
                   </div>
@@ -337,12 +335,13 @@ function Root({
                     <div className={styles['SubdomainNavBar-button-area-inner']}>
                       {React.Children.toArray(children)
                         .map(child => {
-                          if (React.isValidElement(child) && typeof child.type !== 'string') {
-                            if (child.type === PrimaryAction || child.type === SecondaryAction) {
-                              return child
-                            }
-                            return null
+                          if (
+                            React.isValidElement<CTAActionProps>(child) &&
+                            (child.type === PrimaryAction || child.type === SecondaryAction)
+                          ) {
+                            return child
                           }
+                          return null
                         })
                         .filter(Boolean)}
                     </div>
@@ -358,12 +357,13 @@ function Root({
   )
 }
 
-type LinkProps = {
+export type SubdomainNavBarLinkProps = {
   href: string
   isExternal?: boolean
+  'data-navitemid'?: string
 } & React.DetailedHTMLProps<React.LiHTMLAttributes<HTMLLIElement>, HTMLLIElement>
 
-function Link({href, className, children, isExternal, ...rest}: PropsWithChildren<LinkProps>) {
+function Link({href, className, children, isExternal, ...rest}: PropsWithChildren<SubdomainNavBarLinkProps>) {
   return (
     <li className={clsx(styles['SubdomainNavBar-primary-nav-list-item'], className)} {...rest}>
       <a href={href} className={styles['SubdomainNavBar-link']}>

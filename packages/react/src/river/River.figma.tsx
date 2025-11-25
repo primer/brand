@@ -1,5 +1,5 @@
 import React from 'react'
-import {Heading, Link, River, Text} from '../'
+import {Heading, Link, River, RiverProps, Text} from '../'
 import figma from '@figma/code-connect'
 
 figma.connect(River, 'https://www.figma.com/design/BJ95AjraesmRCWsKA013GS/Primer-Brand?node-id=375-8463', {
@@ -24,7 +24,7 @@ figma.connect(River, 'https://www.figma.com/design/BJ95AjraesmRCWsKA013GS/Primer
   },
 
   example: ({align, imageTextRatio, content}) => (
-    <River align={align} imageTextRatio={imageTextRatio}>
+    <River align={align as RiverProps['align']} imageTextRatio={imageTextRatio as RiverProps['imageTextRatio']}>
       <River.Content>
         <>
           <Heading>{content.headingText}</Heading>

@@ -82,14 +82,13 @@ const _Label = forwardRef<HTMLSpanElement, LabelProps>(
         {...props}
       >
         {LeadingVisual && (
-          <span className={styles['Label__leading-visual']} data-testid={testIds.leadingVisual}>
+          <span className={styles['Label__leading-visual']} data-testid={testIds.leadingVisual} aria-hidden="true">
             {typeof LeadingVisual === 'function' ? (
               <LeadingVisual />
             ) : (
-              React.isValidElement(LeadingVisual) &&
-              React.cloneElement(LeadingVisual as React.ReactElement, {
+              React.isValidElement<{className?: string}>(LeadingVisual) &&
+              React.cloneElement(LeadingVisual, {
                 className: clsx(styles['Label__icon-visual']),
-                ['aria-hidden']: 'true',
               })
             )}
           </span>

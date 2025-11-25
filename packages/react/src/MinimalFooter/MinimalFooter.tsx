@@ -177,20 +177,22 @@ type FootnoteProps = BaseProps<HTMLElement>
 
 function Footnotes({children, className}: PropsWithChildren<FootnoteProps>) {
   const styledChildren = React.Children.map(children, child => {
-    // if not valid element
-    if (!React.isValidElement(child)) {
-      return child
-    }
-
-    if (child.type && child.type === Text) {
-      return React.cloneElement(child as React.ReactElement, {
-        as: 'p',
+    if (React.isValidElement<React.ComponentProps<typeof Text>>(child) && child.type === Text) {
+      const textChild = child as React.ReactElement<React.ComponentProps<typeof Text>>
+      const overrideProps: Partial<React.ComponentProps<typeof Text>> = {
         variant: 'muted',
         size: '100',
-        className: clsx(styles['Footer__terms-item'], child.props.className),
-        ...child.props, // allow overrides for escape hatch
-      })
+        className: clsx(styles['Footer__terms-item'], textChild.props.className),
+      }
+
+      if (!textChild.props.as) {
+        overrideProps.as = 'p'
+      }
+
+      return React.cloneElement(textChild, overrideProps)
     }
+
+    return null
   })
 
   return (

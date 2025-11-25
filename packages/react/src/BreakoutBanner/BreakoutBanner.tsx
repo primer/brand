@@ -194,14 +194,15 @@ const _LinkGroup = forwardRef(
   ({className, direction, gap, padding, children, ...props}: LinkGroupProps, ref: Ref<HTMLDivElement>) => {
     const linksToRender = React.Children.toArray(children)
       .map((child, index) => {
-        if (React.isValidElement(child) && typeof child.type !== 'string' && child.type === Link) {
+        if (React.isValidElement<LinkProps>(child) && child.type === Link) {
           return React.cloneElement(child, {
             size: child.props.size || 'medium',
             variant: child.props.variant || 'accent',
-            arrowDirection: child.props.arrowDirection || index === 0 ? 'end' : 'none',
+            arrowDirection: child.props.arrowDirection || (index === 0 ? 'end' : 'none'),
             ...child.props,
-          } as LinkProps)
+          })
         }
+        return null
       })
       .filter(Boolean)
       .slice(0, 2)

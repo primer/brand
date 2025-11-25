@@ -24,14 +24,13 @@ function Root({as = 'ol', className, children, visuallyHiddenHeading = 'Footnote
 
   if (as === 'div') {
     const filteredChildren = memoizedChildren.map(child => {
-      if (React.isValidElement(child) && typeof child.type !== 'string') {
-        if (child.type === Item) {
-          return React.cloneElement(child, {
-            _variant: 'disclaimer',
-            ...child.props,
-          })
-        }
+      if (React.isValidElement<FootnotesItemProps>(child) && child.type === Item) {
+        return React.cloneElement(child, {
+          _variant: 'disclaimer',
+          ...child.props,
+        })
       }
+      return null
     })
     return (
       <>

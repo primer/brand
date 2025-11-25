@@ -1,4 +1,4 @@
-import React, {type ReactElement} from 'react'
+import React from 'react'
 import {useId} from '../hooks/useId'
 import {clsx} from 'clsx'
 
@@ -28,7 +28,7 @@ function HeadingBase({children, className, as = 'h3', ...rest}: FAQSubheadingPro
 export type FAQGroupProps = React.PropsWithChildren<{
   id?: string
   defaultSelectedIndex?: number
-  tabAttributes?: (children: ReactElement, index: number) => Record<string, unknown>
+  tabAttributes?: (children: React.ReactNode, index: number) => Record<string, unknown>
 }>
 
 function FAQGroupBase({children, id, defaultSelectedIndex = 0, tabAttributes, ...rest}: FAQGroupProps) {
@@ -65,22 +65,38 @@ function FAQGroupBase({children, id, defaultSelectedIndex = 0, tabAttributes, ..
   }, [hasInteracted, selectedIndex])
 
   const faqChildren = React.Children.toArray(children).filter(
-    child => React.isValidElement<FAQRootProps>(child) && child.type === FAQ,
+    (child): child is React.ReactElement<FAQRootProps> =>
+      React.isValidElement<FAQRootProps>(child) && child.type === FAQ,
   )
 
   const Tabs = React.Children.map(faqChildren, (faqChild, index) => {
-    if (React.isValidElement<FAQRootProps>(faqChild) && faqChild.props.children) {
+    if (faqChild.props.children) {
       const GroupHeadingChild = React.Children.toArray(faqChild.props.children).find(
-        child => React.isValidElement(child) && child.type === FAQ.Heading,
+        (child): child is React.ReactElement<React.ComponentProps<typeof FAQ.Heading>> =>
+          React.isValidElement(child) && child.type === FAQ.Heading,
       )
 
-      const tabContents = React.isValidElement(GroupHeadingChild) && GroupHeadingChild.props.children
+      const tabContents = GroupHeadingChild?.props.children
 
-      const providedTabAttributes = tabAttributes?.(tabContents, index)
+      const providedTabAttributes =
+        GroupHeadingChild && tabAttributes ? tabAttributes(tabContents ?? null, index) : undefined
+      const tabAttributeProps = providedTabAttributes ?? {}
+      const {ref: providedTabRef, ...tabAttributeRest} = tabAttributeProps as {
+        ref?: React.Ref<HTMLButtonElement>
+      }
+
+      const handleTabRef = (node: HTMLButtonElement | null) => {
+        if (selectedIndex === index) {
+          selectedTabRef.current = node
+        } else if (selectedTabRef.current === node) {
+          selectedTabRef.current = null
+        }
+
+        assignRef(providedTabRef, node)
+      }
 
       return (
         <Button
-          {...providedTabAttributes}
           variant="subtle"
           hasArrow={false}
           as="button"
@@ -95,7 +111,8 @@ function FAQGroupBase({children, id, defaultSelectedIndex = 0, tabAttributes, ..
           key={index}
           data-testid={`FAQGroup-tab-${index + 1}`}
           tabIndex={selectedIndex !== index ? -1 : undefined}
-          ref={selectedIndex === index ? selectedTabRef : undefined}
+          ref={handleTabRef}
+          {...tabAttributeRest}
         >
           {tabContents}
         </Button>
@@ -105,13 +122,15 @@ function FAQGroupBase({children, id, defaultSelectedIndex = 0, tabAttributes, ..
   })
 
   const TabPanels = React.Children.map(faqChildren, (faqChild, index) => {
-    if (React.isValidElement<FAQRootProps>(faqChild) && faqChild.props.children) {
+    if (faqChild.props.children) {
       const FAQItemChild = React.Children.map(faqChild.props.children, child =>
         React.isValidElement(child) && child.type !== FAQ.Heading ? child : null,
       )
 
       const FAQItemHeadingText = React.Children.map(faqChild.props.children, child =>
-        React.isValidElement(child) && child.type === FAQ.Heading ? child.props.children : null,
+        React.isValidElement<{children?: React.ReactNode}>(child) && child.type === FAQ.Heading
+          ? child.props.children
+          : null,
       )
 
       return (
@@ -138,25 +157,24 @@ function FAQGroupBase({children, id, defaultSelectedIndex = 0, tabAttributes, ..
   })
 
   const SectionedAccordions = React.Children.map(faqChildren, (faqChild, index) => {
-    if (React.isValidElement<FAQRootProps>(faqChild) && faqChild.props.children) {
+    if (faqChild.props.children) {
       const GroupHeadingChild = React.Children.toArray(faqChild.props.children).find(
-        child => React.isValidElement(child) && child.type === FAQ.Heading,
+        (child): child is React.ReactElement<React.ComponentProps<typeof FAQ.Heading>> =>
+          React.isValidElement(child) && child.type === FAQ.Heading,
       )
       const FAQItemChild = React.Children.map(faqChild.props.children, child =>
-        React.isValidElement(child) && child.type !== FAQ.Heading
-          ? React.cloneElement(child as React.ReactElement, {
+        React.isValidElement<{className?: string}>(child) && child.type !== FAQ.Heading
+          ? React.cloneElement(child, {
               className: clsx(styles['FAQGroup__nested-accordion-item'], child.props.className),
             })
           : null,
       )
 
-      if (!FAQItemChild) return null
-
-      const GroupHeadingChildProps = React.isValidElement(GroupHeadingChild) ? GroupHeadingChild.props : {}
+      if (!GroupHeadingChild || !FAQItemChild) return null
 
       return (
         <Accordion key={index} variant="emphasis">
-          <Accordion.Heading {...GroupHeadingChildProps} />
+          <Accordion.Heading {...GroupHeadingChild.props} />
           <Accordion.Content>{FAQItemChild}</Accordion.Content>
         </Accordion>
       )
@@ -164,7 +182,8 @@ function FAQGroupBase({children, id, defaultSelectedIndex = 0, tabAttributes, ..
   })
 
   const GroupHeading = React.Children.toArray(children).find(
-    child => React.isValidElement(child) && child.type === HeadingBase,
+    (child): child is React.ReactElement<FAQSubheadingProps> =>
+      React.isValidElement(child) && child.type === HeadingBase,
   )
 
   return (
@@ -207,3 +226,13 @@ function FAQGroupBase({children, id, defaultSelectedIndex = 0, tabAttributes, ..
 export const FAQGroup = Object.assign(FAQGroupBase, {
   Heading: HeadingBase,
 })
+
+function assignRef<T>(ref: React.Ref<T> | undefined, value: T | null) {
+  if (!ref) return
+  if (typeof ref === 'function') {
+    ref(value)
+    return
+  }
+
+  ;(ref as React.MutableRefObject<T | null>).current = value
+}

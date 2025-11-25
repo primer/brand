@@ -13,7 +13,8 @@
     "esModuleInterop": true,
     "moduleResolution": "node",
     "outDir": "lib",
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "types": ["node"]
   },
   "ts-node": {
     "esm": true,

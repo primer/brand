@@ -3,7 +3,7 @@ import {useVideo} from './useVideo'
 
 export type KeypressHandler = [KeyboardEvent['key'], (e: KeyboardEvent) => void]
 
-export const useVideoKeypressHandlers = (videoWrapperRef: RefObject<HTMLElement>) => {
+export const useVideoKeypressHandlers = (videoWrapperRef: RefObject<HTMLElement | null>) => {
   const {togglePlaying, toggleMute, setVolume, seek, seekToPercent, toggleCC, toggleFullScreen} = useVideo()
 
   const keypressHandlers: KeypressHandler[] = useMemo(

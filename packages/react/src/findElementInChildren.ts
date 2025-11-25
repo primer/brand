@@ -11,15 +11,13 @@ const findElementInChildren = (children: React.ReactNode, element: React.Element
         return true
       }
     }
-  } else if (React.isValidElement(children)) {
+  } else if (React.isValidElement<{children?: React.ReactNode}>(children)) {
     if (children.type === element) {
       return true
     }
 
-    if (children.props && children.props.children) {
-      if (findElementInChildren(children.props.children, element)) {
-        return true
-      }
+    if (children.props.children && findElementInChildren(children.props.children, element)) {
+      return true
     }
   }
 

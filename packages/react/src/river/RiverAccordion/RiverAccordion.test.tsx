@@ -110,10 +110,10 @@ describe('RiverAccordion', () => {
     const content3 = getByText('Content 3').parentElement
 
     expect(content2).toHaveAttribute('aria-hidden', 'true')
-    expect(content2).toHaveAttribute('inert', 'true')
+    expect(content2).toHaveAttribute('inert')
 
     expect(content3).toHaveAttribute('aria-hidden', 'true')
-    expect(content3).toHaveAttribute('inert', 'true')
+    expect(content3).toHaveAttribute('inert')
   })
 
   it('allows expanded content to be focused', async () => {

@@ -27,7 +27,7 @@ export type TriggerPropsType = {
   onFocus?: React.FocusEventHandler
   onMouseEnter?: React.MouseEventHandler
   onMouseLeave?: React.MouseEventHandler
-  ref?: React.RefObject<HTMLElement>
+  ref?: React.RefObject<HTMLElement | null>
 }
 
 // map tooltip direction to anchoredPosition props
@@ -67,8 +67,8 @@ export const TooltipContext = React.createContext<{tooltipId?: string}>({})
 export const Tooltip = React.forwardRef(
   ({direction = 's', text, type = 'description', children, id, className, ...rest}: TooltipProps, forwardedRef) => {
     const tooltipId = useId(id)
-    const child = Children.only(children)
-    const triggerRef = useProvidedRefOrCreate(forwardedRef as React.RefObject<HTMLElement>)
+    const child = (Children.only(children) as React.ReactElement<TriggerPropsType> | null) ?? null
+    const triggerRef = useProvidedRefOrCreate(forwardedRef as React.RefObject<HTMLElement | null> | null)
     const tooltipElRef = useRef<HTMLDivElement>(null)
     // Used to delay the closing of the tooltip to make sure the user can move the mouse from the trigger to the tooltip
     const closeTooltipTimeoutRef = useRef<NodeJS.Timeout | null>(null)
@@ -181,8 +181,8 @@ export const Tooltip = React.forwardRef(
 
     return (
       <TooltipContext.Provider value={{tooltipId}}>
-        {React.isValidElement(child) &&
-          React.cloneElement(child as React.ReactElement<TriggerPropsType>, {
+        {child &&
+          React.cloneElement(child, {
             ref: triggerRef,
             // If it is a type description, we use tooltip to describe the trigger
             'aria-describedby': type === 'description' ? tooltipId : child.props['aria-describedby'],
