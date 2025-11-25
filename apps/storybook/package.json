@@ -43,7 +43,7 @@
     "@storybook/react": "9.1.8",
     "@storybook/react-dom-shim": "9.1.8",
     "@storybook/react-webpack5": "9.1.8",
-    "@storybook/test-runner": "0.23.0",
+    "@storybook/test-runner": "^0.24.1",
     "@types/node": "22.18.1",
     "@types/react": "19.2.6",
     "@types/react-dom": "19.2.3",
