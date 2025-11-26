@@ -3,6 +3,14 @@
   color: var(--brand-color-text-default);
 }
 
+.Heading--textWrap-balance {
+  text-wrap: balance;
+}
+
+.Heading--textWrap-wrap {
+  text-wrap: wrap;
+}
+
 .Heading-font--hubot-sans {
   --condensed-stretch: 90%;
 }

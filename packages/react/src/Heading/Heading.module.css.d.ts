@@ -15,6 +15,8 @@ declare const styles: {
   readonly "Heading--stretch-normal": string;
   readonly "Heading--subhead-large": string;
   readonly "Heading--subhead-medium": string;
+  readonly "Heading--textWrap-balance": string;
+  readonly "Heading--textWrap-wrap": string;
   readonly "Heading--weight-bold": string;
   readonly "Heading--weight-extrabold": string;
   readonly "Heading--weight-extralight": string;
