@@ -4,7 +4,6 @@ import fs from 'fs'
 import path from 'path'
 import {Result} from 'axe-core'
 
-import type {StoryIndex} from '@storybook/types'
 import {chromium, Browser, Page} from 'playwright'
 import {test, expect} from '@playwright/test'
 import {injectAxe, getViolations} from 'axe-playwright'
@@ -13,12 +12,21 @@ import {injectAxe, getViolations} from 'axe-playwright'
 // eslint-disable-next-line import/extensions, import/no-unresolved
 import IndexData from '../../../../apps/storybook/storybook-static/index.json'
 
+type StoryIndex = {
+  entries: Record<
+    string,
+    {
+      id: string
+      title: string
+      name: string
+      importPath: string
+    }
+  >
+}
+
 declare const __dirname: string
 
 const {describe, beforeAll, afterAll} = test
-
-let browser: Browser
-let page: Page
 
 const allViolations: Result[] = []
 
@@ -115,11 +123,14 @@ const storybookRoutes = Object.values((IndexData as StoryIndex).entries)
     return !testsToSkip.includes(id)
   })
 
-describe.configure({mode: 'parallel'})
+//describe.configure({mode: 'parallel'})
 
 for (const story of storybookRoutes) {
   // eslint-disable-next-line i18n-text/no-en
   describe(`Web page accessibility test for ${story.name} - ${story.story}`, () => {
+    let browser: Browser
+    let page: Page
+
     beforeAll(async () => {
       browser = await chromium.launch()
       page = await browser.newPage()

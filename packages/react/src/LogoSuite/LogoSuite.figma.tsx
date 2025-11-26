@@ -1,5 +1,5 @@
 import React from 'react'
-import {LogoSuite} from './LogoSuite'
+import {LogoSuite, LogoSuiteLogoBarProps, LogoSuiteProps} from './LogoSuite'
 import figma from '@figma/code-connect'
 
 figma.connect(
@@ -59,14 +59,17 @@ figma.connect(
       align,
       logobarProps,
     }) => (
-      <LogoSuite align={align} hasDivider={hasDivider}>
+      <LogoSuite align={align as LogoSuiteProps['align']} hasDivider={hasDivider}>
         {headingOpeningTag}
         {headingText}
         {headingClosingTag}
         {descriptionOpeningTag}
         {descriptionText}
         {descriptionClosingTag}
-        <LogoSuite.Logobar variant={logobarProps.variant} marquee={logobarProps.marquee}>
+        <LogoSuite.Logobar
+          variant={logobarProps.variant as LogoSuiteLogoBarProps['variant']}
+          marquee={logobarProps.marquee}
+        >
           <svg
             role="img"
             focusable="false"

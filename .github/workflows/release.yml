@@ -2,6 +2,7 @@ name: Release
 
 on:
   push:
+  workflow_dispatch:
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -25,6 +26,7 @@ jobs:
         with:
           # This makes Actions fetch all Git history so that Changesets can generate changelogs with the correct commits
           fetch-depth: 0
+          persist-credentials: false
 
       - name: Set up Node
         uses: actions/setup-node@v6
@@ -33,6 +35,12 @@ jobs:
 
       - name: Install dependencies
         run: npm ci
+
+      - uses: actions/create-github-app-token@67018539274d69449ef7c02e8e71183d1719ab42
+        id: app-token
+        with:
+          app-id: ${{ vars.PRIMER_APP_ID_SHARED }}
+          private-key: ${{ secrets.PRIMER_APP_PRIVATE_KEY_SHARED }}
 
       - name: Build
         run: npm run build:lib
@@ -46,7 +54,7 @@ jobs:
           title: Release tracking
           publish: npm run release
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ steps.app-token.outputs.token }}
 
   release-next-minor:
     if: ${{ github.repository == 'primer/brand' && github.ref_name == 'next-minor' }}
@@ -58,6 +66,7 @@ jobs:
         with:
           # This makes Actions fetch all Git history so that Changesets can generate changelogs with the correct commits
           fetch-depth: 0
+          persist-credentials: false
 
       - name: Set up Node
         uses: actions/setup-node@v6
@@ -66,6 +75,12 @@ jobs:
 
       - name: Install dependencies
         run: npm ci
+
+      - uses: actions/create-github-app-token@67018539274d69449ef7c02e8e71183d1719ab42
+        id: app-token
+        with:
+          app-id: ${{ vars.PRIMER_APP_ID_SHARED }}
+          private-key: ${{ secrets.PRIMER_APP_PRIVATE_KEY_SHARED }}
 
       - name: Build
         run: npm run build:lib
@@ -79,7 +94,7 @@ jobs:
           title: Release tracking (next minor)
           publish: npm run release
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ steps.app-token.outputs.token }}
 
   release-candidate:
     if: ${{ github.repository == 'primer/brand' && github.ref_name == 'changeset-release/main' }}
@@ -110,7 +125,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Output canary version
+      - name: Output release candidate version
         uses: actions/github-script@v4.0.2
         with:
           script: |
@@ -146,6 +161,12 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - uses: actions/create-github-app-token@67018539274d69449ef7c02e8e71183d1719ab42
+        id: app-token
+        with:
+          app-id: ${{ vars.PRIMER_APP_ID_SHARED }}
+          private-key: ${{ secrets.PRIMER_APP_PRIVATE_KEY_SHARED }}
+
       - name: Build
         run: npm run build:lib
 
@@ -154,7 +175,7 @@ jobs:
           npm exec --workspaces -- ../../packages/repo-configs/scripts/prepare-release-candidate
           npx changeset publish --tag next-minor
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ steps.app-token.outputs.token }}
 
       - name: Output canary version
         uses: actions/github-script@v4.0.2
@@ -184,6 +205,7 @@ jobs:
         with:
           # This makes Actions fetch all Git history so that Changesets can generate changelogs with the correct commits
           fetch-depth: 0
+          persist-credentials: false
 
       - name: Set up Node
         uses: actions/setup-node@v6
@@ -193,6 +215,12 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - uses: actions/create-github-app-token@67018539274d69449ef7c02e8e71183d1719ab42
+        id: app-token
+        with:
+          app-id: ${{ vars.PRIMER_APP_ID_SHARED }}
+          private-key: ${{ secrets.PRIMER_APP_PRIVATE_KEY_SHARED }}
+
       - name: Build
         run: npm run build:lib
 
@@ -201,7 +229,7 @@ jobs:
           npm exec --workspaces -- ../../packages/repo-configs/scripts/prepare-canary
           npx changeset publish --tag canary
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ steps.app-token.outputs.token }}
 
       - name: Output canary version
         uses: actions/github-script@v4.0.2

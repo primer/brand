@@ -1,4 +1,4 @@
-import React from 'react'
+import {createElement, type ReactElement, type ReactNode} from 'react'
 import {PricingOptions} from './PricingOptions'
 import figma from '@figma/code-connect'
 
@@ -15,17 +15,21 @@ figma.connect(
       trailingText: figma.textContent('TrailingText'),
       value: figma.textContent('Value'),
     },
-    example: ({heading, value, footnotes, primaryAction, featureList, trailingText}) => (
-      <PricingOptions.Item>
-        <PricingOptions.Heading>{heading}</PricingOptions.Heading>
-        <PricingOptions.Price trailingText={trailingText}>{value}</PricingOptions.Price>
-        <PricingOptions.Footnote>{footnotes}</PricingOptions.Footnote>
-        <PricingOptions.PrimaryAction href="#" as="a">
-          {primaryAction.text}
-        </PricingOptions.PrimaryAction>
-        {featureList}
-      </PricingOptions.Item>
-    ),
+    example: ({heading, value, footnotes, primaryAction, featureList, trailingText}) => {
+      const featureListContent = featureList as ReactNode
+
+      return (
+        <PricingOptions.Item>
+          <PricingOptions.Heading>{heading}</PricingOptions.Heading>
+          <PricingOptions.Price trailingText={trailingText}>{value}</PricingOptions.Price>
+          <PricingOptions.Footnote>{footnotes}</PricingOptions.Footnote>
+          <PricingOptions.PrimaryAction href="#" as="a">
+            {primaryAction.text}
+          </PricingOptions.PrimaryAction>
+          {featureListContent}
+        </PricingOptions.Item>
+      )
+    },
   },
 )
 
@@ -36,8 +40,11 @@ figma.connect(
     props: {
       children: figma.children('Item*'),
     },
-    // @ts-expect-error - PricingOptions.FeatureList expects an array but figma.children returns a single JSX.Element
-    example: ({children}) => <PricingOptions.FeatureList>{children}</PricingOptions.FeatureList>,
+    example: ({children}) => {
+      const normalizedChildren = Array.isArray(children) ? children : [children]
+
+      return createElement(PricingOptions.FeatureList, null, ...(normalizedChildren as ReactElement[]))
+    },
   },
 )
 
@@ -61,6 +68,10 @@ figma.connect(
     props: {
       children: figma.children('Item*'),
     },
-    example: ({children}) => <PricingOptions>{children}</PricingOptions>,
+    example: ({children}) => {
+      const normalizedChildren = Array.isArray(children) ? children : [children]
+
+      return createElement(PricingOptions, null, ...(normalizedChildren as ReactElement[]))
+    },
   },
 )

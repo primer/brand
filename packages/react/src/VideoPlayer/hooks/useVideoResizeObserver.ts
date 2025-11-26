@@ -5,7 +5,7 @@ export const useVideoResizeObserver = ({
   videoWrapperRef,
   className,
 }: {
-  videoWrapperRef: RefObject<HTMLElement>
+  videoWrapperRef: RefObject<HTMLElement | null>
   className: string
 }) => {
   const [isSmall, setIsSmall] = useState(false)
@@ -36,9 +36,15 @@ export const useVideoResizeObserver = ({
 
     const currentRef = videoWrapperRef.current
 
-    resizeObserver.observe(videoWrapperRef.current as Element)
+    if (!currentRef) {
+      return () => {
+        resizeObserver.disconnect()
+      }
+    }
+
+    resizeObserver.observe(currentRef)
     return () => {
-      resizeObserver.unobserve(currentRef as Element)
+      resizeObserver.unobserve(currentRef)
     }
   }, [className, videoWrapperRef])
 

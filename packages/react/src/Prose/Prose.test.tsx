@@ -78,8 +78,8 @@ describe('Prose', () => {
 
   it('renders with a custom style', () => {
     const testId = 'Prose'
-    const customStyle = {color: 'red'}
-    const {getByTestId} = render(<Prose data-testid={testId} html={ExampleHtmlMarkup} style={customStyle} />)
+    const customStyle = {color: 'rgb(255, 0, 0)'}
+    const {getByTestId} = render(<Prose data-testid={testId} html={ExampleHtmlMarkup} style={{color: 'red'}} />)
 
     const rootEl = getByTestId(testId)
 

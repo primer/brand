@@ -6,7 +6,10 @@ export interface ResizeObserverEntry {
   contentRect: DOMRectReadOnly
 }
 
-export function useResizeObserver<T extends HTMLElement>(callback: ResizeObserverCallback, target?: RefObject<T>) {
+export function useResizeObserver<T extends HTMLElement>(
+  callback: ResizeObserverCallback,
+  target?: RefObject<T | null>,
+) {
   const savedCallback = useRef(callback)
 
   useEffect(() => {

@@ -1,4 +1,4 @@
-import React, {ReactHTML, ReactElement, forwardRef, useCallback, useMemo, Ref, PropsWithChildren} from 'react'
+import React, {ReactElement, forwardRef, useCallback, useMemo, Ref, PropsWithChildren} from 'react'
 import {clsx} from 'clsx'
 import {useWindowSize, BreakpointSize} from '../hooks/useWindowSize'
 import type {BaseProps} from '../component-helpers'
@@ -120,18 +120,20 @@ const Item = ({
   const {currentBreakpointSize} = useWindowSize()
 
   const validChildren = React.Children.toArray(children).reduce<ValidItemChildren>((acc, child) => {
-    if (React.isValidElement(child) && typeof child.type !== 'string') {
-      if (child.type === Visual) {
-        acc.push(child as React.ReactElement<BentoVisualProps>)
-      }
-      if (child.type === Content) {
-        acc.push(child as React.ReactElement<BentoContentProps>)
-      }
+    if (React.isValidElement<BentoVisualProps>(child) && child.type === Visual) {
+      acc.push(child)
+    }
+    if (React.isValidElement<BentoContentProps>(child) && child.type === Content) {
+      acc.push(child)
     }
     return acc
   }, [])
 
-  const contentChildPadding = validChildren.find(child => child?.type === Content)?.props.padding || 'spacious'
+  const contentChildPadding =
+    validChildren.find(
+      (child): child is React.ReactElement<BentoContentProps> =>
+        React.isValidElement<BentoContentProps>(child) && child.type === Content,
+    )?.props.padding || 'spacious'
 
   const bentoItemClassArray = [styles.Bento__Item, styles[`Bento__Item--bgColor-${bgColor}`]]
 
@@ -199,47 +201,54 @@ const Content = ({
 
   const memoizedChildren = useMemo(() => React.Children.toArray(children), [children])
 
-  const HeadingChildren = memoizedChildren.filter(child => React.isValidElement(child) && child.type === _Heading)
+  const HeadingChildren = memoizedChildren.filter(
+    (child): child is React.ReactElement<BentoHeadingProps> =>
+      React.isValidElement<BentoHeadingProps>(child) && child.type === _Heading,
+  )
 
-  const LabelChild = memoizedChildren.find(child => React.isValidElement(child) && child.type === Label)
-  const TextChild = memoizedChildren.find(child => React.isValidElement(child) && child.type === Text)
-  const LinkChild = memoizedChildren.find(child => React.isValidElement(child) && child.type === Link)
+  const LabelChild = memoizedChildren.find(
+    (child): child is React.ReactElement<TextProps> => React.isValidElement<TextProps>(child) && child.type === Label,
+  )
+  const TextChild = memoizedChildren.find(
+    (child): child is React.ReactElement<TextProps> => React.isValidElement<TextProps>(child) && child.type === Text,
+  )
+  const LinkChild = memoizedChildren.find(
+    (child): child is React.ReactElement<LinkProps> => React.isValidElement<LinkProps>(child) && child.type === Link,
+  )
 
   return (
     <div className={clsx(styles[`Bento-padding--${padding}`], ...bentoContentClassArray, className)} {...rest}>
-      {React.isValidElement(LeadingVisual) &&
-        React.cloneElement(LeadingVisual as ReactElement<IconProps>, {
+      {React.isValidElement<IconProps>(LeadingVisual) &&
+        React.cloneElement(LeadingVisual, {
           className: styles['Bento__Content-icon'],
           size: LeadingVisual.props.size || 44,
         })}
 
-      {React.isValidElement(LabelChild) &&
-        React.cloneElement(LabelChild as React.ReactElement<TextProps>, {
+      {React.isValidElement<TextProps>(LabelChild) &&
+        React.cloneElement(LabelChild, {
           className: clsx(styles['Bento__Content-label'], LabelChild.props.className),
         })}
 
-      {HeadingChildren.map(
-        HeadingChild =>
-          React.isValidElement(HeadingChild) &&
-          React.cloneElement(HeadingChild as React.ReactElement<BentoHeadingProps>, {
-            className: clsx(
-              !React.isValidElement(TextChild) && styles['Bento__heading--no-text'],
-              horizontalAlign === 'center' && styles['Bento__heading--with-max-width'],
-              HeadingChild.props.className,
-            ),
-          }),
+      {HeadingChildren.map(HeadingChild =>
+        React.cloneElement(HeadingChild, {
+          className: clsx(
+            !React.isValidElement(TextChild) && styles['Bento__heading--no-text'],
+            horizontalAlign === 'center' && styles['Bento__heading--with-max-width'],
+            HeadingChild.props.className,
+          ),
+        }),
       )}
 
-      {React.isValidElement(TextChild) &&
-        React.cloneElement(TextChild as React.ReactElement<TextProps>, {
+      {React.isValidElement<TextProps>(TextChild) &&
+        React.cloneElement(TextChild, {
           variant: TextChild.props.variant || 'muted',
           as: TextChild.props.as || 'p',
           size: TextChild.props.size || '300',
           className: clsx(styles['Bento__Content-text'], TextChild.props.className),
         })}
 
-      {React.isValidElement(LinkChild) &&
-        React.cloneElement(LinkChild as React.ReactElement<LinkProps>, {
+      {React.isValidElement<LinkProps>(LinkChild) &&
+        React.cloneElement(LinkChild, {
           variant: LinkChild.props.variant || 'accent',
           className: clsx(styles['Bento__call-to-action'], LinkChild.props.className),
         })}
@@ -325,13 +334,19 @@ const Visual = ({
   bentoVisualClassArray.push(...returnClassBasedOnResponsiveMap('Bento', 'padding', padding))
   const childrenToRender = React.Children.map(children, child => {
     if (React.isValidElement(child)) {
-      if (child.type === 'img' || child.type === Image) {
-        return React.cloneElement(child as ReturnType<ReactHTML['img']>, {
-          style: {objectPosition: position},
+      if (React.isValidElement<React.ImgHTMLAttributes<HTMLImageElement>>(child) && child.type === 'img') {
+        return React.cloneElement(child, {
+          style: {...child.props.style, objectPosition: position},
+        })
+      }
+      if (React.isValidElement<React.ComponentProps<typeof Image>>(child) && child.type === Image) {
+        return React.cloneElement(child, {
+          style: {...child.props.style, objectPosition: position},
         })
       }
       return child
     }
+    return null
   })
   return (
     <div

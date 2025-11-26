@@ -3,8 +3,8 @@ import styles from './AnchorNav.module.css'
 
 export const useExpandedMenu = (
   open: boolean,
-  linkContainerRef: React.RefObject<HTMLElement>,
-  innerContainerRef: React.RefObject<HTMLElement>,
+  linkContainerRef: React.RefObject<HTMLElement | null>,
+  innerContainerRef: React.RefObject<HTMLElement | null>,
   isNarrow: boolean,
   closeMenuCallback: () => void,
 ) => {

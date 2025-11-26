@@ -119,12 +119,14 @@ const _TabsRoot = forwardRef<HTMLDivElement, TabsProps>(
 
     const childrenArray = Children.toArray(children)
 
+    type TabsItemElement = React.ReactElement<TabsItemProps> & {ref?: React.Ref<HTMLButtonElement>}
+
     const tabs = childrenArray
-      .filter((child): child is React.ReactElement => isValidElement(child) && child.type === TabsItem)
+      .filter((child): child is TabsItemElement => isValidElement<TabsItemProps>(child) && child.type === TabsItem)
       .map((tab, index) => {
         const tabId = String(index)
-        const originalRef = (tab as React.ReactElement & {ref?: React.Ref<HTMLButtonElement>}).ref
-        const tabProps = getTabProps(tabId, originalRef)
+        const originalRef = tab.ref
+        const tabProps = getTabProps<HTMLButtonElement>(tabId, originalRef)
 
         return cloneElement(tab, {
           ...tabProps,
@@ -138,7 +140,10 @@ const _TabsRoot = forwardRef<HTMLDivElement, TabsProps>(
       })
 
     const panels = childrenArray
-      .filter((child): child is React.ReactElement => isValidElement(child) && child.type === TabsPanel)
+      .filter(
+        (child): child is React.ReactElement<TabsPanelProps> =>
+          isValidElement<TabsPanelProps>(child) && child.type === TabsPanel,
+      )
       .map((child, index) => {
         const panelId = String(index)
         const tabPanelProps = getTabPanelProps(panelId)
@@ -327,8 +332,8 @@ const _TabsRoot = forwardRef<HTMLDivElement, TabsProps>(
           )}
         >
           <div
-            {...tabListProps}
             ref={tabsContainerRef}
+            {...tabListProps}
             className={clsx(
               styles.Tabs,
               styles[`Tabs--${variant}`],
@@ -350,7 +355,7 @@ export type TabsItemProps = {
   children: ReactNode
   className?: string
   isActive?: boolean
-  variant?: 'default' | 'accent'
+  variant?: 'default' | 'accent' | 'underline'
   /**
    * ⚠️ WARNING: Setting a custom id will override the automatically generated ARIA attributes
    * (aria-controls, aria-labelledby). You will need to manually implement proper accessibility

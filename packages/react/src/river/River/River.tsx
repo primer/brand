@@ -146,10 +146,10 @@ export const RiverContent = forwardRef(
 
     return (
       <div
+        ref={ref}
         className={clsx(animationClasses, styles.River__content, className)}
         style={{...animationInlineStyles, ...style}}
         {...rest}
-        ref={ref}
       >
         {React.isValidElement(LabelChild) && !LeadingComponent && (
           <div className={styles.River__label}>
@@ -163,7 +163,7 @@ export const RiverContent = forwardRef(
           </div>
         )}
 
-        {React.isValidElement(HeadingChild) && (
+        {React.isValidElement<HeadingProps>(HeadingChild) && (
           <div className={styles.River__heading}>
             {React.cloneElement(HeadingChild as React.ReactElement<HeadingProps>, {
               // as uses h3 default, but can be overridden
@@ -174,7 +174,7 @@ export const RiverContent = forwardRef(
           </div>
         )}
 
-        {React.isValidElement(TextChild) && (
+        {React.isValidElement<TextProps>(TextChild) && (
           <div className={styles['River__body-text']}>
             {React.cloneElement(TextChild as React.ReactElement<TextProps>, {
               variant: 'muted',
@@ -183,7 +183,7 @@ export const RiverContent = forwardRef(
             })}
           </div>
         )}
-        {React.isValidElement(LinkChild) && (
+        {React.isValidElement<LinkProps>(LinkChild) && (
           <div className={styles['River__call-to-action']}>
             {React.cloneElement(LinkChild as React.ReactElement<LinkProps>, {
               size: 'medium',
@@ -240,6 +240,7 @@ const Visual = forwardRef(
   ) => {
     return (
       <div
+        ref={ref}
         className={clsx(
           styles.River__visual,
           hasShadow && styles['River__visual--has-shadow'],
@@ -248,7 +249,6 @@ const Visual = forwardRef(
           className,
         )}
         {...rest}
-        ref={ref}
       >
         {children}
       </div>

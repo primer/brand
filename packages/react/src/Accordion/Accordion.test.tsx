@@ -528,7 +528,7 @@ describe('Accordion', () => {
 
     expect(() => {
       render(<Accordion.Heading>Test heading</Accordion.Heading>)
-    }).toThrowError('Unable to find Accordion provider. Did you forget to wrap your component in an Accordion?')
+    }).toThrow('Unable to find Accordion provider. Did you forget to wrap your component in an Accordion?')
 
     consoleSpy.mockRestore()
   })

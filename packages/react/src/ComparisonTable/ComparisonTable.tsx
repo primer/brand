@@ -43,18 +43,22 @@ export const _ComparisonTable = forwardRef(
     const Children = useMemo(
       () =>
         React.Children.toArray(children).filter(
-          (child: React.ReactNode): boolean => React.isValidElement(child) && typeof child.type !== 'string',
+          (child): child is React.ReactElement => React.isValidElement(child) && typeof child.type !== 'string',
         ),
       [children],
     )
 
-    const HeaderRow = Children.map((child, index) => {
-      if (React.isValidElement(child) && typeof child.type !== 'string') {
-        if (child.type === Row && index === 0) {
-          return React.cloneElement(child as React.ReactElement, {
+    const rowChildren = Children.filter(
+      (child): child is React.ReactElement<PropsWithChildren<RowProps>> => child.type === Row,
+    )
+
+    const HeaderRow = rowChildren
+      .map((child, index) => {
+        if (index === 0) {
+          return React.cloneElement(child, {
             className: clsx(styles['ComparisonTable-row'], child.props.className),
             children: React.Children.map(child.props.children, (rowChild, rowChildIndex) => {
-              if (rowChild.type === Cell) {
+              if (React.isValidElement<CellProps>(rowChild) && rowChild.type === Cell) {
                 const isFeatured = rowChildIndex === featuredColumn
                 return React.cloneElement(rowChild, {
                   as: rowChild.props.children ? 'th' : 'td',
@@ -78,32 +82,35 @@ export const _ComparisonTable = forwardRef(
                   ),
                 })
               }
+              return null
             }),
           })
         }
-      }
-    }).filter(Boolean)
+        return null
+      })
+      .filter(Boolean)
 
-    const headerRowNames = useMemo(
-      () =>
-        React.Children.map(children[0].props.children, child => {
-          const {children: value = ''} = child.props
+    const headerRowNames = useMemo(() => {
+      const firstRow = rowChildren.at(0)
+      if (!firstRow) return []
 
-          return value
-        }),
-      [children],
-    )
+      return (
+        React.Children.map(firstRow.props.children, child => {
+          if (React.isValidElement<CellProps>(child)) {
+            return child.props.children
+          }
+          return undefined
+        }) || []
+      )
+    }, [rowChildren])
 
-    const [, ...regularRows] = React.Children.map(children, child => {
-      if (React.isValidElement(child) && child.type === Row) return child
-      return null
-    })
+    const [, ...regularRows] = rowChildren
 
     const RegularRows = regularRows.map((child, index) => {
       return React.cloneElement(child, {
         className: clsx(styles['ComparisonTable-row'], `ComparisonTable-row--${index}`, child.props.className),
         children: React.Children.map(child.props.children, (rowChild, cellIndex) => {
-          if (rowChild.type === Cell) {
+          if (React.isValidElement<CellProps>(rowChild) && rowChild.type === Cell) {
             return (
               <Cell
                 {...rowChild.props}
@@ -140,11 +147,14 @@ export const _ComparisonTable = forwardRef(
               </Cell>
             )
           }
+          return null
         }),
       })
     })
 
-    const FootnoteChild = Children.find(child => React.isValidElement(child) && child.type === Footnote)
+    const FootnoteChild = Children.find(
+      (child): child is React.ReactElement<PropsWithChildren<FootnoteProps>> => child.type === Footnote,
+    )
 
     return (
       <Component
@@ -168,7 +178,7 @@ export const _ComparisonTable = forwardRef(
   },
 )
 
-type RowProps = {
+type RowProps = React.HTMLAttributes<HTMLTableRowElement> & {
   header?: boolean
 }
 
@@ -176,9 +186,10 @@ const Row = ({children, ...rest}: PropsWithChildren<RowProps>) => {
   return <tr {...rest}>{children}</tr>
 }
 
-export type CellProps = BaseProps<HTMLTableCellElement> & {
-  as?: 'td' | 'th'
-}
+export type CellProps = BaseProps<HTMLTableCellElement> &
+  React.HTMLAttributes<HTMLTableCellElement> & {
+    as?: 'td' | 'th'
+  }
 
 const Cell = ({as, children, ...props}: PropsWithChildren<CellProps>) => {
   const Tag = as || 'td'

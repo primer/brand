@@ -145,8 +145,9 @@ const TextInputInternal = (
       )}
       {showLeadingVisual && (
         <span className={clsx(styles['TextInput-leading-visual'], styles[`TextInput-leading-visual--${size}`])}>
-          {LeadingVisual && React.isValidElement(LeadingVisual)
-            ? React.cloneElement(LeadingVisual as React.ReactElement, {
+          {LeadingVisual &&
+          React.isValidElement<{className?: string; width?: number; height?: number; id?: string}>(LeadingVisual)
+            ? React.cloneElement(LeadingVisual, {
                 className: clsx(
                   styles['TextInput-leading-visual-icon'],
                   styles[`TextInput-leading-visual-icon--${size}`],
@@ -181,8 +182,9 @@ const TextInputInternal = (
       />
       {showTrailingVisual && (
         <span className={clsx(styles['TextInput-trailing-visual'], styles[`TextInput-trailing-visual--${size}`])}>
-          {TrailingVisual && React.isValidElement(TrailingVisual)
-            ? React.cloneElement(TrailingVisual as React.ReactElement, {
+          {TrailingVisual &&
+          React.isValidElement<{className?: string; width?: number; height?: number; id?: string}>(TrailingVisual)
+            ? React.cloneElement(TrailingVisual, {
                 className: clsx(
                   styles['TextInput-trailing-visual-icon'],
                   styles[`TextInput-trailing-visual-icon--${size}`],

@@ -1,4 +1,4 @@
-import React, {forwardRef, useContext, type HTMLProps, type FunctionComponent} from 'react'
+import React, {forwardRef, useCallback, useContext, type HTMLProps, type FunctionComponent} from 'react'
 import {clsx} from 'clsx'
 import {Text} from '../Text'
 import {type AnimateProps} from '../animation'
@@ -25,6 +25,7 @@ import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/compone
 import styles from './VideoPlayer.module.css'
 import {useVideoResizeObserver} from './hooks/'
 import {useVideo, VideoContext, VideoProvider} from './hooks/useVideo'
+import {useProvidedRefOrCreate} from '../hooks/useRef'
 
 type VideoPlayerProps = {
   title: string
@@ -40,83 +41,120 @@ type VideoPlayerProps = {
   playIcon?: FunctionComponent
 } & HTMLProps<HTMLVideoElement>
 
-const Root = ({
-  title,
-  visuallyHiddenTitle,
-  showBranding = true,
-  children,
-  className,
-  showPlayPauseButton = true,
-  showSeekControl = true,
-  showCCButton = true,
-  showMuteButton = true,
-  showVolumeControl = true,
-  showFullScreenButton = true,
-  playIcon: PlayIcon = () => <DefaultPlayIcon className={styles.VideoPlayer__playButton} />,
-  ...rest
-}: VideoPlayerProps) => {
-  const videoContext = useVideo()
-  const {ccEnabled, fullscreenRef, isPlaying, ref, togglePlaying} = videoContext
+const Root = forwardRef<HTMLVideoElement, VideoPlayerProps>(
+  (
+    {
+      title,
+      visuallyHiddenTitle,
+      showBranding = true,
+      children,
+      className,
+      showPlayPauseButton = true,
+      showSeekControl = true,
+      showCCButton = true,
+      showMuteButton = true,
+      showVolumeControl = true,
+      showFullScreenButton = true,
+      playIcon: PlayIcon = () => <DefaultPlayIcon className={styles.VideoPlayer__playButton} />,
+      ...rest
+    }: VideoPlayerProps,
+    forwardedRef,
+  ) => {
+    const videoContext = useVideo()
+    const {ccEnabled, fullscreenRef, isPlaying, ref, togglePlaying} = videoContext
+    const forwardedRefCallback = useCallback(
+      (node: HTMLVideoElement | null) => {
+        assignRef(forwardedRef, node)
+      },
+      [forwardedRef],
+    )
+    const providedRef = useProvidedRefOrCreate<HTMLVideoElement>(forwardedRefCallback)
 
-  const isSmall = useVideoResizeObserver({
-    videoWrapperRef: fullscreenRef,
-    className: styles['VideoPlayer__container--small'],
-  })
+    const setVideoElementRef = useCallback(
+      (node: HTMLVideoElement | null) => {
+        assignRef(ref, node)
+        assignRef(providedRef, node)
+      },
+      [ref, providedRef],
+    )
 
-  const showControlsRow1 = showPlayPauseButton || showSeekControl
-  const showControlsRow2 = showCCButton || showMuteButton || showVolumeControl || showFullScreenButton
-  const showControlsBar = showControlsRow1 || showControlsRow2
+    const isSmall = useVideoResizeObserver({
+      videoWrapperRef: fullscreenRef,
+      className: styles['VideoPlayer__container--small'],
+    })
 
-  return (
-    <div className={styles.VideoPlayer__container} ref={fullscreenRef}>
-      <div className={styles.VideoPlayer__overlayContainer}>
-        <video title={title} controls={false} className={clsx(styles.VideoPlayer, className)} {...rest} ref={ref}>
-          {children}
-          <track kind="captions" />
-        </video>
-        {showBranding || !visuallyHiddenTitle ? (
-          <div className={clsx(styles.VideoPlayer__title, isPlaying && styles['VideoPlayer__title--hidden'])}>
-            {showBranding && <MarkGithubIcon size={40} aria-label="GitHub logo" />}
-            {!visuallyHiddenTitle && (
-              <Text size="400" weight="medium" className={styles.VideoPlayer__controlTextColor}>
-                {title}
-              </Text>
+    const showControlsRow1 = showPlayPauseButton || showSeekControl
+    const showControlsRow2 = showCCButton || showMuteButton || showVolumeControl || showFullScreenButton
+    const showControlsBar = showControlsRow1 || showControlsRow2
+
+    return (
+      <div className={styles.VideoPlayer__container} ref={fullscreenRef}>
+        <div className={styles.VideoPlayer__overlayContainer}>
+          <video
+            ref={setVideoElementRef}
+            title={title}
+            controls={false}
+            className={clsx(styles.VideoPlayer, className)}
+            {...rest}
+          >
+            {children}
+            <track kind="captions" />
+          </video>
+          {showBranding || !visuallyHiddenTitle ? (
+            <div className={clsx(styles.VideoPlayer__title, isPlaying && styles['VideoPlayer__title--hidden'])}>
+              {showBranding && <MarkGithubIcon size={40} aria-label="GitHub logo" />}
+              {!visuallyHiddenTitle && (
+                <Text size="400" weight="medium" className={styles.VideoPlayer__controlTextColor}>
+                  {title}
+                </Text>
+              )}
+            </div>
+          ) : null}
+          <button
+            className={clsx(
+              styles.VideoPlayer__playButtonOverlay,
+              isPlaying && styles['VideoPlayer__playButtonOverlay--transparent'],
             )}
-          </div>
-        ) : null}
-        <button
-          className={clsx(
-            styles.VideoPlayer__playButtonOverlay,
-            isPlaying && styles['VideoPlayer__playButtonOverlay--transparent'],
-          )}
-          onClick={togglePlaying}
-          aria-label={isPlaying ? 'Pause' : 'Play'}
-        >
-          {!isPlaying && <PlayIcon />}
-        </button>
-      </div>
+            onClick={togglePlaying}
+            aria-label={isPlaying ? 'Pause' : 'Play'}
+          >
+            {!isPlaying && <PlayIcon />}
+          </button>
+        </div>
 
-      {ccEnabled && <Captions />}
-      {showControlsBar && (
-        <ControlsBar>
-          {showControlsRow1 && (
-            <div className={styles['VideoPlayer__controlsBar__row1']}>
-              {showPlayPauseButton && <PlayPauseButton />}
-              {showSeekControl && <SeekControl />}
-            </div>
-          )}
-          {showControlsRow2 && (
-            <div className={styles['VideoPlayer__controlsBar__row2']}>
-              {showCCButton && <CCButton />}
-              {showMuteButton && <MuteButton />}
-              {showVolumeControl && !isSmall && <VolumeControl />}
-              {showFullScreenButton && <FullScreenButton />}
-            </div>
-          )}
-        </ControlsBar>
-      )}
-    </div>
-  )
+        {ccEnabled && <Captions />}
+        {showControlsBar && (
+          <ControlsBar>
+            {showControlsRow1 && (
+              <div className={styles['VideoPlayer__controlsBar__row1']}>
+                {showPlayPauseButton && <PlayPauseButton />}
+                {showSeekControl && <SeekControl />}
+              </div>
+            )}
+            {showControlsRow2 && (
+              <div className={styles['VideoPlayer__controlsBar__row2']}>
+                {showCCButton && <CCButton />}
+                {showMuteButton && <MuteButton />}
+                {showVolumeControl && !isSmall && <VolumeControl />}
+                {showFullScreenButton && <FullScreenButton />}
+              </div>
+            )}
+          </ControlsBar>
+        )}
+      </div>
+    )
+  },
+)
+
+function assignRef<T>(targetRef: React.RefObject<T> | React.Ref<T> | null | undefined, value: T | null) {
+  if (!targetRef) return
+
+  if (typeof targetRef === 'function') {
+    targetRef(value)
+    return
+  }
+
+  ;(targetRef as React.MutableRefObject<T | null>).current = value
 }
 
 const VideoPlayerSource = (props: React.HTMLProps<HTMLSourceElement>) => <source {...props} />
@@ -129,10 +167,10 @@ const RootWithProvider = forwardRef<HTMLVideoElement, VideoPlayerProps>((props, 
   const context = useContext(VideoContext)
 
   return context ? (
-    <Root {...props} ref={ref} />
+    <Root ref={ref} {...props} />
   ) : (
     <VideoProvider>
-      <Root {...props} ref={ref} />
+      <Root ref={ref} {...props} />
     </VideoProvider>
   )
 })
