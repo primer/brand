@@ -580,6 +580,7 @@ const LinkBase = forwardRef<HTMLAnchorElement | HTMLDivElement, LinkBaseProps>((
         <Text
           as="span"
           size="100"
+          weight="medium"
           className={styles['SubNav__link-label']}
           variant={ariaCurrent === 'page' || variant === 'default' ? 'default' : 'muted'}
         >

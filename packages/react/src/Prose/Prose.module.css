@@ -173,8 +173,11 @@
 /* 7. Inline elements                                         */
 /* ---------------------------------------------------------- */
 
-.Prose strong {
-  font-weight: var(--brand-text-weight-800);
+.Prose strong,
+.Prose b {
+  font-weight: var(
+    --brand-text-weight-heavy
+  ) !important; /* Overrides Primer product styles in dotcom. Should compute to 550 */
 }
 
 .Prose em {
