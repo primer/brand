@@ -1,4 +1,4 @@
-import React, {createContext, forwardRef, useCallback, useContext, useMemo, useState} from 'react'
+import React, {createContext, forwardRef, useCallback, useContext, useMemo, useState, useRef, useEffect} from 'react'
 import {clsx} from 'clsx'
 import {PlusIcon} from '@primer/octicons-react'
 
@@ -110,6 +110,16 @@ const RiverAccordionItem = ({className, index, children, ...props}: RiverAccordi
   const {openIndex} = useRiverAccordionContext()
   const panelId = useId()
   const isOpen = index === openIndex
+  const panelRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    if (panelRef.current) {
+      // Workaround to avoid React 18 / 19 type mismatches with the `inert` attribute.
+      // This approach won't immediately apply the attribute in pure SSR contexts, only post-hydration
+      // TODO: Move back to JSX when React 19 is fully adopted in Dotcom.
+      panelRef.current.toggleAttribute('inert', !isOpen)
+    }
+  }, [isOpen])
 
   const itemContextValue = useMemo(
     () => ({
@@ -157,12 +167,7 @@ const RiverAccordionItem = ({className, index, children, ...props}: RiverAccordi
         {...props}
       >
         {heading}
-        <div
-          className={styles.RiverAccordion__panel}
-          id={panelId}
-          aria-hidden={!isOpen}
-          {...(!isOpen ? ({inert: true} as React.HTMLAttributes<HTMLDivElement>) : undefined)}
-        >
+        <div ref={panelRef} className={styles.RiverAccordion__panel} id={panelId} aria-hidden={!isOpen}>
           {content}
           {visual}
         </div>
