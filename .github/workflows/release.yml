@@ -22,7 +22,7 @@ permissions:
 
 jobs:
   release-main:
-    if: github.ref_name == 'main'
+    if: github.repository == 'primer/brand' && github.ref_name == 'main'
     name: Main
     runs-on: ubuntu-latest
     steps:
@@ -62,7 +62,7 @@ jobs:
           GITHUB_TOKEN: ${{ steps.app-token.outputs.token }}
 
   release-next-minor:
-    if: github.ref_name == 'next-minor'
+    if: github.repository == 'primer/brand' && github.ref_name == 'next-minor'
     name: Next minor
     runs-on: ubuntu-latest
     steps:
@@ -102,7 +102,7 @@ jobs:
           GITHUB_TOKEN: ${{ steps.app-token.outputs.token }}
 
   release-candidate:
-    if: github.ref_name == 'changeset-release/main'
+    if: github.repository == 'primer/brand' && github.ref_name == 'changeset-release/main'
     name: Candidate
     runs-on: ubuntu-latest
     steps:
@@ -148,7 +148,7 @@ jobs:
             })
 
   release-candidate-next-minor:
-    if: github.ref_name == 'changeset-release/next-minor'
+    if: github.repository == 'primer/brand' && github.ref_name == 'changeset-release/next-minor'
     name: Next minor candidate (@next-minor)
     runs-on: ubuntu-latest
     steps:
@@ -200,7 +200,7 @@ jobs:
             })
 
   release-canary:
-    if: github.ref_name != 'main' && github.ref_name != 'next-minor' && github.ref_name != 'changeset-release/main' && github.ref_name != 'changeset-release/next-minor'
+    if: github.repository == 'primer/brand' && github.ref_name != 'main' && github.ref_name != 'next-minor' && github.ref_name != 'changeset-release/main' && github.ref_name != 'changeset-release/next-minor'
 
     name: Canary
     runs-on: ubuntu-latest

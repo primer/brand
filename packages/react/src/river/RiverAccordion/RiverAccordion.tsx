@@ -114,6 +114,9 @@ const RiverAccordionItem = ({className, index, children, ...props}: RiverAccordi
 
   useEffect(() => {
     if (panelRef.current) {
+      // Workaround to avoid React 18 / 19 type mismatches with the `inert` attribute.
+      // This approach won't immediately apply the attribute in pure SSR contexts, only post-hydration
+      // TODO: Move back to JSX when React 19 is fully adopted in Dotcom.
       panelRef.current.toggleAttribute('inert', !isOpen)
     }
   }, [isOpen])
