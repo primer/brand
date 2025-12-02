@@ -1,5 +1,11 @@
 # @primer/react-brand
 
+## 0.60.1
+
+### Patch Changes
+
+- [#1204](https://github.com/primer/brand/pull/1204) [`2148797`](https://github.com/primer/brand/commit/214879769a1565ac9feaa9d5987a83cbbddca07c) Thanks [@rezrah](https://github.com/rezrah)! - The `inert` attribute applied to unopened `RiverAccordion` items is now set through a runtime DOM manipulation. This helps to bypass type mismatches between React 18 and 19 but has no material impact to the accessibility or rendering of the final markup.
+
 ## 0.60.0
 
 ### Minor Changes
