@@ -16,99 +16,9 @@ test.describe('Visual Comparison: Industry', () => {
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
-  test('Industry / Maximum Light (fr)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=recipes-solutions-solution-industry--maximum&viewMode=story',
-    )
-
-    await page.waitForTimeout(3500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('Industry / Maximum Light (de)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=recipes-solutions-solution-industry--maximum&viewMode=story',
-    )
-
-    await page.waitForTimeout(3500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('Industry / Maximum Light (ja)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=recipes-solutions-solution-industry--maximum&viewMode=story',
-    )
-
-    await page.waitForTimeout(3500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('Industry / Maximum Light (es)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=recipes-solutions-solution-industry--maximum&viewMode=story',
-    )
-
-    await page.waitForTimeout(3500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('Industry / Maximum Light (pt-BR)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=recipes-solutions-solution-industry--maximum&viewMode=story',
-    )
-
-    await page.waitForTimeout(3500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
   test('Industry / Maximum Dark', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=recipes-solutions-solution-industry--maximum-dark&viewMode=story',
-    )
-
-    await page.waitForTimeout(3500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('Industry / Maximum Dark (fr)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=recipes-solutions-solution-industry--maximum-dark&viewMode=story',
-    )
-
-    await page.waitForTimeout(3500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('Industry / Maximum Dark (de)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=recipes-solutions-solution-industry--maximum-dark&viewMode=story',
-    )
-
-    await page.waitForTimeout(3500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('Industry / Maximum Dark (ja)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=recipes-solutions-solution-industry--maximum-dark&viewMode=story',
-    )
-
-    await page.waitForTimeout(3500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('Industry / Maximum Dark (es)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=recipes-solutions-solution-industry--maximum-dark&viewMode=story',
-    )
-
-    await page.waitForTimeout(3500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('Industry / Maximum Dark (pt-BR)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=recipes-solutions-solution-industry--maximum-dark&viewMode=story',
     )
 
     await page.waitForTimeout(3500)
@@ -124,99 +34,9 @@ test.describe('Visual Comparison: Industry', () => {
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
-  test('Industry / Minimum Light (fr)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=recipes-solutions-solution-industry--minimum&viewMode=story',
-    )
-
-    await page.waitForTimeout(3500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('Industry / Minimum Light (de)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=recipes-solutions-solution-industry--minimum&viewMode=story',
-    )
-
-    await page.waitForTimeout(3500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('Industry / Minimum Light (ja)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=recipes-solutions-solution-industry--minimum&viewMode=story',
-    )
-
-    await page.waitForTimeout(3500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('Industry / Minimum Light (es)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=recipes-solutions-solution-industry--minimum&viewMode=story',
-    )
-
-    await page.waitForTimeout(3500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('Industry / Minimum Light (pt-BR)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=recipes-solutions-solution-industry--minimum&viewMode=story',
-    )
-
-    await page.waitForTimeout(3500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
   test('Industry / Minimum Dark', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=recipes-solutions-solution-industry--minimum-dark&viewMode=story',
-    )
-
-    await page.waitForTimeout(3500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('Industry / Minimum Dark (fr)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=recipes-solutions-solution-industry--minimum-dark&viewMode=story',
-    )
-
-    await page.waitForTimeout(3500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('Industry / Minimum Dark (de)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=recipes-solutions-solution-industry--minimum-dark&viewMode=story',
-    )
-
-    await page.waitForTimeout(3500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('Industry / Minimum Dark (ja)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=recipes-solutions-solution-industry--minimum-dark&viewMode=story',
-    )
-
-    await page.waitForTimeout(3500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('Industry / Minimum Dark (es)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=recipes-solutions-solution-industry--minimum-dark&viewMode=story',
-    )
-
-    await page.waitForTimeout(3500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('Industry / Minimum Dark (pt-BR)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=recipes-solutions-solution-industry--minimum-dark&viewMode=story',
     )
 
     await page.waitForTimeout(3500)

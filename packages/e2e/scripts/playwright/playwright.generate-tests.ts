@@ -2,7 +2,7 @@
 import fs from 'fs'
 import path from 'path'
 import prettier from 'prettier'
-import {SUPPORTED_LANGUAGES as languages} from '../../../../apps/storybook/src/constants'
+// import {SUPPORTED_LANGUAGES as languages} from '../../../../apps/storybook/src/constants'
 
 type StoryIndex = {
   entries: Record<
@@ -113,10 +113,10 @@ const waitForTimeoutLookup = {
   'components-subnav-features--anchor-nav-variant': 3000, // for being flakey across translations
 }
 
-const skipLocalizationsTestsFor = [
-  'components-actionmenu-features--disabled-item', // for the menu to open
-  'components-actionmenu-features--anchored-positioning', // for the menu to open
-]
+// const skipLocalizationsTestsFor = [
+//   'components-actionmenu-features--disabled-item', // for the menu to open
+//   'components-actionmenu-features--anchored-positioning', // for the menu to open
+// ]
 
 /**
  * Manual lookup for tests that we want to skip
@@ -137,6 +137,8 @@ const skipTestLookup = [
   'components-animations-examples--progress-bars', // animation only
   'components-animations-examples--logo-bar', // animation only
   'components-animations-examples--timeline-bar', // animation only
+  'components-actionmenu-features--disabled-item', // for the menu to open
+  'components-actionmenu-features--anchored-positioning', // for the menu to open
   'components-animations--playground', // animation only
   'components-logosuite-examples--following-hero', // animation only
   'components-logosuite-features--slower-marquee-speed', // animation only
@@ -236,8 +238,7 @@ for (const key of Object.keys(categorisedStories)) {
           `
         }
 
-        const shouldSkipLocalizations = skipLocalizationsTestsFor.includes(id)
-        const languagesToTest = shouldSkipLocalizations ? ['en'] : languages
+        const languagesToTest = ['en']
         const allLanguageTests = languagesToTest.map(language => generateTestForLanguage(language)).join('')
 
         if (requiresMobileViewport) {

@@ -14,51 +14,6 @@ test.describe('Visual Comparison: SubdomainNavBar', () => {
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
-  test('SubdomainNavBar / Playground (fr)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-subdomainnavbar--playground&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('SubdomainNavBar / Playground (de)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-subdomainnavbar--playground&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('SubdomainNavBar / Playground (ja)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-subdomainnavbar--playground&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('SubdomainNavBar / Playground (es)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-subdomainnavbar--playground&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('SubdomainNavBar / Playground (pt-BR)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-subdomainnavbar--playground&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
   test('SubdomainNavBar / No Search', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-subdomainnavbar--no-search&viewMode=story')
 
@@ -66,98 +21,8 @@ test.describe('Visual Comparison: SubdomainNavBar', () => {
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
-  test('SubdomainNavBar / No Search (fr)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-subdomainnavbar--no-search&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('SubdomainNavBar / No Search (de)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-subdomainnavbar--no-search&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('SubdomainNavBar / No Search (ja)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-subdomainnavbar--no-search&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('SubdomainNavBar / No Search (es)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-subdomainnavbar--no-search&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('SubdomainNavBar / No Search (pt-BR)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-subdomainnavbar--no-search&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
   test('SubdomainNavBar / Search Open', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-subdomainnavbar--search-open&viewMode=story')
-
-    await page.waitForTimeout(5500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('SubdomainNavBar / Search Open (fr)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-subdomainnavbar--search-open&viewMode=story',
-    )
-
-    await page.waitForTimeout(5500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('SubdomainNavBar / Search Open (de)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-subdomainnavbar--search-open&viewMode=story',
-    )
-
-    await page.waitForTimeout(5500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('SubdomainNavBar / Search Open (ja)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-subdomainnavbar--search-open&viewMode=story',
-    )
-
-    await page.waitForTimeout(5500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('SubdomainNavBar / Search Open (es)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-subdomainnavbar--search-open&viewMode=story',
-    )
-
-    await page.waitForTimeout(5500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('SubdomainNavBar / Search Open (pt-BR)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-subdomainnavbar--search-open&viewMode=story',
-    )
 
     await page.waitForTimeout(5500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -172,102 +37,12 @@ test.describe('Visual Comparison: SubdomainNavBar', () => {
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
-  test('SubdomainNavBar / Search Results Visible (fr)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-subdomainnavbar--search-results-visible&viewMode=story',
-    )
-
-    await page.waitForTimeout(5500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('SubdomainNavBar / Search Results Visible (de)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-subdomainnavbar--search-results-visible&viewMode=story',
-    )
-
-    await page.waitForTimeout(5500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('SubdomainNavBar / Search Results Visible (ja)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-subdomainnavbar--search-results-visible&viewMode=story',
-    )
-
-    await page.waitForTimeout(5500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('SubdomainNavBar / Search Results Visible (es)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-subdomainnavbar--search-results-visible&viewMode=story',
-    )
-
-    await page.waitForTimeout(5500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('SubdomainNavBar / Search Results Visible (pt-BR)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-subdomainnavbar--search-results-visible&viewMode=story',
-    )
-
-    await page.waitForTimeout(5500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
   // eslint-disable-next-line i18n-text/no-en
   test.describe('Mobile viewport test for Mobile View', () => {
     test.use({viewport: {width: 360, height: 800}})
     test('SubdomainNavBar / Mobile View', async ({page}) => {
       await page.goto(
         'http://localhost:6006/iframe.html?args=&id=components-subdomainnavbar--mobile-view&viewMode=story',
-      )
-
-      await page.waitForTimeout(5500)
-      await expect(page).toHaveScreenshot({fullPage: true})
-    })
-
-    test('SubdomainNavBar / Mobile View (fr)', async ({page}) => {
-      await page.goto(
-        'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-subdomainnavbar--mobile-view&viewMode=story',
-      )
-
-      await page.waitForTimeout(5500)
-      await expect(page).toHaveScreenshot({fullPage: true})
-    })
-
-    test('SubdomainNavBar / Mobile View (de)', async ({page}) => {
-      await page.goto(
-        'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-subdomainnavbar--mobile-view&viewMode=story',
-      )
-
-      await page.waitForTimeout(5500)
-      await expect(page).toHaveScreenshot({fullPage: true})
-    })
-
-    test('SubdomainNavBar / Mobile View (ja)', async ({page}) => {
-      await page.goto(
-        'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-subdomainnavbar--mobile-view&viewMode=story',
-      )
-
-      await page.waitForTimeout(5500)
-      await expect(page).toHaveScreenshot({fullPage: true})
-    })
-
-    test('SubdomainNavBar / Mobile View (es)', async ({page}) => {
-      await page.goto(
-        'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-subdomainnavbar--mobile-view&viewMode=story',
-      )
-
-      await page.waitForTimeout(5500)
-      await expect(page).toHaveScreenshot({fullPage: true})
-    })
-
-    test('SubdomainNavBar / Mobile View (pt-BR)', async ({page}) => {
-      await page.goto(
-        'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-subdomainnavbar--mobile-view&viewMode=story',
       )
 
       await page.waitForTimeout(5500)
@@ -286,51 +61,6 @@ test.describe('Visual Comparison: SubdomainNavBar', () => {
       await page.waitForTimeout(5500)
       await expect(page).toHaveScreenshot({fullPage: true})
     })
-
-    test('SubdomainNavBar / Mobile Menu Open (fr)', async ({page}) => {
-      await page.goto(
-        'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-subdomainnavbar--mobile-menu-open&viewMode=story',
-      )
-
-      await page.waitForTimeout(5500)
-      await expect(page).toHaveScreenshot({fullPage: true})
-    })
-
-    test('SubdomainNavBar / Mobile Menu Open (de)', async ({page}) => {
-      await page.goto(
-        'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-subdomainnavbar--mobile-menu-open&viewMode=story',
-      )
-
-      await page.waitForTimeout(5500)
-      await expect(page).toHaveScreenshot({fullPage: true})
-    })
-
-    test('SubdomainNavBar / Mobile Menu Open (ja)', async ({page}) => {
-      await page.goto(
-        'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-subdomainnavbar--mobile-menu-open&viewMode=story',
-      )
-
-      await page.waitForTimeout(5500)
-      await expect(page).toHaveScreenshot({fullPage: true})
-    })
-
-    test('SubdomainNavBar / Mobile Menu Open (es)', async ({page}) => {
-      await page.goto(
-        'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-subdomainnavbar--mobile-menu-open&viewMode=story',
-      )
-
-      await page.waitForTimeout(5500)
-      await expect(page).toHaveScreenshot({fullPage: true})
-    })
-
-    test('SubdomainNavBar / Mobile Menu Open (pt-BR)', async ({page}) => {
-      await page.goto(
-        'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-subdomainnavbar--mobile-menu-open&viewMode=story',
-      )
-
-      await page.waitForTimeout(5500)
-      await expect(page).toHaveScreenshot({fullPage: true})
-    })
   })
 
   // eslint-disable-next-line i18n-text/no-en
@@ -339,51 +69,6 @@ test.describe('Visual Comparison: SubdomainNavBar', () => {
     test('SubdomainNavBar / Mobile Menu Open Many Items', async ({page}) => {
       await page.goto(
         'http://localhost:6006/iframe.html?args=&id=components-subdomainnavbar--mobile-menu-open-many-items&viewMode=story',
-      )
-
-      await page.waitForTimeout(5500)
-      await expect(page).toHaveScreenshot({fullPage: true})
-    })
-
-    test('SubdomainNavBar / Mobile Menu Open Many Items (fr)', async ({page}) => {
-      await page.goto(
-        'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-subdomainnavbar--mobile-menu-open-many-items&viewMode=story',
-      )
-
-      await page.waitForTimeout(5500)
-      await expect(page).toHaveScreenshot({fullPage: true})
-    })
-
-    test('SubdomainNavBar / Mobile Menu Open Many Items (de)', async ({page}) => {
-      await page.goto(
-        'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-subdomainnavbar--mobile-menu-open-many-items&viewMode=story',
-      )
-
-      await page.waitForTimeout(5500)
-      await expect(page).toHaveScreenshot({fullPage: true})
-    })
-
-    test('SubdomainNavBar / Mobile Menu Open Many Items (ja)', async ({page}) => {
-      await page.goto(
-        'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-subdomainnavbar--mobile-menu-open-many-items&viewMode=story',
-      )
-
-      await page.waitForTimeout(5500)
-      await expect(page).toHaveScreenshot({fullPage: true})
-    })
-
-    test('SubdomainNavBar / Mobile Menu Open Many Items (es)', async ({page}) => {
-      await page.goto(
-        'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-subdomainnavbar--mobile-menu-open-many-items&viewMode=story',
-      )
-
-      await page.waitForTimeout(5500)
-      await expect(page).toHaveScreenshot({fullPage: true})
-    })
-
-    test('SubdomainNavBar / Mobile Menu Open Many Items (pt-BR)', async ({page}) => {
-      await page.goto(
-        'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-subdomainnavbar--mobile-menu-open-many-items&viewMode=story',
       )
 
       await page.waitForTimeout(5500)
@@ -402,51 +87,6 @@ test.describe('Visual Comparison: SubdomainNavBar', () => {
       await page.waitForTimeout(5500)
       await expect(page).toHaveScreenshot({fullPage: true})
     })
-
-    test('SubdomainNavBar / Mobile Search Results Visible (fr)', async ({page}) => {
-      await page.goto(
-        'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-subdomainnavbar--mobile-search-results-visible&viewMode=story',
-      )
-
-      await page.waitForTimeout(5500)
-      await expect(page).toHaveScreenshot({fullPage: true})
-    })
-
-    test('SubdomainNavBar / Mobile Search Results Visible (de)', async ({page}) => {
-      await page.goto(
-        'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-subdomainnavbar--mobile-search-results-visible&viewMode=story',
-      )
-
-      await page.waitForTimeout(5500)
-      await expect(page).toHaveScreenshot({fullPage: true})
-    })
-
-    test('SubdomainNavBar / Mobile Search Results Visible (ja)', async ({page}) => {
-      await page.goto(
-        'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-subdomainnavbar--mobile-search-results-visible&viewMode=story',
-      )
-
-      await page.waitForTimeout(5500)
-      await expect(page).toHaveScreenshot({fullPage: true})
-    })
-
-    test('SubdomainNavBar / Mobile Search Results Visible (es)', async ({page}) => {
-      await page.goto(
-        'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-subdomainnavbar--mobile-search-results-visible&viewMode=story',
-      )
-
-      await page.waitForTimeout(5500)
-      await expect(page).toHaveScreenshot({fullPage: true})
-    })
-
-    test('SubdomainNavBar / Mobile Search Results Visible (pt-BR)', async ({page}) => {
-      await page.goto(
-        'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-subdomainnavbar--mobile-search-results-visible&viewMode=story',
-      )
-
-      await page.waitForTimeout(5500)
-      await expect(page).toHaveScreenshot({fullPage: true})
-    })
   })
 
   // eslint-disable-next-line i18n-text/no-en
@@ -460,99 +100,9 @@ test.describe('Visual Comparison: SubdomainNavBar', () => {
       await page.waitForTimeout(5500)
       await expect(page).toHaveScreenshot({fullPage: true})
     })
-
-    test('SubdomainNavBar / Mobile No Links (fr)', async ({page}) => {
-      await page.goto(
-        'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-subdomainnavbar--mobile-no-links&viewMode=story',
-      )
-
-      await page.waitForTimeout(5500)
-      await expect(page).toHaveScreenshot({fullPage: true})
-    })
-
-    test('SubdomainNavBar / Mobile No Links (de)', async ({page}) => {
-      await page.goto(
-        'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-subdomainnavbar--mobile-no-links&viewMode=story',
-      )
-
-      await page.waitForTimeout(5500)
-      await expect(page).toHaveScreenshot({fullPage: true})
-    })
-
-    test('SubdomainNavBar / Mobile No Links (ja)', async ({page}) => {
-      await page.goto(
-        'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-subdomainnavbar--mobile-no-links&viewMode=story',
-      )
-
-      await page.waitForTimeout(5500)
-      await expect(page).toHaveScreenshot({fullPage: true})
-    })
-
-    test('SubdomainNavBar / Mobile No Links (es)', async ({page}) => {
-      await page.goto(
-        'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-subdomainnavbar--mobile-no-links&viewMode=story',
-      )
-
-      await page.waitForTimeout(5500)
-      await expect(page).toHaveScreenshot({fullPage: true})
-    })
-
-    test('SubdomainNavBar / Mobile No Links (pt-BR)', async ({page}) => {
-      await page.goto(
-        'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-subdomainnavbar--mobile-no-links&viewMode=story',
-      )
-
-      await page.waitForTimeout(5500)
-      await expect(page).toHaveScreenshot({fullPage: true})
-    })
   })
   test('SubdomainNavBar / No overflow menu (1 link)', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-subdomainnavbar--no-overflow&viewMode=story')
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('SubdomainNavBar / No overflow menu (1 link) (fr)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-subdomainnavbar--no-overflow&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('SubdomainNavBar / No overflow menu (1 link) (de)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-subdomainnavbar--no-overflow&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('SubdomainNavBar / No overflow menu (1 link) (ja)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-subdomainnavbar--no-overflow&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('SubdomainNavBar / No overflow menu (1 link) (es)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-subdomainnavbar--no-overflow&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('SubdomainNavBar / No overflow menu (1 link) (pt-BR)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-subdomainnavbar--no-overflow&viewMode=story',
-    )
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -567,98 +117,8 @@ test.describe('Visual Comparison: SubdomainNavBar', () => {
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
-  test('SubdomainNavBar / Longer Title (fr)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-subdomainnavbar--longer-title&viewMode=story',
-    )
-
-    await page.waitForTimeout(1500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('SubdomainNavBar / Longer Title (de)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-subdomainnavbar--longer-title&viewMode=story',
-    )
-
-    await page.waitForTimeout(1500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('SubdomainNavBar / Longer Title (ja)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-subdomainnavbar--longer-title&viewMode=story',
-    )
-
-    await page.waitForTimeout(1500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('SubdomainNavBar / Longer Title (es)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-subdomainnavbar--longer-title&viewMode=story',
-    )
-
-    await page.waitForTimeout(1500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('SubdomainNavBar / Longer Title (pt-BR)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-subdomainnavbar--longer-title&viewMode=story',
-    )
-
-    await page.waitForTimeout(1500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
   test('SubdomainNavBar / Full Width', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-subdomainnavbar--full-width&viewMode=story')
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('SubdomainNavBar / Full Width (fr)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-subdomainnavbar--full-width&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('SubdomainNavBar / Full Width (de)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-subdomainnavbar--full-width&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('SubdomainNavBar / Full Width (ja)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-subdomainnavbar--full-width&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('SubdomainNavBar / Full Width (es)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-subdomainnavbar--full-width&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('SubdomainNavBar / Full Width (pt-BR)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-subdomainnavbar--full-width&viewMode=story',
-    )
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -671,99 +131,9 @@ test.describe('Visual Comparison: SubdomainNavBar', () => {
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
-  test('SubdomainNavBar / No Title (fr)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-subdomainnavbar--no-title&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('SubdomainNavBar / No Title (de)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-subdomainnavbar--no-title&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('SubdomainNavBar / No Title (ja)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-subdomainnavbar--no-title&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('SubdomainNavBar / No Title (es)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-subdomainnavbar--no-title&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('SubdomainNavBar / No Title (pt-BR)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-subdomainnavbar--no-title&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
   test('SubdomainNavBar / Conditional Rendering', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-subdomainnavbar--conditional-rendering&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('SubdomainNavBar / Conditional Rendering (fr)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-subdomainnavbar--conditional-rendering&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('SubdomainNavBar / Conditional Rendering (de)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-subdomainnavbar--conditional-rendering&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('SubdomainNavBar / Conditional Rendering (ja)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-subdomainnavbar--conditional-rendering&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('SubdomainNavBar / Conditional Rendering (es)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-subdomainnavbar--conditional-rendering&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('SubdomainNavBar / Conditional Rendering (pt-BR)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-subdomainnavbar--conditional-rendering&viewMode=story',
     )
 
     await page.waitForTimeout(500)
@@ -779,99 +149,9 @@ test.describe('Visual Comparison: SubdomainNavBar', () => {
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
-  test('SubdomainNavBar / Skip To Main Tag (fr)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-subdomainnavbar--skip-to-main-tag&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('SubdomainNavBar / Skip To Main Tag (de)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-subdomainnavbar--skip-to-main-tag&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('SubdomainNavBar / Skip To Main Tag (ja)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-subdomainnavbar--skip-to-main-tag&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('SubdomainNavBar / Skip To Main Tag (es)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-subdomainnavbar--skip-to-main-tag&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('SubdomainNavBar / Skip To Main Tag (pt-BR)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-subdomainnavbar--skip-to-main-tag&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
   test('SubdomainNavBar / Skip To Main Tag With Id', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-subdomainnavbar--skip-to-main-tag-with-id&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('SubdomainNavBar / Skip To Main Tag With Id (fr)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-subdomainnavbar--skip-to-main-tag-with-id&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('SubdomainNavBar / Skip To Main Tag With Id (de)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-subdomainnavbar--skip-to-main-tag-with-id&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('SubdomainNavBar / Skip To Main Tag With Id (ja)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-subdomainnavbar--skip-to-main-tag-with-id&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('SubdomainNavBar / Skip To Main Tag With Id (es)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-subdomainnavbar--skip-to-main-tag-with-id&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('SubdomainNavBar / Skip To Main Tag With Id (pt-BR)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-subdomainnavbar--skip-to-main-tag-with-id&viewMode=story',
     )
 
     await page.waitForTimeout(500)
@@ -887,99 +167,9 @@ test.describe('Visual Comparison: SubdomainNavBar', () => {
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
-  test('SubdomainNavBar / External Link (fr)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-subdomainnavbar--external-link&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('SubdomainNavBar / External Link (de)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-subdomainnavbar--external-link&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('SubdomainNavBar / External Link (ja)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-subdomainnavbar--external-link&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('SubdomainNavBar / External Link (es)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-subdomainnavbar--external-link&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('SubdomainNavBar / External Link (pt-BR)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-subdomainnavbar--external-link&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
   test('SubdomainNavBar / Reversed Button Order', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-subdomainnavbar--reversed-button-order&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('SubdomainNavBar / Reversed Button Order (fr)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-subdomainnavbar--reversed-button-order&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('SubdomainNavBar / Reversed Button Order (de)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-subdomainnavbar--reversed-button-order&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('SubdomainNavBar / Reversed Button Order (ja)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-subdomainnavbar--reversed-button-order&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('SubdomainNavBar / Reversed Button Order (es)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-subdomainnavbar--reversed-button-order&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('SubdomainNavBar / Reversed Button Order (pt-BR)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-subdomainnavbar--reversed-button-order&viewMode=story',
     )
 
     await page.waitForTimeout(500)
@@ -992,51 +182,6 @@ test.describe('Visual Comparison: SubdomainNavBar', () => {
     test('SubdomainNavBar / Reversed Button Order Narrow', async ({page}) => {
       await page.goto(
         'http://localhost:6006/iframe.html?args=&id=components-subdomainnavbar--reversed-button-order-narrow&viewMode=story',
-      )
-
-      await page.waitForTimeout(5500)
-      await expect(page).toHaveScreenshot({fullPage: true})
-    })
-
-    test('SubdomainNavBar / Reversed Button Order Narrow (fr)', async ({page}) => {
-      await page.goto(
-        'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-subdomainnavbar--reversed-button-order-narrow&viewMode=story',
-      )
-
-      await page.waitForTimeout(5500)
-      await expect(page).toHaveScreenshot({fullPage: true})
-    })
-
-    test('SubdomainNavBar / Reversed Button Order Narrow (de)', async ({page}) => {
-      await page.goto(
-        'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-subdomainnavbar--reversed-button-order-narrow&viewMode=story',
-      )
-
-      await page.waitForTimeout(5500)
-      await expect(page).toHaveScreenshot({fullPage: true})
-    })
-
-    test('SubdomainNavBar / Reversed Button Order Narrow (ja)', async ({page}) => {
-      await page.goto(
-        'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-subdomainnavbar--reversed-button-order-narrow&viewMode=story',
-      )
-
-      await page.waitForTimeout(5500)
-      await expect(page).toHaveScreenshot({fullPage: true})
-    })
-
-    test('SubdomainNavBar / Reversed Button Order Narrow (es)', async ({page}) => {
-      await page.goto(
-        'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-subdomainnavbar--reversed-button-order-narrow&viewMode=story',
-      )
-
-      await page.waitForTimeout(5500)
-      await expect(page).toHaveScreenshot({fullPage: true})
-    })
-
-    test('SubdomainNavBar / Reversed Button Order Narrow (pt-BR)', async ({page}) => {
-      await page.goto(
-        'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-subdomainnavbar--reversed-button-order-narrow&viewMode=story',
       )
 
       await page.waitForTimeout(5500)

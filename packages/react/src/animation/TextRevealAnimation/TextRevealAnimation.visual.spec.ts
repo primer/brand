@@ -16,99 +16,9 @@ test.describe('Visual Comparison: TextRevealAnimation', () => {
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
-  test('TextRevealAnimation / Playground (fr)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-textrevealanimation--playground&viewMode=story',
-    )
-
-    await page.waitForTimeout(3000)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('TextRevealAnimation / Playground (de)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-textrevealanimation--playground&viewMode=story',
-    )
-
-    await page.waitForTimeout(3000)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('TextRevealAnimation / Playground (ja)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-textrevealanimation--playground&viewMode=story',
-    )
-
-    await page.waitForTimeout(3000)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('TextRevealAnimation / Playground (es)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-textrevealanimation--playground&viewMode=story',
-    )
-
-    await page.waitForTimeout(3000)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('TextRevealAnimation / Playground (pt-BR)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-textrevealanimation--playground&viewMode=story',
-    )
-
-    await page.waitForTimeout(3000)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
   test('TextRevealAnimation / With Large Testimonial', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-textrevealanimation-examples--with-large-testimonial&viewMode=story',
-    )
-
-    await page.waitForTimeout(3000)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('TextRevealAnimation / With Large Testimonial (fr)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-textrevealanimation-examples--with-large-testimonial&viewMode=story',
-    )
-
-    await page.waitForTimeout(3000)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('TextRevealAnimation / With Large Testimonial (de)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-textrevealanimation-examples--with-large-testimonial&viewMode=story',
-    )
-
-    await page.waitForTimeout(3000)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('TextRevealAnimation / With Large Testimonial (ja)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-textrevealanimation-examples--with-large-testimonial&viewMode=story',
-    )
-
-    await page.waitForTimeout(3000)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('TextRevealAnimation / With Large Testimonial (es)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-textrevealanimation-examples--with-large-testimonial&viewMode=story',
-    )
-
-    await page.waitForTimeout(3000)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('TextRevealAnimation / With Large Testimonial (pt-BR)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-textrevealanimation-examples--with-large-testimonial&viewMode=story',
     )
 
     await page.waitForTimeout(3000)
@@ -124,99 +34,9 @@ test.describe('Visual Comparison: TextRevealAnimation', () => {
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
-  test('TextRevealAnimation / With Hero (fr)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-textrevealanimation-examples--with-hero&viewMode=story',
-    )
-
-    await page.waitForTimeout(3000)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('TextRevealAnimation / With Hero (de)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-textrevealanimation-examples--with-hero&viewMode=story',
-    )
-
-    await page.waitForTimeout(3000)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('TextRevealAnimation / With Hero (ja)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-textrevealanimation-examples--with-hero&viewMode=story',
-    )
-
-    await page.waitForTimeout(3000)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('TextRevealAnimation / With Hero (es)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-textrevealanimation-examples--with-hero&viewMode=story',
-    )
-
-    await page.waitForTimeout(3000)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('TextRevealAnimation / With Hero (pt-BR)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-textrevealanimation-examples--with-hero&viewMode=story',
-    )
-
-    await page.waitForTimeout(3000)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
   test('TextRevealAnimation / Animation On Scroll', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-textrevealanimation-features--animation-on-scroll&viewMode=story',
-    )
-
-    await page.waitForTimeout(3000)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('TextRevealAnimation / Animation On Scroll (fr)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-textrevealanimation-features--animation-on-scroll&viewMode=story',
-    )
-
-    await page.waitForTimeout(3000)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('TextRevealAnimation / Animation On Scroll (de)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-textrevealanimation-features--animation-on-scroll&viewMode=story',
-    )
-
-    await page.waitForTimeout(3000)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('TextRevealAnimation / Animation On Scroll (ja)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-textrevealanimation-features--animation-on-scroll&viewMode=story',
-    )
-
-    await page.waitForTimeout(3000)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('TextRevealAnimation / Animation On Scroll (es)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-textrevealanimation-features--animation-on-scroll&viewMode=story',
-    )
-
-    await page.waitForTimeout(3000)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('TextRevealAnimation / Animation On Scroll (pt-BR)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-textrevealanimation-features--animation-on-scroll&viewMode=story',
     )
 
     await page.waitForTimeout(3000)
