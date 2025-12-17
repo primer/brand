@@ -7,6 +7,7 @@ import type {BaseProps} from '../component-helpers'
 
 /** * Main Stylesheet (as a CSS Module) */
 import styles from './Footnotes.module.css'
+import {getTextContent} from '../utils/getTextContent'
 
 export const FootnotesTags = ['div', 'ol'] as const
 
@@ -92,7 +93,7 @@ function Item({className, children, _variant = 'citation', ...rest}: FootnotesIt
       <Text as="p" variant="muted" size="100" className={clsx(styles.FootnotesItem__citationText)}>
         {children}
         {href && (
-          <InlineLink href={href} aria-label={`Back to content ${children}`}>
+          <InlineLink href={href} aria-label={`Back to content ${getTextContent(children)}`}>
             <ReplyIcon className={styles.FootnotesItem__citationIcon} />
           </InlineLink>
         )}

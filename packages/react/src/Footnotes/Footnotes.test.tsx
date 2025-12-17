@@ -4,6 +4,7 @@ import '@testing-library/jest-dom'
 import {axe, toHaveNoViolations} from 'jest-axe'
 
 import {Footnotes} from './Footnotes'
+import {InlineLink} from '../InlineLink'
 import '../test-utils/mocks/match-media-mock'
 
 expect.extend(toHaveNoViolations)
@@ -102,5 +103,22 @@ describe('Footnotes', () => {
 
     const iconEl = backLink.querySelector('svg')
     expect(iconEl).toBeInTheDocument()
+  })
+
+  it('extracts text content from nested children for aria-label', async () => {
+    const mockHref = 'https://github.com'
+    const {getByRole} = render(
+      <Footnotes>
+        <Footnotes.Item href={mockHref}>
+          This factor is based on data from the industry&apos;s{' '}
+          <InlineLink href="#">longest running analysis</InlineLink> by Acme Corp.
+        </Footnotes.Item>
+      </Footnotes>,
+    )
+
+    const backLink = getByRole('link', {
+      name: "Back to content This factor is based on data from the industry's longest running analysis by Acme Corp.",
+    })
+    expect(backLink).toBeInTheDocument()
   })
 })
