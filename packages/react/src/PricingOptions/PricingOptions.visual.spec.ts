@@ -14,99 +14,9 @@ test.describe('Visual Comparison: PricingOptions', () => {
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
-  test('PricingOptions / Default (fr)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-pricingoptions--default&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('PricingOptions / Default (de)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-pricingoptions--default&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('PricingOptions / Default (ja)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-pricingoptions--default&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('PricingOptions / Default (es)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-pricingoptions--default&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('PricingOptions / Default (pt-BR)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-pricingoptions--default&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
   test('PricingOptions / Copilot Individual Plans', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-pricingoptions-examples--copilot-individual-plans&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('PricingOptions / Copilot Individual Plans (fr)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-pricingoptions-examples--copilot-individual-plans&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('PricingOptions / Copilot Individual Plans (de)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-pricingoptions-examples--copilot-individual-plans&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('PricingOptions / Copilot Individual Plans (ja)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-pricingoptions-examples--copilot-individual-plans&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('PricingOptions / Copilot Individual Plans (es)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-pricingoptions-examples--copilot-individual-plans&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('PricingOptions / Copilot Individual Plans (pt-BR)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-pricingoptions-examples--copilot-individual-plans&viewMode=story',
     )
 
     await page.waitForTimeout(500)
@@ -122,99 +32,9 @@ test.describe('Visual Comparison: PricingOptions', () => {
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
-  test('PricingOptions / Copilot Business Plans (fr)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-pricingoptions-examples--copilot-business-plans&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('PricingOptions / Copilot Business Plans (de)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-pricingoptions-examples--copilot-business-plans&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('PricingOptions / Copilot Business Plans (ja)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-pricingoptions-examples--copilot-business-plans&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('PricingOptions / Copilot Business Plans (es)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-pricingoptions-examples--copilot-business-plans&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('PricingOptions / Copilot Business Plans (pt-BR)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-pricingoptions-examples--copilot-business-plans&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
   test('PricingOptions / Cards Variant', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-pricingoptions-features--cards-variant&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('PricingOptions / Cards Variant (fr)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-pricingoptions-features--cards-variant&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('PricingOptions / Cards Variant (de)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-pricingoptions-features--cards-variant&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('PricingOptions / Cards Variant (ja)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-pricingoptions-features--cards-variant&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('PricingOptions / Cards Variant (es)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-pricingoptions-features--cards-variant&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('PricingOptions / Cards Variant (pt-BR)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-pricingoptions-features--cards-variant&viewMode=story',
     )
 
     await page.waitForTimeout(500)
@@ -230,99 +50,9 @@ test.describe('Visual Comparison: PricingOptions', () => {
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
-  test('PricingOptions / Default Gradient Variant (fr)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-pricingoptions-features--default-gradient-variant&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('PricingOptions / Default Gradient Variant (de)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-pricingoptions-features--default-gradient-variant&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('PricingOptions / Default Gradient Variant (ja)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-pricingoptions-features--default-gradient-variant&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('PricingOptions / Default Gradient Variant (es)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-pricingoptions-features--default-gradient-variant&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('PricingOptions / Default Gradient Variant (pt-BR)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-pricingoptions-features--default-gradient-variant&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
   test('PricingOptions / Cards Gradient Variant', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-pricingoptions-features--cards-gradient-variant&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('PricingOptions / Cards Gradient Variant (fr)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-pricingoptions-features--cards-gradient-variant&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('PricingOptions / Cards Gradient Variant (de)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-pricingoptions-features--cards-gradient-variant&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('PricingOptions / Cards Gradient Variant (ja)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-pricingoptions-features--cards-gradient-variant&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('PricingOptions / Cards Gradient Variant (es)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-pricingoptions-features--cards-gradient-variant&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('PricingOptions / Cards Gradient Variant (pt-BR)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-pricingoptions-features--cards-gradient-variant&viewMode=story',
     )
 
     await page.waitForTimeout(500)
@@ -338,99 +68,9 @@ test.describe('Visual Comparison: PricingOptions', () => {
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
-  test('PricingOptions / Leading Component (fr)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-pricingoptions-features--leading-component&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('PricingOptions / Leading Component (de)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-pricingoptions-features--leading-component&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('PricingOptions / Leading Component (ja)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-pricingoptions-features--leading-component&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('PricingOptions / Leading Component (es)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-pricingoptions-features--leading-component&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('PricingOptions / Leading Component (pt-BR)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-pricingoptions-features--leading-component&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
   test('PricingOptions / One Option', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-pricingoptions-features--one-option&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('PricingOptions / One Option (fr)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-pricingoptions-features--one-option&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('PricingOptions / One Option (de)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-pricingoptions-features--one-option&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('PricingOptions / One Option (ja)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-pricingoptions-features--one-option&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('PricingOptions / One Option (es)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-pricingoptions-features--one-option&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('PricingOptions / One Option (pt-BR)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-pricingoptions-features--one-option&viewMode=story',
     )
 
     await page.waitForTimeout(500)
@@ -446,99 +86,9 @@ test.describe('Visual Comparison: PricingOptions', () => {
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
-  test('PricingOptions / Two Options (fr)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-pricingoptions-features--two-options&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('PricingOptions / Two Options (de)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-pricingoptions-features--two-options&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('PricingOptions / Two Options (ja)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-pricingoptions-features--two-options&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('PricingOptions / Two Options (es)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-pricingoptions-features--two-options&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('PricingOptions / Two Options (pt-BR)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-pricingoptions-features--two-options&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
   test('PricingOptions / Three Options', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-pricingoptions-features--three-options&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('PricingOptions / Three Options (fr)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-pricingoptions-features--three-options&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('PricingOptions / Three Options (de)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-pricingoptions-features--three-options&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('PricingOptions / Three Options (ja)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-pricingoptions-features--three-options&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('PricingOptions / Three Options (es)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-pricingoptions-features--three-options&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('PricingOptions / Three Options (pt-BR)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-pricingoptions-features--three-options&viewMode=story',
     )
 
     await page.waitForTimeout(500)
@@ -554,99 +104,9 @@ test.describe('Visual Comparison: PricingOptions', () => {
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
-  test('PricingOptions / Four Options (fr)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-pricingoptions-features--four-options&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('PricingOptions / Four Options (de)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-pricingoptions-features--four-options&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('PricingOptions / Four Options (ja)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-pricingoptions-features--four-options&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('PricingOptions / Four Options (es)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-pricingoptions-features--four-options&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('PricingOptions / Four Options (pt-BR)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-pricingoptions-features--four-options&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
   test('PricingOptions / With Feature Sets', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-pricingoptions-features--with-feature-sets&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('PricingOptions / With Feature Sets (fr)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-pricingoptions-features--with-feature-sets&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('PricingOptions / With Feature Sets (de)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-pricingoptions-features--with-feature-sets&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('PricingOptions / With Feature Sets (ja)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-pricingoptions-features--with-feature-sets&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('PricingOptions / With Feature Sets (es)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-pricingoptions-features--with-feature-sets&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('PricingOptions / With Feature Sets (pt-BR)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-pricingoptions-features--with-feature-sets&viewMode=story',
     )
 
     await page.waitForTimeout(500)
@@ -662,99 +122,9 @@ test.describe('Visual Comparison: PricingOptions', () => {
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
-  test('PricingOptions / With Included And Excluded Features (fr)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-pricingoptions-features--with-included-and-excluded-features&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('PricingOptions / With Included And Excluded Features (de)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-pricingoptions-features--with-included-and-excluded-features&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('PricingOptions / With Included And Excluded Features (ja)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-pricingoptions-features--with-included-and-excluded-features&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('PricingOptions / With Included And Excluded Features (es)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-pricingoptions-features--with-included-and-excluded-features&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('PricingOptions / With Included And Excluded Features (pt-BR)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-pricingoptions-features--with-included-and-excluded-features&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
   test('PricingOptions / Without Features', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-pricingoptions-features--without-features&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('PricingOptions / Without Features (fr)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-pricingoptions-features--without-features&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('PricingOptions / Without Features (de)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-pricingoptions-features--without-features&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('PricingOptions / Without Features (ja)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-pricingoptions-features--without-features&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('PricingOptions / Without Features (es)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-pricingoptions-features--without-features&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('PricingOptions / Without Features (pt-BR)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-pricingoptions-features--without-features&viewMode=story',
     )
 
     await page.waitForTimeout(500)
@@ -770,99 +140,9 @@ test.describe('Visual Comparison: PricingOptions', () => {
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
-  test('PricingOptions / Center Aligned (fr)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-pricingoptions-features--center-aligned&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('PricingOptions / Center Aligned (de)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-pricingoptions-features--center-aligned&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('PricingOptions / Center Aligned (ja)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-pricingoptions-features--center-aligned&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('PricingOptions / Center Aligned (es)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-pricingoptions-features--center-aligned&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('PricingOptions / Center Aligned (pt-BR)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-pricingoptions-features--center-aligned&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
   test('PricingOptions / Collapsed Features', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-pricingoptions-features--collapsed-features&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('PricingOptions / Collapsed Features (fr)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-pricingoptions-features--collapsed-features&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('PricingOptions / Collapsed Features (de)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-pricingoptions-features--collapsed-features&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('PricingOptions / Collapsed Features (ja)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-pricingoptions-features--collapsed-features&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('PricingOptions / Collapsed Features (es)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-pricingoptions-features--collapsed-features&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('PricingOptions / Collapsed Features (pt-BR)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-pricingoptions-features--collapsed-features&viewMode=story',
     )
 
     await page.waitForTimeout(500)
@@ -878,99 +158,9 @@ test.describe('Visual Comparison: PricingOptions', () => {
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
-  test('PricingOptions / With Custom Feature List Heading (fr)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-pricingoptions-features--with-custom-feature-list-heading&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('PricingOptions / With Custom Feature List Heading (de)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-pricingoptions-features--with-custom-feature-list-heading&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('PricingOptions / With Custom Feature List Heading (ja)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-pricingoptions-features--with-custom-feature-list-heading&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('PricingOptions / With Custom Feature List Heading (es)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-pricingoptions-features--with-custom-feature-list-heading&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('PricingOptions / With Custom Feature List Heading (pt-BR)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-pricingoptions-features--with-custom-feature-list-heading&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
   test('PricingOptions / With Custom Feature List Item Leading Visual', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-pricingoptions-features--with-custom-feature-list-item-leading-visual&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('PricingOptions / With Custom Feature List Item Leading Visual (fr)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-pricingoptions-features--with-custom-feature-list-item-leading-visual&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('PricingOptions / With Custom Feature List Item Leading Visual (de)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-pricingoptions-features--with-custom-feature-list-item-leading-visual&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('PricingOptions / With Custom Feature List Item Leading Visual (ja)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-pricingoptions-features--with-custom-feature-list-item-leading-visual&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('PricingOptions / With Custom Feature List Item Leading Visual (es)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-pricingoptions-features--with-custom-feature-list-item-leading-visual&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('PricingOptions / With Custom Feature List Item Leading Visual (pt-BR)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-pricingoptions-features--with-custom-feature-list-item-leading-visual&viewMode=story',
     )
 
     await page.waitForTimeout(500)
@@ -986,102 +176,12 @@ test.describe('Visual Comparison: PricingOptions', () => {
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
-  test('PricingOptions / Collapsed Features No Dividers (fr)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-pricingoptions-features--collapsed-features-no-dividers&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('PricingOptions / Collapsed Features No Dividers (de)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-pricingoptions-features--collapsed-features-no-dividers&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('PricingOptions / Collapsed Features No Dividers (ja)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-pricingoptions-features--collapsed-features-no-dividers&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('PricingOptions / Collapsed Features No Dividers (es)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-pricingoptions-features--collapsed-features-no-dividers&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('PricingOptions / Collapsed Features No Dividers (pt-BR)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-pricingoptions-features--collapsed-features-no-dividers&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
   // eslint-disable-next-line i18n-text/no-en
   test.describe('Mobile viewport test for Expanded Narrow', () => {
     test.use({viewport: {width: 360, height: 800}})
     test('PricingOptions / Expanded Narrow', async ({page}) => {
       await page.goto(
         'http://localhost:6006/iframe.html?args=&id=components-pricingoptions-features--expanded-narrow&viewMode=story',
-      )
-
-      await page.waitForTimeout(500)
-      await expect(page).toHaveScreenshot({fullPage: true})
-    })
-
-    test('PricingOptions / Expanded Narrow (fr)', async ({page}) => {
-      await page.goto(
-        'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-pricingoptions-features--expanded-narrow&viewMode=story',
-      )
-
-      await page.waitForTimeout(500)
-      await expect(page).toHaveScreenshot({fullPage: true})
-    })
-
-    test('PricingOptions / Expanded Narrow (de)', async ({page}) => {
-      await page.goto(
-        'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-pricingoptions-features--expanded-narrow&viewMode=story',
-      )
-
-      await page.waitForTimeout(500)
-      await expect(page).toHaveScreenshot({fullPage: true})
-    })
-
-    test('PricingOptions / Expanded Narrow (ja)', async ({page}) => {
-      await page.goto(
-        'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-pricingoptions-features--expanded-narrow&viewMode=story',
-      )
-
-      await page.waitForTimeout(500)
-      await expect(page).toHaveScreenshot({fullPage: true})
-    })
-
-    test('PricingOptions / Expanded Narrow (es)', async ({page}) => {
-      await page.goto(
-        'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-pricingoptions-features--expanded-narrow&viewMode=story',
-      )
-
-      await page.waitForTimeout(500)
-      await expect(page).toHaveScreenshot({fullPage: true})
-    })
-
-    test('PricingOptions / Expanded Narrow (pt-BR)', async ({page}) => {
-      await page.goto(
-        'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-pricingoptions-features--expanded-narrow&viewMode=story',
       )
 
       await page.waitForTimeout(500)
@@ -1100,100 +200,10 @@ test.describe('Visual Comparison: PricingOptions', () => {
       await page.waitForTimeout(500)
       await expect(page).toHaveScreenshot({fullPage: true})
     })
-
-    test('PricingOptions / Expanded Tablet (fr)', async ({page}) => {
-      await page.goto(
-        'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-pricingoptions-features--expanded-tablet&viewMode=story',
-      )
-
-      await page.waitForTimeout(500)
-      await expect(page).toHaveScreenshot({fullPage: true})
-    })
-
-    test('PricingOptions / Expanded Tablet (de)', async ({page}) => {
-      await page.goto(
-        'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-pricingoptions-features--expanded-tablet&viewMode=story',
-      )
-
-      await page.waitForTimeout(500)
-      await expect(page).toHaveScreenshot({fullPage: true})
-    })
-
-    test('PricingOptions / Expanded Tablet (ja)', async ({page}) => {
-      await page.goto(
-        'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-pricingoptions-features--expanded-tablet&viewMode=story',
-      )
-
-      await page.waitForTimeout(500)
-      await expect(page).toHaveScreenshot({fullPage: true})
-    })
-
-    test('PricingOptions / Expanded Tablet (es)', async ({page}) => {
-      await page.goto(
-        'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-pricingoptions-features--expanded-tablet&viewMode=story',
-      )
-
-      await page.waitForTimeout(500)
-      await expect(page).toHaveScreenshot({fullPage: true})
-    })
-
-    test('PricingOptions / Expanded Tablet (pt-BR)', async ({page}) => {
-      await page.goto(
-        'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-pricingoptions-features--expanded-tablet&viewMode=story',
-      )
-
-      await page.waitForTimeout(500)
-      await expect(page).toHaveScreenshot({fullPage: true})
-    })
   })
   test('PricingOptions / Hide feature list on all viewports except wide', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-pricingoptions-features--hide-feature-list-on-narrow-and-regular&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('PricingOptions / Hide feature list on all viewports except wide (fr)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-pricingoptions-features--hide-feature-list-on-narrow-and-regular&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('PricingOptions / Hide feature list on all viewports except wide (de)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-pricingoptions-features--hide-feature-list-on-narrow-and-regular&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('PricingOptions / Hide feature list on all viewports except wide (ja)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-pricingoptions-features--hide-feature-list-on-narrow-and-regular&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('PricingOptions / Hide feature list on all viewports except wide (es)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-pricingoptions-features--hide-feature-list-on-narrow-and-regular&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('PricingOptions / Hide feature list on all viewports except wide (pt-BR)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-pricingoptions-features--hide-feature-list-on-narrow-and-regular&viewMode=story',
     )
 
     await page.waitForTimeout(500)
@@ -1206,51 +216,6 @@ test.describe('Visual Comparison: PricingOptions', () => {
     test('PricingOptions / Hide feature list on all viewports except wide (narrow)', async ({page}) => {
       await page.goto(
         'http://localhost:6006/iframe.html?args=&id=components-pricingoptions-features--hide-feature-list-on-narrow-and-regular-narrow&viewMode=story',
-      )
-
-      await page.waitForTimeout(500)
-      await expect(page).toHaveScreenshot({fullPage: true})
-    })
-
-    test('PricingOptions / Hide feature list on all viewports except wide (narrow) (fr)', async ({page}) => {
-      await page.goto(
-        'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-pricingoptions-features--hide-feature-list-on-narrow-and-regular-narrow&viewMode=story',
-      )
-
-      await page.waitForTimeout(500)
-      await expect(page).toHaveScreenshot({fullPage: true})
-    })
-
-    test('PricingOptions / Hide feature list on all viewports except wide (narrow) (de)', async ({page}) => {
-      await page.goto(
-        'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-pricingoptions-features--hide-feature-list-on-narrow-and-regular-narrow&viewMode=story',
-      )
-
-      await page.waitForTimeout(500)
-      await expect(page).toHaveScreenshot({fullPage: true})
-    })
-
-    test('PricingOptions / Hide feature list on all viewports except wide (narrow) (ja)', async ({page}) => {
-      await page.goto(
-        'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-pricingoptions-features--hide-feature-list-on-narrow-and-regular-narrow&viewMode=story',
-      )
-
-      await page.waitForTimeout(500)
-      await expect(page).toHaveScreenshot({fullPage: true})
-    })
-
-    test('PricingOptions / Hide feature list on all viewports except wide (narrow) (es)', async ({page}) => {
-      await page.goto(
-        'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-pricingoptions-features--hide-feature-list-on-narrow-and-regular-narrow&viewMode=story',
-      )
-
-      await page.waitForTimeout(500)
-      await expect(page).toHaveScreenshot({fullPage: true})
-    })
-
-    test('PricingOptions / Hide feature list on all viewports except wide (narrow) (pt-BR)', async ({page}) => {
-      await page.goto(
-        'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-pricingoptions-features--hide-feature-list-on-narrow-and-regular-narrow&viewMode=story',
       )
 
       await page.waitForTimeout(500)

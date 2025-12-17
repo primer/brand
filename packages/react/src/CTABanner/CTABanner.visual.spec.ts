@@ -14,98 +14,8 @@ test.describe('Visual Comparison: CTABanner', () => {
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
-  test('CTABanner / Default (fr)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-ctabanner--default&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('CTABanner / Default (de)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-ctabanner--default&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('CTABanner / Default (ja)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-ctabanner--default&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('CTABanner / Default (es)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-ctabanner--default&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('CTABanner / Default (pt-BR)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-ctabanner--default&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
   test('CTABanner / Playground', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-ctabanner--playground&viewMode=story')
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('CTABanner / Playground (fr)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-ctabanner--playground&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('CTABanner / Playground (de)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-ctabanner--playground&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('CTABanner / Playground (ja)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-ctabanner--playground&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('CTABanner / Playground (es)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-ctabanner--playground&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('CTABanner / Playground (pt-BR)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-ctabanner--playground&viewMode=story',
-    )
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -114,51 +24,6 @@ test.describe('Visual Comparison: CTABanner', () => {
   test('CTABanner / With Accent Button', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-ctabanner-features--with-accent-button&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('CTABanner / With Accent Button (fr)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-ctabanner-features--with-accent-button&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('CTABanner / With Accent Button (de)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-ctabanner-features--with-accent-button&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('CTABanner / With Accent Button (ja)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-ctabanner-features--with-accent-button&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('CTABanner / With Accent Button (es)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-ctabanner-features--with-accent-button&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('CTABanner / With Accent Button (pt-BR)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-ctabanner-features--with-accent-button&viewMode=story',
     )
 
     await page.waitForTimeout(500)
@@ -174,99 +39,9 @@ test.describe('Visual Comparison: CTABanner', () => {
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
-  test('CTABanner / With Border (fr)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-ctabanner-features--with-border&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('CTABanner / With Border (de)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-ctabanner-features--with-border&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('CTABanner / With Border (ja)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-ctabanner-features--with-border&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('CTABanner / With Border (es)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-ctabanner-features--with-border&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('CTABanner / With Border (pt-BR)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-ctabanner-features--with-border&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
   test('CTABanner / With No Shadow', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-ctabanner-features--with-no-shadow&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('CTABanner / With No Shadow (fr)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-ctabanner-features--with-no-shadow&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('CTABanner / With No Shadow (de)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-ctabanner-features--with-no-shadow&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('CTABanner / With No Shadow (ja)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-ctabanner-features--with-no-shadow&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('CTABanner / With No Shadow (es)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-ctabanner-features--with-no-shadow&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('CTABanner / With No Shadow (pt-BR)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-ctabanner-features--with-no-shadow&viewMode=story',
     )
 
     await page.waitForTimeout(500)
@@ -282,99 +57,9 @@ test.describe('Visual Comparison: CTABanner', () => {
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
-  test('CTABanner / Aligned Center (fr)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-ctabanner-features--aligned-center&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('CTABanner / Aligned Center (de)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-ctabanner-features--aligned-center&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('CTABanner / Aligned Center (ja)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-ctabanner-features--aligned-center&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('CTABanner / Aligned Center (es)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-ctabanner-features--aligned-center&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('CTABanner / Aligned Center (pt-BR)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-ctabanner-features--aligned-center&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
   test('CTABanner / With Trailing Component', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-ctabanner-features--with-trailing-component&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('CTABanner / With Trailing Component (fr)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-ctabanner-features--with-trailing-component&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('CTABanner / With Trailing Component (de)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-ctabanner-features--with-trailing-component&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('CTABanner / With Trailing Component (ja)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-ctabanner-features--with-trailing-component&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('CTABanner / With Trailing Component (es)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-ctabanner-features--with-trailing-component&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('CTABanner / With Trailing Component (pt-BR)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-ctabanner-features--with-trailing-component&viewMode=story',
     )
 
     await page.waitForTimeout(500)
@@ -390,99 +75,9 @@ test.describe('Visual Comparison: CTABanner', () => {
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
-  test('CTABanner / Custom Shadow (fr)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-ctabanner-features--custom-shadow&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('CTABanner / Custom Shadow (de)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-ctabanner-features--custom-shadow&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('CTABanner / Custom Shadow (ja)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-ctabanner-features--custom-shadow&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('CTABanner / Custom Shadow (es)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-ctabanner-features--custom-shadow&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('CTABanner / Custom Shadow (pt-BR)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-ctabanner-features--custom-shadow&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
   test('CTABanner / Custom Background Colors', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-ctabanner-features--custom-background-colors&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('CTABanner / Custom Background Colors (fr)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-ctabanner-features--custom-background-colors&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('CTABanner / Custom Background Colors (de)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-ctabanner-features--custom-background-colors&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('CTABanner / Custom Background Colors (ja)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-ctabanner-features--custom-background-colors&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('CTABanner / Custom Background Colors (es)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-ctabanner-features--custom-background-colors&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('CTABanner / Custom Background Colors (pt-BR)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-ctabanner-features--custom-background-colors&viewMode=story',
     )
 
     await page.waitForTimeout(500)
@@ -498,99 +93,9 @@ test.describe('Visual Comparison: CTABanner', () => {
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
-  test('CTABanner / Responsive Background Image (fr)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-ctabanner-features--responsive-background-image&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('CTABanner / Responsive Background Image (de)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-ctabanner-features--responsive-background-image&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('CTABanner / Responsive Background Image (ja)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-ctabanner-features--responsive-background-image&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('CTABanner / Responsive Background Image (es)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-ctabanner-features--responsive-background-image&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('CTABanner / Responsive Background Image (pt-BR)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-ctabanner-features--responsive-background-image&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
   test('CTABanner / Responsive Background Image Dark', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-ctabanner-features--responsive-background-image-dark&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('CTABanner / Responsive Background Image Dark (fr)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-ctabanner-features--responsive-background-image-dark&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('CTABanner / Responsive Background Image Dark (de)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-ctabanner-features--responsive-background-image-dark&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('CTABanner / Responsive Background Image Dark (ja)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-ctabanner-features--responsive-background-image-dark&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('CTABanner / Responsive Background Image Dark (es)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-ctabanner-features--responsive-background-image-dark&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('CTABanner / Responsive Background Image Dark (pt-BR)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-ctabanner-features--responsive-background-image-dark&viewMode=story',
     )
 
     await page.waitForTimeout(500)

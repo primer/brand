@@ -1,9 +1,11 @@
 @font-face {
   font-family: 'Mona Sans';
-  src: url('./Mona-Sans.woff2') format('woff2 supports variations'), url('./Mona-Sans.woff2') format('woff2-variations');
+  src: url('./MonaSansVF[wdth,wght,opsz].woff2') format('woff2 supports variations'),
+    url('./MonaSansVF[wdth,wght,opsz].woff2') format('woff2-variations');
   font-weight: 200 900;
   font-display: swap;
   font-synthesis: none;
+  font-feature-settings: 'liga' 0;
 }
 
 @font-face {
@@ -26,4 +28,13 @@
     url('./Hubot-Sans.woff2') format('woff2-variations');
   font-weight: 200 900;
   font-display: swap;
+}
+
+@font-face {
+  font-family: 'Mona Sans Mono';
+  src: url('./MonaSansMonoVF[wght].woff2') format('woff2 supports variations'),
+    url('./MonaSansMonoVF[wght].woff2') format('woff2-variations');
+  font-weight: 200 900;
+  font-display: swap;
+  font-synthesis: none;
 }

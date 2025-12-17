@@ -14,98 +14,8 @@ test.describe('Visual Comparison: Tabs', () => {
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
-  test('Tabs / Default (fr)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-tabs--default&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('Tabs / Default (de)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-tabs--default&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('Tabs / Default (ja)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-tabs--default&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('Tabs / Default (es)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-tabs--default&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('Tabs / Default (pt-BR)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-tabs--default&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
   test('Tabs / Playground', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-tabs--playground&viewMode=story')
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('Tabs / Playground (fr)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-tabs--playground&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('Tabs / Playground (de)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-tabs--playground&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('Tabs / Playground (ja)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-tabs--playground&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('Tabs / Playground (es)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-tabs--playground&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('Tabs / Playground (pt-BR)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-tabs--playground&viewMode=story',
-    )
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -120,99 +30,9 @@ test.describe('Visual Comparison: Tabs', () => {
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
-  test('Tabs / With Pricing Options (fr)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-tabs-examples--with-pricing-options&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('Tabs / With Pricing Options (de)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-tabs-examples--with-pricing-options&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('Tabs / With Pricing Options (ja)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-tabs-examples--with-pricing-options&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('Tabs / With Pricing Options (es)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-tabs-examples--with-pricing-options&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('Tabs / With Pricing Options (pt-BR)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-tabs-examples--with-pricing-options&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
   test('Tabs / With Custom Panels', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-tabs-examples--with-custom-panels&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('Tabs / With Custom Panels (fr)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-tabs-examples--with-custom-panels&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('Tabs / With Custom Panels (de)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-tabs-examples--with-custom-panels&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('Tabs / With Custom Panels (ja)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-tabs-examples--with-custom-panels&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('Tabs / With Custom Panels (es)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-tabs-examples--with-custom-panels&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('Tabs / With Custom Panels (pt-BR)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-tabs-examples--with-custom-panels&viewMode=story',
     )
 
     await page.waitForTimeout(500)
@@ -230,99 +50,9 @@ test.describe('Visual Comparison: Tabs', () => {
       await page.waitForTimeout(500)
       await expect(page).toHaveScreenshot({fullPage: true})
     })
-
-    test('Tabs / Default Variant Narrow (fr)', async ({page}) => {
-      await page.goto(
-        'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-tabs-features--default-variant-narrow&viewMode=story',
-      )
-
-      await page.waitForTimeout(500)
-      await expect(page).toHaveScreenshot({fullPage: true})
-    })
-
-    test('Tabs / Default Variant Narrow (de)', async ({page}) => {
-      await page.goto(
-        'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-tabs-features--default-variant-narrow&viewMode=story',
-      )
-
-      await page.waitForTimeout(500)
-      await expect(page).toHaveScreenshot({fullPage: true})
-    })
-
-    test('Tabs / Default Variant Narrow (ja)', async ({page}) => {
-      await page.goto(
-        'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-tabs-features--default-variant-narrow&viewMode=story',
-      )
-
-      await page.waitForTimeout(500)
-      await expect(page).toHaveScreenshot({fullPage: true})
-    })
-
-    test('Tabs / Default Variant Narrow (es)', async ({page}) => {
-      await page.goto(
-        'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-tabs-features--default-variant-narrow&viewMode=story',
-      )
-
-      await page.waitForTimeout(500)
-      await expect(page).toHaveScreenshot({fullPage: true})
-    })
-
-    test('Tabs / Default Variant Narrow (pt-BR)', async ({page}) => {
-      await page.goto(
-        'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-tabs-features--default-variant-narrow&viewMode=story',
-      )
-
-      await page.waitForTimeout(500)
-      await expect(page).toHaveScreenshot({fullPage: true})
-    })
   })
   test('Tabs / Custom Panels', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-tabs-features--custom-panels&viewMode=story')
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('Tabs / Custom Panels (fr)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-tabs-features--custom-panels&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('Tabs / Custom Panels (de)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-tabs-features--custom-panels&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('Tabs / Custom Panels (ja)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-tabs-features--custom-panels&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('Tabs / Custom Panels (es)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-tabs-features--custom-panels&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('Tabs / Custom Panels (pt-BR)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-tabs-features--custom-panels&viewMode=story',
-    )
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -337,99 +67,9 @@ test.describe('Visual Comparison: Tabs', () => {
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
-  test('Tabs / Custom Active Tab (fr)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-tabs-features--custom-active-tab&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('Tabs / Custom Active Tab (de)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-tabs-features--custom-active-tab&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('Tabs / Custom Active Tab (ja)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-tabs-features--custom-active-tab&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('Tabs / Custom Active Tab (es)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-tabs-features--custom-active-tab&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('Tabs / Custom Active Tab (pt-BR)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-tabs-features--custom-active-tab&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
   test('Tabs / Accent Variant', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-tabs-features--accent-variant&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('Tabs / Accent Variant (fr)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-tabs-features--accent-variant&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('Tabs / Accent Variant (de)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-tabs-features--accent-variant&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('Tabs / Accent Variant (ja)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-tabs-features--accent-variant&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('Tabs / Accent Variant (es)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-tabs-features--accent-variant&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('Tabs / Accent Variant (pt-BR)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-tabs-features--accent-variant&viewMode=story',
     )
 
     await page.waitForTimeout(500)
@@ -447,100 +87,10 @@ test.describe('Visual Comparison: Tabs', () => {
       await page.waitForTimeout(500)
       await expect(page).toHaveScreenshot({fullPage: true})
     })
-
-    test('Tabs / Accent Variant Narrow (fr)', async ({page}) => {
-      await page.goto(
-        'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-tabs-features--accent-variant-narrow&viewMode=story',
-      )
-
-      await page.waitForTimeout(500)
-      await expect(page).toHaveScreenshot({fullPage: true})
-    })
-
-    test('Tabs / Accent Variant Narrow (de)', async ({page}) => {
-      await page.goto(
-        'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-tabs-features--accent-variant-narrow&viewMode=story',
-      )
-
-      await page.waitForTimeout(500)
-      await expect(page).toHaveScreenshot({fullPage: true})
-    })
-
-    test('Tabs / Accent Variant Narrow (ja)', async ({page}) => {
-      await page.goto(
-        'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-tabs-features--accent-variant-narrow&viewMode=story',
-      )
-
-      await page.waitForTimeout(500)
-      await expect(page).toHaveScreenshot({fullPage: true})
-    })
-
-    test('Tabs / Accent Variant Narrow (es)', async ({page}) => {
-      await page.goto(
-        'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-tabs-features--accent-variant-narrow&viewMode=story',
-      )
-
-      await page.waitForTimeout(500)
-      await expect(page).toHaveScreenshot({fullPage: true})
-    })
-
-    test('Tabs / Accent Variant Narrow (pt-BR)', async ({page}) => {
-      await page.goto(
-        'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-tabs-features--accent-variant-narrow&viewMode=story',
-      )
-
-      await page.waitForTimeout(500)
-      await expect(page).toHaveScreenshot({fullPage: true})
-    })
   })
   test('Tabs / Underline Variant', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-tabs-features--underline-variant&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('Tabs / Underline Variant (fr)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-tabs-features--underline-variant&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('Tabs / Underline Variant (de)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-tabs-features--underline-variant&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('Tabs / Underline Variant (ja)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-tabs-features--underline-variant&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('Tabs / Underline Variant (es)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-tabs-features--underline-variant&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('Tabs / Underline Variant (pt-BR)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-tabs-features--underline-variant&viewMode=story',
     )
 
     await page.waitForTimeout(500)
@@ -558,51 +108,6 @@ test.describe('Visual Comparison: Tabs', () => {
       await page.waitForTimeout(500)
       await expect(page).toHaveScreenshot({fullPage: true})
     })
-
-    test('Tabs / Underline Variant Narrow (fr)', async ({page}) => {
-      await page.goto(
-        'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-tabs-features--underline-variant-narrow&viewMode=story',
-      )
-
-      await page.waitForTimeout(500)
-      await expect(page).toHaveScreenshot({fullPage: true})
-    })
-
-    test('Tabs / Underline Variant Narrow (de)', async ({page}) => {
-      await page.goto(
-        'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-tabs-features--underline-variant-narrow&viewMode=story',
-      )
-
-      await page.waitForTimeout(500)
-      await expect(page).toHaveScreenshot({fullPage: true})
-    })
-
-    test('Tabs / Underline Variant Narrow (ja)', async ({page}) => {
-      await page.goto(
-        'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-tabs-features--underline-variant-narrow&viewMode=story',
-      )
-
-      await page.waitForTimeout(500)
-      await expect(page).toHaveScreenshot({fullPage: true})
-    })
-
-    test('Tabs / Underline Variant Narrow (es)', async ({page}) => {
-      await page.goto(
-        'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-tabs-features--underline-variant-narrow&viewMode=story',
-      )
-
-      await page.waitForTimeout(500)
-      await expect(page).toHaveScreenshot({fullPage: true})
-    })
-
-    test('Tabs / Underline Variant Narrow (pt-BR)', async ({page}) => {
-      await page.goto(
-        'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-tabs-features--underline-variant-narrow&viewMode=story',
-      )
-
-      await page.waitForTimeout(500)
-      await expect(page).toHaveScreenshot({fullPage: true})
-    })
   })
   test('Tabs / Optional Panel Animation', async ({page}) => {
     await page.goto(
@@ -613,98 +118,8 @@ test.describe('Visual Comparison: Tabs', () => {
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
-  test('Tabs / Optional Panel Animation (fr)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-tabs-features--optional-panel-animation&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('Tabs / Optional Panel Animation (de)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-tabs-features--optional-panel-animation&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('Tabs / Optional Panel Animation (ja)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-tabs-features--optional-panel-animation&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('Tabs / Optional Panel Animation (es)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-tabs-features--optional-panel-animation&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('Tabs / Optional Panel Animation (pt-BR)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-tabs-features--optional-panel-animation&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
   test('Tabs / Start Align', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-tabs-features--start-align&viewMode=story')
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('Tabs / Start Align (fr)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-tabs-features--start-align&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('Tabs / Start Align (de)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-tabs-features--start-align&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('Tabs / Start Align (ja)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-tabs-features--start-align&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('Tabs / Start Align (es)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-tabs-features--start-align&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('Tabs / Start Align (pt-BR)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-tabs-features--start-align&viewMode=story',
-    )
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})

@@ -220,7 +220,7 @@ function Root({
                         aria-label={`${title} home`}
                         className={clsx(styles['SubdomainNavBar-title'])}
                       >
-                        <Text size="400" weight="semibold">
+                        <Text size="400" weight="medium">
                           {title}
                         </Text>
                       </a>

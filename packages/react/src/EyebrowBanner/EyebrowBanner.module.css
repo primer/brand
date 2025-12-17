@@ -57,7 +57,7 @@
 .EyebrowBanner__leadingLabel {
   display: flex;
   font-family: var(--brand-body-fontFamily);
-  font-weight: var(--base-text-weight-bold);
+  font-weight: var(--base-text-weight-medium);
   font-size: var(--brand-EyebrowBanner-label-size);
   line-height: 1em; /* for optical alignment */
   letter-spacing: var(--brand-text-letterSpacing-200);

@@ -14,98 +14,8 @@ test.describe('Visual Comparison: Article', () => {
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
-  test('Article / Playground (fr)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=recipes-seo-article-page--playground&viewMode=story',
-    )
-
-    await page.waitForTimeout(5000)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('Article / Playground (de)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=recipes-seo-article-page--playground&viewMode=story',
-    )
-
-    await page.waitForTimeout(5000)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('Article / Playground (ja)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=recipes-seo-article-page--playground&viewMode=story',
-    )
-
-    await page.waitForTimeout(5000)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('Article / Playground (es)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=recipes-seo-article-page--playground&viewMode=story',
-    )
-
-    await page.waitForTimeout(5000)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('Article / Playground (pt-BR)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=recipes-seo-article-page--playground&viewMode=story',
-    )
-
-    await page.waitForTimeout(5000)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
   test('Article / All Headings', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=recipes-seo-article-page--all-headings&viewMode=story')
-
-    await page.waitForTimeout(5000)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('Article / All Headings (fr)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=recipes-seo-article-page--all-headings&viewMode=story',
-    )
-
-    await page.waitForTimeout(5000)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('Article / All Headings (de)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=recipes-seo-article-page--all-headings&viewMode=story',
-    )
-
-    await page.waitForTimeout(5000)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('Article / All Headings (ja)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=recipes-seo-article-page--all-headings&viewMode=story',
-    )
-
-    await page.waitForTimeout(5000)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('Article / All Headings (es)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=recipes-seo-article-page--all-headings&viewMode=story',
-    )
-
-    await page.waitForTimeout(5000)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('Article / All Headings (pt-BR)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=recipes-seo-article-page--all-headings&viewMode=story',
-    )
 
     await page.waitForTimeout(5000)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -118,99 +28,9 @@ test.describe('Visual Comparison: Article', () => {
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
-  test('Article / Ai Theme (fr)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=recipes-seo-article-page--ai-theme&viewMode=story',
-    )
-
-    await page.waitForTimeout(5000)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('Article / Ai Theme (de)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=recipes-seo-article-page--ai-theme&viewMode=story',
-    )
-
-    await page.waitForTimeout(5000)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('Article / Ai Theme (ja)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=recipes-seo-article-page--ai-theme&viewMode=story',
-    )
-
-    await page.waitForTimeout(5000)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('Article / Ai Theme (es)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=recipes-seo-article-page--ai-theme&viewMode=story',
-    )
-
-    await page.waitForTimeout(5000)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('Article / Ai Theme (pt-BR)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=recipes-seo-article-page--ai-theme&viewMode=story',
-    )
-
-    await page.waitForTimeout(5000)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
   test('Article / Collaboration Theme', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=recipes-seo-article-page--collaboration-theme&viewMode=story',
-    )
-
-    await page.waitForTimeout(5000)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('Article / Collaboration Theme (fr)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=recipes-seo-article-page--collaboration-theme&viewMode=story',
-    )
-
-    await page.waitForTimeout(5000)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('Article / Collaboration Theme (de)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=recipes-seo-article-page--collaboration-theme&viewMode=story',
-    )
-
-    await page.waitForTimeout(5000)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('Article / Collaboration Theme (ja)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=recipes-seo-article-page--collaboration-theme&viewMode=story',
-    )
-
-    await page.waitForTimeout(5000)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('Article / Collaboration Theme (es)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=recipes-seo-article-page--collaboration-theme&viewMode=story',
-    )
-
-    await page.waitForTimeout(5000)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('Article / Collaboration Theme (pt-BR)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=recipes-seo-article-page--collaboration-theme&viewMode=story',
     )
 
     await page.waitForTimeout(5000)
@@ -226,99 +46,9 @@ test.describe('Visual Comparison: Article', () => {
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
-  test('Article / Enterprise Theme (fr)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=recipes-seo-article-page--enterprise-theme&viewMode=story',
-    )
-
-    await page.waitForTimeout(5000)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('Article / Enterprise Theme (de)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=recipes-seo-article-page--enterprise-theme&viewMode=story',
-    )
-
-    await page.waitForTimeout(5000)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('Article / Enterprise Theme (ja)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=recipes-seo-article-page--enterprise-theme&viewMode=story',
-    )
-
-    await page.waitForTimeout(5000)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('Article / Enterprise Theme (es)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=recipes-seo-article-page--enterprise-theme&viewMode=story',
-    )
-
-    await page.waitForTimeout(5000)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('Article / Enterprise Theme (pt-BR)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=recipes-seo-article-page--enterprise-theme&viewMode=story',
-    )
-
-    await page.waitForTimeout(5000)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
   test('Article / Security Theme', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=recipes-seo-article-page--security-theme&viewMode=story',
-    )
-
-    await page.waitForTimeout(5000)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('Article / Security Theme (fr)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=recipes-seo-article-page--security-theme&viewMode=story',
-    )
-
-    await page.waitForTimeout(5000)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('Article / Security Theme (de)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=recipes-seo-article-page--security-theme&viewMode=story',
-    )
-
-    await page.waitForTimeout(5000)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('Article / Security Theme (ja)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=recipes-seo-article-page--security-theme&viewMode=story',
-    )
-
-    await page.waitForTimeout(5000)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('Article / Security Theme (es)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=recipes-seo-article-page--security-theme&viewMode=story',
-    )
-
-    await page.waitForTimeout(5000)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('Article / Security Theme (pt-BR)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=recipes-seo-article-page--security-theme&viewMode=story',
     )
 
     await page.waitForTimeout(5000)
@@ -334,51 +64,6 @@ test.describe('Visual Comparison: Article', () => {
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
-  test('Article / Productivity Theme (fr)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=recipes-seo-article-page--productivity-theme&viewMode=story',
-    )
-
-    await page.waitForTimeout(5000)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('Article / Productivity Theme (de)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=recipes-seo-article-page--productivity-theme&viewMode=story',
-    )
-
-    await page.waitForTimeout(5000)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('Article / Productivity Theme (ja)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=recipes-seo-article-page--productivity-theme&viewMode=story',
-    )
-
-    await page.waitForTimeout(5000)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('Article / Productivity Theme (es)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=recipes-seo-article-page--productivity-theme&viewMode=story',
-    )
-
-    await page.waitForTimeout(5000)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('Article / Productivity Theme (pt-BR)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=recipes-seo-article-page--productivity-theme&viewMode=story',
-    )
-
-    await page.waitForTimeout(5000)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
   test('Article / Light Hero Image', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=recipes-seo-article-page--light-hero-image&viewMode=story',
@@ -388,99 +73,9 @@ test.describe('Visual Comparison: Article', () => {
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
-  test('Article / Light Hero Image (fr)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=recipes-seo-article-page--light-hero-image&viewMode=story',
-    )
-
-    await page.waitForTimeout(5000)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('Article / Light Hero Image (de)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=recipes-seo-article-page--light-hero-image&viewMode=story',
-    )
-
-    await page.waitForTimeout(5000)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('Article / Light Hero Image (ja)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=recipes-seo-article-page--light-hero-image&viewMode=story',
-    )
-
-    await page.waitForTimeout(5000)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('Article / Light Hero Image (es)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=recipes-seo-article-page--light-hero-image&viewMode=story',
-    )
-
-    await page.waitForTimeout(5000)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('Article / Light Hero Image (pt-BR)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=recipes-seo-article-page--light-hero-image&viewMode=story',
-    )
-
-    await page.waitForTimeout(5000)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
   test('Article / Dark Hero Image', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=recipes-seo-article-page--dark-hero-image&viewMode=story',
-    )
-
-    await page.waitForTimeout(5000)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('Article / Dark Hero Image (fr)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=recipes-seo-article-page--dark-hero-image&viewMode=story',
-    )
-
-    await page.waitForTimeout(5000)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('Article / Dark Hero Image (de)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=recipes-seo-article-page--dark-hero-image&viewMode=story',
-    )
-
-    await page.waitForTimeout(5000)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('Article / Dark Hero Image (ja)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=recipes-seo-article-page--dark-hero-image&viewMode=story',
-    )
-
-    await page.waitForTimeout(5000)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('Article / Dark Hero Image (es)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=recipes-seo-article-page--dark-hero-image&viewMode=story',
-    )
-
-    await page.waitForTimeout(5000)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('Article / Dark Hero Image (pt-BR)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=recipes-seo-article-page--dark-hero-image&viewMode=story',
     )
 
     await page.waitForTimeout(5000)

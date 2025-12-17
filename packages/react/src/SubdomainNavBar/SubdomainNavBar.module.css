@@ -93,7 +93,7 @@
 
 .SubdomainNavBar-title-separator {
   color: var(--brand-color-text-muted);
-  font-weight: var(--base-text-weight-semibold);
+  font-weight: var(--base-text-weight-normal);
   font-size: var(--base-size-32);
   line-height: 29px;
 }
@@ -108,6 +108,9 @@
   text-decoration: none;
   padding-right: var(--base-size-16);
   white-space: nowrap;
+  /* Optical alignment with logo */
+  position: relative;
+  top: 1px;
 }
 
 .SubdomainNavBar-title:hover {
@@ -271,14 +274,14 @@
   }
 
   .SubdomainNavBar-link--title {
-    font-weight: var(--base-text-weight-bold);
+    font-weight: var(--base-text-weight-medium);
   }
 }
 
 @media screen and (min-width: 48rem) {
   .SubdomainNavBar-link {
     font-family: var(--brand-heading-fontFamily);
-    font-weight: var(--base-text-weight-semibold);
+    font-weight: var(--base-text-weight-normal);
     font-size: var(--base-size-16);
     line-height: var(--base-size-16);
     padding: var(--base-size-16) var(--base-size-16);

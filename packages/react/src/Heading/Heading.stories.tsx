@@ -270,3 +270,12 @@ export const HubotSans: Story = {
     return <TypeFixture font="hubot-sans" />
   },
 }
+
+export const DisabledTextWrap: Story = {
+  render: () => (
+    <Heading as="h1" textWrap="wrap">
+      This is a very long heading that has CSS text wrapping disabled to show how the Heading looks when it reaches the
+      end of its container.
+    </Heading>
+  ),
+}

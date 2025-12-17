@@ -7,7 +7,7 @@ import styles from './Article.module.css'
 import {contentMap} from './article-shared'
 
 const AsideHeading = ({as = 'h2', ...props}: HeadingProps) => (
-  <Heading as={as} size="subhead-medium" font="monospace" className={styles.asideHeading} weight="medium" {...props} />
+  <Heading as={as} size="subhead-medium" font="monospace" className={styles.asideHeading} weight="normal" {...props} />
 )
 
 export const ArticleToC = ({content = 'real-world'}) => {
@@ -147,7 +147,7 @@ export const ArticleToC = ({content = 'real-world'}) => {
                       <Text
                         variant={currVisibleHeading === id ? 'default' : 'muted'}
                         size="100"
-                        weight={currVisibleHeading === id ? 'bold' : 'normal'}
+                        weight={currVisibleHeading === id ? 'medium' : 'normal'}
                       >
                         {text}
                       </Text>
