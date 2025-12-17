@@ -1,0 +1,72 @@
+.scalesGrid {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  padding: 16px;
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.1);
+  border-radius: 6px;
+  background-color: var(--bgColor-default);
+  margin-bottom: 8px;
+}
+
+.scalesGridLast {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  padding: 16px;
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.1);
+  border-radius: 6px;
+  background-color: var(--bgColor-default);
+}
+
+.colorSwatch {
+  padding: 8px;
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--fontStack-monospace);
+  font-size: 12px;
+}
+
+.themePickerGrid {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+}
+
+.themeCard {
+  border: 1px solid;
+  border-radius: 6px;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.themeCardSelected {
+  border-color: var(--fgColor-accent);
+}
+
+.themeCardDefault {
+  border-color: var(--borderColor-default);
+}
+
+.themeCardContent {
+  padding: 8px;
+}
+
+.themeLabel {
+  margin-left: 4px;
+  text-transform: capitalize;
+}
+
+.themePreview {
+  display: flex;
+  padding: 16px;
+  border-bottom: 1px solid;
+  border-color: var(--borderColor-default);
+  justify-content: center;
+}
+
+.colorDot {
+  width: 20px;
+  height: 20px;
+  border-radius: 999px;
+}
