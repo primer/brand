@@ -89,14 +89,14 @@ describe('Footnotes', () => {
     const mockHref = 'https://github.com'
     const {getByText, getByRole} = render(
       <Footnotes>
-        <Footnotes.Item href={mockHref}>{mockItemText} </Footnotes.Item>
+        <Footnotes.Item href={mockHref}>{mockItemText}</Footnotes.Item>
       </Footnotes>,
     )
 
     const itemEl = getByText(mockItemText)
     expect(itemEl).toBeInTheDocument()
 
-    const backLink = getByRole('link', {name: 'Back to content'})
+    const backLink = getByRole('link', {name: `Back to content ${mockItemText}`})
     expect(backLink).toBeInTheDocument()
     expect(backLink).toHaveAttribute('href', mockHref)
 

@@ -92,7 +92,7 @@ function Item({className, children, _variant = 'citation', ...rest}: FootnotesIt
       <Text as="p" variant="muted" size="100" className={clsx(styles.FootnotesItem__citationText)}>
         {children}
         {href && (
-          <InlineLink href={href} aria-label="Back to content">
+          <InlineLink href={href} aria-label={`Back to content ${children}`}>
             <ReplyIcon className={styles.FootnotesItem__citationIcon} />
           </InlineLink>
         )}
