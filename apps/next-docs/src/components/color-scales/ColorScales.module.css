@@ -60,8 +60,7 @@
 .themePreview {
   display: flex;
   padding: var(--base-size-16);
-  border-bottom: 1px solid;
-  border-color: var(--borderColor-default);
+  border-bottom: var(--brand-borderWidth-thin) solid var(--borderColor-default);
   justify-content: center;
 }
 
