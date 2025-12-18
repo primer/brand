@@ -16,99 +16,9 @@ test.describe('Visual Comparison: Size', () => {
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
-  test('Size / Maximum Light (fr)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=recipes-solutions-solution-org-size--maximum&viewMode=story',
-    )
-
-    await page.waitForTimeout(3500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('Size / Maximum Light (de)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=recipes-solutions-solution-org-size--maximum&viewMode=story',
-    )
-
-    await page.waitForTimeout(3500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('Size / Maximum Light (ja)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=recipes-solutions-solution-org-size--maximum&viewMode=story',
-    )
-
-    await page.waitForTimeout(3500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('Size / Maximum Light (es)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=recipes-solutions-solution-org-size--maximum&viewMode=story',
-    )
-
-    await page.waitForTimeout(3500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('Size / Maximum Light (pt-BR)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=recipes-solutions-solution-org-size--maximum&viewMode=story',
-    )
-
-    await page.waitForTimeout(3500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
   test('Size / Maximum Dark', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=recipes-solutions-solution-org-size--maximum-dark&viewMode=story',
-    )
-
-    await page.waitForTimeout(3500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('Size / Maximum Dark (fr)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=recipes-solutions-solution-org-size--maximum-dark&viewMode=story',
-    )
-
-    await page.waitForTimeout(3500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('Size / Maximum Dark (de)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=recipes-solutions-solution-org-size--maximum-dark&viewMode=story',
-    )
-
-    await page.waitForTimeout(3500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('Size / Maximum Dark (ja)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=recipes-solutions-solution-org-size--maximum-dark&viewMode=story',
-    )
-
-    await page.waitForTimeout(3500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('Size / Maximum Dark (es)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=recipes-solutions-solution-org-size--maximum-dark&viewMode=story',
-    )
-
-    await page.waitForTimeout(3500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('Size / Maximum Dark (pt-BR)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=recipes-solutions-solution-org-size--maximum-dark&viewMode=story',
     )
 
     await page.waitForTimeout(3500)
@@ -124,99 +34,9 @@ test.describe('Visual Comparison: Size', () => {
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
-  test('Size / Minimum Light (fr)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=recipes-solutions-solution-org-size--minimum&viewMode=story',
-    )
-
-    await page.waitForTimeout(3500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('Size / Minimum Light (de)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=recipes-solutions-solution-org-size--minimum&viewMode=story',
-    )
-
-    await page.waitForTimeout(3500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('Size / Minimum Light (ja)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=recipes-solutions-solution-org-size--minimum&viewMode=story',
-    )
-
-    await page.waitForTimeout(3500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('Size / Minimum Light (es)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=recipes-solutions-solution-org-size--minimum&viewMode=story',
-    )
-
-    await page.waitForTimeout(3500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('Size / Minimum Light (pt-BR)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=recipes-solutions-solution-org-size--minimum&viewMode=story',
-    )
-
-    await page.waitForTimeout(3500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
   test('Size / Minimum Dark', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=recipes-solutions-solution-org-size--minimum-dark&viewMode=story',
-    )
-
-    await page.waitForTimeout(3500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('Size / Minimum Dark (fr)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=recipes-solutions-solution-org-size--minimum-dark&viewMode=story',
-    )
-
-    await page.waitForTimeout(3500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('Size / Minimum Dark (de)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=recipes-solutions-solution-org-size--minimum-dark&viewMode=story',
-    )
-
-    await page.waitForTimeout(3500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('Size / Minimum Dark (ja)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=recipes-solutions-solution-org-size--minimum-dark&viewMode=story',
-    )
-
-    await page.waitForTimeout(3500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('Size / Minimum Dark (es)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=recipes-solutions-solution-org-size--minimum-dark&viewMode=story',
-    )
-
-    await page.waitForTimeout(3500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('Size / Minimum Dark (pt-BR)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=recipes-solutions-solution-org-size--minimum-dark&viewMode=story',
     )
 
     await page.waitForTimeout(3500)

@@ -148,7 +148,6 @@ const ItemBase = ({className, children, ...rest}: PropsWithChildren<SectionIntro
           defaultColor === 'muted' && styles[`SectionIntroStackedItem__item-text--muted`],
         )}
         size="350"
-        weight="medium"
       >
         {children}
       </Text>

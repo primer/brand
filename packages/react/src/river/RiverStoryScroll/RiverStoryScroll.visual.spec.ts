@@ -14,99 +14,9 @@ test.describe('Visual Comparison: RiverStoryScroll', () => {
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
-  test('RiverStoryScroll / Default (fr)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-riverstoryscroll--default&viewMode=story',
-    )
-
-    await page.waitForTimeout(3500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('RiverStoryScroll / Default (de)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-riverstoryscroll--default&viewMode=story',
-    )
-
-    await page.waitForTimeout(3500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('RiverStoryScroll / Default (ja)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-riverstoryscroll--default&viewMode=story',
-    )
-
-    await page.waitForTimeout(3500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('RiverStoryScroll / Default (es)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-riverstoryscroll--default&viewMode=story',
-    )
-
-    await page.waitForTimeout(3500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('RiverStoryScroll / Default (pt-BR)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-riverstoryscroll--default&viewMode=story',
-    )
-
-    await page.waitForTimeout(3500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
   test('RiverStoryScroll / With Timeline', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-riverstoryscroll-features--with-timeline&viewMode=story',
-    )
-
-    await page.waitForTimeout(3500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('RiverStoryScroll / With Timeline (fr)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-riverstoryscroll-features--with-timeline&viewMode=story',
-    )
-
-    await page.waitForTimeout(3500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('RiverStoryScroll / With Timeline (de)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-riverstoryscroll-features--with-timeline&viewMode=story',
-    )
-
-    await page.waitForTimeout(3500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('RiverStoryScroll / With Timeline (ja)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-riverstoryscroll-features--with-timeline&viewMode=story',
-    )
-
-    await page.waitForTimeout(3500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('RiverStoryScroll / With Timeline (es)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-riverstoryscroll-features--with-timeline&viewMode=story',
-    )
-
-    await page.waitForTimeout(3500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('RiverStoryScroll / With Timeline (pt-BR)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-riverstoryscroll-features--with-timeline&viewMode=story',
     )
 
     await page.waitForTimeout(3500)
@@ -124,100 +34,10 @@ test.describe('Visual Comparison: RiverStoryScroll', () => {
       await page.waitForTimeout(3500)
       await expect(page).toHaveScreenshot({fullPage: true})
     })
-
-    test('RiverStoryScroll / With Timeline Narrow (fr)', async ({page}) => {
-      await page.goto(
-        'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-riverstoryscroll-features--with-timeline-narrow&viewMode=story',
-      )
-
-      await page.waitForTimeout(3500)
-      await expect(page).toHaveScreenshot({fullPage: true})
-    })
-
-    test('RiverStoryScroll / With Timeline Narrow (de)', async ({page}) => {
-      await page.goto(
-        'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-riverstoryscroll-features--with-timeline-narrow&viewMode=story',
-      )
-
-      await page.waitForTimeout(3500)
-      await expect(page).toHaveScreenshot({fullPage: true})
-    })
-
-    test('RiverStoryScroll / With Timeline Narrow (ja)', async ({page}) => {
-      await page.goto(
-        'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-riverstoryscroll-features--with-timeline-narrow&viewMode=story',
-      )
-
-      await page.waitForTimeout(3500)
-      await expect(page).toHaveScreenshot({fullPage: true})
-    })
-
-    test('RiverStoryScroll / With Timeline Narrow (es)', async ({page}) => {
-      await page.goto(
-        'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-riverstoryscroll-features--with-timeline-narrow&viewMode=story',
-      )
-
-      await page.waitForTimeout(3500)
-      await expect(page).toHaveScreenshot({fullPage: true})
-    })
-
-    test('RiverStoryScroll / With Timeline Narrow (pt-BR)', async ({page}) => {
-      await page.goto(
-        'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-riverstoryscroll-features--with-timeline-narrow&viewMode=story',
-      )
-
-      await page.waitForTimeout(3500)
-      await expect(page).toHaveScreenshot({fullPage: true})
-    })
   })
   test('RiverStoryScroll / Disabled', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-riverstoryscroll-features--disabled&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('RiverStoryScroll / Disabled (fr)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-riverstoryscroll-features--disabled&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('RiverStoryScroll / Disabled (de)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-riverstoryscroll-features--disabled&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('RiverStoryScroll / Disabled (ja)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-riverstoryscroll-features--disabled&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('RiverStoryScroll / Disabled (es)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-riverstoryscroll-features--disabled&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('RiverStoryScroll / Disabled (pt-BR)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-riverstoryscroll-features--disabled&viewMode=story',
     )
 
     await page.waitForTimeout(500)
@@ -235,100 +55,10 @@ test.describe('Visual Comparison: RiverStoryScroll', () => {
       await page.waitForTimeout(500)
       await expect(page).toHaveScreenshot({fullPage: true})
     })
-
-    test('RiverStoryScroll / Disabled Narrow (fr)', async ({page}) => {
-      await page.goto(
-        'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-riverstoryscroll-features--disabled-narrow&viewMode=story',
-      )
-
-      await page.waitForTimeout(500)
-      await expect(page).toHaveScreenshot({fullPage: true})
-    })
-
-    test('RiverStoryScroll / Disabled Narrow (de)', async ({page}) => {
-      await page.goto(
-        'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-riverstoryscroll-features--disabled-narrow&viewMode=story',
-      )
-
-      await page.waitForTimeout(500)
-      await expect(page).toHaveScreenshot({fullPage: true})
-    })
-
-    test('RiverStoryScroll / Disabled Narrow (ja)', async ({page}) => {
-      await page.goto(
-        'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-riverstoryscroll-features--disabled-narrow&viewMode=story',
-      )
-
-      await page.waitForTimeout(500)
-      await expect(page).toHaveScreenshot({fullPage: true})
-    })
-
-    test('RiverStoryScroll / Disabled Narrow (es)', async ({page}) => {
-      await page.goto(
-        'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-riverstoryscroll-features--disabled-narrow&viewMode=story',
-      )
-
-      await page.waitForTimeout(500)
-      await expect(page).toHaveScreenshot({fullPage: true})
-    })
-
-    test('RiverStoryScroll / Disabled Narrow (pt-BR)', async ({page}) => {
-      await page.goto(
-        'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-riverstoryscroll-features--disabled-narrow&viewMode=story',
-      )
-
-      await page.waitForTimeout(500)
-      await expect(page).toHaveScreenshot({fullPage: true})
-    })
   })
   test('RiverStoryScroll / Enterprise Example', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-riverstoryscroll-features--enterprise-example&viewMode=story',
-    )
-
-    await page.waitForTimeout(3500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('RiverStoryScroll / Enterprise Example (fr)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-riverstoryscroll-features--enterprise-example&viewMode=story',
-    )
-
-    await page.waitForTimeout(3500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('RiverStoryScroll / Enterprise Example (de)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-riverstoryscroll-features--enterprise-example&viewMode=story',
-    )
-
-    await page.waitForTimeout(3500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('RiverStoryScroll / Enterprise Example (ja)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-riverstoryscroll-features--enterprise-example&viewMode=story',
-    )
-
-    await page.waitForTimeout(3500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('RiverStoryScroll / Enterprise Example (es)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-riverstoryscroll-features--enterprise-example&viewMode=story',
-    )
-
-    await page.waitForTimeout(3500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('RiverStoryScroll / Enterprise Example (pt-BR)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-riverstoryscroll-features--enterprise-example&viewMode=story',
     )
 
     await page.waitForTimeout(3500)
@@ -341,51 +71,6 @@ test.describe('Visual Comparison: RiverStoryScroll', () => {
     test('RiverStoryScroll / Enterprise Example Narrow', async ({page}) => {
       await page.goto(
         'http://localhost:6006/iframe.html?args=&id=components-riverstoryscroll-features--enterprise-example-narrow&viewMode=story',
-      )
-
-      await page.waitForTimeout(3500)
-      await expect(page).toHaveScreenshot({fullPage: true})
-    })
-
-    test('RiverStoryScroll / Enterprise Example Narrow (fr)', async ({page}) => {
-      await page.goto(
-        'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-riverstoryscroll-features--enterprise-example-narrow&viewMode=story',
-      )
-
-      await page.waitForTimeout(3500)
-      await expect(page).toHaveScreenshot({fullPage: true})
-    })
-
-    test('RiverStoryScroll / Enterprise Example Narrow (de)', async ({page}) => {
-      await page.goto(
-        'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-riverstoryscroll-features--enterprise-example-narrow&viewMode=story',
-      )
-
-      await page.waitForTimeout(3500)
-      await expect(page).toHaveScreenshot({fullPage: true})
-    })
-
-    test('RiverStoryScroll / Enterprise Example Narrow (ja)', async ({page}) => {
-      await page.goto(
-        'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-riverstoryscroll-features--enterprise-example-narrow&viewMode=story',
-      )
-
-      await page.waitForTimeout(3500)
-      await expect(page).toHaveScreenshot({fullPage: true})
-    })
-
-    test('RiverStoryScroll / Enterprise Example Narrow (es)', async ({page}) => {
-      await page.goto(
-        'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-riverstoryscroll-features--enterprise-example-narrow&viewMode=story',
-      )
-
-      await page.waitForTimeout(3500)
-      await expect(page).toHaveScreenshot({fullPage: true})
-    })
-
-    test('RiverStoryScroll / Enterprise Example Narrow (pt-BR)', async ({page}) => {
-      await page.goto(
-        'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-riverstoryscroll-features--enterprise-example-narrow&viewMode=story',
       )
 
       await page.waitForTimeout(3500)

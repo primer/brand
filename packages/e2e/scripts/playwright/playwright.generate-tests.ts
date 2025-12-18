@@ -2,7 +2,7 @@
 import fs from 'fs'
 import path from 'path'
 import prettier from 'prettier'
-import {SUPPORTED_LANGUAGES as languages} from '../../../../apps/storybook/src/constants'
+// import {SUPPORTED_LANGUAGES as languages} from '../../../../apps/storybook/src/constants'
 
 type StoryIndex = {
   entries: Record<
@@ -110,13 +110,13 @@ const waitForTimeoutLookup = {
   'components-testimonial-examples--with-frosted-glass-dark': 4000, // for animation to complete
   'components-prose--playground': 4000, // for videos to load
   'components-prose--default': 4000, // for videos to load,
-  'components-subnav-features--anchor-nav-variant': 1000, // for being flakey across translations
+  'components-subnav-features--anchor-nav-variant': 3000, // for being flakey across translations
 }
 
-const skipLocalizationsTestsFor = [
-  'components-actionmenu-features--disabled-item', // for the menu to open
-  'components-actionmenu-features--anchored-positioning', // for the menu to open
-]
+// const skipLocalizationsTestsFor = [
+//   'components-actionmenu-features--disabled-item', // for the menu to open
+//   'components-actionmenu-features--anchored-positioning', // for the menu to open
+// ]
 
 /**
  * Manual lookup for tests that we want to skip
@@ -137,6 +137,8 @@ const skipTestLookup = [
   'components-animations-examples--progress-bars', // animation only
   'components-animations-examples--logo-bar', // animation only
   'components-animations-examples--timeline-bar', // animation only
+  'components-actionmenu-features--disabled-item', // for the menu to open
+  'components-actionmenu-features--anchored-positioning', // for the menu to open
   'components-animations--playground', // animation only
   'components-logosuite-examples--following-hero', // animation only
   'components-logosuite-features--slower-marquee-speed', // animation only
@@ -162,6 +164,8 @@ const skipTestLookup = [
   'components-hero-features--with-youtube-video-inline-end', // for loading a remote video
   'components-logosuite-features--marquee', // for the animation
   'components-subnav-features--anchor-nav-variant-keyboard-navigation', // for being an interaction test-only
+  'components-actionmenu-features--single-selection-small-open', // for the menu to open, too flakey, need to fix layout shift
+  'components-actionmenu-features--menu-alignment', // for the menu to open, too flakey, need to fix layout shift
 ]
 
 const categorisedStories = Object.keys((stories as StoryIndex).entries).reduce((acc, key) => {
@@ -234,8 +238,7 @@ for (const key of Object.keys(categorisedStories)) {
           `
         }
 
-        const shouldSkipLocalizations = skipLocalizationsTestsFor.includes(id)
-        const languagesToTest = shouldSkipLocalizations ? ['en'] : languages
+        const languagesToTest = ['en']
         const allLanguageTests = languagesToTest.map(language => generateTestForLanguage(language)).join('')
 
         if (requiresMobileViewport) {

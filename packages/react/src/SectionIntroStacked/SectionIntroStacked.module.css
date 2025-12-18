@@ -13,7 +13,7 @@
 .SectionIntroStackedItem__item-text b {
   color: var(--brand-color-text-default);
   font-style: normal;
-  font-weight: var(--base-text-weight-semibold);
+  font-weight: var(--base-text-weight-normal);
 }
 
 .SectionIntroStacked--full-width .SectionIntroStacked-heading {

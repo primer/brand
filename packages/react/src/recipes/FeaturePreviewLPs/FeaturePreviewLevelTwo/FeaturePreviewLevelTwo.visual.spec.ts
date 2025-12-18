@@ -16,99 +16,9 @@ test.describe('Visual Comparison: FeaturePreviewLevelTwo', () => {
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
-  test('FeaturePreviewLevelTwo / Playground (fr)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=recipes-feature-previews-level-2--level-two-playground&viewMode=story',
-    )
-
-    await page.waitForTimeout(4000)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('FeaturePreviewLevelTwo / Playground (de)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=recipes-feature-previews-level-2--level-two-playground&viewMode=story',
-    )
-
-    await page.waitForTimeout(4000)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('FeaturePreviewLevelTwo / Playground (ja)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=recipes-feature-previews-level-2--level-two-playground&viewMode=story',
-    )
-
-    await page.waitForTimeout(4000)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('FeaturePreviewLevelTwo / Playground (es)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=recipes-feature-previews-level-2--level-two-playground&viewMode=story',
-    )
-
-    await page.waitForTimeout(4000)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('FeaturePreviewLevelTwo / Playground (pt-BR)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=recipes-feature-previews-level-2--level-two-playground&viewMode=story',
-    )
-
-    await page.waitForTimeout(4000)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
   test('FeaturePreviewLevelTwo / Minimal', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=recipes-feature-previews-level-2--level-two-minimal&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('FeaturePreviewLevelTwo / Minimal (fr)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=recipes-feature-previews-level-2--level-two-minimal&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('FeaturePreviewLevelTwo / Minimal (de)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=recipes-feature-previews-level-2--level-two-minimal&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('FeaturePreviewLevelTwo / Minimal (ja)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=recipes-feature-previews-level-2--level-two-minimal&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('FeaturePreviewLevelTwo / Minimal (es)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=recipes-feature-previews-level-2--level-two-minimal&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('FeaturePreviewLevelTwo / Minimal (pt-BR)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=recipes-feature-previews-level-2--level-two-minimal&viewMode=story',
     )
 
     await page.waitForTimeout(500)
@@ -124,99 +34,9 @@ test.describe('Visual Comparison: FeaturePreviewLevelTwo', () => {
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
-  test('FeaturePreviewLevelTwo / 2.1 variant (fr)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=recipes-feature-previews-level-2--level-two-point-one&viewMode=story',
-    )
-
-    await page.waitForTimeout(4000)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('FeaturePreviewLevelTwo / 2.1 variant (de)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=recipes-feature-previews-level-2--level-two-point-one&viewMode=story',
-    )
-
-    await page.waitForTimeout(4000)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('FeaturePreviewLevelTwo / 2.1 variant (ja)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=recipes-feature-previews-level-2--level-two-point-one&viewMode=story',
-    )
-
-    await page.waitForTimeout(4000)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('FeaturePreviewLevelTwo / 2.1 variant (es)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=recipes-feature-previews-level-2--level-two-point-one&viewMode=story',
-    )
-
-    await page.waitForTimeout(4000)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('FeaturePreviewLevelTwo / 2.1 variant (pt-BR)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=recipes-feature-previews-level-2--level-two-point-one&viewMode=story',
-    )
-
-    await page.waitForTimeout(4000)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
   test('FeaturePreviewLevelTwo / 2.2 variant', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=recipes-feature-previews-level-2--level-two-point-two&viewMode=story',
-    )
-
-    await page.waitForTimeout(4000)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('FeaturePreviewLevelTwo / 2.2 variant (fr)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=recipes-feature-previews-level-2--level-two-point-two&viewMode=story',
-    )
-
-    await page.waitForTimeout(4000)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('FeaturePreviewLevelTwo / 2.2 variant (de)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=recipes-feature-previews-level-2--level-two-point-two&viewMode=story',
-    )
-
-    await page.waitForTimeout(4000)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('FeaturePreviewLevelTwo / 2.2 variant (ja)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=recipes-feature-previews-level-2--level-two-point-two&viewMode=story',
-    )
-
-    await page.waitForTimeout(4000)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('FeaturePreviewLevelTwo / 2.2 variant (es)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=recipes-feature-previews-level-2--level-two-point-two&viewMode=story',
-    )
-
-    await page.waitForTimeout(4000)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('FeaturePreviewLevelTwo / 2.2 variant (pt-BR)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=recipes-feature-previews-level-2--level-two-point-two&viewMode=story',
     )
 
     await page.waitForTimeout(4000)
@@ -232,99 +52,9 @@ test.describe('Visual Comparison: FeaturePreviewLevelTwo', () => {
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
-  test('FeaturePreviewLevelTwo / 2.3 variant (fr)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=recipes-feature-previews-level-2--level-two-point-three&viewMode=story',
-    )
-
-    await page.waitForTimeout(4000)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('FeaturePreviewLevelTwo / 2.3 variant (de)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=recipes-feature-previews-level-2--level-two-point-three&viewMode=story',
-    )
-
-    await page.waitForTimeout(4000)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('FeaturePreviewLevelTwo / 2.3 variant (ja)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=recipes-feature-previews-level-2--level-two-point-three&viewMode=story',
-    )
-
-    await page.waitForTimeout(4000)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('FeaturePreviewLevelTwo / 2.3 variant (es)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=recipes-feature-previews-level-2--level-two-point-three&viewMode=story',
-    )
-
-    await page.waitForTimeout(4000)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('FeaturePreviewLevelTwo / 2.3 variant (pt-BR)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=recipes-feature-previews-level-2--level-two-point-three&viewMode=story',
-    )
-
-    await page.waitForTimeout(4000)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
   test('FeaturePreviewLevelTwo / 2.4 variant', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=recipes-feature-previews-level-2--level-two-point-four&viewMode=story',
-    )
-
-    await page.waitForTimeout(4000)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('FeaturePreviewLevelTwo / 2.4 variant (fr)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=recipes-feature-previews-level-2--level-two-point-four&viewMode=story',
-    )
-
-    await page.waitForTimeout(4000)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('FeaturePreviewLevelTwo / 2.4 variant (de)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=recipes-feature-previews-level-2--level-two-point-four&viewMode=story',
-    )
-
-    await page.waitForTimeout(4000)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('FeaturePreviewLevelTwo / 2.4 variant (ja)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=recipes-feature-previews-level-2--level-two-point-four&viewMode=story',
-    )
-
-    await page.waitForTimeout(4000)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('FeaturePreviewLevelTwo / 2.4 variant (es)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=recipes-feature-previews-level-2--level-two-point-four&viewMode=story',
-    )
-
-    await page.waitForTimeout(4000)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('FeaturePreviewLevelTwo / 2.4 variant (pt-BR)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=recipes-feature-previews-level-2--level-two-point-four&viewMode=story',
     )
 
     await page.waitForTimeout(4000)

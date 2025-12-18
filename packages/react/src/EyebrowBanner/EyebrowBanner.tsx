@@ -135,7 +135,7 @@ const EyebrowBannerHeading = forwardRef<HTMLSpanElement, EyebrowBannerHeadingPro
       <Text
         size="100"
         variant="default"
-        weight="semibold"
+        weight="medium"
         ref={ref}
         className={clsx(styles[`EyebrowBanner__heading`], className)}
         {...rest}

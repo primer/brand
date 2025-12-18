@@ -139,7 +139,7 @@ export function Article({
                         </Link>
                         {heroTitle && (
                           <Box animate="fade-in" marginBlockEnd={64}>
-                            <Heading as="h1" size="1" stretch="condensed" weight="semibold" font="hubot-sans">
+                            <Heading as="h1" size="1" stretch="condensed" weight="medium" font="hubot-sans">
                               <TextRevealAnimation itemProp="name">{heroTitle}</TextRevealAnimation>
                             </Heading>
                           </Box>

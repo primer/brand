@@ -10,7 +10,7 @@
       "value": "'Hubot Sans', 'Hubot SansHeaderFallback',-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji'"
     },
     "monospace": {
-      "value": "ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace"
+      "value": "'Mona Sans Mono', monospace"
     }
   },
   "body": {
@@ -30,63 +30,85 @@
     },
     "weight": {
       "400": {
-        "value": "var(--base-text-weight-semibold)"
+        "value": 480
       },
       "500": {
-        "value": "var(--base-text-weight-semibold)"
+        "value": 480
       },
       "600": {
-        "value": "var(--base-text-weight-semibold)"
+        "value": 460
       },
       "700": {
-        "value": "var(--base-text-weight-semibold)"
+        "value": 460,
+        "responsive": {
+          "768px": {
+            "value": 460
+          },
+          "1012px": {
+            "value": 460
+          }
+        }
       },
       "800": {
-        "value": "var(--base-text-weight-semibold)"
+        "value": 465,
+        "responsive": {
+          "768px": {
+            "value": 465
+          },
+          "1012px": {
+            "value": 440
+          }
+        }
       },
       "900": {
-        "value": "var(--base-text-weight-semibold)"
+        "value": 440,
+        "responsive": {
+          "768px": {
+            "value": 440
+          },
+          "1012px": {
+            "value": 440
+          }
+        }
       },
       "1000": {
-        "value": "var(--base-text-weight-bold)"
+        "value": 440,
+        "responsive": {
+          "768px": {
+            "value": 440
+          },
+          "1012px": {
+            "value": 425
+          }
+        }
       }
     },
     "letterSpacing": {
       "400": {
-        "value": "-0.01em"
+        "value": "0"
       },
       "500": {
-        "value": "-0.01em"
+        "value": "0"
       },
       "600": {
-        "value": "-0.02em"
+        "value": "0"
       },
       "700": {
-        "value": "-0.02em",
-        "responsive": {
-          "1012px": {
-            "value": "-0.03em"
-          }
-        }
+        "value": "0"
       },
       "800": {
-        "value": "-0.02em",
-        "responsive": {
-          "1012px": {
-            "value": "-0.03em"
-          }
-        }
+        "value": "0"
       },
       "900": {
-        "value": "-0.02em",
-        "responsive": {
-          "768px": {
-            "value": "-0.03em"
-          }
-        }
+        "value": "0"
       },
       "1000": {
-        "value": "-0.03em"
+        "value": "0",
+        "responsive": {
+          "1012px": {
+            "value": "-0.224px"
+          }
+        }
       }
     },
     "lineHeight": {
@@ -152,12 +174,28 @@
           }
         }
       },
-      "weight": {
+      "letterSpacing": {
         "medium": {
-          "value": "var(--base-text-weight-semibold)"
+          "value": "0.24px"
         },
         "large": {
-          "value": "var(--base-text-weight-semibold)"
+          "value": "0.1px"
+        }
+      },
+      "weight": {
+        "medium": {
+          "value": 550
+        },
+        "large": {
+          "value": 475,
+          "responsive": {
+            "768px": {
+              "value": 525
+            },
+            "1012px": {
+              "value": 500
+            }
+          }
         }
       },
       "lineHeight": {
@@ -170,6 +208,33 @@
       }
     },
     "weight": {
+      "extralight": {
+        "value": 400
+      },
+      "light": {
+        "value": 400
+      },
+      "regular": {
+        "value": 400
+      },
+      "normal": {
+        "value": 400
+      },
+      "medium": {
+        "value": 500
+      },
+      "semibold": {
+        "value": 525
+      },
+      "bold": {
+        "value": 537
+      },
+      "extrabold": {
+        "value": 543
+      },
+      "heavy": {
+        "value": 550
+      },
       "100": {
         "value": "var(--base-text-weight-normal)"
       },
@@ -180,28 +245,28 @@
         "value": "var(--base-text-weight-normal)"
       },
       "350": {
-        "value": "var(--base-text-weight-semibold)"
+        "value": "var(--base-text-weight-normal)"
       },
       "400": {
-        "value": "var(--base-text-weight-semibold)"
+        "value": "var(--base-text-weight-normal)"
       },
       "500": {
-        "value": "var(--base-text-weight-semibold)"
+        "value": "var(--base-text-weight-normal)"
       },
       "600": {
-        "value": "var(--base-text-weight-semibold)"
+        "value": "var(--base-text-weight-normal)"
       },
       "700": {
-        "value": "var(--base-text-weight-semibold)"
+        "value": "var(--base-text-weight-normal)"
       },
       "800": {
-        "value": "var(--base-text-weight-semibold)"
+        "value": "var(--base-text-weight-normal)"
       },
       "900": {
-        "value": "var(--base-text-weight-semibold)"
+        "value": "var(--base-text-weight-normal)"
       },
       "1000": {
-        "value": "var(--base-text-weight-bold)"
+        "value": "var(--base-text-weight-normal)"
       }
     },
     "size": {
@@ -231,8 +296,12 @@
         "value": "20px",
         "$type": "dimension",
         "responsive": {
+          "768px": {
+            "value": "20px",
+            "$type": "dimension"
+          },
           "1012px": {
-            "value": "24px",
+            "value": "22px",
             "$type": "dimension"
           }
         }
@@ -241,8 +310,12 @@
         "value": "22px",
         "$type": "dimension",
         "responsive": {
+          "768px": {
+            "value": "24px",
+            "$type": "dimension"
+          },
           "1012px": {
-            "value": "32px",
+            "value": "28px",
             "$type": "dimension"
           }
         }
@@ -252,11 +325,11 @@
         "$type": "dimension",
         "responsive": {
           "768px": {
-            "value": "32px",
+            "value": "28px",
             "$type": "dimension"
           },
           "1012px": {
-            "value": "40px",
+            "value": "34px",
             "$type": "dimension"
           }
         }
@@ -266,11 +339,11 @@
         "$type": "dimension",
         "responsive": {
           "768px": {
-            "value": "36px",
+            "value": "34px",
             "$type": "dimension"
           },
           "1012px": {
-            "value": "48px",
+            "value": "40px",
             "$type": "dimension"
           }
         }
@@ -280,11 +353,11 @@
         "$type": "dimension",
         "responsive": {
           "768px": {
-            "value": "36px",
+            "value": "40px",
             "$type": "dimension"
           },
           "1012px": {
-            "value": "64px",
+            "value": "48px",
             "$type": "dimension"
           }
         }
@@ -298,7 +371,7 @@
             "$type": "dimension"
           },
           "1012px": {
-            "value": "72px",
+            "value": "56px",
             "$type": "dimension"
           }
         }
@@ -308,11 +381,11 @@
         "$type": "dimension",
         "responsive": {
           "768px": {
-            "value": "64px",
+            "value": "56px",
             "$type": "dimension"
           },
           "1012px": {
-            "value": "96px",
+            "value": "64px",
             "$type": "dimension"
           }
         }
@@ -329,99 +402,97 @@
         "value": "1.5"
       },
       "350": {
-        "value": "1.3"
+        "value": "1.5"
       },
       "400": {
-        "value": "1.3"
+        "value": "1.4"
       },
       "500": {
         "value": "1.3",
         "responsive": {
           "1012px": {
-            "value": "1.2"
+            "value": "1.35"
           }
         }
       },
       "600": {
-        "value": "1.2"
+        "value": "1.3"
       },
       "700": {
         "value": "1.2"
       },
       "800": {
-        "value": "1.2"
-      },
-      "900": {
-        "value": "1.1",
+        "value": "1.2",
         "responsive": {
           "768px": {
-            "value": "1.05"
+            "value": "1.2"
           },
           "1012px": {
-            "value": "1"
+            "value": "1.18"
+          }
+        }
+      },
+      "900": {
+        "value": "1.2",
+        "responsive": {
+          "768px": {
+            "value": "1.2"
+          },
+          "1012px": {
+            "value": "1.1"
           }
         }
       },
       "1000": {
-        "value": "1.1",
+        "value": "1.149",
         "responsive": {
           "768px": {
-            "value": "1.05"
+            "value": "1.08"
           },
           "1012px": {
-            "value": "1"
+            "value": "1.08"
           }
         }
       }
     },
     "letterSpacing": {
       "100": {
-        "value": "0.02em"
+        "value": "0.21px"
       },
       "200": {
-        "value": "0em"
+        "value": "0.24px"
       },
       "300": {
-        "value": "0em"
+        "value": "0.18px"
       },
       "350": {
-        "value": "0em"
+        "value": "0.18px"
       },
       "400": {
-        "value": "0em"
+        "value": "0"
       },
       "500": {
-        "value": "-0.01em"
+        "value": "0"
       },
       "600": {
-        "value": "-0.02em"
+        "value": "0"
       },
       "700": {
-        "value": "-0.02em",
-        "responsive": {
-          "1012px": {
-            "value": "-0.03em"
-          }
-        }
+        "value": "0"
       },
       "800": {
-        "value": "-0.02em",
-        "responsive": {
-          "1012px": {
-            "value": "-0.03em"
-          }
-        }
+        "value": "0"
       },
       "900": {
-        "value": "-0.02em",
-        "responsive": {
-          "768px": {
-            "value": "-0.03em"
-          }
-        }
+        "value": "0"
       },
       "1000": {
-        "value": "-0.03em"
+        "value": "0",
+        "responsive": {
+          "1012px": {
+            "value": "-0.035em"
+          }
+        }
       }
     },
     "style": {

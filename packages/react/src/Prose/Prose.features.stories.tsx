@@ -55,7 +55,7 @@ const ExampleHtmlMarkup = (t: (key: string) => string) => `
       <li>Quisque eu tortor suscipit, congue quam in, bibendum tellus.</li>
     </ol>
     <h6>${t('heading_level_6')}</h6>
-    <p>Pellentesque non ornare ligula. Suspendisse nibh purus, pretium id tortor sit amet, tincidunt gravida augue.</p>
+    <p>Pellentesque non ornare ligula. <b>Suspendisse nibh purus</b>, pretium id tortor sit amet, tincidunt gravida augue.</p>
     <p><code>for-each-ref</code> ${t('for_each_ref_paragraph')}</p>
     <p>Nunc velit odio, posuere eu felis eget, consectetur fermentum nisi. Aenean tempor odio id ornare ultrices. Quisque blandit condimentum tellus, semper efficitur sapien dapibus nec.</p>
 `

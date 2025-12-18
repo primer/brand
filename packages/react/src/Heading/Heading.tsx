@@ -28,6 +28,7 @@ type HeadingWeightVariants = (typeof HeadingWeights)[number]
 type HeadingStretchVariants = (typeof HeadingStretch)[number]
 type HeadingLetterSpacingVariants = (typeof HeadingLetterSpacing)[number]
 type HeadingFontVariants = (typeof HeadingFontVariants)[number]
+type HeadingTextWrapVariants = 'wrap' | 'balance'
 
 type ResponsiveStretchMap = {
   narrow?: HeadingStretchVariants
@@ -63,6 +64,7 @@ export type HeadingProps = {
   stretch?: HeadingStretchVariants | ResponsiveStretchMap
   letterSpacing?: HeadingLetterSpacingVariants | ResponsiveLetterSpacingMap
   font?: HeadingFontVariants
+  textWrap?: HeadingTextWrapVariants
 } & React.HTMLAttributes<HTMLHeadingElement> &
   BaseProps<HTMLHeadingElement>
 
@@ -79,6 +81,7 @@ export const Heading = forwardRef(
       stretch,
       style,
       font = 'mona-sans',
+      textWrap = 'balance',
       ...rest
     }: PropsWithChildren<HeadingProps>,
     ref: Ref<HTMLHeadingElement>,
@@ -106,6 +109,7 @@ export const Heading = forwardRef(
       styles[`Heading-font--${font}`],
       !size && styles[`Heading--${classMap[HeadingComponent]}`],
       size && styles[`Heading--${size}`],
+      styles[`Heading--textWrap-${textWrap}`],
       weight && weightClass,
       stretch && stretchClass,
       letterSpacingClass && letterSpacingClass,
