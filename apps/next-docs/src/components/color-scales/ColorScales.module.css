@@ -45,7 +45,7 @@
 }
 
 .themeCardDefault {
-  border-color: var(--borderColor-default);
+  border-color: var(--brand-borderColor-default);
 }
 
 .themeCardContent {
