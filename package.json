@@ -22,8 +22,7 @@
   "author": "GitHub, Inc.",
   "workspaces": [
     "packages/*",
-    "apps/*",
-    "!apps/next-docs"
+    "apps/*"
   ],
   "scripts": {
     "build": "npm run clean --workspaces --if-present && npm run build:lib && npm run build:next-docs && npm run build:storybook",

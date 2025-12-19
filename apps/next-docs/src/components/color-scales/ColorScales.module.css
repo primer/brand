@@ -1,0 +1,71 @@
+.scalesGrid {
+  display: grid;
+  gap: var(--base-size-16);
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  padding: var(--base-size-16);
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.1);
+  border-radius: var(--brand-borderRadius-medium);
+  background-color: var(--bgColor-default);
+  margin-bottom: var(--base-size-8);
+}
+
+.scalesGridLast {
+  display: grid;
+  gap: var(--base-size-16);
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  padding: var(--base-size-16);
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.1);
+  border-radius: var(--brand-borderRadius-medium);
+  background-color: var(--bgColor-default);
+}
+
+.colorSwatch {
+  padding: var(--base-size-8);
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--fontStack-monospace);
+  font-size: var(--font-size-12);
+}
+
+.themePickerGrid {
+  display: grid;
+  gap: var(--base-size-16);
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+}
+
+.themeCard {
+  border: 1px solid;
+  border-radius: var(--brand-borderRadius-medium);
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.themeCardSelected {
+  border-color: var(--fgColor-accent);
+}
+
+.themeCardDefault {
+  border-color: var(--brand-borderColor-default);
+}
+
+.themeCardContent {
+  padding: var(--base-size-8);
+}
+
+.themeLabel {
+  margin-left: var(--base-size-4);
+  text-transform: capitalize;
+}
+
+.themePreview {
+  display: flex;
+  padding: var(--base-size-16);
+  border-bottom: var(--brand-borderWidth-thin) solid var(--borderColor-default);
+  justify-content: center;
+}
+
+.colorDot {
+  width: var(--base-size-20);
+  height: var(--base-size-20);
+  border-radius: var(--brand-borderRadius-full);
+}
