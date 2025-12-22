@@ -97,22 +97,24 @@ function CustomPanels() {
   }, [])
 
   return (
-    <Stack alignItems="center">
-      <Tabs onChange={handleTabChange} aria-label="Lifecycle tabs">
-        <Tabs.Item id="tab-1" aria-controls="panel-1">
-          Code
-        </Tabs.Item>
-        <Tabs.Item id="tab-2" aria-controls="panel-2">
-          Plan
-        </Tabs.Item>
-        <Tabs.Item id="tab-3" aria-controls="panel-3">
-          Collaborate
-        </Tabs.Item>
-        <Tabs.Item id="tab-4" aria-controls="panel-4">
-          Automate
-        </Tabs.Item>
-      </Tabs>
-      <Box padding="condensed">
+    <Stack alignItems={{narrow: 'flex-start', regular: 'center'}} style={{width: '100%'}}>
+      <Box style={{width: '100%'}}>
+        <Tabs onChange={handleTabChange} aria-label="Lifecycle tabs">
+          <Tabs.Item id="tab-1" aria-controls="panel-1">
+            Code
+          </Tabs.Item>
+          <Tabs.Item id="tab-2" aria-controls="panel-2">
+            Plan
+          </Tabs.Item>
+          <Tabs.Item id="tab-3" aria-controls="panel-3">
+            Collaborate
+          </Tabs.Item>
+          <Tabs.Item id="tab-4" aria-controls="panel-4">
+            Automate
+          </Tabs.Item>
+        </Tabs>
+      </Box>
+      <Box padding="condensed" style={{width: '100%'}}>
         <Box id="panel-1" aria-labelledby="tab-1" role="tabpanel" tabIndex={0} hidden={activeTab !== '0'}>
           <Stack direction="vertical" alignItems="center">
             <Text>
