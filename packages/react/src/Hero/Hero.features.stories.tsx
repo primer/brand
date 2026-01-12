@@ -52,6 +52,20 @@ export const WithMutedDescriptions: Story = {
   ),
 }
 
+export const WithAnimatedLabel: Story = {
+  render: () => (
+    <Hero align="center">
+      <Hero.Label animation="blinking-cursor">Label</Hero.Label>
+      <Hero.Heading>This is my super sweet hero heading</Hero.Heading>
+      <Hero.Description variant="muted">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis
+        felis nam pulvinar risus elementum.
+      </Hero.Description>
+      <Hero.PrimaryAction href="#">Primary action</Hero.PrimaryAction>
+    </Hero>
+  ),
+}
+
 export const WithAccentButton: Story = {
   render: () => (
     <Hero align="center">
@@ -91,6 +105,22 @@ export const WithImageBlockEndDefault: Story = {
   ),
 }
 
+export const WithImageBlockEndDefaultInGrid: Story = {
+  name: 'With an image (left + bottom) and no Grid',
+  render: () => (
+    <Hero imageBackgroundColor="subtle">
+      <Hero.Label>Label</Hero.Label>
+      <Hero.Heading>This is my super sweet hero heading</Hero.Heading>
+      <Hero.Description>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis
+        felis nam pulvinar risus elementum.
+      </Hero.Description>
+      <Hero.PrimaryAction href="#">Primary action</Hero.PrimaryAction>
+      <Hero.Image fullWidth={false} src={placeholderImage} alt="placeholder image, blank with gray solid fill" />
+    </Hero>
+  ),
+}
+
 export const WithImageBlockEndCenter: Story = {
   name: 'With an image (centered + bottom)',
   render: () => (
@@ -107,6 +137,21 @@ export const WithImageBlockEndCenter: Story = {
         </Hero>
       </Grid.Column>
     </Grid>
+  ),
+}
+
+export const WithImageBlockEndCenterInGrid: Story = {
+  name: 'With an image (centered + bottom) and no Grid',
+  render: () => (
+    <Hero align="center" imageBackgroundColor="subtle">
+      <Hero.Heading>This is my super sweet hero heading</Hero.Heading>
+      <Hero.Description>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis
+        felis nam pulvinar risus elementum.
+      </Hero.Description>
+      <Hero.PrimaryAction href="#">Primary action</Hero.PrimaryAction>
+      <Hero.Image fullWidth={false} src={placeholderImage} alt="placeholder image, blank with gray solid fill" />
+    </Hero>
   ),
 }
 

@@ -8,13 +8,24 @@ declare const styles: {
   readonly "Hero-eyebrow": string;
   readonly "Hero-grid": string;
   readonly "Hero-grid--block-end": string;
+  readonly "Hero-grid--contained": string;
   readonly "Hero-grid--inline-end": string;
   readonly "Hero-heading": string;
   readonly "Hero-heading--fullWidth": string;
   readonly "Hero-image": string;
+  readonly "Hero-image--contained": string;
+  readonly "Hero-imageContainer--bg-subtle": string;
+  readonly "Hero-imageWrapper": string;
+  readonly "Hero-imageWrapper--bg-subtle": string;
   readonly "Hero-label": string;
+  readonly "Hero-label-cursor": string;
+  readonly "Hero-label-cursor--blink": string;
+  readonly "Hero-label-inner": string;
+  readonly "Hero-label-placeholder": string;
+  readonly "Hero-label-text": string;
   readonly "Hero-trailing": string;
   readonly "Hero-video": string;
+  readonly "hero-label-cursor-blink": string;
 };
 export = styles;
 

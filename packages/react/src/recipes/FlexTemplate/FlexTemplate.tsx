@@ -86,7 +86,7 @@ export function FlexTemplate({page, className}: FlexTemplateProps) {
             <Box paddingBlockEnd={80}>
               <Hero align={heroFields.align ?? 'start'} className={styles.hero}>
                 {heroLabelFields?.text ? (
-                  <Hero.Label color={heroLabelFields.color} size={heroLabelFields.size}>
+                  <Hero.Label animation="blinking-cursor" color={heroLabelFields.color} size={heroLabelFields.size}>
                     {heroLabelFields.text}
                   </Hero.Label>
                 ) : null}

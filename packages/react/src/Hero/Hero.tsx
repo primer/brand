@@ -8,6 +8,7 @@ import {Image, ImageProps} from '../Image'
 import {Grid} from '../Grid'
 import {Stack} from '../Stack'
 import type {BaseProps} from '../component-helpers'
+import {useBlinkingCursorAnimation} from '../hooks/useBlinkingCursorAnimation'
 
 import {useProvidedRefOrCreate} from '../hooks/useRef'
 
@@ -30,6 +31,8 @@ export type HeroProps = BaseProps<HTMLElement> & {
   align?: 'start' | 'center'
   imageContainerClassName?: string
   imageContainerStyle?: React.CSSProperties
+  imageBackgroundColor?: 'default' | 'subtle'
+  variant?: 'default' | 'bordered-grid'
   /**
    * Escape-hatch for inserting custom React components.
    * Warning:
@@ -48,6 +51,7 @@ const Root = forwardRef<HTMLElement, PropsWithChildren<HeroProps>>(
       children,
       imageContainerClassName,
       imageContainerStyle,
+      imageBackgroundColor,
       trailingComponent: TrailingComponent,
       'data-testid': testId,
       ...rest
@@ -87,6 +91,12 @@ const Root = forwardRef<HTMLElement, PropsWithChildren<HeroProps>>(
     }, [children])
 
     const mediaPosition = HeroImageChild?.props.position || HeroVideoChild?.props.position || 'block-end'
+    const imageFullWidth = HeroImageChild?.props.fullWidth !== false
+    const mediaChild = HeroImageChild || HeroVideoChild
+
+    // When image has background color and is not fullWidth, render it outside the grid
+    // so the background can span full width while the image stays constrained
+    const renderImageOutsideGrid = imageBackgroundColor && !imageFullWidth && mediaPosition === 'block-end'
 
     const heroLayoutClass = HeroImageChild ? styles['Hero--layout-image'] : styles['Hero--layout-default']
     return (
@@ -103,8 +113,15 @@ const Root = forwardRef<HTMLElement, PropsWithChildren<HeroProps>>(
         data-testid={testId || testIds.root}
         {...rest}
       >
-        <Grid fullWidth className={clsx(styles['Hero-grid'], styles[`Hero-grid--${mediaPosition}`])}>
-          <Grid.Column span={{medium: (HeroImageChild || HeroVideoChild) && mediaPosition === 'inline-end' ? 6 : 12}}>
+        <Grid
+          fullWidth={imageFullWidth}
+          className={clsx(
+            styles['Hero-grid'],
+            styles[`Hero-grid--${mediaPosition}`],
+            renderImageOutsideGrid && styles['Hero-grid--contained'],
+          )}
+        >
+          <Grid.Column span={{medium: mediaChild && mediaPosition === 'inline-end' ? 6 : 12}}>
             <Stack
               direction="vertical"
               gap="none"
@@ -121,25 +138,32 @@ const Root = forwardRef<HTMLElement, PropsWithChildren<HeroProps>>(
               )}
             </Stack>
           </Grid.Column>
-          {HeroImageChild && (
-            <Grid.Column
-              span={{medium: mediaPosition === 'inline-end' ? 6 : 12}}
-              className={imageContainerClassName}
-              style={{...imageContainerStyle}}
-            >
-              {HeroImageChild}
-            </Grid.Column>
-          )}
-          {HeroVideoChild && (
-            <Grid.Column
-              span={{medium: mediaPosition === 'inline-end' ? 6 : 12}}
-              className={imageContainerClassName}
-              style={{...imageContainerStyle}}
-            >
-              {HeroVideoChild}
-            </Grid.Column>
-          )}
+          {mediaChild &&
+            (renderImageOutsideGrid ? null : (
+              <Grid.Column
+                span={{medium: mediaPosition === 'inline-end' ? 6 : 12}}
+                className={clsx(
+                  imageContainerClassName,
+                  imageBackgroundColor && styles[`Hero-imageContainer--bg-${imageBackgroundColor}`],
+                )}
+                style={imageContainerStyle}
+              >
+                {mediaChild}
+              </Grid.Column>
+            ))}
         </Grid>
+        {mediaChild && renderImageOutsideGrid && (
+          <div
+            className={clsx(
+              styles['Hero-imageWrapper'],
+              imageContainerClassName,
+              styles[`Hero-imageWrapper--bg-${imageBackgroundColor}`],
+            )}
+            style={imageContainerStyle}
+          >
+            {mediaChild}
+          </div>
+        )}
       </section>
     )
   },
@@ -197,15 +221,25 @@ const HeroDescription = forwardRef<HTMLParagraphElement, PropsWithChildren<HeroD
 
 type HeroImageProps = {
   position?: 'inline-end' | 'block-end'
+  /**
+   * When false, constrains the image to a maximum width and centers it.
+   * When true (default), the image spans the full width of the container.
+   */
+  fullWidth?: boolean
 } & ImageProps &
   BaseProps<HTMLImageElement>
 
 const HeroImage = forwardRef<HTMLImageElement, HeroImageProps>(
-  ({position = 'block-end', className, ...rest}: PropsWithChildren<HeroImageProps>, ref) => {
+  ({position = 'block-end', fullWidth = true, className, ...rest}: PropsWithChildren<HeroImageProps>, ref) => {
     return (
       <Image
         ref={ref}
-        className={clsx(styles['Hero-image'], styles[`Hero-image--pos-${position}`], className)}
+        className={clsx(
+          styles['Hero-image'],
+          styles[`Hero-image--pos-${position}`],
+          !fullWidth && styles['Hero-image--contained'],
+          className,
+        )}
         {...rest}
       />
     )
@@ -246,14 +280,64 @@ const HeroEyebrow = forwardRef<HTMLDivElement, HeroEyebrowProps>(
   },
 )
 
-type HeroLabelProps = LabelProps & BaseProps<HTMLSpanElement>
+type HeroLabelProps = Omit<TextProps, 'as' | 'ref' | 'animate'> &
+  Omit<BaseProps<HTMLSpanElement>, 'animate'> & {
+    /**
+     * The animation effect to apply to the label
+     * - 'blinking-cursor': Text appears letter by letter with a blinking cursor at the end
+     * - undefined: No animation, static cursor shown
+     */
+    animation?: 'blinking-cursor'
+  }
 
 const HeroLabel = forwardRef<HTMLSpanElement, HeroLabelProps>(
-  ({children, className, ...rest}: PropsWithChildren<HeroLabelProps>, ref) => {
+  ({children, className, animation, ...rest}: PropsWithChildren<HeroLabelProps>, ref) => {
+    const text = typeof children === 'string' ? children : ''
+    const {displayedText, showCursor, shouldBlink} = useBlinkingCursorAnimation({
+      text,
+      animation,
+    })
+
     return (
-      <Label ref={ref} className={clsx(styles['Hero-label'], className)} {...rest}>
-        {children}
-      </Label>
+      <Text
+        font="monospace"
+        weight="medium"
+        as="span"
+        size="100"
+        variant="muted"
+        ref={ref}
+        className={clsx(styles['Hero-label'], className)}
+        {...rest}
+      >
+        {text && animation !== undefined ? (
+          // Render placeholder text invisibly to maintain full width during animation
+          // This prevents text from jumping when center-aligned
+          <span className={styles['Hero-label-inner']}>
+            <span className={styles['Hero-label-placeholder']} aria-hidden="true">
+              {text}
+            </span>
+            <span className={styles['Hero-label-text']}>
+              {displayedText}
+              {showCursor && (
+                <span
+                  className={clsx(styles['Hero-label-cursor'], shouldBlink && styles['Hero-label-cursor--blink'])}
+                  aria-hidden="true"
+                />
+              )}
+            </span>
+          </span>
+        ) : (
+          <>
+            {text ? displayedText : children}
+            {showCursor && (
+              <span
+                className={clsx(styles['Hero-label-cursor'], shouldBlink && styles['Hero-label-cursor--blink'])}
+                aria-hidden="true"
+              />
+            )}
+          </>
+        )}
+      </Text>
     )
   },
 )
