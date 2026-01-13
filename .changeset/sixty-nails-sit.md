@@ -2,4 +2,4 @@
 '@primer/react-brand': patch
 ---
 
-Increase IDE line numbers contrast
+Increase `IDE` component line numbers contrast
