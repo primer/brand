@@ -4,6 +4,7 @@ import {Text, TextSizes, TextWeightVariants, ResponsiveWeightMap, TextProps} fro
 import type {BaseProps} from '../../component-helpers'
 
 import styles from '../Hero.module.css'
+import {useHeroContext} from '../HeroContext'
 
 export type HeroDescriptionProps = {
   size?: (typeof TextSizes)[number]
@@ -16,8 +17,19 @@ export const HeroDescription = forwardRef<HTMLParagraphElement, PropsWithChildre
     {size = '200', weight = 'normal', children, variant = 'muted', className}: PropsWithChildren<HeroDescriptionProps>,
     ref,
   ) => {
+    const {variant: heroVariant} = useHeroContext()
+
     return (
       <Text
+        animate={
+          heroVariant === 'bordered-grid'
+            ? {
+                variant: 'slide-in-up',
+                delay: 500,
+                duration: 1000,
+              }
+            : undefined
+        }
         ref={ref}
         className={clsx(styles['Hero-description'], className)}
         as="p"

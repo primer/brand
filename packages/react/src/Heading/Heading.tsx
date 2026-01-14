@@ -68,7 +68,7 @@ export type HeadingProps = {
 } & React.HTMLAttributes<HTMLHeadingElement> &
   BaseProps<HTMLHeadingElement>
 
-export const Heading = forwardRef(
+export const Heading = forwardRef<HTMLHeadingElement, PropsWithChildren<HeadingProps>>(
   (
     {
       animate,
@@ -83,8 +83,8 @@ export const Heading = forwardRef(
       font = 'mona-sans',
       textWrap = 'balance',
       ...rest
-    }: PropsWithChildren<HeadingProps>,
-    ref: Ref<HTMLHeadingElement>,
+    },
+    ref,
   ) => {
     const {classes: animationClasses, styles: animationInlineStyles} = useAnimation(animate)
 

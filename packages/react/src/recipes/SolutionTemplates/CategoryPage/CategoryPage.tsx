@@ -112,7 +112,7 @@ export function CategoryPage({
             <Grid enableOverlay={enableGridOverlay} className={styles.relative}>
               <Grid.Column>
                 <Hero align="start">
-                  {args.heroLabel && <Hero.Label animation="blinking-cursor">{args.heroLabel}</Hero.Label>}
+                  {args.heroLabel && <Hero.Label animate>{args.heroLabel}</Hero.Label>}
                   {args.heroTitle && <Hero.Heading>{args.heroTitle}</Hero.Heading>}
                   {args.heroDescription && <Hero.Description>{args.heroDescription}</Hero.Description>}
                 </Hero>

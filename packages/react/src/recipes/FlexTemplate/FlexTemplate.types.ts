@@ -15,21 +15,6 @@ export type FlexTemplateLink = {
 
 export type FlexTemplateLabel = {
   text: string
-  color?:
-    | 'default'
-    | 'blue'
-    | 'coral'
-    | 'green'
-    | 'gray'
-    | 'indigo'
-    | 'lemon'
-    | 'lime'
-    | 'orange'
-    | 'pink'
-    | 'purple'
-    | 'red'
-    | 'teal'
-    | 'yellow'
 }
 
 export type FlexTemplateHero = {

@@ -244,7 +244,8 @@ describe('Hero', () => {
     const labelEl = getByText(mockLabel)
 
     expect(labelEl).toBeInTheDocument()
-    expect(labelEl).toHaveClass('Hero-label')
+    // The label text is inside TextCursorAnimation, check the parent Text element has Hero-label class
+    expect(labelEl.closest('.Hero-label')).toBeInTheDocument()
   })
 
   it('provides an escape hatch to render a custom trailing component', () => {

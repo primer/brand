@@ -1,4 +1,4 @@
-import React, {forwardRef, PropsWithChildren} from 'react'
+import {forwardRef, PropsWithChildren} from 'react'
 import {clsx} from 'clsx'
 import {Heading, HeadingProps} from '../../Heading'
 import {useHeroContext} from '../HeroContext'
@@ -11,10 +11,19 @@ export type HeroHeadingProps = Omit<HeadingProps, 'as'> & {
 
 export const HeroHeading = forwardRef<HTMLHeadingElement, HeroHeadingProps>(
   ({children, fullWidth = false, size = '1', ...rest}: PropsWithChildren<HeroHeadingProps>, ref) => {
-    const {hasInlineMedia} = useHeroContext()
+    const {hasInlineMedia, variant} = useHeroContext()
 
     return (
       <Heading
+        animate={
+          variant === 'bordered-grid'
+            ? {
+                variant: 'wipe-in-up',
+                delay: 0,
+                duration: 1000,
+              }
+            : undefined
+        }
         id="hero-section-brand-heading"
         className={clsx(styles['Hero-heading'], fullWidth && styles['Hero-heading--fullWidth'])}
         as="h1"

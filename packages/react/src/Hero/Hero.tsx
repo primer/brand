@@ -1,8 +1,9 @@
-import React, {forwardRef, PropsWithChildren, useMemo} from 'react'
+import React, {forwardRef, Fragment, PropsWithChildren, useMemo} from 'react'
 import {clsx} from 'clsx'
 import {Grid} from '../Grid'
 import {Stack} from '../Stack'
 import type {BaseProps} from '../component-helpers'
+import {AnimationProvider} from '../animation'
 
 import {HeroContext, heroMediaInlinePositions} from './HeroContext'
 import type {HeroMediaInlinePositions, HeroAlign, HeroVariant} from './HeroContext'
@@ -112,6 +113,14 @@ const Root = forwardRef<HTMLElement, PropsWithChildren<HeroProps>>(
     const mediaChild = HeroImageChild || HeroVideoChild
     const isBorderedGrid = variant === 'bordered-grid'
 
+    const AnimationWrapper = isBorderedGrid ? AnimationProvider : Fragment
+    const animationWrapperProps = isBorderedGrid
+      ? {
+          autoStaggerChildren: false,
+          animationTrigger: 'immediate' as const,
+        }
+      : {}
+
     const useContainedLayout = isBorderedGrid && mediaPosition === 'block-end'
     const useInlineBorderedGrid = isBorderedGrid && hasInlineMedia
 
@@ -159,62 +168,64 @@ const Root = forwardRef<HTMLElement, PropsWithChildren<HeroProps>>(
       ) : null
 
     return (
-      <HeroContext.Provider value={{imagePosition: mediaPosition, variant, align, hasInlineMedia}}>
-        <section
-          className={clsx(
-            styles.Hero,
-            styles[`Hero--variant-${variant}`],
-            !hasInlineMedia && styles[`Hero--align-${align}`],
-            heroLayoutClass,
-            (HeroImageChild || HeroVideoChild) && styles[`Hero--image-pos-${mediaPosition}`],
-            useInlineBorderedGrid && styles['Hero--variant-inline-bordered-grid'],
-            className,
-          )}
-          ref={ref}
-          aria-labelledby="hero-section-brand-heading"
-          data-testid={testId || testIds.root}
-          {...rest}
-        >
-          <Grid
-            fullWidth={!useContainedLayout && !useInlineBorderedGrid}
-            data-testid={testIds.grid}
+      <AnimationWrapper {...animationWrapperProps}>
+        <HeroContext.Provider value={{imagePosition: mediaPosition, variant, align, hasInlineMedia}}>
+          <section
             className={clsx(
-              styles['Hero-grid'],
-              styles[`Hero-grid--${mediaPosition}`],
-              useContainedLayout && styles['Hero-grid--contained'],
-              useInlineBorderedGrid && styles['Hero-grid--bordered-inline'],
+              styles.Hero,
+              styles[`Hero--variant-${variant}`],
+              !hasInlineMedia && styles[`Hero--align-${align}`],
+              heroLayoutClass,
+              (HeroImageChild || HeroVideoChild) && styles[`Hero--image-pos-${mediaPosition}`],
+              useInlineBorderedGrid && styles['Hero--variant-inline-bordered-grid'],
+              className,
             )}
+            ref={ref}
+            aria-labelledby="hero-section-brand-heading"
+            data-testid={testId || testIds.root}
+            {...rest}
           >
-            {/* For inline-start, image comes first in DOM for accessibility */}
-            {isInlineStart ? (
-              <>
-                {mediaColumn}
-                {textColumn}
-              </>
-            ) : (
-              <>
-                {textColumn}
-                {mediaColumn}
-              </>
-            )}
-          </Grid>
-          {mediaChild && useContainedLayout && (
-            <div
-              ref={imageContainerRef}
-              data-testid={testIds.imageWrapper}
+            <Grid
+              fullWidth={!useContainedLayout && !useInlineBorderedGrid}
+              data-testid={testIds.grid}
               className={clsx(
-                styles['Hero-imageWrapper'],
-
-                imageContainerClassName,
-                imageBackgroundColor && styles[`Hero-imageWrapper--bg-${imageBackgroundColor}`],
+                styles['Hero-grid'],
+                styles[`Hero-grid--${mediaPosition}`],
+                useContainedLayout && styles['Hero-grid--contained'],
+                useInlineBorderedGrid && styles['Hero-grid--bordered-inline'],
               )}
-              style={imageContainerStyle}
             >
-              {mediaChild}
-            </div>
-          )}
-        </section>
-      </HeroContext.Provider>
+              {/* For inline-start, image comes first in DOM for accessibility */}
+              {isInlineStart ? (
+                <>
+                  {mediaColumn}
+                  {textColumn}
+                </>
+              ) : (
+                <>
+                  {textColumn}
+                  {mediaColumn}
+                </>
+              )}
+            </Grid>
+            {mediaChild && useContainedLayout && (
+              <div
+                ref={imageContainerRef}
+                data-testid={testIds.imageWrapper}
+                className={clsx(
+                  styles['Hero-imageWrapper'],
+
+                  imageContainerClassName,
+                  imageBackgroundColor && styles[`Hero-imageWrapper--bg-${imageBackgroundColor}`],
+                )}
+                style={imageContainerStyle}
+              >
+                {mediaChild}
+              </div>
+            )}
+          </section>
+        </HeroContext.Provider>
+      </AnimationWrapper>
     )
   },
 )

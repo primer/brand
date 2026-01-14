@@ -29,16 +29,10 @@ declare const styles: {
   readonly "Hero-imageWrapper": string;
   readonly "Hero-imageWrapper--bg-subtle": string;
   readonly "Hero-label": string;
-  readonly "Hero-label-cursor": string;
-  readonly "Hero-label-cursor--blink": string;
-  readonly "Hero-label-inner": string;
-  readonly "Hero-label-placeholder": string;
-  readonly "Hero-label-text": string;
   readonly "Hero-mediaContainer": string;
   readonly "Hero-text-column--inline-bordered-grid": string;
   readonly "Hero-trailing": string;
   readonly "Hero-video": string;
-  readonly "hero-label-cursor-blink": string;
 };
 export = styles;
 

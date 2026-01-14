@@ -230,57 +230,6 @@
   align-items: center;
 }
 
-.Hero-label-inner {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-}
-
-.Hero-label-placeholder {
-  visibility: hidden;
-}
-
-.Hero-label-text {
-  position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  display: flex;
-  align-items: center;
-  white-space: pre;
-}
-
-.Hero-label-cursor {
-  display: inline-block;
-  width: var(--base-size-8);
-  height: var(--base-size-12);
-  margin-inline-start: var(--base-size-6);
-  background-color: var(--brand-blinking-cursor-fgColor);
-  vertical-align: middle;
-  position: relative;
-  top: -0.5px;
-}
-
-.Hero-label-cursor--blink {
-  animation: hero-label-cursor-blink 0.2s ease-in-out 4;
-}
-
-@keyframes hero-label-cursor-blink {
-  0%,
-  100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .Hero-label-cursor {
-    display: none;
-  }
-}
-
 .Hero-heading {
   margin: 0;
   max-width: 924px;

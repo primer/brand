@@ -85,11 +85,7 @@ export function FlexTemplate({page, className}: FlexTemplateProps) {
           <Grid.Column>
             <Box paddingBlockEnd={80}>
               <Hero align={heroFields.align ?? 'start'} className={styles.hero}>
-                {heroLabelFields?.text ? (
-                  <Hero.Label animation="blinking-cursor" color={heroLabelFields.color}>
-                    {heroLabelFields.text}
-                  </Hero.Label>
-                ) : null}
+                {heroLabelFields?.text ? <Hero.Label animate>{heroLabelFields.text}</Hero.Label> : null}
                 {heroFields.heading ? <Hero.Heading>{heroFields.heading}</Hero.Heading> : null}
                 {heroDescription ? (
                   <Hero.Description variant={heroDescriptionVariant}>{heroDescription}</Hero.Description>

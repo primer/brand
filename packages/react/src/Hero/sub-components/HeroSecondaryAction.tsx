@@ -1,6 +1,8 @@
 import React, {forwardRef, PropsWithChildren} from 'react'
 import {Button, ButtonBaseProps} from '../../Button'
 import type {BaseProps} from '../../component-helpers'
+import {Box} from '../..'
+import {useHeroContext} from '../HeroContext'
 
 type RestrictedPolymorphism =
   | (BaseProps<HTMLAnchorElement> & {as?: 'a'})
@@ -16,9 +18,23 @@ export const HeroSecondaryAction = forwardRef<
   HTMLAnchorElement | HTMLButtonElement,
   PropsWithChildren<HeroSecondaryActionProps>
 >(({href, as = 'a', children, ...rest}, ref) => {
+  const {variant: heroVariant} = useHeroContext()
+  const Tag = heroVariant === 'bordered-grid' ? Box : React.Fragment
   return (
-    <Button ref={ref as React.Ref<HTMLButtonElement>} as={as} variant="secondary" size="medium" href={href} {...rest}>
-      {children}
-    </Button>
+    <Tag
+      animate={
+        heroVariant === 'bordered-grid'
+          ? {
+              variant: 'slide-in-up',
+              delay: 750,
+              duration: 1000,
+            }
+          : undefined
+      }
+    >
+      <Button ref={ref as React.Ref<HTMLButtonElement>} as={as} variant="secondary" size="medium" href={href} {...rest}>
+        {children}
+      </Button>
+    </Tag>
   )
 })

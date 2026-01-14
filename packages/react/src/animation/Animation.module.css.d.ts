@@ -14,6 +14,7 @@ declare const styles: {
   readonly "Animation--slide-in-left": string;
   readonly "Animation--slide-in-right": string;
   readonly "Animation--slide-in-up": string;
+  readonly "Animation--wipe-in-up": string;
 };
 export = styles;
 

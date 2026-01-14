@@ -55,7 +55,7 @@ export const WithMutedDescriptions: Story = {
 export const WithAnimatedLabel: Story = {
   render: () => (
     <Hero align="center">
-      <Hero.Label animation="blinking-cursor">Label</Hero.Label>
+      <Hero.Label animate>Label</Hero.Label>
       <Hero.Heading>This is my super sweet hero heading</Hero.Heading>
       <Hero.Description variant="muted">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis
@@ -536,7 +536,7 @@ export const BorderedGridCentered: Story = {
   name: 'Bordered grid variant (centered)',
   render: () => (
     <Hero variant="bordered-grid" align="center">
-      <Hero.Label animation="blinking-cursor">Label</Hero.Label>
+      <Hero.Label animate>Label</Hero.Label>
       <Hero.Heading>This is my super sweet hero heading</Hero.Heading>
       <Hero.Description>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis
@@ -552,7 +552,7 @@ export const BorderedGridImageInlineEnd: Story = {
   name: 'Bordered grid variant (image right)',
   render: () => (
     <Hero variant="bordered-grid" align="center">
-      <Hero.Label animation="blinking-cursor">Label</Hero.Label>
+      <Hero.Label animate>Label</Hero.Label>
       <Hero.Heading>This is my super sweet hero heading</Hero.Heading>
       <Hero.Description>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis
@@ -568,7 +568,7 @@ export const BorderedGridImageInlineStart: Story = {
   name: 'Bordered grid variant (image left)',
   render: () => (
     <Hero variant="bordered-grid" align="center">
-      <Hero.Label animation="blinking-cursor">Label</Hero.Label>
+      <Hero.Label animate>Label</Hero.Label>
       <Hero.Heading>This is my super sweet hero heading</Hero.Heading>
       <Hero.Description>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis
@@ -584,7 +584,7 @@ export const BorderedGridImageInlineEndPadded: Story = {
   name: 'Bordered grid variant (image right)',
   render: () => (
     <Hero variant="bordered-grid" align="center">
-      <Hero.Label animation="blinking-cursor">Label</Hero.Label>
+      <Hero.Label animate>Label</Hero.Label>
       <Hero.Heading>This is my super sweet hero heading</Hero.Heading>
       <Hero.Description>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis
@@ -604,7 +604,7 @@ export const BorderedGridImageInlineStartPadded: Story = {
   name: 'Bordered grid variant (image left)',
   render: () => (
     <Hero variant="bordered-grid" align="center">
-      <Hero.Label animation="blinking-cursor">Label</Hero.Label>
+      <Hero.Label animate>Label</Hero.Label>
       <Hero.Heading>This is my super sweet hero heading</Hero.Heading>
       <Hero.Description>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis
