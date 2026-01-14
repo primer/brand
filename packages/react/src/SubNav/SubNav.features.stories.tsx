@@ -94,7 +94,7 @@ export const WithShadow: Story = {
 const SubHeadingTemplate = (args: SubNavProps) => (
   <SubNav {...args}>
     <SubNav.Heading href="#">AI</SubNav.Heading>
-    <SubNav.SubHeading href="#">Copilot</SubNav.SubHeading>
+    <SubNav.SubHeading href="#">GitHub Copilot</SubNav.SubHeading>
     <SubNav.Link href="#">For business</SubNav.Link>
     <SubNav.Link href="#" aria-current="page">
       Extensions
