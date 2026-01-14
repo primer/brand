@@ -14,6 +14,24 @@ test.describe('Visual Comparison: Hero', () => {
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
+  test('Hero / Custom background (block-end)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-hero-examples--bordered-grid-centered&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
+  test('Hero / Custom background (inline-end-padded)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-hero-examples--bordered-grid-image-inline-end-padded&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
   test('Hero / Centered', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-hero-features--centered&viewMode=story')
 
@@ -24,6 +42,15 @@ test.describe('Visual Comparison: Hero', () => {
   test('Hero / With Muted Descriptions', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-hero-features--with-muted-descriptions&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
+  test('Hero / With Animated Label', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-hero-features--with-animated-label&viewMode=story',
     )
 
     await page.waitForTimeout(500)
@@ -185,6 +212,58 @@ test.describe('Visual Comparison: Hero', () => {
   test('Hero / Eyebrow Centered', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-hero-features--eyebrow-centered&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
+  test('Hero / Bordered grid variant', async ({page}) => {
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-hero-features--bordered-grid&viewMode=story')
+
+    await page.waitForTimeout(500)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
+  test('Hero / Bordered grid variant (centered)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-hero-features--bordered-grid-centered&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
+  test('Hero / Bordered grid variant (image right)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-hero-features--bordered-grid-image-inline-end&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
+  test('Hero / Bordered grid variant (image left)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-hero-features--bordered-grid-image-inline-start&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
+  test('Hero / Bordered grid variant (image right)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-hero-features--bordered-grid-image-inline-end-padded&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
+  test('Hero / Bordered grid variant (image left)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-hero-features--bordered-grid-image-inline-start-padded&viewMode=story',
     )
 
     await page.waitForTimeout(500)
