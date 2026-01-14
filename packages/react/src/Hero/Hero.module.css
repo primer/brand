@@ -1,7 +1,11 @@
 .Hero {
-  padding: var(--brand-Hero-narrow-padding);
   display: flex;
   flex-direction: column;
+  container-type: inline-size;
+}
+
+.Hero--variant-default {
+  padding: var(--brand-Hero-narrow-padding);
 }
 
 .Hero--align-start {
@@ -23,9 +27,14 @@
   width: 100%;
   max-width: 1305px;
   margin-inline: auto;
-  padding-block-end: var(--base-size-32);
-  padding-inline: var(--base-size-32);
-  border-inline: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
+  padding: var(--base-size-32);
+}
+
+/* Prevents double-borders. We only apply the inline borders when the parent container is wide enough to show the full width.  */
+@container (min-width: 1305px) {
+  .Hero-grid--contained {
+    border-inline: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
+  }
 }
 
 .Hero-grid--block-end,
@@ -33,10 +42,9 @@
   --brand-Grid-spacing-row: var(--base-size-40);
 }
 
-@media screen and (min-width: 48rem) {
+@media screen and (min-width: 63.25rem) {
   .Hero-grid--contained {
-    padding-inline: var(--base-size-64);
-    padding-block-end: var(--base-size-64);
+    padding: var(--base-size-64);
   }
 
   .Hero-grid--block-end {
@@ -59,9 +67,21 @@
   width: 100%;
 }
 
+.Hero-mediaContainer {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex: 1;
+}
+
 .Hero-imageContainer--bg-subtle {
   background-color: var(--brand-color-canvas-subtle);
   padding: var(--base-size-32) var(--base-size-32) 0;
+}
+
+.Hero-imageContainer--inline-bg-padded {
+  padding: var(--base-size-32);
+  background-color: var(--brand-color-canvas-subtle);
 }
 
 .Hero-imageWrapper {
@@ -76,9 +96,24 @@
   padding: var(--base-size-32) var(--base-size-32) 0;
 }
 
-@media screen and (min-width: 48rem) {
+.Hero-imageContainer--inline-bordered {
+  background-color: var(--brand-color-canvas-subtle);
+  display: flex;
+  align-items: stretch;
+}
+
+@media screen and (min-width: 63.25rem) {
+  .Hero-imageContainer--inline-bordered {
+    min-height: 600px;
+    flex: 1 1 50%;
+  }
+
   .Hero-imageWrapper--bg-subtle {
     padding: var(--base-size-64) var(--base-size-64) 0;
+  }
+
+  .Hero-imageContainer--inline-bg-padded {
+    padding: var(--base-size-64);
   }
 }
 
@@ -86,8 +121,99 @@
   max-width: 1176px;
   margin-inline: auto;
   display: block;
+}
+
+.Hero--variant-bordered-grid .Hero-image {
+  max-width: 1176px;
+  margin-inline: auto;
+  display: block;
+}
+
+.Hero--variant-bordered-grid .Hero-image--pos-block-end {
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
+}
+
+.Hero--variant-bordered-grid .Hero-imageWrapper {
+  border-block: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
+  background-color: var(--brand-color-canvas-subtle);
+  padding: var(--base-size-32) var(--base-size-32) 0;
+}
+
+@media screen and (min-width: 63.25rem) {
+  .Hero--variant-bordered-grid .Hero-imageWrapper {
+    padding: var(--base-size-64) var(--base-size-64) 0;
+  }
+}
+
+/* Bordered grid variant with inline (side-by-side) layout */
+.Hero-grid--bordered-inline {
+  width: 100%;
+  max-width: 1305px;
+  margin-inline: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+@media screen and (min-width: 63.25rem) {
+  .Hero-grid--bordered-inline {
+    flex-direction: row;
+    min-height: 440px;
+  }
+}
+
+@container (min-width: 1305px) {
+  .Hero-grid--bordered-inline {
+    border-inline: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
+  }
+}
+
+.Hero--variant-bordered-grid.Hero--image-pos-inline-end,
+.Hero--variant-bordered-grid.Hero--image-pos-inline-start,
+.Hero--variant-bordered-grid.Hero--image-pos-inline-end-padded,
+.Hero--variant-bordered-grid.Hero--image-pos-inline-start-padded {
+  border-block-end: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
+}
+
+/* Text column styling for bordered-grid inline positions */
+.Hero--variant-bordered-grid.Hero--image-pos-inline-end .Hero-grid > *:first-child,
+.Hero--variant-bordered-grid.Hero--image-pos-inline-end-padded .Hero-grid > *:first-child,
+.Hero--variant-bordered-grid.Hero--image-pos-inline-start .Hero-grid > *:last-child,
+.Hero--variant-bordered-grid.Hero--image-pos-inline-start-padded .Hero-grid > *:last-child {
+  padding: var(--base-size-32);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+@media screen and (min-width: 63.25rem) {
+  .Hero--variant-bordered-grid.Hero--image-pos-inline-end .Hero-grid > *:first-child,
+  .Hero--variant-bordered-grid.Hero--image-pos-inline-end-padded .Hero-grid > *:first-child,
+  .Hero--variant-bordered-grid.Hero--image-pos-inline-start .Hero-grid > *:last-child,
+  .Hero--variant-bordered-grid.Hero--image-pos-inline-start-padded .Hero-grid > *:last-child {
+    flex: 1 1 50%;
+    padding: var(--base-size-64);
+  }
+}
+
+/* Image column styling for bordered-grid inline positions */
+
+.Hero--variant-bordered-grid.Hero--image-pos-inline-end-padded .Hero-image,
+.Hero--variant-bordered-grid.Hero--image-pos-inline-start-padded .Hero-image {
+  max-width: 100%;
+  height: auto;
+  align-self: center;
+}
+
+.Hero--variant-bordered-grid.Hero--image-pos-inline-end .Hero-image,
+.Hero--variant-bordered-grid.Hero--image-pos-inline-start .Hero-image {
+  border-radius: 0;
+}
+
+/* Image column styling now handled by .Hero-imageContainer--inline-bordered */
+
+.Hero-video {
+  width: 100%;
 }
 
 .Hero-video video,
@@ -129,7 +255,7 @@
   width: var(--base-size-8);
   height: var(--base-size-12);
   margin-inline-start: var(--base-size-6);
-  background-color: var(--brand-color-accent-primary);
+  background-color: var(--brand-blinking-cursor-fgColor);
   vertical-align: middle;
   position: relative;
   top: -0.5px;
@@ -164,9 +290,17 @@
   max-width: unset;
 }
 
+.Hero-text-column--inline-bordered-grid {
+  height: 100%;
+}
+
 .Hero-description {
   margin: var(--base-size-24) 0 0;
   max-width: 600px;
+}
+
+.Hero--variant-inline-bordered-grid .Hero-description {
+  margin-block-start: auto;
 }
 
 .Hero-actions {
@@ -187,7 +321,7 @@
 
 /* Small breakpoint and up */
 @media screen and (min-width: 34rem) {
-  .Hero {
+  .Hero--variant-default {
     padding: var(--brand-Hero-regular-padding);
   }
 }

@@ -105,22 +105,6 @@ export const WithImageBlockEndDefault: Story = {
   ),
 }
 
-export const WithImageBlockEndDefaultInGrid: Story = {
-  name: 'With an image (left + bottom) and no Grid',
-  render: () => (
-    <Hero imageBackgroundColor="subtle">
-      <Hero.Label>Label</Hero.Label>
-      <Hero.Heading>This is my super sweet hero heading</Hero.Heading>
-      <Hero.Description>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis
-        felis nam pulvinar risus elementum.
-      </Hero.Description>
-      <Hero.PrimaryAction href="#">Primary action</Hero.PrimaryAction>
-      <Hero.Image fullWidth={false} src={placeholderImage} alt="placeholder image, blank with gray solid fill" />
-    </Hero>
-  ),
-}
-
 export const WithImageBlockEndCenter: Story = {
   name: 'With an image (centered + bottom)',
   render: () => (
@@ -137,21 +121,6 @@ export const WithImageBlockEndCenter: Story = {
         </Hero>
       </Grid.Column>
     </Grid>
-  ),
-}
-
-export const WithImageBlockEndCenterInGrid: Story = {
-  name: 'With an image (centered + bottom) and no Grid',
-  render: () => (
-    <Hero align="center" imageBackgroundColor="subtle">
-      <Hero.Heading>This is my super sweet hero heading</Hero.Heading>
-      <Hero.Description>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis
-        felis nam pulvinar risus elementum.
-      </Hero.Description>
-      <Hero.PrimaryAction href="#">Primary action</Hero.PrimaryAction>
-      <Hero.Image fullWidth={false} src={placeholderImage} alt="placeholder image, blank with gray solid fill" />
-    </Hero>
   ),
 }
 
@@ -303,7 +272,7 @@ export const WithYoutubeVideoInlineEnd: Story = {
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               referrerPolicy="strict-origin-when-cross-origin"
               allowFullScreen
-              style={{width: '100%', height: 'auto', aspectRatio: '16/9'}}
+              className={styles.customVideo}
             ></iframe>
           </Hero.Video>
         </Hero>
@@ -543,6 +512,110 @@ export const EyebrowCentered: Story = {
         felis nam pulvinar risus elementum.
       </Hero.Description>
       <Hero.PrimaryAction href="#">Primary action</Hero.PrimaryAction>
+    </Hero>
+  ),
+}
+
+export const BorderedGrid: Story = {
+  name: 'Bordered grid variant',
+  render: () => (
+    <Hero variant="bordered-grid">
+      <Hero.Label>Label</Hero.Label>
+      <Hero.Heading>This is my super sweet hero heading</Hero.Heading>
+      <Hero.Description>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis
+        felis nam pulvinar risus elementum.
+      </Hero.Description>
+      <Hero.PrimaryAction href="#">Primary action</Hero.PrimaryAction>
+      <Hero.Image src={placeholderImage} alt="placeholder image, blank with gray solid fill" />
+    </Hero>
+  ),
+}
+
+export const BorderedGridCentered: Story = {
+  name: 'Bordered grid variant (centered)',
+  render: () => (
+    <Hero variant="bordered-grid" align="center">
+      <Hero.Label animation="blinking-cursor">Label</Hero.Label>
+      <Hero.Heading>This is my super sweet hero heading</Hero.Heading>
+      <Hero.Description>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis
+        felis nam pulvinar risus elementum.
+      </Hero.Description>
+      <Hero.PrimaryAction href="#">Primary action</Hero.PrimaryAction>
+      <Hero.Image src={placeholderImage} alt="placeholder image, blank with gray solid fill" />
+    </Hero>
+  ),
+}
+
+export const BorderedGridImageInlineEnd: Story = {
+  name: 'Bordered grid variant (image right)',
+  render: () => (
+    <Hero variant="bordered-grid" align="center">
+      <Hero.Label animation="blinking-cursor">Label</Hero.Label>
+      <Hero.Heading>This is my super sweet hero heading</Hero.Heading>
+      <Hero.Description>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis
+        felis nam pulvinar risus elementum.
+      </Hero.Description>
+      <Hero.PrimaryAction href="#">Primary action</Hero.PrimaryAction>
+      <Hero.Image position="inline-end" src={placeholderImage} alt="placeholder image, blank with gray solid fill" />
+    </Hero>
+  ),
+}
+
+export const BorderedGridImageInlineStart: Story = {
+  name: 'Bordered grid variant (image left)',
+  render: () => (
+    <Hero variant="bordered-grid" align="center">
+      <Hero.Label animation="blinking-cursor">Label</Hero.Label>
+      <Hero.Heading>This is my super sweet hero heading</Hero.Heading>
+      <Hero.Description>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis
+        felis nam pulvinar risus elementum.
+      </Hero.Description>
+      <Hero.PrimaryAction href="#">Primary action</Hero.PrimaryAction>
+      <Hero.Image position="inline-start" src={placeholderImage} alt="placeholder image, blank with gray solid fill" />
+    </Hero>
+  ),
+}
+
+export const BorderedGridImageInlineEndPadded: Story = {
+  name: 'Bordered grid variant (image right)',
+  render: () => (
+    <Hero variant="bordered-grid" align="center">
+      <Hero.Label animation="blinking-cursor">Label</Hero.Label>
+      <Hero.Heading>This is my super sweet hero heading</Hero.Heading>
+      <Hero.Description>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis
+        felis nam pulvinar risus elementum.
+      </Hero.Description>
+      <Hero.PrimaryAction href="#">Primary action</Hero.PrimaryAction>
+      <Hero.Image
+        position="inline-end-padded"
+        src={placeholderImage}
+        alt="placeholder image, blank with gray solid fill"
+      />
+    </Hero>
+  ),
+}
+
+export const BorderedGridImageInlineStartPadded: Story = {
+  name: 'Bordered grid variant (image left)',
+  render: () => (
+    <Hero variant="bordered-grid" align="center">
+      <Hero.Label animation="blinking-cursor">Label</Hero.Label>
+      <Hero.Heading>This is my super sweet hero heading</Hero.Heading>
+      <Hero.Description>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis
+        felis nam pulvinar risus elementum.
+      </Hero.Description>
+      <Hero.PrimaryAction href="#">Primary action</Hero.PrimaryAction>
+      <Hero.Image
+        position="inline-start-padded"
+        src={placeholderImage}
+        alt="placeholder image, blank with gray solid fill"
+      />
     </Hero>
   ),
 }

@@ -39,7 +39,7 @@ export function useBlinkingCursorAnimation({
 }: UseBlinkingCursorAnimationOptions): UseBlinkingCursorAnimationResult {
   const prefersReducedMotion = useReducedMotion()
   const shouldAnimate = animation === 'blinking-cursor' && !prefersReducedMotion
-  const delay = 50
+  const delay = 20
 
   const [displayedText, setDisplayedText] = useState(shouldAnimate ? '' : text)
   const [isAnimating, setIsAnimating] = useState(shouldAnimate)

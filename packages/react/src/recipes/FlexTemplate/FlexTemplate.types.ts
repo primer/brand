@@ -30,12 +30,11 @@ export type FlexTemplateLabel = {
     | 'red'
     | 'teal'
     | 'yellow'
-  size?: 'small' | 'medium' | 'large'
 }
 
 export type FlexTemplateHero = {
   align?: 'start' | 'center'
-  label?: string | FlexTemplateLabel
+  label?: FlexTemplateLabel
   heading?: string
   description?: string
   descriptionVariant?: 'default' | 'muted'
