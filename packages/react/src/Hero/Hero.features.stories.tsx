@@ -549,7 +549,7 @@ export const BorderedGridCentered: Story = {
 }
 
 export const BorderedGridImageInlineEnd: Story = {
-  name: 'Bordered grid variant (image right)',
+  name: 'Bordered grid variant (inline-end image)',
   render: () => (
     <Hero variant="bordered-grid" align="center">
       <Hero.Label animate>Label</Hero.Label>
@@ -565,7 +565,7 @@ export const BorderedGridImageInlineEnd: Story = {
 }
 
 export const BorderedGridImageInlineStart: Story = {
-  name: 'Bordered grid variant (image left)',
+  name: 'Bordered grid variant (inline-start image)',
   render: () => (
     <Hero variant="bordered-grid" align="center">
       <Hero.Label animate>Label</Hero.Label>
@@ -581,7 +581,7 @@ export const BorderedGridImageInlineStart: Story = {
 }
 
 export const BorderedGridImageInlineEndPadded: Story = {
-  name: 'Bordered grid variant (image right)',
+  name: 'Bordered grid variant (inline-end-padded image)',
   render: () => (
     <Hero variant="bordered-grid" align="center">
       <Hero.Label animate>Label</Hero.Label>
@@ -601,7 +601,7 @@ export const BorderedGridImageInlineEndPadded: Story = {
 }
 
 export const BorderedGridImageInlineStartPadded: Story = {
-  name: 'Bordered grid variant (image left)',
+  name: 'Bordered grid variant (inline-start-padded image)',
   render: () => (
     <Hero variant="bordered-grid" align="center">
       <Hero.Label animate>Label</Hero.Label>

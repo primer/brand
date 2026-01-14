@@ -14,18 +14,18 @@ test.describe('Visual Comparison: Hero', () => {
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
-  test('Hero / Custom background (block-end)', async ({page}) => {
+  test('Hero / Custom background (block-end image)', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-hero-examples--bordered-grid-centered&viewMode=story',
+      'http://localhost:6006/iframe.html?args=&id=components-hero-examples--custom-background-block-end-image&viewMode=story',
     )
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
-  test('Hero / Custom background (inline-end-padded)', async ({page}) => {
+  test('Hero / Custom background (inline-end-padded image)', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-hero-examples--bordered-grid-image-inline-end-padded&viewMode=story',
+      'http://localhost:6006/iframe.html?args=&id=components-hero-examples--custom-background-inline-end-padded-image&viewMode=story',
     )
 
     await page.waitForTimeout(500)
@@ -234,7 +234,7 @@ test.describe('Visual Comparison: Hero', () => {
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
-  test('Hero / Bordered grid variant (image right)', async ({page}) => {
+  test('Hero / Bordered grid variant (inline-end image)', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-hero-features--bordered-grid-image-inline-end&viewMode=story',
     )
@@ -243,7 +243,7 @@ test.describe('Visual Comparison: Hero', () => {
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
-  test('Hero / Bordered grid variant (image left)', async ({page}) => {
+  test('Hero / Bordered grid variant (inline-start image)', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-hero-features--bordered-grid-image-inline-start&viewMode=story',
     )
@@ -252,7 +252,7 @@ test.describe('Visual Comparison: Hero', () => {
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
-  test('Hero / Bordered grid variant (image right)', async ({page}) => {
+  test('Hero / Bordered grid variant (inline-end-padded image)', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-hero-features--bordered-grid-image-inline-end-padded&viewMode=story',
     )
@@ -261,7 +261,7 @@ test.describe('Visual Comparison: Hero', () => {
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
-  test('Hero / Bordered grid variant (image left)', async ({page}) => {
+  test('Hero / Bordered grid variant (inline-start-padded image)', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-hero-features--bordered-grid-image-inline-start-padded&viewMode=story',
     )

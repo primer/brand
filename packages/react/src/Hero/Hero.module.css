@@ -104,7 +104,7 @@
 
 @media screen and (min-width: 63.25rem) {
   .Hero-imageContainer--inline-bordered {
-    min-height: 600px;
+    min-height: calc(600px - var(--base-size-24));
     flex: 1 1 50%;
   }
 
@@ -249,6 +249,7 @@
 }
 
 .Hero--variant-inline-bordered-grid .Hero-description {
+  padding-block-start: var(--base-size-24);
   margin-block-start: auto;
 }
 

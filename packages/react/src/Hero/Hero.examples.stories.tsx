@@ -18,13 +18,13 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-export const BorderedGridCentered: Story = {
-  name: 'Custom background (block-end)',
+export const CustomBackgroundBlockEndImage: Story = {
+  name: 'Custom background (block-end image)',
   render: () => <BorderedGridCenteredExample />,
 }
 
-export const BorderedGridImageInlineEndPadded: Story = {
-  name: 'Custom background (inline-end-padded)',
+export const CustomBackgroundInlineEndPaddedImage: Story = {
+  name: 'Custom background (inline-end-padded image)',
   render: () => <BorderedGridImageInlineEndPaddedExample />,
 }
 
