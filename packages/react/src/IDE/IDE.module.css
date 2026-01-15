@@ -335,7 +335,7 @@ img.IDE__Editor-tab-icon {
   display: block;
   padding: 0 var(--base-size-8);
   text-align: right;
-  color: var(--brand-color-text-subtle);
+  color: var(--brand-color-text-muted);
   user-select: none;
   cursor: default;
   white-space: nowrap;

@@ -18,9 +18,9 @@
   position: absolute;
   left: calc((var(--brand-TextCursorAnimation-reveal-progress, 1) * 100%) + var(--base-size-4));
   top: 50%;
-  transform: translateY(calc(-50% - 0.1px)); /* optical alignment for custom font metrics */
+  transform: translateY(calc(-50% - 0.5px)); /* optical alignment for custom font metrics */
   width: var(--base-size-8);
-  height: 10px;
+  height: 11px;
   background-color: color-mix(
     in srgb,
     var(--brand-color-canvas-subtle) calc((1 - var(--brand-TextCursorAnimation-cursor-progress, 0)) * 100%),

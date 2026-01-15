@@ -35,7 +35,6 @@
     "format": "npm run format --workspaces --if-present",
     "format:fix": "npm run format:fix --workspaces --if-present",
     "lint": "npm run lint --workspaces --if-present",
-    "postinstall": "npm install --prefix apps/next-docs",
     "release": "npm run build:lib && changeset publish",
     "start": "npm run build:lib && npm run start:storybook & npm run start:lib",
     "start:docs": "cd apps/next-docs && npm run dev",
