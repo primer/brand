@@ -203,7 +203,7 @@
 
 .Animation--reveal-in-up.Animation--active {
   transform: translateY(0);
-  clip-path: inset(0 0 0 0);
+  clip-path: inset(0 0 -0.2em 0); /* includs some offset to account for descenders  */
 }
 
 /* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
