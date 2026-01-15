@@ -34,6 +34,10 @@ type HeroContextType = {
    * Hero.Image is an inline media position
    */
   hasInlineMedia: boolean
+  /**
+   * Whether animation is enabled for the Hero
+   */
+  enableAnimation: boolean
 }
 
 export const HeroContext = React.createContext<HeroContextType | undefined>(undefined)

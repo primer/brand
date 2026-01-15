@@ -17,12 +17,12 @@ export const HeroDescription = forwardRef<HTMLParagraphElement, PropsWithChildre
     {size = '200', weight = 'normal', children, variant = 'muted', className}: PropsWithChildren<HeroDescriptionProps>,
     ref,
   ) => {
-    const {variant: heroVariant} = useHeroContext()
+    const {variant: heroVariant, enableAnimation} = useHeroContext()
 
     return (
       <Text
         animate={
-          heroVariant === 'bordered-grid'
+          heroVariant === 'bordered-grid' && enableAnimation
             ? {
                 variant: 'slide-in-up',
                 delay: 500,

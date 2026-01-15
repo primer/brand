@@ -39,8 +39,8 @@ function BorderedGridCenteredExample() {
 
   return (
     <Box paddingBlockEnd={24}>
-      <Hero variant="bordered-grid" align="center" imageContainerRef={imageRef}>
-        <Hero.Label animate>Label</Hero.Label>
+      <Hero variant="bordered-grid" align="center" imageContainerRef={imageRef} enableAnimation>
+        <Hero.Label>Label</Hero.Label>
         <Hero.Heading>This is my super sweet hero heading</Hero.Heading>
         <Hero.Description>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
@@ -65,8 +65,8 @@ function BorderedGridImageInlineEndPaddedExample() {
   }, [])
 
   return (
-    <Hero variant="bordered-grid" align="center" imageContainerRef={imageRef}>
-      <Hero.Label animate>Label</Hero.Label>
+    <Hero variant="bordered-grid" align="center" imageContainerRef={imageRef} enableAnimation>
+      <Hero.Label>Label</Hero.Label>
 
       <Hero.Heading>This is my super sweet hero heading</Hero.Heading>
       <Hero.Description>

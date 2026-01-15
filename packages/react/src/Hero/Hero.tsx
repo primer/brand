@@ -47,6 +47,7 @@ export type HeroProps = BaseProps<HTMLElement> & {
   imageContainerRef?: React.RefObject<HTMLDivElement | null>
   imageBackgroundColor?: 'default' | 'subtle'
   variant?: HeroVariant
+  enableAnimation?: boolean
   /**
    * Escape-hatch for inserting custom React components.
    * Warning:
@@ -69,6 +70,7 @@ const Root = forwardRef<HTMLElement, PropsWithChildren<HeroProps>>(
       imageBackgroundColor,
       variant = 'default',
       trailingComponent: TrailingComponent,
+      enableAnimation = false,
       'data-testid': testId,
       ...rest
     },
@@ -113,13 +115,14 @@ const Root = forwardRef<HTMLElement, PropsWithChildren<HeroProps>>(
     const mediaChild = HeroImageChild || HeroVideoChild
     const isBorderedGrid = variant === 'bordered-grid'
 
-    const AnimationWrapper = isBorderedGrid ? AnimationProvider : Fragment
-    const animationWrapperProps = isBorderedGrid
-      ? {
-          autoStaggerChildren: false,
-          animationTrigger: 'immediate' as const,
-        }
-      : {}
+    const Tag = isBorderedGrid && enableAnimation ? AnimationProvider : Fragment
+    const tagProps =
+      isBorderedGrid && enableAnimation
+        ? {
+            autoStaggerChildren: false,
+            animationTrigger: 'immediate' as const,
+          }
+        : {}
 
     const useContainedLayout = isBorderedGrid && mediaPosition === 'block-end'
     const useInlineBorderedGrid = isBorderedGrid && hasInlineMedia
@@ -168,8 +171,8 @@ const Root = forwardRef<HTMLElement, PropsWithChildren<HeroProps>>(
       ) : null
 
     return (
-      <AnimationWrapper {...animationWrapperProps}>
-        <HeroContext.Provider value={{imagePosition: mediaPosition, variant, align, hasInlineMedia}}>
+      <Tag {...tagProps}>
+        <HeroContext.Provider value={{imagePosition: mediaPosition, variant, align, hasInlineMedia, enableAnimation}}>
           <section
             className={clsx(
               styles.Hero,
@@ -225,7 +228,7 @@ const Root = forwardRef<HTMLElement, PropsWithChildren<HeroProps>>(
             )}
           </section>
         </HeroContext.Provider>
-      </AnimationWrapper>
+      </Tag>
     )
   },
 )

@@ -18,12 +18,12 @@ export const HeroPrimaryAction = forwardRef<
   HTMLAnchorElement | HTMLButtonElement,
   PropsWithChildren<HeroPrimaryActionProps>
 >(({href, as = 'a', children, ...rest}, ref) => {
-  const {variant: heroVariant} = useHeroContext()
+  const {variant: heroVariant, enableAnimation} = useHeroContext()
   const Tag = heroVariant === 'bordered-grid' ? Box : React.Fragment
   return (
     <Tag
       animate={
-        heroVariant === 'bordered-grid'
+        heroVariant === 'bordered-grid' && enableAnimation
           ? {
               variant: 'slide-in-up',
               delay: 750,

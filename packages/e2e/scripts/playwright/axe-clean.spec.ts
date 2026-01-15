@@ -134,6 +134,7 @@ for (const story of storybookRoutes) {
     beforeAll(async () => {
       browser = await chromium.launch()
       page = await browser.newPage()
+
       const route = `${hostname}&id=${story.id}`
       // eslint-disable-next-line no-console
       console.info(`Navigating to ${route}`)

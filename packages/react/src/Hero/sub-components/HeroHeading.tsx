@@ -11,12 +11,12 @@ export type HeroHeadingProps = Omit<HeadingProps, 'as'> & {
 
 export const HeroHeading = forwardRef<HTMLHeadingElement, HeroHeadingProps>(
   ({children, fullWidth = false, size = '1', ...rest}: PropsWithChildren<HeroHeadingProps>, ref) => {
-    const {hasInlineMedia, variant} = useHeroContext()
+    const {hasInlineMedia, variant: heroVariant, enableAnimation} = useHeroContext()
 
     return (
       <Heading
         animate={
-          variant === 'bordered-grid'
+          heroVariant === 'bordered-grid' && enableAnimation
             ? {
                 variant: 'reveal-in-up',
                 delay: 0,

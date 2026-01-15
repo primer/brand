@@ -13,11 +13,11 @@ export type HeroImageProps = {
 
 export const HeroImage = forwardRef<HTMLImageElement, HeroImageProps>(
   ({position = 'block-end', className, ...rest}: PropsWithChildren<HeroImageProps>, ref) => {
-    const {variant: heroVariant} = useHeroContext()
+    const {variant: heroVariant, enableAnimation} = useHeroContext()
     return (
       <Image
         animate={
-          heroVariant === 'bordered-grid'
+          heroVariant === 'bordered-grid' && enableAnimation
             ? {
                 variant: 'slide-in-up',
                 delay: 0,
