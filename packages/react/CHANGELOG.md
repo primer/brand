@@ -1,5 +1,13 @@
 # @primer/react-brand
 
+## 0.61.1
+
+### Patch Changes
+
+- [#1214](https://github.com/primer/brand/pull/1214) [`3930164`](https://github.com/primer/brand/commit/3930164519d04a80f33f2b174daf5ab5c070180f) Thanks [@danielguillan](https://github.com/danielguillan)! - Increase `IDE` component line numbers contrast
+
+- [#1223](https://github.com/primer/brand/pull/1223) [`895a4bf`](https://github.com/primer/brand/commit/895a4bf1407370189760d660271898a2b8a523b8) Thanks [@rezrah](https://github.com/rezrah)! - Fixed incorrect text wrapping bug in `SubNav.SubHeading` on Safari browsers.
+
 ## 0.61.0
 
 ### Minor Changes
