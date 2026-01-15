@@ -18,7 +18,7 @@ export const HeroHeading = forwardRef<HTMLHeadingElement, HeroHeadingProps>(
         animate={
           variant === 'bordered-grid'
             ? {
-                variant: 'wipe-in-up',
+                variant: 'reveal-in-up',
                 delay: 0,
                 duration: 1000,
               }

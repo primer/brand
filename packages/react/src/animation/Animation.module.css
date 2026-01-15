@@ -194,14 +194,14 @@
 /**
  * Wipe in up
  */
-.Animation--wipe-in-up {
+.Animation--reveal-in-up {
   transform: translateY(100%);
   clip-path: inset(-100% 0 100% 0);
   transition: transform var(--brand-animation-duration-default) var(--brand-animation-easing-default),
     clip-path var(--brand-animation-duration-default) var(--brand-animation-easing-default);
 }
 
-.Animation--wipe-in-up.Animation--active {
+.Animation--reveal-in-up.Animation--active {
   transform: translateY(0);
   clip-path: inset(0 0 0 0);
 }

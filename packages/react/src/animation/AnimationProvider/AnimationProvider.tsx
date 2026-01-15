@@ -23,7 +23,7 @@ export const AnimationVariants = [
   'scale-in-right',
   'scale-in-left',
   'fill-in-right',
-  'wipe-in-up',
+  'reveal-in-up',
 ] as const
 
 type Variant = (typeof AnimationVariants)[number]
