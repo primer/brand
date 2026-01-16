@@ -19,7 +19,7 @@ test.describe('Visual Comparison: Hero', () => {
       'http://localhost:6006/iframe.html?args=&id=components-hero-examples--custom-background-block-end-image&viewMode=story',
     )
 
-    await page.waitForTimeout(500)
+    await page.waitForTimeout(4000)
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
@@ -28,7 +28,25 @@ test.describe('Visual Comparison: Hero', () => {
       'http://localhost:6006/iframe.html?args=&id=components-hero-examples--custom-background-inline-end-padded-image&viewMode=story',
     )
 
-    await page.waitForTimeout(500)
+    await page.waitForTimeout(3500)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
+  test('Hero / Custom background (block-end video)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-hero-examples--custom-background-block-end-video&viewMode=story',
+    )
+
+    await page.waitForTimeout(3500)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
+  test('Hero / Custom background (inline-end-padded video)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-hero-examples--custom-background-inline-end-padded-video&viewMode=story',
+    )
+
+    await page.waitForTimeout(3500)
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
@@ -39,9 +57,9 @@ test.describe('Visual Comparison: Hero', () => {
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
-  test('Hero / With Muted Descriptions', async ({page}) => {
+  test('Hero / With Increased Contrast Description', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-hero-features--with-muted-descriptions&viewMode=story',
+      'http://localhost:6006/iframe.html?args=&id=components-hero-features--with-increased-contrast-description&viewMode=story',
     )
 
     await page.waitForTimeout(500)
@@ -51,6 +69,15 @@ test.describe('Visual Comparison: Hero', () => {
   test('Hero / With Animated Label', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-hero-features--with-animated-label&viewMode=story',
+    )
+
+    await page.waitForTimeout(1500)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
+  test('Hero / With Increased Contrast Label', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-hero-features--with-increased-contrast-label&viewMode=story',
     )
 
     await page.waitForTimeout(500)
@@ -264,6 +291,33 @@ test.describe('Visual Comparison: Hero', () => {
   test('Hero / Bordered grid variant (inline-start-padded image)', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-hero-features--bordered-grid-image-inline-start-padded&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
+  test('Hero / Bordered grid variant (block-end YouTube video)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-hero-features--bordered-grid-youtube-video-block-end&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
+  test('Hero / Bordered grid variant (inline-end YouTube video)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-hero-features--bordered-grid-youtube-video-inline-end&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
+  test('Hero / Bordered grid variant (inline-end-padded YouTube video)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-hero-features--bordered-grid-youtube-video-inline-end-padded&viewMode=story',
     )
 
     await page.waitForTimeout(500)

@@ -1,6 +1,7 @@
 import React, {PropsWithChildren} from 'react'
 import {clsx} from 'clsx'
 import {useCursorAnimation} from '../hooks/useCursorAnimation'
+import {Text, TextProps} from '../Text/Text'
 
 import styles from './TextCursorAnimation.module.css'
 
@@ -19,7 +20,9 @@ export type TextCursorAnimationProps = {
   animate?: boolean
   ['data-testid']?: string
   delay?: number
-} & React.HTMLAttributes<HTMLSpanElement>
+  waitForPageLoad?: boolean
+} & React.HTMLAttributes<HTMLSpanElement> &
+  Omit<TextProps, 'animate' | 'as'>
 
 export function TextCursorAnimation({
   children,
@@ -27,12 +30,15 @@ export function TextCursorAnimation({
   animate,
   'data-testid': testId,
   delay = 500,
+  waitForPageLoad = true,
+  variant = 'muted',
 }: PropsWithChildren<TextCursorAnimationProps>) {
   const text = typeof children === 'string' ? children : ''
   const {showCursor, progress} = useCursorAnimation({
     text,
     animate,
     delay,
+    waitForPageLoad,
   })
 
   const revealStyle = {
@@ -47,21 +53,19 @@ export function TextCursorAnimation({
 
   const hasAnimation = animate === true && text
 
+  const style = hasAnimation ? revealStyle : staticStyle
+  const content = text || children
+
   return (
     <span className={clsx(styles.TextCursorAnimation, className)} data-testid={testId || testIds.root}>
-      {hasAnimation ? (
-        <span className={styles['TextCursorAnimation-inner']} style={revealStyle}>
-          <span className={styles['TextCursorAnimation-text']}>{text}</span>
-          {showCursor && (
-            <span className={styles['TextCursorAnimation-cursor']} aria-hidden="true" data-testid={testIds.cursor} />
-          )}
-        </span>
-      ) : (
-        <span className={styles['TextCursorAnimation-inner']} style={staticStyle}>
-          <span className={styles['TextCursorAnimation-text']}>{text || children}</span>
+      <span className={styles['TextCursorAnimation-inner']} style={style}>
+        <Text size="100" variant={variant} font="monospace" className={styles['TextCursorAnimation-text']}>
+          {content}
+        </Text>
+        {(showCursor || !hasAnimation) && (
           <span className={styles['TextCursorAnimation-cursor']} aria-hidden="true" data-testid={testIds.cursor} />
-        </span>
-      )}
+        )}
+      </span>
     </span>
   )
 }

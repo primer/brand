@@ -38,10 +38,26 @@ export const Centered: Story = {
   ),
 }
 
-export const WithMutedDescriptions: Story = {
+export const WithIncreasedContrastDescription: Story = {
   render: () => (
     <Hero align="center">
       <Hero.Label>Label</Hero.Label>
+      <Hero.Heading>This is my super sweet hero heading</Hero.Heading>
+      <Hero.Description variant="default">
+        This description has increased contrast for better readability. Lorem ipsum dolor sit amet, consectetur
+        adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis felis nam pulvinar risus elementum.
+      </Hero.Description>
+      <Hero.PrimaryAction href="#">Primary action</Hero.PrimaryAction>
+    </Hero>
+  ),
+}
+
+export const WithAnimatedLabel: Story = {
+  render: () => (
+    <Hero align="center">
+      <Hero.Label animate animationDelay={1000}>
+        Animated label
+      </Hero.Label>
       <Hero.Heading>This is my super sweet hero heading</Hero.Heading>
       <Hero.Description variant="muted">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis
@@ -52,10 +68,12 @@ export const WithMutedDescriptions: Story = {
   ),
 }
 
-export const WithAnimatedLabel: Story = {
+export const WithIncreasedContrastLabel: Story = {
   render: () => (
     <Hero align="center">
-      <Hero.Label animate>Label</Hero.Label>
+      <Hero.Label animate variant="default">
+        Label with higher initial contrast
+      </Hero.Label>
       <Hero.Heading>This is my super sweet hero heading</Hero.Heading>
       <Hero.Description variant="muted">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis
@@ -616,6 +634,84 @@ export const BorderedGridImageInlineStartPadded: Story = {
         src={placeholderImage}
         alt="placeholder image, blank with gray solid fill"
       />
+    </Hero>
+  ),
+}
+
+export const BorderedGridYoutubeVideoBlockEnd: Story = {
+  name: 'Bordered grid variant (block-end YouTube video)',
+  render: () => (
+    <Hero variant="bordered-grid" align="center">
+      <Hero.Label>Label</Hero.Label>
+      <Hero.Heading>This is my super sweet hero heading</Hero.Heading>
+      <Hero.Description>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis
+        felis nam pulvinar risus elementum.
+      </Hero.Description>
+      <Hero.PrimaryAction href="#">Primary action</Hero.PrimaryAction>
+      <Hero.Video>
+        <iframe
+          src="https://www.youtube.com/embed/EPyyyB23NUU"
+          title="YouTube video player"
+          frameBorder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerPolicy="strict-origin-when-cross-origin"
+          allowFullScreen
+          className={styles.customVideo}
+        ></iframe>
+      </Hero.Video>
+    </Hero>
+  ),
+}
+
+export const BorderedGridYoutubeVideoInlineEnd: Story = {
+  name: 'Bordered grid variant (inline-end YouTube video)',
+  render: () => (
+    <Hero variant="bordered-grid" align="center">
+      <Hero.Label>Label</Hero.Label>
+      <Hero.Heading>This is my super sweet hero heading</Hero.Heading>
+      <Hero.Description>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis
+        felis nam pulvinar risus elementum.
+      </Hero.Description>
+      <Hero.PrimaryAction href="#">Primary action</Hero.PrimaryAction>
+      <Hero.Video position="inline-end">
+        <iframe
+          src="https://www.youtube.com/embed/EPyyyB23NUU"
+          title="YouTube video player"
+          frameBorder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerPolicy="strict-origin-when-cross-origin"
+          allowFullScreen
+          className={styles.customVideo}
+        ></iframe>
+      </Hero.Video>
+    </Hero>
+  ),
+}
+
+export const BorderedGridYoutubeVideoInlineEndPadded: Story = {
+  name: 'Bordered grid variant (inline-end-padded YouTube video)',
+  render: () => (
+    <Hero variant="bordered-grid" align="center">
+      <Hero.Label>Label</Hero.Label>
+      <Hero.Heading>This is my super sweet hero heading</Hero.Heading>
+      <Hero.Description>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis
+        felis nam pulvinar risus elementum.
+      </Hero.Description>
+      <Hero.PrimaryAction href="#">Primary action</Hero.PrimaryAction>
+      <Hero.Video position="inline-end-padded">
+        <iframe
+          src="https://www.youtube.com/embed/EPyyyB23NUU"
+          title="YouTube video player"
+          frameBorder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerPolicy="strict-origin-when-cross-origin"
+          allowFullScreen
+          className={styles.customVideo}
+        ></iframe>
+      </Hero.Video>
     </Hero>
   ),
 }

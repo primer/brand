@@ -14,6 +14,8 @@ export type HeroImageProps = {
 export const HeroImage = forwardRef<HTMLImageElement, HeroImageProps>(
   ({position = 'block-end', className, ...rest}: PropsWithChildren<HeroImageProps>, ref) => {
     const {variant: heroVariant, enableAnimation} = useHeroContext()
+    const isInlinePosition = position.startsWith('inline')
+    const isInlinePadded = position.endsWith('-padded')
     return (
       <Image
         animate={
@@ -26,7 +28,14 @@ export const HeroImage = forwardRef<HTMLImageElement, HeroImageProps>(
             : undefined
         }
         ref={ref}
-        className={clsx(styles['Hero-image'], styles[`Hero-image--pos-${position}`], className)}
+        className={clsx(
+          styles['Hero-image'],
+          styles['Hero-media'],
+          styles[`Hero-media--pos-${position}`],
+          isInlinePosition && styles['Hero-media--pos-inline'],
+          isInlinePosition && isInlinePadded && styles['Hero-media--pos-inline-padded'],
+          className,
+        )}
         {...rest}
       />
     )

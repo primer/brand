@@ -105,7 +105,7 @@ describe('Hero', () => {
     const imageEl = getByAltText(mockAltText)
 
     expect(imageEl).toBeInTheDocument()
-    expect(imageEl).toHaveClass('Hero-image--pos-block-end')
+    expect(imageEl).toHaveClass('Hero-media--pos-block-end')
   })
 
   test('it has a slot for videos', () => {
@@ -204,7 +204,7 @@ describe('Hero', () => {
     const imageEl = getByAltText(mockAltText)
 
     expect(imageEl).toBeInTheDocument()
-    expect(imageEl).toHaveClass('Hero-image--pos-inline-end')
+    expect(imageEl).toHaveClass('Hero-media--pos-inline-end')
   })
 
   test('it can optionally render a video in inline-end alignment', () => {

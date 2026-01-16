@@ -12,12 +12,21 @@ export type HeroVideoProps = {
 } & PropsWithChildren<BaseProps<HTMLDivElement>>
 
 export const HeroVideo = forwardRef<HTMLDivElement, HeroVideoProps>(
-  ({className, children, 'data-testid': testId, ...rest}: HeroVideoProps, ref) => {
+  ({className, children, position = 'block-end', 'data-testid': testId, ...rest}: HeroVideoProps, ref) => {
     const containerRef = useProvidedRefOrCreate(ref as React.RefObject<HTMLDivElement>)
+    const isInlinePosition = position.startsWith('inline')
+    const isInlinePadded = position.endsWith('-padded')
 
     return (
       <div
-        className={clsx(styles['Hero-video'], className)}
+        className={clsx(
+          styles['Hero-video'],
+          styles['Hero-media'],
+          styles[`Hero-media--pos-${position}`],
+          isInlinePosition && styles['Hero-media--pos-inline'],
+          isInlinePosition && isInlinePadded && styles['Hero-media--pos-inline-padded'],
+          className,
+        )}
         ref={containerRef}
         data-testid={testId || 'Hero-video'}
         {...rest}

@@ -18,6 +18,10 @@ export type UseCursorAnimationOptions = {
    * Delay to start the animation in milliseconds
    */
   delay?: number
+  /**
+   * Loads after the page has fully loads
+   */
+  waitForPageLoad?: boolean
 }
 
 export type UseCursorAnimationResult = {
@@ -40,6 +44,7 @@ export function useCursorAnimation({
   animate,
   duration = 500,
   delay = 500,
+  waitForPageLoad = true,
 }: UseCursorAnimationOptions): UseCursorAnimationResult {
   const prefersReducedMotion = useReducedMotion()
   const shouldAnimate = animate === true && !prefersReducedMotion && text.length > 0
@@ -82,12 +87,37 @@ export function useCursorAnimation({
       return
     }
 
-    const delayTimer = setTimeout(() => {
-      startAnimation()
-    }, delay)
+    const startDelayTimer = () => {
+      return setTimeout(() => {
+        startAnimation()
+      }, delay)
+    }
 
-    return () => clearTimeout(delayTimer)
-  }, [startAnimation, delay, shouldAnimate])
+    let delayTimer: ReturnType<typeof setTimeout> | undefined
+
+    if (waitForPageLoad && typeof window !== 'undefined') {
+      // Check if page is already loaded
+      if (document.readyState === 'complete') {
+        delayTimer = startDelayTimer()
+      } else {
+        // Wait for page load before starting the delay timer
+        const handleLoad = () => {
+          delayTimer = startDelayTimer()
+        }
+        window.addEventListener('load', handleLoad)
+        return () => {
+          window.removeEventListener('load', handleLoad)
+          if (delayTimer) clearTimeout(delayTimer)
+        }
+      }
+    } else {
+      delayTimer = startDelayTimer()
+    }
+
+    return () => {
+      if (delayTimer) clearTimeout(delayTimer)
+    }
+  }, [startAnimation, delay, shouldAnimate, waitForPageLoad])
 
   const showCursor = !prefersReducedMotion && animate === true
 

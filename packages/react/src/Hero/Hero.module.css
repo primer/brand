@@ -117,19 +117,20 @@
   }
 }
 
-.Hero-image--contained {
+/* Shared media styles for images and videos */
+.Hero--variant-bordered-grid .Hero-media {
   max-width: 1176px;
   margin-inline: auto;
   display: block;
 }
 
-.Hero--variant-bordered-grid .Hero-image {
-  max-width: 1176px;
-  margin-inline: auto;
-  display: block;
+.Hero--variant-bordered-grid .Hero-media--pos-block-end {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
 }
 
-.Hero--variant-bordered-grid .Hero-image--pos-block-end {
+/* Applied directly to video/iframe elements for block-end position */
+.Hero-media-item--block-end {
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
 }
@@ -168,18 +169,12 @@
   }
 }
 
-.Hero--variant-bordered-grid.Hero--image-pos-inline-end,
-.Hero--variant-bordered-grid.Hero--image-pos-inline-start,
-.Hero--variant-bordered-grid.Hero--image-pos-inline-end-padded,
-.Hero--variant-bordered-grid.Hero--image-pos-inline-start-padded {
+.Hero--variant-bordered-grid.Hero--image-pos-inline {
   border-block-end: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
 }
 
 /* Text column styling for bordered-grid inline positions */
-.Hero--variant-bordered-grid.Hero--image-pos-inline-end .Hero-grid > *:first-child,
-.Hero--variant-bordered-grid.Hero--image-pos-inline-end-padded .Hero-grid > *:first-child,
-.Hero--variant-bordered-grid.Hero--image-pos-inline-start .Hero-grid > *:last-child,
-.Hero--variant-bordered-grid.Hero--image-pos-inline-start-padded .Hero-grid > *:last-child {
+.Hero-contentColumn--bordered-inline {
   padding: var(--base-size-32);
   display: flex;
   flex-direction: column;
@@ -187,27 +182,29 @@
 }
 
 @media screen and (min-width: 63.25rem) {
-  .Hero--variant-bordered-grid.Hero--image-pos-inline-end .Hero-grid > *:first-child,
-  .Hero--variant-bordered-grid.Hero--image-pos-inline-end-padded .Hero-grid > *:first-child,
-  .Hero--variant-bordered-grid.Hero--image-pos-inline-start .Hero-grid > *:last-child,
-  .Hero--variant-bordered-grid.Hero--image-pos-inline-start-padded .Hero-grid > *:last-child {
+  .Hero-contentColumn--bordered-inline {
     flex: 1 1 50%;
     padding: var(--base-size-64);
   }
 }
 
-/* Image column styling for bordered-grid inline positions */
+/* Media styling for bordered-grid inline positions */
 
-.Hero--variant-bordered-grid.Hero--image-pos-inline-end-padded .Hero-image,
-.Hero--variant-bordered-grid.Hero--image-pos-inline-start-padded .Hero-image {
+/* Edge-to-edge inline media (no padding) - remove border radius */
+.Hero--variant-bordered-grid .Hero-media--pos-inline:not(.Hero-media--pos-inline-padded) {
+  border-radius: 0;
+}
+
+/* Applied directly to video/iframe elements for inline position */
+.Hero-media-item--inline {
+  border-radius: 0;
+}
+
+/* Padded inline media - constrain size and center */
+.Hero--variant-bordered-grid .Hero-media--pos-inline-padded {
   max-width: 100%;
   height: auto;
   align-self: center;
-}
-
-.Hero--variant-bordered-grid.Hero--image-pos-inline-end .Hero-image,
-.Hero--variant-bordered-grid.Hero--image-pos-inline-start .Hero-image {
-  border-radius: 0;
 }
 
 /* Image column styling now handled by .Hero-imageContainer--inline-bordered */
@@ -216,8 +213,8 @@
   width: 100%;
 }
 
-.Hero-video video,
-.Hero-video iframe {
+/* Base styles for video/iframe media elements */
+.Hero-media-item {
   width: 100%;
   border-radius: var(--brand-borderRadius-large);
 }

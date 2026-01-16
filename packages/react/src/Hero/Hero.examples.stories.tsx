@@ -3,9 +3,11 @@ import type {Meta, StoryObj} from '@storybook/react'
 
 import placeholderImage from '../fixtures/images/browser-light.png'
 import placeholderBg from '../fixtures/images/dither-bg-landscape-green.png'
+import posterImage from '../fixtures/images/example-poster.png'
 
 import {Hero} from '.'
 import {Box} from '../Box'
+import {VideoPlayer} from '../VideoPlayer'
 
 const meta = {
   title: 'Components/Hero/Examples',
@@ -26,6 +28,16 @@ export const CustomBackgroundBlockEndImage: Story = {
 export const CustomBackgroundInlineEndPaddedImage: Story = {
   name: 'Custom background (inline-end-padded image)',
   render: () => <BorderedGridImageInlineEndPaddedExample />,
+}
+
+export const CustomBackgroundBlockEndVideo: Story = {
+  name: 'Custom background (block-end video)',
+  render: () => <BorderedGridCenteredVideoExample />,
+}
+
+export const CustomBackgroundInlineEndPaddedVideo: Story = {
+  name: 'Custom background (inline-end-padded video)',
+  render: () => <BorderedGridVideoInlineEndPaddedExample />,
 }
 
 function BorderedGridCenteredExample() {
@@ -76,6 +88,68 @@ function BorderedGridImageInlineEndPaddedExample() {
       <Hero.PrimaryAction href="#">Primary action</Hero.PrimaryAction>
       <Hero.SecondaryAction href="#">Secondary action</Hero.SecondaryAction>
       <Hero.Image position="inline-end-padded" src={placeholderImage} alt="" borderRadius="small" />
+    </Hero>
+  )
+}
+
+function BorderedGridCenteredVideoExample() {
+  const imageRef = React.useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    if (imageRef.current) {
+      return TempFadeInBackgroundEffect(imageRef.current, placeholderBg, 500)
+    }
+  }, [])
+
+  return (
+    <Box paddingBlockEnd={24}>
+      <Hero variant="bordered-grid" align="center" imageContainerRef={imageRef} enableAnimation>
+        <Hero.Label>Label</Hero.Label>
+        <Hero.Heading>This is my super sweet hero heading</Hero.Heading>
+        <Hero.Description>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
+          turpis felis nam pulvinar risus elementum.
+        </Hero.Description>
+        <Hero.PrimaryAction href="#">Primary action</Hero.PrimaryAction>
+        <Hero.SecondaryAction href="#">Secondary action</Hero.SecondaryAction>
+
+        <Hero.Video>
+          <VideoPlayer title="GitHub media player" poster={posterImage}>
+            <VideoPlayer.Source src="./example.mp4" type="video/mp4" />
+            <VideoPlayer.Track src="./example.vtt" default />
+          </VideoPlayer>
+        </Hero.Video>
+      </Hero>
+    </Box>
+  )
+}
+
+function BorderedGridVideoInlineEndPaddedExample() {
+  const imageRef = React.useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    if (imageRef.current) {
+      return TempFadeInBackgroundEffect(imageRef.current, placeholderBg, 500)
+    }
+  }, [])
+
+  return (
+    <Hero variant="bordered-grid" align="center" imageContainerRef={imageRef} enableAnimation>
+      <Hero.Label>Label</Hero.Label>
+
+      <Hero.Heading>This is my super sweet hero heading</Hero.Heading>
+      <Hero.Description>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis
+        felis nam pulvinar risus elementum.
+      </Hero.Description>
+      <Hero.PrimaryAction href="#">Primary action</Hero.PrimaryAction>
+      <Hero.SecondaryAction href="#">Secondary action</Hero.SecondaryAction>
+      <Hero.Video position="inline-end-padded">
+        <VideoPlayer title="GitHub media player" poster={posterImage}>
+          <VideoPlayer.Source src="./example.mp4" type="video/mp4" />
+          <VideoPlayer.Track src="./example.vtt" default />
+        </VideoPlayer>
+      </Hero.Video>
     </Hero>
   )
 }

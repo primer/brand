@@ -10,15 +10,17 @@
 }
 
 .TextCursorAnimation-text {
+  text-transform: uppercase;
+  font-weight: var(--brand-text-weight-500);
   clip-path: inset(0 calc((1 - var(--brand-TextCursorAnimation-reveal-progress, 1)) * 100%) 0 0);
   white-space: pre;
 }
 
 .TextCursorAnimation-cursor {
   position: absolute;
-  left: calc((var(--brand-TextCursorAnimation-reveal-progress, 1) * 100%) + var(--base-size-4));
+  left: calc((var(--brand-TextCursorAnimation-reveal-progress, 1) * 100%) + var(--base-size-8));
   top: 50%;
-  transform: translateY(calc(-50% - 1px));
+  transform: translateY(calc(-50%));
   width: var(--base-size-8);
   height: 11px;
   background-color: color-mix(

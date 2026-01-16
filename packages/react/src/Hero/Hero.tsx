@@ -133,7 +133,10 @@ const Root = forwardRef<HTMLElement, PropsWithChildren<HeroProps>>(
     const textColumn = (
       <Grid.Column span={{large: mediaChild && hasInlineMedia ? 6 : 12}}>
         <Stack
-          className={clsx(useInlineBorderedGrid && styles['Hero-text-column--inline-bordered-grid'])}
+          className={clsx(
+            useInlineBorderedGrid && styles['Hero-text-column--inline-bordered-grid'],
+            useInlineBorderedGrid && styles['Hero-contentColumn--bordered-inline'],
+          )}
           direction="vertical"
           gap="none"
           padding="none"
@@ -180,6 +183,7 @@ const Root = forwardRef<HTMLElement, PropsWithChildren<HeroProps>>(
               !hasInlineMedia && styles[`Hero--align-${align}`],
               heroLayoutClass,
               (HeroImageChild || HeroVideoChild) && styles[`Hero--image-pos-${mediaPosition}`],
+              (HeroImageChild || HeroVideoChild) && hasInlineMedia && styles['Hero--image-pos-inline'],
               useInlineBorderedGrid && styles['Hero--variant-inline-bordered-grid'],
               className,
             )}

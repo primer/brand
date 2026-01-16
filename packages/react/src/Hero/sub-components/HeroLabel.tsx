@@ -14,27 +14,28 @@ export type HeroLabelProps = Omit<TextProps, 'as' | 'ref' | 'animate'> &
   }
 
 export const HeroLabel = forwardRef<HTMLSpanElement, HeroLabelProps>(
-  ({children, className, animate, animationDelay = 1000, ...rest}: PropsWithChildren<HeroLabelProps>, ref) => {
+  (
+    {
+      children,
+      className,
+      variant = 'muted',
+      animate = false,
+      animationDelay = 1000,
+      ...rest
+    }: PropsWithChildren<HeroLabelProps>,
+    ref,
+  ) => {
     const {variant: heroVariant, enableAnimation} = useHeroContext()
 
+    const shouldAnimate = enableAnimation || animate
+    const shouldHaveDelay = (heroVariant === 'bordered-grid' && enableAnimation) || animate
+
     return (
-      <Text
-        font="monospace"
-        weight="medium"
-        as="span"
-        size="100"
-        variant="muted"
-        ref={ref}
-        className={clsx(styles['Hero-label'], className)}
-        {...rest}
-      >
-        <TextCursorAnimation
-          animate={enableAnimation || animate}
-          delay={heroVariant === 'bordered-grid' && enableAnimation ? animationDelay : 0}
-        >
+      <span ref={ref} className={clsx(styles['Hero-label'], className)} {...rest}>
+        <TextCursorAnimation variant={variant} animate={shouldAnimate} delay={shouldHaveDelay ? animationDelay : 0}>
           {children}
         </TextCursorAnimation>
-      </Text>
+      </span>
     )
   },
 )
