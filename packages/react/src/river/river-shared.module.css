@@ -2,8 +2,8 @@
   display: grid;
   gap: var(--brand-River-spacing-inner);
   grid-auto-rows: min-content;
-  padding-top: var(--brand-River-spacing-outer);
-  padding-bottom: var(--brand-River-spacing-outer);
+  padding-inline: var(--brand-River-spacing-outerInline);
+  padding-block: var(--brand-River-spacing-outerBlock);
 }
 
 .River--align-center {
@@ -36,7 +36,7 @@
 }
 
 .River__call-to-action {
-  margin-top: var(--base-size-24);
+  margin-top: var(--base-size-20);
 }
 
 .River__text strong,
@@ -58,8 +58,8 @@
   margin-block-end: var(--brand-River-label-margin);
 }
 
-/* Medium breakpoint and up */
-@media screen and (min-width: 48rem) {
+/* Large breakpoint and up */
+@media screen and (min-width: 63.25rem) {
   .River {
     grid-template-rows: unset;
   }
@@ -69,7 +69,7 @@
   }
 
   .River--50-50 {
-    grid-template-columns: [content] 1fr [visual] 1fr;
+    grid-template-columns: [content] min(50%, 476px) [visual] 1fr;
   }
 
   .River--60-40 {
@@ -84,8 +84,19 @@
     grid-template-areas: 'visual content';
   }
 
+  .River--align-end.River--50-50 {
+    grid-template-columns: [visual] 1fr [content] min(50%, 476px);
+  }
   .River--align-end.River--60-40 {
     grid-template-columns: [visual] 6fr [content] 4fr;
+  }
+
+  .River--align-start.River--50-50 .River__visual {
+    margin-inline-start: calc(var(--base-size-80) + var(--base-size-8));
+  }
+
+  .River--align-end.River--50-50 .River__visual {
+    margin-inline-end: calc(var(--base-size-80) + var(--base-size-8));
   }
 
   .River__content {
@@ -123,28 +134,12 @@
   }
 }
 
-/* Large breakpoint and up */
-@media screen and (min-width: 63.25rem) {
-  .River--50-50 .River__body-text,
-  .River--50-50 .River__heading {
-    max-width: 400px;
-  }
-
-  .River--align-start .River__content {
-    padding-inline-end: var(--base-size-128);
-  }
-
-  .River--align-end .River__content {
-    padding-inline: var(--base-size-64);
-  }
-}
-
 .RiverBreakout {
   display: flex;
   flex-direction: column;
   gap: var(--brand-RiverBreakout-spacing-inner);
-  padding-block-end: var(--brand-River-spacing-outer);
-  padding-block-start: var(--brand-River-spacing-outer);
+  padding-block-end: var(--brand-River-spacing-outerBlock);
+  padding-block-start: var(--brand-River-spacing-outerBlock);
 }
 
 .RiverBreakout .River__text {
