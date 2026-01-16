@@ -2,13 +2,10 @@
   "River": {
     "spacing": {
       "inner": {
-        "value": "var(--base-size-24)",
+        "value": "var(--base-size-40)",
         "responsive": {
-          "768px": {
-            "value": "var(--base-size-36)"
-          },
           "1280px": {
-            "value": "var(--base-size-48)"
+            "value": "var(--base-size-24)"
           }
         }
       },
@@ -23,11 +20,19 @@
           }
         }
       },
-      "outer": {
-        "value": "var(--base-size-36)",
+      "outerBlock": {
+        "value": "var(--base-size-40)",
         "responsive": {
           "1280px": {
-            "value": "var(--base-size-48)"
+            "value": "var(--base-size-64)"
+          }
+        }
+      },
+      "outerInline": {
+        "value": "var(--base-size-20)",
+        "responsive": {
+          "1280px": {
+            "value": "var(--base-size-64)"
           }
         }
       }
