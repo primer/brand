@@ -109,8 +109,20 @@ const waitForTimeoutLookup = {
   'components-testimonial-examples--with-frosted-glass': 4000, // for animation to complete
   'components-testimonial-examples--with-frosted-glass-dark': 4000, // for animation to complete
   'components-prose--playground': 4000, // for videos to load
-  'components-prose--default': 4000, // for videos to load,
+  'components-prose--default': 4000, // for videos to load
   'components-subnav-features--anchor-nav-variant': 3000, // for being flakey across translations
+  'components-videoplayer--default': 5000, // for video metadata to load
+  'components-videoplayer--playground': 5000, // for video metadata to load
+  'components-videoplayer-features--with-poster': 5000, // for video metadata to load
+  'components-videoplayer-features--without-branding': 5000, // for video metadata to load
+  'components-videoplayer-features--minimal': 5000, // for video metadata to load
+  'components-videoplayer-features--with-visually-hidden-title': 5000, // for video metadata to load
+  'components-videoplayer-features--controlled-programmatically': 5000, // for video metadata to load
+  'components-videoplayer-features--custom-play-icon': 5000, // for video metadata to load
+  'components-videoplayer-features--with-some-hidden-controls': 5000, // for video metadata to load
+  'components-videoplayer-features--tooltip-visible-on-focus': 5000, // for video metadata to load
+  'components-hero-features--with-video-block-end-default': 5000, // for video metadata to load
+  'components-hero-features--with-video-inline-end': 5000, // for video metadata to load
 }
 
 // const skipLocalizationsTestsFor = [
