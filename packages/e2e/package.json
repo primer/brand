@@ -41,7 +41,7 @@
   "devDependencies": {
     "@github/axe-github": "^0.5.0",
     "@types/node": "22.18.1",
-    "@playwright/test": "1.52.0",
+    "@playwright/test": "1.57.0",
     "playwright": "^1.52.0",
     "axe-playwright": "^1.1.12"
   },
