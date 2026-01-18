@@ -47,7 +47,7 @@ jobs:
         run: cd apps/storybook && npx storybook build
 
       - name: Install browsers
-        run: npx playwright install --with-deps
+        run: npx playwright install chrome --with-deps
 
       - name: Regenerate spec files
         run: cd packages/e2e && npm run test:visual:generate
