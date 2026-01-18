@@ -10,7 +10,7 @@
     "strict": true,
     "noImplicitAny": false,
     "esModuleInterop": true,
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "outDir": "lib",
     "jsx": "react-jsx",
     "plugins": [{"name": "typescript-plugin-css-modules"}],
