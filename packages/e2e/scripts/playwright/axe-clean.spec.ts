@@ -155,12 +155,11 @@ for (const story of storybookRoutes) {
     })
 
     test('it completes AXE page validation', async () => {
-      // Reset axe state to prevent "Axe is already running" race condition
       await page.evaluate(() => {
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const axe = (window as any).axe
-        if (axe && typeof axe.reset === 'function') {
-          axe.reset()
+        if (axe) {
+          axe._running = false
         }
       })
 
