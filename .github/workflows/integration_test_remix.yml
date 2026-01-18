@@ -37,7 +37,7 @@ jobs:
             ${{ runner.os }}-node-
 
       - name: Installing dependencies
-        run: npm ci --legacy-peer-deps
+        run: npm ci
 
       - name: Build
         run: npm run build:lib

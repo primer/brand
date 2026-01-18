@@ -38,7 +38,7 @@ jobs:
             ${{ runner.os }}-node-
 
       - name: Install dependencies
-        run: npm ci --legacy-peer-deps
+        run: npm ci
 
       - name: Build assets
         run: npm run build:lib && cd apps/storybook && npx storybook build

@@ -18,7 +18,7 @@ jobs:
     uses: primer/.github/.github/workflows/deploy_preview.yml@91fde6cc969a502562fdacdac48e35859b3a40b4
     with:
       node_version: 22
-      install: npm ci --legacy-peer-deps
+      install: npm ci
       build: |
         export NEXT_PUBLIC_SITE_TITLE='Primer'
         export NEXT_PUBLIC_REPO='https://github.com/primer/brand'
