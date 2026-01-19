@@ -16,10 +16,6 @@
     "resolveJsonModule": true,
     "types": ["node"]
   },
-  "ts-node": {
-    "esm": true,
-    "experimentalSpecifierResolution": "node"
-  },
   "include": ["scripts/**/*"],
   "exclude": ["node_modules"]
 }

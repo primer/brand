@@ -154,7 +154,7 @@ test.describe('Visual Comparison: SubNav', () => {
       'http://localhost:6006/iframe.html?args=&id=components-subnav-features--anchor-nav-variant&viewMode=story',
     )
 
-    await page.waitForTimeout(3000)
+    await page.waitForTimeout(6000)
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
