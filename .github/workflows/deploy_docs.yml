@@ -18,7 +18,7 @@ jobs:
     # SHA for security hardening. Points at 2.1.1 release
     uses: primer/.github/.github/workflows/deploy.yml@2a60f4cc62889bd218f3019ce4a090ff89b71cca
     with:
-      node_version: 22
+      node_version: 24
       install: npm ci
       build: |
         export NEXT_PUBLIC_SITE_TITLE='Primer'
