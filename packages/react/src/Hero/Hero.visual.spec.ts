@@ -125,7 +125,7 @@ test.describe('Visual Comparison: Hero', () => {
       'http://localhost:6006/iframe.html?args=&id=components-hero-features--with-video-block-end-default&viewMode=story',
     )
 
-    await page.waitForTimeout(500)
+    await page.waitForTimeout(5000)
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
@@ -134,7 +134,7 @@ test.describe('Visual Comparison: Hero', () => {
       'http://localhost:6006/iframe.html?args=&id=components-hero-features--with-video-inline-end&viewMode=story',
     )
 
-    await page.waitForTimeout(500)
+    await page.waitForTimeout(5000)
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 

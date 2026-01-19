@@ -123,7 +123,7 @@ const storybookRoutes = Object.values((IndexData as StoryIndex).entries)
     return !testsToSkip.includes(id)
   })
 
-//describe.configure({mode: 'parallel'})
+describe.configure({mode: 'parallel'})
 
 for (const story of storybookRoutes) {
   // eslint-disable-next-line i18n-text/no-en
@@ -156,6 +156,14 @@ for (const story of storybookRoutes) {
     })
 
     test('it completes AXE page validation', async () => {
+      await page.evaluate(() => {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const axe = (window as any).axe
+        if (axe) {
+          axe._running = false
+        }
+      })
+
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
       let violations = await getViolations(page, null, {

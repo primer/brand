@@ -489,6 +489,7 @@
 .SubNav__subHeading {
   display: block;
   position: relative;
+  white-space: nowrap;
 }
 
 .SubNav__subHeading[aria-current]:not([aria-current='false'])::after,
