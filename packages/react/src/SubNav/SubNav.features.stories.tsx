@@ -1,6 +1,5 @@
 import React, {useEffect} from 'react'
 import type {Meta, StoryObj} from '@storybook/react'
-import {linkTo} from '@storybook/addon-links'
 
 import {SubNav, SubNavProps} from './SubNav'
 import {Box} from '../Box'
@@ -251,15 +250,7 @@ const AnchorNavVariantTemplate = (args: SubNavProps) => (
   <main>
     <Box paddingBlockStart={64} backgroundColor="subtle" style={{position: 'relative', zIndex: 32}}></Box>
     <SubNav {...args}>
-      <SubNav.Heading
-        href="https://github.com/enterprise/"
-        onClick={e => {
-          e.preventDefault()
-          linkTo('Components/SubNav/Features', 'AnchorNavVariant')
-        }}
-      >
-        Enterprise
-      </SubNav.Heading>
+      <SubNav.Heading href="https://github.com/enterprise/">Enterprise</SubNav.Heading>
       <SubNav.Link href="#" aria-current="page">
         Overview
         <SubNav.SubMenu variant="anchor">

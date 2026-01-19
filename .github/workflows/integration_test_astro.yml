@@ -47,7 +47,7 @@ jobs:
             cypress-${{ runner.os }}-cypress-
 
       - name: Installing dependencies
-        run: npm ci --legacy-peer-deps
+        run: npm ci
 
       - name: install dependencies and verify Cypress
         env:
