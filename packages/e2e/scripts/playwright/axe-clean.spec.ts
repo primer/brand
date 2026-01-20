@@ -99,7 +99,7 @@ function formatViolation(violation: Result, index: number): string {
 ${violation.nodes
   .map(node => {
     const target = node.target.join(', ')
-    const html = node.html ? `\n    HTML: ${node.html.substring(0, 200)}${node.html.length > 200 ? '...' : ''}` : ''
+    const html = node.html ? `\n    HTML: ${node.html.substring(0, 500)}${node.html.length > 500 ? '...' : ''}` : ''
     return `  - Element: ${target}${html}`
   })
   .join('\n')}`
