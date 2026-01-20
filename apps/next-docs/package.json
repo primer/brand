@@ -32,7 +32,7 @@
   },
   "dependencies": {
     "@primer/doctocat-nextjs": "^0.8.0",
-    "@primer/octicons-react": "19.15.1",
+    "@primer/octicons-react": "19.21.2",
     "next": "15.5.9",
     "react": ">=18 <= 19",
     "react-dom": ">=18 <= 19"

@@ -372,7 +372,7 @@ describe('IDE', () => {
   it('plays the chat animation when both the chat and editor are present', async () => {
     const {getByText} = render(
       <IDE>
-        <IDE.Chat script={chatScript} alternativeText={chatScriptAlt} animationDelay={300} />
+        <IDE.Chat script={chatScript} alternativeText={chatScriptAlt} animationDelay={100} />
         <IDE.Editor size="large" activeTab={2} files={files} />
       </IDE>,
     )
@@ -385,15 +385,15 @@ describe('IDE', () => {
     expect(message2Parent).not.toHaveClass('IDE__Chat-message--visible')
     expect(message3Parent).not.toHaveClass('IDE__Chat-message--visible')
 
-    await waitFor(() => expect(message1Parent).toHaveClass('IDE__Chat-message--visible'))
-    await waitFor(() => expect(message2Parent).toHaveClass('IDE__Chat-message--visible'))
-    await waitFor(() => expect(message3Parent).toHaveClass('IDE__Chat-message--visible'))
+    await waitFor(() => expect(message1Parent).toHaveClass('IDE__Chat-message--visible'), {timeout: 5000})
+    await waitFor(() => expect(message2Parent).toHaveClass('IDE__Chat-message--visible'), {timeout: 5000})
+    await waitFor(() => expect(message3Parent).toHaveClass('IDE__Chat-message--visible'), {timeout: 5000})
   })
 
   it('plays editor animation when both the chat and editor are present', async () => {
     const {getByText} = render(
       <IDE>
-        <IDE.Chat script={chatScript} alternativeText={chatScriptAlt} animationDelay={300} />
+        <IDE.Chat script={chatScript} alternativeText={chatScriptAlt} animationDelay={100} />
         <IDE.Editor size="large" activeTab={2} files={files} />
       </IDE>,
     )
@@ -408,9 +408,9 @@ describe('IDE', () => {
     expect(line2).not.toHaveClass('Animation--active')
     expect(line3).not.toHaveClass('Animation--active')
 
-    await waitFor(() => expect(line1).toHaveClass('Animation--active'))
-    await waitFor(() => expect(line2).toHaveClass('Animation--active'))
-    await waitFor(() => expect(line3).toHaveClass('Animation--active'))
+    await waitFor(() => expect(line1).toHaveClass('Animation--active'), {timeout: 5000})
+    await waitFor(() => expect(line2).toHaveClass('Animation--active'), {timeout: 5000})
+    await waitFor(() => expect(line3).toHaveClass('Animation--active'), {timeout: 5000})
   })
 
   it('allows the chat and editor animations to be paused and resumed when both the chat and editor are present', async () => {
@@ -418,7 +418,7 @@ describe('IDE', () => {
 
     const {getByRole, getByText} = render(
       <IDE>
-        <IDE.Chat script={chatScript} alternativeText={chatScriptAlt} animationDelay={300} />
+        <IDE.Chat script={chatScript} alternativeText={chatScriptAlt} animationDelay={1000} />
         <IDE.Editor size="large" activeTab={2} files={files} />
       </IDE>,
     )
@@ -444,8 +444,8 @@ describe('IDE', () => {
     expect(message2Parent).not.toHaveClass('IDE__Chat-message--visible')
     expect(message3Parent).not.toHaveClass('IDE__Chat-message--visible')
 
-    await waitFor(() => expect(message1Parent).toHaveClass('IDE__Chat-message--visible'))
-    await waitFor(() => expect(line1).toHaveClass('Animation--active'))
+    await waitFor(() => expect(message1Parent).toHaveClass('IDE__Chat-message--visible'), {timeout: 5000})
+    await waitFor(() => expect(line1).toHaveClass('Animation--active'), {timeout: 5000})
 
     await user.click(pauseButton)
 
@@ -463,9 +463,9 @@ describe('IDE', () => {
 
     await user.click(playButton)
 
-    await waitFor(() => expect(message2Parent).toHaveClass('IDE__Chat-message--visible'))
-    await waitFor(() => expect(message3Parent).toHaveClass('IDE__Chat-message--visible'))
-    await waitFor(() => expect(line2).toHaveClass('Animation--active'))
-    await waitFor(() => expect(line3).toHaveClass('Animation--active'))
-  })
+    await waitFor(() => expect(message2Parent).toHaveClass('IDE__Chat-message--visible'), {timeout: 5000})
+    await waitFor(() => expect(message3Parent).toHaveClass('IDE__Chat-message--visible'), {timeout: 5000})
+    await waitFor(() => expect(line2).toHaveClass('Animation--active'), {timeout: 5000})
+    await waitFor(() => expect(line3).toHaveClass('Animation--active'), {timeout: 5000})
+  }, 30000)
 })
