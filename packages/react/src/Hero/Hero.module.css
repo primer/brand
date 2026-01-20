@@ -105,7 +105,6 @@
 @media screen and (min-width: 63.25rem) {
   .Hero-imageContainer--inline-bordered {
     min-height: calc(600px - var(--base-size-24));
-    flex: 1 1 50%;
   }
 
   .Hero-imageWrapper--bg-subtle {
@@ -152,13 +151,10 @@
   width: 100%;
   max-width: 1305px;
   margin-inline: auto;
-  display: flex;
-  flex-direction: column;
 }
 
 @media screen and (min-width: 63.25rem) {
   .Hero-grid--bordered-inline {
-    flex-direction: row;
     min-height: 440px;
   }
 }
@@ -183,7 +179,6 @@
 
 @media screen and (min-width: 63.25rem) {
   .Hero-contentColumn--bordered-inline {
-    flex: 1 1 50%;
     padding: var(--base-size-64);
   }
 }

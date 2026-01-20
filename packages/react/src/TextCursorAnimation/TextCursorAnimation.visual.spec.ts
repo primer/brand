@@ -19,7 +19,7 @@ test.describe('Visual Comparison: TextCursorAnimation', () => {
       'http://localhost:6006/iframe.html?args=&id=components-textcursoranimation--playground&viewMode=story',
     )
 
-    await page.waitForTimeout(500)
+    await page.waitForTimeout(4000)
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 

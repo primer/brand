@@ -129,6 +129,7 @@ const waitForTimeoutLookup = {
   'components-hero-features--with-video-block-end-default': 5000, // for video metadata to load
   'components-hero-features--with-video-inline-end': 5000, // for video metadata to load
   'recipes-flextemplate-flextemplate--default': 4000, // for video metadata to load
+  'components-textcursoranimation--playground': 4000, // for the animation to complete
 }
 
 // const skipLocalizationsTestsFor = [

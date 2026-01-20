@@ -91,6 +91,24 @@ function colorViolationImpact(impact: string | null | undefined) {
   return `${color}${impact}\x1b[0m`
 }
 
+function formatViolation(violation: Result, index: number): string {
+  return `${index + 1}.[${violation.impact?.toUpperCase()}] ${violation.id}: ${violation.help}
+    Description: ${violation.description}
+    Help URL: ${violation.helpUrl}
+    Affected elements:
+${violation.nodes
+  .map(node => {
+    const target = node.target.join(', ')
+    const html = node.html ? `\n    HTML: ${node.html.substring(0, 200)}${node.html.length > 200 ? '...' : ''}` : ''
+    return `  - Element: ${target}${html}`
+  })
+  .join('\n')}`
+}
+
+function formatViolationsForError(violations: Result[]): string {
+  return violations.map((v, i) => formatViolation(v, i)).join('\n\n')
+}
+
 function printViolations(violations: Result[]) {
   for (let i = 0; i < violations.length; i++) {
     const violation = violations[i]
@@ -179,6 +197,11 @@ for (const story of storybookRoutes) {
         allViolations.push(...violations)
 
         printViolations(violations)
+
+        // eslint-disable-next-line i18n-text/no-en
+        const errorMessage = `Found ${violations.length} accessibility violation(s):
+${formatViolationsForError(violations)}`
+        expect(violations.length, errorMessage).toBe(0)
       }
 
       expect(violations.length).toBe(0)

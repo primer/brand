@@ -1,6 +1,6 @@
 import {forwardRef, PropsWithChildren} from 'react'
 import {clsx} from 'clsx'
-import {Text, TextProps} from '../../Text'
+import {TextProps} from '../../Text'
 import type {BaseProps} from '../../component-helpers'
 import {TextCursorAnimation} from '../../TextCursorAnimation'
 
