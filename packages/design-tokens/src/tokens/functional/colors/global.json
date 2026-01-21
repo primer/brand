@@ -97,21 +97,21 @@
       },
       "subtle": {
         "value": "var(--base-color-scale-gray-0)",
-        "dark": "var(--base-color-scale-gray-8)"
+        "dark": "var(--base-color-scale-gray-9)"
       }
     },
     "border": {
       "default": {
         "value": "var(--base-color-scale-gray-3)",
-        "dark": "var(--base-color-scale-gray-6)"
+        "dark": "var(--base-color-scale-gray-7)"
       },
       "muted": {
         "value": "#d3d9dffe",
-        "dark": "var(--base-color-scale-gray-7)"
+        "dark": "var(--base-color-scale-gray-8)"
       },
       "subtle": {
         "value": "#e9edf1fe",
-        "dark": "var(--base-color-scale-gray-8)"
+        "dark": "var(--base-color-scale-gray-9)"
       }
     },
     "focus": {
