@@ -1,6 +1,6 @@
 {
   "name": "@primer/brand-docs",
-  "version": "0.61.1",
+  "version": "0.62.0",
   "private": true,
   "description": "Primer Brand Documentation",
   "keywords": [
@@ -31,7 +31,7 @@
     "start": "next start"
   },
   "dependencies": {
-    "@primer/doctocat-nextjs": "^0.8.0",
+    "@primer/doctocat-nextjs": "^0.8.1",
     "@primer/octicons-react": "19.21.2",
     "next": "15.5.9",
     "react": ">=18 <= 19",
@@ -39,9 +39,9 @@
   },
   "devDependencies": {
     "@github/prettier-config": "^0.0.6",
-    "@primer/brand-primitives": "^0.61.1",
+    "@primer/brand-primitives": "^0.62.0",
     "@primer/react": "38.6.1",
-    "@primer/react-brand": "0.61.1",
+    "@primer/react-brand": "0.62.0",
     "@swc/core": "^1.13.5",
     "@types/node": "22.18.1",
     "@types/react": "^19.2.6",
