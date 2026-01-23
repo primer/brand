@@ -649,9 +649,13 @@ export const BorderedGridYoutubeVideoBlockEnd: Story = {
         felis nam pulvinar risus elementum.
       </Hero.Description>
       <Hero.PrimaryAction href="#">Primary action</Hero.PrimaryAction>
-      <Hero.Video>
+      <Hero.Video
+        poster={posterImage}
+        posterAltText="Mona the Octocat"
+        posterTitle="Introducing the GitHub Copilot coding agent "
+      >
         <iframe
-          src="https://www.youtube.com/embed/EPyyyB23NUU"
+          src="https://www.youtube.com/embed/EPyyyB23NUU?autoplay=1"
           title="YouTube video player"
           frameBorder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -675,9 +679,14 @@ export const BorderedGridYoutubeVideoInlineEnd: Story = {
         felis nam pulvinar risus elementum.
       </Hero.Description>
       <Hero.PrimaryAction href="#">Primary action</Hero.PrimaryAction>
-      <Hero.Video position="inline-end">
+      <Hero.Video
+        position="inline-end"
+        poster={posterImage}
+        posterAltText="Mona the Octocat"
+        posterTitle="Introducing the GitHub Copilot coding agent "
+      >
         <iframe
-          src="https://www.youtube.com/embed/EPyyyB23NUU"
+          src="https://www.youtube.com/embed/EPyyyB23NUU?autoplay=1"
           title="YouTube video player"
           frameBorder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -690,8 +699,8 @@ export const BorderedGridYoutubeVideoInlineEnd: Story = {
   ),
 }
 
-export const BorderedGridYoutubeVideoInlineEndPadded: Story = {
-  name: 'Bordered grid variant (inline-end-padded YouTube video)',
+export const BorderedGridYoutubeVideoBlockEndWithPoster: Story = {
+  name: 'Bordered grid variant (Block-end YouTube video + poster)',
   render: () => (
     <Hero variant="bordered-grid" align="center">
       <Hero.Label>Label</Hero.Label>
@@ -701,9 +710,13 @@ export const BorderedGridYoutubeVideoInlineEndPadded: Story = {
         felis nam pulvinar risus elementum.
       </Hero.Description>
       <Hero.PrimaryAction href="#">Primary action</Hero.PrimaryAction>
-      <Hero.Video position="inline-end-padded">
+      <Hero.Video
+        poster={posterImage}
+        posterAltText="Mona the Octocat"
+        posterTitle="Introducing the GitHub Copilot coding agent "
+      >
         <iframe
-          src="https://www.youtube.com/embed/EPyyyB23NUU"
+          src="https://www.youtube.com/embed/EPyyyB23NUU?autoplay=1"
           title="YouTube video player"
           frameBorder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"

@@ -267,3 +267,44 @@
     padding: var(--brand-Hero-regular-padding);
   }
 }
+
+.Hero-video-poster-button {
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+  display: block;
+  height: 100%;
+  position: relative;
+}
+
+.Hero-video-poster-image {
+  height: 100%;
+}
+
+.Hero-video-poster-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: var(--base-size-96);
+  height: var(--base-size-96);
+  z-index: 1;
+  color: var(--base-color-scale-white-0);
+}
+
+.Hero-video-poster-header {
+  position: absolute;
+  inset: 0 0 auto;
+  padding: var(--base-size-16) var(--base-size-24);
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7) 60%, rgba(0, 0, 0, 0));
+  display: flex;
+  align-items: center;
+  gap: var(--base-size-16);
+  height: var(--base-size-80);
+}
+
+.Hero-video-header-poster-icon,
+.Hero-video-poster-text {
+  color: var(--base-color-scale-white-0);
+}

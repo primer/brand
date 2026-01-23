@@ -36,6 +36,12 @@ declare const styles: {
   readonly "Hero-text-column--inline-bordered-grid": string;
   readonly "Hero-trailing": string;
   readonly "Hero-video": string;
+  readonly "Hero-video-header-poster-icon": string;
+  readonly "Hero-video-poster-button": string;
+  readonly "Hero-video-poster-header": string;
+  readonly "Hero-video-poster-icon": string;
+  readonly "Hero-video-poster-image": string;
+  readonly "Hero-video-poster-text": string;
 };
 export = styles;
 
