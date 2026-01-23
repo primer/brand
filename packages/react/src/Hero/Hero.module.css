@@ -1,7 +1,6 @@
 .Hero {
   display: flex;
   flex-direction: column;
-  container-type: inline-size;
 }
 
 .Hero--variant-default {
@@ -114,6 +113,11 @@
   .Hero-imageContainer--inline-bg-padded {
     padding: var(--base-size-64);
   }
+}
+
+.Hero--variant-bordered-grid {
+  container-type: inline-size;
+  width: 100%;
 }
 
 /* Shared media styles for images and videos */

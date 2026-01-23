@@ -44,6 +44,8 @@ Updates to `Hero` component
 
 - **New image positions**: `Hero.Image` and `Hero.Video` now support `'inline-start'`, `'inline-end-padded'`, and `'inline-start-padded'` positions.
 
+- **New `Hero.Video` poster props**: `poster`, `posterAltText`, and `posterTitle` for displaying a custom poster image with a play button overlay before the video loads. Video content is hidden until the user clicks the poster to play.
+
 - **`imageBackgroundColor` prop**: Set to `'subtle'` for a subtle background on the image container.
 
 - **`imageContainerRef` prop**: Ref access to the image container element.
