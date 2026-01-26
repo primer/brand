@@ -1,5 +1,5 @@
 ---
-'@primer/react-brand': major
+'@primer/react-brand': minor
 ---
 
 Renamed font files to replace URL-unsafe characters (square brackets and commas) with hyphens
