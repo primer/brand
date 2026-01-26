@@ -1,5 +1,21 @@
 # @primer/react-brand
 
+## 0.63.0
+
+### Minor Changes
+
+- [#1229](https://github.com/primer/brand/pull/1229) [`d851b4e`](https://github.com/primer/brand/commit/d851b4e60ebfd66380fca5ed2ab3ee5a4dc113c4) Thanks [@danielguillan](https://github.com/danielguillan)! - Renamed font files to replace URL-unsafe characters (square brackets and commas) with hyphens
+
+  ⚠️ **Breaking change**: Font file names have changed. If you are importing font files directly, update your imports:
+
+  ```diff
+  - @primer/react-brand/fonts/MonaSansVF[wdth,wght,opsz].woff2
+  + @primer/react-brand/fonts/MonaSansVF-wdth-wght-opsz.woff2
+
+  - @primer/react-brand/fonts/MonaSansMonoVF[wght].woff2
+  + @primer/react-brand/fonts/MonaSansMonoVF-wght.woff2
+  ```
+
 ## 0.62.0
 
 ### Minor Changes
