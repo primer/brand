@@ -41,7 +41,7 @@
 
     ```diff
     - @primer/react-brand/fonts/MonaSans.woff2
-    + @primer/react-brand/fonts/MonaSansVF-wdth,wght,opsz.woff2
+    + @primer/react-brand/fonts/MonaSansVF[wdth,wght,opsz].woff2
     ```
 
   - A stylesheet for typography design tokens has been removed from the package. A replacement stylesheet with responsive values is available as a replacement.
