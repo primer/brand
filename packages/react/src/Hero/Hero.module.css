@@ -125,28 +125,52 @@
   max-width: 1176px;
   margin-inline: auto;
   display: block;
+  overflow: hidden;
 }
 
 .Hero--variant-bordered-grid .Hero-media--pos-block-end {
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: 0;
+  border-radius: var(--brand-borderRadius-medium) var(--brand-borderRadius-medium) 0 0;
 }
 
 /* Applied directly to video/iframe elements for block-end position */
 .Hero-media-item--block-end {
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: 0;
+  border-radius: var(--brand-borderRadius-medium) var(--brand-borderRadius-medium) 0 0;
 }
 
 .Hero--variant-bordered-grid .Hero-imageWrapper {
   border-block: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
   background-color: var(--brand-color-canvas-subtle);
+  width: 100%;
+}
+
+.Hero--variant-bordered-grid .Hero-imageWrapper-inner {
+  width: 100%;
+  max-width: 1305px;
+  margin-inline: auto;
   padding: var(--base-size-32) var(--base-size-32) 0;
 }
 
+@container (min-width: 1305px) {
+  .Hero--variant-bordered-grid .Hero-imageWrapper-inner {
+    border-inline: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
+  }
+}
+
+.Hero--variant-bordered-grid .Hero-imageWrapper-inner--padded {
+  padding: var(--base-size-32);
+}
+
+.Hero-media--pos-block-end-padded {
+  border-radius: var(--brand-borderRadius-medium);
+}
+
 @media screen and (min-width: 63.25rem) {
-  .Hero--variant-bordered-grid .Hero-imageWrapper {
+  .Hero--variant-bordered-grid .Hero-imageWrapper-inner {
     padding: var(--base-size-64) var(--base-size-64) 0;
+  }
+
+  .Hero--variant-bordered-grid .Hero-imageWrapper-inner--padded {
+    padding: var(--base-size-64);
   }
 }
 
@@ -280,9 +304,12 @@
   display: block;
   height: 100%;
   position: relative;
+  line-height: 0;
+  font-size: 0;
 }
 
 .Hero-video-poster-image {
+  display: block;
   height: 100%;
 }
 

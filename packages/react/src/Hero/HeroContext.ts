@@ -8,6 +8,7 @@ export type HeroVariant = (typeof HeroVariantOptions)[number]
 
 export const heroMediaPositions = [
   'block-end',
+  'block-end-padded',
   'inline-start',
   'inline-end',
   'inline-end-padded',

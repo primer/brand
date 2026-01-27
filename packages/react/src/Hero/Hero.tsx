@@ -114,6 +114,8 @@ const Root = forwardRef<HTMLElement, PropsWithChildren<HeroProps>>(
     const inlineMediaPosition = hasInlineMedia ? mediaPosition : undefined
     const mediaChild = HeroImageChild || HeroVideoChild
     const isBorderedGrid = variant === 'bordered-grid'
+    const isBlockEndPosition = mediaPosition === 'block-end' || mediaPosition === 'block-end-padded'
+    const isBlockEndPadded = mediaPosition === 'block-end-padded'
 
     const Tag = isBorderedGrid && enableAnimation ? AnimationProvider : Fragment
     const tagProps =
@@ -124,7 +126,7 @@ const Root = forwardRef<HTMLElement, PropsWithChildren<HeroProps>>(
           }
         : {}
 
-    const useContainedLayout = isBorderedGrid && mediaPosition === 'block-end'
+    const useContainedLayout = isBorderedGrid && isBlockEndPosition
     const useInlineBorderedGrid = isBorderedGrid && hasInlineMedia
 
     const heroLayoutClass = HeroImageChild ? styles['Hero--layout-image'] : styles['Hero--layout-default']
@@ -221,13 +223,20 @@ const Root = forwardRef<HTMLElement, PropsWithChildren<HeroProps>>(
                 data-testid={testIds.imageWrapper}
                 className={clsx(
                   styles['Hero-imageWrapper'],
-
+                  isBlockEndPadded && styles['Hero-imageWrapper--block-end-padded'],
                   imageContainerClassName,
                   imageBackgroundColor && styles[`Hero-imageWrapper--bg-${imageBackgroundColor}`],
                 )}
                 style={imageContainerStyle}
               >
-                {mediaChild}
+                <div
+                  className={clsx(
+                    styles['Hero-imageWrapper-inner'],
+                    isBlockEndPadded && styles['Hero-imageWrapper-inner--padded'],
+                  )}
+                >
+                  {mediaChild}
+                </div>
               </div>
             )}
           </section>

@@ -4,5 +4,10 @@ import {TextVariants, defaultTextVariant} from '@primer/react-brand'
 
 export const HeroDescriptionVariantProp = () => <PropTableValues values={[...TextVariants]} addLineBreaks />
 export const HeroDescriptionVariantPropDefault = () => <PropTableValues values={[defaultTextVariant]} />
-export const HeroImagePositionProp = () => <PropTableValues values={['inline-end', 'block-end']} addLineBreaks />
+export const HeroImagePositionProp = () => (
+  <PropTableValues
+    values={['block-end', 'block-end-padded', 'inline-end', 'inline-end-padded', 'inline-start', 'inline-start-padded']}
+    addLineBreaks
+  />
+)
 export const HeroVariantProp = () => <PropTableValues values={['default', 'bordered-grid']} addLineBreaks />

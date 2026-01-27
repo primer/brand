@@ -638,6 +638,26 @@ export const BorderedGridImageInlineStartPadded: Story = {
   ),
 }
 
+export const BorderedGridImageBlockEndPadded: Story = {
+  name: 'Bordered grid variant (block-end-padded image)',
+  render: () => (
+    <Hero variant="bordered-grid" align="center">
+      <Hero.Label>Label</Hero.Label>
+      <Hero.Heading>This is my super sweet hero heading</Hero.Heading>
+      <Hero.Description>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis
+        felis nam pulvinar risus elementum.
+      </Hero.Description>
+      <Hero.PrimaryAction href="#">Primary action</Hero.PrimaryAction>
+      <Hero.Image
+        position="block-end-padded"
+        src={placeholderImage}
+        alt="placeholder image, blank with gray solid fill"
+      />
+    </Hero>
+  ),
+}
+
 export const BorderedGridYoutubeVideoBlockEnd: Story = {
   name: 'Bordered grid variant (block-end YouTube video)',
   render: () => (
@@ -711,6 +731,37 @@ export const BorderedGridYoutubeVideoBlockEndWithPoster: Story = {
       </Hero.Description>
       <Hero.PrimaryAction href="#">Primary action</Hero.PrimaryAction>
       <Hero.Video
+        poster={posterImage}
+        posterAltText="Mona the Octocat"
+        posterTitle="Introducing the GitHub Copilot coding agent "
+      >
+        <iframe
+          src="https://www.youtube.com/embed/EPyyyB23NUU?autoplay=1"
+          title="YouTube video player"
+          frameBorder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerPolicy="strict-origin-when-cross-origin"
+          allowFullScreen
+          className={styles.customVideo}
+        ></iframe>
+      </Hero.Video>
+    </Hero>
+  ),
+}
+
+export const BorderedGridYoutubeVideoBlockEndPadded: Story = {
+  name: 'Bordered grid variant (block-end-padded YouTube video)',
+  render: () => (
+    <Hero variant="bordered-grid" align="center">
+      <Hero.Label>Label</Hero.Label>
+      <Hero.Heading>This is my super sweet hero heading</Hero.Heading>
+      <Hero.Description>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis
+        felis nam pulvinar risus elementum.
+      </Hero.Description>
+      <Hero.PrimaryAction href="#">Primary action</Hero.PrimaryAction>
+      <Hero.Video
+        position="block-end-padded"
         poster={posterImage}
         posterAltText="Mona the Octocat"
         posterTitle="Introducing the GitHub Copilot coding agent "

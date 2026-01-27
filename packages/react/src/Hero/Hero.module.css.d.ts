@@ -24,9 +24,12 @@ declare const styles: {
   readonly "Hero-imageContainer--inline-bordered": string;
   readonly "Hero-imageWrapper": string;
   readonly "Hero-imageWrapper--bg-subtle": string;
+  readonly "Hero-imageWrapper-inner": string;
+  readonly "Hero-imageWrapper-inner--padded": string;
   readonly "Hero-label": string;
   readonly "Hero-media": string;
   readonly "Hero-media--pos-block-end": string;
+  readonly "Hero-media--pos-block-end-padded": string;
   readonly "Hero-media--pos-inline": string;
   readonly "Hero-media--pos-inline-padded": string;
   readonly "Hero-media-item": string;

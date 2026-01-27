@@ -297,6 +297,15 @@ test.describe('Visual Comparison: Hero', () => {
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
+  test('Hero / Bordered grid variant (block-end-padded image)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-hero-features--bordered-grid-image-block-end-padded&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
   test('Hero / Bordered grid variant (block-end YouTube video)', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-hero-features--bordered-grid-youtube-video-block-end&viewMode=story',
@@ -318,6 +327,15 @@ test.describe('Visual Comparison: Hero', () => {
   test('Hero / Bordered grid variant (Block-end YouTube video + poster)', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-hero-features--bordered-grid-youtube-video-block-end-with-poster&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
+  test('Hero / Bordered grid variant (block-end-padded YouTube video)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-hero-features--bordered-grid-youtube-video-block-end-padded&viewMode=story',
     )
 
     await page.waitForTimeout(500)
