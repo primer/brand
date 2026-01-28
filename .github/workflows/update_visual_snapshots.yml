@@ -27,7 +27,7 @@ jobs:
       - name: Set up Node
         uses: actions/setup-node@v4
         with:
-          node-version: 22
+          node-version: 24
 
       - name: Cache dependencies
         uses: actions/cache@v4
@@ -38,7 +38,7 @@ jobs:
             ${{ runner.os }}-node-
 
       - name: Install dependencies
-        run: npm ci --legacy-peer-deps
+        run: npm ci
 
       - name: Build assets
         run: npm run build:lib && cd apps/storybook && npx storybook build
@@ -47,7 +47,7 @@ jobs:
         run: cd apps/storybook && npx storybook build
 
       - name: Install browsers
-        run: npx playwright install --with-deps
+        run: npx playwright install chrome --with-deps
 
       - name: Regenerate spec files
         run: cd packages/e2e && npm run test:visual:generate

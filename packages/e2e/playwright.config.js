@@ -11,6 +11,8 @@ const config = {
   use: {
     screenshot: 'only-on-failure',
     headless: true,
+    // Use Chrome instead of Chrome for Testing to get H.264 codec support for video tests
+    channel: 'chrome',
     env: {
       NODE_ENV: 'test',
     },

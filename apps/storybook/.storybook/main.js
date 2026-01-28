@@ -1,30 +1,30 @@
-import {dirname, join} from 'path'
-
-module.exports = {
+export default {
   stories: ['../../../packages/react/src/**/*.stories.@(js|jsx|ts|tsx)'],
   staticDirs: ['../static'],
-  addons: [
-    getAbsolutePath('@storybook/addon-a11y'),
-    getAbsolutePath('storybook-css-modules-preset'),
-    getAbsolutePath('@storybook/addon-webpack5-compiler-swc'),
-  ],
+  addons: ['@storybook/addon-a11y', '@storybook/addon-links'],
   framework: {
-    name: getAbsolutePath('@storybook/react-webpack5'),
+    name: '@storybook/react-vite',
     options: {},
-  },
-  features: {
-    buildStoriesJson: true,
-    disableTelemetry: true,
   },
   docs: {},
   typescript: {
     reactDocgen: 'react-docgen-typescript',
   },
   core: {
+    disableTelemetry: true,
     disableWhatsNewNotifications: true,
   },
-}
+  async viteFinal(config) {
+    if (!config.css) {
+      config.css = {}
+    }
 
-function getAbsolutePath(value) {
-  return dirname(require.resolve(join(value, 'package.json')))
+    if (!config.css.modules) {
+      config.css.modules = {}
+    }
+
+    config.css.modules.generateScopedName = '[name]__[local]__[hash:base64:5]'
+
+    return config
+  },
 }

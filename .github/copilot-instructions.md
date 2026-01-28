@@ -26,7 +26,7 @@ If today's date is more than 6 months after this date, please verify these instr
 
 ```bash
 # Installation (required first step)
-npm ci --legacy-peer-deps
+npm ci
 
 # Essential build (required before most other commands)
 npm run build:lib              # ~2-3 minutes, builds all library packages
@@ -71,7 +71,7 @@ apps/
 
 ### Making Changes
 
-1. **Always start with**: `npm i --legacy-peer-deps`
+1. **Always start with**: `npm i`
 2. **Before development**: `npm run start`
 3. **After editing code**: `npm run format:fix` (auto-formats all files)
 4. **Before committing**:

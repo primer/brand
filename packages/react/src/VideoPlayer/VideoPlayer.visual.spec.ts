@@ -10,14 +10,14 @@ test.describe('Visual Comparison: VideoPlayer', () => {
   test('VideoPlayer / Default', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-videoplayer--default&viewMode=story')
 
-    await page.waitForTimeout(500)
+    await page.waitForTimeout(5000)
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('VideoPlayer / Playground', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-videoplayer--playground&viewMode=story')
 
-    await page.waitForTimeout(500)
+    await page.waitForTimeout(5000)
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
@@ -26,7 +26,7 @@ test.describe('Visual Comparison: VideoPlayer', () => {
       'http://localhost:6006/iframe.html?args=&id=components-videoplayer-features--with-poster&viewMode=story',
     )
 
-    await page.waitForTimeout(500)
+    await page.waitForTimeout(5000)
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
@@ -35,7 +35,7 @@ test.describe('Visual Comparison: VideoPlayer', () => {
       'http://localhost:6006/iframe.html?args=&id=components-videoplayer-features--without-branding&viewMode=story',
     )
 
-    await page.waitForTimeout(500)
+    await page.waitForTimeout(5000)
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
@@ -44,7 +44,7 @@ test.describe('Visual Comparison: VideoPlayer', () => {
       'http://localhost:6006/iframe.html?args=&id=components-videoplayer-features--with-visually-hidden-title&viewMode=story',
     )
 
-    await page.waitForTimeout(500)
+    await page.waitForTimeout(5000)
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
@@ -53,7 +53,7 @@ test.describe('Visual Comparison: VideoPlayer', () => {
       'http://localhost:6006/iframe.html?args=&id=components-videoplayer-features--with-some-hidden-controls&viewMode=story',
     )
 
-    await page.waitForTimeout(500)
+    await page.waitForTimeout(5000)
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
@@ -62,7 +62,7 @@ test.describe('Visual Comparison: VideoPlayer', () => {
       'http://localhost:6006/iframe.html?args=&id=components-videoplayer-features--minimal&viewMode=story',
     )
 
-    await page.waitForTimeout(500)
+    await page.waitForTimeout(5000)
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
@@ -71,7 +71,7 @@ test.describe('Visual Comparison: VideoPlayer', () => {
       'http://localhost:6006/iframe.html?args=&id=components-videoplayer-features--controlled-programmatically&viewMode=story',
     )
 
-    await page.waitForTimeout(500)
+    await page.waitForTimeout(5000)
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
@@ -80,7 +80,7 @@ test.describe('Visual Comparison: VideoPlayer', () => {
       'http://localhost:6006/iframe.html?args=&id=components-videoplayer-features--custom-play-icon&viewMode=story',
     )
 
-    await page.waitForTimeout(500)
+    await page.waitForTimeout(5000)
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
@@ -89,7 +89,7 @@ test.describe('Visual Comparison: VideoPlayer', () => {
       'http://localhost:6006/iframe.html?args=&id=components-videoplayer-features--tooltip-visible-on-focus&viewMode=story',
     )
 
-    await page.waitForTimeout(500)
+    await page.waitForTimeout(5000)
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 })

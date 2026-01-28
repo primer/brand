@@ -1,5 +1,41 @@
 # @primer/react-brand
 
+## 0.63.0
+
+### Minor Changes
+
+- [#1229](https://github.com/primer/brand/pull/1229) [`d851b4e`](https://github.com/primer/brand/commit/d851b4e60ebfd66380fca5ed2ab3ee5a4dc113c4) Thanks [@danielguillan](https://github.com/danielguillan)! - Renamed font files to replace URL-unsafe characters (square brackets and commas) with hyphens
+
+  ⚠️ **Breaking change**: Font file names have changed. If you are importing font files directly, update your imports:
+
+  ```diff
+  - @primer/react-brand/fonts/MonaSansVF[wdth,wght,opsz].woff2
+  + @primer/react-brand/fonts/MonaSansVF-wdth-wght-opsz.woff2
+
+  - @primer/react-brand/fonts/MonaSansMonoVF[wght].woff2
+  + @primer/react-brand/fonts/MonaSansMonoVF-wght.woff2
+  ```
+
+## 0.62.0
+
+### Minor Changes
+
+- [#1225](https://github.com/primer/brand/pull/1225) [`a1caad6`](https://github.com/primer/brand/commit/a1caad612df348cfa657b844b94e33ab8f869791) Thanks [@rezrah](https://github.com/rezrah)! - **Breaking change:** Minimum Node.js version is now v24 (LTS)
+
+  If you're using an older version, please upgrade to Node.js 24 LTS before updating to this release.
+
+### Patch Changes
+
+- [#1227](https://github.com/primer/brand/pull/1227) [`4733b38`](https://github.com/primer/brand/commit/4733b381d00712ea3aa0243035bd5f7cbadd4866) Thanks [@rezrah](https://github.com/rezrah)! - Updated the `@primer/octicons-react` library dependency, which includes the refreshed GitHub logos for 2026.
+
+## 0.61.1
+
+### Patch Changes
+
+- [#1214](https://github.com/primer/brand/pull/1214) [`3930164`](https://github.com/primer/brand/commit/3930164519d04a80f33f2b174daf5ab5c070180f) Thanks [@danielguillan](https://github.com/danielguillan)! - Increase `IDE` component line numbers contrast
+
+- [#1223](https://github.com/primer/brand/pull/1223) [`895a4bf`](https://github.com/primer/brand/commit/895a4bf1407370189760d660271898a2b8a523b8) Thanks [@rezrah](https://github.com/rezrah)! - Fixed incorrect text wrapping bug in `SubNav.SubHeading` on Safari browsers.
+
 ## 0.61.0
 
 ### Minor Changes

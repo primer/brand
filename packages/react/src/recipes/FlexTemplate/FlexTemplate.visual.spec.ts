@@ -12,7 +12,7 @@ test.describe('Visual Comparison: FlexTemplate', () => {
       'http://localhost:6006/iframe.html?args=&id=recipes-flextemplate-flextemplate--default&viewMode=story',
     )
 
-    await page.waitForTimeout(500)
+    await page.waitForTimeout(4000)
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 })
