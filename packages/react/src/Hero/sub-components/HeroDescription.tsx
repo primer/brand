@@ -22,7 +22,7 @@ export const HeroDescription = forwardRef<HTMLParagraphElement, PropsWithChildre
     return (
       <Text
         animate={
-          heroVariant === 'bordered-grid' && enableAnimation
+          heroVariant === 'gridline' && enableAnimation
             ? {
                 variant: 'slide-in-up',
                 delay: 500,

@@ -22,25 +22,25 @@ type Story = StoryObj<typeof meta>
 
 export const CustomBackgroundBlockEndImage: Story = {
   name: 'Custom background (block-end image)',
-  render: () => <BorderedGridCenteredExample />,
+  render: () => <GridlineCenteredExample />,
 }
 
 export const CustomBackgroundInlineEndPaddedImage: Story = {
   name: 'Custom background (inline-end-padded image)',
-  render: () => <BorderedGridImageInlineEndPaddedExample />,
+  render: () => <GridlineImageInlineEndPaddedExample />,
 }
 
 export const CustomBackgroundBlockEndVideo: Story = {
   name: 'Custom background (block-end video)',
-  render: () => <BorderedGridCenteredVideoExample />,
+  render: () => <GridlineCenteredVideoExample />,
 }
 
 export const CustomBackgroundInlineEndPaddedVideo: Story = {
   name: 'Custom background (inline-end-padded video)',
-  render: () => <BorderedGridVideoInlineEndPaddedExample />,
+  render: () => <GridlineVideoInlineEndPaddedExample />,
 }
 
-function BorderedGridCenteredExample() {
+function GridlineCenteredExample() {
   const imageRef = React.useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -51,7 +51,7 @@ function BorderedGridCenteredExample() {
 
   return (
     <Box paddingBlockEnd={24}>
-      <Hero variant="bordered-grid" align="center" imageContainerRef={imageRef} enableAnimation>
+      <Hero variant="gridline" align="center" imageContainerRef={imageRef} enableAnimation>
         <Hero.Label>Label</Hero.Label>
         <Hero.Heading>This is my super sweet hero heading</Hero.Heading>
         <Hero.Description>
@@ -61,13 +61,13 @@ function BorderedGridCenteredExample() {
         <Hero.PrimaryAction href="#">Primary action</Hero.PrimaryAction>
         <Hero.SecondaryAction href="#">Secondary action</Hero.SecondaryAction>
 
-        <Hero.Image src={placeholderImage} alt="" borderRadius="small" />
+        <Hero.Image src={placeholderImage} alt="" enableBorder={false} />
       </Hero>
     </Box>
   )
 }
 
-function BorderedGridImageInlineEndPaddedExample() {
+function GridlineImageInlineEndPaddedExample() {
   const imageRef = React.useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -77,7 +77,7 @@ function BorderedGridImageInlineEndPaddedExample() {
   }, [])
 
   return (
-    <Hero variant="bordered-grid" align="center" imageContainerRef={imageRef} enableAnimation>
+    <Hero variant="gridline" align="center" imageContainerRef={imageRef} enableAnimation>
       <Hero.Label>Label</Hero.Label>
       <Hero.Heading>This is my super sweet hero heading</Hero.Heading>
       <Hero.Description>
@@ -86,12 +86,12 @@ function BorderedGridImageInlineEndPaddedExample() {
       </Hero.Description>
       <Hero.PrimaryAction href="#">Primary action</Hero.PrimaryAction>
       <Hero.SecondaryAction href="#">Secondary action</Hero.SecondaryAction>
-      <Hero.Image position="inline-end-padded" src={placeholderImage} alt="" borderRadius="small" />
+      <Hero.Image position="inline-end-padded" src={placeholderImage} alt="" enableBorder={false} />
     </Hero>
   )
 }
 
-function BorderedGridCenteredVideoExample() {
+function GridlineCenteredVideoExample() {
   const imageRef = React.useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -102,7 +102,7 @@ function BorderedGridCenteredVideoExample() {
 
   return (
     <Box paddingBlockEnd={24}>
-      <Hero variant="bordered-grid" align="center" imageContainerRef={imageRef} enableAnimation>
+      <Hero variant="gridline" align="center" imageContainerRef={imageRef} enableAnimation>
         <Hero.Label>Label</Hero.Label>
         <Hero.Heading>This is my super sweet hero heading</Hero.Heading>
         <Hero.Description>
@@ -112,7 +112,7 @@ function BorderedGridCenteredVideoExample() {
         <Hero.PrimaryAction href="#">Primary action</Hero.PrimaryAction>
         <Hero.SecondaryAction href="#">Secondary action</Hero.SecondaryAction>
 
-        <Hero.Video>
+        <Hero.Video enableBorder={false}>
           <VideoPlayer title="GitHub media player" poster={posterImage}>
             <VideoPlayer.Source src="./example.mp4" type="video/mp4" />
             <VideoPlayer.Track src="./example.vtt" default />
@@ -123,7 +123,7 @@ function BorderedGridCenteredVideoExample() {
   )
 }
 
-function BorderedGridVideoInlineEndPaddedExample() {
+function GridlineVideoInlineEndPaddedExample() {
   const imageRef = React.useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -133,7 +133,7 @@ function BorderedGridVideoInlineEndPaddedExample() {
   }, [])
 
   return (
-    <Hero variant="bordered-grid" align="center" imageContainerRef={imageRef} enableAnimation>
+    <Hero variant="gridline" align="center" imageContainerRef={imageRef} enableAnimation>
       <Hero.Label>Label</Hero.Label>
 
       <Hero.Heading>This is my super sweet hero heading</Hero.Heading>
@@ -143,7 +143,7 @@ function BorderedGridVideoInlineEndPaddedExample() {
       </Hero.Description>
       <Hero.PrimaryAction href="#">Primary action</Hero.PrimaryAction>
       <Hero.SecondaryAction href="#">Secondary action</Hero.SecondaryAction>
-      <Hero.Video position="inline-end-padded">
+      <Hero.Video position="inline-end-padded" enableBorder={false}>
         <VideoPlayer title="GitHub media player" poster={posterImage}>
           <VideoPlayer.Source src="./example.mp4" type="video/mp4" />
           <VideoPlayer.Track src="./example.vtt" default />

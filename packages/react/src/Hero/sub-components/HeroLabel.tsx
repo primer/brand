@@ -28,7 +28,7 @@ export const HeroLabel = forwardRef<HTMLSpanElement, HeroLabelProps>(
     const {variant: heroVariant, enableAnimation} = useHeroContext()
 
     const shouldAnimate = enableAnimation || animate
-    const shouldHaveDelay = (heroVariant === 'bordered-grid' && enableAnimation) || animate
+    const shouldHaveDelay = (heroVariant === 'gridline' && enableAnimation) || animate
 
     return (
       <span ref={ref} className={clsx(styles['Hero-label'], className)} {...rest}>

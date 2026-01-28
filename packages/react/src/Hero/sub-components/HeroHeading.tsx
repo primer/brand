@@ -16,7 +16,7 @@ export const HeroHeading = forwardRef<HTMLHeadingElement, HeroHeadingProps>(
     return (
       <Heading
         animate={
-          heroVariant === 'bordered-grid' && enableAnimation
+          heroVariant === 'gridline' && enableAnimation
             ? {
                 variant: 'reveal-in-up',
                 delay: 0,

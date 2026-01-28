@@ -24,13 +24,13 @@
 
 .Hero-grid--contained {
   width: 100%;
-  max-width: 1305px;
+  max-width: 1280px;
   margin-inline: auto;
   padding: var(--base-size-32);
 }
 
 /* Prevents double-borders. We only apply the inline borders when the parent container is wide enough to show the full width.  */
-@container (min-width: 1305px) {
+@container (min-width: 1280px) {
   .Hero-grid--contained {
     border-inline: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
   }
@@ -115,20 +115,20 @@
   }
 }
 
-.Hero--variant-bordered-grid {
+.Hero--variant-gridline {
   container-type: inline-size;
   width: 100%;
 }
 
 /* Shared media styles for images and videos */
-.Hero--variant-bordered-grid .Hero-media {
+.Hero--variant-gridline .Hero-media {
   max-width: 1176px;
   margin-inline: auto;
   display: block;
   overflow: hidden;
 }
 
-.Hero--variant-bordered-grid .Hero-media--pos-block-end {
+.Hero--variant-gridline .Hero-media--pos-block-end {
   border-radius: var(--brand-borderRadius-medium) var(--brand-borderRadius-medium) 0 0;
 }
 
@@ -137,26 +137,26 @@
   border-radius: var(--brand-borderRadius-medium) var(--brand-borderRadius-medium) 0 0;
 }
 
-.Hero--variant-bordered-grid .Hero-imageWrapper {
+.Hero--variant-gridline .Hero-imageWrapper {
   border-block: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
   background-color: var(--brand-color-canvas-subtle);
   width: 100%;
 }
 
-.Hero--variant-bordered-grid .Hero-imageWrapper-inner {
+.Hero--variant-gridline .Hero-imageWrapper-inner {
   width: 100%;
-  max-width: 1305px;
+  max-width: 1280px;
   margin-inline: auto;
   padding: var(--base-size-32) var(--base-size-32) 0;
 }
 
-@container (min-width: 1305px) {
-  .Hero--variant-bordered-grid .Hero-imageWrapper-inner {
+@container (min-width: 1280px) {
+  .Hero--variant-gridline .Hero-imageWrapper-inner--with-gridline {
     border-inline: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
   }
 }
 
-.Hero--variant-bordered-grid .Hero-imageWrapper-inner--padded {
+.Hero--variant-gridline .Hero-imageWrapper-inner--padded {
   padding: var(--base-size-32);
 }
 
@@ -165,19 +165,19 @@
 }
 
 @media screen and (min-width: 63.25rem) {
-  .Hero--variant-bordered-grid .Hero-imageWrapper-inner {
+  .Hero--variant-gridline .Hero-imageWrapper-inner {
     padding: var(--base-size-64) var(--base-size-64) 0;
   }
 
-  .Hero--variant-bordered-grid .Hero-imageWrapper-inner--padded {
+  .Hero--variant-gridline .Hero-imageWrapper-inner--padded {
     padding: var(--base-size-64);
   }
 }
 
-/* Bordered grid variant with inline (side-by-side) layout */
+/* GridLine variant with inline (side-by-side) layout */
 .Hero-grid--bordered-inline {
   width: 100%;
-  max-width: 1305px;
+  max-width: 1280px;
   margin-inline: auto;
 }
 
@@ -187,17 +187,17 @@
   }
 }
 
-@container (min-width: 1305px) {
+@container (min-width: 1280px) {
   .Hero-grid--bordered-inline {
     border-inline: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
   }
 }
 
-.Hero--variant-bordered-grid.Hero--image-pos-inline {
+.Hero--variant-gridline.Hero--image-pos-inline {
   border-block-end: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
 }
 
-/* Text column styling for bordered-grid inline positions */
+/* Text column styling for gridline inline positions */
 .Hero-contentColumn--bordered-inline {
   padding: var(--base-size-32);
   display: flex;
@@ -211,10 +211,10 @@
   }
 }
 
-/* Media styling for bordered-grid inline positions */
+/* Media styling for gridline inline positions */
 
 /* Edge-to-edge inline media (no padding) - remove border radius */
-.Hero--variant-bordered-grid .Hero-media--pos-inline:not(.Hero-media--pos-inline-padded) {
+.Hero--variant-gridline .Hero-media--pos-inline:not(.Hero-media--pos-inline-padded) {
   border-radius: 0;
 }
 
@@ -224,7 +224,7 @@
 }
 
 /* Padded inline media - constrain size and center */
-.Hero--variant-bordered-grid .Hero-media--pos-inline-padded {
+.Hero--variant-gridline .Hero-media--pos-inline-padded {
   max-width: 100%;
   height: auto;
   align-self: center;
@@ -259,7 +259,7 @@
   max-width: unset;
 }
 
-.Hero-text-column--inline-bordered-grid {
+.Hero-text-column--inline-gridline {
   height: 100%;
 }
 
@@ -268,7 +268,7 @@
   max-width: 600px;
 }
 
-.Hero--variant-inline-bordered-grid .Hero-description {
+.Hero--variant-inline-gridline .Hero-description {
   padding-block-start: var(--base-size-24);
   margin-block-start: auto;
 }

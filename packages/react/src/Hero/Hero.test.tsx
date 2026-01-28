@@ -321,18 +321,18 @@ describe('Hero', () => {
     expect(imageEl).not.toHaveClass('Hero-image--contained')
   })
 
-  test('renders with a bordered-grid variant', () => {
+  test('renders with a gridline variant', () => {
     const mockAltText = 'placeholder image'
 
     const {getByAltText, getByRole, getByTestId} = render(
-      <Hero variant="bordered-grid">
+      <Hero variant="gridline">
         <Hero.Heading>{mockHeading}</Hero.Heading>
         <Hero.Image src="mock.png" alt={mockAltText} />
       </Hero>,
     )
 
     const rootEl = getByRole('region')
-    expect(rootEl).toHaveClass('Hero--variant-bordered-grid')
+    expect(rootEl).toHaveClass('Hero--variant-gridline')
 
     const imageEl = getByAltText(mockAltText)
     expect(imageEl).toBeInTheDocument()
@@ -341,18 +341,18 @@ describe('Hero', () => {
     expect(imageWrapper).toBeInTheDocument()
   })
 
-  test('renders the bordered-grid layout with optional inline layout. Defaults to end.', () => {
+  test('renders the gridline layout with optional inline layout. Defaults to end.', () => {
     const mockAltText = 'placeholder image'
 
     const {getByAltText, getByRole, getByTestId} = render(
-      <Hero variant="bordered-grid">
+      <Hero variant="gridline">
         <Hero.Heading>{mockHeading}</Hero.Heading>
         <Hero.Image position="inline-end" src="mock.png" alt={mockAltText} />
       </Hero>,
     )
 
     const rootEl = getByRole('region')
-    expect(rootEl).toHaveClass('Hero--variant-bordered-grid')
+    expect(rootEl).toHaveClass('Hero--variant-gridline')
     expect(rootEl).toHaveClass('Hero--image-pos-inline-end')
 
     const imageEl = getByAltText(mockAltText)
@@ -362,18 +362,18 @@ describe('Hero', () => {
     expect(gridEl).toHaveClass('Hero-grid--bordered-inline')
   })
 
-  test('renders the bordered-grid layout with optional inline start layout. ', () => {
+  test('renders the gridline layout with optional inline start layout. ', () => {
     const mockAltText = 'placeholder image'
 
     const {getByAltText, getByRole, getByTestId} = render(
-      <Hero variant="bordered-grid">
+      <Hero variant="gridline">
         <Hero.Heading>{mockHeading}</Hero.Heading>
         <Hero.Image position="inline-start" src="mock.png" alt={mockAltText} />
       </Hero>,
     )
 
     const rootEl = getByRole('region')
-    expect(rootEl).toHaveClass('Hero--variant-bordered-grid')
+    expect(rootEl).toHaveClass('Hero--variant-gridline')
     expect(rootEl).toHaveClass('Hero--image-pos-inline-start')
 
     // Image should be present

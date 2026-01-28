@@ -534,10 +534,10 @@ export const EyebrowCentered: Story = {
   ),
 }
 
-export const BorderedGrid: Story = {
-  name: 'Bordered grid variant',
+export const Gridline: Story = {
+  name: 'GridLine variant',
   render: () => (
-    <Hero variant="bordered-grid">
+    <Hero variant="gridline">
       <Hero.Label>Label</Hero.Label>
       <Hero.Heading>This is my super sweet hero heading</Hero.Heading>
       <Hero.Description>
@@ -550,10 +550,10 @@ export const BorderedGrid: Story = {
   ),
 }
 
-export const BorderedGridCentered: Story = {
-  name: 'Bordered grid variant (centered)',
+export const GridlineCentered: Story = {
+  name: 'GridLine variant (centered)',
   render: () => (
-    <Hero variant="bordered-grid" align="center">
+    <Hero variant="gridline" align="center">
       <Hero.Label>Label</Hero.Label>
       <Hero.Heading>This is my super sweet hero heading</Hero.Heading>
       <Hero.Description>
@@ -566,10 +566,10 @@ export const BorderedGridCentered: Story = {
   ),
 }
 
-export const BorderedGridImageInlineEnd: Story = {
-  name: 'Bordered grid variant (inline-end image)',
+export const GridlineImageInlineEnd: Story = {
+  name: 'GridLine variant (inline-end image)',
   render: () => (
-    <Hero variant="bordered-grid" align="center">
+    <Hero variant="gridline" align="center">
       <Hero.Label>Label</Hero.Label>
       <Hero.Heading>This is my super sweet hero heading</Hero.Heading>
       <Hero.Description>
@@ -582,10 +582,10 @@ export const BorderedGridImageInlineEnd: Story = {
   ),
 }
 
-export const BorderedGridImageInlineStart: Story = {
-  name: 'Bordered grid variant (inline-start image)',
+export const GridlineImageInlineStart: Story = {
+  name: 'GridLine variant (inline-start image)',
   render: () => (
-    <Hero variant="bordered-grid" align="center">
+    <Hero variant="gridline" align="center">
       <Hero.Label>Label</Hero.Label>
       <Hero.Heading>This is my super sweet hero heading</Hero.Heading>
       <Hero.Description>
@@ -598,10 +598,10 @@ export const BorderedGridImageInlineStart: Story = {
   ),
 }
 
-export const BorderedGridImageInlineEndPadded: Story = {
-  name: 'Bordered grid variant (inline-end-padded image)',
+export const GridlineImageInlineEndPadded: Story = {
+  name: 'GridLine variant (inline-end-padded image)',
   render: () => (
-    <Hero variant="bordered-grid" align="center">
+    <Hero variant="gridline" align="center">
       <Hero.Label>Label</Hero.Label>
       <Hero.Heading>This is my super sweet hero heading</Hero.Heading>
       <Hero.Description>
@@ -618,10 +618,10 @@ export const BorderedGridImageInlineEndPadded: Story = {
   ),
 }
 
-export const BorderedGridImageInlineStartPadded: Story = {
-  name: 'Bordered grid variant (inline-start-padded image)',
+export const GridlineImageInlineStartPadded: Story = {
+  name: 'GridLine variant (inline-start-padded image)',
   render: () => (
-    <Hero variant="bordered-grid" align="center">
+    <Hero variant="gridline" align="center">
       <Hero.Label>Label</Hero.Label>
       <Hero.Heading>This is my super sweet hero heading</Hero.Heading>
       <Hero.Description>
@@ -638,10 +638,10 @@ export const BorderedGridImageInlineStartPadded: Story = {
   ),
 }
 
-export const BorderedGridImageBlockEndPadded: Story = {
-  name: 'Bordered grid variant (block-end-padded image)',
+export const GridlineImageBlockEndPadded: Story = {
+  name: 'GridLine variant (block-end-padded image)',
   render: () => (
-    <Hero variant="bordered-grid" align="center">
+    <Hero variant="gridline" align="center">
       <Hero.Label>Label</Hero.Label>
       <Hero.Heading>This is my super sweet hero heading</Hero.Heading>
       <Hero.Description>
@@ -658,10 +658,10 @@ export const BorderedGridImageBlockEndPadded: Story = {
   ),
 }
 
-export const BorderedGridYoutubeVideoBlockEnd: Story = {
-  name: 'Bordered grid variant (block-end YouTube video)',
+export const GridlineYoutubeVideoBlockEnd: Story = {
+  name: 'GridLine variant (block-end YouTube video)',
   render: () => (
-    <Hero variant="bordered-grid" align="center">
+    <Hero variant="gridline" align="center">
       <Hero.Label>Label</Hero.Label>
       <Hero.Heading>This is my super sweet hero heading</Hero.Heading>
       <Hero.Description>
@@ -688,10 +688,10 @@ export const BorderedGridYoutubeVideoBlockEnd: Story = {
   ),
 }
 
-export const BorderedGridYoutubeVideoInlineEnd: Story = {
-  name: 'Bordered grid variant (inline-end YouTube video)',
+export const GridlineYoutubeVideoInlineEnd: Story = {
+  name: 'GridLine variant (inline-end YouTube video)',
   render: () => (
-    <Hero variant="bordered-grid" align="center">
+    <Hero variant="gridline" align="center">
       <Hero.Label>Label</Hero.Label>
       <Hero.Heading>This is my super sweet hero heading</Hero.Heading>
       <Hero.Description>
@@ -719,10 +719,10 @@ export const BorderedGridYoutubeVideoInlineEnd: Story = {
   ),
 }
 
-export const BorderedGridYoutubeVideoBlockEndWithPoster: Story = {
-  name: 'Bordered grid variant (Block-end YouTube video + poster)',
+export const GridlineYoutubeVideoBlockEndWithPoster: Story = {
+  name: 'GridLine variant (Block-end YouTube video + poster)',
   render: () => (
-    <Hero variant="bordered-grid" align="center">
+    <Hero variant="gridline" align="center">
       <Hero.Label>Label</Hero.Label>
       <Hero.Heading>This is my super sweet hero heading</Hero.Heading>
       <Hero.Description>
@@ -749,10 +749,10 @@ export const BorderedGridYoutubeVideoBlockEndWithPoster: Story = {
   ),
 }
 
-export const BorderedGridYoutubeVideoBlockEndPadded: Story = {
-  name: 'Bordered grid variant (block-end-padded YouTube video)',
+export const GridlineYoutubeVideoBlockEndPadded: Story = {
+  name: 'GridLine variant (block-end-padded YouTube video)',
   render: () => (
-    <Hero variant="bordered-grid" align="center">
+    <Hero variant="gridline" align="center">
       <Hero.Label>Label</Hero.Label>
       <Hero.Heading>This is my super sweet hero heading</Hero.Heading>
       <Hero.Description>

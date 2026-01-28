@@ -245,97 +245,97 @@ test.describe('Visual Comparison: Hero', () => {
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
-  test('Hero / Bordered grid variant', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-hero-features--bordered-grid&viewMode=story')
+  test('Hero / GridLine variant', async ({page}) => {
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-hero-features--gridline&viewMode=story')
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
-  test('Hero / Bordered grid variant (centered)', async ({page}) => {
+  test('Hero / GridLine variant (centered)', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-hero-features--bordered-grid-centered&viewMode=story',
+      'http://localhost:6006/iframe.html?args=&id=components-hero-features--gridline-centered&viewMode=story',
     )
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
-  test('Hero / Bordered grid variant (inline-end image)', async ({page}) => {
+  test('Hero / GridLine variant (inline-end image)', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-hero-features--bordered-grid-image-inline-end&viewMode=story',
+      'http://localhost:6006/iframe.html?args=&id=components-hero-features--gridline-image-inline-end&viewMode=story',
     )
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
-  test('Hero / Bordered grid variant (inline-start image)', async ({page}) => {
+  test('Hero / GridLine variant (inline-start image)', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-hero-features--bordered-grid-image-inline-start&viewMode=story',
+      'http://localhost:6006/iframe.html?args=&id=components-hero-features--gridline-image-inline-start&viewMode=story',
     )
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
-  test('Hero / Bordered grid variant (inline-end-padded image)', async ({page}) => {
+  test('Hero / GridLine variant (inline-end-padded image)', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-hero-features--bordered-grid-image-inline-end-padded&viewMode=story',
+      'http://localhost:6006/iframe.html?args=&id=components-hero-features--gridline-image-inline-end-padded&viewMode=story',
     )
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
-  test('Hero / Bordered grid variant (inline-start-padded image)', async ({page}) => {
+  test('Hero / GridLine variant (inline-start-padded image)', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-hero-features--bordered-grid-image-inline-start-padded&viewMode=story',
+      'http://localhost:6006/iframe.html?args=&id=components-hero-features--gridline-image-inline-start-padded&viewMode=story',
     )
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
-  test('Hero / Bordered grid variant (block-end-padded image)', async ({page}) => {
+  test('Hero / GridLine variant (block-end-padded image)', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-hero-features--bordered-grid-image-block-end-padded&viewMode=story',
+      'http://localhost:6006/iframe.html?args=&id=components-hero-features--gridline-image-block-end-padded&viewMode=story',
     )
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
-  test('Hero / Bordered grid variant (block-end YouTube video)', async ({page}) => {
+  test('Hero / GridLine variant (block-end YouTube video)', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-hero-features--bordered-grid-youtube-video-block-end&viewMode=story',
+      'http://localhost:6006/iframe.html?args=&id=components-hero-features--gridline-youtube-video-block-end&viewMode=story',
     )
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
-  test('Hero / Bordered grid variant (inline-end YouTube video)', async ({page}) => {
+  test('Hero / GridLine variant (inline-end YouTube video)', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-hero-features--bordered-grid-youtube-video-inline-end&viewMode=story',
+      'http://localhost:6006/iframe.html?args=&id=components-hero-features--gridline-youtube-video-inline-end&viewMode=story',
     )
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
-  test('Hero / Bordered grid variant (Block-end YouTube video + poster)', async ({page}) => {
+  test('Hero / GridLine variant (Block-end YouTube video + poster)', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-hero-features--bordered-grid-youtube-video-block-end-with-poster&viewMode=story',
+      'http://localhost:6006/iframe.html?args=&id=components-hero-features--gridline-youtube-video-block-end-with-poster&viewMode=story',
     )
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
-  test('Hero / Bordered grid variant (block-end-padded YouTube video)', async ({page}) => {
+  test('Hero / GridLine variant (block-end-padded YouTube video)', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-hero-features--bordered-grid-youtube-video-block-end-padded&viewMode=story',
+      'http://localhost:6006/iframe.html?args=&id=components-hero-features--gridline-youtube-video-block-end-padded&viewMode=story',
     )
 
     await page.waitForTimeout(500)

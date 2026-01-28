@@ -11,6 +11,7 @@ import {MarkGithubIcon} from '@primer/octicons-react'
 
 type HeroVideoBaseProps = {
   position?: HeroMediaPositions
+  enableBorder?: boolean
   'data-testid'?: string
 } & PropsWithChildren<BaseProps<HTMLDivElement>>
 

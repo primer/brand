@@ -19,7 +19,7 @@ export const HeroImage = forwardRef<HTMLImageElement, HeroImageProps>(
     return (
       <Image
         animate={
-          heroVariant === 'bordered-grid' && enableAnimation
+          heroVariant === 'gridline' && enableAnimation
             ? {
                 variant: 'slide-in-up',
                 delay: 0,

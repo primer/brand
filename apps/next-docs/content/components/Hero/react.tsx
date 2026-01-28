@@ -10,4 +10,4 @@ export const HeroImagePositionProp = () => (
     addLineBreaks
   />
 )
-export const HeroVariantProp = () => <PropTableValues values={['default', 'bordered-grid']} addLineBreaks />
+export const HeroVariantProp = () => <PropTableValues values={['default', 'gridline']} addLineBreaks />

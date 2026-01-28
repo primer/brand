@@ -3,9 +3,9 @@ declare const styles: {
   readonly "Hero--align-center": string;
   readonly "Hero--align-start": string;
   readonly "Hero--image-pos-inline": string;
-  readonly "Hero--variant-bordered-grid": string;
   readonly "Hero--variant-default": string;
-  readonly "Hero--variant-inline-bordered-grid": string;
+  readonly "Hero--variant-gridline": string;
+  readonly "Hero--variant-inline-gridline": string;
   readonly "Hero-actions": string;
   readonly "Hero-content": string;
   readonly "Hero-contentColumn--bordered-inline": string;
@@ -26,6 +26,7 @@ declare const styles: {
   readonly "Hero-imageWrapper--bg-subtle": string;
   readonly "Hero-imageWrapper-inner": string;
   readonly "Hero-imageWrapper-inner--padded": string;
+  readonly "Hero-imageWrapper-inner--with-gridline": string;
   readonly "Hero-label": string;
   readonly "Hero-media": string;
   readonly "Hero-media--pos-block-end": string;
@@ -36,7 +37,7 @@ declare const styles: {
   readonly "Hero-media-item--block-end": string;
   readonly "Hero-media-item--inline": string;
   readonly "Hero-mediaContainer": string;
-  readonly "Hero-text-column--inline-bordered-grid": string;
+  readonly "Hero-text-column--inline-gridline": string;
   readonly "Hero-trailing": string;
   readonly "Hero-video": string;
   readonly "Hero-video-header-poster-icon": string;

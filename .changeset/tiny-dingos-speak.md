@@ -30,14 +30,14 @@ Updates to `Hero` component
 
 #### New Features
 
-- **New `Hero` prop**: `variant`. This prop controls overall layout, appearance and motion in the `Hero`. Two variants are available: `default` and `bordered-grid`.
+- **New `Hero` prop**: `variant`. This prop controls overall layout, appearance and motion in the `Hero`. Two variants are available: `default` and `gridline`.
 
   The `default` variant is the pre-existing `Hero` configuration, and remains the default value to minimize breaking changes.
 
-  The `bordered-grid` layout is a new layout that can be opted-into. This is an experimental layout and configuration.
+  The `gridline` layout is a new layout that can be opted-into. This is an experimental layout and configuration.
 
   ```jsx
-  <Hero variant="bordered-grid" />
+  <Hero variant="gridline" />
   ```
 
 - **New `Hero.Label` animations**: New `animate` and `animationDelay` props for text cursor animation effect.
@@ -50,7 +50,7 @@ Updates to `Hero` component
 
 - **`imageContainerRef` prop**: Ref access to the image container element.
 
-- **Built-in animations**: When using `variant="bordered-grid"`, heading, description, image, and actions animate automatically on load.
+- **Built-in animations**: When using `variant="gridline"`, heading, description, image, and actions animate automatically on load.
 
 ### Other
 

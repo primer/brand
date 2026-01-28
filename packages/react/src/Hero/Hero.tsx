@@ -100,7 +100,7 @@ const Root = forwardRef<HTMLElement, PropsWithChildren<HeroProps>>(
         {HeroActions: [], HeroChildren: [], HeroImageChild: undefined, HeroVideoChild: undefined},
       )
 
-      // Users shouldn't be able to have two types of media, prefer Hero.Image
+      // Users shouldn't be able to have two types of media, so we prefer Hero.Image
       if (result.HeroImageChild && result.HeroVideoChild) {
         result.HeroVideoChild = undefined
       }
@@ -110,24 +110,25 @@ const Root = forwardRef<HTMLElement, PropsWithChildren<HeroProps>>(
 
     const mediaPositionProp = HeroImageChild?.props.position || HeroVideoChild?.props.position
     const mediaPosition = mediaPositionProp || 'block-end'
+    const mediaWrapperHasBorder = HeroImageChild?.props.enableBorder ?? HeroVideoChild?.props.enableBorder ?? true
     const hasInlineMedia = heroMediaInlinePositions.includes(mediaPosition as HeroMediaInlinePositions)
     const inlineMediaPosition = hasInlineMedia ? mediaPosition : undefined
     const mediaChild = HeroImageChild || HeroVideoChild
-    const isBorderedGrid = variant === 'bordered-grid'
+    const isGridline = variant === 'gridline'
     const isBlockEndPosition = mediaPosition === 'block-end' || mediaPosition === 'block-end-padded'
     const isBlockEndPadded = mediaPosition === 'block-end-padded'
 
-    const Tag = isBorderedGrid && enableAnimation ? AnimationProvider : Fragment
+    const Tag = isGridline && enableAnimation ? AnimationProvider : Fragment
     const tagProps =
-      isBorderedGrid && enableAnimation
+      isGridline && enableAnimation
         ? {
             autoStaggerChildren: false,
             animationTrigger: 'immediate' as const,
           }
         : {}
 
-    const useContainedLayout = isBorderedGrid && isBlockEndPosition
-    const useInlineBorderedGrid = isBorderedGrid && hasInlineMedia
+    const useContainedLayout = isGridline && isBlockEndPosition
+    const useInlineGridline = isGridline && hasInlineMedia
 
     const heroLayoutClass = HeroImageChild ? styles['Hero--layout-image'] : styles['Hero--layout-default']
     const isInlineStart = mediaPosition === 'inline-start' || mediaPosition === 'inline-start-padded'
@@ -136,8 +137,8 @@ const Root = forwardRef<HTMLElement, PropsWithChildren<HeroProps>>(
       <Grid.Column span={{large: mediaChild && hasInlineMedia ? 6 : 12}}>
         <Stack
           className={clsx(
-            useInlineBorderedGrid && styles['Hero-text-column--inline-bordered-grid'],
-            useInlineBorderedGrid && styles['Hero-contentColumn--bordered-inline'],
+            useInlineGridline && styles['Hero-text-column--inline-gridline'],
+            useInlineGridline && styles['Hero-contentColumn--bordered-inline'],
           )}
           direction="vertical"
           gap="none"
@@ -163,10 +164,10 @@ const Root = forwardRef<HTMLElement, PropsWithChildren<HeroProps>>(
           span={{large: hasInlineMedia ? 6 : 12}}
           className={clsx(
             imageBackgroundColor && styles[`Hero-imageContainer--bg-${imageBackgroundColor}`],
-            useInlineBorderedGrid &&
+            useInlineGridline &&
               inlineMediaPosition?.includes('padded') &&
               styles['Hero-imageContainer--inline-bg-padded'],
-            useInlineBorderedGrid && styles['Hero-imageContainer--inline-bordered'],
+            useInlineGridline && styles['Hero-imageContainer--inline-bordered'],
           )}
         >
           <div className={clsx(styles['Hero-mediaContainer'], imageContainerClassName)} style={imageContainerStyle}>
@@ -186,7 +187,7 @@ const Root = forwardRef<HTMLElement, PropsWithChildren<HeroProps>>(
               heroLayoutClass,
               (HeroImageChild || HeroVideoChild) && styles[`Hero--image-pos-${mediaPosition}`],
               (HeroImageChild || HeroVideoChild) && hasInlineMedia && styles['Hero--image-pos-inline'],
-              useInlineBorderedGrid && styles['Hero--variant-inline-bordered-grid'],
+              useInlineGridline && styles['Hero--variant-inline-gridline'],
               className,
             )}
             ref={ref}
@@ -195,13 +196,13 @@ const Root = forwardRef<HTMLElement, PropsWithChildren<HeroProps>>(
             {...rest}
           >
             <Grid
-              fullWidth={!useContainedLayout && !useInlineBorderedGrid}
+              fullWidth={!useContainedLayout && !useInlineGridline}
               data-testid={testIds.grid}
               className={clsx(
                 styles['Hero-grid'],
                 styles[`Hero-grid--${mediaPosition}`],
                 useContainedLayout && styles['Hero-grid--contained'],
-                useInlineBorderedGrid && styles['Hero-grid--bordered-inline'],
+                useInlineGridline && styles['Hero-grid--bordered-inline'],
               )}
             >
               {/* For inline-start, image comes first in DOM for accessibility */}
@@ -233,6 +234,7 @@ const Root = forwardRef<HTMLElement, PropsWithChildren<HeroProps>>(
                   className={clsx(
                     styles['Hero-imageWrapper-inner'],
                     isBlockEndPadded && styles['Hero-imageWrapper-inner--padded'],
+                    mediaWrapperHasBorder && styles['Hero-imageWrapper-inner--with-gridline'],
                   )}
                 >
                   {mediaChild}

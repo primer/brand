@@ -19,11 +19,11 @@ export const HeroSecondaryAction = forwardRef<
   PropsWithChildren<HeroSecondaryActionProps>
 >(({href, as = 'a', children, ...rest}, ref) => {
   const {variant: heroVariant, enableAnimation} = useHeroContext()
-  const Tag = heroVariant === 'bordered-grid' ? Box : React.Fragment
+  const Tag = heroVariant === 'gridline' ? Box : React.Fragment
   return (
     <Tag
       animate={
-        heroVariant === 'bordered-grid' && enableAnimation
+        heroVariant === 'gridline' && enableAnimation
           ? {
               variant: 'slide-in-up',
               delay: 750,
