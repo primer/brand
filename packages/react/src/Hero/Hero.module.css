@@ -306,11 +306,13 @@
   position: relative;
   line-height: 0;
   font-size: 0;
+  width: 100%;
 }
 
 .Hero-video-poster-image {
   display: block;
-  height: 100%;
+  height: auto;
+  width: 100%;
 }
 
 .Hero-video-poster-icon {
