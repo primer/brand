@@ -5,6 +5,7 @@ declare const styles: {
   readonly "River--align-center": string;
   readonly "River--align-end": string;
   readonly "River--align-start": string;
+  readonly "River--variant-bordered-grid": string;
   readonly "RiverBreakout": string;
   readonly "RiverBreakout--muted": string;
   readonly "RiverBreakout__hiddenHeading": string;
@@ -18,6 +19,7 @@ declare const styles: {
   readonly "River__trailingComponent--divider": string;
   readonly "River__visual": string;
   readonly "River__visual--fill-media": string;
+  readonly "River__visual--has-background": string;
   readonly "River__visual--has-shadow": string;
   readonly "River__visual--rounded": string;
 };

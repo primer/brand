@@ -2,8 +2,47 @@
   display: grid;
   gap: var(--brand-River-spacing-inner);
   grid-auto-rows: min-content;
-  padding-top: var(--brand-River-spacing-outer);
-  padding-bottom: var(--brand-River-spacing-outer);
+  padding-block: var(--brand-River-spacing-outerBlock);
+  container-type: inline-size;
+}
+
+.River--variant-bordered-grid {
+  position: relative;
+  padding-inline: var(--brand-River-variant-bordered-grid-spacing-outerInline);
+  gap: var(--base-size-32);
+}
+
+@media screen and (min-width: 48rem) {
+  .River--variant-bordered-grid {
+    gap: var(--base-size-40);
+  }
+}
+
+/* Block borders (top/bottom) span full viewport using pseudo-elements */
+.River--variant-bordered-grid::before,
+.River--variant-bordered-grid::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100vw;
+  height: 0;
+  border-top: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
+}
+
+.River--variant-bordered-grid::before {
+  top: 0;
+}
+
+.River--variant-bordered-grid::after {
+  bottom: 0;
+}
+
+/* Inline borders (left/right) stay inside the grid, only when viewport is wide enough that Grid is at max-width */
+@media screen and (min-width: 80rem) {
+  .River--variant-bordered-grid {
+    border-inline: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
+  }
 }
 
 .River--align-center {
@@ -31,12 +70,32 @@
   box-shadow: var(--brand-River-visual-shadow);
 }
 
+.River--variant-bordered-grid .River__visual--has-background {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--brand-color-canvas-subtle);
+  padding: var(--base-size-32);
+  border-radius: 0;
+  margin-block: calc(-1 * var(--brand-River-spacing-outerBlock));
+  margin-block-end: 0;
+}
+
+.River--variant-bordered-grid .River__visual--has-background img,
+.River--variant-bordered-grid .River__visual--has-background picture,
+.River--variant-bordered-grid .River__visual--has-background video {
+  max-width: 100%;
+  height: auto;
+  width: auto;
+  border-radius: var(--brand-borderRadius-large);
+}
+
 .River__heading {
   margin-bottom: var(--brand-River-heading-margin);
 }
 
 .River__call-to-action {
-  margin-top: var(--base-size-24);
+  margin-top: var(--base-size-20);
 }
 
 .River__text strong,
@@ -58,10 +117,15 @@
   margin-block-end: var(--brand-River-label-margin);
 }
 
-/* Medium breakpoint and up */
-@media screen and (min-width: 48rem) {
+/* Large breakpoint and up */
+@media screen and (min-width: 63.25rem) {
   .River {
     grid-template-rows: unset;
+  }
+
+  .River--variant-bordered-grid .River__visual--has-background {
+    padding: var(--base-size-64);
+    margin-block-end: calc(-1 * var(--brand-River-spacing-outerBlock));
   }
 
   .River__content {
@@ -69,7 +133,7 @@
   }
 
   .River--50-50 {
-    grid-template-columns: [content] 1fr [visual] 1fr;
+    grid-template-columns: [content] min(50%, 476px) [visual] 1fr;
   }
 
   .River--60-40 {
@@ -84,8 +148,19 @@
     grid-template-areas: 'visual content';
   }
 
+  .River--align-end.River--50-50 {
+    grid-template-columns: [visual] 1fr [content] min(50%, 476px);
+  }
   .River--align-end.River--60-40 {
     grid-template-columns: [visual] 6fr [content] 4fr;
+  }
+
+  .River--align-start.River--50-50 .River__visual {
+    margin-inline-start: calc(var(--base-size-80) + var(--base-size-8));
+  }
+
+  .River--align-end.River--50-50 .River__visual {
+    margin-inline-end: calc(var(--base-size-80) + var(--base-size-8));
   }
 
   .River__content {
@@ -121,21 +196,50 @@
   .River--align-center .River__content {
     margin-top: var(--brand-River-spacing-inner);
   }
-}
 
-/* Large breakpoint and up */
-@media screen and (min-width: 63.25rem) {
-  .River--50-50 .River__body-text,
-  .River--50-50 .River__heading {
-    max-width: 400px;
+  .River--variant-bordered-grid:not(.River--align-center):has(.River__visual--has-background) {
+    padding-inline: 0;
+    gap: 0;
   }
 
-  .River--align-start .River__content {
-    padding-inline-end: var(--base-size-128);
+  .River--variant-bordered-grid.River--50-50:not(.River--align-center):has(.River__visual--has-background) {
+    grid-template-columns: 1fr 1fr;
   }
 
-  .River--align-end .River__content {
-    padding-inline: var(--base-size-64);
+  /* Design-matched 60:40 proportions (560:676 ≈ 45:55) (start/end only) */
+  .River--variant-bordered-grid.River--60-40:not(.River--align-center):has(.River__visual--has-background) {
+    grid-template-columns: 560fr 676fr;
+  }
+
+  .River--variant-bordered-grid.River--align-end.River--60-40:has(.River__visual--has-background) {
+    grid-template-columns: 676fr 560fr;
+  }
+
+  .River--variant-bordered-grid.River--align-start:has(.River__visual--has-background) .River__content {
+    padding-inline-start: var(--brand-River-variant-bordered-grid-spacing-outerInline);
+    padding-inline-end: var(--brand-River-spacing-inner);
+  }
+
+  .River--variant-bordered-grid.River--align-end:has(.River__visual--has-background) .River__content {
+    padding-inline-start: var(--brand-River-spacing-inner);
+    padding-inline-end: var(--brand-River-variant-bordered-grid-spacing-outerInline);
+  }
+
+  .River--variant-bordered-grid.River--50-50:not(.River--align-center) .River__visual--has-background {
+    margin-inline-start: 0;
+    margin-inline-end: 0;
+  }
+
+  .River--variant-bordered-grid.River--align-center:has(.River__visual--has-background) {
+    padding-inline: 0;
+  }
+
+  .River--variant-bordered-grid.River--align-center .River__visual--has-background {
+    width: 100%;
+  }
+
+  .River--variant-bordered-grid.River--align-center:has(.River__visual--has-background) .River__content {
+    padding-inline: var(--brand-River-variant-bordered-grid-spacing-outerInline);
   }
 }
 
@@ -143,8 +247,8 @@
   display: flex;
   flex-direction: column;
   gap: var(--brand-RiverBreakout-spacing-inner);
-  padding-block-end: var(--brand-River-spacing-outer);
-  padding-block-start: var(--brand-River-spacing-outer);
+  padding-block-end: var(--brand-River-spacing-outerBlock);
+  padding-block-start: var(--brand-River-spacing-outerBlock);
 }
 
 .RiverBreakout .River__text {
