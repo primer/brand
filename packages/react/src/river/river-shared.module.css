@@ -4,6 +4,46 @@
   grid-auto-rows: min-content;
   padding-inline: var(--brand-River-spacing-outerInline);
   padding-block: var(--brand-River-spacing-outerBlock);
+  container-type: inline-size;
+}
+
+.River--variant-bordered-grid {
+  position: relative;
+  padding-inline: var(--brand-River-variant-bordered-grid-spacing-outerInline);
+  gap: var(--base-size-32);
+}
+
+@media screen and (min-width: 48rem) {
+  .River--variant-bordered-grid {
+    gap: var(--base-size-40);
+  }
+}
+
+/* Block borders (top/bottom) span full viewport using pseudo-elements */
+.River--variant-bordered-grid::before,
+.River--variant-bordered-grid::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100vw;
+  height: 0;
+  border-top: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
+}
+
+.River--variant-bordered-grid::before {
+  top: 0;
+}
+
+.River--variant-bordered-grid::after {
+  bottom: 0;
+}
+
+/* Inline borders (left/right) stay inside the grid, only when viewport is wide enough that Grid is at max-width */
+@media screen and (min-width: 80rem) {
+  .River--variant-bordered-grid {
+    border-inline: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
+  }
 }
 
 .River--align-center {
@@ -29,6 +69,26 @@
 
 .River__visual--has-shadow {
   box-shadow: var(--brand-River-visual-shadow);
+}
+
+.River--variant-bordered-grid .River__visual--has-background {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--brand-color-canvas-subtle);
+  padding: var(--base-size-32);
+  border-radius: 0;
+  margin-block: calc(-1 * var(--brand-River-spacing-outerBlock));
+  margin-block-end: 0;
+}
+
+.River--variant-bordered-grid .River__visual--has-background img,
+.River--variant-bordered-grid .River__visual--has-background picture,
+.River--variant-bordered-grid .River__visual--has-background video {
+  max-width: 100%;
+  height: auto;
+  width: auto;
+  border-radius: var(--brand-borderRadius-large);
 }
 
 .River__heading {
@@ -62,6 +122,11 @@
 @media screen and (min-width: 63.25rem) {
   .River {
     grid-template-rows: unset;
+  }
+
+  .River--variant-bordered-grid .River__visual--has-background {
+    padding: var(--base-size-64);
+    margin-block-end: calc(-1 * var(--brand-River-spacing-outerBlock));
   }
 
   .River__content {
