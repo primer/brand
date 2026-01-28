@@ -110,37 +110,6 @@ Use [VideoPlayer](/components/VideoPlayer), a native `<video>` element or a YouT
 </Hero>
 ```
 
-### Video with poster
-
-Use `poster`, `posterAltText`, and `posterTitle` to display a clickable poster image that reveals the eventual video when clicked.
-
-Always set the video to autoplay when using `poster`. Add `?autoplay=1` if using YouTube embed URLs.
-
-```jsx live
-<Hero variant="gridline" align="center">
-  <Hero.Heading>This is my super sweet hero heading</Hero.Heading>
-  <Hero.Description>
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id.
-  </Hero.Description>
-  <Hero.PrimaryAction href="#">Primary action</Hero.PrimaryAction>
-  <Hero.Video
-    poster="/images/placeholder.png"
-    posterAltText="Example video placeholder - blank image"
-    posterTitle="Introducing the GitHub Copilot coding agent"
-  >
-    <iframe
-      src="https://www.youtube.com/embed/fHwtrOcLAnI?autoplay=1"
-      title="YouTube video player"
-      frameBorder="0"
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-      referrerPolicy="strict-origin-when-cross-origin"
-      allowFullScreen
-      style={{width: '100%', height: 'auto', aspectRatio: '16/10'}}
-    ></iframe>
-  </Hero.Video>
-</Hero>
-```
-
 ### Alignment
 
 `Hero` text alignment can be adjusted by changing the `align` prop.
@@ -233,3 +202,7 @@ Forwards all props from the [Image component](/components/Image), including `src
 | `poster`        | `string`                  |               | URL of the poster image to display before video plays. When set, `posterAltText` and `posterTitle` are required |
 | `posterAltText` | `string`                  |               | Alt text for the poster image. Required when `poster` is set                                                    |
 | `posterTitle`   | `string`                  |               | Title text displayed on the poster overlay. Required when `poster` is set                                       |
+
+```
+
+```
