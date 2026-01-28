@@ -8,6 +8,7 @@ import styles from '../Hero.module.css'
 
 export type HeroImageProps = {
   position?: HeroMediaPositions
+  enableBorder?: boolean
 } & ImageProps &
   BaseProps<HTMLImageElement>
 
