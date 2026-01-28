@@ -6,7 +6,7 @@ import placeholderBg from '../../fixtures/images/dither-bg-landscape-green.png'
 import posterImage from '../../fixtures/images/example-poster.png'
 
 import {River, type RiverProps} from '.'
-import {Grid, Heading, Link, Text} from '../../'
+import {Section, Heading, Link, Text} from '../../'
 import {VideoPlayer} from '../../VideoPlayer'
 
 export type MetaProps = RiverProps
@@ -47,23 +47,21 @@ function BorderedGridWithBackgroundExample({align}: {align: 'start' | 'end'}) {
   }, [])
 
   return (
-    <Grid>
-      <Grid.Column span={12}>
-        <River variant="bordered-grid" align={align}>
-          <River.Visual ref={visualRef} hasBackground>
-            <img src={placeholderImage} alt="Browser window showing GitHub interface" />
-          </River.Visual>
-          <River.Content>
-            <Heading>Bordered grid with custom background</Heading>
-            <Text>
-              The hasBackground prop creates a full-bleed container that can be enhanced with a custom animated
-              background using the ref prop on River.Visual.
-            </Text>
-            <Link href="#">Learn more</Link>
-          </River.Content>
-        </River>
-      </Grid.Column>
-    </Grid>
+    <Section>
+      <River variant="bordered-grid" align={align}>
+        <River.Visual ref={visualRef} hasBackground>
+          <img src={placeholderImage} alt="Browser window showing GitHub interface" />
+        </River.Visual>
+        <River.Content>
+          <Heading>Bordered grid with custom background</Heading>
+          <Text>
+            The hasBackground prop creates a full-bleed container that can be enhanced with a custom animated background
+            using the ref prop on River.Visual.
+          </Text>
+          <Link href="#">Learn more</Link>
+        </River.Content>
+      </River>
+    </Section>
   )
 }
 
@@ -77,26 +75,24 @@ function BorderedGridWithBackgroundVideoExample() {
   }, [])
 
   return (
-    <Grid>
-      <Grid.Column span={12}>
-        <River variant="bordered-grid" align="start">
-          <River.Visual ref={visualRef} hasBackground>
-            <VideoPlayer title="GitHub media player" poster={posterImage}>
-              <VideoPlayer.Source src="./example.mp4" type="video/mp4" />
-              <VideoPlayer.Track src="./example.vtt" default />
-            </VideoPlayer>
-          </River.Visual>
-          <River.Content>
-            <Heading>Bordered grid with video</Heading>
-            <Text>
-              The hasBackground prop also works with video content. The video is centered within the full-bleed
-              container with padding around it.
-            </Text>
-            <Link href="#">Watch the video</Link>
-          </River.Content>
-        </River>
-      </Grid.Column>
-    </Grid>
+    <Section>
+      <River variant="bordered-grid" align="start">
+        <River.Visual ref={visualRef} hasBackground>
+          <VideoPlayer title="GitHub media player" poster={posterImage}>
+            <VideoPlayer.Source src="./example.mp4" type="video/mp4" />
+            <VideoPlayer.Track src="./example.vtt" default />
+          </VideoPlayer>
+        </River.Visual>
+        <River.Content>
+          <Heading>Bordered grid with video</Heading>
+          <Text>
+            The hasBackground prop also works with video content. The video is centered within the full-bleed container
+            with padding around it.
+          </Text>
+          <Link href="#">Watch the video</Link>
+        </River.Content>
+      </River>
+    </Section>
   )
 }
 
