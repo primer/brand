@@ -339,4 +339,74 @@ describe('River', () => {
 
     expect(results).toHaveNoViolations()
   })
+
+  it('renders with default variant by default', () => {
+    const rootId = 'root-el'
+    const {getByTestId} = render(
+      <River data-testid={rootId}>
+        <River.Visual>
+          <MockImage />
+        </River.Visual>
+        <River.Content>
+          <Text>{mockText}</Text>
+        </River.Content>
+      </River>,
+    )
+
+    const rootEl = getByTestId(rootId)
+    expect(rootEl).toHaveClass('River--variant-default')
+    expect(rootEl).not.toHaveClass('River--variant-bordered-grid')
+  })
+
+  it('renders with bordered-grid variant', () => {
+    const rootId = 'root-el'
+    const {getByTestId} = render(
+      <River data-testid={rootId} variant="bordered-grid">
+        <River.Visual>
+          <MockImage />
+        </River.Visual>
+        <River.Content>
+          <Text>{mockText}</Text>
+        </River.Content>
+      </River>,
+    )
+
+    const rootEl = getByTestId(rootId)
+    expect(rootEl).toHaveClass('River--variant-bordered-grid')
+    expect(rootEl).not.toHaveClass('River--variant-default')
+  })
+
+  it('renders visual without background by default', () => {
+    const visualId = 'visual-el'
+    const {getByTestId} = render(
+      <River>
+        <River.Visual data-testid={visualId}>
+          <MockImage />
+        </River.Visual>
+        <River.Content>
+          <Text>{mockText}</Text>
+        </River.Content>
+      </River>,
+    )
+
+    const visualEl = getByTestId(visualId)
+    expect(visualEl).not.toHaveClass('River__visual--has-background')
+  })
+
+  it('optionally renders visual with background', () => {
+    const visualId = 'visual-el'
+    const {getByTestId} = render(
+      <River variant="bordered-grid">
+        <River.Visual data-testid={visualId} hasBackground>
+          <MockImage />
+        </River.Visual>
+        <River.Content>
+          <Text>{mockText}</Text>
+        </River.Content>
+      </River>,
+    )
+
+    const visualEl = getByTestId(visualId)
+    expect(visualEl).toHaveClass('River__visual--has-background')
+  })
 })
