@@ -209,6 +209,91 @@ export const CustomTrailingContentWithDivider: StoryFn<typeof River> = () => (
 
 CustomTrailingContentWithDivider.storyName = 'Custom trailing content w/ divider'
 
+export const BorderedGrid: StoryFn<typeof River> = () => (
+  <River variant="bordered-grid" align="start">
+    <River.Visual>
+      <PlaceholderImage />
+    </River.Visual>
+    <River.Content>
+      <Heading>Bordered Grid Variant</Heading>
+      <Text>
+        The bordered-grid variant adds lateral padding and borders to the River component, making it suitable for use
+        within bordered grid layouts.
+      </Text>
+      <Link href="#">Call to action</Link>
+    </River.Content>
+  </River>
+)
+
+BorderedGrid.storyName = 'Bordered grid variant'
+
+export const BorderedGridEnd: StoryFn<typeof River> = () => (
+  <River variant="bordered-grid" align="end">
+    <River.Visual>
+      <PlaceholderImage />
+    </River.Visual>
+    <River.Content>
+      <Heading>Bordered Grid Variant (End)</Heading>
+      <Text>The bordered-grid variant with end alignment positions the content on the right side of the visual.</Text>
+      <Link href="#">Call to action</Link>
+    </River.Content>
+  </River>
+)
+
+BorderedGridEnd.storyName = 'Bordered grid variant (end)'
+
+export const BorderedGridCenter: StoryFn<typeof River> = () => (
+  <River variant="bordered-grid" align="center">
+    <River.Visual>
+      <PlaceholderImage />
+    </River.Visual>
+    <River.Content>
+      <Heading>Bordered Grid Variant (Centered)</Heading>
+      <Text>
+        The bordered-grid variant with center alignment stacks the content below the visual with centered text.
+      </Text>
+      <Link href="#">Call to action</Link>
+    </River.Content>
+  </River>
+)
+
+BorderedGridCenter.storyName = 'Bordered grid variant (centered)'
+
+export const BorderedGridWithBackground: StoryFn<typeof River> = () => (
+  <River variant="bordered-grid" align="start">
+    <River.Visual hasBackground>
+      <PlaceholderImage />
+    </River.Visual>
+    <River.Content>
+      <Heading>Bordered Grid with Background</Heading>
+      <Text>
+        Using hasBackground on River.Visual creates a full-bleed container with a subtle background color and the
+        image/video centered inside with padding.
+      </Text>
+      <Link href="#">Call to action</Link>
+    </River.Content>
+  </River>
+)
+
+BorderedGridWithBackground.storyName = 'Bordered grid variant (with background)'
+
+export const BorderedGridWithBackgroundEnd: StoryFn<typeof River> = () => (
+  <River variant="bordered-grid" align="end">
+    <River.Visual hasBackground>
+      <PlaceholderImage />
+    </River.Visual>
+    <River.Content>
+      <Heading>Bordered Grid with Background (End)</Heading>
+      <Text>
+        The hasBackground prop can be combined with different alignment options. This example shows end alignment.
+      </Text>
+      <Link href="#">Call to action</Link>
+    </River.Content>
+  </River>
+)
+
+BorderedGridWithBackgroundEnd.storyName = 'Bordered grid variant (with background, end)'
+
 export const AlternatingLayout: StoryFn<typeof River> = () => (
   <>
     <River align="start">
