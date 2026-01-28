@@ -40,3 +40,11 @@ jobs:
 
       - name: Serve Storybook and run tests
         run: npx start-server-and-test 'npm run start:axe --workspace=apps/storybook' 6006 'npm run test:axe'
+
+      - name: Upload test results
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: axe-test-results
+          path: packages/e2e/test-results/
+          retention-days: 7

@@ -38,10 +38,42 @@ export const Centered: Story = {
   ),
 }
 
-export const WithMutedDescriptions: Story = {
+export const WithIncreasedContrastDescription: Story = {
   render: () => (
     <Hero align="center">
       <Hero.Label>Label</Hero.Label>
+      <Hero.Heading>This is my super sweet hero heading</Hero.Heading>
+      <Hero.Description variant="default">
+        This description has increased contrast for better readability. Lorem ipsum dolor sit amet, consectetur
+        adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis felis nam pulvinar risus elementum.
+      </Hero.Description>
+      <Hero.PrimaryAction href="#">Primary action</Hero.PrimaryAction>
+    </Hero>
+  ),
+}
+
+export const WithAnimatedLabel: Story = {
+  render: () => (
+    <Hero align="center">
+      <Hero.Label animate animationDelay={1000}>
+        Animated label
+      </Hero.Label>
+      <Hero.Heading>This is my super sweet hero heading</Hero.Heading>
+      <Hero.Description variant="muted">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis
+        felis nam pulvinar risus elementum.
+      </Hero.Description>
+      <Hero.PrimaryAction href="#">Primary action</Hero.PrimaryAction>
+    </Hero>
+  ),
+}
+
+export const WithIncreasedContrastLabel: Story = {
+  render: () => (
+    <Hero align="center">
+      <Hero.Label animate variant="default">
+        Label with higher initial contrast
+      </Hero.Label>
       <Hero.Heading>This is my super sweet hero heading</Hero.Heading>
       <Hero.Description variant="muted">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis
@@ -258,7 +290,7 @@ export const WithYoutubeVideoInlineEnd: Story = {
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               referrerPolicy="strict-origin-when-cross-origin"
               allowFullScreen
-              style={{width: '100%', height: 'auto', aspectRatio: '16/9'}}
+              className={styles.customVideo}
             ></iframe>
           </Hero.Video>
         </Hero>
@@ -498,6 +530,252 @@ export const EyebrowCentered: Story = {
         felis nam pulvinar risus elementum.
       </Hero.Description>
       <Hero.PrimaryAction href="#">Primary action</Hero.PrimaryAction>
+    </Hero>
+  ),
+}
+
+export const Gridline: Story = {
+  name: 'GridLine variant',
+  render: () => (
+    <Hero variant="gridline">
+      <Hero.Label>Label</Hero.Label>
+      <Hero.Heading>This is my super sweet hero heading</Hero.Heading>
+      <Hero.Description>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis
+        felis nam pulvinar risus elementum.
+      </Hero.Description>
+      <Hero.PrimaryAction href="#">Primary action</Hero.PrimaryAction>
+      <Hero.Image src={placeholderImage} alt="placeholder image, blank with gray solid fill" />
+    </Hero>
+  ),
+}
+
+export const GridlineCentered: Story = {
+  name: 'GridLine variant (centered)',
+  render: () => (
+    <Hero variant="gridline" align="center">
+      <Hero.Label>Label</Hero.Label>
+      <Hero.Heading>This is my super sweet hero heading</Hero.Heading>
+      <Hero.Description>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis
+        felis nam pulvinar risus elementum.
+      </Hero.Description>
+      <Hero.PrimaryAction href="#">Primary action</Hero.PrimaryAction>
+      <Hero.Image src={placeholderImage} alt="placeholder image, blank with gray solid fill" />
+    </Hero>
+  ),
+}
+
+export const GridlineImageInlineEnd: Story = {
+  name: 'GridLine variant (inline-end image)',
+  render: () => (
+    <Hero variant="gridline" align="center">
+      <Hero.Label>Label</Hero.Label>
+      <Hero.Heading>This is my super sweet hero heading</Hero.Heading>
+      <Hero.Description>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis
+        felis nam pulvinar risus elementum.
+      </Hero.Description>
+      <Hero.PrimaryAction href="#">Primary action</Hero.PrimaryAction>
+      <Hero.Image position="inline-end" src={placeholderImage} alt="placeholder image, blank with gray solid fill" />
+    </Hero>
+  ),
+}
+
+export const GridlineImageInlineStart: Story = {
+  name: 'GridLine variant (inline-start image)',
+  render: () => (
+    <Hero variant="gridline" align="center">
+      <Hero.Label>Label</Hero.Label>
+      <Hero.Heading>This is my super sweet hero heading</Hero.Heading>
+      <Hero.Description>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis
+        felis nam pulvinar risus elementum.
+      </Hero.Description>
+      <Hero.PrimaryAction href="#">Primary action</Hero.PrimaryAction>
+      <Hero.Image position="inline-start" src={placeholderImage} alt="placeholder image, blank with gray solid fill" />
+    </Hero>
+  ),
+}
+
+export const GridlineImageInlineEndPadded: Story = {
+  name: 'GridLine variant (inline-end-padded image)',
+  render: () => (
+    <Hero variant="gridline" align="center">
+      <Hero.Label>Label</Hero.Label>
+      <Hero.Heading>This is my super sweet hero heading</Hero.Heading>
+      <Hero.Description>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis
+        felis nam pulvinar risus elementum.
+      </Hero.Description>
+      <Hero.PrimaryAction href="#">Primary action</Hero.PrimaryAction>
+      <Hero.Image
+        position="inline-end-padded"
+        src={placeholderImage}
+        alt="placeholder image, blank with gray solid fill"
+      />
+    </Hero>
+  ),
+}
+
+export const GridlineImageInlineStartPadded: Story = {
+  name: 'GridLine variant (inline-start-padded image)',
+  render: () => (
+    <Hero variant="gridline" align="center">
+      <Hero.Label>Label</Hero.Label>
+      <Hero.Heading>This is my super sweet hero heading</Hero.Heading>
+      <Hero.Description>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis
+        felis nam pulvinar risus elementum.
+      </Hero.Description>
+      <Hero.PrimaryAction href="#">Primary action</Hero.PrimaryAction>
+      <Hero.Image
+        position="inline-start-padded"
+        src={placeholderImage}
+        alt="placeholder image, blank with gray solid fill"
+      />
+    </Hero>
+  ),
+}
+
+export const GridlineImageBlockEndPadded: Story = {
+  name: 'GridLine variant (block-end-padded image)',
+  render: () => (
+    <Hero variant="gridline" align="center">
+      <Hero.Label>Label</Hero.Label>
+      <Hero.Heading>This is my super sweet hero heading</Hero.Heading>
+      <Hero.Description>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis
+        felis nam pulvinar risus elementum.
+      </Hero.Description>
+      <Hero.PrimaryAction href="#">Primary action</Hero.PrimaryAction>
+      <Hero.Image
+        position="block-end-padded"
+        src={placeholderImage}
+        alt="placeholder image, blank with gray solid fill"
+      />
+    </Hero>
+  ),
+}
+
+export const GridlineYoutubeVideoBlockEnd: Story = {
+  name: 'GridLine variant (block-end YouTube video)',
+  render: () => (
+    <Hero variant="gridline" align="center">
+      <Hero.Label>Label</Hero.Label>
+      <Hero.Heading>This is my super sweet hero heading</Hero.Heading>
+      <Hero.Description>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis
+        felis nam pulvinar risus elementum.
+      </Hero.Description>
+      <Hero.PrimaryAction href="#">Primary action</Hero.PrimaryAction>
+      <Hero.Video
+        poster={posterImage}
+        posterAltText="Mona the Octocat"
+        posterTitle="Introducing the GitHub Copilot coding agent "
+      >
+        <iframe
+          src="https://www.youtube.com/embed/EPyyyB23NUU?autoplay=1"
+          title="YouTube video player"
+          frameBorder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerPolicy="strict-origin-when-cross-origin"
+          allowFullScreen
+          className={styles.customVideo}
+        ></iframe>
+      </Hero.Video>
+    </Hero>
+  ),
+}
+
+export const GridlineYoutubeVideoInlineEnd: Story = {
+  name: 'GridLine variant (inline-end YouTube video)',
+  render: () => (
+    <Hero variant="gridline" align="center">
+      <Hero.Label>Label</Hero.Label>
+      <Hero.Heading>This is my super sweet hero heading</Hero.Heading>
+      <Hero.Description>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis
+        felis nam pulvinar risus elementum.
+      </Hero.Description>
+      <Hero.PrimaryAction href="#">Primary action</Hero.PrimaryAction>
+      <Hero.Video
+        position="inline-end"
+        poster={posterImage}
+        posterAltText="Mona the Octocat"
+        posterTitle="Introducing the GitHub Copilot coding agent "
+      >
+        <iframe
+          src="https://www.youtube.com/embed/EPyyyB23NUU?autoplay=1"
+          title="YouTube video player"
+          frameBorder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerPolicy="strict-origin-when-cross-origin"
+          allowFullScreen
+          className={styles.customVideo}
+        ></iframe>
+      </Hero.Video>
+    </Hero>
+  ),
+}
+
+export const GridlineYoutubeVideoBlockEndWithPoster: Story = {
+  name: 'GridLine variant (Block-end YouTube video + poster)',
+  render: () => (
+    <Hero variant="gridline" align="center">
+      <Hero.Label>Label</Hero.Label>
+      <Hero.Heading>This is my super sweet hero heading</Hero.Heading>
+      <Hero.Description>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis
+        felis nam pulvinar risus elementum.
+      </Hero.Description>
+      <Hero.PrimaryAction href="#">Primary action</Hero.PrimaryAction>
+      <Hero.Video
+        poster={posterImage}
+        posterAltText="Mona the Octocat"
+        posterTitle="Introducing the GitHub Copilot coding agent "
+      >
+        <iframe
+          src="https://www.youtube.com/embed/EPyyyB23NUU?autoplay=1"
+          title="YouTube video player"
+          frameBorder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerPolicy="strict-origin-when-cross-origin"
+          allowFullScreen
+          className={styles.customVideo}
+        ></iframe>
+      </Hero.Video>
+    </Hero>
+  ),
+}
+
+export const GridlineYoutubeVideoBlockEndPadded: Story = {
+  name: 'GridLine variant (block-end-padded YouTube video)',
+  render: () => (
+    <Hero variant="gridline" align="center">
+      <Hero.Label>Label</Hero.Label>
+      <Hero.Heading>This is my super sweet hero heading</Hero.Heading>
+      <Hero.Description>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis
+        felis nam pulvinar risus elementum.
+      </Hero.Description>
+      <Hero.PrimaryAction href="#">Primary action</Hero.PrimaryAction>
+      <Hero.Video
+        position="block-end-padded"
+        poster={posterImage}
+        posterAltText="Mona the Octocat"
+        posterTitle="Introducing the GitHub Copilot coding agent "
+      >
+        <iframe
+          src="https://www.youtube.com/embed/EPyyyB23NUU?autoplay=1"
+          title="YouTube video player"
+          frameBorder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerPolicy="strict-origin-when-cross-origin"
+          allowFullScreen
+          className={styles.customVideo}
+        ></iframe>
+      </Hero.Video>
     </Hero>
   ),
 }

@@ -274,6 +274,7 @@ const darkJson = require('../src/tokens/base/colors/dark')
     `tokens/functional/components/icon/colors.json`,
     `tokens/functional/components/frosted-glass-vfx/colors.js`,
     `tokens/functional/components/tabs/colors.json`,
+    `tokens/functional/components/blinking-cursor/colors.js`,
   ]
 
   for (const path of filesForColorModes) {

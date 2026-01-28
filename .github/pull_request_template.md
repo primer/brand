@@ -80,12 +80,8 @@ E.g.
 <tr>
 <td valign="top">
 
-<!-- Insert "before" screenshot here -->
-
  </td>
 <td valign="top">
-
-<!-- Insert "after" screenshot here -->
 
 </td>
 </tr>
