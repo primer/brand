@@ -41,8 +41,6 @@ export const HeroVideo = forwardRef<HTMLDivElement, HeroVideoProps>(
     const isInlinePosition = position.startsWith('inline')
     const isInlinePadded = position.endsWith('-padded')
 
-    const Tag = showVideo ? React.Fragment : PosterImage
-
     const mediaClasses = clsx(
       styles['Hero-video'],
       styles['Hero-media'],
@@ -54,18 +52,24 @@ export const HeroVideo = forwardRef<HTMLDivElement, HeroVideoProps>(
 
     const handlePosterClick = () => setShowVideo(true)
 
+    const videoContent = (
+      <div className={mediaClasses} ref={containerRef} data-testid={testId || 'Hero-video'} {...rest}>
+        {children}
+      </div>
+    )
+
+    if (showVideo) {
+      return videoContent
+    }
+
     return (
-      <Tag
-        posterSrc={poster}
-        posterAlt={posterAltText}
-        posterTitle={posterTitle}
+      <PosterImage
+        posterSrc={poster!}
+        posterAlt={posterAltText!}
+        posterTitle={posterTitle!}
         onClick={handlePosterClick}
         className={mediaClasses}
-      >
-        <div className={mediaClasses} ref={containerRef} data-testid={testId || 'Hero-video'} {...rest}>
-          {children}
-        </div>
-      </Tag>
+      />
     )
   },
 )
