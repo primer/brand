@@ -8,7 +8,7 @@ Updates to `Hero` component
 
 #### Breaking Changes
 
-- **`Hero.Label`**: No longer extends `Label` component. It now renders as plan text with monospace font and in uppercase. Props like `size` and `color` are no longer supported.
+- **`Hero.Label`**: No longer extends `Label` component. It now renders as plain text with monospace font and in uppercase. Props like `size` and `color` are no longer supported.
 
   Update usage as follows:
 

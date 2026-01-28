@@ -19,7 +19,7 @@ export type UseCursorAnimationOptions = {
    */
   delay?: number
   /**
-   * Loads after the page has fully loads
+   * Loads after the page has fully loaded
    */
   waitForPageLoad?: boolean
 }

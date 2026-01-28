@@ -70,7 +70,15 @@ export const HeroVideo = forwardRef<HTMLDivElement, HeroVideoProps>(
   },
 )
 
-function PosterImage({posterSrc, posterAlt, posterTitle, onClick, className}) {
+type PosterImageProps = {
+  posterSrc: string
+  posterAlt: string
+  posterTitle: string
+  onClick: () => void
+  className?: string
+}
+
+function PosterImage({posterSrc, posterAlt, posterTitle, onClick, className}: PosterImageProps) {
   return (
     <Box className={className}>
       <button aria-label="Play video" onClick={onClick} className={styles['Hero-video-poster-button']}>
