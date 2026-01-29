@@ -1,6 +1,18 @@
 import React, {forwardRef, PropsWithChildren, useMemo, type Ref} from 'react'
 import {clsx} from 'clsx'
-import {Heading, LinkProps, HeadingProps, TextProps, Text, Link, useAnimation, Label, LabelProps} from '../../'
+import {
+  Heading,
+  LinkProps,
+  HeadingProps,
+  TextProps,
+  Text,
+  Link,
+  useAnimation,
+  Label,
+  LabelProps,
+  EyebrowText,
+  EyebrowTextProps,
+} from '../../'
 
 import type {BaseProps} from '../../component-helpers'
 
@@ -144,6 +156,8 @@ export const RiverContent = forwardRef(
 
     const LabelChild = Children.find(child => React.isValidElement(child) && child.type === Label)
 
+    const EyebrowTextChild = Children.find(child => React.isValidElement(child) && child.type === EyebrowText)
+
     return (
       <div
         ref={ref}
@@ -157,7 +171,13 @@ export const RiverContent = forwardRef(
           </div>
         )}
 
-        {!LabelChild && LeadingComponent && (
+        {!LabelChild && React.isValidElement(EyebrowTextChild) && !LeadingComponent && (
+          <div className={styles.River__label}>
+            {React.cloneElement(EyebrowTextChild as React.ReactElement<EyebrowTextProps>, {})}
+          </div>
+        )}
+
+        {!LabelChild && !EyebrowTextChild && LeadingComponent && (
           <div>
             <LeadingComponent />
           </div>
