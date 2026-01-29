@@ -19,19 +19,21 @@ export const HeroSecondaryAction = forwardRef<
   PropsWithChildren<HeroSecondaryActionProps>
 >(({href, as = 'a', children, ...rest}, ref) => {
   const {variant: heroVariant, enableAnimation} = useHeroContext()
-  const Tag = heroVariant === 'gridline' ? Box : React.Fragment
-  return (
-    <Tag
-      animate={
-        heroVariant === 'gridline' && enableAnimation
+  const isGridline = heroVariant === 'gridline'
+  const Tag = isGridline ? Box : React.Fragment
+  const tagProps = isGridline
+    ? {
+        animate: enableAnimation
           ? {
-              variant: 'slide-in-up',
+              variant: 'slide-in-up' as const,
               delay: 750,
               duration: 1000,
             }
-          : undefined
+          : undefined,
       }
-    >
+    : {}
+  return (
+    <Tag {...tagProps}>
       <Button ref={ref as React.Ref<HTMLButtonElement>} as={as} variant="secondary" size="medium" href={href} {...rest}>
         {children}
       </Button>
