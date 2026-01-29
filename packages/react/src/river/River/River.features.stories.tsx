@@ -252,3 +252,22 @@ export const AlternatingLayout: StoryFn<typeof River> = () => (
     </River>
   </>
 )
+
+export const ContentAlignBlockEnd: StoryFn<typeof River> = () => (
+  <River>
+    <River.Visual>
+      <img src={placeholderImage} alt="placeholder, blank area with a gray background color" style={{minHeight: 400}} />
+    </River.Visual>
+    <River.Content align="block-end">
+      <Label>Label</Label>
+      <Heading>Content aligned to block-end</Heading>
+      <Text>
+        On large viewports, the content aligns to the bottom of its container. This is useful when the visual is taller
+        than the content.
+      </Text>
+      <Link href="#">Call to action</Link>
+    </River.Content>
+  </River>
+)
+
+ContentAlignBlockEnd.storyName = 'Content align block-end'

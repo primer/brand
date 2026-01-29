@@ -25,6 +25,12 @@ import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/compone
 /** * Main Stylesheet (as a CSS Module) */
 import styles from '../river-shared.module.css'
 
+export const RiverVariants = ['default', 'bordered-grid'] as const
+export type RiverVariant = (typeof RiverVariants)[number]
+
+export const RiverContentAlignValues = ['center', 'block-end'] as const
+export type RiverContentAlign = (typeof RiverContentAlignValues)[number]
+
 export type RiverProps = {
   /**
    * Only specific children are valid.
@@ -104,6 +110,12 @@ const Root = forwardRef(
 
 export type RiverContentProps = BaseProps<HTMLDivElement> & {
   /**
+   * Aligns the content vertically within its container.
+   * Only applies on large viewports (63.25rem+).
+   * The default is `center`.
+   */
+  align?: RiverContentAlign
+  /**
    * Escape-hatch for inserting custom React components.
    * Warning:
    *   This prop isn't advertised in our docs but remains part of the public API for edge-cases.
@@ -133,6 +145,7 @@ export type RiverContentProps = BaseProps<HTMLDivElement> & {
 export const RiverContent = forwardRef(
   (
     {
+      align = 'center',
       animate,
       children,
       className,
@@ -161,7 +174,7 @@ export const RiverContent = forwardRef(
     return (
       <div
         ref={ref}
-        className={clsx(animationClasses, styles.River__content, className)}
+        className={clsx(animationClasses, styles.River__content, styles[`River__content--align-${align}`], className)}
         style={{...animationInlineStyles, ...style}}
         {...rest}
       >

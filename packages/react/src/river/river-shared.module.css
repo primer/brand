@@ -228,6 +228,10 @@
     grid-area: content;
   }
 
+  .River__content--align-block-end {
+    align-content: end;
+  }
+
   .River__visual {
     grid-area: visual;
   }

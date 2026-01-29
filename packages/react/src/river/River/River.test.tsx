@@ -409,4 +409,40 @@ describe('River', () => {
     const visualEl = getByTestId(visualId)
     expect(visualEl).toHaveClass('River__visual--has-background')
   })
+
+  it('renders content with center alignment by default', () => {
+    const contentId = 'content-el'
+    const {getByTestId} = render(
+      <River>
+        <River.Visual>
+          <MockImage />
+        </River.Visual>
+        <River.Content data-testid={contentId}>
+          <Text>{mockText}</Text>
+        </River.Content>
+      </River>,
+    )
+
+    const contentEl = getByTestId(contentId)
+    expect(contentEl).toHaveClass('River__content--align-center')
+    expect(contentEl).not.toHaveClass('River__content--align-block-end')
+  })
+
+  it('optionally renders content with block-end alignment', () => {
+    const contentId = 'content-el'
+    const {getByTestId} = render(
+      <River>
+        <River.Visual>
+          <MockImage />
+        </River.Visual>
+        <River.Content data-testid={contentId} align="block-end">
+          <Text>{mockText}</Text>
+        </River.Content>
+      </River>,
+    )
+
+    const contentEl = getByTestId(contentId)
+    expect(contentEl).toHaveClass('River__content--align-block-end')
+    expect(contentEl).not.toHaveClass('River__content--align-center')
+  })
 })
