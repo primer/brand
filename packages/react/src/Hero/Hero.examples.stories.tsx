@@ -221,7 +221,7 @@ export const WithCards: Story = {
                 <Grid.Column span={{xsmall: 12, large: 4}}>
                   <Box padding={{narrow: 32, regular: 48}}>
                     <Card href="#" variant="minimal" fullWidth>
-                      <Card.Heading>Code search & code view</Card.Heading>
+                      <Card.Heading as="h2">Code search & code view</Card.Heading>
                       <Card.Description>
                         Enables you to rapidly search, navigate, and understand code, right from GitHub.com.
                       </Card.Description>
@@ -250,7 +250,7 @@ export const WithCards: Story = {
                         src={defaultPlaceholderImgae}
                         alt="placeholder, blank area with an gray background color"
                       />
-                      <Card.Heading>Code search & code view</Card.Heading>
+                      <Card.Heading as="h2">Code search & code view</Card.Heading>
                       <Card.Description>
                         Enables you to rapidly search, navigate, and understand code, right from GitHub.com.
                       </Card.Description>
@@ -266,7 +266,7 @@ export const WithCards: Story = {
                         src={defaultPlaceholderImgae}
                         alt="placeholder, blank area with an gray background color"
                       />
-                      <Card.Heading>Code search & code view</Card.Heading>
+                      <Card.Heading as="h2">Code search & code view</Card.Heading>
                       <Card.Description>
                         Enables you to rapidly search, navigate, and understand code, right from GitHub.com.
                       </Card.Description>
