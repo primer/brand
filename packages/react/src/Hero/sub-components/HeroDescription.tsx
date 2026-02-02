@@ -18,11 +18,12 @@ export const HeroDescription = forwardRef<HTMLParagraphElement, PropsWithChildre
     ref,
   ) => {
     const {variant: heroVariant, enableAnimation} = useHeroContext()
+    const isGridlineVariant = heroVariant === 'gridline' || heroVariant === 'gridline-expressive'
 
     return (
       <Text
         animate={
-          heroVariant === 'gridline' && enableAnimation
+          isGridlineVariant && enableAnimation
             ? {
                 variant: 'slide-in-up',
                 delay: 500,

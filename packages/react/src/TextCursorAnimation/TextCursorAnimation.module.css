@@ -20,7 +20,7 @@
   position: absolute;
   left: calc((var(--brand-TextCursorAnimation-reveal-progress, 1) * 100%) + var(--base-size-6));
   top: 50%;
-  transform: translateY(calc(-50% - 1px));
+  transform: translateY(-50%);
   width: var(--base-size-8);
   height: 11px;
   background-color: color-mix(

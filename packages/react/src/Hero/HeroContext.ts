@@ -3,7 +3,7 @@ import React from 'react'
 export const HeroAlignOptions = ['start', 'center'] as const
 export type HeroAlign = (typeof HeroAlignOptions)[number]
 
-export const HeroVariantOptions = ['default', 'gridline'] as const
+export const HeroVariantOptions = ['default', 'gridline', 'gridline-expressive'] as const
 export type HeroVariant = (typeof HeroVariantOptions)[number]
 
 export const heroMediaPositions = [

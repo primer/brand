@@ -19,7 +19,7 @@ export const HeroSecondaryAction = forwardRef<
   PropsWithChildren<HeroSecondaryActionProps>
 >(({href, as = 'a', children, ...rest}, ref) => {
   const {variant: heroVariant, enableAnimation} = useHeroContext()
-  const isGridline = heroVariant === 'gridline'
+  const isGridline = heroVariant === 'gridline' || heroVariant === 'gridline-expressive'
   const Tag = isGridline ? Box : React.Fragment
   const tagProps = isGridline
     ? {

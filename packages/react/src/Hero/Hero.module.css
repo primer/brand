@@ -27,6 +27,7 @@
   max-width: 1280px;
   margin-inline: auto;
   padding: var(--base-size-32);
+  background-color: var(--brand-Hero-bgColor-gridlineGridInner); /* Unset by default - users can override if needed */
 }
 
 /* Prevents double-borders. We only apply the inline borders when the parent container is wide enough to show the full width.  */
@@ -340,4 +341,125 @@
 .Hero-video-header-poster-icon,
 .Hero-video-poster-text {
   color: var(--base-color-scale-white-0);
+}
+
+/* ========================================
+   Gridline-Expressive Variant
+   ======================================== */
+
+.Hero--variant-gridline-expressive {
+  container-type: inline-size;
+  width: 100%;
+}
+
+/* Grid container for expressive variant */
+.Hero-grid--expressive {
+  width: 100%;
+  max-width: 1280px;
+  margin-inline: auto;
+  --brand-Grid-spacing-row: 0;
+}
+
+@container (min-width: 1280px) {
+  .Hero-grid--expressive {
+    border-inline: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
+  }
+}
+
+/* Header column (eyebrow, heading) */
+.Hero-expressive-header-column {
+  padding: var(--base-size-32);
+  padding-block-end: var(--base-size-24);
+  border-block-end: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
+}
+
+/* Body column (description, actions, trailing) */
+.Hero-expressive-body-column {
+  padding: var(--base-size-32);
+  padding-block-start: var(--base-size-24);
+}
+
+.Hero--variant-gridline-expressive .Hero-description {
+  margin-block-start: 0;
+}
+
+.Hero--variant-gridline-expressive .Hero-actions {
+  margin-block-start: var(--base-size-24);
+}
+
+.Hero--variant-gridline-expressive .Hero-trailing {
+  margin-block-start: var(--base-size-24);
+}
+
+/* Desktop: Side-by-side layout with vertical divider */
+@media screen and (min-width: 63.25rem) {
+  .Hero-expressive-header-column {
+    padding: var(--base-size-64);
+    padding-inline-end: var(--base-size-64);
+    border-block-end: none;
+    border-inline-end: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
+  }
+
+  .Hero-expressive-body-column {
+    padding: var(--base-size-64);
+    padding-inline-start: var(--base-size-64);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+
+  .Hero--variant-gridline-expressive .Hero-actions {
+    margin-block-start: var(--base-size-32);
+  }
+
+  .Hero--variant-gridline-expressive .Hero-trailing {
+    margin-block-start: var(--base-size-32);
+  }
+}
+
+/* Media wrapper styles for gridline-expressive (same as gridline) */
+.Hero--variant-gridline-expressive .Hero-imageWrapper {
+  border-block: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
+  background-color: var(--brand-color-canvas-subtle);
+  width: 100%;
+}
+
+.Hero--variant-gridline-expressive .Hero-imageWrapper-inner {
+  width: 100%;
+  max-width: 1280px;
+  margin-inline: auto;
+  padding: var(--base-size-32) var(--base-size-32) 0;
+}
+
+@container (min-width: 1280px) {
+  .Hero--variant-gridline-expressive .Hero-imageWrapper-inner--with-gridline {
+    border-inline: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
+  }
+}
+
+.Hero--variant-gridline-expressive .Hero-imageWrapper-inner--padded {
+  padding: var(--base-size-32);
+}
+
+@media screen and (min-width: 63.25rem) {
+  .Hero--variant-gridline-expressive .Hero-imageWrapper-inner {
+    padding: var(--base-size-64) var(--base-size-64) 0;
+  }
+
+  .Hero--variant-gridline-expressive .Hero-imageWrapper-inner--padded {
+    padding: var(--base-size-64);
+  }
+}
+
+/* Shared media styles for gridline-expressive */
+.Hero--variant-gridline-expressive .Hero-media {
+  max-width: 1176px;
+  margin-inline: auto;
+  display: block;
+  overflow: hidden;
+}
+
+.Hero--variant-gridline-expressive .Hero-media--pos-block-end,
+.Hero--variant-gridline-expressive .Hero-image:not(.Hero-media--pos-block-end-padded) {
+  border-radius: var(--brand-borderRadius-medium) var(--brand-borderRadius-medium) 0 0;
 }

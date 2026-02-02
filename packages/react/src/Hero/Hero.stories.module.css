@@ -3,3 +3,18 @@
   height: 100%;
   aspect-ratio: 16 / 9;
 }
+
+/**
+* Examples
+* TODO: Replace with functional token when final color is confirmed
+*/
+
+.heroWithCardsExample {
+  --customCardsBackgroundColor: transparent;
+}
+[data-color-mode='light'] .heroWithCardsExample {
+  --customCardsBackgroundColor: var(--base-color-scale-gray-1);
+}
+[data-color-mode='dark'] .heroWithCardsExample {
+  --customCardsBackgroundColor: var(--base-color-scale-gray-9);
+}
