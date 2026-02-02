@@ -127,7 +127,6 @@ const Root = forwardRef<HTMLElement, PropsWithChildren<HeroProps>>(
 
     const mediaPositionProp = HeroImageChild?.props.position || HeroVideoChild?.props.position
 
-    // gridline-expressive variant only supports block-end positions
     const mediaPosition = (() => {
       if (variant === 'gridline-expressive' && mediaPositionProp?.startsWith('inline-')) {
         if (process.env.NODE_ENV !== 'production') {
@@ -164,95 +163,16 @@ const Root = forwardRef<HTMLElement, PropsWithChildren<HeroProps>>(
     const heroLayoutClass = HeroImageChild ? styles['Hero--layout-image'] : styles['Hero--layout-default']
     const isInlineStart = mediaPosition === 'inline-start' || mediaPosition === 'inline-start-padded'
 
-    // Gridline-expressive uses a split layout with header (left) and body (right) at desktop
-    const expressiveHeaderColumn = isGridlineExpressive ? (
-      <Grid.Column span={{medium: 12, large: 6}} className={styles['Hero-expressive-header-column']}>
-        <Stack direction="vertical" gap="none" padding="none" alignItems="flex-start">
-          {HeroHeaderChildren}
-        </Stack>
-      </Grid.Column>
-    ) : null
-
-    const expressiveBodyColumn = isGridlineExpressive ? (
-      <Grid.Column span={{medium: 12, large: 6}} className={styles['Hero-expressive-body-column']}>
-        <Stack direction="vertical" gap="none" padding="none" alignItems="flex-start">
-          {HeroBodyChildren}
-          {HeroActions.length > 0 && <div className={styles['Hero-actions']}>{HeroActions}</div>}
-          {TrailingComponent && (
-            <Box
-              animate={
-                enableAnimation
-                  ? {
-                      variant: 'slide-in-up',
-                      delay: 1000, // offset from actions, which appears just before this
-                      duration: 1000,
-                    }
-                  : undefined
-              }
-            >
-              <div className={styles['Hero-trailing']}>
-                <TrailingComponent />
-              </div>
-            </Box>
-          )}
-        </Stack>
-      </Grid.Column>
-    ) : null
-
-    const textColumn = !isGridlineExpressive ? (
-      <Grid.Column span={{large: mediaChild && hasInlineMedia ? 6 : 12}}>
-        <Stack
-          className={clsx(
-            useInlineGridline && styles['Hero-text-column--inline-gridline'],
-            useInlineGridline && styles['Hero-contentColumn--bordered-inline'],
-          )}
-          direction="vertical"
-          gap="none"
-          padding="none"
-          alignItems={hasInlineMedia ? 'flex-start' : align === 'start' ? 'flex-start' : 'center'}
-          justifyContent={hasInlineMedia ? undefined : align === 'start' ? 'flex-start' : 'center'}
-        >
-          {HeroChildren}
-          {HeroActions.length > 0 && <div className={styles['Hero-actions']}>{HeroActions}</div>}
-          {TrailingComponent && (
-            <Box
-              animate={
-                isGridline && enableAnimation
-                  ? {
-                      variant: 'slide-in-up',
-                      delay: 1000,
-                      duration: 1000,
-                    }
-                  : undefined
-              }
-            >
-              <div className={styles['Hero-trailing']}>
-                <TrailingComponent />
-              </div>
-            </Box>
-          )}
-        </Stack>
-      </Grid.Column>
-    ) : null
-
-    const mediaColumn =
-      mediaChild && !useContainedLayout ? (
-        <Grid.Column
-          ref={imageContainerRef}
-          span={{large: hasInlineMedia ? 6 : 12}}
-          className={clsx(
-            imageBackgroundColor && styles[`Hero-imageContainer--bg-${imageBackgroundColor}`],
-            useInlineGridline &&
-              inlineMediaPosition?.includes('padded') &&
-              styles['Hero-imageContainer--inline-bg-padded'],
-            useInlineGridline && styles['Hero-imageContainer--inline-bordered'],
-          )}
-        >
-          <div className={clsx(styles['Hero-mediaContainer'], imageContainerClassName)} style={imageContainerStyle}>
-            {mediaChild}
+    const renderTrailingComponent = (shouldAnimate: boolean) =>
+      TrailingComponent && (
+        <Box animate={shouldAnimate ? {variant: 'slide-in-up' as const, delay: 1000, duration: 1000} : undefined}>
+          <div className={styles['Hero-trailing']}>
+            <TrailingComponent />
           </div>
-        </Grid.Column>
-      ) : null
+        </Box>
+      )
+
+    const renderActions = () => HeroActions.length > 0 && <div className={styles['Hero-actions']}>{HeroActions}</div>
 
     return (
       <Tag {...tagProps}>
@@ -286,18 +206,81 @@ const Root = forwardRef<HTMLElement, PropsWithChildren<HeroProps>>(
             >
               {isGridlineExpressive ? (
                 <>
-                  {expressiveHeaderColumn}
-                  {expressiveBodyColumn}
-                </>
-              ) : isInlineStart ? (
-                <>
-                  {mediaColumn}
-                  {textColumn}
+                  {/* Expressive variant: header column (left) */}
+                  <Grid.Column span={{medium: 12, large: 6}} className={styles['Hero-expressive-header-column']}>
+                    <Stack direction="vertical" gap="none" padding="none" alignItems="flex-start">
+                      {HeroHeaderChildren}
+                    </Stack>
+                  </Grid.Column>
+                  {/* Expressive variant: body column (right) */}
+                  <Grid.Column span={{medium: 12, large: 6}} className={styles['Hero-expressive-body-column']}>
+                    <Stack direction="vertical" gap="none" padding="none" alignItems="flex-start">
+                      {HeroBodyChildren}
+                      {renderActions()}
+                      {renderTrailingComponent(enableAnimation)}
+                    </Stack>
+                  </Grid.Column>
                 </>
               ) : (
                 <>
-                  {textColumn}
-                  {mediaColumn}
+                  {/* Standard GridLine variant: text column */}
+                  {isInlineStart && mediaChild && !useContainedLayout && (
+                    <Grid.Column
+                      ref={imageContainerRef}
+                      span={{large: 6}}
+                      className={clsx(
+                        imageBackgroundColor && styles[`Hero-imageContainer--bg-${imageBackgroundColor}`],
+                        useInlineGridline &&
+                          inlineMediaPosition?.includes('padded') &&
+                          styles['Hero-imageContainer--inline-bg-padded'],
+                        useInlineGridline && styles['Hero-imageContainer--inline-bordered'],
+                      )}
+                    >
+                      <div
+                        className={clsx(styles['Hero-mediaContainer'], imageContainerClassName)}
+                        style={imageContainerStyle}
+                      >
+                        {mediaChild}
+                      </div>
+                    </Grid.Column>
+                  )}
+                  <Grid.Column span={{large: mediaChild && hasInlineMedia ? 6 : 12}}>
+                    <Stack
+                      className={clsx(
+                        useInlineGridline && styles['Hero-text-column--inline-gridline'],
+                        useInlineGridline && styles['Hero-contentColumn--bordered-inline'],
+                      )}
+                      direction="vertical"
+                      gap="none"
+                      padding="none"
+                      alignItems={hasInlineMedia ? 'flex-start' : align === 'start' ? 'flex-start' : 'center'}
+                      justifyContent={hasInlineMedia ? undefined : align === 'start' ? 'flex-start' : 'center'}
+                    >
+                      {HeroChildren}
+                      {renderActions()}
+                      {renderTrailingComponent(isGridline && enableAnimation)}
+                    </Stack>
+                  </Grid.Column>
+                  {!isInlineStart && mediaChild && !useContainedLayout && (
+                    <Grid.Column
+                      ref={imageContainerRef}
+                      span={{large: hasInlineMedia ? 6 : 12}}
+                      className={clsx(
+                        imageBackgroundColor && styles[`Hero-imageContainer--bg-${imageBackgroundColor}`],
+                        useInlineGridline &&
+                          inlineMediaPosition?.includes('padded') &&
+                          styles['Hero-imageContainer--inline-bg-padded'],
+                        useInlineGridline && styles['Hero-imageContainer--inline-bordered'],
+                      )}
+                    >
+                      <div
+                        className={clsx(styles['Hero-mediaContainer'], imageContainerClassName)}
+                        style={imageContainerStyle}
+                      >
+                        {mediaChild}
+                      </div>
+                    </Grid.Column>
+                  )}
                 </>
               )}
             </Grid>
