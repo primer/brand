@@ -7,20 +7,20 @@
   container-type: inline-size;
 }
 
-.River--variant-bordered-grid {
+.River--variant-gridline {
   position: relative;
-  padding-inline: var(--brand-River-variant-bordered-grid-spacing-outerInline);
+  padding-inline: var(--brand-River-variant-gridline-spacing-outerInline);
   gap: var(--base-size-32);
 }
 
 @media screen and (min-width: 48rem) {
-  .River--variant-bordered-grid {
+  .River--variant-gridline {
     gap: var(--base-size-40);
   }
 }
 
-.River--variant-bordered-grid::before,
-.River--variant-bordered-grid::after {
+.River--variant-gridline::before,
+.River--variant-gridline::after {
   content: '';
   position: absolute;
   left: 50%;
@@ -30,16 +30,16 @@
   border-top: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
 }
 
-.River--variant-bordered-grid::before {
+.River--variant-gridline::before {
   top: 0;
 }
 
-.River--variant-bordered-grid::after {
+.River--variant-gridline::after {
   bottom: 0;
 }
 
 @media screen and (min-width: 80rem) {
-  .River--variant-bordered-grid {
+  .River--variant-gridline {
     border-inline: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
   }
 }
@@ -69,19 +69,19 @@
   box-shadow: var(--brand-River-visual-shadow);
 }
 
-.River--variant-bordered-grid .River__visual--has-background {
+.River--variant-gridline .River__visual--has-background {
   display: flex;
   align-items: center;
   justify-content: center;
   background-color: var(--brand-color-canvas-subtle);
   padding: var(--base-size-32);
   border-radius: 0;
-  margin-inline: calc(-1 * var(--brand-River-variant-bordered-grid-spacing-outerInline));
+  margin-inline: calc(-1 * var(--brand-River-variant-gridline-spacing-outerInline));
 }
 
-.River--variant-bordered-grid .River__visual--has-background img,
-.River--variant-bordered-grid .River__visual--has-background picture,
-.River--variant-bordered-grid .River__visual--has-background video {
+.River--variant-gridline .River__visual--has-background img,
+.River--variant-gridline .River__visual--has-background picture,
+.River--variant-gridline .River__visual--has-background video {
   max-width: 100%;
   height: auto;
   width: auto;
@@ -89,16 +89,16 @@
 }
 
 @media screen and (max-width: 47.99rem) {
-  .River--variant-bordered-grid .River__visual--has-background {
+  .River--variant-gridline .River__visual--has-background {
     align-items: flex-end;
     justify-content: flex-end;
     padding-block-end: 0;
     padding-inline-end: 0;
   }
 
-  .River--variant-bordered-grid .River__visual--has-background img,
-  .River--variant-bordered-grid .River__visual--has-background picture,
-  .River--variant-bordered-grid .River__visual--has-background video {
+  .River--variant-gridline .River__visual--has-background img,
+  .River--variant-gridline .River__visual--has-background picture,
+  .River--variant-gridline .River__visual--has-background video {
     border-end-start-radius: 0;
     border-end-end-radius: 0;
     border-start-end-radius: 0;
@@ -107,14 +107,14 @@
 
 /* Bordered-grid with background: tablet - anchor image to bottom-center */
 @media screen and (min-width: 48rem) and (max-width: 63.24rem) {
-  .River--variant-bordered-grid .River__visual--has-background {
+  .River--variant-gridline .River__visual--has-background {
     align-items: flex-end;
     padding-block-end: 0;
   }
 
-  .River--variant-bordered-grid .River__visual--has-background img,
-  .River--variant-bordered-grid .River__visual--has-background picture,
-  .River--variant-bordered-grid .River__visual--has-background video {
+  .River--variant-gridline .River__visual--has-background img,
+  .River--variant-gridline .River__visual--has-background picture,
+  .River--variant-gridline .River__visual--has-background video {
     border-end-start-radius: 0;
     border-end-end-radius: 0;
   }
@@ -147,29 +147,29 @@
   margin-block-end: var(--brand-River-label-margin);
 }
 
-.River--variant-bordered-grid.River--align-start .River__visual {
+.River--variant-gridline.River--align-start .River__visual {
   order: 1;
 }
 
-.River--variant-bordered-grid.River--align-start .River__content {
+.River--variant-gridline.River--align-start .River__content {
   order: 2;
 }
 
-.River--variant-bordered-grid.River--align-end .River__content {
+.River--variant-gridline.River--align-end .River__content {
   order: 1;
 }
 
-.River--variant-bordered-grid.River--align-end .River__visual {
+.River--variant-gridline.River--align-end .River__visual {
   order: 2;
 }
 
 @media screen and (max-width: 63.24rem) {
   /* align-start stacked: visual is first, touch top border */
-  .River--variant-bordered-grid.River--align-start .River__visual--has-background {
+  .River--variant-gridline.River--align-start .River__visual--has-background {
     margin-block-start: calc(-1 * var(--brand-River-spacing-outerBlock));
   }
 
-  .River--variant-bordered-grid.River--align-end .River__visual--has-background {
+  .River--variant-gridline.River--align-end .River__visual--has-background {
     margin-block-end: calc(-1 * var(--brand-River-spacing-outerBlock));
   }
 }
@@ -180,7 +180,7 @@
     grid-template-rows: unset;
   }
 
-  .River--variant-bordered-grid .River__visual--has-background {
+  .River--variant-gridline .River__visual--has-background {
     padding: var(--base-size-64);
     /* Side-by-side: reset inline margins, apply block margins to touch top/bottom borders */
     margin-inline: 0;
@@ -228,6 +228,11 @@
     grid-area: content;
   }
 
+  .River--50-50:not(.River--variant-gridline) .River__body-text,
+  .River--50-50:not(.River--variant-gridline) .River__heading {
+    max-width: 400px;
+  }
+
   .River__content--align-block-end {
     align-content: end;
   }
@@ -258,6 +263,51 @@
 
   .River--align-center .River__content {
     margin-top: var(--brand-River-spacing-inner);
+  }
+
+  .River--variant-gridline:not(.River--align-center):has(.River__visual--has-background) {
+    padding-inline: 0;
+    gap: 0;
+  }
+
+  .River--variant-gridline.River--50-50:not(.River--align-center):has(.River__visual--has-background) {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  /* Design-matched 60:40 proportions (560:676 ≈ 45:55) (start/end only) */
+  .River--variant-gridline.River--60-40:not(.River--align-center):has(.River__visual--has-background) {
+    grid-template-columns: 560fr 676fr;
+  }
+
+  .River--variant-gridline.River--align-end.River--60-40:has(.River__visual--has-background) {
+    grid-template-columns: 676fr 560fr;
+  }
+
+  .River--variant-gridline.River--align-start:has(.River__visual--has-background) .River__content {
+    padding-inline-start: var(--brand-River-variant-gridline-spacing-outerInline);
+    padding-inline-end: var(--brand-River-spacing-inner);
+  }
+
+  .River--variant-gridline.River--align-end:has(.River__visual--has-background) .River__content {
+    padding-inline-start: var(--brand-River-spacing-inner);
+    padding-inline-end: var(--brand-River-variant-gridline-spacing-outerInline);
+  }
+
+  .River--variant-gridline.River--50-50:not(.River--align-center) .River__visual--has-background {
+    margin-inline-start: 0;
+    margin-inline-end: 0;
+  }
+
+  .River--variant-gridline.River--align-center:has(.River__visual--has-background) {
+    padding-inline: 0;
+  }
+
+  .River--variant-gridline.River--align-center .River__visual--has-background {
+    width: 100%;
+  }
+
+  .River--variant-gridline.River--align-center:has(.River__visual--has-background) .River__content {
+    padding-inline: var(--brand-River-variant-gridline-spacing-outerInline);
   }
 }
 

@@ -355,13 +355,13 @@ describe('River', () => {
 
     const rootEl = getByTestId(rootId)
     expect(rootEl).toHaveClass('River--variant-default')
-    expect(rootEl).not.toHaveClass('River--variant-bordered-grid')
+    expect(rootEl).not.toHaveClass('River--variant-gridline')
   })
 
-  it('renders with bordered-grid variant', () => {
+  it('renders with gridline variant', () => {
     const rootId = 'root-el'
     const {getByTestId} = render(
-      <River data-testid={rootId} variant="bordered-grid">
+      <River data-testid={rootId} variant="gridline">
         <River.Visual>
           <MockImage />
         </River.Visual>
@@ -372,7 +372,7 @@ describe('River', () => {
     )
 
     const rootEl = getByTestId(rootId)
-    expect(rootEl).toHaveClass('River--variant-bordered-grid')
+    expect(rootEl).toHaveClass('River--variant-gridline')
     expect(rootEl).not.toHaveClass('River--variant-default')
   })
 
@@ -396,7 +396,7 @@ describe('River', () => {
   it('optionally renders visual with background', () => {
     const visualId = 'visual-el'
     const {getByTestId} = render(
-      <River variant="bordered-grid">
+      <River variant="gridline">
         <River.Visual data-testid={visualId} hasBackground>
           <MockImage />
         </River.Visual>

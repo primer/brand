@@ -27,12 +27,18 @@
             "value": "var(--base-size-64)"
           }
         }
-      },
-      "outerInline": {
-        "value": "var(--base-size-20)",
-        "responsive": {
-          "1280px": {
-            "value": "var(--base-size-64)"
+      }
+    },
+    "variant": {
+      "gridline": {
+        "spacing": {
+          "outerInline": {
+            "value": "var(--base-size-20)",
+            "responsive": {
+              "1280px": {
+                "value": "var(--base-size-64)"
+              }
+            }
           }
         }
       }

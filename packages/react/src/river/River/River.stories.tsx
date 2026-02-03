@@ -2,7 +2,7 @@ import React from 'react'
 import type {StoryFn, Meta} from '@storybook/react'
 
 import {River} from '.'
-import {Grid, Heading, Text, Link, Image} from '../../'
+import {Heading, Text, Link, Image, Section} from '../../'
 import {Container} from '../../component-helpers'
 import placeholderImage from '../../fixtures/images/placeholder.png'
 
@@ -17,41 +17,21 @@ export default {
 const PlaceholderImage = () => <img src={placeholderImage} alt="placeholder, blank area with a gray background color" />
 const Template: StoryFn<typeof River> = args => (
   <>
-    <Grid enableOverlay>
-      <Grid.Column span={12}>
-        <River {...args} align="start">
-          <River.Visual>
-            <PlaceholderImage />
-          </River.Visual>
-          <River.Content>
-            <Heading size="5">Heading</Heading>
-            <Text>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
-              turpis felis nam pulvinar risus elementum.
-            </Text>
-            <Link href="#">Call to action</Link>
-          </River.Content>
-        </River>
-      </Grid.Column>
-    </Grid>
-
-    <Grid enableOverlay>
-      <Grid.Column span={12}>
-        <River {...args} align="end">
-          <River.Visual>
-            <PlaceholderImage />
-          </River.Visual>
-          <River.Content>
-            <Heading size="5">Heading</Heading>
-            <Text>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
-              turpis felis nam pulvinar risus elementum.
-            </Text>
-            <Link href="#">Call to action</Link>
-          </River.Content>
-        </River>
-      </Grid.Column>
-    </Grid>
+    <Section>
+      <River {...args} align="start">
+        <River.Visual>
+          <PlaceholderImage />
+        </River.Visual>
+        <River.Content>
+          <Heading size="5">Heading</Heading>
+          <Text>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
+            turpis felis nam pulvinar risus elementum.
+          </Text>
+          <Link href="#">Call to action</Link>
+        </River.Content>
+      </River>
+    </Section>
   </>
 )
 

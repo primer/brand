@@ -209,6 +209,89 @@ export const CustomTrailingContentWithDivider: StoryFn<typeof River> = () => (
 
 CustomTrailingContentWithDivider.storyName = 'Custom trailing content w/ divider'
 
+export const GridLine: StoryFn<typeof River> = () => (
+  <River variant="gridline" align="start">
+    <River.Visual>
+      <PlaceholderImage />
+    </River.Visual>
+    <River.Content>
+      <Heading>GridLine Variant</Heading>
+      <Text>
+        The gridline variant adds lateral padding and borders to the River component, making it suitable for use within
+        bordered grid layouts.
+      </Text>
+      <Link href="#">Call to action</Link>
+    </River.Content>
+  </River>
+)
+
+GridLine.storyName = 'GridLine variant'
+
+export const GridLineEnd: StoryFn<typeof River> = () => (
+  <River variant="gridline" align="end">
+    <River.Visual>
+      <PlaceholderImage />
+    </River.Visual>
+    <River.Content>
+      <Heading>GridLine Variant (End)</Heading>
+      <Text>The gridline variant with end alignment positions the content on the right side of the visual.</Text>
+      <Link href="#">Call to action</Link>
+    </River.Content>
+  </River>
+)
+
+GridLineEnd.storyName = 'GridLine variant (end)'
+
+export const GridLineCenter: StoryFn<typeof River> = () => (
+  <River variant="gridline" align="center">
+    <River.Visual>
+      <PlaceholderImage />
+    </River.Visual>
+    <River.Content>
+      <Heading>GridLine Variant (Centered)</Heading>
+      <Text>The gridline variant with center alignment stacks the content below the visual with centered text.</Text>
+      <Link href="#">Call to action</Link>
+    </River.Content>
+  </River>
+)
+
+GridLineCenter.storyName = 'GridLine variant (centered)'
+
+export const GridLineWithBackground: StoryFn<typeof River> = () => (
+  <River variant="gridline" align="start">
+    <River.Visual hasBackground>
+      <PlaceholderImage />
+    </River.Visual>
+    <River.Content>
+      <Heading>GridLine with Background</Heading>
+      <Text>
+        Using hasBackground on River.Visual creates a full-bleed container with a subtle background color and the
+        image/video centered inside with padding.
+      </Text>
+      <Link href="#">Call to action</Link>
+    </River.Content>
+  </River>
+)
+
+GridLineWithBackground.storyName = 'GridLine variant (with background)'
+
+export const GridLineWithBackgroundEnd: StoryFn<typeof River> = () => (
+  <River variant="gridline" align="end">
+    <River.Visual hasBackground>
+      <PlaceholderImage />
+    </River.Visual>
+    <River.Content>
+      <Heading>GridLine with Background (End)</Heading>
+      <Text>
+        The hasBackground prop can be combined with different alignment options. This example shows end alignment.
+      </Text>
+      <Link href="#">Call to action</Link>
+    </River.Content>
+  </River>
+)
+
+GridLineWithBackgroundEnd.storyName = 'GridLine variant (with background, end)'
+
 export const AlternatingLayout: StoryFn<typeof River> = () => (
   <>
     <River align="start">

@@ -25,7 +25,12 @@ import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/compone
 /** * Main Stylesheet (as a CSS Module) */
 import styles from '../river-shared.module.css'
 
-export const RiverVariants = ['default', 'bordered-grid'] as const
+export const RiverVariants = ['default', 'gridline'] as const
+/**
+ * @deprecated Use 'GridLine' instead
+ */
+export const BorderedGrid = 'gridline' as const
+export const GridLine = 'gridline' as const
 export type RiverVariant = (typeof RiverVariants)[number]
 
 export const RiverContentAlignValues = ['center', 'block-end'] as const
@@ -47,11 +52,17 @@ export type RiverProps = {
    * Adjust the order of the `Content` column. The default is `start`.
    */
   align?: 'start' | 'end' | 'center'
+  /**
+   * Apply a visual variant. The default is `default`.
+   * `gridline` applies lateral spacing for use in bordered grid layouts.
+   */
+  variant?: RiverVariant
 } & BaseProps<HTMLElement> &
   React.HTMLAttributes<HTMLElement>
 
 export const defaultRiverImageTextRatio = '50:50'
 export const defaultRiverAlign = 'start'
+export const defaultRiverVariant: RiverVariant = 'default'
 
 type ValidRootChildren = {
   Visual: React.ReactElement<RiverVisualProps> | null
@@ -64,6 +75,7 @@ const Root = forwardRef(
       animate,
       imageTextRatio = defaultRiverImageTextRatio,
       align = defaultRiverAlign,
+      variant = defaultRiverVariant,
       className,
       children,
       style,
@@ -95,6 +107,7 @@ const Root = forwardRef(
           styles.River,
           styles[`River--${imageTextRatio.replace(':', '-')}`],
           styles[`River--align-${align}`],
+          styles[`River--variant-${variant}`],
           animationClasses,
           className,
         )}
@@ -257,6 +270,11 @@ export type RiverVisualProps = BaseProps<HTMLDivElement> &
      * Can optionally be disabled.
      */
     rounded?: boolean
+    /**
+     * Applies a subtle background color with padding around the media.
+     * Creates a full-bleed container with the image/video centered inside.
+     */
+    hasBackground?: boolean
   }>
 
 const Visual = forwardRef(
@@ -267,6 +285,7 @@ const Visual = forwardRef(
       className,
       hasShadow = false,
       rounded = true,
+      hasBackground = false,
       ...rest
     }: PropsWithChildren<RiverVisualProps>,
     ref: Ref<HTMLDivElement>,
@@ -279,6 +298,7 @@ const Visual = forwardRef(
           hasShadow && styles['River__visual--has-shadow'],
           fillMedia && styles['River__visual--fill-media'],
           rounded && styles['River__visual--rounded'],
+          hasBackground && styles['River__visual--has-background'],
           className,
         )}
         {...rest}
