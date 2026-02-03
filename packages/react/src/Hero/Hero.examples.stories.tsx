@@ -456,21 +456,21 @@ export const GridlineExpressiveWithImageCarousel: Story = {
                   <Box padding="condensed">
                     <Box id="panel-1-b" aria-labelledby="tab-1" role="tabpanel" tabIndex={0} hidden={activeTab !== '0'}>
                       <Animate animate="slide-in-up">
-                        <Text as="p" size="100" variant="muted" align="center">
+                        <Text as="p" align="center">
                           Code quickly and more securely with GitHub Copilot embedded throughout your workflows.
                         </Text>
                       </Animate>
                     </Box>
                     <Box id="panel-2-b" aria-labelledby="tab-2" role="tabpanel" tabIndex={0} hidden={activeTab !== '1'}>
                       <Animate animate="slide-in-up">
-                        <Text as="p" size="100" variant="muted" align="center">
+                        <Text as="p" align="center">
                           Track and coordinate your work with GitHub Issues, GitHub Projects, and insights.
                         </Text>
                       </Animate>
                     </Box>
                     <Box id="panel-3-b" aria-labelledby="tab-3" role="tabpanel" tabIndex={0} hidden={activeTab !== '2'}>
                       <Animate animate="slide-in-up">
-                        <Text as="p" size="100" variant="muted" align="center">
+                        <Text as="p" align="center">
                           Collaborate in real time with your team and GitHub Copilot across GitHub Issues, GitHub
                           Discussions, and pull requests.
                         </Text>
