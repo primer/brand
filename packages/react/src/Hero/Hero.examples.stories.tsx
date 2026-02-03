@@ -1,10 +1,13 @@
-import React, {useEffect} from 'react'
+import React, {useCallback, useEffect, useState} from 'react'
 import type {Meta, StoryObj} from '@storybook/react'
 
-import placeholderImage from '../fixtures/images/browser-light.png'
 import placeholderBg from '../fixtures/images/dither-bg-landscape-green.png'
 import posterImage from '../fixtures/images/example-poster.png'
 import defaultPlaceholderImgae from '../fixtures/images/placeholder.png'
+
+import renderUI1 from '../fixtures/images/copilot-vscode-agent-mode-1.png'
+import renderUI2 from '../fixtures/images/copilot-vscode-agent-mode-2.png'
+import renderUI3 from '../fixtures/images/copilot-vscode-agent-mode-3.png'
 
 import {Hero} from '.'
 import {Box} from '../Box'
@@ -15,6 +18,10 @@ import {Card} from '../Card'
 import styles from './Hero.stories.module.css'
 import {Text} from '../Text'
 import {InlineLink} from '../InlineLink'
+import {AnimationProvider, Animate} from '../animation'
+import {Stack} from '../Stack'
+import {Tabs} from '../Tabs'
+import {Image} from '../Image'
 
 const meta = {
   title: 'Components/Hero/Examples',
@@ -68,7 +75,7 @@ export const CustomBackgroundBlockEndImage: Story = {
           <Hero.PrimaryAction href="#">Primary action</Hero.PrimaryAction>
           <Hero.SecondaryAction href="#">Secondary action</Hero.SecondaryAction>
 
-          <Hero.Image src={placeholderImage} alt="" enableBorder={false} />
+          <Hero.Image src={renderUI3} alt="" enableBorder={false} />
         </Hero>
       </Box>
     )
@@ -96,7 +103,7 @@ export const CustomBackgroundInlineEndPaddedImage: Story = {
         </Hero.Description>
         <Hero.PrimaryAction href="#">Primary action</Hero.PrimaryAction>
         <Hero.SecondaryAction href="#">Secondary action</Hero.SecondaryAction>
-        <Hero.Image position="inline-end-padded" src={placeholderImage} alt="" enableBorder={false} />
+        <Hero.Image position="inline-end-padded" src={renderUI3} alt="" enableBorder={false} />
       </Hero>
     )
   },
@@ -303,10 +310,179 @@ export const GridlineExpressiveBlockEndPaddedTrailingComponent: Story = {
         <Hero.Image
           enableBorder={false}
           position="block-end"
-          src={placeholderImage}
+          src={renderUI3}
           alt="placeholder image, blank with gray solid fill"
         />
       </Hero>
+    )
+  },
+}
+
+export const GridlineExpressiveWithImageCarousel: Story = {
+  name: 'Image carousel',
+  render: function Render() {
+    const imageRef = React.useRef<HTMLDivElement>(null)
+
+    useEffect(() => {
+      if (imageRef.current) {
+        return TempFadeInBackgroundEffect(imageRef.current, placeholderBg, 500)
+      }
+    }, [])
+
+    const [activeTab, setActiveTab] = useState<string>('0')
+
+    const handleTabChange = useCallback((id: string) => {
+      setActiveTab(id)
+    }, [])
+
+    return (
+      <Box
+        marginBlockEnd={64}
+        borderBlockEndWidth="thin"
+        borderStyle="solid"
+        borderColor="muted"
+        style={{'--brand-Hero-bgColor-gridlineGridInner': 'var(--brand-color-canvas-default)'} as React.CSSProperties}
+        className={styles.heroWithCardsExample}
+      >
+        <Hero variant="gridline-expressive" enableAnimation>
+          <Hero.Label>Projects</Hero.Label>
+          <Hero.Heading>Project planning for developers</Hero.Heading>
+          <Hero.Description>
+            Create issues, break them into tasks, track relationships, add custom fields, and have conversations.
+            Visualize large projects as spreadsheets or boards, and automate everything with code.
+          </Hero.Description>
+          <Hero.PrimaryAction href="#">Watch video</Hero.PrimaryAction>
+          <Hero.SecondaryAction href="#">Start using project tables</Hero.SecondaryAction>
+        </Hero>
+
+        <Box borderBlockStartWidth="thin" borderStyle="solid" borderColor="muted">
+          <Grid style={{paddingInline: 0}}>
+            <Grid.Column>
+              <Box ref={imageRef} backgroundColor="var(--customCardsBackgroundColor)" borderColor="muted">
+                <AnimationProvider autoStaggerChildren={false} animationTrigger="immediate" runOnce>
+                  <Stack alignItems="center" padding="none">
+                    <Box
+                      paddingBlockStart={{
+                        narrow: 'condensed',
+                        regular: 'spacious',
+                      }}
+                      paddingInlineEnd="condensed"
+                      paddingInlineStart="condensed"
+                    >
+                      <Box
+                        id="panel-1-a"
+                        aria-labelledby="tab-1"
+                        role="tabpanel"
+                        tabIndex={0}
+                        hidden={activeTab !== '0'}
+                      >
+                        <Animate animate="slide-in-up">
+                          <Image
+                            borderRadius="medium"
+                            src={renderUI1}
+                            alt="placeholder, blank area with an orange background color and a white number 1 in the center"
+                          />
+                        </Animate>
+                      </Box>
+                      <Box
+                        id="panel-2-a"
+                        aria-labelledby="tab-2"
+                        role="tabpanel"
+                        tabIndex={0}
+                        hidden={activeTab !== '1'}
+                      >
+                        <Animate animate="slide-in-up">
+                          <Image
+                            borderRadius="medium"
+                            src={renderUI2}
+                            alt="placeholder, blank area with an orange background color and a white number 1 in the center"
+                          />
+                        </Animate>
+                      </Box>
+                      <Box
+                        id="panel-3-a"
+                        aria-labelledby="tab-3"
+                        role="tabpanel"
+                        tabIndex={0}
+                        hidden={activeTab !== '2'}
+                      >
+                        <Animate animate="slide-in-up">
+                          <Image
+                            borderRadius="medium"
+                            src={renderUI3}
+                            alt="placeholder, blank area with an orange background color and a white number 1 in the center"
+                          />
+                        </Animate>
+                      </Box>
+                    </Box>
+                  </Stack>
+                </AnimationProvider>
+              </Box>
+              <Box
+                paddingBlockStart={{
+                  narrow: 'condensed',
+                  regular: 32,
+                }}
+                paddingBlockEnd={{
+                  narrow: 'condensed',
+                  regular: 32,
+                }}
+                paddingInlineStart={{
+                  narrow: 'condensed',
+                  regular: 48,
+                }}
+                paddingInlineEnd={{
+                  narrow: 'condensed',
+                  regular: 48,
+                }}
+                borderInlineStartWidth={{wide: 'thin'}}
+                borderInlineEndWidth={{wide: 'thin'}}
+                borderStyle="solid"
+                borderColor="muted"
+              >
+                <Tabs variant="default" onChange={handleTabChange} aria-label="Software development lifecycle">
+                  <Tabs.Item id="tab-1" aria-controls="panel-1-a panel-1-b">
+                    Code
+                  </Tabs.Item>
+                  <Tabs.Item id="tab-2" aria-controls="panel-2-a panel-2-b">
+                    Plan
+                  </Tabs.Item>
+                  <Tabs.Item id="tab-3" aria-controls="panel-3-a panel-3-b">
+                    Collaborate
+                  </Tabs.Item>
+                </Tabs>
+
+                <AnimationProvider autoStaggerChildren={false} animationTrigger="immediate" runOnce>
+                  <Box padding="condensed">
+                    <Box id="panel-1-b" aria-labelledby="tab-1" role="tabpanel" tabIndex={0} hidden={activeTab !== '0'}>
+                      <Animate animate="slide-in-up">
+                        <Text as="p" size="100" variant="muted" align="center">
+                          Code quickly and more securely with GitHub Copilot embedded throughout your workflows.
+                        </Text>
+                      </Animate>
+                    </Box>
+                    <Box id="panel-2-b" aria-labelledby="tab-2" role="tabpanel" tabIndex={0} hidden={activeTab !== '1'}>
+                      <Animate animate="slide-in-up">
+                        <Text as="p" size="100" variant="muted" align="center">
+                          Track and coordinate your work with GitHub Issues, GitHub Projects, and insights.
+                        </Text>
+                      </Animate>
+                    </Box>
+                    <Box id="panel-3-b" aria-labelledby="tab-3" role="tabpanel" tabIndex={0} hidden={activeTab !== '2'}>
+                      <Animate animate="slide-in-up">
+                        <Text as="p" size="100" variant="muted" align="center">
+                          Collaborate in real time with your team and GitHub Copilot across GitHub Issues, GitHub
+                          Discussions, and pull requests.
+                        </Text>
+                      </Animate>
+                    </Box>
+                  </Box>
+                </AnimationProvider>
+              </Box>
+            </Grid.Column>
+          </Grid>
+        </Box>
+      </Box>
     )
   },
 }

@@ -73,6 +73,15 @@ test.describe('Visual Comparison: Hero', () => {
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
+  test('Hero / Image carousel', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-hero-examples--gridline-expressive-with-image-carousel&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
   test('Hero / Centered', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-hero-features--centered&viewMode=story')
 
