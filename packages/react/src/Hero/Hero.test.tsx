@@ -383,4 +383,128 @@ describe('Hero', () => {
     const gridEl = getByTestId('Hero-grid')
     expect(gridEl).toHaveClass('Hero-grid--bordered-inline')
   })
+
+  test('renders with gridline-expressive variant', () => {
+    const {getByRole, getByTestId} = render(
+      <Hero variant="gridline-expressive">
+        <Hero.Heading>{mockHeading}</Hero.Heading>
+        <Hero.Description>{mockDescription}</Hero.Description>
+      </Hero>,
+    )
+
+    const rootEl = getByRole('region')
+    expect(rootEl).toHaveClass('Hero--variant-gridline-expressive')
+
+    const gridEl = getByTestId('Hero-grid')
+    expect(gridEl).toHaveClass('Hero-grid--expressive')
+  })
+
+  test('renders with center alignment', () => {
+    const {getByRole} = render(
+      <Hero align="center">
+        <Hero.Heading>{mockHeading}</Hero.Heading>
+      </Hero>,
+    )
+
+    const rootEl = getByRole('region')
+    expect(rootEl).toHaveClass('Hero--align-center')
+  })
+
+  test('renders with start alignment by default', () => {
+    const {getByRole} = render(
+      <Hero>
+        <Hero.Heading>{mockHeading}</Hero.Heading>
+      </Hero>,
+    )
+
+    const rootEl = getByRole('region')
+    expect(rootEl).toHaveClass('Hero--align-start')
+  })
+
+  test('renders Hero.Eyebrow correctly', () => {
+    const mockEyebrow = 'Eyebrow text'
+
+    const {getByText} = render(
+      <Hero>
+        <Hero.Eyebrow>{mockEyebrow}</Hero.Eyebrow>
+        <Hero.Heading>{mockHeading}</Hero.Heading>
+      </Hero>,
+    )
+
+    const eyebrowEl = getByText(mockEyebrow)
+    expect(eyebrowEl).toBeInTheDocument()
+  })
+
+  test('renders with block-end-padded position', () => {
+    const mockAltText = 'placeholder image'
+
+    const {getByRole, getByTestId} = render(
+      <Hero variant="gridline">
+        <Hero.Heading>{mockHeading}</Hero.Heading>
+        <Hero.Image position="block-end-padded" src="mock.png" alt={mockAltText} />
+      </Hero>,
+    )
+
+    const rootEl = getByRole('region')
+    expect(rootEl).toHaveClass('Hero--image-pos-block-end-padded')
+
+    const imageWrapper = getByTestId('Hero-imageWrapper')
+    expect(imageWrapper).toHaveClass('Hero-imageWrapper--block-end-padded')
+  })
+
+  test('renders with inline-end-padded position', () => {
+    const mockAltText = 'placeholder image'
+
+    const {getByRole} = render(
+      <Hero variant="gridline">
+        <Hero.Heading>{mockHeading}</Hero.Heading>
+        <Hero.Image position="inline-end-padded" src="mock.png" alt={mockAltText} />
+      </Hero>,
+    )
+
+    const rootEl = getByRole('region')
+    expect(rootEl).toHaveClass('Hero--image-pos-inline-end-padded')
+  })
+
+  test('renders with inline-start-padded position', () => {
+    const mockAltText = 'placeholder image'
+
+    const {getByRole} = render(
+      <Hero variant="gridline">
+        <Hero.Heading>{mockHeading}</Hero.Heading>
+        <Hero.Image position="inline-start-padded" src="mock.png" alt={mockAltText} />
+      </Hero>,
+    )
+
+    const rootEl = getByRole('region')
+    expect(rootEl).toHaveClass('Hero--image-pos-inline-start-padded')
+  })
+
+  test('renders with default imageBackgroundColor', () => {
+    const mockAltText = 'placeholder image'
+
+    const {container} = render(
+      <Hero variant="gridline" imageBackgroundColor="default">
+        <Hero.Heading>{mockHeading}</Hero.Heading>
+        <Hero.Image src="mock.png" alt={mockAltText} />
+      </Hero>,
+    )
+
+    const imageWrapper = container.querySelector('.Hero-imageWrapper--bg-default')
+    expect(imageWrapper).toBeInTheDocument()
+  })
+
+  test('renders with subtle imageBackgroundColor', () => {
+    const mockAltText = 'placeholder image'
+
+    const {container} = render(
+      <Hero variant="gridline" imageBackgroundColor="subtle">
+        <Hero.Heading>{mockHeading}</Hero.Heading>
+        <Hero.Image src="mock.png" alt={mockAltText} />
+      </Hero>,
+    )
+
+    const imageWrapper = container.querySelector('.Hero-imageWrapper--bg-subtle')
+    expect(imageWrapper).toBeInTheDocument()
+  })
 })
