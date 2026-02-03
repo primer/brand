@@ -19,10 +19,9 @@
 .TextCursorAnimation-cursor {
   position: absolute;
   left: calc((var(--brand-TextCursorAnimation-reveal-progress, 1) * 100%) + var(--base-size-6));
-  top: 50%;
-  transform: translateY(-50%);
+  top: calc((1lh - 0.3cap) / 2 - 0.5cap);
   width: var(--base-size-8);
-  height: 11px;
+  height: 1cap;
   background-color: color-mix(
     in srgb,
     var(--brand-color-canvas-subtle) calc((1 - var(--brand-TextCursorAnimation-cursor-progress, 0)) * 100%),

@@ -77,7 +77,7 @@ const Root = forwardRef<HTMLElement, PropsWithChildren<HeroProps>>(
     },
     ref,
   ) => {
-    const {HeroActions, HeroChildren, HeroImageChild, HeroVideoChild, HeroHeaderChildren, HeroBodyChildren} =
+    const {HeroActions, HeroChildren, HeroImageChild, HeroVideoChild, HeroHeaderChildren, HeroDescriptionChild} =
       useMemo(() => {
         const result = React.Children.toArray(children).reduce<{
           HeroActions: React.ReactElement[]
@@ -85,7 +85,7 @@ const Root = forwardRef<HTMLElement, PropsWithChildren<HeroProps>>(
           HeroVideoChild?: React.ReactElement<HeroVideoProps>
           HeroChildren: React.ReactElement[]
           HeroHeaderChildren: React.ReactElement[]
-          HeroBodyChildren: React.ReactElement[]
+          HeroDescriptionChild?: React.ReactElement
         }>(
           (acc, child) => {
             if (React.isValidElement(child)) {
@@ -97,11 +97,10 @@ const Root = forwardRef<HTMLElement, PropsWithChildren<HeroProps>>(
                 acc.HeroVideoChild = child as React.ReactElement<HeroVideoProps>
               } else {
                 acc.HeroChildren.push(child)
-                // Separate header children (Label, Eyebrow, Heading) from body children (Description)
                 if (child.type === HeroLabel || child.type === HeroEyebrow || child.type === HeroHeading) {
                   acc.HeroHeaderChildren.push(child)
                 } else if (child.type === HeroDescription) {
-                  acc.HeroBodyChildren.push(child)
+                  acc.HeroDescriptionChild = child
                 }
               }
             }
@@ -113,7 +112,7 @@ const Root = forwardRef<HTMLElement, PropsWithChildren<HeroProps>>(
             HeroImageChild: undefined,
             HeroVideoChild: undefined,
             HeroHeaderChildren: [],
-            HeroBodyChildren: [],
+            HeroDescriptionChild: undefined,
           },
         )
 
@@ -207,15 +206,21 @@ const Root = forwardRef<HTMLElement, PropsWithChildren<HeroProps>>(
               {isGridlineExpressive ? (
                 <>
                   {/* Expressive variant: header column (left) */}
-                  <Grid.Column span={{medium: 12, large: 6}} className={styles['Hero-expressive-header-column']}>
+                  <Grid.Column
+                    span={{medium: 12, large: HeroDescriptionChild ? 7 : 6}}
+                    className={styles['Hero-expressive-header-column']}
+                  >
                     <Stack direction="vertical" gap="none" padding="none" alignItems="flex-start">
                       {HeroHeaderChildren}
                     </Stack>
                   </Grid.Column>
                   {/* Expressive variant: body column (right) */}
-                  <Grid.Column span={{medium: 12, large: 6}} className={styles['Hero-expressive-body-column']}>
+                  <Grid.Column
+                    span={{medium: 12, large: HeroDescriptionChild ? 5 : 6}}
+                    className={styles['Hero-expressive-body-column']}
+                  >
                     <Stack direction="vertical" gap="none" padding="none" alignItems="flex-start">
-                      {HeroBodyChildren}
+                      {HeroDescriptionChild}
                       {renderActions()}
                       {renderTrailingComponent(enableAnimation)}
                     </Stack>

@@ -357,6 +357,7 @@
   width: 100%;
   max-width: 1280px;
   margin-inline: auto;
+  gap: 0;
   --brand-Grid-spacing-row: 0;
 }
 

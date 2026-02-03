@@ -172,17 +172,8 @@ export const CustomBackgroundInlineEndPaddedVideo: Story = {
 export const WithCards: Story = {
   name: 'Hero with cards',
   render: function Render() {
-    const imageRef = React.useRef<HTMLDivElement>(null)
-
-    useEffect(() => {
-      if (imageRef.current) {
-        return TempFadeInBackgroundEffect(imageRef.current, placeholderBg, 500)
-      }
-    }, [])
-
     return (
       <Box
-        ref={imageRef}
         marginBlockEnd={64}
         borderBlockEndWidth="thin"
         borderStyle="solid"

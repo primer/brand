@@ -103,7 +103,7 @@ test.describe('Visual Comparison: Hero', () => {
       'http://localhost:6006/iframe.html?args=&id=components-hero-features--with-increased-contrast-label&viewMode=story',
     )
 
-    await page.waitForTimeout(500)
+    await page.waitForTimeout(3000)
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
