@@ -2,7 +2,7 @@ import React, {render, cleanup} from '@testing-library/react'
 import '@testing-library/jest-dom'
 
 import {River} from '../'
-import {Text, Link, Heading, Label} from '../../'
+import {Text, Link, Heading, Label, EyebrowText} from '../../'
 import {axe, toHaveNoViolations} from 'jest-axe'
 
 expect.extend(toHaveNoViolations)
@@ -444,5 +444,48 @@ describe('River', () => {
     const contentEl = getByTestId(contentId)
     expect(contentEl).toHaveClass('River__content--align-block-end')
     expect(contentEl).not.toHaveClass('River__content--align-center')
+  })
+
+  it('renders EyebrowText within River.Content', () => {
+    const mockEyebrowText = 'Feature'
+    const {getByTestId} = render(
+      <River>
+        <River.Visual>
+          <MockImage />
+        </River.Visual>
+        <River.Content>
+          <EyebrowText>{mockEyebrowText}</EyebrowText>
+          <Heading>{mockHeading}</Heading>
+          <Text>{mockText}</Text>
+        </River.Content>
+      </River>,
+    )
+
+    const eyebrowEl = getByTestId(EyebrowText.testIds.root)
+    expect(eyebrowEl).toBeInTheDocument()
+    expect(eyebrowEl).toHaveTextContent(mockEyebrowText)
+  })
+
+  it('renders Label instead of EyebrowText when both are present', () => {
+    const mockEyebrowText = 'Feature'
+    const {getByText, queryByText} = render(
+      <River>
+        <River.Visual>
+          <MockImage />
+        </River.Visual>
+        <River.Content>
+          <Label>{mockLabel}</Label>
+          <EyebrowText>{mockEyebrowText}</EyebrowText>
+          <Heading>{mockHeading}</Heading>
+          <Text>{mockText}</Text>
+        </River.Content>
+      </River>,
+    )
+
+    const labelEl = getByText(mockLabel)
+    const eyebrowEl = queryByText(mockEyebrowText)
+
+    expect(labelEl).toBeInTheDocument()
+    expect(eyebrowEl).not.toBeInTheDocument()
   })
 })
