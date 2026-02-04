@@ -210,90 +210,100 @@ export const CustomTrailingContentWithDivider: StoryFn<typeof River> = () => (
 CustomTrailingContentWithDivider.storyName = 'Custom trailing content w/ divider'
 
 export const GridLine: StoryFn<typeof River> = () => (
-  <River variant="gridline" align="start">
-    <River.Visual>
-      <PlaceholderImage />
-    </River.Visual>
-    <River.Content>
-      <Heading>GridLine Variant</Heading>
-      <Text>
-        The gridline variant adds lateral padding and borders to the River component, making it suitable for use within
-        bordered grid layouts.
-      </Text>
-      <Link href="#">Call to action</Link>
-    </River.Content>
-  </River>
+  <Container>
+    <River variant="gridline" align="start">
+      <River.Visual>
+        <PlaceholderImage />
+      </River.Visual>
+      <River.Content>
+        <Heading>GridLine Variant</Heading>
+        <Text>
+          The gridline variant adds lateral padding and borders to the River component, making it suitable for use
+          within bordered grid layouts.
+        </Text>
+        <Link href="#">Call to action</Link>
+      </River.Content>
+    </River>
+  </Container>
 )
 
 GridLine.storyName = 'GridLine variant'
 
 export const GridLineEnd: StoryFn<typeof River> = () => (
-  <River variant="gridline" align="end">
-    <River.Visual>
-      <PlaceholderImage />
-    </River.Visual>
-    <River.Content>
-      <Heading>GridLine Variant (End)</Heading>
-      <Text>The gridline variant with end alignment positions the content on the right side of the visual.</Text>
-      <Link href="#">Call to action</Link>
-    </River.Content>
-  </River>
+  <Container>
+    <River variant="gridline" align="end">
+      <River.Visual>
+        <PlaceholderImage />
+      </River.Visual>
+      <River.Content>
+        <Heading>GridLine Variant (End)</Heading>
+        <Text>The gridline variant with end alignment positions the content on the right side of the visual.</Text>
+        <Link href="#">Call to action</Link>
+      </River.Content>
+    </River>
+  </Container>
 )
 
 GridLineEnd.storyName = 'GridLine variant (end)'
 
 export const GridLineCenter: StoryFn<typeof River> = () => (
-  <River variant="gridline" align="center">
-    <River.Visual>
-      <PlaceholderImage />
-    </River.Visual>
-    <River.Content>
-      <Heading>GridLine Variant (Centered)</Heading>
-      <Text>The gridline variant with center alignment stacks the content below the visual with centered text.</Text>
-      <Link href="#">Call to action</Link>
-    </River.Content>
-  </River>
+  <Container>
+    <River variant="gridline" align="center">
+      <River.Visual>
+        <PlaceholderImage />
+      </River.Visual>
+      <River.Content>
+        <Heading>GridLine Variant (Centered)</Heading>
+        <Text>The gridline variant with center alignment stacks the content below the visual with centered text.</Text>
+        <Link href="#">Call to action</Link>
+      </River.Content>
+    </River>
+  </Container>
 )
 
 GridLineCenter.storyName = 'GridLine variant (centered)'
 
 export const GridLineWithBackground: StoryFn<typeof River> = () => (
-  <River variant="gridline" align="start">
-    <River.Visual hasBackground>
-      <PlaceholderImage />
-    </River.Visual>
-    <River.Content>
-      <Heading>GridLine with Background</Heading>
-      <Text>
-        Using hasBackground on River.Visual creates a full-bleed container with a subtle background color and the
-        image/video centered inside with padding.
-      </Text>
-      <Link href="#">Call to action</Link>
-    </River.Content>
-  </River>
+  <Container>
+    <River variant="gridline" align="start">
+      <River.Visual hasBackground>
+        <PlaceholderImage />
+      </River.Visual>
+      <River.Content>
+        <Heading>GridLine with Background</Heading>
+        <Text>
+          Using hasBackground on River.Visual creates a full-bleed container with a subtle background color and the
+          image/video centered inside with padding.
+        </Text>
+        <Link href="#">Call to action</Link>
+      </River.Content>
+    </River>
+  </Container>
 )
 
 GridLineWithBackground.storyName = 'GridLine variant (with background)'
 
 export const GridLineWithBackgroundEnd: StoryFn<typeof River> = () => (
-  <River variant="gridline" align="end">
-    <River.Visual hasBackground>
-      <PlaceholderImage />
-    </River.Visual>
-    <River.Content>
-      <Heading>GridLine with Background (End)</Heading>
-      <Text>
-        The hasBackground prop can be combined with different alignment options. This example shows end alignment.
-      </Text>
-      <Link href="#">Call to action</Link>
-    </River.Content>
-  </River>
+  <Container>
+    <River variant="gridline" align="end">
+      <River.Visual hasBackground>
+        <PlaceholderImage />
+      </River.Visual>
+      <River.Content>
+        <Heading>GridLine with Background (End)</Heading>
+        <Text>
+          The hasBackground prop can be combined with different alignment options. This example shows end alignment.
+        </Text>
+        <Link href="#">Call to action</Link>
+      </River.Content>
+    </River>
+  </Container>
 )
 
 GridLineWithBackgroundEnd.storyName = 'GridLine variant (with background, end)'
 
 export const AlternatingLayout: StoryFn<typeof River> = () => (
-  <>
+  <Container>
     <River align="start">
       <River.Visual>
         <PlaceholderImage />
@@ -333,24 +343,30 @@ export const AlternatingLayout: StoryFn<typeof River> = () => (
         <Link href="#">Call to action</Link>
       </River.Content>
     </River>
-  </>
+  </Container>
 )
 
 export const ContentAlignBlockEnd: StoryFn<typeof River> = () => (
-  <River>
-    <River.Visual>
-      <img src={placeholderImage} alt="placeholder, blank area with a gray background color" style={{minHeight: 400}} />
-    </River.Visual>
-    <River.Content align="block-end">
-      <Label>Label</Label>
-      <Heading>Content aligned to block-end</Heading>
-      <Text>
-        On large viewports, the content aligns to the bottom of its container. This is useful when the visual is taller
-        than the content.
-      </Text>
-      <Link href="#">Call to action</Link>
-    </River.Content>
-  </River>
+  <Container>
+    <River>
+      <River.Visual>
+        <img
+          src={placeholderImage}
+          alt="placeholder, blank area with a gray background color"
+          style={{minHeight: 400}}
+        />
+      </River.Visual>
+      <River.Content align="block-end">
+        <Label>Label</Label>
+        <Heading>Content aligned to block-end</Heading>
+        <Text>
+          On large viewports, the content aligns to the bottom of its container. This is useful when the visual is
+          taller than the content.
+        </Text>
+        <Link href="#">Call to action</Link>
+      </River.Content>
+    </River>
+  </Container>
 )
 
 ContentAlignBlockEnd.storyName = 'Content align block-end'
