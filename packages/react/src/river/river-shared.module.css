@@ -289,13 +289,21 @@
   }
 
   .River--variant-gridline.River--align-start:has(.River__visual--has-background) .River__content {
-    padding-inline-start: var(--brand-River-variant-gridline-spacing-outerInline);
+    padding-inline-start: var(--base-size-64);
     padding-inline-end: var(--brand-River-spacing-inner);
   }
 
   .River--variant-gridline.River--align-end:has(.River__visual--has-background) .River__content {
     padding-inline-start: var(--brand-River-spacing-inner);
-    padding-inline-end: var(--brand-River-variant-gridline-spacing-outerInline);
+    padding-inline-end: var(--base-size-64);
+  }
+
+  .River--variant-gridline.River--align-start:not(:has(.River__visual--has-background)) .River__content {
+    padding-inline-end: var(--brand-River-spacing-inner);
+  }
+
+  .River--variant-gridline.River--align-end:not(:has(.River__visual--has-background)) .River__content {
+    padding-inline-start: var(--brand-River-spacing-inner);
   }
 
   .River--variant-gridline.River--50-50:not(.River--align-center) .River__visual--has-background {
