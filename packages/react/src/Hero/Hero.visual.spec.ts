@@ -338,15 +338,6 @@ test.describe('Visual Comparison: Hero', () => {
       await expect(page).toHaveScreenshot({fullPage: true})
     })
   })
-  test('Hero / Expressive variant: Inline-end image', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-hero-features-gridline-variants--gridline-expressive-with-trailing&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
   test('Hero / Expressive variant: Block-end-padded image', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-hero-features-gridline-variants--gridline-expressive-block-end-padded&viewMode=story',

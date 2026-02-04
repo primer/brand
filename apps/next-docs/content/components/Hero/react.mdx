@@ -67,10 +67,30 @@ import {Hero} from '@primer/react-brand'
 
 ### GridLine variant
 
-Use `variant="gridline"` to display the Hero with a contained image, subtle background color, and borders. This is a convenient single-prop alternative to manually combining `imageBackgroundColor="subtle"` with `Hero.Image fullWidth={false}`.
+Use `variant="gridline"` to display the Hero with a contained image, subtle background color, and borders.
+
+The `GridLine` variants all feature a trailing border by default. Use `Box` if you need to add one to the top also.
 
 ```jsx live
 <Hero variant="gridline" align="center">
+  <Hero.Heading>This is my super sweet hero heading</Hero.Heading>
+  <Hero.Description>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis
+    felis nam pulvinar risus elementum.
+  </Hero.Description>
+  <Hero.PrimaryAction href="#">Primary action</Hero.PrimaryAction>
+  <Hero.Image src="/images/placeholder.png" alt="placeholder, blank area with a gray background color" />
+</Hero>
+```
+
+### GridLine "Expressive" variant
+
+Use `variant="gridline-expressive"` for an alternative split-content layout.
+
+The `GridLine` variants all feature a trailing border by default. Use `Box` if you need to add one to the top also.
+
+```jsx live
+<Hero variant="gridline-expressive">
   <Hero.Heading>This is my super sweet hero heading</Hero.Heading>
   <Hero.Description>
     Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis

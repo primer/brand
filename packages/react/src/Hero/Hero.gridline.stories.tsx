@@ -304,23 +304,6 @@ export const GridlineExpressiveNarrow: Story = {
   },
 }
 
-export const GridlineExpressiveWithTrailing: Story = {
-  name: 'Expressive variant: Inline-end image',
-  render: () => (
-    <Hero variant="gridline-expressive">
-      <Hero.Label>Eyebrow</Hero.Label>
-      <Hero.Heading>This is my super sweet hero heading</Hero.Heading>
-      <Hero.Description>
-        Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem
-        aperiam, quae inventore.
-      </Hero.Description>
-      <Hero.PrimaryAction href="#">Buy now</Hero.PrimaryAction>
-      <Hero.SecondaryAction href="#">Learn more</Hero.SecondaryAction>
-      <Hero.Image position="inline-end" src={placeholderImage} alt="placeholder image, blank with gray solid fill" />
-    </Hero>
-  ),
-}
-
 export const GridlineExpressiveBlockEndPadded: Story = {
   name: 'Expressive variant: Block-end-padded image',
   render: () => (
