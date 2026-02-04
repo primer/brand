@@ -3,7 +3,6 @@ import type {StoryFn, Meta} from '@storybook/react'
 
 import {River} from '.'
 import {Heading, Text, Link, Image, Section} from '../../'
-import {Container} from '../../component-helpers'
 import placeholderImage from '../../fixtures/images/placeholder.png'
 
 import styles from './River.stories.module.css'
@@ -38,7 +37,7 @@ const Template: StoryFn<typeof River> = args => (
 export const Default = Template.bind({})
 
 export const LargerPlaceholderImage: StoryFn<typeof River> = args => (
-  <Container>
+  <Section>
     <River {...args} imageTextRatio="60:40">
       <River.Visual>
         <Image as="picture" src={placeholderImage} alt="placeholder, blank area with a gray background color" />
@@ -52,11 +51,11 @@ export const LargerPlaceholderImage: StoryFn<typeof River> = args => (
         <Link href="#">Call to action</Link>
       </River.Content>
     </River>
-  </Container>
+  </Section>
 )
 
 export const Copilot: StoryFn<typeof River> = args => (
-  <Container>
+  <Section>
     <River align="center">
       <River.Visual>
         <PlaceholderImage />
@@ -90,11 +89,11 @@ export const Copilot: StoryFn<typeof River> = args => (
         </Text>
       </River.Content>
     </River>
-  </Container>
+  </Section>
 )
 
 export const Video: StoryFn<typeof River> = args => (
-  <Container>
+  <Section>
     <River imageTextRatio="60:40" {...args}>
       <River.Visual hasShadow={false}>
         <video
@@ -121,7 +120,7 @@ export const Video: StoryFn<typeof River> = args => (
         </Text>
       </River.Content>
     </River>
-  </Container>
+  </Section>
 )
 
 export const CustomLogos: StoryFn<typeof River> = () => (

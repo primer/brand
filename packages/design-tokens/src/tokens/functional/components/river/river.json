@@ -21,10 +21,10 @@
         }
       },
       "outerBlock": {
-        "value": "var(--base-size-40)",
+        "value": "var(--base-size-36)",
         "responsive": {
           "1280px": {
-            "value": "var(--base-size-64)"
+            "value": "var(--base-size-48)"
           }
         }
       }
@@ -32,6 +32,14 @@
     "variant": {
       "gridline": {
         "spacing": {
+          "outerBlock": {
+            "value": "var(--base-size-40)",
+            "responsive": {
+              "1280px": {
+                "value": "var(--base-size-64)"
+              }
+            }
+          },
           "outerInline": {
             "value": "var(--base-size-20)",
             "responsive": {

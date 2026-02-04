@@ -10,12 +10,13 @@
 .River--variant-gridline {
   position: relative;
   padding-inline: var(--brand-River-variant-gridline-spacing-outerInline);
+  padding-block: var(--brand-River-variant-gridline-spacing-outerBlock);
   gap: var(--base-size-32);
 }
 
 @media screen and (min-width: 48rem) {
   .River--variant-gridline {
-    gap: var(--base-size-40);
+    gap: var(--base-size-28);
   }
 }
 
@@ -184,7 +185,7 @@
     padding: var(--base-size-64);
     /* Side-by-side: reset inline margins, apply block margins to touch top/bottom borders */
     margin-inline: 0;
-    margin-block: calc(-1 * var(--brand-River-spacing-outerBlock));
+    margin-block: calc(-1 * var(--brand-River-variant-gridline-spacing-outerBlock));
   }
 
   .River__content {
@@ -192,7 +193,7 @@
   }
 
   .River--50-50 {
-    grid-template-columns: [content] min(50%, 476px) [visual] 1fr;
+    grid-template-columns: [content] min(50%, 452px) [visual] 1fr;
   }
 
   .River--60-40 {
@@ -231,6 +232,10 @@
   .River--50-50:not(.River--variant-gridline) .River__body-text,
   .River--50-50:not(.River--variant-gridline) .River__heading {
     max-width: 400px;
+  }
+
+  .River--align-start:not(.River--variant-gridline) .River__content {
+    padding-inline-end: var(--base-size-128);
   }
 
   .River__content--align-block-end {
