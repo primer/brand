@@ -1,7 +1,8 @@
 import {clsx} from 'clsx'
 import React, {type PropsWithChildren, type Ref, forwardRef, useCallback, useEffect, useMemo, useState} from 'react'
 import type {BaseProps} from '../component-helpers'
-import {Heading, HeadingProps, defaultHeadingTag, Text, TextProps} from '../'
+import {PauseIcon as OcticonPauseIcon} from '@primer/octicons-react'
+import {Heading, HeadingProps, defaultHeadingTag, Text, TextProps, Grid, Button} from '../'
 
 /**
  * Design tokens
@@ -32,6 +33,10 @@ export type LogoSuiteProps = {
    * Test id for the root LogoSuite element.
    */
   'data-testid'?: string
+  /**
+   * Alternative presentation
+   */
+  variant?: 'default' | 'gridline-expressive'
 } & BaseProps<HTMLDivElement> &
   React.HTMLAttributes<HTMLDivElement>
 
@@ -40,6 +45,7 @@ const LogoSuiteBase = ({
   children,
   className,
   hasDivider = true,
+  variant = 'default',
   'data-testid': testId,
 }: PropsWithChildren<LogoSuiteProps>) => {
   const childrenArray = useMemo(() => React.Children.toArray(children), [children])
@@ -63,19 +69,36 @@ const LogoSuiteBase = ({
     }
   }
 
+  const isGridlineExpressive = variant === 'gridline-expressive'
+
   return (
     <div
       className={clsx(
         styles.LogoSuite,
         styles[`LogoSuite--${align}`],
         hasDivider && styles['LogoSuite--hasDivider'],
+        styles[`LogoSuite--${variant}`],
         className,
       )}
       data-testid={testId}
     >
-      {HeadingChild}
-      {DescriptionChild}
-      {LogobarChild}
+      {isGridlineExpressive ? (
+        <Grid className={styles['LogoSuite__content']}>
+          <Grid.Column span={{large: 3}} className={styles['LogoSuite__textContainer']}>
+            {HeadingChild}
+            {DescriptionChild}
+          </Grid.Column>
+          <Grid.Column span={{large: 9}} className={styles['LogoSuite__logobarContainer']}>
+            {LogobarChild}
+          </Grid.Column>
+        </Grid>
+      ) : (
+        <>
+          {HeadingChild}
+          {DescriptionChild}
+          {LogobarChild}
+        </>
+      )}
     </div>
   )
 }
@@ -92,7 +115,7 @@ const _Heading = forwardRef(
   (
     {
       as = defaultHeadingTag,
-      size = '3',
+      size = 'subhead-large',
       className,
       children,
       visuallyHidden,
@@ -126,7 +149,7 @@ export type LogoSuiteDescriptionProps = BaseProps<HTMLParagraphElement> &
 
 const _Description = forwardRef(
   (
-    {className, children, size = '300', variant = 'muted', ...props}: LogoSuiteDescriptionProps,
+    {className, children, size = '200', variant = 'muted', ...props}: LogoSuiteDescriptionProps,
     ref: Ref<HTMLParagraphElement>,
   ) => {
     return (
@@ -144,18 +167,11 @@ const _Description = forwardRef(
   },
 )
 
-const PauseIcon = () => (
-  <svg fill="none" role="presentation" aria-hidden="true" viewBox="3.17 2.28 13.7 15.42">
-    <path
-      d="M4.66148 2.3125C3.83593 2.3125 3.16669 2.98174 3.16669 3.80729V16.1927C3.16669 17.0183 3.83593 17.6875 4.66148 17.6875H7.65106C8.47662 17.6875 9.14586 17.0183 9.14586 16.1927V3.80729C9.14586 2.98174 8.47662 2.3125 7.65106 2.3125H4.66148ZM4.44794 3.80729C4.44794 3.68936 4.54355 3.59375 4.66148 3.59375H7.65106C7.769 3.59375 7.86461 3.68936 7.86461 3.80729V16.1927C7.86461 16.3106 7.769 16.4062 7.65106 16.4062H4.66148C4.54355 16.4062 4.44794 16.3106 4.44794 16.1927V3.80729ZM12.349 2.3125C11.5235 2.3125 10.8542 2.98174 10.8542 3.80729V16.1927C10.8542 17.0183 11.5235 17.6875 12.349 17.6875H15.3386C16.1642 17.6875 16.8334 17.0183 16.8334 16.1927V3.80729C16.8334 2.98174 16.1642 2.3125 15.3386 2.3125H12.349ZM12.1355 3.80729C12.1355 3.68936 12.2311 3.59375 12.349 3.59375H15.3386C15.4565 3.59375 15.5521 3.68936 15.5521 3.80729V16.1927C15.5521 16.3106 15.4565 16.4062 15.3386 16.4062H12.349C12.2311 16.4062 12.1355 16.3106 12.1355 16.1927V3.80729Z"
-      fill="currentColor"
-    ></path>
-  </svg>
-)
+const PauseIcon = () => <OcticonPauseIcon aria-label="Pause icon" size={16} />
 const PlayIcon = () => (
-  <svg fill="none" role="presentation" aria-hidden="true" viewBox="4.02 2.3 14.43 15.4">
+  <svg role="presentation" aria-hidden="true" viewBox="8 7 9 10" width="16" height="16">
     <path
-      d="M6.24905 3.69194C5.82218 3.45967 5.30225 3.76868 5.30225 4.25466V15.7452C5.30225 16.2312 5.82218 16.5402 6.24906 16.3079L16.8079 10.5626C17.2538 10.32 17.2538 9.67983 16.8079 9.4372L6.24905 3.69194ZM4.021 4.25466C4.021 2.79672 5.58078 1.86969 6.86142 2.56651L17.4203 8.31176C18.758 9.03966 18.758 10.9602 17.4203 11.6881L6.86143 17.4333C5.58079 18.1301 4.021 17.2031 4.021 15.7452V4.25466Z"
+      d="M9.5 15.584V8.416a.5.5 0 0 1 .77-.42l5.576 3.583a.5.5 0 0 1 0 .842l-5.576 3.584a.5.5 0 0 1-.77-.42Z"
       fill="currentColor"
     ></path>
   </svg>
@@ -205,6 +221,13 @@ export type LogoSuiteLogoBarProps = BaseProps<HTMLDivElement> & {
    * The stylistic variant of the LogoBar.
    */
   variant?: 'muted' | 'emphasis'
+  /**
+   * Displays an optional takeover button (as an anchor) on hover/focus.
+   */
+  takeoverButton?: {
+    label: string
+  } & Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, 'children'> &
+    BaseProps<HTMLAnchorElement>
 }
 
 const _LogoBar = forwardRef(
@@ -215,16 +238,14 @@ const _LogoBar = forwardRef(
       gap = 'default',
       marquee = false,
       marqueeSpeed = 'normal',
-      variant,
+      variant = 'muted',
+      takeoverButton,
       ...props
     }: LogoSuiteLogoBarProps,
     ref: Ref<HTMLDivElement>,
   ) => {
     const [prefersReducedMotion, setPrefersReducedMotion] = useState(false)
     const [isPlaying, setIsPlaying] = useState(marquee && !prefersReducedMotion && marqueeSpeed !== 'idle')
-
-    const childrenCount = React.Children.toArray(children).length
-    variant ??= childrenCount <= 5 ? 'emphasis' : 'muted'
 
     useEffect(() => {
       const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)')
@@ -245,6 +266,15 @@ const _LogoBar = forwardRef(
       setIsPlaying(marquee && !prefersReducedMotion && marqueeSpeed !== 'idle')
     }, [marquee, prefersReducedMotion, marqueeSpeed])
 
+    if (marquee && takeoverButton) {
+      if (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'test') {
+        // eslint-disable-next-line no-console
+        console.warn(
+          'LogoSuite.Logobar: `takeoverButton` cant be used with `marquee` prop due to accessibility risks. Set `marquee={false}` to use the takeover feature.',
+        )
+      }
+    }
+
     const defaultProps = {
       ref,
       className: clsx(
@@ -256,18 +286,43 @@ const _LogoBar = forwardRef(
       ...props,
     }
 
-    if (marquee && !prefersReducedMotion) {
+    const handleFocus = useCallback((event: React.FocusEvent) => {
+      const target = event.target as HTMLElement
+      if (target.tagName === 'A' || target.tagName === 'BUTTON') {
+        target.scrollIntoView({behavior: 'smooth', block: 'nearest', inline: 'center'})
+      }
+    }, [])
+
+    const renderTakeoverButton = () => {
+      if (!takeoverButton) return null
+      const {className: takeoverButtonClassName, label, ref: _ref, ...takeoverButtonProps} = takeoverButton
+      return (
+        <div className={styles['LogoSuite__logobar-takeoverButtonContainer']}>
+          <Button
+            as="a"
+            variant="accent"
+            className={clsx(styles['LogoSuite__logobar-takeoverButton'], takeoverButtonClassName)}
+            {...takeoverButtonProps}
+          >
+            {label}
+          </Button>
+        </div>
+      )
+    }
+
+    if (marquee) {
       const {className: marqueeDefaultClassName, ...restProps} = defaultProps
+      const shouldPause = !isPlaying || prefersReducedMotion
       return (
         <div
           {...restProps}
           className={clsx(
             styles['LogoSuite__logobar--has-marquee'],
             marqueeDefaultClassName,
-            !isPlaying && styles['LogoSuite__logobar--paused'],
+            shouldPause && styles['LogoSuite__logobar--paused'],
           )}
         >
-          <div className={clsx(styles['LogoSuite__logobar-marquee'])}>
+          <div className={clsx(styles['LogoSuite__logobar-marquee'])} onFocus={handleFocus}>
             <div
               className={clsx(
                 styles['LogoSuite__logobar-marqueeGroup'],
@@ -288,6 +343,16 @@ const _LogoBar = forwardRef(
             </div>
           </div>
           <PlayPauseButton onPlayPause={setIsPlaying} isPlaying={isPlaying} />
+        </div>
+      )
+    }
+
+    if (takeoverButton) {
+      const {className: defaultClassName, ...restProps} = defaultProps
+      return (
+        <div {...restProps} className={clsx(defaultClassName, styles['LogoSuite__logobar--has-takeover'])}>
+          {children}
+          {renderTakeoverButton()}
         </div>
       )
     }

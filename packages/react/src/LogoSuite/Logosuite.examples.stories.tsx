@@ -34,14 +34,26 @@ export const FollowingHero = () => (
 )
 
 export const WithLinks = () => (
-  <LogoSuite>
-    <LogoSuite.Heading visuallyHidden>Heading</LogoSuite.Heading>
-    <LogoSuite.Logobar>
-      {logos.slice(0, 4).map(logo => (
-        <a href="/#" key={logo.key}>
-          {logo}
-        </a>
-      ))}
-    </LogoSuite.Logobar>
-  </LogoSuite>
+  <>
+    <LogoSuite>
+      <LogoSuite.Heading visuallyHidden>Heading</LogoSuite.Heading>
+      <LogoSuite.Logobar>
+        {logos.slice(0, 4).map(logo => (
+          <a href="/#" key={logo.key}>
+            {logo}
+          </a>
+        ))}
+      </LogoSuite.Logobar>
+    </LogoSuite>
+    <LogoSuite>
+      <LogoSuite.Heading visuallyHidden>Heading</LogoSuite.Heading>
+      <LogoSuite.Logobar marquee>
+        {logos.slice(0, 8).map(logo => (
+          <a href="/#" key={logo.key}>
+            {logo}
+          </a>
+        ))}
+      </LogoSuite.Logobar>
+    </LogoSuite>
+  </>
 )
