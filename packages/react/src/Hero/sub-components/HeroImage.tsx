@@ -13,7 +13,7 @@ export type HeroImageProps = {
   BaseProps<HTMLImageElement>
 
 export const HeroImage = forwardRef<HTMLImageElement, HeroImageProps>(
-  ({position = 'block-end', className, ...rest}: PropsWithChildren<HeroImageProps>, ref) => {
+  ({position = 'block-end', className, enableBorder, ...rest}: PropsWithChildren<HeroImageProps>, ref) => {
     const {variant: heroVariant, enableAnimation} = useHeroContext()
     const isInlinePosition = position.startsWith('inline')
     const isInlinePadded = position.endsWith('-padded')

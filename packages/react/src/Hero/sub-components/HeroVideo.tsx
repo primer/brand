@@ -31,6 +31,7 @@ export const HeroVideo = forwardRef<HTMLDivElement, HeroVideoProps>(
       poster,
       posterTitle,
       posterAltText,
+      enableBorder,
       'data-testid': testId,
       ...rest
     }: HeroVideoProps,
