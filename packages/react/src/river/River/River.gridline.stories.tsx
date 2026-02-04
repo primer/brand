@@ -131,7 +131,7 @@ export const GridLineWithEyebrowText: StoryFn<typeof River> = () => (
   <Section>
     <River variant="gridline" align="start">
       <River.Visual>
-        <img src={browserImage} alt="Browser window showing GitHub interface" />
+        <PlaceholderImage />
       </River.Visual>
       <River.Content>
         <EyebrowText>Feature</EyebrowText>

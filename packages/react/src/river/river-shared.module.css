@@ -293,9 +293,25 @@
     padding-inline-end: var(--brand-River-spacing-inner);
   }
 
+  .River--variant-gridline.River--50-50.River--align-start:has(.River__visual--has-background) .River__content {
+    padding-inline-end: calc(var(--base-size-80) + var(--base-size-32));
+  }
+
+  .River--variant-gridline.River--60-40.River--align-start:has(.River__visual--has-background) .River__content {
+    padding-inline-end: var(--base-size-128);
+  }
+
   .River--variant-gridline.River--align-end:has(.River__visual--has-background) .River__content {
     padding-inline-start: var(--brand-River-spacing-inner);
     padding-inline-end: var(--base-size-64);
+  }
+
+  .River--variant-gridline.River--50-50.River--align-end:has(.River__visual--has-background) .River__content {
+    padding-inline-start: calc(var(--base-size-80) + var(--base-size-32));
+  }
+
+  .River--variant-gridline.River--60-40.River--align-end:has(.River__visual--has-background) .River__content {
+    padding-inline-start: var(--base-size-128);
   }
 
   .River--variant-gridline.River--align-start:not(:has(.River__visual--has-background)) .River__content {
@@ -317,6 +333,21 @@
 
   .River--variant-gridline.River--align-center .River__visual--has-background {
     width: 100%;
+    margin-block-start: 0;
+    margin-block-end: calc(-1 * var(--brand-River-variant-gridline-spacing-outerBlock));
+  }
+
+  .River--variant-gridline.River--align-center .River__visual {
+    margin-bottom: 0;
+  }
+
+  .River--variant-gridline.River--align-center {
+    gap: 0;
+  }
+
+  .River--variant-gridline.River--align-center .River__content {
+    margin-top: 0;
+    margin-bottom: var(--base-size-64);
   }
 
   .River--variant-gridline.River--align-center:has(.River__visual--has-background) .River__content {
