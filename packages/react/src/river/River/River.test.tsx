@@ -393,11 +393,11 @@ describe('River', () => {
     expect(visualEl).not.toHaveClass('River__visual--has-background')
   })
 
-  it('optionally renders visual with background', () => {
+  it('optionally renders visual with subtle background color', () => {
     const visualId = 'visual-el'
     const {getByTestId} = render(
       <River variant="gridline">
-        <River.Visual data-testid={visualId} hasBackground>
+        <River.Visual data-testid={visualId} imageBackgroundColor="subtle">
           <MockImage />
         </River.Visual>
         <River.Content>
@@ -408,6 +408,23 @@ describe('River', () => {
 
     const visualEl = getByTestId(visualId)
     expect(visualEl).toHaveClass('River__visual--has-background')
+  })
+
+  it('does not apply background class when imageBackgroundColor is default', () => {
+    const visualId = 'visual-el'
+    const {getByTestId} = render(
+      <River variant="gridline">
+        <River.Visual data-testid={visualId} imageBackgroundColor="default">
+          <MockImage />
+        </River.Visual>
+        <River.Content>
+          <Text>{mockText}</Text>
+        </River.Content>
+      </River>,
+    )
+
+    const visualEl = getByTestId(visualId)
+    expect(visualEl).not.toHaveClass('River__visual--has-background')
   })
 
   it('renders content with center alignment by default', () => {

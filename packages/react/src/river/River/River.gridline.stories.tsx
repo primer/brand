@@ -74,14 +74,14 @@ GridLineCenter.storyName = 'GridLine variant (centered)'
 export const GridLineWithBackground: StoryFn<typeof River> = () => (
   <Section>
     <River variant="gridline" align="start">
-      <River.Visual hasBackground>
+      <River.Visual imageBackgroundColor="subtle">
         <PlaceholderImage />
       </River.Visual>
       <River.Content>
         <Heading>GridLine with Background</Heading>
         <Text>
-          Using hasBackground on River.Visual creates a full-bleed container with a subtle background color and the
-          image/video centered inside with padding.
+          Using imageBackgroundColor on River.Visual creates a full-bleed container with a subtle background color and
+          the image/video centered inside with padding.
         </Text>
         <Link href="#">Call to action</Link>
       </River.Content>
@@ -94,13 +94,14 @@ GridLineWithBackground.storyName = 'GridLine variant (with background)'
 export const GridLineWithBackgroundEnd: StoryFn<typeof River> = () => (
   <Section>
     <River variant="gridline" align="end">
-      <River.Visual hasBackground>
+      <River.Visual imageBackgroundColor="subtle">
         <PlaceholderImage />
       </River.Visual>
       <River.Content>
         <Heading>GridLine with Background (End)</Heading>
         <Text>
-          The hasBackground prop can be combined with different alignment options. This example shows end alignment.
+          The imageBackgroundColor prop can be combined with different alignment options. This example shows end
+          alignment.
         </Text>
         <Link href="#">Call to action</Link>
       </River.Content>
@@ -113,12 +114,12 @@ GridLineWithBackgroundEnd.storyName = 'GridLine variant (with background, end)'
 export const GridLineWithBackgroundCenter: StoryFn<typeof River> = () => (
   <Section>
     <River variant="gridline" align="center">
-      <River.Visual hasBackground>
+      <River.Visual imageBackgroundColor="subtle">
         <PlaceholderImage />
       </River.Visual>
       <River.Content>
         <Heading>GridLine with Background (Centered)</Heading>
-        <Text>The hasBackground prop works with centered alignment as well.</Text>
+        <Text>The imageBackgroundColor prop works with centered alignment as well.</Text>
         <Link href="#">Call to action</Link>
       </River.Content>
     </River>
@@ -166,7 +167,7 @@ GridLineWithLabel.storyName = 'GridLine variant (with Label)'
 export const GridLineContentAlignBlockEnd: StoryFn<typeof River> = () => (
   <Section>
     <River variant="gridline" align="start">
-      <River.Visual hasBackground>
+      <River.Visual imageBackgroundColor="subtle">
         <img
           src={placeholderImage}
           alt="placeholder, blank area with a gray background color"

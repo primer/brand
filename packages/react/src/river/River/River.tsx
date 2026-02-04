@@ -252,6 +252,9 @@ export const RiverContent = forwardRef(
   },
 )
 
+export const RiverVisualBackgroundColors = ['default', 'subtle'] as const
+export type RiverVisualBackgroundColor = (typeof RiverVisualBackgroundColors)[number]
+
 export type RiverVisualProps = BaseProps<HTMLDivElement> &
   React.HtmlHTMLAttributes<HTMLDivElement> &
   PropsWithChildren<{
@@ -271,10 +274,11 @@ export type RiverVisualProps = BaseProps<HTMLDivElement> &
      */
     rounded?: boolean
     /**
-     * Applies a subtle background color with padding around the media.
+     * Applies a background color with padding around the media.
      * Creates a full-bleed container with the image/video centered inside.
+     * - `subtle`: Applies a subtle background color
      */
-    hasBackground?: boolean
+    imageBackgroundColor?: RiverVisualBackgroundColor
   }>
 
 const Visual = forwardRef(
@@ -285,7 +289,7 @@ const Visual = forwardRef(
       className,
       hasShadow = false,
       rounded = true,
-      hasBackground = false,
+      imageBackgroundColor,
       ...rest
     }: PropsWithChildren<RiverVisualProps>,
     ref: Ref<HTMLDivElement>,
@@ -298,7 +302,7 @@ const Visual = forwardRef(
           hasShadow && styles['River__visual--has-shadow'],
           fillMedia && styles['River__visual--fill-media'],
           rounded && styles['River__visual--rounded'],
-          hasBackground && styles['River__visual--has-background'],
+          imageBackgroundColor === 'subtle' && styles['River__visual--has-background'],
           className,
         )}
         {...rest}
