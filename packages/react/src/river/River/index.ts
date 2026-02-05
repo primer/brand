@@ -1,8 +1,2 @@
-export {
-  River,
-  RiverProps,
-  RiverContentProps,
-  RiverVisualProps,
-  defaultRiverImageTextRatio,
-  defaultRiverAlign,
-} from './River'
+export {River, defaultRiverImageTextRatio, defaultRiverAlign} from './River'
+export type {RiverProps, RiverContentProps, RiverVisualProps} from './River'
