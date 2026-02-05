@@ -42,6 +42,32 @@
   justify-items: center;
 }
 
+/** Block end image position option */
+.Card--imagePos-block-end {
+  grid-template-areas:
+    'icon icon'
+    'label label'
+    'heading heading'
+    'description description'
+    'action action'
+    'image image';
+}
+
+.Card--align-center .Card--imagePos-block-end {
+  grid-template-areas:
+    'icon'
+    'label'
+    'heading'
+    'description'
+    'action'
+    'image';
+}
+
+.Card--imagePos-block-end .Card__image {
+  margin-bottom: 0;
+  margin-top: var(--base-size-28);
+}
+
 .Card--maxWidth {
   max-width: var(--brand-Card-maxWidth);
 }
@@ -51,6 +77,10 @@
 }
 
 .Card--variant-minimal {
+  padding: 0;
+}
+
+.Card--align-center .Card--variant-minimal {
   padding: 0;
 }
 

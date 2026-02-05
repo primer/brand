@@ -102,18 +102,28 @@ Alternatively, use `delay` to stagger animations on adjacent elements if this fe
 </Grid>
 ```
 
+### Immediate animations
+
+Use `animationTrigger="immediate"` to run animations as soon as the component mounts
+
+```jsx
+<AnimationProvider animationTrigger="immediate">
+  <Heading animate="fade-in">This heading animates in immediately</Heading>
+</AnimationProvider>
+```
+
 [See Storybook for more examples of animation](/brand/storybook/?path=/story/components-animations--playground).
 
 ## Props
 
 ### AnimationProvider <Label>Required</Label>
 
-| Name                    | Type                                                                                                            | Default              | Required | Description                                                                    |
-| ----------------------- | --------------------------------------------------------------------------------------------------------------- | -------------------- | -------- | ------------------------------------------------------------------------------ |
-| `children`              | `ReactNode`                                                                                                     |                      | `true`   | The children to render within the `AnimationProvider`                          |
-| `disableAnimations`     | `boolean`                                                                                                       |                      | `false`  | Prevents animations from running inside the provider                           |
-| `animationTrigger`      | <PropTableValues values={['click', 'on-visible']} addLineBreaks />                                              | `'on-visible'`       | `false`  | Controls the trigger method for the animation. One of `click` or `on-visible`. |
-| `visibilityOptions`     | <PropTableValues values={['bottom-of-screen', 'middle-of-screen', 'about-to-leave', 'number']} addLineBreaks /> | `'bottom-of-screen'` | `false`  | Controls the intersection observer options for the animation.                  |
-| `runOnce`               | `boolean`                                                                                                       | `false`              | `false`  | Will persist the animation end-state after the animation has completed.        |
-| `autoStaggerChildren`   | `boolean`                                                                                                       | `true`               |          | Will stagger the animations of the children using an incrementing delay        |
-| `staggerDelayIncrement` | `number`                                                                                                        | `100`                |          | Stagger delay increment. Should be used alongside `autoStaggerChildren`.       |
+| Name                    | Type                                                                                                            | Default              | Required | Description                                                                                  |
+| ----------------------- | --------------------------------------------------------------------------------------------------------------- | -------------------- | -------- | -------------------------------------------------------------------------------------------- |
+| `children`              | `ReactNode`                                                                                                     |                      | `true`   | The children to render within the `AnimationProvider`                                        |
+| `disableAnimations`     | `boolean`                                                                                                       |                      | `false`  | Prevents animations from running inside the provider                                         |
+| `animationTrigger`      | <PropTableValues values={['click', 'on-visible', 'immediate']} addLineBreaks />                                 | `'on-visible'`       | `false`  | Controls the trigger method for the animation. One of `click`, `on-visible`, or `immediate`. |
+| `visibilityOptions`     | <PropTableValues values={['bottom-of-screen', 'middle-of-screen', 'about-to-leave', 'number']} addLineBreaks /> | `'bottom-of-screen'` | `false`  | Controls the intersection observer options for the animation.                                |
+| `runOnce`               | `boolean`                                                                                                       | `false`              | `false`  | Will persist the animation end-state after the animation has completed.                      |
+| `autoStaggerChildren`   | `boolean`                                                                                                       | `true`               |          | Will stagger the animations of the children using an incrementing delay                      |
+| `staggerDelayIncrement` | `number`                                                                                                        | `100`                |          | Stagger delay increment. Should be used alongside `autoStaggerChildren`.                     |
