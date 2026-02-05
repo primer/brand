@@ -115,7 +115,7 @@ Agents.args = {
           id: 'features',
           sectionIntro: {
             align: 'center',
-            label: 'Features',
+            label: {text: 'Features'},
             heading: 'Your backlog doesn’t stand a chance',
             description:
               'Assign issues, automate tasks, and watch your backlog disappear as Copilot turns plans into pull requests in the background.',
@@ -265,7 +265,7 @@ CopilotBusiness.args = {
       },
       hero: {
         align: 'center',
-        label: 'Copilot for Business',
+        label: {text: 'Copilot for Business'},
         heading: "Build what's next with GitHub Copilot",
         imagePosition: 'block-end',
         imageSrc: placeholderImage,

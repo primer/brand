@@ -17,13 +17,19 @@ type ResponsiveSpacingMap = {
 }
 
 export const BoxBackgroundColors = ['default', 'inset', 'subtle', 'overlay'] as const
-type BackgroundColors = (typeof BoxBackgroundColors)[number]
+type BackgroundColors = (typeof BoxBackgroundColors)[number] | AnyString
 
 export const BoxBorderRadiusOptions = ['small', 'medium', 'large', 'xlarge', 'full'] as const
 type BorderRadiusOptions = (typeof BoxBorderRadiusOptions)[number]
 
-export const BoxBorderWidthOptions = ['thin', 'thick', 'thicker'] as const
+export const BoxBorderWidthOptions = ['none', 'thin', 'thick', 'thicker'] as const
 type BorderWidthOptions = (typeof BoxBorderWidthOptions)[number]
+
+type ResponsiveBorderWidthMap = {
+  narrow?: BorderWidthOptions
+  regular?: BorderWidthOptions
+  wide?: BorderWidthOptions
+}
 
 export const BoxBorderColorOptions = ['default', 'muted', 'subtle'] as const
 type BorderColorOptions = (typeof BoxBorderColorOptions)[number]
@@ -82,23 +88,23 @@ type BoxProps = {
   /*
    * Apply a system-level border width value
    */
-  borderWidth?: BorderWidthOptions
+  borderWidth?: BorderWidthOptions | ResponsiveBorderWidthMap
   /*
    * Apply a directional border width value
    */
-  borderBlockStartWidth?: BorderWidthOptions
+  borderBlockStartWidth?: BorderWidthOptions | ResponsiveBorderWidthMap
   /*
    * Apply a directional border width value
    */
-  borderInlineEndWidth?: BorderWidthOptions
+  borderInlineEndWidth?: BorderWidthOptions | ResponsiveBorderWidthMap
   /*
    * Apply a directional border width value
    */
-  borderBlockEndWidth?: BorderWidthOptions
+  borderBlockEndWidth?: BorderWidthOptions | ResponsiveBorderWidthMap
   /*
    * Apply a directional border width value
    */
-  borderInlineStartWidth?: BorderWidthOptions
+  borderInlineStartWidth?: BorderWidthOptions | ResponsiveBorderWidthMap
   /*
    * Apply a system-level border color value
    */
@@ -118,6 +124,9 @@ type BoxProps = {
 } & BaseProps<HTMLDivElement> &
   React.HTMLAttributes<HTMLDivElement>
 
+const isNamedBackgroundColor = (value: string): value is (typeof BoxBackgroundColors)[number] =>
+  BoxBackgroundColors.includes(value as (typeof BoxBackgroundColors)[number])
+
 const classBuilder = (
   property: string,
   value?:
@@ -126,6 +135,7 @@ const classBuilder = (
     | BackgroundColors
     | BorderRadiusOptions
     | BorderWidthOptions
+    | ResponsiveBorderWidthMap
     | BorderColorOptions
     | BorderStyleOptions,
 ) => {
@@ -192,7 +202,17 @@ export const Box = ({
     () => classBuilder('marginInlineStart', marginInlineStart),
     [marginInlineStart],
   )
-  const backgroundColorClasses = useMemo(() => classBuilder('backgroundColor', backgroundColor), [backgroundColor])
+  const backgroundColorClasses = useMemo(
+    () =>
+      backgroundColor && isNamedBackgroundColor(backgroundColor)
+        ? classBuilder('backgroundColor', backgroundColor)
+        : '',
+    [backgroundColor],
+  )
+  const backgroundColorStyles = useMemo(
+    () => (backgroundColor && !isNamedBackgroundColor(backgroundColor) ? {backgroundColor} : {}),
+    [backgroundColor],
+  )
   const borderRadiusClasses = useMemo(() => classBuilder('borderRadius', borderRadius), [borderRadius])
   const borderWidthClasses = useMemo(() => classBuilder('borderWidth', borderWidth), [borderWidth])
   const borderBlockStartWidthClasses = useMemo(
@@ -242,6 +262,7 @@ export const Box = ({
       data-testid={testId}
       style={{
         ...animationInlineStyles,
+        ...backgroundColorStyles,
         ...style,
       }}
       {...rest}

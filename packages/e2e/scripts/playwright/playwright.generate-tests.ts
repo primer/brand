@@ -109,7 +109,16 @@ const waitForTimeoutLookup = {
   'components-testimonial-examples--with-frosted-glass': 4000, // for animation to complete
   'components-testimonial-examples--with-frosted-glass-dark': 4000, // for animation to complete
   'components-prose--playground': 4000, // for videos to load
-  'components-prose--default': 4000, // for videos to load
+  'components-prose--default': 4000, // for videos to load,
+  'components-hero-examples--custom-background-inline-end-padded-video': 3500, // for animations to complete
+  'components-hero-examples--custom-background-block-end-video': 3500, // for animations to complete
+  'components-hero-examples--custom-background-inline-end-padded-image': 3500, // for animations to complete
+  'components-hero-examples--gridline-expressive-block-end-padded-trailing-component': 4000, // for animations to complete
+  'components-hero-examples--custom-background-block-end-image': 4000, // for animations to complete
+  'components-hero-examples--with-cards': 4000, // for animations to complete
+  'components-hero-features--with-animated-label': 1500, // for the label animation to complete
+  'components-hero-features-images-and-videos--with-youtube-video-block-end-default': 2000, // for loading a remote video
+  'components-hero-features--with-increased-contrast-label': 3000, // for the label animation to complete
   'components-subnav-features--anchor-nav-variant': 6000, // for being flakey across translations
   'components-videoplayer--default': 5000, // for video metadata to load
   'components-videoplayer--playground': 5000, // for video metadata to load
@@ -121,9 +130,10 @@ const waitForTimeoutLookup = {
   'components-videoplayer-features--custom-play-icon': 5000, // for video metadata to load
   'components-videoplayer-features--with-some-hidden-controls': 5000, // for video metadata to load
   'components-videoplayer-features--tooltip-visible-on-focus': 5000, // for video metadata to load
-  'components-hero-features--with-video-block-end-default': 5000, // for video metadata to load
-  'components-hero-features--with-video-inline-end': 5000, // for video metadata to load
+  'components-hero-features-images-and-videos--with-video-block-end-default': 5000, // for video metadata to load
+  'components-hero-features-images-and-videos--with-video-inline-end': 5000, // for video metadata to load
   'recipes-flextemplate-flextemplate--default': 4000, // for video metadata to load
+  'components-textcursoranimation--playground': 4000, // for the animation to complete
 }
 
 // const skipLocalizationsTestsFor = [
@@ -172,9 +182,9 @@ const skipTestLookup = [
   'components-statistic-features--animations', // animation only
   'components-riverstoryscroll-features--video-narrow', // video makes this too flakey
   'components-riverstoryscroll-features--video', // video makes this too flakey
-  'components-hero-features--with-native-block-end-default', // for being non-deterministic due to video buffering
-  'components-hero-features--with-youtube-video-block-end-default', // for loading a remote video
-  'components-hero-features--with-youtube-video-inline-end', // for loading a remote video
+  'components-hero-features-images-and-videos--with-native-block-end-default', // for being non-deterministic due to video buffering
+  'components-hero-features-images-and-videos--with-youtube-video-block-end-default', // for loading a remote video
+  'components-hero-features-images-and-videos--with-youtube-video-inline-end', // for loading a remote video
   'components-logosuite-features--marquee', // for the animation
   'components-subnav-features--anchor-nav-variant-keyboard-navigation', // for being an interaction test-only
   'components-actionmenu-features--single-selection-small-open', // for the menu to open, too flakey, need to fix layout shift

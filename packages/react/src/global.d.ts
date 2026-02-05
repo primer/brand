@@ -3,9 +3,24 @@ declare module '*.module.css' {
   export default classes
 }
 
-declare module '*.png'
-declare module '*.webp'
-declare module '*.mp4'
-declare module '*.svg'
+declare module '*.png' {
+  const src: string
+  export default src
+}
+
+declare module '*.webp' {
+  const src: string
+  export default src
+}
+
+declare module '*.mp4' {
+  const src: string
+  export default src
+}
+
+declare module '*.svg' {
+  const src: string
+  export default src
+}
 
 type AnyString = string & NonNullable<unknown>

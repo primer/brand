@@ -15,27 +15,11 @@ export type FlexTemplateLink = {
 
 export type FlexTemplateLabel = {
   text: string
-  color?:
-    | 'default'
-    | 'blue'
-    | 'coral'
-    | 'green'
-    | 'gray'
-    | 'indigo'
-    | 'lemon'
-    | 'lime'
-    | 'orange'
-    | 'pink'
-    | 'purple'
-    | 'red'
-    | 'teal'
-    | 'yellow'
-  size?: 'small' | 'medium' | 'large'
 }
 
 export type FlexTemplateHero = {
   align?: 'start' | 'center'
-  label?: string | FlexTemplateLabel
+  label?: FlexTemplateLabel
   heading?: string
   description?: string
   descriptionVariant?: 'default' | 'muted'

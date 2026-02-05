@@ -41,7 +41,7 @@ const meta = {
         },
         hero: {
           align: 'center',
-          label: 'My label',
+          label: {text: 'My label'},
           heading: 'My super sweet hero',
           description:
             'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut tempor lectus ipsum, consectetur convallis diam pretium quis. Proin ut felis ut eros tristique tincidunt.',
@@ -65,7 +65,7 @@ const meta = {
               heading: 'Section Introduction',
               headingSize: '3',
               description: 'This section showcases all available FlexSection components',
-              label: 'Demo',
+              label: {text: 'Demo'},
               linkText: 'Learn more',
               linkHref: '#',
               linkVariant: 'accent',
