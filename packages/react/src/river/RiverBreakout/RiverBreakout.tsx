@@ -49,4 +49,4 @@ const A11yHeading = ({as = 'h3', children}: React.PropsWithChildren<{as?: 'h2' |
   </Heading>
 )
 
-export const RiverBreakout = Object.assign(Root, {RiverVisual, Content: RiverContent, A11yHeading})
+export const RiverBreakout = Object.assign(Root, {Visual: RiverVisual, Content: RiverContent, A11yHeading})
