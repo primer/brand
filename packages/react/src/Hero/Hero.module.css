@@ -282,6 +282,11 @@
   gap: var(--base-size-8) var(--base-size-16);
 }
 
+.Hero--variant-gridline-expressive .Hero-actions {
+  align-items: stretch;
+  gap: var(--base-size-8) var(--base-size-12);
+}
+
 .Hero-trailing {
   margin-block-start: var(--base-size-32);
 }
