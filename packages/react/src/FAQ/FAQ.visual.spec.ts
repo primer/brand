@@ -8,21 +8,30 @@ import {test, expect} from '@playwright/test'
 // eslint-disable-next-line i18n-text/no-en
 test.describe('Visual Comparison: FAQ', () => {
   test('FAQ / Default', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-faq--default&viewMode=story')
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-faq--default&viewMode=story', {
+      waitUntil: 'networkidle',
+    })
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('FAQ / All Closed', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-faq-features--all-closed&viewMode=story')
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-faq-features--all-closed&viewMode=story', {
+      waitUntil: 'networkidle',
+    })
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('FAQ / All Open', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-faq-features--all-open&viewMode=story')
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-faq-features--all-open&viewMode=story', {
+      waitUntil: 'networkidle',
+    })
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(1000)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -31,7 +40,9 @@ test.describe('Visual Comparison: FAQ', () => {
   test('FAQ / Reversed Toggles', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-faq-features--reversed-toggles&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(4000)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -40,7 +51,9 @@ test.describe('Visual Comparison: FAQ', () => {
   test('FAQ / Heading Left Aligned', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-faq-features--heading-left-aligned&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -49,14 +62,19 @@ test.describe('Visual Comparison: FAQ', () => {
   test('FAQ / With Subheadings', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-faq-features--with-subheadings&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('FAQ / Groups', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-faq-features--groups&viewMode=story')
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-faq-features--groups&viewMode=story', {
+      waitUntil: 'networkidle',
+    })
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -68,7 +86,9 @@ test.describe('Visual Comparison: FAQ', () => {
     test('FAQ / Group narrow view (mobile)', async ({page}) => {
       await page.goto(
         'http://localhost:6006/iframe.html?args=&id=components-faq-features--groups-narrow&viewMode=story',
+        {waitUntil: 'networkidle'},
       )
+      await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
       await page.waitForTimeout(500)
       await expect(page).toHaveScreenshot({fullPage: true})
@@ -77,14 +97,19 @@ test.describe('Visual Comparison: FAQ', () => {
   test('FAQ / Dynamic Data Example', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-faq-features--dynamic-data-example&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('FAQ / With Prose', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-faq-features--with-prose&viewMode=story')
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-faq-features--with-prose&viewMode=story', {
+      waitUntil: 'networkidle',
+    })
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(2000)
     await expect(page).toHaveScreenshot({fullPage: true})

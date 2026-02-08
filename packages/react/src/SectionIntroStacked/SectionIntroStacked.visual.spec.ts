@@ -8,7 +8,11 @@ import {test, expect} from '@playwright/test'
 // eslint-disable-next-line i18n-text/no-en
 test.describe('Visual Comparison: SectionIntroStacked', () => {
   test('SectionIntroStacked / Default', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-sectionintrostacked--default&viewMode=story')
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-sectionintrostacked--default&viewMode=story',
+      {waitUntil: 'networkidle'},
+    )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -17,7 +21,9 @@ test.describe('Visual Comparison: SectionIntroStacked', () => {
   test('SectionIntroStacked / Playground', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-sectionintrostacked--playground&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -26,7 +32,9 @@ test.describe('Visual Comparison: SectionIntroStacked', () => {
   test('SectionIntroStacked / With Emphasized Text', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-sectionintrostacked-features--with-emphasized-text&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -35,7 +43,9 @@ test.describe('Visual Comparison: SectionIntroStacked', () => {
   test('SectionIntroStacked / In Grid', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-sectionintrostacked-features--in-grid&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -47,7 +57,9 @@ test.describe('Visual Comparison: SectionIntroStacked', () => {
     test('SectionIntroStacked / Narrow view, menu closed (mobile)', async ({page}) => {
       await page.goto(
         'http://localhost:6006/iframe.html?args=&id=components-sectionintrostacked-features--in-grid-narrow&viewMode=story',
+        {waitUntil: 'networkidle'},
       )
+      await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
       await page.waitForTimeout(500)
       await expect(page).toHaveScreenshot({fullPage: true})

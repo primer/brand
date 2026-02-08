@@ -8,14 +8,20 @@ import {test, expect} from '@playwright/test'
 // eslint-disable-next-line i18n-text/no-en
 test.describe('Visual Comparison: BreakoutBanner', () => {
   test('BreakoutBanner / Default', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-breakoutbanner--default&viewMode=story')
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-breakoutbanner--default&viewMode=story', {
+      waitUntil: 'networkidle',
+    })
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('BreakoutBanner / Playground', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-breakoutbanner--playground&viewMode=story')
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-breakoutbanner--playground&viewMode=story', {
+      waitUntil: 'networkidle',
+    })
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -24,7 +30,9 @@ test.describe('Visual Comparison: BreakoutBanner', () => {
   test('BreakoutBanner / Custom Background Colors', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-breakoutbanner-features--custom-background-colors&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -33,7 +41,9 @@ test.describe('Visual Comparison: BreakoutBanner', () => {
   test('BreakoutBanner / Responsive Background Image', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-breakoutbanner-features--responsive-background-image&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -42,7 +52,9 @@ test.describe('Visual Comparison: BreakoutBanner', () => {
   test('BreakoutBanner / Responsive Background Image Dark', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-breakoutbanner-features--responsive-background-image-dark&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -51,7 +63,9 @@ test.describe('Visual Comparison: BreakoutBanner', () => {
   test('BreakoutBanner / Aligned Center', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-breakoutbanner-features--aligned-center&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -60,7 +74,9 @@ test.describe('Visual Comparison: BreakoutBanner', () => {
   test('BreakoutBanner / Optional Description', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-breakoutbanner-features--optional-description&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -69,7 +85,9 @@ test.describe('Visual Comparison: BreakoutBanner', () => {
   test('BreakoutBanner / Vertically Stacked Links', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-breakoutbanner-features--vertically-stacked-links&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})

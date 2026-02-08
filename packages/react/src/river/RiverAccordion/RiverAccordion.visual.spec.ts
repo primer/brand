@@ -8,7 +8,10 @@ import {test, expect} from '@playwright/test'
 // eslint-disable-next-line i18n-text/no-en
 test.describe('Visual Comparison: RiverAccordion', () => {
   test('RiverAccordion / Default', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-riveraccordion--default&viewMode=story')
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-riveraccordion--default&viewMode=story', {
+      waitUntil: 'networkidle',
+    })
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -17,7 +20,9 @@ test.describe('Visual Comparison: RiverAccordion', () => {
   test('RiverAccordion / Align Start', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-riveraccordion-features--align-start&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -26,7 +31,9 @@ test.describe('Visual Comparison: RiverAccordion', () => {
   test('RiverAccordion / Align End', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-riveraccordion-features--align-end&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
