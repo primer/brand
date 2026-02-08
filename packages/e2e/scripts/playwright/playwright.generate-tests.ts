@@ -119,7 +119,7 @@ const waitForTimeoutLookup = {
   'components-hero-features--with-animated-label': 1500, // for the label animation to complete
   'components-hero-features-images-and-videos--with-youtube-video-block-end-default': 2000, // for loading a remote video
   'components-hero-features--with-increased-contrast-label': 3000, // for the label animation to complete
-  'components-subnav-features--anchor-nav-variant': 6000, // for being flakey across translations
+  'components-subnav-features--anchor-nav-variant': 7000, // for being flakey across translations
   'components-videoplayer--default': 5000, // for video metadata to load
   'components-videoplayer--playground': 5000, // for video metadata to load
   'components-videoplayer-features--with-poster': 5000, // for video metadata to load
@@ -134,6 +134,7 @@ const waitForTimeoutLookup = {
   'components-hero-features-images-and-videos--with-video-inline-end': 5000, // for video metadata to load
   'recipes-flextemplate-flextemplate--default': 4000, // for video metadata to load
   'components-textcursoranimation--playground': 4000, // for the animation to complete
+  'recipes-flextemplate-flexsection--default': 1000, // longer load time
 }
 
 // const skipLocalizationsTestsFor = [
@@ -252,7 +253,8 @@ for (const key of Object.keys(categorisedStories)) {
           const testName = language === 'en' ? base : `${base} (${language})`
 
           return `test('${testName}', async ({page}) => {
-            await page.goto('http://localhost:${port}/iframe.html?${localeParam}args=&id=${id}&viewMode=story')
+            await page.goto('http://localhost:${port}/iframe.html?${localeParam}args=&id=${id}&viewMode=story', { waitUntil: 'networkidle' })
+            await page.locator('body.sb-show-main').waitFor({ state: 'visible' })
 
             ${timeout ? `await page.waitForTimeout(${timeout})` : ''}
             await expect(page).toHaveScreenshot({ fullPage: true })

@@ -10,7 +10,9 @@ test.describe('Visual Comparison: Industry', () => {
   test('Industry / Maximum Light', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=recipes-solutions-solution-industry--maximum&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(3500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -19,7 +21,9 @@ test.describe('Visual Comparison: Industry', () => {
   test('Industry / Maximum Dark', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=recipes-solutions-solution-industry--maximum-dark&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(3500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -28,7 +32,9 @@ test.describe('Visual Comparison: Industry', () => {
   test('Industry / Minimum Light', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=recipes-solutions-solution-industry--minimum&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(3500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -37,7 +43,9 @@ test.describe('Visual Comparison: Industry', () => {
   test('Industry / Minimum Dark', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=recipes-solutions-solution-industry--minimum-dark&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(3500)
     await expect(page).toHaveScreenshot({fullPage: true})

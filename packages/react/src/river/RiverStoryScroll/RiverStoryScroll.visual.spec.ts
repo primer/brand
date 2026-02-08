@@ -8,7 +8,10 @@ import {test, expect} from '@playwright/test'
 // eslint-disable-next-line i18n-text/no-en
 test.describe('Visual Comparison: RiverStoryScroll', () => {
   test('RiverStoryScroll / Default', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-riverstoryscroll--default&viewMode=story')
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-riverstoryscroll--default&viewMode=story', {
+      waitUntil: 'networkidle',
+    })
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(3500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -17,7 +20,9 @@ test.describe('Visual Comparison: RiverStoryScroll', () => {
   test('RiverStoryScroll / With Timeline', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-riverstoryscroll-features--with-timeline&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(3500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -29,7 +34,9 @@ test.describe('Visual Comparison: RiverStoryScroll', () => {
     test('RiverStoryScroll / With Timeline Narrow', async ({page}) => {
       await page.goto(
         'http://localhost:6006/iframe.html?args=&id=components-riverstoryscroll-features--with-timeline-narrow&viewMode=story',
+        {waitUntil: 'networkidle'},
       )
+      await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
       await page.waitForTimeout(3500)
       await expect(page).toHaveScreenshot({fullPage: true})
@@ -38,7 +45,9 @@ test.describe('Visual Comparison: RiverStoryScroll', () => {
   test('RiverStoryScroll / Disabled', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-riverstoryscroll-features--disabled&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -50,7 +59,9 @@ test.describe('Visual Comparison: RiverStoryScroll', () => {
     test('RiverStoryScroll / Disabled Narrow', async ({page}) => {
       await page.goto(
         'http://localhost:6006/iframe.html?args=&id=components-riverstoryscroll-features--disabled-narrow&viewMode=story',
+        {waitUntil: 'networkidle'},
       )
+      await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
       await page.waitForTimeout(500)
       await expect(page).toHaveScreenshot({fullPage: true})
@@ -59,7 +70,9 @@ test.describe('Visual Comparison: RiverStoryScroll', () => {
   test('RiverStoryScroll / Enterprise Example', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-riverstoryscroll-features--enterprise-example&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(3500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -71,7 +84,9 @@ test.describe('Visual Comparison: RiverStoryScroll', () => {
     test('RiverStoryScroll / Enterprise Example Narrow', async ({page}) => {
       await page.goto(
         'http://localhost:6006/iframe.html?args=&id=components-riverstoryscroll-features--enterprise-example-narrow&viewMode=story',
+        {waitUntil: 'networkidle'},
       )
+      await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
       await page.waitForTimeout(3500)
       await expect(page).toHaveScreenshot({fullPage: true})

@@ -8,7 +8,11 @@ import {test, expect} from '@playwright/test'
 // eslint-disable-next-line i18n-text/no-en
 test.describe('Visual Comparison: TextCursorAnimation', () => {
   test('TextCursorAnimation / Default', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-textcursoranimation--default&viewMode=story')
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-textcursoranimation--default&viewMode=story',
+      {waitUntil: 'networkidle'},
+    )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -17,7 +21,9 @@ test.describe('Visual Comparison: TextCursorAnimation', () => {
   test('TextCursorAnimation / Playground', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-textcursoranimation--playground&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(4000)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -26,7 +32,9 @@ test.describe('Visual Comparison: TextCursorAnimation', () => {
   test('TextCursorAnimation / Animated (default delay)', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-textcursoranimation-features--animated&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -35,7 +43,9 @@ test.describe('Visual Comparison: TextCursorAnimation', () => {
   test('TextCursorAnimation / Animated (3s delay)', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-textcursoranimation-features--animated-with-long-delay&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -44,7 +54,9 @@ test.describe('Visual Comparison: TextCursorAnimation', () => {
   test('TextCursorAnimation / Animation explicitly disabled', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-textcursoranimation-features--animated-explicitly-disabled&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
