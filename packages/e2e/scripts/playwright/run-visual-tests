@@ -6,10 +6,13 @@ IMAGE="mcr.microsoft.com/playwright:v1.57.0-noble"
 docker run --rm --ipc=host --platform linux/amd64 \
   -v "${PWD%/*/*}":/tests \
   -v /tests/node_modules \
+  -e NODE_ENV=test \
+  ${CI:+-e CI=true} \
   "${IMAGE}" \
   /bin/bash -c "\
     cd /tests \
     && npm ci \
+    && npm run build:lib \
     && cd apps/storybook && NODE_ENV=test npx storybook build \
     && cd /tests \
     && npx playwright install chrome \
