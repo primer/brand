@@ -6,7 +6,7 @@ const config = {
   workers: process.env.CI ? 16 : Math.max(4, Math.min(12, require('os').cpus().length)),
   fullyParallel: true,
   retries: process.env.CI ? 3 : 1,
-  timeout: 30000,
+  timeout: 15000,
   maxFailures: 2,
   use: {
     screenshot: 'only-on-failure',
