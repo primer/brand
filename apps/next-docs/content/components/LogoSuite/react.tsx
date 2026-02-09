@@ -13,5 +13,5 @@ export const LogoSuiteLogobarChildrenProp = () => (
 export const LogoSuiteLogobarMarqueeSpeedProp = () => <PropTableValues values={['slow', 'normal']} addLineBreaks />
 
 export const LogoSuiteLogobarTakeoverButtonProp = () => (
-  <PropTableValues values={[`{label: string, href: string, ...}`]} addLineBreaks />
+  <PropTableValues values={[`{label: string, href: string}`]} addLineBreaks />
 )

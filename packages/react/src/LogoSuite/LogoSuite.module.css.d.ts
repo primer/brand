@@ -19,6 +19,7 @@ declare const styles: {
   readonly "LogoSuite__logobar--variant-emphasis": string;
   readonly "LogoSuite__logobar--variant-muted": string;
   readonly "LogoSuite__logobar-marquee": string;
+  readonly "LogoSuite__logobar-marquee--focused": string;
   readonly "LogoSuite__logobar-marqueeGroup": string;
   readonly "LogoSuite__logobar-marqueeGroup--speed-default": string;
   readonly "LogoSuite__logobar-marqueeGroup--speed-slow": string;

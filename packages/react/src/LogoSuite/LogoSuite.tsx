@@ -69,7 +69,10 @@ const LogoSuiteBase = ({
     }
   }
 
+  const isHeadingVisuallyHidden =
+    React.isValidElement<LogoSuiteHeadingProps>(HeadingChild) && HeadingChild.props.visuallyHidden
   const isGridlineExpressive = variant === 'gridline-expressive'
+  const hasVisibleTextContent = isGridlineExpressive && ((HeadingChild && !isHeadingVisuallyHidden) || DescriptionChild)
 
   return (
     <div
@@ -84,11 +87,14 @@ const LogoSuiteBase = ({
     >
       {isGridlineExpressive ? (
         <Grid className={styles['LogoSuite__content']}>
-          <Grid.Column span={{large: 3}} className={styles['LogoSuite__textContainer']}>
-            {HeadingChild}
-            {DescriptionChild}
-          </Grid.Column>
-          <Grid.Column span={{large: 9}} className={styles['LogoSuite__logobarContainer']}>
+          {hasVisibleTextContent && (
+            <Grid.Column span={{large: 3}} className={styles['LogoSuite__textContainer']}>
+              {HeadingChild}
+              {DescriptionChild}
+            </Grid.Column>
+          )}
+          <Grid.Column span={{large: hasVisibleTextContent ? 9 : 12}} className={styles['LogoSuite__logobarContainer']}>
+            {!hasVisibleTextContent && isHeadingVisuallyHidden && HeadingChild}
             {LogobarChild}
           </Grid.Column>
         </Grid>
@@ -286,10 +292,15 @@ const _LogoBar = forwardRef(
       ...props,
     }
 
-    const handleFocus = useCallback((event: React.FocusEvent) => {
-      const target = event.target as HTMLElement
-      if (target.tagName === 'A' || target.tagName === 'BUTTON') {
-        target.scrollIntoView({behavior: 'smooth', block: 'nearest', inline: 'center'})
+    const [isFocusWithin, setIsFocusWithin] = useState(false)
+
+    const handleFocus = useCallback(() => {
+      setIsFocusWithin(true)
+    }, [])
+
+    const handleBlur = useCallback((event: React.FocusEvent) => {
+      if (!event.currentTarget.contains(event.relatedTarget as Node)) {
+        setIsFocusWithin(false)
       }
     }, [])
 
@@ -322,7 +333,14 @@ const _LogoBar = forwardRef(
             shouldPause && styles['LogoSuite__logobar--paused'],
           )}
         >
-          <div className={clsx(styles['LogoSuite__logobar-marquee'])} onFocus={handleFocus}>
+          <div
+            className={clsx(
+              styles['LogoSuite__logobar-marquee'],
+              isFocusWithin && styles['LogoSuite__logobar-marquee--focused'],
+            )}
+            onFocus={handleFocus}
+            onBlur={handleBlur}
+          >
             <div
               className={clsx(
                 styles['LogoSuite__logobar-marqueeGroup'],

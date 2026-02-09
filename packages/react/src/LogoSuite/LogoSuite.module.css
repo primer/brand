@@ -105,8 +105,10 @@
   }
 }
 
-.LogoSuite--start .LogoSuite__logobar a:focus-visible {
-  outline-color: var(--brand-color-focus);
+.LogoSuite__logobar a:focus-visible {
+  outline: var(--brand-borderWidth-thick) solid var(--brand-color-focus);
+  outline-offset: var(--base-size-2);
+  border-radius: var(--base-size-4);
 }
 
 .LogoSuite--hasDivider {
@@ -163,7 +165,9 @@
 
 .LogoSuite__logobar-marquee {
   display: flex;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: visible;
+  padding-block: var(--base-size-4);
   user-select: none;
   gap: var(--marquee-gap);
   flex: 1;
@@ -180,6 +184,11 @@
 
 .LogoSuite__logobar--paused * {
   animation-play-state: paused !important;
+}
+
+/* Reset animation so focused links snap to their natural position */
+.LogoSuite__logobar-marquee--focused .LogoSuite__logobar-marqueeGroup {
+  animation-name: none;
 }
 
 .LogoSuite__logobar-playPauseButton {
@@ -288,6 +297,11 @@
 
   .LogoSuite--gridline-expressive .LogoSuite__textContainer {
     border-inline-end: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
+  }
+
+  /* When the logobar is the only column visible (no adjacent text), this removes start border */
+  .LogoSuite--gridline-expressive .LogoSuite__logobarContainer:first-child {
+    border-inline-start: none;
   }
 }
 

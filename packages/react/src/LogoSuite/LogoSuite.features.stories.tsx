@@ -208,6 +208,13 @@ export const WithRasterLogos = () => (
 )
 
 export const GridLineExpressive = () => (
+  <LogoSuite variant="gridline-expressive">
+    <LogoSuite.Heading>Heading</LogoSuite.Heading>
+    <LogoSuite.Logobar>{logos.slice(0, 4)}</LogoSuite.Logobar>
+  </LogoSuite>
+)
+
+export const GridLineExpressiveKitchenSink = () => (
   <Stack padding="none" gap="none">
     <Box paddingBlockStart={24}>
       <Text as="p" align="center" variant="muted">
@@ -215,6 +222,28 @@ export const GridLineExpressive = () => (
       </Text>
     </Box>
     <Box marginBlockStart={24} borderBlockStartWidth="thin" borderStyle="solid" borderColor="muted">
+      <LogoSuite variant="gridline-expressive">
+        <LogoSuite.Heading visuallyHidden>Visually hidden heading</LogoSuite.Heading>
+        <LogoSuite.Logobar data-testid="hover-enabled-logobar">
+          <Image alt="Uber" src={uberLogo} />
+          <Image alt="Vercel" src={vercelLogo} />
+          <Image alt="Shopify" src={shopifyLogo} />
+          <Image alt="Pinterest" src={pinterestLogo} />
+          <Image alt="Twilio" src={twilioLogo} />
+        </LogoSuite.Logobar>
+      </LogoSuite>
+
+      <LogoSuite variant="gridline-expressive">
+        <LogoSuite.Heading visuallyHidden>Visually hidden heading</LogoSuite.Heading>
+        <LogoSuite.Logobar data-testid="hover-enabled-logobar" marquee>
+          <Image alt="Uber" src={uberLogo} />
+          <Image alt="Vercel" src={vercelLogo} />
+          <Image alt="Shopify" src={shopifyLogo} />
+          <Image alt="Pinterest" src={pinterestLogo} />
+          <Image alt="Twilio" src={twilioLogo} />
+        </LogoSuite.Logobar>
+      </LogoSuite>
+
       <LogoSuite variant="gridline-expressive">
         <LogoSuite.Heading>Heading only, static logos</LogoSuite.Heading>
         <LogoSuite.Logobar>
@@ -250,8 +279,8 @@ export const GridLineExpressive = () => (
     </LogoSuite>
 
     <LogoSuite variant="gridline-expressive">
-      <LogoSuite.Heading>With description, static logos</LogoSuite.Heading>
-      <LogoSuite.Description>Trusted by more than 90% of Fortune 100 companies</LogoSuite.Description>
+      <LogoSuite.Heading>Heading + static logos</LogoSuite.Heading>
+      <LogoSuite.Description>+ an optional description</LogoSuite.Description>
       <LogoSuite.Logobar>
         <Image alt="Uber" src={uberLogo} />
         <Image alt="Vercel" src={vercelLogo} />
@@ -262,8 +291,8 @@ export const GridLineExpressive = () => (
     </LogoSuite>
 
     <LogoSuite variant="gridline-expressive">
-      <LogoSuite.Heading>With description, with marquee</LogoSuite.Heading>
-      <LogoSuite.Description>Over 100 million developers and counting</LogoSuite.Description>
+      <LogoSuite.Heading>Heading + marquee</LogoSuite.Heading>
+      <LogoSuite.Description>+ an optional description</LogoSuite.Description>
       <LogoSuite.Logobar marquee>
         <Image alt="Uber" src={uberLogo} />
         <Image alt="Vercel" src={vercelLogo} />
@@ -311,9 +340,9 @@ export const GridLineExpressive = () => (
   </Stack>
 )
 
-GridLineExpressive.storyName = 'GridLine expressive variant'
+GridLineExpressiveKitchenSink.storyName = 'GridLine expressive kitchen sink'
 
-GridLineExpressive.parameters = {
+GridLineExpressiveKitchenSink.parameters = {
   layout: 'fullscreen',
   pseudo: {hover: ['[data-testid="hover-enabled-logobar"]']},
 }

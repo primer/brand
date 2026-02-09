@@ -223,10 +223,9 @@ Heading elements will default to being `h2` elements. Use the `as` prop to chang
 ### Marquee
 
 ```jsx live
-<>
+<Stack direction="vertical" style={{maxWidth: '100%'}}>
   <LogoSuite>
-    <LogoSuite.Heading visuallyHidden>Featured sponsors</LogoSuite.Heading>
-    <LogoSuite.Description>Speed: Normal</LogoSuite.Description>
+    <LogoSuite.Heading>Speed: Normal</LogoSuite.Heading>
     <LogoSuite.Logobar marquee marqueeSpeed="normal">
       <svg role="img" viewBox="0 0 300 100">
         <title>Placeholder logo</title>
@@ -244,8 +243,7 @@ Heading elements will default to being `h2` elements. Use the `as` prop to chang
   </LogoSuite>
   <br />
   <LogoSuite>
-    <LogoSuite.Heading visuallyHidden>Featured sponsors</LogoSuite.Heading>
-    <LogoSuite.Description>Speed: Slow</LogoSuite.Description>
+    <LogoSuite.Heading>Speed: Slow</LogoSuite.Heading>
     <LogoSuite.Logobar marquee marqueeSpeed="slow">
       <svg role="img" viewBox="0 0 300 100">
         <title>Placeholder logo</title>
@@ -273,7 +271,7 @@ Heading elements will default to being `h2` elements. Use the `as` prop to chang
       </svg>
     </LogoSuite.Logobar>
   </LogoSuite>
-</>
+</Stack>
 ```
 
 ### Alternative alignment
@@ -281,7 +279,7 @@ Heading elements will default to being `h2` elements. Use the `as` prop to chang
 `LogoSuite` will center content by default. You may optionally align the content to the `start`, or `justify` it.
 
 ```jsx live
-<>
+<Stack direction="vertical">
   <LogoSuite align="start">
     <LogoSuite.Description>Start</LogoSuite.Description>
     <LogoSuite.Logobar>
@@ -317,7 +315,7 @@ Heading elements will default to being `h2` elements. Use the `as` prop to chang
       </svg>
     </LogoSuite.Logobar>
   </LogoSuite>
-</>
+</Stack>
 ```
 
 ### Variants
@@ -327,7 +325,7 @@ Logobars will automatically select the appropriate variant based on the number o
 Logobars using the `emphasis` variant will appear with relatively higher contrast and in a larger size when compared to the `muted` variant.
 
 ```jsx live
-<>
+<Stack direction="vertical">
   <LogoSuite>
     <LogoSuite.Heading visuallyHidden>Emphasis example</LogoSuite.Heading>
     <LogoSuite.Description>Emphasis</LogoSuite.Description>
@@ -457,7 +455,7 @@ Logobars using the `emphasis` variant will appear with relatively higher contras
       </svg>
     </LogoSuite.Logobar>
   </LogoSuite>
-</>
+</Stack>
 ```
 
 ### Gridline expressive variant
@@ -517,7 +515,7 @@ The `takeoverButton` prop on `LogoSuite.Logobar` adds an interactive hover effec
 `LogoSuite.Logobar` supports both `default` and `condensed` gap between logos.
 
 ```jsx live
-<>
+<Stack direction="vertical">
   <LogoSuite>
     <LogoSuite.Heading visuallyHidden>Default gap</LogoSuite.Heading>
     <LogoSuite.Description>Default gap</LogoSuite.Description>
@@ -647,7 +645,7 @@ The `takeoverButton` prop on `LogoSuite.Logobar` adds an interactive hover effec
       </svg>
     </LogoSuite.Logobar>
   </LogoSuite>
-</>
+</Stack>
 ```
 
 ## Component props
