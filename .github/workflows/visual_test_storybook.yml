@@ -14,37 +14,9 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Set up Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: 24
-
-      - name: Cache dependencies
-        uses: actions/cache@v4
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
-
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Install Playwright
-        run: |
-          npx playwright install chrome
-          npx playwright install-deps chrome
-
-      - name: Build assets
-        run: NODE_ENV=test npm run build:lib && cd apps/storybook && npx storybook build
-
       - name: Run visual tests
         id: playwright-step
-        run: |
-          NODE_ENV=test npx start-server-and-test \
-            'npx http-server ./apps/storybook/storybook-static -p 6006' \
-            6006 \
-            'cd packages/e2e && npx playwright test'
+        run: cd packages/e2e && bash scripts/playwright/run-visual-tests
         continue-on-error: true
 
       - name: Upload error screenshots

@@ -8,14 +8,20 @@ import {test, expect} from '@playwright/test'
 // eslint-disable-next-line i18n-text/no-en
 test.describe('Visual Comparison: Statistic', () => {
   test('Statistic / Default', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-statistic--default&viewMode=story')
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-statistic--default&viewMode=story', {
+      waitUntil: 'networkidle',
+    })
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Statistic / Playground', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-statistic--playground&viewMode=story')
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-statistic--playground&viewMode=story', {
+      waitUntil: 'networkidle',
+    })
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -24,7 +30,9 @@ test.describe('Visual Comparison: Statistic', () => {
   test('Statistic / Boxed Variant', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-statistic-features--boxed-variant&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -33,14 +41,19 @@ test.describe('Visual Comparison: Statistic', () => {
   test('Statistic / No Description', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-statistic-features--no-description&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Statistic / Sizes', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-statistic-features--sizes&viewMode=story')
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-statistic-features--sizes&viewMode=story', {
+      waitUntil: 'networkidle',
+    })
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -49,14 +62,20 @@ test.describe('Visual Comparison: Statistic', () => {
   test('Statistic / Custom Heading Size', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-statistic-features--custom-heading-size&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Statistic / Padding', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-statistic-features--padding&viewMode=story')
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-statistic-features--padding&viewMode=story',
+      {waitUntil: 'networkidle'},
+    )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -65,7 +84,9 @@ test.describe('Visual Comparison: Statistic', () => {
   test('Statistic / Accent Description', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-statistic-features--accent-description&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -74,7 +95,9 @@ test.describe('Visual Comparison: Statistic', () => {
   test('Statistic / Custom Footnote', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-statistic-features--custom-footnote&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -83,7 +106,9 @@ test.describe('Visual Comparison: Statistic', () => {
   test('Statistic / Custom Intro', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-statistic-features--custom-intro&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -92,7 +117,9 @@ test.describe('Visual Comparison: Statistic', () => {
   test('Statistic / With Footnote', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-statistic-features--with-footnote&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})

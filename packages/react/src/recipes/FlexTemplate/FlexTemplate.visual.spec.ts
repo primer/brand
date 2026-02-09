@@ -10,7 +10,9 @@ test.describe('Visual Comparison: FlexTemplate', () => {
   test('FlexTemplate / Default', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=recipes-flextemplate-flextemplate--default&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(4000)
     await expect(page).toHaveScreenshot({fullPage: true})

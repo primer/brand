@@ -8,7 +8,10 @@ import {test, expect} from '@playwright/test'
 // eslint-disable-next-line i18n-text/no-en
 test.describe('Visual Comparison: Textarea', () => {
   test('Textarea / Default', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-forms-textarea--default&viewMode=story')
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-forms-textarea--default&viewMode=story', {
+      waitUntil: 'networkidle',
+    })
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -17,7 +20,9 @@ test.describe('Visual Comparison: Textarea', () => {
   test('Textarea / Validation', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-forms-textarea-features--validation&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -26,7 +31,9 @@ test.describe('Visual Comparison: Textarea', () => {
   test('Textarea / w/ labels', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-forms-textarea-features--with-form-control&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -35,7 +42,9 @@ test.describe('Visual Comparison: Textarea', () => {
   test('Textarea / Inactive', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-forms-textarea-features--inactive&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -44,7 +53,9 @@ test.describe('Visual Comparison: Textarea', () => {
   test('Textarea / Full Width', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-forms-textarea-features--full-width&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})

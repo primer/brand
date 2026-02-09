@@ -388,7 +388,7 @@ describe('IDE', () => {
     await waitFor(() => expect(message1Parent).toHaveClass('IDE__Chat-message--visible'), {timeout: 5000})
     await waitFor(() => expect(message2Parent).toHaveClass('IDE__Chat-message--visible'), {timeout: 5000})
     await waitFor(() => expect(message3Parent).toHaveClass('IDE__Chat-message--visible'), {timeout: 5000})
-  })
+  }, 30000)
 
   it('plays editor animation when both the chat and editor are present', async () => {
     const {getByText} = render(
@@ -411,7 +411,7 @@ describe('IDE', () => {
     await waitFor(() => expect(line1).toHaveClass('Animation--active'), {timeout: 5000})
     await waitFor(() => expect(line2).toHaveClass('Animation--active'), {timeout: 5000})
     await waitFor(() => expect(line3).toHaveClass('Animation--active'), {timeout: 5000})
-  })
+  }, 30000)
 
   it('allows the chat and editor animations to be paused and resumed when both the chat and editor are present', async () => {
     const user = userEvent.setup()

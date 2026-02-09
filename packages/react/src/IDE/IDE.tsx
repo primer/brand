@@ -211,6 +211,8 @@ const _Chat = memo(
       const delay = animationDelay
       const messagesRef = useRef<HTMLDivElement>(null)
       const [scheduledAnimations, setScheduledAnimations] = useState<IDEChatAnimation[]>([])
+      const isPausedRef = useRef(animationIsPaused)
+      isPausedRef.current = animationIsPaused
 
       const scrollIntoParentView = useCallback((element: Element | null) => {
         if (!element || !messagesRef.current) return
@@ -300,10 +302,11 @@ const _Chat = memo(
       useEffect(() => {
         let prevTimestamp = -1
         let animationId: number
+        let currentIndex = 0
 
         const animate: FrameRequestCallback = timestamp => {
-          if (scheduledAnimations.length === 0 || animationIsPaused) {
-            if (animationIsPaused) {
+          if (currentIndex >= scheduledAnimations.length || isPausedRef.current) {
+            if (isPausedRef.current) {
               // Reset timestamp when paused so we don't accumulate time
               prevTimestamp = -1
             }
@@ -314,7 +317,7 @@ const _Chat = memo(
           const diff = prevTimestamp === -1 ? 0 : timestamp - prevTimestamp
           prevTimestamp = timestamp
 
-          const nextAnimation = scheduledAnimations[0]
+          const nextAnimation = scheduledAnimations[currentIndex]
 
           if (nextAnimation.isDone) {
             setAnimationIsDone?.(true)
@@ -326,7 +329,7 @@ const _Chat = memo(
           if (nextAnimation.delay <= 0) {
             if (nextAnimation.action === 'delay') {
               // Just a delay, no visual action needed
-              setScheduledAnimations(current => current.slice(1))
+              currentIndex++
             } else {
               const animation = nextAnimation as IDEChatAnimationWithElement
 
@@ -363,7 +366,7 @@ const _Chat = memo(
               }
 
               animation.element.classList.add(styles['IDE__Chat-message--visible'])
-              setScheduledAnimations(current => current.slice(1))
+              currentIndex++
             }
           }
 
@@ -377,7 +380,7 @@ const _Chat = memo(
             cancelAnimationFrame(animationId)
           }
         }
-      }, [scheduledAnimations, scrollIntoParentView, animationIsPaused, setAnimationIsDone])
+      }, [scheduledAnimations, scrollIntoParentView, setAnimationIsDone])
 
       return (
         <section ref={ref} className={styles.IDE__Chat} data-testid={testId || testIds.chat} {...rest}>
@@ -577,6 +580,8 @@ const _Editor = memo(
       const ref = useProvidedRefOrCreate(forwardedRef)
       const presRef = useRef<HTMLDivElement>(null)
       const [scheduledAnimations, setScheduledAnimations] = useState<IDEAnimation[]>([])
+      const isPausedRef = useRef(animationIsPaused)
+      isPausedRef.current = animationIsPaused
 
       const tabs = useTabs({
         defaultTab: activeTab.toString(),
@@ -652,13 +657,14 @@ const _Editor = memo(
       useEffect(() => {
         let prevTimestamp = -1
         let animationId: number
+        let currentIndex = 0
 
         const animate: FrameRequestCallback = timestamp => {
-          if (scheduledAnimations.length === 0 || tabs.activeTab === null) {
+          if (currentIndex >= scheduledAnimations.length || tabs.activeTab === null) {
             return
           }
 
-          if (animationIsPaused) {
+          if (isPausedRef.current) {
             // Reset timestamp when paused so we don't accumulate time
             prevTimestamp = -1
             animationId = requestAnimationFrame(animate)
@@ -668,7 +674,7 @@ const _Editor = memo(
           const diff = prevTimestamp === -1 ? 0 : timestamp - prevTimestamp
           prevTimestamp = timestamp
 
-          const nextAnimation = scheduledAnimations[0]
+          const nextAnimation = scheduledAnimations[currentIndex]
 
           if (nextAnimation.isDone) {
             setAnimationIsDone?.(true)
@@ -685,7 +691,7 @@ const _Editor = memo(
             for (const element of nextAnimation.elements) {
               element.classList.add(animationStyles['Animation--active'])
             }
-            setScheduledAnimations(current => current.slice(1))
+            currentIndex++
           }
 
           animationId = requestAnimationFrame(animate)
@@ -698,7 +704,7 @@ const _Editor = memo(
             cancelAnimationFrame(animationId)
           }
         }
-      }, [scheduledAnimations, animationIsPaused, setAnimationIsDone, tabs.activeTab])
+      }, [scheduledAnimations, setAnimationIsDone, tabs.activeTab])
 
       return (
         <div

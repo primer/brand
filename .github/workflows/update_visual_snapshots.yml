@@ -19,41 +19,13 @@ jobs:
       labels: ubuntu-latest-16-cores
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           repository: ${{ github.event.pull_request.head.repo.full_name }}
           ref: ${{ github.head_ref }}
 
-      - name: Set up Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: 24
-
-      - name: Cache dependencies
-        uses: actions/cache@v4
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
-
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Build assets
-        run: npm run build:lib && cd apps/storybook && npx storybook build
-
-      - name: Build storybook
-        run: cd apps/storybook && npx storybook build
-
-      - name: Install browsers
-        run: npx playwright install chrome --with-deps
-
-      - name: Regenerate spec files
-        run: cd packages/e2e && npm run test:visual:generate
-
-      - name: Update snapshots
-        run: npx start-server-and-test 'npx http-server ./apps/storybook/storybook-static -p 6006' 6006 'cd packages/e2e && npx playwright test --update-snapshots'
+      - name: Regenerate specs and update snapshots
+        run: cd packages/e2e && bash scripts/playwright/update-visual-snapshots
 
       - uses: stefanzweifel/git-auto-commit-action@v4
         with:

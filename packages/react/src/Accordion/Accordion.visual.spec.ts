@@ -8,7 +8,10 @@ import {test, expect} from '@playwright/test'
 // eslint-disable-next-line i18n-text/no-en
 test.describe('Visual Comparison: Accordion', () => {
   test('Accordion / Default', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-accordion--default&viewMode=story')
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-accordion--default&viewMode=story', {
+      waitUntil: 'networkidle',
+    })
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -17,7 +20,9 @@ test.describe('Visual Comparison: Accordion', () => {
   test('Accordion / Composition', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-accordion-features--composition&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -26,7 +31,9 @@ test.describe('Visual Comparison: Accordion', () => {
   test('Accordion / Toggle Colors', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-accordion-features--toggle-colors&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -35,7 +42,9 @@ test.describe('Visual Comparison: Accordion', () => {
   test('Accordion / Always Exactly One Panel Open', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-accordion-features--always-exactly-one-panel-open&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -44,7 +53,9 @@ test.describe('Visual Comparison: Accordion', () => {
   test('Accordion / Exclusive Using Name Attribute', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-accordion-features--exclusive-using-name-attribute&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -53,7 +64,9 @@ test.describe('Visual Comparison: Accordion', () => {
   test('Accordion / Exclusive Without Using Name Attribute', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-accordion-features--exclusive-without-using-name-attribute&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
