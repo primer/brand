@@ -38,6 +38,5 @@ const _EyebrowText = forwardRef<HTMLSpanElement, EyebrowTextProps>(
 
 /**
  * EyebrowText is a simple uppercase, muted text label typically used above headings.
- * @see https://primer.style/brand/components/EyebrowText
  */
 export const EyebrowText = Object.assign(_EyebrowText, {testIds})
