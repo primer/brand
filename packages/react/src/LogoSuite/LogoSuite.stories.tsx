@@ -5,10 +5,11 @@ import {LogoSuite, type LogoSuiteHeadingProps, type LogoSuiteLogoBarProps, type 
 import {logos} from './LogoSuite.fixtures'
 
 type StoryProps = Required<
-  Pick<LogoSuiteProps, 'align' | 'hasDivider'> &
+  Pick<LogoSuiteProps, 'align' | 'hasDivider' | 'variant'> &
     Pick<LogoSuiteHeadingProps, 'visuallyHidden'> &
-    Pick<LogoSuiteLogoBarProps, 'marquee' | 'marqueeSpeed' | 'variant'>
+    Pick<LogoSuiteLogoBarProps, 'marquee' | 'marqueeSpeed'>
 > & {
+  logobarVariant: LogoSuiteLogoBarProps['variant']
   logoCount: number
   heading: string
   description: string
@@ -19,9 +20,10 @@ const meta = {
   component: LogoSuite,
   args: {
     align: 'center',
+    variant: undefined,
     hasDivider: true,
     visuallyHidden: false,
-    variant: undefined,
+    logobarVariant: undefined,
     marquee: false,
     marqueeSpeed: 'normal',
     logoCount: 5,
@@ -50,6 +52,13 @@ const meta = {
     align: {
       control: 'radio',
       options: ['start', 'center', 'justify'],
+      table: {
+        category: 'LogoSuite',
+      },
+    },
+    variant: {
+      control: 'radio',
+      options: [undefined, 'default', 'gridline-expressive'],
       table: {
         category: 'LogoSuite',
       },
@@ -87,7 +96,7 @@ const meta = {
         category: 'LogoSuite.Logobar',
       },
     },
-    variant: {
+    logobarVariant: {
       control: 'radio',
       options: [undefined, 'muted', 'emphasis'],
       table: {
@@ -109,11 +118,22 @@ export default meta
 type Story = StoryObj<StoryProps>
 
 export const Playground: Story = {
-  render: ({hasDivider, logoCount, align, visuallyHidden, marquee, marqueeSpeed, variant, heading, description}) => (
-    <LogoSuite align={align} hasDivider={hasDivider}>
+  render: ({
+    hasDivider,
+    logoCount,
+    align,
+    variant,
+    visuallyHidden,
+    marquee,
+    marqueeSpeed,
+    logobarVariant,
+    heading,
+    description,
+  }) => (
+    <LogoSuite align={align} variant={variant} hasDivider={hasDivider}>
       <LogoSuite.Heading visuallyHidden={visuallyHidden}>{heading}</LogoSuite.Heading>
       <LogoSuite.Description>{description}</LogoSuite.Description>
-      <LogoSuite.Logobar variant={variant} marquee={marquee} marqueeSpeed={marqueeSpeed}>
+      <LogoSuite.Logobar variant={logobarVariant} marquee={marquee} marqueeSpeed={marqueeSpeed}>
         {logos.slice(0, logoCount)}
       </LogoSuite.Logobar>
     </LogoSuite>
