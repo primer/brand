@@ -8,7 +8,7 @@ import {River} from '.'
 import {EyebrowText, Heading, Label, Link, Section, Text} from '../../'
 
 export default {
-  title: 'Components/River/GridLine',
+  title: 'Components/River/Features/GridLine variants',
   component: River,
   parameters: {
     layout: 'fullscreen',
@@ -188,3 +188,107 @@ export const GridLineContentAlignBlockEnd: StoryFn<typeof River> = () => (
 )
 
 GridLineContentAlignBlockEnd.storyName = 'GridLine variant (content align block-end)'
+
+// 60:40 ratio stories
+
+export const GridLine6040: StoryFn<typeof River> = () => (
+  <Section>
+    <River variant="gridline" align="start" imageTextRatio="60:40">
+      <River.Visual>
+        <PlaceholderImage />
+      </River.Visual>
+      <River.Content>
+        <Heading>GridLine 60:40 Ratio</Heading>
+        <Text>The gridline variant with 60:40 image to text ratio displays a larger image area.</Text>
+        <Link href="#">Call to action</Link>
+      </River.Content>
+    </River>
+  </Section>
+)
+
+GridLine6040.storyName = 'GridLine variant (60:40)'
+
+export const GridLine6040End: StoryFn<typeof River> = () => (
+  <Section>
+    <River variant="gridline" align="end" imageTextRatio="60:40">
+      <River.Visual>
+        <PlaceholderImage />
+      </River.Visual>
+      <River.Content>
+        <Heading>GridLine 60:40 Ratio (End)</Heading>
+        <Text>The 60:40 ratio combined with end alignment.</Text>
+        <Link href="#">Call to action</Link>
+      </River.Content>
+    </River>
+  </Section>
+)
+
+GridLine6040End.storyName = 'GridLine variant (60:40, end)'
+
+export const GridLine6040Center: StoryFn<typeof River> = () => (
+  <Section>
+    <River variant="gridline" align="center" imageTextRatio="60:40">
+      <River.Visual>
+        <PlaceholderImage />
+      </River.Visual>
+      <River.Content>
+        <Heading>GridLine 60:40 Ratio (Centered)</Heading>
+        <Text>The 60:40 ratio with centered alignment stacks the content below the visual.</Text>
+        <Link href="#">Call to action</Link>
+      </River.Content>
+    </River>
+  </Section>
+)
+
+GridLine6040Center.storyName = 'GridLine variant (60:40, centered)'
+
+export const GridLine6040WithBackground: StoryFn<typeof River> = () => (
+  <Section>
+    <River variant="gridline" align="start" imageTextRatio="60:40">
+      <River.Visual imageBackgroundColor="subtle">
+        <PlaceholderImage />
+      </River.Visual>
+      <River.Content>
+        <Heading>GridLine 60:40 with Background</Heading>
+        <Text>The 60:40 ratio combined with subtle background color.</Text>
+        <Link href="#">Call to action</Link>
+      </River.Content>
+    </River>
+  </Section>
+)
+
+GridLine6040WithBackground.storyName = 'GridLine variant (60:40, with background)'
+
+export const GridLine6040WithBackgroundEnd: StoryFn<typeof River> = () => (
+  <Section>
+    <River variant="gridline" align="end" imageTextRatio="60:40">
+      <River.Visual imageBackgroundColor="subtle">
+        <PlaceholderImage />
+      </River.Visual>
+      <River.Content>
+        <Heading>GridLine 60:40 with Background (End)</Heading>
+        <Text>The 60:40 ratio with end alignment and subtle background.</Text>
+        <Link href="#">Call to action</Link>
+      </River.Content>
+    </River>
+  </Section>
+)
+
+GridLine6040WithBackgroundEnd.storyName = 'GridLine variant (60:40, with background, end)'
+
+export const GridLine6040WithBackgroundCenter: StoryFn<typeof River> = () => (
+  <Section>
+    <River variant="gridline" align="center" imageTextRatio="60:40">
+      <River.Visual imageBackgroundColor="subtle">
+        <PlaceholderImage />
+      </River.Visual>
+      <River.Content>
+        <Heading>GridLine 60:40 with Background (Centered)</Heading>
+        <Text>The 60:40 ratio with centered alignment and subtle background.</Text>
+        <Link href="#">Call to action</Link>
+      </River.Content>
+    </River>
+  </Section>
+)
+
+GridLine6040WithBackgroundCenter.storyName = 'GridLine variant (60:40, with background, centered)'
