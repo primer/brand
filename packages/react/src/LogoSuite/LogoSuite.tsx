@@ -351,6 +351,7 @@ const _LogoBar = forwardRef(
               {children}
             </div>
             <div
+              inert
               aria-hidden="true"
               className={clsx(
                 styles['LogoSuite__logobar-marqueeGroup'],
