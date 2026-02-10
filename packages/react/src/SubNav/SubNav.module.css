@@ -520,6 +520,10 @@
 }
 
 @media screen and (min-width: 48rem) {
+  .SubNav__heading-container {
+    padding-inline-start: var(--base-size-24);
+  }
+
   .SubNav--full-width {
     padding-inline: 0;
   }
@@ -547,6 +551,10 @@
 
   .SubNav:has(+ .SubNav__anchor-menu-container) {
     padding-block-end: 0;
+  }
+
+  .SubNav__heading-container {
+    padding-inline-start: 0;
   }
 
   .SubNav--full-width {
