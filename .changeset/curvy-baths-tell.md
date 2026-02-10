@@ -28,5 +28,5 @@ Added presentational updates to the `LogoSuite` component.
 #### Accessibility improvements
 
 - `marquee` feature starts paused when `prefers-reduced-motion: reduce` is enabled
-- `marquee` feature pauses on focus and scrolls focused element into view
+- `marquee` feature pauses on focus and retains position when unfocused
 - `marquee` logos that are duplicated internally are now marked as `inert`
