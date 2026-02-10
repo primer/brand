@@ -2,7 +2,7 @@
   position: absolute;
   width: 100%;
   z-index: 2;
-  border-block-end: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
+  border-block: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
 }
 
 .SubNav__container--with-anchor-nav {
@@ -14,7 +14,7 @@
   width: 100%;
   display: flex;
   z-index: 1;
-  background-color: var(--brand-color-canvas-default);
+  background-color: var(--brand-SubNav-bgColor);
 }
 
 [data-color-mode='dark'] .SubNav {
@@ -511,17 +511,14 @@
   position: relative;
   white-space: nowrap;
 }
-/* 
-.SubNav__subHeading[aria-current]:not([aria-current='false'])::after,
-.SubNav__subHeading:hover::after {
-  border-color: var(--brand-color-text-default);
-  opacity: 1;
-  transform: scale(0.8, 1);
-}
 
-.SubNav__subHeading:focus-visible::after {
-  opacity: 0;
-} */
+.SubNav__subHeading[aria-current]:not([aria-current='false']),
+.SubNav__subHeading:hover {
+  background-color: var(--brand-SubNav-color-link-bgColor);
+  border: none;
+  border-radius: var(--brand-borderRadius-full);
+  padding: var(--base-size-6) var(--base-size-12);
+}
 
 @media screen and (min-width: 48rem) {
   .SubNav--full-width {

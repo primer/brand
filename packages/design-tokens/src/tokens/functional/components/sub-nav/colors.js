@@ -1,5 +1,9 @@
 module.exports = {
   SubNav: {
+    bgColor: {
+      value: 'var(--base-color-scale-white-0)',
+      dark: '#000',
+    },
     color: {
       link: {
         rest: {
