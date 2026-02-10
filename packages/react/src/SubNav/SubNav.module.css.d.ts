@@ -32,6 +32,7 @@ declare const styles: {
   readonly "SubNav__overlay-toggle-content": string;
   readonly "SubNav__overlay-toggle-content--end": string;
   readonly "SubNav__overlay-toggle-icon": string;
+  readonly "SubNav__overlay-toggle-label": string;
   readonly "SubNav__sub-menu": string;
   readonly "SubNav__sub-menu--anchor": string;
   readonly "SubNav__sub-menu--dropdown": string;

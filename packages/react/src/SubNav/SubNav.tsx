@@ -119,37 +119,10 @@ function SubNavProvider({children}: {children: React.ReactNode}) {
   )
 }
 
-type SeparatorProps = {
-  activeLinklabel?: React.ReactNode
-} & BaseProps<HTMLSpanElement>
-
-function Separator({activeLinklabel, className, ...props}: SeparatorProps) {
-  return (
-    <span
-      role="separator"
-      className={clsx(
-        styles['SubNav__heading-separator'],
-        activeLinklabel && styles['SubNav__heading-separator--has-adjacent-label'],
-        className,
-      )}
-      aria-hidden
-      {...props}
-    >
-      <svg xmlns="http://www.w3.org/2000/svg" width="8" height="16" viewBox="0 0 8 16" fill="none" aria-hidden>
-        <g clipPath="url(#clip0_50_1307)">
-          <path d="M0 15.2992L5.472 0.701172H7.632L2.16 15.2992H0Z" fill="currentColor" />
-        </g>
-        <defs>
-          <clipPath id="clip0_50_1307">
-            <rect width="7.632" height="14.598" transform="translate(0 0.701172)" />
-          </clipPath>
-        </defs>
-      </svg>
-    </span>
-  )
-}
-
 export type SubNavProps = {
+  /**
+   * @deprecated The hasShadow prop is deprecated and will be removed in a future release.
+   */
   hasShadow?: boolean
   /**
    * Allows the SubNav to be used at full width,
@@ -284,35 +257,37 @@ const SubNavRoot = memo(
 
       const NarrowButton = useMemo(
         () => (
-          <button
-            ref={narrowButtonRef}
+          <div
             className={clsx(styles['SubNav__overlay-toggle'], isOpenAtNarrow && styles['SubNav__overlay-toggle--open'])}
-            data-testid={testIds.button}
-            onClick={isOpenAtNarrow ? closeMenuCallback : handleMenuToggle}
-            aria-expanded={isOpenAtNarrow ? 'true' : 'false'}
-            aria-controls={idForLinkContainer}
           >
-            <span className="visually-hidden">
-              {activeLinklabel ? 'Navigation menu. Current page: ' : 'Navigation menu'}
-            </span>
             <span
               className={clsx(
                 styles['SubNav__overlay-toggle-content'],
                 !activeLinklabel && styles['SubNav__overlay-toggle-content--end'],
               )}
             >
-              {activeLinklabel && (
-                <Text as="span" size="200">
-                  {activeLinklabel}
-                </Text>
-              )}
-              {isOpenAtNarrow ? (
-                <ChevronUpIcon className={styles['SubNav__overlay-toggle-icon']} size={24} />
-              ) : (
-                <ChevronDownIcon className={styles['SubNav__overlay-toggle-icon']} size={24} />
-              )}
+              <button
+                ref={narrowButtonRef}
+                className={styles['SubNav__overlay-toggle-label']}
+                data-testid={testIds.button}
+                onClick={isOpenAtNarrow ? closeMenuCallback : handleMenuToggle}
+                aria-expanded={isOpenAtNarrow ? 'true' : 'false'}
+                aria-controls={idForLinkContainer}
+                aria-label={activeLinklabel ? `Navigation menu. Current page: ${activeLinklabel}` : 'Navigation menu'}
+              >
+                {activeLinklabel && (
+                  <Text as="span" size="100">
+                    {activeLinklabel}
+                  </Text>
+                )}
+                {isOpenAtNarrow ? (
+                  <ChevronUpIcon className={styles['SubNav__overlay-toggle-icon']} size={13} />
+                ) : (
+                  <ChevronDownIcon className={styles['SubNav__overlay-toggle-icon']} size={13} />
+                )}
+              </button>
             </span>
-          </button>
+          </div>
         ),
         [activeLinklabel, closeMenuCallback, handleMenuToggle, idForLinkContainer, isOpenAtNarrow],
       )
@@ -345,27 +320,16 @@ const SubNavRoot = memo(
                   {HeadingChild && <div className={styles['SubNav__heading-container']}>{HeadingChild}</div>}
 
                   {SubHeadingChild && (
-                    <>
-                      <Separator
-                        activeLinklabel={activeLinklabel}
-                        className={clsx(
-                          styles['SubNav__heading-separator--subheading'],
-                          subHeadingIsActive && styles['SubNav__heading-separator--subheading-active'],
-                        )}
-                      />
-                      <div
-                        className={clsx(
-                          styles['SubNav__heading-container'],
-                          styles['SubNav__subheading-container'],
-                          subHeadingIsActive && styles['SubNav__subheading-container-active'],
-                        )}
-                      >
-                        {SubHeadingChild}
-                      </div>
-                    </>
+                    <div
+                      className={clsx(
+                        styles['SubNav__heading-container'],
+                        styles['SubNav__subheading-container'],
+                        subHeadingIsActive && styles['SubNav__subheading-container-active'],
+                      )}
+                    >
+                      {SubHeadingChild}
+                    </div>
                   )}
-
-                  <Separator activeLinklabel={activeLinklabel} className={styles['SubNav__heading-separator--main']} />
 
                   {!isLarge && (!SubHeadingChild || subHeadingIsActive) && NarrowButton}
 
@@ -486,13 +450,7 @@ const LinkBaseWithSubmenu = forwardRef<HTMLDivElement, LinkBaseProps>(
           aria-current={ariaCurrent}
           {...props}
         >
-          <Text
-            as="span"
-            size="200"
-            weight="medium"
-            className={styles['SubNav__link-label']}
-            variant={ariaCurrent === 'page' || variant === 'default' ? 'default' : 'muted'}
-          >
+          <Text as="span" size="100" weight="medium" className={styles['SubNav__link-label']}>
             {label}
           </Text>
         </a>
@@ -577,13 +535,7 @@ const LinkBase = forwardRef<HTMLAnchorElement | HTMLDivElement, LinkBaseProps>((
         ref={ref as RefObject<HTMLAnchorElement>}
         {...rest}
       >
-        <Text
-          as="span"
-          size="100"
-          weight="medium"
-          className={styles['SubNav__link-label']}
-          variant={ariaCurrent === 'page' || variant === 'default' ? 'default' : 'muted'}
-        >
+        <Text as="span" size="100" weight="medium" className={styles['SubNav__link-label']}>
           {children}
         </Text>
       </a>
