@@ -512,8 +512,7 @@
   white-space: nowrap;
 }
 
-.SubNav__subHeading[aria-current]:not([aria-current='false']),
-.SubNav__subHeading:hover {
+.SubNav__subHeading[aria-current]:not([aria-current='false']) {
   background-color: var(--brand-SubNav-color-link-bgColor);
   border: none;
   border-radius: var(--brand-borderRadius-full);
