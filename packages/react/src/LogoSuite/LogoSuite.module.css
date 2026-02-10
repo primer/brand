@@ -186,7 +186,6 @@
   animation-play-state: paused !important;
 }
 
-/* Reset animation so focused links snap to their natural position */
 .LogoSuite__logobar-marquee--focused .LogoSuite__logobar-marqueeGroup {
   animation-name: none;
 }
@@ -329,7 +328,9 @@
 }
 
 .LogoSuite__logobar--has-takeover:hover svg,
-.LogoSuite__logobar--has-takeover:focus-within svg {
+.LogoSuite__logobar--has-takeover:focus-within svg,
+.LogoSuite__logobar--has-takeover:hover img,
+.LogoSuite__logobar--has-takeover:focus-within img {
   opacity: 0.7;
   transition: opacity var(--brand-animation-duration-default) var(--brand-animation-easing-default);
 }

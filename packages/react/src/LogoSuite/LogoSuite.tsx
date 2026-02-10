@@ -1,5 +1,6 @@
 import {clsx} from 'clsx'
 import React, {type PropsWithChildren, type Ref, forwardRef, useCallback, useEffect, useMemo, useState} from 'react'
+import {useReducedMotion} from '../hooks/useReducedMotion'
 import type {BaseProps} from '../component-helpers'
 import {PauseIcon as OcticonPauseIcon} from '@primer/octicons-react'
 import {Heading, HeadingProps, defaultHeadingTag, Text, TextProps, Grid, Button} from '../'
@@ -250,23 +251,8 @@ const _LogoBar = forwardRef(
     }: LogoSuiteLogoBarProps,
     ref: Ref<HTMLDivElement>,
   ) => {
-    const [prefersReducedMotion, setPrefersReducedMotion] = useState(false)
-    const [isPlaying, setIsPlaying] = useState(marquee && !prefersReducedMotion && marqueeSpeed !== 'idle')
-
-    useEffect(() => {
-      const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)')
-      setPrefersReducedMotion(mediaQuery.matches)
-
-      const handleChange = (event: MediaQueryListEvent) => {
-        setPrefersReducedMotion(event.matches)
-      }
-
-      mediaQuery.addEventListener('change', handleChange)
-
-      return () => {
-        mediaQuery.removeEventListener('change', handleChange)
-      }
-    }, [])
+    const prefersReducedMotion = useReducedMotion()
+    const [isPlaying, setIsPlaying] = useState(() => marquee && !prefersReducedMotion && marqueeSpeed !== 'idle')
 
     useEffect(() => {
       setIsPlaying(marquee && !prefersReducedMotion && marqueeSpeed !== 'idle')

@@ -2,6 +2,9 @@
 set -e
 
 IMAGE="mcr.microsoft.com/playwright:v1.57.0-noble"
+# Forwards optional args to Playwright inside Docker.
+# Mostly used for running individual tests.
+# E.g. npm run test:visual:update -- --grep "LogoSuite"
 EXTRA_ARGS="$*"
 
 docker run --rm --ipc=host --platform linux/amd64 \
