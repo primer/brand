@@ -23,6 +23,7 @@ declare const styles: {
   readonly "SubNav__heading-separator--subheading-active": string;
   readonly "SubNav__link": string;
   readonly "SubNav__link--expanded": string;
+  readonly "SubNav__link--has-active-sub-menu": string;
   readonly "SubNav__link--has-sub-menu": string;
   readonly "SubNav__link--is-in-view": string;
   readonly "SubNav__link-label": string;

@@ -17,7 +17,7 @@ import React, {
 import {Button, ButtonSizes, ButtonVariants, Text, TextProps, ThemeProvider, useWindowSize} from '..'
 
 import {clsx} from 'clsx'
-import {ChevronDownIcon, ChevronUpIcon} from '@primer/octicons-react'
+import {TriangleDownIcon, TriangleUpIcon} from '@primer/octicons-react'
 import {useId} from '../hooks/useId'
 import {useKeyboardEscape} from '../hooks/useKeyboardEscape'
 import {useOnClickOutside} from '../hooks/useOnClickOutside'
@@ -281,9 +281,9 @@ const SubNavRoot = memo(
                   </Text>
                 )}
                 {isOpenAtNarrow ? (
-                  <ChevronUpIcon className={styles['SubNav__overlay-toggle-icon']} size={13} />
+                  <TriangleUpIcon className={styles['SubNav__overlay-toggle-icon']} size={13} />
                 ) : (
-                  <ChevronDownIcon className={styles['SubNav__overlay-toggle-icon']} size={13} />
+                  <TriangleDownIcon className={styles['SubNav__overlay-toggle-icon']} size={13} />
                 )}
               </button>
             </span>
@@ -425,6 +425,7 @@ const LinkBaseWithSubmenu = forwardRef<HTMLDivElement, LinkBaseProps>(
     const expand = useCallback(() => setIsExpanded(true), [])
     const collapse = useCallback(() => setIsExpanded(false), [])
     const toggleExpanded = useCallback(() => setIsExpanded(prev => !prev), [])
+    const isAriaCurrent = Boolean(ariaCurrent) && ariaCurrent !== 'false'
 
     useKeyboardEscape(collapse)
 
@@ -432,7 +433,11 @@ const LinkBaseWithSubmenu = forwardRef<HTMLDivElement, LinkBaseProps>(
 
     return (
       <div
-        className={clsx(styles['SubNav__link--has-sub-menu'], isExpanded && styles['SubNav__link--expanded'])}
+        className={clsx(
+          styles['SubNav__link--has-sub-menu'],
+          isExpanded && styles['SubNav__link--expanded'],
+          isAriaCurrent && styles['SubNav__link--has-active-sub-menu'],
+        )}
         data-testid={testId || testIds.subMenu}
         ref={ref}
         onMouseOver={expand}
@@ -462,7 +467,7 @@ const LinkBaseWithSubmenu = forwardRef<HTMLDivElement, LinkBaseProps>(
             aria-controls={submenuId}
             aria-label={`${label?.toString().trim()} submenu`}
           >
-            <ChevronDownIcon className={styles['SubNav__sub-menu-icon']} size={16} />
+            <TriangleDownIcon className={styles['SubNav__sub-menu-icon']} size={16} />
           </button>
         )}
 
@@ -629,7 +634,7 @@ type SubNavActionProps = {
   variant?: (typeof ButtonVariants)[number]
 } & Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, 'href'>
 
-function ActionBase({children, href, variant = 'primary', size = 'small', ...rest}: SubNavActionProps) {
+function ActionBase({children, href, variant = 'accent', size = 'small', ...rest}: SubNavActionProps) {
   return (
     <Button
       className={styles['SubNav__action']}
