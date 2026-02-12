@@ -20,11 +20,9 @@ const testIds = {
   },
 }
 
-const TilesVariantOptions = ['default', 'gridlines'] as const
-type TilesVariant = (typeof TilesVariantOptions)[number]
+type TilesVariant = 'default' | 'gridlines'
 
-const TilesLayoutOptions = ['default', 'compact'] as const
-type TilesLayout = (typeof TilesLayoutOptions)[number]
+type TilesLayout = 'default' | 'compact'
 
 export type TilesProps = {
   /**
@@ -70,7 +68,7 @@ const TilesRoot = forwardRef(
         data-testid={testId || testIds.root}
         {...rest}
       >
-        <ul className={styles['Tiles-grid']} data-testid={testIds.grid} role="list">
+        <ul className={styles['Tiles-grid']} data-testid={testIds.grid}>
           {children}
         </ul>
       </div>
