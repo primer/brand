@@ -70,9 +70,9 @@ const TilesRoot = forwardRef(
         data-testid={testId || testIds.root}
         {...rest}
       >
-        <div className={styles['Tiles-grid']} data-testid={testIds.grid}>
+        <ul className={styles['Tiles-grid']} data-testid={testIds.grid} role="list">
           {children}
-        </div>
+        </ul>
       </div>
     )
   },
@@ -91,19 +91,21 @@ export type TilesItemProps = {
    * Test id for the tile item element.
    */
   'data-testid'?: string
-} & BaseProps<HTMLDivElement> &
-  Omit<React.HTMLAttributes<HTMLDivElement>, 'children'> & {
+} & BaseProps<HTMLLIElement> &
+  Omit<React.HTMLAttributes<HTMLLIElement>, 'children'> & {
     children: React.ReactNode
   }
 
 const _Item = forwardRef(
-  ({name, href, children, className, 'data-testid': testId, ...rest}: TilesItemProps, ref: Ref<HTMLDivElement>) => {
+  ({name, href, children, className, 'data-testid': testId, ...rest}: TilesItemProps, ref: Ref<HTMLLIElement>) => {
     const hasLink = Boolean(href)
 
     const content = useMemo(
       () => (
         <span className={styles['Tiles-item-content']}>
-          <span className={styles['Tiles-item-media']}>{children}</span>
+          <span className={styles['Tiles-item-media']} aria-hidden="true">
+            {children}
+          </span>
           <span className={styles['Tiles-item-label']}>
             <Text as="span" size="100" className={styles['Tiles-item-name']}>
               {name}
@@ -116,15 +118,18 @@ const _Item = forwardRef(
     )
 
     return (
-      <div ref={ref} className={clsx(styles['Tiles-item'], className)} data-testid={testId || testIds.item} {...rest}>
+      <li ref={ref} className={clsx(styles['Tiles-item'], className)} data-testid={testId || testIds.item} {...rest}>
         {hasLink ? (
           <a href={href} className={styles['Tiles-item-link']}>
             {content}
           </a>
         ) : (
-          content
+          <>
+            {content}
+            <span className="visually-hidden">{name}</span>
+          </>
         )}
-      </div>
+      </li>
     )
   },
 )
