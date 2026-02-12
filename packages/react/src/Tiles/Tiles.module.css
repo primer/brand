@@ -1,5 +1,4 @@
 .Tiles {
-  container-type: inline-size;
   width: 100%;
   color: var(--brand-color-text-default);
 }
