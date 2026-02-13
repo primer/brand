@@ -575,9 +575,11 @@ export const WithCustomInput: Story = {
                   </ActionMenu.Overlay>
                 </ActionMenu>
                 <Text as="span" font="monospace" size="100" className={styles.customInputCode}>
-                  <span style={{color: '#d2a8ff'}}>curl</span> <span style={{color: '#58a6ff'}}>-fsSL</span>{' '}
-                  <span style={{color: '#a5d6ff'}}>https://gh.io/copilot-install</span>{' '}
-                  <span style={{color: '#ff7b72'}}>|</span> <span style={{color: '#d2a8ff'}}>bash</span>
+                  <span style={{color: 'var(--base-color-scale-purple-2)'}}>curl</span>{' '}
+                  <span style={{color: 'var(--base-color-scale-blue-3)'}}>-fsSL</span>{' '}
+                  <span style={{color: 'var(--base-color-scale-blue-1)'}}>https://gh.io/copilot-install</span>{' '}
+                  <span style={{color: 'var(--base-color-scale-red-3)'}}>|</span>{' '}
+                  <span style={{color: 'var(--base-color-scale-purple-2)'}}>bash</span>
                 </Text>
                 <Button
                   variant="accent"

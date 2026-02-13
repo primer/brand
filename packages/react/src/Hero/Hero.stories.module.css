@@ -73,5 +73,5 @@
 
 .customInputCopyIcon {
   position: relative;
-  top: -2px;
+  top: calc(var(--base-size-4) * -0.5);
 }
