@@ -18,3 +18,60 @@
 [data-color-mode='dark'] .heroWithCardsExample {
   --customCardsBackgroundColor: var(--base-color-scale-gray-9);
 }
+
+/* Custom input with ActionMenu and code copying */
+
+.customInputExample {
+  min-height: 100dvh;
+}
+/*
+ * Responsive utility classes to mimic Primer CSS (PCSS) in dotcom.
+ */
+.d-lg-none {
+  display: block;
+}
+
+.d-none-d-lg-block {
+  display: none;
+}
+
+@media (min-width: 63.25rem) {
+  .d-lg-none {
+    display: none;
+  }
+
+  .d-none-d-lg-block {
+    display: block;
+  }
+}
+
+.customInputContainer {
+  --brand-borderRadius-full: var(--brand-borderRadius-medium);
+  padding: var(--base-size-4);
+  border-radius: var(--brand-borderRadius-medium);
+  background-color: var(--brand-color-canvas-subtle);
+  border: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
+  backdrop-filter: blur(var(--base-size-48));
+  isolation: isolate;
+}
+
+.customInputCopyButton {
+  padding-inline: var(--base-size-16);
+}
+
+.customInputCode {
+  white-space: nowrap;
+  user-select: all;
+  flex: 1;
+  padding-inline: var(--base-size-16);
+}
+
+.customInputContainer [data-testid='ActionMenu-button'] {
+  border-width: var(--brand-borderWidth-thin);
+  padding-inline: var(--base-size-16);
+}
+
+.customInputCopyIcon {
+  position: relative;
+  top: -2px;
+}

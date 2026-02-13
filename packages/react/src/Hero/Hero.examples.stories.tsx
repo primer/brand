@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect, useState} from 'react'
+import React, {useCallback, useEffect, useState, useTransition} from 'react'
 import type {Meta, StoryObj} from '@storybook/react'
 
 import placeholderBg from '../fixtures/images/dither-bg-landscape-green.png'
@@ -22,6 +22,10 @@ import {AnimationProvider, Animate} from '../animation'
 import {Stack} from '../Stack'
 import {Tabs} from '../Tabs'
 import {Image} from '../Image'
+import {ActionMenu} from '../ActionMenu'
+import {CheckIcon, CopyIcon} from '@primer/octicons-react'
+import {Button} from '../Button'
+import {ThemeProvider} from '../ThemeProvider'
 
 const meta = {
   title: 'Components/Hero/Examples',
@@ -521,4 +525,101 @@ function TempFadeInBackgroundEffect(element: HTMLDivElement, backgroundImageUrl:
     clearTimeout(timer)
     bgDiv.remove()
   }
+}
+
+export const WithCustomInput: Story = {
+  name: 'With a custom input',
+  render: function Render() {
+    const [hasCopied, setHasCopied] = useState(false)
+    const [, startTransition] = useTransition()
+
+    const handleCopy = useCallback(() => {
+      setHasCopied(true)
+      navigator.clipboard.writeText('curl -fsSL https://gh.io/copilot-install | bash')
+    }, [])
+
+    useEffect(() => {
+      if (hasCopied) {
+        const timer = setTimeout(() => {
+          startTransition(() => setHasCopied(false))
+        }, 2000)
+
+        return () => clearTimeout(timer)
+      }
+    }, [hasCopied])
+
+    const trailingComponent = useCallback(
+      () => (
+        <>
+          <Box paddingBlockStart={16} className={styles['d-lg-none']}>
+            <Stack padding="none" gap="condensed" direction={{narrow: 'vertical', regular: 'horizontal'}}>
+              <Hero.PrimaryAction href="#">Try Copilot CLI</Hero.PrimaryAction>
+              <Hero.SecondaryAction href="#">See documentation</Hero.SecondaryAction>
+            </Stack>
+          </Box>
+          <Stack direction="vertical" padding="none" className={styles['d-none-d-lg-block']}>
+            <Box className={styles.customInputContainer} marginBlockEnd={20}>
+              <Stack
+                padding="none"
+                direction={{narrow: 'vertical', regular: 'horizontal'}}
+                gap="none"
+                alignItems="center"
+              >
+                <ActionMenu onSelect={newValue => alert(newValue)}>
+                  <ActionMenu.Button>Get Copilot CLI</ActionMenu.Button>
+                  <ActionMenu.Overlay aria-label="Get Copilot CLI options">
+                    <ActionMenu.Item value="Get Copilot CLI" selected>
+                      Get Copilot CLI
+                    </ActionMenu.Item>
+                    <ActionMenu.Item value="Option 1">See documentation</ActionMenu.Item>
+                  </ActionMenu.Overlay>
+                </ActionMenu>
+                <Text as="span" font="monospace" size="100" className={styles.customInputCode}>
+                  <span style={{color: '#d2a8ff'}}>curl</span> <span style={{color: '#58a6ff'}}>-fsSL</span>{' '}
+                  <span style={{color: '#a5d6ff'}}>https://gh.io/copilot-install</span>{' '}
+                  <span style={{color: '#ff7b72'}}>|</span> <span style={{color: '#d2a8ff'}}>bash</span>
+                </Text>
+                <Button
+                  variant="accent"
+                  className={styles.customInputCopyButton}
+                  onClick={handleCopy}
+                  aria-label="Copy installation command"
+                >
+                  {hasCopied ? (
+                    <CheckIcon className={styles.customInputCopyIcon} />
+                  ) : (
+                    <CopyIcon className={styles.customInputCopyIcon} />
+                  )}
+                </Button>
+              </Stack>
+            </Box>
+            <Text as="p" size="200" variant="muted">
+              View <InlineLink href="#">the documentation</InlineLink>
+            </Text>
+          </Stack>
+        </>
+      ),
+      [hasCopied, handleCopy],
+    )
+
+    return (
+      <ThemeProvider colorMode="dark">
+        <Box backgroundColor="default" className={styles.customInputExample}>
+          <Grid>
+            <Grid.Column>
+              <Hero align="center" trailingComponent={trailingComponent}>
+                <Hero.Label>Public preview</Hero.Label>
+                <Hero.Heading>Your terminal&rsquo;s new sidekick</Hero.Heading>
+                <Hero.Description>
+                  GitHub Copilot CLI reads, writes, and runs code where you work. <br />
+                  Code faster, smarter, together.
+                </Hero.Description>
+                <Hero.Image src={defaultPlaceholderImgae} alt="" />
+              </Hero>
+            </Grid.Column>
+          </Grid>
+        </Box>
+      </ThemeProvider>
+    )
+  },
 }
