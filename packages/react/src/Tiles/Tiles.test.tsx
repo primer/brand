@@ -237,8 +237,8 @@ describe('Tiles', () => {
       expect(media).toHaveAttribute('aria-hidden', 'true')
     })
 
-    it('provides a visually hidden name for non-interactive items', () => {
-      const {container} = render(
+    it('renders the name in the label for all items', () => {
+      const {getByText} = render(
         <Tiles>
           <Tiles.Item name="VS Code">
             <svg />
@@ -246,13 +246,11 @@ describe('Tiles', () => {
         </Tiles>,
       )
 
-      const hiddenName = container.querySelector('.visually-hidden')
-      expect(hiddenName).toBeInTheDocument()
-      expect(hiddenName).toHaveTextContent('VS Code')
+      expect(getByText('VS Code')).toBeInTheDocument()
     })
 
-    it('does not add a visually hidden name for interactive items (name is in the link)', () => {
-      const {container} = render(
+    it('renders the name in the label for interactive items', () => {
+      const {getByText} = render(
         <Tiles>
           <Tiles.Item name="VS Code" href="https://example.com">
             <svg />
@@ -260,8 +258,46 @@ describe('Tiles', () => {
         </Tiles>,
       )
 
-      const hiddenName = container.querySelector('.visually-hidden')
-      expect(hiddenName).not.toBeInTheDocument()
+      expect(getByText('VS Code')).toBeInTheDocument()
+    })
+
+    it('applies visually-hidden to the label for compact non-interactive items', () => {
+      const {container} = render(
+        <Tiles layout="compact">
+          <Tiles.Item name="VS Code">
+            <svg />
+          </Tiles.Item>
+        </Tiles>,
+      )
+
+      const label = container.querySelector('.Tiles-item-label')
+      expect(label).toHaveClass('visually-hidden')
+    })
+
+    it('does not apply visually-hidden to the label for compact interactive items', () => {
+      const {container} = render(
+        <Tiles layout="compact">
+          <Tiles.Item name="VS Code" href="https://example.com">
+            <svg />
+          </Tiles.Item>
+        </Tiles>,
+      )
+
+      const label = container.querySelector('.Tiles-item-label')
+      expect(label).not.toHaveClass('visually-hidden')
+    })
+
+    it('does not apply visually-hidden to the label for default layout non-interactive items', () => {
+      const {container} = render(
+        <Tiles layout="default">
+          <Tiles.Item name="VS Code">
+            <svg />
+          </Tiles.Item>
+        </Tiles>,
+      )
+
+      const label = container.querySelector('.Tiles-item-label')
+      expect(label).not.toHaveClass('visually-hidden')
     })
 
     it('link has an accessible name from the tile name', () => {

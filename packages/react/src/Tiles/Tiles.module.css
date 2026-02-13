@@ -37,6 +37,7 @@
 
 .Tiles--variant-gridlines {
   position: relative;
+  background-color: var(--brand-tiles-bgColor);
 }
 
 .Tiles--variant-gridlines::before,
@@ -128,6 +129,9 @@
   justify-content: space-between;
   gap: var(--base-size-4);
   padding: var(--base-size-12) var(--base-size-16);
+}
+
+.Tiles--layout-compact .Tiles-item-label {
   opacity: 0;
   transform: translateY(var(--base-size-4));
   transition: opacity var(--brand-animation-duration-fast) var(--brand-animation-easing-default),
@@ -135,8 +139,8 @@
   pointer-events: none;
 }
 
-.Tiles-item-link:hover .Tiles-item-label,
-.Tiles-item-link:focus-visible .Tiles-item-label {
+.Tiles--layout-compact .Tiles-item-link:hover .Tiles-item-label,
+.Tiles--layout-compact .Tiles-item-link:focus-visible .Tiles-item-label {
   opacity: 1;
   transform: translateY(0);
 }
@@ -153,12 +157,8 @@
   color: var(--brand-color-text-default);
 }
 
-.Tiles-item:not(:has(.Tiles-item-link)) .Tiles-item-label {
-  display: none;
-}
-
 @media (prefers-reduced-motion: reduce) {
-  .Tiles-item-label {
+  .Tiles--layout-compact .Tiles-item-label {
     transition: none;
   }
 }

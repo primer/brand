@@ -1,11 +1,12 @@
 import {clsx} from 'clsx'
-import React, {forwardRef, type PropsWithChildren, type Ref, useMemo} from 'react'
+import React, {createContext, forwardRef, type PropsWithChildren, type Ref, useContext, useMemo} from 'react'
 import {ArrowUpRightIcon} from '@primer/octicons-react'
 import type {BaseProps} from '../component-helpers'
 import {Text} from '../Text'
 
 /** * Design Tokens */
 import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/tiles/base.css'
+import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/tiles/colors-with-modes.css'
 
 /** * Main Stylesheet (as a CSS Module) */
 import styles from './Tiles.module.css'
@@ -23,6 +24,8 @@ const testIds = {
 type TilesVariant = 'default' | 'gridlines'
 
 type TilesLayout = 'default' | 'compact'
+
+const TilesContext = createContext<TilesLayout>('default')
 
 export type TilesProps = {
   /**
@@ -57,21 +60,23 @@ const TilesRoot = forwardRef(
     ref: Ref<HTMLDivElement>,
   ) => {
     return (
-      <div
-        ref={ref}
-        className={clsx(
-          styles.Tiles,
-          styles[`Tiles--variant-${variant}`],
-          styles[`Tiles--layout-${layout}`],
-          className,
-        )}
-        data-testid={testId || testIds.root}
-        {...rest}
-      >
-        <ul className={styles['Tiles-grid']} data-testid={testIds.grid}>
-          {children}
-        </ul>
-      </div>
+      <TilesContext.Provider value={layout}>
+        <div
+          ref={ref}
+          className={clsx(
+            styles.Tiles,
+            styles[`Tiles--variant-${variant}`],
+            styles[`Tiles--layout-${layout}`],
+            className,
+          )}
+          data-testid={testId || testIds.root}
+          {...rest}
+        >
+          <ul className={styles['Tiles-grid']} data-testid={testIds.grid}>
+            {children}
+          </ul>
+        </div>
+      </TilesContext.Provider>
     )
   },
 )
@@ -96,7 +101,9 @@ export type TilesItemProps = {
 
 const _Item = forwardRef(
   ({name, href, children, className, 'data-testid': testId, ...rest}: TilesItemProps, ref: Ref<HTMLLIElement>) => {
+    const layout = useContext(TilesContext)
     const hasLink = Boolean(href)
+    const isLabelHidden = layout === 'compact' && !hasLink
 
     const content = useMemo(
       () => (
@@ -104,7 +111,7 @@ const _Item = forwardRef(
           <span className={styles['Tiles-item-media']} aria-hidden="true">
             {children}
           </span>
-          <span className={styles['Tiles-item-label']}>
+          <span className={clsx(styles['Tiles-item-label'], isLabelHidden && 'visually-hidden')}>
             <Text as="span" size="100" className={styles['Tiles-item-name']}>
               {name}
             </Text>
@@ -112,7 +119,7 @@ const _Item = forwardRef(
           </span>
         </span>
       ),
-      [children, name, hasLink],
+      [children, name, hasLink, isLabelHidden],
     )
 
     return (
@@ -122,10 +129,7 @@ const _Item = forwardRef(
             {content}
           </a>
         ) : (
-          <>
-            {content}
-            <span className="visually-hidden">{name}</span>
-          </>
+          content
         )}
       </li>
     )
