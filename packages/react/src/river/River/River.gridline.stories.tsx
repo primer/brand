@@ -2,7 +2,6 @@ import React from 'react'
 import type {Meta, StoryFn} from '@storybook/react'
 
 import placeholderImage from '../../fixtures/images/placeholder.png'
-import browserImage from '../../fixtures/images/browser-light.png'
 
 import {River} from '.'
 import {EyebrowText, Heading, Label, Link, Section, Text} from '../../'
