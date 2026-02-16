@@ -38,7 +38,8 @@
 }
 
 .SubNav__heading:hover,
-.SubNav__subHeading:hover {
+.SubNav__subHeading:hover,
+.SubNav__link:hover .SubNav__link-label {
   color: var(--brand-color-text-muted);
   text-decoration: none !important; /* dotcom override */
 }
@@ -173,36 +174,14 @@
 }
 
 .SubNav__sub-menu--anchor .SubNav__link--is-in-view .SubNav__link-label {
-  color: var(--brand-color-text-default);
   background-color: var(--brand-SubNav-color-link-bgColor);
 }
-/* 
-.SubNav__sub-menu--anchor .SubNav__link--is-in-view .SubNav__link-label::after,
-.SubNav__link:hover .SubNav__link-label::after,
-.SubNav__link:focus-visible .SubNav__link-label::after,
-.SubNav__link[aria-current]:not([aria-current='false']) .SubNav__link-label::after {
-  opacity: 1;
-  transform: scale(0.8, 1);
-}
-
-.SubNav__sub-menu--anchor .SubNav__link--is-in-view .SubNav__link-label::after,
-.SubNav__link:active .SubNav__link-label::after {
-  border-color: var(--brand-color-text-default);
-  transform: scale(0.9, 1);
-}
-
-.SubNav__link[data-active='true'] .SubNav__link-label::after,
-.SubNav__sub-menu--anchor .SubNav__link--is-in-view .SubNav__link-label::after {
-  border-color: var(--brand-color-text-default);
-  opacity: 1;
-} */
 
 .SubNav__link:focus-visible .SubNav__link-label::after,
 .SubNav__sub-menu--anchor .SubNav__link--is-in-view:focus-visible .SubNav__link-label::after {
   opacity: 0;
 }
 
-.SubNav__link:hover .SubNav__link-label::after,
 .SubNav__link[aria-current]:not([aria-current='false']) * {
   color: var(--brand-SubNav-color-link-active);
   text-decoration: none !important; /* dotcom override */
@@ -231,7 +210,6 @@
 
 .SubNav__link:hover .SubNav__link-label {
   transition: color var(--brand-animation-duration-fast) var(--brand-animation-easing-default);
-  color: var(--brand-SubNav-color-link-active);
 }
 
 .SubNav__link:hover .SubNav__link-label::after {
@@ -289,6 +267,17 @@
     display: block;
   }
 
+  .SubNav--open .SubNav--header-container-outer {
+    display: flex;
+    flex-direction: column;
+    max-height: var(--subnav-available-height, 100dvh);
+    overflow: hidden;
+  }
+
+  .SubNav--open .SubNav__header-container {
+    flex-shrink: 0;
+  }
+
   .SubNav--open + .SubNav__anchor-menu-outer-container {
     z-index: -1;
   }
@@ -339,6 +328,9 @@
     padding-block: var(--base-size-8);
     padding-block-start: var(--base-size-16);
     border-block-start: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
+    justify-content: flex-start;
+    overflow-y: auto;
+    min-height: 0;
   }
 
   .SubNav__links-overlay--open .SubNav__link:hover .SubNav__link-label {

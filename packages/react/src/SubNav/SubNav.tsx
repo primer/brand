@@ -164,10 +164,35 @@ const SubNavRoot = memo(
       useKeyboardEscape(closeMenuCallback)
 
       useEffect(() => {
+        const navElement = navRef.current
+
+        const updateAvailableHeight = () => {
+          if (navElement) {
+            const navTop = navElement.getBoundingClientRect().top
+            navElement.style.setProperty('--subnav-available-height', `${window.innerHeight - navTop}px`)
+          }
+        }
+
         if (isOpenAtNarrow && !isLarge) {
           document.body.style.overflow = 'hidden'
+          updateAvailableHeight()
+          // eslint-disable-next-line github/prefer-observers
+          window.addEventListener('resize', updateAvailableHeight)
         } else {
           document.body.style.overflow = 'auto'
+
+          if (navElement) {
+            navElement.style.removeProperty('--subnav-available-height')
+          }
+        }
+
+        return () => {
+          document.body.style.overflow = 'auto'
+          window.removeEventListener('resize', updateAvailableHeight)
+
+          if (navElement) {
+            navElement.style.removeProperty('--subnav-available-height')
+          }
         }
       }, [isOpenAtNarrow, isLarge])
 
