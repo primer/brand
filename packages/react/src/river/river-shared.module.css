@@ -29,6 +29,7 @@
   width: 100vw;
   height: 0;
   border-top: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
+  z-index: 1;
 }
 
 .River--variant-gridline::before {
@@ -106,7 +107,6 @@
   }
 }
 
-/* Bordered-grid with background: tablet - anchor image to bottom-center */
 @media screen and (min-width: 48rem) and (max-width: 63.24rem) {
   .River--variant-gridline .River__visual--has-background {
     align-items: flex-end;
@@ -165,13 +165,16 @@
 }
 
 @media screen and (max-width: 63.24rem) {
-  /* align-start stacked: visual is first, touch top border */
   .River--variant-gridline.River--align-start .River__visual--has-background {
-    margin-block-start: calc(-1 * var(--brand-River-spacing-outerBlock));
+    margin-block-start: calc(-1 * var(--brand-River-variant-gridline-spacing-outerBlock));
   }
 
   .River--variant-gridline.River--align-end .River__visual--has-background {
-    margin-block-end: calc(-1 * var(--brand-River-spacing-outerBlock));
+    margin-block-end: calc(-1 * var(--brand-River-variant-gridline-spacing-outerBlock));
+  }
+
+  .River--variant-gridline.River--align-center .River__visual--has-background {
+    margin-block-start: calc(-1 * var(--brand-River-variant-gridline-spacing-outerBlock));
   }
 }
 
@@ -183,9 +186,7 @@
 
   .River--variant-gridline .River__visual--has-background {
     padding: var(--base-size-64);
-    /* Side-by-side: reset inline margins, apply block margins to touch top/bottom borders */
-    margin-inline: 0;
-    margin-block: calc(-1 * var(--brand-River-variant-gridline-spacing-outerBlock));
+    margin: 0;
   }
 
   .River__content {
@@ -271,7 +272,7 @@
   }
 
   .River--variant-gridline:not(.River--align-center):has(.River__visual--has-background) {
-    padding-inline: 0;
+    padding: 0;
     gap: 0;
   }
 
@@ -279,7 +280,6 @@
     grid-template-columns: 1fr 1fr;
   }
 
-  /* Design-matched 60:40 proportions (560:676 ≈ 45:55) (start/end only) */
   .River--variant-gridline.River--60-40:not(.River--align-center):has(.River__visual--has-background) {
     grid-template-columns: 560fr 676fr;
   }
@@ -291,6 +291,7 @@
   .River--variant-gridline.River--align-start:has(.River__visual--has-background) .River__content {
     padding-inline-start: var(--base-size-64);
     padding-inline-end: var(--brand-River-spacing-inner);
+    padding-block: var(--brand-River-variant-gridline-spacing-outerBlock);
   }
 
   .River--variant-gridline.River--50-50.River--align-start:has(.River__visual--has-background) .River__content {
@@ -304,6 +305,7 @@
   .River--variant-gridline.River--align-end:has(.River__visual--has-background) .River__content {
     padding-inline-start: var(--brand-River-spacing-inner);
     padding-inline-end: var(--base-size-64);
+    padding-block: var(--brand-River-variant-gridline-spacing-outerBlock);
   }
 
   .River--variant-gridline.River--50-50.River--align-end:has(.River__visual--has-background) .River__content {
@@ -328,13 +330,12 @@
   }
 
   .River--variant-gridline.River--align-center:has(.River__visual--has-background) {
-    padding-inline: 0;
+    padding: 0;
   }
 
   .River--variant-gridline.River--align-center .River__visual--has-background {
     width: 100%;
-    margin-block-start: 0;
-    margin-block-end: calc(-1 * var(--brand-River-variant-gridline-spacing-outerBlock));
+    margin: 0;
   }
 
   .River--variant-gridline.River--align-center .River__visual {
@@ -352,6 +353,7 @@
 
   .River--variant-gridline.River--align-center:has(.River__visual--has-background) .River__content {
     padding-inline: var(--brand-River-variant-gridline-spacing-outerInline);
+    padding-block-start: var(--brand-River-variant-gridline-spacing-outerBlock);
   }
 }
 
