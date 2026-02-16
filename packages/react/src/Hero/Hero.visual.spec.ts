@@ -8,86 +8,161 @@ import {test, expect} from '@playwright/test'
 // eslint-disable-next-line i18n-text/no-en
 test.describe('Visual Comparison: Hero', () => {
   test('Hero / Default', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-hero--default&viewMode=story')
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-hero--default&viewMode=story', {
+      waitUntil: 'networkidle',
+    })
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+    await page.waitForTimeout(500)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
+  test('Hero / Codespaces', async ({page}) => {
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-hero-examples--default&viewMode=story', {
+      waitUntil: 'networkidle',
+    })
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+    await page.waitForTimeout(500)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
+  test('Hero / Custom background (block-end image)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-hero-examples--custom-background-block-end-image&viewMode=story',
+      {waitUntil: 'networkidle'},
+    )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+    await page.waitForTimeout(4000)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
+  test('Hero / Custom background (inline-end-padded image)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-hero-examples--custom-background-inline-end-padded-image&viewMode=story',
+      {waitUntil: 'networkidle'},
+    )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+    await page.waitForTimeout(3500)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
+  test('Hero / Custom background (block-end video)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-hero-examples--custom-background-block-end-video&viewMode=story',
+      {waitUntil: 'networkidle'},
+    )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+    await page.waitForTimeout(3500)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
+  test('Hero / Custom background (inline-end-padded video)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-hero-examples--custom-background-inline-end-padded-video&viewMode=story',
+      {waitUntil: 'networkidle'},
+    )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+    await page.waitForTimeout(3500)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
+  test('Hero / Hero with cards', async ({page}) => {
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-hero-examples--with-cards&viewMode=story', {
+      waitUntil: 'networkidle',
+    })
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+    await page.waitForTimeout(4000)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
+  test('Hero / GitHub Copilot - expressive gridline', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-hero-examples--gridline-expressive-block-end-padded-trailing-component&viewMode=story',
+      {waitUntil: 'networkidle'},
+    )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+    await page.waitForTimeout(4000)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
+  test('Hero / Image carousel', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-hero-examples--gridline-expressive-with-image-carousel&viewMode=story',
+      {waitUntil: 'networkidle'},
+    )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Hero / Centered', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-hero-features--centered&viewMode=story')
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-hero-features--centered&viewMode=story', {
+      waitUntil: 'networkidle',
+    })
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
-  test('Hero / With Muted Descriptions', async ({page}) => {
+  test('Hero / With Increased Contrast Description', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-hero-features--with-muted-descriptions&viewMode=story',
+      'http://localhost:6006/iframe.html?args=&id=components-hero-features--with-increased-contrast-description&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
+  test('Hero / With Animated Label', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-hero-features--with-animated-label&viewMode=story',
+      {waitUntil: 'networkidle'},
+    )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+    await page.waitForTimeout(1500)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
+  test('Hero / With Increased Contrast Label', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-hero-features--with-increased-contrast-label&viewMode=story',
+      {waitUntil: 'networkidle'},
+    )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+    await page.waitForTimeout(3000)
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Hero / With Accent Button', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-hero-features--with-accent-button&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('Hero / With an image (left + bottom)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-hero-features--with-image-block-end-default&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('Hero / With an image (centered + bottom)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-hero-features--with-image-block-end-center&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('Hero / With an image (right)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-hero-features--with-image-inline-end&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('Hero / With a VideoPlayer (bottom)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-hero-features--with-video-block-end-default&viewMode=story',
-    )
-
-    await page.waitForTimeout(5000)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('Hero / With a VideoPlayer (right)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-hero-features--with-video-inline-end&viewMode=story',
-    )
-
-    await page.waitForTimeout(5000)
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Hero / Without Description', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-hero-features--without-description&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -96,21 +171,9 @@ test.describe('Visual Comparison: Hero', () => {
   test('Hero / With Secondary Action', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-hero-features--with-secondary-action&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('Hero / Codespaces', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-hero-features--codespaces&viewMode=story')
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('Hero / Issues', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-hero-features--issues&viewMode=story')
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -119,7 +182,9 @@ test.describe('Visual Comparison: Hero', () => {
   test('Hero / With Trailing Component', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-hero-features--with-trailing-component&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -128,7 +193,9 @@ test.describe('Visual Comparison: Hero', () => {
   test('Hero / With Custom Classnames', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-hero-features--with-custom-classnames&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -137,7 +204,9 @@ test.describe('Visual Comparison: Hero', () => {
   test('Hero / With Custom Heading And Description Sizes', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-hero-features--with-custom-heading-and-description-sizes&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -146,7 +215,9 @@ test.describe('Visual Comparison: Hero', () => {
   test('Hero / With custom icon and variant', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-hero-features--with-custom-icon-and-variant&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -156,7 +227,11 @@ test.describe('Visual Comparison: Hero', () => {
   test.describe('Mobile viewport test for Narrow View', () => {
     test.use({viewport: {width: 360, height: 800}})
     test('Hero / Narrow View', async ({page}) => {
-      await page.goto('http://localhost:6006/iframe.html?args=&id=components-hero-features--narrow-view&viewMode=story')
+      await page.goto(
+        'http://localhost:6006/iframe.html?args=&id=components-hero-features--narrow-view&viewMode=story',
+        {waitUntil: 'networkidle'},
+      )
+      await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
       await page.waitForTimeout(500)
       await expect(page).toHaveScreenshot({fullPage: true})
@@ -169,14 +244,19 @@ test.describe('Visual Comparison: Hero', () => {
     test('Hero / Narrow View Centered', async ({page}) => {
       await page.goto(
         'http://localhost:6006/iframe.html?args=&id=components-hero-features--narrow-view-centered&viewMode=story',
+        {waitUntil: 'networkidle'},
       )
+      await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
       await page.waitForTimeout(500)
       await expect(page).toHaveScreenshot({fullPage: true})
     })
   })
   test('Hero / Eyebrow', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-hero-features--eyebrow&viewMode=story')
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-hero-features--eyebrow&viewMode=story', {
+      waitUntil: 'networkidle',
+    })
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -185,9 +265,234 @@ test.describe('Visual Comparison: Hero', () => {
   test('Hero / Eyebrow Centered', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-hero-features--eyebrow-centered&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
+  test('Hero / Gridline default variant:', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-hero-features-gridline-variants--gridline&viewMode=story',
+      {waitUntil: 'networkidle'},
+    )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+    await page.waitForTimeout(500)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
+  test('Hero / Gridline default variant: Centered', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-hero-features-gridline-variants--gridline-centered&viewMode=story',
+      {waitUntil: 'networkidle'},
+    )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+    await page.waitForTimeout(500)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
+  test('Hero / Gridline default variant: Inline-end image', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-hero-features-gridline-variants--gridline-image-inline-end&viewMode=story',
+      {waitUntil: 'networkidle'},
+    )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+    await page.waitForTimeout(500)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
+  test('Hero / Gridline default variant: Inline-start image', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-hero-features-gridline-variants--gridline-image-inline-start&viewMode=story',
+      {waitUntil: 'networkidle'},
+    )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+    await page.waitForTimeout(500)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
+  test('Hero / Inline-end-padded image', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-hero-features-gridline-variants--gridline-image-inline-end-padded&viewMode=story',
+      {waitUntil: 'networkidle'},
+    )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+    await page.waitForTimeout(500)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
+  test('Hero / Gridline default variant: Inline-start-padded image', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-hero-features-gridline-variants--gridline-image-inline-start-padded&viewMode=story',
+      {waitUntil: 'networkidle'},
+    )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+    await page.waitForTimeout(500)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
+  test('Hero / Gridline default variant: Block-end-padded image', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-hero-features-gridline-variants--gridline-image-block-end-padded&viewMode=story',
+      {waitUntil: 'networkidle'},
+    )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+    await page.waitForTimeout(500)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
+  test('Hero / Gridline default variant: Block-end YouTube video', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-hero-features-gridline-variants--gridline-youtube-video-block-end&viewMode=story',
+      {waitUntil: 'networkidle'},
+    )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+    await page.waitForTimeout(500)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
+  test('Hero / Gridline default variant: Inline-end YouTube video', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-hero-features-gridline-variants--gridline-youtube-video-inline-end&viewMode=story',
+      {waitUntil: 'networkidle'},
+    )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+    await page.waitForTimeout(500)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
+  test('Hero / Gridline default variant: Block-end YouTube video + poster', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-hero-features-gridline-variants--gridline-youtube-video-block-end-with-poster&viewMode=story',
+      {waitUntil: 'networkidle'},
+    )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+    await page.waitForTimeout(500)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
+  test('Hero / Gridline default variant: Block-end-padded YouTube video', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-hero-features-gridline-variants--gridline-youtube-video-block-end-padded&viewMode=story',
+      {waitUntil: 'networkidle'},
+    )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+    await page.waitForTimeout(500)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
+  test('Hero / Expressive variant', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-hero-features-gridline-variants--gridline-expressive&viewMode=story',
+      {waitUntil: 'networkidle'},
+    )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+    await page.waitForTimeout(500)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
+  // eslint-disable-next-line i18n-text/no-en
+  test.describe('Mobile viewport test for Expressive variant (narrow)', () => {
+    test.use({viewport: {width: 360, height: 800}})
+    test('Hero / Expressive variant (narrow)', async ({page}) => {
+      await page.goto(
+        'http://localhost:6006/iframe.html?args=&id=components-hero-features-gridline-variants--gridline-expressive-narrow&viewMode=story',
+        {waitUntil: 'networkidle'},
+      )
+      await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+      await page.waitForTimeout(500)
+      await expect(page).toHaveScreenshot({fullPage: true})
+    })
+  })
+  test('Hero / Expressive variant: Block-end-padded image', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-hero-features-gridline-variants--gridline-expressive-block-end-padded&viewMode=story',
+      {waitUntil: 'networkidle'},
+    )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+    await page.waitForTimeout(500)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
+  test('Hero / Expressive variant: With trailing component', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-hero-features-gridline-variants--gridline-expressive-block-end-padded-trailing-component&viewMode=story',
+      {waitUntil: 'networkidle'},
+    )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+    await page.waitForTimeout(500)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
+  test('Hero / Image (left + bottom)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-hero-features-images-and-videos--with-image-block-end-default&viewMode=story',
+      {waitUntil: 'networkidle'},
+    )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+    await page.waitForTimeout(500)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
+  test('Hero / Image (centered + bottom)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-hero-features-images-and-videos--with-image-block-end-center&viewMode=story',
+      {waitUntil: 'networkidle'},
+    )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+    await page.waitForTimeout(500)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
+  test('Hero / Image (right)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-hero-features-images-and-videos--with-image-inline-end&viewMode=story',
+      {waitUntil: 'networkidle'},
+    )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+    await page.waitForTimeout(500)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
+  test('Hero / VideoPlayer (bottom)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-hero-features-images-and-videos--with-video-block-end-default&viewMode=story',
+      {waitUntil: 'networkidle'},
+    )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+    await page.waitForTimeout(5000)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
+  test('Hero / VideoPlayer (right)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-hero-features-images-and-videos--with-video-inline-end&viewMode=story',
+      {waitUntil: 'networkidle'},
+    )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+    await page.waitForTimeout(5000)
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 })

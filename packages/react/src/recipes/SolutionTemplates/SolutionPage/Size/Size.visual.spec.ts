@@ -10,7 +10,9 @@ test.describe('Visual Comparison: Size', () => {
   test('Size / Maximum Light', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=recipes-solutions-solution-org-size--maximum&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(3500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -19,7 +21,9 @@ test.describe('Visual Comparison: Size', () => {
   test('Size / Maximum Dark', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=recipes-solutions-solution-org-size--maximum-dark&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(3500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -28,7 +32,9 @@ test.describe('Visual Comparison: Size', () => {
   test('Size / Minimum Light', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=recipes-solutions-solution-org-size--minimum&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(3500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -37,7 +43,9 @@ test.describe('Visual Comparison: Size', () => {
   test('Size / Minimum Dark', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=recipes-solutions-solution-org-size--minimum-dark&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(3500)
     await expect(page).toHaveScreenshot({fullPage: true})

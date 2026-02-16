@@ -1,5 +1,117 @@
 # @primer/react-brand
 
+## 0.64.0
+
+### Minor Changes
+
+- [#1220](https://github.com/primer/brand/pull/1220) [`661ae42`](https://github.com/primer/brand/commit/661ae42ed4f95338615d03927aa0f6c9fadbe78d) Thanks [@rezrah](https://github.com/rezrah)! - Updates to `Hero` component
+
+  ⚠️ **Important: Breaking changes are included in this update.**
+
+  #### Breaking Changes
+
+  - **`Hero.Label`**: No longer extends `Label` component. It now renders as plain text with monospace font and in uppercase. Props like `size` and `color` are no longer supported.
+
+    Update usage as follows:
+
+    ```diff
+    - <Hero.Label color="red">Red labels</Hero.Label>
+    + <Hero.Label>Default label</Hero.Label>
+    ```
+
+  - **`Hero.Description`**: Default `size` changed from `'350'` to `'200'`. The default `variant` changed from `'default'` to `'muted'`.
+
+  - **`Hero.PrimaryAction`**: Default button variant changed from `'primary'` to `'accent'`.
+
+    Revert to previous style:
+
+    ```diff
+    - <Hero.PrimaryAction>Button</Hero.PrimaryAction> <-- now accent (green) variant
+    + <Hero.PrimaryAction variant="primary">Button</Hero.PrimaryAction> <--revert to primary variant
+    ```
+
+  #### New Features
+
+  - **New `Hero` prop**: `variant`. This prop controls overall layout, appearance and motion in the `Hero`. Two variants are available: `default` and `gridline`.
+
+    The `default` variant is the pre-existing `Hero` configuration, and remains the default value to minimize breaking changes.
+
+    The `gridline` layout is a new layout that can be opted-into. This is an experimental layout and configuration.
+
+    ```jsx
+    <Hero variant="gridline" />
+    ```
+
+  - **New `Hero.Label` animations**: New `animate` and `animationDelay` props for text cursor animation effect.
+
+  - **New image positions**: `Hero.Image` and `Hero.Video` now support `'inline-start'`, `'inline-end-padded'`, and `'inline-start-padded'` positions.
+
+  - **New `Hero.Video` poster props**: `poster`, `posterAltText`, and `posterTitle` for displaying a custom poster image with a play button overlay before the video loads. Video content is hidden until the user clicks the poster to play.
+
+  - **`imageBackgroundColor` prop**: Set to `'subtle'` for a subtle background on the image container.
+
+  - **`imageContainerRef` prop**: Ref access to the image container element.
+
+  - **Built-in animations**: When using `variant="gridline"`, heading, description, image, and actions animate automatically on load.
+
+  ### Other
+
+  - `Hero.Image` border radius has been reduced from `large` to `medium`.
+  - `Hero` internal grids have been optimized on medium (tablet) breakpoints to appear in the stacked layout (mobile). This is a layout improvement that prevents cramped image layouts.
+
+### Patch Changes
+
+- [#1220](https://github.com/primer/brand/pull/1220) [`661ae42`](https://github.com/primer/brand/commit/661ae42ed4f95338615d03927aa0f6c9fadbe78d) Thanks [@rezrah](https://github.com/rezrah)! - Added additional customization options to the `Box` component
+
+  - Responsive border width values:
+
+    ```jsx
+    <Box
+      borderWidth={{narrow: 'thin', regular: 'none'}} // now accepts an Object
+    />
+    ```
+
+  - Border width can be set to `none`
+
+    ```jsx
+    <Box borderBlockEndWidth={{narrow: 'thin', wide: 'none'}} />
+    ```
+
+  - Fixed bug whereby adding individual borders wasn't previously possible
+
+    ```jsx
+    <Box borderBlockStartWidth="thin" borderInlineEndWidth="thin" borderInlineStartWidth="thin" />
+    ```
+
+  - Arbitrary background color values (e.g. CSS variables)
+
+    ```jsx
+    <Box backgroundColor="var(--base-color-scale-gray-1)" />
+    ```
+
+- [#1220](https://github.com/primer/brand/pull/1220) [`661ae42`](https://github.com/primer/brand/commit/661ae42ed4f95338615d03927aa0f6c9fadbe78d) Thanks [@rezrah](https://github.com/rezrah)! - Fixed visual bug in `VideoPlayer` where the progress bar was incorrectly positioned when the parent uses `flex` child positioning.
+
+- [#1220](https://github.com/primer/brand/pull/1220) [`661ae42`](https://github.com/primer/brand/commit/661ae42ed4f95338615d03927aa0f6c9fadbe78d) Thanks [@rezrah](https://github.com/rezrah)! - Added new `reveal-in-up` animation and `immediate` triggers to `AnimationProvider`
+
+  ```jsx
+  <AnimationProvider animationTrigger="immediate">
+    <Box animate="reveal-in-up">Wipe in up animation that runs immediately</Box>
+  </AnimationProvider>
+  ```
+
+- [#1220](https://github.com/primer/brand/pull/1220) [`661ae42`](https://github.com/primer/brand/commit/661ae42ed4f95338615d03927aa0f6c9fadbe78d) Thanks [@rezrah](https://github.com/rezrah)! - Added `position` prop to `Card.Image`
+
+  - New `block-end` position option to place the image below content
+
+    ```jsx
+    <Card>
+      <Card.Image src="/image.png" position="block-end" /> // Allows image to appear at the bottom of the card.
+      <Card.Heading>Title</Card.Heading>
+    </Card>
+    ```
+
+  - Fixed layout issue when combining `align="center"` with `position="block-end"`
+
 ## 0.63.0
 
 ### Minor Changes

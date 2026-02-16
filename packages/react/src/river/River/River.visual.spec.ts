@@ -8,7 +8,10 @@ import {test, expect} from '@playwright/test'
 // eslint-disable-next-line i18n-text/no-en
 test.describe('Visual Comparison: River', () => {
   test('River / Default', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-river--default&viewMode=story')
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-river--default&viewMode=story', {
+      waitUntil: 'networkidle',
+    })
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -17,42 +20,59 @@ test.describe('Visual Comparison: River', () => {
   test('River / Larger Placeholder Image', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-river--larger-placeholder-image&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('River / Copilot', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-river--copilot&viewMode=story')
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-river--copilot&viewMode=story', {
+      waitUntil: 'networkidle',
+    })
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('River / Left', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-river-features--left&viewMode=story')
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-river-features--left&viewMode=story', {
+      waitUntil: 'networkidle',
+    })
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('River / Right', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-river-features--right&viewMode=story')
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-river-features--right&viewMode=story', {
+      waitUntil: 'networkidle',
+    })
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('River / Center', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-river-features--center&viewMode=story')
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-river-features--center&viewMode=story', {
+      waitUntil: 'networkidle',
+    })
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('River / Duo Tone', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-river-features--duo-tone&viewMode=story')
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-river-features--duo-tone&viewMode=story', {
+      waitUntil: 'networkidle',
+    })
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -61,7 +81,9 @@ test.describe('Visual Comparison: River', () => {
   test('River / 60:40 image ratio', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-river-features--column-ratio-6040&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -70,7 +92,9 @@ test.describe('Visual Comparison: River', () => {
   test('River / 50:50 image ratio', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-river-features--column-ratio-5050&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -79,7 +103,9 @@ test.describe('Visual Comparison: River', () => {
   test('River / Alternative Heading Level', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-river-features--alternative-heading-level&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -88,7 +114,9 @@ test.describe('Visual Comparison: River', () => {
   test('River / No Rounded Visual Corners', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-river-features--no-rounded-visual-corners&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -97,14 +125,19 @@ test.describe('Visual Comparison: River', () => {
   test('River / Alternative Heading Size', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-river-features--alternative-heading-size&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('River / With Label', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-river-features--with-label&viewMode=story')
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-river-features--with-label&viewMode=story', {
+      waitUntil: 'networkidle',
+    })
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -113,7 +146,9 @@ test.describe('Visual Comparison: River', () => {
   test('River / Custom trailing content', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-river-features--custom-trailing-content&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -122,7 +157,9 @@ test.describe('Visual Comparison: River', () => {
   test('River / Custom trailing content w/ divider', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-river-features--custom-trailing-content-with-divider&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -131,7 +168,9 @@ test.describe('Visual Comparison: River', () => {
   test('River / Alternating Layout', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-river-features--alternating-layout&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})

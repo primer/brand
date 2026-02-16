@@ -8,14 +8,20 @@ import {test, expect} from '@playwright/test'
 // eslint-disable-next-line i18n-text/no-en
 test.describe('Visual Comparison: Section', () => {
   test('Section / Default', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-section--default&viewMode=story')
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-section--default&viewMode=story', {
+      waitUntil: 'networkidle',
+    })
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Section / Playground', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-section--playground&viewMode=story')
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-section--playground&viewMode=story', {
+      waitUntil: 'networkidle',
+    })
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -24,7 +30,9 @@ test.describe('Visual Comparison: Section', () => {
   test('Section / Default Padding', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-section-features--default-padding&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -33,7 +41,9 @@ test.describe('Visual Comparison: Section', () => {
   test('Section / Padding Variants', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-section-features--padding-variants&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -42,7 +52,9 @@ test.describe('Visual Comparison: Section', () => {
   test('Section / Independent Padding', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-section-features--independent-padding&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -51,7 +63,9 @@ test.describe('Visual Comparison: Section', () => {
   test('Section / Responsive Padding', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-section-features--responsive-padding&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -60,7 +74,9 @@ test.describe('Visual Comparison: Section', () => {
   test('Section / With Full Width Container', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-section-features--with-full-width-container&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -69,7 +85,9 @@ test.describe('Visual Comparison: Section', () => {
   test('Section / Background Color', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-section-features--background-color&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -78,7 +96,9 @@ test.describe('Visual Comparison: Section', () => {
   test('Section / Custom Background Color', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-section-features--custom-background-color&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -87,7 +107,9 @@ test.describe('Visual Comparison: Section', () => {
   test('Section / Responsive Background Color', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-section-features--responsive-background-color&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -96,7 +118,9 @@ test.describe('Visual Comparison: Section', () => {
   test('Section / Background Image', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-section-features--background-image&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -105,14 +129,19 @@ test.describe('Visual Comparison: Section', () => {
   test('Section / Multiple Background Images', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-section-features--multiple-background-images&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Section / Rounded', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-section-features--rounded&viewMode=story')
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-section-features--rounded&viewMode=story', {
+      waitUntil: 'networkidle',
+    })
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})

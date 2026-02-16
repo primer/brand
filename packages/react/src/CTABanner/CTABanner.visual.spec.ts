@@ -8,14 +8,20 @@ import {test, expect} from '@playwright/test'
 // eslint-disable-next-line i18n-text/no-en
 test.describe('Visual Comparison: CTABanner', () => {
   test('CTABanner / Default', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-ctabanner--default&viewMode=story')
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-ctabanner--default&viewMode=story', {
+      waitUntil: 'networkidle',
+    })
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('CTABanner / Playground', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-ctabanner--playground&viewMode=story')
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-ctabanner--playground&viewMode=story', {
+      waitUntil: 'networkidle',
+    })
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -24,7 +30,9 @@ test.describe('Visual Comparison: CTABanner', () => {
   test('CTABanner / With Accent Button', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-ctabanner-features--with-accent-button&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -33,7 +41,9 @@ test.describe('Visual Comparison: CTABanner', () => {
   test('CTABanner / With Border', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-ctabanner-features--with-border&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -42,7 +52,9 @@ test.describe('Visual Comparison: CTABanner', () => {
   test('CTABanner / With No Shadow', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-ctabanner-features--with-no-shadow&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -51,7 +63,9 @@ test.describe('Visual Comparison: CTABanner', () => {
   test('CTABanner / Aligned Center', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-ctabanner-features--aligned-center&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -60,7 +74,9 @@ test.describe('Visual Comparison: CTABanner', () => {
   test('CTABanner / With Trailing Component', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-ctabanner-features--with-trailing-component&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -69,7 +85,9 @@ test.describe('Visual Comparison: CTABanner', () => {
   test('CTABanner / Custom Shadow', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-ctabanner-features--custom-shadow&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -78,7 +96,9 @@ test.describe('Visual Comparison: CTABanner', () => {
   test('CTABanner / Custom Background Colors', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-ctabanner-features--custom-background-colors&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -87,7 +107,9 @@ test.describe('Visual Comparison: CTABanner', () => {
   test('CTABanner / Responsive Background Image', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-ctabanner-features--responsive-background-image&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -96,7 +118,9 @@ test.describe('Visual Comparison: CTABanner', () => {
   test('CTABanner / Responsive Background Image Dark', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-ctabanner-features--responsive-background-image-dark&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})

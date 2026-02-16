@@ -132,6 +132,8 @@ const CardRoot = forwardRef<HTMLDivElement, CardProps>(
 
     const WrapperComponent = hasSkewEffect ? CardSkewEffect : DefaultCardWrapperComponent
 
+    const imagePosition = cardImage ? cardImage.props.position || 'block-start' : null
+
     return (
       <WrapperComponent
         style={style}
@@ -150,6 +152,7 @@ const CardRoot = forwardRef<HTMLDivElement, CardProps>(
             cardIcon && styles['Card--icon'],
             showBorder && styles['Card--border'],
             styles[`Card--colorMode-${colorMode}`],
+            imagePosition && styles[`Card--imagePos-${imagePosition}`],
             className,
           )}
           style={style}
@@ -157,10 +160,11 @@ const CardRoot = forwardRef<HTMLDivElement, CardProps>(
           {...props}
         >
           {cardHeading}
-          {cardImage}
+          {imagePosition === 'block-start' ? cardImage : null}
           {cardIcon}
           {cardLabel}
           {cardDescription}
+          {imagePosition === 'block-end' ? cardImage : null}
 
           <div className={styles.Card__action}>
             <Text as="span" size="200" className={clsx(stylesLink['Link--label'])}>
@@ -181,7 +185,9 @@ function DefaultCardWrapperComponent({className, children}) {
   return <div className={clsx(styles['Card__outer'], className)}>{children}</div>
 }
 
-type CardImageProps = ImageProps
+type CardImageProps = {
+  position?: 'block-start' | 'block-end'
+} & ImageProps
 
 function CardImage({className, ...rest}: CardImageProps) {
   return (

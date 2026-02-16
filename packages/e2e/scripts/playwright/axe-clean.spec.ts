@@ -91,6 +91,24 @@ function colorViolationImpact(impact: string | null | undefined) {
   return `${color}${impact}\x1b[0m`
 }
 
+function formatViolation(violation: Result, index: number): string {
+  return `${index + 1}.[${violation.impact?.toUpperCase()}] ${violation.id}: ${violation.help}
+    Description: ${violation.description}
+    Help URL: ${violation.helpUrl}
+    Affected elements:
+${violation.nodes
+  .map(node => {
+    const target = node.target.join(', ')
+    const html = node.html ? `\n    HTML: ${node.html.substring(0, 500)}${node.html.length > 500 ? '...' : ''}` : ''
+    return `  - Element: ${target}${html}`
+  })
+  .join('\n')}`
+}
+
+function formatViolationsForError(violations: Result[]): string {
+  return violations.map((v, i) => formatViolation(v, i)).join('\n\n')
+}
+
 function printViolations(violations: Result[]) {
   for (let i = 0; i < violations.length; i++) {
     const violation = violations[i]
@@ -105,6 +123,12 @@ function printViolations(violations: Result[]) {
 
 const testsWithCustomDelay = {
   'components-subdomainnavbar--mobile-menu-open': 5000, // takes a while for the menu to open
+  'components-hero-examples--custom-background-inline-end-padded-video': 5000, // recipe / example that features long animation sequence
+  'components-hero-examples--custom-background-block-end-video': 5000, // recipe / example that features long animation sequence
+  'components-hero-examples--custom-background-inline-end-padded-image': 5000, // recipe / example that features long animation sequence
+  'components-hero-examples--custom-background-block-end-image': 5000, // recipe / example that features long animation sequence
+  'components-hero-examples--gridline-expressive-block-end-padded-trailing-component': 6000, // recipe / example that features long animation sequence
+  'components-hero-examples--gridline-expressive-with-image-carousel': 6000, // recipe / example that features long animation sequence
 }
 const defaultDelay = 1000
 
@@ -134,6 +158,7 @@ for (const story of storybookRoutes) {
     beforeAll(async () => {
       browser = await chromium.launch()
       page = await browser.newPage()
+
       const route = `${hostname}&id=${story.id}`
       // eslint-disable-next-line no-console
       console.info(`Navigating to ${route}`)
@@ -178,6 +203,11 @@ for (const story of storybookRoutes) {
         allViolations.push(...violations)
 
         printViolations(violations)
+
+        // eslint-disable-next-line i18n-text/no-en
+        const errorMessage = `Found ${violations.length} accessibility violation(s):
+${formatViolationsForError(violations)}`
+        expect(violations.length, errorMessage).toBe(0)
       }
 
       expect(violations.length).toBe(0)

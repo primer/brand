@@ -1,7 +1,10 @@
 .Hero {
-  padding: var(--brand-Hero-narrow-padding);
   display: flex;
   flex-direction: column;
+}
+
+.Hero--variant-default {
+  padding: var(--brand-Hero-narrow-padding);
 }
 
 .Hero--align-start {
@@ -19,12 +22,31 @@
   --brand-Grid-spacing-margin: 0;
 }
 
+.Hero-grid--contained {
+  width: 100%;
+  max-width: 1280px;
+  margin-inline: auto;
+  padding: var(--base-size-32);
+  background-color: var(--brand-Hero-bgColor-gridlineGridInner); /* Unset by default - users can override if needed */
+}
+
+/* Prevents double-borders. We only apply the inline borders when the parent container is wide enough to show the full width.  */
+@container (min-width: 1280px) {
+  .Hero-grid--contained {
+    border-inline: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
+  }
+}
+
 .Hero-grid--block-end,
 .Hero-grid--inline-end {
   --brand-Grid-spacing-row: var(--base-size-40);
 }
 
-@media screen and (min-width: 48rem) {
+@media screen and (min-width: 63.25rem) {
+  .Hero-grid--contained {
+    padding: var(--base-size-64);
+  }
+
   .Hero-grid--block-end {
     --brand-Grid-spacing-row: var(--base-size-80);
   }
@@ -41,18 +63,192 @@
 }
 
 .Hero-image {
-  border-radius: var(--brand-borderRadius-large);
+  border-radius: var(--brand-borderRadius-medium);
   width: 100%;
 }
 
-.Hero-video video,
-.Hero-video iframe {
+.Hero-mediaContainer {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex: 1;
+}
+
+.Hero-imageContainer--bg-subtle {
+  background-color: var(--brand-color-canvas-subtle);
+  padding: var(--base-size-32) var(--base-size-32) 0;
+}
+
+.Hero-imageContainer--inline-bg-padded {
+  padding: var(--base-size-32);
+  background-color: var(--brand-color-canvas-subtle);
+}
+
+.Hero-imageWrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.Hero-imageWrapper--bg-subtle {
+  border-block: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
+  background-color: var(--brand-color-canvas-subtle);
+  padding: var(--base-size-32) var(--base-size-32) 0;
+}
+
+.Hero-imageContainer--inline-bordered {
+  background-color: var(--brand-color-canvas-subtle);
+  display: flex;
+  align-items: stretch;
+}
+
+@media screen and (min-width: 63.25rem) {
+  .Hero-imageContainer--inline-bordered {
+    min-height: calc(600px - var(--base-size-24));
+  }
+
+  .Hero-imageWrapper--bg-subtle {
+    padding: var(--base-size-64) var(--base-size-64) 0;
+  }
+
+  .Hero-imageContainer--inline-bg-padded {
+    padding: var(--base-size-64);
+  }
+}
+
+.Hero--variant-gridline {
+  container-type: inline-size;
+  width: 100%;
+}
+
+/* Shared media styles for images and videos */
+.Hero--variant-gridline .Hero-media {
+  max-width: 1176px;
+  margin-inline: auto;
+  display: block;
+  overflow: hidden;
+}
+
+.Hero--variant-gridline .Hero-media--pos-block-end {
+  border-radius: var(--brand-borderRadius-medium) var(--brand-borderRadius-medium) 0 0;
+}
+
+/* Applied directly to video/iframe elements for block-end position */
+.Hero-media-item--block-end {
+  border-radius: var(--brand-borderRadius-medium) var(--brand-borderRadius-medium) 0 0;
+}
+
+.Hero--variant-gridline .Hero-imageWrapper {
+  border-block: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
+  background-color: var(--brand-color-canvas-subtle);
+  width: 100%;
+}
+
+.Hero--variant-gridline .Hero-imageWrapper-inner {
+  width: 100%;
+  max-width: 1280px;
+  margin-inline: auto;
+  padding: var(--base-size-32) var(--base-size-32) 0;
+}
+
+@container (min-width: 1280px) {
+  .Hero--variant-gridline .Hero-imageWrapper-inner--with-gridline {
+    border-inline: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
+  }
+}
+
+.Hero--variant-gridline .Hero-imageWrapper-inner--padded {
+  padding: var(--base-size-32);
+}
+
+.Hero-media--pos-block-end-padded {
+  border-radius: var(--brand-borderRadius-medium);
+}
+
+@media screen and (min-width: 63.25rem) {
+  .Hero--variant-gridline .Hero-imageWrapper-inner {
+    padding: var(--base-size-64) var(--base-size-64) 0;
+  }
+
+  .Hero--variant-gridline .Hero-imageWrapper-inner--padded {
+    padding: var(--base-size-64);
+  }
+}
+
+/* GridLine variant with inline (side-by-side) layout */
+.Hero-grid--bordered-inline {
+  width: 100%;
+  max-width: 1280px;
+  margin-inline: auto;
+}
+
+@media screen and (min-width: 63.25rem) {
+  .Hero-grid--bordered-inline {
+    min-height: 440px;
+  }
+}
+
+@container (min-width: 1280px) {
+  .Hero-grid--bordered-inline {
+    border-inline: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
+  }
+}
+
+.Hero--variant-gridline.Hero--image-pos-inline {
+  border-block-end: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
+}
+
+/* Text column styling for gridline inline positions */
+.Hero-contentColumn--bordered-inline {
+  padding: var(--base-size-32);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+@media screen and (min-width: 63.25rem) {
+  .Hero-contentColumn--bordered-inline {
+    padding: var(--base-size-64);
+  }
+}
+
+/* Media styling for gridline inline positions */
+
+/* Edge-to-edge inline media (no padding) - remove border radius */
+.Hero--variant-gridline .Hero-media--pos-inline:not(.Hero-media--pos-inline-padded) {
+  border-radius: 0;
+}
+
+/* Applied directly to video/iframe elements for inline position */
+.Hero-media-item--inline {
+  border-radius: 0;
+}
+
+/* Padded inline media - constrain size and center */
+.Hero--variant-gridline .Hero-media--pos-inline-padded {
+  max-width: 100%;
+  height: auto;
+  align-self: center;
+}
+
+/* Image column styling now handled by .Hero-imageContainer--inline-bordered */
+
+.Hero-video {
+  width: 100%;
+}
+
+/* Base styles for video/iframe media elements */
+.Hero-media-item {
   width: 100%;
   border-radius: var(--brand-borderRadius-large);
 }
 
 .Hero-label {
+  text-transform: uppercase;
+  letter-spacing: 1px;
   margin-block-end: var(--base-size-24);
+  display: flex;
+  align-items: center;
 }
 
 .Hero-heading {
@@ -64,9 +260,18 @@
   max-width: unset;
 }
 
+.Hero-text-column--inline-gridline {
+  height: 100%;
+}
+
 .Hero-description {
   margin: var(--base-size-24) 0 0;
   max-width: 600px;
+}
+
+.Hero--variant-inline-gridline .Hero-description {
+  padding-block-start: var(--base-size-24);
+  margin-block-start: auto;
 }
 
 .Hero-actions {
@@ -75,6 +280,11 @@
   align-items: center;
   flex-wrap: wrap;
   gap: var(--base-size-8) var(--base-size-16);
+}
+
+.Hero--variant-gridline-expressive .Hero-actions {
+  align-items: stretch;
+  gap: var(--base-size-8) var(--base-size-12);
 }
 
 .Hero-trailing {
@@ -87,7 +297,177 @@
 
 /* Small breakpoint and up */
 @media screen and (min-width: 34rem) {
-  .Hero {
+  .Hero--variant-default {
     padding: var(--brand-Hero-regular-padding);
   }
+}
+
+.Hero-video-poster-button {
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+  display: block;
+  height: 100%;
+  position: relative;
+  line-height: 0;
+  font-size: 0;
+  width: 100%;
+}
+
+.Hero-video-poster-image {
+  display: block;
+  height: auto;
+  width: 100%;
+}
+
+.Hero-video-poster-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: var(--base-size-96);
+  height: var(--base-size-96);
+  z-index: 1;
+  color: var(--base-color-scale-white-0);
+}
+
+.Hero-video-poster-header {
+  position: absolute;
+  inset: 0 0 auto;
+  padding: var(--base-size-16) var(--base-size-24);
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7) 60%, rgba(0, 0, 0, 0));
+  display: flex;
+  align-items: center;
+  gap: var(--base-size-16);
+  height: var(--base-size-80);
+}
+
+.Hero-video-header-poster-icon,
+.Hero-video-poster-text {
+  color: var(--base-color-scale-white-0);
+}
+
+/* ========================================
+   Gridline-Expressive Variant
+   ======================================== */
+
+.Hero--variant-gridline-expressive {
+  container-type: inline-size;
+  width: 100%;
+}
+
+/* Grid container for expressive variant */
+.Hero-grid--expressive {
+  width: 100%;
+  max-width: 1280px;
+  margin-inline: auto;
+  gap: 0;
+  --brand-Grid-spacing-row: 0;
+}
+
+@container (min-width: 1280px) {
+  .Hero-grid--expressive {
+    border-inline: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
+  }
+}
+
+/* Header column (eyebrow, heading) */
+.Hero-expressive-header-column {
+  padding: var(--base-size-32);
+  padding-block-end: var(--base-size-24);
+  border-block-end: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
+  display: flex;
+  align-items: center;
+}
+
+/* Body column (description, actions, trailing) */
+.Hero-expressive-body-column {
+  padding: var(--base-size-32);
+  padding-block-start: var(--base-size-24);
+}
+
+.Hero--variant-gridline-expressive .Hero-description {
+  margin-block-start: 0;
+}
+
+.Hero--variant-gridline-expressive .Hero-actions {
+  margin-block-start: var(--base-size-24);
+}
+
+.Hero--variant-gridline-expressive .Hero-trailing {
+  margin-block-start: var(--base-size-24);
+}
+
+/* Desktop: Side-by-side layout with vertical divider */
+@media screen and (min-width: 63.25rem) {
+  .Hero-expressive-header-column {
+    padding: var(--base-size-64);
+    padding-inline-end: var(--base-size-64);
+    border-block-end: none;
+    border-inline-end: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
+  }
+
+  .Hero-expressive-body-column {
+    padding: var(--base-size-64);
+    padding-inline-start: var(--base-size-64);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+
+  .Hero--variant-gridline-expressive .Hero-actions {
+    margin-block-start: var(--base-size-32);
+  }
+
+  .Hero--variant-gridline-expressive .Hero-trailing {
+    margin-block-start: var(--base-size-32);
+  }
+}
+
+/* Media wrapper styles for gridline-expressive (same as gridline) */
+.Hero--variant-gridline-expressive .Hero-imageWrapper {
+  border-block: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
+  background-color: var(--brand-color-canvas-subtle);
+  width: 100%;
+}
+
+.Hero--variant-gridline-expressive .Hero-imageWrapper-inner {
+  width: 100%;
+  max-width: 1280px;
+  margin-inline: auto;
+  padding: var(--base-size-32) var(--base-size-32) 0;
+}
+
+@container (min-width: 1280px) {
+  .Hero--variant-gridline-expressive .Hero-imageWrapper-inner--with-gridline {
+    border-inline: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
+  }
+}
+
+.Hero--variant-gridline-expressive .Hero-imageWrapper-inner--padded {
+  padding: var(--base-size-32);
+}
+
+@media screen and (min-width: 63.25rem) {
+  .Hero--variant-gridline-expressive .Hero-imageWrapper-inner {
+    padding: var(--base-size-64) var(--base-size-64) 0;
+  }
+
+  .Hero--variant-gridline-expressive .Hero-imageWrapper-inner--padded {
+    padding: var(--base-size-64);
+  }
+}
+
+/* Shared media styles for gridline-expressive */
+.Hero--variant-gridline-expressive .Hero-media {
+  max-width: 1176px;
+  margin-inline: auto;
+  display: block;
+  overflow: hidden;
+}
+
+.Hero--variant-gridline-expressive .Hero-media--pos-block-end,
+.Hero--variant-gridline-expressive .Hero-image:not(.Hero-media--pos-block-end-padded) {
+  border-radius: var(--brand-borderRadius-medium) var(--brand-borderRadius-medium) 0 0;
 }

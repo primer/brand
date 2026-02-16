@@ -8,7 +8,10 @@ import {test, expect} from '@playwright/test'
 // eslint-disable-next-line i18n-text/no-en
 test.describe('Visual Comparison: LogoSuite', () => {
   test('LogoSuite / Playground', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-logosuite--playground&viewMode=story')
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-logosuite--playground&viewMode=story', {
+      waitUntil: 'networkidle',
+    })
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -17,7 +20,9 @@ test.describe('Visual Comparison: LogoSuite', () => {
   test('LogoSuite / With Links', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-logosuite-examples--with-links&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -26,7 +31,9 @@ test.describe('Visual Comparison: LogoSuite', () => {
   test('LogoSuite / Align Start', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-logosuite-features--align-start&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -35,7 +42,9 @@ test.describe('Visual Comparison: LogoSuite', () => {
   test('LogoSuite / Align Center', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-logosuite-features--align-center&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -44,7 +53,9 @@ test.describe('Visual Comparison: LogoSuite', () => {
   test('LogoSuite / Align Justify', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-logosuite-features--align-justify&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -53,7 +64,9 @@ test.describe('Visual Comparison: LogoSuite', () => {
   test('LogoSuite / Default Variant', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-logosuite-features--default-variant&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -62,7 +75,9 @@ test.describe('Visual Comparison: LogoSuite', () => {
   test('LogoSuite / Emphasis Variant', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-logosuite-features--emphasis-variant&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -71,7 +86,9 @@ test.describe('Visual Comparison: LogoSuite', () => {
   test('LogoSuite / Muted Variant', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-logosuite-features--muted-variant&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -80,7 +97,9 @@ test.describe('Visual Comparison: LogoSuite', () => {
   test('LogoSuite / Without Divider', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-logosuite-features--without-divider&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -89,7 +108,9 @@ test.describe('Visual Comparison: LogoSuite', () => {
   test('LogoSuite / Condensed Gap', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-logosuite-features--condensed-gap&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -98,7 +119,9 @@ test.describe('Visual Comparison: LogoSuite', () => {
   test('LogoSuite / Idle Marquee Speed', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-logosuite-features--idle-marquee-speed&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -107,7 +130,9 @@ test.describe('Visual Comparison: LogoSuite', () => {
   test('LogoSuite / Visible Heading', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-logosuite-features--visible-heading&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -116,7 +141,9 @@ test.describe('Visual Comparison: LogoSuite', () => {
   test('LogoSuite / Heading Level', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-logosuite-features--heading-level&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -125,7 +152,9 @@ test.describe('Visual Comparison: LogoSuite', () => {
   test('LogoSuite / Visible Heading With Description', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-logosuite-features--visible-heading-with-description&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -134,7 +163,9 @@ test.describe('Visual Comparison: LogoSuite', () => {
   test('LogoSuite / With Raster Logos', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-logosuite-features--with-raster-logos&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})

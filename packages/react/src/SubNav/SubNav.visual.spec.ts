@@ -8,7 +8,10 @@ import {test, expect} from '@playwright/test'
 // eslint-disable-next-line i18n-text/no-en
 test.describe('Visual Comparison: SubNav', () => {
   test('SubNav / Default', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-subnav--default&viewMode=story')
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-subnav--default&viewMode=story', {
+      waitUntil: 'networkidle',
+    })
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -17,7 +20,9 @@ test.describe('Visual Comparison: SubNav', () => {
   test('SubNav / Dropdown Variant', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-subnav-features--dropdown-variant&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -29,7 +34,9 @@ test.describe('Visual Comparison: SubNav', () => {
     test('SubNav / Narrow Dropdown Variant', async ({page}) => {
       await page.goto(
         'http://localhost:6006/iframe.html?args=&id=components-subnav-features--narrow-dropdown-variant&viewMode=story',
+        {waitUntil: 'networkidle'},
       )
+      await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
       await page.waitForTimeout(500)
       await expect(page).toHaveScreenshot({fullPage: true})
@@ -42,21 +49,31 @@ test.describe('Visual Comparison: SubNav', () => {
     test('SubNav / Narrow Dropdown Variant Menu Open', async ({page}) => {
       await page.goto(
         'http://localhost:6006/iframe.html?args=&id=components-subnav-features--narrow-dropdown-variant-menu-open&viewMode=story',
+        {waitUntil: 'networkidle'},
       )
+      await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
       await page.waitForTimeout(500)
       await expect(page).toHaveScreenshot({fullPage: true})
     })
   })
   test('SubNav / With Shadow', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-subnav-features--with-shadow&viewMode=story')
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-subnav-features--with-shadow&viewMode=story',
+      {waitUntil: 'networkidle'},
+    )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('SubNav / Sub Heading', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-subnav-features--sub-heading&viewMode=story')
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-subnav-features--sub-heading&viewMode=story',
+      {waitUntil: 'networkidle'},
+    )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -68,7 +85,9 @@ test.describe('Visual Comparison: SubNav', () => {
     test('SubNav / Sub Heading Narrow', async ({page}) => {
       await page.goto(
         'http://localhost:6006/iframe.html?args=&id=components-subnav-features--sub-heading-narrow&viewMode=story',
+        {waitUntil: 'networkidle'},
       )
+      await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
       await page.waitForTimeout(500)
       await expect(page).toHaveScreenshot({fullPage: true})
@@ -81,7 +100,9 @@ test.describe('Visual Comparison: SubNav', () => {
     test('SubNav / Sub Heading Narrow Open', async ({page}) => {
       await page.goto(
         'http://localhost:6006/iframe.html?args=&id=components-subnav-features--sub-heading-narrow-open&viewMode=story',
+        {waitUntil: 'networkidle'},
       )
+      await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
       await page.waitForTimeout(500)
       await expect(page).toHaveScreenshot({fullPage: true})
@@ -90,7 +111,9 @@ test.describe('Visual Comparison: SubNav', () => {
   test('SubNav / Active Sub Heading', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-subnav-features--active-sub-heading&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -102,7 +125,9 @@ test.describe('Visual Comparison: SubNav', () => {
     test('SubNav / Active Sub Heading Narrow', async ({page}) => {
       await page.goto(
         'http://localhost:6006/iframe.html?args=&id=components-subnav-features--active-sub-heading-narrow&viewMode=story',
+        {waitUntil: 'networkidle'},
       )
+      await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
       await page.waitForTimeout(500)
       await expect(page).toHaveScreenshot({fullPage: true})
@@ -115,14 +140,20 @@ test.describe('Visual Comparison: SubNav', () => {
     test('SubNav / Active Sub Heading Narrow Open', async ({page}) => {
       await page.goto(
         'http://localhost:6006/iframe.html?args=&id=components-subnav-features--active-sub-heading-narrow-open&viewMode=story',
+        {waitUntil: 'networkidle'},
       )
+      await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
       await page.waitForTimeout(500)
       await expect(page).toHaveScreenshot({fullPage: true})
     })
   })
   test('SubNav / Full Width', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-subnav-features--full-width&viewMode=story')
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-subnav-features--full-width&viewMode=story',
+      {waitUntil: 'networkidle'},
+    )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -134,7 +165,9 @@ test.describe('Visual Comparison: SubNav', () => {
     test('SubNav / Full Width Narrow', async ({page}) => {
       await page.goto(
         'http://localhost:6006/iframe.html?args=&id=components-subnav-features--full-width-narrow&viewMode=story',
+        {waitUntil: 'networkidle'},
       )
+      await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
       await page.waitForTimeout(500)
       await expect(page).toHaveScreenshot({fullPage: true})
@@ -143,7 +176,9 @@ test.describe('Visual Comparison: SubNav', () => {
   test('SubNav / Longer Heading', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-subnav-features--longer-heading&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -152,9 +187,11 @@ test.describe('Visual Comparison: SubNav', () => {
   test('SubNav / Anchor Nav Variant', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-subnav-features--anchor-nav-variant&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
-    await page.waitForTimeout(6000)
+    await page.waitForTimeout(7000)
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
@@ -164,7 +201,9 @@ test.describe('Visual Comparison: SubNav', () => {
     test('SubNav / Narrow Anchor Nav Variant', async ({page}) => {
       await page.goto(
         'http://localhost:6006/iframe.html?args=&id=components-subnav-features--narrow-anchor-nav-variant&viewMode=story',
+        {waitUntil: 'networkidle'},
       )
+      await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
       await page.waitForTimeout(500)
       await expect(page).toHaveScreenshot({fullPage: true})
@@ -177,7 +216,9 @@ test.describe('Visual Comparison: SubNav', () => {
     test('SubNav / Narrow Anchor Nav Variant Menu Open', async ({page}) => {
       await page.goto(
         'http://localhost:6006/iframe.html?args=&id=components-subnav-features--narrow-anchor-nav-variant-menu-open&viewMode=story',
+        {waitUntil: 'networkidle'},
       )
+      await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
       await page.waitForTimeout(500)
       await expect(page).toHaveScreenshot({fullPage: true})
@@ -186,7 +227,9 @@ test.describe('Visual Comparison: SubNav', () => {
   test('SubNav / Anchor Nav Default Link Variant', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-subnav-features--anchor-nav-default-link-variant&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -195,7 +238,9 @@ test.describe('Visual Comparison: SubNav', () => {
   test('SubNav / Forwarded Refs', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-subnav-features--forwarded-refs&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -204,7 +249,9 @@ test.describe('Visual Comparison: SubNav', () => {
   test('SubNav / Keyboard Navigation', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-subnav-features--keyboard-navigation&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -213,7 +260,9 @@ test.describe('Visual Comparison: SubNav', () => {
   test('SubNav / With no aria-current set', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-subnav-features--no-active-links&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -225,7 +274,9 @@ test.describe('Visual Comparison: SubNav', () => {
     test('SubNav / With no aria-current set (narrow)', async ({page}) => {
       await page.goto(
         'http://localhost:6006/iframe.html?args=&id=components-subnav-features--no-active-links-narrow&viewMode=story',
+        {waitUntil: 'networkidle'},
       )
+      await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
       await page.waitForTimeout(500)
       await expect(page).toHaveScreenshot({fullPage: true})

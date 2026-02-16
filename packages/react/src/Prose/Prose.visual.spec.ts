@@ -8,21 +8,30 @@ import {test, expect} from '@playwright/test'
 // eslint-disable-next-line i18n-text/no-en
 test.describe('Visual Comparison: Prose', () => {
   test('Prose / Default', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-prose--default&viewMode=story')
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-prose--default&viewMode=story', {
+      waitUntil: 'networkidle',
+    })
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(4000)
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Prose / Playground', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-prose--playground&viewMode=story')
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-prose--playground&viewMode=story', {
+      waitUntil: 'networkidle',
+    })
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(4000)
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Prose / Full Width', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-prose-features--full-width&viewMode=story')
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-prose-features--full-width&viewMode=story', {
+      waitUntil: 'networkidle',
+    })
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -34,7 +43,9 @@ test.describe('Visual Comparison: Prose', () => {
     test('Prose / Narrow view, full width (mobile)', async ({page}) => {
       await page.goto(
         'http://localhost:6006/iframe.html?args=&id=components-prose-features--narrow-view-full-width&viewMode=story',
+        {waitUntil: 'networkidle'},
       )
+      await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
       await page.waitForTimeout(500)
       await expect(page).toHaveScreenshot({fullPage: true})
@@ -47,7 +58,9 @@ test.describe('Visual Comparison: Prose', () => {
     test('Prose / Regular view, full width (tablet)', async ({page}) => {
       await page.goto(
         'http://localhost:6006/iframe.html?args=&id=components-prose-features--regular-view-full-width&viewMode=story',
+        {waitUntil: 'networkidle'},
       )
+      await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
       await page.waitForTimeout(500)
       await expect(page).toHaveScreenshot({fullPage: true})
@@ -56,7 +69,9 @@ test.describe('Visual Comparison: Prose', () => {
   test('Prose / Unordered List', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-prose-features--unordered-list&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -65,7 +80,9 @@ test.describe('Visual Comparison: Prose', () => {
   test('Prose / With a table (default)', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-prose-features--default-table&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -74,7 +91,9 @@ test.describe('Visual Comparison: Prose', () => {
   test('Prose / With a table (editorial variant)', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-prose-features--editorial-table&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -86,7 +105,9 @@ test.describe('Visual Comparison: Prose', () => {
     test('Prose / With a table (narrow)', async ({page}) => {
       await page.goto(
         'http://localhost:6006/iframe.html?args=&id=components-prose-features--default-table-narrow-view&viewMode=story',
+        {waitUntil: 'networkidle'},
       )
+      await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
       await page.waitForTimeout(500)
       await expect(page).toHaveScreenshot({fullPage: true})
@@ -95,7 +116,9 @@ test.describe('Visual Comparison: Prose', () => {
   test('Prose / With a vertically-stacked table', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-prose-features--table-with-data-labels&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -107,14 +130,19 @@ test.describe('Visual Comparison: Prose', () => {
     test('Prose / With a vertically-stacked table (narrow)', async ({page}) => {
       await page.goto(
         'http://localhost:6006/iframe.html?args=&id=components-prose-features--table-with-data-labels-narrow-view&viewMode=story',
+        {waitUntil: 'networkidle'},
       )
+      await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
       await page.waitForTimeout(500)
       await expect(page).toHaveScreenshot({fullPage: true})
     })
   })
   test('Prose / With a mixed data set table', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-prose-features--mixed-data&viewMode=story')
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-prose-features--mixed-data&viewMode=story', {
+      waitUntil: 'networkidle',
+    })
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -126,7 +154,9 @@ test.describe('Visual Comparison: Prose', () => {
     test('Prose / With a mixed data set table (narrow)', async ({page}) => {
       await page.goto(
         'http://localhost:6006/iframe.html?args=&id=components-prose-features--mixed-data-narrow&viewMode=story',
+        {waitUntil: 'networkidle'},
       )
+      await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
       await page.waitForTimeout(500)
       await expect(page).toHaveScreenshot({fullPage: true})

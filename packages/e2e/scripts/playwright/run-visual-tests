@@ -1,10 +1,23 @@
 #!/bin/bash
 set -e
 
-cd ../../apps/storybook && NODE_ENV=test npx storybook build && cd ../../packages/e2e
+IMAGE="mcr.microsoft.com/playwright:v1.57.0-noble"
 
-# Use x86_64 platform to ensure Chrome is available 
 docker run --rm --ipc=host --platform linux/amd64 \
-  -v ${PWD%/*/*}:/tests -v /tests/node_modules \
-  mcr.microsoft.com/playwright:v1.57.0-noble \
-  /bin/bash -c "cd /tests && npm ci && npx playwright install chrome && npx start-server-and-test 'npx http-server /tests/apps/storybook/storybook-static -p 6006' 6006 'cd packages/e2e && npx playwright test'"
+  -v "${PWD%/*/*}":/tests \
+  -v /tests/node_modules \
+  -e NODE_ENV=test \
+  ${CI:+-e CI=true} \
+  "${IMAGE}" \
+  /bin/bash -c "\
+    cd /tests \
+    && npm ci \
+    && npm run build:lib \
+    && cd apps/storybook && NODE_ENV=test npx storybook build \
+    && cd /tests \
+    && npx playwright install chrome \
+    && npx start-server-and-test \
+      'npx http-server /tests/apps/storybook/storybook-static -p 6006' \
+      6006 \
+      'cd packages/e2e && npx playwright test' \
+  "

@@ -10,7 +10,12 @@ source: https://github.com/primer/brand/blob/main/packages/react/src/Hero/Hero.t
 storybook: '/brand/storybook/?path=/story/components-hero--default'
 ---
 
-import {HeroDescriptionVariantProp, HeroDescriptionVariantPropDefault, HeroImagePositionProp} from './react'
+import {
+  HeroDescriptionVariantProp,
+  HeroDescriptionVariantPropDefault,
+  HeroImagePositionProp,
+  HeroVariantProp,
+} from './react'
 
 ```js
 import {Hero} from '@primer/react-brand'
@@ -58,6 +63,42 @@ import {Hero} from '@primer/react-brand'
     />
   </Hero>
 </Stack>
+```
+
+### GridLine variant
+
+Use `variant="gridline"` to display the Hero with a contained image, subtle background color, and borders.
+
+The `GridLine` variants all feature a trailing border by default. Use `Box` if you need to add one to the top also.
+
+```jsx live
+<Hero variant="gridline" align="center">
+  <Hero.Heading>This is my super sweet hero heading</Hero.Heading>
+  <Hero.Description>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis
+    felis nam pulvinar risus elementum.
+  </Hero.Description>
+  <Hero.PrimaryAction href="#">Primary action</Hero.PrimaryAction>
+  <Hero.Image src="/images/placeholder.png" alt="placeholder, blank area with a gray background color" />
+</Hero>
+```
+
+### GridLine "Expressive" variant
+
+Use `variant="gridline-expressive"` for an alternative split-content layout.
+
+The `GridLine` variants all feature a trailing border by default. Use `Box` if you need to add one to the top also.
+
+```jsx live
+<Hero variant="gridline-expressive">
+  <Hero.Heading>This is my super sweet hero heading</Hero.Heading>
+  <Hero.Description>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis
+    felis nam pulvinar risus elementum.
+  </Hero.Description>
+  <Hero.PrimaryAction href="#">Primary action</Hero.PrimaryAction>
+  <Hero.Image src="/images/placeholder.png" alt="placeholder, blank area with a gray background color" />
+</Hero>
 ```
 
 ### Video
@@ -109,21 +150,22 @@ Use [VideoPlayer](/components/VideoPlayer), a native `<video>` element or a YouT
 
 ### Hero
 
-| Name        | Type                  |  Default  | Description                              |
-| :---------- | :-------------------- | :-------: | :--------------------------------------- |
-| `align`     | `'center'`, `'start'` | `'start'` | Optional text alignment                  |
-| `className` | `string`              |           | Sets a custom class on the root element  |
-| `ref`       | `React.RefObject`     |           | Forward a Ref to the underlying DOM node |
+| Name              | Type                  |   Default   | Description                                                     |
+| :---------------- | :-------------------- | :---------: | :-------------------------------------------------------------- |
+| `align`           | `'center'`, `'start'` |  `'start'`  | Optional text alignment                                         |
+| `variant`         | <HeroVariantProp />   | `'default'` | Visual variants to the Hero.                                    |
+| `enableAnimation` | `boolean`             |   `false`   | Enables animations for variants and children that support them. |
+| `className`       | `string`              |             | Sets a custom class on the root element                         |
+| `ref`             | `React.RefObject`     |             | Forward a Ref to the underlying DOM node                        |
 
 ### Hero.Label
 
-| name        | type              | default | description                                  |
-| ----------- | ----------------- | ------- | -------------------------------------------- |
-| `className` | `string`          |         | Sets a custom class on the root of the label |
-| `id`        | `string`          |         | Sets a custom id on the root of the label    |
-| `ref`       | `React.RefObject` |         | Forward a Ref to the underlying DOM node     |
-
-Forwards all props from the [Label component](/components/Label), including `size` and `color`.
+| name        | type                           | default   | description                                  |
+| ----------- | ------------------------------ | --------- | -------------------------------------------- |
+| `variant`   | <HeroDescriptionVariantProp /> | `'muted'` | Specify alternative text appearance          |
+| `className` | `string`                       |           | Sets a custom class on the root of the label |
+| `id`        | `string`                       |           | Sets a custom id on the root of the label    |
+| `ref`       | `React.RefObject`              |           | Forward a Ref to the underlying DOM node     |
 
 ### Hero.Heading
 
@@ -174,6 +216,13 @@ Forwards all props from the [Image component](/components/Image), including `src
 
 ### Hero.Video
 
-| name       | type                      | default       | description                                     |
-| ---------- | ------------------------- | ------------- | ----------------------------------------------- |
-| `position` | <HeroImagePositionProp /> | `'block-end'` | Controls positioning of the child video element |
+| name            | type                      | default       | description                                                                                                     |
+| --------------- | ------------------------- | ------------- | --------------------------------------------------------------------------------------------------------------- |
+| `position`      | <HeroImagePositionProp /> | `'block-end'` | Controls positioning of the child video element                                                                 |
+| `poster`        | `string`                  |               | URL of the poster image to display before video plays. When set, `posterAltText` and `posterTitle` are required |
+| `posterAltText` | `string`                  |               | Alt text for the poster image. Required when `poster` is set                                                    |
+| `posterTitle`   | `string`                  |               | Title text displayed on the poster overlay. Required when `poster` is set                                       |
+
+```
+
+```
