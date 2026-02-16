@@ -104,7 +104,7 @@ describe('CTABanner', () => {
     const classToCheck = 'CTABanner--shadow'
 
     const {getByTestId} = render(
-      <CTABanner data-testid={mockTestId}>
+      <CTABanner data-testid={mockTestId} hasShadow>
         <CTABanner.Heading>This is your heading</CTABanner.Heading>
       </CTABanner>,
     )
