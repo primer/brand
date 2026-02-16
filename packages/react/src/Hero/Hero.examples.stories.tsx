@@ -553,8 +553,7 @@ export const WithCustomInput: Story = {
         <>
           <Box paddingBlockStart={16} className={styles['d-lg-none']}>
             <Stack padding="none" gap="condensed" direction={{narrow: 'vertical', regular: 'horizontal'}}>
-              <Hero.PrimaryAction href="#">Try Copilot CLI</Hero.PrimaryAction>
-              <Hero.SecondaryAction href="#">See documentation</Hero.SecondaryAction>
+              <Hero.PrimaryAction href="#">See documentation</Hero.PrimaryAction>
             </Stack>
           </Box>
           <Stack direction="vertical" padding="none" className={styles['d-none-d-lg-block']}>
