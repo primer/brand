@@ -1,7 +1,10 @@
 import React, {forwardRef, PropsWithChildren, useMemo, type Ref} from 'react'
 import {clsx} from 'clsx'
-import {Heading, LinkProps, HeadingProps, TextProps, Text, Link, useAnimation, Label, LabelProps} from '../../'
-
+import {Heading, type HeadingProps} from '../../Heading'
+import {Text, type TextProps} from '../../Text'
+import {Link, type LinkProps} from '../../Link'
+import {Label, type LabelProps} from '../../Label'
+import {useAnimation} from '../../animation'
 import type {BaseProps} from '../../component-helpers'
 
 /**
@@ -226,7 +229,7 @@ export type RiverVisualProps = BaseProps<HTMLDivElement> &
     rounded?: boolean
   }>
 
-const Visual = forwardRef(
+export const Visual = forwardRef(
   (
     {
       fillMedia = true,
