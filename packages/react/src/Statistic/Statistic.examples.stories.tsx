@@ -7,7 +7,6 @@ import {Grid} from '../Grid'
 import {Card} from '../Card'
 import placeholderImage from '../fixtures/images/placeholder.png'
 import {Stack} from '../Stack'
-import {Hero} from '../Hero'
 
 type StoryProps = {
   heading: string
