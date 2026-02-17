@@ -8,6 +8,7 @@ declare const styles: {
   readonly "River--variant-gridline": string;
   readonly "RiverBreakout": string;
   readonly "RiverBreakout--muted": string;
+  readonly "RiverBreakout--variant-gridline": string;
   readonly "RiverBreakout__hiddenHeading": string;
   readonly "River__body-text": string;
   readonly "River__call-to-action": string;

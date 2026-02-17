@@ -65,6 +65,56 @@
           }
         }
       }
+    },
+    "variant": {
+      "gridline": {
+        "spacing": {
+          "outerBlock": {
+            "value": "var(--base-size-36)",
+            "responsive": {
+              "768px": {
+                "value": "var(--base-size-40)"
+              },
+              "1280px": {
+                "value": "var(--base-size-64)"
+              }
+            }
+          },
+          "outerBlockEnd": {
+            "value": "var(--base-size-40)",
+            "responsive": {
+              "768px": {
+                "value": "var(--base-size-48)"
+              },
+              "1280px": {
+                "value": "var(--base-size-80)"
+              }
+            }
+          },
+          "outerInline": {
+            "value": "var(--base-size-20)",
+            "responsive": {
+              "768px": {
+                "value": "var(--base-size-36)"
+              },
+              "1280px": {
+                "value": "var(--base-size-64)"
+              }
+            }
+          },
+          "contentGap": {
+            "value": "var(--base-size-16)",
+            "responsive": {
+              "768px": {
+                "value": "var(--base-size-20)"
+              },
+              "1280px": {
+                "value": "var(--base-size-24)"
+              }
+            }
+          }
+        }
+      }
     }
   }
 }
