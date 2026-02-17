@@ -59,14 +59,14 @@ export const SocialProof: Story = {
             >
               <Card href="https://github.com" fullWidth variant="minimal" disableAnimation>
                 <Card.Label>Resources</Card.Label>
-                <Card.Heading size="5" style={{maxWidth: 'unset'}}>
+                <Card.Heading size="5">
                   How Thomson Reuters successfully adopted AI —and how your organization can, too
                 </Card.Heading>
                 <Card.Image
                   position="block-end"
                   aspectRatio="16:10"
                   src={placeholderImage}
-                  alt="placeholder, blank area with an gray background color"
+                  alt="placeholder, blank area with a gray background color"
                 />
               </Card>
             </Box>
