@@ -221,4 +221,66 @@ describe('Grid', () => {
     expect(getByTestId('Grid-Column-1')).toHaveClass('Grid__column--large-span-6')
     expect(getByTestId('Grid-Column-2')).not.toHaveClass('Grid__column--xsmall-span-12')
   })
+
+  it('should apply default columnGap class by default', () => {
+    const {container} = render(
+      <Grid>
+        <Grid.Column>{mockText}</Grid.Column>
+      </Grid>,
+    )
+
+    expect(container.firstChild).toHaveClass('Grid--columnGap-default')
+  })
+
+  it('should apply none columnGap class when columnGap is set to none', () => {
+    const {container} = render(
+      <Grid columnGap="none">
+        <Grid.Column>{mockText}</Grid.Column>
+      </Grid>,
+    )
+
+    expect(container.firstChild).toHaveClass('Grid--columnGap-none')
+    expect(container.firstChild).not.toHaveClass('Grid--columnGap-default')
+  })
+
+  it('should apply default rowGap class by default', () => {
+    const {container} = render(
+      <Grid>
+        <Grid.Column>{mockText}</Grid.Column>
+      </Grid>,
+    )
+
+    expect(container.firstChild).toHaveClass('Grid--rowGap-default')
+  })
+
+  it('should apply none rowGap class when rowGap is set to none', () => {
+    const {container} = render(
+      <Grid rowGap="none">
+        <Grid.Column>{mockText}</Grid.Column>
+      </Grid>,
+    )
+
+    expect(container.firstChild).toHaveClass('Grid--rowGap-none')
+    expect(container.firstChild).not.toHaveClass('Grid--rowGap-default')
+  })
+
+  it('should apply gutter styles by default', () => {
+    const {container} = render(
+      <Grid>
+        <Grid.Column>{mockText}</Grid.Column>
+      </Grid>,
+    )
+
+    expect(container.firstChild).toHaveClass('Grid--has-gutters')
+  })
+
+  it('should not apply gutter styles when enableGutters is false', () => {
+    const {container} = render(
+      <Grid enableGutters={false}>
+        <Grid.Column>{mockText}</Grid.Column>
+      </Grid>,
+    )
+
+    expect(container.firstChild).not.toHaveClass('Grid--has-gutters')
+  })
 })
