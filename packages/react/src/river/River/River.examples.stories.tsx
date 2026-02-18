@@ -2,6 +2,7 @@ import React, {useEffect} from 'react'
 import type {Meta, StoryObj} from '@storybook/react'
 
 import placeholderImage from '../../fixtures/images/copilot-vscode-agent-mode-3.png'
+import placeholderImageCropped from '../../fixtures/images/copilot-vscode-agent-mode-3-cropped.png'
 import placeholderBg from '../../fixtures/images/dither-bg-landscape-green.png'
 import posterImage from '../../fixtures/images/example-poster.png'
 
@@ -50,7 +51,10 @@ function GridLineWithBackgroundExample({align}: {align: 'start' | 'end'}) {
     <Section>
       <River variant="gridline" align={align}>
         <River.Visual ref={visualRef} imageBackgroundColor="subtle">
-          <img src={placeholderImage} alt="GitHub Copilot agent mode in VS Code" />
+          <picture>
+            <source srcSet={placeholderImageCropped} media="(max-width: 47.99rem)" />
+            <img src={placeholderImage} alt="GitHub Copilot agent mode in VS Code" />
+          </picture>
         </River.Visual>
         <River.Content>
           <EyebrowText>Feature</EyebrowText>
