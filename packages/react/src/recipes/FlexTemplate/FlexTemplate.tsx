@@ -70,6 +70,7 @@ export function FlexTemplate({page, className}: FlexTemplateProps) {
                 <SubNav.Link
                   key={`${link.text}-${index}`}
                   href={link.href}
+                  aria-current={link['aria-current']}
                   variant="default" // Appears to be configurable in SWP, but set to default for all pages
                   {...(link.openInNewTab ? {target: '_blank', rel: 'noreferrer'} : {})}
                 >

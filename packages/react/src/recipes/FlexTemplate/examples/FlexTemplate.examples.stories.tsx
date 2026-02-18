@@ -40,7 +40,7 @@ Agents.args = {
         },
         links: [
           {href: '#', text: 'Copilot in VS Code'},
-          {href: '#', text: 'Agents on GitHub'},
+          {href: '#', text: 'Agents on GitHub', 'aria-current': 'page'},
           {href: '#', text: 'Copilot CLI'},
           {href: '#', text: 'For business'},
           {href: '#', text: 'Tutorials'},
@@ -258,7 +258,7 @@ CopilotBusiness.args = {
           {href: '#', text: 'Copilot in VS Code'},
           {href: '#', text: 'Agents on GitHub'},
           {href: '#', text: 'Copilot CLI'},
-          {href: '#', text: 'For business'},
+          {href: '#', text: 'For business', 'aria-current': 'page'},
           {href: '#', text: 'Tutorials'},
           {href: '#', text: 'Plans & pricing'},
         ],
