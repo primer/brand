@@ -4,6 +4,10 @@
   gap: var(--brand-stack-gap-spacious);
 }
 
+.FAQGroup__accordion {
+  margin-block-start: var(--base-size-48);
+}
+
 @media screen and (min-width: 48rem) {
   .FAQGroup {
     display: grid;
@@ -16,6 +20,9 @@
 
 .FAQGroup__panel-subHeading {
   margin-block-start: calc(var(--base-size-8) + 1px);
+  text-transform: uppercase;
+  font-size: var(--brand-text-size-100);
+  line-height: var(--brand-text-lineHeight-100);
 }
 
 .FAQGroup__tablist .FAQ__heading {
@@ -23,26 +30,54 @@
 }
 
 .FAQGroup__tablist-button {
+  appearance: none;
+  border: none;
   background-color: transparent;
-  justify-content: flex-start;
+  padding-block: var(--base-size-8);
+  padding-inline: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: var(--base-size-12);
+  width: 100%;
+  font-family: var(--brand-fontStack-monospace);
+  font-size: var(--brand-text-size-100);
+  font-weight: var(--brand-text-weight-500);
+  line-height: var(--brand-text-lineHeight-100);
+  letter-spacing: 0.15px;
+  text-transform: uppercase;
+  text-align: start;
+  color: var(--brand-color-text-muted);
+  border-radius: var(--brand-borderRadius-medium);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
-.FAQGroup__tablist-button > span {
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
+.FAQGroup__tablist-button:focus-visible {
+  outline: var(--brand-borderWidth-thick) solid var(--brand-color-focus);
+  outline-offset: 2px;
+}
+
+.FAQGroup__tablist-button::before {
+  content: '';
+  display: block;
+  width: calc(var(--base-size-8) - 1px);
+  height: var(--base-size-12);
+  flex-shrink: 0;
+  background-color: var(--brand-FAQGroup-buttonIndicator-idle);
+}
+
+.FAQGroup__tablist-button:hover::before {
+  background-color: var(--brand-FAQGroup-buttonIndicator-hover);
 }
 
 .FAQGroup__tablist-button[aria-selected='true'] {
-  background-color: var(--brand-FAQ-color-tabBg-selected);
-}
-
-.FAQGroup__tablist-button span {
-  color: var(--brand-color-text-muted);
-}
-
-.FAQGroup__tablist-button[aria-selected='true'] span {
   color: var(--brand-FAQ-color-tabLabel-selected);
+}
+
+.FAQGroup__tablist-button[aria-selected='true']::before {
+  background-color: var(--brand-FAQGroup-buttonIndicator-active);
 }
 
 .FAQGroup__nested-accordion-item summary h4 {
@@ -51,10 +86,39 @@
   line-height: var(--brand-text-lineHeight-200);
 }
 
+/* Gridline variant */
+
+.FAQGroup__tablist--gridline {
+  border-inline-start: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
+  padding-inline-start: var(--base-size-48);
+  padding-block: var(--base-size-80);
+}
+
+.FAQGroup__content--gridline {
+  border-inline: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
+  padding-inline: var(--base-size-64);
+  padding-block-start: var(--base-size-80);
+  padding-block-end: var(--base-size-96);
+}
+
 @media (forced-colors: active) {
   .FAQGroup__tablist-button[aria-selected='true'] {
     border-color: Highlight;
     border-width: var(--brand-borderWidth-thicker);
     color: HighlightText;
+  }
+}
+
+.FAQGroup__heading-wrapper {
+  padding-block-end: var(--base-size-40);
+}
+
+@media screen and (min-width: 63.25rem) {
+  .FAQGroup__heading-wrapper {
+    padding-block-end: var(--base-size-64);
+  }
+
+  .FAQGroup__heading-wrapper--gridline {
+    border-block-end: var(--brand-color-border-muted) var(--brand-borderWidth-thin) solid;
   }
 }

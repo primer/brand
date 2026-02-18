@@ -1,7 +1,7 @@
 export default {
   stories: ['../../../packages/react/src/**/*.stories.@(js|jsx|ts|tsx)'],
   staticDirs: ['../static'],
-  addons: ['@storybook/addon-a11y', '@storybook/addon-links'],
+  addons: ['@storybook/addon-a11y', '@storybook/addon-links', 'storybook-addon-pseudo-states'],
   framework: {
     name: '@storybook/react-vite',
     options: {},

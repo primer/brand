@@ -197,3 +197,12 @@ export const ResponsiveMinWidth = args => {
     </Grid>
   )
 }
+
+export const DisableGutters = args => {
+  return (
+    <Grid {...args} enableGutters={false}>
+      <Grid.Column span={6}>Column one</Grid.Column>
+      <Grid.Column span={6}>Column two</Grid.Column>
+    </Grid>
+  )
+}
