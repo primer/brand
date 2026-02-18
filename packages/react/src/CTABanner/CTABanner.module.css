@@ -19,12 +19,82 @@
   );
 }
 
+/* Heading size overrides for balanced and minimal variants */
+.CTABanner--variant-balanced .CTABanner-heading {
+  font-weight: var(--brand-heading-weight-700);
+  font-size: var(--brand-text-size-700);
+  line-height: var(--brand-heading-lineHeight-700);
+  letter-spacing: var(--brand-heading-letterSpacing-700);
+}
+
+.CTABanner--variant-minimal .CTABanner-heading {
+  font-weight: var(--brand-heading-weight-400);
+  font-size: var(--brand-text-size-400);
+  line-height: var(--brand-text-lineHeight-400);
+  letter-spacing: var(--brand-heading-letterSpacing-400);
+}
+
+.CTABanner-grid {
+  gap: 0;
+  --brand-Grid-spacing-row: 0;
+  padding-inline: 0;
+}
+
+.CTABanner-grid-column--primary {
+  display: flex;
+  align-items: center;
+}
+
+.CTABanner-grid-column--secondary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.CTABanner--variant-minimal .CTABanner-grid-column--secondary {
+  justify-content: flex-end;
+}
+
+.CTABanner--variant-balanced .CTABanner-grid-column--secondary {
+  justify-content: flex-start;
+}
+
+@media screen and (min-width: 63.24rem) {
+  .CTABanner--variant-balanced .CTABanner-grid-column--secondary {
+    justify-content: flex-end;
+  }
+}
+
+/* Stack on narrow viewports */
+@media screen and (max-width: 63.24rem) {
+  .CTABanner--variant-minimal .CTABanner-grid-column--secondary {
+    justify-content: flex-start;
+  }
+
+  .CTABanner-grid-column--secondary {
+    margin-block-start: var(--base-size-24);
+  }
+}
+
+.CTABanner-outer-container--border {
+  border-block: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
+}
+
 .CTABanner-container {
-  border-radius: var(--brand-borderRadius-xlarge);
   padding: var(--base-size-40) var(--base-size-32);
   z-index: 1;
   width: 100%;
   box-sizing: border-box;
+}
+
+.CTABanner--variant-balanced .CTABanner-container {
+  padding-inline: var(--base-size-20);
+  padding-block: var(--base-size-32);
+}
+
+.CTABanner--variant-minimal .CTABanner-container {
+  padding-inline: var(--base-size-20);
+  padding-block: var(--base-size-40);
 }
 
 .CTABanner-content {
@@ -36,10 +106,19 @@
   margin: 0 auto;
 }
 
+.CTABanner--variant-minimal .CTABanner-content {
+  gap: 0;
+}
+
+.CTABanner--variant-balanced .CTABanner-content,
+.CTABanner--variant-minimal .CTABanner-content {
+  max-width: 576px;
+  margin: 0;
+}
+
 .CTABanner-container--background {
-  border-radius: var(--brand-borderRadius-xlarge);
   background-repeat: no-repeat;
-  background-color: var(--brand-CTABanner-narrow-background-color, var(--brand-CTABanner-background-color));
+  background-color: var(--brand-CTABanner-bgColor);
   background-image: var(--brand-CTABanner-narrow-background-image-src, var(--brand-CTABanner-background-image-src));
   background-size: var(--brand-CTABanner-narrow-background-image-size, var(--brand-CTABanner-background-image-size));
 
@@ -50,7 +129,13 @@
 }
 
 .CTABanner-container--border {
-  border: var(--brand-borderWidth-thin) solid var(--brand-color-border-default);
+  border: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
+}
+
+.CTABanner-container--border-gridlines {
+  border-inline: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
+  margin-inline: auto;
+  max-width: 534px; /* To match tablet for river */
 }
 
 .CTABanner-content--center {
@@ -65,22 +150,19 @@
 /* Medium breakpoint and up */
 @media screen and (min-width: 48rem) {
   .CTABanner-container {
-    padding: var(--base-size-80) var(--base-size-64);
+    padding: var(--base-size-80) var(--base-size-36);
   }
-}
 
-/* Large breakpoint and up */
-@media screen and (min-width: 63.25rem) {
-  .CTABanner-content {
-    gap: var(--base-size-24);
+  .CTABanner--variant-balanced .CTABanner-container {
+    padding: var(--base-size-36);
+    padding-block-end: var(--base-size-48);
   }
-  .CTABanner-container {
-    padding: var(--base-size-128) var(--base-size-64);
-  }
-}
 
-/* Regular */
-@media screen and (min-width: 48rem) {
+  .CTABanner--variant-minimal .CTABanner-container {
+    padding: var(--base-size-36);
+    padding-block: var(--base-size-48);
+  }
+
   .CTABanner-container--background {
     background-color: var(--brand-CTABanner-regular-background-color, var(--brand-CTABanner-background-color));
     background-image: var(--brand-CTABanner-regular-background-image-src, var(--brand-CTABanner-background-image-src));
@@ -89,6 +171,28 @@
       --brand-CTABanner-regular-background-image-position,
       var(--brand-CTABanner-background-image-position)
     );
+  }
+}
+
+/* Large breakpoint and up */
+@media screen and (min-width: 63.25rem) {
+  .CTABanner-content {
+    gap: var(--base-size-24);
+  }
+  .CTABanner--variant-balanced .CTABanner-content {
+    gap: var(--base-size-16);
+  }
+  .CTABanner-container {
+    padding: var(--base-size-96) var(--base-size-64);
+    max-width: 100%;
+  }
+
+  .CTABanner--variant-balanced .CTABanner-container {
+    padding: var(--base-size-64);
+  }
+
+  .CTABanner--variant-minimal .CTABanner-container {
+    padding: var(--base-size-64);
   }
 }
 
@@ -104,4 +208,15 @@
       var(--brand-CTABanner-background-image-position)
     );
   }
+}
+
+.CTABanner-image {
+  width: 100%;
+  height: auto;
+}
+
+.CTABanner--variant-balanced .CTABanner-image {
+  max-width: 476px;
+  width: 100%;
+  height: auto;
 }
