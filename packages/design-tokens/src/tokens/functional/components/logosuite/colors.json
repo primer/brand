@@ -3,8 +3,8 @@
     "color": {
       "control": {
         "rest": {
-          "value": "var(--base-color-scale-gray-1)",
-          "dark": "#4d4e6a"
+          "value": "var(--brand-color-canvas-muted)",
+          "dark": "var(--brand-color-canvas-muted)"
         },
         "hover": {
           "value": "var(--base-color-scale-gray-2)",
