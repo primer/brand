@@ -24,6 +24,7 @@ import {
   FAQItemChildrenProp,
   FAQGroupHeadingAsProp,
   FAQVariantProp,
+  FAQQuestionWeightProp,
 } from './react'
 
 ```js
@@ -457,13 +458,14 @@ render(<App />)
 
 <h3 id="faq-question">FAQ.Question</h3>
 
-| Name        | Type                  | Default | Description                              |
-| :---------- | :-------------------- | :-----: | :--------------------------------------- |
-| `className` | `string`              |         | Sets a custom class on the root element  |
-| `children`  | `string`              |         | Question text                            |
-| `id`        | `string`              |         | Sets a custom id                         |
-| `as`        | <FAQQuestionAsProp /> | `'h4'`  | Applies the underlying HTML element      |
-| `ref`       | `React.RefObject`     |         | Forward a Ref to the underlying DOM node |
+| Name        | Type                       |  Default   | Description                              |
+| :---------- | :------------------------- | :--------: | :--------------------------------------- |
+| `className` | `string`                   |            | Sets a custom class on the root element  |
+| `children`  | `string`                   |            | Question text                            |
+| `id`        | `string`                   |            | Sets a custom id                         |
+| `as`        | <FAQQuestionAsProp />      |   `'h4'`   | Applies the underlying HTML element      |
+| `weight`    | <FAQQuestionWeightProp />  | `'normal'` | Sets the font weight of the question     |
+| `ref`       | `React.RefObject`          |            | Forward a Ref to the underlying DOM node |
 
 <h3 id="faq-answer">FAQ.Answer</h3>
 

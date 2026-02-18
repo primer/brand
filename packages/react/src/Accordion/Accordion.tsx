@@ -112,6 +112,7 @@ export type AccordionHeadingProps = HTMLAttributes<HTMLElement> & {
   as?: HeadingProps['as']
   reversedToggles?: boolean
   toggleColor?: (typeof AccordionToggleColors)[number]
+  weight?: HeadingProps['weight']
 }
 
 /**
@@ -120,7 +121,7 @@ export type AccordionHeadingProps = HTMLAttributes<HTMLElement> & {
  * `forwardRef<HTMLElement, AccordionHeadingProps>`
  */
 export const AccordionHeading = forwardRef<HTMLHeadingElement, AccordionHeadingProps>(
-  ({children, className, as = 'h4', toggleColor, reversedToggles, ...rest}, ref) => {
+  ({children, className, as = 'h4', toggleColor, reversedToggles, weight = 'normal', ...rest}, ref) => {
     const {variant} = useAccordionContext()
 
     return (
@@ -138,7 +139,7 @@ export const AccordionHeading = forwardRef<HTMLHeadingElement, AccordionHeadingP
         <span aria-hidden="true" className={styles['Accordion__summary--collapsed']}>
           <ChevronDownIcon size={24} />
         </span>
-        <Heading as={as} size={variant === 'emphasis' ? '6' : 'subhead-large'} weight="normal">
+        <Heading as={as} size={variant === 'emphasis' ? '6' : 'subhead-large'} weight={weight}>
           {children}
         </Heading>
         <span aria-hidden="true" className={styles['Accordion__summary--expanded']}>

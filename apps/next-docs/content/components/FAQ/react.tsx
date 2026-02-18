@@ -1,6 +1,6 @@
 'use client'
 import {PropTableValues} from '@primer/doctocat-nextjs/components'
-import {HeadingTags} from '../../../../../packages/react/src/Heading/Heading'
+import {HeadingTags, HeadingWeights} from '../../../../../packages/react/src/Heading/Heading'
 import {AccordionToggleColors} from '../../../../../packages/react/src/Accordion/Accordion'
 
 export const FAQChildrenProp = () => (
@@ -27,3 +27,5 @@ export const FAQItemChildrenProp = () => (
 export const FAQGroupHeadingAsProp = () => <PropTableValues values={[...HeadingTags]} addLineBreaks commaSeparated />
 
 export const FAQVariantProp = () => <PropTableValues values={['default', 'gridline']} addLineBreaks commaSeparated />
+
+export const FAQQuestionWeightProp = () => <PropTableValues values={[...HeadingWeights]} addLineBreaks commaSeparated />
