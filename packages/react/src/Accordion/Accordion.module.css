@@ -44,7 +44,8 @@
 .Accordion--emphasis:not(.Accordion .Accordion) > .Accordion__content {
   border-inline: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
   border-block-end: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
-  padding-block: var(--base-size-24) var(--base-size-24) var(--base-size-40);
+  padding-block-start: var(--base-size-24);
+  padding-block-end: var(--base-size-40);
   padding-inline: var(--base-size-36);
 }
 

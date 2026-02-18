@@ -61,7 +61,7 @@ const FAQRoot = forwardRef<HTMLElement, FAQRootProps>(
 
             if (variant === 'gridline') {
               return (
-                <div key={child.key} className={styles[`FAQ__heading-wrapper--${variant}`]}>
+                <div key={child.key ?? index} className={styles[`FAQ__heading-wrapper--${variant}`]}>
                   {clonedChild}
                 </div>
               )

@@ -6,9 +6,6 @@
 .FAQ--variant-gridline {
   padding-block-end: var(--base-size-40);
   border-block-end: var(--brand-color-border-muted) var(--brand-borderWidth-thin) solid;
-}
-
-.FAQ--variant-gridline {
   max-width: 100%;
 }
 
