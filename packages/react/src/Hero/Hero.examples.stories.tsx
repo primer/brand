@@ -590,6 +590,9 @@ export const WithCustomInput: Story = {
                 >
                   Copy
                 </Button>
+                <span className="visually-hidden" role="status">
+                  {hasCopied ? 'Copied to clipboard' : ''}
+                </span>
               </Stack>
             </Box>
             <Text as="p" size="200" variant="muted">
