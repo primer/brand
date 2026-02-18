@@ -17,49 +17,72 @@ import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/compone
  */
 import styles from './FAQ.module.css'
 
-export type FAQRootProps = PropsWithChildren<BaseProps<HTMLElement>> & React.HTMLAttributes<HTMLElement>
+export type FAQRootProps = {
+  variant?: 'default' | 'gridline'
+} & PropsWithChildren<BaseProps<HTMLElement>> &
+  React.HTMLAttributes<HTMLElement>
 
-const FAQRoot = forwardRef<HTMLElement, FAQRootProps>(({children, style, animate, className, ...rest}, ref) => {
-  const {classes: animationClasses, styles: animationInlineStyles} = useAnimation(animate)
+const FAQRoot = forwardRef<HTMLElement, FAQRootProps>(
+  ({children, style, animate, className, variant = 'default', ...rest}, ref) => {
+    const {classes: animationClasses, styles: animationInlineStyles} = useAnimation(animate)
 
-  const filteredChildren = React.Children.toArray(children).filter(child => {
-    if (React.isValidElement(child) && typeof child.type !== 'string') {
-      if (
-        isFragmentElement(child) ||
-        (child as React.ReactElement).type === FAQHeading ||
-        (child as React.ReactElement).type === FAQSubheading ||
-        (child as React.ReactElement).type === AccordionRoot
-      ) {
-        return true
-      }
-    }
-    return false
-  })
-
-  const hasSubheading = React.Children.toArray(children).some(
-    child => React.isValidElement(child) && typeof child.type !== 'string' && child.type === FAQSubheading,
-  )
-
-  return (
-    <section
-      ref={ref}
-      className={clsx(styles.FAQ, animationClasses, className)}
-      style={{...animationInlineStyles, ...style}}
-      {...rest}
-    >
-      {React.Children.toArray(filteredChildren).map(child => {
-        if (React.isValidElement<FAQHeadingProps>(child) && child.type === FAQHeading) {
-          return React.cloneElement(child, {
-            align: hasSubheading ? 'start' : child.props.align,
-            size: hasSubheading ? '3' : child.props.size,
-            weight: hasSubheading ? 'medium' : child.props.weight,
-          })
+    const filteredChildren = React.Children.toArray(children).filter(child => {
+      if (React.isValidElement(child) && typeof child.type !== 'string') {
+        if (
+          isFragmentElement(child) ||
+          (child as React.ReactElement).type === FAQHeading ||
+          (child as React.ReactElement).type === FAQSubheading ||
+          (child as React.ReactElement).type === AccordionRoot
+        ) {
+          return true
         }
-        return child
-      })}
-    </section>
-  )
-})
+      }
+      return false
+    })
+
+    const hasSubheading = React.Children.toArray(children).some(
+      child => React.isValidElement(child) && typeof child.type !== 'string' && child.type === FAQSubheading,
+    )
+
+    return (
+      <section
+        ref={ref}
+        className={clsx(styles.FAQ, styles[`FAQ--variant-${variant}`], animationClasses, className)}
+        style={{...animationInlineStyles, ...style}}
+        {...rest}
+      >
+        {React.Children.toArray(filteredChildren).map((child, index) => {
+          if (React.isValidElement<FAQHeadingProps>(child) && child.type === FAQHeading) {
+            const clonedChild = React.cloneElement(child, {
+              align: hasSubheading ? 'start' : child.props.align,
+              size: hasSubheading ? '3' : child.props.size,
+              weight: hasSubheading ? 'medium' : child.props.weight,
+            })
+
+            if (variant === 'gridline') {
+              return (
+                <div key={child.key} className={styles[`FAQ__heading-wrapper--${variant}`]}>
+                  {clonedChild}
+                </div>
+              )
+            }
+            return clonedChild
+          }
+
+          const otherChild = child
+
+          return variant === 'gridline' ? (
+            <div key={index} className={styles[`FAQ__content-wrapper--${variant}`]}>
+              {otherChild}
+            </div>
+          ) : (
+            otherChild
+          )
+        })}
+      </section>
+    )
+  },
+)
 
 type FAQHeadingProps = BaseProps<HTMLHeadingElement> & {
   align?: 'start' | 'center'
@@ -90,9 +113,24 @@ export type FAQSubheadingProps = BaseProps<HTMLHeadingElement> & {
   as?: Exclude<HeadingProps['as'], 'h1'>
 } & HeadingProps
 
-function FAQSubheading({children, className, as = 'h3', size = 'subhead-large', weight, ...rest}: FAQSubheadingProps) {
+function FAQSubheading({
+  children,
+  className,
+  as = 'h3',
+  size = 'subhead-medium',
+  font = 'monospace',
+  weight = 'medium',
+  ...rest
+}: FAQSubheadingProps) {
   return (
-    <Heading as={as} className={clsx(styles.FAQ__subheading, className)} weight={weight} size={size} {...rest}>
+    <Heading
+      as={as}
+      className={clsx(styles.FAQ__subheading, className)}
+      weight={weight}
+      size={size}
+      font={font}
+      {...rest}
+    >
       {children}
     </Heading>
   )

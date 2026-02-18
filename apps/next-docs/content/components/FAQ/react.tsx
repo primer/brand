@@ -25,3 +25,5 @@ export const FAQItemChildrenProp = () => (
 )
 
 export const FAQGroupHeadingAsProp = () => <PropTableValues values={[...HeadingTags]} addLineBreaks commaSeparated />
+
+export const FAQVariantProp = () => <PropTableValues values={['default', 'gridline']} addLineBreaks commaSeparated />

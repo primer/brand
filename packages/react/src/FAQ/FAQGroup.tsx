@@ -3,7 +3,7 @@ import {useId} from '../hooks/useId'
 import {clsx} from 'clsx'
 
 import {FAQSubheadingProps, FAQRootProps, FAQ} from './'
-import {Accordion, Button, Grid, Heading, Stack, Box} from '../'
+import {Accordion, Grid, Heading, Stack, Box} from '../'
 
 /**
  * Design tokens
@@ -27,11 +27,19 @@ function HeadingBase({children, className, as = 'h3', ...rest}: FAQSubheadingPro
 
 export type FAQGroupProps = React.PropsWithChildren<{
   id?: string
+  variant?: 'default' | 'gridline'
   defaultSelectedIndex?: number
   tabAttributes?: (children: React.ReactNode, index: number) => Record<string, unknown>
 }>
 
-function FAQGroupBase({children, id, defaultSelectedIndex = 0, tabAttributes, ...rest}: FAQGroupProps) {
+function FAQGroupBase({
+  children,
+  id,
+  variant = 'default',
+  defaultSelectedIndex = 0,
+  tabAttributes,
+  ...rest
+}: FAQGroupProps) {
   const [selectedIndex, setSelectedIndex] = React.useState(defaultSelectedIndex)
   const [hasInteracted, setHasInteracted] = React.useState(false)
   const instanceId = useId(id)
@@ -96,13 +104,10 @@ function FAQGroupBase({children, id, defaultSelectedIndex = 0, tabAttributes, ..
       }
 
       return (
-        <Button
-          variant="subtle"
-          hasArrow={false}
-          as="button"
+        <button
+          type="button"
           role="tab"
           className={styles['FAQGroup__tablist-button']}
-          block
           id={`${instanceId}-tab-${index}`}
           aria-controls={`${instanceId}-panel-${index}`}
           aria-selected={selectedIndex === index}
@@ -115,7 +120,7 @@ function FAQGroupBase({children, id, defaultSelectedIndex = 0, tabAttributes, ..
           {...tabAttributeRest}
         >
           {tabContents}
-        </Button>
+        </button>
       )
     }
     return null
@@ -186,36 +191,59 @@ function FAQGroupBase({children, id, defaultSelectedIndex = 0, tabAttributes, ..
       React.isValidElement(child) && child.type === HeadingBase,
   )
 
-  return (
-    <Grid {...rest}>
-      <Grid.Column>
-        {GroupHeading && (
-          <Box marginBlockEnd={{narrow: 48, regular: 80}}>
-            <Grid>
-              <Grid.Column>{GroupHeading}</Grid.Column>
-            </Grid>
-          </Box>
-        )}
+  const Tag = variant === 'gridline' ? Box : React.Fragment
+  const tagProps =
+    variant === 'gridline'
+      ? {borderBlockEndWidth: 'thin' as const, borderColor: 'muted' as const, borderStyle: 'solid' as const}
+      : {}
 
-        <div className={clsx(styles.FAQGroup__accordion)}>{SectionedAccordions}</div>
-        <Grid className={clsx(styles.FAQGroup)}>
-          <Grid.Column span={{medium: 5, large: 4}} className={styles.FAQGroup__tablist}>
-            <Stack
-              direction="vertical"
-              aria-orientation="vertical"
-              padding="none"
-              role="tablist"
-              alignItems="flex-start"
-            >
-              {Tabs}
-            </Stack>
-          </Grid.Column>
-          <Grid.Column start={6} span={7}>
-            {TabPanels}
+  return (
+    <Tag {...tagProps}>
+      <div className={clsx(styles[`FAQGroup__heading-wrapper`], styles[`FAQGroup__heading-wrapper--${variant}`])}>
+        <Grid {...rest}>
+          <Grid.Column>
+            {GroupHeading && (
+              <Grid>
+                <Grid.Column>{GroupHeading}</Grid.Column>
+              </Grid>
+            )}
+
+            <div className={clsx(styles.FAQGroup__accordion)}>{SectionedAccordions}</div>
           </Grid.Column>
         </Grid>
-      </Grid.Column>
-    </Grid>
+      </div>
+      <Grid {...rest}>
+        <Grid.Column span={12}>
+          <Grid className={clsx(styles.FAQGroup)}>
+            <Grid.Column
+              span={{medium: 5, large: 4}}
+              className={clsx(
+                styles.FAQGroup__tablist,
+                variant === 'gridline' && styles['FAQGroup__tablist--gridline'],
+              )}
+            >
+              <Stack
+                direction="vertical"
+                aria-orientation="vertical"
+                padding="none"
+                role="tablist"
+                gap="none"
+                alignItems="flex-start"
+              >
+                {Tabs}
+              </Stack>
+            </Grid.Column>
+            <Grid.Column
+              start={6}
+              span={7}
+              className={clsx(variant === 'gridline' && styles['FAQGroup__content--gridline'])}
+            >
+              {TabPanels}
+            </Grid.Column>
+          </Grid>
+        </Grid.Column>
+      </Grid>
+    </Tag>
   )
 }
 

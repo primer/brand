@@ -48,7 +48,8 @@ export function FlexTemplateTrailingSection({template}: FlexTemplateTrailingSect
       const faqItems = questionsWithCopy
         .map((questionEntry, questionIndex) => {
           const answerContent = questionEntry.answer
-          const renderedAnswer = typeof answerContent === 'string' ? <Prose html={answerContent} /> : answerContent
+          const renderedAnswer =
+            typeof answerContent === 'string' ? <Prose html={`<p>${answerContent}</p>`} /> : answerContent
 
           if (!renderedAnswer) {
             return null

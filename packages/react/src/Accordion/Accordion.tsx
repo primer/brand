@@ -136,13 +136,13 @@ export const AccordionHeading = forwardRef<HTMLHeadingElement, AccordionHeadingP
         {...rest}
       >
         <span aria-hidden="true" className={styles['Accordion__summary--collapsed']}>
-          {variant === 'emphasis' && <ChevronDownIcon size={24} fill="var(--brand-color-text-default)" />}
+          <ChevronDownIcon size={24} />
         </span>
-        <Heading as={as} size={variant === 'emphasis' ? '6' : 'subhead-large'}>
+        <Heading as={as} size={variant === 'emphasis' ? '6' : 'subhead-large'} weight="normal">
           {children}
         </Heading>
         <span aria-hidden="true" className={styles['Accordion__summary--expanded']}>
-          {variant === 'emphasis' && <ChevronUpIcon size={24} fill="var(--brand-color-text-default)" />}
+          <ChevronUpIcon size={24} />
         </span>
       </summary>
     )

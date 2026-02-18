@@ -21,6 +21,9 @@ const meta = {
       },
     },
   },
+  globals: {
+    viewport: {},
+  },
 } satisfies Meta<typeof FAQ>
 
 export default meta
@@ -216,164 +219,106 @@ export const WithSubheadings: Story = {
   },
 }
 
-export const Groups: Story = {
-  render: () => {
-    return (
-      <FAQGroup>
-        <FAQGroup.Heading>
-          Frequently asked
-          <br />
-          questions
-        </FAQGroup.Heading>
-        <FAQ>
-          <FAQ.Heading>Using GitHub Enterprise</FAQ.Heading>
-          <FAQ.Item>
-            <FAQ.Question>What is GitHub Enterprise?</FAQ.Question>
-            <FAQ.Answer>
-              <p>
-                Lorem ipsum dolor sit amet,{' '}
-                <a href="/" target="_blank" rel="noreferrer">
-                  consectetur adipiscing elit
-                </a>
-                . In sapien sit ullamcorper id. Aliquam luctus sed turpis felis nam pulvinar risus elementum.
-              </p>
-            </FAQ.Answer>
-          </FAQ.Item>
-          <FAQ.Item>
-            <FAQ.Question>How can GitHub Enterprise be deployed?</FAQ.Question>
-            <FAQ.Answer>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.{' '}
-                <a href="/" target="_blank" rel="noreferrer">
-                  In sapien sit ullamcorper id.
-                </a>{' '}
-                Aliquam luctus sed turpis felis nam pulvinar risus elementum.
-              </p>
-            </FAQ.Answer>
-          </FAQ.Item>
-          <FAQ.Item>
-            <FAQ.Question>What is GitHub Enterprise Cloud?</FAQ.Question>
-            <FAQ.Answer>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus
-                sed turpis felis{' '}
-                <a href="/" target="_blank" rel="noreferrer">
-                  nam pulvinar risus elementum.
-                </a>
-              </p>
-            </FAQ.Answer>
-          </FAQ.Item>
-        </FAQ>
+const renderFAQGroupExample = (variant?: 'default' | 'gridline') => (
+  <FAQGroup variant={variant}>
+    <FAQGroup.Heading>
+      Frequently asked
+      <br />
+      questions
+    </FAQGroup.Heading>
+    <FAQ variant={variant}>
+      <FAQ.Heading>Using GitHub Enterprise</FAQ.Heading>
+      <FAQ.Item>
+        <FAQ.Question>What is GitHub Enterprise?</FAQ.Question>
+        <FAQ.Answer>
+          <p>
+            Lorem ipsum dolor sit amet,{' '}
+            <a href="/" target="_blank" rel="noreferrer">
+              consectetur adipiscing elit
+            </a>
+            . In sapien sit ullamcorper id. Aliquam luctus sed turpis felis nam pulvinar risus elementum.
+          </p>
+        </FAQ.Answer>
+      </FAQ.Item>
+      <FAQ.Item>
+        <FAQ.Question>How can GitHub Enterprise be deployed?</FAQ.Question>
+        <FAQ.Answer>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit.{' '}
+            <a href="/" target="_blank" rel="noreferrer">
+              In sapien sit ullamcorper id.
+            </a>{' '}
+            Aliquam luctus sed turpis felis nam pulvinar risus elementum.
+          </p>
+        </FAQ.Answer>
+      </FAQ.Item>
+      <FAQ.Item>
+        <FAQ.Question>What is GitHub Enterprise Cloud?</FAQ.Question>
+        <FAQ.Answer>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
+            turpis felis{' '}
+            <a href="/" target="_blank" rel="noreferrer">
+              nam pulvinar risus elementum.
+            </a>
+          </p>
+        </FAQ.Answer>
+      </FAQ.Item>
+    </FAQ>
 
-        <FAQ>
-          <FAQ.Heading>About GitHub Enterprise</FAQ.Heading>
-          <FAQ.Item>
-            <FAQ.Question>What is the difference between GitHub and GitHub Enterprise?</FAQ.Question>
-            <FAQ.Answer>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus
-                sed turpis felis nam pulvinar risus elementum.
-              </p>
-            </FAQ.Answer>
-          </FAQ.Item>
-          <FAQ.Item>
-            <FAQ.Question>Why should organizations use GitHub Enterprise?</FAQ.Question>
-            <FAQ.Answer>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus
-                sed turpis felis nam pulvinar risus elementum.
-              </p>
-            </FAQ.Answer>
-          </FAQ.Item>
-          <FAQ.Item>
-            <FAQ.Question>Who uses GitHub Enterprise?</FAQ.Question>
-            <FAQ.Answer>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus
-                sed turpis felis nam pulvinar risus elementum.
-              </p>
-            </FAQ.Answer>
-          </FAQ.Item>
-        </FAQ>
-      </FAQGroup>
-    )
-  },
+    <FAQ variant={variant}>
+      <FAQ.Heading>About GitHub Enterprise</FAQ.Heading>
+      <FAQ.Item>
+        <FAQ.Question>What is the difference between GitHub and GitHub Enterprise?</FAQ.Question>
+        <FAQ.Answer>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
+            turpis felis nam pulvinar risus elementum.
+          </p>
+        </FAQ.Answer>
+      </FAQ.Item>
+      <FAQ.Item>
+        <FAQ.Question>Why should organizations use GitHub Enterprise?</FAQ.Question>
+        <FAQ.Answer>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
+            turpis felis nam pulvinar risus elementum.
+          </p>
+        </FAQ.Answer>
+      </FAQ.Item>
+      <FAQ.Item>
+        <FAQ.Question>Who uses GitHub Enterprise?</FAQ.Question>
+        <FAQ.Answer>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
+            turpis felis nam pulvinar risus elementum.
+          </p>
+        </FAQ.Answer>
+      </FAQ.Item>
+    </FAQ>
+  </FAQGroup>
+)
+
+export const Groups: Story = {
+  render: () => renderFAQGroupExample(),
+}
+
+export const GroupsGridline: Story = {
+  name: 'Groups (gridline)',
+  render: () => renderFAQGroupExample('gridline'),
 }
 
 export const GroupsNarrow: Story = {
   name: 'Group narrow view (mobile)',
-  render: () => {
-    return (
-      <FAQGroup>
-        <FAQGroup.Heading>
-          Frequently asked
-          <br />
-          questions
-        </FAQGroup.Heading>
-        <FAQ>
-          <FAQ.Heading>Using GitHub Enterprise</FAQ.Heading>
-          <FAQ.Item>
-            <FAQ.Question>What is GitHub Enterprise?</FAQ.Question>
-            <FAQ.Answer>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus
-                sed turpis felis nam pulvinar risus elementum.
-              </p>
-            </FAQ.Answer>
-          </FAQ.Item>
-          <FAQ.Item>
-            <FAQ.Question>How can GitHub Enterprise be deployed?</FAQ.Question>
-            <FAQ.Answer>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus
-                sed turpis felis nam pulvinar risus elementum.
-              </p>
-            </FAQ.Answer>
-          </FAQ.Item>
-          <FAQ.Item>
-            <FAQ.Question>What is GitHub Enterprise Cloud?</FAQ.Question>
-            <FAQ.Answer>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus
-                sed turpis felis nam pulvinar risus elementum.
-              </p>
-            </FAQ.Answer>
-          </FAQ.Item>
-        </FAQ>
-
-        <FAQ>
-          <FAQ.Heading>About GitHub Enterprise</FAQ.Heading>
-          <FAQ.Item>
-            <FAQ.Question>What is the difference between GitHub and GitHub Enterprise?</FAQ.Question>
-            <FAQ.Answer>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus
-                sed turpis felis nam pulvinar risus elementum.
-              </p>
-            </FAQ.Answer>
-          </FAQ.Item>
-          <FAQ.Item>
-            <FAQ.Question>Why should organizations use GitHub Enterprise?</FAQ.Question>
-            <FAQ.Answer>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus
-                sed turpis felis nam pulvinar risus elementum.
-              </p>
-            </FAQ.Answer>
-          </FAQ.Item>
-          <FAQ.Item>
-            <FAQ.Question>Who uses GitHub Enterprise?</FAQ.Question>
-            <FAQ.Answer>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus
-                sed turpis felis nam pulvinar risus elementum.
-              </p>
-            </FAQ.Answer>
-          </FAQ.Item>
-        </FAQ>
-      </FAQGroup>
-    )
+  render: () => renderFAQGroupExample(),
+  globals: {
+    viewport: {value: 'iphonexr'},
   },
+}
+
+export const GroupsNarrowGridline: Story = {
+  name: 'Group narrow view (mobile, gridline)',
+  render: () => renderFAQGroupExample('gridline'),
   globals: {
     viewport: {value: 'iphonexr'},
   },
@@ -625,6 +570,26 @@ export const WithProse: Story = {
           </FAQ.Item>
         </FAQ>
       </Container>
+    )
+  },
+}
+
+export const GridlineVariant: Story = {
+  render: () => {
+    return (
+      <FAQ variant="gridline">
+        <FAQ.Heading>Frequently asked&nbsp;questions</FAQ.Heading>
+        <>
+          {fixtureData.map(({question, answer}) => {
+            return (
+              <FAQ.Item key={question}>
+                <FAQ.Question>{question}</FAQ.Question>
+                <FAQ.Answer>{answer}</FAQ.Answer>
+              </FAQ.Item>
+            )
+          })}
+        </>
+      </FAQ>
     )
   },
 }
