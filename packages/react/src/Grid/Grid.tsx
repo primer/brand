@@ -40,6 +40,18 @@ export type GridProps<T extends keyof JSX.IntrinsicElements = 'div'> = React.HTM
    */
   enableOverlay?: boolean
   /**
+   * Enable/disable default gutters
+   */
+  enableGutters?: boolean
+  /**
+   * Sets the gap between columns.
+   */
+  columnGap?: 'none' | 'default'
+  /**
+   * Sets the gap between rows.
+   */
+  rowGap?: 'none' | 'default'
+  /**
    * Fills the width of the parent container and removes the max-width.
    */
   fullWidth?: boolean
@@ -60,13 +72,19 @@ const _GridRoot = memo(
     as = 'div',
     fullWidth = false,
     enableOverlay = false,
+    enableGutters = true,
+    columnGap = 'default',
+    rowGap = 'default',
     ['data-testid']: testId,
     ...rest
   }: PropsWithChildren<GridProps>) => {
     const gridClass = clsx(
       styles.Grid,
+      styles[`Grid--columnGap-${columnGap}`],
+      styles[`Grid--rowGap-${rowGap}`],
       enableOverlay && styles['Grid--has-overlay'],
       fullWidth && styles['Grid--full-width'],
+      enableGutters && styles['Grid--has-gutters'],
       className,
     )
 
