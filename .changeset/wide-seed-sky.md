@@ -39,3 +39,21 @@ Updates to `River` component
     <Text>Description</Text>
   </River.Content>
   ```
+
+- **New `RiverBreakout` prop**: `variant`. This prop controls the layout and appearance of the RiverBreakout component. Two variants are available: `default` and `gridline`.
+
+  The `gridline` variant adds horizontal border lines, lateral spacing, and supports vertical dividers for the trailing component on tablet+ viewports.
+
+  ```jsx
+  <RiverBreakout variant="gridline">
+    <RiverBreakout.A11yHeading>Title</RiverBreakout.A11yHeading>
+    <RiverBreakout.Visual>
+      <img src="..." alt="..." />
+    </RiverBreakout.Visual>
+    <RiverBreakout.Content trailingComponent={Timeline} trailingComponentDivider>
+      <Text>Description</Text>
+    </RiverBreakout.Content>
+  </RiverBreakout>
+  ```
+
+- **`RiverBreakout` padded background support**: `RiverBreakout.Visual` now supports `imageBackgroundColor="subtle"` to display the visual with a padded background container that bleeds to the gridline borders.
