@@ -2,7 +2,7 @@ import React, {render, cleanup} from '@testing-library/react'
 import '@testing-library/jest-dom'
 
 import {River} from '../'
-import {Text, Link, Heading, Label} from '../../'
+import {Text, Link, Heading, Label, EyebrowText} from '../../'
 import {axe, toHaveNoViolations} from 'jest-axe'
 
 expect.extend(toHaveNoViolations)
@@ -338,5 +338,171 @@ describe('River', () => {
     const results = await axe(container)
 
     expect(results).toHaveNoViolations()
+  })
+
+  it('renders with default variant by default', () => {
+    const rootId = 'root-el'
+    const {getByTestId} = render(
+      <River data-testid={rootId}>
+        <River.Visual>
+          <MockImage />
+        </River.Visual>
+        <River.Content>
+          <Text>{mockText}</Text>
+        </River.Content>
+      </River>,
+    )
+
+    const rootEl = getByTestId(rootId)
+    expect(rootEl).toHaveClass('River--variant-default')
+    expect(rootEl).not.toHaveClass('River--variant-gridline')
+  })
+
+  it('renders with gridline variant', () => {
+    const rootId = 'root-el'
+    const {getByTestId} = render(
+      <River data-testid={rootId} variant="gridline">
+        <River.Visual>
+          <MockImage />
+        </River.Visual>
+        <River.Content>
+          <Text>{mockText}</Text>
+        </River.Content>
+      </River>,
+    )
+
+    const rootEl = getByTestId(rootId)
+    expect(rootEl).toHaveClass('River--variant-gridline')
+    expect(rootEl).not.toHaveClass('River--variant-default')
+  })
+
+  it('renders visual without background by default', () => {
+    const visualId = 'visual-el'
+    const {getByTestId} = render(
+      <River>
+        <River.Visual data-testid={visualId}>
+          <MockImage />
+        </River.Visual>
+        <River.Content>
+          <Text>{mockText}</Text>
+        </River.Content>
+      </River>,
+    )
+
+    const visualEl = getByTestId(visualId)
+    expect(visualEl).not.toHaveClass('River__visual--has-background')
+  })
+
+  it('optionally renders visual with subtle background color', () => {
+    const visualId = 'visual-el'
+    const {getByTestId} = render(
+      <River variant="gridline">
+        <River.Visual data-testid={visualId} imageBackgroundColor="subtle">
+          <MockImage />
+        </River.Visual>
+        <River.Content>
+          <Text>{mockText}</Text>
+        </River.Content>
+      </River>,
+    )
+
+    const visualEl = getByTestId(visualId)
+    expect(visualEl).toHaveClass('River__visual--has-background')
+  })
+
+  it('does not apply background class when imageBackgroundColor is default', () => {
+    const visualId = 'visual-el'
+    const {getByTestId} = render(
+      <River variant="gridline">
+        <River.Visual data-testid={visualId} imageBackgroundColor="default">
+          <MockImage />
+        </River.Visual>
+        <River.Content>
+          <Text>{mockText}</Text>
+        </River.Content>
+      </River>,
+    )
+
+    const visualEl = getByTestId(visualId)
+    expect(visualEl).not.toHaveClass('River__visual--has-background')
+  })
+
+  it('renders content with center alignment by default', () => {
+    const contentId = 'content-el'
+    const {getByTestId} = render(
+      <River>
+        <River.Visual>
+          <MockImage />
+        </River.Visual>
+        <River.Content data-testid={contentId}>
+          <Text>{mockText}</Text>
+        </River.Content>
+      </River>,
+    )
+
+    const contentEl = getByTestId(contentId)
+    expect(contentEl).toHaveClass('River__content--align-center')
+    expect(contentEl).not.toHaveClass('River__content--align-block-end')
+  })
+
+  it('optionally renders content with block-end alignment', () => {
+    const contentId = 'content-el'
+    const {getByTestId} = render(
+      <River>
+        <River.Visual>
+          <MockImage />
+        </River.Visual>
+        <River.Content data-testid={contentId} align="block-end">
+          <Text>{mockText}</Text>
+        </River.Content>
+      </River>,
+    )
+
+    const contentEl = getByTestId(contentId)
+    expect(contentEl).toHaveClass('River__content--align-block-end')
+    expect(contentEl).not.toHaveClass('River__content--align-center')
+  })
+
+  it('renders EyebrowText within River.Content', () => {
+    const mockEyebrowText = 'Feature'
+    const {getByTestId} = render(
+      <River>
+        <River.Visual>
+          <MockImage />
+        </River.Visual>
+        <River.Content>
+          <EyebrowText>{mockEyebrowText}</EyebrowText>
+          <Heading>{mockHeading}</Heading>
+          <Text>{mockText}</Text>
+        </River.Content>
+      </River>,
+    )
+
+    const eyebrowEl = getByTestId(EyebrowText.testIds.root)
+    expect(eyebrowEl).toBeInTheDocument()
+    expect(eyebrowEl).toHaveTextContent(mockEyebrowText)
+  })
+
+  it('renders Label instead of EyebrowText when both are present', () => {
+    const mockEyebrowText = 'Feature'
+    const {getByText, queryByText} = render(
+      <River>
+        <River.Visual>
+          <MockImage />
+        </River.Visual>
+        <River.Content>
+          <Label>{mockLabel}</Label>
+          <EyebrowText>{mockEyebrowText}</EyebrowText>
+          <Heading>{mockHeading}</Heading>
+          <Text>{mockText}</Text>
+        </River.Content>
+      </River>,
+    )
+
+    const labelEl = getByText(mockLabel)
+    const eyebrowEl = queryByText(mockEyebrowText)
+
+    expect(labelEl).toBeInTheDocument()
+    expect(eyebrowEl).not.toBeInTheDocument()
   })
 })
