@@ -272,6 +272,12 @@
   .LogoSuite--gridline-expressive .LogoSuite__logobarContainer {
     padding: var(--base-size-36);
   }
+  .LogoSuite--gridline-expressive .LogoSuite__content {
+    border-inline: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
+  }
+  .LogoSuite--gridline-expressive .LogoSuite__textContainer {
+    border-inline-end: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
+  }
 }
 
 @media screen and (min-width: 64rem) {
@@ -292,10 +298,6 @@
 @media screen and (min-width: 1281px) {
   .LogoSuite--gridline-expressive .LogoSuite__content {
     border-inline: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
-  }
-
-  .LogoSuite--gridline-expressive .LogoSuite__textContainer {
-    border-inline-end: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
   }
 
   /* When the logobar is the only column visible (no adjacent text), this removes start border */
