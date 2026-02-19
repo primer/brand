@@ -174,7 +174,7 @@ const _Description = forwardRef(
   },
 )
 
-const PauseIcon = () => <OcticonPauseIcon aria-label="Pause icon" size={16} />
+const PauseIcon = () => <OcticonPauseIcon size={16} />
 const PlayIcon = () => (
   <svg role="presentation" aria-hidden="true" viewBox="8 7 9 10" width="16" height="16">
     <path
