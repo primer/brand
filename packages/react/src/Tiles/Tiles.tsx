@@ -5,7 +5,6 @@ import type {BaseProps} from '../component-helpers'
 import {Text} from '../Text'
 
 /** * Design Tokens */
-import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/tiles/base.css'
 import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/tiles/colors-with-modes.css'
 
 /** * Main Stylesheet (as a CSS Module) */
