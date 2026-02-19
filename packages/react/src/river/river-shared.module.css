@@ -216,11 +216,11 @@
     grid-template-columns: [visual] 6fr [content] 4fr;
   }
 
-  .River--align-start.River--50-50:not(:has(.River__visual--has-background)) .River__visual {
+  .River--variant-gridline.River--align-start.River--50-50:not(:has(.River__visual--has-background)) .River__visual {
     margin-inline-start: calc(var(--base-size-80) + var(--base-size-8));
   }
 
-  .River--align-end.River--50-50:not(:has(.River__visual--has-background)) .River__visual {
+  .River--variant-gridline.River--align-end.River--50-50:not(:has(.River__visual--has-background)) .River__visual {
     margin-inline-end: calc(var(--base-size-80) + var(--base-size-8));
   }
 
