@@ -447,7 +447,7 @@ describe('Accordion', () => {
     expect(chevronUp).toBeInTheDocument()
   })
 
-  it('does not render chevron icons when variant is default', () => {
+  it('renders chevron icons when variant is default', () => {
     const {container} = render(
       <Accordion variant="default">
         <Accordion.Heading>Test heading</Accordion.Heading>
@@ -458,8 +458,8 @@ describe('Accordion', () => {
     const chevronDown = container.querySelector('.Accordion__summary--collapsed svg')
     const chevronUp = container.querySelector('.Accordion__summary--expanded svg')
 
-    expect(chevronDown).not.toBeInTheDocument()
-    expect(chevronUp).not.toBeInTheDocument()
+    expect(chevronDown).toBeInTheDocument()
+    expect(chevronUp).toBeInTheDocument()
   })
 
   it('forwards additional props to details element', () => {
