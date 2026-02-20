@@ -48,10 +48,10 @@
   text-transform: uppercase;
   text-align: start;
   color: var(--brand-color-text-muted);
-  border-radius: var(--brand-borderRadius-medium);
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  transition: gap var(--brand-animation-duration-fast) var(--brand-animation-easing-default);
 }
 
 .FAQGroup__tablist-button:focus-visible {
@@ -62,10 +62,14 @@
 .FAQGroup__tablist-button::before {
   content: '';
   display: block;
-  width: calc(var(--base-size-8) - 1px);
+  width: calc(var(--base-size-8) + var(--base-size-2));
   height: var(--base-size-12);
   flex-shrink: 0;
   background-color: var(--brand-FAQGroup-buttonIndicator-idle);
+  transform: scaleX(0.7);
+  transform-origin: left;
+  transition: transform var(--brand-animation-duration-fast) var(--brand-animation-easing-default),
+    background-color var(--brand-animation-duration-fast) var(--brand-animation-easing-default);
 }
 
 .FAQGroup__tablist-button:hover::before {
@@ -74,9 +78,11 @@
 
 .FAQGroup__tablist-button[aria-selected='true'] {
   color: var(--brand-FAQ-color-tabLabel-selected);
+  gap: calc(var(--base-size-12) + 3px);
 }
 
 .FAQGroup__tablist-button[aria-selected='true']::before {
+  transform: scaleX(1);
   background-color: var(--brand-FAQGroup-buttonIndicator-active);
 }
 

@@ -126,5 +126,19 @@ module.exports = {
         },
       },
     },
+    indicator: {
+      idle: {
+        value: 'var(--base-color-scale-gray-3)',
+        dark: 'var(--base-color-scale-gray-7)',
+      },
+      hover: {
+        value: 'var(--base-color-scale-gray-5)',
+        dark: 'var(--base-color-scale-gray-5)',
+      },
+      active: {
+        value: 'var(--brand-color-accent-primary)',
+        dark: 'var(--brand-color-accent-primary)',
+      },
+    },
   },
 }

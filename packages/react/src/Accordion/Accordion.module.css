@@ -10,9 +10,9 @@
 .Accordion--emphasis:not(.Accordion .Accordion) > .Accordion__summary {
   background-color: var(--brand-color-canvas-subtle);
   border: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
-  padding-block: var(--base-size-28);
-  padding-inline-start: var(--base-size-36);
-  gap: var(--base-size-12);
+  padding-block: var(--base-size-20);
+  padding-inline: var(--base-size-20);
+  gap: 0;
   justify-content: flex-start;
   align-items: center;
 }
@@ -23,7 +23,16 @@
   width: calc(var(--base-size-8) - 1px);
   height: var(--base-size-12);
   flex-shrink: 0;
-  background-color: var(--brand-color-accent-primary);
+  margin-inline-end: var(--base-size-12);
+  background-color: var(--brand-Accordion-indicator-idle);
+}
+
+.Accordion__summary--emphasis:hover::before {
+  background-color: var(--brand-Accordion-indicator-hover);
+}
+
+details[open] > .Accordion__summary--emphasis::before {
+  background-color: var(--brand-Accordion-indicator-active);
 }
 
 .Accordion__summary--emphasis :is(h3, h4, h5, h6) {
@@ -44,9 +53,9 @@
 .Accordion--emphasis:not(.Accordion .Accordion) > .Accordion__content {
   border-inline: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
   border-block-end: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
-  padding-block-start: var(--base-size-24);
-  padding-block-end: var(--base-size-40);
-  padding-inline: var(--base-size-36);
+  padding-block-start: var(--base-size-16);
+  padding-block-end: var(--base-size-24);
+  padding-inline: var(--base-size-24);
 }
 
 .Accordion--emphasis .Accordion--default:last-child {
@@ -96,6 +105,16 @@ details[open].Accordion--default::after {
   outline: var(--brand-borderWidth-thick) solid var(--brand-color-focus);
 }
 
+/* When open, move focus ring to the details element to wrap summary + content as one unit */
+details[open].Accordion:has(> summary:focus-visible) {
+  outline: var(--brand-borderWidth-thick) solid var(--brand-color-focus);
+  outline-offset: var(--base-size-2);
+}
+
+details[open].Accordion > .Accordion__summary:focus-visible {
+  outline: none;
+}
+
 .Accordion__summary--collapsed,
 .Accordion__summary--expanded {
   cursor: pointer;
@@ -114,9 +133,18 @@ details[open].Accordion--default::after {
   right: 0;
 }
 
-.Accordion__summary--emphasis:not(.Accordion__summary--reversed-toggles) .Accordion__summary--collapsed,
-.Accordion__summary--emphasis:not(.Accordion__summary--reversed-toggles) .Accordion__summary--expanded {
-  right: var(--base-size-36);
+.Accordion__summary--emphasis .Accordion__summary--collapsed,
+.Accordion__summary--emphasis .Accordion__summary--expanded {
+  position: static;
+  order: 1;
+}
+
+.Accordion__summary--emphasis .Accordion__summary--collapsed {
+  margin-inline-start: auto;
+}
+
+.Accordion__summary--emphasis .Accordion__summary--expanded {
+  margin-inline-start: calc(-1 * var(--base-size-24));
 }
 
 .Accordion__summary--reversed-toggles .Accordion__summary--collapsed,
@@ -211,7 +239,7 @@ details[open].Accordion--default::after {
 
 .Accordion__summary.Accordion__summary--emphasis .Accordion__summary--collapsed,
 .Accordion__summary.Accordion__summary--emphasis .Accordion__summary--expanded {
-  transform: translate(0, -2px);
+  transform: translateY(-2px);
 }
 
 .Accordion__summary.Accordion__summary--emphasis .Accordion__summary--expanded {
@@ -234,7 +262,7 @@ details[open] > .Accordion__summary.Accordion__summary--default .Accordion__summ
   opacity: 0;
 }
 
-.Accordion__summary:not(.Accordion__summary--reversed-toggles) {
+.Accordion__summary--default:not(.Accordion__summary--reversed-toggles) {
   padding-inline-end: var(--base-size-48);
 }
 
@@ -296,7 +324,7 @@ details[open] > .Accordion__content {
 }
 
 .Accordion__summary--default + .Accordion__content {
-  margin-top: calc(var(--base-size-16) * -1); /* for 8px gap between question and answer */
+  margin-top: calc(var(--base-size-12) * -1); /* for 12px gap between question and answer */
 }
 
 details[open] > .Accordion__summary--reversed-toggles + .Accordion__content {
@@ -307,11 +335,6 @@ details[open] > .Accordion__summary--reversed-toggles + .Accordion__content {
 @media screen and (min-width: 48rem) {
   .Accordion__summary {
     gap: var(--base-size-40);
-  }
-
-  .Accordion__summary--emphasis:not(.Accordion__summary--reversed-toggles) .Accordion__summary--collapsed,
-  .Accordion__summary--emphasis:not(.Accordion__summary--reversed-toggles) .Accordion__summary--expanded {
-    right: 0;
   }
 }
 
