@@ -51,22 +51,6 @@ import {SubNav} from '@primer/react-brand'
 </div>
 ```
 
-### Shadow
-
-```jsx live
-<div style={{position: 'relative', height: 100, width: '100%'}}>
-  <SubNav hasShadow>
-    <SubNav.Heading href="#">Features</SubNav.Heading>
-    <SubNav.Link href="#">Actions</SubNav.Link>
-    <SubNav.Link href="#">Packages</SubNav.Link>
-    <SubNav.Link href="#" aria-current="page">
-      Copilot
-    </SubNav.Link>
-    <SubNav.Link href="#">Code review</SubNav.Link>
-  </SubNav>
-</div>
-```
-
 ### Optional CTA
 
 ```jsx live
@@ -140,7 +124,6 @@ Ensure that the text of each `SubNav.Link` within the anchor-based submenu fits 
 
 | name        | type      | default | required | description                                                                   |
 | ----------- | --------- | ------- | -------- | ----------------------------------------------------------------------------- |
-| `hasShadow` | `boolean` | `false` | `false`  | Applies optional shadow, along with a fixed background color                  |
 | `fullWidth` | `boolean` | `false` | `false`  | Allows the SubNav to be used at full width, removing default internal padding |
 
 ### SubNav.Heading <Label>Required</Label>
