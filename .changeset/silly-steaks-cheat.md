@@ -4,6 +4,9 @@
 
 Updates to `CTABanner` component:
 
+- Default heading size changed from `'1'` to `'3'`.
+- `align` default changed from `'start'` to `'center'`.
+
 - A new `variant` prop controls overall layout of the banner. Three variants are available: `default`, `balanced`, and `minimal`.
 
   ```jsx
@@ -22,3 +25,7 @@ Updates to `CTABanner` component:
 - **New `hasGridLines` prop**: Enables `GridLine` borders around the banner, complementary to `hasBorder`.
 
 - **New `leadingComponent` prop**: Escape-hatch for inserting a custom React component above the heading content. Similar to `trailingComponent`
+
+⚠️ Breaking change to `CTABanner`:
+
+- `hasShadow` has been marked as `deprecated` and the default visual styles have been removed in this release for better out-of-the-box defaults. In a future release we will remove the prop entirely.

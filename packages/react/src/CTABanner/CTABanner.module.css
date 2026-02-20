@@ -59,7 +59,7 @@
   justify-content: flex-start;
 }
 
-@media screen and (min-width: 63.24rem) {
+@media screen and (min-width: 63.25rem) {
   .CTABanner--variant-balanced .CTABanner-grid-column--secondary {
     justify-content: flex-end;
   }
@@ -81,7 +81,7 @@
 }
 
 .CTABanner-container {
-  padding: var(--base-size-40) var(--base-size-32);
+  padding: var(--base-size-64) var(--base-size-32);
   z-index: 1;
   width: 100%;
   box-sizing: border-box;

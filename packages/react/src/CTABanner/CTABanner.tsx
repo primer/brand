@@ -44,7 +44,7 @@ export type CTABannerProps = BaseProps<HTMLElement> &
      */
     hasBorder?: boolean
     /**
-     * Enable GridLines. Complimentary to hasBorder, and enables that by default.
+     * Enable GridLines. Complimentary to hasBorder and can be used together with it.
      */
     hasGridLines?: boolean
     /**
