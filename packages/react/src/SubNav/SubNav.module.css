@@ -162,7 +162,7 @@
 }
 
 .SubNav__link-label {
-  font-weight: 450; /* FIXME: unsupported font weight */
+  font-weight: 450; /* FIXME: unsupported in our font weight primitives */
 }
 
 .SubNav__sub-menu--anchor .SubNav__link-label {
