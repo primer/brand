@@ -574,28 +574,29 @@ export const WithCustomInput: Story = {
                   </ActionMenu.Overlay>
                 </ActionMenu>
                 <Text as="span" font="monospace" size="100" className={styles.customInputCode}>
-                  <span style={{color: 'var(--base-color-scale-purple-2)'}}>curl</span>{' '}
-                  <span style={{color: 'var(--base-color-scale-blue-3)'}}>-fsSL</span>{' '}
-                  <span style={{color: 'var(--base-color-scale-blue-1)'}}>https://gh.io/copilot-install</span>{' '}
-                  <span style={{color: 'var(--base-color-scale-red-3)'}}>|</span>{' '}
-                  <span style={{color: 'var(--base-color-scale-purple-2)'}}>bash</span>
+                  curl -fsSL https://gh.io/copilot-install | bash
                 </Text>
                 <Button
+                  trailingVisual={
+                    hasCopied ? (
+                      <CheckIcon className={styles.customInputCopyIcon} />
+                    ) : (
+                      <CopyIcon className={styles.customInputCopyIcon} />
+                    )
+                  }
                   variant="accent"
                   className={styles.customInputCopyButton}
                   onClick={handleCopy}
-                  aria-label="Copy installation command"
                 >
-                  {hasCopied ? (
-                    <CheckIcon className={styles.customInputCopyIcon} />
-                  ) : (
-                    <CopyIcon className={styles.customInputCopyIcon} />
-                  )}
+                  Copy
                 </Button>
+                <span className="visually-hidden" role="status">
+                  {hasCopied ? 'Copied to clipboard' : ''}
+                </span>
               </Stack>
             </Box>
             <Text as="p" size="200" variant="muted">
-              View <InlineLink href="#">the documentation</InlineLink>
+              <InlineLink href="#">View the documentation</InlineLink>
             </Text>
           </Stack>
         </>
