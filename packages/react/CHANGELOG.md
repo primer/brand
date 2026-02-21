@@ -1,5 +1,68 @@
 # @primer/react-brand
 
+## 0.65.0
+
+### Minor Changes
+
+- [#1239](https://github.com/primer/brand/pull/1239) [`9b201fd`](https://github.com/primer/brand/commit/9b201fd5079ef05f1cf776c7ee763f4a1525a43b) Thanks [@rezrah](https://github.com/rezrah)! - Added presentational updates to the `LogoSuite` component.
+
+  #### New features
+
+  - **New `gridline-expressive` variant**
+
+    ```jsx
+    <LogoSuite variant="gridline-expressive">
+      <LogoSuite.Heading>New GridLine variant</LogoSuite.Heading>
+      <LogoSuite.Logobar>{/* logos */}</LogoSuite.Logobar>
+    </LogoSuite>
+    ```
+
+    :link: [Storybook example](https://primer.style/brand/storybook?path=/story/components-logosuite-features--grid-line-expressive)
+
+  - **New `takeoverButton` prop on `LogoSuite.Logobar`**
+
+    ```jsx
+    <LogoSuite.Logobar takeoverButton={{label: 'Learn more', href: '/customers'}}>{/* logos */}</LogoSuite.Logobar>
+    ```
+
+    :link: [Storybook example](https://primer.style/brand/storybook?path=/story/components-logosuite-features--takeover-button)
+
+  #### Accessibility improvements
+
+  - `marquee` feature starts paused when `prefers-reduced-motion: reduce` is enabled
+  - `marquee` feature pauses on focus and retains position when unfocused
+  - `marquee` logos that are duplicated internally are now marked as `inert`
+
+- [#1256](https://github.com/primer/brand/pull/1256) [`5814563`](https://github.com/primer/brand/commit/58145633b446524e0030c8214d7ef64910d2bf4e) Thanks [@rezrah](https://github.com/rezrah)! - Removed condensed `font-stretch` value in `Statistic.Heading`. Statistic headings will now display at their default width instead of 75% condensed.
+
+### Patch Changes
+
+- [#1259](https://github.com/primer/brand/pull/1259) [`b7d7220`](https://github.com/primer/brand/commit/b7d7220ff4575630b31019beeb10b1ddb8ef66cb) Thanks [@rezrah](https://github.com/rezrah)! - - Remove 100vw width from `SubdomainNavBar.Search` component, as it was causing visual overflow on narrow viewports.
+
+  - Applies `position: relative` to non-fixed `SubdomainNavBar` container to properly contain `absolute` children.
+
+- [#1256](https://github.com/primer/brand/pull/1256) [`5814563`](https://github.com/primer/brand/commit/58145633b446524e0030c8214d7ef64910d2bf4e) Thanks [@rezrah](https://github.com/rezrah)! - Added new props to `Grid` component for tighter layout control:
+
+  - `columnGap`: controls the gap between columns. Accepts `'default'` or `'none'`.
+  - `rowGap`: controls the gap between rows. Accepts `'default'` or `'none'`.
+  - `enableGutters`: enables or disables default gutters. Defaults to `true`.
+
+  No breaking changes. Both updates are opt-in and previous `gap` values remain the `default`.
+
+- [#1246](https://github.com/primer/brand/pull/1246) [`32d8b4d`](https://github.com/primer/brand/commit/32d8b4da95bb8d1d698396a0f205e7885d7bb2a2) Thanks [@rezrah](https://github.com/rezrah)! - Fixed an `IDE` race condition in its pause/play animation by using a ref instead of state. No visual or behavioral changes to `IDE` expected.
+
+- [#1240](https://github.com/primer/brand/pull/1240) [`76627cb`](https://github.com/primer/brand/commit/76627cba8666bcdf500b694fc371d7e74ba64f35) Thanks [@rezrah](https://github.com/rezrah)! - Fixed circular dependency import issues in `River` that led to runtime errors in some bundlers.
+
+  Applies to `River`, `RiverBreakout`, `Heading` and `Text`. These now import directly from the component files rather than the root export file.
+
+- [#1239](https://github.com/primer/brand/pull/1239) [`9b201fd`](https://github.com/primer/brand/commit/9b201fd5079ef05f1cf776c7ee763f4a1525a43b) Thanks [@rezrah](https://github.com/rezrah)! - Improvements for reduced motion user preferences.
+
+  - Timings for enabling reduced motion in certain components improved.
+  - Now detects preferences faster at initialization to avoid flash of motion.
+  - Affects the following components: `LogoSuite`, `TextCursorAnimation`, `Hero`
+
+- [#1256](https://github.com/primer/brand/pull/1256) [`5814563`](https://github.com/primer/brand/commit/58145633b446524e0030c8214d7ef64910d2bf4e) Thanks [@rezrah](https://github.com/rezrah)! - Removed `max-width` text constraints in the `Card` component when `fullWidth` was applied. This allows the `Card` heading and descriptions to correctly fill the parent's available width.
+
 ## 0.64.0
 
 ### Minor Changes
