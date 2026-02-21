@@ -2,8 +2,19 @@
   padding-block-end: var(--brand-LogoSuite-logobar-rowGap);
 }
 
-.LogoSuite + .LogoSuite {
+.LogoSuite--default + .LogoSuite--default {
   padding-block-start: var(--brand-LogoSuite-logobar-rowGap);
+}
+
+/* Small monospace heading when standalone (no description) */
+.LogoSuite:not(:has(.LogoSuite__description)) .LogoSuite__heading {
+  font-family: var(--brand-fontStack-monospace);
+  font-weight: var(--brand-text-weight-100);
+  font-size: var(--brand-text-size-100);
+  line-height: var(--brand-text-lineHeight-100);
+  letter-spacing: var(--brand-text-letterSpacing-100);
+  text-transform: uppercase;
+  color: var(--brand-color-text-muted);
 }
 
 .LogoSuite__heading + .LogoSuite__description {
@@ -19,7 +30,7 @@
   text-align: center;
 }
 
-.LogoSuite:not(.LogoSuite + .LogoSuite) .LogoSuite__logobar {
+.LogoSuite--default:not(.LogoSuite + .LogoSuite) .LogoSuite__logobar {
   padding-block-start: var(--base-size-32);
 }
 
@@ -45,7 +56,7 @@
   + .LogoSuite__logobar,
 .LogoSuite:not(.LogoSuite + .LogoSuite) .LogoSuite__description + .LogoSuite__logobar {
   padding-block-start: 0;
-  margin-block-start: var(--base-size-80);
+  margin-block-start: var(--base-size-44);
 }
 
 .LogoSuite__logobar--variant-muted svg,
@@ -63,12 +74,6 @@
   .LogoSuite__logobar--variant-muted img,
   .LogoSuite__logobar--variant-muted a {
     height: var(--base-size-40);
-  }
-
-  .LogoSuite__logobar--variant-emphasis svg,
-  .LogoSuite__logobar--variant-emphasis img,
-  .LogoSuite__logobar--variant-emphasis a {
-    height: var(--base-size-48);
   }
 }
 
@@ -100,8 +105,10 @@
   }
 }
 
-.LogoSuite--start .LogoSuite__logobar a:focus-visible {
-  outline-color: var(--brand-color-focus);
+.LogoSuite__logobar a:focus-visible {
+  outline: var(--brand-borderWidth-thick) solid var(--brand-color-focus);
+  outline-offset: var(--base-size-2);
+  border-radius: var(--base-size-4);
 }
 
 .LogoSuite--hasDivider {
@@ -111,8 +118,9 @@
 .LogoSuite__logobar--has-marquee {
   position: relative;
   display: flex;
-  flex-direction: column;
-  gap: var(--base-size-40);
+  flex-direction: row;
+  align-items: center;
+  gap: var(--base-size-24);
   margin: auto;
   max-width: 100dvw;
 }
@@ -150,16 +158,20 @@
   }
 }
 
-.LogoSuite__logobar-marquee:hover .LogoSuite__logobar-marqueeGroup {
+.LogoSuite__logobar-marquee:hover .LogoSuite__logobar-marqueeGroup,
+.LogoSuite__logobar-marquee:focus-within .LogoSuite__logobar-marqueeGroup {
   animation-play-state: paused;
 }
 
 .LogoSuite__logobar-marquee {
   display: flex;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: visible;
+  padding-block: var(--base-size-4);
   user-select: none;
   gap: var(--marquee-gap);
-  width: calc(100% - var(--base-size-40));
+  flex: 1;
+  min-width: 0;
   -webkit-mask-image: linear-gradient(
     to right,
     hsl(0 0% 0% / 0),
@@ -174,19 +186,23 @@
   animation-play-state: paused !important;
 }
 
+.LogoSuite__logobar-marquee--focused .LogoSuite__logobar-marqueeGroup {
+  animation-name: none;
+}
+
 .LogoSuite__logobar-playPauseButton {
   cursor: pointer;
-  position: absolute;
-  right: 0;
+  flex-shrink: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: var(--base-size-48);
-  height: var(--base-size-48);
+  width: var(--base-size-32);
+  height: var(--base-size-32);
   margin: 0;
   padding: 0;
   border: none;
   border-radius: var(--base-size-48);
+  border: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
   background-color: var(--brand-LogoSuite-color-control-rest);
   transition: background-color var(--brand-animation-duration-faster);
 }
@@ -203,8 +219,137 @@
 .LogoSuite__logobar-playPauseButton svg {
   width: var(--base-size-16);
   height: var(--base-size-16);
+  fill: var(--brand-color-text-muted);
 }
 
 .LogoSuite__logobar-playPauseButton path {
-  fill: var(--brand-button-subtle-fgColor-rest);
+  fill: var(--brand-color-text-muted);
+}
+
+/* Gridline expressive variant styles */
+.LogoSuite--gridline-expressive {
+  padding: 0;
+}
+
+.LogoSuite--gridline-expressive .LogoSuite__content {
+  padding-inline: 0;
+  gap: 0;
+  max-width: 618px; /* From the Figma design */
+}
+
+.LogoSuite--gridline-expressive .LogoSuite__textContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: var(--base-size-20);
+}
+
+.LogoSuite--gridline-expressive .LogoSuite__logobar {
+  margin-block-start: auto;
+}
+.LogoSuite--gridline-expressive .LogoSuite__logobarContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: var(--base-size-32) var(--base-size-20) var(--base-size-32);
+}
+
+.LogoSuite--gridline-expressive .LogoSuite__logobar,
+.LogoSuite--gridline-expressive .LogoSuite__logobar--has-marquee {
+  max-width: none;
+  width: 100%;
+}
+
+.LogoSuite--gridline-expressive .LogoSuite__heading + .LogoSuite__description {
+  padding-block-start: var(--base-size-8);
+}
+
+.LogoSuite--gridline-expressive .LogoSuite__logobar {
+  padding-block-start: 0;
+}
+
+@media screen and (min-width: 48rem) {
+  .LogoSuite--gridline-expressive .LogoSuite__logobarContainer {
+    padding: var(--base-size-36);
+  }
+  .LogoSuite--gridline-expressive .LogoSuite__content {
+    border-inline: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
+  }
+  .LogoSuite--gridline-expressive .LogoSuite__textContainer {
+    border-inline-end: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
+  }
+}
+
+@media screen and (min-width: 64rem) {
+  .LogoSuite--gridline-expressive .LogoSuite__content {
+    max-width: 1280px;
+  }
+
+  .LogoSuite--gridline-expressive .LogoSuite__textContainer {
+    text-align: left;
+    padding: var(--base-size-64);
+  }
+
+  .LogoSuite--gridline-expressive .LogoSuite__logobarContainer {
+    padding: var(--base-size-64);
+  }
+}
+
+@media screen and (min-width: 1281px) {
+  .LogoSuite--gridline-expressive .LogoSuite__content {
+    border-inline: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
+  }
+
+  /* When the logobar is the only column visible (no adjacent text), this removes start border */
+  .LogoSuite--gridline-expressive .LogoSuite__logobarContainer:first-child {
+    border-inline-start: none;
+  }
+}
+
+.LogoSuite__logobar--has-takeover {
+  position: relative;
+  overflow: visible;
+}
+
+/* Glass blur overlay effect */
+.LogoSuite__logobar--has-takeover::before {
+  content: '';
+  position: absolute;
+  inset: calc(-1 * var(--base-size-16)) 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0;
+  backdrop-filter: blur(var(--base-size-6));
+  -webkit-backdrop-filter: blur(var(--base-size-6));
+  transition: opacity var(--brand-animation-duration-default) var(--brand-animation-easing-default);
+}
+
+.LogoSuite__logobar--has-takeover:hover::before,
+.LogoSuite__logobar--has-takeover:focus-within::before {
+  opacity: 1;
+}
+
+.LogoSuite__logobar--has-takeover:hover svg,
+.LogoSuite__logobar--has-takeover:focus-within svg,
+.LogoSuite__logobar--has-takeover:hover img,
+.LogoSuite__logobar--has-takeover:focus-within img {
+  opacity: 0.7;
+  transition: opacity var(--brand-animation-duration-default) var(--brand-animation-easing-default);
+}
+
+.LogoSuite__logobar-takeoverButtonContainer {
+  opacity: 0;
+  visibility: hidden;
+  z-index: 2;
+  transition: opacity var(--brand-animation-duration-default) var(--brand-animation-easing-default);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.LogoSuite__logobar--has-takeover:hover .LogoSuite__logobar-takeoverButtonContainer,
+.LogoSuite__logobar--has-takeover:focus-within .LogoSuite__logobar-takeoverButtonContainer {
+  opacity: 1;
+  visibility: visible;
 }
