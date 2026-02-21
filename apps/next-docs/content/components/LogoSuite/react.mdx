@@ -12,10 +12,12 @@ storybook: '/brand/storybook/?path=/story/components-logosuite--playground'
 import {Label} from '@primer/react'
 import {
   LogoSuiteAlignProp,
+  LogoSuiteVariantProp,
   LogoSuiteLogobarChildrenProp,
   LogoSuiteLogobarMarqueeSpeedProp,
   LogoSuiteLogobarGapProp,
   LogoSuiteLogobarVariantProp,
+  LogoSuiteLogobarTakeoverButtonProp,
 } from './react'
 
 ```js
@@ -221,10 +223,9 @@ Heading elements will default to being `h2` elements. Use the `as` prop to chang
 ### Marquee
 
 ```jsx live
-<>
+<Stack direction="vertical" style={{maxWidth: '100%'}}>
   <LogoSuite>
-    <LogoSuite.Heading visuallyHidden>Featured sponsors</LogoSuite.Heading>
-    <LogoSuite.Description>Speed: Normal</LogoSuite.Description>
+    <LogoSuite.Heading>Speed: Normal</LogoSuite.Heading>
     <LogoSuite.Logobar marquee marqueeSpeed="normal">
       <svg role="img" viewBox="0 0 300 100">
         <title>Placeholder logo</title>
@@ -242,8 +243,7 @@ Heading elements will default to being `h2` elements. Use the `as` prop to chang
   </LogoSuite>
   <br />
   <LogoSuite>
-    <LogoSuite.Heading visuallyHidden>Featured sponsors</LogoSuite.Heading>
-    <LogoSuite.Description>Speed: Slow</LogoSuite.Description>
+    <LogoSuite.Heading>Speed: Slow</LogoSuite.Heading>
     <LogoSuite.Logobar marquee marqueeSpeed="slow">
       <svg role="img" viewBox="0 0 300 100">
         <title>Placeholder logo</title>
@@ -271,7 +271,7 @@ Heading elements will default to being `h2` elements. Use the `as` prop to chang
       </svg>
     </LogoSuite.Logobar>
   </LogoSuite>
-</>
+</Stack>
 ```
 
 ### Alternative alignment
@@ -279,7 +279,7 @@ Heading elements will default to being `h2` elements. Use the `as` prop to chang
 `LogoSuite` will center content by default. You may optionally align the content to the `start`, or `justify` it.
 
 ```jsx live
-<>
+<Stack direction="vertical">
   <LogoSuite align="start">
     <LogoSuite.Description>Start</LogoSuite.Description>
     <LogoSuite.Logobar>
@@ -315,7 +315,7 @@ Heading elements will default to being `h2` elements. Use the `as` prop to chang
       </svg>
     </LogoSuite.Logobar>
   </LogoSuite>
-</>
+</Stack>
 ```
 
 ### Variants
@@ -325,7 +325,7 @@ Logobars will automatically select the appropriate variant based on the number o
 Logobars using the `emphasis` variant will appear with relatively higher contrast and in a larger size when compared to the `muted` variant.
 
 ```jsx live
-<>
+<Stack direction="vertical">
   <LogoSuite>
     <LogoSuite.Heading visuallyHidden>Emphasis example</LogoSuite.Heading>
     <LogoSuite.Description>Emphasis</LogoSuite.Description>
@@ -455,7 +455,59 @@ Logobars using the `emphasis` variant will appear with relatively higher contras
       </svg>
     </LogoSuite.Logobar>
   </LogoSuite>
-</>
+</Stack>
+```
+
+### Gridline expressive variant
+
+The `gridline-expressive` variant displays the logo suite in a side-by-side layout with heading/description on the left and logos on the right, separated by a vertical border.
+
+```jsx live
+<LogoSuite variant="gridline-expressive">
+  <LogoSuite.Heading>Trusted by the world's leading organizations</LogoSuite.Heading>
+  <LogoSuite.Logobar marquee>
+    <svg role="img" viewBox="0 0 300 100">
+      <title>Placeholder logo</title>
+      <rect width="100%" height="100%" />
+    </svg>
+    <svg role="img" viewBox="0 0 300 100">
+      <title>Placeholder logo</title>
+      <rect width="100%" height="100%" />
+    </svg>
+    <svg role="img" viewBox="0 0 300 100">
+      <title>Placeholder logo</title>
+      <rect width="100%" height="100%" />
+    </svg>
+  </LogoSuite.Logobar>
+</LogoSuite>
+```
+
+### Takeover button
+
+The `takeoverButton` prop on `LogoSuite.Logobar` adds an interactive hover effect that reveals a call-to-action (in the form of a anchor-based button).
+
+<Note>
+  The <code>takeoverButton</code> prop cannot be used with the <code>marquee</code> prop.
+</Note>
+
+```jsx live
+<LogoSuite variant="gridline-expressive">
+  <LogoSuite.Heading>Hover over the logos</LogoSuite.Heading>
+  <LogoSuite.Logobar takeoverButton={{label: 'View customer stories', href: '/customers'}}>
+    <svg role="img" viewBox="0 0 300 100">
+      <title>Placeholder logo</title>
+      <rect width="100%" height="100%" />
+    </svg>
+    <svg role="img" viewBox="0 0 300 100">
+      <title>Placeholder logo</title>
+      <rect width="100%" height="100%" />
+    </svg>
+    <svg role="img" viewBox="0 0 300 100">
+      <title>Placeholder logo</title>
+      <rect width="100%" height="100%" />
+    </svg>
+  </LogoSuite.Logobar>
+</LogoSuite>
 ```
 
 ### Gap
@@ -463,7 +515,7 @@ Logobars using the `emphasis` variant will appear with relatively higher contras
 `LogoSuite.Logobar` supports both `default` and `condensed` gap between logos.
 
 ```jsx live
-<>
+<Stack direction="vertical">
   <LogoSuite>
     <LogoSuite.Heading visuallyHidden>Default gap</LogoSuite.Heading>
     <LogoSuite.Description>Default gap</LogoSuite.Description>
@@ -593,17 +645,18 @@ Logobars using the `emphasis` variant will appear with relatively higher contras
       </svg>
     </LogoSuite.Logobar>
   </LogoSuite>
-</>
+</Stack>
 ```
 
 ## Component props
 
 ### LogoSuite
 
-| Name         | Type                   | Default    | Description                                                 |
-| :----------- | :--------------------- | :--------- | :---------------------------------------------------------- |
-| `align`      | <LogoSuiteAlignProp /> | `'center'` | The horizontal alignment of the LogoSuite.                  |
-| `hasDivider` | `boolean`              | `true`     | Whether to render a divider immediately after the LogoSuite |
+| Name         | Type                     | Default     | Description                                                 |
+| :----------- | :----------------------- | :---------- | :---------------------------------------------------------- |
+| `align`      | <LogoSuiteAlignProp />   | `'center'`  | The horizontal alignment of the LogoSuite.                  |
+| `hasDivider` | `boolean`                | `true`      | Whether to render a divider immediately after the LogoSuite |
+| `variant`    | <LogoSuiteVariantProp /> | `'default'` | The presentational variant of the LogoSuite.                |
 
 ### LogoSuite.Heading <Label>Required</Label>
 
@@ -619,10 +672,11 @@ Forwards all props from the [Text component](/components/Text), including `as`, 
 
 ### LogoSuite.Logobar
 
-| Name           | Type                                 | Default     | Description                                                |
-| :------------- | :----------------------------------- | :---------- | :--------------------------------------------------------- |
-| `children`     | <LogoSuiteLogobarChildrenProp />     | `undefined` | Logobar requires SVG or Image elements to render correctly |
-| `marquee`      | `boolean`                            | `false`     | Enables an optional marquee effect.                        |
-| `marqueeSpeed` | <LogoSuiteLogobarMarqueeSpeedProp /> | `'normal'`  | The speed of the marquee effect.                           |
-| `gap`          | <LogoSuiteLogobarGapProp />          | `'default'` | The gap between logos.                                     |
-| `variant`      | <LogoSuiteLogobarVariantProp />      | `undefined` | The stylistic variant of the LogoBar.                      |
+| Name             | Type                                   | Default     | Description                                                                                   |
+| :--------------- | :------------------------------------- | :---------- | :-------------------------------------------------------------------------------------------- |
+| `children`       | <LogoSuiteLogobarChildrenProp />       | `undefined` | Logobar requires SVG or Image elements to render correctly                                    |
+| `marquee`        | `boolean`                              | `false`     | Enables an optional marquee effect.                                                           |
+| `marqueeSpeed`   | <LogoSuiteLogobarMarqueeSpeedProp />   | `'normal'`  | The speed of the marquee effect.                                                              |
+| `gap`            | <LogoSuiteLogobarGapProp />            | `'default'` | The gap between logos.                                                                        |
+| `variant`        | <LogoSuiteLogobarVariantProp />        | `undefined` | The stylistic variant of the LogoBar.                                                         |
+| `takeoverButton` | <LogoSuiteLogobarTakeoverButtonProp /> | `undefined` | Displays a takeover button on hover/focus. Cannot be used with `marquee`. Requires a `label`. |
