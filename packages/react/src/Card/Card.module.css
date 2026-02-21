@@ -190,17 +190,9 @@
   grid-area: heading;
 }
 
-.Card--fullWidth:not(.Card--align-center) .Card__heading {
-  max-width: 320px;
-}
-
 .Card__description {
   margin-bottom: var(--base-size-32);
   grid-area: description;
-}
-
-.Card--fullWidth:not(.Card--align-center) .Card__description {
-  max-width: 400px;
 }
 
 .Card__action {
