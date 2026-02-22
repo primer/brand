@@ -9,7 +9,7 @@
 
 .Accordion--emphasis:not(.Accordion .Accordion) > .Accordion__summary {
   background-color: var(--brand-color-canvas-subtle);
-  border: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
+  border-block: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
   padding-block: var(--base-size-20);
   padding-inline: var(--base-size-20);
   gap: 0;
@@ -51,11 +51,10 @@ details[open] > .Accordion__summary--emphasis::before {
 }
 
 .Accordion--emphasis:not(.Accordion .Accordion) > .Accordion__content {
-  border-inline: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
   border-block-end: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
-  padding-block-start: var(--base-size-16);
-  padding-block-end: var(--base-size-24);
-  padding-inline: var(--base-size-24);
+  padding-block-start: var(--base-size-12);
+  padding-block-end: var(--base-size-12);
+  padding-inline: var(--base-size-20);
 }
 
 .Accordion--emphasis .Accordion--default:last-child {
@@ -235,11 +234,6 @@ details[open].Accordion > .Accordion__summary:focus-visible {
 
 .Accordion__summary.Accordion__summary--default .Accordion__summary--expanded {
   opacity: 0;
-}
-
-.Accordion__summary.Accordion__summary--emphasis .Accordion__summary--collapsed,
-.Accordion__summary.Accordion__summary--emphasis .Accordion__summary--expanded {
-  transform: translateY(-2px);
 }
 
 .Accordion__summary.Accordion__summary--emphasis .Accordion__summary--expanded {

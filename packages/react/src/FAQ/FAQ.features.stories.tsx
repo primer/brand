@@ -96,7 +96,7 @@ export const AllClosed: Story = {
           <>
             {fixtureData.map(({question, answer}) => {
               return (
-                <FAQ.Item key={question} open={false}>
+                <FAQ.Item key={question} name="faq" open={false}>
                   <FAQ.Question>{question}</FAQ.Question>
                   <FAQ.Answer>{answer}</FAQ.Answer>
                 </FAQ.Item>
@@ -143,9 +143,9 @@ export const ReversedToggles: Story = {
         <FAQ>
           <FAQ.Heading>Frequently asked&nbsp;questions</FAQ.Heading>
           <>
-            {fixtureData.map(({question, answer}) => {
+            {fixtureData.map(({question, answer}, index) => {
               return (
-                <FAQ.Item key={question} open={true}>
+                <FAQ.Item key={question} name="faq" open={index === 0}>
                   <FAQ.Question reversedToggles>{question}</FAQ.Question>
                   <FAQ.Answer>{answer}</FAQ.Answer>
                 </FAQ.Item>
@@ -170,9 +170,9 @@ export const HeadingLeftAligned: Story = {
         <FAQ>
           <FAQ.Heading align="start">Frequently asked&nbsp;questions</FAQ.Heading>
           <>
-            {fixtureData.map(({question, answer}) => {
+            {fixtureData.map(({question, answer}, index) => {
               return (
-                <FAQ.Item key={question}>
+                <FAQ.Item key={question} name="faq" open={index === 0}>
                   <FAQ.Question>{question}</FAQ.Question>
                   <FAQ.Answer>{answer}</FAQ.Answer>
                 </FAQ.Item>
@@ -193,9 +193,9 @@ export const WithSubheadings: Story = {
           <FAQ.Heading>Frequently asked&nbsp;questions</FAQ.Heading>
           <FAQ.Subheading>Group heading</FAQ.Subheading>
           <>
-            {fixtureData.map(({question, answer}) => {
+            {fixtureData.map(({question, answer}, index) => {
               return (
-                <FAQ.Item key={question}>
+                <FAQ.Item key={question} name="faq" open={index === 0}>
                   <FAQ.Question>{question}</FAQ.Question>
                   <FAQ.Answer>{answer}</FAQ.Answer>
                 </FAQ.Item>
@@ -206,7 +206,7 @@ export const WithSubheadings: Story = {
           <>
             {fixtureData.map(({question, answer}) => {
               return (
-                <FAQ.Item key={question}>
+                <FAQ.Item key={question} name="faq">
                   <FAQ.Question>{question}</FAQ.Question>
                   <FAQ.Answer>{answer}</FAQ.Answer>
                 </FAQ.Item>
@@ -228,7 +228,7 @@ const renderFAQGroupExample = (variant?: 'default' | 'gridline') => (
     </FAQGroup.Heading>
     <FAQ variant={variant}>
       <FAQ.Heading>Using GitHub Enterprise</FAQ.Heading>
-      <FAQ.Item>
+      <FAQ.Item name="faq-group-1" open>
         <FAQ.Question>What is GitHub Enterprise?</FAQ.Question>
         <FAQ.Answer>
           <p>
@@ -240,7 +240,7 @@ const renderFAQGroupExample = (variant?: 'default' | 'gridline') => (
           </p>
         </FAQ.Answer>
       </FAQ.Item>
-      <FAQ.Item>
+      <FAQ.Item name="faq-group-1">
         <FAQ.Question>How can GitHub Enterprise be deployed?</FAQ.Question>
         <FAQ.Answer>
           <p>
@@ -252,7 +252,7 @@ const renderFAQGroupExample = (variant?: 'default' | 'gridline') => (
           </p>
         </FAQ.Answer>
       </FAQ.Item>
-      <FAQ.Item>
+      <FAQ.Item name="faq-group-1">
         <FAQ.Question>What is GitHub Enterprise Cloud?</FAQ.Question>
         <FAQ.Answer>
           <p>
@@ -268,7 +268,7 @@ const renderFAQGroupExample = (variant?: 'default' | 'gridline') => (
 
     <FAQ variant={variant}>
       <FAQ.Heading>About GitHub Enterprise</FAQ.Heading>
-      <FAQ.Item>
+      <FAQ.Item name="faq-group-2" open>
         <FAQ.Question>What is the difference between GitHub and GitHub Enterprise?</FAQ.Question>
         <FAQ.Answer>
           <p>
@@ -277,7 +277,7 @@ const renderFAQGroupExample = (variant?: 'default' | 'gridline') => (
           </p>
         </FAQ.Answer>
       </FAQ.Item>
-      <FAQ.Item>
+      <FAQ.Item name="faq-group-2">
         <FAQ.Question>Why should organizations use GitHub Enterprise?</FAQ.Question>
         <FAQ.Answer>
           <p>
@@ -286,7 +286,7 @@ const renderFAQGroupExample = (variant?: 'default' | 'gridline') => (
           </p>
         </FAQ.Answer>
       </FAQ.Item>
-      <FAQ.Item>
+      <FAQ.Item name="faq-group-2">
         <FAQ.Question>Who uses GitHub Enterprise?</FAQ.Question>
         <FAQ.Answer>
           <p>
@@ -437,7 +437,7 @@ export const DynamicDataExample: Story = {
           <FAQ.Heading>Frequently asked questions</FAQ.Heading>
           {faqs.map((item, index) => {
             return (
-              <FAQ.Item key={index}>
+              <FAQ.Item key={index} name="faq" open={index === 0}>
                 <FAQ.Question>{item.title}</FAQ.Question>
                 <FAQ.Answer>{item.content}</FAQ.Answer>
               </FAQ.Item>
@@ -455,7 +455,7 @@ export const WithProse: Story = {
       <Container>
         <FAQ>
           <FAQ.Heading>Frequently asked&nbsp;questions</FAQ.Heading>
-          <FAQ.Item open={true}>
+          <FAQ.Item name="faq" open={true}>
             <FAQ.Question>What is GitHub Enterprise?</FAQ.Question>
             <FAQ.Answer>
               <Prose
@@ -486,7 +486,7 @@ export const WithProse: Story = {
               />
             </FAQ.Answer>
           </FAQ.Item>
-          <FAQ.Item open={true}>
+          <FAQ.Item name="faq" open={true}>
             <FAQ.Question>How secure is GitHub Enterprise?</FAQ.Question>
             <FAQ.Answer className="enterprise-faq-answer">
               <Prose
@@ -527,7 +527,7 @@ export const WithProse: Story = {
               />
             </FAQ.Answer>
           </FAQ.Item>
-          <FAQ.Item open={true}>
+          <FAQ.Item name="faq" open={true}>
             <FAQ.Question>What is GitHub Enterprise Cloud?</FAQ.Question>
             <FAQ.Answer>
               <Prose
@@ -580,9 +580,9 @@ export const GridlineVariant: Story = {
       <FAQ variant="gridline">
         <FAQ.Heading>Frequently asked&nbsp;questions</FAQ.Heading>
         <>
-          {fixtureData.map(({question, answer}) => {
+          {fixtureData.map(({question, answer}, index) => {
             return (
-              <FAQ.Item key={question}>
+              <FAQ.Item key={question} name="faq" open={index === 0}>
                 <FAQ.Question>{question}</FAQ.Question>
                 <FAQ.Answer>{answer}</FAQ.Answer>
               </FAQ.Item>

@@ -19,7 +19,7 @@ import styles from './FAQGroup.module.css'
 
 function HeadingBase({children, className, as = 'h3', ...rest}: FAQSubheadingProps) {
   return (
-    <Heading as={as} className={clsx(className)} {...rest}>
+    <Heading as={as} className={clsx(styles['FAQGroup__heading'], className)} {...rest}>
       {children}
     </Heading>
   )
@@ -178,7 +178,11 @@ function FAQGroupBase({
       if (!GroupHeadingChild || !FAQItemChild) return null
 
       return (
-        <Accordion key={index} variant="emphasis">
+        <Accordion
+          key={index}
+          variant="emphasis"
+          className={clsx(variant === 'gridline' && styles['FAQGroup__accordion--gridline'])}
+        >
           <Accordion.Heading {...GroupHeadingChild.props} />
           <Accordion.Content>{FAQItemChild}</Accordion.Content>
         </Accordion>
@@ -192,28 +196,24 @@ function FAQGroupBase({
   )
 
   const Tag = variant === 'gridline' ? Box : React.Fragment
-  const tagProps =
-    variant === 'gridline'
-      ? {borderBlockEndWidth: 'thin' as const, borderColor: 'muted' as const, borderStyle: 'solid' as const}
-      : {}
+  const tagProps = variant === 'gridline' ? {className: clsx(styles['FAQGroup__gridline-wrapper'])} : {}
 
   return (
     <Tag {...tagProps}>
       <div className={clsx(styles[`FAQGroup__heading-wrapper`], styles[`FAQGroup__heading-wrapper--${variant}`])}>
-        <Grid {...rest}>
+        <Grid enableGutters={false} {...rest}>
           <Grid.Column>
             {GroupHeading && (
               <Grid>
                 <Grid.Column>{GroupHeading}</Grid.Column>
               </Grid>
             )}
-
-            <div className={clsx(styles.FAQGroup__accordion)}>{SectionedAccordions}</div>
           </Grid.Column>
         </Grid>
       </div>
-      <Grid {...rest}>
+      <Grid enableGutters={false} {...rest}>
         <Grid.Column span={12}>
+          <div className={clsx(styles.FAQGroup__accordion)}>{SectionedAccordions}</div>
           <Grid className={clsx(styles.FAQGroup)}>
             <Grid.Column
               span={{medium: 5, large: 4}}

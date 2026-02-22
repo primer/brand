@@ -1,7 +1,10 @@
 declare const styles: {
   readonly "FAQGroup": string;
   readonly "FAQGroup__accordion": string;
+  readonly "FAQGroup__accordion--gridline": string;
   readonly "FAQGroup__content--gridline": string;
+  readonly "FAQGroup__gridline-wrapper": string;
+  readonly "FAQGroup__heading": string;
   readonly "FAQGroup__heading-wrapper": string;
   readonly "FAQGroup__heading-wrapper--gridline": string;
   readonly "FAQGroup__nested-accordion-item": string;

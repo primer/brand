@@ -8,16 +8,6 @@
   margin-block-start: var(--base-size-48);
 }
 
-@media screen and (min-width: 48rem) {
-  .FAQGroup {
-    display: grid;
-  }
-
-  .FAQGroup__accordion {
-    display: none;
-  }
-}
-
 .FAQGroup__panel-subHeading {
   margin-block-start: calc(var(--base-size-8) + 1px);
   text-transform: uppercase;
@@ -95,13 +85,12 @@
 /* Gridline variant */
 
 .FAQGroup__tablist--gridline {
-  border-inline-start: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
   padding-inline-start: var(--base-size-48);
   padding-block: var(--base-size-80);
 }
 
 .FAQGroup__content--gridline {
-  border-inline: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
+  border-inline-start: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
   padding-inline: var(--base-size-64);
   padding-block-start: var(--base-size-80);
   padding-block-end: var(--base-size-96);
@@ -115,16 +104,68 @@
   }
 }
 
-.FAQGroup__heading-wrapper {
-  padding-block-end: var(--base-size-40);
+.FAQGroup__heading {
+  padding-inline: var(--base-size-20);
+}
+
+/* Custom tablet breakpoint */
+@media screen and (min-width: 618px) {
+  .FAQGroup__gridline-wrapper {
+    border-block-end: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
+  }
+
+  .FAQGroup__accordion {
+    margin-block-start: 0;
+    max-width: 618px;
+    margin-inline: auto;
+    border-inline: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
+  }
+  .FAQGroup__heading {
+    max-width: 618px;
+    margin: 0 auto;
+  }
+
+  .FAQGroup__heading-wrapper {
+    padding-block-end: var(--base-size-40);
+  }
+  .FAQGroup__heading-wrapper--gridline {
+    border-block-end: var(--brand-color-border-muted) var(--brand-borderWidth-thin) solid;
+  }
+
+  .FAQGroup__accordion--gridline:first-child summary {
+    border-block-start: none !important;
+  }
+
+  .FAQGroup__accordion--gridline:last-child summary {
+    border-block-end: none !important;
+  }
 }
 
 @media screen and (min-width: 63.25rem) {
+  .FAQGroup {
+    display: grid;
+  }
+
+  .FAQGroup__accordion {
+    display: none;
+  }
+
+  .FAQGroup__heading {
+    padding-inline: 0;
+    max-width: 100%;
+  }
+
   .FAQGroup__heading-wrapper {
     padding-block-end: var(--base-size-64);
   }
+}
 
-  .FAQGroup__heading-wrapper--gridline {
-    border-block-end: var(--brand-color-border-muted) var(--brand-borderWidth-thin) solid;
+@media screen and (min-width: 80rem) {
+  .FAQGroup__tablist--gridline {
+    border-inline-start: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
+  }
+
+  .FAQGroup__content--gridline {
+    border-inline: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
   }
 }
