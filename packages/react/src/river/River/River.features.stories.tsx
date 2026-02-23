@@ -1,8 +1,7 @@
 import React from 'react'
 import type {Meta, StoryFn} from '@storybook/react'
 import {River} from '.'
-import {Heading, Label, Link, Stack, Text, Timeline} from '../../'
-import {Container} from '../../component-helpers'
+import {Heading, Label, Link, Section, Stack, Text, Timeline} from '../../'
 import placeholderImage from '../../fixtures/images/placeholder.png'
 
 export default {
@@ -76,7 +75,7 @@ export const DuoTone: StoryFn<typeof River> = () => (
 )
 
 export const ColumnRatio6040: StoryFn<typeof River> = () => (
-  <Container>
+  <Section>
     <River imageTextRatio="60:40">
       <River.Visual>
         <PlaceholderImage />
@@ -85,13 +84,13 @@ export const ColumnRatio6040: StoryFn<typeof River> = () => (
         <Text>Use the imageTextRatio prop with &quot;60:40&quot; to display a larger image.</Text>
       </River.Content>
     </River>
-  </Container>
+  </Section>
 )
 
 ColumnRatio6040.storyName = '60:40 image ratio'
 
 export const ColumnRatio5050: StoryFn<typeof River> = () => (
-  <Container>
+  <Section>
     <River imageTextRatio="50:50">
       <River.Visual>
         <PlaceholderImage />
@@ -100,13 +99,13 @@ export const ColumnRatio5050: StoryFn<typeof River> = () => (
         <Text>By default imageTextRatio is set to &quot;50:50&quot;.</Text>
       </River.Content>
     </River>
-  </Container>
+  </Section>
 )
 
 ColumnRatio5050.storyName = '50:50 image ratio'
 
 export const AlternativeHeadingLevel: StoryFn<typeof River> = () => (
-  <Container>
+  <Section>
     <River>
       <River.Visual>
         <PlaceholderImage />
@@ -116,11 +115,11 @@ export const AlternativeHeadingLevel: StoryFn<typeof River> = () => (
         <Text>Use alternative heading levels, while maintaining the default text size.</Text>
       </River.Content>
     </River>
-  </Container>
+  </Section>
 )
 
 export const NoRoundedVisualCorners: StoryFn<typeof River> = () => (
-  <Container>
+  <Section>
     <River>
       <River.Visual rounded={false}>
         <PlaceholderImage />
@@ -130,11 +129,11 @@ export const NoRoundedVisualCorners: StoryFn<typeof River> = () => (
         <Text>Use alternative heading levels, while maintaining the default text size.</Text>
       </River.Content>
     </River>
-  </Container>
+  </Section>
 )
 
 export const AlternativeHeadingSize: StoryFn<typeof River> = () => (
-  <Container>
+  <Section>
     <River>
       <River.Visual>
         <PlaceholderImage />
@@ -144,11 +143,11 @@ export const AlternativeHeadingSize: StoryFn<typeof River> = () => (
         <Text>Use alternative heading sizes, while maintaining the default heading level.</Text>
       </River.Content>
     </River>
-  </Container>
+  </Section>
 )
 
 export const WithLabel: StoryFn<typeof River> = () => (
-  <Container>
+  <Section>
     <River>
       <River.Visual>
         <PlaceholderImage />
@@ -159,7 +158,7 @@ export const WithLabel: StoryFn<typeof River> = () => (
         <Text>Use alternative heading sizes, while maintaining the default heading level.</Text>
       </River.Content>
     </River>
-  </Container>
+  </Section>
 )
 
 const ExampleTrailingComponent = () => (
@@ -179,7 +178,7 @@ const ExampleTrailingComponent = () => (
 )
 
 export const CustomTrailingContent: StoryFn<typeof River> = () => (
-  <Container>
+  <Section>
     <River>
       <River.Visual>
         <PlaceholderImage />
@@ -189,12 +188,12 @@ export const CustomTrailingContent: StoryFn<typeof River> = () => (
         <Text>Use alternative heading sizes, while maintaining the default heading level.</Text>
       </River.Content>
     </River>
-  </Container>
+  </Section>
 )
 CustomTrailingContent.storyName = 'Custom trailing content'
 
 export const CustomTrailingContentWithDivider: StoryFn<typeof River> = () => (
-  <Container>
+  <Section>
     <River>
       <River.Visual>
         <PlaceholderImage />
@@ -204,13 +203,13 @@ export const CustomTrailingContentWithDivider: StoryFn<typeof River> = () => (
         <Text>Use alternative heading sizes, while maintaining the default heading level.</Text>
       </River.Content>
     </River>
-  </Container>
+  </Section>
 )
 
 CustomTrailingContentWithDivider.storyName = 'Custom trailing content w/ divider'
 
 export const AlternatingLayout: StoryFn<typeof River> = () => (
-  <>
+  <Section>
     <River align="start">
       <River.Visual>
         <PlaceholderImage />
@@ -250,5 +249,30 @@ export const AlternatingLayout: StoryFn<typeof River> = () => (
         <Link href="#">Call to action</Link>
       </River.Content>
     </River>
-  </>
+  </Section>
 )
+
+export const ContentAlignBlockEnd: StoryFn<typeof River> = () => (
+  <Section>
+    <River>
+      <River.Visual>
+        <img
+          src={placeholderImage}
+          alt="placeholder, blank area with a gray background color"
+          style={{minHeight: 400}}
+        />
+      </River.Visual>
+      <River.Content align="block-end">
+        <Label>Label</Label>
+        <Heading>Content aligned to block-end</Heading>
+        <Text>
+          On large viewports, the content aligns to the bottom of its container. This is useful when the visual is
+          taller than the content.
+        </Text>
+        <Link href="#">Call to action</Link>
+      </River.Content>
+    </River>
+  </Section>
+)
+
+ContentAlignBlockEnd.storyName = 'Content align block-end'
