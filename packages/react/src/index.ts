@@ -52,6 +52,7 @@ export * from './FrostedGlassVFX'
 export * from './SectionIntroStacked'
 export * from './Tabs'
 export * from './TextCursorAnimation'
+export * from './Tiles'
 
 // hooks
 export * from './hooks/useWindowSize'
