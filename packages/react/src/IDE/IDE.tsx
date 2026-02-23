@@ -45,6 +45,9 @@ const testIds = {
   },
 }
 
+/**
+ * @deprecated IDEProps is deprecated and will be removed in a future release.
+ */
 export type IDEProps = {
   /**
    * Test id for the IDE
@@ -184,6 +187,9 @@ type IDEChatMessageAssistant = {
   role: 'assistant'
 }
 
+/**
+ * @deprecated IDEChatMessage is deprecated and will be removed in a future release.
+ */
 export type IDEChatMessage = {handle: string; message: string; codeSnippet?: string; highlighter?: 'hljs'} & (
   | IDEChatMessageUser
   | IDEChatMessageAssistant
@@ -484,6 +490,9 @@ type IDEEditorProps = {
   setAnimationIsDone?: (isDone: boolean) => void
 } & BaseProps<HTMLDivElement>
 
+/**
+ * @deprecated IDEEditorFile is deprecated and will be removed in a future release.
+ */
 export type IDEEditorFile = {
   name: string
   /**
@@ -856,6 +865,7 @@ const PlayPauseButton = ({isPlaying = true, onPlayPause}: PlayPauseButtonProps) 
 
 /**
  * Use IDE to display a decorative editor component
+ * @deprecated IDE is deprecated and will be removed in a future release.
  * @see https://primer.style/brand/components/IDE
  */
 export const IDE = Object.assign(_IDERoot, {
