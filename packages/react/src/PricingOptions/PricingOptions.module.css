@@ -441,6 +441,7 @@
 .PricingOptions__feature-list-accordion .PricingOptions__feature-list-accordion-heading :is(h1, h2, h3, h4, h5, h6) {
   font-size: var(--feature-list-font-size);
   line-height: var(--feature-list-line-height);
+  font-weight: var(--brand-text-subhead-weight-large);
   gap: var(--base-size-8);
   display: inline-flex;
   align-items: center;

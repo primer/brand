@@ -11,6 +11,7 @@ export type FlexTemplateLink = {
   href: string
   text: string
   openInNewTab?: boolean
+  'aria-current'?: 'page' | 'step' | 'location' | 'date' | 'time' | 'true' | 'false'
 }
 
 export type FlexTemplateLabel = {
