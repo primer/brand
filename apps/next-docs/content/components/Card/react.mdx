@@ -202,14 +202,15 @@ Use the `Stack` or `Grid` components to stack up to three cards horizontally in 
 
 ### Card <Label>Required</Label>
 
-| name               | type                 | default     | required | description                                                      |
-| ------------------ | -------------------- | ----------- | -------- | ---------------------------------------------------------------- |
-| `ctaText`          | `string`             | `Read more` | `false`  | Label of the link at the bottom of the card                      |
-| `disableAnimation` | `boolean`            | `false`     | `false`  | A flag to disable the default hover animation effect of the card |
-| `fullWidth`        | `boolean`            | `false`     | `false`  | A flag to optionally fill the width of the parent container      |
-| `hasBorder`        | `boolean`            | `false`     | `false`  | A flag used to provide a border to the card                      |
-| `href`             | `string`             |             | `true`   | URL to the card content                                          |
-| `variant`          | <CardVariantsProp /> | `'default'` | `false`  | The variant of the card                                          |
+| name               | type                                                           | default     | required | description                                                      |
+| ------------------ | -------------------------------------------------------------- | ----------- | -------- | ---------------------------------------------------------------- |
+| `align`            | <PropTableValues values={['start', 'center']} addLineBreaks /> | `'start'`   | `false`  | Aligns the card content                                          |
+| `ctaText`          | `string`                                                       | `Read more` | `false`  | Label of the link at the bottom of the card                      |
+| `disableAnimation` | `boolean`                                                      | `false`     | `false`  | A flag to disable the default hover animation effect of the card |
+| `fullWidth`        | `boolean`                                                      | `false`     | `false`  | A flag to optionally fill the width of the parent container      |
+| `hasBorder`        | `boolean`                                                      | `false`     | `false`  | A flag used to provide a border to the card                      |
+| `href`             | `string`                                                       |             | `true`   | URL to the card content                                          |
+| `variant`          | <CardVariantsProp />                                           | `'default'` | `false`  | The variant of the card                                          |
 
 ### Card.Image
 

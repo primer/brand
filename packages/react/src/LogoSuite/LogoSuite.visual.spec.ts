@@ -61,6 +61,17 @@ test.describe('Visual Comparison: LogoSuite', () => {
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
+  test('LogoSuite / Takeover Button', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-logosuite-features--takeover-button&viewMode=story',
+      {waitUntil: 'networkidle'},
+    )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+    await page.waitForTimeout(500)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
   test('LogoSuite / Default Variant', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-logosuite-features--default-variant&viewMode=story',
@@ -163,6 +174,28 @@ test.describe('Visual Comparison: LogoSuite', () => {
   test('LogoSuite / With Raster Logos', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-logosuite-features--with-raster-logos&viewMode=story',
+      {waitUntil: 'networkidle'},
+    )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+    await page.waitForTimeout(500)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
+  test('LogoSuite / Grid Line Expressive', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-logosuite-features--grid-line-expressive&viewMode=story',
+      {waitUntil: 'networkidle'},
+    )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+    await page.waitForTimeout(500)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
+  test('LogoSuite / GridLine expressive kitchen sink', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-logosuite-features--grid-line-expressive-kitchen-sink&viewMode=story',
       {waitUntil: 'networkidle'},
     )
     await page.locator('body.sb-show-main').waitFor({state: 'visible'})

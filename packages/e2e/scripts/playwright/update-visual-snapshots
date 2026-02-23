@@ -3,10 +3,18 @@ set -e
 
 IMAGE="mcr.microsoft.com/playwright:v1.57.0-noble"
 
+# Run all tests with npm run test:visual.
+# Optionally: Run single stories 
+# Examples:
+#   npm run test:visual:update -- SubNav.visual.spec.ts
+#   npm run test:visual:update -- --grep "Anchor Nav Variant"
+EXTRA_ARGS="${*}"
+
 docker run --rm --ipc=host --platform linux/amd64 \
   -v "${PWD%/*/*}":/tests \
   -v /tests/node_modules \
   -e NODE_ENV=test \
+  -e EXTRA_ARGS="${EXTRA_ARGS}" \
   ${CI:+-e CI=true} \
   "${IMAGE}" \
   /bin/bash -c "\
@@ -20,5 +28,5 @@ docker run --rm --ipc=host --platform linux/amd64 \
     && npx start-server-and-test \
       'npx http-server /tests/apps/storybook/storybook-static -p 6006' \
       6006 \
-      'cd packages/e2e && npx playwright test --update-snapshots --max-failures 0' \
+      'cd packages/e2e && npx playwright test --update-snapshots --max-failures 0 \${EXTRA_ARGS}' \
   "

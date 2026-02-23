@@ -50,6 +50,28 @@ test.describe('Visual Comparison: Accordion', () => {
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
+  test('Accordion / Variant: Emphasis', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-accordion-features--variant-emphasis&viewMode=story',
+      {waitUntil: 'networkidle'},
+    )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+    await page.waitForTimeout(500)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
+  test('Accordion / Variant: Emphasis with nested accordions', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-accordion-features--variant-emphasis-with-nested-accordions&viewMode=story',
+      {waitUntil: 'networkidle'},
+    )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+    await page.waitForTimeout(500)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
   test('Accordion / Exclusive Using Name Attribute', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-accordion-features--exclusive-using-name-attribute&viewMode=story',

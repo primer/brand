@@ -80,12 +80,38 @@ test.describe('Visual Comparison: FAQ', () => {
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
+  test('FAQ / Groups (gridline)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-faq-features--groups-gridline&viewMode=story',
+      {waitUntil: 'networkidle'},
+    )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+    await page.waitForTimeout(500)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
   // eslint-disable-next-line i18n-text/no-en
   test.describe('Mobile viewport test for Group narrow view (mobile)', () => {
     test.use({viewport: {width: 360, height: 800}})
     test('FAQ / Group narrow view (mobile)', async ({page}) => {
       await page.goto(
         'http://localhost:6006/iframe.html?args=&id=components-faq-features--groups-narrow&viewMode=story',
+        {waitUntil: 'networkidle'},
+      )
+      await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+      await page.waitForTimeout(500)
+      await expect(page).toHaveScreenshot({fullPage: true})
+    })
+  })
+
+  // eslint-disable-next-line i18n-text/no-en
+  test.describe('Mobile viewport test for Group narrow view (mobile, gridline)', () => {
+    test.use({viewport: {width: 360, height: 800}})
+    test('FAQ / Group narrow view (mobile, gridline)', async ({page}) => {
+      await page.goto(
+        'http://localhost:6006/iframe.html?args=&id=components-faq-features--groups-narrow-gridline&viewMode=story',
         {waitUntil: 'networkidle'},
       )
       await page.locator('body.sb-show-main').waitFor({state: 'visible'})
@@ -112,6 +138,17 @@ test.describe('Visual Comparison: FAQ', () => {
     await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(2000)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
+  test('FAQ / Gridline Variant', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-faq-features--gridline-variant&viewMode=story',
+      {waitUntil: 'networkidle'},
+    )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+    await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 })

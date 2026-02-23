@@ -121,13 +121,23 @@ module.exports = {
     border: {
       color: {
         default: {
-          value: 'var(--brand-color-border-default)',
-          dark: 'var(--base-color-scale-gray-5)',
+          value: 'var(--brand-color-border-muted)',
+          dark: 'var(--brand-color-border-muted)',
         },
-        emphasis: {
-          value: 'var(--base-color-scale-black-0)',
-          dark: 'var(--base-color-scale-white-0)',
-        },
+      },
+    },
+    indicator: {
+      idle: {
+        value: 'var(--base-color-scale-gray-3)',
+        dark: 'var(--base-color-scale-gray-7)',
+      },
+      hover: {
+        value: 'var(--base-color-scale-gray-5)',
+        dark: 'var(--base-color-scale-gray-5)',
+      },
+      active: {
+        value: 'var(--brand-color-accent-primary)',
+        dark: 'var(--brand-color-accent-primary)',
       },
     },
   },
