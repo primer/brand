@@ -10,12 +10,22 @@
           "value": "var(--brand-color-text-default)",
           "dark": "var(--brand-color-text-default)"
         }
+      }
+    }
+  },
+  "FAQGroup": {
+    "buttonIndicator": {
+      "idle": {
+        "value": "var(--base-color-scale-gray-3)",
+        "dark": "var(--base-color-scale-gray-7)"
       },
-      "tabBg": {
-        "selected": {
-          "value": "var(--base-color-scale-gray-1)",
-          "dark": "var(--base-color-scale-gray-7)"
-        }
+      "hover": {
+        "value": "var(--base-color-scale-gray-5)",
+        "dark": "var(--base-color-scale-gray-5)"
+      },
+      "active": {
+        "value": "var(--brand-color-accent-primary)",
+        "dark": "var(--brand-color-accent-primary)"
       }
     }
   }
