@@ -15,23 +15,21 @@ export default {
 
 const PlaceholderImage = () => <img src={placeholderImage} alt="placeholder, blank area with a gray background color" />
 const Template: StoryFn<typeof River> = args => (
-  <>
-    <Section>
-      <River {...args} align="start">
-        <River.Visual>
-          <PlaceholderImage />
-        </River.Visual>
-        <River.Content>
-          <Heading size="5">Heading</Heading>
-          <Text>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
-            turpis felis nam pulvinar risus elementum.
-          </Text>
-          <Link href="#">Call to action</Link>
-        </River.Content>
-      </River>
-    </Section>
-  </>
+  <Section>
+    <River {...args} align="start">
+      <River.Visual>
+        <PlaceholderImage />
+      </River.Visual>
+      <River.Content>
+        <Heading size="5">Heading</Heading>
+        <Text>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
+          turpis felis nam pulvinar risus elementum.
+        </Text>
+        <Link href="#">Call to action</Link>
+      </River.Content>
+    </River>
+  </Section>
 )
 
 export const Default = Template.bind({})

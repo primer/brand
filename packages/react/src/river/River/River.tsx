@@ -4,7 +4,7 @@ import {Heading, type HeadingProps} from '../../Heading'
 import {Text, type TextProps} from '../../Text'
 import {Link, type LinkProps} from '../../Link'
 import {Label, type LabelProps} from '../../Label'
-import {EyebrowText, type EyebrowTextProps} from '../../EyebrowText'
+import {EyebrowText} from '../../EyebrowText'
 import {useAnimation} from '../../animation'
 import type {BaseProps} from '../../component-helpers'
 
@@ -18,9 +18,6 @@ import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/compone
 import styles from '../river-shared.module.css'
 
 export const RiverVariants = ['default', 'gridline'] as const
-/**
- * @deprecated Use 'GridLine' instead
- */
 export const BorderedGrid = 'gridline' as const
 export const GridLine = 'gridline' as const
 export type RiverVariant = (typeof RiverVariants)[number]
@@ -116,8 +113,6 @@ const Root = forwardRef(
 export type RiverContentProps = BaseProps<HTMLDivElement> & {
   /**
    * Aligns the content vertically within its container.
-   * Only applies on large viewports (63.25rem+).
-   * The default is `center`.
    */
   align?: RiverContentAlign
   /**
@@ -190,9 +185,7 @@ export const RiverContent = forwardRef(
         )}
 
         {!LabelChild && React.isValidElement(EyebrowTextChild) && !LeadingComponent && (
-          <div className={styles.River__label}>
-            {React.cloneElement(EyebrowTextChild as React.ReactElement<EyebrowTextProps>, {})}
-          </div>
+          <div className={styles.River__label}>{EyebrowTextChild}</div>
         )}
 
         {!LabelChild && !EyebrowTextChild && LeadingComponent && (
@@ -267,8 +260,6 @@ export type RiverVisualProps = BaseProps<HTMLDivElement> &
     rounded?: boolean
     /**
      * Applies a background color with padding around the media.
-     * Creates a full-bleed container with the image/video centered inside.
-     * - `subtle`: Applies a subtle background color
      */
     imageBackgroundColor?: RiverVisualBackgroundColor
   }>

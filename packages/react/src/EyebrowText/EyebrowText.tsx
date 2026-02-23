@@ -37,6 +37,6 @@ const _EyebrowText = forwardRef<HTMLSpanElement, EyebrowTextProps>(
 )
 
 /**
- * EyebrowText is a simple uppercase, muted text label typically used above headings.
+ * EyebrowText is a simple text component that should be used above Headings.
  */
 export const EyebrowText = Object.assign(_EyebrowText, {testIds})
