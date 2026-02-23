@@ -119,7 +119,6 @@ const waitForTimeoutLookup = {
   'components-hero-features--with-animated-label': 1500, // for the label animation to complete
   'components-hero-features-images-and-videos--with-youtube-video-block-end-default': 2000, // for loading a remote video
   'components-hero-features--with-increased-contrast-label': 3000, // for the label animation to complete
-  'components-subnav-features--anchor-nav-variant': 7000, // for being flakey across translations
   'components-videoplayer--default': 5000, // for video metadata to load
   'components-videoplayer--playground': 5000, // for video metadata to load
   'components-videoplayer-features--with-poster': 5000, // for video metadata to load

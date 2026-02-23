@@ -45,6 +45,7 @@ const testsToSkip = [
   'components-eyebrowbanner-features--on-custom-background-light', // custom, unrelated background image
   'components-subdomainnavbar--skip-to-main-tag', // contains main tag which is in conflict with the default role="main" element
   'components-subdomainnavbar--skip-to-main-tag-with-id', // contains main tag which is in conflict with the default role="main" element
+  'components-ide--default', // presentational component and contains animation
   'components-ide--playground', // presentational component and contains animation
   'components-ide-features--editor-only', // presentational component and contains animation
   'components-ide-features--editor-no-replay-button', // presentational component and contains animation
