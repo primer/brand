@@ -119,76 +119,78 @@ Use `FAQGroup` to display multiple `FAQ` components together.
 Use `tabAttributes` to add arbitrary attributes to the tabs. This can be useful for tracking analytics or adding custom attributes.
 
 ```jsx live
-<FAQGroup
-  tabAttributes={(children, i) => ({
-    'data-analytics': `faq-tab-${i}`,
-  })}
->
-  <FAQGroup.Heading>
-    Frequently asked <br /> questions
-  </FAQGroup.Heading>
-  <FAQ>
-    <FAQ.Heading>Using GitHub Enterprise</FAQ.Heading>
-    <FAQ.Item>
-      <FAQ.Question>What is GitHub Enterprise?</FAQ.Question>
-      <FAQ.Answer>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
-          turpis felis nam pulvinar risus elementum.
-        </p>
-      </FAQ.Answer>
-    </FAQ.Item>
-    <FAQ.Item>
-      <FAQ.Question>How can GitHub Enterprise be deployed?</FAQ.Question>
-      <FAQ.Answer>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
-          turpis felis nam pulvinar risus elementum.
-        </p>
-      </FAQ.Answer>
-    </FAQ.Item>
-    <FAQ.Item>
-      <FAQ.Question>What is GitHub Enterprise Cloud?</FAQ.Question>
-      <FAQ.Answer>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
-          turpis felis nam pulvinar risus elementum.
-        </p>
-      </FAQ.Answer>
-    </FAQ.Item>
-  </FAQ>
+<div style={{width: '100%'}}>
+  <FAQGroup
+    tabAttributes={(children, i) => ({
+      'data-analytics': `faq-tab-${i}`,
+    })}
+  >
+    <FAQGroup.Heading>
+      Frequently asked <br /> questions
+    </FAQGroup.Heading>
+    <FAQ>
+      <FAQ.Heading>Using GitHub Enterprise</FAQ.Heading>
+      <FAQ.Item>
+        <FAQ.Question>What is GitHub Enterprise?</FAQ.Question>
+        <FAQ.Answer>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
+            turpis felis nam pulvinar risus elementum.
+          </p>
+        </FAQ.Answer>
+      </FAQ.Item>
+      <FAQ.Item>
+        <FAQ.Question>How can GitHub Enterprise be deployed?</FAQ.Question>
+        <FAQ.Answer>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
+            turpis felis nam pulvinar risus elementum.
+          </p>
+        </FAQ.Answer>
+      </FAQ.Item>
+      <FAQ.Item>
+        <FAQ.Question>What is GitHub Enterprise Cloud?</FAQ.Question>
+        <FAQ.Answer>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
+            turpis felis nam pulvinar risus elementum.
+          </p>
+        </FAQ.Answer>
+      </FAQ.Item>
+    </FAQ>
 
-  <FAQ>
-    <FAQ.Heading>About GitHub Enterprise</FAQ.Heading>
-    <FAQ.Item>
-      <FAQ.Question>What is the difference between GitHub and GitHub Enterprise?</FAQ.Question>
-      <FAQ.Answer>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
-          turpis felis nam pulvinar risus elementum.
-        </p>
-      </FAQ.Answer>
-    </FAQ.Item>
-    <FAQ.Item>
-      <FAQ.Question>Why should organizations use GitHub Enterprise?</FAQ.Question>
-      <FAQ.Answer>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
-          turpis felis nam pulvinar risus elementum.
-        </p>
-      </FAQ.Answer>
-    </FAQ.Item>
-    <FAQ.Item>
-      <FAQ.Question>Who uses GitHub Enterprise?</FAQ.Question>
-      <FAQ.Answer>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
-          turpis felis nam pulvinar risus elementum.
-        </p>
-      </FAQ.Answer>
-    </FAQ.Item>
-  </FAQ>
-</FAQGroup>
+    <FAQ>
+      <FAQ.Heading>About GitHub Enterprise</FAQ.Heading>
+      <FAQ.Item>
+        <FAQ.Question>What is the difference between GitHub and GitHub Enterprise?</FAQ.Question>
+        <FAQ.Answer>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
+            turpis felis nam pulvinar risus elementum.
+          </p>
+        </FAQ.Answer>
+      </FAQ.Item>
+      <FAQ.Item>
+        <FAQ.Question>Why should organizations use GitHub Enterprise?</FAQ.Question>
+        <FAQ.Answer>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
+            turpis felis nam pulvinar risus elementum.
+          </p>
+        </FAQ.Answer>
+      </FAQ.Item>
+      <FAQ.Item>
+        <FAQ.Question>Who uses GitHub Enterprise?</FAQ.Question>
+        <FAQ.Answer>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
+            turpis felis nam pulvinar risus elementum.
+          </p>
+        </FAQ.Answer>
+      </FAQ.Item>
+    </FAQ>
+  </FAQGroup>
+</div>
 ```
 
 ### GridLine variant
