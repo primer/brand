@@ -29,8 +29,8 @@
 .SubNav__heading,
 .SubNav__subHeading {
   display: block;
-  font-size: calc(var(--base-size-16) - 1px);
-  line-height: calc(var(--base-size-16) - 1px);
+  font-size: calc(var(--base-size-16) - 1px); /* One-off override to match design */
+  line-height: calc(var(--base-size-16) - 1px); /* One-off override to match design */
   font-weight: var(--brand-text-subhead-weight-medium);
   color: var(--brand-color-text-default);
   font-family: var(--brand-heading-fontFamily);
@@ -186,27 +186,6 @@
   color: var(--brand-SubNav-color-link-active);
   text-decoration: none !important; /* dotcom override */
 }
-/* 
-.SubNav__link-label::after,
-.SubNav__subHeading::after {
-  content: '';
-  position: absolute;
-  bottom: calc(var(--base-size-2) * -1);
-  left: 0;
-  width: 100%;
-  height: 2px;
-  border-width: 2px;
-  border-bottom: var(--base-size-2) solid var(--brand-color-text-muted);
-  transition: opacity var(--brand-animation-duration-fast), transform var(--brand-animation-duration-fast),
-    border-color var(--brand-animation-duration-fast);
-  opacity: 1;
-  transform: scale(0);
-  transform-origin: center;
-} */
-
-/* .SubNav__link[aria-current]:not([aria-current='false']) .SubNav__link-label::after {
-  border-color: var(--brand-color-text-default);
-} */
 
 .SubNav__link:hover .SubNav__link-label {
   transition: color var(--brand-animation-duration-fast) var(--brand-animation-easing-default);
@@ -300,10 +279,6 @@
     position: relative;
     z-index: 9998;
   }
-
-  /* .SubNav--open .SubNav__header-container {
-    border-block-end: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
-  } */
 
   .SubNav__heading-separator {
     margin-inline-end: var(--base-size-16);
@@ -484,19 +459,6 @@
     position: relative;
     top: var(--base-size-2);
   }
-  /* 
-  .SubNav .SubNav__link-label::after {
-    opacity: 0;
-    transform: scale(0);
-    bottom: 0;
-  }
-
-  .SubNav__link:hover .SubNav__link-label::after,
-  .SubNav__link:focus-visible .SubNav__link-label::after,
-  .SubNav__link[aria-current]:not([aria-current='false']) .SubNav__link-label::after {
-    opacity: 1;
-    transform: scale(1);
-  } */
 }
 
 .SubNav__overlay-toggle-icon {
@@ -784,10 +746,6 @@
     fill: var(--brand-color-text-muted);
     transition: transform var(--brand-animation-duration-fast);
   }
-
-  /* .SubNav__link--has-sub-menu:hover .SubNav__sub-menu-icon {
-    transform: translateY(2px);
-  } */
 
   .SubNav__sub-menu--anchor {
     padding-inline: var(--base-size-32);
