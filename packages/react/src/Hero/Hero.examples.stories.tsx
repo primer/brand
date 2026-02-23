@@ -350,7 +350,9 @@ export const GridlineExpressiveWithImageCarousel: Story = {
       >
         <Hero variant="gridline-expressive" enableAnimation>
           <Hero.Label>Projects</Hero.Label>
-          <Hero.Heading>Project planning for developers</Hero.Heading>
+          <Hero.Heading>
+            Project planning <em>for developers</em>
+          </Hero.Heading>
           <Hero.Description>
             Create issues, break them into tasks, track relationships, add custom fields, and have conversations.
             Visualize large projects as spreadsheets or boards, and automate everything with code.
