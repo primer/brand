@@ -31,7 +31,7 @@ describe('Tiles', () => {
     expect(getByTestId('svg2')).toBeInTheDocument()
   })
 
-  it('applies the default variant class', () => {
+  it('applies the default variant and layout classes', () => {
     const {getByTestId} = render(
       <Tiles>
         <Tiles.Item name="VS Code">
@@ -42,6 +42,7 @@ describe('Tiles', () => {
 
     const rootEl = getByTestId(Tiles.testIds.root)
     expect(rootEl.classList).toContain('Tiles--variant-default')
+    expect(rootEl.classList).toContain('Tiles--layout-default')
   })
 
   it('applies the gridlines variant class', () => {
@@ -55,19 +56,6 @@ describe('Tiles', () => {
 
     const rootEl = getByTestId(Tiles.testIds.root)
     expect(rootEl.classList).toContain('Tiles--variant-gridlines')
-  })
-
-  it('applies the default layout class', () => {
-    const {getByTestId} = render(
-      <Tiles>
-        <Tiles.Item name="VS Code">
-          <svg />
-        </Tiles.Item>
-      </Tiles>,
-    )
-
-    const rootEl = getByTestId(Tiles.testIds.root)
-    expect(rootEl.classList).toContain('Tiles--layout-default')
   })
 
   it('applies the compact layout class', () => {
@@ -207,184 +195,171 @@ describe('Tiles', () => {
     expect(getAllByTestId(Tiles.testIds.item)).toHaveLength(3)
   })
 
-  describe('Accessibility', () => {
-    it('renders a list with list items', () => {
-      const {getByRole, getAllByRole} = render(
-        <Tiles>
-          <Tiles.Item name="VS Code">
-            <svg />
-          </Tiles.Item>
-          <Tiles.Item name="Copilot">
-            <svg />
-          </Tiles.Item>
-        </Tiles>,
-      )
+  it('renders a list with list items', () => {
+    const {getByRole, getAllByRole} = render(
+      <Tiles>
+        <Tiles.Item name="VS Code">
+          <svg />
+        </Tiles.Item>
+        <Tiles.Item name="Copilot">
+          <svg />
+        </Tiles.Item>
+      </Tiles>,
+    )
 
-      expect(getByRole('list')).toBeInTheDocument()
-      expect(getAllByRole('listitem')).toHaveLength(2)
-    })
+    expect(getByRole('list')).toBeInTheDocument()
+    expect(getAllByRole('listitem')).toHaveLength(2)
+  })
 
-    it('marks the icon/media as aria-hidden for non-interactive items', () => {
-      const {container} = render(
-        <Tiles>
-          <Tiles.Item name="VS Code">
-            <svg />
-          </Tiles.Item>
-        </Tiles>,
-      )
+  it('marks the icon/media as aria-hidden for non-interactive items', () => {
+    const {container} = render(
+      <Tiles>
+        <Tiles.Item name="VS Code">
+          <svg />
+        </Tiles.Item>
+      </Tiles>,
+    )
 
-      const media = container.querySelector('.Tiles-item-media')
-      expect(media).toHaveAttribute('aria-hidden', 'true')
-    })
+    const media = container.querySelector('.Tiles-item-media')
+    expect(media).toHaveAttribute('aria-hidden', 'true')
+  })
 
-    it('renders the name in the label for all items', () => {
-      const {getByText} = render(
-        <Tiles>
-          <Tiles.Item name="VS Code">
-            <svg />
-          </Tiles.Item>
-        </Tiles>,
-      )
+  it('renders the name in the label for all items', () => {
+    const {getByRole, getByText} = render(
+      <Tiles>
+        <Tiles.Item name="VS Code">
+          <svg />
+        </Tiles.Item>
+      </Tiles>,
+    )
 
-      expect(getByText('VS Code')).toBeInTheDocument()
-    })
+    expect(getByRole('list')).toBeInTheDocument()
+    expect(getByText('VS Code')).toBeInTheDocument()
+  })
 
-    it('renders the name in the label for interactive items', () => {
-      const {getByText} = render(
-        <Tiles>
-          <Tiles.Item name="VS Code" href="https://example.com">
-            <svg />
-          </Tiles.Item>
-        </Tiles>,
-      )
+  it('applies visually-hidden to the label for compact non-interactive items', () => {
+    const {container} = render(
+      <Tiles layout="compact">
+        <Tiles.Item name="VS Code">
+          <svg />
+        </Tiles.Item>
+      </Tiles>,
+    )
 
-      expect(getByText('VS Code')).toBeInTheDocument()
-    })
+    const label = container.querySelector('.Tiles-item-label')
+    expect(label).toHaveClass('visually-hidden')
+  })
 
-    it('applies visually-hidden to the label for compact non-interactive items', () => {
-      const {container} = render(
-        <Tiles layout="compact">
-          <Tiles.Item name="VS Code">
-            <svg />
-          </Tiles.Item>
-        </Tiles>,
-      )
+  it('does not apply visually-hidden to the label for compact interactive items', () => {
+    const {container} = render(
+      <Tiles layout="compact">
+        <Tiles.Item name="VS Code" href="https://example.com">
+          <svg />
+        </Tiles.Item>
+      </Tiles>,
+    )
 
-      const label = container.querySelector('.Tiles-item-label')
-      expect(label).toHaveClass('visually-hidden')
-    })
+    const label = container.querySelector('.Tiles-item-label')
+    expect(label).not.toHaveClass('visually-hidden')
+  })
 
-    it('does not apply visually-hidden to the label for compact interactive items', () => {
-      const {container} = render(
-        <Tiles layout="compact">
-          <Tiles.Item name="VS Code" href="https://example.com">
-            <svg />
-          </Tiles.Item>
-        </Tiles>,
-      )
+  it('does not apply visually-hidden to the label for default layout non-interactive items', () => {
+    const {container} = render(
+      <Tiles layout="default">
+        <Tiles.Item name="VS Code">
+          <svg />
+        </Tiles.Item>
+      </Tiles>,
+    )
 
-      const label = container.querySelector('.Tiles-item-label')
-      expect(label).not.toHaveClass('visually-hidden')
-    })
+    const label = container.querySelector('.Tiles-item-label')
+    expect(label).not.toHaveClass('visually-hidden')
+  })
 
-    it('does not apply visually-hidden to the label for default layout non-interactive items', () => {
-      const {container} = render(
-        <Tiles layout="default">
-          <Tiles.Item name="VS Code">
-            <svg />
-          </Tiles.Item>
-        </Tiles>,
-      )
+  it('link has an accessible name from the tile name', () => {
+    const {getByRole} = render(
+      <Tiles>
+        <Tiles.Item name="VS Code" href="https://example.com">
+          <svg />
+        </Tiles.Item>
+      </Tiles>,
+    )
 
-      const label = container.querySelector('.Tiles-item-label')
-      expect(label).not.toHaveClass('visually-hidden')
-    })
+    const link = getByRole('link')
+    expect(link).toHaveAccessibleName('VS Code')
+  })
 
-    it('link has an accessible name from the tile name', () => {
-      const {getByRole} = render(
-        <Tiles>
-          <Tiles.Item name="VS Code" href="https://example.com">
-            <svg />
-          </Tiles.Item>
-        </Tiles>,
-      )
+  it('marks the ArrowUpRightIcon as aria-hidden', () => {
+    const {container} = render(
+      <Tiles>
+        <Tiles.Item name="VS Code" href="https://example.com">
+          <svg />
+        </Tiles.Item>
+      </Tiles>,
+    )
 
-      const link = getByRole('link')
-      expect(link).toHaveAccessibleName('VS Code')
-    })
+    const icon = container.querySelector('.Tiles-item-icon')
+    expect(icon).toHaveAttribute('aria-hidden', 'true')
+  })
 
-    it('marks the ArrowUpRightIcon as aria-hidden', () => {
-      const {container} = render(
-        <Tiles>
-          <Tiles.Item name="VS Code" href="https://example.com">
-            <svg />
-          </Tiles.Item>
-        </Tiles>,
-      )
+  it('has no a11y violations for non-interactive tiles', async () => {
+    const {container} = render(
+      <Tiles>
+        <Tiles.Item name="VS Code">
+          <svg role="img" aria-label="VS Code" />
+        </Tiles.Item>
+        <Tiles.Item name="Copilot">
+          <svg role="img" aria-label="Copilot" />
+        </Tiles.Item>
+      </Tiles>,
+    )
 
-      const icon = container.querySelector('.Tiles-item-icon')
-      expect(icon).toHaveAttribute('aria-hidden', 'true')
-    })
+    const results = await axe(container)
+    expect(results).toHaveNoViolations()
+  })
 
-    it('has no a11y violations for non-interactive tiles', async () => {
-      const {container} = render(
-        <Tiles>
-          <Tiles.Item name="VS Code">
-            <svg role="img" aria-label="VS Code" />
-          </Tiles.Item>
-          <Tiles.Item name="Copilot">
-            <svg role="img" aria-label="Copilot" />
-          </Tiles.Item>
-        </Tiles>,
-      )
+  it('has no a11y violations for interactive tiles', async () => {
+    const {container} = render(
+      <Tiles>
+        <Tiles.Item name="VS Code" href="https://code.visualstudio.com">
+          <svg role="img" aria-label="VS Code" />
+        </Tiles.Item>
+        <Tiles.Item name="Copilot" href="https://copilot.github.com">
+          <svg role="img" aria-label="Copilot" />
+        </Tiles.Item>
+      </Tiles>,
+    )
 
-      const results = await axe(container)
-      expect(results).toHaveNoViolations()
-    })
+    const results = await axe(container)
+    expect(results).toHaveNoViolations()
+  })
 
-    it('has no a11y violations for interactive tiles', async () => {
-      const {container} = render(
-        <Tiles>
-          <Tiles.Item name="VS Code" href="https://code.visualstudio.com">
-            <svg role="img" aria-label="VS Code" />
-          </Tiles.Item>
-          <Tiles.Item name="Copilot" href="https://copilot.github.com">
-            <svg role="img" aria-label="Copilot" />
-          </Tiles.Item>
-        </Tiles>,
-      )
+  it('has no a11y violations with gridlines variant', async () => {
+    const {container} = render(
+      <Tiles variant="gridlines">
+        <Tiles.Item name="VS Code" href="https://code.visualstudio.com">
+          <svg role="img" aria-label="VS Code" />
+        </Tiles.Item>
+      </Tiles>,
+    )
 
-      const results = await axe(container)
-      expect(results).toHaveNoViolations()
-    })
+    const results = await axe(container)
+    expect(results).toHaveNoViolations()
+  })
 
-    it('has no a11y violations with gridlines variant', async () => {
-      const {container} = render(
-        <Tiles variant="gridlines">
-          <Tiles.Item name="VS Code" href="https://code.visualstudio.com">
-            <svg role="img" aria-label="VS Code" />
-          </Tiles.Item>
-        </Tiles>,
-      )
+  it('has no a11y violations with mixed interactive and non-interactive tiles', async () => {
+    const {container} = render(
+      <Tiles>
+        <Tiles.Item name="VS Code" href="https://code.visualstudio.com">
+          <svg role="img" aria-label="VS Code" />
+        </Tiles.Item>
+        <Tiles.Item name="Copilot">
+          <svg role="img" aria-label="Copilot" />
+        </Tiles.Item>
+      </Tiles>,
+    )
 
-      const results = await axe(container)
-      expect(results).toHaveNoViolations()
-    })
-
-    it('has no a11y violations with mixed interactive and non-interactive tiles', async () => {
-      const {container} = render(
-        <Tiles>
-          <Tiles.Item name="VS Code" href="https://code.visualstudio.com">
-            <svg role="img" aria-label="VS Code" />
-          </Tiles.Item>
-          <Tiles.Item name="Copilot">
-            <svg role="img" aria-label="Copilot" />
-          </Tiles.Item>
-        </Tiles>,
-      )
-
-      const results = await axe(container)
-      expect(results).toHaveNoViolations()
-    })
+    const results = await axe(container)
+    expect(results).toHaveNoViolations()
   })
 })

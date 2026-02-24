@@ -12,7 +12,7 @@ module.exports = {
     },
     highlightColor: {
       value: '#08872B',
-      dark: '#5FED',
+      dark: '#5FED83',
     },
   },
 }

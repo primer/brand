@@ -1,5 +1,5 @@
 import {clsx} from 'clsx'
-import React, {createContext, forwardRef, type PropsWithChildren, type Ref, useContext, useMemo} from 'react'
+import React, {createContext, forwardRef, type PropsWithChildren, type Ref, useContext} from 'react'
 import {ArrowUpRightIcon} from '@primer/octicons-react'
 import type {BaseProps} from '../component-helpers'
 import {Text} from '../Text'
@@ -29,14 +29,10 @@ const TilesContext = createContext<TilesLayout>('default')
 export type TilesProps = {
   /**
    * The visual variant of the Tiles component.
-   * - `default`: No gridlines
-   * - `gridlines`: Includes gridlines between tiles
    */
   variant?: TilesVariant
   /**
    * The layout density of the Tiles grid.
-   * - `default`: 6 items per row on large viewports
-   * - `compact`: 8 items per row on large viewports
    */
   layout?: TilesLayout
   /**
@@ -104,21 +100,18 @@ const _Item = forwardRef(
     const hasLink = Boolean(href)
     const isLabelHidden = layout === 'compact' && !hasLink
 
-    const content = useMemo(
-      () => (
-        <span className={styles['Tiles-item-content']}>
-          <span className={styles['Tiles-item-media']} aria-hidden="true">
-            {children}
-          </span>
-          <span className={clsx(styles['Tiles-item-label'], isLabelHidden && 'visually-hidden')}>
-            <Text as="span" size="100" className={styles['Tiles-item-name']}>
-              {name}
-            </Text>
-            {hasLink && <ArrowUpRightIcon size={16} className={styles['Tiles-item-icon']} aria-hidden="true" />}
-          </span>
+    const content = (
+      <span className={styles['Tiles-item-content']}>
+        <span className={styles['Tiles-item-media']} aria-hidden="true">
+          {children}
         </span>
-      ),
-      [children, name, hasLink, isLabelHidden],
+        <span className={clsx(styles['Tiles-item-label'], isLabelHidden && 'visually-hidden')}>
+          <Text as="span" size="100" className={styles['Tiles-item-name']}>
+            {name}
+          </Text>
+          {hasLink && <ArrowUpRightIcon size={16} className={styles['Tiles-item-icon']} aria-hidden="true" />}
+        </span>
+      </span>
     )
 
     return (

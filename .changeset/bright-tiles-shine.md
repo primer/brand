@@ -2,4 +2,6 @@
 '@primer/react-brand': minor
 ---
 
-Added new `Tiles` component for displaying a responsive grid of logos or icons with optional interactivity. Supports `default` and `gridlines` variants, `default` and `compact` layouts, and optional linking via `href` on `Tiles.Item`.
+Added new `Tiles` component for displaying a responsive grid of logos or icons with optional interactivity.
+
+🔗 [See the documentation for usage examples](https://primer.style/brand/components/Tiles)
