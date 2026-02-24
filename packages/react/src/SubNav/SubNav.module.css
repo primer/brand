@@ -370,7 +370,7 @@
     display: inline-block;
     background-color: var(--brand-SubNav-color-link-bgColor);
     border-radius: var(--brand-borderRadius-full);
-    padding: var(--base-size-4) var(--base-size-12);
+    padding: var(--base-size-2) var(--base-size-12) var(--base-size-4);
     margin-inline-start: var(--base-size-8);
   }
 
@@ -712,11 +712,6 @@
 
   /* Firefox optical alignment fix */
   @supports (-moz-appearance: none) {
-    .SubNav__links-overlay .SubNav__link[aria-current]:not([aria-current='false']) .SubNav__link-label {
-      position: relative;
-      top: 1px;
-    }
-
     .SubNav__links-overlay
       .SubNav__link--has-sub-menu
       .SubNav__link[aria-current]:not([aria-current='false'])
