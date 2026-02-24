@@ -593,8 +593,6 @@
     transition: color 0.2s var(--brand-animation-easing-glide);
     position: relative;
     padding: var(--base-size-4) 0;
-    /* Optical alignment */
-    top: 1px;
   }
 
   .SubNav__link-label {
