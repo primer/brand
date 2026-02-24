@@ -1,7 +1,7 @@
 import React from 'react'
 import type {StoryFn, Meta} from '@storybook/react'
 import {Card, CardIconColors} from '.'
-import {Stack, LabelColors, Grid, ThemeProvider, Box, Section} from '..'
+import {Stack, LabelColors, Grid, ThemeProvider, Box, Section, Text} from '..'
 import placeholderImage from '../fixtures/images/placeholder.png'
 import {CopilotIcon, ZapIcon, RocketIcon, GitBranchIcon, HeartIcon} from '@primer/octicons-react'
 import {IconProps} from '../Icon'
@@ -437,3 +437,115 @@ TorchlightVariant.decorators = [
     </ThemeProvider>
   ),
 ]
+
+export const WithInlineCodeElement: StoryFn<typeof Card> = () => {
+  return (
+    <Stack direction="vertical" gap="spacious">
+      <Stack direction="horizontal" gap="normal">
+        <Stack direction="vertical" gap="normal">
+          <Text as="p">Default:</Text>
+          <Card href="https://github.com">
+            <Card.Heading>
+              Use any <code>/model</code> parallelize with <code>/fleet</code>
+            </Card.Heading>
+            <Card.Description>
+              Use <code>/model</code> to switch, then <code>/fleet</code> to execute in parallel or run multiple models
+              at once.
+            </Card.Description>
+          </Card>
+        </Stack>
+        <Stack direction="vertical" gap="normal">
+          <Text as="p">disableAnimation:</Text>
+          <Card href="https://github.com" disableAnimation>
+            <Card.Heading>
+              Use any <code>/model</code> parallelize with <code>/fleet</code>
+            </Card.Heading>
+            <Card.Description>
+              Use <code>/model</code> to switch, then <code>/fleet</code> to execute in parallel or run multiple models
+              at once.
+            </Card.Description>
+          </Card>
+        </Stack>
+        <Stack direction="vertical" gap="normal">
+          <Text as="p">Minimal variant:</Text>
+          <Card href="https://github.com" variant="minimal">
+            <Card.Heading>
+              Use any <code>/model</code> parallelize with <code>/fleet</code>
+            </Card.Heading>
+            <Card.Description>
+              Use <code>/model</code> to switch, then <code>/fleet</code> to execute in parallel or run multiple models
+              at once.
+            </Card.Description>
+          </Card>
+        </Stack>
+      </Stack>
+      <Stack direction="horizontal" gap="normal">
+        <Stack direction="vertical" gap="normal">
+          <Text as="p">Torchlight variant (dark mode):</Text>
+          <ThemeProvider colorMode="dark">
+            <Box backgroundColor="default">
+              <Card href="https://github.com" variant="torchlight">
+                <Card.Heading>
+                  Use any <code>/model</code> parallelize with <code>/fleet</code>
+                </Card.Heading>
+                <Card.Description>
+                  Use <code>/model</code> to switch, then <code>/fleet</code> to execute in parallel or run multiple
+                  models at once.
+                </Card.Description>
+              </Card>
+            </Box>
+          </ThemeProvider>
+        </Stack>
+        <Stack direction="vertical" gap="normal">
+          <Text as="p">Center aligned with icon:</Text>
+          <Card href="https://github.com" hasBorder fullWidth align="center">
+            <Card.Icon icon={CopilotIcon} color="purple" hasBackground />
+            <Card.Heading>
+              Use any <code>/model</code> parallelize with <code>/fleet</code>
+            </Card.Heading>
+            <Card.Description>
+              Use <code>/model</code> to switch, then <code>/fleet</code> to execute in parallel or run multiple models
+              at once.
+            </Card.Description>
+          </Card>
+        </Stack>
+      </Stack>
+    </Stack>
+  )
+}
+
+export const WithInlineCodeElementCustomDescriptionSize: StoryFn<typeof Card> = () => {
+  return (
+    <Stack direction="horizontal" gap="normal">
+      <Stack direction="vertical" gap="normal">
+        <Text as="p">Larger heading and description:</Text>
+        <Card href="https://github.com">
+          <Card.Heading size="5">
+            Use any <code>/model</code> parallelize with <code>/fleet</code>
+          </Card.Heading>
+          <Card.Description>
+            <Text size="400">
+              Use <code>/model</code> to switch, then <code>/fleet</code> to execute in parallel or run multiple models
+              at once.
+            </Text>
+          </Card.Description>
+        </Card>
+      </Stack>
+      <Stack direction="vertical" gap="normal">
+        <Text as="p">Smaller heading and description:</Text>
+        <Card href="https://github.com">
+          <Card.Heading size="subhead-medium">
+            Use any <code>/model</code> parallelize with <code>/fleet</code>
+          </Card.Heading>
+          <Card.Description>
+            <Text size="100">
+              Use <code>/model</code> to switch, then <code>/fleet</code> to execute in parallel or run multiple models
+              at once.
+            </Text>
+          </Card.Description>
+        </Card>
+      </Stack>
+    </Stack>
+  )
+}
+WithInlineCodeElementCustomDescriptionSize.storyName = 'With inline code element + non-standard size overrides'

@@ -12,6 +12,7 @@ declare const styles: {
   readonly "River__call-to-action": string;
   readonly "River__content": string;
   readonly "River__heading": string;
+  readonly "River__heading-inner": string;
   readonly "River__label": string;
   readonly "River__text": string;
   readonly "River__trailingComponent": string;

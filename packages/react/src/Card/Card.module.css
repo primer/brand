@@ -98,6 +98,29 @@
   text-decoration: none !important;
 }
 
+.Card__link code,
+.Card__description code {
+  font-size: inherit;
+  font-family: var(--brand-fontStack-monospace);
+  background-color: var(--brand-color-canvas-subtle);
+  padding: 0 var(--base-size-4) var(--base-size-2);
+  border: var(--brand-borderWidth-thin) solid var(--brand-color-border-default);
+  border-radius: var(--brand-borderRadius-small);
+
+  box-shadow: 1px 1px 0 0 var(--brand-color-border-default);
+}
+
+.Card__description code {
+  padding: var(--base-size-2) var(--base-size-4) 0;
+}
+.Card__link:has(code) {
+  line-height: calc(1lh * 1.4);
+}
+
+.Card__description.Card__description:has(code) {
+  line-height: calc(1lh * 1.25);
+}
+
 .Card--disableAnimation:hover .Card__link {
   text-decoration: underline !important;
 }

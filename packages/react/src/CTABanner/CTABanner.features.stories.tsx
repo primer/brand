@@ -349,3 +349,103 @@ export const WithImageAtMobileViewport = () => <WithImageExample />
 WithImageAtMobileViewport.globals = {
   viewport: {value: 'iphonexr'},
 }
+
+export const WithInlineCodeElement = () => (
+  <Stack direction="vertical" gap="spacious" padding="none">
+    <Stack direction="vertical" gap="normal">
+      <Text as="p">Default variant:</Text>
+      <CTABanner>
+        <CTABanner.Heading>
+          Use any <code>/model</code> parallelize with <code>/fleet</code>
+        </CTABanner.Heading>
+        <CTABanner.Description>
+          Use <code>/model</code> to switch, then <code>/fleet</code> to execute in parallel or run multiple models at
+          once.
+        </CTABanner.Description>
+        <CTABanner.ButtonGroup>
+          <Button>Get started</Button>
+        </CTABanner.ButtonGroup>
+      </CTABanner>
+    </Stack>
+    <Stack direction="vertical" gap="normal">
+      <Text as="p">Custom background color:</Text>
+      <CTABanner backgroundColor="default" hasBorder>
+        <CTABanner.Heading>
+          Use any <code>/model</code> parallelize with <code>/fleet</code>
+        </CTABanner.Heading>
+        <CTABanner.Description>
+          Use <code>/model</code> to switch, then <code>/fleet</code> to execute in parallel or run multiple models at
+          once.
+        </CTABanner.Description>
+        <CTABanner.ButtonGroup>
+          <Button>Get started</Button>
+        </CTABanner.ButtonGroup>
+      </CTABanner>
+    </Stack>
+    <Stack direction="vertical" gap="normal">
+      <Text as="p">Balanced variant:</Text>
+      <CTABanner variant="balanced">
+        <CTABanner.Heading>
+          Use any <code>/model</code> parallelize with <code>/fleet</code>
+        </CTABanner.Heading>
+        <CTABanner.Description>
+          Use <code>/model</code> to switch, then <code>/fleet</code> to execute in parallel or run multiple models at
+          once.
+        </CTABanner.Description>
+        <CTABanner.ButtonGroup>
+          <Button>Get started</Button>
+        </CTABanner.ButtonGroup>
+        <CTABanner.Image src={placeholderImage} alt="Blank image" />
+      </CTABanner>
+    </Stack>
+    <Stack direction="vertical" gap="normal">
+      <Text as="p">Minimal variant:</Text>
+      <CTABanner variant="minimal">
+        <CTABanner.Heading>
+          Use any <code>/model</code> parallelize with <code>/fleet</code>
+        </CTABanner.Heading>
+        <CTABanner.Description>
+          Use <code>/model</code> to switch, then <code>/fleet</code> to execute in parallel or run multiple models at
+          once.
+        </CTABanner.Description>
+        <CTABanner.ButtonGroup>
+          <Button>Get started</Button>
+        </CTABanner.ButtonGroup>
+      </CTABanner>
+    </Stack>
+    <Stack direction="vertical" gap="normal">
+      <Text as="p">Dark mode:</Text>
+      <ThemeProvider colorMode="dark">
+        <Section backgroundColor="default">
+          <CTABanner>
+            <CTABanner.Heading>
+              Use any <code>/model</code> parallelize with <code>/fleet</code>
+            </CTABanner.Heading>
+            <CTABanner.Description>
+              Use <code>/model</code> to switch, then <code>/fleet</code> to execute in parallel or run multiple models
+              at once.
+            </CTABanner.Description>
+            <CTABanner.ButtonGroup>
+              <Button>Get started</Button>
+            </CTABanner.ButtonGroup>
+          </CTABanner>
+        </Section>
+      </ThemeProvider>
+    </Stack>
+    <Stack direction="vertical" gap="normal">
+      <Text as="p">Start aligned with border:</Text>
+      <CTABanner align="start" hasBorder>
+        <CTABanner.Heading>
+          Use any <code>/model</code> parallelize with <code>/fleet</code>
+        </CTABanner.Heading>
+        <CTABanner.Description>
+          Use <code>/model</code> to switch, then <code>/fleet</code> to execute in parallel or run multiple models at
+          once.
+        </CTABanner.Description>
+        <CTABanner.ButtonGroup>
+          <Button>Get started</Button>
+        </CTABanner.ButtonGroup>
+      </CTABanner>
+    </Stack>
+  </Stack>
+)

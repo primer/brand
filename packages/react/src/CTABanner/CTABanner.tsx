@@ -212,6 +212,7 @@ const Root = forwardRef(
             styles.CTABanner,
             hasShadow && styles['CTABanner--shadow'],
             styles[`CTABanner--variant-${variant}`],
+            styles[`CTABanner--bgColor-${backgroundColor}`],
             className,
           )}
           style={{...backgroundStyles, ...style}}
