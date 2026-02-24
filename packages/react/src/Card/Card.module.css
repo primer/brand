@@ -104,6 +104,7 @@
   font-family: var(--brand-fontStack-monospace);
   background-color: var(--brand-color-canvas-subtle);
   padding: 0 var(--base-size-4) var(--base-size-2);
+  margin-inline: var(--base-size-2);
   border: var(--brand-borderWidth-thin) solid var(--brand-color-border-default);
   border-radius: var(--brand-borderRadius-small);
   box-shadow: var(--brand-borderWidth-thin) var(--brand-borderWidth-thin) 0 0 var(--brand-color-border-default);

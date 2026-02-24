@@ -227,6 +227,7 @@
   font-family: var(--brand-fontStack-monospace);
   background-color: var(--brand-color-canvas-default);
   padding: 0 var(--base-size-4) 0;
+  margin-inline: var(--base-size-2);
   border: var(--brand-borderWidth-thin) solid var(--brand-color-border-default);
   border-radius: var(--brand-borderRadius-small);
   box-shadow: var(--brand-borderWidth-thin) var(--brand-borderWidth-thin) 0 0 var(--brand-color-border-default);
@@ -246,7 +247,7 @@
 }
 
 .CTABanner--variant-balanced .CTABanner-heading.CTABanner-heading:has(code) {
-  line-height: calc(1lh * 3);
+  line-height: calc(1lh * 2.8);
 }
 
 .CTABanner--variant-minimal .CTABanner-heading.CTABanner-heading:has(code) {
