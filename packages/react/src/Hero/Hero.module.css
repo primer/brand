@@ -256,6 +256,11 @@
   max-width: 924px;
 }
 
+.Hero-heading b {
+  color: var(--brand-color-accent-primary);
+  font-style: normal;
+}
+
 .Hero-heading--fullWidth {
   max-width: unset;
 }

@@ -507,4 +507,18 @@ describe('Hero', () => {
     const imageWrapper = container.querySelector('.Hero-imageWrapper--bg-subtle')
     expect(imageWrapper).toBeInTheDocument()
   })
+
+  test('renders with duotone styles when <b> tag is used inside the Hero.Heading', () => {
+    const {getByText} = render(
+      <Hero>
+        <Hero.Heading>
+          This is my super sweet hero heading with an <b>emphasized part</b>
+        </Hero.Heading>
+      </Hero>,
+    )
+
+    const emphasizedText = getByText('emphasized part')
+    expect(emphasizedText).toBeInTheDocument()
+    expect(emphasizedText.tagName).toBe('B')
+  })
 })
