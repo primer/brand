@@ -441,7 +441,7 @@ TorchlightVariant.decorators = [
 export const WithInlineCodeElement: StoryFn<typeof Card> = () => {
   return (
     <Stack direction="vertical" gap="spacious">
-      <Stack direction="horizontal" gap="normal">
+      <Stack direction={{narrow: 'vertical', wide: 'horizontal'}} gap="normal">
         <Stack direction="vertical" gap="normal">
           <Text as="p">Default:</Text>
           <Card href="https://github.com">
@@ -479,7 +479,7 @@ export const WithInlineCodeElement: StoryFn<typeof Card> = () => {
           </Card>
         </Stack>
       </Stack>
-      <Stack direction="horizontal" gap="normal">
+      <Stack direction={{narrow: 'vertical', wide: 'horizontal'}} gap="normal">
         <Stack direction="vertical" gap="normal">
           <Text as="p">Torchlight variant (dark mode):</Text>
           <ThemeProvider colorMode="dark">
@@ -516,7 +516,7 @@ export const WithInlineCodeElement: StoryFn<typeof Card> = () => {
 
 export const WithInlineCodeElementCustomDescriptionSize: StoryFn<typeof Card> = () => {
   return (
-    <Stack direction="horizontal" gap="normal">
+    <Stack direction={{narrow: 'vertical', wide: 'horizontal'}} gap="normal">
       <Stack direction="vertical" gap="normal">
         <Text as="p">Larger heading and description:</Text>
         <Card href="https://github.com">

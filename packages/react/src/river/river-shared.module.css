@@ -53,7 +53,7 @@
   padding: 0 var(--base-size-4) var(--base-size-2);
   border: var(--brand-borderWidth-thin) solid var(--brand-color-border-default);
   border-radius: var(--brand-borderRadius-small);
-  box-shadow: 1px 1px 0 0 var(--brand-color-border-default);
+  box-shadow: var(--brand-borderWidth-thin) var(--brand-borderWidth-thin) 0 0 var(--brand-color-border-default);
 }
 
 .River__text code {
