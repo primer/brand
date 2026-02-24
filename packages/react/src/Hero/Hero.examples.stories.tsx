@@ -351,7 +351,7 @@ export const GridlineExpressiveWithImageCarousel: Story = {
         <Hero variant="gridline-expressive" enableAnimation>
           <Hero.Label>Projects</Hero.Label>
           <Hero.Heading>
-            Project planning <em>for developers</em>
+            Project planning <b>for developers</b>
           </Hero.Heading>
           <Hero.Description>
             Create issues, break them into tasks, track relationships, add custom fields, and have conversations.
