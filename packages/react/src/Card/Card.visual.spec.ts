@@ -204,4 +204,26 @@ test.describe('Visual Comparison: Card', () => {
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
   })
+
+  test('Card / With Inline Code Element', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-card-features--with-inline-code-element&viewMode=story',
+      {waitUntil: 'networkidle'},
+    )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+    await page.waitForTimeout(500)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
+  test('Card / With inline code element + non-standard size overrides', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-card-features--with-inline-code-element-custom-description-size&viewMode=story',
+      {waitUntil: 'networkidle'},
+    )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+    await page.waitForTimeout(500)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
 })
