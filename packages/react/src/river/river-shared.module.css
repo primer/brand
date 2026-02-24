@@ -194,7 +194,7 @@
   }
 
   .River--50-50 {
-    grid-template-columns: [content] min(50%, 452px) [visual] 1fr;
+    grid-template-columns: [content] 1fr [visual] 1fr;
   }
 
   .River--60-40 {
@@ -209,9 +209,6 @@
     grid-template-areas: 'visual content';
   }
 
-  .River--align-end.River--50-50 {
-    grid-template-columns: [visual] 1fr [content] min(50%, 476px);
-  }
   .River--align-end.River--60-40 {
     grid-template-columns: [visual] 6fr [content] 4fr;
   }
