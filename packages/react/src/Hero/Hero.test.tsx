@@ -509,11 +509,11 @@ describe('Hero', () => {
   })
 
   test('renders with duotone styles when <b> tag is used inside the Hero.Heading', () => {
-    const mockHeadingWithEmphasis = 'This is my super sweet hero heading with an <b>emphasized part</b>'
-
     const {getByText} = render(
       <Hero>
-        <Hero.Heading>{mockHeadingWithEmphasis}</Hero.Heading>
+        <Hero.Heading>
+          This is my super sweet hero heading with an <b>emphasized part</b>
+        </Hero.Heading>
       </Hero>,
     )
 
