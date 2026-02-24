@@ -239,6 +239,10 @@
     padding-inline-end: var(--base-size-128);
   }
 
+  .River--align-end:not(.River--variant-gridline) .River__content {
+    padding-inline-start: var(--base-size-128);
+  }
+
   .River__content--align-block-end {
     align-content: end;
   }
