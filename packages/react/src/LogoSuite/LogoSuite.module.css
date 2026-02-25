@@ -66,13 +66,16 @@
 .LogoSuite__logobar--variant-emphasis img,
 .LogoSuite__logobar--variant-emphasis a {
   width: auto;
-  height: var(--base-size-32);
+  height: var(--base-size-28);
 }
 
 @media screen and (min-width: 48rem) {
   .LogoSuite__logobar--variant-muted svg,
   .LogoSuite__logobar--variant-muted img,
-  .LogoSuite__logobar--variant-muted a {
+  .LogoSuite__logobar--variant-muted a,
+  .LogoSuite__logobar--variant-emphasis svg,
+  .LogoSuite__logobar--variant-emphasis img,
+  .LogoSuite__logobar--variant-emphasis a {
     height: var(--base-size-32);
   }
 }
