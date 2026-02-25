@@ -73,7 +73,7 @@
   .LogoSuite__logobar--variant-muted svg,
   .LogoSuite__logobar--variant-muted img,
   .LogoSuite__logobar--variant-muted a {
-    height: var(--base-size-40);
+    height: var(--base-size-32);
   }
 }
 
