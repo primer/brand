@@ -135,6 +135,36 @@
   color: var(--brand-color-text-default);
 }
 
+.River__heading code,
+.River__text code {
+  font-size: inherit;
+  font-family: var(--brand-fontStack-monospace) !important;
+  background-color: var(--brand-color-canvas-subtle);
+  padding: 0 var(--base-size-4) var(--base-size-2);
+  margin-inline: var(--base-size-2);
+  border: var(--brand-borderWidth-thin) solid var(--brand-color-border-default);
+  border-radius: var(--brand-borderRadius-small);
+  box-shadow: var(--brand-borderWidth-thin) var(--brand-borderWidth-thin) 0 0 var(--brand-color-border-default);
+}
+
+.River__text code {
+  padding: var(--base-size-2) var(--base-size-4) 0;
+}
+
+.River__heading-inner:has(code) {
+  line-height: calc(1lh * 1.8);
+}
+
+@media screen and (min-width: 64rem) {
+  .River__heading-inner:has(code) {
+    line-height: calc(1lh * 2.1);
+  }
+}
+
+.River__text:has(code) {
+  line-height: calc(1lh * 1.1);
+}
+
 .River__trailingComponent {
   margin-block-start: var(--brand-River-spacing-inner);
 }

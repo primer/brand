@@ -201,6 +201,7 @@ export const RiverContent = forwardRef(
               as: HeadingChild.props.as || 'h3',
               size: HeadingChild.props.size || '5',
               weight: HeadingChild.props.weight,
+              className: clsx(HeadingChild.props.className, styles['River__heading-inner']),
             })}
           </div>
         )}
