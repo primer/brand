@@ -35,7 +35,7 @@
 }
 
 .CTABanner-grid {
-  gap: 0;
+  row-gap: 0;
   --brand-Grid-spacing-row: 0;
   padding-inline: 0;
 }
@@ -69,6 +69,15 @@
 @media screen and (max-width: 63.24rem) {
   .CTABanner--variant-minimal .CTABanner-grid-column--secondary {
     justify-content: flex-start;
+  }
+
+  .CTABanner--variant-balanced .CTABanner-grid-column--secondary {
+    order: -1;
+    margin-block-start: 0;
+  }
+
+  .CTABanner--variant-balanced .CTABanner-grid-column--primary {
+    margin-block-start: var(--base-size-24);
   }
 
   .CTABanner-grid-column--secondary {

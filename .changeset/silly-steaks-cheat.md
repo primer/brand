@@ -26,6 +26,6 @@ Updates to `CTABanner` component:
 
 - **New `leadingComponent` prop**: Escape-hatch for inserting a custom React component above the heading content. Similar to `trailingComponent`
 
-⚠️ Breaking change to `CTABanner`:
+⚠️ Visual breaking change to `CTABanner`:
 
-- `hasShadow` has been marked as `deprecated` and the default visual styles have been removed in this release for better out-of-the-box defaults. In a future release we will remove the prop entirely.
+- `hasShadow` has been marked as `deprecated` and the previous default styles have been removed in this release for better out-of-the-box defaults. In a future release we will remove the prop entirely.
