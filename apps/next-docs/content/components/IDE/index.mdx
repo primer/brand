@@ -3,7 +3,6 @@ title: IDE
 description: Use the IDE to showcase a simulated integrated developer environment, complete with a code editor and AI chat that's intended to enhance code representation in marketing contexts.
 keywords: ['code', 'editor', 'chat', 'suggestions', 'AI']
 show-tabs: false
-ready: true
 source: https://github.com/primer/brand/tree/main/packages/react/src/IDE/IDE.tsx
 storybook: '/brand/storybook/?path=/story/components-ide--playground'
 thumbnail: '/images/thumbnails/ide-thumbnail.png'
@@ -11,8 +10,19 @@ thumbnail_darkMode: '/images/thumbnails/ide-thumbnail-dark.png'
 ---
 
 import {Label} from '@primer/react'
+import {AlertIcon} from '@primer/octicons-react'
 
 import {IDEVariantProp, IDEEditorSizeProp, IDEFileExtensionsList} from './react'
+
+<Note variant="warning">
+
+<AlertIcon aria-label="Warning" size={24} />
+<br />
+<br />
+This component is deprecated and will be removed in a future release. No further updates will be made to it. This page is
+preserved for reference only.
+
+</Note>
 
 ```js
 import {IDE} from '@primer/react-brand'
@@ -22,7 +32,7 @@ import {IDE} from '@primer/react-brand'
 
 ### Default
 
-<Note variant="warning">
+<Note>
 
 The `IDE` does not automatically apply syntax highlighting to code snippets. Usage of this component in GitHub.com is expected to use the proprietary tokenizer and highlighter, the output of which can be passed directly into `IDE` as a parameter.
 
