@@ -1,7 +1,7 @@
 import React from 'react'
 import type {Meta, StoryFn} from '@storybook/react'
 import {River} from '.'
-import {Heading, Label, Link, Section, Stack, Text, Timeline} from '../../'
+import {Heading, Label, Link, Section, Stack, Text, ThemeProvider, Box, Timeline} from '../../'
 import placeholderImage from '../../fixtures/images/placeholder.png'
 
 export default {
@@ -276,3 +276,109 @@ export const ContentAlignBlockEnd: StoryFn<typeof River> = () => (
 )
 
 ContentAlignBlockEnd.storyName = 'Content align block-end'
+
+export const WithInlineCodeElement: StoryFn<typeof River> = () => (
+  <>
+    <River align="start">
+      <River.Visual>
+        <PlaceholderImage />
+      </River.Visual>
+      <River.Content>
+        <Heading>
+          Work directly with your GitHub Issues via <code>/mcp</code> support
+        </Heading>
+        <Text>
+          Built on GitHub&apos;s native <code>/mcp</code> integration, Copilot can search issues, analyze labels and
+          activity, and summarize scope so you can move from backlog to implementation without context hunting.
+        </Text>
+        <Link href="#">Call to action</Link>
+      </River.Content>
+    </River>
+    <River align="end">
+      <River.Visual>
+        <PlaceholderImage />
+      </River.Visual>
+      <River.Content>
+        <Heading>
+          Use any <code>/model</code> parallelize with <code>/fleet</code>
+        </Heading>
+        <Text>
+          Use <code>/model</code> to switch, then <code>/fleet</code> to execute in parallel or run multiple models at
+          once.
+        </Text>
+        <Link href="#">Call to action</Link>
+      </River.Content>
+    </River>
+    <River align="center">
+      <River.Visual>
+        <PlaceholderImage />
+      </River.Visual>
+      <River.Content>
+        <Heading>
+          Use any <code>/model</code> parallelize with <code>/fleet</code>
+        </Heading>
+        <Text>
+          Use <code>/model</code> to switch, then <code>/fleet</code> to execute in parallel or run multiple models at
+          once.
+        </Text>
+        <Link href="#">Call to action</Link>
+      </River.Content>
+    </River>
+    <ThemeProvider colorMode="dark">
+      <Box backgroundColor="default">
+        <River align="start">
+          <River.Visual>
+            <PlaceholderImage />
+          </River.Visual>
+          <River.Content>
+            <Heading>
+              Work directly with your GitHub Issues via <code>/mcp</code> support
+            </Heading>
+            <Text>
+              Built on GitHub&apos;s native <code>/mcp</code> integration, Copilot can search issues, analyze labels and
+              activity, and summarize scope.
+            </Text>
+            <Link href="#">Call to action</Link>
+          </River.Content>
+        </River>
+      </Box>
+    </ThemeProvider>
+  </>
+)
+
+export const WithInlineCodeElementCustomSizes: StoryFn<typeof River> = () => (
+  <>
+    <River align="start">
+      <River.Visual>
+        <PlaceholderImage />
+      </River.Visual>
+      <River.Content>
+        <Heading size="3">
+          Work directly with your GitHub Issues via <code>/mcp</code> support
+        </Heading>
+        <Text size="300">
+          Built on GitHub&apos;s native <code>/mcp</code> integration, Copilot can search issues, analyze labels and
+          activity, and summarize scope.
+        </Text>
+        <Link href="#">Call to action</Link>
+      </River.Content>
+    </River>
+
+    <River align="start">
+      <River.Visual>
+        <PlaceholderImage />
+      </River.Visual>
+      <River.Content>
+        <Heading size="subhead-medium">
+          Use any <code>/model</code> parallelize with <code>/fleet</code>
+        </Heading>
+        <Text size="200">
+          Use <code>/model</code> to switch, then <code>/fleet</code> to execute in parallel or run multiple models at
+          once.
+        </Text>
+        <Link href="#">Call to action</Link>
+      </River.Content>
+    </River>
+  </>
+)
+WithInlineCodeElementCustomSizes.storyName = 'With inline code element + non-standard size overrides'
