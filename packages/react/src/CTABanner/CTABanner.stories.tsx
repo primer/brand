@@ -6,12 +6,7 @@ import {Button} from '../Button'
 const meta = {
   title: 'Components/CTABanner',
   component: CTABanner,
-  args: {
-    align: 'start',
-    hasBorder: false,
-    hasShadow: true,
-    hasBackground: true,
-  },
+
   argTypes: {
     align: {
       description: 'The alignment of the content',
@@ -22,12 +17,6 @@ const meta = {
     },
     hasBorder: {
       description: 'Toggle to show or hide the border',
-      control: {
-        type: 'boolean',
-      },
-    },
-    hasShadow: {
-      description: 'Toggle to show or hide the background shadow',
       control: {
         type: 'boolean',
       },

@@ -52,6 +52,41 @@ describe('ButtonGroup', () => {
     expect(buttonEl.classList).toContain(expectedClass)
   })
 
+  it('applies accent variant automatically to the first button and subtle variant to second', () => {
+    const {getAllByRole} = render(
+      <ButtonGroup>
+        <Button>Primary Action</Button>
+        <Button>Secondary Action</Button>
+      </ButtonGroup>,
+    )
+    const buttons = getAllByRole('button')
+    expect(buttons[0].classList).toContain('Button--accent')
+    expect(buttons[1].classList).toContain('Button--subtle')
+  })
+
+  it('does not render arrows on buttons by default', () => {
+    const {container} = render(
+      <ButtonGroup>
+        <Button>Primary Action</Button>
+        <Button>Secondary Action</Button>
+      </ButtonGroup>,
+    )
+    const arrows = container.querySelectorAll('svg')
+    expect(arrows).toHaveLength(0)
+  })
+
+  it('allows variant to be overridden via child props', () => {
+    const {getAllByRole} = render(
+      <ButtonGroup>
+        <Button variant="primary">Primary Action</Button>
+        <Button variant="secondary">Secondary Action</Button>
+      </ButtonGroup>,
+    )
+    const buttons = getAllByRole('button')
+    expect(buttons[0].classList).toContain('Button--primary')
+    expect(buttons[1].classList).toContain('Button--secondary')
+  })
+
   it('has no axe violations', async () => {
     const {container} = render(
       <ButtonGroup>

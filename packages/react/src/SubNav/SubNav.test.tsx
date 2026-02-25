@@ -168,12 +168,6 @@ describe('SubNav', () => {
     expect(getByRole('button', {name: 'Navigation menu'})).toBeInTheDocument()
   })
 
-  it('renders a separator when there is a link with `aria-current="page"` set', () => {
-    const {getByRole} = render(<MockSubNavFixture />)
-    const separator = getByRole('separator', {hidden: true})
-    expect(separator).toBeInTheDocument()
-  })
-
   it('shows the aria-current text next to the button by default', () => {
     const {getByRole} = render(<MockSubNavFixture />)
 

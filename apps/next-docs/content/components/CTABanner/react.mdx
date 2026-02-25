@@ -18,6 +18,7 @@ import {
   CTABannerHeadingAsProp,
   CTABannerHeadingSizeProp,
   CTABannerTextVariantsProp,
+  CTABannerVariantProp,
 } from './react'
 
 ```js
@@ -34,6 +35,44 @@ import {CTABanner, Button} from '@primer/react-brand'
   <CTABanner.Description>
     Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis
     felis nam pulvinar risus elementum.
+  </CTABanner.Description>
+  <CTABanner.ButtonGroup>
+    <Button>Primary Action</Button>
+    <Button>Secondary Action</Button>
+  </CTABanner.ButtonGroup>
+</CTABanner>
+```
+
+### Variants
+
+#### Balanced
+
+<Note>A `CTABanner.Image` child is required in this variant.</Note>
+
+```jsx live
+<CTABanner variant="balanced">
+  <CTABanner.Heading>Where the most ambitious teams build great things</CTABanner.Heading>
+  <CTABanner.Description>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis
+    felis nam pulvinar risus elementum.
+  </CTABanner.Description>
+  <CTABanner.ButtonGroup>
+    <Button>Primary Action</Button>
+    <Button>Secondary Action</Button>
+  </CTABanner.ButtonGroup>
+  <CTABanner.Image src="/images/placeholder.png" alt="placeholder" />
+</CTABanner>
+```
+
+#### Minimal
+
+<Note>`CTABanner.Image` is not supported in this variant and will not be rendered.</Note>
+
+```jsx live
+<CTABanner variant="minimal">
+  <CTABanner.Heading>Where the most ambitious teams build great things</CTABanner.Heading>
+  <CTABanner.Description>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id.
   </CTABanner.Description>
   <CTABanner.ButtonGroup>
     <Button>Primary Action</Button>
@@ -199,22 +238,24 @@ render(<App />)
 | name                      | type                             | default     | required | description                                                       |
 | ------------------------- | -------------------------------- | ----------- | -------- | ----------------------------------------------------------------- |
 | `children`                | `ReactNode`, `ReactNode[]`       | `undefined` | `true`   | Content to include within the banner component                    |
-| `align`                   | <CTABannerAlignProp />           | `'start'`   | `true`   | The horizontal positioning of content within the banner component |
+| `variant`                 | <CTABannerVariantProp />         | `'default'` | `false`  | Alternative layout presentations                                  |
+| `align`                   | <CTABannerAlignProp />           | `'center'`  | `false`  | The horizontal positioning of content within the banner component |
 | `backgroundColor`         | <CTABannerBackgroundColorProp /> | `'default'` | `false`  | Optional, custom background color                                 |
 | `backgroundImageSrc`      | <CTABannerBackgroundImageProp /> | `undefined` | `false`  | Optional, custom background image                                 |
 | `backgroundImagePosition` | <CTABannerBackgroundImageProp /> | `'center'`  | `false`  | Optional, custom background position                              |
 | `backgroundImageSize`     | <CTABannerBackgroundImageProp /> | `'cover'`   | `false`  | Optional, custom background position size                         |
 | `hasBorder`               | `boolean`                        | `false`     | `false`  | A flag used to provide a border to the banner component           |
-| `hasShadow`               | `boolean`                        | `true`      | `false`  | A flag used to provide a shadow to the banner component           |
+| `hasGridLines`            | `boolean`                        | `false`     | `false`  | Enables optional gridlines appearance                             |
+| `hasShadow`               | `boolean`                        | `false`     | `false`  | A flag used to provide a shadow to the banner component           |
 | `hasBackground`           | `boolean`                        | `true`      | `false`  | A flag used to add a background to the banner component           |
 
 ### CTABanner.Heading
 
-| name       | type                         | default     | required | description                                                      |
-| ---------- | ---------------------------- | ----------- | -------- | ---------------------------------------------------------------- |
-| `children` | `ReactNode`, `ReactNode[]`   | `undefined` | `true`   | Content to be displayed inside the `CTABanner.Heading` component |
-| `as`       | <CTABannerHeadingAsProp />   | `'h3'`      | `false`  | Heading level                                                    |
-| `size`     | <CTABannerHeadingSizeProp /> | `'1'`       | `false`  | Visual heading size, irrespective of level                       |
+| name       | type                         | default     | required | description                                                                                                               |
+| ---------- | ---------------------------- | ----------- | -------- | ------------------------------------------------------------------------------------------------------------------------- |
+| `children` | `ReactNode`, `ReactNode[]`   | `undefined` | `true`   | Content to be displayed inside the `CTABanner.Heading` component                                                          |
+| `as`       | <CTABannerHeadingAsProp />   | `'h3'`      | `false`  | Heading level                                                                                                             |
+| `size`     | <CTABannerHeadingSizeProp /> | `'3'`       | `false`  | Visual heading size, irrespective of level. Note: `balanced` and `minimal` variants override the visual size through CSS. |
 
 ### CTABanner.Description
 
@@ -232,6 +273,13 @@ render(<App />)
 | `buttonsAs`  | `'a'`, `'button'`        | `'button'`  | `false`  | Sets underlying HTML element for each button |
 
 `id`, `className` and `ref` are forwarded by default to all children.
+
+### CTABanner.Image
+
+| name  | type     | default     | required | description                               |
+| ----- | -------- | ----------- | -------- | ----------------------------------------- |
+| `src` | `string` | `undefined` | `true`   | The image source URL                      |
+| `alt` | `string` | `undefined` | `true`   | Accessible alternative text for the image |
 
 ## Related components
 
