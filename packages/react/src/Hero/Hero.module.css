@@ -259,6 +259,7 @@
 .Hero-heading b {
   color: var(--brand-color-accent-primary);
   font-style: normal;
+  font-weight: inherit;
 }
 
 .Hero-heading--fullWidth {

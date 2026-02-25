@@ -538,6 +538,15 @@ const DelayedActiveTemplate = (args: SubNavProps) => {
     }, 500)
   }, [])
 
+  useEffect(() => {
+    // set an initial active link after a delay
+    const delay = setTimeout(() => {
+      setActiveLink('Actions')
+    }, 1000)
+
+    return () => clearTimeout(delay)
+  }, [])
+
   return (
     <main>
       <Box paddingBlockStart={64} backgroundColor="subtle" style={{position: 'relative', zIndex: 32}}></Box>
