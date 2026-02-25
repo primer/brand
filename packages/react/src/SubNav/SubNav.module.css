@@ -582,7 +582,7 @@
   .SubNav__links-overlay {
     align-items: center;
     display: flex;
-    gap: var(--base-size-20);
+    gap: var(--base-size-2);
     z-index: 92;
     flex-grow: 1;
     padding-inline-start: var(--base-size-24);
@@ -592,7 +592,8 @@
     text-decoration: none !important; /* dotcom override */
     transition: color 0.2s var(--brand-animation-easing-glide);
     position: relative;
-    padding: var(--base-size-4) 0;
+    padding: var(--base-size-4) var(--base-size-12);
+    border-radius: var(--brand-borderRadius-full);
   }
 
   .SubNav__link-label {
@@ -703,8 +704,6 @@
   /* Active link pill styling */
   .SubNav__links-overlay .SubNav__link[aria-current]:not([aria-current='false']) {
     background-color: var(--brand-SubNav-color-link-bgColor);
-    border-radius: var(--brand-borderRadius-full);
-    padding: var(--base-size-4) var(--base-size-12);
     line-height: 1.1em;
   }
 

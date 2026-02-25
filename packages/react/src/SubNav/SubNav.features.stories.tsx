@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react'
+import React, {useCallback, useEffect, useState} from 'react'
 import type {Meta, StoryObj} from '@storybook/react'
 
 import {SubNav, SubNavProps} from './SubNav'
@@ -525,4 +525,52 @@ export const NoActiveLinksNarrow: Story = {
   globals: {
     viewport: {value: 'iphonex'},
   },
+}
+
+const DelayedActiveTemplate = (args: SubNavProps) => {
+  const [activeLink, setActiveLink] = useState<string | null>(null)
+
+  const handleClick = useCallback((e: React.MouseEvent<HTMLAnchorElement>, label: string) => {
+    e.preventDefault()
+    setActiveLink(null)
+    setTimeout(() => {
+      setActiveLink(label)
+    }, 500)
+  }, [])
+
+  return (
+    <main>
+      <Box paddingBlockStart={64} backgroundColor="subtle" style={{position: 'relative', zIndex: 32}}></Box>
+      <SubNav {...args}>
+        <SubNav.Heading href="#">Features</SubNav.Heading>
+        {['Actions', 'Packages', 'Security', 'Codespaces', 'Copilot', 'Code review', 'Search'].map(label => (
+          <SubNav.Link
+            key={label}
+            href="#"
+            aria-current={activeLink === label ? 'page' : undefined}
+            onClick={(e: React.MouseEvent<HTMLAnchorElement>) => handleClick(e, label)}
+          >
+            {label}
+          </SubNav.Link>
+        ))}
+      </SubNav>
+      <Grid>
+        <Grid.Column>
+          <Hero align="center">
+            <Hero.Label>GitHub Features</Hero.Label>
+            <Hero.Heading>Choose the tools that work best for your team.</Hero.Heading>
+            <Hero.Description>
+              This story shows active link handling. Specifically, how it doesn&apos;t cause layout shift when
+              navigating between sub nav links.
+            </Hero.Description>
+          </Hero>
+        </Grid.Column>
+      </Grid>
+    </main>
+  )
+}
+
+export const DelayedActiveLink: Story = {
+  name: 'Delayed active link (layout shift test)',
+  render: DelayedActiveTemplate,
 }

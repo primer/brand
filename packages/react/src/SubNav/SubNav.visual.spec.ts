@@ -271,4 +271,14 @@ test.describe('Visual Comparison: SubNav', () => {
       await expect(page).toHaveScreenshot({fullPage: true})
     })
   })
+  test('SubNav / Delayed active link (layout shift test)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-subnav-features--delayed-active-link&viewMode=story',
+      {waitUntil: 'networkidle'},
+    )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+    await page.waitForTimeout(500)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
 })
