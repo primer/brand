@@ -5,12 +5,15 @@ declare const styles: {
   readonly "River--align-center": string;
   readonly "River--align-end": string;
   readonly "River--align-start": string;
+  readonly "River--variant-gridline": string;
   readonly "RiverBreakout": string;
   readonly "RiverBreakout--muted": string;
+  readonly "RiverBreakout--variant-gridline": string;
   readonly "RiverBreakout__hiddenHeading": string;
   readonly "River__body-text": string;
   readonly "River__call-to-action": string;
   readonly "River__content": string;
+  readonly "River__content--align-block-end": string;
   readonly "River__heading": string;
   readonly "River__heading-inner": string;
   readonly "River__label": string;
@@ -19,6 +22,7 @@ declare const styles: {
   readonly "River__trailingComponent--divider": string;
   readonly "River__visual": string;
   readonly "River__visual--fill-media": string;
+  readonly "River__visual--has-background": string;
   readonly "River__visual--has-shadow": string;
   readonly "River__visual--rounded": string;
 };
