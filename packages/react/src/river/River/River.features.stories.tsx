@@ -357,4 +357,4 @@ export const WithInlineCodeElementCustomSizes: StoryFn<typeof River> = () => (
     </River>
   </>
 )
-WithInlineCodeElement.storyName = 'With inline code element + non-standard size overrides'
+WithInlineCodeElementCustomSizes.storyName = 'With inline code element + non-standard size overrides'

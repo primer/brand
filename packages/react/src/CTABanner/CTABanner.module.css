@@ -246,8 +246,10 @@
   line-height: calc(1lh * 2);
 }
 
-.CTABanner--variant-balanced .CTABanner-heading.CTABanner-heading:has(code) {
-  line-height: calc(1lh * 2.8);
+@media screen and (min-width: 63.25rem) {
+  .CTABanner--variant-balanced .CTABanner-heading.CTABanner-heading:has(code) {
+    line-height: calc(1lh * 2.8);
+  }
 }
 
 .CTABanner--variant-minimal .CTABanner-heading.CTABanner-heading:has(code) {

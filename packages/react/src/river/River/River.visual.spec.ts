@@ -176,7 +176,7 @@ test.describe('Visual Comparison: River', () => {
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
-  test('River / With inline code element + non-standard size overrides', async ({page}) => {
+  test('River / With Inline Code Element', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-river-features--with-inline-code-element&viewMode=story',
       {waitUntil: 'networkidle'},
@@ -187,7 +187,7 @@ test.describe('Visual Comparison: River', () => {
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
-  test('River / With Inline Code Element Custom Sizes', async ({page}) => {
+  test('River / With inline code element + non-standard size overrides', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-river-features--with-inline-code-element-custom-sizes&viewMode=story',
       {waitUntil: 'networkidle'},
