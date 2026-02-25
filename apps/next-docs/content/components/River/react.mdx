@@ -11,7 +11,7 @@ storybook: '/brand/storybook/?path=/story/components-river--default'
 ---
 
 import {Label} from '@primer/react'
-import {RiverAlignProp, RiverImageTextRatio} from './react'
+import {RiverAlignProp, RiverImageTextRatio, RiverVariantProp} from './react'
 
 ```js
 import {River, RiverBreakout} from '@primer/react-brand'
@@ -22,7 +22,7 @@ import {River, RiverBreakout} from '@primer/react-brand'
 ### Default
 
 ```jsx live
-<Stack>
+<Stack style={{width: '100%'}}>
   <River>
     <River.Visual>
       <img src="/images/placeholder.png" alt="placeholder, blank area with a gray background color" />
@@ -66,10 +66,71 @@ import {River, RiverBreakout} from '@primer/react-brand'
 </Stack>
 ```
 
+### GridLine variant
+
+The `gridline` variant adds lateral padding to the River component, making it suitable for use within bordered grid layouts.
+
+```jsx live
+<Stack style={{width: '100%'}}>
+  <River variant="gridline">
+    <River.Visual>
+      <img src="/images/placeholder.png" alt="placeholder, blank area with a gray background color" />
+    </River.Visual>
+    <River.Content>
+      <Heading>GridLine variant</Heading>
+      <Text>Use the gridline variant when the River needs lateral spacing to align with bordered grid layouts.</Text>
+      <Link href="#">Call to action</Link>
+    </River.Content>
+  </River>
+  <River variant="gridline" align="end">
+    <River.Visual>
+      <img src="/images/placeholder.png" alt="placeholder, blank area with a gray background color" />
+    </River.Visual>
+    <River.Content>
+      <Heading>GridLine variant</Heading>
+      <Text>The variant works with all alignment options.</Text>
+      <Link href="#">Call to action</Link>
+    </River.Content>
+  </River>
+</Stack>
+```
+
+### Visual with background
+
+Use the `imageBackgroundColor` prop on `River.Visual` to create a full-bleed container with a background color and the image/video centered inside with padding. This is intended for use with the `gridline` variant.
+
+```jsx live
+<Stack style={{width: '100%'}}>
+  <River variant="gridline">
+    <River.Visual imageBackgroundColor="subtle">
+      <img src="/images/placeholder.png" alt="placeholder, blank area with a gray background color" />
+    </River.Visual>
+    <River.Content>
+      <Heading>Visual with background</Heading>
+      <Text>
+        The imageBackgroundColor prop creates a full-bleed container with a subtle background, centering the media with
+        padding around it.
+      </Text>
+      <Link href="#">Call to action</Link>
+    </River.Content>
+  </River>
+  <River variant="gridline" align="end">
+    <River.Visual imageBackgroundColor="subtle">
+      <img src="/images/placeholder.png" alt="placeholder, blank area with a gray background color" />
+    </River.Visual>
+    <River.Content>
+      <Heading>Visual with background (end)</Heading>
+      <Text>The imageBackgroundColor prop works with all alignment options.</Text>
+      <Link href="#">Call to action</Link>
+    </River.Content>
+  </River>
+</Stack>
+```
+
 ### Image to text ratio
 
 ```jsx live
-<Stack>
+<Stack style={{width: '100%'}}>
   {/* 50/50 (default) example */}
   <River>
     <River.Visual>
@@ -98,7 +159,7 @@ import {River, RiverBreakout} from '@primer/react-brand'
 ### Video
 
 ```jsx live
-<River imageTextRatio="60:40">
+<River style={{width: '100%'}} imageTextRatio="60:40">
   <River.Visual hasShadow={false}>
     <video
       loop
@@ -130,7 +191,7 @@ import {River, RiverBreakout} from '@primer/react-brand'
 ### Alternative heading levels
 
 ```jsx live
-<River imageTextRatio="60:40">
+<River style={{width: '100%'}} imageTextRatio="60:40">
   <River.Visual>
     <img src="/images/placeholder.png" alt="placeholder with a gray background color" />
   </River.Visual>
@@ -144,7 +205,7 @@ import {River, RiverBreakout} from '@primer/react-brand'
 ### Duotone
 
 ```jsx live
-<River>
+<River style={{width: '100%'}}>
   <River.Visual>
     <img src="/images/placeholder.png" alt="placeholder, blank area with a gray background color" />
   </River.Visual>
@@ -161,7 +222,7 @@ import {River, RiverBreakout} from '@primer/react-brand'
 ### River breakout
 
 ```jsx live
-<RiverBreakout>
+<RiverBreakout style={{width: '100%'}}>
   <RiverBreakout.A11yHeading>Accelerate workflows</RiverBreakout.A11yHeading>
   <RiverBreakout.Visual>
     <img src="/images/placeholder.png" alt="placeholder, blank area with a gray background color" />
@@ -195,21 +256,23 @@ import {River, RiverBreakout} from '@primer/react-brand'
 | :--------------- | :----------------------------- | :---------------------: | :---------------------------------------------------------------------------------------------------------- |
 | `align`          | `'start'`, `'end'`, `'center'` |   <RiverAlignProp />    | Alignment of text content relative to the Visual position                                                   |
 | `imageTextRatio` | `'50:50'`, `'60:40'`           | <RiverImageTextRatio /> | The aspect ratio applied to the image in relation to the adjacent text. Affects overall layout proportions. |
+| `variant`        | `'default'`, `'gridline'`      |  <RiverVariantProp />   | Visual variant. Use `gridline` to add lateral padding for bordered grid layouts.                            |
 | `className`      | `string`                       |                         | Sets a custom class on the root element                                                                     |
 | `id`             | `string`                       |                         | Sets a custom id                                                                                            |
 | `ref`            | `React.RefObject`              |                         | Forward a Ref to the underlying DOM node                                                                    |
 
 ### River.Visual and RiverBreakout.Visual <Label>Required</Label>
 
-| Name        | Type              | Default | Description                                                                                                                                   |
-| :---------- | :---------------- | :-----: | :-------------------------------------------------------------------------------------------------------------------------------------------- |
-| `fillMedia` | `boolean`         |  true   | Automatically styles images and video to fill and fit the width of the parent. Disable this setting if you have bespoke styling requirements. |
-| `children`  | `ReactElement`    |         | Bring your own component (BYOC) `img` or `ReactElement` (E.g. Next.js `Image` component)                                                      |
-| `hasShadow` | `boolean`         | `false` | Shadow applied to the `children`. Set be `false` when the child node has a transparent background.                                            |
-| `className` | `string`          |         | Sets a custom class on the root element                                                                                                       |
-| `id`        | `string`          |         | Sets a custom id                                                                                                                              |
-| `ref`       | `React.RefObject` |         | Forward a Ref to the underlying DOM node                                                                                                      |
-| `rounded`   | `boolean`         | `true`  | Toggle visually rounded corners. Enabled by default.                                                                                          |
+| Name                   | Type                    | Default | Description                                                                                                                                                                               |
+| :--------------------- | :---------------------- | :-----: | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `fillMedia`            | `boolean`               |  true   | Automatically styles images and video to fill and fit the width of the parent. Disable this setting if you have bespoke styling requirements.                                             |
+| `children`             | `ReactElement`          |         | Bring your own component (BYOC) `img` or `ReactElement` (E.g. Next.js `Image` component)                                                                                                  |
+| `imageBackgroundColor` | `'default'`, `'subtle'` |         | Applies a background color with padding around the media. Use `'subtle'` to create a full-bleed container with the image/video centered inside. Intended for use with `gridline` variant. |
+| `hasShadow`            | `boolean`               | `false` | Shadow applied to the `children`. Set be `false` when the child node has a transparent background.                                                                                        |
+| `className`            | `string`                |         | Sets a custom class on the root element                                                                                                                                                   |
+| `id`                   | `string`                |         | Sets a custom id                                                                                                                                                                          |
+| `ref`                  | `React.RefObject`       |         | Forward a Ref to the underlying DOM node                                                                                                                                                  |
+| `rounded`              | `boolean`               | `true`  | Toggle visually rounded corners. Enabled by default.                                                                                                                                      |
 
 ### River.Content and RiverBreakout.Content <Label>Required</Label>
 
