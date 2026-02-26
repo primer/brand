@@ -1,6 +1,6 @@
 {
   "name": "@primer/brand-config",
-  "version": "0.64.0",
+  "version": "0.65.0",
   "type": "module",
   "private": true,
   "description": "General-purpose configurations for maintaining Primer Brand",
