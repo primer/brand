@@ -24,7 +24,7 @@
 }
 
 .Select::placeholder {
-  color: var(--brand-color-text-subtle);
+  color: var(--brand-color-text-muted);
   opacity: 1;
 }
 
