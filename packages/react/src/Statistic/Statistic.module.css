@@ -101,6 +101,20 @@
   color: var(--brand-color-accent-primary);
 }
 
+/*
+ * Ensures accent text meets WCAG AA contrast on the subtle canvas
+ * background used by the boxed variant in light mode.
+ * Uses a dark-mode reset to prevent the override from leaking
+ * through nested color-mode contexts.
+ */
+[data-color-mode='light'] .Statistic--variant-boxed .Statistic__description--accent {
+  color: var(--base-color-scale-green-7);
+}
+
+[data-color-mode='dark'] .Statistic--variant-boxed .Statistic__description--accent {
+  color: var(--brand-color-accent-primary);
+}
+
 .Statistic__description {
   position: relative;
   display: block;

@@ -57,15 +57,15 @@ module.exports = {
     accent: {
       bgColor: {
         rest: {
-          value: 'var(--base-color-scale-green-5)',
+          value: 'var(--base-color-scale-green-6)',
           dark: 'var(--base-color-scale-green-5)',
         },
         hover: {
-          value: 'var(--base-color-scale-green-4)',
+          value: 'var(--base-color-scale-green-5)',
           dark: 'var(--base-color-scale-green-4)',
         },
         active: {
-          value: 'var(--base-color-scale-green-5)',
+          value: 'var(--base-color-scale-green-6)',
           dark: 'var(--base-color-scale-green-5)',
         },
         disabled: {
@@ -75,7 +75,7 @@ module.exports = {
       },
       borderColor: {
         active: {
-          value: 'var(--base-color-scale-green-6)',
+          value: 'var(--base-color-scale-green-7)',
           dark: 'var(--base-color-scale-green-6)',
         },
       },

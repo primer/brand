@@ -2,11 +2,11 @@
   "color": {
     "success": {
       "fg": {
-        "value": "var(--base-color-scale-green-5)",
+        "value": "var(--base-color-scale-green-6)",
         "dark": "var(--base-color-scale-green-3)"
       },
       "emphasis": {
-        "value": "var(--base-color-scale-green-4)",
+        "value": "var(--base-color-scale-green-5)",
         "dark": "var(--base-color-scale-green-5)"
       },
       "muted": {
@@ -38,7 +38,7 @@
     },
     "accent": {
       "primary": {
-        "value": "var(--base-color-scale-green-5)",
+        "value": "var(--base-color-scale-green-6)",
         "dark": "var(--base-color-scale-green-3)"
       },
       "secondary": {
