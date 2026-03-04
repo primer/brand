@@ -56,8 +56,8 @@
         "dark": "var(--base-color-scale-gray-2)"
       },
       "subtle": {
-        "value": "var(--base-color-scale-gray-7)",
-        "dark": "var(--base-color-scale-gray-2)"
+        "value": "var(--brand-color-text-muted)",
+        "dark": "var(--brand-color-text-muted)"
       },
       "onEmphasis": {
         "value": "var(--base-color-scale-white-0)",
