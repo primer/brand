@@ -38,7 +38,7 @@
     },
     "accent": {
       "primary": {
-        "value": "var(--base-color-scale-green-6)",
+        "value": "var(--base-color-scale-green-7)",
         "dark": "var(--base-color-scale-green-3)"
       },
       "secondary": {
