@@ -406,7 +406,7 @@
 }
 
 .RiverBreakout--muted .River__text {
-  color: var(--brand-color-text-subtle);
+  color: var(--brand-color-text-muted);
 }
 
 .RiverBreakout .River__text em,
