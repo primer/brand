@@ -61,8 +61,8 @@ module.exports = {
           dark: 'var(--base-color-scale-green-5)',
         },
         hover: {
-          value: 'var(--base-color-scale-green-5)',
-          dark: 'var(--base-color-scale-green-4)',
+          value: 'var(--base-color-scale-green-7)',
+          dark: 'var(--base-color-scale-green-6)',
         },
         active: {
           value: 'var(--base-color-scale-green-6)',
