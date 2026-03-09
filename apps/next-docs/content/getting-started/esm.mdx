@@ -1,0 +1,56 @@
+---
+title: Getting started
+description: Primer Brand is open-sourced on GitHub and available on npm.
+menu-position: 1
+keywords: ['accessibility', 'introduction', 'simple']
+show-tabs: true
+tab-label: ESM
+---
+
+Using ESM, you will load only the React components and CSS you need.
+
+We recommend using ESM if your project uses compatible bundlers or frameworks like Vite or Next.js.
+
+### 1. Install Primer Brand
+
+```shell
+npm install @primer/react-brand
+```
+
+### 2. Import components from the ESM folder
+
+```js
+import {Hero, ThemeProvider} from '@primer/react-brand/esm'
+```
+
+Each component's styles are automatically included when you import the component.
+
+<Note>
+  <p>
+    Do not combine this approach with the global <code>lib/css/main.css</code> import.
+  </p>
+
+  <p>Choose one approach or the other to avoid loading duplicate styles.</p>
+</Note>
+
+### 3. Import the font assets
+
+The Mona Sans typeface still needs to be loaded separately:
+
+```js
+import '@primer/react-brand/fonts/fonts.css'
+```
+
+### 4. Use the `ThemeProvider`
+
+```js
+import {ThemeProvider} from '@primer/react-brand/esm'
+
+function App() {
+  return (
+    <ThemeProvider>
+      <div>...</div>
+    </ThemeProvider>
+  )
+}
+```

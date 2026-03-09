@@ -1,0 +1,65 @@
+name: Check bundle size
+
+on:
+  pull_request:
+
+jobs:
+  size:
+    if: ${{ github.repository == 'primer/brand' }}
+    name: Report bundle size
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout PR branch
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Create main branch worktree
+        run: git worktree add /tmp/main ${{ github.event.pull_request.base.sha }}
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+
+      - name: Caching dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - name: Install and build (PR)
+        run: |
+          npm ci
+          npm run build:lib
+
+      - name: Measure bundle size (PR)
+        run: npx size-limit --json > /tmp/pr-sizes.json
+
+      - name: Install and build (main branch)
+        working-directory: /tmp/main
+        run: |
+          npm ci
+          cp ${{ github.workspace }}/.size-limit.js .size-limit.js
+          npm run build:lib || true
+
+      - name: Measure bundle size (main branch)
+        working-directory: /tmp/main
+        run: npx size-limit --json > /tmp/main-sizes.json 2>/dev/null || echo "[]" > /tmp/main-sizes.json
+
+      - name: Generate size report
+        id: size-report
+        run: |
+          REPORT=$(node packages/repo-configs/scripts/bundle-size-report.js /tmp/pr-sizes.json /tmp/main-sizes.json)
+          echo "comment-body<<EOF" >> "$GITHUB_OUTPUT"
+          echo "$REPORT" >> "$GITHUB_OUTPUT"
+          echo "EOF" >> "$GITHUB_OUTPUT"
+
+      - name: Add or update bundle size comment
+        uses: phulsechinmay/rewritable-pr-comment@v0.3.0
+        with:
+          message: ${{ steps.size-report.outputs.comment-body }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          COMMENT_IDENTIFIER: 'bundle-size-report'

@@ -1,5 +1,4 @@
-import components from '@primer/react-brand'
-const {
+import {
   Hero,
   River,
   FAQ,
@@ -8,16 +7,18 @@ const {
   InlineLink,
   Link,
   FormControl,
-  Checkbox,
-  Select,
   TextInput,
   ThemeProvider,
+  Checkbox,
+  Select,
   Button,
   SubdomainNavBar,
   ComparisonTable,
   Stack,
   ButtonGroup,
-} = components
+} from '@primer/react-brand'
+
+import '@primer/react-brand/lib/css/main.css'
 
 export {
   Hero,
