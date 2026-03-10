@@ -71,15 +71,16 @@ jobs:
         run: cd packages/react/ && npm pack
 
       - name: Configuring Astro React / TypeScript project
-        # lock version to 1.1.0 due to non-tty support removed in 1.2.0
-        # TODO: review Astro updates regularly to using @latest
-        run: npm create astro@1.1.0 ${{env.ASTRO_FOLDER}} -- --template framework-react
+        run: npm create astro@5 ${{env.ASTRO_FOLDER}} -- --template framework-react --no-install --no-git --yes
 
       - name: Retrieving package version
         id: package-version
         uses: martinbeentjes/npm-get-version-action@7aa1d82604bb2dbe377a64ca35e692e6fe333c9c
         with:
           path: packages/repo-configs
+
+      - name: Installing Astro project dependencies
+        run: cd ${{env.ASTRO_FOLDER}} && npm install
 
       - name: Installing local build
         run: |
