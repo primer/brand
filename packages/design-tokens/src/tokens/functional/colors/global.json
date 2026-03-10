@@ -7,15 +7,15 @@
       },
       "emphasis": {
         "value": "var(--base-color-scale-green-5)",
-        "dark": "var(--base-color-scale-green-5)"
+        "dark": "var(--base-color-scale-green-6)"
       },
       "muted": {
-        "value": "#23EA5799",
-        "dark": "#08872B99"
+        "value": "#8CF2A699",
+        "dark": "#0D302499"
       },
       "subtle": {
-        "value": "var(--base-color-scale-green-0)",
-        "dark": "#08872Bd9"
+        "value": "var(--base-color-scale-green-1)",
+        "dark": "#0E422Cd9"
       }
     },
     "error": {
@@ -28,8 +28,8 @@
         "dark": "var(--base-color-scale-red-5)"
       },
       "muted": {
-        "value": "#FF818299",
-        "dark": "#FA383D99"
+        "value": "#FFABA899",
+        "dark": "#5E021799"
       },
       "subtle": {
         "value": "var(--base-color-scale-red-0)",
@@ -39,7 +39,7 @@
     "accent": {
       "primary": {
         "value": "var(--base-color-scale-green-7)",
-        "dark": "var(--base-color-scale-green-3)"
+        "dark": "var(--base-color-scale-green-2)"
       },
       "secondary": {
         "value": "var(--base-color-scale-yellow-5)",
@@ -78,12 +78,12 @@
     },
     "neutral": {
       "emphasisPlus": {
-        "value": "var(--base-color-scale-gray-9)",
-        "dark": "var(--base-color-scale-gray-4)"
+        "value": "var(--base-color-scale-gray-8)",
+        "dark": "var(--base-color-scale-gray-3)"
       },
       "emphasis": {
-        "value": "var(--base-color-scale-gray-5)",
-        "dark": "var(--base-color-scale-gray-4)"
+        "value": "var(--base-color-scale-gray-6)",
+        "dark": "var(--base-color-scale-gray-3)"
       },
       "muted": {
         "value": "#C4CCC6fe",
@@ -101,7 +101,7 @@
       },
       "overlay": {
         "value": "var(--base-color-scale-white-0)",
-        "dark": "var(--base-color-scale-gray-8)"
+        "dark": "var(--base-color-scale-gray-6)"
       },
       "inset": {
         "value": "var(--base-color-scale-gray-0)",
