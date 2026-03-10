@@ -108,6 +108,28 @@ describe('Hero', () => {
     expect(imageEl).toHaveClass('Hero-media--pos-block-end')
   })
 
+  test('applies Hero layout classes to the picture element when as="picture"', () => {
+    const mockAltText = 'placeholder image, blank with gray solid fill'
+
+    const {container} = render(
+      <Hero>
+        <Hero.Heading>{mockHeading}</Hero.Heading>
+        <Hero.Image
+          as="picture"
+          src="mock.png"
+          sources={[{srcset: 'mock-2x.png', media: '(min-width: 600px)'}]}
+          alt={mockAltText}
+        />
+      </Hero>,
+    )
+
+    const pictureEl = container.querySelector('picture')
+    expect(pictureEl).toBeInTheDocument()
+    expect(pictureEl).toHaveClass('Hero-image')
+    expect(pictureEl).toHaveClass('Hero-media')
+    expect(pictureEl).toHaveClass('Hero-media--pos-block-end')
+  })
+
   test('it has a slot for videos', () => {
     const mockTestId = 'hero-video'
     const {getByTestId} = render(
