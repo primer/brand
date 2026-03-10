@@ -90,7 +90,7 @@ jobs:
 
       - name: Prefer CommonJS imports
         run: |
-          mv packages/e2e/integration-tests/fixtures/index.cjs.ts packages/e2e/integration-tests/fixtures/index.ts
+          mv packages/e2e/integration-tests/fixtures/index.umd.ts packages/e2e/integration-tests/fixtures/index.ts
           rm packages/e2e/integration-tests/fixtures/index.esm.ts
 
       - name: Copying required files
