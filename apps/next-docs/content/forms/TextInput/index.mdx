@@ -29,9 +29,10 @@ import {TextInput} from '@primer/react-brand'
 <div
   style={{
     display: 'grid',
-    gridTemplateColumns: '1fr 1fr',
-    gridTemplateRows: 'repeat(2,minmax(40px,auto))',
+    gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 290px), 1fr))',
     gap: '20px',
+    maxWidth: '600px',
+    width: '100%',
   }}
 >
   <FormControl fullWidth>
