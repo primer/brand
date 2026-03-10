@@ -1,5 +1,6 @@
 src/**/*.css.d.ts
 coverage/
 lib/
+esm/
 src/tokens
 .changeset

@@ -62,16 +62,8 @@ export default defineConfig({
       formats: ['es'],
     },
     rollupOptions: {
-      // Externalize peer dependencies and their subpaths.
-      // @primer/brand-primitives is intentionally NOT externalized —
-      // its CSS token imports are bundled into per-component stylesheets.
-      external: [
-        /^react($|\/)/,
-        /^react-dom($|\/)/,
-        /^@primer\/behaviors($|\/)/,
-        /^@oddbird\/popover-polyfill($|\/)/,
-        /^@primer\/octicons-react($|\/)/,
-      ],
+      // These dependencies should be ignored by bundler
+      external: [/^react($|\/)/, /^react-dom($|\/)/, /^@primer\/behaviors($|\/)/, /^@oddbird\/popover-polyfill($|\/)/],
       output: {
         preserveModules: true,
         preserveModulesRoot: 'src',
