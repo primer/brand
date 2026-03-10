@@ -3,7 +3,7 @@ const config = {
   testDir: '../../packages/react',
   testMatch: /.*\.visual.spec\.ts/,
   outputDir: './playwright-test-results',
-  workers: process.env.CI ? 16 : Math.max(4, Math.min(12, require('os').cpus().length)),
+  workers: process.env.CI ? 16 : Math.max(4, Math.min(6, require('os').cpus().length / 2)),
   fullyParallel: true,
   retries: process.env.CI ? 3 : 1,
   timeout: 15000,
