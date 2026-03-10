@@ -24,14 +24,15 @@ const rows = prSizes.map(entry => {
 
   let change
   if (!hasDiff) {
-    change = '✅ No change'
+    change = '🟢 No change'
   } else if (mainSize === 0) {
     change = `🆕 ${formatted(prSize)}`
   } else {
     const percentage = Math.abs((diff / mainSize) * 100).toFixed(1)
     const sign = isIncrease ? '+' : '-'
     const formattedDiff = `${sign}${formatted(Math.abs(diff))} (${sign}${percentage}%)`
-    change = isIncrease ? `⚠️ ${formattedDiff}` : `✅ ${formattedDiff}`
+    const icon = isIncrease && percentage >= 5 ? '⚠️' : isIncrease ? '⬆️' : '✅'
+    change = `${icon} ${formattedDiff}`
   }
 
   return `      <tr><td>${entry.name}</td><td>${formatted(mainSize)}</td><td>${formatted(
@@ -39,11 +40,15 @@ const rows = prSizes.map(entry => {
   )}</td><td>${change}</td></tr>`
 })
 
+const hasIncrease = rows.some(r => r.includes('⚠️'))
+
+const heading = hasIncrease ? '⚠️ Bundle size report' : '🟢 Bundle size report'
+
 const body = [
-  '<h2>📦 Bundle size report</h2>',
+  `<h3>${heading}</h3>`,
   '<table>',
   '  <thead>',
-  '    <tr><th>Check</th><th>Main</th><th>PR</th><th>Change</th></tr>',
+  '    <tr><th>Check</th><th>Main</th><th>Branch</th><th>Change</th></tr>',
   '  </thead>',
   '  <tbody>',
   ...rows,
