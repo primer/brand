@@ -6,15 +6,6 @@ import {createHash} from 'crypto'
 import postcssPresetEnv from 'postcss-preset-env'
 import autoprefixer from 'autoprefixer'
 
-/**
- * Custom CSS Modules scoped-name generator that matches the Webpack UMD build
- * naming convention: Primer_Brand__[name]__[local]___[hash:base64:5]
- *
- * Note: Webpack's css-loader uses its own WASM-based MD4 implementation.
- * Since the ESM build is consumed via a separate import path (`/esm`),
- * internal consistency (JS referencing matching CSS) is what matters —
- * not cross-build hash identity. We use MD5 as the hash function here.
- */
 function generateScopedName(localName: string, filename: string): string {
   // css-loader uses the filename without extension for [name].
   // For "Button.module.css" this produces "Button-module".
