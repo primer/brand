@@ -1,6 +1,5 @@
 /**
- * compares the bundle sizes of the main branch and current feature branch, then outputs a markdown report
- * npm run size-report
+ * Compares the bundle sizes of the main branch and current feature branch, then outputs an HTML report.
  */
 /* eslint-disable github/unescaped-html-literal */
 import {readFileSync} from 'node:fs'
@@ -22,10 +21,18 @@ const rows = prSizes.map(entry => {
   const diff = prSize - mainSize
   const hasDiff = diff !== 0
   const isIncrease = diff > 0
-  const percentage = mainSize > 0 ? Math.abs((diff / mainSize) * 100).toFixed(1) : '0.0'
-  const sign = isIncrease ? '+' : '-'
-  const formattedDiff = `${sign}${formatted(Math.abs(diff))} (${sign}${percentage}%)`
-  const change = !hasDiff ? '✅ No change' : isIncrease ? `⚠️ ${formattedDiff}` : `✅ ${formattedDiff}`
+
+  let change
+  if (!hasDiff) {
+    change = '✅ No change'
+  } else if (mainSize === 0) {
+    change = `🆕 ${formatted(prSize)}`
+  } else {
+    const percentage = Math.abs((diff / mainSize) * 100).toFixed(1)
+    const sign = isIncrease ? '+' : '-'
+    const formattedDiff = `${sign}${formatted(Math.abs(diff))} (${sign}${percentage}%)`
+    change = isIncrease ? `⚠️ ${formattedDiff}` : `✅ ${formattedDiff}`
+  }
 
   return `      <tr><td>${entry.name}</td><td>${formatted(mainSize)}</td><td>${formatted(
     prSize,

@@ -17,6 +17,6 @@
     "resolveJsonModule": true,
     "types": ["node", "react", "react-dom", "chai"]
   },
-  "include": ["src/**/*", "scripts/**/*"],
+  "include": ["src/**/*", "scripts/**/*", "vite.esm.config.ts"],
   "exclude": ["integration-tests/**/*"]
 }
