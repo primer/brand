@@ -280,6 +280,10 @@
     z-index: 9998;
   }
 
+  .SubNav__heading-container + .SubNav__heading-container {
+    padding-inline-start: var(--base-size-16);
+  }
+
   .SubNav__heading-separator {
     margin-inline-end: var(--base-size-16);
     z-index: 9998;
@@ -705,6 +709,7 @@
   .SubNav__links-overlay .SubNav__link[aria-current]:not([aria-current='false']) {
     background-color: var(--brand-SubNav-color-link-bgColor);
     line-height: 1.1em;
+    padding: var(--base-size-2) var(--base-size-12) var(--base-size-4);
   }
 
   /* Firefox optical alignment fix */
