@@ -2,4 +2,4 @@
 '@primer/react-brand': patch
 ---
 
-- Adjusted `SubNav` item spacing
+Adjusted `SubNav` item spacing
