@@ -8,15 +8,23 @@ on:
     - cron: '0 0 * * *' # end of each day (UTC)
   pull_request:
 
-env:
-  ASTRO_FOLDER: astro-test
-
 jobs:
   test:
     if: ${{ github.repository == 'primer/brand' }}
-    name: Astro - React starter
+    name: Astro (${{ matrix.bundle }})
     runs-on:
       labels: ubuntu-latest-16-cores
+    strategy:
+      fail-fast: false
+      matrix:
+        bundle: [umd, esm]
+        include:
+          - bundle: umd
+            astro_folder: astro-test
+          - bundle: esm
+            astro_folder: astro-esm-test
+    env:
+      ASTRO_FOLDER: ${{ matrix.astro_folder }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
@@ -88,13 +96,14 @@ jobs:
           cp ../packages/react/primer-react-brand-${{ steps.package-version.outputs.current-version}}.tgz ./
           npm install primer-react-brand-${{ steps.package-version.outputs.current-version}}.tgz
 
-      - name: Prefer ESM imports
+      - name: Prepare barrel file for bundle type
         run: |
-          mv packages/e2e/integration-tests/fixtures/index.esm.ts packages/e2e/integration-tests/fixtures/index.ts
-          rm packages/e2e/integration-tests/fixtures/index.umd.ts
+          cp ./packages/e2e/integration-tests/fixtures/index.${{ matrix.bundle }}.ts ./packages/e2e/integration-tests/fixtures/index.ts
+          rm ./packages/e2e/integration-tests/fixtures/index.umd.ts ./packages/e2e/integration-tests/fixtures/index.esm.ts
 
       - name: Copying required files
         run: |
+          cp packages/e2e/integration-tests/astro/astro.config.mjs ./${{env.ASTRO_FOLDER}}/astro.config.mjs
           cp packages/e2e/integration-tests/astro/index.astro ./${{env.ASTRO_FOLDER}}/src/pages
           cp packages/e2e/cypress.config.js ./${{env.ASTRO_FOLDER}}/cypress.config.cjs
           cp -r packages/e2e/integration-tests/fixtures ./${{env.ASTRO_FOLDER}}/src
