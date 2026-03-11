@@ -8,6 +8,7 @@ declare const styles: {
   readonly "Card--expandableArrow": string;
   readonly "Card--fullWidth": string;
   readonly "Card--icon": string;
+  readonly "Card--imagePos-block-end": string;
   readonly "Card--maxWidth": string;
   readonly "Card--skew": string;
   readonly "Card--variant-default": string;

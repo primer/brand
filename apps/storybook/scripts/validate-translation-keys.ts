@@ -6,8 +6,12 @@
 
 import * as fs from 'fs'
 import * as path from 'path'
+import {fileURLToPath} from 'url'
 
 import {SUPPORTED_LANGUAGES} from '../src/constants'
+
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
 
 type TranslationContent = Record<string, string>
 type TranslationFiles = Record<string, Record<string, string> | undefined>

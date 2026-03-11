@@ -40,7 +40,7 @@ Agents.args = {
         },
         links: [
           {href: '#', text: 'Copilot in VS Code'},
-          {href: '#', text: 'Agents on GitHub'},
+          {href: '#', text: 'Agents on GitHub', 'aria-current': 'page'},
           {href: '#', text: 'Copilot CLI'},
           {href: '#', text: 'For business'},
           {href: '#', text: 'Tutorials'},
@@ -115,7 +115,7 @@ Agents.args = {
           id: 'features',
           sectionIntro: {
             align: 'center',
-            label: 'Features',
+            label: {text: 'Features'},
             heading: 'Your backlog doesn’t stand a chance',
             description:
               'Assign issues, automate tasks, and watch your backlog disappear as Copilot turns plans into pull requests in the background.',
@@ -258,14 +258,14 @@ CopilotBusiness.args = {
           {href: '#', text: 'Copilot in VS Code'},
           {href: '#', text: 'Agents on GitHub'},
           {href: '#', text: 'Copilot CLI'},
-          {href: '#', text: 'For business'},
+          {href: '#', text: 'For business', 'aria-current': 'page'},
           {href: '#', text: 'Tutorials'},
           {href: '#', text: 'Plans & pricing'},
         ],
       },
       hero: {
         align: 'center',
-        label: 'Copilot for Business',
+        label: {text: 'Copilot for Business'},
         heading: "Build what's next with GitHub Copilot",
         imagePosition: 'block-end',
         imageSrc: placeholderImage,

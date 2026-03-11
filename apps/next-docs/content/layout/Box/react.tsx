@@ -9,7 +9,11 @@ import {
 import {PropTableValues} from '@primer/doctocat-nextjs/components'
 
 export const BoxSpacingValueProp = () => <PropTableValues values={[...BoxSpacingValues]} commaSeparated />
-export const BoxBackgroundColorProp = () => <PropTableValues values={[...BoxBackgroundColors]} commaSeparated />
+export const BoxBackgroundColorProp = () => (
+  <>
+    <PropTableValues values={[...BoxBackgroundColors]} commaSeparated /> or <code>string</code>
+  </>
+)
 export const BoxBorderColorProp = () => <PropTableValues values={[...BoxBorderColorOptions]} commaSeparated />
 export const BoxBorderRadiusProp = () => <PropTableValues values={[...BoxBorderRadiusOptions]} commaSeparated />
 export const BoxBorderWidthProp = () => <PropTableValues values={[...BoxBorderWidthOptions]} commaSeparated />

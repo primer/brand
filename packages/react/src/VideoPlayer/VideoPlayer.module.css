@@ -296,6 +296,7 @@
   background: transparent;
   position: absolute;
   top: 0;
+  left: 0;
   opacity: 0;
 }
 
@@ -327,6 +328,7 @@
   position: absolute;
   height: var(--brand-VideoPlayer-range-height);
   top: 0;
+  left: 0;
 }
 
 .VideoPlayer__rangeProgress::-webkit-progress-bar {

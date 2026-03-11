@@ -8,14 +8,20 @@ import {test, expect} from '@playwright/test'
 // eslint-disable-next-line i18n-text/no-en
 test.describe('Visual Comparison: Box', () => {
   test('Box / Default', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-box--default&viewMode=story')
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-box--default&viewMode=story', {
+      waitUntil: 'networkidle',
+    })
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Box / Padding', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-box-features--padding&viewMode=story')
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-box-features--padding&viewMode=story', {
+      waitUntil: 'networkidle',
+    })
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -24,7 +30,9 @@ test.describe('Visual Comparison: Box', () => {
   test('Box / Directional Padding: Block start (top)', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-box-features--directional-padding-block-start&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -33,7 +41,9 @@ test.describe('Visual Comparison: Box', () => {
   test('Box / Directional Padding: Inline end (right)', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-box-features--directional-padding-inline-end&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -42,7 +52,9 @@ test.describe('Visual Comparison: Box', () => {
   test('Box / Directional Padding: Block end (bottom)', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-box-features--directional-padding-block-end&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -51,14 +63,19 @@ test.describe('Visual Comparison: Box', () => {
   test('Box / Directional Padding: Inline start (left)', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-box-features--directional-padding-inline-start&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Box / Margin', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-box-features--margin&viewMode=story')
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-box-features--margin&viewMode=story', {
+      waitUntil: 'networkidle',
+    })
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -67,7 +84,9 @@ test.describe('Visual Comparison: Box', () => {
   test('Box / Directional Margin: Block start (top)', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-box-features--directional-margin-block-start&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -76,7 +95,9 @@ test.describe('Visual Comparison: Box', () => {
   test('Box / Directional Margin: Inline end (right)', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-box-features--directional-margin-right&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -85,7 +106,9 @@ test.describe('Visual Comparison: Box', () => {
   test('Box / Directional Margin: Block end (bottom)', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-box-features--directional-margin-bottom&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -94,7 +117,9 @@ test.describe('Visual Comparison: Box', () => {
   test('Box / Directional Margin: Inline start (left)', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-box-features--directional-margin-left&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -103,21 +128,30 @@ test.describe('Visual Comparison: Box', () => {
   test('Box / Background Colors', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-box-features--background-colors&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Box / Border Radius', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-box-features--border-radius&viewMode=story')
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-box-features--border-radius&viewMode=story',
+      {waitUntil: 'networkidle'},
+    )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Box / Border Width', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-box-features--border-width&viewMode=story')
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-box-features--border-width&viewMode=story', {
+      waitUntil: 'networkidle',
+    })
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -126,21 +160,29 @@ test.describe('Visual Comparison: Box', () => {
   test('Box / Directional Border Width', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-box-features--directional-border-width&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Box / Border Color', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-box-features--border-color&viewMode=story')
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-box-features--border-color&viewMode=story', {
+      waitUntil: 'networkidle',
+    })
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Box / Animation', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-box-features--animation&viewMode=story')
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-box-features--animation&viewMode=story', {
+      waitUntil: 'networkidle',
+    })
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(6000)
     await expect(page).toHaveScreenshot({fullPage: true})

@@ -1,0 +1,4 @@
+.EyebrowText {
+  text-transform: uppercase;
+  letter-spacing: var(--brand-text-letterSpacing-100);
+}

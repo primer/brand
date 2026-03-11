@@ -1,6 +1,6 @@
 import React, {PropsWithChildren, useMemo} from 'react'
 import {clsx} from 'clsx'
-import {useAnimation} from '../'
+import {useAnimation} from '../animation'
 import styles from './Text.module.css'
 import {BaseProps} from '../component-helpers'
 

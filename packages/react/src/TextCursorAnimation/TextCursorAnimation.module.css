@@ -1,0 +1,40 @@
+.TextCursorAnimation {
+  display: inline-flex;
+  align-items: center;
+}
+
+.TextCursorAnimation-inner {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+.TextCursorAnimation-text {
+  text-transform: uppercase;
+  font-weight: var(--brand-text-weight-500);
+  clip-path: inset(0 calc((1 - var(--brand-TextCursorAnimation-reveal-progress, 1)) * 100%) 0 0);
+  white-space: pre;
+}
+
+.TextCursorAnimation-cursor {
+  position: absolute;
+  left: calc((var(--brand-TextCursorAnimation-reveal-progress, 1) * 100%) + var(--base-size-6));
+  top: calc((1lh - 0.3cap) / 2 - 0.5cap);
+  width: var(--base-size-8);
+  height: 1cap;
+  background-color: color-mix(
+    in srgb,
+    var(--brand-color-canvas-subtle) calc((1 - var(--brand-TextCursorAnimation-cursor-progress, 0)) * 100%),
+    var(--brand-color-accent-primary) calc(var(--brand-TextCursorAnimation-cursor-progress, 0) * 100%)
+  );
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .TextCursorAnimation-cursor {
+    display: none;
+  }
+
+  .TextCursorAnimation-text {
+    clip-path: none;
+  }
+}

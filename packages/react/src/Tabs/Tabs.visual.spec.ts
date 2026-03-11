@@ -8,14 +8,20 @@ import {test, expect} from '@playwright/test'
 // eslint-disable-next-line i18n-text/no-en
 test.describe('Visual Comparison: Tabs', () => {
   test('Tabs / Default', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-tabs--default&viewMode=story')
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-tabs--default&viewMode=story', {
+      waitUntil: 'networkidle',
+    })
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Tabs / Playground', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-tabs--playground&viewMode=story')
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-tabs--playground&viewMode=story', {
+      waitUntil: 'networkidle',
+    })
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -24,7 +30,9 @@ test.describe('Visual Comparison: Tabs', () => {
   test('Tabs / With Pricing Options', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-tabs-examples--with-pricing-options&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -33,7 +41,9 @@ test.describe('Visual Comparison: Tabs', () => {
   test('Tabs / With Custom Panels', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-tabs-examples--with-custom-panels&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -45,14 +55,20 @@ test.describe('Visual Comparison: Tabs', () => {
     test('Tabs / Default Variant Narrow', async ({page}) => {
       await page.goto(
         'http://localhost:6006/iframe.html?args=&id=components-tabs-features--default-variant-narrow&viewMode=story',
+        {waitUntil: 'networkidle'},
       )
+      await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
       await page.waitForTimeout(500)
       await expect(page).toHaveScreenshot({fullPage: true})
     })
   })
   test('Tabs / Custom Panels', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-tabs-features--custom-panels&viewMode=story')
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-tabs-features--custom-panels&viewMode=story',
+      {waitUntil: 'networkidle'},
+    )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -61,7 +77,9 @@ test.describe('Visual Comparison: Tabs', () => {
   test('Tabs / Custom Active Tab', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-tabs-features--custom-active-tab&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -70,7 +88,9 @@ test.describe('Visual Comparison: Tabs', () => {
   test('Tabs / Accent Variant', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-tabs-features--accent-variant&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -82,7 +102,9 @@ test.describe('Visual Comparison: Tabs', () => {
     test('Tabs / Accent Variant Narrow', async ({page}) => {
       await page.goto(
         'http://localhost:6006/iframe.html?args=&id=components-tabs-features--accent-variant-narrow&viewMode=story',
+        {waitUntil: 'networkidle'},
       )
+      await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
       await page.waitForTimeout(500)
       await expect(page).toHaveScreenshot({fullPage: true})
@@ -91,7 +113,9 @@ test.describe('Visual Comparison: Tabs', () => {
   test('Tabs / Underline Variant', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-tabs-features--underline-variant&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -103,7 +127,9 @@ test.describe('Visual Comparison: Tabs', () => {
     test('Tabs / Underline Variant Narrow', async ({page}) => {
       await page.goto(
         'http://localhost:6006/iframe.html?args=&id=components-tabs-features--underline-variant-narrow&viewMode=story',
+        {waitUntil: 'networkidle'},
       )
+      await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
       await page.waitForTimeout(500)
       await expect(page).toHaveScreenshot({fullPage: true})
@@ -112,14 +138,19 @@ test.describe('Visual Comparison: Tabs', () => {
   test('Tabs / Optional Panel Animation', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-tabs-features--optional-panel-animation&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Tabs / Start Align', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-tabs-features--start-align&viewMode=story')
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-tabs-features--start-align&viewMode=story', {
+      waitUntil: 'networkidle',
+    })
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})

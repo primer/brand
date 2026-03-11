@@ -271,4 +271,113 @@ describe('Card', () => {
     expect(isAfter(icon, label)).toBe(true)
     expect(isAfter(label, description)).toBe(true)
   })
+
+  it('renders with center alignment', () => {
+    const mockTestId = 'card'
+
+    const {getByTestId} = render(
+      <Card href={mockHref} data-testid={mockTestId} align="center">
+        <Card.Heading>{mockHeading}</Card.Heading>
+      </Card>,
+    )
+
+    const cardEl = getByTestId(mockTestId)
+    expect(cardEl.parentElement).toHaveClass('Card--align-center')
+  })
+
+  it('renders with start alignment by default', () => {
+    const mockTestId = 'card'
+
+    const {getByTestId} = render(
+      <Card href={mockHref} data-testid={mockTestId}>
+        <Card.Heading>{mockHeading}</Card.Heading>
+      </Card>,
+    )
+
+    const cardEl = getByTestId(mockTestId)
+    expect(cardEl.parentElement).toHaveClass('Card--align-start')
+  })
+
+  it('renders with disableAnimation class when disableAnimation is true', () => {
+    const mockTestId = 'card'
+
+    const {getByTestId} = render(
+      <Card href={mockHref} data-testid={mockTestId} disableAnimation>
+        <Card.Heading>{mockHeading}</Card.Heading>
+      </Card>,
+    )
+
+    const cardEl = getByTestId(mockTestId)
+    expect(cardEl).toHaveClass('Card--disableAnimation')
+  })
+
+  it('does not render disableAnimation class by default', () => {
+    const mockTestId = 'card'
+
+    const {getByTestId} = render(
+      <Card href={mockHref} data-testid={mockTestId}>
+        <Card.Heading>{mockHeading}</Card.Heading>
+      </Card>,
+    )
+
+    const cardEl = getByTestId(mockTestId)
+    expect(cardEl).not.toHaveClass('Card--disableAnimation')
+  })
+
+  it('renders Card.Image in block-end position', () => {
+    const testAltText = 'test image'
+    const mockTestId = 'card'
+
+    const {getByAltText, getByTestId} = render(
+      <Card href={mockHref} data-testid={mockTestId}>
+        <Card.Heading>{mockHeading}</Card.Heading>
+        <Card.Description>{mockDescription}</Card.Description>
+        <Card.Image src="mock.png" alt={testAltText} position="block-end" />
+      </Card>,
+    )
+
+    const cardEl = getByTestId(mockTestId)
+    expect(cardEl).toHaveClass('Card--imagePos-block-end')
+
+    const allChildrenEls = Array.from(
+      cardEl.querySelectorAll('.Card__image, .Card__heading, .Card__description, .Card__label'),
+    )
+    const image = getByAltText(testAltText).closest('.Card__image')
+    expect(allChildrenEls.at(-1)).toBe(image)
+  })
+
+  it('renders Card.Image in block-start position by default', () => {
+    const testAltText = 'test image'
+    const mockTestId = 'card'
+
+    const {getByAltText, getByTestId} = render(
+      <Card href={mockHref} data-testid={mockTestId}>
+        <Card.Heading>{mockHeading}</Card.Heading>
+        <Card.Description>{mockDescription}</Card.Description>
+        <Card.Image src="mock.png" alt={testAltText} />
+      </Card>,
+    )
+
+    const cardEl = getByTestId(mockTestId)
+    expect(cardEl).toHaveClass('Card--imagePos-block-start')
+
+    const allChildrenEls = Array.from(
+      cardEl.querySelectorAll('.Card__image, .Card__heading, .Card__description, .Card__label'),
+    )
+    const image = getByAltText(testAltText).closest('.Card__image')
+    expect(allChildrenEls.at(1)).toBe(image)
+  })
+
+  it('renders custom ctaText', () => {
+    const customCtaText = 'Read more'
+
+    const {getByText} = render(
+      <Card href={mockHref} ctaText={customCtaText}>
+        <Card.Heading>{mockHeading}</Card.Heading>
+      </Card>,
+    )
+
+    const ctaEl = getByText(customCtaText)
+    expect(ctaEl).toBeInTheDocument()
+  })
 })

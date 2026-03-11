@@ -10,7 +10,9 @@ test.describe('Visual Comparison: FeaturePreviewLevelTwo', () => {
   test('FeaturePreviewLevelTwo / Playground', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=recipes-feature-previews-level-2--level-two-playground&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(4000)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -19,7 +21,9 @@ test.describe('Visual Comparison: FeaturePreviewLevelTwo', () => {
   test('FeaturePreviewLevelTwo / Minimal', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=recipes-feature-previews-level-2--level-two-minimal&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -28,7 +32,9 @@ test.describe('Visual Comparison: FeaturePreviewLevelTwo', () => {
   test('FeaturePreviewLevelTwo / 2.1 variant', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=recipes-feature-previews-level-2--level-two-point-one&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(4000)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -37,7 +43,9 @@ test.describe('Visual Comparison: FeaturePreviewLevelTwo', () => {
   test('FeaturePreviewLevelTwo / 2.2 variant', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=recipes-feature-previews-level-2--level-two-point-two&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(4000)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -46,7 +54,9 @@ test.describe('Visual Comparison: FeaturePreviewLevelTwo', () => {
   test('FeaturePreviewLevelTwo / 2.3 variant', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=recipes-feature-previews-level-2--level-two-point-three&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(4000)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -55,7 +65,9 @@ test.describe('Visual Comparison: FeaturePreviewLevelTwo', () => {
   test('FeaturePreviewLevelTwo / 2.4 variant', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=recipes-feature-previews-level-2--level-two-point-four&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(4000)
     await expect(page).toHaveScreenshot({fullPage: true})

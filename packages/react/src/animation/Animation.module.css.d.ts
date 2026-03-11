@@ -5,6 +5,7 @@ declare const styles: {
   readonly "Animation--fade-out": string;
   readonly "Animation--fill-in-right": string;
   readonly "Animation--fill-in-top": string;
+  readonly "Animation--reveal-in-up": string;
   readonly "Animation--scale-in": string;
   readonly "Animation--scale-in-down": string;
   readonly "Animation--scale-in-left": string;

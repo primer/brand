@@ -1,6 +1,5 @@
-import React, {useEffect} from 'react'
+import React, {useCallback, useEffect, useState} from 'react'
 import type {Meta, StoryObj} from '@storybook/react'
-import {linkTo} from '@storybook/addon-links'
 
 import {SubNav, SubNavProps} from './SubNav'
 import {Box} from '../Box'
@@ -94,7 +93,7 @@ export const WithShadow: Story = {
 const SubHeadingTemplate = (args: SubNavProps) => (
   <SubNav {...args}>
     <SubNav.Heading href="#">AI</SubNav.Heading>
-    <SubNav.SubHeading href="#">Copilot</SubNav.SubHeading>
+    <SubNav.SubHeading href="#">GitHub Copilot</SubNav.SubHeading>
     <SubNav.Link href="#">For business</SubNav.Link>
     <SubNav.Link href="#" aria-current="page">
       Extensions
@@ -251,15 +250,7 @@ const AnchorNavVariantTemplate = (args: SubNavProps) => (
   <main>
     <Box paddingBlockStart={64} backgroundColor="subtle" style={{position: 'relative', zIndex: 32}}></Box>
     <SubNav {...args}>
-      <SubNav.Heading
-        href="https://github.com/enterprise/"
-        onClick={e => {
-          e.preventDefault()
-          linkTo('Components/SubNav/Features', 'AnchorNavVariant')
-        }}
-      >
-        Enterprise
-      </SubNav.Heading>
+      <SubNav.Heading href="https://github.com/enterprise/">Enterprise</SubNav.Heading>
       <SubNav.Link href="#" aria-current="page">
         Overview
         <SubNav.SubMenu variant="anchor">
@@ -534,4 +525,61 @@ export const NoActiveLinksNarrow: Story = {
   globals: {
     viewport: {value: 'iphonex'},
   },
+}
+
+const DelayedActiveTemplate = (args: SubNavProps) => {
+  const [activeLink, setActiveLink] = useState<string | null>(null)
+
+  const handleClick = useCallback((e: React.MouseEvent<HTMLAnchorElement>, label: string) => {
+    e.preventDefault()
+    setActiveLink(null)
+    setTimeout(() => {
+      setActiveLink(label)
+    }, 500)
+  }, [])
+
+  useEffect(() => {
+    // set an initial active link after a delay
+    const delay = setTimeout(() => {
+      setActiveLink('Actions')
+    }, 1000)
+
+    return () => clearTimeout(delay)
+  }, [])
+
+  return (
+    <main>
+      <Box paddingBlockStart={64} backgroundColor="subtle" style={{position: 'relative', zIndex: 32}}></Box>
+      <SubNav {...args}>
+        <SubNav.Heading href="#">Features</SubNav.Heading>
+        {['Actions', 'Packages', 'Security', 'Codespaces', 'Copilot', 'Code review', 'Search'].map(label => (
+          <SubNav.Link
+            key={label}
+            href="#"
+            aria-current={activeLink === label ? 'page' : undefined}
+            onClick={(e: React.MouseEvent<HTMLAnchorElement>) => handleClick(e, label)}
+          >
+            {label}
+          </SubNav.Link>
+        ))}
+      </SubNav>
+      <Grid>
+        <Grid.Column>
+          <Hero align="center">
+            <Hero.Label>GitHub Features</Hero.Label>
+            <Hero.Heading>Choose the tools that work best for your team.</Hero.Heading>
+            <Hero.Description>
+              This story shows active link handling. Specifically, how it doesn&apos;t cause layout shift when
+              navigating between sub nav links.
+            </Hero.Description>
+          </Hero>
+        </Grid.Column>
+      </Grid>
+    </main>
+  )
+}
+
+export const DelayedActiveLink: Story = {
+  name: 'Delayed active link (layout shift test)',
+  render: DelayedActiveTemplate,
 }

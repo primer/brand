@@ -8,14 +8,20 @@ import {test, expect} from '@playwright/test'
 // eslint-disable-next-line i18n-text/no-en
 test.describe('Visual Comparison: MinimalFooter', () => {
   test('MinimalFooter / Default', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-minimalfooter--default&viewMode=story')
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-minimalfooter--default&viewMode=story', {
+      waitUntil: 'networkidle',
+    })
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(5000)
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('MinimalFooter / Playground', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-minimalfooter--playground&viewMode=story')
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-minimalfooter--playground&viewMode=story', {
+      waitUntil: 'networkidle',
+    })
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(5000)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -24,7 +30,9 @@ test.describe('Visual Comparison: MinimalFooter', () => {
   test('MinimalFooter / Multiple Footnotes', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-minimalfooter-features--multiple-footnotes&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -33,7 +41,9 @@ test.describe('Visual Comparison: MinimalFooter', () => {
   test('MinimalFooter / Maximum Links (5)', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-minimalfooter-features--maximum-links&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(5000)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -42,7 +52,9 @@ test.describe('Visual Comparison: MinimalFooter', () => {
   test('MinimalFooter / Mixed Buttons And Links', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-minimalfooter-features--mixed-buttons-and-links&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -51,7 +63,9 @@ test.describe('Visual Comparison: MinimalFooter', () => {
   test('MinimalFooter / No Social Links', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-minimalfooter-features--no-social-links&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -60,7 +74,9 @@ test.describe('Visual Comparison: MinimalFooter', () => {
   test('MinimalFooter / Filtered Social Links', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-minimalfooter-features--filtered-social-links&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(5000)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -69,7 +85,9 @@ test.describe('Visual Comparison: MinimalFooter', () => {
   test('MinimalFooter / Reversed Social Links', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-minimalfooter-features--reversed-social-links&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -81,7 +99,9 @@ test.describe('Visual Comparison: MinimalFooter', () => {
     test('MinimalFooter / Default (Narrow viewport)', async ({page}) => {
       await page.goto(
         'http://localhost:6006/iframe.html?args=&id=components-minimalfooter-features--default-narrow&viewMode=story',
+        {waitUntil: 'networkidle'},
       )
+      await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
       await page.waitForTimeout(5000)
       await expect(page).toHaveScreenshot({fullPage: true})
@@ -90,7 +110,9 @@ test.describe('Visual Comparison: MinimalFooter', () => {
   test('MinimalFooter / Dark Theme', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-minimalfooter-features--dark-theme&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(5000)
     await expect(page).toHaveScreenshot({fullPage: true})

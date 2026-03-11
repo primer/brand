@@ -8,7 +8,10 @@ import {test, expect} from '@playwright/test'
 // eslint-disable-next-line i18n-text/no-en
 test.describe('Visual Comparison: Bento', () => {
   test('Bento / Default', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-bento--default&viewMode=story')
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-bento--default&viewMode=story', {
+      waitUntil: 'networkidle',
+    })
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -17,7 +20,9 @@ test.describe('Visual Comparison: Bento', () => {
   test('Bento / Layout Example 1', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-bento-features--layout-example-1&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -26,7 +31,9 @@ test.describe('Visual Comparison: Bento', () => {
   test('Bento / Layout Example 2', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-bento-features--layout-example-2&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -35,28 +42,39 @@ test.describe('Visual Comparison: Bento', () => {
   test('Bento / Image Gallery', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-bento-features--image-gallery&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Mixed', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-bento-features--mixed&viewMode=story')
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-bento-features--mixed&viewMode=story', {
+      waitUntil: 'networkidle',
+    })
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Mixed 2', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-bento-features--mixed-2&viewMode=story')
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-bento-features--mixed-2&viewMode=story', {
+      waitUntil: 'networkidle',
+    })
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Mixed 3', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-bento-features--mixed-3&viewMode=story')
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-bento-features--mixed-3&viewMode=story', {
+      waitUntil: 'networkidle',
+    })
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -65,14 +83,19 @@ test.describe('Visual Comparison: Bento', () => {
   test('Bento / Heading With Emphasized Text', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-bento-item--heading-with-emphasized-text&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / With Label', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-bento-item--with-label&viewMode=story')
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-bento-item--with-label&viewMode=story', {
+      waitUntil: 'networkidle',
+    })
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -81,14 +104,19 @@ test.describe('Visual Comparison: Bento', () => {
   test('Bento / Visual Position Bottom', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-bento-item--visual-position-bottom&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Flow Column', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-bento-item--flow-column&viewMode=story')
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-bento-item--flow-column&viewMode=story', {
+      waitUntil: 'networkidle',
+    })
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -97,7 +125,9 @@ test.describe('Visual Comparison: Bento', () => {
   test('Bento / Flow Column Visual First', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-bento-item--flow-column-visual-first&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -106,7 +136,9 @@ test.describe('Visual Comparison: Bento', () => {
   test('Bento / Flow Row Visual First', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-bento-item--flow-row-visual-first&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -115,7 +147,9 @@ test.describe('Visual Comparison: Bento', () => {
   test('Bento / Content Padding Condensed', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-bento-item--content-padding-condensed&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -124,7 +158,9 @@ test.describe('Visual Comparison: Bento', () => {
   test('Bento / Content Padding Normal', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-bento-item--content-padding-normal&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -133,7 +169,9 @@ test.describe('Visual Comparison: Bento', () => {
   test('Bento / Content Padding Spacious', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-bento-item--content-padding-spacious&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -142,7 +180,9 @@ test.describe('Visual Comparison: Bento', () => {
   test('Bento / Visual Padding Condensed', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-bento-item--visual-padding-condensed&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -151,7 +191,9 @@ test.describe('Visual Comparison: Bento', () => {
   test('Bento / Visual Padding Normal', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-bento-item--visual-padding-normal&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -160,14 +202,19 @@ test.describe('Visual Comparison: Bento', () => {
   test('Bento / Visual Padding Spacious', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-bento-item--visual-padding-spacious&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Order Reversed', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-bento-item--order-reversed&viewMode=story')
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-bento-item--order-reversed&viewMode=story', {
+      waitUntil: 'networkidle',
+    })
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -176,35 +223,50 @@ test.describe('Visual Comparison: Bento', () => {
   test('Bento / Visual As Background', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-bento-item--visual-as-background&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / No Visual', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-bento-item--no-visual&viewMode=story')
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-bento-item--no-visual&viewMode=story', {
+      waitUntil: 'networkidle',
+    })
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / No Content', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-bento-item--no-content&viewMode=story')
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-bento-item--no-content&viewMode=story', {
+      waitUntil: 'networkidle',
+    })
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Dark Mode Item', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-bento-item--dark-mode-item&viewMode=story')
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-bento-item--dark-mode-item&viewMode=story', {
+      waitUntil: 'networkidle',
+    })
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Bento / Responsive Flow', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-bento-item--responsive-flow&viewMode=story')
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-bento-item--responsive-flow&viewMode=story',
+      {waitUntil: 'networkidle'},
+    )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -213,7 +275,9 @@ test.describe('Visual Comparison: Bento', () => {
   test('Bento / Vertical Align Start', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-bento-item--vertical-align-start&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -222,7 +286,9 @@ test.describe('Visual Comparison: Bento', () => {
   test('Bento / Vertical Align Center', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-bento-item--vertical-align-center&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -231,7 +297,9 @@ test.describe('Visual Comparison: Bento', () => {
   test('Bento / Vertical Align End', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-bento-item--vertical-align-end&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -240,7 +308,9 @@ test.describe('Visual Comparison: Bento', () => {
   test('Bento / Horizontal Align Start', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-bento-item--horizontal-align-start&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -249,7 +319,9 @@ test.describe('Visual Comparison: Bento', () => {
   test('Bento / Horizontal Align Center', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-bento-item--horizontal-align-center&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -258,7 +330,9 @@ test.describe('Visual Comparison: Bento', () => {
   test('Bento / Responsive Horizontal Align', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-bento-item--responsive-horizontal-align&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -267,7 +341,9 @@ test.describe('Visual Comparison: Bento', () => {
   test('Bento / Responsive Vertical Align', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-bento-item--responsive-vertical-align&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})

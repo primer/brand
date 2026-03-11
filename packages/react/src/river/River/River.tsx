@@ -1,7 +1,11 @@
 import React, {forwardRef, PropsWithChildren, useMemo, type Ref} from 'react'
 import {clsx} from 'clsx'
-import {Heading, LinkProps, HeadingProps, TextProps, Text, Link, useAnimation, Label, LabelProps} from '../../'
-
+import {Heading, type HeadingProps} from '../../Heading'
+import {Text, type TextProps} from '../../Text'
+import {Link, type LinkProps} from '../../Link'
+import {Label, type LabelProps} from '../../Label'
+import {EyebrowText} from '../../EyebrowText'
+import {useAnimation} from '../../animation'
 import type {BaseProps} from '../../component-helpers'
 
 /**
@@ -12,6 +16,14 @@ import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/compone
 
 /** * Main Stylesheet (as a CSS Module) */
 import styles from '../river-shared.module.css'
+
+export const RiverVariants = ['default', 'gridline'] as const
+export const BorderedGrid = 'gridline' as const
+export const GridLine = 'gridline' as const
+export type RiverVariant = (typeof RiverVariants)[number]
+
+export const RiverContentAlignValues = ['center', 'block-end'] as const
+export type RiverContentAlign = (typeof RiverContentAlignValues)[number]
 
 export type RiverProps = {
   /**
@@ -29,11 +41,17 @@ export type RiverProps = {
    * Adjust the order of the `Content` column. The default is `start`.
    */
   align?: 'start' | 'end' | 'center'
+  /**
+   * Apply a visual variant. The default is `default`.
+   * `gridline` applies lateral spacing for use in bordered grid layouts.
+   */
+  variant?: RiverVariant
 } & BaseProps<HTMLElement> &
   React.HTMLAttributes<HTMLElement>
 
 export const defaultRiverImageTextRatio = '50:50'
 export const defaultRiverAlign = 'start'
+export const defaultRiverVariant: RiverVariant = 'default'
 
 type ValidRootChildren = {
   Visual: React.ReactElement<RiverVisualProps> | null
@@ -46,6 +64,7 @@ const Root = forwardRef(
       animate,
       imageTextRatio = defaultRiverImageTextRatio,
       align = defaultRiverAlign,
+      variant = defaultRiverVariant,
       className,
       children,
       style,
@@ -77,6 +96,7 @@ const Root = forwardRef(
           styles.River,
           styles[`River--${imageTextRatio.replace(':', '-')}`],
           styles[`River--align-${align}`],
+          styles[`River--variant-${variant}`],
           animationClasses,
           className,
         )}
@@ -91,6 +111,10 @@ const Root = forwardRef(
 )
 
 export type RiverContentProps = BaseProps<HTMLDivElement> & {
+  /**
+   * Aligns the content vertically within its container.
+   */
+  align?: RiverContentAlign
   /**
    * Escape-hatch for inserting custom React components.
    * Warning:
@@ -121,6 +145,7 @@ export type RiverContentProps = BaseProps<HTMLDivElement> & {
 export const RiverContent = forwardRef(
   (
     {
+      align = 'center',
       animate,
       children,
       className,
@@ -144,10 +169,12 @@ export const RiverContent = forwardRef(
 
     const LabelChild = Children.find(child => React.isValidElement(child) && child.type === Label)
 
+    const EyebrowTextChild = Children.find(child => React.isValidElement(child) && child.type === EyebrowText)
+
     return (
       <div
         ref={ref}
-        className={clsx(animationClasses, styles.River__content, className)}
+        className={clsx(animationClasses, styles.River__content, styles[`River__content--align-${align}`], className)}
         style={{...animationInlineStyles, ...style}}
         {...rest}
       >
@@ -157,7 +184,11 @@ export const RiverContent = forwardRef(
           </div>
         )}
 
-        {!LabelChild && LeadingComponent && (
+        {!LabelChild && React.isValidElement(EyebrowTextChild) && !LeadingComponent && (
+          <div className={styles.River__label}>{EyebrowTextChild}</div>
+        )}
+
+        {!LabelChild && !EyebrowTextChild && LeadingComponent && (
           <div>
             <LeadingComponent />
           </div>
@@ -170,6 +201,7 @@ export const RiverContent = forwardRef(
               as: HeadingChild.props.as || 'h3',
               size: HeadingChild.props.size || '5',
               weight: HeadingChild.props.weight,
+              className: clsx(HeadingChild.props.className, styles['River__heading-inner']),
             })}
           </div>
         )}
@@ -206,6 +238,9 @@ export const RiverContent = forwardRef(
   },
 )
 
+export const RiverVisualBackgroundColors = ['default', 'subtle'] as const
+export type RiverVisualBackgroundColor = (typeof RiverVisualBackgroundColors)[number]
+
 export type RiverVisualProps = BaseProps<HTMLDivElement> &
   React.HtmlHTMLAttributes<HTMLDivElement> &
   PropsWithChildren<{
@@ -224,9 +259,13 @@ export type RiverVisualProps = BaseProps<HTMLDivElement> &
      * Can optionally be disabled.
      */
     rounded?: boolean
+    /**
+     * Applies a background color with padding around the media.
+     */
+    imageBackgroundColor?: RiverVisualBackgroundColor
   }>
 
-const Visual = forwardRef(
+export const Visual = forwardRef(
   (
     {
       fillMedia = true,
@@ -234,6 +273,7 @@ const Visual = forwardRef(
       className,
       hasShadow = false,
       rounded = true,
+      imageBackgroundColor,
       ...rest
     }: PropsWithChildren<RiverVisualProps>,
     ref: Ref<HTMLDivElement>,
@@ -246,6 +286,7 @@ const Visual = forwardRef(
           hasShadow && styles['River__visual--has-shadow'],
           fillMedia && styles['River__visual--fill-media'],
           rounded && styles['River__visual--rounded'],
+          imageBackgroundColor === 'subtle' && styles['River__visual--has-background'],
           className,
         )}
         {...rest}

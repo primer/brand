@@ -1,11 +1,24 @@
 .Grid {
   display: grid;
   grid-template-columns: repeat(12, minmax(0, 1fr));
-  grid-row-gap: var(--brand-Grid-spacing-row);
-  grid-column-gap: var(--brand-Grid-spacing-column-gap);
-  padding-inline: var(--brand-Grid-spacing-margin);
   max-width: 1280px;
   margin: 0 auto;
+}
+
+.Grid--columnGap-default {
+  grid-column-gap: var(--brand-Grid-spacing-column-gap);
+}
+
+.Grid--columnGap-none {
+  grid-column-gap: 0;
+}
+
+.Grid--rowGap-default {
+  grid-row-gap: var(--brand-Grid-spacing-row);
+}
+
+.Grid--rowGap-none {
+  grid-row-gap: 0;
 }
 
 .Grid--full-width {
@@ -29,6 +42,10 @@
 .Grid--has-overlay .Grid__column {
   background-color: var(--brand-Grid-column-bgColor-overlay);
   min-height: var(--base-size-24);
+}
+
+.Grid--has-gutters {
+  padding-inline: var(--brand-Grid-spacing-margin);
 }
 
 /**

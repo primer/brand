@@ -8,14 +8,20 @@ import {test, expect} from '@playwright/test'
 // eslint-disable-next-line i18n-text/no-en
 test.describe('Visual Comparison: IDE', () => {
   test('IDE / Default', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-ide--default&viewMode=story')
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-ide--default&viewMode=story', {
+      waitUntil: 'networkidle',
+    })
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(2000)
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('IDE / Playground', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-ide--playground&viewMode=story')
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-ide--playground&viewMode=story', {
+      waitUntil: 'networkidle',
+    })
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(2000)
     await expect(page).toHaveScreenshot({fullPage: true})

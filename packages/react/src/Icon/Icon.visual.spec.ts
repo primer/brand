@@ -8,7 +8,10 @@ import {test, expect} from '@playwright/test'
 // eslint-disable-next-line i18n-text/no-en
 test.describe('Visual Comparison: Icon', () => {
   test('Icon / Playground', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-icon--playground&viewMode=story')
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-icon--playground&viewMode=story', {
+      waitUntil: 'networkidle',
+    })
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -17,28 +20,39 @@ test.describe('Visual Comparison: Icon', () => {
   test('Icon / With Background', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-icon-features--with-background&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Icon / Colors', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-icon-features--colors&viewMode=story')
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-icon-features--colors&viewMode=story', {
+      waitUntil: 'networkidle',
+    })
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Icon / Sizes', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-icon-features--sizes&viewMode=story')
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-icon-features--sizes&viewMode=story', {
+      waitUntil: 'networkidle',
+    })
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Icon / Accepts JSX', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-icon-features--accepts-jsx&viewMode=story')
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-icon-features--accepts-jsx&viewMode=story', {
+      waitUntil: 'networkidle',
+    })
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})

@@ -1,5 +1,9 @@
 module.exports = {
   SubNav: {
+    bgColor: {
+      value: 'var(--brand-color-canvas-default)',
+      dark: 'var(--brand-color-canvas-default)',
+    },
     color: {
       link: {
         rest: {
@@ -10,11 +14,9 @@ module.exports = {
           value: 'var(--brand-color-text-default)',
           dark: 'var(--brand-color-text-default)',
         },
-      },
-      subMenu: {
         bgColor: {
-          value: 'var(--base-color-scale-white-0)',
-          dark: 'var(--base-color-scale-white-0)',
+          value: '#E4EBE6', // TODO: change to gray-2 when color scales are updated
+          dark: '#323834', // TODO: change to gray-2 when color scales are updated
         },
       },
     },

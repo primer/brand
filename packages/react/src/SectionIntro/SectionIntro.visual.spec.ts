@@ -8,14 +8,20 @@ import {test, expect} from '@playwright/test'
 // eslint-disable-next-line i18n-text/no-en
 test.describe('Visual Comparison: SectionIntro', () => {
   test('SectionIntro / Default', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-sectionintro--default&viewMode=story')
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-sectionintro--default&viewMode=story', {
+      waitUntil: 'networkidle',
+    })
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('SectionIntro / Playground', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-sectionintro--playground&viewMode=story')
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-sectionintro--playground&viewMode=story', {
+      waitUntil: 'networkidle',
+    })
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -24,7 +30,9 @@ test.describe('Visual Comparison: SectionIntro', () => {
   test('SectionIntro / Heading Only', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-sectionintro-features--heading-only&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -33,7 +41,9 @@ test.describe('Visual Comparison: SectionIntro', () => {
   test('SectionIntro / With Description', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-sectionintro-features--with-description&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -42,7 +52,9 @@ test.describe('Visual Comparison: SectionIntro', () => {
   test('SectionIntro / With Action', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-sectionintro-features--with-action&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -51,7 +63,9 @@ test.describe('Visual Comparison: SectionIntro', () => {
   test('SectionIntro / With Secondary Action', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-sectionintro-features--with-secondary-action&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -60,7 +74,9 @@ test.describe('Visual Comparison: SectionIntro', () => {
   test('SectionIntro / With Label', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-sectionintro-features--with-label&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -69,7 +85,9 @@ test.describe('Visual Comparison: SectionIntro', () => {
   test('SectionIntro / Aligned Center', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-sectionintro-features--aligned-center&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -78,7 +96,9 @@ test.describe('Visual Comparison: SectionIntro', () => {
   test('SectionIntro / With Emphasized Text', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-sectionintro-features--with-emphasized-text&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -87,7 +107,9 @@ test.describe('Visual Comparison: SectionIntro', () => {
   test('SectionIntro / Full Width', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-sectionintro-features--full-width&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -96,7 +118,9 @@ test.describe('Visual Comparison: SectionIntro', () => {
   test('SectionIntro / Leading Component', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-sectionintro-features--leading-component&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})

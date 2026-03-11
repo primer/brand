@@ -8,14 +8,20 @@ import {test, expect} from '@playwright/test'
 // eslint-disable-next-line i18n-text/no-en
 test.describe('Visual Comparison: AnchorNav', () => {
   test('AnchorNav / Default', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-anchornav--default&viewMode=story')
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-anchornav--default&viewMode=story', {
+      waitUntil: 'networkidle',
+    })
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('AnchorNav / Playground', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-anchornav--playground&viewMode=story')
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-anchornav--playground&viewMode=story', {
+      waitUntil: 'networkidle',
+    })
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(2000)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -24,7 +30,9 @@ test.describe('Visual Comparison: AnchorNav', () => {
   test('AnchorNav / Fewer anchor links', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-anchornav-features--fewer-anchor-links&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(2000)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -33,7 +41,9 @@ test.describe('Visual Comparison: AnchorNav', () => {
   test('AnchorNav / Shorter labels', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-anchornav-features--shorter-labels&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(2000)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -42,7 +52,9 @@ test.describe('Visual Comparison: AnchorNav', () => {
   test('AnchorNav / Longer labels', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-anchornav-features--longer-labels&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(2000)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -51,7 +63,9 @@ test.describe('Visual Comparison: AnchorNav', () => {
   test('AnchorNav / Custom Background', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-anchornav-features--custom-background&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(2000)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -63,7 +77,9 @@ test.describe('Visual Comparison: AnchorNav', () => {
     test('AnchorNav / Narrow view, menu closed (mobile)', async ({page}) => {
       await page.goto(
         'http://localhost:6006/iframe.html?args=&id=components-anchornav-features--narrow-view&viewMode=story',
+        {waitUntil: 'networkidle'},
       )
+      await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
       await page.waitForTimeout(2000)
       await expect(page).toHaveScreenshot({fullPage: true})
@@ -76,7 +92,9 @@ test.describe('Visual Comparison: AnchorNav', () => {
     test('AnchorNav / Narrow view, menu open (mobile)', async ({page}) => {
       await page.goto(
         'http://localhost:6006/iframe.html?args=&id=components-anchornav-features--narrow-view-menu-open&viewMode=story',
+        {waitUntil: 'networkidle'},
       )
+      await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
       await page.waitForTimeout(2000)
       await expect(page).toHaveScreenshot({fullPage: true})
@@ -89,7 +107,9 @@ test.describe('Visual Comparison: AnchorNav', () => {
     test('AnchorNav / Regular view, menu closed (tablet)', async ({page}) => {
       await page.goto(
         'http://localhost:6006/iframe.html?args=&id=components-anchornav-features--regular-view&viewMode=story',
+        {waitUntil: 'networkidle'},
       )
+      await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
       await page.waitForTimeout(2000)
       await expect(page).toHaveScreenshot({fullPage: true})
@@ -102,7 +122,9 @@ test.describe('Visual Comparison: AnchorNav', () => {
     test('AnchorNav / Regular view, menu open (tablet)', async ({page}) => {
       await page.goto(
         'http://localhost:6006/iframe.html?args=&id=components-anchornav-features--regular-view-menu-open&viewMode=story',
+        {waitUntil: 'networkidle'},
       )
+      await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
       await page.waitForTimeout(2000)
       await expect(page).toHaveScreenshot({fullPage: true})
@@ -111,7 +133,9 @@ test.describe('Visual Comparison: AnchorNav', () => {
   test('AnchorNav / Hide until sticky', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-anchornav-features--hide-until-sticky&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -120,7 +144,9 @@ test.describe('Visual Comparison: AnchorNav', () => {
   test('AnchorNav / With optional primary CTA', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-anchornav-features--anchor-nav-primary-actions&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -129,7 +155,9 @@ test.describe('Visual Comparison: AnchorNav', () => {
   test('AnchorNav / With larger CTAs', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-anchornav-features--anchor-nav-larger-actions&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})

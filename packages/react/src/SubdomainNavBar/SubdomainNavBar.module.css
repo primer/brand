@@ -21,6 +21,10 @@
   z-index: 90;
 }
 
+.SubdomainNavBar-outer-container:not(.SubdomainNavBar-outer-container--fixed) {
+  position: relative;
+}
+
 .SubdomainNavBar-outer-container--fixed {
   position: fixed;
   top: 0;
@@ -573,7 +577,6 @@
     position: absolute;
     top: 0;
     bottom: 1px;
-    width: 100vw;
     left: 0;
     right: 0;
     background-color: var(--brand-SubdomainNavBar-canvas-search);
@@ -673,10 +676,10 @@
 }
 
 .SubdomainNavBar-skip-to-content {
-  position: fixed;
+  position: absolute;
   top: 75px;
   border-radius: 0px;
-  width: 100vw;
+  width: 100%;
   z-index: 100;
 }
 

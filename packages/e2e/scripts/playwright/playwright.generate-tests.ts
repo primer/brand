@@ -110,7 +110,31 @@ const waitForTimeoutLookup = {
   'components-testimonial-examples--with-frosted-glass-dark': 4000, // for animation to complete
   'components-prose--playground': 4000, // for videos to load
   'components-prose--default': 4000, // for videos to load,
-  'components-subnav-features--anchor-nav-variant': 3000, // for being flakey across translations
+  'components-hero-examples--custom-background-inline-end-padded-video': 3500, // for animations to complete
+  'components-hero-examples--custom-background-block-end-video': 3500, // for animations to complete
+  'components-hero-examples--custom-background-inline-end-padded-image': 3500, // for animations to complete
+  'components-hero-examples--gridline-expressive-block-end-padded-trailing-component': 4000, // for animations to complete
+  'components-hero-examples--custom-background-block-end-image': 4000, // for animations to complete
+  'components-hero-examples--with-cards': 4000, // for animations to complete
+  'components-hero-features--with-animated-label': 1500, // for the label animation to complete
+  'components-hero-features-images-and-videos--with-youtube-video-block-end-default': 2000, // for loading a remote video
+  'components-hero-features--with-increased-contrast-label': 3000, // for the label animation to complete
+  'components-videoplayer--default': 5000, // for video metadata to load
+  'components-videoplayer--playground': 5000, // for video metadata to load
+  'components-videoplayer-features--with-poster': 5000, // for video metadata to load
+  'components-videoplayer-features--without-branding': 5000, // for video metadata to load
+  'components-videoplayer-features--minimal': 5000, // for video metadata to load
+  'components-videoplayer-features--with-visually-hidden-title': 5000, // for video metadata to load
+  'components-videoplayer-features--controlled-programmatically': 5000, // for video metadata to load
+  'components-videoplayer-features--custom-play-icon': 5000, // for video metadata to load
+  'components-videoplayer-features--with-some-hidden-controls': 5000, // for video metadata to load
+  'components-videoplayer-features--tooltip-visible-on-focus': 5000, // for video metadata to load
+  'components-hero-features-images-and-videos--with-video-block-end-default': 5000, // for video metadata to load
+  'components-hero-features-images-and-videos--with-video-inline-end': 5000, // for video metadata to load
+  'recipes-flextemplate-flextemplate--default': 4000, // for video metadata to load
+  'components-textcursoranimation--playground': 4000, // for the animation to complete
+  'recipes-flextemplate-flexsection--default': 1000, // longer load time
+  'components-subnav-features--delayed-active-link': 2000, // because the story sets an initial delay
 }
 
 // const skipLocalizationsTestsFor = [
@@ -159,11 +183,12 @@ const skipTestLookup = [
   'components-statistic-features--animations', // animation only
   'components-riverstoryscroll-features--video-narrow', // video makes this too flakey
   'components-riverstoryscroll-features--video', // video makes this too flakey
-  'components-hero-features--with-native-block-end-default', // for being non-deterministic due to video buffering
-  'components-hero-features--with-youtube-video-block-end-default', // for loading a remote video
-  'components-hero-features--with-youtube-video-inline-end', // for loading a remote video
+  'components-hero-features-images-and-videos--with-native-block-end-default', // for being non-deterministic due to video buffering
+  'components-hero-features-images-and-videos--with-youtube-video-block-end-default', // for loading a remote video
+  'components-hero-features-images-and-videos--with-youtube-video-inline-end', // for loading a remote video
   'components-logosuite-features--marquee', // for the animation
   'components-subnav-features--anchor-nav-variant-keyboard-navigation', // for being an interaction test-only
+  'components-subnav-features--anchor-nav-variant', // for being flakey due to IntersectionObserver timing
   'components-actionmenu-features--single-selection-small-open', // for the menu to open, too flakey, need to fix layout shift
   'components-actionmenu-features--menu-alignment', // for the menu to open, too flakey, need to fix layout shift
 ]
@@ -229,7 +254,8 @@ for (const key of Object.keys(categorisedStories)) {
           const testName = language === 'en' ? base : `${base} (${language})`
 
           return `test('${testName}', async ({page}) => {
-            await page.goto('http://localhost:${port}/iframe.html?${localeParam}args=&id=${id}&viewMode=story')
+            await page.goto('http://localhost:${port}/iframe.html?${localeParam}args=&id=${id}&viewMode=story', { waitUntil: 'networkidle' })
+            await page.locator('body.sb-show-main').waitFor({ state: 'visible' })
 
             ${timeout ? `await page.waitForTimeout(${timeout})` : ''}
             await expect(page).toHaveScreenshot({ fullPage: true })

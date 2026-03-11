@@ -8,42 +8,61 @@ import {test, expect} from '@playwright/test'
 // eslint-disable-next-line i18n-text/no-en
 test.describe('Visual Comparison: Link', () => {
   test('Link / Default', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-link--default&viewMode=story')
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-link--default&viewMode=story', {
+      waitUntil: 'networkidle',
+    })
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Link / Large', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-link-features--large&viewMode=story')
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-link-features--large&viewMode=story', {
+      waitUntil: 'networkidle',
+    })
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Link / Arrow Start', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-link-features--arrow-start&viewMode=story')
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-link-features--arrow-start&viewMode=story', {
+      waitUntil: 'networkidle',
+    })
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Link / No Arrow', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-link-features--no-arrow&viewMode=story')
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-link-features--no-arrow&viewMode=story', {
+      waitUntil: 'networkidle',
+    })
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Link / Accent', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-link-features--accent&viewMode=story')
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-link-features--accent&viewMode=story', {
+      waitUntil: 'networkidle',
+    })
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Link / External Link', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-link-features--external-link&viewMode=story')
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-link-features--external-link&viewMode=story',
+      {waitUntil: 'networkidle'},
+    )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})

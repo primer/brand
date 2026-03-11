@@ -10,7 +10,9 @@ test.describe('Visual Comparison: FormControl', () => {
   test('FormControl / w/ TextInput - Playground', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-forms-formcontrol--text-input-playground&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -19,7 +21,9 @@ test.describe('Visual Comparison: FormControl', () => {
   test('FormControl / w/ Textarea - Playground', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-forms-formcontrol--textarea-playground&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -28,7 +32,9 @@ test.describe('Visual Comparison: FormControl', () => {
   test('FormControl / w/ Select - Playground', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-forms-formcontrol--select-playground&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -37,7 +43,9 @@ test.describe('Visual Comparison: FormControl', () => {
   test('FormControl / w/ Checkbox - Playground', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-forms-formcontrol--checkbox-playground&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -46,7 +54,9 @@ test.describe('Visual Comparison: FormControl', () => {
   test('FormControl / w/ Radio - Playground', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-forms-formcontrol--radio-playground&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -55,7 +65,9 @@ test.describe('Visual Comparison: FormControl', () => {
   test('FormControl / w/ Success Validation - Playground', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-forms-formcontrol--success-validation&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -64,7 +76,9 @@ test.describe('Visual Comparison: FormControl', () => {
   test('FormControl / w/ Error Validation - Playground', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-forms-formcontrol--error-validation&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -73,7 +87,9 @@ test.describe('Visual Comparison: FormControl', () => {
   test('FormControl / w/ Checkbox with Error Validation - Playground', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-forms-formcontrol--error-validation-with-checkbox&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})

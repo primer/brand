@@ -70,6 +70,7 @@ export function FlexTemplate({page, className}: FlexTemplateProps) {
                 <SubNav.Link
                   key={`${link.text}-${index}`}
                   href={link.href}
+                  aria-current={link['aria-current']}
                   variant="default" // Appears to be configurable in SWP, but set to default for all pages
                   {...(link.openInNewTab ? {target: '_blank', rel: 'noreferrer'} : {})}
                 >
@@ -85,11 +86,7 @@ export function FlexTemplate({page, className}: FlexTemplateProps) {
           <Grid.Column>
             <Box paddingBlockEnd={80}>
               <Hero align={heroFields.align ?? 'start'} className={styles.hero}>
-                {heroLabelFields?.text ? (
-                  <Hero.Label color={heroLabelFields.color} size={heroLabelFields.size}>
-                    {heroLabelFields.text}
-                  </Hero.Label>
-                ) : null}
+                {heroLabelFields?.text ? <Hero.Label animate>{heroLabelFields.text}</Hero.Label> : null}
                 {heroFields.heading ? <Hero.Heading>{heroFields.heading}</Hero.Heading> : null}
                 {heroDescription ? (
                   <Hero.Description variant={heroDescriptionVariant}>{heroDescription}</Hero.Description>

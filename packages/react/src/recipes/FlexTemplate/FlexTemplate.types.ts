@@ -11,31 +11,16 @@ export type FlexTemplateLink = {
   href: string
   text: string
   openInNewTab?: boolean
+  'aria-current'?: 'page' | 'step' | 'location' | 'date' | 'time' | 'true' | 'false'
 }
 
 export type FlexTemplateLabel = {
   text: string
-  color?:
-    | 'default'
-    | 'blue'
-    | 'coral'
-    | 'green'
-    | 'gray'
-    | 'indigo'
-    | 'lemon'
-    | 'lime'
-    | 'orange'
-    | 'pink'
-    | 'purple'
-    | 'red'
-    | 'teal'
-    | 'yellow'
-  size?: 'small' | 'medium' | 'large'
 }
 
 export type FlexTemplateHero = {
   align?: 'start' | 'center'
-  label?: string | FlexTemplateLabel
+  label?: FlexTemplateLabel
   heading?: string
   description?: string
   descriptionVariant?: 'default' | 'muted'

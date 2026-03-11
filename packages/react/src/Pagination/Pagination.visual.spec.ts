@@ -8,14 +8,20 @@ import {test, expect} from '@playwright/test'
 // eslint-disable-next-line i18n-text/no-en
 test.describe('Visual Comparison: Pagination', () => {
   test('Pagination / Default', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-pagination--default&viewMode=story')
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-pagination--default&viewMode=story', {
+      waitUntil: 'networkidle',
+    })
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Pagination / Playground', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-pagination--playground&viewMode=story')
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-pagination--playground&viewMode=story', {
+      waitUntil: 'networkidle',
+    })
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -24,7 +30,9 @@ test.describe('Visual Comparison: Pagination', () => {
   test('Pagination / Larger Page Count Margin', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-pagination-features--larger-page-count-margin&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -33,7 +41,9 @@ test.describe('Visual Comparison: Pagination', () => {
   test('Pagination / Hide Page Numbers', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-pagination-features--hide-page-numbers&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -45,7 +55,9 @@ test.describe('Visual Comparison: Pagination', () => {
     test('Pagination / Narrow Page Numbers Hidden By Default', async ({page}) => {
       await page.goto(
         'http://localhost:6006/iframe.html?args=&id=components-pagination-features--narrow-page-numbers-hidden-by-default&viewMode=story',
+        {waitUntil: 'networkidle'},
       )
+      await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
       await page.waitForTimeout(500)
       await expect(page).toHaveScreenshot({fullPage: true})
@@ -54,7 +66,9 @@ test.describe('Visual Comparison: Pagination', () => {
   test('Pagination / Higher Surrounding Page Count', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-pagination-features--higher-surrounding-page-count&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -63,7 +77,9 @@ test.describe('Visual Comparison: Pagination', () => {
   test('Pagination / Page Handlers', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-pagination-features--page-handlers&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -72,7 +88,9 @@ test.describe('Visual Comparison: Pagination', () => {
   test('Pagination / Custom Attribute Forwarding', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-pagination-features--custom-attribute-forwarding&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})

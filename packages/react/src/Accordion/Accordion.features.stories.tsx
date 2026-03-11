@@ -149,6 +149,72 @@ export const AlwaysExactlyOnePanelOpen: StoryObj = {
   },
 }
 
+export const VariantEmphasis: StoryObj = {
+  name: 'Variant: Emphasis',
+  render: function VariantEmphasisComponent() {
+    const {t} = useTranslation('Accordion')
+
+    return (
+      <>
+        {headings.map((heading, index) => (
+          <Accordion key={index} variant="emphasis">
+            <Accordion.Heading>{String(t(heading))}</Accordion.Heading>
+            <Accordion.Content>
+              <p>{t('lorem_ipsum')}</p>
+            </Accordion.Content>
+          </Accordion>
+        ))}
+      </>
+    )
+  },
+}
+
+export const VariantEmphasisWithNestedAccordions: StoryObj = {
+  name: 'Variant: Emphasis with nested accordions',
+  render: function VariantEmphasisWithNestedAccordionsComponent() {
+    const {t} = useTranslation('Accordion')
+
+    return (
+      <>
+        <Accordion variant="emphasis">
+          <Accordion.Heading>{String(t(headings[0]))}</Accordion.Heading>
+          <Accordion.Content>
+            <Accordion>
+              <Accordion.Heading>{String(t(headings[1]))}</Accordion.Heading>
+              <Accordion.Content>
+                <p>{t('lorem_ipsum')}</p>
+              </Accordion.Content>
+            </Accordion>
+            <Accordion>
+              <Accordion.Heading>{String(t(headings[2]))}</Accordion.Heading>
+              <Accordion.Content>
+                <p>{t('lorem_ipsum')}</p>
+              </Accordion.Content>
+            </Accordion>
+          </Accordion.Content>
+        </Accordion>
+        <Accordion variant="emphasis">
+          <Accordion.Heading>{String(t(headings[3]))}</Accordion.Heading>
+          <Accordion.Content>
+            <Accordion>
+              <Accordion.Heading>{String(t(headings[0]))}</Accordion.Heading>
+              <Accordion.Content>
+                <p>{t('lorem_ipsum')}</p>
+              </Accordion.Content>
+            </Accordion>
+            <Accordion>
+              <Accordion.Heading>{String(t(headings[1]))}</Accordion.Heading>
+              <Accordion.Content>
+                <p>{t('lorem_ipsum')}</p>
+              </Accordion.Content>
+            </Accordion>
+          </Accordion.Content>
+        </Accordion>
+      </>
+    )
+  },
+}
+
 export const ExclusiveUsingNameAttribute: StoryObj = {
   render: function ExclusiveUsingNameAttributeComponent() {
     const {t} = useTranslation('Accordion')
