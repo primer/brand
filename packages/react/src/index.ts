@@ -1,3 +1,5 @@
+'use client'
+
 export * from './css/stylesheets'
 
 export * from './Hero'

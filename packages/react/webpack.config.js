@@ -2,6 +2,7 @@ const {name: libraryName} = require('./package')
 const path = require('path')
 const postcssPresetEnv = require('postcss-preset-env')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const {sources, Compilation} = require('webpack')
 
 module.exports = {
   entry: './src/index.ts',
@@ -126,5 +127,23 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: './css/[name].css',
     }),
+    // This is a custom plugin that preserves the 'use client' directive needed for RSC
+    // Do not remove it.
+    // Note: The UMD bundle (generated through this webpack config) doesn't preserve source 1:1.
+    //       This is why we need to restore it using a plugin. This isn't needed with ESM, but needed for UMD.
+    {
+      apply(compiler) {
+        compiler.hooks.thisCompilation.tap('UseClientDirectivePlugin', compilation => {
+          compilation.hooks.processAssets.tap(
+            {name: 'UseClientDirectivePlugin', stage: Compilation.PROCESS_ASSETS_STAGE_SUMMARIZE}, // must run after terser
+            assets => {
+              if (assets['index.js']) {
+                compilation.updateAsset('index.js', new sources.ConcatSource("'use client';\n", assets['index.js']))
+              }
+            },
+          )
+        })
+      },
+    },
   ],
 }
