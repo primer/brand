@@ -32,6 +32,63 @@
   }
 }
 
+/* Gridline variant */
+
+.RiverAccordion--variant-gridline {
+  position: relative;
+  padding-inline: var(--brand-RiverAccordion-variant-gridline-spacing-outerInline);
+  padding-block: var(--brand-RiverAccordion-variant-gridline-spacing-outerBlock);
+}
+
+.RiverAccordion--variant-gridline::before,
+.RiverAccordion--variant-gridline::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 0;
+  border-top: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
+  z-index: 1;
+}
+
+.RiverAccordion--variant-gridline::before {
+  top: 0;
+}
+
+.RiverAccordion--variant-gridline::after {
+  bottom: 0;
+}
+
+@media (min-width: 48rem) {
+  .RiverAccordion--variant-gridline {
+    --gap-width: var(--brand-RiverAccordion-variant-gridline-spacing-contentGap);
+    --half-column: calc(50% - var(--gap-width) / 2);
+
+    gap: var(--gap-width);
+    align-items: center;
+  }
+
+  .RiverAccordion--variant-gridline.RiverAccordion__align-start {
+    grid-template-columns: var(--half-column) var(--half-column);
+    grid-template-areas: 'accordion visual';
+  }
+
+  .RiverAccordion--variant-gridline.RiverAccordion__align-end {
+    grid-template-columns: var(--half-column) var(--half-column);
+    grid-template-areas: 'visual accordion';
+  }
+}
+
+@media (min-width: 80rem) {
+  .RiverAccordion--variant-gridline {
+    border-inline: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
+  }
+}
+
+.RiverAccordion--variant-gridline .RiverAccordion__visualsWrapper {
+  border-radius: var(--brand-borderRadius-medium);
+}
+
 .RiverAccordion__accordionContainer {
   grid-area: accordion;
 }
@@ -41,6 +98,7 @@
 }
 
 .RiverAccordion__visualsWrapper {
+  width: 100%;
   overflow: hidden;
   border-radius: var(--brand-borderRadius-xlarge);
   display: grid;
@@ -158,10 +216,12 @@
 }
 
 .RiverAccordion__icon {
-  opacity: 1;
-  transition: opacity var(--brand-animation-duration-fast) var(--brand-animation-easing-default);
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  color: var(--brand-color-text-muted);
 }
 
 .RiverAccordion__item--open .RiverAccordion__icon {
-  opacity: 0;
+  color: var(--brand-color-text-default);
 }
