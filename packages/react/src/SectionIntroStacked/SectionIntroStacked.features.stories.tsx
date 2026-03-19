@@ -1,6 +1,7 @@
 import React from 'react'
 import type {Meta, StoryObj} from '@storybook/react'
 import {useTranslation} from 'react-i18next'
+import {CpuIcon, LightBulbIcon, HeartIcon} from '@primer/octicons-react'
 import {SectionIntroStacked} from '.'
 import {Grid} from '../Grid'
 
@@ -49,19 +50,23 @@ const InGridTemplate = () => {
       <Grid.Column>
         <SectionIntroStacked>
           <SectionIntroStacked.Heading>{t('enterprise_platform_heading')}</SectionIntroStacked.Heading>
+          <SectionIntroStacked.Description>{t('playground_description')}</SectionIntroStacked.Description>
           <SectionIntroStacked.Link href="#">{t('explore_github_enterprise')}</SectionIntroStacked.Link>
           <SectionIntroStacked.Items>
             <SectionIntroStacked.Item>
-              <b>{t('lorem_ipsum')}</b>
-              {t('lorem_ipsum_description')}
+              <SectionIntroStacked.Item.Icon icon={CpuIcon} color="green" />
+              <SectionIntroStacked.Item.Heading>{t('item_one_heading')}</SectionIntroStacked.Item.Heading>
+              <SectionIntroStacked.Item.Description>{t('item_one_description')}</SectionIntroStacked.Item.Description>
             </SectionIntroStacked.Item>
             <SectionIntroStacked.Item>
-              <b>{t('lorem_ipsum')}</b>
-              {t('lorem_ipsum_description')}
+              <SectionIntroStacked.Item.Icon icon={LightBulbIcon} color="green" />
+              <SectionIntroStacked.Item.Heading>{t('item_two_heading')}</SectionIntroStacked.Item.Heading>
+              <SectionIntroStacked.Item.Description>{t('item_two_description')}</SectionIntroStacked.Item.Description>
             </SectionIntroStacked.Item>
             <SectionIntroStacked.Item>
-              <b>{t('lorem_ipsum')}</b>
-              {t('lorem_ipsum_description')}
+              <SectionIntroStacked.Item.Icon icon={HeartIcon} color="green" />
+              <SectionIntroStacked.Item.Heading>{t('item_three_heading')}</SectionIntroStacked.Item.Heading>
+              <SectionIntroStacked.Item.Description>{t('item_three_description')}</SectionIntroStacked.Item.Description>
             </SectionIntroStacked.Item>
           </SectionIntroStacked.Items>
         </SectionIntroStacked>

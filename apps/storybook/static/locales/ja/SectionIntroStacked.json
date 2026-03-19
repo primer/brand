@@ -2,11 +2,18 @@
   "playground_heading": "Fortune 100企業の90%以上と1億5000万人以上の開発者がGitHubを信頼し、あらゆる規模のチームにスケーラブルで信頼性が高く安全なソリューションを提供しています。",
   "playground_heading_emphasis": "Fortune 100企業の90%以上と1億5000万人以上の開発者がGitHubを信頼し",
   "playground_heading_suffix": "、あらゆる規模のチームにスケーラブルで信頼性が高く安全なソリューションを提供しています。",
+  "playground_description": "GitHubの高度なツールでレッスンを向上させ、学生に現在の業界のベストプラクティスへのアクセスを提供します。",
   "learn_more": "詳細を見る",
   "explore_github": "GitHubを探索",
   "explore_github_enterprise": "GitHub Enterpriseを探索",
   "default_heading": "Fortune 100企業の90%以上と1億5000万人以上の開発者がGitHubを使用しています。",
   "enterprise_platform_heading": "統合されたエンタープライズ対応の単一プラットフォーム",
+  "item_one_heading": "技術カリキュラムを強化する",
+  "item_one_description": "GitHubの高度なツールでレッスンを向上させ、学生に現在の業界のベストプラクティスへのアクセスを提供します。",
+  "item_two_heading": "教授法を刷新する",
+  "item_two_description": "GitHub Classroomを使用してフィードバックを自動化し、課題を管理することで、セッションをより動的でインタラクティブにできます。",
+  "item_three_heading": "キャンパス全体のコラボレーションを強化する",
+  "item_three_description": "学生と教育者がプロジェクトや課題で協力しやすくします。",
   "developer_first": "開発者ファースト：",
   "developer_first_description": " 開発者向けに設計されたGitHubは、チームワークをよりスマートで高速かつ安全にするシームレスなコラボレーションツールを提供します。",
   "enterprise_grade": "エンタープライズグレード：",
@@ -14,5 +21,7 @@
   "ai_powered": "AI搭載：",
   "ai_powered_description": " GitHub Copilotを活用してタスクを自動化し、スマートでコンテキストを認識したコード提案で生産性を向上させます。",
   "lorem_ipsum": "Lorem ipsum dolor sit amet",
-  "lorem_ipsum_description": ", consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis felis nam pulvinar."
+  "lorem_ipsum_description": ", consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis felis nam pulvinar.",
+  "with_item_icons_heading": "GitHubで学ぶ情熱を解き放ちましょう。",
+  "sign_up_now": "今すぐ登録"
 }

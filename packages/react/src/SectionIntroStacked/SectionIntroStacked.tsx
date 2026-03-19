@@ -4,6 +4,7 @@ import {Grid} from '../Grid'
 import {Link, LinkProps} from '../Link'
 import {Heading, HeadingProps, defaultHeadingTag} from '../Heading'
 import {Text} from '../Text'
+import {Icon, IconProps} from '../Icon'
 import {useAnimation} from '../animation'
 
 import styles from './SectionIntroStacked.module.css'
@@ -48,7 +49,7 @@ const Root = forwardRef<HTMLElement, PropsWithChildren<SectionIntroStackedProps>
 
 type SectionIntroStackedHeadingProps = BaseProps<HTMLHeadingElement> & HeadingProps
 
-const defaultHeadingSize = '5'
+const defaultHeadingSize = '3'
 
 const _Heading = forwardRef(
   (
@@ -90,11 +91,31 @@ const _Heading = forwardRef(
   },
 )
 
+type SectionIntroStackedDescriptionProps = BaseProps<HTMLParagraphElement> & {
+  children: React.ReactNode | React.ReactNode[]
+}
+
+const _Description = forwardRef(
+  ({className, children, ...props}: SectionIntroStackedDescriptionProps, ref: Ref<HTMLParagraphElement>) => {
+    return (
+      <Text
+        as="p"
+        className={clsx(styles['SectionIntroStacked-description'], className)}
+        ref={ref}
+        variant="muted"
+        {...props}
+      >
+        {children}
+      </Text>
+    )
+  },
+)
+
 type SectionIntroStackedLinkProps = LinkProps & BaseProps<HTMLAnchorElement>
 
 const _Link = forwardRef(
   (
-    {className, children, variant = 'accent', size = 'large', ...props}: SectionIntroStackedLinkProps,
+    {className, children, variant = 'accent', size = 'medium', ...props}: SectionIntroStackedLinkProps,
     ref: Ref<HTMLAnchorElement>,
   ) => {
     return (
@@ -125,18 +146,92 @@ const ItemsBase = ({animate, className, children, ...rest}: PropsWithChildren<Se
   )
 }
 
+type SectionIntroStackedItemIconProps = IconProps
+
+const ItemIcon = ({className, ...props}: SectionIntroStackedItemIconProps) => {
+  return (
+    <Icon className={clsx(styles['SectionIntroStackedItem__icon'], className)} hasBackground size="medium" {...props} />
+  )
+}
+
+type SectionIntroStackedItemHeadingProps = HeadingProps
+
+const ItemHeading = forwardRef(
+  (
+    {
+      as = 'h3',
+      size = 'subhead-large',
+      className,
+      children,
+      ...props
+    }: PropsWithChildren<SectionIntroStackedItemHeadingProps>,
+    ref: Ref<HTMLHeadingElement>,
+  ) => {
+    return (
+      <Heading
+        ref={ref}
+        as={as}
+        size={size}
+        className={clsx(styles['SectionIntroStackedItem__heading'], className)}
+        {...props}
+      >
+        {children}
+      </Heading>
+    )
+  },
+)
+
+type SectionIntroStackedItemDescriptionProps = BaseProps<HTMLParagraphElement> & {
+  children: React.ReactNode | React.ReactNode[]
+}
+
+const ItemDescription = forwardRef(
+  ({className, children, ...props}: SectionIntroStackedItemDescriptionProps, ref: Ref<HTMLParagraphElement>) => {
+    return (
+      <Text
+        as="p"
+        variant="muted"
+        size="200"
+        className={clsx(styles['SectionIntroStackedItem__description'], className)}
+        ref={ref}
+        {...props}
+      >
+        {children}
+      </Text>
+    )
+  },
+)
+
 export type SectionIntroStackedItemProps = BaseProps<HTMLLIElement>
 
 const ItemBase = ({className, children, ...rest}: PropsWithChildren<SectionIntroStackedItemProps>) => {
   const itemClassName = clsx(styles['SectionIntroStackedItem-item'], className)
   const childrenArray = useMemo(() => React.Children.toArray(children), [children])
 
-  const getConditionalVariant = useCallback(() => {
+  const hasSubComponents = childrenArray.some(
+    child =>
+      React.isValidElement(child) &&
+      (child.type === ItemIcon || child.type === ItemHeading || child.type === ItemDescription),
+  )
+
+  if (hasSubComponents) {
+    const iconChild = childrenArray.find(child => React.isValidElement(child) && child.type === ItemIcon)
+    const contentChildren = childrenArray.filter(child => !(React.isValidElement(child) && child.type === ItemIcon))
+
+    return (
+      <li className={clsx(itemClassName, !!iconChild && styles['SectionIntroStackedItem-item--with-icon'])} {...rest}>
+        {iconChild}
+        <div className={styles['SectionIntroStackedItem__content']}>{contentChildren}</div>
+      </li>
+    )
+  }
+
+  const getConditionalVariant = () => {
     if (childrenArray.some(child => React.isValidElement(child) && (child.type === 'b' || child.type === 'em'))) {
       return 'muted'
     }
     return 'default'
-  }, [childrenArray])
+  }
 
   const defaultColor = childrenArray.length === 1 ? 'default' : getConditionalVariant()
   return (
@@ -155,9 +250,16 @@ const ItemBase = ({className, children, ...rest}: PropsWithChildren<SectionIntro
   )
 }
 
+const Item = Object.assign(ItemBase, {
+  Icon: ItemIcon,
+  Heading: ItemHeading,
+  Description: ItemDescription,
+})
+
 export const SectionIntroStacked = Object.assign(Root, {
   Heading: _Heading,
+  Description: _Description,
   Link: _Link,
   Items: ItemsBase,
-  Item: ItemBase,
+  Item,
 })

@@ -1,6 +1,7 @@
 import React from 'react'
 import type {StoryFn, Meta} from '@storybook/react'
 import {useTranslation} from 'react-i18next'
+import {CpuIcon, LightBulbIcon, HeartIcon} from '@primer/octicons-react'
 import {SectionIntroStacked} from '.'
 
 export default {
@@ -21,23 +22,24 @@ export const Playground: StoryFn<typeof SectionIntroStacked> = args => {
 
   return (
     <SectionIntroStacked {...args}>
-      <SectionIntroStacked.Heading>
-        <b>{t('playground_heading_emphasis')}</b>
-        {t('playground_heading_suffix')}
-      </SectionIntroStacked.Heading>
-      <SectionIntroStacked.Link href="#">{t('learn_more')}</SectionIntroStacked.Link>
+      <SectionIntroStacked.Heading>{t('with_item_icons_heading')}</SectionIntroStacked.Heading>
+      <SectionIntroStacked.Description>{t('playground_description')}</SectionIntroStacked.Description>
+      <SectionIntroStacked.Link href="#">{t('sign_up_now')}</SectionIntroStacked.Link>
       <SectionIntroStacked.Items>
         <SectionIntroStacked.Item>
-          <b>{t('developer_first')}</b>
-          {t('developer_first_description')}
+          <SectionIntroStacked.Item.Icon icon={CpuIcon} color="green" />
+          <SectionIntroStacked.Item.Heading>{t('item_one_heading')}</SectionIntroStacked.Item.Heading>
+          <SectionIntroStacked.Item.Description>{t('item_one_description')}</SectionIntroStacked.Item.Description>
         </SectionIntroStacked.Item>
         <SectionIntroStacked.Item>
-          <b>{t('enterprise_grade')}</b>
-          {t('enterprise_grade_description')}
+          <SectionIntroStacked.Item.Icon icon={LightBulbIcon} color="green" />
+          <SectionIntroStacked.Item.Heading>{t('item_two_heading')}</SectionIntroStacked.Item.Heading>
+          <SectionIntroStacked.Item.Description>{t('item_two_description')}</SectionIntroStacked.Item.Description>
         </SectionIntroStacked.Item>
         <SectionIntroStacked.Item>
-          <b>{t('ai_powered')}</b>
-          {t('ai_powered_description')}
+          <SectionIntroStacked.Item.Icon icon={HeartIcon} color="green" />
+          <SectionIntroStacked.Item.Heading>{t('item_three_heading')}</SectionIntroStacked.Item.Heading>
+          <SectionIntroStacked.Item.Description>{t('item_three_description')}</SectionIntroStacked.Item.Description>
         </SectionIntroStacked.Item>
       </SectionIntroStacked.Items>
     </SectionIntroStacked>
@@ -49,19 +51,24 @@ export const Default = () => {
 
   return (
     <SectionIntroStacked>
-      <SectionIntroStacked.Heading>{t('default_heading')}</SectionIntroStacked.Heading>
+      <SectionIntroStacked.Heading>{t('with_item_icons_heading')}</SectionIntroStacked.Heading>
+      <SectionIntroStacked.Description>{t('playground_description')}</SectionIntroStacked.Description>
+      <SectionIntroStacked.Link href="#">{t('sign_up_now')}</SectionIntroStacked.Link>
       <SectionIntroStacked.Items>
         <SectionIntroStacked.Item>
-          <b>{t('developer_first')}</b>
-          {t('developer_first_description')}
+          <SectionIntroStacked.Item.Icon icon={CpuIcon} color="green" />
+          <SectionIntroStacked.Item.Heading>{t('item_one_heading')}</SectionIntroStacked.Item.Heading>
+          <SectionIntroStacked.Item.Description>{t('item_one_description')}</SectionIntroStacked.Item.Description>
         </SectionIntroStacked.Item>
         <SectionIntroStacked.Item>
-          <b>{t('enterprise_grade')}</b>
-          {t('enterprise_grade_description')}
+          <SectionIntroStacked.Item.Icon icon={LightBulbIcon} color="green" />
+          <SectionIntroStacked.Item.Heading>{t('item_two_heading')}</SectionIntroStacked.Item.Heading>
+          <SectionIntroStacked.Item.Description>{t('item_two_description')}</SectionIntroStacked.Item.Description>
         </SectionIntroStacked.Item>
         <SectionIntroStacked.Item>
-          <b>{t('ai_powered')}</b>
-          {t('ai_powered_description')}
+          <SectionIntroStacked.Item.Icon icon={HeartIcon} color="green" />
+          <SectionIntroStacked.Item.Heading>{t('item_three_heading')}</SectionIntroStacked.Item.Heading>
+          <SectionIntroStacked.Item.Description>{t('item_three_description')}</SectionIntroStacked.Item.Description>
         </SectionIntroStacked.Item>
       </SectionIntroStacked.Items>
     </SectionIntroStacked>

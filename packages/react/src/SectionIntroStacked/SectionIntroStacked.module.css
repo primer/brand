@@ -20,6 +20,11 @@
   max-width: none;
 }
 
+.SectionIntroStacked-description {
+  margin-block-start: var(--base-size-16);
+  max-width: 50ch;
+}
+
 .SectionIntroStacked-link {
   margin-block-start: var(--base-size-16);
 }
@@ -30,7 +35,6 @@
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: var(--base-size-32);
 }
 
 @media screen and (max-width: 63.25rem) {
@@ -40,13 +44,57 @@
 }
 
 @media screen and (min-width: 48rem) {
-  .SectionIntroStackedItem-item {
-    gap: var(--base-size-40);
-  }
-
   .SectionIntroStacked-items {
     /* Optical alignment with adjacent content */
     position: relative;
     top: var(--base-size-2);
+  }
+}
+
+.SectionIntroStackedItem-item {
+  padding-block: var(--base-size-40);
+  border-block-end: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
+}
+
+.SectionIntroStackedItem-item:last-child {
+  border-block-end: none;
+  padding-block-end: 0;
+}
+
+.SectionIntroStackedItem-item:first-child {
+  padding-block-start: 0;
+}
+
+.SectionIntroStackedItem-item--with-icon {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: var(--base-size-24);
+}
+
+@media screen and (min-width: 48rem) {
+  .SectionIntroStackedItem-item--with-icon {
+    gap: var(--base-size-48);
+  }
+}
+
+.SectionIntroStackedItem__content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--base-size-8);
+  flex: 1;
+  min-width: 0;
+}
+
+.SectionIntroStackedItem__icon {
+  flex-shrink: 0;
+  border-radius: var(--brand-borderRadius-medium);
+}
+
+@media screen and (max-width: 47.99rem) {
+  .SectionIntroStackedItem__icon {
+    width: var(--base-size-20);
+    height: var(--base-size-20);
+    padding: var(--base-size-8);
   }
 }
