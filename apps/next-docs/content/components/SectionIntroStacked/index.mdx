@@ -11,6 +11,7 @@ thumbnail_darkMode: '/images/thumbnails/section-intro-stacked-thumbnail-dark.png
 ---
 
 import {Label} from '@primer/react'
+import {CpuIcon, LightBulbIcon, HeartIcon} from '@primer/octicons-react'
 
 ```js
 import {SectionIntroStacked} from '@primer/react-brand'
@@ -40,6 +41,44 @@ import {SectionIntroStacked} from '@primer/react-brand'
       <SectionIntroStacked.Item>
         <b>GitHub Enterprise scales with your organization</b>, delivering the performance and security needed for teams
         of any size.
+      </SectionIntroStacked.Item>
+    </SectionIntroStacked.Items>
+  </SectionIntroStacked>
+</section>
+```
+
+### With icon items
+
+```jsx live
+<section>
+  <SectionIntroStacked>
+    <SectionIntroStacked.Heading>Unlock a passion for learning with GitHub.</SectionIntroStacked.Heading>
+    <SectionIntroStacked.Description>
+      Elevate your lessons with GitHub's advanced tools and provide students access to current industry practices.
+    </SectionIntroStacked.Description>
+    <SectionIntroStacked.Link href="#">Sign up now</SectionIntroStacked.Link>
+    <SectionIntroStacked.Items>
+      <SectionIntroStacked.Item>
+        <SectionIntroStacked.ItemIcon icon={CpuIcon} color="green" />
+        <SectionIntroStacked.ItemHeading>Enhance your technical curriculum</SectionIntroStacked.ItemHeading>
+        <SectionIntroStacked.ItemDescription>
+          Elevate your lessons with GitHub's advanced tools and provide students access to current industry practices.
+        </SectionIntroStacked.ItemDescription>
+      </SectionIntroStacked.Item>
+      <SectionIntroStacked.Item>
+        <SectionIntroStacked.ItemIcon icon={LightBulbIcon} color="green" />
+        <SectionIntroStacked.ItemHeading>Reinvigorate your teaching methods</SectionIntroStacked.ItemHeading>
+        <SectionIntroStacked.ItemDescription>
+          Use GitHub Classroom to automate feedback and manage coursework, which can make your sessions more dynamic and
+          interactive.
+        </SectionIntroStacked.ItemDescription>
+      </SectionIntroStacked.Item>
+      <SectionIntroStacked.Item>
+        <SectionIntroStacked.ItemIcon icon={HeartIcon} color="green" />
+        <SectionIntroStacked.ItemHeading>Boost collaboration across campus</SectionIntroStacked.ItemHeading>
+        <SectionIntroStacked.ItemDescription>
+          Make it easier for students and educators to collaborate on projects and assignments.
+        </SectionIntroStacked.ItemDescription>
       </SectionIntroStacked.Item>
     </SectionIntroStacked.Items>
   </SectionIntroStacked>
@@ -84,7 +123,7 @@ Optional node that can be used to provide a link.
 | `className` | `string`                   |             | `false`  | Sets a custom class on the root element |
 | `id`        | `string`                   |             | `false`  | Sets a custom id on the root element    |
 
-Forwards most props from the [Link component](/components/Link), but with a fixed `size` of `large`.
+Forwards most props from the [Link component](/components/Link), but with a default `size` of `medium`.
 
 ### SectionIntroStacked.Description
 
