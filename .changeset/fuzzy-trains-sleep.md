@@ -2,7 +2,7 @@
 '@primer/react-brand': minor
 ---
 
-Updated `SectionIntroStacked` with a new `Description` sub-component and a redesigned `Item` structure supporting `Item.Icon`, `Item.Heading`, and `Item.Description` sub-components. Updated default heading and link sizes.
+Updated `SectionIntroStacked` with a new `Description` sub-component and a redesigned `Item` structure supporting `ItemIcon`, `ItemHeading`, and `ItemDescription` sub-components. Updated default heading and link sizes.
 
 ```jsx
 <SectionIntroStacked>
@@ -11,14 +11,14 @@ Updated `SectionIntroStacked` with a new `Description` sub-component and a redes
   <SectionIntroStacked.Link href="#">Learn more</SectionIntroStacked.Link>
   <SectionIntroStacked.Items>
     <SectionIntroStacked.Item>
-      <SectionIntroStacked.Item.Icon icon={CpuIcon} />
-      <SectionIntroStacked.Item.Heading>Feature one</SectionIntroStacked.Item.Heading>
-      <SectionIntroStacked.Item.Description>A brief description of this feature.</SectionIntroStacked.Item.Description>
+      <SectionIntroStacked.ItemIcon icon={CpuIcon} />
+      <SectionIntroStacked.ItemHeading>Feature one</SectionIntroStacked.ItemHeading>
+      <SectionIntroStacked.ItemDescription>A brief description of this feature.</SectionIntroStacked.ItemDescription>
     </SectionIntroStacked.Item>
     <SectionIntroStacked.Item>
-      <SectionIntroStacked.Item.Icon icon={ZapIcon} />
-      <SectionIntroStacked.Item.Heading>Feature two</SectionIntroStacked.Item.Heading>
-      <SectionIntroStacked.Item.Description>A brief description of this feature.</SectionIntroStacked.Item.Description>
+      <SectionIntroStacked.ItemIcon icon={ZapIcon} />
+      <SectionIntroStacked.ItemHeading>Feature two</SectionIntroStacked.ItemHeading>
+      <SectionIntroStacked.ItemDescription>A brief description of this feature.</SectionIntroStacked.ItemDescription>
     </SectionIntroStacked.Item>
   </SectionIntroStacked.Items>
 </SectionIntroStacked>
