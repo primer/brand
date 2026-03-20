@@ -44,8 +44,9 @@
 .RiverAccordion--variant-gridline::after {
   content: '';
   position: absolute;
-  left: 0;
-  right: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100vw;
   height: 0;
   border-top: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
   z-index: 1;
