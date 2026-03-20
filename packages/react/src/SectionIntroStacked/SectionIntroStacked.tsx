@@ -216,6 +216,7 @@ const ItemBase = ({className, children, ...rest}: PropsWithChildren<SectionIntro
 
   if (hasSubComponents) {
     const iconChild = childrenArray.find(child => React.isValidElement(child) && child.type === ItemIcon)
+
     const contentChildren = childrenArray.filter(child => !(React.isValidElement(child) && child.type === ItemIcon))
 
     return (
@@ -250,16 +251,13 @@ const ItemBase = ({className, children, ...rest}: PropsWithChildren<SectionIntro
   )
 }
 
-const Item = Object.assign(ItemBase, {
-  Icon: ItemIcon,
-  Heading: ItemHeading,
-  Description: ItemDescription,
-})
-
 export const SectionIntroStacked = Object.assign(Root, {
   Heading: _Heading,
   Description: _Description,
   Link: _Link,
   Items: ItemsBase,
-  Item,
+  Item: ItemBase,
+  ItemIcon,
+  ItemHeading,
+  ItemDescription,
 })
