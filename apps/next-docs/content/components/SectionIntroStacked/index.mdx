@@ -50,12 +50,12 @@ import {SectionIntroStacked} from '@primer/react-brand'
 
 ### SectionIntroStacked <Label>Required</Label>
 
-| name        | type                       | default     | required | description                                                                                                                                                          |
-| ----------- | -------------------------- | ----------- | -------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `children`  | `ReactNode`, `ReactNode[]` | `undefined` | `true`   | Content to include within the section intro component. Accepts `SectionIntroStacked.Heading`, `SectionIntroStacked.Link`, and `SectionIntroStacked.Items` components |
-| `className` | `string`                   |             | `false`  | Sets a custom class on the root element                                                                                                                              |
-| `id`        | `string`                   |             | `false`  | Sets a custom id on the root element                                                                                                                                 |
-| `animate`   | `AnimateProps`             |             | `false`  | Animation configuration for the component                                                                                                                            |
+| name        | type                       | default     | required | description                                           |
+| ----------- | -------------------------- | ----------- | -------- | ----------------------------------------------------- |
+| `children`  | `ReactNode`, `ReactNode[]` | `undefined` | `true`   | Content to include within the section intro component |
+| `className` | `string`                   |             | `false`  | Sets a custom class on the root element               |
+| `id`        | `string`                   |             | `false`  | Sets a custom id on the root element                  |
+| `animate`   | `AnimateProps`             |             | `false`  | Animation configuration for the component             |
 
 Forwards all standard HTML attributes for `<header>` elements.
 
@@ -86,6 +86,16 @@ Optional node that can be used to provide a link.
 
 Forwards most props from the [Link component](/components/Link), but with a fixed `size` of `large`.
 
+### SectionIntroStacked.Description
+
+Optional node that can be used to provide a short description.
+
+| name        | type                       | default     | required | description                                    |
+| ----------- | -------------------------- | ----------- | -------- | ---------------------------------------------- |
+| `children`  | `ReactNode`, `ReactNode[]` | `undefined` | `true`   | Content to be displayed inside the description |
+| `className` | `string`                   |             | `false`  | Sets a custom class on the root element        |
+| `id`        | `string`                   |             | `false`  | Sets a custom id on the root element           |
+
 ### SectionIntroStacked.Items <Label>Required</Label>
 
 Container for a list of items.
@@ -101,8 +111,42 @@ Container for a list of items.
 
 Individual item within the items list.
 
-| name        | type                       | default     | required | description                             |
-| ----------- | -------------------------- | ----------- | -------- | --------------------------------------- |
-| `children`  | `ReactNode`, `ReactNode[]` | `undefined` | `true`   | Content to be displayed inside the item |
-| `className` | `string`                   |             | `false`  | Sets a custom class on the root element |
-| `id`        | `string`                   |             | `false`  | Sets a custom id on the root element    |
+| name        | type                       | default     | required | description                                                                                                                                                                                                                            |
+| ----------- | -------------------------- | ----------- | -------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `children`  | `ReactNode`, `ReactNode[]` | `undefined` | `true`   | Content to be displayed inside the item. Accepts plain text with optional `<b>` or `<em>` for emphasis, or `SectionIntroStacked.ItemIcon`, `SectionIntroStacked.ItemHeading`, and `SectionIntroStacked.ItemDescription` sub-components |
+| `className` | `string`                   |             | `false`  | Sets a custom class on the root element                                                                                                                                                                                                |
+| `id`        | `string`                   |             | `false`  | Sets a custom id on the root element                                                                                                                                                                                                   |
+
+### SectionIntroStacked.ItemIcon
+
+Optional icon displayed alongside item content.
+
+| name        | type     | default     | required | description                             |
+| ----------- | -------- | ----------- | -------- | --------------------------------------- |
+| `icon`      | `Icon`   | `undefined` | `true`   | The Octicon icon component to display   |
+| `color`     | `string` |             | `false`  | Color variant for the icon background   |
+| `className` | `string` |             | `false`  | Sets a custom class on the root element |
+
+Forwards all props from the [Icon component](/components/Icon).
+
+### SectionIntroStacked.ItemHeading
+
+Optional heading for an item when using sub-components.
+
+| name        | type                       | default     | required | description                                |
+| ----------- | -------------------------- | ----------- | -------- | ------------------------------------------ |
+| `children`  | `ReactNode`, `ReactNode[]` | `undefined` | `true`   | Content to be displayed inside the heading |
+| `className` | `string`                   |             | `false`  | Sets a custom class on the root element    |
+| `id`        | `string`                   |             | `false`  | Sets a custom id on the root element       |
+
+Forwards all props from the [Heading component](/components/Heading), including `as`, `size`, and `weight`. Defaults to `as="h3"`.
+
+### SectionIntroStacked.ItemDescription
+
+Optional description for an item when using sub-components.
+
+| name        | type                       | default     | required | description                                         |
+| ----------- | -------------------------- | ----------- | -------- | --------------------------------------------------- |
+| `children`  | `ReactNode`, `ReactNode[]` | `undefined` | `true`   | Content to be displayed inside the item description |
+| `className` | `string`                   |             | `false`  | Sets a custom class on the root element             |
+| `id`        | `string`                   |             | `false`  | Sets a custom id on the root element                |
