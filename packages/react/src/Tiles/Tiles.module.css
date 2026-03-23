@@ -161,6 +161,15 @@
   padding: var(--base-size-12) var(--base-size-16);
 }
 
+.Tiles--layout-compact .Tiles-item-media {
+  transition: transform var(--brand-animation-duration-fast) var(--brand-animation-easing-default);
+}
+
+.Tiles--layout-compact .Tiles-item-link:hover .Tiles-item-media,
+.Tiles--layout-compact .Tiles-item-link:focus-visible .Tiles-item-media {
+  transform: translateY(calc(-1 * var(--base-size-4)));
+}
+
 .Tiles--layout-compact .Tiles-item-label {
   opacity: 0;
   transform: translateY(var(--base-size-4));
@@ -189,6 +198,10 @@
 
 @media (prefers-reduced-motion: reduce) {
   .Tiles-item {
+    transition: none;
+  }
+
+  .Tiles--layout-compact .Tiles-item-media {
     transition: none;
   }
 
