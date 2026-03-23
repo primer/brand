@@ -66,8 +66,8 @@
     var(--brand-Testimonial-quoteMarkColor, currentColor)
   );
   color: var(--brand-Testimonial-quoteMarkColor-start, var(--brand-Testimonial-quoteMarkColor, currentColor));
-  font-size: var(--base-size-24);
-  line-height: var(--base-size-24);
+  font-size: var(--base-size-48);
+  line-height: var(--base-size-48);
   font-weight: var(--base-text-weight-extrabold);
   position: relative;
 }
@@ -85,20 +85,27 @@
   mask-composite: exclude;
 }
 
-.Testimonial__quoteMark--hasBackground {
+.Testimonial__quoteMark--hasBackground.Testimonial__quoteMark--hasBackground {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: calc(var(--base-size-48) + var(--base-size-6));
-  height: calc(var(--base-size-48) + var(--base-size-6));
+  width: calc(var(--base-size-48) + var(--base-size-8));
+  height: calc(var(--base-size-48) + var(--base-size-8));
   border-radius: var(--base-size-12);
   background-color: var(--brand-Testimonial-quoteMarkBackground, var(--base-color-scale-gray-0));
-  font-size: var(--base-size-48);
+  font-size: var(--base-size-64);
+  font-weight: var(--brand-fontWeight-300);
+  font-family: var(--brand-fontStack-monospace);
+  line-height: 1;
+}
+
+.Testimonial--size-large .Testimonial__quoteMark:not(.Testimonial__quoteMark--hasBackground) {
+  font-size: 7.5rem; /* 120px */
   line-height: 1;
 }
 
 .Testimonial__quoteMarkGlyph {
-  transform: translateY(0.06em);
+  transform: translateY(var(--base-size-12));
   display: block;
 }
 

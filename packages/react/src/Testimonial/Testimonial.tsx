@@ -90,16 +90,18 @@ function TestimonialBase(
 ) {
   const {classes: animationClasses, styles: animationInlineStyles} = useAnimation(animate)
 
+  const hasBackground = quoteMarkHasBackground || layout === 'wide'
+
   const quoteMark = (
     <div
       aria-hidden="true"
       className={clsx(
         styles['Testimonial__quoteMark'],
         styles[`Testimonial__quoteMark--${quoteMarkColor}`],
-        quoteMarkHasBackground && styles['Testimonial__quoteMark--hasBackground'],
+        hasBackground && styles['Testimonial__quoteMark--hasBackground'],
       )}
     >
-      <span className={quoteMarkHasBackground ? styles['Testimonial__quoteMarkGlyph'] : undefined}>&ldquo;</span>
+      <span className={hasBackground ? styles['Testimonial__quoteMarkGlyph'] : undefined}>&ldquo;</span>
     </div>
   )
 
