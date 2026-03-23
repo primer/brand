@@ -3,6 +3,7 @@ import {PropTableValues} from '@primer/doctocat-nextjs/components'
 import {
   TestimonialQuoteMarkColors,
   TestimonialVariants,
+  TestimonialLayouts,
 } from '../../../../../packages/react/src/Testimonial/Testimonial'
 
 export const TestimonialSizeProp = () => <PropTableValues addLineBreaks values={['small', 'large']} />
@@ -10,6 +11,7 @@ export const TestimonialQuoteMarkColorProp = () => (
   <PropTableValues addLineBreaks values={[...TestimonialQuoteMarkColors]} />
 )
 export const TestimonialVariantProp = () => <PropTableValues addLineBreaks values={[...TestimonialVariants]} />
+export const TestimonialLayoutProp = () => <PropTableValues addLineBreaks values={[...TestimonialLayouts]} />
 
 export const TestimonialChildrenProp = () => (
   <PropTableValues
