@@ -6,7 +6,7 @@
           "value": "var(--brand-text-size-400)"
         },
         "large": {
-          "value": "var(--brand-text-size-600)"
+          "value": "var(--brand-text-size-500)"
         }
       },
       "fontWeight": {

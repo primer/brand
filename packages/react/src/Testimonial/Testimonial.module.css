@@ -66,8 +66,8 @@
     var(--brand-Testimonial-quoteMarkColor, currentColor)
   );
   color: var(--brand-Testimonial-quoteMarkColor-start, var(--brand-Testimonial-quoteMarkColor, currentColor));
-  font-size: var(--base-size-48);
-  line-height: var(--base-size-48);
+  font-size: var(--base-size-24);
+  line-height: var(--base-size-24);
   font-weight: var(--base-text-weight-extrabold);
   position: relative;
 }
@@ -85,13 +85,25 @@
   mask-composite: exclude;
 }
 
-.Testimonial--size-large .Testimonial__quoteMark {
-  font-size: 7.5rem; /* 120px */
+.Testimonial__quoteMark--hasBackground {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: calc(var(--base-size-48) + var(--base-size-6));
+  height: calc(var(--base-size-48) + var(--base-size-6));
+  border-radius: var(--base-size-12);
+  background-color: var(--brand-Testimonial-quoteMarkBackground, var(--base-color-scale-gray-0));
+  font-size: var(--base-size-48);
   line-height: 1;
 }
 
+.Testimonial__quoteMarkGlyph {
+  transform: translateY(0.06em);
+  display: block;
+}
+
 .Testimonial-quote {
-  font-family: var(--brand-fontStack-sansSerif);
+  font-family: var(--brand-fontStack-monospace);
   font-size: var(--brand-Testimonial-quote-fontSize-default);
   font-weight: var(--brand-Testimonial-quote-fontWeight-default);
   letter-spacing: var(--brand-Testimonial-quote-letterSpacing-default);
@@ -105,13 +117,9 @@
   letter-spacing: var(--brand-Testimonial-quote-letterSpacing-large);
 }
 
-.Testimonial-quote--muted {
-  color: var(--brand-color-text-muted);
-}
-
 .Testimonial-quote em,
 .Testimonial-quote b {
-  color: var(--brand-color-text-default);
+  color: var(--brand-Testimonial-quote-color-emphasis);
   font-style: normal;
   font-weight: inherit;
 }
@@ -144,83 +152,175 @@
   font-family: var(--brand-fontStack-monospace);
 }
 
+/* Wide layout */
+.Testimonial--layout-wide {
+  display: flex;
+  flex-direction: column;
+  gap: var(--base-size-48);
+}
+
+@media screen and (min-width: 48rem) {
+  .Testimonial--layout-wide {
+    flex-direction: row;
+    align-items: flex-end;
+    gap: var(--base-size-64);
+  }
+}
+
+/* Quote column: transparent passthrough in default layout */
+.Testimonial__quoteCol {
+  display: contents;
+}
+
+/* Quote column: left flex column in wide layout */
+.Testimonial--layout-wide .Testimonial__quoteCol {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--base-size-24);
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+/* In wide layout, the media section becomes the right column */
+.Testimonial--layout-wide .Testimonial__media {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--base-size-8);
+  margin-top: 0;
+  flex: 0 0 auto;
+  border-top: var(--brand-borderWidth-thin) solid var(--brand-color-border-default);
+  padding-top: var(--base-size-24);
+}
+
+@media screen and (min-width: 48rem) {
+  .Testimonial--layout-wide .Testimonial__media {
+    min-width: 240px;
+    max-width: 320px;
+  }
+}
+
+/* Name dot indicator — shown in wide layout */
+.Testimonial--layout-wide .Testimonial-from {
+  display: flex;
+  align-items: center;
+  gap: var(--base-size-8);
+  font-family: var(--brand-fontStack-monospace);
+  font-weight: var(--base-text-weight-medium);
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+}
+
+.Testimonial--layout-wide .Testimonial-from::before {
+  content: '';
+  display: inline-block;
+  width: 9px;
+  height: 14px;
+  background-color: var(--testimonial-accent-color, var(--brand-Testimonial-quoteMarkColor-default));
+  flex-shrink: 0;
+}
+
+/* Action link */
+.Testimonial-link {
+  margin-top: var(--base-size-8);
+}
+
 .Testimonial__quoteMark--default {
   --brand-Testimonial-quoteMarkColor: var(--brand-Testimonial-quoteMarkColor-default);
+  --brand-Testimonial-quoteMarkBackground: var(--brand-Testimonial-quoteMarkBackground-default);
 }
 
 .Testimonial__quoteMark--blue {
   --brand-Testimonial-quoteMarkColor: var(--brand-Testimonial-quoteMarkColor-blue);
+  --brand-Testimonial-quoteMarkBackground: var(--brand-Testimonial-quoteMarkBackground-blue);
 }
 
 .Testimonial__quoteMark--blue-purple {
   --brand-Testimonial-quoteMarkColor-start: var(--brand-Testimonial-quoteMarkColor-blue-purple-start);
   --brand-Testimonial-quoteMarkColor-end: var(--brand-Testimonial-quoteMarkColor-blue-purple-end);
+  --brand-Testimonial-quoteMarkBackground: var(--brand-Testimonial-quoteMarkBackground-blue-purple);
 }
 
 .Testimonial__quoteMark--coral {
   --brand-Testimonial-quoteMarkColor: var(--brand-Testimonial-quoteMarkColor-coral);
+  --brand-Testimonial-quoteMarkBackground: var(--brand-Testimonial-quoteMarkBackground-coral);
 }
 
 .Testimonial__quoteMark--green {
   --brand-Testimonial-quoteMarkColor: var(--brand-Testimonial-quoteMarkColor-green);
+  --brand-Testimonial-quoteMarkBackground: var(--brand-Testimonial-quoteMarkBackground-green);
 }
 
 .Testimonial__quoteMark--green-blue {
   --brand-Testimonial-quoteMarkColor-start: var(--brand-Testimonial-quoteMarkColor-green-blue-start);
   --brand-Testimonial-quoteMarkColor-end: var(--brand-Testimonial-quoteMarkColor-green-blue-end);
+  --brand-Testimonial-quoteMarkBackground: var(--brand-Testimonial-quoteMarkBackground-green-blue);
 }
 
 .Testimonial__quoteMark--gray {
   --brand-Testimonial-quoteMarkColor: var(--brand-Testimonial-quoteMarkColor-gray);
+  --brand-Testimonial-quoteMarkBackground: var(--brand-Testimonial-quoteMarkBackground-gray);
 }
 
 .Testimonial__quoteMark--indigo {
   --brand-Testimonial-quoteMarkColor: var(--brand-Testimonial-quoteMarkColor-indigo);
+  --brand-Testimonial-quoteMarkBackground: var(--brand-Testimonial-quoteMarkBackground-indigo);
 }
 
 .Testimonial__quoteMark--lemon {
   --brand-Testimonial-quoteMarkColor: var(--brand-Testimonial-quoteMarkColor-lemon);
+  --brand-Testimonial-quoteMarkBackground: var(--brand-Testimonial-quoteMarkBackground-lemon);
 }
 
 .Testimonial__quoteMark--lime {
   --brand-Testimonial-quoteMarkColor: var(--brand-Testimonial-quoteMarkColor-lime);
+  --brand-Testimonial-quoteMarkBackground: var(--brand-Testimonial-quoteMarkBackground-lime);
 }
 
 .Testimonial__quoteMark--orange {
   --brand-Testimonial-quoteMarkColor: var(--brand-Testimonial-quoteMarkColor-orange);
+  --brand-Testimonial-quoteMarkBackground: var(--brand-Testimonial-quoteMarkBackground-orange);
 }
 
 .Testimonial__quoteMark--pink {
   --brand-Testimonial-quoteMarkColor: var(--brand-Testimonial-quoteMarkColor-pink);
+  --brand-Testimonial-quoteMarkBackground: var(--brand-Testimonial-quoteMarkBackground-pink);
 }
 
 .Testimonial__quoteMark--pink-blue {
   --brand-Testimonial-quoteMarkColor-start: var(--brand-Testimonial-quoteMarkColor-pink-blue-start);
   --brand-Testimonial-quoteMarkColor-end: var(--brand-Testimonial-quoteMarkColor-pink-blue-end);
+  --brand-Testimonial-quoteMarkBackground: var(--brand-Testimonial-quoteMarkBackground-pink-blue);
 }
 
 .Testimonial__quoteMark--purple {
   --brand-Testimonial-quoteMarkColor: var(--brand-Testimonial-quoteMarkColor-purple);
+  --brand-Testimonial-quoteMarkBackground: var(--brand-Testimonial-quoteMarkBackground-purple);
 }
 
 .Testimonial__quoteMark--purple-red {
   --brand-Testimonial-quoteMarkColor-start: var(--brand-Testimonial-quoteMarkColor-purple-red-start);
   --brand-Testimonial-quoteMarkColor-end: var(--brand-Testimonial-quoteMarkColor-purple-red-end);
+  --brand-Testimonial-quoteMarkBackground: var(--brand-Testimonial-quoteMarkBackground-purple-red);
 }
 
 .Testimonial__quoteMark--red {
   --brand-Testimonial-quoteMarkColor: var(--brand-Testimonial-quoteMarkColor-red);
+  --brand-Testimonial-quoteMarkBackground: var(--brand-Testimonial-quoteMarkBackground-red);
 }
 
 .Testimonial__quoteMark--red-orange {
   --brand-Testimonial-quoteMarkColor-start: var(--brand-Testimonial-quoteMarkColor-red-orange-start);
   --brand-Testimonial-quoteMarkColor-end: var(--brand-Testimonial-quoteMarkColor-red-orange-end);
+  --brand-Testimonial-quoteMarkBackground: var(--brand-Testimonial-quoteMarkBackground-red-orange);
 }
 
 .Testimonial__quoteMark--teal {
   --brand-Testimonial-quoteMarkColor: var(--brand-Testimonial-quoteMarkColor-teal);
+  --brand-Testimonial-quoteMarkBackground: var(--brand-Testimonial-quoteMarkBackground-teal);
 }
 
 .Testimonial__quoteMark--yellow {
   --brand-Testimonial-quoteMarkColor: var(--brand-Testimonial-quoteMarkColor-yellow);
+  --brand-Testimonial-quoteMarkBackground: var(--brand-Testimonial-quoteMarkBackground-yellow);
 }

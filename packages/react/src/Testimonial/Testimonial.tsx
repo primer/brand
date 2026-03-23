@@ -4,15 +4,13 @@ import React, {
   forwardRef,
   SVGProps,
   CSSProperties,
-  useMemo,
-  useCallback,
   ComponentPropsWithRef,
 } from 'react'
 import {clsx} from 'clsx'
 import {BaseProps} from '../component-helpers'
 import {Text, Avatar as BaseAvatar, useAnimation} from '../'
 import type {AvatarProps} from '../'
-import findElementInChildren from '../findElementInChildren'
+import {Link, type LinkProps} from '../Link'
 
 import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/testimonial/base.css'
 import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/testimonial/colors-with-modes.css'
@@ -21,6 +19,7 @@ import styles from './Testimonial.module.css'
 import {Colors, BiColorGradients} from '../constants'
 
 type TestimonialSize = 'small' | 'large'
+type TestimonialLayout = 'default' | 'wide'
 
 export const TestimonialQuoteMarkColors = [...Colors, ...BiColorGradients] as const
 export const defaultQuoteMarkColor = TestimonialQuoteMarkColors[0]
@@ -28,6 +27,8 @@ export const defaultQuoteMarkColor = TestimonialQuoteMarkColors[0]
 export const TestimonialVariants = ['subtle', 'default', 'minimal'] as const
 type TestimonialVariant = (typeof TestimonialVariants)[number]
 export const defaultTestimonialVariant: TestimonialVariant = 'minimal'
+
+export const TestimonialLayouts = ['default', 'wide'] as const
 
 export type TestimonialProps = {
   /**
@@ -53,6 +54,17 @@ export type TestimonialProps = {
   size?: TestimonialSize
   /** Sets the color of the quote mark */
   quoteMarkColor?: (typeof TestimonialQuoteMarkColors)[number]
+  /**
+   * When true, renders the quote mark inside a colored background box.
+   * Defaults to false.
+   */
+  quoteMarkHasBackground?: boolean
+  /**
+   * Sets the layout of the testimonial.
+   * 'default' stacks all content in a single column.
+   * 'wide' places the quote in a left column and the attribution (logo + name) in a right column.
+   */
+  layout?: TestimonialLayout
 } & BaseProps<HTMLElement> &
   React.HTMLAttributes<HTMLElement>
 
@@ -63,18 +75,47 @@ export type TestimonialProps = {
 function TestimonialBase(
   {
     quoteMarkColor = 'default',
+    quoteMarkHasBackground = false,
     animate,
     className,
     children,
     variant = 'minimal',
     hasBorder = true,
     size,
+    layout = 'default',
     style,
     ...rest
   }: PropsWithChildren<TestimonialProps>,
   ref,
 ) {
   const {classes: animationClasses, styles: animationInlineStyles} = useAnimation(animate)
+
+  const quoteMark = (
+    <div
+      aria-hidden="true"
+      className={clsx(
+        styles['Testimonial__quoteMark'],
+        styles[`Testimonial__quoteMark--${quoteMarkColor}`],
+        quoteMarkHasBackground && styles['Testimonial__quoteMark--hasBackground'],
+      )}
+    >
+      <span className={quoteMarkHasBackground ? styles['Testimonial__quoteMarkGlyph'] : undefined}>&ldquo;</span>
+    </div>
+  )
+
+  const quoteChild = React.Children.toArray(children).find(child => React.isValidElement(child) && child.type === Quote)
+
+  const actionChild = React.Children.toArray(children).find(
+    child => React.isValidElement(child) && child.type === _Link,
+  )
+
+  const avatarChild = React.Children.toArray(children).find(
+    child => React.isValidElement(child) && child.type === Avatar,
+  )
+
+  const logoChild = React.Children.toArray(children).find(child => React.isValidElement(child) && child.type === Logo)
+
+  const nameChild = React.Children.toArray(children).find(child => React.isValidElement(child) && child.type === Name)
 
   return (
     <figure
@@ -85,6 +126,7 @@ function TestimonialBase(
         styles[`Testimonial--variant-${variant}`],
         size && styles[`Testimonial--size-${size}`],
         hasBorder && styles['Testimonial--border'],
+        layout === 'wide' && styles['Testimonial--layout-wide'],
         className,
       )}
       style={{
@@ -94,41 +136,15 @@ function TestimonialBase(
       }}
       {...rest}
     >
-      <div
-        aria-hidden="true"
-        className={clsx(styles['Testimonial__quoteMark'], styles[`Testimonial__quoteMark--${quoteMarkColor}`])}
-      >
-        “
+      <div className={styles['Testimonial__quoteCol']}>
+        {quoteMark}
+        {quoteChild}
+        {actionChild}
       </div>
-      {React.Children.map(children, child => {
-        if (React.isValidElement(child)) {
-          if (child.type === Quote) {
-            return child
-          }
-        }
-      })}
-      <div className={clsx(styles['Testimonial__media'])}>
-        {React.Children.map(children, child => {
-          if (React.isValidElement(child)) {
-            if (child.type === Avatar) {
-              return child
-            }
-          }
-        })}
-        {React.Children.map(children, child => {
-          if (React.isValidElement(child)) {
-            if (child.type === Logo) {
-              return child
-            }
-          }
-        })}
-        {React.Children.map(children, child => {
-          if (React.isValidElement(child)) {
-            if (child.type === Name) {
-              return child
-            }
-          }
-        })}
+      <div className={styles['Testimonial__media']}>
+        {avatarChild}
+        {logoChild}
+        {nameChild}
       </div>
     </figure>
   )
@@ -143,29 +159,9 @@ const Root = forwardRef(TestimonialBase)
 type QuoteProps = React.HTMLAttributes<HTMLElement> & BaseProps<HTMLElement>
 
 function QuoteBase({children, className}: QuoteProps, ref) {
-  const childrenArray = useMemo(() => React.Children.toArray(children), [children])
-
-  // TODO: when Firefox supports :has() selector, we should use that instead of JS
-  const getConditionalVariant = useCallback(() => {
-    if (findElementInChildren(children, 'b') || findElementInChildren(children, 'em')) {
-      return 'muted'
-    }
-    return 'default'
-  }, [children])
-
-  const defaultColor = childrenArray.length === 1 ? 'default' : getConditionalVariant()
-
   return (
     <blockquote ref={ref}>
-      <Text
-        className={clsx(
-          styles['Testimonial-quote'],
-          defaultColor === 'muted' && styles['Testimonial-quote--muted'],
-          className,
-        )}
-      >
-        {children}
-      </Text>
+      <Text className={clsx(styles['Testimonial-quote'], className)}>{children}</Text>
     </blockquote>
   )
 }
@@ -241,6 +237,14 @@ function _Avatar({size, ...rest}: AvatarProps) {
 const Avatar = _Avatar
 
 /**
+ * Testimonial link child element
+ * <Testimonial.Link>
+ */
+function _Link({className, ...rest}: LinkProps) {
+  return <Link className={clsx(styles['Testimonial-link'], className)} {...rest} size="medium" variant="accent" />
+}
+
+/**
  * Use Testimonial to display a quote from a customer or user.
  * @see https://primer.style/brand/components/Testimonial
  */
@@ -249,4 +253,5 @@ export const Testimonial = Object.assign(Root, {
   Name,
   Avatar,
   Logo,
+  Link: _Link,
 })

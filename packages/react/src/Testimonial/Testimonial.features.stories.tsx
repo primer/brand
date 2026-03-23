@@ -4,6 +4,7 @@ import type {StoryObj} from '@storybook/react'
 import {Testimonial, TestimonialProps} from '.'
 import {Box, Stack, ThemeProvider} from '..'
 import monaAvatar from '../fixtures/images/avatar-mona.png'
+import shopifyLogo from '../fixtures/images/logos/shopify.png'
 
 type MetaProps = TestimonialProps
 
@@ -174,4 +175,49 @@ export const VariantsWithoutBorder: Story = {
     layout: 'full',
   },
   render: args => <VariantsGrid hasBorder={false} {...args} />,
+}
+
+export const WideLayout: Story = {
+  render: () => (
+    <div style={{maxWidth: 1200, padding: '0 48px'}}>
+      <Testimonial layout="wide" size="large" quoteMarkColor="green">
+        <Testimonial.Quote>
+          GitHub Advanced Security <em>empowers our developers</em> to detect and fix vulnerabilities earlier,
+          accelerating our time to market and boosting developer satisfaction.
+        </Testimonial.Quote>
+        <Testimonial.Link href="#">Read the full story</Testimonial.Link>
+        <Testimonial.Logo>
+          <img src={shopifyLogo} alt="Shopify" />
+        </Testimonial.Logo>
+        <Testimonial.Name position="Head of development services and tools">Michael Spindler</Testimonial.Name>
+      </Testimonial>
+    </div>
+  ),
+}
+
+export const WideLayoutDark: Story = {
+  decorators: [
+    Story => (
+      <ThemeProvider colorMode="dark">
+        <Box backgroundColor="default" padding={64}>
+          <Story />
+        </Box>
+      </ThemeProvider>
+    ),
+  ],
+  render: () => (
+    <div style={{maxWidth: 1200}}>
+      <Testimonial layout="wide" size="large" quoteMarkColor="green">
+        <Testimonial.Quote>
+          GitHub Advanced Security <em>empowers our developers</em> to detect and fix vulnerabilities earlier,
+          accelerating our time to market and boosting developer satisfaction.
+        </Testimonial.Quote>
+        <Testimonial.Link href="#">Read the full story</Testimonial.Link>
+        <Testimonial.Logo>
+          <img src={shopifyLogo} alt="Shopify" />
+        </Testimonial.Logo>
+        <Testimonial.Name position="Head of development services and tools">Michael Spindler</Testimonial.Name>
+      </Testimonial>
+    </div>
+  ),
 }
