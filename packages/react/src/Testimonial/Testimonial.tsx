@@ -62,7 +62,7 @@ export type TestimonialProps = {
   /**
    * Sets the layout of the testimonial.
    * 'default' stacks all content in a single column.
-   * 'wide' places the quote in a left column and the attribution (logo + name) in a right column.
+   * 'wide' places the quote on the left and the attribution (logo + name) on the right.
    */
   layout?: TestimonialLayout
 } & BaseProps<HTMLElement> &
@@ -138,7 +138,7 @@ function TestimonialBase(
       }}
       {...rest}
     >
-      <div className={styles['Testimonial__quoteCol']}>
+      <div className={styles['Testimonial__quoteWrapper']}>
         {quoteMark}
         {quoteChild}
         {actionChild}

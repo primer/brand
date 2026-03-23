@@ -573,19 +573,7 @@ describe('Testimonial', () => {
       expect(figure).not.toHaveClass('Testimonial--layout-wide')
     })
 
-    it('does not apply wide layout class by default', () => {
-      const {getByRole} = render(
-        <Testimonial>
-          <Testimonial.Quote>Quote text</Testimonial.Quote>
-          <Testimonial.Name>Name</Testimonial.Name>
-        </Testimonial>,
-      )
-
-      const figure = getByRole('figure')
-      expect(figure).not.toHaveClass('Testimonial--layout-wide')
-    })
-
-    it('renders quote column and attribution column in wide layout', () => {
+    it('renders quote section and attribution section in wide layout', () => {
       const {container} = render(
         <Testimonial layout="wide">
           <Testimonial.Quote>Quote text</Testimonial.Quote>
@@ -593,13 +581,13 @@ describe('Testimonial', () => {
         </Testimonial>,
       )
 
-      const quoteCol = container.querySelector('.Testimonial__quoteCol')
-      const mediaCol = container.querySelector('.Testimonial__media')
-      expect(quoteCol).toBeInTheDocument()
-      expect(mediaCol).toBeInTheDocument()
+      const quote = container.querySelector('.Testimonial__quoteWrapper')
+      const media = container.querySelector('.Testimonial__media')
+      expect(quote).toBeInTheDocument()
+      expect(media).toBeInTheDocument()
     })
 
-    it('renders Testimonial.Link inside quote column in wide layout', () => {
+    it('renders Testimonial.Link inside quote section in wide layout', () => {
       const {getByRole, container} = render(
         <Testimonial layout="wide">
           <Testimonial.Quote>Quote text</Testimonial.Quote>
@@ -609,8 +597,8 @@ describe('Testimonial', () => {
       )
 
       const link = getByRole('link', {name: /read the full story/i})
-      const quoteCol = container.querySelector('.Testimonial__quoteCol')
-      expect(quoteCol).toContainElement(link)
+      const quote = container.querySelector('.Testimonial__quoteWrapper')
+      expect(quote).toContainElement(link)
     })
 
     it('has no accessibility violations in wide layout', async () => {

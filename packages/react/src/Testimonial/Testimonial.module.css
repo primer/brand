@@ -174,13 +174,11 @@
   }
 }
 
-/* Quote column: transparent passthrough in default layout */
-.Testimonial__quoteCol {
+.Testimonial__quoteWrapper {
   display: contents;
 }
 
-/* Quote column: left flex column in wide layout */
-.Testimonial--layout-wide .Testimonial__quoteCol {
+.Testimonial--layout-wide .Testimonial__quoteWrapper {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -189,7 +187,6 @@
   min-width: 0;
 }
 
-/* In wide layout, the media section becomes the right column */
 .Testimonial--layout-wide .Testimonial__media {
   flex-direction: column;
   align-items: flex-start;
@@ -211,7 +208,6 @@
   }
 }
 
-/* Name dot indicator — shown in wide layout */
 .Testimonial--layout-wide .Testimonial-from {
   display: flex;
   align-items: center;
@@ -231,7 +227,6 @@
   flex-shrink: 0;
 }
 
-/* Action link */
 .Testimonial-link {
   margin-top: var(--base-size-8);
 }

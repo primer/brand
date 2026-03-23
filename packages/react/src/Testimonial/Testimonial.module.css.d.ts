@@ -12,7 +12,6 @@ declare const styles: {
   readonly "Testimonial-position": string;
   readonly "Testimonial-quote": string;
   readonly "Testimonial__media": string;
-  readonly "Testimonial__quoteCol": string;
   readonly "Testimonial__quoteMark": string;
   readonly "Testimonial__quoteMark--blue": string;
   readonly "Testimonial__quoteMark--blue-purple": string;
@@ -35,6 +34,7 @@ declare const styles: {
   readonly "Testimonial__quoteMark--teal": string;
   readonly "Testimonial__quoteMark--yellow": string;
   readonly "Testimonial__quoteMarkGlyph": string;
+  readonly "Testimonial__quoteWrapper": string;
 };
 export = styles;
 
