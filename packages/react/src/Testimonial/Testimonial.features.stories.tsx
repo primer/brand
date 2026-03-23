@@ -4,7 +4,6 @@ import type {StoryObj} from '@storybook/react'
 import {Testimonial, TestimonialProps} from '.'
 import {Box, Stack, ThemeProvider} from '..'
 import monaAvatar from '../fixtures/images/avatar-mona.png'
-import shopifyLogo from '../fixtures/images/logos/shopify.png'
 
 type MetaProps = TestimonialProps
 
@@ -186,9 +185,7 @@ export const WideLayout: Story = {
           accelerating our time to market and boosting developer satisfaction.
         </Testimonial.Quote>
         <Testimonial.Link href="#">Read the full story</Testimonial.Link>
-        <Testimonial.Logo>
-          <img src={shopifyLogo} alt="Shopify" />
-        </Testimonial.Logo>
+        <Testimonial.Avatar src={monaAvatar} alt="Circular avatar from Michael Spindler's GitHub profile" />
         <Testimonial.Name position="Head of development services and tools">Michael Spindler</Testimonial.Name>
       </Testimonial>
     </div>
@@ -213,9 +210,7 @@ export const WideLayoutDark: Story = {
           accelerating our time to market and boosting developer satisfaction.
         </Testimonial.Quote>
         <Testimonial.Link href="#">Read the full story</Testimonial.Link>
-        <Testimonial.Logo>
-          <img src={shopifyLogo} alt="Shopify" />
-        </Testimonial.Logo>
+        <Testimonial.Avatar src={monaAvatar} alt="Circular avatar from Michael Spindler's GitHub profile" />
         <Testimonial.Name position="Head of development services and tools">Michael Spindler</Testimonial.Name>
       </Testimonial>
     </div>

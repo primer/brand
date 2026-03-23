@@ -5,7 +5,6 @@ import {clsx} from 'clsx'
 import {Testimonial, TestimonialProps} from '.'
 import {Box, FrostedGlassVFX, Grid, Image, Stack, ThemeProvider} from '../'
 import monaAvatar from '../fixtures/images/avatar-mona.png'
-import shopifyLogo from '../fixtures/images/logos/shopify.png'
 import startShapeLight from '../fixtures/images/testimonial-bg-1.png'
 import endShapeLight from '../fixtures/images/testimonial-bg-2.png'
 import startShapeDark from '../fixtures/images/testimonial-bg-1-dark.png'
@@ -217,9 +216,7 @@ export const WideWithBackground: Story = {
           accelerating our time to market and boosting developer satisfaction.
         </Testimonial.Quote>
         <Testimonial.Link href="#">Read the full story</Testimonial.Link>
-        <Testimonial.Logo>
-          <img src={shopifyLogo} alt="Shopify" />
-        </Testimonial.Logo>
+        <Testimonial.Avatar src={monaAvatar} alt="Circular avatar from Michael Spindler's GitHub profile" />
         <Testimonial.Name position="Head of development services and tools">Michael Spindler</Testimonial.Name>
       </Testimonial>
     </Box>
