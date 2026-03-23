@@ -2,7 +2,7 @@
 '@primer/react-brand': minor
 ---
 
-Add `layout` and `quoteMarkHasBackground` props to `Testimonial`
+Add `layout` prop to `Testimonial` which provides a new `wide` two column variant.
 
 ```jsx
 <Testimonial layout="wide">

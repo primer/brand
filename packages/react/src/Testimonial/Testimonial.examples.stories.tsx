@@ -210,7 +210,7 @@ export const WideWithBackground: Story = {
   },
   render: () => (
     <Box paddingBlockStart={64} paddingBlockEnd={64} paddingInlineStart={48} paddingInlineEnd={48}>
-      <Testimonial layout="wide" size="large" quoteMarkColor="green" quoteMarkHasBackground>
+      <Testimonial layout="wide" size="large" quoteMarkColor="green">
         <Testimonial.Quote>
           GitHub Advanced Security <em>empowers our developers</em> to detect and fix vulnerabilities earlier,
           accelerating our time to market and boosting developer satisfaction.

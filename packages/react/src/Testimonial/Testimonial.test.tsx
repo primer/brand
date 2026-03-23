@@ -175,30 +175,6 @@ describe('Testimonial', () => {
     expect(quoteMark).not.toHaveClass('Testimonial__quoteMark--hasBackground')
   })
 
-  it('applies background class to quote mark when quoteMarkHasBackground is true', () => {
-    const {container} = render(
-      <Testimonial quoteMarkHasBackground={true}>
-        <Testimonial.Quote>Quote text</Testimonial.Quote>
-        <Testimonial.Name>Name</Testimonial.Name>
-      </Testimonial>,
-    )
-
-    const quoteMark = container.querySelector('[aria-hidden="true"]')
-    expect(quoteMark).toHaveClass('Testimonial__quoteMark--hasBackground')
-  })
-
-  it('does not apply background class to quote mark when quoteMarkHasBackground is false', () => {
-    const {container} = render(
-      <Testimonial quoteMarkHasBackground={false}>
-        <Testimonial.Quote>Quote text</Testimonial.Quote>
-        <Testimonial.Name>Name</Testimonial.Name>
-      </Testimonial>,
-    )
-
-    const quoteMark = container.querySelector('[aria-hidden="true"]')
-    expect(quoteMark).not.toHaveClass('Testimonial__quoteMark--hasBackground')
-  })
-
   it('renders quote in blockquote element', () => {
     const {getByText} = render(
       <Testimonial>

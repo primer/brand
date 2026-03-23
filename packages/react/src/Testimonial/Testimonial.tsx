@@ -55,11 +55,6 @@ export type TestimonialProps = {
   /** Sets the color of the quote mark */
   quoteMarkColor?: (typeof TestimonialQuoteMarkColors)[number]
   /**
-   * When true, renders the quote mark inside a colored background box.
-   * Defaults to false.
-   */
-  quoteMarkHasBackground?: boolean
-  /**
    * Sets the layout of the testimonial.
    * 'default' stacks all content in a single column.
    * 'wide' places the quote on the left and the attribution (logo + name) on the right.
@@ -75,7 +70,6 @@ export type TestimonialProps = {
 function TestimonialBase(
   {
     quoteMarkColor = 'default',
-    quoteMarkHasBackground = false,
     animate,
     className,
     children,
@@ -90,7 +84,7 @@ function TestimonialBase(
 ) {
   const {classes: animationClasses, styles: animationInlineStyles} = useAnimation(animate)
 
-  const hasBackground = quoteMarkHasBackground || layout === 'wide'
+  const hasBackground = layout === 'wide'
 
   const quoteMark = (
     <div
@@ -101,23 +95,19 @@ function TestimonialBase(
         hasBackground && styles['Testimonial__quoteMark--hasBackground'],
       )}
     >
-      <span className={hasBackground ? styles['Testimonial__quoteMarkGlyph'] : undefined}>&ldquo;</span>
+      <span className={styles['Testimonial__quoteMarkGlyph']}>&ldquo;</span>
     </div>
   )
 
-  const quoteChild = React.Children.toArray(children).find(child => React.isValidElement(child) && child.type === Quote)
+  const childrenArray = React.Children.toArray(children)
+  const findChild = (type: React.ElementType) =>
+    childrenArray.find(child => React.isValidElement(child) && child.type === type)
 
-  const actionChild = React.Children.toArray(children).find(
-    child => React.isValidElement(child) && child.type === _Link,
-  )
-
-  const avatarChild = React.Children.toArray(children).find(
-    child => React.isValidElement(child) && child.type === Avatar,
-  )
-
-  const logoChild = React.Children.toArray(children).find(child => React.isValidElement(child) && child.type === Logo)
-
-  const nameChild = React.Children.toArray(children).find(child => React.isValidElement(child) && child.type === Name)
+  const quoteChild = findChild(Quote)
+  const actionChild = findChild(_Link)
+  const avatarChild = findChild(Avatar)
+  const logoChild = findChild(Logo)
+  const nameChild = findChild(Name)
 
   return (
     <figure
