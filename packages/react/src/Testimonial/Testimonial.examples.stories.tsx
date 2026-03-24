@@ -186,16 +186,16 @@ export const Trio: Story = {
       </Testimonial>
       <Testimonial {...args}>
         <Testimonial.Quote>
-          CI/CD with GitHub Actions allows us to build, test, and deploy right from GitHub. We've reduced build time
-          from 80 to 10 minutes.
+          CI/CD with GitHub Actions allows us to build, test, and deploy right from GitHub. We&apos;ve reduced build
+          time from 80 to 10 minutes.
         </Testimonial.Quote>
         <Testimonial.Name position="Pinterest">Engineering Architect</Testimonial.Name>
         <Testimonial.Avatar src={monaAvatar} alt="Circular avatar from David Ross's GitHub profile" />
       </Testimonial>
       <Testimonial {...args}>
         <Testimonial.Quote>
-          With GitHub, we can scale and build projects on a new level now. It's not about how good you are alone. It's
-          about the greatness we can achieve through sharing and collaboration.
+          With GitHub, we can scale and build projects on a new level now. It&apos;s not about how good you are alone.
+          It&apos;s about the greatness we can achieve through sharing and collaboration.
         </Testimonial.Quote>
         <Testimonial.Name position="Engie">Head of Digital Communities</Testimonial.Name>
         <Testimonial.Avatar src={monaAvatar} alt="Circular avatar from David Ross's GitHub profile" />
