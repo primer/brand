@@ -203,7 +203,7 @@
           "dark": "var(--brand-color-text-default)"
         },
         "emphasis": {
-          "value": "#08872B",
+          "value": "#1a7f37",
           "dark": "#5FED83"
         }
       }
