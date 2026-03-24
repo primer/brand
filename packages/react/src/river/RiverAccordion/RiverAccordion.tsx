@@ -3,7 +3,6 @@ import {clsx} from 'clsx'
 import {ChevronDownIcon, ChevronUpIcon} from '@primer/octicons-react'
 
 import {Heading, type HeadingProps, Link, Text} from '../..'
-import styles from './RiverAccordion.module.css'
 import {useProvidedRefOrCreate} from '../../hooks/useRef'
 import {useId} from '../../hooks/useId'
 
@@ -11,6 +10,9 @@ import {useId} from '../../hooks/useId'
  * Design tokens
  */
 import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/river/river.css'
+
+/** Main Stylesheet (as a CSS Module) */
+import styles from './RiverAccordion.module.css'
 
 type RiverAccordionContextType = {
   openIndex: number
