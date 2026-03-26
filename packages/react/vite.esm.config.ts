@@ -52,7 +52,7 @@ export default defineConfig({
       entry: resolve(__dirname, 'src/index.esm.ts'),
       formats: ['es'],
     },
-    rollupOptions: {
+    rolldownOptions: {
       // These dependencies should be ignored by bundler
       external: [/^react($|\/)/, /^react-dom($|\/)/, /^@primer\/behaviors($|\/)/, /^@oddbird\/popover-polyfill($|\/)/],
       output: {
