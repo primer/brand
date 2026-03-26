@@ -1,5 +1,24 @@
 # @primer/react-brand
 
+## 0.65.1
+
+### Patch Changes
+
+- [#1278](https://github.com/primer/brand/pull/1278) [`9e400b5`](https://github.com/primer/brand/commit/9e400b58364ed4177ab404bd8439e9cdcf383304) Thanks [@danielguillan](https://github.com/danielguillan)! - Add subtle animation to `Tiles` component compact variant icons
+
+- [#1281](https://github.com/primer/brand/pull/1281) [`57af66a`](https://github.com/primer/brand/commit/57af66a64d5571d8a2fca568d66641e42c9af6c0) Thanks [@danielguillan](https://github.com/danielguillan)! - Fixed `Hero.Image` and `Image` layout when `as="picture"` is used. The `className` prop is now applied to the `<picture>` element instead of the inner `<img>`, allowing Hero layout and sizing styles to take effect correctly.
+
+  ```jsx
+  <Hero.Image
+    as="picture"
+    src="image.png"
+    sources={[{srcset: 'image-2x.png', media: '(min-width: 600px)'}]}
+    alt="Hero image"
+  />
+  ```
+
+- [#1284](https://github.com/primer/brand/pull/1284) [`f1f1bef`](https://github.com/primer/brand/commit/f1f1befcf50ba0e1f171075b254276b144c91ef6) Thanks [@danielguillan](https://github.com/danielguillan)! - Adjusted `SubNav` item spacing
+
 ## 0.65.0
 
 ### Minor Changes
