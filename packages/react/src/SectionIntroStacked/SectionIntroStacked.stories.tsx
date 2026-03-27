@@ -27,17 +27,17 @@ export const Playground: StoryFn<typeof SectionIntroStacked> = args => {
       <SectionIntroStacked.Link href="#">{t('sign_up_now')}</SectionIntroStacked.Link>
       <SectionIntroStacked.Items>
         <SectionIntroStacked.Item>
-          <SectionIntroStacked.ItemIcon icon={CpuIcon} color="green" />
+          <SectionIntroStacked.ItemIcon icon={CpuIcon} />
           <SectionIntroStacked.ItemHeading>{t('item_one_heading')}</SectionIntroStacked.ItemHeading>
           <SectionIntroStacked.ItemDescription>{t('item_one_description')}</SectionIntroStacked.ItemDescription>
         </SectionIntroStacked.Item>
         <SectionIntroStacked.Item>
-          <SectionIntroStacked.ItemIcon icon={LightBulbIcon} color="green" />
+          <SectionIntroStacked.ItemIcon icon={LightBulbIcon} />
           <SectionIntroStacked.ItemHeading>{t('item_two_heading')}</SectionIntroStacked.ItemHeading>
           <SectionIntroStacked.ItemDescription>{t('item_two_description')}</SectionIntroStacked.ItemDescription>
         </SectionIntroStacked.Item>
         <SectionIntroStacked.Item>
-          <SectionIntroStacked.ItemIcon icon={HeartIcon} color="green" />
+          <SectionIntroStacked.ItemIcon icon={HeartIcon} />
           <SectionIntroStacked.ItemHeading>{t('item_three_heading')}</SectionIntroStacked.ItemHeading>
           <SectionIntroStacked.ItemDescription>{t('item_three_description')}</SectionIntroStacked.ItemDescription>
         </SectionIntroStacked.Item>
@@ -56,17 +56,17 @@ export const Default = () => {
       <SectionIntroStacked.Link href="#">{t('sign_up_now')}</SectionIntroStacked.Link>
       <SectionIntroStacked.Items>
         <SectionIntroStacked.Item>
-          <SectionIntroStacked.ItemIcon icon={CpuIcon} color="green" />
+          <SectionIntroStacked.ItemIcon icon={CpuIcon} />
           <SectionIntroStacked.ItemHeading>{t('item_one_heading')}</SectionIntroStacked.ItemHeading>
           <SectionIntroStacked.ItemDescription>{t('item_one_description')}</SectionIntroStacked.ItemDescription>
         </SectionIntroStacked.Item>
         <SectionIntroStacked.Item>
-          <SectionIntroStacked.ItemIcon icon={LightBulbIcon} color="green" />
+          <SectionIntroStacked.ItemIcon icon={LightBulbIcon} />
           <SectionIntroStacked.ItemHeading>{t('item_two_heading')}</SectionIntroStacked.ItemHeading>
           <SectionIntroStacked.ItemDescription>{t('item_two_description')}</SectionIntroStacked.ItemDescription>
         </SectionIntroStacked.Item>
         <SectionIntroStacked.Item>
-          <SectionIntroStacked.ItemIcon icon={HeartIcon} color="green" />
+          <SectionIntroStacked.ItemIcon icon={HeartIcon} />
           <SectionIntroStacked.ItemHeading>{t('item_three_heading')}</SectionIntroStacked.ItemHeading>
           <SectionIntroStacked.ItemDescription>{t('item_three_description')}</SectionIntroStacked.ItemDescription>
         </SectionIntroStacked.Item>

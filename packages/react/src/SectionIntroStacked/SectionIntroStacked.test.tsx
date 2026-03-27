@@ -362,7 +362,7 @@ describe('SectionIntroStacked', () => {
             <SectionIntroStacked.Heading>Test heading</SectionIntroStacked.Heading>
             <SectionIntroStacked.Items>
               <SectionIntroStacked.Item>
-                <SectionIntroStacked.ItemIcon icon={CpuIcon} color="green" />
+                <SectionIntroStacked.ItemIcon icon={CpuIcon} />
                 <SectionIntroStacked.ItemHeading>{itemHeadingText}</SectionIntroStacked.ItemHeading>
                 <SectionIntroStacked.ItemDescription>Item description text</SectionIntroStacked.ItemDescription>
               </SectionIntroStacked.Item>
@@ -382,7 +382,7 @@ describe('SectionIntroStacked', () => {
             <SectionIntroStacked.Heading>Test heading</SectionIntroStacked.Heading>
             <SectionIntroStacked.Items>
               <SectionIntroStacked.Item>
-                <SectionIntroStacked.ItemIcon icon={CpuIcon} color="green" />
+                <SectionIntroStacked.ItemIcon icon={CpuIcon} />
                 <SectionIntroStacked.ItemHeading>{itemHeadingText}</SectionIntroStacked.ItemHeading>
                 <SectionIntroStacked.ItemDescription>Item description text</SectionIntroStacked.ItemDescription>
               </SectionIntroStacked.Item>
@@ -401,7 +401,7 @@ describe('SectionIntroStacked', () => {
             <SectionIntroStacked.Heading>Test heading</SectionIntroStacked.Heading>
             <SectionIntroStacked.Items>
               <SectionIntroStacked.Item>
-                <SectionIntroStacked.ItemIcon icon={CpuIcon} color="green" />
+                <SectionIntroStacked.ItemIcon icon={CpuIcon} />
                 <SectionIntroStacked.ItemHeading>Item heading</SectionIntroStacked.ItemHeading>
                 <SectionIntroStacked.ItemDescription>{itemDescriptionText}</SectionIntroStacked.ItemDescription>
               </SectionIntroStacked.Item>
@@ -420,7 +420,7 @@ describe('SectionIntroStacked', () => {
             <SectionIntroStacked.Heading>Test heading</SectionIntroStacked.Heading>
             <SectionIntroStacked.Items>
               <SectionIntroStacked.Item>
-                <SectionIntroStacked.ItemIcon icon={CpuIcon} color="green" />
+                <SectionIntroStacked.ItemIcon icon={CpuIcon} />
                 <SectionIntroStacked.ItemHeading>Item heading</SectionIntroStacked.ItemHeading>
                 <SectionIntroStacked.ItemDescription>Item description</SectionIntroStacked.ItemDescription>
               </SectionIntroStacked.Item>
@@ -440,14 +440,14 @@ describe('SectionIntroStacked', () => {
             <SectionIntroStacked.Link href="#">Learn more</SectionIntroStacked.Link>
             <SectionIntroStacked.Items>
               <SectionIntroStacked.Item>
-                <SectionIntroStacked.ItemIcon icon={CpuIcon} color="green" />
+                <SectionIntroStacked.ItemIcon icon={CpuIcon} />
                 <SectionIntroStacked.ItemHeading>Enhance your technical curriculum</SectionIntroStacked.ItemHeading>
                 <SectionIntroStacked.ItemDescription>
                   Elevate your lessons with advanced tools.
                 </SectionIntroStacked.ItemDescription>
               </SectionIntroStacked.Item>
               <SectionIntroStacked.Item>
-                <SectionIntroStacked.ItemIcon icon={CpuIcon} color="green" />
+                <SectionIntroStacked.ItemIcon icon={CpuIcon} />
                 <SectionIntroStacked.ItemHeading>Reinvigorate your teaching methods</SectionIntroStacked.ItemHeading>
                 <SectionIntroStacked.ItemDescription>
                   Use GitHub Classroom to automate feedback.
