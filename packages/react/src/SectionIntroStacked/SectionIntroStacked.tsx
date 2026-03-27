@@ -148,9 +148,15 @@ const ItemsBase = ({animate, className, children, ...rest}: PropsWithChildren<Se
 
 type SectionIntroStackedItemIconProps = IconProps
 
-const ItemIcon = ({className, ...props}: SectionIntroStackedItemIconProps) => {
+const ItemIcon = ({className, color = 'green', ...props}: SectionIntroStackedItemIconProps) => {
   return (
-    <Icon className={clsx(styles['SectionIntroStackedItem__icon'], className)} hasBackground size="medium" {...props} />
+    <Icon
+      className={clsx(styles['SectionIntroStackedItem__icon'], className)}
+      hasBackground
+      size="medium"
+      color={color}
+      {...props}
+    />
   )
 }
 
