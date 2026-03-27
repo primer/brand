@@ -6,6 +6,7 @@ import {
   TestimonialProps,
   TestimonialQuoteMarkColors,
   TestimonialVariants,
+  TestimonialLayouts,
   defaultQuoteMarkColor,
   defaultTestimonialVariant,
 } from '.'
@@ -32,6 +33,7 @@ const meta = {
     type: 'avatar',
     width: 400,
     variant: defaultTestimonialVariant,
+    layout: 'default',
   },
   argTypes: {
     quoteMarkColor: {
@@ -67,6 +69,10 @@ const meta = {
     variant: {
       options: [...TestimonialVariants],
       control: {type: 'radio'},
+    },
+    layout: {
+      options: [...TestimonialLayouts],
+      control: {type: 'inline-radio'},
     },
   },
   parameters: {

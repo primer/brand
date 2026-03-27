@@ -1,5 +1,4 @@
 .Testimonial {
-  display: grid;
   color: var(--brand-color-text-default);
   font-family: var(--brand-fontStack-sansSerif);
 }
@@ -68,9 +67,8 @@
   color: var(--brand-Testimonial-quoteMarkColor-start, var(--brand-Testimonial-quoteMarkColor, currentColor));
   font-size: var(--base-size-48);
   line-height: var(--base-size-48);
-  font-weight: var(--brand-fontWeight-1000);
-  position: relative;
   font-weight: var(--brand-fontWeight-300);
+  position: relative;
   font-family: var(--brand-fontStack-monospace);
 }
 
@@ -87,6 +85,7 @@
   mask-composite: exclude;
 }
 
+/* Doubled selector to increase specificity over color variant declarations */
 .Testimonial__quoteMark--hasBackground.Testimonial__quoteMark--hasBackground {
   display: inline-flex;
   align-items: center;
@@ -176,10 +175,6 @@
     align-items: flex-end;
     gap: var(--base-size-64);
   }
-}
-
-.Testimonial__quoteWrapper {
-  display: contents;
 }
 
 .Testimonial--layout-wide .Testimonial__quoteWrapper {

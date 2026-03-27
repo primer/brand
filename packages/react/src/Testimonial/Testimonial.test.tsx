@@ -549,6 +549,18 @@ describe('Testimonial', () => {
       expect(figure).not.toHaveClass('Testimonial--layout-wide')
     })
 
+    it('applies hasBackground class to quote mark in wide layout', () => {
+      const {container} = render(
+        <Testimonial layout="wide">
+          <Testimonial.Quote>Quote text</Testimonial.Quote>
+          <Testimonial.Name>Name</Testimonial.Name>
+        </Testimonial>,
+      )
+
+      const quoteMark = container.querySelector('[aria-hidden="true"]')
+      expect(quoteMark).toHaveClass('Testimonial__quoteMark--hasBackground')
+    })
+
     it('renders quote section and attribution section in wide layout', () => {
       const {container} = render(
         <Testimonial layout="wide">

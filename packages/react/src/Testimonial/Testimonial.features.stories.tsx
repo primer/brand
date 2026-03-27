@@ -178,7 +178,7 @@ export const VariantsWithoutBorder: Story = {
 
 export const WideLayout: Story = {
   render: () => (
-    <div style={{maxWidth: 1200, padding: '0 48px'}}>
+    <Box style={{maxWidth: 1200}} paddingInlineStart={48} paddingInlineEnd={48}>
       <Testimonial layout="wide" size="large" quoteMarkColor="green">
         <Testimonial.Quote>
           GitHub Advanced Security <em>empowers our developers</em> to detect and fix vulnerabilities earlier,
@@ -188,7 +188,7 @@ export const WideLayout: Story = {
         <Testimonial.Avatar src={monaAvatar} alt="Circular avatar from Michael Spindler's GitHub profile" />
         <Testimonial.Name position="Head of development services and tools">Michael Spindler</Testimonial.Name>
       </Testimonial>
-    </div>
+    </Box>
   ),
 }
 
@@ -203,7 +203,7 @@ export const WideLayoutDark: Story = {
     ),
   ],
   render: () => (
-    <div style={{maxWidth: 1200}}>
+    <Box style={{maxWidth: 1200}}>
       <Testimonial layout="wide" size="large" quoteMarkColor="green">
         <Testimonial.Quote>
           GitHub Advanced Security <em>empowers our developers</em> to detect and fix vulnerabilities earlier,
@@ -213,6 +213,6 @@ export const WideLayoutDark: Story = {
         <Testimonial.Avatar src={monaAvatar} alt="Circular avatar from Michael Spindler's GitHub profile" />
         <Testimonial.Name position="Head of development services and tools">Michael Spindler</Testimonial.Name>
       </Testimonial>
-    </div>
+    </Box>
   ),
 }

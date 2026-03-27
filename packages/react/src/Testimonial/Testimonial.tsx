@@ -19,7 +19,7 @@ import styles from './Testimonial.module.css'
 import {Colors, BiColorGradients} from '../constants'
 
 type TestimonialSize = 'small' | 'large'
-type TestimonialLayout = 'default' | 'wide'
+export type TestimonialLayout = 'default' | 'wide'
 
 export const TestimonialQuoteMarkColors = [...Colors, ...BiColorGradients] as const
 export const defaultQuoteMarkColor = TestimonialQuoteMarkColors[0]
@@ -232,9 +232,11 @@ const Avatar = _Avatar
  * Testimonial link child element
  * <Testimonial.Link>
  */
-function _Link({className, ...rest}: LinkProps) {
+function _LinkBase({className, ...rest}: LinkProps, _ref) {
   return <Link className={clsx(styles['Testimonial-link'], className)} {...rest} size="medium" variant="accent" />
 }
+
+const _Link = forwardRef(_LinkBase)
 
 /**
  * Use Testimonial to display a quote from a customer or user.
