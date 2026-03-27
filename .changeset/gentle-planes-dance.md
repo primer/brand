@@ -2,7 +2,7 @@
 '@primer/react-brand': minor
 ---
 
-Add `layout` prop to `Testimonial` which provides a new `wide` two column variant.
+Add `layout` prop to `Testimonial` which provides a new `wide` two-column variant and update typographic styles.
 
 ```jsx
 <Testimonial layout="wide">
