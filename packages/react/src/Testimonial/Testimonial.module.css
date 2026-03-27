@@ -109,6 +109,10 @@
   display: block;
 }
 
+.Testimonial__quoteMark:not(.Testimonial__quoteMark--hasBackground) {
+  margin-left: -0.18em;
+}
+
 .Testimonial-quote {
   font-family: var(--brand-fontStack-monospace);
   font-size: var(--brand-Testimonial-quote-fontSize-default);
