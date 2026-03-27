@@ -2,7 +2,7 @@
 '@primer/react-brand': minor
 ---
 
-Updated `SectionIntroStacked` with a new `Description` sub-component and a redesigned `Item` structure supporting `ItemIcon`, `ItemHeading`, and `ItemDescription` sub-components. Updated default heading and link sizes.
+Added new subcomponents to `SectionIntroStacked`: `Description`, and a redesigned item structure supporting `ItemIcon`, `ItemHeading`, and `ItemDescription`. Updated default heading and link sizes.
 
 ```jsx
 <SectionIntroStacked>
