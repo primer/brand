@@ -41,6 +41,13 @@ describe('RiverAccordion', () => {
     expect(results).toHaveNoViolations()
   })
 
+  it('has no a11y violations with gridline variant', async () => {
+    const {container} = render(<MockRiverAccordion variant="gridline" />)
+    const results = await axe(container)
+
+    expect(results).toHaveNoViolations()
+  })
+
   it('expands the first item by default', () => {
     const {getByText, getByRole} = render(<MockRiverAccordion />)
 
@@ -217,8 +224,9 @@ describe('RiverAccordion', () => {
     const iconSpan = collapsedButton.querySelector('.RiverAccordion__icon')
 
     expect(iconSpan).toBeInTheDocument()
-    // ChevronDownIcon renders with aria-label="chevron-down"
-    expect(iconSpan?.querySelector('svg')).toBeInTheDocument()
+    const svg = iconSpan?.querySelector('svg')
+    expect(svg).toBeInTheDocument()
+    expect(svg).toHaveClass('octicon-chevron-down')
   })
 
   it('renders a chevron-up icon on an expanded item', () => {
@@ -230,7 +238,9 @@ describe('RiverAccordion', () => {
     const iconSpan = expandedButton.querySelector('.RiverAccordion__icon')
 
     expect(iconSpan).toBeInTheDocument()
-    expect(iconSpan?.querySelector('svg')).toBeInTheDocument()
+    const svg = iconSpan?.querySelector('svg')
+    expect(svg).toBeInTheDocument()
+    expect(svg).toHaveClass('octicon-chevron-up')
   })
 
   it.each(RiverAccordionVariants)('applies the correct class for variant="%s"', variant => {

@@ -16,3 +16,8 @@ Updates to `RiverAccordion` component
   ```jsx
   <RiverAccordion variant="gridline" />
   ```
+
+#### Changes
+
+- **Updated accordion icons**: Replaced `PlusIcon` with `ChevronDownIcon`/`ChevronUpIcon` for better visual clarity of expand/collapse state.
+- **Updated default text size**: Text size in `RiverAccordion.Content` now defaults to `300` (previously `200`) for improved readability.
