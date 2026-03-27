@@ -85,8 +85,7 @@
   mask-composite: exclude;
 }
 
-/* Doubled selector to increase specificity over color variant declarations */
-.Testimonial__quoteMark--hasBackground.Testimonial__quoteMark--hasBackground {
+.Testimonial__quoteMark--hasBackground {
   display: inline-flex;
   align-items: center;
   justify-content: center;
