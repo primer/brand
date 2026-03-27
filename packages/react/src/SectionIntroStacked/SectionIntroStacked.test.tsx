@@ -1,4 +1,4 @@
-import React, {render} from '@testing-library/react'
+import React, {render, cleanup} from '@testing-library/react'
 import '@testing-library/jest-dom'
 
 import {SectionIntroStacked} from './SectionIntroStacked'
@@ -18,6 +18,7 @@ describe('SectionIntroStacked', () => {
   const mockLinkText = 'Call to action'
 
   afterEach(() => {
+    cleanup()
     jest.clearAllMocks()
   })
 
@@ -44,7 +45,38 @@ describe('SectionIntroStacked', () => {
     expect(SectionIntroStackedEl.classList).toContain(expectedClass)
   })
 
-  it('renders the correct default heading type', () => {
+  it('renders as a semantic header element', () => {
+    const mockTestId = 'test'
+
+    const {getByTestId} = render(
+      <SectionIntroStacked data-testid={mockTestId}>
+        <SectionIntroStacked.Heading>Test heading</SectionIntroStacked.Heading>
+        <SectionIntroStacked.Items>
+          <SectionIntroStacked.Item>Item</SectionIntroStacked.Item>
+        </SectionIntroStacked.Items>
+      </SectionIntroStacked>,
+    )
+
+    expect(getByTestId(mockTestId).tagName).toBe('HEADER')
+  })
+
+  it('forwards custom className to root element', () => {
+    const customClass = 'custom-test-class'
+    const mockTestId = 'test'
+
+    const {getByTestId} = render(
+      <SectionIntroStacked data-testid={mockTestId} className={customClass}>
+        <SectionIntroStacked.Heading>Test heading</SectionIntroStacked.Heading>
+        <SectionIntroStacked.Items>
+          <SectionIntroStacked.Item>Item</SectionIntroStacked.Item>
+        </SectionIntroStacked.Items>
+      </SectionIntroStacked>,
+    )
+
+    expect(getByTestId(mockTestId)).toHaveClass(customClass)
+  })
+
+  it('renders the correct default heading level', () => {
     const expectedTag = 'h2'
     const headingText = 'This is your heading'
 
@@ -59,8 +91,8 @@ describe('SectionIntroStacked', () => {
         </SectionIntroStacked.Items>
       </SectionIntroStacked>,
     )
-    const ctaHeaderEl = getByText(headingText)
-    expect(ctaHeaderEl.tagName).toBe(expectedTag.toUpperCase())
+    const headingEl = getByText(headingText)
+    expect(headingEl.tagName).toBe(expectedTag.toUpperCase())
   })
 
   it('renders the correct heading level when an override is used', () => {
@@ -78,26 +110,8 @@ describe('SectionIntroStacked', () => {
         </SectionIntroStacked.Items>
       </SectionIntroStacked>,
     )
-    const ctaHeaderEl = getByText(headingText)
-    expect(ctaHeaderEl.tagName).toBe(expectedTag.toUpperCase())
-  })
-
-  it('renders the heading correctly into the document', () => {
-    const {getByText} = render(
-      <SectionIntroStacked>
-        <SectionIntroStacked.Heading>{mockHeading}</SectionIntroStacked.Heading>
-        <SectionIntroStacked.Link href="#">Call to action</SectionIntroStacked.Link>
-        <SectionIntroStacked.Items>
-          <SectionIntroStacked.Item>
-            <b>Feature one</b> with detailed description
-          </SectionIntroStacked.Item>
-        </SectionIntroStacked.Items>
-      </SectionIntroStacked>,
-    )
-
-    const headingEl = getByText(mockHeading)
-
-    expect(headingEl).toBeInTheDocument()
+    const headingEl = getByText(headingText)
+    expect(headingEl.tagName).toBe(expectedTag.toUpperCase())
   })
 
   it('renders all elements correctly into the document', () => {
@@ -120,7 +134,7 @@ describe('SectionIntroStacked', () => {
     expect(linkEl).toBeInTheDocument()
   })
 
-  test('renders the default color as muted if <b> or <em> is passed as a child', () => {
+  it('renders the default color as muted if <b> or <em> is passed as a child', () => {
     const {getAllByRole} = render(
       <SectionIntroStacked>
         <SectionIntroStacked.Heading>
@@ -142,7 +156,7 @@ describe('SectionIntroStacked', () => {
     }
   })
 
-  test('renders the default color as text-default if a non-<b> or non-<em> child is passed', () => {
+  it('renders the default color as text-default if a non-<b> or non-<em> child is passed', () => {
     const {getByRole} = render(
       <SectionIntroStacked>
         <SectionIntroStacked.Heading>
@@ -182,92 +196,36 @@ describe('SectionIntroStacked', () => {
     expect(results).toHaveNoViolations()
   })
 
-  it('renders the items as a semantic unordered list', () => {
-    const {getByRole} = render(
-      <SectionIntroStacked>
-        <SectionIntroStacked.Heading>Test heading</SectionIntroStacked.Heading>
-        <SectionIntroStacked.Link href="#">Test link</SectionIntroStacked.Link>
-        <SectionIntroStacked.Items>
-          <SectionIntroStacked.Item>First item</SectionIntroStacked.Item>
-          <SectionIntroStacked.Item>Second item</SectionIntroStacked.Item>
-        </SectionIntroStacked.Items>
-      </SectionIntroStacked>,
-    )
+  describe('Link', () => {
+    it('renders Link with default accent variant', () => {
+      const {getByText} = render(
+        <SectionIntroStacked>
+          <SectionIntroStacked.Heading>Test heading</SectionIntroStacked.Heading>
+          <SectionIntroStacked.Link href="#">{mockLinkText}</SectionIntroStacked.Link>
+          <SectionIntroStacked.Items>
+            <SectionIntroStacked.Item>Item</SectionIntroStacked.Item>
+          </SectionIntroStacked.Items>
+        </SectionIntroStacked>,
+      )
 
-    const listEl = getByRole('list')
-    expect(listEl).toHaveClass('SectionIntroStacked-items')
-  })
+      const linkEl = getByText(mockLinkText).closest('a')
+      expect(linkEl).toHaveClass('Link--accent')
+    })
 
-  it('renders items as semantic list items', () => {
-    const {getAllByRole} = render(
-      <SectionIntroStacked>
-        <SectionIntroStacked.Heading>Test heading</SectionIntroStacked.Heading>
-        <SectionIntroStacked.Link href="#">Test link</SectionIntroStacked.Link>
-        <SectionIntroStacked.Items>
-          <SectionIntroStacked.Item>First item</SectionIntroStacked.Item>
-          <SectionIntroStacked.Item>Second item</SectionIntroStacked.Item>
-          <SectionIntroStacked.Item>Third item</SectionIntroStacked.Item>
-        </SectionIntroStacked.Items>
-      </SectionIntroStacked>,
-    )
+    it('renders Link with default medium size', () => {
+      const {getByText} = render(
+        <SectionIntroStacked>
+          <SectionIntroStacked.Heading>Test heading</SectionIntroStacked.Heading>
+          <SectionIntroStacked.Link href="#">{mockLinkText}</SectionIntroStacked.Link>
+          <SectionIntroStacked.Items>
+            <SectionIntroStacked.Item>Item</SectionIntroStacked.Item>
+          </SectionIntroStacked.Items>
+        </SectionIntroStacked>,
+      )
 
-    const listItems = getAllByRole('listitem')
-    expect(listItems).toHaveLength(3)
-
-    for (const item of listItems) {
-      expect(item).toHaveClass('SectionIntroStackedItem-item')
-    }
-  })
-
-  it('renders item content correctly', () => {
-    const itemText = 'Feature description with details'
-    const {getByText} = render(
-      <SectionIntroStacked>
-        <SectionIntroStacked.Heading>Test heading</SectionIntroStacked.Heading>
-        <SectionIntroStacked.Link href="#">Test link</SectionIntroStacked.Link>
-        <SectionIntroStacked.Items>
-          <SectionIntroStacked.Item>{itemText}</SectionIntroStacked.Item>
-        </SectionIntroStacked.Items>
-      </SectionIntroStacked>,
-    )
-
-    const itemEl = getByText(itemText)
-    expect(itemEl).toBeInTheDocument()
-    expect(itemEl).toHaveClass('SectionIntroStackedItem__item-text')
-  })
-
-  it('renders default color text when no <b> or <em> is used', () => {
-    const mockItemText = 'Feature description without emphasis'
-    const {getByText} = render(
-      <SectionIntroStacked>
-        <SectionIntroStacked.Heading>Test heading</SectionIntroStacked.Heading>
-        <SectionIntroStacked.Link href="#">Test link</SectionIntroStacked.Link>
-        <SectionIntroStacked.Items>
-          <SectionIntroStacked.Item>{mockItemText}</SectionIntroStacked.Item>
-        </SectionIntroStacked.Items>
-      </SectionIntroStacked>,
-    )
-
-    const itemEl = getByText(mockItemText)
-    expect(itemEl).toHaveClass('Text--default')
-    expect(itemEl).not.toHaveClass('SectionIntroStackedItem__item-text--muted')
-  })
-
-  it('renders muted color text when <b> is used', () => {
-    const {getByText} = render(
-      <SectionIntroStacked>
-        <SectionIntroStacked.Heading>Test heading</SectionIntroStacked.Heading>
-        <SectionIntroStacked.Link href="#">Test link</SectionIntroStacked.Link>
-        <SectionIntroStacked.Items>
-          <SectionIntroStacked.Item>
-            <b>Feature description</b> with emphasis
-          </SectionIntroStacked.Item>
-        </SectionIntroStacked.Items>
-      </SectionIntroStacked>,
-    )
-
-    const itemEl = getByText('Feature description', {exact: false}).closest('span')
-    expect(itemEl).toHaveClass('SectionIntroStackedItem__item-text--muted')
+      const linkEl = getByText(mockLinkText).closest('a')
+      expect(linkEl).toHaveClass('Link--medium')
+    })
   })
 
   describe('Description', () => {
@@ -305,111 +263,203 @@ describe('SectionIntroStacked', () => {
     })
   })
 
-  describe('Item sub-components (Icon, Heading, Description)', () => {
-    it('renders Item.Heading correctly', () => {
-      const itemHeadingText = 'Enhance your technical curriculum'
-      const {getByText} = render(
-        <SectionIntroStacked>
-          <SectionIntroStacked.Heading>Test heading</SectionIntroStacked.Heading>
-          <SectionIntroStacked.Items>
-            <SectionIntroStacked.Item>
-              <SectionIntroStacked.ItemIcon icon={CpuIcon} color="green" />
-              <SectionIntroStacked.ItemHeading>{itemHeadingText}</SectionIntroStacked.ItemHeading>
-              <SectionIntroStacked.ItemDescription>Item description text</SectionIntroStacked.ItemDescription>
-            </SectionIntroStacked.Item>
-          </SectionIntroStacked.Items>
-        </SectionIntroStacked>,
-      )
+  describe('Item', () => {
+    describe('simple text mode', () => {
+      it('renders the items as a semantic unordered list', () => {
+        const {getByRole} = render(
+          <SectionIntroStacked>
+            <SectionIntroStacked.Heading>Test heading</SectionIntroStacked.Heading>
+            <SectionIntroStacked.Link href="#">Test link</SectionIntroStacked.Link>
+            <SectionIntroStacked.Items>
+              <SectionIntroStacked.Item>First item</SectionIntroStacked.Item>
+              <SectionIntroStacked.Item>Second item</SectionIntroStacked.Item>
+            </SectionIntroStacked.Items>
+          </SectionIntroStacked>,
+        )
 
-      const headingEl = getByText(itemHeadingText)
-      expect(headingEl).toBeInTheDocument()
-      expect(headingEl).toHaveClass('SectionIntroStackedItem__heading')
+        const listEl = getByRole('list')
+        expect(listEl).toHaveClass('SectionIntroStacked-items')
+      })
+
+      it('renders items as semantic list items', () => {
+        const {getAllByRole} = render(
+          <SectionIntroStacked>
+            <SectionIntroStacked.Heading>Test heading</SectionIntroStacked.Heading>
+            <SectionIntroStacked.Link href="#">Test link</SectionIntroStacked.Link>
+            <SectionIntroStacked.Items>
+              <SectionIntroStacked.Item>First item</SectionIntroStacked.Item>
+              <SectionIntroStacked.Item>Second item</SectionIntroStacked.Item>
+              <SectionIntroStacked.Item>Third item</SectionIntroStacked.Item>
+            </SectionIntroStacked.Items>
+          </SectionIntroStacked>,
+        )
+
+        const listItems = getAllByRole('listitem')
+        expect(listItems).toHaveLength(3)
+
+        for (const item of listItems) {
+          expect(item).toHaveClass('SectionIntroStackedItem-item')
+        }
+      })
+
+      it('renders item content correctly', () => {
+        const itemText = 'Feature description with details'
+        const {getByText} = render(
+          <SectionIntroStacked>
+            <SectionIntroStacked.Heading>Test heading</SectionIntroStacked.Heading>
+            <SectionIntroStacked.Link href="#">Test link</SectionIntroStacked.Link>
+            <SectionIntroStacked.Items>
+              <SectionIntroStacked.Item>{itemText}</SectionIntroStacked.Item>
+            </SectionIntroStacked.Items>
+          </SectionIntroStacked>,
+        )
+
+        const itemEl = getByText(itemText)
+        expect(itemEl).toBeInTheDocument()
+        expect(itemEl).toHaveClass('SectionIntroStackedItem__item-text')
+      })
+
+      it('renders default color text when no <b> or <em> is used', () => {
+        const mockItemText = 'Feature description without emphasis'
+        const {getByText} = render(
+          <SectionIntroStacked>
+            <SectionIntroStacked.Heading>Test heading</SectionIntroStacked.Heading>
+            <SectionIntroStacked.Link href="#">Test link</SectionIntroStacked.Link>
+            <SectionIntroStacked.Items>
+              <SectionIntroStacked.Item>{mockItemText}</SectionIntroStacked.Item>
+            </SectionIntroStacked.Items>
+          </SectionIntroStacked>,
+        )
+
+        const itemEl = getByText(mockItemText)
+        expect(itemEl).toHaveClass('Text--default')
+        expect(itemEl).not.toHaveClass('SectionIntroStackedItem__item-text--muted')
+      })
+
+      it('renders muted color text when <b> is used', () => {
+        const {getByText} = render(
+          <SectionIntroStacked>
+            <SectionIntroStacked.Heading>Test heading</SectionIntroStacked.Heading>
+            <SectionIntroStacked.Link href="#">Test link</SectionIntroStacked.Link>
+            <SectionIntroStacked.Items>
+              <SectionIntroStacked.Item>
+                <b>Feature description</b> with emphasis
+              </SectionIntroStacked.Item>
+            </SectionIntroStacked.Items>
+          </SectionIntroStacked>,
+        )
+
+        const itemEl = getByText('Feature description', {exact: false}).closest('span')
+        expect(itemEl).toHaveClass('SectionIntroStackedItem__item-text--muted')
+      })
     })
 
-    it('renders Item.Heading with default h3 tag', () => {
-      const itemHeadingText = 'Enhance your technical curriculum'
-      const {getByText} = render(
-        <SectionIntroStacked>
-          <SectionIntroStacked.Heading>Test heading</SectionIntroStacked.Heading>
-          <SectionIntroStacked.Items>
-            <SectionIntroStacked.Item>
-              <SectionIntroStacked.ItemIcon icon={CpuIcon} color="green" />
-              <SectionIntroStacked.ItemHeading>{itemHeadingText}</SectionIntroStacked.ItemHeading>
-              <SectionIntroStacked.ItemDescription>Item description text</SectionIntroStacked.ItemDescription>
-            </SectionIntroStacked.Item>
-          </SectionIntroStacked.Items>
-        </SectionIntroStacked>,
-      )
+    describe('sub-component mode (Icon, Heading, Description)', () => {
+      it('renders ItemHeading correctly', () => {
+        const itemHeadingText = 'Enhance your technical curriculum'
+        const {getByText} = render(
+          <SectionIntroStacked>
+            <SectionIntroStacked.Heading>Test heading</SectionIntroStacked.Heading>
+            <SectionIntroStacked.Items>
+              <SectionIntroStacked.Item>
+                <SectionIntroStacked.ItemIcon icon={CpuIcon} color="green" />
+                <SectionIntroStacked.ItemHeading>{itemHeadingText}</SectionIntroStacked.ItemHeading>
+                <SectionIntroStacked.ItemDescription>Item description text</SectionIntroStacked.ItemDescription>
+              </SectionIntroStacked.Item>
+            </SectionIntroStacked.Items>
+          </SectionIntroStacked>,
+        )
 
-      const headingEl = getByText(itemHeadingText)
-      expect(headingEl.tagName).toBe('H3')
-    })
+        const headingEl = getByText(itemHeadingText)
+        expect(headingEl).toBeInTheDocument()
+        expect(headingEl).toHaveClass('SectionIntroStackedItem__heading')
+      })
 
-    it('renders Item.Description correctly', () => {
-      const itemDescriptionText = 'Elevate your lessons with advanced tools'
-      const {getByText} = render(
-        <SectionIntroStacked>
-          <SectionIntroStacked.Heading>Test heading</SectionIntroStacked.Heading>
-          <SectionIntroStacked.Items>
-            <SectionIntroStacked.Item>
-              <SectionIntroStacked.ItemIcon icon={CpuIcon} color="green" />
-              <SectionIntroStacked.ItemHeading>Item heading</SectionIntroStacked.ItemHeading>
-              <SectionIntroStacked.ItemDescription>{itemDescriptionText}</SectionIntroStacked.ItemDescription>
-            </SectionIntroStacked.Item>
-          </SectionIntroStacked.Items>
-        </SectionIntroStacked>,
-      )
+      it('renders ItemHeading with default h3 tag', () => {
+        const itemHeadingText = 'Enhance your technical curriculum'
+        const {getByText} = render(
+          <SectionIntroStacked>
+            <SectionIntroStacked.Heading>Test heading</SectionIntroStacked.Heading>
+            <SectionIntroStacked.Items>
+              <SectionIntroStacked.Item>
+                <SectionIntroStacked.ItemIcon icon={CpuIcon} color="green" />
+                <SectionIntroStacked.ItemHeading>{itemHeadingText}</SectionIntroStacked.ItemHeading>
+                <SectionIntroStacked.ItemDescription>Item description text</SectionIntroStacked.ItemDescription>
+              </SectionIntroStacked.Item>
+            </SectionIntroStacked.Items>
+          </SectionIntroStacked>,
+        )
 
-      const descriptionEl = getByText(itemDescriptionText)
-      expect(descriptionEl).toBeInTheDocument()
-      expect(descriptionEl).toHaveClass('SectionIntroStackedItem__description')
-    })
+        const headingEl = getByText(itemHeadingText)
+        expect(headingEl.tagName).toBe('H3')
+      })
 
-    it('renders Item with sub-components using horizontal layout class', () => {
-      const {getAllByRole} = render(
-        <SectionIntroStacked>
-          <SectionIntroStacked.Heading>Test heading</SectionIntroStacked.Heading>
-          <SectionIntroStacked.Items>
-            <SectionIntroStacked.Item>
-              <SectionIntroStacked.ItemIcon icon={CpuIcon} color="green" />
-              <SectionIntroStacked.ItemHeading>Item heading</SectionIntroStacked.ItemHeading>
-              <SectionIntroStacked.ItemDescription>Item description</SectionIntroStacked.ItemDescription>
-            </SectionIntroStacked.Item>
-          </SectionIntroStacked.Items>
-        </SectionIntroStacked>,
-      )
+      it('renders ItemDescription correctly', () => {
+        const itemDescriptionText = 'Elevate your lessons with advanced tools'
+        const {getByText} = render(
+          <SectionIntroStacked>
+            <SectionIntroStacked.Heading>Test heading</SectionIntroStacked.Heading>
+            <SectionIntroStacked.Items>
+              <SectionIntroStacked.Item>
+                <SectionIntroStacked.ItemIcon icon={CpuIcon} color="green" />
+                <SectionIntroStacked.ItemHeading>Item heading</SectionIntroStacked.ItemHeading>
+                <SectionIntroStacked.ItemDescription>{itemDescriptionText}</SectionIntroStacked.ItemDescription>
+              </SectionIntroStacked.Item>
+            </SectionIntroStacked.Items>
+          </SectionIntroStacked>,
+        )
 
-      const listItem = getAllByRole('listitem')[0]
-      expect(listItem).toHaveClass('SectionIntroStackedItem-item--with-icon')
-    })
+        const descriptionEl = getByText(itemDescriptionText)
+        expect(descriptionEl).toBeInTheDocument()
+        expect(descriptionEl).toHaveClass('SectionIntroStackedItem__description')
+      })
 
-    it('has no a11y violations with Item sub-components', async () => {
-      const {container} = render(
-        <SectionIntroStacked>
-          <SectionIntroStacked.Heading>Test heading</SectionIntroStacked.Heading>
-          <SectionIntroStacked.Description>Test description</SectionIntroStacked.Description>
-          <SectionIntroStacked.Link href="#">Learn more</SectionIntroStacked.Link>
-          <SectionIntroStacked.Items>
-            <SectionIntroStacked.Item>
-              <SectionIntroStacked.ItemIcon icon={CpuIcon} color="green" />
-              <SectionIntroStacked.ItemHeading>Enhance your technical curriculum</SectionIntroStacked.ItemHeading>
-              <SectionIntroStacked.ItemDescription>
-                Elevate your lessons with advanced tools.
-              </SectionIntroStacked.ItemDescription>
-            </SectionIntroStacked.Item>
-            <SectionIntroStacked.Item>
-              <SectionIntroStacked.ItemIcon icon={CpuIcon} color="green" />
-              <SectionIntroStacked.ItemHeading>Reinvigorate your teaching methods</SectionIntroStacked.ItemHeading>
-              <SectionIntroStacked.ItemDescription>
-                Use GitHub Classroom to automate feedback.
-              </SectionIntroStacked.ItemDescription>
-            </SectionIntroStacked.Item>
-          </SectionIntroStacked.Items>
-        </SectionIntroStacked>,
-      )
+      it('renders Item with icon using horizontal layout class', () => {
+        const {getAllByRole} = render(
+          <SectionIntroStacked>
+            <SectionIntroStacked.Heading>Test heading</SectionIntroStacked.Heading>
+            <SectionIntroStacked.Items>
+              <SectionIntroStacked.Item>
+                <SectionIntroStacked.ItemIcon icon={CpuIcon} color="green" />
+                <SectionIntroStacked.ItemHeading>Item heading</SectionIntroStacked.ItemHeading>
+                <SectionIntroStacked.ItemDescription>Item description</SectionIntroStacked.ItemDescription>
+              </SectionIntroStacked.Item>
+            </SectionIntroStacked.Items>
+          </SectionIntroStacked>,
+        )
 
-      const results = await axe(container)
-      expect(results).toHaveNoViolations()
+        const listItem = getAllByRole('listitem')[0]
+        expect(listItem).toHaveClass('SectionIntroStackedItem-item--with-icon')
+      })
+
+      it('has no a11y violations with Item sub-components', async () => {
+        const {container} = render(
+          <SectionIntroStacked>
+            <SectionIntroStacked.Heading>Test heading</SectionIntroStacked.Heading>
+            <SectionIntroStacked.Description>Test description</SectionIntroStacked.Description>
+            <SectionIntroStacked.Link href="#">Learn more</SectionIntroStacked.Link>
+            <SectionIntroStacked.Items>
+              <SectionIntroStacked.Item>
+                <SectionIntroStacked.ItemIcon icon={CpuIcon} color="green" />
+                <SectionIntroStacked.ItemHeading>Enhance your technical curriculum</SectionIntroStacked.ItemHeading>
+                <SectionIntroStacked.ItemDescription>
+                  Elevate your lessons with advanced tools.
+                </SectionIntroStacked.ItemDescription>
+              </SectionIntroStacked.Item>
+              <SectionIntroStacked.Item>
+                <SectionIntroStacked.ItemIcon icon={CpuIcon} color="green" />
+                <SectionIntroStacked.ItemHeading>Reinvigorate your teaching methods</SectionIntroStacked.ItemHeading>
+                <SectionIntroStacked.ItemDescription>
+                  Use GitHub Classroom to automate feedback.
+                </SectionIntroStacked.ItemDescription>
+              </SectionIntroStacked.Item>
+            </SectionIntroStacked.Items>
+          </SectionIntroStacked>,
+        )
+
+        const results = await axe(container)
+        expect(results).toHaveNoViolations()
+      })
     })
   })
 })
