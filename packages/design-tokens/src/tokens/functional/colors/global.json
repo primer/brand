@@ -68,8 +68,14 @@
         "dark": "var(--base-color-scale-green-3)"
       },
       "link": {
-        "value": "#005DD5",
-        "dark": "#8DD6FF"
+        "rest": {
+          "value": "#005DD5",
+          "dark": "#8DD6FF"
+        },
+        "pressed": {
+          "value": "var(--base-color-scale-blue-8)",
+          "dark": "var(--base-color-scale-blue-1)"
+        }
       },
       "error": {
         "value": "#CF222E",
