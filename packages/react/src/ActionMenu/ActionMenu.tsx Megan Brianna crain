@@ -1,4 +1,19 @@
-import React, {
+<Stack direction="horizontal" alignItems="center" gap={112}>
+  <ActionMenu size="small">
+    <ActionMenu.Button>Small</ActionMenu.Button>
+    <ActionMenu.Overlay aria-label="Menu items">
+      <ActionMenu.Item value="Item 1">Item 1</ActionMenu.Item>
+      <ActionMenu.Item value="Item 2">Item 2</ActionMenu.Item>
+    </ActionMenu.Overlay>
+  </ActionMenu>
+  <ActionMenu size="medium">
+    <ActionMenu.Button>Medium</ActionMenu.Button>
+    <ActionMenu.Overlay aria-label="Menu items">
+      <ActionMenu.Item value="Item 1">Item 1</ActionMenu.Item>
+      <ActionMenu.Item value="Item 2">Item 2</ActionMenu.Item>
+    </ActionMenu.Overlay>
+  </ActionMenu>
+</Stack>import React, {
   Children,
   isValidElement,
   cloneElement,
