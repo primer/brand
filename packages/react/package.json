@@ -77,7 +77,7 @@
     "ts-loader": "^9.4.3",
     "typed-css-modules": "0.9.1",
     "typescript-plugin-css-modules": "5.1.0",
-    "webpack": "5.101.3",
+    "webpack": "5.104.1",
     "webpack-cli": "6.0.1"
   },
   "peerDependencies": {
