@@ -100,7 +100,7 @@ describe('Testimonial', () => {
     expect(mockRef).toHaveBeenCalledWith(figure)
   })
 
-  it.each(['minimal', 'default', 'subtle'] as const)('renders %s variant', variant => {
+  it.each(['minimal', 'default', 'subtle', 'expressive'] as const)('renders %s variant', variant => {
     const {getByRole} = render(
       <Testimonial variant={variant}>
         <Testimonial.Quote>Quote text</Testimonial.Quote>
@@ -524,34 +524,59 @@ describe('Testimonial', () => {
     expect(figure).toHaveClass('Animation--fade-in')
   })
 
-  describe('layout prop', () => {
-    it('applies wide layout class when layout is "wide"', () => {
+  describe('expressive variant', () => {
+    it('applies expressive variant class when variant is "expressive"', () => {
       const {getByRole} = render(
-        <Testimonial layout="wide">
+        <Testimonial variant="expressive">
           <Testimonial.Quote>Quote text</Testimonial.Quote>
           <Testimonial.Name>Name</Testimonial.Name>
         </Testimonial>,
       )
 
       const figure = getByRole('figure')
-      expect(figure).toHaveClass('Testimonial--layout-wide')
+      expect(figure).toHaveClass('Testimonial--variant-expressive')
     })
 
-    it('does not apply wide layout class when layout is "default"', () => {
+    it('does not apply expressive variant class when variant is "minimal"', () => {
       const {getByRole} = render(
-        <Testimonial layout="default">
+        <Testimonial variant="minimal">
           <Testimonial.Quote>Quote text</Testimonial.Quote>
           <Testimonial.Name>Name</Testimonial.Name>
         </Testimonial>,
       )
 
       const figure = getByRole('figure')
-      expect(figure).not.toHaveClass('Testimonial--layout-wide')
+      expect(figure).not.toHaveClass('Testimonial--variant-expressive')
     })
 
-    it('applies hasBackground class to quote mark in wide layout', () => {
+    it('defaults quote mark color to green in expressive variant', () => {
       const {container} = render(
-        <Testimonial layout="wide">
+        <Testimonial variant="expressive">
+          <Testimonial.Quote>Quote text</Testimonial.Quote>
+          <Testimonial.Name>Name</Testimonial.Name>
+        </Testimonial>,
+      )
+
+      const quoteMark = container.querySelector('[aria-hidden="true"]')
+      expect(quoteMark).toHaveClass('Testimonial__quoteMark--green')
+    })
+
+    it('allows overriding the default quote mark color in expressive variant', () => {
+      const {container} = render(
+        <Testimonial variant="expressive" quoteMarkColor="blue">
+          <Testimonial.Quote>Quote text</Testimonial.Quote>
+          <Testimonial.Name>Name</Testimonial.Name>
+        </Testimonial>,
+      )
+
+      const quoteMark = container.querySelector('[aria-hidden="true"]')
+      expect(quoteMark).toHaveClass('Testimonial__quoteMark--blue')
+      expect(quoteMark).not.toHaveClass('Testimonial__quoteMark--green')
+    })
+
+    it('applies hasBackground class to quote mark in expressive variant', () => {
+      const {container} = render(
+        <Testimonial variant="expressive">
           <Testimonial.Quote>Quote text</Testimonial.Quote>
           <Testimonial.Name>Name</Testimonial.Name>
         </Testimonial>,
@@ -561,9 +586,9 @@ describe('Testimonial', () => {
       expect(quoteMark).toHaveClass('Testimonial__quoteMark--hasBackground')
     })
 
-    it('renders quote section and attribution section in wide layout', () => {
+    it('renders quote section and attribution section in expressive variant', () => {
       const {container} = render(
-        <Testimonial layout="wide">
+        <Testimonial variant="expressive">
           <Testimonial.Quote>Quote text</Testimonial.Quote>
           <Testimonial.Name>Name</Testimonial.Name>
         </Testimonial>,
@@ -575,9 +600,9 @@ describe('Testimonial', () => {
       expect(media).toBeInTheDocument()
     })
 
-    it('renders Testimonial.Link inside quote section in wide layout', () => {
+    it('renders Testimonial.Link inside quote section in expressive variant', () => {
       const {getByRole, container} = render(
-        <Testimonial layout="wide">
+        <Testimonial variant="expressive">
           <Testimonial.Quote>Quote text</Testimonial.Quote>
           <Testimonial.Link href="/story">Read the full story</Testimonial.Link>
           <Testimonial.Name>Name</Testimonial.Name>
@@ -589,9 +614,9 @@ describe('Testimonial', () => {
       expect(quote).toContainElement(link)
     })
 
-    it('has no accessibility violations in wide layout', async () => {
+    it('has no accessibility violations in expressive variant', async () => {
       const {container} = render(
-        <Testimonial layout="wide">
+        <Testimonial variant="expressive">
           <Testimonial.Quote>Quote text</Testimonial.Quote>
           <Testimonial.Link href="/story">Read the full story</Testimonial.Link>
           <Testimonial.Name position="Engineer">Name</Testimonial.Name>
@@ -606,7 +631,7 @@ describe('Testimonial', () => {
   describe('Testimonial.Link', () => {
     it('renders an anchor element with the provided href', () => {
       const {getByRole} = render(
-        <Testimonial layout="wide">
+        <Testimonial variant="expressive">
           <Testimonial.Quote>Quote text</Testimonial.Quote>
           <Testimonial.Link href="/story">Read the full story</Testimonial.Link>
           <Testimonial.Name>Name</Testimonial.Name>
@@ -620,7 +645,7 @@ describe('Testimonial', () => {
 
     it('renders an arrow via the ExpandableArrow component', () => {
       const {getByRole} = render(
-        <Testimonial layout="wide">
+        <Testimonial variant="expressive">
           <Testimonial.Quote>Quote text</Testimonial.Quote>
           <Testimonial.Link href="/story">Read the full story</Testimonial.Link>
           <Testimonial.Name>Name</Testimonial.Name>
@@ -635,7 +660,7 @@ describe('Testimonial', () => {
 
     it('applies the Testimonial-link class', () => {
       const {getByRole} = render(
-        <Testimonial layout="wide">
+        <Testimonial variant="expressive">
           <Testimonial.Quote>Quote text</Testimonial.Quote>
           <Testimonial.Link href="/story">Read the full story</Testimonial.Link>
           <Testimonial.Name>Name</Testimonial.Name>
@@ -648,7 +673,7 @@ describe('Testimonial', () => {
 
     it('allows forwarding a custom className', () => {
       const {getByRole} = render(
-        <Testimonial layout="wide">
+        <Testimonial variant="expressive">
           <Testimonial.Quote>Quote text</Testimonial.Quote>
           <Testimonial.Link href="/story" className="custom-link">
             Read more
@@ -661,7 +686,7 @@ describe('Testimonial', () => {
       expect(link).toHaveClass('custom-link')
     })
 
-    it('can be used in default layout', () => {
+    it('can be used in minimal variant', () => {
       const {getByRole} = render(
         <Testimonial>
           <Testimonial.Quote>Quote text</Testimonial.Quote>

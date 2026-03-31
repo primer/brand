@@ -19,16 +19,13 @@ import styles from './Testimonial.module.css'
 import {Colors, BiColorGradients} from '../constants'
 
 type TestimonialSize = 'small' | 'large'
-export type TestimonialLayout = 'default' | 'wide'
 
 export const TestimonialQuoteMarkColors = [...Colors, ...BiColorGradients] as const
 export const defaultQuoteMarkColor = TestimonialQuoteMarkColors[0]
 
-export const TestimonialVariants = ['subtle', 'default', 'minimal'] as const
+export const TestimonialVariants = ['subtle', 'default', 'minimal', 'expressive'] as const
 type TestimonialVariant = (typeof TestimonialVariants)[number]
 export const defaultTestimonialVariant: TestimonialVariant = 'minimal'
-
-export const TestimonialLayouts = ['default', 'wide'] as const
 
 export type TestimonialProps = {
   /**
@@ -54,12 +51,6 @@ export type TestimonialProps = {
   size?: TestimonialSize
   /** Sets the color of the quote mark */
   quoteMarkColor?: (typeof TestimonialQuoteMarkColors)[number]
-  /**
-   * Sets the layout of the testimonial.
-   * 'default' stacks all content in a single column.
-   * 'wide' places the quote on the left and the attribution (logo + name) on the right.
-   */
-  layout?: TestimonialLayout
 } & BaseProps<HTMLElement> &
   React.HTMLAttributes<HTMLElement>
 
@@ -69,14 +60,13 @@ export type TestimonialProps = {
  */
 function TestimonialBase(
   {
-    quoteMarkColor = 'default',
+    quoteMarkColor,
     animate,
     className,
     children,
     variant = 'minimal',
     hasBorder = true,
     size,
-    layout = 'default',
     style,
     ...rest
   }: PropsWithChildren<TestimonialProps>,
@@ -84,15 +74,15 @@ function TestimonialBase(
 ) {
   const {classes: animationClasses, styles: animationInlineStyles} = useAnimation(animate)
 
-  const hasBackground = layout === 'wide'
+  const resolvedQuoteMarkColor = quoteMarkColor ?? (variant === 'expressive' ? 'green' : 'default')
 
   const quoteMark = (
     <div
       aria-hidden="true"
       className={clsx(
         styles['Testimonial__quoteMark'],
-        styles[`Testimonial__quoteMark--${quoteMarkColor}`],
-        hasBackground && styles['Testimonial__quoteMark--hasBackground'],
+        styles[`Testimonial__quoteMark--${resolvedQuoteMarkColor}`],
+        variant === 'expressive' && styles['Testimonial__quoteMark--hasBackground'],
       )}
     >
       <span className={styles['Testimonial__quoteMarkGlyph']}>&ldquo;</span>
@@ -118,13 +108,12 @@ function TestimonialBase(
         styles[`Testimonial--variant-${variant}`],
         size && styles[`Testimonial--size-${size}`],
         hasBorder && styles['Testimonial--border'],
-        layout === 'wide' && styles['Testimonial--layout-wide'],
         className,
       )}
       style={{
         ...animationInlineStyles,
         ...style,
-        ['--testimonial-accent-color' as keyof CSSProperties]: quoteMarkColor,
+        ['--testimonial-accent-color' as keyof CSSProperties]: resolvedQuoteMarkColor,
       }}
       {...rest}
     >

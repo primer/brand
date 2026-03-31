@@ -176,10 +176,10 @@ export const VariantsWithoutBorder: Story = {
   render: args => <VariantsGrid hasBorder={false} {...args} />,
 }
 
-export const WideLayout: Story = {
+export const Expressive: Story = {
   render: () => (
     <Box style={{maxWidth: 1200}} paddingInlineStart={48} paddingInlineEnd={48}>
-      <Testimonial layout="wide" size="large" quoteMarkColor="green">
+      <Testimonial variant="expressive" size="large">
         <Testimonial.Quote>
           GitHub Advanced Security <em>empowers our developers</em> to detect and fix vulnerabilities earlier,
           accelerating our time to market and boosting developer satisfaction.
@@ -192,7 +192,7 @@ export const WideLayout: Story = {
   ),
 }
 
-export const WideLayoutDark: Story = {
+export const ExpressiveDark: Story = {
   decorators: [
     Story => (
       <ThemeProvider colorMode="dark">
@@ -204,7 +204,7 @@ export const WideLayoutDark: Story = {
   ],
   render: () => (
     <Box style={{maxWidth: 1200}}>
-      <Testimonial layout="wide" size="large" quoteMarkColor="green">
+      <Testimonial variant="expressive" size="large">
         <Testimonial.Quote>
           GitHub Advanced Security <em>empowers our developers</em> to detect and fix vulnerabilities earlier,
           accelerating our time to market and boosting developer satisfaction.

@@ -110,7 +110,7 @@ export const WithFrostedGlassDark: Story = {
   render: () => {
     return (
       <FrostedGlassVFX>
-        <Testimonial size="large" variant="default" quoteMarkColor="green">
+        <Testimonial size="large" variant="default">
           <Testimonial.Quote>
             GitHub helps us ensure that we have our security controls baked into our pipelines all the way from the
             first line of code we&apos;re writing.
@@ -204,13 +204,13 @@ export const Trio: Story = {
   ),
 }
 
-export const WideWithBackground: Story = {
+export const ExpressiveWithBackground: Story = {
   parameters: {
     layout: 'fullscreen',
   },
   render: () => (
     <Box paddingBlockStart={64} paddingBlockEnd={64} paddingInlineStart={48} paddingInlineEnd={48}>
-      <Testimonial layout="wide" size="large" quoteMarkColor="green">
+      <Testimonial variant="expressive" size="large">
         <Testimonial.Quote>
           GitHub Advanced Security <em>empowers our developers</em> to detect and fix vulnerabilities earlier,
           accelerating our time to market and boosting developer satisfaction.
