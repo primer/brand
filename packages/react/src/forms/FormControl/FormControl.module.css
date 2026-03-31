@@ -80,7 +80,7 @@
 }
 
 .FormControl-validation--error {
-  color: var(--brand-color-error-fg);
+  color: var(--brand-color-danger-fg);
 }
 
 .FormControl-validation-success-icon {

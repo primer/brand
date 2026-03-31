@@ -13,7 +13,7 @@
 }
 
 .TextInput::placeholder {
-  color: var(--brand-color-text-subtle);
+  color: var(--brand-color-text-muted);
   opacity: 1;
 }
 
@@ -119,7 +119,7 @@
 
 .TextInput-wrapper--error,
 .TextInput-wrapper--error.TextInput-wrapper--disabled {
-  border-color: var(--brand-color-error-fg);
+  border-color: var(--brand-color-danger-fg);
 }
 
 /*
@@ -263,7 +263,7 @@
 
 .TextInput-leading-text--error,
 .TextInput-trailing-text--error {
-  border-color: var(--brand-color-error-fg);
+  border-color: var(--brand-color-danger-fg);
 }
 
 /* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
