@@ -59,9 +59,9 @@ test.describe('Visual Comparison: Testimonial', () => {
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
-  test('Testimonial / Wide With Background', async ({page}) => {
+  test('Testimonial / Expressive With Background', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-testimonial-examples--wide-with-background&viewMode=story',
+      'http://localhost:6006/iframe.html?args=&id=components-testimonial-examples--expressive-with-background&viewMode=story',
       {waitUntil: 'networkidle'},
     )
     await page.locator('body.sb-show-main').waitFor({state: 'visible'})
@@ -136,9 +136,9 @@ test.describe('Visual Comparison: Testimonial', () => {
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
-  test('Testimonial / Wide Layout', async ({page}) => {
+  test('Testimonial / Expressive', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-testimonial-features--wide-layout&viewMode=story',
+      'http://localhost:6006/iframe.html?args=&id=components-testimonial-features--expressive&viewMode=story',
       {waitUntil: 'networkidle'},
     )
     await page.locator('body.sb-show-main').waitFor({state: 'visible'})
@@ -147,9 +147,9 @@ test.describe('Visual Comparison: Testimonial', () => {
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
-  test('Testimonial / Wide Layout Dark', async ({page}) => {
+  test('Testimonial / Expressive Dark', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-testimonial-features--wide-layout-dark&viewMode=story',
+      'http://localhost:6006/iframe.html?args=&id=components-testimonial-features--expressive-dark&viewMode=story',
       {waitUntil: 'networkidle'},
     )
     await page.locator('body.sb-show-main').waitFor({state: 'visible'})
