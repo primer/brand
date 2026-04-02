@@ -7,13 +7,6 @@
   padding-inline: var(--base-size-24);
   padding-block: var(--base-size-32);
 
-  /*
-   * Overflow distances for item divider pseudo-elements.
-   * With Grid gutters disabled, the distance is just the root padding.
-   * On narrow viewports, dividers extend to both edges.
-   * On large viewports, dividers extend only to the right edge
-   * (the left side is bounded by the vertical column divider).
-   */
   --SectionIntroStacked-item-divider-overflow-start: var(--base-size-24);
   --SectionIntroStacked-item-divider-overflow-end: var(--base-size-24);
 }
@@ -32,7 +25,6 @@
   .SectionIntroStacked--variant-gridline {
     padding-inline: var(--base-size-64);
     padding-block: var(--base-size-64);
-    /* At large viewports, left overflow is 0 (vertical divider bounds the start) */
     --SectionIntroStacked-item-divider-overflow-start: 0px;
     --SectionIntroStacked-item-divider-overflow-end: calc(var(--brand-Grid-spacing-margin) + var(--base-size-64));
   }
@@ -107,20 +99,14 @@
 
 @media screen and (min-width: 63.25rem) {
   .SectionIntroStacked-items {
-    /* Optical alignment with adjacent content */
     position: relative;
     top: var(--base-size-2);
   }
 
   .SectionIntroStacked--variant-gridline .SectionIntroStacked-items {
-    /* Vertical divider between content and items columns */
     border-inline-start: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
-
-    /* Extend vertically to reach the top and bottom gridlines */
     margin-block: calc(-1 * var(--base-size-64));
     padding-block: 0;
-
-    /* Reset optical alignment for gridline variant */
     position: static;
     top: auto;
   }
@@ -132,11 +118,6 @@
   }
 }
 
-/*
- * Item dividers in gridline variant use pseudo-elements that extend
- * from the item's left edge to the right edge of the root component.
- * The negative `right` value compensates for Grid gutters and root padding.
- */
 .SectionIntroStacked--variant-gridline .SectionIntroStackedItem-item {
   border-block-end: none;
   position: relative;
@@ -198,12 +179,4 @@
 .SectionIntroStackedItem__icon {
   flex-shrink: 0;
   border-radius: var(--brand-borderRadius-medium);
-}
-
-.SectionIntroStackedItem__heading {
-  /* Heading styles are inherited from the Heading component */
-}
-
-.SectionIntroStackedItem__description {
-  /* Description styles are inherited from the Text component */
 }
