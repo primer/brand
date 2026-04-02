@@ -10,8 +10,6 @@ declare const styles: {
   readonly "SectionIntroStackedItem-item": string;
   readonly "SectionIntroStackedItem-item--with-icon": string;
   readonly "SectionIntroStackedItem__content": string;
-  readonly "SectionIntroStackedItem__description": string;
-  readonly "SectionIntroStackedItem__heading": string;
   readonly "SectionIntroStackedItem__icon": string;
   readonly "SectionIntroStackedItem__item-text": string;
   readonly "SectionIntroStackedItem__item-text--muted": string;
