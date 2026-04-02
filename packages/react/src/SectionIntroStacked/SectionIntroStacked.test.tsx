@@ -7,12 +7,6 @@ import {CpuIcon} from '@primer/octicons-react'
 
 expect.extend(toHaveNoViolations)
 
-jest.mock('../Grid', () => ({
-  Grid: Object.assign(({children}: {children: import('react').ReactNode}) => <div>{children}</div>, {
-    Column: ({children}: {children: import('react').ReactNode}) => <div>{children}</div>,
-  }),
-}))
-
 describe('SectionIntroStacked', () => {
   const mockHeading = 'Mock heading'
   const mockLinkText = 'Call to action'
