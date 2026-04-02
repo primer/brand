@@ -3,12 +3,19 @@ import type {StoryFn, Meta} from '@storybook/react'
 import {useTranslation} from 'react-i18next'
 import {CpuIcon, LightBulbIcon, HeartIcon} from '@primer/octicons-react'
 import {SectionIntroStacked} from '.'
+import {SectionIntroStackedVariants} from './SectionIntroStacked'
 
 export default {
   title: 'Components/SectionIntroStacked',
   component: SectionIntroStacked,
-  args: {},
+  args: {
+    variant: 'default',
+  },
   argTypes: {
+    variant: {
+      control: 'inline-radio',
+      options: [...SectionIntroStackedVariants],
+    },
     children: {
       table: {
         disable: true,

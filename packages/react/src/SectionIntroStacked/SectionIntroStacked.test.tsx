@@ -76,6 +76,36 @@ describe('SectionIntroStacked', () => {
     expect(getByTestId(mockTestId)).toHaveClass(customClass)
   })
 
+  it('renders the default variant without a variant class', () => {
+    const mockTestId = 'test'
+
+    const {getByTestId} = render(
+      <SectionIntroStacked data-testid={mockTestId}>
+        <SectionIntroStacked.Heading>Test heading</SectionIntroStacked.Heading>
+        <SectionIntroStacked.Items>
+          <SectionIntroStacked.Item>Item</SectionIntroStacked.Item>
+        </SectionIntroStacked.Items>
+      </SectionIntroStacked>,
+    )
+
+    expect(getByTestId(mockTestId)).not.toHaveClass('SectionIntroStacked--variant-gridline')
+  })
+
+  it('renders the gridline variant with the correct class', () => {
+    const mockTestId = 'test'
+
+    const {getByTestId} = render(
+      <SectionIntroStacked data-testid={mockTestId} variant="gridline">
+        <SectionIntroStacked.Heading>Test heading</SectionIntroStacked.Heading>
+        <SectionIntroStacked.Items>
+          <SectionIntroStacked.Item>Item</SectionIntroStacked.Item>
+        </SectionIntroStacked.Items>
+      </SectionIntroStacked>,
+    )
+
+    expect(getByTestId(mockTestId)).toHaveClass('SectionIntroStacked--variant-gridline')
+  })
+
   it('renders the correct default heading level', () => {
     const expectedTag = 'h2'
     const headingText = 'This is your heading'

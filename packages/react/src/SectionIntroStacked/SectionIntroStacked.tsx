@@ -3,7 +3,7 @@ import {clsx} from 'clsx'
 import {Grid} from '../Grid'
 import {Link, LinkProps} from '../Link'
 import {Heading, HeadingProps, defaultHeadingTag} from '../Heading'
-import {Text} from '../Text'
+import {Text, TextProps} from '../Text'
 import {Icon, IconProps} from '../Icon'
 import {useAnimation} from '../animation'
 
@@ -11,10 +11,17 @@ import styles from './SectionIntroStacked.module.css'
 
 import type {BaseProps} from '../component-helpers'
 
-export type SectionIntroStackedProps = React.HTMLAttributes<HTMLElement> & BaseProps<HTMLElement> & PropsWithChildren
+export const SectionIntroStackedVariants = ['default', 'gridline'] as const
+export type SectionIntroStackedVariant = (typeof SectionIntroStackedVariants)[number]
+
+export type SectionIntroStackedProps = React.HTMLAttributes<HTMLElement> &
+  BaseProps<HTMLElement> &
+  PropsWithChildren & {
+    variant?: SectionIntroStackedVariant
+  }
 
 const Root = forwardRef<HTMLElement, PropsWithChildren<SectionIntroStackedProps>>(
-  ({animate, className, children, style, ...props}, ref) => {
+  ({animate, className, children, style, variant = 'default', ...props}, ref) => {
     const {classes: animationClasses, styles: animationInlineStyles} = useAnimation(animate)
 
     const childrenArray = React.Children.toArray(children)
@@ -29,16 +36,19 @@ const Root = forwardRef<HTMLElement, PropsWithChildren<SectionIntroStackedProps>
         ref={ref}
         className={clsx(
           styles.SectionIntroStacked,
-
+          variant === 'gridline' && styles['SectionIntroStacked--variant-gridline'],
           animationClasses,
           className,
         )}
         {...props}
         style={{...animationInlineStyles, ...style}}
       >
-        <Grid fullWidth>
-          <Grid.Column span={{medium: 6}}>{otherChildren}</Grid.Column>
-          <Grid.Column span={{medium: 5}} start={{medium: 8}}>
+        <Grid fullWidth enableGutters={variant !== 'gridline'}>
+          <Grid.Column span={{large: 6}}>{otherChildren}</Grid.Column>
+          <Grid.Column
+            span={variant === 'gridline' ? {large: 6} : {large: 5}}
+            start={variant === 'gridline' ? {large: 7} : {large: 8}}
+          >
             {items}
           </Grid.Column>
         </Grid>
@@ -91,9 +101,11 @@ const _Heading = forwardRef(
   },
 )
 
-type SectionIntroStackedDescriptionProps = BaseProps<HTMLParagraphElement> & {
-  children: React.ReactNode | React.ReactNode[]
-}
+type SectionIntroStackedDescriptionProps = Omit<TextProps, 'as' | 'variant'> &
+  BaseProps<HTMLParagraphElement> & {
+    as?: 'p'
+    children: React.ReactNode | React.ReactNode[]
+  }
 
 const _Description = forwardRef(
   ({className, children, ...props}: SectionIntroStackedDescriptionProps, ref: Ref<HTMLParagraphElement>) => {
@@ -187,9 +199,11 @@ const ItemHeading = forwardRef(
   },
 )
 
-type SectionIntroStackedItemDescriptionProps = BaseProps<HTMLParagraphElement> & {
-  children: React.ReactNode | React.ReactNode[]
-}
+type SectionIntroStackedItemDescriptionProps = Omit<TextProps, 'as' | 'variant' | 'size'> &
+  BaseProps<HTMLParagraphElement> & {
+    as?: 'p'
+    children: React.ReactNode | React.ReactNode[]
+  }
 
 const ItemDescription = forwardRef(
   ({className, children, ...props}: SectionIntroStackedItemDescriptionProps, ref: Ref<HTMLParagraphElement>) => {

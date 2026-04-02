@@ -59,14 +59,14 @@ import {SectionIntroStacked} from '@primer/react-brand'
     <SectionIntroStacked.Link href="#">Sign up now</SectionIntroStacked.Link>
     <SectionIntroStacked.Items>
       <SectionIntroStacked.Item>
-        <SectionIntroStacked.ItemIcon icon={CpuIcon} color="green" />
+        <SectionIntroStacked.ItemIcon icon={CpuIcon} />
         <SectionIntroStacked.ItemHeading>Enhance your technical curriculum</SectionIntroStacked.ItemHeading>
         <SectionIntroStacked.ItemDescription>
           Elevate your lessons with GitHub's advanced tools and provide students access to current industry practices.
         </SectionIntroStacked.ItemDescription>
       </SectionIntroStacked.Item>
       <SectionIntroStacked.Item>
-        <SectionIntroStacked.ItemIcon icon={LightBulbIcon} color="green" />
+        <SectionIntroStacked.ItemIcon icon={LightBulbIcon} />
         <SectionIntroStacked.ItemHeading>Reinvigorate your teaching methods</SectionIntroStacked.ItemHeading>
         <SectionIntroStacked.ItemDescription>
           Use GitHub Classroom to automate feedback and manage coursework, which can make your sessions more dynamic and
@@ -74,7 +74,47 @@ import {SectionIntroStacked} from '@primer/react-brand'
         </SectionIntroStacked.ItemDescription>
       </SectionIntroStacked.Item>
       <SectionIntroStacked.Item>
-        <SectionIntroStacked.ItemIcon icon={HeartIcon} color="green" />
+        <SectionIntroStacked.ItemIcon icon={HeartIcon} />
+        <SectionIntroStacked.ItemHeading>Boost collaboration across campus</SectionIntroStacked.ItemHeading>
+        <SectionIntroStacked.ItemDescription>
+          Make it easier for students and educators to collaborate on projects and assignments.
+        </SectionIntroStacked.ItemDescription>
+      </SectionIntroStacked.Item>
+    </SectionIntroStacked.Items>
+  </SectionIntroStacked>
+</section>
+```
+
+### GridLine variant
+
+Use `variant="gridline"` to apply an alternative visual style with horizontal and vertical borders.
+
+```jsx live
+<section>
+  <SectionIntroStacked variant="gridline">
+    <SectionIntroStacked.Heading>Unlock a passion for learning with GitHub.</SectionIntroStacked.Heading>
+    <SectionIntroStacked.Description>
+      Elevate your lessons with GitHub's advanced tools and provide students access to current industry practices.
+    </SectionIntroStacked.Description>
+    <SectionIntroStacked.Link href="#">Sign up now</SectionIntroStacked.Link>
+    <SectionIntroStacked.Items>
+      <SectionIntroStacked.Item>
+        <SectionIntroStacked.ItemIcon icon={CpuIcon} />
+        <SectionIntroStacked.ItemHeading>Enhance your technical curriculum</SectionIntroStacked.ItemHeading>
+        <SectionIntroStacked.ItemDescription>
+          Elevate your lessons with GitHub's advanced tools and provide students access to current industry practices.
+        </SectionIntroStacked.ItemDescription>
+      </SectionIntroStacked.Item>
+      <SectionIntroStacked.Item>
+        <SectionIntroStacked.ItemIcon icon={LightBulbIcon} />
+        <SectionIntroStacked.ItemHeading>Reinvigorate your teaching methods</SectionIntroStacked.ItemHeading>
+        <SectionIntroStacked.ItemDescription>
+          Use GitHub Classroom to automate feedback and manage coursework, which can make your sessions more dynamic and
+          interactive.
+        </SectionIntroStacked.ItemDescription>
+      </SectionIntroStacked.Item>
+      <SectionIntroStacked.Item>
+        <SectionIntroStacked.ItemIcon icon={HeartIcon} />
         <SectionIntroStacked.ItemHeading>Boost collaboration across campus</SectionIntroStacked.ItemHeading>
         <SectionIntroStacked.ItemDescription>
           Make it easier for students and educators to collaborate on projects and assignments.
@@ -92,6 +132,7 @@ import {SectionIntroStacked} from '@primer/react-brand'
 | name        | type                       | default     | required | description                                           |
 | ----------- | -------------------------- | ----------- | -------- | ----------------------------------------------------- |
 | `children`  | `ReactNode`, `ReactNode[]` | `undefined` | `true`   | Content to include within the section intro component |
+| `variant`   | `'default'`, `'gridline'`  | `'default'` | `false`  | Sets the visual variant of the component.             |
 | `className` | `string`                   |             | `false`  | Sets a custom class on the root element               |
 | `id`        | `string`                   |             | `false`  | Sets a custom id on the root element                  |
 | `animate`   | `AnimateProps`             |             | `false`  | Animation configuration for the component             |
@@ -163,7 +204,7 @@ Optional icon displayed alongside item content.
 | name        | type     | default     | required | description                             |
 | ----------- | -------- | ----------- | -------- | --------------------------------------- |
 | `icon`      | `Icon`   | `undefined` | `true`   | The Octicon icon component to display   |
-| `color`     | `string` |             | `false`  | Color variant for the icon background   |
+| `color`     | `string` | `green`     | `false`  | Color variant for the icon background   |
 | `className` | `string` |             | `false`  | Sets a custom class on the root element |
 
 Forwards all props from the [Icon component](/components/Icon).
