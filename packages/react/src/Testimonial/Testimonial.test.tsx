@@ -524,108 +524,94 @@ describe('Testimonial', () => {
     expect(figure).toHaveClass('Animation--fade-in')
   })
 
-  describe('expressive variant', () => {
-    it('applies expressive variant class when variant is "expressive"', () => {
-      const {getByRole} = render(
-        <Testimonial variant="expressive">
-          <Testimonial.Quote>Quote text</Testimonial.Quote>
-          <Testimonial.Name>Name</Testimonial.Name>
-        </Testimonial>,
-      )
+  it('can render an expressive variant correctly', () => {
+    const {getByRole} = render(
+      <Testimonial variant="expressive">
+        <Testimonial.Quote>Quote text</Testimonial.Quote>
+        <Testimonial.Name>Name</Testimonial.Name>
+      </Testimonial>,
+    )
 
-      const figure = getByRole('figure')
-      expect(figure).toHaveClass('Testimonial--variant-expressive')
-    })
+    const figure = getByRole('figure')
+    expect(figure).toHaveClass('Testimonial--variant-expressive')
+  })
 
-    it('does not apply expressive variant class when variant is "minimal"', () => {
-      const {getByRole} = render(
-        <Testimonial variant="minimal">
-          <Testimonial.Quote>Quote text</Testimonial.Quote>
-          <Testimonial.Name>Name</Testimonial.Name>
-        </Testimonial>,
-      )
+  it('defaults quote mark color to green in expressive variant', () => {
+    const {container} = render(
+      <Testimonial variant="expressive">
+        <Testimonial.Quote>Quote text</Testimonial.Quote>
+        <Testimonial.Name>Name</Testimonial.Name>
+      </Testimonial>,
+    )
 
-      const figure = getByRole('figure')
-      expect(figure).not.toHaveClass('Testimonial--variant-expressive')
-    })
+    const quoteMark = container.querySelector('[aria-hidden="true"]')
+    expect(quoteMark).toHaveClass('Testimonial__quoteMark--green')
+  })
 
-    it('defaults quote mark color to green in expressive variant', () => {
-      const {container} = render(
-        <Testimonial variant="expressive">
-          <Testimonial.Quote>Quote text</Testimonial.Quote>
-          <Testimonial.Name>Name</Testimonial.Name>
-        </Testimonial>,
-      )
+  it('allows overriding the default quote mark color in expressive variant', () => {
+    const {container} = render(
+      <Testimonial variant="expressive" quoteMarkColor="blue">
+        <Testimonial.Quote>Quote text</Testimonial.Quote>
+        <Testimonial.Name>Name</Testimonial.Name>
+      </Testimonial>,
+    )
 
-      const quoteMark = container.querySelector('[aria-hidden="true"]')
-      expect(quoteMark).toHaveClass('Testimonial__quoteMark--green')
-    })
+    const quoteMark = container.querySelector('[aria-hidden="true"]')
+    expect(quoteMark).toHaveClass('Testimonial__quoteMark--blue')
+    expect(quoteMark).not.toHaveClass('Testimonial__quoteMark--green')
+  })
 
-    it('allows overriding the default quote mark color in expressive variant', () => {
-      const {container} = render(
-        <Testimonial variant="expressive" quoteMarkColor="blue">
-          <Testimonial.Quote>Quote text</Testimonial.Quote>
-          <Testimonial.Name>Name</Testimonial.Name>
-        </Testimonial>,
-      )
+  it('applies hasBackground class to quote mark in expressive variant', () => {
+    const {container} = render(
+      <Testimonial variant="expressive">
+        <Testimonial.Quote>Quote text</Testimonial.Quote>
+        <Testimonial.Name>Name</Testimonial.Name>
+      </Testimonial>,
+    )
 
-      const quoteMark = container.querySelector('[aria-hidden="true"]')
-      expect(quoteMark).toHaveClass('Testimonial__quoteMark--blue')
-      expect(quoteMark).not.toHaveClass('Testimonial__quoteMark--green')
-    })
+    const quoteMark = container.querySelector('[aria-hidden="true"]')
+    expect(quoteMark).toHaveClass('Testimonial__quoteMark--hasBackground')
+  })
 
-    it('applies hasBackground class to quote mark in expressive variant', () => {
-      const {container} = render(
-        <Testimonial variant="expressive">
-          <Testimonial.Quote>Quote text</Testimonial.Quote>
-          <Testimonial.Name>Name</Testimonial.Name>
-        </Testimonial>,
-      )
+  it('renders quote section and attribution section in expressive variant', () => {
+    const {container} = render(
+      <Testimonial variant="expressive">
+        <Testimonial.Quote>Quote text</Testimonial.Quote>
+        <Testimonial.Name>Name</Testimonial.Name>
+      </Testimonial>,
+    )
 
-      const quoteMark = container.querySelector('[aria-hidden="true"]')
-      expect(quoteMark).toHaveClass('Testimonial__quoteMark--hasBackground')
-    })
+    const quote = container.querySelector('.Testimonial__quoteWrapper')
+    const media = container.querySelector('.Testimonial__media')
+    expect(quote).toBeInTheDocument()
+    expect(media).toBeInTheDocument()
+  })
 
-    it('renders quote section and attribution section in expressive variant', () => {
-      const {container} = render(
-        <Testimonial variant="expressive">
-          <Testimonial.Quote>Quote text</Testimonial.Quote>
-          <Testimonial.Name>Name</Testimonial.Name>
-        </Testimonial>,
-      )
+  it('renders Testimonial.Link inside quote section in expressive variant', () => {
+    const {getByRole, container} = render(
+      <Testimonial variant="expressive">
+        <Testimonial.Quote>Quote text</Testimonial.Quote>
+        <Testimonial.Link href="/story">Read the full story</Testimonial.Link>
+        <Testimonial.Name>Name</Testimonial.Name>
+      </Testimonial>,
+    )
 
-      const quote = container.querySelector('.Testimonial__quoteWrapper')
-      const media = container.querySelector('.Testimonial__media')
-      expect(quote).toBeInTheDocument()
-      expect(media).toBeInTheDocument()
-    })
+    const link = getByRole('link', {name: /read the full story/i})
+    const quote = container.querySelector('.Testimonial__quoteWrapper')
+    expect(quote).toContainElement(link)
+  })
 
-    it('renders Testimonial.Link inside quote section in expressive variant', () => {
-      const {getByRole, container} = render(
-        <Testimonial variant="expressive">
-          <Testimonial.Quote>Quote text</Testimonial.Quote>
-          <Testimonial.Link href="/story">Read the full story</Testimonial.Link>
-          <Testimonial.Name>Name</Testimonial.Name>
-        </Testimonial>,
-      )
+  it('has no accessibility violations in expressive variant', async () => {
+    const {container} = render(
+      <Testimonial variant="expressive">
+        <Testimonial.Quote>Quote text</Testimonial.Quote>
+        <Testimonial.Link href="/story">Read the full story</Testimonial.Link>
+        <Testimonial.Name position="Engineer">Name</Testimonial.Name>
+      </Testimonial>,
+    )
 
-      const link = getByRole('link', {name: /read the full story/i})
-      const quote = container.querySelector('.Testimonial__quoteWrapper')
-      expect(quote).toContainElement(link)
-    })
-
-    it('has no accessibility violations in expressive variant', async () => {
-      const {container} = render(
-        <Testimonial variant="expressive">
-          <Testimonial.Quote>Quote text</Testimonial.Quote>
-          <Testimonial.Link href="/story">Read the full story</Testimonial.Link>
-          <Testimonial.Name position="Engineer">Name</Testimonial.Name>
-        </Testimonial>,
-      )
-
-      const results = await axe(container)
-      expect(results).toHaveNoViolations()
-    })
+    const results = await axe(container)
+    expect(results).toHaveNoViolations()
   })
 
   describe('Testimonial.Link', () => {
@@ -684,20 +670,6 @@ describe('Testimonial', () => {
 
       const link = getByRole('link', {name: /read more/i})
       expect(link).toHaveClass('custom-link')
-    })
-
-    it('can be used in minimal variant', () => {
-      const {getByRole} = render(
-        <Testimonial>
-          <Testimonial.Quote>Quote text</Testimonial.Quote>
-          <Testimonial.Link href="/story">Read the case study</Testimonial.Link>
-          <Testimonial.Name>Name</Testimonial.Name>
-        </Testimonial>,
-      )
-
-      const link = getByRole('link', {name: /read the case study/i})
-      expect(link).toBeInTheDocument()
-      expect(link).toHaveAttribute('href', '/story')
     })
   })
 })

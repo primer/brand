@@ -183,13 +183,13 @@
   flex-direction: column;
   align-items: flex-start;
   gap: var(--base-size-24);
-  margin-top: 0;
+  margin-block-start: 0;
   flex: 0 0 auto;
 }
 
 .Testimonial--variant-expressive .Testimonial-caption {
-  border-top: var(--brand-borderWidth-thin) solid var(--brand-color-border-default);
-  padding-top: var(--base-size-24);
+  border-block-start: var(--brand-borderWidth-thin) solid var(--brand-color-border-default);
+  padding-block-start: var(--base-size-24);
   width: 100%;
 }
 
