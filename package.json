@@ -48,6 +48,8 @@
   "devDependencies": {
     "@changesets/changelog-github": "0.6.0",
     "@changesets/cli": "2.30.0",
+    "@emnapi/core": "^1.9.2",
+    "@emnapi/runtime": "^1.9.2",
     "@eslint/eslintrc": "^3.3.5",
     "@github/prettier-config": "^0.0.6",
     "@types/node": "24.12.0",
