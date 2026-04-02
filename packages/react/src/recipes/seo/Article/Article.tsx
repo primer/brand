@@ -169,9 +169,9 @@ export function Article({
                           start={{xsmall: 1, large: 10}}
                           className={styles.asideCol}
                         >
-                          <aside className={styles.aside}>
+                          <nav aria-label="Table of contents" className={styles.aside}>
                             <ArticleToC content={content} />
-                          </aside>
+                          </nav>
                         </Grid.Column>
                         <Grid.Column span={{xsmall: 12, large: 9}} className={styles.articleCol}>
                           {lede && (

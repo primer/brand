@@ -4,7 +4,7 @@
 '@primer/brand-css': patch
 ---
 
-Upgraded dependencies to latest minor and patch versions.
+Upgraded dependencies to latest minor, patch, and select major versions.
 
 `@primer/react-brand`:
 
@@ -14,8 +14,9 @@ Upgraded dependencies to latest minor and patch versions.
 - `mini-css-extract-plugin`: 2.9.2 → 2.10.2
 - `postcss`: 8.5.1 → 8.5.8
 - `postcss-loader`: 8.1.1 → 8.2.1
-- `postcss-preset-env`: 10.1.3 → 10.6.1
+- `postcss-preset-env`: 10.1.3 → 11.2.0
 - `webpack`: 5.101.3 → 5.105.4
+- `webpack-cli`: 6.0.1 → 7.0.2
 
 `@primer/brand-primitives`:
 
