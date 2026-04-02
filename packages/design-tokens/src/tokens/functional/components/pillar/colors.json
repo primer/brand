@@ -15,7 +15,7 @@
           "dark": "var(--base-color-scale-coral-2)"
         },
         "green": {
-          "value": "var(--base-color-scale-green-5)",
+          "value": "var(--base-color-scale-green-6)",
           "dark": "var(--base-color-scale-green-2)"
         },
         "gray": {
