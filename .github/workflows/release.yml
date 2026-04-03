@@ -2,9 +2,12 @@ name: Release
 
 on:
   push:
-    # Ignore merge queue branches (matches primer/react configuration)
-    branches-ignore:
-      - 'gh-readonly-queue/**'
+    # Release branches only.
+    branches:
+      - 'main'
+      - 'next-minor'
+      - 'changeset-release/main'
+      - 'changeset-release/next-minor'
     tags-ignore:
       - '**'
   workflow_dispatch:
@@ -179,60 +182,6 @@ jobs:
         run: |
           npm exec --workspaces -- ../../packages/repo-configs/scripts/prepare-release-candidate
           npx changeset publish --tag next-minor
-        env:
-          GITHUB_TOKEN: ${{ steps.app-token.outputs.token }}
-
-      - name: Output canary version
-        uses: actions/github-script@v4.0.2
-        with:
-          script: |
-            const paths = ['react', 'design-tokens', 'css'].forEach((path) => {
-              const package = require(`${process.env.GITHUB_WORKSPACE}/packages/${path}/package.json`)
-              github.repos.createCommitStatus({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                sha: context.sha,
-                state: 'success',
-                context: `Published ${package.name}`,
-                description: package.version,
-                target_url: `https://unpkg.com/${package.name}@${package.version}/`
-              })
-            })
-
-  release-canary:
-    if: github.repository == 'primer/brand' && github.ref_name != 'main' && github.ref_name != 'next-minor' && github.ref_name != 'changeset-release/main' && github.ref_name != 'changeset-release/next-minor'
-
-    name: Canary
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-        with:
-          # This makes Actions fetch all Git history so that Changesets can generate changelogs with the correct commits
-          fetch-depth: 0
-          persist-credentials: false
-
-      - name: Set up Node
-        uses: actions/setup-node@v6
-        with:
-          node-version: 24.14.1
-
-      - name: Install dependencies
-        run: npm ci
-
-      - uses: actions/create-github-app-token@67018539274d69449ef7c02e8e71183d1719ab42
-        id: app-token
-        with:
-          app-id: ${{ vars.PRIMER_APP_ID_SHARED }}
-          private-key: ${{ secrets.PRIMER_APP_PRIVATE_KEY_SHARED }}
-
-      - name: Build
-        run: npm run build:lib
-
-      - name: Publish canary release
-        run: |
-          npm exec --workspaces -- ../../packages/repo-configs/scripts/prepare-canary
-          npx changeset publish --tag canary
         env:
           GITHUB_TOKEN: ${{ steps.app-token.outputs.token }}
 
