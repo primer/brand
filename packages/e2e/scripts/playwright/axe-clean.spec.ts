@@ -9,7 +9,7 @@ import {test, expect} from '@playwright/test'
 import {injectAxe, getViolations} from 'axe-playwright'
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-// eslint-disable-next-line import/extensions
+// eslint-disable-next-line import/extensions, import/no-unresolved
 import IndexData from '../../../../apps/storybook/storybook-static/index.json'
 
 type StoryIndex = {
@@ -122,7 +122,7 @@ function printViolations(violations: Result[]) {
   }
 }
 
-// Avoid flaky failures when Storybook or prior checks briefly overlap with axe.run.
+// prevents flaky failures when Storybook or prior checks briefly overlap with axe.run.
 async function getViolationsWithRetry(page: Page): Promise<Result[]> {
   const maxAttempts = 3
 
