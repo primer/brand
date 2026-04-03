@@ -3,7 +3,7 @@ module.exports = {
     shadow: {
       color: {
         start: {
-          value: 'var(--base-color-scale-green-5)',
+          value: 'var(--base-color-scale-green-6)',
           dark: 'var(--base-color-scale-green-2)',
         },
         end: {
