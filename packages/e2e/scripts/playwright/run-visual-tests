@@ -11,7 +11,7 @@ docker run --rm --ipc=host --platform linux/amd64 \
   "${IMAGE}" \
   /bin/bash -c "\
     cd /tests \
-    && npm ci \
+    && npx -y npm@11.6.2 ci \
     && npm run build:lib \
     && cd apps/storybook && NODE_ENV=test npx storybook build \
     && cd /tests \

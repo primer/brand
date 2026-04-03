@@ -24,6 +24,7 @@
     "packages/*",
     "apps/*"
   ],
+  "packageManager": "npm@11.6.2",
   "scripts": {
     "build": "npm run clean --workspaces --if-present && npm run build:lib && npm run build:next-docs && npm run build:storybook",
     "build:lib": "npm run build --workspace=packages/design-tokens --workspace=packages/react --workspace=packages/css",
@@ -75,7 +76,7 @@
     "typescript": "5.9.3"
   },
   "engines": {
-    "node": ">=24.0.0",
-    "npm": ">=8.0.0"
+    "node": "24.13.0",
+    "npm": "11.6.2"
   }
 }
