@@ -9,7 +9,7 @@ import {test, expect} from '@playwright/test'
 import {injectAxe, getViolations} from 'axe-playwright'
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-// eslint-disable-next-line import/extensions, import/no-unresolved
+// eslint-disable-next-line import/extensions
 import IndexData from '../../../../apps/storybook/storybook-static/index.json'
 
 type StoryIndex = {
@@ -122,6 +122,47 @@ function printViolations(violations: Result[]) {
   }
 }
 
+// Avoid flaky failures when Storybook or prior checks briefly overlap with axe.run.
+async function getViolationsWithRetry(page: Page): Promise<Result[]> {
+  const maxAttempts = 3
+
+  for (let attempt = 1; attempt <= maxAttempts; attempt++) {
+    await page.waitForFunction(
+      () => {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const axe = (window as any).axe
+        return !axe || !axe._running
+      },
+      undefined,
+      {timeout: 5000},
+    )
+
+    try {
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      return await getViolations(page, null, {
+        detailedReport: true,
+        detailedReportOptions: {
+          html: true,
+        },
+      })
+    } catch (error) {
+      const isAxeAlreadyRunning =
+        error instanceof Error &&
+        // eslint-disable-next-line i18n-text/no-en
+        error.message.includes('Axe is already running')
+
+      if (!isAxeAlreadyRunning || attempt === maxAttempts) {
+        throw error
+      }
+
+      await page.waitForTimeout(attempt * 250)
+    }
+  }
+
+  return []
+}
+
 const testsWithCustomDelay = {
   'components-subdomainnavbar--mobile-menu-open': 5000, // takes a while for the menu to open
   'components-hero-examples--custom-background-inline-end-padded-video': 5000, // recipe / example that features long animation sequence
@@ -175,28 +216,13 @@ for (const story of storybookRoutes) {
         'utf8',
       )
       // eslint-disable-next-line @typescript-eslint/no-shadow
-      page.evaluate(configSrc => {
+      await page.evaluate(configSrc => {
         window.eval(configSrc)
       }, configSrc)
     })
 
     test('it completes AXE page validation', async () => {
-      await page.evaluate(() => {
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        const axe = (window as any).axe
-        if (axe) {
-          axe._running = false
-        }
-      })
-
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore
-      let violations = await getViolations(page, null, {
-        detailedReport: true,
-        detailedReportOptions: {
-          html: true,
-        },
-      })
+      let violations = await getViolationsWithRetry(page)
 
       violations = violations.filter(violation => !shouldIgnoreViolation(violation, story))
 
