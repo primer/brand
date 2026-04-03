@@ -19,7 +19,7 @@ jobs:
       - name: Set up Node
         uses: actions/setup-node@v4
         with:
-          node-version: 24.13.0
+          node-version: 24.14.1
 
       - name: Show Node and npm versions
         run: node --version && npm --version
