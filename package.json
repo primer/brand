@@ -44,12 +44,12 @@
     "test": "npm run test --workspaces --if-present",
     "test:axe": "npm run test:axe --workspace=packages/e2e",
     "test:storybook": "npm run test:storybook --workspace=apps/storybook",
-    "test:visual": "npm run test:visual --workspace=packages/e2e",
-    "test:visual:rerun": "npm run test:visual:rerun --workspace=packages/e2e",
-    "test:visual:generate": "npm run test:visual:generate --workspace=packages/e2e",
-    "test:visual:update": "npm run test:visual:update --workspace=packages/e2e",
-    "test:visual:update:rerun": "npm run test:visual:update:rerun --workspace=packages/e2e",
-    "test:visual:update-snapshots": "npm run test:visual:update-snapshots --workspace=packages/e2e"
+    "test:visual": "npm run test:visual --workspace=packages/e2e --",
+    "test:visual:rerun": "npm run test:visual:rerun --workspace=packages/e2e --",
+    "test:visual:generate": "npm run test:visual:generate --workspace=packages/e2e --",
+    "test:visual:update": "npm run test:visual:update --workspace=packages/e2e --",
+    "test:visual:update:rerun": "npm run test:visual:update:rerun --workspace=packages/e2e --",
+    "test:visual:update-snapshots": "npm run test:visual:update-snapshots --workspace=packages/e2e --"
   },
   "devDependencies": {
     "@changesets/changelog-github": "0.6.0",
