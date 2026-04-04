@@ -118,6 +118,21 @@ Use `Stack` to help position multiple, adjacent Testimonials alongside one anoth
 </Stack>
 ```
 
+Use the `expressive` variant to place the quote on the left and the attribution on the right.
+
+```jsx live
+<Testimonial variant="expressive">
+  <Testimonial.Quote>
+    GitHub helps us ensure that we have our security controls baked into our pipelines all the way from the first line
+    of code we&apos;re writing.
+  </Testimonial.Quote>
+  <Testimonial.Name position="Staff Security Engineer">David Ross</Testimonial.Name>
+  <Testimonial.Logo>
+    <img alt="GitHub Logo" src="https://github.githubassets.com/images/modules/logos_page/GitHub-Logo.png" width={60} />
+  </Testimonial.Logo>
+</Testimonial>
+```
+
 ### Position
 
 Pass additional content about the testimonial provider using `position`.
@@ -138,15 +153,16 @@ Pass additional content about the testimonial provider using `position`.
 
 `Testimonial` passes contextual data to its child inputs, labels, validation messaging and more.
 
-| Name             | Type                              |   Default   | Description                                   |
-| :--------------- | :-------------------------------- | :---------: | :-------------------------------------------- |
-| `children`       | <TestimonialChildrenProp />       |             | Valid child nodes                             |
-| `className`      | `string`                          |             | Sets a custom class                           |
-| `id`             | `string`                          |             | Sets a custom id                              |
-| `ref`            | `React.RefObject`                 |             | Forward a Ref to the underlying DOM node      |
-| `size`           | <TestimonialSizeProp />           |  `'small'`  | Set size of quote's text                      |
-| `quoteMarkColor` | <TestimonialQuoteMarkColorProp /> | `'default'` | Color or gradient fill of the the quote mark. |
-| `variant`        | <TestimonialVariantProp />        | `'minimal'` | Alternative visual appearance                 |
+| Name             | Type                              |   Default   | Description                                             |
+| :--------------- | :-------------------------------- | :---------: | :------------------------------------------------------ |
+| `children`       | <TestimonialChildrenProp />       |             | Valid child nodes                                       |
+| `className`      | `string`                          |             | Sets a custom class                                     |
+| `id`             | `string`                          |             | Sets a custom id                                        |
+| `ref`            | `React.RefObject`                 |             | Forward a Ref to the underlying DOM node                |
+| `size`           | <TestimonialSizeProp />           |  `'small'`  | Set size of quote's text                                |
+| `quoteMarkColor` | <TestimonialQuoteMarkColorProp /> | `'default'` | Color or gradient fill of the the quote mark.           |
+| `variant`        | <TestimonialVariantProp />        | `'minimal'` | Alternative visual appearance.                          |
+| `hasBorder`      | `boolean`                         |   `true`    | Applies an optional border where a variant supports it. |
 
 <h3 id="Testimonial-name">
   Testimonial.Name <Label>Required</Label>

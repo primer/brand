@@ -4,15 +4,13 @@ import React, {
   forwardRef,
   SVGProps,
   CSSProperties,
-  useMemo,
-  useCallback,
   ComponentPropsWithRef,
 } from 'react'
 import {clsx} from 'clsx'
 import {BaseProps} from '../component-helpers'
 import {Text, Avatar as BaseAvatar, useAnimation} from '../'
 import type {AvatarProps} from '../'
-import findElementInChildren from '../findElementInChildren'
+import {Link, type LinkProps} from '../Link'
 
 import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/testimonial/base.css'
 import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/testimonial/colors-with-modes.css'
@@ -25,7 +23,7 @@ type TestimonialSize = 'small' | 'large'
 export const TestimonialQuoteMarkColors = [...Colors, ...BiColorGradients] as const
 export const defaultQuoteMarkColor = TestimonialQuoteMarkColors[0]
 
-export const TestimonialVariants = ['subtle', 'default', 'minimal'] as const
+export const TestimonialVariants = ['subtle', 'default', 'minimal', 'expressive'] as const
 type TestimonialVariant = (typeof TestimonialVariants)[number]
 export const defaultTestimonialVariant: TestimonialVariant = 'minimal'
 
@@ -62,7 +60,7 @@ export type TestimonialProps = {
  */
 function TestimonialBase(
   {
-    quoteMarkColor = 'default',
+    quoteMarkColor,
     animate,
     className,
     children,
@@ -75,6 +73,31 @@ function TestimonialBase(
   ref,
 ) {
   const {classes: animationClasses, styles: animationInlineStyles} = useAnimation(animate)
+
+  const resolvedQuoteMarkColor = quoteMarkColor ?? (variant === 'expressive' ? 'green' : 'default')
+
+  const quoteMark = (
+    <div
+      aria-hidden="true"
+      className={clsx(
+        styles['Testimonial__quoteMark'],
+        styles[`Testimonial__quoteMark--${resolvedQuoteMarkColor}`],
+        variant === 'expressive' && styles['Testimonial__quoteMark--hasBackground'],
+      )}
+    >
+      <span className={styles['Testimonial__quoteMarkGlyph']}>&ldquo;</span>
+    </div>
+  )
+
+  const childrenArray = React.Children.toArray(children)
+  const findChild = (type: React.ElementType) =>
+    childrenArray.find(child => React.isValidElement(child) && child.type === type)
+
+  const quoteChild = findChild(Quote)
+  const actionChild = findChild(_Link)
+  const avatarChild = findChild(Avatar)
+  const logoChild = findChild(Logo)
+  const nameChild = findChild(Name)
 
   return (
     <figure
@@ -90,45 +113,19 @@ function TestimonialBase(
       style={{
         ...animationInlineStyles,
         ...style,
-        ['--testimonial-accent-color' as keyof CSSProperties]: quoteMarkColor,
+        ['--testimonial-accent-color' as keyof CSSProperties]: resolvedQuoteMarkColor,
       }}
       {...rest}
     >
-      <div
-        aria-hidden="true"
-        className={clsx(styles['Testimonial__quoteMark'], styles[`Testimonial__quoteMark--${quoteMarkColor}`])}
-      >
-        “
+      <div className={styles['Testimonial__quoteWrapper']}>
+        {quoteMark}
+        {quoteChild}
+        {actionChild}
       </div>
-      {React.Children.map(children, child => {
-        if (React.isValidElement(child)) {
-          if (child.type === Quote) {
-            return child
-          }
-        }
-      })}
-      <div className={clsx(styles['Testimonial__media'])}>
-        {React.Children.map(children, child => {
-          if (React.isValidElement(child)) {
-            if (child.type === Avatar) {
-              return child
-            }
-          }
-        })}
-        {React.Children.map(children, child => {
-          if (React.isValidElement(child)) {
-            if (child.type === Logo) {
-              return child
-            }
-          }
-        })}
-        {React.Children.map(children, child => {
-          if (React.isValidElement(child)) {
-            if (child.type === Name) {
-              return child
-            }
-          }
-        })}
+      <div className={styles['Testimonial__media']}>
+        {avatarChild}
+        {logoChild}
+        {nameChild}
       </div>
     </figure>
   )
@@ -143,29 +140,9 @@ const Root = forwardRef(TestimonialBase)
 type QuoteProps = React.HTMLAttributes<HTMLElement> & BaseProps<HTMLElement>
 
 function QuoteBase({children, className}: QuoteProps, ref) {
-  const childrenArray = useMemo(() => React.Children.toArray(children), [children])
-
-  // TODO: when Firefox supports :has() selector, we should use that instead of JS
-  const getConditionalVariant = useCallback(() => {
-    if (findElementInChildren(children, 'b') || findElementInChildren(children, 'em')) {
-      return 'muted'
-    }
-    return 'default'
-  }, [children])
-
-  const defaultColor = childrenArray.length === 1 ? 'default' : getConditionalVariant()
-
   return (
     <blockquote ref={ref}>
-      <Text
-        className={clsx(
-          styles['Testimonial-quote'],
-          defaultColor === 'muted' && styles['Testimonial-quote--muted'],
-          className,
-        )}
-      >
-        {children}
-      </Text>
+      <Text className={clsx(styles['Testimonial-quote'], className)}>{children}</Text>
     </blockquote>
   )
 }
@@ -241,6 +218,16 @@ function _Avatar({size, ...rest}: AvatarProps) {
 const Avatar = _Avatar
 
 /**
+ * Testimonial link child element
+ * <Testimonial.Link>
+ */
+function _LinkBase({className, ...rest}: LinkProps, _ref) {
+  return <Link className={clsx(styles['Testimonial-link'], className)} {...rest} size="medium" variant="accent" />
+}
+
+const _Link = forwardRef(_LinkBase)
+
+/**
  * Use Testimonial to display a quote from a customer or user.
  * @see https://primer.style/brand/components/Testimonial
  */
@@ -249,4 +236,5 @@ export const Testimonial = Object.assign(Root, {
   Name,
   Avatar,
   Logo,
+  Link: _Link,
 })
