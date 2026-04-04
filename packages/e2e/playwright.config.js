@@ -3,9 +3,10 @@ const config = {
   testDir: '../../packages/react',
   testMatch: /.*\.visual.spec\.ts/,
   outputDir: './playwright-test-results',
-  workers: process.env.CI ? 16 : Math.max(4, Math.min(6, require('os').cpus().length / 2)),
+  workers:
+    Number(process.env.VRT_WORKERS) || (process.env.CI ? 8 : Math.max(4, Math.min(6, require('os').cpus().length / 2))),
   fullyParallel: true,
-  retries: process.env.CI ? 3 : 1,
+  retries: process.env.CI ? 1 : 0,
   timeout: 15000,
   maxFailures: 2,
   use: {
