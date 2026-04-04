@@ -2,11 +2,17 @@ name: Release
 
 on:
   push:
-    # Ignore merge queue branches (matches primer/react configuration)
-    branches-ignore:
-      - 'gh-readonly-queue/**'
+    # Release branches only.
+    branches:
+      - 'main'
+      - 'next-minor'
+      - 'changeset-release/main'
+      - 'changeset-release/next-minor'
     tags-ignore:
       - '**'
+  pull_request:
+    # Canary releases are opt-in via the "release canary" label.
+    types: [labeled]
   workflow_dispatch:
 
 concurrency:
@@ -200,36 +206,96 @@ jobs:
             })
 
   release-canary:
-    if: github.repository == 'primer/brand' && github.ref_name != 'main' && github.ref_name != 'next-minor' && github.ref_name != 'changeset-release/main' && github.ref_name != 'changeset-release/next-minor'
-
+    # Runs only when all of the following are true:
+    # - Event is a pull request label event for "release canary"
+    # - PR is currently open
+    # - PR branch comes from this repository (not a fork)
+    # - PR head branch is not one of the release branches
+    if: >-
+      github.event_name == 'pull_request' &&
+      github.repository == 'primer/brand' &&
+      github.event.action == 'labeled' &&
+      github.event.label.name == 'release canary' &&
+      github.event.pull_request.state == 'open' &&
+      github.event.pull_request.head.repo.full_name == github.repository &&
+      github.head_ref != 'main' &&
+      github.head_ref != 'next-minor' &&
+      github.head_ref != 'changeset-release/main' &&
+      github.head_ref != 'changeset-release/next-minor'
     name: Canary
     runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: write
+      issues: write
+      pull-requests: write
+      checks: write
+      statuses: write
     steps:
+      # Re-check the live PR state and labels to prevent stale event payloads
+      # or workflow re-runs.
+      - name: Verify canary publish is valid
+        id: canary-gate
+        uses: actions/github-script@v4.0.2
+        with:
+          script: |
+            const labelName = 'release canary'
+            const {owner, repo} = context.repo
+            const pull_number = context.payload.pull_request.number
+
+            const {data: pullRequest} = await github.pulls.get({
+              owner,
+              repo,
+              pull_number
+            })
+
+            const hasLabel = pullRequest.labels.some((label) => label.name === labelName)
+            const isOpen = pullRequest.state === 'open'
+            const shouldPublish = hasLabel && isOpen
+
+            core.setOutput('should_publish', shouldPublish ? 'true' : 'false')
+
+            if (shouldPublish) {
+              core.info(`Canary publish is authorized for PR #${pull_number}`)
+              return
+            }
+
+            core.info(`Skipping canary publish because PR #${pull_number} is ${pullRequest.state} or missing label "${labelName}"`)
+
       - name: Checkout repository
+        if: steps.canary-gate.outputs.should_publish == 'true'
         uses: actions/checkout@v4
         with:
-          # This makes Actions fetch all Git history so that Changesets can generate changelogs with the correct commits
+          # Pin to the labeled-event head SHA so publish and status refer to the same commit.
+          repository: ${{ github.event.pull_request.head.repo.full_name }}
+          ref: ${{ github.event.pull_request.head.sha }}
           fetch-depth: 0
           persist-credentials: false
 
       - name: Set up Node
+        if: steps.canary-gate.outputs.should_publish == 'true'
         uses: actions/setup-node@v6
         with:
           node-version: 24.14.1
 
       - name: Install dependencies
+        if: steps.canary-gate.outputs.should_publish == 'true'
         run: npm ci
 
       - uses: actions/create-github-app-token@67018539274d69449ef7c02e8e71183d1719ab42
+        if: steps.canary-gate.outputs.should_publish == 'true'
         id: app-token
         with:
           app-id: ${{ vars.PRIMER_APP_ID_SHARED }}
           private-key: ${{ secrets.PRIMER_APP_PRIVATE_KEY_SHARED }}
 
       - name: Build
+        if: steps.canary-gate.outputs.should_publish == 'true'
         run: npm run build:lib
 
       - name: Publish canary release
+        id: publish-canary
+        if: steps.canary-gate.outputs.should_publish == 'true'
         run: |
           npm exec --workspaces -- ../../packages/repo-configs/scripts/prepare-canary
           npx changeset publish --tag canary
@@ -237,18 +303,52 @@ jobs:
           GITHUB_TOKEN: ${{ steps.app-token.outputs.token }}
 
       - name: Output canary version
+        if: steps.canary-gate.outputs.should_publish == 'true'
         uses: actions/github-script@v4.0.2
         with:
           script: |
+            const sha = context.payload.pull_request.head.sha
             const paths = ['react', 'design-tokens', 'css'].forEach((path) => {
               const package = require(`${process.env.GITHUB_WORKSPACE}/packages/${path}/package.json`)
               github.repos.createCommitStatus({
                 owner: context.repo.owner,
                 repo: context.repo.repo,
-                sha: context.sha,
+                sha,
                 state: 'success',
                 context: `Published ${package.name}`,
                 description: package.version,
                 target_url: `https://unpkg.com/${package.name}@${package.version}/`
               })
             })
+
+      - name: Remove canary label on success
+        # Treat the label as a one-time publish request. Maintainers can
+        # re-add it later when they explicitly want a fresh canary.
+        if: always() && steps.canary-gate.outputs.should_publish == 'true' && steps.publish-canary.outcome == 'success'
+        uses: actions/github-script@v4.0.2
+        with:
+          script: |
+            const labelName = 'release canary'
+            const {owner, repo} = context.repo
+            const issue_number = context.payload.pull_request.number
+
+            try {
+              await github.issues.removeLabel({
+                owner,
+                repo,
+                issue_number,
+                name: labelName
+              })
+              core.info(`Removed label "${labelName}" from PR #${issue_number}`)
+            } catch (error) {
+              if (error.status === 404) {
+                core.info(`Label "${labelName}" was already removed from PR #${issue_number}`)
+                return
+              }
+
+              throw error
+            }
+
+      - name: Skip canary publish
+        if: steps.canary-gate.outputs.should_publish != 'true'
+        run: echo 'Skipping canary because the PR is closed or no longer has the "release canary" label.'
