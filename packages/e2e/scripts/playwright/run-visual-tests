@@ -2,20 +2,19 @@
 set -euo pipefail
 
 REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../../../.." && pwd)"
-SKIP_BUILD="${SKIP_BUILD:-0}"
-SKIP_STORYBOOK_BUILD="${SKIP_STORYBOOK_BUILD:-0}"
 
 cd "${REPO_ROOT}"
-if [[ "${SKIP_BUILD}" != "1" ]]; then
-  npm run build:lib
-fi
+npm run build:lib
 
-if [[ "${SKIP_STORYBOOK_BUILD}" != "1" ]]; then
-  cd "${REPO_ROOT}/apps/storybook"
-  NODE_ENV=test npx storybook build
-fi
+cd "${REPO_ROOT}/apps/storybook"
+NODE_ENV=test npx storybook build
 
 cd "${REPO_ROOT}/packages/e2e"
+if [[ -z "${PW_CHROME_EXECUTABLE_PATH:-}" ]]; then
+  echo "Installing Playwright Chrome browser..."
+  npx playwright install chrome
+fi
+
 PLAYWRIGHT_COMMAND=(npx playwright test)
 if [[ $# -gt 0 ]]; then
   # Convenience: allow passing a plain test title string without --grep.
@@ -43,6 +42,6 @@ if [[ $# -gt 0 ]]; then
 fi
 printf -v PLAYWRIGHT_COMMAND_ESCAPED '%q ' "${PLAYWRIGHT_COMMAND[@]}"
 npx start-server-and-test \
-  "npx http-server ${REPO_ROOT}/apps/storybook/storybook-static -p 6006" \
+  "npx http-server \"${REPO_ROOT}/apps/storybook/storybook-static\" -p 6006" \
   6006 \
-  "cd ${REPO_ROOT}/packages/e2e && ${PLAYWRIGHT_COMMAND_ESCAPED}"
+  "cd \"${REPO_ROOT}/packages/e2e\" && ${PLAYWRIGHT_COMMAND_ESCAPED}"
