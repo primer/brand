@@ -47,7 +47,7 @@ test.describe('Visual Comparison: TextCursorAnimation', () => {
     )
     await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
-    await page.waitForTimeout(4000)
+    await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 

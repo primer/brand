@@ -131,16 +131,8 @@ const waitForTimeoutLookup = {
   'components-videoplayer-features--tooltip-visible-on-focus': 5000, // for video metadata to load
   'components-hero-features-images-and-videos--with-video-block-end-default': 5000, // for video metadata to load
   'components-hero-features-images-and-videos--with-video-inline-end': 5000, // for video metadata to load
-  'components-forms-textarea--default': 2000, // for textarea font metrics and right-edge rendering to settle
-  'components-forms-textarea-features--with-form-control': 2000, // for textarea font metrics and right-edge rendering to settle
-  'components-forms-formcontrol--textarea-playground': 2000, // for textarea font metrics and right-edge rendering to settle
   'recipes-flextemplate-flextemplate--default': 4000, // for video metadata to load
   'components-textcursoranimation--playground': 4000, // for the animation to complete
-  'components-textcursoranimation-features--animated-with-long-delay': 4000, // for the animation to complete
-  'components-subnav-features--narrow-anchor-nav-variant': 2500, // for nav intersection observers and sticky state to settle
-  'components-subnav-features--narrow-anchor-nav-variant-menu-open': 2500, // for nav intersection observers and menu-open layout to settle
-  'recipes-feature-previews-level-1--level-one-side-by-side': 3000, // for full-page height and form widget regions to settle
-  'components-accordion-features--toggle-colors': 1500, // for layout stabilization before full-page capture
   'recipes-flextemplate-flexsection--default': 1000, // longer load time
   'components-subnav-features--delayed-active-link': 2000, // because the story sets an initial delay
 }

@@ -1,3 +1,6 @@
+const pinnedChromeExecutablePath = process.env.PW_CHROME_EXECUTABLE_PATH
+const chromeLaunchArgs = ['--disable-dev-shm-usage', '--disable-extensions', '--no-sandbox']
+
 const config = {
   reporter: [['html', {open: 'never'}]],
   testDir: '../../packages/react',
@@ -12,15 +15,17 @@ const config = {
   use: {
     screenshot: 'only-on-failure',
     headless: true,
-    // Use Chrome instead of Chrome for Testing to get H.264 codec support for video tests
-    channel: 'chrome',
+    // CI can pin an exact Chrome binary path for deterministic rendering.
+    // Fallback to channel "chrome" for local development.
+    ...(pinnedChromeExecutablePath ? {} : {channel: 'chrome'}),
     env: {
       NODE_ENV: 'test',
     },
     actionTimeout: process.env.CI ? 15000 : 10000,
     navigationTimeout: process.env.CI ? 15000 : 10000,
     launchOptions: {
-      args: ['--disable-dev-shm-usage', '--disable-extensions', '--no-sandbox'],
+      ...(pinnedChromeExecutablePath ? {executablePath: pinnedChromeExecutablePath} : {}),
+      args: chromeLaunchArgs,
     },
   },
   expect: {
