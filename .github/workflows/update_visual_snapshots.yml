@@ -49,7 +49,7 @@ jobs:
       - name: Regenerate specs and update snapshots
         run: npm run test:visual:update-snapshots --workspace=packages/e2e
         env:
-          PW_CHROME_EXECUTABLE_PATH: ${{ steps.setup-chrome.outputs.chrome-path }}
+          PLAYWRIGHT_CHROME_PATH: ${{ steps.setup-chrome.outputs.chrome-path }}
 
       - uses: stefanzweifel/git-auto-commit-action@v4
         with:

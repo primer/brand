@@ -1,4 +1,4 @@
-const pinnedChromeExecutablePath = process.env.PW_CHROME_EXECUTABLE_PATH
+const playwrightChromePath = process.env.PLAYWRIGHT_CHROME_PATH
 const chromeLaunchArgs = ['--disable-dev-shm-usage', '--disable-extensions', '--no-sandbox']
 
 const config = {
@@ -17,14 +17,14 @@ const config = {
     headless: true,
     // CI can pin an exact Chrome binary path for deterministic rendering.
     // Fallback to channel "chrome" for local development.
-    ...(pinnedChromeExecutablePath ? {} : {channel: 'chrome'}),
+    ...(playwrightChromePath ? {} : {channel: 'chrome'}),
     env: {
       NODE_ENV: 'test',
     },
     actionTimeout: process.env.CI ? 15000 : 10000,
     navigationTimeout: process.env.CI ? 15000 : 10000,
     launchOptions: {
-      ...(pinnedChromeExecutablePath ? {executablePath: pinnedChromeExecutablePath} : {}),
+      ...(playwrightChromePath ? {executablePath: playwrightChromePath} : {}),
       args: chromeLaunchArgs,
     },
   },

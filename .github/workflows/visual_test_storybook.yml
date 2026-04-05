@@ -45,7 +45,7 @@ jobs:
         id: playwright-step
         run: npm run test:visual --workspace=packages/e2e
         env:
-          PW_CHROME_EXECUTABLE_PATH: ${{ steps.setup-chrome.outputs.chrome-path }}
+          PLAYWRIGHT_CHROME_PATH: ${{ steps.setup-chrome.outputs.chrome-path }}
         continue-on-error: true
 
       - name: Upload error screenshots
