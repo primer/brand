@@ -2,7 +2,7 @@ name: Update visual snapshots
 
 env:
   NODE_ENV: test
-  PINNED_CHROME_VERSION: 146.0.7680.178
+  PINNED_CHROME_VERSION: 146.0.7680.165
 
 on:
   pull_request:
