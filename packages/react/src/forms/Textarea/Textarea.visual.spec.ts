@@ -13,7 +13,7 @@ test.describe('Visual Comparison: Textarea', () => {
     })
     await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
-    await page.waitForTimeout(500)
+    await page.waitForTimeout(2000)
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
@@ -35,7 +35,7 @@ test.describe('Visual Comparison: Textarea', () => {
     )
     await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
-    await page.waitForTimeout(500)
+    await page.waitForTimeout(2000)
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
