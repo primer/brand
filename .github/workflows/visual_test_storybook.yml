@@ -3,20 +3,49 @@ name: Visual test
 on:
   pull_request:
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   visual-test:
     if: ${{ github.repository == 'primer/brand' }}
     name: Storybook
-    runs-on: ubuntu-latest-16-cores
+    runs-on: macos-latest
     env:
       NODE_ENV: test
+      PINNED_CHROME_VERSION: '146'
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24.14.1
+
+      - name: Cache dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Set up pinned Chrome
+        id: setup-chrome
+        uses: browser-actions/setup-chrome@v2
+        with:
+          chrome-version: ${{ env.PINNED_CHROME_VERSION }}
+
       - name: Run visual tests
         id: playwright-step
-        run: cd packages/e2e && bash scripts/playwright/run-visual-tests
+        run: npm run test:visual --workspace=packages/e2e
+        env:
+          PLAYWRIGHT_CHROME_PATH: ${{ steps.setup-chrome.outputs.chrome-path }}
         continue-on-error: true
 
       - name: Upload error screenshots

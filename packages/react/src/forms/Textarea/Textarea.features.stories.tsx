@@ -2,6 +2,7 @@ import React from 'react'
 import type {Meta, StoryFn} from '@storybook/react'
 import {Textarea} from '.'
 import {Stack, FormControl} from '../../'
+import styles from './Textarea.stories.module.css'
 
 export default {
   title: 'Components/Forms/Textarea/Features',
@@ -18,7 +19,7 @@ export const Validation: StoryFn<typeof Textarea> = () => (
 export const WithFormControl: StoryFn<typeof Textarea> = () => (
   <FormControl>
     <FormControl.Label>Description</FormControl.Label>
-    <Textarea />
+    <Textarea className={styles.textareaStoryFixedWidth} />
   </FormControl>
 )
 WithFormControl.storyName = 'w/ labels'
