@@ -21,15 +21,15 @@ jobs:
       labels: ubuntu-latest-16-cores
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Set up Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           node-version: '24.14.1'
 
       - name: Caching dependencies
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: ~/.npm
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
@@ -46,11 +46,11 @@ jobs:
         run: cd ./packages/react && npm pack
 
       - name: Configuring Remix.run
-        run: npx create-remix@latest ./${{env.TEST_FOLDER}} --yes --debug --no-git-init
+        run: npx create-remix@2.17.4 ./${{env.TEST_FOLDER}} --yes --debug --no-git-init
 
       - name: Retrieving package version
         id: package-version
-        uses: martinbeentjes/npm-get-version-action@7aa1d82604bb2dbe377a64ca35e692e6fe333c9c
+        uses: martinbeentjes/npm-get-version-action@3cf273023a0dda27efcd3164bdfb51908dd46a5b # v1.3.1
         with:
           path: packages/repo-configs
 
@@ -58,7 +58,7 @@ jobs:
         run: |
           cd ${{env.TEST_FOLDER}} 
           cp ../packages/react/primer-react-brand-${{ steps.package-version.outputs.current-version}}.tgz ./
-          npm install primer-react-brand-${{ steps.package-version.outputs.current-version}}.tgz vite-plugin-cjs-interop
+          npm install primer-react-brand-${{ steps.package-version.outputs.current-version}}.tgz vite-plugin-cjs-interop@3.2.0
 
       - name: Prefer ESM imports
         run: |

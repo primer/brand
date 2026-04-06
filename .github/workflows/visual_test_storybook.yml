@@ -17,15 +17,15 @@ jobs:
       PINNED_CHROME_VERSION: '146'
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Set up Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           node-version: 24.14.1
 
       - name: Cache dependencies
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: ~/.npm
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
@@ -37,7 +37,7 @@ jobs:
 
       - name: Set up pinned Chrome
         id: setup-chrome
-        uses: browser-actions/setup-chrome@v2
+        uses: browser-actions/setup-chrome@4f8e94349a351df0f048634f25fec36c3c91eded # v2.1.1
         with:
           chrome-version: ${{ env.PINNED_CHROME_VERSION }}
 
@@ -49,14 +49,14 @@ jobs:
         continue-on-error: true
 
       - name: Upload error screenshots
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         if: steps.playwright-step.outcome != 'success'
         with:
           name: playwright-test-results
           path: packages/e2e/playwright-test-results
 
       - name: Upload test results
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         if: ${{ !cancelled() }}
         with:
           name: playwright-report
@@ -65,7 +65,7 @@ jobs:
 
       - name: Comment on the PR about visual differences
         if: steps.playwright-step.outcome != 'success'
-        uses: phulsechinmay/rewritable-pr-comment@v0.2.1
+        uses: phulsechinmay/rewritable-pr-comment@a1b041997fa84ec3e524ee9dee5ba0b5f4e73604 # v0.3.0
         with:
           message: |
             ### ⚠️ Visual differences found
@@ -91,7 +91,7 @@ jobs:
 
       - name: Comment on the PR about no visual differences
         if: steps.playwright-step.outcome == 'success'
-        uses: phulsechinmay/rewritable-pr-comment@v0.2.1
+        uses: phulsechinmay/rewritable-pr-comment@a1b041997fa84ec3e524ee9dee5ba0b5f4e73604 # v0.3.0
         with:
           message: |
             ### 🟢 No visual differences found
