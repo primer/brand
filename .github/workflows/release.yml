@@ -33,7 +33,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           # This makes Actions fetch all Git history so that Changesets can generate changelogs with the correct commits
           fetch-depth: 0
@@ -47,7 +47,7 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - uses: actions/create-github-app-token@67018539274d69449ef7c02e8e71183d1719ab42
+      - uses: actions/create-github-app-token@f8d387b68d61c58ab83c6c016672934102569859 # v3.0.0
         id: app-token
         with:
           app-id: ${{ vars.PRIMER_APP_ID_SHARED }}
@@ -60,7 +60,7 @@ jobs:
         id: changesets
         # Uses SHA for security hardening
         # Please keep this up-to-date if you're changing the SHA below
-        uses: changesets/action@e0145edc7d9d8679003495b11f87bd8ef63c0cba
+        uses: changesets/action@6a0a831ff30acef54f2c6aa1cbbc1096b066edaf # v1.7.0
         with:
           title: Release tracking
           publish: npm run release
@@ -73,7 +73,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           # This makes Actions fetch all Git history so that Changesets can generate changelogs with the correct commits
           fetch-depth: 0
@@ -87,7 +87,7 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - uses: actions/create-github-app-token@67018539274d69449ef7c02e8e71183d1719ab42
+      - uses: actions/create-github-app-token@f8d387b68d61c58ab83c6c016672934102569859 # v3.0.0
         id: app-token
         with:
           app-id: ${{ vars.PRIMER_APP_ID_SHARED }}
@@ -100,7 +100,7 @@ jobs:
         id: changesets
         # Uses SHA for security hardening
         # Please keep this up-to-date if you're changing the SHA below
-        uses: changesets/action@e0145edc7d9d8679003495b11f87bd8ef63c0cba
+        uses: changesets/action@6a0a831ff30acef54f2c6aa1cbbc1096b066edaf # v1.7.0
         with:
           title: Release tracking (next minor)
           publish: npm run release
@@ -113,7 +113,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           # This makes Actions fetch all Git history so that Changesets can generate changelogs with the correct commits
           fetch-depth: 0
@@ -132,12 +132,12 @@ jobs:
       - name: Publish release candidate
         run: |
           npm exec --workspaces -- ../../packages/repo-configs/scripts/prepare-release-candidate
-          npx changeset publish --tag next
+          npm exec -- changeset publish --tag next
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Output release candidate version
-        uses: actions/github-script@v4.0.2
+        uses: actions/github-script@v8
         with:
           script: |
             const paths = ['react', 'design-tokens', 'css'].forEach((path) => {
@@ -159,7 +159,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           # This makes Actions fetch all Git history so that Changesets can generate changelogs with the correct commits
           fetch-depth: 0
@@ -172,7 +172,7 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - uses: actions/create-github-app-token@67018539274d69449ef7c02e8e71183d1719ab42
+      - uses: actions/create-github-app-token@f8d387b68d61c58ab83c6c016672934102569859 # v3.0.0
         id: app-token
         with:
           app-id: ${{ vars.PRIMER_APP_ID_SHARED }}
@@ -184,12 +184,12 @@ jobs:
       - name: Publish release candidate
         run: |
           npm exec --workspaces -- ../../packages/repo-configs/scripts/prepare-release-candidate
-          npx changeset publish --tag next-minor
+          npm exec -- changeset publish --tag next-minor
         env:
           GITHUB_TOKEN: ${{ steps.app-token.outputs.token }}
 
       - name: Output canary version
-        uses: actions/github-script@v4.0.2
+        uses: actions/github-script@v8
         with:
           script: |
             const paths = ['react', 'design-tokens', 'css'].forEach((path) => {
@@ -236,7 +236,7 @@ jobs:
       # or workflow re-runs.
       - name: Verify canary publish is valid
         id: canary-gate
-        uses: actions/github-script@v4.0.2
+        uses: actions/github-script@v8
         with:
           script: |
             const labelName = 'release canary'
@@ -264,7 +264,7 @@ jobs:
 
       - name: Checkout repository
         if: steps.canary-gate.outputs.should_publish == 'true'
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           # Pin to the labeled-event head SHA so publish and status refer to the same commit.
           repository: ${{ github.event.pull_request.head.repo.full_name }}
@@ -282,7 +282,7 @@ jobs:
         if: steps.canary-gate.outputs.should_publish == 'true'
         run: npm ci
 
-      - uses: actions/create-github-app-token@67018539274d69449ef7c02e8e71183d1719ab42
+      - uses: actions/create-github-app-token@f8d387b68d61c58ab83c6c016672934102569859 # v3.0.0
         if: steps.canary-gate.outputs.should_publish == 'true'
         id: app-token
         with:
@@ -298,13 +298,13 @@ jobs:
         if: steps.canary-gate.outputs.should_publish == 'true'
         run: |
           npm exec --workspaces -- ../../packages/repo-configs/scripts/prepare-canary
-          npx changeset publish --tag canary
+          npm exec -- changeset publish --tag canary
         env:
           GITHUB_TOKEN: ${{ steps.app-token.outputs.token }}
 
       - name: Output canary version
         if: steps.canary-gate.outputs.should_publish == 'true'
-        uses: actions/github-script@v4.0.2
+        uses: actions/github-script@v8
         with:
           script: |
             const sha = context.payload.pull_request.head.sha
@@ -325,7 +325,7 @@ jobs:
         # Treat the label as a one-time publish request. Maintainers can
         # re-add it later when they explicitly want a fresh canary.
         if: always() && steps.canary-gate.outputs.should_publish == 'true' && steps.publish-canary.outcome == 'success'
-        uses: actions/github-script@v4.0.2
+        uses: actions/github-script@v8
         with:
           script: |
             const labelName = 'release canary'

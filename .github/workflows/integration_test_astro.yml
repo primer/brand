@@ -19,15 +19,15 @@ jobs:
       labels: ubuntu-latest-16-cores
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v6
 
       - name: Set up Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           node-version: 24.14.1
 
       - name: Caching dependencies
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: ~/.npm
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
@@ -39,7 +39,7 @@ jobs:
       # workflow successfully finishes.
       # See https://github.com/actions/cache
       - name: Cache Cypress binary
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: ~/.cache/Cypress
           key: cypress-${{ runner.os }}-cypress-${{ hashFiles('**/package.json') }}
@@ -55,14 +55,14 @@ jobs:
           CI: 1
         # print Cypress and OS info
         run: |
-          npx cypress install --force
-          npx cypress verify
-          npx cypress info
-          npx cypress version
-          npx cypress version --component package
-          npx cypress version --component binary
-          npx cypress version --component electron
-          npx cypress version --component node
+          npx cypress@15.13.0 install --force
+          npx cypress@15.13.0 verify
+          npx cypress@15.13.0 info
+          npx cypress@15.13.0 version
+          npx cypress@15.13.0 version --component package
+          npx cypress@15.13.0 version --component binary
+          npx cypress@15.13.0 version --component electron
+          npx cypress@15.13.0 version --component node
 
       - name: Build
         run: npm run build:lib
@@ -71,11 +71,11 @@ jobs:
         run: cd packages/react/ && npm pack
 
       - name: Configuring Astro React / TypeScript project
-        run: npm create astro@5 ${{env.ASTRO_FOLDER}} -- --template framework-react --no-install --no-git --yes
+        run: npm create astro@5.0.5 ${{env.ASTRO_FOLDER}} -- --template framework-react --no-install --no-git --yes
 
       - name: Retrieving package version
         id: package-version
-        uses: martinbeentjes/npm-get-version-action@7aa1d82604bb2dbe377a64ca35e692e6fe333c9c
+        uses: martinbeentjes/npm-get-version-action@3cf273023a0dda27efcd3164bdfb51908dd46a5b # v1.3.1
         with:
           path: packages/repo-configs
 
@@ -110,7 +110,7 @@ jobs:
       # FIXME: When there is a workaround in both Cypress and Astro
       # See https://github.com/cypress-io/cypress/issues/28052
       - name: Remove base tsconfig due to bundler error
-        run: npx json -I -f ${{env.ASTRO_FOLDER}}/tsconfig.json -e 'delete this.extends'
+        run: npx json@11.0.0 -I -f ${{env.ASTRO_FOLDER}}/tsconfig.json -e 'delete this.extends'
 
       - name: Test runtime for errors and warnings
-        run: cd ${{env.ASTRO_FOLDER}} && npx start-server-and-test 'npx http-server ./dist -p 3000' 3000 'npx cypress run --spec "./integration-tests/tests/*" --config video=false'
+        run: cd ${{env.ASTRO_FOLDER}} && npx start-server-and-test@3.0.0 'npx http-server@14.1.1 ./dist -p 3000' 3000 'npx cypress@15.13.0 run --spec "./integration-tests/tests/*" --config video=false'

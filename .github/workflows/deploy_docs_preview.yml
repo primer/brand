@@ -14,8 +14,8 @@ jobs:
   deploy:
     if: ${{ github.repository == 'primer/brand' }}
     name: Preview
-    # SHA for security hardening. Points at 2.2.0 release
-    uses: primer/.github/.github/workflows/deploy_preview.yml@91fde6cc969a502562fdacdac48e35859b3a40b4
+    # SHA for security hardening. Points at 2.4.0 release
+    uses: primer/.github/.github/workflows/deploy_preview.yml@2bbbbf004e8281856e08f6607eb46a7ee59e65ed # v2.4.0
     with:
       node_version: 24
       install: npm ci
@@ -30,38 +30,3 @@ jobs:
         # This is a client-side redirect that only applies to preview deployments. Workaround for lack of path prefixing.
         echo '<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Redirecting...</title><script>window.location.href = "/brand";</script></head><body><p>If you are not redirected automatically, follow this <a href="/brand">link to /brand</a>.</p></body></html>' > apps/next-docs/out/index.html
       output_dir: apps/next-docs/out/
-
-  deploy-storybook:
-    if: ${{ github.repository == 'primer/brand' }}
-    name: Preview Storybook
-    runs-on:
-      labels: ubuntu-latest-16-cores
-    needs: deploy
-    steps:
-      - uses: actions/checkout@v3
-
-      - uses: chrnorm/deployment-action@v1.2.0
-        name: Create GitHub deployment for storybook
-        id: storybook
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          environment: Preview Storybook
-          target_url: '${{ needs.deploy.outputs.deployment_url }}storybook'
-
-      - name: Update storybook deployment status (success)
-        if: success()
-        uses: chrnorm/deployment-status@v1.0.0
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          environment_url: '${{ needs.deploy.outputs.deployment_url }}storybook'
-          target_url: '${{ needs.deploy.outputs.deployment_url }}storybook'
-          state: 'success'
-          deployment_id: ${{ steps.storybook.outputs.deployment_id }}
-
-      - name: Update storybook deployment status (failure)
-        if: failure()
-        uses: chrnorm/deployment-status@v1.0.0
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          state: 'failure'
-          deployment_id: ${{ steps.storybook.outputs.deployment_id }}
