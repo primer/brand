@@ -40,7 +40,7 @@ jobs:
     steps:
       - uses: actions/checkout@v6
 
-      - uses: chrnorm/deployment-action@500aa6a23c81ffa1acf71072aee3cfa2cc2e556a # v2.0.8
+      - uses: chrnorm/deployment-action@21e908ae0ea3c446d94b0c4000eb933126d3b6a3 # v2.0.4
         name: Create GitHub deployment for storybook
         id: storybook
         with:
