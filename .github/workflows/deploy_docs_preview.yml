@@ -30,38 +30,3 @@ jobs:
         # This is a client-side redirect that only applies to preview deployments. Workaround for lack of path prefixing.
         echo '<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Redirecting...</title><script>window.location.href = "/brand";</script></head><body><p>If you are not redirected automatically, follow this <a href="/brand">link to /brand</a>.</p></body></html>' > apps/next-docs/out/index.html
       output_dir: apps/next-docs/out/
-
-  deploy-storybook:
-    if: ${{ github.repository == 'primer/brand' }}
-    name: Preview Storybook
-    runs-on:
-      labels: ubuntu-latest-16-cores
-    needs: deploy
-    steps:
-      - uses: actions/checkout@v6
-
-      - uses: chrnorm/deployment-action@21e908ae0ea3c446d94b0c4000eb933126d3b6a3 # v2.0.4
-        name: Create GitHub deployment for storybook
-        id: storybook
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          environment: Preview Storybook
-          target_url: '${{ needs.deploy.outputs.deployment_url }}storybook'
-
-      - name: Update storybook deployment status (success)
-        if: success()
-        uses: chrnorm/deployment-status@6df8d036fd2fee9eb82936733953da1f8382b41e # v2.0.4
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          environment_url: '${{ needs.deploy.outputs.deployment_url }}storybook'
-          target_url: '${{ needs.deploy.outputs.deployment_url }}storybook'
-          state: 'success'
-          deployment_id: ${{ steps.storybook.outputs.deployment_id }}
-
-      - name: Update storybook deployment status (failure)
-        if: failure()
-        uses: chrnorm/deployment-status@6df8d036fd2fee9eb82936733953da1f8382b41e # v2.0.4
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          state: 'failure'
-          deployment_id: ${{ steps.storybook.outputs.deployment_id }}
