@@ -14,7 +14,6 @@ jobs:
     runs-on: macos-latest
     env:
       NODE_ENV: test
-      PINNED_CHROME_VERSION: '146'
     steps:
       - name: Checkout repository
         uses: actions/checkout@v6
@@ -35,17 +34,9 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Set up pinned Chrome
-        id: setup-chrome
-        uses: browser-actions/setup-chrome@4f8e94349a351df0f048634f25fec36c3c91eded # v2.1.1
-        with:
-          chrome-version: ${{ env.PINNED_CHROME_VERSION }}
-
       - name: Run visual tests
         id: playwright-step
         run: npm run test:visual --workspace=packages/e2e
-        env:
-          PLAYWRIGHT_CHROME_PATH: ${{ steps.setup-chrome.outputs.chrome-path }}
         continue-on-error: true
 
       - name: Upload error screenshots
