@@ -1,5 +1,6 @@
 declare const styles: {
   readonly "RiverAccordion": string;
+  readonly "RiverAccordion--variant-gridline": string;
   readonly "RiverAccordion__accordionContainer": string;
   readonly "RiverAccordion__align-end": string;
   readonly "RiverAccordion__align-start": string;
