@@ -1,0 +1,3 @@
+.textareaStoryFixedWidth {
+  inline-size: calc(var(--base-size-128) + var(--base-size-128) + var(--base-size-24));
+}

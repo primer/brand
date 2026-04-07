@@ -3,13 +3,14 @@ declare const styles: {
   readonly "Testimonial--border": string;
   readonly "Testimonial--size-large": string;
   readonly "Testimonial--variant-default": string;
+  readonly "Testimonial--variant-expressive": string;
   readonly "Testimonial--variant-subtle": string;
   readonly "Testimonial-avatar": string;
   readonly "Testimonial-caption": string;
   readonly "Testimonial-from": string;
+  readonly "Testimonial-link": string;
   readonly "Testimonial-position": string;
   readonly "Testimonial-quote": string;
-  readonly "Testimonial-quote--muted": string;
   readonly "Testimonial__media": string;
   readonly "Testimonial__quoteMark": string;
   readonly "Testimonial__quoteMark--blue": string;
@@ -19,6 +20,7 @@ declare const styles: {
   readonly "Testimonial__quoteMark--gray": string;
   readonly "Testimonial__quoteMark--green": string;
   readonly "Testimonial__quoteMark--green-blue": string;
+  readonly "Testimonial__quoteMark--hasBackground": string;
   readonly "Testimonial__quoteMark--indigo": string;
   readonly "Testimonial__quoteMark--lemon": string;
   readonly "Testimonial__quoteMark--lime": string;
@@ -31,6 +33,8 @@ declare const styles: {
   readonly "Testimonial__quoteMark--red-orange": string;
   readonly "Testimonial__quoteMark--teal": string;
   readonly "Testimonial__quoteMark--yellow": string;
+  readonly "Testimonial__quoteMarkGlyph": string;
+  readonly "Testimonial__quoteWrapper": string;
 };
 export = styles;
 

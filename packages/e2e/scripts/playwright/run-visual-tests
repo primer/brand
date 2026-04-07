@@ -1,23 +1,23 @@
 #!/bin/bash
-set -e
+set -euo pipefail
 
-IMAGE="mcr.microsoft.com/playwright:v1.57.0-noble"
+REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../../../.." && pwd)"
 
-docker run --rm --ipc=host --platform linux/amd64 \
-  -v "${PWD%/*/*}":/tests \
-  -v /tests/node_modules \
-  -e NODE_ENV=test \
-  ${CI:+-e CI=true} \
-  "${IMAGE}" \
-  /bin/bash -c "\
-    cd /tests \
-    && npm ci \
-    && npm run build:lib \
-    && cd apps/storybook && NODE_ENV=test npx storybook build \
-    && cd /tests \
-    && npx playwright install chrome \
-    && npx start-server-and-test \
-      'npx http-server /tests/apps/storybook/storybook-static -p 6006' \
-      6006 \
-      'cd packages/e2e && npx playwright test' \
-  "
+cd "${REPO_ROOT}"
+npm run build:lib
+
+cd "${REPO_ROOT}/apps/storybook"
+NODE_ENV=test npx storybook build
+
+cd "${REPO_ROOT}/packages/e2e"
+if [[ -z "${PLAYWRIGHT_CHROME_PATH:-}" ]]; then
+  echo "Installing Playwright Chrome browser..."
+  npx playwright install chrome
+fi
+
+PLAYWRIGHT_COMMAND=(npx playwright test "$@")
+printf -v PLAYWRIGHT_COMMAND_ESCAPED '%q ' "${PLAYWRIGHT_COMMAND[@]}"
+npx start-server-and-test \
+  "npx http-server \"${REPO_ROOT}/apps/storybook/storybook-static\" -p 6006" \
+  6006 \
+  "cd \"${REPO_ROOT}/packages/e2e\" && ${PLAYWRIGHT_COMMAND_ESCAPED}"
