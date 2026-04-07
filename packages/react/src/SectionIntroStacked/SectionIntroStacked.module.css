@@ -2,6 +2,60 @@
   --brand-Grid-spacing-row: var(--base-size-48);
 }
 
+.SectionIntroStacked--variant-gridline {
+  position: relative;
+  padding-inline: var(--base-size-24);
+  padding-block: var(--base-size-32);
+
+  --SectionIntroStacked-item-divider-overflow-start: var(--base-size-24);
+  --SectionIntroStacked-item-divider-overflow-end: var(--base-size-24);
+}
+
+@media screen and (min-width: 63.25rem) {
+  .SectionIntroStacked--variant-gridline {
+    padding-inline: var(--base-size-64);
+    padding-block: var(--base-size-64);
+    /* At large viewports, left overflow is 0 (vertical divider bounds the start) */
+    --SectionIntroStacked-item-divider-overflow-start: 0px;
+    --SectionIntroStacked-item-divider-overflow-end: var(--base-size-64);
+  }
+}
+
+@media screen and (min-width: 63.25rem) {
+  .SectionIntroStacked--variant-gridline {
+    padding-inline: var(--base-size-64);
+    padding-block: var(--base-size-64);
+    --SectionIntroStacked-item-divider-overflow-start: 0px;
+    --SectionIntroStacked-item-divider-overflow-end: calc(var(--brand-Grid-spacing-margin) + var(--base-size-64));
+  }
+}
+
+.SectionIntroStacked--variant-gridline::before,
+.SectionIntroStacked--variant-gridline::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100vw;
+  height: 0;
+  border-top: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
+  z-index: 1;
+}
+
+.SectionIntroStacked--variant-gridline::before {
+  top: 0;
+}
+
+.SectionIntroStacked--variant-gridline::after {
+  bottom: 0;
+}
+
+@media screen and (min-width: 80rem) {
+  .SectionIntroStacked--variant-gridline {
+    border-inline: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
+  }
+}
+
 .SectionIntroStacked-heading--muted,
 .SectionIntroStackedItem__item-text--muted {
   color: var(--brand-color-text-muted);
@@ -20,6 +74,11 @@
   max-width: none;
 }
 
+.SectionIntroStacked-description {
+  margin-block-start: var(--base-size-16);
+  max-width: 50ch;
+}
+
 .SectionIntroStacked-link {
   margin-block-start: var(--base-size-16);
 }
@@ -30,7 +89,6 @@
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: var(--base-size-32);
 }
 
 @media screen and (max-width: 63.25rem) {
@@ -39,14 +97,86 @@
   }
 }
 
-@media screen and (min-width: 48rem) {
-  .SectionIntroStackedItem-item {
-    gap: var(--base-size-40);
-  }
-
+@media screen and (min-width: 63.25rem) {
   .SectionIntroStacked-items {
-    /* Optical alignment with adjacent content */
     position: relative;
     top: var(--base-size-2);
   }
+
+  .SectionIntroStacked--variant-gridline .SectionIntroStacked-items {
+    border-inline-start: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
+    margin-block: calc(-1 * var(--base-size-64));
+    padding-block: 0;
+    position: static;
+    top: auto;
+  }
+
+  .SectionIntroStacked--variant-gridline .SectionIntroStackedItem-item {
+    /* Inset item content from the vertical gridline */
+    padding-inline-start: var(--base-size-32);
+    padding-inline-end: var(--base-size-32);
+  }
+}
+
+.SectionIntroStacked--variant-gridline .SectionIntroStackedItem-item {
+  border-block-end: none;
+  position: relative;
+}
+
+/* Restore equal padding on first/last items in gridline variant */
+.SectionIntroStacked--variant-gridline .SectionIntroStackedItem-item:first-child {
+  padding-block-start: var(--base-size-40);
+}
+
+.SectionIntroStacked--variant-gridline .SectionIntroStackedItem-item:last-child {
+  padding-block-end: var(--base-size-40);
+}
+
+.SectionIntroStacked--variant-gridline .SectionIntroStackedItem-item:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: calc(-1 * var(--SectionIntroStacked-item-divider-overflow-start));
+  right: calc(-1 * var(--SectionIntroStacked-item-divider-overflow-end));
+  border-bottom: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
+}
+
+.SectionIntroStackedItem-item {
+  padding-block: var(--base-size-40);
+  border-block-end: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
+}
+
+.SectionIntroStackedItem-item:last-child {
+  border-block-end: none;
+  padding-block-end: 0;
+}
+
+.SectionIntroStackedItem-item:first-child {
+  padding-block-start: 0;
+}
+
+.SectionIntroStackedItem-item--with-icon {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: var(--base-size-24);
+}
+
+@media screen and (min-width: 63.25rem) {
+  .SectionIntroStackedItem-item--with-icon {
+    gap: var(--base-size-48);
+  }
+}
+
+.SectionIntroStackedItem__content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--base-size-8);
+  flex: 1;
+  min-width: 0;
+}
+
+.SectionIntroStackedItem__icon {
+  flex-shrink: 0;
+  border-radius: var(--brand-borderRadius-medium);
 }

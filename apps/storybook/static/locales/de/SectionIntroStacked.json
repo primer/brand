@@ -2,11 +2,18 @@
   "playground_heading": "Über 90% der Fortune 100-Unternehmen und mehr als 150 Millionen Entwickler vertrauen auf GitHub, um skalierbare, zuverlässige und sichere Lösungen für Teams jeder Größe zu liefern.",
   "playground_heading_emphasis": "Über 90% der Fortune 100-Unternehmen und mehr als 150 Millionen Entwickler vertrauen auf GitHub",
   "playground_heading_suffix": ", um skalierbare, zuverlässige und sichere Lösungen für Teams jeder Größe zu liefern.",
+  "playground_description": "Verbessern Sie Ihren Unterricht mit den erweiterten Tools von GitHub und ermöglichen Sie Studierenden den Zugang zu aktuellen Branchenpraktiken.",
   "learn_more": "Mehr erfahren",
   "explore_github": "GitHub erkunden",
   "explore_github_enterprise": "GitHub Enterprise erkunden",
   "default_heading": "Über 90% der Fortune 100-Unternehmen und mehr als 150 Millionen Entwickler nutzen GitHub.",
   "enterprise_platform_heading": "Eine einheitliche, integrierte, unternehmenstaugliche Plattform",
+  "item_one_heading": "Technischen Lehrplan verbessern",
+  "item_one_description": "Verbessern Sie Ihren Unterricht mit den erweiterten Tools von GitHub und ermöglichen Sie Studierenden den Zugang zu aktuellen Branchenpraktiken.",
+  "item_two_heading": "Lehrmethoden neu beleben",
+  "item_two_description": "Nutzen Sie GitHub Classroom, um Feedback zu automatisieren und Kursarbeiten zu verwalten, was Ihre Sitzungen dynamischer und interaktiver gestalten kann.",
+  "item_three_heading": "Zusammenarbeit auf dem Campus fördern",
+  "item_three_description": "Erleichtern Sie die Zusammenarbeit zwischen Studierenden und Lehrenden bei Projekten und Aufgaben.",
   "developer_first": "Entwicklerorientiert:",
   "developer_first_description": " Für Entwickler konzipiert, bietet GitHub nahtlose Kollaborationstools, die Teamarbeit intelligenter, schneller und sicherer machen.",
   "enterprise_grade": "Unternehmensklasse:",
@@ -14,5 +21,7 @@
   "ai_powered": "KI-gestützt:",
   "ai_powered_description": " Nutzen Sie GitHub Copilot, um Aufgaben zu automatisieren und die Produktivität mit intelligenten, kontextbewussten Code-Vorschlägen zu steigern.",
   "lorem_ipsum": "Lorem ipsum dolor sit amet",
-  "lorem_ipsum_description": ", consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis felis nam pulvinar."
+  "lorem_ipsum_description": ", consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis felis nam pulvinar.",
+  "with_item_icons_heading": "Entfachen Sie die Lernbegeisterung mit GitHub.",
+  "sign_up_now": "Jetzt anmelden"
 }

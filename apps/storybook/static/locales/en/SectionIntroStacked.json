@@ -2,11 +2,18 @@
   "playground_heading": "Over 90% of Fortune 100 companies and more than 150 million developers rely on GitHub to deliver scalable, reliable, and secure solutions for teams of all sizes.",
   "playground_heading_emphasis": "Over 90% of Fortune 100 companies and more than 150 million developers rely on GitHub",
   "playground_heading_suffix": " to deliver scalable, reliable, and secure solutions for teams of all sizes.",
+  "playground_description": "Elevate your lessons with GitHub's advanced tools and provide students access to current industry practices.",
   "learn_more": "Learn more",
   "explore_github": "Explore GitHub",
   "explore_github_enterprise": "Explore GitHub Enterprise",
   "default_heading": "Over 90% of Fortune 100 companies and more than 150 million developers use GitHub.",
   "enterprise_platform_heading": "A single, integrated, enterprise-ready platform",
+  "item_one_heading": "Enhance your technical curriculum",
+  "item_one_description": "Elevate your lessons with GitHub's advanced tools and provide students access to current industry practices.",
+  "item_two_heading": "Reinvigorate your teaching methods",
+  "item_two_description": "Use GitHub Classroom to automate feedback and manage coursework, which can make your sessions more dynamic and interactive.",
+  "item_three_heading": "Boost collaboration across campus",
+  "item_three_description": "Make it easier for students and educators to collaborate on projects and assignments.",
   "developer_first": "Developer-first:",
   "developer_first_description": " Designed for developers, GitHub offers seamless collaboration tools that make teamwork smarter, faster, and more secure.",
   "enterprise_grade": "Enterprise-grade:",
@@ -14,5 +21,7 @@
   "ai_powered": "AI-powered:",
   "ai_powered_description": " Leverage GitHub Copilot to automate tasks and enhance productivity with smart, context-aware code suggestions.",
   "lorem_ipsum": "Lorem ipsum dolor sit amet",
-  "lorem_ipsum_description": ", consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis felis nam pulvinar."
+  "lorem_ipsum_description": ", consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis felis nam pulvinar.",
+  "with_item_icons_heading": "Unlock a passion for learning with GitHub.",
+  "sign_up_now": "Sign up now"
 }
