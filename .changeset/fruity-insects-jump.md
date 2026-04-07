@@ -8,7 +8,6 @@ Upgraded dependencies to latest minor, patch, and select major versions.
 
 `@primer/react-brand`:
 
-- `@oddbird/popover-polyfill`: 0.5.2 → 0.6.1
 - `autoprefixer`: 10.4.20 → 10.4.27
 - `css-loader`: 7.1.2 → 7.1.4
 - `mini-css-extract-plugin`: 2.9.2 → 2.10.2
