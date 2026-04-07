@@ -1,5 +1,103 @@
 # @primer/react-brand
 
+## 0.66.0
+
+### Minor Changes
+
+- [#1286](https://github.com/primer/brand/pull/1286) [`d948c46`](https://github.com/primer/brand/commit/d948c46b0afca36121a89dbdb32a6f7630873424) Thanks [@danielguillan](https://github.com/danielguillan)! - Updates to `RiverAccordion` component
+
+  #### New Features
+
+  - **New `RiverAccordion` prop**: `variant`. This prop controls the layout and appearance of the RiverAccordion component. Two variants are available: `default` and `gridline`.
+
+    The `default` variant is the pre-existing `RiverAccordion` configuration and remains the default value.
+
+    The `gridline` variant adds lateral padding and borders for use within bordered grid layouts, using a 50/50 column split.
+
+    ```jsx
+    <RiverAccordion variant="gridline" />
+    ```
+
+  #### Changes
+
+  - **Updated accordion icons**: Replaced `PlusIcon` with `ChevronDownIcon`/`ChevronUpIcon` for better visual clarity of expand/collapse state.
+  - **Updated default text size**: Text size in `RiverAccordion.Content` now defaults to `300` (previously `200`) for improved readability.
+
+- [#1291](https://github.com/primer/brand/pull/1291) [`b989693`](https://github.com/primer/brand/commit/b9896932f25c88d6ae1a8e6a3f00fadf682adfe9) Thanks [@danielguillan](https://github.com/danielguillan)! - Added new subcomponents and `variant` prop to the `SectionIntroStacked` component:
+
+  - `SectionIntroStacked.Description`
+  - `SectionIntroStacked.ItemIcon`
+  - `SectionIntroStacked.ItemHeading`
+  - `SectionIntroStacked.ItemDescription`
+
+  Heading and link sizes have also been updated. New `variant` prop supports `default` and `gridline` options.
+
+  ```jsx
+  <SectionIntroStacked variant="gridline">
+    <SectionIntroStacked.Heading>Section heading</SectionIntroStacked.Heading>
+    <SectionIntroStacked.Description>A short description.</SectionIntroStacked.Description>
+    <SectionIntroStacked.Link href="#">Learn more</SectionIntroStacked.Link>
+    <SectionIntroStacked.Items>
+      <SectionIntroStacked.Item>
+        <SectionIntroStacked.ItemIcon icon={CpuIcon} />
+        <SectionIntroStacked.ItemHeading>Feature one</SectionIntroStacked.ItemHeading>
+        <SectionIntroStacked.ItemDescription>Description of this feature.</SectionIntroStacked.ItemDescription>
+      </SectionIntroStacked.Item>
+    </SectionIntroStacked.Items>
+  </SectionIntroStacked>
+  ```
+
+- [#1293](https://github.com/primer/brand/pull/1293) [`8519668`](https://github.com/primer/brand/commit/85196685960fc8ebaa1e855828e2b5e5bdcec15f) Thanks [@danielguillan](https://github.com/danielguillan)! - Add `expressive` variant to `Testimonial` which provides a two-column layout, a new `Testimonial.Link` subcomponent, and updated typographic styles.
+
+  ```jsx
+  <Testimonial variant="expressive">
+    <Testimonial.Quote>
+      GitHub helps us ensure that we have our security controls baked into our pipelines all the way from the first line
+      of code we're writing.
+    </Testimonial.Quote>
+    <Testimonial.Link href="/case-study">Read the full story</Testimonial.Link>
+    <Testimonial.Name position="Staff Security Engineer">David Ross</Testimonial.Name>
+    <Testimonial.Avatar src="/avatars/david-ross.png" alt="David Ross avatar" />
+  </Testimonial>
+  ```
+
+- [#1272](https://github.com/primer/brand/pull/1272) [`a386ed4`](https://github.com/primer/brand/commit/a386ed474be8954556d1dac62ec1d361a222cec2) Thanks [@danielguillan](https://github.com/danielguillan)! - Updated all base color scales and functional tokens.
+
+  #### Design token updates
+
+  - Updated all 13 base color scale palettes (`gray`, `blue`, `green`, `yellow`, `orange`, `red`, `purple`, `pink`, `coral`, `lemon`, `lime`, `teal`, `indigo`) in both light and dark modes
+  - Updated `black-0` from `#1f2328` to `#000000` in both light and dark modes
+  - Updated functional design tokens: `--brand-color-text-default`, `--brand-color-text-muted`, `--brand-color-border-default`, `--brand-color-border-subtle`, `--brand-color-border-muted`, `--brand-color-success-fg`, `--brand-color-success-emphasis`, `--brand-color-accent-primary`, and all hardcoded alpha tokens (`--brand-color-success-muted`, `--brand-color-error-muted`, `--brand-color-neutral-muted`, `--brand-color-neutral-subtle`)
+  - Added new functional design tokens: `--brand-color-text-emphasized`, `--brand-color-text-link-rest`, `--brand-color-text-link-pressed`, `--brand-color-text-danger`, `--brand-color-danger-fg`, `--brand-color-danger-emphasis`, `--brand-color-danger-muted`, `--brand-color-danger-subtle`, `--brand-color-canvas-muted`
+  - ⚠️ Deprecated `--brand-color-error-*` and `--brand-color-text-error` tokens, which are now aliased to the new `--brand-color-danger-*` and `--brand-color-text-danger` equivalents and will be removed in the future
+  - ⚠️ Deprecated `--brand-color-text-subtle`, which is now remapped to the same value as `--brand-color-text-muted` and will be removed in the future
+  - Updated `--brand-InlineLink-color-rest` and `--brand-InlineLink-color-pressed` to reference the new `--brand-color-text-link-rest` and `--brand-color-text-link-pressed` functional tokens
+  - Updated `--brand-Link-color-accent` to reference the new `--brand-color-text-link-rest` functional token
+
+### Patch Changes
+
+- [#1299](https://github.com/primer/brand/pull/1299) [`ea8a60f`](https://github.com/primer/brand/commit/ea8a60f5f26b52532e13d4443ebc2cb04372674f) Thanks [@rezrah](https://github.com/rezrah)! - Upgraded dependencies to latest minor, patch, and select major versions.
+
+  `@primer/react-brand`:
+
+  - `autoprefixer`: 10.4.20 → 10.4.27
+  - `css-loader`: 7.1.2 → 7.1.4
+  - `mini-css-extract-plugin`: 2.9.2 → 2.10.2
+  - `postcss`: 8.5.1 → 8.5.8
+  - `postcss-loader`: 8.1.1 → 8.2.1
+  - `postcss-preset-env`: 10.1.3 → 11.2.0
+  - `webpack`: 5.101.3 → 5.105.4
+  - `webpack-cli`: 6.0.1 → 7.0.2
+
+  `@primer/brand-primitives`:
+
+  - `@primer/primitives`: 9.1.1 → 9.1.2
+
+  `@primer/brand-css`:
+
+  - `autoprefixer`: 10.4.20 → 10.4.27
+  - `postcss`: 8.5.1 → 8.5.8
+
 ## 0.65.1
 
 ### Patch Changes
