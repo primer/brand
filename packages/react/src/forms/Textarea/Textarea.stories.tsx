@@ -1,6 +1,7 @@
 import React from 'react'
 import type {Meta, StoryFn} from '@storybook/react'
 import {Textarea} from '.'
+import styles from './Textarea.stories.module.css'
 
 export default {
   title: 'Components/Forms/Textarea',
@@ -67,4 +68,6 @@ export default {
   },
 } as Meta<typeof Textarea>
 
-export const Default: StoryFn<typeof Textarea> = args => <Textarea aria-label="Standalone text input" {...args} />
+export const Default: StoryFn<typeof Textarea> = args => (
+  <Textarea aria-label="Standalone text input" {...args} className={styles.textareaStoryFixedWidth} />
+)

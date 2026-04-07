@@ -14,15 +14,15 @@ jobs:
       labels: ubuntu-latest-16-cores
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Set up Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
-          node-version: 24
+          node-version: 24.14.1
 
       - name: Cache dependencies
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: ~/.npm
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
@@ -33,17 +33,17 @@ jobs:
         run: npm ci
 
       - name: Install Playwright
-        run: npx playwright install
+        run: npm exec --workspace=packages/e2e -- playwright install
 
       - name: Build dependencies
-        run: npm run build:lib && cd apps/storybook && npx storybook build
+        run: npm run build:lib && npm exec --workspace=apps/storybook -- storybook build
 
       - name: Serve Storybook and run tests
-        run: npx start-server-and-test 'npm run start:axe --workspace=apps/storybook' 6006 'npm run test:axe'
+        run: npx start-server-and-test@3.0.0 'npm run start:axe --workspace=apps/storybook' 6006 'npm run test:axe'
 
       - name: Upload test results
         if: failure()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: axe-test-results
           path: packages/e2e/test-results/

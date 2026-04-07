@@ -11,23 +11,23 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout current branch
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           path: current
 
       - name: Checkout main branch
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           ref: main
           path: main
 
       - name: Set up Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
-          node-version: 24
+          node-version: 24.14.1
 
       - name: Cache dependencies (current)
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: ~/.npm
           key: ${{ runner.os }}-node-current-${{ hashFiles('current/**/package-lock.json') }}
@@ -35,7 +35,7 @@ jobs:
             ${{ runner.os }}-node-current-
 
       - name: Cache dependencies (main)
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: ~/.npm
           key: ${{ runner.os }}-node-main-${{ hashFiles('main/**/package-lock.json') }}
@@ -58,18 +58,14 @@ jobs:
         working-directory: main/packages/react
         run: npm run test -- --coverage --coverageReporters=json-summary --coverageReporters=json --passWithNoTests --watchAll=false
 
-      - name: Install tsx for script execution
-        working-directory: current
-        run: npm install -g tsx
-
       - name: Generate coverage diff comment
         id: coverage-diff
-        uses: actions/github-script@v7
+        uses: actions/github-script@v8
         with:
           script: |
             const { execSync } = require('child_process');
 
-            const output = execSync('npx tsx packages/repo-configs/scripts/get-coverage.ts', { 
+            const output = execSync('npm exec -- tsx packages/repo-configs/scripts/get-coverage.ts', {
               encoding: 'utf8',
               cwd: 'current'
             });
@@ -78,7 +74,7 @@ jobs:
             return output;
 
       - name: Post coverage diff comment
-        uses: phulsechinmay/rewritable-pr-comment@v0.3.0
+        uses: phulsechinmay/rewritable-pr-comment@a1b041997fa84ec3e524ee9dee5ba0b5f4e73604 # v0.3.0
         with:
           message: ${{ steps.coverage-diff.outputs.comment-body }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

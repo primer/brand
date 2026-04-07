@@ -34,16 +34,16 @@
     "lint": "eslint '**/*.{js,ts,tsx,md,mdx}' --max-warnings=0",
     "test:axe": "playwright test --config=scripts/playwright",
     "test:visual": "NODE_ENV=test scripts/playwright/run-visual-tests",
-    "test:visual:update": "NODE_ENV=test npm run test:visual:generate && npm run test:visual:update-snapshots",
+    "test:visual:update": "NODE_ENV=test npm run test:visual:update-snapshots --",
     "test:visual:generate": "NODE_ENV=test cd ../../apps/storybook && npx storybook build && cd ../../packages/e2e && npx tsx scripts/playwright/playwright.generate-tests.ts",
     "test:visual:update-snapshots": "NODE_ENV=test scripts/playwright/update-visual-snapshots"
   },
   "devDependencies": {
-    "@github/axe-github": "^0.5.0",
-    "@types/node": "22.18.1",
-    "@playwright/test": "1.57.0",
-    "playwright": "1.57.0",
-    "axe-playwright": "^1.1.12"
+    "@github/axe-github": "^0.8.1",
+    "@types/node": "24.12.0",
+    "@playwright/test": "1.59.1",
+    "playwright": "1.59.1",
+    "axe-playwright": "^2.2.2"
   },
   "engines": {
     "node": ">=24.0.0",

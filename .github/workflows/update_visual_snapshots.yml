@@ -1,4 +1,4 @@
-name: Visual test
+name: Update visual snapshots
 
 env:
   NODE_ENV: test
@@ -15,18 +15,33 @@ jobs:
   update-snapshots:
     if: ${{ github.event.label.name == 'update snapshots' }}
     name: Update snapshots
-    runs-on:
-      labels: ubuntu-latest-16-cores
+    runs-on: macos-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           repository: ${{ github.event.pull_request.head.repo.full_name }}
           ref: ${{ github.head_ref }}
 
-      - name: Regenerate specs and update snapshots
-        run: cd packages/e2e && bash scripts/playwright/update-visual-snapshots
+      - name: Set up Node
+        uses: actions/setup-node@v6
+        with:
+          node-version: 24.14.1
 
-      - uses: stefanzweifel/git-auto-commit-action@v4
+      - name: Cache dependencies
+        uses: actions/cache@v5
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Regenerate specs and update snapshots
+        run: npm run test:visual:update-snapshots --workspace=packages/e2e
+
+      - uses: stefanzweifel/git-auto-commit-action@04702edda442b2e678b25b537cec683a1493fcb9 # v7.1.0
         with:
           commit_message: github-actions[bot] Regenerated snapshots
