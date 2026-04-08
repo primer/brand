@@ -3,7 +3,6 @@ import type {Meta, StoryObj} from '@storybook/react'
 
 import placeholderImage from '../../fixtures/images/placeholder.png'
 import shopifyLogo from '../../fixtures/images/logos/shopify.png'
-import vercelLogo from '../../fixtures/images/logos/vercel.png'
 
 import {RiverBreakout} from '.'
 import {Box, Card, Grid, Link, Section, Stack, Statistic, Testimonial, Text, Timeline} from '../..'
@@ -20,6 +19,9 @@ const meta = {
       </Grid>
     ),
   ],
+  parameters: {
+    layout: 'fullscreen',
+  },
 } satisfies Meta<typeof RiverBreakout>
 
 export default meta
@@ -176,7 +178,7 @@ export const GridLineWithCardsTrailingComponent: Story = {
               <Box borderBlockStartWidth="thin" borderColor="muted" borderStyle="solid">
                 <Box padding="normal" paddingBlockStart="none">
                   <Card href="https://github.com" variant="minimal" fullWidth disableAnimation ctaText="Learn more">
-                    <Card.Image src={vercelLogo} alt="Vercel logo" width={88} />
+                    <Card.Image src={shopifyLogo} alt="Shopify logo" width={88} />
                     <Card.Heading>Teams deliver secure code faster with GitHub Copilot</Card.Heading>
                   </Card>
                 </Box>
