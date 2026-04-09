@@ -19,7 +19,7 @@ test.describe('Visual Comparison: RiverBreakout', () => {
 
   test('RiverBreakout / Highlighted Portion', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-riverbreakout--highlighted-portion&viewMode=story',
+      'http://localhost:6006/iframe.html?args=&id=components-riverbreakout-features--highlighted-portion&viewMode=story',
       {waitUntil: 'networkidle'},
     )
     await page.locator('body.sb-show-main').waitFor({state: 'visible'})
@@ -30,7 +30,7 @@ test.describe('Visual Comparison: RiverBreakout', () => {
 
   test('RiverBreakout / Without Trailing Component', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-riverbreakout--without-trailing-component&viewMode=story',
+      'http://localhost:6006/iframe.html?args=&id=components-riverbreakout-features--without-trailing-component&viewMode=story',
       {waitUntil: 'networkidle'},
     )
     await page.locator('body.sb-show-main').waitFor({state: 'visible'})
@@ -41,7 +41,7 @@ test.describe('Visual Comparison: RiverBreakout', () => {
 
   test('RiverBreakout / GridLine variant', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-riverbreakout-features-gridline-variants--grid-line&viewMode=story',
+      'http://localhost:6006/iframe.html?args=&id=components-riverbreakout-features--grid-line&viewMode=story',
       {waitUntil: 'networkidle'},
     )
     await page.locator('body.sb-show-main').waitFor({state: 'visible'})
@@ -52,7 +52,40 @@ test.describe('Visual Comparison: RiverBreakout', () => {
 
   test('RiverBreakout / GridLine variant (with background)', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-riverbreakout-features-gridline-variants--grid-line-with-background&viewMode=story',
+      'http://localhost:6006/iframe.html?args=&id=components-riverbreakout-features--grid-line-with-background&viewMode=story',
+      {waitUntil: 'networkidle'},
+    )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+    await page.waitForTimeout(500)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
+  test('RiverBreakout / GridLine variant (cards trailing component)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-riverbreakout-features--grid-line-with-cards-trailing-component&viewMode=story',
+      {waitUntil: 'networkidle'},
+    )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+    await page.waitForTimeout(500)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
+  test('RiverBreakout / GridLine variant (testimonial trailing component)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-riverbreakout-features--grid-line-with-testimonial-trailing-component&viewMode=story',
+      {waitUntil: 'networkidle'},
+    )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+    await page.waitForTimeout(500)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
+  test('RiverBreakout / GridLine variant (statistics trailing component)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-riverbreakout-features--grid-line-with-statistics-trailing-component&viewMode=story',
       {waitUntil: 'networkidle'},
     )
     await page.locator('body.sb-show-main').waitFor({state: 'visible'})
