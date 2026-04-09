@@ -1,0 +1,265 @@
+.RiverBreakoutTabs {
+  --river-breakout-tabs-columns: 1;
+}
+
+@media screen and (max-width: 63.24rem) {
+  .RiverBreakoutTabs {
+    width: 100%;
+    max-width: 38.625rem;
+    margin-inline: auto;
+  }
+}
+
+.RiverBreakoutTabs__accordion {
+  display: flex;
+  flex-direction: column;
+}
+
+.RiverBreakoutTabs__wideTabList {
+  display: flex;
+  flex-direction: column;
+}
+
+.RiverBreakoutTabs__sharedVisuals {
+  order: 1;
+  margin-block-end: var(--base-size-36);
+  width: 100%;
+}
+
+.RiverBreakoutTabs__accordionSharedVisuals {
+  margin-block-end: var(--base-size-16);
+  width: 100%;
+}
+
+.RiverBreakoutTabs__sharedVisualPanel {
+  min-width: 0;
+}
+
+.RiverBreakoutTabs__sharedVisual :is(img, picture, video),
+.RiverBreakoutTabs__accordionSharedVisual :is(img, picture, video) {
+  display: block;
+  max-width: 100%;
+}
+
+.RiverBreakoutTabs :global([class*='River__visual--rounded']) {
+  border-radius: var(--brand-borderRadius-small);
+}
+
+.RiverBreakoutTabs__sharedVisualPanel[hidden] {
+  display: none;
+}
+
+.RiverBreakoutTabs__tablist {
+  order: 2;
+  display: grid;
+  grid-template-columns: repeat(var(--river-breakout-tabs-columns), minmax(0, 1fr));
+  gap: var(--base-size-40);
+}
+
+.RiverBreakoutTabs__wideTabListActions {
+  order: 3;
+  display: grid;
+  grid-template-columns: repeat(var(--river-breakout-tabs-columns), minmax(0, 1fr));
+  gap: var(--base-size-40);
+  padding-block-end: var(--base-size-80);
+}
+
+.RiverBreakoutTabs__item {
+  position: relative;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.RiverBreakoutTabs__item::before {
+  content: '';
+  position: absolute;
+  inset-block-start: 0;
+  inset-inline: 0;
+  height: var(--brand-borderWidth-thin);
+  transform: scaleY(1);
+  transform-origin: 50% 0;
+  background-color: var(--brand-color-border-muted);
+  transition: transform var(--brand-animation-duration-fast) ease,
+    background-color var(--brand-animation-duration-fast) ease;
+}
+
+.RiverBreakoutTabs__item--selected::before {
+  transform: scaleY(2);
+  background-color: var(--brand-color-accent-primary);
+}
+
+@media screen and (min-width: 63.25rem) and (hover: hover) and (pointer: fine) {
+  .RiverBreakoutTabs__item:hover::before {
+    transform: scaleY(2);
+    background-color: var(--brand-color-accent-primary);
+  }
+}
+
+.RiverBreakoutTabs__heading {
+  margin: 0;
+  color: var(--brand-color-text-muted);
+}
+
+.RiverBreakoutTabs__item--selected .RiverBreakoutTabs__heading {
+  color: var(--brand-color-text-default);
+}
+
+.RiverBreakoutTabs__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.RiverBreakoutTabs__tab {
+  width: 100%;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  padding-block-start: var(--base-size-28);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--base-size-20);
+  cursor: pointer;
+  outline: none;
+  padding-inline: 0;
+}
+
+.RiverBreakoutTabs__tab:focus-visible {
+  outline: var(--brand-borderWidth-thick) solid var(--brand-color-focus);
+  outline-offset: var(--base-size-4);
+}
+
+.RiverBreakoutTabs__tabHeading {
+  margin: 0;
+}
+
+.RiverBreakoutTabs__wideTabListContent {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--base-size-12);
+}
+
+.RiverBreakoutTabs__wideTabListAction {
+  color: var(--brand-Link-color-accent);
+  font-weight: var(--base-text-weight-medium);
+  text-decoration: none;
+}
+
+.RiverBreakoutTabs__wideTabListActionItem {
+  margin-block-start: var(--base-size-12);
+}
+
+.RiverBreakoutTabs__content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--base-size-12);
+}
+
+.RiverBreakoutTabs__link {
+  text-decoration: none;
+}
+
+.RiverBreakoutTabs__accordion {
+  padding-block-end: var(--base-size-40);
+}
+
+.RiverBreakoutTabs__accordionContent {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--base-size-12);
+}
+
+.RiverBreakoutTabs__accordionContent .RiverBreakoutTabs__link,
+.RiverBreakoutTabs__accordionContent .RiverBreakoutTabs__link > span {
+  color: var(--brand-Link-color-accent);
+  font-weight: var(--base-text-weight-medium);
+}
+
+.RiverBreakoutTabs__accordionContent .RiverBreakoutTabs__link {
+  text-decoration: none;
+}
+
+.RiverBreakoutTabs__accordionItem {
+  border-top: none;
+}
+
+.RiverBreakoutTabs__accordionItem::after {
+  display: none;
+}
+
+.RiverBreakoutTabs__accordionItem::before {
+  content: '';
+  position: absolute;
+  inset-block-start: 0;
+  inset-inline: 0;
+  height: var(--brand-borderWidth-thin);
+  transform: scaleY(1);
+  transform-origin: 50% 0;
+  background-color: var(--brand-color-border-muted);
+  transition: transform var(--brand-animation-duration-fast) ease,
+    background-color var(--brand-animation-duration-fast) ease;
+}
+
+.RiverBreakoutTabs__accordionItem.RiverBreakoutTabs__item--selected::before {
+  transform: scaleY(2);
+  background-color: var(--brand-color-accent-primary);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .RiverBreakoutTabs__accordionItem:hover::before {
+    transform: scaleY(2);
+    background-color: var(--brand-color-accent-primary);
+  }
+}
+
+.RiverBreakoutTabs__accordionHeading {
+  color: var(--brand-color-text-default);
+}
+
+.RiverBreakoutTabs__accordionHeadingInner {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--base-size-12);
+}
+
+.RiverBreakoutTabs__accordionIcon {
+  flex-shrink: 0;
+}
+
+.RiverBreakoutTabs__accordionLabel {
+  display: inline-flex;
+  align-items: center;
+}
+
+.RiverBreakoutTabs__accordionPanel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--base-size-24);
+}
+
+@media screen and (min-width: 618px) {
+  .RiverBreakoutTabs {
+    border-inline: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
+  }
+}
+
+@media screen and (min-width: 63.25rem) {
+  .RiverBreakoutTabs {
+    border-inline: none;
+  }
+}
+
+@media screen and (min-width: 1300px) {
+  .RiverBreakoutTabs {
+    border-inline: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
+  }
+}
