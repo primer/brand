@@ -339,6 +339,28 @@ describe('RiverBreakoutTabs', () => {
     expect(within(tablist).queryByRole('link')).not.toBeInTheDocument()
   })
 
+  it('drops additional links from wide tab list item content', () => {
+    const {getAllByRole, queryByText} = render(
+      <RiverBreakoutTabs>
+        <RiverBreakoutTabs.A11yHeading>Agent workflows</RiverBreakoutTabs.A11yHeading>
+        <RiverBreakoutTabs.Item>
+          <RiverBreakoutTabs.Heading>Plan</RiverBreakoutTabs.Heading>
+          <RiverBreakoutTabs.Content>
+            <Text>Plan content</Text>
+            <Link href="#">Plan primary link</Link>
+            <Link href="#">Plan secondary link</Link>
+          </RiverBreakoutTabs.Content>
+          <RiverBreakoutTabs.Visual>
+            <MockVisual label="plan visual" />
+          </RiverBreakoutTabs.Visual>
+        </RiverBreakoutTabs.Item>
+      </RiverBreakoutTabs>,
+    )
+
+    expect(getAllByRole('link')).toHaveLength(1)
+    expect(queryByText('Plan secondary link')).not.toBeInTheDocument()
+  })
+
   it('has no critical axe violations for desktop tabs', async () => {
     const {container} = render(
       <RiverBreakoutTabs>

@@ -96,30 +96,32 @@ const RiverBreakoutTabsHeading = ({
 )
 
 const RiverBreakoutTabsContent = ({children, className, ...props}: RiverBreakoutTabsContentProps) => {
-  const Children = useMemo(() => React.Children.toArray(children), [children])
+  const Children = useMemo(
+    () =>
+      React.Children.toArray(children).map(child => {
+        if (isTextChild(child)) {
+          return cloneElement(child, {
+            as: child.props.as ?? 'p',
+            variant: child.props.variant ?? 'muted',
+          })
+        }
 
-  const StyledChildren = Children.map(child => {
-    if (isTextChild(child)) {
-      return cloneElement(child, {
-        as: child.props.as ?? 'p',
-        variant: child.props.variant ?? 'muted',
-      })
-    }
+        if (isLinkChild(child)) {
+          return cloneElement(child, {
+            className: clsx(child.props.className, styles.RiverBreakoutTabs__link),
+            size: child.props.size ?? 'medium',
+            variant: child.props.variant ?? 'accent',
+          })
+        }
 
-    if (isLinkChild(child)) {
-      return cloneElement(child, {
-        className: clsx(child.props.className, styles.RiverBreakoutTabs__link),
-        size: child.props.size ?? 'medium',
-        variant: child.props.variant ?? 'accent',
-      })
-    }
-
-    return child
-  })
+        return child
+      }),
+    [children],
+  )
 
   return (
     <div className={clsx(styles.RiverBreakoutTabs__content, className)} {...props}>
-      {StyledChildren}
+      {Children}
     </div>
   )
 }
@@ -175,9 +177,7 @@ const extractWideTabListContentParts = (
     return {action: null, body: []}
   }
 
-  const Children = React.Children.toArray(content.props.children)
-
-  const StyledChildren = Children.map(child => {
+  const Children = React.Children.toArray(content.props.children).map(child => {
     if (isTextChild(child)) {
       return cloneElement(child, {
         as: child.props.as ?? 'p',
@@ -196,13 +196,11 @@ const extractWideTabListContentParts = (
     return child
   })
 
-  return StyledChildren.reduce<ExtractedContentParts>(
-    (acc, child, index) => {
+  return Children.reduce<ExtractedContentParts>(
+    (acc, child) => {
       if (isLinkChild(child)) {
         if (!acc.action) {
           acc.action = child
-        } else {
-          acc.body.push(<span key={`action-${index}`}>{child.props.children}</span>)
         }
 
         return acc
