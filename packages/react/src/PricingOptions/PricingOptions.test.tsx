@@ -36,7 +36,7 @@ describe('PricingOptions', () => {
     isXLarge: true,
   }
 
-  const mockLabel = 'Mock label'
+  const mockHeaderLabel = 'Mock header label'
   const mockHeading = 'Mock heading'
   const mockDescription = 'Mock description'
   const mockPrice = 'Mock price'
@@ -130,27 +130,29 @@ describe('PricingOptions', () => {
     mockUseWindowSize.mockReturnValue(mediumBreakpoint)
 
     const {getByText} = render(
-      <PricingOptions.Item>
-        <PricingOptions.Label>{mockLabel}</PricingOptions.Label>
-        <PricingOptions.Heading>{mockHeading}</PricingOptions.Heading>
-        <PricingOptions.Description>{mockDescription}</PricingOptions.Description>
-        <PricingOptions.Price>{mockPrice}</PricingOptions.Price>
-        <PricingOptions.PrimaryAction as="a" href="#">
-          {mockPrimaryAction}
-        </PricingOptions.PrimaryAction>
-        <PricingOptions.SecondaryAction as="a" href="#">
-          {mockSecondaryAction}
-        </PricingOptions.SecondaryAction>
-        <PricingOptions.FeatureList>
-          <PricingOptions.FeatureListHeading>{mockFeaturedListTitle}</PricingOptions.FeatureListHeading>
-          <PricingOptions.FeatureListGroupHeading>{mockFeaturedListHeading}</PricingOptions.FeatureListGroupHeading>
-          <PricingOptions.FeatureListItem>{mockFeatureListItem}</PricingOptions.FeatureListItem>
-        </PricingOptions.FeatureList>
-        <PricingOptions.Footnote>{mockFootnote}</PricingOptions.Footnote>
-      </PricingOptions.Item>,
+      <PricingOptions>
+        <PricingOptions.Item>
+          <PricingOptions.Label>{mockHeaderLabel}</PricingOptions.Label>
+          <PricingOptions.Heading>{mockHeading}</PricingOptions.Heading>
+          <PricingOptions.Description>{mockDescription}</PricingOptions.Description>
+          <PricingOptions.Price>{mockPrice}</PricingOptions.Price>
+          <PricingOptions.PrimaryAction as="a" href="#">
+            {mockPrimaryAction}
+          </PricingOptions.PrimaryAction>
+          <PricingOptions.SecondaryAction as="a" href="#">
+            {mockSecondaryAction}
+          </PricingOptions.SecondaryAction>
+          <PricingOptions.FeatureList>
+            <PricingOptions.FeatureListHeading>{mockFeaturedListTitle}</PricingOptions.FeatureListHeading>
+            <PricingOptions.FeatureListGroupHeading>{mockFeaturedListHeading}</PricingOptions.FeatureListGroupHeading>
+            <PricingOptions.FeatureListItem>{mockFeatureListItem}</PricingOptions.FeatureListItem>
+          </PricingOptions.FeatureList>
+          <PricingOptions.Footnote>{mockFootnote}</PricingOptions.Footnote>
+        </PricingOptions.Item>
+      </PricingOptions>,
     )
 
-    expect(getByText(mockLabel)).toBeInTheDocument()
+    expect(getByText(mockHeaderLabel)).toBeInTheDocument()
     expect(getByText(mockHeading)).toBeInTheDocument()
     expect(getByText(mockDescription)).toBeInTheDocument()
     expect(getByText(mockPrice)).toBeInTheDocument()
@@ -162,13 +164,35 @@ describe('PricingOptions', () => {
     expect(getByText(mockFootnote)).toBeInTheDocument()
   })
 
+  it('renders header labels in a dedicated row above items', () => {
+    const firstLabel = 'Most popular'
+    const secondLabel = 'Best value'
+
+    const {getByTestId, getAllByTestId, getByText} = render(
+      <PricingOptions>
+        <PricingOptions.Item>
+          <PricingOptions.Label>{firstLabel}</PricingOptions.Label>
+          <PricingOptions.Heading>First</PricingOptions.Heading>
+        </PricingOptions.Item>
+        <PricingOptions.Item>
+          <PricingOptions.Label>{secondLabel}</PricingOptions.Label>
+          <PricingOptions.Heading>Second</PricingOptions.Heading>
+        </PricingOptions.Item>
+      </PricingOptions>,
+    )
+
+    expect(getByTestId(PricingOptions.testIds.labelRow)).toBeInTheDocument()
+    expect(getAllByTestId(PricingOptions.testIds.label)).toHaveLength(2)
+    expect(getByText(firstLabel)).toBeInTheDocument()
+    expect(getByText(secondLabel)).toBeInTheDocument()
+  })
+
   it('renders PricingOptions.Item markup in the expected order', () => {
     mockUseWindowSize.mockReturnValue(mediumBreakpoint)
 
     const {getByTestId} = render(
       <PricingOptions.Item data-testid={testId}>
         <PricingOptions.Footnote>{mockFootnote}</PricingOptions.Footnote>
-        <PricingOptions.Label>{mockLabel}</PricingOptions.Label>
         <PricingOptions.Description>{mockDescription}</PricingOptions.Description>
         <PricingOptions.Heading>{mockHeading}</PricingOptions.Heading>
         <PricingOptions.FeatureList>
@@ -182,7 +206,6 @@ describe('PricingOptions', () => {
 
     const expectedOrder = [
       'PricingOptions__heading',
-      'PricingOptions__label',
       'PricingOptions__description',
       'PricingOptions__featureList',
       'PricingOptions__footnote',
@@ -493,5 +516,88 @@ describe('PricingOptions', () => {
 
     expect(accordionOne).not.toHaveAttribute('open')
     expect(accordionTwo).not.toHaveAttribute('open')
+  })
+
+  it('renders an info tooltip button when infoTooltip is provided', () => {
+    mockUseWindowSize.mockReturnValue(mediumBreakpoint)
+
+    const tooltipText = 'More details about this feature'
+    const featureText = 'Chat in IDE'
+
+    const {getByRole} = render(
+      <PricingOptions>
+        <PricingOptions.Item>
+          <PricingOptions.FeatureList>
+            <PricingOptions.FeatureListItem infoTooltip={tooltipText}>{featureText}</PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem>Another feature</PricingOptions.FeatureListItem>
+          </PricingOptions.FeatureList>
+        </PricingOptions.Item>
+      </PricingOptions>,
+    )
+
+    const infoButton = getByRole('button', {name: `More information about ${featureText}`})
+    expect(infoButton).toBeInTheDocument()
+    expect(infoButton).toHaveAttribute('aria-describedby')
+  })
+
+  it('does not render an info button when infoTooltip is not provided', () => {
+    mockUseWindowSize.mockReturnValue(mediumBreakpoint)
+
+    const {queryByRole} = render(
+      <PricingOptions>
+        <PricingOptions.Item>
+          <PricingOptions.FeatureList>
+            <PricingOptions.FeatureListItem>Chat in IDE</PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem>Another feature</PricingOptions.FeatureListItem>
+          </PricingOptions.FeatureList>
+        </PricingOptions.Item>
+      </PricingOptions>,
+    )
+
+    expect(queryByRole('button', {name: /More information/})).not.toBeInTheDocument()
+  })
+
+  it('renders PricingOptions.MenuAction in the actions area', () => {
+    mockUseWindowSize.mockReturnValue(mediumBreakpoint)
+
+    const {getByText} = render(
+      <PricingOptions>
+        <PricingOptions.Item>
+          <PricingOptions.Heading>Plan</PricingOptions.Heading>
+          <PricingOptions.MenuAction>
+            <span>Menu content</span>
+          </PricingOptions.MenuAction>
+        </PricingOptions.Item>
+      </PricingOptions>,
+    )
+
+    expect(getByText('Menu content')).toBeInTheDocument()
+  })
+
+  it('forwards style prop to the root element', () => {
+    const {getByTestId} = render(
+      <PricingOptions data-testid={testId} style={{marginBlock: '-1px'}} />,
+    )
+
+    expect(getByTestId(testId)).toHaveStyle({marginBlock: '-1px'})
+  })
+
+  it('renders empty label cells when only some items have labels', () => {
+    const {getAllByTestId} = render(
+      <PricingOptions>
+        <PricingOptions.Item>
+          <PricingOptions.Heading>Free</PricingOptions.Heading>
+        </PricingOptions.Item>
+        <PricingOptions.Item>
+          <PricingOptions.Label>Recommended</PricingOptions.Label>
+          <PricingOptions.Heading>Pro</PricingOptions.Heading>
+        </PricingOptions.Item>
+      </PricingOptions>,
+    )
+
+    const labelCells = getAllByTestId(PricingOptions.testIds.label)
+    expect(labelCells).toHaveLength(2)
+    expect(labelCells[0].classList.toString()).toContain('empty')
+    expect(labelCells[1].classList.toString()).toContain('has-label')
   })
 })

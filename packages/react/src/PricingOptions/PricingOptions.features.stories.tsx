@@ -2,9 +2,10 @@ import React from 'react'
 import type {Meta, StoryObj} from '@storybook/react'
 
 import {PricingOptions} from '.'
-import {Box, Grid, InlineLink, Stack} from '..'
+import {ActionMenu, Box, Grid, InlineLink, Stack} from '..'
 import imageExample from '../fixtures/images/bento/3.png'
 import {SparkleFillIcon} from '@primer/octicons-react'
+import {VisualStudioCodeLogo} from '../fixtures/third-party-logos/VisualStudioCodeLogo'
 
 const decorators = Story => (
   <Box backgroundColor="default" paddingBlockStart="spacious" paddingBlockEnd="spacious" style={{minHeight: '100vh'}}>
@@ -44,7 +45,7 @@ export const CardsVariant: Story = {
         </PricingOptions.PrimaryAction>
       </PricingOptions.Item>
       <PricingOptions.Item>
-        <PricingOptions.Heading>Copilot Individual</PricingOptions.Heading>
+        <PricingOptions.Heading>Pro</PricingOptions.Heading>
         <PricingOptions.Description>
           Code completions, Chat, and more for indie developers and freelancers.
         </PricingOptions.Description>
@@ -62,7 +63,7 @@ export const CardsVariant: Story = {
 
       <PricingOptions.Item>
         <PricingOptions.Label>Recommended</PricingOptions.Label>
-        <PricingOptions.Heading>Copilot Business</PricingOptions.Heading>
+        <PricingOptions.Heading>Pro+</PricingOptions.Heading>
         <PricingOptions.Description>Copilot personalized to your organization.</PricingOptions.Description>
         <PricingOptions.Price trailingText="per user / month">19</PricingOptions.Price>
         <PricingOptions.PrimaryAction as="a" href="#">
@@ -86,7 +87,7 @@ export const CardsVariant: Story = {
       </PricingOptions.Item>
       <PricingOptions.Item>
         <PricingOptions.Label>Available Feb 2024</PricingOptions.Label>
-        <PricingOptions.Heading>Copilot Enterprise</PricingOptions.Heading>
+        <PricingOptions.Heading>Max</PricingOptions.Heading>
         <PricingOptions.Description>
           Copilot personalized to your organization throughout the software development lifecycle.
         </PricingOptions.Description>
@@ -1159,4 +1160,179 @@ export const HideFeatureListOnNarrowAndRegularNarrow = {
   globals: {
     viewport: {value: 'iphonexr'},
   },
+}
+
+export const WithInfoTooltips: Story = {
+  render: () => (
+    <PricingOptions>
+      <PricingOptions.Item>
+        <PricingOptions.Heading>Copilot Individual</PricingOptions.Heading>
+        <PricingOptions.Description>
+          Code completions, Chat, and more for indie developers and freelancers.
+        </PricingOptions.Description>
+        <PricingOptions.Price trailingText="per month / $100 per year">10</PricingOptions.Price>
+        <PricingOptions.FeatureList>
+          <PricingOptions.FeatureListItem>Code completions</PricingOptions.FeatureListItem>
+          <PricingOptions.FeatureListItem infoTooltip="Interact with Copilot using natural language.">
+            Chat in IDE and Mobile
+          </PricingOptions.FeatureListItem>
+          <PricingOptions.FeatureListItem infoTooltip="Get help directly in your terminal.">
+            CLI assistance
+          </PricingOptions.FeatureListItem>
+          <PricingOptions.FeatureListItem>Security vulnerability filter</PricingOptions.FeatureListItem>
+        </PricingOptions.FeatureList>
+        <PricingOptions.PrimaryAction as="a" href="#">
+          Start a free trial
+        </PricingOptions.PrimaryAction>
+      </PricingOptions.Item>
+
+      <PricingOptions.Item>
+        <PricingOptions.Label>Recommended</PricingOptions.Label>
+        <PricingOptions.Heading>Copilot Business</PricingOptions.Heading>
+        <PricingOptions.Description>Copilot personalized to your organization.</PricingOptions.Description>
+        <PricingOptions.Price trailingText="per user / month">19</PricingOptions.Price>
+        <PricingOptions.PrimaryAction as="a" href="#">
+          Buy now
+        </PricingOptions.PrimaryAction>
+        <PricingOptions.FeatureList>
+          <PricingOptions.FeatureListItem infoTooltip="Everything from Pro, and more.">
+            Everything in Copilot Individual plus:
+          </PricingOptions.FeatureListItem>
+          <PricingOptions.FeatureListItem infoTooltip="Interact with Copilot using natural language.">
+            Chat in IDE and Mobile
+          </PricingOptions.FeatureListItem>
+          <PricingOptions.FeatureListItem infoTooltip="Get help directly in your terminal.">
+            CLI assistance
+          </PricingOptions.FeatureListItem>
+          <PricingOptions.FeatureListItem infoTooltip="Lipsumet dolor consectetuor elit sit amet.">
+            Security vulnerability filter
+          </PricingOptions.FeatureListItem>
+          <PricingOptions.FeatureListItem>Code referencing</PricingOptions.FeatureListItem>
+          <PricingOptions.FeatureListItem infoTooltip="Filter out suggestions matching public code.">
+            Public code filter
+          </PricingOptions.FeatureListItem>
+          <PricingOptions.FeatureListItem>IP indemnity</PricingOptions.FeatureListItem>
+          <PricingOptions.FeatureListItem>
+            Enterprise-grade security, safety, and privacy
+          </PricingOptions.FeatureListItem>
+        </PricingOptions.FeatureList>
+      </PricingOptions.Item>
+
+      <PricingOptions.Item>
+        <PricingOptions.Label>Available Feb 2024</PricingOptions.Label>
+        <PricingOptions.Heading>Copilot Enterprise</PricingOptions.Heading>
+        <PricingOptions.Description>
+          Copilot personalized to your organization throughout the software development lifecycle.
+        </PricingOptions.Description>
+        <PricingOptions.Price trailingText="per user / month">39</PricingOptions.Price>
+        <PricingOptions.FeatureList>
+          <PricingOptions.FeatureListItem infoTooltip="Everything from Pro, and more.">
+            Everything in Copilot Business plus:
+          </PricingOptions.FeatureListItem>
+          <PricingOptions.FeatureListItem infoTooltip="Interact with Copilot using natural language.">
+            Chat in IDE and Mobile
+          </PricingOptions.FeatureListItem>
+          <PricingOptions.FeatureListItem infoTooltip="Get help directly in your terminal.">
+            CLI assistance
+          </PricingOptions.FeatureListItem>
+          <PricingOptions.FeatureListItem>Code completions</PricingOptions.FeatureListItem>
+        </PricingOptions.FeatureList>
+        <PricingOptions.PrimaryAction as="a" href="#">
+          Join waitlist
+        </PricingOptions.PrimaryAction>
+      </PricingOptions.Item>
+    </PricingOptions>
+  ),
+}
+
+export const WithMenuAction: Story = {
+  render: () => (
+    <PricingOptions>
+      <PricingOptions.Item>
+        <PricingOptions.Heading>Free</PricingOptions.Heading>
+        <PricingOptions.Description>A fast way to get started with GitHub Copilot.</PricingOptions.Description>
+        <PricingOptions.Price>0</PricingOptions.Price>
+        <PricingOptions.MenuAction>
+          <ActionMenu mode="split-button">
+            <ActionMenu.Button variant="secondary" as="a" href="#" leadingVisual={<VisualStudioCodeLogo />}>
+              Open in your IDE
+            </ActionMenu.Button>
+            <ActionMenu.Overlay aria-label="More options">
+              <ActionMenu.Item as="a" href="#">
+                Open in VS Code
+              </ActionMenu.Item>
+              <ActionMenu.Item as="a" href="#">
+                Open in JetBrains
+              </ActionMenu.Item>
+            </ActionMenu.Overlay>
+          </ActionMenu>
+        </PricingOptions.MenuAction>
+        <PricingOptions.FeatureList expanded={false} hasDivider={false}>
+          <PricingOptions.FeatureListItem>Code completions</PricingOptions.FeatureListItem>
+          <PricingOptions.FeatureListItem>Chat in IDE and Mobile</PricingOptions.FeatureListItem>
+        </PricingOptions.FeatureList>
+      </PricingOptions.Item>
+      <PricingOptions.Item>
+        <PricingOptions.Heading>Pro</PricingOptions.Heading>
+        <PricingOptions.Description>Accelerate workflows with GitHub Copilot.</PricingOptions.Description>
+        <PricingOptions.Price trailingText="per month or $100 per year">10</PricingOptions.Price>
+        <PricingOptions.PrimaryAction as="a" href="#">
+          Try free for 30 days
+        </PricingOptions.PrimaryAction>
+        <PricingOptions.FeatureList expanded={false} hasDivider={false}>
+          <PricingOptions.FeatureListItem>Unlimited requests per month</PricingOptions.FeatureListItem>
+          <PricingOptions.FeatureListItem>Unlimited completions /mo</PricingOptions.FeatureListItem>
+        </PricingOptions.FeatureList>
+      </PricingOptions.Item>
+      <PricingOptions.Item>
+        <PricingOptions.Label>Recommended</PricingOptions.Label>
+        <PricingOptions.Heading>Pro+</PricingOptions.Heading>
+        <PricingOptions.Description>Scale with agents and more models.</PricingOptions.Description>
+        <PricingOptions.Price trailingText="per month or $390 per year">39</PricingOptions.Price>
+        <PricingOptions.MenuAction>
+          <ActionMenu mode="split-button">
+            <ActionMenu.Button variant="secondary" as="a" href="#">
+              Get started
+            </ActionMenu.Button>
+            <ActionMenu.Overlay aria-label="More options">
+              <ActionMenu.Item as="a" href="#">
+                Open in VS Code
+              </ActionMenu.Item>
+              <ActionMenu.Item as="a" href="#">
+                Open in JetBrains
+              </ActionMenu.Item>
+            </ActionMenu.Overlay>
+          </ActionMenu>
+        </PricingOptions.MenuAction>
+        <PricingOptions.FeatureList expanded={false} hasDivider={false}>
+          <PricingOptions.FeatureListItem>Access to latest models</PricingOptions.FeatureListItem>
+          <PricingOptions.FeatureListItem>30x more requests</PricingOptions.FeatureListItem>
+        </PricingOptions.FeatureList>
+      </PricingOptions.Item>
+      <PricingOptions.Item>
+        <PricingOptions.Heading>Max</PricingOptions.Heading>
+        <PricingOptions.Description>Short descriptor of plan 500 characters max.</PricingOptions.Description>
+        <PricingOptions.Price trailingText="per month or $590 per year">49</PricingOptions.Price>
+        <PricingOptions.MenuAction>
+          <ActionMenu mode="split-button">
+            <ActionMenu.Button variant="secondary" as="a" href="#">
+              Get started
+            </ActionMenu.Button>
+            <ActionMenu.Overlay aria-label="More options">
+              <ActionMenu.Item as="a" href="#">
+                Open in VS Code
+              </ActionMenu.Item>
+              <ActionMenu.Item as="a" href="#">
+                Open in JetBrains
+              </ActionMenu.Item>
+            </ActionMenu.Overlay>
+          </ActionMenu>
+        </PricingOptions.MenuAction>
+        <PricingOptions.FeatureList expanded={false} hasDivider={false}>
+          <PricingOptions.FeatureListItem>50 requests per month</PricingOptions.FeatureListItem>
+          <PricingOptions.FeatureListItem>50x more requests, + access to latest models</PricingOptions.FeatureListItem>
+        </PricingOptions.FeatureList>
+      </PricingOptions.Item>
+    </PricingOptions>
+  ),
 }

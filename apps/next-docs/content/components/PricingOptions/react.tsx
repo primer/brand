@@ -15,6 +15,7 @@ export const PricingOptionsItemChildrenProp = () => (
       'PricingOptions.Price',
       'PricingOptions.FeatureList',
       'PricingOptions.Footnote',
+      'PricingOptions.MenuAction',
     ]}
     addLineBreaks
   />

@@ -377,6 +377,33 @@ Use `PricingOptions.FeatureListItem` with `variant="included"` and `variant="exc
 </PricingOptions>
 ```
 
+### Info tooltips
+
+Use `infoTooltip` on `PricingOptions.FeatureListItem` to add a supplementary tooltip to a feature.
+
+```jsx live
+<PricingOptions>
+  <PricingOptions.Item>
+    <PricingOptions.Heading>Pro</PricingOptions.Heading>
+    <PricingOptions.Description>Accelerate workflows with GitHub Copilot.</PricingOptions.Description>
+    <PricingOptions.Price currencySymbol="$" trailingText="per month / $100 per year">
+      10
+    </PricingOptions.Price>
+    <PricingOptions.FeatureList>
+      <PricingOptions.FeatureListItem>Code completions</PricingOptions.FeatureListItem>
+      <PricingOptions.FeatureListItem infoTooltip="Interact with Copilot using natural language.">
+        Chat in IDE and Mobile
+      </PricingOptions.FeatureListItem>
+      <PricingOptions.FeatureListItem infoTooltip="Get help directly in your terminal.">
+        CLI assistance
+      </PricingOptions.FeatureListItem>
+      <PricingOptions.FeatureListItem>Security vulnerability filter</PricingOptions.FeatureListItem>
+    </PricingOptions.FeatureList>
+    <PricingOptions.PrimaryAction href="/buy">Start a free trial</PricingOptions.PrimaryAction>
+  </PricingOptions.Item>
+</PricingOptions>
+```
+
 ## Component props
 
 ### PricingOptions <Label>Required</Label>
@@ -386,6 +413,7 @@ Use `PricingOptions.FeatureListItem` with `variant="included"` and `variant="exc
 | `as`       | <PricingOptionsAsProp />      | `section` | `false`  | Applies the underlying HTML element |
 | `children` | `PricingOptions.Item`         |           |  `true`  | Applies the underlying HTML element |
 | `variant`  | <PricingOptionsVariantProp /> |           | `false`  | Sets the style variant              |
+| `style`    | `React.CSSProperties`         |           | `false`  | Inline CSS overrides                |
 
 ### PricingOptions.Item <Label>Required</Label>
 
@@ -406,7 +434,7 @@ One item per pricing plan to be displayed. Maximum of 3 items.
 
 | Name       | Type        |   Default   | required | Description           |
 | :--------- | :---------- | :---------: | :------: | :-------------------- |
-| `children` | `ReactNode` | `undefined` |  `true`  | The label of the item |
+| `children` | `ReactNode` | `undefined` |  `true`  | The column header label for the item |
 
 ### PricingOptions.Description
 
@@ -448,10 +476,17 @@ One item per pricing plan to be displayed. Maximum of 3 items.
 
 ### PricingOptions.FeatureListItem
 
-| Name       | Type                                         |   Default   | required | Description                         |
-| :--------- | :------------------------------------------- | :---------: | :------: | :---------------------------------- |
-| `children` | `ReactNode`                                  | `undefined` |  `true`  | The item of the feature list set    |
-| `variant`  | <PricingOptionsFeatureListItemVariantProp /> | `included`  | `false`  | The variant of the feature list set |
+| Name          | Type                                         |   Default   | required | Description                                              |
+| :------------ | :------------------------------------------- | :---------: | :------: | :------------------------------------------------------- |
+| `children`    | `ReactNode`                                  | `undefined` |  `true`  | The item of the feature list set                         |
+| `infoTooltip` | `string`                                     | `undefined` | `false`  | Tooltip text shown on hover/focus via an info icon button |
+| `variant`     | <PricingOptionsFeatureListItemVariantProp /> | `included`  | `false`  | The variant of the feature list set                      |
+
+### PricingOptions.MenuAction
+
+| Name       | Type        |   Default   | required | Description                                                              |
+| :--------- | :---------- | :---------: | :------: | :----------------------------------------------------------------------- |
+| `children` | `ReactNode` | `undefined` |  `true`  | An `ActionMenu` component, typically in `split-button` mode |
 
 ### PricingOptions.Footnote
 
