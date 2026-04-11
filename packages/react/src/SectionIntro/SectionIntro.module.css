@@ -27,6 +27,12 @@
   padding-inline: var(--base-size-24);
 }
 
+@media screen and (min-width: 63.25rem) {
+  .SectionIntro--align-center {
+    padding-block: calc(var(--base-size-64) + var(--base-size-24));
+  }
+}
+
 .SectionIntro-heading {
   max-width: 24ch;
 }
@@ -36,10 +42,11 @@
 }
 
 .SectionIntro-label {
-  margin-block-end: var(--base-size-8);
+  margin-block-end: var(--base-size-2);
 }
 
 .SectionIntro-description {
+  padding-block-start: var(--base-size-2);
   max-width: 50ch;
 }
 
