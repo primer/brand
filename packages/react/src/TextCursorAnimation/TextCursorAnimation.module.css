@@ -10,6 +10,7 @@
 }
 
 .TextCursorAnimation-text {
+  font-weight: var(--brand-text-weight-500);
   clip-path: inset(0 calc((1 - var(--brand-TextCursorAnimation-reveal-progress, 1)) * 100%) 0 0);
   white-space: pre;
 }
