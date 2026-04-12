@@ -3,6 +3,7 @@ import '@testing-library/jest-dom'
 
 import {SectionIntro} from './SectionIntro'
 import {axe, toHaveNoViolations} from 'jest-axe'
+import {testIds as textCursorAnimationTestIds} from '../TextCursorAnimation'
 
 expect.extend(toHaveNoViolations)
 
@@ -10,6 +11,22 @@ describe('SectionIntro', () => {
   const mockHeading = 'Mock heading'
   const mockDescription = 'Minimal description'
   const mockLinkText = 'Call to action'
+
+  beforeAll(() => {
+    Object.defineProperty(window, 'matchMedia', {
+      writable: true,
+      value: jest.fn().mockImplementation(query => ({
+        matches: false,
+        media: query,
+        onchange: null,
+        addListener: jest.fn(),
+        removeListener: jest.fn(),
+        dispatchEvent: jest.fn(),
+        addEventListener: jest.fn(),
+        removeEventListener: jest.fn(),
+      })),
+    })
+  })
 
   afterEach(() => {
     cleanup()
@@ -148,21 +165,19 @@ describe('SectionIntro', () => {
 
   test('renders a label with default colors and size', () => {
     const mockLabel = 'Label'
-    const expectedSize = 'medium'
-    const expectedColor = 'default'
 
-    const {getByTestId} = render(
+    const {getByText, getByTestId} = render(
       <SectionIntro>
         <SectionIntro.Label>{mockLabel}</SectionIntro.Label>
         <SectionIntro.Heading>{mockHeading}</SectionIntro.Heading>
         <SectionIntro.Link href="#">{mockLinkText}</SectionIntro.Link>
       </SectionIntro>,
     )
-    const labelEl = getByTestId(mockLabel)
+    const labelEl = getByText(mockLabel)
 
     expect(labelEl).toBeInTheDocument()
-    expect(labelEl).toHaveClass(`Label--size-${expectedSize}`)
-    expect(labelEl).toHaveClass(`Label--color-${expectedColor}`)
+    expect(labelEl).toHaveClass('Text--muted')
+    expect(getByTestId(textCursorAnimationTestIds.cursor)).toBeInTheDocument()
   })
 
   test('renders the default color as muted if <b> or <em> is passed as a child', () => {
