@@ -96,7 +96,6 @@ function WithImageExample() {
           <Button>Get started for free</Button>
           <Button>View docs</Button>
         </CTABanner.ButtonGroup>
-        <CTABanner.Image src={placeholderImage} alt="Blank image" />
       </CTABanner>
     </Stack>
   )
