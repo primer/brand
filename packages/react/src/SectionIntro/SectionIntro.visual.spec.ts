@@ -93,6 +93,28 @@ test.describe('Visual Comparison: SectionIntro', () => {
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
+  test('SectionIntro / With Animated Label', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-sectionintro-features--with-animated-label&viewMode=story',
+      {waitUntil: 'networkidle'},
+    )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+    await page.waitForTimeout(500)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
+  test('SectionIntro / With Increased Contrast Label', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-sectionintro-features--with-increased-contrast-label&viewMode=story',
+      {waitUntil: 'networkidle'},
+    )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+    await page.waitForTimeout(500)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
   test('SectionIntro / With Emphasized Text', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-sectionintro-features--with-emphasized-text&viewMode=story',
