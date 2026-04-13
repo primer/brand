@@ -34,6 +34,12 @@ const meta = {
         type: 'text',
       },
     },
+    href: {
+      description: 'Link destination when rendered as an anchor.',
+      control: {
+        type: 'text',
+      },
+    },
   },
 } satisfies Meta<typeof Token>
 
@@ -46,5 +52,11 @@ export const Default: Story = {
 }
 
 export const Playground: Story = {
-  render: args => <Token {...args} />,
+  render: args => {
+    if (args.as === 'a') {
+      return <Token {...args} href={args.href || 'https://github.com'} />
+    }
+
+    return <Token {...args} />
+  },
 }

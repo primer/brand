@@ -41,6 +41,16 @@ describe('Token', () => {
     expect(getByTestId(Token.testIds.root).classList).toContain('Token--hasLeadingVisual')
   })
 
+  it('renders a component-type leadingVisual and passes the shared className through', () => {
+    const MockLeadingVisual = ({className}: {className?: string}) => (
+      <svg data-testid="leading-visual" className={className} viewBox="0 0 16 16" aria-hidden="true" />
+    )
+
+    const {getByTestId} = render(<Token leadingVisual={MockLeadingVisual}>Token text</Token>)
+
+    expect(getByTestId('leading-visual')).toHaveClass('Token__visual')
+  })
+
   it('renders the dark gray variant option', () => {
     const {getByTestId} = render(<Token variant="dark-gray">Token text</Token>)
 

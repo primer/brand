@@ -82,3 +82,15 @@ export const PolymorphicLink: Story = {
     </Token>
   ),
 }
+
+export const LongText: Story = {
+  name: 'Long text (narrow viewport)',
+  globals: {
+    viewport: {value: 'iphone5'},
+  },
+  render: () => (
+    <Token as="a" href="https://github.com">
+      This is a very long topic name that should wrap or truncate appropriately
+    </Token>
+  ),
+}

@@ -4,6 +4,7 @@
   border-radius: var(--brand-borderRadius-small);
   display: inline-flex;
   gap: var(--base-size-8);
+  min-width: 0;
   max-width: 100%;
   padding-inline: var(--base-size-8);
   padding-block: var(--base-size-6);
@@ -73,9 +74,13 @@
 }
 
 .Token__label {
+  display: block;
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
   text-transform: uppercase;
   font-weight: var(--base-text-weight-normal);
-  line-height: 1;
   line-height: 0.85;
   white-space: nowrap;
 }

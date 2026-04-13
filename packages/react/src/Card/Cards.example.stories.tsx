@@ -86,8 +86,8 @@ export const Editorial: Story = {
                           <Card.Heading>{card.heading}</Card.Heading>
                           <Card.Description>{card.description}</Card.Description>
                           <Card.Tokens position="block-end">
-                            <Token leadingVisual={<Avatar src={avatarMona} alt="Thomas Dohmke" size={32} />}>
-                              Thomas Dohmke
+                            <Token leadingVisual={<Avatar src={avatarMona} alt="Mona Lisa" size={32} />}>
+                              Mona Lisa
                             </Token>
                             <Token variant="outline">DEC.25</Token>
                           </Card.Tokens>

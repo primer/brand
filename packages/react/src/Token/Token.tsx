@@ -1,6 +1,5 @@
 import {clsx} from 'clsx'
 import React, {forwardRef, type Ref} from 'react'
-import type {Icon} from '@primer/octicons-react'
 
 import {Text} from '../Text'
 import {useAnimation} from '../animation'
@@ -17,11 +16,14 @@ export const TokenVariants = ['default', 'dark-gray', 'accent', 'outline', 'invi
 
 export const defaultTokenVariant = TokenVariants[0]
 
+type TokenLeadingVisual = React.ReactElement | React.ComponentType<{className?: string}>
+
 type TokenSharedProps = {
   /**
    * The leading visual appears before the Token content.
+   * Pass an element to supply custom props, or a component type that accepts an optional className.
    */
-  leadingVisual?: React.ReactNode | Icon
+  leadingVisual?: TokenLeadingVisual
   /**
    * The variant variations available in Token.
    */
@@ -41,7 +43,8 @@ type TokenSpanProps = BaseProps<HTMLSpanElement> &
 type TokenAnchorProps = BaseProps<HTMLAnchorElement> &
   TokenSharedProps & {
     as: 'a'
-  } & React.AnchorHTMLAttributes<HTMLAnchorElement>
+    href: string
+  } & Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, 'href'>
 
 export type TokenProps = TokenSpanProps | TokenAnchorProps
 
@@ -83,7 +86,7 @@ const _Token = forwardRef<HTMLSpanElement | HTMLAnchorElement, TokenProps>(
         {LeadingVisual && (
           <span className={styles['Token__leading-visual']} data-testid={testIds.leadingVisual} aria-hidden="true">
             {typeof LeadingVisual === 'function' ? (
-              <LeadingVisual />
+              <LeadingVisual className={styles['Token__visual']} />
             ) : (
               React.isValidElement<{className?: string}>(LeadingVisual) &&
               React.cloneElement(LeadingVisual, {
