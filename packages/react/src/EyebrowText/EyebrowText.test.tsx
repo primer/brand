@@ -44,6 +44,28 @@ describe('EyebrowText', () => {
     expect(eyebrowEl.classList).toContain(customClass)
   })
 
+  it('supportsan accent variant', () => {
+    const {getByTestId} = render(<EyebrowText variant="accent">{mockText}</EyebrowText>)
+
+    const eyebrowEl = getByTestId(EyebrowText.testIds.root)
+    expect(eyebrowEl.classList).toContain('EyebrowText--variant-accent')
+  })
+
+  it('defaults to muted text variant styling', () => {
+    const {getByTestId} = render(<EyebrowText>{mockText}</EyebrowText>)
+
+    const eyebrowEl = getByTestId(EyebrowText.testIds.root)
+    expect(eyebrowEl.classList).toContain('Text--muted')
+  })
+
+  it('preserves the default text variant', () => {
+    const {getByTestId} = render(<EyebrowText variant="default">{mockText}</EyebrowText>)
+
+    const eyebrowEl = getByTestId(EyebrowText.testIds.root)
+    expect(eyebrowEl.classList).toContain('Text--default')
+    expect(eyebrowEl.classList).not.toContain('EyebrowText--variant-accent')
+  })
+
   it('has no a11y violations', async () => {
     const {container} = render(<EyebrowText>{mockText}</EyebrowText>)
 

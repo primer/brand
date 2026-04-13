@@ -1,20 +1,22 @@
 .Card {
   text-decoration: none;
   color: var(--brand-color-text-default);
-  border-radius: var(--brand-borderRadius-xlarge);
+
   transition: transform var(--brand-Card-animation-duration) var(--brand-Card-animation-easing);
   padding: var(--base-size-32);
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-areas:
     'image image'
+    'leadingVisual leadingVisual'
     'icon icon'
+    'tokens tokens'
     'label label'
     'heading heading'
     'description description'
     'action action';
   flex: auto;
-  grid-template-rows: auto auto auto auto 1fr;
+  grid-template-rows: auto auto auto auto auto auto 1fr auto;
   position: relative;
   height: 100%;
 }
@@ -34,7 +36,9 @@
   grid-template-columns: 1fr;
   grid-template-areas:
     'image'
+    'leadingVisual'
     'icon'
+    'tokens'
     'label'
     'heading'
     'description'
@@ -42,10 +46,36 @@
   justify-items: center;
 }
 
+.Card--tokensPosition-block-end {
+  grid-template-areas:
+    'image image'
+    'leadingVisual leadingVisual'
+    'icon icon'
+    'label label'
+    'heading heading'
+    'description description'
+    'tokens tokens'
+    'action action';
+}
+
+.Card--align-center .Card--tokensPosition-block-end {
+  grid-template-areas:
+    'image'
+    'leadingVisual'
+    'icon'
+    'label'
+    'heading'
+    'description'
+    'tokens'
+    'action';
+}
+
 /** Block end image position option */
 .Card--imagePos-block-end {
   grid-template-areas:
+    'leadingVisual leadingVisual'
     'icon icon'
+    'tokens tokens'
     'label label'
     'heading heading'
     'description description'
@@ -55,12 +85,42 @@
 
 .Card--align-center .Card--imagePos-block-end {
   grid-template-areas:
+    'leadingVisual'
     'icon'
+    'tokens'
     'label'
     'heading'
     'description'
     'action'
     'image';
+}
+
+.Card--imagePos-block-end.Card--tokensPosition-block-end {
+  grid-template-areas:
+    'leadingVisual leadingVisual'
+    'icon icon'
+    'label label'
+    'heading heading'
+    'description description'
+    'tokens tokens'
+    'action action'
+    'image image';
+}
+
+.Card--align-center .Card--imagePos-block-end.Card--tokensPosition-block-end {
+  grid-template-areas:
+    'leadingVisual'
+    'icon'
+    'label'
+    'heading'
+    'description'
+    'tokens'
+    'action'
+    'image';
+}
+
+.Card--hasLeadingVisual {
+  padding: var(--base-size-64) var(--base-size-40);
 }
 
 .Card--imagePos-block-end .Card__image {
@@ -84,8 +144,7 @@
   padding: 0;
 }
 
-.Card--variant-default,
-.Card--variant-torchlight.Card--colorMode-light {
+.Card--variant-default {
   background-color: var(--brand-Card-background-default);
 }
 
@@ -142,7 +201,6 @@
 
 .Card__outer {
   height: 100%;
-  border-radius: var(--brand-borderRadius-xlarge);
 }
 
 .Card__outer:has(.Card--variant-minimal) {
@@ -159,34 +217,12 @@
   ); /* This value is adjusted so that, when combined with the container's border radius, the total border radius equals `var(--brand-borderRadius-medium)` */
 }
 
-.Card--icon {
-  grid-template-areas:
-    'image image'
-    'icon label'
-    'heading heading'
-    'description description'
-    'action action';
-}
-
-.Card--icon .Card__label {
-  justify-self: flex-end;
-}
-
-.Card--align-center .Card--icon .Card__label {
-  justify-self: center;
-}
-
-.Card--icon .Card__label,
-.Card--icon .Card__icon {
-  align-self: center;
-}
-
-.Card:not(.Card--disableAnimation, .Card--variant-torchlight.Card--colorMode-dark):hover {
+.Card:not(.Card--disableAnimation):hover {
   transform: scale3d(1.025, 1.025, 1);
 }
 
 .Card__image {
-  margin-bottom: var(--base-size-28);
+  margin-block-end: var(--base-size-28);
   border-radius: var(--brand-borderRadius-medium);
   overflow: hidden;
   grid-area: image;
@@ -198,31 +234,76 @@
   display: block;
 }
 
+.Card__leadingVisual {
+  margin-block-end: var(--base-size-36);
+  display: flex;
+  align-items: center;
+  grid-area: leadingVisual;
+}
+
+.Card--align-center .Card__leadingVisual {
+  justify-content: center;
+}
+
+.Card__leadingVisualItem {
+  display: block;
+  max-width: 100%;
+  height: var(--base-size-40);
+  width: auto;
+}
+
 .Card__icon {
   margin-bottom: var(--base-size-24);
   grid-area: icon;
 }
 
+.Card__tokens {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--base-size-8);
+  grid-area: tokens;
+  margin-bottom: var(--base-size-20);
+}
+
+.Card--align-center .Card__tokens {
+  justify-content: center;
+}
+
+.Card__tokens--position-block-end {
+  margin-block-start: var(--base-size-20);
+  margin-block-end: 0;
+}
+
 .Card__label {
-  margin-bottom: var(--base-size-24);
+  margin-block-end: var(--base-size-20);
   grid-area: label;
 }
 
 .Card__heading {
-  margin-bottom: var(--base-size-20);
+  margin-block-end: var(--base-size-20);
   grid-area: heading;
 }
 
 .Card__description {
-  margin-bottom: var(--base-size-32);
+  margin-block-end: var(--base-size-32);
   grid-area: description;
 }
 
 .Card__action {
   grid-area: action;
-  margin-top: auto;
+  margin-block-start: auto;
   display: inline-flex;
   align-items: center;
+}
+
+.Card__action--arrowOnly {
+  margin-block-start: var(--base-size-20);
+  width: var(--base-size-32);
+  min-height: var(--base-size-32);
+  justify-content: center;
+  border: var(--brand-borderWidth-thin) solid var(--brand-color-border-default);
+  border-radius: var(--brand-borderRadius-full);
+  flex-shrink: 0;
 }
 
 .Card--align-center .Card__action {
@@ -232,12 +313,6 @@
 .Card__action,
 .Card__action span {
   color: var(--brand-Link-color-accent);
-}
-
-.Card--skew {
-  height: 100%;
-  border-radius: var(--brand-borderRadius-xlarge);
-  overflow: hidden;
 }
 
 .Card--skew:focus-within {
@@ -278,8 +353,16 @@
   margin-inline-start: var(--base-size-4);
 }
 
+.Card__action--arrowOnly .Card--expandableArrow {
+  margin-inline-start: 0;
+}
+
+.Card--ctaVariant-arrow .Card__description {
+  margin-bottom: var(--base-size-12);
+}
+
 .Card:has(.Card__link:hover) .Card--expandableArrow {
-  transform: translateX(var(--base-size-4));
+  transform: translateX(var(--base-size-2));
 }
 
 .Card:has(.Card__link:hover) .Card--expandableArrow path:nth-of-type(2) {

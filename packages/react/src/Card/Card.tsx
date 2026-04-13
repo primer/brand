@@ -1,7 +1,8 @@
 import React, {RefObject, forwardRef} from 'react'
 
 import {clsx} from 'clsx'
-import {Heading, HeadingProps, Text, useTheme, CardSkewEffect, Image, type ImageProps, Label, LabelColors} from '..'
+import {Heading, HeadingProps, Text, Image, type ImageProps} from '..'
+import {EyebrowText, type EyebrowTextProps, EyebrowTextVariants} from '../EyebrowText'
 import {Icon, type IconProps} from '../Icon'
 import {ExpandableArrow} from '../ExpandableArrow'
 import type {BaseProps} from '../component-helpers'
@@ -21,13 +22,23 @@ import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/compone
 import styles from './Card.module.css'
 import stylesLink from '../Link/Link.module.css'
 
-export const CardVariants = ['default', 'minimal', 'torchlight'] as const
+export const CardVariants = ['default', 'minimal'] as const
+export const CardCTAVariants = ['text', 'arrow', 'none'] as const
+export const CardTokenPositions = ['block-start', 'block-end'] as const
+export const CardLabelVariants = EyebrowTextVariants
 
 export const CardIconColors = Colors
 
 export const defaultCardIconColor = CardIconColors[0]
+export const defaultCardCTAVariant = CardCTAVariants[0]
+export const defaultCardLabelVariant = CardLabelVariants[1]
 
 export type CardVariants = (typeof CardVariants)[number]
+export type CardCTAVariant = (typeof CardCTAVariants)[number]
+export type CardTokenPosition = (typeof CardTokenPositions)[number]
+export type CardLabelVariant = (typeof CardLabelVariants)[number]
+
+type CardLeadingVisual = React.ReactElement | React.ComponentType<{className?: string}>
 
 export type CardProps = {
   /**
@@ -35,13 +46,14 @@ export type CardProps = {
    */
   variant?: CardVariants
   /**
-   * Valid children include Card.Image, Card.Heading, and Card.Description
+   * Valid children include Card.Image, Card.Icon, Card.Label, Card.Tokens, Card.Heading, and Card.Description
    */
   children:
     | React.ReactNode
     | React.ReactElement<CardImageProps>
     | React.ReactElement<CardIconProps>
     | React.ReactElement<CardLabelProps>
+    | React.ReactElement<CardTokensProps>
     | React.ReactElement<CardHeadingProps>
     | React.ReactElement<CardDescriptionProps>
   /**
@@ -56,6 +68,17 @@ export type CardProps = {
    * Changes the cta text of the card
    * */
   ctaText?: string
+  /**
+   * Specifies the presentation of the call-to-action area
+   */
+  ctaVariant?: CardCTAVariant
+  /**
+   * A visual that appears before the heading, commonly used for a logo or brand mark
+   */
+  leadingVisual?: CardLeadingVisual
+  /**
+   * Adds a border to the card.
+   */
   hasBorder?: boolean
   /**
    * Fills the width of the parent container and removes the default max-width.
@@ -80,10 +103,12 @@ const CardRoot = forwardRef<HTMLDivElement, CardProps>(
       children: childrenMaybeWrappedInFragment,
       className,
       ctaText = 'Learn more',
+      ctaVariant = defaultCardCTAVariant,
       disableAnimation = false,
       fullWidth = false,
       href,
       hasBorder = false,
+      leadingVisual,
       style,
       variant = 'default',
       ...props
@@ -91,7 +116,6 @@ const CardRoot = forwardRef<HTMLDivElement, CardProps>(
     ref,
   ) => {
     const cardRef = useProvidedRefOrCreate(ref as RefObject<HTMLDivElement>)
-    const {colorMode} = useTheme()
 
     let children: React.ReactNode | null
 
@@ -103,41 +127,51 @@ const CardRoot = forwardRef<HTMLDivElement, CardProps>(
       children = childrenMaybeWrappedInFragment
     }
 
-    const {cardImage, cardIcon, cardLabel, cardHeading, cardDescription} = React.Children.toArray(children).reduce<{
-      cardHeading?: ReturnType<typeof CardHeading>
-      cardImage?: ReturnType<typeof CardImage>
-      cardIcon?: ReturnType<typeof CardIcon>
-      cardLabel?: ReturnType<typeof CardLabel>
-      cardDescription?: ReturnType<typeof CardDescription>
-    }>((acc, child) => {
-      if (isCardHeading(child)) {
-        acc.cardHeading = React.cloneElement(child, {
-          href,
-        })
-      } else if (isCardImage(child)) {
-        acc.cardImage = child
-      } else if (isCardIcon(child)) {
-        acc.cardIcon = child
-      } else if (isCardLabel(child)) {
-        acc.cardLabel = child
-      } else if (isCardDescription(child)) {
-        acc.cardDescription = child
-      }
+    const {cardImage, cardIcon, cardLabel, cardTokensBlockStart, cardTokensBlockEnd, cardHeading, cardDescription} =
+      React.Children.toArray(children).reduce<{
+        cardHeading?: ReturnType<typeof CardHeading>
+        cardImage?: ReturnType<typeof CardImage>
+        cardIcon?: ReturnType<typeof CardIcon>
+        cardLabel?: ReturnType<typeof CardLabel>
+        cardTokensBlockStart?: ReturnType<typeof CardTokens>
+        cardTokensBlockEnd?: ReturnType<typeof CardTokens>
+        cardDescription?: ReturnType<typeof CardDescription>
+      }>((acc, child) => {
+        if (isCardHeading(child)) {
+          acc.cardHeading = React.cloneElement(child, {
+            href,
+          })
+        } else if (isCardImage(child)) {
+          acc.cardImage = child
+        } else if (isCardIcon(child)) {
+          acc.cardIcon = child
+        } else if (isCardLabel(child)) {
+          acc.cardLabel = child
+        } else if (isCardTokens(child)) {
+          if (child.props.position === 'block-end') {
+            acc.cardTokensBlockEnd = child
+          } else {
+            acc.cardTokensBlockStart = child
+          }
+        } else if (isCardDescription(child)) {
+          acc.cardDescription = child
+        }
 
-      return acc
-    }, {})
+        return acc
+      }, {})
 
-    const hasSkewEffect = colorMode === 'dark' && variant === 'torchlight'
-    const showBorder = hasSkewEffect || hasBorder
+    if ((process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'test') && leadingVisual && cardIcon) {
+      // eslint-disable-next-line no-console
+      console.warn('Card: `leadingVisual` and `Card.Icon` cannot be used together. `Card.Icon` will not be rendered.')
+    }
 
-    const WrapperComponent = hasSkewEffect ? CardSkewEffect : DefaultCardWrapperComponent
-
+    const renderedLeadingVisual = getRenderableLeadingVisual(leadingVisual)
+    const renderedCardIcon = renderedLeadingVisual ? undefined : cardIcon
     const imagePosition = cardImage ? cardImage.props.position || 'block-start' : null
 
     return (
-      <WrapperComponent
+      <DefaultCardWrapperComponent
         style={style}
-        disableSkew={disableAnimation}
         className={clsx(
           fullWidth ? styles['Card--fullWidth'] : styles['Card--maxWidth'],
           styles[`Card--align-${align}`],
@@ -147,11 +181,11 @@ const CardRoot = forwardRef<HTMLDivElement, CardProps>(
           className={clsx(
             styles.Card,
             disableAnimation && styles['Card--disableAnimation'],
-            styles[`Card--colorMode-${colorMode}`],
+            renderedLeadingVisual && styles['Card--hasLeadingVisual'],
+            ctaVariant === 'arrow' && styles['Card--ctaVariant-arrow'],
+            cardTokensBlockEnd && styles['Card--tokensPosition-block-end'],
             styles[`Card--variant-${variant}`],
-            cardIcon && styles['Card--icon'],
-            showBorder && styles['Card--border'],
-            styles[`Card--colorMode-${colorMode}`],
+            hasBorder && styles['Card--border'],
             imagePosition && styles[`Card--imagePos-${imagePosition}`],
             className,
           )}
@@ -159,30 +193,64 @@ const CardRoot = forwardRef<HTMLDivElement, CardProps>(
           ref={cardRef}
           {...props}
         >
-          {cardHeading}
           {imagePosition === 'block-start' ? cardImage : null}
-          {cardIcon}
+          {renderedLeadingVisual ? <div className={styles.Card__leadingVisual}>{renderedLeadingVisual}</div> : null}
+          {renderedCardIcon}
+          {cardTokensBlockStart}
           {cardLabel}
+          {cardHeading}
           {cardDescription}
+          {cardTokensBlockEnd}
           {imagePosition === 'block-end' ? cardImage : null}
 
-          <div className={styles.Card__action}>
-            <Text as="span" size="200" className={clsx(stylesLink['Link--label'])}>
-              {ctaText}
-            </Text>
-            <ExpandableArrow
-              className={clsx(stylesLink['Link-arrow'], styles['Card--expandableArrow'])}
-              aria-hidden="true"
-            />
-          </div>
+          {ctaVariant !== 'none' ? (
+            <div className={clsx(styles.Card__action, ctaVariant === 'arrow' && styles['Card__action--arrowOnly'])}>
+              {ctaVariant === 'text' ? (
+                <Text as="span" size="200" className={clsx(stylesLink['Link--label'])}>
+                  {ctaText}
+                </Text>
+              ) : null}
+              <ExpandableArrow
+                className={clsx(stylesLink['Link-arrow'], styles['Card--expandableArrow'])}
+                aria-hidden="true"
+              />
+            </div>
+          ) : null}
         </div>
-      </WrapperComponent>
+      </DefaultCardWrapperComponent>
     )
   },
 )
 
-function DefaultCardWrapperComponent({className, children}) {
-  return <div className={clsx(styles['Card__outer'], className)}>{children}</div>
+type DefaultCardWrapperComponentProps = React.PropsWithChildren<{
+  className?: string
+  style?: React.CSSProperties
+}>
+
+function DefaultCardWrapperComponent({className, children, style}: DefaultCardWrapperComponentProps) {
+  return (
+    <div className={clsx(styles['Card__outer'], className)} style={style}>
+      {children}
+    </div>
+  )
+}
+
+function getRenderableLeadingVisual(leadingVisual?: CardLeadingVisual) {
+  if (!leadingVisual) {
+    return null
+  }
+
+  if (typeof leadingVisual === 'function') {
+    return React.createElement(leadingVisual, {className: styles['Card__leadingVisualItem']})
+  }
+
+  if (React.isValidElement<{className?: string}>(leadingVisual)) {
+    return React.cloneElement(leadingVisual, {
+      className: clsx(styles['Card__leadingVisualItem'], leadingVisual.props.className),
+    })
+  }
+
+  return null
 }
 
 type CardImageProps = {
@@ -199,21 +267,43 @@ function CardImage({className, ...rest}: CardImageProps) {
 
 type CardIconProps = IconProps
 
-const CardIcon = ({className, ...props}: IconProps) => (
-  <Icon className={clsx(styles.Card__icon, className)} {...props} />
+const CardIcon = ({className, hasBackground = true, ...props}: IconProps) => (
+  <Icon className={clsx(styles.Card__icon, className)} hasBackground={hasBackground} {...props} />
 )
 
-type CardLabelProps = BaseProps<HTMLSpanElement> & {
+type CardTokensProps = BaseProps<HTMLDivElement> & {
   children: React.ReactNode | React.ReactNode[]
-  color?: (typeof LabelColors)[number]
+  position?: CardTokenPosition
+}
+
+const CardTokens = forwardRef<HTMLDivElement, CardTokensProps>(
+  ({children, className, position = 'block-start', ...rest}, ref) => {
+    return (
+      <div
+        className={clsx(
+          styles.Card__tokens,
+          position === 'block-end' && styles['Card__tokens--position-block-end'],
+          className,
+        )}
+        ref={ref}
+        {...rest}
+      >
+        {children}
+      </div>
+    )
+  },
+)
+
+type CardLabelProps = EyebrowTextProps & {
+  children: React.ReactNode | React.ReactNode[]
 }
 
 const CardLabel = forwardRef<HTMLSpanElement, CardLabelProps>(
-  ({children, className, color = LabelColors[0], ...rest}, ref) => {
+  ({children, variant = 'accent', className, ...rest}, ref) => {
     return (
-      <span className={clsx(styles.Card__label, className)} ref={ref} {...rest}>
-        <Label color={color}>{children}</Label>
-      </span>
+      <EyebrowText ref={ref} className={clsx(styles.Card__label, className)} variant={variant} {...rest}>
+        {children}
+      </EyebrowText>
     )
   },
 )
@@ -228,7 +318,7 @@ type CardHeadingProps = BaseProps<HTMLHeadingElement> & {
 const CardHeading = forwardRef<HTMLHeadingElement, CardHeadingProps>(
   ({children, as = 'h3', className, href, onMouseEnter, onMouseLeave, onBlur, onFocus, ...rest}, ref) => {
     return (
-      <Heading size="subhead-large" className={clsx(styles.Card__heading, className)} ref={ref} as={as} {...rest}>
+      <Heading size="6" className={clsx(styles.Card__heading, className)} ref={ref} as={as} {...rest}>
         <a
           href={href}
           className={clsx(styles.Card__link)}
@@ -264,8 +354,9 @@ const createComponentTypeGuard =
     React.isValidElement(element) && element.type === componentType
 
 const isCardImage = createComponentTypeGuard(CardImage)
-const isCardLabel = createComponentTypeGuard(CardLabel)
 const isCardIcon = createComponentTypeGuard(CardIcon)
+const isCardLabel = createComponentTypeGuard(CardLabel)
+const isCardTokens = createComponentTypeGuard(CardTokens)
 const isCardHeading = createComponentTypeGuard(CardHeading)
 const isCardDescription = createComponentTypeGuard(CardDescription)
 
@@ -275,8 +366,9 @@ const isCardDescription = createComponentTypeGuard(CardDescription)
  */
 export const Card = Object.assign(CardRoot, {
   Image: CardImage,
-  Label: CardLabel,
   Icon: CardIcon,
+  Label: CardLabel,
+  Tokens: CardTokens,
   Heading: CardHeading,
   Description: CardDescription,
 })

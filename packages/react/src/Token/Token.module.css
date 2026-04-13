@@ -1,0 +1,119 @@
+.Token {
+  align-items: center;
+  border: var(--brand-borderWidth-thin) solid transparent;
+  border-radius: var(--brand-borderRadius-small);
+  display: inline-flex;
+  gap: var(--base-size-8);
+  max-width: 100%;
+  padding-inline: var(--base-size-8);
+  padding-block: var(--base-size-6);
+  padding-block-end: calc(var(--base-size-6) - 1px); /* Compensate for 1px border to maintain height */
+  vertical-align: middle;
+}
+
+.Token--hasLeadingVisual {
+  padding-inline: calc((var(--base-size-4) + var(--base-size-8)) / 2);
+  padding-block: calc((var(--base-size-4) + var(--base-size-8)) / 2);
+}
+
+.Token--interactive {
+  cursor: pointer;
+  text-decoration: none;
+}
+
+[data-color-mode='dark'] .Token {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: auto;
+}
+
+.Token--variant-default {
+  background-color: var(--brand-Token-bgColor-default);
+  color: var(--brand-Token-fgColor-default);
+}
+
+.Token--interactive.Token--variant-default:hover {
+  background-color: var(--brand-Token-bgColor-hover-default);
+}
+
+.Token--variant-dark-gray {
+  background-color: var(--brand-Token-bgColor-dark-gray);
+  color: var(--brand-Token-fgColor-dark-gray);
+}
+
+.Token--interactive.Token--variant-dark-gray:hover {
+  background-color: var(--brand-Token-bgColor-hover-dark-gray);
+}
+
+.Token--variant-accent {
+  background-color: var(--brand-Token-bgColor-accent);
+  color: var(--brand-Token-fgColor-accent);
+}
+
+.Token--interactive.Token--variant-accent:hover {
+  background-color: var(--brand-Token-bgColor-hover-accent);
+}
+
+.Token--variant-outline {
+  background-color: var(--brand-Token-bgColor-outline);
+  border-color: var(--brand-Token-border-outline);
+  color: var(--brand-Token-fgColor-outline);
+}
+
+.Token--interactive.Token--variant-outline:hover {
+  background-color: var(--brand-Token-bgColor-hover-outline);
+}
+
+.Token--variant-invisible {
+  background-color: transparent;
+  color: var(--brand-Token-fgColor-invisible);
+}
+
+.Token--interactive.Token--variant-invisible:hover {
+  background-color: var(--brand-Token-bgColor-hover-invisible);
+}
+
+.Token__label {
+  text-transform: uppercase;
+  font-weight: var(--base-text-weight-normal);
+  line-height: 1;
+  line-height: 0.85;
+  white-space: nowrap;
+}
+
+.Token > .Token__label {
+  color: inherit;
+}
+
+.Token__leading-visual {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: calc((var(--base-size-16) + var(--base-size-20)) / 2);
+  height: calc((var(--base-size-16) + var(--base-size-20)) / 2);
+}
+
+.Token__visual {
+  display: block;
+}
+
+/* Keep leading visuals inside a fixed 18x18 slot so larger children like Avatar dont increase Token height. */
+.Token__leading-visual > .Token__visual {
+  width: calc((var(--base-size-16) + var(--base-size-20)) / 2);
+  height: calc((var(--base-size-16) + var(--base-size-20)) / 2);
+  max-width: calc((var(--base-size-16) + var(--base-size-20)) / 2);
+  max-height: calc((var(--base-size-16) + var(--base-size-20)) / 2);
+  border-radius: 2px;
+}
+
+.Token__leading-visual > .Token__visual svg,
+.Token__leading-visual > .Token__visual img {
+  width: 100%;
+  height: 100%;
+}
+
+@media (forced-colors: active) {
+  .Token {
+    outline: var(--brand-borderWidth-thin) solid transparent;
+  }
+}

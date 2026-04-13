@@ -27,6 +27,38 @@ test.describe('Visual Comparison: Card', () => {
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
+  test('Card / Editorial', async ({page}) => {
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-card-examples--editorial&viewMode=story', {
+      waitUntil: 'networkidle',
+    })
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+    await page.waitForTimeout(500)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
+  test('Card / Related content', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-card-examples--related-content&viewMode=story',
+      {waitUntil: 'networkidle'},
+    )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+    await page.waitForTimeout(500)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
+  test('Card / Case studies', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-card-examples--case-studies&viewMode=story',
+      {waitUntil: 'networkidle'},
+    )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+    await page.waitForTimeout(500)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
   test('Card / Minimal', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-card-features--minimal&viewMode=story', {
       waitUntil: 'networkidle',
@@ -184,8 +216,19 @@ test.describe('Visual Comparison: Card', () => {
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
-  test('Card / Stacked', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-card-features--stacked&viewMode=story', {
+  test('Card / Leading visual + arrow CTA', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-card-features--leading-visual-with-arrow-cta&viewMode=story',
+      {waitUntil: 'networkidle'},
+    )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+    await page.waitForTimeout(500)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
+  test('Card / With tokens', async ({page}) => {
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-card-features--with-tokens&viewMode=story', {
       waitUntil: 'networkidle',
     })
     await page.locator('body.sb-show-main').waitFor({state: 'visible'})
@@ -194,11 +237,21 @@ test.describe('Visual Comparison: Card', () => {
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
-  test('Card / Torchlight Variant', async ({page}) => {
+  test('Card / With block-end tokens', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-card-features--torchlight-variant&viewMode=story',
+      'http://localhost:6006/iframe.html?args=&id=components-card-features--with-block-end-tokens&viewMode=story',
       {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+    await page.waitForTimeout(500)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
+  test('Card / Stacked', async ({page}) => {
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-card-features--stacked&viewMode=story', {
+      waitUntil: 'networkidle',
+    })
     await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)

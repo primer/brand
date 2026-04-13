@@ -1,0 +1,55 @@
+.CardStoriesShared-gridFrame {
+  width: 100%;
+  border-block-start: var(--brand-borderWidth-thin) solid var(--brand-color-border-subtle);
+  border-block-end: var(--brand-borderWidth-thin) solid var(--brand-color-border-subtle);
+}
+
+.CardStoriesShared-gridContent {
+  width: 100%;
+  max-width: 789px;
+  margin-inline: auto;
+}
+
+.CardStoriesShared-gridContentWide {
+  width: 100%;
+}
+
+.CardStoriesShared-gridColumn {
+  display: flex;
+}
+
+.CardStoriesShared-gridItem {
+  width: 100%;
+  height: 100%;
+  border-inline: var(--brand-borderWidth-thin) solid var(--brand-color-border-subtle);
+  border-block-start: var(--brand-borderWidth-thin) solid var(--brand-color-border-subtle);
+}
+
+.CardStoriesShared-gridColumn:first-child .CardStoriesShared-gridItem {
+  border-block-start: 0;
+}
+
+@media screen and (min-width: 80rem) {
+  .CardStoriesShared-gridContent {
+    max-width: none;
+  }
+
+  .CardStoriesShared-gridContentWide {
+    max-width: 81rem;
+  }
+
+  .CardStoriesShared-gridItem {
+    border-block-start: 0;
+    border-inline-end: 0;
+    border-inline-start: var(--brand-borderWidth-thin) solid var(--brand-color-border-subtle);
+  }
+
+  .CardStoriesShared-gridColumn:nth-child(n + 4) .CardStoriesShared-gridItem {
+    border-block-start: var(--brand-borderWidth-thin) solid var(--brand-color-border-subtle);
+  }
+
+  .CardStoriesShared-gridColumn:nth-child(3n) .CardStoriesShared-gridItem,
+  .CardStoriesShared-gridColumn:last-child .CardStoriesShared-gridItem {
+    border-inline-end: var(--brand-borderWidth-thin) solid var(--brand-color-border-subtle);
+  }
+}
