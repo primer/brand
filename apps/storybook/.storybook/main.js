@@ -1,3 +1,8 @@
+import path from 'node:path'
+import {fileURLToPath} from 'node:url'
+
+const storybookRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..')
+
 export default {
   stories: ['../../../packages/react/src/**/*.stories.@(js|jsx|ts|tsx)'],
   staticDirs: ['../static'],
@@ -9,6 +14,15 @@ export default {
   docs: {},
   typescript: {
     reactDocgen: 'react-docgen-typescript',
+    reactDocgenTypescriptOptions: {
+      tsconfigPath: path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../../packages/react/tsconfig.json'),
+      include: [path.join(storybookRoot, '../../packages/react/src/**/*.tsx')],
+      exclude: [
+        path.join(storybookRoot, '../../packages/react/src/**/*.stories.tsx'),
+        path.join(storybookRoot, '../../packages/react/src/**/*.test.tsx'),
+        path.join(storybookRoot, '../../packages/react/src/**/*.spec.tsx'),
+      ],
+    },
   },
   core: {
     disableTelemetry: true,

@@ -1,7 +1,8 @@
 import React, {PropsWithChildren} from 'react'
 import {clsx} from 'clsx'
 import {useCursorAnimation} from '../hooks/useCursorAnimation'
-import {Text, TextProps} from '../Text/Text'
+import {EyebrowText} from '../EyebrowText'
+import {TextProps} from '../Text/Text'
 
 import styles from './TextCursorAnimation.module.css'
 
@@ -59,9 +60,15 @@ export function TextCursorAnimation({
   return (
     <span className={clsx(styles.TextCursorAnimation, className)} data-testid={testId || testIds.root}>
       <span className={styles['TextCursorAnimation-inner']} style={style}>
-        <Text size="100" variant={variant} font="monospace" className={styles['TextCursorAnimation-text']}>
+        <EyebrowText
+          size="100"
+          variant={variant}
+          font="monospace"
+          weight="medium"
+          className={styles['TextCursorAnimation-text']}
+        >
           {content}
-        </Text>
+        </EyebrowText>
         {(showCursor || !hasAnimation) && (
           <span className={styles['TextCursorAnimation-cursor']} aria-hidden="true" data-testid={testIds.cursor} />
         )}
