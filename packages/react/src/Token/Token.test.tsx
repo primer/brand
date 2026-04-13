@@ -1,4 +1,5 @@
-import React, {cleanup, render} from '@testing-library/react'
+import React from 'react'
+import {cleanup, render} from '@testing-library/react'
 import '@testing-library/jest-dom'
 import {CopilotIcon} from '@primer/octicons-react'
 import {axe, toHaveNoViolations} from 'jest-axe'
