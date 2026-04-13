@@ -44,7 +44,7 @@ describe('EyebrowText', () => {
     expect(eyebrowEl.classList).toContain(customClass)
   })
 
-  it('supportsan accent variant', () => {
+  it('supports an accent variant', () => {
     const {getByTestId} = render(<EyebrowText variant="accent">{mockText}</EyebrowText>)
 
     const eyebrowEl = getByTestId(EyebrowText.testIds.root)

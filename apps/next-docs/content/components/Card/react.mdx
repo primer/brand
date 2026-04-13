@@ -21,7 +21,6 @@ import {
   CardTokensPositionsProp,
 } from './react'
 import {CopilotIcon, RocketIcon, GitBranchIcon} from '@primer/octicons-react'
-import {MicrosoftLogo} from '@primer/react-brand/fixtures/third-party-logos/MicrosoftLogo'
 
 ```js
 import {Avatar, Box, Card, Grid, Token} from '@primer/react-brand'
@@ -106,17 +105,6 @@ You can add an `icon` to enhance the visual context. We recommend using an [Octi
   <Card.Description>
     Enables you to rapidly search, navigate, and understand code, right from GitHub.com.
   </Card.Description>
-</Card>
-```
-
-### Leading visual
-
-Use `leadingVisual` for a logo or brand mark that should sit above the card content. Do not combine `leadingVisual` with `Card.Icon`; use one or the other depending on the design.
-
-```jsx live
-<Card href="https://github.com" ctaVariant="arrow" leadingVisual={<MicrosoftLogo />}>
-  <Card.Heading>Microsoft creates a culture of empowerment while maintaining security.</Card.Heading>
-  <Card.Description>Paulo Londra, Co-Founder &amp; CEO</Card.Description>
 </Card>
 ```
 

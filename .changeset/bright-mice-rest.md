@@ -8,7 +8,7 @@ Added new `Token` component, which is typically used for showing a collection of
 <Token as="a" href="#">
   As a link
 </Token>
-<Token as="a" href="#">
+<Token>
   As non-interactive text
 </Token>
 ```
