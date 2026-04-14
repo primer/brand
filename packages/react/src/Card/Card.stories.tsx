@@ -2,9 +2,20 @@ import React from 'react'
 import type {Meta, StoryObj} from '@storybook/react'
 import {Card, CardCTAVariants, CardIconColors, CardLabelVariants, CardTokenPositions, CardVariants} from '.'
 import {CopilotIcon} from '@primer/octicons-react'
+import {useTranslation} from 'react-i18next'
 import {Token} from '../Token'
 import placeholderImage from '../fixtures/images/placeholder.png'
 import {MicrosoftLogo} from '../fixtures/third-party-logos/MicrosoftLogo'
+
+const defaultCTAText = 'Learn more'
+const defaultHeading = 'Collaboration is the key to DevOps success'
+const defaultDescription = 'Everything you need to know about getting started with GitHub Actions.'
+const defaultPrimaryToken = 'Topic'
+const defaultSecondaryToken = 'DEC.25'
+
+function getLocalizedArgValue(value: string, fallbackValue: string, localizedValue: string) {
+  return value === fallbackValue ? localizedValue : value
+}
 
 type StoryProps = {
   align: 'start' | 'center'
@@ -35,7 +46,7 @@ const meta = {
   component: Card,
   args: {
     align: 'start',
-    ctaText: 'Learn more',
+    ctaText: defaultCTAText,
     ctaVariant: 'text',
     disableAnimation: false,
     href: 'https://github.com',
@@ -44,11 +55,11 @@ const meta = {
     imagePosition: 'block-start',
     label: '',
     labelVariant: 'muted',
-    heading: 'Collaboration is the key to DevOps success',
-    description: 'Everything you need to know about getting started with GitHub Actions.',
+    heading: defaultHeading,
+    description: defaultDescription,
     media: 'icon',
-    primaryToken: 'Topic',
-    secondaryToken: 'DEC.25',
+    primaryToken: defaultPrimaryToken,
+    secondaryToken: defaultSecondaryToken,
     showDescription: true,
     showTokens: false,
     fullWidth: false,
@@ -207,7 +218,7 @@ const meta = {
       type: {name: 'string', required: true},
       control: {
         type: 'text',
-        value: 'Collaboration is the key to DevOps success',
+        value: defaultHeading,
       },
     },
     description: {
@@ -216,7 +227,7 @@ const meta = {
       type: {name: 'string', required: true},
       control: {
         type: 'text',
-        value: 'Everything you need to know about getting started with GitHub Actions.',
+        value: defaultDescription,
       },
     },
     showDescription: {
@@ -242,20 +253,31 @@ export default meta
 type Story = StoryObj<StoryProps>
 
 export const Default: Story = {
-  render: () => (
-    <Card href="https://github.com">
-      <Card.Heading>Collaboration is the key to DevOps success</Card.Heading>
-      <Card.Description>Everything you need to know about getting started with GitHub Actions.</Card.Description>
-    </Card>
-  ),
+  render: function DefaultComponent() {
+    const {t} = useTranslation('Card')
+
+    return (
+      <Card href="https://github.com">
+        <Card.Heading>{t('default_heading')}</Card.Heading>
+        <Card.Description>{t('default_description')}</Card.Description>
+      </Card>
+    )
+  },
 }
 
 export const Playground: Story = {
-  render: args => {
+  render: function PlaygroundComponent(args) {
+    const {t} = useTranslation('Card')
+    const resolvedCTAText = getLocalizedArgValue(args.ctaText, defaultCTAText, t('learn_more'))
+    const resolvedHeading = getLocalizedArgValue(args.heading, defaultHeading, t('default_heading'))
+    const resolvedDescription = getLocalizedArgValue(args.description, defaultDescription, t('default_description'))
+    const resolvedPrimaryToken = getLocalizedArgValue(args.primaryToken, defaultPrimaryToken, t('topic'))
+    const resolvedSecondaryToken = getLocalizedArgValue(args.secondaryToken, defaultSecondaryToken, t('dec_25'))
+
     const tokens = args.showTokens ? (
       <Card.Tokens position={args.tokensPosition}>
-        {args.primaryToken ? <Token>{args.primaryToken}</Token> : null}
-        {args.secondaryToken ? <Token variant="outline">{args.secondaryToken}</Token> : null}
+        {resolvedPrimaryToken ? <Token>{resolvedPrimaryToken}</Token> : null}
+        {resolvedSecondaryToken ? <Token variant="outline">{resolvedSecondaryToken}</Token> : null}
       </Card.Tokens>
     ) : null
 
@@ -264,7 +286,7 @@ export const Playground: Story = {
         <Card
           href={args.href}
           align={args.align}
-          ctaText={args.ctaText}
+          ctaText={resolvedCTAText}
           ctaVariant={args.ctaVariant}
           disableAnimation={args.disableAnimation}
           hasBorder={args.hasBorder}
@@ -273,19 +295,15 @@ export const Playground: Story = {
           leadingVisual={args.media === 'leadingVisual' ? <MicrosoftLogo /> : undefined}
         >
           {args.media === 'image' ? (
-            <Card.Image
-              src={placeholderImage}
-              alt="placeholder, blank area with an gray background color"
-              position={args.imagePosition}
-            />
+            <Card.Image src={placeholderImage} alt={t('placeholder_alt')} position={args.imagePosition} />
           ) : null}
           {args.media === 'icon' ? (
             <Card.Icon hasBackground={args.iconHasBackground} icon={CopilotIcon} color={args.iconColor} />
           ) : null}
           {args.tokensPosition === 'block-start' ? tokens : null}
           {args.label ? <Card.Label variant={args.labelVariant}>{args.label}</Card.Label> : null}
-          <Card.Heading>{args.heading}</Card.Heading>
-          {args.showDescription ? <Card.Description>{args.description}</Card.Description> : null}
+          <Card.Heading>{resolvedHeading}</Card.Heading>
+          {args.showDescription ? <Card.Description>{resolvedDescription}</Card.Description> : null}
           {args.tokensPosition === 'block-end' ? tokens : null}
         </Card>
       </div>
