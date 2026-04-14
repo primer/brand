@@ -60,6 +60,8 @@ const MockSubNavFixtureWithSubMenu = () => (
 
 describe('SubNav', () => {
   beforeEach(() => {
+    mockUseWindowSize.mockImplementation(() => ({isLarge: false}))
+
     // IntersectionObserver isn't available in test environment
     const mockIntersectionObserver = jest.fn()
     mockIntersectionObserver.mockReturnValue({
