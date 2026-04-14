@@ -47,6 +47,7 @@ const testIds = {
   price: 'PricingOptions__price',
   primaryAction: 'PricingOptions__primaryAction',
   secondaryAction: 'PricingOptions__secondaryAction',
+  menuAction: 'PricingOptions__menuAction',
   featureList: 'PricingOptions__featureList',
   featureListHeading: 'PricingOptions__featureListHeading',
   featureListItem: 'PricingOptions__featureListItem',
@@ -686,7 +687,7 @@ const PricingOptionsMenuAction = forwardRef<HTMLDivElement, PricingOptionsMenuAc
       <div
         ref={ref}
         className={clsx(styles['PricingOptions__menu-action'], className)}
-        data-testid={testId || testIds.primaryAction}
+        data-testid={testId || testIds.menuAction}
         {...rest}
       >
         {children}

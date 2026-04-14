@@ -560,7 +560,7 @@ describe('PricingOptions', () => {
   it('renders PricingOptions.MenuAction in the actions area', () => {
     mockUseWindowSize.mockReturnValue(mediumBreakpoint)
 
-    const {getByText} = render(
+    const {getByTestId, getByText} = render(
       <PricingOptions>
         <PricingOptions.Item>
           <PricingOptions.Heading>Plan</PricingOptions.Heading>
@@ -572,12 +572,32 @@ describe('PricingOptions', () => {
     )
 
     expect(getByText('Menu content')).toBeInTheDocument()
+    expect(getByTestId(PricingOptions.testIds.menuAction)).toBeInTheDocument()
+  })
+
+  it('uses a dedicated test id for PricingOptions.MenuAction when rendered alongside a primary action', () => {
+    mockUseWindowSize.mockReturnValue(mediumBreakpoint)
+
+    const {getByTestId} = render(
+      <PricingOptions>
+        <PricingOptions.Item>
+          <PricingOptions.Heading>Plan</PricingOptions.Heading>
+          <PricingOptions.PrimaryAction as="a" href="#">
+            Primary action
+          </PricingOptions.PrimaryAction>
+          <PricingOptions.MenuAction>
+            <span>Menu content</span>
+          </PricingOptions.MenuAction>
+        </PricingOptions.Item>
+      </PricingOptions>,
+    )
+
+    expect(getByTestId(PricingOptions.testIds.primaryAction)).toBeInTheDocument()
+    expect(getByTestId(PricingOptions.testIds.menuAction)).toBeInTheDocument()
   })
 
   it('forwards style prop to the root element', () => {
-    const {getByTestId} = render(
-      <PricingOptions data-testid={testId} style={{marginBlock: '-1px'}} />,
-    )
+    const {getByTestId} = render(<PricingOptions data-testid={testId} style={{marginBlock: '-1px'}} />)
 
     expect(getByTestId(testId)).toHaveStyle({marginBlock: '-1px'})
   })
