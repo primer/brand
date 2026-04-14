@@ -209,6 +209,7 @@
 
 .Card--border {
   border: var(--brand-borderWidth-thin) solid var(--brand-color-border-default);
+  border-radius: var(--brand-borderRadius-medium);
 }
 
 .Card__outer {
@@ -306,6 +307,10 @@
   margin-block-start: auto;
   display: inline-flex;
   align-items: center;
+}
+
+.Card--tokensPosition-block-end .Card__action {
+  margin-block-start: var(--base-size-20);
 }
 
 .Card__action--arrowOnly {

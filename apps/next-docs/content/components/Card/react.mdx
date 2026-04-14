@@ -96,10 +96,11 @@ A border can be provided using the `hasBorder` prop. This will render a border a
 ### Icon
 
 You can add an `icon` to enhance the visual context. We recommend using an [Octicon](https://primer.style/design/foundations/icons). The `Icon` can be customized using the `color` prop and used with or without a background color by using the `hasBackground` prop.
+Use `Card.Tokens` to display one or more [Token](/components/Token) components below the description. The heading and description still render before the tokens in the DOM, so the reading order stays aligned with the visual order.
 
 ```jsx live
 <Card href="https://github.com">
-  <Card.Icon icon={CopilotIcon} color="purple" hasBackground />
+  <Card.Icon icon={CopilotIcon} hasBackground />
   <Card.Heading>Code search & code view</Card.Heading>
   <Card.Description>
     Enables you to rapidly search, navigate, and understand code, right from GitHub.com.
@@ -109,11 +110,11 @@ You can add an `icon` to enhance the visual context. We recommend using an [Octi
 
 ### Label
 
-Use `Card.Label` for short eyebrow copy above the heading. `Card.Label` is built on `EyebrowText` and supports `variant="default"`, `variant="muted"`, and `variant="accent"`; use `accent` when the design calls for the green emphasis treatment.
+Use `Card.Label` to display short eyebrow copy above the heading.
 
 ```jsx live
 <Card href="https://github.com" ctaVariant="arrow">
-  <Card.Label variant="accent">GitHub Copilot</Card.Label>
+  <Card.Label>GitHub Copilot</Card.Label>
   <Card.Heading>Bring the power of generative AI to engineering teams.</Card.Heading>
   <Card.Description>Prioritize speed, depth, or cost by picking the industry-leading model for you.</Card.Description>
 </Card>
@@ -124,31 +125,57 @@ Use `Card.Label` for short eyebrow copy above the heading. `Card.Label` is built
 Use the `Image` component to add an image to the `Card`. The `Image` component is optional and provides a visual context to the `Card`.
 
 ```jsx live
-<Card href="https://github.com">
-  <Card.Image src="/images/placeholder.png" alt="placeholder, blank area with an gray background color" />
-  <Card.Heading>Code search & code view</Card.Heading>
-  <Card.Description>
-    Enables you to rapidly search, navigate, and understand code, right from GitHub.com.
-  </Card.Description>
-</Card>
+<>
+  <Card href="https://github.com">
+    <Card.Image src="/images/placeholder.png" alt="placeholder, blank area with an gray background color" />
+    <Card.Heading>Code search & code view</Card.Heading>
+    <Card.Description>
+      Enables you to rapidly search, navigate, and understand code, right from GitHub.com.
+    </Card.Description>
+  </Card>
+  <Card href="https://github.com">
+    <Card.Image
+      position="block-end"
+      src="/images/placeholder.png"
+      alt="placeholder, blank area with an gray background color"
+    />
+    <Card.Heading>Code search & code view</Card.Heading>
+    <Card.Description>
+      Enables you to rapidly search, navigate, and understand code, right from GitHub.com.
+    </Card.Description>
+  </Card>
+</>
 ```
 
-### Block-end tokens
+### Tokens
 
-Use `Card.Tokens position="block-end"` when tokens should sit below the description. The heading and description still render before the tokens in the DOM, so the reading order stays aligned with the visual order.
+Use `Card.Tokens` to display one or more [Token](/components/Token) components below the description.
 
 ```jsx live
-<Card href="https://github.com" hasBorder fullWidth ctaVariant="none">
-  <Card.Image src="/images/placeholder-2.png" alt="Abstract blue and green gradient illustration" />
-  <Card.Heading>GitHub&apos;s Engineering Team has moved to Codespaces</Card.Heading>
-  <Card.Description>
-    Today, we&apos;re shipping improvements to Dependabot alerts that make them easier to understand and remediate.
-  </Card.Description>
-  <Card.Tokens position="block-end">
-    <Token leadingVisual={<Avatar src="/images/avatar-mona.png" alt="Mona Lisa" size={32} />}>Mona Lisa</Token>
-    <Token variant="outline">DEC.25</Token>
-  </Card.Tokens>
-</Card>
+<>
+  <Card href="https://github.com">
+    <Card.Image src="/images/placeholder-1.png" alt="Abstract blue and green gradient illustration" />
+    <Card.Heading>Leading tokens</Card.Heading>
+    <Card.Description>
+      Today, we&apos;re shipping improvements to Dependabot alerts that make them easier to understand and remediate.
+    </Card.Description>
+    <Card.Tokens position="block-end">
+      <Token leadingVisual={<Avatar src="/images/avatar-mona.png" alt="Mona Lisa" size={32} />}>Mona Lisa</Token>
+      <Token variant="outline">DEC.25</Token>
+    </Card.Tokens>
+  </Card>
+  <Card href="https://github.com">
+    <Card.Image src="/images/placeholder-2.png" alt="Abstract blue and green gradient illustration" />
+    <Card.Tokens>
+      <Token leadingVisual={<Avatar src="/images/avatar-mona.png" alt="Mona Lisa" size={32} />}>Mona Lisa</Token>
+      <Token variant="outline">DEC.25</Token>
+    </Card.Tokens>
+    <Card.Heading>Trailing tokens</Card.Heading>
+    <Card.Description>
+      Today, we&apos;re shipping improvements to Dependabot alerts that make them easier to understand and remediate.
+    </Card.Description>
+  </Card>
+</>
 ```
 
 ## Component props

@@ -24,34 +24,34 @@ type Story = StoryObj<StoryProps>
 
 const editorialCards = [
   {
-    heading: 'GitHub&apos;s Engineering Team has moved to Codespaces',
+    heading: "GitHub's Engineering Team has moved to Codespaces",
     description:
-      'Today, we&apos;re shipping improvements to Dependabot alerts that make them easier to understand and remediate.',
+      "Today, we're shipping improvements to Dependabot alerts that make them easier to understand and remediate.",
   },
   {
     heading: 'How to debug code with GitHub Copilot',
     description:
-      'Today, we&apos;re shipping improvements to Dependabot alerts that make them easier to understand and remediate.',
+      "Today, we're shipping improvements to Dependabot alerts that make them easier to understand and remediate.",
   },
   {
     heading: '5 tips to supercharge your developer career in 2024',
     description:
-      'Today, we&apos;re shipping improvements to Dependabot alerts that make them easier to understand and remediate.',
+      "Today, we're shipping improvements to Dependabot alerts that make them easier to understand and remediate.",
   },
   {
-    heading: 'GitHub&apos;s Engineering Team has moved to Codespaces',
+    heading: "GitHub's Engineering Team has moved to Codespaces",
     description:
-      'Today, we&apos;re shipping improvements to Dependabot alerts that make them easier to understand and remediate.',
+      "Today, we're shipping improvements to Dependabot alerts that make them easier to understand and remediate.",
   },
   {
     heading: 'How to debug code with GitHub Copilot',
     description:
-      'Today, we&apos;re shipping improvements to Dependabot alerts that make them easier to understand and remediate.',
+      "Today, we're shipping improvements to Dependabot alerts that make them easier to understand and remediate.",
   },
   {
     heading: '5 tips to supercharge your developer career in 2024',
     description:
-      'Today, we&apos;re shipping improvements to Dependabot alerts that make them easier to understand and remediate.',
+      "Today, we're shipping improvements to Dependabot alerts that make them easier to understand and remediate.",
   },
 ] as const
 
@@ -182,7 +182,7 @@ export const CaseStudies: Story = {
         <Stack direction="vertical" padding="none" gap="spacious">
           <SectionIntro align="center" fullWidth>
             <SectionIntro.Heading as="h2" size="3">
-              Adopted by the world&apos;s leading organizations
+              Adopted by the world's leading organizations
             </SectionIntro.Heading>
           </SectionIntro>
 
