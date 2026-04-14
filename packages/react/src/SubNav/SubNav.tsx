@@ -496,7 +496,12 @@ const LinkBaseWithSubmenu = forwardRef<HTMLDivElement, LinkBaseProps>(
           </button>
         )}
 
-        <div id={submenuId} className={styles['SubNav__sub-menu-children']} aria-hidden={isLarge && !isExpanded}>
+        <div
+          id={submenuId}
+          className={styles['SubNav__sub-menu-children']}
+          aria-hidden={isLarge && !isExpanded}
+          hidden={isLarge && !isExpanded}
+        >
           {SubMenuChildren}
         </div>
       </div>

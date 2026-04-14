@@ -182,6 +182,15 @@ describe('SubNav', () => {
     expect(results).toHaveNoViolations()
   })
 
+  it('has no a11y violations when a large viewport submenu is collapsed', async () => {
+    mockUseWindowSize.mockImplementation(() => ({isLarge: true}))
+
+    const {container} = render(<MockSubNavFixtureWithSubMenu />)
+    const results = await axe(container)
+
+    expect(results).toHaveNoViolations()
+  })
+
   it('does not hide submenu items on narrow viewports', async () => {
     const {getByRole} = render(<MockSubNavFixtureWithSubMenu />)
 
