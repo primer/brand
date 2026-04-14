@@ -343,7 +343,7 @@ const RiverBreakoutTabsRoot = forwardRef<HTMLElement, RiverBreakoutTabsProps>(
             >
               {Items.map((item, index) => {
                 const isSelected = activeTab === String(index)
-                const tabProps = getTabProps<HTMLDivElement>(String(index))
+                const tabProps = getTabProps<HTMLButtonElement>(String(index))
                 const {body} = WideTabListContentParts[index]
 
                 return (
@@ -355,7 +355,7 @@ const RiverBreakoutTabsRoot = forwardRef<HTMLElement, RiverBreakoutTabsProps>(
                       item.className,
                     )}
                   >
-                    <div {...tabProps} className={styles.RiverBreakoutTabs__tab}>
+                    <button type="button" {...tabProps} className={styles.RiverBreakoutTabs__tab}>
                       {item.icon &&
                         cloneElement(item.icon, {
                           className: item.icon.props.className,
@@ -367,7 +367,7 @@ const RiverBreakoutTabsRoot = forwardRef<HTMLElement, RiverBreakoutTabsProps>(
                         })}
 
                       {body.length > 0 && <div className={styles.RiverBreakoutTabs__wideTabListContent}>{body}</div>}
-                    </div>
+                    </button>
                   </div>
                 )
               })}
