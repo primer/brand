@@ -182,7 +182,7 @@ export const CaseStudies: Story = {
         <Stack direction="vertical" padding="none" gap="spacious">
           <SectionIntro align="center" fullWidth>
             <SectionIntro.Heading as="h2" size="3">
-              Adopted by the world's leading organizations
+              Adopted by the world&apos;s leading organizations
             </SectionIntro.Heading>
           </SectionIntro>
 
