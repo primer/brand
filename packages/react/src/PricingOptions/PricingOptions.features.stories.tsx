@@ -1272,67 +1272,6 @@ export const WithMenuAction: Story = {
           <PricingOptions.FeatureListItem>Chat in IDE and Mobile</PricingOptions.FeatureListItem>
         </PricingOptions.FeatureList>
       </PricingOptions.Item>
-      <PricingOptions.Item>
-        <PricingOptions.Heading>Pro</PricingOptions.Heading>
-        <PricingOptions.Description>Accelerate workflows with GitHub Copilot.</PricingOptions.Description>
-        <PricingOptions.Price trailingText="per month or $100 per year">10</PricingOptions.Price>
-        <PricingOptions.PrimaryAction as="a" href="#">
-          Try free for 30 days
-        </PricingOptions.PrimaryAction>
-        <PricingOptions.FeatureList expanded={false} hasDivider={false}>
-          <PricingOptions.FeatureListItem>Unlimited requests per month</PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem>Unlimited completions /mo</PricingOptions.FeatureListItem>
-        </PricingOptions.FeatureList>
-      </PricingOptions.Item>
-      <PricingOptions.Item>
-        <PricingOptions.Label>Recommended</PricingOptions.Label>
-        <PricingOptions.Heading>Pro+</PricingOptions.Heading>
-        <PricingOptions.Description>Scale with agents and more models.</PricingOptions.Description>
-        <PricingOptions.Price trailingText="per month or $390 per year">39</PricingOptions.Price>
-        <PricingOptions.MenuAction>
-          <ActionMenu mode="split-button">
-            <ActionMenu.Button variant="secondary" as="a" href="#">
-              Get started
-            </ActionMenu.Button>
-            <ActionMenu.Overlay aria-label="More options">
-              <ActionMenu.Item as="a" href="#">
-                Open in VS Code
-              </ActionMenu.Item>
-              <ActionMenu.Item as="a" href="#">
-                Open in JetBrains
-              </ActionMenu.Item>
-            </ActionMenu.Overlay>
-          </ActionMenu>
-        </PricingOptions.MenuAction>
-        <PricingOptions.FeatureList expanded={false} hasDivider={false}>
-          <PricingOptions.FeatureListItem>Access to latest models</PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem>30x more requests</PricingOptions.FeatureListItem>
-        </PricingOptions.FeatureList>
-      </PricingOptions.Item>
-      <PricingOptions.Item>
-        <PricingOptions.Heading>Max</PricingOptions.Heading>
-        <PricingOptions.Description>Short descriptor of plan 500 characters max.</PricingOptions.Description>
-        <PricingOptions.Price trailingText="per month or $590 per year">49</PricingOptions.Price>
-        <PricingOptions.MenuAction>
-          <ActionMenu mode="split-button">
-            <ActionMenu.Button variant="secondary" as="a" href="#">
-              Get started
-            </ActionMenu.Button>
-            <ActionMenu.Overlay aria-label="More options">
-              <ActionMenu.Item as="a" href="#">
-                Open in VS Code
-              </ActionMenu.Item>
-              <ActionMenu.Item as="a" href="#">
-                Open in JetBrains
-              </ActionMenu.Item>
-            </ActionMenu.Overlay>
-          </ActionMenu>
-        </PricingOptions.MenuAction>
-        <PricingOptions.FeatureList expanded={false} hasDivider={false}>
-          <PricingOptions.FeatureListItem>50 requests per month</PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem>50x more requests, + access to latest models</PricingOptions.FeatureListItem>
-        </PricingOptions.FeatureList>
-      </PricingOptions.Item>
     </PricingOptions>
   ),
 }
