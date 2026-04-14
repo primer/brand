@@ -307,6 +307,30 @@
   margin-block-start: auto;
   display: inline-flex;
   align-items: center;
+  pointer-events: none;
+}
+
+.Card__actionIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.Card__actionLabel {
+  white-space: nowrap;
+}
+
+.Card__actionLabelClip {
+  display: inline-grid;
+  align-items: center;
+  overflow: hidden;
+  max-inline-size: 0;
+  opacity: 0;
+  transform: translateX(calc(var(--base-size-12) * -1));
+  transition: max-inline-size var(--brand-animation-duration-extended) var(--brand-Card-animation-easing),
+    opacity var(--brand-animation-duration-extended) var(--brand-Card-animation-easing),
+    transform var(--brand-animation-duration-extended) var(--brand-Card-animation-easing);
 }
 
 .Card--tokensPosition-block-end .Card__action {
@@ -315,12 +339,28 @@
 
 .Card__action--arrowOnly {
   margin-block-start: var(--base-size-20);
-  width: var(--base-size-32);
-  min-height: var(--base-size-32);
-  justify-content: center;
-  border: var(--brand-borderWidth-thin) solid var(--brand-color-border-default);
+  min-height: var(--base-size-40);
+  width: fit-content;
+  justify-content: flex-start;
+  column-gap: 0;
+  padding-block: var(--base-size-4);
+  padding-inline: 0;
+  border: var(--brand-borderWidth-thin) solid transparent;
   border-radius: var(--brand-borderRadius-full);
   flex-shrink: 0;
+  overflow: hidden;
+  transition: border-color var(--brand-animation-duration-fast) ease,
+    column-gap var(--brand-animation-duration-extended) var(--brand-Card-animation-easing),
+    padding-inline var(--brand-animation-duration-extended) var(--brand-Card-animation-easing);
+}
+
+.Card__actionIcon--arrowOnly {
+  width: var(--base-size-32);
+  min-width: var(--base-size-32);
+  height: var(--base-size-32);
+  min-height: var(--base-size-32);
+  border: var(--brand-borderWidth-thin) solid var(--brand-color-border-default);
+  border-radius: var(--brand-borderRadius-full);
 }
 
 .Card--align-center .Card__action {
@@ -330,6 +370,11 @@
 .Card__action,
 .Card__action span {
   color: var(--brand-Link-color-accent);
+}
+
+.Card__action,
+.Card__action * {
+  cursor: inherit;
 }
 
 .Card--skew:focus-within {
@@ -370,7 +415,12 @@
   margin-inline-start: var(--base-size-4);
 }
 
-.Card__action--arrowOnly .Card--expandableArrow {
+.Card--ctaVariant-arrow .Card--expandableArrow {
+  --ExpandableArrow-duration: var(--brand-Card-animation-duration);
+  --ExpandableArrow-easing: var(--brand-Card-animation-easing);
+}
+
+.Card__actionIcon--arrowOnly .Card--expandableArrow {
   margin-inline-start: 0;
 }
 
@@ -378,11 +428,28 @@
   margin-bottom: var(--base-size-12);
 }
 
-.Card:has(.Card__link:hover) .Card--expandableArrow {
+.Card--ctaVariant-arrow:not(.Card--disableAnimation):hover {
+  transform: none;
+}
+
+.Card--ctaVariant-arrow:is(:hover, :focus-within) .Card__action--arrowOnly {
+  column-gap: var(--base-size-8);
+  padding-inline-start: var(--base-size-12);
+  padding-inline-end: var(--base-size-4);
+  border-color: var(--brand-color-border-default);
+}
+
+.Card--ctaVariant-arrow:is(:hover, :focus-within) .Card__actionLabelClip {
+  max-inline-size: 20ch;
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.Card:is(:hover, :focus-within) .Card--expandableArrow {
   transform: translateX(var(--base-size-2));
 }
 
-.Card:has(.Card__link:hover) .Card--expandableArrow path:nth-of-type(2) {
+.Card:is(:hover, :focus-within) .Card--expandableArrow path:nth-of-type(2) {
   stroke-dashoffset: 20;
 }
 

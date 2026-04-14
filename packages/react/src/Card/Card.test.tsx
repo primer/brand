@@ -160,14 +160,16 @@ describe('Card', () => {
   })
 
   it('renders an arrow-only cta variant', () => {
-    const {container, queryByText} = render(
+    const {container, getByText} = render(
       <Card href={mockHref} ctaVariant="arrow">
         <Card.Heading>{mockHeading}</Card.Heading>
       </Card>,
     )
 
-    expect(queryByText('Learn more')).not.toBeInTheDocument()
-    expect(container.querySelector('.Card__action--arrowOnly')).toBeInTheDocument()
+    expect(getByText('Learn more')).toBeInTheDocument()
+    expect(container.querySelector('.Card__action--arrowOnly')).toHaveAttribute('aria-hidden', 'true')
+    expect(container.querySelector('.Card__actionLabelClip')).toBeInTheDocument()
+    expect(container.querySelector('.Card__actionIcon--arrowOnly')).toBeInTheDocument()
     expect(container.querySelector('.ExpandableArrow')).toBeInTheDocument()
   })
 

@@ -51,6 +51,42 @@ export const CTAText: StoryFn<typeof Card> = () => {
   )
 }
 
+const ArrowCTALongLabelCard = ({testId}: {testId?: string}) => {
+  return (
+    <Box style={{width: '22rem'}}>
+      <Card
+        data-testid={testId}
+        href="https://github.com"
+        fullWidth
+        ctaVariant="arrow"
+        ctaText="Read the quick start guide"
+      >
+        <Card.Icon icon={CopilotIcon} color="green" hasBackground />
+        <Card.Tokens>
+          <Token>Developer docs</Token>
+        </Card.Tokens>
+        <Card.Heading>GitHub Copilot Practice</Card.Heading>
+        <Card.Description>
+          Discover the power of GitHub Copilot with sample patterns and exercises crafted by Yuki Hattori.
+        </Card.Description>
+      </Card>
+    </Box>
+  )
+}
+
+export const ArrowCTALongLabel: StoryFn<typeof Card> = () => {
+  return <ArrowCTALongLabelCard />
+}
+ArrowCTALongLabel.storyName = 'Arrow CTA with long label'
+
+export const ArrowCTALongLabelHover: StoryFn<typeof Card> = () => {
+  return <ArrowCTALongLabelCard testId="hover-enabled-card" />
+}
+ArrowCTALongLabelHover.storyName = 'Arrow CTA with long label hover'
+ArrowCTALongLabelHover.parameters = {
+  pseudo: {hover: ['[data-testid="hover-enabled-card"]']},
+}
+
 export const CenterAligned: StoryFn<typeof Card> = () => {
   return (
     <>

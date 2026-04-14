@@ -15,6 +15,10 @@ declare const styles: {
   readonly "Card--variant-minimal": string;
   readonly "Card__action": string;
   readonly "Card__action--arrowOnly": string;
+  readonly "Card__actionIcon": string;
+  readonly "Card__actionIcon--arrowOnly": string;
+  readonly "Card__actionLabel": string;
+  readonly "Card__actionLabelClip": string;
   readonly "Card__description": string;
   readonly "Card__heading": string;
   readonly "Card__icon": string;

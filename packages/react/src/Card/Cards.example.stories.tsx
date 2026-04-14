@@ -73,7 +73,7 @@ export const Editorial: Story = {
                   return (
                     <Grid.Column
                       key={`${card.heading}-${index}`}
-                      span={{xsmall: 12, xlarge: 4}}
+                      span={{xsmall: 12, large: 4}}
                       className="CardStoriesShared-gridColumn"
                     >
                       <Box className="CardStoriesShared-gridItem" padding="normal">
@@ -108,6 +108,7 @@ export const Editorial: Story = {
 const relatedContentCards = [
   {
     href: 'https://github.com/skills/copilot',
+    ctaText: 'Start',
     icon: CopilotIcon,
     token: 'DEVELOPER DOCS',
     heading: 'GitHub Copilot Practice',
@@ -116,6 +117,7 @@ const relatedContentCards = [
   },
   {
     href: 'https://github.com/advisories',
+    ctaText: 'Explore database',
     icon: ShieldCheckIcon,
     token: 'Advisory',
     heading: 'GitHub Advisory Database',
@@ -123,6 +125,7 @@ const relatedContentCards = [
   },
   {
     href: 'https://github.com/resources/articles',
+    ctaText: 'Read the quick start guide',
     icon: BookIcon,
     token: 'BLOG',
     heading: 'Quick start guides',
@@ -149,11 +152,11 @@ export const RelatedContent: Story = {
                   return (
                     <Grid.Column
                       key={card.heading}
-                      span={{xsmall: 12, xlarge: 4}}
+                      span={{xsmall: 12, large: 4}}
                       className="CardStoriesShared-gridColumn"
                     >
                       <Box className="CardStoriesShared-gridItem" padding={24}>
-                        <Card href={card.href} fullWidth ctaVariant="arrow">
+                        <Card href={card.href} fullWidth ctaVariant="arrow" ctaText={card.ctaText}>
                           <Card.Icon icon={card.icon} color="green" hasBackground />
                           <Card.Tokens>
                             <Token>{card.token}</Token>
@@ -189,7 +192,7 @@ export const CaseStudies: Story = {
           <Box className="CardStoriesShared-gridFrame">
             <Box className={clsx('CardStoriesShared-gridContent', 'CardStoriesShared-gridContentWide')}>
               <Grid columnGap="none" rowGap="none" enableGutters={false}>
-                <Grid.Column span={{xsmall: 12, xlarge: 4}} className="CardStoriesShared-gridColumn">
+                <Grid.Column span={{xsmall: 12, large: 4}} className="CardStoriesShared-gridColumn">
                   <Box className="CardStoriesShared-gridItem" padding={24} style={{minHeight: '21.125rem'}}>
                     <Card
                       href="https://github.com/customer-stories/microsoft"
@@ -217,7 +220,7 @@ export const CaseStudies: Story = {
                   </Box>
                 </Grid.Column>
 
-                <Grid.Column span={{xsmall: 12, xlarge: 4}} className="CardStoriesShared-gridColumn">
+                <Grid.Column span={{xsmall: 12, large: 4}} className="CardStoriesShared-gridColumn">
                   <Box className="CardStoriesShared-gridItem" padding={24} style={{minHeight: '21.125rem'}}>
                     <Card
                       href="https://github.com/customer-stories/shopify"
@@ -245,7 +248,7 @@ export const CaseStudies: Story = {
                   </Box>
                 </Grid.Column>
 
-                <Grid.Column span={{xsmall: 12, xlarge: 4}} className="CardStoriesShared-gridColumn">
+                <Grid.Column span={{xsmall: 12, large: 4}} className="CardStoriesShared-gridColumn">
                   <Box className="CardStoriesShared-gridItem" padding={24} style={{minHeight: '21.125rem'}}>
                     <Card
                       href="https://github.com/customer-stories/twilio"

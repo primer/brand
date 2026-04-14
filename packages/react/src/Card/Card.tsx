@@ -204,16 +204,26 @@ const CardRoot = forwardRef<HTMLDivElement, CardProps>(
           {imagePosition === 'block-end' ? cardImage : null}
 
           {ctaVariant !== 'none' ? (
-            <div className={clsx(styles.Card__action, ctaVariant === 'arrow' && styles['Card__action--arrowOnly'])}>
-              {ctaVariant === 'text' ? (
-                <Text as="span" size="200" className={clsx(stylesLink['Link--label'])}>
+            <div
+              className={clsx(styles.Card__action, ctaVariant === 'arrow' && styles['Card__action--arrowOnly'])}
+              aria-hidden={ctaVariant === 'arrow' ? true : undefined}
+            >
+              <span className={clsx(ctaVariant === 'arrow' && styles.Card__actionLabelClip)}>
+                <Text as="span" size="200" className={clsx(stylesLink['Link--label'], styles.Card__actionLabel)}>
                   {ctaText}
                 </Text>
-              ) : null}
-              <ExpandableArrow
-                className={clsx(stylesLink['Link-arrow'], styles['Card--expandableArrow'])}
-                aria-hidden="true"
-              />
+              </span>
+              <span
+                className={clsx(
+                  styles.Card__actionIcon,
+                  ctaVariant === 'arrow' && styles['Card__actionIcon--arrowOnly'],
+                )}
+              >
+                <ExpandableArrow
+                  className={clsx(stylesLink['Link-arrow'], styles['Card--expandableArrow'])}
+                  aria-hidden="true"
+                />
+              </span>
             </div>
           ) : null}
         </div>
