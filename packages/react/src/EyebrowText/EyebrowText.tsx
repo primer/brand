@@ -7,8 +7,13 @@ import type {BaseProps} from '../component-helpers'
 /** * Main Stylesheet (as a CSS Module) */
 import styles from './EyebrowText.module.css'
 
-export type EyebrowTextProps = Omit<TextProps, 'as' | 'animate'> &
+export const EyebrowTextVariants = ['default', 'muted', 'accent'] as const
+
+export type EyebrowTextVariant = (typeof EyebrowTextVariants)[number]
+
+export type EyebrowTextProps = Omit<TextProps, 'as' | 'animate' | 'variant'> &
   Omit<BaseProps<HTMLSpanElement>, 'animate'> & {
+    variant?: EyebrowTextVariant
     ['data-testid']?: string
   }
 
@@ -31,15 +36,17 @@ const _EyebrowText = forwardRef<HTMLSpanElement, EyebrowTextProps>(
     },
     ref: Ref<HTMLSpanElement>,
   ) => {
+    const textVariant = variant === 'accent' ? 'default' : variant
+
     return (
       <Text
         ref={ref}
         as="span"
         size={size}
-        variant={variant}
+        variant={textVariant}
         font={font}
         weight={weight}
-        className={clsx(styles.EyebrowText, className)}
+        className={clsx(styles.EyebrowText, variant === 'accent' && styles['EyebrowText--variant-accent'], className)}
         style={style}
         data-testid={testId || testIds.root}
         {...props}

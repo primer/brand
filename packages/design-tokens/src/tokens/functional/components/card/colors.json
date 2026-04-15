@@ -3,7 +3,11 @@
     "background": {
       "default": {
         "value": "var(--brand-color-canvas-default)",
-        "dark": "var(--brand-color-canvas-subtle)"
+        "dark": "var(--brand-color-canvas-default)"
+      },
+      "overlay": {
+        "value": "rgba(242, 245, 243, 0.2)",
+        "dark": "rgba(242, 245, 243, 0.05)"
       }
     }
   }

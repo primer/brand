@@ -68,7 +68,7 @@ test.describe('Visual Comparison: LogoSuite', () => {
     )
     await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
-    await page.waitForTimeout(500)
+    await page.waitForTimeout(3000)
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
@@ -200,7 +200,7 @@ test.describe('Visual Comparison: LogoSuite', () => {
     )
     await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
-    await page.waitForTimeout(500)
+    await page.waitForTimeout(3000)
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 })

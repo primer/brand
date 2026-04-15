@@ -2,3 +2,7 @@
   text-transform: uppercase;
   letter-spacing: var(--brand-text-letterSpacing-100);
 }
+
+.EyebrowText--variant-accent {
+  color: var(--brand-color-accent-primary);
+}

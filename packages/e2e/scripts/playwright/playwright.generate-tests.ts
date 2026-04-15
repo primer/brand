@@ -134,7 +134,9 @@ const waitForTimeoutLookup = {
   'recipes-flextemplate-flextemplate--default': 4000, // for video metadata to load
   'components-textcursoranimation--playground': 4000, // for the animation to complete
   'recipes-flextemplate-flexsection--default': 1000, // longer load time
-  'components-subnav-features--delayed-active-link': 2000, // because the story sets an initial delay
+  'components-subnav-features--delayed-active-link': 2000, // because the story sets an initial delay,
+  'components-logosuite-features--grid-line-expressive-kitchen-sink': 3000, // for the animation to complete
+  'components-logosuite-features--takeover-button': 3000, // for the animation to complete
 }
 
 // const skipLocalizationsTestsFor = [
