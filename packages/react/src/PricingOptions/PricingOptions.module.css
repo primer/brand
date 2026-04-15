@@ -5,9 +5,11 @@
 .PricingOptions {
   --brand-pricing-options-item-gap: var(--brand-PricingOptions-items-gap);
   --brand-pricing-options-container-padding-inline: 0;
+  --brand-pricing-options-column-count: 1;
 
   /* prettier-ignore */
   --brand-pricing-options-template-areas: 
+    'labels'
     'leadingComponent'
     'header'
     'description'
@@ -32,9 +34,142 @@
 @media (min-width: 63.25rem) {
   .PricingOptions {
     grid-template-areas: var(--brand-pricing-options-template-areas);
-    grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
+    grid-template-columns: repeat(var(--brand-pricing-options-column-count), minmax(0, 1fr));
     column-gap: var(--brand-pricing-options-item-gap, 0);
     row-gap: 0;
+  }
+
+  .PricingOptions--items1 {
+    --brand-pricing-options-column-count: 1;
+  }
+
+  .PricingOptions--items2 {
+    --brand-pricing-options-column-count: 2;
+  }
+
+  .PricingOptions--items3 {
+    --brand-pricing-options-column-count: 3;
+  }
+
+  .PricingOptions--items4 {
+    --brand-pricing-options-column-count: 4;
+  }
+}
+
+.PricingOptions__labels {
+  display: none;
+}
+
+@media (min-width: 63.25rem) {
+  .PricingOptions__labels {
+    --brand-pricing-options-column-count: 1;
+
+    display: grid;
+    grid-column: 1 / -1;
+    grid-row: labels;
+    grid-template-columns: repeat(var(--brand-pricing-options-column-count), minmax(0, 1fr));
+    column-gap: var(--brand-pricing-options-item-gap, 0);
+  }
+
+  .PricingOptions__label-cell {
+    position: relative;
+    display: flex;
+    align-items: center;
+    min-height: var(--base-size-54);
+    padding-block: var(--base-size-16);
+    background-color: var(--brand-PricingOptions-item-bgColor-solid);
+  }
+
+  /* Accent top border — uses ::after so it can overflow into the column gap */
+  .PricingOptions__label-cell--has-label::after {
+    content: '';
+    position: absolute;
+    inset-block-start: 0;
+    inset-inline-start: calc(var(--brand-pricing-options-item-gap, 0px) / 2 * -1);
+    inset-inline-end: calc(var(--brand-pricing-options-item-gap, 0px) / 2 * -1);
+    height: var(--brand-borderWidth-thin);
+    background-color: var(--brand-color-text-emphasized);
+  }
+
+  /* First cell: don't overflow past container start (cards override below) */
+  .PricingOptions__label-cell--has-label:first-child::after {
+    inset-inline-start: 0;
+  }
+
+  /* Last cell: don't overflow past container end (cards override below) */
+  .PricingOptions__label-cell--has-label:last-child::after {
+    inset-inline-end: 0;
+  }
+
+  /* Default layout: extend accent border into container padding to reach the container edge */
+  .PricingOptions--layout-default .PricingOptions__label-cell--has-label:first-child::after {
+    inset-inline-start: calc(var(--brand-pricing-options-container-padding-inline, 0px) * -1);
+  }
+
+  .PricingOptions--layout-default .PricingOptions__label-cell--has-label:last-child::after {
+    inset-inline-end: calc(var(--brand-pricing-options-container-padding-inline, 0px) * -1);
+  }
+
+  /* ---- Default layout labels ---- */
+
+  /* Continuous bottom border across entire labels row — uses ::after to extend into container padding */
+  .PricingOptions--layout-default .PricingOptions__labels {
+    position: relative;
+  }
+
+  .PricingOptions--layout-default .PricingOptions__labels::after {
+    content: '';
+    position: absolute;
+    inset-block-end: 0;
+    inset-inline-start: calc(var(--brand-pricing-options-container-padding-inline, 0px) * -1);
+    inset-inline-end: calc(var(--brand-pricing-options-container-padding-inline, 0px) * -1);
+    height: var(--brand-borderWidth-thin);
+    background-color: var(--brand-color-border-subtle);
+  }
+
+  .PricingOptions--layout-default .PricingOptions__label-cell {
+    padding-inline: 0;
+  }
+
+  /* Empty cells: transparent bg/borders but structurally visible so dividers show */
+  .PricingOptions--layout-default .PricingOptions__label-cell--empty {
+    background-color: transparent;
+    border-block-start-color: transparent;
+  }
+
+  /* Vertical dividers between label cells, centered in the gap */
+  .PricingOptions--layout-default .PricingOptions__label-cell + .PricingOptions__label-cell::before {
+    content: '';
+    position: absolute;
+    inset-block: 0;
+    width: var(--brand-borderWidth-thin);
+    inset-inline-start: calc(var(--brand-pricing-options-item-gap) / 2 * -1);
+    background-color: var(--brand-color-border-subtle);
+  }
+
+  .PricingOptions--layout-default.PricingOptions--appearance-gradient
+    .PricingOptions__label-cell
+    + .PricingOptions__label-cell::before {
+    mask-image: var(--brand-PricingOptions-borderMask);
+  }
+
+  /* ---- Cards layout labels ---- */
+
+  .PricingOptions--layout-cards .PricingOptions__label-cell {
+    padding-inline: var(--base-size-28);
+    border-inline: var(--brand-borderWidth-thin) solid var(--brand-color-border-subtle);
+    /* border-block-end: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted); */
+  }
+
+  .PricingOptions--layout-cards .PricingOptions__label-cell--empty {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  /* Cards: keep accent border inside the card boundary */
+  .PricingOptions--layout-cards .PricingOptions__label-cell--has-label::after {
+    inset-inline-start: 0;
+    inset-inline-end: 0;
   }
 }
 
@@ -44,11 +179,10 @@
 
 .PricingOptions--layout-default {
   position: relative;
-  border-radius: var(--brand-borderRadius-xlarge);
 }
 
 .PricingOptions--layout-default.PricingOptions--appearance-solid {
-  border: solid 1px var(--brand-color-border-default);
+  border: solid 1px var(--brand-color-border-subtle);
   background-color: var(--brand-PricingOptions-item-bgColor-solid);
 }
 
@@ -69,7 +203,7 @@
   pointer-events: none;
   border-radius: inherit;
   mask-image: var(--brand-PricingOptions-borderMask);
-  border: var(--brand-borderWidth-thin) solid var(--brand-color-border-default);
+  border: var(--brand-borderWidth-thin) solid var(--brand-color-border-subtle);
 }
 
 @media (min-width: 63.25rem) {
@@ -79,6 +213,8 @@
 }
 
 .PricingOptions--layout-default .PricingOptions__item {
+  --brand-pricing-options-item-padding-inline: var(--base-size-24);
+
   position: relative; /* Used for positioning the divider between items */
   padding-inline: var(--base-size-24);
   padding-block: var(--base-size-20);
@@ -86,23 +222,25 @@
 
 @media (min-width: 63.25rem) {
   .PricingOptions--layout-default .PricingOptions__item {
+    --brand-pricing-options-item-padding-inline: 0;
+
     padding-inline: 0;
     padding-block: var(--base-size-40);
   }
 }
 
 /* Horizontal divider between items on small viewports */
-.PricingOptions--layout-default .PricingOptions__item:nth-child(n + 2)::before {
+.PricingOptions--layout-default .PricingOptions__item + .PricingOptions__item::before {
   content: '';
   position: absolute;
   inset-inline: 0;
   height: 1px;
-  background-color: var(--brand-color-border-default);
+  background-color: var(--brand-color-border-subtle);
 }
 
 /* Vertical divider between items on larger viewports */
 @media (min-width: 63.25rem) {
-  .PricingOptions--layout-default .PricingOptions__item:nth-child(n + 2)::before {
+  .PricingOptions--layout-default .PricingOptions__item + .PricingOptions__item::before {
     inset-inline: 0;
     inset-block: 0;
     width: 1px;
@@ -111,7 +249,9 @@
     margin-inline-start: calc(var(--brand-pricing-options-item-gap) / 2 * -1);
   }
 
-  .PricingOptions--layout-default.PricingOptions--appearance-gradient .PricingOptions__item:nth-child(n + 2)::before {
+  .PricingOptions--layout-default.PricingOptions--appearance-gradient
+    .PricingOptions__item
+    + .PricingOptions__item::before {
     mask-image: var(--brand-PricingOptions-borderMask);
   }
 }
@@ -121,15 +261,16 @@
 /* ---------------------------------------------------------- */
 
 .PricingOptions--layout-cards .PricingOptions__item {
+  --brand-pricing-options-item-padding-inline: var(--base-size-32);
+
   position: relative;
   padding-inline: var(--base-size-32);
-  border-radius: var(--brand-borderRadius-xlarge);
   padding-block: var(--base-size-32);
 }
 
 .PricingOptions--layout-cards.PricingOptions--appearance-solid .PricingOptions__item {
   background-color: var(--brand-PricingOptions-item-bgColor-solid);
-  border: solid var(--brand-borderWidth-thin) var(--brand-color-border-default);
+  border: solid var(--brand-borderWidth-thin) var(--brand-color-border-subtle);
 }
 
 /* ---------------------------------------------------------- */
@@ -197,10 +338,6 @@
   justify-content: center;
 }
 
-.PricingOptions__item--align-center .PricingOptions__label {
-  justify-self: center;
-}
-
 /*
  * Backwards compatibility for browsers that don't support subgrid.
  * Once subgrid is supported in the last 3 major versions of Safari (i.e., when Safari 18 is released), it can be fully removed.
@@ -226,20 +363,10 @@
   row-gap: var(--base-size-16);
 }
 
-/* When item is left-aligned, place the label next to the heading if it fits, and stack it if it doesn't */
+/* When item is left-aligned, keep the heading at the start of the card */
 .PricingOptions__item:not(.PricingOptions__item--align-center) .PricingOptions__header {
-  flex-wrap: wrap-reverse;
   align-items: center;
-  column-gap: var(--base-size-16);
   margin-block-end: var(--base-size-16);
-}
-
-.PricingOptions__item:not(.PricingOptions__item--align-center) .PricingOptions__label {
-  --brand-Label-color: var(--brand-color-accent-primary);
-  --brand-Label-color-start: var(--brand-color-accent-primary-start);
-  --brand-Label-color-end: var(--brand-color-accent-primary-end);
-  flex: 0 0 auto;
-  order: 2;
 }
 
 .PricingOptions__item:not(.PricingOptions__item--align-center) .PricingOptions__heading {
@@ -255,25 +382,15 @@
   }
 }
 
-/* When item is centered, stack the label on top the heading */
+/* When item is centered, center the heading */
 .PricingOptions__item--align-center .PricingOptions__header {
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-end;
-}
-
-.PricingOptions__item--align-center .PricingOptions__label {
-  --brand-Label-color: var(--brand-color-accent-primary);
-  --brand-Label-color-start: var(--brand-color-accent-primary-start);
-  --brand-Label-color-end: var(--brand-color-accent-primary-end);
-  order: 1;
-  margin: 0 auto;
+  justify-content: center;
 }
 
 .PricingOptions__item--align-center .PricingOptions__heading {
   margin-block-start: 0;
   margin-block-end: var(--base-size-16);
-  order: 2;
+  text-align: center;
 }
 
 .PricingOptions__leading-component {
@@ -281,16 +398,13 @@
 }
 
 .PricingOptions__label {
-  /* Sets the color of the label to the primary accent color, if it exists */
-  --brand-Label-color: var(--brand-color-accent-primary);
-
-  /* Sets the color of the label to the primary accent gradient, if it exists */
-  /* TODO accent grandient tokens do not exist yet */
-  --brand-Label-color-start: var(--brand-color-accent-primary-start);
-  --brand-Label-color-end: var(--brand-color-accent-primary-end);
-
-  flex: 0 0 auto;
-  order: 2;
+  color: var(--brand-color-text-default);
+  font-family: var(--brand-fontStack-monospace);
+  font-size: var(--brand-text-size-100);
+  font-weight: var(--brand-text-weight-500);
+  letter-spacing: var(--brand-text-letterSpacing-100);
+  line-height: var(--brand-text-lineHeight-200);
+  text-transform: uppercase;
 }
 
 .PricingOptions__heading {
@@ -307,7 +421,7 @@
 .PricingOptions__price {
   display: flex;
   flex-wrap: wrap;
-  align-content: flex-start;
+  align-items: flex-start;
   grid-row: price;
   padding-block-start: var(--base-size-20);
   padding-block-end: var(--base-size-8);
@@ -320,8 +434,14 @@
   }
 }
 
+.PricingOptions__price-amount {
+  display: flex;
+  align-items: flex-end;
+}
+
 .PricingOptions__price-currency-code {
   margin-inline-start: var(--base-size-4);
+  margin-block-end: var(--base-size-4);
   color: var(--brand-color-text-muted);
 }
 
@@ -350,6 +470,26 @@
   padding-block-start: var(--base-size-20);
 }
 
+/* MenuAction: full-width ActionMenu wrapper */
+.PricingOptions__menu-action {
+  width: 100%;
+}
+
+.PricingOptions__menu-action > * {
+  width: 100%;
+}
+
+/* Force ActionMenu button container to stretch full width */
+.PricingOptions__menu-action > * > * {
+  display: flex;
+  width: 100%;
+}
+
+/* Make the primary button fill remaining space next to the chevron */
+.PricingOptions__menu-action > * > * > :first-child {
+  flex: 1;
+}
+
 .PricingOptions__footnote {
   grid-row: footnote;
   display: block;
@@ -374,11 +514,49 @@
 }
 
 .PricingOptions__feature-list--has-divider {
-  border-block-start: solid 1px var(--brand-color-border-default);
+  position: relative;
   margin: 0;
   margin-block-start: var(--base-size-20);
   padding-block-start: var(--base-size-40);
   padding-inline: 0;
+}
+
+/* Edge-to-edge divider above feature list */
+.PricingOptions__feature-list--has-divider::before {
+  content: '';
+  position: absolute;
+  inset-block-start: 0;
+  inset-inline-start: calc(var(--brand-pricing-options-item-padding-inline, 0px) * -1);
+  inset-inline-end: calc(var(--brand-pricing-options-item-padding-inline, 0px) * -1);
+  height: var(--brand-borderWidth-thin);
+  background-color: var(--brand-color-border-subtle);
+}
+
+/* Default layout: extend feature list divider into column gap */
+@media (min-width: 63.25rem) {
+  .PricingOptions--layout-default .PricingOptions__feature-list--has-divider::before {
+    inset-inline-start: calc(var(--brand-pricing-options-item-gap, 0px) / 2 * -1);
+    inset-inline-end: calc(var(--brand-pricing-options-item-gap, 0px) / 2 * -1);
+  }
+
+  /* First item: don't overflow past container start */
+  .PricingOptions--layout-default .PricingOptions__item:first-child .PricingOptions__feature-list--has-divider::before,
+  .PricingOptions--layout-default
+    .PricingOptions__labels
+    + .PricingOptions__item
+    .PricingOptions__feature-list--has-divider::before {
+    inset-inline-start: calc(var(--brand-pricing-options-container-padding-inline, 0px) * -1);
+  }
+
+  /* Last item: don't overflow past container end */
+  .PricingOptions--layout-default .PricingOptions__item:last-child .PricingOptions__feature-list--has-divider::before {
+    inset-inline-end: calc(var(--brand-pricing-options-container-padding-inline, 0px) * -1);
+  }
+
+  .PricingOptions--layout-default.PricingOptions--appearance-gradient
+    .PricingOptions__feature-list--has-divider::before {
+    mask-image: var(--brand-PricingOptions-borderMask);
+  }
 }
 
 .PricingOptions__feature-list-set:nth-child(n + 2) {
@@ -393,6 +571,44 @@
 
 .PricingOptions__feature-list-item--excluded span {
   color: var(--brand-color-text-muted);
+}
+
+/* Info tooltip button */
+.PricingOptions__feature-list-item--has-info {
+  flex-wrap: nowrap;
+}
+
+.PricingOptions__feature-list-item--has-info > span {
+  flex: 1;
+  display: inline-flex;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.PricingOptions__feature-list-item-info {
+  all: unset;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  cursor: pointer;
+  color: var(--brand-color-text-muted);
+  background-color: color-mix(in srgb, var(--brand-color-canvas-invert) 12%, transparent);
+  border: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
+  border-radius: 50%;
+  margin-inline-start: var(--base-size-8);
+  vertical-align: middle;
+  padding: var(--base-size-4);
+}
+
+.PricingOptions__feature-list-item-info svg {
+  width: var(--base-size-12);
+  height: var(--base-size-12);
+}
+
+.PricingOptions__feature-list-item-info:focus-visible {
+  outline: var(--brand-borderWidth-thick) solid var(--brand-color-focus);
+  outline-offset: 2px;
 }
 
 .PricingOptions__feature-list + .PricingOptions__feature-list-group-heading {
@@ -433,6 +649,7 @@
 .PricingOptions__feature-list-accordion-heading {
   padding: var(--base-size-8) 0;
   padding-inline-start: 0 !important; /* Fixes dotcom specificity issue */
+  padding-inline-end: 0 !important;
   margin-block-start: calc(var(--base-size-16) * -1);
   margin-block-end: var(--base-size-8);
 }
@@ -443,8 +660,10 @@
   line-height: var(--feature-list-line-height);
   font-weight: var(--brand-text-subhead-weight-large);
   gap: var(--base-size-8);
-  display: inline-flex;
   align-items: center;
+  justify-content: space-between;
+  display: flex;
+  width: 100%;
 }
 
 /* Hide default icon */
@@ -457,6 +676,10 @@
   padding: 0;
   padding-block-start: var(--base-size-8);
   padding-inline-start: 0 !important;
+}
+
+.PricingOptions__feature-list-accordion-chevron {
+  margin-inline-end: var(--base-size-4);
 }
 
 /* Chevron up icon */

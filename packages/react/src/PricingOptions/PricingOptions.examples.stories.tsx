@@ -18,12 +18,12 @@ const decorators = Story => (
 export default {
   title: 'Components/PricingOptions/Examples',
   component: PricingOptions,
-  decorators: [decorators],
 } satisfies Meta<typeof PricingOptions>
 
 type Story = StoryObj<typeof PricingOptions>
 
 export const CopilotIndividualPlans: Story = {
+  decorators: [decorators],
   render: () => {
     return (
       <PricingOptions variant="default-gradient">
@@ -99,6 +99,7 @@ export const CopilotIndividualPlans: Story = {
   },
 }
 export const CopilotBusinessPlans: Story = {
+  decorators: [decorators],
   render: () => {
     return (
       <PricingOptions variant="default-gradient">
@@ -142,6 +143,100 @@ export const CopilotBusinessPlans: Story = {
           </PricingOptions.FeatureList>
         </PricingOptions.Item>
       </PricingOptions>
+    )
+  },
+}
+
+export const WithGridLines: Story = {
+  render: () => {
+    return (
+      <Box borderBlockStartWidth="thin" borderColor="subtle" borderStyle="solid" marginBlockStart="spacious">
+        <Box backgroundColor="default" borderBlockEndWidth="thin" borderColor="subtle" borderStyle="solid">
+          <Grid>
+            <Grid.Column span={12}>
+              <PricingOptions style={{marginBlock: 'calc(var(--brand-borderWidth-thin) * -1)'}}>
+                <PricingOptions.Item>
+                  <PricingOptions.Heading>Free</PricingOptions.Heading>
+                  <PricingOptions.Description>
+                    A fast way to get started with GitHub Copilot.
+                  </PricingOptions.Description>
+                  <PricingOptions.Price>0</PricingOptions.Price>
+                  <PricingOptions.FeatureList>
+                    <PricingOptions.FeatureListItem>
+                      50 agent mode or chat requests per month
+                    </PricingOptions.FeatureListItem>
+                    <PricingOptions.FeatureListItem>2,000 completions per month</PricingOptions.FeatureListItem>
+                    <PricingOptions.FeatureListItem
+                      leadingVisual={SparkleFillIcon}
+                      leadingVisualFill="var(--base-color-scale-purple-5)"
+                    >
+                      Access to Claude 3.5 Sonnet, GPT-4o, and more
+                    </PricingOptions.FeatureListItem>
+                  </PricingOptions.FeatureList>
+                  <PricingOptions.PrimaryAction as="a" href="#" variant="accent">
+                    Get started
+                  </PricingOptions.PrimaryAction>
+                  <PricingOptions.SecondaryAction as="a" href="#" variant="subtle" hasArrow={false}>
+                    Open in VS Code
+                  </PricingOptions.SecondaryAction>
+                </PricingOptions.Item>
+                <PricingOptions.Item>
+                  <PricingOptions.Heading>Pro</PricingOptions.Heading>
+                  <PricingOptions.Label>Most popular</PricingOptions.Label>
+                  <PricingOptions.Description>
+                    Unlimited completions and chat with access to more models.
+                  </PricingOptions.Description>
+                  <PricingOptions.Price trailingText="per month / $100 per year">10</PricingOptions.Price>
+                  <PricingOptions.PrimaryAction as="a" href="#" variant="accent">
+                    Get started
+                  </PricingOptions.PrimaryAction>
+                  <PricingOptions.FeatureList>
+                    <PricingOptions.FeatureListHeading>Everything in Free and:</PricingOptions.FeatureListHeading>
+                    <PricingOptions.FeatureListItem>
+                      Unlimited agent mode and chats with GPT-4o
+                    </PricingOptions.FeatureListItem>
+                    <PricingOptions.FeatureListItem>Unlimited code completions</PricingOptions.FeatureListItem>
+                    <PricingOptions.FeatureListItem>
+                      Access to code review, Claude 3.7 Sonnet, o1, and more
+                    </PricingOptions.FeatureListItem>
+                    <PricingOptions.FeatureListItem>
+                      6x more premium requests to use latest models than Free, with the option to buy more1
+                    </PricingOptions.FeatureListItem>
+                  </PricingOptions.FeatureList>
+                  <PricingOptions.Footnote>
+                    Free for verified students, teachers, and maintainers of popular open source projects.{' '}
+                    <InlineLink href="#">Learn more</InlineLink>
+                  </PricingOptions.Footnote>
+                </PricingOptions.Item>
+
+                <PricingOptions.Item>
+                  <PricingOptions.Heading>Pro+</PricingOptions.Heading>
+                  <PricingOptions.Description>Maximum flexibility and model choice.</PricingOptions.Description>
+                  <PricingOptions.Price trailingText="per month or $390 per year">39</PricingOptions.Price>
+                  <PricingOptions.PrimaryAction as="a" href="#" variant="accent">
+                    Get started
+                  </PricingOptions.PrimaryAction>
+                  <PricingOptions.FeatureList>
+                    <PricingOptions.FeatureListHeading>Everything in Pro and:</PricingOptions.FeatureListHeading>
+                    <PricingOptions.FeatureListItem>
+                      Everything in Copilot Individual plus:
+                    </PricingOptions.FeatureListItem>
+                    <PricingOptions.FeatureListItem>
+                      Access to all models, including GPT-4.5
+                    </PricingOptions.FeatureListItem>
+                    <PricingOptions.FeatureListItem>
+                      30x more premium requests to use latest models than Free, with the option to buy more1
+                    </PricingOptions.FeatureListItem>
+                    <PricingOptions.FeatureListItem>
+                      Enterprise-grade security, safety, and privacy
+                    </PricingOptions.FeatureListItem>
+                  </PricingOptions.FeatureList>
+                </PricingOptions.Item>
+              </PricingOptions>
+            </Grid.Column>
+          </Grid>
+        </Box>
+      </Box>
     )
   },
 }
