@@ -11,7 +11,7 @@ jobs:
   visual-test:
     if: ${{ github.repository == 'primer/brand' }}
     name: Storybook
-    runs-on: macos-latest-large
+    runs-on: macos-latest-xlarge
     env:
       NODE_ENV: test
     steps:
