@@ -139,8 +139,8 @@ export const GridLineWithBackground: Story = {
                 data from your repositories and external resources.
               </Text>
               <Text as="p" variant="muted">
-                <Text variant="default">Human and agent in the loop.</Text>
-                Comment to guide GitHub Copilot, polish your code for merge, or take over locally in your IDE.
+                <Text variant="default">Human and agent in the loop.</Text> Comment to guide GitHub Copilot, polish your
+                code for merge, or take over locally in your IDE.
               </Text>
             </Stack>
           )}
@@ -168,22 +168,12 @@ export const GridLineWithCardsTrailingComponent: Story = {
         </RiverBreakout.Visual>
         <RiverBreakout.Content
           trailingComponent={() => (
-            <Stack gap="normal" padding="none">
-              <Box padding="normal">
-                <Card href="https://github.com" variant="minimal" fullWidth disableAnimation ctaText="Learn more">
-                  <Card.Image src={shopifyLogo} alt="Shopify logo" width={88} />
-                  <Card.Heading>Duolingo boosts developer speed by 25% with GitHub Copilot</Card.Heading>
-                </Card>
-              </Box>
-              <Box borderBlockStartWidth="thin" borderColor="muted" borderStyle="solid">
-                <Box padding="normal" paddingBlockStart="none">
-                  <Card href="https://github.com" variant="minimal" fullWidth disableAnimation ctaText="Learn more">
-                    <Card.Image src={shopifyLogo} alt="Shopify logo" width={88} />
-                    <Card.Heading>Teams deliver secure code faster with GitHub Copilot</Card.Heading>
-                  </Card>
-                </Box>
-              </Box>
-            </Stack>
+            <Box padding="condensed">
+              <Card href="https://github.com" variant="minimal" fullWidth disableAnimation ctaText="Learn more">
+                <Card.Image src={shopifyLogo} alt="Shopify logo" width={88} />
+                <Card.Heading>Duolingo boosts developer speed by 25% with GitHub Copilot</Card.Heading>
+              </Card>
+            </Box>
           )}
           trailingComponentDivider
         >

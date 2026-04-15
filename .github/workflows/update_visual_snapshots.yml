@@ -15,7 +15,7 @@ jobs:
   update-snapshots:
     if: ${{ github.event.label.name == 'update snapshots' }}
     name: Update snapshots
-    runs-on: macos-latest-large
+    runs-on: macos-latest-xlarge
     steps:
       - name: Checkout repository
         uses: actions/checkout@v6

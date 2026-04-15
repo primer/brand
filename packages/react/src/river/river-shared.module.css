@@ -466,6 +466,14 @@
   gap: 0;
 }
 
+@media screen and (max-width: 63.24rem) {
+  .RiverBreakout--variant-gridline {
+    width: 100%;
+    max-width: 38.625rem;
+    margin-inline: auto;
+  }
+}
+
 .RiverBreakout--variant-gridline::before,
 .RiverBreakout--variant-gridline::after {
   content: '';
@@ -485,7 +493,19 @@
   bottom: 0;
 }
 
-@media screen and (min-width: 80rem) {
+@media screen and (min-width: 618px) {
+  .RiverBreakout--variant-gridline {
+    border-inline: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
+  }
+}
+
+@media screen and (min-width: 63.25rem) {
+  .RiverBreakout--variant-gridline {
+    border-inline: none;
+  }
+}
+
+@media screen and (min-width: 1300px) {
   .RiverBreakout--variant-gridline {
     border-inline: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
   }
@@ -599,6 +619,10 @@
   border-radius: var(--brand-borderRadius-large);
 }
 
+.RiverBreakout .River__visual--has-background [data-video-player-container] {
+  border-radius: var(--brand-borderRadius-large);
+}
+
 .RiverBreakout--variant-gridline .River__visual--has-background {
   margin-inline: calc(-1 * var(--brand-RiverBreakout-variant-gridline-spacing-outerInline));
   padding: var(--base-size-32);
@@ -616,6 +640,11 @@
     border-end-start-radius: 0;
     border-end-end-radius: 0;
   }
+
+  .RiverBreakout--variant-gridline .River__visual--has-background [data-video-player-container] {
+    border-end-start-radius: 0;
+    border-end-end-radius: 0;
+  }
 }
 
 @media screen and (min-width: 48rem) and (max-width: 63.24rem) {
@@ -627,6 +656,11 @@
   .RiverBreakout--variant-gridline .River__visual--has-background img,
   .RiverBreakout--variant-gridline .River__visual--has-background picture,
   .RiverBreakout--variant-gridline .River__visual--has-background video {
+    border-end-start-radius: 0;
+    border-end-end-radius: 0;
+  }
+
+  .RiverBreakout--variant-gridline .River__visual--has-background [data-video-player-container] {
     border-end-start-radius: 0;
     border-end-end-radius: 0;
   }
@@ -642,6 +676,11 @@
   .RiverBreakout--variant-gridline .River__visual--has-background img,
   .RiverBreakout--variant-gridline .River__visual--has-background picture,
   .RiverBreakout--variant-gridline .River__visual--has-background video {
+    border-end-start-radius: 0;
+    border-end-end-radius: 0;
+  }
+
+  .RiverBreakout--variant-gridline .River__visual--has-background [data-video-player-container] {
     border-end-start-radius: 0;
     border-end-end-radius: 0;
   }
