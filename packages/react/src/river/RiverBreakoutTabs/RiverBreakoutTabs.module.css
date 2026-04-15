@@ -18,6 +18,7 @@
 .RiverBreakoutTabs__wideTabList {
   display: flex;
   flex-direction: column;
+  padding-block-end: var(--base-size-80);
 }
 
 .RiverBreakoutTabs__sharedVisuals {
@@ -61,7 +62,6 @@
   display: grid;
   grid-template-columns: repeat(var(--river-breakout-tabs-columns), minmax(0, 1fr));
   gap: var(--base-size-40);
-  padding-block-end: var(--base-size-80);
 }
 
 .RiverBreakoutTabs__item {
