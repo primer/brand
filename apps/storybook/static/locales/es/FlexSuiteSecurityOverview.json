@@ -1,0 +1,112 @@
+{
+  "common": {
+    "learnMore": "Más información",
+    "heroImageAlt": "Ilustración principal de la vista general de seguridad"
+  },
+  "subNav": {
+    "heading": "GitHub Security",
+    "links": {
+      "advancedSecurity": "Advanced Security",
+      "secretProtection": "Protección de secretos",
+      "codeSecurity": "Seguridad del código",
+      "supplyChain": "Cadena de suministro",
+      "resources": "Recursos",
+      "pricing": "Planes y precios"
+    }
+  },
+  "hero": {
+    "label": "GitHub Security",
+    "heading": "Seguridad potente, diseñada para desarrolladores",
+    "primaryAction": "Iniciar prueba gratuita",
+    "secondaryAction": "Contactar con ventas"
+  },
+  "logoSuiteHeading": "Logos de clientes de GitHub Security",
+  "highlights": {
+    "one": {
+      "tag": "Cobertura",
+      "heading": "Análisis de código a escala",
+      "description": "Ejecuta detección en todos los repositorios con flujos de trabajo nativos y contexto de seguridad integrado en el ciclo de vida del desarrollador."
+    },
+    "two": {
+      "tag": "Velocidad",
+      "heading": "Soluciona problemas antes de que ralenticen la entrega",
+      "description": "Acerca la guía de remediación a las solicitudes de extracción y a la revisión de código para que los equipos actúen antes."
+    },
+    "three": {
+      "tag": "Plataforma",
+      "heading": "Seguridad donde los desarrolladores ya trabajan",
+      "description": "Mantén la visibilidad, la gobernanza y la acción en GitHub en lugar de repartir la responsabilidad entre herramientas desconectadas."
+    }
+  },
+  "workflow": {
+    "label": "Funcionalidades",
+    "heading": "Seguridad integrada de forma natural en tu flujo de trabajo"
+  },
+  "capabilities": {
+    "one": {
+      "heading": "Evita la exposición accidental de secretos.",
+      "description": "La protección contra inserción de secretos bloquea automáticamente los secretos antes de que lleguen a tu repositorio, manteniendo el código limpio sin interrumpir los flujos de trabajo."
+    },
+    "two": {
+      "heading": "Encuentra y corrige vulnerabilidades.",
+      "description": "Aborda la deuda de seguridad en tu flujo de trabajo de GitHub con análisis estático, remediación con IA y gestión proactiva de vulnerabilidades."
+    }
+  },
+  "customerStories": {
+    "label": "Casos de clientes",
+    "heading": "Protegiendo toda la cadena de suministro de software",
+    "cards": {
+      "one": {
+        "tag": "SECURITY LAB",
+        "heading": "Amplía tu estrategia con GitHub Security Lab",
+        "description": "Protege el código abierto encontrando vulnerabilidades, creando herramientas como CodeQL e impulsando la investigación en seguridad."
+      },
+      "two": {
+        "tag": "SECURITY ADVISORY DATABASE",
+        "heading": "Mantente a la vanguardia con Security Advisory Database",
+        "description": "Accede a una base de datos de vulnerabilidades con CVE y avisos de seguridad curados por GitHub procedentes del mundo open source."
+      },
+      "three": {
+        "tag": "SUPPLY CHAIN SECURITY",
+        "heading": "Protege las cadenas de suministro de software de extremo a extremo",
+        "description": "Reduce riesgos con actualizaciones automatizadas, seguimiento de dependencias y atestación de compilación para un ciclo de vida seguro."
+      }
+    }
+  },
+  "testimonial": {
+    "quoteLead": "GitHub Advanced Security",
+    "quoteEmphasis": "capacita a nuestros desarrolladores",
+    "quoteTrailing": "para detectar y corregir vulnerabilidades antes, acelerando nuestro tiempo de salida al mercado y mejorando la satisfacción de los desarrolladores.",
+    "linkText": "Lee la historia completa",
+    "avatarAlt": "Avatar circular del perfil de GitHub de Michael Spindler",
+    "name": "Michael Spindler",
+    "position": "Responsable de servicios y herramientas de desarrollo"
+  },
+  "resources": {
+    "heading": "Recursos para empezar",
+    "cards": {
+      "one": {
+        "tag": "Documentación",
+        "heading": "GitHub Advanced Security",
+        "description": "Guía de implementación y despliegue para las capacidades principales de la plataforma."
+      },
+      "two": {
+        "tag": "Documentación",
+        "heading": "Guía de DevSecOps",
+        "description": "Material de referencia para integrar el análisis de seguridad y los controles de políticas en los flujos de trabajo de ingeniería."
+      },
+      "three": {
+        "tag": "Documentación",
+        "heading": "Gestión de campañas de seguridad",
+        "description": "Un bloque de recursos provisional que coincide con la próxima estructura de la página del diseño."
+      }
+    }
+  },
+  "cta": {
+    "label": "Seguridad integrada para flujos de trabajo de desarrollo",
+    "heading": "Seguridad que acompaña a los desarrolladores allí donde trabajan",
+    "description": "Sección CTA provisional para la nueva vista general de Seguridad. Podemos reemplazarla después por la franja final de flujos de trabajo integrados del diseño de Figma.",
+    "primaryAction": "Iniciar prueba gratuita",
+    "secondaryAction": "Contactar con ventas"
+  }
+}

@@ -1,0 +1,112 @@
+{
+  "common": {
+    "learnMore": "Mehr erfahren",
+    "heroImageAlt": "Titelillustration der Sicherheitsübersicht"
+  },
+  "subNav": {
+    "heading": "GitHub Security",
+    "links": {
+      "advancedSecurity": "Advanced Security",
+      "secretProtection": "Schutz von Geheimnissen",
+      "codeSecurity": "Codesicherheit",
+      "supplyChain": "Lieferkette",
+      "resources": "Ressourcen",
+      "pricing": "Pläne und Preise"
+    }
+  },
+  "hero": {
+    "label": "GitHub Security",
+    "heading": "Leistungsstarke Sicherheit, für Entwickler entwickelt",
+    "primaryAction": "Kostenlose Testversion starten",
+    "secondaryAction": "Vertrieb kontaktieren"
+  },
+  "logoSuiteHeading": "Kundenlogos von GitHub Security",
+  "highlights": {
+    "one": {
+      "tag": "Abdeckung",
+      "heading": "Code-Scanning im großen Maßstab",
+      "description": "Führen Sie Erkennung über Repositories hinweg mit nativen Workflows und Sicherheitskontext aus, der direkt in den Entwicklerlebenszyklus integriert ist."
+    },
+    "two": {
+      "tag": "Geschwindigkeit",
+      "heading": "Beheben Sie Probleme, bevor sie die Auslieferung verlangsamen",
+      "description": "Bringen Sie Handlungsempfehlungen näher an Pull Requests und Code Reviews, damit Teams früher reagieren können."
+    },
+    "three": {
+      "tag": "Plattform",
+      "heading": "Sicherheit dort, wo Entwickler bereits arbeiten",
+      "description": "Behalten Sie Transparenz, Governance und Maßnahmen in GitHub, statt Verantwortung auf voneinander getrennte Tools zu verteilen."
+    }
+  },
+  "workflow": {
+    "label": "Funktionen",
+    "heading": "Sicherheit, die nahtlos in Ihren Workflow integriert ist"
+  },
+  "capabilities": {
+    "one": {
+      "heading": "Verhindern Sie die versehentliche Offenlegung von Geheimnissen.",
+      "description": "Push Protection blockiert Geheimnisse automatisch, bevor sie Ihr Repository erreichen, und hält den Code sauber, ohne Workflows zu stören."
+    },
+    "two": {
+      "heading": "Finden und beheben Sie Schwachstellen.",
+      "description": "Bauen Sie Sicherheitsschulden in Ihrem GitHub-Workflow mit statischer Analyse, KI-gestützter Behebung und proaktivem Schwachstellenmanagement ab."
+    }
+  },
+  "customerStories": {
+    "label": "Kundengeschichten",
+    "heading": "Absicherung der gesamten Software-Lieferkette",
+    "cards": {
+      "one": {
+        "tag": "SECURITY LAB",
+        "heading": "Skalieren Sie Ihre Strategie mit GitHub Security Lab",
+        "description": "Sichern Sie Open Source, indem Sie Schwachstellen finden, Tools wie CodeQL entwickeln und die Sicherheitsforschung vorantreiben."
+      },
+      "two": {
+        "tag": "SECURITY ADVISORY DATABASE",
+        "heading": "Bleiben Sie mit Security Advisory Database voraus",
+        "description": "Greifen Sie auf eine Schwachstellendatenbank mit CVEs und von GitHub kuratierten Sicherheitshinweisen aus der Open-Source-Welt zu."
+      },
+      "three": {
+        "tag": "SUPPLY CHAIN SECURITY",
+        "heading": "Sichern Sie Software-Lieferketten von Ende zu Ende",
+        "description": "Reduzieren Sie Risiken mit automatisierten Updates, Abhängigkeitsverfolgung und Build-Attestierung für einen sicheren Lebenszyklus."
+      }
+    }
+  },
+  "testimonial": {
+    "quoteLead": "GitHub Advanced Security",
+    "quoteEmphasis": "gibt unseren Entwicklern die Mittel an die Hand",
+    "quoteTrailing": "Schwachstellen früher zu erkennen und zu beheben, wodurch sich unsere Markteinführungszeit verkürzt und die Zufriedenheit der Entwickler steigt.",
+    "linkText": "Die ganze Geschichte lesen",
+    "avatarAlt": "Rundes Avatarbild aus Michael Spindlers GitHub-Profil",
+    "name": "Michael Spindler",
+    "position": "Leiter für Entwicklungsservices und Werkzeuge"
+  },
+  "resources": {
+    "heading": "Ressourcen für den Einstieg",
+    "cards": {
+      "one": {
+        "tag": "Dokumentation",
+        "heading": "GitHub Advanced Security",
+        "description": "Leitfaden für Implementierung und Rollout der zentralen Plattformfunktionen."
+      },
+      "two": {
+        "tag": "Dokumentation",
+        "heading": "DevSecOps-Leitfaden",
+        "description": "Referenzmaterial für die Integration von Sicherheitsscans und Richtlinienkontrollen in Engineering-Workflows."
+      },
+      "three": {
+        "tag": "Dokumentation",
+        "heading": "Sicherheitskampagnen verwalten",
+        "description": "Ein Platzhalter-Ressourcenblock, der zur kommenden Seitenstruktur aus dem Design passt."
+      }
+    }
+  },
+  "cta": {
+    "label": "Integrierte Sicherheit für Entwickler-Workflows",
+    "heading": "Sicherheit, die Entwickler dort erreicht, wo sie arbeiten",
+    "description": "Vorläufiger CTA-Bereich für die neue Security-Übersicht. Wir können ihn als Nächstes durch das finale Band für integrierte Workflows aus dem Figma-Design ersetzen.",
+    "primaryAction": "Kostenlose Testversion starten",
+    "secondaryAction": "Vertrieb kontaktieren"
+  }
+}

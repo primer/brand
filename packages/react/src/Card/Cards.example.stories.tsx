@@ -4,7 +4,7 @@ import {clsx} from 'clsx'
 import {BookIcon, CopilotIcon, ShieldCheckIcon} from '@primer/octicons-react'
 import {useTranslation} from 'react-i18next'
 
-import './Card.stories.shared.css'
+import styles from './Card.stories.shared.module.css'
 import {Card} from '.'
 import {Avatar, Box, Grid, Section, SectionIntro, Stack, Token} from '..'
 import avatarMona from '../fixtures/images/avatar-mona.png'
@@ -72,17 +72,17 @@ export const Editorial: Story = {
             </SectionIntro.Heading>
           </SectionIntro>
 
-          <Box className="CardStoriesShared-gridFrame">
-            <Box className={clsx('CardStoriesShared-gridContent', 'CardStoriesShared-gridContentWide')}>
+          <Box className={styles.gridFrame}>
+            <Box className={clsx(styles.gridContent, styles.gridContentWide)}>
               <Grid columnGap="none" rowGap="none" enableGutters={false}>
                 {editorialCards.map((card, index) => {
                   return (
                     <Grid.Column
                       key={`${card.headingKey}-${index}`}
                       span={{xsmall: 12, large: 4}}
-                      className="CardStoriesShared-gridColumn"
+                      className={styles.gridColumn}
                     >
-                      <Box className="CardStoriesShared-gridItem" padding="normal">
+                      <Box className={styles.gridItem} padding="normal">
                         <Card href="https://github.com/resources/articles" fullWidth ctaVariant="none">
                           <Card.Image
                             src={darkHorizontalBannerAlt}
@@ -125,17 +125,17 @@ export const RelatedContent: Story = {
             </SectionIntro.Heading>
           </SectionIntro>
 
-          <Box className="CardStoriesShared-gridFrame">
-            <Box className={clsx('CardStoriesShared-gridContent', 'CardStoriesShared-gridContentWide')}>
+          <Box className={styles.gridFrame}>
+            <Box className={clsx(styles.gridContent, styles.gridContentWide)}>
               <Grid columnGap="none" rowGap="none" enableGutters={false}>
                 {relatedContentCards.map(card => {
                   return (
                     <Grid.Column
                       key={card.headingKey}
                       span={{xsmall: 12, large: 4}}
-                      className={clsx('CardStoriesShared-gridColumn', 'CardStoriesShared-gridColumn--arrowHover')}
+                      className={clsx(styles.gridColumn, styles.gridColumnArrowHover)}
                     >
-                      <Box className="CardStoriesShared-gridItem" padding={24}>
+                      <Box className={styles.gridItem} padding={24}>
                         <Card href={card.href} fullWidth ctaVariant="arrow" ctaText={t(card.ctaTextKey)}>
                           <Card.Icon icon={card.icon} color="green" hasBackground />
                           <Card.Tokens>
@@ -171,14 +171,14 @@ export const CaseStudies: Story = {
             </SectionIntro.Heading>
           </SectionIntro>
 
-          <Box className="CardStoriesShared-gridFrame">
-            <Box className={clsx('CardStoriesShared-gridContent', 'CardStoriesShared-gridContentWide')}>
+          <Box className={styles.gridFrame}>
+            <Box className={clsx(styles.gridContent, styles.gridContentWide)}>
               <Grid columnGap="none" rowGap="none" enableGutters={false}>
                 <Grid.Column
                   span={{xsmall: 12, large: 4}}
-                  className={clsx('CardStoriesShared-gridColumn', 'CardStoriesShared-gridColumn--arrowHover')}
+                  className={clsx(styles.gridColumn, styles.gridColumnArrowHover)}
                 >
-                  <Box className="CardStoriesShared-gridItem" padding={24} style={{minHeight: '21.125rem'}}>
+                  <Box className={styles.gridItem} padding={24} style={{minHeight: '21.125rem'}}>
                     <Card
                       href="https://github.com/customer-stories/microsoft"
                       fullWidth
@@ -208,9 +208,9 @@ export const CaseStudies: Story = {
 
                 <Grid.Column
                   span={{xsmall: 12, large: 4}}
-                  className={clsx('CardStoriesShared-gridColumn', 'CardStoriesShared-gridColumn--arrowHover')}
+                  className={clsx(styles.gridColumn, styles.gridColumnArrowHover)}
                 >
-                  <Box className="CardStoriesShared-gridItem" padding={24} style={{minHeight: '21.125rem'}}>
+                  <Box className={styles.gridItem} padding={24} style={{minHeight: '21.125rem'}}>
                     <Card
                       href="https://github.com/customer-stories/shopify"
                       fullWidth
@@ -240,9 +240,9 @@ export const CaseStudies: Story = {
 
                 <Grid.Column
                   span={{xsmall: 12, large: 4}}
-                  className={clsx('CardStoriesShared-gridColumn', 'CardStoriesShared-gridColumn--arrowHover')}
+                  className={clsx(styles.gridColumn, styles.gridColumnArrowHover)}
                 >
-                  <Box className="CardStoriesShared-gridItem" padding={24} style={{minHeight: '21.125rem'}}>
+                  <Box className={styles.gridItem} padding={24} style={{minHeight: '21.125rem'}}>
                     <Card
                       href="https://github.com/customer-stories/twilio"
                       fullWidth

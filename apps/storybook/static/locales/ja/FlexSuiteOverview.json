@@ -1,0 +1,226 @@
+{
+  "common": {
+    "learnMore": "詳細を見る",
+    "brandDividerAlt": "ブランド区切り"
+  },
+  "subNav": {
+    "heading": "GitHub Copilot",
+    "links": {
+      "vscode": "VS Code の Copilot",
+      "agents": "GitHub 上のエージェント",
+      "cli": "Copilot CLI",
+      "business": "ビジネス向け",
+      "tutorials": "チュートリアル",
+      "pricing": "プランと価格"
+    }
+  },
+  "hero": {
+    "label": "GitHub Copilot",
+    "headingLine1": "クラフトを",
+    "headingLine2": "思いのままに",
+    "description": "エディターからエンタープライズまで、あらゆるワークフローを加速する AI アクセラレーター。",
+    "primaryAction": "今すぐ Copilot を試す",
+    "secondaryAction": "プランと価格を見る",
+    "trailingText": "Visual Studio Code はすでにお持ちですか？",
+    "trailingLinkText": "今すぐ開く",
+    "peekAlt": "グリッド領域の下からのぞく GitHub Copilot のマスコット",
+    "imageAlt": "VS Code でエージェントモードを使う GitHub Copilot"
+  },
+  "logoSuiteHeading": "GitHub Copilot のパートナーロゴ",
+  "resourceCards": {
+    "one": {
+      "heading": "画一的な選択肢を超えて",
+      "description": "速度、精度、コストに最適化された主要な LLM から選べます。"
+    },
+    "two": {
+      "heading": "エージェントをあなたのやり方で使う",
+      "description": "GitHub Copilot、自作のカスタムエージェント、あるいは既に利用しているサードパーティ製エージェントを活用できます。"
+    },
+    "three": {
+      "heading": "集中を切らさない",
+      "description": "Copilot は GitHub、IDE、プロジェクトツール、チャットアプリ、カスタム MCP サーバーなど、あなたの作業場所で動作します。"
+    }
+  },
+  "workflow": {
+    "label": "ワークフロー",
+    "heading": "コード、コマンド、コラボレーション",
+    "description": "エディター、コマンドライン、GitHub など、あなたが作業する場所で機能する AI。"
+  },
+  "rivers": {
+    "one": {
+      "eyebrow": "機能",
+      "heading": "エディターを最強の加速装置に",
+      "description": "エディター内の Copilot は、概念の説明、コード補完、変更提案、エージェントモードでのファイル検証までこなします。",
+      "linkText": "IDE の Copilot を詳しく見る",
+      "imageAlt": "VS Code でエージェントモードを使う GitHub Copilot"
+    },
+    "two": {
+      "eyebrow": "機能",
+      "heading": "一緒にコードを書く AI で、より速く出荷する",
+      "description": "Issue を Copilot に直接割り当てれば、バックグラウンドで自律的にコードを書き、プルリクエストを作成し、フィードバックに対応します。",
+      "linkText": "Copilot コーディングエージェントを見る",
+      "imageAlt": "GitHub Issue に取り組む GitHub Copilot コーディングエージェント"
+    },
+    "three": {
+      "eyebrow": "機能",
+      "heading": "ターミナルのワークフローに AI を",
+      "description": "自然言語でターミナル上の Copilot を操作し、GitHub コンテキストを活用した複雑なワークフローを計画・構築・実行する様子を確認できます。",
+      "linkText": "GitHub Copilot CLI を詳しく見る",
+      "imageAlt": "ターミナルで動作する GitHub Copilot CLI"
+    }
+  },
+  "bento": {
+    "heading": "Grupo Boticario は Copilot により開発者の生産性を 94% 向上させました。",
+    "linkText": "お客様事例を読む",
+    "imageAlt": "オフィスで共同作業する Grupo Boticario のチームメンバー"
+  },
+  "organization": {
+    "heading": "組織に合わせて最適化",
+    "description": "Copilot をビジネスニーズに合わせて形作れます。何を知り、どう振る舞い、どこに接続するかをカスタマイズできます。",
+    "cards": {
+      "one": {
+        "tag": "ツール",
+        "heading": "Copilot をプロジェクトの専門家にする",
+        "description": "ドキュメントやリポジトリのコンテキストを含む共有の信頼できる情報源を作り、知識をスケールさせ、チームの一貫性を保てます。"
+      },
+      "two": {
+        "tag": "開発者向けドキュメント",
+        "heading": "エンタープライズ級の制御でエージェント利用を管理する",
+        "description": "詳細な監査ログでアクティビティを追跡し、単一のコントロールプレーンからエージェントを管理してガバナンスを適用できます。"
+      },
+      "three": {
+        "tag": "開発者向けドキュメント",
+        "heading": "MCP 連携を安全に保つ",
+        "description": "開発者が IDE からアクセスできる MCP サーバーを制御し、許可リストで未承認アクセスを防ぎます。"
+      }
+    }
+  },
+  "plans": {
+    "label": "プラン",
+    "heading": "GitHub Copilot で飛躍する",
+    "tabsAriaLabel": "GitHub Copilot のプランカテゴリ",
+    "tabs": {
+      "individuals": "個人向け",
+      "businesses": "ビジネス向け"
+    }
+  },
+  "pricing": {
+    "free": {
+      "heading": "Free",
+      "description": "GitHub Copilot をすばやく始める方法です。",
+      "price": "0",
+      "primaryAction": "始める",
+      "secondaryAction": "IDE で開く",
+      "features": {
+        "one": "月 50 件のエージェントモードまたはチャットリクエスト",
+        "two": "月 2,000 件の補完",
+        "three": "Haiku 4.5、GPT-4.1 などを利用可能"
+      }
+    },
+    "pro": {
+      "heading": "Pro",
+      "label": "最も人気",
+      "description": "GitHub Copilot でワークフローを加速します。",
+      "price": "10",
+      "trailingText": "月額、または年額 100 ドル",
+      "primaryAction": "30 日間無料で試す",
+      "featureListHeading": "Free の内容に加えて：",
+      "features": {
+        "one": "コーディングエージェント",
+        "two": "GPT-5 mini による無制限のエージェントモードとチャット",
+        "three": "コードレビュー、Claude Sonnet 4/4.5、GPT-5、Gemini 2.5 Pro などを利用可能",
+        "four": "最新モデルに使える 300 件のプレミアムリクエスト。追加購入も可能"
+      },
+      "footnote": "認証済みの学生、教員、人気のオープンソースプロジェクトのメンテナーは無料です。",
+      "footnoteLinkText": "詳細を見る"
+    },
+    "proPlus": {
+      "heading": "Pro+",
+      "description": "より多くのモデルとエージェントでスケールします。",
+      "price": "39",
+      "trailingText": "月額、または年額 390 ドル",
+      "primaryAction": "始める",
+      "featureListHeading": "Pro の内容に加えて：",
+      "features": {
+        "one": "Claude Opus 4.1 を含むすべてのモデルを利用可能",
+        "two": "最新モデルに使えるプレミアムリクエストが Pro の 5 倍。追加購入も可能",
+        "three": "GitHub Spark を利用可能",
+        "four": "VS Code の Codex IDE 拡張機能をサポート"
+      }
+    }
+  },
+  "resources": {
+    "heading": "GitHub Copilot を最大限活用する",
+    "cards": {
+      "one": {
+        "tag": "CHANGELOG",
+        "heading": "最新機能を先取りする",
+        "description": "GitHub Copilot の次に来るものをいち早くチェックできます。"
+      },
+      "two": {
+        "tag": "BLOG",
+        "heading": "GitHub ブログを読む",
+        "description": "ソフトウェア開発の最新情報を、洞察や解説とともに確認できます。"
+      },
+      "three": {
+        "tag": "開発者向けドキュメント",
+        "heading": "Trust Center を見る",
+        "description": "セキュリティ、プライバシー、責任ある AI に関するポリシーで安心を得られます。"
+      }
+    }
+  },
+  "faq": {
+    "headingLine1": "よくある",
+    "headingLine2": "質問",
+    "groups": {
+      "general": {
+        "heading": "一般",
+        "items": {
+          "one": {
+            "question": "GitHub Copilot とは何ですか？",
+            "answer": "GitHub Copilot は、コード補完、チャット、エージェントワークフロー、そしてソフトウェア開発ライフサイクル全体を支援する GitHub の開発者向け AI ツール群です。"
+          }
+        }
+      },
+      "pricing": {
+        "heading": "プランと価格",
+        "items": {
+          "one": {
+            "question": "Free、Pro、Business、Enterprise の違いは何ですか？",
+            "answer": "Free は Copilot を試すための限定的な入り口です。Pro では、コーディングエージェントへのアクセス、より広いモデル選択、個人開発者向けのプレミアムリクエストが追加されます。Business と Enterprise では、大規模なチーム向けに組織全体の制御、ガバナンス、管理機能が追加されます。"
+          },
+          "two": {
+            "question": "GitHub Copilot Free から Copilot Pro にアップグレードするにはどうすればよいですか？",
+            "answer": "GitHub アカウントの請求設定から Copilot Pro または Pro+ を選ぶことでアップグレードできます。現在の Copilot 設定を維持したまま、利用できるモデル、リクエスト、機能を拡張できます。"
+          },
+          "three": {
+            "question": "GitHub Copilot Free には何が含まれますか？",
+            "answer": "GitHub Copilot Free には、月 50 件のエージェントモードまたはチャットリクエスト、月 2,000 件のコード補完、そして対応モデルのスターターセットへのアクセスが含まれます。"
+          },
+          "four": {
+            "question": "どのプランに GitHub Copilot Autofix が含まれますか？",
+            "answer": "Autofix の利用可否は、GitHub プランと組織に紐づくセキュリティ製品によって異なります。最新の対象条件は比較ページまたはプランのドキュメントをご確認ください。"
+          }
+        }
+      },
+      "privacy": {
+        "heading": "プライバシー",
+        "items": {
+          "one": {
+            "question": "GitHub Copilot は私のコードやデータをどのように扱いますか？",
+            "answer": "GitHub はプランごとのプライバシー詳細を公開しており、プロンプト、提案、関連テレメトリーが選択した導入モデルでどのように扱われるかをチームが理解できるようにしています。"
+          }
+        }
+      },
+      "responsibleAi": {
+        "heading": "責任ある AI",
+        "items": {
+          "one": {
+            "question": "GitHub は責任ある AI にどのように取り組んでいますか？",
+            "answer": "GitHub は、モデルポリシー、セーフガード、透明性ガイドライン、製品コントロールを通じて、責任ある AI への取り組みを文書化し、安全な導入を支援しています。"
+          }
+        }
+      }
+    }
+  }
+}

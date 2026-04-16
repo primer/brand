@@ -26,7 +26,7 @@
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  width: 100vw;
+  width: 100dvw;
   height: 0;
   border-top: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
   z-index: 1;

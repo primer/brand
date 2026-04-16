@@ -1,0 +1,112 @@
+{
+  "common": {
+    "learnMore": "詳しく見る",
+    "heroImageAlt": "セキュリティ概要のヒーローイラスト"
+  },
+  "subNav": {
+    "heading": "GitHub Security",
+    "links": {
+      "advancedSecurity": "Advanced Security",
+      "secretProtection": "シークレット保護",
+      "codeSecurity": "コードセキュリティ",
+      "supplyChain": "サプライチェーン",
+      "resources": "リソース",
+      "pricing": "プランと価格"
+    }
+  },
+  "hero": {
+    "label": "GitHub Security",
+    "heading": "開発者のために設計された強力なセキュリティ",
+    "primaryAction": "無料トライアルを始める",
+    "secondaryAction": "営業に問い合わせる"
+  },
+  "logoSuiteHeading": "GitHub Security の導入企業ロゴ",
+  "highlights": {
+    "one": {
+      "tag": "カバレッジ",
+      "heading": "大規模なコードスキャン",
+      "description": "ネイティブなワークフローと、開発ライフサイクルに組み込まれたセキュリティコンテキストにより、リポジトリ全体で検出を実行できます。"
+    },
+    "two": {
+      "tag": "スピード",
+      "heading": "提供速度を落とす前に問題を修正",
+      "description": "修正ガイダンスをプルリクエストとコードレビューの近くに置くことで、チームがより早く対応できます。"
+    },
+    "three": {
+      "tag": "プラットフォーム",
+      "heading": "開発者がすでに作業している場所にセキュリティを",
+      "description": "可視性、ガバナンス、対応を GitHub に集約し、分断されたツールに責任を分散させません。"
+    }
+  },
+  "workflow": {
+    "label": "機能",
+    "heading": "ワークフローに自然に組み込まれるセキュリティ"
+  },
+  "capabilities": {
+    "one": {
+      "heading": "シークレットの偶発的な露出を防止します。",
+      "description": "プッシュ保護により、シークレットがリポジトリに到達する前に自動的にブロックされ、ワークフローを妨げることなくコードをクリーンに保ちます。"
+    },
+    "two": {
+      "heading": "脆弱性を見つけて修正します。",
+      "description": "静的解析、AI による修復、プロアクティブな脆弱性管理によって、GitHub ワークフロー内のセキュリティ負債に対処します。"
+    }
+  },
+  "customerStories": {
+    "label": "導入事例",
+    "heading": "ソフトウェアサプライチェーン全体を保護する",
+    "cards": {
+      "one": {
+        "tag": "SECURITY LAB",
+        "heading": "GitHub Security Lab で戦略を拡張",
+        "description": "脆弱性を発見し、CodeQL のようなツールを構築し、セキュリティ研究を前進させることで、オープンソースを保護します。"
+      },
+      "two": {
+        "tag": "SECURITY ADVISORY DATABASE",
+        "heading": "Security Advisory Database で一歩先を行く",
+        "description": "CVE の脆弱性データベースと、オープンソースの世界から GitHub がキュレーションしたセキュリティアドバイザリにアクセスできます。"
+      },
+      "three": {
+        "tag": "SUPPLY CHAIN SECURITY",
+        "heading": "ソフトウェアサプライチェーンをエンドツーエンドで保護",
+        "description": "自動更新、依存関係の追跡、ビルド証明により、リスクを減らし安全なライフサイクルを実現します。"
+      }
+    }
+  },
+  "testimonial": {
+    "quoteLead": "GitHub Advanced Security",
+    "quoteEmphasis": "によって開発者は力を得て",
+    "quoteTrailing": "より早い段階で脆弱性を検出し修正できるようになり、市場投入までの時間が短縮され、開発者満足度も向上しました。",
+    "linkText": "導入事例を読む",
+    "avatarAlt": "Michael Spindler の GitHub プロフィールの円形アバター",
+    "name": "Michael Spindler",
+    "position": "開発サービスおよびツール責任者"
+  },
+  "resources": {
+    "heading": "導入を始めるためのリソース",
+    "cards": {
+      "one": {
+        "tag": "ドキュメント",
+        "heading": "GitHub Advanced Security",
+        "description": "プラットフォームの中核機能を実装し展開するためのガイダンスです。"
+      },
+      "two": {
+        "tag": "ドキュメント",
+        "heading": "DevSecOps ガイド",
+        "description": "セキュリティスキャンとポリシー制御をエンジニアリングワークフローに統合するためのリファレンス資料です。"
+      },
+      "three": {
+        "tag": "ドキュメント",
+        "heading": "セキュリティキャンペーン管理",
+        "description": "今後のデザインに合わせたページ構造に対応するプレースホルダーのリソースブロックです。"
+      }
+    }
+  },
+  "cta": {
+    "label": "開発ワークフローに組み込まれたセキュリティ",
+    "heading": "開発者が働く場所に届くセキュリティ",
+    "description": "新しい Security 概要ページ用の仮の CTA セクションです。次の段階で、Figma デザインの最終的な組み込みワークフローバンドに置き換えられます。",
+    "primaryAction": "無料トライアルを始める",
+    "secondaryAction": "営業に問い合わせる"
+  }
+}
