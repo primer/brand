@@ -1,0 +1,112 @@
+{
+  "common": {
+    "learnMore": "Learn more",
+    "heroImageAlt": "Security overview hero illustration"
+  },
+  "subNav": {
+    "heading": "GitHub Security",
+    "links": {
+      "advancedSecurity": "Advanced Security",
+      "secretProtection": "Secret Protection",
+      "codeSecurity": "Code Security",
+      "supplyChain": "Supply Chain",
+      "resources": "Resources",
+      "pricing": "Plans & pricing"
+    }
+  },
+  "hero": {
+    "label": "GitHub Security",
+    "heading": "Powerful security, designed for developers",
+    "primaryAction": "Start free trial",
+    "secondaryAction": "Contact sales"
+  },
+  "logoSuiteHeading": "GitHub Security customer logos",
+  "highlights": {
+    "one": {
+      "tag": "Coverage",
+      "heading": "Code scanning at scale",
+      "description": "Run detection across repositories with native workflows and security context built into the developer lifecycle."
+    },
+    "two": {
+      "tag": "Speed",
+      "heading": "Fix issues before they slow delivery",
+      "description": "Bring remediation guidance closer to pull requests and code review so teams can act earlier."
+    },
+    "three": {
+      "tag": "Platform",
+      "heading": "Security where developers already work",
+      "description": "Keep visibility, governance, and action in GitHub rather than spreading ownership across disconnected tools."
+    }
+  },
+  "workflow": {
+    "label": "Features",
+    "heading": "Security seamlessly integrated into your workflow"
+  },
+  "capabilities": {
+    "one": {
+      "heading": "Prevent accidental secret exposure.",
+      "description": "Push protection automatically blocks secrets before they reach your repository, keeping code clean without disrupting workflows."
+    },
+    "two": {
+      "heading": "Find and fix vulnerabilities.",
+      "description": "Address security debt in your GitHub workflow with static analysis, AI remediation, and proactive vulnerability management."
+    }
+  },
+  "customerStories": {
+    "label": "Customer stories",
+    "heading": "Securing the entire software supply chain",
+    "cards": {
+      "one": {
+        "tag": "SECURITY LAB",
+        "heading": "Scale strategy with GitHub Security Lab",
+        "description": "Secure open source by finding vulnerabilities, building tools like CodeQL, and advancing security research."
+      },
+      "two": {
+        "tag": "SECURITY ADVISORY DATABASE",
+        "heading": "Stay ahead with Security Advisory Database",
+        "description": "Access a vulnerability database of CVEs and GitHub-curated security advisories from the open source world."
+      },
+      "three": {
+        "tag": "SUPPLY CHAIN SECURITY",
+        "heading": "Secure software supply chains end-to-end",
+        "description": "Reduce risks with automated updates, dependency tracking, and build attestation for a secure lifecycle."
+      }
+    }
+  },
+  "testimonial": {
+    "quoteLead": "GitHub Advanced Security",
+    "quoteEmphasis": "empowers our developers",
+    "quoteTrailing": "to detect and fix vulnerabilities earlier, accelerating our time to market and boosting developer satisfaction.",
+    "linkText": "Read the full story",
+    "avatarAlt": "Circular avatar from Michael Spindler's GitHub profile",
+    "name": "Michael Spindler",
+    "position": "Head of development services and tools"
+  },
+  "resources": {
+    "heading": "Resources to get started",
+    "cards": {
+      "one": {
+        "tag": "Docs",
+        "heading": "GitHub Advanced Security",
+        "description": "Implementation and rollout guidance for the core platform capabilities."
+      },
+      "two": {
+        "tag": "Docs",
+        "heading": "DevSecOps guidance",
+        "description": "Reference material for integrating security scanning and policy controls into engineering workflows."
+      },
+      "three": {
+        "tag": "Docs",
+        "heading": "Security campaign management",
+        "description": "A placeholder resource block matching the upcoming page structure from the design."
+      }
+    }
+  },
+  "cta": {
+    "label": "Built-in security for developer workflows",
+    "heading": "Security that meets developers where they work",
+    "description": "Stubbed CTA section for the new Security overview. We can replace this with the final built-in workflows band from the Figma design next.",
+    "primaryAction": "Start free trial",
+    "secondaryAction": "Contact sales"
+  }
+}

@@ -11,7 +11,7 @@ import placeholderImage from '../fixtures/images/placeholder.png'
 import {CopilotIcon, GitBranchIcon, RocketIcon, ZapIcon} from '@primer/octicons-react'
 import {MicrosoftLogo} from '../fixtures/third-party-logos/MicrosoftLogo'
 import type {IconProps} from '../Icon'
-import './Card.stories.shared.css'
+import styles from './Card.stories.shared.module.css'
 
 type StackedCardData = {
   href: string
@@ -442,13 +442,13 @@ export const Stacked: StoryFn<typeof Card> = () => {
   const {t} = useTranslation('Card')
 
   return (
-    <Box className="CardStoriesShared-gridFrame">
-      <Box className="CardStoriesShared-gridContent">
+    <Box className={styles.gridFrame}>
+      <Box className={styles.gridContent}>
         <Grid columnGap="none" rowGap="none" enableGutters={false}>
           {stackedCardData.map(({headingKey, descriptionKey, href, icon, iconColor, tokens}, id) => {
             return (
-              <Grid.Column key={id} span={{xsmall: 12, xlarge: 4}} className="CardStoriesShared-gridColumn">
-                <Box className="CardStoriesShared-gridItem" padding="normal">
+              <Grid.Column key={id} span={{xsmall: 12, xlarge: 4}} className={styles.gridColumn}>
+                <Box className={styles.gridItem} padding="normal">
                   <Card href={href} fullWidth ctaVariant="arrow">
                     <Card.Icon icon={icon} hasBackground color={iconColor} />
                     <Card.Tokens>

@@ -137,6 +137,11 @@ const waitForTimeoutLookup = {
   'components-subnav-features--delayed-active-link': 2000, // because the story sets an initial delay,
   'components-logosuite-features--grid-line-expressive-kitchen-sink': 3000, // for the animation to complete
   'components-logosuite-features--takeover-button': 3000, // for the animation to complete
+  'components-riverbreakouttabs-examples--with-images': 4000, // for dither bg to complete
+  'components-riverbreakouttabs-examples--with-videos': 4000, // for dither bg to complete
+  'components-riverbreakouttabs-examples--with-rivers': 4000, // for dither bg to complete
+  'recipes-flexsuite-overview--ai': 4000, // for the animation to complete
+  'recipes-flexsuite-overview--security': 4000, // for the animation to complete,
 }
 
 // const skipLocalizationsTestsFor = [

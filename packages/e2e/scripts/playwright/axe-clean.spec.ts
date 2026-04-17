@@ -171,6 +171,8 @@ const testsWithCustomDelay = {
   'components-hero-examples--custom-background-block-end-image': 5000, // recipe / example that features long animation sequence
   'components-hero-examples--gridline-expressive-block-end-padded-trailing-component': 6000, // recipe / example that features long animation sequence
   'components-hero-examples--gridline-expressive-with-image-carousel': 6000, // recipe / example that features long animation sequence
+  'recipes-flexsuite-overview--ai': 6000, // recipe with hero animation sequence
+  'recipes-flexsuite-overview--security': 6000, // recipe with hero animation sequence
 }
 const defaultDelay = 1000
 
