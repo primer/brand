@@ -60,6 +60,8 @@ const MockSubNavFixtureWithSubMenu = () => (
 
 describe('SubNav', () => {
   beforeEach(() => {
+    mockUseWindowSize.mockImplementation(() => ({isLarge: false}))
+
     // IntersectionObserver isn't available in test environment
     const mockIntersectionObserver = jest.fn()
     mockIntersectionObserver.mockReturnValue({
@@ -182,6 +184,15 @@ describe('SubNav', () => {
     expect(results).toHaveNoViolations()
   })
 
+  it('has no a11y violations when a large viewport submenu is collapsed', async () => {
+    mockUseWindowSize.mockImplementation(() => ({isLarge: true}))
+
+    const {container} = render(<MockSubNavFixtureWithSubMenu />)
+    const results = await axe(container)
+
+    expect(results).toHaveNoViolations()
+  })
+
   it('does not hide submenu items on narrow viewports', async () => {
     const {getByRole} = render(<MockSubNavFixtureWithSubMenu />)
 
@@ -195,9 +206,14 @@ describe('SubNav', () => {
   it('hides collapsed submenu items on large viewports', async () => {
     mockUseWindowSize.mockImplementation(() => ({isLarge: true}))
 
-    const {queryByRole} = render(<MockSubNavFixtureWithSubMenu />)
+    const {getByRole} = render(<MockSubNavFixtureWithSubMenu />)
 
-    expect(queryByRole('link', {name: 'Copilot feature page one'})).not.toBeInTheDocument()
+    const toggleSubmenuButton = getByRole('button', {name: 'Copilot submenu'})
+    const submenuId = toggleSubmenuButton.getAttribute('aria-controls')
+    const submenuContainer = submenuId ? document.getElementById(submenuId) : null
+
+    expect(submenuContainer).not.toBeNull()
+    expect(submenuContainer).toHaveAttribute('inert')
   })
 
   it('shows subitems when the submenu toggle is activated at large viewports', async () => {
@@ -237,15 +253,20 @@ describe('SubNav', () => {
   it('hides a hovered submenu when escape is pressed', async () => {
     mockUseWindowSize.mockImplementation(() => ({isLarge: true}))
 
-    const {getByRole, queryByRole} = render(<MockSubNavFixtureWithSubMenu />)
+    const {getByRole} = render(<MockSubNavFixtureWithSubMenu />)
 
     await userEvent.hover(getByRole('link', {name: 'Copilot'}))
 
     expect(getByRole('link', {name: 'Copilot feature page one'})).toBeVisible()
 
+    const toggleSubmenuButton = getByRole('button', {name: 'Copilot submenu'})
+    const submenuId = toggleSubmenuButton.getAttribute('aria-controls')
+    const submenuContainer = submenuId ? document.getElementById(submenuId) : null
+    expect(submenuContainer).not.toHaveAttribute('inert')
+
     await userEvent.keyboard('{escape}')
 
-    expect(queryByRole('link', {name: 'Copilot feature page one'})).not.toBeInTheDocument()
+    expect(submenuContainer).toHaveAttribute('inert')
   })
 
   it('renders an optional subheading into the document', () => {
