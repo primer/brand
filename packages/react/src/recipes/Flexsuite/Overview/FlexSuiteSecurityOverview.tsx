@@ -99,7 +99,7 @@ export function FlexSuiteSecurityOverviewTemplate({content}: FlexSuiteSecurityOv
                         <Token>{card.tag}</Token>
                       </Card.Tokens>
                     ) : null}
-                    <Card.Heading>{card.heading}</Card.Heading>
+                    <Card.Heading as="h2">{card.heading}</Card.Heading>
                     <Card.Description>{card.description}</Card.Description>
                   </Card>
                 </Box>

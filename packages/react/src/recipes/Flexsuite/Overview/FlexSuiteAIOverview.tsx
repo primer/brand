@@ -77,6 +77,97 @@ export function FlexSuiteAIOverviewTemplate({content}: FlexSuiteAIOverviewTempla
     }
   }, [])
 
+  const renderPricingOptions = () => (
+    <Box borderBlockStartWidth="thin" borderColor="subtle" borderStyle="solid" marginBlockStart="spacious">
+      <Box backgroundColor="default" borderBlockEndWidth="thin" borderColor="subtle" borderStyle="solid">
+        <Grid>
+          <Grid.Column span={12}>
+            <PricingOptions style={{marginBlock: 'calc(var(--brand-borderWidth-thin) * -1)'}}>
+              <PricingOptions.Item>
+                <PricingOptions.Heading>{content.pricing.free.heading}</PricingOptions.Heading>
+                <PricingOptions.Description>{content.pricing.free.description}</PricingOptions.Description>
+                <PricingOptions.Price>{content.pricing.free.price}</PricingOptions.Price>
+                <PricingOptions.FeatureList>
+                  <PricingOptions.FeatureListItem>{content.pricing.free.features[0]}</PricingOptions.FeatureListItem>
+                  <PricingOptions.FeatureListItem>{content.pricing.free.features[1]}</PricingOptions.FeatureListItem>
+                  <PricingOptions.FeatureListItem
+                    leadingVisual={SparkleFillIcon}
+                    leadingVisualFill="var(--base-color-scale-purple-5)"
+                  >
+                    {content.pricing.free.features[2]}
+                  </PricingOptions.FeatureListItem>
+                </PricingOptions.FeatureList>
+                <PricingOptions.PrimaryAction as="a" href="#" variant="accent">
+                  {content.pricing.free.primaryAction}
+                </PricingOptions.PrimaryAction>
+                {content.pricing.free.secondaryAction ? (
+                  <PricingOptions.SecondaryAction as="a" href="#" variant="subtle" hasArrow={false}>
+                    {content.pricing.free.secondaryAction}
+                  </PricingOptions.SecondaryAction>
+                ) : null}
+              </PricingOptions.Item>
+              <PricingOptions.Item>
+                <PricingOptions.Heading>{content.pricing.pro.heading}</PricingOptions.Heading>
+                {content.pricing.pro.label ? (
+                  <PricingOptions.Label>{content.pricing.pro.label}</PricingOptions.Label>
+                ) : null}
+                <PricingOptions.Description>{content.pricing.pro.description}</PricingOptions.Description>
+                <PricingOptions.Price trailingText={content.pricing.pro.trailingText}>
+                  {content.pricing.pro.price}
+                </PricingOptions.Price>
+                <PricingOptions.PrimaryAction as="a" href="#" variant="accent">
+                  {content.pricing.pro.primaryAction}
+                </PricingOptions.PrimaryAction>
+                <PricingOptions.FeatureList>
+                  <PricingOptions.FeatureListHeading>
+                    {content.pricing.pro.featureListHeading}
+                  </PricingOptions.FeatureListHeading>
+                  <PricingOptions.FeatureListItem>{content.pricing.pro.features[0]}</PricingOptions.FeatureListItem>
+                  <PricingOptions.FeatureListItem>{content.pricing.pro.features[1]}</PricingOptions.FeatureListItem>
+                  <PricingOptions.FeatureListItem>{content.pricing.pro.features[2]}</PricingOptions.FeatureListItem>
+                  <PricingOptions.FeatureListItem>{content.pricing.pro.features[3]}</PricingOptions.FeatureListItem>
+                </PricingOptions.FeatureList>
+                {content.pricing.pro.footnote ? (
+                  <PricingOptions.Footnote>
+                    {content.pricing.pro.footnote}{' '}
+                    {content.pricing.pro.footnoteLinkText ? (
+                      <InlineLink href="#">{content.pricing.pro.footnoteLinkText}</InlineLink>
+                    ) : null}
+                  </PricingOptions.Footnote>
+                ) : null}
+              </PricingOptions.Item>
+
+              <PricingOptions.Item>
+                <PricingOptions.Heading>{content.pricing.proPlus.heading}</PricingOptions.Heading>
+                <PricingOptions.Description>{content.pricing.proPlus.description}</PricingOptions.Description>
+                <PricingOptions.Price trailingText={content.pricing.proPlus.trailingText}>
+                  {content.pricing.proPlus.price}
+                </PricingOptions.Price>
+                <PricingOptions.PrimaryAction as="a" href="#" variant="accent">
+                  {content.pricing.proPlus.primaryAction}
+                </PricingOptions.PrimaryAction>
+                <PricingOptions.FeatureList>
+                  <PricingOptions.FeatureListHeading>
+                    {content.pricing.proPlus.featureListHeading}
+                  </PricingOptions.FeatureListHeading>
+                  <PricingOptions.FeatureListItem>{content.pricing.proPlus.features[0]}</PricingOptions.FeatureListItem>
+                  <PricingOptions.FeatureListItem>{content.pricing.proPlus.features[1]}</PricingOptions.FeatureListItem>
+                  <PricingOptions.FeatureListItem
+                    leadingVisual={SparkleFillIcon}
+                    leadingVisualFill="var(--base-color-scale-purple-5)"
+                  >
+                    {content.pricing.proPlus.features[2]}
+                  </PricingOptions.FeatureListItem>
+                  <PricingOptions.FeatureListItem>{content.pricing.proPlus.features[3]}</PricingOptions.FeatureListItem>
+                </PricingOptions.FeatureList>
+              </PricingOptions.Item>
+            </PricingOptions>
+          </Grid.Column>
+        </Grid>
+      </Box>
+    </Box>
+  )
+
   return (
     <>
       <Box className={styles.page} backgroundColor="default">
@@ -266,7 +357,7 @@ export function FlexSuiteAIOverviewTemplate({content}: FlexSuiteAIOverviewTempla
                     order="default"
                   >
                     <Bento.Content padding={{xsmall: 'normal', small: 'spacious'}}>
-                      <Bento.Heading as="h4" size="4" weight="semibold">
+                      <Bento.Heading as="h3" size="4" weight="semibold">
                         {content.bento.heading}
                       </Bento.Heading>
                       <Link href="#">{content.bento.linkText}</Link>
@@ -285,12 +376,14 @@ export function FlexSuiteAIOverviewTemplate({content}: FlexSuiteAIOverviewTempla
             <Image src={brandDividerWide} alt={content.common.brandDividerAlt} style={{display: 'block'}} />
           </Box>
         </Stack>
-        <Box paddingBlockEnd={48} paddingBlockStart={48}>
-          <SectionIntro align="center" fullWidth>
-            <SectionIntro.Heading>{content.organization.heading}</SectionIntro.Heading>
-            <SectionIntro.Description>{content.organization.description}</SectionIntro.Description>
-          </SectionIntro>
-        </Box>
+        <Section paddingBlockStart="none" paddingBlockEnd="none">
+          <Box paddingBlockEnd={48} paddingBlockStart={48}>
+            <SectionIntro align="center" fullWidth>
+              <SectionIntro.Heading>{content.organization.heading}</SectionIntro.Heading>
+              <SectionIntro.Description>{content.organization.description}</SectionIntro.Description>
+            </SectionIntro>
+          </Box>
+        </Section>
 
         <Box className={styles.cardGridFrame}>
           <Box className={styles.cardGridContent}>
@@ -323,116 +416,22 @@ export function FlexSuiteAIOverviewTemplate({content}: FlexSuiteAIOverviewTempla
           </Box>
         </Box>
 
-        <Box paddingBlockEnd={32} paddingBlockStart={48}>
-          <SectionIntro align="center" fullWidth>
-            <SectionIntro.Label>{content.plans.label}</SectionIntro.Label>
-            <SectionIntro.Heading>{content.plans.heading}</SectionIntro.Heading>
-          </SectionIntro>
-          <Tabs aria-label={content.plans.tabsAriaLabel} variant="accent">
-            {content.plans.tabs.map(tab => (
-              <Tabs.Item key={tab}>{tab}</Tabs.Item>
-            ))}
-          </Tabs>
-        </Box>
-
-        <Box borderBlockStartWidth="thin" borderColor="subtle" borderStyle="solid" marginBlockStart="spacious">
-          <Box backgroundColor="default" borderBlockEndWidth="thin" borderColor="subtle" borderStyle="solid">
-            <Grid>
-              <Grid.Column span={12}>
-                <PricingOptions style={{marginBlock: 'calc(var(--brand-borderWidth-thin) * -1)'}}>
-                  <PricingOptions.Item>
-                    <PricingOptions.Heading>{content.pricing.free.heading}</PricingOptions.Heading>
-                    <PricingOptions.Description>{content.pricing.free.description}</PricingOptions.Description>
-                    <PricingOptions.Price>{content.pricing.free.price}</PricingOptions.Price>
-                    <PricingOptions.FeatureList>
-                      <PricingOptions.FeatureListItem>
-                        {content.pricing.free.features[0]}
-                      </PricingOptions.FeatureListItem>
-                      <PricingOptions.FeatureListItem>
-                        {content.pricing.free.features[1]}
-                      </PricingOptions.FeatureListItem>
-                      <PricingOptions.FeatureListItem
-                        leadingVisual={SparkleFillIcon}
-                        leadingVisualFill="var(--base-color-scale-purple-5)"
-                      >
-                        {content.pricing.free.features[2]}
-                      </PricingOptions.FeatureListItem>
-                    </PricingOptions.FeatureList>
-                    <PricingOptions.PrimaryAction as="a" href="#" variant="accent">
-                      {content.pricing.free.primaryAction}
-                    </PricingOptions.PrimaryAction>
-                    {content.pricing.free.secondaryAction ? (
-                      <PricingOptions.SecondaryAction as="a" href="#" variant="subtle" hasArrow={false}>
-                        {content.pricing.free.secondaryAction}
-                      </PricingOptions.SecondaryAction>
-                    ) : null}
-                  </PricingOptions.Item>
-                  <PricingOptions.Item>
-                    <PricingOptions.Heading>{content.pricing.pro.heading}</PricingOptions.Heading>
-                    {content.pricing.pro.label ? (
-                      <PricingOptions.Label>{content.pricing.pro.label}</PricingOptions.Label>
-                    ) : null}
-                    <PricingOptions.Description>{content.pricing.pro.description}</PricingOptions.Description>
-                    <PricingOptions.Price trailingText={content.pricing.pro.trailingText}>
-                      {content.pricing.pro.price}
-                    </PricingOptions.Price>
-                    <PricingOptions.PrimaryAction as="a" href="#" variant="accent">
-                      {content.pricing.pro.primaryAction}
-                    </PricingOptions.PrimaryAction>
-                    <PricingOptions.FeatureList>
-                      <PricingOptions.FeatureListHeading>
-                        {content.pricing.pro.featureListHeading}
-                      </PricingOptions.FeatureListHeading>
-                      <PricingOptions.FeatureListItem>{content.pricing.pro.features[0]}</PricingOptions.FeatureListItem>
-                      <PricingOptions.FeatureListItem>{content.pricing.pro.features[1]}</PricingOptions.FeatureListItem>
-                      <PricingOptions.FeatureListItem>{content.pricing.pro.features[2]}</PricingOptions.FeatureListItem>
-                      <PricingOptions.FeatureListItem>{content.pricing.pro.features[3]}</PricingOptions.FeatureListItem>
-                    </PricingOptions.FeatureList>
-                    {content.pricing.pro.footnote ? (
-                      <PricingOptions.Footnote>
-                        {content.pricing.pro.footnote}{' '}
-                        {content.pricing.pro.footnoteLinkText ? (
-                          <InlineLink href="#">{content.pricing.pro.footnoteLinkText}</InlineLink>
-                        ) : null}
-                      </PricingOptions.Footnote>
-                    ) : null}
-                  </PricingOptions.Item>
-
-                  <PricingOptions.Item>
-                    <PricingOptions.Heading>{content.pricing.proPlus.heading}</PricingOptions.Heading>
-                    <PricingOptions.Description>{content.pricing.proPlus.description}</PricingOptions.Description>
-                    <PricingOptions.Price trailingText={content.pricing.proPlus.trailingText}>
-                      {content.pricing.proPlus.price}
-                    </PricingOptions.Price>
-                    <PricingOptions.PrimaryAction as="a" href="#" variant="accent">
-                      {content.pricing.proPlus.primaryAction}
-                    </PricingOptions.PrimaryAction>
-                    <PricingOptions.FeatureList>
-                      <PricingOptions.FeatureListHeading>
-                        {content.pricing.proPlus.featureListHeading}
-                      </PricingOptions.FeatureListHeading>
-                      <PricingOptions.FeatureListItem>
-                        {content.pricing.proPlus.features[0]}
-                      </PricingOptions.FeatureListItem>
-                      <PricingOptions.FeatureListItem>
-                        {content.pricing.proPlus.features[1]}
-                      </PricingOptions.FeatureListItem>
-                      <PricingOptions.FeatureListItem
-                        leadingVisual={SparkleFillIcon}
-                        leadingVisualFill="var(--base-color-scale-purple-5)"
-                      >
-                        {content.pricing.proPlus.features[2]}
-                      </PricingOptions.FeatureListItem>
-                      <PricingOptions.FeatureListItem>
-                        {content.pricing.proPlus.features[3]}
-                      </PricingOptions.FeatureListItem>
-                    </PricingOptions.FeatureList>
-                  </PricingOptions.Item>
-                </PricingOptions>
-              </Grid.Column>
-            </Grid>
+        <Section paddingBlockStart="none" paddingBlockEnd="none">
+          <Box paddingBlockEnd={32} paddingBlockStart={48}>
+            <SectionIntro align="center" fullWidth>
+              <SectionIntro.Label>{content.plans.label}</SectionIntro.Label>
+              <SectionIntro.Heading>{content.plans.heading}</SectionIntro.Heading>
+            </SectionIntro>
+            <Tabs aria-label={content.plans.tabsAriaLabel} variant="accent">
+              {content.plans.tabs.map(tab => (
+                <Tabs.Item key={tab}>{tab}</Tabs.Item>
+              ))}
+              {content.plans.tabs.map(tab => (
+                <Tabs.Panel key={tab}>{renderPricingOptions()}</Tabs.Panel>
+              ))}
+            </Tabs>
           </Box>
-        </Box>
+        </Section>
 
         <Section paddingBlockEnd="none">
           <Tiles variant="gridlines" layout="compact">
@@ -444,11 +443,13 @@ export function FlexSuiteAIOverviewTemplate({content}: FlexSuiteAIOverviewTempla
           </Tiles>
         </Section>
 
-        <Box paddingBlockEnd={32} paddingBlockStart={80}>
-          <SectionIntro align="center" fullWidth>
-            <SectionIntro.Heading>{content.resources.heading}</SectionIntro.Heading>
-          </SectionIntro>
-        </Box>
+        <Section paddingBlockStart="none" paddingBlockEnd="none">
+          <Box paddingBlockEnd={32} paddingBlockStart={80}>
+            <SectionIntro align="center" fullWidth>
+              <SectionIntro.Heading>{content.resources.heading}</SectionIntro.Heading>
+            </SectionIntro>
+          </Box>
+        </Section>
 
         <Box className={styles.cardGridFrame} marginBlockEnd={80}>
           <Box className={styles.cardGridContent}>
