@@ -1,17 +1,12 @@
 .page {
   min-height: 100dvh;
   /*
-   * Recipe-scoped workaround for horizontal overflow caused by full-bleed
-   * gridlines in River and Tiles, which use 100vw on absolutely-positioned
-   * pseudos. On viewports with a persistent vertical scrollbar, 100vw
-   * exceeds the document client width by the scrollbar gutter (~8-15px)
-   * and triggers a horizontal scrollbar. Containing it here keeps the
-   * intended edge-to-edge bleed visually intact without changing the
-   * underlying components. Revisit once a library-level fix lands.
+   * TODO: fix the block psuedo borders in River and Tiles to remove this.
    */
   overflow-x: clip;
 }
 
+/* Copilot / mascot head */
 .heroTrailingPeek {
   position: relative;
 }
@@ -24,6 +19,10 @@
   block-size: auto;
 }
 
+/*
+ * Because gridlines stretch outside the native Grid, we need to use a wrapper.
+ * TODO: Create a CardGroup (or similar) component.
+ */
 .cardGridFrame {
   width: 100%;
   border-block-start: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
@@ -36,15 +35,6 @@
 
 .cardGridContent {
   width: 100%;
-}
-
-.bentoInlineFrame {
-  width: 100%;
-  border-inline: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
-}
-
-.bentoVisualNoRadius > .bentoVisualImageNoRadius {
-  border-radius: 0;
 }
 
 .cardGridColumn {
@@ -84,6 +74,18 @@
 .fullWidthTabsPanel :global([class*='Tabs__panelContainer']) {
   width: 100%;
   justify-self: stretch;
+}
+
+/*
+* TODO: Add a gridline / reafactored version of Bento
+*/
+.bentoInlineFrame {
+  width: 100%;
+  border-inline: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
+}
+
+.bentoVisualNoRadius > .bentoVisualImageNoRadius {
+  border-radius: 0;
 }
 
 @media screen and (min-width: 63.25rem) {
