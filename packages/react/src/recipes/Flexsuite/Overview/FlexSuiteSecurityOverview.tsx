@@ -85,7 +85,7 @@ export function FlexSuiteSecurityOverviewTemplate({content}: FlexSuiteSecurityOv
                 span={{xsmall: 12, large: 4}}
                 className={clsx(styles.cardGridColumn, styles.cardGridColumnArrowHover)}
               >
-                <Box className={styles.cardGridItem} padding={24}>
+                <Box className={styles.cardGridItem}>
                   <Card
                     href="#"
                     fullWidth
@@ -132,7 +132,7 @@ export function FlexSuiteSecurityOverviewTemplate({content}: FlexSuiteSecurityOv
                 span={{xsmall: 12, large: 6}}
                 className={clsx(styles.cardGridColumn, styles.cardGridColumnArrowHover)}
               >
-                <Box className={styles.cardGridItem} padding={24}>
+                <Box className={styles.cardGridItem}>
                   <Card
                     href="#"
                     fullWidth
@@ -167,7 +167,7 @@ export function FlexSuiteSecurityOverviewTemplate({content}: FlexSuiteSecurityOv
                 span={{xsmall: 12, large: 4}}
                 className={clsx(styles.cardGridColumn, styles.cardGridColumnArrowHover)}
               >
-                <Box className={styles.cardGridItem} padding={24}>
+                <Box className={styles.cardGridItem}>
                   <Card href="#" fullWidth ctaVariant="arrow" className={styles.resourceCard}>
                     {card.tag ? (
                       <Card.Tokens>
@@ -219,7 +219,7 @@ export function FlexSuiteSecurityOverviewTemplate({content}: FlexSuiteSecurityOv
                 span={{xsmall: 12, large: 4}}
                 className={clsx(styles.cardGridColumn, styles.cardGridColumnArrowHover)}
               >
-                <Box className={styles.cardGridItem} padding={24}>
+                <Box className={styles.cardGridItem}>
                   <Card
                     href="#"
                     fullWidth

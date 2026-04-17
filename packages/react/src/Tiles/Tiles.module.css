@@ -47,7 +47,7 @@
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  width: 100dvw;
+  width: 100vw;
   height: 0;
   border-top: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
 }

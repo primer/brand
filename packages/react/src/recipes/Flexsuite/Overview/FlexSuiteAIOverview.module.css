@@ -1,93 +1,15 @@
 .page {
   min-height: 100dvh;
-}
-
-.heroShell {
-  border-bottom: var(--borderWidth-thin) solid;
-}
-
-.heroColumns {
-  display: grid;
-  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
-}
-
-.heroTextColumn,
-.heroSideColumn {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: var(--base-size-24);
-  min-height: calc(var(--base-size-16) * 18.5);
-  padding: calc(var(--base-size-4) * 15);
-}
-
-.heroTextColumn {
-  border-inline-start: var(--borderWidth-thin) solid;
-}
-
-.heroSideColumn {
-  border-inline-start: var(--borderWidth-thin) solid;
-}
-
-.heroLabelRow {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--base-size-8);
-}
-
-.heroLabel,
-.platformTileLabel,
-.faqCategory,
-.faqCategoryActive,
-.footerStatLabel,
-.footerColumnHeading {
-  font-family: var(--brand-fontStack-monospace);
-  font-size: var(--brand-text-size-200);
-  font-weight: var(--brand-text-weight-500);
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
-.heroCursor,
-.faqCategoryDot,
-.faqCategoryDotActive {
-  display: inline-block;
-  inline-size: var(--base-size-8);
-  block-size: var(--base-size-12);
-  border-radius: var(--borderRadius-small);
-}
-
-.heroHeading {
-  max-width: 8ch;
-}
-
-.heroOrb {
-  position: absolute;
-  inset-inline-end: calc(var(--base-size-16) * 2.5);
-  inset-block-start: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  inline-size: calc(var(--base-size-16) * 4.5);
-  block-size: calc(var(--base-size-16) * 4.5);
-  border: var(--borderWidth-thin) solid rgba(255, 255, 255, 0.18);
-  border-radius: 999px;
-  backdrop-filter: blur(var(--base-size-16));
-  transform: translateY(-50%);
-}
-
-.heroVisualSection {
-  padding: calc(var(--base-size-4) * 14) calc(var(--base-size-4) * 12);
-  border-top: var(--borderWidth-thick) solid;
-}
-
-.heroVisualGlass {
-  padding: var(--base-size-24);
-  border: var(--borderWidth-thin) solid rgba(255, 255, 255, 0.7);
-  border-radius: var(--borderRadius-large);
-  background: rgba(255, 255, 255, 0.36);
-  backdrop-filter: blur(calc(var(--base-size-8) * 5));
+  /*
+   * Recipe-scoped workaround for horizontal overflow caused by full-bleed
+   * gridlines in River and Tiles, which use 100vw on absolutely-positioned
+   * pseudos. On viewports with a persistent vertical scrollbar, 100vw
+   * exceeds the document client width by the scrollbar gutter (~8-15px)
+   * and triggers a horizontal scrollbar. Containing it here keeps the
+   * intended edge-to-edge bleed visually intact without changing the
+   * underlying components. Revisit once a library-level fix lands.
+   */
+  overflow-x: clip;
 }
 
 .heroTrailingPeek {
@@ -100,11 +22,6 @@
   inset-block-end: var(--hero-peek-bottom);
   inline-size: var(--hero-peek-width);
   block-size: auto;
-}
-
-.sectionIntroWrap {
-  margin-inline: auto;
-  max-width: calc(var(--base-size-16) * 36);
 }
 
 .cardGridFrame {
@@ -137,6 +54,7 @@
 .cardGridItem {
   width: 100%;
   height: 100%;
+  padding: 0;
   border-inline: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
   border-block-start: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
 }
@@ -163,190 +81,14 @@
   min-block-size: 100%;
 }
 
-.centerCta {
-  display: flex;
-  justify-content: center;
-}
-
-.splitFaq {
-  display: grid;
-  grid-template-columns: minmax(0, 4fr) minmax(0, 8fr);
-  border-top: var(--borderWidth-thin) solid;
-}
-
-.faqSidebar,
-.faqContent {
-  padding: calc(var(--base-size-4) * 20) calc(var(--base-size-4) * 15);
-  border-inline: var(--borderWidth-thin) solid;
-}
-
-.faqSidebar {
-  display: flex;
-  flex-direction: column;
-  gap: calc(var(--base-size-4) * 8);
-}
-
-.faqCategories {
-  display: flex;
-  flex-direction: column;
-  gap: var(--base-size-8);
-}
-
-.faqCategoryRow {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--base-size-12);
-}
-
-.faqCategory {
-  opacity: 0.72;
-}
-
-.faqCategoryActive {
-  opacity: 1;
-}
-
-.footer {
-  border-top: var(--borderWidth-thick) solid;
-}
-
-.footerTop {
-  display: grid;
-  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
-  gap: calc(var(--base-size-4) * 10);
-}
-
-.footerPrimary {
-  display: flex;
-  flex-direction: column;
-  gap: var(--base-size-24);
-}
-
-.footerBrandRow {
-  display: grid;
-  grid-template-columns: auto minmax(0, 1fr);
-  gap: var(--base-size-24);
-  align-items: start;
-}
-
-.footerStats {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: var(--base-size-24);
-}
-
-.footerStat {
-  display: flex;
-  flex-direction: column;
-  gap: var(--base-size-16);
-  min-block-size: calc(var(--base-size-16) * 12);
-  padding: calc(var(--base-size-4) * 10);
-  border: var(--borderWidth-thin) solid;
-  border-radius: var(--borderRadius-large);
-}
-
-.footerLinksGrid {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: var(--base-size-24);
-  margin-top: calc(var(--base-size-4) * 14);
-}
-
-.footerLinkColumn {
-  display: flex;
-  flex-direction: column;
-  gap: var(--base-size-16);
-  padding-top: var(--base-size-32);
-  border-top: var(--borderWidth-thin) solid;
-}
-
-.footerBottom {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--base-size-24);
-  margin-top: calc(var(--base-size-4) * 10);
-  padding-top: var(--base-size-24);
-  border-top: var(--borderWidth-thin) solid;
-}
-
-.footerStatus,
-.footerLegal,
-.footerPillGroup,
-.footerMetaPill {
-  display: inline-flex;
-  align-items: center;
-}
-
-.footerInlineLink {
-  color: var(--brand-color-text-muted);
-}
-
-.footerStatus,
-.footerLegal {
-  gap: var(--base-size-12);
-  flex-wrap: wrap;
-}
-
-.footerPillGroup,
-.footerMetaPill {
-  gap: var(--base-size-8);
-  padding: var(--base-size-4);
-  border: var(--borderWidth-thin) solid;
-  border-radius: var(--borderRadius-medium);
-}
-
-.footerPill,
-.footerPillActive {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  inline-size: calc(var(--base-size-4) * 8.5);
-  block-size: calc(var(--base-size-4) * 8.5);
-  border: 0;
-  border-radius: var(--borderRadius-small);
-  background: transparent;
-  color: inherit;
-  cursor: pointer;
-}
-
-.footerPillActive {
-  border: var(--borderWidth-thin) solid var(--brand-color-border-default);
-  background: var(--brand-color-canvas-default);
-}
-
-.footerMetaChevron {
-  transform: rotate(90deg);
-}
-
-@media (max-width: 1012px) {
-  .heroColumns,
-  .splitFaq,
-  .footerTop,
-  .footerLinksGrid,
-  .footerStats {
-    grid-template-columns: minmax(0, 1fr);
-  }
-
-  .heroTextColumn,
-  .heroSideColumn,
-  .faqSidebar,
-  .faqContent {
-    padding: calc(var(--base-size-4) * 10);
-  }
-
-  .heroOrb {
-    inset-inline-end: calc(var(--base-size-4) * 10);
-  }
-
-  .footerBottom {
-    flex-direction: column;
-    align-items: flex-start;
-  }
+.fullWidthTabsPanel :global([class*='Tabs__panelContainer']) {
+  width: 100%;
+  justify-self: stretch;
 }
 
 @media screen and (min-width: 63.25rem) {
   .cardGridItem {
+    padding: var(--base-size-24);
     border-block-start: 0;
     border-inline-end: 0;
     border-inline-start: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
@@ -359,11 +101,5 @@
   .cardGridColumn:nth-child(3n) .cardGridItem,
   .cardGridColumn:last-child .cardGridItem {
     border-inline-end: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
-  }
-}
-
-@media (max-width: 768px) {
-  .heroVisualSection {
-    padding: var(--base-size-16);
   }
 }

@@ -125,7 +125,7 @@
   align-items: center;
   gap: var(--base-size-24);
   margin: auto;
-  max-width: 100dvw;
+  max-width: 100vw;
 }
 
 .LogoSuite__logobar-marqueeGroup {
