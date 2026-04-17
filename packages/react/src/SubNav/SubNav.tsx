@@ -440,6 +440,7 @@ const LinkBaseWithSubmenu = forwardRef<HTMLDivElement, LinkBaseProps>(
 
     const [isExpanded, setIsExpanded] = useState(false)
     const ref = useProvidedRefOrCreate(forwardedRef as RefObject<HTMLDivElement>)
+    const subMenuChildrenRef = useRef<HTMLDivElement>(null)
 
     useContainsFocus(ref, (containsFocus: boolean) => {
       if (!containsFocus) {
@@ -453,6 +454,17 @@ const LinkBaseWithSubmenu = forwardRef<HTMLDivElement, LinkBaseProps>(
     const isAriaCurrent = Boolean(ariaCurrent) && ariaCurrent !== 'false'
 
     useKeyboardEscape(collapse)
+
+    useEffect(() => {
+      if (subMenuChildrenRef.current) {
+        // Workaround to avoid React 18 / 19 type mismatches with the `inert` attribute.
+        // This approach won't immediately apply the attribute in pure SSR contexts, only post-hydration
+        // TODO: Move back to JSX when React 19 is fully adopted in Dotcom.
+        // `inert` removes the collapsed submenu from tab order and the accessibility tree
+        // without affecting visual appearance
+        subMenuChildrenRef.current.toggleAttribute('inert', isLarge && !isExpanded)
+      }
+    }, [isLarge, isExpanded])
 
     const [label, SubMenuChildren] = children as ReactNode[]
 
@@ -496,12 +508,7 @@ const LinkBaseWithSubmenu = forwardRef<HTMLDivElement, LinkBaseProps>(
           </button>
         )}
 
-        <div
-          id={submenuId}
-          className={styles['SubNav__sub-menu-children']}
-          aria-hidden={isLarge && !isExpanded}
-          hidden={isLarge && !isExpanded}
-        >
+        <div id={submenuId} className={styles['SubNav__sub-menu-children']} ref={subMenuChildrenRef}>
           {SubMenuChildren}
         </div>
       </div>
