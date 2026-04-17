@@ -28,8 +28,6 @@ const ExampleTrailingComponent = () => (
   </Text>
 )
 
-const GlobeOctovisual = () => <GlobeIcon size={64} />
-
 const designTokenOverrides = `
   .custom-colors {
     --brand-CTABanner-shadow-color-start: var(--base-color-scale-purple-5);
@@ -254,7 +252,13 @@ export const WithLeadingComponent: Story = {
 
 export const WithOctovisualLeadingComponent: Story = {
   render: () => (
-    <CTABanner leadingComponent={GlobeOctovisual}>
+    <CTABanner
+      leadingComponent={() => (
+        <Text>
+          <GlobeIcon size={64} />
+        </Text>
+      )}
+    >
       <CTABanner.Heading>Build for teams everywhere</CTABanner.Heading>
       <CTABanner.Description>
         Use Octovisuals with CTABanner to add a more expressive visual treatment to campaign and product call-to-action
