@@ -44,7 +44,7 @@
 
 .Icon--background {
   padding: var(--base-size-12);
-  border-radius: var(--brand-borderRadius-full);
+  border-radius: var(--brand-borderRadius-medium);
 }
 
 .Icon--color-default {

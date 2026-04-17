@@ -11,18 +11,25 @@ a11yReviewed: true
 ---
 
 import {Label} from '@primer/react'
-import {CardVariantsProp, CardIconColorsProp, CardLabelColorsProp, CardHeadingAsProp} from './react'
-import {CopilotIcon, RocketIcon, GitBranchIcon, ZapIcon} from '@primer/octicons-react'
+import {
+  CardVariantsProp,
+  CardCTAVariantsProp,
+  CardLabelVariantsProp,
+  CardIconColorsProp,
+  CardHeadingAsProp,
+  CardTokensPositionsProp,
+} from './react'
+import {CopilotIcon, RocketIcon, GitBranchIcon} from '@primer/octicons-react'
 
 ```js
-import {Card} from '@primer/react-brand'
+import {Avatar, Box, Card, Grid, Token} from '@primer/react-brand'
 ```
 
 ## Examples
 
 ### Default
 
-The default card displays a heading and description. The link text defaults to `Read more`, but can be customized using the `label` prop.
+The default card displays a heading and description. The link text defaults to `Learn more`, but can be customized using the `ctaText` prop.
 
 ```jsx live
 <Card href="https://github.com">
@@ -53,16 +60,33 @@ The call to action text defaults to `Learn more` and can be customized using the
 </Card>
 ```
 
+Use `ctaVariant="none"` when the card should remain fully clickable without visible CTA text or arrow.
+
+```jsx live
+<Card href="https://github.com" ctaVariant="none">
+  <Card.Heading>Collaboration is the key to DevOps success</Card.Heading>
+  <Card.Description>Everything you need to know about getting started with GitHub Actions.</Card.Description>
+</Card>
+```
+
+### Arrow CTA
+
+Use `ctaVariant="arrow"` when the card should present an icon-only call to action instead of the default text-plus-arrow treatment.
+
+```jsx live
+<Card href="https://github.com" ctaVariant="arrow">
+  <Card.Heading>Collaboration is the key to DevOps success</Card.Heading>
+  <Card.Description>Everything you need to know about getting started with GitHub Actions.</Card.Description>
+</Card>
+```
+
 ### Border
 
 A border can be provided using the `hasBorder` prop. This will render a border around the Card component giving further separation between the foreground and background. Especially when there is no shadow present on the background.
 
-The `hasBorder` prop has no effect when using the torchlight effect in dark mode. In this case, the border is always rendered.
-
 ```jsx live
 <Card href="https://github.com" hasBorder>
   <Card.Heading>Code search & code view</Card.Heading>
-  <Card.Label>Limited</Card.Label>
   <Card.Description>
     Enables you to rapidly search, navigate, and understand code, right from GitHub.com.
   </Card.Description>
@@ -72,10 +96,11 @@ The `hasBorder` prop has no effect when using the torchlight effect in dark mode
 ### Icon
 
 You can add an `icon` to enhance the visual context. We recommend using an [Octicon](https://primer.style/design/foundations/icons). The `Icon` can be customized using the `color` prop and used with or without a background color by using the `hasBackground` prop.
+Use `Card.Tokens` to display one or more [Token](/components/Token) components below the description. The heading and description still render before the tokens in the DOM, so the reading order stays aligned with the visual order.
 
 ```jsx live
 <Card href="https://github.com">
-  <Card.Icon icon={CopilotIcon} color="purple" hasBackground />
+  <Card.Icon icon={CopilotIcon} hasBackground />
   <Card.Heading>Code search & code view</Card.Heading>
   <Card.Description>
     Enables you to rapidly search, navigate, and understand code, right from GitHub.com.
@@ -85,30 +110,13 @@ You can add an `icon` to enhance the visual context. We recommend using an [Octi
 
 ### Label
 
-Use the `Label` to add metadata to the `Card`. The `Label` is optional and can be used to indicate the status of the content. The `Label` can be customized using the `color` prop.
+Use `Card.Label` to display short eyebrow copy above the heading.
 
 ```jsx live
-<Card href="https://github.com">
-  <Card.Heading>Code search & code view</Card.Heading>
-  <Card.Label>Limited</Card.Label>
-  <Card.Description>
-    Enables you to rapidly search, navigate, and understand code, right from GitHub.com.
-  </Card.Description>
-</Card>
-```
-
-### Icons and Labels
-
-Combine `Icon` and `Label` when you need to add more metadata or context to the `Card`.
-
-```jsx live
-<Card href="https://github.com">
-  <Card.Icon icon={CopilotIcon} color="green" hasBackground />
-  <Card.Label color="blue-purple">Beta</Card.Label>
-  <Card.Heading>Code search & code view</Card.Heading>
-  <Card.Description>
-    Enables you to rapidly search, navigate, and understand code, right from GitHub.com.
-  </Card.Description>
+<Card href="https://github.com" ctaVariant="arrow">
+  <Card.Label>GitHub Copilot</Card.Label>
+  <Card.Heading>Bring the power of generative AI to engineering teams.</Card.Heading>
+  <Card.Description>Prioritize speed, depth, or cost by picking the industry-leading model for you.</Card.Description>
 </Card>
 ```
 
@@ -117,100 +125,74 @@ Combine `Icon` and `Label` when you need to add more metadata or context to the 
 Use the `Image` component to add an image to the `Card`. The `Image` component is optional and provides a visual context to the `Card`.
 
 ```jsx live
-<Card href="https://github.com">
-  <Card.Image src="/images/placeholder.png" alt="placeholder, blank area with an gray background color" />
-  <Card.Heading>Code search & code view</Card.Heading>
-  <Card.Description>
-    Enables you to rapidly search, navigate, and understand code, right from GitHub.com.
-  </Card.Description>
-</Card>
-```
-
-### Torchlight effect
-
-`Card` components in dark mode feature a unique "torchlight" effect.
-The color of the lit area corresponds to the nearest active, primary accent color. The color can be modified by changing the value of the respective CSS variable.
-
-```jsx live
-<ThemeProvider colorMode="dark">
-  <Box backgroundColor="default" padding="condensed">
-    <Card
-      href="https://github.com"
-      fullWidth
-      style={{
-        ['--brand-color-accent-primary']: 'var(--base-color-scale-lime-2)',
-      }}
-    >
-      <Card.Icon icon={ZapIcon} color="lime" hasBackground />
-      <Card.Heading>Code search & code view</Card.Heading>
-      <Card.Description>
-        Enables you to rapidly search, navigate, and understand code, right from GitHub.com.
-      </Card.Description>
-    </Card>
-  </Box>
-</ThemeProvider>
-```
-
-### Image and Label
-
-Combine `Image` and `Label` when you need to add more metadata or context to the `Card`. Use either the `Icon` or `Image` as the primary visual context, but not both.
-
-```jsx live
-<Card href="https://github.com">
-  <Card.Image src="/images/placeholder.png" alt="placeholder, blank area with an gray background color" />
-  <Card.Heading>Code search & code view</Card.Heading>
-  <Card.Label color="blue">Beta</Card.Label>
-  <Card.Description>
-    Enables you to rapidly search, navigate, and understand code, right from GitHub.com.
-  </Card.Description>
-</Card>
-```
-
-### Stacked cards
-
-Use the `Stack` or `Grid` components to stack up to three cards horizontally in center alignment. Do not use center alignment for 4 or more stacked cards.
-
-<Note>
-  Note that in this arrangement, both `fullWidth` and `hasBorder` options should be applied alongside `align="center"`.
-</Note>
-
-```jsx live
-<Stack
-  direction={{
-    narrow: 'vertical',
-    regular: 'vertical',
-    wide: 'horizontal',
-  }}
-  alignItems="center"
-  justifyContent="center"
-  gap="normal"
->
-  <Card href="https://github.com" hasBorder fullWidth align="center">
-    <Card.Icon icon={CopilotIcon} color="indigo" hasBackground />
-    <Card.Heading>Heading</Card.Heading>
-    <Card.Description>Everything you need to know about getting started with GitHub Actions.</Card.Description>
+<>
+  <Card href="https://github.com">
+    <Card.Image src="/images/placeholder.png" alt="placeholder, blank area with an gray background color" />
+    <Card.Heading>Code search & code view</Card.Heading>
+    <Card.Description>
+      Enables you to rapidly search, navigate, and understand code, right from GitHub.com.
+    </Card.Description>
   </Card>
-  <Card href="https://github.com" hasBorder fullWidth align="center">
-    <Card.Icon icon={RocketIcon} color="purple" hasBackground />
-    <Card.Heading>Heading</Card.Heading>
-    <Card.Description>Everything you need to know about getting started with GitHub Actions.</Card.Description>
+  <Card href="https://github.com">
+    <Card.Image
+      position="block-end"
+      src="/images/placeholder.png"
+      alt="placeholder, blank area with an gray background color"
+    />
+    <Card.Heading>Code search & code view</Card.Heading>
+    <Card.Description>
+      Enables you to rapidly search, navigate, and understand code, right from GitHub.com.
+    </Card.Description>
   </Card>
-</Stack>
+</>
+```
+
+### Tokens
+
+Use `Card.Tokens` to display one or more [Token](/components/Token) components below the description.
+
+```jsx live
+<>
+  <Card href="https://github.com">
+    <Card.Image src="/images/placeholder-1.png" alt="Abstract blue and green gradient illustration" />
+    <Card.Heading>Leading tokens</Card.Heading>
+    <Card.Description>
+      Today, we&apos;re shipping improvements to Dependabot alerts that make them easier to understand and remediate.
+    </Card.Description>
+    <Card.Tokens position="block-end">
+      <Token leadingVisual={<Avatar src="/images/avatar-mona.png" alt="Mona Lisa" size={32} />}>Mona Lisa</Token>
+      <Token variant="outline">DEC.25</Token>
+    </Card.Tokens>
+  </Card>
+  <Card href="https://github.com">
+    <Card.Image src="/images/placeholder-2.png" alt="Abstract blue and green gradient illustration" />
+    <Card.Tokens>
+      <Token leadingVisual={<Avatar src="/images/avatar-mona.png" alt="Mona Lisa" size={32} />}>Mona Lisa</Token>
+      <Token variant="outline">DEC.25</Token>
+    </Card.Tokens>
+    <Card.Heading>Trailing tokens</Card.Heading>
+    <Card.Description>
+      Today, we&apos;re shipping improvements to Dependabot alerts that make them easier to understand and remediate.
+    </Card.Description>
+  </Card>
+</>
 ```
 
 ## Component props
 
 ### Card <Label>Required</Label>
 
-| name               | type                                                           | default     | required | description                                                      |
-| ------------------ | -------------------------------------------------------------- | ----------- | -------- | ---------------------------------------------------------------- |
-| `align`            | <PropTableValues values={['start', 'center']} addLineBreaks /> | `'start'`   | `false`  | Aligns the card content                                          |
-| `ctaText`          | `string`                                                       | `Read more` | `false`  | Label of the link at the bottom of the card                      |
-| `disableAnimation` | `boolean`                                                      | `false`     | `false`  | A flag to disable the default hover animation effect of the card |
-| `fullWidth`        | `boolean`                                                      | `false`     | `false`  | A flag to optionally fill the width of the parent container      |
-| `hasBorder`        | `boolean`                                                      | `false`     | `false`  | A flag used to provide a border to the card                      |
-| `href`             | `string`                                                       |             | `true`   | URL to the card content                                          |
-| `variant`          | <CardVariantsProp />                                           | `'default'` | `false`  | The variant of the card                                          |
+| name               | type                                                           | default      | required | description                                                      |
+| ------------------ | -------------------------------------------------------------- | ------------ | -------- | ---------------------------------------------------------------- |
+| `align`            | <PropTableValues values={['start', 'center']} addLineBreaks /> | `'start'`    | `false`  | Aligns the card content                                          |
+| `ctaText`          | `string`                                                       | `Learn more` | `false`  | Label of the link at the bottom of the card                      |
+| `ctaVariant`       | <CardCTAVariantsProp />                                        | `'text'`     | `false`  | Presentation of the call-to-action area                          |
+| `disableAnimation` | `boolean`                                                      | `false`      | `false`  | A flag to disable the default hover animation effect of the card |
+| `fullWidth`        | `boolean`                                                      | `false`      | `false`  | A flag to optionally fill the width of the parent container      |
+| `hasBorder`        | `boolean`                                                      | `false`      | `false`  | A flag used to provide a border to the card                      |
+| `href`             | `string`                                                       |              | `true`   | URL to the card content                                          |
+| `leadingVisual`    | `ReactElement`                                                 |              | `false`  | Logo or brand mark shown above the card content                  |
+| `variant`          | <CardVariantsProp />                                           | `'default'`  | `false`  | The variant of the card                                          |
 
 ### Card.Image
 
@@ -226,9 +208,19 @@ Forwards all the props from the [Image component](/components/Image), including 
 
 ### Card.Label
 
-| name    | type                    | default   | required | description            |
-| ------- | ----------------------- | --------- | -------- | ---------------------- |
-| `color` | <CardLabelColorsProp /> | `default` | `false`  | The color of the label |
+| name       | type                       | default  | required | description                                |
+| ---------- | -------------------------- | -------- | -------- | ------------------------------------------ |
+| `children` | `ReactNode`, `ReactNode[]` |          | `true`   | Eyebrow content rendered above the heading |
+| `variant`  | <CardLabelVariantsProp />  | `accent` | `false`  | Visual variant of the label copy           |
+
+Forwards all the props from the [EyebrowText component](/components/EyebrowText), including `className`, `id`, and `ref`.
+
+### Card.Tokens
+
+| name       | type                        | default       | required | description                                                    |
+| ---------- | --------------------------- | ------------- | -------- | -------------------------------------------------------------- |
+| `children` | `ReactNode`, `ReactNode[]`  |               | `true`   | Tokens rendered inside the card                                |
+| `position` | <CardTokensPositionsProp /> | `block-start` | `false`  | Places tokens at block-start or block-end relative to the copy |
 
 ### Card.Heading
 

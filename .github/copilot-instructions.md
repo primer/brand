@@ -96,6 +96,7 @@ apps/
 ### Styling & Design Tokens
 
 - **CSS Modules**: `ComponentName.module.css`. Final build output will apply hashing to class names.
+- **Always use CSS Modules**: for components, stories, examples, and shared story styles. Do not add new global stylesheet imports.
 - **Design tokens**: `packages/design-tokens/` (build outputs warnings about collisions - this is normal)
 - **Responsive**: Only use breakpoint values from `packages/design-tokens/lib/design-tokens/css/tokens/functional/size/breakpoints.css` after running `npm run build:lib`
 
@@ -106,6 +107,7 @@ apps/
 ## General notes
 
 - Stick to existing conventions in the repo where possible. Avoid setting new precedents.
+- Use `clsx` for React/TSX className composition; avoid template-literal joins.
 - This project has no dependency - or relation to - `@primer/react`.
 - Add Unit Tests for new features which have existing tests files to prevent drops in coverage.
 - Always ensure code is accessible and complies with WCAG 2.1 standards.

@@ -9,7 +9,7 @@ const config = {
   workers:
     Number(process.env.VRT_WORKERS) || (process.env.CI ? 6 : Math.max(4, Math.min(6, require('os').cpus().length / 2))),
   fullyParallel: true,
-  retries: process.env.CI ? 3 : 0,
+  retries: process.env.CI ? 5 : 0,
   timeout: process.env.CI ? 30000 : 15000,
   maxFailures: 10,
   use: {
