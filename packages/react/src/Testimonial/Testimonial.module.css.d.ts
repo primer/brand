@@ -9,7 +9,6 @@ declare const styles: {
   readonly "Testimonial-caption": string;
   readonly "Testimonial-from": string;
   readonly "Testimonial-link": string;
-  readonly "Testimonial-position": string;
   readonly "Testimonial-quote": string;
   readonly "Testimonial__media": string;
   readonly "Testimonial__quoteMark": string;
