@@ -433,7 +433,7 @@ function PricingOptionsBlock({pricing}: {pricing: FlexSuiteAIOverviewContent['pr
   return (
     <Grid>
       <Grid.Column span={12}>
-        <PricingOptions style={{marginBlock: 'calc(var(--brand-borderWidth-thin) * -1)'}}>
+        <PricingOptions style={{marginBlock: 'calc(var(--brand-borderWidth-thin) * -1)'}} variant="default-gradient">
           <PricingOptions.Item>
             <PricingOptions.Heading>{pricing.free.heading}</PricingOptions.Heading>
             <PricingOptions.Description>{pricing.free.description}</PricingOptions.Description>
