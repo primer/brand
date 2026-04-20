@@ -149,10 +149,7 @@
 
 .Testimonial-from {
   font-weight: var(--base-text-weight-normal);
-}
-
-.Testimonial-position {
-  font-family: var(--brand-fontStack-monospace);
+  text-transform: uppercase;
 }
 
 /* Expressive variant */
@@ -166,7 +163,7 @@
   .Testimonial--variant-expressive {
     flex-direction: row;
     align-items: flex-end;
-    gap: var(--base-size-64);
+    gap: var(--base-size-96);
   }
 }
 
@@ -191,6 +188,7 @@
   border-block-start: var(--brand-borderWidth-thin) solid var(--brand-color-border-default);
   padding-block-start: var(--base-size-24);
   width: 100%;
+  gap: var(--base-size-8);
 }
 
 @media screen and (min-width: 48rem) {
@@ -234,6 +232,8 @@
 
 .Testimonial--variant-expressive .Testimonial-quote {
   font-family: var(--brand-fontStack-monospace);
+  line-height: var(--brand-text-lineHeight-400);
+  font-weight: var(--base-text-weight-normal);
 }
 
 .Testimonial-link {
