@@ -159,14 +159,26 @@ export const CenterAligned: StoryFn<typeof Card> = () => {
       <Section backgroundColor="default">
         <Grid>
           <Grid.Column span={{xsmall: 12, medium: 6}}>
-            <Card hasBorder fullWidth align="center" href="https://github.com">
+            <Card
+              hasBorder
+              fullWidth
+              align="center"
+              href="https://github.com"
+              ctaText={t('read_the_quick_start_guide')}
+            >
               <Card.Icon icon={GitBranchIcon} color="purple" hasBackground />
               <Card.Heading>{t('code_search_heading')}</Card.Heading>
               <Card.Description>{t('techtarget_devops_description')}</Card.Description>
             </Card>
           </Grid.Column>
           <Grid.Column span={{xsmall: 12, medium: 6}}>
-            <Card hasBorder fullWidth align="center" href="https://github.com">
+            <Card
+              hasBorder
+              fullWidth
+              align="center"
+              href="https://github.com"
+              ctaText={t('get_the_most_out_of_github_copilot_in_your_ide')}
+            >
               <Card.Icon icon={GitBranchIcon} color="purple" hasBackground />
               <Card.Heading>{t('code_search_heading')}</Card.Heading>
               <Card.Description>{t('techtarget_devops_description')}</Card.Description>
@@ -177,21 +189,39 @@ export const CenterAligned: StoryFn<typeof Card> = () => {
       <Section backgroundColor="subtle">
         <Grid>
           <Grid.Column span={{xsmall: 12, medium: 4}}>
-            <Card hasBorder fullWidth align="center" href="https://github.com">
+            <Card
+              hasBorder
+              fullWidth
+              align="center"
+              href="https://github.com"
+              ctaText={t('read_the_quick_start_guide')}
+            >
               <Card.Icon icon={GitBranchIcon} color="purple" hasBackground />
               <Card.Heading>{t('code_search_heading')}</Card.Heading>
               <Card.Description>{t('techtarget_devops_description')}</Card.Description>
             </Card>
           </Grid.Column>
           <Grid.Column span={{xsmall: 12, medium: 4}}>
-            <Card hasBorder fullWidth align="center" href="https://github.com">
+            <Card
+              hasBorder
+              fullWidth
+              align="center"
+              href="https://github.com"
+              ctaText={t('get_the_most_out_of_github_copilot_in_your_ide')}
+            >
               <Card.Icon icon={GitBranchIcon} color="purple" hasBackground />
               <Card.Heading>{t('code_search_heading')}</Card.Heading>
               <Card.Description>{t('techtarget_devops_description')}</Card.Description>
             </Card>
           </Grid.Column>
           <Grid.Column span={{xsmall: 12, medium: 4}}>
-            <Card hasBorder fullWidth align="center" href="https://github.com">
+            <Card
+              hasBorder
+              fullWidth
+              align="center"
+              href="https://github.com"
+              ctaText={t('read_the_quick_start_guide')}
+            >
               <Card.Icon icon={GitBranchIcon} color="purple" hasBackground />
               <Card.Heading>{t('code_search_heading')}</Card.Heading>
               <Card.Description>{t('techtarget_devops_description')}</Card.Description>

@@ -213,6 +213,31 @@ describe('Card', () => {
     expect(getByRole('link', {name: mockHeading})).toHaveAttribute('href', mockHref)
   })
 
+  it('does not render the CTA arrow for center-aligned text CTAs', () => {
+    const ctaLabel = 'Really really long call to action text'
+
+    const {container, getByText} = render(
+      <Card href={mockHref} align="center" ctaText={ctaLabel}>
+        <Card.Heading>{mockHeading}</Card.Heading>
+      </Card>,
+    )
+
+    expect(getByText(ctaLabel)).toBeInTheDocument()
+    expect(container.querySelector('.Card__actionIcon')).not.toBeInTheDocument()
+    expect(container.querySelector('.ExpandableArrow')).not.toBeInTheDocument()
+  })
+
+  it('keeps the arrow icon for center-aligned arrow CTAs', () => {
+    const {container} = render(
+      <Card href={mockHref} align="center" ctaVariant="arrow">
+        <Card.Heading>{mockHeading}</Card.Heading>
+      </Card>,
+    )
+
+    expect(container.querySelector('.Card__actionIcon')).toBeInTheDocument()
+    expect(container.querySelector('.ExpandableArrow')).toBeInTheDocument()
+  })
+
   it('renders a leading visual before the heading', () => {
     const {container, getByTestId, getByText} = render(
       <Card href={mockHref} leadingVisual={<MicrosoftLogo data-testid="leading-visual" />}>

@@ -344,6 +344,26 @@
   white-space: nowrap;
 }
 
+.Card:not(.Card--ctaVariant-arrow) .Card__action {
+  inline-size: 100%;
+  min-inline-size: 0;
+}
+
+.Card:not(.Card--ctaVariant-arrow) .Card__action > span:first-child {
+  min-inline-size: 0;
+}
+
+.Card:not(.Card--ctaVariant-arrow) .Card__actionLabel {
+  overflow: visible;
+  text-overflow: clip;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+
+.Card--align-center:not(.Card--ctaVariant-arrow) .Card__actionLabel {
+  text-align: center;
+}
+
 .Card__actionLabelClip {
   --actionLabelClip-duration: 400ms;
   display: inline-flex;

@@ -175,6 +175,7 @@ const CardRoot = forwardRef<HTMLDivElement, CardProps>(
     const renderedLeadingVisual = getRenderableLeadingVisual(leadingVisual)
     const renderedCardIcon = renderedLeadingVisual ? undefined : cardIcon
     const imagePosition = cardImage ? cardImage.props.position || 'block-start' : null
+    const shouldRenderLinkArrow = !(align === 'center' && ctaVariant === 'text')
 
     return (
       <DefaultCardWrapperComponent
@@ -221,17 +222,19 @@ const CardRoot = forwardRef<HTMLDivElement, CardProps>(
                   {ctaText}
                 </Text>
               </span>
-              <span
-                className={clsx(
-                  styles.Card__actionIcon,
-                  ctaVariant === 'arrow' && styles['Card__actionIcon--arrowOnly'],
-                )}
-              >
-                <ExpandableArrow
-                  className={clsx(stylesLink['Link-arrow'], styles['Card--expandableArrow'])}
-                  aria-hidden="true"
-                />
-              </span>
+              {shouldRenderLinkArrow ? (
+                <span
+                  className={clsx(
+                    styles.Card__actionIcon,
+                    ctaVariant === 'arrow' && styles['Card__actionIcon--arrowOnly'],
+                  )}
+                >
+                  <ExpandableArrow
+                    className={clsx(stylesLink['Link-arrow'], styles['Card--expandableArrow'])}
+                    aria-hidden="true"
+                  />
+                </span>
+              ) : null}
             </div>
           ) : null}
         </div>
