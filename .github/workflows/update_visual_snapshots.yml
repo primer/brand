@@ -40,7 +40,7 @@ jobs:
         run: npm ci
 
       - name: Regenerate specs and update snapshots
-        run: npm run test:visual:update-snapshots --workspace=packages/e2e
+        run: npm run test:visual:update --workspace=packages/e2e
 
       - uses: stefanzweifel/git-auto-commit-action@04702edda442b2e678b25b537cec683a1493fcb9 # v7.1.0
         with:
