@@ -110,7 +110,6 @@ const CardRoot = forwardRef<HTMLDivElement, CardProps>(
       className,
       ctaText = 'Learn more',
       ctaVariant = defaultCardCTAVariant,
-      backgroundColor = 'default',
       disableAnimation = false,
       fullWidth = false,
       href,
@@ -118,6 +117,7 @@ const CardRoot = forwardRef<HTMLDivElement, CardProps>(
       leadingVisual,
       style,
       variant = 'default',
+      backgroundColor = variant === 'minimal' ? 'none' : 'default',
       ...props
     },
     ref,

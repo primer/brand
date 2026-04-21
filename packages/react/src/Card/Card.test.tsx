@@ -80,6 +80,32 @@ describe('Card', () => {
     expect(cardEl.classList).toContain('Card--variant-minimal')
   })
 
+  it('defaults to the default background color for the default variant', () => {
+    const mockTestId = 'test'
+
+    const {getByTestId} = render(
+      <Card href={mockHref} data-testid={mockTestId}>
+        <Card.Heading>{mockHeading}</Card.Heading>
+      </Card>,
+    )
+
+    const cardEl = getByTestId(mockTestId)
+    expect(cardEl.classList).toContain('Card--backgroundColor-default')
+  })
+
+  it('defaults to a transparent background for the minimal variant', () => {
+    const mockTestId = 'test'
+
+    const {getByTestId} = render(
+      <Card variant="minimal" href={mockHref} data-testid={mockTestId}>
+        <Card.Heading>{mockHeading}</Card.Heading>
+      </Card>,
+    )
+
+    const cardEl = getByTestId(mockTestId)
+    expect(cardEl.classList).toContain('Card--backgroundColor-none')
+  })
+
   it('renders a default variant in dark mode', () => {
     const mockTestId = 'test'
 
