@@ -1,6 +1,9 @@
 declare const styles: {
   readonly "Card": string;
   readonly "Card--align-center": string;
+  readonly "Card--backgroundColor-default": string;
+  readonly "Card--backgroundColor-none": string;
+  readonly "Card--backgroundColor-subtle": string;
   readonly "Card--border": string;
   readonly "Card--ctaVariant-arrow": string;
   readonly "Card--disableAnimation": string;

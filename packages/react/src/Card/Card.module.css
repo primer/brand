@@ -22,6 +22,7 @@
   grid-template-rows: var(--Card-grid-template-rows);
   position: relative;
   height: 100%;
+  border-radius: var(--brand-borderRadius-medium);
 }
 
 .Card--align-center .Card {
@@ -47,6 +48,18 @@
     'description'
     'action';
   justify-items: center;
+}
+
+.Card--backgroundColor-default {
+  background-color: var(--brand-Card-background-default);
+}
+
+.Card--backgroundColor-subtle {
+  background-color: var(--brand-color-canvas-subtle);
+}
+
+.Card--backgroundColor-none {
+  background-color: transparent;
 }
 
 .Card--tokensPosition-block-end {
@@ -154,10 +167,6 @@
 
 .Card--align-center .Card--variant-minimal {
   padding: 0;
-}
-
-.Card--variant-default {
-  background-color: var(--brand-Card-background-default);
 }
 
 .Card--variant-default.Card--ctaVariant-arrow {

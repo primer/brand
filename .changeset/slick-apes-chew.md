@@ -4,7 +4,7 @@
 
 ⚠️ Breaking changes to the `Card` component.
 
-- Removed the `torchlight` Card variant. Cards now use the standard appearance in both light and dark mode.
+- Removed the `torchlight` Card variant.
 
   ```diff
   - <Card variant="torchlight" />
@@ -19,5 +19,6 @@
   ```
 
 - Added new `ctaVariant` prop with `text`, `arrow`, and `none` options to control how the card's primary action is rendered.
+- Added `backgroundColor` prop with `default`, `subtle`, and `none` options to control the card appearance.
 - Added `leadingVisual` prop for rendering a logo or brand mark above the card content. Note that `leadingVisual` and `Card.Icon` cannot be used together.
 - Added `Card.Tokens` for rendering metadata before or after the main copy, with `position="block-start"` and `position="block-end"` options.

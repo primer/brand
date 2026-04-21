@@ -24,6 +24,7 @@ import stylesLink from '../Link/Link.module.css'
 
 export const CardVariants = ['default', 'minimal'] as const
 export const CardCTAVariants = ['text', 'arrow', 'none'] as const
+export const CardBackgroundColors = ['default', 'subtle', 'none'] as const
 export const CardTokenPositions = ['block-start', 'block-end'] as const
 export const CardLabelVariants = EyebrowTextVariants
 
@@ -37,6 +38,7 @@ export type CardVariants = (typeof CardVariants)[number]
 export type CardCTAVariant = (typeof CardCTAVariants)[number]
 export type CardTokenPosition = (typeof CardTokenPositions)[number]
 export type CardLabelVariant = (typeof CardLabelVariants)[number]
+export type CardBackgroundColor = (typeof CardBackgroundColors)[number]
 
 type CardLeadingVisual = React.ReactElement | React.ComponentType<{className?: string}>
 
@@ -73,6 +75,10 @@ export type CardProps = {
    */
   ctaVariant?: CardCTAVariant
   /**
+   * Optional, custom background color.
+   */
+  backgroundColor?: CardBackgroundColor
+  /**
    * A visual that appears before the heading, commonly used for a logo or brand mark
    */
   leadingVisual?: CardLeadingVisual
@@ -104,6 +110,7 @@ const CardRoot = forwardRef<HTMLDivElement, CardProps>(
       className,
       ctaText = 'Learn more',
       ctaVariant = defaultCardCTAVariant,
+      backgroundColor = 'default',
       disableAnimation = false,
       fullWidth = false,
       href,
@@ -186,6 +193,7 @@ const CardRoot = forwardRef<HTMLDivElement, CardProps>(
             cardTokensBlockEnd && styles['Card--tokensPosition-block-end'],
             styles[`Card--variant-${variant}`],
             hasBorder && styles['Card--border'],
+            styles[`Card--backgroundColor-${backgroundColor}`],
             imagePosition && styles[`Card--imagePos-${imagePosition}`],
             className,
           )}

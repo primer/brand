@@ -14,6 +14,7 @@ import {Label} from '@primer/react'
 import {
   CardVariantsProp,
   CardCTAVariantsProp,
+  CardBackgroundColorsProp,
   CardLabelVariantsProp,
   CardIconColorsProp,
   CardHeadingAsProp,
@@ -185,6 +186,7 @@ Use `Card.Tokens` to display one or more [Token](/components/Token) components b
 | name               | type                                                           | default      | required | description                                                      |
 | ------------------ | -------------------------------------------------------------- | ------------ | -------- | ---------------------------------------------------------------- |
 | `align`            | <PropTableValues values={['start', 'center']} addLineBreaks /> | `'start'`    | `false`  | Aligns the card content                                          |
+| `backgroundColor`  | <CardBackgroundColorsProp />                                   | `'default'`  | `false`  | Optional background color override for the card                  |
 | `ctaText`          | `string`                                                       | `Learn more` | `false`  | Label of the link at the bottom of the card                      |
 | `ctaVariant`       | <CardCTAVariantsProp />                                        | `'text'`     | `false`  | Presentation of the call-to-action area                          |
 | `disableAnimation` | `boolean`                                                      | `false`      | `false`  | A flag to disable the default hover animation effect of the card |
