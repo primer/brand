@@ -51,7 +51,6 @@ describe('Card', () => {
     const mockTestId = 'test'
     const expectedClass = 'Card'
     const expectedCustomClass = 'custom-class'
-    const defaultVariantClass = 'Card--variant-default'
     const expectedTag = 'div'
 
     const {getByTestId} = render(
@@ -64,7 +63,6 @@ describe('Card', () => {
     const cardEl = getByTestId(mockTestId)
     expect(cardEl.tagName).toBe(expectedTag.toUpperCase())
     expect(cardEl.classList).toContain(expectedClass)
-    expect(cardEl.classList).toContain(defaultVariantClass)
     expect(cardEl.classList).toContain(expectedCustomClass)
   })
 
@@ -106,6 +104,33 @@ describe('Card', () => {
     expect(cardEl.classList).toContain('Card--backgroundColor-none')
   })
 
+  it('defaults to no background color for the arrow CTA variant', () => {
+    const mockTestId = 'test'
+
+    const {getByTestId} = render(
+      <Card href={mockHref} ctaVariant="arrow" data-testid={mockTestId}>
+        <Card.Heading>{mockHeading}</Card.Heading>
+      </Card>,
+    )
+
+    const cardEl = getByTestId(mockTestId)
+    expect(cardEl.classList).toContain('Card--backgroundColor-none')
+  })
+
+  it('allows passthrough of an explicit background color for the arrow CTA variant too', () => {
+    const mockTestId = 'test'
+
+    const {getByTestId} = render(
+      <Card href={mockHref} ctaVariant="arrow" backgroundColor="subtle" data-testid={mockTestId}>
+        <Card.Heading>{mockHeading}</Card.Heading>
+      </Card>,
+    )
+
+    const cardEl = getByTestId(mockTestId)
+    expect(cardEl.classList).toContain('Card--backgroundColor-subtle')
+    expect(cardEl.classList).not.toContain('Card--backgroundColor-none')
+  })
+
   it('renders a default variant in dark mode', () => {
     const mockTestId = 'test'
 
@@ -117,7 +142,7 @@ describe('Card', () => {
       </ThemeProvider>,
     )
     const cardEl = getByTestId(mockTestId)
-    expect(cardEl.classList).toContain('Card--variant-default')
+    expect(cardEl.classList).toContain('Card--backgroundColor-default')
   })
 
   it('renders the correct default heading type', () => {

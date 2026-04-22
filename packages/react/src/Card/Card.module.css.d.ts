@@ -14,7 +14,6 @@ declare const styles: {
   readonly "Card--maxWidth": string;
   readonly "Card--skew": string;
   readonly "Card--tokensPosition-block-end": string;
-  readonly "Card--variant-default": string;
   readonly "Card--variant-minimal": string;
   readonly "Card__action": string;
   readonly "Card__action--arrowOnly": string;

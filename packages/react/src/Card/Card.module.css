@@ -169,10 +169,6 @@
   padding: 0;
 }
 
-.Card--variant-default.Card--ctaVariant-arrow {
-  background-color: transparent;
-}
-
 .Card--ctaVariant-arrow {
   --Card-arrowAction-endInset: var(--base-size-40);
 }

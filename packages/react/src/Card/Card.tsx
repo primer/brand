@@ -117,12 +117,14 @@ const CardRoot = forwardRef<HTMLDivElement, CardProps>(
       leadingVisual,
       style,
       variant = 'default',
-      backgroundColor = variant === 'minimal' ? 'none' : 'default',
+      backgroundColor,
       ...props
     },
     ref,
   ) => {
     const cardRef = useProvidedRefOrCreate(ref as RefObject<HTMLDivElement>)
+    const resolvedBackgroundColor =
+      backgroundColor ?? (variant === 'minimal' || ctaVariant === 'arrow' ? 'none' : 'default')
 
     let children: React.ReactNode | null
 
@@ -192,9 +194,9 @@ const CardRoot = forwardRef<HTMLDivElement, CardProps>(
             renderedLeadingVisual && styles['Card--hasLeadingVisual'],
             ctaVariant === 'arrow' && styles['Card--ctaVariant-arrow'],
             cardTokensBlockEnd && styles['Card--tokensPosition-block-end'],
-            styles[`Card--variant-${variant}`],
+            variant === 'minimal' && styles['Card--variant-minimal'],
             hasBorder && styles['Card--border'],
-            styles[`Card--backgroundColor-${backgroundColor}`],
+            styles[`Card--backgroundColor-${resolvedBackgroundColor}`],
             imagePosition && styles[`Card--imagePos-${imagePosition}`],
             className,
           )}
