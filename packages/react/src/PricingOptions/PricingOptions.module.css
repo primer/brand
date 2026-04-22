@@ -101,13 +101,9 @@
     inset-inline-end: 0;
   }
 
-  /* Default layout: extend accent border into container padding to reach the container edge */
-  .PricingOptions--layout-default .PricingOptions__label-cell--has-label:first-child::after {
-    inset-inline-start: calc(var(--brand-pricing-options-container-padding-inline, 0px) * -1);
-  }
-
-  .PricingOptions--layout-default .PricingOptions__label-cell--has-label:last-child::after {
-    inset-inline-end: calc(var(--brand-pricing-options-container-padding-inline, 0px) * -1);
+  .PricingOptions--layout-default .PricingOptions__label-cell--has-label::after {
+    inset-inline-start: 0;
+    inset-inline-end: 0;
   }
 
   /* ---- Default layout labels ---- */
@@ -128,7 +124,18 @@
   }
 
   .PricingOptions--layout-default .PricingOptions__label-cell {
-    padding-inline: 0;
+    margin-inline: calc(var(--brand-pricing-options-item-gap, 0px) / 2 * -1);
+    padding-inline: calc(var(--brand-pricing-options-item-gap, 0px) / 2);
+  }
+
+  .PricingOptions--layout-default .PricingOptions__label-cell:first-child {
+    margin-inline-start: calc(var(--brand-pricing-options-container-padding-inline, 0px) * -1);
+    padding-inline-start: var(--brand-pricing-options-container-padding-inline, 0px);
+  }
+
+  .PricingOptions--layout-default .PricingOptions__label-cell:last-child {
+    margin-inline-end: calc(var(--brand-pricing-options-container-padding-inline, 0px) * -1);
+    padding-inline-end: var(--brand-pricing-options-container-padding-inline, 0px);
   }
 
   /* Empty cells: transparent bg/borders but structurally visible so dividers show */
@@ -143,7 +150,7 @@
     position: absolute;
     inset-block: 0;
     width: var(--brand-borderWidth-thin);
-    inset-inline-start: calc(var(--brand-pricing-options-item-gap) / 2 * -1);
+    inset-inline-start: 0;
     background-color: var(--brand-color-border-subtle);
   }
 
