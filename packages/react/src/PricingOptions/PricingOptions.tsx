@@ -159,6 +159,8 @@ const PricingOptionsRoot = forwardRef(
           ref={ref}
           {...(rest as HTMLAttributes<HTMLElement>)}
         >
+          {filteredChildren}
+
           {hasHeaderLabels && (
             <div
               className={styles['PricingOptions__labels']}
@@ -191,7 +193,6 @@ const PricingOptionsRoot = forwardRef(
               })}
             </div>
           )}
-          {filteredChildren}
         </div>
       </PricingOptionsProvider>
     )
