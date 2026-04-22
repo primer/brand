@@ -89,6 +89,7 @@
     inset-inline-end: calc(var(--brand-pricing-options-item-gap, 0px) / 2 * -1);
     height: var(--brand-borderWidth-thin);
     background-color: var(--brand-color-text-emphasized);
+    z-index: 1;
   }
 
   /* First cell: don't overflow past container start (cards override below) */
