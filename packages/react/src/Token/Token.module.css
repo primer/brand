@@ -36,15 +36,6 @@
   background-color: var(--brand-Token-bgColor-hover-default);
 }
 
-.Token--variant-dark-gray {
-  background-color: var(--brand-Token-bgColor-dark-gray);
-  color: var(--brand-Token-fgColor-dark-gray);
-}
-
-.Token--interactive.Token--variant-dark-gray:hover {
-  background-color: var(--brand-Token-bgColor-hover-dark-gray);
-}
-
 .Token--variant-accent {
   background-color: var(--brand-Token-bgColor-accent);
   color: var(--brand-Token-fgColor-accent);

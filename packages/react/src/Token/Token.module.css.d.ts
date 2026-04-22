@@ -3,7 +3,6 @@ declare const styles: {
   readonly "Token--hasLeadingVisual": string;
   readonly "Token--interactive": string;
   readonly "Token--variant-accent": string;
-  readonly "Token--variant-dark-gray": string;
   readonly "Token--variant-default": string;
   readonly "Token--variant-invisible": string;
   readonly "Token--variant-outline": string;

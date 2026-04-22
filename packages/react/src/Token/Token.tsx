@@ -12,7 +12,7 @@ import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/compone
 
 import styles from './Token.module.css'
 
-export const TokenVariants = ['default', 'dark-gray', 'accent', 'outline', 'invisible'] as const
+export const TokenVariants = ['default', 'accent', 'outline', 'invisible'] as const
 
 export const defaultTokenVariant = TokenVariants[0]
 

@@ -46,8 +46,8 @@ export const WithLeadingVisual: StoryFn<typeof Token> = () => {
       <Token variant="outline" leadingVisual={<MicrosoftLogo />}>
         With logo
       </Token>
-      <Token variant="dark-gray" leadingVisual={<CopilotIcon />}>
-        With contrast
+      <Token variant="accent" leadingVisual={<CopilotIcon />}>
+        With accent
       </Token>
     </Stack>
   )
