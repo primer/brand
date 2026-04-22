@@ -83,7 +83,12 @@ export const Editorial: Story = {
                       className={styles.gridColumn}
                     >
                       <Box className={styles.gridItem} padding="normal">
-                        <Card href="https://github.com/resources/articles" fullWidth ctaVariant="none">
+                        <Card
+                          href="https://github.com/resources/articles"
+                          fullWidth
+                          ctaVariant="none"
+                          backgroundColor="none"
+                        >
                           <Card.Image
                             src={darkHorizontalBannerAlt}
                             alt={t('abstract_blue_green_gradient_illustration')}

@@ -22,6 +22,7 @@
   grid-template-rows: var(--Card-grid-template-rows);
   position: relative;
   height: 100%;
+  border-radius: var(--brand-borderRadius-medium);
 }
 
 .Card--align-center .Card {
@@ -47,6 +48,18 @@
     'description'
     'action';
   justify-items: center;
+}
+
+.Card--backgroundColor-default {
+  background-color: var(--brand-Card-background-default);
+}
+
+.Card--backgroundColor-subtle {
+  background-color: var(--brand-color-canvas-subtle);
+}
+
+.Card--backgroundColor-none {
+  background-color: transparent;
 }
 
 .Card--tokensPosition-block-end {
@@ -156,14 +169,6 @@
   padding: 0;
 }
 
-.Card--variant-default {
-  background-color: var(--brand-Card-background-default);
-}
-
-.Card--variant-default.Card--ctaVariant-arrow {
-  background-color: transparent;
-}
-
 .Card--ctaVariant-arrow {
   --Card-arrowAction-endInset: var(--base-size-40);
 }
@@ -230,6 +235,7 @@
 
 .Card__outer:focus-within {
   outline: var(--brand-borderWidth-thick) solid var(--brand-color-focus);
+  border-radius: var(--brand-borderRadius-medium);
 }
 
 .Card__outer:has(.Card--variant-minimal):focus-within {
@@ -334,6 +340,26 @@
   white-space: nowrap;
 }
 
+.Card:not(.Card--ctaVariant-arrow) .Card__action {
+  inline-size: 100%;
+  min-inline-size: 0;
+}
+
+.Card:not(.Card--ctaVariant-arrow) .Card__action > span:first-child {
+  min-inline-size: 0;
+}
+
+.Card:not(.Card--ctaVariant-arrow) .Card__actionLabel {
+  overflow: visible;
+  text-overflow: clip;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+
+.Card--align-center:not(.Card--ctaVariant-arrow) .Card__actionLabel {
+  text-align: center;
+}
+
 .Card__actionLabelClip {
   --actionLabelClip-duration: 400ms;
   display: inline-flex;
@@ -409,7 +435,7 @@
 }
 
 .Card__skew-bounding {
-  border-radius: var(--brand-borderRadius-xlarge);
+  border-radius: var(--brand-borderRadius-medium);
   position: relative;
   overflow: hidden;
   z-index: 1;

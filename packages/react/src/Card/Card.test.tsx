@@ -51,7 +51,6 @@ describe('Card', () => {
     const mockTestId = 'test'
     const expectedClass = 'Card'
     const expectedCustomClass = 'custom-class'
-    const defaultVariantClass = 'Card--variant-default'
     const expectedTag = 'div'
 
     const {getByTestId} = render(
@@ -64,7 +63,6 @@ describe('Card', () => {
     const cardEl = getByTestId(mockTestId)
     expect(cardEl.tagName).toBe(expectedTag.toUpperCase())
     expect(cardEl.classList).toContain(expectedClass)
-    expect(cardEl.classList).toContain(defaultVariantClass)
     expect(cardEl.classList).toContain(expectedCustomClass)
   })
 
@@ -80,6 +78,59 @@ describe('Card', () => {
     expect(cardEl.classList).toContain('Card--variant-minimal')
   })
 
+  it('defaults to the default background color for the default variant', () => {
+    const mockTestId = 'test'
+
+    const {getByTestId} = render(
+      <Card href={mockHref} data-testid={mockTestId}>
+        <Card.Heading>{mockHeading}</Card.Heading>
+      </Card>,
+    )
+
+    const cardEl = getByTestId(mockTestId)
+    expect(cardEl.classList).toContain('Card--backgroundColor-default')
+  })
+
+  it('defaults to a transparent background for the minimal variant', () => {
+    const mockTestId = 'test'
+
+    const {getByTestId} = render(
+      <Card variant="minimal" href={mockHref} data-testid={mockTestId}>
+        <Card.Heading>{mockHeading}</Card.Heading>
+      </Card>,
+    )
+
+    const cardEl = getByTestId(mockTestId)
+    expect(cardEl.classList).toContain('Card--backgroundColor-none')
+  })
+
+  it('defaults to no background color for the arrow CTA variant', () => {
+    const mockTestId = 'test'
+
+    const {getByTestId} = render(
+      <Card href={mockHref} ctaVariant="arrow" data-testid={mockTestId}>
+        <Card.Heading>{mockHeading}</Card.Heading>
+      </Card>,
+    )
+
+    const cardEl = getByTestId(mockTestId)
+    expect(cardEl.classList).toContain('Card--backgroundColor-none')
+  })
+
+  it('allows passthrough of an explicit background color for the arrow CTA variant too', () => {
+    const mockTestId = 'test'
+
+    const {getByTestId} = render(
+      <Card href={mockHref} ctaVariant="arrow" backgroundColor="subtle" data-testid={mockTestId}>
+        <Card.Heading>{mockHeading}</Card.Heading>
+      </Card>,
+    )
+
+    const cardEl = getByTestId(mockTestId)
+    expect(cardEl.classList).toContain('Card--backgroundColor-subtle')
+    expect(cardEl.classList).not.toContain('Card--backgroundColor-none')
+  })
+
   it('renders a default variant in dark mode', () => {
     const mockTestId = 'test'
 
@@ -91,7 +142,7 @@ describe('Card', () => {
       </ThemeProvider>,
     )
     const cardEl = getByTestId(mockTestId)
-    expect(cardEl.classList).toContain('Card--variant-default')
+    expect(cardEl.classList).toContain('Card--backgroundColor-default')
   })
 
   it('renders the correct default heading type', () => {
@@ -185,6 +236,31 @@ describe('Card', () => {
     expect(container.querySelector('.Card__action')).not.toBeInTheDocument()
     expect(container.querySelector('.ExpandableArrow')).not.toBeInTheDocument()
     expect(getByRole('link', {name: mockHeading})).toHaveAttribute('href', mockHref)
+  })
+
+  it('does not render the CTA arrow for center-aligned text CTAs', () => {
+    const ctaLabel = 'Really really long call to action text'
+
+    const {container, getByText} = render(
+      <Card href={mockHref} align="center" ctaText={ctaLabel}>
+        <Card.Heading>{mockHeading}</Card.Heading>
+      </Card>,
+    )
+
+    expect(getByText(ctaLabel)).toBeInTheDocument()
+    expect(container.querySelector('.Card__actionIcon')).not.toBeInTheDocument()
+    expect(container.querySelector('.ExpandableArrow')).not.toBeInTheDocument()
+  })
+
+  it('keeps the arrow icon for center-aligned arrow CTAs', () => {
+    const {container} = render(
+      <Card href={mockHref} align="center" ctaVariant="arrow">
+        <Card.Heading>{mockHeading}</Card.Heading>
+      </Card>,
+    )
+
+    expect(container.querySelector('.Card__actionIcon')).toBeInTheDocument()
+    expect(container.querySelector('.ExpandableArrow')).toBeInTheDocument()
   })
 
   it('renders a leading visual before the heading', () => {

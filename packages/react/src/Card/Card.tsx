@@ -24,6 +24,7 @@ import stylesLink from '../Link/Link.module.css'
 
 export const CardVariants = ['default', 'minimal'] as const
 export const CardCTAVariants = ['text', 'arrow', 'none'] as const
+export const CardBackgroundColors = ['default', 'subtle', 'none'] as const
 export const CardTokenPositions = ['block-start', 'block-end'] as const
 export const CardLabelVariants = EyebrowTextVariants
 
@@ -37,6 +38,7 @@ export type CardVariants = (typeof CardVariants)[number]
 export type CardCTAVariant = (typeof CardCTAVariants)[number]
 export type CardTokenPosition = (typeof CardTokenPositions)[number]
 export type CardLabelVariant = (typeof CardLabelVariants)[number]
+export type CardBackgroundColor = (typeof CardBackgroundColors)[number]
 
 type CardLeadingVisual = React.ReactElement | React.ComponentType<{className?: string}>
 
@@ -72,6 +74,10 @@ export type CardProps = {
    * Specifies the presentation of the call-to-action area
    */
   ctaVariant?: CardCTAVariant
+  /**
+   * Optional, custom background color.
+   */
+  backgroundColor?: CardBackgroundColor
   /**
    * A visual that appears before the heading, commonly used for a logo or brand mark
    */
@@ -111,11 +117,14 @@ const CardRoot = forwardRef<HTMLDivElement, CardProps>(
       leadingVisual,
       style,
       variant = 'default',
+      backgroundColor,
       ...props
     },
     ref,
   ) => {
     const cardRef = useProvidedRefOrCreate(ref as RefObject<HTMLDivElement>)
+    const resolvedBackgroundColor =
+      backgroundColor ?? (variant === 'minimal' || ctaVariant === 'arrow' ? 'none' : 'default')
 
     let children: React.ReactNode | null
 
@@ -168,6 +177,7 @@ const CardRoot = forwardRef<HTMLDivElement, CardProps>(
     const renderedLeadingVisual = getRenderableLeadingVisual(leadingVisual)
     const renderedCardIcon = renderedLeadingVisual ? undefined : cardIcon
     const imagePosition = cardImage ? cardImage.props.position || 'block-start' : null
+    const shouldRenderLinkArrow = !(align === 'center' && ctaVariant === 'text')
 
     return (
       <DefaultCardWrapperComponent
@@ -184,8 +194,9 @@ const CardRoot = forwardRef<HTMLDivElement, CardProps>(
             renderedLeadingVisual && styles['Card--hasLeadingVisual'],
             ctaVariant === 'arrow' && styles['Card--ctaVariant-arrow'],
             cardTokensBlockEnd && styles['Card--tokensPosition-block-end'],
-            styles[`Card--variant-${variant}`],
+            variant === 'minimal' && styles['Card--variant-minimal'],
             hasBorder && styles['Card--border'],
+            styles[`Card--backgroundColor-${resolvedBackgroundColor}`],
             imagePosition && styles[`Card--imagePos-${imagePosition}`],
             className,
           )}
@@ -213,17 +224,19 @@ const CardRoot = forwardRef<HTMLDivElement, CardProps>(
                   {ctaText}
                 </Text>
               </span>
-              <span
-                className={clsx(
-                  styles.Card__actionIcon,
-                  ctaVariant === 'arrow' && styles['Card__actionIcon--arrowOnly'],
-                )}
-              >
-                <ExpandableArrow
-                  className={clsx(stylesLink['Link-arrow'], styles['Card--expandableArrow'])}
-                  aria-hidden="true"
-                />
-              </span>
+              {shouldRenderLinkArrow ? (
+                <span
+                  className={clsx(
+                    styles.Card__actionIcon,
+                    ctaVariant === 'arrow' && styles['Card__actionIcon--arrowOnly'],
+                  )}
+                >
+                  <ExpandableArrow
+                    className={clsx(stylesLink['Link-arrow'], styles['Card--expandableArrow'])}
+                    aria-hidden="true"
+                  />
+                </span>
+              ) : null}
             </div>
           ) : null}
         </div>
