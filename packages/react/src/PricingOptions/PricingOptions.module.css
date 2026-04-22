@@ -124,18 +124,18 @@
   }
 
   .PricingOptions--layout-default .PricingOptions__label-cell {
-    margin-inline: calc(var(--brand-pricing-options-item-gap, 0px) / 2 * -1);
-    padding-inline: calc(var(--brand-pricing-options-item-gap, 0px) / 2);
+    margin-inline: calc(var(--brand-pricing-options-item-gap) / 2 * -1);
+    padding-inline: calc(var(--brand-pricing-options-item-gap) / 2);
   }
 
   .PricingOptions--layout-default .PricingOptions__label-cell:first-child {
-    margin-inline-start: calc(var(--brand-pricing-options-container-padding-inline, 0px) * -1);
-    padding-inline-start: var(--brand-pricing-options-container-padding-inline, 0px);
+    margin-inline-start: calc(var(--brand-pricing-options-container-padding-inline) * -1);
+    padding-inline-start: var(--brand-pricing-options-container-padding-inline);
   }
 
   .PricingOptions--layout-default .PricingOptions__label-cell:last-child {
-    margin-inline-end: calc(var(--brand-pricing-options-container-padding-inline, 0px) * -1);
-    padding-inline-end: var(--brand-pricing-options-container-padding-inline, 0px);
+    margin-inline-end: calc(var(--brand-pricing-options-container-padding-inline) * -1);
+    padding-inline-end: var(--brand-pricing-options-container-padding-inline);
   }
 
   /* Empty cells: transparent bg/borders but structurally visible so dividers show */
