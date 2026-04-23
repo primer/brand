@@ -23,7 +23,7 @@
 }
 
 .Token--interactive:focus-visible {
-  outline: var(--base-size-4) solid var(--brand-color-text-link-rest);
+  outline: var(--base-size-4) solid var(--brand-color-focus);
   outline-offset: var(--base-size-2);
 }
 

@@ -12,7 +12,7 @@
       "hover": {
         "default": {
           "value": "var(--base-color-scale-gray-1)",
-          "dark": "var(--base-color-scale-gray-7)"
+          "dark": "var(--base-color-scale-gray-6)"
         },
         "accent": {
           "value": "var(--base-color-scale-green-7)",
