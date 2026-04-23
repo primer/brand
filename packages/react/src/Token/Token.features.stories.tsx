@@ -46,8 +46,8 @@ export const WithLeadingVisual: StoryFn<typeof Token> = () => {
       <Token variant="outline" leadingVisual={<MicrosoftLogo />}>
         With logo
       </Token>
-      <Token variant="dark-gray" leadingVisual={<CopilotIcon />}>
-        With contrast
+      <Token variant="accent" leadingVisual={<CopilotIcon />}>
+        With accent
       </Token>
     </Stack>
   )
@@ -56,11 +56,7 @@ export const WithLeadingVisual: StoryFn<typeof Token> = () => {
 export const WithAvatarLeadingVisual: StoryFn<typeof Token> = () => {
   return (
     <Stack padding="none" direction="horizontal" gap="normal" style={{flexWrap: 'wrap'}}>
-      <Token
-        leadingVisual={
-          <Avatar shape="square" size={32} src={`https://github.com/ashtom.png`} alt="A random avatar picture" />
-        }
-      >
+      <Token leadingVisual={<Avatar shape="square" size={32} src={placeholderAvatar} alt="A random avatar picture" />}>
         With avatar
       </Token>
       <Token

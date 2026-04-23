@@ -52,12 +52,6 @@ describe('Token', () => {
     expect(getByTestId('leading-visual')).toHaveClass('Token__visual')
   })
 
-  it('renders the dark gray variant option', () => {
-    const {getByTestId} = render(<Token variant="dark-gray">Token text</Token>)
-
-    expect(getByTestId(Token.testIds.root).classList).toContain('Token--variant-dark-gray')
-  })
-
   it('can optionally render as an anchor', () => {
     const {getByRole} = render(
       <Token as="a" href="https://github.com/features" target="_blank" rel="noreferrer">

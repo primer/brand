@@ -5,10 +5,6 @@
         "value": "var(--base-color-scale-gray-0)",
         "dark": "var(--base-color-scale-gray-5)"
       },
-      "dark-gray": {
-        "value": "var(--base-color-scale-gray-8)",
-        "dark": "var(--base-color-scale-gray-7)"
-      },
       "accent": {
         "value": "var(--base-color-scale-green-8)",
         "dark": "var(--base-color-scale-green-8)"
@@ -17,10 +13,6 @@
         "default": {
           "value": "var(--base-color-scale-gray-1)",
           "dark": "var(--base-color-scale-gray-4)"
-        },
-        "dark-gray": {
-          "value": "var(--base-color-scale-gray-7)",
-          "dark": "var(--base-color-scale-gray-6)"
         },
         "accent": {
           "value": "var(--base-color-scale-green-7)",
@@ -54,10 +46,6 @@
       "default": {
         "value": "var(--brand-color-text-default)",
         "dark": "var(--brand-color-text-muted)"
-      },
-      "dark-gray": {
-        "value": "var(--base-color-scale-white-0)",
-        "dark": "var(--base-color-scale-white-0)"
       },
       "accent": {
         "value": "var(--base-color-scale-white-0)",
