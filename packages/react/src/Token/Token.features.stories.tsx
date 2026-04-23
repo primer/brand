@@ -39,6 +39,20 @@ export const InteractiveVariants: StoryFn<typeof Token> = () => {
   )
 }
 
+export const Focused: StoryFn<typeof Token> = () => {
+  return (
+    <Stack padding="none" direction="horizontal" gap="normal" style={{flexWrap: 'wrap'}}>
+      <Token as="a" href="#" data-testid="focus-visible-token">
+        Focused token
+      </Token>
+    </Stack>
+  )
+}
+Focused.storyName = 'Focused interactive token'
+Focused.parameters = {
+  pseudo: {focusVisible: ['[data-testid="focus-visible-token"]']},
+}
+
 export const WithLeadingVisual: StoryFn<typeof Token> = () => {
   return (
     <Stack padding="none" direction="horizontal" gap="normal" style={{flexWrap: 'wrap'}}>

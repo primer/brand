@@ -143,6 +143,17 @@ test.describe('Visual Comparison: Card', () => {
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
+  test('Card / Label (accent text)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-card-features--accent-text-label&viewMode=story',
+      {waitUntil: 'networkidle'},
+    )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+    await page.waitForTimeout(500)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
   test('Card / Icon', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-card-features--icon&viewMode=story', {
       waitUntil: 'networkidle',

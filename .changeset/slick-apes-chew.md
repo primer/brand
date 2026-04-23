@@ -11,11 +11,14 @@
   + <Card />
   ```
 
-- `Card.Label` now uses `EyebrowText` under the hood, with `default`, `muted`, and `accent` variants. Migrate previous `size` and `color` usage to the closest supported `variant`.
+- `Card.Label` now renders a `Token` by default and supports `token` and `accent-text` variants. Use `variant="accent-text"` to render accent-styled eyebrow text above the heading. The legacy `size` and `color` props are no longer supported.
 
   ```diff
-  - <Card.Label size="200" color="green">Beta</Card.Label>
-  + <Card.Label variant="accent">Beta</Card.Label>
+  - <Card.Label variant="accent">GitHub Copilot</Card.Label>
+  + <Card.Label variant="accent-text">GitHub Copilot</Card.Label>
+
+  - <Card.Label color="blue-purple">Beta</Card.Label>
+  + <Card.Label>Beta</Card.Label>
   ```
 
 - Added new `ctaVariant` prop with `text`, `arrow`, and `none` options to control how the card's primary action is rendered. Center-aligned CTA links now wrap correctly and omit the trailing arrow so the action remains visually centered.

@@ -111,11 +111,20 @@ Use `Card.Tokens` to display one or more [Token](/components/Token) components b
 
 ### Label
 
-Use `Card.Label` to display short eyebrow copy above the heading.
+Use `Card.Label` to display a short label above the heading. It renders a `Token` by default. Use
+`variant="accent-text"` for eyebrow-style copy.
 
 ```jsx live
 <Card href="https://github.com" ctaVariant="arrow">
   <Card.Label>GitHub Copilot</Card.Label>
+  <Card.Heading>Bring the power of generative AI to engineering teams.</Card.Heading>
+  <Card.Description>Prioritize speed, depth, or cost by picking the industry-leading model for you.</Card.Description>
+</Card>
+```
+
+```jsx live
+<Card href="https://github.com" ctaVariant="arrow">
+  <Card.Label variant="accent-text">GitHub Copilot</Card.Label>
   <Card.Heading>Bring the power of generative AI to engineering teams.</Card.Heading>
   <Card.Description>Prioritize speed, depth, or cost by picking the industry-leading model for you.</Card.Description>
 </Card>
@@ -150,7 +159,7 @@ Use the `Image` component to add an image to the `Card`. The `Image` component i
 
 ### Tokens
 
-Use `Card.Tokens` to display one or more [Token](/components/Token) components below the description.
+Use `Card.Tokens` to display more than one [Token](/components/Token).
 
 ```jsx live
 <>
@@ -210,12 +219,14 @@ Forwards all the props from the [Image component](/components/Image), including 
 
 ### Card.Label
 
-| name       | type                       | default  | required | description                                |
-| ---------- | -------------------------- | -------- | -------- | ------------------------------------------ |
-| `children` | `ReactNode`, `ReactNode[]` |          | `true`   | Eyebrow content rendered above the heading |
-| `variant`  | <CardLabelVariantsProp />  | `accent` | `false`  | Visual variant of the label copy           |
+| name       | type                       | default | required | description                                 |
+| ---------- | -------------------------- | ------- | -------- | ------------------------------------------- |
+| `children` | `ReactNode`, `ReactNode[]` |         | `true`   | Label content rendered above the heading    |
+| `variant`  | <CardLabelVariantsProp />  | `token` | `false`  | Presentation of the label above the heading |
 
-Forwards all the props from the [EyebrowText component](/components/EyebrowText), including `className`, `id`, and `ref`.
+Forwards common span props such as `className`, `id`, and `ref`. `variant="token"` renders a
+[Token](/components/Token), and `variant="accent-text"` renders [EyebrowText](/components/EyebrowText)
+with its accent presentation.
 
 ### Card.Tokens
 

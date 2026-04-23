@@ -264,6 +264,19 @@ export const Label: StoryFn<typeof Card> = () => {
   )
 }
 
+export const AccentTextLabel: StoryFn<typeof Card> = () => {
+  const {t} = useTranslation('Card')
+
+  return (
+    <Card href="https://github.com">
+      <Card.Heading>{t('code_search_heading')}</Card.Heading>
+      <Card.Label variant="accent-text">{t('limited')}</Card.Label>
+      <Card.Description>{t('code_search_description')}</Card.Description>
+    </Card>
+  )
+}
+AccentTextLabel.storyName = 'Label (accent text)'
+
 export const Icon: StoryFn<typeof Card> = () => {
   const {t} = useTranslation('Card')
 
@@ -407,7 +420,7 @@ export const IconAndLabel: StoryFn<typeof Card> = () => {
     <Card href="https://github.com">
       <Card.Icon icon={GitBranchIcon} color="purple" hasBackground />
       <Card.Heading>{t('code_search_heading')}</Card.Heading>
-      <Card.Label color="blue-purple">{t('beta')}</Card.Label>
+      <Card.Label>{t('beta')}</Card.Label>
       <Card.Description>{t('code_search_description')}</Card.Description>
     </Card>
   )
@@ -420,7 +433,7 @@ export const IconAndLabelWithFragment: StoryFn<typeof Card> = () => {
     <Card href="https://github.com">
       <>
         <Card.Heading>{t('code_search_heading')}</Card.Heading>
-        <Card.Label color="blue-purple">{t('beta')}</Card.Label>
+        <Card.Label>{t('beta')}</Card.Label>
         <Card.Icon icon={ZapIcon} color="purple" hasBackground />
         <Card.Description>{t('code_search_description')}</Card.Description>
       </>
@@ -454,7 +467,7 @@ export const ImageAndLabel: StoryFn<typeof Card> = () => {
     <Card href="https://github.com">
       <Card.Image src={placeholderImage} alt={t('placeholder_alt')} />
       <Card.Heading>{t('code_search_heading')}</Card.Heading>
-      <Card.Label color="blue-purple">{t('beta')}</Card.Label>
+      <Card.Label>{t('beta')}</Card.Label>
       <Card.Description>{t('code_search_description')}</Card.Description>
     </Card>
   )

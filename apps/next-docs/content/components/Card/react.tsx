@@ -7,7 +7,7 @@ export const CardCTAVariantsProp = () => <PropTableValues values={['text', 'arro
 
 export const CardBackgroundColorsProp = () => <PropTableValues values={['default', 'subtle', 'none']} commaSeparated />
 
-export const CardLabelVariantsProp = () => <PropTableValues values={['default', 'muted', 'accent']} commaSeparated />
+export const CardLabelVariantsProp = () => <PropTableValues values={['token', 'accent-text']} commaSeparated />
 
 export const CardTokensPositionsProp = () => <PropTableValues values={['block-start', 'block-end']} commaSeparated />
 

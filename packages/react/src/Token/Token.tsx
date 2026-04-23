@@ -95,7 +95,7 @@ const _Token = forwardRef<HTMLSpanElement | HTMLAnchorElement, TokenProps>(
             )}
           </span>
         )}
-        <Text as="span" size="100" className={styles['Token__label']}>
+        <Text as="span" size="100" font="monospace" className={styles['Token__label']}>
           {children}
         </Text>
       </>

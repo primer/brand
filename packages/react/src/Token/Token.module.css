@@ -8,7 +8,7 @@
   max-width: 100%;
   padding-inline: var(--base-size-8);
   padding-block: var(--base-size-6);
-  padding-block-end: calc(var(--base-size-6) - 1px); /* Compensate for 1px border to maintain height */
+  padding-block-end: calc(var(--base-size-6)); /* Compensate for 1px border to maintain height */
   vertical-align: middle;
 }
 
@@ -20,6 +20,11 @@
 .Token--interactive {
   cursor: pointer;
   text-decoration: none;
+}
+
+.Token--interactive:focus-visible {
+  outline: var(--base-size-4) solid var(--brand-color-text-link-rest);
+  outline-offset: var(--base-size-2);
 }
 
 [data-color-mode='dark'] .Token {
@@ -74,6 +79,7 @@
   font-weight: var(--base-text-weight-normal);
   line-height: 0.85;
   white-space: nowrap;
+  letter-spacing: var(--brand-text-letterSpacing-100);
 }
 
 .Token > .Token__label {
@@ -111,5 +117,9 @@
 @media (forced-colors: active) {
   .Token {
     outline: var(--brand-borderWidth-thin) solid transparent;
+  }
+
+  .Token--interactive:focus-visible {
+    outline-color: Highlight;
   }
 }
