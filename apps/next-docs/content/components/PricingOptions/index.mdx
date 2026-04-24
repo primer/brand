@@ -416,11 +416,11 @@ Use `PricingOptions.ActionsMessage` to render status, billing, or upgrade notes 
     <PricingOptions.Heading>Pro</PricingOptions.Heading>
     <PricingOptions.Description>Accelerate workflows with GitHub Copilot.</PricingOptions.Description>
     <PricingOptions.Price trailingText="per user / month">10</PricingOptions.Price>
-    <PricingOptions.PrimaryAction href="/upgrade">Upgrade now</PricingOptions.PrimaryAction>
+    <PricingOptions.PrimaryAction disabled>Upgrade now</PricingOptions.PrimaryAction>
     <PricingOptions.ActionsMessage leadingComponent={<InfoIcon />}>
-      <p>
+      <Text as="p" size="100">
         <strong>Upgrades are temporarily paused.</strong> We are rolling out a more flexible billing experience.
-      </p>
+      </Text>
     </PricingOptions.ActionsMessage>
     <PricingOptions.FeatureList hasDivider={false}>
       <PricingOptions.FeatureListItem>Copilot cloud agent</PricingOptions.FeatureListItem>
