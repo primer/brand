@@ -198,7 +198,7 @@ describe('Card', () => {
     expect(labelEl).toHaveTextContent(mockLabel)
   })
 
-  it('renders the label with the current default accent variant', () => {
+  it('renders the label with the default token variant', () => {
     const {container, getByText} = render(
       <Card href={mockHref}>
         <Card.Label>{mockLabel}</Card.Label>
@@ -207,7 +207,7 @@ describe('Card', () => {
     )
 
     expect(getByText(mockLabel)).toBeInTheDocument()
-    expect(container.querySelector('.Card__label')).toHaveClass('EyebrowText--variant-accent')
+    expect(container.querySelector('.Card__label')).toHaveClass('Token--variant-default')
   })
 
   it('renders an arrow-only cta variant', () => {
@@ -316,10 +316,10 @@ describe('Card', () => {
     expect(orderedChildren[2]).toBe(getByText(mockHeading).closest('.Card__heading'))
   })
 
-  it('renders a label before the heading', () => {
+  it('renders an accent-text label before the heading', () => {
     const {container, getByText} = render(
       <Card href={mockHref}>
-        <Card.Label variant="accent">Customer story</Card.Label>
+        <Card.Label variant="accent-text">Customer story</Card.Label>
         <Card.Heading>{mockHeading}</Card.Heading>
       </Card>,
     )

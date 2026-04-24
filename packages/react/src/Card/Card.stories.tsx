@@ -54,7 +54,7 @@ const meta = {
     iconHasBackground: true,
     imagePosition: 'block-start',
     label: '',
-    labelVariant: 'muted',
+    labelVariant: 'token',
     heading: defaultHeading,
     description: defaultDescription,
     media: 'icon',
@@ -159,7 +159,7 @@ const meta = {
     },
     labelVariant: {
       name: 'variant',
-      description: 'Variant of the Card label.',
+      description: 'Presentation of the Card label.',
       control: {
         type: 'inline-radio',
       },

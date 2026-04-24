@@ -2,8 +2,9 @@ import React, {RefObject, forwardRef} from 'react'
 
 import {clsx} from 'clsx'
 import {Heading, HeadingProps, Text, Image, type ImageProps} from '..'
-import {EyebrowText, type EyebrowTextProps, EyebrowTextVariants} from '../EyebrowText'
+import {EyebrowText} from '../EyebrowText'
 import {Icon, type IconProps} from '../Icon'
+import {Token} from '../Token'
 import {ExpandableArrow} from '../ExpandableArrow'
 import type {BaseProps} from '../component-helpers'
 import {useProvidedRefOrCreate} from '../hooks/useRef'
@@ -26,13 +27,13 @@ export const CardVariants = ['default', 'minimal'] as const
 export const CardCTAVariants = ['text', 'arrow', 'none'] as const
 export const CardBackgroundColors = ['default', 'subtle', 'none'] as const
 export const CardTokenPositions = ['block-start', 'block-end'] as const
-export const CardLabelVariants = EyebrowTextVariants
+export const CardLabelVariants = ['token', 'accent-text'] as const
 
 export const CardIconColors = Colors
 
 export const defaultCardIconColor = CardIconColors[0]
 export const defaultCardCTAVariant = CardCTAVariants[0]
-export const defaultCardLabelVariant = CardLabelVariants[1]
+export const defaultCardLabelVariant = CardLabelVariants[0]
 
 export type CardVariants = (typeof CardVariants)[number]
 export type CardCTAVariant = (typeof CardCTAVariants)[number]
@@ -317,16 +318,30 @@ const CardTokens = forwardRef<HTMLDivElement, CardTokensProps>(
   },
 )
 
-type CardLabelProps = EyebrowTextProps & {
-  children: React.ReactNode | React.ReactNode[]
-}
+type CardLabelProps = Omit<BaseProps<HTMLSpanElement>, 'animate'> &
+  Omit<React.ComponentPropsWithoutRef<'span'>, 'children'> & {
+    children: React.ReactNode | React.ReactNode[]
+    variant?: CardLabelVariant
+  }
 
 const CardLabel = forwardRef<HTMLSpanElement, CardLabelProps>(
-  ({children, variant = 'accent', className, ...rest}, ref) => {
+  ({children, variant = defaultCardLabelVariant, className, ...rest}, ref) => {
+    if (variant === 'accent-text') {
+      return (
+        <EyebrowText ref={ref} className={clsx(styles.Card__label, className)} variant="accent" {...rest}>
+          {children}
+        </EyebrowText>
+      )
+    }
+
     return (
-      <EyebrowText ref={ref} className={clsx(styles.Card__label, className)} variant={variant} {...rest}>
+      <Token
+        ref={ref as React.Ref<HTMLSpanElement | HTMLAnchorElement>}
+        className={clsx(styles.Card__label, className)}
+        {...rest}
+      >
         {children}
-      </EyebrowText>
+      </Token>
     )
   },
 )

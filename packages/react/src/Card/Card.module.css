@@ -304,6 +304,8 @@
 .Card__label {
   margin-block-end: var(--base-size-20);
   grid-area: label;
+  inline-size: fit-content;
+  max-inline-size: 100%;
 }
 
 .Card__heading {
