@@ -1,10 +1,10 @@
 import React from 'react'
 import type {Meta, StoryObj} from '@storybook/react'
+import {InfoIcon, SparkleFillIcon} from '@primer/octicons-react'
 
 import {PricingOptions} from '.'
-import {ActionMenu, Box, Grid, InlineLink, Stack} from '..'
+import {ActionMenu, Box, Grid, InlineLink, Stack, Text} from '..'
 import imageExample from '../fixtures/images/bento/3.png'
-import {SparkleFillIcon} from '@primer/octicons-react'
 import {VisualStudioCodeLogo} from '../fixtures/third-party-logos/VisualStudioCodeLogo'
 
 const decorators = Story => (
@@ -212,6 +212,145 @@ export const LeadingComponent: Story = {
       </Stack>
     )
   },
+}
+
+export const ActionsMessage: Story = {
+  render: () => (
+    <PricingOptions>
+      <PricingOptions.Item>
+        <PricingOptions.Heading>Free</PricingOptions.Heading>
+        <PricingOptions.Description>A fast way to get started with GitHub Copilot.</PricingOptions.Description>
+        <PricingOptions.Price>0</PricingOptions.Price>
+        <PricingOptions.PrimaryAction as="a" href="#" variant="accent">
+          Get started
+        </PricingOptions.PrimaryAction>
+        <PricingOptions.SecondaryAction as="a" href="#" variant="subtle" hasArrow={false}>
+          Open in VS Code
+        </PricingOptions.SecondaryAction>
+        <PricingOptions.FeatureList>
+          <PricingOptions.FeatureListItem>50 agent mode or chat requests per month</PricingOptions.FeatureListItem>
+          <PricingOptions.FeatureListItem>2,000 completions per month</PricingOptions.FeatureListItem>
+          <PricingOptions.FeatureListItem>Access to Haiku 4.5, GPT-5 mini, and more</PricingOptions.FeatureListItem>
+          <PricingOptions.FeatureListItem>Copilot CLI</PricingOptions.FeatureListItem>
+        </PricingOptions.FeatureList>
+      </PricingOptions.Item>
+
+      <PricingOptions.Item>
+        <PricingOptions.Label>Most popular</PricingOptions.Label>
+        <PricingOptions.Heading>Pro</PricingOptions.Heading>
+        <PricingOptions.Description>Accelerate workflows with GitHub Copilot.</PricingOptions.Description>
+        <PricingOptions.Price trailingText="per user / month">10</PricingOptions.Price>
+        <PricingOptions.ActionsMessage leadingComponent={<InfoIcon />}>
+          <Text as="p" size="100">
+            <Text as="strong" size="100" weight="semibold">
+              Upgrades are paused as we roll out a flexible billing experience.
+            </Text>{' '}
+            We know this interrupts your flow and appreciate your patience while we get this right.{' '}
+            <InlineLink href="#">Learn more</InlineLink>
+          </Text>
+        </PricingOptions.ActionsMessage>
+        <PricingOptions.FeatureList>
+          <PricingOptions.FeatureListHeading>Everything in Free and:</PricingOptions.FeatureListHeading>
+          <PricingOptions.FeatureListItem>Copilot cloud agent</PricingOptions.FeatureListItem>
+          <PricingOptions.FeatureListItem>Copilot code review</PricingOptions.FeatureListItem>
+          <PricingOptions.FeatureListItem>Claude and Codex on GitHub and VS Code</PricingOptions.FeatureListItem>
+          <PricingOptions.FeatureListItem>
+            300 premium requests to use latest models, with the option to buy more1
+          </PricingOptions.FeatureListItem>
+          <PricingOptions.FeatureListItem>
+            Unlimited agent mode and chats with GPT-5 mini2
+          </PricingOptions.FeatureListItem>
+          <PricingOptions.FeatureListItem>Unlimited inline suggestions</PricingOptions.FeatureListItem>
+        </PricingOptions.FeatureList>
+      </PricingOptions.Item>
+
+      <PricingOptions.Item>
+        <PricingOptions.Heading>Pro+</PricingOptions.Heading>
+        <PricingOptions.Description>Scale with agents and more models.</PricingOptions.Description>
+        <PricingOptions.Price trailingText="per user / month">39</PricingOptions.Price>
+        <PricingOptions.ActionsMessage leadingComponent={<InfoIcon />}>
+          <Text as="p" size="100">
+            <Text as="strong" size="100" weight="semibold">
+              Upgrades are paused as we roll out a flexible billing experience.
+            </Text>{' '}
+            We know this interrupts your flow and appreciate your patience while we get this right.{' '}
+            <InlineLink href="#">Learn more</InlineLink>
+          </Text>
+        </PricingOptions.ActionsMessage>
+        <PricingOptions.FeatureList>
+          <PricingOptions.FeatureListHeading>Everything in Pro and:</PricingOptions.FeatureListHeading>
+          <PricingOptions.FeatureListItem>
+            Access to all models, including Claude Opus 4.6 and more
+          </PricingOptions.FeatureListItem>
+          <PricingOptions.FeatureListItem>
+            5x as many premium requests as Pro to use the latest models, with the option to buy more 1
+          </PricingOptions.FeatureListItem>
+          <PricingOptions.FeatureListItem
+            leadingVisual={SparkleFillIcon}
+            leadingVisualFill="var(--base-color-scale-purple-3)"
+          >
+            Access to GitHub Spark
+          </PricingOptions.FeatureListItem>
+        </PricingOptions.FeatureList>
+      </PricingOptions.Item>
+    </PricingOptions>
+  ),
+}
+
+export const ActionsMessageWithActions: Story = {
+  render: () => (
+    <PricingOptions variant="cards">
+      <PricingOptions.Item>
+        <PricingOptions.Heading>Free</PricingOptions.Heading>
+        <PricingOptions.Description>A fast way to get started with GitHub Copilot.</PricingOptions.Description>
+        <PricingOptions.Price>0</PricingOptions.Price>
+        <PricingOptions.PrimaryAction as="a" href="#" variant="accent">
+          Get started
+        </PricingOptions.PrimaryAction>
+        <PricingOptions.SecondaryAction as="a" href="#" variant="subtle" hasArrow={false}>
+          Open in VS Code
+        </PricingOptions.SecondaryAction>
+        <PricingOptions.FeatureList hasDivider={false}>
+          <PricingOptions.FeatureListItem>50 agent mode or chat requests per month</PricingOptions.FeatureListItem>
+          <PricingOptions.FeatureListItem>2,000 completions per month</PricingOptions.FeatureListItem>
+          <PricingOptions.FeatureListItem>Access to Haiku 4.5, GPT-5 mini, and more</PricingOptions.FeatureListItem>
+          <PricingOptions.FeatureListItem>Copilot CLI</PricingOptions.FeatureListItem>
+        </PricingOptions.FeatureList>
+      </PricingOptions.Item>
+
+      <PricingOptions.Item>
+        <PricingOptions.Label>Most popular</PricingOptions.Label>
+        <PricingOptions.Heading>Pro</PricingOptions.Heading>
+        <PricingOptions.Description>Accelerate workflows with GitHub Copilot.</PricingOptions.Description>
+        <PricingOptions.Price trailingText="per user / month">10</PricingOptions.Price>
+        <PricingOptions.PrimaryAction as="button" variant="accent" disabled>
+          Upgrade now
+        </PricingOptions.PrimaryAction>
+        <PricingOptions.ActionsMessage leadingComponent={<InfoIcon />}>
+          <Text as="p" size="100">
+            <Text as="strong" size="100" weight="semibold">
+              Upgrades are paused as we roll out a flexible billing experience.
+            </Text>{' '}
+            We know this interrupts your flow and appreciate your patience while we get this right.{' '}
+            <InlineLink href="#">Learn more</InlineLink>
+          </Text>
+        </PricingOptions.ActionsMessage>
+        <PricingOptions.FeatureList hasDivider={false}>
+          <PricingOptions.FeatureListHeading>Everything in Free and:</PricingOptions.FeatureListHeading>
+          <PricingOptions.FeatureListItem>Copilot cloud agent</PricingOptions.FeatureListItem>
+          <PricingOptions.FeatureListItem>Copilot code review</PricingOptions.FeatureListItem>
+          <PricingOptions.FeatureListItem>Claude and Codex on GitHub and VS Code</PricingOptions.FeatureListItem>
+          <PricingOptions.FeatureListItem>
+            300 premium requests to use latest models, with the option to buy more1
+          </PricingOptions.FeatureListItem>
+          <PricingOptions.FeatureListItem>
+            Unlimited agent mode and chats with GPT-5 mini2
+          </PricingOptions.FeatureListItem>
+          <PricingOptions.FeatureListItem>Unlimited inline suggestions</PricingOptions.FeatureListItem>
+        </PricingOptions.FeatureList>
+      </PricingOptions.Item>
+    </PricingOptions>
+  ),
 }
 
 export const OneOption: Story = {

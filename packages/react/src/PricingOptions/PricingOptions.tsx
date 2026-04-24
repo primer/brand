@@ -45,6 +45,7 @@ const testIds = {
   label: 'PricingOptions__label',
   description: 'PricingOptions__description',
   price: 'PricingOptions__price',
+  actionsMessage: 'PricingOptions__actionsMessage',
   primaryAction: 'PricingOptions__primaryAction',
   secondaryAction: 'PricingOptions__secondaryAction',
   menuAction: 'PricingOptions__menuAction',
@@ -213,6 +214,7 @@ export type PricingOptionsItem = {
 type FilteredChildren = {
   FeatureList: React.ReactElement<PricingOptionsFeatureListProps> | null
   Actions: React.ReactElement<PricingOptionsActionsProps>[]
+  ActionsMessage: React.ReactElement<PricingOptionsActionsMessageProps> | null
   Footnote: React.ReactElement<PricingOptionsFootnoteProps> | null
   Heading: React.ReactElement<PricingOptionsHeadingProps> | null
   Description: React.ReactElement<PricingOptionsDescriptionProps> | null
@@ -228,7 +230,7 @@ const PricingOptionsItem = forwardRef(
 
     const memoizedChildren = useMemo(() => React.Children.toArray(children), [children])
 
-    const {Heading, Description, Price, FeatureList, Actions, Footnote} = memoizedChildren.reduce<FilteredChildren>(
+    const filteredChildren = memoizedChildren.reduce<FilteredChildren>(
       (acc, child) => {
         if (React.isValidElement(child) && typeof child.type !== 'string') {
           if (child.type === PricingOptionsFeatureList) {
@@ -241,6 +243,10 @@ const PricingOptionsItem = forwardRef(
             child.type === PricingOptionsMenuAction
           ) {
             acc.Actions.push(child as React.ReactElement<PricingOptionsActionsProps>)
+          }
+
+          if (child.type === PricingOptionsActionsMessage) {
+            acc.ActionsMessage = child as React.ReactElement<PricingOptionsActionsMessageProps>
           }
 
           if (child.type === PricingOptionsFootnote) {
@@ -259,10 +265,21 @@ const PricingOptionsItem = forwardRef(
             acc.Price = child as React.ReactElement<PricingOptionsPriceProps>
           }
         }
+
         return acc
       },
-      {FeatureList: null, Actions: [], Footnote: null, Heading: null, Description: null, Price: null},
+      {
+        FeatureList: null,
+        Actions: [],
+        ActionsMessage: null,
+        Footnote: null,
+        Heading: null,
+        Description: null,
+        Price: null,
+      },
     )
+
+    const {Heading, Description, Price, FeatureList, Actions, ActionsMessage, Footnote} = filteredChildren
 
     return (
       <div
@@ -280,7 +297,12 @@ const PricingOptionsItem = forwardRef(
         {Description}
         {Price}
         {leadingComponent && <div className={styles['PricingOptions__leading-component']}>{leadingComponent}</div>}
-        {Actions.length > 0 && <div className={styles.PricingOptions__actions}>{Actions}</div>}
+        {(Actions.length > 0 || ActionsMessage) && (
+          <div className={styles.PricingOptions__actions}>
+            {Actions}
+            {ActionsMessage}
+          </div>
+        )}
         {FeatureList}
         {Footnote}
       </div>
@@ -639,6 +661,29 @@ type AsButton = {as: 'button'; 'data-testid'?: string} & React.ButtonHTMLAttribu
 
 type PricingOptionsActionsProps = AsA | AsButton
 
+type PricingOptionsActionsMessageProps = PropsWithChildren<BaseProps<HTMLDivElement>> & {
+  'data-testid'?: string
+  leadingComponent?: React.ReactElement
+}
+
+const PricingOptionsActionsMessage = forwardRef<HTMLDivElement, PricingOptionsActionsMessageProps>(
+  ({children, className, 'data-testid': testId, leadingComponent, ...rest}, ref) => {
+    return (
+      <div
+        ref={ref}
+        className={clsx(styles['PricingOptions__actions-message'], className)}
+        data-testid={testId || testIds.actionsMessage}
+        {...rest}
+      >
+        {leadingComponent && (
+          <span className={styles['PricingOptions__actions-message-leading-component']}>{leadingComponent}</span>
+        )}
+        <div className={styles['PricingOptions__actions-message-content']}>{children}</div>
+      </div>
+    )
+  },
+)
+
 const PricingOptionsPrimaryAction = forwardRef<
   HTMLAnchorElement | HTMLButtonElement,
   PropsWithChildren<PricingOptionsActionsProps>
@@ -725,6 +770,7 @@ const PricingOptionsFootnote = forwardRef<HTMLParagraphElement, PricingOptionsFo
  * {@link https://primer.style/brand/components/PricingOptions/ See usage examples}.
  */
 export const PricingOptions = Object.assign(PricingOptionsRoot, {
+  ActionsMessage: PricingOptionsActionsMessage,
   Description: PricingOptionsDescription,
   FeatureList: PricingOptionsFeatureList,
   FeatureListHeading: PricingOptionsFeatureListHeading,

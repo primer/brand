@@ -557,6 +557,76 @@ describe('PricingOptions', () => {
     expect(queryByRole('button', {name: /More information/})).not.toBeInTheDocument()
   })
 
+  it('renders PricingOptions.ActionsMessage in the actions row without changing PricingOptions.Price markup', () => {
+    mockUseWindowSize.mockReturnValue(mediumBreakpoint)
+
+    const actionsMessageText = 'Upgrades are temporarily paused'
+
+    const {container, getByTestId, getByText} = render(
+      <PricingOptions>
+        <PricingOptions.Item>
+          <PricingOptions.Heading>Pro</PricingOptions.Heading>
+          <PricingOptions.Price trailingText="per user / month">10</PricingOptions.Price>
+          <PricingOptions.ActionsMessage>
+            <div>{actionsMessageText}</div>
+          </PricingOptions.ActionsMessage>
+        </PricingOptions.Item>
+      </PricingOptions>,
+    )
+
+    const priceEl = getByTestId(PricingOptions.testIds.price)
+    const actionsEl = container.querySelector('.PricingOptions__actions')
+    const actionsMessageEl = getByTestId(PricingOptions.testIds.actionsMessage)
+
+    expect(priceEl.tagName).toBe('P')
+    expect(getByText('10')).toBeInTheDocument()
+    expect(getByText('per user / month')).toBeInTheDocument()
+    expect(getByText(actionsMessageText)).toBeInTheDocument()
+    expect(actionsEl).toContainElement(actionsMessageEl)
+  })
+
+  it('renders PricingOptions.ActionsMessage alongside existing actions', () => {
+    mockUseWindowSize.mockReturnValue(mediumBreakpoint)
+
+    const {getByRole, getByTestId} = render(
+      <PricingOptions>
+        <PricingOptions.Item>
+          <PricingOptions.Heading>Pro</PricingOptions.Heading>
+          <PricingOptions.PrimaryAction as="a" href="#">
+            Upgrade
+          </PricingOptions.PrimaryAction>
+          <PricingOptions.ActionsMessage>
+            <div>Custom status message</div>
+          </PricingOptions.ActionsMessage>
+        </PricingOptions.Item>
+      </PricingOptions>,
+    )
+
+    expect(getByRole('link', {name: 'Upgrade'})).toBeInTheDocument()
+    expect(getByTestId(PricingOptions.testIds.actionsMessage)).toBeInTheDocument()
+  })
+
+  it('renders PricingOptions.ActionsMessage leadingComponent without modifying its props', () => {
+    mockUseWindowSize.mockReturnValue(mediumBreakpoint)
+
+    const TestLeadingComponent = ({size}: {size?: number}) => (
+      <svg data-testid="actions-message-icon" data-size={size} />
+    )
+
+    const {getByTestId} = render(
+      <PricingOptions>
+        <PricingOptions.Item>
+          <PricingOptions.Heading>Pro</PricingOptions.Heading>
+          <PricingOptions.ActionsMessage leadingComponent={<TestLeadingComponent />}>
+            <div>Custom status message</div>
+          </PricingOptions.ActionsMessage>
+        </PricingOptions.Item>
+      </PricingOptions>,
+    )
+
+    expect(getByTestId('actions-message-icon')).not.toHaveAttribute('data-size')
+  })
+
   it('renders PricingOptions.MenuAction in the actions area', () => {
     mockUseWindowSize.mockReturnValue(mediumBreakpoint)
 
