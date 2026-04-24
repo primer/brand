@@ -4,6 +4,7 @@ import {FormControl} from '.'
 import {CheckIcon, SearchIcon} from '@primer/octicons-react'
 import {Checkbox, Select, TextInput, Textarea, Radio} from '../'
 import {Stack} from '../../'
+import textareaStoryStyles from '../Textarea/Textarea.stories.module.css'
 
 export default {
   title: 'Components/Forms/FormControl',
@@ -232,6 +233,7 @@ export const TextareaPlayground = args => {
         size={args.size}
         placeholder={args.placeholder}
         required={args.required}
+        className={textareaStoryStyles.textareaStoryFixedWidth}
       />
 
       {args.hint.length ? <FormControl.Hint>{args.hint}</FormControl.Hint> : null}

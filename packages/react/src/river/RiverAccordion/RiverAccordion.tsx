@@ -1,11 +1,18 @@
 import React, {createContext, forwardRef, useCallback, useContext, useMemo, useState, useRef, useEffect} from 'react'
 import {clsx} from 'clsx'
-import {PlusIcon} from '@primer/octicons-react'
+import {ChevronDownIcon, ChevronUpIcon} from '@primer/octicons-react'
 
 import {Heading, type HeadingProps, Link, Text} from '../..'
-import styles from './RiverAccordion.module.css'
 import {useProvidedRefOrCreate} from '../../hooks/useRef'
 import {useId} from '../../hooks/useId'
+
+/**
+ * Design tokens
+ */
+import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/river/river.css'
+
+/** Main Stylesheet (as a CSS Module) */
+import styles from './RiverAccordion.module.css'
 
 type RiverAccordionContextType = {
   openIndex: number
@@ -38,13 +45,17 @@ const useRiverAccordionItemContext = (): RiverAccordionItemContextType => {
   return context
 }
 
+export const RiverAccordionVariants = ['default', 'gridline'] as const
+export type RiverAccordionVariant = (typeof RiverAccordionVariants)[number]
+
 export type RiverAccordionProps = React.PropsWithChildren<{
   align?: 'start' | 'end'
+  variant?: RiverAccordionVariant
 }> &
   React.HTMLAttributes<HTMLDivElement>
 
 const RiverAccordionRoot = forwardRef<HTMLDivElement, RiverAccordionProps>(
-  ({align = 'start', children, className, ...rest}, forwardedRef) => {
+  ({align = 'start', variant = 'default', children, className, ...rest}, forwardedRef) => {
     const containerRef = useProvidedRefOrCreate<HTMLDivElement>(forwardedRef as React.RefObject<HTMLDivElement>)
     const [openIndex, setOpenIndex] = useState(0)
 
@@ -88,7 +99,12 @@ const RiverAccordionRoot = forwardRef<HTMLDivElement, RiverAccordionProps>(
       <RiverAccordionContext.Provider value={contextValue}>
         <div
           ref={containerRef}
-          className={clsx(styles.RiverAccordion, styles[`RiverAccordion__align-${align}`], className)}
+          className={clsx(
+            styles.RiverAccordion,
+            styles[`RiverAccordion__align-${align}`],
+            styles[`RiverAccordion--variant-${variant}`],
+            className,
+          )}
           {...rest}
         >
           <div className={styles.RiverAccordion__accordionContainer}>{items}</div>
@@ -199,7 +215,9 @@ const RiverAccordionHeading = ({as = 'h3', children, className, size = '6', ...p
         aria-expanded={isOpen}
       >
         {children}
-        <PlusIcon size={24} className={styles.RiverAccordion__icon} />
+        <span aria-hidden="true" className={styles.RiverAccordion__icon}>
+          {isOpen ? <ChevronUpIcon size={24} /> : <ChevronDownIcon size={24} />}
+        </span>
       </button>
     </Heading>
   )
@@ -217,7 +235,7 @@ const RiverAccordionContent = ({className, children, ...props}: RiverAccordionCo
         return React.cloneElement(child, {
           as: child.props.as ?? 'p',
           variant: child.props.variant ?? 'muted',
-          size: child.props.size ?? '200',
+          size: child.props.size ?? '300',
         })
       }
 

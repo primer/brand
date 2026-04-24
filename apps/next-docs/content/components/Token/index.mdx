@@ -1,0 +1,91 @@
+---
+title: Token
+description: Token is a compact representation of an object, and is typically used to show a collection of related metadata.
+keywords: ['tag', 'metadata', 'category', 'chip', 'link']
+show-tabs: false
+ready: true
+source: https://github.com/primer/brand/blob/main/packages/react/src/Token/Token.tsx
+storybook: '/brand/storybook/?path=/story/components-token--playground'
+a11yReviewed: false
+---
+
+import {CopilotIcon} from '@primer/octicons-react'
+
+import {TokenAsProp, TokenVariantProp} from './react'
+
+```js
+import {Avatar, Stack, Token} from '@primer/react-brand'
+```
+
+`Token` is a compact representation of an object, and is typically used to show a collection of related metadata.
+
+Keep `Token` content short and easy to scan. A single word is ideal. Two short words are acceptable when the category or type needs more context.
+
+## Examples
+
+### Default
+
+```jsx live
+<Token>Guide</Token>
+```
+
+### Variants
+
+```jsx live
+<Stack direction="horizontal" alignItems="flex-start" padding="none" style={{flexWrap: 'wrap'}}>
+  <Token variant="default">Default</Token>
+  <Token variant="accent">Accent</Token>
+  <Token variant="outline">Outline</Token>
+  <Token variant="invisible">Invisible</Token>
+</Stack>
+```
+
+### Interactive tokens
+
+When the entire `Token` should act as a link, render it as an anchor. Use interactive Tokens for secondary navigation, filters, or related metadata links. Do not use Tokens as primary calls to action.
+
+Use `as="a"` when the whole `Token` should act as a link.
+
+```jsx live
+<Stack direction="horizontal" alignItems="flex-start" padding="none" style={{flexWrap: 'wrap'}}>
+  <Token as="a" href="https://github.com" variant="default">
+    Guide
+  </Token>
+  <Token as="a" href="https://github.com" variant="outline">
+    Actions
+  </Token>
+</Stack>
+```
+
+### Leading visual
+
+Use a leading visual when it helps users scan the Token more quickly. Octicons, logos, and small square avatars work well here. Keep the visual decorative and compact.
+
+```jsx live
+<Stack direction="horizontal" alignItems="flex-start" padding="none" style={{flexWrap: 'wrap'}}>
+  <Token leadingVisual={<CopilotIcon />}>Copilot</Token>
+  <Token variant="outline" leadingVisual={<CopilotIcon />}>
+    Compare
+  </Token>
+  <Token leadingVisual={<Avatar shape="square" size={32} src="/images/avatar-mona.png" alt="Mona profile" />}>
+    With an optional Avatar
+  </Token>
+</Stack>
+```
+
+## Component props
+
+### Token
+
+| name            | type                 | default     | required | description                                         |
+| --------------- | -------------------- | ----------- | -------- | --------------------------------------------------- |
+| `as`            | <TokenAsProp />      | `'span'`    | `false`  | The HTML element rendered by Token                  |
+| `leadingVisual` | `ReactElement`       | `undefined` | `false`  | The leading visual appears before the Token content |
+| `variant`       | <TokenVariantProp /> | `'default'` | `false`  | The variant variations available in Token           |
+| `href`          | `string`             | `undefined` | `false`  | Anchor destination when `as="a"`                    |
+
+## Related components
+
+- [Label](/components/Label): For larger non-interactive status and metadata treatments.
+- [Link](/components/Link): For inline navigational text.
+- [Button](/components/Button): For higher-emphasis actions.

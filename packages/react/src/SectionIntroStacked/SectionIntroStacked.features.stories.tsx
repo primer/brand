@@ -1,6 +1,7 @@
 import React from 'react'
 import type {Meta, StoryObj} from '@storybook/react'
 import {useTranslation} from 'react-i18next'
+import {CpuIcon, LightBulbIcon, HeartIcon} from '@primer/octicons-react'
 import {SectionIntroStacked} from '.'
 import {Grid} from '../Grid'
 
@@ -49,19 +50,23 @@ const InGridTemplate = () => {
       <Grid.Column>
         <SectionIntroStacked>
           <SectionIntroStacked.Heading>{t('enterprise_platform_heading')}</SectionIntroStacked.Heading>
+          <SectionIntroStacked.Description>{t('playground_description')}</SectionIntroStacked.Description>
           <SectionIntroStacked.Link href="#">{t('explore_github_enterprise')}</SectionIntroStacked.Link>
           <SectionIntroStacked.Items>
             <SectionIntroStacked.Item>
-              <b>{t('lorem_ipsum')}</b>
-              {t('lorem_ipsum_description')}
+              <SectionIntroStacked.ItemIcon icon={CpuIcon} />
+              <SectionIntroStacked.ItemHeading>{t('item_one_heading')}</SectionIntroStacked.ItemHeading>
+              <SectionIntroStacked.ItemDescription>{t('item_one_description')}</SectionIntroStacked.ItemDescription>
             </SectionIntroStacked.Item>
             <SectionIntroStacked.Item>
-              <b>{t('lorem_ipsum')}</b>
-              {t('lorem_ipsum_description')}
+              <SectionIntroStacked.ItemIcon icon={LightBulbIcon} />
+              <SectionIntroStacked.ItemHeading>{t('item_two_heading')}</SectionIntroStacked.ItemHeading>
+              <SectionIntroStacked.ItemDescription>{t('item_two_description')}</SectionIntroStacked.ItemDescription>
             </SectionIntroStacked.Item>
             <SectionIntroStacked.Item>
-              <b>{t('lorem_ipsum')}</b>
-              {t('lorem_ipsum_description')}
+              <SectionIntroStacked.ItemIcon icon={HeartIcon} />
+              <SectionIntroStacked.ItemHeading>{t('item_three_heading')}</SectionIntroStacked.ItemHeading>
+              <SectionIntroStacked.ItemDescription>{t('item_three_description')}</SectionIntroStacked.ItemDescription>
             </SectionIntroStacked.Item>
           </SectionIntroStacked.Items>
         </SectionIntroStacked>
@@ -80,4 +85,35 @@ export const InGridNarrow: Story = {
     viewport: {value: 'iphonexr'},
   },
   render: InGridTemplate,
+}
+
+export const Gridline: Story = {
+  render: function GridlineComponent() {
+    const {t} = useTranslation('SectionIntroStacked')
+
+    return (
+      <SectionIntroStacked variant="gridline">
+        <SectionIntroStacked.Heading>{t('with_item_icons_heading')}</SectionIntroStacked.Heading>
+        <SectionIntroStacked.Description>{t('playground_description')}</SectionIntroStacked.Description>
+        <SectionIntroStacked.Link href="#">{t('sign_up_now')}</SectionIntroStacked.Link>
+        <SectionIntroStacked.Items>
+          <SectionIntroStacked.Item>
+            <SectionIntroStacked.ItemIcon icon={CpuIcon} />
+            <SectionIntroStacked.ItemHeading>{t('item_one_heading')}</SectionIntroStacked.ItemHeading>
+            <SectionIntroStacked.ItemDescription>{t('item_one_description')}</SectionIntroStacked.ItemDescription>
+          </SectionIntroStacked.Item>
+          <SectionIntroStacked.Item>
+            <SectionIntroStacked.ItemIcon icon={LightBulbIcon} />
+            <SectionIntroStacked.ItemHeading>{t('item_two_heading')}</SectionIntroStacked.ItemHeading>
+            <SectionIntroStacked.ItemDescription>{t('item_two_description')}</SectionIntroStacked.ItemDescription>
+          </SectionIntroStacked.Item>
+          <SectionIntroStacked.Item>
+            <SectionIntroStacked.ItemIcon icon={HeartIcon} />
+            <SectionIntroStacked.ItemHeading>{t('item_three_heading')}</SectionIntroStacked.ItemHeading>
+            <SectionIntroStacked.ItemDescription>{t('item_three_description')}</SectionIntroStacked.ItemDescription>
+          </SectionIntroStacked.Item>
+        </SectionIntroStacked.Items>
+      </SectionIntroStacked>
+    )
+  },
 }

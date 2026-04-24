@@ -1,24 +1,94 @@
 import React from 'react'
-import type {StoryFn, Meta} from '@storybook/react'
+import type {Meta, StoryFn} from '@storybook/react'
+import {useTranslation} from 'react-i18next'
 import {Card, CardIconColors} from '.'
-import {Stack, LabelColors, Grid, ThemeProvider, Box, Section, Text} from '..'
+import {Avatar} from '../Avatar'
+import {Token} from '../Token'
+import {Box, Grid, Section, Stack, Text, ThemeProvider} from '..'
+import avatarMona from '../fixtures/images/avatar-mona.png'
+import darkHorizontalBannerAlt from '../fixtures/images/dark-horizontal-banner-alt.png'
 import placeholderImage from '../fixtures/images/placeholder.png'
-import {CopilotIcon, ZapIcon, RocketIcon, GitBranchIcon, HeartIcon} from '@primer/octicons-react'
-import {IconProps} from '../Icon'
+import {CopilotIcon, GitBranchIcon, RocketIcon, ZapIcon} from '@primer/octicons-react'
+import {MicrosoftLogo} from '../fixtures/third-party-logos/MicrosoftLogo'
+import type {IconProps} from '../Icon'
+import styles from './Card.stories.shared.module.css'
+
+type StackedCardData = {
+  href: string
+  icon: IconProps['icon']
+  iconColor?: (typeof CardIconColors)[number]
+  tokens: {
+    labelKey: string
+    variant?: 'default' | 'outline'
+  }[]
+  headingKey: string
+  descriptionKey: string
+}[]
+
+const stackedCardData: StackedCardData = [
+  {
+    href: 'https://github.com',
+    icon: CopilotIcon,
+    iconColor: 'green',
+    tokens: [{labelKey: 'white_paper'}, {labelKey: 'dec_25', variant: 'outline'}],
+    headingKey: 'choose_your_engine',
+    descriptionKey: 'choose_your_engine_description',
+  },
+  {
+    href: 'https://github.com',
+    icon: RocketIcon,
+    iconColor: 'teal',
+    tokens: [{labelKey: 'guide'}, {labelKey: 'mcp', variant: 'outline'}],
+    headingKey: 'connect_your_ai_tools',
+    descriptionKey: 'connect_your_ai_tools_description',
+  },
+  {
+    href: 'https://github.com',
+    icon: GitBranchIcon,
+    iconColor: 'indigo',
+    tokens: [{labelKey: 'open_source'}, {labelKey: 'updated_weekly', variant: 'outline'}],
+    headingKey: 'explore_github_mcp_server',
+    descriptionKey: 'explore_github_mcp_server_description',
+  },
+  {
+    href: 'https://github.com',
+    icon: RocketIcon,
+    iconColor: 'orange',
+    tokens: [{labelKey: 'webinar'}, {labelKey: 'apr_30', variant: 'outline'}],
+    headingKey: 'scale_platform_delivery',
+    descriptionKey: 'scale_platform_delivery_description',
+  },
+  {
+    href: 'https://github.com',
+    icon: CopilotIcon,
+    iconColor: 'purple',
+    tokens: [{labelKey: 'case_study'}, {labelKey: 'enterprise', variant: 'outline'}],
+    headingKey: 'ship_secure_ai_workflows',
+    descriptionKey: 'ship_secure_ai_workflows_description',
+  },
+  {
+    href: 'https://github.com',
+    icon: GitBranchIcon,
+    iconColor: 'pink',
+    tokens: [{labelKey: 'repository'}, {labelKey: 'starter', variant: 'outline'}],
+    headingKey: 'launch_from_a_proven_template',
+    descriptionKey: 'launch_from_a_proven_template_description',
+  },
+]
 
 export default {
-  title: 'Components/Card/features',
+  title: 'Components/Card/Features',
   component: Card,
 } as Meta<typeof Card>
 
 export const Minimal: StoryFn<typeof Card> = () => {
+  const {t} = useTranslation('Card')
+
   return (
     <Card href="https://github.com" variant="minimal">
-      <Card.Heading>Code search & code view</Card.Heading>
-      <Card.Label>Limited</Card.Label>
-      <Card.Description>
-        Enables you to rapidly search, navigate, and understand code, right from GitHub.com.
-      </Card.Description>
+      <Card.Heading>{t('code_search_heading')}</Card.Heading>
+      <Card.Label>{t('limited')}</Card.Label>
+      <Card.Description>{t('code_search_description')}</Card.Description>
     </Card>
   )
 }
@@ -35,37 +105,83 @@ MinimalDark.decorators = [
 ]
 
 export const CTAText: StoryFn<typeof Card> = () => {
+  const {t} = useTranslation('Card')
+
   return (
-    <Card ctaText="Discover how" href="https://github.com">
-      <Card.Heading>GitHub Actions cheat sheet</Card.Heading>
-      <Card.Description>
-        In a recent TechTarget study, 70 percent of organizations reported they had adopted DevOps.
-      </Card.Description>
+    <Card ctaText={t('discover_how')} href="https://github.com">
+      <Card.Heading>{t('github_actions_cheat_sheet')}</Card.Heading>
+      <Card.Description>{t('techtarget_devops_description')}</Card.Description>
     </Card>
   )
 }
 
+const ArrowCTALongLabelCard = ({testId}: {testId?: string}) => {
+  const {t} = useTranslation('Card')
+
+  return (
+    <Box style={{width: '22rem'}}>
+      <Card
+        data-testid={testId}
+        href="https://github.com"
+        fullWidth
+        ctaVariant="arrow"
+        ctaText={t('read_the_quick_start_guide')}
+      >
+        <Card.Icon icon={CopilotIcon} color="green" hasBackground />
+        <Card.Tokens>
+          <Token>{t('developer_docs')}</Token>
+        </Card.Tokens>
+        <Card.Heading>{t('github_copilot_practice')}</Card.Heading>
+        <Card.Description>{t('copilot_practice_description_short')}</Card.Description>
+      </Card>
+    </Box>
+  )
+}
+
+export const ArrowCTALongLabel: StoryFn<typeof Card> = () => {
+  return <ArrowCTALongLabelCard />
+}
+ArrowCTALongLabel.storyName = 'Arrow CTA with long label'
+
+export const ArrowCTALongLabelHover: StoryFn<typeof Card> = () => {
+  return <ArrowCTALongLabelCard testId="hover-enabled-card" />
+}
+ArrowCTALongLabelHover.storyName = 'Arrow CTA with long label hover'
+ArrowCTALongLabelHover.parameters = {
+  pseudo: {hover: ['[data-testid="hover-enabled-card"]']},
+}
+
 export const CenterAligned: StoryFn<typeof Card> = () => {
+  const {t} = useTranslation('Card')
+
   return (
     <>
       <Section backgroundColor="default">
         <Grid>
           <Grid.Column span={{xsmall: 12, medium: 6}}>
-            <Card hasBorder fullWidth align="center" href="https://github.com">
+            <Card
+              hasBorder
+              fullWidth
+              align="center"
+              href="https://github.com"
+              ctaText={t('read_the_quick_start_guide')}
+            >
               <Card.Icon icon={GitBranchIcon} color="purple" hasBackground />
-              <Card.Heading>Code search & code view</Card.Heading>
-              <Card.Description>
-                In a recent TechTarget study, 70 percent of organizations reported they had adopted DevOps.
-              </Card.Description>
+              <Card.Heading>{t('code_search_heading')}</Card.Heading>
+              <Card.Description>{t('techtarget_devops_description')}</Card.Description>
             </Card>
           </Grid.Column>
           <Grid.Column span={{xsmall: 12, medium: 6}}>
-            <Card hasBorder fullWidth align="center" href="https://github.com">
+            <Card
+              hasBorder
+              fullWidth
+              align="center"
+              href="https://github.com"
+              ctaText={t('get_the_most_out_of_github_copilot_in_your_ide')}
+            >
               <Card.Icon icon={GitBranchIcon} color="purple" hasBackground />
-              <Card.Heading>Code search & code view</Card.Heading>
-              <Card.Description>
-                In a recent TechTarget study, 70 percent of organizations reported they had adopted DevOps.
-              </Card.Description>
+              <Card.Heading>{t('code_search_heading')}</Card.Heading>
+              <Card.Description>{t('techtarget_devops_description')}</Card.Description>
             </Card>
           </Grid.Column>
         </Grid>
@@ -73,30 +189,42 @@ export const CenterAligned: StoryFn<typeof Card> = () => {
       <Section backgroundColor="subtle">
         <Grid>
           <Grid.Column span={{xsmall: 12, medium: 4}}>
-            <Card hasBorder fullWidth align="center" href="https://github.com">
+            <Card
+              hasBorder
+              fullWidth
+              align="center"
+              href="https://github.com"
+              ctaText={t('read_the_quick_start_guide')}
+            >
               <Card.Icon icon={GitBranchIcon} color="purple" hasBackground />
-              <Card.Heading>Code search & code view</Card.Heading>
-              <Card.Description>
-                In a recent TechTarget study, 70 percent of organizations reported they had adopted DevOps.
-              </Card.Description>
+              <Card.Heading>{t('code_search_heading')}</Card.Heading>
+              <Card.Description>{t('techtarget_devops_description')}</Card.Description>
             </Card>
           </Grid.Column>
           <Grid.Column span={{xsmall: 12, medium: 4}}>
-            <Card hasBorder fullWidth align="center" href="https://github.com">
+            <Card
+              hasBorder
+              fullWidth
+              align="center"
+              href="https://github.com"
+              ctaText={t('get_the_most_out_of_github_copilot_in_your_ide')}
+            >
               <Card.Icon icon={GitBranchIcon} color="purple" hasBackground />
-              <Card.Heading>Code search & code view</Card.Heading>
-              <Card.Description>
-                In a recent TechTarget study, 70 percent of organizations reported they had adopted DevOps.
-              </Card.Description>
+              <Card.Heading>{t('code_search_heading')}</Card.Heading>
+              <Card.Description>{t('techtarget_devops_description')}</Card.Description>
             </Card>
           </Grid.Column>
           <Grid.Column span={{xsmall: 12, medium: 4}}>
-            <Card hasBorder fullWidth align="center" href="https://github.com">
+            <Card
+              hasBorder
+              fullWidth
+              align="center"
+              href="https://github.com"
+              ctaText={t('read_the_quick_start_guide')}
+            >
               <Card.Icon icon={GitBranchIcon} color="purple" hasBackground />
-              <Card.Heading>Code search & code view</Card.Heading>
-              <Card.Description>
-                In a recent TechTarget study, 70 percent of organizations reported they had adopted DevOps.
-              </Card.Description>
+              <Card.Heading>{t('code_search_heading')}</Card.Heading>
+              <Card.Description>{t('techtarget_devops_description')}</Card.Description>
             </Card>
           </Grid.Column>
         </Grid>
@@ -107,23 +235,16 @@ export const CenterAligned: StoryFn<typeof Card> = () => {
 CenterAligned.storyName = 'Align center'
 
 export const FullWidth: StoryFn<typeof Card> = () => {
+  const {t} = useTranslation('Card')
+
   return (
     <Section>
       <Grid>
         <Grid.Column>
           <Card href="https://github.com" fullWidth hasBorder>
-            <Card.Image
-              aspectRatio="16:10"
-              src={placeholderImage}
-              alt="placeholder, blank area with an gray background color"
-            />
-            <Card.Heading>GitHub Actions cheat sheet</Card.Heading>
-            <Card.Description>
-              Integer pellentesque lorem ex, et ultricies tellus commodo vitae. In fringilla facilisis odio et interdum.
-              Nulla imperdiet facilisis erat, at gravida erat rutrum a. Nullam hendrerit est in arcu dapibus rhoncus. Ut
-              a nisi massa. Suspendisse id interdum risus, pretium consectetur sapien. Nullam ac elit nisi. Vivamus
-              justo libero, rutrum id semper ac, varius ut nisl. Nulla quis vehicula risus.
-            </Card.Description>
+            <Card.Image aspectRatio="16:10" src={placeholderImage} alt={t('placeholder_alt')} />
+            <Card.Heading>{t('github_actions_cheat_sheet')}</Card.Heading>
+            <Card.Description>{t('full_width_description')}</Card.Description>
           </Card>
         </Grid.Column>
       </Grid>
@@ -132,51 +253,128 @@ export const FullWidth: StoryFn<typeof Card> = () => {
 }
 
 export const Label: StoryFn<typeof Card> = () => {
+  const {t} = useTranslation('Card')
+
   return (
     <Card href="https://github.com">
-      <Card.Heading>Code search & code view</Card.Heading>
-      <Card.Label>Limited</Card.Label>
-      <Card.Description>
-        Enables you to rapidly search, navigate, and understand code, right from GitHub.com.
-      </Card.Description>
+      <Card.Heading>{t('code_search_heading')}</Card.Heading>
+      <Card.Label>{t('limited')}</Card.Label>
+      <Card.Description>{t('code_search_description')}</Card.Description>
     </Card>
   )
 }
 
+export const AccentTextLabel: StoryFn<typeof Card> = () => {
+  const {t} = useTranslation('Card')
+
+  return (
+    <Card href="https://github.com">
+      <Card.Heading>{t('code_search_heading')}</Card.Heading>
+      <Card.Label variant="accent-text">{t('limited')}</Card.Label>
+      <Card.Description>{t('code_search_description')}</Card.Description>
+    </Card>
+  )
+}
+AccentTextLabel.storyName = 'Label (accent text)'
+
 export const Icon: StoryFn<typeof Card> = () => {
+  const {t} = useTranslation('Card')
+
   return (
     <Card href="https://github.com">
       <Card.Icon icon={RocketIcon} />
-      <Card.Heading>Code search & code view</Card.Heading>
-      <Card.Description>
-        Enables you to rapidly search, navigate, and understand code, right from GitHub.com.
-      </Card.Description>
+      <Card.Heading>{t('code_search_heading')}</Card.Heading>
+      <Card.Description>{t('code_search_description')}</Card.Description>
     </Card>
   )
 }
 
 export const Border: StoryFn<typeof Card> = () => {
+  const {t} = useTranslation('Card')
+
   return (
     <Card href="https://github.com" hasBorder>
       <Card.Icon icon={RocketIcon} />
-      <Card.Heading>Code search & code view</Card.Heading>
-      <Card.Description>
-        Enables you to rapidly search, navigate, and understand code, right from GitHub.com.
-      </Card.Description>
+      <Card.Heading>{t('code_search_heading')}</Card.Heading>
+      <Card.Description>{t('code_search_description')}</Card.Description>
     </Card>
   )
 }
 
+export const BackgroundColors: StoryFn<typeof Card> = () => {
+  const {t} = useTranslation('Card')
+
+  return (
+    <Section backgroundColor="default">
+      <Grid>
+        <Grid.Column span={{xsmall: 12, medium: 4}}>
+          <Box
+            style={{
+              backgroundColor: 'var(--brand-color-canvas-subtle)',
+              padding: 'var(--base-size-16)',
+              borderRadius: 'var(--brand-borderRadius-medium)',
+              height: '100%',
+            }}
+          >
+            <Card href="https://github.com" fullWidth backgroundColor="default">
+              <Card.Label>default</Card.Label>
+              <Card.Heading>{t('github_actions_cheat_sheet')}</Card.Heading>
+              <Card.Description>{t('techtarget_devops_description')}</Card.Description>
+            </Card>
+          </Box>
+        </Grid.Column>
+        <Grid.Column span={{xsmall: 12, medium: 4}}>
+          <Box
+            style={{
+              backgroundColor: 'var(--brand-color-canvas-default)',
+              padding: 'var(--base-size-16)',
+              borderRadius: 'var(--brand-borderRadius-medium)',
+              height: '100%',
+            }}
+          >
+            <Card href="https://github.com" fullWidth backgroundColor="subtle">
+              <Card.Label>subtle</Card.Label>
+              <Card.Heading>{t('github_actions_cheat_sheet')}</Card.Heading>
+              <Card.Description>{t('techtarget_devops_description')}</Card.Description>
+            </Card>
+          </Box>
+        </Grid.Column>
+        <Grid.Column span={{xsmall: 12, medium: 4}}>
+          <Box
+            style={{
+              backgroundColor: 'var(--base-color-scale-blue-0)',
+              backgroundImage:
+                'linear-gradient(135deg, var(--base-color-scale-blue-0), var(--base-color-scale-teal-0))',
+              padding: 'var(--base-size-16)',
+              borderRadius: 'var(--brand-borderRadius-medium)',
+              height: '100%',
+            }}
+          >
+            <Card href="https://github.com" fullWidth backgroundColor="none" hasBorder>
+              <Card.Label>none</Card.Label>
+              <Card.Heading>{t('github_actions_cheat_sheet')}</Card.Heading>
+              <Card.Description>{t('techtarget_devops_description')}</Card.Description>
+            </Card>
+          </Box>
+        </Grid.Column>
+      </Grid>
+    </Section>
+  )
+}
+BackgroundColors.storyName = 'Background color'
+
 export const IconColors: StoryFn<typeof Card> = () => {
+  const {t} = useTranslation('Card')
+
   return (
     <Stack padding="none" direction="horizontal" gap="normal" style={{flexWrap: 'wrap'}}>
       {CardIconColors.map((color, id) => {
         return (
           <Card key={id} href="https://github.com">
             <Card.Icon icon={CopilotIcon} hasBackground color={color} />
-            <Card.Heading>Collaboration is the key to DevOps success</Card.Heading>
+            <Card.Heading>{t('default_heading')}</Card.Heading>
             <Card.Description>
-              This Card uses the <b>{color}</b> icon color
+              {t('this_card_uses_the')} <b>{color}</b> {t('icon_color')}
             </Card.Description>
           </Card>
         )
@@ -185,327 +383,249 @@ export const IconColors: StoryFn<typeof Card> = () => {
   )
 }
 
-export const WithIconSVG = () => (
-  <Card href="https://github.com">
-    <Card.Icon
-      icon={
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 16 16"
-          width="20"
-          height="20"
-          aria-label="Magnifying glass icon"
-        >
-          <path
-            d="M10.68 11.74a6 6 0 0 1-7.922-8.982 6 6 0 0 1 8.982 7.922l3.04 3.04a.749.749 0 0 1-.326 1.275.749.749 0 0 1-.734-.215ZM11.5 7a4.499 4.499 0 1 0-8.997 0A4.499 4.499 0 0 0 11.5 7Z"
-            fill="currentColor"
-          ></path>
-        </svg>
-      }
-      hasBackground
-      color="purple"
-    />
-    <Card.Heading>Code search & code view</Card.Heading>
-    <Card.Description>
-      Enables you to rapidly search, navigate, and understand code, right from GitHub.com.
-    </Card.Description>
-  </Card>
-)
+export const WithIconSVG = () => {
+  const {t} = useTranslation('Card')
+
+  return (
+    <Card href="https://github.com">
+      <Card.Icon
+        icon={
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 16 16"
+            width="20"
+            height="20"
+            aria-label={t('magnifying_glass_icon')}
+          >
+            <path
+              d="M10.68 11.74a6 6 0 0 1-7.922-8.982 6 6 0 0 1 8.982 7.922l3.04 3.04a.749.749 0 0 1-.326 1.275.749.749 0 0 1-.734-.215ZM11.5 7a4.499 4.499 0 1 0-8.997 0A4.499 4.499 0 0 0 11.5 7Z"
+              fill="currentColor"
+            ></path>
+          </svg>
+        }
+        hasBackground
+        color="purple"
+      />
+      <Card.Heading>{t('code_search_heading')}</Card.Heading>
+      <Card.Description>{t('code_search_description')}</Card.Description>
+    </Card>
+  )
+}
 WithIconSVG.storyName = 'Icon (native)'
 
 export const IconAndLabel: StoryFn<typeof Card> = () => {
+  const {t} = useTranslation('Card')
+
   return (
     <Card href="https://github.com">
       <Card.Icon icon={GitBranchIcon} color="purple" hasBackground />
-      <Card.Heading>Code search & code view</Card.Heading>
-      <Card.Label color="blue-purple">Beta</Card.Label>
-      <Card.Description>
-        Enables you to rapidly search, navigate, and understand code, right from GitHub.com.
-      </Card.Description>
+      <Card.Heading>{t('code_search_heading')}</Card.Heading>
+      <Card.Label>{t('beta')}</Card.Label>
+      <Card.Description>{t('code_search_description')}</Card.Description>
     </Card>
   )
 }
 
 export const IconAndLabelWithFragment: StoryFn<typeof Card> = () => {
+  const {t} = useTranslation('Card')
+
   return (
     <Card href="https://github.com">
       <>
-        <Card.Heading>Code search & code view</Card.Heading>
-        <Card.Label color="blue-purple">Beta</Card.Label>
+        <Card.Heading>{t('code_search_heading')}</Card.Heading>
+        <Card.Label>{t('beta')}</Card.Label>
         <Card.Icon icon={ZapIcon} color="purple" hasBackground />
-        <Card.Description>
-          Enables you to rapidly search, navigate, and understand code, right from GitHub.com.
-        </Card.Description>
+        <Card.Description>{t('code_search_description')}</Card.Description>
       </>
     </Card>
   )
 }
 
 export const Image: StoryFn<typeof Card> = () => {
+  const {t} = useTranslation('Card')
+
   return (
     <Stack direction="horizontal">
       <Card href="https://github.com">
-        <Card.Image src={placeholderImage} alt="placeholder, blank area with an gray background color" />
-        <Card.Heading>Code search & code view</Card.Heading>
-        <Card.Description>
-          Enables you to rapidly search, navigate, and understand code, right from GitHub.com.
-        </Card.Description>
+        <Card.Image src={placeholderImage} alt={t('placeholder_alt')} />
+        <Card.Heading>{t('image_at_the_top')}</Card.Heading>
+        <Card.Description>{t('code_search_description')}</Card.Description>
       </Card>
       <Card href="https://github.com">
-        <Card.Image as="picture" src={placeholderImage} alt="placeholder, blank area with an gray background color" />
-        <Card.Heading>Code search & code view</Card.Heading>
-        <Card.Description>
-          Enables you to rapidly search, navigate, and understand code, right from GitHub.com.
-        </Card.Description>
+        <Card.Image position="block-end" as="picture" src={placeholderImage} alt={t('placeholder_alt')} />
+        <Card.Heading>{t('image_at_the_bottom')}</Card.Heading>
+        <Card.Description>{t('code_search_description')}</Card.Description>
       </Card>
     </Stack>
   )
 }
 
 export const ImageAndLabel: StoryFn<typeof Card> = () => {
+  const {t} = useTranslation('Card')
+
   return (
     <Card href="https://github.com">
-      <Card.Image src={placeholderImage} alt="placeholder, blank area with an gray background color" />
-      <Card.Heading>Code search & code view</Card.Heading>
-      <Card.Label color="blue-purple">Beta</Card.Label>
-      <Card.Description>
-        Enables you to rapidly search, navigate, and understand code, right from GitHub.com.
-      </Card.Description>
+      <Card.Image src={placeholderImage} alt={t('placeholder_alt')} />
+      <Card.Heading>{t('code_search_heading')}</Card.Heading>
+      <Card.Label>{t('beta')}</Card.Label>
+      <Card.Description>{t('code_search_description')}</Card.Description>
     </Card>
   )
 }
 
 export const ImageUsingPictureElement: StoryFn<typeof Card> = () => {
+  const {t} = useTranslation('Card')
+
   return (
     <Card href="https://github.com">
-      <Card.Image as="picture" src={placeholderImage} alt="placeholder, blank area with an gray background color" />
-      <Card.Heading>Code search & code view</Card.Heading>
-      <Card.Description>
-        Enables you to rapidly search, navigate, and understand code, right from GitHub.com.
-      </Card.Description>
+      <Card.Image as="picture" src={placeholderImage} alt={t('placeholder_alt')} />
+      <Card.Heading>{t('code_search_heading')}</Card.Heading>
+      <Card.Description>{t('code_search_description')}</Card.Description>
     </Card>
   )
 }
 
-const fixtureData: FixtureData = [
-  {
-    href: 'https://github.com',
-    icon: CopilotIcon,
-    iconColor: 'indigo',
-    heading: 'Collaboration is the key to DevOps success',
-    description: 'Everything you need to know about getting started with GitHub Actions.',
-  },
-  {
-    href: 'https://github.com',
-    icon: RocketIcon,
-    iconColor: 'purple',
-    heading: 'GitHub Actions cheat sheet and more',
-    description: (
-      <React.Fragment>
-        In a recent TechTarget study, 70 percent of organizations reported they had adopted DevOps.
-      </React.Fragment>
-    ),
-  },
-  {
-    href: 'https://github.com',
-    icon: GitBranchIcon,
-    iconColor: 'teal',
-    heading: 'How healthy teams build better software',
-    description: (
-      <React.Fragment>Everything you need to know about getting started with GitHub Actions.</React.Fragment>
-    ),
-  },
-  {
-    href: 'https://github.com',
-    icon: HeartIcon,
-    iconColor: 'pink',
-    heading: 'GitHub sponsors',
-    description:
-      'Financially support the open source projects your code depends. with a current GitHub for Startups partner.',
-  },
-]
+export const LeadingVisualWithArrowCTA: StoryFn<typeof Card> = () => {
+  const {t} = useTranslation('Card')
 
-type FixtureData = {
-  href: string
-  icon: IconProps['icon']
-  iconColor?: (typeof CardIconColors)[number]
-  label?: string
-  labelColor?: (typeof LabelColors)[number]
-  heading: string | React.ReactElement | React.ReactElement[]
-  description: string | React.ReactElement | React.ReactElement[]
-}[]
+  return (
+    <Box style={{width: '27rem', minHeight: '25.4375rem'}}>
+      <Card
+        href="https://github.com"
+        fullWidth
+        ctaVariant="arrow"
+        leadingVisual={<MicrosoftLogo />}
+        style={{minHeight: '25.4375rem'}}
+      >
+        <Card.Heading>{t('microsoft_empowerment_heading')}</Card.Heading>
+        <Card.Description>{t('paulo_londra_title')}</Card.Description>
+      </Card>
+    </Box>
+  )
+}
+LeadingVisualWithArrowCTA.storyName = 'Leading visual + arrow CTA'
+
+export const WithTokens: StoryFn<typeof Card> = () => {
+  const {t} = useTranslation('Card')
+
+  return (
+    <Box>
+      <Card href="https://github.com" fullWidth hasBorder ctaVariant="arrow">
+        <Card.Icon icon={CopilotIcon} hasBackground />
+        <Card.Tokens>
+          <Token>{t('topic')}</Token>
+          <Token variant="outline">{t('dec_25')}</Token>
+        </Card.Tokens>
+        <Card.Heading>{t('choose_your_engine')}</Card.Heading>
+        <Card.Description>{t('choose_your_engine_description')}</Card.Description>
+      </Card>
+    </Box>
+  )
+}
+WithTokens.storyName = 'With tokens'
+
+export const WithBlockEndTokens: StoryFn<typeof Card> = () => {
+  const {t} = useTranslation('Card')
+
+  return (
+    <Box style={{width: '22rem'}}>
+      <Card href="https://github.com" fullWidth ctaVariant="none">
+        <Card.Image src={darkHorizontalBannerAlt} alt={t('abstract_blue_green_gradient_illustration')} />
+        <Card.Heading>{t('github_engineering_codespaces_heading')}</Card.Heading>
+        <Card.Description>{t('dependabot_improvements_description')}</Card.Description>
+        <Card.Tokens position="block-end">
+          <Token leadingVisual={<Avatar src={avatarMona} alt={t('mona_lisa')} size={32} />}>{t('mona_lisa')}</Token>
+          <Token variant="outline">{t('dec_25')}</Token>
+        </Card.Tokens>
+      </Card>
+    </Box>
+  )
+}
+WithBlockEndTokens.storyName = 'With block-end tokens'
 
 export const Stacked: StoryFn<typeof Card> = () => {
+  const {t} = useTranslation('Card')
+
   return (
-    <Grid>
-      {fixtureData.map(({heading, description, href, icon, iconColor}, id) => {
-        return (
-          <Grid.Column key={id} span={{small: 6, medium: 6, large: 3, xlarge: 3}}>
-            <Card key={id} href={href}>
-              <Card.Icon icon={icon} hasBackground color={iconColor} />
-              <Card.Heading>{heading}</Card.Heading>
-              <Card.Description>{description}</Card.Description>
-            </Card>
-          </Grid.Column>
-        )
-      })}
-    </Grid>
-  )
-}
-
-export const TorchlightVariant = () => {
-  return (
-    <>
-      <Stack
-        direction={{
-          narrow: 'vertical',
-          regular: 'horizontal',
-        }}
-        gap={36}
-      >
-        <Card variant="torchlight" href="https://github.com">
-          <Card.Icon icon={ZapIcon} hasBackground />
-          <Card.Heading>Collaboration is the key to DevOps success</Card.Heading>
-          <Card.Description>Everything you need to know about getting started with GitHub Actions.</Card.Description>
-        </Card>
-        <Card
-          variant="torchlight"
-          href="https://github.com"
-          style={{['--brand-color-accent-primary' as string]: 'var(--base-color-scale-indigo-2)'}}
-        >
-          <Card.Icon icon={CopilotIcon} hasBackground color="indigo" />
-          <Card.Heading>Collaboration is the key to DevOps success</Card.Heading>
-          <Card.Description>Everything you need to know about getting started with GitHub Actions.</Card.Description>
-        </Card>
-
-        <Card
-          variant="torchlight"
-          href="https://github.com"
-          style={{['--brand-color-accent-primary' as string]: 'var(--base-color-scale-yellow-2)'}}
-        >
-          <Card.Icon icon={GitBranchIcon} hasBackground color="yellow" />
-          <Card.Heading>Collaboration is the key to DevOps success</Card.Heading>
-          <Card.Description>Everything you need to know about getting started with GitHub Actions.</Card.Description>
-        </Card>
-      </Stack>
-      <Stack
-        direction={{
-          narrow: 'vertical',
-          regular: 'horizontal',
-        }}
-        gap={36}
-      >
-        <Card
-          variant="torchlight"
-          href="https://github.com"
-          style={{['--brand-color-accent-primary' as string]: 'var(--base-color-scale-red-2)'}}
-        >
-          <Card.Icon icon={HeartIcon} hasBackground color="red" />
-          <Card.Heading>Collaboration is the key to DevOps success</Card.Heading>
-          <Card.Description>Everything you need to know about getting started with GitHub Actions.</Card.Description>
-        </Card>
-
-        <Card
-          variant="torchlight"
-          href="https://github.com"
-          style={{['--brand-color-accent-primary' as string]: 'var(--base-color-scale-orange-2)'}}
-        >
-          <Card.Icon icon={ZapIcon} hasBackground color="orange" />
-          <Card.Heading>Collaboration is the key to DevOps success</Card.Heading>
-          <Card.Description>Everything you need to know about getting started with GitHub Actions.</Card.Description>
-        </Card>
-        <Card
-          variant="torchlight"
-          href="https://github.com"
-          style={{['--brand-color-accent-primary' as string]: 'var(--base-color-scale-lime-2)'}}
-        >
-          <Card.Icon icon={RocketIcon} hasBackground color="lime" />
-          <Card.Heading>Collaboration is the key to DevOps success</Card.Heading>
-          <Card.Description>Everything you need to know about getting started with GitHub Actions.</Card.Description>
-        </Card>
-      </Stack>
-    </>
-  )
-}
-
-TorchlightVariant.decorators = [
-  Story => (
-    <ThemeProvider colorMode="dark">
-      <Box backgroundColor="default">
-        <Story />
+    <Box className={styles.gridFrame}>
+      <Box className={styles.gridContent}>
+        <Grid columnGap="none" rowGap="none" enableGutters={false}>
+          {stackedCardData.map(({headingKey, descriptionKey, href, icon, iconColor, tokens}, id) => {
+            return (
+              <Grid.Column key={id} span={{xsmall: 12, xlarge: 4}} className={styles.gridColumn}>
+                <Box className={styles.gridItem} padding="normal">
+                  <Card href={href} fullWidth ctaVariant="arrow">
+                    <Card.Icon icon={icon} hasBackground color={iconColor} />
+                    <Card.Tokens>
+                      {tokens.map(({labelKey, variant}) => (
+                        <Token key={labelKey} variant={variant}>
+                          {t(labelKey)}
+                        </Token>
+                      ))}
+                    </Card.Tokens>
+                    <Card.Heading>{t(headingKey)}</Card.Heading>
+                    <Card.Description>{t(descriptionKey)}</Card.Description>
+                  </Card>
+                </Box>
+              </Grid.Column>
+            )
+          })}
+        </Grid>
       </Box>
-    </ThemeProvider>
-  ),
-]
+    </Box>
+  )
+}
 
 export const WithInlineCodeElement: StoryFn<typeof Card> = () => {
+  const {t} = useTranslation('Card')
+
   return (
     <Stack direction="vertical" gap="spacious">
       <Stack direction={{narrow: 'vertical', wide: 'horizontal'}} gap="normal">
         <Stack direction="vertical" gap="normal">
-          <Text as="p">Default:</Text>
+          <Text as="p">{t('default_label')}</Text>
           <Card href="https://github.com">
             <Card.Heading>
-              Use any <code>/model</code> parallelize with <code>/fleet</code>
+              {t('use_any')} <code>/model</code> {t('parallelize_with')} <code>/fleet</code>
             </Card.Heading>
             <Card.Description>
-              Use <code>/model</code> to switch, then <code>/fleet</code> to execute in parallel or run multiple models
-              at once.
+              {t('use')} <code>/model</code> {t('to_switch_then')} <code>/fleet</code> {t('to_execute_in_parallel')}
             </Card.Description>
           </Card>
         </Stack>
         <Stack direction="vertical" gap="normal">
-          <Text as="p">disableAnimation:</Text>
+          <Text as="p">{t('disable_animation_label')}</Text>
           <Card href="https://github.com" disableAnimation>
             <Card.Heading>
-              Use any <code>/model</code> parallelize with <code>/fleet</code>
+              {t('use_any')} <code>/model</code> {t('parallelize_with')} <code>/fleet</code>
             </Card.Heading>
             <Card.Description>
-              Use <code>/model</code> to switch, then <code>/fleet</code> to execute in parallel or run multiple models
-              at once.
+              {t('use')} <code>/model</code> {t('to_switch_then')} <code>/fleet</code> {t('to_execute_in_parallel')}
             </Card.Description>
           </Card>
         </Stack>
         <Stack direction="vertical" gap="normal">
-          <Text as="p">Minimal variant:</Text>
+          <Text as="p">{t('minimal_variant_label')}</Text>
           <Card href="https://github.com" variant="minimal">
             <Card.Heading>
-              Use any <code>/model</code> parallelize with <code>/fleet</code>
+              {t('use_any')} <code>/model</code> {t('parallelize_with')} <code>/fleet</code>
             </Card.Heading>
             <Card.Description>
-              Use <code>/model</code> to switch, then <code>/fleet</code> to execute in parallel or run multiple models
-              at once.
+              {t('use')} <code>/model</code> {t('to_switch_then')} <code>/fleet</code> {t('to_execute_in_parallel')}
             </Card.Description>
           </Card>
         </Stack>
       </Stack>
       <Stack direction={{narrow: 'vertical', wide: 'horizontal'}} gap="normal">
         <Stack direction="vertical" gap="normal">
-          <Text as="p">Torchlight variant (dark mode):</Text>
-          <ThemeProvider colorMode="dark">
-            <Box backgroundColor="default">
-              <Card href="https://github.com" variant="torchlight">
-                <Card.Heading>
-                  Use any <code>/model</code> parallelize with <code>/fleet</code>
-                </Card.Heading>
-                <Card.Description>
-                  Use <code>/model</code> to switch, then <code>/fleet</code> to execute in parallel or run multiple
-                  models at once.
-                </Card.Description>
-              </Card>
-            </Box>
-          </ThemeProvider>
-        </Stack>
-        <Stack direction="vertical" gap="normal">
-          <Text as="p">Center aligned with icon:</Text>
+          <Text as="p">{t('center_aligned_with_icon_label')}</Text>
           <Card href="https://github.com" hasBorder fullWidth align="center">
             <Card.Icon icon={CopilotIcon} color="purple" hasBackground />
             <Card.Heading>
-              Use any <code>/model</code> parallelize with <code>/fleet</code>
+              {t('use_any')} <code>/model</code> {t('parallelize_with')} <code>/fleet</code>
             </Card.Heading>
             <Card.Description>
-              Use <code>/model</code> to switch, then <code>/fleet</code> to execute in parallel or run multiple models
-              at once.
+              {t('use')} <code>/model</code> {t('to_switch_then')} <code>/fleet</code> {t('to_execute_in_parallel')}
             </Card.Description>
           </Card>
         </Stack>
@@ -515,32 +635,32 @@ export const WithInlineCodeElement: StoryFn<typeof Card> = () => {
 }
 
 export const WithInlineCodeElementCustomDescriptionSize: StoryFn<typeof Card> = () => {
+  const {t} = useTranslation('Card')
+
   return (
     <Stack direction={{narrow: 'vertical', wide: 'horizontal'}} gap="normal">
       <Stack direction="vertical" gap="normal">
-        <Text as="p">Larger heading and description:</Text>
+        <Text as="p">{t('larger_heading_and_description_label')}</Text>
         <Card href="https://github.com">
           <Card.Heading size="5">
-            Use any <code>/model</code> parallelize with <code>/fleet</code>
+            {t('use_any')} <code>/model</code> {t('parallelize_with')} <code>/fleet</code>
           </Card.Heading>
           <Card.Description>
             <Text size="400">
-              Use <code>/model</code> to switch, then <code>/fleet</code> to execute in parallel or run multiple models
-              at once.
+              {t('use')} <code>/model</code> {t('to_switch_then')} <code>/fleet</code> {t('to_execute_in_parallel')}
             </Text>
           </Card.Description>
         </Card>
       </Stack>
       <Stack direction="vertical" gap="normal">
-        <Text as="p">Smaller heading and description:</Text>
+        <Text as="p">{t('smaller_heading_and_description_label')}</Text>
         <Card href="https://github.com">
           <Card.Heading size="subhead-medium">
-            Use any <code>/model</code> parallelize with <code>/fleet</code>
+            {t('use_any')} <code>/model</code> {t('parallelize_with')} <code>/fleet</code>
           </Card.Heading>
           <Card.Description>
             <Text size="100">
-              Use <code>/model</code> to switch, then <code>/fleet</code> to execute in parallel or run multiple models
-              at once.
+              {t('use')} <code>/model</code> {t('to_switch_then')} <code>/fleet</code> {t('to_execute_in_parallel')}
             </Text>
           </Card.Description>
         </Card>

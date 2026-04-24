@@ -52,6 +52,44 @@
       }
     }
   },
+  "RiverAccordion": {
+    "variant": {
+      "gridline": {
+        "spacing": {
+          "outerBlock": {
+            "value": "var(--base-size-40)",
+            "responsive": {
+              "768px": {
+                "value": "var(--base-size-36)"
+              },
+              "1280px": {
+                "value": "var(--base-size-64)"
+              }
+            }
+          },
+          "outerInline": {
+            "value": "var(--base-size-20)",
+            "responsive": {
+              "768px": {
+                "value": "var(--base-size-36)"
+              },
+              "1280px": {
+                "value": "var(--base-size-64)"
+              }
+            }
+          },
+          "contentGap": {
+            "value": "var(--base-size-32)",
+            "responsive": {
+              "1280px": {
+                "value": "var(--base-size-64)"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
   "RiverBreakout": {
     "spacing": {
       "inner": {

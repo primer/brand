@@ -3,31 +3,51 @@ name: Visual test
 on:
   pull_request:
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   visual-test:
     if: ${{ github.repository == 'primer/brand' }}
     name: Storybook
-    runs-on: ubuntu-latest-16-cores
+    runs-on: macos-latest-xlarge
     env:
       NODE_ENV: test
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
+
+      - name: Set up Node
+        uses: actions/setup-node@v6
+        with:
+          node-version: 24.14.1
+
+      - name: Cache dependencies
+        uses: actions/cache@v5
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - name: Install dependencies
+        run: npm ci
 
       - name: Run visual tests
         id: playwright-step
-        run: cd packages/e2e && bash scripts/playwright/run-visual-tests
+        run: npm run test:visual --workspace=packages/e2e
         continue-on-error: true
 
       - name: Upload error screenshots
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         if: steps.playwright-step.outcome != 'success'
         with:
           name: playwright-test-results
           path: packages/e2e/playwright-test-results
 
       - name: Upload test results
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         if: ${{ !cancelled() }}
         with:
           name: playwright-report
@@ -36,7 +56,7 @@ jobs:
 
       - name: Comment on the PR about visual differences
         if: steps.playwright-step.outcome != 'success'
-        uses: phulsechinmay/rewritable-pr-comment@v0.2.1
+        uses: phulsechinmay/rewritable-pr-comment@a1b041997fa84ec3e524ee9dee5ba0b5f4e73604 # v0.3.0
         with:
           message: |
             ### ⚠️ Visual differences found
@@ -52,7 +72,7 @@ jobs:
             ##### Example:
             ![artifacts section of workflow run](https://user-images.githubusercontent.com/13340707/181026915-2bda8a90-58e3-40ef-a2f6-c9c4af6e9c4a.png)
 
-            If the changes are expected, please run `npm run test:visual:update-snapshots` to replace the previous fixtures.
+            If the changes are expected, please run `npm run test:visual:update` to replace the previous fixtures.
             </details>
 
             [Review visual differences](https://github.com/primer/brand/actions/runs/${{ github.run_id }})
@@ -62,7 +82,7 @@ jobs:
 
       - name: Comment on the PR about no visual differences
         if: steps.playwright-step.outcome == 'success'
-        uses: phulsechinmay/rewritable-pr-comment@v0.2.1
+        uses: phulsechinmay/rewritable-pr-comment@a1b041997fa84ec3e524ee9dee5ba0b5f4e73604 # v0.3.0
         with:
           message: |
             ### 🟢 No visual differences found

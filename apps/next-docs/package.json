@@ -1,6 +1,6 @@
 {
   "name": "@primer/brand-docs",
-  "version": "0.65.1",
+  "version": "0.67.0",
   "private": true,
   "description": "Primer Brand Documentation",
   "keywords": [
@@ -31,23 +31,23 @@
     "start": "next start"
   },
   "dependencies": {
-    "@primer/doctocat-nextjs": "0.9.1",
-    "@primer/octicons-react": "19.22.0",
-    "next": "16.1.6",
-    "react": "19.2.0",
-    "react-dom": "19.2.0"
+    "@primer/doctocat-nextjs": "0.10.0",
+    "@primer/octicons-react": "19.23.1",
+    "next": "16.2.2",
+    "react": "19.2.4",
+    "react-dom": "19.2.4"
   },
   "devDependencies": {
     "@github/prettier-config": "^0.0.6",
-    "@primer/brand-primitives": "^0.65.1",
-    "@primer/react": "38.6.1",
-    "@primer/react-brand": "0.65.1",
-    "@swc/core": "^1.13.5",
-    "@types/node": "22.18.1",
+    "@primer/brand-primitives": "^0.67.0",
+    "@primer/react": "38.18.0",
+    "@primer/react-brand": "0.67.0",
+    "@swc/core": "^1.15.21",
+    "@types/node": "24.12.0",
     "@types/react": "^19.2.6",
     "@types/react-dom": "^19.2.3",
-    "eslint-config-next": "16.1.6",
-    "typescript": "5.8.2"
+    "eslint-config-next": "16.2.2",
+    "typescript": "5.9.3"
   },
   "peerDependencies": {
     "react": "^19.2.0",

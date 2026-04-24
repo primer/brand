@@ -59,6 +59,17 @@ test.describe('Visual Comparison: Testimonial', () => {
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
+  test('Testimonial / Expressive With Background', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-testimonial-examples--expressive-with-background&viewMode=story',
+      {waitUntil: 'networkidle'},
+    )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+    await page.waitForTimeout(500)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
   test('Testimonial / Avatar', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-testimonial-features--avatar&viewMode=story',
@@ -117,6 +128,28 @@ test.describe('Visual Comparison: Testimonial', () => {
   test('Testimonial / Variants Without Border', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-testimonial-features--variants-without-border&viewMode=story',
+      {waitUntil: 'networkidle'},
+    )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+    await page.waitForTimeout(500)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
+  test('Testimonial / Expressive', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-testimonial-features--expressive&viewMode=story',
+      {waitUntil: 'networkidle'},
+    )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+    await page.waitForTimeout(500)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
+  test('Testimonial / Expressive Dark', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-testimonial-features--expressive-dark&viewMode=story',
       {waitUntil: 'networkidle'},
     )
     await page.locator('body.sb-show-main').waitFor({state: 'visible'})

@@ -39,6 +39,17 @@ test.describe('Visual Comparison: PricingOptions', () => {
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
+  test('PricingOptions / With Grid Lines', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-pricingoptions-examples--with-grid-lines&viewMode=story',
+      {waitUntil: 'networkidle'},
+    )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+    await page.waitForTimeout(500)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
   test('PricingOptions / Cards Variant', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-pricingoptions-features--cards-variant&viewMode=story',
@@ -75,6 +86,28 @@ test.describe('Visual Comparison: PricingOptions', () => {
   test('PricingOptions / Leading Component', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-pricingoptions-features--leading-component&viewMode=story',
+      {waitUntil: 'networkidle'},
+    )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+    await page.waitForTimeout(500)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
+  test('PricingOptions / Actions Message', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-pricingoptions-features--actions-message&viewMode=story',
+      {waitUntil: 'networkidle'},
+    )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+    await page.waitForTimeout(500)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
+  test('PricingOptions / Actions Message With Actions', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-pricingoptions-features--actions-message-with-actions&viewMode=story',
       {waitUntil: 'networkidle'},
     )
     await page.locator('body.sb-show-main').waitFor({state: 'visible'})
@@ -268,5 +301,26 @@ test.describe('Visual Comparison: PricingOptions', () => {
       await page.waitForTimeout(500)
       await expect(page).toHaveScreenshot({fullPage: true})
     })
+  })
+  test('PricingOptions / With Info Tooltips', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-pricingoptions-features--with-info-tooltips&viewMode=story',
+      {waitUntil: 'networkidle'},
+    )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+    await page.waitForTimeout(500)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
+  test('PricingOptions / With Menu Action', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-pricingoptions-features--with-menu-action&viewMode=story',
+      {waitUntil: 'networkidle'},
+    )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+    await page.waitForTimeout(500)
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 })

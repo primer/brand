@@ -1,0 +1,226 @@
+{
+  "common": {
+    "learnMore": "Learn more",
+    "brandDividerAlt": "Brand divider"
+  },
+  "subNav": {
+    "heading": "GitHub Copilot",
+    "links": {
+      "vscode": "Copilot in VS Code",
+      "agents": "Agents on GitHub",
+      "cli": "Copilot CLI",
+      "business": "For Business",
+      "tutorials": "Tutorials",
+      "pricing": "Plans & Pricing"
+    }
+  },
+  "hero": {
+    "label": "GitHub Copilot",
+    "headingLine1": "Command",
+    "headingLine2": "your craft",
+    "description": "Your AI accelerator for every workflow, from the editor to the enterprise.",
+    "primaryAction": "Try Copilot now",
+    "secondaryAction": "See plans & pricing",
+    "trailingText": "Already have Visual Studio Code?",
+    "trailingLinkText": "Open now",
+    "peekAlt": "GitHub Copilot mascot peeking from the bottom of the grid area",
+    "imageAlt": "GitHub Copilot agent mode in VS Code"
+  },
+  "logoSuiteHeading": "GitHub Copilot partner logos",
+  "resourceCards": {
+    "one": {
+      "heading": "Go beyond one-size-fits-all",
+      "description": "Choose from leading LLMs optimized for speed, accuracy, or cost."
+    },
+    "two": {
+      "heading": "Use your agents, your way",
+      "description": "Use GitHub Copilot, your own custom agents, or the third-party ones you already rely on."
+    },
+    "three": {
+      "heading": "Stay in your flow",
+      "description": "Copilot works where you do: in GitHub, your IDE, project tools, chat apps, and custom MCP servers."
+    }
+  },
+  "workflow": {
+    "label": "Workflow",
+    "heading": "Code, command, and collaborate",
+    "description": "AI that works where you do, whether in your editor, on the command line, or across GitHub."
+  },
+  "rivers": {
+    "one": {
+      "eyebrow": "Feature",
+      "heading": "Make your editor your most powerful accelerator",
+      "description": "Copilot in your editor does it all, from explaining concepts and completing code, to proposing edits and validating files with agent mode.",
+      "linkText": "Explore Copilot in the IDE",
+      "imageAlt": "GitHub Copilot agent mode in VS Code"
+    },
+    "two": {
+      "eyebrow": "Feature",
+      "heading": "Ship faster with AI that codes with you",
+      "description": "Assign issues directly to Copilot and let it autonomously write code, create pull requests, and respond to feedback in the background.",
+      "linkText": "Explore Copilot coding agent",
+      "imageAlt": "GitHub Copilot coding agent working on a GitHub issue"
+    },
+    "three": {
+      "eyebrow": "Feature",
+      "heading": "Bring AI to your terminal workflow",
+      "description": "Direct Copilot in the terminal using natural language and watch it plan, build, and execute complex workflows powered by your GitHub context.",
+      "linkText": "Explore GitHub Copilot CLI",
+      "imageAlt": "GitHub Copilot CLI working in the terminal"
+    }
+  },
+  "bento": {
+    "heading": "Grupo Boticario increases developer productivity by 94% with Copilot.",
+    "linkText": "Read customer story",
+    "imageAlt": "Grupo Boticario team members collaborating in an office setting"
+  },
+  "organization": {
+    "heading": "Tailor-made for your organization",
+    "description": "Shape Copilot to your business needs. Customize what it knows, how it acts, and where it connects.",
+    "cards": {
+      "one": {
+        "tag": "Tool",
+        "heading": "Turn Copilot into a project expert",
+        "description": "Scale knowledge and keep teams consistent by creating a shared source of truth that includes context from your docs and repositories."
+      },
+      "two": {
+        "tag": "Developer docs",
+        "heading": "Manage agent usage with enterprise-grade controls",
+        "description": "Track activity with detailed audit logs and enforce governance by managing agents from a single control plane."
+      },
+      "three": {
+        "tag": "Developer docs",
+        "heading": "Secure your MCP integrations",
+        "description": "Control which MCP servers developers can access from their IDEs, and use allow lists to prevent unauthorized access."
+      }
+    }
+  },
+  "plans": {
+    "label": "Plans",
+    "heading": "Take flight with GitHub Copilot",
+    "tabsAriaLabel": "GitHub Copilot plan categories",
+    "tabs": {
+      "individuals": "For individuals",
+      "businesses": "For businesses"
+    }
+  },
+  "pricing": {
+    "free": {
+      "heading": "Free",
+      "description": "A fast way to get started with GitHub Copilot.",
+      "price": "0",
+      "primaryAction": "Get started",
+      "secondaryAction": "Open in your IDE",
+      "features": {
+        "one": "50 agent mode or chat requests per month",
+        "two": "2,000 completions /mo",
+        "three": "Access to Haiku 4.5, GPT-4.1, and more"
+      }
+    },
+    "pro": {
+      "heading": "Pro",
+      "label": "Most popular",
+      "description": "Accelerate workflows with GitHub Copilot.",
+      "price": "10",
+      "trailingText": "per month or $100 per year",
+      "primaryAction": "Try for 30 days free",
+      "featureListHeading": "Everything in Free and:",
+      "features": {
+        "one": "Coding agent",
+        "two": "Unlimited agent mode and chats with GPT-5 mini",
+        "three": "Access to code review, Claude Sonnet 4/4.5, GPT-5, Gemini 2.5 Pro, and more",
+        "four": "300 premium requests to use latest models, with the option to buy more"
+      },
+      "footnote": "Free for verified students, teachers, and maintainers of popular open source projects.",
+      "footnoteLinkText": "Learn more"
+    },
+    "proPlus": {
+      "heading": "Pro+",
+      "description": "Scale with agents and more models.",
+      "price": "39",
+      "trailingText": "per month or $390 per year",
+      "primaryAction": "Get started",
+      "featureListHeading": "Everything in Pro and:",
+      "features": {
+        "one": "Access to all models, including Claude Opus 4.1 and more",
+        "two": "5x more premium requests than Pro to use the latest models, with the option to buy more",
+        "three": "Access to GitHub Spark",
+        "four": "Codex IDE extension support in VS Code"
+      }
+    }
+  },
+  "resources": {
+    "heading": "Get the most out of GitHub Copilot",
+    "cards": {
+      "one": {
+        "tag": "CHANGELOG",
+        "heading": "Preview the latest features",
+        "description": "Be the first to explore what's next for GitHub Copilot."
+      },
+      "two": {
+        "tag": "BLOG",
+        "heading": "Explore the GitHub blog",
+        "description": "Discover the latest in software development with insights and more."
+      },
+      "three": {
+        "tag": "DEVELOPER DOCS",
+        "heading": "Visit the Trust Center",
+        "description": "Gain peace of mind with our security, privacy, and responsible AI policies."
+      }
+    }
+  },
+  "faq": {
+    "headingLine1": "Frequently",
+    "headingLine2": "asked questions",
+    "groups": {
+      "general": {
+        "heading": "General",
+        "items": {
+          "one": {
+            "question": "What is GitHub Copilot?",
+            "answer": "GitHub Copilot is GitHub's AI developer toolset for code completion, chat, agent workflows, and assistance across the software development lifecycle."
+          }
+        }
+      },
+      "pricing": {
+        "heading": "Plans & pricing",
+        "items": {
+          "one": {
+            "question": "What are the differences between the Free, Pro, Business, and Enterprise plans?",
+            "answer": "Free is a limited entry point for trying Copilot. Pro adds coding agent access, broader model choice, and premium requests for individual developers. Business and Enterprise add organization-wide controls, governance, and admin capabilities for teams operating at scale."
+          },
+          "two": {
+            "question": "How can I upgrade my GitHub Copilot Free license to Copilot Pro?",
+            "answer": "You can upgrade from your GitHub account billing settings by choosing Copilot Pro or Pro+. That keeps your Copilot setup intact while expanding the models, requests, and features available to you."
+          },
+          "three": {
+            "question": "What is included in GitHub Copilot Free?",
+            "answer": "GitHub Copilot Free includes 50 agent mode or chat requests per month, 2,000 code completions per month, and access to a starter set of supported models."
+          },
+          "four": {
+            "question": "Which plan includes GitHub Copilot Autofix?",
+            "answer": "Autofix availability depends on the GitHub plan and security products attached to your organization. Use the compare page or plan documentation for the latest eligibility details."
+          }
+        }
+      },
+      "privacy": {
+        "heading": "Privacy",
+        "items": {
+          "one": {
+            "question": "How does GitHub Copilot handle my code and data?",
+            "answer": "GitHub publishes plan-specific privacy details so teams can understand how prompts, suggestions, and related telemetry are handled for their chosen deployment model."
+          }
+        }
+      },
+      "responsibleAi": {
+        "heading": "Responsible AI",
+        "items": {
+          "one": {
+            "question": "How does GitHub approach responsible AI?",
+            "answer": "GitHub documents its approach to responsible AI through model policies, safeguards, transparency guidance, and product controls designed to support safe adoption."
+          }
+        }
+      }
+    }
+  }
+}

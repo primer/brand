@@ -2,8 +2,8 @@ import React, {forwardRef, PropsWithChildren, useMemo, type Ref, useCallback} fr
 import {clsx} from 'clsx'
 import {Link, LinkProps} from '../Link'
 import {Heading, HeadingProps, defaultHeadingTag} from '../Heading'
-import {Text} from '../Text'
-import {Label, LabelProps} from '../Label'
+import {Text, TextProps} from '../Text'
+import {TextCursorAnimation} from '../TextCursorAnimation'
 import {useAnimation} from '../animation'
 
 import styles from './SectionIntro.module.css'
@@ -117,15 +117,33 @@ const _Description = forwardRef(
   },
 )
 
-type SectionIntroLabelProps = LabelProps & BaseProps<HTMLDivElement>
+export type SectionIntroLabelProps = Omit<TextProps, 'as' | 'ref' | 'animate'> &
+  Omit<BaseProps<HTMLSpanElement>, 'animate'> & {
+    animate?: boolean
+    animationDelay?: number
+  }
 
-function _Label({children, ...rest}: PropsWithChildren<SectionIntroLabelProps>) {
-  return (
-    <Label className={styles['SectionIntro-label']} {...rest}>
-      {children}
-    </Label>
-  )
-}
+const _Label = forwardRef<HTMLSpanElement, PropsWithChildren<SectionIntroLabelProps>>(
+  (
+    {
+      children,
+      className,
+      variant = 'muted',
+      animate = false,
+      animationDelay = 1000,
+      ...rest
+    }: PropsWithChildren<SectionIntroLabelProps>,
+    ref,
+  ) => {
+    return (
+      <span ref={ref} className={clsx(styles['SectionIntro-label'], className)} {...rest}>
+        <TextCursorAnimation variant={variant} animate={animate} delay={animationDelay}>
+          {children}
+        </TextCursorAnimation>
+      </span>
+    )
+  },
+)
 
 type SectionIntroLinkProps = Omit<LinkProps, 'size'> & BaseProps<HTMLAnchorElement>
 

@@ -11,6 +11,7 @@ thumbnail_darkMode: '/images/thumbnails/pricing-options-thumbnail-dark.png'
 ---
 
 import {Label} from '@primer/react'
+import {InfoIcon} from '@primer/octicons-react'
 
 import {
   PricingOptionsAsProp,
@@ -20,7 +21,6 @@ import {
   PricingOptionsFeatureListChildrenProp,
   PricingOptionsFeatureListAccordionAsProp,
   PricingOptionsFeatureListItemVariantProp,
-
 } from './react'
 
 ## Examples
@@ -377,6 +377,60 @@ Use `PricingOptions.FeatureListItem` with `variant="included"` and `variant="exc
 </PricingOptions>
 ```
 
+### Info tooltips
+
+Use `infoTooltip` on `PricingOptions.FeatureListItem` to add a supplementary tooltip to a feature.
+
+```jsx live
+<PricingOptions>
+  <PricingOptions.Item>
+    <PricingOptions.Heading>Pro</PricingOptions.Heading>
+    <PricingOptions.Description>Accelerate workflows with GitHub Copilot.</PricingOptions.Description>
+    <PricingOptions.Price currencySymbol="$" trailingText="per month / $100 per year">
+      10
+    </PricingOptions.Price>
+    <PricingOptions.FeatureList>
+      <PricingOptions.FeatureListItem>Code completions</PricingOptions.FeatureListItem>
+      <PricingOptions.FeatureListItem infoTooltip="Interact with Copilot using natural language.">
+        Chat in IDE and Mobile
+      </PricingOptions.FeatureListItem>
+      <PricingOptions.FeatureListItem infoTooltip="Get help directly in your terminal.">
+        CLI assistance
+      </PricingOptions.FeatureListItem>
+      <PricingOptions.FeatureListItem>Security vulnerability filter</PricingOptions.FeatureListItem>
+    </PricingOptions.FeatureList>
+    <PricingOptions.PrimaryAction href="/buy">Start a free trial</PricingOptions.PrimaryAction>
+  </PricingOptions.Item>
+</PricingOptions>
+```
+
+### Actions message
+
+Use `PricingOptions.ActionsMessage` to render status, billing, or upgrade notes in the actions area. Add
+`leadingComponent` when you want to show a supporting icon.
+
+```jsx live
+<PricingOptions variant="cards">
+  <PricingOptions.Item>
+    <PricingOptions.Label>Most popular</PricingOptions.Label>
+    <PricingOptions.Heading>Pro</PricingOptions.Heading>
+    <PricingOptions.Description>Accelerate workflows with GitHub Copilot.</PricingOptions.Description>
+    <PricingOptions.Price trailingText="per user / month">10</PricingOptions.Price>
+    <PricingOptions.PrimaryAction disabled>Upgrade now</PricingOptions.PrimaryAction>
+    <PricingOptions.ActionsMessage leadingComponent={<InfoIcon />}>
+      <Text as="p" size="100">
+        <strong>Upgrades are temporarily paused.</strong> We are rolling out a more flexible billing experience.
+      </Text>
+    </PricingOptions.ActionsMessage>
+    <PricingOptions.FeatureList hasDivider={false}>
+      <PricingOptions.FeatureListItem>Copilot cloud agent</PricingOptions.FeatureListItem>
+      <PricingOptions.FeatureListItem>Copilot code review</PricingOptions.FeatureListItem>
+      <PricingOptions.FeatureListItem>Claude and Codex on GitHub and VS Code</PricingOptions.FeatureListItem>
+    </PricingOptions.FeatureList>
+  </PricingOptions.Item>
+</PricingOptions>
+```
+
 ## Component props
 
 ### PricingOptions <Label>Required</Label>
@@ -386,10 +440,11 @@ Use `PricingOptions.FeatureListItem` with `variant="included"` and `variant="exc
 | `as`       | <PricingOptionsAsProp />      | `section` | `false`  | Applies the underlying HTML element |
 | `children` | `PricingOptions.Item`         |           |  `true`  | Applies the underlying HTML element |
 | `variant`  | <PricingOptionsVariantProp /> |           | `false`  | Sets the style variant              |
+| `style`    | `React.CSSProperties`         |           | `false`  | Inline CSS overrides                |
 
 ### PricingOptions.Item <Label>Required</Label>
 
-One item per pricing plan to be displayed. Maximum of 3 items.
+One item per pricing plan to be displayed. Maximum of 4 items.
 
 | Name       | Type                               |   Default   | required | Description              |
 | :--------- | :--------------------------------- | :---------: | :------: | :----------------------- |
@@ -404,9 +459,9 @@ One item per pricing plan to be displayed. Maximum of 3 items.
 
 ### PricingOptions.Label
 
-| Name       | Type        |   Default   | required | Description           |
-| :--------- | :---------- | :---------: | :------: | :-------------------- |
-| `children` | `ReactNode` | `undefined` |  `true`  | The label of the item |
+| Name       | Type        |   Default   | required | Description                          |
+| :--------- | :---------- | :---------: | :------: | :----------------------------------- |
+| `children` | `ReactNode` | `undefined` |  `true`  | The column header label for the item |
 
 ### PricingOptions.Description
 
@@ -423,6 +478,13 @@ One item per pricing plan to be displayed. Maximum of 3 items.
 | `currencySymbol` | `string`    |     `$`     | `false`  | The currency symbol                                |
 | `originalPrice`  | `string`    | `undefined` | `false`  | The initial price before any discounts are applied |
 | `trailingText`   | `string`    |             | `false`  | The trailing text                                  |
+
+### PricingOptions.ActionsMessage
+
+| Name               | Type           |   Default   | required | Description                                                                       |
+| :----------------- | :------------- | :---------: | :------: | :-------------------------------------------------------------------------------- |
+| `children`         | `ReactNode`    | `undefined` |  `true`  | The message content rendered in the actions area                                  |
+| `leadingComponent` | `ReactElement` | `undefined` | `false`  | Optional leading visual, typically an icon. Sizing is handled by component styles |
 
 ### PricingOptions.FeatureList
 
@@ -448,10 +510,17 @@ One item per pricing plan to be displayed. Maximum of 3 items.
 
 ### PricingOptions.FeatureListItem
 
-| Name       | Type                                         |   Default   | required | Description                         |
-| :--------- | :------------------------------------------- | :---------: | :------: | :---------------------------------- |
-| `children` | `ReactNode`                                  | `undefined` |  `true`  | The item of the feature list set    |
-| `variant`  | <PricingOptionsFeatureListItemVariantProp /> | `included`  | `false`  | The variant of the feature list set |
+| Name          | Type                                         |   Default   | required | Description                                               |
+| :------------ | :------------------------------------------- | :---------: | :------: | :-------------------------------------------------------- |
+| `children`    | `ReactNode`                                  | `undefined` |  `true`  | The item of the feature list set                          |
+| `infoTooltip` | `string`                                     | `undefined` | `false`  | Tooltip text shown on hover/focus via an info icon button |
+| `variant`     | <PricingOptionsFeatureListItemVariantProp /> | `included`  | `false`  | The variant of the feature list set                       |
+
+### PricingOptions.MenuAction
+
+| Name       | Type        |   Default   | required | Description                                                 |
+| :--------- | :---------- | :---------: | :------: | :---------------------------------------------------------- |
+| `children` | `ReactNode` | `undefined` |  `true`  | An `ActionMenu` component, typically in `split-button` mode |
 
 ### PricingOptions.Footnote
 

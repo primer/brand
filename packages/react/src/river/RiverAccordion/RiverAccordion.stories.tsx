@@ -13,10 +13,15 @@ const meta: Meta<MetaProps> = {
   component: RiverAccordion,
   args: {
     align: 'start',
+    variant: 'default',
   },
   argTypes: {
     align: {
       options: ['start', 'end'],
+      control: {type: 'inline-radio'},
+    },
+    variant: {
+      options: ['default', 'gridline'],
       control: {type: 'inline-radio'},
     },
   },

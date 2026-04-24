@@ -10,21 +10,21 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Checkout reference branch
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           ref: ${{ github.base_ref }}
           path: temp-main
 
       - name: Set up Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
-          node-version: 24
+          node-version: 24.14.1
 
       - name: Cache dependencies
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: ~/.npm
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
@@ -46,18 +46,18 @@ jobs:
       - name: Export diff
         run: |
           diff -r -y --width=300 -B -I 'Generated' --suppress-common-lines temp-main/packages/design-tokens/lib/design-tokens/css packages/design-tokens/lib/design-tokens/css  | tail -n +2 > diff.txt
-          npx ts-node ./packages/design-tokens/scripts/ci-check-diff.ts
+          npm exec -- tsx packages/design-tokens/scripts/ci-check-diff.ts
 
       - name: Read raw diff
         if: hashFiles('diff.md') != ''
         id: diff
-        uses: juliangruber/read-file-action@v1
+        uses: juliangruber/read-file-action@271ff311a4947af354c6abcd696a306553b9ec18 # v1.1.8
         with:
           path: ./diff.md
 
       - name: Post diff
         if: hashFiles('diff.md') != ''
-        uses: phulsechinmay/rewritable-pr-comment@v0.2.1
+        uses: phulsechinmay/rewritable-pr-comment@a1b041997fa84ec3e524ee9dee5ba0b5f4e73604 # v0.3.0
         with:
           message: ${{ steps.diff.outputs.content }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -65,7 +65,7 @@ jobs:
 
       - name: Comment on the PR about no results
         if: hashFiles('diff.md') == ''
-        uses: phulsechinmay/rewritable-pr-comment@v0.2.1
+        uses: phulsechinmay/rewritable-pr-comment@a1b041997fa84ec3e524ee9dee5ba0b5f4e73604 # v0.3.0
         with:
           message: |
             ### 🟢 No design token changes found

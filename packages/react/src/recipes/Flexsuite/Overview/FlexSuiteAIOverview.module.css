@@ -1,0 +1,107 @@
+.page {
+  min-height: 100dvh;
+  /*
+   * TODO: fix the block psuedo borders in River and Tiles to remove this.
+   */
+  overflow-x: clip;
+}
+
+/* Copilot / mascot head */
+.heroTrailingPeek {
+  position: relative;
+}
+
+.heroTrailingPeekImage {
+  position: absolute;
+  inset-inline-start: var(--hero-peek-left);
+  inset-block-end: var(--hero-peek-bottom);
+  inline-size: var(--hero-peek-width);
+  block-size: auto;
+}
+
+/*
+ * Because gridlines stretch outside the native Grid, we need to use a wrapper.
+ * TODO: Create a CardGroup (or similar) component.
+ */
+.cardGridFrame {
+  width: 100%;
+  border-block-start: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
+  border-block-end: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
+}
+
+.cardGridFrameNoTopBorder {
+  border-block-start: 0;
+}
+
+.cardGridContent {
+  width: 100%;
+}
+
+.cardGridColumn {
+  display: flex;
+}
+
+.cardGridItem {
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border-inline: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
+  border-block-start: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
+}
+
+.cardGridColumnArrowHover .cardGridItem {
+  transition: background var(--brand-animation-duration-extended) var(--brand-animation-easing-default);
+}
+
+.cardGridColumnArrowHover .cardGridItem:is(:hover, :focus-within) {
+  background: linear-gradient(180deg, rgba(242, 245, 243, 0.5) 0%, rgba(242, 245, 243, 0) 100%),
+    var(--brand-color-canvas-default);
+}
+
+[data-color-mode='dark'] .cardGridColumnArrowHover .cardGridItem:is(:hover, :focus-within) {
+  background: linear-gradient(180deg, rgba(242, 245, 243, 0.1) 0%, rgba(242, 245, 243, 0) 100%),
+    var(--brand-color-canvas-default);
+}
+
+.cardGridColumn:first-child .cardGridItem {
+  border-block-start: 0;
+}
+
+.resourceCard {
+  min-block-size: 100%;
+}
+
+.fullWidthTabsPanel :global([class*='Tabs__panelContainer']) {
+  width: 100%;
+  justify-self: stretch;
+}
+
+/*
+* TODO: Add a gridline / reafactored version of Bento
+*/
+.bentoInlineFrame {
+  width: 100%;
+  border-inline: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
+}
+
+.bentoVisualNoRadius > .bentoVisualImageNoRadius {
+  border-radius: 0;
+}
+
+@media screen and (min-width: 63.25rem) {
+  .cardGridItem {
+    padding: var(--base-size-24);
+    border-block-start: 0;
+    border-inline-end: 0;
+    border-inline-start: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
+  }
+
+  .cardGridColumn:nth-child(n + 4) .cardGridItem {
+    border-block-start: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
+  }
+
+  .cardGridColumn:nth-child(3n) .cardGridItem,
+  .cardGridColumn:last-child .cardGridItem {
+    border-inline-end: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
+  }
+}

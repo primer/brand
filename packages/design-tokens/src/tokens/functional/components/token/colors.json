@@ -1,0 +1,64 @@
+{
+  "Token": {
+    "bgColor": {
+      "default": {
+        "value": "var(--base-color-scale-gray-0)",
+        "dark": "var(--base-color-scale-gray-7)"
+      },
+      "accent": {
+        "value": "var(--base-color-scale-green-6)",
+        "dark": "var(--base-color-scale-green-2)"
+      },
+      "hover": {
+        "default": {
+          "value": "var(--base-color-scale-gray-1)",
+          "dark": "var(--base-color-scale-gray-6)"
+        },
+        "accent": {
+          "value": "var(--base-color-scale-green-7)",
+          "dark": "var(--base-color-scale-green-1)"
+        },
+        "outline": {
+          "value": "rgba(0,0,0,0.06)",
+          "dark": "var(--brand-color-canvas-subtle)"
+        },
+        "invisible": {
+          "value": "rgba(0,0,0,0.06)",
+          "dark": "var(--brand-color-canvas-subtle)"
+        }
+      },
+      "invisible": {
+        "value": "var(--base-color-scale-gray-1)",
+        "dark": "transparent"
+      },
+      "outline": {
+        "value": "transparent",
+        "dark": "transparent"
+      }
+    },
+    "border": {
+      "outline": {
+        "value": "var(--brand-color-border-muted)",
+        "dark": "var(--brand-color-border-default)"
+      }
+    },
+    "fgColor": {
+      "default": {
+        "value": "var(--brand-color-text-default)",
+        "dark": "var(--brand-color-text-default)"
+      },
+      "accent": {
+        "value": "var(--base-color-scale-white-0)",
+        "dark": "var(--brand-color-text-onEmphasis)"
+      },
+      "outline": {
+        "value": "var(--brand-color-text-default)",
+        "dark": "var(--brand-color-text-default)"
+      },
+      "invisible": {
+        "value": "var(--brand-color-text-default)",
+        "dark": "var(--brand-color-text-default)"
+      }
+    }
+  }
+}

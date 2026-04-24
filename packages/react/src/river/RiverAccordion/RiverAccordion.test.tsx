@@ -2,13 +2,13 @@ import React, {render, within} from '@testing-library/react'
 import '@testing-library/jest-dom'
 import userEvent from '@testing-library/user-event'
 
-import {RiverAccordion, RiverAccordionProps} from '../'
+import {RiverAccordion, RiverAccordionProps, RiverAccordionVariants} from '../'
 import {axe, toHaveNoViolations} from 'jest-axe'
 
 expect.extend(toHaveNoViolations)
 
-const MockRiverAccordion = ({align}: RiverAccordionProps) => (
-  <RiverAccordion align={align}>
+const MockRiverAccordion = ({align, variant}: RiverAccordionProps) => (
+  <RiverAccordion align={align} variant={variant}>
     <RiverAccordion.Item>
       <RiverAccordion.Heading>Heading 1</RiverAccordion.Heading>
       <RiverAccordion.Content>Content 1</RiverAccordion.Content>
@@ -36,6 +36,13 @@ const MockRiverAccordion = ({align}: RiverAccordionProps) => (
 describe('RiverAccordion', () => {
   it('has no a11y violations', async () => {
     const {container} = render(<MockRiverAccordion />)
+    const results = await axe(container)
+
+    expect(results).toHaveNoViolations()
+  })
+
+  it('has no a11y violations with gridline variant', async () => {
+    const {container} = render(<MockRiverAccordion variant="gridline" />)
     const results = await axe(container)
 
     expect(results).toHaveNoViolations()
@@ -206,5 +213,41 @@ describe('RiverAccordion', () => {
     const accordionRoot = container.firstChild
 
     expect(accordionRoot).toHaveClass('RiverAccordion__align-end')
+  })
+
+  it('renders a chevron-down icon on a collapsed item', () => {
+    const {container} = render(<MockRiverAccordion />)
+
+    // Heading 2 is collapsed by default (index 1), its icon span should contain the chevron-down SVG
+    const buttons = container.querySelectorAll('button[aria-expanded]')
+    const collapsedButton = buttons[1] // Heading 2
+    const iconSpan = collapsedButton.querySelector('.RiverAccordion__icon')
+
+    expect(iconSpan).toBeInTheDocument()
+    const svg = iconSpan?.querySelector('svg')
+    expect(svg).toBeInTheDocument()
+    expect(svg).toHaveClass('octicon-chevron-down')
+  })
+
+  it('renders a chevron-up icon on an expanded item', () => {
+    const {container} = render(<MockRiverAccordion />)
+
+    // Heading 1 is expanded by default (index 0), its icon span should contain the chevron-up SVG
+    const buttons = container.querySelectorAll('button[aria-expanded]')
+    const expandedButton = buttons[0] // Heading 1
+    const iconSpan = expandedButton.querySelector('.RiverAccordion__icon')
+
+    expect(iconSpan).toBeInTheDocument()
+    const svg = iconSpan?.querySelector('svg')
+    expect(svg).toBeInTheDocument()
+    expect(svg).toHaveClass('octicon-chevron-up')
+  })
+
+  it.each(RiverAccordionVariants)('applies the correct class for variant="%s"', variant => {
+    const {container} = render(<MockRiverAccordion variant={variant} />)
+
+    const accordionRoot = container.firstChild
+
+    expect(accordionRoot).toHaveClass(`RiverAccordion--variant-${variant}`)
   })
 })

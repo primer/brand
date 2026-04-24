@@ -1,0 +1,226 @@
+{
+  "common": {
+    "learnMore": "Más información",
+    "brandDividerAlt": "Separador de marca"
+  },
+  "subNav": {
+    "heading": "GitHub Copilot",
+    "links": {
+      "vscode": "Copilot en VS Code",
+      "agents": "Agentes en GitHub",
+      "cli": "Copilot CLI",
+      "business": "Para empresas",
+      "tutorials": "Tutoriales",
+      "pricing": "Planes y precios"
+    }
+  },
+  "hero": {
+    "label": "GitHub Copilot",
+    "headingLine1": "Domina",
+    "headingLine2": "tu oficio",
+    "description": "Tu acelerador de IA para cada flujo de trabajo, desde el editor hasta la empresa.",
+    "primaryAction": "Probar Copilot ahora",
+    "secondaryAction": "Ver planes y precios",
+    "trailingText": "¿Ya tienes Visual Studio Code?",
+    "trailingLinkText": "Abrir ahora",
+    "peekAlt": "La mascota de GitHub Copilot asomándose desde la parte inferior del área de cuadrícula",
+    "imageAlt": "GitHub Copilot en modo agente en VS Code"
+  },
+  "logoSuiteHeading": "Logotipos de socios de GitHub Copilot",
+  "resourceCards": {
+    "one": {
+      "heading": "Ve más allá de una solución única para todos",
+      "description": "Elige entre modelos LLM líderes optimizados para velocidad, precisión o costo."
+    },
+    "two": {
+      "heading": "Usa tus agentes a tu manera",
+      "description": "Usa GitHub Copilot, tus propios agentes personalizados o los de terceros en los que ya confías."
+    },
+    "three": {
+      "heading": "Mantente en flujo",
+      "description": "Copilot funciona donde tú trabajas: en GitHub, tu IDE, herramientas de proyecto, apps de chat y servidores MCP personalizados."
+    }
+  },
+  "workflow": {
+    "label": "Flujo de trabajo",
+    "heading": "Programa, ordena y colabora",
+    "description": "IA que trabaja donde tú trabajas, ya sea en tu editor, en la línea de comandos o en GitHub."
+  },
+  "rivers": {
+    "one": {
+      "eyebrow": "Función",
+      "heading": "Haz de tu editor tu acelerador más potente",
+      "description": "Copilot en tu editor lo hace todo: explica conceptos, completa código, propone cambios y valida archivos con modo agente.",
+      "linkText": "Explorar Copilot en el IDE",
+      "imageAlt": "GitHub Copilot en modo agente en VS Code"
+    },
+    "two": {
+      "eyebrow": "Función",
+      "heading": "Entrega más rápido con IA que programa contigo",
+      "description": "Asigna incidencias directamente a Copilot y deja que escriba código, cree pull requests y responda a comentarios de forma autónoma en segundo plano.",
+      "linkText": "Explorar el agente de programación de Copilot",
+      "imageAlt": "Agente de programación de GitHub Copilot trabajando en una incidencia de GitHub"
+    },
+    "three": {
+      "eyebrow": "Función",
+      "heading": "Lleva la IA a tu flujo de trabajo en la terminal",
+      "description": "Dirige a Copilot en la terminal con lenguaje natural y observa cómo planifica, construye y ejecuta flujos complejos con el contexto de GitHub.",
+      "linkText": "Explorar GitHub Copilot CLI",
+      "imageAlt": "GitHub Copilot CLI trabajando en la terminal"
+    }
+  },
+  "bento": {
+    "heading": "Grupo Boticario aumenta la productividad de sus desarrolladores en un 94 % con Copilot.",
+    "linkText": "Leer caso de cliente",
+    "imageAlt": "Miembros del equipo de Grupo Boticario colaborando en una oficina"
+  },
+  "organization": {
+    "heading": "Hecho a la medida de tu organización",
+    "description": "Adapta Copilot a las necesidades de tu empresa. Personaliza lo que sabe, cómo actúa y dónde se conecta.",
+    "cards": {
+      "one": {
+        "tag": "Herramienta",
+        "heading": "Convierte a Copilot en un experto de proyecto",
+        "description": "Escala el conocimiento y mantén la coherencia entre equipos creando una fuente compartida de verdad con contexto de tu documentación y repositorios."
+      },
+      "two": {
+        "tag": "Documentación para desarrolladores",
+        "heading": "Gestiona el uso de agentes con controles de nivel empresarial",
+        "description": "Supervisa la actividad con registros de auditoría detallados y aplica gobernanza gestionando agentes desde un único plano de control."
+      },
+      "three": {
+        "tag": "Documentación para desarrolladores",
+        "heading": "Protege tus integraciones MCP",
+        "description": "Controla a qué servidores MCP pueden acceder los desarrolladores desde sus IDE y usa listas permitidas para evitar accesos no autorizados."
+      }
+    }
+  },
+  "plans": {
+    "label": "Planes",
+    "heading": "Despega con GitHub Copilot",
+    "tabsAriaLabel": "Categorías de planes de GitHub Copilot",
+    "tabs": {
+      "individuals": "Para personas",
+      "businesses": "Para empresas"
+    }
+  },
+  "pricing": {
+    "free": {
+      "heading": "Free",
+      "description": "Una forma rápida de empezar con GitHub Copilot.",
+      "price": "0",
+      "primaryAction": "Comenzar",
+      "secondaryAction": "Abrir en tu IDE",
+      "features": {
+        "one": "50 solicitudes al mes en modo agente o chat",
+        "two": "2.000 completados / mes",
+        "three": "Acceso a Haiku 4.5, GPT-4.1 y más"
+      }
+    },
+    "pro": {
+      "heading": "Pro",
+      "label": "Más popular",
+      "description": "Acelera tus flujos de trabajo con GitHub Copilot.",
+      "price": "10",
+      "trailingText": "por mes o 100 $ al año",
+      "primaryAction": "Pruébalo gratis durante 30 días",
+      "featureListHeading": "Todo lo de Free y además:",
+      "features": {
+        "one": "Agente de programación",
+        "two": "Modo agente y chats ilimitados con GPT-5 mini",
+        "three": "Acceso a revisión de código, Claude Sonnet 4/4.5, GPT-5, Gemini 2.5 Pro y más",
+        "four": "300 solicitudes premium para usar los modelos más recientes, con opción de comprar más"
+      },
+      "footnote": "Gratis para estudiantes, docentes y mantenedores verificados de proyectos populares de código abierto.",
+      "footnoteLinkText": "Más información"
+    },
+    "proPlus": {
+      "heading": "Pro+",
+      "description": "Escala con agentes y más modelos.",
+      "price": "39",
+      "trailingText": "por mes o 390 $ al año",
+      "primaryAction": "Comenzar",
+      "featureListHeading": "Todo lo de Pro y además:",
+      "features": {
+        "one": "Acceso a todos los modelos, incluido Claude Opus 4.1 y más",
+        "two": "5 veces más solicitudes premium que Pro para usar los modelos más recientes, con opción de comprar más",
+        "three": "Acceso a GitHub Spark",
+        "four": "Compatibilidad con la extensión Codex IDE en VS Code"
+      }
+    }
+  },
+  "resources": {
+    "heading": "Saca el máximo partido a GitHub Copilot",
+    "cards": {
+      "one": {
+        "tag": "CHANGELOG",
+        "heading": "Descubre las últimas funciones",
+        "description": "Sé el primero en explorar lo que viene para GitHub Copilot."
+      },
+      "two": {
+        "tag": "BLOG",
+        "heading": "Explora el blog de GitHub",
+        "description": "Descubre lo último en desarrollo de software con ideas, análisis y más."
+      },
+      "three": {
+        "tag": "DOCUMENTACIÓN PARA DESARROLLADORES",
+        "heading": "Visita el Trust Center",
+        "description": "Gana tranquilidad con nuestras políticas de seguridad, privacidad e IA responsable."
+      }
+    }
+  },
+  "faq": {
+    "headingLine1": "Preguntas",
+    "headingLine2": "frecuentes",
+    "groups": {
+      "general": {
+        "heading": "General",
+        "items": {
+          "one": {
+            "question": "¿Qué es GitHub Copilot?",
+            "answer": "GitHub Copilot es el conjunto de herramientas de IA para desarrolladores de GitHub, con autocompletado de código, chat, flujos con agentes y asistencia a lo largo de todo el ciclo de desarrollo de software."
+          }
+        }
+      },
+      "pricing": {
+        "heading": "Planes y precios",
+        "items": {
+          "one": {
+            "question": "¿Cuáles son las diferencias entre los planes Free, Pro, Business y Enterprise?",
+            "answer": "Free es una opción limitada para probar Copilot. Pro añade acceso al agente de programación, una mayor variedad de modelos y solicitudes premium para desarrolladores individuales. Business y Enterprise añaden controles para toda la organización, gobernanza y funciones administrativas para equipos a escala."
+          },
+          "two": {
+            "question": "¿Cómo puedo actualizar mi licencia de GitHub Copilot Free a Copilot Pro?",
+            "answer": "Puedes actualizar desde la configuración de facturación de tu cuenta de GitHub eligiendo Copilot Pro o Pro+. Así mantienes tu configuración de Copilot y amplías los modelos, solicitudes y funciones disponibles."
+          },
+          "three": {
+            "question": "¿Qué incluye GitHub Copilot Free?",
+            "answer": "GitHub Copilot Free incluye 50 solicitudes al mes en modo agente o chat, 2.000 completados de código al mes y acceso a un conjunto inicial de modelos compatibles."
+          },
+          "four": {
+            "question": "¿Qué plan incluye GitHub Copilot Autofix?",
+            "answer": "La disponibilidad de Autofix depende del plan de GitHub y de los productos de seguridad asociados a tu organización. Consulta la página comparativa o la documentación del plan para conocer la elegibilidad actual."
+          }
+        }
+      },
+      "privacy": {
+        "heading": "Privacidad",
+        "items": {
+          "one": {
+            "question": "¿Cómo gestiona GitHub Copilot mi código y mis datos?",
+            "answer": "GitHub publica detalles de privacidad específicos por plan para que los equipos comprendan cómo se gestionan los prompts, las sugerencias y la telemetría asociada según el modelo de implementación elegido."
+          }
+        }
+      },
+      "responsibleAi": {
+        "heading": "IA responsable",
+        "items": {
+          "one": {
+            "question": "¿Cómo aborda GitHub la IA responsable?",
+            "answer": "GitHub documenta su enfoque de IA responsable mediante políticas de modelos, salvaguardas, pautas de transparencia y controles de producto diseñados para apoyar una adopción segura."
+          }
+        }
+      }
+    }
+  }
+}

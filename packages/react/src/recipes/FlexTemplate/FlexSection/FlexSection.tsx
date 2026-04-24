@@ -165,10 +165,7 @@ export function FlexSection({component, className}: FlexSectionProps) {
                   fullWidth={sectionIntro.fullWidth ?? false}
                 >
                   {sectionIntro.label ? (
-                    <SectionIntro.Label
-                      size={sectionIntro.labelSize ?? 'medium'}
-                      color={sectionIntro.labelColor ?? 'default'}
-                    >
+                    <SectionIntro.Label variant={sectionIntro.labelColor === 'default' ? 'default' : undefined}>
                       {typeof sectionIntro.label === 'string' ? sectionIntro.label : sectionIntro.label.text}
                     </SectionIntro.Label>
                   ) : null}
