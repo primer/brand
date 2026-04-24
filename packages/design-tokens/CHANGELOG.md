@@ -1,5 +1,11 @@
 # @primer/brand-primitives
 
+## 0.67.0
+
+### Patch Changes
+
+- [#1314](https://github.com/primer/brand/pull/1314) [`9783702`](https://github.com/primer/brand/commit/9783702380855bcb2af2984a4c6972e89db0779b) Thanks [@rezrah](https://github.com/rezrah)! - Added `--brand-color-canvas-invert` design token, which is the inverse of `--brand-color-canvas-default`. Resolves to black in light mode and white in dark mode.
+
 ## 0.66.0
 
 ### Minor Changes
