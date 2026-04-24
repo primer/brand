@@ -9,6 +9,9 @@ declare const styles: {
   readonly "PricingOptions--layout-cards": string;
   readonly "PricingOptions--layout-default": string;
   readonly "PricingOptions__actions": string;
+  readonly "PricingOptions__actions-message": string;
+  readonly "PricingOptions__actions-message-content": string;
+  readonly "PricingOptions__actions-message-leading-component": string;
   readonly "PricingOptions__description": string;
   readonly "PricingOptions__feature-list": string;
   readonly "PricingOptions__feature-list--has-divider": string;

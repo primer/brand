@@ -11,6 +11,7 @@ thumbnail_darkMode: '/images/thumbnails/pricing-options-thumbnail-dark.png'
 ---
 
 import {Label} from '@primer/react'
+import {InfoIcon} from '@primer/octicons-react'
 
 import {
   PricingOptionsAsProp,
@@ -20,7 +21,6 @@ import {
   PricingOptionsFeatureListChildrenProp,
   PricingOptionsFeatureListAccordionAsProp,
   PricingOptionsFeatureListItemVariantProp,
-
 } from './react'
 
 ## Examples
@@ -404,6 +404,33 @@ Use `infoTooltip` on `PricingOptions.FeatureListItem` to add a supplementary too
 </PricingOptions>
 ```
 
+### Actions message
+
+Use `PricingOptions.ActionsMessage` to render status, billing, or upgrade notes in the actions area. Add
+`leadingComponent` when you want to show a supporting icon.
+
+```jsx live
+<PricingOptions variant="cards">
+  <PricingOptions.Item>
+    <PricingOptions.Label>Most popular</PricingOptions.Label>
+    <PricingOptions.Heading>Pro</PricingOptions.Heading>
+    <PricingOptions.Description>Accelerate workflows with GitHub Copilot.</PricingOptions.Description>
+    <PricingOptions.Price trailingText="per user / month">10</PricingOptions.Price>
+    <PricingOptions.PrimaryAction href="/upgrade">Upgrade now</PricingOptions.PrimaryAction>
+    <PricingOptions.ActionsMessage leadingComponent={<InfoIcon />}>
+      <p>
+        <strong>Upgrades are temporarily paused.</strong> We are rolling out a more flexible billing experience.
+      </p>
+    </PricingOptions.ActionsMessage>
+    <PricingOptions.FeatureList hasDivider={false}>
+      <PricingOptions.FeatureListItem>Copilot cloud agent</PricingOptions.FeatureListItem>
+      <PricingOptions.FeatureListItem>Copilot code review</PricingOptions.FeatureListItem>
+      <PricingOptions.FeatureListItem>Claude and Codex on GitHub and VS Code</PricingOptions.FeatureListItem>
+    </PricingOptions.FeatureList>
+  </PricingOptions.Item>
+</PricingOptions>
+```
+
 ## Component props
 
 ### PricingOptions <Label>Required</Label>
@@ -417,7 +444,7 @@ Use `infoTooltip` on `PricingOptions.FeatureListItem` to add a supplementary too
 
 ### PricingOptions.Item <Label>Required</Label>
 
-One item per pricing plan to be displayed. Maximum of 3 items.
+One item per pricing plan to be displayed. Maximum of 4 items.
 
 | Name       | Type                               |   Default   | required | Description              |
 | :--------- | :--------------------------------- | :---------: | :------: | :----------------------- |
@@ -451,6 +478,13 @@ One item per pricing plan to be displayed. Maximum of 3 items.
 | `currencySymbol` | `string`    |     `$`     | `false`  | The currency symbol                                |
 | `originalPrice`  | `string`    | `undefined` | `false`  | The initial price before any discounts are applied |
 | `trailingText`   | `string`    |             | `false`  | The trailing text                                  |
+
+### PricingOptions.ActionsMessage
+
+| Name               | Type           |   Default   | required | Description                                                                       |
+| :----------------- | :------------- | :---------: | :------: | :-------------------------------------------------------------------------------- |
+| `children`         | `ReactNode`    | `undefined` |  `true`  | The message content rendered in the actions area                                  |
+| `leadingComponent` | `ReactElement` | `undefined` | `false`  | Optional leading visual, typically an icon. Sizing is handled by component styles |
 
 ### PricingOptions.FeatureList
 
