@@ -1,12 +1,10 @@
-import {defineConfig, type CSSOptions, type UserConfig} from 'vite'
+import {defineConfig, type UserConfig} from 'vite'
 import react from '@vitejs/plugin-react'
 import {libInjectCss} from 'vite-plugin-lib-inject-css'
 import {resolve} from 'path'
 import {createHash} from 'crypto'
 import postcssPresetEnv from 'postcss-preset-env'
 import autoprefixer from 'autoprefixer'
-
-type InlinePostcssConfig = Exclude<NonNullable<CSSOptions['postcss']>, string>
 
 function generateScopedName(localName: string, filename: string): string {
   // css-loader uses the filename without extension for [name].
@@ -36,7 +34,7 @@ const postcssPlugins = [
     },
   }),
   autoprefixer(),
-] as unknown as NonNullable<InlinePostcssConfig['plugins']>
+]
 
 const config: UserConfig = {
   plugins: [react({jsxRuntime: 'automatic'}), libInjectCss()],
@@ -46,7 +44,7 @@ const config: UserConfig = {
     },
     postcss: {
       plugins: postcssPlugins,
-    } as InlinePostcssConfig,
+    },
   },
   build: {
     outDir: 'esm',

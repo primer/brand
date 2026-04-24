@@ -95,7 +95,7 @@
     "jest-axe": "10.0.0",
     "jest-environment-jsdom": "^30.3.0",
     "mini-css-extract-plugin": "2.10.2",
-    "postcss": "8.5.8",
+    "postcss": "8.5.10",
     "postcss-loader": "8.2.1",
     "postcss-preset-env": "11.2.0",
     "storybook": "^10.3.4",
