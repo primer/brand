@@ -319,14 +319,13 @@ const CardTokens = forwardRef<HTMLDivElement, CardTokensProps>(
 )
 
 type CardLabelProps = Omit<BaseProps<HTMLSpanElement>, 'animate'> &
-  Omit<React.ComponentPropsWithoutRef<'span'>, 'children' | 'color'> & {
+  Omit<React.ComponentPropsWithoutRef<'span'>, 'children'> & {
     children: React.ReactNode | React.ReactNode[]
-    color?: never
     variant?: CardLabelVariant
   }
 
 const CardLabel = forwardRef<HTMLSpanElement, CardLabelProps>(
-  ({children, color: _legacyColor, variant = defaultCardLabelVariant, className, ...rest}, ref) => {
+  ({children, variant = defaultCardLabelVariant, className, ...rest}, ref) => {
     if (variant === 'accent-text') {
       return (
         <EyebrowText ref={ref} className={clsx(styles.Card__label, className)} variant="accent" {...rest}>

@@ -8,7 +8,7 @@
   max-width: 100%;
   padding-inline: var(--base-size-8);
   padding-block: var(--base-size-6);
-  padding-block-end: calc(var(--base-size-6)); /* Compensate for 1px border to maintain height */
+  padding-block-end: var(--base-size-6);
   vertical-align: middle;
 }
 

@@ -210,20 +210,6 @@ describe('Card', () => {
     expect(container.querySelector('.Card__label')).toHaveClass('Token--variant-default')
   })
 
-  it('rejects the legacy color prop in TypeScript and ignores it at runtime', () => {
-    const {container, getByText} = render(
-      <Card href={mockHref}>
-        {/* @ts-expect-error Testing invalid legacy prop */}
-        <Card.Label color="blue-purple">{mockLabel}</Card.Label>
-        <Card.Heading>{mockHeading}</Card.Heading>
-      </Card>,
-    )
-
-    expect(getByText(mockLabel)).toBeInTheDocument()
-    expect(container.querySelector('.Card__label')).toHaveClass('Token--variant-default')
-    expect(container.querySelector('.Card__label')).not.toHaveAttribute('color')
-  })
-
   it('renders an arrow-only cta variant', () => {
     const {container, getByText} = render(
       <Card href={mockHref} ctaVariant="arrow">
