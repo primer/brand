@@ -50,7 +50,7 @@
     "highlight.js": "11.11.1",
     "i18next": "^26.0.3",
     "i18next-browser-languagedetector": "^8.2.1",
-    "i18next-http-backend": "^3.0.4",
+    "i18next-http-backend": "^3.0.5",
     "identity-obj-proxy": "^3.0.0",
     "postcss": "8.5.8",
     "postcss-loader": "8.2.1",
