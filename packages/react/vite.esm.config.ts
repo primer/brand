@@ -1,10 +1,12 @@
-import {defineConfig} from 'vite'
+import {defineConfig, type CSSOptions, type UserConfig} from 'vite'
 import react from '@vitejs/plugin-react'
 import {libInjectCss} from 'vite-plugin-lib-inject-css'
 import {resolve} from 'path'
 import {createHash} from 'crypto'
 import postcssPresetEnv from 'postcss-preset-env'
 import autoprefixer from 'autoprefixer'
+
+type InlinePostcssConfig = Exclude<NonNullable<CSSOptions['postcss']>, string>
 
 function generateScopedName(localName: string, filename: string): string {
   // css-loader uses the filename without extension for [name].
@@ -26,23 +28,25 @@ function generateScopedName(localName: string, filename: string): string {
   return `Primer_Brand__${name}__${localName}___${hash}`
 }
 
-export default defineConfig({
+const postcssPlugins = [
+  postcssPresetEnv({
+    features: {
+      'logical-properties-and-values': false,
+      'has-pseudo-class': false,
+    },
+  }),
+  autoprefixer(),
+] as unknown as NonNullable<InlinePostcssConfig['plugins']>
+
+const config: UserConfig = {
   plugins: [react({jsxRuntime: 'automatic'}), libInjectCss()],
   css: {
     modules: {
       generateScopedName,
     },
     postcss: {
-      plugins: [
-        postcssPresetEnv({
-          features: {
-            'logical-properties-and-values': false,
-            'has-pseudo-class': false,
-          },
-        }),
-        autoprefixer(),
-      ],
-    },
+      plugins: postcssPlugins,
+    } as InlinePostcssConfig,
   },
   build: {
     outDir: 'esm',
@@ -68,4 +72,6 @@ export default defineConfig({
       },
     },
   },
-})
+}
+
+export default defineConfig(config)
