@@ -19,8 +19,6 @@ import {
   ButtonGroup,
 } from './'
 
-import '@primer/react-brand/lib/css/main.css'
-
 export default function KitchenSink() {
   const inputRef = useRef(null)
 

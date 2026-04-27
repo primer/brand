@@ -43,8 +43,8 @@ export default function HomepageComponent() {
             <Stack padding="none" gap="normal" className={styles.CardGridContainer}>
               <Grid>
                 <Grid.Column span={{xsmall: 12, large: 6, xlarge: 4}}>
-                  <NextLink href="/introduction/getting-started" legacyBehavior passHref>
-                    <Card href="/introduction/getting-started" hasBorder fullWidth>
+                  <NextLink href="/getting-started" legacyBehavior passHref>
+                    <Card href="/getting-started" hasBorder fullWidth>
                       <Card.Heading as="h2">Getting started</Card.Heading>
                       <Card.Description>
                         Standards, guidelines, and tools to get started with Primer Brand.

@@ -15,8 +15,12 @@
     "jsx": "react-jsx",
     "plugins": [{"name": "typescript-plugin-css-modules"}],
     "resolveJsonModule": true,
-    "types": ["node", "react", "react-dom", "chai"]
+    "types": ["node", "react", "react-dom", "chai"],
+    "paths": {
+      // Resolve vite from this package, not the hoisted root copy from Storybook
+      "vite": ["./node_modules/vite"]
+    }
   },
-  "include": ["src/**/*", "scripts/**/*"],
+  "include": ["src/**/*", "scripts/**/*", "vite.esm.config.ts"],
   "exclude": ["integration-tests/**/*"]
 }

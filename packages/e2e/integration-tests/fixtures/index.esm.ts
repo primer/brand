@@ -16,7 +16,7 @@ import {
   ComparisonTable,
   Stack,
   ButtonGroup,
-} from '@primer/react-brand'
+} from '@primer/react-brand/esm'
 
 export {
   Hero,
