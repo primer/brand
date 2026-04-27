@@ -16,4 +16,4 @@ ESM features are opt-in, and the previous UMD bundle (`@primer/react-brand`) and
 
 We recommend switching to ESM as soon as possible, as it will eventually become the default in future.
 
-🔗 [Get started with ESM](https://primer.style/brand/introduction/getting-started/esm)
+🔗 [Get started with ESM](https://primer.style/brand/getting-started/esm)

@@ -41,7 +41,7 @@
   "sideEffects": [
     "**/*.css",
     "./esm/index.esm.js",
-    "./src/css/stylesheets.ts"
+    "./esm/css/stylesheets.js"
   ],
   "files": [
     "lib",
