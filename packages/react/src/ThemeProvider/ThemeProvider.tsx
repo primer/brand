@@ -6,7 +6,15 @@ export enum ColorModesEnum {
   AUTO = 'auto',
 }
 
-export type ColorMode = `${ColorModesEnum}`
+export type ColorMode = `${ColorModesEnum}` | (string & {})
+
+/**
+ * Returns the base color scheme ("light" or "dark") for a given color mode.
+ * Any mode containing "dark" maps to the dark scheme; everything else maps to light.
+ */
+export function getColorScheme(mode: string): 'light' | 'dark' {
+  return mode.includes('dark') ? 'dark' : 'light'
+}
 
 export type ThemeContextProps = {
   /*
@@ -32,6 +40,16 @@ export const ThemeContext = createContext<ThemeContextProps>({
 })
 
 /**
+ * SSR-safe matchMedia wrapper. Returns undefined when window.matchMedia is unavailable.
+ */
+const safeMatchMedia = (query: string): MediaQueryList | undefined => {
+  if (typeof window !== 'undefined' && typeof window.matchMedia === 'function') {
+    return window.matchMedia(query)
+  }
+  return undefined
+}
+
+/**
  * ThemeProvider is used to provide theme-related context to its child components.
  */
 export function ThemeProvider({colorMode = defaultMode, children, ...rest}: PropsWithChildren<ThemeProviderProps>) {
@@ -50,22 +68,23 @@ export function ThemeProvider({colorMode = defaultMode, children, ...rest}: Prop
 
   return (
     <ThemeContext.Provider value={{colorMode: activeMode, availableColorModes}}>
-      <div data-color-mode={activeMode} {...rest}>
+      <div data-color-mode={activeMode} data-color-scheme={getColorScheme(activeMode)} {...rest}>
         {children}
       </div>
     </ThemeContext.Provider>
   )
 }
 
-const queryBrowserPreference = () => window.matchMedia(`(prefers-color-scheme: ${ColorModesEnum.DARK})`)
+const queryBrowserPreference = () => safeMatchMedia(`(prefers-color-scheme: ${ColorModesEnum.DARK})`)
 
 const getActiveAutoMode = () => {
-  const mediaQueryList: MediaQueryList = queryBrowserPreference()
-  return mediaQueryList.matches ? ColorModesEnum.DARK : ColorModesEnum.LIGHT
+  const mediaQueryList = queryBrowserPreference()
+  return mediaQueryList?.matches ? ColorModesEnum.DARK : ColorModesEnum.LIGHT
 }
 
 const handleSystemPreferenceChange = callback => {
   const mediaQueryList = queryBrowserPreference()
+  if (!mediaQueryList) return () => {}
   const changeHandler = event => callback(event.matches ? ColorModesEnum.DARK : ColorModesEnum.LIGHT)
   mediaQueryList.addEventListener('change', changeHandler)
   return () => mediaQueryList.removeEventListener('change', changeHandler)
