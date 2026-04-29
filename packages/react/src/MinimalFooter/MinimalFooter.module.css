@@ -81,7 +81,7 @@
   height: auto;
 }
 
-[data-color-mode='light'] .Footer__social-icon {
+:is([data-color-mode='light'], [data-color-scheme='light']) .Footer__social-icon {
   filter: brightness(95%) saturate(100%);
 }
 

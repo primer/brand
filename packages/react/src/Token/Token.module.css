@@ -22,7 +22,7 @@
   text-decoration: none;
 }
 
-[data-color-mode='dark'] .Token {
+:is([data-color-mode='dark'], [data-color-scheme='dark']) .Token {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: auto;
 }
