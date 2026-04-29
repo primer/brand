@@ -253,19 +253,15 @@ export function FlexSuiteAIOverviewTemplate({content}: FlexSuiteAIOverviewTempla
             </River>
           </Stack>
         </Section>
-        <Box className={styles.cardGridFrame} marginBlockStart={48}>
-          <Grid enableGutters={false}>
-            <Grid.Column>
-              <CTABanner variant="balanced" hasGridLines>
-                <CTABanner.Logo>{<LogoGithubIcon size={64} />}</CTABanner.Logo>
-                <CTABanner.Heading size="5">
-                  {content.bento.headingPrefix} <em>{content.bento.headingEmphasis}</em>
-                </CTABanner.Heading>
-                <CTABanner.Link href="#">{content.bento.linkText}</CTABanner.Link>
-                <CTABanner.Image src={mercardo} alt={content.bento.imageAlt} />
-              </CTABanner>
-            </Grid.Column>
-          </Grid>
+        <Box marginBlockStart={48}>
+          <CTABanner variant="balanced" hasGridLines>
+            <CTABanner.Logo>{<LogoGithubIcon size={64} />}</CTABanner.Logo>
+            <CTABanner.Heading size="5">
+              {content.bento.headingPrefix} <b>{content.bento.headingEmphasis}</b>
+            </CTABanner.Heading>
+            <CTABanner.Link href="#">{content.bento.linkText}</CTABanner.Link>
+            <CTABanner.Image src={mercardo} alt={content.bento.imageAlt} />
+          </CTABanner>
         </Box>
         <Stack justifyContent="center" padding="none">
           <Box borderBlockEndWidth="thin" borderColor="muted" borderStyle="solid">
