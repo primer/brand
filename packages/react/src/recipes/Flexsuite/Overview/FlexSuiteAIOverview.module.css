@@ -76,18 +76,6 @@
   justify-self: stretch;
 }
 
-/*
-* TODO: Add a gridline / reafactored version of Bento
-*/
-.bentoInlineFrame {
-  width: 100%;
-  border-inline: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
-}
-
-.bentoVisualNoRadius > .bentoVisualImageNoRadius {
-  border-radius: 0;
-}
-
 @media screen and (min-width: 63.25rem) {
   .cardGridItem {
     padding: var(--base-size-24);

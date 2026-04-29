@@ -1,4 +1,4 @@
-import {CodeOfConductIcon, CpuIcon, LightBulbIcon, SparkleFillIcon} from '@primer/octicons-react'
+import {CodeOfConductIcon, CpuIcon, LightBulbIcon, LogoGithubIcon, SparkleFillIcon} from '@primer/octicons-react'
 import {clsx} from 'clsx'
 import React, {useEffect} from 'react'
 
@@ -6,6 +6,7 @@ import {
   Box,
   Card,
   ColorModesEnum,
+  CTABanner,
   FAQ,
   FAQGroup,
   Grid,
@@ -25,7 +26,6 @@ import {
   PricingOptions,
   Tabs,
   Tiles,
-  Bento,
   Image,
   useTheme,
 } from '../../..'
@@ -256,27 +256,14 @@ export function FlexSuiteAIOverviewTemplate({content}: FlexSuiteAIOverviewTempla
         <Box className={styles.cardGridFrame} marginBlockStart={48}>
           <Grid enableGutters={false}>
             <Grid.Column>
-              <Box className={styles.bentoInlineFrame}>
-                <Bento>
-                  <Bento.Item
-                    bgColor="default"
-                    columnSpan={12}
-                    rowSpan={5}
-                    flow={{xsmall: 'row', medium: 'column'}}
-                    order="default"
-                  >
-                    <Bento.Content padding={{xsmall: 'normal', small: 'spacious'}}>
-                      <Bento.Heading as="h3" size="4" weight="semibold">
-                        {content.bento.heading}
-                      </Bento.Heading>
-                      <Link href="#">{content.bento.linkText}</Link>
-                    </Bento.Content>
-                    <Bento.Visual padding="condensed" className={styles.bentoVisualNoRadius}>
-                      <img className={styles.bentoVisualImageNoRadius} src={mercardo} alt={content.bento.imageAlt} />
-                    </Bento.Visual>
-                  </Bento.Item>
-                </Bento>
-              </Box>
+              <CTABanner variant="balanced" hasGridLines>
+                <CTABanner.Logo>{<LogoGithubIcon size={64} />}</CTABanner.Logo>
+                <CTABanner.Heading size="5">
+                  {content.bento.headingPrefix} <em>{content.bento.headingEmphasis}</em>
+                </CTABanner.Heading>
+                <CTABanner.Link href="#">{content.bento.linkText}</CTABanner.Link>
+                <CTABanner.Image src={mercardo} alt={content.bento.imageAlt} />
+              </CTABanner>
             </Grid.Column>
           </Grid>
         </Box>

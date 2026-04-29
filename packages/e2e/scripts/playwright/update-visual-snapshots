@@ -3,6 +3,12 @@ set -euo pipefail
 
 REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../../../.." && pwd)"
 
+if [[ "${GITHUB_ACTIONS:-}" != "true" ]] && (echo > /dev/tcp/127.0.0.1/6006) >/dev/null 2>&1; then
+  echo "ERROR: Port 6006 is already in use." >&2
+  echo "Stop your local Storybook dev server before updating visual snapshots," >&2
+  exit 1
+fi
+
 # Run all tests with npm run test:visual.
 # Optionally: Run single stories
 # Examples:
