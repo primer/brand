@@ -17,6 +17,12 @@ module.exports = {
       dark: 'var(--brand-color-canvas-subtle)',
     },
     color: {
+      heading: {
+        emphasis: {
+          value: 'var(--base-color-scale-green-7)',
+          dark: 'var(--brand-color-text-emphasized)',
+        },
+      },
       logo: {
         muted: {
           value: 'var(--brand-color-text-muted)',

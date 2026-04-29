@@ -264,8 +264,12 @@
   align-self: auto;
 }
 
+/*
+ * We use a custom token here because text-emphasized doesn't reach 4.5 contrast
+ * against the default banner bgColor in light mode.
+ */
 .CTABanner-heading b {
-  color: var(--brand-color-text-emphasized);
+  color: var(--brand-CTABanner-color-heading-emphasis);
   font-weight: inherit;
 }
 
