@@ -69,7 +69,8 @@ export type FlexSuiteAIOverviewContent = {
   }
   rivers: FlexSuiteAIOverviewRiverContent[]
   bento: {
-    heading: string
+    headingPrefix: string
+    headingEmphasis: string
     linkText: string
     imageAlt: string
   }
@@ -168,7 +169,8 @@ export const defaultFlexSuiteAIOverviewContent: FlexSuiteAIOverviewContent = {
     },
   ],
   bento: {
-    heading: 'Grupo Boticario increases developer productivity by 94% with Copilot.',
+    headingPrefix: 'Grupo Boticario increases developer productivity by',
+    headingEmphasis: '94% with Copilot.',
     linkText: 'Read customer story',
     imageAlt: 'Grupo Boticario team members collaborating in an office setting',
   },
@@ -405,7 +407,8 @@ export function getLocalizedFlexSuiteAIOverviewContent(t: Translate): FlexSuiteA
       },
     ],
     bento: {
-      heading: t('bento.heading'),
+      headingPrefix: t('bento.headingPrefix'),
+      headingEmphasis: t('bento.headingEmphasis'),
       linkText: t('bento.linkText'),
       imageAlt: t('bento.imageAlt'),
     },

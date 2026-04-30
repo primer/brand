@@ -70,7 +70,8 @@
     }
   },
   "bento": {
-    "heading": "O Grupo Boticário aumenta a produtividade dos desenvolvedores em 94% com o Copilot.",
+    "headingPrefix": "O Grupo Boticário aumenta a produtividade dos desenvolvedores",
+    "headingEmphasis": "em 94% com o Copilot.",
     "linkText": "Ler a história do cliente",
     "imageAlt": "Membros da equipe do Grupo Boticário colaborando em um escritório"
   },

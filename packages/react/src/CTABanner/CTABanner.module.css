@@ -19,21 +19,6 @@
   );
 }
 
-/* Heading size overrides for balanced and minimal variants */
-.CTABanner--variant-balanced .CTABanner-heading {
-  font-weight: var(--brand-heading-weight-700);
-  font-size: var(--brand-text-size-700);
-  line-height: var(--brand-heading-lineHeight-700);
-  letter-spacing: var(--brand-heading-letterSpacing-700);
-}
-
-.CTABanner--variant-minimal .CTABanner-heading {
-  font-weight: var(--brand-heading-weight-400);
-  font-size: var(--brand-text-size-400);
-  line-height: var(--brand-text-lineHeight-400);
-  letter-spacing: var(--brand-heading-letterSpacing-400);
-}
-
 .CTABanner-grid {
   row-gap: 0;
   --brand-Grid-spacing-row: 0;
@@ -189,7 +174,7 @@
     gap: var(--base-size-24);
   }
   .CTABanner--variant-balanced .CTABanner-content {
-    gap: var(--base-size-16);
+    gap: var(--base-size-32);
   }
   .CTABanner-container {
     padding: var(--base-size-96) var(--base-size-64);
@@ -228,6 +213,64 @@
   max-width: 476px;
   width: 100%;
   height: auto;
+}
+
+@media screen and (min-width: 63.25rem) {
+  .CTABanner--variant-balanced .CTABanner-image {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .CTABanner--variant-balanced .CTABanner-grid-column--primary:has(.CTABanner-logo) {
+    align-items: stretch;
+  }
+
+  .CTABanner--variant-balanced .CTABanner-grid-column--primary:has(.CTABanner-logo) > .CTABanner-content {
+    flex: 1;
+  }
+
+  .CTABanner--variant-balanced .CTABanner-content:has(> .CTABanner-logo) > .CTABanner-logo + * {
+    margin-block-start: auto;
+  }
+}
+
+.CTABanner-logo {
+  display: flex;
+  align-items: center;
+  gap: var(--base-size-8);
+  width: 100%;
+  padding-block-end: var(--base-size-32);
+  border-block-end: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
+}
+
+.CTABanner-logo > svg,
+.CTABanner-logo > img {
+  height: var(--base-size-40);
+  width: auto;
+  display: block;
+}
+
+.CTABanner--variant-default .CTABanner-logo {
+  width: auto;
+  padding-block-end: 0;
+  border-block-end: none;
+}
+
+.CTABanner--variant-minimal .CTABanner-logo {
+  margin-block-end: var(--base-size-24);
+}
+
+.CTABanner-link {
+  align-self: auto;
+}
+
+/*
+ * We use a custom token here because text-emphasized doesn't reach 4.5 contrast
+ * against the default banner bgColor in light mode.
+ */
+.CTABanner-heading b {
+  color: var(--brand-CTABanner-color-heading-emphasis);
+  font-weight: inherit;
 }
 
 .CTABanner-heading code,

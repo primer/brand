@@ -1,4 +1,5 @@
 import React, {render, cleanup} from '@testing-library/react'
+import {createRef} from 'react'
 import '@testing-library/jest-dom'
 
 import {CTABanner} from './CTABanner'
@@ -428,5 +429,129 @@ describe('CTABanner', () => {
 
     expect(leadingIndex).toBeLessThan(trailingIndex)
     expect(leadingIndex).toBe(0)
+  })
+
+  it('renders CTABanner.Logo children inside a wrapper with the CTABanner-logo class', () => {
+    const {getByTestId} = render(
+      <CTABanner>
+        <CTABanner.Logo data-testid="logo">
+          <svg data-testid="logo-svg" />
+        </CTABanner.Logo>
+        <CTABanner.Heading>This is your heading</CTABanner.Heading>
+      </CTABanner>,
+    )
+
+    const logoEl = getByTestId('logo')
+    expect(logoEl).toBeInTheDocument()
+    expect(logoEl.className).toMatch(/CTABanner-logo/)
+    expect(getByTestId('logo-svg')).toBeInTheDocument()
+  })
+
+  it('forwards a custom className on CTABanner.Logo alongside the default class', () => {
+    const {getByTestId} = render(
+      <CTABanner>
+        <CTABanner.Logo data-testid="logo" className="custom-logo">
+          <span>Logo</span>
+        </CTABanner.Logo>
+        <CTABanner.Heading>This is your heading</CTABanner.Heading>
+      </CTABanner>,
+    )
+
+    const logoEl = getByTestId('logo')
+    expect(logoEl).toHaveClass('custom-logo')
+    expect(logoEl.className).toMatch(/CTABanner-logo/)
+  })
+
+  it('forwards a ref on CTABanner.Logo to the underlying div element', () => {
+    const ref = createRef<HTMLDivElement>()
+    render(
+      <CTABanner>
+        <CTABanner.Logo ref={ref}>
+          <span>Logo</span>
+        </CTABanner.Logo>
+        <CTABanner.Heading>This is your heading</CTABanner.Heading>
+      </CTABanner>,
+    )
+
+    expect(ref.current).toBeInstanceOf(HTMLDivElement)
+    expect(ref.current?.className).toMatch(/CTABanner-logo/)
+  })
+
+  it('renders CTABanner.Link as an anchor with the CTABanner-link class and forwards href', () => {
+    const {getByRole} = render(
+      <CTABanner>
+        <CTABanner.Heading>This is your heading</CTABanner.Heading>
+        <CTABanner.Link href="https://example.com">Read more</CTABanner.Link>
+      </CTABanner>,
+    )
+
+    const linkEl = getByRole('link', {name: 'Read more'})
+    expect(linkEl).toBeInTheDocument()
+    expect(linkEl).toHaveAttribute('href', 'https://example.com')
+    expect(linkEl.className).toMatch(/CTABanner-link/)
+  })
+
+  it('forwards a custom className on CTABanner.Link alongside the default class', () => {
+    const {getByRole} = render(
+      <CTABanner>
+        <CTABanner.Heading>This is your heading</CTABanner.Heading>
+        <CTABanner.Link href="#" className="custom-link">
+          Read more
+        </CTABanner.Link>
+      </CTABanner>,
+    )
+
+    const linkEl = getByRole('link', {name: 'Read more'})
+    expect(linkEl).toHaveClass('custom-link')
+    expect(linkEl.className).toMatch(/CTABanner-link/)
+  })
+
+  it('renders CTABanner.Heading with size "3" in the default variant when no size prop is provided', () => {
+    const {getByText} = render(
+      <CTABanner>
+        <CTABanner.Heading>Default heading</CTABanner.Heading>
+      </CTABanner>,
+    )
+
+    const headingEl = getByText('Default heading')
+    expect(headingEl.className).toMatch(/Heading--3/)
+  })
+
+  it('auto-applies size "6" to CTABanner.Heading in the minimal variant when no size prop is provided', () => {
+    const {getByText} = render(
+      <CTABanner variant="minimal">
+        <CTABanner.Heading>Minimal heading</CTABanner.Heading>
+      </CTABanner>,
+    )
+
+    const headingEl = getByText('Minimal heading')
+    expect(headingEl.className).toMatch(/Heading--6/)
+    expect(headingEl.className).not.toMatch(/Heading--3/)
+  })
+
+  it('respects an explicit size prop on CTABanner.Heading in the minimal variant', () => {
+    const {getByText} = render(
+      <CTABanner variant="minimal">
+        <CTABanner.Heading size="2">Minimal heading</CTABanner.Heading>
+      </CTABanner>,
+    )
+
+    const headingEl = getByText('Minimal heading')
+    expect(headingEl.className).toMatch(/Heading--2/)
+    expect(headingEl.className).not.toMatch(/Heading--6/)
+  })
+
+  it('renders <b> children inside CTABanner.Heading for duotone emphasis', () => {
+    const {getByText} = render(
+      <CTABanner>
+        <CTABanner.Heading>
+          Where the most ambitious teams <b>build great things</b>
+        </CTABanner.Heading>
+      </CTABanner>,
+    )
+
+    const emphasizedText = getByText('build great things')
+    expect(emphasizedText).toBeInTheDocument()
+    expect(emphasizedText.tagName).toBe('B')
   })
 })

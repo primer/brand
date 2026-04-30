@@ -14,6 +14,7 @@ import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/compone
 /** * Main Stylesheet (as a CSS Module) */
 import styles from './CTABanner.module.css'
 import {Image} from '../Image'
+import {Link, type LinkProps} from '../Link'
 
 export const CTABannerBackgroundColors = ['default', 'subtle'] as const
 
@@ -172,6 +173,15 @@ const Root = forwardRef(
               // minimal variant: image is intentionally excluded from rendering
             } else if (variant === 'minimal' && child.type === _ButtonGroup) {
               acc.ButtonGroupChild = child
+            } else if (child.type === _Heading) {
+              const headingChild = child as React.ReactElement<CTABannerHeadingProps>
+              acc.restChildren.push(
+                headingChild.props.size === undefined
+                  ? React.cloneElement(headingChild, {
+                      size: variant === 'minimal' ? '6' : defaultHeadingSize,
+                    })
+                  : headingChild,
+              )
             } else {
               acc.restChildren.push(child)
             }
@@ -273,7 +283,7 @@ type CTABannerHeadingProps = BaseProps<HTMLHeadingElement> & {
   children: React.ReactNode | React.ReactNode[]
 } & HeadingProps
 
-const defaultHeadingSize = '3'
+const defaultHeadingSize: HeadingProps['size'] = '3'
 
 const _Heading = forwardRef(
   (
@@ -316,10 +326,11 @@ const _ButtonGroup = forwardRef(
   },
 )
 
-type CTABannerImageProps = BaseProps<HTMLImageElement> & {
-  src: string
-  alt: string
-}
+type CTABannerImageProps = BaseProps<HTMLImageElement> &
+  Omit<React.ImgHTMLAttributes<HTMLImageElement>, 'src' | 'alt'> & {
+    src: string
+    alt: string
+  }
 
 const _Image = forwardRef(({className, src, alt, ...props}: CTABannerImageProps, ref: Ref<HTMLImageElement>) => {
   return (
@@ -334,4 +345,28 @@ const _Image = forwardRef(({className, src, alt, ...props}: CTABannerImageProps,
   )
 })
 
-export const CTABanner = Object.assign(Root, {Heading: _Heading, Description, ButtonGroup: _ButtonGroup, Image: _Image})
+type CTABannerLogoProps = BaseProps<HTMLDivElement> &
+  React.HTMLAttributes<HTMLDivElement> & {
+    children: React.ReactNode
+  }
+
+const _Logo = forwardRef(({className, children, ...props}: CTABannerLogoProps, ref: Ref<HTMLDivElement>) => (
+  <div ref={ref} className={clsx(styles['CTABanner-logo'], className)} {...props}>
+    {children}
+  </div>
+))
+
+const _Link = ({className, children, variant = 'accent', ...props}: LinkProps) => (
+  <Link variant={variant} className={clsx(styles['CTABanner-link'], className)} {...props}>
+    {children}
+  </Link>
+)
+
+export const CTABanner = Object.assign(Root, {
+  Heading: _Heading,
+  Description,
+  ButtonGroup: _ButtonGroup,
+  Image: _Image,
+  Logo: _Logo,
+  Link: _Link,
+})
