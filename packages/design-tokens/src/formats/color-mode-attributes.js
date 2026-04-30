@@ -30,44 +30,32 @@ function colorModeAttributes({dictionary, file, options}) {
     allTokens = [...allTokens].sort(sortByReference(dictionary)) // TODO - add a test for this
   }
 
-  const renderLightMode = () =>
-    `:root, 
-    [data-color-mode=${defaultMode}]  { 
-      ${allTokens
-        .map(createPropertyFormatter({outputReferences, dictionary, format: 'css', formatter: {}, themeable: false}))
-        .filter(function (strVal) {
-          return !!strVal
-        })
-        .join('\n')}
-    }\n`
+  const getColorScheme = mode => (mode.includes('dark') ? 'dark' : 'light')
 
   /**
-   * Returns alternate color mode tokens by replacing the contents of value with said mode
+   * Renders token declarations for a given mode.
+   * Returns an empty string if no tokens exist for the mode.
    */
-  const renderAlternateColorMode = mode => {
-    if (mode === defaultMode) return renderLightMode()
+  const renderTokenDeclarations = mode => {
+    if (mode === defaultMode) {
+      return allTokens
+        .map(createPropertyFormatter({outputReferences, dictionary, format: 'css', formatter: {}, themeable: false}))
+        .filter(Boolean)
+        .join('\n')
+    }
 
     const replaceWithAlternateModeValue = token => {
       if (token.hasOwnProperty(mode)) {
-        return Object.assign({}, token, {
-          value: token[mode],
-        })
+        return Object.assign({}, token, {value: token[mode]})
       }
     }
 
     const newDictionary = JSON.parse(JSON.stringify(dictionary))
-
     newDictionary.allProperties = newDictionary.allProperties.map(replaceWithAlternateModeValue).filter(Boolean)
 
-    // short-circuit if no tokens are found for the supported modes
     if (!newDictionary.allProperties.length) return ''
 
-    const {allTokens: newAllTokens} = newDictionary
-
-    return `
-    [data-color-mode="${mode}"]  {
-    
-    ${newAllTokens
+    return newDictionary.allTokens
       .map(replaceWithAlternateModeValue)
       .filter(Boolean)
       .map(
@@ -79,17 +67,72 @@ function colorModeAttributes({dictionary, file, options}) {
           themeable: false,
         }),
       )
-      .filter(function (strVal) {
-        return !!strVal
-      })
-      .join('\n')}
-      
+      .filter(Boolean)
+      .join('\n')
+  }
+
+  const renderLightMode = () => {
+    const declarations = renderTokenDeclarations(defaultMode)
+    return `:root, 
+    [data-color-mode="${defaultMode}"],
+    [data-color-scheme="${defaultMode}"] { 
+      ${declarations}
     }\n`
   }
+
+  /**
+   * Returns alternate color mode tokens by replacing the contents of value with said mode
+   */
+  const renderAlternateColorMode = mode => {
+    if (mode === defaultMode) return renderLightMode()
+
+    const declarations = renderTokenDeclarations(mode)
+    if (!declarations) return ''
+
+    const colorScheme = getColorScheme(mode)
+
+    return `
+    :is([data-color-mode="${mode}"], [data-color-scheme="${colorScheme}"]) {
+      ${declarations}
+    }\n`
+  }
+
+  /**
+   * Renders auto mode media query blocks so that tokens respond to
+   * prefers-color-scheme when data-color-mode="auto" is set (e.g. by Primer React).
+   */
+  const renderAutoMode = () => {
+    const lightDeclarations = renderTokenDeclarations(defaultMode)
+    const darkDeclarations = renderTokenDeclarations('dark')
+
+    let output = ''
+
+    if (lightDeclarations) {
+      output += `
+      @media (prefers-color-scheme: light) {
+        [data-color-mode="auto"] {
+          ${lightDeclarations}
+        }
+      }\n`
+    }
+
+    if (darkDeclarations) {
+      output += `
+      @media (prefers-color-scheme: dark) {
+        [data-color-mode="auto"] {
+          ${darkDeclarations}
+        }
+      }\n`
+    }
+
+    return output
+  }
+
   const template = `
       ${fileHeader({file})}
  
     ${supportedModes.map(mode => renderAlternateColorMode(mode)).join('')}
+    ${renderAutoMode()}
     
     \n`
 
