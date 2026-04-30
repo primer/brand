@@ -52,7 +52,7 @@
     "i18next-browser-languagedetector": "^8.2.1",
     "i18next-http-backend": "^3.0.4",
     "identity-obj-proxy": "^3.0.0",
-    "postcss": "8.5.8",
+    "postcss": "8.5.10",
     "postcss-loader": "8.2.1",
     "postcss-preset-env": "11.2.0",
     "react": "19.2.4",
