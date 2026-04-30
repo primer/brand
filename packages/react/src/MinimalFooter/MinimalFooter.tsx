@@ -2,7 +2,7 @@ import React, {PropsWithChildren} from 'react'
 import {clsx} from 'clsx'
 import {LogoGithubIcon} from '@primer/octicons-react'
 
-import {ColorModesEnum, Stack, Text, useTheme} from '../'
+import {getColorScheme, Stack, Text, useTheme} from '../'
 import {BaseProps} from '../component-helpers'
 
 /**
@@ -235,6 +235,7 @@ type SocialLogomarksProps = {
 
 function SocialLogomarks({socialLinks = socialLinkNames, logoHref}: SocialLogomarksProps) {
   const {colorMode} = useTheme()
+  const colorScheme = getColorScheme(colorMode)
 
   return (
     <section className={clsx(styles['Footer__logomarks'])}>
@@ -252,7 +253,7 @@ function SocialLogomarks({socialLinks = socialLinkNames, logoHref}: SocialLogoma
               data-analytics-event='{"category":"Footer","action":"go to home","label":"text:home"}'
               aria-label="GitHub"
             >
-              <LogoGithubIcon fill={colorMode === ColorModesEnum.DARK ? 'white' : 'black'} size="medium" />
+              <LogoGithubIcon fill={colorScheme === 'dark' ? 'white' : 'black'} size="medium" />
             </a>
           </div>
           {socialLinks ? (

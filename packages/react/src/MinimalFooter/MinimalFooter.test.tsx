@@ -298,6 +298,18 @@ describe('MinimalFooter', () => {
     )
   })
 
+  it('uses dark logo fill for derived dark color modes', () => {
+    const {container} = render(
+      <ThemeProvider colorMode="dark_dimmed">
+        <MinimalFooter />
+      </ThemeProvider>,
+    )
+
+    const logo = container.querySelector('a[aria-label="GitHub"] svg')
+
+    expect(logo).toHaveAttribute('fill', 'white')
+  })
+
   it('renders social links with visually hidden text', () => {
     const {getByText} = render(<MinimalFooter socialLinks={['x']} />)
     const hiddenText = getByText('GitHub on X')

@@ -40,16 +40,6 @@ export const ThemeContext = createContext<ThemeContextProps>({
 })
 
 /**
- * SSR-safe matchMedia wrapper. Returns undefined when window.matchMedia is unavailable.
- */
-const safeMatchMedia = (query: string): MediaQueryList | undefined => {
-  if (typeof window !== 'undefined' && typeof window.matchMedia === 'function') {
-    return window.matchMedia(query)
-  }
-  return undefined
-}
-
-/**
  * ThemeProvider is used to provide theme-related context to its child components.
  */
 export function ThemeProvider({colorMode = defaultMode, children, ...rest}: PropsWithChildren<ThemeProviderProps>) {
@@ -75,16 +65,15 @@ export function ThemeProvider({colorMode = defaultMode, children, ...rest}: Prop
   )
 }
 
-const queryBrowserPreference = () => safeMatchMedia(`(prefers-color-scheme: ${ColorModesEnum.DARK})`)
+const queryBrowserPreference = () => window.matchMedia(`(prefers-color-scheme: ${ColorModesEnum.DARK})`)
 
 const getActiveAutoMode = () => {
-  const mediaQueryList = queryBrowserPreference()
-  return mediaQueryList?.matches ? ColorModesEnum.DARK : ColorModesEnum.LIGHT
+  const mediaQueryList: MediaQueryList = queryBrowserPreference()
+  return mediaQueryList.matches ? ColorModesEnum.DARK : ColorModesEnum.LIGHT
 }
 
 const handleSystemPreferenceChange = callback => {
   const mediaQueryList = queryBrowserPreference()
-  if (!mediaQueryList) return () => {}
   const changeHandler = event => callback(event.matches ? ColorModesEnum.DARK : ColorModesEnum.LIGHT)
   mediaQueryList.addEventListener('change', changeHandler)
   return () => mediaQueryList.removeEventListener('change', changeHandler)
