@@ -1,7 +1,7 @@
 import React from 'react'
 import {clsx} from 'clsx'
 
-import {Box, Grid, Image, useTheme} from '../../../..'
+import {Box, Grid, Image, getColorScheme, useTheme} from '../../../..'
 import {ContentfulTestimonials} from './ContentfulTestimonials'
 import type {FlexTemplateTestimonialsConfig} from '../../FlexTemplate.types'
 
@@ -77,6 +77,7 @@ type FlexSectionTestimonialsProps = {
 
 export function FlexSectionTestimonials({testimonials, className}: FlexSectionTestimonialsProps) {
   const {colorMode} = useTheme()
+  const colorScheme = getColorScheme(colorMode)
 
   const variant = testimonials.variant ?? 'minimal'
   const backgroundVariant = testimonials.backgroundImageVariant
@@ -93,14 +94,14 @@ export function FlexSectionTestimonials({testimonials, className}: FlexSectionTe
           marginBlockEnd={{narrow: 'none', wide: set.marginBlockEnd}}
         >
           <Image
-            src={colorMode === 'light' ? startShapeLight : startShapeDark}
+            src={colorScheme === 'light' ? startShapeLight : startShapeDark}
             alt=""
             className={clsx(styles.testimonialBackgroundImageShape, styles.left)}
             width={set.left.width}
             loading="lazy"
           />
           <Image
-            src={colorMode === 'light' ? endShapeLight : endShapeDark}
+            src={colorScheme === 'light' ? endShapeLight : endShapeDark}
             alt=""
             className={clsx(styles.testimonialBackgroundImageShape, styles.right)}
             width={set.right.width}
