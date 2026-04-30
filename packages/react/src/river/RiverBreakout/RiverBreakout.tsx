@@ -7,6 +7,7 @@ import findElementInChildren from '../../findElementInChildren'
 import {Heading} from '../../Heading'
 
 import styles from '../river-shared.module.css'
+import gridlineStyles from '../../component-helpers/shared.module.css'
 
 export const RiverBreakoutVariants = ['default', 'gridline'] as const
 export type RiverBreakoutVariant = (typeof RiverBreakoutVariants)[number]
@@ -42,6 +43,7 @@ const Root = forwardRef(
         className={clsx(
           styles.RiverBreakout,
           variant === 'gridline' && styles['RiverBreakout--variant-gridline'],
+          variant === 'gridline' && gridlineStyles.gridline,
           defaultColor === 'muted' && styles['RiverBreakout--muted'],
           animationClasses,
           className,
