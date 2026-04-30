@@ -1,0 +1,56 @@
+/*
+ * .gridline: horizontal gridlines that span the visible viewport, breaking
+ * out of constrained-width parents. Uses CSS anchor positioning where
+ * supported (excludes classic scrollbar) with a 100vw fallback.
+ */
+
+.gridline {
+  position: relative;
+}
+
+.gridline::before,
+.gridline::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100vw;
+  height: 0;
+  border-top: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
+  z-index: 1;
+}
+
+.gridline::before {
+  top: 0;
+}
+
+.gridline::after {
+  bottom: 0;
+}
+
+/* anchor-scope confines the shared anchor-name to each instance. */
+@supports (anchor-name: --x) {
+  .gridline {
+    anchor-name: --brand-gridline;
+    anchor-scope: --brand-gridline;
+  }
+
+  .gridline::before,
+  .gridline::after {
+    position: fixed;
+    position-anchor: --brand-gridline;
+    left: 0;
+    right: 0;
+    width: auto;
+    transform: none;
+  }
+
+  .gridline::before {
+    top: anchor(top);
+  }
+
+  .gridline::after {
+    top: anchor(bottom);
+    bottom: auto;
+  }
+}

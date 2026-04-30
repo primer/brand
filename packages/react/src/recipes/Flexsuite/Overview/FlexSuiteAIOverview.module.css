@@ -1,9 +1,5 @@
 .page {
   min-height: 100dvh;
-  /*
-   * TODO: fix the block psuedo borders in River and Tiles to remove this.
-   */
-  overflow-x: clip;
 }
 
 /* Copilot / mascot head */

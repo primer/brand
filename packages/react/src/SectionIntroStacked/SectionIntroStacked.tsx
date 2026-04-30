@@ -8,6 +8,7 @@ import {Icon, IconProps} from '../Icon'
 import {useAnimation} from '../animation'
 
 import styles from './SectionIntroStacked.module.css'
+import gridlineStyles from '../component-helpers/shared.module.css'
 
 import type {BaseProps} from '../component-helpers'
 
@@ -37,6 +38,7 @@ const Root = forwardRef<HTMLElement, PropsWithChildren<SectionIntroStackedProps>
         className={clsx(
           styles.SectionIntroStacked,
           variant === 'gridline' && styles['SectionIntroStacked--variant-gridline'],
+          variant === 'gridline' && gridlineStyles.gridline,
           animationClasses,
           className,
         )}
