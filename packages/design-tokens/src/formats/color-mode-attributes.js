@@ -66,7 +66,7 @@ function colorModeAttributes({dictionary, file, options}) {
     const {allTokens: newAllTokens} = newDictionary
 
     let selector = `[data-color-mode="${mode}"]`
-    // Only add data-color-scheme for base dark mode
+
     if (mode === 'dark') {
       selector = `[data-color-mode="${mode}"], [data-color-scheme="dark"]`
     }
@@ -96,7 +96,7 @@ function colorModeAttributes({dictionary, file, options}) {
 
   const template = `
       ${fileHeader({file})}
-  
+ 
     ${supportedModes.map(mode => renderAlternateColorMode(mode)).join('')}
     
     \n`
