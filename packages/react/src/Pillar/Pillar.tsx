@@ -1,14 +1,10 @@
 import React, {forwardRef, PropsWithChildren, HTMLAttributes, type Ref, type JSX} from 'react'
 import {clsx} from 'clsx'
 import {Heading, HeadingProps, Text, Image, type ImageProps, Link, LinkProps} from '..'
+import {Icon, defaultIconSize, iconSizeMap, type IconProps} from '../Icon'
 import type {BaseProps} from '../component-helpers'
 import {Colors} from '../constants'
 import {useAnimation} from '../animation'
-
-/**
- * Design tokens
- */
-import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/pillar/colors-with-modes.css'
 
 /**
  * Main stylesheet (as a CSS Module)
@@ -17,7 +13,9 @@ import styles from './Pillar.module.css'
 
 export const PillarIconColors = Colors
 
-export const defaultPillarIconColor = PillarIconColors[0]
+export const defaultPillarIconColor = 'green'
+export const defaultPillarIconSize = defaultIconSize
+const defaultPillarIconSizeWithoutBackground = 32
 export type PillarProps<C extends keyof JSX.IntrinsicElements = 'div'> = React.HTMLAttributes<C> & {
   /**
    * The HTML element used to render the Pillar.
@@ -96,28 +94,85 @@ function PillarImage({className, ...rest}: PillarImageProps) {
   )
 }
 
-type IconComponent = React.ComponentType<{size?: number}>
+type IconComponentProps = React.SVGAttributes<SVGElement> & {size?: number}
+type IconComponent = React.ComponentType<IconComponentProps> | React.ExoticComponent<IconComponentProps>
 
-type PillarIconProps = BaseProps<HTMLSpanElement> & {
+type PillarIconProps = Omit<IconProps, 'icon' | 'color'> & {
   icon: React.ReactNode | IconComponent
   color?: (typeof PillarIconColors)[number]
 }
 
-function PillarIcon({icon: Icon, className, color = defaultPillarIconColor, ...rest}: PillarIconProps) {
+function isIconComponent(icon: unknown): icon is IconComponent {
   return (
-    <span
-      className={clsx(styles.Pillar__icon, styles[`Pillar__icon--color-${color}`], className)}
-      {...rest}
-      aria-hidden="true"
-    >
-      {typeof Icon === 'function'
-        ? React.createElement(Icon as IconComponent, {size: 32})
-        : React.isValidElement<{size?: number}>(Icon)
-        ? React.cloneElement(Icon, {
-            size: 32,
-          })
-        : null}
-    </span>
+    typeof icon === 'function' ||
+    (typeof icon === 'object' &&
+      icon !== null &&
+      '$$typeof' in icon &&
+      [Symbol.for('react.forward_ref'), Symbol.for('react.memo')].includes(icon.$$typeof as symbol))
+  )
+}
+
+function getNumericIconSize(size: IconProps['size'], defaultSize = defaultPillarIconSizeWithoutBackground) {
+  if (typeof size === 'number') {
+    return size
+  }
+
+  if (size) {
+    return iconSizeMap[size]
+  }
+
+  return defaultSize
+}
+
+function renderIconWithoutBackground(icon: PillarIconProps['icon'], props: IconComponentProps) {
+  if (isIconComponent(icon)) {
+    return React.createElement(icon, props)
+  }
+
+  if (React.isValidElement<IconComponentProps>(icon)) {
+    return React.cloneElement(icon, props)
+  }
+
+  return null
+}
+
+function PillarIcon({
+  icon,
+  className,
+  color = defaultPillarIconColor,
+  hasBackground = true,
+  size,
+  ...props
+}: PillarIconProps) {
+  if (!isIconComponent(icon) && !React.isValidElement(icon)) {
+    return null
+  }
+
+  if (!hasBackground) {
+    const {style, ...iconProps} = props
+
+    return (
+      <span
+        className={clsx(styles.Pillar__icon, styles['Pillar__icon--without-background'], className)}
+        style={{color: `var(--brand-Icon-color-${color})`, ...style}}
+      >
+        {renderIconWithoutBackground(icon, {
+          ...iconProps,
+          size: getNumericIconSize(size),
+        })}
+      </span>
+    )
+  }
+
+  return (
+    <Icon
+      className={clsx(styles.Pillar__icon, styles['Pillar__icon--with-background'], className)}
+      color={color}
+      hasBackground
+      icon={icon as IconProps['icon']}
+      size={size ?? defaultPillarIconSize}
+      {...props}
+    />
   )
 }
 

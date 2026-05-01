@@ -158,7 +158,6 @@ export function FeaturePreviewLevelTwo({
       colorMode={selectedColorMode}
       style={{
         ['--brand-Testimonial-quoteMarkColor-default' as string]: accentColorValue,
-        ['--brand-Pillar-icon-color-default' as string]: accentColorValue,
         ['--brand-Label-color-default' as string]: accentColorValue,
         ['--brand-color-accent-primary' as string]: accentColorValue,
         backgroundColor: 'var(--brand-color-canvas-default)',
