@@ -70,7 +70,8 @@
     }
   },
   "bento": {
-    "heading": "Grupo Boticario augmente la productivité des développeurs de 94 % avec Copilot.",
+    "headingPrefix": "Grupo Boticario augmente la productivité des développeurs",
+    "headingEmphasis": "de 94 % avec Copilot.",
     "linkText": "Lire le témoignage client",
     "imageAlt": "Des membres de l'équipe Grupo Boticario collaborent dans un bureau"
   },

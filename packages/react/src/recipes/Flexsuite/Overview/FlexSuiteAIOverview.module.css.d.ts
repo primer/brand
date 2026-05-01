@@ -1,7 +1,4 @@
 declare const styles: {
-  readonly "bentoInlineFrame": string;
-  readonly "bentoVisualImageNoRadius": string;
-  readonly "bentoVisualNoRadius": string;
   readonly "cardGridColumn": string;
   readonly "cardGridColumnArrowHover": string;
   readonly "cardGridContent": string;

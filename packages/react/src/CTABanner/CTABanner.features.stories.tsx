@@ -13,6 +13,7 @@ import darkWideBg from '../fixtures/images/dark-horizontal-banner-alt.png'
 import darkNarrowBg2 from '../fixtures/images/dark-vertical-banner-alt-2.png'
 import darkWideBg2 from '../fixtures/images/dark-horizontal-banner-alt-2.png'
 import placeholderImage from '../fixtures/images/placeholder.png'
+import {logos} from '../LogoSuite/LogoSuite.fixtures'
 
 const meta = {
   title: 'Components/CTABanner/Features',
@@ -507,6 +508,122 @@ export const WithInlineCodeElement: Story = {
           </CTABanner.ButtonGroup>
         </CTABanner>
       </Stack>
+    </Stack>
+  ),
+}
+
+export const WithLogo: Story = {
+  render: () => (
+    <Stack direction="vertical" gap="spacious" padding="none">
+      <CTABanner variant="default">
+        <CTABanner.Logo>{logos[13]}</CTABanner.Logo>
+        <CTABanner.Heading>Default with logo</CTABanner.Heading>
+        <CTABanner.Description>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
+          turpis felis nam pulvinar risus elementum.
+        </CTABanner.Description>
+        <CTABanner.ButtonGroup>
+          <Button variant="accent">Get started for free</Button>
+          <Button>View docs</Button>
+        </CTABanner.ButtonGroup>
+      </CTABanner>
+      <CTABanner variant="balanced" hasGridLines>
+        <CTABanner.Logo>{logos[13]}</CTABanner.Logo>
+        <CTABanner.Heading>Balanced with logo</CTABanner.Heading>
+        <CTABanner.Description>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
+          turpis felis nam pulvinar risus elementum.
+        </CTABanner.Description>
+        <CTABanner.Link href="#">Read the customer story</CTABanner.Link>
+        <CTABanner.Image src={placeholderImage} alt="Blank image" />
+      </CTABanner>
+      <CTABanner variant="minimal">
+        <CTABanner.Logo>{logos[13]}</CTABanner.Logo>
+        <CTABanner.Heading>Minimal with logo</CTABanner.Heading>
+        <CTABanner.Description>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
+          turpis felis nam pulvinar risus elementum.
+        </CTABanner.Description>
+        <CTABanner.ButtonGroup>
+          <Button variant="accent">Get started for free</Button>
+          <Button>View docs</Button>
+        </CTABanner.ButtonGroup>
+      </CTABanner>
+    </Stack>
+  ),
+}
+
+export const WithLink: Story = {
+  render: () => (
+    <Stack direction="vertical" gap="spacious" padding="none">
+      <CTABanner variant="default">
+        <CTABanner.Heading>Default with link</CTABanner.Heading>
+        <CTABanner.Description>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
+          turpis felis nam pulvinar risus elementum.
+        </CTABanner.Description>
+        <CTABanner.Link href="#">Read the customer story</CTABanner.Link>
+      </CTABanner>
+      <CTABanner variant="balanced">
+        <CTABanner.Heading>Balanced with link</CTABanner.Heading>
+        <CTABanner.Description>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
+          turpis felis nam pulvinar risus elementum.
+        </CTABanner.Description>
+        <CTABanner.Link href="#">Read the customer story</CTABanner.Link>
+        <CTABanner.Image src={placeholderImage} alt="Blank image" />
+      </CTABanner>
+      <CTABanner variant="minimal">
+        <CTABanner.Heading>Minimal with link</CTABanner.Heading>
+        <CTABanner.Description>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id.
+        </CTABanner.Description>
+        <CTABanner.Link href="#">Read the customer story</CTABanner.Link>
+      </CTABanner>
+    </Stack>
+  ),
+}
+
+export const WithDuotoneText: Story = {
+  render: () => (
+    <Stack direction="vertical" gap="spacious" padding="none">
+      <CTABanner variant="default">
+        <CTABanner.Heading>
+          Where the most ambitious teams <b>build great things</b>
+        </CTABanner.Heading>
+        <CTABanner.Description>
+          Use <b>duotone emphasis</b> to highlight key parts of your headline. Wrap text in a <code>b</code> tag.
+        </CTABanner.Description>
+        <CTABanner.ButtonGroup>
+          <Button variant="accent">Get started for free</Button>
+          <Button>View docs</Button>
+        </CTABanner.ButtonGroup>
+      </CTABanner>
+      <CTABanner variant="balanced">
+        <CTABanner.Heading>
+          Where the most ambitious teams <b>build great things</b>
+        </CTABanner.Heading>
+        <CTABanner.Description>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id.
+        </CTABanner.Description>
+        <CTABanner.ButtonGroup>
+          <Button variant="accent">Get started for free</Button>
+          <Button>View docs</Button>
+        </CTABanner.ButtonGroup>
+        <CTABanner.Image src={placeholderImage} alt="Blank image" />
+      </CTABanner>
+      <CTABanner variant="minimal">
+        <CTABanner.Heading>
+          Where the most ambitious teams <b>build great things</b>
+        </CTABanner.Heading>
+        <CTABanner.Description>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id.
+        </CTABanner.Description>
+        <CTABanner.ButtonGroup>
+          <Button variant="accent">Get started for free</Button>
+          <Button>View docs</Button>
+        </CTABanner.ButtonGroup>
+      </CTABanner>
     </Stack>
   ),
 }

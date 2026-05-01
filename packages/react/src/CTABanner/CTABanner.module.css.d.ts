@@ -3,6 +3,7 @@ declare const styles: {
   readonly "CTABanner--bgColor-default": string;
   readonly "CTABanner--shadow": string;
   readonly "CTABanner--variant-balanced": string;
+  readonly "CTABanner--variant-default": string;
   readonly "CTABanner--variant-minimal": string;
   readonly "CTABanner-container": string;
   readonly "CTABanner-container--background": string;
@@ -16,6 +17,8 @@ declare const styles: {
   readonly "CTABanner-grid-column--secondary": string;
   readonly "CTABanner-heading": string;
   readonly "CTABanner-image": string;
+  readonly "CTABanner-link": string;
+  readonly "CTABanner-logo": string;
   readonly "CTABanner-outer-container--border": string;
 };
 export = styles;

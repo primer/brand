@@ -70,7 +70,8 @@
     }
   },
   "bento": {
-    "heading": "Grupo Boticario は Copilot により開発者の生産性を 94% 向上させました。",
+    "headingPrefix": "Grupo Boticario は",
+    "headingEmphasis": "Copilot により開発者の生産性を 94% 向上させました。",
     "linkText": "お客様事例を読む",
     "imageAlt": "オフィスで共同作業する Grupo Boticario のチームメンバー"
   },
