@@ -41,10 +41,6 @@
   height: 100%;
 }
 
-.Pillar__icon--without-background {
-  display: inline-flex;
-}
-
 .Pillar__heading {
   margin-bottom: var(--base-size-16);
 }

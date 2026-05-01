@@ -131,8 +131,11 @@ describe('Pillar', () => {
       </Pillar>,
     )
 
-    expect(getByLabelText('Git merge icon').parentElement).not.toHaveClass('Icon--background')
-    expect(getByLabelText('Git merge icon').parentElement).not.toHaveClass('Icon--size-20')
+    const icon = getByLabelText('Git merge icon')
+    expect(icon).toHaveClass('Pillar__icon')
+    expect(icon).not.toHaveClass('Icon--background')
+    expect(icon).not.toHaveClass('Icon--size-20')
+    expect(icon).not.toHaveAttribute('style')
   })
 
   it('renders a native SVG icon without shared icon sizing when hasBackground is false', () => {
@@ -153,7 +156,8 @@ describe('Pillar', () => {
 
     const svg = getByLabelText('Custom logo')
     const icon = svg.parentElement
-    expect(icon).toHaveClass('Pillar__icon', 'Pillar__icon--without-background')
+    expect(icon).toHaveClass('Pillar__icon')
+    expect(icon).not.toHaveClass('Pillar__icon--with-background')
     expect(icon).not.toHaveClass('Icon--size-20')
     expect(svg).toHaveAttribute('width', '120')
     expect(svg).toHaveAttribute('height', '56')

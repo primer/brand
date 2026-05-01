@@ -1,6 +1,6 @@
 import React from 'react'
 import type {StoryFn, Meta} from '@storybook/react'
-import {Pillar, PillarIconColors} from '.'
+import {Pillar, PillarIconColors, type PillarIconProps} from '.'
 import {Stack, Grid} from '..'
 import {CopilotIcon, RocketIcon, GitBranchIcon} from '@primer/octicons-react'
 
@@ -113,7 +113,7 @@ const fixtureData: FixtureData = [
 
 type FixtureData = {
   href: string
-  icon?: React.ReactNode
+  icon: PillarIconProps['icon']
   heading: string | React.ReactElement | React.ReactElement[]
   description: string | React.ReactElement | React.ReactElement[]
 }[]

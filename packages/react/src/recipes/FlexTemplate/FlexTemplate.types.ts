@@ -1,8 +1,8 @@
 import type {ReactNode} from 'react'
 import type {CTABannerProps} from '../../CTABanner/CTABanner'
 import {BoxSpacingValues} from '../../Box/Box'
-import type {Icon} from '@primer/octicons-react'
 import {IconColor} from '../../Icon'
+import type {PillarIconProps} from '../../Pillar'
 import type {ColorMode} from '../../ThemeProvider'
 import {TestimonialProps} from '../../Testimonial'
 import {LabelProps} from '../../Label'
@@ -157,7 +157,7 @@ export type FlexTemplateVisualSettings = {
 }
 
 export type FlexTemplatePillarItem = {
-  icon?: Icon | ReactNode
+  icon?: PillarIconProps['icon']
   iconColor?: IconColor
   heading?: string
   title?: string

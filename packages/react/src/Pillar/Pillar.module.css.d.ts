@@ -7,7 +7,6 @@ declare const styles: {
   readonly "Pillar__heading": string;
   readonly "Pillar__icon": string;
   readonly "Pillar__icon--with-background": string;
-  readonly "Pillar__icon--without-background": string;
   readonly "Pillar__image": string;
   readonly "Pillar__link": string;
 };

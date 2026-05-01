@@ -7,6 +7,7 @@
 
 - `Pillar.Icon` now defaults to a green color with corresponding filled background. It now uses the `Icon` component internally for size parity with `Card.Icon`.
 - Kept `Pillar.Icon` color options while replacing Pillar-specific color styles and tokens with the shared `Icon` color treatment. Native SVG icons fit the shared background by default, and `hasBackground={false}` renders custom artwork without the shared background treatment.
+- ⚠️ Narrowed the `Pillar.Icon` `icon` prop type. It previously accepted arbitrary `ReactNode` values such as `string`, `number`, and `boolean`, but those values didn't render a usable icon. It now only accepts a valid icon component or icon element.
 
 - Removed the Pillar-specific icon color tokens from the package output.
 
