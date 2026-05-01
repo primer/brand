@@ -1,0 +1,32 @@
+[13:50:17.538] [INFO] storybook v10.3.4
+[13:50:17.817] [DEBUG] Getting package.json info for /Users/rezrah/dev/github/brand/apps/storybook/package.json...
+[13:50:21.004] [DEBUG] Serving static files from [36mapps/storybook/static[39m at [36m/[39m
+[13:50:21.004] [INFO] Starting...
+[13:50:21.740] [DEBUG] Starting preview..
+[13:50:21.873] [DEBUG] Using tsconfig paths for react-docgen
+[13:50:21.884] [WARN] 🚨 Unable to index ../../packages/react/src/recipes/Flexsuite/Category/FlexSuiteSecurityCategory.stories.tsx,../../packages/react/src/recipes/Flexsuite/Category/FlexSuiteSecurityCategory/FlexSuiteSecurityCategory.stories.tsx:
+  Error: Duplicate stories with id: recipes-flexsuite-category--security
+    at _StoryIndexGenerator.chooseDuplicate (file:///Users/rezrah/dev/github/brand/node_modules/storybook/dist/core-server/index.js:6228:13)
+    at file:///Users/rezrah/dev/github/brand/node_modules/storybook/dist/core-server/index.js:6287:52
+    at Array.forEach (<anonymous>)
+    at _StoryIndexGenerator.getIndexAndStats (file:///Users/rezrah/dev/github/brand/node_modules/storybook/dist/core-server/index.js:6284:23)
+    at async _StoryIndexGenerator.getIndex (file:///Users/rezrah/dev/github/brand/node_modules/storybook/dist/core-server/index.js:6271:13)
+    at async BasicMinimalPluginContext.config (file:///Users/rezrah/dev/github/brand/node_modules/@storybook/builder-vite/dist/_node-chunks/chunk-2UAJDYWO.js:184:19)
+    at async runConfigHook (file:///Users/rezrah/dev/github/brand/node_modules/vite/dist/node/chunks/node.js:34603:15)
+    at async resolveConfig (file:///Users/rezrah/dev/github/brand/node_modules/vite/dist/node/chunks/node.js:34053:11)
+    at async _createServer (file:///Users/rezrah/dev/github/brand/node_modules/vite/dist/node/chunks/node.js:25917:65)
+    at async Module.start (file:///Users/rezrah/dev/github/brand/node_modules/@storybook/builder-vite/dist/index.js:1557:17)
+[13:50:21.887] [ERROR] Failed to build the preview
+[13:50:21.888] [ERROR] Error: Unable to index ../../packages/react/src/recipes/Flexsuite/Category/FlexSuiteSecurityCategory.stories.tsx,../../packages/react/src/recipes/Flexsuite/Category/FlexSuiteSecurityCategory/FlexSuiteSecurityCategory.stories.tsx
+    at _StoryIndexGenerator.getIndexAndStats (file:///Users/rezrah/dev/github/brand/node_modules/storybook/dist/core-server/index.js:6292:15)
+    at async _StoryIndexGenerator.getIndex (file:///Users/rezrah/dev/github/brand/node_modules/storybook/dist/core-server/index.js:6271:13)
+    at async BasicMinimalPluginContext.config (file:///Users/rezrah/dev/github/brand/node_modules/@storybook/builder-vite/dist/_node-chunks/chunk-2UAJDYWO.js:184:19)
+    at async runConfigHook (file:///Users/rezrah/dev/github/brand/node_modules/vite/dist/node/chunks/node.js:34603:15)
+    at async resolveConfig (file:///Users/rezrah/dev/github/brand/node_modules/vite/dist/node/chunks/node.js:34053:11)
+    at async _createServer (file:///Users/rezrah/dev/github/brand/node_modules/vite/dist/node/chunks/node.js:25917:65)
+    at async Module.start (file:///Users/rezrah/dev/github/brand/node_modules/@storybook/builder-vite/dist/index.js:1557:17)
+    at async storybookDevServer (file:///Users/rezrah/dev/github/brand/node_modules/storybook/dist/core-server/index.js:7503:83)
+    at async buildOrThrow (file:///Users/rezrah/dev/github/brand/node_modules/storybook/dist/core-server/index.js:4508:12)
+    at async buildDevStandalone (file:///Users/rezrah/dev/github/brand/node_modules/storybook/dist/core-server/index.js:8033:41)
+[13:50:21.889] [WARN] Broken build, fix the error above.
+You may need to refresh the browser.

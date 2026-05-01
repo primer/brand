@@ -1,1 +1,1 @@
-export {FlexSuiteSecurityCategory} from './FlexSuiteSecurityCategory'
+export {FlexSuiteSecurityCategory} from './FlexSuiteSecurityCategory/FlexSuiteSecurityCategory'
