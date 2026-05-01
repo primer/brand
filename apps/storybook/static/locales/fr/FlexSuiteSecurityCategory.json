@@ -1,7 +1,7 @@
 {
   "common": {
     "learnMore": "En savoir plus",
-    "heroImageAlt": "Illustration principale de la vue d'ensemble sécurité"
+    "heroImageAlt": "Illustration principale de la catégorie sécurité"
   },
   "subNav": {
     "heading": "GitHub Security",
@@ -105,7 +105,7 @@
   "cta": {
     "label": "Sécurité intégrée aux workflows de développement",
     "heading": "Une sécurité qui rejoint les développeurs là où ils travaillent",
-    "description": "Section CTA provisoire pour la nouvelle vue d'ensemble Security. Nous pourrons ensuite la remplacer par la bande finale des workflows intégrés issue de la maquette Figma.",
+    "description": "Section CTA provisoire pour la nouvelle catégorie Security. Nous pourrons ensuite la remplacer par la bande finale des workflows intégrés issue de la maquette Figma.",
     "primaryAction": "Démarrer l'essai gratuit",
     "secondaryAction": "Contacter l'équipe commerciale"
   }
