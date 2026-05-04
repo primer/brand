@@ -18,6 +18,7 @@
   height: 0;
   border-top: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
   z-index: 1;
+  pointer-events: none;
 }
 
 .gridline::before {
