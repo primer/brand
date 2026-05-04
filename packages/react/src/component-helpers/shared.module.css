@@ -1,7 +1,8 @@
 /*
  * .gridline: horizontal gridlines that span the visible viewport, breaking
- * out of constrained-width parents. Uses CSS anchor positioning where
- * supported (excludes classic scrollbar) with a 100vw fallback.
+ * out of constrained-width parents. Uses CSS anchor positioning when
+ * supported to avoid the 100vw classic-scrollbar overflow issue, with
+ * 100vw as a fallback in browsers without anchor positioning support.
  */
 
 .gridline {
