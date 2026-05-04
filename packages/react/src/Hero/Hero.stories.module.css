@@ -12,10 +12,10 @@
 .heroWithCardsExample {
   --customCardsBackgroundColor: transparent;
 }
-:is([data-color-mode='light'], [data-color-scheme='light']) .heroWithCardsExample {
+[data-color-mode='light'] .heroWithCardsExample {
   --customCardsBackgroundColor: var(--base-color-scale-gray-1);
 }
-:is([data-color-mode='dark'], [data-color-scheme='dark']) .heroWithCardsExample {
+[data-color-mode='dark'] .heroWithCardsExample {
   --customCardsBackgroundColor: var(--base-color-scale-gray-9);
 }
 

@@ -24,7 +24,7 @@
   color: var(--brand-InlineLink-color-pressed);
 }
 
-:is([data-color-mode='dark'], [data-color-scheme='dark']) .InlineLink {
+[data-color-mode='dark'] .InlineLink {
   -webkit-font-smoothing: subpixel-antialiased;
   -moz-osx-font-smoothing: auto;
 }

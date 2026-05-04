@@ -52,19 +52,19 @@
   left: 20%;
 }
 
-:is([data-color-mode='light'], [data-color-scheme='light']) .customHero::before {
+[data-color-mode='light'] .customHero::before {
   background: var(--base-color-scale-blue-2);
 }
 
-:is([data-color-mode='light'], [data-color-scheme='light']) .customHero::after {
+[data-color-mode='light'] .customHero::after {
   background: var(--base-color-scale-purple-2);
 }
 
-:is([data-color-mode='dark'], [data-color-scheme='dark']) .customHero::before {
+[data-color-mode='dark'] .customHero::before {
   background: var(--base-color-scale-blue-5);
 }
 
-:is([data-color-mode='dark'], [data-color-scheme='dark']) .customHero::after {
+[data-color-mode='dark'] .customHero::after {
   background: var(--base-color-scale-purple-5);
 }
 

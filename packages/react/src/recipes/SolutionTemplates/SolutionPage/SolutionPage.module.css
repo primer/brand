@@ -102,18 +102,18 @@
   top: calc(--topOffset - 100px);
 }
 
-:is([data-color-mode='light'], [data-color-scheme='light']) .heroVideoGlow::before {
+[data-color-mode='light'] .heroVideoGlow::before {
   background: var(--base-color-scale-blue-2);
 }
 
-:is([data-color-mode='light'], [data-color-scheme='light']) .heroVideoGlow::after {
+[data-color-mode='light'] .heroVideoGlow::after {
   background: var(--base-color-scale-purple-2);
 }
 
-:is([data-color-mode='dark'], [data-color-scheme='dark']) .heroVideoGlow::before {
+[data-color-mode='dark'] .heroVideoGlow::before {
   background: var(--base-color-scale-blue-7);
 }
 
-:is([data-color-mode='dark'], [data-color-scheme='dark']) .heroVideoGlow::after {
+[data-color-mode='dark'] .heroVideoGlow::after {
   background: var(--base-color-scale-purple-7);
 }

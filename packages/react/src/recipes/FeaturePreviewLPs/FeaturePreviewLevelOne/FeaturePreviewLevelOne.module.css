@@ -7,7 +7,7 @@
   --brand-Hero-regular-padding: var(--brand-Hero-narrow-padding);
 }
 
-:is([data-color-mode='dark'], [data-color-scheme='dark']) .FeaturePreview__trailingSection {
+[data-color-mode='dark'] .FeaturePreview__trailingSection {
   --brand-color-canvas-subtle: var(--base-color-scale-gray-7);
 }
 
@@ -89,7 +89,7 @@
     z-index: 1;
   }
 
-  :is([data-color-mode='dark'], [data-color-scheme='dark']) .FeaturePreview__formContent {
+  [data-color-mode='dark'] .FeaturePreview__formContent {
     background-color: var(--brand-color-canvas-subtle);
   }
 

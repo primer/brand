@@ -45,7 +45,7 @@
   --brand-color-canvas-subtle: var(--base-color-scale-gray-1);
 }
 
-:is([data-color-mode='dark'], [data-color-scheme='dark']) .FeaturePreview__trailingSection {
+[data-color-mode='dark'] .FeaturePreview__trailingSection {
   --brand-color-canvas-subtle: var(--base-color-scale-gray-7);
 }
 
