@@ -6,9 +6,9 @@
 import {test, expect} from '@playwright/test'
 
 // eslint-disable-next-line i18n-text/no-en
-test.describe('Visual Comparison: Overview', () => {
-  test('Overview / AI', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=recipes-flexsuite-overview--ai&viewMode=story', {
+test.describe('Visual Comparison: FlexSuiteSecurityCategory', () => {
+  test('FlexSuiteSecurityCategory / Security', async ({page}) => {
+    await page.goto('http://localhost:6006/iframe.html?args=&id=recipes-flexsuite-category--security&viewMode=story', {
       waitUntil: 'networkidle',
     })
     await page.locator('body.sb-show-main').waitFor({state: 'visible'})
