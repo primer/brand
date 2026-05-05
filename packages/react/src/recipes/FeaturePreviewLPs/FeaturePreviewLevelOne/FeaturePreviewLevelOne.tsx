@@ -41,7 +41,6 @@ export function FeaturePreviewLevelOne({accentColor, colorMode, ...args}: Featur
     <ThemeProvider
       colorMode={selectedColorMode}
       style={{
-        ['--brand-Pillar-icon-color-default' as string]: accentColorValue,
         ['--brand-Label-color-default' as string]: accentColorValue,
         ['--brand-color-accent-primary' as string]: accentColorValue,
         backgroundColor: 'var(--brand-color-canvas-default)',
