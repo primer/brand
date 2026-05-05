@@ -57,7 +57,6 @@ export function FeaturePreviewLevelZero({accentColor, colorMode, ...args}: Featu
     <ThemeProvider
       colorMode={isLightMode ? 'light' : 'dark'}
       style={{
-        ['--brand-Pillar-icon-color-default' as string]: accentColorValue,
         ['--brand-Label-color-default' as string]: accentColorValue,
         ['--brand-color-accent-primary' as string]: accentColorValue,
         backgroundColor: 'var(--brand-color-canvas-default)',

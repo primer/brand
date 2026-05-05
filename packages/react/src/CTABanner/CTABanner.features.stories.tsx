@@ -256,7 +256,7 @@ export const WithOctovisualLeadingComponent: Story = {
     <CTABanner
       leadingComponent={() => (
         <Text>
-          <GlobeIcon size={64} />
+          <GlobeIcon size={56} />
         </Text>
       )}
     >

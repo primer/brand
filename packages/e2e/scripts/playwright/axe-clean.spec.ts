@@ -7,6 +7,7 @@ import {Result} from 'axe-core'
 import {chromium, Browser, Page} from 'playwright'
 import {test, expect} from '@playwright/test'
 import {injectAxe, getViolations} from 'axe-playwright'
+// Don't remove the import/no-unresolved, this is needed to avoid breaking CI
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 // eslint-disable-next-line import/extensions, import/no-unresolved
@@ -172,7 +173,7 @@ const testsWithCustomDelay = {
   'components-hero-examples--gridline-expressive-block-end-padded-trailing-component': 6000, // recipe / example that features long animation sequence
   'components-hero-examples--gridline-expressive-with-image-carousel': 6000, // recipe / example that features long animation sequence
   'recipes-flexsuite-overview--ai': 6000, // recipe with hero animation sequence
-  'recipes-flexsuite-overview--security': 6000, // recipe with hero animation sequence
+  'recipes-flexsuite-category--security': 6000, // recipe with hero animation sequence
 }
 const defaultDelay = 1000
 
