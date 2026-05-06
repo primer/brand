@@ -20,7 +20,7 @@ export const AnchorHasMargin = () => (
 export const LabelType = () => (
   <Box padding="spacious">
     <Tooltip text="Go fullscreen" type="label">
-      <Button hasArrow={false}>
+      <Button>
         <ScreenFullIcon />
       </Button>
     </Tooltip>

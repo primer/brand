@@ -297,7 +297,7 @@ const _LogoBar = forwardRef(
         <div className={styles['LogoSuite__logobar-takeoverButtonContainer']}>
           <Button
             as="a"
-            variant="accent"
+            variant="primary"
             className={clsx(styles['LogoSuite__logobar-takeoverButton'], takeoverButtonClassName)}
             {...takeoverButtonProps}
           >

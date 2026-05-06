@@ -221,10 +221,10 @@ export const ActionsMessage: Story = {
         <PricingOptions.Heading>Free</PricingOptions.Heading>
         <PricingOptions.Description>A fast way to get started with GitHub Copilot.</PricingOptions.Description>
         <PricingOptions.Price>0</PricingOptions.Price>
-        <PricingOptions.PrimaryAction as="a" href="#" variant="accent">
+        <PricingOptions.PrimaryAction as="a" href="#" variant="primary">
           Get started
         </PricingOptions.PrimaryAction>
-        <PricingOptions.SecondaryAction as="a" href="#" variant="subtle" hasArrow={false}>
+        <PricingOptions.SecondaryAction as="a" href="#" variant="subtle">
           Open in VS Code
         </PricingOptions.SecondaryAction>
         <PricingOptions.FeatureList>
@@ -304,10 +304,10 @@ export const ActionsMessageWithActions: Story = {
         <PricingOptions.Heading>Free</PricingOptions.Heading>
         <PricingOptions.Description>A fast way to get started with GitHub Copilot.</PricingOptions.Description>
         <PricingOptions.Price>0</PricingOptions.Price>
-        <PricingOptions.PrimaryAction as="a" href="#" variant="accent">
+        <PricingOptions.PrimaryAction as="a" href="#" variant="primary">
           Get started
         </PricingOptions.PrimaryAction>
-        <PricingOptions.SecondaryAction as="a" href="#" variant="subtle" hasArrow={false}>
+        <PricingOptions.SecondaryAction as="a" href="#" variant="subtle">
           Open in VS Code
         </PricingOptions.SecondaryAction>
         <PricingOptions.FeatureList hasDivider={false}>
@@ -323,7 +323,7 @@ export const ActionsMessageWithActions: Story = {
         <PricingOptions.Heading>Pro</PricingOptions.Heading>
         <PricingOptions.Description>Accelerate workflows with GitHub Copilot.</PricingOptions.Description>
         <PricingOptions.Price trailingText="per user / month">10</PricingOptions.Price>
-        <PricingOptions.PrimaryAction as="button" variant="accent" disabled>
+        <PricingOptions.PrimaryAction as="button" variant="primary" disabled>
           Upgrade now
         </PricingOptions.PrimaryAction>
         <PricingOptions.ActionsMessage leadingComponent={<InfoIcon />}>

@@ -671,14 +671,13 @@ type SubNavActionProps = {
   variant?: (typeof ButtonVariants)[number]
 } & Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, 'href'>
 
-function ActionBase({children, href, variant = 'accent', size = 'small', ...rest}: SubNavActionProps) {
+function ActionBase({children, href, variant = 'primary', size = 'small', ...rest}: SubNavActionProps) {
   return (
     <Button
       className={styles['SubNav__action']}
       as="a"
       href={href}
       variant={variant}
-      hasArrow={false}
       data-testid={testIds.action}
       size={size}
       {...rest}

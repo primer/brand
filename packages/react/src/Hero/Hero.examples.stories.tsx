@@ -586,7 +586,7 @@ export const WithCustomInput: Story = {
                       <CopyIcon className={styles.customInputCopyIcon} />
                     )
                   }
-                  variant="accent"
+                  variant="primary"
                   className={styles.customInputCopyButton}
                   onClick={handleCopy}
                 >

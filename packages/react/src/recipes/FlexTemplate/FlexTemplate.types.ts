@@ -27,9 +27,9 @@ export type FlexTemplateHero = {
   imagePosition?: 'inline-end' | 'block-end'
   imageSrc?: string
   callToActionPrimary?: FlexTemplateLink
-  callToActionPrimaryVariant?: 'primary' | 'secondary' | 'accent'
+  callToActionPrimaryVariant?: 'primary' | 'secondary' | 'subtle'
   callToActionSecondary?: FlexTemplateLink
-  callToActionSecondaryVariant?: 'primary' | 'secondary' | 'accent'
+  callToActionSecondaryVariant?: 'primary' | 'secondary' | 'subtle'
   hasBorderBottom?: boolean
   image?: {
     description?: string
@@ -57,7 +57,7 @@ export type FlexTemplateSubNav = {
 export type FlexTemplateRiverConfig = {
   type?: 'river' | 'riverBreakout' | 'riverAccordion'
   align?: 'start' | 'center' | 'end'
-  ctaVariant?: 'primary' | 'secondary' | 'accent'
+  ctaVariant?: 'primary' | 'secondary' | 'subtle'
   hasCta?: boolean
   hasLeadingVisual?: boolean
   hasShadow?: boolean
@@ -77,7 +77,7 @@ export type FlexTemplateRiverItem = {
   labelColor?: LabelProps['color']
   ctaText?: string
   ctaHref?: string
-  ctaVariant?: 'primary' | 'secondary' | 'accent'
+  ctaVariant?: 'primary' | 'secondary' | 'subtle'
   imageSrc?: string
   imageAlt?: string
   videoSrc?: string
@@ -307,7 +307,7 @@ export type FlexTemplateFootnote = {
 
 export type FlexTemplateCTABannerCallToAction = {
   text?: string
-  variant?: 'primary' | 'accent'
+  variant?: 'primary'
 }
 
 export type FlexTemplateCTABanner = {
