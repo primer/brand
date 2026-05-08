@@ -3,6 +3,7 @@ node_modules
 
 #output
 lib/
+esm/
 storybook-static
 
 # testing
@@ -23,6 +24,7 @@ main/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+debug-storybook.log
 
 # local env files
 .env
@@ -36,3 +38,4 @@ next-js-test/
 cra-test/
 astro-test/
 remix-test/
+esm-test/

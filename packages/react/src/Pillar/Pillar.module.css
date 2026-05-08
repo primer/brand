@@ -7,7 +7,7 @@
 
 .Pillar--has-border {
   border: var(--brand-borderWidth-thin) solid var(--brand-color-border-default);
-  border-radius: var(--brand-borderRadius-xlarge);
+  border-radius: var(--brand-borderRadius-medium);
   padding: var(--base-size-32);
 }
 
@@ -33,8 +33,12 @@
 }
 
 .Pillar__icon {
-  display: flex;
   margin-bottom: var(--base-size-24);
+}
+
+.Pillar__icon--with-background > svg {
+  width: 100%;
+  height: 100%;
 }
 
 .Pillar__heading {
@@ -47,60 +51,4 @@
 
 .Pillar__link {
   margin-top: auto;
-}
-
-.Pillar__icon--color-default {
-  color: var(--brand-Pillar-icon-color-default);
-}
-
-.Pillar__icon--color-blue {
-  color: var(--brand-Pillar-icon-color-blue);
-}
-
-.Pillar__icon--color-coral {
-  color: var(--brand-Pillar-icon-color-coral);
-}
-
-.Pillar__icon--color-green {
-  color: var(--brand-Pillar-icon-color-green);
-}
-
-.Pillar__icon--color-gray {
-  color: var(--brand-Pillar-icon-color-gray);
-}
-
-.Pillar__icon--color-indigo {
-  color: var(--brand-Pillar-icon-color-indigo);
-}
-
-.Pillar__icon--color-lemon {
-  color: var(--brand-Pillar-icon-color-lemon);
-}
-
-.Pillar__icon--color-lime {
-  color: var(--brand-Label-color-lime);
-}
-
-.Pillar__icon--color-orange {
-  color: var(--brand-Pillar-icon-color-orange);
-}
-
-.Pillar__icon--color-pink {
-  color: var(--brand-Pillar-icon-color-pink);
-}
-
-.Pillar__icon--color-purple {
-  color: var(--brand-Pillar-icon-color-purple);
-}
-
-.Pillar__icon--color-red {
-  color: var(--brand-Pillar-icon-color-red);
-}
-
-.Pillar__icon--color-teal {
-  color: var(--brand-Pillar-icon-color-teal);
-}
-
-.Pillar__icon--color-yellow {
-  color: var(--brand-Pillar-icon-color-yellow);
 }

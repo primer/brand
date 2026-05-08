@@ -17,32 +17,32 @@ import {
   CTABanner,
   Button,
   Text,
-} from '../../..'
-import {logos} from '../../../LogoSuite/LogoSuite.fixtures'
-import placeholderBg from '../../../fixtures/images/security-banner-wide.png'
-import placeholderImage from '../../../fixtures/images/placeholder.png'
-import monaAvatar from '../../../fixtures/images/avatar-mona.png'
-import brandDividerWide from '../../../fixtures/images/brand-divider-security-wide.png'
+} from '../../../..'
+import {logos} from '../../../../LogoSuite/LogoSuite.fixtures'
+import placeholderBg from '../../../../fixtures/images/security-banner-wide.png'
+import placeholderImage from '../../../../fixtures/images/placeholder.png'
+import monaAvatar from '../../../../fixtures/images/avatar-mona.png'
+import brandDividerWide from '../../../../fixtures/images/brand-divider-security-wide.png'
 
 import {
-  defaultFlexSuiteSecurityOverviewContent,
-  type FlexSuiteSecurityOverviewContent,
-} from './FlexSuiteSecurityOverview.content'
-import styles from './FlexSuiteAIOverview.module.css'
-import {RedlineBackground} from '../../../component-helpers'
+  defaultFlexSuiteSecurityCategoryContent,
+  type FlexSuiteSecurityCategoryContent,
+} from './FlexSuiteSecurityCategory.content'
+import styles from '../../Overview/FlexSuiteAIOverview.module.css'
+import {RedlineBackground} from '../../../../component-helpers'
 import {LockIcon} from '@primer/octovisuals-react'
 
-export type FlexSuiteSecurityOverviewTemplateProps = {
-  content: FlexSuiteSecurityOverviewContent
+export type FlexSuiteSecurityCategoryTemplateProps = {
+  content: FlexSuiteSecurityCategoryContent
 }
 
 const cardIcons = [CpuIcon, LightBulbIcon, CodeOfConductIcon] as const
 
-export function FlexSuiteSecurityOverview() {
-  return <FlexSuiteSecurityOverviewTemplate content={defaultFlexSuiteSecurityOverviewContent} />
+export function FlexSuiteSecurityCategory() {
+  return <FlexSuiteSecurityCategoryTemplate content={defaultFlexSuiteSecurityCategoryContent} />
 }
 
-export function FlexSuiteSecurityOverviewTemplate({content}: FlexSuiteSecurityOverviewTemplateProps) {
+export function FlexSuiteSecurityCategoryTemplate({content}: FlexSuiteSecurityCategoryTemplateProps) {
   return (
     <Box className={styles.page} backgroundColor="default">
       <Box backgroundColor="subtle" style={{height: 72}} />
