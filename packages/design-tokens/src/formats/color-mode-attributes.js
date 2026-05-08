@@ -32,7 +32,7 @@ function colorModeAttributes({dictionary, file, options}) {
 
   const renderLightMode = () =>
     `:root, 
-    [data-color-mode=${defaultMode}],
+    [data-color-mode="${defaultMode}]",
     [data-color-scheme="light"] { 
       ${allTokens
         .map(createPropertyFormatter({outputReferences, dictionary, format: 'css', formatter: {}, themeable: false}))
