@@ -3,6 +3,7 @@ node_modules
 
 #output
 lib/
+esm/
 storybook-static
 
 # testing
@@ -37,3 +38,4 @@ next-js-test/
 cra-test/
 astro-test/
 remix-test/
+esm-test/

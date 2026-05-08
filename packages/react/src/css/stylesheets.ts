@@ -16,3 +16,6 @@ import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/colors/
 
 // Misc
 import './utilities.css'
+
+// Noop export to make sure this file isn't dropped when tree-shaken
+export const _GLOBAL_STYLES = true

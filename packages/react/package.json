@@ -21,16 +21,41 @@
   "author": "GitHub, Inc.",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./lib/index.d.ts",
+      "default": "./lib/index.js"
+    },
+    "./esm": {
+      "types": "./esm/index.esm.d.ts",
+      "default": "./esm/index.esm.js"
+    },
+    "./lib": {
+      "types": "./lib/index.d.ts",
+      "default": "./lib/index.js"
+    },
+    "./lib/*": "./lib/*",
+    "./fonts/*": "./fonts/*",
+    "./package.json": "./package.json"
+  },
+  "sideEffects": [
+    "**/*.css",
+    "./esm/index.esm.js",
+    "./esm/css/stylesheets.js"
+  ],
   "files": [
     "lib",
+    "esm",
     "fonts"
   ],
   "scripts": {
-    "build": "npm run clean && npm run build:css-types && webpack && scripts/postbuild",
+    "build": "npm run clean && npm run build:css-types && npm run build:umd && npm run build:esm && scripts/postbuild",
+    "build:umd": "webpack",
+    "build:esm": "vite build --config vite.esm.config.ts && tsc --project tsconfig.esm.json",
     "build:css-types": "tcm -p 'src/**/*.css' .",
     "build:types": "tsc --project tsconfig.build.json",
     "check": "tsc --noEmit",
-    "clean": "rm -rf lib && rm -rf fonts",
+    "clean": "rm -rf lib && rm -rf esm && rm -rf fonts",
     "format": "prettier --check '**/*.{js,jsx,ts,tsx,md,mdx,css,json}'",
     "format:fix": "prettier --write '**/*.{js,jsx,ts,tsx,md,mdx,css,json}'",
     "lint": "eslint '**/*.{js,ts,tsx,md,mdx}' --max-warnings=0",
@@ -60,6 +85,7 @@
     "@types/react": "19.2.14",
     "@types/react-dom": "19.2.3",
     "@types/webpack": "^5.28.5",
+    "@vitejs/plugin-react": "^6.0.1",
     "autoprefixer": "10.4.27",
     "axe-playwright": "^2.2.2",
     "clsx": "^2.1.1",
@@ -69,7 +95,7 @@
     "jest-axe": "10.0.0",
     "jest-environment-jsdom": "^30.3.0",
     "mini-css-extract-plugin": "2.10.2",
-    "postcss": "8.5.8",
+    "postcss": "8.5.10",
     "postcss-loader": "8.2.1",
     "postcss-preset-env": "11.2.0",
     "storybook": "^10.3.4",
@@ -77,6 +103,8 @@
     "style-loader": "4.0.0",
     "ts-loader": "^9.5.7",
     "typed-css-modules": "0.9.1",
+    "vite": "^8.0.3",
+    "vite-plugin-lib-inject-css": "^2.2.2",
     "typescript-plugin-css-modules": "5.2.0",
     "webpack": "5.105.4",
     "webpack-cli": "7.0.2"

@@ -11,6 +11,7 @@
     "src/**/*.test.ts",
     "src/**/*.spec.tsx",
     "src/**/*.spec.ts",
-    "src/test-utils/**/*"
+    "src/test-utils/**/*",
+    "vite.esm.config.ts"
   ]
 }
