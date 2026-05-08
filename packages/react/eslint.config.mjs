@@ -9,4 +9,10 @@ export default [
       },
     },
   },
+  {
+    files: ['vite.*.config.ts'],
+    rules: {
+      'import/no-nodejs-modules': 'off',
+    },
+  },
 ]
