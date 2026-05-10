@@ -33,7 +33,7 @@
 }
 
 .Pillar__icon {
-  margin-bottom: var(--base-size-24);
+  margin-bottom: var(--base-size-48);
 }
 
 .Pillar__icon--with-background > svg {
