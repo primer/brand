@@ -1,7 +1,6 @@
 import type {ReactNode} from 'react'
 import type {CTABannerProps} from '../../CTABanner/CTABanner'
 import {BoxSpacingValues} from '../../Box/Box'
-import {IconColor} from '../../Icon'
 import type {PillarIconProps} from '../../Pillar'
 import type {ColorMode} from '../../ThemeProvider'
 import {TestimonialProps} from '../../Testimonial'
@@ -158,7 +157,6 @@ export type FlexTemplateVisualSettings = {
 
 export type FlexTemplatePillarItem = {
   icon?: PillarIconProps['icon']
-  iconColor?: IconColor
   heading?: string
   title?: string
   headingLevel?: 'h2' | 'h3' | 'h4'

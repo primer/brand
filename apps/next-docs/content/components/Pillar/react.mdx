@@ -12,7 +12,7 @@ figma: https://www.figma.com/file/BJ95AjraesmRCWsKA013GS/Primer-Brand?node-id=68
 
 import {CopilotIcon, RocketIcon, GitBranchIcon} from '@primer/octicons-react'
 
-import {PillarAsProp, PillarIconColorProp, PillarIconSizeProp} from './react'
+import {PillarAsProp, PillarIconSizeProp} from './react'
 
 ```js
 import {Pillar} from '@primer/react-brand'
@@ -33,7 +33,7 @@ The default Pillar displays a heading and description.
 
 ### Icon
 
-You can add an `icon` to enhance the visual context. We recommend using an [Octicon](https://primer.style/design/foundations/icons). The icon defaults to a green presentation and can be customized using the `color`, `size`, and `hasBackground` props. For custom SVG artwork or logos, set `hasBackground` to `false` to render the icon without the shared square icon frame.
+You can add an `icon` to enhance the visual context. We recommend using an [Octicon](https://primer.style/design/foundations/icons). The icon defaults to a green presentation and can be customized using the `size` and `hasBackground` props. For custom SVG artwork or logos, set `hasBackground` to `false` to render the icon without the shared square icon frame.
 
 ```jsx live
 <Pillar>
@@ -135,14 +135,13 @@ Use the `Stack` component to stack multiple Pillars horizontally or vertically.
 
 ### Pillar.Icon
 
-| name            | type                    | default | required | description                                                                                                                       |
-| --------------- | ----------------------- | ------- | -------- | --------------------------------------------------------------------------------------------------------------------------------- |
-| `icon`          | `React.Node`            |         | `true`   | Octicon                                                                                                                           |
-| `color`         | <PillarIconColorProp /> | `green` | `false`  | The color of the Pillar icon                                                                                                      |
-| `size`          | <PillarIconSizeProp />  | `small` | `false`  | The size of the icon                                                                                                              |
-| `hasBackground` | `boolean`               | `true`  | `false`  | Adds a filled colored background to the icon. Set to `false` for custom artwork that should not use the shared square icon frame. |
+| name            | type                   | default | required | description                                                                                                                       |
+| --------------- | ---------------------- | ------- | -------- | --------------------------------------------------------------------------------------------------------------------------------- |
+| `icon`          | `React.Node`           |         | `true`   | Octicon                                                                                                                           |
+| `size`          | <PillarIconSizeProp /> | `32`    | `false`  | The size of the icon                                                                                                              |
+| `hasBackground` | `boolean`              | `true`  | `false`  | Adds a filled colored background to the icon. Set to `false` for custom artwork that should not use the shared square icon frame. |
 
-Supports the [Icon component](/components/Icon) props, including `size`.
+Supports the [Icon component](/components/Icon) props, excluding `color`.
 
 ### Pillar.Image
 

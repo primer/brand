@@ -1,9 +1,8 @@
 import React, {forwardRef, PropsWithChildren, HTMLAttributes, type Ref, type JSX} from 'react'
 import {clsx} from 'clsx'
 import {Heading, HeadingProps, Text, Image, type ImageProps, Link, LinkProps} from '..'
-import {Icon, defaultIconSize, type IconProps} from '../Icon'
+import {Icon, type IconProps} from '../Icon'
 import type {BaseProps} from '../component-helpers'
-import {Colors} from '../constants'
 import {useAnimation} from '../animation'
 
 /**
@@ -11,10 +10,8 @@ import {useAnimation} from '../animation'
  */
 import styles from './Pillar.module.css'
 
-export const PillarIconColors = Colors
-
 export const defaultPillarIconColor = 'green'
-export const defaultPillarIconSize = defaultIconSize
+export const defaultPillarIconSize = 32
 export type PillarProps<C extends keyof JSX.IntrinsicElements = 'div'> = React.HTMLAttributes<C> & {
   /**
    * The HTML element used to render the Pillar.
@@ -99,17 +96,9 @@ type IconElement = React.ReactElement<IconComponentProps>
 
 export type PillarIconProps = Omit<IconProps, 'icon' | 'color'> & {
   icon: IconElement | IconComponent
-  color?: (typeof PillarIconColors)[number]
 }
 
-function PillarIcon({
-  icon,
-  className,
-  color = defaultPillarIconColor,
-  hasBackground = true,
-  size,
-  ...props
-}: PillarIconProps) {
+function PillarIcon({icon, className, hasBackground = true, size, ...props}: PillarIconProps) {
   if (!hasBackground) {
     const iconWrapperProps = {
       ...(props as React.HTMLAttributes<HTMLSpanElement>),
@@ -131,7 +120,7 @@ function PillarIcon({
   return (
     <Icon
       className={clsx(styles.Pillar__icon, styles['Pillar__icon--with-background'], className)}
-      color={color}
+      color={defaultPillarIconColor}
       hasBackground
       icon={icon as IconProps['icon']}
       size={size ?? defaultPillarIconSize}
@@ -146,7 +135,7 @@ type PillarHeadingProps = BaseProps<HTMLHeadingElement> & {
 } & HeadingProps
 
 const PillarHeading = forwardRef<HTMLHeadingElement, PillarHeadingProps>(
-  ({children, as = 'h3', size = 'subhead-large', className, ...rest}, ref) => {
+  ({children, as = 'h3', size = '6', className, ...rest}, ref) => {
     return (
       <Heading
         size={size}

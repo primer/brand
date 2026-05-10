@@ -27,6 +27,16 @@ test.describe('Visual Comparison: Pillar', () => {
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
+  test('Pillar / Gridline', async ({page}) => {
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-pillar-examples--gridline&viewMode=story', {
+      waitUntil: 'networkidle',
+    })
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+    await page.waitForTimeout(500)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
   test('Pillar / With Icon', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-pillar-features--with-icon&viewMode=story', {
       waitUntil: 'networkidle',
@@ -40,17 +50,6 @@ test.describe('Visual Comparison: Pillar', () => {
   test('Pillar / With Image', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-pillar-features--with-image&viewMode=story',
-      {waitUntil: 'networkidle'},
-    )
-    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('Pillar / With Icon Colors', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-pillar-features--with-icon-colors&viewMode=story',
       {waitUntil: 'networkidle'},
     )
     await page.locator('body.sb-show-main').waitFor({state: 'visible'})

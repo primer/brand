@@ -1,0 +1,59 @@
+/**
+ * Compares the bundle sizes of the main branch and current feature branch, then outputs an HTML report.
+ */
+/* eslint-disable github/unescaped-html-literal */
+import {readFileSync} from 'node:fs'
+
+const [prPath, mainPath] = process.argv.slice(2)
+
+const prSizes = JSON.parse(readFileSync(prPath, 'utf8'))
+const mainSizes = JSON.parse(readFileSync(mainPath, 'utf8'))
+
+const mainMap = new Map(mainSizes.map(e => [e.name, e.size]))
+
+const KB = 1024
+const MB = KB * KB
+const formatted = b => (b >= MB ? `${(b / MB).toFixed(2)} MB` : b >= KB ? `${(b / KB).toFixed(2)} kB` : `${b} B`)
+
+const rows = prSizes.map(entry => {
+  const mainSize = mainMap.get(entry.name) ?? 0
+  const prSize = entry.size
+  const diff = prSize - mainSize
+  const hasDiff = diff !== 0
+  const isIncrease = diff > 0
+
+  let change
+  if (!hasDiff) {
+    change = '🟢 No change'
+  } else if (mainSize === 0) {
+    change = `🆕 ${formatted(prSize)}`
+  } else {
+    const percentage = Math.abs((diff / mainSize) * 100).toFixed(1)
+    const sign = isIncrease ? '+' : '-'
+    const formattedDiff = `${sign}${formatted(Math.abs(diff))} (${sign}${percentage}%)`
+    const icon = isIncrease && percentage >= 5 ? '⚠️' : isIncrease ? '⬆️' : '✅'
+    change = `${icon} ${formattedDiff}`
+  }
+
+  return `      <tr><td>${entry.name}</td><td>${formatted(mainSize)}</td><td>${formatted(
+    prSize,
+  )}</td><td>${change}</td></tr>`
+})
+
+const hasIncrease = rows.some(r => r.includes('⚠️'))
+
+const heading = hasIncrease ? '⚠️ Bundle size report' : '🟢 Bundle size report'
+
+const body = [
+  `<h3>${heading}</h3>`,
+  '<table>',
+  '  <thead>',
+  '    <tr><th>Check</th><th>Main</th><th>Branch</th><th>Change</th></tr>',
+  '  </thead>',
+  '  <tbody>',
+  ...rows,
+  '  </tbody>',
+  '</table>',
+].join('\n')
+
+process.stdout.write(body)

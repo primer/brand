@@ -81,7 +81,6 @@ Agents.args = {
             items: [
               {
                 icon: <CopilotIcon />,
-                iconColor: 'purple',
                 heading: 'Put Copilot to work in the background',
                 headingLevel: 'h2',
                 description:
@@ -89,7 +88,6 @@ Agents.args = {
               },
               {
                 icon: <WorkflowIcon />,
-                iconColor: 'purple',
                 heading: 'Choose the right agent for the job',
                 headingLevel: 'h2',
                 description:
@@ -97,7 +95,6 @@ Agents.args = {
               },
               {
                 icon: <TasklistIcon />,
-                iconColor: 'purple',
                 heading: 'Manage agents and tasks together',
                 headingLevel: 'h2',
                 description:
