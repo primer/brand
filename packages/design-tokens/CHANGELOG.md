@@ -1,5 +1,38 @@
 # @primer/brand-primitives
 
+## 0.68.0
+
+### Minor Changes
+
+- [#1340](https://github.com/primer/brand/pull/1340) [`670f3e6`](https://github.com/primer/brand/commit/670f3e6c53980d65ac0cecfc02f5cc3899c2af24) Thanks [@rezrah](https://github.com/rezrah)! - - Visual changes to the `Pillar` component.
+
+  - `Pillar.Icon` now defaults to a fixed green color with corresponding filled background. It now uses the `Icon` component internally for size parity with `Card.Icon`.
+  - ⚠️ Removed the `Pillar.Icon` `color` prop and `PillarIconColors` type export. Pillar icons using the shared background now always render green. Remove `color` from existing `Pillar.Icon` usage.
+  - ⚠️ Removed the `iconColor` field from `FlexTemplate` pillar items because it forwarded to the removed `Pillar.Icon` color prop.
+  - Native SVG icons fit the shared background by default, and `hasBackground={false}` renders custom artwork without the shared background treatment.
+  - ⚠️ Narrowed the `Pillar.Icon` `icon` prop type. It previously accepted arbitrary `ReactNode` values such as `string`, `number`, and `boolean`, but those values didn't render a usable icon. It now only accepts a valid icon component or icon element.
+
+  - Removed the Pillar-specific icon color tokens from the package output.
+
+    ```diff
+    - --brand-Pillar-icon-color-default
+    - --brand-Pillar-icon-color-{blue,coral,green,gray,indigo,lemon,lime,orange,pink,purple,red,teal,yellow}
+    ```
+
+  - Updated bordered Pillars to use a medium border radius.
+
+  - Increased default size of `Pillar.Heading` from `subhead-large` to `6`
+
+  - Increased `Pillar.Icon` default size from `24px` to `32px` and added extra space between it and the subsequent heading.
+
+- [#1344](https://github.com/primer/brand/pull/1344) [`e54a442`](https://github.com/primer/brand/commit/e54a44216f7c67b198dfc2c7d445bc48dbfbd076) Thanks [@rezrah](https://github.com/rezrah)! - Updated Button appearance and API ergonomics:
+
+  - ⚠️ Breaking change: Removed the `accent` Button variant. Use `primary` instead, which now applies the previous `accent` appearance.
+  - Updated `secondary`, and `subtle` variant colors and state styles.
+  - Updated medium Button label typography to better match the new Figma treatment.
+  - Deprecated the `hasArrow` prop and hid Button arrows by default.
+    - Note: `hasArrow` will be removed entirely in a future release.
+
 ## 0.67.0
 
 ### Patch Changes
