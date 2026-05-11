@@ -70,6 +70,10 @@
   padding: var(--brand-control-medium-paddingBlock-condensed) var(--brand-control-medium-paddingInline-normal); /* Override the default button padding */
 }
 
+.ActionMenu__inner-button-dropdown-icon {
+  vertical-align: middle !important;
+}
+
 .ActionMenu__innerButton--split-button:last-child {
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;

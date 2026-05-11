@@ -52,7 +52,7 @@ describe('ButtonGroup', () => {
     expect(buttonEl.classList).toContain(expectedClass)
   })
 
-  it('applies accent variant automatically to the first button and subtle variant to second', () => {
+  it('applies primary variant automatically to the first button and subtle variant to second', () => {
     const {getAllByRole} = render(
       <ButtonGroup>
         <Button>Primary Action</Button>
@@ -60,7 +60,7 @@ describe('ButtonGroup', () => {
       </ButtonGroup>,
     )
     const buttons = getAllByRole('button')
-    expect(buttons[0].classList).toContain('Button--accent')
+    expect(buttons[0].classList).toContain('Button--primary')
     expect(buttons[1].classList).toContain('Button--subtle')
   })
 

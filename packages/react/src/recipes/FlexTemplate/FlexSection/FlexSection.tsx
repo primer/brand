@@ -580,10 +580,10 @@ export function FlexSection({component, className}: FlexSectionProps) {
                         </PricingOptions.FeatureList>
                       )}
 
-                      <PricingOptions.PrimaryAction as="a" href="#" hasArrow={false} variant="accent">
+                      <PricingOptions.PrimaryAction as="a" href="#" variant="primary">
                         Buy now
                       </PricingOptions.PrimaryAction>
-                      <PricingOptions.SecondaryAction as="a" href="#" hasArrow={false} variant="subtle">
+                      <PricingOptions.SecondaryAction as="a" href="#" variant="subtle">
                         Contact sales
                       </PricingOptions.SecondaryAction>
 

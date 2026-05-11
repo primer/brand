@@ -177,7 +177,7 @@ Agents.args = {
         backgroundColor: 'subtle',
         callToActionPrimary: {
           text: 'Get started for free',
-          variant: 'accent',
+          variant: 'primary',
         },
         callToActionSecondary: {
           text: 'Contact sales',
@@ -513,7 +513,7 @@ CopilotBusiness.args = {
         backgroundColor: 'subtle',
         callToActionPrimary: {
           text: 'View plans & pricing',
-          variant: 'accent',
+          variant: 'primary',
         },
         callToActionSecondary: {
           text: 'Contact sales',

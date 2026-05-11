@@ -38,9 +38,9 @@ test.describe('Visual Comparison: CTABanner', () => {
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
-  test('CTABanner / With Accent Button', async ({page}) => {
+  test('CTABanner / With Primary Button', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-ctabanner-features--with-accent-button&viewMode=story',
+      'http://localhost:6006/iframe.html?args=&id=components-ctabanner-features--with-primary-button&viewMode=story',
       {waitUntil: 'networkidle'},
     )
     await page.locator('body.sb-show-main').waitFor({state: 'visible'})
