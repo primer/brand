@@ -58,7 +58,9 @@
     var(--brand-color-canvas-default);
 }
 
-[data-color-mode='dark'] .cardGridColumnArrowHover .cardGridItem:is(:hover, :focus-within) {
+:is([data-color-mode='dark'], [data-color-scheme='dark'])
+  .cardGridColumnArrowHover
+  .cardGridItem:is(:hover, :focus-within) {
   background: linear-gradient(180deg, rgba(242, 245, 243, 0.1) 0%, rgba(242, 245, 243, 0) 100%),
     var(--brand-color-canvas-default);
 }

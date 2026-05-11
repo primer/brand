@@ -26,6 +26,7 @@ import {
   Stack,
   Statistic,
   Text,
+  getColorScheme,
   useTheme,
 } from '../../..'
 
@@ -56,6 +57,7 @@ type FlexSectionProps = {
 
 export function FlexSection({component, className}: FlexSectionProps) {
   const {colorMode} = useTheme()
+  const colorScheme = getColorScheme(colorMode)
   const [selectedSegmentedControlItem, setSelectedSegmentedControlItem] = React.useState(0)
   const {
     breakoutBanner,
@@ -433,9 +435,9 @@ export function FlexSection({component, className}: FlexSectionProps) {
                   align={breakoutBanner.align}
                   backgroundColor={backgroundColor}
                   backgroundImageSrc={{
-                    narrow: colorMode === 'dark' ? darkNarrowBg : lightNarrowBg,
-                    regular: colorMode === 'dark' ? darkWideBg : lightWideBg,
-                    wide: colorMode === 'dark' ? darkWideBg : lightWideBg,
+                    narrow: colorScheme === 'dark' ? darkNarrowBg : lightNarrowBg,
+                    regular: colorScheme === 'dark' ? darkWideBg : lightWideBg,
+                    wide: colorScheme === 'dark' ? darkWideBg : lightWideBg,
                   }}
                   backgroundImagePosition={{
                     narrow: 'bottom',
