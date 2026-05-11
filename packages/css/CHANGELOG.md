@@ -1,5 +1,17 @@
 # @primer/brand-css
 
+## 0.68.0
+
+### Minor Changes
+
+- [#1344](https://github.com/primer/brand/pull/1344) [`e54a442`](https://github.com/primer/brand/commit/e54a44216f7c67b198dfc2c7d445bc48dbfbd076) Thanks [@rezrah](https://github.com/rezrah)! - Updated Button appearance and API ergonomics:
+
+  - ⚠️ Breaking change: Removed the `accent` Button variant. Use `primary` instead, which now applies the previous `accent` appearance.
+  - Updated `secondary`, and `subtle` variant colors and state styles.
+  - Updated medium Button label typography to better match the new Figma treatment.
+  - Deprecated the `hasArrow` prop and hid Button arrows by default.
+    - Note: `hasArrow` will be removed entirely in a future release.
+
 ## 0.67.0
 
 ## 0.66.0
