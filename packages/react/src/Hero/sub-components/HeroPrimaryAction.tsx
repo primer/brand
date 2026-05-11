@@ -35,7 +35,7 @@ export const HeroPrimaryAction = forwardRef<
 
   return (
     <Tag {...tagProps}>
-      <Button ref={ref as React.Ref<HTMLButtonElement>} as={as} variant="accent" size="medium" href={href} {...rest}>
+      <Button ref={ref as React.Ref<HTMLButtonElement>} as={as} variant="primary" size="medium" href={href} {...rest}>
         {children}
       </Button>
     </Tag>

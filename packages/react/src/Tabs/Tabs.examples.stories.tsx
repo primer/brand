@@ -60,10 +60,10 @@ export const WithPricingOptions: Story = {
                       Access to Claude 3.5 Sonnet, GPT-4o, and more
                     </PricingOptions.FeatureListItem>
                   </PricingOptions.FeatureList>
-                  <PricingOptions.PrimaryAction as="a" href="#" variant="accent">
+                  <PricingOptions.PrimaryAction as="a" href="#" variant="primary">
                     Get started
                   </PricingOptions.PrimaryAction>
-                  <PricingOptions.SecondaryAction as="a" href="#" variant="subtle" hasArrow={false}>
+                  <PricingOptions.SecondaryAction as="a" href="#" variant="subtle">
                     Open in VS Code
                   </PricingOptions.SecondaryAction>
                 </PricingOptions.Item>
@@ -74,7 +74,7 @@ export const WithPricingOptions: Story = {
                     Unlimited completions and chat with access to more models.
                   </PricingOptions.Description>
                   <PricingOptions.Price trailingText="per month / $100 per year">10</PricingOptions.Price>
-                  <PricingOptions.PrimaryAction as="a" href="#" variant="accent">
+                  <PricingOptions.PrimaryAction as="a" href="#" variant="primary">
                     Get started
                   </PricingOptions.PrimaryAction>
                   <PricingOptions.FeatureList>
@@ -100,7 +100,7 @@ export const WithPricingOptions: Story = {
                   <PricingOptions.Heading>Pro+</PricingOptions.Heading>
                   <PricingOptions.Description>Maximum flexibility and model choice.</PricingOptions.Description>
                   <PricingOptions.Price trailingText="per month or $390 per year">39</PricingOptions.Price>
-                  <PricingOptions.PrimaryAction as="a" href="#" variant="accent">
+                  <PricingOptions.PrimaryAction as="a" href="#" variant="primary">
                     Get started
                   </PricingOptions.PrimaryAction>
                   <PricingOptions.FeatureList>
@@ -140,7 +140,7 @@ export const WithPricingOptions: Story = {
                     <PricingOptions.FeatureListItem>User management and usage metrics</PricingOptions.FeatureListItem>
                     <PricingOptions.FeatureListItem>IP indemnity and data privacy</PricingOptions.FeatureListItem>
                   </PricingOptions.FeatureList>
-                  <PricingOptions.PrimaryAction as="a" href="#" variant="accent">
+                  <PricingOptions.PrimaryAction as="a" href="#" variant="primary">
                     Get started
                   </PricingOptions.PrimaryAction>
                 </PricingOptions.Item>
@@ -152,10 +152,10 @@ export const WithPricingOptions: Story = {
                     Scale with AI agents and comprehensive model access.
                   </PricingOptions.Description>
                   <PricingOptions.Price trailingText="per user / month">39</PricingOptions.Price>
-                  <PricingOptions.PrimaryAction as="a" href="#" variant="accent">
+                  <PricingOptions.PrimaryAction as="a" href="#" variant="primary">
                     Get started
                   </PricingOptions.PrimaryAction>
-                  <PricingOptions.SecondaryAction as="a" href="#" variant="subtle" hasArrow={false}>
+                  <PricingOptions.SecondaryAction as="a" href="#" variant="subtle">
                     Open in VS Code
                   </PricingOptions.SecondaryAction>
                   <PricingOptions.FeatureList>

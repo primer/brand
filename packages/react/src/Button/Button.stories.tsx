@@ -29,7 +29,7 @@ const meta = {
       options: ['a', 'button'],
     },
     variant: {
-      description: 'The HTML element used to render the root of Button.',
+      description: 'The styling variation.',
       control: {
         type: 'inline-radio',
       },

@@ -17,9 +17,7 @@ export const FollowingHero = () => (
       <Hero.Heading>The AI Powered Developer Platform.</Hero.Heading>
       <Hero.Description>To Build, Scale, and Deliver Secure Software.</Hero.Description>
       <Hero.PrimaryAction href="#">Start a free trial</Hero.PrimaryAction>
-      <Hero.SecondaryAction href="#" hasArrow={false}>
-        Contact sales
-      </Hero.SecondaryAction>
+      <Hero.SecondaryAction href="#">Contact sales</Hero.SecondaryAction>
       <Hero.Image
         position="block-end"
         src={defaultPlaceholderImgae}

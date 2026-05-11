@@ -414,11 +414,11 @@ function PricingOptionsBlock({pricing}: {pricing: FlexSuiteAIOverviewContent['pr
                 {pricing.free.features[2]}
               </PricingOptions.FeatureListItem>
             </PricingOptions.FeatureList>
-            <PricingOptions.PrimaryAction as="a" href="#" variant="accent">
+            <PricingOptions.PrimaryAction as="a" href="#" variant="primary">
               {pricing.free.primaryAction}
             </PricingOptions.PrimaryAction>
             {pricing.free.secondaryAction ? (
-              <PricingOptions.SecondaryAction as="a" href="#" variant="subtle" hasArrow={false}>
+              <PricingOptions.SecondaryAction as="a" href="#" variant="subtle">
                 {pricing.free.secondaryAction}
               </PricingOptions.SecondaryAction>
             ) : null}
@@ -428,7 +428,7 @@ function PricingOptionsBlock({pricing}: {pricing: FlexSuiteAIOverviewContent['pr
             {pricing.pro.label ? <PricingOptions.Label>{pricing.pro.label}</PricingOptions.Label> : null}
             <PricingOptions.Description>{pricing.pro.description}</PricingOptions.Description>
             <PricingOptions.Price trailingText={pricing.pro.trailingText}>{pricing.pro.price}</PricingOptions.Price>
-            <PricingOptions.PrimaryAction as="a" href="#" variant="accent">
+            <PricingOptions.PrimaryAction as="a" href="#" variant="primary">
               {pricing.pro.primaryAction}
             </PricingOptions.PrimaryAction>
             <PricingOptions.FeatureList>
@@ -452,7 +452,7 @@ function PricingOptionsBlock({pricing}: {pricing: FlexSuiteAIOverviewContent['pr
             <PricingOptions.Price trailingText={pricing.proPlus.trailingText}>
               {pricing.proPlus.price}
             </PricingOptions.Price>
-            <PricingOptions.PrimaryAction as="a" href="#" variant="accent">
+            <PricingOptions.PrimaryAction as="a" href="#" variant="primary">
               {pricing.proPlus.primaryAction}
             </PricingOptions.PrimaryAction>
             <PricingOptions.FeatureList>

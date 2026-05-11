@@ -157,9 +157,9 @@ test.describe('Visual Comparison: Hero', () => {
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
-  test('Hero / With Accent Button', async ({page}) => {
+  test('Hero / With Primary Button', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-hero-features--with-accent-button&viewMode=story',
+      'http://localhost:6006/iframe.html?args=&id=components-hero-features--with-primary-button&viewMode=story',
       {waitUntil: 'networkidle'},
     )
     await page.locator('body.sb-show-main').waitFor({state: 'visible'})

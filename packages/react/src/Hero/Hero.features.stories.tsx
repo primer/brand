@@ -79,7 +79,7 @@ export const WithIncreasedContrastLabel: Story = {
   ),
 }
 
-export const WithAccentButton: Story = {
+export const WithPrimaryButton: Story = {
   render: () => (
     <Hero align="center">
       <Hero.Label>GitHub Issues</Hero.Label>
@@ -88,7 +88,7 @@ export const WithAccentButton: Story = {
         Create issues, break them into tasks, track relationships, add custom fields, and have conversations. Visualize
         large projects as tables, boards, or roadmaps, and automate everything with code.
       </Hero.Description>
-      <Hero.PrimaryAction variant="accent" href="#" hasArrow={false}>
+      <Hero.PrimaryAction variant="primary" href="#">
         Start using projects
       </Hero.PrimaryAction>
       <Hero.SecondaryAction href="#" trailingVisual={<PlayIcon />}>

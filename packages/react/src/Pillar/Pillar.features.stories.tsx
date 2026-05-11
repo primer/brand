@@ -1,7 +1,7 @@
 import React from 'react'
 import type {StoryFn, Meta} from '@storybook/react'
-import {Pillar, PillarIconColors, type PillarIconProps} from '.'
-import {Stack, Grid} from '..'
+import {Pillar, type PillarIconProps} from '.'
+import {Stack} from '..'
 import {CopilotIcon, RocketIcon, GitBranchIcon} from '@primer/octicons-react'
 
 import placeholderImage from '../fixtures/images/placeholder.png'
@@ -37,26 +37,6 @@ export const WithImage: StoryFn<typeof Pillar> = () => {
         Enables you to rapidly search, navigate, and understand code, right from GitHub.com.
       </Pillar.Description>
     </Pillar>
-  )
-}
-
-export const WithIconColors: StoryFn<typeof Pillar> = () => {
-  return (
-    <Grid>
-      {PillarIconColors.map((color, id) => {
-        return (
-          <Grid.Column key={id} span={4}>
-            <Pillar>
-              <Pillar.Icon icon={<CopilotIcon />} color={color} />
-              <Pillar.Heading>Collaboration is the key to DevOps success</Pillar.Heading>
-              <Pillar.Description>
-                This Pillar uses the <b>{color}</b> icon color
-              </Pillar.Description>
-            </Pillar>
-          </Grid.Column>
-        )
-      })}
-    </Grid>
   )
 }
 

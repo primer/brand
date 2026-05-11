@@ -81,7 +81,6 @@ Agents.args = {
             items: [
               {
                 icon: <CopilotIcon />,
-                iconColor: 'purple',
                 heading: 'Put Copilot to work in the background',
                 headingLevel: 'h2',
                 description:
@@ -89,7 +88,6 @@ Agents.args = {
               },
               {
                 icon: <WorkflowIcon />,
-                iconColor: 'purple',
                 heading: 'Choose the right agent for the job',
                 headingLevel: 'h2',
                 description:
@@ -97,7 +95,6 @@ Agents.args = {
               },
               {
                 icon: <TasklistIcon />,
-                iconColor: 'purple',
                 heading: 'Manage agents and tasks together',
                 headingLevel: 'h2',
                 description:
@@ -180,7 +177,7 @@ Agents.args = {
         backgroundColor: 'subtle',
         callToActionPrimary: {
           text: 'Get started for free',
-          variant: 'accent',
+          variant: 'primary',
         },
         callToActionSecondary: {
           text: 'Contact sales',
@@ -516,7 +513,7 @@ CopilotBusiness.args = {
         backgroundColor: 'subtle',
         callToActionPrimary: {
           text: 'View plans & pricing',
-          variant: 'accent',
+          variant: 'primary',
         },
         callToActionSecondary: {
           text: 'Contact sales',

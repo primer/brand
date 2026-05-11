@@ -95,7 +95,7 @@ describe('Pillar', () => {
     const icon = getByLabelText('Git merge icon').parentElement
     expect(icon).toHaveClass('Pillar__icon')
     expect(icon).toHaveClass('Icon--background')
-    expect(icon).toHaveClass('Icon--size-20')
+    expect(icon).toHaveClass('Icon--size-32')
     expect(icon).toHaveClass('Icon--color-green')
     expect(icon).toHaveClass('Icon--background-color-green')
   })
@@ -118,7 +118,7 @@ describe('Pillar', () => {
     expect(getByLabelText('Custom icon').parentElement).toHaveClass(
       'Pillar__icon',
       'Pillar__icon--with-background',
-      'Icon--size-20',
+      'Icon--size-32',
     )
   })
 
@@ -134,7 +134,7 @@ describe('Pillar', () => {
     const icon = getByLabelText('Git merge icon')
     expect(icon).toHaveClass('Pillar__icon')
     expect(icon).not.toHaveClass('Icon--background')
-    expect(icon).not.toHaveClass('Icon--size-20')
+    expect(icon).not.toHaveClass('Icon--size-32')
     expect(icon).not.toHaveAttribute('style')
   })
 
@@ -158,7 +158,7 @@ describe('Pillar', () => {
     const icon = svg.parentElement
     expect(icon).toHaveClass('Pillar__icon')
     expect(icon).not.toHaveClass('Pillar__icon--with-background')
-    expect(icon).not.toHaveClass('Icon--size-20')
+    expect(icon).not.toHaveClass('Icon--size-32')
     expect(svg).toHaveAttribute('width', '120')
     expect(svg).toHaveAttribute('height', '56')
   })
