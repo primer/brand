@@ -93,3 +93,17 @@
     border-inline-end: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
   }
 }
+
+.riverFootsteps {
+  --brand-image-aspectRatio: 10 / 16;
+}
+
+@media screen and (max-width: 48rem) {
+  .riverFootsteps {
+    --brand-image-aspectRatio: 4 / 3;
+  }
+
+  .riverFootstepsGrid {
+    grid-row-gap: var(--base-size-32);
+  }
+}
