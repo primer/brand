@@ -133,4 +133,32 @@ describe('Pillar', () => {
     const pillarEl = getByTestId(mockTestId)
     expect(pillarEl).toHaveClass(classToCheck)
   })
+
+  it('applies fullWidth class correctly', () => {
+    const mockTestId = 'test'
+
+    const {getByTestId} = render(
+      <Pillar data-testid={mockTestId} fullWidth>
+        <Pillar.Heading>{mockHeading}</Pillar.Heading>
+        <Pillar.Description>{mockDescription}</Pillar.Description>
+      </Pillar>,
+    )
+
+    const pillarEl = getByTestId(mockTestId)
+    expect(pillarEl).toHaveClass('Pillar--fullWidth')
+  })
+
+  it('does not apply fullWidth class by default', () => {
+    const mockTestId = 'test'
+
+    const {getByTestId} = render(
+      <Pillar data-testid={mockTestId}>
+        <Pillar.Heading>{mockHeading}</Pillar.Heading>
+        <Pillar.Description>{mockDescription}</Pillar.Description>
+      </Pillar>,
+    )
+
+    const pillarEl = getByTestId(mockTestId)
+    expect(pillarEl).not.toHaveClass('Pillar--fullWidth')
+  })
 })

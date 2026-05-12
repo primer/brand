@@ -268,6 +268,22 @@ FrostedGlassEffect.parameters = {
   layout: 'full',
 }
 
+export const FullWidth: StoryFn<typeof Pillar> = () => {
+  return (
+    <Pillar fullWidth>
+      <Pillar.Image
+        aspectRatio="16:10"
+        src={placeholderImage}
+        alt="placeholder, blank area with a gray background color"
+      />
+      <Pillar.Heading>Code search & code view</Pillar.Heading>
+      <Pillar.Description>
+        Enables you to rapidly search, navigate, and understand code, right from GitHub.com.
+      </Pillar.Description>
+    </Pillar>
+  )
+}
+
 export const WithBorder: StoryFn<typeof Pillar> = () => {
   return (
     <Pillar hasBorder>
