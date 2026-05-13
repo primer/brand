@@ -1,0 +1,32 @@
+declare const styles: {
+  readonly "MediaPlaylist": string;
+  readonly "MediaPlaylist--overflowItems": string;
+  readonly "MediaPlaylist__content": string;
+  readonly "MediaPlaylist__heading": string;
+  readonly "MediaPlaylist__headingCounter": string;
+  readonly "MediaPlaylist__headingLabel": string;
+  readonly "MediaPlaylist__item": string;
+  readonly "MediaPlaylist__item--selected": string;
+  readonly "MediaPlaylist__itemHeading": string;
+  readonly "MediaPlaylist__itemHeadingContent": string;
+  readonly "MediaPlaylist__itemHeadingDetails": string;
+  readonly "MediaPlaylist__itemHeadingTitle": string;
+  readonly "MediaPlaylist__layout": string;
+  readonly "MediaPlaylist__media": string;
+  readonly "MediaPlaylist__media--fill-media": string;
+  readonly "MediaPlaylist__media--has-background": string;
+  readonly "MediaPlaylist__media--has-shadow": string;
+  readonly "MediaPlaylist__media--rounded": string;
+  readonly "MediaPlaylist__mediaPanel": string;
+  readonly "MediaPlaylist__mediaPanels": string;
+  readonly "MediaPlaylist__pagination": string;
+  readonly "MediaPlaylist__panel": string;
+  readonly "MediaPlaylist__panelContent": string;
+  readonly "MediaPlaylist__playlist": string;
+  readonly "MediaPlaylist__tab": string;
+  readonly "MediaPlaylist__tabContent": string;
+  readonly "MediaPlaylist__tablist": string;
+  readonly "MediaPlaylist__thumbnail": string;
+};
+export = styles;
+

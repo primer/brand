@@ -6,131 +6,14 @@
 
 .Pagination__inner {
   display: inline-flex;
+  flex-wrap: wrap;
   align-items: center;
+  justify-content: center;
   gap: var(--base-size-8);
 }
 
-.Pagination__item {
-  min-width: var(--base-size-32);
-  height: var(--base-size-32);
-  text-align: center;
-  white-space: nowrap;
-  vertical-align: middle;
-  cursor: pointer;
-  user-select: none;
-  text-decoration: none;
-  padding: var(--base-size-4) var(--base-size-8);
-  border: var(--brand-borderWidth-thick) solid transparent;
-  border-radius: var(--brand-borderRadius-medium);
-  transition: border-color var(--brand-animation-duration-fast) var(--brand-animation-easing-default);
-}
-
-.Pagination__item span {
-  font-size: var(--brand-text-size-100);
-  line-height: var(--base-size-20);
-}
-
-.Pagination__item:hover,
-.Pagination__item:focus {
-  text-decoration: none;
-  outline: 0;
-  transition-duration: 0.1s;
-  border-color: var(--brand-pagination-borderColor-hover);
-}
-
-.Pagination__item::after {
-  display: none;
-}
-
-.Pagination__item:active {
-  border-color: var(--brand-pagination-link-bgColor-active);
-}
-
-.Pagination__item[aria-current],
-.Pagination__item[aria-current]:hover {
-  background-color: var(--brand-pagination-link-bgColor-active);
-  border-color: transparent;
-}
-
-.Pagination__item[aria-current] * {
-  color: var(--brand-color-text-onEmphasis);
-}
-
-.Pagination__item[aria-disabled],
-.Pagination__item[aria-disabled]:hover,
-.Pagination__item[role='presentation'],
-.Pagination__item[role='presentation']:hover {
-  color: var(--brand-color-text-muted);
-  cursor: default;
-  background-color: transparent;
-  border-color: transparent;
-  font-size: inherit;
-  font-family: inherit;
-  padding-top: inherit;
-  padding-bottom: inherit;
-}
-
-.Pagination__item[aria-disabled] *,
-.Pagination__item[aria-disabled]:hover *,
-.Pagination__item[role='presentation'] *,
-.Pagination__item[role='presentation']:hover * {
-  color: inherit;
-}
-
-.Pagination__showPages .Pagination__item[rel='prev'] span,
-.Pagination__showPages .Pagination__item[rel='next'] span {
-  display: none;
-}
-
-.Pagination__item[rel='prev'] svg,
-.Pagination__item[rel='next'] svg {
-  margin-inline: 0;
-  position: relative;
-}
-
-.Pagination__item[rel='prev'] svg {
-  left: var(--base-size-2);
-}
-
-.Pagination__item[rel='next'] svg {
-  right: var(--base-size-2);
-}
-
-@media screen and (min-width: 48rem) {
-  .Pagination__item[rel='prev'] span,
-  .Pagination__item[rel='next'] span {
-    display: block !important;
-  }
-
-  .Pagination__item[rel='prev'] svg,
-  .Pagination__item[rel='next'] svg {
-    margin-inline: unset;
-    left: 0;
-    right: 0;
-  }
-
-  .Pagination__item[rel='prev'][aria-disabled] svg,
-  .Pagination__item[rel='next'][aria-disabled] svg {
-    display: none;
-  }
-}
-
-@media (forced-colors: active) {
-  .Pagination__item[aria-current],
-  .Pagination__item[aria-current]:hover {
-    border-color: Highlight;
-    border-width: var(--brand-borderWidth-thicker);
-  }
-}
-
-/* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
-@media (prefers-reduced-motion: reduce) {
-  .Pagination,
-  .Pagination::before,
-  .Pagination::after,
-  .Pagination * {
-    animation: none !important;
-    transition: none !important;
-    scroll-behavior: auto !important;
-  }
+.Pagination__pageItem {
+  --brand-button-subtle-borderColor-rest: transparent;
+  --brand-button-subtle-borderColor-hover: transparent;
+  --brand-button-subtle-borderColor-active: transparent;
 }
