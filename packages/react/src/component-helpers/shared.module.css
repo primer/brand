@@ -1,8 +1,7 @@
 /*
  * .gridline: horizontal gridlines that span the visible viewport, breaking
- * out of constrained-width parents. Uses CSS anchor positioning when
- * supported to avoid the 100vw classic-scrollbar overflow issue, with
- * 100vw as a fallback in browsers without anchor positioning support.
+ * out of constrained-width parents. Uses border-image-outset to extend the
+ * line visually without affecting layout or causing scrollbar overflow.
  */
 
 .gridline {
@@ -13,11 +12,15 @@
 .gridline::after {
   content: '';
   position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 100vw;
+  left: 0;
+  right: 0;
   height: 0;
-  border-top: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
+  border-top: var(--brand-borderWidth-thin) solid;
+  border-image: linear-gradient(
+    var(--brand-color-border-muted),
+    var(--brand-color-border-muted)
+  ) 1;
+  border-image-outset: 0 9999px;
   z-index: 1;
   pointer-events: none;
 }
@@ -28,31 +31,4 @@
 
 .gridline::after {
   bottom: 0;
-}
-
-/* anchor-scope confines the shared anchor-name to each instance. */
-@supports (anchor-name: --x) {
-  .gridline {
-    anchor-name: --brand-gridline;
-    anchor-scope: --brand-gridline;
-  }
-
-  .gridline::before,
-  .gridline::after {
-    position: fixed;
-    position-anchor: --brand-gridline;
-    left: 0;
-    right: 0;
-    width: auto;
-    transform: none;
-  }
-
-  .gridline::before {
-    top: anchor(top);
-  }
-
-  .gridline::after {
-    top: anchor(bottom);
-    bottom: auto;
-  }
 }
