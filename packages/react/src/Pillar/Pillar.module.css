@@ -5,6 +5,10 @@
   flex-direction: column;
 }
 
+.Pillar--fullWidth {
+  max-width: unset;
+}
+
 .Pillar--has-border {
   border: var(--brand-borderWidth-thin) solid var(--brand-color-border-default);
   border-radius: var(--brand-borderRadius-medium);
@@ -28,7 +32,8 @@
 }
 
 .Pillar__image img,
-.Pillar__image span {
+.Pillar__image span,
+.Pillar__image picture {
   display: block;
 }
 

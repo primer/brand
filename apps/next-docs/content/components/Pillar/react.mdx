@@ -51,7 +51,7 @@ You can add an image to enhance the visual context.
 
 ```jsx live
 <Pillar>
-  <Pillar.Image src="/images/placeholder.png" alt="placeholder, blank area with an gray background color" />
+  <Pillar.Image src="/images/placeholder.png" alt="placeholder, blank area with a gray background color" />
   <Pillar.Heading>Code search & code view</Pillar.Heading>
   <Pillar.Description>
     Enables you to rapidly search, navigate, and understand code, right from GitHub.com.
@@ -65,6 +65,20 @@ You can add an optional border to create a visual boundary around the pillar con
 
 ```jsx live
 <Pillar hasBorder>
+  <Pillar.Heading>Code search & code view</Pillar.Heading>
+  <Pillar.Description>
+    Enables you to rapidly search, navigate, and understand code, right from GitHub.com.
+  </Pillar.Description>
+</Pillar>
+```
+
+### Full width
+
+Use the `fullWidth` prop to allow the Pillar to fill the width of its parent container. By default, pillar width is constrained.
+
+```jsx live
+<Pillar fullWidth>
+  <Pillar.Image src="/images/placeholder.png" alt="placeholder, blank area with a gray background color" />
   <Pillar.Heading>Code search & code view</Pillar.Heading>
   <Pillar.Description>
     Enables you to rapidly search, navigate, and understand code, right from GitHub.com.
@@ -128,10 +142,12 @@ Use the `Stack` component to stack multiple Pillars horizontally or vertically.
 
 ### Pillar
 
-| name    | type              | default | required | description                                 |
-| ------- | ----------------- | ------- | -------- | ------------------------------------------- |
-| `align` | `start`, `center` | `start` | `false`  | Aligns the pillar content                   |
-| `as`    | <PillarAsProp />  | `'div'` | `false`  | The HTML element used to render the pillar. |
+| name        | type              | default | required | description                                                      |
+| ----------- | ----------------- | ------- | -------- | ---------------------------------------------------------------- |
+| `align`     | `start`, `center` | `start` | `false`  | Aligns the pillar content                                        |
+| `as`        | <PillarAsProp />  | `'div'` | `false`  | The HTML element used to render the pillar.                      |
+| `fullWidth` | `boolean`         | `false` | `false`  | Allows the pillar to fill the width of its parent container.     |
+| `hasBorder` | `boolean`         | `false` | `false`  | Enables an optional border around the pillar content.            |
 
 ### Pillar.Icon
 

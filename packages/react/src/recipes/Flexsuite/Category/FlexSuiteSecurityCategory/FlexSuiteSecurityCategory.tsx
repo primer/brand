@@ -6,6 +6,7 @@ import {
   Card,
   Grid,
   Hero,
+  Pillar,
   LogoSuite,
   Section,
   SectionIntro,
@@ -201,6 +202,51 @@ export function FlexSuiteSecurityCategoryTemplate({content}: FlexSuiteSecurityCa
             <Testimonial.Avatar src={monaAvatar} alt={content.testimonial.avatarAlt} />
             <Testimonial.Name position={content.testimonial.position}>{content.testimonial.name}</Testimonial.Name>
           </Testimonial>
+        </Section>
+      </Box>
+
+      <Box borderBlockEndWidth="thin" borderColor="muted" borderStyle="solid">
+        <Section paddingBlockEnd="none" paddingBlockStart="none" className={styles.riverFootsteps}>
+          <Box
+            borderInlineStartWidth="thin"
+            borderInlineEndWidth="thin"
+            borderColor="muted"
+            borderStyle="solid"
+            padding={{narrow: 24, regular: 48, wide: 64}}
+          >
+            <Grid columnGap="none" rowGap="none" enableGutters={false}>
+              <Grid.Column span={{xsmall: 12, large: 5}}>
+                <SectionIntro>
+                  <SectionIntro.Heading>{content.riverFootstepsSection.heading}</SectionIntro.Heading>
+                  <SectionIntro.Link href="#">{content.riverFootstepsSection.linkText}</SectionIntro.Link>
+                </SectionIntro>
+              </Grid.Column>
+              <Grid.Column span={{xsmall: 12, large: 7}}>
+                <Grid className={styles.riverFootstepsGrid}>
+                  {content.riverFootstepsSection.pillars.map(pillar => (
+                    <Grid.Column key={pillar.heading} span={{xsmall: 12, medium: 6}}>
+                      <Pillar fullWidth>
+                        <Pillar.Image
+                          as="picture"
+                          src={placeholderImage}
+                          alt={pillar.imageAlt}
+                          aspectRatio="custom"
+                          sources={[
+                            {
+                              srcset: placeholderImage,
+                              media: '(min-width: 48rem)',
+                            },
+                          ]}
+                        />
+                        <Pillar.Heading>{pillar.heading}</Pillar.Heading>
+                        <Pillar.Link href="#">{pillar.linkText}</Pillar.Link>
+                      </Pillar>
+                    </Grid.Column>
+                  ))}
+                </Grid>
+              </Grid.Column>
+            </Grid>
+          </Box>
         </Section>
       </Box>
 

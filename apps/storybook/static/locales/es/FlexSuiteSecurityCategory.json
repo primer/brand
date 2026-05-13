@@ -108,5 +108,26 @@
     "description": "Sección CTA provisional para la nueva categoría de Seguridad. Podemos reemplazarla después por la franja final de flujos de trabajo integrados del diseño de Figma.",
     "primaryAction": "Iniciar prueba gratuita",
     "secondaryAction": "Contactar con ventas"
+  },
+  "riverFootstepsSection": {
+    "heading": "Adoptado por las organizaciones líderes del mundo",
+    "pillars": {
+      "one": {
+        "heading": "Otto Group eleva el compromiso de los desarrolladores con GitHub Advanced Security",
+        "imageAlt": "Edificio de oficinas de Otto Group",
+        "linkText": "Leer historia del cliente"
+      },
+      "two": {
+        "heading": "SPH Media controla la proliferación de herramientas y protege el código con GitHub",
+        "imageAlt": "Recepción de oficina de SPH Media",
+        "linkText": "Leer historia del cliente"
+      },
+      "three": {
+        "heading": "Postmates usa GitHub Advanced Security para detectar vulnerabilidades",
+        "imageAlt": "Miembros del equipo de Postmates trabajando",
+        "linkText": "Leer historia del cliente"
+      }
+    },
+    "linkText": "Más información"
   }
 }
