@@ -1,0 +1,140 @@
+---
+title: Media playlist
+description: Use MediaPlaylist to pair thumbnail-backed media items with a shared playback or media area.
+keywords: ['media', 'playlist', 'tabs', 'video']
+show-tabs: false
+ready: true
+source: https://github.com/primer/brand/blob/main/packages/react/src/MediaPlaylist/MediaPlaylist.tsx
+storybook: '/brand/storybook/?path=/story/components-mediaplaylist--default'
+---
+
+import {Label} from '@primer/react'
+
+```js
+import {MediaPlaylist} from '@primer/react-brand'
+```
+
+## Examples
+
+### Default
+
+```jsx live
+<MediaPlaylist>
+  <MediaPlaylist.Heading>Latest videos</MediaPlaylist.Heading>
+
+  <MediaPlaylist.Item thumbnail={<img src="https://i.ytimg.com/vi/ITxzBiTBZW0/hqdefault.jpg" alt="" loading="lazy" />}>
+    <MediaPlaylist.ItemHeading title="Getting More from Every Copilot Interaction" description="10:57" />
+    <MediaPlaylist.ItemContent>
+      <Text as="p" variant="muted">
+        See workflows for scoping context, choosing the right mode, and getting more focused Copilot answers.
+      </Text>
+    </MediaPlaylist.ItemContent>
+    <MediaPlaylist.ItemMedia>
+      <iframe
+        src="https://www.youtube-nocookie.com/embed/ITxzBiTBZW0"
+        title="Getting More from Every Copilot Interaction"
+        loading="lazy"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowFullScreen
+      />
+    </MediaPlaylist.ItemMedia>
+  </MediaPlaylist.Item>
+
+  <MediaPlaylist.Item thumbnail={<img src="https://i.ytimg.com/vi/CIgdAO8mbw0/hqdefault.jpg" alt="" loading="lazy" />}>
+    <MediaPlaylist.ItemHeading title="How to plan projects with GitHub Copilot CLI" description="08:35" />
+    <MediaPlaylist.ItemContent>
+      <Text as="p" variant="muted">
+        Use GitHub Copilot CLI planning to clarify goals, map an approach, and prepare implementation work.
+      </Text>
+    </MediaPlaylist.ItemContent>
+    <MediaPlaylist.ItemMedia>
+      <iframe
+        src="https://www.youtube-nocookie.com/embed/CIgdAO8mbw0"
+        title="How to plan projects with GitHub Copilot CLI"
+        loading="lazy"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowFullScreen
+      />
+    </MediaPlaylist.ItemMedia>
+  </MediaPlaylist.Item>
+
+  <MediaPlaylist.Item thumbnail={<img src="https://i.ytimg.com/vi/wS8CV85RTO8/hqdefault.jpg" alt="" loading="lazy" />}>
+    <MediaPlaylist.ItemHeading title="What is TanStack AI? The new open source toolkit" description="12:04" />
+    <MediaPlaylist.ItemContent>
+      <Text as="p" variant="muted">
+        Get a quick look at TanStack AI and its open source approach to framework-agnostic AI tooling.
+      </Text>
+    </MediaPlaylist.ItemContent>
+    <MediaPlaylist.ItemMedia>
+      <iframe
+        src="https://www.youtube-nocookie.com/embed/wS8CV85RTO8"
+        title="What is TanStack AI? The new open source toolkit"
+        loading="lazy"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowFullScreen
+      />
+    </MediaPlaylist.ItemMedia>
+  </MediaPlaylist.Item>
+</MediaPlaylist>
+```
+
+## Component props
+
+### MediaPlaylist <Label>Required</Label>
+
+| Name                   | Type                              | Default | Description                                                         |
+| :--------------------- | :-------------------------------- | :-----: | :------------------------------------------------------------------ |
+| `children`             | `ReactNode`                       |         | Includes one required `MediaPlaylist.Heading` and one or more items |
+| `defaultSelectedIndex` | `number`                          |   `0`   | Default selected index for uncontrolled mode                        |
+| `selectedIndex`        | `number`                          |         | Selected index for controlled mode                                  |
+| `onChange`             | `(selectedIndex: number) => void` |         | Callback called when selected index changes                         |
+
+`MediaPlaylist` extends the HTML `div` element and supports all `div` props.
+
+### MediaPlaylist.Heading <Label>Required</Label>
+
+| Name       | Type           | Default | Description                                                            |
+| :--------- | :------------- | :-----: | :--------------------------------------------------------------------- |
+| `children` | `ReactNode`    |         | Visible playlist heading and accessible label for the playlist items   |
+| `as`       | `'h2' \| 'h3'` | `'h3'`  | Semantic heading level                                                 |
+| `id`       | `string`       |         | Optional custom ID used for the tablist `aria-labelledby` relationship |
+
+`MediaPlaylist.Heading` renders a visible heading and active item counter.
+
+### MediaPlaylist.Item <Label>Required</Label>
+
+| Name        | Type                   | Default | Description                                           |
+| :---------- | :--------------------- | :-----: | :---------------------------------------------------- |
+| `children`  | `React.ReactElement[]` |         | Must include ItemHeading, ItemContent, and ItemMedia  |
+| `thumbnail` | `ReactNode`            |         | Thumbnail media displayed in the playlist item button |
+| `className` | `string`               |         | Optional custom class                                 |
+
+### MediaPlaylist.ItemHeading <Label>Required</Label>
+
+| Name          | Type        | Default | Description                                                           |
+| :------------ | :---------- | :-----: | :-------------------------------------------------------------------- |
+| `title`       | `ReactNode` |         | Item title text                                                       |
+| `description` | `ReactNode` |         | Optional metadata rendered under the title, such as a video duration  |
+| `children`    | `ReactNode` |         | Custom item heading content when title/description props are not used |
+
+`MediaPlaylist.ItemHeading` extends the [`Heading`](/components/Heading) component.
+
+### MediaPlaylist.ItemContent <Label>Required</Label>
+
+| Name       | Type        | Default | Description       |
+| :--------- | :---------- | :-----: | :---------------- |
+| `children` | `ReactNode` |         | Item body content |
+
+`MediaPlaylist.ItemContent` extends the HTML `div` element and supports all `div` props.
+
+### MediaPlaylist.ItemMedia <Label>Required</Label>
+
+| Name                   | Type                    | Default | Description                      |
+| :--------------------- | :---------------------- | :-----: | :------------------------------- |
+| `children`             | `React.ReactElement`    |         | Item media                       |
+| `fillMedia`            | `boolean`               | `true`  | Applies automatic media sizing   |
+| `hasShadow`            | `boolean`               | `false` | Applies a shadow to child media  |
+| `rounded`              | `boolean`               | `true`  | Enables rounded corners          |
+| `imageBackgroundColor` | `'default' \| 'subtle'` |         | Optional background around media |
+
+`MediaPlaylist.ItemMedia` extends the HTML `div` element and supports all `div` props.

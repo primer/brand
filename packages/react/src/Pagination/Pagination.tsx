@@ -1,14 +1,9 @@
 import React, {memo, useCallback} from 'react'
-import {Link, LinkProps, useWindowSize} from '..'
+import {Button, useWindowSize} from '..'
 
 import {clsx} from 'clsx'
 
-import {buildPaginationModel, PageType} from './model'
-
-/**
- * Design tokens
- */
-import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/pagination/colors-with-modes.css'
+import {buildPaginationModel, PaginationPageType} from './model'
 
 /** * Main Stylesheet (as a CSS Module) */
 import styles from './Pagination.module.css'
@@ -23,7 +18,7 @@ export type PaginationProps = {
   /* Function to build the href for each page */
   hrefBuilder?: (n: number) => string
   /* Function to forward custom attributes for each pagination item */
-  pageAttributesBuilder?: (n: number) => {[attributeName: string]: string}
+  pageAttributesBuilder?: (n: number, page: PaginationPageType) => {[attributeName: string]: string}
   /* Defines how many pages are to to be displayed on the left and right of the component */
   marginPageCount?: number
   /* Whether to show the page numbers */
@@ -100,7 +95,7 @@ export const Pagination = memo(
       <nav
         ref={navRef}
         id={id}
-        className={clsx(styles.Pagination, showPages && styles['Pagination__showPages'], className)}
+        className={clsx(styles.Pagination, className)}
         data-testid={testId}
         aria-label={ariaLabel || 'Pagination'}
         {...rest}
@@ -112,52 +107,54 @@ export const Pagination = memo(
 )
 
 type PaginationItemProps = {
-  page: PageType
+  page: PaginationPageType
   hrefBuilder: (n: number) => string
-  pageAttributesBuilder?: (n: number) => {[key: string]: string}
-  onClick?: LinkProps['onClick']
+  pageAttributesBuilder?: (n: number, page: PaginationPageType) => {[key: string]: string}
+  onClick?: React.MouseEventHandler<HTMLAnchorElement>
 }
 
 const PaginationItem = ({page, hrefBuilder, pageAttributesBuilder, onClick}: PaginationItemProps) => {
-  const baseProps: LinkProps = {
+  const baseProps = {
     role: 'button',
-    arrowDirection: 'none',
-    className: clsx(styles.Pagination__item),
-    size: 'medium',
-    onClick,
+    size: 'small' as const,
+    variant: 'subtle' as const,
+    onClick: page.disabled ? undefined : onClick,
   }
 
-  const customProps = pageAttributesBuilder?.(page.num)
+  const customProps = pageAttributesBuilder?.(page.num, page)
+  const {className: customClassName, ...customAttributes} = customProps ?? {}
 
   switch (page.type) {
     case 'PREV': {
       return (
-        <Link
+        <Button
           {...baseProps}
+          as="a"
           rel="prev"
-          arrowDirection="start"
           href={page.disabled ? undefined : hrefBuilder(page.num)}
           aria-disabled={page.disabled || undefined}
           aria-label="Previous Page"
-          {...customProps}
+          {...customAttributes}
+          className={customClassName}
         >
           Previous
-        </Link>
+        </Button>
       )
     }
     case 'NEXT': {
       return (
-        <Link
+        <Button
           {...baseProps}
+          as="a"
           rel="next"
-          arrowDirection="end"
           href={page.disabled ? undefined : hrefBuilder(page.num)}
           aria-disabled={page.disabled || undefined}
           aria-label="Next Page"
-          {...customProps}
+          {...customAttributes}
+          className={customClassName}
         >
           Next
-        </Link>
+        </Button>
       )
     }
     case 'NUM': {
@@ -166,22 +163,34 @@ const PaginationItem = ({page, hrefBuilder, pageAttributesBuilder, onClick}: Pag
          * Append "..." to the aria-label for pages that preceed a break because screen readers will change the
          * tone the text is read in. This is a slightly nicer experience than skipping a bunch of numbers unexpectedly.
          */
-        <Link
+        <Button
           {...baseProps}
+          as="a"
+          variant={page.selected ? 'primary' : 'subtle'}
+          className={clsx(styles.Pagination__pageItem, customClassName)}
           href={hrefBuilder(page.num)}
           aria-label={`Page ${page.num}${page.precedesBreak ? '...' : ''}`}
           aria-current={page.selected ? 'page' : undefined}
-          {...customProps}
+          {...customAttributes}
         >
           {page.num}
-        </Link>
+        </Button>
       )
     }
     case 'BREAK': {
       return (
-        <Link {...baseProps} role="presentation" href={undefined} onClick={undefined} {...customProps}>
+        <Button
+          {...baseProps}
+          as="a"
+          className={clsx(styles.Pagination__pageItem, customClassName)}
+          variant="subtle"
+          role="presentation"
+          href={undefined}
+          onClick={undefined}
+          {...customAttributes}
+        >
           …
-        </Link>
+        </Button>
       )
     }
   }

@@ -1,4 +1,4 @@
-export type PageType = {
+export type PaginationPageType = {
   type: 'PREV' | 'NEXT' | 'NUM' | 'BREAK'
   num: number
   disabled?: boolean
@@ -12,8 +12,8 @@ export function buildPaginationModel(
   showPages: boolean,
   marginPageCount: number,
   surroundingPageCount: number,
-): PageType[] {
-  const pages: PageType[] = []
+): PaginationPageType[] {
+  const pages: PaginationPageType[] = []
 
   if (showPages) {
     const pageNums: Array<number> = []
@@ -129,7 +129,7 @@ export function buildPaginationModel(
     }
   }
 
-  const prev: PageType = {type: 'PREV', num: currentPage - 1, disabled: currentPage === 1}
-  const next: PageType = {type: 'NEXT', num: currentPage + 1, disabled: currentPage === pageCount}
+  const prev: PaginationPageType = {type: 'PREV', num: currentPage - 1, disabled: currentPage === 1}
+  const next: PaginationPageType = {type: 'NEXT', num: currentPage + 1, disabled: currentPage === pageCount}
   return [prev, ...pages, next]
 }
