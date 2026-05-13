@@ -1,4 +1,4 @@
-name: Integration test
+name: Integration test (Next.js)
 
 on:
   push:
@@ -8,15 +8,23 @@ on:
     - cron: '0 0 * * *' # end of each day (UTC)
   pull_request:
 
-env:
-  NEXTJS_FOLDER: next-js-test
-
 jobs:
   test:
     if: ${{ github.repository == 'primer/brand' }}
-    name: Next.js
+    name: Next.js (${{ matrix.bundle }})
     runs-on:
       labels: ubuntu-latest-16-cores
+    strategy:
+      fail-fast: false
+      matrix:
+        bundle: [umd, esm]
+        include:
+          - bundle: umd
+            nextjs_folder: next-js-test
+          - bundle: esm
+            nextjs_folder: next-js-esm-test
+    env:
+      NEXTJS_FOLDER: ${{ matrix.nextjs_folder }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v6
@@ -34,10 +42,6 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-node-
 
-      # Restore the previous NPM modules and Cypress binary archives.
-      # Any updated archives will be saved automatically after the entire
-      # workflow successfully finishes.
-      # See https://github.com/actions/cache
       - name: Cache Cypress binary
         uses: actions/cache@v5
         with:
@@ -51,9 +55,7 @@ jobs:
 
       - name: install dependencies and verify Cypress
         env:
-          # make sure every Cypress install prints minimal information
           CI: 1
-        # print Cypress and OS info
         run: |
           npx cypress@15.13.0 install --force
           npx cypress@15.13.0 verify
@@ -81,27 +83,23 @@ jobs:
 
       - name: Installing local build
         run: |
-          cd ${{env.NEXTJS_FOLDER}}
-          cp ../packages/react/primer-react-brand-${{ steps.package-version.outputs.current-version}}.tgz ./
-          npm install primer-react-brand-${{ steps.package-version.outputs.current-version}}.tgz
+          cd ${{ env.NEXTJS_FOLDER }}
+          cp ../packages/react/primer-react-brand-${{ steps.package-version.outputs.current-version }}.tgz ./
+          npm install primer-react-brand-${{ steps.package-version.outputs.current-version }}.tgz
 
-      - name: Prefer ESM imports
+      - name: Prepare barrel file for bundle type
         run: |
-          mv ./packages/e2e/integration-tests/fixtures/index.esm.ts ./packages/e2e/integration-tests/fixtures/index.ts
-          rm ./packages/e2e/integration-tests/fixtures/index.cjs.ts
-
-      - name: Copying required files
-        run: |
-          rm ./${{env.NEXTJS_FOLDER}}/app/page.tsx
-          cp ./packages/e2e/integration-tests/nextjs/page.tsx ./${{env.NEXTJS_FOLDER}}/app
+          cp ./packages/e2e/integration-tests/fixtures/index.${{ matrix.bundle }}.ts ./packages/e2e/integration-tests/fixtures/index.ts
+          rm ./packages/e2e/integration-tests/fixtures/index.umd.ts ./packages/e2e/integration-tests/fixtures/index.esm.ts
 
       - name: Copying required files
         run: |
-          cp ./packages/e2e/integration-tests/nextjs/page.tsx ./${{env.NEXTJS_FOLDER}}/app
-          cp ./packages/e2e/cypress.config.js ./${{env.NEXTJS_FOLDER}}
-          mkdir ${{env.NEXTJS_FOLDER}}/integration-tests
-          cp -r ./packages/e2e/integration-tests/fixtures ./${{env.NEXTJS_FOLDER}}/integration-tests
-          cp -r ./packages/e2e/integration-tests/tests ./${{env.NEXTJS_FOLDER}}/integration-tests
+          rm ./${{ env.NEXTJS_FOLDER }}/app/page.tsx
+          cp ./packages/e2e/integration-tests/nextjs/page.tsx ./${{ env.NEXTJS_FOLDER }}/app
+          cp ./packages/e2e/cypress.config.js ./${{ env.NEXTJS_FOLDER }}
+          mkdir ${{ env.NEXTJS_FOLDER }}/integration-tests
+          cp -r ./packages/e2e/integration-tests/fixtures ./${{ env.NEXTJS_FOLDER }}/integration-tests
+          cp -r ./packages/e2e/integration-tests/tests ./${{ env.NEXTJS_FOLDER }}/integration-tests
 
       - name: Excluded cypress tests in-place
         # includes temp workaround for cypress bug. remove when fixed
@@ -109,17 +107,16 @@ jobs:
         run: npx json@11.0.0 -I -f ${{env.NEXTJS_FOLDER}}/tsconfig.json -e 'this.exclude=["node_modules", "**/*.cy.ts"]; this.compilerOptions.moduleResolution="node"'
 
       - name: Fix monorepo-related linting issues
-        run: |
-          npm run lint -- --fix
+        run: npm run lint -- --fix
 
       # Needed to fix compilation errors and conflicts between TS and React type defs.
       # All subsequent steps should not be dependent on the primer/brand repo contents.
       - name: Clean workspace before testing
         run: |
-          find . -maxdepth 1 -mindepth 1 -not -name ${{env.NEXTJS_FOLDER}} -exec rm -rf {} +
+          find . -maxdepth 1 -mindepth 1 -not -name ${{ env.NEXTJS_FOLDER }} -exec rm -rf {} +
 
       - name: Testing compile-time build
-        run: cd ${{env.NEXTJS_FOLDER}} && npm run build
+        run: cd ${{ env.NEXTJS_FOLDER }} && npm run build
 
       - name: Test runtime for errors and warnings
         run: cd ${{env.NEXTJS_FOLDER}} && npx start-server-and-test@3.0.0 'start' 3000 'npx cypress@15.13.0 run --spec "./integration-tests/tests/*" --config video=false'

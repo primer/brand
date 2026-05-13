@@ -63,7 +63,7 @@ jobs:
       - name: Prefer ESM imports
         run: |
           mv ./packages/e2e/integration-tests/fixtures/index.esm.ts ./packages/e2e/integration-tests/fixtures/index.ts
-          rm ./packages/e2e/integration-tests/fixtures/index.cjs.ts
+          rm ./packages/e2e/integration-tests/fixtures/index.umd.ts
 
       - name: Copying required files
         run: |

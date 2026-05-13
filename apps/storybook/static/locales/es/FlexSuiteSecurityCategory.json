@@ -1,7 +1,7 @@
 {
   "common": {
     "learnMore": "Más información",
-    "heroImageAlt": "Ilustración principal de la vista general de seguridad"
+    "heroImageAlt": "Ilustración principal de la categoría de seguridad"
   },
   "subNav": {
     "heading": "GitHub Security",
@@ -105,7 +105,7 @@
   "cta": {
     "label": "Seguridad integrada para flujos de trabajo de desarrollo",
     "heading": "Seguridad que acompaña a los desarrolladores allí donde trabajan",
-    "description": "Sección CTA provisional para la nueva vista general de Seguridad. Podemos reemplazarla después por la franja final de flujos de trabajo integrados del diseño de Figma.",
+    "description": "Sección CTA provisional para la nueva categoría de Seguridad. Podemos reemplazarla después por la franja final de flujos de trabajo integrados del diseño de Figma.",
     "primaryAction": "Iniciar prueba gratuita",
     "secondaryAction": "Contactar con ventas"
   }
