@@ -110,24 +110,24 @@
     "secondaryAction": "Falar com vendas"
   },
   "riverFootstepsSection": {
-    "heading": "Adopted by the world's leading organizations",
+    "heading": "Adotado pelas principais organizações do mundo",
     "pillars": {
       "one": {
-        "heading": "Otto Group elevates developer engagement with GitHub Advanced Security",
-        "imageAlt": "Otto Group office building",
-        "linkText": "Read customer story"
+        "heading": "Otto Group eleva o engajamento dos desenvolvedores com o GitHub Advanced Security",
+        "imageAlt": "Edifício de escritórios do Otto Group",
+        "linkText": "Ler história do cliente"
       },
       "two": {
-        "heading": "SPH Media tames tool sprawl and secures code with GitHub",
-        "imageAlt": "SPH Media office reception area",
-        "linkText": "Read customer story"
+        "heading": "SPH Media controla a proliferação de ferramentas e protege o código com o GitHub",
+        "imageAlt": "Área de recepção do escritório da SPH Media",
+        "linkText": "Ler história do cliente"
       },
       "three": {
-        "heading": "Postmates uses GitHub Advanced Security to catch vulnerabilities",
-        "imageAlt": "Postmates team members working",
-        "linkText": "Read customer story"
+        "heading": "Postmates usa o GitHub Advanced Security para detectar vulnerabilidades",
+        "imageAlt": "Membros da equipe do Postmates trabalhando",
+        "linkText": "Ler história do cliente"
       }
     },
-    "linkText": "Learn more"
+    "linkText": "Saiba mais"
   }
 }

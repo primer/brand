@@ -5,7 +5,6 @@ import {
   Box,
   Card,
   Grid,
-  Heading,
   Hero,
   Pillar,
   LogoSuite,
@@ -218,9 +217,7 @@ export function FlexSuiteSecurityCategoryTemplate({content}: FlexSuiteSecurityCa
             <Grid columnGap="none" rowGap="none" enableGutters={false}>
               <Grid.Column span={{xsmall: 12, large: 5}}>
                 <SectionIntro>
-                  <Heading as="h2" size="5">
-                    {content.riverFootstepsSection.heading}
-                  </Heading>
+                  <SectionIntro.Heading>{content.riverFootstepsSection.heading}</SectionIntro.Heading>
                   <SectionIntro.Link href="#">{content.riverFootstepsSection.linkText}</SectionIntro.Link>
                 </SectionIntro>
               </Grid.Column>
