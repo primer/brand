@@ -826,7 +826,7 @@ function TimelineExample() {
 function PillarExample() {
   return (
     <Pillar>
-      <Pillar.Icon color="green" icon={<ZapIcon />} />
+      <Pillar.Icon icon={<ZapIcon />} />
       <Pillar.Heading>Here is a core value proposition of this new feature on one or two lines</Pillar.Heading>
       <Pillar.Description>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id aliquam luctus sed turpis.

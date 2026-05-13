@@ -16,14 +16,4 @@ test.describe('Visual Comparison: Overview', () => {
     await page.waitForTimeout(4000)
     await expect(page).toHaveScreenshot({fullPage: true})
   })
-
-  test('Overview / Security', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=recipes-flexsuite-overview--security&viewMode=story', {
-      waitUntil: 'networkidle',
-    })
-    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
-
-    await page.waitForTimeout(4000)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
 })

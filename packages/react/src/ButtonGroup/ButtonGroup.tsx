@@ -19,8 +19,7 @@ export const ButtonGroup = forwardRef(
           return React.cloneElement(child, {
             size: buttonSize,
             as: buttonsAs,
-            variant: index === 0 ? 'accent' : 'subtle',
-            hasArrow: false,
+            variant: index === 0 ? 'primary' : 'subtle',
             ...child.props,
           })
         }

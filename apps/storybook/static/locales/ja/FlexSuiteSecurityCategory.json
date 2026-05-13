@@ -1,7 +1,7 @@
 {
   "common": {
     "learnMore": "詳しく見る",
-    "heroImageAlt": "セキュリティ概要のヒーローイラスト"
+    "heroImageAlt": "セキュリティカテゴリのヒーローイラスト"
   },
   "subNav": {
     "heading": "GitHub Security",
@@ -105,7 +105,7 @@
   "cta": {
     "label": "開発ワークフローに組み込まれたセキュリティ",
     "heading": "開発者が働く場所に届くセキュリティ",
-    "description": "新しい Security 概要ページ用の仮の CTA セクションです。次の段階で、Figma デザインの最終的な組み込みワークフローバンドに置き換えられます。",
+    "description": "新しい Security カテゴリ用の仮の CTA セクションです。次の段階で、Figma デザインの最終的な組み込みワークフローバンドに置き換えられます。",
     "primaryAction": "無料トライアルを始める",
     "secondaryAction": "営業に問い合わせる"
   },

@@ -170,7 +170,7 @@ export const SplitButtonModeAllVariants = () => {
   /**
    * TODO: Only show examples for action menu button variants that are design approved
    */
-  const filteredButtonsVariants = ButtonVariants.filter(variant => !['accent', 'secondary'].includes(variant))
+  const filteredButtonsVariants = ButtonVariants.filter(variant => variant !== 'secondary')
 
   return (
     <>

@@ -1,7 +1,7 @@
 {
   "common": {
     "learnMore": "Learn more",
-    "heroImageAlt": "Security overview hero illustration"
+    "heroImageAlt": "Security category hero illustration"
   },
   "subNav": {
     "heading": "GitHub Security",
@@ -105,7 +105,7 @@
   "cta": {
     "label": "Built-in security for developer workflows",
     "heading": "Security that meets developers where they work",
-    "description": "Stubbed CTA section for the new Security overview. We can replace this with the final built-in workflows band from the Figma design next.",
+    "description": "Stubbed CTA section for the new Security category. We can replace this with the final built-in workflows band from the Figma design next.",
     "primaryAction": "Start free trial",
     "secondaryAction": "Contact sales"
   },

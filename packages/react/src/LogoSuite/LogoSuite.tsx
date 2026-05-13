@@ -1,8 +1,8 @@
 import {clsx} from 'clsx'
 import React, {type PropsWithChildren, type Ref, forwardRef, useCallback, useEffect, useMemo, useState} from 'react'
 import {useReducedMotion} from '../hooks/useReducedMotion'
+import {PauseIcon, PlayIcon} from '@primer/octicons-react'
 import type {BaseProps} from '../component-helpers'
-import {PauseIcon as OcticonPauseIcon} from '@primer/octicons-react'
 import {Heading, HeadingProps, defaultHeadingTag, Text, TextProps, Grid, Button} from '../'
 
 /**
@@ -174,16 +174,6 @@ const _Description = forwardRef(
   },
 )
 
-const PauseIcon = () => <OcticonPauseIcon size={16} />
-const PlayIcon = () => (
-  <svg role="presentation" aria-hidden="true" viewBox="8 7 9 10" width="16" height="16">
-    <path
-      d="M9.5 15.584V8.416a.5.5 0 0 1 .77-.42l5.576 3.583a.5.5 0 0 1 0 .842l-5.576 3.584a.5.5 0 0 1-.77-.42Z"
-      fill="currentColor"
-    ></path>
-  </svg>
-)
-
 type PlayPauseButtonProps = {
   isPlaying?: boolean
   onPlayPause?: (isPlaying: boolean) => void
@@ -297,7 +287,7 @@ const _LogoBar = forwardRef(
         <div className={styles['LogoSuite__logobar-takeoverButtonContainer']}>
           <Button
             as="a"
-            variant="accent"
+            variant="primary"
             className={clsx(styles['LogoSuite__logobar-takeoverButton'], takeoverButtonClassName)}
             {...takeoverButtonProps}
           >

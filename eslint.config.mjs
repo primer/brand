@@ -31,6 +31,7 @@ export default tseslint.config(
       'storybook-static/**',
       'dist/**',
       'lib/**',
+      'esm/**',
       'types/**',
       'integration-tests/**',
       'out/**',

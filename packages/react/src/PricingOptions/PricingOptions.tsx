@@ -695,7 +695,7 @@ const PricingOptionsPrimaryAction = forwardRef<
       data-testid={testId || testIds.primaryAction}
       className={clsx(styles['PricingOptions__primary-action'], className)}
       size="medium"
-      variant="accent"
+      variant="primary"
       block
       {...rest}
     >

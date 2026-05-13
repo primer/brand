@@ -404,7 +404,6 @@ function ActionBase({children, href, variant = 'secondary', size = 'small', ...r
       variant={variant}
       className={clsx(styles['AnchorNav-action'])}
       href={href}
-      hasArrow={false}
       data-testid={testIds.action}
       size={size}
       {...rest}
@@ -421,7 +420,6 @@ function SecondaryActionBase({children, href, variant = 'secondary', size = 'sma
       variant={variant}
       className={clsx(styles['AnchorNav-action'])}
       href={href}
-      hasArrow={false}
       data-testid={testIds.secondaryAction}
       size={size}
       {...rest}

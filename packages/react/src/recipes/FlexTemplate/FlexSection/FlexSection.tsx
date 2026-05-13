@@ -231,9 +231,7 @@ export function FlexSection({component, className}: FlexSectionProps) {
                         align={pillarItem.align ?? pillarsFields.align ?? 'start'}
                         hasBorder={pillarItem.hasBorder ?? false}
                       >
-                        {pillarItem.icon && (
-                          <Pillar.Icon color={pillarItem.iconColor ?? 'default'} icon={pillarItem.icon} />
-                        )}
+                        {pillarItem.icon && <Pillar.Icon icon={pillarItem.icon} />}
                         {heading && (
                           <Pillar.Heading as={pillarItem.headingLevel ?? pillarsFields.headingLevel ?? 'h3'}>
                             {heading}
@@ -582,10 +580,10 @@ export function FlexSection({component, className}: FlexSectionProps) {
                         </PricingOptions.FeatureList>
                       )}
 
-                      <PricingOptions.PrimaryAction as="a" href="#" hasArrow={false} variant="accent">
+                      <PricingOptions.PrimaryAction as="a" href="#" variant="primary">
                         Buy now
                       </PricingOptions.PrimaryAction>
-                      <PricingOptions.SecondaryAction as="a" href="#" hasArrow={false} variant="subtle">
+                      <PricingOptions.SecondaryAction as="a" href="#" variant="subtle">
                         Contact sales
                       </PricingOptions.SecondaryAction>
 

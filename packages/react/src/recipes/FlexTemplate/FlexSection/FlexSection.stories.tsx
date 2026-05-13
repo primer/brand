@@ -1,6 +1,7 @@
 import React from 'react'
 import {INITIAL_VIEWPORTS} from 'storybook/viewport'
 import type {Meta, StoryObj} from '@storybook/react'
+import {RocketIcon, ShieldCheckIcon, ZapIcon} from '@primer/octicons-react'
 
 import {FlexSection} from './FlexSection'
 import {LabelColors, TestimonialQuoteMarkColors} from '../../..'
@@ -129,17 +130,17 @@ const createMockData = (args: FlexSectionStoryArgs) => ({
           {
             heading: args.pillar1Title,
             description: args.pillar1Description,
-            icon: 'zap',
+            icon: ZapIcon,
           },
           {
             heading: args.pillar2Title,
             description: args.pillar2Description,
-            icon: 'rocket',
+            icon: RocketIcon,
           },
           {
             heading: args.pillar3Title,
             description: args.pillar3Description,
-            icon: 'shield',
+            icon: ShieldCheckIcon,
           },
         ],
       }

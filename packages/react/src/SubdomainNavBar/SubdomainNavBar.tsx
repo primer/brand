@@ -619,7 +619,6 @@ function PrimaryAction({children, href, ...rest}: PropsWithChildren<CTAActionPro
       href={href}
       className={clsx(styles['SubdomainNavBar-cta-button'])}
       variant="primary"
-      hasArrow={false}
       size="small"
       {...rest}
     >
@@ -634,7 +633,6 @@ function SecondaryAction({children, href, ...rest}: PropsWithChildren<CTAActionP
       as="a"
       href={href}
       className={clsx(styles['SubdomainNavBar-cta-button'], styles['SubdomainNavBar-cta-button--secondary'])}
-      hasArrow={false}
       size="small"
       {...rest}
     >

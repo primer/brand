@@ -123,27 +123,6 @@ test.describe('Visual Comparison: Button', () => {
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
-  test('Button / Accent', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-button-features--accent&viewMode=story', {
-      waitUntil: 'networkidle',
-    })
-    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('Button / Accent Disabled', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-button-features--accent-disabled&viewMode=story',
-      {waitUntil: 'networkidle'},
-    )
-    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
   test('Button / Small', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-button-features--small&viewMode=story', {
       waitUntil: 'networkidle',
@@ -251,7 +230,7 @@ test.describe('Visual Comparison: Button', () => {
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
-  test('Button / With optional arrows', async ({page}) => {
+  test('Button / Deprecated arrows', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-button-features--with-optional-arrows&viewMode=story',
       {waitUntil: 'networkidle'},

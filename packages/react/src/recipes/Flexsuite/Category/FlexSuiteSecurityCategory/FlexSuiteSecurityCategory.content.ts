@@ -1,10 +1,10 @@
-type FlexSuiteSecurityOverviewCardContent = {
+type FlexSuiteSecurityCategoryCardContent = {
   tag?: string
   heading: string
   description: string
 }
 
-type FlexSuiteSecurityOverviewTestimonialContent = {
+type FlexSuiteSecurityCategoryTestimonialContent = {
   quoteLead: string
   quoteEmphasis: string
   quoteTrailing: string
@@ -14,7 +14,7 @@ type FlexSuiteSecurityOverviewTestimonialContent = {
   position: string
 }
 
-export type FlexSuiteSecurityOverviewContent = {
+export type FlexSuiteSecurityCategoryContent = {
   common: {
     learnMore: string
     heroImageAlt: string
@@ -30,16 +30,16 @@ export type FlexSuiteSecurityOverviewContent = {
     secondaryAction: string
   }
   logoSuiteHeading: string
-  highlights: FlexSuiteSecurityOverviewCardContent[]
+  highlights: FlexSuiteSecurityCategoryCardContent[]
   workflow: {
     label: string
     heading: string
   }
-  capabilities: FlexSuiteSecurityOverviewCardContent[]
+  capabilities: FlexSuiteSecurityCategoryCardContent[]
   customerStories: {
     label: string
     heading: string
-    cards: FlexSuiteSecurityOverviewCardContent[]
+    cards: FlexSuiteSecurityCategoryCardContent[]
   }
   riverFootstepsSection: {
     heading: string
@@ -50,10 +50,10 @@ export type FlexSuiteSecurityOverviewContent = {
       linkText: string
     }[]
   }
-  testimonial: FlexSuiteSecurityOverviewTestimonialContent
+  testimonial: FlexSuiteSecurityCategoryTestimonialContent
   resources: {
     heading: string
-    cards: FlexSuiteSecurityOverviewCardContent[]
+    cards: FlexSuiteSecurityCategoryCardContent[]
   }
   cta: {
     label: string
@@ -64,10 +64,10 @@ export type FlexSuiteSecurityOverviewContent = {
   }
 }
 
-export const defaultFlexSuiteSecurityOverviewContent: FlexSuiteSecurityOverviewContent = {
+export const defaultFlexSuiteSecurityCategoryContent: FlexSuiteSecurityCategoryContent = {
   common: {
     learnMore: 'Learn more',
-    heroImageAlt: 'Security overview hero illustration',
+    heroImageAlt: 'Security category hero illustration',
   },
   subNav: {
     heading: 'GitHub Security',
@@ -195,7 +195,7 @@ export const defaultFlexSuiteSecurityOverviewContent: FlexSuiteSecurityOverviewC
     label: 'Built-in security for developer workflows',
     heading: 'Security that meets developers where they work',
     description:
-      'Stubbed CTA section for the new Security overview. We can replace this with the final built-in workflows band from the Figma design next.',
+      'Stubbed CTA section for the new Security category. We can replace this with the final built-in workflows band from the Figma design next.',
     primaryAction: 'Start free trial',
     secondaryAction: 'Contact sales',
   },
@@ -203,7 +203,7 @@ export const defaultFlexSuiteSecurityOverviewContent: FlexSuiteSecurityOverviewC
 
 type Translate = (key: string) => string
 
-export function getLocalizedFlexSuiteSecurityOverviewContent(t: Translate): FlexSuiteSecurityOverviewContent {
+export function getLocalizedFlexSuiteSecurityCategoryContent(t: Translate): FlexSuiteSecurityCategoryContent {
   return {
     common: {
       learnMore: t('common.learnMore'),
