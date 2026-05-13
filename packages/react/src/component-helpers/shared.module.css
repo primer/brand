@@ -20,7 +20,7 @@
     var(--brand-color-border-muted),
     var(--brand-color-border-muted)
   ) 1;
-  border-image-outset: 0 9999px;
+  border-image-outset: 0 100vw;
   z-index: 1;
   pointer-events: none;
 }
