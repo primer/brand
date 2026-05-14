@@ -2,31 +2,40 @@ import React, {render, within} from '@testing-library/react'
 import '@testing-library/jest-dom'
 import userEvent from '@testing-library/user-event'
 
-import {RiverAccordion, RiverAccordionProps, RiverAccordionVariants} from '../'
+import {
+  RiverAccordion,
+  RiverAccordionProps,
+  RiverAccordionVariants,
+  type RiverAccordionVisualBackgroundColor,
+} from '../'
 import {axe, toHaveNoViolations} from 'jest-axe'
 
 expect.extend(toHaveNoViolations)
 
-const MockRiverAccordion = ({align, variant}: RiverAccordionProps) => (
+const MockRiverAccordion = ({
+  align,
+  variant,
+  visualImageBackgroundColor,
+}: RiverAccordionProps & {visualImageBackgroundColor?: RiverAccordionVisualBackgroundColor}) => (
   <RiverAccordion align={align} variant={variant}>
     <RiverAccordion.Item>
       <RiverAccordion.Heading>Heading 1</RiverAccordion.Heading>
       <RiverAccordion.Content>Content 1</RiverAccordion.Content>
-      <RiverAccordion.Visual>
+      <RiverAccordion.Visual imageBackgroundColor={visualImageBackgroundColor}>
         <img src="test-1.png" alt="placeholder 1" />
       </RiverAccordion.Visual>
     </RiverAccordion.Item>
     <RiverAccordion.Item>
       <RiverAccordion.Heading>Heading 2</RiverAccordion.Heading>
       <RiverAccordion.Content>Content 2</RiverAccordion.Content>
-      <RiverAccordion.Visual>
+      <RiverAccordion.Visual imageBackgroundColor={visualImageBackgroundColor}>
         <img src="test-2.png" alt="placeholder 2" />
       </RiverAccordion.Visual>
     </RiverAccordion.Item>
     <RiverAccordion.Item>
       <RiverAccordion.Heading>Heading 3</RiverAccordion.Heading>
       <RiverAccordion.Content>Content 3</RiverAccordion.Content>
-      <RiverAccordion.Visual>
+      <RiverAccordion.Visual imageBackgroundColor={visualImageBackgroundColor}>
         <img src="test-3.png" alt="placeholder 3" />
       </RiverAccordion.Visual>
     </RiverAccordion.Item>
@@ -197,6 +206,27 @@ describe('RiverAccordion', () => {
     const img = within(panel).getByAltText('placeholder 1')
 
     expect(img).toBeInTheDocument()
+  })
+
+  it('applies the background class to visible and visually hidden visuals', () => {
+    const {container, getByText} = render(<MockRiverAccordion visualImageBackgroundColor="subtle" />)
+    const visibleVisual = container.querySelector('.RiverAccordion__visualsWrapper .RiverAccordion__visual')
+    const panel = getByText('Content 1').parentElement
+
+    if (!panel) {
+      throw new Error('Panel not found')
+    }
+
+    const hiddenVisual = panel.querySelector('.RiverAccordion__visual')
+
+    expect(visibleVisual).toHaveClass('RiverAccordion__visual--has-background')
+    expect(hiddenVisual).toHaveClass('RiverAccordion__visual--has-background')
+  })
+
+  it('omits the background class by default', () => {
+    const {container} = render(<MockRiverAccordion />)
+
+    expect(container.querySelector('.RiverAccordion__visual--has-background')).not.toBeInTheDocument()
   })
 
   it('applies the correct class when `align="start"`', () => {
