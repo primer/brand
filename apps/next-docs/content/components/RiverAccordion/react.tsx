@@ -7,6 +7,10 @@ export const RiverAccordionAlignProp = () => <PropTableValues values={['start', 
 
 export const RiverAccordionVariantProp = () => <PropTableValues values={['default', 'gridline']} addLineBreaks />
 
+export const RiverAccordionVisualImageBackgroundColorProp = () => (
+  <PropTableValues values={['default', 'subtle']} addLineBreaks />
+)
+
 export const RiverAccordionItemChildrenProp = () => (
   <PropTableValues
     values={[`RiverAccordion.Heading`, `RiverAccordion.Content`, `RiverAccordion.Visual`]}
