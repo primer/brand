@@ -16,10 +16,7 @@
   right: 0;
   height: 0;
   border-top: var(--brand-borderWidth-thin) solid;
-  border-image: linear-gradient(
-    var(--brand-color-border-muted),
-    var(--brand-color-border-muted)
-  ) 1;
+  border-image: linear-gradient(var(--brand-color-border-muted), var(--brand-color-border-muted)) 1;
   border-image-outset: 0 100vw;
   z-index: 1;
   pointer-events: none;
