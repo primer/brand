@@ -117,7 +117,7 @@ import {MediaPlaylist} from '@primer/react-brand'
 | `description` | `ReactNode` |         | Optional metadata rendered under the title, such as a video duration  |
 | `children`    | `ReactNode` |         | Custom item heading content when title/description props are not used |
 
-`MediaPlaylist.ItemHeading` extends the [`Heading`](/components/Heading) component.
+`MediaPlaylist.ItemHeading` renders as a `span` and extends the [`Text`](/components/Text) component, excluding the `as` prop.
 
 ### MediaPlaylist.ItemContent <Label>Required</Label>
 
@@ -133,8 +133,6 @@ import {MediaPlaylist} from '@primer/react-brand'
 | :--------------------- | :---------------------- | :-----: | :------------------------------- |
 | `children`             | `React.ReactElement`    |         | Item media                       |
 | `fillMedia`            | `boolean`               | `true`  | Applies automatic media sizing   |
-| `hasShadow`            | `boolean`               | `false` | Applies a shadow to child media  |
-| `rounded`              | `boolean`               | `true`  | Enables rounded corners          |
 | `imageBackgroundColor` | `'default' \| 'subtle'` |         | Optional background around media |
 
 `MediaPlaylist.ItemMedia` extends the HTML `div` element and supports all `div` props.

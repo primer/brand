@@ -15,8 +15,6 @@ declare const styles: {
   readonly "MediaPlaylist__media": string;
   readonly "MediaPlaylist__media--fill-media": string;
   readonly "MediaPlaylist__media--has-background": string;
-  readonly "MediaPlaylist__media--has-shadow": string;
-  readonly "MediaPlaylist__media--rounded": string;
   readonly "MediaPlaylist__mediaPanel": string;
   readonly "MediaPlaylist__mediaPanels": string;
   readonly "MediaPlaylist__pagination": string;

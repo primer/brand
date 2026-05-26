@@ -13,7 +13,68 @@
 }
 
 .Pagination__pageItem {
+  transition: none; /* Prevents flash of background color when changing pages */
   --brand-button-subtle-borderColor-rest: transparent;
   --brand-button-subtle-borderColor-hover: transparent;
   --brand-button-subtle-borderColor-active: transparent;
+}
+
+.Pagination__controlContent {
+  position: relative;
+  display: inline-flex;
+  gap: var(--base-size-4);
+  align-items: center;
+}
+
+.Pagination__controlArrowWrapper {
+  display: none;
+  flex-shrink: 0;
+}
+
+.Pagination__controlArrowWrapper--previous {
+  transform: translateX(var(--base-size-2));
+}
+
+.Pagination__controlArrowWrapper--next {
+  transform: translateX(calc(var(--base-size-2) * -1));
+}
+
+.Pagination__controlArrow {
+  width: var(--base-size-16);
+  height: var(--base-size-16);
+}
+
+@media screen and (max-width: 47.99rem) {
+  .Pagination__controlItem {
+    padding-inline: var(--base-size-8);
+    --brand-button-subtle-borderColor-rest: transparent;
+    --brand-button-subtle-borderColor-hover: transparent;
+    --brand-button-subtle-borderColor-active: transparent;
+  }
+
+  .Pagination__controlText {
+    position: absolute;
+    width: var(--base-size-2);
+    height: var(--base-size-2);
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    word-wrap: normal;
+    border: 0;
+  }
+
+  .Pagination__controlArrowWrapper {
+    display: flex;
+  }
+
+  .Pagination__controlItem > span {
+    display: flex;
+    align-items: center;
+  }
+
+  .Pagination__controlItem > span > span {
+    display: flex;
+    align-items: center;
+    line-height: 0;
+  }
 }

@@ -3,6 +3,7 @@ import {Button, useWindowSize} from '..'
 
 import {clsx} from 'clsx'
 
+import {ExpandableArrow} from '../ExpandableArrow'
 import {buildPaginationModel, PaginationPageType} from './model'
 
 /** * Main Stylesheet (as a CSS Module) */
@@ -19,7 +20,7 @@ export type PaginationProps = {
   hrefBuilder?: (n: number) => string
   /* Function to forward custom attributes for each pagination item */
   pageAttributesBuilder?: (n: number, page: PaginationPageType) => {[attributeName: string]: string}
-  /* Defines how many pages are to to be displayed on the left and right of the component */
+  /* Defines how many pages are to be displayed on the left and right of the component */
   marginPageCount?: number
   /* Whether to show the page numbers */
   showPages?: boolean
@@ -114,6 +115,8 @@ type PaginationItemProps = {
 }
 
 const PaginationItem = ({page, hrefBuilder, pageAttributesBuilder, onClick}: PaginationItemProps) => {
+  const [isArrowExpanded, setIsArrowExpanded] = React.useState(false)
+
   const baseProps = {
     role: 'button',
     size: 'small' as const,
@@ -135,9 +138,28 @@ const PaginationItem = ({page, hrefBuilder, pageAttributesBuilder, onClick}: Pag
           aria-disabled={page.disabled || undefined}
           aria-label="Previous Page"
           {...customAttributes}
-          className={customClassName}
+          className={clsx(styles.Pagination__controlItem, customClassName)}
+          onMouseEnter={() => setIsArrowExpanded(true)}
+          onMouseLeave={() => setIsArrowExpanded(false)}
+          onFocus={() => setIsArrowExpanded(true)}
+          onBlur={() => setIsArrowExpanded(false)}
         >
-          Previous
+          <span className={styles.Pagination__controlContent}>
+            <span
+              className={clsx(
+                styles.Pagination__controlArrowWrapper,
+                styles['Pagination__controlArrowWrapper--previous'],
+              )}
+            >
+              <ExpandableArrow
+                hidden
+                reverse
+                expanded={!page.disabled && isArrowExpanded}
+                className={styles.Pagination__controlArrow}
+              />
+            </span>
+            <span className={styles.Pagination__controlText}>Previous</span>
+          </span>
         </Button>
       )
     }
@@ -151,16 +173,31 @@ const PaginationItem = ({page, hrefBuilder, pageAttributesBuilder, onClick}: Pag
           aria-disabled={page.disabled || undefined}
           aria-label="Next Page"
           {...customAttributes}
-          className={customClassName}
+          className={clsx(styles.Pagination__controlItem, customClassName)}
+          onMouseEnter={() => setIsArrowExpanded(true)}
+          onMouseLeave={() => setIsArrowExpanded(false)}
+          onFocus={() => setIsArrowExpanded(true)}
+          onBlur={() => setIsArrowExpanded(false)}
         >
-          Next
+          <span className={styles.Pagination__controlContent}>
+            <span className={styles.Pagination__controlText}>Next</span>
+            <span
+              className={clsx(styles.Pagination__controlArrowWrapper, styles['Pagination__controlArrowWrapper--next'])}
+            >
+              <ExpandableArrow
+                hidden
+                expanded={!page.disabled && isArrowExpanded}
+                className={styles.Pagination__controlArrow}
+              />
+            </span>
+          </span>
         </Button>
       )
     }
     case 'NUM': {
       return (
         /**
-         * Append "..." to the aria-label for pages that preceed a break because screen readers will change the
+         * Append "..." to the aria-label for pages that precede a break because screen readers will change the
          * tone the text is read in. This is a slightly nicer experience than skipping a bunch of numbers unexpectedly.
          */
         <Button

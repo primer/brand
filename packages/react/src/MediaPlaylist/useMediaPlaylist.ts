@@ -1,16 +1,66 @@
-import React, {useCallback, useEffect, useRef} from 'react'
+import React, {useCallback, useEffect, useMemo, useRef} from 'react'
 
 import type {PaginationPageType} from '../Pagination/model'
 import {useTabs} from '../hooks/useTabs'
 
 type UseMediaPlaylistProps = {
+  children: React.ReactNode
+  components: MediaPlaylistComponentTypes
   defaultSelectedIndex: number
-  itemCount: number
   onChange?: (selectedIndex: number) => void
   selectedIndex?: number
 }
 
-export function useMediaPlaylist({defaultSelectedIndex, itemCount, onChange, selectedIndex}: UseMediaPlaylistProps) {
+/**
+ * Internal only hook used by MediaPlaylist to manage state and behavior.
+ * @private
+ * @internal
+ */
+export type MediaPlaylistComponentTypes = {
+  Heading: React.ElementType
+  Item: React.ElementType
+  ItemHeading: React.ElementType
+  ItemContent: React.ElementType
+  ItemMedia: React.ElementType
+}
+
+type MediaPlaylistHeadingChildProps = {
+  activeIndex?: number | null
+  id?: string
+  itemCount?: number
+}
+
+type MediaPlaylistItemProps = React.PropsWithChildren<{
+  className?: string
+  thumbnail?: React.ReactNode
+}>
+
+type MediaPlaylistItemChildProps = React.PropsWithChildren<Record<string, unknown>>
+
+type MediaPlaylistItemChild = React.ReactElement<MediaPlaylistItemChildProps>
+
+type MediaPlaylistItemData = {
+  className?: string
+  content: MediaPlaylistItemChild
+  heading: MediaPlaylistItemChild
+  media: MediaPlaylistItemChild
+  thumbnail?: React.ReactNode
+}
+
+/**
+ * Internal only hook used by MediaPlaylist to manage state and behavior.
+ * @private
+ * @internal
+ */
+export function useMediaPlaylist({
+  children,
+  components,
+  defaultSelectedIndex,
+  onChange,
+  selectedIndex,
+}: UseMediaPlaylistProps) {
+  const {headingChild, items} = useMemo(() => getMediaPlaylistChildren(children, components), [children, components])
+  const itemCount = items.length
   const defaultActiveIndex = getValidIndex(defaultSelectedIndex, itemCount)
 
   const controlledActiveIndex =
@@ -131,10 +181,77 @@ export function useMediaPlaylist({defaultSelectedIndex, itemCount, onChange, sel
     getTabProps,
     handlePageChange,
     hasOverflowItems,
+    headingChild,
     isItemSelected,
+    items,
     setItemRef,
     tabListRef,
   }
+}
+
+const createComponentTypeGuard =
+  <T>(componentType: React.ElementType) =>
+  (element: unknown): element is React.ReactElement<T> =>
+    React.isValidElement<T>(element) && element.type === componentType
+
+function getMediaPlaylistChildren(children: React.ReactNode, components: MediaPlaylistComponentTypes) {
+  const isHeading = createComponentTypeGuard<MediaPlaylistHeadingChildProps>(components.Heading)
+  const isItem = createComponentTypeGuard<MediaPlaylistItemProps>(components.Item)
+  const isItemHeading = createComponentTypeGuard<MediaPlaylistItemChildProps>(components.ItemHeading)
+  const isItemContent = createComponentTypeGuard<MediaPlaylistItemChildProps>(components.ItemContent)
+  const isItemMedia = createComponentTypeGuard<MediaPlaylistItemChildProps>(components.ItemMedia)
+
+  const playlistChildren = {
+    headingChild: null as React.ReactElement<MediaPlaylistHeadingChildProps> | null,
+    items: [] as MediaPlaylistItemData[],
+  }
+
+  for (const child of React.Children.toArray(children)) {
+    if (isHeading(child)) {
+      playlistChildren.headingChild = child
+      continue
+    }
+
+    if (!isItem(child)) {
+      continue
+    }
+
+    const itemChildren = React.Children.toArray(child.props.children)
+
+    const itemParts = {
+      heading: null as MediaPlaylistItemChild | null,
+      content: null as MediaPlaylistItemChild | null,
+      media: null as MediaPlaylistItemChild | null,
+    }
+
+    for (const itemChild of itemChildren) {
+      if (isItemHeading(itemChild)) {
+        itemParts.heading = itemChild
+      }
+
+      if (isItemContent(itemChild)) {
+        itemParts.content = itemChild
+      }
+
+      if (isItemMedia(itemChild)) {
+        itemParts.media = itemChild
+      }
+    }
+
+    if (!itemParts.heading || !itemParts.content || !itemParts.media) {
+      continue
+    }
+
+    playlistChildren.items.push({
+      className: child.props.className,
+      content: itemParts.content,
+      heading: itemParts.heading,
+      media: itemParts.media,
+      thumbnail: child.props.thumbnail,
+    })
+  }
+
+  return playlistChildren
 }
 
 const getValidIndex = (index: number, length: number) => {

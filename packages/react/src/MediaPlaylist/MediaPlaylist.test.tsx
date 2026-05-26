@@ -31,7 +31,7 @@ describe('MediaPlaylist', () => {
       </MediaPlaylist>,
     )
 
-  it('renders a vertical tablist across viewport sizes', () => {
+  it('renders a labelled vertical tablist with thumbnails and counter', () => {
     const {getByRole, getByText} = renderExample()
 
     const tablist = getByRole('tablist')
@@ -61,9 +61,6 @@ describe('MediaPlaylist', () => {
     const tablist = getByRole('tablist')
     expect(tablist).toHaveAttribute('aria-label', 'Media playlist')
     expect(tablist).not.toHaveAttribute('aria-labelledby')
-    expect(consoleWarnSpy).toHaveBeenCalledWith(
-      'MediaPlaylist: Heading child is required. This element labels the playlist for assistive technologies.',
-    )
 
     consoleWarnSpy.mockRestore()
   })
@@ -120,28 +117,13 @@ describe('MediaPlaylist', () => {
     expect(getAllByRole('tab')[1]).toHaveAttribute('aria-selected', 'true')
   })
 
-  it('renders as a div for composition inside Section', () => {
-    const {container} = renderExample()
-
-    expect(container.firstElementChild?.tagName).toBe('DIV')
-  })
-
-  it('renders item heading title and description metadata', () => {
+  it('uses item heading title and description as a non-heading tab label', () => {
     const {getByRole} = renderExample()
     const tab = getByRole('tab', {name: /Plan 10:57/})
 
     expect(within(tab).getByText('Plan')).toBeInTheDocument()
-
-    const title = within(tab).getByText('Plan')
-    expect(title).toHaveClass('Text--100')
-    expect(title).toHaveClass('Text-font--monospace')
-    expect(title).toHaveClass('Text--weight-semibold')
-
-    const description = within(tab).getByText('10:57')
-    expect(description.tagName).toBe('SPAN')
-    expect(description).toHaveClass('Text--100')
-    expect(description).toHaveClass('Text-font--monospace')
-    expect(description).toHaveClass('Text--muted')
+    expect(within(tab).getByText('10:57')).toBeInTheDocument()
+    expect(within(tab).queryByRole('heading')).not.toBeInTheDocument()
   })
 
   it('renders custom item heading children when structured props are not used', () => {
@@ -174,7 +156,7 @@ describe('MediaPlaylist', () => {
           <MediaPlaylist.ItemContent>
             <p>Plan content</p>
           </MediaPlaylist.ItemContent>
-          <MediaPlaylist.ItemMedia data-testid="media" imageBackgroundColor="subtle" hasShadow rounded={false}>
+          <MediaPlaylist.ItemMedia data-testid="media" imageBackgroundColor="subtle" fillMedia={false}>
             <MockMedia label="plan media" />
           </MediaPlaylist.ItemMedia>
         </MediaPlaylist.Item>
@@ -182,8 +164,7 @@ describe('MediaPlaylist', () => {
     )
 
     expect(getByTestId('media')).toHaveClass('MediaPlaylist__media--has-background')
-    expect(getByTestId('media')).toHaveClass('MediaPlaylist__media--has-shadow')
-    expect(getByTestId('media')).not.toHaveClass('MediaPlaylist__media--rounded')
+    expect(getByTestId('media')).not.toHaveClass('MediaPlaylist__media--fill-media')
   })
 
   it('supports vertical APG keyboard behavior', async () => {
@@ -239,14 +220,12 @@ describe('MediaPlaylist', () => {
     const pagination = getByRole('navigation', {name: 'Media playlist items'})
 
     expect(tabs[0]).toHaveAttribute('aria-selected', 'true')
-    expect(within(pagination).getByRole('button', {name: 'Video 1'})).toHaveAttribute('aria-current', 'step')
     expect(within(pagination).getByRole('button', {name: 'Previous video'})).toHaveAttribute('aria-disabled', 'true')
 
     fireEvent.click(within(pagination).getByRole('button', {name: 'Next video'}))
 
     expect(tabs[0]).toHaveAttribute('aria-selected', 'false')
     expect(tabs[1]).toHaveAttribute('aria-selected', 'true')
-    expect(within(pagination).getByRole('button', {name: 'Video 2'})).toHaveAttribute('aria-current', 'step')
     expect(within(pagination).getByRole('button', {name: 'Previous video'})).not.toHaveAttribute('aria-disabled')
 
     fireEvent.click(tabs[4])

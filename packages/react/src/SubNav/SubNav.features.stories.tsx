@@ -180,6 +180,24 @@ export const ActiveSubHeadingNarrowOpen: Story = {
   },
 }
 
+export const CurrentPageNarrow: Story = {
+  render: args => (
+    <SubNav {...args}>
+      <SubNav.Heading href="#">GitHub Security</SubNav.Heading>
+      <SubNav.Link href="#" aria-current="page">
+        Advanced Security
+      </SubNav.Link>
+      <SubNav.Link href="#">Secret Protection</SubNav.Link>
+      <SubNav.Link href="#">Code Security</SubNav.Link>
+      <SubNav.Link href="#">Supply Chain Security</SubNav.Link>
+      <SubNav.Link href="#">Plans & pricing</SubNav.Link>
+    </SubNav>
+  ),
+  globals: {
+    viewport: {value: 'iphone5'},
+  },
+}
+
 const FullWidthTemplate = (args: SubNavProps) => (
   <SubNav {...args} fullWidth>
     <SubNav.Heading href="#">Features</SubNav.Heading>

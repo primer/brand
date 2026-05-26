@@ -1,7 +1,7 @@
-import React, {cloneElement, forwardRef, useMemo} from 'react'
+import React, {cloneElement, forwardRef} from 'react'
 import {clsx} from 'clsx'
 
-import {Heading, Text, type HeadingProps} from '..'
+import {Heading, Text, type TextProps} from '..'
 import {Pagination} from '../Pagination'
 import {useId} from '../hooks/useId'
 
@@ -13,7 +13,7 @@ import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/compone
 /** Main Stylesheet (as a CSS Module) */
 import type {BaseProps} from '../component-helpers'
 import styles from './MediaPlaylist.module.css'
-import {useMediaPlaylist} from './useMediaPlaylist'
+import {type MediaPlaylistComponentTypes, useMediaPlaylist} from './useMediaPlaylist'
 
 export type MediaPlaylistProps = React.PropsWithChildren<{
   /**
@@ -36,10 +36,6 @@ const MediaPlaylistRoot = forwardRef<HTMLDivElement, MediaPlaylistProps>(
   ({children, className, defaultSelectedIndex = 0, onChange, selectedIndex, 'data-testid': testId, ...props}, ref) => {
     const uniqueId = useId()
 
-    const {headingChild, items} = useMemo(() => getMediaPlaylistChildren(children), [children])
-
-    const headingId = headingChild?.props.id ?? `${uniqueId}-heading`
-
     const {
       activeIndex,
       currentItemPage,
@@ -49,15 +45,20 @@ const MediaPlaylistRoot = forwardRef<HTMLDivElement, MediaPlaylistProps>(
       getTabProps,
       handlePageChange,
       hasOverflowItems,
+      headingChild,
       isItemSelected,
+      items,
       setItemRef,
       tabListRef,
     } = useMediaPlaylist({
+      children,
+      components: mediaPlaylistComponents,
       defaultSelectedIndex,
-      itemCount: items.length,
       onChange,
       selectedIndex,
     })
+
+    const headingId = headingChild?.props.id ?? `${uniqueId}-heading`
 
     if (!headingChild && (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'test')) {
       // eslint-disable-next-line no-console
@@ -121,8 +122,7 @@ const MediaPlaylistRoot = forwardRef<HTMLDivElement, MediaPlaylistProps>(
                 hrefBuilder={() => '#'}
                 pageAttributesBuilder={getPaginationAttributes}
                 aria-label="Media playlist items"
-                marginPageCount={1}
-                surroundingPageCount={0}
+                showPages={false}
               />
             )}
           </div>
@@ -196,40 +196,39 @@ function MediaPlaylistItem({children}: MediaPlaylistItemProps) {
   return <>{children}</>
 }
 
-export type MediaPlaylistItemHeadingProps = Omit<HeadingProps, 'children' | 'title'> & {
+export type MediaPlaylistItemHeadingProps = Omit<TextProps, 'as' | 'children' | 'title'> & {
   children?: React.ReactNode
   description?: React.ReactNode
   title?: React.ReactNode
 }
 
 function MediaPlaylistItemHeading({
-  as = 'h3',
   children,
   className,
   description,
-  size = 'subhead-large',
+  font = 'mona-sans',
+  size = '200',
   title,
-  weight = 'normal',
+  variant = 'default',
+  weight = 'medium',
   ...props
 }: MediaPlaylistItemHeadingProps) {
   const hasStructuredContent = title !== undefined || description !== undefined
   const headingTitle = title ?? children
 
   return (
-    <Heading
-      as={as}
-      className={clsx(styles.MediaPlaylist__itemHeading, className)}
-      size={size}
-      weight={weight}
+    <Text
       {...props}
+      as="span"
+      className={clsx(styles.MediaPlaylist__itemHeading, className)}
+      font={font}
+      size={size}
+      variant={variant}
+      weight={weight}
     >
       {hasStructuredContent ? (
         <span className={styles.MediaPlaylist__itemHeadingDetails}>
-          {headingTitle && (
-            <Text as="span" className={styles.MediaPlaylist__itemHeadingTitle} size="200" weight="medium">
-              {headingTitle}
-            </Text>
-          )}
+          {headingTitle && <span className={styles.MediaPlaylist__itemHeadingTitle}>{headingTitle}</span>}
           {description && (
             <Text as="span" font="monospace" size="100" variant="muted">
               {description}
@@ -239,7 +238,7 @@ function MediaPlaylistItemHeading({
       ) : (
         children
       )}
-    </Heading>
+    </Text>
   )
 }
 
@@ -259,13 +258,11 @@ export type MediaPlaylistItemMediaBackgroundColor = (typeof MediaPlaylistItemMed
 export type MediaPlaylistItemMediaProps = React.HTMLAttributes<HTMLDivElement> &
   React.PropsWithChildren<{
     fillMedia?: boolean
-    hasShadow?: boolean
-    rounded?: boolean
     imageBackgroundColor?: MediaPlaylistItemMediaBackgroundColor
   }>
 
 const MediaPlaylistItemMedia = forwardRef<HTMLDivElement, MediaPlaylistItemMediaProps>(function MediaPlaylistItemMedia(
-  {children, className, fillMedia = true, hasShadow = false, imageBackgroundColor, rounded = true, ...props},
+  {children, className, fillMedia = true, imageBackgroundColor, ...props},
   ref,
 ) {
   return (
@@ -274,8 +271,6 @@ const MediaPlaylistItemMedia = forwardRef<HTMLDivElement, MediaPlaylistItemMedia
       className={clsx(
         styles.MediaPlaylist__media,
         fillMedia && styles['MediaPlaylist__media--fill-media'],
-        hasShadow && styles['MediaPlaylist__media--has-shadow'],
-        rounded && styles['MediaPlaylist__media--rounded'],
         imageBackgroundColor === 'subtle' && styles['MediaPlaylist__media--has-background'],
         className,
       )}
@@ -286,83 +281,13 @@ const MediaPlaylistItemMedia = forwardRef<HTMLDivElement, MediaPlaylistItemMedia
   )
 })
 
-const createComponentTypeGuard =
-  <T,>(componentType: React.ComponentType<T>) =>
-  (element: unknown): element is React.ReactElement<T> =>
-    React.isValidElement<T>(element) && element.type === componentType
-
-const isItem = createComponentTypeGuard(MediaPlaylistItem)
-const isHeading = createComponentTypeGuard(MediaPlaylistHeading)
-const isItemHeading = createComponentTypeGuard(MediaPlaylistItemHeading)
-const isItemContent = createComponentTypeGuard(MediaPlaylistItemContent)
-const isItemMedia = createComponentTypeGuard(MediaPlaylistItemMedia)
-
-type MediaPlaylistItemChild =
-  | React.ReactElement<MediaPlaylistItemHeadingProps>
-  | React.ReactElement<MediaPlaylistItemContentProps>
-  | React.ReactElement<MediaPlaylistItemMediaProps>
-
-type MediaPlaylistItemData = {
-  className?: string
-  content: React.ReactElement<MediaPlaylistItemContentProps>
-  heading: React.ReactElement<MediaPlaylistItemHeadingProps>
-  media: React.ReactElement<MediaPlaylistItemMediaProps>
-  thumbnail?: React.ReactNode
-}
-
-function getMediaPlaylistChildren(children: React.ReactNode) {
-  const playlistChildren = {
-    headingChild: null as React.ReactElement<MediaPlaylistHeadingInternalProps> | null,
-    items: [] as MediaPlaylistItemData[],
-  }
-
-  for (const child of React.Children.toArray(children)) {
-    if (isHeading(child)) {
-      playlistChildren.headingChild = child
-      continue
-    }
-
-    if (!isItem(child)) {
-      continue
-    }
-
-    const itemChildren = React.Children.toArray(child.props.children) as MediaPlaylistItemChild[]
-
-    const itemParts = {
-      heading: null as React.ReactElement<MediaPlaylistItemHeadingProps> | null,
-      content: null as React.ReactElement<MediaPlaylistItemContentProps> | null,
-      media: null as React.ReactElement<MediaPlaylistItemMediaProps> | null,
-    }
-
-    for (const itemChild of itemChildren) {
-      if (isItemHeading(itemChild)) {
-        itemParts.heading = itemChild
-      }
-
-      if (isItemContent(itemChild)) {
-        itemParts.content = itemChild
-      }
-
-      if (isItemMedia(itemChild)) {
-        itemParts.media = itemChild
-      }
-    }
-
-    if (!itemParts.heading || !itemParts.content || !itemParts.media) {
-      continue
-    }
-
-    playlistChildren.items.push({
-      className: child.props.className,
-      content: itemParts.content,
-      heading: itemParts.heading,
-      media: itemParts.media,
-      thumbnail: child.props.thumbnail,
-    })
-  }
-
-  return playlistChildren
-}
+const mediaPlaylistComponents = {
+  Heading: MediaPlaylistHeading,
+  Item: MediaPlaylistItem,
+  ItemHeading: MediaPlaylistItemHeading,
+  ItemContent: MediaPlaylistItemContent,
+  ItemMedia: MediaPlaylistItemMedia,
+} satisfies MediaPlaylistComponentTypes
 
 const testIds = {
   root: 'MediaPlaylist',

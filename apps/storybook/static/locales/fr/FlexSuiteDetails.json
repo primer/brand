@@ -1,0 +1,94 @@
+{
+  "common": {
+    "learnMore": "En savoir plus"
+  },
+  "subNav": {
+    "heading": "GitHub Copilot",
+    "links": {
+      "vscode": "Copilot dans VS Code",
+      "agents": "Agents sur GitHub",
+      "cli": "Copilot CLI",
+      "business": "Pour les entreprises",
+      "tutorials": "Tutoriels",
+      "pricing": "Offres et tarifs"
+    }
+  },
+  "hero": {
+    "headingPrefix": "Conseils pour créer avec",
+    "headingEmphasis": "GitHub Copilot",
+    "description": "Que vous développiez dans Visual Studio Code ou Visual Studio, nous avons ce qu'il vous faut.",
+    "primaryAction": "Ouvrir Copilot dans VS Code",
+    "secondaryText": "Vous n'avez pas encore VS Code ?",
+    "secondaryLinkText": "Télécharger maintenant"
+  },
+  "playlists": {
+    "vscode": {
+      "heading": "Bien démarrer dans Visual Studio Code",
+      "playlistHeading": "Toutes les leçons",
+      "videos": {
+        "one": {
+          "title": "Leçon 1 : GitHub Copilot 101",
+          "duration": "03:05",
+          "summary": "Apprenez à poser des bases solides pour écrire facilement du code d'exception."
+        },
+        "two": {
+          "title": "Leçon 2 : Maîtriser les bases",
+          "duration": "10:57",
+          "summary": "Configurez GitHub Copilot dans votre éditeur et entraînez-vous aux workflows quotidiens les plus utilisés par les développeurs."
+        },
+        "three": {
+          "title": "Leçon 3 : Bonnes pratiques pour réussir",
+          "duration": "08:31",
+          "summary": "Transformez de meilleurs prompts, le contexte du projet et les boucles de révision en résultats plus solides avec Copilot."
+        }
+      }
+    },
+    "visualStudio": {
+      "heading": "Bien démarrer dans Visual Studio",
+      "playlistHeading": "Toutes les leçons",
+      "videos": {
+        "one": {
+          "title": "Leçon 1 : GitHub Copilot 101",
+          "duration": "10:57",
+          "summary": "Prenez en main GitHub Copilot et accédez à tout ce que votre abonnement propose."
+        },
+        "two": {
+          "title": "Leçon 2 : Maîtriser les bases",
+          "duration": "03:06",
+          "summary": "Découvrez les workflows Visual Studio qui aident Copilot à comprendre votre projet et la prochaine étape."
+        },
+        "three": {
+          "title": "Leçon 3 : Bonnes pratiques pour réussir",
+          "duration": "09:31",
+          "summary": "Utilisez Copilot pour passer de la question à l'implémentation avec des habitudes pratiques pour les bases de code plus vastes."
+        }
+      }
+    }
+  },
+  "resources": {
+    "heading": "Tirez le meilleur parti de GitHub Copilot dans votre IDE",
+    "cards": {
+      "one": {
+        "tag": "Documentation développeur",
+        "heading": "Pratique GitHub Copilot",
+        "description": "Découvrez la puissance de GitHub Copilot avec des problèmes d'exemple et des exercices conçus par Kirk Haines."
+      },
+      "two": {
+        "tag": "Avis de sécurité",
+        "heading": "Base de données des avis GitHub",
+        "description": "Renforcez la sécurité de vos logiciels grâce à l'accès à la base de données complète de vulnérabilités de GitHub."
+      },
+      "three": {
+        "tag": "Blog",
+        "heading": "Guides de démarrage rapide",
+        "description": "Vous préférez un éditeur précis ? Consultez nos guides de démarrage rapide adaptés pour bien commencer."
+      }
+    }
+  },
+  "cta": {
+    "headingPrefix": "Commencez à libérer",
+    "headingEmphasis": "tout le potentiel de GitHub Copilot",
+    "description": "Ce n'est que le début. Découvrez comment GitHub Copilot peut transformer votre façon de coder.",
+    "primaryAction": "Contribuer sur GitHub"
+  }
+}

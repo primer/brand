@@ -684,6 +684,10 @@
     cursor: pointer;
   }
 
+  .SubNav__link--has-sub-menu > .SubNav__link {
+    padding-inline-end: 0;
+  }
+
   .SubNav__sub-menu--dropdown .SubNav__link-label {
     position: relative;
     padding: var(--base-size-4) 0;
@@ -709,7 +713,6 @@
   .SubNav__links-overlay .SubNav__link[aria-current]:not([aria-current='false']) {
     background-color: var(--brand-SubNav-color-link-bgColor);
     line-height: 1.1em;
-    padding: var(--base-size-2) var(--base-size-12) var(--base-size-4);
   }
 
   /* Firefox optical alignment fix */
@@ -742,6 +745,11 @@
     display: inline-block !important;
     fill: var(--brand-color-text-muted);
     transition: transform var(--brand-animation-duration-fast);
+  }
+
+  .SubNav__link--has-sub-menu:not(.SubNav__link--has-active-sub-menu) .SubNav__sub-menu-icon {
+    position: relative;
+    top: calc(-1 * var(--brand-borderWidth-thin));
   }
 
   .SubNav__sub-menu--anchor {
