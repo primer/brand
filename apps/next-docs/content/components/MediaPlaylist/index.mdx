@@ -1,7 +1,7 @@
 ---
 title: Media playlist
 description: Use MediaPlaylist to pair thumbnail-backed media items with a shared playback or media area.
-keywords: ['media', 'playlist', 'tabs', 'video']
+keywords: ['media', 'playlist', 'tabs', 'video', 'youtube']
 show-tabs: false
 ready: true
 source: https://github.com/primer/brand/blob/main/packages/react/src/MediaPlaylist/MediaPlaylist.tsx
@@ -93,11 +93,11 @@ import {MediaPlaylist} from '@primer/react-brand'
 
 ### MediaPlaylist.Heading <Label>Required</Label>
 
-| Name       | Type           | Default | Description                                                            |
-| :--------- | :------------- | :-----: | :--------------------------------------------------------------------- |
-| `children` | `ReactNode`    |         | Visible playlist heading and accessible label for the playlist items   |
-| `as`       | `'h2' \| 'h3'` | `'h3'`  | Semantic heading level                                                 |
-| `id`       | `string`       |         | Optional custom ID used for the tablist `aria-labelledby` relationship |
+| Name       | Type                                   | Default | Description                                                            |
+| :--------- | :------------------------------------- | :-----: | :--------------------------------------------------------------------- |
+| `children` | `ReactNode`                            |         | Visible playlist heading and accessible label for the playlist items   |
+| `as`       | `'h2' \| 'h3' \| 'h4' \| 'h5' \| 'h6'` | `'h3'`  | Semantic heading level                                                 |
+| `id`       | `string`                               |         | Optional custom ID used for the tablist `aria-labelledby` relationship |
 
 `MediaPlaylist.Heading` renders a visible heading and active item counter.
 
@@ -129,10 +129,8 @@ import {MediaPlaylist} from '@primer/react-brand'
 
 ### MediaPlaylist.ItemMedia <Label>Required</Label>
 
-| Name                   | Type                    | Default | Description                      |
-| :--------------------- | :---------------------- | :-----: | :------------------------------- |
-| `children`             | `React.ReactElement`    |         | Item media                       |
-| `fillMedia`            | `boolean`               | `true`  | Applies automatic media sizing   |
-| `imageBackgroundColor` | `'default' \| 'subtle'` |         | Optional background around media |
+| Name       | Type                 | Default | Description |
+| :--------- | :------------------- | :-----: | :---------- |
+| `children` | `React.ReactElement` |         | Item media  |
 
 `MediaPlaylist.ItemMedia` extends the HTML `div` element and supports all `div` props.

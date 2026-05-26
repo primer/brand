@@ -1,19 +1,20 @@
 import React, {cloneElement, forwardRef} from 'react'
 import {clsx} from 'clsx'
 
-import {Heading, Text, type TextProps} from '..'
+import {Heading, Text, type HeadingProps, type TextProps} from '..'
 import {Pagination} from '../Pagination'
 import {useId} from '../hooks/useId'
 
+import {type MediaPlaylistComponentTypes, useMediaPlaylist} from './useMediaPlaylist'
+import type {BaseProps} from '../component-helpers'
 /**
  * Design tokens
  */
 import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/media-playlist/colors-with-modes.css'
 
 /** Main Stylesheet (as a CSS Module) */
-import type {BaseProps} from '../component-helpers'
+
 import styles from './MediaPlaylist.module.css'
-import {type MediaPlaylistComponentTypes, useMediaPlaylist} from './useMediaPlaylist'
 
 export type MediaPlaylistProps = React.PropsWithChildren<{
   /**
@@ -151,11 +152,11 @@ const MediaPlaylistRoot = forwardRef<HTMLDivElement, MediaPlaylistProps>(
 )
 
 export type MediaPlaylistHeadingProps = React.PropsWithChildren<{
-  as?: 'h2' | 'h3'
+  as?: Exclude<HeadingProps['as'], 'h1'>
 }> &
   BaseProps<HTMLDivElement>
 
-type MediaPlaylistHeadingInternalProps = MediaPlaylistHeadingProps & {
+type MediaPlaylistHeadingInternalProps = {
   activeIndex?: number | null
   itemCount?: number
 }
@@ -168,7 +169,7 @@ function MediaPlaylistHeading({
   id,
   itemCount = 0,
   ...props
-}: MediaPlaylistHeadingInternalProps) {
+}: MediaPlaylistHeadingProps & MediaPlaylistHeadingInternalProps) {
   return (
     <div className={clsx(styles.MediaPlaylist__heading, className)} {...props}>
       <Heading as={as} id={id} className={styles.MediaPlaylist__headingLabel}>
@@ -252,30 +253,14 @@ function MediaPlaylistItemContent({children, className, ...props}: MediaPlaylist
   )
 }
 
-export const MediaPlaylistItemMediaBackgroundColors = ['default', 'subtle'] as const
-export type MediaPlaylistItemMediaBackgroundColor = (typeof MediaPlaylistItemMediaBackgroundColors)[number]
-
-export type MediaPlaylistItemMediaProps = React.HTMLAttributes<HTMLDivElement> &
-  React.PropsWithChildren<{
-    fillMedia?: boolean
-    imageBackgroundColor?: MediaPlaylistItemMediaBackgroundColor
-  }>
+export type MediaPlaylistItemMediaProps = React.HTMLAttributes<HTMLDivElement>
 
 const MediaPlaylistItemMedia = forwardRef<HTMLDivElement, MediaPlaylistItemMediaProps>(function MediaPlaylistItemMedia(
-  {children, className, fillMedia = true, imageBackgroundColor, ...props},
+  {children, className, ...props},
   ref,
 ) {
   return (
-    <div
-      ref={ref}
-      className={clsx(
-        styles.MediaPlaylist__media,
-        fillMedia && styles['MediaPlaylist__media--fill-media'],
-        imageBackgroundColor === 'subtle' && styles['MediaPlaylist__media--has-background'],
-        className,
-      )}
-      {...props}
-    >
+    <div ref={ref} className={clsx(styles.MediaPlaylist__media, className)} {...props}>
       {children}
     </div>
   )

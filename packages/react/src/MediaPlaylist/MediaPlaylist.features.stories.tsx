@@ -239,6 +239,90 @@ export const LargePlaylist: Story = {
   },
 }
 
+export const WithoutThumbnails: Story = {
+  name: 'Without thumbnails',
+  render: function WithoutThumbnailsStory() {
+    return (
+      <MediaPlaylist>
+        <MediaPlaylist.Heading>Latest videos</MediaPlaylist.Heading>
+
+        {youtubeVideos.slice(0, 3).map(video => (
+          <MediaPlaylist.Item key={video.id}>
+            <MediaPlaylist.ItemHeading title={video.title} description={video.duration} />
+            <MediaPlaylist.ItemContent>
+              <Prose
+                enableFullWidth
+                html={`
+                  <h3>${video.title}</h3>
+                  <p>${video.summary}</p>
+                `}
+              />
+            </MediaPlaylist.ItemContent>
+            <MediaPlaylist.ItemMedia>
+              <iframe
+                className={styles.youtubeEmbed}
+                src={`https://www.youtube-nocookie.com/embed/${video.id}`}
+                title={video.title}
+                loading="lazy"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen
+                referrerPolicy="strict-origin-when-cross-origin"
+              />
+            </MediaPlaylist.ItemMedia>
+          </MediaPlaylist.Item>
+        ))}
+      </MediaPlaylist>
+    )
+  },
+}
+
+export const CustomItemHeadingContent: Story = {
+  name: 'Custom item heading content (w/ Prose)',
+  render: function CustomItemHeadingContentStory() {
+    return (
+      <MediaPlaylist>
+        <MediaPlaylist.Heading>Latest videos</MediaPlaylist.Heading>
+
+        {youtubeVideos.slice(0, 3).map(video => (
+          <MediaPlaylist.Item
+            key={video.id}
+            thumbnail={
+              <Image
+                src={`https://i.ytimg.com/vi/${video.id}/hqdefault.jpg`}
+                alt=""
+                aspectRatio="16:9"
+                loading="lazy"
+              />
+            }
+          >
+            <MediaPlaylist.ItemHeading>{video.title}</MediaPlaylist.ItemHeading>
+            <MediaPlaylist.ItemContent>
+              <Prose
+                enableFullWidth
+                html={`
+                  <h3>${video.title}</h3>
+                  <p>${video.summary}</p>
+                `}
+              />
+            </MediaPlaylist.ItemContent>
+            <MediaPlaylist.ItemMedia>
+              <iframe
+                className={styles.youtubeEmbed}
+                src={`https://www.youtube-nocookie.com/embed/${video.id}`}
+                title={video.title}
+                loading="lazy"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen
+                referrerPolicy="strict-origin-when-cross-origin"
+              />
+            </MediaPlaylist.ItemMedia>
+          </MediaPlaylist.Item>
+        ))}
+      </MediaPlaylist>
+    )
+  },
+}
+
 export const LargePlaylistNarrow: Story = {
   name: 'Large playlist (narrow)',
   globals: {

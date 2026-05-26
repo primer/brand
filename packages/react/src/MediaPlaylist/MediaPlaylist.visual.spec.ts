@@ -53,6 +53,28 @@ test.describe('Visual Comparison: MediaPlaylist', () => {
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
+  test('MediaPlaylist / Without thumbnails', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-mediaplaylist-features--without-thumbnails&viewMode=story',
+      {waitUntil: 'networkidle'},
+    )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+    await page.waitForTimeout(500)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
+  test('MediaPlaylist / Custom item heading content', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-mediaplaylist-features--custom-item-heading-content&viewMode=story',
+      {waitUntil: 'networkidle'},
+    )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+    await page.waitForTimeout(500)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
   // eslint-disable-next-line i18n-text/no-en
   test.describe('Mobile viewport test for Large playlist (narrow)', () => {
     test.use({viewport: {width: 360, height: 800}})

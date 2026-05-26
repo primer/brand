@@ -13,8 +13,6 @@ declare const styles: {
   readonly "MediaPlaylist__itemHeadingTitle": string;
   readonly "MediaPlaylist__layout": string;
   readonly "MediaPlaylist__media": string;
-  readonly "MediaPlaylist__media--fill-media": string;
-  readonly "MediaPlaylist__media--has-background": string;
   readonly "MediaPlaylist__mediaPanel": string;
   readonly "MediaPlaylist__mediaPanels": string;
   readonly "MediaPlaylist__pagination": string;

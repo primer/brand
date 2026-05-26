@@ -116,25 +116,10 @@
   background-color: var(--base-color-scale-black-0);
 }
 
-.MediaPlaylist__media--has-background {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: var(--brand-color-canvas-subtle);
-  border-radius: 0;
-  overflow: hidden;
-}
-
 .MediaPlaylist__media :is(img, picture, video, iframe) {
   display: block;
   width: 100%;
   max-width: 100%;
-}
-
-.MediaPlaylist__media--fill-media :is(img, picture, video) {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
 }
 
 .MediaPlaylist__tablist {

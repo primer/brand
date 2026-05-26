@@ -41,6 +41,25 @@ describe('MediaPlaylist', () => {
     expect(getByText('1/2')).toBeInTheDocument()
   })
 
+  it('allows non-h1 semantic heading levels', () => {
+    const {getByRole} = render(
+      <MediaPlaylist>
+        <MediaPlaylist.Heading as="h4">Agent workflows</MediaPlaylist.Heading>
+        <MediaPlaylist.Item>
+          <MediaPlaylist.ItemHeading title="Plan" />
+          <MediaPlaylist.ItemContent>
+            <p>Plan content</p>
+          </MediaPlaylist.ItemContent>
+          <MediaPlaylist.ItemMedia>
+            <MockMedia label="plan media" />
+          </MediaPlaylist.ItemMedia>
+        </MediaPlaylist.Item>
+      </MediaPlaylist>,
+    )
+
+    expect(getByRole('heading', {level: 4, name: 'Agent workflows'})).toBeInTheDocument()
+  })
+
   it('falls back to an aria-label when Heading is not provided', () => {
     const consoleWarnSpy = jest.spyOn(console, 'warn').mockImplementation(() => {})
 
@@ -147,7 +166,7 @@ describe('MediaPlaylist', () => {
     expect(within(getByRole('tab')).getByTestId('custom-heading')).toBeInTheDocument()
   })
 
-  it('applies media presentation props', () => {
+  it('forwards media wrapper props', () => {
     const {getByTestId} = render(
       <MediaPlaylist>
         <MediaPlaylist.Heading>Agent workflows</MediaPlaylist.Heading>
@@ -156,15 +175,15 @@ describe('MediaPlaylist', () => {
           <MediaPlaylist.ItemContent>
             <p>Plan content</p>
           </MediaPlaylist.ItemContent>
-          <MediaPlaylist.ItemMedia data-testid="media" imageBackgroundColor="subtle" fillMedia={false}>
+          <MediaPlaylist.ItemMedia data-testid="media" aria-label="Plan media">
             <MockMedia label="plan media" />
           </MediaPlaylist.ItemMedia>
         </MediaPlaylist.Item>
       </MediaPlaylist>,
     )
 
-    expect(getByTestId('media')).toHaveClass('MediaPlaylist__media--has-background')
-    expect(getByTestId('media')).not.toHaveClass('MediaPlaylist__media--fill-media')
+    expect(getByTestId('media')).toHaveClass('MediaPlaylist__media')
+    expect(getByTestId('media')).toHaveAttribute('aria-label', 'Plan media')
   })
 
   it('supports vertical APG keyboard behavior', async () => {
