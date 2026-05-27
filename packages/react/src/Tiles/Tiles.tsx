@@ -2,6 +2,7 @@ import {clsx} from 'clsx'
 import React, {createContext, forwardRef, type PropsWithChildren, type Ref, useContext} from 'react'
 import {ArrowUpRightIcon} from '@primer/octicons-react'
 import type {BaseProps} from '../component-helpers'
+import gridlineStyles from '../component-helpers/shared.module.css'
 import {Text} from '../Text'
 
 /** * Design Tokens */
@@ -62,6 +63,7 @@ const TilesRoot = forwardRef(
             styles.Tiles,
             styles[`Tiles--variant-${variant}`],
             styles[`Tiles--layout-${layout}`],
+            variant === 'gridlines' && gridlineStyles.gridline,
             className,
           )}
           data-testid={testId || testIds.root}

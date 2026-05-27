@@ -16,6 +16,7 @@ import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/compone
 
 /** * Main Stylesheet (as a CSS Module) */
 import styles from '../river-shared.module.css'
+import gridlineStyles from '../../component-helpers/shared.module.css'
 
 export const RiverVariants = ['default', 'gridline'] as const
 export const BorderedGrid = 'gridline' as const
@@ -97,6 +98,7 @@ const Root = forwardRef(
           styles[`River--${imageTextRatio.replace(':', '-')}`],
           styles[`River--align-${align}`],
           styles[`River--variant-${variant}`],
+          variant === 'gridline' && gridlineStyles.gridline,
           animationClasses,
           className,
         )}

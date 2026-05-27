@@ -1,0 +1,31 @@
+/*
+ * .gridline: horizontal gridlines that span the visible viewport, breaking
+ * out of constrained-width parents. Uses border-image-outset to extend the
+ * line visually without affecting layout or causing scrollbar overflow.
+ */
+
+.gridline {
+  position: relative;
+}
+
+.gridline::before,
+.gridline::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 0;
+  border-top: var(--brand-borderWidth-thin) solid;
+  border-image: linear-gradient(var(--brand-color-border-muted), var(--brand-color-border-muted)) 1;
+  border-image-outset: 0 100vw;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.gridline::before {
+  top: 0;
+}
+
+.gridline::after {
+  bottom: 0;
+}
