@@ -37,29 +37,6 @@
   }
 }
 
-.Tiles--variant-gridlines {
-  position: relative;
-}
-
-.Tiles--variant-gridlines::before,
-.Tiles--variant-gridlines::after {
-  content: '';
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 100vw;
-  height: 0;
-  border-top: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
-}
-
-.Tiles--variant-gridlines::before {
-  top: 0;
-}
-
-.Tiles--variant-gridlines::after {
-  bottom: 0;
-}
-
 .Tiles--variant-gridlines .Tiles-grid {
   position: relative;
   padding-right: var(--brand-borderWidth-thin);
