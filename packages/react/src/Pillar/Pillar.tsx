@@ -72,7 +72,7 @@ const PillarRoot = forwardRef(
           styles.Pillar,
           styles[`Pillar--align-${align}`],
           hasBorder && styles['Pillar--has-border'],
-          fullWidth && styles['Pillar--fullWidth'],
+          !fullWidth && styles['Pillar--has-max-width'],
           animationClasses,
           className,
         )}

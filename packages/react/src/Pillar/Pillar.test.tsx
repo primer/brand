@@ -214,7 +214,7 @@ describe('Pillar', () => {
     expect(pillarEl).toHaveClass(classToCheck)
   })
 
-  it('applies fullWidth class correctly', () => {
+  it('does not apply max-width class when fullWidth is true', () => {
     const mockTestId = 'test'
 
     const {getByTestId} = render(
@@ -225,10 +225,10 @@ describe('Pillar', () => {
     )
 
     const pillarEl = getByTestId(mockTestId)
-    expect(pillarEl).toHaveClass('Pillar--fullWidth')
+    expect(pillarEl).not.toHaveClass('Pillar--has-max-width')
   })
 
-  it('does not apply fullWidth class by default', () => {
+  it('applies max-width class by default', () => {
     const mockTestId = 'test'
 
     const {getByTestId} = render(
@@ -239,6 +239,6 @@ describe('Pillar', () => {
     )
 
     const pillarEl = getByTestId(mockTestId)
-    expect(pillarEl).not.toHaveClass('Pillar--fullWidth')
+    expect(pillarEl).toHaveClass('Pillar--has-max-width')
   })
 })

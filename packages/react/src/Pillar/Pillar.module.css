@@ -1,12 +1,11 @@
 .Pillar {
-  max-width: 50ch;
   color: var(--brand-color-text-default);
   display: flex;
   flex-direction: column;
 }
 
-.Pillar--fullWidth {
-  max-width: unset;
+.Pillar--has-max-width {
+  max-width: 50ch;
 }
 
 .Pillar--has-border {
