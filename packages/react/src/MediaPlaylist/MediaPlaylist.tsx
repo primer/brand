@@ -15,6 +15,7 @@ import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/compone
 /** Main Stylesheet (as a CSS Module) */
 
 import styles from './MediaPlaylist.module.css'
+import gridlineStyles from '../component-helpers/shared.module.css'
 
 export type MediaPlaylistProps = React.PropsWithChildren<{
   /**
@@ -75,7 +76,12 @@ const MediaPlaylistRoot = forwardRef<HTMLDivElement, MediaPlaylistProps>(
     return (
       <div
         ref={ref}
-        className={clsx(styles.MediaPlaylist, hasOverflowItems && styles['MediaPlaylist--overflowItems'], className)}
+        className={clsx(
+          styles.MediaPlaylist,
+          gridlineStyles.gridline,
+          hasOverflowItems && styles['MediaPlaylist--overflowItems'],
+          className,
+        )}
         data-testid={testId || testIds.root}
         {...props}
       >

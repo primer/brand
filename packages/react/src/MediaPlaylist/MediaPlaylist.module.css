@@ -1,26 +1,6 @@
 .MediaPlaylist {
-  position: relative;
   padding-block-start: var(--base-size-36);
   padding-inline: var(--base-size-20);
-}
-
-.MediaPlaylist::before,
-.MediaPlaylist::after {
-  content: '';
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 100vw;
-  height: 0;
-  border-top: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
-}
-
-.MediaPlaylist::before {
-  top: 0;
-}
-
-.MediaPlaylist::after {
-  bottom: 0;
 }
 
 @media screen and (max-width: 63.24rem) {
@@ -260,9 +240,8 @@
   gap: var(--base-size-12);
 }
 
-@media screen and (min-width: 48rem) {
+@media screen and (min-width: 38.625rem) {
   .MediaPlaylist {
-    padding-inline: var(--base-size-36);
     border-inline: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
   }
 }
