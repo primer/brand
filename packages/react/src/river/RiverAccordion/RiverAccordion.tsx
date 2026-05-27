@@ -13,6 +13,7 @@ import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/compone
 
 /** Main Stylesheet (as a CSS Module) */
 import styles from './RiverAccordion.module.css'
+import gridlineStyles from '../../component-helpers/shared.module.css'
 
 type RiverAccordionContextType = {
   openIndex: number
@@ -103,6 +104,7 @@ const RiverAccordionRoot = forwardRef<HTMLDivElement, RiverAccordionProps>(
             styles.RiverAccordion,
             styles[`RiverAccordion__align-${align}`],
             styles[`RiverAccordion--variant-${variant}`],
+            variant === 'gridline' && gridlineStyles.gridline,
             className,
           )}
           {...rest}

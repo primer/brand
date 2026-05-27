@@ -8,6 +8,7 @@ import {useId} from '../../hooks/useId'
 import {useTabs} from '../../hooks/useTabs'
 import {useWindowSize} from '../../hooks/useWindowSize'
 import riverStyles from '../river-shared.module.css'
+import gridlineStyles from '../../component-helpers/shared.module.css'
 
 /**
  * Design tokens
@@ -327,6 +328,7 @@ const RiverBreakoutTabsRoot = forwardRef<HTMLElement, RiverBreakoutTabsProps>(
         className={clsx(
           riverStyles.RiverBreakout,
           riverStyles['RiverBreakout--variant-gridline'],
+          gridlineStyles.gridline,
           styles.RiverBreakoutTabs,
           className,
         )}
