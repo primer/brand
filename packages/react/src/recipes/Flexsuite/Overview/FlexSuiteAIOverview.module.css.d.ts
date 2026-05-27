@@ -10,6 +10,7 @@ declare const styles: {
   readonly "heroTrailingPeekImage": string;
   readonly "page": string;
   readonly "resourceCard": string;
+  readonly "resourceCardIcon": string;
 };
 export = styles;
 

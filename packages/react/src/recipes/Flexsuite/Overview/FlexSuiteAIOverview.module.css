@@ -45,7 +45,6 @@
   width: 100%;
   height: 100%;
   padding: 0;
-  border-inline: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
   border-block-start: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
 }
 
@@ -69,6 +68,39 @@
 
 .resourceCard {
   min-block-size: 100%;
+}
+
+@media screen and (min-width: 48rem) and (max-width: 63.24rem) {
+  .cardGridContent {
+    box-sizing: border-box;
+    padding-inline: 91px; /* This is intentionally very specific for Refactor*/
+  }
+
+  .cardGridItem {
+    container-type: inline-size;
+    padding: var(--base-size-24);
+    border-inline: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
+  }
+
+  /* we reassign grid areas at this breakpoint to match designs where the icon is left of the text instead of above */
+  @container (min-width: 30rem) {
+    .resourceCard {
+      grid-template-columns: auto minmax(0, 1fr);
+      grid-template-areas:
+        'icon tokens'
+        'icon label'
+        'icon heading'
+        'icon description'
+        'icon action';
+      grid-template-rows: auto auto auto auto auto;
+      column-gap: var(--base-size-48);
+      align-items: start;
+    }
+
+    .resourceCardIcon {
+      margin-block-end: 0;
+    }
+  }
 }
 
 .fullWidthTabsPanel :global([class*='Tabs__panelContainer']) {
