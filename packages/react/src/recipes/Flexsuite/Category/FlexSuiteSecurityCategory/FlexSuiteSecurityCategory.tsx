@@ -24,6 +24,12 @@ import placeholderBg from '../../../../fixtures/images/security-banner-wide.png'
 import placeholderImage from '../../../../fixtures/images/placeholder.png'
 import monaAvatar from '../../../../fixtures/images/avatar-mona.png'
 import brandDividerWide from '../../../../fixtures/images/brand-divider-security-wide.png'
+import riverFootstepsChat from './fixtures/images/river-footsteps-chat.png'
+import riverFootstepsChatMobile from './fixtures/images/river-footsteps-chat-mobile.png'
+import riverFootstepsReview from './fixtures/images/river-footsteps-review.png'
+import riverFootstepsReviewMobile from './fixtures/images/river-footsteps-review-mobile.png'
+import riverFootstepsWorkflow from './fixtures/images/river-footsteps-workflow.png'
+import riverFootstepsWorkflowMobile from './fixtures/images/river-footsteps-workflow-mobile.png'
 
 import {
   defaultFlexSuiteSecurityCategoryContent,
@@ -38,6 +44,12 @@ export type FlexSuiteSecurityCategoryTemplateProps = {
 }
 
 const cardIcons = [CpuIcon, LightBulbIcon, CodeOfConductIcon] as const
+const riverFootstepsImages = [riverFootstepsWorkflow, riverFootstepsReview, riverFootstepsChat] as const
+const riverFootstepsMobileImages = [
+  riverFootstepsWorkflowMobile,
+  riverFootstepsReviewMobile,
+  riverFootstepsChatMobile,
+] as const
 
 export function FlexSuiteSecurityCategory() {
   return <FlexSuiteSecurityCategoryTemplate content={defaultFlexSuiteSecurityCategoryContent} />
@@ -206,7 +218,7 @@ export function FlexSuiteSecurityCategoryTemplate({content}: FlexSuiteSecurityCa
       </Box>
 
       <Box borderBlockEndWidth="thin" borderColor="muted" borderStyle="solid">
-        <Section paddingBlockEnd="none" paddingBlockStart="none" className={styles.riverFootsteps}>
+        <Section paddingBlockEnd="none" paddingBlockStart="none">
           <Box
             borderInlineStartWidth="thin"
             borderInlineEndWidth="thin"
@@ -223,20 +235,15 @@ export function FlexSuiteSecurityCategoryTemplate({content}: FlexSuiteSecurityCa
               </Grid.Column>
               <Grid.Column span={{xsmall: 12, large: 7}}>
                 <Grid className={styles.riverFootstepsGrid}>
-                  {content.riverFootstepsSection.pillars.map(pillar => (
+                  {content.riverFootstepsSection.pillars.map((pillar, index) => (
                     <Grid.Column key={pillar.heading} span={{xsmall: 12, medium: 6}}>
                       <Pillar fullWidth>
                         <Pillar.Image
                           as="picture"
-                          src={placeholderImage}
+                          src={riverFootstepsMobileImages[index]}
                           alt={pillar.imageAlt}
-                          aspectRatio="custom"
-                          sources={[
-                            {
-                              srcset: placeholderImage,
-                              media: '(min-width: 48rem)',
-                            },
-                          ]}
+                          sources={[{srcset: riverFootstepsImages[index], media: '(min-width: 48rem)'}]}
+                          className={styles.riverFootstepsImage}
                         />
                         <Pillar.Heading>{pillar.heading}</Pillar.Heading>
                         <Pillar.Link href="#">{pillar.linkText}</Pillar.Link>

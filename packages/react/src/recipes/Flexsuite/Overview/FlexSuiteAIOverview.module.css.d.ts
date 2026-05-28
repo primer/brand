@@ -10,8 +10,8 @@ declare const styles: {
   readonly "heroTrailingPeekImage": string;
   readonly "page": string;
   readonly "resourceCard": string;
-  readonly "riverFootsteps": string;
   readonly "riverFootstepsGrid": string;
+  readonly "riverFootstepsImage": string;
 };
 export = styles;
 

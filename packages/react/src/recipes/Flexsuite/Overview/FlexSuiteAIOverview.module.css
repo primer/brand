@@ -94,15 +94,13 @@
   }
 }
 
-.riverFootsteps {
-  --brand-image-aspectRatio: 10 / 16;
+.riverFootstepsImage,
+.riverFootstepsImage img {
+  inline-size: 100%;
+  block-size: auto;
 }
 
 @media screen and (max-width: 48rem) {
-  .riverFootsteps {
-    --brand-image-aspectRatio: 4 / 3;
-  }
-
   .riverFootstepsGrid {
     grid-row-gap: var(--base-size-32);
   }
