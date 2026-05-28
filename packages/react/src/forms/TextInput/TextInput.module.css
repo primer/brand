@@ -34,7 +34,7 @@
  */
 
 .TextInput-wrapper--medium {
-  height: var(--brand-control-medium-size);
+  height: 43px; /* To match the height of Brand Refactor buttons */
 }
 
 .TextInput--medium {
@@ -96,8 +96,8 @@
 }
 
 .TextInput-wrapper:focus-within {
-  border-color: var(--brand-color-focus);
-  box-shadow: 0 0 0 1px var(--brand-color-focus);
+  border-color: var(--brand-control-color-focus);
+  box-shadow: 0 0 0 1px var(--brand-control-color-focus);
   outline: none;
 }
 

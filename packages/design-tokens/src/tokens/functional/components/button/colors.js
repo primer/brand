@@ -7,9 +7,8 @@ module.exports = {
           dark: 'var(--base-color-scale-green-5)',
         },
         hover: {
-          value:
-            'linear-gradient(0deg, rgba(0, 0, 0, 0.16) 0%, rgba(0, 0, 0, 0.16) 100%), var(--base-color-scale-green-6)', // 000000 at 16% opacity
-          dark: 'linear-gradient(0deg, rgba(0, 0, 0, 0.16) 0%, rgba(0, 0, 0, 0.16) 100%), var(--base-color-scale-green-5)', // 000000 at 16% opacity
+          value: 'color-mix(in srgb, var(--base-color-scale-green-6), #000 16%)',
+          dark: 'color-mix(in srgb, var(--base-color-scale-green-5), #000 16%)',
         },
         active: {
           value:

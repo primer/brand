@@ -9,8 +9,8 @@
 .Checkbox {
   align-items: center;
   background-color: var(--brand-control-checkbox-bg-default);
-  border: solid var(--brand-borderWidth-thick, 1px) var(--brand-control-color-border-default);
-  border-radius: var(--brand-borderRadius-small);
+  border: solid var(--brand-borderWidth-thin, 1px) var(--brand-control-color-border-default);
+  border-radius: 3px;
   cursor: pointer;
   display: inline-flex;
   height: 20px;
@@ -36,12 +36,12 @@
 }
 
 .Checkbox-checkmark {
-  height: 16px;
-  width: 16px;
+  height: var(--base-size-12);
+  width: var(--base-size-12);
 }
 
 .Checkbox-checkmark-path {
-  stroke: var(--brand-color-focus);
+  stroke: var(--brand-control-checkbox-fg-checked);
   stroke-dashoffset: 111.46px;
   stroke-dasharray: 111.46px;
   transition: all 350ms var(--brand-control-animation-easing);
@@ -57,6 +57,21 @@
   border-color: var(--brand-control-checkbox-border-checked);
 }
 
+.Checkbox-input:not(:checked):not([disabled]) + .Checkbox:not(.Checkbox--indeterminate):hover {
+  background: var(--brand-control-checkbox-bg-hover);
+  border-color: var(--brand-control-checkbox-border-hover);
+}
+
+.Checkbox-input:checked:not([disabled]) + .Checkbox:hover {
+  background: var(--brand-control-checkbox-bg-checked-hover);
+  border-color: var(--brand-control-checkbox-border-checked-hover);
+}
+
+.Checkbox-input:not([disabled]) + .Checkbox--indeterminate:hover {
+  background: var(--brand-control-checkbox-bg-indeterminate-hover);
+  border-color: var(--brand-control-checkbox-border-indeterminate-hover);
+}
+
 .Checkbox--indeterminate .Checkbox-checkmark {
   fill: var(--brand-control-checkbox-fg-checked);
 }
@@ -68,7 +83,7 @@
 }
 
 .Checkbox-input:focus + .Checkbox {
-  box-shadow: 0 0 0 3px var(--brand-color-focus);
+  box-shadow: 0 0 0 3px var(--brand-control-color-focus);
 }
 
 /* TODO: Check with a11y team */
@@ -89,7 +104,7 @@
 
 @media (forced-colors: active) {
   .Checkbox-input:focus + .Checkbox {
-    outline: var(--brand-borderWidth-thick) solid Highlight;
+    outline: var(--brand-borderWidth-thin) solid Highlight;
     outline-offset: var(--base-size-2);
   }
 

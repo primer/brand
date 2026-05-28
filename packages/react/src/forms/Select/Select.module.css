@@ -29,9 +29,9 @@
 }
 
 .Select:focus-visible {
-  border-color: var(--brand-color-focus);
+  border-color: var(--brand-control-color-focus);
   outline: none;
-  box-shadow: 0 0 0 2px var(--brand-color-focus);
+  box-shadow: 0 0 0 2px var(--brand-control-color-focus);
 }
 
 @media (forced-colors: active) {
@@ -59,7 +59,7 @@
  */
 
 .Select-wrapper--medium {
-  height: var(--brand-control-medium-size);
+  height: 43px; /* To match the height of Brand Refactor buttons */
 }
 
 .Select-wrapper--medium::after {

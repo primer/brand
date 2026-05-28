@@ -4,12 +4,13 @@
   vertical-align: middle;
   align-items: center;
   justify-content: center;
-  transition: box-shadow var(--brand-animation-duration-faster);
+  transition: background-color 0.2s, border-color 0.2s;
   text-decoration: none;
-  border-radius: var(--brand-borderRadius-medium);
+  border-radius: var(--base-size-6);
   cursor: pointer;
-  border: solid var(--brand-borderWidth-thick) transparent;
+  border: solid var(--brand-borderWidth-thin) transparent;
   background: none;
+  box-sizing: border-box;
   display: inline-flex;
   gap: var(--brand-control-medium-gap);
 }
@@ -28,6 +29,10 @@
 .Button--disabled:hover,
 .Button--disabled:focus {
   cursor: not-allowed;
+}
+
+.Button--size-small .Button__text {
+  display: flex;
 }
 
 .Button__text {
@@ -73,7 +78,7 @@
 }
 
 .Button--primary:not(.Button[disabled], .Button[aria-disabled='true'], [aria-expanded='true']):hover {
-  background: var(--brand-button-primary-bgColor-hover);
+  background-color: var(--brand-button-primary-bgColor-hover);
 }
 
 .Button--primary:not(.Button[disabled], .Button[aria-disabled='true']):active,
@@ -105,7 +110,6 @@
 /* secondary */
 
 .Button--secondary {
-  transition: background var(--brand-animation-duration-faster), border-color var(--brand-animation-duration-faster);
   background: var(--brand-button-secondary-bgColor-rest);
   border-color: var(--brand-button-secondary-borderColor-rest);
   color: var(--brand-button-secondary-fgColor-rest);
@@ -140,7 +144,6 @@
 /* subtle */
 
 .Button--subtle {
-  transition: background var(--brand-animation-duration-faster), border-color var(--brand-animation-duration-faster);
   background: var(--brand-button-subtle-bgColor-rest);
   border-width: var(--brand-borderWidth-thin);
   border-color: var(--brand-button-subtle-borderColor-rest);
@@ -181,8 +184,8 @@
 }
 
 .Button--size-medium {
-  min-height: var(--brand-control-medium-size);
-  padding: var(--brand-control-medium-paddingBlock-condensed) var(--brand-control-medium-paddingInline-spacious);
+  min-height: 43px;
+  padding: var(--brand-control-medium-paddingBlock-condensed) var(--base-size-20);
 }
 
 .Button--size-large {
