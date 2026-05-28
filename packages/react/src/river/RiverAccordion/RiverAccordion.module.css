@@ -166,7 +166,7 @@
   align-items: center;
   justify-content: center;
   padding: var(--base-size-32);
-  background-color: var(--brand-color-canvas-subtle);
+  background: var(--brand-RiverAccordion-visual-background, var(--brand-color-canvas-subtle));
 }
 
 .RiverAccordion--variant-gridline .RiverAccordion__visualsWrapper > .RiverAccordion__visual--has-background > * {

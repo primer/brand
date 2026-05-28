@@ -17,7 +17,6 @@ import {
   RiverAccordionAlignProp,
   RiverAccordionVariantProp,
   RiverAccordionItemChildrenProp,
-  RiverAccordionVisualImageBackgroundColorProp,
 } from './react'
 
 ```js
@@ -124,9 +123,9 @@ Use the `align` prop to control the position of the visuals. Setting `align="end
 </RiverAccordion>
 ```
 
-### Visual with background
+### Gridline variant
 
-Use the `imageBackgroundColor` prop on `RiverAccordion.Visual` to create a full-bleed container with a background color and the image/video centered inside with padding. This is intended for use with the `gridline` variant.
+Use the `gridline` variant to add horizontal border lines, equal-width columns, and an edge-to-edge visual background. The visual background defaults to `var(--brand-color-canvas-subtle)` and can be customized with a color, gradient, or image by overriding `--brand-RiverAccordion-visual-background`.
 
 ```jsx live
 <RiverAccordion variant="gridline">
@@ -134,12 +133,11 @@ Use the `imageBackgroundColor` prop on `RiverAccordion.Visual` to create a full-
     <RiverAccordion.Heading>Heading 1</RiverAccordion.Heading>
     <RiverAccordion.Content>
       <Text>
-        The imageBackgroundColor prop creates a full-bleed container with a subtle background, centering the media with
-        padding around it.
+        The gridline variant creates a full-bleed visual background, centering the media with padding around it.
       </Text>
       <Link href="#">Call to action</Link>
     </RiverAccordion.Content>
-    <RiverAccordion.Visual imageBackgroundColor="subtle">
+    <RiverAccordion.Visual>
       <img src="/images/placeholder-1.png" alt="Visual content for item 1" />
     </RiverAccordion.Visual>
   </RiverAccordion.Item>
@@ -150,7 +148,7 @@ Use the `imageBackgroundColor` prop on `RiverAccordion.Visual` to create a full-
       <Text>The background treatment is applied to each visual while the accordion interaction stays the same.</Text>
       <Link href="#">Call to action</Link>
     </RiverAccordion.Content>
-    <RiverAccordion.Visual imageBackgroundColor="subtle">
+    <RiverAccordion.Visual>
       <img src="/images/placeholder-2.png" alt="Visual content for item 2" />
     </RiverAccordion.Visual>
   </RiverAccordion.Item>
@@ -161,7 +159,7 @@ Use the `imageBackgroundColor` prop on `RiverAccordion.Visual` to create a full-
       <Text>Use this treatment when visuals should sit in an edge-to-edge background panel.</Text>
       <Link href="#">Call to action</Link>
     </RiverAccordion.Content>
-    <RiverAccordion.Visual imageBackgroundColor="subtle">
+    <RiverAccordion.Visual>
       <img src="/images/placeholder-3.png" alt="Visual content for item 3" />
     </RiverAccordion.Visual>
   </RiverAccordion.Item>
@@ -206,9 +204,8 @@ Use the `imageBackgroundColor` prop on `RiverAccordion.Visual` to create a full-
 
 ### RiverAccordion.Visual <Label>Required</Label>
 
-| Name                   | Type                                             | Default | Description                                                                                                                                                                                   |
-| :--------------------- | :----------------------------------------------- | :-----: | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `children`             | `React.ReactElement`                             |         | Visual content (e.g., image)                                                                                                                                                                  |
-| `imageBackgroundColor` | <RiverAccordionVisualImageBackgroundColorProp /> |         | Applies a background color with padding around the media. Use `'subtle'` to create a full-bleed container with the image/video centered inside. Intended for use with the `gridline` variant. |
+| Name       | Type                 | Default | Description                  |
+| :--------- | :------------------- | :-----: | :--------------------------- |
+| `children` | `React.ReactElement` |         | Visual content (e.g., image) |
 
 `RiverAccordion.Visual` extends the HTML `div` element and supports all `div` props.

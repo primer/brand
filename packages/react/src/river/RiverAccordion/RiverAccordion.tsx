@@ -17,6 +17,7 @@ import styles from './RiverAccordion.module.css'
 type RiverAccordionContextType = {
   openIndex: number
   setOpenIndex: (index: number) => void
+  variant: RiverAccordionVariant
 }
 
 const RiverAccordionContext = createContext<RiverAccordionContextType | null>(null)
@@ -47,8 +48,6 @@ const useRiverAccordionItemContext = (): RiverAccordionItemContextType => {
 
 export const RiverAccordionVariants = ['default', 'gridline'] as const
 export type RiverAccordionVariant = (typeof RiverAccordionVariants)[number]
-export const RiverAccordionVisualBackgroundColors = ['default', 'subtle'] as const
-export type RiverAccordionVisualBackgroundColor = (typeof RiverAccordionVisualBackgroundColors)[number]
 
 export type RiverAccordionProps = React.PropsWithChildren<{
   align?: 'start' | 'end'
@@ -93,8 +92,9 @@ const RiverAccordionRoot = forwardRef<HTMLDivElement, RiverAccordionProps>(
       () => ({
         openIndex,
         setOpenIndex,
+        variant,
       }),
-      [openIndex, setOpenIndex],
+      [openIndex, setOpenIndex, variant],
     )
 
     return (
@@ -258,19 +258,16 @@ const RiverAccordionContent = ({className, children, ...props}: RiverAccordionCo
   )
 }
 
-export type RiverAccordionVisualProps = React.HTMLAttributes<HTMLDivElement> & {
-  /**
-   * Applies a background color with padding around the media.
-   */
-  imageBackgroundColor?: RiverAccordionVisualBackgroundColor
-}
+export type RiverAccordionVisualProps = React.HTMLAttributes<HTMLDivElement>
 
-const RiverAccordionVisual = ({className, imageBackgroundColor, ...props}: RiverAccordionVisualProps) => {
+const RiverAccordionVisual = ({className, ...props}: RiverAccordionVisualProps) => {
+  const {variant} = useRiverAccordionContext()
+
   return (
     <div
       className={clsx(
         styles.RiverAccordion__visual,
-        imageBackgroundColor === 'subtle' && styles['RiverAccordion__visual--has-background'],
+        variant === 'gridline' && styles['RiverAccordion__visual--has-background'],
         className,
       )}
       {...props}
