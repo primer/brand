@@ -184,7 +184,7 @@
 }
 
 .Button--size-medium {
-  min-height: 43px;
+  min-height: var(--brand-control-medium-size);
   padding: var(--brand-control-medium-paddingBlock-condensed) var(--base-size-20);
 }
 

@@ -18,7 +18,7 @@
   margin: 3px 0; /* mimic default browser-applied vertical margin */
   transition: all 0.35s ease-out;
   width: 20px;
-  outline: 1px solid var(--brand-control-checkbox-bg-default);
+  outline: 1px solid transparent;
   box-shadow: 0 0 0 3px transparent;
 }
 
@@ -92,14 +92,22 @@
   border-color: var(--brand-control-checkbox-border-checked);
 }
 
-.Checkbox-input[disabled] + .Checkbox,
-.Checkbox-input[disabled]:checked + .Checkbox {
+.Checkbox-input[disabled] + .Checkbox {
   -webkit-text-fill-color: var(--brand-control-color-fg-disabled);
   color: var(--brand-control-color-fg-disabled);
   cursor: not-allowed;
-  background-color: var(--brand-control-checkbox-bg-disabled);
-  border-color: var(--brand-control-color-border-disabled);
+  background-color: transparent;
+  border-color: var(--brand-control-checkbox-border-unchecked-disabled);
   opacity: 1;
+}
+
+.Checkbox-input[disabled]:checked + .Checkbox {
+  background-color: var(--brand-control-checkbox-bg-checked-disabled);
+  border-color: var(--brand-control-checkbox-border-checked-disabled);
+}
+
+.Checkbox-input[disabled]:checked + .Checkbox .Checkbox-checkmark-path {
+  stroke: var(--brand-control-checkbox-fg-checked-disabled);
 }
 
 @media (forced-colors: active) {

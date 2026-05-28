@@ -58,15 +58,19 @@ module.exports = {
           value: 'color-mix(in srgb, var(--brand-color-text-emphasized), #000 26%)',
           dark: '#309A4D', // var(--base-color-scale-green-5) + #fff at 16% opacity
         },
-        disabled: {
-          value: 'var(--brand-color-canvas-default)',
-          dark: 'var(--brand-color-canvas-default)',
+        'checked-disabled': {
+          value: 'color-mix(in srgb, var(--base-color-scale-green-6), #fff 65%)',
+          dark: 'color-mix(in srgb, var(--base-color-scale-green-6), #000 35%)',
         },
       },
       fg: {
         checked: {
           value: 'var(--base-color-scale-white-0)',
           dark: 'var(--base-color-scale-white-0)',
+        },
+        'checked-disabled': {
+          value: 'var(--base-color-scale-white-0)',
+          dark: 'color-mix(in srgb, var(--base-color-scale-green-5), #000 20%)',
         },
       },
       border: {
@@ -94,8 +98,12 @@ module.exports = {
           value: 'var(--brand-color-text-emphasized)',
           dark: 'rgba(0, 0, 0, 0.12)',
         },
-        disabled: {
-          value: 'var(--base-color-scale-gray-4)',
+        'checked-disabled': {
+          value: 'color-mix(in srgb, var(--base-color-scale-green-6), #fff 65%)',
+          dark: 'color-mix(in srgb, var(--base-color-scale-green-6), #000 35%)',
+        },
+        'unchecked-disabled': {
+          value: 'var(--base-color-scale-gray-1)',
           dark: 'var(--base-color-scale-gray-5)',
         },
       },

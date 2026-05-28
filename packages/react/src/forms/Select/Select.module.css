@@ -59,7 +59,7 @@
  */
 
 .Select-wrapper--medium {
-  height: 43px; /* To match the height of Brand Refactor buttons */
+  height: var(--brand-control-medium-size);
 }
 
 .Select-wrapper--medium::after {

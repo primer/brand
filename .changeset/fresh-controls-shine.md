@@ -10,10 +10,14 @@ New tokens are now available:
 + --brand-control-color-focus
 + --brand-control-checkbox-bg-hover
 + --brand-control-checkbox-bg-checked-hover
++ --brand-control-checkbox-bg-checked-disabled
 + --brand-control-checkbox-bg-indeterminate-hover
++ --brand-control-checkbox-fg-checked-disabled
 + --brand-control-checkbox-border-hover
 + --brand-control-checkbox-border-checked-hover
++ --brand-control-checkbox-border-checked-disabled
 + --brand-control-checkbox-border-indeterminate-hover
++ --brand-control-checkbox-border-unchecked-disabled
 + --brand-control-radio-bg-hover
 + --brand-control-radio-bg-checked-hover
 + --brand-control-radio-border-hover

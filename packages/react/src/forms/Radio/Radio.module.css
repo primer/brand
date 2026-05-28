@@ -123,7 +123,7 @@ Fixes safari bug where outline doesn't respect border-radius
   color: var(--brand-control-color-fg-disabled);
   cursor: not-allowed;
   background-color: var(--brand-control-radio-bg-disabled);
-  border-color: var(--brand-control-color-border-disabled);
+  border-color: var(--brand-control-radio-border-disabled);
   opacity: 1;
 }
 

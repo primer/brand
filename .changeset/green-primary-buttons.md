@@ -10,6 +10,7 @@ Updated Button appearance and API ergonomics:
 - Updated `secondary`, and `subtle` variant colors and state styles.
 - Updated the `primary` Button hover color and standardized Button hover transitions with a 0.2s background color transition.
 - Updated Button border radius, medium Button sizing, and medium ActionMenu item height to better match the new Figma treatment.
+- Updated the shared medium control size token from `48px` to `43px`, so medium Button, ActionMenu, TextInput, and Select controls stay aligned.
 - Updated medium Button label typography to better match the new Figma treatment.
 - Fixed vertical alignment issues in the `Button` component so labels are centered consistently in browsers like Firefox.
 - Deprecated the `hasArrow` prop and hid Button arrows by default.

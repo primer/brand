@@ -214,7 +214,7 @@
 
 .ActionMenu__item--medium {
   padding: var(--brand-control-medium-paddingBlock-condensed) var(--brand-control-medium-paddingInline-normal);
-  min-height: 43px; /* To match the height of Brand Refactor buttons */
+  min-height: var(--brand-control-medium-size);
 }
 
 .ActionMenu__item--medium:has(.ActionMenu__item-anchor) {
