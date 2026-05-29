@@ -62,11 +62,11 @@ module.exports = {
           dark: 'rgba(255, 255, 255, 0.12)', // ffffff at 12% opacity
         },
         hover: {
-          value: 'linear-gradient(0deg, rgba(0, 0, 0, 0.06) 0%, rgba(0, 0, 0, 0.06) 100%), rgba(0, 0, 0, 0.06)', // 000000 at 6% opacity overlay and base
+          value: 'rgba(0, 0, 0, 0.1164)', // flattened result of 6% black over 6% black
           dark: 'rgba(255, 255, 255, 0.16)', // ffffff at 16% opacity
         },
         active: {
-          value: 'linear-gradient(0deg, rgba(0, 0, 0, 0.16) 0%, rgba(0, 0, 0, 0.16) 100%), rgba(0, 0, 0, 0.06)', // 000000 at 16% opacity over 000000 at 6% opacity
+          value: 'rgba(0, 0, 0, 0.2104)', // flattened result of 16% black over 6% black
           dark: 'rgba(255, 255, 255, 0.26)', // ffffff at 26% opacity
         },
       },
@@ -102,11 +102,11 @@ module.exports = {
           dark: 'rgba(0, 0, 0, 0.01)', // 000000 at 1% opacity
         },
         hover: {
-          value: 'linear-gradient(0deg, rgba(0, 0, 0, 0.06) 0%, rgba(0, 0, 0, 0.06) 100%), rgba(0, 0, 0, 0.06)', // 000000 at 6% opacity overlay and base
+          value: 'rgba(0, 0, 0, 0.1164)', // flattened result of 6% black over 6% black
           dark: 'rgba(255, 255, 255, 0.16)', // ffffff at 16% opacity
         },
         active: {
-          value: 'linear-gradient(0deg, rgba(0, 0, 0, 0.16) 0%, rgba(0, 0, 0, 0.16) 100%), rgba(0, 0, 0, 0.06)', // 000000 at 16% opacity over 000000 at 6% opacity
+          value: 'rgba(0, 0, 0, 0.2104)', // flattened result of 16% black over 6% black
           dark: 'rgba(255, 255, 255, 0.24)', // ffffff at 24% opacity
         },
       },

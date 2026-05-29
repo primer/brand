@@ -141,12 +141,12 @@ module.exports = {
           dark: 'var(--base-color-scale-gray-5)',
         },
         checked: {
-          value: 'var(--base-color-scale-green-6)',
-          dark: '#077726', // computed value
+          value: 'var(--brand-control-color-border-default)',
+          dark: 'var(--base-color-scale-gray-4)',
         },
         'checked-hover': {
-          value: 'var(--brand-color-text-emphasized)',
-          dark: 'rgba(0, 0, 0, 0.12)',
+          value: 'var(--brand-control-color-border-default)',
+          dark: 'var(--base-color-scale-gray-4)',
         },
         disabled: {
           value: 'var(--base-color-scale-gray-4)',
