@@ -25,6 +25,10 @@ export type PillarProps<C extends keyof JSX.IntrinsicElements = 'div'> = React.H
    * Enables optional border around the pillar content
    */
   hasBorder?: boolean
+  /**
+   * Allows the pillar to fill the width of its parent container.
+   */
+  fullWidth?: boolean
 } & (C extends 'article' ? PropsWithChildren<BaseProps<HTMLElement>> : PropsWithChildren<BaseProps<HTMLDivElement>>)
 
 const PillarRoot = forwardRef(
@@ -37,6 +41,7 @@ const PillarRoot = forwardRef(
       align = 'start',
       style,
       hasBorder = false,
+      fullWidth = false,
       ...rest
     }: PropsWithChildren<PillarProps>,
     ref: Ref<HTMLDivElement>,
@@ -67,6 +72,7 @@ const PillarRoot = forwardRef(
           styles.Pillar,
           styles[`Pillar--align-${align}`],
           hasBorder && styles['Pillar--has-border'],
+          !fullWidth && styles['Pillar--has-max-width'],
           animationClasses,
           className,
         )}

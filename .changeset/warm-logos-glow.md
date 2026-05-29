@@ -7,4 +7,4 @@ Updated the `LogoSuite` gridline expressive layout to use slightly larger tablet
 
 Set `LogoSuite` mobile logo sizing to 32px, matching the tablet presentation and improving consistency across smaller viewports.
 
-Updated the `LogoSuite` gridline expressive tablet layout to use fixed 91px inline edge spacing instead of a max-width cap.
+Updated the `LogoSuite` expressive gridline variant on tablet layouts to use fixed 91px inline edge spacing instead of a max-width cap.

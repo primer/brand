@@ -108,5 +108,26 @@
     "description": "新しい Security カテゴリ用の仮の CTA セクションです。次の段階で、Figma デザインの最終的な組み込みワークフローバンドに置き換えられます。",
     "primaryAction": "無料トライアルを始める",
     "secondaryAction": "営業に問い合わせる"
+  },
+  "riverFootstepsSection": {
+    "heading": "世界をリードする組織に採用されています",
+    "pillars": {
+      "one": {
+        "heading": "Otto GroupがGitHub Advanced Securityで開発者エンゲージメントを向上",
+        "imageAlt": "Otto Groupのオフィスビル",
+        "linkText": "顧客事例を読む"
+      },
+      "two": {
+        "heading": "SPH MediaがGitHubでツールの乱立を解消しコードを保護",
+        "imageAlt": "SPH Mediaのオフィス受付エリア",
+        "linkText": "顧客事例を読む"
+      },
+      "three": {
+        "heading": "PostmatesがGitHub Advanced Securityで脆弱性を検出",
+        "imageAlt": "作業中のPostmatesチームメンバー",
+        "linkText": "顧客事例を読む"
+      }
+    },
+    "linkText": "詳しく見る"
   }
 }
