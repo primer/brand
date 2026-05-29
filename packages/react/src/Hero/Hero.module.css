@@ -246,7 +246,7 @@
 .Hero-label {
   text-transform: uppercase;
   letter-spacing: 1px;
-  margin-block-end: var(--base-size-16);
+  margin-block-end: calc(var(--base-size-16) - var(--base-size-2));
   display: flex;
   align-items: center;
 }

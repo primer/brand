@@ -1,6 +1,7 @@
 import React, {useCallback, useEffect} from 'react'
 import type {Meta, StoryFn} from '@storybook/react'
 import {Checkbox} from '.'
+import {Stack} from '../..'
 
 export default {
   title: 'Components/Forms/Checkbox',
@@ -35,13 +36,13 @@ export const Playground: StoryFn<typeof Checkbox> = args => <Checkbox aria-label
 Playground.storyName = 'Checkbox - Playground'
 
 export const Variants = () => (
-  <>
+  <Stack direction="horizontal" padding="none" gap={4}>
     <Checkbox aria-label="Default unchecked" />
     <Checkbox aria-label="Default checked" defaultChecked />
     <Checkbox aria-label="Default disabled" disabled />
     <Checkbox aria-label="Default checked and disabled" defaultChecked disabled />
     <Checkbox aria-label="Default indeterminate" indeterminate={true} />
-  </>
+  </Stack>
 )
 Variants.storyName = 'Checkbox - Variants'
 
