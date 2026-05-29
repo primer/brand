@@ -134,11 +134,11 @@
 .MediaPlaylist__item::before {
   content: '';
   position: absolute;
-  inset-block-start: 0;
+  inset-block-end: 0;
   inset-inline: 0;
   height: var(--brand-borderWidth-thin);
   transform: scaleY(1);
-  transform-origin: 50% 0;
+  transform-origin: 50% 100%;
   background-color: var(--brand-color-border-muted);
   transition: transform var(--brand-animation-duration-fast) ease,
     background-color var(--brand-animation-duration-fast) ease;
@@ -279,7 +279,7 @@
   }
 
   .MediaPlaylist--overflowItems .MediaPlaylist__tablist {
-    max-block-size: calc((3 * var(--base-size-64)) + (6 * var(--base-size-32)));
+    max-block-size: calc((3 * var(--base-size-64)) + (6 * var(--base-size-20)));
   }
 
   .MediaPlaylist__mediaPanels {
@@ -330,11 +330,11 @@
   }
 
   .MediaPlaylist__item {
-    min-block-size: calc(var(--base-size-64) + (2 * var(--base-size-32)));
+    min-block-size: calc(var(--base-size-64) + (2 * var(--base-size-20)));
   }
 
   .MediaPlaylist__tab {
-    min-block-size: calc(var(--base-size-64) + (2 * var(--base-size-32)));
+    min-block-size: calc(var(--base-size-64) + (2 * var(--base-size-20)));
     padding-block: var(--base-size-20);
     padding-inline-start: var(--base-size-32);
     padding-inline-end: var(--brand-MediaPlaylist-desktopGutter);

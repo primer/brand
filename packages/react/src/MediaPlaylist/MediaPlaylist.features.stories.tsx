@@ -239,6 +239,60 @@ export const LargePlaylist: Story = {
   },
 }
 
+export const LongVideoNames: Story = {
+  name: 'Long video names',
+  render: function LongVideoNamesStory() {
+    const sidebarTitles = [
+      'Getting started with open source contributions for beginners: choosing the right first issue, understanding maintainer expectations, and shipping a thoughtful pull request',
+      'Open Source Friday with Spec-Kit: a practical walkthrough of specification-driven development, agent planning, and keeping implementation details aligned across teams',
+      'Getting More from Every Copilot Interaction when your repository has multiple packages, generated assets, visual tests, and a long-running release checklist',
+      'How the American Council of the Blind uses GitHub Copilot to automate community operations, improve accessibility workflows, and support volunteer collaboration at scale',
+    ]
+
+    return (
+      <MediaPlaylist>
+        <MediaPlaylist.Heading>Latest videos</MediaPlaylist.Heading>
+
+        {youtubeVideos.slice(0, 4).map((video, index) => (
+          <MediaPlaylist.Item
+            key={video.id}
+            thumbnail={
+              <Image
+                src={`https://i.ytimg.com/vi/${video.id}/hqdefault.jpg`}
+                alt=""
+                aspectRatio="16:9"
+                loading="lazy"
+              />
+            }
+          >
+            <MediaPlaylist.ItemHeading title={sidebarTitles[index]} description={video.duration} />
+            <MediaPlaylist.ItemContent>
+              <Prose
+                enableFullWidth
+                html={`
+                  <h3>${video.title}</h3>
+                  <p>${video.summary}</p>
+                `}
+              />
+            </MediaPlaylist.ItemContent>
+            <MediaPlaylist.ItemMedia>
+              <iframe
+                className={styles.youtubeEmbed}
+                src={`https://www.youtube-nocookie.com/embed/${video.id}`}
+                title={video.title}
+                loading="lazy"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen
+                referrerPolicy="strict-origin-when-cross-origin"
+              />
+            </MediaPlaylist.ItemMedia>
+          </MediaPlaylist.Item>
+        ))}
+      </MediaPlaylist>
+    )
+  },
+}
+
 export const WithoutThumbnails: Story = {
   name: 'Without thumbnails',
   render: function WithoutThumbnailsStory() {

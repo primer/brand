@@ -543,6 +543,10 @@ export const NoActiveLinksNarrow: Story = {
   globals: {
     viewport: {value: 'iphonex'},
   },
+  play: async ({canvasElement}) => {
+    const canvas = within(canvasElement)
+    await userEvent.click(canvas.getByTestId('SubNav-root-button'))
+  },
 }
 
 const DelayedActiveTemplate = (args: SubNavProps) => {

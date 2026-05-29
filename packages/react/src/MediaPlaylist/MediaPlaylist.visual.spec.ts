@@ -53,6 +53,17 @@ test.describe('Visual Comparison: MediaPlaylist', () => {
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
+  test('MediaPlaylist / Long video names', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-mediaplaylist-features--long-video-names&viewMode=story',
+      {waitUntil: 'networkidle'},
+    )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+    await page.waitForTimeout(500)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
   test('MediaPlaylist / Without thumbnails', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-mediaplaylist-features--without-thumbnails&viewMode=story',
@@ -64,7 +75,7 @@ test.describe('Visual Comparison: MediaPlaylist', () => {
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
-  test('MediaPlaylist / Custom item heading content', async ({page}) => {
+  test('MediaPlaylist / Custom item heading content (w/ Prose)', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-mediaplaylist-features--custom-item-heading-content&viewMode=story',
       {waitUntil: 'networkidle'},
