@@ -89,3 +89,15 @@
     border-inline-end: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
   }
 }
+
+.riverFootstepsImage,
+.riverFootstepsImage img {
+  inline-size: 100%;
+  block-size: auto;
+}
+
+@media screen and (max-width: 48rem) {
+  .riverFootstepsGrid {
+    grid-row-gap: var(--base-size-32);
+  }
+}

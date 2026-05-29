@@ -123,6 +123,49 @@ Use the `align` prop to control the position of the visuals. Setting `align="end
 </RiverAccordion>
 ```
 
+### Gridline variant
+
+Use the `gridline` variant to add horizontal border lines, equal-width columns, and an edge-to-edge visual background. The visual background defaults to `var(--brand-color-canvas-subtle)` and can be customized with a color, gradient, or image by overriding `--brand-RiverAccordion-visual-background`.
+
+```jsx live
+<RiverAccordion variant="gridline">
+  <RiverAccordion.Item>
+    <RiverAccordion.Heading>Heading 1</RiverAccordion.Heading>
+    <RiverAccordion.Content>
+      <Text>
+        The gridline variant creates a full-bleed visual background, centering the media with padding around it.
+      </Text>
+      <Link href="#">Call to action</Link>
+    </RiverAccordion.Content>
+    <RiverAccordion.Visual>
+      <img src="/images/placeholder-1.png" alt="Visual content for item 1" />
+    </RiverAccordion.Visual>
+  </RiverAccordion.Item>
+
+  <RiverAccordion.Item>
+    <RiverAccordion.Heading>Heading 2</RiverAccordion.Heading>
+    <RiverAccordion.Content>
+      <Text>The background treatment is applied to each visual while the accordion interaction stays the same.</Text>
+      <Link href="#">Call to action</Link>
+    </RiverAccordion.Content>
+    <RiverAccordion.Visual>
+      <img src="/images/placeholder-2.png" alt="Visual content for item 2" />
+    </RiverAccordion.Visual>
+  </RiverAccordion.Item>
+
+  <RiverAccordion.Item>
+    <RiverAccordion.Heading>Heading 3</RiverAccordion.Heading>
+    <RiverAccordion.Content>
+      <Text>Use this treatment when visuals should sit in an edge-to-edge background panel.</Text>
+      <Link href="#">Call to action</Link>
+    </RiverAccordion.Content>
+    <RiverAccordion.Visual>
+      <img src="/images/placeholder-3.png" alt="Visual content for item 3" />
+    </RiverAccordion.Visual>
+  </RiverAccordion.Item>
+</RiverAccordion>
+```
+
 ## Component props
 
 ### RiverAccordion <Label>Required</Label>
