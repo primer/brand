@@ -1,4 +1,4 @@
-import React, {render, cleanup} from '@testing-library/react'
+import {cleanup, render} from '@testing-library/react'
 import '@testing-library/jest-dom'
 import userEvent from '@testing-library/user-event'
 import {axe, toHaveNoViolations} from 'jest-axe'
@@ -26,6 +26,23 @@ describe('Pagination', () => {
 
     expect(rootEl).toBeInTheDocument() // checks it uses a nav element
     expect(linksAsVerbatimText).toEqual(['Previous', '1', '2', '3', '4', '5', 'Next']) // checks it renders the correct number of links, inclusive of prev and next
+  })
+
+  it('renders pagination controls using Button variants', () => {
+    const {getByRole} = render(<Pagination pageCount={5} currentPage={1} />)
+
+    expect(getByRole('button', {name: 'Page 1'}).classList).toContain('Button--primary')
+    expect(getByRole('button', {name: 'Page 1'}).classList).toContain('Pagination__pageItem')
+    expect(getByRole('button', {name: 'Page 2'}).classList).toContain('Button--subtle')
+    expect(getByRole('button', {name: 'Page 2'}).classList).toContain('Pagination__pageItem')
+    expect(getByRole('button', {name: 'Previous Page'}).classList).not.toContain('Pagination__pageItem')
+    expect(getByRole('button', {name: 'Previous Page'}).classList).toContain('Pagination__controlItem')
+    expect(getByRole('button', {name: 'Previous Page'}).classList).toContain('Button--subtle')
+    expect(getByRole('button', {name: 'Previous Page'}).classList).toContain('Button')
+    expect(getByRole('button', {name: 'Next Page'}).classList).not.toContain('Pagination__pageItem')
+    expect(getByRole('button', {name: 'Next Page'}).classList).toContain('Pagination__controlItem')
+    expect(getByRole('button', {name: 'Next Page'}).classList).toContain('Button--subtle')
+    expect(getByRole('button', {name: 'Next Page'}).classList).toContain('Button')
   })
 
   it('shows ellipsis just before the final item to reduce pagination links on longer lists, where the first item is selected', () => {
@@ -60,6 +77,8 @@ describe('Pagination', () => {
     const ellipsisButton = getByRole('presentation')
 
     expect(ellipsisButton).toHaveTextContent('…')
+    expect(ellipsisButton.classList).toContain('Button--subtle')
+    expect(ellipsisButton.classList).toContain('Pagination__pageItem')
     expect(ellipsisButton).not.toHaveAttribute('href')
     expect(ellipsisButton).not.toHaveAttribute('aria-current')
   })
@@ -113,10 +132,10 @@ describe('Pagination', () => {
   })
 
   it('applies custom attributes to pagination items correctly using pageAttributesBuilder', () => {
-    const customAttributes = n => ({
+    const customAttributes = jest.fn(n => ({
       'data-custom-attr': `custom-value-${n}`,
-      'aria-label': `Go to page ${n}`,
-    })
+      'aria-label': `Page ${n}`,
+    }))
 
     const {getByRole} = render(<Pagination pageCount={3} currentPage={1} pageAttributesBuilder={customAttributes} />)
     const rootEl = getByRole('navigation')
@@ -126,9 +145,13 @@ describe('Pagination', () => {
     for (const [index, item] of pagedItems.entries()) {
       if (index !== 0 && index !== pagedItems.length - 1) {
         expect(item).toHaveAttribute('data-custom-attr', `custom-value-${index}`)
-        expect(item).toHaveAttribute('aria-label', `Go to page ${index}`)
+        expect(item).toHaveAttribute('aria-label', `Page ${index}`)
       }
     }
+
+    expect(customAttributes).toHaveBeenCalledWith(0, expect.objectContaining({type: 'PREV'}))
+    expect(customAttributes).toHaveBeenCalledWith(1, expect.objectContaining({type: 'NUM'}))
+    expect(customAttributes).toHaveBeenCalledWith(2, expect.objectContaining({type: 'NUM'}))
   })
 
   it('focuses the elements in the correct order', async () => {

@@ -170,11 +170,27 @@ describe('SubNav', () => {
     expect(getByRole('button', {name: 'Navigation menu'})).toBeInTheDocument()
   })
 
-  it('shows the aria-current text next to the button by default', () => {
+  it('hides the aria-current text from the button when no subheading is present', () => {
     const {getByRole} = render(<MockSubNavFixture />)
 
     const buttonEl = getByRole('button', {name: 'Navigation menu. Current page: page three'})
-    expect(buttonEl).toHaveTextContent('page three')
+    expect(buttonEl).not.toHaveTextContent('page three')
+  })
+
+  it('shows the aria-current text next to the button when a subheading is present', () => {
+    const {getByRole} = render(
+      <SubNav>
+        <SubNav.Heading href={headingLink}>{heading}</SubNav.Heading>
+        <SubNav.SubHeading href="#subheading">Subheading</SubNav.SubHeading>
+        <SubNav.Link href="#page1">page one</SubNav.Link>
+        <SubNav.Link href="#page2" aria-current="page">
+          page two
+        </SubNav.Link>
+      </SubNav>,
+    )
+
+    const buttonEl = getByRole('button', {name: 'Navigation menu. Current page: page two'})
+    expect(buttonEl).toHaveTextContent('page two')
   })
 
   it('has no a11y violations on initial render', async () => {

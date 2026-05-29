@@ -142,6 +142,7 @@ const waitForTimeoutLookup = {
   'components-riverbreakouttabs-examples--with-rivers': 4000, // for dither bg to complete
   'recipes-flexsuite-overview--ai': 4000, // for the animation to complete
   'recipes-flexsuite-category--security': 4000, // for the animation to complete,
+  'recipes-flexsuite-details--ai': 7000, // for the youtube video posters to load
 }
 
 // const skipLocalizationsTestsFor = [

@@ -279,6 +279,7 @@ const SubNavRoot = memo(
         isValidElement<SubHeadingBaseProps>(SubHeadingChild) &&
         SubHeadingChild.type === SubHeadingBase &&
         Boolean(SubHeadingChild.props['aria-current'])
+      const narrowButtonLabel = SubHeadingChild ? activeLinklabel : null
 
       const NarrowButton = useMemo(
         () => (
@@ -288,7 +289,7 @@ const SubNavRoot = memo(
             <span
               className={clsx(
                 styles['SubNav__overlay-toggle-content'],
-                !activeLinklabel && styles['SubNav__overlay-toggle-content--end'],
+                !narrowButtonLabel && styles['SubNav__overlay-toggle-content--end'],
               )}
             >
               <button
@@ -300,9 +301,9 @@ const SubNavRoot = memo(
                 aria-controls={idForLinkContainer}
                 aria-label={activeLinklabel ? `Navigation menu. Current page: ${activeLinklabel}` : 'Navigation menu'}
               >
-                {activeLinklabel && (
+                {narrowButtonLabel && (
                   <Text as="span" size="100">
-                    {activeLinklabel}
+                    {narrowButtonLabel}
                   </Text>
                 )}
                 {isOpenAtNarrow ? (
@@ -314,7 +315,7 @@ const SubNavRoot = memo(
             </span>
           </div>
         ),
-        [activeLinklabel, closeMenuCallback, handleMenuToggle, idForLinkContainer, isOpenAtNarrow],
+        [activeLinklabel, closeMenuCallback, handleMenuToggle, idForLinkContainer, isOpenAtNarrow, narrowButtonLabel],
       )
 
       return (
