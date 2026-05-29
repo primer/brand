@@ -66,18 +66,7 @@
 .LogoSuite__logobar--variant-emphasis img,
 .LogoSuite__logobar--variant-emphasis a {
   width: auto;
-  height: var(--base-size-28);
-}
-
-@media screen and (min-width: 48rem) {
-  .LogoSuite__logobar--variant-muted svg,
-  .LogoSuite__logobar--variant-muted img,
-  .LogoSuite__logobar--variant-muted a,
-  .LogoSuite__logobar--variant-emphasis svg,
-  .LogoSuite__logobar--variant-emphasis img,
-  .LogoSuite__logobar--variant-emphasis a {
-    height: var(--base-size-32);
-  }
+  height: var(--base-size-32);
 }
 
 .LogoSuite__logobar--variant-muted svg,
@@ -237,7 +226,6 @@
 .LogoSuite--gridline-expressive .LogoSuite__content {
   padding-inline: 0;
   gap: 0;
-  max-width: 618px; /* From the Figma design */
 }
 
 .LogoSuite--gridline-expressive .LogoSuite__textContainer {
@@ -272,8 +260,12 @@
 }
 
 @media screen and (min-width: 48rem) {
+  .LogoSuite--gridline-expressive {
+    padding-inline: 91px;
+  }
+
   .LogoSuite--gridline-expressive .LogoSuite__logobarContainer {
-    padding: var(--base-size-36);
+    padding: var(--base-size-40);
   }
   .LogoSuite--gridline-expressive .LogoSuite__content {
     border-inline: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
@@ -284,6 +276,10 @@
 }
 
 @media screen and (min-width: 64rem) {
+  .LogoSuite--gridline-expressive {
+    padding-inline: 0;
+  }
+
   .LogoSuite--gridline-expressive .LogoSuite__content {
     max-width: 1280px;
   }
