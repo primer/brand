@@ -13,10 +13,12 @@ import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/compone
 
 /** Main Stylesheet (as a CSS Module) */
 import styles from './RiverAccordion.module.css'
+import gridlineStyles from '../../component-helpers/shared.module.css'
 
 type RiverAccordionContextType = {
   openIndex: number
   setOpenIndex: (index: number) => void
+  variant: RiverAccordionVariant
 }
 
 const RiverAccordionContext = createContext<RiverAccordionContextType | null>(null)
@@ -91,8 +93,9 @@ const RiverAccordionRoot = forwardRef<HTMLDivElement, RiverAccordionProps>(
       () => ({
         openIndex,
         setOpenIndex,
+        variant,
       }),
-      [openIndex, setOpenIndex],
+      [openIndex, setOpenIndex, variant],
     )
 
     return (
@@ -103,6 +106,7 @@ const RiverAccordionRoot = forwardRef<HTMLDivElement, RiverAccordionProps>(
             styles.RiverAccordion,
             styles[`RiverAccordion__align-${align}`],
             styles[`RiverAccordion--variant-${variant}`],
+            variant === 'gridline' && gridlineStyles.gridline,
             className,
           )}
           {...rest}
@@ -259,7 +263,18 @@ const RiverAccordionContent = ({className, children, ...props}: RiverAccordionCo
 export type RiverAccordionVisualProps = React.HTMLAttributes<HTMLDivElement>
 
 const RiverAccordionVisual = ({className, ...props}: RiverAccordionVisualProps) => {
-  return <div className={clsx(styles.RiverAccordion__visual, className)} {...props} />
+  const {variant} = useRiverAccordionContext()
+
+  return (
+    <div
+      className={clsx(
+        styles.RiverAccordion__visual,
+        variant === 'gridline' && styles['RiverAccordion__visual--has-background'],
+        className,
+      )}
+      {...props}
+    />
+  )
 }
 
 const createComponentTypeGuard =

@@ -41,6 +41,15 @@ export type FlexSuiteSecurityCategoryContent = {
     heading: string
     cards: FlexSuiteSecurityCategoryCardContent[]
   }
+  riverFootstepsSection: {
+    heading: string
+    linkText: string
+    pillars: {
+      heading: string
+      imageAlt: string
+      linkText: string
+    }[]
+  }
   testimonial: FlexSuiteSecurityCategoryTestimonialContent
   resources: {
     heading: string
@@ -127,6 +136,27 @@ export const defaultFlexSuiteSecurityCategoryContent: FlexSuiteSecurityCategoryC
         heading: 'Secure software supply chains end-to-end',
         description:
           'Reduce risks with automated updates, dependency tracking, and build attestation for a secure lifecycle.',
+      },
+    ],
+  },
+  riverFootstepsSection: {
+    heading: "Adopted by the world's leading organizations",
+    linkText: 'Learn more',
+    pillars: [
+      {
+        heading: 'Otto Group elevates developer engagement with GitHub Advanced Security',
+        imageAlt: 'Otto Group office building',
+        linkText: 'Read customer story',
+      },
+      {
+        heading: 'SPH Media tames tool sprawl and secures code with GitHub',
+        imageAlt: 'SPH Media office reception area',
+        linkText: 'Read customer story',
+      },
+      {
+        heading: 'Postmates uses GitHub Advanced Security to catch vulnerabilities',
+        imageAlt: 'Postmates team members working',
+        linkText: 'Read customer story',
       },
     ],
   },
@@ -246,6 +276,27 @@ export function getLocalizedFlexSuiteSecurityCategoryContent(t: Translate): Flex
           tag: t('customerStories.cards.three.tag'),
           heading: t('customerStories.cards.three.heading'),
           description: t('customerStories.cards.three.description'),
+        },
+      ],
+    },
+    riverFootstepsSection: {
+      heading: t('riverFootstepsSection.heading'),
+      linkText: t('riverFootstepsSection.linkText'),
+      pillars: [
+        {
+          heading: t('riverFootstepsSection.pillars.one.heading'),
+          imageAlt: t('riverFootstepsSection.pillars.one.imageAlt'),
+          linkText: t('riverFootstepsSection.pillars.one.linkText'),
+        },
+        {
+          heading: t('riverFootstepsSection.pillars.two.heading'),
+          imageAlt: t('riverFootstepsSection.pillars.two.imageAlt'),
+          linkText: t('riverFootstepsSection.pillars.two.linkText'),
+        },
+        {
+          heading: t('riverFootstepsSection.pillars.three.heading'),
+          imageAlt: t('riverFootstepsSection.pillars.three.imageAlt'),
+          linkText: t('riverFootstepsSection.pillars.three.linkText'),
         },
       ],
     },

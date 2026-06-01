@@ -157,7 +157,13 @@ export function FlexSuiteAIOverviewTemplate({content}: FlexSuiteAIOverviewTempla
                       ctaText={content.common.learnMore}
                       className={styles.resourceCard}
                     >
-                      <Card.Icon icon={cardIcons[index]} color="green" hasBackground size="medium" />
+                      <Card.Icon
+                        icon={cardIcons[index]}
+                        color="green"
+                        hasBackground
+                        size="medium"
+                        className={styles.resourceCardIcon}
+                      />
                       <Card.Heading>{card.heading}</Card.Heading>
                       <Card.Description>{card.description}</Card.Description>
                     </Card>
@@ -277,7 +283,13 @@ export function FlexSuiteAIOverviewTemplate({content}: FlexSuiteAIOverviewTempla
                       ctaText={content.common.learnMore}
                       className={styles.resourceCard}
                     >
-                      <Card.Icon icon={cardIcons[index]} color="green" hasBackground size="medium" />
+                      <Card.Icon
+                        icon={cardIcons[index]}
+                        color="green"
+                        hasBackground
+                        size="medium"
+                        className={styles.resourceCardIcon}
+                      />
                       <Card.Tokens>
                         <Token>{card.tag}</Token>
                       </Card.Tokens>
@@ -347,7 +359,13 @@ export function FlexSuiteAIOverviewTemplate({content}: FlexSuiteAIOverviewTempla
                       ctaText={content.common.learnMore}
                       className={styles.resourceCard}
                     >
-                      <Card.Icon icon={cardIcons[index]} color="green" hasBackground size="medium" />
+                      <Card.Icon
+                        icon={cardIcons[index]}
+                        color="green"
+                        hasBackground
+                        size="medium"
+                        className={styles.resourceCardIcon}
+                      />
                       <Card.Tokens>
                         <Token>{card.tag}</Token>
                       </Card.Tokens>

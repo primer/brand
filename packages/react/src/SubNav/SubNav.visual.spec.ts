@@ -148,6 +148,21 @@ test.describe('Visual Comparison: SubNav', () => {
       await expect(page).toHaveScreenshot({fullPage: true})
     })
   })
+
+  // eslint-disable-next-line i18n-text/no-en
+  test.describe('Mobile viewport test for Current Page Narrow', () => {
+    test.use({viewport: {width: 360, height: 800}})
+    test('SubNav / Current Page Narrow', async ({page}) => {
+      await page.goto(
+        'http://localhost:6006/iframe.html?args=&id=components-subnav-features--current-page-narrow&viewMode=story',
+        {waitUntil: 'networkidle'},
+      )
+      await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+      await page.waitForTimeout(500)
+      await expect(page).toHaveScreenshot({fullPage: true})
+    })
+  })
   test('SubNav / Full Width', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-subnav-features--full-width&viewMode=story',

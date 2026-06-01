@@ -30,26 +30,6 @@
   }
 }
 
-.SectionIntroStacked--variant-gridline::before,
-.SectionIntroStacked--variant-gridline::after {
-  content: '';
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 100vw;
-  height: 0;
-  border-top: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
-  z-index: 1;
-}
-
-.SectionIntroStacked--variant-gridline::before {
-  top: 0;
-}
-
-.SectionIntroStacked--variant-gridline::after {
-  bottom: 0;
-}
-
 @media screen and (min-width: 80rem) {
   .SectionIntroStacked--variant-gridline {
     border-inline: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
