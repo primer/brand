@@ -83,7 +83,7 @@
   flex-direction: column;
 }
 
-@media screen and (max-width: 63.25rem) {
+@media screen and (max-width: 63.24rem) {
   .SectionIntroStacked-heading {
     font-size: var(--brand-text-size-600);
   }
