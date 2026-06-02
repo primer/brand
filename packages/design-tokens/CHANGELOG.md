@@ -1,5 +1,145 @@
 # @primer/brand-primitives
 
+## 0.68.0
+
+### Minor Changes
+
+- [#1353](https://github.com/primer/brand/pull/1353) [`d82cfa3`](https://github.com/primer/brand/commit/d82cfa3b47609ecf179356a47b0164741ccbf29b) Thanks [@rezrah](https://github.com/rezrah)! - Removed Pagination-specific CSS variables from `@primer/brand-*` packages. Pagination now uses the shared Brand `Button` component styling, so the previous custom token variables are no longer emitted or required:
+
+  ```diff
+  - --brand-pagination-link-bgColor-rest
+  - --brand-pagination-link-bgColor-active
+  - --brand-pagination-borderColor-hover
+  ```
+
+- [#1340](https://github.com/primer/brand/pull/1340) [`670f3e6`](https://github.com/primer/brand/commit/670f3e6c53980d65ac0cecfc02f5cc3899c2af24) Thanks [@rezrah](https://github.com/rezrah)! - - Visual changes to the `Pillar` component.
+
+  - `Pillar.Icon` now defaults to a fixed green color with corresponding filled background. It now uses the `Icon` component internally for size parity with `Card.Icon`.
+  - ⚠️ Removed the `Pillar.Icon` `color` prop and `PillarIconColors` type export. Pillar icons using the shared background now always render green. Remove `color` from existing `Pillar.Icon` usage.
+  - ⚠️ Removed the `iconColor` field from `FlexTemplate` pillar items because it forwarded to the removed `Pillar.Icon` color prop.
+  - Native SVG icons fit the shared background by default, and `hasBackground={false}` renders custom artwork without the shared background treatment.
+  - ⚠️ Narrowed the `Pillar.Icon` `icon` prop type. It previously accepted arbitrary `ReactNode` values such as `string`, `number`, and `boolean`, but those values didn't render a usable icon. It now only accepts a valid icon component or icon element.
+
+  - Removed the Pillar-specific icon color tokens from the package output.
+
+    ```diff
+    - --brand-Pillar-icon-color-default
+    - --brand-Pillar-icon-color-{blue,coral,green,gray,indigo,lemon,lime,orange,pink,purple,red,teal,yellow}
+    ```
+
+  - Updated bordered Pillars to use a medium border radius.
+
+  - Increased default size of `Pillar.Heading` from `subhead-large` to `6`
+
+  - Increased `Pillar.Icon` default size from `24px` to `32px` and added extra space between it and the subsequent heading.
+
+- [#1344](https://github.com/primer/brand/pull/1344) [`e54a442`](https://github.com/primer/brand/commit/e54a44216f7c67b198dfc2c7d445bc48dbfbd076) Thanks [@rezrah](https://github.com/rezrah)! - Updated Button appearance and API ergonomics:
+
+  - ⚠️ Breaking change: Removed the `accent` Button variant. Use `primary` instead, which now applies the previous `accent` appearance.
+  - Updated `secondary`, and `subtle` variant colors and state styles.
+  - Updated Button hover background colors to use transitionable color values and standardized hover transitions with a 0.2s background color transition. Previously, they would not animate at all.
+  - Updated Button border radius, medium Button sizing, and medium ActionMenu item height to better match the new Figma treatment.
+  - Updated the shared medium control size token from `48px` to `43px`, so medium Button, ActionMenu, TextInput, and Select controls stay aligned.
+  - Updated medium Button label typography to better match the new Figma treatment.
+  - Fixed vertical alignment issues in the `Button` component so labels are centered consistently in browsers like Firefox.
+  - Deprecated the `hasArrow` prop and hid Button arrows by default.
+    - Note: `hasArrow` will be removed entirely in a future release.
+
+### Patch Changes
+
+- [#1353](https://github.com/primer/brand/pull/1353) [`d82cfa3`](https://github.com/primer/brand/commit/d82cfa3b47609ecf179356a47b0164741ccbf29b) Thanks [@rezrah](https://github.com/rezrah)! - Added new `MediaPlaylist` component, which can be used for presenting a list of YouTube videos.
+
+  ```tsx
+  <MediaPlaylist>
+    <MediaPlaylist.Heading>Latest videos</MediaPlaylist.Heading>
+    <MediaPlaylist.Item thumbnail={<img src="thumbnail.jpg" alt="" />}>
+      <MediaPlaylist.ItemHeading title="Getting More from Every Copilot Interaction" description="10:57" />
+      <MediaPlaylist.ItemContent>
+        <Text as="p" variant="muted">
+          See workflows for scoping context, choosing the right mode, and getting more focused Copilot answers.
+        </Text>
+      </MediaPlaylist.ItemContent>
+      <MediaPlaylist.ItemMedia>
+        <iframe
+          title="Getting More from Every Copilot Interaction"
+          src="https://www.youtube-nocookie.com/embed/ITxzBiTBZW0"
+        />
+      </MediaPlaylist.ItemMedia>
+    </MediaPlaylist.Item>
+  </MediaPlaylist>
+  ```
+
+  🔗 [See `MediaPlaylist` documentation for more usage examples](https://primer.style/brand/components/MediaPlaylist)
+
+- [#1359](https://github.com/primer/brand/pull/1359) [`9c900e9`](https://github.com/primer/brand/commit/9c900e902b5cd9800ef083457d206490aefdb24a) Thanks [@rezrah](https://github.com/rezrah)! - Added and updated form control color tokens for `Checkbox`, `Radio`, and shared focus states.
+
+  New tokens are now available:
+
+  ```diff
+  + --brand-control-color-focus
+  + --brand-control-checkbox-bg-hover
+  + --brand-control-checkbox-bg-checked-hover
+  + --brand-control-checkbox-bg-checked-disabled
+  + --brand-control-checkbox-bg-indeterminate-hover
+  + --brand-control-checkbox-fg-checked-disabled
+  + --brand-control-checkbox-border-hover
+  + --brand-control-checkbox-border-checked-hover
+  + --brand-control-checkbox-border-checked-disabled
+  + --brand-control-checkbox-border-indeterminate-hover
+  + --brand-control-checkbox-border-unchecked-disabled
+  + --brand-control-radio-bg-hover
+  + --brand-control-radio-bg-checked-hover
+  + --brand-control-radio-border-hover
+  + --brand-control-radio-border-checked-hover
+  + --brand-control-radio-border-disabled
+  + --brand-control-radio-dot-checked
+  + --brand-control-radio-dot-checked-hover
+  ```
+
+  Existing tokens were also updated:
+
+  ```diff
+  /* light */
+  - --brand-control-checkbox-bg-checked: var(--base-color-scale-black-0)
+  + --brand-control-checkbox-bg-checked: var(--base-color-scale-green-6)
+  - --brand-control-checkbox-bg-indeterminate: var(--base-color-scale-black-0)
+  + --brand-control-checkbox-bg-indeterminate: var(--base-color-scale-green-6)
+  - --brand-control-checkbox-bg-disabled: var(--base-color-scale-gray-1)
+  + --brand-control-checkbox-bg-disabled: var(--brand-color-canvas-default)
+  - --brand-control-checkbox-border-checked: var(--base-color-scale-black-0)
+  + --brand-control-checkbox-border-checked: var(--base-color-scale-green-6)
+  - --brand-control-checkbox-border-indeterminate: var(--base-color-scale-black-0)
+  + --brand-control-checkbox-border-indeterminate: var(--base-color-scale-green-6)
+  - --brand-control-checkbox-border-disabled: var(--base-color-scale-gray-2)
+  + --brand-control-checkbox-border-disabled: var(--base-color-scale-gray-4)
+  - --brand-control-radio-bg-disabled: var(--base-color-scale-gray-1)
+  + --brand-control-radio-bg-disabled: var(--brand-color-canvas-default)
+  - --brand-control-radio-border-checked: var(--base-color-scale-black-0)
+  + --brand-control-radio-border-checked: var(--base-color-scale-green-6)
+
+  /* dark */
+  - --brand-control-checkbox-bg-checked: var(--base-color-scale-white-0)
+  + --brand-control-checkbox-bg-checked: var(--base-color-scale-green-5)
+  - --brand-control-checkbox-bg-indeterminate: var(--base-color-scale-white-0)
+  + --brand-control-checkbox-bg-indeterminate: var(--base-color-scale-green-5)
+  - --brand-control-checkbox-bg-disabled: var(--base-color-scale-gray-4)
+  + --brand-control-checkbox-bg-disabled: var(--brand-color-canvas-default)
+  - --brand-control-checkbox-fg-checked: var(--base-color-scale-black-0)
+  + --brand-control-checkbox-fg-checked: var(--base-color-scale-white-0)
+  - --brand-control-checkbox-border-checked: var(--base-color-scale-white-0)
+  + --brand-control-checkbox-border-checked: #077726
+  - --brand-control-checkbox-border-indeterminate: var(--base-color-scale-white-0)
+  + --brand-control-checkbox-border-indeterminate: #077726
+  - --brand-control-checkbox-border-disabled: var(--base-color-scale-gray-4)
+  + --brand-control-checkbox-border-disabled: var(--base-color-scale-gray-5)
+  - --brand-control-radio-bg-disabled: var(--base-color-scale-gray-4)
+  + --brand-control-radio-bg-disabled: var(--brand-color-canvas-default)
+  - --brand-control-radio-border-default: var(--base-color-scale-white-0)
+  + --brand-control-radio-border-default: var(--base-color-scale-gray-4)
+  - --brand-control-radio-border-checked: var(--base-color-scale-white-0)
+  + --brand-control-radio-border-checked: #077726
+  ```
+
 ## 0.67.0
 
 ### Patch Changes
