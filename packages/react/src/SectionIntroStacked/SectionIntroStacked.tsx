@@ -45,12 +45,9 @@ const Root = forwardRef<HTMLElement, PropsWithChildren<SectionIntroStackedProps>
         {...props}
         style={{...animationInlineStyles, ...style}}
       >
-        <Grid fullWidth enableGutters={variant !== 'gridline'}>
+        <Grid fullWidth enableGutters={variant !== 'gridline'} columnGap="none">
           <Grid.Column span={{large: 6}}>{otherChildren}</Grid.Column>
-          <Grid.Column
-            span={variant === 'gridline' ? {large: 6} : {large: 5}}
-            start={variant === 'gridline' ? {large: 7} : {large: 8}}
-          >
+          <Grid.Column span={{large: 6}} start={{large: 7}}>
             {items}
           </Grid.Column>
         </Grid>

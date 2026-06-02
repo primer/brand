@@ -1,5 +1,26 @@
 .SectionIntroStacked {
-  --brand-Grid-spacing-row: var(--base-size-48);
+  --brand-Grid-spacing-row: var(--base-size-32);
+}
+
+@media screen and (min-width: 48rem) {
+  .SectionIntroStacked {
+    --brand-Grid-spacing-row: var(--base-size-48);
+  }
+}
+
+@media screen and (min-width: 48rem) and (max-width: 63.24rem) {
+  .SectionIntroStacked {
+    max-width: 618px;
+    margin-inline: auto;
+  }
+
+  .SectionIntroStacked.SectionIntroStacked--variant-gridline {
+    padding-inline: var(--base-size-32);
+    padding-block: calc(var(--base-size-64) - var(--base-size-4));
+
+    --SectionIntroStacked-item-divider-overflow-start: var(--base-size-32);
+    --SectionIntroStacked-item-divider-overflow-end: var(--base-size-32);
+  }
 }
 
 .SectionIntroStacked--variant-gridline {
@@ -75,6 +96,9 @@
   .SectionIntroStacked-heading {
     font-size: var(--brand-text-size-600);
   }
+  .SectionIntroStacked-items {
+    overflow: hidden;
+  }
 }
 
 @media screen and (min-width: 63.25rem) {
@@ -86,15 +110,14 @@
   .SectionIntroStacked--variant-gridline .SectionIntroStacked-items {
     border-inline-start: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
     margin-block: calc(-1 * var(--base-size-64));
-    padding-block: 0;
+    padding-block: calc(var(--base-size-64) - var(--base-size-32));
     position: static;
     top: auto;
   }
 
   .SectionIntroStacked--variant-gridline .SectionIntroStackedItem-item {
     /* Inset item content from the vertical gridline */
-    padding-inline-start: var(--base-size-32);
-    padding-inline-end: var(--base-size-32);
+    padding-inline-start: var(--base-size-64);
   }
 }
 
@@ -137,14 +160,15 @@
 
 .SectionIntroStackedItem-item--with-icon {
   display: flex;
-  flex-direction: row;
   align-items: flex-start;
   gap: var(--base-size-24);
+  flex-direction: column;
 }
 
-@media screen and (min-width: 63.25rem) {
+@media screen and (min-width: 48rem) {
   .SectionIntroStackedItem-item--with-icon {
     gap: var(--base-size-48);
+    flex-direction: row;
   }
 }
 
