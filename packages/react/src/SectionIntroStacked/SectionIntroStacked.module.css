@@ -42,15 +42,6 @@
   }
 }
 
-@media screen and (min-width: 63.25rem) {
-  .SectionIntroStacked--variant-gridline {
-    padding-inline: var(--base-size-64);
-    padding-block: var(--base-size-64);
-    --SectionIntroStacked-item-divider-overflow-start: 0px;
-    --SectionIntroStacked-item-divider-overflow-end: calc(var(--brand-Grid-spacing-margin) + var(--base-size-64));
-  }
-}
-
 @media screen and (min-width: 80rem) {
   .SectionIntroStacked--variant-gridline {
     border-inline: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
