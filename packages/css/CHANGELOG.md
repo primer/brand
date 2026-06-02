@@ -1,5 +1,41 @@
 # @primer/brand-css
 
+## 0.68.0
+
+### Minor Changes
+
+- [#1344](https://github.com/primer/brand/pull/1344) [`e54a442`](https://github.com/primer/brand/commit/e54a44216f7c67b198dfc2c7d445bc48dbfbd076) Thanks [@rezrah](https://github.com/rezrah)! - Updated Button appearance and API ergonomics:
+
+  - ⚠️ Breaking change: Removed the `accent` Button variant. Use `primary` instead, which now applies the previous `accent` appearance.
+  - Updated `secondary`, and `subtle` variant colors and state styles.
+  - Updated Button hover background colors to use transitionable color values and standardized hover transitions with a 0.2s background color transition. Previously, they would not animate at all.
+  - Updated Button border radius, medium Button sizing, and medium ActionMenu item height to better match the new Figma treatment.
+  - Updated the shared medium control size token from `48px` to `43px`, so medium Button, ActionMenu, TextInput, and Select controls stay aligned.
+  - Updated medium Button label typography to better match the new Figma treatment.
+  - Fixed vertical alignment issues in the `Button` component so labels are centered consistently in browsers like Firefox.
+  - Deprecated the `hasArrow` prop and hid Button arrows by default.
+    - Note: `hasArrow` will be removed entirely in a future release.
+
+### Patch Changes
+
+- [#1359](https://github.com/primer/brand/pull/1359) [`9c900e9`](https://github.com/primer/brand/commit/9c900e902b5cd9800ef083457d206490aefdb24a) Thanks [@rezrah](https://github.com/rezrah)! - Adjusted the `Hero.Label` bottom spacing from `16px` to `14px`.
+
+- [#1359](https://github.com/primer/brand/pull/1359) [`9c900e9`](https://github.com/primer/brand/commit/9c900e902b5cd9800ef083457d206490aefdb24a) Thanks [@rezrah](https://github.com/rezrah)! - Updated `Icon` with `hasBackground` to use a 12px border radius.
+
+- [#1359](https://github.com/primer/brand/pull/1359) [`9c900e9`](https://github.com/primer/brand/commit/9c900e902b5cd9800ef083457d206490aefdb24a) Thanks [@rezrah](https://github.com/rezrah)! - Updated `Checkbox` and `Radio` checked, indeterminate, disabled, and hover state styling to match the latest design treatment.
+
+  Form controls now use a dedicated focus color token, with blue-6 in light mode and blue-2 in dark mode.
+
+  Updated form validation icon alignment and success color treatment.
+
+  The checkmark animation now uses the checked foreground color from the start instead of flashing the focus color first.
+
+- [#1359](https://github.com/primer/brand/pull/1359) [`9c900e9`](https://github.com/primer/brand/commit/9c900e902b5cd9800ef083457d206490aefdb24a) Thanks [@rezrah](https://github.com/rezrah)! - Updated the `LogoSuite` gridline expressive layout to use slightly larger tablet logobar spacing, improving alignment with the overview template design.
+
+  Set `LogoSuite` mobile logo sizing to 32px, matching the tablet presentation and improving consistency across smaller viewports.
+
+  Updated the `LogoSuite` expressive gridline variant on tablet layouts to use fixed 91px inline edge spacing instead of a max-width cap.
+
 ## 0.67.0
 
 ## 0.66.0
