@@ -180,7 +180,7 @@ export function FlexSuiteAIOverviewTemplate({content}: FlexSuiteAIOverviewTempla
             <SectionIntro.Description>{content.workflow.description}</SectionIntro.Description>
           </SectionIntro>
         </Section>
-        <Section paddingBlockEnd="none">
+        <Section paddingBlockStart="condensed" paddingBlockEnd="none">
           <Stack direction="vertical" padding="none" gap="spacious">
             <River variant="gridline">
               <River.Visual
