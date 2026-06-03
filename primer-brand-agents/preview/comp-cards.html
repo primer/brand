@@ -1,0 +1,35 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><link rel="stylesheet" href="card.css">
+<style>
+.cards{display:flex;gap:20px}
+.c{flex:1;border-radius:12px;padding:24px;display:flex;flex-direction:column}
+.c.light{background:#fff;border:1px solid #D2D9D4}
+.c.dark{background:#0D1117;border:1px solid #262C28}
+.tile{width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;background:rgba(8,135,43,.10);color:#08872B;margin-bottom:18px}
+.c.dark .tile{background:rgba(95,237,131,.12);color:#5FED83}
+.tile svg{width:22px;height:22px}
+.c h4{font-weight:600;font-size:20px;line-height:1.4;letter-spacing:-0.005em;margin-bottom:8px}
+.c.dark h4{color:#fff}
+.c p{font-size:14px;color:#58635B;line-height:1.5;margin-bottom:20px}
+.c.dark p{color:#A4AEA6}
+.cta{position:relative;margin-top:auto;display:inline-flex;align-items:center;gap:6px;align-self:flex-start;width:fit-content;font-size:14px;font-weight:600;color:#005DD5;padding-bottom:3px;text-decoration:none}
+.c.dark .cta{color:#5FB9FF}
+.cta::after{content:"";position:absolute;left:0;bottom:0;width:100%;height:1.5px;background:currentColor;transform:scaleX(0);transform-origin:left;transition:transform .22s ease}
+.cta:hover::after{transform:scaleX(1)}
+</style></head>
+<body>
+<div class="label" style="margin-bottom:14px">Cards — icon tile · 24px padding · editorial title · tertiary CTA</div>
+<div class="cards">
+  <div class="c light">
+    <div class="tile"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0Zm3.78 5.97-4.5 6a.75.75 0 0 1-1.12.08l-2-2a.75.75 0 1 1 1.06-1.06l1.39 1.38 3.97-5.3a.75.75 0 1 1 1.2.9Z"/></svg></div>
+    <h4>Code, command, collaborate</h4>
+    <p>Bring AI into every step of your workflow, from the editor to the terminal.</p>
+    <a class="cta" href="#">Learn more <span class="arr">→</span></a>
+  </div>
+  <div class="c dark">
+    <div class="tile"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0Zm3.78 5.97-4.5 6a.75.75 0 0 1-1.12.08l-2-2a.75.75 0 1 1 1.06-1.06l1.39 1.38 3.97-5.3a.75.75 0 1 1 1.2.9Z"/></svg></div>
+    <h4>Tailor-made for your org</h4>
+    <p>Bring Copilot to your team with enterprise-grade controls and security.</p>
+    <a class="cta" href="#">Learn more <span class="arr">→</span></a>
+  </div>
+</div>
+</body></html>

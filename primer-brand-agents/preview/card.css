@@ -1,0 +1,17 @@
+/* Shared framing for Design System preview cards (~700px wide) */
+@import url('../colors_and_type.css');
+
+* { box-sizing:border-box; margin:0; padding:0; }
+html,body { background:var(--canvas-default); }
+body {
+  font-family:var(--font-sans);
+  color:var(--fg-default);
+  padding:22px 24px;
+  -webkit-font-smoothing:antialiased;
+}
+.row { display:flex; gap:12px; flex-wrap:wrap; align-items:center; }
+.col { display:flex; flex-direction:column; }
+.muted { color:var(--fg-muted); }
+.mono { font-family:var(--font-mono); }
+.label { font-family:var(--font-mono); font-size:11px; letter-spacing:0.06em; text-transform:uppercase; color:var(--fg-muted); }
+.tok { font-family:var(--font-mono); font-size:11px; color:var(--fg-muted); }
