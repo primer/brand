@@ -93,9 +93,11 @@
     padding-top:96px;padding-bottom:96px;
   }
   .hero h1{
-    font-family:var(--font-display);font-weight:425;font-size:80px;line-height:1.02;
-    letter-spacing:-0.02em;margin:24px 0 24px;
+    font-family:var(--font-sans);font-weight:440;font-size:56px;line-height:1.10;
+    letter-spacing:0;margin:24px 0 24px;
   }
+  @media (max-width:1023px){  .hero h1{font-size:48px}}
+  @media (max-width:599px){.hero h1{font-size:36px}}
   .hero h1 em{font-style:normal;color:var(--accent-green)}
   [data-theme="light"] .hero h1 em{color:var(--accent-green-strong)}
   .hero p.lede{
