@@ -96,6 +96,19 @@ export const AccordionRoot = forwardRef<HTMLDetailsElement, AccordionRootProps>(
     const closeWithAnimation = useCallback(
       (details: HTMLDetailsElement) => {
         clearCloseAnimation()
+        const reducedMotionQuery =
+          typeof window !== 'undefined' && typeof window.matchMedia === 'function'
+            ? window.matchMedia('(prefers-reduced-motion: reduce)')
+            : null
+        const prefersReducedMotion = reducedMotionQuery !== null && reducedMotionQuery.matches
+
+        if (prefersReducedMotion) {
+          details.open = false
+          isClosingRef.current = false
+          details.classList.remove(styles['Accordion--closing'])
+          return
+        }
+
         const content = setContentHeight(details)
 
         if (content) {
@@ -254,30 +267,8 @@ export const AccordionHeading = forwardRef<HTMLHeadingElement, AccordionHeadingP
         {...rest}
       >
         <span aria-hidden="true" className={styles['Accordion__summary-toggle']}>
-          {/* This is a custom icon that animates a line into an active down chevron */}
-          <svg
-            className={styles['Accordion__summary-toggleIcon']}
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            focusable="false"
-          >
-            <line
-              className={clsx(styles['Accordion__summary-toggleLine'], styles['Accordion__summary-toggleLine--start'])}
-              x1="4"
-              y1="12"
-              x2="12"
-              y2="12"
-            />
-            <line
-              className={clsx(styles['Accordion__summary-toggleLine'], styles['Accordion__summary-toggleLine--end'])}
-              x1="12"
-              y1="12"
-              x2="20"
-              y2="12"
-            />
-          </svg>
+          {/* This custom icon animates a closed-state down chevron into an open-state up chevron */}
+          <span className={styles['Accordion__summary-toggleIcon']} />
         </span>
         <Heading as={as} size={variant === 'emphasis' ? '6' : 'subhead-large'} weight={weight}>
           {children}

@@ -31,9 +31,6 @@ declare const styles: {
   readonly "Accordion__summary--toggleColor-yellow": string;
   readonly "Accordion__summary-toggle": string;
   readonly "Accordion__summary-toggleIcon": string;
-  readonly "Accordion__summary-toggleLine": string;
-  readonly "Accordion__summary-toggleLine--end": string;
-  readonly "Accordion__summary-toggleLine--start": string;
 };
 export = styles;
 

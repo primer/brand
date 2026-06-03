@@ -17,7 +17,8 @@ details.Accordion--closing {
 }
 
 .Accordion--disableAnimation::after,
-.Accordion--disableAnimation .Accordion__summary-toggleLine,
+.Accordion--disableAnimation .Accordion__summary-toggleIcon::before,
+.Accordion--disableAnimation .Accordion__summary-toggleIcon::after,
 .Accordion--disableAnimation > .Accordion__content,
 .Accordion--disableAnimation > .Accordion__content > .Accordion__content-inner {
   transition: none;
@@ -116,6 +117,7 @@ details[open].Accordion--default::after {
   padding: var(--base-size-24) 0;
   position: relative;
   display: flex;
+  align-items: center;
   justify-content: space-between;
 }
 
@@ -150,6 +152,8 @@ details[open].Accordion > .Accordion__summary:focus-visible {
   width: var(--base-size-24);
   color: var(--brand-color-text-default);
   position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 .Accordion__summary:not(.Accordion__summary--reversed-toggles) .Accordion__summary-toggle {
@@ -158,6 +162,7 @@ details[open].Accordion > .Accordion__summary:focus-visible {
 
 .Accordion__summary--emphasis .Accordion__summary-toggle {
   position: static;
+  transform: none;
   order: 1;
   margin-inline-start: auto;
 }
@@ -171,34 +176,39 @@ details[open].Accordion > .Accordion__summary:focus-visible {
 }
 
 .Accordion__summary-toggleIcon {
-  display: block;
-  overflow: visible;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  height: var(--base-size-24);
+  width: var(--base-size-24);
 }
 
-.Accordion__summary-toggleLine {
-  --brand-Accordion-toggle-open-scale: 1.32;
-
-  stroke: currentColor;
-  stroke-linecap: round;
-  stroke-width: var(--base-size-2);
-  transform-box: view-box;
+.Accordion__summary-toggleIcon::before,
+.Accordion__summary-toggleIcon::after {
+  background-color: currentColor;
+  block-size: var(--base-size-8);
+  border-radius: var(--base-size-2);
+  content: '';
+  inline-size: var(--base-size-2);
+  transform-origin: 50% 50%;
   transition: transform var(--brand-Accordion-animation-duration) var(--brand-Accordion-animation-easing);
 }
 
-.Accordion__summary-toggleLine--start {
-  transform-origin: 4px 12px;
+.Accordion__summary-toggleIcon::before {
+  transform: rotate(130deg);
 }
 
-.Accordion__summary-toggleLine--end {
-  transform-origin: 20px 12px;
+.Accordion__summary-toggleIcon::after {
+  transform: rotate(-130deg);
 }
 
-details[open] > .Accordion__summary .Accordion__summary-toggleLine--start {
-  transform: rotate(45deg) scaleX(var(--brand-Accordion-toggle-open-scale));
+details[open] > .Accordion__summary .Accordion__summary-toggleIcon::before {
+  transform: rotate(50deg);
 }
 
-details[open] > .Accordion__summary .Accordion__summary-toggleLine--end {
-  transform: rotate(-45deg) scaleX(var(--brand-Accordion-toggle-open-scale));
+details[open] > .Accordion__summary .Accordion__summary-toggleIcon::after {
+  transform: rotate(-50deg);
 }
 
 .Accordion__summary--toggleColor-default {
@@ -298,16 +308,22 @@ details[open] > .Accordion__summary .Accordion__summary-toggleLine--end {
 }
 
 .Accordion__content {
-  --brand-Accordion-content-offset: calc(var(--base-size-16) + var(--base-size-2)); /* we reference this in JS */
+  --brand-Accordion-content-offset: 0px; /* we reference this in JS */
   overflow: hidden;
   max-height: 0;
   transition: max-height var(--brand-Accordion-animation-duration) var(--brand-Accordion-animation-easing);
+  position: relative;
 }
 
 .Accordion__content-inner {
   transform: translateY(calc(-1 * var(--brand-Accordion-content-offset)));
   opacity: 0;
   transition: opacity var(--brand-Accordion-animation-duration) var(--brand-Accordion-animation-easing);
+}
+
+.Accordion--default > .Accordion__content {
+  --brand-Accordion-content-offset: calc(var(--base-size-24) - var(--base-size-6)); /* we reference this in JS */
+  top: calc(var(--base-size-4) * -1);
 }
 
 .Accordion__summary--default + .Accordion__content > .Accordion__content-inner::before {
@@ -319,7 +335,6 @@ details[open] > .Accordion__summary .Accordion__summary-toggleLine--end {
 .Accordion__content-inner::after {
   content: '';
   display: block;
-  block-size: var(--base-size-24);
 }
 
 [data-color-mode='dark'] .Accordion__content {
@@ -379,20 +394,23 @@ details.Accordion--closing > .Accordion__content > .Accordion__content-inner {
 }
 
 .Accordion__summary--default + .Accordion__content {
-  margin-top: 0;
+  margin-block-start: 0;
 }
 
 details[open] > .Accordion__summary--default + .Accordion__content {
-  margin-top: 0;
+  margin-block-start: 0;
 }
 
 details.Accordion--closing > .Accordion__summary--default + .Accordion__content {
-  margin-top: 0;
+  margin-block-start: 0;
 }
 
-details.Accordion--closing > .Accordion__summary .Accordion__summary-toggleLine--start,
-details.Accordion--closing > .Accordion__summary .Accordion__summary-toggleLine--end {
-  transform: none;
+details.Accordion--closing > .Accordion__summary .Accordion__summary-toggleIcon::before {
+  transform: rotate(130deg);
+}
+
+details.Accordion--closing > .Accordion__summary .Accordion__summary-toggleIcon::after {
+  transform: rotate(-130deg);
 }
 
 details[open] > .Accordion__summary--reversed-toggles + .Accordion__content {
@@ -411,6 +429,8 @@ details[open] > .Accordion__summary--reversed-toggles + .Accordion__content {
   .Accordion,
   .Accordion::before,
   .Accordion::after,
+  .Accordion__summary-toggleIcon::before,
+  .Accordion__summary-toggleIcon::after,
   .Accordion * {
     animation: none !important;
     transition: none !important;

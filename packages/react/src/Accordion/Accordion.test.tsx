@@ -2,6 +2,7 @@ import React, {createRef} from 'react'
 import {fireEvent, render, waitFor} from '@testing-library/react'
 import '@testing-library/jest-dom'
 import userEvent from '@testing-library/user-event'
+import '../test-utils/mocks/match-media-mock'
 
 import {Accordion, AccordionToggleColors} from './Accordion'
 import {axe, toHaveNoViolations} from 'jest-axe'
@@ -153,6 +154,44 @@ describe('Accordion', () => {
 
     await user.click(heading)
     await waitFor(() => expect(details).not.toHaveAttribute('open'))
+  })
+
+  it('closes immediately when reduced motion is preferred', async () => {
+    const matchMediaMock = jest.mocked(window.matchMedia)
+    const originalMatchMediaImplementation = matchMediaMock.getMockImplementation()
+
+    matchMediaMock.mockImplementation(query => ({
+      matches: true,
+      media: query,
+      onchange: null,
+      addListener: jest.fn(),
+      removeListener: jest.fn(),
+      addEventListener: jest.fn(),
+      removeEventListener: jest.fn(),
+      dispatchEvent: jest.fn(),
+    }))
+
+    try {
+      const user = userEvent.setup()
+      const {getByRole} = render(
+        <Accordion>
+          <Accordion.Heading>Test heading</Accordion.Heading>
+          <Accordion.Content>Test content</Accordion.Content>
+        </Accordion>,
+      )
+
+      const details = getByRole('group')
+      const heading = getByRole('heading', {name: 'Test heading'})
+
+      await user.click(heading)
+      expect(details).toHaveAttribute('open')
+
+      await user.click(heading)
+      expect(details).not.toHaveAttribute('open')
+      expect(details).not.toHaveClass('Accordion--closing')
+    } finally {
+      matchMediaMock.mockImplementation(originalMatchMediaImplementation)
+    }
   })
 
   it.each([['Enter'], ['Space']])('opens when %s is pressed on summary', async keyName => {
@@ -467,11 +506,9 @@ describe('Accordion', () => {
       </Accordion>,
     )
 
-    const indicator = container.querySelector('.Accordion__summary-toggle svg')
-    const indicatorLines = container.querySelectorAll('.Accordion__summary-toggle line')
+    const indicator = container.querySelector('.Accordion__summary-toggleIcon')
 
     expect(indicator).toBeInTheDocument()
-    expect(indicatorLines).toHaveLength(2)
   })
 
   it('renders a single animated toggle indicator when variant is default', () => {
@@ -482,11 +519,9 @@ describe('Accordion', () => {
       </Accordion>,
     )
 
-    const indicator = container.querySelector('.Accordion__summary-toggle svg')
-    const indicatorLines = container.querySelectorAll('.Accordion__summary-toggle line')
+    const indicator = container.querySelector('.Accordion__summary-toggleIcon')
 
     expect(indicator).toBeInTheDocument()
-    expect(indicatorLines).toHaveLength(2)
   })
 
   it('forwards additional props to details element', () => {
