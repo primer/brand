@@ -320,7 +320,13 @@ const _ButtonGroup = forwardRef(
     ref: Ref<HTMLDivElement>,
   ) => {
     return (
-      <ButtonGroup buttonSize={buttonSize} buttonsAs={buttonsAs} className={className} ref={ref} {...props}>
+      <ButtonGroup
+        buttonSize={buttonSize}
+        buttonsAs={buttonsAs}
+        className={clsx(styles['CTABanner-buttonGroup'], className)}
+        ref={ref}
+        {...props}
+      >
         {children}
       </ButtonGroup>
     )

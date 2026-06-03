@@ -174,9 +174,6 @@
 
 /* Large breakpoint and up */
 @media screen and (min-width: 63.25rem) {
-  .CTABanner-content {
-    gap: var(--base-size-24);
-  }
   .CTABanner--variant-balanced .CTABanner-content {
     gap: var(--base-size-32);
   }
@@ -314,4 +311,8 @@
 
 .CTABanner-description.CTABanner-description:has(code) {
   line-height: calc(1lh * 1.25);
+}
+
+.CTABanner-buttonGroup {
+  padding-block-start: var(--base-size-12);
 }
