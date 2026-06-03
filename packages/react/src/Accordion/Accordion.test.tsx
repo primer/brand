@@ -51,6 +51,29 @@ describe('Accordion', () => {
     expect(summary).toHaveClass('Accordion__summary--emphasis')
   })
 
+  it('closes immediately when disableAnimation is true', async () => {
+    const user = userEvent.setup()
+    const {getByRole} = render(
+      <Accordion disableAnimation>
+        <Accordion.Heading>Test heading</Accordion.Heading>
+        <Accordion.Content>Test content</Accordion.Content>
+      </Accordion>,
+    )
+
+    const details = getByRole('group')
+    const heading = getByRole('heading', {name: 'Test heading'})
+
+    expect(details).toHaveClass('Accordion--disableAnimation')
+    expect(details).not.toHaveAttribute('open')
+
+    await user.click(heading)
+    expect(details).toHaveAttribute('open')
+
+    await user.click(heading)
+    expect(details).not.toHaveAttribute('open')
+    expect(details).not.toHaveClass('Accordion--closing')
+  })
+
   it('allows forwarding of custom classes', () => {
     const {getByRole, getByText} = render(
       <Accordion className="custom-accordion">

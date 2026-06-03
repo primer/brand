@@ -2,6 +2,7 @@ declare const styles: {
   readonly "Accordion": string;
   readonly "Accordion--closing": string;
   readonly "Accordion--default": string;
+  readonly "Accordion--disableAnimation": string;
   readonly "Accordion--emphasis": string;
   readonly "Accordion__content": string;
   readonly "Accordion__content-inner": string;

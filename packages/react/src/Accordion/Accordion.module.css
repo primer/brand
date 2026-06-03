@@ -16,6 +16,13 @@ details.Accordion--closing {
   --brand-Accordion-animation-easing: var(--brand-Accordion-animation-easing-close);
 }
 
+.Accordion--disableAnimation::after,
+.Accordion--disableAnimation .Accordion__summary-toggleLine,
+.Accordion--disableAnimation > .Accordion__content,
+.Accordion--disableAnimation > .Accordion__content > .Accordion__content-inner {
+  transition: none;
+}
+
 .Accordion--default {
   border-bottom: var(--brand-borderWidth-thin) solid var(--brand-Accordion-border-color-default);
 }
@@ -291,13 +298,14 @@ details[open] > .Accordion__summary .Accordion__summary-toggleLine--end {
 }
 
 .Accordion__content {
+  --brand-Accordion-content-offset: calc(var(--base-size-16) + var(--base-size-2)); /* we reference this in JS */
   overflow: hidden;
   max-height: 0;
   transition: max-height var(--brand-Accordion-animation-duration) var(--brand-Accordion-animation-easing);
 }
 
 .Accordion__content-inner {
-  transform: translateY(calc(-1 * var(--base-size-12)));
+  transform: translateY(calc(-1 * var(--brand-Accordion-content-offset)));
   opacity: 0;
   transition: opacity var(--brand-Accordion-animation-duration) var(--brand-Accordion-animation-easing);
 }
@@ -352,6 +360,10 @@ details[open] > .Accordion__content {
   max-height: var(--brand-Accordion-content-height);
   position: relative;
   z-index: 0;
+}
+
+details[open].Accordion--disableAnimation > .Accordion__content {
+  max-height: none;
 }
 
 details[open] > .Accordion__content > .Accordion__content-inner {

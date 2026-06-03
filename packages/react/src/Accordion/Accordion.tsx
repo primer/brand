@@ -30,6 +30,7 @@ import styles from './Accordion.module.css'
 export type AccordionRootProps = DetailsHTMLAttributes<HTMLDetailsElement> & {
   children: ReactElement<AccordionHeadingProps | AccordionContentProps>[]
   variant?: 'default' | 'emphasis'
+  disableAnimation?: boolean
   handleOpen?: (isOpen: boolean) => void
 }
 
@@ -50,7 +51,20 @@ const useAccordionContext = (): AccordionContextType => {
 }
 
 export const AccordionRoot = forwardRef<HTMLDetailsElement, AccordionRootProps>(
-  ({children, className, variant = 'default', open, onToggle, onKeyDown, handleOpen, ...rest}, forwardedRef) => {
+  (
+    {
+      children,
+      className,
+      variant = 'default',
+      disableAnimation = false,
+      open,
+      onToggle,
+      onKeyDown,
+      handleOpen,
+      ...rest
+    },
+    forwardedRef,
+  ) => {
     const ref = useProvidedRefOrCreate(forwardedRef as RefObject<HTMLDetailsElement | null>)
     const closeAnimationTimeout = useRef<ReturnType<typeof setTimeout> | null>(null)
     const isClosingRef = useRef(false)
@@ -64,7 +78,10 @@ export const AccordionRoot = forwardRef<HTMLDetailsElement, AccordionRootProps>(
         return null
       }
 
-      details.style.setProperty('--brand-Accordion-content-height', `${contentInner.scrollHeight}px`)
+      const contentOffset = parseFloat(getComputedStyle(content).getPropertyValue('--brand-Accordion-content-offset'))
+      const contentHeight = Math.max(0, contentInner.scrollHeight - (Number.isNaN(contentOffset) ? 0 : contentOffset))
+
+      details.style.setProperty('--brand-Accordion-content-height', `${contentHeight}px`)
 
       return content
     }, [])
@@ -118,7 +135,7 @@ export const AccordionRoot = forwardRef<HTMLDetailsElement, AccordionRootProps>(
         const details = ref.current
         const target = event.target
 
-        if (!(target instanceof Element) || !details?.open) {
+        if (!(target instanceof Element) || !details?.open || disableAnimation) {
           return
         }
 
@@ -132,7 +149,7 @@ export const AccordionRoot = forwardRef<HTMLDetailsElement, AccordionRootProps>(
           }
         }
       },
-      [closeWithAnimation, ref],
+      [closeWithAnimation, disableAnimation, ref],
     )
 
     const handleKeyDown = useCallback<EventListener>(
@@ -189,7 +206,12 @@ export const AccordionRoot = forwardRef<HTMLDetailsElement, AccordionRootProps>(
     return (
       <AccordionContext.Provider value={accordionContextValue}>
         <details
-          className={clsx(styles.Accordion, styles[`Accordion--${variant}`], className)}
+          className={clsx(
+            styles.Accordion,
+            styles[`Accordion--${variant}`],
+            disableAnimation && styles['Accordion--disableAnimation'],
+            className,
+          )}
           ref={ref}
           open={open}
           {...rest}
