@@ -1,13 +1,13 @@
 declare const styles: {
   readonly "Accordion": string;
+  readonly "Accordion--closing": string;
   readonly "Accordion--default": string;
   readonly "Accordion--emphasis": string;
   readonly "Accordion__content": string;
+  readonly "Accordion__content-inner": string;
   readonly "Accordion__summary": string;
-  readonly "Accordion__summary--collapsed": string;
   readonly "Accordion__summary--default": string;
   readonly "Accordion__summary--emphasis": string;
-  readonly "Accordion__summary--expanded": string;
   readonly "Accordion__summary--reversed-toggles": string;
   readonly "Accordion__summary--toggleColor-blue": string;
   readonly "Accordion__summary--toggleColor-blue-purple": string;
@@ -28,7 +28,11 @@ declare const styles: {
   readonly "Accordion__summary--toggleColor-red-orange": string;
   readonly "Accordion__summary--toggleColor-teal": string;
   readonly "Accordion__summary--toggleColor-yellow": string;
-  readonly "fade-in": string;
+  readonly "Accordion__summary-toggle": string;
+  readonly "Accordion__summary-toggleIcon": string;
+  readonly "Accordion__summary-toggleLine": string;
+  readonly "Accordion__summary-toggleLine--end": string;
+  readonly "Accordion__summary-toggleLine--start": string;
 };
 export = styles;
 

@@ -275,6 +275,7 @@ const darkJson = require('../src/tokens/base/colors/dark')
     `tokens/functional/components/tabs/colors.json`,
     `tokens/functional/components/media-playlist/colors.json`,
     `tokens/functional/components/blinking-cursor/colors.js`,
+    `tokens/functional/components/text-cursor-animation/colors.json`,
     `tokens/functional/components/tiles/colors.js`,
   ]
 

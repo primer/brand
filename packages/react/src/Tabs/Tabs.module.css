@@ -110,9 +110,9 @@
   white-space: nowrap;
   font-family: var(--brand-fontStack-sansSerif);
   font-weight: var(--brand-text-weight-600);
-  font-size: var(--brand-text-size-100);
-  line-height: var(--brand-text-lineHeight-100);
-  letter-spacing: var(--brand-text-letterSpacing-100);
+  font-size: var(--brand-text-size-200);
+  line-height: var(--brand-text-lineHeight-200);
+  letter-spacing: var(--brand-text-letterSpacing-200);
   color: var(--brand-color-text-default);
 }
 

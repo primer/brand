@@ -1,6 +1,19 @@
 .Accordion {
+  --brand-Accordion-animation-duration-open: 900ms;
+  --brand-Accordion-animation-duration-close: 400ms;
+  --brand-Accordion-animation-duration: var(--brand-Accordion-animation-duration-open);
+  --brand-Accordion-animation-easing-open: cubic-bezier(0.04, 0.62, 0.16, 0.94);
+  --brand-Accordion-animation-easing-close: cubic-bezier(0.04, 0.62, 0.16, 0.94);
+  --brand-Accordion-animation-easing: var(--brand-Accordion-animation-easing-open);
+  --brand-Accordion-content-height: 0px;
+
   box-sizing: border-box;
   position: relative;
+}
+
+details.Accordion--closing {
+  --brand-Accordion-animation-duration: var(--brand-Accordion-animation-duration-close);
+  --brand-Accordion-animation-easing: var(--brand-Accordion-animation-easing-close);
 }
 
 .Accordion--default {
@@ -52,9 +65,15 @@ details[open] > .Accordion__summary--emphasis::before {
 
 .Accordion--emphasis:not(.Accordion .Accordion) > .Accordion__content {
   border-block-end: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
+}
+
+.Accordion--emphasis:not(.Accordion .Accordion) > .Accordion__content > .Accordion__content-inner {
   padding-block-start: var(--base-size-12);
-  padding-block-end: var(--base-size-12);
   padding-inline: var(--base-size-20);
+}
+
+.Accordion--emphasis:not(.Accordion .Accordion) > .Accordion__content > .Accordion__content-inner::after {
+  block-size: var(--base-size-12);
 }
 
 .Accordion--emphasis .Accordion--default:last-child {
@@ -69,7 +88,8 @@ details[open] > .Accordion__summary--emphasis::before {
   content: '';
   background-color: var(--brand-Accordion-border-color-default);
   height: var(--brand-borderWidth-thin);
-  transition: var(--brand-animation-duration-fast) transform;
+  transition: background-color var(--brand-Accordion-animation-duration) var(--brand-Accordion-animation-easing),
+    transform var(--brand-Accordion-animation-duration) var(--brand-Accordion-animation-easing);
   transform: scaleY(0);
   transform-origin: 50% 100%;
   width: 100%;
@@ -114,8 +134,7 @@ details[open].Accordion > .Accordion__summary:focus-visible {
   outline: none;
 }
 
-.Accordion__summary--collapsed,
-.Accordion__summary--expanded {
+.Accordion__summary-toggle {
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -124,36 +143,55 @@ details[open].Accordion > .Accordion__summary:focus-visible {
   width: var(--base-size-24);
   color: var(--brand-color-text-default);
   position: absolute;
-  transition: opacity var(--brand-animation-duration-faster) ease;
 }
 
-.Accordion__summary:not(.Accordion__summary--reversed-toggles) .Accordion__summary--collapsed,
-.Accordion__summary:not(.Accordion__summary--reversed-toggles) .Accordion__summary--expanded {
+.Accordion__summary:not(.Accordion__summary--reversed-toggles) .Accordion__summary-toggle {
   right: 0;
 }
 
-.Accordion__summary--emphasis .Accordion__summary--collapsed,
-.Accordion__summary--emphasis .Accordion__summary--expanded {
+.Accordion__summary--emphasis .Accordion__summary-toggle {
   position: static;
   order: 1;
-}
-
-.Accordion__summary--emphasis .Accordion__summary--collapsed {
   margin-inline-start: auto;
 }
 
-.Accordion__summary--emphasis .Accordion__summary--expanded {
-  margin-inline-start: calc(-1 * var(--base-size-24));
-}
-
-.Accordion__summary--reversed-toggles .Accordion__summary--collapsed,
-.Accordion__summary--reversed-toggles .Accordion__summary--expanded {
+.Accordion__summary--reversed-toggles .Accordion__summary-toggle {
   left: 0;
 }
 
-.Accordion__summary--default .Accordion__summary--collapsed,
-.Accordion__summary--default .Accordion__summary--expanded {
+.Accordion__summary--default .Accordion__summary-toggle {
   color: var(--brand-Accordion-toggle-color-start, var(--brand-color-text-default));
+}
+
+.Accordion__summary-toggleIcon {
+  display: block;
+  overflow: visible;
+}
+
+.Accordion__summary-toggleLine {
+  --brand-Accordion-toggle-open-scale: 1.32;
+
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-width: var(--base-size-2);
+  transform-box: view-box;
+  transition: transform var(--brand-Accordion-animation-duration) var(--brand-Accordion-animation-easing);
+}
+
+.Accordion__summary-toggleLine--start {
+  transform-origin: 4px 12px;
+}
+
+.Accordion__summary-toggleLine--end {
+  transform-origin: 20px 12px;
+}
+
+details[open] > .Accordion__summary .Accordion__summary-toggleLine--start {
+  transform: rotate(45deg) scaleX(var(--brand-Accordion-toggle-open-scale));
+}
+
+details[open] > .Accordion__summary .Accordion__summary-toggleLine--end {
+  transform: rotate(-45deg) scaleX(var(--brand-Accordion-toggle-open-scale));
 }
 
 .Accordion__summary--toggleColor-default {
@@ -232,30 +270,6 @@ details[open].Accordion > .Accordion__summary:focus-visible {
   --brand-Accordion-toggle-color-start: var(--brand-Accordion-toggle-color-yellow);
 }
 
-.Accordion__summary.Accordion__summary--default .Accordion__summary--expanded {
-  opacity: 0;
-}
-
-.Accordion__summary.Accordion__summary--emphasis .Accordion__summary--expanded {
-  opacity: 0;
-}
-
-details[open] .Accordion__summary.Accordion__summary--emphasis .Accordion__summary--expanded {
-  opacity: 1;
-}
-
-details[open] .Accordion__summary.Accordion__summary--emphasis .Accordion__summary--collapsed {
-  opacity: 0;
-}
-
-details[open] > .Accordion__summary.Accordion__summary--default .Accordion__summary--expanded {
-  opacity: 1;
-}
-
-details[open] > .Accordion__summary.Accordion__summary--default .Accordion__summary--collapsed {
-  opacity: 0;
-}
-
 .Accordion__summary--default:not(.Accordion__summary--reversed-toggles) {
   padding-inline-end: var(--base-size-48);
 }
@@ -266,7 +280,7 @@ details[open] > .Accordion__summary.Accordion__summary--default .Accordion__summ
 
 .Accordion__content,
 .Accordion__content p,
-.Accordion__content span:not(.Accordion__summary--expanded):not(.Accordion__summary--collapsed),
+.Accordion__content span:not(.Accordion__summary-toggle),
 .Accordion__content ul,
 .Accordion__content ol {
   color: var(--brand-color-text-muted);
@@ -274,6 +288,30 @@ details[open] > .Accordion__summary.Accordion__summary--default .Accordion__summ
   font-weight: var(--brand-text-weight-200);
   font-size: var(--brand-text-size-200);
   line-height: var(--brand-text-lineHeight-200);
+}
+
+.Accordion__content {
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height var(--brand-Accordion-animation-duration) var(--brand-Accordion-animation-easing);
+}
+
+.Accordion__content-inner {
+  transform: translateY(calc(-1 * var(--base-size-12)));
+  opacity: 0;
+  transition: opacity var(--brand-Accordion-animation-duration) var(--brand-Accordion-animation-easing);
+}
+
+.Accordion__summary--default + .Accordion__content > .Accordion__content-inner::before {
+  content: '';
+  display: block;
+  block-size: var(--base-size-12);
+}
+
+.Accordion__content-inner::after {
+  content: '';
+  display: block;
+  block-size: var(--base-size-24);
 }
 
 [data-color-mode='dark'] .Accordion__content {
@@ -311,14 +349,38 @@ details[open] > .Accordion__summary.Accordion__summary--default .Accordion__summ
 }
 
 details[open] > .Accordion__content {
-  padding-bottom: var(--base-size-24);
-  animation: fade-in 0.5s;
+  max-height: var(--brand-Accordion-content-height);
   position: relative;
   z-index: 0;
 }
 
+details[open] > .Accordion__content > .Accordion__content-inner {
+  opacity: 1;
+}
+
+details.Accordion--closing > .Accordion__content {
+  max-height: 0;
+}
+
+details.Accordion--closing > .Accordion__content > .Accordion__content-inner {
+  opacity: 0;
+}
+
 .Accordion__summary--default + .Accordion__content {
-  margin-top: calc(var(--base-size-12) * -1); /* for 12px gap between question and answer */
+  margin-top: 0;
+}
+
+details[open] > .Accordion__summary--default + .Accordion__content {
+  margin-top: 0;
+}
+
+details.Accordion--closing > .Accordion__summary--default + .Accordion__content {
+  margin-top: 0;
+}
+
+details.Accordion--closing > .Accordion__summary .Accordion__summary-toggleLine--start,
+details.Accordion--closing > .Accordion__summary .Accordion__summary-toggleLine--end {
+  transform: none;
 }
 
 details[open] > .Accordion__summary--reversed-toggles + .Accordion__content {
@@ -329,15 +391,6 @@ details[open] > .Accordion__summary--reversed-toggles + .Accordion__content {
 @media screen and (min-width: 48rem) {
   .Accordion__summary {
     gap: var(--base-size-40);
-  }
-}
-
-@keyframes fade-in {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
   }
 }
 

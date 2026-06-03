@@ -1,9 +1,9 @@
 import React, {createRef} from 'react'
-import {fireEvent, render} from '@testing-library/react'
+import {fireEvent, render, waitFor} from '@testing-library/react'
 import '@testing-library/jest-dom'
 import userEvent from '@testing-library/user-event'
 
-import {Accordion, AccordionToggleColors} from '../'
+import {Accordion, AccordionToggleColors} from './Accordion'
 import {axe, toHaveNoViolations} from 'jest-axe'
 
 expect.extend(toHaveNoViolations)
@@ -67,7 +67,7 @@ describe('Accordion', () => {
     expect(summary).toHaveClass('Accordion__summary')
     expect(summary).toHaveClass('custom-heading')
 
-    const content = getByText('Test content')
+    const content = getByText('Test content').closest('section')
     expect(content).toHaveClass('Accordion__content')
     expect(content).toHaveClass('custom-content')
   })
@@ -129,7 +129,7 @@ describe('Accordion', () => {
     expect(details).toHaveAttribute('open')
 
     await user.click(heading)
-    expect(details).not.toHaveAttribute('open')
+    await waitFor(() => expect(details).not.toHaveAttribute('open'))
   })
 
   it.each([['Enter'], ['Space']])('opens when %s is pressed on summary', async keyName => {
@@ -184,7 +184,7 @@ describe('Accordion', () => {
     expect(onToggle).toHaveBeenCalledTimes(1)
 
     await user.click(heading)
-    expect(onToggle).toHaveBeenCalledTimes(2)
+    await waitFor(() => expect(onToggle).toHaveBeenCalledTimes(2))
   })
 
   it('calls onKeyDown when a key is pressed', async () => {
@@ -222,7 +222,7 @@ describe('Accordion', () => {
     expect(handleOpen).toHaveBeenCalledWith(true)
 
     await user.click(heading)
-    expect(handleOpen).toHaveBeenCalledWith(false)
+    await waitFor(() => expect(handleOpen).toHaveBeenCalledWith(false))
   })
 
   it('supports functional ref for Accordion', async () => {
@@ -247,7 +247,7 @@ describe('Accordion', () => {
     expect(details).toHaveAttribute('open')
 
     await user.click(heading)
-    expect(details).not.toHaveAttribute('open')
+    await waitFor(() => expect(details).not.toHaveAttribute('open'))
   })
 
   it('supports RefObject ref for Accordion', async () => {
@@ -271,7 +271,7 @@ describe('Accordion', () => {
     expect(details).toHaveAttribute('open')
 
     await user.click(heading)
-    expect(details).not.toHaveAttribute('open')
+    await waitFor(() => expect(details).not.toHaveAttribute('open'))
   })
 
   it('supports null ref for Accordion', async () => {
@@ -292,7 +292,7 @@ describe('Accordion', () => {
     expect(details).toHaveAttribute('open')
 
     await user.click(heading)
-    expect(details).not.toHaveAttribute('open')
+    await waitFor(() => expect(details).not.toHaveAttribute('open'))
   })
 
   it('supports functional ref for Accordion.Heading', async () => {
@@ -317,7 +317,7 @@ describe('Accordion', () => {
     expect(details).toHaveAttribute('open')
 
     await user.click(summary)
-    expect(details).not.toHaveAttribute('open')
+    await waitFor(() => expect(details).not.toHaveAttribute('open'))
   })
 
   it('supports RefObject ref for Accordion.Heading', async () => {
@@ -341,7 +341,7 @@ describe('Accordion', () => {
     expect(details).toHaveAttribute('open')
 
     await user.click(summary)
-    expect(details).not.toHaveAttribute('open')
+    await waitFor(() => expect(details).not.toHaveAttribute('open'))
   })
 
   it('supports null ref for Accordion.Heading', async () => {
@@ -362,7 +362,7 @@ describe('Accordion', () => {
     expect(details).toHaveAttribute('open')
 
     await user.click(heading)
-    expect(details).not.toHaveAttribute('open')
+    await waitFor(() => expect(details).not.toHaveAttribute('open'))
   })
 
   it('uses semantic HTML structure', () => {
@@ -375,7 +375,11 @@ describe('Accordion', () => {
 
     const details = getByRole('group')
     const summary = getByRole('heading', {name: 'Test heading'}).parentElement as HTMLElement
-    const content = getByText('Test content')
+    const content = getByText('Test content').closest('section')
+
+    if (!content) {
+      throw new Error('Expected accordion content section to be present')
+    }
 
     expect(details.tagName).toBe('DETAILS')
     expect(summary.tagName).toBe('SUMMARY')
@@ -432,7 +436,7 @@ describe('Accordion', () => {
     expect(heading).toHaveTextContent('Test heading')
   })
 
-  it('renders chevron icons when variant is emphasis', () => {
+  it('renders a single animated toggle indicator when variant is emphasis', () => {
     const {container} = render(
       <Accordion variant="emphasis">
         <Accordion.Heading>Test heading</Accordion.Heading>
@@ -440,14 +444,14 @@ describe('Accordion', () => {
       </Accordion>,
     )
 
-    const chevronDown = container.querySelector('.Accordion__summary--collapsed svg')
-    const chevronUp = container.querySelector('.Accordion__summary--expanded svg')
+    const indicator = container.querySelector('.Accordion__summary-toggle svg')
+    const indicatorLines = container.querySelectorAll('.Accordion__summary-toggle line')
 
-    expect(chevronDown).toBeInTheDocument()
-    expect(chevronUp).toBeInTheDocument()
+    expect(indicator).toBeInTheDocument()
+    expect(indicatorLines).toHaveLength(2)
   })
 
-  it('renders chevron icons when variant is default', () => {
+  it('renders a single animated toggle indicator when variant is default', () => {
     const {container} = render(
       <Accordion variant="default">
         <Accordion.Heading>Test heading</Accordion.Heading>
@@ -455,11 +459,11 @@ describe('Accordion', () => {
       </Accordion>,
     )
 
-    const chevronDown = container.querySelector('.Accordion__summary--collapsed svg')
-    const chevronUp = container.querySelector('.Accordion__summary--expanded svg')
+    const indicator = container.querySelector('.Accordion__summary-toggle svg')
+    const indicatorLines = container.querySelectorAll('.Accordion__summary-toggle line')
 
-    expect(chevronDown).toBeInTheDocument()
-    expect(chevronUp).toBeInTheDocument()
+    expect(indicator).toBeInTheDocument()
+    expect(indicatorLines).toHaveLength(2)
   })
 
   it('forwards additional props to details element', () => {
@@ -494,7 +498,7 @@ describe('Accordion', () => {
       </Accordion>,
     )
 
-    const section = getByText('Test content')
+    const section = getByText('Test content').closest('section')
     expect(section).toHaveAttribute('data-testid', 'content-test')
   })
 
