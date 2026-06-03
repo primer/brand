@@ -298,6 +298,25 @@ describe('CTABanner', () => {
     expect(ctaBannerEl).toHaveClass('CTABanner--variant-minimal')
   })
 
+  it.each(['default', 'balanced', 'minimal'] as const)(
+    'applies rounded corners to the %s variant by default',
+    variant => {
+      const {getByTestId} = render(
+        <CTABanner variant={variant} data-testid="test">
+          <CTABanner.Heading>This is your heading</CTABanner.Heading>
+          {variant === 'balanced' && <CTABanner.Image src="image.png" alt="test" />}
+          {variant === 'minimal' && (
+            <CTABanner.ButtonGroup>
+              <Button>Action</Button>
+            </CTABanner.ButtonGroup>
+          )}
+        </CTABanner>,
+      )
+
+      expect(getByTestId('test').firstChild).toHaveClass('CTABanner-container--rounded')
+    },
+  )
+
   it('can render CTABanner.Image in the default variant alongside other children', () => {
     const {getByAltText} = render(
       <CTABanner>
@@ -383,6 +402,7 @@ describe('CTABanner', () => {
     const sectionEl = getByTestId('test')
     expect(sectionEl.parentElement).toHaveClass('CTABanner-outer-container--border')
     expect(sectionEl.firstChild).toHaveClass('CTABanner-container--border-gridlines')
+    expect(sectionEl.firstChild).not.toHaveClass('CTABanner-container--rounded')
   })
 
   it('does not render the hasGridLines outer border wrapper by default', () => {

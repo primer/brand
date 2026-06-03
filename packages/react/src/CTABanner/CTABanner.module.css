@@ -81,6 +81,10 @@
   box-sizing: border-box;
 }
 
+.CTABanner-container--rounded {
+  border-radius: var(--brand-borderRadius-xlarge);
+}
+
 .CTABanner--variant-balanced .CTABanner-container {
   padding-inline: var(--base-size-20);
   padding-block: var(--base-size-32);

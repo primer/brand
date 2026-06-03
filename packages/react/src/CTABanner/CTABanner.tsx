@@ -237,6 +237,7 @@ const Root = forwardRef(
               styles['CTABanner-container'],
               hasBorder && styles['CTABanner-container--border'],
               hasGridLines && styles['CTABanner-container--border-gridlines'],
+              !hasGridLines && styles['CTABanner-container--rounded'],
               hasBackground && styles['CTABanner-container--background'],
             )}
           >
