@@ -1,0 +1,26 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><link rel="stylesheet" href="card.css">
+<style>
+body{background:#000}.label{color:#A4AEA6}.colhead{font-family:var(--font-mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:#A4AEA6}.rowlab{font-size:13px;color:#A4AEA6}
+.btn{font-family:var(--font-sans);font-weight:500;font-size:16px;letter-spacing:0.01em;border-radius:6px;padding:11px 20px;border:1px solid transparent;cursor:pointer;display:inline-flex;align-items:center;gap:8px;transition:background .15s,box-shadow .15s,transform .05s}
+.primary{background:#08872B;color:#fff;border-color:rgba(0,0,0,.12)}
+.secondary{background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.06);backdrop-filter:blur(40px)}
+.tertiary{position:relative;background:none;color:#5FB9FF;padding:0 0 3px 0;gap:6px;border:none;border-radius:0;width:fit-content}
+.tertiary::after{content:"";position:absolute;left:0;bottom:0;width:100%;height:1.5px;background:currentColor;transform:scaleX(0);transform-origin:left;transition:transform .22s ease}
+.primary:hover{background:#0AA033}
+.secondary:hover{background:rgba(255,255,255,.18)}
+.tertiary:hover::after{transform:scaleX(1)}
+.primary:active,.secondary:active{transform:translateY(1px)}
+.h .primary{background:#0AA033}.h .secondary{background:rgba(255,255,255,.18)}
+.h .tertiary::after{transform:scaleX(1)}
+.grid{display:grid;grid-template-columns:auto 1fr 1fr;gap:14px 26px;align-items:center;justify-items:start}
+</style></head>
+<body>
+<div class="label" style="margin-bottom:14px">Buttons — Dark · rest → hover</div>
+<div class="grid">
+  <span></span><span class="colhead">Rest</span><span class="colhead">Hover</span>
+  <span class="rowlab">Primary</span><button class="btn primary">Get started</button><span class="h"><button class="btn primary">Get started</button></span>
+  <span class="rowlab">Secondary</span><button class="btn secondary">Contact sales</button><span class="h"><button class="btn secondary">Contact sales</button></span>
+  <span class="rowlab">Tertiary</span><button class="btn tertiary">Explore docs <span class="arr">→</span></button><span class="h"><button class="btn tertiary">Explore docs <span class="arr">→</span></button></span>
+</div>
+<div class="tok" style="margin-top:16px;color:#58635B">Primary stays green #08872B w/ white text in both themes · secondary = translucent white</div>
+</body></html>
