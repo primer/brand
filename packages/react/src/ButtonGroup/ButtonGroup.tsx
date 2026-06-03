@@ -1,4 +1,5 @@
 import React, {forwardRef, type Ref} from 'react'
+import {clsx} from 'clsx'
 import type {BaseProps} from '../component-helpers'
 import {Button, ButtonProps} from '../Button'
 import styles from './ButtonGroup.module.css'
@@ -29,7 +30,7 @@ export const ButtonGroup = forwardRef(
       .slice(0, 2)
 
     return (
-      <section ref={ref} className={styles.ButtonGroup} {...props}>
+      <section ref={ref} {...props} className={clsx(styles.ButtonGroup, className)}>
         {buttonsToRender as React.ReactElement[]}
       </section>
     )
