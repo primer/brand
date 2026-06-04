@@ -93,6 +93,10 @@
     margin-inline: auto;
   }
 
+  .River--variant-gridline {
+    border-inline: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
+  }
+
   .River--variant-gridline .River__visual--has-background {
     align-items: flex-end;
     padding-block-end: 0;
