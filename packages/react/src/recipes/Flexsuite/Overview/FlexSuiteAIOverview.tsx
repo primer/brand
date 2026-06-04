@@ -187,7 +187,6 @@ export function FlexSuiteAIOverviewTemplate({content}: FlexSuiteAIOverviewTempla
                 ref={element => {
                   riverImageRefs.current[0] = element
                 }}
-                imageBackgroundColor="subtle"
               >
                 <picture>
                   <source
@@ -212,7 +211,6 @@ export function FlexSuiteAIOverviewTemplate({content}: FlexSuiteAIOverviewTempla
                 ref={element => {
                   riverImageRefs.current[1] = element
                 }}
-                imageBackgroundColor="subtle"
               >
                 <picture>
                   <source
@@ -237,7 +235,6 @@ export function FlexSuiteAIOverviewTemplate({content}: FlexSuiteAIOverviewTempla
                 ref={element => {
                   riverImageRefs.current[2] = element
                 }}
-                imageBackgroundColor="subtle"
               >
                 <picture>
                   <source
