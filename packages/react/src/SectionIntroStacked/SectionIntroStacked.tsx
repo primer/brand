@@ -46,7 +46,9 @@ const Root = forwardRef<HTMLElement, PropsWithChildren<SectionIntroStackedProps>
         style={{...animationInlineStyles, ...style}}
       >
         <Grid fullWidth enableGutters={variant !== 'gridline'} columnGap="none">
-          <Grid.Column span={{large: 6}}>{otherChildren}</Grid.Column>
+          <Grid.Column span={{large: 6}} className={styles['SectionIntroStacked-content']}>
+            {otherChildren}
+          </Grid.Column>
           <Grid.Column span={{large: 6}} start={{large: 7}}>
             {items}
           </Grid.Column>

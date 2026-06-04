@@ -106,6 +106,10 @@
     top: auto;
   }
 
+  .SectionIntroStacked-content {
+    padding-inline-end: var(--base-size-80);
+  }
+
   .SectionIntroStacked--variant-gridline .SectionIntroStackedItem-item {
     /* Inset item content from the vertical gridline */
     padding-inline-start: var(--base-size-64);
