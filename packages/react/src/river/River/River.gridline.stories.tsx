@@ -79,6 +79,14 @@ export const GridLineCenter: Story = {
   ),
 }
 
+export const GridLineTablet: Story = {
+  name: 'GridLine variant (tablet)',
+  globals: {
+    viewport: {value: 'ipad10p'},
+  },
+  render: GridLine.render,
+}
+
 export const GridLineWithBackground: Story = {
   name: 'GridLine variant (default background)',
   render: () => (

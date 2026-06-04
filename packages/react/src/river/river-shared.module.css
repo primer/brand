@@ -88,6 +88,11 @@
 }
 
 @media screen and (min-width: 48rem) and (max-width: 63.24rem) {
+  .River {
+    max-width: 618px;
+    margin-inline: auto;
+  }
+
   .River--variant-gridline .River__visual--has-background {
     align-items: flex-end;
     padding-block-end: 0;
