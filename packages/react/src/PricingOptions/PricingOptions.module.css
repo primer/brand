@@ -444,6 +444,13 @@
   }
 }
 
+@media (min-width: 48rem) and (max-width: 63.24rem) {
+  .PricingOptions__price-value,
+  .PricingOptions__price-currency-symbol {
+    font-size: var(--brand-text-size-500);
+  }
+}
+
 .PricingOptions__price-amount {
   display: flex;
   align-items: flex-end;
