@@ -424,6 +424,7 @@
 
 .PricingOptions__description {
   grid-row: description;
+  padding-block-end: var(--base-size-28);
 }
 
 .PricingOptions__price {
@@ -431,6 +432,7 @@
   flex-wrap: wrap;
   align-items: flex-start;
   grid-row: price;
+  inline-size: 100%;
   padding-block-start: var(--base-size-20);
   padding-block-end: var(--base-size-8);
 }
@@ -475,7 +477,7 @@
   flex-direction: column;
   gap: var(--base-size-8);
   align-items: flex-end;
-  padding-block-start: var(--base-size-20);
+  padding-block: var(--base-size-20) var(--base-size-28);
 }
 
 .PricingOptions__actions-message {
@@ -557,14 +559,19 @@
 }
 
 .PricingOptions__feature-list--has-divider {
-  position: relative;
   margin: 0;
   margin-block-start: var(--base-size-20);
   padding-block-start: var(--base-size-40);
   padding-inline: 0;
 }
 
-/* Edge-to-edge divider above feature list */
+/* Edge-to-edge dividers */
+.PricingOptions__price,
+.PricingOptions__feature-list--has-divider {
+  position: relative;
+}
+
+.PricingOptions__price::before,
 .PricingOptions__feature-list--has-divider::before {
   content: '';
   position: absolute;
@@ -575,29 +582,33 @@
   background-color: var(--brand-color-border-subtle);
 }
 
-/* Default layout: extend feature list divider into column gap */
+/* Default layout: extend dividers into column gap */
 @media (min-width: 63.25rem) {
-  .PricingOptions--layout-default .PricingOptions__feature-list--has-divider::before {
+  .PricingOptions--layout-default :is(.PricingOptions__price, .PricingOptions__feature-list--has-divider)::before {
     inset-inline-start: calc(var(--brand-pricing-options-item-gap, 0px) / 2 * -1);
     inset-inline-end: calc(var(--brand-pricing-options-item-gap, 0px) / 2 * -1);
   }
 
   /* First item: don't overflow past container start */
-  .PricingOptions--layout-default .PricingOptions__item:first-child .PricingOptions__feature-list--has-divider::before,
+  .PricingOptions--layout-default
+    .PricingOptions__item:first-child
+    :is(.PricingOptions__price, .PricingOptions__feature-list--has-divider)::before,
   .PricingOptions--layout-default
     .PricingOptions__labels
     + .PricingOptions__item
-    .PricingOptions__feature-list--has-divider::before {
+    :is(.PricingOptions__price, .PricingOptions__feature-list--has-divider)::before {
     inset-inline-start: calc(var(--brand-pricing-options-container-padding-inline, 0px) * -1);
   }
 
   /* Last item: don't overflow past container end */
-  .PricingOptions--layout-default .PricingOptions__item:last-child .PricingOptions__feature-list--has-divider::before {
+  .PricingOptions--layout-default
+    .PricingOptions__item:last-child
+    :is(.PricingOptions__price, .PricingOptions__feature-list--has-divider)::before {
     inset-inline-end: calc(var(--brand-pricing-options-container-padding-inline, 0px) * -1);
   }
 
   .PricingOptions--layout-default.PricingOptions--appearance-gradient
-    .PricingOptions__feature-list--has-divider::before {
+    :is(.PricingOptions__price, .PricingOptions__feature-list--has-divider)::before {
     mask-image: var(--brand-PricingOptions-borderMask);
   }
 }
@@ -690,7 +701,7 @@
 
 /* Adjust heading spacing */
 .PricingOptions__feature-list-accordion-heading {
-  padding: var(--base-size-8) 0;
+  padding-block: var(--base-size-8) var(--base-size-12);
   padding-inline-start: 0 !important; /* Fixes dotcom specificity issue */
   padding-inline-end: 0 !important;
   margin-block-start: calc(var(--base-size-16) * -1);
