@@ -1,6 +1,6 @@
 import React, {createContext, forwardRef, useCallback, useContext, useMemo, useState, useRef, useEffect} from 'react'
 import {clsx} from 'clsx'
-import {ChevronDownIcon, ChevronUpIcon} from '@primer/octicons-react'
+import {TriangleDownIcon, TriangleUpIcon} from '@primer/octicons-react'
 
 import {Heading, type HeadingProps, Link, Text} from '../..'
 import {useProvidedRefOrCreate} from '../../hooks/useRef'
@@ -220,7 +220,7 @@ const RiverAccordionHeading = ({as = 'h3', children, className, size = '6', ...p
       >
         {children}
         <span aria-hidden="true" className={styles.RiverAccordion__icon}>
-          {isOpen ? <ChevronUpIcon size={24} /> : <ChevronDownIcon size={24} />}
+          {isOpen ? <TriangleUpIcon size={24} /> : <TriangleDownIcon size={24} />}
         </span>
       </button>
     </Heading>
