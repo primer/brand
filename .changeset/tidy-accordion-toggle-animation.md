@@ -3,7 +3,7 @@
 '@primer/brand-css': patch
 ---
 
-- Updated the `Accordion` toggle indicator to animate from a down chevron into an up chevron using decorative CSS bars.
+- Updated the `Accordion` toggle indicator to use the `TriangleDownIcon` octicon, which rotates anti-clockwise between its open and closed states.
 
 - Improved `Accordion` content open and close animation so items transition using measured content height.
 

@@ -1,24 +1,12 @@
 .Accordion {
-  --brand-Accordion-animation-duration-open: 900ms;
-  --brand-Accordion-animation-duration-close: 400ms;
-  --brand-Accordion-animation-duration: var(--brand-Accordion-animation-duration-open);
-  --brand-Accordion-animation-easing-open: cubic-bezier(0.04, 0.62, 0.16, 0.94);
-  --brand-Accordion-animation-easing-close: cubic-bezier(0.04, 0.62, 0.16, 0.94);
-  --brand-Accordion-animation-easing: var(--brand-Accordion-animation-easing-open);
   --brand-Accordion-content-height: 0px;
 
   box-sizing: border-box;
   position: relative;
 }
 
-details.Accordion--closing {
-  --brand-Accordion-animation-duration: var(--brand-Accordion-animation-duration-close);
-  --brand-Accordion-animation-easing: var(--brand-Accordion-animation-easing-close);
-}
-
 .Accordion--disableAnimation::after,
-.Accordion--disableAnimation .Accordion__summary-toggleIcon::before,
-.Accordion--disableAnimation .Accordion__summary-toggleIcon::after,
+.Accordion--disableAnimation .Accordion__summary-toggleIcon,
 .Accordion--disableAnimation > .Accordion__content,
 .Accordion--disableAnimation > .Accordion__content > .Accordion__content-inner {
   transition: none;
@@ -96,8 +84,8 @@ details[open] > .Accordion__summary--emphasis::before {
   content: '';
   background-color: var(--brand-Accordion-border-color-default);
   height: var(--brand-borderWidth-thin);
-  transition: background-color var(--brand-Accordion-animation-duration) var(--brand-Accordion-animation-easing),
-    transform var(--brand-Accordion-animation-duration) var(--brand-Accordion-animation-easing);
+  transition: background-color var(--brand-animation-duration-fast) var(--brand-animation-easing-glide),
+    transform var(--brand-animation-duration-fast) var(--brand-animation-easing-glide);
   transform: scaleY(0);
   transform-origin: 50% 100%;
   width: 100%;
@@ -150,7 +138,7 @@ details[open].Accordion > .Accordion__summary:focus-visible {
   justify-content: center;
   height: var(--base-size-24);
   width: var(--base-size-24);
-  color: var(--brand-color-text-default);
+  color: var(--brand-color-text-emphasized);
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
@@ -165,6 +153,7 @@ details[open].Accordion > .Accordion__summary:focus-visible {
   transform: none;
   order: 1;
   margin-inline-start: auto;
+  color: var(--brand-color-text-default);
 }
 
 .Accordion__summary--reversed-toggles .Accordion__summary-toggle {
@@ -172,43 +161,16 @@ details[open].Accordion > .Accordion__summary:focus-visible {
 }
 
 .Accordion__summary--default .Accordion__summary-toggle {
-  color: var(--brand-Accordion-toggle-color-start, var(--brand-color-text-default));
+  color: var(--brand-Accordion-toggle-color-start, var(--brand-color-text-emphasized));
 }
 
 .Accordion__summary-toggleIcon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 3px;
-  height: var(--base-size-24);
-  width: var(--base-size-24);
-}
-
-.Accordion__summary-toggleIcon::before,
-.Accordion__summary-toggleIcon::after {
-  background-color: currentColor;
-  block-size: var(--base-size-8);
-  border-radius: var(--base-size-2);
-  content: '';
-  inline-size: var(--base-size-2);
   transform-origin: 50% 50%;
-  transition: transform var(--brand-Accordion-animation-duration) var(--brand-Accordion-animation-easing);
+  transition: transform var(--brand-animation-duration-fast) var(--brand-animation-easing-glide);
 }
 
-.Accordion__summary-toggleIcon::before {
-  transform: rotate(130deg);
-}
-
-.Accordion__summary-toggleIcon::after {
-  transform: rotate(-130deg);
-}
-
-details[open] > .Accordion__summary .Accordion__summary-toggleIcon::before {
-  transform: rotate(50deg);
-}
-
-details[open] > .Accordion__summary .Accordion__summary-toggleIcon::after {
-  transform: rotate(-50deg);
+details[open] > .Accordion__summary .Accordion__summary-toggleIcon {
+  transform: rotate(-180deg);
 }
 
 .Accordion__summary--toggleColor-default {
@@ -311,14 +273,14 @@ details[open] > .Accordion__summary .Accordion__summary-toggleIcon::after {
   --brand-Accordion-content-offset: 0px; /* we reference this in JS */
   overflow: hidden;
   max-height: 0;
-  transition: max-height var(--brand-Accordion-animation-duration) var(--brand-Accordion-animation-easing);
+  transition: max-height var(--brand-animation-duration-fast) var(--brand-animation-easing-glide);
   position: relative;
 }
 
 .Accordion__content-inner {
   transform: translateY(calc(-1 * var(--brand-Accordion-content-offset)));
   opacity: 0;
-  transition: opacity var(--brand-Accordion-animation-duration) var(--brand-Accordion-animation-easing);
+  transition: opacity var(--brand-animation-duration-fast) var(--brand-animation-easing-glide);
 }
 
 .Accordion--default > .Accordion__content {
@@ -405,12 +367,8 @@ details.Accordion--closing > .Accordion__summary--default + .Accordion__content 
   margin-block-start: 0;
 }
 
-details.Accordion--closing > .Accordion__summary .Accordion__summary-toggleIcon::before {
-  transform: rotate(130deg);
-}
-
-details.Accordion--closing > .Accordion__summary .Accordion__summary-toggleIcon::after {
-  transform: rotate(-130deg);
+details.Accordion--closing > .Accordion__summary .Accordion__summary-toggleIcon {
+  transform: rotate(0deg);
 }
 
 details[open] > .Accordion__summary--reversed-toggles + .Accordion__content {
@@ -429,8 +387,6 @@ details[open] > .Accordion__summary--reversed-toggles + .Accordion__content {
   .Accordion,
   .Accordion::before,
   .Accordion::after,
-  .Accordion__summary-toggleIcon::before,
-  .Accordion__summary-toggleIcon::after,
   .Accordion * {
     animation: none !important;
     transition: none !important;

@@ -9,6 +9,7 @@ import React, {
   type DetailsHTMLAttributes,
   type HTMLAttributes,
   type KeyboardEvent,
+  type MouseEventHandler,
   type ReactElement,
   type RefObject,
   type ToggleEvent,
@@ -16,6 +17,7 @@ import React, {
 import {clsx} from 'clsx'
 
 import {Heading, type HeadingProps} from '../'
+import {TriangleDownIcon} from '@primer/octicons-react'
 import {Colors, BiColorGradients as Gradients} from '../constants'
 import {useProvidedRefOrCreate} from '../hooks/useRef'
 
@@ -58,6 +60,7 @@ export const AccordionRoot = forwardRef<HTMLDetailsElement, AccordionRootProps>(
       variant = 'default',
       disableAnimation = false,
       open,
+      onClick,
       onToggle,
       onKeyDown,
       handleOpen,
@@ -123,7 +126,7 @@ export const AccordionRoot = forwardRef<HTMLDetailsElement, AccordionRootProps>(
           isClosingRef.current = false
           details.classList.remove(styles['Accordion--closing'])
           closeAnimationTimeout.current = null
-        }, 400)
+        }, 300)
       },
       [clearCloseAnimation, setContentHeight],
     )
@@ -143,12 +146,18 @@ export const AccordionRoot = forwardRef<HTMLDetailsElement, AccordionRootProps>(
       [clearCloseAnimation, onToggle, handleOpen, setContentHeight],
     )
 
-    const handleClick = useCallback<EventListener>(
+    const handleClick = useCallback<MouseEventHandler<HTMLDetailsElement>>(
       event => {
-        const details = ref.current
+        onClick?.(event)
+
+        if (event.defaultPrevented || disableAnimation) {
+          return
+        }
+
+        const details = event.currentTarget
         const target = event.target
 
-        if (!(target instanceof Element) || !details?.open || disableAnimation) {
+        if (!(target instanceof Element) || !details.open) {
           return
         }
 
@@ -162,7 +171,7 @@ export const AccordionRoot = forwardRef<HTMLDetailsElement, AccordionRootProps>(
           }
         }
       },
-      [closeWithAnimation, disableAnimation, ref],
+      [closeWithAnimation, disableAnimation, onClick],
     )
 
     const handleKeyDown = useCallback<EventListener>(
@@ -203,21 +212,20 @@ export const AccordionRoot = forwardRef<HTMLDetailsElement, AccordionRootProps>(
         }
 
         detailsElement.addEventListener('toggle', handleToggle)
-        detailsElement.addEventListener('click', handleClick)
         detailsElement.addEventListener('keydown', handleKeyDown)
 
         return () => {
           clearCloseAnimation()
           resizeObserver?.disconnect()
           detailsElement.removeEventListener('toggle', handleToggle)
-          detailsElement.removeEventListener('click', handleClick)
           detailsElement.removeEventListener('keydown', handleKeyDown)
         }
       }
-    }, [clearCloseAnimation, handleClick, handleToggle, handleKeyDown, ref, setContentHeight])
+    }, [clearCloseAnimation, handleToggle, handleKeyDown, ref, setContentHeight])
 
     return (
       <AccordionContext.Provider value={accordionContextValue}>
+        {/* eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions, jsx-a11y/click-events-have-key-events -- summary is natively keyboard-operable and keyboard activation also fires click; onClick only intercepts to animate the close */}
         <details
           className={clsx(
             styles.Accordion,
@@ -228,6 +236,7 @@ export const AccordionRoot = forwardRef<HTMLDetailsElement, AccordionRootProps>(
           ref={ref}
           open={open}
           {...rest}
+          onClick={handleClick}
         >
           {children}
         </details>
@@ -267,8 +276,7 @@ export const AccordionHeading = forwardRef<HTMLHeadingElement, AccordionHeadingP
         {...rest}
       >
         <span aria-hidden="true" className={styles['Accordion__summary-toggle']}>
-          {/* This custom icon animates a closed-state down chevron into an open-state up chevron */}
-          <span className={styles['Accordion__summary-toggleIcon']} />
+          <TriangleDownIcon className={styles['Accordion__summary-toggleIcon']} size={22} />
         </span>
         <Heading as={as} size={variant === 'emphasis' ? '6' : 'subhead-large'} weight={weight}>
           {children}
