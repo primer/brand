@@ -27,8 +27,8 @@ test.describe('Visual Comparison: NavList', () => {
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
-  test('NavList / Grouped', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-navlist-features--grouped&viewMode=story', {
+  test('NavList / Sections', async ({page}) => {
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-navlist-features--sections&viewMode=story', {
       waitUntil: 'networkidle',
     })
     await page.locator('body.sb-show-main').waitFor({state: 'visible'})
@@ -37,7 +37,51 @@ test.describe('Visual Comparison: NavList', () => {
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
-  test('NavList / Nested expanded', async ({page}) => {
+  test('NavList / Four Levels', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-navlist-features--four-levels&viewMode=story',
+      {waitUntil: 'networkidle'},
+    )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+    await page.waitForTimeout(500)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
+  test('NavList / Four Levels Collapsed', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-navlist-features--four-levels-collapsed&viewMode=story',
+      {waitUntil: 'networkidle'},
+    )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+    await page.waitForTimeout(500)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
+  test('NavList / Two Levels', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-navlist-features--two-levels&viewMode=story',
+      {waitUntil: 'networkidle'},
+    )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+    await page.waitForTimeout(500)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
+  test('NavList / Three Levels', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-navlist-features--three-levels&viewMode=story',
+      {waitUntil: 'networkidle'},
+    )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+    await page.waitForTimeout(500)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
+  test('NavList / Nested Expanded', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-navlist-features--nested-expanded&viewMode=story',
       {waitUntil: 'networkidle'},
@@ -48,7 +92,7 @@ test.describe('Visual Comparison: NavList', () => {
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
-  test('NavList / Nested collapsed', async ({page}) => {
+  test('NavList / Nested Collapsed', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-navlist-features--nested-collapsed&viewMode=story',
       {waitUntil: 'networkidle'},
@@ -59,7 +103,7 @@ test.describe('Visual Comparison: NavList', () => {
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
-  test('NavList / Long labels', async ({page}) => {
+  test('NavList / Long Labels', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-navlist-features--long-labels&viewMode=story',
       {waitUntil: 'networkidle'},
@@ -70,12 +114,10 @@ test.describe('Visual Comparison: NavList', () => {
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
-  test('NavList / Dark mode', async ({page}) => {
+  test('NavList / Dark Mode', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-navlist-features--dark-mode&viewMode=story',
-      {
-        waitUntil: 'networkidle',
-      },
+      {waitUntil: 'networkidle'},
     )
     await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 

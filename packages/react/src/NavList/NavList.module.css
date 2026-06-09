@@ -5,27 +5,30 @@
 }
 
 .NavList__list,
-.NavList__groupList,
 .NavList__subNav {
   list-style: none;
   margin: 0;
   padding: 0;
 }
 
-.NavList__list,
-.NavList__groupList {
+.NavList__list {
   display: flex;
   flex-direction: column;
-  gap: var(--base-size-4);
+  gap: 0;
 }
 
 .NavList__item {
   position: relative;
 }
 
+.NavList__list > .NavList__item + .NavList__item {
+  border-block-start: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
+}
+
 .NavList__itemContent {
   display: flex;
-  align-items: stretch;
+  align-items: center;
+  gap: var(--base-size-8);
   min-width: 0;
 }
 
@@ -37,15 +40,24 @@
   flex: 1 1 auto;
   min-width: 0;
   border-radius: var(--brand-borderRadius-medium);
-  padding: var(--base-size-8) var(--base-size-12);
+  padding: 0;
   color: var(--brand-color-text-muted);
   font-size: var(--brand-text-size-100);
-  font-weight: var(--brand-text-weight-500);
-  line-height: var(--brand-text-lineHeight-100);
+  font-weight: var(--brand-text-weight-400);
+  line-height: var(--base-size-20);
   letter-spacing: var(--brand-text-letterSpacing-100);
   text-decoration: none !important; /* dotcom override */
   transition: background-color var(--brand-animation-duration-fast) var(--brand-animation-easing-default),
     color var(--brand-animation-duration-fast) var(--brand-animation-easing-default);
+}
+
+.NavList__accordionButton {
+  width: 100%;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  font-family: inherit;
+  text-align: start;
 }
 
 .NavList__link:hover {
@@ -54,6 +66,7 @@
 }
 
 .NavList__link:focus-visible,
+.NavList__accordionButton:focus-visible,
 .NavList__toggle:focus-visible {
   outline: var(--brand-borderWidth-thick) solid var(--brand-color-focus);
   outline-offset: var(--base-size-2);
@@ -63,22 +76,31 @@
 .NavList__link[aria-current]:not([aria-current='false']) {
   color: var(--brand-color-text-default);
   background-color: var(--brand-color-canvas-subtle);
+  padding-inline-start: var(--base-size-6);
 }
 
-.NavList__item--current > .NavList__itemContent .NavList__link::before,
-.NavList__link[aria-current]:not([aria-current='false'])::before {
+.NavList__item--current:not(.NavList__item--level-1) > .NavList__itemContent .NavList__link::before,
+.NavList__item:not(.NavList__item--level-1) .NavList__link[aria-current]:not([aria-current='false'])::before {
   content: '';
   position: absolute;
-  inset-block: var(--base-size-8);
+  inset-block: var(--base-size-2);
   inset-inline-start: 0;
   width: var(--base-size-4);
-  border-radius: var(--brand-borderRadius-full);
+  border-radius: var(--brand-borderRadius-small);
   background-color: var(--brand-color-accent-primary);
+}
+
+.NavList__item--level-1 > .NavList__itemContent .NavList__link[aria-current]:not([aria-current='false']) {
+  padding-inline-start: 0;
 }
 
 .NavList__link--disabled {
   color: var(--brand-color-text-disabled);
   pointer-events: none;
+}
+
+.NavList__accordionButton:disabled {
+  cursor: not-allowed;
 }
 
 .NavList__label {
@@ -102,9 +124,11 @@
   align-items: center;
   justify-content: center;
   flex: none;
-  width: var(--base-size-40);
+  width: var(--base-size-16);
+  height: var(--base-size-16);
+  padding: 0;
   border: 0;
-  border-radius: var(--brand-borderRadius-medium);
+  border-radius: var(--brand-borderRadius-small);
   background: transparent;
   color: var(--brand-color-text-muted);
   cursor: pointer;
@@ -116,50 +140,80 @@
 }
 
 .NavList__toggleIcon {
-  transition: transform var(--brand-animation-duration-fast) var(--brand-animation-easing-default);
-}
-
-.NavList__item--expanded > .NavList__itemContent .NavList__toggleIcon {
-  transform: rotate(180deg);
+  flex: none;
 }
 
 .NavList__subNav {
   display: flex;
   flex-direction: column;
-  gap: var(--base-size-2);
-  margin-block-start: var(--base-size-2);
-  padding-inline-start: var(--base-size-16);
+  gap: 0;
+  margin: 0;
+  padding: 0;
 }
 
 .NavList__subNav[hidden] {
   display: none;
 }
 
-.NavList__subNav .NavList__link {
-  font-weight: var(--brand-text-weight-400);
+.NavList__item--level-1 > .NavList__itemContent {
+  padding: var(--base-size-24) var(--base-size-16) var(--base-size-16);
+}
+
+.NavList__item--level-1 > .NavList__itemContent .NavList__link {
+  order: 1;
+  color: var(--brand-color-text-default);
+  font-size: var(--brand-text-size-200);
+  font-weight: var(--brand-text-weight-500);
+  line-height: var(--base-size-16);
+}
+
+.NavList__item--level-1 > .NavList__itemContent .NavList__toggle {
+  order: 2;
+  margin-inline-start: auto;
+}
+
+.NavList__item--level-1 > .NavList__itemContent .NavList__toggleIcon {
+  order: 2;
+  margin-inline-start: auto;
+}
+
+.NavList__item--level-2 > .NavList__itemContent,
+.NavList__item--level-3 > .NavList__itemContent {
+  padding-block: calc(var(--base-size-8) + var(--base-size-2));
+  padding-inline-end: var(--base-size-16);
+}
+
+.NavList__item--level-2 > .NavList__itemContent {
+  padding-inline-start: var(--base-size-24);
+}
+
+.NavList__item--level-3 > .NavList__itemContent {
+  padding-inline-start: var(--base-size-40);
+}
+
+.NavList__item--level-4 > .NavList__itemContent {
+  min-height: var(--base-size-32);
   padding-block: var(--base-size-6);
+  padding-inline: var(--base-size-16);
+  padding-inline-start: calc(var(--base-size-48) + var(--base-size-8));
 }
 
-.NavList__group {
-  display: flex;
-  flex-direction: column;
-  gap: var(--base-size-8);
+.NavList__item--level-2 > .NavList__itemContent .NavList__toggle,
+.NavList__item--level-3 > .NavList__itemContent .NavList__toggle {
+  order: 1;
 }
 
-.NavList__group + .NavList__group,
-.NavList__divider + .NavList__group,
-.NavList__item + .NavList__group {
-  margin-block-start: var(--base-size-12);
+.NavList__item--level-2 > .NavList__itemContent .NavList__toggleIcon,
+.NavList__item--level-3 > .NavList__itemContent .NavList__toggleIcon {
+  order: 1;
 }
 
-.NavList__groupHeading {
-  color: var(--brand-color-text-subtle);
-  font-size: var(--brand-text-size-50);
-  font-weight: var(--brand-text-weight-600);
-  line-height: var(--brand-text-lineHeight-50);
-  letter-spacing: var(--brand-text-letterSpacing-50);
-  padding: var(--base-size-8) var(--base-size-12) var(--base-size-4);
-  text-transform: uppercase;
+.NavList__item--level-2 > .NavList__itemContent .NavList__link,
+.NavList__item--level-3 > .NavList__itemContent .NavList__link,
+.NavList__item--level-4 > .NavList__itemContent .NavList__link {
+  order: 2;
+  font-size: var(--brand-text-size-100);
+  line-height: var(--base-size-20);
 }
 
 .NavList__divider {

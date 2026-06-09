@@ -3,7 +3,7 @@ import {render, cleanup, within} from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import '@testing-library/jest-dom'
 import {axe, toHaveNoViolations} from 'jest-axe'
-import {BookIcon} from '@primer/octicons-react'
+import {BookIcon, KebabHorizontalIcon} from '@primer/octicons-react'
 
 import {NavList} from './NavList'
 
@@ -92,23 +92,92 @@ describe('NavList', () => {
     expect(getByRole('link', {name: 'Custom link'})).toHaveAttribute('href', '/custom')
   })
 
-  it('renders groups, dividers, and visual slots', () => {
+  it('renders dividers and visual slots', () => {
     const {getByRole, getByTestId} = render(
       <NavList>
-        <NavList.Group title="Guides">
-          <NavList.Item href="/start" leadingVisual={BookIcon}>
-            Getting started
-          </NavList.Item>
-        </NavList.Group>
         <NavList.Divider />
-        <NavList.Item href="/reference">Reference</NavList.Item>
+        <NavList.Item href="/start" leadingVisual={BookIcon} trailingVisual={<KebabHorizontalIcon />}>
+          Getting started
+        </NavList.Item>
       </NavList>,
     )
 
-    expect(getByTestId(NavList.testIds.group)).toBeInTheDocument()
-    expect(getByTestId(NavList.testIds.groupHeading)).toHaveTextContent('Guides')
     expect(getByTestId(NavList.testIds.divider)).toHaveAttribute('role', 'separator')
     expect(getByRole('link', {name: 'Getting started'}).querySelector('svg')).toBeInTheDocument()
+  })
+
+  it('assigns item hierarchy levels through four nested lists', () => {
+    const {getByRole} = render(
+      <NavList>
+        <NavList.Item defaultExpanded>
+          Docs
+          <NavList.SubNav>
+            <NavList.Item defaultExpanded>
+              Actions
+              <NavList.SubNav>
+                <NavList.Item defaultExpanded>
+                  Workflows
+                  <NavList.SubNav>
+                    <NavList.Item href="/docs/actions/workflows/syntax">Workflow syntax</NavList.Item>
+                  </NavList.SubNav>
+                </NavList.Item>
+              </NavList.SubNav>
+            </NavList.Item>
+          </NavList.SubNav>
+        </NavList.Item>
+      </NavList>,
+    )
+
+    expect(getByRole('button', {name: 'Docs collapse'}).closest('li')).toHaveAttribute('data-navlist-level', '1')
+    expect(getByRole('button', {name: 'Actions collapse'}).closest('li')).toHaveAttribute('data-navlist-level', '2')
+    expect(getByRole('button', {name: 'Workflows collapse'}).closest('li')).toHaveAttribute('data-navlist-level', '3')
+    expect(getByRole('link', {name: 'Workflow syntax'}).closest('li')).toHaveAttribute('data-navlist-level', '4')
+  })
+
+  it('renders expandable items as disclosure buttons instead of links', () => {
+    const {getByRole, queryByRole} = render(
+      <NavList>
+        <NavList.Item>
+          Docs
+          <NavList.SubNav>
+            <NavList.Item href="/docs/actions">Actions</NavList.Item>
+          </NavList.SubNav>
+        </NavList.Item>
+      </NavList>,
+    )
+
+    expect(getByRole('button', {name: 'Docs expand'})).toHaveAttribute('aria-expanded', 'false')
+    expect(queryByRole('link', {name: 'Docs'})).not.toBeInTheDocument()
+  })
+
+  it('prevents expandable items past level four', () => {
+    expect(() =>
+      render(
+        <NavList>
+          <NavList.Item defaultExpanded>
+            One
+            <NavList.SubNav>
+              <NavList.Item defaultExpanded>
+                Two
+                <NavList.SubNav>
+                  <NavList.Item defaultExpanded>
+                    Three
+                    <NavList.SubNav>
+                      <NavList.Item>
+                        Four
+                        <NavList.SubNav>
+                          <NavList.Item href="/five">Five</NavList.Item>
+                        </NavList.SubNav>
+                      </NavList.Item>
+                    </NavList.SubNav>
+                  </NavList.Item>
+                </NavList.SubNav>
+              </NavList.Item>
+            </NavList.SubNav>
+          </NavList.Item>
+        </NavList>,
+      ),
+    ).toThrow('NavList supports up to 4 levels')
   })
 
   it('expands and collapses nested lists', async () => {
@@ -116,7 +185,7 @@ describe('NavList', () => {
 
     const {getByRole, queryByRole} = render(
       <NavList>
-        <NavList.Item href="/docs">
+        <NavList.Item>
           Docs
           <NavList.SubNav>
             <NavList.Item href="/docs/actions">Actions</NavList.Item>
@@ -141,10 +210,33 @@ describe('NavList', () => {
     expect(queryByRole('link', {name: 'Actions'})).not.toBeInTheDocument()
   })
 
+  it('uses triangle indicators for expandable items', async () => {
+    const user = userEvent.setup()
+
+    const {getByRole} = render(
+      <NavList>
+        <NavList.Item>
+          Docs
+          <NavList.SubNav>
+            <NavList.Item href="/docs/actions">Actions</NavList.Item>
+          </NavList.SubNav>
+        </NavList.Item>
+      </NavList>,
+    )
+
+    const toggle = getByRole('button', {name: 'Docs expand'})
+
+    expect(toggle.querySelector('.octicon-triangle-down')).toBeInTheDocument()
+
+    await user.click(toggle)
+
+    expect(toggle.querySelector('.octicon-triangle-up')).toBeInTheDocument()
+  })
+
   it('auto-expands parents with current descendants', () => {
     const {getByRole} = render(
       <NavList>
-        <NavList.Item href="/docs">
+        <NavList.Item>
           Docs
           <NavList.SubNav>
             <NavList.Item href="/docs/actions" aria-current="page">
@@ -159,12 +251,36 @@ describe('NavList', () => {
     expect(getByRole('link', {name: 'Actions'})).toHaveAttribute('aria-current', 'page')
   })
 
+  it('allows auto-expanded current descendant branches to collapse', async () => {
+    const user = userEvent.setup()
+
+    const {getByRole, queryByRole} = render(
+      <NavList>
+        <NavList.Item>
+          Docs
+          <NavList.SubNav>
+            <NavList.Item href="/docs/actions" aria-current="page">
+              Actions
+            </NavList.Item>
+          </NavList.SubNav>
+        </NavList.Item>
+      </NavList>,
+    )
+
+    const toggle = getByRole('button', {name: 'Docs collapse'})
+
+    await user.click(toggle)
+
+    expect(toggle).toHaveAttribute('aria-expanded', 'false')
+    expect(queryByRole('link', {name: 'Actions'})).not.toBeInTheDocument()
+  })
+
   it('preserves a custom nested list id for the toggle control', async () => {
     const user = userEvent.setup()
 
     const {getByRole} = render(
       <NavList>
-        <NavList.Item href="/docs">
+        <NavList.Item>
           Docs
           <NavList.SubNav id="custom-subnav-id">
             <NavList.Item href="/docs/actions">Actions</NavList.Item>
@@ -187,7 +303,7 @@ describe('NavList', () => {
 
     const {getByRole} = render(
       <NavList>
-        <NavList.Item href="/docs" defaultExpanded>
+        <NavList.Item defaultExpanded>
           Docs
           <NavList.SubNav>
             <NavList.Item href="/docs/actions">Actions</NavList.Item>

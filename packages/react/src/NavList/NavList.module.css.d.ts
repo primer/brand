@@ -1,12 +1,13 @@
 declare const styles: {
   readonly "NavList": string;
+  readonly "NavList__accordionButton": string;
   readonly "NavList__divider": string;
-  readonly "NavList__group": string;
-  readonly "NavList__groupHeading": string;
-  readonly "NavList__groupList": string;
   readonly "NavList__item": string;
   readonly "NavList__item--current": string;
-  readonly "NavList__item--expanded": string;
+  readonly "NavList__item--level-1": string;
+  readonly "NavList__item--level-2": string;
+  readonly "NavList__item--level-3": string;
+  readonly "NavList__item--level-4": string;
   readonly "NavList__itemContent": string;
   readonly "NavList__label": string;
   readonly "NavList__leadingVisual": string;

@@ -1,6 +1,5 @@
 import React from 'react'
 import type {Meta, StoryObj} from '@storybook/react'
-import {BookIcon, CodeIcon, CopilotIcon, GitBranchIcon, GitPullRequestIcon} from '@primer/octicons-react'
 
 import {NavList} from '.'
 import {ThemeProvider} from '../ThemeProvider'
@@ -15,25 +14,122 @@ type Story = StoryObj<typeof NavList>
 
 const LongLabel = 'Very long navigation label that demonstrates truncation when the container becomes narrow'
 
-export const Grouped: Story = {
+export const Sections: Story = {
   render: () => (
-    <NavList aria-label="Grouped navigation">
-      <NavList.Group title="Products">
-        <NavList.Item href="#" leadingVisual={CopilotIcon} aria-current="page">
-          Copilot
-        </NavList.Item>
-        <NavList.Item href="#" leadingVisual={CodeIcon}>
-          Codespaces
-        </NavList.Item>
-      </NavList.Group>
-      <NavList.Group title="Collaboration">
-        <NavList.Item href="#" leadingVisual={GitPullRequestIcon}>
-          Pull requests
-        </NavList.Item>
-        <NavList.Item href="#" leadingVisual={GitBranchIcon}>
-          Branches
-        </NavList.Item>
-      </NavList.Group>
+    <NavList aria-label="Section navigation">
+      <NavList.Item defaultExpanded>
+        Products
+        <NavList.SubNav>
+          <NavList.Item href="#" aria-current="page">
+            Copilot
+          </NavList.Item>
+          <NavList.Item href="#">Codespaces</NavList.Item>
+        </NavList.SubNav>
+      </NavList.Item>
+      <NavList.Item defaultExpanded>
+        Collaboration
+        <NavList.SubNav>
+          <NavList.Item href="#">Pull requests</NavList.Item>
+          <NavList.Item href="#">Branches</NavList.Item>
+        </NavList.SubNav>
+      </NavList.Item>
+    </NavList>
+  ),
+}
+
+export const FourLevels: Story = {
+  render: () => (
+    <NavList aria-label="Four-level navigation">
+      <NavList.Item defaultExpanded>
+        GitHub Copilot
+        <NavList.SubNav>
+          <NavList.Item defaultExpanded>
+            Guides
+            <NavList.SubNav>
+              <NavList.Item defaultExpanded>
+                Agents
+                <NavList.SubNav>
+                  <NavList.Item href="#" aria-current="page">
+                    Build an agent
+                  </NavList.Item>
+                  <NavList.Item href="#">Debug an agent</NavList.Item>
+                </NavList.SubNav>
+              </NavList.Item>
+              <NavList.Item href="#">Billing</NavList.Item>
+            </NavList.SubNav>
+          </NavList.Item>
+          <NavList.Item href="#">Quickstart</NavList.Item>
+        </NavList.SubNav>
+      </NavList.Item>
+      <NavList.Item href="#">Code review</NavList.Item>
+    </NavList>
+  ),
+}
+
+export const FourLevelsCollapsed: Story = {
+  render: () => (
+    <NavList aria-label="Collapsed four-level navigation">
+      <NavList.Item>
+        GitHub Copilot
+        <NavList.SubNav>
+          <NavList.Item>
+            Guides
+            <NavList.SubNav>
+              <NavList.Item>
+                Agents
+                <NavList.SubNav>
+                  <NavList.Item href="#">Build an agent</NavList.Item>
+                  <NavList.Item href="#">Debug an agent</NavList.Item>
+                </NavList.SubNav>
+              </NavList.Item>
+              <NavList.Item href="#">Billing</NavList.Item>
+            </NavList.SubNav>
+          </NavList.Item>
+          <NavList.Item href="#">Quickstart</NavList.Item>
+        </NavList.SubNav>
+      </NavList.Item>
+      <NavList.Item href="#">Code review</NavList.Item>
+    </NavList>
+  ),
+}
+
+export const TwoLevels: Story = {
+  render: () => (
+    <NavList aria-label="Two-level navigation">
+      <NavList.Item defaultExpanded>
+        GitHub Copilot
+        <NavList.SubNav>
+          <NavList.Item href="#" aria-current="page">
+            Overview
+          </NavList.Item>
+          <NavList.Item href="#">Quickstart</NavList.Item>
+          <NavList.Item href="#">Billing</NavList.Item>
+        </NavList.SubNav>
+      </NavList.Item>
+      <NavList.Item href="#">Security</NavList.Item>
+    </NavList>
+  ),
+}
+
+export const ThreeLevels: Story = {
+  render: () => (
+    <NavList aria-label="Three-level navigation">
+      <NavList.Item defaultExpanded>
+        GitHub Copilot
+        <NavList.SubNav>
+          <NavList.Item defaultExpanded>
+            Guides
+            <NavList.SubNav>
+              <NavList.Item href="#" aria-current="page">
+                Agents
+              </NavList.Item>
+              <NavList.Item href="#">Extensions</NavList.Item>
+            </NavList.SubNav>
+          </NavList.Item>
+          <NavList.Item href="#">Quickstart</NavList.Item>
+        </NavList.SubNav>
+      </NavList.Item>
+      <NavList.Item href="#">Actions</NavList.Item>
     </NavList>
   ),
 }
@@ -41,7 +137,7 @@ export const Grouped: Story = {
 export const NestedExpanded: Story = {
   render: () => (
     <NavList aria-label="Nested navigation">
-      <NavList.Item href="#" defaultExpanded leadingVisual={BookIcon}>
+      <NavList.Item defaultExpanded>
         Documentation
         <NavList.SubNav>
           <NavList.Item href="#" aria-current="page">
@@ -59,7 +155,7 @@ export const NestedExpanded: Story = {
 export const NestedCollapsed: Story = {
   render: () => (
     <NavList aria-label="Collapsed nested navigation">
-      <NavList.Item href="#" leadingVisual={BookIcon}>
+      <NavList.Item>
         Documentation
         <NavList.SubNav>
           <NavList.Item href="#">Overview</NavList.Item>
@@ -77,8 +173,13 @@ export const LongLabels: Story = {
   render: () => (
     <div style={{width: 280}}>
       <NavList aria-label="Long label navigation">
-        <NavList.Item href="#" aria-current="page">
+        <NavList.Item defaultExpanded>
           {LongLabel}
+          <NavList.SubNav>
+            <NavList.Item href="#" aria-current="page">
+              {LongLabel}
+            </NavList.Item>
+          </NavList.SubNav>
         </NavList.Item>
         <NavList.Item href="#">Short label</NavList.Item>
       </NavList>
@@ -93,12 +194,16 @@ export const DarkMode: Story = {
   render: () => (
     <ThemeProvider colorMode="dark">
       <NavList aria-label="Dark mode navigation">
-        <NavList.Item href="#" leadingVisual={CopilotIcon} aria-current="page">
+        <NavList.Item defaultExpanded>
           Copilot
+          <NavList.SubNav>
+            <NavList.Item href="#" aria-current="page">
+              Overview
+            </NavList.Item>
+            <NavList.Item href="#">Quickstart</NavList.Item>
+          </NavList.SubNav>
         </NavList.Item>
-        <NavList.Item href="#" leadingVisual={BookIcon}>
-          Documentation
-        </NavList.Item>
+        <NavList.Item href="#">Documentation</NavList.Item>
       </NavList>
     </ThemeProvider>
   ),
