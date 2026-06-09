@@ -150,6 +150,24 @@ describe('NavList', () => {
     expect(queryByRole('link', {name: 'Docs'})).not.toBeInTheDocument()
   })
 
+  it('supports ref passthrough on expandable items', () => {
+    const ref = React.createRef<HTMLElement>()
+
+    render(
+      <NavList>
+        <NavList.Item ref={ref}>
+          Docs
+          <NavList.SubNav>
+            <NavList.Item href="/docs/actions">Actions</NavList.Item>
+          </NavList.SubNav>
+        </NavList.Item>
+      </NavList>,
+    )
+
+    expect(ref.current).toBeInstanceOf(HTMLButtonElement)
+    expect(ref.current).toHaveAttribute('aria-expanded', 'false')
+  })
+
   it('prevents expandable items past level four', () => {
     expect(() =>
       render(

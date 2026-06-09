@@ -297,6 +297,19 @@ const NavListItem = forwardRef(
       [hasSubNav, isExpanded, onKeyDown, setExpanded],
     )
 
+    const setAccordionButtonRef = useCallback(
+      (node: HTMLButtonElement | null) => {
+        accordionButtonRef.current = node
+
+        if (typeof ref === 'function') {
+          ref(node)
+        } else if (ref) {
+          ;(ref as React.MutableRefObject<HTMLElement | null>).current = node
+        }
+      },
+      [ref],
+    )
+
     const handleAccordionClick = useCallback(
       (event: React.MouseEvent<HTMLButtonElement>) => {
         if (disabled) {
@@ -321,12 +334,7 @@ const NavListItem = forwardRef(
       // Handles Escape bubbling from nested links to collapse the current sub-navigation and restore focus.
       // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions
       <li
-        className={clsx(
-          styles.NavList__item,
-          levelClassNames[level],
-          isExpanded && styles['NavList__item--expanded'],
-          isCurrent && styles['NavList__item--current'],
-        )}
+        className={clsx(styles.NavList__item, levelClassNames[level], isCurrent && styles['NavList__item--current'])}
         data-navlist-level={level}
         data-testid={testId || testIds.item}
         onKeyDown={handleKeyDown}
@@ -334,7 +342,7 @@ const NavListItem = forwardRef(
         <div className={styles.NavList__itemContent}>
           {hasSubNav && canExpand ? (
             <button
-              ref={accordionButtonRef}
+              ref={setAccordionButtonRef}
               type="button"
               className={clsx(
                 styles.NavList__link,

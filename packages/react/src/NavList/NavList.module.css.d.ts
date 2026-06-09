@@ -15,7 +15,6 @@ declare const styles: {
   readonly "NavList__link--disabled": string;
   readonly "NavList__list": string;
   readonly "NavList__subNav": string;
-  readonly "NavList__toggle": string;
   readonly "NavList__toggleIcon": string;
   readonly "NavList__trailingVisual": string;
 };
