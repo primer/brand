@@ -24,8 +24,8 @@ import {Pre} from './src/components/Pre/Pre.tsx'
 
 const isInternalPath = href => href.startsWith('/') && !href.startsWith('//')
 
-export const Link = ({href = '', children, ...props}) =>
-  isInternalPath(href) ? (
+export const Link = ({href = '', children, ...props}) => {
+  return isInternalPath(href) ? (
     <NextLink href={href} {...props}>
       {children}
     </NextLink>
@@ -34,6 +34,7 @@ export const Link = ({href = '', children, ...props}) =>
       {children}
     </a>
   )
+}
 
 export function useMDXComponents(customComponents) {
   return {

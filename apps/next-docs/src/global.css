@@ -1,3 +1,8 @@
+html,
+html:focus-within {
+  scroll-behavior: auto;
+}
+
 .bg-red-lines {
   display: inline-block;
   border: var(--brand-borderWidth-thin) solid var(--base-color-scale-red-2);
