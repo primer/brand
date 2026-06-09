@@ -22,7 +22,18 @@ import NextLink from 'next/link'
 // eslint-disable-next-line import/extensions
 import {Pre} from './src/components/Pre/Pre.tsx'
 
-export const Link = ({href = '', ...props}) => <NextLink href={href} {...props} />
+const isInternalPath = href => href.startsWith('/') && !href.startsWith('//')
+
+export const Link = ({href = '', children, ...props}) =>
+  isInternalPath(href) ? (
+    <NextLink href={href} {...props}>
+      {children}
+    </NextLink>
+  ) : (
+    <a href={href} {...props}>
+      {children}
+    </a>
+  )
 
 export function useMDXComponents(customComponents) {
   return {
@@ -45,6 +56,7 @@ export function useMDXComponents(customComponents) {
     PropTableValues,
     TableWrapper,
     Link,
+    a: Link,
     h2: props => <HeadingLink tag="h2" {...props} />,
     h3: props => <HeadingLink tag="h3" {...props} />,
     h4: props => <HeadingLink tag="h4" {...props} />,
