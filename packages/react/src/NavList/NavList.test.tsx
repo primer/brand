@@ -159,6 +159,29 @@ describe('NavList', () => {
     expect(getByRole('link', {name: 'Actions'})).toHaveAttribute('aria-current', 'page')
   })
 
+  it('preserves a custom nested list id for the toggle control', async () => {
+    const user = userEvent.setup()
+
+    const {getByRole} = render(
+      <NavList>
+        <NavList.Item href="/docs">
+          Docs
+          <NavList.SubNav id="custom-subnav-id">
+            <NavList.Item href="/docs/actions">Actions</NavList.Item>
+          </NavList.SubNav>
+        </NavList.Item>
+      </NavList>,
+    )
+
+    const toggle = getByRole('button', {name: 'Docs expand'})
+
+    expect(toggle).toHaveAttribute('aria-controls', 'custom-subnav-id')
+
+    await user.click(toggle)
+
+    expect(document.getElementById('custom-subnav-id')).toBeInTheDocument()
+  })
+
   it('moves focus back to the toggle when escape collapses nested lists', async () => {
     const user = userEvent.setup()
 

@@ -231,6 +231,7 @@ const NavListItem = forwardRef(
     const labelChildren = subNav ? childrenArray.filter(child => child !== subNav) : childrenArray
     const label = getTextContent(labelChildren).trim()
     const hasSubNav = Boolean(subNav)
+    const controlledSubNavId = subNav?.props.id ?? subNavId
     const hasCurrentSubNavItem = hasCurrentDescendant(subNav?.props.children)
     const isControlled = expanded !== undefined
     const [uncontrolledExpanded, setUncontrolledExpanded] = useState(defaultExpanded || hasCurrentSubNavItem)
@@ -315,7 +316,7 @@ const NavListItem = forwardRef(
               type="button"
               className={styles.NavList__toggle}
               aria-expanded={isExpanded ? 'true' : 'false'}
-              aria-controls={subNavId}
+              aria-controls={controlledSubNavId}
               aria-label={`${label || internalAccessibleLabels.defaultSubNavLabel} ${
                 isExpanded ? internalAccessibleLabels.collapse : internalAccessibleLabels.expand
               }`}
@@ -329,7 +330,7 @@ const NavListItem = forwardRef(
 
         {subNav
           ? React.cloneElement(subNav, {
-              id: subNav.props.id ?? subNavId,
+              id: controlledSubNavId,
               _expanded: isExpanded,
             })
           : null}
