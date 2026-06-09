@@ -4,7 +4,6 @@ import React, {
   isValidElement,
   useCallback,
   useEffect,
-  useMemo,
   useRef,
   useState,
   type AriaAttributes,
@@ -61,26 +60,58 @@ type NavListRootProps = {
   'aria-labelledby'?: string
   children: ReactNode
   'data-testid'?: string
+  /**
+   * Customizable labels for internally rendered controls.
+   */
+  internalAccessibleLabels?: {
+    defaultNavigationLabel: string
+    defaultSubNavLabel: string
+    expand: string
+    collapse: string
+  }
 } & BaseProps<HTMLElement> &
   Omit<React.HTMLAttributes<HTMLElement>, 'aria-label' | 'aria-labelledby'>
 
+type NavListContextValue = Required<Pick<NavListRootProps, 'internalAccessibleLabels'>>
+
+const defaultInternalAccessibleLabels = {
+  defaultNavigationLabel: 'Navigation',
+  defaultSubNavLabel: 'Nested navigation',
+  expand: 'expand',
+  collapse: 'collapse',
+}
+
+const NavListContext = React.createContext<NavListContextValue>({
+  internalAccessibleLabels: defaultInternalAccessibleLabels,
+})
+
 const NavListRoot = forwardRef<HTMLElement, NavListRootProps>(
   (
-    {children, className, 'aria-label': ariaLabel, 'aria-labelledby': ariaLabelledBy, 'data-testid': testId, ...rest},
+    {
+      children,
+      className,
+      'aria-label': ariaLabel,
+      'aria-labelledby': ariaLabelledBy,
+      'data-testid': testId,
+      internalAccessibleLabels = defaultInternalAccessibleLabels,
+      ...rest
+    },
     ref,
   ) => (
-    <nav
-      ref={ref}
-      className={clsx(styles.NavList, className)}
-      aria-label={ariaLabelledBy ? undefined : ariaLabel ?? 'Navigation'}
-      aria-labelledby={ariaLabelledBy}
-      data-testid={testId || testIds.root}
-      {...rest}
-    >
-      <ul className={styles.NavList__list} data-testid={testIds.list}>
-        {children}
-      </ul>
-    </nav>
+    <NavListContext.Provider value={{internalAccessibleLabels}}>
+      <nav
+        ref={ref}
+        className={clsx(styles.NavList, className)}
+        aria-label={ariaLabelledBy ? undefined : ariaLabel ?? internalAccessibleLabels.defaultNavigationLabel}
+        aria-labelledby={ariaLabelledBy}
+        data-testid={testId || testIds.root}
+        {...rest}
+      >
+        <ul className={styles.NavList__list} data-testid={testIds.list}>
+          {children}
+        </ul>
+      </nav>
+    </NavListContext.Provider>
   ),
 )
 
@@ -189,6 +220,7 @@ const NavListItem = forwardRef(
     ref: Ref<HTMLElement>,
   ) => {
     const Component = as || 'a'
+    const {internalAccessibleLabels} = React.useContext(NavListContext)
     const subNavId = useId()
     const toggleButtonRef = useRef<HTMLButtonElement>(null)
     const childrenArray = Children.toArray(children)
@@ -251,10 +283,11 @@ const NavListItem = forwardRef(
     )
 
     return (
+      // Handles Escape bubbling from nested links to collapse the current sub-navigation and restore focus.
+      // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions
       <li
         className={clsx(
           styles.NavList__item,
-          hasSubNav && styles['NavList__item--has-sub-nav'],
           isExpanded && styles['NavList__item--expanded'],
           isCurrent && styles['NavList__item--current'],
         )}
@@ -283,7 +316,9 @@ const NavListItem = forwardRef(
               className={styles.NavList__toggle}
               aria-expanded={isExpanded ? 'true' : 'false'}
               aria-controls={subNavId}
-              aria-label={`${label || 'Nested navigation'} ${isExpanded ? 'collapse' : 'expand'}`}
+              aria-label={`${label || internalAccessibleLabels.defaultSubNavLabel} ${
+                isExpanded ? internalAccessibleLabels.collapse : internalAccessibleLabels.expand
+              }`}
               data-testid={testIds.toggle}
               onClick={toggleExpanded}
             >
