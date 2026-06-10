@@ -236,10 +236,10 @@ describe('RiverAccordion', () => {
     expect(accordionRoot).toHaveClass('RiverAccordion__align-end')
   })
 
-  it('renders a chevron-down icon on a collapsed item', () => {
+  it('renders a triangle-down icon on a collapsed item', () => {
     const {container} = render(<MockRiverAccordion />)
 
-    // Heading 2 is collapsed by default (index 1), its icon span should contain the chevron-down SVG
+    // Heading 2 is collapsed by default (index 1), its icon span should contain the triangle-down SVG
     const buttons = container.querySelectorAll('button[aria-expanded]')
     const collapsedButton = buttons[1] // Heading 2
     const iconSpan = collapsedButton.querySelector('.RiverAccordion__icon')
@@ -247,13 +247,13 @@ describe('RiverAccordion', () => {
     expect(iconSpan).toBeInTheDocument()
     const svg = iconSpan?.querySelector('svg')
     expect(svg).toBeInTheDocument()
-    expect(svg).toHaveClass('octicon-chevron-down')
+    expect(svg).toHaveClass('octicon-triangle-down')
   })
 
-  it('renders a chevron-up icon on an expanded item', () => {
+  it('renders a triangle-up icon on an expanded item', () => {
     const {container} = render(<MockRiverAccordion />)
 
-    // Heading 1 is expanded by default (index 0), its icon span should contain the chevron-up SVG
+    // Heading 1 is expanded by default (index 0), its icon span should contain the triangle-up SVG
     const buttons = container.querySelectorAll('button[aria-expanded]')
     const expandedButton = buttons[0] // Heading 1
     const iconSpan = expandedButton.querySelector('.RiverAccordion__icon')
@@ -261,7 +261,7 @@ describe('RiverAccordion', () => {
     expect(iconSpan).toBeInTheDocument()
     const svg = iconSpan?.querySelector('svg')
     expect(svg).toBeInTheDocument()
-    expect(svg).toHaveClass('octicon-chevron-up')
+    expect(svg).toHaveClass('octicon-triangle-up')
   })
 
   it.each(RiverAccordionVariants)('applies the correct class for variant="%s"', variant => {
