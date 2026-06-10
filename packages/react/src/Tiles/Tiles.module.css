@@ -38,6 +38,7 @@
 }
 
 .Tiles--variant-gridlines .Tiles-grid {
+  --tiles-grid-border-color: var(--brand-color-border-muted);
   position: relative;
   padding-right: var(--brand-borderWidth-thin);
   padding-bottom: var(--brand-borderWidth-thin);
@@ -50,7 +51,7 @@
   top: 0;
   bottom: 0;
   width: 0;
-  border-left: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
+  border-left: var(--brand-borderWidth-thin) solid var(--tiles-grid-border-color);
   z-index: 1;
   pointer-events: none;
 }
@@ -61,6 +62,13 @@
 
 .Tiles--variant-gridlines .Tiles-grid::after {
   right: 0;
+}
+
+@media screen and (min-width: 63.25rem) {
+  .Tiles--variant-gridlines.Tiles--layout-default .Tiles-grid:not(:has(> .Tiles-item:nth-child(6))),
+  .Tiles--variant-gridlines.Tiles--layout-compact .Tiles-grid:not(:has(> .Tiles-item:nth-child(8))) {
+    --tiles-grid-border-color: transparent;
+  }
 }
 
 .Tiles-item {
