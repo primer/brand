@@ -22,7 +22,14 @@
 }
 
 .NavList__list > .NavList__item + .NavList__item {
-  border-block-start: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
+  background-image: repeating-linear-gradient(
+    to right,
+    var(--brand-color-border-muted) 0 var(--base-size-2),
+    transparent var(--base-size-2) var(--base-size-4)
+  );
+  background-repeat: no-repeat;
+  background-size: 100% var(--brand-borderWidth-thin);
+  background-position: top left;
 }
 
 .NavList__itemContent {
@@ -65,6 +72,26 @@
   background-color: var(--brand-color-canvas-subtle);
 }
 
+.NavList__accordionButton:hover {
+  background-color: transparent;
+}
+
+.NavList__item:not(.NavList__item--level-1) > .NavList__itemContent .NavList__accordionButton .NavList__label {
+  display: flex;
+  align-items: center;
+  flex: 1 1 auto;
+  order: 2;
+  min-width: 0;
+  min-height: var(--base-size-32);
+  padding-inline-start: var(--base-size-6);
+  margin-block: calc(-1 * var(--base-size-8));
+  border-radius: var(--brand-borderRadius-small);
+}
+
+.NavList__item:not(.NavList__item--level-1) > .NavList__itemContent .NavList__accordionButton:hover .NavList__label {
+  background-color: var(--brand-color-canvas-subtle);
+}
+
 .NavList__link:focus-visible,
 .NavList__accordionButton:focus-visible {
   outline: var(--brand-borderWidth-thick) solid var(--brand-color-focus);
@@ -86,7 +113,7 @@
   inset-inline-start: 0;
   width: var(--base-size-4);
   border-radius: var(--base-size-2);
-  background-color: var(--brand-color-accent-primary);
+  background-color: var(--brand-color-text-emphasized);
 }
 
 .NavList__item--level-1 > .NavList__itemContent .NavList__link[aria-current]:not([aria-current='false']) {
@@ -149,6 +176,18 @@
   font-size: var(--brand-text-size-200);
   font-weight: var(--brand-text-weight-500);
   line-height: 1;
+}
+
+.NavList__item--level-1 > .NavList__itemContent .NavList__accordionButton {
+  min-height: var(--base-size-32);
+  margin-block: calc(-1 * var(--base-size-8));
+  padding-inline-start: var(--base-size-6);
+  border-radius: var(--brand-borderRadius-small);
+}
+
+.NavList__item--level-1 > .NavList__itemContent .NavList__accordionButton:hover,
+.NavList__item--level-1 > .NavList__itemContent .NavList__accordionButton:active {
+  background-color: var(--brand-color-canvas-subtle);
 }
 
 .NavList__item--level-1 > .NavList__itemContent .NavList__toggleIcon {
@@ -223,14 +262,27 @@
 }
 
 .NavList__item--leaf:not(.NavList__item--level-1).NavList__item--current > .NavList__itemContent .NavList__label,
+.NavList__item--leaf:not(.NavList__item--level-1) > .NavList__itemContent .NavList__link:hover .NavList__label,
 .NavList__item--leaf:not(.NavList__item--level-1)
   .NavList__link[aria-current]:not([aria-current='false'])
   .NavList__label {
   background-color: var(--brand-color-canvas-subtle);
 }
 
+.NavList__item--leaf:not(.NavList__item--level-1) > .NavList__itemContent .NavList__link:hover {
+  background-color: transparent;
+  padding-inline-start: var(--base-size-8);
+}
+
 .NavList__divider {
-  border-block-start: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
+  height: var(--brand-borderWidth-thin);
+  background-image: repeating-linear-gradient(
+    to right,
+    var(--brand-color-border-muted) 0 var(--base-size-2),
+    transparent var(--base-size-2) var(--base-size-4)
+  );
+  background-repeat: no-repeat;
+  background-size: 100% var(--brand-borderWidth-thin);
   margin-block: var(--base-size-8);
 }
 
