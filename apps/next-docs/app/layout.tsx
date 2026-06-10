@@ -58,6 +58,9 @@ const RootLayout: FC<{children: ReactNode}> = async ({children}) => {
     <html
       lang="en"
       dir="ltr"
+      // Lets Next.js disable smooth scrolling during route transitions so navigation reliably
+      // scrolls to top. See https://nextjs.org/docs/messages/missing-data-scroll-behavior
+      data-scroll-behavior="smooth"
       // Hacks to suppress hydration errors. TODO: Remove this once we have a better solution.
       className="js-focus-visible"
       data-js-focus-visible=""
