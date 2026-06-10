@@ -105,7 +105,7 @@ export const FourLevels: Story = {
 export const FourLevelsCollapsed: Story = {
   render: () => (
     <NavList aria-label="Collapsed four-level navigation">
-      <NavList.Item>
+      <NavList.Item expanded={false}>
         Level 1 section (collapsed)
         <NavList.SubNav>
           <NavList.Item>
@@ -114,7 +114,10 @@ export const FourLevelsCollapsed: Story = {
               <NavList.Item>
                 Level 3 subcategory
                 <NavList.SubNav>
-                  {renderArticleItems(['Level 4 page article', 'Create a workflow', 'Configure permissions'])}
+                  {renderArticleItems(
+                    ['Level 4 page article', 'Create a workflow', 'Configure permissions'],
+                    'Level 4 page article',
+                  )}
                 </NavList.SubNav>
               </NavList.Item>
               <NavList.Item href="#">Level 4 page article</NavList.Item>
