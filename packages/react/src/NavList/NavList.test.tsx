@@ -298,7 +298,26 @@ describe('NavList', () => {
     )
 
     expect(getByRole('button', {name: 'Docs collapse'})).toHaveAttribute('aria-expanded', 'true')
+    expect(getByRole('button', {name: 'Docs collapse'}).closest('li')).not.toHaveAttribute('data-current-descendant')
     expect(getByRole('link', {name: 'Actions'})).toHaveAttribute('aria-current', 'page')
+  })
+
+  it('marks controlled collapsed parents with current descendants', () => {
+    const {getByRole} = render(
+      <NavList>
+        <NavList.Item expanded={false}>
+          Docs
+          <NavList.SubNav>
+            <NavList.Item href="/docs/actions" aria-current="page">
+              Actions
+            </NavList.Item>
+          </NavList.SubNav>
+        </NavList.Item>
+      </NavList>,
+    )
+
+    expect(getByRole('button', {name: 'Docs expand'})).toHaveAttribute('aria-expanded', 'false')
+    expect(getByRole('button', {name: 'Docs expand'}).closest('li')).toHaveAttribute('data-current-descendant', 'true')
   })
 
   it('allows auto-expanded current descendant branches to collapse', async () => {
@@ -322,6 +341,7 @@ describe('NavList', () => {
     await user.click(toggle)
 
     expect(toggle).toHaveAttribute('aria-expanded', 'false')
+    expect(toggle.closest('li')).toHaveAttribute('data-current-descendant', 'true')
     expect(queryByRole('link', {name: 'Actions'})).not.toBeInTheDocument()
   })
 
@@ -348,7 +368,7 @@ describe('NavList', () => {
     expect(document.getElementById('custom-subnav-id')).toBeInTheDocument()
   })
 
-  it('moves focus back to the toggle when escape collapses nested lists', async () => {
+  it('does not collapse nested lists when Escape is pressed', async () => {
     const user = userEvent.setup()
 
     const {getByRole} = render(
@@ -368,8 +388,9 @@ describe('NavList', () => {
     nestedLink.focus()
     await user.keyboard('{Escape}')
 
-    expect(toggle).toHaveFocus()
-    expect(toggle).toHaveAttribute('aria-expanded', 'false')
+    expect(nestedLink).toHaveFocus()
+    expect(toggle).toHaveAttribute('aria-expanded', 'true')
+    expect(nestedLink).toBeInTheDocument()
   })
 
   it('marks disabled links with aria-disabled and prevents clicks', async () => {

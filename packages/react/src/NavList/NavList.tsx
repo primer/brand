@@ -4,7 +4,6 @@ import React, {
   isValidElement,
   useCallback,
   useEffect,
-  useRef,
   useState,
   type AriaAttributes,
   type PropsWithChildren,
@@ -224,7 +223,6 @@ const NavListItem = forwardRef(
     const {internalAccessibleLabels} = React.useContext(NavListContext)
     const level = React.useContext(NavListLevelContext)
     const subNavId = useId()
-    const accordionButtonRef = useRef<HTMLButtonElement>(null)
     const childrenArray = Children.toArray(children)
     const subNav = childrenArray.find(
       (child): child is NavListSubNavElement =>
@@ -241,6 +239,7 @@ const NavListItem = forwardRef(
     const [uncontrolledExpanded, setUncontrolledExpanded] = useState(defaultExpanded || hasCurrentSubNavItem)
     const isExpanded = Boolean(isControlled ? expanded : uncontrolledExpanded)
     const isCurrent = isCurrentValue(ariaCurrent)
+    const hasCollapsedCurrentSubNavItem = hasSubNav && hasCurrentSubNavItem && !isExpanded
     const ToggleIcon = isExpanded ? TriangleUpIcon : TriangleDownIcon
     const levelClassNames: Record<NavListLevel, string> = {
       1: styles['NavList__item--level-1'],
@@ -285,23 +284,8 @@ const NavListItem = forwardRef(
       [disabled, onClick],
     )
 
-    const handleKeyDown = useCallback(
-      (event: React.KeyboardEvent<HTMLElement>) => {
-        onKeyDown?.(event)
-
-        if (event.defaultPrevented || !hasSubNav || event.key !== 'Escape' || !isExpanded) return
-
-        event.preventDefault()
-        setExpanded(false)
-        accordionButtonRef.current?.focus()
-      },
-      [hasSubNav, isExpanded, onKeyDown, setExpanded],
-    )
-
     const setAccordionButtonRef = useCallback(
       (node: HTMLButtonElement | null) => {
-        accordionButtonRef.current = node
-
         if (typeof ref === 'function') {
           ref(node)
         } else if (ref) {
@@ -341,10 +325,11 @@ const NavListItem = forwardRef(
           isLeafItem && styles['NavList__item--leaf'],
           isCurrent && styles['NavList__item--current'],
         )}
+        data-current-descendant={hasCollapsedCurrentSubNavItem ? 'true' : undefined}
         data-expanded={hasSubNav ? String(isExpanded) : undefined}
         data-navlist-level={level}
         data-testid={testId || testIds.item}
-        onKeyDown={handleKeyDown}
+        onKeyDown={onKeyDown}
       >
         <div className={styles.NavList__itemContent}>
           {hasSubNav && canExpand ? (
