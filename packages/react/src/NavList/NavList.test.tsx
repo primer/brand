@@ -134,6 +134,38 @@ describe('NavList', () => {
     expect(getByRole('link', {name: 'Workflow syntax'}).closest('li')).toHaveAttribute('data-navlist-level', '4')
   })
 
+  it('marks leaf articles at each nested depth', () => {
+    const {getByRole} = render(
+      <NavList>
+        <NavList.Item defaultExpanded>
+          Docs
+          <NavList.SubNav>
+            <NavList.Item href="/overview">Overview</NavList.Item>
+            <NavList.Item defaultExpanded>
+              Actions
+              <NavList.SubNav>
+                <NavList.Item href="/actions/quickstart">Quickstart</NavList.Item>
+                <NavList.Item defaultExpanded>
+                  Workflows
+                  <NavList.SubNav>
+                    <NavList.Item href="/actions/workflows/syntax">Workflow syntax</NavList.Item>
+                  </NavList.SubNav>
+                </NavList.Item>
+              </NavList.SubNav>
+            </NavList.Item>
+          </NavList.SubNav>
+        </NavList.Item>
+      </NavList>,
+    )
+
+    expect(getByRole('link', {name: 'Overview'}).closest('li')).toHaveClass('NavList__item--leaf')
+    expect(getByRole('link', {name: 'Overview'}).closest('li')).toHaveAttribute('data-navlist-level', '2')
+    expect(getByRole('link', {name: 'Quickstart'}).closest('li')).toHaveClass('NavList__item--leaf')
+    expect(getByRole('link', {name: 'Quickstart'}).closest('li')).toHaveAttribute('data-navlist-level', '3')
+    expect(getByRole('link', {name: 'Workflow syntax'}).closest('li')).toHaveClass('NavList__item--leaf')
+    expect(getByRole('link', {name: 'Workflow syntax'}).closest('li')).toHaveAttribute('data-navlist-level', '4')
+  })
+
   it('renders expandable items as disclosure buttons instead of links', () => {
     const {getByRole, queryByRole} = render(
       <NavList>

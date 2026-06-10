@@ -20,20 +20,35 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof NavList>
 
+const ArticleLabels = [
+  'Overview',
+  'Quickstart',
+  'Install GitHub Copilot',
+  'Configure your editor',
+  'Manage policies',
+  'Troubleshooting',
+]
+
+const renderArticleItems = (labels = ArticleLabels, currentLabel?: string) =>
+  labels.map((label, index) => (
+    <NavList.Item key={`${label}-${index}`} href="#" aria-current={label === currentLabel ? 'page' : undefined}>
+      {label}
+    </NavList.Item>
+  ))
+
 export const Default: Story = {
   render: args => (
     <NavList {...args}>
       <NavList.Item defaultExpanded>
         GitHub Copilot
+        <NavList.SubNav>{renderArticleItems(ArticleLabels, 'Overview')}</NavList.SubNav>
+      </NavList.Item>
+      <NavList.Item>
+        Code review
         <NavList.SubNav>
-          <NavList.Item href="#" aria-current="page">
-            Overview
-          </NavList.Item>
-          <NavList.Item href="#">Concepts</NavList.Item>
-          <NavList.Item href="#">Quickstart</NavList.Item>
+          {renderArticleItems(['Overview', 'Review pull requests', 'Configure coding guidelines'])}
         </NavList.SubNav>
       </NavList.Item>
-      <NavList.Item href="#">Code review</NavList.Item>
     </NavList>
   ),
 }
@@ -44,20 +59,25 @@ export const Playground: Story = {
       <NavList.Item defaultExpanded>
         GitHub Copilot
         <NavList.SubNav>
-          <NavList.Item href="#">Overview</NavList.Item>
+          {renderArticleItems(['Overview', 'What is GitHub Copilot?'])}
           <NavList.Item defaultExpanded>
             Guides
             <NavList.SubNav>
               <NavList.Item defaultExpanded>
                 Agents
                 <NavList.SubNav>
-                  <NavList.Item href="#" aria-current="page">
-                    Build an agent
-                  </NavList.Item>
-                  <NavList.Item href="#">Customize an agent</NavList.Item>
+                  {renderArticleItems(
+                    ['Build an agent', 'Customize an agent', 'Debug an agent', 'Deploy an agent'],
+                    'Build an agent',
+                  )}
                 </NavList.SubNav>
               </NavList.Item>
-              <NavList.Item href="#">Extensions</NavList.Item>
+              <NavList.Item>
+                Extensions
+                <NavList.SubNav>
+                  {renderArticleItems(['Install an extension', 'Publish an extension', 'Manage permissions'])}
+                </NavList.SubNav>
+              </NavList.Item>
             </NavList.SubNav>
           </NavList.Item>
         </NavList.SubNav>
@@ -65,16 +85,16 @@ export const Playground: Story = {
       <NavList.Item>
         Code review
         <NavList.SubNav>
-          <NavList.Item href="#">Overview</NavList.Item>
-          <NavList.Item href="#">Review pull requests</NavList.Item>
+          {renderArticleItems(['Overview', 'Review pull requests', 'Configure rulesets', 'Use suggested changes'])}
         </NavList.SubNav>
       </NavList.Item>
       <NavList.Item defaultExpanded>
         Resources
-        <NavList.SubNav>
-          <NavList.Item href="#">Changelog</NavList.Item>
-          <NavList.Item href="#">API reference</NavList.Item>
-        </NavList.SubNav>
+        <NavList.SubNav>{renderArticleItems(['Changelog', 'API reference', 'REST API', 'GraphQL API'])}</NavList.SubNav>
+      </NavList.Item>
+      <NavList.Item>
+        Security
+        <NavList.SubNav>{renderArticleItems(['Overview', 'Secret scanning', 'Code scanning'])}</NavList.SubNav>
       </NavList.Item>
     </NavList>
   ),

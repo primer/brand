@@ -30,11 +30,21 @@ import {NavList} from '@primer/react-brand'
       <NavList.Item href="#" aria-current="page">
         Overview
       </NavList.Item>
-      <NavList.Item href="#">Concepts</NavList.Item>
       <NavList.Item href="#">Quickstart</NavList.Item>
+      <NavList.Item href="#">Install GitHub Copilot</NavList.Item>
+      <NavList.Item href="#">Configure your editor</NavList.Item>
+      <NavList.Item href="#">Manage policies</NavList.Item>
+      <NavList.Item href="#">Troubleshooting</NavList.Item>
     </NavList.SubNav>
   </NavList.Item>
-  <NavList.Item href="#">Code review</NavList.Item>
+  <NavList.Item>
+    Code review
+    <NavList.SubNav>
+      <NavList.Item href="#">Overview</NavList.Item>
+      <NavList.Item href="#">Review pull requests</NavList.Item>
+      <NavList.Item href="#">Configure coding guidelines</NavList.Item>
+    </NavList.SubNav>
+  </NavList.Item>
 </NavList>
 ```
 
@@ -51,13 +61,36 @@ Use first-level `NavList.Item` rows as sections. Adjacent sections include a div
         Copilot
       </NavList.Item>
       <NavList.Item href="#">Codespaces</NavList.Item>
+      <NavList.Item href="#">Actions</NavList.Item>
+      <NavList.Item href="#">Packages</NavList.Item>
     </NavList.SubNav>
   </NavList.Item>
   <NavList.Item defaultExpanded>
     Collaboration
     <NavList.SubNav>
-      <NavList.Item href="#">Pull requests</NavList.Item>
-      <NavList.Item href="#">Branches</NavList.Item>
+      <NavList.Item defaultExpanded>
+        Pull requests
+        <NavList.SubNav>
+          <NavList.Item href="#">Review pull requests</NavList.Item>
+          <NavList.Item href="#">Use suggested changes</NavList.Item>
+          <NavList.Item href="#">Configure rulesets</NavList.Item>
+        </NavList.SubNav>
+      </NavList.Item>
+      <NavList.Item>
+        Branches
+        <NavList.SubNav>
+          <NavList.Item href="#">Overview</NavList.Item>
+          <NavList.Item href="#">Protection rules</NavList.Item>
+        </NavList.SubNav>
+      </NavList.Item>
+    </NavList.SubNav>
+  </NavList.Item>
+  <NavList.Item>
+    Security
+    <NavList.SubNav>
+      <NavList.Item href="#">Overview</NavList.Item>
+      <NavList.Item href="#">Secret scanning</NavList.Item>
+      <NavList.Item href="#">Code scanning</NavList.Item>
     </NavList.SubNav>
   </NavList.Item>
 </NavList>
@@ -82,15 +115,38 @@ NavList supports up to four levels. Levels one through three can optionally expa
                 Build an agent
               </NavList.Item>
               <NavList.Item href="#">Customize an agent</NavList.Item>
+              <NavList.Item href="#">Debug an agent</NavList.Item>
+              <NavList.Item href="#">Deploy an agent</NavList.Item>
             </NavList.SubNav>
           </NavList.Item>
-          <NavList.Item href="#">Extensions</NavList.Item>
+          <NavList.Item>
+            Extensions
+            <NavList.SubNav>
+              <NavList.Item href="#">Install an extension</NavList.Item>
+              <NavList.Item href="#">Publish an extension</NavList.Item>
+              <NavList.Item href="#">Manage permissions</NavList.Item>
+            </NavList.SubNav>
+          </NavList.Item>
         </NavList.SubNav>
       </NavList.Item>
-      <NavList.Item href="#">Quickstart</NavList.Item>
+      <NavList.Item>
+        Administration
+        <NavList.SubNav>
+          <NavList.Item href="#">Overview</NavList.Item>
+          <NavList.Item href="#">Policies</NavList.Item>
+          <NavList.Item href="#">Audit log</NavList.Item>
+        </NavList.SubNav>
+      </NavList.Item>
     </NavList.SubNav>
   </NavList.Item>
-  <NavList.Item href="#">Code review</NavList.Item>
+  <NavList.Item>
+    Code review
+    <NavList.SubNav>
+      <NavList.Item href="#">Overview</NavList.Item>
+      <NavList.Item href="#">Review pull requests</NavList.Item>
+      <NavList.Item href="#">Use suggested changes</NavList.Item>
+    </NavList.SubNav>
+  </NavList.Item>
 </NavList>
 ```
 
@@ -108,6 +164,8 @@ Use `NavList.SubNav` inside a `NavList.Item` for a nested list. Items with neste
       </NavList.Item>
       <NavList.Item href="#">Guides</NavList.Item>
       <NavList.Item href="#">API reference</NavList.Item>
+      <NavList.Item href="#">Examples</NavList.Item>
+      <NavList.Item href="#">Changelog</NavList.Item>
     </NavList.SubNav>
   </NavList.Item>
   <NavList.Item href="#">Changelog</NavList.Item>

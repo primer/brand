@@ -14,25 +14,54 @@ type Story = StoryObj<typeof NavList>
 
 const LongLabel = 'Very long navigation label that demonstrates truncation when the container becomes narrow'
 
+const ArticleLabels = [
+  'Level 4 page article',
+  'Configure your project',
+  'Manage access',
+  'Review changes',
+  'Troubleshooting',
+  'Reference',
+  'Changelog',
+  'FAQ',
+]
+
+const renderArticleItems = (labels = ArticleLabels, currentLabel?: string) =>
+  labels.map((label, index) => (
+    <NavList.Item key={`${label}-${index}`} href="#" aria-current={label === currentLabel ? 'page' : undefined}>
+      {label}
+    </NavList.Item>
+  ))
+
+const CollapsedSection = ({children = 'Level 1 section (collapsed)'}: {children?: React.ReactNode}) => (
+  <NavList.Item>
+    {children}
+    <NavList.SubNav>{renderArticleItems(['Overview', 'Guides', 'Reference'])}</NavList.SubNav>
+  </NavList.Item>
+)
+
 export const Sections: Story = {
   render: () => (
     <NavList aria-label="Section navigation">
       <NavList.Item defaultExpanded>
-        Products
-        <NavList.SubNav>
-          <NavList.Item href="#" aria-current="page">
-            Copilot
-          </NavList.Item>
-          <NavList.Item href="#">Codespaces</NavList.Item>
-        </NavList.SubNav>
+        Level 1 section (1 tier)
+        <NavList.SubNav>{renderArticleItems()}</NavList.SubNav>
       </NavList.Item>
       <NavList.Item defaultExpanded>
-        Collaboration
+        Level 1 section (2 tiers)
         <NavList.SubNav>
-          <NavList.Item href="#">Pull requests</NavList.Item>
-          <NavList.Item href="#">Branches</NavList.Item>
+          <NavList.Item defaultExpanded>
+            Level 2 category
+            <NavList.SubNav>{renderArticleItems()}</NavList.SubNav>
+          </NavList.Item>
+          <NavList.Item>
+            Level 2 category
+            <NavList.SubNav>{renderArticleItems(['Overview', 'Settings', 'Reference'])}</NavList.SubNav>
+          </NavList.Item>
         </NavList.SubNav>
       </NavList.Item>
+      <CollapsedSection />
+      <CollapsedSection />
+      <CollapsedSection />
     </NavList>
   ),
 }
@@ -41,27 +70,34 @@ export const FourLevels: Story = {
   render: () => (
     <NavList aria-label="Four-level navigation">
       <NavList.Item defaultExpanded>
-        GitHub Copilot
+        Level 1 section (3 tiers)
         <NavList.SubNav>
           <NavList.Item defaultExpanded>
-            Guides
+            Level 2 category
             <NavList.SubNav>
               <NavList.Item defaultExpanded>
-                Agents
+                Level 3 subcategory
                 <NavList.SubNav>
-                  <NavList.Item href="#" aria-current="page">
-                    Build an agent
-                  </NavList.Item>
-                  <NavList.Item href="#">Debug an agent</NavList.Item>
+                  {renderArticleItems(
+                    ['Level 4 page article', 'Create a workflow', 'Configure permissions', 'Review logs'],
+                    'Level 4 page article',
+                  )}
                 </NavList.SubNav>
               </NavList.Item>
-              <NavList.Item href="#">Billing</NavList.Item>
+              <NavList.Item>
+                Level 3 subcategory
+                <NavList.SubNav>{renderArticleItems(['Overview', 'Examples', 'API reference'])}</NavList.SubNav>
+              </NavList.Item>
             </NavList.SubNav>
           </NavList.Item>
-          <NavList.Item href="#">Quickstart</NavList.Item>
+          <NavList.Item>
+            Level 2 category
+            <NavList.SubNav>{renderArticleItems(['Overview', 'Billing', 'Limits', 'Release notes'])}</NavList.SubNav>
+          </NavList.Item>
         </NavList.SubNav>
       </NavList.Item>
-      <NavList.Item href="#">Code review</NavList.Item>
+      <CollapsedSection />
+      <CollapsedSection />
     </NavList>
   ),
 }
@@ -70,25 +106,25 @@ export const FourLevelsCollapsed: Story = {
   render: () => (
     <NavList aria-label="Collapsed four-level navigation">
       <NavList.Item>
-        GitHub Copilot
+        Level 1 section (collapsed)
         <NavList.SubNav>
           <NavList.Item>
-            Guides
+            Level 2 category
             <NavList.SubNav>
               <NavList.Item>
-                Agents
+                Level 3 subcategory
                 <NavList.SubNav>
-                  <NavList.Item href="#">Build an agent</NavList.Item>
-                  <NavList.Item href="#">Debug an agent</NavList.Item>
+                  {renderArticleItems(['Level 4 page article', 'Create a workflow', 'Configure permissions'])}
                 </NavList.SubNav>
               </NavList.Item>
-              <NavList.Item href="#">Billing</NavList.Item>
+              <NavList.Item href="#">Level 4 page article</NavList.Item>
             </NavList.SubNav>
           </NavList.Item>
-          <NavList.Item href="#">Quickstart</NavList.Item>
+          <NavList.Item href="#">Level 4 page article</NavList.Item>
         </NavList.SubNav>
       </NavList.Item>
-      <NavList.Item href="#">Code review</NavList.Item>
+      <CollapsedSection />
+      <CollapsedSection />
     </NavList>
   ),
 }
@@ -98,15 +134,9 @@ export const TwoLevels: Story = {
     <NavList aria-label="Two-level navigation">
       <NavList.Item defaultExpanded>
         GitHub Copilot
-        <NavList.SubNav>
-          <NavList.Item href="#" aria-current="page">
-            Overview
-          </NavList.Item>
-          <NavList.Item href="#">Quickstart</NavList.Item>
-          <NavList.Item href="#">Billing</NavList.Item>
-        </NavList.SubNav>
+        <NavList.SubNav>{renderArticleItems(ArticleLabels, 'Level 4 page article')}</NavList.SubNav>
       </NavList.Item>
-      <NavList.Item href="#">Security</NavList.Item>
+      <CollapsedSection>Security</CollapsedSection>
     </NavList>
   ),
 }
@@ -120,16 +150,16 @@ export const ThreeLevels: Story = {
           <NavList.Item defaultExpanded>
             Guides
             <NavList.SubNav>
-              <NavList.Item href="#" aria-current="page">
-                Agents
-              </NavList.Item>
-              <NavList.Item href="#">Extensions</NavList.Item>
+              {renderArticleItems(['Agents', 'Extensions', 'Billing', 'Troubleshooting'], 'Agents')}
             </NavList.SubNav>
           </NavList.Item>
-          <NavList.Item href="#">Quickstart</NavList.Item>
+          <NavList.Item>
+            Administration
+            <NavList.SubNav>{renderArticleItems(['Overview', 'Policies', 'Audit log'])}</NavList.SubNav>
+          </NavList.Item>
         </NavList.SubNav>
       </NavList.Item>
-      <NavList.Item href="#">Actions</NavList.Item>
+      <CollapsedSection>Actions</CollapsedSection>
     </NavList>
   ),
 }
@@ -140,11 +170,7 @@ export const NestedExpanded: Story = {
       <NavList.Item defaultExpanded>
         Documentation
         <NavList.SubNav>
-          <NavList.Item href="#" aria-current="page">
-            Overview
-          </NavList.Item>
-          <NavList.Item href="#">Guides</NavList.Item>
-          <NavList.Item href="#">API reference</NavList.Item>
+          {renderArticleItems(['Overview', 'Guides', 'API reference', 'Examples', 'Changelog'], 'Overview')}
         </NavList.SubNav>
       </NavList.Item>
       <NavList.Item href="#">Changelog</NavList.Item>
@@ -197,10 +223,7 @@ export const DarkMode: Story = {
         <NavList.Item defaultExpanded>
           Copilot
           <NavList.SubNav>
-            <NavList.Item href="#" aria-current="page">
-              Overview
-            </NavList.Item>
-            <NavList.Item href="#">Quickstart</NavList.Item>
+            {renderArticleItems(['Overview', 'Quickstart', 'Policies', 'Audit log'], 'Overview')}
           </NavList.SubNav>
         </NavList.Item>
         <NavList.Item href="#">Documentation</NavList.Item>

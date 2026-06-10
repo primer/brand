@@ -234,6 +234,7 @@ const NavListItem = forwardRef(
     const label = getTextContent(labelChildren).trim()
     const hasSubNav = Boolean(subNav)
     const canExpand = level < MaxNavListLevel
+    const isLeafItem = !hasSubNav
     const controlledSubNavId = subNav?.props.id ?? subNavId
     const hasCurrentSubNavItem = hasCurrentDescendant(subNav?.props.children)
     const isControlled = expanded !== undefined
@@ -334,7 +335,13 @@ const NavListItem = forwardRef(
       // Handles Escape bubbling from nested links to collapse the current sub-navigation and restore focus.
       // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions
       <li
-        className={clsx(styles.NavList__item, levelClassNames[level], isCurrent && styles['NavList__item--current'])}
+        className={clsx(
+          styles.NavList__item,
+          levelClassNames[level],
+          isLeafItem && styles['NavList__item--leaf'],
+          isCurrent && styles['NavList__item--current'],
+        )}
+        data-expanded={hasSubNav ? String(isExpanded) : undefined}
         data-navlist-level={level}
         data-testid={testId || testIds.item}
         onKeyDown={handleKeyDown}

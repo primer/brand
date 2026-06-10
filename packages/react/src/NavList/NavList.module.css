@@ -43,9 +43,9 @@
   padding: 0;
   color: var(--brand-color-text-muted);
   font-size: var(--brand-text-size-100);
-  font-weight: var(--brand-text-weight-400);
-  line-height: var(--base-size-20);
-  letter-spacing: var(--brand-text-letterSpacing-100);
+  font-weight: var(--brand-text-weight-500);
+  line-height: 1;
+  letter-spacing: 0.01em;
   text-decoration: none !important; /* dotcom override */
   transition: background-color var(--brand-animation-duration-fast) var(--brand-animation-easing-default),
     color var(--brand-animation-duration-fast) var(--brand-animation-easing-default);
@@ -78,14 +78,14 @@
   padding-inline-start: var(--base-size-6);
 }
 
-.NavList__item--current:not(.NavList__item--level-1) > .NavList__itemContent .NavList__link::before,
-.NavList__item:not(.NavList__item--level-1) .NavList__link[aria-current]:not([aria-current='false'])::before {
+.NavList__item--leaf.NavList__item--current:not(.NavList__item--level-1) > .NavList__itemContent .NavList__link::before,
+.NavList__item--leaf:not(.NavList__item--level-1) .NavList__link[aria-current]:not([aria-current='false'])::before {
   content: '';
   position: absolute;
-  inset-block: var(--base-size-2);
+  inset-block: var(--base-size-8);
   inset-inline-start: 0;
   width: var(--base-size-4);
-  border-radius: var(--brand-borderRadius-small);
+  border-radius: var(--base-size-2);
   background-color: var(--brand-color-accent-primary);
 }
 
@@ -105,6 +105,7 @@
 .NavList__label {
   overflow: hidden;
   text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .NavList__leadingVisual,
@@ -138,12 +139,16 @@
   padding: var(--base-size-24) var(--base-size-16) var(--base-size-16);
 }
 
+.NavList__item--level-1[data-expanded='true'] {
+  padding-block-end: var(--base-size-16);
+}
+
 .NavList__item--level-1 > .NavList__itemContent .NavList__link {
   order: 1;
   color: var(--brand-color-text-default);
   font-size: var(--brand-text-size-200);
   font-weight: var(--brand-text-weight-500);
-  line-height: var(--base-size-16);
+  line-height: 1;
 }
 
 .NavList__item--level-1 > .NavList__itemContent .NavList__toggleIcon {
@@ -165,10 +170,21 @@
   padding-inline-start: var(--base-size-40);
 }
 
-.NavList__item--level-4 > .NavList__itemContent {
+.NavList__item--leaf:not(.NavList__item--level-1) > .NavList__itemContent {
   min-height: var(--base-size-32);
-  padding-block: var(--base-size-6);
+  padding-block: 0;
   padding-inline: var(--base-size-16);
+}
+
+.NavList__item--leaf.NavList__item--level-2 > .NavList__itemContent {
+  padding-inline-start: var(--base-size-24);
+}
+
+.NavList__item--leaf.NavList__item--level-3 > .NavList__itemContent {
+  padding-inline-start: var(--base-size-40);
+}
+
+.NavList__item--leaf.NavList__item--level-4 > .NavList__itemContent {
   padding-inline-start: calc(var(--base-size-48) + var(--base-size-8));
 }
 
@@ -182,7 +198,35 @@
 .NavList__item--level-4 > .NavList__itemContent .NavList__link {
   order: 2;
   font-size: var(--brand-text-size-100);
-  line-height: var(--base-size-20);
+  line-height: 1;
+}
+
+.NavList__item--leaf:not(.NavList__item--level-1) > .NavList__itemContent .NavList__link {
+  min-height: var(--base-size-32);
+  padding-inline-start: var(--base-size-8);
+  border-radius: 0;
+}
+
+.NavList__item--leaf:not(.NavList__item--level-1) > .NavList__itemContent .NavList__label {
+  display: flex;
+  align-items: center;
+  flex: 1 1 auto;
+  min-height: var(--base-size-32);
+  padding-inline-start: var(--base-size-6);
+  border-radius: var(--brand-borderRadius-small);
+}
+
+.NavList__item--leaf:not(.NavList__item--level-1).NavList__item--current > .NavList__itemContent .NavList__link,
+.NavList__item--leaf:not(.NavList__item--level-1) .NavList__link[aria-current]:not([aria-current='false']) {
+  background-color: transparent;
+  padding-inline-start: var(--base-size-8);
+}
+
+.NavList__item--leaf:not(.NavList__item--level-1).NavList__item--current > .NavList__itemContent .NavList__label,
+.NavList__item--leaf:not(.NavList__item--level-1)
+  .NavList__link[aria-current]:not([aria-current='false'])
+  .NavList__label {
+  background-color: var(--brand-color-canvas-subtle);
 }
 
 .NavList__divider {

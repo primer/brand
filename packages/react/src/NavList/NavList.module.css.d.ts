@@ -4,6 +4,7 @@ declare const styles: {
   readonly "NavList__divider": string;
   readonly "NavList__item": string;
   readonly "NavList__item--current": string;
+  readonly "NavList__item--leaf": string;
   readonly "NavList__item--level-1": string;
   readonly "NavList__item--level-2": string;
   readonly "NavList__item--level-3": string;
