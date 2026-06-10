@@ -24,9 +24,23 @@ import {Pre} from './src/components/Pre/Pre.tsx'
 
 const isInternalPath = href => href.startsWith('/') && !href.startsWith('//')
 
+const hasFileExtension = pathname => /\/[^/]+\.[^/]+$/.test(pathname)
+
+const withTrailingSlash = href => {
+  const [, pathname, suffix = ''] = href.match(/^([^?#]*)([?#].*)?$/)
+
+  if (!pathname || pathname === '/' || pathname.endsWith('/') || hasFileExtension(pathname)) {
+    return href
+  }
+
+  return `${pathname}/${suffix}`
+}
+
 export const Link = ({href = '', children, ...props}) => {
+  const normalizedHref = isInternalPath(href) ? withTrailingSlash(href) : href
+
   return isInternalPath(href) ? (
-    <NextLink href={href} {...props}>
+    <NextLink href={normalizedHref} {...props}>
       {children}
     </NextLink>
   ) : (
