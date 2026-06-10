@@ -32,7 +32,7 @@
   text-align: center;
 }
 
-[data-color-mode='dark'] .Label {
+:is([data-color-mode='dark'], [data-color-scheme='dark']) .Label {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: auto;
 }
