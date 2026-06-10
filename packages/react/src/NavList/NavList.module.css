@@ -100,7 +100,6 @@
   > .NavList__itemContent
   .NavList__accordionButton
   .NavList__label {
-  position: relative;
   background-color: var(--brand-color-canvas-subtle);
 }
 
@@ -128,17 +127,18 @@
   background-color: var(--brand-color-text-emphasized);
 }
 
-.NavList__item:not(.NavList__item--level-1)[data-current-descendant='true']
+.NavList__item[data-current-descendant='true']:not(.NavList__item--level-1)
   > .NavList__itemContent
-  .NavList__accordionButton
-  .NavList__label::before {
+  .NavList__accordionButton::before {
   content: '';
   position: absolute;
-  inset-block: var(--base-size-8);
-  inset-inline-start: 0;
+  inset-block-start: 50%;
+  inset-inline-start: var(--base-size-16);
+  block-size: var(--base-size-16);
   width: var(--base-size-4);
   border-radius: var(--base-size-2);
   background-color: var(--brand-color-text-emphasized);
+  transform: translateY(-50%);
 }
 
 .NavList__item--level-1 > .NavList__itemContent .NavList__link[aria-current]:not([aria-current='false']) {
