@@ -80,7 +80,7 @@ render(<TextareaExample />)
 ### Displaying form validation state
 
 ```jsx live
-<>
+<Stack direction={{narrow: 'vertical', wide: 'horizontal'}}>
   <Stack direction="vertical">
     <FormControl validationStatus="success">
       <FormControl.Label>Success state</FormControl.Label>
@@ -95,7 +95,7 @@ render(<TextareaExample />)
       <FormControl.Validation>This is an error message</FormControl.Validation>
     </FormControl>
   </Stack>
-</>
+</Stack>
 ```
 
 ### Inactive

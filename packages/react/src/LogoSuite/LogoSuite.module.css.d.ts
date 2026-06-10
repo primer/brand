@@ -1,9 +1,12 @@
 declare const styles: {
   readonly "LogoSuite": string;
   readonly "LogoSuite--center": string;
+  readonly "LogoSuite--default": string;
+  readonly "LogoSuite--gridline-expressive": string;
   readonly "LogoSuite--hasDivider": string;
   readonly "LogoSuite--justify": string;
   readonly "LogoSuite--start": string;
+  readonly "LogoSuite__content": string;
   readonly "LogoSuite__description": string;
   readonly "LogoSuite__heading": string;
   readonly "LogoSuite__heading--visually-hidden": string;
@@ -11,14 +14,19 @@ declare const styles: {
   readonly "LogoSuite__logobar--gap-condensed": string;
   readonly "LogoSuite__logobar--gap-default": string;
   readonly "LogoSuite__logobar--has-marquee": string;
+  readonly "LogoSuite__logobar--has-takeover": string;
   readonly "LogoSuite__logobar--paused": string;
   readonly "LogoSuite__logobar--variant-emphasis": string;
   readonly "LogoSuite__logobar--variant-muted": string;
   readonly "LogoSuite__logobar-marquee": string;
+  readonly "LogoSuite__logobar-marquee--focused": string;
   readonly "LogoSuite__logobar-marqueeGroup": string;
   readonly "LogoSuite__logobar-marqueeGroup--speed-default": string;
   readonly "LogoSuite__logobar-marqueeGroup--speed-slow": string;
   readonly "LogoSuite__logobar-playPauseButton": string;
+  readonly "LogoSuite__logobar-takeoverButtonContainer": string;
+  readonly "LogoSuite__logobarContainer": string;
+  readonly "LogoSuite__textContainer": string;
   readonly "LogobarScrollX": string;
 };
 export = styles;

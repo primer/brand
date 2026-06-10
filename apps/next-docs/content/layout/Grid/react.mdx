@@ -98,13 +98,17 @@ Use `start` to provide a positioning offset.
 
 ### Grid <Label>Required</Label>
 
-| name            | type                                                                  | default | required | description                               |
-| --------------- | --------------------------------------------------------------------- | ------- | -------- | ----------------------------------------- |
-| `as`            | <PropTableValues values={['div', 'section', 'span']} addLineBreaks /> | `'div'` | `false`  | The HTML element used to render the grid. |
-| `enableOverlay` | `boolean`                                                             | `false` | `false`  | Visual aid to help with alignment.        |
-| `className`     | `string`                                                              |         | `false`  | Sets a custom class on the element.       |
-| `children`      | `Grid.Column`                                                         |         | `true`   |
-| `id`            | `string`                                                              |         | `false`  | Sets a custom `id` attribute.             |
+| name            | type                                                                  | default     | required | description                               |
+| --------------- | --------------------------------------------------------------------- | ----------- | -------- | ----------------------------------------- |
+| `as`            | <PropTableValues values={['div', 'section', 'span']} addLineBreaks /> | `'div'`     | `false`  | The HTML element used to render the grid. |
+| `columnGap`     | <PropTableValues values={['default', 'none']} addLineBreaks />        | `'default'` | `false`  | Defines the gap between columns.          |
+| `enableGutters` | `boolean`                                                             | `true`      | `false`  | Enable or disable default gutters.        |
+| `enableOverlay` | `boolean`                                                             | `false`     | `false`  | Visual aid to help with alignment.        |
+| `fullWidth`     | `boolean`                                                             | `false`     | `false`  | Fills the width of the parent container   |
+| `rowGap`        | <PropTableValues values={['default', 'none']} addLineBreaks />        | `'default'` | `false`  | Defines the gap between rows.             |
+| `className`     | `string`                                                              |             | `false`  | Sets a custom class on the element.       |
+| `children`      | `Grid.Column`                                                         |             | `true`   |
+| `id`            | `string`                                                              |             | `false`  | Sets a custom `id` attribute.             |
 
 ### Grid.Column <Label>Required</Label>
 

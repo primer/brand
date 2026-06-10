@@ -12,7 +12,7 @@ figma: https://www.figma.com/file/BJ95AjraesmRCWsKA013GS/Primer-Brand?node-id=68
 
 import {CopilotIcon, RocketIcon, GitBranchIcon} from '@primer/octicons-react'
 
-import {PillarAsProp, PillarIconColorProp} from './react'
+import {PillarAsProp, PillarIconSizeProp} from './react'
 
 ```js
 import {Pillar} from '@primer/react-brand'
@@ -33,11 +33,11 @@ The default Pillar displays a heading and description.
 
 ### Icon
 
-You can add an `icon` to enhance the visual context. We recommend using an [Octicon](https://primer.style/design/foundations/icons). The `Icon` can be customized using the `color` prop.
+You can add an `icon` to enhance the visual context. We recommend using an [Octicon](https://primer.style/design/foundations/icons). The icon defaults to a green presentation and can be customized using the `size` and `hasBackground` props. For custom SVG artwork or logos, set `hasBackground` to `false` to render the icon without the shared square icon frame.
 
 ```jsx live
 <Pillar>
-  <Pillar.Icon icon={<CopilotIcon />} color="purple" />
+  <Pillar.Icon icon={<CopilotIcon />} />
   <Pillar.Heading>Code search & code view</Pillar.Heading>
   <Pillar.Description>
     Enables you to rapidly search, navigate, and understand code, right from GitHub.com.
@@ -51,7 +51,7 @@ You can add an image to enhance the visual context.
 
 ```jsx live
 <Pillar>
-  <Pillar.Image src="/images/placeholder.png" alt="placeholder, blank area with an gray background color" />
+  <Pillar.Image src="/images/placeholder.png" alt="placeholder, blank area with a gray background color" />
   <Pillar.Heading>Code search & code view</Pillar.Heading>
   <Pillar.Description>
     Enables you to rapidly search, navigate, and understand code, right from GitHub.com.
@@ -59,12 +59,13 @@ You can add an image to enhance the visual context.
 </Pillar>
 ```
 
-### Border
+### Full width
 
-You can add an optional border to create a visual boundary around the pillar content.
+Use the `fullWidth` prop to allow the Pillar to fill the width of its parent container. By default, pillar width is constrained.
 
 ```jsx live
-<Pillar hasBorder>
+<Pillar fullWidth>
+  <Pillar.Image src="/images/placeholder.png" alt="placeholder, blank area with a gray background color" />
   <Pillar.Heading>Code search & code view</Pillar.Heading>
   <Pillar.Description>
     Enables you to rapidly search, navigate, and understand code, right from GitHub.com.
@@ -92,7 +93,7 @@ The content alignment can be changed using the `align` prop on the root `Pillar`
 
 ```jsx live
 <Pillar align="center">
-  <Pillar.Icon icon={<CopilotIcon />} color="purple" />
+  <Pillar.Icon icon={<CopilotIcon />} />
   <Pillar.Heading>Code search & code view</Pillar.Heading>
   <Pillar.Description>
     Enables you to rapidly search, navigate, and understand code, right from GitHub.com.
@@ -107,17 +108,17 @@ Use the `Stack` component to stack multiple Pillars horizontally or vertically.
 ```jsx live
 <Stack direction="horizontal" alignItems="center" justifyContent="center" gap="normal">
   <Pillar>
-    <Pillar.Icon icon={<CopilotIcon />} color="blue" />
+    <Pillar.Icon icon={<CopilotIcon />} />
     <Pillar.Heading>Heading</Pillar.Heading>
     <Pillar.Description>Everything you need to know about getting started with GitHub Actions.</Pillar.Description>
   </Pillar>
   <Pillar>
-    <Pillar.Icon icon={<RocketIcon />} color="blue" />
+    <Pillar.Icon icon={<RocketIcon />} />
     <Pillar.Heading>Heading</Pillar.Heading>
     <Pillar.Description>Everything you need to know about getting started with GitHub Actions.</Pillar.Description>
   </Pillar>
   <Pillar>
-    <Pillar.Icon icon={<GitBranchIcon />} color="blue" />
+    <Pillar.Icon icon={<GitBranchIcon />} />
     <Pillar.Heading>Heading</Pillar.Heading>
     <Pillar.Description>Everything you need to know about getting started with GitHub Actions.</Pillar.Description>
   </Pillar>
@@ -128,17 +129,21 @@ Use the `Stack` component to stack multiple Pillars horizontally or vertically.
 
 ### Pillar
 
-| name    | type              | default | required | description                                 |
-| ------- | ----------------- | ------- | -------- | ------------------------------------------- |
-| `align` | `start`, `center` | `start` | `false`  | Aligns the pillar content                   |
-| `as`    | <PillarAsProp />  | `'div'` | `false`  | The HTML element used to render the pillar. |
+| name        | type              | default | required | description                                                      |
+| ----------- | ----------------- | ------- | -------- | ---------------------------------------------------------------- |
+| `align`     | `start`, `center` | `start` | `false`  | Aligns the pillar content                                        |
+| `as`        | <PillarAsProp />  | `'div'` | `false`  | The HTML element used to render the pillar.                      |
+| `fullWidth` | `boolean`         | `false` | `false`  | Allows the pillar to fill the width of its parent container.     |
 
 ### Pillar.Icon
 
-| name    | type                    | default   | required | description                  |
-| ------- | ----------------------- | --------- | -------- | ---------------------------- |
-| `icon`  | `React.Node`            |           | `true`   | Octicon                      |
-| `color` | <PillarIconColorProp /> | `default` | `false`  | The color of the Pillar icon |
+| name            | type                   | default | required | description                                                                                                                       |
+| --------------- | ---------------------- | ------- | -------- | --------------------------------------------------------------------------------------------------------------------------------- |
+| `icon`          | `React.Node`           |         | `true`   | Octicon                                                                                                                           |
+| `size`          | <PillarIconSizeProp /> | `32`    | `false`  | The size of the icon                                                                                                              |
+| `hasBackground` | `boolean`              | `true`  | `false`  | Adds a filled colored background to the icon. Set to `false` for custom artwork that should not use the shared square icon frame. |
+
+Supports the [Icon component](/components/Icon) props, excluding `color`.
 
 ### Pillar.Image
 

@@ -8,42 +8,60 @@ import {test, expect} from '@playwright/test'
 // eslint-disable-next-line i18n-text/no-en
 test.describe('Visual Comparison: Heading', () => {
   test('Heading / Default', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-heading--default&viewMode=story')
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-heading--default&viewMode=story', {
+      waitUntil: 'networkidle',
+    })
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Heading / Playground', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-heading--playground&viewMode=story')
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-heading--playground&viewMode=story', {
+      waitUntil: 'networkidle',
+    })
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Heading / Scale (sizes)', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-heading--scale&viewMode=story')
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-heading--scale&viewMode=story', {
+      waitUntil: 'networkidle',
+    })
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Heading / Levels', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-heading--levels&viewMode=story')
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-heading--levels&viewMode=story', {
+      waitUntil: 'networkidle',
+    })
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Heading / Override Size', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-heading--override-size&viewMode=story')
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-heading--override-size&viewMode=story', {
+      waitUntil: 'networkidle',
+    })
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Heading / Override Weight', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-heading--override-weight&viewMode=story')
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-heading--override-weight&viewMode=story', {
+      waitUntil: 'networkidle',
+    })
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -52,14 +70,19 @@ test.describe('Visual Comparison: Heading', () => {
   test('Heading / Override Weight Responsive', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-heading--override-weight-responsive&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Heading / Override Stretch', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-heading--override-stretch&viewMode=story')
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-heading--override-stretch&viewMode=story', {
+      waitUntil: 'networkidle',
+    })
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -68,7 +91,9 @@ test.describe('Visual Comparison: Heading', () => {
   test('Heading / Override Stretch Responsive', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-heading--override-stretch-responsive&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -77,28 +102,40 @@ test.describe('Visual Comparison: Heading', () => {
   test('Heading / Override Letter Spacing', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-heading--override-letter-spacing&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Heading / Mona Sans', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-heading--mona-sans&viewMode=story')
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-heading--mona-sans&viewMode=story', {
+      waitUntil: 'networkidle',
+    })
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Heading / Hubot Sans', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-heading--hubot-sans&viewMode=story')
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-heading--hubot-sans&viewMode=story', {
+      waitUntil: 'networkidle',
+    })
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Heading / Disabled Text Wrap', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-heading--disabled-text-wrap&viewMode=story')
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-heading--disabled-text-wrap&viewMode=story',
+      {waitUntil: 'networkidle'},
+    )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})

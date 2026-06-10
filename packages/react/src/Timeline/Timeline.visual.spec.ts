@@ -8,7 +8,10 @@ import {test, expect} from '@playwright/test'
 // eslint-disable-next-line i18n-text/no-en
 test.describe('Visual Comparison: Timeline', () => {
   test('Timeline / Default', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-timeline--default&viewMode=story')
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-timeline--default&viewMode=story', {
+      waitUntil: 'networkidle',
+    })
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -17,7 +20,9 @@ test.describe('Visual Comparison: Timeline', () => {
   test('Timeline / With Emphasis', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-timeline-features--with-emphasis&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -26,7 +31,9 @@ test.describe('Visual Comparison: Timeline', () => {
   test('Timeline / With Shorter Text', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-timeline-features--with-shorter-text&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -35,7 +42,9 @@ test.describe('Visual Comparison: Timeline', () => {
   test('Timeline / With Links', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-timeline-features--with-links&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -44,7 +53,9 @@ test.describe('Visual Comparison: Timeline', () => {
   test('Timeline / With Longer Text', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-timeline-features--with-longer-text&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})

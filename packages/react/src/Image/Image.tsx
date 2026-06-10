@@ -71,6 +71,7 @@ export const Image = ({
           styles['Image__container'],
           aspectRatio && styles[`Image--aspect-ratio-${aspectRatioResolver(aspectRatio)}`],
           borderRadius && styles[`Image--borderRadius-${borderRadius}`],
+          className,
         )}
         style={{...animationInlineStyles, ...style}}
       >
@@ -82,7 +83,7 @@ export const Image = ({
           alt={alt}
           width={width ?? '100%'}
           height={height ?? '100%'}
-          className={clsx(styles.Image, borderRadius && styles[`Image--borderRadius-${borderRadius}`], className)}
+          className={clsx(styles.Image, borderRadius && styles[`Image--borderRadius-${borderRadius}`])}
           {...objectWithoutKey(rest, 'sources')}
         />
       </picture>

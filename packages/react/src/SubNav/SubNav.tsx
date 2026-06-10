@@ -17,7 +17,7 @@ import React, {
 import {Button, ButtonSizes, ButtonVariants, Text, TextProps, ThemeProvider, useWindowSize} from '..'
 
 import {clsx} from 'clsx'
-import {ChevronDownIcon, ChevronUpIcon} from '@primer/octicons-react'
+import {TriangleDownIcon, TriangleUpIcon} from '@primer/octicons-react'
 import {useId} from '../hooks/useId'
 import {useKeyboardEscape} from '../hooks/useKeyboardEscape'
 import {useOnClickOutside} from '../hooks/useOnClickOutside'
@@ -119,37 +119,10 @@ function SubNavProvider({children}: {children: React.ReactNode}) {
   )
 }
 
-type SeparatorProps = {
-  activeLinklabel?: React.ReactNode
-} & BaseProps<HTMLSpanElement>
-
-function Separator({activeLinklabel, className, ...props}: SeparatorProps) {
-  return (
-    <span
-      role="separator"
-      className={clsx(
-        styles['SubNav__heading-separator'],
-        activeLinklabel && styles['SubNav__heading-separator--has-adjacent-label'],
-        className,
-      )}
-      aria-hidden
-      {...props}
-    >
-      <svg xmlns="http://www.w3.org/2000/svg" width="8" height="16" viewBox="0 0 8 16" fill="none" aria-hidden>
-        <g clipPath="url(#clip0_50_1307)">
-          <path d="M0 15.2992L5.472 0.701172H7.632L2.16 15.2992H0Z" fill="currentColor" />
-        </g>
-        <defs>
-          <clipPath id="clip0_50_1307">
-            <rect width="7.632" height="14.598" transform="translate(0 0.701172)" />
-          </clipPath>
-        </defs>
-      </svg>
-    </span>
-  )
-}
-
 export type SubNavProps = {
+  /**
+   * @deprecated The hasShadow prop is deprecated and will be removed in a future release.
+   */
   hasShadow?: boolean
   /**
    * Allows the SubNav to be used at full width,
@@ -191,10 +164,35 @@ const SubNavRoot = memo(
       useKeyboardEscape(closeMenuCallback)
 
       useEffect(() => {
+        const navElement = navRef.current
+
+        const updateAvailableHeight = () => {
+          if (navElement) {
+            const navTop = navElement.getBoundingClientRect().top
+            navElement.style.setProperty('--subnav-available-height', `${window.innerHeight - navTop}px`)
+          }
+        }
+
         if (isOpenAtNarrow && !isLarge) {
           document.body.style.overflow = 'hidden'
+          updateAvailableHeight()
+          // eslint-disable-next-line github/prefer-observers
+          window.addEventListener('resize', updateAvailableHeight)
         } else {
           document.body.style.overflow = 'auto'
+
+          if (navElement) {
+            navElement.style.removeProperty('--subnav-available-height')
+          }
+        }
+
+        return () => {
+          document.body.style.overflow = 'auto'
+          window.removeEventListener('resize', updateAvailableHeight)
+
+          if (navElement) {
+            navElement.style.removeProperty('--subnav-available-height')
+          }
         }
       }, [isOpenAtNarrow, isLarge])
 
@@ -281,40 +279,43 @@ const SubNavRoot = memo(
         isValidElement<SubHeadingBaseProps>(SubHeadingChild) &&
         SubHeadingChild.type === SubHeadingBase &&
         Boolean(SubHeadingChild.props['aria-current'])
+      const narrowButtonLabel = SubHeadingChild ? activeLinklabel : null
 
       const NarrowButton = useMemo(
         () => (
-          <button
-            ref={narrowButtonRef}
+          <div
             className={clsx(styles['SubNav__overlay-toggle'], isOpenAtNarrow && styles['SubNav__overlay-toggle--open'])}
-            data-testid={testIds.button}
-            onClick={isOpenAtNarrow ? closeMenuCallback : handleMenuToggle}
-            aria-expanded={isOpenAtNarrow ? 'true' : 'false'}
-            aria-controls={idForLinkContainer}
           >
-            <span className="visually-hidden">
-              {activeLinklabel ? 'Navigation menu. Current page: ' : 'Navigation menu'}
-            </span>
             <span
               className={clsx(
                 styles['SubNav__overlay-toggle-content'],
-                !activeLinklabel && styles['SubNav__overlay-toggle-content--end'],
+                !narrowButtonLabel && styles['SubNav__overlay-toggle-content--end'],
               )}
             >
-              {activeLinklabel && (
-                <Text as="span" size="200">
-                  {activeLinklabel}
-                </Text>
-              )}
-              {isOpenAtNarrow ? (
-                <ChevronUpIcon className={styles['SubNav__overlay-toggle-icon']} size={24} />
-              ) : (
-                <ChevronDownIcon className={styles['SubNav__overlay-toggle-icon']} size={24} />
-              )}
+              <button
+                ref={narrowButtonRef}
+                className={styles['SubNav__overlay-toggle-label']}
+                data-testid={testIds.button}
+                onClick={isOpenAtNarrow ? closeMenuCallback : handleMenuToggle}
+                aria-expanded={isOpenAtNarrow ? 'true' : 'false'}
+                aria-controls={idForLinkContainer}
+                aria-label={activeLinklabel ? `Navigation menu. Current page: ${activeLinklabel}` : 'Navigation menu'}
+              >
+                {narrowButtonLabel && (
+                  <Text as="span" size="100">
+                    {narrowButtonLabel}
+                  </Text>
+                )}
+                {isOpenAtNarrow ? (
+                  <TriangleUpIcon className={styles['SubNav__overlay-toggle-icon']} size={13} />
+                ) : (
+                  <TriangleDownIcon className={styles['SubNav__overlay-toggle-icon']} size={13} />
+                )}
+              </button>
             </span>
-          </button>
+          </div>
         ),
-        [activeLinklabel, closeMenuCallback, handleMenuToggle, idForLinkContainer, isOpenAtNarrow],
+        [activeLinklabel, closeMenuCallback, handleMenuToggle, idForLinkContainer, isOpenAtNarrow, narrowButtonLabel],
       )
 
       return (
@@ -345,27 +346,16 @@ const SubNavRoot = memo(
                   {HeadingChild && <div className={styles['SubNav__heading-container']}>{HeadingChild}</div>}
 
                   {SubHeadingChild && (
-                    <>
-                      <Separator
-                        activeLinklabel={activeLinklabel}
-                        className={clsx(
-                          styles['SubNav__heading-separator--subheading'],
-                          subHeadingIsActive && styles['SubNav__heading-separator--subheading-active'],
-                        )}
-                      />
-                      <div
-                        className={clsx(
-                          styles['SubNav__heading-container'],
-                          styles['SubNav__subheading-container'],
-                          subHeadingIsActive && styles['SubNav__subheading-container-active'],
-                        )}
-                      >
-                        {SubHeadingChild}
-                      </div>
-                    </>
+                    <div
+                      className={clsx(
+                        styles['SubNav__heading-container'],
+                        styles['SubNav__subheading-container'],
+                        subHeadingIsActive && styles['SubNav__subheading-container-active'],
+                      )}
+                    >
+                      {SubHeadingChild}
+                    </div>
                   )}
-
-                  <Separator activeLinklabel={activeLinklabel} className={styles['SubNav__heading-separator--main']} />
 
                   {!isLarge && (!SubHeadingChild || subHeadingIsActive) && NarrowButton}
 
@@ -451,6 +441,7 @@ const LinkBaseWithSubmenu = forwardRef<HTMLDivElement, LinkBaseProps>(
 
     const [isExpanded, setIsExpanded] = useState(false)
     const ref = useProvidedRefOrCreate(forwardedRef as RefObject<HTMLDivElement>)
+    const subMenuChildrenRef = useRef<HTMLDivElement>(null)
 
     useContainsFocus(ref, (containsFocus: boolean) => {
       if (!containsFocus) {
@@ -461,14 +452,30 @@ const LinkBaseWithSubmenu = forwardRef<HTMLDivElement, LinkBaseProps>(
     const expand = useCallback(() => setIsExpanded(true), [])
     const collapse = useCallback(() => setIsExpanded(false), [])
     const toggleExpanded = useCallback(() => setIsExpanded(prev => !prev), [])
+    const isAriaCurrent = Boolean(ariaCurrent) && ariaCurrent !== 'false'
 
     useKeyboardEscape(collapse)
+
+    useEffect(() => {
+      if (subMenuChildrenRef.current) {
+        // Workaround to avoid React 18 / 19 type mismatches with the `inert` attribute.
+        // This approach won't immediately apply the attribute in pure SSR contexts, only post-hydration
+        // TODO: Move back to JSX when React 19 is fully adopted in Dotcom.
+        // `inert` removes the collapsed submenu from tab order and the accessibility tree
+        // without affecting visual appearance
+        subMenuChildrenRef.current.toggleAttribute('inert', isLarge && !isExpanded)
+      }
+    }, [isLarge, isExpanded])
 
     const [label, SubMenuChildren] = children as ReactNode[]
 
     return (
       <div
-        className={clsx(styles['SubNav__link--has-sub-menu'], isExpanded && styles['SubNav__link--expanded'])}
+        className={clsx(
+          styles['SubNav__link--has-sub-menu'],
+          isExpanded && styles['SubNav__link--expanded'],
+          isAriaCurrent && styles['SubNav__link--has-active-sub-menu'],
+        )}
         data-testid={testId || testIds.subMenu}
         ref={ref}
         onMouseOver={expand}
@@ -486,13 +493,7 @@ const LinkBaseWithSubmenu = forwardRef<HTMLDivElement, LinkBaseProps>(
           aria-current={ariaCurrent}
           {...props}
         >
-          <Text
-            as="span"
-            size="200"
-            weight="medium"
-            className={styles['SubNav__link-label']}
-            variant={ariaCurrent === 'page' || variant === 'default' ? 'default' : 'muted'}
-          >
+          <Text as="span" size="100" weight="medium" className={styles['SubNav__link-label']}>
             {label}
           </Text>
         </a>
@@ -504,11 +505,11 @@ const LinkBaseWithSubmenu = forwardRef<HTMLDivElement, LinkBaseProps>(
             aria-controls={submenuId}
             aria-label={`${label?.toString().trim()} submenu`}
           >
-            <ChevronDownIcon className={styles['SubNav__sub-menu-icon']} size={16} />
+            <TriangleDownIcon className={styles['SubNav__sub-menu-icon']} size={16} />
           </button>
         )}
 
-        <div id={submenuId} className={styles['SubNav__sub-menu-children']} aria-hidden={isLarge && !isExpanded}>
+        <div id={submenuId} className={styles['SubNav__sub-menu-children']} ref={subMenuChildrenRef}>
           {SubMenuChildren}
         </div>
       </div>
@@ -577,13 +578,7 @@ const LinkBase = forwardRef<HTMLAnchorElement | HTMLDivElement, LinkBaseProps>((
         ref={ref as RefObject<HTMLAnchorElement>}
         {...rest}
       >
-        <Text
-          as="span"
-          size="100"
-          weight="medium"
-          className={styles['SubNav__link-label']}
-          variant={ariaCurrent === 'page' || variant === 'default' ? 'default' : 'muted'}
-        >
+        <Text as="span" size="100" weight="medium" className={styles['SubNav__link-label']}>
           {children}
         </Text>
       </a>
@@ -684,7 +679,6 @@ function ActionBase({children, href, variant = 'primary', size = 'small', ...res
       as="a"
       href={href}
       variant={variant}
-      hasArrow={false}
       data-testid={testIds.action}
       size={size}
       {...rest}

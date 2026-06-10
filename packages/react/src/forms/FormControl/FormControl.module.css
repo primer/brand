@@ -54,10 +54,10 @@
   cursor: pointer;
   font-size: var(--brand-text-size-100);
   font-weight: var(--base-text-weight-medium);
-  line-height: var(--base-size-24); /* FIXME */
-  position: relative;
-  top: 2px;
+  line-height: var(--base-size-24);
   width: 100%;
+  position: relative;
+  top: 1px;
 }
 
 .FormControl-control--radio {
@@ -73,6 +73,7 @@
 .FormControl-validation {
   display: flex;
   gap: var(--base-size-4);
+  align-items: center;
 }
 
 .FormControl-validation--success {
@@ -80,17 +81,15 @@
 }
 
 .FormControl-validation--error {
-  color: var(--brand-color-error-fg);
+  color: var(--brand-color-danger-fg);
 }
 
 .FormControl-validation-success-icon {
-  position: relative;
-  top: -1px;
+  display: flex;
 }
 
 .FormControl-validation-error-icon {
-  position: relative;
-  top: -0.5px;
+  display: flex;
 }
 
 .FormControl-validation--animate-in {

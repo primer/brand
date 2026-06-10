@@ -175,3 +175,44 @@ export const VariantsWithoutBorder: Story = {
   },
   render: args => <VariantsGrid hasBorder={false} {...args} />,
 }
+
+export const Expressive: Story = {
+  render: () => (
+    <Box style={{maxWidth: 1200}} paddingInlineStart={48} paddingInlineEnd={48}>
+      <Testimonial variant="expressive" size="large">
+        <Testimonial.Quote>
+          GitHub Advanced Security <em>empowers our developers</em> to detect and fix vulnerabilities earlier,
+          accelerating our time to market and boosting developer satisfaction.
+        </Testimonial.Quote>
+        <Testimonial.Link href="#">Read the full story</Testimonial.Link>
+        <Testimonial.Avatar src={monaAvatar} alt="Circular avatar from Michael Spindler's GitHub profile" />
+        <Testimonial.Name position="Head of development services and tools">Michael Spindler</Testimonial.Name>
+      </Testimonial>
+    </Box>
+  ),
+}
+
+export const ExpressiveDark: Story = {
+  decorators: [
+    Story => (
+      <ThemeProvider colorMode="dark">
+        <Box backgroundColor="default" padding={64}>
+          <Story />
+        </Box>
+      </ThemeProvider>
+    ),
+  ],
+  render: () => (
+    <Box style={{maxWidth: 1200}}>
+      <Testimonial variant="expressive" size="large">
+        <Testimonial.Quote>
+          GitHub Advanced Security <em>empowers our developers</em> to detect and fix vulnerabilities earlier,
+          accelerating our time to market and boosting developer satisfaction.
+        </Testimonial.Quote>
+        <Testimonial.Link href="#">Read the full story</Testimonial.Link>
+        <Testimonial.Avatar src={monaAvatar} alt="Circular avatar from Michael Spindler's GitHub profile" />
+        <Testimonial.Name position="Head of development services and tools">Michael Spindler</Testimonial.Name>
+      </Testimonial>
+    </Box>
+  ),
+}

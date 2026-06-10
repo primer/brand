@@ -10,7 +10,9 @@ test.describe('Visual Comparison: TextRevealAnimation', () => {
   test('TextRevealAnimation / Playground', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-textrevealanimation--playground&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(3000)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -19,7 +21,9 @@ test.describe('Visual Comparison: TextRevealAnimation', () => {
   test('TextRevealAnimation / With Large Testimonial', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-textrevealanimation-examples--with-large-testimonial&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(3000)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -28,7 +32,9 @@ test.describe('Visual Comparison: TextRevealAnimation', () => {
   test('TextRevealAnimation / With Hero', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-textrevealanimation-examples--with-hero&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(3000)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -37,7 +43,9 @@ test.describe('Visual Comparison: TextRevealAnimation', () => {
   test('TextRevealAnimation / Animation On Scroll', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-textrevealanimation-features--animation-on-scroll&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(3000)
     await expect(page).toHaveScreenshot({fullPage: true})

@@ -24,14 +24,14 @@
 }
 
 .Select::placeholder {
-  color: var(--brand-color-text-subtle);
+  color: var(--brand-color-text-muted);
   opacity: 1;
 }
 
 .Select:focus-visible {
-  border-color: var(--brand-color-focus);
+  border-color: var(--brand-control-color-focus);
   outline: none;
-  box-shadow: 0 0 0 2px var(--brand-color-focus);
+  box-shadow: 0 0 0 2px var(--brand-control-color-focus);
 }
 
 @media (forced-colors: active) {
@@ -139,7 +139,7 @@
 }
 
 .Select--error {
-  border-color: var(--brand-color-error-fg);
+  border-color: var(--brand-color-danger-fg);
 }
 
 /* Remove all animations, transitions and smooth scroll for people that prefer not to see them */

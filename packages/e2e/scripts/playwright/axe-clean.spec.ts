@@ -7,6 +7,7 @@ import {Result} from 'axe-core'
 import {chromium, Browser, Page} from 'playwright'
 import {test, expect} from '@playwright/test'
 import {injectAxe, getViolations} from 'axe-playwright'
+// Don't remove the import/no-unresolved, this is needed to avoid breaking CI
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 // eslint-disable-next-line import/extensions, import/no-unresolved
@@ -45,6 +46,7 @@ const testsToSkip = [
   'components-eyebrowbanner-features--on-custom-background-light', // custom, unrelated background image
   'components-subdomainnavbar--skip-to-main-tag', // contains main tag which is in conflict with the default role="main" element
   'components-subdomainnavbar--skip-to-main-tag-with-id', // contains main tag which is in conflict with the default role="main" element
+  'components-ide--default', // presentational component and contains animation
   'components-ide--playground', // presentational component and contains animation
   'components-ide-features--editor-only', // presentational component and contains animation
   'components-ide-features--editor-no-replay-button', // presentational component and contains animation
@@ -91,6 +93,24 @@ function colorViolationImpact(impact: string | null | undefined) {
   return `${color}${impact}\x1b[0m`
 }
 
+function formatViolation(violation: Result, index: number): string {
+  return `${index + 1}.[${violation.impact?.toUpperCase()}] ${violation.id}: ${violation.help}
+    Description: ${violation.description}
+    Help URL: ${violation.helpUrl}
+    Affected elements:
+${violation.nodes
+  .map(node => {
+    const target = node.target.join(', ')
+    const html = node.html ? `\n    HTML: ${node.html.substring(0, 500)}${node.html.length > 500 ? '...' : ''}` : ''
+    return `  - Element: ${target}${html}`
+  })
+  .join('\n')}`
+}
+
+function formatViolationsForError(violations: Result[]): string {
+  return violations.map((v, i) => formatViolation(v, i)).join('\n\n')
+}
+
 function printViolations(violations: Result[]) {
   for (let i = 0; i < violations.length; i++) {
     const violation = violations[i]
@@ -103,8 +123,57 @@ function printViolations(violations: Result[]) {
   }
 }
 
+// prevents flaky failures when Storybook or prior checks briefly overlap with axe.run.
+async function getViolationsWithRetry(page: Page): Promise<Result[]> {
+  const maxAttempts = 3
+
+  for (let attempt = 1; attempt <= maxAttempts; attempt++) {
+    await page.waitForFunction(
+      () => {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const axe = (window as any).axe
+        return !axe || !axe._running
+      },
+      undefined,
+      {timeout: 5000},
+    )
+
+    try {
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      return await getViolations(page, null, {
+        detailedReport: true,
+        detailedReportOptions: {
+          html: true,
+        },
+      })
+    } catch (error) {
+      const isAxeAlreadyRunning =
+        error instanceof Error &&
+        // eslint-disable-next-line i18n-text/no-en
+        error.message.includes('Axe is already running')
+
+      if (!isAxeAlreadyRunning || attempt === maxAttempts) {
+        throw error
+      }
+
+      await page.waitForTimeout(attempt * 250)
+    }
+  }
+
+  return []
+}
+
 const testsWithCustomDelay = {
   'components-subdomainnavbar--mobile-menu-open': 5000, // takes a while for the menu to open
+  'components-hero-examples--custom-background-inline-end-padded-video': 5000, // recipe / example that features long animation sequence
+  'components-hero-examples--custom-background-block-end-video': 5000, // recipe / example that features long animation sequence
+  'components-hero-examples--custom-background-inline-end-padded-image': 5000, // recipe / example that features long animation sequence
+  'components-hero-examples--custom-background-block-end-image': 5000, // recipe / example that features long animation sequence
+  'components-hero-examples--gridline-expressive-block-end-padded-trailing-component': 6000, // recipe / example that features long animation sequence
+  'components-hero-examples--gridline-expressive-with-image-carousel': 6000, // recipe / example that features long animation sequence
+  'recipes-flexsuite-overview--ai': 6000, // recipe with hero animation sequence
+  'recipes-flexsuite-category--security': 6000, // recipe with hero animation sequence
 }
 const defaultDelay = 1000
 
@@ -123,7 +192,7 @@ const storybookRoutes = Object.values((IndexData as StoryIndex).entries)
     return !testsToSkip.includes(id)
   })
 
-//describe.configure({mode: 'parallel'})
+describe.configure({mode: 'parallel'})
 
 for (const story of storybookRoutes) {
   // eslint-disable-next-line i18n-text/no-en
@@ -134,6 +203,7 @@ for (const story of storybookRoutes) {
     beforeAll(async () => {
       browser = await chromium.launch()
       page = await browser.newPage()
+
       const route = `${hostname}&id=${story.id}`
       // eslint-disable-next-line no-console
       console.info(`Navigating to ${route}`)
@@ -149,20 +219,13 @@ for (const story of storybookRoutes) {
         'utf8',
       )
       // eslint-disable-next-line @typescript-eslint/no-shadow
-      page.evaluate(configSrc => {
+      await page.evaluate(configSrc => {
         window.eval(configSrc)
       }, configSrc)
     })
 
     test('it completes AXE page validation', async () => {
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore
-      let violations = await getViolations(page, null, {
-        detailedReport: true,
-        detailedReportOptions: {
-          html: true,
-        },
-      })
+      let violations = await getViolationsWithRetry(page)
 
       violations = violations.filter(violation => !shouldIgnoreViolation(violation, story))
 
@@ -170,6 +233,11 @@ for (const story of storybookRoutes) {
         allViolations.push(...violations)
 
         printViolations(violations)
+
+        // eslint-disable-next-line i18n-text/no-en
+        const errorMessage = `Found ${violations.length} accessibility violation(s):
+${formatViolationsForError(violations)}`
+        expect(violations.length, errorMessage).toBe(0)
       }
 
       expect(violations.length).toBe(0)

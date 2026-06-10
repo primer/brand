@@ -60,6 +60,8 @@ const MockSubNavFixtureWithSubMenu = () => (
 
 describe('SubNav', () => {
   beforeEach(() => {
+    mockUseWindowSize.mockImplementation(() => ({isLarge: false}))
+
     // IntersectionObserver isn't available in test environment
     const mockIntersectionObserver = jest.fn()
     mockIntersectionObserver.mockReturnValue({
@@ -168,21 +170,40 @@ describe('SubNav', () => {
     expect(getByRole('button', {name: 'Navigation menu'})).toBeInTheDocument()
   })
 
-  it('renders a separator when there is a link with `aria-current="page"` set', () => {
-    const {getByRole} = render(<MockSubNavFixture />)
-    const separator = getByRole('separator', {hidden: true})
-    expect(separator).toBeInTheDocument()
-  })
-
-  it('shows the aria-current text next to the button by default', () => {
+  it('hides the aria-current text from the button when no subheading is present', () => {
     const {getByRole} = render(<MockSubNavFixture />)
 
     const buttonEl = getByRole('button', {name: 'Navigation menu. Current page: page three'})
-    expect(buttonEl).toHaveTextContent('page three')
+    expect(buttonEl).not.toHaveTextContent('page three')
+  })
+
+  it('shows the aria-current text next to the button when a subheading is present', () => {
+    const {getByRole} = render(
+      <SubNav>
+        <SubNav.Heading href={headingLink}>{heading}</SubNav.Heading>
+        <SubNav.SubHeading href="#subheading">Subheading</SubNav.SubHeading>
+        <SubNav.Link href="#page1">page one</SubNav.Link>
+        <SubNav.Link href="#page2" aria-current="page">
+          page two
+        </SubNav.Link>
+      </SubNav>,
+    )
+
+    const buttonEl = getByRole('button', {name: 'Navigation menu. Current page: page two'})
+    expect(buttonEl).toHaveTextContent('page two')
   })
 
   it('has no a11y violations on initial render', async () => {
     const {container} = render(<MockSubNavFixture />)
+    const results = await axe(container)
+
+    expect(results).toHaveNoViolations()
+  })
+
+  it('has no a11y violations when a large viewport submenu is collapsed', async () => {
+    mockUseWindowSize.mockImplementation(() => ({isLarge: true}))
+
+    const {container} = render(<MockSubNavFixtureWithSubMenu />)
     const results = await axe(container)
 
     expect(results).toHaveNoViolations()
@@ -201,9 +222,14 @@ describe('SubNav', () => {
   it('hides collapsed submenu items on large viewports', async () => {
     mockUseWindowSize.mockImplementation(() => ({isLarge: true}))
 
-    const {queryByRole} = render(<MockSubNavFixtureWithSubMenu />)
+    const {getByRole} = render(<MockSubNavFixtureWithSubMenu />)
 
-    expect(queryByRole('link', {name: 'Copilot feature page one'})).not.toBeInTheDocument()
+    const toggleSubmenuButton = getByRole('button', {name: 'Copilot submenu'})
+    const submenuId = toggleSubmenuButton.getAttribute('aria-controls')
+    const submenuContainer = submenuId ? document.getElementById(submenuId) : null
+
+    expect(submenuContainer).not.toBeNull()
+    expect(submenuContainer).toHaveAttribute('inert')
   })
 
   it('shows subitems when the submenu toggle is activated at large viewports', async () => {
@@ -243,15 +269,20 @@ describe('SubNav', () => {
   it('hides a hovered submenu when escape is pressed', async () => {
     mockUseWindowSize.mockImplementation(() => ({isLarge: true}))
 
-    const {getByRole, queryByRole} = render(<MockSubNavFixtureWithSubMenu />)
+    const {getByRole} = render(<MockSubNavFixtureWithSubMenu />)
 
     await userEvent.hover(getByRole('link', {name: 'Copilot'}))
 
     expect(getByRole('link', {name: 'Copilot feature page one'})).toBeVisible()
 
+    const toggleSubmenuButton = getByRole('button', {name: 'Copilot submenu'})
+    const submenuId = toggleSubmenuButton.getAttribute('aria-controls')
+    const submenuContainer = submenuId ? document.getElementById(submenuId) : null
+    expect(submenuContainer).not.toHaveAttribute('inert')
+
     await userEvent.keyboard('{escape}')
 
-    expect(queryByRole('link', {name: 'Copilot feature page one'})).not.toBeInTheDocument()
+    expect(submenuContainer).toHaveAttribute('inert')
   })
 
   it('renders an optional subheading into the document', () => {

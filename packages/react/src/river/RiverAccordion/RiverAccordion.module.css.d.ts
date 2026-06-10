@@ -1,5 +1,6 @@
 declare const styles: {
   readonly "RiverAccordion": string;
+  readonly "RiverAccordion--variant-gridline": string;
   readonly "RiverAccordion__accordionContainer": string;
   readonly "RiverAccordion__align-end": string;
   readonly "RiverAccordion__align-start": string;
@@ -11,6 +12,7 @@ declare const styles: {
   readonly "RiverAccordion__panel": string;
   readonly "RiverAccordion__trigger": string;
   readonly "RiverAccordion__visual": string;
+  readonly "RiverAccordion__visual--has-background": string;
   readonly "RiverAccordion__visualsContainer": string;
   readonly "RiverAccordion__visualsWrapper": string;
 };

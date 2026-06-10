@@ -1,0 +1,158 @@
+---
+title: River breakout tabs
+description: Use RiverBreakoutTabs to pair card-based tabs with a shared visual area on desktop and an accordion pattern on narrower viewports.
+keywords: ['river', 'breakout', 'tabs', 'accordion', 'carousel']
+show-tabs: false
+ready: true
+source: https://github.com/primer/brand/blob/main/packages/react/src/river/RiverBreakoutTabs/RiverBreakoutTabs.tsx
+storybook: '/brand/storybook/?path=/story/components-riverbreakouttabs--default'
+---
+
+import {Label} from '@primer/react'
+
+```js
+import {RiverBreakoutTabs} from '@primer/react-brand'
+```
+
+## Examples
+
+### Default
+
+```jsx live
+<Section>
+  <RiverBreakoutTabs>
+    <RiverBreakoutTabs.A11yHeading>Plan, review, and ship with Copilot</RiverBreakoutTabs.A11yHeading>
+
+    <RiverBreakoutTabs.Item>
+      <RiverBreakoutTabs.Heading>Plan from your backlog</RiverBreakoutTabs.Heading>
+      <RiverBreakoutTabs.Content>
+        <Text>Break large issues into practical implementation steps.</Text>
+        <Link href="#">Learn more</Link>
+      </RiverBreakoutTabs.Content>
+      <RiverBreakoutTabs.Visual>
+        <img src="/images/placeholder-1.png" alt="Planning workflow in editor" />
+      </RiverBreakoutTabs.Visual>
+    </RiverBreakoutTabs.Item>
+
+    <RiverBreakoutTabs.Item>
+      <RiverBreakoutTabs.Heading>Review with context</RiverBreakoutTabs.Heading>
+      <RiverBreakoutTabs.Content>
+        <Text>Keep discussion, suggestions, and diffs together while you review.</Text>
+        <Link href="#">Explore reviews</Link>
+      </RiverBreakoutTabs.Content>
+      <RiverBreakoutTabs.Visual>
+        <img src="/images/placeholder-2.png" alt="Review workflow with shared context" />
+      </RiverBreakoutTabs.Visual>
+    </RiverBreakoutTabs.Item>
+
+    <RiverBreakoutTabs.Item>
+      <RiverBreakoutTabs.Heading>Merge with confidence</RiverBreakoutTabs.Heading>
+      <RiverBreakoutTabs.Content>
+        <Text>Use checks and approvals to move from code to merge safely.</Text>
+        <Link href="#">See merge controls</Link>
+      </RiverBreakoutTabs.Content>
+      <RiverBreakoutTabs.Visual>
+        <img src="/images/placeholder-3.png" alt="Merge flow with checks" />
+      </RiverBreakoutTabs.Visual>
+    </RiverBreakoutTabs.Item>
+  </RiverBreakoutTabs>
+</Section>
+```
+
+### With an optional background and inset media
+
+```jsx live
+<Section>
+  <RiverBreakoutTabs>
+    <RiverBreakoutTabs.A11yHeading>Breakout with a padded background</RiverBreakoutTabs.A11yHeading>
+
+    <RiverBreakoutTabs.Item>
+      <RiverBreakoutTabs.Heading>Plan</RiverBreakoutTabs.Heading>
+      <RiverBreakoutTabs.Content>
+        <Text>Start from issue context and turn goals into task lists.</Text>
+        <Link href="#">Open planning</Link>
+      </RiverBreakoutTabs.Content>
+      <RiverBreakoutTabs.Visual imageBackgroundColor="subtle">
+        <img src="/images/placeholder-1.png" alt="Planning tab visual" />
+      </RiverBreakoutTabs.Visual>
+    </RiverBreakoutTabs.Item>
+
+    <RiverBreakoutTabs.Item>
+      <RiverBreakoutTabs.Heading>Ship</RiverBreakoutTabs.Heading>
+      <RiverBreakoutTabs.Content>
+        <Text>Carry changes through review and checks to production.</Text>
+        <Link href="#">Open delivery flow</Link>
+      </RiverBreakoutTabs.Content>
+      <RiverBreakoutTabs.Visual imageBackgroundColor="subtle">
+        <img src="/images/placeholder-2.png" alt="Delivery tab visual" />
+      </RiverBreakoutTabs.Visual>
+    </RiverBreakoutTabs.Item>
+  </RiverBreakoutTabs>
+</Section>
+```
+
+## Component props
+
+### RiverBreakoutTabs <Label>Required</Label>
+
+| Name                   | Type                              | Default | Description                                                                 |
+| :--------------------- | :-------------------------------- | :-----: | :-------------------------------------------------------------------------- |
+| `children`             | `RiverBreakoutTabs.Item[]`        |         | Includes one required `RiverBreakoutTabs.A11yHeading` and one or more items |
+| `defaultSelectedIndex` | `number`                          |   `0`   | Default selected index for uncontrolled mode                                |
+| `selectedIndex`        | `number`                          |         | Selected index for controlled mode                                          |
+| `onChange`             | `(selectedIndex: number) => void` |         | Callback called when selected index changes                                 |
+
+`RiverBreakoutTabs` extends the HTML `section` element and supports all `section` props.
+
+### RiverBreakoutTabs.A11yHeading <Label>Required</Label>
+
+| Name       | Type           | Default | Description                                                 |
+| :--------- | :------------- | :-----: | :---------------------------------------------------------- |
+| `children` | `ReactNode`    |         | Screen reader label for the tabs group                      |
+| `as`       | `'h2' \| 'h3'` | `'h3'`  | Semantic heading level for assistive technologies           |
+| `id`       | `string`       |         | Optional custom ID used for `aria-labelledby` relationships |
+
+`RiverBreakoutTabs.A11yHeading` extends the [`Heading`](/components/Heading) component.
+
+### RiverBreakoutTabs.Item <Label>Required</Label>
+
+| Name        | Type                   | Default | Description                               |
+| :---------- | :--------------------- | :-----: | :---------------------------------------- |
+| `children`  | `React.ReactElement[]` |         | Must include Heading, Content, and Visual |
+| `className` | `string`               |         | Optional custom class                     |
+
+`RiverBreakoutTabs.Item` is a structural child component.
+
+### RiverBreakoutTabs.Heading <Label>Required</Label>
+
+| Name       | Type        | Default | Description       |
+| :--------- | :---------- | :-----: | :---------------- |
+| `children` | `ReactNode` |         | Item heading text |
+
+`RiverBreakoutTabs.Heading` extends the [`Heading`](/components/Heading) component.
+
+### RiverBreakoutTabs.Content <Label>Required</Label>
+
+| Name       | Type        | Default | Description          |
+| :--------- | :---------- | :-----: | :------------------- |
+| `children` | `ReactNode` |         | Item body and action |
+
+`RiverBreakoutTabs.Content` extends the HTML `div` element and supports all `div` props.
+
+### RiverBreakoutTabs.Icon
+
+| Name    | Type             |  Default  | Description       |
+| :------ | :--------------- | :-------: | :---------------- |
+| `icon`  | `IconType`       |           | Octicon to render |
+| `color` | `'green' \| ...` | `'green'` | Icon color token  |
+
+`RiverBreakoutTabs.Icon` extends the [`Icon`](/components/Icon) component.
+
+### RiverBreakoutTabs.Visual <Label>Required</Label>
+
+| Name                   | Type                    | Default | Description                       |
+| :--------------------- | :---------------------- | :-----: | :-------------------------------- |
+| `children`             | `React.ReactElement`    |         | Item visual media                 |
+| `imageBackgroundColor` | `'default' \| 'subtle'` |         | Optional background around visual |
+
+`RiverBreakoutTabs.Visual` extends `River.Visual` and supports all `River.Visual` props.

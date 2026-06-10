@@ -83,6 +83,86 @@ describe('Pillar', () => {
     expect(pillarEl).toHaveClass(classToCheck)
   })
 
+  it('renders the icon with a green background by default', () => {
+    const {getByLabelText} = render(
+      <Pillar>
+        <Pillar.Icon icon={GitMergeIcon} aria-label="Git merge icon" />
+        <Pillar.Heading>{mockHeading}</Pillar.Heading>
+        <Pillar.Description>{mockDescription}</Pillar.Description>
+      </Pillar>,
+    )
+
+    const icon = getByLabelText('Git merge icon').parentElement
+    expect(icon).toHaveClass('Pillar__icon')
+    expect(icon).toHaveClass('Icon--background')
+    expect(icon).toHaveClass('Icon--size-32')
+    expect(icon).toHaveClass('Icon--color-green')
+    expect(icon).toHaveClass('Icon--background-color-green')
+  })
+
+  it('renders a native SVG icon inside the shared icon wrapper by default', () => {
+    const {getByLabelText} = render(
+      <Pillar>
+        <Pillar.Icon
+          icon={
+            <svg viewBox="0 0 56 56" width="56" height="56" aria-label="Custom icon">
+              <path d="M0 0h56v56H0z" />
+            </svg>
+          }
+        />
+        <Pillar.Heading>{mockHeading}</Pillar.Heading>
+        <Pillar.Description>{mockDescription}</Pillar.Description>
+      </Pillar>,
+    )
+
+    expect(getByLabelText('Custom icon').parentElement).toHaveClass(
+      'Pillar__icon',
+      'Pillar__icon--with-background',
+      'Icon--size-32',
+    )
+  })
+
+  it('renders the icon without a background when hasBackground is false', () => {
+    const {getByLabelText} = render(
+      <Pillar>
+        <Pillar.Icon icon={GitMergeIcon} aria-label="Git merge icon" hasBackground={false} />
+        <Pillar.Heading>{mockHeading}</Pillar.Heading>
+        <Pillar.Description>{mockDescription}</Pillar.Description>
+      </Pillar>,
+    )
+
+    const icon = getByLabelText('Git merge icon')
+    expect(icon).toHaveClass('Pillar__icon')
+    expect(icon).not.toHaveClass('Icon--background')
+    expect(icon).not.toHaveClass('Icon--size-32')
+    expect(icon).not.toHaveAttribute('style')
+  })
+
+  it('renders a native SVG icon without shared icon sizing when hasBackground is false', () => {
+    const {getByLabelText} = render(
+      <Pillar>
+        <Pillar.Icon
+          hasBackground={false}
+          icon={
+            <svg viewBox="0 0 120 56" width="120" height="56" aria-label="Custom logo">
+              <path d="M0 0h120v56H0z" />
+            </svg>
+          }
+        />
+        <Pillar.Heading>{mockHeading}</Pillar.Heading>
+        <Pillar.Description>{mockDescription}</Pillar.Description>
+      </Pillar>,
+    )
+
+    const svg = getByLabelText('Custom logo')
+    const icon = svg.parentElement
+    expect(icon).toHaveClass('Pillar__icon')
+    expect(icon).not.toHaveClass('Pillar__icon--with-background')
+    expect(icon).not.toHaveClass('Icon--size-32')
+    expect(svg).toHaveAttribute('width', '120')
+    expect(svg).toHaveAttribute('height', '56')
+  })
+
   it('renders the image correctly into the document', () => {
     const mockTestId = 'test'
     const mockImage = 'mock.png'
@@ -132,5 +212,33 @@ describe('Pillar', () => {
 
     const pillarEl = getByTestId(mockTestId)
     expect(pillarEl).toHaveClass(classToCheck)
+  })
+
+  it('does not apply max-width class when fullWidth is true', () => {
+    const mockTestId = 'test'
+
+    const {getByTestId} = render(
+      <Pillar data-testid={mockTestId} fullWidth>
+        <Pillar.Heading>{mockHeading}</Pillar.Heading>
+        <Pillar.Description>{mockDescription}</Pillar.Description>
+      </Pillar>,
+    )
+
+    const pillarEl = getByTestId(mockTestId)
+    expect(pillarEl).not.toHaveClass('Pillar--has-max-width')
+  })
+
+  it('applies max-width class by default', () => {
+    const mockTestId = 'test'
+
+    const {getByTestId} = render(
+      <Pillar data-testid={mockTestId}>
+        <Pillar.Heading>{mockHeading}</Pillar.Heading>
+        <Pillar.Description>{mockDescription}</Pillar.Description>
+      </Pillar>,
+    )
+
+    const pillarEl = getByTestId(mockTestId)
+    expect(pillarEl).toHaveClass('Pillar--has-max-width')
   })
 })

@@ -8,23 +8,42 @@ import {test, expect} from '@playwright/test'
 // eslint-disable-next-line i18n-text/no-en
 test.describe('Visual Comparison: CTABanner', () => {
   test('CTABanner / Default', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-ctabanner--default&viewMode=story')
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-ctabanner--default&viewMode=story', {
+      waitUntil: 'networkidle',
+    })
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('CTABanner / Playground', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-ctabanner--playground&viewMode=story')
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-ctabanner--playground&viewMode=story', {
+      waitUntil: 'networkidle',
+    })
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
-  test('CTABanner / With Accent Button', async ({page}) => {
+  test('CTABanner / Variants', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-ctabanner-features--with-accent-button&viewMode=story',
+      'http://localhost:6006/iframe.html?args=&id=components-ctabanner-features--variants&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+    await page.waitForTimeout(500)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
+  test('CTABanner / With Primary Button', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-ctabanner-features--with-primary-button&viewMode=story',
+      {waitUntil: 'networkidle'},
+    )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -33,7 +52,20 @@ test.describe('Visual Comparison: CTABanner', () => {
   test('CTABanner / With Border', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-ctabanner-features--with-border&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+    await page.waitForTimeout(500)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
+  test('CTABanner / With Grid Lines', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-ctabanner-features--with-grid-lines&viewMode=story',
+      {waitUntil: 'networkidle'},
+    )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -42,16 +74,20 @@ test.describe('Visual Comparison: CTABanner', () => {
   test('CTABanner / With No Shadow', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-ctabanner-features--with-no-shadow&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
-  test('CTABanner / Aligned Center', async ({page}) => {
+  test('CTABanner / Aligned Start', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-ctabanner-features--aligned-center&viewMode=story',
+      'http://localhost:6006/iframe.html?args=&id=components-ctabanner-features--aligned-start&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -60,7 +96,31 @@ test.describe('Visual Comparison: CTABanner', () => {
   test('CTABanner / With Trailing Component', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-ctabanner-features--with-trailing-component&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+    await page.waitForTimeout(500)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
+  test('CTABanner / With Leading Component', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-ctabanner-features--with-leading-component&viewMode=story',
+      {waitUntil: 'networkidle'},
+    )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+    await page.waitForTimeout(500)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
+  test('CTABanner / With Octovisual Leading Component', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-ctabanner-features--with-octovisual-leading-component&viewMode=story',
+      {waitUntil: 'networkidle'},
+    )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -69,7 +129,9 @@ test.describe('Visual Comparison: CTABanner', () => {
   test('CTABanner / Custom Shadow', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-ctabanner-features--custom-shadow&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -78,7 +140,9 @@ test.describe('Visual Comparison: CTABanner', () => {
   test('CTABanner / Custom Background Colors', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-ctabanner-features--custom-background-colors&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -87,7 +151,9 @@ test.describe('Visual Comparison: CTABanner', () => {
   test('CTABanner / Responsive Background Image', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-ctabanner-features--responsive-background-image&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -96,7 +162,93 @@ test.describe('Visual Comparison: CTABanner', () => {
   test('CTABanner / Responsive Background Image Dark', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-ctabanner-features--responsive-background-image-dark&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+    await page.waitForTimeout(500)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
+  test('CTABanner / With Image', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-ctabanner-features--with-image&viewMode=story',
+      {waitUntil: 'networkidle'},
+    )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+    await page.waitForTimeout(500)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
+  // eslint-disable-next-line i18n-text/no-en
+  test.describe('Tablet viewport test for With Image At Tablet Viewport', () => {
+    test.use({viewport: {width: 834, height: 1112}})
+    test('CTABanner / With Image At Tablet Viewport', async ({page}) => {
+      await page.goto(
+        'http://localhost:6006/iframe.html?args=&id=components-ctabanner-features--with-image-at-tablet-viewport&viewMode=story',
+        {waitUntil: 'networkidle'},
+      )
+      await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+      await page.waitForTimeout(500)
+      await expect(page).toHaveScreenshot({fullPage: true})
+    })
+  })
+
+  // eslint-disable-next-line i18n-text/no-en
+  test.describe('Mobile viewport test for With Image At Mobile Viewport', () => {
+    test.use({viewport: {width: 360, height: 800}})
+    test('CTABanner / With Image At Mobile Viewport', async ({page}) => {
+      await page.goto(
+        'http://localhost:6006/iframe.html?args=&id=components-ctabanner-features--with-image-at-mobile-viewport&viewMode=story',
+        {waitUntil: 'networkidle'},
+      )
+      await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+      await page.waitForTimeout(500)
+      await expect(page).toHaveScreenshot({fullPage: true})
+    })
+  })
+  test('CTABanner / With Inline Code Element', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-ctabanner-features--with-inline-code-element&viewMode=story',
+      {waitUntil: 'networkidle'},
+    )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+    await page.waitForTimeout(500)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
+  test('CTABanner / With Logo', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-ctabanner-features--with-logo&viewMode=story',
+      {waitUntil: 'networkidle'},
+    )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+    await page.waitForTimeout(500)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
+  test('CTABanner / With Link', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-ctabanner-features--with-link&viewMode=story',
+      {waitUntil: 'networkidle'},
+    )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+    await page.waitForTimeout(500)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
+  test('CTABanner / With Duotone Text', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-ctabanner-features--with-duotone-text&viewMode=story',
+      {waitUntil: 'networkidle'},
+    )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})

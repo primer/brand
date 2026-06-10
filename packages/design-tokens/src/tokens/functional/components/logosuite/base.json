@@ -10,12 +10,7 @@
         }
       },
       "rowGap": {
-        "value": "var(--base-size-40)",
-        "responsive": {
-          "768px": {
-            "value": "var(--base-size-80)"
-          }
-        }
+        "value": "var(--base-size-40)"
       },
       "marquee": {
         "default": {

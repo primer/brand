@@ -1,11 +1,12 @@
 'use client'
 import colors from '@primer/brand-primitives/lib/design-tokens/js/module/tokens/base/colors/light'
 import React from 'react'
-import {Box as PRCBox, ThemeProvider as PRCThemeProvider} from '@primer/react'
+import {ThemeProvider as PRCThemeProvider} from '@primer/react'
 import {Text} from '@primer/react-brand'
 import {readableColor} from 'color2k'
 import {ColorModesEnum} from '../../../../../packages/react/src/ThemeProvider'
 import {useColorTheme} from './ColorThemeContext'
+import styles from './ColorScales.module.css'
 
 export function ColorScales() {
   const [colorTheme] = useColorTheme()
@@ -23,34 +24,24 @@ export function ColorScales() {
   const renderScale = scale => {
     const [name, colorScale] = scale
     return (
-      <PRCBox key={name}>
+      <div key={name}>
         {Object.entries(colorScale).map(([key, obj]) => {
           const value = colorTheme === 'dark' ? obj.dark : obj.value
 
           if (!value) return null
 
           return (
-            <PRCBox
-              key={`${key}-${value}`}
-              sx={{
-                bg: value,
-                p: 2,
-                display: 'flex',
-                justifyContent: 'space-between',
-                fontFamily: 'mono',
-                fontSize: 1,
-              }}
-            >
+            <div key={`${key}-${value}`} className={styles.colorSwatch} style={{backgroundColor: value}}>
               <Text font="monospace" size="100" style={{color: readableColor(value)}}>
                 {name}.{key}
               </Text>
               <Text font="monospace" size="100" style={{color: readableColor(value)}}>
                 {value}
               </Text>
-            </PRCBox>
+            </div>
           )
         })}
-      </PRCBox>
+      </div>
     )
   }
 
@@ -60,33 +51,8 @@ export function ColorScales() {
         colorTheme === ColorModesEnum.LIGHT ? 'day' : colorTheme === ColorModesEnum.DARK ? 'night' : ColorModesEnum.AUTO
       }
     >
-      <PRCBox
-        sx={{
-          display: 'grid',
-          gridGap: 3,
-          gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
-          p: 3,
-          boxShadow: 'inset 0 0 0 1px rgba(0,0,0,0.1)',
-          borderRadius: 2,
-          backgroundColor: 'canvas.default',
-          marginBottom: 2,
-        }}
-      >
-        {rgbScales.map(renderScale)}
-      </PRCBox>
-      <PRCBox
-        sx={{
-          display: 'grid',
-          gridGap: 3,
-          gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
-          p: 3,
-          boxShadow: 'inset 0 0 0 1px rgba(0,0,0,0.1)',
-          borderRadius: 2,
-          backgroundColor: 'canvas.default',
-        }}
-      >
-        {blackWhiteScales.map(renderScale)}
-      </PRCBox>
+      <div className={styles.scalesGrid}>{rgbScales.map(renderScale)}</div>
+      <div className={styles.scalesGridLast}>{blackWhiteScales.map(renderScale)}</div>
     </PRCThemeProvider>
   )
 }

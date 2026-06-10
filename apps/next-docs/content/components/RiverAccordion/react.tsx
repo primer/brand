@@ -5,6 +5,8 @@ export const RiverAccordionChildrenProp = () => <PropTableValues values={[`River
 
 export const RiverAccordionAlignProp = () => <PropTableValues values={['start', 'end']} addLineBreaks />
 
+export const RiverAccordionVariantProp = () => <PropTableValues values={['default', 'gridline']} addLineBreaks />
+
 export const RiverAccordionItemChildrenProp = () => (
   <PropTableValues
     values={[`RiverAccordion.Heading`, `RiverAccordion.Content`, `RiverAccordion.Visual`]}

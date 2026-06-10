@@ -112,7 +112,7 @@ export function CategoryPage({
             <Grid enableOverlay={enableGridOverlay} className={styles.relative}>
               <Grid.Column>
                 <Hero align="start">
-                  {args.heroLabel && <Hero.Label>{args.heroLabel}</Hero.Label>}
+                  {args.heroLabel && <Hero.Label animate>{args.heroLabel}</Hero.Label>}
                   {args.heroTitle && <Hero.Heading>{args.heroTitle}</Hero.Heading>}
                   {args.heroDescription && <Hero.Description>{args.heroDescription}</Hero.Description>}
                 </Hero>
@@ -129,7 +129,7 @@ export function CategoryPage({
             <Grid enableOverlay={enableGridOverlay} className={styles.subtleCards}>
               <Grid.Column span={{large: 4}}>
                 <Box animate="fade-in" className={styles.fullHeight}>
-                  <Card href="#" fullWidth variant="torchlight">
+                  <Card href="#" fullWidth>
                     <Card.Icon icon={StackIcon} color="indigo" hasBackground />
                     <Card.Heading as="h2">Teams</Card.Heading>
                     <Card.Description>
@@ -141,7 +141,7 @@ export function CategoryPage({
               </Grid.Column>
               <Grid.Column span={{large: 4}}>
                 <Box animate="fade-in" className={styles.fullHeight}>
-                  <Card href="#" fullWidth variant="torchlight">
+                  <Card href="#" fullWidth>
                     <Card.Icon icon={StarIcon} color="indigo" hasBackground />
                     <Card.Heading as="h2">Startups</Card.Heading>
                     <Card.Description>
@@ -154,7 +154,7 @@ export function CategoryPage({
               </Grid.Column>
               <Grid.Column span={{large: 4}}>
                 <Box animate="fade-in" className={styles.fullHeight}>
-                  <Card href="#" fullWidth variant="torchlight">
+                  <Card href="#" fullWidth>
                     <Card.Icon icon={HeartIcon} color="indigo" hasBackground />
                     <Card.Heading as="h2">Non-Profit</Card.Heading>
                     <Card.Description>
@@ -166,7 +166,7 @@ export function CategoryPage({
               </Grid.Column>
               <Grid.Column span={{large: 4}}>
                 <Box animate="fade-in" className={styles.fullHeight}>
-                  <Card href="#" fullWidth variant="torchlight">
+                  <Card href="#" fullWidth>
                     <Card.Icon icon={StackIcon} color="indigo" hasBackground />
                     <Card.Heading as="h2">Teams</Card.Heading>
                     <Card.Description>
@@ -178,7 +178,7 @@ export function CategoryPage({
               </Grid.Column>
               <Grid.Column span={{large: 4}}>
                 <Box animate="fade-in" className={styles.fullHeight}>
-                  <Card href="#" fullWidth variant="torchlight">
+                  <Card href="#" fullWidth>
                     <Card.Icon icon={StarIcon} color="indigo" hasBackground />
                     <Card.Heading as="h2">Startups</Card.Heading>
                     <Card.Description>
@@ -191,7 +191,7 @@ export function CategoryPage({
               </Grid.Column>
               <Grid.Column span={{large: 4}}>
                 <Box animate="fade-in" className={styles.fullHeight}>
-                  <Card href="#" fullWidth variant="torchlight">
+                  <Card href="#" fullWidth>
                     <Card.Icon icon={HeartIcon} color="indigo" hasBackground />
                     <Card.Heading as="h2">Non-Profit</Card.Heading>
                     <Card.Description>
@@ -215,7 +215,7 @@ export function CategoryPage({
 
               <Grid.Column span={{large: 4}}>
                 <Box animate="fade-in" className={styles.fullHeight}>
-                  <Card href="#" fullWidth variant="torchlight">
+                  <Card href="#" fullWidth>
                     <Card.Icon icon={StackIcon} color="indigo" hasBackground />
                     <Card.Heading as="h2">Teams</Card.Heading>
                     <Card.Description>
@@ -227,7 +227,7 @@ export function CategoryPage({
               </Grid.Column>
               <Grid.Column span={{large: 4}}>
                 <Box animate="fade-in" className={styles.fullHeight}>
-                  <Card href="#" fullWidth variant="torchlight">
+                  <Card href="#" fullWidth>
                     <Card.Icon icon={StarIcon} color="indigo" hasBackground />
                     <Card.Heading as="h2">Startups</Card.Heading>
                     <Card.Description>
@@ -240,7 +240,7 @@ export function CategoryPage({
               </Grid.Column>
               <Grid.Column span={{large: 4}}>
                 <Box animate="fade-in" className={styles.fullHeight}>
-                  <Card href="#" fullWidth variant="torchlight">
+                  <Card href="#" fullWidth>
                     <Card.Icon icon={HeartIcon} color="indigo" hasBackground />
                     <Card.Heading as="h2">Non-Profit</Card.Heading>
                     <Card.Description>

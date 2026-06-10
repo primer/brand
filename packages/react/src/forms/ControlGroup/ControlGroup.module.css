@@ -19,24 +19,23 @@
   display: flex;
   gap: var(--base-size-4);
   font-weight: var(--base-text-weight-medium);
+  align-items: center;
 }
 
 .ControlGroup__validation--success {
-  color: var(--brand-color-success-fg);
+  color: var(--brand-color-text-emphasized);
 }
 
 .ControlGroup__validation--error {
-  color: var(--brand-color-error-fg);
+  color: var(--brand-color-danger-fg);
 }
 
 .ControlGroup__validation-icon--success {
-  position: relative;
-  top: -1px;
+  display: flex;
 }
 
 .ControlGroup__validation-icon--error {
-  position: relative;
-  top: -0.5px;
+  display: flex;
 }
 
 .ControlGroup__validation--animate-in {

@@ -246,8 +246,8 @@ const darkJson = require('../src/tokens/base/colors/dark')
     `tokens/functional/components/accordion/colors.js`,
     `tokens/functional/components/faq/colors.json`,
     `tokens/functional/components/card/colors.json`,
-    `tokens/functional/components/pillar/colors.json`,
     `tokens/functional/components/label/colors.json`,
+    `tokens/functional/components/token/colors.json`,
     `tokens/functional/components/link/colors.json`,
     `tokens/functional/components/inline-link/colors.json`,
     `tokens/functional/components/control/colors.js`,
@@ -265,7 +265,6 @@ const darkJson = require('../src/tokens/base/colors/dark')
     `tokens/functional/components/eyebrow-banner/colors.js`,
     `tokens/functional/components/testimonial/colors.json`,
     `tokens/functional/components/sub-nav/colors.js`,
-    `tokens/functional/components/pagination/colors.js`,
     `tokens/functional/components/ide/colors.js`,
     `tokens/functional/components/breadcrumbs/colors.js`,
     `tokens/functional/components/tooltip/colors.json`,
@@ -274,6 +273,10 @@ const darkJson = require('../src/tokens/base/colors/dark')
     `tokens/functional/components/icon/colors.json`,
     `tokens/functional/components/frosted-glass-vfx/colors.js`,
     `tokens/functional/components/tabs/colors.json`,
+    `tokens/functional/components/media-playlist/colors.json`,
+    `tokens/functional/components/blinking-cursor/colors.js`,
+    `tokens/functional/components/text-cursor-animation/colors.json`,
+    `tokens/functional/components/tiles/colors.js`,
   ]
 
   for (const path of filesForColorModes) {

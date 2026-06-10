@@ -2,13 +2,13 @@ import React, {render, within} from '@testing-library/react'
 import '@testing-library/jest-dom'
 import userEvent from '@testing-library/user-event'
 
-import {RiverAccordion, RiverAccordionProps} from '../'
+import {RiverAccordion, RiverAccordionVariants, type RiverAccordionProps} from '../'
 import {axe, toHaveNoViolations} from 'jest-axe'
 
 expect.extend(toHaveNoViolations)
 
-const MockRiverAccordion = ({align}: RiverAccordionProps) => (
-  <RiverAccordion align={align}>
+const MockRiverAccordion = ({align, variant}: RiverAccordionProps) => (
+  <RiverAccordion align={align} variant={variant}>
     <RiverAccordion.Item>
       <RiverAccordion.Heading>Heading 1</RiverAccordion.Heading>
       <RiverAccordion.Content>Content 1</RiverAccordion.Content>
@@ -36,6 +36,13 @@ const MockRiverAccordion = ({align}: RiverAccordionProps) => (
 describe('RiverAccordion', () => {
   it('has no a11y violations', async () => {
     const {container} = render(<MockRiverAccordion />)
+    const results = await axe(container)
+
+    expect(results).toHaveNoViolations()
+  })
+
+  it('has no a11y violations with gridline variant', async () => {
+    const {container} = render(<MockRiverAccordion variant="gridline" />)
     const results = await axe(container)
 
     expect(results).toHaveNoViolations()
@@ -192,6 +199,27 @@ describe('RiverAccordion', () => {
     expect(img).toBeInTheDocument()
   })
 
+  it('applies the background class to visible and visually hidden visuals in gridline variant', () => {
+    const {container, getByText} = render(<MockRiverAccordion variant="gridline" />)
+    const visibleVisual = container.querySelector('.RiverAccordion__visualsWrapper .RiverAccordion__visual')
+    const panel = getByText('Content 1').parentElement
+
+    if (!panel) {
+      throw new Error('Panel not found')
+    }
+
+    const hiddenVisual = panel.querySelector('.RiverAccordion__visual')
+
+    expect(visibleVisual).toHaveClass('RiverAccordion__visual--has-background')
+    expect(hiddenVisual).toHaveClass('RiverAccordion__visual--has-background')
+  })
+
+  it('omits the background class by default', () => {
+    const {container} = render(<MockRiverAccordion />)
+
+    expect(container.querySelector('.RiverAccordion__visual--has-background')).not.toBeInTheDocument()
+  })
+
   it('applies the correct class when `align="start"`', () => {
     const {container} = render(<MockRiverAccordion align="start" />)
 
@@ -206,5 +234,41 @@ describe('RiverAccordion', () => {
     const accordionRoot = container.firstChild
 
     expect(accordionRoot).toHaveClass('RiverAccordion__align-end')
+  })
+
+  it('renders a triangle-down icon on a collapsed item', () => {
+    const {container} = render(<MockRiverAccordion />)
+
+    // Heading 2 is collapsed by default (index 1), its icon span should contain the triangle-down SVG
+    const buttons = container.querySelectorAll('button[aria-expanded]')
+    const collapsedButton = buttons[1] // Heading 2
+    const iconSpan = collapsedButton.querySelector('.RiverAccordion__icon')
+
+    expect(iconSpan).toBeInTheDocument()
+    const svg = iconSpan?.querySelector('svg')
+    expect(svg).toBeInTheDocument()
+    expect(svg).toHaveClass('octicon-triangle-down')
+  })
+
+  it('renders a triangle-up icon on an expanded item', () => {
+    const {container} = render(<MockRiverAccordion />)
+
+    // Heading 1 is expanded by default (index 0), its icon span should contain the triangle-up SVG
+    const buttons = container.querySelectorAll('button[aria-expanded]')
+    const expandedButton = buttons[0] // Heading 1
+    const iconSpan = expandedButton.querySelector('.RiverAccordion__icon')
+
+    expect(iconSpan).toBeInTheDocument()
+    const svg = iconSpan?.querySelector('svg')
+    expect(svg).toBeInTheDocument()
+    expect(svg).toHaveClass('octicon-triangle-up')
+  })
+
+  it.each(RiverAccordionVariants)('applies the correct class for variant="%s"', variant => {
+    const {container} = render(<MockRiverAccordion variant={variant} />)
+
+    const accordionRoot = container.firstChild
+
+    expect(accordionRoot).toHaveClass(`RiverAccordion--variant-${variant}`)
   })
 })

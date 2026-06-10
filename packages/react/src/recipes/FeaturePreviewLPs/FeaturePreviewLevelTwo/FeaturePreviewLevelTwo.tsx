@@ -158,7 +158,6 @@ export function FeaturePreviewLevelTwo({
       colorMode={selectedColorMode}
       style={{
         ['--brand-Testimonial-quoteMarkColor-default' as string]: accentColorValue,
-        ['--brand-Pillar-icon-color-default' as string]: accentColorValue,
         ['--brand-Label-color-default' as string]: accentColorValue,
         ['--brand-color-accent-primary' as string]: accentColorValue,
         backgroundColor: 'var(--brand-color-canvas-default)',
@@ -215,7 +214,7 @@ export function FeaturePreviewLevelTwo({
                     backgroundImage: `url(${themeDetailsMap[accentColor][selectedColorMode].images.heroVisualBg})`,
                   }}
                 >
-                  {args.heroLabel && <Hero.Label>{args.heroLabel}</Hero.Label>}
+                  {args.heroLabel && <Hero.Label animate>{args.heroLabel}</Hero.Label>}
                   {args.heroTitle && <Hero.Heading>{args.heroTitle}</Hero.Heading>}
                   {args.heroDescription && <Hero.Description>{args.heroDescription}</Hero.Description>}
                   {args.heroCtaTextPrimary && (

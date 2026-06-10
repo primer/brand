@@ -1,5 +1,8 @@
 .ExpandableArrow {
-  transition: transform 200ms;
+  --ExpandableArrow-duration: 200ms;
+  --ExpandableArrow-easing: ease;
+
+  transition: transform var(--ExpandableArrow-duration) var(--ExpandableArrow-easing);
   transform: translateX(0);
 }
 
@@ -10,7 +13,7 @@
 .ExpandableArrow-stem {
   stroke-dasharray: 10;
   stroke-dashoffset: 10;
-  transition: stroke-dashoffset 200ms;
+  transition: stroke-dashoffset var(--ExpandableArrow-duration) var(--ExpandableArrow-easing);
 }
 
 .ExpandableArrow-stem--expanded {

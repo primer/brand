@@ -1,4 +1,5 @@
 import React, {render, cleanup} from '@testing-library/react'
+import {createRef} from 'react'
 import '@testing-library/jest-dom'
 
 import {CTABanner} from './CTABanner'
@@ -104,7 +105,7 @@ describe('CTABanner', () => {
     const classToCheck = 'CTABanner--shadow'
 
     const {getByTestId} = render(
-      <CTABanner data-testid={mockTestId}>
+      <CTABanner data-testid={mockTestId} hasShadow>
         <CTABanner.Heading>This is your heading</CTABanner.Heading>
       </CTABanner>,
     )
@@ -255,5 +256,302 @@ describe('CTABanner', () => {
     for (const [key, value] of Object.entries(mockColors)) {
       expect(styleObject[`--brand-CTABanner-${key}-background-color`]).toBe(value)
     }
+  })
+
+  it('applies the default variant by default', () => {
+    const mockTestId = 'test'
+
+    const {getByTestId} = render(
+      <CTABanner data-testid={mockTestId}>
+        <CTABanner.Heading>This is your heading</CTABanner.Heading>
+      </CTABanner>,
+    )
+    const ctaBannerEl = getByTestId(mockTestId)
+    expect(ctaBannerEl).toHaveClass('CTABanner--variant-default')
+  })
+
+  it('can optionally apply the balanced variant', () => {
+    const mockTestId = 'test'
+
+    const {getByTestId} = render(
+      <CTABanner variant="balanced" data-testid={mockTestId}>
+        <CTABanner.Heading>This is your heading</CTABanner.Heading>
+        <CTABanner.Image src="image.png" alt="test" />
+      </CTABanner>,
+    )
+    const ctaBannerEl = getByTestId(mockTestId)
+    expect(ctaBannerEl).toHaveClass('CTABanner--variant-balanced')
+  })
+
+  it('can optionally apply the minimal variant', () => {
+    const mockTestId = 'test'
+
+    const {getByTestId} = render(
+      <CTABanner variant="minimal" data-testid={mockTestId}>
+        <CTABanner.Heading>This is your heading</CTABanner.Heading>
+        <CTABanner.ButtonGroup>
+          <Button>Action</Button>
+        </CTABanner.ButtonGroup>
+      </CTABanner>,
+    )
+    const ctaBannerEl = getByTestId(mockTestId)
+    expect(ctaBannerEl).toHaveClass('CTABanner--variant-minimal')
+  })
+
+  it('can render CTABanner.Image in the default variant alongside other children', () => {
+    const {getByAltText} = render(
+      <CTABanner>
+        <CTABanner.Heading>This is your heading</CTABanner.Heading>
+        <CTABanner.Image src="image.png" alt="test image" />
+      </CTABanner>,
+    )
+    const imageEl = getByAltText('test image')
+    expect(imageEl).toBeInTheDocument()
+  })
+
+  it('renders a two-column Grid layout in the balanced variant with an image', () => {
+    const {getByAltText, getByText} = render(
+      <CTABanner variant="balanced">
+        <CTABanner.Heading>This is your heading</CTABanner.Heading>
+        <CTABanner.Image src="image.png" alt="test image" />
+      </CTABanner>,
+    )
+    const imageEl = getByAltText('test image')
+    const headingEl = getByText('This is your heading')
+
+    expect(imageEl).toBeInTheDocument()
+    expect(headingEl).toBeInTheDocument()
+
+    expect(imageEl.closest('[class*="CTABanner-grid-column--secondary"]')).toBeInTheDocument()
+    expect(headingEl.closest('[class*="CTABanner-grid-column--primary"]')).toBeInTheDocument()
+  })
+
+  it('renders a two-column Grid layout in the minimal variant with buttons in the side column', () => {
+    const {getByText} = render(
+      <CTABanner variant="minimal">
+        <CTABanner.Heading>This is your heading</CTABanner.Heading>
+        <CTABanner.ButtonGroup>
+          <Button>Action</Button>
+        </CTABanner.ButtonGroup>
+      </CTABanner>,
+    )
+    const headingEl = getByText('This is your heading')
+    const buttonEl = getByText('Action')
+
+    expect(headingEl.closest('[class*="CTABanner-grid-column--primary"]')).toBeInTheDocument()
+    expect(buttonEl.closest('[class*="CTABanner-grid-column--secondary"]')).toBeInTheDocument()
+  })
+
+  it('does not render CTABanner.Image in the minimal variant and logs a warning', () => {
+    const consoleWarnSpy = jest.spyOn(console, 'warn').mockImplementation(() => {})
+
+    const {queryByAltText} = render(
+      <CTABanner variant="minimal">
+        <CTABanner.Heading>This is your heading</CTABanner.Heading>
+        <CTABanner.Image src="image.png" alt="test image" />
+      </CTABanner>,
+    )
+    expect(queryByAltText('test image')).not.toBeInTheDocument()
+    expect(consoleWarnSpy).toHaveBeenCalledWith(
+      'CTABanner: Image child is not supported in minimal variant and will not be rendered.',
+    )
+
+    consoleWarnSpy.mockRestore()
+  })
+
+  it('logs a warning when the balanced variant is used without CTABanner.Image', () => {
+    const consoleWarnSpy = jest.spyOn(console, 'warn').mockImplementation(() => {})
+
+    render(
+      <CTABanner variant="balanced">
+        <CTABanner.Heading>This is your heading</CTABanner.Heading>
+      </CTABanner>,
+    )
+    expect(consoleWarnSpy).toHaveBeenCalledWith(
+      'CTABanner: The "balanced" variant requires a CTABanner.Image child to display the two-column layout correctly.',
+    )
+
+    consoleWarnSpy.mockRestore()
+  })
+
+  it('renders the hasGridLines outer border wrapper and container class', () => {
+    const {getByTestId} = render(
+      <CTABanner hasGridLines data-testid="test">
+        <CTABanner.Heading>This is your heading</CTABanner.Heading>
+      </CTABanner>,
+    )
+    const sectionEl = getByTestId('test')
+    expect(sectionEl.parentElement).toHaveClass('CTABanner-outer-container--border')
+    expect(sectionEl.firstChild).toHaveClass('CTABanner-container--border-gridlines')
+  })
+
+  it('does not render the hasGridLines outer border wrapper by default', () => {
+    const {getByTestId} = render(
+      <CTABanner data-testid="test">
+        <CTABanner.Heading>This is your heading</CTABanner.Heading>
+      </CTABanner>,
+    )
+    const sectionEl = getByTestId('test')
+    const outerWrapper = sectionEl.parentElement
+    expect(outerWrapper).not.toHaveClass('CTABanner-outer-container--border')
+  })
+
+  it('provides an escape hatch to render a custom leading component', () => {
+    const leadingText = 'Custom leading'
+    const MockLeadingComponent = () => <div>{leadingText}</div>
+
+    const {getByText} = render(
+      <CTABanner leadingComponent={MockLeadingComponent}>
+        <CTABanner.Heading>This is your heading</CTABanner.Heading>
+        <CTABanner.Description>This is your description</CTABanner.Description>
+      </CTABanner>,
+    )
+
+    const elLeading = getByText(leadingText)
+
+    expect(elLeading).toBeInTheDocument()
+  })
+
+  it('renders leading component before heading and trailing component after children', () => {
+    const MockLeading = () => <div data-testid="leading">Leading</div>
+    const MockTrailing = () => <div data-testid="trailing">Trailing</div>
+
+    const {getByTestId} = render(
+      <CTABanner leadingComponent={MockLeading} trailingComponent={MockTrailing} data-testid="test">
+        <CTABanner.Heading>This is your heading</CTABanner.Heading>
+      </CTABanner>,
+    )
+
+    const contentEl = getByTestId('test').querySelector('[class*="CTABanner-content"]')
+    const children = Array.from(contentEl!.children)
+    const leadingIndex = children.findIndex(el => el.getAttribute('data-testid') === 'leading')
+    const trailingIndex = children.findIndex(el => el.getAttribute('data-testid') === 'trailing')
+
+    expect(leadingIndex).toBeLessThan(trailingIndex)
+    expect(leadingIndex).toBe(0)
+  })
+
+  it('renders CTABanner.Logo children inside a wrapper with the CTABanner-logo class', () => {
+    const {getByTestId} = render(
+      <CTABanner>
+        <CTABanner.Logo data-testid="logo">
+          <svg data-testid="logo-svg" />
+        </CTABanner.Logo>
+        <CTABanner.Heading>This is your heading</CTABanner.Heading>
+      </CTABanner>,
+    )
+
+    const logoEl = getByTestId('logo')
+    expect(logoEl).toBeInTheDocument()
+    expect(logoEl.className).toMatch(/CTABanner-logo/)
+    expect(getByTestId('logo-svg')).toBeInTheDocument()
+  })
+
+  it('forwards a custom className on CTABanner.Logo alongside the default class', () => {
+    const {getByTestId} = render(
+      <CTABanner>
+        <CTABanner.Logo data-testid="logo" className="custom-logo">
+          <span>Logo</span>
+        </CTABanner.Logo>
+        <CTABanner.Heading>This is your heading</CTABanner.Heading>
+      </CTABanner>,
+    )
+
+    const logoEl = getByTestId('logo')
+    expect(logoEl).toHaveClass('custom-logo')
+    expect(logoEl.className).toMatch(/CTABanner-logo/)
+  })
+
+  it('forwards a ref on CTABanner.Logo to the underlying div element', () => {
+    const ref = createRef<HTMLDivElement>()
+    render(
+      <CTABanner>
+        <CTABanner.Logo ref={ref}>
+          <span>Logo</span>
+        </CTABanner.Logo>
+        <CTABanner.Heading>This is your heading</CTABanner.Heading>
+      </CTABanner>,
+    )
+
+    expect(ref.current).toBeInstanceOf(HTMLDivElement)
+    expect(ref.current?.className).toMatch(/CTABanner-logo/)
+  })
+
+  it('renders CTABanner.Link as an anchor with the CTABanner-link class and forwards href', () => {
+    const {getByRole} = render(
+      <CTABanner>
+        <CTABanner.Heading>This is your heading</CTABanner.Heading>
+        <CTABanner.Link href="https://example.com">Read more</CTABanner.Link>
+      </CTABanner>,
+    )
+
+    const linkEl = getByRole('link', {name: 'Read more'})
+    expect(linkEl).toBeInTheDocument()
+    expect(linkEl).toHaveAttribute('href', 'https://example.com')
+    expect(linkEl.className).toMatch(/CTABanner-link/)
+  })
+
+  it('forwards a custom className on CTABanner.Link alongside the default class', () => {
+    const {getByRole} = render(
+      <CTABanner>
+        <CTABanner.Heading>This is your heading</CTABanner.Heading>
+        <CTABanner.Link href="#" className="custom-link">
+          Read more
+        </CTABanner.Link>
+      </CTABanner>,
+    )
+
+    const linkEl = getByRole('link', {name: 'Read more'})
+    expect(linkEl).toHaveClass('custom-link')
+    expect(linkEl.className).toMatch(/CTABanner-link/)
+  })
+
+  it('renders CTABanner.Heading with size "3" in the default variant when no size prop is provided', () => {
+    const {getByText} = render(
+      <CTABanner>
+        <CTABanner.Heading>Default heading</CTABanner.Heading>
+      </CTABanner>,
+    )
+
+    const headingEl = getByText('Default heading')
+    expect(headingEl.className).toMatch(/Heading--3/)
+  })
+
+  it('auto-applies size "6" to CTABanner.Heading in the minimal variant when no size prop is provided', () => {
+    const {getByText} = render(
+      <CTABanner variant="minimal">
+        <CTABanner.Heading>Minimal heading</CTABanner.Heading>
+      </CTABanner>,
+    )
+
+    const headingEl = getByText('Minimal heading')
+    expect(headingEl.className).toMatch(/Heading--6/)
+    expect(headingEl.className).not.toMatch(/Heading--3/)
+  })
+
+  it('respects an explicit size prop on CTABanner.Heading in the minimal variant', () => {
+    const {getByText} = render(
+      <CTABanner variant="minimal">
+        <CTABanner.Heading size="2">Minimal heading</CTABanner.Heading>
+      </CTABanner>,
+    )
+
+    const headingEl = getByText('Minimal heading')
+    expect(headingEl.className).toMatch(/Heading--2/)
+    expect(headingEl.className).not.toMatch(/Heading--6/)
+  })
+
+  it('renders <b> children inside CTABanner.Heading for duotone emphasis', () => {
+    const {getByText} = render(
+      <CTABanner>
+        <CTABanner.Heading>
+          Where the most ambitious teams <b>build great things</b>
+        </CTABanner.Heading>
+      </CTABanner>,
+    )
+
+    const emphasizedText = getByText('build great things')
+    expect(emphasizedText).toBeInTheDocument()
+    expect(emphasizedText.tagName).toBe('B')
   })
 })

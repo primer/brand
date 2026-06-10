@@ -342,7 +342,7 @@ describe('LogoSuite', () => {
     )
 
     const el = getByTestId('logobar')
-    const expectedClass = 'LogoSuite__logobar--variant-emphasis'
+    const expectedClass = 'LogoSuite__logobar--variant-muted'
 
     expect(el.classList).toContain(expectedClass)
   })
@@ -405,5 +405,154 @@ describe('LogoSuite', () => {
     )
 
     expect(getByTestId('logobar').classList).toContain(condensedGapClass)
+  })
+
+  it('applies the gridline-expressive variant presentation', () => {
+    const {getByTestId} = render(
+      <LogoSuite data-testid="root" variant="gridline-expressive">
+        <LogoSuite.Heading>{mockHeading}</LogoSuite.Heading>
+        <LogoSuite.Logobar>
+          <svg aria-label="Mock SVG" />
+        </LogoSuite.Logobar>
+      </LogoSuite>,
+    )
+
+    const rootEl = getByTestId('root')
+    const expectedClass = 'LogoSuite--gridline-expressive'
+
+    expect(rootEl.classList).toContain(expectedClass)
+  })
+
+  it('renders heading and description in a text column when gridline-expressive has visible text', () => {
+    const {getByText, container} = render(
+      <LogoSuite variant="gridline-expressive">
+        <LogoSuite.Heading>{mockHeading}</LogoSuite.Heading>
+        <LogoSuite.Description>{mockDescription}</LogoSuite.Description>
+        <LogoSuite.Logobar>
+          <svg aria-label="Mock SVG" />
+        </LogoSuite.Logobar>
+      </LogoSuite>,
+    )
+
+    expect(getByText(mockHeading)).toBeInTheDocument()
+    expect(getByText(mockDescription)).toBeInTheDocument()
+
+    const textContainer = container.querySelector('.LogoSuite__textContainer')
+    const logobarContainer = container.querySelector('.LogoSuite__logobarContainer')
+
+    expect(textContainer).toBeInTheDocument()
+    expect(logobarContainer).toBeInTheDocument()
+
+    const contentChildren = container.querySelector('.LogoSuite__content')?.children
+    expect(contentChildren?.[0]).toBe(textContainer)
+    expect(contentChildren?.[1]).toBe(logobarContainer)
+  })
+
+  it('renders logobar full-width when gridline-expressive heading is visually hidden', () => {
+    const {getByText, container} = render(
+      <LogoSuite variant="gridline-expressive">
+        <LogoSuite.Heading visuallyHidden>{mockHeading}</LogoSuite.Heading>
+        <LogoSuite.Logobar>
+          <svg aria-label="Mock SVG" />
+        </LogoSuite.Logobar>
+      </LogoSuite>,
+    )
+
+    // Heading should still be in the DOM for a11y
+    expect(getByText(mockHeading)).toBeInTheDocument()
+    expect(container.querySelector('.LogoSuite__textContainer')).not.toBeInTheDocument()
+    expect(container.querySelector('.LogoSuite__logobarContainer')).toBeInTheDocument()
+  })
+
+  it('renders a takeover button that is hidden by default and appears on hover', async () => {
+    const user = userEvent.setup()
+
+    const {getByRole, getByTestId, container} = render(
+      <LogoSuite>
+        <LogoSuite.Heading>{mockHeading}</LogoSuite.Heading>
+        <LogoSuite.Logobar data-testid="logobar" takeoverButton={{label: 'Learn more', href: '/customers'}}>
+          <svg aria-label="Mock SVG" />
+        </LogoSuite.Logobar>
+      </LogoSuite>,
+    )
+
+    const logobarEl = getByTestId('logobar')
+
+    expect(logobarEl.classList).toContain('LogoSuite__logobar--has-takeover')
+
+    // takeover is present in the DOM but hidden.
+    const buttonContainer = container.querySelector('.LogoSuite__logobar-takeoverButtonContainer')
+    expect(buttonContainer).toBeInTheDocument()
+
+    await user.hover(logobarEl)
+
+    const takeoverLink = getByRole('link', {name: 'Learn more'})
+    expect(takeoverLink).toBeInTheDocument()
+    expect(takeoverLink).toHaveAttribute('href', '/customers')
+  })
+
+  it('logs a warning when marquee and takeoverButton are used together', () => {
+    const consoleWarnSpy = jest.spyOn(console, 'warn').mockImplementation(() => {})
+
+    render(
+      <LogoSuite>
+        <LogoSuite.Heading>{mockHeading}</LogoSuite.Heading>
+        <LogoSuite.Logobar marquee takeoverButton={{label: 'Learn more', href: '/customers'}}>
+          <svg aria-label="Mock SVG" />
+        </LogoSuite.Logobar>
+      </LogoSuite>,
+    )
+
+    expect(consoleWarnSpy).toHaveBeenCalledWith(
+      'LogoSuite.Logobar: `takeoverButton` cant be used with `marquee` prop due to accessibility risks. Set `marquee={false}` to use the takeover feature.',
+    )
+    consoleWarnSpy.mockRestore()
+  })
+
+  it('applies the focused class to the marquee when a link inside receives focus', async () => {
+    const user = userEvent.setup()
+
+    const {container} = render(
+      <LogoSuite>
+        <LogoSuite.Heading>{mockHeading}</LogoSuite.Heading>
+        <LogoSuite.Logobar marquee>
+          <a href="/" aria-label="Logo 1">
+            <svg aria-label="Mock SVG" />
+          </a>
+        </LogoSuite.Logobar>
+      </LogoSuite>,
+    )
+
+    await user.tab()
+    await user.tab()
+
+    const marqueeEl = container.querySelector('.LogoSuite__logobar-marquee')
+    expect(marqueeEl?.classList).toContain('LogoSuite__logobar-marquee--focused')
+  })
+
+  it('removes the focused class from the marquee when focus leaves entirely', async () => {
+    const user = userEvent.setup()
+
+    const {container} = render(
+      <LogoSuite>
+        <LogoSuite.Heading>{mockHeading}</LogoSuite.Heading>
+        <LogoSuite.Logobar marquee>
+          <a href="/" aria-label="Logo 1">
+            <svg aria-label="Mock SVG" />
+          </a>
+        </LogoSuite.Logobar>
+      </LogoSuite>,
+    )
+
+    await user.tab()
+    await user.tab()
+
+    const marqueeEl = container.querySelector('.LogoSuite__logobar-marquee')
+    expect(marqueeEl?.classList).toContain('LogoSuite__logobar-marquee--focused')
+
+    await user.tab()
+    await user.tab()
+
+    expect(marqueeEl?.classList).not.toContain('LogoSuite__logobar-marquee--focused')
   })
 })

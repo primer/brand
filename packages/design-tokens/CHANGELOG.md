@@ -1,5 +1,297 @@
 # @primer/brand-primitives
 
+## 0.68.0
+
+### Minor Changes
+
+- [#1353](https://github.com/primer/brand/pull/1353) [`d82cfa3`](https://github.com/primer/brand/commit/d82cfa3b47609ecf179356a47b0164741ccbf29b) Thanks [@rezrah](https://github.com/rezrah)! - Removed Pagination-specific CSS variables from `@primer/brand-*` packages. Pagination now uses the shared Brand `Button` component styling, so the previous custom token variables are no longer emitted or required:
+
+  ```diff
+  - --brand-pagination-link-bgColor-rest
+  - --brand-pagination-link-bgColor-active
+  - --brand-pagination-borderColor-hover
+  ```
+
+- [#1340](https://github.com/primer/brand/pull/1340) [`670f3e6`](https://github.com/primer/brand/commit/670f3e6c53980d65ac0cecfc02f5cc3899c2af24) Thanks [@rezrah](https://github.com/rezrah)! - - Visual changes to the `Pillar` component.
+
+  - `Pillar.Icon` now defaults to a fixed green color with corresponding filled background. It now uses the `Icon` component internally for size parity with `Card.Icon`.
+  - ⚠️ Removed the `Pillar.Icon` `color` prop and `PillarIconColors` type export. Pillar icons using the shared background now always render green. Remove `color` from existing `Pillar.Icon` usage.
+  - ⚠️ Removed the `iconColor` field from `FlexTemplate` pillar items because it forwarded to the removed `Pillar.Icon` color prop.
+  - Native SVG icons fit the shared background by default, and `hasBackground={false}` renders custom artwork without the shared background treatment.
+  - ⚠️ Narrowed the `Pillar.Icon` `icon` prop type. It previously accepted arbitrary `ReactNode` values such as `string`, `number`, and `boolean`, but those values didn't render a usable icon. It now only accepts a valid icon component or icon element.
+
+  - Removed the Pillar-specific icon color tokens from the package output.
+
+    ```diff
+    - --brand-Pillar-icon-color-default
+    - --brand-Pillar-icon-color-{blue,coral,green,gray,indigo,lemon,lime,orange,pink,purple,red,teal,yellow}
+    ```
+
+  - Updated bordered Pillars to use a medium border radius.
+
+  - Increased default size of `Pillar.Heading` from `subhead-large` to `6`
+
+  - Increased `Pillar.Icon` default size from `24px` to `32px` and added extra space between it and the subsequent heading.
+
+- [#1344](https://github.com/primer/brand/pull/1344) [`e54a442`](https://github.com/primer/brand/commit/e54a44216f7c67b198dfc2c7d445bc48dbfbd076) Thanks [@rezrah](https://github.com/rezrah)! - Updated Button appearance and API ergonomics:
+
+  - ⚠️ Breaking change: Removed the `accent` Button variant. Use `primary` instead, which now applies the previous `accent` appearance.
+  - Updated `secondary`, and `subtle` variant colors and state styles.
+  - Updated Button hover background colors to use transitionable color values and standardized hover transitions with a 0.2s background color transition. Previously, they would not animate at all.
+  - Updated Button border radius, medium Button sizing, and medium ActionMenu item height to better match the new Figma treatment.
+  - Updated the shared medium control size token from `48px` to `43px`, so medium Button, ActionMenu, TextInput, and Select controls stay aligned.
+  - Updated medium Button label typography to better match the new Figma treatment.
+  - Fixed vertical alignment issues in the `Button` component so labels are centered consistently in browsers like Firefox.
+  - Deprecated the `hasArrow` prop and hid Button arrows by default.
+    - Note: `hasArrow` will be removed entirely in a future release.
+
+### Patch Changes
+
+- [#1353](https://github.com/primer/brand/pull/1353) [`d82cfa3`](https://github.com/primer/brand/commit/d82cfa3b47609ecf179356a47b0164741ccbf29b) Thanks [@rezrah](https://github.com/rezrah)! - Added new `MediaPlaylist` component, which can be used for presenting a list of YouTube videos.
+
+  ```tsx
+  <MediaPlaylist>
+    <MediaPlaylist.Heading>Latest videos</MediaPlaylist.Heading>
+    <MediaPlaylist.Item thumbnail={<img src="thumbnail.jpg" alt="" />}>
+      <MediaPlaylist.ItemHeading title="Getting More from Every Copilot Interaction" description="10:57" />
+      <MediaPlaylist.ItemContent>
+        <Text as="p" variant="muted">
+          See workflows for scoping context, choosing the right mode, and getting more focused Copilot answers.
+        </Text>
+      </MediaPlaylist.ItemContent>
+      <MediaPlaylist.ItemMedia>
+        <iframe
+          title="Getting More from Every Copilot Interaction"
+          src="https://www.youtube-nocookie.com/embed/ITxzBiTBZW0"
+        />
+      </MediaPlaylist.ItemMedia>
+    </MediaPlaylist.Item>
+  </MediaPlaylist>
+  ```
+
+  🔗 [See `MediaPlaylist` documentation for more usage examples](https://primer.style/brand/components/MediaPlaylist)
+
+- [#1359](https://github.com/primer/brand/pull/1359) [`9c900e9`](https://github.com/primer/brand/commit/9c900e902b5cd9800ef083457d206490aefdb24a) Thanks [@rezrah](https://github.com/rezrah)! - Added and updated form control color tokens for `Checkbox`, `Radio`, and shared focus states.
+
+  New tokens are now available:
+
+  ```diff
+  + --brand-control-color-focus
+  + --brand-control-checkbox-bg-hover
+  + --brand-control-checkbox-bg-checked-hover
+  + --brand-control-checkbox-bg-checked-disabled
+  + --brand-control-checkbox-bg-indeterminate-hover
+  + --brand-control-checkbox-fg-checked-disabled
+  + --brand-control-checkbox-border-hover
+  + --brand-control-checkbox-border-checked-hover
+  + --brand-control-checkbox-border-checked-disabled
+  + --brand-control-checkbox-border-indeterminate-hover
+  + --brand-control-checkbox-border-unchecked-disabled
+  + --brand-control-radio-bg-hover
+  + --brand-control-radio-bg-checked-hover
+  + --brand-control-radio-border-hover
+  + --brand-control-radio-border-checked-hover
+  + --brand-control-radio-border-disabled
+  + --brand-control-radio-dot-checked
+  + --brand-control-radio-dot-checked-hover
+  ```
+
+  Existing tokens were also updated:
+
+  ```diff
+  /* light */
+  - --brand-control-checkbox-bg-checked: var(--base-color-scale-black-0)
+  + --brand-control-checkbox-bg-checked: var(--base-color-scale-green-6)
+  - --brand-control-checkbox-bg-indeterminate: var(--base-color-scale-black-0)
+  + --brand-control-checkbox-bg-indeterminate: var(--base-color-scale-green-6)
+  - --brand-control-checkbox-bg-disabled: var(--base-color-scale-gray-1)
+  + --brand-control-checkbox-bg-disabled: var(--brand-color-canvas-default)
+  - --brand-control-checkbox-border-checked: var(--base-color-scale-black-0)
+  + --brand-control-checkbox-border-checked: var(--base-color-scale-green-6)
+  - --brand-control-checkbox-border-indeterminate: var(--base-color-scale-black-0)
+  + --brand-control-checkbox-border-indeterminate: var(--base-color-scale-green-6)
+  - --brand-control-checkbox-border-disabled: var(--base-color-scale-gray-2)
+  + --brand-control-checkbox-border-disabled: var(--base-color-scale-gray-4)
+  - --brand-control-radio-bg-disabled: var(--base-color-scale-gray-1)
+  + --brand-control-radio-bg-disabled: var(--brand-color-canvas-default)
+  - --brand-control-radio-border-checked: var(--base-color-scale-black-0)
+  + --brand-control-radio-border-checked: var(--base-color-scale-green-6)
+
+  /* dark */
+  - --brand-control-checkbox-bg-checked: var(--base-color-scale-white-0)
+  + --brand-control-checkbox-bg-checked: var(--base-color-scale-green-5)
+  - --brand-control-checkbox-bg-indeterminate: var(--base-color-scale-white-0)
+  + --brand-control-checkbox-bg-indeterminate: var(--base-color-scale-green-5)
+  - --brand-control-checkbox-bg-disabled: var(--base-color-scale-gray-4)
+  + --brand-control-checkbox-bg-disabled: var(--brand-color-canvas-default)
+  - --brand-control-checkbox-fg-checked: var(--base-color-scale-black-0)
+  + --brand-control-checkbox-fg-checked: var(--base-color-scale-white-0)
+  - --brand-control-checkbox-border-checked: var(--base-color-scale-white-0)
+  + --brand-control-checkbox-border-checked: #077726
+  - --brand-control-checkbox-border-indeterminate: var(--base-color-scale-white-0)
+  + --brand-control-checkbox-border-indeterminate: #077726
+  - --brand-control-checkbox-border-disabled: var(--base-color-scale-gray-4)
+  + --brand-control-checkbox-border-disabled: var(--base-color-scale-gray-5)
+  - --brand-control-radio-bg-disabled: var(--base-color-scale-gray-4)
+  + --brand-control-radio-bg-disabled: var(--brand-color-canvas-default)
+  - --brand-control-radio-border-default: var(--base-color-scale-white-0)
+  + --brand-control-radio-border-default: var(--base-color-scale-gray-4)
+  - --brand-control-radio-border-checked: var(--base-color-scale-white-0)
+  + --brand-control-radio-border-checked: #077726
+  ```
+
+## 0.67.0
+
+### Patch Changes
+
+- [#1314](https://github.com/primer/brand/pull/1314) [`9783702`](https://github.com/primer/brand/commit/9783702380855bcb2af2984a4c6972e89db0779b) Thanks [@rezrah](https://github.com/rezrah)! - Added `--brand-color-canvas-invert` design token, which is the inverse of `--brand-color-canvas-default`. Resolves to black in light mode and white in dark mode.
+
+## 0.66.0
+
+### Minor Changes
+
+- [#1286](https://github.com/primer/brand/pull/1286) [`d948c46`](https://github.com/primer/brand/commit/d948c46b0afca36121a89dbdb32a6f7630873424) Thanks [@danielguillan](https://github.com/danielguillan)! - Updates to `RiverAccordion` component
+
+  #### New Features
+
+  - **New `RiverAccordion` prop**: `variant`. This prop controls the layout and appearance of the RiverAccordion component. Two variants are available: `default` and `gridline`.
+
+    The `default` variant is the pre-existing `RiverAccordion` configuration and remains the default value.
+
+    The `gridline` variant adds lateral padding and borders for use within bordered grid layouts, using a 50/50 column split.
+
+    ```jsx
+    <RiverAccordion variant="gridline" />
+    ```
+
+  #### Changes
+
+  - **Updated accordion icons**: Replaced `PlusIcon` with `ChevronDownIcon`/`ChevronUpIcon` for better visual clarity of expand/collapse state.
+  - **Updated default text size**: Text size in `RiverAccordion.Content` now defaults to `300` (previously `200`) for improved readability.
+
+- [#1272](https://github.com/primer/brand/pull/1272) [`a386ed4`](https://github.com/primer/brand/commit/a386ed474be8954556d1dac62ec1d361a222cec2) Thanks [@danielguillan](https://github.com/danielguillan)! - Updated all base color scales and functional tokens.
+
+  #### Design token updates
+
+  - Updated all 13 base color scale palettes (`gray`, `blue`, `green`, `yellow`, `orange`, `red`, `purple`, `pink`, `coral`, `lemon`, `lime`, `teal`, `indigo`) in both light and dark modes
+  - Updated `black-0` from `#1f2328` to `#000000` in both light and dark modes
+  - Updated functional design tokens: `--brand-color-text-default`, `--brand-color-text-muted`, `--brand-color-border-default`, `--brand-color-border-subtle`, `--brand-color-border-muted`, `--brand-color-success-fg`, `--brand-color-success-emphasis`, `--brand-color-accent-primary`, and all hardcoded alpha tokens (`--brand-color-success-muted`, `--brand-color-error-muted`, `--brand-color-neutral-muted`, `--brand-color-neutral-subtle`)
+  - Added new functional design tokens: `--brand-color-text-emphasized`, `--brand-color-text-link-rest`, `--brand-color-text-link-pressed`, `--brand-color-text-danger`, `--brand-color-danger-fg`, `--brand-color-danger-emphasis`, `--brand-color-danger-muted`, `--brand-color-danger-subtle`, `--brand-color-canvas-muted`
+  - ⚠️ Deprecated `--brand-color-error-*` and `--brand-color-text-error` tokens, which are now aliased to the new `--brand-color-danger-*` and `--brand-color-text-danger` equivalents and will be removed in the future
+  - ⚠️ Deprecated `--brand-color-text-subtle`, which is now remapped to the same value as `--brand-color-text-muted` and will be removed in the future
+  - Updated `--brand-InlineLink-color-rest` and `--brand-InlineLink-color-pressed` to reference the new `--brand-color-text-link-rest` and `--brand-color-text-link-pressed` functional tokens
+  - Updated `--brand-Link-color-accent` to reference the new `--brand-color-text-link-rest` functional token
+
+### Patch Changes
+
+- [#1299](https://github.com/primer/brand/pull/1299) [`ea8a60f`](https://github.com/primer/brand/commit/ea8a60f5f26b52532e13d4443ebc2cb04372674f) Thanks [@rezrah](https://github.com/rezrah)! - Upgraded dependencies to latest minor, patch, and select major versions.
+
+  `@primer/react-brand`:
+
+  - `autoprefixer`: 10.4.20 → 10.4.27
+  - `css-loader`: 7.1.2 → 7.1.4
+  - `mini-css-extract-plugin`: 2.9.2 → 2.10.2
+  - `postcss`: 8.5.1 → 8.5.8
+  - `postcss-loader`: 8.1.1 → 8.2.1
+  - `postcss-preset-env`: 10.1.3 → 11.2.0
+  - `webpack`: 5.101.3 → 5.105.4
+  - `webpack-cli`: 6.0.1 → 7.0.2
+
+  `@primer/brand-primitives`:
+
+  - `@primer/primitives`: 9.1.1 → 9.1.2
+
+  `@primer/brand-css`:
+
+  - `autoprefixer`: 10.4.20 → 10.4.27
+  - `postcss`: 8.5.1 → 8.5.8
+
+## 0.65.1
+
+## 0.65.0
+
+### Minor Changes
+
+- [#1257](https://github.com/primer/brand/pull/1257) [`f881785`](https://github.com/primer/brand/commit/f8817856b20280b7cf73de5ef45bf75090e1a4ee) Thanks [@rezrah](https://github.com/rezrah)! - Updates to design tokens for `FAQ`, `FAQGroup`, and `Accordion` components.
+
+  - Removed `--brand-Accordion-border-color-emphasis` token
+  - Removed `--brand-Accordion-toggle-color-end`
+  - Removed `--brand-FAQ-color-tabBg-selected` token
+  - Added `--brand-FAQGroup-buttonIndicator-idle`, `--brand-FAQGroup-buttonIndicator-hover`, `--brand-FAQGroup-buttonIndicator-active` tokens
+
+- [#1231](https://github.com/primer/brand/pull/1231) [`d8b4d5e`](https://github.com/primer/brand/commit/d8b4d5e42109291942b670fc937a03acca84e6cc) Thanks [@danielguillan](https://github.com/danielguillan)! - Updates to `River` component
+
+  #### New Features
+
+  - **New `River` prop**: `variant`. This prop controls the layout and appearance of the River component. Two variants are available: `default` and `gridline`.
+
+    The `default` variant is the pre-existing `River` configuration and remains the default value.
+
+    The `gridline` variant adds lateral padding and borders for use within bordered grid layouts.
+
+    ```jsx
+    <River variant="gridline" />
+    ```
+
+  - **New `River.Visual` prop**: `imageBackgroundColor`. Set to `'subtle'` to create a full-bleed container with a background color and the image/video centered inside with padding.
+
+    ```jsx
+    <River variant="gridline">
+      <River.Visual imageBackgroundColor="subtle">
+        <img src="..." alt="..." />
+      </River.Visual>
+      <River.Content>...</River.Content>
+    </River>
+    ```
+
+  - **New `River.Content` prop**: `align`. Controls vertical alignment of content within its container. Values: `'center'` (default), `'block-end'`.
+
+  - **`EyebrowText` support**: `River.Content` now accepts `EyebrowText` as a child for adding small, uppercase labels above the heading.
+
+    ```jsx
+    <River.Content>
+      <EyebrowText>Feature</EyebrowText>
+      <Heading>Title</Heading>
+      <Text>Description</Text>
+    </River.Content>
+    ```
+
+  - **New `RiverBreakout` prop**: `variant`. This prop controls the layout and appearance of the RiverBreakout component. Two variants are available: `default` and `gridline`.
+
+    The `gridline` variant adds horizontal border lines, lateral spacing, and supports vertical dividers for the trailing component on tablet+ viewports.
+
+    ```jsx
+    <RiverBreakout variant="gridline">
+      <RiverBreakout.A11yHeading>Title</RiverBreakout.A11yHeading>
+      <RiverBreakout.Visual>
+        <img src="..." alt="..." />
+      </RiverBreakout.Visual>
+      <RiverBreakout.Content trailingComponent={Timeline} trailingComponentDivider>
+        <Text>Description</Text>
+      </RiverBreakout.Content>
+    </RiverBreakout>
+    ```
+
+  - **`RiverBreakout` padded background support**: `RiverBreakout.Visual` now supports `imageBackgroundColor="subtle"` to display the visual with a padded background container that bleeds to the gridline borders.
+
+### Patch Changes
+
+- [#1248](https://github.com/primer/brand/pull/1248) [`39772c1`](https://github.com/primer/brand/commit/39772c1de0efcdbb18a1253511591f83531a5862) Thanks [@rezrah](https://github.com/rezrah)! - Added new tokens for `SubNav` component
+
+## 0.64.0
+
+## 0.63.0
+
+## 0.62.0
+
+### Minor Changes
+
+- [#1225](https://github.com/primer/brand/pull/1225) [`a1caad6`](https://github.com/primer/brand/commit/a1caad612df348cfa657b844b94e33ab8f869791) Thanks [@rezrah](https://github.com/rezrah)! - **Breaking change:** Minimum Node.js version is now v24 (LTS)
+
+  If you're using an older version, please upgrade to Node.js 24 LTS before updating to this release.
+
+## 0.61.1
+
 ## 0.61.0
 
 ### Minor Changes

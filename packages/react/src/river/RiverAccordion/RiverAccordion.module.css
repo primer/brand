@@ -32,6 +32,53 @@
   }
 }
 
+/* Gridline variant */
+
+.RiverAccordion--variant-gridline {
+  position: relative;
+  padding-inline: var(--brand-RiverAccordion-variant-gridline-spacing-outerInline);
+  padding-block: var(--brand-RiverAccordion-variant-gridline-spacing-outerBlock);
+}
+
+@media (min-width: 48rem) {
+  .RiverAccordion--variant-gridline {
+    --gap-width: var(--brand-RiverAccordion-variant-gridline-spacing-contentGap);
+    --half-column: calc(50% - var(--gap-width) / 2);
+
+    gap: var(--gap-width);
+    align-items: center;
+  }
+
+  .RiverAccordion--variant-gridline.RiverAccordion__align-start {
+    grid-template-columns: var(--half-column) var(--half-column);
+    grid-template-areas: 'accordion visual';
+  }
+
+  .RiverAccordion--variant-gridline.RiverAccordion__align-end {
+    grid-template-columns: var(--half-column) var(--half-column);
+    grid-template-areas: 'visual accordion';
+  }
+}
+
+@media (min-width: 80rem) {
+  .RiverAccordion--variant-gridline {
+    border-inline: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
+  }
+}
+
+.RiverAccordion--variant-gridline .RiverAccordion__visualsWrapper {
+  border-radius: var(--brand-borderRadius-medium);
+}
+
+.RiverAccordion--variant-gridline:has(.RiverAccordion__visual--has-background) .RiverAccordion__visualsContainer {
+  margin-inline: calc(-1 * var(--brand-RiverAccordion-variant-gridline-spacing-outerInline));
+  margin-block-start: calc(-1 * var(--brand-RiverAccordion-variant-gridline-spacing-outerBlock));
+}
+
+.RiverAccordion--variant-gridline .RiverAccordion__visualsWrapper:has(.RiverAccordion__visual--has-background) {
+  border-radius: 0;
+}
+
 .RiverAccordion__accordionContainer {
   grid-area: accordion;
 }
@@ -41,6 +88,7 @@
 }
 
 .RiverAccordion__visualsWrapper {
+  width: 100%;
   overflow: hidden;
   border-radius: var(--brand-borderRadius-xlarge);
   display: grid;
@@ -53,6 +101,8 @@
   grid-row: 1;
   width: 100%;
   height: 100%;
+  display: flex;
+  align-items: center;
   opacity: 0;
   scale: 1.05;
   transition: opacity var(--brand-animation-duration-default) var(--brand-animation-easing-default),
@@ -60,8 +110,108 @@
 }
 
 .RiverAccordion__visualsWrapper > .RiverAccordion__visual > * {
+  display: block;
   width: 100%;
+  height: auto;
+  overflow: hidden;
+  border-radius: var(--brand-borderRadius-xlarge);
   object-fit: contain;
+}
+
+.RiverAccordion--variant-gridline .RiverAccordion__visualsWrapper > .RiverAccordion__visual > * {
+  border-radius: var(--brand-borderRadius-medium);
+}
+
+.RiverAccordion__visualsWrapper > .RiverAccordion__visual img,
+.RiverAccordion__visualsWrapper > .RiverAccordion__visual picture,
+.RiverAccordion__visualsWrapper > .RiverAccordion__visual video {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: inherit;
+  object-fit: contain;
+}
+
+.RiverAccordion__visualsWrapper > .RiverAccordion__visual > * img,
+.RiverAccordion__visualsWrapper > .RiverAccordion__visual > * video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  object-fit: cover;
+}
+
+.RiverAccordion--variant-gridline .RiverAccordion__visualsWrapper > .RiverAccordion__visual--has-background {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--base-size-32);
+  background: var(--brand-RiverAccordion-visual-background, var(--brand-color-canvas-subtle));
+}
+
+.RiverAccordion--variant-gridline .RiverAccordion__visualsWrapper > .RiverAccordion__visual--has-background > * {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 100%;
+  height: auto;
+  border-radius: var(--brand-borderRadius-large);
+}
+
+.RiverAccordion--variant-gridline .RiverAccordion__visualsWrapper > .RiverAccordion__visual--has-background img,
+.RiverAccordion--variant-gridline .RiverAccordion__visualsWrapper > .RiverAccordion__visual--has-background picture,
+.RiverAccordion--variant-gridline .RiverAccordion__visualsWrapper > .RiverAccordion__visual--has-background video {
+  max-width: 100%;
+  height: 100%;
+  border-radius: var(--brand-borderRadius-large);
+}
+
+@media (min-width: 48rem) {
+  .RiverAccordion--variant-gridline:has(.RiverAccordion__visual--has-background) {
+    padding: 0;
+    gap: 0;
+    align-items: stretch;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .RiverAccordion--variant-gridline:has(.RiverAccordion__visual--has-background) .RiverAccordion__accordionContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: var(--brand-RiverAccordion-variant-gridline-spacing-outerBlock)
+      var(--brand-RiverAccordion-variant-gridline-spacing-outerInline);
+  }
+
+  .RiverAccordion--variant-gridline.RiverAccordion__align-start:has(.RiverAccordion__visual--has-background)
+    .RiverAccordion__accordionContainer {
+    padding-inline-end: var(--brand-RiverAccordion-variant-gridline-spacing-contentGap);
+  }
+
+  .RiverAccordion--variant-gridline.RiverAccordion__align-end:has(.RiverAccordion__visual--has-background)
+    .RiverAccordion__accordionContainer {
+    padding-inline-start: var(--brand-RiverAccordion-variant-gridline-spacing-contentGap);
+  }
+
+  .RiverAccordion--variant-gridline:has(.RiverAccordion__visual--has-background) .RiverAccordion__visualsContainer {
+    margin: 0;
+  }
+
+  .RiverAccordion--variant-gridline .RiverAccordion__visualsWrapper:has(.RiverAccordion__visual--has-background) {
+    height: 100%;
+  }
+
+  .RiverAccordion--variant-gridline .RiverAccordion__visualsWrapper > .RiverAccordion__visual--has-background {
+    align-items: center;
+    justify-content: center;
+    padding: var(--base-size-64);
+  }
+
+  .RiverAccordion--variant-gridline .RiverAccordion__visualsWrapper > .RiverAccordion__visual--has-background > *,
+  .RiverAccordion--variant-gridline .RiverAccordion__visualsWrapper > .RiverAccordion__visual--has-background img,
+  .RiverAccordion--variant-gridline .RiverAccordion__visualsWrapper > .RiverAccordion__visual--has-background picture,
+  .RiverAccordion--variant-gridline .RiverAccordion__visualsWrapper > .RiverAccordion__visual--has-background video {
+    border-radius: var(--brand-borderRadius-large);
+  }
 }
 
 /* Show the visual when the corresponding accordion item is open */
@@ -158,10 +308,12 @@
 }
 
 .RiverAccordion__icon {
-  opacity: 1;
-  transition: opacity var(--brand-animation-duration-fast) var(--brand-animation-easing-default);
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  color: var(--brand-color-text-muted);
 }
 
 .RiverAccordion__item--open .RiverAccordion__icon {
-  opacity: 0;
+  color: var(--brand-color-text-default);
 }

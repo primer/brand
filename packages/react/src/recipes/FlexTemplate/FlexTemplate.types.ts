@@ -1,8 +1,7 @@
 import type {ReactNode} from 'react'
 import type {CTABannerProps} from '../../CTABanner/CTABanner'
 import {BoxSpacingValues} from '../../Box/Box'
-import type {Icon} from '@primer/octicons-react'
-import {IconColor} from '../../Icon'
+import type {PillarIconProps} from '../../Pillar'
 import type {ColorMode} from '../../ThemeProvider'
 import {TestimonialProps} from '../../Testimonial'
 import {LabelProps} from '../../Label'
@@ -11,40 +10,25 @@ export type FlexTemplateLink = {
   href: string
   text: string
   openInNewTab?: boolean
+  'aria-current'?: 'page' | 'step' | 'location' | 'date' | 'time' | 'true' | 'false'
 }
 
 export type FlexTemplateLabel = {
   text: string
-  color?:
-    | 'default'
-    | 'blue'
-    | 'coral'
-    | 'green'
-    | 'gray'
-    | 'indigo'
-    | 'lemon'
-    | 'lime'
-    | 'orange'
-    | 'pink'
-    | 'purple'
-    | 'red'
-    | 'teal'
-    | 'yellow'
-  size?: 'small' | 'medium' | 'large'
 }
 
 export type FlexTemplateHero = {
   align?: 'start' | 'center'
-  label?: string | FlexTemplateLabel
+  label?: FlexTemplateLabel
   heading?: string
   description?: string
   descriptionVariant?: 'default' | 'muted'
   imagePosition?: 'inline-end' | 'block-end'
   imageSrc?: string
   callToActionPrimary?: FlexTemplateLink
-  callToActionPrimaryVariant?: 'primary' | 'secondary' | 'accent'
+  callToActionPrimaryVariant?: 'primary' | 'secondary' | 'subtle'
   callToActionSecondary?: FlexTemplateLink
-  callToActionSecondaryVariant?: 'primary' | 'secondary' | 'accent'
+  callToActionSecondaryVariant?: 'primary' | 'secondary' | 'subtle'
   hasBorderBottom?: boolean
   image?: {
     description?: string
@@ -72,7 +56,7 @@ export type FlexTemplateSubNav = {
 export type FlexTemplateRiverConfig = {
   type?: 'river' | 'riverBreakout' | 'riverAccordion'
   align?: 'start' | 'center' | 'end'
-  ctaVariant?: 'primary' | 'secondary' | 'accent'
+  ctaVariant?: 'primary' | 'secondary' | 'subtle'
   hasCta?: boolean
   hasLeadingVisual?: boolean
   hasShadow?: boolean
@@ -92,7 +76,7 @@ export type FlexTemplateRiverItem = {
   labelColor?: LabelProps['color']
   ctaText?: string
   ctaHref?: string
-  ctaVariant?: 'primary' | 'secondary' | 'accent'
+  ctaVariant?: 'primary' | 'secondary' | 'subtle'
   imageSrc?: string
   imageAlt?: string
   videoSrc?: string
@@ -172,8 +156,7 @@ export type FlexTemplateVisualSettings = {
 }
 
 export type FlexTemplatePillarItem = {
-  icon?: Icon | ReactNode
-  iconColor?: IconColor
+  icon?: PillarIconProps['icon']
   heading?: string
   title?: string
   headingLevel?: 'h2' | 'h3' | 'h4'
@@ -322,7 +305,7 @@ export type FlexTemplateFootnote = {
 
 export type FlexTemplateCTABannerCallToAction = {
   text?: string
-  variant?: 'primary' | 'accent'
+  variant?: 'primary'
 }
 
 export type FlexTemplateCTABanner = {

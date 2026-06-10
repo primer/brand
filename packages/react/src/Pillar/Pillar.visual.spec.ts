@@ -8,37 +8,51 @@ import {test, expect} from '@playwright/test'
 // eslint-disable-next-line i18n-text/no-en
 test.describe('Visual Comparison: Pillar', () => {
   test('Pillar / Default', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-pillar--default&viewMode=story')
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-pillar--default&viewMode=story', {
+      waitUntil: 'networkidle',
+    })
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Pillar / Playground', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-pillar--playground&viewMode=story')
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-pillar--playground&viewMode=story', {
+      waitUntil: 'networkidle',
+    })
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+    await page.waitForTimeout(500)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
+  test('Pillar / Gridline', async ({page}) => {
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-pillar-examples--gridline&viewMode=story', {
+      waitUntil: 'networkidle',
+    })
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Pillar / With Icon', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-pillar-features--with-icon&viewMode=story')
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-pillar-features--with-icon&viewMode=story', {
+      waitUntil: 'networkidle',
+    })
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Pillar / With Image', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-pillar-features--with-image&viewMode=story')
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('Pillar / With Icon Colors', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-pillar-features--with-icon-colors&viewMode=story',
+      'http://localhost:6006/iframe.html?args=&id=components-pillar-features--with-image&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -47,21 +61,29 @@ test.describe('Visual Comparison: Pillar', () => {
   test('Pillar / Icon (native)', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-pillar-features--with-icon-svg&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Pillar / Link', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-pillar-features--link&viewMode=story')
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-pillar-features--link&viewMode=story', {
+      waitUntil: 'networkidle',
+    })
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Pillar / Stacked', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-pillar-features--stacked&viewMode=story')
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-pillar-features--stacked&viewMode=story', {
+      waitUntil: 'networkidle',
+    })
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -70,7 +92,9 @@ test.describe('Visual Comparison: Pillar', () => {
   test('Pillar / Stacked Centered', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-pillar-features--stacked-centered&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -79,23 +103,31 @@ test.describe('Visual Comparison: Pillar', () => {
   test('Pillar / Stacked With Link', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-pillar-features--stacked-with-link&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
-  test('Pillar / Frosted Glass Effect', async ({page}) => {
+  test('Pillar / Full Width', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-pillar-features--frosted-glass-effect&viewMode=story',
+      'http://localhost:6006/iframe.html?args=&id=components-pillar-features--full-width&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
-    await page.waitForTimeout(3000)
+    await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Pillar / With Border', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-pillar-features--with-border&viewMode=story')
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-pillar-features--with-border&viewMode=story',
+      {waitUntil: 'networkidle'},
+    )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})

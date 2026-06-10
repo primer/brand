@@ -10,7 +10,9 @@ test.describe('Visual Comparison: animation', () => {
   test('animation / Animation On Press', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-animations-examples--animation-on-press&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})

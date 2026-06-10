@@ -23,6 +23,7 @@ export const AnimationVariants = [
   'scale-in-right',
   'scale-in-left',
   'fill-in-right',
+  'reveal-in-up',
 ] as const
 
 type Variant = (typeof AnimationVariants)[number]
@@ -35,7 +36,7 @@ type VariantAdvanced = {
 }
 export type AnimateProps = Variant | VariantAdvanced
 
-type AnimationTrigger = 'click' | 'on-visible'
+type AnimationTrigger = 'click' | 'on-visible' | 'immediate'
 type IntersectionVisibilityeOptions = 'bottom-of-screen' | 'middle-of-screen' | 'about-to-leave' | number
 
 type AnimationProviderProps = {
@@ -44,7 +45,7 @@ type AnimationProviderProps = {
    */
   disableAnimations?: boolean
   /**
-   * Controls the trigger method for the animation. One of `click` or `on-visible`.
+   * Controls the trigger method for the animation. One of `click`, `on-visible`, or `immediate`.
    */
   animationTrigger?: AnimationTrigger
   /**
@@ -149,6 +150,21 @@ export function AnimationProvider({
       }
     }
   }, [disableAnimations, autoStaggerChildren, staggerDelayIncrement, uniqueId])
+
+  // Immediately run animations and bypass intersection observer
+  useEffect(() => {
+    if (!disableAnimations && animationTrigger === 'immediate' && uniqueId) {
+      const animationProvider = document.getElementById(uniqueId)
+      if (!animationProvider) return
+
+      requestAnimationFrame(() => {
+        const elements = Array.from(animationProvider.querySelectorAll(`.${styles.Animation}`))
+        for (const element of elements) {
+          element.classList.add(styles['Animation--active'])
+        }
+      })
+    }
+  }, [disableAnimations, animationTrigger, uniqueId])
 
   useEffect(() => {
     if (!disableAnimations && animationTrigger === 'on-visible') {

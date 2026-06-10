@@ -32,6 +32,17 @@ describe('Image', () => {
     expect(container.querySelector(`img.${testClass}`)).toBeInTheDocument()
   })
 
+  it('should pass a custom class to the picture element when as="picture"', async () => {
+    const testClass = 'test'
+
+    const {container} = render(
+      <Image src="/brand/assets/placeholder.png" alt="alternative text" as="picture" className={testClass} />,
+    )
+
+    expect(container.querySelector(`picture.${testClass}`)).toBeInTheDocument()
+    expect(container.querySelector(`img.${testClass}`)).not.toBeInTheDocument()
+  })
+
   it('should return only an img element if no aspectRatio is provided and as is not picture', async () => {
     const {container, getByRole} = render(
       <Image src="/brand/assets/placeholder.png" alt="alternative text" aspectRatio={undefined} />,

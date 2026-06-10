@@ -1,11 +1,10 @@
 import React from 'react'
 import type {Meta} from '@storybook/react'
-import {userEvent, waitFor, within} from 'storybook/test'
+import {userEvent, waitFor} from 'storybook/test'
 
 import {Button} from '.'
 import {HeartFillIcon, MarkGithubIcon, PlayIcon} from '@primer/octicons-react'
 import {Grid} from '../Grid'
-import {Box} from '../Box'
 import {Stack} from '../Stack'
 
 export default {
@@ -81,27 +80,6 @@ export const SubtleDisabled = () => (
   </Button>
 )
 
-export const Accent = () => (
-  <>
-    <Box backgroundColor="subtle" padding="spacious">
-      <Button variant="accent" size="medium">
-        Accent action
-      </Button>
-    </Box>
-    <Box backgroundColor="default" padding="spacious">
-      <Button variant="accent" size="medium">
-        Accent action
-      </Button>
-    </Box>
-  </>
-)
-
-export const AccentDisabled = () => (
-  <Button as="button" disabled variant="accent">
-    Disabled accent button
-  </Button>
-)
-
 export const Small = () => (
   <Button as="a" variant="primary" size="small" href="#">
     Small action
@@ -131,60 +109,33 @@ export const Polymorphism = () => (
   </Button>
 )
 
-/*
-  Storybook Interactions cannot natively simulate hover state on CSS pseudo-class.
-  Only simulates JS-based state.
-  TODO: Investigate perf impact of using "https://storybook.js.org/addons/storybook-addon-pseudo-states"
-*/
 export const WithHoverInteraction = () => (
-  <Button as="a" variant="primary" href="#">
+  <Button as="a" variant="primary" href="#" data-testid="hover-enabled-primary-button">
     Hover state for button
   </Button>
 )
-WithHoverInteraction.play = async ({canvasElement}) => {
-  const canvas = within(canvasElement)
-
-  await waitFor(async () => {
-    await userEvent.hover(canvas.getByText('Hover state for button'))
-  })
+WithHoverInteraction.parameters = {
+  pseudo: {hover: ['[data-testid="hover-enabled-primary-button"]']},
 }
 WithHoverInteraction.storyName = 'Primary button with hover interaction'
 
-/*
-  Storybook Interactions cannot natively simulate hover state on CSS pseudo-class.
-  Only simulates JS-based state.
-  TODO: Investigate perf impact of using "https://storybook.js.org/addons/storybook-addon-pseudo-states"
-*/
 export const SecondaryWithHoverInteraction = () => (
-  <Button as="a" variant="secondary" href="#">
+  <Button as="a" variant="secondary" href="#" data-testid="hover-enabled-secondary-button">
     Hover state for button
   </Button>
 )
-SecondaryWithHoverInteraction.play = async ({canvasElement}) => {
-  const canvas = within(canvasElement)
-
-  await waitFor(async () => {
-    await userEvent.hover(canvas.getByText('Hover state for button'))
-  })
+SecondaryWithHoverInteraction.parameters = {
+  pseudo: {hover: ['[data-testid="hover-enabled-secondary-button"]']},
 }
 SecondaryWithHoverInteraction.storyName = 'Secondary button with hover interaction'
 
-/*
-  Storybook Interactions cannot natively simulate hover state on CSS pseudo-class.
-  Only simulates JS-based state.
-  TODO: Investigate perf impact of using "https://storybook.js.org/addons/storybook-addon-pseudo-states"
-*/
 export const SubtleWithHoverInteraction = () => (
-  <Button as="a" variant="subtle" href="#">
+  <Button as="a" variant="subtle" href="#" data-testid="hover-enabled-subtle-button">
     Hover state for button
   </Button>
 )
-SubtleWithHoverInteraction.play = async ({canvasElement}) => {
-  const canvas = within(canvasElement)
-
-  await waitFor(async () => {
-    await userEvent.hover(canvas.getByText('Hover state for button'))
-  })
+SubtleWithHoverInteraction.parameters = {
+  pseudo: {hover: ['[data-testid="hover-enabled-subtle-button"]']},
 }
 SubtleWithHoverInteraction.storyName = 'Subtle button with hover interaction'
 
@@ -270,15 +221,13 @@ export const WithOptionalArrows = () => (
     <Button variant="subtle" hasArrow>
       Subtle
     </Button>
-    <Button variant="accent" hasArrow>
-      Accent
-    </Button>
   </Stack>
 )
-WithOptionalArrows.storyName = 'With optional arrows'
+WithOptionalArrows.storyName = 'Deprecated arrows'
+WithOptionalArrows.tags = ['!dev', '!autodocs']
 
 export const WithOcticon = () => (
-  <Button variant="subtle" leadingVisual={<PlayIcon />} hasArrow={false}>
+  <Button variant="subtle" leadingVisual={<PlayIcon />}>
     With Octicon
   </Button>
 )
@@ -301,9 +250,7 @@ WithVisualsAndDisabled.storyName = 'With visuals and disabled'
 export const WithLongerText = () => (
   <Grid>
     <Grid.Column span={2}>
-      <Button hasArrow={false}>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id.
-      </Button>
+      <Button>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id.</Button>
     </Grid.Column>
   </Grid>
 )

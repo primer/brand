@@ -2,12 +2,12 @@
   "InlineLink": {
     "color": {
       "rest": {
-        "value": "var(--base-color-scale-blue-6)",
-        "dark": "var(--base-color-scale-blue-2)"
+        "value": "var(--brand-color-text-link-rest)",
+        "dark": "var(--brand-color-text-link-rest)"
       },
       "pressed": {
-        "value": "var(--base-color-scale-blue-8)",
-        "dark": "var(--base-color-scale-blue-1)"
+        "value": "var(--brand-color-text-link-pressed)",
+        "dark": "var(--brand-color-text-link-pressed)"
       }
     }
   }
