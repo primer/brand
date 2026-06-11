@@ -4,6 +4,7 @@ const {buildPrimitives, StyleDictionary} = require('./style-dictionary')
 const tsModuleDeclaration = require('../src/formats/typescript-module-declarations-v2')
 const mediaQueryFormat = require('../src/formats/responsive-media-query')
 const colorModeFormat = require('../src/formats/color-mode-attributes')
+const stylelintColorsFormat = require('../src/formats/stylelint-colors')
 
 const lightJson = require('../src/tokens/base/colors/light')
 const darkJson = require('../src/tokens/base/colors/dark')
@@ -69,6 +70,8 @@ const darkJson = require('../src/tokens/base/colors/dark')
    * Type schema corresponds to javascript/module-v2 format
    */
   StyleDictionary.registerFormat(tsModuleDeclaration)
+
+  StyleDictionary.registerFormat(stylelintColorsFormat)
 
   //build most tokens
   buildPrimitives({
@@ -305,6 +308,37 @@ const darkJson = require('../src/tokens/base/colors/dark')
       },
     })
   }
+
+  /**
+   * Emit a styleLint JSON allowlist of all brand color custom properties (base scales +
+   * functional semantic + component color tokens) for downstream linting. Values are literal
+   * `var()` / color strings (no Style Dictionary aliases), so no reference resolution is needed.
+   * Base color scales are emitted without the `brand` prefix to match their CSS output
+   * (`--base-color-scale-*`); functional and component tokens keep the `brand` prefix.
+   */
+  buildPrimitives({
+    source: [
+      `tokens/base/colors/color-scales.json`,
+      `tokens/functional/colors/global.json`,
+      ...filesForColorModes,
+    ],
+    namespace,
+    platforms: {
+      styleLint: {
+        prefix: namespace,
+        addPrefix: token => token.isSource && !token.filePath.replace(/\\/g, '/').includes('/base/colors/'),
+        buildPath: `${outputPath}/styleLint/`,
+        transformGroup: 'css',
+        files: [
+          {
+            destination: `colors.json`,
+            format: `json/stylelint-colors`,
+            filter: token => token.isSource,
+          },
+        ],
+      },
+    },
+  })
 
   /**
    * Step 4:
