@@ -37,7 +37,11 @@ module.exports = {
       }
     }
 
-    const sorted = Object.fromEntries(Object.keys(entries).sort().map(key => [key, entries[key]]))
+    const sorted = Object.fromEntries(
+      Object.keys(entries)
+        .sort()
+        .map(key => [key, entries[key]]),
+    )
 
     return `${JSON.stringify(sorted, null, 2)}\n`
   },

@@ -317,11 +317,7 @@ const darkJson = require('../src/tokens/base/colors/dark')
    * (`--base-color-scale-*`); functional and component tokens keep the `brand` prefix.
    */
   buildPrimitives({
-    source: [
-      `tokens/base/colors/color-scales.json`,
-      `tokens/functional/colors/global.json`,
-      ...filesForColorModes,
-    ],
+    source: [`tokens/base/colors/color-scales.json`, `tokens/functional/colors/global.json`, ...filesForColorModes],
     namespace,
     platforms: {
       styleLint: {
