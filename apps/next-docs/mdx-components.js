@@ -22,25 +22,12 @@ import NextLink from 'next/link'
 // eslint-disable-next-line import/extensions
 import {Pre} from './src/components/Pre/Pre.tsx'
 
-const isInternalPath = href => href.startsWith('/') && !href.startsWith('//')
+const isInternalRoute = href =>
+  typeof href === 'string' && href.startsWith('/') && !href.startsWith('//') && !href.startsWith('/brand/')
 
-const hasFileExtension = pathname => /\/[^/]+\.[^/]+$/.test(pathname)
-
-const withTrailingSlash = href => {
-  const [, pathname, suffix = ''] = href.match(/^([^?#]*)([?#].*)?$/)
-
-  if (!pathname || pathname === '/' || pathname.endsWith('/') || hasFileExtension(pathname)) {
-    return href
-  }
-
-  return `${pathname}/${suffix}`
-}
-
-export const Link = ({href = '', children, ...props}) => {
-  const normalizedHref = isInternalPath(href) ? withTrailingSlash(href) : href
-
-  return isInternalPath(href) ? (
-    <NextLink href={normalizedHref} {...props}>
+export const Link = ({href = '', children, ...props}) =>
+  isInternalRoute(href) ? (
+    <NextLink href={href} {...props}>
       {children}
     </NextLink>
   ) : (
@@ -48,7 +35,6 @@ export const Link = ({href = '', children, ...props}) => {
       {children}
     </a>
   )
-}
 
 export function useMDXComponents(customComponents) {
   return {
