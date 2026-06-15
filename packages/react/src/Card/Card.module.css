@@ -309,7 +309,7 @@
 }
 
 .Card__heading {
-  margin-block-end: var(--base-size-20);
+  margin-block-end: var(--base-size-12);
   grid-area: heading;
 }
 

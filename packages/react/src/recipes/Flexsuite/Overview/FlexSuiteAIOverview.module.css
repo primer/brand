@@ -102,6 +102,7 @@
 .fullWidthTabsPanel :global([class*='Tabs__panelContainer']) {
   width: 100%;
   justify-self: stretch;
+  margin-block-start: var(--base-size-88);
 }
 
 @media screen and (min-width: 63.25rem) {
