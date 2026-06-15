@@ -29,11 +29,12 @@ export type RiverBreakoutTabsProps = React.PropsWithChildren<{
   selectedIndex?: number
   onChange?: (selectedIndex: number) => void
   /**
-   * Decorative background rendered behind the visual
+   * Decorative background rendered behind the visual and persisted across tab
+   * changes. Must not contain interactive and remain purely decorative.
    */
   backgroundVisual?: React.ReactNode
   /**
-   * Alignment of image within the visual container
+   * Alignment of media within the visual container when `backgroundVisual` is provided
    */
   imagePosition?: 'center' | 'block-end'
 }> &
