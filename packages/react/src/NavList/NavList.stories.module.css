@@ -1,0 +1,3 @@
+.NarrowStoryWrapper {
+  width: calc(var(--base-size-48) * 6);
+}
