@@ -1,4 +1,6 @@
 .NavList {
+  --brand-NavList-activeIndicator-color: var(--brand-color-text-emphasized);
+
   font-family: var(--brand-fontStack-sansSerif);
   color: var(--brand-color-text-default);
   width: 100%;
@@ -51,7 +53,7 @@
   color: var(--brand-color-text-muted);
   font-size: var(--brand-text-size-100);
   font-weight: var(--brand-text-weight-500);
-  line-height: 1;
+  line-height: var(--brand-text-lineHeight-100);
   letter-spacing: 0.01em;
   text-decoration: none !important; /* dotcom override */
   transition: background-color var(--brand-animation-duration-fast) var(--brand-animation-easing-default),
@@ -59,6 +61,7 @@
 }
 
 .NavList__accordionButton {
+  box-sizing: border-box;
   width: 100%;
   border: 0;
   background: transparent;
@@ -84,7 +87,6 @@
   min-width: 0;
   min-height: var(--base-size-32);
   padding-inline-start: var(--base-size-6);
-  margin-block: calc(-1 * var(--base-size-8));
   border-radius: var(--brand-borderRadius-small);
 }
 
@@ -96,7 +98,7 @@
   color: var(--brand-color-text-default);
 }
 
-.NavList__item:not(.NavList__item--level-1)[data-current-descendant='true']
+.NavList__item:not(.NavList__item--level-1)[data-collapsed-current-descendant='true']
   > .NavList__itemContent
   .NavList__accordionButton
   .NavList__label {
@@ -124,25 +126,28 @@
   inset-inline-start: 0;
   width: var(--base-size-4);
   border-radius: var(--base-size-2);
-  background-color: var(--brand-color-text-emphasized);
+  background-color: var(--brand-NavList-activeIndicator-color);
 }
 
-.NavList__item[data-current-descendant='true'] > .NavList__itemContent .NavList__accordionButton::before {
+.NavList__item[data-collapsed-current-descendant='true'] > .NavList__itemContent .NavList__accordionButton::before {
   content: '';
   position: absolute;
   inset-block-start: 50%;
   block-size: var(--base-size-16);
   width: var(--base-size-4);
   border-radius: var(--base-size-2);
-  background-color: var(--brand-color-text-emphasized);
+  background-color: var(--brand-NavList-activeIndicator-color);
   transform: translateY(-50%);
+  z-index: 1;
 }
 
-.NavList__item--level-1[data-current-descendant='true'] > .NavList__itemContent .NavList__accordionButton::before {
-  inset-inline-start: calc(-1 * var(--base-size-8));
+.NavList__item--level-1[data-collapsed-current-descendant='true']
+  > .NavList__itemContent
+  .NavList__accordionButton::before {
+  inset-inline-start: 0;
 }
 
-.NavList__item[data-current-descendant='true']:not(.NavList__item--level-1)
+.NavList__item[data-collapsed-current-descendant='true']:not(.NavList__item--level-1)
   > .NavList__itemContent
   .NavList__accordionButton::before {
   inset-inline-start: var(--base-size-16);
@@ -162,9 +167,7 @@
 }
 
 .NavList__label {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  word-break: break-word;
 }
 
 .NavList__leadingVisual,
@@ -206,21 +209,37 @@
   order: 1;
   font-size: var(--brand-text-size-200);
   font-weight: var(--brand-text-weight-500);
-  line-height: 1;
+  line-height: var(--brand-text-lineHeight-200);
 }
 
 .NavList__item--level-1 > .NavList__itemContent .NavList__accordionButton {
   color: var(--brand-color-text-default);
   min-height: var(--base-size-32);
   margin-block: calc(-1 * var(--base-size-8));
-  padding-inline-start: var(--base-size-6);
+  padding-inline-start: calc(var(--base-size-4) + var(--base-size-8) + var(--base-size-6));
+  padding-inline-end: var(--base-size-6);
   border-radius: var(--brand-borderRadius-small);
 }
 
-.NavList__item--level-1 > .NavList__itemContent .NavList__accordionButton:hover,
-.NavList__item--level-1 > .NavList__itemContent .NavList__accordionButton:active,
-.NavList__item--level-1[data-current-descendant='true'] > .NavList__itemContent .NavList__accordionButton {
+.NavList__item--level-1 > .NavList__itemContent .NavList__accordionButton > * {
+  position: relative;
+  z-index: 1;
+}
+
+.NavList__item--level-1 > .NavList__itemContent .NavList__accordionButton:hover::after,
+.NavList__item--level-1 > .NavList__itemContent .NavList__accordionButton:active::after,
+.NavList__item--level-1[data-collapsed-current-descendant='true']
+  > .NavList__itemContent
+  .NavList__accordionButton::after {
+  content: '';
+  position: absolute;
+  z-index: 0;
+  inset-block: 0;
+  inset-inline-start: calc(var(--base-size-4) + var(--base-size-8));
+  inset-inline-end: 0;
+  border-radius: var(--brand-borderRadius-small);
   background-color: var(--brand-color-canvas-subtle);
+  pointer-events: none;
 }
 
 .NavList__item--level-1 > .NavList__itemContent .NavList__toggleIcon {
@@ -265,12 +284,19 @@
   order: 1;
 }
 
+.NavList__item--level-2 > .NavList__itemContent .NavList__accordionButton,
+.NavList__item--level-3 > .NavList__itemContent .NavList__accordionButton {
+  min-height: var(--base-size-32);
+  margin-block: calc(-1 * var(--base-size-8));
+  border-radius: var(--brand-borderRadius-small);
+}
+
 .NavList__item--level-2 > .NavList__itemContent .NavList__link,
 .NavList__item--level-3 > .NavList__itemContent .NavList__link,
 .NavList__item--level-4 > .NavList__itemContent .NavList__link {
   order: 2;
   font-size: var(--brand-text-size-100);
-  line-height: 1;
+  line-height: var(--brand-text-lineHeight-100);
 }
 
 .NavList__item--leaf:not(.NavList__item--level-1) > .NavList__itemContent .NavList__link {
@@ -321,6 +347,8 @@
 }
 
 [data-color-mode='dark'] .NavList {
+  --brand-NavList-activeIndicator-color: var(--brand-color-accent-primary);
+
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

@@ -196,9 +196,9 @@ render(
 
 `NavList` renders a `nav` landmark containing unordered lists. Provide either `aria-label` or `aria-labelledby` when the surrounding page has more than one navigation landmark.
 
-Use `aria-current` on the current `NavList.Item`; this is the current-item contract. `aria-current="page"` is recommended for page navigation, but any valid `aria-current` value is passed through. A parent item with a current descendant automatically opens its nested `NavList.SubNav`.
+Use `aria-current` on the current leaf `NavList.Item`; this is the current-item contract. `aria-current="page"` is recommended for page navigation, but any valid `aria-current` value is passed through to leaf links. Items with `NavList.SubNav` render as disclosure buttons and ignore `aria-current`. A parent item with a current descendant automatically opens its nested `NavList.SubNav`.
 
-Items with `NavList.SubNav` render as disclosure buttons instead of links. The button exposes `aria-expanded` and `aria-controls`, and pressing <kbd>Escape</kbd> while focus is inside an expanded nested list collapses it and returns focus to the parent item.
+Items with `NavList.SubNav` render as disclosure buttons instead of links. The button exposes `aria-expanded` and `aria-controls`, and the nested list is labelled by its parent disclosure button.
 
 The top collapse bar, sticky sidebar behavior, and responsive page shell behavior are out of scope for `NavList`. Compose those behaviors at the page or layout level if needed.
 
@@ -222,7 +222,7 @@ The top collapse bar, sticky sidebar behavior, and responsive page shell behavio
 | `as`               | `React.ElementType`        | `'a'`   | `false`  | Custom link component or element                                   |
 | `children`         | `ReactNode`                |         | `true`   | Item label and optional `NavList.SubNav`                           |
 | `href`             | `string`                   |         | `false`  | URL for leaf links when rendering as an anchor                     |
-| `aria-current`     | <NavListAriaCurrentProp /> |         | `false`  | Marks the item as current                                          |
+| `aria-current`     | <NavListAriaCurrentProp /> |         | `false`  | Marks a leaf item as current                                       |
 | `defaultExpanded`  | `boolean`                  | `false` | `false`  | Opens nested `NavList.SubNav` by default                           |
 | `expanded`         | `boolean`                  |         | `false`  | Controls the nested expanded state                                 |
 | `onExpandedChange` | `(expanded) => void`       |         | `false`  | Called when the nested expanded state changes                      |

@@ -182,6 +182,24 @@ describe('NavList', () => {
     expect(queryByRole('link', {name: 'Docs'})).not.toBeInTheDocument()
   })
 
+  it('ignores aria-current on expandable items', () => {
+    const {getByRole} = render(
+      <NavList>
+        <NavList.Item aria-current="page">
+          Docs
+          <NavList.SubNav>
+            <NavList.Item href="/docs/actions">Actions</NavList.Item>
+          </NavList.SubNav>
+        </NavList.Item>
+      </NavList>,
+    )
+
+    const toggle = getByRole('button', {name: 'Docs expand'})
+
+    expect(toggle).not.toHaveAttribute('aria-current')
+    expect(toggle.closest('li')).not.toHaveClass('NavList__item--current')
+  })
+
   it('supports ref passthrough on expandable items', () => {
     const ref = React.createRef<HTMLElement>()
 
@@ -298,8 +316,52 @@ describe('NavList', () => {
     )
 
     expect(getByRole('button', {name: 'Docs collapse'})).toHaveAttribute('aria-expanded', 'true')
-    expect(getByRole('button', {name: 'Docs collapse'}).closest('li')).not.toHaveAttribute('data-current-descendant')
+    expect(getByRole('button', {name: 'Docs collapse'}).closest('li')).toHaveAttribute(
+      'data-current-descendant',
+      'true',
+    )
+    expect(getByRole('button', {name: 'Docs collapse'}).closest('li')).not.toHaveAttribute(
+      'data-collapsed-current-descendant',
+    )
     expect(getByRole('link', {name: 'Actions'})).toHaveAttribute('aria-current', 'page')
+  })
+
+  it('marks every expanded parent with current descendants', () => {
+    const {getByRole} = render(
+      <NavList>
+        <NavList.Item defaultExpanded>
+          Docs
+          <NavList.SubNav>
+            <NavList.Item defaultExpanded>
+              Actions
+              <NavList.SubNav>
+                <NavList.Item defaultExpanded>
+                  Workflows
+                  <NavList.SubNav>
+                    <NavList.Item href="/docs/actions/workflows/syntax" aria-current="page">
+                      Workflow syntax
+                    </NavList.Item>
+                  </NavList.SubNav>
+                </NavList.Item>
+              </NavList.SubNav>
+            </NavList.Item>
+          </NavList.SubNav>
+        </NavList.Item>
+      </NavList>,
+    )
+
+    expect(getByRole('button', {name: 'Docs collapse'}).closest('li')).toHaveAttribute(
+      'data-current-descendant',
+      'true',
+    )
+    expect(getByRole('button', {name: 'Actions collapse'}).closest('li')).toHaveAttribute(
+      'data-current-descendant',
+      'true',
+    )
+    expect(getByRole('button', {name: 'Workflows collapse'}).closest('li')).toHaveAttribute(
+      'data-current-descendant',
+      'true',
+    )
   })
 
   it('marks controlled collapsed parents with current descendants', () => {
@@ -318,6 +380,10 @@ describe('NavList', () => {
 
     expect(getByRole('button', {name: 'Docs expand'})).toHaveAttribute('aria-expanded', 'false')
     expect(getByRole('button', {name: 'Docs expand'}).closest('li')).toHaveAttribute('data-current-descendant', 'true')
+    expect(getByRole('button', {name: 'Docs expand'}).closest('li')).toHaveAttribute(
+      'data-collapsed-current-descendant',
+      'true',
+    )
   })
 
   it('allows auto-expanded current descendant branches to collapse', async () => {
@@ -342,6 +408,7 @@ describe('NavList', () => {
 
     expect(toggle).toHaveAttribute('aria-expanded', 'false')
     expect(toggle.closest('li')).toHaveAttribute('data-current-descendant', 'true')
+    expect(toggle.closest('li')).toHaveAttribute('data-collapsed-current-descendant', 'true')
     expect(queryByRole('link', {name: 'Actions'})).not.toBeInTheDocument()
   })
 
@@ -366,6 +433,27 @@ describe('NavList', () => {
     await user.click(toggle)
 
     expect(document.getElementById('custom-subnav-id')).toBeInTheDocument()
+  })
+
+  it('labels nested lists from their parent disclosure button', async () => {
+    const user = userEvent.setup()
+
+    const {getByRole} = render(
+      <NavList>
+        <NavList.Item>
+          Docs
+          <NavList.SubNav>
+            <NavList.Item href="/docs/actions">Actions</NavList.Item>
+          </NavList.SubNav>
+        </NavList.Item>
+      </NavList>,
+    )
+
+    const toggle = getByRole('button', {name: 'Docs expand'})
+
+    await user.click(toggle)
+
+    expect(getByRole('list', {name: 'Docs collapse'})).toHaveAttribute('aria-labelledby', toggle.id)
   })
 
   it('does not collapse nested lists when Escape is pressed', async () => {

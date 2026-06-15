@@ -82,6 +82,14 @@ type NavListLevel = 1 | 2 | 3 | 4
 
 const MaxNavListLevel = 4
 const NavListLevelContext = React.createContext<NavListLevel>(1)
+const NavListSubNavContext = React.createContext<{
+  expanded: boolean
+  labelledBy?: string
+  level: NavListLevel
+}>({
+  expanded: true,
+  level: 2,
+})
 
 const NavListRoot = forwardRef<HTMLElement, NavListRootProps>(
   (
@@ -223,6 +231,7 @@ const NavListItem = forwardRef(
     const {internalAccessibleLabels} = React.useContext(NavListContext)
     const level = React.useContext(NavListLevelContext)
     const subNavId = useId()
+    const accordionButtonId = useId()
     const childrenArray = Children.toArray(children)
     const subNav = childrenArray.find(
       (child): child is NavListSubNavElement =>
@@ -238,9 +247,18 @@ const NavListItem = forwardRef(
     const isControlled = expanded !== undefined
     const [uncontrolledExpanded, setUncontrolledExpanded] = useState(defaultExpanded || hasCurrentSubNavItem)
     const isExpanded = Boolean(isControlled ? expanded : uncontrolledExpanded)
-    const isCurrent = isCurrentValue(ariaCurrent)
+    const isCurrent = isLeafItem && isCurrentValue(ariaCurrent)
+    const hasCurrentSubNavDescendant = hasSubNav && hasCurrentSubNavItem
     const hasCollapsedCurrentSubNavItem = hasSubNav && hasCurrentSubNavItem && !isExpanded
     const ToggleIcon = isExpanded ? TriangleUpIcon : TriangleDownIcon
+    const {
+      href: _href,
+      id: accordionButtonIdProp,
+      ...accordionButtonProps
+    } = rest as React.ButtonHTMLAttributes<HTMLButtonElement> & {
+      href?: string
+    }
+    const controlledAccordionButtonId = accordionButtonIdProp ?? accordionButtonId
     const levelClassNames: Record<NavListLevel, string> = {
       1: styles['NavList__item--level-1'],
       2: styles['NavList__item--level-2'],
@@ -311,12 +329,7 @@ const NavListItem = forwardRef(
       [disabled, onClick, toggleExpanded],
     )
 
-    const {href: _href, ...accordionButtonProps} = rest as React.ButtonHTMLAttributes<HTMLButtonElement> & {
-      href?: string
-    }
-
     return (
-      // Handles Escape bubbling from nested links to collapse the current sub-navigation and restore focus.
       // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions
       <li
         className={clsx(
@@ -325,7 +338,8 @@ const NavListItem = forwardRef(
           isLeafItem && styles['NavList__item--leaf'],
           isCurrent && styles['NavList__item--current'],
         )}
-        data-current-descendant={hasCollapsedCurrentSubNavItem ? 'true' : undefined}
+        data-collapsed-current-descendant={hasCollapsedCurrentSubNavItem ? 'true' : undefined}
+        data-current-descendant={hasCurrentSubNavDescendant ? 'true' : undefined}
         data-expanded={hasSubNav ? String(isExpanded) : undefined}
         data-navlist-level={level}
         data-testid={testId || testIds.item}
@@ -335,6 +349,7 @@ const NavListItem = forwardRef(
           {hasSubNav && canExpand ? (
             <button
               ref={setAccordionButtonRef}
+              id={controlledAccordionButtonId}
               type="button"
               className={clsx(
                 styles.NavList__link,
@@ -374,13 +389,15 @@ const NavListItem = forwardRef(
           )}
         </div>
 
-        {subNav
-          ? React.cloneElement(subNav, {
+        {subNav ? (
+          <NavListSubNavContext.Provider
+            value={{expanded: isExpanded, labelledBy: controlledAccordionButtonId, level: (level + 1) as NavListLevel}}
+          >
+            {React.cloneElement(subNav, {
               id: controlledSubNavId,
-              _expanded: isExpanded,
-              _level: (level + 1) as NavListLevel,
-            })
-          : null}
+            })}
+          </NavListSubNavContext.Provider>
+        ) : null}
       </li>
     )
   },
@@ -389,23 +406,26 @@ const NavListItem = forwardRef(
 export type NavListSubNavProps = {
   children: ReactNode
   'data-testid'?: string
-  _expanded?: boolean
-  _level?: NavListLevel
 } & BaseProps<HTMLUListElement> &
   React.HTMLAttributes<HTMLUListElement>
 
 const NavListSubNav = forwardRef<HTMLUListElement, NavListSubNavProps>(
-  ({children, className, _expanded = true, _level = 2, 'data-testid': testId, ...rest}, ref) => (
-    <ul
-      ref={ref}
-      className={clsx(styles.NavList__subNav, className)}
-      data-testid={testId || testIds.subNav}
-      hidden={!_expanded}
-      {...rest}
-    >
-      <NavListLevelContext.Provider value={_level}>{children}</NavListLevelContext.Provider>
-    </ul>
-  ),
+  ({children, className, 'aria-labelledby': ariaLabelledBy, 'data-testid': testId, ...rest}, ref) => {
+    const {expanded, labelledBy, level} = React.useContext(NavListSubNavContext)
+
+    return (
+      <ul
+        ref={ref}
+        className={clsx(styles.NavList__subNav, className)}
+        aria-labelledby={ariaLabelledBy ?? labelledBy}
+        data-testid={testId || testIds.subNav}
+        hidden={!expanded}
+        {...rest}
+      >
+        <NavListLevelContext.Provider value={level}>{children}</NavListLevelContext.Provider>
+      </ul>
+    )
+  },
 )
 
 export type NavListDividerProps = BaseProps<HTMLLIElement> & React.LiHTMLAttributes<HTMLLIElement>
@@ -422,7 +442,7 @@ const NavListDivider = forwardRef<HTMLLIElement, NavListDividerProps>(({classNam
 
 /**
  * Use NavList to render vertical navigation links with expandable section rows and nested lists.
- * `aria-current` is the current-item contract; top collapse-bar or responsive shell behavior is intentionally out of scope.
+ * `aria-current` is the leaf-item current contract; top collapse-bar or responsive shell behavior is intentionally out of scope.
  * @see https://primer.style/brand/components/NavList
  */
 export const NavList = Object.assign(NavListRoot, {
