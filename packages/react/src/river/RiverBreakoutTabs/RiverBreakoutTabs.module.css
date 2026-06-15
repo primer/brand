@@ -22,18 +22,55 @@
 }
 
 .RiverBreakoutTabs__sharedVisuals {
+  position: relative;
   order: 1;
   margin-block-end: var(--base-size-36);
   width: 100%;
+  overflow: hidden;
+  border-radius: var(--brand-borderRadius-small);
 }
 
 .RiverBreakoutTabs__accordionSharedVisuals {
+  position: relative;
   margin-block-end: var(--base-size-16);
   width: 100%;
 }
 
 .RiverBreakoutTabs__sharedVisualPanel {
+  position: relative;
+  z-index: 1;
   min-width: 0;
+}
+
+.RiverBreakoutTabs__backgroundVisual {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.RiverBreakoutTabs__accordionSharedVisual {
+  position: relative;
+  z-index: 1;
+}
+
+.RiverBreakoutTabs--has-background-visual .RiverBreakoutTabs__sharedVisualPanel,
+.RiverBreakoutTabs--has-background-visual .RiverBreakoutTabs__accordionSharedVisual {
+  padding: var(--base-size-32);
+}
+
+@media screen and (min-width: 63.25rem) {
+  .RiverBreakoutTabs--has-background-visual .RiverBreakoutTabs__sharedVisualPanel,
+  .RiverBreakoutTabs--has-background-visual .RiverBreakoutTabs__accordionSharedVisual {
+    padding: var(--base-size-64);
+  }
+}
+
+/* for imagePosition="block-end" */
+.RiverBreakoutTabs--image-position-block-end .RiverBreakoutTabs__sharedVisualPanel,
+.RiverBreakoutTabs--image-position-block-end .RiverBreakoutTabs__accordionSharedVisual {
+  padding-block-end: 0;
 }
 
 .RiverBreakoutTabs__sharedVisual :is(img, picture, video),

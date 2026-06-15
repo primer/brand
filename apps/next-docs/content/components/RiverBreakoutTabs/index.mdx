@@ -95,12 +95,14 @@ import {RiverBreakoutTabs} from '@primer/react-brand'
 
 ### RiverBreakoutTabs <Label>Required</Label>
 
-| Name                   | Type                              | Default | Description                                                                 |
-| :--------------------- | :-------------------------------- | :-----: | :-------------------------------------------------------------------------- |
-| `children`             | `RiverBreakoutTabs.Item[]`        |         | Includes one required `RiverBreakoutTabs.A11yHeading` and one or more items |
-| `defaultSelectedIndex` | `number`                          |   `0`   | Default selected index for uncontrolled mode                                |
-| `selectedIndex`        | `number`                          |         | Selected index for controlled mode                                          |
-| `onChange`             | `(selectedIndex: number) => void` |         | Callback called when selected index changes                                 |
+| Name                   | Type                              |  Default   | Description                                                                                   |
+| :--------------------- | :-------------------------------- | :--------: | :-------------------------------------------------------------------------------------------- |
+| `children`             | `RiverBreakoutTabs.Item[]`        |            | Includes one required `RiverBreakoutTabs.A11yHeading` and one or more items                   |
+| `defaultSelectedIndex` | `number`                          |    `0`     | Default selected index for uncontrolled mode                                                  |
+| `selectedIndex`        | `number`                          |            | Selected index for controlled mode                                                            |
+| `onChange`             | `(selectedIndex: number) => void` |            | Callback called when selected index changes                                                   |
+| `backgroundVisual`     | `ReactNode`                       |            | Decorative visual rendered behind the shared visual region, which persists across tab changes |
+| `imagePosition`        | `'center' \| 'block-end'`         | `'center'` | Positions the media over `backgroundVisual`; `block-end` pins it to the bottom edge           |
 
 `RiverBreakoutTabs` extends the HTML `section` element and supports all `section` props.
 

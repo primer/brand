@@ -391,4 +391,103 @@ describe('RiverBreakoutTabs', () => {
     const results = await axe(container)
     expect(results).toHaveNoViolations()
   })
+
+  it('renders a single persistent backgroundVisual behind the shared visual region', () => {
+    const {getAllByRole, getAllByTestId} = render(
+      <RiverBreakoutTabs backgroundVisual={<div data-testid="shared-bg" />}>
+        <RiverBreakoutTabs.A11yHeading>Agent workflows</RiverBreakoutTabs.A11yHeading>
+        <RiverBreakoutTabs.Item>
+          <RiverBreakoutTabs.Heading>Plan</RiverBreakoutTabs.Heading>
+          <RiverBreakoutTabs.Content>
+            <Text>Plan content</Text>
+          </RiverBreakoutTabs.Content>
+          <RiverBreakoutTabs.Visual>
+            <MockVisual label="plan visual" />
+          </RiverBreakoutTabs.Visual>
+        </RiverBreakoutTabs.Item>
+        <RiverBreakoutTabs.Item>
+          <RiverBreakoutTabs.Heading>Review</RiverBreakoutTabs.Heading>
+          <RiverBreakoutTabs.Content>
+            <Text>Review content</Text>
+          </RiverBreakoutTabs.Content>
+          <RiverBreakoutTabs.Visual>
+            <MockVisual label="review visual" />
+          </RiverBreakoutTabs.Visual>
+        </RiverBreakoutTabs.Item>
+      </RiverBreakoutTabs>,
+    )
+
+    // A single instance, not one per tab/item.
+    expect(getAllByTestId('shared-bg')).toHaveLength(1)
+
+    const background = getAllByTestId('shared-bg')[0]
+    // Decorative, and outside the tab panels so only the foreground image swaps.
+    expect(background.parentElement).toHaveAttribute('aria-hidden', 'true')
+    expect(background.closest('[role="tabpanel"]')).toBeNull()
+
+    // Still a single instance after switching tabs.
+    fireEvent.click(getAllByRole('tab')[1])
+    expect(getAllByTestId('shared-bg')).toHaveLength(1)
+  })
+
+  it('does not render a backgroundVisual element when the prop is omitted', () => {
+    const {container} = render(
+      <RiverBreakoutTabs>
+        <RiverBreakoutTabs.A11yHeading>Agent workflows</RiverBreakoutTabs.A11yHeading>
+        <RiverBreakoutTabs.Item>
+          <RiverBreakoutTabs.Heading>Plan</RiverBreakoutTabs.Heading>
+          <RiverBreakoutTabs.Content>
+            <Text>Plan content</Text>
+          </RiverBreakoutTabs.Content>
+          <RiverBreakoutTabs.Visual>
+            <MockVisual label="plan visual" />
+          </RiverBreakoutTabs.Visual>
+        </RiverBreakoutTabs.Item>
+      </RiverBreakoutTabs>,
+    )
+
+    expect(container.querySelector('.RiverBreakoutTabs__backgroundVisual')).toBeNull()
+  })
+
+  it('applies the backgroundVisual and block-end imagePosition modifier classes', () => {
+    const {container} = render(
+      <RiverBreakoutTabs backgroundVisual={<div data-testid="shared-bg" />} imagePosition="block-end">
+        <RiverBreakoutTabs.A11yHeading>Agent workflows</RiverBreakoutTabs.A11yHeading>
+        <RiverBreakoutTabs.Item>
+          <RiverBreakoutTabs.Heading>Plan</RiverBreakoutTabs.Heading>
+          <RiverBreakoutTabs.Content>
+            <Text>Plan content</Text>
+          </RiverBreakoutTabs.Content>
+          <RiverBreakoutTabs.Visual>
+            <MockVisual label="plan visual" />
+          </RiverBreakoutTabs.Visual>
+        </RiverBreakoutTabs.Item>
+      </RiverBreakoutTabs>,
+    )
+
+    const section = container.querySelector('section')
+    expect(section).toHaveClass('RiverBreakoutTabs--has-background-visual')
+    expect(section).toHaveClass('RiverBreakoutTabs--image-position-block-end')
+  })
+
+  it('defaults imagePosition to center (no block-end modifier)', () => {
+    const {container} = render(
+      <RiverBreakoutTabs backgroundVisual={<div data-testid="shared-bg" />}>
+        <RiverBreakoutTabs.A11yHeading>Agent workflows</RiverBreakoutTabs.A11yHeading>
+        <RiverBreakoutTabs.Item>
+          <RiverBreakoutTabs.Heading>Plan</RiverBreakoutTabs.Heading>
+          <RiverBreakoutTabs.Content>
+            <Text>Plan content</Text>
+          </RiverBreakoutTabs.Content>
+          <RiverBreakoutTabs.Visual>
+            <MockVisual label="plan visual" />
+          </RiverBreakoutTabs.Visual>
+        </RiverBreakoutTabs.Item>
+      </RiverBreakoutTabs>,
+    )
+
+    const section = container.querySelector('section')
+    expect(section).toHaveClass('RiverBreakoutTabs--has-background-visual')
+    expect(section).not.toHaveClass('RiverBreakoutTabs--image-position-block-end')
+  })
 })
