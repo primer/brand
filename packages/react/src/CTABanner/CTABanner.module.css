@@ -82,7 +82,7 @@
 }
 
 .CTABanner-container--rounded {
-  border-radius: var(--brand-borderRadius-xlarge);
+  border-radius: var(--brand-borderRadius-medium);
 }
 
 .CTABanner--variant-balanced .CTABanner-container {
