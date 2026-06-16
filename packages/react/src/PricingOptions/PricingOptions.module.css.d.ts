@@ -35,7 +35,6 @@ declare const styles: {
   readonly "PricingOptions__label-cell": string;
   readonly "PricingOptions__label-cell--empty": string;
   readonly "PricingOptions__label-cell--has-label": string;
-  readonly "PricingOptions__labels": string;
   readonly "PricingOptions__leading-component": string;
   readonly "PricingOptions__menu-action": string;
   readonly "PricingOptions__price": string;

@@ -62,28 +62,36 @@
   }
 }
 
-.PricingOptions__labels {
+.PricingOptions__label-cell {
+  grid-row: labels;
+  justify-self: stretch;
+}
+
+.PricingOptions__label-cell--empty {
   display: none;
 }
 
+.PricingOptions__label-cell--has-label {
+  display: flex;
+  align-items: center;
+  margin-inline: calc(var(--brand-pricing-options-item-padding-inline, 0px) * -1);
+  margin-block-end: var(--base-size-16);
+  padding-inline: var(--brand-pricing-options-item-padding-inline, 0px);
+  padding-block-end: var(--base-size-16);
+  border-block-end: var(--brand-borderWidth-thin) solid var(--brand-color-border-subtle);
+}
+
 @media (min-width: 63.25rem) {
-  .PricingOptions__labels {
-    --brand-pricing-options-column-count: 1;
-
-    display: grid;
-    grid-column: 1 / -1;
-    grid-row: labels;
-    grid-template-columns: repeat(var(--brand-pricing-options-column-count), minmax(0, 1fr));
-    column-gap: var(--brand-pricing-options-item-gap, 0);
-  }
-
   .PricingOptions__label-cell {
     position: relative;
     display: flex;
     align-items: center;
     min-height: var(--base-size-54);
+    margin-block-end: 0;
     padding-block: var(--base-size-16);
+    border-block-end: 0;
     background-color: var(--brand-PricingOptions-item-bgColor-solid);
+    transform: translateY(calc(var(--brand-pricing-options-item-padding-block-start, 0px) * -1));
   }
 
   /* Accent top border — uses ::after so it can overflow into the column gap */
@@ -91,56 +99,26 @@
     content: '';
     position: absolute;
     inset-block-start: 0;
-    inset-inline-start: calc(var(--brand-pricing-options-item-gap, 0px) / 2 * -1);
-    inset-inline-end: calc(var(--brand-pricing-options-item-gap, 0px) / 2 * -1);
+    inset-inline: 0;
     height: var(--brand-borderWidth-thin);
     background-color: var(--brand-color-text-emphasized);
     z-index: 1;
   }
 
-  /* First cell: don't overflow past container start (cards override below) */
-  .PricingOptions__label-cell--has-label:first-child::after {
-    inset-inline-start: 0;
-  }
-
-  /* Last cell: don't overflow past container end (cards override below) */
-  .PricingOptions__label-cell--has-label:last-child::after {
-    inset-inline-end: 0;
-  }
-
-  .PricingOptions--layout-default .PricingOptions__label-cell--has-label::after {
-    inset-inline-start: 0;
-    inset-inline-end: 0;
-  }
-
   /* ---- Default layout labels ---- */
-
-  /* Continuous bottom border across entire labels row — uses ::after to extend into container padding */
-  .PricingOptions--layout-default .PricingOptions__labels {
-    position: relative;
-  }
-
-  .PricingOptions--layout-default .PricingOptions__labels::after {
-    content: '';
-    position: absolute;
-    inset-block-end: 0;
-    inset-inline-start: calc(var(--brand-pricing-options-container-padding-inline, 0px) * -1);
-    inset-inline-end: calc(var(--brand-pricing-options-container-padding-inline, 0px) * -1);
-    height: var(--brand-borderWidth-thin);
-    background-color: var(--brand-color-border-subtle);
-  }
 
   .PricingOptions--layout-default .PricingOptions__label-cell {
     margin-inline: calc(var(--brand-pricing-options-item-gap) / 2 * -1);
     padding-inline: calc(var(--brand-pricing-options-item-gap) / 2);
+    border-block-end: var(--brand-borderWidth-thin) solid var(--brand-color-border-subtle);
   }
 
-  .PricingOptions--layout-default .PricingOptions__label-cell:first-child {
+  .PricingOptions--layout-default .PricingOptions__item:first-child .PricingOptions__label-cell {
     margin-inline-start: calc(var(--brand-pricing-options-container-padding-inline) * -1);
     padding-inline-start: var(--brand-pricing-options-container-padding-inline);
   }
 
-  .PricingOptions--layout-default .PricingOptions__label-cell:last-child {
+  .PricingOptions--layout-default .PricingOptions__item:last-child .PricingOptions__label-cell {
     margin-inline-end: calc(var(--brand-pricing-options-container-padding-inline) * -1);
     padding-inline-end: var(--brand-pricing-options-container-padding-inline);
   }
@@ -151,28 +129,29 @@
     border-block-start-color: transparent;
   }
 
-  /* Vertical dividers between label cells, centered in the gap */
-  .PricingOptions--layout-default .PricingOptions__label-cell + .PricingOptions__label-cell::before {
+  /* Vertical dividers between label cells, centered in the column gap */
+  .PricingOptions--layout-default .PricingOptions__item + .PricingOptions__item .PricingOptions__label-cell::before {
     content: '';
     position: absolute;
     inset-block: 0;
-    width: var(--brand-borderWidth-thin);
     inset-inline-start: 0;
+    width: var(--brand-borderWidth-thin);
     background-color: var(--brand-color-border-subtle);
   }
 
   .PricingOptions--layout-default.PricingOptions--appearance-gradient
-    .PricingOptions__label-cell
-    + .PricingOptions__label-cell::before {
+    .PricingOptions__item
+    + .PricingOptions__item
+    .PricingOptions__label-cell::before {
     mask-image: var(--brand-PricingOptions-borderMask);
   }
 
   /* ---- Cards layout labels ---- */
 
   .PricingOptions--layout-cards .PricingOptions__label-cell {
+    margin-inline: calc(var(--brand-pricing-options-item-padding-inline) * -1);
     padding-inline: var(--base-size-28);
     border-inline: var(--brand-borderWidth-thin) solid var(--brand-color-border-subtle);
-    /* border-block-end: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted); */
   }
 
   .PricingOptions--layout-cards .PricingOptions__label-cell--empty {
@@ -228,6 +207,7 @@
 
 .PricingOptions--layout-default .PricingOptions__item {
   --brand-pricing-options-item-padding-inline: var(--base-size-24);
+  --brand-pricing-options-item-padding-block-start: var(--base-size-20);
 
   position: relative; /* Used for positioning the divider between items */
   padding-inline: var(--base-size-24);
@@ -272,6 +252,7 @@
 @media (min-width: 63.25rem) {
   .PricingOptions--layout-default .PricingOptions__item {
     --brand-pricing-options-item-padding-inline: 0;
+    --brand-pricing-options-item-padding-block-start: var(--base-size-40);
 
     padding-inline: 0;
     padding-block: var(--base-size-40);
@@ -311,6 +292,7 @@
 
 .PricingOptions--layout-cards .PricingOptions__item {
   --brand-pricing-options-item-padding-inline: var(--base-size-32);
+  --brand-pricing-options-item-padding-block-start: var(--base-size-32);
 
   position: relative;
   padding-inline: var(--base-size-32);
@@ -368,12 +350,12 @@
 
 @media (min-width: 63.25rem) {
   .PricingOptions__item {
-    grid-row: header / footnote;
+    grid-row: labels / footnote;
     grid-template-rows: subgrid;
   }
 
   .PricingOptions__item--has-leading-component {
-    grid-row: leadingComponent / footnote;
+    grid-row: labels / footnote;
   }
 }
 
@@ -640,10 +622,6 @@
   /* First item: don't overflow past container start */
   .PricingOptions--layout-default
     .PricingOptions__item:first-child
-    :is(.PricingOptions__price, .PricingOptions__feature-list--has-divider)::before,
-  .PricingOptions--layout-default
-    .PricingOptions__labels
-    + .PricingOptions__item
     :is(.PricingOptions__price, .PricingOptions__feature-list--has-divider)::before {
     inset-inline-start: calc(var(--brand-pricing-options-container-padding-inline, 0px) * -1);
   }
