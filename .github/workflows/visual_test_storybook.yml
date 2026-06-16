@@ -14,6 +14,7 @@ jobs:
     runs-on: macos-latest-xlarge
     env:
       NODE_ENV: test
+      PLAYWRIGHT_CHROME_PATH: /Applications/Google Chrome.app/Contents/MacOS/Google Chrome # Use local Chrome instead of downaloading
     steps:
       - name: Checkout repository
         uses: actions/checkout@v6

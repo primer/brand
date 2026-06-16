@@ -1,6 +1,15 @@
 .Accordion {
+  --brand-Accordion-content-height: 0px;
+
   box-sizing: border-box;
   position: relative;
+}
+
+.Accordion--disableAnimation::after,
+.Accordion--disableAnimation .Accordion__summary-toggleIcon,
+.Accordion--disableAnimation > .Accordion__content,
+.Accordion--disableAnimation > .Accordion__content > .Accordion__content-inner {
+  transition: none;
 }
 
 .Accordion--default {
@@ -52,9 +61,15 @@ details[open] > .Accordion__summary--emphasis::before {
 
 .Accordion--emphasis:not(.Accordion .Accordion) > .Accordion__content {
   border-block-end: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
+}
+
+.Accordion--emphasis:not(.Accordion .Accordion) > .Accordion__content > .Accordion__content-inner {
   padding-block-start: var(--base-size-12);
-  padding-block-end: var(--base-size-12);
   padding-inline: var(--base-size-20);
+}
+
+.Accordion--emphasis:not(.Accordion .Accordion) > .Accordion__content > .Accordion__content-inner::after {
+  block-size: var(--base-size-12);
 }
 
 .Accordion--emphasis .Accordion--default:last-child {
@@ -69,7 +84,8 @@ details[open] > .Accordion__summary--emphasis::before {
   content: '';
   background-color: var(--brand-Accordion-border-color-default);
   height: var(--brand-borderWidth-thin);
-  transition: var(--brand-animation-duration-fast) transform;
+  transition: background-color var(--brand-animation-duration-fast) var(--brand-animation-easing-glide),
+    transform var(--brand-animation-duration-fast) var(--brand-animation-easing-glide);
   transform: scaleY(0);
   transform-origin: 50% 100%;
   width: 100%;
@@ -89,6 +105,7 @@ details[open].Accordion--default::after {
   padding: var(--base-size-24) 0;
   position: relative;
   display: flex;
+  align-items: center;
   justify-content: space-between;
 }
 
@@ -114,46 +131,46 @@ details[open].Accordion > .Accordion__summary:focus-visible {
   outline: none;
 }
 
-.Accordion__summary--collapsed,
-.Accordion__summary--expanded {
+.Accordion__summary-toggle {
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
   height: var(--base-size-24);
   width: var(--base-size-24);
-  color: var(--brand-color-text-default);
+  color: var(--brand-color-text-emphasized);
   position: absolute;
-  transition: opacity var(--brand-animation-duration-faster) ease;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
-.Accordion__summary:not(.Accordion__summary--reversed-toggles) .Accordion__summary--collapsed,
-.Accordion__summary:not(.Accordion__summary--reversed-toggles) .Accordion__summary--expanded {
+.Accordion__summary:not(.Accordion__summary--reversed-toggles) .Accordion__summary-toggle {
   right: 0;
 }
 
-.Accordion__summary--emphasis .Accordion__summary--collapsed,
-.Accordion__summary--emphasis .Accordion__summary--expanded {
+.Accordion__summary--emphasis .Accordion__summary-toggle {
   position: static;
+  transform: none;
   order: 1;
-}
-
-.Accordion__summary--emphasis .Accordion__summary--collapsed {
   margin-inline-start: auto;
+  color: var(--brand-color-text-default);
 }
 
-.Accordion__summary--emphasis .Accordion__summary--expanded {
-  margin-inline-start: calc(-1 * var(--base-size-24));
-}
-
-.Accordion__summary--reversed-toggles .Accordion__summary--collapsed,
-.Accordion__summary--reversed-toggles .Accordion__summary--expanded {
+.Accordion__summary--reversed-toggles .Accordion__summary-toggle {
   left: 0;
 }
 
-.Accordion__summary--default .Accordion__summary--collapsed,
-.Accordion__summary--default .Accordion__summary--expanded {
-  color: var(--brand-Accordion-toggle-color-start, var(--brand-color-text-default));
+.Accordion__summary--default .Accordion__summary-toggle {
+  color: var(--brand-Accordion-toggle-color-start, var(--brand-color-text-emphasized));
+}
+
+.Accordion__summary-toggleIcon {
+  transform-origin: 50% 50%;
+  transition: transform var(--brand-animation-duration-fast) var(--brand-animation-easing-glide);
+}
+
+details[open] > .Accordion__summary .Accordion__summary-toggleIcon {
+  transform: rotate(-180deg);
 }
 
 .Accordion__summary--toggleColor-default {
@@ -232,30 +249,6 @@ details[open].Accordion > .Accordion__summary:focus-visible {
   --brand-Accordion-toggle-color-start: var(--brand-Accordion-toggle-color-yellow);
 }
 
-.Accordion__summary.Accordion__summary--default .Accordion__summary--expanded {
-  opacity: 0;
-}
-
-.Accordion__summary.Accordion__summary--emphasis .Accordion__summary--expanded {
-  opacity: 0;
-}
-
-details[open] .Accordion__summary.Accordion__summary--emphasis .Accordion__summary--expanded {
-  opacity: 1;
-}
-
-details[open] .Accordion__summary.Accordion__summary--emphasis .Accordion__summary--collapsed {
-  opacity: 0;
-}
-
-details[open] > .Accordion__summary.Accordion__summary--default .Accordion__summary--expanded {
-  opacity: 1;
-}
-
-details[open] > .Accordion__summary.Accordion__summary--default .Accordion__summary--collapsed {
-  opacity: 0;
-}
-
 .Accordion__summary--default:not(.Accordion__summary--reversed-toggles) {
   padding-inline-end: var(--base-size-48);
 }
@@ -266,7 +259,7 @@ details[open] > .Accordion__summary.Accordion__summary--default .Accordion__summ
 
 .Accordion__content,
 .Accordion__content p,
-.Accordion__content span:not(.Accordion__summary--expanded):not(.Accordion__summary--collapsed),
+.Accordion__content span:not(.Accordion__summary-toggle),
 .Accordion__content ul,
 .Accordion__content ol {
   color: var(--brand-color-text-muted);
@@ -274,6 +267,36 @@ details[open] > .Accordion__summary.Accordion__summary--default .Accordion__summ
   font-weight: var(--brand-text-weight-200);
   font-size: var(--brand-text-size-200);
   line-height: var(--brand-text-lineHeight-200);
+}
+
+.Accordion__content {
+  --brand-Accordion-content-offset: 0px; /* we reference this in JS */
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height var(--brand-animation-duration-fast) var(--brand-animation-easing-glide);
+  position: relative;
+}
+
+.Accordion__content-inner {
+  transform: translateY(calc(-1 * var(--brand-Accordion-content-offset)));
+  opacity: 0;
+  transition: opacity var(--brand-animation-duration-fast) var(--brand-animation-easing-glide);
+}
+
+.Accordion--default > .Accordion__content {
+  --brand-Accordion-content-offset: calc(var(--base-size-24) - var(--base-size-6)); /* we reference this in JS */
+  top: calc(var(--base-size-4) * -1);
+}
+
+.Accordion__summary--default + .Accordion__content > .Accordion__content-inner::before {
+  content: '';
+  display: block;
+  block-size: var(--base-size-12);
+}
+
+.Accordion__content-inner::after {
+  content: '';
+  display: block;
 }
 
 [data-color-mode='dark'] .Accordion__content {
@@ -311,14 +334,41 @@ details[open] > .Accordion__summary.Accordion__summary--default .Accordion__summ
 }
 
 details[open] > .Accordion__content {
-  padding-bottom: var(--base-size-24);
-  animation: fade-in 0.5s;
+  max-height: var(--brand-Accordion-content-height);
   position: relative;
   z-index: 0;
 }
 
+details[open].Accordion--disableAnimation > .Accordion__content {
+  max-height: none;
+}
+
+details[open] > .Accordion__content > .Accordion__content-inner {
+  opacity: 1;
+}
+
+details.Accordion--closing > .Accordion__content {
+  max-height: 0;
+}
+
+details.Accordion--closing > .Accordion__content > .Accordion__content-inner {
+  opacity: 0;
+}
+
 .Accordion__summary--default + .Accordion__content {
-  margin-top: calc(var(--base-size-12) * -1); /* for 12px gap between question and answer */
+  margin-block-start: 0;
+}
+
+details[open] > .Accordion__summary--default + .Accordion__content {
+  margin-block-start: 0;
+}
+
+details.Accordion--closing > .Accordion__summary--default + .Accordion__content {
+  margin-block-start: 0;
+}
+
+details.Accordion--closing > .Accordion__summary .Accordion__summary-toggleIcon {
+  transform: rotate(0deg);
 }
 
 details[open] > .Accordion__summary--reversed-toggles + .Accordion__content {
@@ -329,15 +379,6 @@ details[open] > .Accordion__summary--reversed-toggles + .Accordion__content {
 @media screen and (min-width: 48rem) {
   .Accordion__summary {
     gap: var(--base-size-40);
-  }
-}
-
-@keyframes fade-in {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
   }
 }
 
