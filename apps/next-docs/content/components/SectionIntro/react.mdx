@@ -65,15 +65,19 @@ The content alignment can be changed using the `align` prop on the root `Section
 | `className` | `string`                   |             | `false`  | SectionIntro custom class                                     |
 | `fullWidth` | `boolean`                  |             | `false`  | Fills available space                                         |
 
-### Hero.Label
+### SectionIntro.Label
 
-| name        | type              | default | description                                  |
-| ----------- | ----------------- | ------- | -------------------------------------------- |
-| `className` | `string`          |         | Sets a custom class on the root of the label |
-| `id`        | `string`          |         | Sets a custom id on the root of the label    |
-| `ref`       | `React.RefObject` |         | Forward a Ref to the underlying DOM node     |
+Optional node that can be used to provide a label for the section.
 
-Forwards all props from the [Label component](/components/Label), including `size` and `color`.
+| name             | type                 | default   | required | description                                  |
+| ---------------- | -------------------- | --------- | -------- | -------------------------------------------- |
+| `children`       | `ReactNode`          |           | `true`   | Content to be displayed inside the label     |
+| `animate`        | `boolean`            | `false`   | `false`  | Enables the cursor animation                 |
+| `animationDelay` | `number`             | `1000`    | `false`  | Delay before the cursor animation starts     |
+| `variant`        | `'default', 'muted'` | `'muted'` | `false`  | Specify alternative text appearance          |
+| `className`      | `string`             |           | `false`  | Sets a custom class on the root of the label |
+| `id`             | `string`             |           | `false`  | Sets a custom id on the root of the label    |
+| `ref`            | `React.RefObject`    |           | `false`  | Forward a Ref to the underlying DOM node     |
 
 ### SectionIntro.Heading <Label>Required</Label>
 

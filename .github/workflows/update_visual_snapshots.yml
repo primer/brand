@@ -2,6 +2,7 @@ name: Update visual snapshots
 
 env:
   NODE_ENV: test
+  PLAYWRIGHT_CHROME_PATH: /Applications/Google Chrome.app/Contents/MacOS/Google Chrome # Use local Chrome instead of downaloading
 
 on:
   pull_request:
