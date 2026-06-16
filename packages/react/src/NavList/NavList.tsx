@@ -12,7 +12,7 @@ import React, {
   type Ref,
 } from 'react'
 import {clsx} from 'clsx'
-import {TriangleDownIcon, TriangleUpIcon} from '@primer/octicons-react'
+import {TriangleDownIcon} from '@primer/octicons-react'
 
 import type {BaseProps} from '../component-helpers'
 import {useId} from '../hooks/useId'
@@ -244,7 +244,6 @@ const NavListItem = forwardRef(
     const isControlled = expanded !== undefined
     const [uncontrolledExpanded, setUncontrolledExpanded] = useState(defaultExpanded || hasCurrentSubNavItem)
     const isExpanded = Boolean(isControlled ? expanded : uncontrolledExpanded)
-    const ToggleIcon = isExpanded ? TriangleUpIcon : TriangleDownIcon
     const {
       href: _href,
       id: accordionButtonIdProp,
@@ -352,7 +351,7 @@ const NavListItem = forwardRef(
               disabled={disabled}
               onClick={handleAccordionClick}
             >
-              <ToggleIcon className={styles.NavList__toggleIcon} aria-hidden="true" />
+              <TriangleDownIcon className={styles.NavList__toggleIcon} aria-hidden="true" />
               {renderVisual(leadingVisual, styles.NavList__leadingVisual)}
               <span className={styles.NavList__label}>{labelChildren}</span>
               {renderVisual(trailingVisual, styles.NavList__trailingVisual)}
@@ -397,15 +396,63 @@ export type NavListSubNavProps = {
 const NavListSubNav = forwardRef<HTMLUListElement, NavListSubNavProps>(
   ({children, className, 'aria-labelledby': ariaLabelledBy, 'data-testid': testId, ...rest}, ref) => {
     const {expanded, labelledBy, level} = React.useContext(NavListSubNavContext)
+    const subNavRef = React.useRef<HTMLUListElement | null>(null)
+
+    const setSubNavHeight = React.useCallback((subNav: HTMLUListElement) => {
+      subNav.style.setProperty('--brand-NavList-subNav-height', `${subNav.scrollHeight}px`)
+    }, [])
+
+    const setSubNavAndAncestorHeights = React.useCallback(() => {
+      let subNav = subNavRef.current
+
+      while (subNav) {
+        setSubNavHeight(subNav)
+        subNav = subNav.parentElement?.closest<HTMLUListElement>(`.${styles.NavList__subNav}`) ?? null
+      }
+    }, [setSubNavHeight])
+
+    const setSubNavRef = React.useCallback(
+      (node: HTMLUListElement | null) => {
+        subNavRef.current = node
+
+        if (typeof ref === 'function') {
+          ref(node)
+        } else if (ref) {
+          ;(ref as React.MutableRefObject<HTMLUListElement | null>).current = node
+        }
+      },
+      [ref],
+    )
+
+    React.useEffect(() => {
+      setSubNavAndAncestorHeights()
+    }, [children, expanded, setSubNavAndAncestorHeights])
+
+    React.useEffect(() => {
+      const subNav = subNavRef.current
+
+      if (!subNav || typeof ResizeObserver === 'undefined') {
+        return
+      }
+
+      const resizeObserver = new ResizeObserver(setSubNavAndAncestorHeights)
+      resizeObserver.observe(subNav)
+
+      return () => {
+        resizeObserver.disconnect()
+      }
+    }, [setSubNavAndAncestorHeights])
 
     return (
       <ul
-        ref={ref}
+        ref={setSubNavRef}
         className={clsx(styles.NavList__subNav, className)}
         aria-labelledby={ariaLabelledBy ?? labelledBy}
-        data-testid={testId || testIds.subNav}
-        hidden={!expanded}
         {...rest}
+        aria-hidden={expanded ? undefined : 'true'}
+        data-testid={testId || testIds.subNav}
+        data-expanded={expanded ? 'true' : 'false'}
+        inert={!expanded}
       >
         <NavListLevelContext.Provider value={level}>{children}</NavListLevelContext.Provider>
       </ul>

@@ -20,7 +20,10 @@ const NavListFixture = () => (
 )
 
 describe('NavList', () => {
-  afterEach(cleanup)
+  afterEach(() => {
+    jest.restoreAllMocks()
+    cleanup()
+  })
 
   it('has no a11y violations', async () => {
     const {container} = render(<NavListFixture />)
@@ -274,7 +277,7 @@ describe('NavList', () => {
     expect(queryByRole('link', {name: 'Actions'})).not.toBeInTheDocument()
   })
 
-  it('uses triangle indicators for expandable items', async () => {
+  it('hides collapsed nested lists from assistive technology without using hidden', async () => {
     const user = userEvent.setup()
 
     const {getByRole} = render(
@@ -289,12 +292,115 @@ describe('NavList', () => {
     )
 
     const toggle = getByRole('button', {name: 'Docs expand'})
+    const subNav = document.getElementById(toggle.getAttribute('aria-controls') ?? '')
 
-    expect(toggle.querySelector('.octicon-triangle-down')).toBeInTheDocument()
+    expect(subNav).toHaveAttribute('aria-hidden', 'true')
+    expect(subNav).toHaveAttribute('data-expanded', 'false')
+    expect(subNav).toHaveAttribute('inert')
+    expect(subNav).not.toHaveAttribute('hidden')
 
     await user.click(toggle)
 
-    expect(toggle.querySelector('.octicon-triangle-up')).toBeInTheDocument()
+    expect(subNav).not.toHaveAttribute('aria-hidden')
+    expect(subNav).toHaveAttribute('data-expanded', 'true')
+    expect(subNav).not.toHaveAttribute('inert')
+  })
+
+  it('measures nested list height for expansion animation', () => {
+    jest.spyOn(HTMLElement.prototype, 'scrollHeight', 'get').mockReturnValue(64)
+
+    const {getByRole} = render(
+      <NavList>
+        <NavList.Item defaultExpanded>
+          Docs
+          <NavList.SubNav>
+            <NavList.Item href="/docs/actions">Actions</NavList.Item>
+          </NavList.SubNav>
+        </NavList.Item>
+      </NavList>,
+    )
+
+    const subNav = getByRole('list', {name: 'Docs collapse'})
+
+    expect(subNav).toHaveStyle({'--brand-NavList-subNav-height': '64px'})
+  })
+
+  it('updates ancestor nested list heights when deeper sections expand', async () => {
+    const user = userEvent.setup()
+
+    jest.spyOn(HTMLElement.prototype, 'scrollHeight', 'get').mockImplementation(function (this: HTMLElement) {
+      const labelledBy = this.getAttribute('aria-labelledby')
+      const label = labelledBy ? document.getElementById(labelledBy)?.textContent : ''
+      const extensionsToggle = document.querySelector<HTMLButtonElement>('[aria-label^="Extensions"]')
+      const extensionsExpanded = extensionsToggle?.getAttribute('aria-expanded') === 'true'
+
+      if (label?.includes('Docs')) return extensionsExpanded ? 192 : 96
+      if (label?.includes('Guides')) return extensionsExpanded ? 160 : 64
+      if (label?.includes('Extensions')) return 96
+
+      return 0
+    })
+
+    const {getByRole} = render(
+      <NavList>
+        <NavList.Item defaultExpanded>
+          Docs
+          <NavList.SubNav>
+            <NavList.Item defaultExpanded>
+              Guides
+              <NavList.SubNav>
+                <NavList.Item>
+                  Extensions
+                  <NavList.SubNav>
+                    <NavList.Item href="/extensions/install">Install an extension</NavList.Item>
+                    <NavList.Item href="/extensions/publish">Publish an extension</NavList.Item>
+                    <NavList.Item href="/extensions/manage">Manage permissions</NavList.Item>
+                  </NavList.SubNav>
+                </NavList.Item>
+              </NavList.SubNav>
+            </NavList.Item>
+          </NavList.SubNav>
+        </NavList.Item>
+      </NavList>,
+    )
+
+    expect(getByRole('list', {name: 'Docs collapse'})).toHaveStyle({'--brand-NavList-subNav-height': '96px'})
+    expect(getByRole('list', {name: 'Guides collapse'})).toHaveStyle({'--brand-NavList-subNav-height': '64px'})
+
+    await user.click(getByRole('button', {name: 'Extensions expand'}))
+
+    expect(getByRole('list', {name: 'Docs collapse'})).toHaveStyle({'--brand-NavList-subNav-height': '192px'})
+    expect(getByRole('list', {name: 'Guides collapse'})).toHaveStyle({
+      '--brand-NavList-subNav-height': '160px',
+    })
+    expect(getByRole('link', {name: 'Install an extension'})).toBeInTheDocument()
+  })
+
+  it('renders a single animated triangle indicator for expandable items', async () => {
+    const user = userEvent.setup()
+
+    const {getByRole} = render(
+      <NavList>
+        <NavList.Item>
+          Docs
+          <NavList.SubNav>
+            <NavList.Item href="/docs/actions">Actions</NavList.Item>
+          </NavList.SubNav>
+        </NavList.Item>
+      </NavList>,
+    )
+
+    const toggle = getByRole('button', {name: 'Docs expand'})
+    const indicator = toggle.querySelector('.NavList__toggleIcon')
+
+    expect(toggle.querySelector('.octicon-triangle-down')).toBeInTheDocument()
+    expect(indicator).toBeInTheDocument()
+    expect(toggle.querySelector('.octicon-triangle-up')).not.toBeInTheDocument()
+
+    await user.click(toggle)
+
+    expect(toggle.querySelector('.octicon-triangle-down')).toBeInTheDocument()
+    expect(toggle.querySelector('.octicon-triangle-up')).not.toBeInTheDocument()
   })
 
   it('auto-expands parents with current descendants', () => {

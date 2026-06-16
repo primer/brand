@@ -115,6 +115,11 @@
   outline-offset: var(--base-size-2);
 }
 
+.NavList__subNav .NavList__link:focus-visible,
+.NavList__subNav .NavList__accordionButton:focus-visible {
+  outline-offset: calc(-1 * var(--base-size-2));
+}
+
 .NavList__link[aria-current]:not([aria-current='false']) {
   color: var(--brand-color-text-default);
   background-color: var(--brand-color-canvas-subtle);
@@ -193,6 +198,12 @@
 
 .NavList__toggleIcon {
   flex: none;
+  transform-origin: 50% 50%;
+  transition: transform var(--brand-animation-duration-fast) var(--brand-animation-easing-glide);
+}
+
+.NavList__accordionButton[aria-expanded='true'] .NavList__toggleIcon {
+  transform: rotate(-180deg);
 }
 
 .NavList__subNav {
@@ -200,18 +211,37 @@
   flex-direction: column;
   gap: 0;
   margin: 0;
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
   padding: 0;
+  transform: translateY(calc(-1 * var(--base-size-8)));
+  visibility: hidden;
+  transition: max-height var(--brand-animation-duration-fast) var(--brand-animation-easing-glide),
+    opacity var(--brand-animation-duration-fast) var(--brand-animation-easing-glide),
+    transform var(--brand-animation-duration-fast) var(--brand-animation-easing-glide),
+    visibility 0s linear var(--brand-animation-duration-fast);
 }
 
-.NavList__subNav[hidden] {
-  display: none;
+.NavList__subNav[data-expanded='true'] {
+  max-height: var(--brand-NavList-subNav-height, none);
+  opacity: 1;
+  transform: translateY(0);
+  visibility: visible;
+  transition: max-height var(--brand-animation-duration-fast) var(--brand-animation-easing-glide),
+    opacity var(--brand-animation-duration-fast) var(--brand-animation-easing-glide),
+    transform var(--brand-animation-duration-fast) var(--brand-animation-easing-glide), visibility 0s linear 0s;
+}
+
+.NavList__subNav[aria-hidden='true'] .NavList__subNav {
+  visibility: hidden;
 }
 
 .NavList__item--level-1 > .NavList__itemContent {
   padding: var(--base-size-24) var(--base-size-16) var(--base-size-16);
 }
 
-.NavList__item--level-1:has(> .NavList__subNav:not([hidden])) {
+.NavList__item--level-1:has(> .NavList__subNav[data-expanded='true']) {
   padding-block-end: var(--base-size-16);
 }
 
@@ -314,7 +344,7 @@
 .NavList__item--leaf:not(.NavList__item--level-1) > .NavList__itemContent .NavList__link {
   min-height: var(--base-size-32);
   padding-inline-start: var(--base-size-8);
-  border-radius: 0;
+  border-radius: var(--brand-borderRadius-small);
 }
 
 .NavList__item--leaf:not(.NavList__item--level-1) > .NavList__itemContent .NavList__label {
@@ -353,7 +383,10 @@
 
 @media (prefers-reduced-motion: reduce) {
   .NavList,
+  .NavList::before,
+  .NavList::after,
   .NavList * {
+    animation: none !important;
     transition: none !important;
     scroll-behavior: auto !important;
   }
