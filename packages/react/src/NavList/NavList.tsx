@@ -37,9 +37,6 @@ const testIds = {
   get toggle() {
     return `${this.root}-toggle`
   },
-  get divider() {
-    return `${this.root}-divider`
-  },
 }
 
 type NavListRootProps = {
@@ -247,9 +244,6 @@ const NavListItem = forwardRef(
     const isControlled = expanded !== undefined
     const [uncontrolledExpanded, setUncontrolledExpanded] = useState(defaultExpanded || hasCurrentSubNavItem)
     const isExpanded = Boolean(isControlled ? expanded : uncontrolledExpanded)
-    const isCurrent = isLeafItem && isCurrentValue(ariaCurrent)
-    const hasCurrentSubNavDescendant = hasSubNav && hasCurrentSubNavItem
-    const hasCollapsedCurrentSubNavItem = hasSubNav && hasCurrentSubNavItem && !isExpanded
     const ToggleIcon = isExpanded ? TriangleUpIcon : TriangleDownIcon
     const {
       href: _href,
@@ -332,16 +326,7 @@ const NavListItem = forwardRef(
     return (
       // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions
       <li
-        className={clsx(
-          styles.NavList__item,
-          levelClassNames[level],
-          isLeafItem && styles['NavList__item--leaf'],
-          isCurrent && styles['NavList__item--current'],
-        )}
-        data-collapsed-current-descendant={hasCollapsedCurrentSubNavItem ? 'true' : undefined}
-        data-current-descendant={hasCurrentSubNavDescendant ? 'true' : undefined}
-        data-expanded={hasSubNav ? String(isExpanded) : undefined}
-        data-navlist-level={level}
+        className={clsx(styles.NavList__item, levelClassNames[level], isLeafItem && styles['NavList__item--leaf'])}
         data-testid={testId || testIds.item}
         onKeyDown={onKeyDown}
       >
@@ -428,18 +413,6 @@ const NavListSubNav = forwardRef<HTMLUListElement, NavListSubNavProps>(
   },
 )
 
-export type NavListDividerProps = BaseProps<HTMLLIElement> & React.LiHTMLAttributes<HTMLLIElement>
-
-const NavListDivider = forwardRef<HTMLLIElement, NavListDividerProps>(({className, ...rest}, ref) => (
-  <li
-    ref={ref}
-    className={clsx(styles.NavList__divider, className)}
-    role="separator"
-    data-testid={testIds.divider}
-    {...rest}
-  />
-))
-
 /**
  * Use NavList to render vertical navigation links with expandable section rows and nested lists.
  * `aria-current` is the leaf-item current contract; top collapse-bar or responsive shell behavior is intentionally out of scope.
@@ -448,6 +421,5 @@ const NavListDivider = forwardRef<HTMLLIElement, NavListDividerProps>(({classNam
 export const NavList = Object.assign(NavListRoot, {
   Item: NavListItem,
   SubNav: NavListSubNav,
-  Divider: NavListDivider,
   testIds,
 })

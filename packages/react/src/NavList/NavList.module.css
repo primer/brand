@@ -94,11 +94,15 @@
   background-color: var(--brand-color-canvas-subtle);
 }
 
-.NavList__item[data-current-descendant='true'] > .NavList__itemContent .NavList__accordionButton {
+.NavList__item:has(> .NavList__subNav [aria-current]:not([aria-current='false']))
+  > .NavList__itemContent
+  .NavList__accordionButton {
   color: var(--brand-color-text-default);
 }
 
-.NavList__item:not(.NavList__item--level-1)[data-collapsed-current-descendant='true']
+.NavList__item:not(.NavList__item--level-1):has(
+    > .NavList__itemContent .NavList__accordionButton[aria-expanded='false']
+  ):has(> .NavList__subNav [aria-current]:not([aria-current='false']))
   > .NavList__itemContent
   .NavList__accordionButton
   .NavList__label {
@@ -111,14 +115,12 @@
   outline-offset: var(--base-size-2);
 }
 
-.NavList__item--current > .NavList__itemContent .NavList__link,
 .NavList__link[aria-current]:not([aria-current='false']) {
   color: var(--brand-color-text-default);
   background-color: var(--brand-color-canvas-subtle);
   padding-inline-start: var(--base-size-6);
 }
 
-.NavList__item--leaf.NavList__item--current:not(.NavList__item--level-1) > .NavList__itemContent .NavList__link::before,
 .NavList__item--leaf:not(.NavList__item--level-1) .NavList__link[aria-current]:not([aria-current='false'])::before {
   content: '';
   position: absolute;
@@ -129,7 +131,11 @@
   background-color: var(--brand-NavList-activeIndicator-color);
 }
 
-.NavList__item[data-collapsed-current-descendant='true'] > .NavList__itemContent .NavList__accordionButton::before {
+.NavList__item:has(> .NavList__itemContent .NavList__accordionButton[aria-expanded='false']):has(
+    > .NavList__subNav [aria-current]:not([aria-current='false'])
+  )
+  > .NavList__itemContent
+  .NavList__accordionButton::before {
   content: '';
   position: absolute;
   inset-block-start: 50%;
@@ -141,13 +147,17 @@
   z-index: 1;
 }
 
-.NavList__item--level-1[data-collapsed-current-descendant='true']
+.NavList__item--level-1:has(> .NavList__itemContent .NavList__accordionButton[aria-expanded='false']):has(
+    > .NavList__subNav [aria-current]:not([aria-current='false'])
+  )
   > .NavList__itemContent
   .NavList__accordionButton::before {
   inset-inline-start: 0;
 }
 
-.NavList__item[data-collapsed-current-descendant='true']:not(.NavList__item--level-1)
+.NavList__item:not(.NavList__item--level-1):has(
+    > .NavList__itemContent .NavList__accordionButton[aria-expanded='false']
+  ):has(> .NavList__subNav [aria-current]:not([aria-current='false']))
   > .NavList__itemContent
   .NavList__accordionButton::before {
   inset-inline-start: var(--base-size-16);
@@ -201,7 +211,7 @@
   padding: var(--base-size-24) var(--base-size-16) var(--base-size-16);
 }
 
-.NavList__item--level-1[data-expanded='true'] {
+.NavList__item--level-1:has(> .NavList__subNav:not([hidden])) {
   padding-block-end: var(--base-size-16);
 }
 
@@ -228,7 +238,9 @@
 
 .NavList__item--level-1 > .NavList__itemContent .NavList__accordionButton:hover::after,
 .NavList__item--level-1 > .NavList__itemContent .NavList__accordionButton:active::after,
-.NavList__item--level-1[data-collapsed-current-descendant='true']
+.NavList__item--level-1:has(> .NavList__itemContent .NavList__accordionButton[aria-expanded='false']):has(
+    > .NavList__subNav [aria-current]:not([aria-current='false'])
+  )
   > .NavList__itemContent
   .NavList__accordionButton::after {
   content: '';
@@ -315,13 +327,11 @@
   border-radius: var(--brand-borderRadius-small);
 }
 
-.NavList__item--leaf:not(.NavList__item--level-1).NavList__item--current > .NavList__itemContent .NavList__link,
 .NavList__item--leaf:not(.NavList__item--level-1) .NavList__link[aria-current]:not([aria-current='false']) {
   background-color: transparent;
   padding-inline-start: var(--base-size-8);
 }
 
-.NavList__item--leaf:not(.NavList__item--level-1).NavList__item--current > .NavList__itemContent .NavList__label,
 .NavList__item--leaf:not(.NavList__item--level-1) > .NavList__itemContent .NavList__link:hover .NavList__label,
 .NavList__item--leaf:not(.NavList__item--level-1)
   .NavList__link[aria-current]:not([aria-current='false'])
@@ -332,18 +342,6 @@
 .NavList__item--leaf:not(.NavList__item--level-1) > .NavList__itemContent .NavList__link:hover {
   background-color: transparent;
   padding-inline-start: var(--base-size-8);
-}
-
-.NavList__divider {
-  height: var(--brand-borderWidth-thin);
-  background-image: repeating-linear-gradient(
-    to right,
-    var(--brand-color-border-muted) 0 var(--base-size-2),
-    transparent var(--base-size-2) var(--base-size-4)
-  );
-  background-repeat: no-repeat;
-  background-size: 100% var(--brand-borderWidth-thin);
-  margin-block: var(--base-size-8);
 }
 
 [data-color-mode='dark'] .NavList {

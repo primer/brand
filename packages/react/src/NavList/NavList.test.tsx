@@ -46,7 +46,6 @@ describe('NavList', () => {
     const currentLink = getByRole('link', {name: 'Docs'})
 
     expect(currentLink).toHaveAttribute('aria-current', 'page')
-    expect(currentLink.closest('li')).toHaveClass('NavList__item--current')
   })
 
   it('supports className and ref passthrough on the root', () => {
@@ -92,17 +91,15 @@ describe('NavList', () => {
     expect(getByRole('link', {name: 'Custom link'})).toHaveAttribute('href', '/custom')
   })
 
-  it('renders dividers and visual slots', () => {
-    const {getByRole, getByTestId} = render(
+  it('renders visual slots', () => {
+    const {getByRole} = render(
       <NavList>
-        <NavList.Divider />
         <NavList.Item href="/start" leadingVisual={BookIcon} trailingVisual={<KebabHorizontalIcon />}>
           Getting started
         </NavList.Item>
       </NavList>,
     )
 
-    expect(getByTestId(NavList.testIds.divider)).toHaveAttribute('role', 'separator')
     expect(getByRole('link', {name: 'Getting started'}).querySelector('svg')).toBeInTheDocument()
   })
 
@@ -128,10 +125,10 @@ describe('NavList', () => {
       </NavList>,
     )
 
-    expect(getByRole('button', {name: 'Docs collapse'}).closest('li')).toHaveAttribute('data-navlist-level', '1')
-    expect(getByRole('button', {name: 'Actions collapse'}).closest('li')).toHaveAttribute('data-navlist-level', '2')
-    expect(getByRole('button', {name: 'Workflows collapse'}).closest('li')).toHaveAttribute('data-navlist-level', '3')
-    expect(getByRole('link', {name: 'Workflow syntax'}).closest('li')).toHaveAttribute('data-navlist-level', '4')
+    expect(getByRole('button', {name: 'Docs collapse'}).closest('li')).toHaveClass('NavList__item--level-1')
+    expect(getByRole('button', {name: 'Actions collapse'}).closest('li')).toHaveClass('NavList__item--level-2')
+    expect(getByRole('button', {name: 'Workflows collapse'}).closest('li')).toHaveClass('NavList__item--level-3')
+    expect(getByRole('link', {name: 'Workflow syntax'}).closest('li')).toHaveClass('NavList__item--level-4')
   })
 
   it('marks leaf articles at each nested depth', () => {
@@ -159,11 +156,11 @@ describe('NavList', () => {
     )
 
     expect(getByRole('link', {name: 'Overview'}).closest('li')).toHaveClass('NavList__item--leaf')
-    expect(getByRole('link', {name: 'Overview'}).closest('li')).toHaveAttribute('data-navlist-level', '2')
+    expect(getByRole('link', {name: 'Overview'}).closest('li')).toHaveClass('NavList__item--level-2')
     expect(getByRole('link', {name: 'Quickstart'}).closest('li')).toHaveClass('NavList__item--leaf')
-    expect(getByRole('link', {name: 'Quickstart'}).closest('li')).toHaveAttribute('data-navlist-level', '3')
+    expect(getByRole('link', {name: 'Quickstart'}).closest('li')).toHaveClass('NavList__item--level-3')
     expect(getByRole('link', {name: 'Workflow syntax'}).closest('li')).toHaveClass('NavList__item--leaf')
-    expect(getByRole('link', {name: 'Workflow syntax'}).closest('li')).toHaveAttribute('data-navlist-level', '4')
+    expect(getByRole('link', {name: 'Workflow syntax'}).closest('li')).toHaveClass('NavList__item--level-4')
   })
 
   it('renders expandable items as disclosure buttons instead of links', () => {
@@ -197,7 +194,6 @@ describe('NavList', () => {
     const toggle = getByRole('button', {name: 'Docs expand'})
 
     expect(toggle).not.toHaveAttribute('aria-current')
-    expect(toggle.closest('li')).not.toHaveClass('NavList__item--current')
   })
 
   it('supports ref passthrough on expandable items', () => {
@@ -316,26 +312,19 @@ describe('NavList', () => {
     )
 
     expect(getByRole('button', {name: 'Docs collapse'})).toHaveAttribute('aria-expanded', 'true')
-    expect(getByRole('button', {name: 'Docs collapse'}).closest('li')).toHaveAttribute(
-      'data-current-descendant',
-      'true',
-    )
-    expect(getByRole('button', {name: 'Docs collapse'}).closest('li')).not.toHaveAttribute(
-      'data-collapsed-current-descendant',
-    )
     expect(getByRole('link', {name: 'Actions'})).toHaveAttribute('aria-current', 'page')
   })
 
-  it('marks every expanded parent with current descendants', () => {
+  it('auto-expands every parent with current descendants', () => {
     const {getByRole} = render(
       <NavList>
-        <NavList.Item defaultExpanded>
+        <NavList.Item>
           Docs
           <NavList.SubNav>
-            <NavList.Item defaultExpanded>
+            <NavList.Item>
               Actions
               <NavList.SubNav>
-                <NavList.Item defaultExpanded>
+                <NavList.Item>
                   Workflows
                   <NavList.SubNav>
                     <NavList.Item href="/docs/actions/workflows/syntax" aria-current="page">
@@ -350,22 +339,13 @@ describe('NavList', () => {
       </NavList>,
     )
 
-    expect(getByRole('button', {name: 'Docs collapse'}).closest('li')).toHaveAttribute(
-      'data-current-descendant',
-      'true',
-    )
-    expect(getByRole('button', {name: 'Actions collapse'}).closest('li')).toHaveAttribute(
-      'data-current-descendant',
-      'true',
-    )
-    expect(getByRole('button', {name: 'Workflows collapse'}).closest('li')).toHaveAttribute(
-      'data-current-descendant',
-      'true',
-    )
+    expect(getByRole('button', {name: 'Docs collapse'})).toHaveAttribute('aria-expanded', 'true')
+    expect(getByRole('button', {name: 'Actions collapse'})).toHaveAttribute('aria-expanded', 'true')
+    expect(getByRole('button', {name: 'Workflows collapse'})).toHaveAttribute('aria-expanded', 'true')
   })
 
   it('marks controlled collapsed parents with current descendants', () => {
-    const {getByRole} = render(
+    const {getByRole, queryByRole} = render(
       <NavList>
         <NavList.Item expanded={false}>
           Docs
@@ -379,11 +359,7 @@ describe('NavList', () => {
     )
 
     expect(getByRole('button', {name: 'Docs expand'})).toHaveAttribute('aria-expanded', 'false')
-    expect(getByRole('button', {name: 'Docs expand'}).closest('li')).toHaveAttribute('data-current-descendant', 'true')
-    expect(getByRole('button', {name: 'Docs expand'}).closest('li')).toHaveAttribute(
-      'data-collapsed-current-descendant',
-      'true',
-    )
+    expect(queryByRole('link', {name: 'Actions'})).not.toBeInTheDocument()
   })
 
   it('allows auto-expanded current descendant branches to collapse', async () => {
@@ -407,8 +383,6 @@ describe('NavList', () => {
     await user.click(toggle)
 
     expect(toggle).toHaveAttribute('aria-expanded', 'false')
-    expect(toggle.closest('li')).toHaveAttribute('data-current-descendant', 'true')
-    expect(toggle.closest('li')).toHaveAttribute('data-collapsed-current-descendant', 'true')
     expect(queryByRole('link', {name: 'Actions'})).not.toBeInTheDocument()
   })
 
