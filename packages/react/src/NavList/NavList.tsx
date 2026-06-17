@@ -75,9 +75,9 @@ const NavListContext = React.createContext<NavListContextValue>({
   internalAccessibleLabels: defaultInternalAccessibleLabels,
 })
 
-type NavListLevel = 1 | 2 | 3 | 4
+type NavListLevel = 1 | 2 | 3 | 4 | 5
 
-const MaxNavListLevel = 4
+const MaxNavListLevel = 5
 const NavListLevelContext = React.createContext<NavListLevel>(1)
 const NavListSubNavContext = React.createContext<{
   expanded: boolean
@@ -257,10 +257,11 @@ const NavListItem = forwardRef(
       2: styles['NavList__item--level-2'],
       3: styles['NavList__item--level-3'],
       4: styles['NavList__item--level-4'],
+      5: styles['NavList__item--level-5'],
     }
 
     if (hasSubNav && !canExpand) {
-      throw new Error('NavList supports up to 4 levels. Level 4 items cannot contain NavList.SubNav.')
+      throw new Error('NavList supports up to 5 levels. Level 5 items cannot contain NavList.SubNav.')
     }
 
     useEffect(() => {

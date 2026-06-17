@@ -290,7 +290,8 @@
 }
 
 .NavList__item--level-2 > .NavList__itemContent,
-.NavList__item--level-3 > .NavList__itemContent {
+.NavList__item--level-3 > .NavList__itemContent,
+.NavList__item--level-4 > .NavList__itemContent {
   padding-block: calc(var(--base-size-8) + var(--base-size-2));
   padding-inline-end: var(--base-size-16);
 }
@@ -301,6 +302,10 @@
 
 .NavList__item--level-3 > .NavList__itemContent {
   padding-inline-start: var(--base-size-40);
+}
+
+.NavList__item--level-4 > .NavList__itemContent {
+  padding-inline-start: calc(var(--base-size-48) + var(--base-size-8));
 }
 
 .NavList__item--leaf:not(.NavList__item--level-1) > .NavList__itemContent {
@@ -321,13 +326,19 @@
   padding-inline-start: calc(var(--base-size-48) + var(--base-size-8));
 }
 
+.NavList__item--leaf.NavList__item--level-5 > .NavList__itemContent {
+  padding-inline-start: calc(var(--base-size-64) + var(--base-size-8));
+}
+
 .NavList__item--level-2 > .NavList__itemContent .NavList__toggleIcon,
-.NavList__item--level-3 > .NavList__itemContent .NavList__toggleIcon {
+.NavList__item--level-3 > .NavList__itemContent .NavList__toggleIcon,
+.NavList__item--level-4 > .NavList__itemContent .NavList__toggleIcon {
   order: 1;
 }
 
 .NavList__item--level-2 > .NavList__itemContent .NavList__accordionButton,
-.NavList__item--level-3 > .NavList__itemContent .NavList__accordionButton {
+.NavList__item--level-3 > .NavList__itemContent .NavList__accordionButton,
+.NavList__item--level-4 > .NavList__itemContent .NavList__accordionButton {
   min-height: var(--base-size-32);
   margin-block: calc(-1 * var(--base-size-8));
   border-radius: var(--brand-borderRadius-small);
@@ -335,7 +346,8 @@
 
 .NavList__item--level-2 > .NavList__itemContent .NavList__link,
 .NavList__item--level-3 > .NavList__itemContent .NavList__link,
-.NavList__item--level-4 > .NavList__itemContent .NavList__link {
+.NavList__item--level-4 > .NavList__itemContent .NavList__link,
+.NavList__item--level-5 > .NavList__itemContent .NavList__link {
   order: 2;
   font-size: var(--brand-text-size-100);
   line-height: var(--brand-text-lineHeight-100);

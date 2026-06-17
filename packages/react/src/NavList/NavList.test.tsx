@@ -106,7 +106,7 @@ describe('NavList', () => {
     expect(getByRole('link', {name: 'Getting started'}).querySelector('svg')).toBeInTheDocument()
   })
 
-  it('assigns item hierarchy levels through four nested lists', () => {
+  it('assigns item hierarchy levels through five nested lists', () => {
     const {getByRole} = render(
       <NavList>
         <NavList.Item defaultExpanded>
@@ -118,7 +118,13 @@ describe('NavList', () => {
                 <NavList.Item defaultExpanded>
                   Workflows
                   <NavList.SubNav>
-                    <NavList.Item href="/docs/actions/workflows/syntax">Workflow syntax</NavList.Item>
+                    <NavList.Item href="/actions/workflows/overview">Workflow overview</NavList.Item>
+                    <NavList.Item defaultExpanded>
+                      Workflow syntax
+                      <NavList.SubNav>
+                        <NavList.Item href="/docs/actions/workflows/syntax/events">Events</NavList.Item>
+                      </NavList.SubNav>
+                    </NavList.Item>
                   </NavList.SubNav>
                 </NavList.Item>
               </NavList.SubNav>
@@ -131,7 +137,8 @@ describe('NavList', () => {
     expect(getByRole('button', {name: 'Docs collapse'}).closest('li')).toHaveClass('NavList__item--level-1')
     expect(getByRole('button', {name: 'Actions collapse'}).closest('li')).toHaveClass('NavList__item--level-2')
     expect(getByRole('button', {name: 'Workflows collapse'}).closest('li')).toHaveClass('NavList__item--level-3')
-    expect(getByRole('link', {name: 'Workflow syntax'}).closest('li')).toHaveClass('NavList__item--level-4')
+    expect(getByRole('button', {name: 'Workflow syntax collapse'}).closest('li')).toHaveClass('NavList__item--level-4')
+    expect(getByRole('link', {name: 'Events'}).closest('li')).toHaveClass('NavList__item--level-5')
   })
 
   it('marks leaf articles at each nested depth', () => {
@@ -148,7 +155,13 @@ describe('NavList', () => {
                 <NavList.Item defaultExpanded>
                   Workflows
                   <NavList.SubNav>
-                    <NavList.Item href="/actions/workflows/syntax">Workflow syntax</NavList.Item>
+                    <NavList.Item href="/actions/workflows/overview">Workflow overview</NavList.Item>
+                    <NavList.Item defaultExpanded>
+                      Workflow syntax
+                      <NavList.SubNav>
+                        <NavList.Item href="/actions/workflows/syntax/events">Events</NavList.Item>
+                      </NavList.SubNav>
+                    </NavList.Item>
                   </NavList.SubNav>
                 </NavList.Item>
               </NavList.SubNav>
@@ -162,8 +175,10 @@ describe('NavList', () => {
     expect(getByRole('link', {name: 'Overview'}).closest('li')).toHaveClass('NavList__item--level-2')
     expect(getByRole('link', {name: 'Quickstart'}).closest('li')).toHaveClass('NavList__item--leaf')
     expect(getByRole('link', {name: 'Quickstart'}).closest('li')).toHaveClass('NavList__item--level-3')
-    expect(getByRole('link', {name: 'Workflow syntax'}).closest('li')).toHaveClass('NavList__item--leaf')
-    expect(getByRole('link', {name: 'Workflow syntax'}).closest('li')).toHaveClass('NavList__item--level-4')
+    expect(getByRole('link', {name: 'Workflow overview'}).closest('li')).toHaveClass('NavList__item--leaf')
+    expect(getByRole('link', {name: 'Workflow overview'}).closest('li')).toHaveClass('NavList__item--level-4')
+    expect(getByRole('link', {name: 'Events'}).closest('li')).toHaveClass('NavList__item--leaf')
+    expect(getByRole('link', {name: 'Events'}).closest('li')).toHaveClass('NavList__item--level-5')
   })
 
   it('renders expandable items as disclosure buttons instead of links', () => {
@@ -217,7 +232,7 @@ describe('NavList', () => {
     expect(ref.current).toHaveAttribute('aria-expanded', 'false')
   })
 
-  it('prevents expandable items past level four', () => {
+  it('prevents expandable items past level five', () => {
     expect(() =>
       render(
         <NavList>
@@ -233,7 +248,12 @@ describe('NavList', () => {
                       <NavList.Item>
                         Four
                         <NavList.SubNav>
-                          <NavList.Item href="/five">Five</NavList.Item>
+                          <NavList.Item>
+                            Five
+                            <NavList.SubNav>
+                              <NavList.Item href="/six">Six</NavList.Item>
+                            </NavList.SubNav>
+                          </NavList.Item>
                         </NavList.SubNav>
                       </NavList.Item>
                     </NavList.SubNav>
@@ -244,7 +264,7 @@ describe('NavList', () => {
           </NavList.Item>
         </NavList>,
       ),
-    ).toThrow('NavList supports up to 4 levels')
+    ).toThrow('NavList supports up to 5 levels')
   })
 
   it('expands and collapses nested lists', async () => {

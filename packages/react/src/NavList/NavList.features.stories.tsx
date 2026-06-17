@@ -101,9 +101,9 @@ export const MultipleExpandedSections: Story = {
   render: () => <ExpandedDocsNavigation />,
 }
 
-export const FourLevels: Story = {
+export const FiveLevels: Story = {
   render: () => (
-    <NavList aria-label="Four-level navigation">
+    <NavList aria-label="Five-level navigation">
       <NavList.Item defaultExpanded>
         GitHub Copilot
         <NavList.SubNav>
@@ -113,10 +113,17 @@ export const FourLevels: Story = {
               <NavList.Item defaultExpanded>
                 Agents
                 <NavList.SubNav>
-                  {renderArticleItems(
-                    ['Build an agent', 'Customize an agent', 'Debug an agent', 'Deploy an agent'],
-                    'Build an agent',
-                  )}
+                  <NavList.Item defaultExpanded>
+                    Build an agent
+                    <NavList.SubNav>
+                      {renderArticleItems(
+                        ['Create a tool', 'Add memory', 'Debug prompts', 'Deploy safely'],
+                        'Create a tool',
+                      )}
+                    </NavList.SubNav>
+                  </NavList.Item>
+                  <NavList.Item href="#">Customize an agent</NavList.Item>
+                  <NavList.Item href="#">Debug an agent</NavList.Item>
                 </NavList.SubNav>
               </NavList.Item>
               <NavList.Item>

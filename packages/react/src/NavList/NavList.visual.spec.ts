@@ -38,9 +38,9 @@ test.describe('Visual Comparison: NavList', () => {
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
-  test('NavList / Four Levels', async ({page}) => {
+  test('NavList / Five Levels', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-navlist-features--four-levels&viewMode=story',
+      'http://localhost:6006/iframe.html?args=&id=components-navlist-features--five-levels&viewMode=story',
       {waitUntil: 'networkidle'},
     )
     await page.locator('body.sb-show-main').waitFor({state: 'visible'})
