@@ -486,6 +486,26 @@ describe('RiverBreakoutTabs', () => {
     const section = container.querySelector('section')
     expect(section).toHaveClass('RiverBreakoutTabs--has-background-visual')
     expect(section).not.toHaveClass('RiverBreakoutTabs--image-position-block-end')
+    expect(section).not.toHaveClass('RiverBreakoutTabs--background-visual-full-bleed')
+  })
+
+  it('applies the full-bleed modifier class when backgroundVisualWidth is "full-bleed"', () => {
+    const {container} = render(
+      <RiverBreakoutTabs backgroundVisual={<div data-testid="shared-bg" />} backgroundVisualWidth="full-bleed">
+        <RiverBreakoutTabs.A11yHeading>Agent workflows</RiverBreakoutTabs.A11yHeading>
+        <RiverBreakoutTabs.Item>
+          <RiverBreakoutTabs.Heading>Plan</RiverBreakoutTabs.Heading>
+          <RiverBreakoutTabs.Content>
+            <Text>Plan content</Text>
+          </RiverBreakoutTabs.Content>
+          <RiverBreakoutTabs.Visual>
+            <MockVisual label="plan visual" />
+          </RiverBreakoutTabs.Visual>
+        </RiverBreakoutTabs.Item>
+      </RiverBreakoutTabs>,
+    )
+
+    expect(container.querySelector('section')).toHaveClass('RiverBreakoutTabs--background-visual-full-bleed')
   })
 
   it('renders a single persistent backgroundVisual in the narrow accordion layout', () => {

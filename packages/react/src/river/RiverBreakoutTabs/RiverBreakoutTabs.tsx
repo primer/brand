@@ -37,6 +37,10 @@ export type RiverBreakoutTabsProps = React.PropsWithChildren<{
    * Alignment of media within the visual container when `backgroundVisual` is provided
    */
   imagePosition?: 'center' | 'block-end'
+  /**
+   * Width of `backgroundVisual` relative to the gridlines when provided
+   */
+  backgroundVisualWidth?: 'inset' | 'full-bleed'
 }> &
   Omit<React.HTMLAttributes<HTMLElement>, 'onChange'>
 
@@ -240,6 +244,7 @@ const RiverBreakoutTabsRoot = forwardRef<HTMLElement, RiverBreakoutTabsProps>(
       selectedIndex,
       backgroundVisual,
       imagePosition = 'center',
+      backgroundVisualWidth = 'inset',
       ...props
     },
     ref,
@@ -362,6 +367,9 @@ const RiverBreakoutTabsRoot = forwardRef<HTMLElement, RiverBreakoutTabsProps>(
           backgroundVisual != null &&
             imagePosition === 'block-end' &&
             styles['RiverBreakoutTabs--image-position-block-end'],
+          backgroundVisual != null &&
+            backgroundVisualWidth === 'full-bleed' &&
+            styles['RiverBreakoutTabs--background-visual-full-bleed'],
           className,
         )}
         {...props}

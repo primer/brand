@@ -1,5 +1,6 @@
 declare const styles: {
   readonly "RiverBreakoutTabs": string;
+  readonly "RiverBreakoutTabs--background-visual-full-bleed": string;
   readonly "RiverBreakoutTabs--has-background-visual": string;
   readonly "RiverBreakoutTabs--image-position-block-end": string;
   readonly "RiverBreakoutTabs__accordion": string;

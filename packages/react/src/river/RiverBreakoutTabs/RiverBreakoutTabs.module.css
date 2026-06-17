@@ -30,6 +30,15 @@
   border-radius: var(--brand-borderRadius-small);
 }
 
+/* River removes the gridline top spacing when a subtle visual is present
+   (.RiverBreakout--variant-gridline:has(.River__visual--has-background)), bleeding the subtle
+   background up to the top gridline. Restore the top spacing so a non-full-bleed background is
+   inset from the top like the sides — only backgroundVisualWidth="full-bleed" should reach the
+   top gridline. */
+.RiverBreakoutTabs:has(:global([class*='River__visual--has-background'])) {
+  padding-block-start: var(--brand-RiverBreakout-variant-gridline-spacing-outerBlock);
+}
+
 .RiverBreakoutTabs__accordionSharedVisuals {
   position: relative;
   margin-block-end: var(--base-size-16);
@@ -71,6 +80,17 @@
 .RiverBreakoutTabs--image-position-block-end .RiverBreakoutTabs__sharedVisualPanel,
 .RiverBreakoutTabs--image-position-block-end .RiverBreakoutTabs__accordionSharedVisual {
   padding-block-end: 0;
+}
+
+/* for backgroundVisualWidth="full-bleed" — extend the backdrop to the gridline edges */
+.RiverBreakoutTabs--background-visual-full-bleed .RiverBreakoutTabs__sharedVisuals {
+  overflow: visible;
+  border-radius: 0;
+}
+
+.RiverBreakoutTabs--background-visual-full-bleed .RiverBreakoutTabs__backgroundVisual {
+  inset-block-start: calc(-1 * var(--brand-RiverBreakout-variant-gridline-spacing-outerBlock));
+  inset-inline: calc(-1 * var(--brand-RiverBreakout-variant-gridline-spacing-outerInline));
 }
 
 .RiverBreakoutTabs__sharedVisual :is(img, picture, video),
