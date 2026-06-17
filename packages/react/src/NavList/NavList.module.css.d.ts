@@ -10,6 +10,7 @@ declare const styles: {
   readonly "NavList__item--level-5": string;
   readonly "NavList__itemContent": string;
   readonly "NavList__label": string;
+  readonly "NavList__labelArea": string;
   readonly "NavList__leadingVisual": string;
   readonly "NavList__link": string;
   readonly "NavList__link--disabled": string;

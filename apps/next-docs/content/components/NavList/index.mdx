@@ -12,6 +12,7 @@ thumbnail_darkMode: '/images/thumbnails/nav-list-thumbnail-dark.png'
 ---
 
 import {Label} from '@primer/react'
+import {BookIcon, CodeIcon, CopilotIcon, KebabHorizontalIcon, WorkflowIcon} from '@primer/octicons-react'
 import {NavListAriaCurrentProp} from './react'
 
 ```js
@@ -169,6 +170,51 @@ Use `NavList.SubNav` inside a `NavList.Item` for a nested list. Items with neste
     </NavList.SubNav>
   </NavList.Item>
   <NavList.Item href="#">Changelog</NavList.Item>
+</NavList>
+```
+
+### With visuals
+
+Use `leadingVisual` and `trailingVisual` to add icons to the label area. Visuals are additive: they do not replace disclosure triangles, change item sizing, or move the active and inactive row alignment.
+
+```jsx live
+<NavList aria-label="Visual navigation">
+  <NavList.Item defaultExpanded leadingVisual={BookIcon}>
+    Guides
+    <NavList.SubNav>
+      <NavList.Item href="#" aria-current="page" leadingVisual={CopilotIcon}>
+        GitHub Copilot
+      </NavList.Item>
+      <NavList.Item href="#" leadingVisual={WorkflowIcon}>
+        GitHub Actions
+      </NavList.Item>
+      <NavList.Item href="#" leadingVisual={CodeIcon}>
+        Codespaces
+      </NavList.Item>
+    </NavList.SubNav>
+  </NavList.Item>
+  <NavList.Item defaultExpanded trailingVisual={<KebabHorizontalIcon />}>
+    Resources
+    <NavList.SubNav>
+      <NavList.Item href="#" trailingVisual={<KebabHorizontalIcon />}>
+        Changelog
+      </NavList.Item>
+      <NavList.Item defaultExpanded trailingVisual={<KebabHorizontalIcon />}>
+        API reference
+        <NavList.SubNav>
+          <NavList.Item href="#" trailingVisual={<KebabHorizontalIcon />}>
+            REST API
+          </NavList.Item>
+          <NavList.Item href="#" trailingVisual={<KebabHorizontalIcon />}>
+            GraphQL API
+          </NavList.Item>
+        </NavList.SubNav>
+      </NavList.Item>
+      <NavList.Item href="#" trailingVisual={<KebabHorizontalIcon />}>
+        Support
+      </NavList.Item>
+    </NavList.SubNav>
+  </NavList.Item>
 </NavList>
 ```
 

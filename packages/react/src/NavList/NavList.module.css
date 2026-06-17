@@ -79,7 +79,7 @@
   background-color: transparent;
 }
 
-.NavList__item:not(.NavList__item--level-1) > .NavList__itemContent .NavList__accordionButton .NavList__label {
+.NavList__item:not(.NavList__item--level-1) > .NavList__itemContent .NavList__accordionButton .NavList__labelArea {
   display: flex;
   align-items: center;
   flex: 1 1 auto;
@@ -90,7 +90,10 @@
   border-radius: var(--brand-borderRadius-small);
 }
 
-.NavList__item:not(.NavList__item--level-1) > .NavList__itemContent .NavList__accordionButton:hover .NavList__label {
+.NavList__item:not(.NavList__item--level-1)
+  > .NavList__itemContent
+  .NavList__accordionButton:hover
+  .NavList__labelArea {
   background-color: var(--brand-color-canvas-subtle);
 }
 
@@ -105,7 +108,7 @@
   ):has(> .NavList__subNav [aria-current]:not([aria-current='false']))
   > .NavList__itemContent
   .NavList__accordionButton
-  .NavList__label {
+  .NavList__labelArea {
   background-color: var(--brand-color-canvas-subtle);
 }
 
@@ -182,7 +185,16 @@
 }
 
 .NavList__label {
+  min-width: 0;
   word-break: break-word;
+}
+
+.NavList__labelArea {
+  display: flex;
+  align-items: center;
+  flex: 1 1 auto;
+  gap: var(--base-size-8);
+  min-width: 0;
 }
 
 .NavList__leadingVisual,
@@ -194,6 +206,7 @@
 
 .NavList__trailingVisual {
   margin-inline-start: auto;
+  margin-inline-end: var(--base-size-6);
 }
 
 .NavList__toggleIcon {
@@ -359,7 +372,7 @@
   border-radius: var(--brand-borderRadius-small);
 }
 
-.NavList__item--leaf:not(.NavList__item--level-1) > .NavList__itemContent .NavList__label {
+.NavList__item--leaf:not(.NavList__item--level-1) > .NavList__itemContent .NavList__labelArea {
   display: flex;
   align-items: center;
   flex: 1 1 auto;
@@ -374,10 +387,10 @@
   padding-inline-start: var(--base-size-8);
 }
 
-.NavList__item--leaf:not(.NavList__item--level-1) > .NavList__itemContent .NavList__link:hover .NavList__label,
+.NavList__item--leaf:not(.NavList__item--level-1) > .NavList__itemContent .NavList__link:hover .NavList__labelArea,
 .NavList__item--leaf:not(.NavList__item--level-1)
   .NavList__link[aria-current]:not([aria-current='false'])
-  .NavList__label {
+  .NavList__labelArea {
   background-color: var(--brand-color-canvas-subtle);
 }
 

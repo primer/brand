@@ -323,6 +323,14 @@ const NavListItem = forwardRef(
       [disabled, onClick, toggleExpanded],
     )
 
+    const labelArea = (
+      <span className={styles.NavList__labelArea}>
+        {renderVisual(leadingVisual, styles.NavList__leadingVisual)}
+        <span className={styles.NavList__label}>{labelChildren}</span>
+        {renderVisual(trailingVisual, styles.NavList__trailingVisual)}
+      </span>
+    )
+
     return (
       // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions
       <li
@@ -353,9 +361,7 @@ const NavListItem = forwardRef(
               onClick={handleAccordionClick}
             >
               <TriangleDownIcon className={styles.NavList__toggleIcon} aria-hidden="true" />
-              {renderVisual(leadingVisual, styles.NavList__leadingVisual)}
-              <span className={styles.NavList__label}>{labelChildren}</span>
-              {renderVisual(trailingVisual, styles.NavList__trailingVisual)}
+              {labelArea}
             </button>
           ) : (
             <Component
@@ -367,9 +373,7 @@ const NavListItem = forwardRef(
               onClick={handleClick}
               {...rest}
             >
-              {renderVisual(leadingVisual, styles.NavList__leadingVisual)}
-              <span className={styles.NavList__label}>{labelChildren}</span>
-              {renderVisual(trailingVisual, styles.NavList__trailingVisual)}
+              {labelArea}
             </Component>
           )}
         </div>

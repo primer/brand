@@ -1,5 +1,13 @@
 import React from 'react'
 import type {Meta, StoryObj} from '@storybook/react'
+import {
+  BookIcon,
+  CodeIcon,
+  CopilotIcon,
+  KebabHorizontalIcon,
+  ShieldCheckIcon,
+  WorkflowIcon,
+} from '@primer/octicons-react'
 
 import {NavList} from '.'
 import {ThemeProvider} from '../ThemeProvider'
@@ -174,6 +182,49 @@ export const LongLabels: Story = {
         <NavList.Item href="#">Short label</NavList.Item>
       </NavList>
     </div>
+  ),
+}
+
+export const WithVisuals: Story = {
+  render: () => (
+    <NavList aria-label="Visual navigation">
+      <NavList.Item defaultExpanded leadingVisual={BookIcon}>
+        Guides
+        <NavList.SubNav>
+          <NavList.Item href="#" aria-current="page" leadingVisual={CopilotIcon}>
+            GitHub Copilot
+          </NavList.Item>
+          <NavList.Item href="#" leadingVisual={WorkflowIcon}>
+            GitHub Actions
+          </NavList.Item>
+          <NavList.Item href="#" leadingVisual={CodeIcon}>
+            Codespaces
+          </NavList.Item>
+        </NavList.SubNav>
+      </NavList.Item>
+      <NavList.Item defaultExpanded trailingVisual={<KebabHorizontalIcon />}>
+        Resources
+        <NavList.SubNav>
+          <NavList.Item href="#" trailingVisual={<KebabHorizontalIcon />}>
+            Changelog
+          </NavList.Item>
+          <NavList.Item defaultExpanded trailingVisual={<KebabHorizontalIcon />}>
+            API reference
+            <NavList.SubNav>
+              <NavList.Item href="#" trailingVisual={<ShieldCheckIcon />}>
+                REST API
+              </NavList.Item>
+              <NavList.Item href="#" trailingVisual={<ShieldCheckIcon />}>
+                GraphQL API
+              </NavList.Item>
+            </NavList.SubNav>
+          </NavList.Item>
+          <NavList.Item href="#" trailingVisual={<KebabHorizontalIcon />}>
+            Support
+          </NavList.Item>
+        </NavList.SubNav>
+      </NavList.Item>
+    </NavList>
   ),
 }
 

@@ -100,10 +100,23 @@ describe('NavList', () => {
         <NavList.Item href="/start" leadingVisual={BookIcon} trailingVisual={<KebabHorizontalIcon />}>
           Getting started
         </NavList.Item>
+        <NavList.Item leadingVisual={BookIcon} trailingVisual={<KebabHorizontalIcon />}>
+          Guides
+          <NavList.SubNav>
+            <NavList.Item href="/guides/overview">Overview</NavList.Item>
+          </NavList.SubNav>
+        </NavList.Item>
       </NavList>,
     )
 
-    expect(getByRole('link', {name: 'Getting started'}).querySelector('svg')).toBeInTheDocument()
+    const link = getByRole('link', {name: 'Getting started'})
+    const toggle = getByRole('button', {name: 'Guides expand'})
+
+    expect(link.querySelector('.NavList__leadingVisual')).toBeInTheDocument()
+    expect(link.querySelector('.NavList__trailingVisual')).toBeInTheDocument()
+    expect(toggle.querySelector('.NavList__leadingVisual')).toBeInTheDocument()
+    expect(toggle.querySelector('.NavList__trailingVisual')).toBeInTheDocument()
+    expect(toggle.querySelectorAll('svg')).toHaveLength(3)
   })
 
   it('assigns item hierarchy levels through five nested lists', () => {
