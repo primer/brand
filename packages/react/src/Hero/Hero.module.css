@@ -281,7 +281,7 @@
 }
 
 .Hero-actions {
-  margin-block-start: var(--base-size-32);
+  margin-block-start: var(--base-size-28);
   display: flex;
   align-items: center;
   flex-wrap: wrap;
@@ -398,7 +398,7 @@
 }
 
 .Hero--variant-gridline-expressive .Hero-actions {
-  margin-block-start: var(--base-size-24);
+  margin-block-start: var(--base-size-28);
 }
 
 .Hero--variant-gridline-expressive .Hero-trailing {
@@ -423,11 +423,11 @@
   }
 
   .Hero--variant-gridline-expressive .Hero-actions {
-    margin-block-start: var(--base-size-32);
+    margin-block-start: var(--base-size-28);
   }
 
   .Hero--variant-gridline-expressive .Hero-trailing {
-    margin-block-start: var(--base-size-32);
+    margin-block-start: var(--base-size-20);
   }
 }
 
