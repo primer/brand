@@ -22,18 +22,75 @@
 }
 
 .RiverBreakoutTabs__sharedVisuals {
+  position: relative;
   order: 1;
   margin-block-end: var(--base-size-36);
   width: 100%;
+  overflow: hidden;
+  border-radius: var(--brand-borderRadius-small);
+}
+
+/* River removes the gridline top spacing when a subtle visual is present
+   (.RiverBreakout--variant-gridline:has(.River__visual--has-background)), bleeding the subtle
+   background up to the top gridline. Restore the top spacing so a non-full-bleed background is
+   inset from the top like the sides — only backgroundVisualFullBleed should reach the
+   top gridline. */
+.RiverBreakoutTabs:has(:global([class*='River__visual--has-background'])) {
+  padding-block-start: var(--brand-RiverBreakout-variant-gridline-spacing-outerBlock);
 }
 
 .RiverBreakoutTabs__accordionSharedVisuals {
+  position: relative;
   margin-block-end: var(--base-size-16);
   width: 100%;
 }
 
 .RiverBreakoutTabs__sharedVisualPanel {
+  position: relative;
+  z-index: 1;
   min-width: 0;
+}
+
+.RiverBreakoutTabs__backgroundVisual {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.RiverBreakoutTabs__accordionSharedVisual {
+  position: relative;
+  z-index: 1;
+}
+
+.RiverBreakoutTabs--has-background-visual .RiverBreakoutTabs__sharedVisualPanel,
+.RiverBreakoutTabs--has-background-visual .RiverBreakoutTabs__accordionSharedVisual {
+  padding: var(--base-size-32);
+}
+
+@media screen and (min-width: 63.25rem) {
+  .RiverBreakoutTabs--has-background-visual .RiverBreakoutTabs__sharedVisualPanel,
+  .RiverBreakoutTabs--has-background-visual .RiverBreakoutTabs__accordionSharedVisual {
+    padding: var(--base-size-64);
+  }
+}
+
+/* for imagePosition="block-end" */
+.RiverBreakoutTabs--image-position-block-end .RiverBreakoutTabs__sharedVisualPanel,
+.RiverBreakoutTabs--image-position-block-end .RiverBreakoutTabs__accordionSharedVisual {
+  padding-block-end: 0;
+}
+
+/* for backgroundVisualFullBleed — extend the backdrop to the gridline edges */
+.RiverBreakoutTabs--background-visual-full-bleed .RiverBreakoutTabs__sharedVisuals {
+  overflow: visible;
+  border-radius: 0;
+}
+
+.RiverBreakoutTabs--background-visual-full-bleed .RiverBreakoutTabs__backgroundVisual {
+  inset-block-start: calc(-1 * var(--brand-RiverBreakout-variant-gridline-spacing-outerBlock));
+  inset-inline: calc(-1 * var(--brand-RiverBreakout-variant-gridline-spacing-outerInline));
 }
 
 .RiverBreakoutTabs__sharedVisual :is(img, picture, video),
@@ -123,7 +180,6 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: var(--base-size-20);
   cursor: pointer;
   outline: none;
   padding-inline: 0;
@@ -138,11 +194,17 @@
   margin: 0;
 }
 
+/* 20px below the icon — only applies when an icon precedes the heading */
+.RiverBreakoutTabs__tab > * + .RiverBreakoutTabs__tabHeading {
+  margin-block-start: var(--base-size-20);
+}
+
 .RiverBreakoutTabs__wideTabListContent {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: var(--base-size-12);
+  margin-block-start: var(--base-size-12);
 }
 
 .RiverBreakoutTabs__wideTabListAction {
@@ -152,7 +214,7 @@
 }
 
 .RiverBreakoutTabs__wideTabListActionItem {
-  margin-block-start: var(--base-size-12);
+  margin-block-start: var(--base-size-16);
 }
 
 .RiverBreakoutTabs__content {
