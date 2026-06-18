@@ -75,7 +75,6 @@
   min-width: 0;
   overflow: hidden;
   text-overflow: ellipsis;
-  text-transform: uppercase;
   font-weight: var(--base-text-weight-normal);
   line-height: 0.85;
   white-space: nowrap;
