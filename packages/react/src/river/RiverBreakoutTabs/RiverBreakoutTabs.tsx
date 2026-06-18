@@ -38,9 +38,9 @@ export type RiverBreakoutTabsProps = React.PropsWithChildren<{
    */
   imagePosition?: 'center' | 'block-end'
   /**
-   * Width of `backgroundVisual` relative to the gridlines when provided
+   * When `true`, the `backgroundVisual` bleeds out to the gridline edges instead of being inset within them
    */
-  backgroundVisualWidth?: 'inset' | 'full-bleed'
+  backgroundVisualFullBleed?: boolean
 }> &
   Omit<React.HTMLAttributes<HTMLElement>, 'onChange'>
 
@@ -244,7 +244,7 @@ const RiverBreakoutTabsRoot = forwardRef<HTMLElement, RiverBreakoutTabsProps>(
       selectedIndex,
       backgroundVisual,
       imagePosition = 'center',
-      backgroundVisualWidth = 'inset',
+      backgroundVisualFullBleed = false,
       ...props
     },
     ref,
@@ -368,7 +368,7 @@ const RiverBreakoutTabsRoot = forwardRef<HTMLElement, RiverBreakoutTabsProps>(
             imagePosition === 'block-end' &&
             styles['RiverBreakoutTabs--image-position-block-end'],
           backgroundVisual != null &&
-            backgroundVisualWidth === 'full-bleed' &&
+            backgroundVisualFullBleed &&
             styles['RiverBreakoutTabs--background-visual-full-bleed'],
           className,
         )}

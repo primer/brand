@@ -108,15 +108,15 @@ import {RiverBreakoutTabs} from '@primer/react-brand'
 
 ### RiverBreakoutTabs <Label>Required</Label>
 
-| Name                    | Type                              |  Default   | Description                                                                                                                        |
-| :---------------------- | :-------------------------------- | :--------: | :--------------------------------------------------------------------------------------------------------------------------------- |
-| `children`              | `RiverBreakoutTabs.Item[]`        |            | Includes one required `RiverBreakoutTabs.A11yHeading` and one or more items                                                        |
-| `defaultSelectedIndex`  | `number`                          |    `0`     | Default selected index for uncontrolled mode                                                                                       |
-| `selectedIndex`         | `number`                          |            | Selected index for controlled mode                                                                                                 |
-| `onChange`              | `(selectedIndex: number) => void` |            | Callback called when selected index changes                                                                                        |
-| `backgroundVisual`      | `ReactNode`                       |            | Decorative `aria-hidden` visual behind the shared visual region; persists across tab changes. Must not contain interactive content |
-| `imagePosition`         | `'center' \| 'block-end'`         | `'center'` | Positions the media over `backgroundVisual`; `block-end` pins it to the bottom edge                                                |
-| `backgroundVisualWidth` | `'inset' \| 'full-bleed'`         | `'inset'`  | Width of `backgroundVisual` relative to the gridlines; `full-bleed` extends it to the gridline edges                               |
+| Name                        | Type                              |  Default   | Description                                                                                                                        |
+| :-------------------------- | :-------------------------------- | :--------: | :--------------------------------------------------------------------------------------------------------------------------------- |
+| `children`                  | `RiverBreakoutTabs.Item[]`        |            | Includes one required `RiverBreakoutTabs.A11yHeading` and one or more items                                                        |
+| `defaultSelectedIndex`      | `number`                          |    `0`     | Default selected index for uncontrolled mode                                                                                       |
+| `selectedIndex`             | `number`                          |            | Selected index for controlled mode                                                                                                 |
+| `onChange`                  | `(selectedIndex: number) => void` |            | Callback called when selected index changes                                                                                        |
+| `backgroundVisual`          | `ReactNode`                       |            | Decorative `aria-hidden` visual behind the shared visual region; persists across tab changes. Must not contain interactive content |
+| `imagePosition`             | `'center' \| 'block-end'`         | `'center'` | Positions the media over `backgroundVisual`; `block-end` pins it to the bottom edge                                                |
+| `backgroundVisualFullBleed` | `boolean`                         |  `false`   | When `true`, the `backgroundVisual` bleeds out to the gridline edges instead of being inset within them                            |
 
 `RiverBreakoutTabs` extends the HTML `section` element and supports all `section` props.
 

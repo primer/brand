@@ -116,7 +116,7 @@ export const FullBleedBackgroundVisual: Story = {
             />
           }
           imagePosition="block-end"
-          backgroundVisualWidth="full-bleed"
+          backgroundVisualFullBleed
         >
           <RiverBreakoutTabs.A11yHeading>{t('two_card_layout_a11y')}</RiverBreakoutTabs.A11yHeading>
 

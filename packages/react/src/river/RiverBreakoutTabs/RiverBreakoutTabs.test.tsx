@@ -489,9 +489,9 @@ describe('RiverBreakoutTabs', () => {
     expect(section).not.toHaveClass('RiverBreakoutTabs--background-visual-full-bleed')
   })
 
-  it('applies the full-bleed modifier class when backgroundVisualWidth is "full-bleed"', () => {
+  it('applies the full-bleed modifier class when backgroundVisualFullBleed is true', () => {
     const {container} = render(
-      <RiverBreakoutTabs backgroundVisual={<div data-testid="shared-bg" />} backgroundVisualWidth="full-bleed">
+      <RiverBreakoutTabs backgroundVisual={<div data-testid="shared-bg" />} backgroundVisualFullBleed>
         <RiverBreakoutTabs.A11yHeading>Agent workflows</RiverBreakoutTabs.A11yHeading>
         <RiverBreakoutTabs.Item>
           <RiverBreakoutTabs.Heading>Plan</RiverBreakoutTabs.Heading>
