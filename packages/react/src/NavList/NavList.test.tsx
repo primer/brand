@@ -133,7 +133,7 @@ describe('NavList', () => {
     )
 
     const link = getByRole('link', {name: 'Overview'})
-    const toggle = getByRole('button', {name: 'Docs expand'})
+    const toggle = getByRole('button', {name: 'Docs'})
 
     link.focus()
     await user.keyboard('{ArrowDown}')
@@ -162,7 +162,7 @@ describe('NavList', () => {
     )
 
     const link = getByRole('link', {name: 'Getting started'})
-    const toggle = getByRole('button', {name: 'Guides expand'})
+    const toggle = getByRole('button', {name: 'Guides'})
 
     expect(link.querySelector('.NavList__leadingVisual')).toBeInTheDocument()
     expect(link.querySelector('.NavList__trailingVisual')).toBeInTheDocument()
@@ -199,10 +199,10 @@ describe('NavList', () => {
       </NavList>,
     )
 
-    expect(getByRole('button', {name: 'Docs collapse'}).closest('li')).toHaveClass('NavList__item--level-1')
-    expect(getByRole('button', {name: 'Actions collapse'}).closest('li')).toHaveClass('NavList__item--level-2')
-    expect(getByRole('button', {name: 'Workflows collapse'}).closest('li')).toHaveClass('NavList__item--level-3')
-    expect(getByRole('button', {name: 'Workflow syntax collapse'}).closest('li')).toHaveClass('NavList__item--level-4')
+    expect(getByRole('button', {name: 'Docs'}).closest('li')).toHaveClass('NavList__item--level-1')
+    expect(getByRole('button', {name: 'Actions'}).closest('li')).toHaveClass('NavList__item--level-2')
+    expect(getByRole('button', {name: 'Workflows'}).closest('li')).toHaveClass('NavList__item--level-3')
+    expect(getByRole('button', {name: 'Workflow syntax'}).closest('li')).toHaveClass('NavList__item--level-4')
     expect(getByRole('link', {name: 'Events'}).closest('li')).toHaveClass('NavList__item--level-5')
   })
 
@@ -258,7 +258,7 @@ describe('NavList', () => {
       </NavList>,
     )
 
-    expect(getByRole('button', {name: 'Docs expand'})).toHaveAttribute('aria-expanded', 'false')
+    expect(getByRole('button', {name: 'Docs'})).toHaveAttribute('aria-expanded', 'false')
     expect(queryByRole('link', {name: 'Docs'})).not.toBeInTheDocument()
   })
 
@@ -274,7 +274,7 @@ describe('NavList', () => {
       </NavList>,
     )
 
-    const toggle = getByRole('button', {name: 'Docs expand'})
+    const toggle = getByRole('button', {name: 'Docs'})
 
     expect(toggle).not.toHaveAttribute('aria-current')
   })
@@ -332,6 +332,20 @@ describe('NavList', () => {
     ).toThrow('NavList supports up to 5 levels')
   })
 
+  it('requires expandable items to include label content', () => {
+    expect(() =>
+      render(
+        <NavList>
+          <NavList.Item>
+            <NavList.SubNav>
+              <NavList.Item href="/docs/actions">Actions</NavList.Item>
+            </NavList.SubNav>
+          </NavList.Item>
+        </NavList>,
+      ),
+    ).toThrow('NavList.Item with NavList.SubNav requires label content.')
+  })
+
   it('expands and collapses nested lists', async () => {
     const user = userEvent.setup()
 
@@ -347,7 +361,7 @@ describe('NavList', () => {
       </NavList>,
     )
 
-    const toggle = getByRole('button', {name: 'Docs expand'})
+    const toggle = getByRole('button', {name: 'Docs'})
     expect(toggle).toHaveAttribute('aria-expanded', 'false')
     expect(queryByRole('link', {name: 'Actions'})).not.toBeInTheDocument()
 
@@ -376,7 +390,7 @@ describe('NavList', () => {
       </NavList>,
     )
 
-    const toggle = getByRole('button', {name: 'Docs expand'})
+    const toggle = getByRole('button', {name: 'Docs'})
     const subNav = document.getElementById(toggle.getAttribute('aria-controls') ?? '')
 
     expect(subNav).toHaveAttribute('aria-hidden', 'true')
@@ -405,7 +419,7 @@ describe('NavList', () => {
       </NavList>,
     )
 
-    const subNav = getByRole('list', {name: 'Docs collapse'})
+    const subNav = getByRole('list', {name: 'Docs'})
 
     expect(subNav).toHaveStyle({'--brand-NavList-subNav-height': '64px'})
   })
@@ -416,7 +430,9 @@ describe('NavList', () => {
     jest.spyOn(HTMLElement.prototype, 'scrollHeight', 'get').mockImplementation(function (this: HTMLElement) {
       const labelledBy = this.getAttribute('aria-labelledby')
       const label = labelledBy ? document.getElementById(labelledBy)?.textContent : ''
-      const extensionsToggle = document.querySelector<HTMLButtonElement>('[aria-label^="Extensions"]')
+      const extensionsToggle = Array.from(document.querySelectorAll<HTMLButtonElement>('button')).find(button =>
+        button.textContent?.includes('Extensions'),
+      )
       const extensionsExpanded = extensionsToggle?.getAttribute('aria-expanded') === 'true'
 
       if (label?.includes('Docs')) return extensionsExpanded ? 192 : 96
@@ -449,13 +465,13 @@ describe('NavList', () => {
       </NavList>,
     )
 
-    expect(getByRole('list', {name: 'Docs collapse'})).toHaveStyle({'--brand-NavList-subNav-height': '96px'})
-    expect(getByRole('list', {name: 'Guides collapse'})).toHaveStyle({'--brand-NavList-subNav-height': '64px'})
+    expect(getByRole('list', {name: 'Docs'})).toHaveStyle({'--brand-NavList-subNav-height': '96px'})
+    expect(getByRole('list', {name: 'Guides'})).toHaveStyle({'--brand-NavList-subNav-height': '64px'})
 
-    await user.click(getByRole('button', {name: 'Extensions expand'}))
+    await user.click(getByRole('button', {name: 'Extensions'}))
 
-    expect(getByRole('list', {name: 'Docs collapse'})).toHaveStyle({'--brand-NavList-subNav-height': '192px'})
-    expect(getByRole('list', {name: 'Guides collapse'})).toHaveStyle({
+    expect(getByRole('list', {name: 'Docs'})).toHaveStyle({'--brand-NavList-subNav-height': '192px'})
+    expect(getByRole('list', {name: 'Guides'})).toHaveStyle({
       '--brand-NavList-subNav-height': '160px',
     })
     expect(getByRole('link', {name: 'Install an extension'})).toBeInTheDocument()
@@ -475,7 +491,7 @@ describe('NavList', () => {
       </NavList>,
     )
 
-    const toggle = getByRole('button', {name: 'Docs expand'})
+    const toggle = getByRole('button', {name: 'Docs'})
     const indicator = toggle.querySelector('.NavList__toggleIcon')
 
     expect(toggle.querySelector('.octicon-triangle-down')).toBeInTheDocument()
@@ -502,7 +518,7 @@ describe('NavList', () => {
       </NavList>,
     )
 
-    expect(getByRole('button', {name: 'Docs collapse'})).toHaveAttribute('aria-expanded', 'true')
+    expect(getByRole('button', {name: 'Docs'})).toHaveAttribute('aria-expanded', 'true')
     expect(getByRole('link', {name: 'Actions'})).toHaveAttribute('aria-current', 'page')
   })
 
@@ -530,9 +546,9 @@ describe('NavList', () => {
       </NavList>,
     )
 
-    expect(getByRole('button', {name: 'Docs collapse'})).toHaveAttribute('aria-expanded', 'true')
-    expect(getByRole('button', {name: 'Actions collapse'})).toHaveAttribute('aria-expanded', 'true')
-    expect(getByRole('button', {name: 'Workflows collapse'})).toHaveAttribute('aria-expanded', 'true')
+    expect(getByRole('button', {name: 'Docs'})).toHaveAttribute('aria-expanded', 'true')
+    expect(getByRole('button', {name: 'Actions'})).toHaveAttribute('aria-expanded', 'true')
+    expect(getByRole('button', {name: 'Workflows'})).toHaveAttribute('aria-expanded', 'true')
   })
 
   it('marks controlled collapsed parents with current descendants', () => {
@@ -549,7 +565,7 @@ describe('NavList', () => {
       </NavList>,
     )
 
-    expect(getByRole('button', {name: 'Docs expand'})).toHaveAttribute('aria-expanded', 'false')
+    expect(getByRole('button', {name: 'Docs'})).toHaveAttribute('aria-expanded', 'false')
     expect(queryByRole('link', {name: 'Actions'})).not.toBeInTheDocument()
   })
 
@@ -569,7 +585,7 @@ describe('NavList', () => {
       </NavList>,
     )
 
-    const toggle = getByRole('button', {name: 'Docs collapse'})
+    const toggle = getByRole('button', {name: 'Docs'})
 
     await user.click(toggle)
 
@@ -591,7 +607,7 @@ describe('NavList', () => {
       </NavList>,
     )
 
-    const toggle = getByRole('button', {name: 'Docs expand'})
+    const toggle = getByRole('button', {name: 'Docs'})
 
     expect(toggle).toHaveAttribute('aria-controls', 'custom-subnav-id')
 
@@ -614,11 +630,11 @@ describe('NavList', () => {
       </NavList>,
     )
 
-    const toggle = getByRole('button', {name: 'Docs expand'})
+    const toggle = getByRole('button', {name: 'Docs'})
 
     await user.click(toggle)
 
-    expect(getByRole('list', {name: 'Docs collapse'})).toHaveAttribute('aria-labelledby', toggle.id)
+    expect(getByRole('list', {name: 'Docs'})).toHaveAttribute('aria-labelledby', toggle.id)
   })
 
   it('does not collapse nested lists when Escape is pressed', async () => {
@@ -635,7 +651,7 @@ describe('NavList', () => {
       </NavList>,
     )
 
-    const toggle = getByRole('button', {name: 'Docs collapse'})
+    const toggle = getByRole('button', {name: 'Docs'})
     const nestedLink = getByRole('link', {name: 'Actions'})
 
     nestedLink.focus()

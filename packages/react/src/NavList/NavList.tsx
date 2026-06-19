@@ -11,9 +11,9 @@ import React, {
   type ReactNode,
   type Ref,
 } from 'react'
+
 import {clsx} from 'clsx'
 import {TriangleDownIcon} from '@primer/octicons-react'
-
 import type {BaseProps} from '../component-helpers'
 import {useId} from '../hooks/useId'
 
@@ -39,6 +39,8 @@ const testIds = {
   },
 }
 
+const DefaultNavigationLabel = 'Navigation'
+
 export type NavListRootProps = {
   /**
    * Accessible label for the navigation landmark. Defaults to "Navigation".
@@ -50,30 +52,8 @@ export type NavListRootProps = {
   'aria-labelledby'?: string
   children: ReactNode
   'data-testid'?: string
-  /**
-   * Customizable labels for internally rendered controls.
-   */
-  internalAccessibleLabels?: {
-    defaultNavigationLabel: string
-    defaultSubNavLabel: string
-    expand: string
-    collapse: string
-  }
 } & BaseProps<HTMLElement> &
   Omit<React.HTMLAttributes<HTMLElement>, 'aria-label' | 'aria-labelledby'>
-
-type NavListContextValue = Required<Pick<NavListRootProps, 'internalAccessibleLabels'>>
-
-const defaultInternalAccessibleLabels = {
-  defaultNavigationLabel: 'Navigation',
-  defaultSubNavLabel: 'Nested navigation',
-  expand: 'expand',
-  collapse: 'collapse',
-}
-
-const NavListContext = React.createContext<NavListContextValue>({
-  internalAccessibleLabels: defaultInternalAccessibleLabels,
-})
 
 type NavListLevel = 1 | 2 | 3 | 4 | 5
 
@@ -90,40 +70,30 @@ const NavListSubNavContext = React.createContext<{
 
 const NavListRoot = forwardRef<HTMLElement, NavListRootProps>(
   (
-    {
-      children,
-      className,
-      'aria-label': ariaLabel,
-      'aria-labelledby': ariaLabelledBy,
-      'data-testid': testId,
-      internalAccessibleLabels = defaultInternalAccessibleLabels,
-      ...rest
-    },
+    {children, className, 'aria-label': ariaLabel, 'aria-labelledby': ariaLabelledBy, 'data-testid': testId, ...rest},
     ref,
   ) => {
     const hasTopLevelSubNav = Children.toArray(children).some(childHasDirectSubNav)
     const rootLevel = hasTopLevelSubNav ? 1 : 2
 
     return (
-      <NavListContext.Provider value={{internalAccessibleLabels}}>
-        <nav
-          ref={ref}
-          className={clsx(styles.NavList, className)}
-          aria-label={ariaLabelledBy ? undefined : ariaLabel ?? internalAccessibleLabels.defaultNavigationLabel}
-          aria-labelledby={ariaLabelledBy}
-          data-testid={testId || testIds.root}
-          {...rest}
-        >
-          <NavListLevelContext.Provider value={rootLevel}>
-            <ul
-              className={clsx(styles.NavList__list, !hasTopLevelSubNav && styles['NavList__list--flat'])}
-              data-testid={testIds.list}
-            >
-              {children}
-            </ul>
-          </NavListLevelContext.Provider>
-        </nav>
-      </NavListContext.Provider>
+      <nav
+        ref={ref}
+        className={clsx(styles.NavList, className)}
+        aria-label={ariaLabelledBy ? undefined : ariaLabel ?? DefaultNavigationLabel}
+        aria-labelledby={ariaLabelledBy}
+        data-testid={testId || testIds.root}
+        {...rest}
+      >
+        <NavListLevelContext.Provider value={rootLevel}>
+          <ul
+            className={clsx(styles.NavList__list, !hasTopLevelSubNav && styles['NavList__list--flat'])}
+            data-testid={testIds.list}
+          >
+            {children}
+          </ul>
+        </NavListLevelContext.Provider>
+      </nav>
     )
   },
 )
@@ -184,14 +154,15 @@ function hasCurrentDescendant(node: ReactNode): boolean {
   })
 }
 
-function getTextContent(node: ReactNode): string {
-  return Children.toArray(node)
-    .map(child => {
-      if (typeof child === 'string' || typeof child === 'number') return String(child)
-      if (isValidElement(child)) return getTextContent((child as ElementWithChildren).props.children)
-      return ''
-    })
-    .join('')
+function assignRef<T>(ref: React.Ref<T> | undefined, value: T | null) {
+  if (!ref) return
+
+  if (typeof ref === 'function') {
+    ref(value)
+    return
+  }
+
+  ;(ref as React.MutableRefObject<T | null>).current = value
 }
 
 function childHasDirectSubNav(node: ReactNode): boolean {
@@ -244,7 +215,6 @@ const NavListItem = forwardRef(
     ref: Ref<HTMLElement>,
   ) => {
     const Component = as || 'a'
-    const {internalAccessibleLabels} = React.useContext(NavListContext)
     const level = React.useContext(NavListLevelContext)
     const subNavId = useId()
     const accordionButtonId = useId()
@@ -254,7 +224,7 @@ const NavListItem = forwardRef(
         isValidElement<NavListSubNavProps>(child) && child.type === NavListSubNav,
     )
     const labelChildren = subNav ? childrenArray.filter(child => child !== subNav) : childrenArray
-    const label = getTextContent(labelChildren).trim()
+    const hasLabelContent = Children.toArray(labelChildren).length > 0
     const hasSubNav = Boolean(subNav)
     const canExpand = level < MaxNavListLevel
     const isLeafItem = !hasSubNav
@@ -271,16 +241,13 @@ const NavListItem = forwardRef(
       href?: string
     }
     const controlledAccordionButtonId = accordionButtonIdProp ?? accordionButtonId
-    const levelClassNames: Record<NavListLevel, string> = {
-      1: styles['NavList__item--level-1'],
-      2: styles['NavList__item--level-2'],
-      3: styles['NavList__item--level-3'],
-      4: styles['NavList__item--level-4'],
-      5: styles['NavList__item--level-5'],
-    }
 
     if (hasSubNav && !canExpand) {
       throw new Error('NavList supports up to 5 levels. Level 5 items cannot contain NavList.SubNav.')
+    }
+
+    if (hasSubNav && !hasLabelContent) {
+      throw new Error('NavList.Item with NavList.SubNav requires label content.')
     }
 
     useEffect(() => {
@@ -317,11 +284,7 @@ const NavListItem = forwardRef(
 
     const setAccordionButtonRef = useCallback(
       (node: HTMLButtonElement | null) => {
-        if (typeof ref === 'function') {
-          ref(node)
-        } else if (ref) {
-          ;(ref as React.MutableRefObject<HTMLElement | null>).current = node
-        }
+        assignRef(ref, node)
       },
       [ref],
     )
@@ -352,7 +315,11 @@ const NavListItem = forwardRef(
 
     return (
       <li
-        className={clsx(styles.NavList__item, levelClassNames[level], isLeafItem && styles['NavList__item--leaf'])}
+        className={clsx(
+          styles.NavList__item,
+          styles[`NavList__item--level-${level}`],
+          isLeafItem && styles['NavList__item--leaf'],
+        )}
         data-testid={testId || testIds.item}
       >
         <div className={styles.NavList__itemContent}>
@@ -369,9 +336,6 @@ const NavListItem = forwardRef(
               )}
               aria-expanded={isExpanded ? 'true' : 'false'}
               aria-controls={controlledSubNavId}
-              aria-label={`${label || internalAccessibleLabels.defaultSubNavLabel} ${
-                isExpanded ? internalAccessibleLabels.collapse : internalAccessibleLabels.expand
-              }`}
               data-testid={testIds.toggle}
               {...accordionButtonProps}
               disabled={disabled}
@@ -436,12 +400,7 @@ const NavListSubNav = forwardRef<HTMLUListElement, NavListSubNavProps>(
     const setSubNavRef = React.useCallback(
       (node: HTMLUListElement | null) => {
         subNavRef.current = node
-
-        if (typeof ref === 'function') {
-          ref(node)
-        } else if (ref) {
-          ;(ref as React.MutableRefObject<HTMLUListElement | null>).current = node
-        }
+        assignRef(ref, node)
       },
       [ref],
     )
@@ -484,7 +443,6 @@ const NavListSubNav = forwardRef<HTMLUListElement, NavListSubNavProps>(
 
 /**
  * Use NavList to render vertical navigation links with expandable section rows and nested lists.
- * `aria-current` is the leaf-item current contract; top collapse-bar or responsive shell behavior is intentionally out of scope.
  * @see https://primer.style/brand/components/NavList
  */
 export const NavList = Object.assign(NavListRoot, {
