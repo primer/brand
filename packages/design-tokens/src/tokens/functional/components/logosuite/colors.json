@@ -7,7 +7,7 @@
           "dark": "var(--brand-color-canvas-muted)"
         },
         "hover": {
-          "value": "var(--base-color-scale-gray-2)",
+          "value": "var(--base-color-scale-gray-1)",
           "dark": "#5a5b7c"
         }
       },

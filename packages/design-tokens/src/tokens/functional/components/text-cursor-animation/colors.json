@@ -1,0 +1,10 @@
+{
+  "TextCursorAnimation": {
+    "cursor": {
+      "color": {
+        "value": "var(--base-color-scale-green-6)",
+        "dark": "var(--brand-color-accent-primary)"
+      }
+    }
+  }
+}

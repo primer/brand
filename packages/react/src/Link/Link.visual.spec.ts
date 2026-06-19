@@ -17,8 +17,8 @@ test.describe('Visual Comparison: Link', () => {
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
-  test('Link / Large', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-link-features--large&viewMode=story', {
+  test('Link / Sizes', async ({page}) => {
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-link-features--sizes&viewMode=story', {
       waitUntil: 'networkidle',
     })
     await page.locator('body.sb-show-main').waitFor({state: 'visible'})

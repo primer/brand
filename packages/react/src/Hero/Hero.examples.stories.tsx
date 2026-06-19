@@ -301,7 +301,7 @@ export const GridlineExpressiveBlockEndPaddedTrailingComponent: Story = {
         enableAnimation
         variant="gridline-expressive"
         trailingComponent={() => (
-          <Text>
+          <Text variant="muted">
             Already have Visual Studio Code? <InlineLink href="#">Open now</InlineLink>
           </Text>
         )}

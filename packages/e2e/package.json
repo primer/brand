@@ -1,6 +1,6 @@
 {
   "name": "@primer/brand-e2e",
-  "version": "0.68.0",
+  "version": "0.69.0",
   "private": true,
   "description": "Primer Brand is a GitHub's design system for creating React-based marketing websites and digital experiences.",
   "keywords": [
@@ -39,10 +39,10 @@
   },
   "devDependencies": {
     "@github/axe-github": "^0.8.1",
+    "@playwright/test": "1.60.0",
     "@types/node": "24.12.0",
-    "@playwright/test": "1.59.1",
-    "playwright": "1.59.1",
-    "axe-playwright": "^2.2.2"
+    "axe-playwright": "^2.2.2",
+    "playwright": "1.60.0"
   },
   "engines": {
     "node": ">=24.0.0",

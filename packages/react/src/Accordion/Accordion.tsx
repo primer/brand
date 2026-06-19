@@ -3,11 +3,13 @@ import React, {
   forwardRef,
   useCallback,
   useContext,
-  useMemo,
   useEffect,
+  useMemo,
+  useRef,
   type DetailsHTMLAttributes,
   type HTMLAttributes,
   type KeyboardEvent,
+  type MouseEventHandler,
   type ReactElement,
   type RefObject,
   type ToggleEvent,
@@ -15,7 +17,7 @@ import React, {
 import {clsx} from 'clsx'
 
 import {Heading, type HeadingProps} from '../'
-import {ChevronDownIcon, ChevronUpIcon} from '@primer/octicons-react'
+import {TriangleDownIcon} from '@primer/octicons-react'
 import {Colors, BiColorGradients as Gradients} from '../constants'
 import {useProvidedRefOrCreate} from '../hooks/useRef'
 
@@ -30,6 +32,7 @@ import styles from './Accordion.module.css'
 export type AccordionRootProps = DetailsHTMLAttributes<HTMLDetailsElement> & {
   children: ReactElement<AccordionHeadingProps | AccordionContentProps>[]
   variant?: 'default' | 'emphasis'
+  disableAnimation?: boolean
   handleOpen?: (isOpen: boolean) => void
 }
 
@@ -50,17 +53,125 @@ const useAccordionContext = (): AccordionContextType => {
 }
 
 export const AccordionRoot = forwardRef<HTMLDetailsElement, AccordionRootProps>(
-  ({children, className, variant = 'default', open, onToggle, onKeyDown, handleOpen, ...rest}, forwardedRef) => {
+  (
+    {
+      children,
+      className,
+      variant = 'default',
+      disableAnimation = false,
+      open,
+      onClick,
+      onToggle,
+      onKeyDown,
+      handleOpen,
+      ...rest
+    },
+    forwardedRef,
+  ) => {
     const ref = useProvidedRefOrCreate(forwardedRef as RefObject<HTMLDetailsElement | null>)
+    const closeAnimationTimeout = useRef<ReturnType<typeof setTimeout> | null>(null)
+    const isClosingRef = useRef(false)
     const accordionContextValue = useMemo(() => ({variant}), [variant])
+
+    const setContentHeight = useCallback((details: HTMLDetailsElement) => {
+      const content = details.querySelector<HTMLElement>(`:scope > .${styles.Accordion__content}`)
+      const contentInner = content?.querySelector<HTMLElement>(`.${styles['Accordion__content-inner']}`)
+
+      if (!content || !contentInner) {
+        return null
+      }
+
+      const contentOffset = parseFloat(getComputedStyle(content).getPropertyValue('--brand-Accordion-content-offset'))
+      const contentHeight = Math.max(0, contentInner.scrollHeight - (Number.isNaN(contentOffset) ? 0 : contentOffset))
+
+      details.style.setProperty('--brand-Accordion-content-height', `${contentHeight}px`)
+
+      return content
+    }, [])
+
+    const clearCloseAnimation = useCallback(() => {
+      if (closeAnimationTimeout.current) {
+        clearTimeout(closeAnimationTimeout.current)
+        closeAnimationTimeout.current = null
+      }
+    }, [])
+
+    const closeWithAnimation = useCallback(
+      (details: HTMLDetailsElement) => {
+        clearCloseAnimation()
+        const reducedMotionQuery =
+          typeof window !== 'undefined' && typeof window.matchMedia === 'function'
+            ? window.matchMedia('(prefers-reduced-motion: reduce)')
+            : null
+        const prefersReducedMotion = reducedMotionQuery !== null && reducedMotionQuery.matches
+
+        if (prefersReducedMotion) {
+          details.open = false
+          isClosingRef.current = false
+          details.classList.remove(styles['Accordion--closing'])
+          return
+        }
+
+        const content = setContentHeight(details)
+
+        if (content) {
+          content.getBoundingClientRect()
+        }
+
+        isClosingRef.current = true
+        details.classList.add(styles['Accordion--closing'])
+
+        closeAnimationTimeout.current = setTimeout(() => {
+          details.open = false
+          isClosingRef.current = false
+          details.classList.remove(styles['Accordion--closing'])
+          closeAnimationTimeout.current = null
+        }, 300)
+      },
+      [clearCloseAnimation, setContentHeight],
+    )
 
     const handleToggle = useCallback<(event: Event) => void>(
       event => {
         const toggleEvent = event as unknown as ToggleEvent<HTMLDetailsElement>
+        if (toggleEvent.currentTarget.open) {
+          clearCloseAnimation()
+          isClosingRef.current = false
+          toggleEvent.currentTarget.classList.remove(styles['Accordion--closing'])
+          setContentHeight(toggleEvent.currentTarget)
+        }
         onToggle?.(toggleEvent)
         handleOpen?.(toggleEvent.currentTarget.open)
       },
-      [onToggle, handleOpen],
+      [clearCloseAnimation, onToggle, handleOpen, setContentHeight],
+    )
+
+    const handleClick = useCallback<MouseEventHandler<HTMLDetailsElement>>(
+      event => {
+        onClick?.(event)
+
+        if (event.defaultPrevented || disableAnimation) {
+          return
+        }
+
+        const details = event.currentTarget
+        const target = event.target
+
+        if (!(target instanceof Element) || !details.open) {
+          return
+        }
+
+        const summary = target.closest('summary')
+
+        if (summary?.parentElement === details) {
+          event.preventDefault()
+
+          if (!isClosingRef.current) {
+            closeWithAnimation(details)
+          }
+        }
+      },
+      [closeWithAnimation, disableAnimation, onClick],
     )
 
     const handleKeyDown = useCallback<EventListener>(
@@ -71,33 +182,61 @@ export const AccordionRoot = forwardRef<HTMLDetailsElement, AccordionRootProps>(
         const details = ref.current
 
         if (keyboardEvent.key === 'Escape' && details?.open) {
+          clearCloseAnimation()
           details.open = false
+          isClosingRef.current = false
+          details.classList.remove(styles['Accordion--closing'])
           details.querySelector('summary')?.focus()
         }
       },
-      [onKeyDown, ref],
+      [clearCloseAnimation, onKeyDown, ref],
     )
 
     useEffect(() => {
       const detailsElement = ref.current
       if (detailsElement) {
+        const contentInner = detailsElement.querySelector<HTMLElement>(`.${styles['Accordion__content-inner']}`)
+        let resizeObserver: ResizeObserver | undefined
+
+        if (detailsElement.open) {
+          setContentHeight(detailsElement)
+        }
+
+        if (typeof ResizeObserver !== 'undefined' && contentInner) {
+          resizeObserver = new ResizeObserver(() => {
+            if (detailsElement.open) {
+              setContentHeight(detailsElement)
+            }
+          })
+          resizeObserver.observe(contentInner)
+        }
+
         detailsElement.addEventListener('toggle', handleToggle)
         detailsElement.addEventListener('keydown', handleKeyDown)
 
         return () => {
+          clearCloseAnimation()
+          resizeObserver?.disconnect()
           detailsElement.removeEventListener('toggle', handleToggle)
           detailsElement.removeEventListener('keydown', handleKeyDown)
         }
       }
-    }, [handleToggle, handleKeyDown, ref])
+    }, [clearCloseAnimation, handleToggle, handleKeyDown, ref, setContentHeight])
 
     return (
       <AccordionContext.Provider value={accordionContextValue}>
+        {/* eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions, jsx-a11y/click-events-have-key-events -- summary is natively keyboard-operable and keyboard activation also fires click; onClick only intercepts to animate the close */}
         <details
-          className={clsx(styles.Accordion, styles[`Accordion--${variant}`], className)}
+          className={clsx(
+            styles.Accordion,
+            styles[`Accordion--${variant}`],
+            disableAnimation && styles['Accordion--disableAnimation'],
+            className,
+          )}
           ref={ref}
           open={open}
           {...rest}
+          onClick={handleClick}
         >
           {children}
         </details>
@@ -136,15 +275,12 @@ export const AccordionHeading = forwardRef<HTMLHeadingElement, AccordionHeadingP
         ref={ref}
         {...rest}
       >
-        <span aria-hidden="true" className={styles['Accordion__summary--collapsed']}>
-          <ChevronDownIcon size={24} />
+        <span aria-hidden="true" className={styles['Accordion__summary-toggle']}>
+          <TriangleDownIcon className={styles['Accordion__summary-toggleIcon']} size={22} />
         </span>
         <Heading as={as} size={variant === 'emphasis' ? '6' : 'subhead-large'} weight={weight}>
           {children}
         </Heading>
-        <span aria-hidden="true" className={styles['Accordion__summary--expanded']}>
-          <ChevronUpIcon size={24} />
-        </span>
       </summary>
     )
   },
@@ -152,8 +288,10 @@ export const AccordionHeading = forwardRef<HTMLHeadingElement, AccordionHeadingP
 
 export type AccordionContentProps = HTMLAttributes<HTMLElement>
 
-export const AccordionContent = ({className, ...rest}: AccordionContentProps) => (
-  <section className={clsx(styles.Accordion__content, className)} {...rest} />
+export const AccordionContent = ({children, className, ...rest}: AccordionContentProps) => (
+  <section className={clsx(styles.Accordion__content, className)} {...rest}>
+    <div className={styles['Accordion__content-inner']}>{children}</div>
+  </section>
 )
 
 export const Accordion = Object.assign(AccordionRoot, {Content: AccordionContent, Heading: AccordionHeading})
