@@ -9,7 +9,14 @@ storybook: '/brand/storybook/?path=/story/components-navlist--playground'
 ---
 
 import {Label} from '@primer/react'
-import {BookIcon, CodeIcon, CopilotIcon, KebabHorizontalIcon, WorkflowIcon} from '@primer/octicons-react'
+import {
+  BookIcon,
+  CodeIcon,
+  CopilotIcon,
+  KebabHorizontalIcon,
+  ShieldCheckIcon,
+  WorkflowIcon,
+} from '@primer/octicons-react'
 import {NavListAriaCurrentProp} from './react'
 
 ```js
@@ -22,33 +29,20 @@ import {NavList} from '@primer/react-brand'
 
 ```jsx live
 <NavList aria-label="Docs navigation">
-  <NavList.Item defaultExpanded>
-    GitHub Copilot
-    <NavList.SubNav>
-      <NavList.Item href="#" aria-current="page">
-        Overview
-      </NavList.Item>
-      <NavList.Item href="#">Quickstart</NavList.Item>
-      <NavList.Item href="#">Install GitHub Copilot</NavList.Item>
-      <NavList.Item href="#">Configure your editor</NavList.Item>
-      <NavList.Item href="#">Manage policies</NavList.Item>
-      <NavList.Item href="#">Troubleshooting</NavList.Item>
-    </NavList.SubNav>
+  <NavList.Item href="#" aria-current="page">
+    Overview
   </NavList.Item>
-  <NavList.Item>
-    Code review
-    <NavList.SubNav>
-      <NavList.Item href="#">Overview</NavList.Item>
-      <NavList.Item href="#">Review pull requests</NavList.Item>
-      <NavList.Item href="#">Configure coding guidelines</NavList.Item>
-    </NavList.SubNav>
-  </NavList.Item>
+  <NavList.Item href="#">Quickstart</NavList.Item>
+  <NavList.Item href="#">Install GitHub Copilot</NavList.Item>
+  <NavList.Item href="#">Configure your editor</NavList.Item>
+  <NavList.Item href="#">Manage policies</NavList.Item>
+  <NavList.Item href="#">Troubleshooting</NavList.Item>
 </NavList>
 ```
 
 ### Sections
 
-Use first-level `NavList.Item` rows as sections. Adjacent sections are separated automatically, and each section can optionally expand to reveal nested items.
+Add `NavList.SubNav` to a `NavList.Item` to turn it into a section. Section rows render as disclosure buttons that expand and collapse their nested items.
 
 ```jsx live
 <NavList aria-label="Section navigation">
@@ -91,20 +85,6 @@ Use first-level `NavList.Item` rows as sections. Adjacent sections are separated
       <NavList.Item href="#">Code scanning</NavList.Item>
     </NavList.SubNav>
   </NavList.Item>
-</NavList>
-```
-
-### Flat list
-
-When every direct child is a leaf `NavList.Item`, NavList renders them as a flat list of links without section-row treatment.
-
-```jsx live
-<NavList aria-label="Article navigation">
-  <NavList.Item href="#" aria-current="page">
-    Overview
-  </NavList.Item>
-  <NavList.Item href="#">Quickstart</NavList.Item>
-  <NavList.Item href="#">Install GitHub Copilot</NavList.Item>
 </NavList>
 ```
 
@@ -169,28 +149,6 @@ NavList supports up to five levels. Levels one through four can optionally expan
 </NavList>
 ```
 
-### Nested navigation
-
-Use `NavList.SubNav` inside a `NavList.Item` for a nested list. Items with nested lists render as full-row buttons with a triangle indicator, `aria-expanded`, and `aria-controls`.
-
-```jsx live
-<NavList aria-label="Nested navigation">
-  <NavList.Item defaultExpanded>
-    Documentation
-    <NavList.SubNav>
-      <NavList.Item href="#" aria-current="page">
-        Overview
-      </NavList.Item>
-      <NavList.Item href="#">Guides</NavList.Item>
-      <NavList.Item href="#">API reference</NavList.Item>
-      <NavList.Item href="#">Examples</NavList.Item>
-      <NavList.Item href="#">Changelog</NavList.Item>
-    </NavList.SubNav>
-  </NavList.Item>
-  <NavList.Item href="#">Changelog</NavList.Item>
-</NavList>
-```
-
 ### With visuals
 
 Use `leadingVisual` and `trailingVisual` to add icons to the label area. Visuals are additive: they do not replace disclosure triangles, change item sizing, or move the active and inactive row alignment.
@@ -220,10 +178,10 @@ Use `leadingVisual` and `trailingVisual` to add icons to the label area. Visuals
       <NavList.Item defaultExpanded trailingVisual={<KebabHorizontalIcon />}>
         API reference
         <NavList.SubNav>
-          <NavList.Item href="#" trailingVisual={<KebabHorizontalIcon />}>
+          <NavList.Item href="#" trailingVisual={<ShieldCheckIcon />}>
             REST API
           </NavList.Item>
-          <NavList.Item href="#" trailingVisual={<KebabHorizontalIcon />}>
+          <NavList.Item href="#" trailingVisual={<ShieldCheckIcon />}>
             GraphQL API
           </NavList.Item>
         </NavList.SubNav>
@@ -236,35 +194,13 @@ Use `leadingVisual` and `trailingVisual` to add icons to the label area. Visuals
 </NavList>
 ```
 
-### Custom links
-
-Pass a custom link component with the `as` prop when routing frameworks need to control navigation. The component must render an accessible link.
-
-```jsx live
-const CustomLink = React.forwardRef(({children, ...props}, ref) => (
-  <a ref={ref} data-custom-link="true" {...props}>
-    {children}
-  </a>
-))
-
-render(
-  <NavList aria-label="Custom link navigation">
-    <NavList.Item as={CustomLink} href="#">
-      Custom link
-    </NavList.Item>
-  </NavList>,
-)
-```
-
 ## Accessibility
 
-`NavList` renders a `nav` landmark containing unordered lists. Provide either `aria-label` or `aria-labelledby` when the surrounding page has more than one navigation landmark.
+Give each `NavList` a clear `aria-label` or `aria-labelledby`, especially when the page includes more than one navigation landmark.
 
-Use `aria-current` on the current leaf `NavList.Item`; this is the current-item contract. `aria-current="page"` is recommended for page navigation, but any valid `aria-current` value is passed through to leaf links. Items with `NavList.SubNav` render as disclosure buttons and ignore `aria-current`. A parent item with a current descendant automatically opens its nested `NavList.SubNav`.
+Use `aria-current="page"` on the link for the current page. Only apply `aria-current` to leaf items that navigate somewhere, not to section rows with nested items.
 
-Items with `NavList.SubNav` render as disclosure buttons instead of links. The button exposes `aria-expanded` and `aria-controls`, and the nested list is labelled by its parent disclosure button.
-
-The top collapse bar, sticky sidebar behavior, and responsive page shell behavior are out of scope for `NavList`. Compose those behaviors at the page or layout level if needed.
+Keep section labels short and descriptive. Section rows with `NavList.SubNav` must include visible label text so people can understand what will expand.
 
 ## Component props
 
@@ -276,22 +212,25 @@ The top collapse bar, sticky sidebar behavior, and responsive page shell behavio
 | `aria-label`      | `string`    | `'Navigation'` | `false`  | Accessible label for the navigation landmark          |
 | `aria-labelledby` | `string`    |                | `false`  | ID of the element that labels the navigation landmark |
 | `className`       | `string`    |                | `false`  | Sets a custom class on the `nav` element              |
-| `data-testid`     | `string`    |                | `false`  | Sets a custom test id on the `nav` element            |
+
+Forwards all standard HTML attributes for `<nav>` elements.
 
 ### NavList.Item <Label>Required</Label>
 
-| name               | type                       | default | required | description                                                        |
-| ------------------ | -------------------------- | ------- | -------- | ------------------------------------------------------------------ |
-| `as`               | `React.ElementType`        | `'a'`   | `false`  | Custom link component or element                                   |
-| `children`         | `ReactNode`                |         | `true`   | Item label and optional `NavList.SubNav`                           |
-| `href`             | `string`                   |         | `false`  | URL for leaf links when rendering as an anchor                     |
-| `aria-current`     | <NavListAriaCurrentProp /> |         | `false`  | Marks a leaf item as current                                       |
-| `defaultExpanded`  | `boolean`                  | `false` | `false`  | Opens nested `NavList.SubNav` by default                           |
-| `expanded`         | `boolean`                  |         | `false`  | Controls the nested expanded state                                 |
-| `onExpandedChange` | `(expanded) => void`       |         | `false`  | Called when the nested expanded state changes                      |
-| `leadingVisual`    | `ReactElement \| Icon`     |         | `false`  | Visual rendered before the label                                   |
-| `trailingVisual`   | `ReactElement \| Icon`     |         | `false`  | Visual rendered after the label                                    |
-| `disabled`         | `boolean`                  | `false` | `false`  | Adds `aria-disabled`, prevents clicks, and applies disabled styles |
+| name               | type                       | default | required | description                                                                             |
+| ------------------ | -------------------------- | ------- | -------- | --------------------------------------------------------------------------------------- |
+| `as`               | `React.ElementType`        | `'a'`   | `false`  | Element or component used for leaf items                                                |
+| `children`         | `ReactNode`                |         | `true`   | Item label and optional `NavList.SubNav`                                                |
+| `href`             | `string`                   |         | `false`  | URL for leaf items when rendering as an anchor                                          |
+| `aria-current`     | <NavListAriaCurrentProp /> |         | `false`  | Marks a leaf item as current                                                            |
+| `defaultExpanded`  | `boolean`                  | `false` | `false`  | Opens nested `NavList.SubNav` by default                                                |
+| `expanded`         | `boolean`                  |         | `false`  | Controls the nested `NavList.SubNav` expanded state                                     |
+| `onExpandedChange` | `(expanded) => void`       |         | `false`  | Called when the nested `NavList.SubNav` expanded state changes                          |
+| `leadingVisual`    | `ReactElement \| Icon`     |         | `false`  | Visual rendered before the label                                                        |
+| `trailingVisual`   | `ReactElement \| Icon`     |         | `false`  | Visual rendered after the label                                                         |
+| `disabled`         | `boolean`                  | `false` | `false`  | Disables the item. Leaf links receive `aria-disabled`; section buttons receive disabled |
+
+Forwards props to the rendered leaf link or section button.
 
 ### NavList.SubNav
 
@@ -299,3 +238,5 @@ The top collapse bar, sticky sidebar behavior, and responsive page shell behavio
 | ----------- | ----------- | ------- | -------- | -------------------------------------- |
 | `children`  | `ReactNode` |         | `true`   | Nested `NavList.Item` nodes            |
 | `className` | `string`    |         | `false`  | Sets a custom class on the nested `ul` |
+
+Forwards all standard HTML attributes for `<ul>` elements.
