@@ -431,7 +431,7 @@ describe('NavList', () => {
       const labelledBy = this.getAttribute('aria-labelledby')
       const label = labelledBy ? document.getElementById(labelledBy)?.textContent : ''
       const extensionsToggle = Array.from(document.querySelectorAll<HTMLButtonElement>('button')).find(button =>
-        button.textContent?.includes('Extensions'),
+        button.textContent.includes('Extensions'),
       )
       const extensionsExpanded = extensionsToggle?.getAttribute('aria-expanded') === 'true'
 
