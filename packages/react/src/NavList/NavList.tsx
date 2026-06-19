@@ -39,7 +39,7 @@ const testIds = {
   },
 }
 
-type NavListRootProps = {
+export type NavListRootProps = {
   /**
    * Accessible label for the navigation landmark. Defaults to "Navigation".
    */
@@ -100,24 +100,32 @@ const NavListRoot = forwardRef<HTMLElement, NavListRootProps>(
       ...rest
     },
     ref,
-  ) => (
-    <NavListContext.Provider value={{internalAccessibleLabels}}>
-      <nav
-        ref={ref}
-        className={clsx(styles.NavList, className)}
-        aria-label={ariaLabelledBy ? undefined : ariaLabel ?? internalAccessibleLabels.defaultNavigationLabel}
-        aria-labelledby={ariaLabelledBy}
-        data-testid={testId || testIds.root}
-        {...rest}
-      >
-        <NavListLevelContext.Provider value={1}>
-          <ul className={styles.NavList__list} data-testid={testIds.list}>
-            {children}
-          </ul>
-        </NavListLevelContext.Provider>
-      </nav>
-    </NavListContext.Provider>
-  ),
+  ) => {
+    const hasTopLevelSubNav = Children.toArray(children).some(childHasDirectSubNav)
+    const rootLevel = hasTopLevelSubNav ? 1 : 2
+
+    return (
+      <NavListContext.Provider value={{internalAccessibleLabels}}>
+        <nav
+          ref={ref}
+          className={clsx(styles.NavList, className)}
+          aria-label={ariaLabelledBy ? undefined : ariaLabel ?? internalAccessibleLabels.defaultNavigationLabel}
+          aria-labelledby={ariaLabelledBy}
+          data-testid={testId || testIds.root}
+          {...rest}
+        >
+          <NavListLevelContext.Provider value={rootLevel}>
+            <ul
+              className={clsx(styles.NavList__list, !hasTopLevelSubNav && styles['NavList__list--flat'])}
+              data-testid={testIds.list}
+            >
+              {children}
+            </ul>
+          </NavListLevelContext.Provider>
+        </nav>
+      </NavListContext.Provider>
+    )
+  },
 )
 
 type Visual = ReactElement | React.ElementType
@@ -186,6 +194,18 @@ function getTextContent(node: ReactNode): string {
     .join('')
 }
 
+function childHasDirectSubNav(node: ReactNode): boolean {
+  if (!isValidElement(node)) return false
+
+  if (node.type === React.Fragment) {
+    return Children.toArray((node as ElementWithChildren).props.children).some(childHasDirectSubNav)
+  }
+
+  return Children.toArray((node as ElementWithChildren).props.children).some(
+    child => isValidElement<NavListSubNavProps>(child) && child.type === NavListSubNav,
+  )
+}
+
 function renderVisual(visual: Visual | undefined, className: string) {
   if (!visual) return null
 
@@ -216,7 +236,6 @@ const NavListItem = forwardRef(
       leadingVisual,
       onClick,
       onExpandedChange,
-      onKeyDown,
       trailingVisual,
       'aria-current': ariaCurrent,
       'data-testid': testId,
@@ -332,11 +351,9 @@ const NavListItem = forwardRef(
     )
 
     return (
-      // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions
       <li
         className={clsx(styles.NavList__item, levelClassNames[level], isLeafItem && styles['NavList__item--leaf'])}
         data-testid={testId || testIds.item}
-        onKeyDown={onKeyDown}
       >
         <div className={styles.NavList__itemContent}>
           {hasSubNav && canExpand ? (

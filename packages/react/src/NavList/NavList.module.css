@@ -23,7 +23,7 @@
   position: relative;
 }
 
-.NavList__list > .NavList__item + .NavList__item {
+.NavList__list:not(.NavList__list--flat) > .NavList__item + .NavList__item {
   background-image: repeating-linear-gradient(
     to right,
     var(--brand-color-border-muted) 0 var(--base-size-2),

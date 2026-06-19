@@ -109,6 +109,14 @@ export const MultipleExpandedSections: Story = {
   render: () => <ExpandedDocsNavigation />,
 }
 
+export const FlatList: Story = {
+  render: () => (
+    <NavList aria-label="Article navigation">
+      {renderArticleItems(['Overview', 'Quickstart', 'Install GitHub Copilot'], 'Overview')}
+    </NavList>
+  ),
+}
+
 export const FiveLevels: Story = {
   render: () => (
     <NavList aria-label="Five-level navigation">

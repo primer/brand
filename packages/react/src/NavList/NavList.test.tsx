@@ -51,6 +51,19 @@ describe('NavList', () => {
     expect(currentLink).toHaveAttribute('aria-current', 'page')
   })
 
+  it('renders a flat root list as leaf items', () => {
+    const {getByRole} = render(<NavListFixture />)
+
+    const list = getByRole('list')
+    const link = getByRole('link', {name: 'Overview'})
+    const item = link.closest('li')
+
+    expect(list).toHaveClass('NavList__list--flat')
+    expect(item).toHaveClass('NavList__item--leaf')
+    expect(item).toHaveClass('NavList__item--level-2')
+    expect(item).not.toHaveClass('NavList__item--level-1')
+  })
+
   it('supports className and ref passthrough on the root', () => {
     const expectedClass = 'test-class'
 
@@ -92,6 +105,45 @@ describe('NavList', () => {
 
     expect(getByRole('link', {name: 'Custom link'})).toHaveAttribute('data-custom-link', 'true')
     expect(getByRole('link', {name: 'Custom link'})).toHaveAttribute('href', '/custom')
+  })
+
+  it('passes keyboard handlers to rendered item controls', async () => {
+    const user = userEvent.setup()
+    const linkKeyDownTargets: HTMLElement[] = []
+    const toggleKeyDownTargets: HTMLElement[] = []
+    const onLinkKeyDown = jest.fn((event: React.KeyboardEvent<HTMLElement>) => {
+      linkKeyDownTargets.push(event.currentTarget)
+    })
+    const onToggleKeyDown = jest.fn((event: React.KeyboardEvent<HTMLElement>) => {
+      toggleKeyDownTargets.push(event.currentTarget)
+    })
+
+    const {getByRole} = render(
+      <NavList>
+        <NavList.Item href="/overview" onKeyDown={onLinkKeyDown}>
+          Overview
+        </NavList.Item>
+        <NavList.Item onKeyDown={onToggleKeyDown}>
+          Docs
+          <NavList.SubNav>
+            <NavList.Item href="/docs/actions">Actions</NavList.Item>
+          </NavList.SubNav>
+        </NavList.Item>
+      </NavList>,
+    )
+
+    const link = getByRole('link', {name: 'Overview'})
+    const toggle = getByRole('button', {name: 'Docs expand'})
+
+    link.focus()
+    await user.keyboard('{ArrowDown}')
+    toggle.focus()
+    await user.keyboard('{ArrowDown}')
+
+    expect(onLinkKeyDown).toHaveBeenCalledTimes(1)
+    expect(linkKeyDownTargets[0]).toBe(link)
+    expect(onToggleKeyDown).toHaveBeenCalledTimes(1)
+    expect(toggleKeyDownTargets[0]).toBe(toggle)
   })
 
   it('renders visual slots', () => {
