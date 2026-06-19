@@ -37,20 +37,7 @@ const renderArticleItems = (labels = ArticleLabels, currentLabel?: string) =>
   ))
 
 export const Default: Story = {
-  render: args => (
-    <NavList {...args}>
-      <NavList.Item defaultExpanded>
-        GitHub Copilot
-        <NavList.SubNav>{renderArticleItems(ArticleLabels, 'Overview')}</NavList.SubNav>
-      </NavList.Item>
-      <NavList.Item>
-        Code review
-        <NavList.SubNav>
-          {renderArticleItems(['Overview', 'Review pull requests', 'Configure coding guidelines'])}
-        </NavList.SubNav>
-      </NavList.Item>
-    </NavList>
-  ),
+  render: args => <NavList {...args}>{renderArticleItems(ArticleLabels, 'Overview')}</NavList>,
 }
 
 export const Playground: Story = {

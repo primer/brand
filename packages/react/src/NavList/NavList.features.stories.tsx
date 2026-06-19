@@ -105,61 +105,38 @@ const CollapsedCurrentDescendantNavigation = () => {
   )
 }
 
-export const MultipleExpandedSections: Story = {
+export const Sections: Story = {
   render: () => <ExpandedDocsNavigation />,
 }
 
-export const FlatList: Story = {
+export const MultipleLevels: Story = {
   render: () => (
-    <NavList aria-label="Article navigation">
-      {renderArticleItems(['Overview', 'Quickstart', 'Install GitHub Copilot'], 'Overview')}
-    </NavList>
-  ),
-}
-
-export const FiveLevels: Story = {
-  render: () => (
-    <NavList aria-label="Five-level navigation">
+    <NavList aria-label="Multiple-level navigation">
       <NavList.Item defaultExpanded>
-        GitHub Copilot
+        Level 1 section
         <NavList.SubNav>
+          <NavList.Item href="#">Level 2 leaf</NavList.Item>
           <NavList.Item defaultExpanded>
-            Guides
+            Level 2 section
             <NavList.SubNav>
+              <NavList.Item href="#">Level 3 leaf</NavList.Item>
               <NavList.Item defaultExpanded>
-                Agents
+                Level 3 section
                 <NavList.SubNav>
+                  <NavList.Item href="#">Level 4 leaf</NavList.Item>
                   <NavList.Item defaultExpanded>
-                    Build an agent
+                    Level 4 section
                     <NavList.SubNav>
-                      {renderArticleItems(
-                        ['Create a tool', 'Add memory', 'Debug prompts', 'Deploy safely'],
-                        'Create a tool',
-                      )}
+                      <NavList.Item href="#" aria-current="page">
+                        Level 5 current leaf
+                      </NavList.Item>
+                      <NavList.Item href="#">Level 5 sibling leaf</NavList.Item>
                     </NavList.SubNav>
                   </NavList.Item>
-                  <NavList.Item href="#">Customize an agent</NavList.Item>
-                  <NavList.Item href="#">Debug an agent</NavList.Item>
-                </NavList.SubNav>
-              </NavList.Item>
-              <NavList.Item>
-                Extensions
-                <NavList.SubNav>
-                  {renderArticleItems(['Install an extension', 'Publish an extension', 'Manage permissions'])}
                 </NavList.SubNav>
               </NavList.Item>
             </NavList.SubNav>
           </NavList.Item>
-          <NavList.Item>
-            Administration
-            <NavList.SubNav>{renderArticleItems(['Overview', 'Policies', 'Audit log'])}</NavList.SubNav>
-          </NavList.Item>
-        </NavList.SubNav>
-      </NavList.Item>
-      <NavList.Item>
-        Code review
-        <NavList.SubNav>
-          {renderArticleItems(['Overview', 'Review pull requests', 'Use suggested changes'])}
         </NavList.SubNav>
       </NavList.Item>
     </NavList>
