@@ -270,18 +270,13 @@ The top collapse bar, sticky sidebar behavior, and responsive page shell behavio
 
 ### NavList <Label>Required</Label>
 
-| name                                                     | type        | default               | required | description                                                               |
-| -------------------------------------------------------- | ----------- | --------------------- | -------- | ------------------------------------------------------------------------- |
-| `children`                                               | `ReactNode` |                       | `true`   | `NavList.Item` nodes                                                      |
-| `aria-label`                                             | `string`    | `'Navigation'`        | `false`  | Accessible label for the navigation landmark                              |
-| `aria-labelledby`                                        | `string`    |                       | `false`  | ID of the element that labels the navigation landmark                     |
-| `className`                                              | `string`    |                       | `false`  | Sets a custom class on the `nav` element                                  |
-| `data-testid`                                            | `string`    |                       | `false`  | Sets a custom test id on the `nav` element                                |
-| `internalAccessibleLabels`                               | `object`    |                       | `false`  | Customizable `aria-label` values for internally rendered controls         |
-| `internalAccessibleLabels`<br/>`.defaultNavigationLabel` | `string`    | `'Navigation'`        | `false`  | Fallback accessible label for the navigation landmark                     |
-| `internalAccessibleLabels`<br/>`.defaultSubNavLabel`     | `string`    | `'Nested navigation'` | `false`  | Fallback label for a disclosure button when the item has no text content  |
-| `internalAccessibleLabels`<br/>`.expand`                 | `string`    | `'expand'`            | `false`  | Text appended to disclosure button labels when nested items are collapsed |
-| `internalAccessibleLabels`<br/>`.collapse`               | `string`    | `'collapse'`          | `false`  | Text appended to disclosure button labels when nested items are expanded  |
+| name              | type        | default        | required | description                                           |
+| ----------------- | ----------- | -------------- | -------- | ----------------------------------------------------- |
+| `children`        | `ReactNode` |                | `true`   | `NavList.Item` nodes                                  |
+| `aria-label`      | `string`    | `'Navigation'` | `false`  | Accessible label for the navigation landmark          |
+| `aria-labelledby` | `string`    |                | `false`  | ID of the element that labels the navigation landmark |
+| `className`       | `string`    |                | `false`  | Sets a custom class on the `nav` element              |
+| `data-testid`     | `string`    |                | `false`  | Sets a custom test id on the `nav` element            |
 
 ### NavList.Item <Label>Required</Label>
 
