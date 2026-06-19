@@ -139,6 +139,10 @@ type NavListSubNavElement = ReactElement<NavListSubNavProps>
 type ElementWithChildren = ReactElement<{children?: ReactNode}>
 type ElementWithCurrent = ReactElement<{children?: ReactNode; 'aria-current'?: AriaAttributes['aria-current']}>
 
+function isNavListSubNavElement(node: ReactNode): node is NavListSubNavElement {
+  return isValidElement<NavListSubNavProps>(node) && node.type === NavListSubNav
+}
+
 function isCurrentValue(value: AriaAttributes['aria-current']) {
   return Boolean(value) && value !== 'false'
 }
@@ -172,9 +176,7 @@ function childHasDirectSubNav(node: ReactNode): boolean {
     return Children.toArray((node as ElementWithChildren).props.children).some(childHasDirectSubNav)
   }
 
-  return Children.toArray((node as ElementWithChildren).props.children).some(
-    child => isValidElement<NavListSubNavProps>(child) && child.type === NavListSubNav,
-  )
+  return Children.toArray((node as ElementWithChildren).props.children).some(isNavListSubNavElement)
 }
 
 function renderVisual(visual: Visual | undefined, className: string) {
@@ -219,10 +221,8 @@ const NavListItem = forwardRef(
     const subNavId = useId()
     const accordionButtonId = useId()
     const childrenArray = Children.toArray(children)
-    const subNav = childrenArray.find(
-      (child): child is NavListSubNavElement =>
-        isValidElement<NavListSubNavProps>(child) && child.type === NavListSubNav,
-    )
+    const subNavChildren = childrenArray.filter(isNavListSubNavElement)
+    const subNav = subNavChildren[0]
     const labelChildren = subNav ? childrenArray.filter(child => child !== subNav) : childrenArray
     const hasLabelContent = Children.toArray(labelChildren).length > 0
     const hasSubNav = Boolean(subNav)
@@ -234,7 +234,7 @@ const NavListItem = forwardRef(
     const [uncontrolledExpanded, setUncontrolledExpanded] = useState(defaultExpanded || hasCurrentSubNavItem)
     const isExpanded = Boolean(isControlled ? expanded : uncontrolledExpanded)
     const {
-      href: _href,
+      href,
       id: accordionButtonIdProp,
       ...accordionButtonProps
     } = rest as React.ButtonHTMLAttributes<HTMLButtonElement> & {
@@ -246,8 +246,18 @@ const NavListItem = forwardRef(
       throw new Error('NavList supports up to 5 levels. Level 5 items cannot contain NavList.SubNav.')
     }
 
+    if (subNavChildren.length > 1) {
+      throw new Error('NavList.Item supports only one NavList.SubNav child.')
+    }
+
     if (hasSubNav && !hasLabelContent) {
       throw new Error('NavList.Item with NavList.SubNav requires label content.')
+    }
+
+    if (hasSubNav && (href !== undefined || as !== undefined)) {
+      throw new Error(
+        'NavList.Item with NavList.SubNav cannot include href or as because expandable items render as buttons.',
+      )
     }
 
     useEffect(() => {

@@ -346,6 +346,52 @@ describe('NavList', () => {
     ).toThrow('NavList.Item with NavList.SubNav requires label content.')
   })
 
+  it('prevents expandable items from including multiple nested lists', () => {
+    expect(() =>
+      render(
+        <NavList>
+          <NavList.Item>
+            Docs
+            <NavList.SubNav>
+              <NavList.Item href="/docs/actions">Actions</NavList.Item>
+            </NavList.SubNav>
+            <NavList.SubNav>
+              <NavList.Item href="/docs/packages">Packages</NavList.Item>
+            </NavList.SubNav>
+          </NavList.Item>
+        </NavList>,
+      ),
+    ).toThrow('NavList.Item supports only one NavList.SubNav child.')
+  })
+
+  it('prevents expandable items from using link-only props', () => {
+    expect(() =>
+      render(
+        <NavList>
+          <NavList.Item href="/docs">
+            Docs
+            <NavList.SubNav>
+              <NavList.Item href="/docs/actions">Actions</NavList.Item>
+            </NavList.SubNav>
+          </NavList.Item>
+        </NavList>,
+      ),
+    ).toThrow('NavList.Item with NavList.SubNav cannot include href or as')
+
+    expect(() =>
+      render(
+        <NavList>
+          <NavList.Item as="div">
+            Docs
+            <NavList.SubNav>
+              <NavList.Item href="/docs/actions">Actions</NavList.Item>
+            </NavList.SubNav>
+          </NavList.Item>
+        </NavList>,
+      ),
+    ).toThrow('NavList.Item with NavList.SubNav cannot include href or as')
+  })
+
   it('expands and collapses nested lists', async () => {
     const user = userEvent.setup()
 
