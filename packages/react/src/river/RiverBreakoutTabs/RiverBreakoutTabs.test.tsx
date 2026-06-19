@@ -391,4 +391,184 @@ describe('RiverBreakoutTabs', () => {
     const results = await axe(container)
     expect(results).toHaveNoViolations()
   })
+
+  it('renders a single persistent backgroundVisual behind the shared visual region', () => {
+    const {getAllByRole, getAllByTestId} = render(
+      <RiverBreakoutTabs backgroundVisual={<div data-testid="shared-bg" />}>
+        <RiverBreakoutTabs.A11yHeading>Agent workflows</RiverBreakoutTabs.A11yHeading>
+        <RiverBreakoutTabs.Item>
+          <RiverBreakoutTabs.Heading>Plan</RiverBreakoutTabs.Heading>
+          <RiverBreakoutTabs.Content>
+            <Text>Plan content</Text>
+          </RiverBreakoutTabs.Content>
+          <RiverBreakoutTabs.Visual>
+            <MockVisual label="plan visual" />
+          </RiverBreakoutTabs.Visual>
+        </RiverBreakoutTabs.Item>
+        <RiverBreakoutTabs.Item>
+          <RiverBreakoutTabs.Heading>Review</RiverBreakoutTabs.Heading>
+          <RiverBreakoutTabs.Content>
+            <Text>Review content</Text>
+          </RiverBreakoutTabs.Content>
+          <RiverBreakoutTabs.Visual>
+            <MockVisual label="review visual" />
+          </RiverBreakoutTabs.Visual>
+        </RiverBreakoutTabs.Item>
+      </RiverBreakoutTabs>,
+    )
+
+    expect(getAllByTestId('shared-bg')).toHaveLength(1)
+
+    const background = getAllByTestId('shared-bg')[0]
+    expect(background.parentElement).toHaveAttribute('aria-hidden', 'true')
+    expect(background.closest('[role="tabpanel"]')).toBeNull()
+
+    fireEvent.click(getAllByRole('tab')[1])
+    expect(getAllByTestId('shared-bg')).toHaveLength(1)
+  })
+
+  it('does not render a backgroundVisual element when the prop is omitted', () => {
+    const {container} = render(
+      <RiverBreakoutTabs>
+        <RiverBreakoutTabs.A11yHeading>Agent workflows</RiverBreakoutTabs.A11yHeading>
+        <RiverBreakoutTabs.Item>
+          <RiverBreakoutTabs.Heading>Plan</RiverBreakoutTabs.Heading>
+          <RiverBreakoutTabs.Content>
+            <Text>Plan content</Text>
+          </RiverBreakoutTabs.Content>
+          <RiverBreakoutTabs.Visual>
+            <MockVisual label="plan visual" />
+          </RiverBreakoutTabs.Visual>
+        </RiverBreakoutTabs.Item>
+      </RiverBreakoutTabs>,
+    )
+
+    expect(container.querySelector('.RiverBreakoutTabs__backgroundVisual')).toBeNull()
+  })
+
+  it('applies the backgroundVisual and block-end imagePosition modifier classes', () => {
+    const {container} = render(
+      <RiverBreakoutTabs backgroundVisual={<div data-testid="shared-bg" />} imagePosition="block-end">
+        <RiverBreakoutTabs.A11yHeading>Agent workflows</RiverBreakoutTabs.A11yHeading>
+        <RiverBreakoutTabs.Item>
+          <RiverBreakoutTabs.Heading>Plan</RiverBreakoutTabs.Heading>
+          <RiverBreakoutTabs.Content>
+            <Text>Plan content</Text>
+          </RiverBreakoutTabs.Content>
+          <RiverBreakoutTabs.Visual>
+            <MockVisual label="plan visual" />
+          </RiverBreakoutTabs.Visual>
+        </RiverBreakoutTabs.Item>
+      </RiverBreakoutTabs>,
+    )
+
+    const section = container.querySelector('section')
+    expect(section).toHaveClass('RiverBreakoutTabs--has-background-visual')
+    expect(section).toHaveClass('RiverBreakoutTabs--image-position-block-end')
+  })
+
+  it('defaults imagePosition to center (no block-end modifier)', () => {
+    const {container} = render(
+      <RiverBreakoutTabs backgroundVisual={<div data-testid="shared-bg" />}>
+        <RiverBreakoutTabs.A11yHeading>Agent workflows</RiverBreakoutTabs.A11yHeading>
+        <RiverBreakoutTabs.Item>
+          <RiverBreakoutTabs.Heading>Plan</RiverBreakoutTabs.Heading>
+          <RiverBreakoutTabs.Content>
+            <Text>Plan content</Text>
+          </RiverBreakoutTabs.Content>
+          <RiverBreakoutTabs.Visual>
+            <MockVisual label="plan visual" />
+          </RiverBreakoutTabs.Visual>
+        </RiverBreakoutTabs.Item>
+      </RiverBreakoutTabs>,
+    )
+
+    const section = container.querySelector('section')
+    expect(section).toHaveClass('RiverBreakoutTabs--has-background-visual')
+    expect(section).not.toHaveClass('RiverBreakoutTabs--image-position-block-end')
+    expect(section).not.toHaveClass('RiverBreakoutTabs--background-visual-full-bleed')
+  })
+
+  it('applies the full-bleed modifier class when backgroundVisualFullBleed is true', () => {
+    const {container} = render(
+      <RiverBreakoutTabs backgroundVisual={<div data-testid="shared-bg" />} backgroundVisualFullBleed>
+        <RiverBreakoutTabs.A11yHeading>Agent workflows</RiverBreakoutTabs.A11yHeading>
+        <RiverBreakoutTabs.Item>
+          <RiverBreakoutTabs.Heading>Plan</RiverBreakoutTabs.Heading>
+          <RiverBreakoutTabs.Content>
+            <Text>Plan content</Text>
+          </RiverBreakoutTabs.Content>
+          <RiverBreakoutTabs.Visual>
+            <MockVisual label="plan visual" />
+          </RiverBreakoutTabs.Visual>
+        </RiverBreakoutTabs.Item>
+      </RiverBreakoutTabs>,
+    )
+
+    expect(container.querySelector('section')).toHaveClass('RiverBreakoutTabs--background-visual-full-bleed')
+  })
+
+  it('renders a single persistent backgroundVisual in the narrow accordion layout', () => {
+    Object.defineProperty(window, 'innerWidth', {configurable: true, writable: true, value: 800})
+
+    const {getAllByTestId, queryAllByRole, rerender} = render(
+      <RiverBreakoutTabs selectedIndex={0} backgroundVisual={<div data-testid="shared-bg" />}>
+        <RiverBreakoutTabs.A11yHeading>Agent workflows</RiverBreakoutTabs.A11yHeading>
+        <RiverBreakoutTabs.Item>
+          <RiverBreakoutTabs.Heading>Plan</RiverBreakoutTabs.Heading>
+          <RiverBreakoutTabs.Content>
+            <Text>Plan content</Text>
+          </RiverBreakoutTabs.Content>
+          <RiverBreakoutTabs.Visual>
+            <MockVisual label="plan visual" />
+          </RiverBreakoutTabs.Visual>
+        </RiverBreakoutTabs.Item>
+        <RiverBreakoutTabs.Item>
+          <RiverBreakoutTabs.Heading>Review</RiverBreakoutTabs.Heading>
+          <RiverBreakoutTabs.Content>
+            <Text>Review content</Text>
+          </RiverBreakoutTabs.Content>
+          <RiverBreakoutTabs.Visual>
+            <MockVisual label="review visual" />
+          </RiverBreakoutTabs.Visual>
+        </RiverBreakoutTabs.Item>
+      </RiverBreakoutTabs>,
+    )
+
+    // Accordion (narrow) layout renders no tabs.
+    expect(queryAllByRole('tab')).toHaveLength(0)
+
+    // A single, decorative instance that lives outside the accordion item panels.
+    expect(getAllByTestId('shared-bg')).toHaveLength(1)
+    const background = getAllByTestId('shared-bg')[0]
+    expect(background.parentElement).toHaveAttribute('aria-hidden', 'true')
+    expect(background.closest('.RiverBreakoutTabs__accordionPanel')).toBeNull()
+
+    // Switching the active accordion item swaps the visual but keeps the same backdrop node.
+    rerender(
+      <RiverBreakoutTabs selectedIndex={1} backgroundVisual={<div data-testid="shared-bg" />}>
+        <RiverBreakoutTabs.A11yHeading>Agent workflows</RiverBreakoutTabs.A11yHeading>
+        <RiverBreakoutTabs.Item>
+          <RiverBreakoutTabs.Heading>Plan</RiverBreakoutTabs.Heading>
+          <RiverBreakoutTabs.Content>
+            <Text>Plan content</Text>
+          </RiverBreakoutTabs.Content>
+          <RiverBreakoutTabs.Visual>
+            <MockVisual label="plan visual" />
+          </RiverBreakoutTabs.Visual>
+        </RiverBreakoutTabs.Item>
+        <RiverBreakoutTabs.Item>
+          <RiverBreakoutTabs.Heading>Review</RiverBreakoutTabs.Heading>
+          <RiverBreakoutTabs.Content>
+            <Text>Review content</Text>
+          </RiverBreakoutTabs.Content>
+          <RiverBreakoutTabs.Visual>
+            <MockVisual label="review visual" />
+          </RiverBreakoutTabs.Visual>
+        </RiverBreakoutTabs.Item>
+      </RiverBreakoutTabs>,
+    )
+    expect(getAllByTestId('shared-bg')).toHaveLength(1)
+    expect(getAllByTestId('shared-bg')[0]).toBe(background)
+  })
 })
