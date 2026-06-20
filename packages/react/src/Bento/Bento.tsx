@@ -363,4 +363,9 @@ const Visual = ({
   )
 }
 
+/**
+ * Use Bento to present content in a responsive grid layout.
+ * @deprecated Bento is deprecated and will be removed in a future release. Use CTABanner or River instead.
+ * @see https://primer.style/brand/components/Bento
+ */
 export const Bento = Object.assign(Root, {Item, Visual, Content, Heading: _Heading})

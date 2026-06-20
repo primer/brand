@@ -12,16 +12,24 @@ export const PricingOptionsItemChildrenProp = () => (
     values={[
       'PricingOptions.Heading',
       'PricingOptions.Label',
+      'PricingOptions.Description',
       'PricingOptions.Price',
+      'PricingOptions.PrimaryAction',
+      'PricingOptions.SecondaryAction',
+      'PricingOptions.ActionsMessage',
       'PricingOptions.FeatureList',
       'PricingOptions.Footnote',
+      'PricingOptions.MenuAction',
     ]}
     addLineBreaks
   />
 )
 
 export const PricingOptionsFeatureListChildrenProp = () => (
-  <PropTableValues values={['PricingOptions.Heading', 'PricingOptions.Item']} addLineBreaks />
+  <PropTableValues
+    values={['PricingOptions.FeatureListGroupHeading', 'PricingOptions.FeatureListItem']}
+    addLineBreaks
+  />
 )
 
 export const PricingOptionsFeatureListItemVariantProp = () => (

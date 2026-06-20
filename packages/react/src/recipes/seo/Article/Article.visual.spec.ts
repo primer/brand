@@ -8,21 +8,31 @@ import {test, expect} from '@playwright/test'
 // eslint-disable-next-line i18n-text/no-en
 test.describe('Visual Comparison: Article', () => {
   test('Article / Playground', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=recipes-seo-article-page--playground&viewMode=story')
+    await page.goto('http://localhost:6006/iframe.html?args=&id=recipes-seo-article-page--playground&viewMode=story', {
+      waitUntil: 'networkidle',
+    })
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(5000)
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Article / All Headings', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=recipes-seo-article-page--all-headings&viewMode=story')
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=recipes-seo-article-page--all-headings&viewMode=story',
+      {waitUntil: 'networkidle'},
+    )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(5000)
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Article / Ai Theme', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=recipes-seo-article-page--ai-theme&viewMode=story')
+    await page.goto('http://localhost:6006/iframe.html?args=&id=recipes-seo-article-page--ai-theme&viewMode=story', {
+      waitUntil: 'networkidle',
+    })
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(5000)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -31,7 +41,9 @@ test.describe('Visual Comparison: Article', () => {
   test('Article / Collaboration Theme', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=recipes-seo-article-page--collaboration-theme&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(5000)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -40,7 +52,9 @@ test.describe('Visual Comparison: Article', () => {
   test('Article / Enterprise Theme', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=recipes-seo-article-page--enterprise-theme&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(5000)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -49,7 +63,9 @@ test.describe('Visual Comparison: Article', () => {
   test('Article / Security Theme', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=recipes-seo-article-page--security-theme&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(5000)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -58,7 +74,9 @@ test.describe('Visual Comparison: Article', () => {
   test('Article / Productivity Theme', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=recipes-seo-article-page--productivity-theme&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(5000)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -67,7 +85,9 @@ test.describe('Visual Comparison: Article', () => {
   test('Article / Light Hero Image', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=recipes-seo-article-page--light-hero-image&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(5000)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -76,7 +96,9 @@ test.describe('Visual Comparison: Article', () => {
   test('Article / Dark Hero Image', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=recipes-seo-article-page--dark-hero-image&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(5000)
     await expect(page).toHaveScreenshot({fullPage: true})

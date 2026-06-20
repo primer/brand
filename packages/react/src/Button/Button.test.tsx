@@ -171,16 +171,11 @@ describe('Button', () => {
     expect(consoleSpy).toHaveBeenCalled()
   })
 
-  it.each(ButtonVariants)('hides the arrow by default for all button variants except subtle', variant => {
-    const variantsWithArrow = ['subtle']
-
+  it.each(ButtonVariants)('hides the arrow by default for all button variants', variant => {
     const {getByRole} = render(<Button variant={variant}>{variant}</Button>)
     const btnEl = getByRole('button')
-    if (variantsWithArrow.includes(variant)) {
-      expect(btnEl.querySelector('.ExpandableArrow')).toBeInTheDocument()
-    } else {
-      expect(btnEl.querySelector('.ExpandableArrow')).not.toBeInTheDocument()
-    }
+
+    expect(btnEl.querySelector('.ExpandableArrow')).not.toBeInTheDocument()
   })
 
   it.each(ButtonVariants)('can apply optional arrow for all variants', variant => {

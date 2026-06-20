@@ -372,7 +372,6 @@ const ActionMenuButton = forwardRef<HTMLButtonElement, ActionMenuButtonProps>(
               disabled && styles['ActionMenu__innerButton--disabled'],
             )}
             variant={variant}
-            hasArrow={false}
             aria-disabled={disabled}
             data-testid={testId || testIds.button}
             size={size}
@@ -385,7 +384,6 @@ const ActionMenuButton = forwardRef<HTMLButtonElement, ActionMenuButtonProps>(
             as="button"
             className={styles['ActionMenu__innerButton--split-button']}
             variant={variant}
-            hasArrow={false}
             aria-haspopup="true"
             aria-label="Menu"
             size={size}
@@ -394,7 +392,7 @@ const ActionMenuButton = forwardRef<HTMLButtonElement, ActionMenuButtonProps>(
             disabled={disabled}
             {...props}
           >
-            <ChevronDownIcon />
+            <ChevronDownIcon className={styles['ActionMenu__inner-button-dropdown-icon']} />
           </Button>
         </div>
       )
@@ -404,7 +402,6 @@ const ActionMenuButton = forwardRef<HTMLButtonElement, ActionMenuButtonProps>(
       <Button
         ref={ref}
         className={clsx(styles.ActionMenu__button, styles[`ActionMenu__button--${size}`], className)}
-        hasArrow={false}
         aria-haspopup="true"
         aria-expanded={menuOpen ? 'true' : 'false'}
         disabled={disabled}

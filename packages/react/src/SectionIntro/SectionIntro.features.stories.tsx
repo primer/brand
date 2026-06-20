@@ -70,6 +70,34 @@ export const AlignedCenter = () => (
   </SectionIntro>
 )
 
+export const WithAnimatedLabel = () => (
+  <SectionIntro align="center">
+    <SectionIntro.Label animate animationDelay={1000}>
+      Animated label
+    </SectionIntro.Label>
+    <SectionIntro.Heading>This is my super sweet SectionIntro heading</SectionIntro.Heading>
+    <SectionIntro.Description>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit id. Aliquam luctus sed turpis felis nam
+      pulvinar risus elementum.
+    </SectionIntro.Description>
+    <SectionIntro.Link href="#">My link</SectionIntro.Link>
+  </SectionIntro>
+)
+
+export const WithIncreasedContrastLabel = () => (
+  <SectionIntro align="center">
+    <SectionIntro.Label animate variant="default">
+      Label with higher initial contrast
+    </SectionIntro.Label>
+    <SectionIntro.Heading>This is my super sweet SectionIntro heading</SectionIntro.Heading>
+    <SectionIntro.Description>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit id. Aliquam luctus sed turpis felis nam
+      pulvinar risus elementum.
+    </SectionIntro.Description>
+    <SectionIntro.Link href="#">My link</SectionIntro.Link>
+  </SectionIntro>
+)
+
 export const WithEmphasizedText = () => (
   <SectionIntro>
     <SectionIntro.Heading>

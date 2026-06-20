@@ -8,21 +8,32 @@ import {test, expect} from '@playwright/test'
 // eslint-disable-next-line i18n-text/no-en
 test.describe('Visual Comparison: SubdomainNavBar', () => {
   test('SubdomainNavBar / Playground', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-subdomainnavbar--playground&viewMode=story')
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-subdomainnavbar--playground&viewMode=story',
+      {waitUntil: 'networkidle'},
+    )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('SubdomainNavBar / No Search', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-subdomainnavbar--no-search&viewMode=story')
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-subdomainnavbar--no-search&viewMode=story', {
+      waitUntil: 'networkidle',
+    })
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('SubdomainNavBar / Search Open', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-subdomainnavbar--search-open&viewMode=story')
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-subdomainnavbar--search-open&viewMode=story',
+      {waitUntil: 'networkidle'},
+    )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(5500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -31,7 +42,9 @@ test.describe('Visual Comparison: SubdomainNavBar', () => {
   test('SubdomainNavBar / Search Results Visible', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-subdomainnavbar--search-results-visible&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(5500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -43,7 +56,9 @@ test.describe('Visual Comparison: SubdomainNavBar', () => {
     test('SubdomainNavBar / Mobile View', async ({page}) => {
       await page.goto(
         'http://localhost:6006/iframe.html?args=&id=components-subdomainnavbar--mobile-view&viewMode=story',
+        {waitUntil: 'networkidle'},
       )
+      await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
       await page.waitForTimeout(5500)
       await expect(page).toHaveScreenshot({fullPage: true})
@@ -56,7 +71,9 @@ test.describe('Visual Comparison: SubdomainNavBar', () => {
     test('SubdomainNavBar / Mobile Menu Open', async ({page}) => {
       await page.goto(
         'http://localhost:6006/iframe.html?args=&id=components-subdomainnavbar--mobile-menu-open&viewMode=story',
+        {waitUntil: 'networkidle'},
       )
+      await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
       await page.waitForTimeout(5500)
       await expect(page).toHaveScreenshot({fullPage: true})
@@ -69,7 +86,9 @@ test.describe('Visual Comparison: SubdomainNavBar', () => {
     test('SubdomainNavBar / Mobile Menu Open Many Items', async ({page}) => {
       await page.goto(
         'http://localhost:6006/iframe.html?args=&id=components-subdomainnavbar--mobile-menu-open-many-items&viewMode=story',
+        {waitUntil: 'networkidle'},
       )
+      await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
       await page.waitForTimeout(5500)
       await expect(page).toHaveScreenshot({fullPage: true})
@@ -82,7 +101,9 @@ test.describe('Visual Comparison: SubdomainNavBar', () => {
     test('SubdomainNavBar / Mobile Search Results Visible', async ({page}) => {
       await page.goto(
         'http://localhost:6006/iframe.html?args=&id=components-subdomainnavbar--mobile-search-results-visible&viewMode=story',
+        {waitUntil: 'networkidle'},
       )
+      await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
       await page.waitForTimeout(5500)
       await expect(page).toHaveScreenshot({fullPage: true})
@@ -95,14 +116,20 @@ test.describe('Visual Comparison: SubdomainNavBar', () => {
     test('SubdomainNavBar / Mobile No Links', async ({page}) => {
       await page.goto(
         'http://localhost:6006/iframe.html?args=&id=components-subdomainnavbar--mobile-no-links&viewMode=story',
+        {waitUntil: 'networkidle'},
       )
+      await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
       await page.waitForTimeout(5500)
       await expect(page).toHaveScreenshot({fullPage: true})
     })
   })
   test('SubdomainNavBar / No overflow menu (1 link)', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-subdomainnavbar--no-overflow&viewMode=story')
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-subdomainnavbar--no-overflow&viewMode=story',
+      {waitUntil: 'networkidle'},
+    )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -111,21 +138,30 @@ test.describe('Visual Comparison: SubdomainNavBar', () => {
   test('SubdomainNavBar / Longer Title', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-subdomainnavbar--longer-title&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(1500)
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('SubdomainNavBar / Full Width', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-subdomainnavbar--full-width&viewMode=story')
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-subdomainnavbar--full-width&viewMode=story',
+      {waitUntil: 'networkidle'},
+    )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('SubdomainNavBar / No Title', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-subdomainnavbar--no-title&viewMode=story')
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-subdomainnavbar--no-title&viewMode=story', {
+      waitUntil: 'networkidle',
+    })
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -134,7 +170,9 @@ test.describe('Visual Comparison: SubdomainNavBar', () => {
   test('SubdomainNavBar / Conditional Rendering', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-subdomainnavbar--conditional-rendering&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -143,7 +181,9 @@ test.describe('Visual Comparison: SubdomainNavBar', () => {
   test('SubdomainNavBar / Skip To Main Tag', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-subdomainnavbar--skip-to-main-tag&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -152,7 +192,9 @@ test.describe('Visual Comparison: SubdomainNavBar', () => {
   test('SubdomainNavBar / Skip To Main Tag With Id', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-subdomainnavbar--skip-to-main-tag-with-id&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -161,7 +203,9 @@ test.describe('Visual Comparison: SubdomainNavBar', () => {
   test('SubdomainNavBar / External Link', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-subdomainnavbar--external-link&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -170,7 +214,9 @@ test.describe('Visual Comparison: SubdomainNavBar', () => {
   test('SubdomainNavBar / Reversed Button Order', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-subdomainnavbar--reversed-button-order&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -182,7 +228,9 @@ test.describe('Visual Comparison: SubdomainNavBar', () => {
     test('SubdomainNavBar / Reversed Button Order Narrow', async ({page}) => {
       await page.goto(
         'http://localhost:6006/iframe.html?args=&id=components-subdomainnavbar--reversed-button-order-narrow&viewMode=story',
+        {waitUntil: 'networkidle'},
       )
+      await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
       await page.waitForTimeout(5500)
       await expect(page).toHaveScreenshot({fullPage: true})

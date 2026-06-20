@@ -120,9 +120,11 @@ export function SolutionsOverview({
                 <Grid enableOverlay={enableGridOverlay} className={parallaxStyles.foreground}>
                   <Grid.Column>
                     <Hero align={args.heroAlign ? 'center' : 'start'}>
-                      {args.heroLabel && <Hero.Label>{args.heroLabel}</Hero.Label>}
+                      {args.heroLabel && <Hero.Label variant="default">{args.heroLabel}</Hero.Label>}
                       {args.heroTitle && <Hero.Heading>{args.heroTitle}</Hero.Heading>}
-                      {args.heroDescription && <Hero.Description>{args.heroDescription}</Hero.Description>}
+                      {args.heroDescription && (
+                        <Hero.Description variant="default">{args.heroDescription}</Hero.Description>
+                      )}
                       {args.heroCtaTextPrimary && (
                         <Hero.PrimaryAction href="#">{args.heroCtaTextPrimary}</Hero.PrimaryAction>
                       )}
@@ -164,7 +166,7 @@ export function SolutionsOverview({
                     <Grid enableOverlay={enableGridOverlay}>
                       <Grid.Column span={{large: 4}}>
                         <Box animate="fade-in" className={styles.fullHeight}>
-                          <Card href="#" hasBorder fullWidth variant="torchlight">
+                          <Card href="#" hasBorder fullWidth>
                             <Card.Icon icon={StackIcon} color="indigo" hasBackground />
                             <Card.Heading>Teams</Card.Heading>
                             <Card.Description>
@@ -177,7 +179,7 @@ export function SolutionsOverview({
                       </Grid.Column>
                       <Grid.Column span={{large: 4}}>
                         <Box animate="fade-in" className={styles.fullHeight}>
-                          <Card href="#" hasBorder fullWidth variant="torchlight">
+                          <Card href="#" hasBorder fullWidth>
                             <Card.Icon icon={StarIcon} color="indigo" hasBackground />
                             <Card.Heading>Startups</Card.Heading>
                             <Card.Description>
@@ -190,7 +192,7 @@ export function SolutionsOverview({
                       </Grid.Column>
                       <Grid.Column span={{large: 4}}>
                         <Box animate="fade-in" className={styles.fullHeight}>
-                          <Card href="#" hasBorder fullWidth variant="torchlight">
+                          <Card href="#" hasBorder fullWidth>
                             <Card.Icon icon={HeartIcon} color="indigo" hasBackground />
                             <Card.Heading>Non-Profit</Card.Heading>
                             <Card.Description>
@@ -270,7 +272,7 @@ export function SolutionsOverview({
                     <Grid enableOverlay={enableGridOverlay}>
                       <Grid.Column span={{medium: 4}}>
                         <Box animate="fade-in" className={styles.fullHeight}>
-                          <Card href="#" fullWidth variant="torchlight">
+                          <Card href="#" fullWidth>
                             <Card.Icon icon={StackIcon} color="indigo" hasBackground />
                             <Card.Heading>DevSecOps</Card.Heading>
                             <Card.Description>
@@ -282,7 +284,7 @@ export function SolutionsOverview({
                       </Grid.Column>
                       <Grid.Column span={{medium: 4}}>
                         <Box animate="fade-in" className={styles.fullHeight}>
-                          <Card href="#" fullWidth variant="torchlight">
+                          <Card href="#" fullWidth>
                             <Card.Icon icon={StarIcon} color="indigo" hasBackground />
                             <Card.Heading>DevOps</Card.Heading>
                             <Card.Description>
@@ -294,7 +296,7 @@ export function SolutionsOverview({
                       </Grid.Column>
                       <Grid.Column span={{medium: 4}}>
                         <Box animate="fade-in" className={styles.fullHeight}>
-                          <Card href="#" fullWidth variant="torchlight">
+                          <Card href="#" fullWidth>
                             <Card.Icon icon={HeartIcon} color="indigo" hasBackground />
                             <Card.Heading>CI/CD</Card.Heading>
                             <Card.Description>

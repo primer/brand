@@ -8,35 +8,50 @@ import {test, expect} from '@playwright/test'
 // eslint-disable-next-line i18n-text/no-en
 test.describe('Visual Comparison: Text', () => {
   test('Text / Default', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-text--default&viewMode=story')
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-text--default&viewMode=story', {
+      waitUntil: 'networkidle',
+    })
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Text / Playground', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-text--playground&viewMode=story')
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-text--playground&viewMode=story', {
+      waitUntil: 'networkidle',
+    })
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Text / Anti Aliasing Off', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-text--anti-aliasing-off&viewMode=story')
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-text--anti-aliasing-off&viewMode=story', {
+      waitUntil: 'networkidle',
+    })
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Text / Scale', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-text--scale&viewMode=story')
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-text--scale&viewMode=story', {
+      waitUntil: 'networkidle',
+    })
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Text / Override Weight', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-text--override-weight&viewMode=story')
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-text--override-weight&viewMode=story', {
+      waitUntil: 'networkidle',
+    })
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -45,42 +60,59 @@ test.describe('Visual Comparison: Text', () => {
   test('Text / Override Weight Responsive', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-text--override-weight-responsive&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Text / Composition', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-text--composition&viewMode=story')
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-text--composition&viewMode=story', {
+      waitUntil: 'networkidle',
+    })
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Text / Alignment', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-text--alignment&viewMode=story')
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-text--alignment&viewMode=story', {
+      waitUntil: 'networkidle',
+    })
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Text / Mona Sans', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-text--mona-sans&viewMode=story')
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-text--mona-sans&viewMode=story', {
+      waitUntil: 'networkidle',
+    })
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Text / Hubot Sans', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-text--hubot-sans&viewMode=story')
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-text--hubot-sans&viewMode=story', {
+      waitUntil: 'networkidle',
+    })
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Text / Monospace', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-text--monospace&viewMode=story')
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-text--monospace&viewMode=story', {
+      waitUntil: 'networkidle',
+    })
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})

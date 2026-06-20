@@ -1,7 +1,9 @@
 'use client'
 
 import {PropTableValues} from '@primer/doctocat-nextjs/components'
-import {PillarIconColors} from '../../../../../packages/react/src/Pillar/Pillar'
+import {namedIconSizes, numericIconSizes} from '../../../../../packages/react/src/Icon/Icon'
 
 export const PillarAsProp = () => <PropTableValues values={['div', 'article']} addLineBreaks />
-export const PillarIconColorProp = () => <PropTableValues values={[...PillarIconColors]} addLineBreaks />
+export const PillarIconSizeProp = () => (
+  <PropTableValues values={[...namedIconSizes, ...numericIconSizes]} commaSeparated />
+)

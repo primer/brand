@@ -8,21 +8,31 @@ import {test, expect} from '@playwright/test'
 // eslint-disable-next-line i18n-text/no-en
 test.describe('Visual Comparison: Breadcrumbs', () => {
   test('Breadcrumbs / Default', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-breadcrumbs--default&viewMode=story')
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-breadcrumbs--default&viewMode=story', {
+      waitUntil: 'networkidle',
+    })
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Breadcrumbs / Playground', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-breadcrumbs--playground&viewMode=story')
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-breadcrumbs--playground&viewMode=story', {
+      waitUntil: 'networkidle',
+    })
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Breadcrumbs / Accent variant', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-breadcrumbs-features--accent&viewMode=story')
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-breadcrumbs-features--accent&viewMode=story',
+      {waitUntil: 'networkidle'},
+    )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -31,7 +41,9 @@ test.describe('Visual Comparison: Breadcrumbs', () => {
   test('Breadcrumbs / Long Links', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-breadcrumbs-features--long-links&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -43,7 +55,9 @@ test.describe('Visual Comparison: Breadcrumbs', () => {
     test('Breadcrumbs / Long links (narrow viewport)', async ({page}) => {
       await page.goto(
         'http://localhost:6006/iframe.html?args=&id=components-breadcrumbs-features--long-links-narrow&viewMode=story',
+        {waitUntil: 'networkidle'},
       )
+      await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
       await page.waitForTimeout(500)
       await expect(page).toHaveScreenshot({fullPage: true})

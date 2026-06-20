@@ -8,14 +8,20 @@ import {test, expect} from '@playwright/test'
 // eslint-disable-next-line i18n-text/no-en
 test.describe('Visual Comparison: Footnotes', () => {
   test('Footnotes / Default', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-footnotes--default&viewMode=story')
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-footnotes--default&viewMode=story', {
+      waitUntil: 'networkidle',
+    })
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Footnotes / Playground', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-footnotes--playground&viewMode=story')
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-footnotes--playground&viewMode=story', {
+      waitUntil: 'networkidle',
+    })
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -24,7 +30,9 @@ test.describe('Visual Comparison: Footnotes', () => {
   test('Footnotes / Rivers With Citations', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-footnotes-examples--rivers-with-citations&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(3000)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -33,7 +41,9 @@ test.describe('Visual Comparison: Footnotes', () => {
   test('Footnotes / Citations With Link', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-footnotes-features--citations-with-link&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -42,7 +52,9 @@ test.describe('Visual Comparison: Footnotes', () => {
   test('Footnotes / Disclaimer Variant', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-footnotes-features--disclaimer-variant&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})

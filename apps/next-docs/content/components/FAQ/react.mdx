@@ -23,6 +23,8 @@ import {
   FAQGroupChildrenProp,
   FAQItemChildrenProp,
   FAQGroupHeadingAsProp,
+  FAQVariantProp,
+  FAQQuestionWeightProp,
 } from './react'
 
 ```js
@@ -117,76 +119,134 @@ Use `FAQGroup` to display multiple `FAQ` components together.
 Use `tabAttributes` to add arbitrary attributes to the tabs. This can be useful for tracking analytics or adding custom attributes.
 
 ```jsx live
-<FAQGroup
-  tabAttributes={(children, i) => ({
-    'data-analytics': `faq-tab-${i}`,
-  })}
->
-  <FAQGroup.Heading>
-    Frequently asked <br /> questions
-  </FAQGroup.Heading>
-  <FAQ>
-    <FAQ.Heading>Using GitHub Enterprise</FAQ.Heading>
-    <FAQ.Item>
-      <FAQ.Question>What is GitHub Enterprise?</FAQ.Question>
-      <FAQ.Answer>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
-          turpis felis nam pulvinar risus elementum.
-        </p>
-      </FAQ.Answer>
-    </FAQ.Item>
-    <FAQ.Item>
-      <FAQ.Question>How can GitHub Enterprise be deployed?</FAQ.Question>
-      <FAQ.Answer>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
-          turpis felis nam pulvinar risus elementum.
-        </p>
-      </FAQ.Answer>
-    </FAQ.Item>
-    <FAQ.Item>
-      <FAQ.Question>What is GitHub Enterprise Cloud?</FAQ.Question>
-      <FAQ.Answer>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
-          turpis felis nam pulvinar risus elementum.
-        </p>
-      </FAQ.Answer>
-    </FAQ.Item>
-  </FAQ>
+<div style={{width: '100%'}}>
+  <FAQGroup
+    tabAttributes={(children, i) => ({
+      'data-analytics': `faq-tab-${i}`,
+    })}
+  >
+    <FAQGroup.Heading>
+      Frequently asked <br /> questions
+    </FAQGroup.Heading>
+    <FAQ>
+      <FAQ.Heading>Using GitHub Enterprise</FAQ.Heading>
+      <FAQ.Item>
+        <FAQ.Question>What is GitHub Enterprise?</FAQ.Question>
+        <FAQ.Answer>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
+            turpis felis nam pulvinar risus elementum.
+          </p>
+        </FAQ.Answer>
+      </FAQ.Item>
+      <FAQ.Item>
+        <FAQ.Question>How can GitHub Enterprise be deployed?</FAQ.Question>
+        <FAQ.Answer>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
+            turpis felis nam pulvinar risus elementum.
+          </p>
+        </FAQ.Answer>
+      </FAQ.Item>
+      <FAQ.Item>
+        <FAQ.Question>What is GitHub Enterprise Cloud?</FAQ.Question>
+        <FAQ.Answer>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
+            turpis felis nam pulvinar risus elementum.
+          </p>
+        </FAQ.Answer>
+      </FAQ.Item>
+    </FAQ>
 
-  <FAQ>
-    <FAQ.Heading>About GitHub Enterprise</FAQ.Heading>
-    <FAQ.Item>
-      <FAQ.Question>What is the difference between GitHub and GitHub Enterprise?</FAQ.Question>
-      <FAQ.Answer>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
-          turpis felis nam pulvinar risus elementum.
-        </p>
-      </FAQ.Answer>
-    </FAQ.Item>
-    <FAQ.Item>
-      <FAQ.Question>Why should organizations use GitHub Enterprise?</FAQ.Question>
-      <FAQ.Answer>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
-          turpis felis nam pulvinar risus elementum.
-        </p>
-      </FAQ.Answer>
-    </FAQ.Item>
-    <FAQ.Item>
-      <FAQ.Question>Who uses GitHub Enterprise?</FAQ.Question>
-      <FAQ.Answer>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
-          turpis felis nam pulvinar risus elementum.
-        </p>
-      </FAQ.Answer>
-    </FAQ.Item>
-  </FAQ>
-</FAQGroup>
+    <FAQ>
+      <FAQ.Heading>About GitHub Enterprise</FAQ.Heading>
+      <FAQ.Item>
+        <FAQ.Question>What is the difference between GitHub and GitHub Enterprise?</FAQ.Question>
+        <FAQ.Answer>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
+            turpis felis nam pulvinar risus elementum.
+          </p>
+        </FAQ.Answer>
+      </FAQ.Item>
+      <FAQ.Item>
+        <FAQ.Question>Why should organizations use GitHub Enterprise?</FAQ.Question>
+        <FAQ.Answer>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
+            turpis felis nam pulvinar risus elementum.
+          </p>
+        </FAQ.Answer>
+      </FAQ.Item>
+      <FAQ.Item>
+        <FAQ.Question>Who uses GitHub Enterprise?</FAQ.Question>
+        <FAQ.Answer>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
+            turpis felis nam pulvinar risus elementum.
+          </p>
+        </FAQ.Answer>
+      </FAQ.Item>
+    </FAQ>
+  </FAQGroup>
+</div>
+```
+
+### GridLine variant
+
+Use `variant="gridline"` on both `FAQ` and `FAQGroup` to apply an alternative visual style.
+
+```jsx live
+<div style={{width: '100%'}}>
+  <FAQGroup variant="gridline">
+    <FAQGroup.Heading>
+      Frequently asked <br /> questions
+    </FAQGroup.Heading>
+    <FAQ variant="gridline">
+      <FAQ.Heading>Using GitHub Enterprise</FAQ.Heading>
+      <FAQ.Item>
+        <FAQ.Question>What is GitHub Enterprise?</FAQ.Question>
+        <FAQ.Answer>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
+            turpis felis nam pulvinar risus elementum.
+          </p>
+        </FAQ.Answer>
+      </FAQ.Item>
+      <FAQ.Item>
+        <FAQ.Question>How can GitHub Enterprise be deployed?</FAQ.Question>
+        <FAQ.Answer>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
+            turpis felis nam pulvinar risus elementum.
+          </p>
+        </FAQ.Answer>
+      </FAQ.Item>
+    </FAQ>
+    <FAQ variant="gridline">
+      <FAQ.Heading>About GitHub Enterprise</FAQ.Heading>
+      <FAQ.Item>
+        <FAQ.Question>What is the difference between GitHub and GitHub Enterprise?</FAQ.Question>
+        <FAQ.Answer>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
+            turpis felis nam pulvinar risus elementum.
+          </p>
+        </FAQ.Answer>
+      </FAQ.Item>
+      <FAQ.Item>
+        <FAQ.Question>Why should organizations use GitHub Enterprise?</FAQ.Question>
+        <FAQ.Answer>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
+            turpis felis nam pulvinar risus elementum.
+          </p>
+        </FAQ.Answer>
+      </FAQ.Item>
+    </FAQ>
+  </FAQGroup>
+</div>
 ```
 
 ### Rendering with dynamic data
@@ -357,12 +417,13 @@ render(<App />)
 
 ### FAQ <Label>Required</Label>
 
-| Name        | Type                | Default | Description                              |
-| :---------- | :------------------ | :-----: | :--------------------------------------- |
-| `className` | `string`            |         | Sets a custom class                      |
-| `id`        | `string`            |         | Sets a custom id                         |
-| `ref`       | `React.RefObject`   |         | Forward a Ref to the underlying DOM node |
-| `children`  | <FAQChildrenProp /> |         | Root element for the FAQ component.      |
+| Name        | Type                |   Default   | Description                              |
+| :---------- | :------------------ | :---------: | :--------------------------------------- |
+| `className` | `string`            |             | Sets a custom class                      |
+| `id`        | `string`            |             | Sets a custom id                         |
+| `ref`       | `React.RefObject`   |             | Forward a Ref to the underlying DOM node |
+| `children`  | <FAQChildrenProp /> |             | Root element for the FAQ component.      |
+| `variant`   | <FAQVariantProp />  | `'default'` | Sets the visual variant of the FAQ.      |
 
 <h3 id="faq-heading">
   FAQ.Heading <Label>Required</Label>
@@ -401,13 +462,14 @@ render(<App />)
 
 <h3 id="faq-question">FAQ.Question</h3>
 
-| Name        | Type                  | Default | Description                              |
-| :---------- | :-------------------- | :-----: | :--------------------------------------- |
-| `className` | `string`              |         | Sets a custom class on the root element  |
-| `children`  | `string`              |         | Question text                            |
-| `id`        | `string`              |         | Sets a custom id                         |
-| `as`        | <FAQQuestionAsProp /> | `'h4'`  | Applies the underlying HTML element      |
-| `ref`       | `React.RefObject`     |         | Forward a Ref to the underlying DOM node |
+| Name        | Type                      |  Default   | Description                              |
+| :---------- | :------------------------ | :--------: | :--------------------------------------- |
+| `className` | `string`                  |            | Sets a custom class on the root element  |
+| `children`  | `string`                  |            | Question text                            |
+| `id`        | `string`                  |            | Sets a custom id                         |
+| `as`        | <FAQQuestionAsProp />     |   `'h4'`   | Applies the underlying HTML element      |
+| `weight`    | <FAQQuestionWeightProp /> | `'normal'` | Sets the font weight of the question     |
+| `ref`       | `React.RefObject`         |            | Forward a Ref to the underlying DOM node |
 
 <h3 id="faq-answer">FAQ.Answer</h3>
 
@@ -420,13 +482,14 @@ render(<App />)
 
 ### FAQGroup
 
-| Name            | Type                                                                 | Default | Description                                                                   |
-| :-------------- | :------------------------------------------------------------------- | :-----: | :---------------------------------------------------------------------------- |
-| `className`     | `string`                                                             |         | Sets a custom class                                                           |
-| `id`            | `string`                                                             |         | Sets a custom id                                                              |
-| `ref`           | `React.RefObject`                                                    |         | Forward a Ref to the underlying DOM node                                      |
-| `children`      | <FAQGroupChildrenProp />                                             |         | Root element for the FAQGroup component.                                      |
-| `tabAttributes` | `(children: ReactElement, index: number) => Record<string, unknown>` |         | Spreads the returned attributes onto the tab that's rendered by the FAQGroup. |
+| Name            | Type                                                                 |   Default   | Description                                                                   |
+| :-------------- | :------------------------------------------------------------------- | :---------: | :---------------------------------------------------------------------------- |
+| `className`     | `string`                                                             |             | Sets a custom class                                                           |
+| `id`            | `string`                                                             |             | Sets a custom id                                                              |
+| `ref`           | `React.RefObject`                                                    |             | Forward a Ref to the underlying DOM node                                      |
+| `children`      | <FAQGroupChildrenProp />                                             |             | Root element for the FAQGroup component.                                      |
+| `variant`       | <FAQVariantProp />                                                   | `'default'` | Sets the visual variant of the FAQGroup.                                      |
+| `tabAttributes` | `(children: ReactElement, index: number) => Record<string, unknown>` |             | Spreads the returned attributes onto the tab that's rendered by the FAQGroup. |
 
 ### FAQGroup.Heading
 

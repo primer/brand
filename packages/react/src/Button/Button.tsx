@@ -11,13 +11,13 @@ import {useAnimation} from '../'
 import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/button/colors-with-modes.css'
 import styles from './Button.module.css'
 
-export const ButtonVariants = ['primary', 'secondary', 'subtle', 'accent'] as const
+export const ButtonVariants = ['primary', 'secondary', 'subtle'] as const
 export const ButtonSizes = ['small', 'medium', 'large'] as const
 
 export const defaultButtonVariant = ButtonVariants[1]
 export const defaultButtonSize = ButtonSizes[1]
 
-type ButtonVariant = (typeof ButtonVariants)[number]
+export type ButtonVariant = (typeof ButtonVariants)[number]
 
 export type ButtonBaseProps = {
   /**
@@ -38,6 +38,7 @@ export type ButtonBaseProps = {
   size?: (typeof ButtonSizes)[number]
   /**
    * A flag to show/hide the arrow icon
+   * @deprecated The hasArrow prop is deprecated and will be removed in a future release.
    */
   hasArrow?: boolean
   /**
@@ -45,8 +46,6 @@ export type ButtonBaseProps = {
    */
   block?: boolean
 }
-
-const variantsWithArrow = ['subtle']
 
 export type ButtonProps<C extends React.ElementType> = BaseProps<C> & {
   as?: C
@@ -98,7 +97,7 @@ export const _Button = forwardRef(
 
     const {classes: animationClasses, styles: animationInlineStyles} = useAnimation(animate)
 
-    const showArrow = variantsWithArrow.includes(variant) ? hasArrow !== false : Boolean(hasArrow)
+    const showArrow = Boolean(hasArrow)
 
     const returnValidComponent = useCallback((component?: ReactElement | Icon) => {
       if (React.isValidElement(component)) {

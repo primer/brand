@@ -1,8 +1,8 @@
-import React, {PropsWithChildren, forwardRef, type Ref, useMemo} from 'react'
+import React, {PropsWithChildren, forwardRef, useMemo} from 'react'
 import {clsx} from 'clsx'
 import styles from './Heading.module.css'
 import type {BaseProps} from '../component-helpers'
-import {useAnimation} from '..'
+import {useAnimation} from '../animation'
 
 export const HeadingSizes = ['display', '1', '2', '3', '4', '5', '6', 'subhead-large', 'subhead-medium'] as const
 export const HeadingTags = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'] as const
@@ -68,7 +68,7 @@ export type HeadingProps = {
 } & React.HTMLAttributes<HTMLHeadingElement> &
   BaseProps<HTMLHeadingElement>
 
-export const Heading = forwardRef(
+export const Heading = forwardRef<HTMLHeadingElement, PropsWithChildren<HeadingProps>>(
   (
     {
       animate,
@@ -83,8 +83,8 @@ export const Heading = forwardRef(
       font = 'mona-sans',
       textWrap = 'balance',
       ...rest
-    }: PropsWithChildren<HeadingProps>,
-    ref: Ref<HTMLHeadingElement>,
+    },
+    ref,
   ) => {
     const {classes: animationClasses, styles: animationInlineStyles} = useAnimation(animate)
 

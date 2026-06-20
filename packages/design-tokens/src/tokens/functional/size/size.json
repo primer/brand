@@ -35,7 +35,8 @@
     },
     "medium": {
       "size": {
-        "value": "{base.size.48}"
+        "value": "43px",
+        "$type": "dimension"
       },
       "lineBoxHeight": {
         "value": "{base.size.16}"

@@ -8,88 +8,110 @@ import {test, expect} from '@playwright/test'
 // eslint-disable-next-line i18n-text/no-en
 test.describe('Visual Comparison: VideoPlayer', () => {
   test('VideoPlayer / Default', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-videoplayer--default&viewMode=story')
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-videoplayer--default&viewMode=story', {
+      waitUntil: 'networkidle',
+    })
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
-    await page.waitForTimeout(500)
+    await page.waitForTimeout(5000)
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('VideoPlayer / Playground', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-videoplayer--playground&viewMode=story')
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-videoplayer--playground&viewMode=story', {
+      waitUntil: 'networkidle',
+    })
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
-    await page.waitForTimeout(500)
+    await page.waitForTimeout(5000)
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('VideoPlayer / With Poster', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-videoplayer-features--with-poster&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
-    await page.waitForTimeout(500)
+    await page.waitForTimeout(5000)
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('VideoPlayer / Without Branding', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-videoplayer-features--without-branding&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
-    await page.waitForTimeout(500)
+    await page.waitForTimeout(5000)
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('VideoPlayer / With Visually Hidden Title', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-videoplayer-features--with-visually-hidden-title&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
-    await page.waitForTimeout(500)
+    await page.waitForTimeout(5000)
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('VideoPlayer / With Some Hidden Controls', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-videoplayer-features--with-some-hidden-controls&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
-    await page.waitForTimeout(500)
+    await page.waitForTimeout(5000)
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('VideoPlayer / Minimal', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-videoplayer-features--minimal&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
-    await page.waitForTimeout(500)
+    await page.waitForTimeout(5000)
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('VideoPlayer / Controlled Programmatically', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-videoplayer-features--controlled-programmatically&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
-    await page.waitForTimeout(500)
+    await page.waitForTimeout(5000)
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('VideoPlayer / Custom Play Icon', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-videoplayer-features--custom-play-icon&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
-    await page.waitForTimeout(500)
+    await page.waitForTimeout(5000)
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('VideoPlayer / Tooltip Visible On Focus', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-videoplayer-features--tooltip-visible-on-focus&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
-    await page.waitForTimeout(500)
+    await page.waitForTimeout(5000)
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 })

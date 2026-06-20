@@ -129,8 +129,7 @@ export function FlexTemplateTrailingSection({template}: FlexTemplateTrailingSect
                   >
                     {ctaBannerSectionIntro.label && (
                       <SectionIntro.Label
-                        size={ctaBannerSectionIntro.labelSize ?? 'medium'}
-                        color={ctaBannerSectionIntro.labelColor ?? 'default'}
+                        variant={ctaBannerSectionIntro.labelColor === 'default' ? 'default' : undefined}
                       >
                         {typeof ctaBannerSectionIntro.label === 'string'
                           ? ctaBannerSectionIntro.label

@@ -1,7 +1,12 @@
 declare const styles: {
   readonly "Grid": string;
+  readonly "Grid--columnGap-default": string;
+  readonly "Grid--columnGap-none": string;
   readonly "Grid--full-width": string;
+  readonly "Grid--has-gutters": string;
   readonly "Grid--has-overlay": string;
+  readonly "Grid--rowGap-default": string;
+  readonly "Grid--rowGap-none": string;
   readonly "Grid__column": string;
   readonly "Grid__column--large-span-1": string;
   readonly "Grid__column--large-span-10": string;

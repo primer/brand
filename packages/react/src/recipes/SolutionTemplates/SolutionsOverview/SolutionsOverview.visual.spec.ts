@@ -8,14 +8,20 @@ import {test, expect} from '@playwright/test'
 // eslint-disable-next-line i18n-text/no-en
 test.describe('Visual Comparison: SolutionsOverview', () => {
   test('SolutionsOverview / Light', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=recipes-solutions-overview--light&viewMode=story')
+    await page.goto('http://localhost:6006/iframe.html?args=&id=recipes-solutions-overview--light&viewMode=story', {
+      waitUntil: 'networkidle',
+    })
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(3500)
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('SolutionsOverview / Dark', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=recipes-solutions-overview--dark&viewMode=story')
+    await page.goto('http://localhost:6006/iframe.html?args=&id=recipes-solutions-overview--dark&viewMode=story', {
+      waitUntil: 'networkidle',
+    })
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(3500)
     await expect(page).toHaveScreenshot({fullPage: true})

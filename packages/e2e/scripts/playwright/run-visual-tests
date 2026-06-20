@@ -1,2 +1,29 @@
-cd ../../apps/storybook && npx storybook build && cd ../../packages/e2e
-docker run --rm --ipc=host -v ${PWD%/*/*}:/tests mcr.microsoft.com/playwright:v1.52.0-noble /bin/bash -c "cd tests && npm install && npx playwright install chromium && npx playwright install && npx start-server-and-test 'npx http-server ./apps/storybook/storybook-static -p 6006' 6006 'cd packages/e2e && npx playwright test'"
+#!/bin/bash
+set -euo pipefail
+
+REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../../../.." && pwd)"
+
+if [[ "${GITHUB_ACTIONS:-}" != "true" ]] && (echo > /dev/tcp/127.0.0.1/6006) >/dev/null 2>&1; then
+  echo "ERROR: Port 6006 is already in use." >&2
+  echo "Stop your local Storybook dev server before running visual tests," >&2
+  exit 1
+fi
+
+cd "${REPO_ROOT}"
+npm run build:lib
+
+cd "${REPO_ROOT}/apps/storybook"
+NODE_ENV=test npx storybook build
+
+cd "${REPO_ROOT}/packages/e2e"
+if [[ -z "${PLAYWRIGHT_CHROME_PATH:-}" ]]; then
+  echo "Installing Playwright Chrome browser..."
+  npx playwright install chrome
+fi
+
+PLAYWRIGHT_COMMAND=(npx playwright test "$@")
+printf -v PLAYWRIGHT_COMMAND_ESCAPED '%q ' "${PLAYWRIGHT_COMMAND[@]}"
+npx start-server-and-test \
+  "npx http-server \"${REPO_ROOT}/apps/storybook/storybook-static\" -p 6006" \
+  6006 \
+  "cd \"${REPO_ROOT}/packages/e2e\" && ${PLAYWRIGHT_COMMAND_ESCAPED}"

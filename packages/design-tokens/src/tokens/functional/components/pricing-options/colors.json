@@ -31,6 +31,20 @@
           }
         }
       }
+    },
+    "actionsMessage": {
+      "bgColor": {
+        "value": "color-mix(in srgb, var(--base-color-scale-blue-4) 10%, transparent)",
+        "dark": "#0C1C26"
+      },
+      "borderColor": {
+        "value": "color-mix(in srgb, var(--base-color-scale-blue-6) 20%, transparent)",
+        "dark": "#0E4678"
+      },
+      "accentColor": {
+        "value": "var(--base-color-scale-blue-5)",
+        "dark": "#1095FF"
+      }
     }
   }
 }

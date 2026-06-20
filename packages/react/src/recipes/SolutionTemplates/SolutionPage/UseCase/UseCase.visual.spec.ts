@@ -10,7 +10,9 @@ test.describe('Visual Comparison: UseCase', () => {
   test('UseCase / Maximum Light', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=recipes-solutions-solution-use-case--maximum&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(2000)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -19,7 +21,9 @@ test.describe('Visual Comparison: UseCase', () => {
   test('UseCase / Maximum Dark', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=recipes-solutions-solution-use-case--maximum-dark&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(2000)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -28,7 +32,9 @@ test.describe('Visual Comparison: UseCase', () => {
   test('UseCase / Minimum Light', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=recipes-solutions-solution-use-case--minimum&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(2000)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -37,7 +43,9 @@ test.describe('Visual Comparison: UseCase', () => {
   test('UseCase / Minimum Dark', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=recipes-solutions-solution-use-case--minimum-dark&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(2000)
     await expect(page).toHaveScreenshot({fullPage: true})

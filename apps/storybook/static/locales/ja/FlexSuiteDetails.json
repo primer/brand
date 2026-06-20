@@ -1,0 +1,94 @@
+{
+  "common": {
+    "learnMore": "詳細を見る"
+  },
+  "subNav": {
+    "heading": "GitHub Copilot",
+    "links": {
+      "vscode": "VS Code の Copilot",
+      "agents": "GitHub のエージェント",
+      "cli": "Copilot CLI",
+      "business": "ビジネス向け",
+      "tutorials": "チュートリアル",
+      "pricing": "プランと料金"
+    }
+  },
+  "hero": {
+    "headingPrefix": "構築に役立つヒント",
+    "headingEmphasis": "GitHub Copilot",
+    "description": "Visual Studio Code でも Visual Studio でも、必要なサポートを用意しています。",
+    "primaryAction": "VS Code で Copilot を開く",
+    "secondaryText": "まだ VS Code をお持ちではありませんか?",
+    "secondaryLinkText": "今すぐダウンロード"
+  },
+  "playlists": {
+    "vscode": {
+      "heading": "Visual Studio Code で始める",
+      "playlistHeading": "すべてのレッスン",
+      "videos": {
+        "one": {
+          "title": "レッスン 1: GitHub Copilot 101",
+          "duration": "03:05",
+          "summary": "優れたコードを簡単に書くための強固な土台を作る方法を学びます。"
+        },
+        "two": {
+          "title": "レッスン 2: 基本をマスターする",
+          "duration": "10:57",
+          "summary": "エディターで GitHub Copilot を設定し、開発者がよく使う日常的なワークフローを練習します。"
+        },
+        "three": {
+          "title": "レッスン 3: 成功のためのベスト プラクティス",
+          "duration": "08:31",
+          "summary": "より良いプロンプト、プロジェクト コンテキスト、レビュー ループを Copilot でより強い成果につなげます。"
+        }
+      }
+    },
+    "visualStudio": {
+      "heading": "Visual Studio で始める",
+      "playlistHeading": "すべてのレッスン",
+      "videos": {
+        "one": {
+          "title": "レッスン 1: GitHub Copilot 101",
+          "duration": "10:57",
+          "summary": "GitHub Copilot の基本を把握し、サブスクリプションで利用できるすべてにアクセスします。"
+        },
+        "two": {
+          "title": "レッスン 2: 基本をマスターする",
+          "duration": "03:06",
+          "summary": "Copilot がプロジェクトと次のステップを理解するのに役立つ Visual Studio ワークフローを学びます。"
+        },
+        "three": {
+          "title": "レッスン 3: 成功のためのベスト プラクティス",
+          "duration": "09:31",
+          "summary": "大規模なコードベースで役立つ実践的な習慣を使い、質問から実装まで Copilot で進めます。"
+        }
+      }
+    }
+  },
+  "resources": {
+    "heading": "IDE で GitHub Copilot を最大限に活用する",
+    "cards": {
+      "one": {
+        "tag": "開発者ドキュメント",
+        "heading": "GitHub Copilot Practice",
+        "description": "Kirk Haines が作成したサンプル問題と演習で GitHub Copilot の力を体験できます。"
+      },
+      "two": {
+        "tag": "アドバイザリ",
+        "heading": "GitHub Advisory Database",
+        "description": "GitHub の包括的な脆弱性データベースにアクセスして、ソフトウェア セキュリティを強化します。"
+      },
+      "three": {
+        "tag": "ブログ",
+        "heading": "クイック スタート ガイド",
+        "description": "特定のエディターをお使いですか? すぐに始められる専用のクイック スタート ガイドをご覧ください。"
+      }
+    }
+  },
+  "cta": {
+    "headingPrefix": "解き放ちましょう",
+    "headingEmphasis": "GitHub Copilot の可能性を最大限に",
+    "description": "これは始まりにすぎません。GitHub Copilot がコーディング方法をどのように変えられるかをご覧ください。",
+    "primaryAction": "GitHub で貢献する"
+  }
+}

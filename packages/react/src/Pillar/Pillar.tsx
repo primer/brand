@@ -1,23 +1,17 @@
 import React, {forwardRef, PropsWithChildren, HTMLAttributes, type Ref, type JSX} from 'react'
 import {clsx} from 'clsx'
 import {Heading, HeadingProps, Text, Image, type ImageProps, Link, LinkProps} from '..'
+import {Icon, type IconProps} from '../Icon'
 import type {BaseProps} from '../component-helpers'
-import {Colors} from '../constants'
 import {useAnimation} from '../animation'
-
-/**
- * Design tokens
- */
-import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/pillar/colors-with-modes.css'
 
 /**
  * Main stylesheet (as a CSS Module)
  */
 import styles from './Pillar.module.css'
 
-export const PillarIconColors = Colors
-
-export const defaultPillarIconColor = PillarIconColors[0]
+export const defaultPillarIconColor = 'green'
+export const defaultPillarIconSize = 32
 export type PillarProps<C extends keyof JSX.IntrinsicElements = 'div'> = React.HTMLAttributes<C> & {
   /**
    * The HTML element used to render the Pillar.
@@ -31,6 +25,10 @@ export type PillarProps<C extends keyof JSX.IntrinsicElements = 'div'> = React.H
    * Enables optional border around the pillar content
    */
   hasBorder?: boolean
+  /**
+   * Allows the pillar to fill the width of its parent container.
+   */
+  fullWidth?: boolean
 } & (C extends 'article' ? PropsWithChildren<BaseProps<HTMLElement>> : PropsWithChildren<BaseProps<HTMLDivElement>>)
 
 const PillarRoot = forwardRef(
@@ -43,6 +41,7 @@ const PillarRoot = forwardRef(
       align = 'start',
       style,
       hasBorder = false,
+      fullWidth = false,
       ...rest
     }: PropsWithChildren<PillarProps>,
     ref: Ref<HTMLDivElement>,
@@ -73,6 +72,7 @@ const PillarRoot = forwardRef(
           styles.Pillar,
           styles[`Pillar--align-${align}`],
           hasBorder && styles['Pillar--has-border'],
+          !fullWidth && styles['Pillar--has-max-width'],
           animationClasses,
           className,
         )}
@@ -96,28 +96,42 @@ function PillarImage({className, ...rest}: PillarImageProps) {
   )
 }
 
-type IconComponent = React.ComponentType<{size?: number}>
+type IconComponentProps = React.SVGAttributes<SVGElement> & {size?: number}
+type IconComponent = React.ComponentType<IconComponentProps> | React.ExoticComponent<IconComponentProps>
+type IconElement = React.ReactElement<IconComponentProps>
 
-type PillarIconProps = BaseProps<HTMLSpanElement> & {
-  icon: React.ReactNode | IconComponent
-  color?: (typeof PillarIconColors)[number]
+export type PillarIconProps = Omit<IconProps, 'icon' | 'color'> & {
+  icon: IconElement | IconComponent
 }
 
-function PillarIcon({icon: Icon, className, color = defaultPillarIconColor, ...rest}: PillarIconProps) {
+function PillarIcon({icon, className, hasBackground = true, size, ...props}: PillarIconProps) {
+  if (!hasBackground) {
+    const iconWrapperProps = {
+      ...(props as React.HTMLAttributes<HTMLSpanElement>),
+      className: clsx(styles.Pillar__icon, className),
+    }
+
+    let iconWithoutBackground: React.ReactNode
+
+    if (React.isValidElement<IconComponentProps>(icon)) {
+      iconWithoutBackground = icon
+    } else {
+      const IconWithoutBackground = icon
+      iconWithoutBackground = <IconWithoutBackground />
+    }
+
+    return <span {...iconWrapperProps}>{iconWithoutBackground}</span>
+  }
+
   return (
-    <span
-      className={clsx(styles.Pillar__icon, styles[`Pillar__icon--color-${color}`], className)}
-      {...rest}
-      aria-hidden="true"
-    >
-      {typeof Icon === 'function'
-        ? React.createElement(Icon as IconComponent, {size: 32})
-        : React.isValidElement<{size?: number}>(Icon)
-        ? React.cloneElement(Icon, {
-            size: 32,
-          })
-        : null}
-    </span>
+    <Icon
+      className={clsx(styles.Pillar__icon, styles['Pillar__icon--with-background'], className)}
+      color={defaultPillarIconColor}
+      hasBackground
+      icon={icon as IconProps['icon']}
+      size={size ?? defaultPillarIconSize}
+      {...props}
+    />
   )
 }
 
@@ -127,7 +141,7 @@ type PillarHeadingProps = BaseProps<HTMLHeadingElement> & {
 } & HeadingProps
 
 const PillarHeading = forwardRef<HTMLHeadingElement, PillarHeadingProps>(
-  ({children, as = 'h3', size = 'subhead-large', className, ...rest}, ref) => {
+  ({children, as = 'h3', size = '6', className, ...rest}, ref) => {
     return (
       <Heading
         size={size}

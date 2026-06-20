@@ -1,0 +1,136 @@
+.page {
+  min-height: 100dvh;
+}
+
+/* Copilot / mascot head */
+.heroTrailingPeek {
+  position: relative;
+}
+
+.heroTrailingPeekImage {
+  position: absolute;
+  inset-inline-start: var(--hero-peek-left);
+  inset-block-end: var(--hero-peek-bottom);
+  inline-size: var(--hero-peek-width);
+  block-size: auto;
+}
+
+/*
+ * Because gridlines stretch outside the native Grid, we need to use a wrapper.
+ * TODO: Create a CardGroup (or similar) component.
+ */
+.cardGridFrame {
+  width: 100%;
+  border-block-start: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
+  border-block-end: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
+}
+
+.cardGridFrameNoTopBorder {
+  border-block-start: 0;
+}
+
+.cardGridContent {
+  width: 100%;
+}
+
+.cardGridColumn {
+  display: flex;
+}
+
+.cardGridItem {
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border-block-start: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
+}
+
+.cardGridColumnArrowHover .cardGridItem {
+  transition: background var(--brand-animation-duration-extended) var(--brand-animation-easing-default);
+}
+
+.cardGridColumnArrowHover .cardGridItem:is(:hover, :focus-within) {
+  background: linear-gradient(180deg, rgba(242, 245, 243, 0.5) 0%, rgba(242, 245, 243, 0) 100%),
+    var(--brand-color-canvas-default);
+}
+
+[data-color-mode='dark'] .cardGridColumnArrowHover .cardGridItem:is(:hover, :focus-within) {
+  background: linear-gradient(180deg, rgba(242, 245, 243, 0.1) 0%, rgba(242, 245, 243, 0) 100%),
+    var(--brand-color-canvas-default);
+}
+
+.cardGridColumn:first-child .cardGridItem {
+  border-block-start: 0;
+}
+
+.resourceCard {
+  min-block-size: 100%;
+}
+
+@media screen and (min-width: 48rem) and (max-width: 63.24rem) {
+  .cardGridContent {
+    box-sizing: border-box;
+    padding-inline: 91px; /* This is intentionally very specific for Refactor*/
+  }
+
+  .cardGridItem {
+    container-type: inline-size;
+    padding: var(--base-size-24);
+    border-inline: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
+  }
+
+  /* we reassign grid areas at this breakpoint to match designs where the icon is left of the text instead of above */
+  @container (min-width: 30rem) {
+    .resourceCard {
+      grid-template-columns: auto minmax(0, 1fr);
+      grid-template-areas:
+        'icon tokens'
+        'icon label'
+        'icon heading'
+        'icon description'
+        'icon action';
+      grid-template-rows: auto auto auto auto auto;
+      column-gap: var(--base-size-48);
+      align-items: start;
+    }
+
+    .resourceCardIcon {
+      margin-block-end: 0;
+    }
+  }
+}
+
+.fullWidthTabsPanel :global([class*='Tabs__panelContainer']) {
+  width: 100%;
+  justify-self: stretch;
+  margin-block-start: var(--base-size-88);
+}
+
+@media screen and (min-width: 63.25rem) {
+  .cardGridItem {
+    padding: var(--base-size-24);
+    border-block-start: 0;
+    border-inline-end: 0;
+    border-inline-start: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
+  }
+
+  .cardGridColumn:nth-child(n + 4) .cardGridItem {
+    border-block-start: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
+  }
+
+  .cardGridColumn:nth-child(3n) .cardGridItem,
+  .cardGridColumn:last-child .cardGridItem {
+    border-inline-end: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
+  }
+}
+
+.riverFootstepsImage,
+.riverFootstepsImage img {
+  inline-size: 100%;
+  block-size: auto;
+}
+
+@media screen and (max-width: 48rem) {
+  .riverFootstepsGrid {
+    grid-row-gap: var(--base-size-32);
+  }
+}

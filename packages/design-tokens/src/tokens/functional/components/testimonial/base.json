@@ -6,12 +6,12 @@
           "value": "var(--brand-text-size-400)"
         },
         "large": {
-          "value": "var(--brand-text-size-600)"
+          "value": "var(--brand-text-size-500)"
         }
       },
       "fontWeight": {
         "default": {
-          "value": "var(--brand-heading-weight-600)"
+          "value": "var(--brand-heading-weight-1000)"
         },
         "large": {
           "value": "var(--brand-heading-weight-600)"

@@ -664,7 +664,7 @@ export function SolutionPage({
                           </Heading>
                           <Grid>
                             <Grid.Column span={{medium: 4}}>
-                              <Card href="#" variant="torchlight">
+                              <Card href="#">
                                 <Card.Heading>Collaboration is the key to DevOps success</Card.Heading>
                                 <Card.Description>
                                   Everything you need to know about getting started with GitHub Actions.
@@ -672,7 +672,7 @@ export function SolutionPage({
                               </Card>
                             </Grid.Column>
                             <Grid.Column span={{medium: 4}}>
-                              <Card href="#" variant="torchlight">
+                              <Card href="#">
                                 <Card.Heading>Collaboration is the key to DevOps success</Card.Heading>
                                 <Card.Description>
                                   Everything you need to know about getting started with GitHub Actions.
@@ -680,7 +680,7 @@ export function SolutionPage({
                               </Card>
                             </Grid.Column>
                             <Grid.Column span={{medium: 4}}>
-                              <Card href="#" variant="torchlight">
+                              <Card href="#">
                                 <Card.Heading>Collaboration is the key to DevOps success</Card.Heading>
                                 <Card.Description>
                                   Everything you need to know about getting started with GitHub Actions.
@@ -826,7 +826,7 @@ function TimelineExample() {
 function PillarExample() {
   return (
     <Pillar>
-      <Pillar.Icon color="green" icon={<ZapIcon />} />
+      <Pillar.Icon icon={<ZapIcon />} />
       <Pillar.Heading>Here is a core value proposition of this new feature on one or two lines</Pillar.Heading>
       <Pillar.Description>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id aliquam luctus sed turpis.

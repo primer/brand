@@ -8,14 +8,20 @@ import {test, expect} from '@playwright/test'
 // eslint-disable-next-line i18n-text/no-en
 test.describe('Visual Comparison: Tooltip', () => {
   test('Tooltip / Default', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-tooltip--default&viewMode=story')
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-tooltip--default&viewMode=story', {
+      waitUntil: 'networkidle',
+    })
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Tooltip / Playground', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-tooltip--playground&viewMode=story')
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-tooltip--playground&viewMode=story', {
+      waitUntil: 'networkidle',
+    })
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -24,14 +30,20 @@ test.describe('Visual Comparison: Tooltip', () => {
   test('Tooltip / Anchor Has Margin', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-tooltip-features--anchor-has-margin&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Tooltip / Label Type', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-tooltip-features--label-type&viewMode=story')
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-tooltip-features--label-type&viewMode=story',
+      {waitUntil: 'networkidle'},
+    )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -40,7 +52,9 @@ test.describe('Visual Comparison: Tooltip', () => {
   test('Tooltip / All Directions', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-tooltip-features--all-directions&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -49,7 +63,9 @@ test.describe('Visual Comparison: Tooltip', () => {
   test('Tooltip / Multiline Text', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-tooltip-features--multiline-text&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -58,7 +74,9 @@ test.describe('Visual Comparison: Tooltip', () => {
   test('Tooltip / Calculated Direction', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-tooltip-features--calculated-direction&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})

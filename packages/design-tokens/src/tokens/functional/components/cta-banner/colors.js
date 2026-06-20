@@ -3,7 +3,7 @@ module.exports = {
     shadow: {
       color: {
         start: {
-          value: 'var(--base-color-scale-green-5)',
+          value: 'var(--base-color-scale-green-6)',
           dark: 'var(--base-color-scale-green-2)',
         },
         end: {
@@ -13,8 +13,38 @@ module.exports = {
       },
     },
     bgColor: {
-      value: 'var(--brand-color-canvas-default)',
-      dark: 'var(--brand-color-canvas-default)',
+      value: 'var(--brand-color-canvas-subtle)',
+      dark: 'var(--brand-color-canvas-subtle)',
+    },
+    color: {
+      heading: {
+        emphasis: {
+          value: 'var(--base-color-scale-green-7)',
+          dark: 'var(--brand-color-text-emphasized)',
+        },
+      },
+      logo: {
+        muted: {
+          value: 'var(--brand-color-text-muted)',
+          dark: 'var(--brand-color-text-muted)',
+        },
+        emphasis: {
+          value: 'var(--brand-color-text-default)',
+          dark: 'var(--brand-color-text-default)',
+        },
+        filter: {
+          muted: {
+            value:
+              'brightness(0) saturate(100%) invert(37%) sepia(7%) saturate(778%) hue-rotate(171deg) brightness(96%) contrast(91%)',
+            dark: 'brightness(0) saturate(100%) invert(61%) sepia(8%) saturate(430%) hue-rotate(171deg) brightness(94%) contrast(92%)',
+          },
+          emphasis: {
+            value:
+              'brightness(0) saturate(100%) invert(12%) sepia(20%) saturate(450%) hue-rotate(172deg) brightness(100%) contrast(91%)',
+            dark: 'brightness(0) saturate(100%) invert(91%) sepia(2%) saturate(2455%) hue-rotate(193deg) brightness(107%) contrast(98%)',
+          },
+        },
+      },
     },
   },
 }

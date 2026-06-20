@@ -2,11 +2,18 @@
   "playground_heading": "Más del 90% de las empresas Fortune 100 y más de 150 millones de desarrolladores confían en GitHub para ofrecer soluciones escalables, confiables y seguras para equipos de todos los tamaños.",
   "playground_heading_emphasis": "Más del 90% de las empresas Fortune 100 y más de 150 millones de desarrolladores confían en GitHub",
   "playground_heading_suffix": " para ofrecer soluciones escalables, confiables y seguras para equipos de todos los tamaños.",
+  "playground_description": "Mejora tus lecciones con las herramientas avanzadas de GitHub y proporciona a los estudiantes acceso a las prácticas actuales de la industria.",
   "learn_more": "Aprende más",
   "explore_github": "Explorar GitHub",
   "explore_github_enterprise": "Explorar GitHub Enterprise",
   "default_heading": "Más del 90% de las empresas Fortune 100 y más de 150 millones de desarrolladores usan GitHub.",
   "enterprise_platform_heading": "Una plataforma única, integrada y lista para empresas",
+  "item_one_heading": "Mejora tu currículo técnico",
+  "item_one_description": "Mejora tus lecciones con las herramientas avanzadas de GitHub y proporciona a los estudiantes acceso a las prácticas actuales de la industria.",
+  "item_two_heading": "Revitaliza tus métodos de enseñanza",
+  "item_two_description": "Usa GitHub Classroom para automatizar comentarios y gestionar el trabajo del curso, lo que puede hacer tus sesiones más dinámicas e interactivas.",
+  "item_three_heading": "Impulsa la colaboración en el campus",
+  "item_three_description": "Facilita la colaboración entre estudiantes y educadores en proyectos y tareas.",
   "developer_first": "Centrado en desarrolladores:",
   "developer_first_description": " Diseñado para desarrolladores, GitHub ofrece herramientas de colaboración fluidas que hacen el trabajo en equipo más inteligente, rápido y seguro.",
   "enterprise_grade": "Nivel empresarial:",
@@ -14,5 +21,7 @@
   "ai_powered": "Impulsado por IA:",
   "ai_powered_description": " Aprovecha GitHub Copilot para automatizar tareas y mejorar la productividad con sugerencias de código inteligentes y contextuales.",
   "lorem_ipsum": "Lorem ipsum dolor sit amet",
-  "lorem_ipsum_description": ", consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis felis nam pulvinar."
+  "lorem_ipsum_description": ", consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis felis nam pulvinar.",
+  "with_item_icons_heading": "Despierta la pasión por aprender con GitHub.",
+  "sign_up_now": "Regístrate ahora"
 }

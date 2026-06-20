@@ -20,3 +20,5 @@ export const CTABannerHeadingSizeProp = () => <PropTableValues values={['1', '2'
 export const CTABannerTextVariantsProp = () => (
   <PropTableValues values={['default', 'muted', 'subtle']} commaSeparated />
 )
+
+export const CTABannerVariantProp = () => <PropTableValues values={['default', 'balanced', 'minimal']} commaSeparated />

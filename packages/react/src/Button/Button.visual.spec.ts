@@ -8,21 +8,30 @@ import {test, expect} from '@playwright/test'
 // eslint-disable-next-line i18n-text/no-en
 test.describe('Visual Comparison: Button', () => {
   test('Button / Default', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-button--default&viewMode=story')
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-button--default&viewMode=story', {
+      waitUntil: 'networkidle',
+    })
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Button / Playground', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-button--playground&viewMode=story')
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-button--playground&viewMode=story', {
+      waitUntil: 'networkidle',
+    })
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Button / Primary', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-button-features--primary&viewMode=story')
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-button-features--primary&viewMode=story', {
+      waitUntil: 'networkidle',
+    })
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -31,7 +40,9 @@ test.describe('Visual Comparison: Button', () => {
   test('Button / Primary Disabled', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-button-features--primary-disabled&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -40,7 +51,9 @@ test.describe('Visual Comparison: Button', () => {
   test('Button / Primary w/ aria-disabled', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-button-features--primary-aria-disabled&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -49,7 +62,9 @@ test.describe('Visual Comparison: Button', () => {
   test('Button / Primary Focus', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-button-features--primary-focus&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(2000)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -58,14 +73,19 @@ test.describe('Visual Comparison: Button', () => {
   test('Button / Primary Focus w/ non-standard background', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-button-features--primary-focus-non-standard-bg&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(2000)
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Button / Secondary', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-button-features--secondary&viewMode=story')
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-button-features--secondary&viewMode=story', {
+      waitUntil: 'networkidle',
+    })
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -74,14 +94,19 @@ test.describe('Visual Comparison: Button', () => {
   test('Button / Secondary Disabled', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-button-features--secondary-disabled&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Button / Subtle', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-button-features--subtle&viewMode=story')
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-button-features--subtle&viewMode=story', {
+      waitUntil: 'networkidle',
+    })
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -90,44 +115,39 @@ test.describe('Visual Comparison: Button', () => {
   test('Button / Subtle Disabled', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-button-features--subtle-disabled&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('Button / Accent', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-button-features--accent&viewMode=story')
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('Button / Accent Disabled', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-button-features--accent-disabled&viewMode=story',
-    )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Button / Small', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-button-features--small&viewMode=story')
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-button-features--small&viewMode=story', {
+      waitUntil: 'networkidle',
+    })
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Button / Large', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-button-features--large&viewMode=story')
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-button-features--large&viewMode=story', {
+      waitUntil: 'networkidle',
+    })
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('Button / Block', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-button-features--block&viewMode=story')
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-button-features--block&viewMode=story', {
+      waitUntil: 'networkidle',
+    })
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -136,7 +156,9 @@ test.describe('Visual Comparison: Button', () => {
   test('Button / Polymorphism', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-button-features--polymorphism&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -145,7 +167,9 @@ test.describe('Visual Comparison: Button', () => {
   test('Button / Primary button with hover interaction', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-button-features--with-hover-interaction&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(2000)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -154,7 +178,9 @@ test.describe('Visual Comparison: Button', () => {
   test('Button / Secondary button with hover interaction', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-button-features--secondary-with-hover-interaction&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(2000)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -163,7 +189,9 @@ test.describe('Visual Comparison: Button', () => {
   test('Button / Subtle button with hover interaction', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-button-features--subtle-with-hover-interaction&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(2000)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -172,7 +200,9 @@ test.describe('Visual Comparison: Button', () => {
   test('Button / Leading visual (native)', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-button-features--with-leading-visual-svg&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -181,7 +211,9 @@ test.describe('Visual Comparison: Button', () => {
   test('Button / Trailing visual (native)', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-button-features--with-trailing-visual-svg&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -190,16 +222,20 @@ test.describe('Visual Comparison: Button', () => {
   test('Button / Leading and trailing visual (native)', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-button-features--with-leading-and-trailing-visual-svg&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
-  test('Button / With optional arrows', async ({page}) => {
+  test('Button / Deprecated arrows', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-button-features--with-optional-arrows&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -208,7 +244,9 @@ test.describe('Visual Comparison: Button', () => {
   test('Button / With an Octicon', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-button-features--with-octicon&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -217,7 +255,9 @@ test.describe('Visual Comparison: Button', () => {
   test('Button / With an Octicon (large)', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-button-features--with-octicon-large&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -226,7 +266,9 @@ test.describe('Visual Comparison: Button', () => {
   test('Button / With visuals and disabled', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-button-features--with-visuals-and-disabled&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -235,7 +277,9 @@ test.describe('Visual Comparison: Button', () => {
   test('Button / With Longer Text', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-button-features--with-longer-text&viewMode=story',
+      {waitUntil: 'networkidle'},
     )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})

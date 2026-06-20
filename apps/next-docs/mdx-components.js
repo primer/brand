@@ -1,5 +1,22 @@
-import * as DoctocatComponents from '@primer/doctocat-nextjs/components'
-import {HeadingLink} from '@primer/doctocat-nextjs/components'
+import {
+  DoDontContainer,
+  Do,
+  Dont,
+  Caption,
+  Note,
+  Box,
+  Button,
+  Heading,
+  Text,
+  Label,
+  Stack,
+  TableOfContents,
+  Article,
+  HeadingLink,
+  CodeBlock,
+  PropTableValues,
+  TableWrapper,
+} from '@primer/doctocat-nextjs/components'
 import NextLink from 'next/link'
 
 // eslint-disable-next-line import/extensions
@@ -10,7 +27,23 @@ export const Link = ({href = '', ...props}) => <NextLink href={href} {...props} 
 export function useMDXComponents(customComponents) {
   return {
     ...customComponents,
-    ...DoctocatComponents,
+    DoDontContainer,
+    Do,
+    Dont,
+    Caption,
+    Note,
+    Box,
+    Button,
+    Heading,
+    Text,
+    Label,
+    Stack,
+    TableOfContents,
+    Article,
+    HeadingLink,
+    CodeBlock,
+    PropTableValues,
+    TableWrapper,
     Link,
     h2: props => <HeadingLink tag="h2" {...props} />,
     h3: props => <HeadingLink tag="h3" {...props} />,
@@ -19,9 +52,9 @@ export function useMDXComponents(customComponents) {
     h6: props => <HeadingLink tag="h6" {...props} />,
     pre: props => <Pre {...props} />,
     table: props => (
-      <DoctocatComponents.TableWrapper>
+      <TableWrapper>
         <table {...props} />
-      </DoctocatComponents.TableWrapper>
+      </TableWrapper>
     ),
   }
 }

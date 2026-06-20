@@ -1,14 +1,48 @@
 import React, {createRef} from 'react'
-import {fireEvent, render} from '@testing-library/react'
+import {act, fireEvent, render, waitFor} from '@testing-library/react'
 import '@testing-library/jest-dom'
 import userEvent from '@testing-library/user-event'
+import '../test-utils/mocks/match-media-mock'
 
-import {Accordion, AccordionToggleColors} from '../'
+import {Accordion, AccordionToggleColors} from './Accordion'
 import {axe, toHaveNoViolations} from 'jest-axe'
 
 expect.extend(toHaveNoViolations)
 
 describe('Accordion', () => {
+  const resizeObserverObserve = jest.fn()
+  const resizeObserverUnobserve = jest.fn()
+  const resizeObserverDisconnect = jest.fn()
+  let OriginalResizeObserver: typeof window.ResizeObserver
+  let resizeObserverCallback: ResizeObserverCallback | undefined
+
+  class MockResizeObserver implements ResizeObserver {
+    constructor(callback: ResizeObserverCallback) {
+      resizeObserverCallback = callback
+    }
+
+    observe = resizeObserverObserve
+    unobserve = resizeObserverUnobserve
+    disconnect = resizeObserverDisconnect
+  }
+
+  beforeAll(() => {
+    OriginalResizeObserver = window.ResizeObserver
+    window.ResizeObserver = MockResizeObserver
+  })
+
+  afterAll(() => {
+    window.ResizeObserver = OriginalResizeObserver
+  })
+
+  afterEach(() => {
+    jest.restoreAllMocks()
+    resizeObserverCallback = undefined
+    resizeObserverObserve.mockClear()
+    resizeObserverUnobserve.mockClear()
+    resizeObserverDisconnect.mockClear()
+  })
+
   it('has no accessibility violations', async () => {
     const {container} = render(
       <Accordion>
@@ -51,6 +85,29 @@ describe('Accordion', () => {
     expect(summary).toHaveClass('Accordion__summary--emphasis')
   })
 
+  it('closes immediately when disableAnimation is true', async () => {
+    const user = userEvent.setup()
+    const {getByRole} = render(
+      <Accordion disableAnimation>
+        <Accordion.Heading>Test heading</Accordion.Heading>
+        <Accordion.Content>Test content</Accordion.Content>
+      </Accordion>,
+    )
+
+    const details = getByRole('group')
+    const heading = getByRole('heading', {name: 'Test heading'})
+
+    expect(details).toHaveClass('Accordion--disableAnimation')
+    expect(details).not.toHaveAttribute('open')
+
+    await user.click(heading)
+    expect(details).toHaveAttribute('open')
+
+    await user.click(heading)
+    expect(details).not.toHaveAttribute('open')
+    expect(details).not.toHaveClass('Accordion--closing')
+  })
+
   it('allows forwarding of custom classes', () => {
     const {getByRole, getByText} = render(
       <Accordion className="custom-accordion">
@@ -67,7 +124,7 @@ describe('Accordion', () => {
     expect(summary).toHaveClass('Accordion__summary')
     expect(summary).toHaveClass('custom-heading')
 
-    const content = getByText('Test content')
+    const content = getByText('Test content').closest('section')
     expect(content).toHaveClass('Accordion__content')
     expect(content).toHaveClass('custom-content')
   })
@@ -129,7 +186,89 @@ describe('Accordion', () => {
     expect(details).toHaveAttribute('open')
 
     await user.click(heading)
-    expect(details).not.toHaveAttribute('open')
+    await waitFor(() => expect(details).not.toHaveAttribute('open'))
+  })
+
+  it('cleans up pending close animation when unmounted', async () => {
+    const clearTimeoutSpy = jest.spyOn(global, 'clearTimeout')
+    const user = userEvent.setup()
+    const {getByRole, unmount} = render(
+      <Accordion>
+        <Accordion.Heading>Test heading</Accordion.Heading>
+        <Accordion.Content>Test content</Accordion.Content>
+      </Accordion>,
+    )
+
+    const heading = getByRole('heading', {name: 'Test heading'})
+
+    await clearTimeoutSpy.withImplementation(
+      () => undefined,
+      async () => {
+        await user.click(heading)
+        await user.click(heading)
+
+        unmount()
+
+        expect(clearTimeoutSpy).toHaveBeenCalled()
+      },
+    )
+  })
+
+  it('updates measured content height when open content resizes', () => {
+    const scrollHeightSpy = jest.spyOn(HTMLElement.prototype, 'scrollHeight', 'get').mockReturnValue(64)
+    const {getByRole} = render(
+      <Accordion open>
+        <Accordion.Heading>Test heading</Accordion.Heading>
+        <Accordion.Content>Test content</Accordion.Content>
+      </Accordion>,
+    )
+
+    const details = getByRole('group')
+    expect(details).toHaveStyle({'--brand-Accordion-content-height': '64px'})
+    expect(resizeObserverObserve).toHaveBeenCalled()
+
+    scrollHeightSpy.mockReturnValue(96)
+    act(() => {
+      resizeObserverCallback?.([], {} as ResizeObserver)
+    })
+
+    expect(details).toHaveStyle({'--brand-Accordion-content-height': '96px'})
+  })
+
+  it('closes immediately when reduced motion is preferred', async () => {
+    const matchMediaMock = jest.mocked(window.matchMedia)
+
+    await matchMediaMock.withImplementation(
+      query => ({
+        matches: true,
+        media: query,
+        onchange: null,
+        addListener: jest.fn(),
+        removeListener: jest.fn(),
+        addEventListener: jest.fn(),
+        removeEventListener: jest.fn(),
+        dispatchEvent: jest.fn(),
+      }),
+      async () => {
+        const user = userEvent.setup()
+        const {getByRole} = render(
+          <Accordion>
+            <Accordion.Heading>Test heading</Accordion.Heading>
+            <Accordion.Content>Test content</Accordion.Content>
+          </Accordion>,
+        )
+
+        const details = getByRole('group')
+        const heading = getByRole('heading', {name: 'Test heading'})
+
+        await user.click(heading)
+        expect(details).toHaveAttribute('open')
+
+        await user.click(heading)
+        expect(details).not.toHaveAttribute('open')
+        expect(details).not.toHaveClass('Accordion--closing')
+      },
+    )
   })
 
   it.each([['Enter'], ['Space']])('opens when %s is pressed on summary', async keyName => {
@@ -184,7 +323,7 @@ describe('Accordion', () => {
     expect(onToggle).toHaveBeenCalledTimes(1)
 
     await user.click(heading)
-    expect(onToggle).toHaveBeenCalledTimes(2)
+    await waitFor(() => expect(onToggle).toHaveBeenCalledTimes(2))
   })
 
   it('calls onKeyDown when a key is pressed', async () => {
@@ -222,7 +361,7 @@ describe('Accordion', () => {
     expect(handleOpen).toHaveBeenCalledWith(true)
 
     await user.click(heading)
-    expect(handleOpen).toHaveBeenCalledWith(false)
+    await waitFor(() => expect(handleOpen).toHaveBeenCalledWith(false))
   })
 
   it('supports functional ref for Accordion', async () => {
@@ -247,7 +386,7 @@ describe('Accordion', () => {
     expect(details).toHaveAttribute('open')
 
     await user.click(heading)
-    expect(details).not.toHaveAttribute('open')
+    await waitFor(() => expect(details).not.toHaveAttribute('open'))
   })
 
   it('supports RefObject ref for Accordion', async () => {
@@ -271,7 +410,7 @@ describe('Accordion', () => {
     expect(details).toHaveAttribute('open')
 
     await user.click(heading)
-    expect(details).not.toHaveAttribute('open')
+    await waitFor(() => expect(details).not.toHaveAttribute('open'))
   })
 
   it('supports null ref for Accordion', async () => {
@@ -292,7 +431,7 @@ describe('Accordion', () => {
     expect(details).toHaveAttribute('open')
 
     await user.click(heading)
-    expect(details).not.toHaveAttribute('open')
+    await waitFor(() => expect(details).not.toHaveAttribute('open'))
   })
 
   it('supports functional ref for Accordion.Heading', async () => {
@@ -317,7 +456,7 @@ describe('Accordion', () => {
     expect(details).toHaveAttribute('open')
 
     await user.click(summary)
-    expect(details).not.toHaveAttribute('open')
+    await waitFor(() => expect(details).not.toHaveAttribute('open'))
   })
 
   it('supports RefObject ref for Accordion.Heading', async () => {
@@ -341,7 +480,7 @@ describe('Accordion', () => {
     expect(details).toHaveAttribute('open')
 
     await user.click(summary)
-    expect(details).not.toHaveAttribute('open')
+    await waitFor(() => expect(details).not.toHaveAttribute('open'))
   })
 
   it('supports null ref for Accordion.Heading', async () => {
@@ -362,7 +501,7 @@ describe('Accordion', () => {
     expect(details).toHaveAttribute('open')
 
     await user.click(heading)
-    expect(details).not.toHaveAttribute('open')
+    await waitFor(() => expect(details).not.toHaveAttribute('open'))
   })
 
   it('uses semantic HTML structure', () => {
@@ -375,7 +514,11 @@ describe('Accordion', () => {
 
     const details = getByRole('group')
     const summary = getByRole('heading', {name: 'Test heading'}).parentElement as HTMLElement
-    const content = getByText('Test content')
+    const content = getByText('Test content').closest('section')
+
+    if (!content) {
+      throw new Error('Expected accordion content section to be present')
+    }
 
     expect(details.tagName).toBe('DETAILS')
     expect(summary.tagName).toBe('SUMMARY')
@@ -432,7 +575,7 @@ describe('Accordion', () => {
     expect(heading).toHaveTextContent('Test heading')
   })
 
-  it('renders chevron icons when variant is emphasis', () => {
+  it('renders a single animated toggle indicator when variant is emphasis', () => {
     const {container} = render(
       <Accordion variant="emphasis">
         <Accordion.Heading>Test heading</Accordion.Heading>
@@ -440,14 +583,12 @@ describe('Accordion', () => {
       </Accordion>,
     )
 
-    const chevronDown = container.querySelector('.Accordion__summary--collapsed svg')
-    const chevronUp = container.querySelector('.Accordion__summary--expanded svg')
+    const indicator = container.querySelector('.Accordion__summary-toggleIcon')
 
-    expect(chevronDown).toBeInTheDocument()
-    expect(chevronUp).toBeInTheDocument()
+    expect(indicator).toBeInTheDocument()
   })
 
-  it('does not render chevron icons when variant is default', () => {
+  it('renders a single animated toggle indicator when variant is default', () => {
     const {container} = render(
       <Accordion variant="default">
         <Accordion.Heading>Test heading</Accordion.Heading>
@@ -455,11 +596,9 @@ describe('Accordion', () => {
       </Accordion>,
     )
 
-    const chevronDown = container.querySelector('.Accordion__summary--collapsed svg')
-    const chevronUp = container.querySelector('.Accordion__summary--expanded svg')
+    const indicator = container.querySelector('.Accordion__summary-toggleIcon')
 
-    expect(chevronDown).not.toBeInTheDocument()
-    expect(chevronUp).not.toBeInTheDocument()
+    expect(indicator).toBeInTheDocument()
   })
 
   it('forwards additional props to details element', () => {
@@ -494,12 +633,13 @@ describe('Accordion', () => {
       </Accordion>,
     )
 
-    const section = getByText('Test content')
+    const section = getByText('Test content').closest('section')
     expect(section).toHaveAttribute('data-testid', 'content-test')
   })
 
   it('restores focus to summary after closing with Escape key', async () => {
     const user = userEvent.setup()
+
     const {getByRole} = render(
       <Accordion open>
         <Accordion.Heading>Test heading</Accordion.Heading>

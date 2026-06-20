@@ -167,7 +167,7 @@
 }
 
 .segmentedControlButton.active {
-  background-color: var(--base-color-scale-green-5);
+  background-color: var(--base-color-scale-green-6);
   color: var(--base-color-scale-white-0);
 }
 

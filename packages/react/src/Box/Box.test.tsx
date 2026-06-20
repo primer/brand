@@ -250,4 +250,86 @@ describe('Box', () => {
       }
     }
   })
+
+  it('will set the correct styles for uniform border width', () => {
+    for (const width of BoxBorderWidthOptions) {
+      const expectedClass = `Box-borderWidth--${width}`
+
+      const id = `box-borderWidth-${width}`
+
+      const {getByTestId} = render(
+        <Box data-testid={id} borderWidth={width}>
+          {mockText}
+        </Box>,
+      )
+
+      const boxEl = getByTestId(id)
+      expect(boxEl).toHaveClass(expectedClass)
+    }
+  })
+
+  it('will set the correct styles for responsive border width', () => {
+    const viewports = ['narrow', 'regular', 'wide']
+
+    for (const width of BoxBorderWidthOptions) {
+      for (const viewport of viewports) {
+        const expectedClass = `Box-${viewport}-borderWidth--${width}`
+
+        const {getByTestId} = render(
+          <Box
+            data-testid={`box-${viewport}-${width}`}
+            borderWidth={{
+              narrow: width,
+              regular: width,
+              wide: width,
+            }}
+          >
+            {mockText}
+          </Box>,
+        )
+
+        const boxEl = getByTestId(`box-${viewport}-${width}`)
+        expect(boxEl).toHaveClass(expectedClass)
+      }
+    }
+  })
+
+  it('will set the correct styles for border style solid', () => {
+    const {getByTestId} = render(
+      <Box data-testid="box-solid" borderStyle="solid">
+        {mockText}
+      </Box>,
+    )
+
+    const boxEl = getByTestId('box-solid')
+    expect(boxEl).toHaveClass('Box-borderStyle--solid')
+  })
+
+  it('will set the correct styles for border style none', () => {
+    const {getByTestId} = render(
+      <Box data-testid="box-none" borderStyle="none">
+        {mockText}
+      </Box>,
+    )
+
+    const boxEl = getByTestId('box-none')
+    expect(boxEl).toHaveClass('Box-borderStyle--none')
+  })
+
+  it('will apply custom backgroundColor', () => {
+    const customColor = '#ff0000'
+
+    const {getByTestId} = render(
+      <Box data-testid="box-custom-bg" backgroundColor={customColor}>
+        {mockText}
+      </Box>,
+    )
+
+    const boxEl = getByTestId('box-custom-bg')
+    expect(boxEl).toHaveStyle({backgroundColor: customColor})
+
+    for (const color of BoxBackgroundColors) {
+      expect(boxEl).not.toHaveClass(`Box-backgroundColor--${color}`)
+    }
+  })
 })

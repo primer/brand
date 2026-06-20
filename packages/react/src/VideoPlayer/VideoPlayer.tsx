@@ -88,7 +88,7 @@ const Root = forwardRef<HTMLVideoElement, VideoPlayerProps>(
     const showControlsBar = showControlsRow1 || showControlsRow2
 
     return (
-      <div className={styles.VideoPlayer__container} ref={fullscreenRef}>
+      <div data-video-player-container className={styles.VideoPlayer__container} ref={fullscreenRef}>
         <div className={styles.VideoPlayer__overlayContainer}>
           <video
             ref={setVideoElementRef}

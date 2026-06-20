@@ -224,7 +224,7 @@
 
 .IDE--glass .IDE__Editor-tab {
   background: transparent;
-  color: var(--brand-color-text-subtle);
+  color: var(--brand-color-text-muted);
 }
 
 .IDE--glass .IDE__Editor-tab--active {
@@ -242,7 +242,7 @@
 
 .IDE__Editor-tab[disabled] {
   cursor: not-allowed;
-  color: var(--brand-color-text-subtle) !important;
+  color: var(--brand-color-text-muted) !important;
   opacity: 0.7;
 }
 
@@ -335,7 +335,7 @@ img.IDE__Editor-tab-icon {
   display: block;
   padding: 0 var(--base-size-8);
   text-align: right;
-  color: var(--brand-color-text-subtle);
+  color: var(--brand-color-text-muted);
   user-select: none;
   cursor: default;
   white-space: nowrap;
