@@ -63,8 +63,21 @@ import {RiverBreakoutTabs} from '@primer/react-brand'
 
 ```jsx live
 <Section>
-  <RiverBreakoutTabs>
-    <RiverBreakoutTabs.A11yHeading>Breakout with a padded background</RiverBreakoutTabs.A11yHeading>
+  <RiverBreakoutTabs
+    backgroundVisual={
+      <div
+        style={{
+          position: 'absolute',
+          inset: 0,
+          backgroundColor: 'var(--base-color-scale-green-0)',
+          backgroundImage: 'radial-gradient(var(--base-color-scale-green-2) 1px, transparent 3px)',
+          backgroundSize: '10px 10px',
+        }}
+      />
+    }
+    imagePosition="block-end"
+  >
+    <RiverBreakoutTabs.A11yHeading>Breakout with a decorative background</RiverBreakoutTabs.A11yHeading>
 
     <RiverBreakoutTabs.Item>
       <RiverBreakoutTabs.Heading>Plan</RiverBreakoutTabs.Heading>
@@ -72,7 +85,7 @@ import {RiverBreakoutTabs} from '@primer/react-brand'
         <Text>Start from issue context and turn goals into task lists.</Text>
         <Link href="#">Open planning</Link>
       </RiverBreakoutTabs.Content>
-      <RiverBreakoutTabs.Visual imageBackgroundColor="subtle">
+      <RiverBreakoutTabs.Visual>
         <img src="/images/placeholder-1.png" alt="Planning tab visual" />
       </RiverBreakoutTabs.Visual>
     </RiverBreakoutTabs.Item>
@@ -83,7 +96,7 @@ import {RiverBreakoutTabs} from '@primer/react-brand'
         <Text>Carry changes through review and checks to production.</Text>
         <Link href="#">Open delivery flow</Link>
       </RiverBreakoutTabs.Content>
-      <RiverBreakoutTabs.Visual imageBackgroundColor="subtle">
+      <RiverBreakoutTabs.Visual>
         <img src="/images/placeholder-2.png" alt="Delivery tab visual" />
       </RiverBreakoutTabs.Visual>
     </RiverBreakoutTabs.Item>
@@ -95,12 +108,15 @@ import {RiverBreakoutTabs} from '@primer/react-brand'
 
 ### RiverBreakoutTabs <Label>Required</Label>
 
-| Name                   | Type                              | Default | Description                                                                 |
-| :--------------------- | :-------------------------------- | :-----: | :-------------------------------------------------------------------------- |
-| `children`             | `RiverBreakoutTabs.Item[]`        |         | Includes one required `RiverBreakoutTabs.A11yHeading` and one or more items |
-| `defaultSelectedIndex` | `number`                          |   `0`   | Default selected index for uncontrolled mode                                |
-| `selectedIndex`        | `number`                          |         | Selected index for controlled mode                                          |
-| `onChange`             | `(selectedIndex: number) => void` |         | Callback called when selected index changes                                 |
+| Name                        | Type                              |  Default   | Description                                                                                                                        |
+| :-------------------------- | :-------------------------------- | :--------: | :--------------------------------------------------------------------------------------------------------------------------------- |
+| `children`                  | `RiverBreakoutTabs.Item[]`        |            | Includes one required `RiverBreakoutTabs.A11yHeading` and one or more items                                                        |
+| `defaultSelectedIndex`      | `number`                          |    `0`     | Default selected index for uncontrolled mode                                                                                       |
+| `selectedIndex`             | `number`                          |            | Selected index for controlled mode                                                                                                 |
+| `onChange`                  | `(selectedIndex: number) => void` |            | Callback called when selected index changes                                                                                        |
+| `backgroundVisual`          | `ReactNode`                       |            | Decorative `aria-hidden` visual behind the shared visual region; persists across tab changes. Must not contain interactive content |
+| `imagePosition`             | `'center' \| 'block-end'`         | `'center'` | Positions the media over `backgroundVisual`; `block-end` pins it to the bottom edge                                                |
+| `backgroundVisualFullBleed` | `boolean`                         |  `false`   | When `true`, the `backgroundVisual` bleeds out to the gridline edges instead of being inset within them                            |
 
 `RiverBreakoutTabs` extends the HTML `section` element and supports all `section` props.
 
@@ -112,7 +128,7 @@ import {RiverBreakoutTabs} from '@primer/react-brand'
 | `as`       | `'h2' \| 'h3'` | `'h3'`  | Semantic heading level for assistive technologies           |
 | `id`       | `string`       |         | Optional custom ID used for `aria-labelledby` relationships |
 
-`RiverBreakoutTabs.A11yHeading` extends the [`Heading`](/components/Heading) component.
+`RiverBreakoutTabs.A11yHeading` extends the [`Heading`](/typography/Heading) component.
 
 ### RiverBreakoutTabs.Item <Label>Required</Label>
 
@@ -129,7 +145,7 @@ import {RiverBreakoutTabs} from '@primer/react-brand'
 | :--------- | :---------- | :-----: | :---------------- |
 | `children` | `ReactNode` |         | Item heading text |
 
-`RiverBreakoutTabs.Heading` extends the [`Heading`](/components/Heading) component.
+`RiverBreakoutTabs.Heading` extends the [`Heading`](/typography/Heading) component.
 
 ### RiverBreakoutTabs.Content <Label>Required</Label>
 

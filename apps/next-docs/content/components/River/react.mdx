@@ -6,7 +6,7 @@ show-tabs: true
 tab-label: React
 ready: true
 figma: https://www.figma.com/file/BJ95AjraesmRCWsKA013GS/Primer-Brand?node-id=418%3A8416
-source: https://github.com/primer/brand/blob/main/packages/react/src/River/River.tsx
+source: https://github.com/primer/brand/blob/main/packages/react/src/river/River/River.tsx
 storybook: '/brand/storybook/?path=/story/components-river--default'
 ---
 
@@ -243,14 +243,14 @@ The `gridline` variant adds lateral padding to the River component and applies a
 
 ### River.Content and RiverBreakout.Content <Label>Required</Label>
 
-[`Label`](https://primer.style/brand/components/Label), [`Text`](https://primer.style/brand/components/Text),[`Heading`](https://primer.style/brand/components/Heading), [`Link`](https://primer.style/brand/components/Link) are the only `children` accepted. They can be composed in any order, but their rendered output will always be in a predetermined order.
+[`Label`](/components/Label), [`Text`](/typography/Text),[`Heading`](/typography/Heading), [`Link`](/brand/storybook/?path=/story/components-link--default) are the only `children` accepted. They can be composed in any order, but their rendered output will always be in a predetermined order.
 
-| Name        | Type                                                                                                                                                                  | Default | Description                                      |
-| :---------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :-----: | :----------------------------------------------- |
-| `children`  | [`Text`](https://primer.style/brand/components/Text),[`Heading`](https://primer.style/brand/components/Heading), [`Link`](https://primer.style/brand/components/Link) |         | Content that corrosponds to the adjacent visual. |
-| `className` | `string`                                                                                                                                                              |         | Sets a custom class on the root element          |
-| `id`        | `string`                                                                                                                                                              |         | Sets a custom id                                 |
-| `ref`       | `React.RefObject`                                                                                                                                                     |         | Forward a Ref to the underlying DOM node         |
+| Name        | Type                                                                                                                          | Default | Description                                      |
+| :---------- | :---------------------------------------------------------------------------------------------------------------------------- | :-----: | :----------------------------------------------- |
+| `children`  | [`Text`](/typography/Text),[`Heading`](/typography/Heading), [`Link`](/brand/storybook/?path=/story/components-link--default) |         | Content that corresponds to the adjacent visual. |
+| `className` | `string`                                                                                                                      |         | Sets a custom class on the root element          |
+| `id`        | `string`                                                                                                                      |         | Sets a custom id                                 |
+| `ref`       | `React.RefObject`                                                                                                             |         | Forward a Ref to the underlying DOM node         |
 
 ### RiverBreakout
 

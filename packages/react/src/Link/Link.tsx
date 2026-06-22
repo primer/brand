@@ -8,8 +8,20 @@ import styles from './Link.module.css'
 import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/link/colors-with-modes.css'
 
 export const LinkVariants = ['default', 'accent'] as const
-export const LinkSizes = ['medium', 'large'] as const
+export const LinkSizes = ['small', 'medium', 'large'] as const
 export const LinkArrowDirections = ['start', 'end', 'none'] as const
+
+const LinkTextSizes = {
+  small: '100',
+  medium: '200',
+  large: '300',
+} as const
+
+const LinkExternalIconSizes = {
+  small: 16,
+  medium: 16,
+  large: 20,
+} as const
 
 export type LinkProps = {
   /**
@@ -49,11 +61,6 @@ export function Link({
 }: LinkProps) {
   const [isHovered, setIsHovered] = React.useState(false)
   const [isFocused, setIsFocused] = React.useState(false)
-
-  const sizeMap = {
-    medium: '200',
-    large: '300',
-  } as const
 
   const handleMouseEnter = useCallback(
     (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
@@ -106,7 +113,7 @@ export function Link({
         <ExpandableArrow className={styles['Link-arrow']} expanded={isHovered || isFocused} reverse hidden />
       )}
 
-      <Text as="span" size={sizeMap[size]} className={clsx(styles['Link--label'])}>
+      <Text as="span" size={LinkTextSizes[size]} className={clsx(styles['Link--label'])}>
         {children}
       </Text>
 
@@ -114,7 +121,7 @@ export function Link({
         <ExpandableArrow className={styles['Link-arrow']} expanded={isHovered || isFocused} hidden />
       )}
 
-      {isExternal && <LinkExternalIcon size={size === 'large' ? 20 : 16} aria-label="External link" />}
+      {isExternal && <LinkExternalIcon size={LinkExternalIconSizes[size]} aria-label="External link" />}
     </a>
   )
 }
