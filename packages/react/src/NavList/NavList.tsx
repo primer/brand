@@ -222,7 +222,7 @@ const NavListItem = forwardRef(
     const accordionButtonId = useId()
     const childrenArray = Children.toArray(children)
     const subNavChildren = childrenArray.filter(isNavListSubNavElement)
-    const subNav = subNavChildren[0]
+    const subNav = childrenArray.find(isNavListSubNavElement)
     const labelChildren = subNav ? childrenArray.filter(child => child !== subNav) : childrenArray
     const hasLabelContent = Children.toArray(labelChildren).length > 0
     const hasSubNav = Boolean(subNav)
