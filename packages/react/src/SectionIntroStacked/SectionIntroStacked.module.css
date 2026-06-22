@@ -1,11 +1,5 @@
 .SectionIntroStacked {
-  --brand-Grid-spacing-row: var(--base-size-32);
-}
-
-@media screen and (min-width: 48rem) {
-  .SectionIntroStacked {
-    --brand-Grid-spacing-row: var(--base-size-48);
-  }
+  --brand-Grid-spacing-row: var(--base-size-64);
 }
 
 @media screen and (min-width: 48rem) and (max-width: 63.24rem) {
@@ -170,12 +164,12 @@
 .SectionIntroStackedItem__content {
   display: flex;
   flex-direction: column;
-  gap: var(--base-size-8);
+  gap: var(--base-size-12);
   flex: 1;
   min-width: 0;
 }
 
 .SectionIntroStackedItem__icon {
   flex-shrink: 0;
-  border-radius: var(--brand-borderRadius-medium);
+  border-radius: var(--base-size-12);
 }

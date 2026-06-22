@@ -166,7 +166,7 @@ const ItemIcon = ({className, color = 'green', ...props}: SectionIntroStackedIte
     <Icon
       className={clsx(styles['SectionIntroStackedItem__icon'], className)}
       hasBackground
-      size="medium"
+      size="small"
       color={color}
       {...props}
     />
