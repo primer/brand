@@ -70,6 +70,17 @@ test.describe('Visual Comparison: NavList', () => {
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
+  test('NavList / With Visuals', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-navlist-features--with-visuals&viewMode=story',
+      {waitUntil: 'networkidle'},
+    )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+    await page.waitForTimeout(500)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
   test('NavList / Dark Mode', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-navlist-features--dark-mode&viewMode=story',
