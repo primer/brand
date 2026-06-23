@@ -54,7 +54,7 @@
   font-size: var(--brand-text-size-100);
   font-weight: var(--brand-text-weight-500);
   line-height: var(--brand-text-lineHeight-100);
-  letter-spacing: 0.01em;
+  letter-spacing: var(--brand-text-letterSpacing-100);
   text-decoration: none !important; /* dotcom override */
   transition: background-color var(--brand-animation-duration-fast) var(--brand-animation-easing-default),
     color var(--brand-animation-duration-fast) var(--brand-animation-easing-default);
@@ -110,14 +110,12 @@
   background-color: var(--brand-color-canvas-subtle);
 }
 
-.NavList__link:focus-visible,
-.NavList__accordionButton:focus-visible {
+:is(.NavList__link, .NavList__accordionButton):focus-visible {
   outline: var(--brand-borderWidth-thick) solid var(--brand-color-focus);
   outline-offset: var(--base-size-2);
 }
 
-.NavList__subNav .NavList__link:focus-visible,
-.NavList__subNav .NavList__accordionButton:focus-visible {
+.NavList__subNav :is(.NavList__link, .NavList__accordionButton):focus-visible {
   outline-offset: calc(-1 * var(--base-size-2));
 }
 
@@ -279,8 +277,7 @@
   z-index: 1;
 }
 
-.NavList__item--level-1 > .NavList__itemContent .NavList__accordionButton:not(:disabled):hover::after,
-.NavList__item--level-1 > .NavList__itemContent .NavList__accordionButton:not(:disabled):active::after,
+.NavList__item--level-1 > .NavList__itemContent .NavList__accordionButton:not(:disabled):is(:hover, :active)::after,
 .NavList__item--level-1:has(
     > .NavList__itemContent .NavList__accordionButton[aria-expanded='false']:not(:disabled)
   ):has(> .NavList__subNav [aria-current]:not([aria-current='false']))
@@ -302,9 +299,7 @@
   margin-inline-start: auto;
 }
 
-.NavList__item--level-2 > .NavList__itemContent,
-.NavList__item--level-3 > .NavList__itemContent,
-.NavList__item--level-4 > .NavList__itemContent {
+.NavList__item:is(.NavList__item--level-2, .NavList__item--level-3, .NavList__item--level-4) > .NavList__itemContent {
   padding-block: calc(var(--base-size-8) + var(--base-size-2));
   padding-inline-end: var(--base-size-16);
 }
@@ -343,24 +338,23 @@
   padding-inline-start: calc(var(--base-size-64) + var(--base-size-8));
 }
 
-.NavList__item--level-2 > .NavList__itemContent .NavList__toggleIcon,
-.NavList__item--level-3 > .NavList__itemContent .NavList__toggleIcon,
-.NavList__item--level-4 > .NavList__itemContent .NavList__toggleIcon {
+.NavList__item:is(.NavList__item--level-2, .NavList__item--level-3, .NavList__item--level-4)
+  > .NavList__itemContent
+  .NavList__toggleIcon {
   order: 1;
 }
 
-.NavList__item--level-2 > .NavList__itemContent .NavList__accordionButton,
-.NavList__item--level-3 > .NavList__itemContent .NavList__accordionButton,
-.NavList__item--level-4 > .NavList__itemContent .NavList__accordionButton {
+.NavList__item:is(.NavList__item--level-2, .NavList__item--level-3, .NavList__item--level-4)
+  > .NavList__itemContent
+  .NavList__accordionButton {
   min-height: var(--base-size-32);
   margin-block: calc(-1 * var(--base-size-8));
   border-radius: var(--brand-borderRadius-small);
 }
 
-.NavList__item--level-2 > .NavList__itemContent .NavList__link,
-.NavList__item--level-3 > .NavList__itemContent .NavList__link,
-.NavList__item--level-4 > .NavList__itemContent .NavList__link,
-.NavList__item--level-5 > .NavList__itemContent .NavList__link {
+.NavList__item:is(.NavList__item--level-2, .NavList__item--level-3, .NavList__item--level-4, .NavList__item--level-5)
+  > .NavList__itemContent
+  .NavList__link {
   order: 2;
   font-size: var(--brand-text-size-100);
   line-height: var(--brand-text-lineHeight-100);
