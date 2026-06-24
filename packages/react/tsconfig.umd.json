@@ -6,8 +6,5 @@
     "declaration": true,
     "emitDeclarationOnly": true
   },
-  // Allowlist: emit declarations only for what the public entry (index.ts) imports — the same
-  // graph webpack bundles — so internal-only folders (recipes, story/test fixtures) never ship.
-  // src/*.d.ts re-adds the ambient global + JSX declarations, which nothing imports.
   "include": ["src/index.ts", "src/*.d.ts"]
 }
