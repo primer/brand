@@ -88,8 +88,7 @@ import {toString as mdToString} from 'mdast-util-to-string'
     const renderers = new Map()
     const tsxPath = join(sourceDir, 'react.tsx')
     if (existsSync(tsxPath)) {
-      // TypeScript, not Markdown, so a small regex over the source is appropriate:
-      //   export const ButtonVariantsProp = () => <PropTableValues values={['a', 'b']} />
+      // matches lines like: export const ButtonVariantsProp = () => <PropTableValues values={['a', 'b']} />
       const pattern = /export const (\w+)\s*=\s*\(\)\s*=>\s*\(?\s*<PropTableValues\s+values=\{(\[[^\]]*\])\}/g
       const tsxSource = readFileSync(tsxPath, 'utf8')
       for (let match = pattern.exec(tsxSource); match; match = pattern.exec(tsxSource)) {
