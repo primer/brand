@@ -49,6 +49,11 @@ module.exports = {
             loader: 'ts-loader',
             options: {
               configFile: path.resolve(__dirname, 'tsconfig.build.json'),
+              // Declarations come from the dedicated allowlist pass (tsconfig.umd.json), so
+              // webpack only bundles JS — it must not also emit the unscoped whole-tree .d.ts.
+              compilerOptions: {
+                declaration: false,
+              },
             },
           },
         ],
