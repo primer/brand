@@ -76,7 +76,7 @@
   overflow: hidden;
   text-overflow: ellipsis;
   font-weight: var(--base-text-weight-normal);
-  line-height: 0.85;
+  line-height: var(--brand-text-lineHeight-100);
   white-space: nowrap;
   letter-spacing: var(--brand-text-letterSpacing-100);
 }
