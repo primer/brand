@@ -133,16 +133,15 @@ const hardcodedValues: Rule = {
           .join(', ')}). Use Primer Brand color tokens — see \`primer_brand_tokens\`.`,
       })
     }
-    const px = [...new Set([...code.matchAll(/\b(\d{2,})px\b/g)].map(match => match[0]))].filter(
-      value => value !== '1px',
-    )
+
+    const px = [...new Set([...code.matchAll(/\b(\d+)px\b/g)].map(match => match[0]))].filter(value => value !== '0px')
     if (px.length > 0) {
       findings.push({
         severity: 'warning',
         rule: 'hardcoded-px',
         message: `Hardcoded pixel sizes found (${px
           .slice(0, 4)
-          .join(', ')}). Use size/space tokens — see \`primer_brand_tokens\`.`,
+          .join(', ')}). Use size, spacing, or border-width tokens — see \`primer_brand_tokens\`.`,
       })
     }
     return findings
@@ -234,7 +233,9 @@ const headingExplicitSize: Rule = {
 /** Credit for actually importing approved brand components — surfaced as guidance, not a failure. */
 export function brandComponentsUsed(code: string, catalog: Catalog): CatalogComponent[] {
   const imported = new Set<string>()
-  for (const block of code.matchAll(/import\s*(?:type\s*)?\{([^}]*)\}\s*from\s*['"]@primer\/react-brand['"]/g)) {
+  for (const block of code.matchAll(
+    /import\s*(?:type\s*)?\{([^}]*)\}\s*from\s*['"]@primer\/react-brand(?:\/[^'"]+)?['"]/g,
+  )) {
     for (const part of (block[1] ?? '').split(',')) {
       const name = part
         .trim()

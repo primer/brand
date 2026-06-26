@@ -27,7 +27,7 @@
   "packageManager": "npm@11.11.0",
   "scripts": {
     "build": "npm run clean --workspaces --if-present && npm run build:lib && npm run build:next-docs && npm run build:storybook",
-    "build:lib": "npm run build --workspace=packages/design-tokens --workspace=packages/react --workspace=packages/css",
+    "build:lib": "npm run build --workspace=packages/design-tokens --workspace=packages/react --workspace=packages/css --workspace=packages/mcp",
     "build:next-docs": "cd apps/next-docs && npm run build:prod",
     "build:storybook": "npm run build --workspace=apps/storybook",
     "check": "npm run check --workspaces --if-present",

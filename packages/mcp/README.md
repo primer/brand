@@ -9,7 +9,7 @@ It is a version-aware, `stdio` (local) server which reads the docs and metadata 
 | Tool                     | What it does                                                                                                                      |
 | ------------------------ | --------------------------------------------------------------------------------------------------------------------------------- |
 | `primer_brand_setup`     | Framework-aware setup (Auto-installs `ThemeProvider`, Mona Sans fonts, styles, `'use client'` for RSC) - the parts agents forget. |
-| `primer_brand_component` | List components, or get one component's API: props, allowed values, sub-components, examples, accessibility.                      |
+| `primer_brand_component` | List components, or get one component's API: props, allowed values, sub-components, and examples.                                 |
 | `primer_brand_examples`  | Ranked, copy-and-adapt examples for a goal, taken from the library's own tested stories. Falls back to a default set.             |
 | `primer_brand_tokens`    | Resolve design tokens by intent (color, space, typography) to CSS variables and values.                                           |
 | `primer_brand_asset`     | Find Octicons (`@primer/octicons-react`) and Octovisuals (`@primer/octovisuals-react`) as code imports.                           |

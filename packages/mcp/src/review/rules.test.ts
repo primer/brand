@@ -38,6 +38,13 @@ describe('primer_brand_review rules', () => {
     expect(ids).toContain('hardcoded-px')
   })
 
+  it('flags hardcoded px including 1px/2px border widths, but not 0px', () => {
+    expect(ruleIds(review('const s = {gap: "8px"}'))).toContain('hardcoded-px')
+    expect(ruleIds(review('const s = {borderWidth: "1px"}'))).toContain('hardcoded-px')
+    expect(ruleIds(review('const s = {borderWidth: "2px"}'))).toContain('hardcoded-px')
+    expect(ruleIds(review('const s = {inset: "0px"}'))).not.toContain('hardcoded-px')
+  })
+
   it('flags raw card divs and placeholder copy', () => {
     const ids = ruleIds(review('<div className="card">lorem ipsum dolor</div>'))
     expect(ids).toContain('raw-card-div')
@@ -65,6 +72,11 @@ describe('primer_brand_review rules', () => {
   it('reports which approved brand components were imported', () => {
     const used = brandComponentsUsed("import {Hero, CTABanner} from '@primer/react-brand'", makeCatalog())
     expect(used.map(component => component.name).sort()).toEqual(['CTABanner', 'Hero'])
+  })
+
+  it('recognizes brand components imported from the /esm subpath', () => {
+    const used = brandComponentsUsed("import {Hero} from '@primer/react-brand/esm'", makeCatalog())
+    expect(used.map(component => component.name)).toEqual(['Hero'])
   })
 })
 

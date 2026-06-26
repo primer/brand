@@ -30,9 +30,10 @@ function add<Input>(server: McpServer, tool: ToolModule<Input>, ctx: ToolContext
           isError: result.isError ?? false,
         }
       } catch (error) {
-        ctx.logger.error(`tool ${tool.name} failed: ${(error as Error).message}`)
+        const message = error instanceof Error ? error.message : String(error)
+        ctx.logger.error(`tool ${tool.name} failed: ${message}`)
         return {
-          content: [{type: 'text' as const, text: `The ${tool.name} tool failed: ${(error as Error).message}`}],
+          content: [{type: 'text' as const, text: `The ${tool.name} tool failed: ${message}`}],
           isError: true,
         }
       }
