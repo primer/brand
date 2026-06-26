@@ -49,3 +49,6 @@ jobs:
 
       - name: Run unit tests
         run: npm run test
+
+      - name: Run MCP server smoke tests
+        run: npm run smoke --workspace=packages/mcp
