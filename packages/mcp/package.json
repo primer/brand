@@ -23,7 +23,7 @@
   "author": "GitHub, Inc.",
   "type": "module",
   "bin": {
-    "primer-brand-mcp": "./dist/index.js"
+    "primer-brand-mcp": "dist/index.js"
   },
   "exports": {
     ".": {
