@@ -298,98 +298,115 @@ describe('NavList', () => {
   })
 
   it('prevents expandable items past level five', () => {
-    expect(() =>
-      render(
-        <NavList>
-          <NavList.Item defaultExpanded>
-            One
-            <NavList.SubNav>
-              <NavList.Item defaultExpanded>
-                Two
-                <NavList.SubNav>
-                  <NavList.Item defaultExpanded>
-                    Three
-                    <NavList.SubNav>
-                      <NavList.Item>
-                        Four
-                        <NavList.SubNav>
-                          <NavList.Item>
-                            Five
-                            <NavList.SubNav>
-                              <NavList.Item href="/six">Six</NavList.Item>
-                            </NavList.SubNav>
-                          </NavList.Item>
-                        </NavList.SubNav>
-                      </NavList.Item>
-                    </NavList.SubNav>
-                  </NavList.Item>
-                </NavList.SubNav>
-              </NavList.Item>
-            </NavList.SubNav>
-          </NavList.Item>
-        </NavList>,
-      ),
-    ).toThrow('NavList supports up to 5 levels')
+    const warn = jest.spyOn(console, 'warn').mockImplementation(() => {})
+    const {queryByText} = render(
+      <NavList>
+        <NavList.Item defaultExpanded>
+          One
+          <NavList.SubNav>
+            <NavList.Item defaultExpanded>
+              Two
+              <NavList.SubNav>
+                <NavList.Item defaultExpanded>
+                  Three
+                  <NavList.SubNav>
+                    <NavList.Item>
+                      Four
+                      <NavList.SubNav>
+                        <NavList.Item>
+                          Five
+                          <NavList.SubNav>
+                            <NavList.Item href="/six">Six</NavList.Item>
+                          </NavList.SubNav>
+                        </NavList.Item>
+                      </NavList.SubNav>
+                    </NavList.Item>
+                  </NavList.SubNav>
+                </NavList.Item>
+              </NavList.SubNav>
+            </NavList.Item>
+          </NavList.SubNav>
+        </NavList.Item>
+      </NavList>,
+    )
+
+    expect(warn).toHaveBeenCalledWith('NavList supports up to 5 levels. Level 5 items cannot contain NavList.SubNav.')
+    expect(queryByText('Five')).not.toBeInTheDocument()
+    expect(queryByText('Six')).not.toBeInTheDocument()
   })
 
   it('requires expandable items to include label content', () => {
-    expect(() =>
-      render(
-        <NavList>
-          <NavList.Item>
-            <NavList.SubNav>
-              <NavList.Item href="/docs/actions">Actions</NavList.Item>
-            </NavList.SubNav>
-          </NavList.Item>
-        </NavList>,
-      ),
-    ).toThrow('NavList.Item with NavList.SubNav requires label content.')
+    const warn = jest.spyOn(console, 'warn').mockImplementation(() => {})
+    const {queryByRole} = render(
+      <NavList>
+        <NavList.Item>
+          <NavList.SubNav>
+            <NavList.Item href="/docs/actions">Actions</NavList.Item>
+          </NavList.SubNav>
+        </NavList.Item>
+      </NavList>,
+    )
+
+    expect(warn).toHaveBeenCalledWith('NavList.Item with NavList.SubNav requires label content.')
+    expect(queryByRole('link', {name: 'Actions'})).not.toBeInTheDocument()
   })
 
   it('prevents expandable items from including multiple nested lists', () => {
-    expect(() =>
-      render(
-        <NavList>
-          <NavList.Item>
-            Docs
-            <NavList.SubNav>
-              <NavList.Item href="/docs/actions">Actions</NavList.Item>
-            </NavList.SubNav>
-            <NavList.SubNav>
-              <NavList.Item href="/docs/packages">Packages</NavList.Item>
-            </NavList.SubNav>
-          </NavList.Item>
-        </NavList>,
-      ),
-    ).toThrow('NavList.Item supports only one NavList.SubNav child.')
+    const warn = jest.spyOn(console, 'warn').mockImplementation(() => {})
+    const {queryByRole} = render(
+      <NavList>
+        <NavList.Item>
+          Docs
+          <NavList.SubNav>
+            <NavList.Item href="/docs/actions">Actions</NavList.Item>
+          </NavList.SubNav>
+          <NavList.SubNav>
+            <NavList.Item href="/docs/packages">Packages</NavList.Item>
+          </NavList.SubNav>
+        </NavList.Item>
+      </NavList>,
+    )
+
+    expect(warn).toHaveBeenCalledWith('NavList.Item supports only one NavList.SubNav child.')
+    expect(queryByRole('button', {name: 'Docs'})).not.toBeInTheDocument()
   })
 
   it('prevents expandable items from using link-only props', () => {
-    expect(() =>
-      render(
-        <NavList>
-          <NavList.Item href="/docs">
-            Docs
-            <NavList.SubNav>
-              <NavList.Item href="/docs/actions">Actions</NavList.Item>
-            </NavList.SubNav>
-          </NavList.Item>
-        </NavList>,
-      ),
-    ).toThrow('NavList.Item with NavList.SubNav cannot include href or as')
+    const warn = jest.spyOn(console, 'warn').mockImplementation(() => {})
+    const {queryByRole} = render(
+      <NavList>
+        <NavList.Item href="/docs">
+          Docs
+          <NavList.SubNav>
+            <NavList.Item href="/docs/actions">Actions</NavList.Item>
+          </NavList.SubNav>
+        </NavList.Item>
+      </NavList>,
+    )
 
-    expect(() =>
-      render(
-        <NavList>
-          <NavList.Item as="div">
-            Docs
-            <NavList.SubNav>
-              <NavList.Item href="/docs/actions">Actions</NavList.Item>
-            </NavList.SubNav>
-          </NavList.Item>
-        </NavList>,
-      ),
-    ).toThrow('NavList.Item with NavList.SubNav cannot include href or as')
+    expect(warn).toHaveBeenCalledWith(
+      'NavList.Item with NavList.SubNav cannot include href or as because expandable items render as buttons.',
+    )
+    expect(queryByRole('button', {name: 'Docs'})).not.toBeInTheDocument()
+
+    cleanup()
+    warn.mockClear()
+
+    const {queryByRole: queryByRoleAfterAs} = render(
+      <NavList>
+        <NavList.Item as="div">
+          Docs
+          <NavList.SubNav>
+            <NavList.Item href="/docs/actions">Actions</NavList.Item>
+          </NavList.SubNav>
+        </NavList.Item>
+      </NavList>,
+    )
+
+    expect(warn).toHaveBeenCalledWith(
+      'NavList.Item with NavList.SubNav cannot include href or as because expandable items render as buttons.',
+    )
+    expect(queryByRoleAfterAs('button', {name: 'Docs'})).not.toBeInTheDocument()
   })
 
   it('expands and collapses nested lists', async () => {

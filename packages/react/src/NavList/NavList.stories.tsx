@@ -1,5 +1,6 @@
 import React from 'react'
 import type {Meta, StoryObj} from '@storybook/react'
+import {useTranslation} from 'react-i18next'
 
 import {NavList} from '.'
 
@@ -20,69 +21,107 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof NavList>
 
-const ArticleLabels = [
-  'Overview',
-  'Quickstart',
-  'Install GitHub Copilot',
-  'Configure your editor',
-  'Manage policies',
-  'Troubleshooting',
+const ArticleLabelKeys = [
+  'overview',
+  'quickstart',
+  'installGitHubCopilot',
+  'configureYourEditor',
+  'managePolicies',
+  'troubleshooting',
 ]
 
-const renderArticleItems = (labels = ArticleLabels, currentLabel?: string) =>
-  labels.map((label, index) => (
-    <NavList.Item key={`${label}-${index}`} href="#" aria-current={label === currentLabel ? 'page' : undefined}>
-      {label}
-    </NavList.Item>
-  ))
-
 export const Default: Story = {
-  render: args => <NavList {...args}>{renderArticleItems(ArticleLabels, 'Overview')}</NavList>,
+  render: function Default(args) {
+    const {t} = useTranslation('NavList')
+
+    return (
+      <NavList {...args}>
+        {ArticleLabelKeys.map(labelKey => (
+          <NavList.Item key={labelKey} href="#" aria-current={labelKey === 'overview' ? 'page' : undefined}>
+            {t(labelKey)}
+          </NavList.Item>
+        ))}
+      </NavList>
+    )
+  },
 }
 
 export const Playground: Story = {
-  render: args => (
-    <NavList {...args}>
-      <NavList.Item defaultExpanded>
-        GitHub Copilot
-        <NavList.SubNav>
-          {renderArticleItems(['Overview', 'What is GitHub Copilot?'])}
-          <NavList.Item defaultExpanded>
-            Guides
-            <NavList.SubNav>
-              <NavList.Item defaultExpanded>
-                Agents
-                <NavList.SubNav>
-                  {renderArticleItems(
-                    ['Build an agent', 'Customize an agent', 'Debug an agent', 'Deploy an agent'],
-                    'Build an agent',
-                  )}
-                </NavList.SubNav>
+  render: function Playground(args) {
+    const {t} = useTranslation('NavList')
+
+    return (
+      <NavList {...args}>
+        <NavList.Item defaultExpanded>
+          {t('githubCopilot')}
+          <NavList.SubNav>
+            {['overview', 'whatIsGitHubCopilot'].map(labelKey => (
+              <NavList.Item key={labelKey} href="#">
+                {t(labelKey)}
               </NavList.Item>
-              <NavList.Item>
-                Extensions
-                <NavList.SubNav>
-                  {renderArticleItems(['Install an extension', 'Publish an extension', 'Manage permissions'])}
-                </NavList.SubNav>
+            ))}
+            <NavList.Item defaultExpanded>
+              {t('guides')}
+              <NavList.SubNav>
+                <NavList.Item defaultExpanded>
+                  {t('agents')}
+                  <NavList.SubNav>
+                    {['buildAnAgent', 'customizeAnAgent', 'debugAnAgent', 'deployAnAgent'].map(labelKey => (
+                      <NavList.Item
+                        key={labelKey}
+                        href="#"
+                        aria-current={labelKey === 'buildAnAgent' ? 'page' : undefined}
+                      >
+                        {t(labelKey)}
+                      </NavList.Item>
+                    ))}
+                  </NavList.SubNav>
+                </NavList.Item>
+                <NavList.Item>
+                  {t('extensions')}
+                  <NavList.SubNav>
+                    {['installAnExtension', 'publishAnExtension', 'managePermissions'].map(labelKey => (
+                      <NavList.Item key={labelKey} href="#">
+                        {t(labelKey)}
+                      </NavList.Item>
+                    ))}
+                  </NavList.SubNav>
+                </NavList.Item>
+              </NavList.SubNav>
+            </NavList.Item>
+          </NavList.SubNav>
+        </NavList.Item>
+        <NavList.Item>
+          {t('codeReview')}
+          <NavList.SubNav>
+            {['overview', 'reviewPullRequests', 'configureRulesets', 'useSuggestedChanges'].map(labelKey => (
+              <NavList.Item key={labelKey} href="#">
+                {t(labelKey)}
               </NavList.Item>
-            </NavList.SubNav>
-          </NavList.Item>
-        </NavList.SubNav>
-      </NavList.Item>
-      <NavList.Item>
-        Code review
-        <NavList.SubNav>
-          {renderArticleItems(['Overview', 'Review pull requests', 'Configure rulesets', 'Use suggested changes'])}
-        </NavList.SubNav>
-      </NavList.Item>
-      <NavList.Item defaultExpanded>
-        Resources
-        <NavList.SubNav>{renderArticleItems(['Changelog', 'API reference', 'REST API', 'GraphQL API'])}</NavList.SubNav>
-      </NavList.Item>
-      <NavList.Item>
-        Security
-        <NavList.SubNav>{renderArticleItems(['Overview', 'Secret scanning', 'Code scanning'])}</NavList.SubNav>
-      </NavList.Item>
-    </NavList>
-  ),
+            ))}
+          </NavList.SubNav>
+        </NavList.Item>
+        <NavList.Item defaultExpanded>
+          {t('resources')}
+          <NavList.SubNav>
+            {['changelog', 'apiReference', 'restApi', 'graphqlApi'].map(labelKey => (
+              <NavList.Item key={labelKey} href="#">
+                {t(labelKey)}
+              </NavList.Item>
+            ))}
+          </NavList.SubNav>
+        </NavList.Item>
+        <NavList.Item>
+          {t('security')}
+          <NavList.SubNav>
+            {['overview', 'secretScanning', 'codeScanning'].map(labelKey => (
+              <NavList.Item key={labelKey} href="#">
+                {t(labelKey)}
+              </NavList.Item>
+            ))}
+          </NavList.SubNav>
+        </NavList.Item>
+      </NavList>
+    )
+  },
 }

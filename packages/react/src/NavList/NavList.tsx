@@ -1,11 +1,16 @@
 import React, {
   Children,
+  createContext,
   forwardRef,
   isValidElement,
   useCallback,
+  useContext,
   useEffect,
+  useMemo,
+  useRef,
   useState,
   type AriaAttributes,
+  type MutableRefObject,
   type PropsWithChildren,
   type ReactElement,
   type ReactNode,
@@ -13,9 +18,10 @@ import React, {
 } from 'react'
 
 import {clsx} from 'clsx'
-import {TriangleDownIcon} from '@primer/octicons-react'
+import {TriangleDownIcon, type Icon} from '@primer/octicons-react'
 import type {BaseProps} from '../component-helpers'
 import {useId} from '../hooks/useId'
+import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/nav-list/colors-with-modes.css'
 
 /** * Main stylesheet (as a CSS Module) */
 import styles from './NavList.module.css'
@@ -58,8 +64,8 @@ export type NavListRootProps = {
 type NavListLevel = 1 | 2 | 3 | 4 | 5
 
 const MaxNavListLevel = 5
-const NavListLevelContext = React.createContext<NavListLevel>(1)
-const NavListSubNavContext = React.createContext<{
+const NavListLevelContext = createContext<NavListLevel>(1)
+const NavListSubNavContext = createContext<{
   expanded: boolean
   labelledBy?: string
   level: NavListLevel
@@ -73,7 +79,7 @@ const NavListRoot = forwardRef<HTMLElement, NavListRootProps>(
     {children, className, 'aria-label': ariaLabel, 'aria-labelledby': ariaLabelledBy, 'data-testid': testId, ...rest},
     ref,
   ) => {
-    const hasTopLevelSubNav = Children.toArray(children).some(childHasDirectSubNav)
+    const hasTopLevelSubNav = useMemo(() => Children.toArray(children).some(childHasDirectSubNav), [children])
     const rootLevel = hasTopLevelSubNav ? 1 : 2
 
     return (
@@ -98,7 +104,7 @@ const NavListRoot = forwardRef<HTMLElement, NavListRootProps>(
   },
 )
 
-type Visual = ReactElement | React.ElementType
+type Visual = ReactElement | React.ElementType | Icon
 
 type ItemOwnProps = {
   /**
@@ -136,67 +142,6 @@ export type NavListItemProps<C extends React.ElementType = 'a'> = {
 
 type NavListSubNavElement = ReactElement<NavListSubNavProps>
 
-type ElementWithChildren = ReactElement<{children?: ReactNode}>
-type ElementWithCurrent = ReactElement<{children?: ReactNode; 'aria-current'?: AriaAttributes['aria-current']}>
-
-function isNavListSubNavElement(node: ReactNode): node is NavListSubNavElement {
-  return isValidElement<NavListSubNavProps>(node) && node.type === NavListSubNav
-}
-
-function isCurrentValue(value: AriaAttributes['aria-current']) {
-  return Boolean(value) && value !== 'false'
-}
-
-function hasCurrentDescendant(node: ReactNode): boolean {
-  return Children.toArray(node).some(child => {
-    if (!isValidElement(child)) return false
-
-    const currentChild = child as ElementWithCurrent
-    if (isCurrentValue(currentChild.props['aria-current'])) return true
-
-    return hasCurrentDescendant((child as ElementWithChildren).props.children)
-  })
-}
-
-function assignRef<T>(ref: React.Ref<T> | undefined, value: T | null) {
-  if (!ref) return
-
-  if (typeof ref === 'function') {
-    ref(value)
-    return
-  }
-
-  ;(ref as React.MutableRefObject<T | null>).current = value
-}
-
-function childHasDirectSubNav(node: ReactNode): boolean {
-  if (!isValidElement(node)) return false
-
-  if (node.type === React.Fragment) {
-    return Children.toArray((node as ElementWithChildren).props.children).some(childHasDirectSubNav)
-  }
-
-  return Children.toArray((node as ElementWithChildren).props.children).some(isNavListSubNavElement)
-}
-
-function renderVisual(visual: Visual | undefined, className: string) {
-  if (!visual) return null
-
-  const visualElement = isValidElement(visual) ? visual : React.createElement(visual)
-
-  if (!isValidElement<{className?: string; ['aria-hidden']?: string; focusable?: string}>(visualElement)) return null
-
-  return (
-    <span className={className}>
-      {React.cloneElement(visualElement, {
-        className: clsx(visualElement.props.className),
-        'aria-hidden': 'true',
-        focusable: 'false',
-      })}
-    </span>
-  )
-}
-
 const NavListItem = forwardRef(
   <C extends React.ElementType = 'a'>(
     {
@@ -217,19 +162,22 @@ const NavListItem = forwardRef(
     ref: Ref<HTMLElement>,
   ) => {
     const Component = as || 'a'
-    const level = React.useContext(NavListLevelContext)
+    const level = useContext(NavListLevelContext)
     const subNavId = useId()
     const accordionButtonId = useId()
-    const childrenArray = Children.toArray(children)
-    const subNavChildren = childrenArray.filter(isNavListSubNavElement)
-    const subNav = childrenArray.find(isNavListSubNavElement)
-    const labelChildren = subNav ? childrenArray.filter(child => child !== subNav) : childrenArray
-    const hasLabelContent = Children.toArray(labelChildren).length > 0
+    const childrenArray = useMemo(() => Children.toArray(children), [children])
+    const subNavChildren = useMemo(() => childrenArray.filter(isNavListSubNavElement), [childrenArray])
+    const subNav = useMemo(() => childrenArray.find(isNavListSubNavElement), [childrenArray])
+    const labelChildren = useMemo(
+      () => (subNav ? childrenArray.filter(child => child !== subNav) : childrenArray),
+      [childrenArray, subNav],
+    )
+    const hasLabelContent = labelChildren.length > 0
     const hasSubNav = Boolean(subNav)
     const canExpand = level < MaxNavListLevel
     const isLeafItem = !hasSubNav
     const controlledSubNavId = subNav?.props.id ?? subNavId
-    const hasCurrentSubNavItem = hasCurrentDescendant(subNav?.props.children)
+    const hasCurrentSubNavItem = useMemo(() => hasCurrentDescendant(subNav?.props.children), [subNav?.props.children])
     const isControlled = expanded !== undefined
     const [uncontrolledExpanded, setUncontrolledExpanded] = useState(defaultExpanded || hasCurrentSubNavItem)
     const isExpanded = Boolean(isControlled ? expanded : uncontrolledExpanded)
@@ -241,24 +189,14 @@ const NavListItem = forwardRef(
       href?: string
     }
     const controlledAccordionButtonId = accordionButtonIdProp ?? accordionButtonId
-
-    if (hasSubNav && !canExpand) {
-      throw new Error('NavList supports up to 5 levels. Level 5 items cannot contain NavList.SubNav.')
-    }
-
-    if (subNavChildren.length > 1) {
-      throw new Error('NavList.Item supports only one NavList.SubNav child.')
-    }
-
-    if (hasSubNav && !hasLabelContent) {
-      throw new Error('NavList.Item with NavList.SubNav requires label content.')
-    }
-
-    if (hasSubNav && (href !== undefined || as !== undefined)) {
-      throw new Error(
-        'NavList.Item with NavList.SubNav cannot include href or as because expandable items render as buttons.',
-      )
-    }
+    const invalidMessage = getInvalidNavListItemMessage({
+      as,
+      canExpand,
+      hasLabelContent,
+      hasSubNav,
+      href,
+      subNavCount: subNavChildren.length,
+    })
 
     useEffect(() => {
       if (hasCurrentSubNavItem && !isControlled) {
@@ -315,6 +253,11 @@ const NavListItem = forwardRef(
       [disabled, onClick, toggleExpanded],
     )
 
+    if (invalidMessage) {
+      warnInvalidNavListItem(invalidMessage)
+      return null
+    }
+
     const labelArea = (
       <span className={styles.NavList__labelArea}>
         {renderVisual(leadingVisual, styles.NavList__leadingVisual)}
@@ -331,6 +274,7 @@ const NavListItem = forwardRef(
           isLeafItem && styles['NavList__item--leaf'],
         )}
         data-testid={testId || testIds.item}
+        data-has-current-descendant={hasCurrentSubNavItem ? 'true' : undefined}
       >
         <div className={styles.NavList__itemContent}>
           {hasSubNav && canExpand ? (
@@ -391,14 +335,14 @@ export type NavListSubNavProps = {
 
 const NavListSubNav = forwardRef<HTMLUListElement, NavListSubNavProps>(
   ({children, className, 'aria-labelledby': ariaLabelledBy, 'data-testid': testId, ...rest}, ref) => {
-    const {expanded, labelledBy, level} = React.useContext(NavListSubNavContext)
-    const subNavRef = React.useRef<HTMLUListElement | null>(null)
+    const {expanded, labelledBy, level} = useContext(NavListSubNavContext)
+    const subNavRef = useRef<HTMLUListElement | null>(null)
 
-    const setSubNavHeight = React.useCallback((subNav: HTMLUListElement) => {
+    const setSubNavHeight = useCallback((subNav: HTMLUListElement) => {
       subNav.style.setProperty('--brand-NavList-subNav-height', `${subNav.scrollHeight}px`)
     }, [])
 
-    const setSubNavAndAncestorHeights = React.useCallback(() => {
+    const setSubNavAndAncestorHeights = useCallback(() => {
       let subNav = subNavRef.current
 
       while (subNav) {
@@ -407,7 +351,7 @@ const NavListSubNav = forwardRef<HTMLUListElement, NavListSubNavProps>(
       }
     }, [setSubNavHeight])
 
-    const setSubNavRef = React.useCallback(
+    const setSubNavRef = useCallback(
       (node: HTMLUListElement | null) => {
         subNavRef.current = node
         assignRef(ref, node)
@@ -415,11 +359,15 @@ const NavListSubNav = forwardRef<HTMLUListElement, NavListSubNavProps>(
       [ref],
     )
 
-    React.useEffect(() => {
+    useEffect(() => {
       setSubNavAndAncestorHeights()
     }, [children, expanded, setSubNavAndAncestorHeights])
 
-    React.useEffect(() => {
+    useEffect(() => {
+      subNavRef.current?.toggleAttribute('inert', !expanded)
+    }, [expanded])
+
+    useEffect(() => {
       const subNav = subNavRef.current
 
       if (!subNav || typeof ResizeObserver === 'undefined') {
@@ -443,7 +391,6 @@ const NavListSubNav = forwardRef<HTMLUListElement, NavListSubNavProps>(
         aria-hidden={expanded ? undefined : 'true'}
         data-testid={testId || testIds.subNav}
         data-expanded={expanded ? 'true' : 'false'}
-        inert={!expanded}
       >
         <NavListLevelContext.Provider value={level}>{children}</NavListLevelContext.Provider>
       </ul>
@@ -460,3 +407,103 @@ export const NavList = Object.assign(NavListRoot, {
   SubNav: NavListSubNav,
   testIds,
 })
+
+type ElementWithChildren = ReactElement<{children?: ReactNode}>
+type ElementWithCurrent = ReactElement<{children?: ReactNode; 'aria-current'?: AriaAttributes['aria-current']}>
+
+function isNavListSubNavElement(node: ReactNode): node is NavListSubNavElement {
+  return isValidElement<NavListSubNavProps>(node) && node.type === NavListSubNav
+}
+
+function isCurrentValue(value: AriaAttributes['aria-current']) {
+  return Boolean(value) && value !== 'false'
+}
+
+function hasCurrentDescendant(node: ReactNode): boolean {
+  return Children.toArray(node).some(child => {
+    if (!isValidElement(child)) return false
+
+    const currentChild = child as ElementWithCurrent
+    if (isCurrentValue(currentChild.props['aria-current'])) return true
+
+    return hasCurrentDescendant((child as ElementWithChildren).props.children)
+  })
+}
+
+function assignRef<T>(ref: Ref<T> | undefined, value: T | null) {
+  if (!ref) return
+
+  if (typeof ref === 'function') {
+    ref(value)
+    return
+  }
+
+  ;(ref as MutableRefObject<T | null>).current = value
+}
+
+function childHasDirectSubNav(node: ReactNode): boolean {
+  if (!isValidElement(node)) return false
+
+  if (node.type === React.Fragment) {
+    return Children.toArray((node as ElementWithChildren).props.children).some(childHasDirectSubNav)
+  }
+
+  return Children.toArray((node as ElementWithChildren).props.children).some(isNavListSubNavElement)
+}
+
+function renderVisual(visual: Visual | undefined, className: string) {
+  if (!visual) return null
+
+  const visualElement = isValidElement(visual) ? visual : React.createElement(visual)
+
+  if (!isValidElement<{className?: string; ['aria-hidden']?: string; focusable?: string}>(visualElement)) return null
+
+  return (
+    <span className={className}>
+      {React.cloneElement(visualElement, {
+        className: visualElement.props.className,
+        'aria-hidden': 'true',
+        focusable: 'false',
+      })}
+    </span>
+  )
+}
+
+function getInvalidNavListItemMessage({
+  as,
+  canExpand,
+  hasLabelContent,
+  hasSubNav,
+  href,
+  subNavCount,
+}: {
+  as?: React.ElementType
+  canExpand: boolean
+  hasLabelContent: boolean
+  hasSubNav: boolean
+  href?: string
+  subNavCount: number
+}) {
+  if (hasSubNav && !canExpand) {
+    return 'NavList supports up to 5 levels. Level 5 items cannot contain NavList.SubNav.'
+  }
+
+  if (subNavCount > 1) {
+    return 'NavList.Item supports only one NavList.SubNav child.'
+  }
+
+  if (hasSubNav && !hasLabelContent) {
+    return 'NavList.Item with NavList.SubNav requires label content.'
+  }
+
+  if (hasSubNav && (href !== undefined || as !== undefined)) {
+    return 'NavList.Item with NavList.SubNav cannot include href or as because expandable items render as buttons.'
+  }
+}
+
+function warnInvalidNavListItem(message: string) {
+  if (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'test') {
+    // eslint-disable-next-line no-console
+    console.warn(message)
+  }
+}

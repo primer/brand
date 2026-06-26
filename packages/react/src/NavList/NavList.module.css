@@ -1,6 +1,4 @@
 .NavList {
-  --brand-NavList-activeIndicator-color: var(--brand-color-text-emphasized);
-
   font-family: var(--brand-fontStack-sansSerif);
   color: var(--brand-color-text-default);
   width: 100%;
@@ -95,17 +93,13 @@
   background-color: var(--brand-color-canvas-subtle);
 }
 
-.NavList__item:has(> .NavList__subNav [aria-current]:not([aria-current='false']))
-  > .NavList__itemContent
-  .NavList__accordionButton:not(:disabled) {
+.NavList__item[data-has-current-descendant='true'] > .NavList__itemContent .NavList__accordionButton:not(:disabled) {
   color: var(--brand-color-text-default);
 }
 
-.NavList__item:not(.NavList__item--level-1):has(
-    > .NavList__itemContent .NavList__accordionButton[aria-expanded='false']:not(:disabled)
-  ):has(> .NavList__subNav [aria-current]:not([aria-current='false']))
+.NavList__item:not(.NavList__item--level-1)[data-has-current-descendant='true']
   > .NavList__itemContent
-  .NavList__accordionButton:not(:disabled)
+  .NavList__accordionButton[aria-expanded='false']:not(:disabled)
   .NavList__labelArea {
   background-color: var(--brand-color-canvas-subtle);
 }
@@ -135,11 +129,9 @@
   background-color: var(--brand-NavList-activeIndicator-color);
 }
 
-.NavList__item:has(> .NavList__itemContent .NavList__accordionButton[aria-expanded='false']:not(:disabled)):has(
-    > .NavList__subNav [aria-current]:not([aria-current='false'])
-  )
+.NavList__item[data-has-current-descendant='true']
   > .NavList__itemContent
-  .NavList__accordionButton:not(:disabled)::before {
+  .NavList__accordionButton[aria-expanded='false']:not(:disabled)::before {
   content: '';
   position: absolute;
   inset-block-start: 50%;
@@ -151,19 +143,15 @@
   z-index: 1;
 }
 
-.NavList__item--level-1:has(> .NavList__itemContent .NavList__accordionButton[aria-expanded='false']):has(
-    > .NavList__subNav [aria-current]:not([aria-current='false'])
-  )
+.NavList__item--level-1[data-has-current-descendant='true']
   > .NavList__itemContent
-  .NavList__accordionButton::before {
+  .NavList__accordionButton[aria-expanded='false']::before {
   inset-inline-start: 0;
 }
 
-.NavList__item:not(.NavList__item--level-1):has(
-    > .NavList__itemContent .NavList__accordionButton[aria-expanded='false']
-  ):has(> .NavList__subNav [aria-current]:not([aria-current='false']))
+.NavList__item:not(.NavList__item--level-1)[data-has-current-descendant='true']
   > .NavList__itemContent
-  .NavList__accordionButton::before {
+  .NavList__accordionButton[aria-expanded='false']::before {
   inset-inline-start: var(--base-size-16);
 }
 
@@ -278,11 +266,9 @@
 }
 
 .NavList__item--level-1 > .NavList__itemContent .NavList__accordionButton:not(:disabled):is(:hover, :active)::after,
-.NavList__item--level-1:has(
-    > .NavList__itemContent .NavList__accordionButton[aria-expanded='false']:not(:disabled)
-  ):has(> .NavList__subNav [aria-current]:not([aria-current='false']))
+.NavList__item--level-1[data-has-current-descendant='true']
   > .NavList__itemContent
-  .NavList__accordionButton:not(:disabled)::after {
+  .NavList__accordionButton[aria-expanded='false']:not(:disabled)::after {
   content: '';
   position: absolute;
   z-index: 0;
@@ -390,8 +376,6 @@
 }
 
 [data-color-mode='dark'] .NavList {
-  --brand-NavList-activeIndicator-color: var(--brand-color-accent-primary);
-
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
