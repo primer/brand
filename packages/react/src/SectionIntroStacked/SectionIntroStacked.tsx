@@ -45,12 +45,11 @@ const Root = forwardRef<HTMLElement, PropsWithChildren<SectionIntroStackedProps>
         {...props}
         style={{...animationInlineStyles, ...style}}
       >
-        <Grid fullWidth enableGutters={variant !== 'gridline'}>
-          <Grid.Column span={{large: 6}}>{otherChildren}</Grid.Column>
-          <Grid.Column
-            span={variant === 'gridline' ? {large: 6} : {large: 5}}
-            start={variant === 'gridline' ? {large: 7} : {large: 8}}
-          >
+        <Grid fullWidth enableGutters={variant !== 'gridline'} columnGap="none">
+          <Grid.Column span={{large: 6}} className={styles['SectionIntroStacked-content']}>
+            {otherChildren}
+          </Grid.Column>
+          <Grid.Column span={{large: 6}} start={{large: 7}}>
             {items}
           </Grid.Column>
         </Grid>
@@ -167,7 +166,7 @@ const ItemIcon = ({className, color = 'green', ...props}: SectionIntroStackedIte
     <Icon
       className={clsx(styles['SectionIntroStackedItem__icon'], className)}
       hasBackground
-      size="medium"
+      size="small"
       color={color}
       {...props}
     />
