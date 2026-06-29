@@ -40,6 +40,10 @@
   margin-bottom: var(--base-size-48);
 }
 
+.Pillar__icon--with-background {
+  border-radius: var(--base-size-12);
+}
+
 .Pillar__icon--with-background > svg {
   width: 100%;
   height: 100%;
