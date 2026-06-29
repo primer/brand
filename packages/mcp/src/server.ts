@@ -3,12 +3,15 @@ import {fileURLToPath} from 'node:url'
 
 import {McpServer} from '@modelcontextprotocol/sdk/server/mcp.js'
 
+import {detectAssetGenerator} from './brand/detect-asset-generator.js'
 import {createDocsSource} from './brand/docs-source.js'
 import {resolveInstalledAssets} from './brand/resolve-assets.js'
 import {looksLikeProductProject, resolveBrandInstall} from './brand/resolve-install.js'
 import {loadCatalog} from './catalog/load.js'
 import {createLogger} from './logger.js'
 import {registerTools} from './tools/register.js'
+
+const assetGenerator = detectAssetGenerator()
 
 const INSTRUCTIONS = `Primer Brand design system tools for building GitHub web-based marketing experiences and landing pages with @primer/react-brand.
 
@@ -19,7 +22,15 @@ use the Primer (product) tools instead.
 Typical flow: primer_brand_setup once at the start of a new page or project, primer_brand_examples to start
 from correct patterns, primer_brand_component for exact props, primer_brand_tokens / primer_brand_asset for tokens and
 icons, primer_brand_docs for guidance, and primer_brand_review as the final gate over your complete output (JSX and
-CSS together) before you finish.`
+CSS together) before you finish.
+
+${
+  assetGenerator.available
+    ? `Use the GitHub Asset Generator MCP tools (\`asset-generator\`) instead of stock photos or AI art. Use Asset Generator
+for wallpapers, hero or river background images, and product shots.`
+    : ''
+}
+`
 
 export function createServer(): McpServer {
   const logger = createLogger()
@@ -51,7 +62,11 @@ export function createServer(): McpServer {
     logger.info(`resolved icons/illustrations from installed packages: ${versions}`)
   }
 
+  if (detectAssetGenerator().available) {
+    logger.info('GitHub Asset Generator MCP server detected; surfacing on-brand imagery guidance')
+  }
+
   const docs = createDocsSource(brand, logger)
-  registerTools(server, {catalog, brand, docs, logger, assets, assetsOrigin})
+  registerTools(server, {catalog, brand, docs, logger, assets, assetsOrigin, assetGenerator: detectAssetGenerator()})
   return server
 }

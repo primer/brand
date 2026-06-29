@@ -14,6 +14,7 @@ export interface ToolContext {
   /** Icons + illustrations, preferring the consumer's installed packages over the baked snapshot. */
   assets: CatalogAsset[]
   assetsOrigin: 'installed' | 'snapshot'
+  assetGenerator: {available: boolean}
 }
 
 export interface ToolResult {

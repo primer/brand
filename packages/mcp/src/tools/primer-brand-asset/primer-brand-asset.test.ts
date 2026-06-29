@@ -18,4 +18,17 @@ describe('primer_brand_asset', () => {
     const result = await primerBrandAssetTool.run({query: 'arrow', limit: 12}, makeContext({assetsOrigin: 'installed'}))
     expect(result.text.toLowerCase()).toContain('installed')
   })
+
+  it('steers to the Asset Generator for imagery when it is installed', async () => {
+    const result = await primerBrandAssetTool.run(
+      {query: 'arrow', limit: 12},
+      makeContext({assetGenerator: {available: true}}),
+    )
+    expect(result.text).toContain('asset-generator')
+  })
+
+  it('never mentions the internal Asset Generator when it is absent', async () => {
+    const result = await primerBrandAssetTool.run({query: 'arrow', limit: 12}, makeContext())
+    expect(result.text).not.toContain('asset-generator')
+  })
 })

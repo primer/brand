@@ -14,7 +14,7 @@ const inputSchema = z.object({
 
 type Input = z.infer<typeof inputSchema>
 
-const description = `Find approved Primer Brand visuals as code imports: Octicons (@primer/octicons-react) and Octovisuals (@primer/octovisuals-react). Use these instead of emoji, clip art, or random icon sets — mismatched or emoji icons are off-brand.`
+const description = `Find approved Primer Brand visuals as code imports: Octicons (@primer/octicons-react) and Octovisuals (@primer/octovisuals-react). Use these instead of emoji, clip art, or random icon sets - mismatched or emoji icons are off-brand.`
 
 export const primerBrandAssetTool: ToolModule<Input> = {
   name: 'primer_brand_asset',
@@ -36,12 +36,20 @@ export const primerBrandAssetTool: ToolModule<Input> = {
       assets = assets.filter(asset => asset.kind === input.kind)
     }
 
+    const brandImages = ctx.assetGenerator.available
+      ? `Use the GitHub Asset Generator MCP tools (\`asset-generator\`) instead of stock photos or AI art. Check images suit usage first. `
+      : ''
+
     const ranked = rank(input.query, assets, asset => [asset.name]).map(entry => entry.item)
     if (ranked.length === 0) {
       return {
-        text: `No ${input.kind ?? 'asset'} matched "${
-          input.query
-        }". Try a simpler term (e.g. "arrow", "check", "shield").\n\n${origin}`,
+        text: [
+          `No ${input.kind ?? 'asset'} matched "${input.query}". Try a simpler term (e.g. "arrow", "check", "shield").`,
+          origin,
+          brandImages,
+        ]
+          .filter(Boolean)
+          .join('\n\n'),
       }
     }
 
@@ -50,6 +58,6 @@ export const primerBrandAssetTool: ToolModule<Input> = {
     const lines = shown
       .map(asset => `- \`${asset.name}\` _(${asset.kind})_ — \`import {${asset.name}} from '${asset.module}'\``)
       .join('\n')
-    return {text: `${lines}${more}\n\n${origin}`}
+    return {text: [`${lines}${more}`, origin, brandImages].filter(Boolean).join('\n\n')}
   },
 }

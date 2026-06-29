@@ -117,6 +117,7 @@ export function makeContext(overrides: Partial<ToolContext> = {}): ToolContext {
     logger: createLogger(false),
     assets: catalog.assets,
     assetsOrigin: 'snapshot',
+    assetGenerator: {available: false},
     ...overrides,
   }
 }
