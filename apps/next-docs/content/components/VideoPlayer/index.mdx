@@ -99,6 +99,17 @@ The audio description can be provided as part of the existing soundtrack, or via
 </VideoPlayer>
 ```
 
+## Autoplay with bottom controls
+
+Autoplaying videos hide the large center play button overlay. Use `controlsPosition="bottom"` to place the controls bar at the bottom of the video.
+
+```jsx live
+<VideoPlayer title="GitHub media player" autoPlay muted loop controlsPosition="bottom">
+  <VideoPlayer.Source src="/example.mp4" type="video/mp4" />
+  <VideoPlayer.Track src="/example.vtt" default />
+</VideoPlayer>
+```
+
 ## Minimal
 
 ```jsx live
@@ -200,21 +211,22 @@ Below is a detailed description of each property and method available in the `us
 
 `VideoPlayer` provides a React alternative to the native HTML `<video />`.
 
-| Name                     | Type                                   | Default | Required | Description                                                     |
-| :----------------------- | :------------------------------------- | :-----: | :------: | :-------------------------------------------------------------- |
-| `children`               | `React.ReactNode`, `React.ReactNode[]` |         |  `true`  | Takes `<VideoPlayer.Source>` and `<VideoPlayer.Track>` elements |
-| `title`                  | `string`                               |         |  `true`  | Sets the title of the video                                     |
-| `visuallyHiddenTitle`    | `boolean`                              |         | `false`  | Visually hides the title of the video in the upper-left corner  |
-| `showBranding`           | `boolean`                              | `true`  | `false`  | Displays GitHub branding next to video title                    |
-| `poster`                 | `string`                               |         | `false`  | Sets an image as the starting frame for the video element       |
-| `className`              | `string`                               |         | `false`  | Sets a custom class on the `<video>` element                    |
-| `showControlsWhenPaused` | `boolean`                              | `true`  | `false`  | Show the video controls when paused                             |
-| `showPlayPauseButton`    | `boolean`                              | `true`  | `false`  | Show the play button control                                    |
-| `showSeekControl`        | `boolean`                              | `true`  | `false`  | Show the seek control                                           |
-| `showCCButton`           | `boolean`                              | `true`  | `false`  | Show the closed caption toggle control                          |
-| `showMuteButton`         | `boolean`                              | `true`  | `false`  | Show the mute button control                                    |
-| `showVolumeControl`      | `boolean`                              | `true`  | `false`  | Show the volume control                                         |
-| `showFullScreenButton`   | `boolean`                              | `true`  | `false`  | Show the full screen button control                             |
+| Name                     | Type                                   | Default  | Required | Description                                                     |
+| :----------------------- | :------------------------------------- | :------: | :------: | :-------------------------------------------------------------- |
+| `children`               | `React.ReactNode`, `React.ReactNode[]` |          |  `true`  | Takes `<VideoPlayer.Source>` and `<VideoPlayer.Track>` elements |
+| `title`                  | `string`                               |          |  `true`  | Sets the title of the video                                     |
+| `visuallyHiddenTitle`    | `boolean`                              |          | `false`  | Visually hides the title of the video in the upper-left corner  |
+| `showBranding`           | `boolean`                              |  `true`  | `false`  | Displays GitHub branding next to video title                    |
+| `poster`                 | `string`                               |          | `false`  | Sets an image as the starting frame for the video element       |
+| `className`              | `string`                               |          | `false`  | Sets a custom class on the `<video>` element                    |
+| `controlsPosition`       | `'inline' \| 'bottom'`                 | `inline` | `false`  | Sets the controls bar below the video or at the bottom          |
+| `showControlsWhenPaused` | `boolean`                              |  `true`  | `false`  | Show the video controls when paused                             |
+| `showPlayPauseButton`    | `boolean`                              |  `true`  | `false`  | Show the play button control                                    |
+| `showSeekControl`        | `boolean`                              |  `true`  | `false`  | Show the seek control                                           |
+| `showCCButton`           | `boolean`                              |  `true`  | `false`  | Show the closed caption toggle control                          |
+| `showMuteButton`         | `boolean`                              |  `true`  | `false`  | Show the mute button control                                    |
+| `showVolumeControl`      | `boolean`                              |  `true`  | `false`  | Show the volume control                                         |
+| `showFullScreenButton`   | `boolean`                              |  `true`  | `false`  | Show the full screen button control                             |
 
 The component API supports all standard HTML attribute props, while providing some additional behavior as described above.
 

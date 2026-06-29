@@ -49,6 +49,61 @@ describe('VideoPlayer', () => {
     expect(getByRole('button', {name: 'Play video'})).toBeInTheDocument()
   })
 
+  it('does not render controls when paused and showControlsWhenPaused is false', () => {
+    const {queryByRole} = render(
+      <VideoPlayer poster="/example-poster.jpg" title="test video" showControlsWhenPaused={false}>
+        <VideoPlayer.Source src="/example.mp4" />
+        <VideoPlayer.Track src="/example.vtt" default kind="subtitles" srcLang="en" label="English" />
+      </VideoPlayer>,
+    )
+
+    expect(queryByRole('button', {name: 'Play video'})).not.toBeInTheDocument()
+    expect(queryByRole('button', {name: 'Play'})).toBeInTheDocument()
+  })
+
+  it('does not render the overlay play button when autoplaying', () => {
+    const {getByRole, queryByRole} = render(
+      <VideoPlayer poster="/example-poster.jpg" title="test video" autoPlay muted>
+        <VideoPlayer.Source src="/example.mp4" />
+        <VideoPlayer.Track src="/example.vtt" default kind="subtitles" srcLang="en" label="English" />
+      </VideoPlayer>,
+    )
+
+    expect(queryByRole('button', {name: 'Play'})).not.toBeInTheDocument()
+    expect(getByRole('button', {name: 'Play video'})).toBeInTheDocument()
+  })
+
+  it('syncs the mute control with an initially muted video', async () => {
+    const {getByRole, getByTitle} = render(
+      <VideoPlayer poster="/example-poster.jpg" title="test video" muted>
+        <VideoPlayer.Source src="/example.mp4" />
+        <VideoPlayer.Track src="/example.vtt" default kind="subtitles" srcLang="en" label="English" />
+      </VideoPlayer>,
+    )
+
+    const video = getByTitle('test video') as HTMLVideoElement
+
+    await waitFor(() => {
+      expect(getByRole('button', {name: 'Unmute'})).toBeInTheDocument()
+    })
+
+    await userEvent.click(getByRole('button', {name: 'Unmute'}))
+
+    expect(video.muted).toBe(false)
+  })
+
+  it('supports positioning the controls bar at the bottom of the player', () => {
+    const {container} = render(
+      <VideoPlayer poster="/example-poster.jpg" title="test video" controlsPosition="bottom">
+        <VideoPlayer.Source src="/example.mp4" />
+        <VideoPlayer.Track src="/example.vtt" default kind="subtitles" srcLang="en" label="English" />
+      </VideoPlayer>,
+    )
+
+    expect(container.querySelector('.VideoPlayer__container--controlsBottom')).toBeInTheDocument()
+    expect(container.querySelector('.VideoPlayer__controlsBar--bottom')).toBeInTheDocument()
+  })
+
   it('renders the enable/disable closed caption button without errors', () => {
     const {getByRole} = render(
       <VideoPlayer poster="/example-poster.jpg" title="test video">

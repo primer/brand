@@ -4,11 +4,13 @@ declare const styles: {
   readonly "VideoPlayer__ccText": string;
   readonly "VideoPlayer__closedCaption": string;
   readonly "VideoPlayer__container": string;
+  readonly "VideoPlayer__container--controlsBottom": string;
   readonly "VideoPlayer__container--fullscreen": string;
   readonly "VideoPlayer__container--small": string;
   readonly "VideoPlayer__controlTextColor": string;
   readonly "VideoPlayer__controls": string;
   readonly "VideoPlayer__controlsBar": string;
+  readonly "VideoPlayer__controlsBar--bottom": string;
   readonly "VideoPlayer__controlsBar__row1": string;
   readonly "VideoPlayer__controlsBar__row2": string;
   readonly "VideoPlayer__iconControl": string;
