@@ -49,3 +49,6 @@ jobs:
 
       - name: Run unit tests
         run: npm run test
+
+      - name: Verify docs bundle
+        run: npm run bundle:docs:verify --workspace=packages/react
