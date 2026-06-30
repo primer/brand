@@ -26,10 +26,6 @@ export type ToolAnnotations = {
   readOnlyHint?: boolean
 }
 
-/**
- * A self-contained tool. `run` holds the testable logic and is independent of the MCP
- * transport; the server wires it up via `registerTool`.
- */
 export type ToolModule<Input = unknown> = {
   name: string
   title: string

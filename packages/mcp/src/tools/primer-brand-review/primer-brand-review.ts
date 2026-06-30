@@ -16,27 +16,12 @@ const inputSchema = z.object({
 
 type Input = z.infer<typeof inputSchema>
 
-const description = `The final on-brand gate. Before you finish, paste your COMPLETE output in one call — the JSX/TSX AND every stylesheet (App.css, *.module.css, styled blocks) together — because hardcoded sizes/colors and raw HTML most often hide in CSS. Flags non-compliant components or sub-components, invalid prop values, headings left at their oversized default (a \`Heading\` with no explicit \`size\`), raw HTML where a brand component exists, hardcoded colors/sizes that should be tokens, and off-brand visual tells (purple gradients, pill buttons, glassmorphism, placeholder copy). Run it on everything you wrote and fix what it reports rather than guessing.`
-
-function formatFindings(label: string, findings: Finding[]): string {
-  if (findings.length === 0) return ''
-  const lines = findings.map(finding => {
-    const evidenceLine = finding.evidence ? `\n  > \`${finding.evidence}\`` : ''
-    return `- **${finding.rule}**: ${finding.message}${evidenceLine}`
-  })
-  return `## ${label}\n${lines.join('\n')}`
-}
-
-const hasJsx = (code: string): boolean => /<[A-Za-z][A-Za-z0-9.]*[\s/>]/.test(code)
-// Clearly a stylesheet: a class/id/at-rule selector carrying CSS declarations (not a TS object/type).
-const hasStylesheet = (code: string): boolean =>
-  /[.#][\w-]+[^{}]*\{[^{}]*:[^{}]*;/.test(code) || /@(?:media|font-face|keyframes|supports|import)\b/.test(code)
-
-/** Nudge agents to include their CSS — where most hardcoded px/hex and raw elements actually hide. */
-function cssGateReminder(code: string): string {
-  if (!hasJsx(code) || hasStylesheet(code)) return ''
-  return '> **Include your CSS.** This looks like JSX/TSX only. Hardcoded `px`/hex and raw elements most often live in a separate stylesheet — re-run `primer_brand_review` with the JSX **and** every stylesheet (`App.css`, `*.module.css`, styled blocks) together. This is the final gate over your COMPLETE output.'
-}
+const description = `The final on-brand gate. Before you finish, paste your COMPLETE output in one call — the JSX/TSX AND 
+every stylesheet (App.css, *.module.css, styled blocks) together — because hardcoded sizes/colors and raw HTML most often 
+hide in CSS. Flags non-compliant components or sub-components, invalid prop values, headings left at their oversized default
+(a \`Heading\` with no explicit \`size\`), raw HTML where a brand component exists, hardcoded colors/sizes that should be tokens, 
+and off-brand visual tells (purple gradients, pill buttons, glassmorphism, placeholder copy). Run it on everything you wrote and 
+fix what it reports rather than guessing.`
 
 export const primerBrandReviewTool: ToolModule<Input> = {
   name: 'primer_brand_review',
@@ -45,6 +30,26 @@ export const primerBrandReviewTool: ToolModule<Input> = {
   inputShape: inputSchema.shape,
   annotations: {readOnlyHint: true},
   run(input, ctx: ToolContext): ToolResult {
+    const hasJsx = (code: string): boolean => /<[A-Za-z][A-Za-z0-9.]*[\s/>]/.test(code)
+
+    const hasStylesheet = (code: string): boolean =>
+      /[.#][\w-]+[^{}]*\{[^{}]*:[^{}]*;/.test(code) || /@(?:media|font-face|keyframes|supports|import)\b/.test(code)
+
+    /** Nudges agents to include their CSS - where most hardcoded px/hex and raw elements actually hide. */
+    const cssGateReminder = (code: string): string => {
+      if (!hasJsx(code) || hasStylesheet(code)) return ''
+      return '> **Include your CSS.** This looks like JSX/TSX only. Hardcoded `px`/hex and raw elements most often live in a separate stylesheet — re-run `primer_brand_review` with the JSX **and** every stylesheet (`App.css`, `*.module.css`, styled blocks) together. This is the final gate over your COMPLETE output.'
+    }
+
+    const formatFindings = (label: string, findings: Finding[]): string => {
+      if (findings.length === 0) return ''
+      const lines = findings.map(finding => {
+        const evidenceLine = finding.evidence ? `\n  > \`${finding.evidence}\`` : ''
+        return `- **${finding.rule}**: ${finding.message}${evidenceLine}`
+      })
+      return `## ${label}\n${lines.join('\n')}`
+    }
+
     const findings = allRules.flatMap(rule => rule.run(input.code, ctx.catalog))
     const errors = findings.filter(finding => finding.severity === 'error')
     const warnings = findings.filter(finding => finding.severity === 'warning')

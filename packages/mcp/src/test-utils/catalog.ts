@@ -88,6 +88,8 @@ export function makeCatalog(overrides: Partial<Catalog> = {}): Catalog {
       {name: '--base-size-32', value: '2rem', group: 'base'},
       {name: '--brand-color-border-default', value: 'var(--base-color-scale-gray-4)', group: 'functional'},
       {name: '--brand-borderWidth-thin', value: 'max(1px, 0.0625rem)', group: 'functional'},
+      {name: '--brand-color-canvas-default', value: 'var(--base-color-scale-white-0)', group: 'functional'},
+      {name: '--brand-color-neutral-emphasis', value: 'var(--base-color-scale-gray-6)', group: 'functional'},
     ],
     ...overrides,
   }

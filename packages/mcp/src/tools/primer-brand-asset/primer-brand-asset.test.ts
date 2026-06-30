@@ -1,4 +1,4 @@
-import {makeContext} from '../../test-support/catalog.js'
+import {makeContext} from '../../test-utils/catalog.js'
 import {primerBrandAssetTool} from './primer-brand-asset.js'
 
 describe('primer_brand_asset', () => {

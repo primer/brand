@@ -2,7 +2,7 @@ import {existsSync, readFileSync} from 'node:fs'
 import {fileURLToPath} from 'node:url'
 
 import type {Catalog} from '../catalog/types.js'
-import {makeCatalog} from '../test-support/catalog.js'
+import {makeCatalog} from '../test-utils/catalog.js'
 import {allRules, brandComponentsUsed} from './rules.js'
 import type {Finding} from './types.js'
 

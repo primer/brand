@@ -5,7 +5,6 @@ import type {Logger} from '../logger.js'
 import {type Catalog, emptyCatalog} from './types.js'
 
 export function loadCatalog(logger: Logger): Catalog {
-  // Output next to the compiled output (`dist/catalog.json`) by the build-time generator.
   const path = fileURLToPath(new URL('../catalog.json', import.meta.url))
   try {
     const parsed = JSON.parse(readFileSync(path, 'utf8')) as Catalog

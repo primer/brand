@@ -10,8 +10,7 @@ import {primerBrandSetupTool} from './primer-brand-setup/index.js'
 import type {ToolContext, ToolModule} from './types.js'
 
 /**
- * Register a single tool, preserving its input type end to end. The SDK validates `args`
- * against the tool's zod shape before calling the handler, so the cast is safe.
+ * Register a single tool
  */
 function add<Input>(server: McpServer, tool: ToolModule<Input>, ctx: ToolContext): void {
   server.registerTool(

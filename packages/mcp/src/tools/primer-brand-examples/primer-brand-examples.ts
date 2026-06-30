@@ -16,7 +16,10 @@ const inputSchema = z.object({
 
 type Input = z.infer<typeof inputSchema>
 
-const description = `Get ranked, copy-and-adapt examples of correct Primer Brand usage for a goal, taken from the component library's own tested Storybook stories — real compositions to adapt, not turnkey templates. Pass a goal like "pricing section" or "education landing page" for the closest matching examples; with no match you get a default foundational set, so it is never a dead end. Because they come verbatim from stories, examples may include Storybook scaffolding — \`{...args}\` spreads, \`args\`-driven props, and imported demo assets (images, avatars); treat those as placeholders to fill in with real props and content, not literal code to copy. Use it to start from approved patterns instead of hand-building.`
+const description = `Get ranked, copy-and-adapt examples of correct Primer Brand usage for a goal, taken from the component library's own tested Storybook stories. 
+Pass a target use-case like "pricing section" or "education landing page" for the closest matches; with no match you get a default foundational set. 
+Examples come verbatim from stories, so they may include Storybook scaffolding (\`{...args}\` spreads, imported demo assets) — treat that as placeholders to fill with real props and content, not literal code to copy. 
+Use it to start from approved patterns instead of hand-building.`
 
 /** Foundational sections that anchor almost every GitHub landing page, in composition order. */
 const DEFAULT_COMPONENTS = ['Hero', 'SectionIntro', 'River', 'Pillar', 'CTABanner']

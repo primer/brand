@@ -1,4 +1,4 @@
-import {makeCatalog, makeContext} from '../../test-support/catalog.js'
+import {makeCatalog, makeContext} from '../../test-utils/catalog.js'
 import {primerBrandTokensTool} from './primer-brand-tokens.js'
 
 describe('primer_brand_tokens', () => {
@@ -34,6 +34,22 @@ describe('primer_brand_tokens', () => {
     const colorIndex = result.text.indexOf('--brand-color-border-default')
     expect(widthIndex).toBeGreaterThanOrEqual(0)
     expect(widthIndex).toBeLessThan(colorIndex)
+  })
+
+  it('maps a bare "width" query to the base-size scale as well as border widths', async () => {
+    const result = await primerBrandTokensTool.run({query: 'width', limit: 15}, makeContext())
+    expect(result.text).toContain('--base-size-32')
+    expect(result.text).toContain('--brand-borderWidth-thin')
+  })
+
+  it('maps "background" to canvas tokens (Primer calls backgrounds "canvas")', async () => {
+    const result = await primerBrandTokensTool.run({query: 'background', limit: 15}, makeContext())
+    expect(result.text).toContain('--brand-color-canvas-default')
+  })
+
+  it('maps "gray" to the neutral role', async () => {
+    const result = await primerBrandTokensTool.run({query: 'gray', limit: 15}, makeContext())
+    expect(result.text).toContain('--brand-color-neutral-emphasis')
   })
 
   it('reports clearly when no token data is available', async () => {
