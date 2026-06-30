@@ -90,6 +90,7 @@ const NavListRoot = forwardRef<HTMLElement, NavListRootProps>(
     const hasTopLevelSubNav = useMemo(() => childrenArray.some(childHasDirectSubNav), [childrenArray])
     const hasTopLevelGroup = useMemo(() => childrenArray.some(childIsNavListGroupElement), [childrenArray])
     const rootLevel = hasTopLevelSubNav ? 1 : 2
+    const hasFlatRootList = !hasTopLevelSubNav && !hasTopLevelGroup
 
     return (
       <nav
@@ -102,10 +103,7 @@ const NavListRoot = forwardRef<HTMLElement, NavListRootProps>(
       >
         <NavListLevelContext.Provider value={rootLevel}>
           <ul
-            className={clsx(
-              styles.NavList__list,
-              !hasTopLevelSubNav && !hasTopLevelGroup && styles['NavList__list--flat'],
-            )}
+            className={clsx(styles.NavList__list, hasFlatRootList && styles['NavList__list--flat'])}
             data-testid={testIds.list}
           >
             {children}

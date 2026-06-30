@@ -18,6 +18,11 @@
   gap: 0;
 }
 
+.NavList__list--flat,
+.NavList__groupList {
+  --brand-NavList-alignedLabel-paddingInlineStart: var(--base-size-2);
+}
+
 .NavList__item,
 .NavList__group {
   position: relative;
@@ -328,7 +333,7 @@
 }
 
 .NavList__item--leaf.NavList__item--level-2 > .NavList__itemContent {
-  padding-inline-start: var(--base-size-24);
+  padding-inline-start: var(--brand-NavList-alignedLabel-paddingInlineStart, var(--base-size-24));
 }
 
 .NavList__item--leaf.NavList__item--level-3 > .NavList__itemContent {
