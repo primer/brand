@@ -1,10 +1,19 @@
-# @primer/brand-mcp
+---
+title: MCP server
+description: Help AI agents use Primer Brand correctly with our Model Context Protocol server.
+menu-position: 5
+keywords: ['mcp', 'ai', 'agents', 'model context protocol', 'copilot', 'claude code']
+---
 
-A [Model Context Protocol](https://modelcontextprotocol.io) server that helps AI agents use **Primer Brand** (`@primer/react-brand`) correctly when building GitHub marketing and landing pages.
+The Primer Brand [MCP server](https://www.npmjs.com/package/@primer/brand-mcp) (`@primer/brand-mcp`) helps AI agents understand and use Primer Brand (`@primer/react-brand`) correctly.
 
-It is a version-aware, `stdio` (local) server which reads the docs and metadata of your installed `@primer/react-brand` dependency.
+It is a version-aware, local (`stdio`) server that reads the docs and metadata of your installed `@primer/react-brand` dependency.
 
-## Tools
+<Note>The MCP server requires [Node.js](https://nodejs.org/) 24 or later.</Note>
+
+## What it provides
+
+The server exposes a set of tools that AI agents can call:
 
 | Tool                     | What it does                                                                                                               |
 | ------------------------ | -------------------------------------------------------------------------------------------------------------------------- |
@@ -16,11 +25,9 @@ It is a version-aware, `stdio` (local) server which reads the docs and metadata 
 | `primer_brand_docs`      | Search and read Primer Brand guidance, including principles, accessibility and getting started.                            |
 | `primer_brand_review`    | Check generated JSX and CSS against the design system for unknown components, invalid props, hardcoded values              |
 
-## Getting started
+## Set up in VS Code
 
-Requires Node.js >= 24.
-
-### VS Code
+Add the server to your workspace's `.vscode/mcp.json` (or your user `mcp.json`):
 
 ```jsonc
 {
@@ -34,10 +41,12 @@ Requires Node.js >= 24.
 }
 ```
 
-### Copilot CLI / other stdio clients
+## Set up in other clients
 
-Run the server with `npx @primer/brand-mcp@latest`.
+For GitHub Copilot CLI and other `stdio`-enabled MCP clients, run the server directly:
 
-## License
+```shell
+npx @primer/brand-mcp@latest
+```
 
-MIT
+Refer to the [package README](https://github.com/primer/brand/tree/main/packages/mcp) for the latest configuration details.
