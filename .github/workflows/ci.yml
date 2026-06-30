@@ -52,3 +52,6 @@ jobs:
 
       - name: Run MCP server smoke tests
         run: npm run smoke --workspace=packages/mcp
+
+      - name: Verify docs bundle
+        run: npm run bundle:docs:verify --workspace=packages/react
