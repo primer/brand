@@ -1,6 +1,6 @@
 ---
 title: NavList
-description: Use NavList to render vertical navigation with optional expandable sections.
+description: Use NavList to render vertical navigation with optional expandable groups.
 keywords: ['navigation', 'vertical navigation', 'sidebar', 'nested navigation']
 show-tabs: false
 ready: true
@@ -40,9 +40,9 @@ import {NavList} from '@primer/react-brand'
 </NavList>
 ```
 
-### Sections
+### Groups
 
-Use `NavList.Group` to organize related navigation items into labelled sections.
+Use `NavList.Group` to organize related navigation items into labelled groups.
 
 ```jsx live
 <NavList aria-label="Section navigation">
@@ -205,7 +205,7 @@ Use `leadingVisual` and `trailingVisual` to add icons to the label area. Visuals
 
 Give each `NavList` a clear `aria-label`, especially when the page includes more than one navigation landmark.
 
-Use `aria-current="page"` on the link for the current page. Only apply `aria-current` to leaf items that navigate somewhere, not to section rows with nested items.
+Use `aria-current="page"` on the link for the current page. Only apply `aria-current` to leaf items that navigate somewhere, not to disclosure rows with nested items.
 
 Keep group titles and disclosure labels short and descriptive. Items with `NavList.SubNav` must include visible label text so people can understand what will expand.
 
@@ -224,18 +224,18 @@ Forwards all standard HTML attributes for `<nav>` elements.
 
 ### NavList.Item <Label>Required</Label>
 
-| name               | type                       | default | required | description                                                                             |
-| ------------------ | -------------------------- | ------- | -------- | --------------------------------------------------------------------------------------- |
-| `as`               | `'a' \| 'button'`          | `'a'`   | `false`  | Element used for leaf items                                                             |
-| `children`         | `ReactNode`                |         | `true`   | Item label and optional `NavList.SubNav` for nested disclosure                          |
-| `href`             | `string`                   |         | `false`  | URL for leaf items when rendering as an anchor                                          |
-| `aria-current`     | <NavListAriaCurrentProp /> |         | `false`  | Marks a leaf item as current                                                            |
-| `defaultExpanded`  | `boolean`                  | `false` | `false`  | Opens nested `NavList.SubNav` by default                                                |
-| `expanded`         | `boolean`                  |         | `false`  | Controls the nested `NavList.SubNav` expanded state                                     |
-| `onExpandedChange` | `(expanded) => void`       |         | `false`  | Called when the nested `NavList.SubNav` expanded state changes                          |
-| `leadingVisual`    | `ReactElement \| Icon`     |         | `false`  | Visual rendered before the label                                                        |
-| `trailingVisual`   | `ReactElement \| Icon`     |         | `false`  | Visual rendered after the label                                                         |
-| `disabled`         | `boolean`                  | `false` | `false`  | Disables the item. Leaf links receive `aria-disabled`; section buttons receive disabled |
+| name               | type                       | default | required | description                                                                                |
+| ------------------ | -------------------------- | ------- | -------- | ------------------------------------------------------------------------------------------ |
+| `as`               | `'a' \| 'button'`          | `'a'`   | `false`  | Element used for leaf items                                                                |
+| `children`         | `ReactNode`                |         | `true`   | Item label and optional `NavList.SubNav` for nested disclosure                             |
+| `href`             | `string`                   |         | `false`  | URL for leaf items when rendering as an anchor                                             |
+| `aria-current`     | <NavListAriaCurrentProp /> |         | `false`  | Marks a leaf item as current                                                               |
+| `defaultExpanded`  | `boolean`                  | `false` | `false`  | Opens nested `NavList.SubNav` by default                                                   |
+| `expanded`         | `boolean`                  |         | `false`  | Controls the nested `NavList.SubNav` expanded state                                        |
+| `onExpandedChange` | `(expanded) => void`       |         | `false`  | Called when the nested `NavList.SubNav` expanded state changes                             |
+| `leadingVisual`    | `ReactElement \| Icon`     |         | `false`  | Visual rendered before the label                                                           |
+| `trailingVisual`   | `ReactElement \| Icon`     |         | `false`  | Visual rendered after the label                                                            |
+| `disabled`         | `boolean`                  | `false` | `false`  | Disables the item. Leaf links receive `aria-disabled`; disclosure buttons receive disabled |
 
 Forwards props to the rendered leaf link or disclosure button.
 
@@ -243,7 +243,7 @@ Forwards props to the rendered leaf link or disclosure button.
 
 | name        | type        | default | required | description                                |
 | ----------- | ----------- | ------- | -------- | ------------------------------------------ |
-| `title`     | `ReactNode` |         | `false`  | Heading text for the grouped section       |
+| `title`     | `ReactNode` |         | `false`  | Heading text for the group                 |
 | `children`  | `ReactNode` |         | `true`   | `NavList.Item` nodes                       |
 | `className` | `string`    |         | `false`  | Sets a custom class on the group list item |
 

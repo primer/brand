@@ -27,8 +27,8 @@ test.describe('Visual Comparison: NavList', () => {
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
-  test('NavList / Sections', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-navlist-features--sections&viewMode=story', {
+  test('NavList / Groups', async ({page}) => {
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-navlist-features--groups&viewMode=story', {
       waitUntil: 'networkidle',
     })
     await page.locator('body.sb-show-main').waitFor({state: 'visible'})
@@ -103,9 +103,9 @@ test.describe('Visual Comparison: NavList', () => {
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
-  test('NavList / Five grouped sections', async ({page}) => {
+  test('NavList / Five groups', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-navlist-features--five-expanded-sections&viewMode=story',
+      'http://localhost:6006/iframe.html?args=&id=components-navlist-features--five-expanded-groups&viewMode=story',
       {waitUntil: 'networkidle'},
     )
     await page.locator('body.sb-show-main').waitFor({state: 'visible'})

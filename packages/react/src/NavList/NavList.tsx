@@ -417,7 +417,7 @@ const NavListSubNav = forwardRef<HTMLUListElement, NavListSubNavProps>(
 
 export type NavListGroupProps = {
   /**
-   * Heading text for the grouped navigation section.
+   * Heading text for the group.
    */
   title?: ReactNode
   children: ReactNode
@@ -457,7 +457,7 @@ const NavListGroup = forwardRef<HTMLLIElement, NavListGroupProps>(
 )
 
 /**
- * Use NavList to render vertical navigation links with grouped sections and expandable nested lists.
+ * Use NavList to render vertical navigation links with groups and expandable nested lists.
  * @see https://primer.style/brand/components/NavList
  */
 export const NavList = Object.assign(NavListRoot, {

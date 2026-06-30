@@ -64,7 +64,7 @@ describe('NavList', () => {
     expect(item).not.toHaveClass('NavList__item--level-1')
   })
 
-  it('renders grouped sections with labelled lists', () => {
+  it('renders groups with labelled lists', () => {
     const {getByRole} = render(
       <NavList aria-label="Grouped navigation">
         <NavList.Group title="Products">
@@ -676,7 +676,7 @@ describe('NavList', () => {
     expect(subNav).toHaveStyle({'--brand-NavList-subNav-height': '64px'})
   })
 
-  it('updates ancestor nested list heights when deeper sections expand', async () => {
+  it('updates ancestor nested list heights when deeper groups expand', async () => {
     const user = userEvent.setup()
 
     jest.spyOn(HTMLElement.prototype, 'scrollHeight', 'get').mockImplementation(function (this: HTMLElement) {

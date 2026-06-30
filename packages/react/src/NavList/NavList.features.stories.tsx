@@ -23,13 +23,13 @@ export default meta
 type Story = StoryObj<typeof NavList>
 
 const WrappingLabelKeys = {
-  section: 'githubAdvancedSecurityAdministration',
+  group: 'githubAdvancedSecurityAdministration',
   category: 'codeScanningDefaultSetupConfiguration',
   article: 'defaultSetupForCodeScanningAlertNotifications',
 }
 
-export const Sections: Story = {
-  render: function Sections() {
+export const Groups: Story = {
+  render: function Groups() {
     const {t} = useTranslation('NavList')
 
     return (
@@ -109,19 +109,19 @@ export const MultipleLevels: Story = {
     return (
       <NavList aria-label={String(t('multipleLevelNavigation'))}>
         <NavList.Item defaultExpanded>
-          {t('level1Section')}
+          {t('level1Group')}
           <NavList.SubNav>
             <NavList.Item href="#">{t('level2Leaf')}</NavList.Item>
             <NavList.Item defaultExpanded>
-              {t('level2Section')}
+              {t('level2Group')}
               <NavList.SubNav>
                 <NavList.Item href="#">{t('level3Leaf')}</NavList.Item>
                 <NavList.Item defaultExpanded>
-                  {t('level3Section')}
+                  {t('level3Group')}
                   <NavList.SubNav>
                     <NavList.Item href="#">{t('level4Leaf')}</NavList.Item>
                     <NavList.Item defaultExpanded>
-                      {t('level4Section')}
+                      {t('level4Group')}
                       <NavList.SubNav>
                         <NavList.Item href="#" aria-current="page">
                           {t('level5CurrentLeaf')}
@@ -199,7 +199,7 @@ export const LongLabels: Story = {
       <div className={styles.NarrowStoryWrapper}>
         <NavList aria-label={String(t('longLabelNavigation'))}>
           <NavList.Item defaultExpanded>
-            {t(WrappingLabelKeys.section)}
+            {t(WrappingLabelKeys.group)}
             <NavList.SubNav>
               <NavList.Item defaultExpanded>
                 {t(WrappingLabelKeys.category)}
@@ -281,22 +281,22 @@ export const OneHundredLinks: Story = {
   },
 }
 
-export const FiveExpandedSections: Story = {
-  name: 'Five grouped sections',
-  render: function FiveExpandedSections() {
+export const FiveExpandedGroups: Story = {
+  name: 'Five groups',
+  render: function FiveExpandedGroups() {
     const {t} = useTranslation('NavList')
 
     return (
-      <NavList aria-label={String(t('fiveExpandedSectionsNavigation'))}>
-        {Array.from({length: 5}, (_sectionValue, sectionIndex) => (
-          <NavList.Group key={sectionIndex} title={t('stressSection', {index: sectionIndex + 1})}>
+      <NavList aria-label={String(t('fiveExpandedGroupsNavigation'))}>
+        {Array.from({length: 5}, (_groupValue, groupIndex) => (
+          <NavList.Group key={groupIndex} title={t('stressGroup', {index: groupIndex + 1})}>
             {Array.from({length: 20}, (_linkValue, linkIndex) => (
               <NavList.Item
                 key={linkIndex}
                 href="#"
-                aria-current={sectionIndex === 0 && linkIndex === 0 ? 'page' : undefined}
+                aria-current={groupIndex === 0 && linkIndex === 0 ? 'page' : undefined}
               >
-                {t('stressSectionLink', {sectionIndex: sectionIndex + 1, linkIndex: linkIndex + 1})}
+                {t('stressGroupLink', {groupIndex: groupIndex + 1, linkIndex: linkIndex + 1})}
               </NavList.Item>
             ))}
           </NavList.Group>
