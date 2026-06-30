@@ -370,6 +370,12 @@
   line-height: var(--brand-text-lineHeight-100);
 }
 
+.NavList__list--flat > .NavList__item--leaf > .NavList__itemContent .NavList__link {
+  font-size: var(--brand-text-size-200);
+  line-height: var(--brand-text-lineHeight-200);
+  letter-spacing: var(--brand-text-letterSpacing-200);
+}
+
 .NavList__item--leaf:not(.NavList__item--level-1) > .NavList__itemContent .NavList__link {
   min-height: var(--base-size-32);
   padding-inline-start: var(--base-size-8);
