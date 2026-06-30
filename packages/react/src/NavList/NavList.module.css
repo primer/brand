@@ -5,7 +5,8 @@
 }
 
 .NavList__list,
-.NavList__subNav {
+.NavList__subNav,
+.NavList__groupList {
   list-style: none;
   margin: 0;
   padding: 0;
@@ -17,11 +18,12 @@
   gap: 0;
 }
 
-.NavList__item {
+.NavList__item,
+.NavList__group {
   position: relative;
 }
 
-.NavList__list:not(.NavList__list--flat) > .NavList__item + .NavList__item {
+.NavList__list:not(.NavList__list--flat) > :is(.NavList__item, .NavList__group) + :is(.NavList__item, .NavList__group) {
   background-image: repeating-linear-gradient(
     to right,
     var(--brand-color-border-muted) 0 var(--base-size-2),
@@ -30,6 +32,23 @@
   background-repeat: no-repeat;
   background-size: 100% var(--brand-borderWidth-thin);
   background-position: top left;
+}
+
+.NavList__groupTitle {
+  margin: 0;
+  padding: var(--base-size-24) var(--base-size-16) var(--base-size-16);
+  color: var(--brand-color-text-default);
+  font-size: var(--brand-text-size-200);
+  font-weight: var(--brand-text-weight-500);
+  line-height: var(--brand-text-lineHeight-200);
+  letter-spacing: var(--brand-text-letterSpacing-200);
+}
+
+.NavList__groupList {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  padding-block-end: var(--base-size-16);
 }
 
 .NavList__itemContent {

@@ -52,75 +52,63 @@ export const Playground: Story = {
 
     return (
       <NavList {...args}>
-        <NavList.Item defaultExpanded>
-          {t('githubCopilot')}
-          <NavList.SubNav>
-            {['overview', 'whatIsGitHubCopilot'].map(labelKey => (
-              <NavList.Item key={labelKey} href="#">
-                {t(labelKey)}
-              </NavList.Item>
-            ))}
-            <NavList.Item defaultExpanded>
-              {t('guides')}
-              <NavList.SubNav>
-                <NavList.Item defaultExpanded>
-                  {t('agents')}
-                  <NavList.SubNav>
-                    {['buildAnAgent', 'customizeAnAgent', 'debugAnAgent', 'deployAnAgent'].map(labelKey => (
-                      <NavList.Item
-                        key={labelKey}
-                        href="#"
-                        aria-current={labelKey === 'buildAnAgent' ? 'page' : undefined}
-                      >
-                        {t(labelKey)}
-                      </NavList.Item>
-                    ))}
-                  </NavList.SubNav>
-                </NavList.Item>
-                <NavList.Item>
-                  {t('extensions')}
-                  <NavList.SubNav>
-                    {['installAnExtension', 'publishAnExtension', 'managePermissions'].map(labelKey => (
-                      <NavList.Item key={labelKey} href="#">
-                        {t(labelKey)}
-                      </NavList.Item>
-                    ))}
-                  </NavList.SubNav>
-                </NavList.Item>
-              </NavList.SubNav>
+        <NavList.Group title={t('githubCopilot')}>
+          {['overview', 'whatIsGitHubCopilot'].map(labelKey => (
+            <NavList.Item key={labelKey} href="#">
+              {t(labelKey)}
             </NavList.Item>
-          </NavList.SubNav>
-        </NavList.Item>
-        <NavList.Item>
-          {t('codeReview')}
-          <NavList.SubNav>
-            {['overview', 'reviewPullRequests', 'configureRulesets', 'useSuggestedChanges'].map(labelKey => (
-              <NavList.Item key={labelKey} href="#">
-                {t(labelKey)}
+          ))}
+          <NavList.Item defaultExpanded>
+            {t('guides')}
+            <NavList.SubNav>
+              <NavList.Item defaultExpanded>
+                {t('agents')}
+                <NavList.SubNav>
+                  {['buildAnAgent', 'customizeAnAgent', 'debugAnAgent', 'deployAnAgent'].map(labelKey => (
+                    <NavList.Item
+                      key={labelKey}
+                      href="#"
+                      aria-current={labelKey === 'buildAnAgent' ? 'page' : undefined}
+                    >
+                      {t(labelKey)}
+                    </NavList.Item>
+                  ))}
+                </NavList.SubNav>
               </NavList.Item>
-            ))}
-          </NavList.SubNav>
-        </NavList.Item>
-        <NavList.Item defaultExpanded>
-          {t('resources')}
-          <NavList.SubNav>
-            {['changelog', 'apiReference', 'restApi', 'graphqlApi'].map(labelKey => (
-              <NavList.Item key={labelKey} href="#">
-                {t(labelKey)}
+              <NavList.Item>
+                {t('extensions')}
+                <NavList.SubNav>
+                  {['installAnExtension', 'publishAnExtension', 'managePermissions'].map(labelKey => (
+                    <NavList.Item key={labelKey} href="#">
+                      {t(labelKey)}
+                    </NavList.Item>
+                  ))}
+                </NavList.SubNav>
               </NavList.Item>
-            ))}
-          </NavList.SubNav>
-        </NavList.Item>
-        <NavList.Item>
-          {t('security')}
-          <NavList.SubNav>
-            {['overview', 'secretScanning', 'codeScanning'].map(labelKey => (
-              <NavList.Item key={labelKey} href="#">
-                {t(labelKey)}
-              </NavList.Item>
-            ))}
-          </NavList.SubNav>
-        </NavList.Item>
+            </NavList.SubNav>
+          </NavList.Item>
+        </NavList.Group>
+        <NavList.Group title={t('codeReview')}>
+          {['overview', 'reviewPullRequests', 'configureRulesets', 'useSuggestedChanges'].map(labelKey => (
+            <NavList.Item key={labelKey} href="#">
+              {t(labelKey)}
+            </NavList.Item>
+          ))}
+        </NavList.Group>
+        <NavList.Group title={t('resources')}>
+          {['changelog', 'apiReference', 'restApi', 'graphqlApi'].map(labelKey => (
+            <NavList.Item key={labelKey} href="#">
+              {t(labelKey)}
+            </NavList.Item>
+          ))}
+        </NavList.Group>
+        <NavList.Group title={t('security')}>
+          {['overview', 'secretScanning', 'codeScanning'].map(labelKey => (
+            <NavList.Item key={labelKey} href="#">
+              {t(labelKey)}
+            </NavList.Item>
+          ))}
+        </NavList.Group>
       </NavList>
     )
   },

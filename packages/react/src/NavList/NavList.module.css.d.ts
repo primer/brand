@@ -1,6 +1,9 @@
 declare const styles: {
   readonly "NavList": string;
   readonly "NavList__accordionButton": string;
+  readonly "NavList__group": string;
+  readonly "NavList__groupList": string;
+  readonly "NavList__groupTitle": string;
   readonly "NavList__item": string;
   readonly "NavList__item--leaf": string;
   readonly "NavList__item--level-1": string;

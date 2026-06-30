@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react'
+import React from 'react'
 import {render, cleanup, within} from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import '@testing-library/jest-dom'
@@ -64,26 +64,167 @@ describe('NavList', () => {
     expect(item).not.toHaveClass('NavList__item--level-1')
   })
 
-  it('supports className and ref passthrough on the root', () => {
-    const expectedClass = 'test-class'
+  it('renders grouped sections with labelled lists', () => {
+    const {getByRole} = render(
+      <NavList aria-label="Grouped navigation">
+        <NavList.Group title="Products">
+          <NavList.Item href="/copilot" aria-current="page">
+            Copilot
+          </NavList.Item>
+          <NavList.Item href="/codespaces">Codespaces</NavList.Item>
+        </NavList.Group>
+        <NavList.Group title="Collaboration">
+          <NavList.Item href="/pull-requests">Pull requests</NavList.Item>
+        </NavList.Group>
+      </NavList>,
+    )
 
-    const MockComponent = () => {
-      const ref = React.useRef<HTMLElement>(null)
+    const nav = getByRole('navigation', {name: 'Grouped navigation'})
+    const productsHeading = getByRole('heading', {name: 'Products', level: 3})
+    const productsList = getByRole('list', {name: 'Products'})
+    const copilotItem = getByRole('link', {name: 'Copilot'}).closest('li')
 
-      useEffect(() => {
-        ref.current?.classList.add(expectedClass)
-      }, [])
+    expect(nav).toContainElement(productsHeading)
+    expect(productsHeading.closest('li')).toHaveClass('NavList__group')
+    expect(productsList).toHaveClass('NavList__groupList')
+    expect(copilotItem).toHaveClass('NavList__item--level-2')
+  })
 
-      return (
-        <NavList ref={ref} aria-label="Test">
-          <NavList.Item href="/">Home</NavList.Item>
-        </NavList>
-      )
-    }
+  it('applies custom className to groups', () => {
+    const {getByTestId} = render(
+      <NavList>
+        <NavList.Group title="Products" className="custom-group" data-testid="custom-group">
+          <NavList.Item href="/copilot">Copilot</NavList.Item>
+        </NavList.Group>
+      </NavList>,
+    )
 
-    const {getByRole} = render(<MockComponent />)
+    expect(getByTestId('custom-group')).toHaveClass('NavList__group')
+    expect(getByTestId('custom-group')).toHaveClass('custom-group')
+  })
 
-    expect(getByRole('navigation', {name: 'Test'})).toHaveClass(expectedClass)
+  it('forwards refs to groups', () => {
+    const ref = React.createRef<HTMLLIElement>()
+
+    const {getByTestId} = render(
+      <NavList>
+        <NavList.Group ref={ref} title="Products" data-testid="custom-group">
+          <NavList.Item href="/copilot">Copilot</NavList.Item>
+        </NavList.Group>
+      </NavList>,
+    )
+
+    expect(ref.current).toBe(getByTestId('custom-group'))
+  })
+
+  it('supports nested disclosure inside groups', async () => {
+    const user = userEvent.setup()
+
+    const {getByRole} = render(
+      <NavList>
+        <NavList.Group title="Collaboration">
+          <NavList.Item>
+            Pull requests
+            <NavList.SubNav>
+              <NavList.Item href="/pull-requests/review">Review pull requests</NavList.Item>
+            </NavList.SubNav>
+          </NavList.Item>
+        </NavList.Group>
+      </NavList>,
+    )
+
+    const toggle = getByRole('button', {name: 'Pull requests'})
+
+    expect(toggle.closest('li')).toHaveClass('NavList__item--level-2')
+    expect(toggle).toHaveAttribute('aria-expanded', 'false')
+
+    await user.click(toggle)
+
+    expect(getByRole('link', {name: 'Review pull requests'}).closest('li')).toHaveClass('NavList__item--level-3')
+  })
+
+  it('prevents direct nested lists from being rendered inside groups', () => {
+    const consoleWarnSpy = jest.spyOn(console, 'warn').mockImplementation(() => {})
+    const {getByRole, queryByRole} = render(
+      <NavList>
+        <NavList.Group title="Products">
+          <NavList.Item href="/copilot">Copilot</NavList.Item>
+          <NavList.SubNav>
+            <NavList.Item href="/actions">Actions</NavList.Item>
+          </NavList.SubNav>
+        </NavList.Group>
+      </NavList>,
+    )
+
+    expect(consoleWarnSpy).toHaveBeenCalledWith(
+      'NavList.Group: Only NavList.Item children are supported. Invalid children will not be rendered. Use NavList.SubNav as a child of NavList.Item for nested disclosure.',
+    )
+    expect(getByRole('link', {name: 'Copilot'})).toBeInTheDocument()
+    expect(queryByRole('link', {name: 'Actions'})).not.toBeInTheDocument()
+  })
+
+  it('prevents nested groups from being rendered inside groups', () => {
+    const consoleWarnSpy = jest.spyOn(console, 'warn').mockImplementation(() => {})
+    const {queryByText} = render(
+      <NavList>
+        <NavList.Group title="Products">
+          <NavList.Group title="Nested group">
+            <NavList.Item href="/copilot">Copilot</NavList.Item>
+          </NavList.Group>
+        </NavList.Group>
+      </NavList>,
+    )
+
+    expect(consoleWarnSpy).toHaveBeenCalledWith(
+      'NavList.Group: Only NavList.Item children are supported. Invalid children will not be rendered. Use NavList.SubNav as a child of NavList.Item for nested disclosure.',
+    )
+    expect(queryByText('Nested group')).not.toBeInTheDocument()
+    expect(queryByText('Copilot')).not.toBeInTheDocument()
+  })
+
+  it('prevents fragment-wrapped invalid children from being rendered inside groups', () => {
+    const consoleWarnSpy = jest.spyOn(console, 'warn').mockImplementation(() => {})
+    const {getByRole, queryByRole} = render(
+      <NavList>
+        <NavList.Group title="Products">
+          <>
+            <NavList.Item href="/copilot">Copilot</NavList.Item>
+            <NavList.SubNav>
+              <NavList.Item href="/actions">Actions</NavList.Item>
+            </NavList.SubNav>
+          </>
+        </NavList.Group>
+      </NavList>,
+    )
+
+    expect(consoleWarnSpy).toHaveBeenCalledWith(
+      'NavList.Group: Only NavList.Item children are supported. Invalid children will not be rendered. Use NavList.SubNav as a child of NavList.Item for nested disclosure.',
+    )
+    expect(getByRole('link', {name: 'Copilot'})).toBeInTheDocument()
+    expect(queryByRole('link', {name: 'Actions'})).not.toBeInTheDocument()
+  })
+
+  it('applies custom className to the root', () => {
+    const {getByRole} = render(
+      <NavList aria-label="Test" className="custom-root">
+        <NavList.Item href="/">Home</NavList.Item>
+      </NavList>,
+    )
+
+    expect(getByRole('navigation', {name: 'Test'})).toHaveClass('NavList')
+    expect(getByRole('navigation', {name: 'Test'})).toHaveClass('custom-root')
+  })
+
+  it('forwards refs to the root', () => {
+    const ref = React.createRef<HTMLElement>()
+
+    const {getByRole} = render(
+      <NavList ref={ref} aria-label="Test">
+        <NavList.Item href="/">Home</NavList.Item>
+      </NavList>,
+    )
+
+    expect(ref.current).toBe(getByRole('navigation', {name: 'Test'}))
   })
 
   it('supports custom link components', () => {
@@ -298,7 +439,7 @@ describe('NavList', () => {
   })
 
   it('prevents expandable items past level five', () => {
-    const warn = jest.spyOn(console, 'warn').mockImplementation(() => {})
+    const consoleWarnSpy = jest.spyOn(console, 'warn').mockImplementation(() => {})
     const {queryByText} = render(
       <NavList>
         <NavList.Item defaultExpanded>
@@ -330,13 +471,15 @@ describe('NavList', () => {
       </NavList>,
     )
 
-    expect(warn).toHaveBeenCalledWith('NavList supports up to 5 levels. Level 5 items cannot contain NavList.SubNav.')
+    expect(consoleWarnSpy).toHaveBeenCalledWith(
+      'NavList.Item: NavList supports up to 5 levels. Level 5 items cannot contain NavList.SubNav. NavList.Item will not be rendered.',
+    )
     expect(queryByText('Five')).not.toBeInTheDocument()
     expect(queryByText('Six')).not.toBeInTheDocument()
   })
 
   it('requires expandable items to include label content', () => {
-    const warn = jest.spyOn(console, 'warn').mockImplementation(() => {})
+    const consoleWarnSpy = jest.spyOn(console, 'warn').mockImplementation(() => {})
     const {queryByRole} = render(
       <NavList>
         <NavList.Item>
@@ -347,12 +490,14 @@ describe('NavList', () => {
       </NavList>,
     )
 
-    expect(warn).toHaveBeenCalledWith('NavList.Item with NavList.SubNav requires label content.')
+    expect(consoleWarnSpy).toHaveBeenCalledWith(
+      'NavList.Item: A label is required when using NavList.SubNav. NavList.Item will not be rendered.',
+    )
     expect(queryByRole('link', {name: 'Actions'})).not.toBeInTheDocument()
   })
 
   it('prevents expandable items from including multiple nested lists', () => {
-    const warn = jest.spyOn(console, 'warn').mockImplementation(() => {})
+    const consoleWarnSpy = jest.spyOn(console, 'warn').mockImplementation(() => {})
     const {queryByRole} = render(
       <NavList>
         <NavList.Item>
@@ -367,12 +512,14 @@ describe('NavList', () => {
       </NavList>,
     )
 
-    expect(warn).toHaveBeenCalledWith('NavList.Item supports only one NavList.SubNav child.')
+    expect(consoleWarnSpy).toHaveBeenCalledWith(
+      'NavList.Item: Only one NavList.SubNav child is supported. NavList.Item will not be rendered.',
+    )
     expect(queryByRole('button', {name: 'Docs'})).not.toBeInTheDocument()
   })
 
   it('prevents expandable items from using link-only props', () => {
-    const warn = jest.spyOn(console, 'warn').mockImplementation(() => {})
+    const consoleWarnSpy = jest.spyOn(console, 'warn').mockImplementation(() => {})
     const {queryByRole} = render(
       <NavList>
         <NavList.Item href="/docs">
@@ -384,13 +531,13 @@ describe('NavList', () => {
       </NavList>,
     )
 
-    expect(warn).toHaveBeenCalledWith(
-      'NavList.Item with NavList.SubNav cannot include href or as because expandable items render as buttons.',
+    expect(consoleWarnSpy).toHaveBeenCalledWith(
+      'NavList.Item: `href` and `as` are not supported when using NavList.SubNav because expandable items render as buttons. NavList.Item will not be rendered.',
     )
     expect(queryByRole('button', {name: 'Docs'})).not.toBeInTheDocument()
 
     cleanup()
-    warn.mockClear()
+    consoleWarnSpy.mockClear()
 
     const {queryByRole: queryByRoleAfterAs} = render(
       <NavList>
@@ -403,10 +550,52 @@ describe('NavList', () => {
       </NavList>,
     )
 
-    expect(warn).toHaveBeenCalledWith(
-      'NavList.Item with NavList.SubNav cannot include href or as because expandable items render as buttons.',
+    expect(consoleWarnSpy).toHaveBeenCalledWith(
+      'NavList.Item: `href` and `as` are not supported when using NavList.SubNav because expandable items render as buttons. NavList.Item will not be rendered.',
     )
     expect(queryByRoleAfterAs('button', {name: 'Docs'})).not.toBeInTheDocument()
+  })
+
+  it('prevents groups from being rendered inside items', () => {
+    const consoleWarnSpy = jest.spyOn(console, 'warn').mockImplementation(() => {})
+    const {queryByText} = render(
+      <NavList>
+        <NavList.Item>
+          Products
+          <NavList.Group title="Nested group">
+            <NavList.Item href="/copilot">Copilot</NavList.Item>
+          </NavList.Group>
+        </NavList.Item>
+      </NavList>,
+    )
+
+    expect(consoleWarnSpy).toHaveBeenCalledWith(
+      'NavList.Item: NavList.Group is not supported as a child. Use NavList.SubNav for nested disclosure. NavList.Item will not be rendered.',
+    )
+    expect(queryByText('Products')).not.toBeInTheDocument()
+    expect(queryByText('Nested group')).not.toBeInTheDocument()
+  })
+
+  it('prevents fragment-wrapped groups from being rendered inside items', () => {
+    const consoleWarnSpy = jest.spyOn(console, 'warn').mockImplementation(() => {})
+    const {queryByText} = render(
+      <NavList>
+        <NavList.Item>
+          Products
+          <>
+            <NavList.Group title="Nested group">
+              <NavList.Item href="/copilot">Copilot</NavList.Item>
+            </NavList.Group>
+          </>
+        </NavList.Item>
+      </NavList>,
+    )
+
+    expect(consoleWarnSpy).toHaveBeenCalledWith(
+      'NavList.Item: NavList.Group is not supported as a child. Use NavList.SubNav for nested disclosure. NavList.Item will not be rendered.',
+    )
+    expect(queryByText('Products')).not.toBeInTheDocument()
+    expect(queryByText('Nested group')).not.toBeInTheDocument()
   })
 
   it('expands and collapses nested lists', async () => {

@@ -42,49 +42,56 @@ import {NavList} from '@primer/react-brand'
 
 ### Sections
 
-Add `NavList.SubNav` to a `NavList.Item` to turn it into a section. Section rows render as disclosure buttons that expand and collapse their nested items.
+Use `NavList.Group` to organize related navigation items into labelled sections.
 
 ```jsx live
 <NavList aria-label="Section navigation">
-  <NavList.Item defaultExpanded>
-    Products
-    <NavList.SubNav>
-      <NavList.Item href="#" aria-current="page">
-        Copilot
-      </NavList.Item>
-      <NavList.Item href="#">Codespaces</NavList.Item>
-      <NavList.Item href="#">Actions</NavList.Item>
-      <NavList.Item href="#">Packages</NavList.Item>
-    </NavList.SubNav>
-  </NavList.Item>
-  <NavList.Item defaultExpanded>
-    Collaboration
-    <NavList.SubNav>
-      <NavList.Item defaultExpanded>
-        Pull requests
-        <NavList.SubNav>
-          <NavList.Item href="#">Review pull requests</NavList.Item>
-          <NavList.Item href="#">Use suggested changes</NavList.Item>
-          <NavList.Item href="#">Configure rulesets</NavList.Item>
-        </NavList.SubNav>
-      </NavList.Item>
-      <NavList.Item>
-        Branches
-        <NavList.SubNav>
-          <NavList.Item href="#">Overview</NavList.Item>
-          <NavList.Item href="#">Protection rules</NavList.Item>
-        </NavList.SubNav>
-      </NavList.Item>
-    </NavList.SubNav>
-  </NavList.Item>
-  <NavList.Item>
-    Security
-    <NavList.SubNav>
-      <NavList.Item href="#">Overview</NavList.Item>
-      <NavList.Item href="#">Secret scanning</NavList.Item>
-      <NavList.Item href="#">Code scanning</NavList.Item>
-    </NavList.SubNav>
-  </NavList.Item>
+  <NavList.Group title="Products">
+    <NavList.Item href="#" aria-current="page">
+      Copilot
+    </NavList.Item>
+    <NavList.Item href="#">Codespaces</NavList.Item>
+    <NavList.Item href="#">Actions</NavList.Item>
+    <NavList.Item href="#">Packages</NavList.Item>
+  </NavList.Group>
+  <NavList.Group title="Collaboration">
+    <NavList.Item href="#">Pull requests</NavList.Item>
+    <NavList.Item href="#">Issues</NavList.Item>
+    <NavList.Item href="#">Discussions</NavList.Item>
+  </NavList.Group>
+  <NavList.Group title="Security">
+    <NavList.Item href="#">Overview</NavList.Item>
+    <NavList.Item href="#">Secret scanning</NavList.Item>
+    <NavList.Item href="#">Code scanning</NavList.Item>
+  </NavList.Group>
+</NavList>
+```
+
+### Nested disclosure
+
+Add `NavList.SubNav` to a `NavList.Item` when an item needs to expand and collapse nested navigation links.
+
+```jsx live
+<NavList aria-label="Nested navigation">
+  <NavList.Group title="Collaboration">
+    <NavList.Item defaultExpanded>
+      Pull requests
+      <NavList.SubNav>
+        <NavList.Item href="#" aria-current="page">
+          Review pull requests
+        </NavList.Item>
+        <NavList.Item href="#">Use suggested changes</NavList.Item>
+        <NavList.Item href="#">Configure rulesets</NavList.Item>
+      </NavList.SubNav>
+    </NavList.Item>
+    <NavList.Item>
+      Branches
+      <NavList.SubNav>
+        <NavList.Item href="#">Overview</NavList.Item>
+        <NavList.Item href="#">Protection rules</NavList.Item>
+      </NavList.SubNav>
+    </NavList.Item>
+  </NavList.Group>
 </NavList>
 ```
 
@@ -200,7 +207,7 @@ Give each `NavList` a clear `aria-label` or `aria-labelledby`, especially when t
 
 Use `aria-current="page"` on the link for the current page. Only apply `aria-current` to leaf items that navigate somewhere, not to section rows with nested items.
 
-Keep section labels short and descriptive. Section rows with `NavList.SubNav` must include visible label text so people can understand what will expand.
+Keep group titles and disclosure labels short and descriptive. Items with `NavList.SubNav` must include visible label text so people can understand what will expand.
 
 ## Component props
 
@@ -208,7 +215,7 @@ Keep section labels short and descriptive. Section rows with `NavList.SubNav` mu
 
 | name              | type        | default        | required | description                                           |
 | ----------------- | ----------- | -------------- | -------- | ----------------------------------------------------- |
-| `children`        | `ReactNode` |                | `true`   | `NavList.Item` nodes                                  |
+| `children`        | `ReactNode` |                | `true`   | `NavList.Item` and `NavList.Group` nodes              |
 | `aria-label`      | `string`    | `'Navigation'` | `false`  | Accessible label for the navigation landmark          |
 | `aria-labelledby` | `string`    |                | `false`  | ID of the element that labels the navigation landmark |
 | `className`       | `string`    |                | `false`  | Sets a custom class on the `nav` element              |
@@ -220,7 +227,7 @@ Forwards all standard HTML attributes for `<nav>` elements.
 | name               | type                       | default | required | description                                                                             |
 | ------------------ | -------------------------- | ------- | -------- | --------------------------------------------------------------------------------------- |
 | `as`               | `React.ElementType`        | `'a'`   | `false`  | Element or component used for leaf items                                                |
-| `children`         | `ReactNode`                |         | `true`   | Item label and optional `NavList.SubNav`                                                |
+| `children`         | `ReactNode`                |         | `true`   | Item label and optional `NavList.SubNav` for nested disclosure                          |
 | `href`             | `string`                   |         | `false`  | URL for leaf items when rendering as an anchor                                          |
 | `aria-current`     | <NavListAriaCurrentProp /> |         | `false`  | Marks a leaf item as current                                                            |
 | `defaultExpanded`  | `boolean`                  | `false` | `false`  | Opens nested `NavList.SubNav` by default                                                |
@@ -230,7 +237,16 @@ Forwards all standard HTML attributes for `<nav>` elements.
 | `trailingVisual`   | `ReactElement \| Icon`     |         | `false`  | Visual rendered after the label                                                         |
 | `disabled`         | `boolean`                  | `false` | `false`  | Disables the item. Leaf links receive `aria-disabled`; section buttons receive disabled |
 
-Forwards props to the rendered leaf link or section button.
+Forwards props to the rendered leaf link or disclosure button.
+
+### NavList.Group
+
+| name        | type        | default | required | description                                  |
+| ----------- | ----------- | ------- | -------- | -------------------------------------------- |
+| `title`     | `ReactNode` |         | `false`  | Heading text for the grouped section         |
+| `children`  | `ReactNode` |         | `true`   | `NavList.Item` nodes                         |
+| `className` | `string`    |         | `false`  | Sets a custom class on the group list item   |
+
 
 ### NavList.SubNav
 
@@ -239,4 +255,3 @@ Forwards props to the rendered leaf link or section button.
 | `children`  | `ReactNode` |         | `true`   | Nested `NavList.Item` nodes            |
 | `className` | `string`    |         | `false`  | Sets a custom class on the nested `ul` |
 
-Forwards all standard HTML attributes for `<ul>` elements.

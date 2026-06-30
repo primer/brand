@@ -40,6 +40,15 @@ const testIds = {
   get subNav() {
     return `${this.root}-sub-nav`
   },
+  get group() {
+    return `${this.root}-group`
+  },
+  get groupTitle() {
+    return `${this.root}-group-title`
+  },
+  get groupList() {
+    return `${this.root}-group-list`
+  },
   get toggle() {
     return `${this.root}-toggle`
   },
@@ -79,7 +88,9 @@ const NavListRoot = forwardRef<HTMLElement, NavListRootProps>(
     {children, className, 'aria-label': ariaLabel, 'aria-labelledby': ariaLabelledBy, 'data-testid': testId, ...rest},
     ref,
   ) => {
-    const hasTopLevelSubNav = useMemo(() => Children.toArray(children).some(childHasDirectSubNav), [children])
+    const childrenArray = useMemo(() => Children.toArray(children), [children])
+    const hasTopLevelSubNav = useMemo(() => childrenArray.some(childHasDirectSubNav), [childrenArray])
+    const hasTopLevelGroup = useMemo(() => childrenArray.some(childIsNavListGroupElement), [childrenArray])
     const rootLevel = hasTopLevelSubNav ? 1 : 2
 
     return (
@@ -93,7 +104,10 @@ const NavListRoot = forwardRef<HTMLElement, NavListRootProps>(
       >
         <NavListLevelContext.Provider value={rootLevel}>
           <ul
-            className={clsx(styles.NavList__list, !hasTopLevelSubNav && styles['NavList__list--flat'])}
+            className={clsx(
+              styles.NavList__list,
+              !hasTopLevelSubNav && !hasTopLevelGroup && styles['NavList__list--flat'],
+            )}
             data-testid={testIds.list}
           >
             {children}
@@ -168,6 +182,7 @@ const NavListItem = forwardRef(
     const childrenArray = useMemo(() => Children.toArray(children), [children])
     const subNavChildren = useMemo(() => childrenArray.filter(isNavListSubNavElement), [childrenArray])
     const subNav = useMemo(() => childrenArray.find(isNavListSubNavElement), [childrenArray])
+    const navListGroupChildren = useMemo(() => childrenArray.filter(childHasNavListGroupElement), [childrenArray])
     const labelChildren = useMemo(
       () => (subNav ? childrenArray.filter(child => child !== subNav) : childrenArray),
       [childrenArray, subNav],
@@ -195,6 +210,7 @@ const NavListItem = forwardRef(
       hasLabelContent,
       hasSubNav,
       href,
+      navListGroupCount: navListGroupChildren.length,
       subNavCount: subNavChildren.length,
     })
 
@@ -254,7 +270,7 @@ const NavListItem = forwardRef(
     )
 
     if (invalidMessage) {
-      warnInvalidNavListItem(invalidMessage)
+      warnNavListValidation(invalidMessage)
       return null
     }
 
@@ -398,13 +414,55 @@ const NavListSubNav = forwardRef<HTMLUListElement, NavListSubNavProps>(
   },
 )
 
+export type NavListGroupProps = {
+  /**
+   * Heading text for the grouped navigation section.
+   */
+  title?: ReactNode
+  children: ReactNode
+  'data-testid'?: string
+} & BaseProps<HTMLLIElement> &
+  Omit<React.LiHTMLAttributes<HTMLLIElement>, 'title'>
+
+const NavListGroup = forwardRef<HTMLLIElement, NavListGroupProps>(
+  ({title, children, className, 'data-testid': testId, ...rest}, ref) => {
+    const titleId = useId()
+    const validChildren = useMemo(() => getValidNavListGroupChildren(children), [children])
+    const hasInvalidChild = useMemo(() => hasInvalidNavListGroupChild(children), [children])
+
+    if (hasInvalidChild) {
+      warnNavListValidation(
+        'NavList.Group: Only NavList.Item children are supported. Invalid children will not be rendered. Use NavList.SubNav as a child of NavList.Item for nested disclosure.',
+      )
+    }
+
+    return (
+      <li ref={ref} className={clsx(styles.NavList__group, className)} data-testid={testId || testIds.group} {...rest}>
+        {title ? (
+          <h3 id={titleId} className={styles.NavList__groupTitle} data-testid={testIds.groupTitle}>
+            {title}
+          </h3>
+        ) : null}
+        <ul
+          className={styles.NavList__groupList}
+          aria-labelledby={title ? titleId : undefined}
+          data-testid={testIds.groupList}
+        >
+          <NavListLevelContext.Provider value={2}>{validChildren}</NavListLevelContext.Provider>
+        </ul>
+      </li>
+    )
+  },
+)
+
 /**
- * Use NavList to render vertical navigation links with expandable section rows and nested lists.
+ * Use NavList to render vertical navigation links with grouped sections and expandable nested lists.
  * @see https://primer.style/brand/components/NavList
  */
 export const NavList = Object.assign(NavListRoot, {
   Item: NavListItem,
   SubNav: NavListSubNav,
+  Group: NavListGroup,
   testIds,
 })
 
@@ -413,6 +471,14 @@ type ElementWithCurrent = ReactElement<{children?: ReactNode; 'aria-current'?: A
 
 function isNavListSubNavElement(node: ReactNode): node is NavListSubNavElement {
   return isValidElement<NavListSubNavProps>(node) && node.type === NavListSubNav
+}
+
+function isNavListItemElement(node: ReactNode): node is ReactElement<NavListItemProps> {
+  return isValidElement<NavListItemProps>(node) && node.type === NavListItem
+}
+
+function isNavListGroupElement(node: ReactNode): node is ReactElement<NavListGroupProps> {
+  return isValidElement<NavListGroupProps>(node) && node.type === NavListGroup
 }
 
 function isCurrentValue(value: AriaAttributes['aria-current']) {
@@ -451,6 +517,54 @@ function childHasDirectSubNav(node: ReactNode): boolean {
   return Children.toArray((node as ElementWithChildren).props.children).some(isNavListSubNavElement)
 }
 
+function childIsNavListGroupElement(node: ReactNode): boolean {
+  if (!isValidElement(node)) return false
+
+  if (node.type === React.Fragment) {
+    return Children.toArray((node as ElementWithChildren).props.children).some(childIsNavListGroupElement)
+  }
+
+  return isNavListGroupElement(node)
+}
+
+function childHasNavListGroupElement(node: ReactNode): boolean {
+  if (!isValidElement(node)) return false
+
+  if (node.type === React.Fragment) {
+    return Children.toArray((node as ElementWithChildren).props.children).some(childHasNavListGroupElement)
+  }
+
+  return isNavListGroupElement(node)
+}
+
+function getValidNavListGroupChildren(children: ReactNode): ReactNode[] {
+  return Children.toArray(children).flatMap(child => {
+    if (isNavListItemElement(child)) {
+      return [child]
+    }
+
+    if (isValidElement(child) && child.type === React.Fragment) {
+      return getValidNavListGroupChildren((child as ElementWithChildren).props.children)
+    }
+
+    return []
+  })
+}
+
+function hasInvalidNavListGroupChild(children: ReactNode): boolean {
+  return Children.toArray(children).some(child => {
+    if (isNavListItemElement(child)) {
+      return false
+    }
+
+    if (isValidElement(child) && child.type === React.Fragment) {
+      return hasInvalidNavListGroupChild((child as ElementWithChildren).props.children)
+    }
+
+    return true
+  })
+}
+
 function renderVisual(visual: Visual | undefined, className: string) {
   if (!visual) return null
 
@@ -475,6 +589,7 @@ function getInvalidNavListItemMessage({
   hasLabelContent,
   hasSubNav,
   href,
+  navListGroupCount,
   subNavCount,
 }: {
   as?: React.ElementType
@@ -482,26 +597,31 @@ function getInvalidNavListItemMessage({
   hasLabelContent: boolean
   hasSubNav: boolean
   href?: string
+  navListGroupCount: number
   subNavCount: number
 }) {
+  if (navListGroupCount > 0) {
+    return 'NavList.Item: NavList.Group is not supported as a child. Use NavList.SubNav for nested disclosure. NavList.Item will not be rendered.'
+  }
+
   if (hasSubNav && !canExpand) {
-    return 'NavList supports up to 5 levels. Level 5 items cannot contain NavList.SubNav.'
+    return 'NavList.Item: NavList supports up to 5 levels. Level 5 items cannot contain NavList.SubNav. NavList.Item will not be rendered.'
   }
 
   if (subNavCount > 1) {
-    return 'NavList.Item supports only one NavList.SubNav child.'
+    return 'NavList.Item: Only one NavList.SubNav child is supported. NavList.Item will not be rendered.'
   }
 
   if (hasSubNav && !hasLabelContent) {
-    return 'NavList.Item with NavList.SubNav requires label content.'
+    return 'NavList.Item: A label is required when using NavList.SubNav. NavList.Item will not be rendered.'
   }
 
   if (hasSubNav && (href !== undefined || as !== undefined)) {
-    return 'NavList.Item with NavList.SubNav cannot include href or as because expandable items render as buttons.'
+    return 'NavList.Item: `href` and `as` are not supported when using NavList.SubNav because expandable items render as buttons. NavList.Item will not be rendered.'
   }
 }
 
-function warnInvalidNavListItem(message: string) {
+function warnNavListValidation(message: string) {
   if (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'test') {
     // eslint-disable-next-line no-console
     console.warn(message)

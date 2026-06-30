@@ -34,48 +34,69 @@ export const Sections: Story = {
 
     return (
       <NavList aria-label={String(t('docsNavigation'))}>
-        <NavList.Item defaultExpanded>
-          {t('githubCopilot')}
-          <NavList.SubNav>
-            {['overview', 'quickstart', 'installGitHubCopilot', 'configureYourEditor', 'managePolicies'].map(
-              labelKey => (
+        <NavList.Group title={t('githubCopilot')}>
+          {['overview', 'quickstart', 'installGitHubCopilot', 'configureYourEditor', 'managePolicies'].map(labelKey => (
+            <NavList.Item key={labelKey} href="#">
+              {t(labelKey)}
+            </NavList.Item>
+          ))}
+        </NavList.Group>
+        <NavList.Group title={t('codeReview')}>
+          {['overview', 'reviewPullRequests', 'useSuggestedChanges', 'configureRulesets'].map(labelKey => (
+            <NavList.Item key={labelKey} href="#">
+              {t(labelKey)}
+            </NavList.Item>
+          ))}
+        </NavList.Group>
+        <NavList.Group title={t('githubActions')}>
+          {['overview', 'writeWorkflows', 'useMarketplaceActions', 'manageRunners'].map(labelKey => (
+            <NavList.Item key={labelKey} href="#" aria-current={labelKey === 'writeWorkflows' ? 'page' : undefined}>
+              {t(labelKey)}
+            </NavList.Item>
+          ))}
+        </NavList.Group>
+        <NavList.Group title={t('security')}>
+          {['overview', 'secretScanning', 'codeScanning', 'dependabotAlerts'].map(labelKey => (
+            <NavList.Item key={labelKey} href="#">
+              {t(labelKey)}
+            </NavList.Item>
+          ))}
+        </NavList.Group>
+      </NavList>
+    )
+  },
+}
+
+export const NestedDisclosure: Story = {
+  render: function NestedDisclosure() {
+    const {t} = useTranslation('NavList')
+
+    return (
+      <NavList aria-label={String(t('nestedDisclosureNavigation'))}>
+        <NavList.Group title={t('collaboration')}>
+          <NavList.Item defaultExpanded>
+            {t('pullRequests')}
+            <NavList.SubNav>
+              {['reviewPullRequests', 'useSuggestedChanges', 'configureRulesets'].map(labelKey => (
                 <NavList.Item key={labelKey} href="#">
                   {t(labelKey)}
                 </NavList.Item>
-              ),
-            )}
-          </NavList.SubNav>
-        </NavList.Item>
-        <NavList.Item defaultExpanded>
-          {t('codeReview')}
-          <NavList.SubNav>
-            {['overview', 'reviewPullRequests', 'useSuggestedChanges', 'configureRulesets'].map(labelKey => (
-              <NavList.Item key={labelKey} href="#">
-                {t(labelKey)}
-              </NavList.Item>
-            ))}
-          </NavList.SubNav>
-        </NavList.Item>
-        <NavList.Item defaultExpanded>
-          {t('githubActions')}
-          <NavList.SubNav>
-            {['overview', 'writeWorkflows', 'useMarketplaceActions', 'manageRunners'].map(labelKey => (
-              <NavList.Item key={labelKey} href="#" aria-current={labelKey === 'writeWorkflows' ? 'page' : undefined}>
-                {t(labelKey)}
-              </NavList.Item>
-            ))}
-          </NavList.SubNav>
-        </NavList.Item>
-        <NavList.Item defaultExpanded>
-          {t('security')}
-          <NavList.SubNav>
-            {['overview', 'secretScanning', 'codeScanning', 'dependabotAlerts'].map(labelKey => (
-              <NavList.Item key={labelKey} href="#">
-                {t(labelKey)}
-              </NavList.Item>
-            ))}
-          </NavList.SubNav>
-        </NavList.Item>
+              ))}
+            </NavList.SubNav>
+          </NavList.Item>
+        </NavList.Group>
+        <NavList.Group title={t('automation')}>
+          <NavList.Item defaultExpanded>
+            {t('githubActions')}
+            <NavList.SubNav>
+              {['overview', 'writeWorkflows', 'useMarketplaceActions', 'manageRunners'].map(labelKey => (
+                <NavList.Item key={labelKey} href="#" aria-current={labelKey === 'writeWorkflows' ? 'page' : undefined}>
+                  {t(labelKey)}
+                </NavList.Item>
+              ))}
+            </NavList.SubNav>
+          </NavList.Item>
+        </NavList.Group>
       </NavList>
     )
   },
@@ -261,26 +282,24 @@ export const OneHundredLinks: Story = {
 }
 
 export const FiveExpandedSections: Story = {
+  name: 'Five grouped sections',
   render: function FiveExpandedSections() {
     const {t} = useTranslation('NavList')
 
     return (
       <NavList aria-label={String(t('fiveExpandedSectionsNavigation'))}>
         {Array.from({length: 5}, (_sectionValue, sectionIndex) => (
-          <NavList.Item key={sectionIndex} defaultExpanded>
-            {t('stressSection', {index: sectionIndex + 1})}
-            <NavList.SubNav>
-              {Array.from({length: 20}, (_linkValue, linkIndex) => (
-                <NavList.Item
-                  key={linkIndex}
-                  href="#"
-                  aria-current={sectionIndex === 0 && linkIndex === 0 ? 'page' : undefined}
-                >
-                  {t('stressSectionLink', {sectionIndex: sectionIndex + 1, linkIndex: linkIndex + 1})}
-                </NavList.Item>
-              ))}
-            </NavList.SubNav>
-          </NavList.Item>
+          <NavList.Group key={sectionIndex} title={t('stressSection', {index: sectionIndex + 1})}>
+            {Array.from({length: 20}, (_linkValue, linkIndex) => (
+              <NavList.Item
+                key={linkIndex}
+                href="#"
+                aria-current={sectionIndex === 0 && linkIndex === 0 ? 'page' : undefined}
+              >
+                {t('stressSectionLink', {sectionIndex: sectionIndex + 1, linkIndex: linkIndex + 1})}
+              </NavList.Item>
+            ))}
+          </NavList.Group>
         ))}
       </NavList>
     )
