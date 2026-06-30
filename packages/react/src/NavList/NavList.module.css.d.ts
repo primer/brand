@@ -5,6 +5,8 @@ declare const styles: {
   readonly "NavList__groupList": string;
   readonly "NavList__groupTitle": string;
   readonly "NavList__item": string;
+  readonly "NavList__item--expanded": string;
+  readonly "NavList__item--has-current-descendant": string;
   readonly "NavList__item--leaf": string;
   readonly "NavList__item--level-1": string;
   readonly "NavList__item--level-2": string;
@@ -20,6 +22,7 @@ declare const styles: {
   readonly "NavList__list": string;
   readonly "NavList__list--flat": string;
   readonly "NavList__subNav": string;
+  readonly "NavList__subNav--expanded": string;
   readonly "NavList__toggleIcon": string;
   readonly "NavList__trailingVisual": string;
 };

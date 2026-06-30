@@ -136,12 +136,13 @@ describe('NavList', () => {
     const toggle = getByRole('button', {name: 'Pull requests'})
 
     expect(toggle.closest('li')).toHaveClass('NavList__item--level-2')
-    expect(toggle.closest('li')).toHaveAttribute('data-expanded', 'false')
+    expect(toggle.closest('li')).not.toHaveClass('NavList__item--expanded')
     expect(toggle).toHaveAttribute('aria-expanded', 'false')
 
     await user.click(toggle)
 
-    expect(toggle.closest('li')).toHaveAttribute('data-expanded', 'true')
+    expect(toggle.closest('li')).toHaveClass('NavList__item--expanded')
+    expect(toggle).toHaveAttribute('aria-expanded', 'true')
     expect(getByRole('link', {name: 'Review pull requests'}).closest('li')).toHaveClass('NavList__item--level-3')
   })
 
@@ -646,14 +647,14 @@ describe('NavList', () => {
     const subNav = document.getElementById(toggle.getAttribute('aria-controls') ?? '')
 
     expect(subNav).toHaveAttribute('aria-hidden', 'true')
-    expect(subNav).toHaveAttribute('data-expanded', 'false')
+    expect(subNav).not.toHaveClass('NavList__subNav--expanded')
     expect(subNav).toHaveAttribute('inert')
     expect(subNav).not.toHaveAttribute('hidden')
 
     await user.click(toggle)
 
     expect(subNav).not.toHaveAttribute('aria-hidden')
-    expect(subNav).toHaveAttribute('data-expanded', 'true')
+    expect(subNav).toHaveClass('NavList__subNav--expanded')
     expect(subNav).not.toHaveAttribute('inert')
   })
 

@@ -117,11 +117,11 @@
   background-color: var(--brand-color-canvas-subtle);
 }
 
-.NavList__item[data-has-current-descendant='true'] > .NavList__itemContent .NavList__accordionButton:not(:disabled) {
+.NavList__item--has-current-descendant > .NavList__itemContent .NavList__accordionButton:not(:disabled) {
   color: var(--brand-color-text-default);
 }
 
-.NavList__item:not(.NavList__item--level-1)[data-has-current-descendant='true']
+.NavList__item:not(.NavList__item--level-1).NavList__item--has-current-descendant
   > .NavList__itemContent
   .NavList__accordionButton[aria-expanded='false']:not(:disabled)
   .NavList__labelArea {
@@ -153,7 +153,7 @@
   background-color: var(--brand-NavList-activeIndicator-color);
 }
 
-.NavList__item[data-has-current-descendant='true']
+.NavList__item--has-current-descendant
   > .NavList__itemContent
   .NavList__accordionButton[aria-expanded='false']:not(:disabled)::before {
   content: '';
@@ -167,13 +167,13 @@
   z-index: 1;
 }
 
-.NavList__item--level-1[data-has-current-descendant='true']
+.NavList__item--level-1.NavList__item--has-current-descendant
   > .NavList__itemContent
   .NavList__accordionButton[aria-expanded='false']::before {
   inset-inline-start: 0;
 }
 
-.NavList__item:not(.NavList__item--level-1)[data-has-current-descendant='true']
+.NavList__item:not(.NavList__item--level-1).NavList__item--has-current-descendant
   > .NavList__itemContent
   .NavList__accordionButton[aria-expanded='false']::before {
   inset-inline-start: var(--base-size-16);
@@ -246,7 +246,7 @@
     visibility 0s linear var(--brand-animation-duration-fast);
 }
 
-.NavList__subNav[data-expanded='true'] {
+.NavList__subNav--expanded {
   max-height: var(--brand-NavList-subNav-height, none);
   opacity: 1;
   transform: translateY(0);
@@ -264,7 +264,7 @@
   padding: var(--base-size-24) var(--base-size-16) var(--base-size-16);
 }
 
-.NavList__item--level-1[data-expanded='true'] {
+.NavList__item--level-1.NavList__item--expanded {
   padding-block-end: var(--base-size-16);
 }
 
@@ -290,7 +290,7 @@
 }
 
 .NavList__item--level-1 > .NavList__itemContent .NavList__accordionButton:not(:disabled):is(:hover, :active)::after,
-.NavList__item--level-1[data-has-current-descendant='true']
+.NavList__item--level-1.NavList__item--has-current-descendant
   > .NavList__itemContent
   .NavList__accordionButton[aria-expanded='false']:not(:disabled)::after {
   content: '';

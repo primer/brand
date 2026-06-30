@@ -286,10 +286,10 @@ const NavListItem = forwardRef(
           styles.NavList__item,
           styles[`NavList__item--level-${level}`],
           isLeafItem && styles['NavList__item--leaf'],
+          hasSubNav && isExpanded && styles['NavList__item--expanded'],
+          hasCurrentSubNavItem && styles['NavList__item--has-current-descendant'],
         )}
         data-testid={testId || testIds.item}
-        data-expanded={hasSubNav ? String(isExpanded) : undefined}
-        data-has-current-descendant={hasCurrentSubNavItem ? 'true' : undefined}
       >
         <div className={styles.NavList__itemContent}>
           {hasSubNav && canExpand ? (
@@ -400,12 +400,11 @@ const NavListSubNav = forwardRef<HTMLUListElement, NavListSubNavProps>(
     return (
       <ul
         ref={setSubNavRef}
-        className={clsx(styles.NavList__subNav, className)}
+        className={clsx(styles.NavList__subNav, expanded && styles['NavList__subNav--expanded'], className)}
         aria-labelledby={ariaLabelledBy ?? labelledBy}
         {...rest}
         aria-hidden={expanded ? undefined : 'true'}
         data-testid={testId || testIds.subNav}
-        data-expanded={expanded ? 'true' : 'false'}
       >
         <NavListLevelContext.Provider value={level}>{children}</NavListLevelContext.Provider>
       </ul>
