@@ -2,7 +2,7 @@ import type {Catalog} from '../catalog/types.js'
 
 export type Severity = 'error' | 'warning'
 
-export interface Finding {
+export type Finding = {
   severity: Severity
   rule: string
   message: string
@@ -10,7 +10,7 @@ export interface Finding {
   evidence?: string
 }
 
-export interface Rule {
+export type Rule = {
   id: string
   run(code: string, catalog: Catalog): Finding[]
 }

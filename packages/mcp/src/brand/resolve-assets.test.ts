@@ -10,7 +10,7 @@ describe('resolveInstalledAssets', () => {
   it('extracts icons from the installed Octicons package, with a version', () => {
     const {assets, sources} = resolveInstalledAssets(process.cwd())
     const icons = assets.filter(asset => asset.kind === 'icon').map(asset => asset.name)
-    // Real package in node_modules: there should be many icons, including a stable one.
+    // there should be lots of icons, including a stable one.
     expect(icons.length).toBeGreaterThan(100)
     expect(icons).toContain('ArrowRightIcon')
     const octicons = sources.find(source => source.module === '@primer/octicons-react')

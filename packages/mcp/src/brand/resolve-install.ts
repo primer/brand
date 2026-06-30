@@ -6,13 +6,11 @@ import {dirname, join} from 'node:path'
  * This is what makes the server version-aware: tools prefer the docs and version of the
  * package the project actually depends on.
  */
-export interface BrandInstall {
+export type BrandInstall = {
   found: boolean
   version: string | null
   packageDir: string | null
-  /** Bundled version-pinned docs directory, when the installed version ships one. */
   docsDir: string | null
-  /** Bundled `llms.txt` table of contents, when present. */
   llmsPath: string | null
 }
 
@@ -31,6 +29,17 @@ const notFound: BrandInstall = {
  */
 export function resolveBrandInstall(fromDir: string = process.cwd()): BrandInstall {
   let dir = fromDir
+
+  const readVersion = (packageJsonPath: string): string | null => {
+    try {
+      const parsed = JSON.parse(readFileSync(packageJsonPath, 'utf8')) as {version?: string}
+      return parsed.version ?? null
+    } catch {
+      // Unreadable manifest -> treat the version as unknown rather than failing discovery.
+      return null
+    }
+  }
+
   for (;;) {
     const packageDir = join(dir, 'node_modules', '@primer', 'react-brand')
     if (existsSync(join(packageDir, 'package.json'))) {
@@ -62,15 +71,5 @@ export function looksLikeProductProject(fromDir: string = process.cwd()): boolea
     const parent = dirname(dir)
     if (parent === dir) return false
     dir = parent
-  }
-}
-
-function readVersion(packageJsonPath: string): string | null {
-  try {
-    const parsed = JSON.parse(readFileSync(packageJsonPath, 'utf8')) as {version?: string}
-    return parsed.version ?? null
-  } catch {
-    // Unreadable manifest -> treat the version as unknown rather than failing discovery.
-    return null
   }
 }

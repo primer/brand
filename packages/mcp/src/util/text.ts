@@ -21,7 +21,7 @@ function scoreText(query: string, fields: Array<string | undefined>): number {
   return score
 }
 
-export interface Ranked<T> {
+export type Ranked<T> = {
   item: T
   score: number
 }

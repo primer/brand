@@ -75,7 +75,7 @@ const invalidPropValue: Rule = {
   },
 }
 
-interface RawPattern {
+type RawPattern = {
   id: string
   test: RegExp
   message: string

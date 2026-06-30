@@ -3,7 +3,7 @@ import {dirname, join, sep} from 'node:path'
 
 export type FrameworkId = 'next-app' | 'next-pages' | 'vite' | 'astro' | 'remix' | 'unknown'
 
-export interface FrameworkInfo {
+export type FrameworkInfo = {
   id: FrameworkId
   label: string
   /** Uses React Server Components, so providers need a `'use client'` boundary. */
@@ -11,38 +11,35 @@ export interface FrameworkInfo {
   projectDir: string | null
 }
 
-/** Nearest `package.json` above `fromDir` that isn't inside `node_modules`. */
-function findProjectDir(fromDir: string): string | null {
-  let dir = fromDir
-  for (;;) {
-    if (!dir.split(sep).includes('node_modules') && existsSync(join(dir, 'package.json'))) return dir
+/**
+ * A best-effort detection of the consumer's UI framework so setup guidance can be tailored
+ */
+export function detectFramework(fromDir: string = process.cwd()): FrameworkInfo {
+  // Walk up from `fromDir` to the nearest package.json, ignoring any inside node_modules.
+  let projectDir: string | null = null
+  for (let dir = fromDir; ; ) {
+    if (!dir.split(sep).includes('node_modules') && existsSync(join(dir, 'package.json'))) {
+      projectDir = dir
+      break
+    }
     const parent = dirname(dir)
-    if (parent === dir) return null
+    if (parent === dir) break
     dir = parent
   }
-}
+  if (!projectDir) return {id: 'unknown', label: 'a React project', rsc: false, projectDir: null}
 
-function readDependencies(projectDir: string): Record<string, string> {
+  // Merge direct + dev dependencies; an unreadable or invalid package.json yields no deps.
+  let deps: Record<string, string> = {}
   try {
     const parsed = JSON.parse(readFileSync(join(projectDir, 'package.json'), 'utf8')) as {
       dependencies?: Record<string, string>
       devDependencies?: Record<string, string>
     }
-    return {...parsed.dependencies, ...parsed.devDependencies}
+    deps = {...parsed.dependencies, ...parsed.devDependencies}
   } catch {
-    return {}
+    // ignore — treat as no deps
   }
-}
 
-/**
- * Best-effort detection of the consumer's framework so setup guidance can be tailored
- * (where providers go, whether a `'use client'` boundary is required, which style import to use).
- */
-export function detectFramework(fromDir: string = process.cwd()): FrameworkInfo {
-  const projectDir = findProjectDir(fromDir)
-  if (!projectDir) return {id: 'unknown', label: 'a React project', rsc: false, projectDir: null}
-
-  const deps = readDependencies(projectDir)
   if (deps.next) {
     const appRouter = existsSync(join(projectDir, 'app')) || existsSync(join(projectDir, 'src', 'app'))
     return appRouter

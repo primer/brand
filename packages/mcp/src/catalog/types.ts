@@ -3,7 +3,7 @@
  * It is the structured, offline source of truth the tools reason over so they never depend on the network for version-sensitive facts.
  */
 
-export interface CatalogProp {
+export type CatalogProp = {
   name: string
   type?: string
   /** Allowed string-literal values, when the prop is an enum. */
@@ -14,7 +14,7 @@ export interface CatalogProp {
   description?: string
 }
 
-export interface CatalogExample {
+export type CatalogExample = {
   title: string
   /** Source snippet (JSX), when one could be extracted. */
   code?: string
@@ -24,7 +24,7 @@ export interface CatalogExample {
   storyId?: string
 }
 
-export interface CatalogComponent {
+export type CatalogComponent = {
   /** Public name, e.g. `Hero`. */
   name: string
   /** Package the component is imported from. */
@@ -41,19 +41,19 @@ export interface CatalogComponent {
   note?: string
 }
 
-export interface CatalogAsset {
+export type CatalogAsset = {
   name: string
   module: string
   kind: 'icon' | 'illustration'
 }
 
-export interface CatalogToken {
+export type CatalogToken = {
   name: string
   value: string
   group: string
 }
 
-export interface Catalog {
+export type Catalog = {
   /** Package whose API this catalog describes. */
   brandPackage: string
   /** Version of `@primer/react-brand` the catalog was generated from. */

@@ -4,7 +4,7 @@
  * the transport. Keep this the only logging surface in the server.
  */
 
-export interface Logger {
+export type Logger = {
   debug(message: string): void
   info(message: string): void
   warn(message: string): void

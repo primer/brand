@@ -4,14 +4,14 @@ import {join} from 'node:path'
 
 import {detectFramework} from './detect-framework.js'
 
-function projectWith(deps: Record<string, string>, options: {appDir?: boolean} = {}): string {
-  const dir = mkdtempSync(join(tmpdir(), 'primer-brand-mcp-fw-'))
-  writeFileSync(join(dir, 'package.json'), JSON.stringify({dependencies: deps}))
-  if (options.appDir) mkdirSync(join(dir, 'app'))
-  return dir
-}
-
 describe('detectFramework', () => {
+  const projectWith = (deps: Record<string, string>, options: {appDir?: boolean} = {}): string => {
+    const dir = mkdtempSync(join(tmpdir(), 'primer-brand-mcp-fw-'))
+    writeFileSync(join(dir, 'package.json'), JSON.stringify({dependencies: deps}))
+    if (options.appDir) mkdirSync(join(dir, 'app'))
+    return dir
+  }
+
   it('detects Vite', () => {
     expect(detectFramework(projectWith({vite: '^5', react: '^19'})).id).toBe('vite')
   })

@@ -6,7 +6,7 @@ import type {Catalog, CatalogAsset} from '../catalog/types.js'
 import type {Logger} from '../logger.js'
 
 /** Dependencies shared by every tool, assembled once when the server starts. */
-export interface ToolContext {
+export type ToolContext = {
   catalog: Catalog
   brand: BrandInstall
   docs: DocsSource
@@ -17,12 +17,12 @@ export interface ToolContext {
   assetGenerator: {available: boolean}
 }
 
-export interface ToolResult {
+export type ToolResult = {
   text: string
   isError?: boolean
 }
 
-export interface ToolAnnotations {
+export type ToolAnnotations = {
   readOnlyHint?: boolean
 }
 
@@ -30,7 +30,7 @@ export interface ToolAnnotations {
  * A self-contained tool. `run` holds the testable logic and is independent of the MCP
  * transport; the server wires it up via `registerTool`.
  */
-export interface ToolModule<Input = unknown> {
+export type ToolModule<Input = unknown> = {
   name: string
   title: string
   description: string
