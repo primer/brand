@@ -136,10 +136,12 @@ describe('NavList', () => {
     const toggle = getByRole('button', {name: 'Pull requests'})
 
     expect(toggle.closest('li')).toHaveClass('NavList__item--level-2')
+    expect(toggle.closest('li')).toHaveAttribute('data-expanded', 'false')
     expect(toggle).toHaveAttribute('aria-expanded', 'false')
 
     await user.click(toggle)
 
+    expect(toggle.closest('li')).toHaveAttribute('data-expanded', 'true')
     expect(getByRole('link', {name: 'Review pull requests'}).closest('li')).toHaveClass('NavList__item--level-3')
   })
 

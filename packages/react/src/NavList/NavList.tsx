@@ -290,6 +290,7 @@ const NavListItem = forwardRef(
           isLeafItem && styles['NavList__item--leaf'],
         )}
         data-testid={testId || testIds.item}
+        data-expanded={hasSubNav ? String(isExpanded) : undefined}
         data-has-current-descendant={hasCurrentSubNavItem ? 'true' : undefined}
       >
         <div className={styles.NavList__itemContent}>

@@ -259,7 +259,7 @@
   padding: var(--base-size-24) var(--base-size-16) var(--base-size-16);
 }
 
-.NavList__item--level-1:has(> .NavList__subNav[data-expanded='true']) {
+.NavList__item--level-1[data-expanded='true'] {
   padding-block-end: var(--base-size-16);
 }
 
