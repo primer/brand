@@ -227,25 +227,23 @@ describe('NavList', () => {
     expect(ref.current).toBe(getByRole('navigation', {name: 'Test'}))
   })
 
-  it('supports custom link components', () => {
-    const CustomLink = React.forwardRef<HTMLAnchorElement, React.ComponentPropsWithoutRef<'a'>>(
-      ({children, ...props}, ref) => (
-        <a ref={ref} data-custom-link="true" {...props}>
-          {children}
-        </a>
-      ),
-    )
+  it('supports rendering leaf items as buttons', async () => {
+    const user = userEvent.setup()
+    const onClick = jest.fn()
 
     const {getByRole} = render(
       <NavList aria-label="Test navigation">
-        <NavList.Item as={CustomLink} href="/custom">
-          Custom link
+        <NavList.Item as="button" type="button" onClick={onClick}>
+          Custom action
         </NavList.Item>
       </NavList>,
     )
 
-    expect(getByRole('link', {name: 'Custom link'})).toHaveAttribute('data-custom-link', 'true')
-    expect(getByRole('link', {name: 'Custom link'})).toHaveAttribute('href', '/custom')
+    const button = getByRole('button', {name: 'Custom action'})
+    await user.click(button)
+
+    expect(button).toHaveAttribute('type', 'button')
+    expect(onClick).toHaveBeenCalledTimes(1)
   })
 
   it('passes keyboard handlers to rendered item controls', async () => {
@@ -541,7 +539,7 @@ describe('NavList', () => {
 
     const {queryByRole: queryByRoleAfterAs} = render(
       <NavList aria-label="Test navigation">
-        <NavList.Item as="div">
+        <NavList.Item as="button">
           Docs
           <NavList.SubNav>
             <NavList.Item href="/docs/actions">Actions</NavList.Item>

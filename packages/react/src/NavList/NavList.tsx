@@ -117,6 +117,7 @@ const NavListRoot = forwardRef<HTMLElement, NavListRootProps>(
 )
 
 type Visual = ReactElement | React.ElementType | Icon
+type NavListItemAs = 'a' | 'button'
 
 type ItemOwnProps = {
   /**
@@ -146,7 +147,7 @@ type ItemOwnProps = {
   'data-testid'?: string
 }
 
-export type NavListItemProps<C extends React.ElementType = 'a'> = {
+export type NavListItemProps<C extends NavListItemAs = 'a'> = {
   as?: C
 } & ItemOwnProps &
   PropsWithChildren<BaseProps<HTMLElement>> &
@@ -155,7 +156,7 @@ export type NavListItemProps<C extends React.ElementType = 'a'> = {
 type NavListSubNavElement = ReactElement<NavListSubNavProps>
 
 const NavListItem = forwardRef(
-  <C extends React.ElementType = 'a'>(
+  (
     {
       as,
       children,
@@ -170,10 +171,10 @@ const NavListItem = forwardRef(
       'aria-current': ariaCurrent,
       'data-testid': testId,
       ...rest
-    }: NavListItemProps<C>,
+    }: NavListItemProps<NavListItemAs>,
     ref: Ref<HTMLElement>,
   ) => {
-    const Component = as || 'a'
+    const Component = (as || 'a') as React.ElementType
     const level = useContext(NavListLevelContext)
     const subNavId = useId()
     const accordionButtonId = useId()
@@ -202,6 +203,7 @@ const NavListItem = forwardRef(
       href?: string
     }
     const controlledAccordionButtonId = accordionButtonIdProp ?? accordionButtonId
+    const itemOnClick = onClick as React.MouseEventHandler<HTMLElement> | undefined
     const invalidMessage = getInvalidNavListItemMessage({
       as,
       canExpand,
@@ -239,9 +241,9 @@ const NavListItem = forwardRef(
           return
         }
 
-        onClick?.(event)
+        itemOnClick?.(event)
       },
-      [disabled, onClick],
+      [disabled, itemOnClick],
     )
 
     const setAccordionButtonRef = useCallback(
@@ -258,13 +260,13 @@ const NavListItem = forwardRef(
           return
         }
 
-        onClick?.(event)
+        itemOnClick?.(event)
 
         if (!event.defaultPrevented) {
           toggleExpanded()
         }
       },
-      [disabled, onClick, toggleExpanded],
+      [disabled, itemOnClick, toggleExpanded],
     )
 
     if (invalidMessage) {
@@ -339,7 +341,7 @@ const NavListItem = forwardRef(
       </li>
     )
   },
-)
+) as <C extends NavListItemAs = 'a'>(props: NavListItemProps<C> & {ref?: Ref<HTMLElement>}) => ReactElement | null
 
 export type NavListSubNavProps = {
   children: ReactNode
@@ -590,7 +592,7 @@ function getInvalidNavListItemMessage({
   navListGroupCount,
   subNavCount,
 }: {
-  as?: React.ElementType
+  as?: NavListItemAs
   canExpand: boolean
   hasLabelContent: boolean
   hasSubNav: boolean

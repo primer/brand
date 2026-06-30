@@ -213,12 +213,12 @@ Keep group titles and disclosure labels short and descriptive. Items with `NavLi
 
 ### NavList <Label>Required</Label>
 
-| name              | type        | default        | required | description                                           |
-| ----------------- | ----------- | -------------- | -------- | ----------------------------------------------------- |
-| `children`        | `ReactNode` |                | `true`   | `NavList.Item` and `NavList.Group` nodes              |
-| `aria-label`      | `string`    |                | `true`   | Accessible label for the navigation landmark          |
-| `aria-labelledby` | `string`    |                | `false`  | ID of the element that labels the navigation landmark |
-| `className`       | `string`    |                | `false`  | Sets a custom class on the `nav` element              |
+| name              | type        | default | required | description                                           |
+| ----------------- | ----------- | ------- | -------- | ----------------------------------------------------- |
+| `children`        | `ReactNode` |         | `true`   | `NavList.Item` and `NavList.Group` nodes              |
+| `aria-label`      | `string`    |         | `true`   | Accessible label for the navigation landmark          |
+| `aria-labelledby` | `string`    |         | `false`  | ID of the element that labels the navigation landmark |
+| `className`       | `string`    |         | `false`  | Sets a custom class on the `nav` element              |
 
 Forwards all standard HTML attributes for `<nav>` elements.
 
@@ -226,7 +226,7 @@ Forwards all standard HTML attributes for `<nav>` elements.
 
 | name               | type                       | default | required | description                                                                             |
 | ------------------ | -------------------------- | ------- | -------- | --------------------------------------------------------------------------------------- |
-| `as`               | `React.ElementType`        | `'a'`   | `false`  | Element or component used for leaf items                                                |
+| `as`               | `'a' \| 'button'`          | `'a'`   | `false`  | Element used for leaf items                                                             |
 | `children`         | `ReactNode`                |         | `true`   | Item label and optional `NavList.SubNav` for nested disclosure                          |
 | `href`             | `string`                   |         | `false`  | URL for leaf items when rendering as an anchor                                          |
 | `aria-current`     | <NavListAriaCurrentProp /> |         | `false`  | Marks a leaf item as current                                                            |
@@ -241,12 +241,11 @@ Forwards props to the rendered leaf link or disclosure button.
 
 ### NavList.Group
 
-| name        | type        | default | required | description                                  |
-| ----------- | ----------- | ------- | -------- | -------------------------------------------- |
-| `title`     | `ReactNode` |         | `false`  | Heading text for the grouped section         |
-| `children`  | `ReactNode` |         | `true`   | `NavList.Item` nodes                         |
-| `className` | `string`    |         | `false`  | Sets a custom class on the group list item   |
-
+| name        | type        | default | required | description                                |
+| ----------- | ----------- | ------- | -------- | ------------------------------------------ |
+| `title`     | `ReactNode` |         | `false`  | Heading text for the grouped section       |
+| `children`  | `ReactNode` |         | `true`   | `NavList.Item` nodes                       |
+| `className` | `string`    |         | `false`  | Sets a custom class on the group list item |
 
 ### NavList.SubNav
 
