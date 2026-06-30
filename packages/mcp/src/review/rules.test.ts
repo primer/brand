@@ -27,6 +27,20 @@ describe('primer_brand_review rules', () => {
     expect(finding?.message).toContain('start')
   })
 
+  it('flags align="center" on the gridline-expressive Hero variant', () => {
+    const ids = ruleIds(
+      review('<Hero variant="gridline-expressive" align="center"><Hero.Heading>Hi</Hero.Heading></Hero>'),
+    )
+    expect(ids).toContain('invalid-prop-combination')
+  })
+
+  it('allows the gridline-expressive Hero variant with the default start alignment', () => {
+    const ids = ruleIds(
+      review('<Hero variant="gridline-expressive" align="start"><Hero.Heading>Hi</Hero.Heading></Hero>'),
+    )
+    expect(ids).not.toContain('invalid-prop-combination')
+  })
+
   it('accepts valid, on-brand usage with no errors', () => {
     const findings = review('<Hero align="center"><Hero.Heading>Build</Hero.Heading></Hero>')
     expect(errorsOf(findings)).toHaveLength(0)

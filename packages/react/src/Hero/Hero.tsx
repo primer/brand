@@ -63,7 +63,7 @@ const Root = forwardRef<HTMLElement, PropsWithChildren<HeroProps>>(
   (
     {
       className,
-      align = 'start',
+      align: alignProp = 'start',
       children,
       imageContainerClassName,
       imageContainerStyle,
@@ -146,6 +146,14 @@ const Root = forwardRef<HTMLElement, PropsWithChildren<HeroProps>>(
     const isGridlineExpressive = variant === 'gridline-expressive'
     const isBlockEndPosition = mediaPosition === 'block-end' || mediaPosition === 'block-end-padded'
     const isBlockEndPadded = mediaPosition === 'block-end-padded'
+
+    const isInvalidGridlineAlignment = isGridlineExpressive && alignProp === 'center'
+    const align: HeroAlign = isInvalidGridlineAlignment ? 'start' : alignProp
+
+    if (isInvalidGridlineAlignment && (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'test')) {
+      // eslint-disable-next-line no-console
+      console.warn('Hero: the "gridline-expressive" variant does not support align="center"; using "start" instead.')
+    }
 
     const Tag = (isGridline || isGridlineExpressive) && enableAnimation ? AnimationProvider : Fragment
     const tagProps =

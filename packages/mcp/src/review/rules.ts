@@ -75,6 +75,52 @@ const invalidPropValue: Rule = {
   },
 }
 
+/**
+ * Sometimes certain prop combinations shouldn't be used together, but we don't prevent it through the API.
+ * This is less an issue for human users, as they will rarely discover these combos. Agents however, are great
+ * at finding these awkward combos. We use a map here to add these to our MCP server, with hope that
+ * agents will invoke these automatically and stop using them.
+ */
+type PropCombinationConstraint = {
+  component: string
+  when: {prop: string; value: string}
+  disallow: {prop: string; value: string}
+  message: string
+}
+
+const invalidPropComboMap: PropCombinationConstraint[] = [
+  // prevent align="center" + variant="gridline-expressive" beig used in Hero
+  {
+    component: 'Hero',
+    when: {prop: 'variant', value: 'gridline-expressive'},
+    disallow: {prop: 'align', value: 'center'},
+    message:
+      'The `Hero` `gridline-expressive` variant is always start-aligned; `align="center"` is unsupported and will be ignored — remove it (the default `align="start"` is correct).',
+  },
+]
+
+const invalidPropCombination: Rule = {
+  id: 'invalid-prop-combination',
+  run(code) {
+    const hasAttribute = (tag: string, prop: string, value: string): boolean =>
+      new RegExp(`\\b${escapeRegExp(prop)}=["']${escapeRegExp(value)}["']`).test(tag)
+
+    const findings: Finding[] = []
+    for (const constraint of invalidPropComboMap) {
+      for (const usage of componentUsage(code, constraint.component)) {
+        const tag = usage[0]
+        if (
+          hasAttribute(tag, constraint.when.prop, constraint.when.value) &&
+          hasAttribute(tag, constraint.disallow.prop, constraint.disallow.value)
+        ) {
+          findings.push({severity: 'error', rule: this.id, message: constraint.message, evidence: evidence(tag)})
+        }
+      }
+    }
+    return findings
+  },
+}
+
 type RawPattern = {
   id: string
   test: RegExp
@@ -250,6 +296,7 @@ export function brandComponentsUsed(code: string, catalog: Catalog): CatalogComp
 export const allRules: Rule[] = [
   unknownSubcomponents,
   invalidPropValue,
+  invalidPropCombination,
   rawHtml,
   hardcodedValues,
   offBrandTells,
