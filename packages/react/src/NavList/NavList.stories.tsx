@@ -33,9 +33,10 @@ const ArticleLabelKeys = [
 export const Default: Story = {
   render: function Default(args) {
     const {t} = useTranslation('NavList')
+    const {'aria-label': ariaLabel = 'Docs navigation', ...navListArgs} = args
 
     return (
-      <NavList {...args}>
+      <NavList aria-label={ariaLabel} {...navListArgs}>
         {ArticleLabelKeys.map(labelKey => (
           <NavList.Item key={labelKey} href="#" aria-current={labelKey === 'overview' ? 'page' : undefined}>
             {t(labelKey)}
@@ -49,9 +50,10 @@ export const Default: Story = {
 export const Playground: Story = {
   render: function Playground(args) {
     const {t} = useTranslation('NavList')
+    const {'aria-label': ariaLabel = 'Docs navigation', ...navListArgs} = args
 
     return (
-      <NavList {...args}>
+      <NavList aria-label={ariaLabel} {...navListArgs}>
         <NavList.Group title={t('githubCopilot')}>
           {['overview', 'whatIsGitHubCopilot'].map(labelKey => (
             <NavList.Item key={labelKey} href="#">

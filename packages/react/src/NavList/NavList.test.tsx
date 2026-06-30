@@ -92,7 +92,7 @@ describe('NavList', () => {
 
   it('applies custom className to groups', () => {
     const {getByTestId} = render(
-      <NavList>
+      <NavList aria-label="Test navigation">
         <NavList.Group title="Products" className="custom-group" data-testid="custom-group">
           <NavList.Item href="/copilot">Copilot</NavList.Item>
         </NavList.Group>
@@ -107,7 +107,7 @@ describe('NavList', () => {
     const ref = React.createRef<HTMLLIElement>()
 
     const {getByTestId} = render(
-      <NavList>
+      <NavList aria-label="Test navigation">
         <NavList.Group ref={ref} title="Products" data-testid="custom-group">
           <NavList.Item href="/copilot">Copilot</NavList.Item>
         </NavList.Group>
@@ -121,7 +121,7 @@ describe('NavList', () => {
     const user = userEvent.setup()
 
     const {getByRole} = render(
-      <NavList>
+      <NavList aria-label="Test navigation">
         <NavList.Group title="Collaboration">
           <NavList.Item>
             Pull requests
@@ -146,7 +146,7 @@ describe('NavList', () => {
   it('prevents direct nested lists from being rendered inside groups', () => {
     const consoleWarnSpy = jest.spyOn(console, 'warn').mockImplementation(() => {})
     const {getByRole, queryByRole} = render(
-      <NavList>
+      <NavList aria-label="Test navigation">
         <NavList.Group title="Products">
           <NavList.Item href="/copilot">Copilot</NavList.Item>
           <NavList.SubNav>
@@ -166,7 +166,7 @@ describe('NavList', () => {
   it('prevents nested groups from being rendered inside groups', () => {
     const consoleWarnSpy = jest.spyOn(console, 'warn').mockImplementation(() => {})
     const {queryByText} = render(
-      <NavList>
+      <NavList aria-label="Test navigation">
         <NavList.Group title="Products">
           <NavList.Group title="Nested group">
             <NavList.Item href="/copilot">Copilot</NavList.Item>
@@ -185,7 +185,7 @@ describe('NavList', () => {
   it('prevents fragment-wrapped invalid children from being rendered inside groups', () => {
     const consoleWarnSpy = jest.spyOn(console, 'warn').mockImplementation(() => {})
     const {getByRole, queryByRole} = render(
-      <NavList>
+      <NavList aria-label="Test navigation">
         <NavList.Group title="Products">
           <>
             <NavList.Item href="/copilot">Copilot</NavList.Item>
@@ -237,7 +237,7 @@ describe('NavList', () => {
     )
 
     const {getByRole} = render(
-      <NavList>
+      <NavList aria-label="Test navigation">
         <NavList.Item as={CustomLink} href="/custom">
           Custom link
         </NavList.Item>
@@ -260,7 +260,7 @@ describe('NavList', () => {
     })
 
     const {getByRole} = render(
-      <NavList>
+      <NavList aria-label="Test navigation">
         <NavList.Item href="/overview" onKeyDown={onLinkKeyDown}>
           Overview
         </NavList.Item>
@@ -289,7 +289,7 @@ describe('NavList', () => {
 
   it('renders visual slots', () => {
     const {getByRole} = render(
-      <NavList>
+      <NavList aria-label="Test navigation">
         <NavList.Item href="/start" leadingVisual={BookIcon} trailingVisual={<KebabHorizontalIcon />}>
           Getting started
         </NavList.Item>
@@ -314,7 +314,7 @@ describe('NavList', () => {
 
   it('assigns item hierarchy levels through five nested lists', () => {
     const {getByRole} = render(
-      <NavList>
+      <NavList aria-label="Test navigation">
         <NavList.Item defaultExpanded>
           Docs
           <NavList.SubNav>
@@ -349,7 +349,7 @@ describe('NavList', () => {
 
   it('marks leaf articles at each nested depth', () => {
     const {getByRole} = render(
-      <NavList>
+      <NavList aria-label="Test navigation">
         <NavList.Item defaultExpanded>
           Docs
           <NavList.SubNav>
@@ -389,7 +389,7 @@ describe('NavList', () => {
 
   it('renders expandable items as disclosure buttons instead of links', () => {
     const {getByRole, queryByRole} = render(
-      <NavList>
+      <NavList aria-label="Test navigation">
         <NavList.Item>
           Docs
           <NavList.SubNav>
@@ -405,7 +405,7 @@ describe('NavList', () => {
 
   it('ignores aria-current on expandable items', () => {
     const {getByRole} = render(
-      <NavList>
+      <NavList aria-label="Test navigation">
         <NavList.Item aria-current="page">
           Docs
           <NavList.SubNav>
@@ -424,7 +424,7 @@ describe('NavList', () => {
     const ref = React.createRef<HTMLElement>()
 
     render(
-      <NavList>
+      <NavList aria-label="Test navigation">
         <NavList.Item ref={ref}>
           Docs
           <NavList.SubNav>
@@ -441,7 +441,7 @@ describe('NavList', () => {
   it('prevents expandable items past level five', () => {
     const consoleWarnSpy = jest.spyOn(console, 'warn').mockImplementation(() => {})
     const {queryByText} = render(
-      <NavList>
+      <NavList aria-label="Test navigation">
         <NavList.Item defaultExpanded>
           One
           <NavList.SubNav>
@@ -481,7 +481,7 @@ describe('NavList', () => {
   it('requires expandable items to include label content', () => {
     const consoleWarnSpy = jest.spyOn(console, 'warn').mockImplementation(() => {})
     const {queryByRole} = render(
-      <NavList>
+      <NavList aria-label="Test navigation">
         <NavList.Item>
           <NavList.SubNav>
             <NavList.Item href="/docs/actions">Actions</NavList.Item>
@@ -499,7 +499,7 @@ describe('NavList', () => {
   it('prevents expandable items from including multiple nested lists', () => {
     const consoleWarnSpy = jest.spyOn(console, 'warn').mockImplementation(() => {})
     const {queryByRole} = render(
-      <NavList>
+      <NavList aria-label="Test navigation">
         <NavList.Item>
           Docs
           <NavList.SubNav>
@@ -521,7 +521,7 @@ describe('NavList', () => {
   it('prevents expandable items from using link-only props', () => {
     const consoleWarnSpy = jest.spyOn(console, 'warn').mockImplementation(() => {})
     const {queryByRole} = render(
-      <NavList>
+      <NavList aria-label="Test navigation">
         <NavList.Item href="/docs">
           Docs
           <NavList.SubNav>
@@ -540,7 +540,7 @@ describe('NavList', () => {
     consoleWarnSpy.mockClear()
 
     const {queryByRole: queryByRoleAfterAs} = render(
-      <NavList>
+      <NavList aria-label="Test navigation">
         <NavList.Item as="div">
           Docs
           <NavList.SubNav>
@@ -559,7 +559,7 @@ describe('NavList', () => {
   it('prevents groups from being rendered inside items', () => {
     const consoleWarnSpy = jest.spyOn(console, 'warn').mockImplementation(() => {})
     const {queryByText} = render(
-      <NavList>
+      <NavList aria-label="Test navigation">
         <NavList.Item>
           Products
           <NavList.Group title="Nested group">
@@ -579,7 +579,7 @@ describe('NavList', () => {
   it('prevents fragment-wrapped groups from being rendered inside items', () => {
     const consoleWarnSpy = jest.spyOn(console, 'warn').mockImplementation(() => {})
     const {queryByText} = render(
-      <NavList>
+      <NavList aria-label="Test navigation">
         <NavList.Item>
           Products
           <>
@@ -602,7 +602,7 @@ describe('NavList', () => {
     const user = userEvent.setup()
 
     const {getByRole, queryByRole} = render(
-      <NavList>
+      <NavList aria-label="Test navigation">
         <NavList.Item>
           Docs
           <NavList.SubNav>
@@ -632,7 +632,7 @@ describe('NavList', () => {
     const user = userEvent.setup()
 
     const {getByRole} = render(
-      <NavList>
+      <NavList aria-label="Test navigation">
         <NavList.Item>
           Docs
           <NavList.SubNav>
@@ -661,7 +661,7 @@ describe('NavList', () => {
     jest.spyOn(HTMLElement.prototype, 'scrollHeight', 'get').mockReturnValue(64)
 
     const {getByRole} = render(
-      <NavList>
+      <NavList aria-label="Test navigation">
         <NavList.Item defaultExpanded>
           Docs
           <NavList.SubNav>
@@ -695,7 +695,7 @@ describe('NavList', () => {
     })
 
     const {getByRole} = render(
-      <NavList>
+      <NavList aria-label="Test navigation">
         <NavList.Item defaultExpanded>
           Docs
           <NavList.SubNav>
@@ -733,7 +733,7 @@ describe('NavList', () => {
     const user = userEvent.setup()
 
     const {getByRole} = render(
-      <NavList>
+      <NavList aria-label="Test navigation">
         <NavList.Item>
           Docs
           <NavList.SubNav>
@@ -758,7 +758,7 @@ describe('NavList', () => {
 
   it('auto-expands parents with current descendants', () => {
     const {getByRole} = render(
-      <NavList>
+      <NavList aria-label="Test navigation">
         <NavList.Item>
           Docs
           <NavList.SubNav>
@@ -776,7 +776,7 @@ describe('NavList', () => {
 
   it('auto-expands every parent with current descendants', () => {
     const {getByRole} = render(
-      <NavList>
+      <NavList aria-label="Test navigation">
         <NavList.Item>
           Docs
           <NavList.SubNav>
@@ -805,7 +805,7 @@ describe('NavList', () => {
 
   it('marks controlled collapsed parents with current descendants', () => {
     const {getByRole, queryByRole} = render(
-      <NavList>
+      <NavList aria-label="Test navigation">
         <NavList.Item expanded={false}>
           Docs
           <NavList.SubNav>
@@ -825,7 +825,7 @@ describe('NavList', () => {
     const user = userEvent.setup()
 
     const {getByRole, queryByRole} = render(
-      <NavList>
+      <NavList aria-label="Test navigation">
         <NavList.Item>
           Docs
           <NavList.SubNav>
@@ -849,7 +849,7 @@ describe('NavList', () => {
     const user = userEvent.setup()
 
     const {getByRole} = render(
-      <NavList>
+      <NavList aria-label="Test navigation">
         <NavList.Item>
           Docs
           <NavList.SubNav id="custom-subnav-id">
@@ -872,7 +872,7 @@ describe('NavList', () => {
     const user = userEvent.setup()
 
     const {getByRole} = render(
-      <NavList>
+      <NavList aria-label="Test navigation">
         <NavList.Item>
           Docs
           <NavList.SubNav>
@@ -893,7 +893,7 @@ describe('NavList', () => {
     const user = userEvent.setup()
 
     const {getByRole} = render(
-      <NavList>
+      <NavList aria-label="Test navigation">
         <NavList.Item defaultExpanded>
           Docs
           <NavList.SubNav>
@@ -919,7 +919,7 @@ describe('NavList', () => {
     const onClick = jest.fn()
 
     const {getByRole} = render(
-      <NavList>
+      <NavList aria-label="Test navigation">
         <NavList.Item href="/disabled" disabled onClick={onClick}>
           Disabled
         </NavList.Item>

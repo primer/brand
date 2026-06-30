@@ -203,7 +203,7 @@ Use `leadingVisual` and `trailingVisual` to add icons to the label area. Visuals
 
 ## Accessibility
 
-Give each `NavList` a clear `aria-label` or `aria-labelledby`, especially when the page includes more than one navigation landmark.
+Give each `NavList` a clear `aria-label`, especially when the page includes more than one navigation landmark.
 
 Use `aria-current="page"` on the link for the current page. Only apply `aria-current` to leaf items that navigate somewhere, not to section rows with nested items.
 
@@ -216,7 +216,7 @@ Keep group titles and disclosure labels short and descriptive. Items with `NavLi
 | name              | type        | default        | required | description                                           |
 | ----------------- | ----------- | -------------- | -------- | ----------------------------------------------------- |
 | `children`        | `ReactNode` |                | `true`   | `NavList.Item` and `NavList.Group` nodes              |
-| `aria-label`      | `string`    | `'Navigation'` | `false`  | Accessible label for the navigation landmark          |
+| `aria-label`      | `string`    |                | `true`   | Accessible label for the navigation landmark          |
 | `aria-labelledby` | `string`    |                | `false`  | ID of the element that labels the navigation landmark |
 | `className`       | `string`    |                | `false`  | Sets a custom class on the `nav` element              |
 
@@ -254,4 +254,3 @@ Forwards props to the rendered leaf link or disclosure button.
 | ----------- | ----------- | ------- | -------- | -------------------------------------- |
 | `children`  | `ReactNode` |         | `true`   | Nested `NavList.Item` nodes            |
 | `className` | `string`    |         | `false`  | Sets a custom class on the nested `ul` |
-

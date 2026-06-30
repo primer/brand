@@ -54,13 +54,11 @@ const testIds = {
   },
 }
 
-const DefaultNavigationLabel = 'Navigation'
-
 export type NavListRootProps = {
   /**
-   * Accessible label for the navigation landmark. Defaults to "Navigation".
+   * Accessible label for the navigation landmark.
    */
-  'aria-label'?: string
+  'aria-label': string
   /**
    * ID of an element that labels the navigation landmark.
    */
@@ -97,7 +95,7 @@ const NavListRoot = forwardRef<HTMLElement, NavListRootProps>(
       <nav
         ref={ref}
         className={clsx(styles.NavList, className)}
-        aria-label={ariaLabelledBy ? undefined : ariaLabel ?? DefaultNavigationLabel}
+        aria-label={ariaLabel}
         aria-labelledby={ariaLabelledBy}
         data-testid={testId || testIds.root}
         {...rest}
