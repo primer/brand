@@ -425,7 +425,7 @@
   }
 
   .Hero--variant-gridline-expressive .Hero-actions {
-    margin-block-start: var(--base-size-28);
+    margin-block-start: var(--base-size-24);
   }
 
   .Hero--variant-gridline-expressive .Hero-trailing {
