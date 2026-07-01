@@ -421,6 +421,23 @@ describe('Hero', () => {
     expect(gridEl).toHaveClass('Hero-grid--expressive')
   })
 
+  test('ignores align="center" for the gridline-expressive variant and warns in development', () => {
+    const warnSpy = jest.spyOn(console, 'warn').mockImplementation(() => {})
+    const {getByRole} = render(
+      <Hero variant="gridline-expressive" align="center">
+        <Hero.Heading>{mockHeading}</Hero.Heading>
+        <Hero.Description>{mockDescription}</Hero.Description>
+      </Hero>,
+    )
+
+    const rootEl = getByRole('region')
+    expect(rootEl).toHaveClass('Hero--align-start')
+    expect(rootEl).not.toHaveClass('Hero--align-center')
+    expect(warnSpy).toHaveBeenCalledWith(expect.stringContaining('gridline-expressive'))
+
+    warnSpy.mockRestore()
+  })
+
   test('renders with center alignment', () => {
     const {getByRole} = render(
       <Hero align="center">
