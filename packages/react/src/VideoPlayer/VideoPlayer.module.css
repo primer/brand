@@ -25,6 +25,10 @@
   flex-direction: column;
 }
 
+.VideoPlayer__container--controlsBottom {
+  position: relative;
+}
+
 .VideoPlayer__overlayContainer {
   flex: 1;
   position: relative;
@@ -149,9 +153,17 @@
   border-bottom-right-radius: var(--brand-borderRadius-medium);
   border-bottom-left-radius: var(--brand-borderRadius-medium);
   width: 100%;
+  background: var(--brand-videoPlayer-controls-bgColor);
   padding: var(--base-size-12) var(--base-size-16);
   pointer-events: all;
   opacity: 1;
+}
+
+.VideoPlayer__controlsBar--bottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: 2;
 }
 
 .VideoPlayer__controlsBar__row1,

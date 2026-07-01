@@ -133,7 +133,7 @@ export const SocialProof: Story = {
                   style={{flex: 1, display: 'flex', alignItems: 'center'}}
                 >
                   <Statistic>
-                    <Statistic.Heading weight="normal" size="800" style={{color: 'var(--brand-color-accent-primary)'}}>
+                    <Statistic.Heading weight="normal" size="800" style={{color: 'var(--brand-color-text-emphasized)'}}>
                       39%
                     </Statistic.Heading>
                     <Statistic.Description font="monospace" size="100">

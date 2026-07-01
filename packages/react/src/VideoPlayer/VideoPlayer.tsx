@@ -32,6 +32,8 @@ type VideoPlayerProps = {
   visuallyHiddenTitle?: boolean
   showBranding?: boolean
   animate?: AnimateProps
+  controlsPosition?: 'inline' | 'bottom'
+  showControlsWhenPaused?: boolean
   showPlayPauseButton?: boolean
   showSeekControl?: boolean
   showCCButton?: boolean
@@ -49,6 +51,9 @@ const Root = forwardRef<HTMLVideoElement, VideoPlayerProps>(
       showBranding = true,
       children,
       className,
+      autoPlay,
+      controlsPosition = 'inline',
+      showControlsWhenPaused = true,
       showPlayPauseButton = true,
       showSeekControl = true,
       showCCButton = true,
@@ -85,15 +90,24 @@ const Root = forwardRef<HTMLVideoElement, VideoPlayerProps>(
 
     const showControlsRow1 = showPlayPauseButton || showSeekControl
     const showControlsRow2 = showCCButton || showMuteButton || showVolumeControl || showFullScreenButton
-    const showControlsBar = showControlsRow1 || showControlsRow2
+    const showControlsBar = (showControlsRow1 || showControlsRow2) && (isPlaying || showControlsWhenPaused)
+    const showPlayButtonOverlay = !autoPlay || (!isPlaying && !showControlsBar)
 
     return (
-      <div data-video-player-container className={styles.VideoPlayer__container} ref={fullscreenRef}>
+      <div
+        data-video-player-container
+        className={clsx(
+          styles.VideoPlayer__container,
+          controlsPosition === 'bottom' && styles['VideoPlayer__container--controlsBottom'],
+        )}
+        ref={fullscreenRef}
+      >
         <div className={styles.VideoPlayer__overlayContainer}>
           <video
             ref={setVideoElementRef}
             title={title}
             controls={false}
+            autoPlay={autoPlay}
             className={clsx(styles.VideoPlayer, className)}
             {...rest}
           >
@@ -110,21 +124,23 @@ const Root = forwardRef<HTMLVideoElement, VideoPlayerProps>(
               )}
             </div>
           ) : null}
-          <button
-            className={clsx(
-              styles.VideoPlayer__playButtonOverlay,
-              isPlaying && styles['VideoPlayer__playButtonOverlay--transparent'],
-            )}
-            onClick={togglePlaying}
-            aria-label={isPlaying ? 'Pause' : 'Play'}
-          >
-            {!isPlaying && <PlayIcon />}
-          </button>
+          {showPlayButtonOverlay && (
+            <button
+              className={clsx(
+                styles.VideoPlayer__playButtonOverlay,
+                isPlaying && styles['VideoPlayer__playButtonOverlay--transparent'],
+              )}
+              onClick={togglePlaying}
+              aria-label={isPlaying ? 'Pause' : 'Play'}
+            >
+              {!isPlaying && <PlayIcon />}
+            </button>
+          )}
         </div>
 
         {ccEnabled && <Captions />}
         {showControlsBar && (
-          <ControlsBar>
+          <ControlsBar className={clsx(controlsPosition === 'bottom' && styles['VideoPlayer__controlsBar--bottom'])}>
             {showControlsRow1 && (
               <div className={styles['VideoPlayer__controlsBar__row1']}>
                 {showPlayPauseButton && <PlayPauseButton />}

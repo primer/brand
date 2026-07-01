@@ -49,6 +49,7 @@ type Action =
   | {type: 'mute'}
   | {type: 'unmute'}
   | {type: 'setVolume'; payload: number}
+  | {type: 'syncVolumeState'; payload: {muted: boolean; volume: number}}
   | {type: 'enableCC'}
   | {type: 'disableCC'}
   | {type: 'setDuration'; payload: number}
@@ -74,17 +75,22 @@ const videoReducer = (state: VideoState, action: Action): VideoState => {
       return {...state, isPlaying: false}
     }
     case 'mute': {
+      video.muted = true
       video.volume = 0
       return {...state, isMuted: true, volumeBeforeMute: state.volume}
     }
     case 'unmute': {
       const nextVolume = state.volumeBeforeMute ?? 1
+      video.muted = false
       video.volume = nextVolume
       return {...state, isMuted: false, volume: nextVolume}
     }
     case 'setVolume': {
       video.volume = action.payload
       return {...state, volume: action.payload}
+    }
+    case 'syncVolumeState': {
+      return {...state, isMuted: action.payload.muted, volume: action.payload.volume}
     }
     case 'enableCC': {
       return {...state, ccEnabled: true}
@@ -196,7 +202,7 @@ export const VideoProvider = forwardRef<HTMLVideoElement, VideoProviderProps>(({
         dispatch({type: 'unmute'})
       },
       volumechange: () => {
-        dispatch({type: 'setVolume', payload: videoRef.volume})
+        dispatch({type: 'syncVolumeState', payload: {muted: videoRef.muted, volume: videoRef.volume}})
       },
       loadedmetadata: () => {
         dispatch({type: 'setDuration', payload: videoRef.duration})
@@ -206,6 +212,8 @@ export const VideoProvider = forwardRef<HTMLVideoElement, VideoProviderProps>(({
     for (const [event, handler] of Object.entries(eventHandlers)) {
       videoRef.addEventListener(event, handler)
     }
+
+    dispatch({type: 'syncVolumeState', payload: {muted: videoRef.muted, volume: videoRef.volume}})
 
     return () => {
       for (const [event, handler] of Object.entries(eventHandlers)) {
