@@ -154,12 +154,12 @@
     "heading": "GitHub Copilot を最大限活用する",
     "cards": {
       "one": {
-        "tag": "CHANGELOG",
+        "tag": "Changelog",
         "heading": "最新機能を先取りする",
         "description": "GitHub Copilot の次に来るものをいち早くチェックできます。"
       },
       "two": {
-        "tag": "BLOG",
+        "tag": "Blog",
         "heading": "GitHub ブログを読む",
         "description": "ソフトウェア開発の最新情報を、洞察や解説とともに確認できます。"
       },
