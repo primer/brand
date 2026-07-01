@@ -31,8 +31,8 @@ export const GridLine: Story = {
         <River.Content>
           <Heading>GridLine Variant</Heading>
           <Text>
-            The gridline variant adds lateral padding and borders to the River component, making it suitable for use
-            within bordered grid layouts.
+            The gridline variant adds lateral padding and borders to the River component, and applies a full-bleed
+            visual background by default for use within bordered grid layouts.
           </Text>
           <Link href="#">Call to action</Link>
         </River.Content>
@@ -79,19 +79,27 @@ export const GridLineCenter: Story = {
   ),
 }
 
+export const GridLineTablet: Story = {
+  name: 'GridLine variant (tablet)',
+  globals: {
+    viewport: {value: 'ipad10p'},
+  },
+  render: GridLine.render,
+}
+
 export const GridLineWithBackground: Story = {
-  name: 'GridLine variant (with background)',
+  name: 'GridLine variant (default background)',
   render: () => (
     <Section>
       <River variant="gridline" align="start">
-        <River.Visual imageBackgroundColor="subtle">
+        <River.Visual>
           <PlaceholderImage />
         </River.Visual>
         <River.Content>
-          <Heading>GridLine with Background</Heading>
+          <Heading>GridLine with default background</Heading>
           <Text>
-            Using imageBackgroundColor on River.Visual creates a full-bleed container with a subtle background color and
-            the image/video centered inside with padding.
+            The gridline variant creates a full-bleed container with a subtle background color and the image/video
+            centered inside with padding.
           </Text>
           <Link href="#">Call to action</Link>
         </River.Content>
@@ -101,18 +109,17 @@ export const GridLineWithBackground: Story = {
 }
 
 export const GridLineWithBackgroundEnd: Story = {
-  name: 'GridLine variant (with background, end)',
+  name: 'GridLine variant (default background, end)',
   render: () => (
     <Section>
       <River variant="gridline" align="end">
-        <River.Visual imageBackgroundColor="subtle">
+        <River.Visual>
           <PlaceholderImage />
         </River.Visual>
         <River.Content>
-          <Heading>GridLine with Background (End)</Heading>
+          <Heading>GridLine with default background (End)</Heading>
           <Text>
-            The imageBackgroundColor prop can be combined with different alignment options. This example shows end
-            alignment.
+            The gridline visual background works with different alignment options. This example shows end alignment.
           </Text>
           <Link href="#">Call to action</Link>
         </River.Content>
@@ -122,16 +129,16 @@ export const GridLineWithBackgroundEnd: Story = {
 }
 
 export const GridLineWithBackgroundCenter: Story = {
-  name: 'GridLine variant (with background, centered)',
+  name: 'GridLine variant (default background, centered)',
   render: () => (
     <Section>
       <River variant="gridline" align="center">
-        <River.Visual imageBackgroundColor="subtle">
+        <River.Visual>
           <PlaceholderImage />
         </River.Visual>
         <River.Content>
-          <Heading>GridLine with Background (Centered)</Heading>
-          <Text>The imageBackgroundColor prop works with centered alignment as well.</Text>
+          <Heading>GridLine with default background (Centered)</Heading>
+          <Text>The gridline visual background works with centered alignment as well.</Text>
           <Link href="#">Call to action</Link>
         </River.Content>
       </River>
@@ -182,7 +189,7 @@ export const GridLineContentAlignBlockEnd: Story = {
   render: () => (
     <Section>
       <River variant="gridline" align="start">
-        <River.Visual imageBackgroundColor="subtle">
+        <River.Visual>
           <img
             src={placeholderImage}
             alt="placeholder, blank area with a gray background color"
@@ -260,16 +267,16 @@ export const GridLine6040Center: Story = {
 }
 
 export const GridLine6040WithBackground: Story = {
-  name: 'GridLine variant (60:40, with background)',
+  name: 'GridLine variant (60:40, default background)',
   render: () => (
     <Section>
       <River variant="gridline" align="start" imageTextRatio="60:40">
-        <River.Visual imageBackgroundColor="subtle">
+        <River.Visual>
           <PlaceholderImage />
         </River.Visual>
         <River.Content>
-          <Heading>GridLine 60:40 with Background</Heading>
-          <Text>The 60:40 ratio combined with subtle background color.</Text>
+          <Heading>GridLine 60:40 with default background</Heading>
+          <Text>The 60:40 ratio combined with the default gridline visual background.</Text>
           <Link href="#">Call to action</Link>
         </River.Content>
       </River>
@@ -278,16 +285,16 @@ export const GridLine6040WithBackground: Story = {
 }
 
 export const GridLine6040WithBackgroundEnd: Story = {
-  name: 'GridLine variant (60:40, with background, end)',
+  name: 'GridLine variant (60:40, default background, end)',
   render: () => (
     <Section>
       <River variant="gridline" align="end" imageTextRatio="60:40">
-        <River.Visual imageBackgroundColor="subtle">
+        <River.Visual>
           <PlaceholderImage />
         </River.Visual>
         <River.Content>
-          <Heading>GridLine 60:40 with Background (End)</Heading>
-          <Text>The 60:40 ratio with end alignment and subtle background.</Text>
+          <Heading>GridLine 60:40 with default background (End)</Heading>
+          <Text>The 60:40 ratio with end alignment and the default gridline visual background.</Text>
           <Link href="#">Call to action</Link>
         </River.Content>
       </River>
@@ -296,16 +303,16 @@ export const GridLine6040WithBackgroundEnd: Story = {
 }
 
 export const GridLine6040WithBackgroundCenter: Story = {
-  name: 'GridLine variant (60:40, with background, centered)',
+  name: 'GridLine variant (60:40, default background, centered)',
   render: () => (
     <Section>
       <River variant="gridline" align="center" imageTextRatio="60:40">
-        <River.Visual imageBackgroundColor="subtle">
+        <River.Visual>
           <PlaceholderImage />
         </River.Visual>
         <River.Content>
-          <Heading>GridLine 60:40 with Background (Centered)</Heading>
-          <Text>The 60:40 ratio with centered alignment and subtle background.</Text>
+          <Heading>GridLine 60:40 with default background (Centered)</Heading>
+          <Text>The 60:40 ratio with centered alignment and the default gridline visual background.</Text>
           <Link href="#">Call to action</Link>
         </River.Content>
       </River>

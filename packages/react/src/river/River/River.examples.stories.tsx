@@ -50,7 +50,7 @@ function GridLineWithBackgroundExample({align}: {align: 'start' | 'end'}) {
   return (
     <Section>
       <River variant="gridline" align={align}>
-        <River.Visual ref={visualRef} imageBackgroundColor="subtle">
+        <River.Visual ref={visualRef}>
           <picture>
             <source srcSet={placeholderImageCropped} media="(max-width: 47.99rem)" />
             <img src={placeholderImage} alt="GitHub Copilot agent mode in VS Code" />
@@ -60,7 +60,7 @@ function GridLineWithBackgroundExample({align}: {align: 'start' | 'end'}) {
           <EyebrowText>Feature</EyebrowText>
           <Heading>GridLine with custom background</Heading>
           <Text>
-            The imageBackgroundColor prop creates a full-bleed container that can be enhanced with a custom animated
+            The gridline variant creates a full-bleed visual container that can be enhanced with a custom animated
             background using the ref prop on River.Visual.
           </Text>
           <Link href="#">Learn more</Link>
@@ -82,7 +82,7 @@ function GridLineWithBackgroundVideoExample() {
   return (
     <Section>
       <River variant="gridline" align="start">
-        <River.Visual ref={visualRef} imageBackgroundColor="subtle">
+        <River.Visual ref={visualRef}>
           <VideoPlayer title="GitHub media player" poster={posterImage}>
             <VideoPlayer.Source src="./example.mp4" type="video/mp4" />
             <VideoPlayer.Track src="./example.vtt" default />
@@ -92,7 +92,7 @@ function GridLineWithBackgroundVideoExample() {
           <EyebrowText>Video</EyebrowText>
           <Heading>GridLine with video</Heading>
           <Text>
-            The imageBackgroundColor prop also works with video content. The video is centered within the full-bleed
+            The gridline visual background works with video content. The video is centered within the full-bleed
             container with padding around it.
           </Text>
           <Link href="#">Watch the video</Link>

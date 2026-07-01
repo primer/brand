@@ -1,7 +1,7 @@
 import React, {Ref, forwardRef} from 'react'
 import {clsx} from 'clsx'
 import {RiverProps} from '../River'
-import {Visual as RiverVisual, RiverContent} from '../River/River'
+import {Visual as RiverVisual, RiverContent, type RiverVisualProps} from '../River/River'
 import {useAnimation} from '../../animation'
 import findElementInChildren from '../../findElementInChildren'
 import {Heading} from '../../Heading'
@@ -18,6 +18,10 @@ type RiverBreakoutProps = Omit<RiverProps, 'align' | 'imageTextRatio'> & {
    * `gridline` adds horizontal border lines and lateral spacing.
    */
   variant?: RiverBreakoutVariant
+}
+
+type RiverBreakoutVisualProps = RiverVisualProps & {
+  imageBackgroundColor?: 'default' | 'subtle'
 }
 
 const Root = forwardRef(
@@ -63,4 +67,14 @@ const A11yHeading = ({as = 'h3', children}: React.PropsWithChildren<{as?: 'h2' |
   </Heading>
 )
 
-export const RiverBreakout = Object.assign(Root, {Visual: RiverVisual, Content: RiverContent, A11yHeading})
+const Visual = forwardRef<HTMLDivElement, RiverBreakoutVisualProps>(
+  ({className, imageBackgroundColor, ...props}, ref) => (
+    <RiverVisual
+      ref={ref}
+      className={clsx(imageBackgroundColor === 'subtle' && styles['River__visual--has-background'], className)}
+      {...props}
+    />
+  ),
+)
+
+export const RiverBreakout = Object.assign(Root, {Visual, Content: RiverContent, A11yHeading})

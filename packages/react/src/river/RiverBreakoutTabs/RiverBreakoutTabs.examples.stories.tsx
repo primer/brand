@@ -166,7 +166,7 @@ export const WithRivers: Story = {
       <Section>
         <Stack padding="none" gap={64}>
           <River variant="gridline">
-            <River.Visual imageBackgroundColor="subtle">
+            <River.Visual data-river-tabs-dither-bg>
               <Image src={renderUI1} alt={t('with_rivers_top_visual_alt')} />
             </River.Visual>
             <River.Content>
@@ -216,7 +216,7 @@ export const WithRivers: Story = {
           </RiverBreakoutTabs>
 
           <River variant="gridline">
-            <River.Visual imageBackgroundColor="subtle">
+            <River.Visual data-river-tabs-dither-bg>
               <Image src={renderUI3} alt={t('with_rivers_bottom_visual_alt')} />
             </River.Visual>
             <River.Content>
