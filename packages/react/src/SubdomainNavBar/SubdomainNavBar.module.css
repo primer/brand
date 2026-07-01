@@ -456,12 +456,25 @@
   transition: border 250ms var(--brand-animation-easing-default), box-shadow 250ms ease;
   border-radius: var(--brand-borderRadius-medium);
   box-shadow: 0 0 0 2px transparent;
+  gap: 0;
 }
 
 .SubdomainNavBar-search-button svg,
 .SubdomainNavBar-menu-button svg {
   width: 24px;
   height: 24px;
+}
+
+.SubdomainNavBar-search-button.SubdomainNavBar-search-button {
+  background-color: transparent;
+  border: var(--brand-borderWidth-thick) solid transparent;
+  color: var(--brand-color-text-default);
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+}
+
+.SubdomainNavBar-search-button--gridline {
+  gap: 0;
 }
 
 .SubdomainNavBar-menu-button {
@@ -508,13 +521,20 @@
 }
 
 @media screen and (min-width: 48rem) {
-  .SubdomainNavBar-search-button:hover,
+  .SubdomainNavBar-search-button.SubdomainNavBar-search-button:not(
+      [disabled],
+      [aria-disabled='true'],
+      [aria-expanded='true']
+    ):hover,
   .SubdomainNavBar-menu-button:hover {
+    background-color: transparent;
     border: var(--brand-borderWidth-thick) solid var(--brand-SubdomainNavBar-border-button-hover);
   }
 
-  .SubdomainNavBar-search-button:active,
+  .SubdomainNavBar-search-button.SubdomainNavBar-search-button:not([disabled], [aria-disabled='true']):active,
+  .SubdomainNavBar-search-button.SubdomainNavBar-search-button[aria-expanded='true'],
   .SubdomainNavBar-menu-button:active {
+    background-color: transparent;
     box-shadow: 0 0 0 1px var(--brand-SubdomainNavBar-border-button-hover);
   }
 
@@ -716,29 +736,6 @@
 
   .SubdomainNavBar--variant-gridline .SubdomainNavBar-search-trigger--has-trailing-item {
     border-inline-end: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
-  }
-
-  .SubdomainNavBar--variant-gridline .SubdomainNavBar-search-button {
-    width: var(--base-size-32);
-    height: var(--base-size-32);
-    margin-inline: 0;
-    color: var(--brand-color-text-muted);
-    background-color: var(--brand-color-canvas-subtle);
-    border: 0;
-    border-radius: var(--brand-borderRadius-medium);
-  }
-
-  .SubdomainNavBar--variant-gridline .SubdomainNavBar-search-button:hover {
-    background-color: color-mix(in srgb, var(--brand-color-canvas-subtle), #000 4%);
-  }
-
-  [data-color-mode='dark'] .SubdomainNavBar--variant-gridline .SubdomainNavBar-search-button:hover {
-    background-color: color-mix(in srgb, var(--brand-color-canvas-subtle), #fff 8%);
-  }
-
-  .SubdomainNavBar--variant-gridline .SubdomainNavBar-search-button svg {
-    width: var(--base-size-16);
-    height: var(--base-size-16);
   }
 
   .SubdomainNavBar--variant-gridline .SubdomainNavBar-button-area {

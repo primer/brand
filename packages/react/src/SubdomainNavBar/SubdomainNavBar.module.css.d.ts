@@ -40,6 +40,7 @@ declare const styles: {
   readonly "SubdomainNavBar-primary-nav-list-item--overflow": string;
   readonly "SubdomainNavBar-primary-nav-list-item--visible": string;
   readonly "SubdomainNavBar-search-button": string;
+  readonly "SubdomainNavBar-search-button--gridline": string;
   readonly "SubdomainNavBar-search-dialog": string;
   readonly "SubdomainNavBar-search-dialog-control-area": string;
   readonly "SubdomainNavBar-search-form": string;

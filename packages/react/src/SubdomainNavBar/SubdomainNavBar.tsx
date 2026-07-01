@@ -300,6 +300,7 @@ function Root({
                           styles['SubdomainNavBar-search-trigger--has-trailing-item'],
                       ),
                       handlerFn: handleSearchVisibility,
+                      subdomainNavBarVariant: variant,
                       title,
                     })
                   }
@@ -434,11 +435,16 @@ type SearchProps = {
   autoComplete?: boolean
   searchResults?: SubdomainNavBarSearchResultProps[]
   searchTerm?: string
+  subdomainNavBarVariant?: SubdomainNavBarVariant
 }
 
 const _SearchInternal = forwardRef<HTMLDivElement, SearchProps>(
-  ({active, className, title, searchResults, searchTerm, handlerFn, onSubmit, onChange}, ref) => {
+  (
+    {active, className, title, searchResults, searchTerm, handlerFn, onSubmit, onChange, subdomainNavBarVariant},
+    ref,
+  ) => {
     const dialogRef = useRef<HTMLDivElement | null>(null)
+    const isGridlineVariant = subdomainNavBarVariant === 'gridline'
 
     useFocusTrap({containerRef: dialogRef, restoreFocusOnCleanUp: true, disabled: !active})
     useOnClickOutside(dialogRef, handlerFn)
@@ -528,14 +534,19 @@ const _SearchInternal = forwardRef<HTMLDivElement, SearchProps>(
     return (
       <>
         <div className={clsx(styles['SubdomainNavBar-search-trigger'], className)}>
-          <button
+          <Button
             aria-label="Toggle search bar"
-            className={styles['SubdomainNavBar-search-button']}
+            className={
+              isGridlineVariant
+                ? styles['SubdomainNavBar-search-button--gridline']
+                : styles['SubdomainNavBar-search-button']
+            }
+            variant="secondary"
+            size="small"
+            leadingVisual={<SearchIcon />}
             onClick={handlerFn as (event) => void}
             data-testid="toggle-search"
-          >
-            <SearchIcon aria-label="Search icon" />
-          </button>
+          />
         </div>
         {active && (
           <div
