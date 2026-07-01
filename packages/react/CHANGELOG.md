@@ -1,5 +1,25 @@
 # @primer/react-brand
 
+## 0.70.0
+
+### Minor Changes
+
+- [#1382](https://github.com/primer/brand/pull/1382) [`04e5a9d`](https://github.com/primer/brand/commit/04e5a9dbf4e5aa666978e2631c0f315738e40233) Thanks [@rezrah](https://github.com/rezrah)! - ⚠️ Changes to the files listed in the package: `lib/` (UMD) and `esm/` (ESM) bundles now ship a clean, filtered list of React modules and type declarations (everything exported from `index.ts`). Internal-only modules that were never intended for the package like `recipes/` and Storybook test `fixtures/` — are no longer included:
+
+  ```diff
+  - @primer/react-brand/esm/recipes/**
+  - @primer/react-brand/{lib,esm}/**/fixtures/**
+  - @primer/react-brand/{lib,esm}/**/*.fixtures.d.ts
+  ```
+
+### Patch Changes
+
+- [#1382](https://github.com/primer/brand/pull/1382) [`04e5a9d`](https://github.com/primer/brand/commit/04e5a9dbf4e5aa666978e2631c0f315738e40233) Thanks [@rezrah](https://github.com/rezrah)! - Version-pinned documentation is now bundled in `@primer/react-brand`. Each release now ships Markdown documentation at parity with primer.style/brand under `docs/`, plus an `llms.txt` index. This is to help agents reference documentation that matches their installed version instead relying on the latest version of documentation published to primer.style/brand, which may be ahead of what's locally installed.
+
+- [#1379](https://github.com/primer/brand/pull/1379) [`7497dc7`](https://github.com/primer/brand/commit/7497dc78e646a55d14a6b433189c134c21968055) Thanks [@danielguillan](https://github.com/danielguillan)! - Update `Token` text styles to use sans-serif and remove the uppercase transform.
+
+- [#1211](https://github.com/primer/brand/pull/1211) [`06c14a2`](https://github.com/primer/brand/commit/06c14a2d32ba19437173f295b61e4cd76aea6774) Thanks [@rezrah](https://github.com/rezrah)! - Added descriptive labels to `Footnote` return links for an improved screen-reader experience. Return links will now be read aloud as "Back to content {Link label}"
+
 ## 0.69.0
 
 ### Minor Changes
