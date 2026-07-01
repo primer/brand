@@ -237,6 +237,7 @@ const Root = forwardRef(
               styles['CTABanner-container'],
               hasBorder && styles['CTABanner-container--border'],
               hasGridLines && styles['CTABanner-container--border-gridlines'],
+              !hasGridLines && styles['CTABanner-container--rounded'],
               hasBackground && styles['CTABanner-container--background'],
             )}
           >
@@ -319,7 +320,13 @@ const _ButtonGroup = forwardRef(
     ref: Ref<HTMLDivElement>,
   ) => {
     return (
-      <ButtonGroup buttonSize={buttonSize} buttonsAs={buttonsAs} className={className} ref={ref} {...props}>
+      <ButtonGroup
+        buttonSize={buttonSize}
+        buttonsAs={buttonsAs}
+        className={clsx(styles['CTABanner-buttonGroup'], className)}
+        ref={ref}
+        {...props}
+      >
         {children}
       </ButtonGroup>
     )

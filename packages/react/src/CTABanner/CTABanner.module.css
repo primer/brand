@@ -81,6 +81,10 @@
   box-sizing: border-box;
 }
 
+.CTABanner-container--rounded {
+  border-radius: var(--brand-borderRadius-medium);
+}
+
 .CTABanner--variant-balanced .CTABanner-container {
   padding-inline: var(--base-size-20);
   padding-block: var(--base-size-32);
@@ -170,9 +174,6 @@
 
 /* Large breakpoint and up */
 @media screen and (min-width: 63.25rem) {
-  .CTABanner-content {
-    gap: var(--base-size-24);
-  }
   .CTABanner--variant-balanced .CTABanner-content {
     gap: var(--base-size-32);
   }
@@ -310,4 +311,8 @@
 
 .CTABanner-description.CTABanner-description:has(code) {
   line-height: calc(1lh * 1.25);
+}
+
+.CTABanner-buttonGroup {
+  padding-block-start: var(--base-size-12);
 }
