@@ -38,6 +38,10 @@ const meta = {
     titleHref: {
       control: 'text',
     },
+    variant: {
+      control: 'inline-radio',
+      options: ['default', 'gridline'],
+    },
   },
   parameters: {
     viewport: {
@@ -602,6 +606,26 @@ const ExternalLinkExample = () => (
   </SubdomainNavBar>
 )
 
+const GridlineExample = () => {
+  const inputRef = React.useRef<HTMLInputElement | null>(null)
+
+  return (
+    <SubdomainNavBar title="GitHub Docs" titleHref="/" variant="gridline" fullWidth fixed={false}>
+      <SubdomainNavBar.Link href="#item-1">Item 1</SubdomainNavBar.Link>
+      <SubdomainNavBar.Link href="#item-2">Item 2</SubdomainNavBar.Link>
+      <SubdomainNavBar.Link href="#item-3">Item 3</SubdomainNavBar.Link>
+      <SubdomainNavBar.Search
+        ref={inputRef}
+        searchTerm=""
+        onSubmit={event => event.preventDefault()}
+        onChange={() => undefined}
+      />
+      <SubdomainNavBar.SecondaryAction href="#">Contact sales</SubdomainNavBar.SecondaryAction>
+      <SubdomainNavBar.PrimaryAction href="#">Get started</SubdomainNavBar.PrimaryAction>
+    </SubdomainNavBar>
+  )
+}
+
 export const Playground: Story = {
   render: (args: StoryArgs) => <SubdomainNavBarTemplate {...args} />,
   parameters: {
@@ -728,6 +752,10 @@ export const FullWidth: Story = {
   args: {
     fullWidth: true,
   },
+}
+
+export const Gridline: Story = {
+  render: () => <GridlineExample />,
 }
 
 export const NoTitle: Story = {

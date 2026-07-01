@@ -1,7 +1,7 @@
 import React, {render, cleanup, fireEvent} from '@testing-library/react'
 import '@testing-library/jest-dom'
 
-import {SubdomainNavBar, SubdomainNavBarSearchResultProps} from './SubdomainNavBar'
+import {SubdomainNavBar, SubdomainNavBarSearchResultProps, type SubdomainNavBarProps} from './SubdomainNavBar'
 import {axe, toHaveNoViolations} from 'jest-axe'
 
 import {useWindowSize} from '../hooks/useWindowSize'
@@ -19,6 +19,8 @@ describe('SubdomainNavBar', () => {
   })
 
   beforeEach(() => {
+    mockUseWindowSize.mockImplementation(() => ({isSmall: false, isMedium: false}))
+
     // IntersectionObserver isn't available in test environment
     const mockIntersectionObserver = jest.fn()
     mockIntersectionObserver.mockReturnValue({
@@ -34,13 +36,15 @@ describe('SubdomainNavBar', () => {
     searchResults,
     titleHref,
     title = 'Subdomain',
+    variant,
   }: {
     fullWidth?: boolean
     searchResults?: SubdomainNavBarSearchResultProps[]
     titleHref?: string
     title?: string
+    variant?: SubdomainNavBarProps['variant']
   }) => (
-    <SubdomainNavBar title={title} titleHref={titleHref} fullWidth={fullWidth}>
+    <SubdomainNavBar title={title} titleHref={titleHref} fullWidth={fullWidth} variant={variant}>
       <SubdomainNavBar.Link href="#">Collections</SubdomainNavBar.Link>
       <SubdomainNavBar.Link href="#">Topics</SubdomainNavBar.Link>
       <SubdomainNavBar.Link href="#">Articles</SubdomainNavBar.Link>
@@ -144,6 +148,46 @@ describe('SubdomainNavBar', () => {
     expect(menuButtonEl).toBe(null)
   })
 
+  it('does not render an action container when no actions are provided', () => {
+    mockUseWindowSize.mockImplementation(() => ({isSmall: true, isMedium: true}))
+
+    const {container} = render(
+      <SubdomainNavBar title="Subdomain" variant="gridline">
+        <SubdomainNavBar.Link href="#">Docs</SubdomainNavBar.Link>
+      </SubdomainNavBar>,
+    )
+
+    const actionContainer = container.querySelector('.SubdomainNavBar-button-area')
+    expect(actionContainer).not.toBeInTheDocument()
+  })
+
+  it('does not add a trailing border class to search when no actions are provided', () => {
+    mockUseWindowSize.mockImplementation(() => ({isSmall: true, isMedium: true}))
+
+    const {getByTestId} = render(
+      <SubdomainNavBar title="Subdomain" variant="gridline">
+        <SubdomainNavBar.Search searchTerm="docs" onChange={jest.fn} onSubmit={jest.fn()} />
+      </SubdomainNavBar>,
+    )
+
+    const searchTrigger = getByTestId('toggle-search').parentElement
+    expect(searchTrigger).not.toHaveClass('SubdomainNavBar-search-trigger--has-trailing-item')
+  })
+
+  it('adds a trailing border class to search when actions follow it', () => {
+    mockUseWindowSize.mockImplementation(() => ({isSmall: true, isMedium: true}))
+
+    const {getByTestId} = render(
+      <SubdomainNavBar title="Subdomain" variant="gridline">
+        <SubdomainNavBar.Search searchTerm="docs" onChange={jest.fn} onSubmit={jest.fn()} />
+        <SubdomainNavBar.PrimaryAction href="#">Primary CTA</SubdomainNavBar.PrimaryAction>
+      </SubdomainNavBar>,
+    )
+
+    const searchTrigger = getByTestId('toggle-search').parentElement
+    expect(searchTrigger).toHaveClass('SubdomainNavBar-search-trigger--has-trailing-item')
+  })
+
   it('can append a classname to the root element', () => {
     const mockClass = 'custom-class'
     const {getByTestId} = render(<SubdomainNavBar title="Subdomain" className={mockClass} />)
@@ -151,6 +195,31 @@ describe('SubdomainNavBar', () => {
     const headerEl = getByTestId(SubdomainNavBar.testIds.root)
 
     expect(headerEl.classList).toContain(mockClass)
+  })
+
+  it('renders with default variant by default', () => {
+    const {getByTestId} = render(<Component />)
+
+    const headerEl = getByTestId(SubdomainNavBar.testIds.root)
+    expect(headerEl).toHaveClass('SubdomainNavBar--variant-default')
+    expect(headerEl).not.toHaveClass('SubdomainNavBar--variant-gridline')
+  })
+
+  it('renders with gridline variant', () => {
+    const {getByTestId} = render(<Component variant="gridline" />)
+
+    const headerEl = getByTestId(SubdomainNavBar.testIds.root)
+    expect(headerEl).toHaveClass('SubdomainNavBar--variant-gridline')
+    expect(headerEl).not.toHaveClass('SubdomainNavBar--variant-default')
+  })
+
+  it('does not render the title separator with gridline variant', () => {
+    mockUseWindowSize.mockImplementation(() => ({isSmall: true, isMedium: true}))
+
+    const {container} = render(<Component variant="gridline" />)
+
+    const separator = container.querySelector('.SubdomainNavBar-title-separator')
+    expect(separator).not.toBeInTheDocument()
   })
 
   it('renders live region when search is active', async () => {

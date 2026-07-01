@@ -2,6 +2,8 @@
  * Main styles for the subdomain navigation bar.
  */
 .SubdomainNavBar {
+  --SubdomainNavBar-height: 75px;
+
   position: relative;
   z-index: 90;
   font-weight: 550;
@@ -11,14 +13,24 @@
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   transition: background-color var(--brand-animation-duration-fast) var(--brand-animation-easing-default),
     border-color var(--brand-animation-duration-fast) var(--brand-animation-easing-default);
-  height: 75px;
+  height: var(--SubdomainNavBar-height);
+}
+
+.SubdomainNavBar--variant-default {
+  --SubdomainNavBar-height: 75px;
 }
 
 /*
  * Outer container
  */
 .SubdomainNavBar-outer-container {
+  --SubdomainNavBar-height: 75px;
+
   z-index: 90;
+}
+
+.SubdomainNavBar-outer-container--variant-gridline {
+  --SubdomainNavBar-height: var(--base-size-64);
 }
 
 .SubdomainNavBar-outer-container:not(.SubdomainNavBar-outer-container--fixed) {
@@ -157,14 +169,14 @@
     justify-content: space-between;
     overflow-y: auto;
     position: absolute;
-    top: 75px;
+    top: var(--SubdomainNavBar-height);
     left: 0;
     right: 0;
     bottom: 0;
     z-index: 2;
     background-color: var(--brand-color-canvas-default);
     width: 100vw;
-    height: calc(100vh - 75px);
+    height: calc(100vh - var(--SubdomainNavBar-height));
     animation: fade-in-down 500ms;
     animation-timing-function: var(--brand-animation-easing-default);
   }
@@ -538,6 +550,161 @@
   white-space: nowrap;
 }
 
+.SubdomainNavBar--variant-gridline {
+  --SubdomainNavBar-height: var(--base-size-64);
+
+  background: var(--brand-color-canvas-default);
+  border-block-end: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+}
+
+.SubdomainNavBar--variant-gridline::after {
+  content: '';
+  position: absolute;
+  inset-inline: 0;
+  inset-block-start: calc(100% + var(--brand-borderWidth-thin));
+  height: var(--brand-borderWidth-thin);
+  background-color: var(--brand-color-text-emphasized);
+  pointer-events: none;
+}
+
+.SubdomainNavBar--variant-gridline .SubdomainNavBar-title-separator {
+  display: none;
+}
+
+.SubdomainNavBar--variant-gridline .SubdomainNavBar-menu-wrapper {
+  top: var(--SubdomainNavBar-height);
+  height: calc(100vh - var(--SubdomainNavBar-height));
+}
+
+.SubdomainNavBar--variant-gridline .SubdomainNavBar-search-dialog-control-area {
+  height: var(--SubdomainNavBar-height);
+}
+
+@media screen and (min-width: 48rem) {
+  .SubdomainNavBar--variant-gridline .SubdomainNavBar-inner-container {
+    height: 100%;
+    max-width: none;
+    padding: 0;
+  }
+
+  .SubdomainNavBar--variant-gridline .SubdomainNavBar-title-area {
+    height: 100%;
+    max-width: none;
+    gap: 0;
+    padding: 0;
+  }
+
+  .SubdomainNavBar--variant-gridline .SubdomainNavBar-title-area > li {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    padding-inline: var(--base-size-16);
+    border-inline-end: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
+  }
+
+  .SubdomainNavBar--variant-gridline .SubdomainNavBar-title-area > li:first-child {
+    justify-content: center;
+    inline-size: var(--base-size-64);
+    padding-inline: 0;
+  }
+
+  .SubdomainNavBar--variant-gridline .SubdomainNavBar-logo-mark {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .SubdomainNavBar--variant-gridline .SubdomainNavBar-logo-mark svg {
+    width: var(--base-size-24);
+    height: var(--base-size-24);
+  }
+
+  .SubdomainNavBar--variant-gridline .SubdomainNavBar-title {
+    top: 0;
+    padding-inline-end: 0;
+  }
+
+  .SubdomainNavBar--variant-gridline .SubdomainNavBar-title > * {
+    font-size: var(--base-size-16);
+    line-height: var(--base-size-16);
+  }
+
+  .SubdomainNavBar--variant-gridline .SubdomainNavBar-primary-nav,
+  .SubdomainNavBar--variant-gridline .SubdomainNavBar-primary-nav-list,
+  .SubdomainNavBar--variant-gridline .SubdomainNavBar-secondary-nav,
+  .SubdomainNavBar--variant-gridline .SubdomainNavBar-button-area {
+    height: 100%;
+  }
+
+  .SubdomainNavBar--variant-gridline .SubdomainNavBar-primary-nav-list {
+    align-items: stretch;
+    max-width: none;
+    margin: 0;
+  }
+
+  .SubdomainNavBar--variant-gridline .SubdomainNavBar-primary-nav-list-item {
+    display: flex;
+    align-items: center;
+    height: 100%;
+  }
+
+  .SubdomainNavBar--variant-gridline .SubdomainNavBar-link {
+    align-items: center;
+    height: 100%;
+    padding: 0 var(--base-size-16);
+    color: var(--brand-color-text-muted);
+    font-size: var(--base-size-14);
+    line-height: var(--brand-text-lineHeight-200);
+  }
+
+  .SubdomainNavBar--variant-gridline .SubdomainNavBar-link-text::after {
+    display: none;
+  }
+
+  .SubdomainNavBar--variant-gridline .SubdomainNavBar-secondary-nav {
+    border-inline-start: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
+  }
+
+  .SubdomainNavBar--variant-gridline .SubdomainNavBar-search-trigger {
+    height: 100%;
+    padding-inline: var(--base-size-16);
+  }
+
+  .SubdomainNavBar--variant-gridline .SubdomainNavBar-search-trigger--has-trailing-item {
+    border-inline-end: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
+  }
+
+  .SubdomainNavBar--variant-gridline .SubdomainNavBar-search-button {
+    width: var(--base-size-32);
+    height: var(--base-size-32);
+    margin-inline: 0;
+    color: var(--brand-color-text-muted);
+    background-color: var(--brand-color-canvas-subtle);
+    border: 0;
+    border-radius: var(--brand-borderRadius-medium);
+  }
+
+  .SubdomainNavBar--variant-gridline .SubdomainNavBar-search-button:hover {
+    background-color: color-mix(in srgb, var(--brand-color-canvas-subtle), #000 4%);
+  }
+
+  [data-color-mode='dark'] .SubdomainNavBar--variant-gridline .SubdomainNavBar-search-button:hover {
+    background-color: color-mix(in srgb, var(--brand-color-canvas-subtle), #fff 8%);
+  }
+
+  .SubdomainNavBar--variant-gridline .SubdomainNavBar-search-button svg {
+    width: var(--base-size-16);
+    height: var(--base-size-16);
+  }
+
+  .SubdomainNavBar--variant-gridline .SubdomainNavBar-button-area {
+    align-items: center;
+    padding-inline: var(--base-size-16);
+  }
+}
+
 @media screen and (min-width: 1024px) {
   .SubdomainNavBar-cta-button--secondary {
     display: inline-flex;
@@ -677,7 +844,7 @@
 
 .SubdomainNavBar-skip-to-content {
   position: absolute;
-  top: 75px;
+  top: var(--SubdomainNavBar-height);
   border-radius: 0px;
   width: 100%;
   z-index: 100;

@@ -18,6 +18,9 @@ import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/compone
 import styles from './SubdomainNavBar.module.css'
 import {useId} from '../hooks/useId'
 
+export const SubdomainNavBarVariants = ['default', 'gridline'] as const
+export type SubdomainNavBarVariant = (typeof SubdomainNavBarVariants)[number]
+
 export type SubdomainNavBarProps = {
   /**
    * Valid child elements are `SubdomainNavBar.Link`, `SubdomainNavBar.PrimaryAction`,
@@ -40,6 +43,11 @@ export type SubdomainNavBarProps = {
    * Fill the maximum width of the parent container. Defaults to `false`.
    */
   fullWidth?: boolean
+  /**
+   * Apply a visual variant. The default is `default`.
+   * `gridline` adds horizontal and vertical separator lines.
+   */
+  variant?: SubdomainNavBarVariant
   /**
    * The title or name of the subdomain. Appears adjacent to the logo and is required for communicating content to assisitive technologies.
    */
@@ -81,6 +89,7 @@ function Root({
   logoHref = 'https://github.com',
   title,
   titleHref = '/',
+  variant = 'default',
   onNarrowMenuToggle,
   ...rest
 }: SubdomainNavBarProps) {
@@ -160,15 +169,27 @@ function Root({
     [children],
   )
 
+  const actionItems = useMemo(
+    () =>
+      React.Children.toArray(children).filter(
+        (child): child is React.ReactElement<CTAActionProps> =>
+          React.isValidElement<CTAActionProps>(child) &&
+          (child.type === PrimaryAction || child.type === SecondaryAction),
+      ),
+    [children],
+  )
+
+  const hasActions = actionItems.length > 0
+
   const hasAllActions: boolean = useMemo(() => {
-    const primaryAction = React.Children.toArray(children).find(
-      child => React.isValidElement(child) && child.type === PrimaryAction,
+    const primaryAction = actionItems.find(
+      child => React.isValidElement<CTAActionProps>(child) && child.type === PrimaryAction,
     )
-    const secondaryAction = React.Children.toArray(children).find(
-      child => React.isValidElement(child) && child.type === SecondaryAction,
+    const secondaryAction = actionItems.find(
+      child => React.isValidElement<CTAActionProps>(child) && child.type === SecondaryAction,
     )
     return !!primaryAction && !!secondaryAction
-  }, [children])
+  }, [actionItems])
 
   return (
     <>
@@ -177,6 +198,7 @@ function Root({
           styles['SubdomainNavBar-outer-container'],
           fixed && styles['SubdomainNavBar-outer-container--fixed'],
           hasAllActions && styles['SubdomainNavBar-outer-container--has-actions'],
+          variant === 'gridline' && styles['SubdomainNavBar-outer-container--variant-gridline'],
         )}
       >
         <Button
@@ -189,7 +211,11 @@ function Root({
         >
           Skip to content
         </Button>
-        <header className={clsx(styles['SubdomainNavBar'], className)} data-testid={testIds.root} {...rest}>
+        <header
+          className={clsx(styles['SubdomainNavBar'], styles[`SubdomainNavBar--variant-${variant}`], className)}
+          data-testid={testIds.root}
+          {...rest}
+        >
           <div
             ref={focusTrapRef}
             className={clsx(
@@ -211,9 +237,11 @@ function Root({
                 </li>
                 {title && isSmall && (
                   <>
-                    <li role="separator" className={styles['SubdomainNavBar-title-separator']} aria-hidden>
-                      /
-                    </li>
+                    {variant !== 'gridline' && (
+                      <li role="separator" className={styles['SubdomainNavBar-title-separator']} aria-hidden>
+                        /
+                      </li>
+                    )}
                     <li>
                       <a
                         href={titleHref}
@@ -248,6 +276,10 @@ function Root({
                   if (React.isValidElement<SearchProps>(child) && child.type === Search) {
                     return React.cloneElement(child, {
                       active: searchVisible,
+                      className: clsx(
+                        child.props.className,
+                        hasActions && styles['SubdomainNavBar-search-trigger--has-trailing-item'],
+                      ),
                       handlerFn: handleSearchVisibility,
                       title,
                     })
@@ -276,26 +308,14 @@ function Root({
                 </button>
               )}
 
-              {isMedium && (
+              {isMedium && hasActions && (
                 <div
                   className={clsx(
                     styles['SubdomainNavBar-button-area'],
                     styles['SubdomainNavBar-button-area--visible'],
                   )}
                 >
-                  <div className={styles['SubdomainNavBar-button-area-inner']}>
-                    {React.Children.toArray(children)
-                      .map(child => {
-                        if (
-                          React.isValidElement<CTAActionProps>(child) &&
-                          (child.type === PrimaryAction || child.type === SecondaryAction)
-                        ) {
-                          return child
-                        }
-                        return null
-                      })
-                      .filter(Boolean)}
-                  </div>
+                  <div className={styles['SubdomainNavBar-button-area-inner']}>{actionItems}</div>
                 </div>
               )}
 
@@ -326,26 +346,16 @@ function Root({
                       </NavigationVisbilityObserver>
                     )}
                   </div>
-                  <div
-                    className={clsx(
-                      styles['SubdomainNavBar-button-area'],
-                      styles['SubdomainNavBar-button-area--visible'],
-                    )}
-                  >
-                    <div className={styles['SubdomainNavBar-button-area-inner']}>
-                      {React.Children.toArray(children)
-                        .map(child => {
-                          if (
-                            React.isValidElement<CTAActionProps>(child) &&
-                            (child.type === PrimaryAction || child.type === SecondaryAction)
-                          ) {
-                            return child
-                          }
-                          return null
-                        })
-                        .filter(Boolean)}
+                  {hasActions && (
+                    <div
+                      className={clsx(
+                        styles['SubdomainNavBar-button-area'],
+                        styles['SubdomainNavBar-button-area--visible'],
+                      )}
+                    >
+                      <div className={styles['SubdomainNavBar-button-area-inner']}>{actionItems}</div>
                     </div>
-                  </div>
+                  )}
                 </div>
               )}
             </div>
@@ -389,6 +399,7 @@ type SearchProps = {
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
   ref: React.RefObject<HTMLInputElement>
   active?: boolean
+  className?: string
   title?: string
   handlerFn?: (event: HandlerEvent) => void
   autoComplete?: boolean
@@ -397,7 +408,7 @@ type SearchProps = {
 }
 
 const _SearchInternal = forwardRef<HTMLDivElement, SearchProps>(
-  ({active, title, searchResults, searchTerm, handlerFn, onSubmit, onChange}, ref) => {
+  ({active, className, title, searchResults, searchTerm, handlerFn, onSubmit, onChange}, ref) => {
     const dialogRef = useRef<HTMLDivElement | null>(null)
 
     useFocusTrap({containerRef: dialogRef, restoreFocusOnCleanUp: true, disabled: !active})
@@ -487,7 +498,7 @@ const _SearchInternal = forwardRef<HTMLDivElement, SearchProps>(
 
     return (
       <>
-        <div className={clsx(styles['SubdomainNavBar-search-trigger'])}>
+        <div className={clsx(styles['SubdomainNavBar-search-trigger'], className)}>
           <button
             aria-label="Toggle search bar"
             className={styles['SubdomainNavBar-search-button']}
