@@ -21,23 +21,22 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof NavList>
 
-const ArticleLabelKeys = [
-  'overview',
-  'quickstart',
-  'installGitHubCopilot',
-  'configureYourEditor',
-  'managePolicies',
-  'troubleshooting',
-]
-
 export const Default: Story = {
   render: function Default(args) {
     const {t} = useTranslation('NavList')
     const {'aria-label': ariaLabel = 'Docs navigation', ...navListArgs} = args
+    const articleLabelKeys = [
+      'overview',
+      'quickstart',
+      'installGitHubCopilot',
+      'configureYourEditor',
+      'managePolicies',
+      'troubleshooting',
+    ]
 
     return (
       <NavList aria-label={ariaLabel} {...navListArgs}>
-        {ArticleLabelKeys.map(labelKey => (
+        {articleLabelKeys.map(labelKey => (
           <NavList.Item key={labelKey} href="#" aria-current={labelKey === 'overview' ? 'page' : undefined}>
             {t(labelKey)}
           </NavList.Item>

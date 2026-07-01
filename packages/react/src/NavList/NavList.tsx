@@ -37,6 +37,12 @@ const testIds = {
   get link() {
     return `${this.root}-link`
   },
+  get leadingVisual() {
+    return `${this.root}-leading-visual`
+  },
+  get trailingVisual() {
+    return `${this.root}-trailing-visual`
+  },
   get subNav() {
     return `${this.root}-sub-nav`
   },
@@ -117,7 +123,7 @@ const NavListRoot = forwardRef<HTMLElement, NavListRootProps>(
 type Visual = ReactElement | React.ElementType | Icon
 type NavListItemAs = 'a' | 'button'
 
-type ItemOwnProps = {
+type NavListItemBaseProps = {
   /**
    * Leading visual rendered before the item label.
    */
@@ -147,9 +153,9 @@ type ItemOwnProps = {
 
 export type NavListItemProps<C extends NavListItemAs = 'a'> = {
   as?: C
-} & ItemOwnProps &
+} & NavListItemBaseProps &
   PropsWithChildren<BaseProps<HTMLElement>> &
-  Omit<React.ComponentPropsWithoutRef<C>, keyof ItemOwnProps | keyof BaseProps<HTMLElement> | 'as' | 'children'>
+  Omit<React.ComponentPropsWithoutRef<C>, keyof NavListItemBaseProps | keyof BaseProps<HTMLElement> | 'as' | 'children'>
 
 type NavListSubNavElement = ReactElement<NavListSubNavProps>
 
@@ -202,15 +208,27 @@ const NavListItem = forwardRef(
     }
     const controlledAccordionButtonId = accordionButtonIdProp ?? accordionButtonId
     const itemOnClick = onClick as React.MouseEventHandler<HTMLElement> | undefined
-    const invalidMessage = getInvalidNavListItemMessage({
-      as,
-      canExpand,
-      hasLabelContent,
-      hasSubNav,
-      href,
-      navListGroupCount: navListGroupChildren.length,
-      subNavCount: subNavChildren.length,
-    })
+    const invalidMessage = useMemo(() => {
+      if (navListGroupChildren.length > 0) {
+        return 'NavList.Item: NavList.Group is not supported as a child. Use NavList.SubNav for nested disclosure. NavList.Item will not be rendered.'
+      }
+
+      if (hasSubNav && !canExpand) {
+        return 'NavList.Item: NavList supports up to 5 levels. Level 5 items cannot contain NavList.SubNav. NavList.Item will not be rendered.'
+      }
+
+      if (subNavChildren.length > 1) {
+        return 'NavList.Item: Only one NavList.SubNav child is supported. NavList.Item will not be rendered.'
+      }
+
+      if (hasSubNav && !hasLabelContent) {
+        return 'NavList.Item: A label is required when using NavList.SubNav. NavList.Item will not be rendered.'
+      }
+
+      if (hasSubNav && (href !== undefined || as !== undefined)) {
+        return 'NavList.Item: `href` and `as` are not supported when using NavList.SubNav because expandable items render as buttons. NavList.Item will not be rendered.'
+      }
+    }, [as, canExpand, hasLabelContent, hasSubNav, href, navListGroupChildren.length, subNavChildren.length])
 
     useEffect(() => {
       if (hasCurrentSubNavItem && !isControlled) {
@@ -274,9 +292,9 @@ const NavListItem = forwardRef(
 
     const labelArea = (
       <span className={styles.NavList__labelArea}>
-        {renderVisual(leadingVisual, styles.NavList__leadingVisual)}
+        {renderVisual(leadingVisual, styles.NavList__leadingVisual, testIds.leadingVisual)}
         <span className={styles.NavList__label}>{labelChildren}</span>
-        {renderVisual(trailingVisual, styles.NavList__trailingVisual)}
+        {renderVisual(trailingVisual, styles.NavList__trailingVisual, testIds.trailingVisual)}
       </span>
     )
 
@@ -425,8 +443,38 @@ export type NavListGroupProps = {
 const NavListGroup = forwardRef<HTMLLIElement, NavListGroupProps>(
   ({title, children, className, 'data-testid': testId, ...rest}, ref) => {
     const titleId = useId()
-    const validChildren = useMemo(() => getValidNavListGroupChildren(children), [children])
-    const hasInvalidChild = useMemo(() => hasInvalidNavListGroupChild(children), [children])
+    const validChildren = useMemo(() => {
+      const getValidChildren = (childrenToValidate: ReactNode): ReactNode[] =>
+        Children.toArray(childrenToValidate).flatMap(child => {
+          if (isNavListItemElement(child)) {
+            return [child]
+          }
+
+          if (isValidElement(child) && child.type === React.Fragment) {
+            return getValidChildren((child as ElementWithChildren).props.children)
+          }
+
+          return []
+        })
+
+      return getValidChildren(children)
+    }, [children])
+    const hasInvalidChild = useMemo(() => {
+      const containsInvalidChild = (childrenToValidate: ReactNode): boolean =>
+        Children.toArray(childrenToValidate).some(child => {
+          if (isNavListItemElement(child)) {
+            return false
+          }
+
+          if (isValidElement(child) && child.type === React.Fragment) {
+            return containsInvalidChild((child as ElementWithChildren).props.children)
+          }
+
+          return true
+        })
+
+      return containsInvalidChild(children)
+    }, [children])
 
     if (hasInvalidChild) {
       warnNavListValidation(
@@ -535,35 +583,7 @@ function childHasNavListGroupElement(node: ReactNode): boolean {
   return isNavListGroupElement(node)
 }
 
-function getValidNavListGroupChildren(children: ReactNode): ReactNode[] {
-  return Children.toArray(children).flatMap(child => {
-    if (isNavListItemElement(child)) {
-      return [child]
-    }
-
-    if (isValidElement(child) && child.type === React.Fragment) {
-      return getValidNavListGroupChildren((child as ElementWithChildren).props.children)
-    }
-
-    return []
-  })
-}
-
-function hasInvalidNavListGroupChild(children: ReactNode): boolean {
-  return Children.toArray(children).some(child => {
-    if (isNavListItemElement(child)) {
-      return false
-    }
-
-    if (isValidElement(child) && child.type === React.Fragment) {
-      return hasInvalidNavListGroupChild((child as ElementWithChildren).props.children)
-    }
-
-    return true
-  })
-}
-
-function renderVisual(visual: Visual | undefined, className: string) {
+function renderVisual(visual: Visual | undefined, className: string, testId: string) {
   if (!visual) return null
 
   const visualElement = isValidElement(visual) ? visual : React.createElement(visual)
@@ -571,7 +591,7 @@ function renderVisual(visual: Visual | undefined, className: string) {
   if (!isValidElement<{className?: string; ['aria-hidden']?: string; focusable?: string}>(visualElement)) return null
 
   return (
-    <span className={className}>
+    <span className={className} data-testid={testId}>
       {React.cloneElement(visualElement, {
         className: visualElement.props.className,
         'aria-hidden': 'true',
@@ -579,44 +599,6 @@ function renderVisual(visual: Visual | undefined, className: string) {
       })}
     </span>
   )
-}
-
-function getInvalidNavListItemMessage({
-  as,
-  canExpand,
-  hasLabelContent,
-  hasSubNav,
-  href,
-  navListGroupCount,
-  subNavCount,
-}: {
-  as?: NavListItemAs
-  canExpand: boolean
-  hasLabelContent: boolean
-  hasSubNav: boolean
-  href?: string
-  navListGroupCount: number
-  subNavCount: number
-}) {
-  if (navListGroupCount > 0) {
-    return 'NavList.Item: NavList.Group is not supported as a child. Use NavList.SubNav for nested disclosure. NavList.Item will not be rendered.'
-  }
-
-  if (hasSubNav && !canExpand) {
-    return 'NavList.Item: NavList supports up to 5 levels. Level 5 items cannot contain NavList.SubNav. NavList.Item will not be rendered.'
-  }
-
-  if (subNavCount > 1) {
-    return 'NavList.Item: Only one NavList.SubNav child is supported. NavList.Item will not be rendered.'
-  }
-
-  if (hasSubNav && !hasLabelContent) {
-    return 'NavList.Item: A label is required when using NavList.SubNav. NavList.Item will not be rendered.'
-  }
-
-  if (hasSubNav && (href !== undefined || as !== undefined)) {
-    return 'NavList.Item: `href` and `as` are not supported when using NavList.SubNav because expandable items render as buttons. NavList.Item will not be rendered.'
-  }
 }
 
 function warnNavListValidation(message: string) {

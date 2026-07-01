@@ -306,10 +306,10 @@ describe('NavList', () => {
     const link = getByRole('link', {name: 'Getting started'})
     const toggle = getByRole('button', {name: 'Guides'})
 
-    expect(link.querySelector('.NavList__leadingVisual')).toBeInTheDocument()
-    expect(link.querySelector('.NavList__trailingVisual')).toBeInTheDocument()
-    expect(toggle.querySelector('.NavList__leadingVisual')).toBeInTheDocument()
-    expect(toggle.querySelector('.NavList__trailingVisual')).toBeInTheDocument()
+    expect(within(link).getByTestId(NavList.testIds.leadingVisual)).toBeInTheDocument()
+    expect(within(link).getByTestId(NavList.testIds.trailingVisual)).toBeInTheDocument()
+    expect(within(toggle).getByTestId(NavList.testIds.leadingVisual)).toBeInTheDocument()
+    expect(within(toggle).getByTestId(NavList.testIds.trailingVisual)).toBeInTheDocument()
     expect(toggle.querySelectorAll('svg')).toHaveLength(3)
   })
 
