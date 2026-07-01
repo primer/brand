@@ -73,6 +73,27 @@ describe('VideoPlayer', () => {
     expect(getByRole('button', {name: 'Play video'})).toBeInTheDocument()
   })
 
+  it('renders the overlay play button when autoplaying is paused and controls are hidden', async () => {
+    const {getByRole, getByTitle, queryByRole} = render(
+      <VideoPlayer poster="/example-poster.jpg" title="test video" autoPlay showControlsWhenPaused={false}>
+        <VideoPlayer.Source src="/example.mp4" />
+        <VideoPlayer.Track src="/example.vtt" default kind="subtitles" srcLang="en" label="English" />
+      </VideoPlayer>,
+    )
+
+    const video = getByTitle('test video') as HTMLVideoElement
+
+    expect(queryByRole('button', {name: 'Play video'})).not.toBeInTheDocument()
+    expect(getByRole('button', {name: 'Play'})).toBeInTheDocument()
+
+    fireEvent.play(video)
+
+    await waitFor(() => {
+      expect(queryByRole('button', {name: 'Play'})).not.toBeInTheDocument()
+      expect(getByRole('button', {name: 'Pause video'})).toBeInTheDocument()
+    })
+  })
+
   it('syncs the mute control with an initially muted video', async () => {
     const {getByRole, getByTitle} = render(
       <VideoPlayer poster="/example-poster.jpg" title="test video" muted>

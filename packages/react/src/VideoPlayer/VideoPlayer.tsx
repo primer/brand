@@ -91,7 +91,7 @@ const Root = forwardRef<HTMLVideoElement, VideoPlayerProps>(
     const showControlsRow1 = showPlayPauseButton || showSeekControl
     const showControlsRow2 = showCCButton || showMuteButton || showVolumeControl || showFullScreenButton
     const showControlsBar = (showControlsRow1 || showControlsRow2) && (isPlaying || showControlsWhenPaused)
-    const showPlayButtonOverlay = !autoPlay
+    const showPlayButtonOverlay = !autoPlay || (!isPlaying && !showControlsBar)
 
     return (
       <div
