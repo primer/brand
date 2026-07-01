@@ -26,4 +26,17 @@ describe('primer_brand_examples', () => {
     const result = await primerBrandExamplesTool.run({goal: 'zzzz nonexistent zzzz'}, makeContext())
     expect(result.text).not.toContain('### Stack')
   })
+
+  it('leads page-level goals with the closest full-page template', async () => {
+    const result = await primerBrandExamplesTool.run({goal: 'category page'}, makeContext())
+    expect(result.text).toContain('Full-page template')
+    expect(result.text).toContain('category landing page')
+    // Other matching templates are surfaced by name so the agent knows the full set.
+    expect(result.text).toContain('Other full-page templates')
+  })
+
+  it('does not inject a full-page template for a component-level goal', async () => {
+    const result = await primerBrandExamplesTool.run({goal: 'pricing'}, makeContext())
+    expect(result.text).not.toContain('Full-page template')
+  })
 })

@@ -120,7 +120,7 @@ function build(id: FrameworkId, ctx: ToolContext): string {
     `## 2. Root setup (the step agents usually skip)\n${fence}tsx\n${snippet}\n${fence}${rscNote}\n\n_Optional: set the theme with \`<ThemeProvider colorMode="light">\` — also accepts \`"dark"\` or \`"auto"\`._`,
     `## 3. Fonts\nPrimer Brand uses **Mona Sans / Hubot Sans**. The \`fonts.css\` import above loads them — pages without these fonts read as off-brand.`,
     `## 4. Styles\nImporting components from \`@primer/react-brand/esm\` auto-includes each component's styles. **Do not also import \`@primer/react-brand/lib/css/main.css\`** — that is the non-ESM path, and mixing the two double-loads styles.`,
-    `## 5. Build the page\n- \`primer_brand_examples\` for a correct starting composition, then \`primer_brand_component\` for exact props\n- \`primer_brand_tokens\` / \`primer_brand_asset\` for colors, spacing, and icons\n- \`primer_brand_review\` on your complete output — JSX and CSS together — before you finish`,
+    `## 5. Build the page\n- \`primer_brand_page_design\` first for page-design patterns and the current-brand reference templates to start from\n- \`primer_brand_examples\` for a correct starting composition, then \`primer_brand_component\` for exact props\n- \`primer_brand_tokens\` / \`primer_brand_asset\` for colors, spacing, and icons\n- \`primer_brand_review\` on your complete output — JSX and CSS together — before you finish`,
     `## 6. Header & footer\nFor a global header use \`SubdomainNavBar\`; for the footer use \`MinimalFooter\`. Don't hand-roll a \`<header>\`, \`<nav>\`, or \`<footer>\` — call \`primer_brand_component\` with "SubdomainNavBar" or "MinimalFooter" for their APIs.`,
     versionNote(ctx),
   ].join('\n\n')

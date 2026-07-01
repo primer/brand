@@ -578,11 +578,94 @@ function buildTokens() {
 }
 
 // ---------------------------------------------------------------------------
+// Recipes
+// ---------------------------------------------------------------------------
+
+/** Search metadata for the page recipes. The composition itself has one source: the .tsx below. */
+const RECIPE_META = {
+  FlexSuiteAIOverview: {
+    title: 'Product feature overview landing page',
+    keywords: [
+      'product feature',
+      'feature',
+      'overview',
+      'landing',
+      'landing page',
+      'homepage',
+      'home',
+      'product page',
+      'marketing page',
+      'full page',
+      'template',
+    ],
+  },
+  FlexSuiteSecurityCategory: {
+    title: 'Product feature category landing page',
+    keywords: [
+      'product feature',
+      'feature',
+      'category',
+      'landing page',
+      'solution',
+      'solutions',
+      'use case',
+      'topic',
+      'full page',
+      'template',
+    ],
+  },
+  FlexSuiteAIDetailsPlaylist: {
+    title: 'Product feature details landing page',
+    keywords: [
+      'product feature',
+      'feature',
+      'details',
+      'detail',
+      'landing page',
+      'media',
+      'video',
+      'playlist',
+      'watch',
+      'full page',
+      'template',
+    ],
+  },
+}
+
+// Copies the full recipe verbatim
+function buildRecipes() {
+  const recipesRoot = join(reactSrc, 'recipes', 'Flexsuite')
+  if (!existsSync(recipesRoot)) {
+    // eslint-disable-next-line i18n-text/no-en
+    writeStderrLog('Flexsuite recipes not found; skipping recipe templates')
+    return []
+  }
+  const recipes = []
+  const walk = dir => {
+    for (const entry of readdirSync(dir, {withFileTypes: true})) {
+      const fullPath = join(dir, entry.name)
+      if (entry.isDirectory()) {
+        walk(fullPath)
+      } else if (entry.name.endsWith('.tsx') && !entry.name.endsWith('.stories.tsx')) {
+        const name = entry.name.slice(0, -'.tsx'.length)
+        const source = readFileOrNull(fullPath)
+        if (!source) continue
+        const meta = RECIPE_META[name] ?? {title: name, keywords: ['page', 'template', 'full page']}
+        recipes.push({name, title: meta.title, keywords: meta.keywords, source: source.trim()})
+      }
+    }
+  }
+  walk(recipesRoot)
+  return recipes.sort((first, second) => first.name.localeCompare(second.name))
+}
+
+// ---------------------------------------------------------------------------
 
 function main() {
   const components = runPhaseSafely('components', buildComponents, [])
   const assets = runPhaseSafely('assets', buildAssets, [])
   const tokens = runPhaseSafely('tokens', buildTokens, [])
+  const recipes = runPhaseSafely('recipes', buildRecipes, [])
 
   // Sanity floor: fail loudly if extraction collapses, rather than silently shipping a broken
   // catalog. Thresholds sit far below normal output (~70 components, ~400 assets), so they only
@@ -591,6 +674,9 @@ function main() {
   assertMinimumCount('assets', assets, 200)
   if (tokens.length === 0) {
     writeStderrLog('WARNING: 0 design tokens — build @primer/brand-primitives (npm run build:lib) to include them')
+  }
+  if (recipes.length === 0) {
+    writeStderrLog('Error: 0 recipe templates — check packages/react/src/recipes/Flexsuite')
   }
 
   const generatedFromVersion = (() => {
@@ -608,12 +694,13 @@ function main() {
     components,
     assets,
     tokens,
+    recipes,
   }
 
   mkdirSync(dirname(outFile), {recursive: true})
   writeFileSync(outFile, `${JSON.stringify(catalog, null, 2)}\n`)
   writeStderrLog(
-    `wrote ${components.length} components, ${assets.length} assets, ${tokens.length} tokens -> ${outFile}`,
+    `wrote ${components.length} components, ${assets.length} assets, ${tokens.length} tokens, ${recipes.length} recipes -> ${outFile}`,
   )
 }
 

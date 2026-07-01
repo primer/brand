@@ -1,6 +1,5 @@
 /**
- * All types associated with the build-generated catalog that ships inside the package.
- * It is the structured, offline source of truth the tools reason over so they never depend on the network for version-sensitive facts.
+ * All types relating to the Catalog
  */
 
 export type CatalogProp = {
@@ -53,6 +52,18 @@ export type CatalogToken = {
   group: string
 }
 
+// We add full page recipes from packages/react to the catalog to enrich the examples agents have available to them.
+export type CatalogRecipe = {
+  /** The export/file name, e.g. `FlexSuiteAIOverview`. */
+  name: string
+  /** A human-readable label for ranking and display, e.g. `Overview / landing page`. */
+  title: string
+  /** Page-level keywords used to match a build goal. */
+  keywords: string[]
+  /** The recipe's full source `.tsx`. */
+  source: string
+}
+
 export type Catalog = {
   /** Package whose API this catalog describes. */
   brandPackage: string
@@ -62,6 +73,7 @@ export type Catalog = {
   components: CatalogComponent[]
   assets: CatalogAsset[]
   tokens: CatalogToken[]
+  recipes: CatalogRecipe[]
 }
 
 export function emptyCatalog(): Catalog {
@@ -72,5 +84,6 @@ export function emptyCatalog(): Catalog {
     components: [],
     assets: [],
     tokens: [],
+    recipes: [],
   }
 }

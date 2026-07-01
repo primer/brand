@@ -33,6 +33,7 @@ try {
   }
 
   await call('primer_brand_setup', {framework: 'next-app'})
+  await call('primer_brand_page_design', {})
   await call('primer_brand_component', {name: 'Hero'})
   await call('primer_brand_examples', {goal: 'education landing page'})
   await call('primer_brand_asset', {query: 'arrow', kind: 'icon'})

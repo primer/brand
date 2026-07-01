@@ -34,6 +34,7 @@
   },
   "files": [
     "dist",
+    "content",
     "README.md"
   ],
   "scripts": {

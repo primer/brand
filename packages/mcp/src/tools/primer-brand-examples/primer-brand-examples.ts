@@ -16,10 +16,9 @@ const inputSchema = z.object({
 
 type Input = z.infer<typeof inputSchema>
 
-const description = `Get ranked, copy-and-adapt examples of correct Primer Brand usage for a goal, taken from the component library's own tested Storybook stories. 
-Pass a target use-case like "pricing section" or "education landing page" for the closest matches; with no match you get a default foundational set. 
-Examples come verbatim from stories, so they may include Storybook scaffolding (\`{...args}\` spreads, imported demo assets) — treat that as placeholders to fill with real props and content, not literal code to copy. 
-Use it to start from approved patterns instead of hand-building.`
+const description = `Get ranked, copy-and-adapt examples of correct Primer Brand usage for a goal. Component-level snippets come from the library's own tested Storybook stories; for page-level goals you also get a full-page template — the actual current-brand recipe source from \`@primer/react-brand\`.
+Pass a target use-case like "pricing section", "category page", or "education landing page" for the closest matches; with no match you get a default foundational set.
+Examples are real source, so they may carry demo scaffolding (a \`content\` object, internal fixture imports, CSS-module class names, repo-relative imports, \`{...args}\` spreads) — mirror the composition and props, then rebuild with your own content and \`@primer/react-brand\` imports. Don't paste verbatim.`
 
 /** Foundational sections that anchor almost every GitHub landing page, in composition order. */
 const DEFAULT_COMPONENTS = ['Hero', 'SectionIntro', 'River', 'Pillar', 'CTABanner']
@@ -59,11 +58,34 @@ export const primerBrandExamplesTool: ToolModule<Input> = {
 
     const note = useDefault
       ? `No example matched "${goal}", so here is the default foundational set — compose these in order and adapt the copy and props to your theme.`
-      : `Closest tested examples for "${goal}". Adapt the copy and props to your theme; don't paste verbatim.`
+      : `Closest tested component examples for "${goal}". Adapt the copy and props to your theme; don't paste verbatim.`
 
-    const examples = shown
+    const componentExamples = shown
       .map(component => `### ${component.name}\n\`\`\`tsx\n${exampleCode(component)}\n\`\`\``)
       .join('\n\n')
-    return {text: [`# Examples for "${goal}"`, note, examples, versionNote(ctx)].join('\n\n')}
+
+    // For page-level goals, lead with the closest full-page recipe. It's the real source (single
+    // source of truth in @primer/react-brand), so tell the agent to look past its demo scaffolding.
+    const matchedRecipes = rank(goal, ctx.catalog.recipes, recipe => [recipe.title, recipe.keywords.join(' ')]).map(
+      entry => entry.item,
+    )
+    const topRecipe = matchedRecipes[0]
+
+    const sections = [`# Examples for "${goal}"`]
+    if (topRecipe) {
+      const otherRecipes = matchedRecipes.slice(1)
+      const also = otherRecipes.length
+        ? ` Other full-page templates for this goal: ${otherRecipes.map(recipe => recipe.title).join(', ')}.`
+        : ''
+      sections.push(
+        [
+          `## Full-page template — start here: ${topRecipe.title}`,
+          `This is the **actual current-brand recipe source** from \`@primer/react-brand\`, wired for our demo harness: a \`content\` object supplies the copy, imagery comes from internal fixtures, styling uses internal CSS-module class names, and imports are repo-relative. Ignore that scaffolding — mirror the composition, section order, and component props (e.g. the \`gridline\` / \`gridline-expressive\` variants and the bordered card-grid frame), then rebuild it with your own content, assets, and \`@primer/react-brand\` imports.${also}`,
+          `\`\`\`tsx\n${topRecipe.source}\n\`\`\``,
+        ].join('\n\n'),
+      )
+    }
+    sections.push(note, componentExamples, versionNote(ctx))
+    return {text: sections.join('\n\n')}
   },
 }
