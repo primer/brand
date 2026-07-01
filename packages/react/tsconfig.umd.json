@@ -2,10 +2,9 @@
   "extends": "./tsconfig.build.json",
   "compilerOptions": {
     "rootDir": "src",
-    "outDir": "esm",
+    "outDir": "lib",
     "declaration": true,
-    "declarationMap": true,
     "emitDeclarationOnly": true
   },
-  "include": ["src/index.esm.ts", "src/*.d.ts"]
+  "include": ["src/index.ts", "src/*.d.ts"]
 }

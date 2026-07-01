@@ -154,17 +154,17 @@
     "heading": "Saca el máximo partido a GitHub Copilot",
     "cards": {
       "one": {
-        "tag": "CHANGELOG",
+        "tag": "Changelog",
         "heading": "Descubre las últimas funciones",
         "description": "Sé el primero en explorar lo que viene para GitHub Copilot."
       },
       "two": {
-        "tag": "BLOG",
+        "tag": "Blog",
         "heading": "Explora el blog de GitHub",
         "description": "Descubre lo último en desarrollo de software con ideas, análisis y más."
       },
       "three": {
-        "tag": "DOCUMENTACIÓN PARA DESARROLLADORES",
+        "tag": "Documentación para desarrolladores",
         "heading": "Visita el Trust Center",
         "description": "Gana tranquilidad con nuestras políticas de seguridad, privacidad e IA responsable."
       }

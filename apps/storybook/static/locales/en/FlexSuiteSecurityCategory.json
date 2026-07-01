@@ -57,17 +57,17 @@
     "heading": "Securing the entire software supply chain",
     "cards": {
       "one": {
-        "tag": "SECURITY LAB",
+        "tag": "Security Lab",
         "heading": "Scale strategy with GitHub Security Lab",
         "description": "Secure open source by finding vulnerabilities, building tools like CodeQL, and advancing security research."
       },
       "two": {
-        "tag": "SECURITY ADVISORY DATABASE",
+        "tag": "Security Advisory Database",
         "heading": "Stay ahead with Security Advisory Database",
         "description": "Access a vulnerability database of CVEs and GitHub-curated security advisories from the open source world."
       },
       "three": {
-        "tag": "SUPPLY CHAIN SECURITY",
+        "tag": "Supply chain security",
         "heading": "Secure software supply chains end-to-end",
         "description": "Reduce risks with automated updates, dependency tracking, and build attestation for a secure lifecycle."
       }
