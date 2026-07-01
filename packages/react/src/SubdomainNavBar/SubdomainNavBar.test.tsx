@@ -212,6 +212,82 @@ describe('SubdomainNavBar', () => {
     expect(searchTrigger).toHaveClass('SubdomainNavBar-search-trigger--has-trailing-item')
   })
 
+  it('renders the gridline search trigger as an icon-only secondary Button', () => {
+    mockUseWindowSize.mockImplementation(() => ({isSmall: true, isMedium: true}))
+
+    const {getByTestId} = render(
+      <SubdomainNavBar title="Subdomain" variant="gridline">
+        <SubdomainNavBar.Search searchTerm="docs" onChange={jest.fn} onSubmit={jest.fn()} />
+      </SubdomainNavBar>,
+    )
+
+    const searchTrigger = getByTestId('toggle-search')
+    expect(searchTrigger).toHaveAccessibleName('Toggle search bar')
+    expect(searchTrigger).not.toHaveTextContent('Search')
+    expect(searchTrigger).toHaveClass('Button--secondary')
+    expect(searchTrigger).toHaveClass('Button--size-small')
+    expect(searchTrigger).not.toHaveClass('SubdomainNavBar-search-button')
+  })
+
+  it('renders gridline action buttons with the 32px Button size', () => {
+    mockUseWindowSize.mockImplementation(() => ({isSmall: true, isMedium: true}))
+
+    const {getByRole} = render(
+      <SubdomainNavBar title="Subdomain" variant="gridline">
+        <SubdomainNavBar.PrimaryAction href="#">Primary CTA</SubdomainNavBar.PrimaryAction>
+        <SubdomainNavBar.SecondaryAction href="#">Secondary CTA</SubdomainNavBar.SecondaryAction>
+      </SubdomainNavBar>,
+    )
+
+    expect(getByRole('link', {name: 'Primary CTA'})).toHaveClass('Button--size-small')
+    expect(getByRole('link', {name: 'Secondary CTA'})).toHaveClass('Button--size-small')
+  })
+
+  it('renders the input search trigger variant with placeholder and shortcut text', () => {
+    mockUseWindowSize.mockImplementation(() => ({isSmall: true, isMedium: true}))
+
+    const {getByTestId, getByText} = render(
+      <SubdomainNavBar title="Subdomain" variant="gridline">
+        <SubdomainNavBar.Search
+          variant="input"
+          placeholder="Search ..."
+          shortcutLabel="/"
+          searchTerm="docs"
+          onChange={jest.fn}
+          onSubmit={jest.fn()}
+        />
+      </SubdomainNavBar>,
+    )
+
+    const searchTrigger = getByTestId('toggle-search')
+    expect(searchTrigger).toHaveAccessibleName('Search ... search')
+    expect(searchTrigger).toHaveClass('SubdomainNavBar-search-input-button')
+    expect(searchTrigger).not.toHaveClass('Button--secondary')
+    expect(getByText('Search ...')).toBeInTheDocument()
+    expect(getByText('/')).toBeInTheDocument()
+  })
+
+  it('uses the input search trigger placeholder for the opened search input', () => {
+    mockUseWindowSize.mockImplementation(() => ({isSmall: true, isMedium: true}))
+
+    const {getByTestId, getByPlaceholderText, getByRole} = render(
+      <SubdomainNavBar title="Subdomain" variant="gridline">
+        <SubdomainNavBar.Search
+          variant="input"
+          placeholder="Search docs"
+          searchTerm="docs"
+          onChange={jest.fn}
+          onSubmit={jest.fn()}
+        />
+      </SubdomainNavBar>,
+    )
+
+    fireEvent.click(getByTestId('toggle-search'))
+
+    expect(getByRole('dialog')).toBeInTheDocument()
+    expect(getByPlaceholderText('Search docs')).toBeInTheDocument()
+  })
+
   it('adds a trailing border class to the action area when a trailing component follows it', () => {
     mockUseWindowSize.mockImplementation(() => ({isSmall: true, isMedium: true}))
 

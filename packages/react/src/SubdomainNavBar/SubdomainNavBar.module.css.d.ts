@@ -44,6 +44,9 @@ declare const styles: {
   readonly "SubdomainNavBar-search-dialog": string;
   readonly "SubdomainNavBar-search-dialog-control-area": string;
   readonly "SubdomainNavBar-search-form": string;
+  readonly "SubdomainNavBar-search-input-button": string;
+  readonly "SubdomainNavBar-search-input-button-placeholder": string;
+  readonly "SubdomainNavBar-search-input-button-shortcut": string;
   readonly "SubdomainNavBar-search-result-item": string;
   readonly "SubdomainNavBar-search-result-item-container": string;
   readonly "SubdomainNavBar-search-result-item-desc": string;
@@ -53,6 +56,7 @@ declare const styles: {
   readonly "SubdomainNavBar-search-text-input": string;
   readonly "SubdomainNavBar-search-trigger": string;
   readonly "SubdomainNavBar-search-trigger--has-trailing-item": string;
+  readonly "SubdomainNavBar-search-trigger--input": string;
   readonly "SubdomainNavBar-secondary-nav": string;
   readonly "SubdomainNavBar-skip-to-content": string;
   readonly "SubdomainNavBar-title": string;

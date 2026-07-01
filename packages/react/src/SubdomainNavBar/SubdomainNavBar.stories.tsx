@@ -7,7 +7,7 @@ import React, {useEffect, useState} from 'react'
 import {ActionMenu, Hero, River, Heading, Text, Link, Token} from '../'
 import placeholderImage from '../fixtures/images/placeholder.png'
 
-import {SubdomainNavBar, SubdomainNavBarProps} from '.'
+import {SubdomainNavBar, SubdomainNavBarProps, SubdomainNavBarSearchVariant} from '.'
 import {waitFor} from '@testing-library/dom'
 
 type StoryArgs = {
@@ -632,9 +632,19 @@ type GridlineExampleProps = {
   leadingComponent?: SubdomainNavBarProps['leadingComponent']
   trailingComponent?: SubdomainNavBarProps['trailingComponent']
   showSearch?: boolean
+  searchVariant?: SubdomainNavBarSearchVariant
+  searchPlaceholder?: string
+  searchShortcutLabel?: string
 }
 
-const GridlineExample = ({leadingComponent, trailingComponent, showSearch = false}: GridlineExampleProps) => {
+const GridlineExample = ({
+  leadingComponent,
+  trailingComponent,
+  showSearch = false,
+  searchVariant,
+  searchPlaceholder,
+  searchShortcutLabel,
+}: GridlineExampleProps) => {
   const inputRef = React.useRef<HTMLInputElement | null>(null)
 
   return (
@@ -653,6 +663,9 @@ const GridlineExample = ({leadingComponent, trailingComponent, showSearch = fals
       {showSearch && (
         <SubdomainNavBar.Search
           ref={inputRef}
+          variant={searchVariant}
+          placeholder={searchPlaceholder}
+          shortcutLabel={searchShortcutLabel}
           searchTerm=""
           onSubmit={event => event.preventDefault()}
           onChange={() => undefined}
@@ -819,6 +832,13 @@ export const GridlineWithTrailing: Story = {
 export const GridlineWithSearch: Story = {
   render: () => <GridlineExample showSearch />,
   name: 'Gridline With Search',
+}
+
+export const GridlineWithInputSearch: Story = {
+  render: () => (
+    <GridlineExample showSearch searchVariant="input" searchPlaceholder="Search ..." searchShortcutLabel="/" />
+  ),
+  name: 'Gridline With Input Search',
 }
 
 export const NoTitle: Story = {

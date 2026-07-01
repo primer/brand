@@ -441,6 +441,11 @@
   align-items: center;
 }
 
+.SubdomainNavBar-search-trigger--input {
+  flex: 1 1 auto;
+  min-width: min(100%, calc(var(--base-size-128) * 2 + var(--base-size-24)));
+}
+
 .SubdomainNavBar-search-button,
 .SubdomainNavBar-menu-button {
   cursor: pointer;
@@ -475,6 +480,73 @@
 
 .SubdomainNavBar-search-button--gridline {
   gap: 0;
+}
+
+.SubdomainNavBar-search-input-button {
+  cursor: pointer;
+  appearance: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--base-size-16);
+  inline-size: 100%;
+  block-size: var(--base-size-32);
+  min-block-size: var(--base-size-32);
+  padding: var(--base-size-4) var(--base-size-4) var(--base-size-4) calc(var(--base-size-8) + var(--base-size-2));
+  color: var(--brand-color-text-muted);
+  background-color: var(--brand-color-canvas-subtle);
+  border: 0;
+  border-radius: var(--brand-borderRadius-medium);
+  font-family: var(--brand-body-fontFamily);
+  transition: background-color var(--brand-animation-duration-fast) var(--brand-animation-easing-default),
+    box-shadow var(--brand-animation-duration-fast) var(--brand-animation-easing-default);
+}
+
+.SubdomainNavBar-search-input-button:hover {
+  box-shadow: inset 0 0 0 var(--brand-borderWidth-thin) var(--brand-color-border-muted);
+}
+
+.SubdomainNavBar-search-input-button:focus-visible {
+  outline: var(--base-size-4) solid var(--brand-color-focus);
+  outline-offset: var(--base-size-2);
+}
+
+.SubdomainNavBar-search-input-button:active {
+  box-shadow: inset 0 0 0 var(--brand-borderWidth-thin) var(--brand-color-border-default);
+}
+
+.SubdomainNavBar-search-input-button-placeholder {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--base-size-8);
+  min-width: 0;
+  overflow: hidden;
+  color: var(--brand-color-text-muted);
+  font-size: var(--brand-text-size-100);
+  font-weight: var(--base-text-weight-normal);
+  line-height: 1.2;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.SubdomainNavBar-search-input-button-placeholder svg {
+  flex: none;
+}
+
+.SubdomainNavBar-search-input-button-shortcut {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  align-self: stretch;
+  min-inline-size: var(--base-size-24);
+  padding-inline: var(--base-size-8);
+  color: var(--brand-color-text-default);
+  background-color: var(--brand-color-canvas-default);
+  border: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
+  border-radius: calc(var(--brand-borderRadius-medium) / 2);
+  font-size: var(--brand-text-size-100);
+  font-weight: var(--base-text-weight-normal);
+  line-height: 1.6;
 }
 
 .SubdomainNavBar-menu-button {
@@ -732,6 +804,11 @@
   .SubdomainNavBar--variant-gridline .SubdomainNavBar-search-trigger {
     height: 100%;
     padding-inline: var(--base-size-16);
+  }
+
+  .SubdomainNavBar--variant-gridline .SubdomainNavBar-search-trigger--input {
+    align-self: stretch;
+    min-width: min(42vw, calc(var(--base-size-128) * 3 + var(--base-size-36)));
   }
 
   .SubdomainNavBar--variant-gridline .SubdomainNavBar-search-trigger--has-trailing-item {

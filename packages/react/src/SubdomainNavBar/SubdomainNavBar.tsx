@@ -20,6 +20,8 @@ import {useId} from '../hooks/useId'
 
 export const SubdomainNavBarVariants = ['default', 'gridline'] as const
 export type SubdomainNavBarVariant = (typeof SubdomainNavBarVariants)[number]
+export const SubdomainNavBarSearchVariants = ['icon', 'input'] as const
+export type SubdomainNavBarSearchVariant = (typeof SubdomainNavBarSearchVariants)[number]
 
 export type SubdomainNavBarProps = {
   /**
@@ -430,9 +432,21 @@ type SearchProps = {
   ref: React.RefObject<HTMLInputElement>
   active?: boolean
   className?: string
+  /**
+   * Alternative presentation for the search trigger button.
+   */
+  variant?: SubdomainNavBarSearchVariant
   title?: string
   handlerFn?: (event: HandlerEvent) => void
   autoComplete?: boolean
+  /**
+   * Placeholder text shown in the input-style trigger and the opened search input.
+   */
+  placeholder?: string
+  /**
+   * Optional keyboard shortcut hint shown in the input-style trigger. Pass an empty string to hide it.
+   */
+  shortcutLabel?: string
   searchResults?: SubdomainNavBarSearchResultProps[]
   searchTerm?: string
   subdomainNavBarVariant?: SubdomainNavBarVariant
@@ -440,11 +454,25 @@ type SearchProps = {
 
 const _SearchInternal = forwardRef<HTMLDivElement, SearchProps>(
   (
-    {active, className, title, searchResults, searchTerm, handlerFn, onSubmit, onChange, subdomainNavBarVariant},
+    {
+      active,
+      className,
+      title,
+      searchResults,
+      searchTerm,
+      handlerFn,
+      onSubmit,
+      onChange,
+      placeholder,
+      shortcutLabel = '/',
+      subdomainNavBarVariant,
+      variant: searchVariant = 'icon',
+    },
     ref,
   ) => {
     const dialogRef = useRef<HTMLDivElement | null>(null)
     const isGridlineVariant = subdomainNavBarVariant === 'gridline'
+    const resolvedPlaceholder = placeholder ?? (title ? `Search ${title}` : 'Search')
 
     useFocusTrap({containerRef: dialogRef, restoreFocusOnCleanUp: true, disabled: !active})
     useOnClickOutside(dialogRef, handlerFn)
@@ -533,20 +561,44 @@ const _SearchInternal = forwardRef<HTMLDivElement, SearchProps>(
 
     return (
       <>
-        <div className={clsx(styles['SubdomainNavBar-search-trigger'], className)}>
-          <Button
-            aria-label="Toggle search bar"
-            className={
-              isGridlineVariant
-                ? styles['SubdomainNavBar-search-button--gridline']
-                : styles['SubdomainNavBar-search-button']
-            }
-            variant="secondary"
-            size="small"
-            leadingVisual={<SearchIcon />}
-            onClick={handlerFn as (event) => void}
-            data-testid="toggle-search"
-          />
+        <div
+          className={clsx(
+            styles['SubdomainNavBar-search-trigger'],
+            searchVariant === 'input' && styles['SubdomainNavBar-search-trigger--input'],
+            className,
+          )}
+        >
+          {searchVariant === 'input' ? (
+            <button
+              aria-label={`${resolvedPlaceholder} search`}
+              className={styles['SubdomainNavBar-search-input-button']}
+              onClick={handlerFn as (event) => void}
+              data-testid="toggle-search"
+              type="button"
+            >
+              <span className={styles['SubdomainNavBar-search-input-button-placeholder']}>
+                <SearchIcon aria-hidden="true" size={16} />
+                <span>{resolvedPlaceholder}</span>
+              </span>
+              {shortcutLabel && (
+                <span className={styles['SubdomainNavBar-search-input-button-shortcut']}>{shortcutLabel}</span>
+              )}
+            </button>
+          ) : (
+            <Button
+              aria-label="Toggle search bar"
+              className={
+                isGridlineVariant
+                  ? styles['SubdomainNavBar-search-button--gridline']
+                  : styles['SubdomainNavBar-search-button']
+              }
+              variant="secondary"
+              size="small"
+              leadingVisual={<SearchIcon />}
+              onClick={handlerFn as (event) => void}
+              data-testid="toggle-search"
+            />
+          )}
         </div>
         {active && (
           <div
@@ -568,7 +620,7 @@ const _SearchInternal = forwardRef<HTMLDivElement, SearchProps>(
                     role="combobox"
                     aria-expanded={listboxActive}
                     aria-controls="listbox-search-results"
-                    placeholder={`Search ${title}`}
+                    placeholder={resolvedPlaceholder}
                     onChange={onChange}
                     defaultValue={searchTerm}
                     invisible
