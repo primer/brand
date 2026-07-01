@@ -4,7 +4,7 @@ import {expect, userEvent, within} from 'storybook/test'
 import {INITIAL_VIEWPORTS} from 'storybook/viewport'
 
 import React, {useEffect, useState} from 'react'
-import {ActionMenu, Hero, River, Heading, Text, Link} from '../'
+import {ActionMenu, Hero, River, Heading, Text, Link, Token} from '../'
 import placeholderImage from '../fixtures/images/placeholder.png'
 
 import {SubdomainNavBar, SubdomainNavBarProps} from '.'
@@ -607,7 +607,7 @@ const ExternalLinkExample = () => (
   </SubdomainNavBar>
 )
 
-const LanguageDropdown = () => {
+const LanguageDropdownExample = () => {
   const [selectedLanguage, setSelectedLanguage] = React.useState('English')
 
   return (
@@ -626,7 +626,15 @@ const LanguageDropdown = () => {
   )
 }
 
-const GridlineExample = () => {
+const VersionTokenExample = () => <Token>v1.5.3</Token>
+
+type GridlineExampleProps = {
+  leadingComponent?: SubdomainNavBarProps['leadingComponent']
+  trailingComponent?: SubdomainNavBarProps['trailingComponent']
+  showSearch?: boolean
+}
+
+const GridlineExample = ({leadingComponent, trailingComponent, showSearch = false}: GridlineExampleProps) => {
   const inputRef = React.useRef<HTMLInputElement | null>(null)
 
   return (
@@ -636,18 +644,20 @@ const GridlineExample = () => {
       variant="gridline"
       fullWidth
       fixed={false}
-      leadingComponent={<Text size="100">v1.5.3</Text>}
-      trailingComponent={<LanguageDropdown />}
+      leadingComponent={leadingComponent}
+      trailingComponent={trailingComponent}
     >
       <SubdomainNavBar.Link href="#item-1">Item 1</SubdomainNavBar.Link>
       <SubdomainNavBar.Link href="#item-2">Item 2</SubdomainNavBar.Link>
       <SubdomainNavBar.Link href="#item-3">Item 3</SubdomainNavBar.Link>
-      <SubdomainNavBar.Search
-        ref={inputRef}
-        searchTerm=""
-        onSubmit={event => event.preventDefault()}
-        onChange={() => undefined}
-      />
+      {showSearch && (
+        <SubdomainNavBar.Search
+          ref={inputRef}
+          searchTerm=""
+          onSubmit={event => event.preventDefault()}
+          onChange={() => undefined}
+        />
+      )}
       <SubdomainNavBar.SecondaryAction href="#">Contact sales</SubdomainNavBar.SecondaryAction>
       <SubdomainNavBar.PrimaryAction href="#">Get started</SubdomainNavBar.PrimaryAction>
     </SubdomainNavBar>
@@ -782,8 +792,33 @@ export const FullWidth: Story = {
   },
 }
 
+export const WithLeadingComponent: Story = {
+  render: (args: StoryArgs) => <SubdomainNavBarTemplate {...args} leadingComponent={<VersionTokenExample />} />,
+  name: 'With Leading Component',
+}
+
+export const WithTrailingComponent: Story = {
+  render: (args: StoryArgs) => <SubdomainNavBarTemplate {...args} trailingComponent={<LanguageDropdownExample />} />,
+  name: 'With Trailing Component',
+}
+
 export const Gridline: Story = {
   render: () => <GridlineExample />,
+}
+
+export const GridlineWithLeading: Story = {
+  render: () => <GridlineExample leadingComponent={<VersionTokenExample />} />,
+  name: 'Gridline With Leading',
+}
+
+export const GridlineWithTrailing: Story = {
+  render: () => <GridlineExample trailingComponent={<LanguageDropdownExample />} />,
+  name: 'Gridline With Trailing',
+}
+
+export const GridlineWithSearch: Story = {
+  render: () => <GridlineExample showSearch />,
+  name: 'Gridline With Search',
 }
 
 export const NoTitle: Story = {
