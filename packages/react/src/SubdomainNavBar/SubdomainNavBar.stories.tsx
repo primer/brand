@@ -1,9 +1,10 @@
 import type {Meta, StoryObj} from '@storybook/react'
+import {GlobeIcon} from '@primer/octicons-react'
 import {expect, userEvent, within} from 'storybook/test'
 import {INITIAL_VIEWPORTS} from 'storybook/viewport'
 
 import React, {useEffect, useState} from 'react'
-import {Hero, River, Heading, Text, Link} from '../'
+import {ActionMenu, Hero, River, Heading, Text, Link} from '../'
 import placeholderImage from '../fixtures/images/placeholder.png'
 
 import {SubdomainNavBar, SubdomainNavBarProps} from '.'
@@ -606,11 +607,38 @@ const ExternalLinkExample = () => (
   </SubdomainNavBar>
 )
 
+const LanguageDropdown = () => {
+  const [selectedLanguage, setSelectedLanguage] = React.useState('English')
+
+  return (
+    <ActionMenu size="small" onSelect={setSelectedLanguage} selectionVariant="single">
+      <ActionMenu.Button variant="secondary" leadingVisual={<GlobeIcon />}>
+        {selectedLanguage}
+      </ActionMenu.Button>
+      <ActionMenu.Overlay aria-label="Select language">
+        {['English', 'Deutsch', 'Español', 'Français', '日本語'].map(language => (
+          <ActionMenu.Item key={language} value={language} selected={language === selectedLanguage}>
+            {language}
+          </ActionMenu.Item>
+        ))}
+      </ActionMenu.Overlay>
+    </ActionMenu>
+  )
+}
+
 const GridlineExample = () => {
   const inputRef = React.useRef<HTMLInputElement | null>(null)
 
   return (
-    <SubdomainNavBar title="GitHub Docs" titleHref="/" variant="gridline" fullWidth fixed={false}>
+    <SubdomainNavBar
+      title="GitHub Docs"
+      titleHref="/"
+      variant="gridline"
+      fullWidth
+      fixed={false}
+      leadingComponent={<Text size="100">v1.5.3</Text>}
+      trailingComponent={<LanguageDropdown />}
+    >
       <SubdomainNavBar.Link href="#item-1">Item 1</SubdomainNavBar.Link>
       <SubdomainNavBar.Link href="#item-2">Item 2</SubdomainNavBar.Link>
       <SubdomainNavBar.Link href="#item-3">Item 3</SubdomainNavBar.Link>

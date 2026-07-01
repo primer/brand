@@ -1,4 +1,4 @@
-import React, {render, cleanup, fireEvent} from '@testing-library/react'
+import {cleanup, fireEvent, render} from '@testing-library/react'
 import '@testing-library/jest-dom'
 
 import {SubdomainNavBar, SubdomainNavBarSearchResultProps, type SubdomainNavBarProps} from './SubdomainNavBar'
@@ -37,14 +37,25 @@ describe('SubdomainNavBar', () => {
     titleHref,
     title = 'Subdomain',
     variant,
+    leadingComponent,
+    trailingComponent,
   }: {
     fullWidth?: boolean
     searchResults?: SubdomainNavBarSearchResultProps[]
     titleHref?: string
     title?: string
     variant?: SubdomainNavBarProps['variant']
+    leadingComponent?: SubdomainNavBarProps['leadingComponent']
+    trailingComponent?: SubdomainNavBarProps['trailingComponent']
   }) => (
-    <SubdomainNavBar title={title} titleHref={titleHref} fullWidth={fullWidth} variant={variant}>
+    <SubdomainNavBar
+      title={title}
+      titleHref={titleHref}
+      fullWidth={fullWidth}
+      variant={variant}
+      leadingComponent={leadingComponent}
+      trailingComponent={trailingComponent}
+    >
       <SubdomainNavBar.Link href="#">Collections</SubdomainNavBar.Link>
       <SubdomainNavBar.Link href="#">Topics</SubdomainNavBar.Link>
       <SubdomainNavBar.Link href="#">Articles</SubdomainNavBar.Link>
@@ -186,6 +197,50 @@ describe('SubdomainNavBar', () => {
 
     const searchTrigger = getByTestId('toggle-search').parentElement
     expect(searchTrigger).toHaveClass('SubdomainNavBar-search-trigger--has-trailing-item')
+  })
+
+  it('adds a trailing border class to search when a trailing component follows it', () => {
+    mockUseWindowSize.mockImplementation(() => ({isSmall: true, isMedium: true}))
+
+    const {getByTestId} = render(
+      <SubdomainNavBar title="Subdomain" variant="gridline" trailingComponent={<span>Trailing content</span>}>
+        <SubdomainNavBar.Search searchTerm="docs" onChange={jest.fn} onSubmit={jest.fn()} />
+      </SubdomainNavBar>,
+    )
+
+    const searchTrigger = getByTestId('toggle-search').parentElement
+    expect(searchTrigger).toHaveClass('SubdomainNavBar-search-trigger--has-trailing-item')
+  })
+
+  it('adds a trailing border class to the action area when a trailing component follows it', () => {
+    mockUseWindowSize.mockImplementation(() => ({isSmall: true, isMedium: true}))
+
+    const {container} = render(
+      <SubdomainNavBar title="Subdomain" variant="gridline" trailingComponent={<span>Trailing content</span>}>
+        <SubdomainNavBar.PrimaryAction href="#">Primary CTA</SubdomainNavBar.PrimaryAction>
+      </SubdomainNavBar>,
+    )
+
+    const actionContainer = container.querySelector('.SubdomainNavBar-button-area')
+    expect(actionContainer).toHaveClass('SubdomainNavBar-button-area--has-trailing-item')
+  })
+
+  it('renders leading and trailing components in the expected order', () => {
+    mockUseWindowSize.mockImplementation(() => ({isSmall: true, isMedium: true}))
+
+    const {getByRole, getByText} = render(
+      <Component leadingComponent={<span>Leading content</span>} trailingComponent={<span>Trailing content</span>} />,
+    )
+
+    const titleLink = getByRole('link', {name: 'Subdomain home'})
+    const leadingComponent = getByText('Leading content')
+    const firstLink = getByRole('link', {name: 'Collections'})
+    const secondaryAction = getByRole('link', {name: 'Secondary CTA'})
+    const trailingComponent = getByText('Trailing content')
+
+    expect(titleLink.compareDocumentPosition(leadingComponent) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy()
+    expect(leadingComponent.compareDocumentPosition(firstLink) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy()
+    expect(secondaryAction.compareDocumentPosition(trailingComponent) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy()
   })
 
   it('can append a classname to the root element', () => {

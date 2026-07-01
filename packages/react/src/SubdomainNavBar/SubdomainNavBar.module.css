@@ -133,6 +133,21 @@
   text-decoration: none;
 }
 
+.SubdomainNavBar-leading-component,
+.SubdomainNavBar-trailing-component {
+  display: inline-flex;
+  align-items: center;
+  min-width: 0;
+}
+
+.SubdomainNavBar-leading-component {
+  margin-inline-end: var(--base-size-16);
+}
+
+.SubdomainNavBar-trailing-component {
+  margin-inline-start: var(--base-size-16);
+}
+
 /*
  * Primary navigation link area
  */
@@ -161,6 +176,21 @@
     display: block;
     margin: 0;
     padding: 0;
+  }
+
+  .SubdomainNavBar-leading-component,
+  .SubdomainNavBar-trailing-component {
+    padding-inline: var(--base-size-28);
+  }
+
+  .SubdomainNavBar-leading-component {
+    margin-block: var(--base-size-8);
+    margin-inline-end: 0;
+  }
+
+  .SubdomainNavBar-trailing-component {
+    margin-block: var(--base-size-24);
+    margin-inline-start: 0;
   }
 
   .SubdomainNavBar-menu-wrapper {
@@ -634,8 +664,20 @@
   .SubdomainNavBar--variant-gridline .SubdomainNavBar-primary-nav,
   .SubdomainNavBar--variant-gridline .SubdomainNavBar-primary-nav-list,
   .SubdomainNavBar--variant-gridline .SubdomainNavBar-secondary-nav,
-  .SubdomainNavBar--variant-gridline .SubdomainNavBar-button-area {
+  .SubdomainNavBar--variant-gridline .SubdomainNavBar-button-area,
+  .SubdomainNavBar--variant-gridline .SubdomainNavBar-leading-component,
+  .SubdomainNavBar--variant-gridline .SubdomainNavBar-trailing-component {
     height: 100%;
+  }
+
+  .SubdomainNavBar--variant-gridline .SubdomainNavBar-leading-component,
+  .SubdomainNavBar--variant-gridline .SubdomainNavBar-trailing-component {
+    padding-inline: var(--base-size-16);
+    margin-inline: 0;
+  }
+
+  .SubdomainNavBar--variant-gridline .SubdomainNavBar-leading-component {
+    border-inline-end: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
   }
 
   .SubdomainNavBar--variant-gridline .SubdomainNavBar-primary-nav-list {
@@ -702,6 +744,10 @@
   .SubdomainNavBar--variant-gridline .SubdomainNavBar-button-area {
     align-items: center;
     padding-inline: var(--base-size-16);
+  }
+
+  .SubdomainNavBar--variant-gridline .SubdomainNavBar-button-area--has-trailing-item {
+    border-inline-end: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
   }
 }
 

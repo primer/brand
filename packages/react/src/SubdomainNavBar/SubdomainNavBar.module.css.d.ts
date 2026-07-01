@@ -4,6 +4,7 @@ declare const styles: {
   readonly "SubdomainNavBar--variant-gridline": string;
   readonly "SubdomainNavBar-back-arrow": string;
   readonly "SubdomainNavBar-button-area": string;
+  readonly "SubdomainNavBar-button-area--has-trailing-item": string;
   readonly "SubdomainNavBar-button-area--visible": string;
   readonly "SubdomainNavBar-button-area-inner": string;
   readonly "SubdomainNavBar-cta-button": string;
@@ -11,6 +12,7 @@ declare const styles: {
   readonly "SubdomainNavBar-inner-container": string;
   readonly "SubdomainNavBar-inner-container--centered": string;
   readonly "SubdomainNavBar-inner-container--search-open": string;
+  readonly "SubdomainNavBar-leading-component": string;
   readonly "SubdomainNavBar-link": string;
   readonly "SubdomainNavBar-link--title": string;
   readonly "SubdomainNavBar-link-text": string;
@@ -55,6 +57,7 @@ declare const styles: {
   readonly "SubdomainNavBar-title": string;
   readonly "SubdomainNavBar-title-area": string;
   readonly "SubdomainNavBar-title-separator": string;
+  readonly "SubdomainNavBar-trailing-component": string;
   readonly "enlarge-shadow": string;
   readonly "fade-in-down": string;
   readonly "fade-in-down-staggered": string;

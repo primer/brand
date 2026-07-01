@@ -49,6 +49,14 @@ export type SubdomainNavBarProps = {
    */
   variant?: SubdomainNavBarVariant
   /**
+   * Optional content rendered after the title and before navigation links.
+   */
+  leadingComponent?: React.ReactNode
+  /**
+   * Optional content rendered after the actions.
+   */
+  trailingComponent?: React.ReactNode
+  /**
    * The title or name of the subdomain. Appears adjacent to the logo and is required for communicating content to assisitive technologies.
    */
   title: string
@@ -90,6 +98,8 @@ function Root({
   title,
   titleHref = '/',
   variant = 'default',
+  leadingComponent,
+  trailingComponent,
   onNarrowMenuToggle,
   ...rest
 }: SubdomainNavBarProps) {
@@ -191,6 +201,11 @@ function Root({
     return !!primaryAction && !!secondaryAction
   }, [actionItems])
 
+  const hasLeadingComponent =
+    leadingComponent !== undefined && leadingComponent !== null && typeof leadingComponent !== 'boolean'
+  const hasTrailingComponent =
+    trailingComponent !== undefined && trailingComponent !== null && typeof trailingComponent !== 'boolean'
+
   return (
     <>
       <div
@@ -257,6 +272,9 @@ function Root({
                 )}
               </ol>
             </nav>
+            {isMedium && hasLeadingComponent && (
+              <div className={styles['SubdomainNavBar-leading-component']}>{leadingComponent}</div>
+            )}
             {hasLinks && (
               <nav
                 id="menu-navigation"
@@ -278,7 +296,8 @@ function Root({
                       active: searchVisible,
                       className: clsx(
                         child.props.className,
-                        hasActions && styles['SubdomainNavBar-search-trigger--has-trailing-item'],
+                        (hasActions || hasTrailingComponent) &&
+                          styles['SubdomainNavBar-search-trigger--has-trailing-item'],
                       ),
                       handlerFn: handleSearchVisibility,
                       title,
@@ -313,10 +332,14 @@ function Root({
                   className={clsx(
                     styles['SubdomainNavBar-button-area'],
                     styles['SubdomainNavBar-button-area--visible'],
+                    hasTrailingComponent && styles['SubdomainNavBar-button-area--has-trailing-item'],
                   )}
                 >
                   <div className={styles['SubdomainNavBar-button-area-inner']}>{actionItems}</div>
                 </div>
+              )}
+              {isMedium && hasTrailingComponent && (
+                <div className={styles['SubdomainNavBar-trailing-component']}>{trailingComponent}</div>
               )}
 
               {!isMedium && (
@@ -338,6 +361,9 @@ function Root({
                         </a>
                       </Text>
                     )}
+                    {hasLeadingComponent && (
+                      <div className={styles['SubdomainNavBar-leading-component']}>{leadingComponent}</div>
+                    )}
                     {hasLinks && !menuHidden && (
                       <NavigationVisbilityObserver
                         className={clsx(styles['SubdomainNavBar-primary-nav-list--visible'])}
@@ -355,6 +381,9 @@ function Root({
                     >
                       <div className={styles['SubdomainNavBar-button-area-inner']}>{actionItems}</div>
                     </div>
+                  )}
+                  {hasTrailingComponent && (
+                    <div className={styles['SubdomainNavBar-trailing-component']}>{trailingComponent}</div>
                   )}
                 </div>
               )}
