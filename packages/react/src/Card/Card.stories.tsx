@@ -11,7 +11,7 @@ const defaultCTAText = 'Learn more'
 const defaultHeading = 'Collaboration is the key to DevOps success'
 const defaultDescription = 'Everything you need to know about getting started with GitHub Actions.'
 const defaultPrimaryToken = 'Topic'
-const defaultSecondaryToken = 'DEC.25'
+const defaultSecondaryToken = 'Dec. 25'
 
 function getLocalizedArgValue(value: string, fallbackValue: string, localizedValue: string) {
   return value === fallbackValue ? localizedValue : value
