@@ -704,6 +704,10 @@
   height: var(--SubdomainNavBar-height);
 }
 
+.SubdomainNavBar--variant-gridline .SubdomainNavBar-inner-container--search-open {
+  animation: none;
+}
+
 @media screen and (min-width: 48rem) {
   .SubdomainNavBar--variant-gridline .SubdomainNavBar-inner-container {
     height: 100%;
@@ -839,6 +843,51 @@
   width: 100%;
 }
 
+.SubdomainNavBar-search-input-area {
+  display: flex;
+  align-items: center;
+  gap: var(--base-size-8);
+  width: 100%;
+}
+
+.SubdomainNavBar-search-close-button {
+  cursor: pointer;
+  appearance: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  min-block-size: var(--base-size-32);
+  padding: var(--base-size-8) var(--base-size-12);
+  color: var(--brand-color-text-default);
+  background-color: var(--brand-color-canvas-subtle);
+  border: 0;
+  border-radius: var(--brand-borderRadius-medium);
+  font-family: var(--brand-body-fontFamily);
+  font-size: var(--brand-text-size-100);
+  font-weight: var(--base-text-weight-medium);
+  line-height: var(--base-size-14);
+  letter-spacing: var(--brand-text-letterSpacing-100);
+}
+
+.SubdomainNavBar-search-close-button:hover {
+  background-color: var(--brand-color-canvas-inset);
+}
+
+.SubdomainNavBar-search-close-button:focus-visible {
+  outline: var(--base-size-4) solid var(--brand-color-focus);
+  outline-offset: var(--base-size-2);
+}
+
+.SubdomainNavBar-search-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 98;
+  background-color: rgb(0 0 0 / 20%);
+  -webkit-backdrop-filter: blur(var(--base-size-24));
+  backdrop-filter: blur(var(--base-size-24));
+}
+
 .SubdomainNavBar-search-dialog {
   position: absolute;
   z-index: 99;
@@ -897,6 +946,10 @@
   border-color: transparent;
 }
 
+.SubdomainNavBar-search-results-area {
+  width: 100%;
+}
+
 .SubdomainNavBar-search-results-container {
   animation: fade-in-down 500ms;
   padding: var(--base-size-24);
@@ -928,6 +981,27 @@
   color: var(--base-color-scale-black-0);
 }
 
+.SubdomainNavBar-search-result-group,
+.SubdomainNavBar-search-result-group-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.SubdomainNavBar-search-result-group + .SubdomainNavBar-search-result-group {
+  margin-block-start: var(--base-size-24);
+}
+
+.SubdomainNavBar-search-result-group-heading {
+  display: block;
+  margin: 0 0 var(--base-size-20);
+  padding: 0 var(--base-size-8);
+  color: var(--brand-color-text-muted);
+  font-weight: var(--brand-heading-weight-600);
+  font-size: var(--brand-text-size-100);
+  line-height: var(--brand-text-lineHeight-100);
+}
+
 .SubdomainNavBar-search-result-item {
   padding: var(--base-size-16) var(--base-size-8);
   border-bottom: solid var(--brand-borderWidth-thin, 1px)
@@ -954,12 +1028,178 @@
   line-height: var(--brand-text-lineHeight-400);
 }
 
+.SubdomainNavBar-search-result-item-container a svg {
+  flex: none;
+}
+
 .SubdomainNavBar-search-result-item-container a:hover {
   text-decoration: none;
 }
 
 .SubdomainNavBar-search-result-item-desc {
   color: var(--base-color-scale-black-0);
+}
+
+.SubdomainNavBar-search-dialog--gridline {
+  position: fixed;
+  inset-block-start: calc(var(--base-size-64) + var(--base-size-8));
+  inset-block-end: auto;
+  inset-inline: calc(var(--base-size-64) + var(--base-size-8));
+  z-index: 99;
+  width: min(
+    calc(100vw - ((var(--base-size-64) + var(--base-size-8)) * 2)),
+    calc((var(--base-size-128) * 6) + var(--base-size-36))
+  );
+  max-height: calc(100vh - ((var(--base-size-64) + var(--base-size-8)) * 2));
+  height: auto;
+  margin-inline: auto;
+  padding: var(--base-size-16) var(--base-size-16) var(--base-size-32);
+  overflow: hidden;
+  background-color: var(--brand-color-canvas-default);
+  border: var(--brand-borderWidth-thin) solid var(--brand-color-border-default);
+  border-radius: var(--brand-borderRadius-large);
+  box-shadow: 0 0 calc(var(--base-size-32) + var(--base-size-2)) rgb(0 0 0 / 10%);
+}
+
+.SubdomainNavBar-search-dialog--gridline .SubdomainNavBar-search-dialog-control-area {
+  height: var(--base-size-40);
+  max-width: none;
+  padding: 0;
+  margin: 0;
+  background: transparent;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+  animation: none;
+}
+
+.SubdomainNavBar-search-dialog--gridline .SubdomainNavBar-search-input-area {
+  gap: var(--base-size-16);
+}
+
+.SubdomainNavBar-search-dialog--gridline .SubdomainNavBar-search-form {
+  min-width: 0;
+}
+
+.SubdomainNavBar-search-dialog--gridline .SubdomainNavBar-search-form section > span:focus-within {
+  border-color: transparent;
+  box-shadow: none;
+}
+
+.SubdomainNavBar-search-dialog--gridline .SubdomainNavBar-search-text-input {
+  color: var(--brand-color-text-default);
+  font-size: calc(var(--base-size-16) + var(--base-size-2));
+  font-weight: var(--base-text-weight-medium);
+  line-height: var(--brand-text-lineHeight-300);
+  letter-spacing: var(--brand-text-letterSpacing-100);
+}
+
+.SubdomainNavBar-search-dialog--gridline .SubdomainNavBar-search-close-button {
+  background-color: var(--brand-color-border-muted);
+}
+
+.SubdomainNavBar-search-dialog--gridline .SubdomainNavBar-search-results-area--visible {
+  margin-block-start: var(--base-size-24);
+  padding-block-start: var(--base-size-24);
+  border-block-start: var(--brand-borderWidth-thin) dashed var(--brand-color-border-muted);
+}
+
+.SubdomainNavBar-search-dialog--gridline .SubdomainNavBar-search-results-container {
+  width: 100%;
+  height: auto;
+  max-width: none;
+  max-height: calc(100vh - (((var(--base-size-64) + var(--base-size-8)) * 2) + var(--base-size-128)));
+  padding: 0;
+  margin: 0;
+  overflow-y: auto;
+  background-color: transparent;
+  border-radius: 0;
+  box-shadow: none;
+  animation: none;
+}
+
+.SubdomainNavBar-search-dialog--gridline .SubdomainNavBar-search-results {
+  height: auto;
+  padding: 0;
+  margin: 0;
+  overflow: visible;
+}
+
+.SubdomainNavBar-search-dialog--gridline .SubdomainNavBar-search-results-heading,
+.SubdomainNavBar-search-dialog--gridline .SubdomainNavBar-search-result-group-heading {
+  margin-block-end: var(--base-size-20);
+  padding: 0;
+  color: var(--brand-color-text-muted);
+  font-size: var(--brand-text-size-100);
+  font-weight: var(--brand-heading-weight-600);
+  line-height: var(--brand-text-lineHeight-100);
+}
+
+.SubdomainNavBar-search-dialog--gridline .SubdomainNavBar-search-result-group + .SubdomainNavBar-search-result-group {
+  margin-block-start: var(--base-size-24);
+}
+
+.SubdomainNavBar-search-dialog--gridline .SubdomainNavBar-search-result-item {
+  padding: var(--base-size-16) var(--base-size-4);
+  border-block-end: 0;
+  border-block-start: var(--brand-borderWidth-thin) dashed var(--brand-color-border-muted);
+}
+
+.SubdomainNavBar-search-dialog--gridline
+  .SubdomainNavBar-search-result-group-list
+  > .SubdomainNavBar-search-result-item:first-child,
+.SubdomainNavBar-search-dialog--gridline
+  .SubdomainNavBar-search-results
+  > .SubdomainNavBar-search-result-item:first-child {
+  padding-block-start: var(--base-size-12);
+  border-block-start: 0;
+}
+
+.SubdomainNavBar-search-dialog--gridline .SubdomainNavBar-search-result-item-container {
+  font-size: var(--brand-text-size-300);
+  letter-spacing: var(--brand-text-letterSpacing-100);
+}
+
+.SubdomainNavBar-search-dialog--gridline .SubdomainNavBar-search-result-item-container a {
+  display: flex;
+  align-items: center;
+  gap: calc(var(--base-size-8) + var(--base-size-2));
+  width: 100%;
+  margin: 0;
+  color: var(--brand-color-text-default);
+  font-size: var(--brand-text-size-300);
+  font-weight: var(--brand-heading-weight-600);
+  line-height: var(--brand-text-lineHeight-300);
+  letter-spacing: var(--brand-text-letterSpacing-100);
+}
+
+.SubdomainNavBar-search-dialog--gridline .SubdomainNavBar-search-result-item-container a span {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.SubdomainNavBar-search-dialog--gridline
+  .SubdomainNavBar-search-result-group:first-child
+  .SubdomainNavBar-search-result-item-container
+  a {
+  color: var(--brand-Link-color-accent);
+}
+
+.SubdomainNavBar-search-dialog--gridline .SubdomainNavBar-search-result-item-desc,
+.SubdomainNavBar-search-dialog--gridline .SubdomainNavBar-search-result-item-meta {
+  display: none;
+}
+
+@media screen and (max-width: 767px) {
+  .SubdomainNavBar-search-dialog--gridline {
+    inset-block-start: var(--base-size-16);
+    inset-block-end: auto;
+    inset-inline: var(--base-size-16);
+    width: calc(100vw - (var(--base-size-16) * 2));
+    max-height: calc(100vh - (var(--base-size-16) * 2));
+    height: auto;
+  }
 }
 
 .SubdomainNavBar-skip-to-content {

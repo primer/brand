@@ -7,7 +7,12 @@ import React, {useEffect, useState} from 'react'
 import {ActionMenu, Hero, River, Heading, Text, Link, Token} from '../'
 import placeholderImage from '../fixtures/images/placeholder.png'
 
-import {SubdomainNavBar, SubdomainNavBarProps, SubdomainNavBarSearchVariant} from '.'
+import {
+  SubdomainNavBar,
+  type SubdomainNavBarProps,
+  type SubdomainNavBarSearchResults,
+  type SubdomainNavBarSearchVariant,
+} from '.'
 import {waitFor} from '@testing-library/dom'
 
 type StoryArgs = {
@@ -380,6 +385,65 @@ const mockSearchData = [
   },
 ]
 
+const mockGroupedSearchData: SubdomainNavBarSearchResults = [
+  {
+    title: 'AI results',
+    results: [
+      {
+        title: 'How do I connect to GitHub with my SSH?',
+        description: 'Learn how to generate and add SSH keys for GitHub authentication.',
+        url: '#ai-ssh',
+        date: '2026-07-01T00:00+02:00',
+      },
+      {
+        title: 'How do I sign commits?',
+        description: 'Learn how to sign commits with GPG or SSH keys.',
+        url: '#ai-sign-commits',
+        date: '2026-07-01T00:00+02:00',
+      },
+      {
+        title: 'How do I create webhooks?',
+        description: 'Learn how to create and configure webhooks.',
+        url: '#ai-webhooks',
+        date: '2026-07-01T00:00+02:00',
+      },
+    ],
+  },
+  {
+    title: 'Docs results',
+    results: [
+      {
+        title: 'Frequently asked questions',
+        description: 'Browse common GitHub Docs questions.',
+        url: '#frequently-asked-questions',
+        date: '2026-07-01T00:00+02:00',
+        isExternal: true,
+      },
+      {
+        title: 'How GitHub works',
+        description: 'Understand GitHub concepts and platform workflows.',
+        url: '#how-github-works',
+        date: '2026-07-01T00:00+02:00',
+        isExternal: true,
+      },
+      {
+        title: 'Using the GitHub CLI across GitHub platforms',
+        description: 'Use the GitHub CLI across GitHub products and workflows.',
+        url: '#using-github-cli',
+        date: '2026-07-01T00:00+02:00',
+        isExternal: true,
+      },
+      {
+        title: 'Long article name lorem ipsum dolor sit amet using the GitHub CLI across GitHub platforms',
+        description: 'A longer docs result title that truncates in the gridline search modal.',
+        url: '#long-article-name',
+        date: '2026-07-01T00:00+02:00',
+        isExternal: true,
+      },
+    ],
+  },
+]
+
 const SubdomainNavBarTemplate = ({showSearch, numLinks, ...args}: StoryArgs) => {
   const inputRef = React.useRef<HTMLInputElement | null>(null)
   const [searchResults, setSearchResults] = React.useState<
@@ -666,9 +730,10 @@ const GridlineExample = ({
           variant={searchVariant}
           placeholder={searchPlaceholder}
           shortcutLabel={searchShortcutLabel}
-          searchTerm=""
+          searchTerm="How do i"
           onSubmit={event => event.preventDefault()}
           onChange={() => undefined}
+          searchResults={mockGroupedSearchData}
         />
       )}
       <SubdomainNavBar.SecondaryAction href="#">Contact sales</SubdomainNavBar.SecondaryAction>

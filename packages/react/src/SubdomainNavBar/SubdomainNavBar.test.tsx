@@ -1,7 +1,7 @@
 import {cleanup, fireEvent, render} from '@testing-library/react'
 import '@testing-library/jest-dom'
 
-import {SubdomainNavBar, SubdomainNavBarSearchResultProps, type SubdomainNavBarProps} from './SubdomainNavBar'
+import {SubdomainNavBar, type SubdomainNavBarSearchResults, type SubdomainNavBarProps} from './SubdomainNavBar'
 import {axe, toHaveNoViolations} from 'jest-axe'
 
 import {useWindowSize} from '../hooks/useWindowSize'
@@ -41,7 +41,7 @@ describe('SubdomainNavBar', () => {
     trailingComponent,
   }: {
     fullWidth?: boolean
-    searchResults?: SubdomainNavBarSearchResultProps[]
+    searchResults?: SubdomainNavBarSearchResults
     titleHref?: string
     title?: string
     variant?: SubdomainNavBarProps['variant']
@@ -108,6 +108,41 @@ describe('SubdomainNavBar', () => {
 
     expect(searchResultsDialog).toBeInTheDocument()
     expect(searchResultsLandmark).toBeInTheDocument()
+  })
+
+  it('renders grouped search results while preserving the listbox options', async () => {
+    const mockResultsData: SubdomainNavBarSearchResults = [
+      {
+        title: 'AI results',
+        results: [
+          {
+            title: 'How do I connect to GitHub with my SSH?',
+            description: 'A generated answer suggestion',
+            url: 'https://github.com',
+            date: '2026-07-01T00:00+02:00',
+          },
+        ],
+      },
+      {
+        title: 'Docs results',
+        results: [
+          {
+            title: 'Frequently asked questions',
+            description: 'A docs result',
+            url: 'https://docs.github.com',
+            date: '2026-07-01T00:00+02:00',
+          },
+        ],
+      },
+    ]
+
+    const {getByTestId, getByText, getAllByRole} = render(<Component searchResults={mockResultsData} />)
+
+    fireEvent.click(getByTestId('toggle-search'))
+
+    expect(getByText('AI results')).toBeInTheDocument()
+    expect(getByText('Docs results')).toBeInTheDocument()
+    expect(getAllByRole('option')).toHaveLength(2)
   })
 
   it('applies "/" as the default title href', async () => {
@@ -286,6 +321,190 @@ describe('SubdomainNavBar', () => {
 
     expect(getByRole('dialog')).toBeInTheDocument()
     expect(getByPlaceholderText('Search docs')).toBeInTheDocument()
+  })
+
+  it('renders the gridline search dialog with a backdrop and text close button', () => {
+    mockUseWindowSize.mockImplementation(() => ({isSmall: true, isMedium: true}))
+
+    const {container, getByRole, getByTestId} = render(
+      <SubdomainNavBar title="Subdomain" variant="gridline">
+        <SubdomainNavBar.Search searchTerm="docs" onChange={jest.fn} onSubmit={jest.fn()} />
+      </SubdomainNavBar>,
+    )
+
+    fireEvent.click(getByTestId('toggle-search'))
+
+    expect(container.querySelector('.SubdomainNavBar-search-backdrop')).toBeInTheDocument()
+    expect(getByRole('dialog')).toHaveClass('SubdomainNavBar-search-dialog--gridline')
+    expect(getByRole('button', {name: 'Close'})).toHaveTextContent('Close')
+  })
+
+  it('keeps the gridline search dialog open when focus moves outside during initialization', () => {
+    mockUseWindowSize.mockImplementation(() => ({isSmall: true, isMedium: true}))
+
+    const {getByRole, getByTestId} = render(
+      <SubdomainNavBar title="Subdomain" variant="gridline">
+        <SubdomainNavBar.Search searchTerm="docs" onChange={jest.fn} onSubmit={jest.fn()} />
+      </SubdomainNavBar>,
+    )
+
+    fireEvent.click(getByTestId('toggle-search'))
+    fireEvent.focusIn(document.body)
+
+    expect(getByRole('dialog')).toBeInTheDocument()
+  })
+
+  it('closes the gridline search dialog on the second Escape press when results are visible', () => {
+    mockUseWindowSize.mockImplementation(() => ({isSmall: true, isMedium: true}))
+    const mockResultsData: SubdomainNavBarSearchResults = [
+      {
+        title: 'AI results',
+        results: [
+          {
+            title: 'How do I connect to GitHub with my SSH?',
+            description: 'A generated answer suggestion',
+            url: 'https://github.com',
+            date: '2026-07-01T00:00+02:00',
+          },
+        ],
+      },
+    ]
+
+    const {getByRole, getByTestId, queryByRole} = render(
+      <SubdomainNavBar title="Subdomain" variant="gridline">
+        <SubdomainNavBar.Search
+          searchTerm="docs"
+          searchResults={mockResultsData}
+          onChange={jest.fn}
+          onSubmit={jest.fn()}
+        />
+      </SubdomainNavBar>,
+    )
+
+    fireEvent.click(getByTestId('toggle-search'))
+    expect(getByRole('option')).toBeInTheDocument()
+
+    fireEvent.keyDown(getByRole('combobox'), {key: 'Escape'})
+    expect(getByRole('dialog')).toBeInTheDocument()
+    expect(queryByRole('option')).not.toBeInTheDocument()
+
+    fireEvent.keyDown(getByRole('combobox'), {key: 'Escape'})
+    expect(queryByRole('dialog')).not.toBeInTheDocument()
+  })
+
+  it('hides results on the first Escape while keeping focus on the input', () => {
+    mockUseWindowSize.mockImplementation(() => ({isSmall: true, isMedium: true}))
+    const mockResultsData: SubdomainNavBarSearchResults = [
+      {
+        title: 'AI results',
+        results: [
+          {
+            title: 'How do I connect to GitHub with my SSH?',
+            description: 'A generated answer suggestion',
+            url: 'https://github.com',
+            date: '2026-07-01T00:00+02:00',
+          },
+        ],
+      },
+    ]
+
+    const {getByRole, getByTestId, queryByRole} = render(
+      <SubdomainNavBar title="Subdomain" variant="gridline">
+        <SubdomainNavBar.Search
+          searchTerm="docs"
+          searchResults={mockResultsData}
+          onChange={jest.fn}
+          onSubmit={jest.fn()}
+        />
+      </SubdomainNavBar>,
+    )
+
+    fireEvent.click(getByTestId('toggle-search'))
+    expect(getByRole('option')).toBeInTheDocument()
+
+    const combobox = getByRole('combobox')
+    combobox.focus()
+    expect(combobox).toHaveFocus()
+
+    // First Escape only hides the results, keeping the dialog open and focus on the input.
+    fireEvent.keyDown(combobox, {key: 'Escape'})
+    expect(getByRole('dialog')).toBeInTheDocument()
+    expect(queryByRole('option')).not.toBeInTheDocument()
+    expect(combobox).toHaveFocus()
+
+    // Second Escape closes the dialog entirely.
+    fireEvent.keyDown(combobox, {key: 'Escape'})
+    expect(queryByRole('dialog')).not.toBeInTheDocument()
+  })
+
+  it('closes the gridline search dialog on the first Escape when no results are visible', () => {
+    mockUseWindowSize.mockImplementation(() => ({isSmall: true, isMedium: true}))
+
+    const {getByRole, getByTestId, queryByRole} = render(
+      <SubdomainNavBar title="Subdomain" variant="gridline">
+        <SubdomainNavBar.Search searchTerm="" searchResults={[]} onChange={jest.fn} onSubmit={jest.fn()} />
+      </SubdomainNavBar>,
+    )
+
+    fireEvent.click(getByTestId('toggle-search'))
+    expect(getByRole('dialog')).toBeInTheDocument()
+    expect(queryByRole('option')).not.toBeInTheDocument()
+
+    fireEvent.keyDown(getByRole('combobox'), {key: 'Escape'})
+    expect(queryByRole('dialog')).not.toBeInTheDocument()
+  })
+
+  it('disables native browser autocomplete on the search combobox', () => {
+    const {getByRole, getByTestId} = render(
+      <SubdomainNavBar title="Subdomain" variant="gridline">
+        <SubdomainNavBar.Search searchTerm="docs" searchResults={[]} onChange={jest.fn} onSubmit={jest.fn()} />
+      </SubdomainNavBar>,
+    )
+
+    fireEvent.click(getByTestId('toggle-search'))
+
+    const combobox = getByRole('combobox')
+    expect(combobox).toHaveAttribute('autocomplete', 'off')
+    expect(combobox).toHaveAttribute('aria-autocomplete', 'list')
+  })
+
+  it('closes the gridline search dialog with Escape even when focus is outside the dialog', () => {
+    mockUseWindowSize.mockImplementation(() => ({isSmall: true, isMedium: true}))
+    const mockResultsData: SubdomainNavBarSearchResults = [
+      {
+        title: 'AI results',
+        results: [
+          {
+            title: 'How do I connect to GitHub with my SSH?',
+            description: 'A generated answer suggestion',
+            url: 'https://github.com',
+            date: '2026-07-01T00:00+02:00',
+          },
+        ],
+      },
+    ]
+
+    const {getByRole, getByTestId, queryByRole} = render(
+      <SubdomainNavBar title="Subdomain" variant="gridline">
+        <SubdomainNavBar.Search
+          searchTerm="docs"
+          searchResults={mockResultsData}
+          onChange={jest.fn}
+          onSubmit={jest.fn()}
+        />
+      </SubdomainNavBar>,
+    )
+
+    fireEvent.click(getByTestId('toggle-search'))
+    expect(getByRole('option')).toBeInTheDocument()
+
+    fireEvent.focusIn(document.body)
+    fireEvent.keyDown(document, {key: 'Escape'})
+    expect(getByRole('dialog')).toBeInTheDocument()
+    expect(queryByRole('option')).not.toBeInTheDocument()
+
+    fireEvent.keyDown(document, {key: 'Escape'})
+    expect(queryByRole('dialog')).not.toBeInTheDocument()
   })
 
   it('adds a trailing border class to the action area when a trailing component follows it', () => {
