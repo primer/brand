@@ -57,17 +57,17 @@
     "heading": "Absicherung der gesamten Software-Lieferkette",
     "cards": {
       "one": {
-        "tag": "SECURITY LAB",
+        "tag": "Security Lab",
         "heading": "Skalieren Sie Ihre Strategie mit GitHub Security Lab",
         "description": "Sichern Sie Open Source, indem Sie Schwachstellen finden, Tools wie CodeQL entwickeln und die Sicherheitsforschung vorantreiben."
       },
       "two": {
-        "tag": "SECURITY ADVISORY DATABASE",
+        "tag": "Security Advisory Database",
         "heading": "Bleiben Sie mit Security Advisory Database voraus",
         "description": "Greifen Sie auf eine Schwachstellendatenbank mit CVEs und von GitHub kuratierten Sicherheitshinweisen aus der Open-Source-Welt zu."
       },
       "three": {
-        "tag": "SUPPLY CHAIN SECURITY",
+        "tag": "Supply chain security",
         "heading": "Sichern Sie Software-Lieferketten von Ende zu Ende",
         "description": "Reduzieren Sie Risiken mit automatisierten Updates, Abhängigkeitsverfolgung und Build-Attestierung für einen sicheren Lebenszyklus."
       }
