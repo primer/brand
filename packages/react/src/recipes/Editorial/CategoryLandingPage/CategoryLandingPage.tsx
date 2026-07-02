@@ -10,6 +10,7 @@ import {
   MinimalFooter,
   Pagination,
   Section,
+  Stack,
   SubdomainNavBar,
   Text,
   Token,
@@ -55,6 +56,8 @@ export function CategoryLandingPageTemplate({content}: CategoryLandingPageTempla
             </Hero>
           </Section>
 
+          <Box className={styles.sectionSpacer} aria-hidden />
+
           <section aria-labelledby="editorial-featured-heading" className={styles.featuredSection}>
             <CardGrid
               cards={content.featured.cards}
@@ -72,14 +75,23 @@ export function CategoryLandingPageTemplate({content}: CategoryLandingPageTempla
               headingId="editorial-resources-heading"
               sortLabel={content.resources.sortLabel}
               footer={
-                <Box className={styles.paginationFrame}>
+                <Stack
+                  className={styles.paginationFrame}
+                  direction="horizontal"
+                  alignItems="center"
+                  justifyContent="space-between"
+                >
+                  <Text size="100" variant="muted">
+                    Showing 1-12 of 330
+                  </Text>
+
                   <Pagination
                     pageCount={10}
                     currentPage={currentPage}
                     onPageChange={handlePageChange}
                     aria-label={content.pagination.ariaLabel}
                   />
-                </Box>
+                </Stack>
               }
             />
           </section>

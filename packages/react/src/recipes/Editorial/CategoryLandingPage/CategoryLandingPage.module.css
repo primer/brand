@@ -90,12 +90,6 @@
   min-block-size: 100%;
 }
 
-.paginationFrame {
-  display: flex;
-  justify-content: flex-end;
-  padding: var(--base-size-24) var(--base-size-32);
-}
-
 .redlineBackground {
   display: flex;
   flex-direction: column;
