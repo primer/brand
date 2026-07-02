@@ -113,18 +113,6 @@ describe('VideoPlayer', () => {
     expect(video.muted).toBe(false)
   })
 
-  it('supports positioning the controls bar at the bottom of the player', () => {
-    const {container} = render(
-      <VideoPlayer poster="/example-poster.jpg" title="test video" controlsPosition="bottom">
-        <VideoPlayer.Source src="/example.mp4" />
-        <VideoPlayer.Track src="/example.vtt" default kind="subtitles" srcLang="en" label="English" />
-      </VideoPlayer>,
-    )
-
-    expect(container.querySelector('.VideoPlayer__container--controlsBottom')).toBeInTheDocument()
-    expect(container.querySelector('.VideoPlayer__controlsBar--bottom')).toBeInTheDocument()
-  })
-
   it('renders the enable/disable closed caption button without errors', () => {
     const {getByRole} = render(
       <VideoPlayer poster="/example-poster.jpg" title="test video">

@@ -32,7 +32,6 @@ type VideoPlayerProps = {
   visuallyHiddenTitle?: boolean
   showBranding?: boolean
   animate?: AnimateProps
-  controlsPosition?: 'inline' | 'bottom'
   showControlsWhenPaused?: boolean
   showPlayPauseButton?: boolean
   showSeekControl?: boolean
@@ -52,7 +51,6 @@ const Root = forwardRef<HTMLVideoElement, VideoPlayerProps>(
       children,
       className,
       autoPlay,
-      controlsPosition = 'inline',
       showControlsWhenPaused = true,
       showPlayPauseButton = true,
       showSeekControl = true,
@@ -94,14 +92,7 @@ const Root = forwardRef<HTMLVideoElement, VideoPlayerProps>(
     const showPlayButtonOverlay = !autoPlay || (!isPlaying && !showControlsBar)
 
     return (
-      <div
-        data-video-player-container
-        className={clsx(
-          styles.VideoPlayer__container,
-          controlsPosition === 'bottom' && styles['VideoPlayer__container--controlsBottom'],
-        )}
-        ref={fullscreenRef}
-      >
+      <div data-video-player-container className={styles.VideoPlayer__container} ref={fullscreenRef}>
         <div className={styles.VideoPlayer__overlayContainer}>
           <video
             ref={setVideoElementRef}
@@ -140,7 +131,7 @@ const Root = forwardRef<HTMLVideoElement, VideoPlayerProps>(
 
         {ccEnabled && <Captions />}
         {showControlsBar && (
-          <ControlsBar className={clsx(controlsPosition === 'bottom' && styles['VideoPlayer__controlsBar--bottom'])}>
+          <ControlsBar>
             {showControlsRow1 && (
               <div className={styles['VideoPlayer__controlsBar__row1']}>
                 {showPlayPauseButton && <PlayPauseButton />}

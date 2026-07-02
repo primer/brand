@@ -11,7 +11,6 @@ const meta = {
     title: 'GitHub media player',
     visuallyHiddenTitle: false,
     showBranding: true,
-    controlsPosition: 'inline',
     showControlsWhenPaused: true,
     showPlayPauseButton: true,
     showSeekControl: true,
@@ -34,10 +33,6 @@ const meta = {
     },
     showBranding: {
       type: 'boolean',
-    },
-    controlsPosition: {
-      control: 'select',
-      options: ['inline', 'bottom'],
     },
     showControlsWhenPaused: {
       type: 'boolean',
