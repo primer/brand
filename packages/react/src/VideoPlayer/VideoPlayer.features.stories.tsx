@@ -68,13 +68,6 @@ export const Minimal = () => (
   </VideoPlayer>
 )
 
-export const Autoplay = () => (
-  <VideoPlayer title="GitHub media player" autoPlay muted loop>
-    <VideoPlayer.Source src="./example.mp4" type="video/mp4" />
-    <VideoPlayer.Track src="./example.vtt" default />
-  </VideoPlayer>
-)
-
 const MyVideoPlayer = () => {
   const {isPlaying, togglePlaying, seek} = useVideo()
 
