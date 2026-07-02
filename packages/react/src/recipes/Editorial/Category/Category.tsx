@@ -18,6 +18,7 @@ import {
 import {RedlineBackground} from '../../../component-helpers'
 
 import {defaultEditorialCategoryContent, type EditorialCategoryContent} from './Category.content'
+import editorialStyles from '../Editorial.module.css'
 import styles from './Category.module.css'
 
 export type CategoryTemplateProps = {
@@ -37,13 +38,13 @@ export function CategoryTemplate({content}: CategoryTemplateProps) {
   }, [])
 
   return (
-    <Box className={styles.page} backgroundColor="default">
+    <Box className={editorialStyles.page} backgroundColor="default">
       <SubdomainNavBar title={content.navigation.title} titleHref="#" fixed={false} fullWidth />
 
-      <div className={styles.layout}>
-        <aside className={styles.sidebar} aria-label={content.sidebar.ariaLabel} />
+      <div className={editorialStyles.layout}>
+        <aside className={editorialStyles.sidebar} aria-label={content.sidebar.ariaLabel} />
 
-        <main className={styles.main}>
+        <main className={editorialStyles.main}>
           <Section paddingBlockStart="none" paddingBlockEnd="none" className={styles.heroSection}>
             <Hero variant="gridline" className={styles.hero}>
               <Hero.Heading size="3">{content.hero.heading}</Hero.Heading>
@@ -88,8 +89,8 @@ export function CategoryTemplate({content}: CategoryTemplateProps) {
             />
           </Section>
 
-          <RedlineBackground className={styles.redlineBackground}>
-            <RedlineBackground className={styles.redlineBase} />
+          <RedlineBackground className={editorialStyles.redlineBackground}>
+            <RedlineBackground className={editorialStyles.redlineBase} />
           </RedlineBackground>
 
           <MinimalFooter socialLinks={false}>

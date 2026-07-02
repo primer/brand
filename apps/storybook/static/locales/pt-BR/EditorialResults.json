@@ -1,0 +1,136 @@
+{
+  "navigation": {
+    "title": "Editorial"
+  },
+  "sidebar": {
+    "ariaLabel": "Editorial filters"
+  },
+  "results": {
+    "heading": "662 results for \u201cCopilot\u201d",
+    "ariaLabel": "Search results for Copilot",
+    "items": {
+      "one": {
+        "tokens": {
+          "one": "CI/CD",
+          "two": "... +3"
+        },
+        "heading": "Article title",
+        "description": "Body paragraph lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magn ..."
+      },
+      "two": {
+        "tokens": {
+          "one": "Learn about Copilot"
+        },
+        "heading": "Article title",
+        "description": "Body paragraph lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magn ..."
+      },
+      "three": {
+        "tokens": {
+          "one": "CI/CD",
+          "two": "... +3"
+        },
+        "heading": "Article title",
+        "description": "Body paragraph lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magn ..."
+      },
+      "four": {
+        "tokens": {
+          "one": "Learn about Copilot"
+        },
+        "heading": "Article title",
+        "description": "Body paragraph lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magn ..."
+      },
+      "five": {
+        "tokens": {
+          "one": "Copilot",
+          "two": "... +3"
+        },
+        "heading": "Article title",
+        "description": "Body paragraph lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magn ..."
+      },
+      "six": {
+        "tokens": {
+          "one": "CI/CD",
+          "two": "... +3"
+        },
+        "heading": "Article title",
+        "description": "Body paragraph lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magn ..."
+      },
+      "seven": {
+        "tokens": {
+          "one": "Learn about Copilot"
+        },
+        "heading": "Article title",
+        "description": "Body paragraph lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magn ..."
+      },
+      "eight": {
+        "tokens": {
+          "one": "CI/CD",
+          "two": "... +3"
+        },
+        "heading": "Article title",
+        "description": "Body paragraph lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magn ..."
+      },
+      "nine": {
+        "tokens": {
+          "one": "Learn about Copilot"
+        },
+        "heading": "Article title",
+        "description": "Body paragraph lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magn ..."
+      },
+      "ten": {
+        "tokens": {
+          "one": "Copilot",
+          "two": "... +3"
+        },
+        "heading": "Article title",
+        "description": "Body paragraph lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magn ..."
+      },
+      "eleven": {
+        "tokens": {
+          "one": "CI/CD",
+          "two": "... +3"
+        },
+        "heading": "Article title",
+        "description": "Body paragraph lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magn ..."
+      },
+      "twelve": {
+        "tokens": {
+          "one": "Learn about Copilot"
+        },
+        "heading": "Article title",
+        "description": "Body paragraph lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magn ..."
+      },
+      "thirteen": {
+        "tokens": {
+          "one": "CI/CD",
+          "two": "... +3"
+        },
+        "heading": "Article title",
+        "description": "Body paragraph lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magn ..."
+      },
+      "fourteen": {
+        "tokens": {
+          "one": "Learn about Copilot"
+        },
+        "heading": "Article title",
+        "description": "Body paragraph lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magn ..."
+      },
+      "fifteen": {
+        "tokens": {
+          "one": "Copilot",
+          "two": "... +3"
+        },
+        "heading": "Article title",
+        "description": "Body paragraph lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magn ..."
+      }
+    }
+  },
+  "footer": {
+    "links": {
+      "terms": "Terms",
+      "privacy": "Privacy",
+      "status": "Status",
+      "pricing": "Pricing"
+    }
+  }
+}
