@@ -47,7 +47,7 @@ export function CategoryLandingPageTemplate({content}: CategoryLandingPageTempla
 
         <main className={styles.main}>
           <Section paddingBlockStart="none" paddingBlockEnd="none" className={styles.heroSection}>
-            <Hero variant="gridline">
+            <Hero variant="gridline" className={styles.hero}>
               <Hero.Heading size="3">{content.hero.heading}</Hero.Heading>
               <Hero.Description>{content.hero.description}</Hero.Description>
               <Hero.PrimaryAction href="#">{content.hero.primaryAction}</Hero.PrimaryAction>
@@ -60,7 +60,6 @@ export function CategoryLandingPageTemplate({content}: CategoryLandingPageTempla
               cards={content.featured.cards}
               heading={content.featured.heading}
               headingId="editorial-featured-heading"
-              hasSectionBottomBorder
             />
           </section>
 
@@ -108,20 +107,14 @@ type CardGridProps = {
   headingId: string
   sortLabel?: string
   footer?: React.ReactNode
-  hasSectionBottomBorder?: boolean
 }
 
-function CardGrid({cards, heading, headingId, sortLabel, footer, hasSectionBottomBorder}: CardGridProps) {
+function CardGrid({cards, heading, headingId, sortLabel, footer}: CardGridProps) {
   const lastTabletRowStartIndex = cards.length - (cards.length % 2 || 2)
   const lastDesktopRowStartIndex = cards.length - (cards.length % 3 || 3)
 
   return (
-    <Grid
-      columnGap="none"
-      rowGap="none"
-      enableGutters={false}
-      className={clsx(styles.cardGrid, hasSectionBottomBorder && styles.cardGridSectionBottomBorder)}
-    >
+    <Grid columnGap="none" rowGap="none" enableGutters={false} className={styles.cardGrid}>
       <Grid.Column span={12} className={styles.sectionHeaderColumn}>
         <Box className={clsx(styles.sectionHeader, sortLabel && styles.sectionHeaderWithSort)}>
           <Heading id={headingId} as="h2" size="5" weight="normal">
@@ -143,9 +136,9 @@ function CardGrid({cards, heading, headingId, sortLabel, footer, hasSectionBotto
             styles.cardGridColumnArrowHover,
             index % 2 === 1 && styles.cardGridColumnTabletDivider,
             index % 3 !== 0 && styles.cardGridColumnDesktopStartDivider,
-            hasSectionBottomBorder && index === cards.length - 1 && styles.cardGridColumnLastMobileRow,
-            hasSectionBottomBorder && index >= lastTabletRowStartIndex && styles.cardGridColumnLastTabletRow,
-            hasSectionBottomBorder && index >= lastDesktopRowStartIndex && styles.cardGridColumnLastDesktopRow,
+            index > 0 && index < cards.length - 1 && styles.cardGridColumnMiddleMobileRow,
+            index >= 2 && index < lastTabletRowStartIndex && styles.cardGridColumnMiddleTabletRow,
+            index >= 3 && index < lastDesktopRowStartIndex && styles.cardGridColumnMiddleDesktopRow,
           )}
         >
           <Box className={styles.cardGridItem}>

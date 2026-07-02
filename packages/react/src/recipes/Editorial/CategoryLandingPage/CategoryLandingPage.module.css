@@ -24,6 +24,10 @@
   border-bottom: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
 }
 
+.hero {
+  --brand-Hero-gridline-padding: var(--base-size-32);
+}
+
 .featuredSection {
   border-block-end: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
 }
@@ -38,8 +42,7 @@
   align-items: end;
   justify-content: space-between;
   min-block-size: 6.875rem;
-  padding: var(--base-size-32);
-  border-block-end: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
+  padding: var(--base-size-48) var(--base-size-32) var(--base-size-32);
 }
 
 .sectionHeaderColumn,
@@ -62,11 +65,10 @@
 .cardGridItem {
   width: 100%;
   height: 100%;
-  border-block-end: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
 }
 
-.cardGridSectionBottomBorder .cardGridColumnLastMobileRow .cardGridItem {
-  border-block-end: 0;
+.cardGridColumnMiddleMobileRow .cardGridItem {
+  border-block: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
 }
 
 .cardGridColumnArrowHover .cardGridItem {
@@ -76,7 +78,7 @@
 }
 
 .cardGridColumnArrowHover .cardGridItem:is(:hover, :focus-within) {
-  background: linear-gradient(180deg, var(--editorial-cardGrid-hover-overlay) 0%, transparent 100%),
+  background: linear-gradient(to top, var(--editorial-cardGrid-hover-overlay) 0%, transparent 100%),
     var(--brand-color-canvas-default);
 }
 
@@ -111,22 +113,30 @@
 }
 
 @media screen and (min-width: 48rem) and (max-width: 63.24rem) {
+  .cardGridColumnMiddleMobileRow .cardGridItem {
+    border-block: 0;
+  }
+
   .cardGridColumnTabletDivider .cardGridItem {
     border-inline-start: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
   }
 
-  .cardGridSectionBottomBorder .cardGridColumnLastTabletRow .cardGridItem {
-    border-block-end: 0;
+  .cardGridColumnMiddleTabletRow .cardGridItem {
+    border-block: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
   }
 }
 
 @media screen and (min-width: 63.25rem) {
+  .cardGridColumnMiddleMobileRow .cardGridItem {
+    border-block: 0;
+  }
+
   .cardGridColumnDesktopStartDivider .cardGridItem {
     border-inline-start: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
   }
 
-  .cardGridSectionBottomBorder .cardGridColumnLastDesktopRow .cardGridItem {
-    border-block-end: 0;
+  .cardGridColumnMiddleDesktopRow .cardGridItem {
+    border-block: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
   }
 }
 
