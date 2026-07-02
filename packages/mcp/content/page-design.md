@@ -47,8 +47,15 @@ Generous spacing is what lets a layout breathe; the Flexsuite recipes are a good
 
 A text-only hero reads as unfinished; heroes should carry a visual.
 
-- **Do** — give `Hero` a `Hero.Image` (or `Hero.Video`); source imagery from `primer_brand_asset` (Octovisuals) or the Asset Generator MCP tooling (if installed).
+- **Do** — give `Hero` a `Hero.Image` (or `Hero.Video`); source imagery from `primer_brand_asset` (Octovisuals) or generate it with the Asset Generator MCP (see _Generated imagery_ below).
 - **Don't** — ship a bare, text-only hero.
+
+### Generated imagery adds color and interest
+
+Bring on-brand color and life to the page with the Asset Generator MCP (when installed) instead of leaving large areas flat — most pages want at least one generated visual.
+
+- **Do** — use **`create_product_landscape`** when the visual demos a product or feature (a hero or section showing the thing itself), and **`create_wallpaper`** for everything else, to add a colorful on-brand backdrop or accent. Browse the current set with `list_templates` / `list_themes` and pick a theme that fits the page's topic.
+- **Don't** — reach for social media-specific templates like `create_social_square` or `create_landscape` when a product shot or wallpaper fits better.
 
 ### Group cards inside gridlines
 
@@ -66,4 +73,4 @@ Eyebrow/section labels are intrinsic width; stretching them reads as off-brand.
 
 ## General guidance
 
-If you have browser tooling available, render the page and review it visually to check it against this guidance.
+- If browser tooling (e.g. the Playwright MCP) is available, verify your work visually before finishing: serve the page locally, open it, and take screenshots across different breakpoints. Review the screenshots against this guidance and automatically fix obvious defects like clipped or overflowing content, cramped spacing, stretched/full-width labels that should preserve their intrinsic width, low-contrast text, a text-only hero, broken images, and off-brand tells (glows, purple gradients, pill buttons, glassmorphism, placeholder copy). Re-screenshot to confirm the fixes.
