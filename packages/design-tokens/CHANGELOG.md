@@ -1,5 +1,24 @@
 # @primer/brand-primitives
 
+## 0.69.0
+
+### Patch Changes
+
+- [#1363](https://github.com/primer/brand/pull/1363) [`f3a70ed`](https://github.com/primer/brand/commit/f3a70ed8e2a160ccb4129e4ef21ecaf34ed113e8) Thanks [@rezrah](https://github.com/rezrah)! - Added the `--base-size-60` and `--base-size-88` base size tokens.
+
+  Also exposed `60` and `88` through React components that use the base size scale, such as `Box` and `Stack`.
+
+  ```tsx
+  <Box padding={60} />
+  <Box padding={88} />
+  <Stack gap={60} />
+  <Stack gap={88} />
+  ```
+
+- [#1363](https://github.com/primer/brand/pull/1363) [`f3a70ed`](https://github.com/primer/brand/commit/f3a70ed8e2a160ccb4129e4ef21ecaf34ed113e8) Thanks [@rezrah](https://github.com/rezrah)! - Updated the `LogoSuite` control hover color in light mode from `gray-2` to `gray-1`.
+
+- [#1363](https://github.com/primer/brand/pull/1363) [`f3a70ed`](https://github.com/primer/brand/commit/f3a70ed8e2a160ccb4129e4ef21ecaf34ed113e8) Thanks [@rezrah](https://github.com/rezrah)! - Added `TextCursorAnimation` cursor color tokens. The light mode cursor color now uses `--base-color-scale-green-6`, while dark mode preserves the existing accent color.
+
 ## 0.68.0
 
 ### Minor Changes

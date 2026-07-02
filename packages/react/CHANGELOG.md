@@ -1,5 +1,63 @@
 # @primer/react-brand
 
+## 0.69.0
+
+### Minor Changes
+
+- [#1375](https://github.com/primer/brand/pull/1375) [`67fff83`](https://github.com/primer/brand/commit/67fff83e9cf5a847fef43fd681fbbdc14e96b6bc) Thanks [@rezrah](https://github.com/rezrah)! - Added a `backgroundVisual` prop to `RiverBreakoutTabs` for rendering a decorative background component. The background persists across tab changes.
+
+  Also added an `imagePosition` prop to inset and align the media over the `backgroundVisual`.
+
+  Also added a `backgroundVisualFullBleed` prop to render the `backgroundVisual` contained (default) or full-bleed to the gridline edges.
+
+  ```tsx
+  <RiverBreakoutTabs backgroundVisual={<MyCustomBackground />} imagePosition="block-end">
+    <RiverBreakoutTabs.A11yHeading>Workflows</RiverBreakoutTabs.A11yHeading>
+    {/* ...items... */}
+  </RiverBreakoutTabs>
+  ```
+
+### Patch Changes
+
+- [#1363](https://github.com/primer/brand/pull/1363) [`f3a70ed`](https://github.com/primer/brand/commit/f3a70ed8e2a160ccb4129e4ef21ecaf34ed113e8) Thanks [@rezrah](https://github.com/rezrah)! - Added the `--base-size-60` and `--base-size-88` base size tokens.
+
+  Also exposed `60` and `88` through React components that use the base size scale, such as `Box` and `Stack`.
+
+  ```tsx
+  <Box padding={60} />
+  <Box padding={88} />
+  <Stack gap={60} />
+  <Stack gap={88} />
+  ```
+
+- [#1364](https://github.com/primer/brand/pull/1364) [`a4e6742`](https://github.com/primer/brand/commit/a4e67425e68e0f7843fd8ef2bd97e549ad8c2a93) Thanks [@danielguillan](https://github.com/danielguillan)! - Hide lateral gridline borders for underfilled `Tiles` rows.
+
+- [#1363](https://github.com/primer/brand/pull/1363) [`f3a70ed`](https://github.com/primer/brand/commit/f3a70ed8e2a160ccb4129e4ef21ecaf34ed113e8) Thanks [@rezrah](https://github.com/rezrah)! - Disabled feature-list accordion animations in `PricingOptions` now that the intrinsic accordion includes a default animation.
+
+- [#1374](https://github.com/primer/brand/pull/1374) [`03fcd31`](https://github.com/primer/brand/commit/03fcd314a5afb8c92e757f0792aeafaf009a07fe) Thanks [@danielguillan](https://github.com/danielguillan)! - Fixes an issue where a `Card` with `ctaVariant="arrow"` and a long `ctaText` overflowed and reflowed its content in Safari.
+
+- [#1376](https://github.com/primer/brand/pull/1376) [`99af142`](https://github.com/primer/brand/commit/99af142ad59cd719801058f11ab61c2eeeefcbaa) Thanks [@danielguillan](https://github.com/danielguillan)! - Add a `small` size variant to `Link`.
+
+- [#1363](https://github.com/primer/brand/pull/1363) [`f3a70ed`](https://github.com/primer/brand/commit/f3a70ed8e2a160ccb4129e4ef21ecaf34ed113e8) Thanks [@rezrah](https://github.com/rezrah)! - - Updated the `Accordion` toggle indicator to use the `TriangleDownIcon` octicon, which rotates anti-clockwise between its open and closed states.
+
+  - Improved `Accordion` content open and close animation so items transition using measured content height.
+
+  - Added a `disableAnimation` prop to `Accordion` now that it includes a default animation, which may not be applicable in all use-cases.
+
+  - Updated `Accordion` to close immediately when reduced motion is preferred.
+
+- [#1363](https://github.com/primer/brand/pull/1363) [`f3a70ed`](https://github.com/primer/brand/commit/f3a70ed8e2a160ccb4129e4ef21ecaf34ed113e8) Thanks [@rezrah](https://github.com/rezrah)! - Adjusted the `Card.Heading` bottom spacing from `20px` to `12px`.
+
+- [#1363](https://github.com/primer/brand/pull/1363) [`f3a70ed`](https://github.com/primer/brand/commit/f3a70ed8e2a160ccb4129e4ef21ecaf34ed113e8) Thanks [@rezrah](https://github.com/rezrah)! - Adjusted the `Hero` action group top spacing from `32px` to `28px` and the expressive trailing content top spacing from `32px` to `20px` on wider viewports.
+
+- [#1363](https://github.com/primer/brand/pull/1363) [`f3a70ed`](https://github.com/primer/brand/commit/f3a70ed8e2a160ccb4129e4ef21ecaf34ed113e8) Thanks [@rezrah](https://github.com/rezrah)! - Updated the `LogoSuite` control hover color in light mode from `gray-2` to `gray-1`.
+
+- [#1363](https://github.com/primer/brand/pull/1363) [`f3a70ed`](https://github.com/primer/brand/commit/f3a70ed8e2a160ccb4129e4ef21ecaf34ed113e8) Thanks [@rezrah](https://github.com/rezrah)! - Updated the `RiverAccordion` toggle indicator to use the `TriangleDownIcon` and `TriangleUpIcon` octicons in place of chevrons, for consistency with the `Accordion` component.
+
+- [#1363](https://github.com/primer/brand/pull/1363) [`f3a70ed`](https://github.com/primer/brand/commit/f3a70ed8e2a160ccb4129e4ef21ecaf34ed113e8) Thanks [@rezrah](https://github.com/rezrah)! - Updated `Tabs` item typography from text size `100` to `200`.
+
+- [#1363](https://github.com/primer/brand/pull/1363) [`f3a70ed`](https://github.com/primer/brand/commit/f3a70ed8e2a160ccb4129e4ef21ecaf34ed113e8) Thanks [@rezrah](https://github.com/rezrah)! - Added `TextCursorAnimation` cursor color tokens. The light mode cursor color now uses `--base-color-scale-green-6`, while dark mode preserves the existing accent color.
+
 ## 0.68.0
 
 ### Minor Changes

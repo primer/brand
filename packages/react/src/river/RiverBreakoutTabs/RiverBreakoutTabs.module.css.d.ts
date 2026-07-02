@@ -1,5 +1,8 @@
 declare const styles: {
   readonly "RiverBreakoutTabs": string;
+  readonly "RiverBreakoutTabs--background-visual-full-bleed": string;
+  readonly "RiverBreakoutTabs--has-background-visual": string;
+  readonly "RiverBreakoutTabs--image-position-block-end": string;
   readonly "RiverBreakoutTabs__accordion": string;
   readonly "RiverBreakoutTabs__accordionContent": string;
   readonly "RiverBreakoutTabs__accordionHeading": string;
@@ -10,6 +13,7 @@ declare const styles: {
   readonly "RiverBreakoutTabs__accordionPanel": string;
   readonly "RiverBreakoutTabs__accordionSharedVisual": string;
   readonly "RiverBreakoutTabs__accordionSharedVisuals": string;
+  readonly "RiverBreakoutTabs__backgroundVisual": string;
   readonly "RiverBreakoutTabs__content": string;
   readonly "RiverBreakoutTabs__heading": string;
   readonly "RiverBreakoutTabs__icon": string;

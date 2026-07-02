@@ -1,0 +1,10 @@
+{
+  "extends": "./tsconfig.build.json",
+  "compilerOptions": {
+    "rootDir": "src",
+    "outDir": "lib",
+    "declaration": true,
+    "emitDeclarationOnly": true
+  },
+  "include": ["src/index.ts", "src/*.d.ts"]
+}
