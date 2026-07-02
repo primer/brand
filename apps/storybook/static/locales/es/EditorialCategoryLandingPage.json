@@ -1,0 +1,157 @@
+{
+  "navigation": {
+    "title": "Editorial"
+  },
+  "sidebar": {
+    "ariaLabel": "Editorial filters"
+  },
+  "hero": {
+    "heading": "GitHub Copilot Docs",
+    "description": "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.",
+    "primaryAction": "Primary",
+    "secondaryAction": "Secondary"
+  },
+  "featured": {
+    "heading": "Featured",
+    "ariaLabel": "Featured editorial resources",
+    "cards": {
+      "one": {
+        "tokens": {
+          "one": "Topic",
+          "two": "Topic"
+        },
+        "heading": "Set up Git",
+        "description": "Use one centralized control page to jump between agent sessions, check progress, and stay in control without losing your place."
+      },
+      "two": {
+        "tokens": {
+          "one": "Topic",
+          "two": "Topic"
+        },
+        "heading": "Choose a workflow",
+        "description": "Find the path that fits your team, from quick starts to deeper guidance for planning, building, and shipping."
+      },
+      "three": {
+        "tokens": {
+          "one": "Topic",
+          "two": "Topic"
+        },
+        "heading": "Start collaborating",
+        "description": "Explore practical resources for keeping work visible, connected, and moving across every stage of development."
+      }
+    }
+  },
+  "resources": {
+    "heading": "Latest",
+    "sortLabel": "Sort by : Newest",
+    "cards": {
+      "one": {
+        "tokens": {
+          "one": "Topic",
+          "two": "Topic"
+        },
+        "heading": "Set up Git",
+        "description": "Use one centralized control page to jump between agent sessions, check progress, and stay in control without losing your place."
+      },
+      "two": {
+        "tokens": {
+          "one": "Guide",
+          "two": "Topic"
+        },
+        "heading": "Plan your first project",
+        "description": "Create the right structure before work starts so teams can find tasks, decisions, and context quickly."
+      },
+      "three": {
+        "tokens": {
+          "one": "Article",
+          "two": "Topic"
+        },
+        "heading": "Understand pull requests",
+        "description": "Review the building blocks of pull request collaboration and learn how changes move safely through review."
+      },
+      "four": {
+        "tokens": {
+          "one": "Tutorial",
+          "two": "Topic"
+        },
+        "heading": "Automate routine work",
+        "description": "Use workflow automation to reduce repetitive steps and keep teams focused on higher-value decisions."
+      },
+      "five": {
+        "tokens": {
+          "one": "Guide",
+          "two": "Topic"
+        },
+        "heading": "Secure your workflow",
+        "description": "Discover practices for keeping secrets, dependencies, and code changes protected across the development lifecycle."
+      },
+      "six": {
+        "tokens": {
+          "one": "Article",
+          "two": "Topic"
+        },
+        "heading": "Manage repository settings",
+        "description": "Tune project access, collaboration rules, and repository defaults to support the way your team works."
+      },
+      "seven": {
+        "tokens": {
+          "one": "Tutorial",
+          "two": "Topic"
+        },
+        "heading": "Review code effectively",
+        "description": "Learn how to give useful feedback, keep reviews moving, and build shared confidence before changes ship."
+      },
+      "eight": {
+        "tokens": {
+          "one": "Guide",
+          "two": "Topic"
+        },
+        "heading": "Document team knowledge",
+        "description": "Capture decisions and reusable guidance where contributors can find them before questions become blockers."
+      },
+      "nine": {
+        "tokens": {
+          "one": "Article",
+          "two": "Topic"
+        },
+        "heading": "Track delivery progress",
+        "description": "Follow work from idea to release with views that clarify ownership, priority, and next steps."
+      },
+      "ten": {
+        "tokens": {
+          "one": "Tutorial",
+          "two": "Topic"
+        },
+        "heading": "Connect your tools",
+        "description": "Bring important signals into your development workflow so the right context appears where work happens."
+      },
+      "eleven": {
+        "tokens": {
+          "one": "Guide",
+          "two": "Topic"
+        },
+        "heading": "Scale best practices",
+        "description": "Create repeatable patterns that help teams adopt consistent workflows without slowing down delivery."
+      },
+      "twelve": {
+        "tokens": {
+          "one": "Article",
+          "two": "Topic"
+        },
+        "heading": "Keep learning",
+        "description": "Explore new concepts, product updates, and practical examples for building better software with GitHub."
+      }
+    }
+  },
+  "pagination": {
+    "ariaLabel": "Editorial resource pagination"
+  },
+  "footer": {
+    "links": {
+      "terms": "Terms",
+      "privacy": "Privacy",
+      "status": "Status",
+      "pricing": "Pricing"
+    }
+  }
+}

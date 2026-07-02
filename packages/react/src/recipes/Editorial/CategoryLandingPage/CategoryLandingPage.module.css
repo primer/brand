@@ -1,0 +1,151 @@
+.page {
+  min-height: 100dvh;
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: minmax(var(--base-size-80), 23.4375rem) minmax(0, 1fr);
+  width: 100%;
+  border-block-start: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
+}
+
+.sidebar {
+  min-block-size: 100%;
+  background-color: var(--brand-color-canvas-subtle);
+  border-inline-end: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
+}
+
+.main {
+  width: 100%;
+  min-width: 0;
+}
+
+.heroSection {
+  border-bottom: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
+}
+
+.featuredSection {
+  border-block-end: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
+}
+
+.sectionSpacer {
+  block-size: var(--base-size-48);
+  border-block-end: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
+}
+
+.sectionHeader {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  min-block-size: 6.875rem;
+  padding: var(--base-size-32);
+  border-block-end: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
+}
+
+.sectionHeaderColumn,
+.cardGridFooterColumn {
+  min-width: 0;
+}
+
+.sectionHeaderWithSort {
+  gap: var(--base-size-24);
+}
+
+.sortLabel {
+  flex-shrink: 0;
+}
+
+.cardGrid {
+  border-inline: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
+}
+
+.cardGridItem {
+  width: 100%;
+  height: 100%;
+  border-block-end: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
+}
+
+.cardGridSectionBottomBorder .cardGridColumnLastMobileRow .cardGridItem {
+  border-block-end: 0;
+}
+
+.cardGridColumnArrowHover .cardGridItem {
+  --editorial-cardGrid-hover-overlay: color-mix(in srgb, var(--base-color-scale-gray-0) 50%, transparent);
+
+  transition: background var(--brand-animation-duration-extended) var(--brand-animation-easing-default);
+}
+
+.cardGridColumnArrowHover .cardGridItem:is(:hover, :focus-within) {
+  background: linear-gradient(180deg, var(--editorial-cardGrid-hover-overlay) 0%, transparent 100%),
+    var(--brand-color-canvas-default);
+}
+
+[data-color-mode='dark'] .cardGridColumnArrowHover .cardGridItem:is(:hover, :focus-within) {
+  --editorial-cardGrid-hover-overlay: color-mix(in srgb, var(--base-color-scale-gray-0) 10%, transparent);
+}
+
+.resourceCard {
+  min-block-size: 100%;
+}
+
+.paginationFrame {
+  display: flex;
+  justify-content: flex-end;
+  padding: var(--base-size-24) var(--base-size-32);
+}
+
+.redlineBackground {
+  display: flex;
+  flex-direction: column;
+  min-block-size: 7.5rem;
+}
+
+.redlineBase {
+  min-block-size: 5.25rem;
+  margin-block-start: auto;
+  background-color: var(--brand-color-border-default);
+}
+
+.cardGridColumn {
+  display: flex;
+}
+
+@media screen and (min-width: 48rem) and (max-width: 63.24rem) {
+  .cardGridColumnTabletDivider .cardGridItem {
+    border-inline-start: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
+  }
+
+  .cardGridSectionBottomBorder .cardGridColumnLastTabletRow .cardGridItem {
+    border-block-end: 0;
+  }
+}
+
+@media screen and (min-width: 63.25rem) {
+  .cardGridColumnDesktopStartDivider .cardGridItem {
+    border-inline-start: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
+  }
+
+  .cardGridSectionBottomBorder .cardGridColumnLastDesktopRow .cardGridItem {
+    border-block-end: 0;
+  }
+}
+
+@media screen and (max-width: 47.99rem) {
+  .layout {
+    display: block;
+  }
+
+  .sidebar {
+    display: none;
+  }
+
+  .sectionHeader,
+  .sectionHeaderWithSort {
+    align-items: start;
+    flex-direction: column;
+  }
+
+  .paginationFrame {
+    justify-content: center;
+  }
+}
