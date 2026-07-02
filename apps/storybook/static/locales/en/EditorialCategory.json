@@ -13,7 +13,6 @@
   },
   "featured": {
     "heading": "Featured",
-    "ariaLabel": "Featured editorial resources",
     "cards": {
       "one": {
         "tokens": {

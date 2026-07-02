@@ -17,21 +17,18 @@ import {
 } from '../../..'
 import {RedlineBackground} from '../../../component-helpers'
 
-import {
-  defaultEditorialCategoryLandingPageContent,
-  type EditorialCategoryLandingPageContent,
-} from './CategoryLandingPage.content'
-import styles from './CategoryLandingPage.module.css'
+import {defaultEditorialCategoryContent, type EditorialCategoryContent} from './Category.content'
+import styles from './Category.module.css'
 
-export type CategoryLandingPageTemplateProps = {
-  content: EditorialCategoryLandingPageContent
+export type CategoryTemplateProps = {
+  content: EditorialCategoryContent
 }
 
-export function CategoryLandingPage() {
-  return <CategoryLandingPageTemplate content={defaultEditorialCategoryLandingPageContent} />
+export function Category() {
+  return <CategoryTemplate content={defaultEditorialCategoryContent} />
 }
 
-export function CategoryLandingPageTemplate({content}: CategoryLandingPageTemplateProps) {
+export function CategoryTemplate({content}: CategoryTemplateProps) {
   const [currentPage, setCurrentPage] = useState(1)
 
   const handlePageChange = useCallback((event: React.MouseEvent, pageNumber: number) => {
@@ -58,21 +55,16 @@ export function CategoryLandingPageTemplate({content}: CategoryLandingPageTempla
 
           <Box className={styles.sectionSpacer} aria-hidden />
 
-          <section aria-labelledby="editorial-featured-heading" className={styles.featuredSection}>
-            <CardGrid
-              cards={content.featured.cards}
-              heading={content.featured.heading}
-              headingId="editorial-featured-heading"
-            />
-          </section>
+          <Section paddingBlockStart="none" paddingBlockEnd="none" fullWidth className={styles.featuredSection}>
+            <CardGrid cards={content.featured.cards} heading={content.featured.heading} />
+          </Section>
 
           <Box className={styles.sectionSpacer} aria-hidden />
 
-          <section aria-labelledby="editorial-resources-heading">
+          <Section paddingBlockStart="none" paddingBlockEnd="none" fullWidth>
             <CardGrid
               cards={content.resources.cards}
               heading={content.resources.heading}
-              headingId="editorial-resources-heading"
               sortLabel={content.resources.sortLabel}
               footer={
                 <Stack
@@ -94,7 +86,7 @@ export function CategoryLandingPageTemplate({content}: CategoryLandingPageTempla
                 </Stack>
               }
             />
-          </section>
+          </Section>
 
           <RedlineBackground className={styles.redlineBackground}>
             <RedlineBackground className={styles.redlineBase} />
@@ -114,14 +106,13 @@ export function CategoryLandingPageTemplate({content}: CategoryLandingPageTempla
 }
 
 type CardGridProps = {
-  cards: EditorialCategoryLandingPageContent['featured']['cards']
+  cards: EditorialCategoryContent['featured']['cards']
   heading: string
-  headingId: string
   sortLabel?: string
   footer?: React.ReactNode
 }
 
-function CardGrid({cards, heading, headingId, sortLabel, footer}: CardGridProps) {
+function CardGrid({cards, heading, sortLabel, footer}: CardGridProps) {
   const lastTabletRowStartIndex = cards.length - (cards.length % 2 || 2)
   const lastDesktopRowStartIndex = cards.length - (cards.length % 3 || 3)
 
@@ -129,7 +120,7 @@ function CardGrid({cards, heading, headingId, sortLabel, footer}: CardGridProps)
     <Grid columnGap="none" rowGap="none" enableGutters={false} className={styles.cardGrid}>
       <Grid.Column span={12} className={styles.sectionHeaderColumn}>
         <Box className={clsx(styles.sectionHeader, sortLabel && styles.sectionHeaderWithSort)}>
-          <Heading id={headingId} as="h2" size="5" weight="normal">
+          <Heading as="h2" size="5" weight="normal">
             {heading}
           </Heading>
           {sortLabel ? (

@@ -6,14 +6,11 @@
 import {test, expect} from '@playwright/test'
 
 // eslint-disable-next-line i18n-text/no-en
-test.describe('Visual Comparison: CategoryLandingPage', () => {
-  test('CategoryLandingPage / Category landing page', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=recipes-editorial-category-landing-page--category-landing-page&viewMode=story',
-      {
-        waitUntil: 'networkidle',
-      },
-    )
+test.describe('Visual Comparison: Category', () => {
+  test('Category / Category', async ({page}) => {
+    await page.goto('http://localhost:6006/iframe.html?args=&id=recipes-editorial-category--category&viewMode=story', {
+      waitUntil: 'networkidle',
+    })
     await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(4000)

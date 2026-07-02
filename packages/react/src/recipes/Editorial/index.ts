@@ -1,1 +1,1 @@
-export {CategoryLandingPage, EditorialCategoryLanding} from './CategoryLandingPage'
+export {Category, EditorialCategory} from './Category'

@@ -1,11 +1,11 @@
-type EditorialCategoryLandingPageCardContent = {
+type EditorialCategoryCardContent = {
   tokens: string[]
   heading: string
   description: string
   href: string
 }
 
-export type EditorialCategoryLandingPageContent = {
+export type EditorialCategoryContent = {
   navigation: {
     title: string
   }
@@ -20,13 +20,12 @@ export type EditorialCategoryLandingPageContent = {
   }
   featured: {
     heading: string
-    ariaLabel: string
-    cards: EditorialCategoryLandingPageCardContent[]
+    cards: EditorialCategoryCardContent[]
   }
   resources: {
     heading: string
     sortLabel: string
-    cards: EditorialCategoryLandingPageCardContent[]
+    cards: EditorialCategoryCardContent[]
   }
   pagination: {
     ariaLabel: string
@@ -36,7 +35,7 @@ export type EditorialCategoryLandingPageContent = {
   }
 }
 
-export const defaultEditorialCategoryLandingPageContent: EditorialCategoryLandingPageContent = {
+export const defaultEditorialCategoryContent: EditorialCategoryContent = {
   navigation: {
     title: 'Editorial',
   },
@@ -52,7 +51,6 @@ export const defaultEditorialCategoryLandingPageContent: EditorialCategoryLandin
   },
   featured: {
     heading: 'Featured',
-    ariaLabel: 'Featured editorial resources',
     cards: [
       {
         tokens: ['Topic', 'Topic'],
@@ -176,14 +174,14 @@ export const defaultEditorialCategoryLandingPageContent: EditorialCategoryLandin
 
 type Translate = (key: string) => string
 
-const getCardContent = (t: Translate, key: string): EditorialCategoryLandingPageCardContent => ({
+const getCardContent = (t: Translate, key: string): EditorialCategoryCardContent => ({
   tokens: [t(`${key}.tokens.one`), t(`${key}.tokens.two`)],
   heading: t(`${key}.heading`),
   description: t(`${key}.description`),
   href: '#',
 })
 
-export function getLocalizedEditorialCategoryLandingPageContent(t: Translate): EditorialCategoryLandingPageContent {
+export function getLocalizedEditorialCategoryContent(t: Translate): EditorialCategoryContent {
   return {
     navigation: {
       title: t('navigation.title'),
@@ -199,7 +197,6 @@ export function getLocalizedEditorialCategoryLandingPageContent(t: Translate): E
     },
     featured: {
       heading: t('featured.heading'),
-      ariaLabel: t('featured.ariaLabel'),
       cards: [
         getCardContent(t, 'featured.cards.one'),
         getCardContent(t, 'featured.cards.two'),
