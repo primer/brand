@@ -1,0 +1,38 @@
+{
+  "navigation": {
+    "title": "Editorial"
+  },
+  "sidebar": {
+    "ariaLabel": "Editorial navigation"
+  },
+  "secondarySidebar": {
+    "ariaLabel": "Related article navigation"
+  },
+  "breadcrumbs": {
+    "parent": {
+      "label": "GitHub Copilot Docs"
+    },
+    "current": "Plan your first project"
+  },
+  "article": {
+    "topics": {
+      "one": "Guide",
+      "two": "Copilot"
+    },
+    "topicsAriaLabel": "Article topics",
+    "heading": "Plan your first project with GitHub Copilot",
+    "description": "Use GitHub Copilot to move from a rough idea to a clear, reviewable project plan that your team can build from.",
+    "publishedDate": "Updated July 2, 2026",
+    "publishedDateTime": "2026-07-02",
+    "readTime": "5 minute read",
+    "body": "<p>GitHub Copilot can help teams turn early ideas into structured plans. Start by describing the outcome, the people involved, and the decisions that are still open.</p><h2>Before you start</h2><p>Gather the context your team already has. Useful inputs include existing issues, product notes, customer feedback, and examples of similar work.</p><ul><li>Define the goal in one or two sentences.</li><li>List constraints, dependencies, and known risks.</li><li>Capture the first milestone your team should validate.</li></ul><h2>Create the first draft</h2><p>Ask Copilot for a concise plan that separates scope, implementation steps, and review criteria. Keep the first draft short so reviewers can respond quickly.</p><h2>Review and refine</h2><p>Share the draft with your team, resolve open questions, and turn the agreed next steps into issues or tasks. Revisit the plan as new information appears.</p>"
+  },
+  "footer": {
+    "links": {
+      "terms": "Terms",
+      "privacy": "Privacy",
+      "status": "Status",
+      "pricing": "Pricing"
+    }
+  }
+}
