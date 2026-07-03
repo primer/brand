@@ -58,7 +58,14 @@ export const classMap = {
 }
 
 export type HeadingProps = {
+  /** Semantic heading level (`h1`–`h6`) only. Use `size` to apply the correct visual size. */
   as?: (typeof HeadingTags)[number]
+  /**
+   * Controls the visual size, independent of `as`. Should be used whenever as prop is used, as the defaults may not be ideal for all use-cases.
+   *
+   * @example
+   * <Heading as="h2" size="4">This h2 will appear visually identical to an h4</Heading>
+   */
   size?: (typeof HeadingSizes)[number]
   weight?: HeadingWeightVariants | ResponsiveWeightMap
   stretch?: HeadingStretchVariants | ResponsiveStretchMap
@@ -68,6 +75,9 @@ export type HeadingProps = {
 } & React.HTMLAttributes<HTMLHeadingElement> &
   BaseProps<HTMLHeadingElement>
 
+/**
+ * Use the heading component to render titles or subtitle text.
+ */
 export const Heading = forwardRef<HTMLHeadingElement, PropsWithChildren<HeadingProps>>(
   (
     {

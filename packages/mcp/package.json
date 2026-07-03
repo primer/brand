@@ -1,0 +1,66 @@
+{
+  "name": "@primer/brand-mcp",
+  "version": "0.69.0",
+  "description": "MCP (Model Context Protocol) server that helps AI agents use Primer Brand (@primer/react-brand) correctly when building GitHub marketing and landing pages.",
+  "keywords": [
+    "primer",
+    "brand",
+    "mcp",
+    "model-context-protocol",
+    "design-system",
+    "ai"
+  ],
+  "homepage": "https://primer.style/brand",
+  "bugs": {
+    "url": "https://github.com/primer/brand/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/primer/brand.git",
+    "directory": "packages/mcp"
+  },
+  "license": "MIT",
+  "author": "GitHub, Inc.",
+  "type": "module",
+  "bin": {
+    "primer-brand-mcp": "dist/index.js"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist",
+    "content",
+    "README.md"
+  ],
+  "scripts": {
+    "clean": "rm -rf dist",
+    "generate:catalog": "node scripts/generate-catalog.mjs",
+    "build": "npm run clean && npm run generate:catalog && tsc -p tsconfig.json",
+    "check": "tsc --noEmit -p tsconfig.json",
+    "format": "prettier --check '**/*.{js,mjs,ts,json,md}'",
+    "format:fix": "prettier --write '**/*.{js,mjs,ts,json,md}'",
+    "lint": "eslint '**/*.ts' --max-warnings=0",
+    "lint:fix": "npm run lint -- --fix",
+    "test": "NODE_OPTIONS=--experimental-vm-modules jest",
+    "inspect": "npm run build && npx @modelcontextprotocol/inspector node dist/index.js",
+    "smoke": "npm run build && node scripts/smoke.mjs",
+    "start": "node dist/index.js",
+    "prepack": "npm run build"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.24.0",
+    "zod": "3.25.58"
+  },
+  "devDependencies": {
+    "@modelcontextprotocol/inspector": "^0.16.6",
+    "@types/node": "24.12.0"
+  },
+  "engines": {
+    "node": ">=24.0.0 <25"
+  }
+}

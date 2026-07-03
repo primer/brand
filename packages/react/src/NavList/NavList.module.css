@@ -1,0 +1,465 @@
+.NavList {
+  box-sizing: border-box;
+  font-family: var(--brand-fontStack-sansSerif);
+  color: var(--brand-color-text-default);
+  padding-inline-start: var(--base-size-16);
+  width: 100%;
+}
+
+.NavList__list,
+.NavList__subNav,
+.NavList__groupList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.NavList__list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.NavList__list--flat,
+.NavList__groupList {
+  --brand-NavList-alignedLabel-paddingInlineStart: var(--base-size-2);
+}
+
+.NavList__groupList {
+  --brand-NavList-item-paddingInlineStart-level-2: var(--base-size-2);
+}
+
+.NavList__item,
+.NavList__group {
+  position: relative;
+}
+
+.NavList__list:not(.NavList__list--flat) > :is(.NavList__item, .NavList__group) + :is(.NavList__item, .NavList__group) {
+  background-image: repeating-linear-gradient(
+    to right,
+    var(--brand-color-border-muted) 0 var(--base-size-2),
+    transparent var(--base-size-2) var(--base-size-4)
+  );
+  background-repeat: no-repeat;
+  background-size: 100% var(--brand-borderWidth-thin);
+  background-position: top left;
+}
+
+.NavList__groupTitle {
+  margin: 0;
+  padding: var(--base-size-24) var(--base-size-16) var(--base-size-16);
+  color: var(--brand-color-text-default);
+  font-size: var(--brand-text-size-200);
+  font-weight: var(--brand-text-weight-500);
+  line-height: var(--brand-text-lineHeight-200);
+  letter-spacing: var(--brand-text-letterSpacing-200);
+}
+
+.NavList__groupList {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  padding-block-end: var(--base-size-16);
+}
+
+.NavList__itemContent {
+  display: flex;
+  align-items: center;
+  gap: var(--base-size-8);
+  min-width: 0;
+}
+
+.NavList__link {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--base-size-8);
+  flex: 1 1 auto;
+  min-width: 0;
+  border-radius: var(--brand-borderRadius-medium);
+  padding: 0;
+  color: var(--brand-color-text-muted);
+  font-size: var(--brand-text-size-100);
+  font-weight: var(--brand-text-weight-500);
+  line-height: var(--brand-text-lineHeight-100);
+  letter-spacing: var(--brand-text-letterSpacing-100);
+  text-decoration: none !important; /* dotcom override */
+  transition: background-color var(--brand-animation-duration-fast) var(--brand-animation-easing-default),
+    color var(--brand-animation-duration-fast) var(--brand-animation-easing-default);
+}
+
+.NavList__accordionButton {
+  position: relative;
+  box-sizing: border-box;
+  width: 100%;
+  border: 0;
+  background: transparent;
+  color: var(--brand-color-text-muted);
+  cursor: pointer;
+  font-family: inherit;
+  text-align: start;
+}
+
+.NavList__link:hover {
+  color: var(--brand-color-text-default);
+  background-color: var(--brand-color-canvas-subtle);
+}
+
+.NavList__accordionButton:hover {
+  color: var(--brand-color-text-default);
+  background-color: transparent;
+}
+
+.NavList__item:not(.NavList__item--level-1) > .NavList__itemContent .NavList__accordionButton .NavList__labelArea {
+  order: 2;
+  min-height: var(--base-size-32);
+  padding-inline-start: var(--base-size-6);
+}
+
+.NavList__item:not(.NavList__item--level-1)
+  > .NavList__itemContent
+  .NavList__accordionButton:not(:disabled):hover
+  .NavList__labelArea {
+  background-color: var(--brand-color-canvas-subtle);
+}
+
+.NavList__item--has-current-descendant > .NavList__itemContent .NavList__accordionButton:not(:disabled) {
+  color: var(--brand-color-text-default);
+}
+
+.NavList__item:not(.NavList__item--level-1).NavList__item--has-current-descendant
+  > .NavList__itemContent
+  .NavList__accordionButton[aria-expanded='false']:not(:disabled)
+  .NavList__labelArea {
+  background-color: var(--brand-color-canvas-subtle);
+}
+
+:is(.NavList__link, .NavList__accordionButton):focus-visible {
+  outline: var(--brand-borderWidth-thick) solid var(--brand-color-focus);
+  outline-offset: var(--base-size-2);
+}
+
+.NavList__subNav :is(.NavList__link, .NavList__accordionButton):focus-visible {
+  outline-offset: calc(-1 * var(--base-size-2));
+}
+
+.NavList__link[aria-current]:not([aria-current='false']) {
+  color: var(--brand-color-text-default);
+  background-color: var(--brand-color-canvas-subtle);
+  padding-inline-start: var(--base-size-6);
+}
+
+.NavList__item--leaf:not(.NavList__item--level-1) .NavList__link[aria-current]:not([aria-current='false'])::before {
+  content: '';
+  position: absolute;
+  inset-block: var(--base-size-8);
+  inset-inline-start: 0;
+  width: var(--base-size-4);
+  border-radius: var(--base-size-2);
+  background-color: var(--brand-NavList-activeIndicator-color);
+}
+
+.NavList__item--has-current-descendant
+  > .NavList__itemContent
+  .NavList__accordionButton[aria-expanded='false']:not(:disabled)::before {
+  content: '';
+  position: absolute;
+  inset-block-start: 50%;
+  block-size: var(--base-size-16);
+  width: var(--base-size-4);
+  border-radius: var(--base-size-2);
+  background-color: var(--brand-NavList-activeIndicator-color);
+  transform: translateY(-50%);
+  z-index: 1;
+}
+
+.NavList__item--level-1.NavList__item--has-current-descendant
+  > .NavList__itemContent
+  .NavList__accordionButton[aria-expanded='false']::before {
+  inset-inline-start: calc(-1 * var(--base-size-8));
+}
+
+.NavList__item:not(.NavList__item--level-1).NavList__item--has-current-descendant
+  > .NavList__itemContent
+  .NavList__accordionButton[aria-expanded='false']::before {
+  inset-inline-start: var(--base-size-4);
+}
+
+.NavList__item:not(.NavList__item--level-1).NavList__item--has-current-descendant
+  > .NavList__itemContent
+  .NavList__accordionButton[aria-expanded='false'] {
+  padding-inline-start: var(--base-size-12);
+}
+
+.NavList__item:not(.NavList__item--level-1).NavList__item--has-current-descendant
+  > .NavList__itemContent
+  .NavList__accordionButton[aria-expanded='false']
+  .NavList__labelArea {
+  padding-inline-start: var(--base-size-2);
+}
+
+.NavList__item--level-1 > .NavList__itemContent .NavList__link[aria-current]:not([aria-current='false']) {
+  padding-inline-start: 0;
+}
+
+.NavList__link--disabled {
+  color: var(--brand-color-text-disabled);
+  pointer-events: none;
+}
+
+.NavList__accordionButton:disabled {
+  color: var(--brand-color-text-disabled);
+  cursor: not-allowed;
+}
+
+.NavList__label {
+  min-width: 0;
+  word-break: break-word;
+}
+
+.NavList__labelArea {
+  display: flex;
+  align-items: center;
+  flex: 1 1 auto;
+  gap: var(--base-size-8);
+  min-width: 0;
+  border-radius: var(--brand-borderRadius-small);
+}
+
+.NavList__leadingVisual,
+.NavList__trailingVisual {
+  display: inline-flex;
+  flex: none;
+  color: inherit;
+}
+
+.NavList__trailingVisual {
+  margin-inline-start: auto;
+  margin-inline-end: var(--base-size-6);
+}
+
+.NavList__toggleIcon {
+  flex: none;
+  transform-origin: 50% 50%;
+  transition: transform var(--brand-animation-duration-fast) var(--brand-animation-easing-glide);
+}
+
+.NavList__accordionButton[aria-expanded='true'] .NavList__toggleIcon {
+  transform: rotate(-180deg);
+}
+
+.NavList__subNav {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin: 0;
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  padding: 0;
+  transform: translateY(calc(-1 * var(--base-size-8)));
+  visibility: hidden;
+  transition: max-height var(--brand-animation-duration-fast) var(--brand-animation-easing-glide),
+    opacity var(--brand-animation-duration-fast) var(--brand-animation-easing-glide),
+    transform var(--brand-animation-duration-fast) var(--brand-animation-easing-glide),
+    visibility 0s linear var(--brand-animation-duration-fast);
+}
+
+.NavList__subNav--expanded {
+  max-height: var(--brand-NavList-subNav-height, none);
+  opacity: 1;
+  transform: translateY(0);
+  visibility: visible;
+  transition: max-height var(--brand-animation-duration-fast) var(--brand-animation-easing-glide),
+    opacity var(--brand-animation-duration-fast) var(--brand-animation-easing-glide),
+    transform var(--brand-animation-duration-fast) var(--brand-animation-easing-glide), visibility 0s linear 0s;
+}
+
+.NavList__subNav[aria-hidden='true'] .NavList__subNav {
+  visibility: hidden;
+}
+
+.NavList__item--level-1 > .NavList__itemContent {
+  padding: var(--base-size-24) var(--base-size-16) var(--base-size-16);
+}
+
+.NavList__item--level-1.NavList__item--expanded {
+  padding-block-end: var(--base-size-16);
+}
+
+.NavList__item--level-1 > .NavList__itemContent .NavList__link {
+  order: 1;
+  font-size: var(--brand-text-size-200);
+  font-weight: var(--brand-text-weight-500);
+  line-height: var(--brand-text-lineHeight-200);
+}
+
+.NavList__item--level-1 > .NavList__itemContent .NavList__accordionButton {
+  color: var(--brand-color-text-default);
+  min-height: var(--base-size-32);
+  margin-block: calc(-1 * var(--base-size-8));
+  padding-inline-start: 0;
+  padding-inline-end: var(--base-size-6);
+  border-radius: var(--brand-borderRadius-small);
+}
+
+.NavList__item--level-1 > .NavList__itemContent .NavList__accordionButton > * {
+  position: relative;
+  z-index: 1;
+}
+
+.NavList__item--level-1 > .NavList__itemContent .NavList__accordionButton:not(:disabled):is(:hover, :active)::after,
+.NavList__item--level-1.NavList__item--has-current-descendant
+  > .NavList__itemContent
+  .NavList__accordionButton[aria-expanded='false']:not(:disabled)::after {
+  content: '';
+  position: absolute;
+  z-index: 0;
+  inset-block: 0;
+  inset-inline-start: 0;
+  inset-inline-end: 0;
+  border-radius: var(--brand-borderRadius-small);
+  background-color: var(--brand-color-canvas-subtle);
+  pointer-events: none;
+}
+
+.NavList__item--level-1 > .NavList__itemContent .NavList__toggleIcon {
+  order: 2;
+  margin-inline-start: auto;
+}
+
+.NavList__item:is(.NavList__item--level-2, .NavList__item--level-3, .NavList__item--level-4) > .NavList__itemContent {
+  padding-block: calc(var(--base-size-8) + var(--base-size-2));
+  padding-inline-end: var(--base-size-16);
+}
+
+.NavList__item--level-2 > .NavList__itemContent {
+  padding-inline-start: var(--brand-NavList-item-paddingInlineStart-level-2, var(--base-size-24));
+}
+
+.NavList__item--level-3 > .NavList__itemContent {
+  padding-inline-start: var(--base-size-40);
+}
+
+.NavList__item--level-4 > .NavList__itemContent {
+  padding-inline-start: calc(var(--base-size-48) + var(--base-size-8));
+}
+
+.NavList__item--leaf:not(.NavList__item--level-1) > .NavList__itemContent {
+  min-height: var(--base-size-32);
+  padding-block: 0;
+  padding-inline: var(--base-size-16);
+}
+
+.NavList__item--leaf.NavList__item--level-2 > .NavList__itemContent {
+  padding-inline-start: var(--brand-NavList-alignedLabel-paddingInlineStart, var(--base-size-24));
+}
+
+.NavList__item--leaf.NavList__item--level-3 > .NavList__itemContent {
+  padding-inline-start: var(--base-size-40);
+}
+
+.NavList__item--leaf.NavList__item--level-4 > .NavList__itemContent {
+  padding-inline-start: calc(var(--base-size-48) + var(--base-size-8));
+}
+
+.NavList__item--leaf.NavList__item--level-5 > .NavList__itemContent {
+  padding-inline-start: calc(var(--base-size-64) + var(--base-size-8));
+}
+
+.NavList__item:is(.NavList__item--level-2, .NavList__item--level-3, .NavList__item--level-4)
+  > .NavList__itemContent
+  .NavList__toggleIcon {
+  order: 1;
+}
+
+.NavList__item:is(.NavList__item--level-2, .NavList__item--level-3, .NavList__item--level-4)
+  > .NavList__itemContent
+  .NavList__accordionButton {
+  min-height: var(--base-size-32);
+  margin-block: calc(-1 * var(--base-size-8));
+  padding-inline-start: var(--base-size-8);
+  border-radius: var(--brand-borderRadius-small);
+}
+
+.NavList__item:is(.NavList__item--level-2, .NavList__item--level-3, .NavList__item--level-4)
+  > .NavList__itemContent
+  .NavList__toggleIcon {
+  position: absolute;
+  inset-block-start: 50%;
+  inset-inline-start: calc(-1 * var(--base-size-8));
+  transform: translateY(-50%);
+}
+
+.NavList__item:is(.NavList__item--level-2, .NavList__item--level-3, .NavList__item--level-4)
+  > .NavList__itemContent
+  .NavList__accordionButton[aria-expanded='true']
+  .NavList__toggleIcon {
+  transform: translateY(-50%) rotate(-180deg);
+}
+
+.NavList__item:not(.NavList__item--level-1).NavList__item--has-current-descendant
+  > .NavList__itemContent
+  .NavList__accordionButton[aria-expanded='false']
+  .NavList__toggleIcon {
+  inset-inline-start: calc(-1 * var(--base-size-16));
+}
+
+.NavList__item:is(.NavList__item--level-2, .NavList__item--level-3, .NavList__item--level-4, .NavList__item--level-5)
+  > .NavList__itemContent
+  .NavList__link {
+  order: 2;
+  font-size: var(--brand-text-size-100);
+  line-height: var(--brand-text-lineHeight-100);
+}
+
+.NavList__list--flat > .NavList__item--leaf > .NavList__itemContent .NavList__link {
+  font-size: var(--brand-text-size-200);
+  line-height: var(--brand-text-lineHeight-200);
+  letter-spacing: var(--brand-text-letterSpacing-200);
+}
+
+.NavList__item--leaf:not(.NavList__item--level-1) > .NavList__itemContent .NavList__link {
+  min-height: var(--base-size-32);
+  padding-inline-start: var(--base-size-8);
+  border-radius: var(--brand-borderRadius-small);
+}
+
+.NavList__item--leaf:not(.NavList__item--level-1) > .NavList__itemContent .NavList__labelArea {
+  min-height: calc(var(--base-size-32) - var(--brand-borderWidth-thin));
+  margin-block-end: var(--brand-borderWidth-thin);
+  padding-inline-start: var(--base-size-6);
+}
+
+.NavList__item--leaf:not(.NavList__item--level-1) .NavList__link[aria-current]:not([aria-current='false']) {
+  background-color: transparent;
+  padding-inline-start: var(--base-size-8);
+}
+
+.NavList__item--leaf:not(.NavList__item--level-1) > .NavList__itemContent .NavList__link:hover .NavList__labelArea,
+.NavList__item--leaf:not(.NavList__item--level-1)
+  .NavList__link[aria-current]:not([aria-current='false'])
+  .NavList__labelArea {
+  background-color: var(--brand-color-canvas-subtle);
+}
+
+.NavList__item--leaf:not(.NavList__item--level-1) > .NavList__itemContent .NavList__link:hover {
+  background-color: transparent;
+  padding-inline-start: var(--base-size-8);
+}
+
+[data-color-mode='dark'] .NavList {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .NavList,
+  .NavList::before,
+  .NavList::after,
+  .NavList * {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}

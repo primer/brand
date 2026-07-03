@@ -349,3 +349,21 @@ export const GridlineExpressiveBlockEndPaddedTrailingComponent: Story = {
     </Hero>
   ),
 }
+
+export const GridlineExpressiveIgnoresCenterAlign: Story = {
+  name: 'Expressive variant with ignored center align',
+  render: () => (
+    // `align="center"` is intentionally set but shouldn't be applied based on in-component logic
+    <Hero variant="gridline-expressive" align="center">
+      <Hero.Label>Eyebrow</Hero.Label>
+      <Hero.Heading>This is my super sweet hero heading</Hero.Heading>
+      <Hero.Description>
+        Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem
+        aperiam, quae inventore.
+      </Hero.Description>
+      <Hero.PrimaryAction href="#">Get started for free</Hero.PrimaryAction>
+      <Hero.SecondaryAction href="#">See plans & pricing</Hero.SecondaryAction>
+      <Hero.Image src={placeholderImage} alt="placeholder image, blank with gray solid fill" />
+    </Hero>
+  ),
+}
