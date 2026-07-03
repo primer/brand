@@ -19,6 +19,12 @@
   }
 }
 
+@media screen and (min-width: 34rem) and (max-width: 47.99rem) {
+  .Tiles-grid {
+    --tiles-columns: 3;
+  }
+}
+
 @media screen and (min-width: 63.25rem) {
   .Tiles--layout-default .Tiles-grid {
     --tiles-columns: 6;
