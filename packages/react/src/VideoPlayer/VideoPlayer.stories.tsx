@@ -11,7 +11,6 @@ const meta = {
     title: 'GitHub media player',
     visuallyHiddenTitle: false,
     showBranding: true,
-    showControlsWhenPaused: true,
     showPlayPauseButton: true,
     showSeekControl: true,
     showCCButton: true,
@@ -36,6 +35,7 @@ const meta = {
     },
     showControlsWhenPaused: {
       type: 'boolean',
+      description: 'Deprecated. This prop has no effect and will be removed in a future release.',
     },
     showPlayPauseButton: {
       type: 'boolean',

@@ -32,6 +32,9 @@ type VideoPlayerProps = {
   visuallyHiddenTitle?: boolean
   showBranding?: boolean
   animate?: AnimateProps
+  /**
+   * @deprecated The showControlsWhenPaused prop has no effect and will be removed in a future release.
+   */
   showControlsWhenPaused?: boolean
   showPlayPauseButton?: boolean
   showSeekControl?: boolean
@@ -50,7 +53,7 @@ const Root = forwardRef<HTMLVideoElement, VideoPlayerProps>(
       showBranding = true,
       children,
       className,
-      showControlsWhenPaused = true,
+      showControlsWhenPaused: _showControlsWhenPaused,
       showPlayPauseButton = true,
       showSeekControl = true,
       showCCButton = true,
@@ -87,7 +90,7 @@ const Root = forwardRef<HTMLVideoElement, VideoPlayerProps>(
 
     const showControlsRow1 = showPlayPauseButton || showSeekControl
     const showControlsRow2 = showCCButton || showMuteButton || showVolumeControl || showFullScreenButton
-    const showControlsBar = (showControlsWhenPaused || isPlaying) && (showControlsRow1 || showControlsRow2)
+    const showControlsBar = showControlsRow1 || showControlsRow2
 
     return (
       <div data-video-player-container className={styles.VideoPlayer__container} ref={fullscreenRef}>
