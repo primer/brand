@@ -32,6 +32,7 @@ type VideoPlayerProps = {
   visuallyHiddenTitle?: boolean
   showBranding?: boolean
   animate?: AnimateProps
+  showControlsWhenPaused?: boolean
   showPlayPauseButton?: boolean
   showSeekControl?: boolean
   showCCButton?: boolean
@@ -49,6 +50,7 @@ const Root = forwardRef<HTMLVideoElement, VideoPlayerProps>(
       showBranding = true,
       children,
       className,
+      showControlsWhenPaused = true,
       showPlayPauseButton = true,
       showSeekControl = true,
       showCCButton = true,
@@ -85,7 +87,7 @@ const Root = forwardRef<HTMLVideoElement, VideoPlayerProps>(
 
     const showControlsRow1 = showPlayPauseButton || showSeekControl
     const showControlsRow2 = showCCButton || showMuteButton || showVolumeControl || showFullScreenButton
-    const showControlsBar = showControlsRow1 || showControlsRow2
+    const showControlsBar = (showControlsWhenPaused || isPlaying) && (showControlsRow1 || showControlsRow2)
 
     return (
       <div data-video-player-container className={styles.VideoPlayer__container} ref={fullscreenRef}>

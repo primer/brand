@@ -104,6 +104,36 @@ describe('VideoPlayer', () => {
     expect(getByRole('slider', {name: 'Volume'})).toBeInTheDocument()
   })
 
+  it('hides controls while paused when showControlsWhenPaused is false', () => {
+    const {getByRole, queryByRole} = render(
+      <VideoPlayer poster="/example-poster.jpg" title="test video" showControlsWhenPaused={false}>
+        <VideoPlayer.Source src="/example.mp4" />
+        <VideoPlayer.Track src="/example.vtt" default kind="subtitles" srcLang="en" label="English" />
+      </VideoPlayer>,
+    )
+
+    expect(getByRole('button', {name: 'Play'})).toBeInTheDocument()
+    expect(queryByRole('button', {name: 'Play video'})).not.toBeInTheDocument()
+    expect(queryByRole('slider', {name: 'Seek'})).not.toBeInTheDocument()
+  })
+
+  it('shows controls while playing when showControlsWhenPaused is false', async () => {
+    const {getByRole, getByTitle} = render(
+      <VideoPlayer poster="/example-poster.jpg" title="test video" showControlsWhenPaused={false}>
+        <VideoPlayer.Source src="/example.mp4" />
+        <VideoPlayer.Track src="/example.vtt" default kind="subtitles" srcLang="en" label="English" />
+      </VideoPlayer>,
+    )
+
+    const video = getByTitle('test video') as HTMLVideoElement
+    fireEvent.play(video)
+
+    await waitFor(() => {
+      expect(getByRole('button', {name: 'Pause video'})).toBeInTheDocument()
+    })
+    expect(getByRole('slider', {name: 'Seek'})).toBeInTheDocument()
+  })
+
   it('plays the video when the play button is pressed', async () => {
     const {getByRole, getByTitle} = render(
       <VideoPlayer poster="/example-poster.jpg" title="test video">
