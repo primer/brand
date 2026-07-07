@@ -39,7 +39,6 @@ declare const styles: {
   readonly "SubdomainNavBar-primary-nav-list-item--invisible": string;
   readonly "SubdomainNavBar-primary-nav-list-item--overflow": string;
   readonly "SubdomainNavBar-primary-nav-list-item--visible": string;
-  readonly "SubdomainNavBar-search-backdrop": string;
   readonly "SubdomainNavBar-search-button": string;
   readonly "SubdomainNavBar-search-button--gridline": string;
   readonly "SubdomainNavBar-search-close-button": string;

@@ -12,6 +12,10 @@ jest.mock('../hooks/useWindowSize')
 const mockUseWindowSize = useWindowSize as jest.Mock
 mockUseWindowSize.mockImplementation(() => ({isSmall: false, isMedium: false}))
 
+const dispatchDialogCancel = (dialog: HTMLElement) => {
+  fireEvent(dialog, new Event('cancel', {cancelable: true}))
+}
+
 describe('SubdomainNavBar', () => {
   afterEach(() => {
     cleanup()
@@ -107,6 +111,8 @@ describe('SubdomainNavBar', () => {
     const searchResultsLandmark = getByRole('search')
 
     expect(searchResultsDialog).toBeInTheDocument()
+    expect(searchResultsDialog.tagName).toBe('DIALOG')
+    expect(searchResultsDialog).toHaveAttribute('open')
     expect(searchResultsLandmark).toBeInTheDocument()
   })
 
@@ -323,7 +329,7 @@ describe('SubdomainNavBar', () => {
     expect(getByPlaceholderText('Search docs')).toBeInTheDocument()
   })
 
-  it('renders the gridline search dialog with a backdrop and text close button', () => {
+  it('renders the gridline search dialog as a native dialog with a text close button', () => {
     mockUseWindowSize.mockImplementation(() => ({isSmall: true, isMedium: true}))
 
     const {container, getByRole, getByTestId} = render(
@@ -334,8 +340,11 @@ describe('SubdomainNavBar', () => {
 
     fireEvent.click(getByTestId('toggle-search'))
 
-    expect(container.querySelector('.SubdomainNavBar-search-backdrop')).toBeInTheDocument()
-    expect(getByRole('dialog')).toHaveClass('SubdomainNavBar-search-dialog--gridline')
+    const dialog = getByRole('dialog')
+    expect(container.querySelector('.SubdomainNavBar-search-backdrop')).not.toBeInTheDocument()
+    expect(dialog.tagName).toBe('DIALOG')
+    expect(dialog).toHaveAttribute('open')
+    expect(dialog).toHaveClass('SubdomainNavBar-search-dialog--gridline')
     expect(getByRole('button', {name: 'Close'})).toHaveTextContent('Close')
   })
 
@@ -354,7 +363,7 @@ describe('SubdomainNavBar', () => {
     expect(getByRole('dialog')).toBeInTheDocument()
   })
 
-  it('closes the gridline search dialog on the second Escape press when results are visible', () => {
+  it('closes the gridline search dialog on native cancel when results are visible', () => {
     mockUseWindowSize.mockImplementation(() => ({isSmall: true, isMedium: true}))
     const mockResultsData: SubdomainNavBarSearchResults = [
       {
@@ -384,60 +393,11 @@ describe('SubdomainNavBar', () => {
     fireEvent.click(getByTestId('toggle-search'))
     expect(getByRole('option')).toBeInTheDocument()
 
-    fireEvent.keyDown(getByRole('combobox'), {key: 'Escape'})
-    expect(getByRole('dialog')).toBeInTheDocument()
-    expect(queryByRole('option')).not.toBeInTheDocument()
-
-    fireEvent.keyDown(getByRole('combobox'), {key: 'Escape'})
+    dispatchDialogCancel(getByRole('dialog'))
     expect(queryByRole('dialog')).not.toBeInTheDocument()
   })
 
-  it('hides results on the first Escape while keeping focus on the input', () => {
-    mockUseWindowSize.mockImplementation(() => ({isSmall: true, isMedium: true}))
-    const mockResultsData: SubdomainNavBarSearchResults = [
-      {
-        title: 'AI results',
-        results: [
-          {
-            title: 'How do I connect to GitHub with my SSH?',
-            description: 'A generated answer suggestion',
-            url: 'https://github.com',
-            date: '2026-07-01T00:00+02:00',
-          },
-        ],
-      },
-    ]
-
-    const {getByRole, getByTestId, queryByRole} = render(
-      <SubdomainNavBar title="Subdomain" variant="gridline">
-        <SubdomainNavBar.Search
-          searchTerm="docs"
-          searchResults={mockResultsData}
-          onChange={jest.fn}
-          onSubmit={jest.fn()}
-        />
-      </SubdomainNavBar>,
-    )
-
-    fireEvent.click(getByTestId('toggle-search'))
-    expect(getByRole('option')).toBeInTheDocument()
-
-    const combobox = getByRole('combobox')
-    combobox.focus()
-    expect(combobox).toHaveFocus()
-
-    // First Escape only hides the results, keeping the dialog open and focus on the input.
-    fireEvent.keyDown(combobox, {key: 'Escape'})
-    expect(getByRole('dialog')).toBeInTheDocument()
-    expect(queryByRole('option')).not.toBeInTheDocument()
-    expect(combobox).toHaveFocus()
-
-    // Second Escape closes the dialog entirely.
-    fireEvent.keyDown(combobox, {key: 'Escape'})
-    expect(queryByRole('dialog')).not.toBeInTheDocument()
-  })
-
-  it('closes the gridline search dialog on the first Escape when no results are visible', () => {
+  it('closes the gridline search dialog on native cancel when no results are visible', () => {
     mockUseWindowSize.mockImplementation(() => ({isSmall: true, isMedium: true}))
 
     const {getByRole, getByTestId, queryByRole} = render(
@@ -450,7 +410,7 @@ describe('SubdomainNavBar', () => {
     expect(getByRole('dialog')).toBeInTheDocument()
     expect(queryByRole('option')).not.toBeInTheDocument()
 
-    fireEvent.keyDown(getByRole('combobox'), {key: 'Escape'})
+    dispatchDialogCancel(getByRole('dialog'))
     expect(queryByRole('dialog')).not.toBeInTheDocument()
   })
 
@@ -466,45 +426,6 @@ describe('SubdomainNavBar', () => {
     const combobox = getByRole('combobox')
     expect(combobox).toHaveAttribute('autocomplete', 'off')
     expect(combobox).toHaveAttribute('aria-autocomplete', 'list')
-  })
-
-  it('closes the gridline search dialog with Escape even when focus is outside the dialog', () => {
-    mockUseWindowSize.mockImplementation(() => ({isSmall: true, isMedium: true}))
-    const mockResultsData: SubdomainNavBarSearchResults = [
-      {
-        title: 'AI results',
-        results: [
-          {
-            title: 'How do I connect to GitHub with my SSH?',
-            description: 'A generated answer suggestion',
-            url: 'https://github.com',
-            date: '2026-07-01T00:00+02:00',
-          },
-        ],
-      },
-    ]
-
-    const {getByRole, getByTestId, queryByRole} = render(
-      <SubdomainNavBar title="Subdomain" variant="gridline">
-        <SubdomainNavBar.Search
-          searchTerm="docs"
-          searchResults={mockResultsData}
-          onChange={jest.fn}
-          onSubmit={jest.fn()}
-        />
-      </SubdomainNavBar>,
-    )
-
-    fireEvent.click(getByTestId('toggle-search'))
-    expect(getByRole('option')).toBeInTheDocument()
-
-    fireEvent.focusIn(document.body)
-    fireEvent.keyDown(document, {key: 'Escape'})
-    expect(getByRole('dialog')).toBeInTheDocument()
-    expect(queryByRole('option')).not.toBeInTheDocument()
-
-    fireEvent.keyDown(document, {key: 'Escape'})
-    expect(queryByRole('dialog')).not.toBeInTheDocument()
   })
 
   it('adds a trailing border class to the action area when a trailing component follows it', () => {

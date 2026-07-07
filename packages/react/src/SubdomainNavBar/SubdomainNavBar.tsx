@@ -117,7 +117,8 @@ function Root({
 
     onNarrowMenuToggle?.(!nextMenuHidden)
   }
-  const handleSearchVisibility = () => setSearchVisible(!searchVisible)
+  const handleSearchOpen = useCallback(() => setSearchVisible(true), [])
+  const handleSearchClose = useCallback(() => setSearchVisible(false), [])
   const focusTrapRef = useRef<HTMLDivElement | null>(null)
 
   useEffect(() => {
@@ -300,7 +301,8 @@ function Root({
                         (hasActions || hasTrailingComponent) &&
                           styles['SubdomainNavBar-search-trigger--has-trailing-item'],
                       ),
-                      handlerFn: handleSearchVisibility,
+                      onSearchOpen: handleSearchOpen,
+                      onSearchClose: handleSearchClose,
                       subdomainNavBarVariant: variant,
                       title,
                     })
@@ -432,12 +434,9 @@ export type SubdomainNavBarSearchResultGroupProps = {
 
 export type SubdomainNavBarSearchResults = SubdomainNavBarSearchResultProps[] | SubdomainNavBarSearchResultGroupProps[]
 
-type HandlerEvent = MouseEvent | TouchEvent | FocusEvent
-
 type SearchProps = {
   onSubmit: (e: React.FormEvent<HTMLFormElement>) => void
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
-  ref: React.RefObject<HTMLInputElement>
   active?: boolean
   className?: string
   /**
@@ -445,7 +444,8 @@ type SearchProps = {
    */
   variant?: SubdomainNavBarSearchVariant
   title?: string
-  handlerFn?: (event: HandlerEvent) => void
+  onSearchOpen?: () => void
+  onSearchClose?: () => void
   autoComplete?: boolean
   /**
    * Placeholder text shown in the input-style trigger and the opened search input.
@@ -513,7 +513,7 @@ function normalizeSearchResults(searchResults: SubdomainNavBarSearchResults = []
   return groups
 }
 
-const _SearchInternal = forwardRef<HTMLDivElement, SearchProps>(
+const _SearchInternal = forwardRef<HTMLInputElement, SearchProps>(
   (
     {
       active,
@@ -521,7 +521,8 @@ const _SearchInternal = forwardRef<HTMLDivElement, SearchProps>(
       title,
       searchResults,
       searchTerm,
-      handlerFn,
+      onSearchOpen,
+      onSearchClose,
       onSubmit,
       onChange,
       placeholder,
@@ -529,92 +530,99 @@ const _SearchInternal = forwardRef<HTMLDivElement, SearchProps>(
       subdomainNavBarVariant,
       variant: searchVariant = 'icon',
     },
-    ref,
+    forwardedRef,
   ) => {
-    const dialogRef = useRef<HTMLDivElement | null>(null)
+    const dialogRef = useRef<HTMLDialogElement | null>(null)
+    const inputRef = useRef<HTMLInputElement | null>(null)
     const isGridlineVariant = subdomainNavBarVariant === 'gridline'
     const resolvedPlaceholder = placeholder ?? (title ? `Search ${title}` : 'Search')
     const normalizedSearchResultGroups = useMemo(() => normalizeSearchResults(searchResults), [searchResults])
     const hasGroupedSearchResults = normalizedSearchResultGroups.some(group => group.title)
     const searchResultsLength = normalizedSearchResultGroups.reduce((count, group) => count + group.results.length, 0)
-
-    useFocusTrap({containerRef: dialogRef, restoreFocusOnCleanUp: true, disabled: !active})
+    const hasSearchResults = searchResultsLength > 0
 
     const [activeDescendant, setActiveDescendant] = useState<number>(-1)
-    const [listboxActive, setListboxActive] = useState<boolean>()
-    const listboxActiveRef = useRef(false)
     const [liveRegion, setLiveRegion] = useState<boolean>(false)
 
-    const handleClose = useCallback(
-      (event?: React.MouseEvent<HTMLButtonElement, MouseEvent> | HandlerEvent | null) => {
-        if (handlerFn) handlerFn(event as HandlerEvent)
-        setActiveDescendant(-1)
+    const handleClose = useCallback(() => {
+      onSearchClose?.()
+      setActiveDescendant(-1)
+    }, [onSearchClose])
+
+    const setInputRef = useCallback(
+      (input: HTMLInputElement | null) => {
+        inputRef.current = input
+
+        if (typeof forwardedRef === 'function') {
+          forwardedRef(input)
+          return
+        }
+
+        if (forwardedRef) {
+          forwardedRef.current = input
+        }
       },
-      [handlerFn],
+      [forwardedRef],
     )
 
     useEffect(() => {
-      if (!active) return
+      const dialog = dialogRef.current
 
-      const handlePointerOutside = (event: MouseEvent | TouchEvent) => {
-        if (!dialogRef.current || dialogRef.current.contains(event.target as Node)) return
+      if (!dialog) return
 
-        handleClose(event)
-      }
+      if (active) {
+        if (!dialog.open) {
+          if (typeof dialog.showModal === 'function') {
+            dialog.showModal()
+          } else {
+            dialog.setAttribute('open', '')
+          }
+        }
 
-      document.addEventListener('mousedown', handlePointerOutside)
-      document.addEventListener('touchstart', handlePointerOutside, {passive: true})
+        inputRef.current?.focus()
 
-      return () => {
-        document.removeEventListener('mousedown', handlePointerOutside)
-        document.removeEventListener('touchstart', handlePointerOutside)
-      }
-    }, [active, handleClose])
-    const dismissSearchWithEscape = useCallback(() => {
-      if (listboxActiveRef.current) {
-        listboxActiveRef.current = false
-        setListboxActive(false)
-        setActiveDescendant(-1)
         return
       }
 
-      handleClose()
-    }, [handleClose])
+      if (dialog.open) {
+        if (typeof dialog.close === 'function') {
+          dialog.close()
+        } else {
+          dialog.removeAttribute('open')
+        }
+      }
+    }, [active, inputRef])
 
-    const handleDialogKeyDownCapture = useCallback(
-      (event: React.KeyboardEvent<HTMLDivElement>) => {
-        if (event.key !== 'Escape') return
+    const handleDialogClick = useCallback(
+      (event: React.MouseEvent<HTMLDialogElement>) => {
+        if (event.target !== event.currentTarget) return
 
-        event.preventDefault()
-        event.stopPropagation()
+        const dialog = event.currentTarget
+        const dialogRect = dialog.getBoundingClientRect()
+        const clickIsInsideDialog =
+          event.clientX >= dialogRect.left &&
+          event.clientX <= dialogRect.right &&
+          event.clientY >= dialogRect.top &&
+          event.clientY <= dialogRect.bottom
 
-        dismissSearchWithEscape()
+        if (clickIsInsideDialog) return
+
+        handleClose()
       },
-      [dismissSearchWithEscape],
+      [handleClose],
     )
 
-    useEffect(() => {
-      if (!active) return
-
-      const handleWindowKeyDown = (event: KeyboardEvent) => {
-        if (event.key !== 'Escape' || event.defaultPrevented) return
-        if (dialogRef.current?.contains(event.target as Node)) return
-
+    const handleDialogCancel = useCallback(
+      (event: React.SyntheticEvent<HTMLDialogElement>) => {
         event.preventDefault()
-        event.stopPropagation()
-        dismissSearchWithEscape()
-      }
-
-      window.addEventListener('keydown', handleWindowKeyDown, {capture: true})
-
-      return () => {
-        window.removeEventListener('keydown', handleWindowKeyDown, {capture: true})
-      }
-    }, [active, dismissSearchWithEscape])
+        handleClose()
+      },
+      [handleClose],
+    )
 
     const handleAriaFocus = useCallback(
-      event => {
-        const supportedKeys = ['ArrowDown', 'ArrowUp', 'Escape', 'Enter']
+      (event: React.KeyboardEvent<HTMLInputElement>) => {
+        const supportedKeys = ['ArrowDown', 'ArrowUp', 'Enter']
         const currentCount = activeDescendant
         const dialog = dialogRef.current
         let count
@@ -626,11 +634,6 @@ const _SearchInternal = forwardRef<HTMLDivElement, SearchProps>(
         }
 
         event.preventDefault()
-
-        if (event.key === 'Escape') {
-          dismissSearchWithEscape()
-          return
-        }
 
         if (event.key === 'ArrowDown') {
           // If count reaches last search result item, reset to -1
@@ -651,7 +654,7 @@ const _SearchInternal = forwardRef<HTMLDivElement, SearchProps>(
           link.click()
         }
       },
-      [searchResultsLength, activeDescendant, dismissSearchWithEscape],
+      [searchResultsLength, activeDescendant],
     )
 
     const searchLiveRegion = useCallback(() => {
@@ -665,13 +668,6 @@ const _SearchInternal = forwardRef<HTMLDivElement, SearchProps>(
     }, [active])
 
     useEffect(() => {
-      // We want to set "listboxActive" when search results are present,
-      // or the user pressed "Escape". We watch for "searchTerm", as we -
-      // want the listbox to become active if they pressed "Escape", and -
-      // adjusted their existing value.
-      const search = searchResultsLength > 0
-      listboxActiveRef.current = search
-      setListboxActive(search)
       searchLiveRegion()
     }, [searchResultsLength, searchTerm, searchLiveRegion])
 
@@ -732,7 +728,7 @@ const _SearchInternal = forwardRef<HTMLDivElement, SearchProps>(
             <button
               aria-label={`${resolvedPlaceholder} search`}
               className={styles['SubdomainNavBar-search-input-button']}
-              onClick={handlerFn as (event) => void}
+              onClick={onSearchOpen}
               data-testid="toggle-search"
               type="button"
             >
@@ -755,136 +751,134 @@ const _SearchInternal = forwardRef<HTMLDivElement, SearchProps>(
               variant="secondary"
               size="small"
               leadingVisual={<SearchIcon />}
-              onClick={handlerFn as (event) => void}
+              onClick={onSearchOpen}
               data-testid="toggle-search"
             />
           )}
         </div>
-        {active && isGridlineVariant && <div className={styles['SubdomainNavBar-search-backdrop']} />}
-        {active && (
-          <div
-            ref={dialogRef}
-            role="dialog"
-            aria-label={`Search ${title}`}
-            aria-modal="true"
-            tabIndex={-1}
-            className={clsx(
-              styles['SubdomainNavBar-search-dialog'],
-              isGridlineVariant && styles['SubdomainNavBar-search-dialog--gridline'],
-            )}
-            onKeyDownCapture={handleDialogKeyDownCapture}
-          >
-            <div className={clsx(styles['SubdomainNavBar-search-dialog-control-area'])}>
-              <div className={styles['SubdomainNavBar-search-input-area']}>
-                <form className={clsx(styles['SubdomainNavBar-search-form'])} onSubmit={onSubmit} role="search">
-                  <FormControl fullWidth size="medium">
-                    <FormControl.Label visuallyHidden>Search</FormControl.Label>
-                    <TextInput
-                      ref={ref}
-                      className={clsx(styles['SubdomainNavBar-search-text-input'])}
-                      name="search"
-                      role="combobox"
-                      // Suppress the browser's native autocomplete/autofill dropdown. When it is
-                      // open, the browser consumes the first Escape to dismiss it, which would
-                      // otherwise require an extra keypress before our own Escape handling (hide
-                      // results, then close the dialog) can run.
-                      autoComplete="off"
-                      aria-autocomplete="list"
-                      aria-expanded={listboxActive}
-                      aria-controls="listbox-search-results"
-                      placeholder={resolvedPlaceholder}
-                      onChange={onChange}
-                      defaultValue={searchTerm}
-                      invisible
-                      leadingVisual={<SearchIcon size={16} />}
-                      aria-activedescendant={
-                        activeDescendant === -1 ? undefined : `subdomainnavbar-search-result-${activeDescendant}`
-                      }
-                      onKeyDown={handleAriaFocus}
-                    />
-                  </FormControl>
-                </form>
-                <button
-                  aria-label="Close"
-                  className={styles['SubdomainNavBar-search-close-button']}
-                  onClick={handleClose}
-                  type="button"
-                >
-                  Close
-                </button>
-              </div>
-            </div>
-
-            <div
-              id="listbox-search-results"
-              className={clsx(
-                styles['SubdomainNavBar-search-results-area'],
-                listboxActive && styles['SubdomainNavBar-search-results-area--visible'],
-              )}
-            >
-              {listboxActive && (
-                <div className={clsx(styles['SubdomainNavBar-search-results-container'])}>
-                  {!hasGroupedSearchResults && (
-                    <Text
-                      id="subdomainnavbar-search-results-heading"
-                      className={styles['SubdomainNavBar-search-results-heading']}
-                    >
-                      Results for &ldquo;{searchTerm}&rdquo;
-                    </Text>
-                  )}
-                  <ul
-                    role="listbox"
-                    tabIndex={0}
-                    aria-labelledby={!hasGroupedSearchResults ? 'subdomainnavbar-search-results-heading' : undefined}
-                    aria-label={
-                      hasGroupedSearchResults
-                        ? searchTerm
-                          ? `Results for ${searchTerm}`
-                          : 'Search results'
-                        : undefined
-                    }
-                    className={clsx(styles['SubdomainNavBar-search-results'])}
+        <dialog
+          ref={dialogRef}
+          aria-label={`Search ${title}`}
+          className={clsx(
+            styles['SubdomainNavBar-search-dialog'],
+            isGridlineVariant && styles['SubdomainNavBar-search-dialog--gridline'],
+          )}
+          onCancel={handleDialogCancel}
+          onClick={handleDialogClick}
+        >
+          {active && (
+            <>
+              <div className={clsx(styles['SubdomainNavBar-search-dialog-control-area'])}>
+                <div className={styles['SubdomainNavBar-search-input-area']}>
+                  <form className={clsx(styles['SubdomainNavBar-search-form'])} onSubmit={onSubmit} role="search">
+                    <FormControl fullWidth size="medium">
+                      <FormControl.Label visuallyHidden>Search</FormControl.Label>
+                      <TextInput
+                        ref={setInputRef}
+                        className={clsx(styles['SubdomainNavBar-search-text-input'])}
+                        name="search"
+                        role="combobox"
+                        // Suppress the browser's native autocomplete/autofill dropdown. When it is
+                        // open, the browser consumes the first Escape to dismiss it, which would
+                        // otherwise require an extra keypress before the native dialog can close.
+                        autoComplete="off"
+                        aria-autocomplete="list"
+                        aria-expanded={hasSearchResults}
+                        aria-controls="listbox-search-results"
+                        placeholder={resolvedPlaceholder}
+                        onChange={onChange}
+                        defaultValue={searchTerm}
+                        invisible
+                        leadingVisual={<SearchIcon size={16} />}
+                        aria-activedescendant={
+                          activeDescendant === -1 ? undefined : `subdomainnavbar-search-result-${activeDescendant}`
+                        }
+                        onKeyDown={handleAriaFocus}
+                      />
+                    </FormControl>
+                  </form>
+                  <button
+                    aria-label="Close"
+                    className={styles['SubdomainNavBar-search-close-button']}
+                    onClick={handleClose}
+                    type="button"
                   >
-                    {hasGroupedSearchResults
-                      ? normalizedSearchResultGroups.map((group, groupIndex) => {
-                          const groupHeadingId = `subdomainnavbar-search-result-group-${groupIndex}`
-
-                          return (
-                            <li
-                              key={group.title ?? `ungrouped-${groupIndex}`}
-                              className={styles['SubdomainNavBar-search-result-group']}
-                              role="presentation"
-                            >
-                              {group.title && (
-                                <Text
-                                  id={groupHeadingId}
-                                  className={styles['SubdomainNavBar-search-result-group-heading']}
-                                >
-                                  {group.title}
-                                </Text>
-                              )}
-                              <ul
-                                className={styles['SubdomainNavBar-search-result-group-list']}
-                                role="group"
-                                aria-labelledby={group.title ? groupHeadingId : undefined}
-                                aria-label={group.title ? undefined : 'Results'}
-                              >
-                                {group.results.map(renderSearchResult)}
-                              </ul>
-                            </li>
-                          )
-                        })
-                      : normalizedSearchResultGroups.flatMap(group => group.results.map(renderSearchResult))}
-                  </ul>
+                    Close
+                  </button>
                 </div>
-              )}
-              <div aria-live="polite" aria-atomic="true" data-testid={testIds.liveRegion} className="visually-hidden">
-                {`${searchResultsLength} suggestions.`}
-                {liveRegion && <span>&nbsp;</span>}
               </div>
-            </div>
-          </div>
-        )}
+
+              <div
+                id="listbox-search-results"
+                className={clsx(
+                  styles['SubdomainNavBar-search-results-area'],
+                  hasSearchResults && styles['SubdomainNavBar-search-results-area--visible'],
+                )}
+              >
+                {hasSearchResults && (
+                  <div className={clsx(styles['SubdomainNavBar-search-results-container'])}>
+                    {!hasGroupedSearchResults && (
+                      <Text
+                        id="subdomainnavbar-search-results-heading"
+                        className={styles['SubdomainNavBar-search-results-heading']}
+                      >
+                        Results for &ldquo;{searchTerm}&rdquo;
+                      </Text>
+                    )}
+                    <ul
+                      role="listbox"
+                      tabIndex={0}
+                      aria-labelledby={!hasGroupedSearchResults ? 'subdomainnavbar-search-results-heading' : undefined}
+                      aria-label={
+                        hasGroupedSearchResults
+                          ? searchTerm
+                            ? `Results for ${searchTerm}`
+                            : 'Search results'
+                          : undefined
+                      }
+                      className={clsx(styles['SubdomainNavBar-search-results'])}
+                    >
+                      {hasGroupedSearchResults
+                        ? normalizedSearchResultGroups.map((group, groupIndex) => {
+                            const groupHeadingId = `subdomainnavbar-search-result-group-${groupIndex}`
+
+                            return (
+                              <li
+                                key={group.title ?? `ungrouped-${groupIndex}`}
+                                className={styles['SubdomainNavBar-search-result-group']}
+                                role="presentation"
+                              >
+                                {group.title && (
+                                  <Text
+                                    id={groupHeadingId}
+                                    className={styles['SubdomainNavBar-search-result-group-heading']}
+                                  >
+                                    {group.title}
+                                  </Text>
+                                )}
+                                <ul
+                                  className={styles['SubdomainNavBar-search-result-group-list']}
+                                  role="group"
+                                  aria-labelledby={group.title ? groupHeadingId : undefined}
+                                  aria-label={group.title ? undefined : 'Results'}
+                                >
+                                  {group.results.map(renderSearchResult)}
+                                </ul>
+                              </li>
+                            )
+                          })
+                        : normalizedSearchResultGroups.flatMap(group => group.results.map(renderSearchResult))}
+                    </ul>
+                  </div>
+                )}
+                <div aria-live="polite" aria-atomic="true" data-testid={testIds.liveRegion} className="visually-hidden">
+                  {`${searchResultsLength} suggestions.`}
+                  {liveRegion && <span>&nbsp;</span>}
+                </div>
+              </div>
+            </>
+          )}
+        </dialog>
       </>
     )
   },

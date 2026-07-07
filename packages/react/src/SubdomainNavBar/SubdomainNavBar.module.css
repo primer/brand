@@ -879,18 +879,24 @@
   outline-offset: var(--base-size-2);
 }
 
-.SubdomainNavBar-search-backdrop {
+.SubdomainNavBar-search-dialog {
   position: fixed;
-  inset: 0;
-  z-index: 98;
-  background-color: rgb(0 0 0 / 20%);
-  -webkit-backdrop-filter: blur(var(--base-size-24));
-  backdrop-filter: blur(var(--base-size-24));
+  inset-block-start: 0;
+  inset-inline: 0;
+  z-index: 99;
+  width: 100vw;
+  block-size: calc(var(--SubdomainNavBar-height) - (var(--brand-borderWidth-thin) * 2));
+  max-width: none;
+  padding: 0;
+  margin: 0;
+  overflow: visible;
+  color: var(--brand-color-text-default);
+  background-color: var(--brand-SubdomainNavBar-canvas-search);
+  border: 0;
 }
 
-.SubdomainNavBar-search-dialog {
-  position: absolute;
-  z-index: 99;
+.SubdomainNavBar-search-dialog::backdrop {
+  background: transparent;
 }
 
 @media screen and (max-width: 767px) {
@@ -910,11 +916,8 @@
 
 @media screen and (min-width: 48rem) {
   .SubdomainNavBar-search-dialog {
-    position: absolute;
-    top: 0;
-    bottom: 1px;
-    left: 0;
-    right: 0;
+    inset-block-end: auto;
+    inset-inline-end: auto;
     background-color: var(--brand-SubdomainNavBar-canvas-search);
   }
 }
@@ -924,7 +927,7 @@
 }
 
 .SubdomainNavBar-search-dialog-control-area {
-  height: 74px;
+  height: calc(var(--SubdomainNavBar-height) - (var(--brand-borderWidth-thin) * 2));
   background: var(--brand-SubdomainNavBar-canvas-default);
   -webkit-backdrop-filter: blur(16px);
   backdrop-filter: blur(16px);
@@ -1041,7 +1044,6 @@
 }
 
 .SubdomainNavBar-search-dialog--gridline {
-  position: fixed;
   inset-block-start: calc(var(--base-size-64) + var(--base-size-8));
   inset-block-end: auto;
   inset-inline: calc(var(--base-size-64) + var(--base-size-8));
@@ -1059,6 +1061,12 @@
   border: var(--brand-borderWidth-thin) solid var(--brand-color-border-default);
   border-radius: var(--brand-borderRadius-large);
   box-shadow: 0 0 calc(var(--base-size-32) + var(--base-size-2)) rgb(0 0 0 / 10%);
+}
+
+.SubdomainNavBar-search-dialog--gridline::backdrop {
+  background-color: rgb(0 0 0 / 20%);
+  -webkit-backdrop-filter: blur(var(--base-size-24));
+  backdrop-filter: blur(var(--base-size-24));
 }
 
 .SubdomainNavBar-search-dialog--gridline .SubdomainNavBar-search-dialog-control-area {
