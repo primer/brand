@@ -44,8 +44,11 @@ Please refer to our [Storybook examples](https://primer.style/brand/storybook/?p
 
 `SubdomainNavBar` offers an optional search form control. The form can operate in both `onSubmit` and `onChange` modes, with the latter facilitating inline results to appear.
 
+When search is present, users can press `/` to open the search dialog. Set `keyboardShortcut={false}` on `SubdomainNavBar.Search` to turn off the shortcut, or pass another key value such as `keyboardShortcut="Command+Option+k"` to remap it. To open the same dialog programmatically, attach a ref to `SubdomainNavBar` and call `openSearch()`.
+
 ```jsx filename="noinline"
 const App = () => {
+  const navRef = React.useRef(null)
   const inputRef = React.useRef(null)
   const [searchResults, setSearchResults] = React.useState([])
   const [searchTerm, setSearchTerm] = React.useState('')
@@ -92,17 +95,22 @@ const App = () => {
   }
 
   return (
-    <SubdomainNavBar title="Subdomain" fixed={false}>
-      <SubdomainNavBar.Link href="#collections">Collections</SubdomainNavBar.Link>
-      <SubdomainNavBar.Link href="#topics">Topics</SubdomainNavBar.Link>
-      <SubdomainNavBar.Search
-        ref={inputRef}
-        searchTerm={searchTerm}
-        onSubmit={handleSubmit}
-        onChange={handleChange}
-        searchResults={searchResults}
-      />
-    </SubdomainNavBar>
+    <>
+      <button type="button" onClick={() => navRef.current?.openSearch()}>
+        Open search
+      </button>
+      <SubdomainNavBar ref={navRef} title="Subdomain" fixed={false}>
+        <SubdomainNavBar.Link href="#collections">Collections</SubdomainNavBar.Link>
+        <SubdomainNavBar.Link href="#topics">Topics</SubdomainNavBar.Link>
+        <SubdomainNavBar.Search
+          ref={inputRef}
+          searchTerm={searchTerm}
+          onSubmit={handleSubmit}
+          onChange={handleChange}
+          searchResults={searchResults}
+        />
+      </SubdomainNavBar>
+    </>
   )
 }
 
@@ -138,7 +146,7 @@ Use the `onNarrowMenuToggle` prop to detect when the mobile menu is opened or cl
 | `title`              | `string`                        |                     | The title or name of the subdomain. Appears adjacent to the logo and is required for communicating content to assisitive technologies. |
 | `titleHref`          | `string`                        |         `/`         | The URL for the site. Typically used to link the title prop value to the site root.                                                    |
 | `variant`            | `'default' \| 'gridline'`       |      `default`      | Applies the visual treatment. Use `gridline` to add separators and the full-width accent rule.                                         |
-| `ref`                | `React.RefObject`               |                     | Forward a Ref to the underlying DOM node                                                                                               |
+| `ref`                | `React.RefObject`               |                     | Forward a Ref to the underlying DOM node, with `openSearch()` and `closeSearch()` methods                                              |
 | `onNarrowMenuToggle` | `(isOpen: boolean) => void`     |                     | When the mobile menu is opened or closed, this callback is called with the new open state.                                             |
 
 <h3 id="SubdomainNavBar-link">

@@ -1,7 +1,13 @@
-import {cleanup, fireEvent, render} from '@testing-library/react'
+import {createRef} from 'react'
+import {act, cleanup, fireEvent, render} from '@testing-library/react'
 import '@testing-library/jest-dom'
 
-import {SubdomainNavBar, type SubdomainNavBarSearchResults, type SubdomainNavBarProps} from './SubdomainNavBar'
+import {
+  SubdomainNavBar,
+  type SubdomainNavBarHandle,
+  type SubdomainNavBarSearchResults,
+  type SubdomainNavBarProps,
+} from './SubdomainNavBar'
 import {axe, toHaveNoViolations} from 'jest-axe'
 
 import {useWindowSize} from '../hooks/useWindowSize'
@@ -114,6 +120,92 @@ describe('SubdomainNavBar', () => {
     expect(searchResultsDialog.tagName).toBe('DIALOG')
     expect(searchResultsDialog).toHaveAttribute('open')
     expect(searchResultsLandmark).toBeInTheDocument()
+  })
+
+  it('opens the search dialog with the "/" keyboard shortcut', () => {
+    const {getByRole, queryByRole} = render(<Component />)
+
+    expect(queryByRole('dialog')).not.toBeInTheDocument()
+
+    fireEvent.keyDown(document, {key: '/'})
+
+    expect(getByRole('dialog')).toHaveAttribute('open')
+    expect(getByRole('combobox')).toHaveFocus()
+  })
+
+  it('does not open the search dialog with "/" while focus is in another text input', () => {
+    const {getByLabelText, queryByRole} = render(
+      <>
+        <label htmlFor="page-search">Page search</label>
+        <input id="page-search" type="text" />
+        <Component />
+      </>,
+    )
+
+    const pageSearchInput = getByLabelText('Page search')
+    pageSearchInput.focus()
+
+    fireEvent.keyDown(pageSearchInput, {key: '/'})
+
+    expect(queryByRole('dialog')).not.toBeInTheDocument()
+  })
+
+  it('can remap the search dialog keyboard shortcut to a modifier combination', () => {
+    const {getByRole, queryByRole} = render(
+      <SubdomainNavBar title="Subdomain">
+        <SubdomainNavBar.Search
+          keyboardShortcut="Command+Option+k"
+          searchTerm="docs"
+          onChange={jest.fn}
+          onSubmit={jest.fn()}
+        />
+      </SubdomainNavBar>,
+    )
+
+    fireEvent.keyDown(document, {key: '/'})
+
+    expect(queryByRole('dialog')).not.toBeInTheDocument()
+
+    fireEvent.keyDown(document, {key: 'k'})
+
+    expect(queryByRole('dialog')).not.toBeInTheDocument()
+
+    fireEvent.keyDown(document, {code: 'KeyK', key: 'k', metaKey: true})
+
+    expect(queryByRole('dialog')).not.toBeInTheDocument()
+
+    fireEvent.keyDown(document, {altKey: true, code: 'KeyK', key: 'k', metaKey: true})
+
+    expect(getByRole('dialog')).toHaveAttribute('open')
+    expect(getByRole('combobox')).toHaveFocus()
+  })
+
+  it('can disable the search dialog keyboard shortcut', () => {
+    const {queryByRole} = render(
+      <SubdomainNavBar title="Subdomain">
+        <SubdomainNavBar.Search keyboardShortcut={false} searchTerm="docs" onChange={jest.fn} onSubmit={jest.fn()} />
+      </SubdomainNavBar>,
+    )
+
+    fireEvent.keyDown(document, {key: '/'})
+
+    expect(queryByRole('dialog')).not.toBeInTheDocument()
+  })
+
+  it('opens the search dialog through the SubdomainNavBar ref', () => {
+    const ref = createRef<SubdomainNavBarHandle>()
+    const {getByRole} = render(
+      <SubdomainNavBar ref={ref} title="Subdomain">
+        <SubdomainNavBar.Search searchTerm="docs" onChange={jest.fn} onSubmit={jest.fn()} />
+      </SubdomainNavBar>,
+    )
+
+    act(() => {
+      ref.current?.openSearch()
+    })
+
+    expect(getByRole('dialog')).toHaveAttribute('open')
+    expect(getByRole('combobox')).toHaveFocus()
   })
 
   it('renders grouped search results while preserving the listbox options', async () => {

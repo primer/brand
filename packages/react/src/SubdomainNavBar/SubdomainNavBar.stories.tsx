@@ -4,11 +4,12 @@ import {expect, userEvent, within} from 'storybook/test'
 import {INITIAL_VIEWPORTS} from 'storybook/viewport'
 
 import React, {useEffect, useState} from 'react'
-import {ActionMenu, Hero, River, Heading, Text, Link, Token} from '../'
+import {ActionMenu, Button, Hero, River, Heading, Text, Link, Token} from '../'
 import placeholderImage from '../fixtures/images/placeholder.png'
 
 import {
   SubdomainNavBar,
+  type SubdomainNavBarHandle,
   type SubdomainNavBarProps,
   type SubdomainNavBarSearchResults,
   type SubdomainNavBarSearchVariant,
@@ -692,6 +693,78 @@ const LanguageDropdownExample = () => {
 
 const VersionTokenExample = () => <Token>v1.5.3</Token>
 
+const ImperativeSearchApiExample = () => {
+  const navRef = React.useRef<SubdomainNavBarHandle | null>(null)
+  const [searchTerm, setSearchTerm] = React.useState('docs')
+  const handleOpenThenClose = () => {
+    navRef.current?.openSearch()
+    window.setTimeout(() => navRef.current?.closeSearch(), 1500)
+  }
+
+  return (
+    <>
+      <SubdomainNavBar ref={navRef} title="GitHub Docs" titleHref="/" fixed={false}>
+        <SubdomainNavBar.Link href="#guides">Guides</SubdomainNavBar.Link>
+        <SubdomainNavBar.Link href="#api">API</SubdomainNavBar.Link>
+        <SubdomainNavBar.Link href="#changelog">Changelog</SubdomainNavBar.Link>
+        <SubdomainNavBar.Search
+          searchTerm={searchTerm}
+          onSubmit={event => event.preventDefault()}
+          onChange={event => setSearchTerm(event.currentTarget.value)}
+          searchResults={mockGroupedSearchData}
+        />
+        <SubdomainNavBar.PrimaryAction href="#">Get started</SubdomainNavBar.PrimaryAction>
+      </SubdomainNavBar>
+      <div
+        style={{
+          alignItems: 'center',
+          display: 'flex',
+          flexWrap: 'wrap',
+          gap: 16,
+          inset: 0,
+          justifyContent: 'center',
+          padding: '0 24px',
+          position: 'fixed',
+        }}
+      >
+        <Button onClick={() => navRef.current?.openSearch()}>Open search</Button>
+        <Button variant="secondary" onClick={handleOpenThenClose}>
+          Open then close search
+        </Button>
+      </div>
+    </>
+  )
+}
+
+const KeyboardShortcutRemapExample = () => {
+  const [searchTerm, setSearchTerm] = React.useState('docs')
+
+  return (
+    <>
+      <SubdomainNavBar title="GitHub Docs" titleHref="/" variant="gridline" fullWidth fixed={false}>
+        <SubdomainNavBar.Link href="#guides">Guides</SubdomainNavBar.Link>
+        <SubdomainNavBar.Link href="#api">API</SubdomainNavBar.Link>
+        <SubdomainNavBar.Link href="#changelog">Changelog</SubdomainNavBar.Link>
+        <SubdomainNavBar.Search
+          variant="input"
+          placeholder="Search docs"
+          keyboardShortcut="Command+Option+k"
+          shortcutLabel="⌘+⌥+k"
+          searchTerm={searchTerm}
+          onSubmit={event => event.preventDefault()}
+          onChange={event => setSearchTerm(event.currentTarget.value)}
+          searchResults={mockGroupedSearchData}
+        />
+        <SubdomainNavBar.PrimaryAction href="#">Get started</SubdomainNavBar.PrimaryAction>
+      </SubdomainNavBar>
+      <Text as="p" style={{margin: '32px auto', maxWidth: 1280, padding: '0 24px'}}>
+        Press <kbd style={{fontFamily: 'var(--brand-fontStack-monospace)'}}>⌘+⌥+k</kbd> to open search. The default{' '}
+        <kbd style={{fontFamily: 'var(--brand-fontStack-monospace)'}}>/</kbd> shortcut is disabled for this example.
+      </Text>
+    </>
+  )
+}
+
 type GridlineExampleProps = {
   leadingComponent?: SubdomainNavBarProps['leadingComponent']
   trailingComponent?: SubdomainNavBarProps['trailingComponent']
@@ -784,6 +857,16 @@ export const SearchResultsVisible: Story = {
     await userEvent.type(canvas.getByRole('combobox'), 'devops')
     await expect(canvas.getByRole('combobox')).toHaveFocus()
   },
+}
+
+export const ImperativeSearchApi: Story = {
+  render: () => <ImperativeSearchApiExample />,
+  name: 'Imperative Search API',
+}
+
+export const KeyboardShortcutRemap: Story = {
+  render: () => <KeyboardShortcutRemapExample />,
+  name: 'Keyboard Shortcut Remap',
 }
 
 export const OverflowMenuOpen: Story = {

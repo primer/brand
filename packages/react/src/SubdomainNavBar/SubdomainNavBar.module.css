@@ -544,6 +544,7 @@
   background-color: var(--brand-color-canvas-default);
   border: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
   border-radius: calc(var(--brand-borderRadius-medium) / 2);
+  font-family: var(--brand-fontStack-monospace);
   font-size: var(--brand-text-size-100);
   font-weight: var(--base-text-weight-normal);
   line-height: 1.6;

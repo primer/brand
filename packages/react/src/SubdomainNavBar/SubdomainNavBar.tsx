@@ -1,4 +1,13 @@
-import React, {useState, useCallback, useRef, PropsWithChildren, forwardRef, useMemo, useEffect} from 'react'
+import React, {
+  useState,
+  useCallback,
+  useRef,
+  PropsWithChildren,
+  forwardRef,
+  useMemo,
+  useEffect,
+  useImperativeHandle,
+} from 'react'
 import {clsx} from 'clsx'
 import {ArrowUpRightIcon, ChevronLeftIcon, LinkExternalIcon, MarkGithubIcon, SearchIcon} from '@primer/octicons-react'
 
@@ -74,6 +83,12 @@ export type SubdomainNavBarProps = {
    */
   onNarrowMenuToggle?: (isOpen: boolean) => void
 }
+
+export type SubdomainNavBarHandle = HTMLElement & {
+  openSearch: () => void
+  closeSearch: () => void
+}
+
 const testIds = {
   root: 'SubdomainNavBar',
   get innerContainer() {
@@ -90,24 +105,103 @@ const testIds = {
   },
 }
 
-function Root({
-  children,
-  className,
-  fixed = true,
-  fullWidth = false,
-  logoHref = 'https://github.com',
-  title,
-  titleHref = '/',
-  variant = 'default',
-  leadingComponent,
-  trailingComponent,
-  onNarrowMenuToggle,
-  ...rest
-}: SubdomainNavBarProps) {
+function isEditableKeyboardTarget(target: EventTarget | Element | null): boolean {
+  if (!(target instanceof Element)) return false
+
+  const editableElement = target.closest(
+    'input, textarea, select, [role="textbox"], [role="combobox"], [role="searchbox"], [contenteditable]',
+  )
+
+  if (!editableElement) return false
+
+  if (editableElement instanceof HTMLElement && editableElement.isContentEditable) return true
+
+  return editableElement.matches('input, textarea, select, [role="textbox"], [role="combobox"], [role="searchbox"]')
+}
+
+type SearchKeyboardShortcut = {
+  key: string
+  altKey: boolean
+  ctrlKey: boolean
+  metaKey: boolean
+  shiftKey: boolean
+}
+
+const searchKeyboardShortcutModifiers = new Set(['alt', 'option', 'ctrl', 'control', 'meta', 'cmd', 'command', 'shift'])
+
+function parseSearchKeyboardShortcut(keyboardShortcut: string | false): SearchKeyboardShortcut | false {
+  if (!keyboardShortcut) return false
+
+  const shortcutParts = keyboardShortcut
+    .split('+')
+    .map(part => part.trim())
+    .filter(Boolean)
+  const key = shortcutParts.pop()
+  if (!key) return false
+
+  const modifiers = shortcutParts.map(part => part.toLowerCase())
+
+  if (!modifiers.every(modifier => searchKeyboardShortcutModifiers.has(modifier))) return false
+
+  return {
+    key,
+    altKey: modifiers.includes('alt') || modifiers.includes('option'),
+    ctrlKey: modifiers.includes('ctrl') || modifiers.includes('control'),
+    metaKey: modifiers.includes('meta') || modifiers.includes('cmd') || modifiers.includes('command'),
+    shiftKey: modifiers.includes('shift'),
+  }
+}
+
+function keyboardEventMatchesShortcut(event: KeyboardEvent, shortcut: SearchKeyboardShortcut): boolean {
+  const shortcutKey = shortcut.key.toLowerCase()
+  const eventKey = event.key.toLowerCase()
+  const eventCode = event.code.toLowerCase()
+
+  if (event.altKey !== shortcut.altKey || event.ctrlKey !== shortcut.ctrlKey || event.metaKey !== shortcut.metaKey) {
+    return false
+  }
+
+  if (/^[^a-z0-9]$/.test(shortcutKey) && eventKey === shortcutKey) {
+    return shortcut.shiftKey ? event.shiftKey : true
+  }
+
+  if (event.shiftKey !== shortcut.shiftKey) {
+    return false
+  }
+
+  if (/^[a-z]$/.test(shortcutKey)) {
+    return eventKey === shortcutKey || eventCode === `key${shortcutKey}`
+  }
+
+  if (/^[0-9]$/.test(shortcutKey)) {
+    return eventKey === shortcutKey || eventCode === `digit${shortcutKey}`
+  }
+
+  return eventKey === shortcutKey
+}
+
+function Root(
+  {
+    children,
+    className,
+    fixed = true,
+    fullWidth = false,
+    logoHref = 'https://github.com',
+    title,
+    titleHref = '/',
+    variant = 'default',
+    leadingComponent,
+    trailingComponent,
+    onNarrowMenuToggle,
+    ...rest
+  }: SubdomainNavBarProps,
+  forwardedRef: React.ForwardedRef<SubdomainNavBarHandle>,
+) {
   const [menuHidden, setMenuHidden] = useState(true)
   const [searchVisible, setSearchVisible] = useState(false)
   const {isSmall, isMedium} = useWindowSize()
   const [startOfContentButtonFocused, setStartOfContentButtonFocused] = useState(false)
+  const headerRef = useRef<HTMLElement | null>(null)
   const mainElRef = useRef<HTMLElement | null>(null)
   const startOfContentID = useId('start-of-content')
 
@@ -117,8 +211,6 @@ function Root({
 
     onNarrowMenuToggle?.(!nextMenuHidden)
   }
-  const handleSearchOpen = useCallback(() => setSearchVisible(true), [])
-  const handleSearchClose = useCallback(() => setSearchVisible(false), [])
   const focusTrapRef = useRef<HTMLDivElement | null>(null)
 
   useEffect(() => {
@@ -193,6 +285,74 @@ function Root({
 
   const hasActions = actionItems.length > 0
 
+  const searchItem = useMemo(
+    () =>
+      React.Children.toArray(children).find(
+        (child): child is React.ReactElement<SearchProps> =>
+          React.isValidElement<SearchProps>(child) && child.type === Search,
+      ),
+    [children],
+  )
+  const hasSearch = Boolean(searchItem)
+  const searchKeyboardShortcut = useMemo(
+    () => parseSearchKeyboardShortcut(searchItem?.props.keyboardShortcut ?? '/'),
+    [searchItem?.props.keyboardShortcut],
+  )
+
+  const handleSearchOpen = useCallback(() => {
+    if (!hasSearch) return
+
+    setSearchVisible(true)
+  }, [hasSearch])
+
+  const handleSearchClose = useCallback(() => setSearchVisible(false), [])
+
+  useImperativeHandle(
+    forwardedRef,
+    () => {
+      if (!headerRef.current) {
+        return {
+          openSearch: handleSearchOpen,
+          closeSearch: handleSearchClose,
+        } as SubdomainNavBarHandle
+      }
+
+      return Object.assign(headerRef.current, {
+        openSearch: handleSearchOpen,
+        closeSearch: handleSearchClose,
+      })
+    },
+    [handleSearchClose, handleSearchOpen],
+  )
+
+  useEffect(() => {
+    const handleDocumentKeyDown = (event: KeyboardEvent) => {
+      if (
+        !hasSearch ||
+        searchVisible ||
+        event.defaultPrevented ||
+        event.isComposing ||
+        !searchKeyboardShortcut ||
+        !keyboardEventMatchesShortcut(event, searchKeyboardShortcut)
+      ) {
+        return
+      }
+
+      if (isEditableKeyboardTarget(event.target) || isEditableKeyboardTarget(document.activeElement)) {
+        return
+      }
+
+      event.preventDefault()
+      handleSearchOpen()
+    }
+
+    document.addEventListener('keydown', handleDocumentKeyDown)
+
+    return () => {
+      document.removeEventListener('keydown', handleDocumentKeyDown)
+    }
+  }, [handleSearchOpen, hasSearch, searchKeyboardShortcut, searchVisible])
+
   const hasAllActions: boolean = useMemo(() => {
     const primaryAction = actionItems.find(
       child => React.isValidElement<CTAActionProps>(child) && child.type === PrimaryAction,
@@ -229,6 +389,7 @@ function Root({
           Skip to content
         </Button>
         <header
+          ref={headerRef}
           className={clsx(styles['SubdomainNavBar'], styles[`SubdomainNavBar--variant-${variant}`], className)}
           data-testid={testIds.root}
           {...rest}
@@ -455,6 +616,11 @@ type SearchProps = {
    * Optional keyboard shortcut hint shown in the input-style trigger. Pass an empty string to hide it.
    */
   shortcutLabel?: string
+  /**
+   * Keyboard shortcut that opens the search dialog. Pass `false` to disable it.
+   * Supports single keys and modifier combinations, such as `/` or `Command+Option+k`.
+   */
+  keyboardShortcut?: string | false
   searchResults?: SubdomainNavBarSearchResults
   searchTerm?: string
   subdomainNavBarVariant?: SubdomainNavBarVariant
@@ -526,7 +692,8 @@ const _SearchInternal = forwardRef<HTMLInputElement, SearchProps>(
       onSubmit,
       onChange,
       placeholder,
-      shortcutLabel = '/',
+      shortcutLabel,
+      keyboardShortcut = '/',
       subdomainNavBarVariant,
       variant: searchVariant = 'icon',
     },
@@ -536,6 +703,7 @@ const _SearchInternal = forwardRef<HTMLInputElement, SearchProps>(
     const inputRef = useRef<HTMLInputElement | null>(null)
     const isGridlineVariant = subdomainNavBarVariant === 'gridline'
     const resolvedPlaceholder = placeholder ?? (title ? `Search ${title}` : 'Search')
+    const resolvedShortcutLabel = shortcutLabel ?? (keyboardShortcut || '')
     const normalizedSearchResultGroups = useMemo(() => normalizeSearchResults(searchResults), [searchResults])
     const hasGroupedSearchResults = normalizedSearchResultGroups.some(group => group.title)
     const searchResultsLength = normalizedSearchResultGroups.reduce((count, group) => count + group.results.length, 0)
@@ -736,8 +904,8 @@ const _SearchInternal = forwardRef<HTMLInputElement, SearchProps>(
                 <SearchIcon aria-hidden="true" size={16} />
                 <span>{resolvedPlaceholder}</span>
               </span>
-              {shortcutLabel && (
-                <span className={styles['SubdomainNavBar-search-input-button-shortcut']}>{shortcutLabel}</span>
+              {resolvedShortcutLabel && (
+                <span className={styles['SubdomainNavBar-search-input-button-shortcut']}>{resolvedShortcutLabel}</span>
               )}
             </button>
           ) : (
@@ -886,6 +1054,9 @@ const _SearchInternal = forwardRef<HTMLInputElement, SearchProps>(
 
 const Search = _SearchInternal
 
+const RootWithRef = forwardRef<SubdomainNavBarHandle, SubdomainNavBarProps>(Root)
+RootWithRef.displayName = 'SubdomainNavBar'
+
 type CTAActionProps = {
   href: string
 } & React.HTMLAttributes<HTMLAnchorElement>
@@ -919,7 +1090,7 @@ function SecondaryAction({children, href, ...rest}: PropsWithChildren<CTAActionP
   )
 }
 
-export const SubdomainNavBar = Object.assign(Root, {
+export const SubdomainNavBar = Object.assign(RootWithRef, {
   Link,
   Search,
   PrimaryAction,
