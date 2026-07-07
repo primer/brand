@@ -69,6 +69,14 @@ render(<App />)
 />
 ```
 
+### Custom button labels
+
+Use the `labels` prop to customize the visible text of the previous and next controls.
+
+```jsx live
+<Pagination pageCount={3} currentPage={2} labels={{prev: 'Précédent', next: 'Suivant'}} />
+```
+
 ## Component props
 
 ### Pagination <Label>Required</Label>
@@ -83,3 +91,4 @@ render(<App />)
 | `marginPageCount`       | `number`                                                                     |         | `false`  | Defines how many pages are to be displayed on the left and right of the component. Will be reduced on narrow viewports. |
 | `showPages`             | `boolean`                                                                    |         | `false`  | Whether to show the page numbers                                                                                        |
 | `surroundingPageCount`  | `number`                                                                     |         | `false`  | The number of pages to show on each side of the current page. Will be hidden on narrow viewports.                       |
+| `labels`                | `{prev: string; next: string}`                                               |         | `false`  | Custom text labels for certain pagination controls                                                                      |

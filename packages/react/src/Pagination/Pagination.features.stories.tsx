@@ -94,3 +94,14 @@ export const CustomAttributeForwarding: Story = {
     },
   },
 }
+
+export const CustomLabels: Story = {
+  args: {
+    pageCount: 15,
+    currentPage: 5,
+    labels: {
+      prev: 'Précédent',
+      next: 'Suivant',
+    },
+  },
+}

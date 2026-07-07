@@ -26,8 +26,18 @@ export type PaginationProps = {
   showPages?: boolean
   /* The number of pages to show on each side of the current page */
   surroundingPageCount?: number
+  /* Custom text labels for the pagination controls. Use for localization. */
+  labels?: {
+    prev?: string
+    next?: string
+  }
   'data-testid'?: string
 } & Omit<React.HTMLAttributes<HTMLDivElement>, 'children'>
+
+const defaultPaginationLabels = {
+  prev: 'Previous',
+  next: 'Next',
+}
 
 /**
  * Use Pagination to display a sequence of links that allow navigation to discrete, related pages.
@@ -45,6 +55,7 @@ export const Pagination = memo(
     marginPageCount = 1,
     showPages = true,
     surroundingPageCount = 2,
+    labels,
     'aria-label': ariaLabel,
     'data-testid': testId,
     ...rest
@@ -55,6 +66,8 @@ export const Pagination = memo(
       marginPageCount = 1
       surroundingPageCount = 0
     }
+
+    const {prev: prevLabel, next: nextLabel} = {...defaultPaginationLabels, ...labels}
 
     const navRef = React.useRef<HTMLElement>(null)
 
@@ -77,6 +90,8 @@ export const Pagination = memo(
             page={page}
             hrefBuilder={hrefBuilder}
             pageAttributesBuilder={pageAttributesBuilder}
+            prevLabel={prevLabel}
+            nextLabel={nextLabel}
             onClick={pageChange(page.num)}
           />
         )
@@ -89,6 +104,8 @@ export const Pagination = memo(
       surroundingPageCount,
       hrefBuilder,
       pageAttributesBuilder,
+      prevLabel,
+      nextLabel,
       pageChange,
     ])
 
@@ -111,10 +128,19 @@ type PaginationItemProps = {
   page: PaginationPageType
   hrefBuilder: (n: number) => string
   pageAttributesBuilder?: (n: number, page: PaginationPageType) => {[key: string]: string}
+  prevLabel: string
+  nextLabel: string
   onClick?: React.MouseEventHandler<HTMLAnchorElement>
 }
 
-const PaginationItem = ({page, hrefBuilder, pageAttributesBuilder, onClick}: PaginationItemProps) => {
+const PaginationItem = ({
+  page,
+  hrefBuilder,
+  pageAttributesBuilder,
+  prevLabel,
+  nextLabel,
+  onClick,
+}: PaginationItemProps) => {
   const [isArrowExpanded, setIsArrowExpanded] = React.useState(false)
 
   const baseProps = {
@@ -158,7 +184,7 @@ const PaginationItem = ({page, hrefBuilder, pageAttributesBuilder, onClick}: Pag
                 className={styles.Pagination__controlArrow}
               />
             </span>
-            <span className={styles.Pagination__controlText}>Previous</span>
+            <span className={styles.Pagination__controlText}>{prevLabel}</span>
           </span>
         </Button>
       )
@@ -180,7 +206,7 @@ const PaginationItem = ({page, hrefBuilder, pageAttributesBuilder, onClick}: Pag
           onBlur={() => setIsArrowExpanded(false)}
         >
           <span className={styles.Pagination__controlContent}>
-            <span className={styles.Pagination__controlText}>Next</span>
+            <span className={styles.Pagination__controlText}>{nextLabel}</span>
             <span
               className={clsx(styles.Pagination__controlArrowWrapper, styles['Pagination__controlArrowWrapper--next'])}
             >
