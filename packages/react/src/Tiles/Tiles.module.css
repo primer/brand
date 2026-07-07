@@ -13,6 +13,10 @@
   padding: 0;
 }
 
+.Tiles--layout-compact .Tiles-grid {
+  --tiles-columns: 4;
+}
+
 @media screen and (min-width: 48rem) {
   .Tiles--layout-default .Tiles-grid {
     --tiles-columns: 4;
@@ -33,7 +37,7 @@
 
 @media screen and (min-width: 48rem) {
   .Tiles--layout-compact .Tiles-grid {
-    --tiles-columns: 4;
+    --tiles-columns: 6;
   }
 }
 
@@ -137,7 +141,14 @@
 
 .Tiles--layout-compact .Tiles-item-media svg,
 .Tiles--layout-compact .Tiles-item-media img {
-  height: var(--base-size-32);
+  height: var(--base-size-28);
+}
+
+@media screen and (min-width: 48rem) {
+  .Tiles--layout-compact .Tiles-item-media svg,
+  .Tiles--layout-compact .Tiles-item-media img {
+    height: var(--base-size-32);
+  }
 }
 
 .Tiles-item-label {
