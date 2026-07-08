@@ -314,7 +314,7 @@
 }
 
 .Card__description {
-  margin-block-end: var(--base-size-32);
+  margin-block-end: var(--base-size-24);
   grid-area: description;
 }
 
