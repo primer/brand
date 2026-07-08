@@ -150,13 +150,13 @@
 }
 
 .RiverBreakoutTabs__item--selected::before {
-  transform: translateY(-1px) scaleY(2);
+  transform: translateY(calc(-1 * var(--brand-borderWidth-thin))) scaleY(2);
   background-color: var(--brand-color-accent-primary);
 }
 
 @media screen and (min-width: 63.25rem) and (hover: hover) and (pointer: fine) {
   .RiverBreakoutTabs__item:hover::before {
-    transform: translateY(-1px) scaleY(2);
+    transform: translateY(calc(-1 * var(--brand-borderWidth-thin))) scaleY(2);
     background-color: var(--brand-color-accent-primary);
   }
 }
@@ -279,13 +279,13 @@
 }
 
 .RiverBreakoutTabs__accordionItem.RiverBreakoutTabs__item--selected::before {
-  transform: translateY(-1px) scaleY(2);
+  transform: translateY(calc(-1 * var(--brand-borderWidth-thin))) scaleY(2);
   background-color: var(--brand-color-accent-primary);
 }
 
 @media (hover: hover) and (pointer: fine) {
   .RiverBreakoutTabs__accordionItem:hover::before {
-    transform: translateY(-1px) scaleY(2);
+    transform: translateY(calc(-1 * var(--brand-borderWidth-thin))) scaleY(2);
     background-color: var(--brand-color-accent-primary);
   }
 }
