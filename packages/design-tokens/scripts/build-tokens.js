@@ -341,18 +341,24 @@ const darkJson = require('../src/tokens/base/colors/dark')
   })
 
   /**
-   * Emit a one-dimensional JSON typography map of brand typography custom properties (base
-   * typography scale + functional responsive typography) for downstream tooling. Every value in
-   * these sources is a legitimate typography token (font family, weight, size, line height,
-   * letter spacing, font-feature settings), so no value-shape filter is needed. The source files
-   * are the same ones brand ships in its CSS entry (`base/typography/typography.css` +
-   * `functional/typography/typography-responsive.css`); the upstream `functional/typography/
-   * typography.json` copied from `@primer/primitives` is intentionally excluded because brand does
-   * not import it. Base tokens are emitted without the `brand` prefix to match their CSS output
-   * (`--base-text-*`); functional tokens keep the `brand` prefix.
+   * Emit a one-dimensional JSON typography map of brand typography custom properties for
+   * downstream tooling. This is a name-based allowlist, so it must cover every `--brand-*` /
+   * `--base-*` typography custom property brand ships — including the core text-style tokens
+   * (`--brand-text-body-*`, `--brand-text-title-*`, `--brand-text-caption/subtitle/display/code*`
+   * and `--brand-fontStack-sansSerifDisplay`) that live only in `functional/typography/
+   * typography.json`. All values here are legitimate typography tokens (font family, weight, size,
+   * line height, letter spacing, font-feature settings), so no value-shape filter is needed. The
+   * sources are ordered so `typography-responsive.json` loads last and wins the handful of
+   * `--brand-fontStack-*` name collisions with the brand (Mona Sans) values. Base tokens are
+   * emitted without the `brand` prefix to match their CSS output (`--base-text-*`); functional
+   * tokens keep the `brand` prefix.
    */
   buildPrimitives({
-    source: [`tokens/base/typography/typography.json`, `tokens/functional/typography/typography-responsive.json`],
+    source: [
+      `tokens/functional/typography/typography.json`,
+      `tokens/base/typography/typography.json`,
+      `tokens/functional/typography/typography-responsive.json`,
+    ],
     namespace,
     platforms: {
       jsonTypography: {
