@@ -6,6 +6,7 @@ const mediaQueryFormat = require('../src/formats/responsive-media-query')
 const colorModeFormat = require('../src/formats/color-mode-attributes')
 const oneDimensionalFormat = require('../src/formats/json-one-dimensional')
 const isColorValue = require('../src/filters/isColorValue')
+const isSizeValue = require('../src/filters/isSizeValue')
 
 const lightJson = require('../src/tokens/base/colors/light')
 const darkJson = require('../src/tokens/base/colors/dark')
@@ -333,6 +334,74 @@ const darkJson = require('../src/tokens/base/colors/dark')
             destination: `colors.json`,
             format: `json/one-dimensional`,
             filter: token => token.isSource && isColorValue(token.value),
+          },
+        ],
+      },
+    },
+  })
+
+  /**
+   * Emit a one-dimensional JSON typography map of brand typography custom properties (base
+   * typography scale + functional responsive typography) for downstream tooling. Every value in
+   * these sources is a legitimate typography token (font family, weight, size, line height,
+   * letter spacing, font-feature settings), so no value-shape filter is needed. The source files
+   * are the same ones brand ships in its CSS entry (`base/typography/typography.css` +
+   * `functional/typography/typography-responsive.css`); the upstream `functional/typography/
+   * typography.json` copied from `@primer/primitives` is intentionally excluded because brand does
+   * not import it. Base tokens are emitted without the `brand` prefix to match their CSS output
+   * (`--base-text-*`); functional tokens keep the `brand` prefix.
+   */
+  buildPrimitives({
+    source: [`tokens/base/typography/typography.json`, `tokens/functional/typography/typography-responsive.json`],
+    namespace,
+    platforms: {
+      jsonTypography: {
+        prefix: namespace,
+        addPrefix: token => token.isSource && !token.filePath.replace(/\\/g, '/').includes('/base/typography/'),
+        buildPath: `${outputPath}/json/`,
+        transformGroup: 'css',
+        files: [
+          {
+            destination: `typography.json`,
+            format: `json/one-dimensional`,
+            filter: token => token.isSource,
+          },
+        ],
+      },
+    },
+  })
+
+  /**
+   * Emit a one-dimensional JSON size map of brand size custom properties (base size scale +
+   * functional size, border and breakpoint tokens) for downstream tooling. The source files are
+   * the same ones brand ships in its CSS (`base/size/size.css`, `functional/size/size.css`,
+   * `functional/size/breakpoints.css`, `functional/size/border.css`); the pointer-specific
+   * `size-fine` / `size-coarse` variants and the `viewport` media-query ranges are excluded
+   * because brand does not import them. Size tokens are additionally selected by inspecting the
+   * emitted value (`isSizeValue`), so non-size values that live alongside sizes (animation
+   * easing/duration, `inset ...` border composites) are dropped. Base tokens are emitted without
+   * the `brand` prefix to match their CSS output (`--base-size-*`); functional tokens keep the
+   * `brand` prefix.
+   */
+  buildPrimitives({
+    source: [
+      `tokens/base/size/size.json`,
+      `tokens/functional/size/size.json`,
+      `tokens/functional/size/breakpoints.json`,
+      `tokens/functional/size/border.json`,
+    ],
+    namespace,
+    platforms: {
+      jsonSize: {
+        prefix: namespace,
+        addPrefix: token => token.isSource && !token.filePath.replace(/\\/g, '/').includes('/base/size/'),
+        buildPath: `${outputPath}/json/`,
+        transformGroup: 'css',
+        files: [
+          {
+            destination: `size.json`,
+            format: `json/one-dimensional`,
+            filter: token => token.isSource && isSizeValue(token.value),
           },
         ],
       },
