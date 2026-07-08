@@ -26,7 +26,6 @@ declare const styles: {
   readonly "SubdomainNavBar-more-link": string;
   readonly "SubdomainNavBar-outer-container": string;
   readonly "SubdomainNavBar-outer-container--fixed": string;
-  readonly "SubdomainNavBar-outer-container--has-actions": string;
   readonly "SubdomainNavBar-outer-container--variant-gridline": string;
   readonly "SubdomainNavBar-overflow-menu": string;
   readonly "SubdomainNavBar-overflow-menu-item": string;
@@ -36,9 +35,9 @@ declare const styles: {
   readonly "SubdomainNavBar-primary-nav-list--invisible": string;
   readonly "SubdomainNavBar-primary-nav-list--visible": string;
   readonly "SubdomainNavBar-primary-nav-list-item": string;
-  readonly "SubdomainNavBar-primary-nav-list-item--invisible": string;
   readonly "SubdomainNavBar-primary-nav-list-item--overflow": string;
-  readonly "SubdomainNavBar-primary-nav-list-item--visible": string;
+  readonly "SubdomainNavBar-primary-nav-list-item--overflowed": string;
+  readonly "SubdomainNavBar-primary-nav-overflow": string;
   readonly "SubdomainNavBar-search-button": string;
   readonly "SubdomainNavBar-search-button--gridline": string;
   readonly "SubdomainNavBar-search-close-button": string;
@@ -74,6 +73,7 @@ declare const styles: {
   readonly "SubdomainNavBar-trailing-component": string;
   readonly "enlarge-shadow": string;
   readonly "fade-in-down": string;
+  readonly "fade-in-down-gridline": string;
   readonly "fade-in-down-staggered": string;
   readonly "fade-out": string;
 };

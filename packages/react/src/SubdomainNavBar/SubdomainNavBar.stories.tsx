@@ -481,7 +481,21 @@ const SubdomainNavBarTemplate = ({showSearch, numLinks, ...args}: StoryArgs) => 
     <>
       <div>
         <SubdomainNavBar {...args} title={args.title}>
-          {['collections', 'topics', 'articles', 'events', 'video', 'social', 'podcasts', 'books', 'guides', 'webcasts']
+          {[
+            'collections',
+            'topics',
+            'articles',
+            'events',
+            'video',
+            'social',
+            'podcasts',
+            'books',
+            'guides',
+            'webcasts',
+            'customer stories',
+            'learning paths',
+            'resources',
+          ]
             .slice(0, numLinks)
             .map(link => {
               return (
@@ -871,6 +885,9 @@ export const KeyboardShortcutRemap: Story = {
 
 export const OverflowMenuOpen: Story = {
   render: (args: StoryArgs) => <SubdomainNavBarTemplate {...args} />,
+  args: {
+    numLinks: 8,
+  },
   play: async ({canvasElement}) => {
     const canvas = within(canvasElement)
     await waitFor(async () => {
@@ -878,6 +895,22 @@ export const OverflowMenuOpen: Story = {
       await userEvent.click(overflowMenu)
     })
   },
+}
+
+export const OverflowMenuOpenGridline: Story = {
+  render: (args: StoryArgs) => <SubdomainNavBarTemplate {...args} />,
+  args: {
+    numLinks: 13,
+    variant: 'gridline',
+  },
+  play: async ({canvasElement}) => {
+    const canvas = within(canvasElement)
+    await waitFor(async () => {
+      const overflowMenu = await canvas.getByText('More')
+      await userEvent.click(overflowMenu)
+    })
+  },
+  name: 'Overflow Menu Open (Gridline)',
 }
 
 export const MobileView: Story = {

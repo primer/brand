@@ -1,5 +1,5 @@
 import {createRef} from 'react'
-import {act, cleanup, fireEvent, render} from '@testing-library/react'
+import {act, cleanup, fireEvent, render, within} from '@testing-library/react'
 import '@testing-library/jest-dom'
 
 import {
@@ -18,8 +18,63 @@ jest.mock('../hooks/useWindowSize')
 const mockUseWindowSize = useWindowSize as jest.Mock
 mockUseWindowSize.mockImplementation(() => ({isSmall: false, isMedium: false}))
 
+let resizeObserverCallbacks: ResizeObserverCallback[] = []
+
+class MockResizeObserver implements ResizeObserver {
+  constructor(callback: ResizeObserverCallback) {
+    resizeObserverCallbacks.push(callback)
+  }
+
+  observe = jest.fn()
+  unobserve = jest.fn()
+  disconnect = jest.fn()
+}
+
 const dispatchDialogCancel = (dialog: HTMLElement) => {
   fireEvent(dialog, new Event('cancel', {cancelable: true}))
+}
+
+const updateNavigationLayout = async (
+  container: HTMLElement,
+  {
+    containerWidth = 150,
+    itemWidth = 50,
+    itemWidths,
+    moreWidth = 30,
+  }: {containerWidth?: number; itemWidth?: number; itemWidths?: number[]; moreWidth?: number},
+) => {
+  const navList = container.querySelector<HTMLElement>('.SubdomainNavBar-primary-nav-list')
+  const navItems = Array.from(navList?.querySelectorAll<HTMLElement>('[data-navitemid]') ?? [])
+  const moreMenu = container.querySelector<HTMLElement>('.SubdomainNavBar-primary-nav-list-item--overflow')
+
+  if (navList) {
+    Object.defineProperty(navList, 'clientWidth', {
+      configurable: true,
+      value: containerWidth,
+    })
+  }
+
+  for (const [index, item] of navItems.entries()) {
+    Object.defineProperty(item, 'offsetWidth', {
+      configurable: true,
+      value: itemWidths?.[index] ?? itemWidth,
+    })
+  }
+
+  if (moreMenu) {
+    Object.defineProperty(moreMenu, 'offsetWidth', {
+      configurable: true,
+      value: moreWidth,
+    })
+  }
+
+  await act(async () => {
+    window.dispatchEvent(new Event('resize'))
+    for (const callback of resizeObserverCallbacks) {
+      callback([], {} as ResizeObserver)
+    }
+    await new Promise(resolve => requestAnimationFrame(resolve))
+  })
 }
 
 describe('SubdomainNavBar', () => {
@@ -30,15 +85,15 @@ describe('SubdomainNavBar', () => {
 
   beforeEach(() => {
     mockUseWindowSize.mockImplementation(() => ({isSmall: false, isMedium: false}))
+    resizeObserverCallbacks = []
+    global.ResizeObserver = MockResizeObserver
 
-    // IntersectionObserver isn't available in test environment
-    const mockIntersectionObserver = jest.fn()
-    mockIntersectionObserver.mockReturnValue({
-      observe: () => null,
-      unobserve: () => null,
-      disconnect: () => null,
+    Object.defineProperty(document, 'fonts', {
+      configurable: true,
+      value: {
+        ready: Promise.resolve(),
+      },
     })
-    window.IntersectionObserver = mockIntersectionObserver
   })
 
   const Component = ({
@@ -290,6 +345,204 @@ describe('SubdomainNavBar', () => {
     const menuButtonEl = queryByTestId(SubdomainNavBar.testIds.menuButton)
 
     expect(menuButtonEl).toBe(null)
+  })
+
+  it('does not expose the More menu when all desktop navigation links fit', async () => {
+    mockUseWindowSize.mockImplementation(() => ({isSmall: true, isMedium: true}))
+
+    const {container, queryByRole} = render(
+      <SubdomainNavBar title="Subdomain">
+        <SubdomainNavBar.Link href="#collections">Collections</SubdomainNavBar.Link>
+        <SubdomainNavBar.Link href="#topics">Topics</SubdomainNavBar.Link>
+        <SubdomainNavBar.Link href="#articles">Articles</SubdomainNavBar.Link>
+      </SubdomainNavBar>,
+    )
+
+    await updateNavigationLayout(container, {containerWidth: 150})
+
+    expect(queryByRole('button', {name: 'More'})).not.toBeInTheDocument()
+  })
+
+  it('renders only overflowed desktop navigation links in the More menu', async () => {
+    mockUseWindowSize.mockImplementation(() => ({isSmall: true, isMedium: true}))
+
+    const {container, getByRole} = render(
+      <SubdomainNavBar title="Subdomain">
+        <SubdomainNavBar.Link href="#collections">Collections</SubdomainNavBar.Link>
+        <SubdomainNavBar.Link href="#topics">Topics</SubdomainNavBar.Link>
+        <SubdomainNavBar.Link href="#articles">Articles</SubdomainNavBar.Link>
+      </SubdomainNavBar>,
+    )
+
+    await updateNavigationLayout(container, {containerWidth: 130})
+
+    const moreButton = getByRole('button', {name: 'More'})
+    fireEvent.click(moreButton)
+
+    const overflowMenuId = moreButton.getAttribute('aria-controls')
+    const overflowMenu = overflowMenuId ? document.getElementById(overflowMenuId) : null
+
+    expect(moreButton).not.toHaveAttribute('aria-haspopup')
+    expect(overflowMenu).toBeInTheDocument()
+    expect(within(overflowMenu as HTMLElement).getByRole('link', {name: 'Articles'})).toHaveAttribute(
+      'href',
+      '#articles',
+    )
+    expect(within(overflowMenu as HTMLElement).queryByRole('link', {name: 'Collections'})).not.toBeInTheDocument()
+    expect(within(overflowMenu as HTMLElement).queryByRole('link', {name: 'Topics'})).not.toBeInTheDocument()
+  })
+
+  it('keeps overflowed desktop navigation links contiguous when later links are shorter', async () => {
+    mockUseWindowSize.mockImplementation(() => ({isSmall: true, isMedium: true}))
+
+    const {container, getByRole} = render(
+      <SubdomainNavBar title="Subdomain">
+        <SubdomainNavBar.Link href="#collections">Collections</SubdomainNavBar.Link>
+        <SubdomainNavBar.Link href="#enterprise">Enterprise Solutions</SubdomainNavBar.Link>
+        <SubdomainNavBar.Link href="#docs">Docs</SubdomainNavBar.Link>
+        <SubdomainNavBar.Link href="#pricing">Pricing</SubdomainNavBar.Link>
+      </SubdomainNavBar>,
+    )
+
+    await updateNavigationLayout(container, {
+      containerWidth: 160,
+      itemWidths: [50, 100, 20, 40],
+      moreWidth: 30,
+    })
+
+    const moreButton = getByRole('button', {name: 'More'})
+    fireEvent.click(moreButton)
+
+    const overflowMenuId = moreButton.getAttribute('aria-controls')
+    const overflowMenu = overflowMenuId ? document.getElementById(overflowMenuId) : null
+
+    expect(container.querySelector('[data-navitemid="0-Collections"]')).not.toHaveAttribute('aria-hidden')
+    expect(container.querySelector('[data-navitemid="1-Enterprise Solutions"]')).toHaveAttribute('aria-hidden', 'true')
+    expect(container.querySelector('[data-navitemid="2-Docs"]')).toHaveAttribute('aria-hidden', 'true')
+    expect(container.querySelector('[data-navitemid="3-Pricing"]')).toHaveAttribute('aria-hidden', 'true')
+
+    expect(within(overflowMenu as HTMLElement).getByRole('link', {name: 'Enterprise Solutions'})).toHaveAttribute(
+      'href',
+      '#enterprise',
+    )
+    expect(within(overflowMenu as HTMLElement).getByRole('link', {name: 'Docs'})).toHaveAttribute('href', '#docs')
+    expect(within(overflowMenu as HTMLElement).getByRole('link', {name: 'Pricing'})).toHaveAttribute('href', '#pricing')
+    expect(within(overflowMenu as HTMLElement).queryByRole('link', {name: 'Collections'})).not.toBeInTheDocument()
+  })
+
+  it('returns focus to the More button when the overflow menu closes with Escape', async () => {
+    mockUseWindowSize.mockImplementation(() => ({isSmall: true, isMedium: true}))
+
+    const {container, getByRole} = render(
+      <SubdomainNavBar title="Subdomain">
+        <SubdomainNavBar.Link href="#collections">Collections</SubdomainNavBar.Link>
+        <SubdomainNavBar.Link href="#topics">Topics</SubdomainNavBar.Link>
+        <SubdomainNavBar.Link href="#articles">Articles</SubdomainNavBar.Link>
+      </SubdomainNavBar>,
+    )
+
+    await updateNavigationLayout(container, {containerWidth: 130})
+
+    const moreButton = getByRole('button', {name: 'More'})
+    fireEvent.click(moreButton)
+
+    const overflowMenuId = moreButton.getAttribute('aria-controls')
+    const overflowMenu = overflowMenuId ? document.getElementById(overflowMenuId) : null
+    const overflowLink = within(overflowMenu as HTMLElement).getByRole('link', {name: 'Articles'})
+
+    overflowLink.focus()
+    expect(overflowLink).toHaveFocus()
+
+    fireEvent.keyDown(document, {key: 'Escape'})
+
+    expect(moreButton).toHaveFocus()
+    expect(overflowMenuId ? document.getElementById(overflowMenuId) : null).not.toBeInTheDocument()
+  })
+
+  it('closes the overflow menu when focus moves to a visible desktop navigation link', async () => {
+    mockUseWindowSize.mockImplementation(() => ({isSmall: true, isMedium: true}))
+
+    const {container, getByRole} = render(
+      <SubdomainNavBar title="Subdomain">
+        <SubdomainNavBar.Link href="#collections">Collections</SubdomainNavBar.Link>
+        <SubdomainNavBar.Link href="#topics">Topics</SubdomainNavBar.Link>
+        <SubdomainNavBar.Link href="#articles">Articles</SubdomainNavBar.Link>
+      </SubdomainNavBar>,
+    )
+
+    await updateNavigationLayout(container, {containerWidth: 130})
+
+    const moreButton = getByRole('button', {name: 'More'})
+    fireEvent.click(moreButton)
+
+    const overflowMenuId = moreButton.getAttribute('aria-controls')
+    expect(overflowMenuId ? document.getElementById(overflowMenuId) : null).toBeInTheDocument()
+
+    const visibleLink = getByRole('link', {name: 'Collections'})
+    fireEvent.focusIn(visibleLink)
+
+    expect(moreButton).toHaveAttribute('aria-expanded', 'false')
+    expect(overflowMenuId ? document.getElementById(overflowMenuId) : null).not.toBeInTheDocument()
+  })
+
+  it('removes overflowed desktop navigation links from keyboard and assistive technology navigation', async () => {
+    mockUseWindowSize.mockImplementation(() => ({isSmall: true, isMedium: true}))
+
+    const {container} = render(
+      <SubdomainNavBar title="Subdomain">
+        <SubdomainNavBar.Link href="#collections">Collections</SubdomainNavBar.Link>
+        <SubdomainNavBar.Link href="#topics">Topics</SubdomainNavBar.Link>
+        <SubdomainNavBar.Link href="#articles">Articles</SubdomainNavBar.Link>
+      </SubdomainNavBar>,
+    )
+
+    await updateNavigationLayout(container, {containerWidth: 130})
+
+    const overflowedLinkItem = container.querySelector('[data-navitemid="2-Articles"]')
+    const overflowedLink = overflowedLinkItem?.querySelector('a')
+
+    expect(overflowedLinkItem).toHaveAttribute('aria-hidden', 'true')
+    expect(overflowedLinkItem).toHaveAttribute('tabindex', '-1')
+    expect(overflowedLink).toHaveAttribute('tabindex', '-1')
+  })
+
+  it('restores overflowed desktop navigation links when the available width expands', async () => {
+    mockUseWindowSize.mockImplementation(() => ({isSmall: true, isMedium: true}))
+
+    const {container, queryByRole} = render(
+      <SubdomainNavBar title="Subdomain">
+        <SubdomainNavBar.Link href="#collections">Collections</SubdomainNavBar.Link>
+        <SubdomainNavBar.Link href="#topics">Topics</SubdomainNavBar.Link>
+        <SubdomainNavBar.Link href="#articles">Articles</SubdomainNavBar.Link>
+      </SubdomainNavBar>,
+    )
+
+    await updateNavigationLayout(container, {containerWidth: 130})
+
+    expect(queryByRole('button', {name: 'More'})).toBeInTheDocument()
+    expect(container.querySelector('[data-navitemid="2-Articles"]')).toHaveAttribute('aria-hidden', 'true')
+
+    await updateNavigationLayout(container, {containerWidth: 150})
+
+    expect(queryByRole('button', {name: 'More'})).not.toBeInTheDocument()
+    expect(container.querySelector('[data-navitemid="2-Articles"]')).not.toHaveAttribute('aria-hidden')
+  })
+
+  it('keeps mobile navigation links out of the More menu', () => {
+    mockUseWindowSize.mockImplementation(() => ({isSmall: true, isMedium: false}))
+
+    const {getAllByRole, getByRole, queryByRole} = render(
+      <SubdomainNavBar title="Subdomain">
+        <SubdomainNavBar.Link href="#collections">Collections</SubdomainNavBar.Link>
+        <SubdomainNavBar.Link href="#topics">Topics</SubdomainNavBar.Link>
+        <SubdomainNavBar.Link href="#articles">Articles</SubdomainNavBar.Link>
+      </SubdomainNavBar>,
+    )
+
+    fireEvent.click(getByRole('button', {name: 'Menu'}))
+
+    expect(queryByRole('button', {name: 'More'})).not.toBeInTheDocument()
+    expect(getAllByRole('link', {name: 'Articles'}).length).toBeGreaterThan(0)
   })
 
   it('does not render an action container when no actions are provided', () => {

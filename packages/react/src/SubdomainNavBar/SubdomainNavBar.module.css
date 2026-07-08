@@ -155,6 +155,8 @@
   display: inline-flex;
   list-style-type: none;
   align-items: center;
+  flex: 1 1 auto;
+  min-width: 0;
   padding: 0;
   margin: 0;
 }
@@ -217,47 +219,30 @@
 }
 
 @media screen and (min-width: 48rem) {
+  .SubdomainNavBar-primary-nav-overflow {
+    display: flex;
+    align-items: center;
+    flex: 1 1 auto;
+    min-width: 0;
+    margin: 0 var(--base-size-24) 0 0;
+  }
+
   .SubdomainNavBar-primary-nav-list {
     display: flex;
     align-items: center;
-    width: 100%;
-    max-width: 150px;
+    flex: 1 1 auto;
+    flex-wrap: wrap;
+    min-width: 0;
+    block-size: var(--base-size-48);
+    max-block-size: var(--base-size-48);
+    overflow: hidden;
     padding: 0;
-    margin: 0 24px 0 0;
-    /* overflow: hidden; */
-  }
-}
-
-@media screen and (min-width: 768px) {
-  .SubdomainNavBar-primary-nav-list {
-    max-width: 100px;
-  }
-}
-
-@media screen and (min-width: 850px) {
-  .SubdomainNavBar-primary-nav-list {
-    max-width: 200px;
-  }
-}
-
-@media screen and (min-width: 1024px) {
-  .SubdomainNavBar-primary-nav-list {
-    max-width: 300px;
-  }
-}
-
-@media screen and (min-width: 1280px) {
-  .SubdomainNavBar-primary-nav-list {
-    max-width: 520px;
-    margin-right: 80px;
-  }
-
-  .SubdomainNavBar-outer-container--has-actions .SubdomainNavBar-primary-nav-list {
-    max-width: 465px;
+    margin: 0;
   }
 }
 
 .SubdomainNavBar-primary-nav-list-item {
+  flex: 0 0 auto;
   white-space: nowrap;
 }
 
@@ -272,22 +257,24 @@
 }
 
 @media screen and (min-width: 48rem) {
-  .SubdomainNavBar-primary-nav-list-item--visible {
-    order: 0;
-    visibility: visible;
-    opacity: 1;
-  }
-
-  .SubdomainNavBar-primary-nav-list-item--invisible {
-    order: 100;
-    visibility: hidden;
+  .SubdomainNavBar-primary-nav-list-item--overflowed {
     pointer-events: none;
   }
 
   .SubdomainNavBar-primary-nav-list-item--overflow {
-    order: 99;
-    position: relative;
+    display: flex;
+    align-items: center;
+    flex: 0 0 auto;
+    position: absolute;
     right: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+
+  .SubdomainNavBar-primary-nav-overflow[data-has-overflow='true'] .SubdomainNavBar-primary-nav-list-item--overflow {
+    position: relative;
+    visibility: visible;
+    pointer-events: auto;
   }
 }
 
@@ -408,8 +395,8 @@
 
 .SubdomainNavBar-overflow-menu {
   position: absolute;
-  right: 0;
-  top: var(--base-size-48);
+  z-index: 100;
+  right: auto;
   background-color: var(--base-color-scale-white-0);
   border-radius: var(--brand-borderRadius-large);
   animation: fade-in-down 0.25s, enlarge-shadow 250ms forwards;
@@ -433,8 +420,8 @@
 .SubdomainNavBar-secondary-nav {
   display: flex;
   align-items: center;
+  flex: 0 0 auto;
   margin-left: auto;
-  min-width: 0;
 }
 .SubdomainNavBar-search-trigger {
   display: flex;
@@ -759,6 +746,7 @@
   }
 
   .SubdomainNavBar--variant-gridline .SubdomainNavBar-primary-nav,
+  .SubdomainNavBar--variant-gridline .SubdomainNavBar-primary-nav-overflow,
   .SubdomainNavBar--variant-gridline .SubdomainNavBar-primary-nav-list,
   .SubdomainNavBar--variant-gridline .SubdomainNavBar-secondary-nav,
   .SubdomainNavBar--variant-gridline .SubdomainNavBar-button-area,
@@ -779,7 +767,12 @@
 
   .SubdomainNavBar--variant-gridline .SubdomainNavBar-primary-nav-list {
     align-items: stretch;
-    max-width: none;
+    margin: 0;
+    block-size: 100%;
+    max-block-size: 100%;
+  }
+
+  .SubdomainNavBar--variant-gridline .SubdomainNavBar-primary-nav-overflow {
     margin: 0;
   }
 
@@ -800,6 +793,43 @@
 
   .SubdomainNavBar--variant-gridline .SubdomainNavBar-link-text::after {
     display: none;
+  }
+
+  .SubdomainNavBar--variant-gridline .SubdomainNavBar-overflow-menu {
+    animation: fade-in-down-gridline 0.25s;
+    animation-timing-function: var(--brand-animation-easing-default);
+    border: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
+    border-start-start-radius: 0;
+    border-start-end-radius: 0;
+    border-end-start-radius: var(--brand-borderRadius-medium);
+    border-end-end-radius: var(--brand-borderRadius-medium);
+    box-shadow: none;
+    min-width: calc(var(--base-size-128) + var(--base-size-32));
+    transform: translateY(calc(0px - var(--base-size-4)));
+  }
+
+  .SubdomainNavBar--variant-gridline .SubdomainNavBar-overflow-menu-list {
+    gap: var(--brand-borderWidth-thin);
+    padding: var(--base-size-8);
+    width: 100%;
+  }
+
+  .SubdomainNavBar--variant-gridline .SubdomainNavBar-overflow-menu-item .SubdomainNavBar-link {
+    width: 100%;
+    min-height: var(--base-size-40);
+    padding: var(--base-size-8) var(--base-size-12);
+    color: var(--brand-color-text-muted);
+    background-color: var(--brand-color-canvas-default);
+    border-radius: var(--brand-borderRadius-medium);
+    font-size: var(--brand-text-size-100);
+    line-height: var(--brand-text-lineHeight-200);
+  }
+
+  .SubdomainNavBar--variant-gridline .SubdomainNavBar-overflow-menu-item .SubdomainNavBar-link:hover,
+  .SubdomainNavBar--variant-gridline .SubdomainNavBar-overflow-menu-item .SubdomainNavBar-link:focus,
+  .SubdomainNavBar--variant-gridline .SubdomainNavBar-overflow-menu-item .SubdomainNavBar-link:focus-visible {
+    color: var(--brand-color-text-default);
+    background-color: var(--brand-color-canvas-subtle);
   }
 
   .SubdomainNavBar--variant-gridline .SubdomainNavBar-secondary-nav {
@@ -1230,6 +1260,17 @@
   100% {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@keyframes fade-in-down-gridline {
+  0% {
+    opacity: 0;
+    transform: translateY(calc(0px - var(--base-size-24)));
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(calc(0px - var(--base-size-4)));
   }
 }
 

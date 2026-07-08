@@ -25,6 +25,7 @@ import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/compone
 /** * Main Stylesheet (as a CSS Module) */
 import styles from './SubdomainNavBar.module.css'
 import {useId} from '../hooks/useId'
+import {useSubdomainNavBarLinkContext} from './SubdomainNavBarLinkContext'
 
 export const SubdomainNavBarVariants = ['default', 'gridline'] as const
 export type SubdomainNavBarVariant = (typeof SubdomainNavBarVariants)[number]
@@ -256,8 +257,9 @@ function Root(
     () =>
       React.Children.toArray(children)
         .map((child, index) => {
-          if (React.isValidElement<SubdomainNavBarLinkProps>(child) && child.type === Link) {
-            const navItemId = typeof child.props.children === 'string' ? child.props.children : `${index}`
+          if (React.isValidElement<SubdomainNavBarLinkMeasurementProps>(child) && child.type === Link) {
+            const navItemLabel = typeof child.props.children === 'string' ? child.props.children : 'item'
+            const navItemId = `${index}-${navItemLabel}`
             return React.cloneElement(child, {
               'data-navitemid': navItemId,
               href: child.props.href,
@@ -353,16 +355,6 @@ function Root(
     }
   }, [handleSearchOpen, hasSearch, searchKeyboardShortcut, searchVisible])
 
-  const hasAllActions: boolean = useMemo(() => {
-    const primaryAction = actionItems.find(
-      child => React.isValidElement<CTAActionProps>(child) && child.type === PrimaryAction,
-    )
-    const secondaryAction = actionItems.find(
-      child => React.isValidElement<CTAActionProps>(child) && child.type === SecondaryAction,
-    )
-    return !!primaryAction && !!secondaryAction
-  }, [actionItems])
-
   const hasLeadingComponent =
     leadingComponent !== undefined && leadingComponent !== null && typeof leadingComponent !== 'boolean'
   const hasTrailingComponent =
@@ -374,7 +366,6 @@ function Root(
         className={clsx(
           styles['SubdomainNavBar-outer-container'],
           fixed && styles['SubdomainNavBar-outer-container--fixed'],
-          hasAllActions && styles['SubdomainNavBar-outer-container--has-actions'],
           variant === 'gridline' && styles['SubdomainNavBar-outer-container--variant-gridline'],
         )}
       >
@@ -564,13 +555,37 @@ function Root(
 export type SubdomainNavBarLinkProps = {
   href: string
   isExternal?: boolean
-  'data-navitemid'?: string
 } & React.DetailedHTMLProps<React.LiHTMLAttributes<HTMLLIElement>, HTMLLIElement>
 
-function Link({href, className, children, isExternal, ...rest}: PropsWithChildren<SubdomainNavBarLinkProps>) {
+type SubdomainNavBarLinkMeasurementProps = SubdomainNavBarLinkProps & {
+  'data-navitemid'?: string
+}
+
+function Link({
+  href,
+  className,
+  children,
+  isExternal,
+  'aria-hidden': ariaHidden,
+  tabIndex,
+  ...rest
+}: PropsWithChildren<SubdomainNavBarLinkProps>) {
+  const {isOverflowed, onLinkClick} = useSubdomainNavBarLinkContext()
+
   return (
-    <li className={clsx(styles['SubdomainNavBar-primary-nav-list-item'], className)} {...rest}>
-      <a href={href} className={styles['SubdomainNavBar-link']}>
+    <li
+      {...rest}
+      // Keep overflowed links measurable in layout; removing them would make overflow calculation state-dependent.
+      aria-hidden={isOverflowed ? true : ariaHidden}
+      className={clsx(styles['SubdomainNavBar-primary-nav-list-item'], className)}
+      tabIndex={isOverflowed ? -1 : tabIndex}
+    >
+      <a
+        href={href}
+        className={styles['SubdomainNavBar-link']}
+        onClick={onLinkClick}
+        tabIndex={isOverflowed ? -1 : undefined}
+      >
         <span className={styles['SubdomainNavBar-link-text']}>{children}</span>
         {isExternal && <LinkExternalIcon size={16} aria-label="External link" />}
       </a>
@@ -924,6 +939,7 @@ const _SearchInternal = forwardRef<HTMLInputElement, SearchProps>(
             />
           )}
         </div>
+        {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-noninteractive-element-interactions -- Native dialog keyboard dismissal is handled by onCancel; click only closes backdrop clicks. */}
         <dialog
           ref={dialogRef}
           aria-label={`Search ${title}`}
