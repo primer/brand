@@ -102,6 +102,8 @@ export const CustomLabels: Story = {
     labels: {
       prev: 'Précédent',
       next: 'Suivant',
+      prevAriaLabel: 'Page précédente',
+      nextAriaLabel: 'Page suivante',
     },
   },
 }

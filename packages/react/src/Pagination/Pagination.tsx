@@ -30,6 +30,8 @@ export type PaginationProps = {
   labels?: {
     prev?: string
     next?: string
+    prevAriaLabel?: string
+    nextAriaLabel?: string
   }
   'data-testid'?: string
 } & Omit<React.HTMLAttributes<HTMLDivElement>, 'children'>
@@ -37,6 +39,8 @@ export type PaginationProps = {
 const defaultPaginationLabels = {
   prev: 'Previous',
   next: 'Next',
+  prevAriaLabel: 'Previous Page',
+  nextAriaLabel: 'Next Page',
 }
 
 /**
@@ -67,7 +71,10 @@ export const Pagination = memo(
       surroundingPageCount = 0
     }
 
-    const {prev: prevLabel, next: nextLabel} = {...defaultPaginationLabels, ...labels}
+    const prevLabel = labels?.prev ?? defaultPaginationLabels.prev
+    const nextLabel = labels?.next ?? defaultPaginationLabels.next
+    const prevAriaLabel = labels?.prevAriaLabel ?? defaultPaginationLabels.prevAriaLabel
+    const nextAriaLabel = labels?.nextAriaLabel ?? defaultPaginationLabels.nextAriaLabel
 
     const navRef = React.useRef<HTMLElement>(null)
 
@@ -92,6 +99,8 @@ export const Pagination = memo(
             pageAttributesBuilder={pageAttributesBuilder}
             prevLabel={prevLabel}
             nextLabel={nextLabel}
+            prevAriaLabel={prevAriaLabel}
+            nextAriaLabel={nextAriaLabel}
             onClick={pageChange(page.num)}
           />
         )
@@ -106,6 +115,8 @@ export const Pagination = memo(
       pageAttributesBuilder,
       prevLabel,
       nextLabel,
+      prevAriaLabel,
+      nextAriaLabel,
       pageChange,
     ])
 
@@ -130,6 +141,8 @@ type PaginationItemProps = {
   pageAttributesBuilder?: (n: number, page: PaginationPageType) => {[key: string]: string}
   prevLabel: string
   nextLabel: string
+  prevAriaLabel: string
+  nextAriaLabel: string
   onClick?: React.MouseEventHandler<HTMLAnchorElement>
 }
 
@@ -139,6 +152,8 @@ const PaginationItem = ({
   pageAttributesBuilder,
   prevLabel,
   nextLabel,
+  prevAriaLabel,
+  nextAriaLabel,
   onClick,
 }: PaginationItemProps) => {
   const [isArrowExpanded, setIsArrowExpanded] = React.useState(false)
@@ -162,7 +177,7 @@ const PaginationItem = ({
           rel="prev"
           href={page.disabled ? undefined : hrefBuilder(page.num)}
           aria-disabled={page.disabled || undefined}
-          aria-label="Previous Page"
+          aria-label={prevAriaLabel}
           {...customAttributes}
           className={clsx(styles.Pagination__controlItem, customClassName)}
           onMouseEnter={() => setIsArrowExpanded(true)}
@@ -197,7 +212,7 @@ const PaginationItem = ({
           rel="next"
           href={page.disabled ? undefined : hrefBuilder(page.num)}
           aria-disabled={page.disabled || undefined}
-          aria-label="Next Page"
+          aria-label={nextAriaLabel}
           {...customAttributes}
           className={clsx(styles.Pagination__controlItem, customClassName)}
           onMouseEnter={() => setIsArrowExpanded(true)}
