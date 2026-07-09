@@ -2,4 +2,4 @@
 '@primer/react-brand': patch
 ---
 
-Added the missing deprecated `VideoPlayer` TypeScript type for `showControlsWhenPaused`.
+Removed stale `VideoPlayer` documentation for the non-functional `showControlsWhenPaused` prop.

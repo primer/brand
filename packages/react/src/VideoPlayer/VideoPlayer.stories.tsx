@@ -33,10 +33,6 @@ const meta = {
     showBranding: {
       type: 'boolean',
     },
-    showControlsWhenPaused: {
-      type: 'boolean',
-      description: 'Deprecated. This prop has no effect and will be removed in a future release.',
-    },
     showPlayPauseButton: {
       type: 'boolean',
     },
