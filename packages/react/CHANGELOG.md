@@ -1,5 +1,24 @@
 # @primer/react-brand
 
+## 0.71.0
+
+### Minor Changes
+
+- [#1370](https://github.com/primer/brand/pull/1370) [`93dcb13`](https://github.com/primer/brand/commit/93dcb134bcf9c6ce96d5aa81591dbcb1f5372747) Thanks [@stefankp](https://github.com/stefankp)! - Added a new JSON-based color map export at `/lib/design-tokens/json/colors.json`, listing color tokens from `@primer/brand-primitives`.
+
+### Patch Changes
+
+- [#1393](https://github.com/primer/brand/pull/1393) [`e9f572f`](https://github.com/primer/brand/commit/e9f572f6e5238089b3bc963c3e6d5bfcf06402e9) Thanks [@rezrah](https://github.com/rezrah)! - Reduced the spacing between the `Card` description and its link from `32px` to `24px`
+
+- [#1389](https://github.com/primer/brand/pull/1389) [`caae8a6`](https://github.com/primer/brand/commit/caae8a620dd5f737c38a6946015259d469cf6b5e) Thanks [@danielguillan](https://github.com/danielguillan)! - Updates compact `Tiles` density so narrow viewports shows four items per row with smaller icons, while medium (tablet) show six items per row.
+
+- [#1393](https://github.com/primer/brand/pull/1393) [`e9f572f`](https://github.com/primer/brand/commit/e9f572f6e5238089b3bc963c3e6d5bfcf06402e9) Thanks [@rezrah](https://github.com/rezrah)! - Updates to the `RiverBreakoutTabs` component:
+
+  - Reduced the spacing above the tab list action on wide breakpoints from `16px` to `12px`
+  - Reduced the gridline outer padding from `64px` to `60px` at the widest breakpoint
+  - Added a `0.3s` transition to the tab heading color
+  - Fixed a shadow-border issue on hovered tab indicators. It now fills the entire parent space using a negative offset.
+
 ## 0.70.0
 
 ### Minor Changes

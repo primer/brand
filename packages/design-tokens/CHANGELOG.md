@@ -1,5 +1,11 @@
 # @primer/brand-primitives
 
+## 0.71.0
+
+### Minor Changes
+
+- [#1370](https://github.com/primer/brand/pull/1370) [`93dcb13`](https://github.com/primer/brand/commit/93dcb134bcf9c6ce96d5aa81591dbcb1f5372747) Thanks [@stefankp](https://github.com/stefankp)! - Added a new JSON-based color map export at `/lib/design-tokens/json/colors.json`, listing color tokens from `@primer/brand-primitives`.
+
 ## 0.70.0
 
 ## 0.69.0
