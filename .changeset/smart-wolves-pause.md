@@ -2,4 +2,4 @@
 '@primer/react-brand': patch
 ---
 
-Removed stale `VideoPlayer` documentation for the non-functional `showControlsWhenPaused` prop.
+Removed the non-functional `VideoPlayer` `showControlsWhenPaused` prop from the public API and documentation.
