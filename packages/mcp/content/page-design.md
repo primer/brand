@@ -21,7 +21,7 @@ Pull adaptable component snippets with `primer_brand_examples`.
 - **Do** — when a component offers a gridline-family option, choose it over the older or default look. "Expressive" gridline options are a more pronounced sub-variant of the same aesthetic, not a competing style; reach for them where a section wants extra emphasis.
 - **Don't** — settle for a component's plainest or legacy variant, or borrow section layouts from an older brand generation, when a gridline equivalent exists.
 
-The gridline look is crucial and literal, not just a set of variants. They are thin ruled lines that frame the content column and separate sections (see "Contain content within the grid" section below).
+The gridline look is crucial and literal, not just a set of variants. Gridlines are thin ruled lines that frame the content column and separate sections (see "Contain content within the grid" section below).
 
 Confirm the exact options with `primer_brand_component` rather than assuming which variants a component has — the specific names evolve over time.
 
@@ -38,7 +38,7 @@ Every full page should be framed top and bottom, unless the user has requested a
 
 Body content must always sit in a centered, max-width column framed by the brand's gridlines — it should rarely stretch edge-to-edge.
 
-Examples of this are in the flexsuite recipes.
+Examples of this are in the Flexsuite recipes.
 
 - **Do** — keep content (heroes, rivers, tables, card grids, CTAs, prose) in a shared max-width column with clear left and right gutters, and let thin ruled gridlines run down both sides of the column with full-bleed horizontal rules between major sections.
 - **Don't** — stretch tables, card grids, CTAs, or text edge-to-edge, or let a section bleed full-width unless it is a deliberate background band.
@@ -96,7 +96,7 @@ Lead heroes and sections with an eyebrow/section label; it is intrinsic width, a
 
 Small, repeated treatments are where a page quietly drifts off-brand.
 
-- **Do** — use dot bullets for lists; keep buttons in their real interactive states (hover/active) and use a `Button` for a primary CTA rather than a bare link; show FAQ/accordion category navigation only when there are several categories; leave `Icon` at its default green wherever Octicons appear (`Card.Icon`, `Pillar.Icon`, and standalone `Icon`) so icons read as one consistent accent.
+- **Do** — use dot bullets for lists; keep buttons in their real interactive states (hover/active) and use a `Button` for a primary CTA rather than a bare link; show FAQ/accordion category navigation only when there are several categories; leave `Icon` at its default color — which renders green — wherever Octicons appear (`Card.Icon`, `Pillar.Icon`, and standalone `Icon`) so icons read as one consistent accent.
 - **Don't** — use dashes as bullets, add divider rules between list items or sections, ship flat/stateless buttons, render an empty single-category sidebar, or override the `color` prop on `Icon` or `Card.Icon` to tint icons off-green without a strong, deliberate reason (`Pillar.Icon` has no `color` prop — it's already locked to green).
 
 ## General guidance
