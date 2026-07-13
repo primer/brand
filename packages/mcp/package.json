@@ -1,6 +1,6 @@
 {
   "name": "@primer/brand-mcp",
-  "version": "0.70.0",
+  "version": "0.71.0",
   "description": "MCP (Model Context Protocol) server that helps AI agents use Primer Brand (@primer/react-brand) correctly when building GitHub marketing and landing pages.",
   "keywords": [
     "primer",
