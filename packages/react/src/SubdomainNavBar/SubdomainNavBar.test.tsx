@@ -612,6 +612,7 @@ describe('SubdomainNavBar', () => {
     expect(searchTrigger).not.toHaveTextContent('Search')
     expect(searchTrigger).toHaveClass('Button--secondary')
     expect(searchTrigger).toHaveClass('Button--size-small')
+    expect(searchTrigger).toHaveClass('SubdomainNavBar-search-button--gridline')
     expect(searchTrigger).not.toHaveClass('SubdomainNavBar-search-button')
   })
 
@@ -648,6 +649,7 @@ describe('SubdomainNavBar', () => {
     const searchTrigger = getByTestId('toggle-search')
     expect(searchTrigger).toHaveAccessibleName('Search ... search')
     expect(searchTrigger).toHaveClass('SubdomainNavBar-search-input-button')
+    expect(searchTrigger).not.toHaveClass('SubdomainNavBar-search-button--gridline')
     expect(searchTrigger).not.toHaveClass('Button--secondary')
     expect(getByText('Search ...')).toBeInTheDocument()
     expect(getByText('/')).toBeInTheDocument()
@@ -675,6 +677,7 @@ describe('SubdomainNavBar', () => {
     const searchTrigger = getByTestId('toggle-search')
     expect(searchTrigger).toHaveAccessibleName('Toggle search bar')
     expect(searchTrigger).toHaveClass('Button--secondary')
+    expect(searchTrigger).toHaveClass('SubdomainNavBar-search-button--gridline')
     expect(searchTrigger).not.toHaveClass('SubdomainNavBar-search-input-button')
     expect(queryByText('Search ...')).not.toBeInTheDocument()
     expect(queryByText('/')).not.toBeInTheDocument()
@@ -829,6 +832,53 @@ describe('SubdomainNavBar', () => {
     expect(titleLink.compareDocumentPosition(leadingComponent) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy()
     expect(leadingComponent.compareDocumentPosition(firstLink) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy()
     expect(secondaryAction.compareDocumentPosition(trailingComponent) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy()
+  })
+
+  it('renders mobile leading content before links and groups actions with trailing content at the menu footer', () => {
+    mockUseWindowSize.mockImplementation(() => ({isSmall: false, isMedium: false}))
+
+    const {container, getByRole, getByTestId, getByText} = render(
+      <Component
+        variant="gridline"
+        leadingComponent={<span>Leading content</span>}
+        trailingComponent={<span>Trailing content</span>}
+      />,
+    )
+    const header = getByTestId(SubdomainNavBar.testIds.root)
+    jest.spyOn(header, 'getBoundingClientRect').mockReturnValue({
+      x: 0,
+      y: 16,
+      top: 16,
+      right: 390,
+      bottom: 72,
+      left: 0,
+      width: 390,
+      height: 56,
+      toJSON: () => ({}),
+    } as DOMRect)
+
+    fireEvent.click(getByRole('button', {name: 'Menu'}))
+
+    const menuWrapper = container.querySelector('.SubdomainNavBar-menu-wrapper')
+    const menuFooter = container.querySelector('.SubdomainNavBar-menu-wrapper-footer')
+    const leadingComponent = getByText('Leading content').parentElement
+    const trailingComponent = getByText('Trailing content').parentElement
+    const menuWrapperElement = menuWrapper as HTMLElement
+    const menuFooterElement = menuFooter as HTMLElement
+    const firstLink = within(menuWrapperElement).getByRole('link', {name: 'Collections'})
+    const primaryAction = within(menuFooterElement).getByRole('link', {name: 'Primary CTA'})
+
+    expect(leadingComponent).toHaveClass('SubdomainNavBar-leading-component')
+    expect(trailingComponent).toHaveClass('SubdomainNavBar-trailing-component')
+    expect(header.style.getPropertyValue('--SubdomainNavBar-menu-offset-block-start')).toBe('16px')
+    expect(menuFooterElement.parentElement).toBe(menuWrapperElement)
+    expect(menuWrapperElement.lastElementChild).toBe(menuFooterElement)
+    expect(
+      (leadingComponent as HTMLElement).compareDocumentPosition(firstLink) & Node.DOCUMENT_POSITION_FOLLOWING,
+    ).toBeTruthy()
+    expect(
+      primaryAction.compareDocumentPosition(trailingComponent as HTMLElement) & Node.DOCUMENT_POSITION_FOLLOWING,
+    ).toBeTruthy()
   })
 
   it('can append a classname to the root element', () => {

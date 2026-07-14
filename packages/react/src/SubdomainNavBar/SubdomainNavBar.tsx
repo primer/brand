@@ -47,6 +47,10 @@ export type SubdomainNavBarProps = {
    */
   className?: string
   /**
+   * Forward custom styles to the root element.
+   */
+  style?: React.CSSProperties
+  /**
    * Fixes the navigation bar to the top of the viewport. Defaults to `true`.
    */
   fixed?: boolean
@@ -188,6 +192,7 @@ function Root(
     fixed = true,
     fullWidth = false,
     logoHref = 'https://github.com',
+    style,
     title,
     titleHref = '/',
     variant = 'default',
@@ -200,14 +205,24 @@ function Root(
 ) {
   const [menuHidden, setMenuHidden] = useState(true)
   const [searchVisible, setSearchVisible] = useState(false)
+  const [menuViewportOffsetBlockStart, setMenuViewportOffsetBlockStart] = useState(0)
   const {isSmall, isMedium, isLarge} = useWindowSize()
   const [startOfContentButtonFocused, setStartOfContentButtonFocused] = useState(false)
   const headerRef = useRef<HTMLElement | null>(null)
   const mainElRef = useRef<HTMLElement | null>(null)
   const startOfContentID = useId('start-of-content')
 
+  const updateMenuViewportOffsetBlockStart = useCallback(() => {
+    setMenuViewportOffsetBlockStart(Math.max(0, headerRef.current?.getBoundingClientRect().top ?? 0))
+  }, [])
+
   const handleMobileMenuClick = () => {
     const nextMenuHidden = !menuHidden
+
+    if (!nextMenuHidden) {
+      updateMenuViewportOffsetBlockStart()
+    }
+
     setMenuHidden(nextMenuHidden)
 
     onNarrowMenuToggle?.(!nextMenuHidden)
@@ -234,6 +249,20 @@ function Root(
       onNarrowMenuToggle?.(false)
     }
   }, [isMedium, menuHidden, onNarrowMenuToggle])
+
+  useEffect(() => {
+    if (menuHidden || isMedium) return
+
+    updateMenuViewportOffsetBlockStart()
+
+    window.addEventListener('resize', updateMenuViewportOffsetBlockStart)
+    window.addEventListener('scroll', updateMenuViewportOffsetBlockStart)
+
+    return () => {
+      window.removeEventListener('resize', updateMenuViewportOffsetBlockStart)
+      window.removeEventListener('scroll', updateMenuViewportOffsetBlockStart)
+    }
+  }, [isMedium, menuHidden, updateMenuViewportOffsetBlockStart])
 
   useEffect(() => {
     const newOverflowState = menuHidden ? 'auto' : 'hidden'
@@ -360,6 +389,10 @@ function Root(
     leadingComponent !== undefined && leadingComponent !== null && typeof leadingComponent !== 'boolean'
   const hasTrailingComponent =
     trailingComponent !== undefined && trailingComponent !== null && typeof trailingComponent !== 'boolean'
+  const subdomainNavBarStyle = {
+    ...style,
+    '--SubdomainNavBar-menu-offset-block-start': `${menuViewportOffsetBlockStart}px`,
+  } as React.CSSProperties
 
   return (
     <>
@@ -384,6 +417,7 @@ function Root(
           ref={headerRef}
           className={clsx(styles['SubdomainNavBar'], styles[`SubdomainNavBar--variant-${variant}`], className)}
           data-testid={testIds.root}
+          style={subdomainNavBarStyle}
           {...rest}
         >
           <div
@@ -530,18 +564,22 @@ function Root(
                       </NavigationVisbilityObserver>
                     )}
                   </div>
-                  {hasActions && (
-                    <div
-                      className={clsx(
-                        styles['SubdomainNavBar-button-area'],
-                        styles['SubdomainNavBar-button-area--visible'],
+                  {(hasActions || hasTrailingComponent) && (
+                    <div className={styles['SubdomainNavBar-menu-wrapper-footer']}>
+                      {hasActions && (
+                        <div
+                          className={clsx(
+                            styles['SubdomainNavBar-button-area'],
+                            styles['SubdomainNavBar-button-area--visible'],
+                          )}
+                        >
+                          <div className={styles['SubdomainNavBar-button-area-inner']}>{actionItems}</div>
+                        </div>
                       )}
-                    >
-                      <div className={styles['SubdomainNavBar-button-area-inner']}>{actionItems}</div>
+                      {hasTrailingComponent && (
+                        <div className={styles['SubdomainNavBar-trailing-component']}>{trailingComponent}</div>
+                      )}
                     </div>
-                  )}
-                  {hasTrailingComponent && (
-                    <div className={styles['SubdomainNavBar-trailing-component']}>{trailingComponent}</div>
                   )}
                 </div>
               )}
