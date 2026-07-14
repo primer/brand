@@ -964,6 +964,17 @@ export const MobileNoLinks: Story = {
   },
 }
 
+export const MobileLeadingComponentOnlyMenuOpen: Story = {
+  render: () => <SubdomainNavBar title="Subdomain" leadingComponent={<VersionTokenExample />} />,
+  globals: {
+    viewport: {value: 'iphonex'},
+  },
+  play: async ({canvasElement}) => {
+    const canvas = within(canvasElement)
+    await userEvent.click(canvas.getByLabelText('Menu'))
+  },
+}
+
 export const NoOverflow: Story = {
   name: 'No overflow menu (1 link)',
   render: (args: StoryArgs) => <SubdomainNavBarTemplate {...args} />,

@@ -211,6 +211,7 @@ function Root(
   const headerRef = useRef<HTMLElement | null>(null)
   const mainElRef = useRef<HTMLElement | null>(null)
   const startOfContentID = useId('start-of-content')
+  const narrowMenuID = useId()
 
   const updateMenuViewportOffsetBlockStart = useCallback(() => {
     setMenuViewportOffsetBlockStart(Math.max(0, headerRef.current?.getBoundingClientRect().top ?? 0))
@@ -389,6 +390,7 @@ function Root(
     leadingComponent !== undefined && leadingComponent !== null && typeof leadingComponent !== 'boolean'
   const hasTrailingComponent =
     trailingComponent !== undefined && trailingComponent !== null && typeof trailingComponent !== 'boolean'
+  const hasNarrowMenuContent = hasLinks || hasLeadingComponent || hasTrailingComponent
   const subdomainNavBarStyle = {
     ...style,
     '--SubdomainNavBar-menu-offset-block-start': `${menuViewportOffsetBlockStart}px`,
@@ -499,12 +501,11 @@ function Root(
                 })
                 .filter(Boolean)}
 
-              {hasLinks && (
+              {hasNarrowMenuContent && (
                 <button
                   aria-expanded={!menuHidden}
                   aria-label="Menu"
-                  aria-controls="menu-navigation"
-                  aria-haspopup="true"
+                  aria-controls={narrowMenuID}
                   className={clsx(
                     styles['SubdomainNavBar-menu-button'],
                     styles['SubdomainNavBar-mobile-menu-button'],
@@ -536,6 +537,7 @@ function Root(
 
               {!isMedium && (
                 <div
+                  id={narrowMenuID}
                   className={clsx(
                     styles['SubdomainNavBar-menu-wrapper'],
                     menuHidden && styles['SubdomainNavBar-menu-wrapper--close'],

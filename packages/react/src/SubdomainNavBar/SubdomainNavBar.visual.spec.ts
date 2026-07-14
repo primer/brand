@@ -124,6 +124,21 @@ test.describe('Visual Comparison: SubdomainNavBar', () => {
       await expect(page).toHaveScreenshot({fullPage: true})
     })
   })
+
+  // eslint-disable-next-line i18n-text/no-en
+  test.describe('Mobile viewport test for Mobile Leading Component Only Menu Open', () => {
+    test.use({viewport: {width: 360, height: 800}})
+    test('SubdomainNavBar / Mobile Leading Component Only Menu Open', async ({page}) => {
+      await page.goto(
+        'http://localhost:6006/iframe.html?args=&id=components-subdomainnavbar--mobile-leading-component-only-menu-open&viewMode=story',
+        {waitUntil: 'networkidle'},
+      )
+      await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+      await page.waitForTimeout(5500)
+      await expect(page).toHaveScreenshot({fullPage: true})
+    })
+  })
   test('SubdomainNavBar / No overflow menu (1 link)', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-subdomainnavbar--no-overflow&viewMode=story',

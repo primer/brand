@@ -1,5 +1,6 @@
 import {createRef} from 'react'
 import {act, cleanup, fireEvent, render, within} from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
 import '@testing-library/jest-dom'
 
 import {
@@ -345,6 +346,77 @@ describe('SubdomainNavBar', () => {
     const menuButtonEl = queryByTestId(SubdomainNavBar.testIds.menuButton)
 
     expect(menuButtonEl).toBe(null)
+  })
+
+  it('discloses leading-only mobile content and makes it keyboard reachable', async () => {
+    const user = userEvent.setup()
+    const {getByRole} = render(
+      <SubdomainNavBar title="" leadingComponent={<button type="button">Leading action</button>} />,
+    )
+
+    const menuButton = getByRole('button', {name: 'Menu'})
+    const menuId = menuButton.getAttribute('aria-controls')
+
+    expect(menuButton).toHaveAttribute('aria-expanded', 'false')
+    expect(menuId).toBeTruthy()
+
+    const menu = document.getElementById(menuId as string)
+    expect(menu).toBeInTheDocument()
+
+    await user.click(menuButton)
+
+    const leadingAction = within(menu as HTMLElement).getByRole('button', {name: 'Leading action'})
+    expect(menuButton).toHaveAttribute('aria-expanded', 'true')
+    expect(leadingAction).toBeVisible()
+
+    await user.tab()
+
+    expect(leadingAction).toHaveFocus()
+  })
+
+  it('discloses trailing-only mobile content and makes it keyboard reachable', async () => {
+    const user = userEvent.setup()
+    const {getByRole} = render(
+      <SubdomainNavBar title="" trailingComponent={<button type="button">Trailing action</button>} />,
+    )
+
+    const menuButton = getByRole('button', {name: 'Menu'})
+    const menuId = menuButton.getAttribute('aria-controls')
+
+    expect(menuButton).toHaveAttribute('aria-expanded', 'false')
+    expect(menuId).toBeTruthy()
+
+    const menu = document.getElementById(menuId as string)
+    expect(menu).toBeInTheDocument()
+
+    await user.click(menuButton)
+
+    const trailingAction = within(menu as HTMLElement).getByRole('button', {name: 'Trailing action'})
+    expect(menuButton).toHaveAttribute('aria-expanded', 'true')
+    expect(trailingAction).toBeVisible()
+
+    await user.tab()
+
+    expect(trailingAction).toHaveFocus()
+  })
+
+  it('associates each mobile disclosure control with its own menu', () => {
+    const {getAllByRole} = render(
+      <>
+        <SubdomainNavBar title="" leadingComponent={<button type="button">First action</button>} />
+        <SubdomainNavBar title="" leadingComponent={<button type="button">Second action</button>} />
+      </>,
+    )
+
+    const [firstMenuButton, secondMenuButton] = getAllByRole('button', {name: 'Menu'})
+    const firstMenuId = firstMenuButton.getAttribute('aria-controls')
+    const secondMenuId = secondMenuButton.getAttribute('aria-controls')
+
+    expect(firstMenuId).toBeTruthy()
+    expect(secondMenuId).toBeTruthy()
+    expect(firstMenuId).not.toBe(secondMenuId)
+    expect(document.getElementById(firstMenuId as string)).toBeInTheDocument()
+    expect(document.getElementById(secondMenuId as string)).toBeInTheDocument()
   })
 
   it('does not expose the More menu when all desktop navigation links fit', async () => {
