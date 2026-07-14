@@ -155,7 +155,7 @@
   display: inline-flex;
   list-style-type: none;
   align-items: center;
-  flex: 1 1 auto;
+  flex: 1 1 0;
   min-width: 0;
   padding: 0;
   margin: 0;
@@ -222,7 +222,7 @@
   .SubdomainNavBar-primary-nav-overflow {
     display: flex;
     align-items: center;
-    flex: 1 1 auto;
+    flex: 1 1 0;
     min-width: 0;
     margin: 0 var(--base-size-24) 0 0;
   }
@@ -420,17 +420,23 @@
 .SubdomainNavBar-secondary-nav {
   display: flex;
   align-items: center;
-  flex: 0 0 auto;
+  flex: 0 1 auto;
+  min-width: 0;
   margin-left: auto;
 }
 .SubdomainNavBar-search-trigger {
   display: flex;
   align-items: center;
+  min-width: 0;
 }
 
 .SubdomainNavBar-search-trigger--input {
-  flex: 1 1 auto;
-  min-width: min(100%, calc(var(--base-size-128) * 2 + var(--base-size-24)));
+  --SubdomainNavBar-search-input-width: calc(var(--base-size-128) * 2 + var(--base-size-24));
+
+  flex: 0 9999 var(--SubdomainNavBar-search-input-width);
+  width: var(--SubdomainNavBar-search-input-width);
+  max-width: 100%;
+  min-width: calc(var(--base-size-128) + var(--base-size-32));
 }
 
 .SubdomainNavBar-search-button,
@@ -476,10 +482,11 @@
   align-items: center;
   justify-content: space-between;
   gap: var(--base-size-16);
-  inline-size: 100%;
+  width: 100%;
   block-size: var(--base-size-32);
   min-block-size: var(--base-size-32);
   padding: var(--base-size-4) var(--base-size-4) var(--base-size-4) calc(var(--base-size-8) + var(--base-size-2));
+  overflow: hidden;
   color: var(--brand-color-text-muted);
   background-color: var(--brand-color-canvas-subtle);
   border: 0;
@@ -520,12 +527,18 @@
   flex: none;
 }
 
+.SubdomainNavBar-search-input-button-placeholder span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .SubdomainNavBar-search-input-button-shortcut {
+  flex: none;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   align-self: stretch;
-  min-inline-size: var(--base-size-24);
+  min-width: var(--base-size-24);
   padding-inline: var(--base-size-8);
   color: var(--brand-color-text-default);
   background-color: var(--brand-color-canvas-default);
@@ -720,7 +733,7 @@
 
   .SubdomainNavBar--variant-gridline .SubdomainNavBar-title-area > li:first-child {
     justify-content: center;
-    inline-size: var(--base-size-64);
+    width: var(--base-size-64);
     padding-inline: 0;
   }
 
@@ -842,8 +855,13 @@
   }
 
   .SubdomainNavBar--variant-gridline .SubdomainNavBar-search-trigger--input {
+    --SubdomainNavBar-search-input-width: clamp(
+      calc(var(--base-size-128) + var(--base-size-32)),
+      28.5vw,
+      calc(var(--base-size-128) * 3 + var(--base-size-36))
+    );
+
     align-self: stretch;
-    min-width: min(42vw, calc(var(--base-size-128) * 3 + var(--base-size-36)));
   }
 
   .SubdomainNavBar--variant-gridline .SubdomainNavBar-search-trigger--has-trailing-item {

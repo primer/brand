@@ -630,7 +630,7 @@ describe('SubdomainNavBar', () => {
   })
 
   it('renders the input search trigger variant with placeholder and shortcut text', () => {
-    mockUseWindowSize.mockImplementation(() => ({isSmall: true, isMedium: true}))
+    mockUseWindowSize.mockImplementation(() => ({isSmall: true, isMedium: true, isLarge: true}))
 
     const {getByTestId, getByText} = render(
       <SubdomainNavBar title="Subdomain" variant="gridline">
@@ -653,8 +653,35 @@ describe('SubdomainNavBar', () => {
     expect(getByText('/')).toBeInTheDocument()
   })
 
+  it.each([
+    ['mobile', {isSmall: false, isMedium: false, isLarge: false}],
+    ['tablet', {isSmall: true, isMedium: true, isLarge: false}],
+  ])('renders the input search trigger variant as an icon button on %s viewports', (_name, windowSize) => {
+    mockUseWindowSize.mockImplementation(() => windowSize)
+
+    const {getByTestId, queryByText} = render(
+      <SubdomainNavBar title="Subdomain" variant="gridline">
+        <SubdomainNavBar.Search
+          variant="input"
+          placeholder="Search ..."
+          shortcutLabel="/"
+          searchTerm="docs"
+          onChange={jest.fn}
+          onSubmit={jest.fn()}
+        />
+      </SubdomainNavBar>,
+    )
+
+    const searchTrigger = getByTestId('toggle-search')
+    expect(searchTrigger).toHaveAccessibleName('Toggle search bar')
+    expect(searchTrigger).toHaveClass('Button--secondary')
+    expect(searchTrigger).not.toHaveClass('SubdomainNavBar-search-input-button')
+    expect(queryByText('Search ...')).not.toBeInTheDocument()
+    expect(queryByText('/')).not.toBeInTheDocument()
+  })
+
   it('uses the input search trigger placeholder for the opened search input', () => {
-    mockUseWindowSize.mockImplementation(() => ({isSmall: true, isMedium: true}))
+    mockUseWindowSize.mockImplementation(() => ({isSmall: true, isMedium: true, isLarge: true}))
 
     const {getByTestId, getByPlaceholderText, getByRole} = render(
       <SubdomainNavBar title="Subdomain" variant="gridline">

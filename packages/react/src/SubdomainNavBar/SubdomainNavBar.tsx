@@ -200,7 +200,7 @@ function Root(
 ) {
   const [menuHidden, setMenuHidden] = useState(true)
   const [searchVisible, setSearchVisible] = useState(false)
-  const {isSmall, isMedium} = useWindowSize()
+  const {isSmall, isMedium, isLarge} = useWindowSize()
   const [startOfContentButtonFocused, setStartOfContentButtonFocused] = useState(false)
   const headerRef = useRef<HTMLElement | null>(null)
   const mainElRef = useRef<HTMLElement | null>(null)
@@ -296,6 +296,7 @@ function Root(
     [children],
   )
   const hasSearch = Boolean(searchItem)
+  const usesInputSearchTrigger = searchItem?.props.variant === 'input' && isLarge
   const searchKeyboardShortcut = useMemo(
     () => parseSearchKeyboardShortcut(searchItem?.props.keyboardShortcut ?? '/'),
     [searchItem?.props.keyboardShortcut],
@@ -457,6 +458,7 @@ function Root(
                       onSearchClose: handleSearchClose,
                       subdomainNavBarVariant: variant,
                       title,
+                      variant: usesInputSearchTrigger ? 'input' : 'icon',
                     })
                   }
                   return null
