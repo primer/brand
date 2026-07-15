@@ -57,17 +57,17 @@
     "heading": "ソフトウェアサプライチェーン全体を保護する",
     "cards": {
       "one": {
-        "tag": "SECURITY LAB",
+        "tag": "Security Lab",
         "heading": "GitHub Security Lab で戦略を拡張",
         "description": "脆弱性を発見し、CodeQL のようなツールを構築し、セキュリティ研究を前進させることで、オープンソースを保護します。"
       },
       "two": {
-        "tag": "SECURITY ADVISORY DATABASE",
+        "tag": "Security Advisory Database",
         "heading": "Security Advisory Database で一歩先を行く",
         "description": "CVE の脆弱性データベースと、オープンソースの世界から GitHub がキュレーションしたセキュリティアドバイザリにアクセスできます。"
       },
       "three": {
-        "tag": "SUPPLY CHAIN SECURITY",
+        "tag": "Supply chain security",
         "heading": "ソフトウェアサプライチェーンをエンドツーエンドで保護",
         "description": "自動更新、依存関係の追跡、ビルド証明により、リスクを減らし安全なライフサイクルを実現します。"
       }

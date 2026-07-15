@@ -75,9 +75,8 @@
   min-width: 0;
   overflow: hidden;
   text-overflow: ellipsis;
-  text-transform: uppercase;
   font-weight: var(--base-text-weight-normal);
-  line-height: 0.85;
+  line-height: var(--brand-text-lineHeight-100);
   white-space: nowrap;
   letter-spacing: var(--brand-text-letterSpacing-100);
 }
