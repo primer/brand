@@ -219,7 +219,7 @@ function exampleContradictsCatalog(code, byName) {
   for (const component of byName.values()) {
     const enumProps = component.props.filter(prop => Array.isArray(prop.enum) && prop.enum.length > 0)
     if (enumProps.length === 0) continue
-    for (const usage of code.matchAll(new RegExp(`<${component.name}\\b[^>]*>`, 'g'))) {
+    for (const usage of code.matchAll(new RegExp(`<${component.name}\\b(?!\\.)[^>]*>`, 'g'))) {
       for (const prop of enumProps) {
         for (const attributeMatch of usage[0].matchAll(new RegExp(`\\b${prop.name}=["']([^"']+)["']`, 'g'))) {
           if (!prop.enum.includes(attributeMatch[1])) return true

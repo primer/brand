@@ -1,6 +1,6 @@
 # Page design patterns
 
-These are the page design guidelines for GitHub marketing and landing pages, beyond what the component APIs or documentation guidelines recommend. Apply these by default unless the brief says otherwise. These are **design conventions** and the `primer_brand_review` tool does not flag them, so consult this before composing a page.
+These page-level guidelines complement the component APIs and documentation. Apply them unless the brief says otherwise. `primer_brand_review` catches some code-level mistakes automatically, but it cannot judge every visual or layout decision; use this guide for the full composition rules.
 
 Learn individual component APIs and usage with `primer_brand_docs` and `primer_brand_component`. This guide is the step after: how to lay out an entire page and use those components alongside your custom ones correctly.
 
@@ -36,69 +36,71 @@ Every full page should be framed top and bottom, unless the user has requested a
 
 ### Contain content within the grid
 
-Body content must always sit in a centered, max-width column framed by the brand's gridlines — it should rarely stretch edge-to-edge.
+Body content must sit in one centered, max-width grid framed by the brand's gridlines — it should rarely stretch edge-to-edge.
 
 Examples of this are in the Flexsuite recipes.
 
-- **Do** — keep content (heroes, rivers, tables, card grids, CTAs, prose) in a shared max-width column with clear left and right gutters, and let thin ruled gridlines run down both sides of the column with full-bleed horizontal rules between major sections.
-- **Don't** — stretch tables, card grids, CTAs, or text edge-to-edge, or let a section bleed full-width unless it is a deliberate background band.
+- **Do** — keep heroes, `River`s, `ComparisonTable` / `PricingOptions`, connected Card or Pillar groups, forms, `CTABanner`s, and prose on the same `Grid` / `Section` column. Draw thin side rules on the column and full-bleed horizontal rules between major sections.
+- **Don't** — give each section a different width, stretch content edge-to-edge, or let a section bleed full-width unless it is a deliberate background band behind the shared grid.
 - **Mobile** — use a modest, consistent side inset and make sure nothing overflows the viewport.
 
 Resolve gutter, inset, and gridline (border) values with `primer_brand_tokens`; don't hardcode hex or pixel values.
 
-### Spacing
+### Responsive rules
 
 Generous spacing is what lets a layout breathe; the Flexsuite recipes are a good reference for the rhythm to aim for.
 
-- **Do** — use `Box` and `Stack` (both have responsive spacing props) to add consistent rhythm between sections, and take spacing steps from the standard scale so gaps repeat predictably across sections and inside cards.
+- **Do** — use `Box` and `Stack` responsive spacing props and the established scale. Useful page-composition steps include `--base-size-20` for narrow gutters, `--base-size-60` / `--base-size-64` for regular section rhythm, and `--base-size-80` for wide breathing room.
+- **Do** — match the canonical wide `Grid` / container gutter instead of reproducing reviewed measurements as hardcoded values.
 - **Don't** — pack sections edge-to-edge, hand-roll ad-hoc margins, or invent one-off gap values.
 
 ### Typographic hierarchy
 
 A page has one clear headline and a calm step-down from there.
 
-- **Do** — use a single hero heading, make secondary section headings a clear step smaller, and set body copy at the standard body size and weight. Left-align long-form copy; reserve centering for short hero or section intros.
+- **Do** — use a single hero heading, make secondary section headings a clear step smaller, and keep body copy regular weight. Left-align long-form copy; reserve centering for short hero or section intros.
 - **Don't** — size secondary headings close to the hero, set body text in heavy weights, or center long paragraphs.
 
 Resolve exact sizes and weights with `primer_brand_tokens`.
 
 ## Component & element patterns
 
-### Heroes carry media
+### Do
 
-A text-only hero reads as unfinished; heroes should carry a visual and lead with a label.
+- **Heroes** — include relevant media and a label. Prefer a real product shot via `Hero.Image` / `Hero.Video`; use Asset Generator `create_product_landscape` when generating one, or `create_wallpaper` when a product shot does not fit. Keep decorative or illustrative media inside the shared grid with a stable aspect ratio and a token-backed maximum height so it cannot dominate the page or bleed full-width. If needed, place custom media after `Hero`; use `trailingComponent` only when it must live inside the Hero composition.
+- **Rivers** — use `<River variant="gridline" align="start">` throughout a page; omitting `align` also means start.
+- **Repeated panels** — place `Card`, `Pillar`, `Box`, or custom items in a square frame using `<Grid columnGap="none" rowGap="none" enableGutters={false}>`. Draw shared dividers on custom frame/cell wrappers and use `border-radius: 0` there; do not override `Card` or `Pillar` internals. `Pillar` has no grid variant.
+- **CTAs without media** — use the default `CTABanner` with `align="center"` and `hasGridLines`.
+- **CTAs with media** — use `<CTABanner variant="balanced" hasGridLines>` with a direct `CTABanner.Image`. Use Octovisuals for artwork; reserve `CTABanner.Logo` for genuine logos.
+- **Forms** — use a square, zero-gap `Grid` with connected benefits beside a subtle form surface. Use responsive token gutters, Primer Brand form controls, and an enabled `<Button variant="primary" type="submit">`.
+- **FAQs** — use `FAQGroup` navigation for multiple meaningful categories and one `FAQ` directly for a single category.
+- **Section backgrounds** — keep one default background across sections. Use `backgroundColor="subtle"` only to clarify a functional region.
+- **Labels** — use `Hero.Label`, `SectionIntro.Label`, or `EyebrowText`; keep labels intrinsic-width and aligned with their section.
+- **Lists** — use dot bullets without decorative dividers between items.
+- **Buttons** — show enabled controls with a clear primary/secondary hierarchy.
+- **Icons** — keep Octicons at the default green in `Card.Icon`, `Pillar.Icon`, and `Icon` unless there is a deliberate exception.
 
-- **Do** — give `Hero` a `Hero.Image` (or `Hero.Video`); source imagery from `primer_brand_asset` (Octovisuals) or generate it with the Asset Generator MCP (see _Generated imagery_ below). Lead the hero with an eyebrow label (see _Labels hug their content_), and bound decorative or illustrative media with a set aspect ratio and max height so it stays inside the grid.
-- **Don't** — ship a bare, text-only hero, drop the eyebrow, or let an illustration run arbitrarily tall or bleed full-width.
+### Don't
 
-### Generated imagery adds color and interest
+- Add irrelevant hero media or use social templates such as `create_social_square` or `create_landscape` for hero media.
+- Let decorative or illustrative Hero media grow arbitrarily tall or bleed outside the shared grid.
+- Zigzag gridline Rivers with `align="end"`.
+- Render repeated panels as separate rounded cards, double their shared borders, override `Card` / `Pillar` radius, or invent a grid variant for `Pillar`.
+- Use `CTABanner variant="balanced"` without a direct `CTABanner.Image`, or use `CTABanner.Logo` for decorative artwork.
+- Use raw form controls or put the form section in a floating rounded panel.
+- Show `FAQGroup` navigation for a single category.
+- Alternate section background colors merely for decoration.
+- Stretch Label components full-width or hand-style replacements for the label components. Labels should preserve their auto width, don't let the parent stretch them.
+- Use dashes as bullets, make normal controls look disabled, or tint default-green Octicons without a deliberate reason. `Pillar.Icon` has no `color` prop.
 
-Bring on-brand color and life to the page with the Asset Generator MCP (when installed) instead of leaving large areas flat — most pages want at least one generated visual.
+## Visual verification
 
-- **Do** — use **`create_product_landscape`** when the visual demos a product or feature (a hero or section showing the thing itself), and **`create_wallpaper`** for everything else, to add a colorful on-brand backdrop or accent. Browse the current set with `list_templates` / `list_themes` and pick a theme that fits the page's topic.
-- **Don't** — reach for social media-specific templates like `create_social_square` or `create_landscape` when a product shot or wallpaper fits better.
+When browser tooling is available, screenshot desktop, tablet, and mobile. Check that:
 
-### Group cards inside gridlines
+- Content shares one centered grid and consistent gutters.
+- Repeated panels share square boundaries and dividers.
+- Nothing clips, overflows, or overlaps; labels remain intrinsic-width.
+- Hero media and images render correctly; text has sufficient contrast.
+- Copy is real and specific, with no glows, purple gradients, pill buttons, or glassmorphism.
 
-A grid of items (features, pathways, plans) uses the connected **gridline** grid, not floating cards.
-
-- **Do** — render a `Grid` with `columnGap="none" rowGap="none" enableGutters={false}` inside a bordered frame and let the frame draw the shared lines. Refer to the Flexsuite recipes for an example of this.
-- **Don't** — output separate bordered `Card`s with gaps between them.
-
-### Labels hug their content
-
-Lead heroes and sections with an eyebrow/section label; it is intrinsic width, and stretching it reads as off-brand.
-
-- **Do** — use `Hero.Label` / `SectionIntro.Label` / `EyebrowText` for the standard treatment (a short, monospace, uppercase label) and let it size to its content; alignment follows the section (start by default, or centered inside a centered `SectionIntro`).
-- **Don't** — set a label full-width, give it a block/full-bleed background, or hand-style your own instead of the label components.
-
-### Sweat the small details
-
-Small, repeated treatments are where a page quietly drifts off-brand.
-
-- **Do** — use dot bullets for lists; keep buttons in their real interactive states (hover/active) and use a `Button` for a primary CTA rather than a bare link; show FAQ/accordion category navigation only when there are several categories; leave `Icon` at its default color — which renders green — wherever Octicons appear (`Card.Icon`, `Pillar.Icon`, and standalone `Icon`) so icons read as one consistent accent.
-- **Don't** — use dashes as bullets, add divider rules between list items or sections, ship flat/stateless buttons, render an empty single-category sidebar, or override the `color` prop on `Icon` or `Card.Icon` to tint icons off-green without a strong, deliberate reason (`Pillar.Icon` has no `color` prop — it's already locked to green).
-
-## General guidance
-
-- If browser tooling (e.g. the Playwright MCP) is available, verify your work visually before finishing: serve the page locally, open it, and take screenshots across different breakpoints. Review the screenshots against this guidance and automatically fix obvious defects like content that bleeds edge-to-edge instead of sitting in the gridline column, clipped or overflowing content, cramped or one-off spacing, stretched/full-width labels that should preserve their intrinsic width, a hero with no eyebrow, an illustration that runs too tall, dashes used as bullets, low-contrast text, a text-only hero, broken images, and off-brand tells (glows, purple gradients, pill buttons, glassmorphism, placeholder copy). Re-screenshot to confirm the fixes.
+Fix issues and re-screenshot before finishing.

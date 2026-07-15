@@ -11,7 +11,7 @@ import {type Finding, type Rule, evidence} from './types.js'
  */
 
 const componentUsage = (code: string, name: string): RegExpMatchArray[] => [
-  ...code.matchAll(new RegExp(`<${escapeRegExp(name)}\\b[^>]*>`, 'g')),
+  ...code.matchAll(new RegExp(`<${escapeRegExp(name)}\\b(?!\\.)[^>]*>`, 'g')),
 ]
 
 /** `<Hero.Heading>` style usages of `Root.Sub`. */
@@ -97,6 +97,13 @@ const invalidPropComboMap: PropCombinationConstraint[] = [
     message:
       'The `Hero` `gridline-expressive` variant is always start-aligned; `align="center"` is unsupported and will be ignored — remove it (the default `align="start"` is correct).',
   },
+  {
+    component: 'River',
+    when: {prop: 'variant', value: 'gridline'},
+    disallow: {prop: 'align', value: 'end'},
+    message:
+      'The `River` `gridline` variant must use a consistent start alignment; remove `align="end"` (the default `align="start"` is correct).',
+  },
 ]
 
 const invalidPropCombination: Rule = {
@@ -121,6 +128,26 @@ const invalidPropCombination: Rule = {
   },
 }
 
+/** The balanced layout only activates when `CTABanner.Image` is a direct child. */
+const balancedCtaRequiresImage: Rule = {
+  id: 'balanced-cta-image',
+  run(code) {
+    const findings: Finding[] = []
+    const balancedCta = /<CTABanner\b(?=[^>]*\bvariant=["']balanced["'])[^>]*>([\s\S]*?)<\/CTABanner>/g
+    for (const match of code.matchAll(balancedCta)) {
+      if (/<CTABanner\.Image\b/.test(match[1] ?? '')) continue
+      findings.push({
+        severity: 'error',
+        rule: this.id,
+        message:
+          '`CTABanner variant="balanced"` requires a direct `CTABanner.Image` child for its two-column layout. Use the default centered banner when there is no media.',
+        evidence: evidence(match[0]),
+      })
+    }
+    return findings
+  },
+}
+
 type RawPattern = {
   id: string
   test: RegExp
@@ -130,9 +157,9 @@ type RawPattern = {
 const RAW_HTML_PATTERNS: RawPattern[] = [
   {
     id: 'raw-form-elements',
-    test: /<(input|select|textarea|form)\b/i,
+    test: /<(input|select|textarea)\b/i,
     message:
-      'Raw form elements detected. Use Primer Brand form components (e.g. `FormControl`, `TextInput`, `Select`).',
+      'Raw form controls detected. Use Primer Brand form components (e.g. `FormControl`, `TextInput`, `Select`).',
   },
   {
     id: 'raw-pricing-table',
@@ -297,6 +324,7 @@ export const allRules: Rule[] = [
   unknownSubcomponents,
   invalidPropValue,
   invalidPropCombination,
+  balancedCtaRequiresImage,
   rawHtml,
   hardcodedValues,
   offBrandTells,
