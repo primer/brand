@@ -152,6 +152,12 @@ describe('SubdomainNavBar', () => {
     expect(getByRole('banner')).toHaveAttribute('id', 'docs-navigation')
   })
 
+  it('forwards custom styles to the root element', () => {
+    const {getByRole} = render(<SubdomainNavBar style={{opacity: 0.5}} title="Docs" />)
+
+    expect(getByRole('banner')).toHaveStyle({opacity: '0.5'})
+  })
+
   it('has no a11y violations by default', async () => {
     const {container} = render(<Component />)
 

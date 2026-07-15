@@ -288,7 +288,7 @@
     align-items: center;
     flex: 0 0 auto;
     position: absolute;
-    right: 0;
+    inset-inline-end: 0;
     visibility: hidden;
     pointer-events: none;
   }

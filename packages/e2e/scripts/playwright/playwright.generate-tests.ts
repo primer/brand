@@ -154,7 +154,7 @@ const beforeScreenshotLookup: Partial<Record<string, string>> = {
     if ((await moreButton.getAttribute('aria-expanded')) !== 'true') {
       await moreButton.click()
     }
-    const overflowMenu = page.locator('[id="' + (await moreButton.getAttribute('aria-controls')) + '"]')
+    const overflowMenu = page.locator(\`[id="\${await moreButton.getAttribute('aria-controls')}"]\`)
     await expect(moreButton).toHaveAttribute('aria-expanded', 'true')
     await expect(overflowMenu).toBeVisible()
     await expect(overflowMenu.getByRole('link', {name: 'Books'})).toBeVisible()
