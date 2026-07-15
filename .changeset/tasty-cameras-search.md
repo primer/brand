@@ -7,6 +7,7 @@ Updated `SubdomainNavBar` with a new visual variant, content slots, search APIs,
 
 - Added a `gridline` variant with horizontal and vertical separators.
 - Added `leadingComponent` and `trailingComponent` props for rendering custom content around the navigation links and actions.
+- Added a typed `id` prop for setting an HTML ID on the root element.
 - Added a `style` prop for forwarding custom styles to the root element.
 
 ```tsx

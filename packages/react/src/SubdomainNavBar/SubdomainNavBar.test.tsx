@@ -146,6 +146,12 @@ describe('SubdomainNavBar', () => {
     expect(getAllByRole('navigation').length > 0).toBeTruthy() // <nav>
   })
 
+  it('forwards a custom id to the root element', () => {
+    const {getByRole} = render(<SubdomainNavBar id="docs-navigation" title="Docs" />)
+
+    expect(getByRole('banner')).toHaveAttribute('id', 'docs-navigation')
+  })
+
   it('has no a11y violations by default', async () => {
     const {container} = render(<Component />)
 

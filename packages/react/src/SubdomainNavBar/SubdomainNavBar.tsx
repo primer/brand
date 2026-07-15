@@ -47,6 +47,10 @@ export type SubdomainNavBarProps = {
    */
   className?: string
   /**
+   * Forward a custom HTML ID to the root element.
+   */
+  id?: string
+  /**
    * Forward custom styles to the root element.
    */
   style?: React.CSSProperties
