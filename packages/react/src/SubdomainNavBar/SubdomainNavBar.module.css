@@ -708,7 +708,7 @@
     box-sizing: border-box;
     flex-direction: column;
     margin-block: var(--base-size-24);
-    padding-inline: var(--base-size-16);
+    padding-inline: var(--base-size-24);
     min-width: 0;
   }
 }
@@ -868,6 +868,10 @@
   .SubdomainNavBar--variant-gridline .SubdomainNavBar-menu-wrapper .SubdomainNavBar-link--title {
     font-size: var(--brand-text-size-100);
     line-height: var(--brand-text-lineHeight-100);
+  }
+
+  .SubdomainNavBar--variant-gridline .SubdomainNavBar-menu-wrapper .SubdomainNavBar-button-area-inner {
+    padding-inline: var(--base-size-16);
   }
 
   .SubdomainNavBar--variant-gridline .SubdomainNavBar-menu-wrapper .SubdomainNavBar-button-area,
