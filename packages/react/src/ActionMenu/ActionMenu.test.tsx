@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import {render, cleanup, fireEvent, waitFor} from '@testing-library/react'
 import '@testing-library/jest-dom'
+import userEvent from '@testing-library/user-event'
 import {axe, toHaveNoViolations} from 'jest-axe'
 
 import {ActionMenu} from './ActionMenu'
@@ -109,6 +110,81 @@ describe('ActionMenu', () => {
       },
       {timeout: 100},
     )
+  })
+
+  it("should forward the user's onClick callback and toggle the menu", () => {
+    const mockOnClick = jest.fn()
+    const {getByRole, queryByLabelText} = render(
+      <ActionMenu>
+        <ActionMenu.Button onClick={mockOnClick}>Open menu</ActionMenu.Button>
+        <ActionMenu.Overlay aria-label="Actions">
+          <ActionMenu.Item value="Copy link">Copy link</ActionMenu.Item>
+        </ActionMenu.Overlay>
+      </ActionMenu>,
+    )
+
+    fireEvent.click(getByRole('button', {name: 'Open menu'}))
+
+    expect(mockOnClick).toHaveBeenCalledTimes(1)
+    expect(queryByLabelText('Actions')).toBeInTheDocument()
+  })
+
+  it("should not toggle the menu when the user's onClick callback prevents the default action", () => {
+    const mockOnClick = jest.fn(event => event.preventDefault())
+    const {getByRole, queryByLabelText} = render(
+      <ActionMenu>
+        <ActionMenu.Button onClick={mockOnClick}>Open menu</ActionMenu.Button>
+        <ActionMenu.Overlay aria-label="Actions">
+          <ActionMenu.Item value="Copy link">Copy link</ActionMenu.Item>
+        </ActionMenu.Overlay>
+      </ActionMenu>,
+    )
+
+    fireEvent.click(getByRole('button', {name: 'Open menu'}))
+
+    expect(mockOnClick).toHaveBeenCalledTimes(1)
+    expect(queryByLabelText('Actions')).not.toBeInTheDocument()
+  })
+
+  it('should apply the button variant in default mode', () => {
+    const {getByRole} = render(
+      <ActionMenu>
+        <ActionMenu.Button variant="subtle">Open menu</ActionMenu.Button>
+        <ActionMenu.Overlay aria-label="Actions">
+          <ActionMenu.Item value="Copy link">Copy link</ActionMenu.Item>
+        </ActionMenu.Overlay>
+      </ActionMenu>,
+    )
+
+    expect(getByRole('button', {name: 'Open menu'})).toHaveClass('Button--subtle')
+  })
+
+  it('should use the secondary button variant by default in default mode', () => {
+    const {getByRole} = render(
+      <ActionMenu>
+        <ActionMenu.Button>Open menu</ActionMenu.Button>
+        <ActionMenu.Overlay aria-label="Actions">
+          <ActionMenu.Item value="Copy link">Copy link</ActionMenu.Item>
+        </ActionMenu.Overlay>
+      </ActionMenu>,
+    )
+
+    expect(getByRole('button', {name: 'Open menu'})).toHaveClass('Button--secondary')
+  })
+
+  it('should render the leading visual in default mode', () => {
+    const accessibleText = 'Test icon'
+    const TestIcon = () => <svg aria-label={accessibleText} />
+    const {getByLabelText} = render(
+      <ActionMenu>
+        <ActionMenu.Button leadingVisual={<TestIcon />}>Open menu</ActionMenu.Button>
+        <ActionMenu.Overlay aria-label="Actions">
+          <ActionMenu.Item value="Copy link">Copy link</ActionMenu.Item>
+        </ActionMenu.Overlay>
+      </ActionMenu>,
+    )
+
+    expect(getByLabelText(accessibleText)).toBeInTheDocument()
   })
 
   it("should set aria-haspopup to 'true' and aria-expanded to 'false' by default", () => {
@@ -455,6 +531,24 @@ describe('ActionMenu', () => {
     expect(mainButton).toHaveAttribute('href', '#option1')
   })
 
+  it('should forward custom attributes to the primary action in split-button mode', () => {
+    const {getByRole, getByLabelText} = render(
+      <ActionMenu mode="split-button">
+        <ActionMenu.Button as="a" href="#option1" data-attribute="test">
+          Primary Action
+        </ActionMenu.Button>
+        <ActionMenu.Overlay aria-label="Additional options">
+          <ActionMenu.Item as="a" href="#option1">
+            Option 1
+          </ActionMenu.Item>
+        </ActionMenu.Overlay>
+      </ActionMenu>,
+    )
+
+    expect(getByRole('link', {name: 'Primary Action'})).toHaveAttribute('data-attribute', 'test')
+    expect(getByLabelText('Menu')).not.toHaveAttribute('data-attribute')
+  })
+
   it('should toggle menu when clicking the chevron button', async () => {
     const {getByLabelText, queryByLabelText} = render(
       <ActionMenu mode="split-button">
@@ -499,6 +593,40 @@ describe('ActionMenu', () => {
       },
       {timeout: 100},
     )
+  })
+
+  it('should keep the primary and menu actions independent in split-button mode', async () => {
+    const mockOnClick = jest.fn()
+    const user = userEvent.setup()
+    const {getByRole, getByLabelText, queryByLabelText} = render(
+      <ActionMenu mode="split-button">
+        <ActionMenu.Button onClick={mockOnClick}>Primary Action</ActionMenu.Button>
+        <ActionMenu.Overlay aria-label="Additional options">
+          <ActionMenu.Item as="a" href="#option1">
+            Option 1
+          </ActionMenu.Item>
+        </ActionMenu.Overlay>
+      </ActionMenu>,
+    )
+
+    const primaryButton = getByRole('button', {name: 'Primary Action'})
+    fireEvent.click(primaryButton)
+
+    expect(mockOnClick).toHaveBeenCalledTimes(1)
+    expect(queryByLabelText('Additional options')).not.toBeInTheDocument()
+
+    await user.tab()
+    expect(primaryButton).toHaveFocus()
+    await user.keyboard('{Enter}')
+    await user.keyboard(' ')
+
+    expect(mockOnClick).toHaveBeenCalledTimes(3)
+    expect(queryByLabelText('Additional options')).not.toBeInTheDocument()
+
+    fireEvent.click(getByLabelText('Menu'))
+
+    expect(mockOnClick).toHaveBeenCalledTimes(3)
+    expect(queryByLabelText('Additional options')).toBeInTheDocument()
   })
 
   it('should render items as links with correct href attribute', async () => {
@@ -572,6 +700,24 @@ describe('ActionMenu', () => {
 
     const variantButton = container.querySelector(`.ActionMenu__innerButton--subtle`)
     expect(variantButton).toBeInTheDocument()
+  })
+
+  it('should use the primary button variant by default in split-button mode', () => {
+    const {getByRole, getByLabelText} = render(
+      <ActionMenu mode="split-button">
+        <ActionMenu.Button as="a" href="#option1">
+          Primary Action
+        </ActionMenu.Button>
+        <ActionMenu.Overlay aria-label="Additional options">
+          <ActionMenu.Item as="a" href="#option1">
+            Option 1
+          </ActionMenu.Item>
+        </ActionMenu.Overlay>
+      </ActionMenu>,
+    )
+
+    expect(getByRole('link', {name: 'Primary Action'})).toHaveClass('Button--primary')
+    expect(getByLabelText('Menu')).toHaveClass('Button--primary')
   })
 
   it('should not change main button href when menu is toggled', async () => {
