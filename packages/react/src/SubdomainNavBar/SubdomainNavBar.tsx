@@ -40,7 +40,7 @@ export type SubdomainNavBarProps = {
   children?:
     | React.ReactNode
     | React.ReactElement<SubdomainNavBarLinkProps>
-    | React.ReactElement<SearchProps>
+    | React.ReactElement<SubdomainNavBarSearchProps>
     | React.ReactElement<CTAActionProps>
   /**
    * Forward a custom HTML class attribute
@@ -256,13 +256,13 @@ function Root(
 
     updateMenuViewportOffsetBlockStart()
 
-    window.addEventListener('resize', updateMenuViewportOffsetBlockStart)
-    window.addEventListener('scroll', updateMenuViewportOffsetBlockStart)
+    const resizeObserver = new ResizeObserver(updateMenuViewportOffsetBlockStart)
+    const header = headerRef.current
 
-    return () => {
-      window.removeEventListener('resize', updateMenuViewportOffsetBlockStart)
-      window.removeEventListener('scroll', updateMenuViewportOffsetBlockStart)
-    }
+    if (header) resizeObserver.observe(header)
+    resizeObserver.observe(document.documentElement)
+
+    return () => resizeObserver.disconnect()
   }, [isMedium, menuHidden, updateMenuViewportOffsetBlockStart])
 
   useEffect(() => {
@@ -320,8 +320,8 @@ function Root(
   const searchItem = useMemo(
     () =>
       React.Children.toArray(children).find(
-        (child): child is React.ReactElement<SearchProps> =>
-          React.isValidElement<SearchProps>(child) && child.type === Search,
+        (child): child is React.ReactElement<SubdomainNavBarSearchProps> =>
+          React.isValidElement<SubdomainNavBarSearchProps>(child) && child.type === Search,
       ),
     [children],
   )
@@ -482,7 +482,7 @@ function Root(
             <div className={clsx(styles['SubdomainNavBar-secondary-nav'])}>
               {React.Children.toArray(children)
                 .map(child => {
-                  if (React.isValidElement<SearchProps>(child) && child.type === Search) {
+                  if (React.isValidElement<SubdomainNavBarSearchProps>(child) && child.type === Search) {
                     return React.cloneElement(child, {
                       active: searchVisible,
                       className: clsx(
@@ -652,7 +652,63 @@ export type SubdomainNavBarSearchResultGroupProps = {
 
 export type SubdomainNavBarSearchResults = SubdomainNavBarSearchResultProps[] | SubdomainNavBarSearchResultGroupProps[]
 
-type SearchProps = {
+export type SubdomainNavBarSearchLabels = {
+  /**
+   * Accessible label for the search input. Defaults to "Search".
+   */
+  searchLabel: string
+  /**
+   * Accessible label for the icon-only search trigger. Defaults to "Toggle search bar".
+   */
+  searchTriggerLabel: string
+  /**
+   * Visible and accessible label for the close action. Defaults to "Close".
+   */
+  closeLabel: string
+  /**
+   * Accessible label for an untitled search result group. Defaults to "Results".
+   */
+  resultsLabel: string
+  /**
+   * Accessible label for grouped search results without a search term. Defaults to "Search results".
+   */
+  searchResultsLabel: string
+  /**
+   * Formats the default search placeholder and dialog label using the navigation title.
+   */
+  formatSearchWithTitle: (title: string) => string
+  /**
+   * Formats the accessible label for the input-style search trigger.
+   */
+  formatSearchTrigger: (placeholder: string) => string
+  /**
+   * Formats the visible heading for ungrouped search results.
+   */
+  formatResultsHeading: (searchTerm: string) => string
+  /**
+   * Formats the accessible label for grouped search results.
+   */
+  formatResultsLabel: (searchTerm: string) => string
+  /**
+   * Formats the search result count announcement.
+   */
+  formatSuggestions: (count: number) => string
+}
+
+const defaultSearchLabels: SubdomainNavBarSearchLabels = {
+  searchLabel: 'Search',
+  searchTriggerLabel: 'Toggle search bar',
+  closeLabel: 'Close',
+  resultsLabel: 'Results',
+  searchResultsLabel: 'Search results',
+  formatSearchWithTitle: title => `Search ${title}`,
+  formatSearchTrigger: placeholder => `${placeholder} search`,
+  formatResultsHeading: searchTerm => `Results for “${searchTerm}”`,
+  formatResultsLabel: searchTerm => `Results for ${searchTerm}`,
+  formatSuggestions: count => `${count} suggestions.`,
+}
+
+export type SubdomainNavBarSearchProps = {
   onSubmit: (e: React.FormEvent<HTMLFormElement>) => void
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
   active?: boolean
@@ -681,6 +737,10 @@ type SearchProps = {
   searchResults?: SubdomainNavBarSearchResults
   searchTerm?: string
   subdomainNavBarVariant?: SubdomainNavBarVariant
+  /**
+   * Customizable visible and accessible search text. Unspecified labels use the English defaults.
+   */
+  labels?: Partial<SubdomainNavBarSearchLabels>
 }
 
 type NormalizedSearchResultGroup = {
@@ -736,7 +796,7 @@ function normalizeSearchResults(searchResults: SubdomainNavBarSearchResults = []
   return groups
 }
 
-const _SearchInternal = forwardRef<HTMLInputElement, SearchProps>(
+const _SearchInternal = forwardRef<HTMLInputElement, SubdomainNavBarSearchProps>(
   (
     {
       active,
@@ -753,13 +813,17 @@ const _SearchInternal = forwardRef<HTMLInputElement, SearchProps>(
       keyboardShortcut = '/',
       subdomainNavBarVariant,
       variant: searchVariant = 'icon',
+      labels,
     },
     forwardedRef,
   ) => {
     const dialogRef = useRef<HTMLDialogElement | null>(null)
     const inputRef = useRef<HTMLInputElement | null>(null)
     const isGridlineVariant = subdomainNavBarVariant === 'gridline'
-    const resolvedPlaceholder = placeholder ?? (title ? `Search ${title}` : 'Search')
+    const resolvedLabels = {...defaultSearchLabels, ...labels}
+    const resolvedPlaceholder =
+      placeholder ?? (title ? resolvedLabels.formatSearchWithTitle(title) : resolvedLabels.searchLabel)
+    const dialogLabel = title ? resolvedLabels.formatSearchWithTitle(title) : resolvedLabels.searchLabel
     const resolvedShortcutLabel = shortcutLabel ?? (keyboardShortcut || '')
     const normalizedSearchResultGroups = useMemo(() => normalizeSearchResults(searchResults), [searchResults])
     const hasGroupedSearchResults = normalizedSearchResultGroups.some(group => group.title)
@@ -951,7 +1015,7 @@ const _SearchInternal = forwardRef<HTMLInputElement, SearchProps>(
         >
           {searchVariant === 'input' ? (
             <button
-              aria-label={`${resolvedPlaceholder} search`}
+              aria-label={resolvedLabels.formatSearchTrigger(resolvedPlaceholder)}
               className={styles['SubdomainNavBar-search-input-button']}
               onClick={onSearchOpen}
               data-testid="toggle-search"
@@ -967,7 +1031,7 @@ const _SearchInternal = forwardRef<HTMLInputElement, SearchProps>(
             </button>
           ) : (
             <Button
-              aria-label="Toggle search bar"
+              aria-label={resolvedLabels.searchTriggerLabel}
               className={
                 isGridlineVariant
                   ? styles['SubdomainNavBar-search-button--gridline']
@@ -984,7 +1048,7 @@ const _SearchInternal = forwardRef<HTMLInputElement, SearchProps>(
         {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-noninteractive-element-interactions -- Native dialog keyboard dismissal is handled by onCancel; click only closes backdrop clicks. */}
         <dialog
           ref={dialogRef}
-          aria-label={`Search ${title}`}
+          aria-label={dialogLabel}
           className={clsx(
             styles['SubdomainNavBar-search-dialog'],
             isGridlineVariant && styles['SubdomainNavBar-search-dialog--gridline'],
@@ -998,7 +1062,7 @@ const _SearchInternal = forwardRef<HTMLInputElement, SearchProps>(
                 <div className={styles['SubdomainNavBar-search-input-area']}>
                   <form className={clsx(styles['SubdomainNavBar-search-form'])} onSubmit={onSubmit} role="search">
                     <FormControl fullWidth size="medium">
-                      <FormControl.Label visuallyHidden>Search</FormControl.Label>
+                      <FormControl.Label visuallyHidden>{resolvedLabels.searchLabel}</FormControl.Label>
                       <TextInput
                         ref={setInputRef}
                         className={clsx(styles['SubdomainNavBar-search-text-input'])}
@@ -1024,12 +1088,12 @@ const _SearchInternal = forwardRef<HTMLInputElement, SearchProps>(
                     </FormControl>
                   </form>
                   <button
-                    aria-label="Close"
+                    aria-label={resolvedLabels.closeLabel}
                     className={styles['SubdomainNavBar-search-close-button']}
                     onClick={handleClose}
                     type="button"
                   >
-                    Close
+                    {resolvedLabels.closeLabel}
                   </button>
                 </div>
               </div>
@@ -1048,7 +1112,7 @@ const _SearchInternal = forwardRef<HTMLInputElement, SearchProps>(
                         id="subdomainnavbar-search-results-heading"
                         className={styles['SubdomainNavBar-search-results-heading']}
                       >
-                        Results for &ldquo;{searchTerm}&rdquo;
+                        {resolvedLabels.formatResultsHeading(searchTerm ?? '')}
                       </Text>
                     )}
                     <ul
@@ -1058,8 +1122,8 @@ const _SearchInternal = forwardRef<HTMLInputElement, SearchProps>(
                       aria-label={
                         hasGroupedSearchResults
                           ? searchTerm
-                            ? `Results for ${searchTerm}`
-                            : 'Search results'
+                            ? resolvedLabels.formatResultsLabel(searchTerm)
+                            : resolvedLabels.searchResultsLabel
                           : undefined
                       }
                       className={clsx(styles['SubdomainNavBar-search-results'])}
@@ -1086,7 +1150,7 @@ const _SearchInternal = forwardRef<HTMLInputElement, SearchProps>(
                                   className={styles['SubdomainNavBar-search-result-group-list']}
                                   role="group"
                                   aria-labelledby={group.title ? groupHeadingId : undefined}
-                                  aria-label={group.title ? undefined : 'Results'}
+                                  aria-label={group.title ? undefined : resolvedLabels.resultsLabel}
                                 >
                                   {group.results.map(renderSearchResult)}
                                 </ul>
@@ -1098,7 +1162,7 @@ const _SearchInternal = forwardRef<HTMLInputElement, SearchProps>(
                   </div>
                 )}
                 <div aria-live="polite" aria-atomic="true" data-testid={testIds.liveRegion} className="visually-hidden">
-                  {`${searchResultsLength} suggestions.`}
+                  {resolvedLabels.formatSuggestions(searchResultsLength)}
                   {liveRegion && <span>&nbsp;</span>}
                 </div>
               </div>

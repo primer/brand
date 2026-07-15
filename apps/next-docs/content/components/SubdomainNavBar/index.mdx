@@ -40,86 +40,156 @@ Please refer to our [Storybook examples](https://primer.style/brand/storybook/?p
 </SubdomainNavBar>
 ```
 
+### Leading and trailing content
+
+Use `leadingComponent` for content between the title and navigation links. Use `trailingComponent` for content after search and actions. On narrow viewports, both slots move into the menu while preserving that order. Provide accessible names for interactive controls passed to either slot.
+
+```tsx filename="App.tsx"
+import {Button, SubdomainNavBar, Token} from '@primer/react-brand'
+
+export function App() {
+  return (
+    <SubdomainNavBar
+      title="GitHub Docs"
+      fixed={false}
+      leadingComponent={<Token>Enterprise Cloud</Token>}
+      trailingComponent={<Button aria-label="Sign in to GitHub">Sign in</Button>}
+      style={{borderBlockEndColor: 'var(--brand-color-border-default)'}}
+    >
+      <SubdomainNavBar.Link href="/en/get-started">Get started</SubdomainNavBar.Link>
+      <SubdomainNavBar.Link href="/en/rest">REST API</SubdomainNavBar.Link>
+    </SubdomainNavBar>
+  )
+}
+```
+
 ### Search
 
-`SubdomainNavBar` offers an optional search form control. The form can operate in both `onSubmit` and `onChange` modes, with the latter facilitating inline results to appear.
+`SubdomainNavBar.Search` opens a search dialog and supports submitted searches or results updated from `onChange`. Its `variant` controls only the closed trigger:
 
-When search is present, users can press `/` to open the search dialog. Set `keyboardShortcut={false}` on `SubdomainNavBar.Search` to turn off the shortcut, or pass another key value such as `keyboardShortcut="Command+Option+k"` to remap it. To open the same dialog programmatically, attach a ref to `SubdomainNavBar` and call `openSearch()`.
+- `icon` is the default icon-only trigger.
+- `input` displays a placeholder and optional shortcut hint at the large breakpoint (1012px and wider). It automatically uses the icon-only trigger below that breakpoint.
 
-```jsx filename="noinline"
-const App = () => {
-  const navRef = React.useRef(null)
-  const inputRef = React.useRef(null)
-  const [searchResults, setSearchResults] = React.useState([])
+The `placeholder` is also used by the input in the opened dialog. If omitted, it defaults to `Search {title}`, or `Search` when no navigation title is available.
+
+By default, users can press `/` to open search. `keyboardShortcut` accepts a single key or a modifier combination such as `Command+Option+k`; set it to `false` to disable the global shortcut. The shortcut is ignored while focus is in an editable control. `shortcutLabel` changes only the visible hint in the input trigger and defaults to the value of `keyboardShortcut`; use an empty string to hide it.
+
+Attach a ref typed as `SubdomainNavBarHandle` to call `openSearch()` or `closeSearch()`. Both methods are no-ops when the nav bar has no `SubdomainNavBar.Search` child.
+
+```tsx filename="SearchNav.tsx"
+import * as React from 'react'
+import {
+  Button,
+  SubdomainNavBar,
+  type SubdomainNavBarHandle,
+  type SubdomainNavBarSearchResults,
+} from '@primer/react-brand'
+
+const groupedResults: SubdomainNavBarSearchResults = [
+  {
+    title: 'Recommended',
+    results: [
+      {
+        title: 'Getting started with GitHub',
+        description: 'Create an account and learn the basics.',
+        url: '/en/get-started',
+        date: '2026-07-01',
+        category: 'Guide',
+      },
+    ],
+  },
+  {
+    title: 'API reference',
+    results: [
+      {
+        title: 'REST API documentation',
+        description: 'Integrate with GitHub using the REST API.',
+        url: 'https://docs.github.com/en/rest',
+        date: '2026-07-01',
+        category: 'Reference',
+        isExternal: true,
+      },
+    ],
+  },
+]
+
+export function SearchNav() {
+  const navRef = React.useRef<SubdomainNavBarHandle | null>(null)
   const [searchTerm, setSearchTerm] = React.useState('')
-
-  const mockSearchData = [
-    {
-      title: 'How to transform your business in a digital world',
-      description:
-        'GitHub Enterprise empowers developers with tools they already know and love, accelerates high-quality software development and secure delivery, and enhances the speed and power of innovation.\n',
-      url: 'https://resources.github.com/devops/github-enterprise-ebook',
-      date: '2022-08-29T00:00+02:00',
-    },
-    {
-      title: 'The fundamentals of continuous deployment in DevOps',
-      description:
-        'What is continuous deployment?\nContinuous deployment (CD) is an automated software release practice where code changes are deployed to different stages as they pass predefined tests. The goal of CD is to facilitate faster releases by using automation to help remove the need for human intervention as much as possible during the deployment process.',
-      url: 'https://resources.github.com/devops/fundamentals/ci-cd/deployment',
-      date: '2022-05-23T12:00+00:00',
-    },
-  ]
-
-  const handleChange = () => {
-    if (!inputRef.current) return
-    if (inputRef.current.value.length === 0) {
-      setSearchResults(undefined)
-      return
-    }
-    if (inputRef.current.value.length > 2) {
-      setTimeout(() => setSearchResults(mockSearchData), 1000)
-      setSearchTerm(inputRef.current.value)
-      return
-    }
-  }
-
-  const handleSubmit = e => {
-    e.preventDefault()
-    if (!inputRef.current) return
-    if (!inputRef.current.value) {
-      alert(`Enter a value and try again.`)
-      return
-    }
-
-    alert(`Name: ${inputRef.current.value}`)
-  }
 
   return (
     <>
-      <button type="button" onClick={() => navRef.current?.openSearch()}>
-        Open search
-      </button>
-      <SubdomainNavBar ref={navRef} title="Subdomain" fixed={false}>
-        <SubdomainNavBar.Link href="#collections">Collections</SubdomainNavBar.Link>
-        <SubdomainNavBar.Link href="#topics">Topics</SubdomainNavBar.Link>
+      <Button onClick={() => navRef.current?.openSearch()}>Open search</Button>
+      <Button variant="secondary" onClick={() => navRef.current?.closeSearch()}>
+        Close search
+      </Button>
+      <SubdomainNavBar ref={navRef} title="GitHub Docs" fixed={false} fullWidth variant="gridline">
+        <SubdomainNavBar.Link href="/en/get-started">Get started</SubdomainNavBar.Link>
         <SubdomainNavBar.Search
-          ref={inputRef}
+          variant="input"
+          placeholder="Search GitHub Docs"
+          keyboardShortcut="Command+Option+k"
+          shortcutLabel="⌘⌥K"
           searchTerm={searchTerm}
-          onSubmit={handleSubmit}
-          onChange={handleChange}
-          searchResults={searchResults}
+          searchResults={searchTerm ? groupedResults : []}
+          onChange={event => setSearchTerm(event.currentTarget.value)}
+          onSubmit={event => {
+            event.preventDefault()
+          }}
         />
       </SubdomainNavBar>
     </>
   )
 }
+```
 
-render(App)
+Search results may be a flat `SubdomainNavBarSearchResultProps[]` or a `SubdomainNavBarSearchResultGroupProps[]`. For flat results, the optional `group` field groups items under the same heading. For explicit groups, each object supplies a `title` and `results` array. Do not mix flat result and group objects in the same array.
+
+### Localized search
+
+The `labels` prop accepts `Partial<SubdomainNavBarSearchLabels>`. Missing values fall back to English. For a fully localized experience, provide every label and formatter, and localize `placeholder` and `shortcutLabel` when they contain language.
+
+```tsx filename="LocalizedSearch.tsx"
+import * as React from 'react'
+import {SubdomainNavBar, type SubdomainNavBarSearchLabels, type SubdomainNavBarSearchProps} from '@primer/react-brand'
+
+const labels: SubdomainNavBarSearchLabels = {
+  searchLabel: 'Buscar',
+  searchTriggerLabel: 'Abrir búsqueda',
+  closeLabel: 'Cerrar',
+  resultsLabel: 'Resultados',
+  searchResultsLabel: 'Resultados de búsqueda',
+  formatSearchWithTitle: title => `Buscar en ${title}`,
+  formatSearchTrigger: placeholder => `Abrir ${placeholder}`,
+  formatResultsHeading: searchTerm => `Resultados para «${searchTerm}»`,
+  formatResultsLabel: searchTerm => `Resultados para ${searchTerm}`,
+  formatSuggestions: count => `${count} sugerencia${count === 1 ? '' : 's'}.`,
+}
+
+const searchProps: Pick<SubdomainNavBarSearchProps, 'labels' | 'placeholder'> = {
+  labels,
+  placeholder: 'Buscar documentación',
+}
+
+export function LocalizedSearch() {
+  const [searchTerm, setSearchTerm] = React.useState('')
+
+  return (
+    <SubdomainNavBar title="Documentación" fixed={false}>
+      <SubdomainNavBar.Search
+        {...searchProps}
+        searchTerm={searchTerm}
+        onChange={event => setSearchTerm(event.currentTarget.value)}
+        onSubmit={event => event.preventDefault()}
+      />
+    </SubdomainNavBar>
+  )
+}
 ```
 
 ### Gridline variant
 
-Use the `gridline` variant for designs that need visible cell dividers and the full-width accent rule.
+Use the `gridline` variant for designs that need horizontal and vertical separators and a full-width accent rule. The exported `SubdomainNavBarVariants` and `SubdomainNavBarVariant` describe the available root variants; `SubdomainNavBarSearchVariants` and `SubdomainNavBarSearchVariant` do the same for search.
 
 ```jsx live
 <SubdomainNavBar title="GitHub Docs" fixed={false} fullWidth variant="gridline">
@@ -129,39 +199,101 @@ Use the `gridline` variant for designs that need visible cell dividers and the f
 
 ## Accessibility
 
-When the menu is open on narrow viewports, ensure that the rest of the document is hidden from screen readers. This can be achieved by adding `aria-hidden="true"` or `inert` to the main content area when the menu is open.
-
-Use the `onNarrowMenuToggle` prop to detect when the mobile menu is opened or closed.
+- Provide a concise, meaningful `title`. It labels the navigation and communicates the subdomain to assistive technologies.
+- When the menu opens on narrow viewports, hide the rest of the document from screen readers with `inert` or `aria-hidden="true"`. Use `onNarrowMenuToggle` to track the menu state.
+- Ensure interactive content supplied through `leadingComponent` or `trailingComponent` has an accessible name and remains keyboard operable.
+- Choose a `keyboardShortcut` that does not conflict with browser, operating system, or application shortcuts. Always provide another visible way to open search.
+- For search, localize its visible text, accessible labels, result headings, and live-region announcements. Supplying only some `labels` values produces a mix of localized text and English defaults.
 
 ## Component props
 
 ### SubdomainNavBar <Label>Required</Label>
 
-| Name                 | Type                            |       Default       | Description                                                                                                                            |
-| :------------------- | :------------------------------ | :-----------------: | :------------------------------------------------------------------------------------------------------------------------------------- |
-| `children`           | <SubdomainNavBarChildrenProp /> |                     | Valid child nodes                                                                                                                      |
-| `className`          | `string`                        |                     | Sets a custom class                                                                                                                    |
-| `id`                 | `string`                        |                     | Sets a custom id                                                                                                                       |
-| `logoHref`           | `string`                        | `https//github.com` | Optionally change the URL of the logo                                                                                                  |
-| `title`              | `string`                        |                     | The title or name of the subdomain. Appears adjacent to the logo and is required for communicating content to assisitive technologies. |
-| `titleHref`          | `string`                        |         `/`         | The URL for the site. Typically used to link the title prop value to the site root.                                                    |
-| `variant`            | `'default' \| 'gridline'`       |      `default`      | Applies the visual treatment. Use `gridline` to add separators and the full-width accent rule.                                         |
-| `ref`                | `React.RefObject`               |                     | Forward a Ref to the underlying DOM node, with `openSearch()` and `closeSearch()` methods                                              |
-| `onNarrowMenuToggle` | `(isOpen: boolean) => void`     |                     | When the mobile menu is opened or closed, this callback is called with the new open state.                                             |
+| Name                 | Type                               | Default              | Description                                                                      |
+| :------------------- | :--------------------------------- | :------------------- | :------------------------------------------------------------------------------- |
+| `children`           | <SubdomainNavBarChildrenProp />    |                      | Valid child nodes                                                                |
+| `className`          | `string`                           |                      | Sets a custom class on the root element                                          |
+| `style`              | `React.CSSProperties`              |                      | Forwards custom inline styles to the root element                                |
+| `fixed`              | `boolean`                          | `true`               | Fixes the navigation bar to the top of the viewport                              |
+| `fullWidth`          | `boolean`                          | `false`              | Allows the inner content to fill the available width                             |
+| `logoHref`           | `string`                           | `https://github.com` | Changes the URL of the GitHub logo                                               |
+| `title`              | `string`                           |                      | Required subdomain name used visibly and by assistive technologies               |
+| `titleHref`          | `string`                           | `/`                  | Links the title to the subdomain root                                            |
+| `variant`            | `SubdomainNavBarVariant`           | `default`            | `default` or `gridline`; `gridline` adds separators and a full-width accent rule |
+| `leadingComponent`   | `React.ReactNode`                  |                      | Content rendered after the title and before navigation links                     |
+| `trailingComponent`  | `React.ReactNode`                  |                      | Content rendered after search and actions                                        |
+| `ref`                | `React.Ref<SubdomainNavBarHandle>` |                      | Ref to the root element with `openSearch()` and `closeSearch()` methods          |
+| `onNarrowMenuToggle` | `(isOpen: boolean) => void`        |                      | Called with the new state when the narrow menu opens or closes                   |
+
+`SubdomainNavBarProps`, `SubdomainNavBarHandle`, `SubdomainNavBarVariant`, and `SubdomainNavBarVariants` are exported from `@primer/react-brand`.
+
+### SubdomainNavBar.Search
+
+| Name               | Type                                             | Default          | Description                                                                   |
+| :----------------- | :----------------------------------------------- | :--------------- | :---------------------------------------------------------------------------- |
+| `onSubmit`         | `(event: FormEvent<HTMLFormElement>) => void`    |                  | Required search form submit handler                                           |
+| `onChange`         | `(event: ChangeEvent<HTMLInputElement>) => void` |                  | Required search input change handler                                          |
+| `variant`          | `SubdomainNavBarSearchVariant`                   | `icon`           | Uses an icon trigger, or an input-style trigger at widths of 1012px and wider |
+| `placeholder`      | `string`                                         | `Search {title}` | Text shown in the input trigger and opened search input                       |
+| `shortcutLabel`    | `string`                                         | Shortcut value   | Visible input-trigger hint; pass an empty string to hide it                   |
+| `keyboardShortcut` | `string \| false`                                | `/`              | Global key or modifier combination that opens search; `false` disables it     |
+| `labels`           | `Partial<SubdomainNavBarSearchLabels>`           | English labels   | Overrides visible and accessible search text and formatting functions         |
+| `searchResults`    | `SubdomainNavBarSearchResults`                   |                  | Flat or explicitly grouped results                                            |
+| `searchTerm`       | `string`                                         |                  | Current query used in result headings and accessible labels                   |
+| `className`        | `string`                                         |                  | Sets a custom class on the search trigger container                           |
+| `ref`              | `React.Ref<HTMLInputElement>`                    |                  | Ref to the input inside the opened search dialog                              |
+
+`SubdomainNavBarSearchProps`, `SubdomainNavBarSearchVariant`, `SubdomainNavBarSearchVariants`, and `SubdomainNavBarSearchLabels` are exported from `@primer/react-brand`.
+
+### Search labels
+
+| Field                   | Type                              | English default               | Purpose                                                  |
+| :---------------------- | :-------------------------------- | :---------------------------- | :------------------------------------------------------- |
+| `searchLabel`           | `string`                          | `Search`                      | Accessible label for the search input                    |
+| `searchTriggerLabel`    | `string`                          | `Toggle search bar`           | Accessible label for the icon trigger                    |
+| `closeLabel`            | `string`                          | `Close`                       | Visible and accessible close action                      |
+| `resultsLabel`          | `string`                          | `Results`                     | Accessible label for an untitled result group            |
+| `searchResultsLabel`    | `string`                          | `Search results`              | Accessible label for grouped results without a query     |
+| `formatSearchWithTitle` | `(title: string) => string`       | `Search ${title}`             | Formats the default placeholder and dialog label         |
+| `formatSearchTrigger`   | `(placeholder: string) => string` | `${placeholder} search`       | Formats the input-style trigger's accessible label       |
+| `formatResultsHeading`  | `(searchTerm: string) => string`  | `Results for “${searchTerm}”` | Formats the visible heading for ungrouped results        |
+| `formatResultsLabel`    | `(searchTerm: string) => string`  | `Results for ${searchTerm}`   | Formats the accessible label for grouped results         |
+| `formatSuggestions`     | `(count: number) => string`       | `${count} suggestions.`       | Formats the polite live-region result-count announcement |
+
+### Search result types
+
+`SubdomainNavBarSearchResultProps`, `SubdomainNavBarSearchResultGroupProps`, and `SubdomainNavBarSearchResults` are exported from `@primer/react-brand`.
+
+#### `SubdomainNavBarSearchResultProps`
+
+| Field         | Type      | Required | Description                                                                         |
+| :------------ | :-------- | :------: | :---------------------------------------------------------------------------------- |
+| `title`       | `string`  |   Yes    | Linked result title                                                                 |
+| `description` | `string`  |   Yes    | Result summary                                                                      |
+| `url`         | `string`  |   Yes    | Link destination                                                                    |
+| `date`        | `string`  |   Yes    | Displayed date string; format it for the user's locale before passing it            |
+| `category`    | `string`  |          | Optional metadata displayed after the date                                          |
+| `group`       | `string`  |          | Groups flat results under a shared heading                                          |
+| `isExternal`  | `boolean` |          | Shows an external-link indicator for grouped results in the `gridline` root variant |
+
+#### `SubdomainNavBarSearchResultGroupProps`
+
+| Field     | Type                                 | Required | Description                       |
+| :-------- | :----------------------------------- | :------: | :-------------------------------- |
+| `title`   | `string`                             |   Yes    | Visible and accessible group name |
+| `results` | `SubdomainNavBarSearchResultProps[]` |   Yes    | Results in the group              |
 
 <h3 id="SubdomainNavBar-link">
   SubdomainNavBar.Link <Label>Required</Label>
 </h3>
 
-`SubdomainNavBar.Link` are anchor links.
+`SubdomainNavBar.Link` renders an anchor link.
 
-| Name         | Type              | Default | Description                                               |
-| :----------- | :---------------- | :-----: | :-------------------------------------------------------- |
-| `children`   | `string`          |         | Label text                                                |
-| `className`  | `string`          |         | Applies a custom class                                    |
-| `href`       | `string`          |         | Destination path for the anchor element                   |
-| `id`         | `string`          |         | Sets a custom id                                          |
-| `ref`        | `React.RefObject` |         | Forward a Ref to the underlying DOM node                  |
-| `isExternal` | `boolean`         | `false` | When true, renders a external link icon after to the link |
+| Name         | Type              | Default | Description                                              |
+| :----------- | :---------------- | :-----: | :------------------------------------------------------- |
+| `children`   | `React.ReactNode` |         | Link content                                             |
+| `className`  | `string`          |         | Applies a custom class                                   |
+| `href`       | `string`          |         | Destination path for the anchor element                  |
+| `isExternal` | `boolean`         | `false` | Renders an external-link icon after the link when `true` |
 
-Additional props can be passed to the `<a>` element. [See MDN for a list of props](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#attributes) accepted by the `<anchor>` element.
+Additional props are passed to the wrapping `<li>` element. [See MDN for accepted list item attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/li#attributes).

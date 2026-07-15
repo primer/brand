@@ -905,10 +905,10 @@ export const OverflowMenuOpenGridline: Story = {
   },
   play: async ({canvasElement}) => {
     const canvas = within(canvasElement)
-    await waitFor(async () => {
-      const overflowMenu = await canvas.getByText('More')
-      await userEvent.click(overflowMenu)
-    })
+    await document.fonts.ready
+    await waitFor(() => expect(canvas.getByRole('button', {name: 'More'})).toBeVisible())
+    await userEvent.click(canvas.getByRole('button', {name: 'More'}))
+    await expect(canvas.getByRole('link', {name: 'Books'})).toBeVisible()
   },
   name: 'Overflow Menu Open (Gridline)',
 }
@@ -1031,6 +1031,31 @@ export const GridlineWithInputSearch: Story = {
     <GridlineExample showSearch searchVariant="input" searchPlaceholder="Search ..." searchShortcutLabel="/" />
   ),
   name: 'Gridline With Input Search',
+}
+
+export const GridlineGroupedSearchResultsVisible: Story = {
+  render: () => (
+    <GridlineExample showSearch searchVariant="input" searchPlaceholder="Search ..." searchShortcutLabel="/" />
+  ),
+  play: async ({canvasElement}) => {
+    const canvas = within(canvasElement)
+    await userEvent.click(canvas.getByRole('button', {name: 'Search ... search'}))
+    await expect(canvas.getByRole('dialog')).toBeVisible()
+    await expect(canvas.getAllByRole('option')).toHaveLength(7)
+  },
+  name: 'Gridline Grouped Search Results Visible',
+}
+
+export const MobileGridlineMenuOpen: Story = {
+  render: () => <GridlineExample showSearch />,
+  globals: {
+    viewport: {value: 'iphonex'},
+  },
+  play: async ({canvasElement}) => {
+    const canvas = within(canvasElement)
+    await userEvent.click(canvas.getByRole('button', {name: 'Menu'}))
+  },
+  name: 'Mobile Gridline Menu Open',
 }
 
 export const NoTitle: Story = {

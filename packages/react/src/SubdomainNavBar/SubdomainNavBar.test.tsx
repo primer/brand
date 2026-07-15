@@ -299,6 +299,140 @@ describe('SubdomainNavBar', () => {
     expect(getAllByRole('option')).toHaveLength(2)
   })
 
+  it('uses custom labels for search triggers and dialog controls', () => {
+    mockUseWindowSize.mockImplementation(() => ({isSmall: true, isMedium: true, isLarge: true}))
+
+    const labels = {
+      searchLabel: 'Buscar',
+      searchTriggerLabel: 'Abrir búsqueda',
+      closeLabel: 'Cerrar',
+      formatSearchWithTitle: (title: string) => `Buscar en ${title}`,
+      formatSearchTrigger: (placeholder: string) => `Abrir ${placeholder}`,
+    }
+
+    const {getByRole, rerender} = render(
+      <SubdomainNavBar title="Documentación" variant="gridline">
+        <SubdomainNavBar.Search
+          variant="input"
+          placeholder="Buscar documentación"
+          labels={labels}
+          searchTerm=""
+          onChange={jest.fn}
+          onSubmit={jest.fn()}
+        />
+      </SubdomainNavBar>,
+    )
+
+    fireEvent.click(getByRole('button', {name: 'Abrir Buscar documentación'}))
+
+    expect(getByRole('dialog', {name: 'Buscar en Documentación'})).toBeInTheDocument()
+    expect(getByRole('combobox', {name: 'Buscar'})).toBeInTheDocument()
+    expect(getByRole('button', {name: 'Cerrar'})).toHaveTextContent('Cerrar')
+
+    rerender(
+      <SubdomainNavBar title="Documentación" variant="gridline">
+        <SubdomainNavBar.Search labels={labels} searchTerm="" onChange={jest.fn} onSubmit={jest.fn()} />
+      </SubdomainNavBar>,
+    )
+
+    expect(getByRole('button', {name: 'Abrir búsqueda'})).toBeInTheDocument()
+  })
+
+  it('uses custom labels for ungrouped results and live-region announcements', () => {
+    const searchResults: SubdomainNavBarSearchResults = [
+      {
+        title: 'Configurar Git',
+        description: 'Aprende a configurar Git.',
+        url: 'https://docs.github.com',
+        date: '2026-07-01T00:00+02:00',
+      },
+    ]
+
+    const {getByRole, getByTestId, getByText} = render(
+      <SubdomainNavBar title="Documentación">
+        <SubdomainNavBar.Search
+          labels={{
+            formatResultsHeading: searchTerm => `Resultados para «${searchTerm}»`,
+            formatSuggestions: count => `${count} sugerencia${count === 1 ? '' : 's'}.`,
+          }}
+          searchTerm="Git"
+          searchResults={searchResults}
+          onChange={jest.fn}
+          onSubmit={jest.fn()}
+        />
+      </SubdomainNavBar>,
+    )
+
+    fireEvent.click(getByRole('button', {name: 'Toggle search bar'}))
+
+    expect(getByText('Resultados para «Git»')).toBeInTheDocument()
+    expect(getByTestId(SubdomainNavBar.testIds.liveRegion)).toHaveTextContent('1 sugerencia.')
+  })
+
+  it('uses custom labels for grouped and untitled search results', () => {
+    const searchResults: SubdomainNavBarSearchResults = [
+      {
+        title: 'Documentación',
+        results: [
+          {
+            title: 'Configurar Git',
+            description: 'Aprende a configurar Git.',
+            url: 'https://docs.github.com',
+            date: '2026-07-01T00:00+02:00',
+          },
+        ],
+      },
+      {
+        title: '',
+        results: [
+          {
+            title: 'GitHub CLI',
+            description: 'Aprende a usar GitHub CLI.',
+            url: 'https://cli.github.com',
+            date: '2026-07-01T00:00+02:00',
+          },
+        ],
+      },
+    ]
+
+    const labels = {
+      resultsLabel: 'Resultados',
+      searchResultsLabel: 'Resultados de búsqueda',
+      formatResultsLabel: (searchTerm: string) => `Resultados para ${searchTerm}`,
+    }
+
+    const {getByRole, rerender} = render(
+      <SubdomainNavBar title="Documentación">
+        <SubdomainNavBar.Search
+          labels={labels}
+          searchTerm="Git"
+          searchResults={searchResults}
+          onChange={jest.fn}
+          onSubmit={jest.fn()}
+        />
+      </SubdomainNavBar>,
+    )
+
+    fireEvent.click(getByRole('button', {name: 'Toggle search bar'}))
+
+    expect(getByRole('listbox', {name: 'Resultados para Git'})).toBeInTheDocument()
+    expect(getByRole('group', {name: 'Resultados'})).toBeInTheDocument()
+
+    rerender(
+      <SubdomainNavBar title="Documentación">
+        <SubdomainNavBar.Search
+          labels={labels}
+          searchTerm=""
+          searchResults={searchResults}
+          onChange={jest.fn}
+          onSubmit={jest.fn()}
+        />
+      </SubdomainNavBar>,
+    )
+
+    expect(getByRole('listbox', {name: 'Resultados de búsqueda'})).toBeInTheDocument()
+  })
+
   it('applies "/" as the default title href', async () => {
     const {getByRole} = render(<Component />)
     const linkEl = getByRole('link', {name: 'Subdomain home'})

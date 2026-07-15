@@ -40,6 +40,8 @@ const waitForTimeoutLookup = {
   'components-subdomainnavbar--mobile-search-results-visible': 5500, // for the animation
   'components-subdomainnavbar--mobile-no-links': 5500, // for the animation
   'components-subdomainnavbar--mobile-leading-component-only-menu-open': 5500, // for the animation
+  'components-subdomainnavbar--overflow-menu-open-gridline': 1500, // wait for responsive overflow measurement
+  'components-subdomainnavbar--mobile-gridline-menu-open': 5500, // for the animation
   'components-subdomainnavbar--reversed-button-order-narrow': 5500, // for the animation
   'components-button-features--primary-focus-non-standard-bg': 2000, // for the interaction test
   'components-button-features--primary-focus': 2000, // for the interaction test
@@ -144,6 +146,23 @@ const waitForTimeoutLookup = {
   'recipes-flexsuite-overview--ai': 4000, // for the animation to complete
   'recipes-flexsuite-category--security': 4000, // for the animation to complete,
   'recipes-flexsuite-details--ai': 7000, // for the youtube video posters to load
+}
+
+const beforeScreenshotLookup: Partial<Record<string, string>> = {
+  'components-subdomainnavbar--overflow-menu-open-gridline': `
+    const moreButton = page.getByRole('button', {name: 'More'})
+    if ((await moreButton.getAttribute('aria-expanded')) !== 'true') {
+      await moreButton.click()
+    }
+    const overflowMenu = page.locator('[id="' + (await moreButton.getAttribute('aria-controls')) + '"]')
+    await expect(moreButton).toHaveAttribute('aria-expanded', 'true')
+    await expect(overflowMenu).toBeVisible()
+    await expect(overflowMenu.getByRole('link', {name: 'Books'})).toBeVisible()
+  `,
+}
+
+const screenshotOptionsLookup: Partial<Record<string, string>> = {
+  'components-subdomainnavbar--overflow-menu-open-gridline': `{animations: 'allow'}`,
 }
 
 // const skipLocalizationsTestsFor = [
@@ -266,8 +285,8 @@ for (const key of Object.keys(categorisedStories)) {
             await page.goto('http://localhost:${port}/iframe.html?${localeParam}args=&id=${id}&viewMode=story', { waitUntil: 'networkidle' })
             await page.locator('body.sb-show-main').waitFor({ state: 'visible' })
 
-            ${timeout ? `await page.waitForTimeout(${timeout})` : ''}
-            await expect(page).toHaveScreenshot({ fullPage: true })
+            ${timeout ? `await page.waitForTimeout(${timeout})` : ''}${beforeScreenshotLookup[id] ?? ''}
+            await expect(page).toHaveScreenshot(${screenshotOptionsLookup[id] ?? '{fullPage: true}'})
           });
 
           `

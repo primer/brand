@@ -28,6 +28,16 @@ module.exports = {
         },
       },
     },
+    searchDialog: {
+      shadowColor: {
+        value: 'rgba(0, 0, 0, 0.1)',
+        dark: 'rgba(0, 0, 0, 0.1)',
+      },
+      backdropColor: {
+        value: 'rgba(0, 0, 0, 0.2)',
+        dark: 'rgba(0, 0, 0, 0.2)',
+      },
+    },
     border: {
       nav: {
         default: {

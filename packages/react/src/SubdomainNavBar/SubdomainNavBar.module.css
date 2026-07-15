@@ -2,7 +2,9 @@
  * Main styles for the subdomain navigation bar.
  */
 .SubdomainNavBar {
-  --SubdomainNavBar-height: 75px;
+  --SubdomainNavBar-height: calc(
+    var(--base-size-64) + var(--base-size-8) + var(--base-size-2) + var(--brand-borderWidth-thin)
+  );
 
   position: relative;
   z-index: 90;
@@ -17,14 +19,18 @@
 }
 
 .SubdomainNavBar--variant-default {
-  --SubdomainNavBar-height: 75px;
+  --SubdomainNavBar-height: calc(
+    var(--base-size-64) + var(--base-size-8) + var(--base-size-2) + var(--brand-borderWidth-thin)
+  );
 }
 
 /*
  * Outer container
  */
 .SubdomainNavBar-outer-container {
-  --SubdomainNavBar-height: 75px;
+  --SubdomainNavBar-height: calc(
+    var(--base-size-64) + var(--base-size-8) + var(--base-size-2) + var(--brand-borderWidth-thin)
+  );
 
   z-index: 90;
 }
@@ -33,7 +39,7 @@
   --SubdomainNavBar-height: var(--base-size-64);
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 47.99rem) {
   .SubdomainNavBar-outer-container--variant-gridline {
     --SubdomainNavBar-height: calc(var(--base-size-64) - var(--base-size-8));
   }
@@ -747,7 +753,7 @@
   animation: none;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 47.99rem) {
   .SubdomainNavBar--variant-gridline {
     --SubdomainNavBar-height: calc(var(--base-size-64) - var(--base-size-8));
     --SubdomainNavBar-mobile-control-size: calc(var(--SubdomainNavBar-height) - var(--brand-borderWidth-thin));
@@ -977,7 +983,7 @@
   }
 
   .SubdomainNavBar--variant-gridline .SubdomainNavBar-overflow-menu {
-    animation: fade-in-down-gridline 0.25s;
+    animation: fade-in-down-gridline var(--brand-animation-duration-faster);
     animation-timing-function: var(--brand-animation-easing-default);
     border: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
     border-start-start-radius: 0;
@@ -1277,11 +1283,11 @@
   background-color: var(--brand-color-canvas-default);
   border: var(--brand-borderWidth-thin) solid var(--brand-color-border-default);
   border-radius: var(--brand-borderRadius-large);
-  box-shadow: 0 0 calc(var(--base-size-32) + var(--base-size-2)) rgb(0 0 0 / 10%);
+  box-shadow: 0 0 calc(var(--base-size-32) + var(--base-size-2)) var(--brand-SubdomainNavBar-searchDialog-shadowColor);
 }
 
 .SubdomainNavBar-search-dialog--gridline::backdrop {
-  background-color: rgb(0 0 0 / 20%);
+  background-color: var(--brand-SubdomainNavBar-searchDialog-backdropColor);
   -webkit-backdrop-filter: blur(var(--base-size-24));
   backdrop-filter: blur(var(--base-size-24));
 }
@@ -1409,7 +1415,7 @@
   display: none;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 47.99rem) {
   .SubdomainNavBar-search-dialog--gridline {
     inset-block-start: var(--base-size-16);
     inset-block-end: auto;
