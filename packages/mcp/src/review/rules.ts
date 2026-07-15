@@ -128,7 +128,7 @@ const invalidPropCombination: Rule = {
   },
 }
 
-/** The balanced layout only activates when `CTABanner.Image` is a direct child. */
+/** Only permit balanced CTABanners when an image is present */
 const balancedCtaRequiresImage: Rule = {
   id: 'balanced-cta-image',
   run(code) {
