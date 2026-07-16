@@ -131,6 +131,186 @@
   text-decoration: none;
 }
 
+/**
+ * Footer `gridline` variant
+ *
+ * Tokenized styling audited against the canonical Figma reference (file
+ * hUT1gnfCRTX7iPZSjOg8Vp, "Footer - Minimal" component set 8024:150002) at
+ * desktop/tablet/mobile (1600/800/390) in light and dark mode. Everything below is
+ * scoped under `[data-variant='gridline']` and/or the `data-footer-region` attributes
+ * that only ever exist in gridline markup, so the `default` variant is left untouched.
+ *
+ * Structural scope: the Figma reference has 3 rows - logo + a top "utility links"
+ * row, a middle row (language selector, theme toggle, status pill), then copyright +
+ * legal links + social icons. Rows 1-2 are page-level/app chrome, not reusable footer
+ * content, so this component intentionally ships only 2 regions - `brand-social`
+ * (logo + social icons combined) and `legal` (copyright + legal links, no icons).
+ * `MinimalFooter.Content`, rendered between them, is the supported way to
+ * approximate the omitted rows - see the "Status" example in the docs.
+ */
+
+.Footer[data-variant='gridline'] {
+  /*
+   * No semantic color token is mode-exact for this 2px accent in both light and dark
+   * mode (`--brand-color-success-fg`/`--brand-color-text-emphasized` resolve to
+   * green-3 in dark mode, not green-6 as Figma specifies) - binding directly to the
+   * mode-aware base scale token is the documented, approximation-free match.
+   */
+  border-top: var(--brand-borderWidth-thick) solid var(--base-color-scale-green-6);
+  /* Figma calls for canvas-subtle; the shared --brand-footer-bg-color token resolves
+     to the default canvas color, so it's overridden here rather than changed globally. */
+  background-color: var(--brand-color-canvas-subtle);
+}
+
+/*
+ * Container side gutters, per breakpoint. Reuses the 48rem/80rem tier breakpoints
+ * already used by `Stack`/`Text` (`regular`/`wide`) instead of introducing new ones.
+ */
+.Footer[data-variant='gridline'] .Footer__container {
+  /* Mobile (< 48rem): exact match. */
+  padding-inline: var(--base-size-20);
+}
+
+@media screen and (min-width: 48rem) {
+  .Footer[data-variant='gridline'] .Footer__container {
+    /* Tablet: Figma spec is 91px; --base-size-88 is the closest available token
+       (documented ~3px approximation - no exact token exists). */
+    padding-inline: var(--base-size-88);
+  }
+}
+
+@media screen and (min-width: 80rem) {
+  .Footer[data-variant='gridline'] .Footer__container {
+    /* Desktop: Figma's content width (~1178px within a 1600px frame) has no token
+       equivalent. Rather than introduce a mismatched literal, the gutter is produced
+       entirely by the existing shared --brand-footer-max-width (1280px) centering
+       below, yielding a narrower gutter (~160px) than Figma's 212px - documented
+       approximation stemming from the lack of a matching content-width token. */
+    padding-inline: 0;
+  }
+}
+
+/*
+ * Vertical row rhythm: 32px bottom padding on every row (brand-social, legal, and
+ * Content), replacing the 48px shared with the `default` variant. Top padding is 32px
+ * for the legal row and Content at every breakpoint, but the brand-social row keeps a
+ * taller 48px top padding below `80rem` (asymmetric 48/32), converging to 32/32 at
+ * desktop - see the `80rem` override below.
+ */
+.Footer[data-variant='gridline'] .Footer__logomarks,
+.Footer[data-variant='gridline'] .Footer__legal-and-links {
+  padding-bottom: var(--base-size-32);
+}
+
+.Footer[data-variant='gridline'] .Footer__logomarks {
+  padding-top: var(--base-size-48);
+}
+
+.Footer[data-variant='gridline'] .Footer__legal-and-links {
+  padding-top: var(--base-size-32);
+}
+
+@media screen and (min-width: 80rem) {
+  .Footer[data-variant='gridline'] .Footer__logomarks {
+    padding-top: var(--base-size-32);
+  }
+}
+
+.Footer[data-variant='gridline'] [data-footer-region='content'] > .Footer__container {
+  padding-top: var(--base-size-32);
+  padding-bottom: var(--base-size-32);
+}
+
+/*
+ * Dividers: 1px subtle border below the brand/social row, and above the legal row
+ * only when a Content region sits between them (avoids a doubled border when Content
+ * is absent and legal directly follows brand-social).
+ */
+.Footer[data-variant='gridline'] .Footer__logomarks {
+  border-top: none;
+  border-bottom: var(--brand-borderWidth-thin) solid var(--brand-color-border-subtle);
+}
+
+.Footer[data-variant='gridline'] [data-footer-region='content'] + [data-footer-region='legal'] {
+  border-top: var(--brand-borderWidth-thin) solid var(--brand-color-border-subtle);
+}
+
+/*
+ * The copyright always precedes the legal links, at every breakpoint (no order swap,
+ * unlike `default`). The extra attribute selector outweighs the unscoped, media-gated
+ * `default` rules above regardless of viewport width.
+ */
+.Footer[data-variant='gridline'] .Footer__copyright {
+  order: 1;
+}
+
+.Footer[data-variant='gridline'] .Footer__links {
+  order: 2;
+}
+
+/*
+ * Copyright + legal link typography: 12px uppercase mono, composed from primitives
+ * since no single existing token/shorthand covers font-family + size + line-height +
+ * letter-spacing + transform together. `Footer__link-text` targets the `Text` element
+ * inside `MinimalFooter.Link`.
+ */
+.Footer[data-variant='gridline'] .Footer__copyright,
+.Footer[data-variant='gridline'] .Footer__link-text {
+  font-family: var(--brand-fontStack-monospace);
+  /* --base-size-12, not --brand-text-caption-size: the latter's source stylesheet
+     (functional/typography/typography.css) is never imported by the shipped bundle. */
+  font-size: var(--base-size-12);
+  line-height: var(--brand-text-lineHeight-100);
+  /* Closest available token to the ~0.15px Figma spec; documented approximation. */
+  letter-spacing: var(--brand-text-letterSpacing-100);
+  text-transform: uppercase;
+  font-weight: var(--brand-text-weight-medium);
+}
+
+@media screen and (min-width: 80rem) {
+  .Footer[data-variant='gridline'] .Footer__copyright,
+  .Footer[data-variant='gridline'] .Footer__link-text {
+    font-weight: var(--brand-text-weight-normal);
+  }
+}
+
+/*
+ * Social link gap, and the GitHub-specific mark size. Other social icons keep the
+ * existing approximate 24px sizing (Figma treats them as "organic"/non-uniform, with
+ * no matching token); only the GitHub mark has an exact 20px spec.
+ */
+.Footer[data-variant='gridline'] .Footer__social-links {
+  gap: var(--base-size-20);
+}
+
+.Footer[data-variant='gridline'] [data-social-link='github'] .Footer__social-icon {
+  width: var(--base-size-20);
+}
+
+/*
+ * BackToTop control hit-area: bumps the tappable area to the coarse-pointer minimum
+ * target size without growing the visible button, via a centered invisible
+ * pseudo-element (mirrors the existing `.Footer__social-link::before` technique).
+ * Figma's canonical reference has no BackToTop equivalent, so the small margin below
+ * is a conservative, token-based spacing choice (not a Figma-derived value) to keep
+ * the button clear of the row divider and the container gutter, rather than an
+ * unevidenced precise layout.
+ */
+.Footer[data-variant='gridline'] [data-footer-region='brand-social'] > button {
+  position: relative;
+  margin: var(--base-size-16) var(--base-size-20);
+}
+
+.Footer[data-variant='gridline'] [data-footer-region='brand-social'] > button::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  min-width: var(--brand-control-minTarget-coarse);
+  min-height: var(--brand-control-minTarget-coarse);
+  transform: translate(-50%, -50%);
+}
+
 /* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
 @media (prefers-reduced-motion: reduce) {
   .Footer,

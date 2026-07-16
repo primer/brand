@@ -4,6 +4,7 @@ declare const styles: {
   readonly "Footer__copyright": string;
   readonly "Footer__legal-and-links": string;
   readonly "Footer__link": string;
+  readonly "Footer__link-text": string;
   readonly "Footer__links": string;
   readonly "Footer__logomarks": string;
   readonly "Footer__social-icon": string;

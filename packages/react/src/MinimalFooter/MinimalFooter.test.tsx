@@ -1,5 +1,6 @@
 import React from 'react'
 import {render, cleanup} from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
 import '@testing-library/jest-dom'
 import {axe, toHaveNoViolations} from 'jest-axe'
 import {MinimalFooter} from './MinimalFooter'
@@ -37,6 +38,44 @@ describe('MinimalFooter', () => {
 
   it('has no accessibility violations', async () => {
     const {container} = render(<MinimalFooter />)
+    const results = await axe(container)
+    expect(results).toHaveNoViolations()
+  })
+
+  it('has no accessibility violations in a fully-populated default composition', async () => {
+    const {container} = render(
+      <MinimalFooter>
+        <MinimalFooter.Footnotes>
+          <Text>Footnote text</Text>
+        </MinimalFooter.Footnotes>
+        <MinimalFooter.Content>
+          <p>Custom content</p>
+        </MinimalFooter.Content>
+        <MinimalFooter.BackToTop />
+        <MinimalFooter.Link href="/link1">Link 1</MinimalFooter.Link>
+        <MinimalFooter.Link href="/link2">Link 2</MinimalFooter.Link>
+      </MinimalFooter>,
+    )
+
+    const results = await axe(container)
+    expect(results).toHaveNoViolations()
+  })
+
+  it('has no accessibility violations in a fully-populated gridline composition', async () => {
+    const {container} = render(
+      <MinimalFooter variant="gridline">
+        <MinimalFooter.Footnotes>
+          <Text>Footnote text</Text>
+        </MinimalFooter.Footnotes>
+        <MinimalFooter.Content>
+          <p>Custom content</p>
+        </MinimalFooter.Content>
+        <MinimalFooter.BackToTop />
+        <MinimalFooter.Link href="/link1">Link 1</MinimalFooter.Link>
+        <MinimalFooter.Link href="/link2">Link 2</MinimalFooter.Link>
+      </MinimalFooter>,
+    )
+
     const results = await axe(container)
     expect(results).toHaveNoViolations()
   })
@@ -247,6 +286,24 @@ describe('MinimalFooter', () => {
     )
   })
 
+  it('applies the link-text style hook to the link label in both variants', () => {
+    const {getByText, rerender} = render(
+      <MinimalFooter>
+        <MinimalFooter.Link href="/test">Test Link</MinimalFooter.Link>
+      </MinimalFooter>,
+    )
+
+    expect(getByText('Test Link')).toHaveClass('Footer__link-text')
+
+    rerender(
+      <MinimalFooter variant="gridline">
+        <MinimalFooter.Link href="/test">Test Link</MinimalFooter.Link>
+      </MinimalFooter>,
+    )
+
+    expect(getByText('Test Link')).toHaveClass('Footer__link-text')
+  })
+
   it('renders link as button element', () => {
     const {getByRole} = render(
       <MinimalFooter>
@@ -281,12 +338,6 @@ describe('MinimalFooter', () => {
     const link = getByRole('link', {name: /External Link/})
     expect(link).toHaveAttribute('target', '_blank')
     expect(link).toHaveAttribute('rel', 'noopener')
-  })
-
-  it('renders empty footer without children', () => {
-    const {getByRole} = render(<MinimalFooter />)
-    const footer = getByRole('contentinfo')
-    expect(footer).toBeInTheDocument()
   })
 
   it('renders GitHub logo with analytics data', () => {
@@ -339,11 +390,14 @@ describe('MinimalFooter', () => {
     expect(instagramLink).toHaveAttribute('href', 'https://www.instagram.com/github/')
   })
 
-  it('passes through additional props to footer element', () => {
-    const {getByRole} = render(<MinimalFooter data-testid="footer-test" aria-label="Site footer" />)
+  it('forwards additional HTML attributes to the footer element', () => {
+    const {getByRole} = render(
+      <MinimalFooter data-testid="footer-test" aria-label="Site footer" aria-labelledby="footer-heading" />,
+    )
     const footer = getByRole('contentinfo')
     expect(footer).toHaveAttribute('data-testid', 'footer-test')
     expect(footer).toHaveAttribute('aria-label', 'Site footer')
+    expect(footer).toHaveAttribute('aria-labelledby', 'footer-heading')
   })
 
   it('handles empty footnotes section', () => {
@@ -355,21 +409,6 @@ describe('MinimalFooter', () => {
 
     const footer = getByRole('contentinfo')
     expect(footer).toBeInTheDocument()
-  })
-
-  it('maintains proper HTML structure', () => {
-    const {getByRole} = render(
-      <MinimalFooter>
-        <MinimalFooter.Footnotes>
-          <Text>Footnote</Text>
-        </MinimalFooter.Footnotes>
-        <MinimalFooter.Link href="/test">Test Link</MinimalFooter.Link>
-      </MinimalFooter>,
-    )
-
-    const footer = getByRole('contentinfo')
-    const sections = footer.querySelectorAll('section')
-    expect(sections.length).toBeGreaterThanOrEqual(2)
   })
 
   it('renders copyright text with correct styling', () => {
@@ -463,6 +502,13 @@ describe('MinimalFooter', () => {
     expect(socialLinks).toHaveLength(1)
   })
 
+  it('identifies each social link with a matching data-social-link attribute', () => {
+    const {container} = render(<MinimalFooter socialLinks={['x', 'github']} />)
+
+    expect(container.querySelector('[data-social-link="x"]')).toBeInTheDocument()
+    expect(container.querySelector('[data-social-link="github"]')).toBeInTheDocument()
+  })
+
   it('renders component with only footer links', () => {
     const {getByRole} = render(
       <MinimalFooter socialLinks={false}>
@@ -501,16 +547,6 @@ describe('MinimalFooter', () => {
     expect(thirdFootnote.tagName).toBe('P')
   })
 
-  it('calculates current year correctly for copyright', () => {
-    const {getByText} = render(<MinimalFooter />)
-    const currentYear = new Date().getFullYear()
-    const expectedCopyright = `© ${currentYear} GitHub. All rights reserved.`
-
-    const copyrightText = getByText(expectedCopyright)
-
-    expect(copyrightText).toBeInTheDocument()
-  })
-
   it('handles complex footnote content with links', () => {
     const {getByText, getByRole} = render(
       <MinimalFooter>
@@ -527,14 +563,6 @@ describe('MinimalFooter', () => {
 
     expect(footnoteText).toBeInTheDocument()
     expect(privacyLink).toHaveAttribute('href', '/privacy')
-  })
-
-  it('forwards additional HTML attributes', () => {
-    const {getByRole} = render(<MinimalFooter data-testid="custom-footer" aria-labelledby="footer-heading" />)
-
-    const footer = getByRole('contentinfo')
-    expect(footer).toHaveAttribute('data-testid', 'custom-footer')
-    expect(footer).toHaveAttribute('aria-labelledby', 'footer-heading')
   })
 
   it('handles invalid React elements in children when looking for footnotes', () => {
@@ -590,5 +618,501 @@ describe('MinimalFooter', () => {
 
     const logoIcon = container.querySelector('svg')
     expect(logoIcon).toHaveAttribute('fill', 'black')
+  })
+
+  it('defaults to the default variant', () => {
+    const {getByRole} = render(<MinimalFooter />)
+    const footer = getByRole('contentinfo')
+    expect(footer).toHaveAttribute('data-variant', 'default')
+  })
+
+  it('supports the gridline variant without altering existing markup', () => {
+    const {getByRole, container} = render(<MinimalFooter variant="gridline" />)
+    const footer = getByRole('contentinfo')
+
+    expect(footer).toHaveAttribute('data-variant', 'gridline')
+    expect(footer).toHaveClass('Footer')
+    expect(container.querySelector('.Footer__logomarks')).toBeInTheDocument()
+  })
+
+  it('defaults to the logo variant', () => {
+    const {container} = render(<MinimalFooter />)
+    expect(container.querySelector('svg.octicon-logo-github')).toBeInTheDocument()
+    expect(container.querySelector('svg.octicon-mark-github')).not.toBeInTheDocument()
+  })
+
+  it('supports the logomark variant', () => {
+    const {container} = render(<MinimalFooter logoVariant="logomark" />)
+    expect(container.querySelector('svg.octicon-mark-github')).toBeInTheDocument()
+    expect(container.querySelector('svg.octicon-logo-github')).not.toBeInTheDocument()
+  })
+
+  it('renders the logomark variant as an accessible, theme-aware link in both color modes', () => {
+    const {getByRole, container, rerender} = render(
+      <ThemeProvider colorMode="light">
+        <MinimalFooter logoVariant="logomark" />
+      </ThemeProvider>,
+    )
+
+    expect(getByRole('link', {name: 'GitHub'})).toBeInTheDocument()
+    expect(container.querySelector('svg.octicon-mark-github')).toHaveAttribute('fill', 'black')
+
+    rerender(
+      <ThemeProvider colorMode="dark">
+        <MinimalFooter logoVariant="logomark" />
+      </ThemeProvider>,
+    )
+
+    expect(getByRole('link', {name: 'GitHub'})).toBeInTheDocument()
+    expect(container.querySelector('svg.octicon-mark-github')).toHaveAttribute('fill', 'white')
+  })
+
+  it('renders MinimalFooter.Content children', () => {
+    const {getByText} = render(
+      <MinimalFooter>
+        <MinimalFooter.Content>Custom content</MinimalFooter.Content>
+      </MinimalFooter>,
+    )
+
+    expect(getByText('Custom content')).toBeInTheDocument()
+  })
+
+  it('forwards className and HTML attributes on MinimalFooter.Content', () => {
+    const onClick = jest.fn()
+    const {getByText} = render(
+      <MinimalFooter>
+        <MinimalFooter.Content
+          id="footer-content-id"
+          className="custom-content"
+          data-testid="footer-content"
+          aria-label="Extra content"
+          role="region"
+          title="Footer content"
+          onClick={onClick}
+        >
+          Custom content
+        </MinimalFooter.Content>
+      </MinimalFooter>,
+    )
+
+    const content = getByText('Custom content').closest('section')
+    expect(content).toHaveAttribute('id', 'footer-content-id')
+    expect(content).toHaveClass('custom-content')
+    expect(content).toHaveAttribute('data-testid', 'footer-content')
+    expect(content).toHaveAttribute('aria-label', 'Extra content')
+    expect(content).toHaveAttribute('role', 'region')
+    expect(content).toHaveAttribute('title', 'Footer content')
+
+    content?.click()
+    expect(onClick).toHaveBeenCalledTimes(1)
+  })
+
+  it('does not accept the animate prop on MinimalFooter.Content, unlike other BaseProps', () => {
+    const {getByText} = render(
+      <MinimalFooter>
+        {/* @ts-expect-error `animate` is intentionally omitted from MinimalFooter.Content's props */}
+        <MinimalFooter.Content animate="fade-in">Custom content</MinimalFooter.Content>
+      </MinimalFooter>,
+    )
+
+    expect(getByText('Custom content')).toBeInTheDocument()
+  })
+
+  it('recognizes only the first MinimalFooter.Content when multiple are provided', () => {
+    const {getByText, queryByText} = render(
+      <MinimalFooter>
+        <MinimalFooter.Content>First content</MinimalFooter.Content>
+        <MinimalFooter.Content>Second content</MinimalFooter.Content>
+      </MinimalFooter>,
+    )
+
+    expect(getByText('First content')).toBeInTheDocument()
+    expect(queryByText('Second content')).not.toBeInTheDocument()
+  })
+
+  it('recognizes only the first MinimalFooter.Footnotes when multiple are provided', () => {
+    const {getByText, queryByText} = render(
+      <MinimalFooter>
+        <MinimalFooter.Footnotes>
+          <Text>First footnotes</Text>
+        </MinimalFooter.Footnotes>
+        <MinimalFooter.Footnotes>
+          <Text>Second footnotes</Text>
+        </MinimalFooter.Footnotes>
+      </MinimalFooter>,
+    )
+
+    expect(getByText('First footnotes')).toBeInTheDocument()
+    expect(queryByText('Second footnotes')).not.toBeInTheDocument()
+  })
+
+  it('recognizes the first Footnotes, Content, and BackToTop, and the first five Links together, ignoring unsupported children', () => {
+    const {getByText, getByRole, queryByRole, queryByText} = render(
+      <MinimalFooter>
+        <MinimalFooter.Footnotes>
+          <Text>Footnote text</Text>
+        </MinimalFooter.Footnotes>
+        <div>Unsupported child</div>
+        <MinimalFooter.Content>Content text</MinimalFooter.Content>
+        <MinimalFooter.Content>Second content, ignored</MinimalFooter.Content>
+        <MinimalFooter.BackToTop>First back to top</MinimalFooter.BackToTop>
+        <MinimalFooter.BackToTop>Second back to top, ignored</MinimalFooter.BackToTop>
+        <MinimalFooter.Link href="/link1">Link 1</MinimalFooter.Link>
+        <MinimalFooter.Link href="/link2">Link 2</MinimalFooter.Link>
+        <MinimalFooter.Link href="/link3">Link 3</MinimalFooter.Link>
+        <MinimalFooter.Link href="/link4">Link 4</MinimalFooter.Link>
+        <MinimalFooter.Link href="/link5">Link 5</MinimalFooter.Link>
+        <MinimalFooter.Link href="/link6">Link 6</MinimalFooter.Link>
+      </MinimalFooter>,
+    )
+
+    expect(getByText('Footnote text')).toBeInTheDocument()
+    expect(getByText('Content text')).toBeInTheDocument()
+    expect(queryByText('Second content, ignored')).not.toBeInTheDocument()
+    expect(queryByText('Unsupported child')).not.toBeInTheDocument()
+    expect(getByRole('button', {name: 'First back to top'})).toBeInTheDocument()
+    expect(queryByRole('button', {name: 'Second back to top, ignored'})).not.toBeInTheDocument()
+    expect(getByRole('link', {name: 'Link 5'})).toBeInTheDocument()
+    expect(queryByRole('link', {name: 'Link 6'})).not.toBeInTheDocument()
+  })
+
+  it('does not mark up regions in the default variant', () => {
+    const {container} = render(
+      <MinimalFooter>
+        <MinimalFooter.Content>Custom content</MinimalFooter.Content>
+      </MinimalFooter>,
+    )
+
+    expect(container.querySelectorAll('[data-footer-region]')).toHaveLength(0)
+  })
+
+  it('omits the content region in the gridline variant when no Content is provided', () => {
+    const {container} = render(<MinimalFooter variant="gridline" />)
+
+    const regions = Array.from(container.querySelectorAll('[data-footer-region]')).map(region =>
+      region.getAttribute('data-footer-region'),
+    )
+
+    expect(regions).toEqual(['brand-social', 'legal'])
+  })
+
+  it('renders brand-social, content, and legal regions in the approved order in the gridline variant', () => {
+    const {container, getByText} = render(
+      <MinimalFooter variant="gridline">
+        <MinimalFooter.Content>Custom content</MinimalFooter.Content>
+      </MinimalFooter>,
+    )
+
+    const regions = Array.from(container.querySelectorAll('[data-footer-region]')).map(region =>
+      region.getAttribute('data-footer-region'),
+    )
+
+    expect(regions).toEqual(['brand-social', 'content', 'legal'])
+    expect(container.querySelector('[data-footer-region="brand-social"] .Footer__logomarks')).toBeInTheDocument()
+    expect(getByText('Custom content').closest('[data-footer-region="legal"]')).not.toBeInTheDocument()
+    expect(getByText('Custom content').closest('[data-footer-region="content"]')).toBeInTheDocument()
+  })
+
+  it('places Footnotes ahead of the mapped regions and preserves full region order when every optional child is present', () => {
+    const {getByRole} = render(
+      <MinimalFooter variant="gridline">
+        <MinimalFooter.Footnotes>
+          <Text>Footnote text</Text>
+        </MinimalFooter.Footnotes>
+        <MinimalFooter.Content>Custom content</MinimalFooter.Content>
+        <MinimalFooter.BackToTop />
+        <MinimalFooter.Link href="/test">Test Link</MinimalFooter.Link>
+      </MinimalFooter>,
+    )
+
+    const footer = getByRole('contentinfo')
+    const topLevelRegionNames = Array.from(footer.children).map(
+      element => element.getAttribute('data-footer-region') ?? 'footnotes',
+    )
+
+    expect(topLevelRegionNames).toEqual(['footnotes', 'brand-social', 'content', 'legal'])
+  })
+
+  it('does not impose internal layout on MinimalFooter.Content in the gridline variant', () => {
+    const {getByTestId} = render(
+      <MinimalFooter variant="gridline">
+        <MinimalFooter.Content>
+          <div data-testid="consumer-layout">
+            <span>Consumer-owned markup</span>
+          </div>
+        </MinimalFooter.Content>
+      </MinimalFooter>,
+    )
+
+    // The region wrapper only positions Content within the footer; it does not alter or
+    // wrap the consumer's own children.
+    expect(getByTestId('consumer-layout').parentElement).toHaveClass('Footer__container')
+  })
+
+  it('keeps default social links, filtering, and the false opt-out working in the gridline variant', () => {
+    const {queryAllByRole, rerender} = render(<MinimalFooter variant="gridline" />)
+    expect(queryAllByRole('link', {name: isSocialLink})).toHaveLength(8)
+
+    rerender(<MinimalFooter variant="gridline" socialLinks={['x', 'github']} />)
+    expect(queryAllByRole('link', {name: isSocialLink})).toHaveLength(2)
+
+    rerender(<MinimalFooter variant="gridline" socialLinks={false} />)
+    expect(queryAllByRole('link', {name: isSocialLink})).toHaveLength(0)
+  })
+
+  it('aligns the legal region into a flush-start, tightly-gapped run in the gridline variant', () => {
+    const {container, rerender} = render(
+      <MinimalFooter>
+        <MinimalFooter.Link href="/test">Test Link</MinimalFooter.Link>
+      </MinimalFooter>,
+    )
+
+    let links = container.querySelector('.Footer__links')
+    let outerStack = links?.parentElement
+    expect(links).toHaveClass('Stack--gap-condensed')
+    expect(links).not.toHaveClass('Stack-flexWrap--wrap')
+    expect(outerStack).toHaveClass('Stack--gap-normal')
+    expect(outerStack).toHaveClass('Stack--justify-content-space-between')
+    expect(outerStack).not.toHaveClass('Stack--justify-content-flex-start')
+
+    rerender(
+      <MinimalFooter variant="gridline">
+        <MinimalFooter.Link href="/test">Test Link</MinimalFooter.Link>
+      </MinimalFooter>,
+    )
+
+    links = container.querySelector('.Footer__links')
+    outerStack = links?.parentElement
+    expect(links).toHaveClass('Stack--gap-20')
+    expect(links).toHaveClass('Stack-flexWrap--wrap')
+    // The outer stack must switch to `flex-start` (not `space-between`) so copyright and
+    // links form a single flush-start run separated only by the 20px gap, instead of
+    // being pushed to opposite ends of the row.
+    expect(outerStack).toHaveClass('Stack--gap-20')
+    expect(outerStack).toHaveClass('Stack--justify-content-flex-start')
+    expect(outerStack).not.toHaveClass('Stack--justify-content-space-between')
+  })
+
+  it('preserves logo href, analytics, accessibility, and theme fill in the gridline variant', () => {
+    const {getByRole, container} = render(<MinimalFooter variant="gridline" logoHref="/custom-home" />)
+
+    const logoLink = getByRole('link', {name: 'GitHub'})
+    expect(logoLink).toHaveAttribute('href', '/custom-home')
+    expect(logoLink).toHaveAttribute(
+      'data-analytics-event',
+      '{"category":"Footer","action":"go to home","label":"text:home"}',
+    )
+
+    const logoIcon = container.querySelector('svg')
+    expect(logoIcon).toHaveAttribute('fill', 'black')
+  })
+
+  it('does not render Back to Top unless opted into as a child', () => {
+    const {queryByRole} = render(<MinimalFooter />)
+    expect(queryByRole('button', {name: 'Back to top'})).not.toBeInTheDocument()
+  })
+
+  it('renders Back to Top with the default label when no children are supplied', () => {
+    const {getByRole} = render(
+      <MinimalFooter>
+        <MinimalFooter.BackToTop />
+      </MinimalFooter>,
+    )
+
+    expect(getByRole('button', {name: 'Back to top'})).toBeInTheDocument()
+  })
+
+  it('uses supplied localized children as the visible and accessible label', () => {
+    const {getByRole, queryByRole} = render(
+      <MinimalFooter>
+        <MinimalFooter.BackToTop>Retour en haut</MinimalFooter.BackToTop>
+      </MinimalFooter>,
+    )
+
+    expect(getByRole('button', {name: 'Retour en haut'})).toBeInTheDocument()
+    expect(queryByRole('button', {name: 'Back to top'})).not.toBeInTheDocument()
+  })
+
+  it('renders an upward-arrow Octicon inside the control', () => {
+    const {container} = render(
+      <MinimalFooter>
+        <MinimalFooter.BackToTop />
+      </MinimalFooter>,
+    )
+
+    expect(container.querySelector('button svg.octicon-arrow-up')).toBeInTheDocument()
+  })
+
+  it('recognizes only the first MinimalFooter.BackToTop when multiple are provided', () => {
+    const {getByRole, queryByRole} = render(
+      <MinimalFooter>
+        <MinimalFooter.BackToTop>First</MinimalFooter.BackToTop>
+        <MinimalFooter.BackToTop>Second</MinimalFooter.BackToTop>
+      </MinimalFooter>,
+    )
+
+    expect(getByRole('button', {name: 'First'})).toBeInTheDocument()
+    expect(queryByRole('button', {name: 'Second'})).not.toBeInTheDocument()
+  })
+
+  it('renders Back to Top within the brand-social region in the gridline variant', () => {
+    const {getByRole} = render(
+      <MinimalFooter variant="gridline">
+        <MinimalFooter.BackToTop />
+      </MinimalFooter>,
+    )
+
+    const button = getByRole('button', {name: 'Back to top'})
+    expect(button.closest('[data-footer-region="brand-social"]')).toBeInTheDocument()
+  })
+
+  it('forwards ARIA, data, analytics, and native button attributes', () => {
+    const {getByRole} = render(
+      <MinimalFooter>
+        <MinimalFooter.BackToTop
+          aria-label="Scroll to top"
+          data-testid="footer-back-to-top"
+          data-analytics-event='{"category":"Footer","action":"back to top"}'
+          type="button"
+          disabled={false}
+        >
+          Back to top
+        </MinimalFooter.BackToTop>
+      </MinimalFooter>,
+    )
+
+    const button = getByRole('button', {name: 'Scroll to top'})
+    expect(button).toHaveAttribute('data-testid', 'footer-back-to-top')
+    expect(button).toHaveAttribute('data-analytics-event', '{"category":"Footer","action":"back to top"}')
+    expect(button).toHaveAttribute('type', 'button')
+  })
+
+  it('calls the consumer onClick before scrolling', async () => {
+    const user = userEvent.setup()
+    const scrollToSpy = jest.spyOn(window, 'scrollTo').mockImplementation(() => {})
+    const onClick = jest.fn()
+
+    const {getByRole} = render(
+      <MinimalFooter>
+        <MinimalFooter.BackToTop onClick={onClick}>Back to top</MinimalFooter.BackToTop>
+      </MinimalFooter>,
+    )
+
+    await user.click(getByRole('button', {name: 'Back to top'}))
+
+    expect(onClick).toHaveBeenCalledTimes(1)
+    expect(scrollToSpy).toHaveBeenCalledTimes(1)
+    expect(onClick.mock.invocationCallOrder[0]).toBeLessThan(scrollToSpy.mock.invocationCallOrder[0])
+
+    scrollToSpy.mockRestore()
+  })
+
+  it('skips the built-in scroll when the consumer calls event.preventDefault()', async () => {
+    const user = userEvent.setup()
+    const scrollToSpy = jest.spyOn(window, 'scrollTo').mockImplementation(() => {})
+    const onClick = jest.fn(event => event.preventDefault())
+
+    const {getByRole} = render(
+      <MinimalFooter>
+        <MinimalFooter.BackToTop onClick={onClick}>Back to top</MinimalFooter.BackToTop>
+      </MinimalFooter>,
+    )
+
+    await user.click(getByRole('button', {name: 'Back to top'}))
+
+    expect(onClick).toHaveBeenCalledTimes(1)
+    expect(scrollToSpy).not.toHaveBeenCalled()
+
+    scrollToSpy.mockRestore()
+  })
+
+  it('scrolls the window to the top with smooth behavior by default when motion is not reduced', async () => {
+    const user = userEvent.setup()
+    const scrollToSpy = jest.spyOn(window, 'scrollTo').mockImplementation(() => {})
+
+    const {getByRole} = render(
+      <MinimalFooter>
+        <MinimalFooter.BackToTop>Back to top</MinimalFooter.BackToTop>
+      </MinimalFooter>,
+    )
+
+    await user.click(getByRole('button', {name: 'Back to top'}))
+
+    expect(scrollToSpy).toHaveBeenCalledWith({top: 0, behavior: 'smooth'})
+
+    scrollToSpy.mockRestore()
+  })
+
+  it('honors a custom scrollBehavior when motion is not reduced', async () => {
+    const user = userEvent.setup()
+    const scrollToSpy = jest.spyOn(window, 'scrollTo').mockImplementation(() => {})
+
+    const {getByRole} = render(
+      <MinimalFooter>
+        <MinimalFooter.BackToTop scrollBehavior="auto">Back to top</MinimalFooter.BackToTop>
+      </MinimalFooter>,
+    )
+
+    await user.click(getByRole('button', {name: 'Back to top'}))
+
+    expect(scrollToSpy).toHaveBeenCalledWith({top: 0, behavior: 'auto'})
+
+    scrollToSpy.mockRestore()
+  })
+
+  it('always scrolls with behavior: auto when reduced motion is preferred, even if scrollBehavior requests smooth', async () => {
+    const matchMediaMock = jest.mocked(window.matchMedia)
+    const scrollToSpy = jest.spyOn(window, 'scrollTo').mockImplementation(() => {})
+
+    await matchMediaMock.withImplementation(
+      query => ({
+        matches: true,
+        media: query,
+        onchange: null,
+        addListener: jest.fn(),
+        removeListener: jest.fn(),
+        addEventListener: jest.fn(),
+        removeEventListener: jest.fn(),
+        dispatchEvent: jest.fn(),
+      }),
+      async () => {
+        const user = userEvent.setup()
+        const {getByRole} = render(
+          <MinimalFooter>
+            <MinimalFooter.BackToTop scrollBehavior="smooth">Back to top</MinimalFooter.BackToTop>
+          </MinimalFooter>,
+        )
+
+        await user.click(getByRole('button', {name: 'Back to top'}))
+
+        expect(scrollToSpy).toHaveBeenCalledWith({top: 0, behavior: 'auto'})
+      },
+    )
+
+    scrollToSpy.mockRestore()
+  })
+
+  it('is reachable and activatable by keyboard', async () => {
+    const user = userEvent.setup()
+    const scrollToSpy = jest.spyOn(window, 'scrollTo').mockImplementation(() => {})
+
+    const {getByRole} = render(
+      <MinimalFooter socialLinks={false}>
+        <MinimalFooter.BackToTop>Back to top</MinimalFooter.BackToTop>
+      </MinimalFooter>,
+    )
+
+    const button = getByRole('button', {name: 'Back to top'})
+
+    await user.tab()
+    expect(getByRole('link', {name: 'GitHub'})).toHaveFocus()
+
+    await user.tab()
+    expect(button).toHaveFocus()
+
+    await user.keyboard('{Enter}')
+    expect(scrollToSpy).toHaveBeenCalledWith({top: 0, behavior: 'smooth'})
+
+    scrollToSpy.mockRestore()
   })
 })

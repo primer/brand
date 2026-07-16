@@ -60,6 +60,20 @@ const waitForTimeoutLookup = {
   'components-minimalfooter-features--filtered-social-links': 5000, // for external social imagery to load
   'components-minimalfooter-features--default-narrow': 5000, // for external social imagery to load
   'components-minimalfooter-features--maximum-links': 5000, // for external social imagery to load
+  'components-minimalfooter-features-gridline-variants--gridline-1600': 5000, // for external social imagery to load
+  'components-minimalfooter-features-gridline-variants--gridline-800': 5000, // for external social imagery to load
+  'components-minimalfooter-features-gridline-variants--gridline-390': 5000, // for external social imagery to load
+  'components-minimalfooter-features-gridline-variants--gridline-dark-1600': 5000, // for external social imagery to load
+  'components-minimalfooter-features-gridline-variants--gridline-dark-800': 5000, // for external social imagery to load
+  'components-minimalfooter-features-gridline-variants--gridline-dark-390': 5000, // for external social imagery to load
+  'components-minimalfooter-features-gridline-variants--gridline-fully-populated-1600': 5000, // for external social imagery to load
+  'components-minimalfooter-features-gridline-variants--gridline-fully-populated-800': 5000, // for external social imagery to load
+  'components-minimalfooter-features-gridline-variants--gridline-fully-populated-390': 5000, // for external social imagery to load
+  'components-minimalfooter-features-gridline-variants--gridline-logo': 5000, // for external social imagery to load
+  'components-minimalfooter-features-gridline-variants--gridline-with-content': 5000, // for external social imagery to load
+  'components-minimalfooter-features-gridline-variants--gridline-with-back-to-top': 5000, // for external social imagery to load
+  'components-minimalfooter-features-gridline-variants--gridline-filtered-social-links': 5000, // for external social imagery to load
+  'components-minimalfooter-features-gridline-variants--gridline-empty-optional-regions': 5000, // for external social imagery to load
   'components-actionmenu-features--disabled-item': 1000, // flakey test,
   'components-actionmenu-features--anchored-positioning': 1000, // for the menu to open
   'components-box-features--animation': 6000, // for the animation
@@ -201,6 +215,75 @@ const skipTestLookup = [
   'components-actionmenu-features--menu-alignment', // for the menu to open, too flakey, need to fix layout shift
 ]
 
+/**
+ * MinimalFooter renders its social icons from live github.githubassets.com URLs in
+ * production. Fetching those over the network during visual regression runs is a
+ * source of flakiness (slow/failed external requests contributing to worker
+ * teardown timeouts) without changing anything for consumers of the component.
+ * To keep MinimalFooter's generated spec deterministic, byte-for-byte local copies
+ * of the same SVGs (captured 2026-07-15 from
+ * https://github.githubassets.com/images/modules/site/icons/footer/<name>.svg) live
+ * as plain `.svg` files under `fixtures/minimal-footer-social-icons/` (sibling to
+ * this generator), and are read from disk at test-run time by a component-scoped
+ * `page.route` intercept (see `setupCodeByGroup`) using `fs.readFileSync`, so
+ * screenshots remain pixel-identical to a live fetch while removing the network
+ * dependency. Storing them as real files (rather than embedding string/base64
+ * content in the generated spec) keeps the fixtures human-reviewable/diffable and
+ * preserves exact source bytes, including `x.svg`'s trailing newline. This is
+ * additive/opt-in per component group and does not affect any other generated spec
+ * file.
+ */
+const minimalFooterSocialIconFixturesDir = 'fixtures/minimal-footer-social-icons'
+
+/**
+ * Per-component-group opt-in extra imports, injected verbatim near the top of that
+ * group's generated file, above the `test.describe` block. Keyed the same way as
+ * `setupCodeByGroup` below, so this only ever affects the named component's own
+ * spec file. Node built-ins are disallowed repo-wide by `import/no-nodejs-modules`
+ * (`plugin:github/browser`); the inline override mirrors the one this generator
+ * file itself carries at the top for the same reason.
+ */
+const extraImportsByGroup: Record<string, string> = {
+  MinimalFooter: `
+    /* eslint import/no-nodejs-modules: ["error", {"allow": ["path", "fs"]}] */
+    import fs from 'fs';
+    import path from 'path';
+  `,
+}
+
+/**
+ * Per-component-group opt-in setup code, injected verbatim at the top of that
+ * group's `test.describe` block. Keyed by the same `groupName` used to split
+ * generated spec files (one file per group), so this only ever affects the
+ * named component's own spec file.
+ */
+const setupCodeByGroup: Record<string, string> = {
+  MinimalFooter: `
+    // Fixture directory lives in the e2e package; resolved relative to this
+    // generated spec's own location (packages/react/src/MinimalFooter/), not the
+    // generator's, since this code only runs when Playwright executes the test.
+    const socialIconFixturesDir = path.join(__dirname, '../../../../packages/e2e/scripts/playwright/${minimalFooterSocialIconFixturesDir}');
+
+    test.beforeEach(async ({ page }) => {
+      await page.route('https://github.githubassets.com/images/modules/site/icons/footer/*.svg', async route => {
+        const iconFile = route.request().url().split('/').pop()?.split('?')[0] ?? '';
+        const fixturePath = path.join(socialIconFixturesDir, iconFile);
+        if (!fs.existsSync(fixturePath)) {
+          // Fail loudly instead of falling back to route.continue(): a silent
+          // fallback to the live network is exactly the flakiness this intercept
+          // exists to prevent, and would only resurface if MinimalFooter's social
+          // icon set drifted from the local fixture set without anyone noticing.
+          throw new Error(
+            \`MinimalFooter visual test: no local fixture found for social icon "\${iconFile}" (expected at \${fixturePath}). Add a byte-exact local copy under ${minimalFooterSocialIconFixturesDir} instead of relying on a live github.githubassets.com fetch. Intercepted URL: \${route.request().url()}\`,
+          );
+        }
+        const body = fs.readFileSync(fixturePath, 'utf-8');
+        await route.fulfill({ status: 200, contentType: 'image/svg+xml', body });
+      });
+    });
+  `,
+}
+
 const categorisedStories = Object.keys((stories as StoryIndex).entries).reduce((acc, key) => {
   const {id, name: storyName, importPath} = stories.entries[key]
 
@@ -242,11 +325,19 @@ for (const key of Object.keys(categorisedStories)) {
     * Regenerate using: npm run test:visual:generate
     */
     import {test, expect} from '@playwright/test'
+    ${extraImportsByGroup[key] ?? ''}
 
     // eslint-disable-next-line i18n-text/no-en
     test.describe('Visual Comparison: ${key}', () => {
+      ${setupCodeByGroup[key] ?? ''}
 
       ${componentStories.reduce((acc, {id, storyName, groupName, timeout}) => {
+        // Story names ending in an exact "(NNNpx)" suffix (e.g. for pixel-precise
+        // comparisons against a design reference) opt into a fixed-width viewport
+        // matching that exact value, taking priority over the generic mobile/tablet
+        // keyword tiers below.
+        const exactViewportMatch = storyName.match(/\((\d+)px\)\s*$/)
+
         const requiresMobileViewport = validNarrowVieportNames.some(viewportName =>
           storyName.toLowerCase().includes(viewportName),
         )
@@ -274,6 +365,17 @@ for (const key of Object.keys(categorisedStories)) {
 
         const languagesToTest = ['en']
         const allLanguageTests = languagesToTest.map(language => generateTestForLanguage(language)).join('')
+
+        if (exactViewportMatch) {
+          const exactWidth = Number(exactViewportMatch[1])
+          return (acc += `
+          // eslint-disable-next-line i18n-text/no-en
+          test.describe('Fixed viewport test for ${storyName}', () => {
+            test.use({ viewport: { width: ${exactWidth}, height: 900 } });
+            ${allLanguageTests}
+          });
+          `)
+        }
 
         if (requiresMobileViewport) {
           return (acc += `
