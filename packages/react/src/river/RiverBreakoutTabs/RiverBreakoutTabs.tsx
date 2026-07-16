@@ -28,6 +28,19 @@ export type RiverBreakoutTabsProps = React.PropsWithChildren<{
   defaultSelectedIndex?: number
   selectedIndex?: number
   onChange?: (selectedIndex: number) => void
+  /**
+   * Decorative background rendered behind the visual and persisted across tab
+   * changes. Must not contain interactive and remain purely decorative.
+   */
+  backgroundVisual?: React.ReactNode
+  /**
+   * Alignment of media within the visual container when `backgroundVisual` is provided
+   */
+  imagePosition?: 'center' | 'block-end'
+  /**
+   * When `true`, the `backgroundVisual` bleeds out to the gridline edges instead of being inset within them
+   */
+  backgroundVisualFullBleed?: boolean
 }> &
   Omit<React.HTMLAttributes<HTMLElement>, 'onChange'>
 
@@ -222,7 +235,20 @@ const clampIndex = (index: number, length: number) => {
 }
 
 const RiverBreakoutTabsRoot = forwardRef<HTMLElement, RiverBreakoutTabsProps>(
-  ({children, className, defaultSelectedIndex = 0, onChange, selectedIndex, ...props}, ref) => {
+  (
+    {
+      children,
+      className,
+      defaultSelectedIndex = 0,
+      onChange,
+      selectedIndex,
+      backgroundVisual,
+      imagePosition = 'center',
+      backgroundVisualFullBleed = false,
+      ...props
+    },
+    ref,
+  ) => {
     const instanceId = useId()
     const {isLarge} = useWindowSize()
 
@@ -322,6 +348,13 @@ const RiverBreakoutTabsRoot = forwardRef<HTMLElement, RiverBreakoutTabsProps>(
       [Items],
     )
 
+    const BackgroundVisualLayer =
+      backgroundVisual != null ? (
+        <div className={styles.RiverBreakoutTabs__backgroundVisual} aria-hidden="true">
+          {backgroundVisual}
+        </div>
+      ) : null
+
     return (
       <section
         ref={ref}
@@ -330,6 +363,13 @@ const RiverBreakoutTabsRoot = forwardRef<HTMLElement, RiverBreakoutTabsProps>(
           riverStyles['RiverBreakout--variant-gridline'],
           gridlineStyles.gridline,
           styles.RiverBreakoutTabs,
+          backgroundVisual != null && styles['RiverBreakoutTabs--has-background-visual'],
+          backgroundVisual != null &&
+            imagePosition === 'block-end' &&
+            styles['RiverBreakoutTabs--image-position-block-end'],
+          backgroundVisual != null &&
+            backgroundVisualFullBleed &&
+            styles['RiverBreakoutTabs--background-visual-full-bleed'],
           className,
         )}
         {...props}
@@ -376,6 +416,7 @@ const RiverBreakoutTabsRoot = forwardRef<HTMLElement, RiverBreakoutTabsProps>(
             </div>
 
             <div className={styles.RiverBreakoutTabs__sharedVisuals}>
+              {BackgroundVisualLayer}
               {Items.map((item, index) => {
                 const panelProps = getTabPanelProps(String(index))
 
@@ -418,6 +459,7 @@ const RiverBreakoutTabsRoot = forwardRef<HTMLElement, RiverBreakoutTabsProps>(
           <div className={styles.RiverBreakoutTabs__accordion}>
             {activeAccordionIndex >= 0 && Items[activeAccordionIndex]?.visual && (
               <div className={styles.RiverBreakoutTabs__accordionSharedVisuals}>
+                {BackgroundVisualLayer}
                 {cloneElement(Items[activeAccordionIndex].visual as React.ReactElement<RiverVisualProps>, {
                   className: clsx(
                     Items[activeAccordionIndex].visual.props.className,

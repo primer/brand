@@ -1,5 +1,46 @@
 # @primer/brand-css
 
+## 0.71.0
+
+### Minor Changes
+
+- [#1370](https://github.com/primer/brand/pull/1370) [`93dcb13`](https://github.com/primer/brand/commit/93dcb134bcf9c6ce96d5aa81591dbcb1f5372747) Thanks [@stefankp](https://github.com/stefankp)! - Added a new JSON-based color map export at `/lib/design-tokens/json/colors.json`, listing color tokens from `@primer/brand-primitives`.
+
+## 0.70.0
+
+## 0.69.0
+
+### Patch Changes
+
+- [#1363](https://github.com/primer/brand/pull/1363) [`f3a70ed`](https://github.com/primer/brand/commit/f3a70ed8e2a160ccb4129e4ef21ecaf34ed113e8) Thanks [@rezrah](https://github.com/rezrah)! - Added the `--base-size-60` and `--base-size-88` base size tokens.
+
+  Also exposed `60` and `88` through React components that use the base size scale, such as `Box` and `Stack`.
+
+  ```tsx
+  <Box padding={60} />
+  <Box padding={88} />
+  <Stack gap={60} />
+  <Stack gap={88} />
+  ```
+
+- [#1363](https://github.com/primer/brand/pull/1363) [`f3a70ed`](https://github.com/primer/brand/commit/f3a70ed8e2a160ccb4129e4ef21ecaf34ed113e8) Thanks [@rezrah](https://github.com/rezrah)! - - Updated the `Accordion` toggle indicator to use the `TriangleDownIcon` octicon, which rotates anti-clockwise between its open and closed states.
+
+  - Improved `Accordion` content open and close animation so items transition using measured content height.
+
+  - Added a `disableAnimation` prop to `Accordion` now that it includes a default animation, which may not be applicable in all use-cases.
+
+  - Updated `Accordion` to close immediately when reduced motion is preferred.
+
+- [#1363](https://github.com/primer/brand/pull/1363) [`f3a70ed`](https://github.com/primer/brand/commit/f3a70ed8e2a160ccb4129e4ef21ecaf34ed113e8) Thanks [@rezrah](https://github.com/rezrah)! - Adjusted the `Card.Heading` bottom spacing from `20px` to `12px`.
+
+- [#1363](https://github.com/primer/brand/pull/1363) [`f3a70ed`](https://github.com/primer/brand/commit/f3a70ed8e2a160ccb4129e4ef21ecaf34ed113e8) Thanks [@rezrah](https://github.com/rezrah)! - Adjusted the `Hero` action group top spacing from `32px` to `28px` and the expressive trailing content top spacing from `32px` to `20px` on wider viewports.
+
+- [#1363](https://github.com/primer/brand/pull/1363) [`f3a70ed`](https://github.com/primer/brand/commit/f3a70ed8e2a160ccb4129e4ef21ecaf34ed113e8) Thanks [@rezrah](https://github.com/rezrah)! - Updated the `LogoSuite` control hover color in light mode from `gray-2` to `gray-1`.
+
+- [#1363](https://github.com/primer/brand/pull/1363) [`f3a70ed`](https://github.com/primer/brand/commit/f3a70ed8e2a160ccb4129e4ef21ecaf34ed113e8) Thanks [@rezrah](https://github.com/rezrah)! - Updated `Tabs` item typography from text size `100` to `200`.
+
+- [#1363](https://github.com/primer/brand/pull/1363) [`f3a70ed`](https://github.com/primer/brand/commit/f3a70ed8e2a160ccb4129e4ef21ecaf34ed113e8) Thanks [@rezrah](https://github.com/rezrah)! - Added `TextCursorAnimation` cursor color tokens. The light mode cursor color now uses `--base-color-scale-green-6`, while dark mode preserves the existing accent color.
+
 ## 0.68.0
 
 ### Minor Changes
