@@ -1,4 +1,4 @@
-import React, {render, cleanup} from '@testing-library/react'
+import {render, cleanup} from '@testing-library/react'
 import '@testing-library/jest-dom'
 
 import {ButtonGroup} from './ButtonGroup'
@@ -24,6 +24,19 @@ describe('ButtonGroup', () => {
     const buttonGroupEl = getByTestId(mockTestId)
     expect(buttonGroupEl.tagName).toBe(expectedTag.toUpperCase())
     expect(buttonGroupEl.classList).toContain(expectedClass)
+  })
+
+  it('forwards a custom className alongside the default class', () => {
+    const {getByTestId} = render(
+      <ButtonGroup data-testid="test" className="custom-button-group">
+        <Button>Primary Action</Button>
+        <Button>Secondary Action</Button>
+      </ButtonGroup>,
+    )
+
+    const buttonGroupEl = getByTestId('test')
+    expect(buttonGroupEl).toHaveClass('ButtonGroup')
+    expect(buttonGroupEl).toHaveClass('custom-button-group')
   })
 
   it('renders buttons with the correct element type when buttonAs is set', () => {
