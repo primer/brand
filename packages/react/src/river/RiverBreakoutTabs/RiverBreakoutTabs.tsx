@@ -59,9 +59,7 @@ export type RiverBreakoutTabsContentProps = React.HTMLAttributes<HTMLDivElement>
 
 export type RiverBreakoutTabsIconProps = IconProps
 
-export type RiverBreakoutTabsVisualProps = RiverVisualProps & {
-  imageBackgroundColor?: 'default' | 'subtle'
-}
+export type RiverBreakoutTabsVisualProps = RiverVisualProps
 
 type RiverBreakoutTabsItemChild =
   | React.ReactElement<RiverBreakoutTabsIconProps>
@@ -145,13 +143,7 @@ const RiverBreakoutTabsContent = ({children, className, ...props}: RiverBreakout
 }
 
 const RiverBreakoutTabsVisual = forwardRef<HTMLDivElement, RiverBreakoutTabsVisualProps>(
-  ({className, imageBackgroundColor, ...props}, ref) => (
-    <RiverVisual
-      ref={ref}
-      className={clsx(imageBackgroundColor === 'subtle' && riverStyles['River__visual--has-background'], className)}
-      {...props}
-    />
-  ),
+  ({className, ...props}, ref) => <RiverVisual ref={ref} className={className} {...props} />,
 )
 
 const isItem = createComponentTypeGuard(RiverBreakoutTabsItem)
