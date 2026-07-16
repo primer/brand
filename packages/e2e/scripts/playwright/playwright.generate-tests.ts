@@ -40,8 +40,7 @@ const waitForTimeoutLookup = {
   'components-subdomainnavbar--mobile-search-results-visible': 5500, // for the animation
   'components-subdomainnavbar--mobile-no-links': 5500, // for the animation
   'components-subdomainnavbar--mobile-leading-component-only-menu-open': 5500, // for the animation
-  'components-subdomainnavbar--overflow-menu-open-gridline': 1500, // wait for responsive overflow measurement
-  'components-subdomainnavbar--mobile-gridline-menu-open': 5500, // for the animation
+  'components-subdomainnavbar--overflow-menu-open': 1500, // wait for responsive overflow measurement
   'components-subdomainnavbar--reversed-button-order-narrow': 5500, // for the animation
   'components-button-features--primary-focus-non-standard-bg': 2000, // for the interaction test
   'components-button-features--primary-focus': 2000, // for the interaction test
@@ -149,7 +148,7 @@ const waitForTimeoutLookup = {
 }
 
 const beforeScreenshotLookup: Partial<Record<string, string>> = {
-  'components-subdomainnavbar--overflow-menu-open-gridline': `
+  'components-subdomainnavbar--overflow-menu-open': `
     const moreButton = page.getByRole('button', {name: 'More'})
     if ((await moreButton.getAttribute('aria-expanded')) !== 'true') {
       await moreButton.click()
@@ -162,7 +161,7 @@ const beforeScreenshotLookup: Partial<Record<string, string>> = {
 }
 
 const screenshotOptionsLookup: Partial<Record<string, string>> = {
-  'components-subdomainnavbar--overflow-menu-open-gridline': `{animations: 'allow'}`,
+  'components-subdomainnavbar--overflow-menu-open': `{animations: 'allow'}`,
 }
 
 // const skipLocalizationsTestsFor = [
@@ -198,7 +197,6 @@ const skipTestLookup = [
   'components-logosuite-features--following-hero', // animation only
   'components-logosuite-features--stacked', // animation only
   'recipes-feature-previews-level-1--level-one-side-by-side-enterprise', // video makes this too flakey
-  'components-subdomainnavbar--overflow-menu-open', // flakey despite timeout
   'components-ide-features--editor-only', // animation too long
   'components-ide-features--editor-no-replay-button', // animation too long
   'components-ide-features--chat-only', // animation too long

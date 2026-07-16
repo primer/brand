@@ -123,7 +123,7 @@ export function SearchNav() {
       <Button variant="secondary" onClick={() => navRef.current?.closeSearch()}>
         Close search
       </Button>
-      <SubdomainNavBar ref={navRef} title="GitHub Docs" fixed={false} fullWidth variant="gridline">
+      <SubdomainNavBar ref={navRef} title="GitHub Docs" fixed={false} fullWidth>
         <SubdomainNavBar.Link href="/en/get-started">Get started</SubdomainNavBar.Link>
         <SubdomainNavBar.Search
           variant="input"
@@ -187,16 +187,6 @@ export function LocalizedSearch() {
 }
 ```
 
-### Gridline variant
-
-Use the `gridline` variant for designs that need horizontal and vertical separators and a full-width accent rule. The exported `SubdomainNavBarVariants` and `SubdomainNavBarVariant` describe the available root variants; `SubdomainNavBarSearchVariants` and `SubdomainNavBarSearchVariant` do the same for search.
-
-```jsx live
-<SubdomainNavBar title="GitHub Docs" fixed={false} fullWidth variant="gridline">
-  <SubdomainNavBar.Link href="#plans">Free, Pro & Team</SubdomainNavBar.Link>
-</SubdomainNavBar>
-```
-
 ## Accessibility
 
 - Provide a concise, meaningful `title`. It labels the navigation and communicates the subdomain to assistive technologies.
@@ -209,24 +199,23 @@ Use the `gridline` variant for designs that need horizontal and vertical separat
 
 ### SubdomainNavBar <Label>Required</Label>
 
-| Name                 | Type                               | Default              | Description                                                                      |
-| :------------------- | :--------------------------------- | :------------------- | :------------------------------------------------------------------------------- |
-| `children`           | <SubdomainNavBarChildrenProp />    |                      | Valid child nodes                                                                |
-| `className`          | `string`                           |                      | Sets a custom class on the root element                                          |
-| `id`                 | `string`                           |                      | Sets a custom ID on the root element                                             |
-| `style`              | `React.CSSProperties`              |                      | Forwards custom inline styles to the root element                                |
-| `fixed`              | `boolean`                          | `true`               | Fixes the navigation bar to the top of the viewport                              |
-| `fullWidth`          | `boolean`                          | `false`              | Allows the inner content to fill the available width                             |
-| `logoHref`           | `string`                           | `https://github.com` | Changes the URL of the GitHub logo                                               |
-| `title`              | `string`                           |                      | Required subdomain name used visibly and by assistive technologies               |
-| `titleHref`          | `string`                           | `/`                  | Links the title to the subdomain root                                            |
-| `variant`            | `SubdomainNavBarVariant`           | `default`            | `default` or `gridline`; `gridline` adds separators and a full-width accent rule |
-| `leadingComponent`   | `React.ReactNode`                  |                      | Content rendered after the title and before navigation links                     |
-| `trailingComponent`  | `React.ReactNode`                  |                      | Content rendered after search and actions                                        |
-| `ref`                | `React.Ref<SubdomainNavBarHandle>` |                      | Ref to the root element with `openSearch()` and `closeSearch()` methods          |
-| `onNarrowMenuToggle` | `(isOpen: boolean) => void`        |                      | Called with the new state when the narrow menu opens or closes                   |
+| Name                 | Type                               | Default              | Description                                                             |
+| :------------------- | :--------------------------------- | :------------------- | :---------------------------------------------------------------------- |
+| `children`           | <SubdomainNavBarChildrenProp />    |                      | Valid child nodes                                                       |
+| `className`          | `string`                           |                      | Sets a custom class on the root element                                 |
+| `id`                 | `string`                           |                      | Sets a custom ID on the root element                                    |
+| `style`              | `React.CSSProperties`              |                      | Forwards custom inline styles to the root element                       |
+| `fixed`              | `boolean`                          | `true`               | Fixes the navigation bar to the top of the viewport                     |
+| `fullWidth`          | `boolean`                          | `false`              | Allows the inner content to fill the available width                    |
+| `logoHref`           | `string`                           | `https://github.com` | Changes the URL of the GitHub logo                                      |
+| `title`              | `string`                           |                      | Required subdomain name used visibly and by assistive technologies      |
+| `titleHref`          | `string`                           | `/`                  | Links the title to the subdomain root                                   |
+| `leadingComponent`   | `React.ReactNode`                  |                      | Content rendered after the title and before navigation links            |
+| `trailingComponent`  | `React.ReactNode`                  |                      | Content rendered after search and actions                               |
+| `ref`                | `React.Ref<SubdomainNavBarHandle>` |                      | Ref to the root element with `openSearch()` and `closeSearch()` methods |
+| `onNarrowMenuToggle` | `(isOpen: boolean) => void`        |                      | Called with the new state when the narrow menu opens or closes          |
 
-`SubdomainNavBarProps`, `SubdomainNavBarHandle`, `SubdomainNavBarVariant`, and `SubdomainNavBarVariants` are exported from `@primer/react-brand`.
+`SubdomainNavBarProps` and `SubdomainNavBarHandle` are exported from `@primer/react-brand`.
 
 ### SubdomainNavBar.Search
 
@@ -267,15 +256,15 @@ Use the `gridline` variant for designs that need horizontal and vertical separat
 
 #### `SubdomainNavBarSearchResultProps`
 
-| Field         | Type      | Required | Description                                                                         |
-| :------------ | :-------- | :------: | :---------------------------------------------------------------------------------- |
-| `title`       | `string`  |   Yes    | Linked result title                                                                 |
-| `description` | `string`  |   Yes    | Result summary                                                                      |
-| `url`         | `string`  |   Yes    | Link destination                                                                    |
-| `date`        | `string`  |   Yes    | Displayed date string; format it for the user's locale before passing it            |
-| `category`    | `string`  |          | Optional metadata displayed after the date                                          |
-| `group`       | `string`  |          | Groups flat results under a shared heading                                          |
-| `isExternal`  | `boolean` |          | Shows an external-link indicator for grouped results in the `gridline` root variant |
+| Field         | Type      | Required | Description                                                              |
+| :------------ | :-------- | :------: | :----------------------------------------------------------------------- |
+| `title`       | `string`  |   Yes    | Linked result title                                                      |
+| `description` | `string`  |   Yes    | Result summary                                                           |
+| `url`         | `string`  |   Yes    | Link destination                                                         |
+| `date`        | `string`  |   Yes    | Displayed date string; format it for the user's locale before passing it |
+| `category`    | `string`  |          | Optional metadata displayed after the date                               |
+| `group`       | `string`  |          | Groups flat results under a shared heading                               |
+| `isExternal`  | `boolean` |          | Shows an external-link indicator for grouped results                     |
 
 #### `SubdomainNavBarSearchResultGroupProps`
 

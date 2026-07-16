@@ -2,45 +2,37 @@
  * Main styles for the subdomain navigation bar.
  */
 .SubdomainNavBar {
-  --SubdomainNavBar-height: calc(
-    var(--base-size-64) + var(--base-size-8) + var(--base-size-2) + var(--brand-borderWidth-thin)
-  );
+  --SubdomainNavBar-height: var(--base-size-64);
 
   position: relative;
   z-index: 90;
   font-weight: 550;
-  background: var(--brand-SubdomainNavBar-canvas-default);
-  -webkit-backdrop-filter: blur(16px);
-  backdrop-filter: blur(16px);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-  transition: background-color var(--brand-animation-duration-fast) var(--brand-animation-easing-default),
-    border-color var(--brand-animation-duration-fast) var(--brand-animation-easing-default);
+  background: var(--brand-color-canvas-default);
+  border-block-end: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
   height: var(--SubdomainNavBar-height);
 }
 
-.SubdomainNavBar--variant-default {
-  --SubdomainNavBar-height: calc(
-    var(--base-size-64) + var(--base-size-8) + var(--base-size-2) + var(--brand-borderWidth-thin)
-  );
+.SubdomainNavBar::after {
+  content: '';
+  position: absolute;
+  inset-inline: 0;
+  inset-block-start: calc(100% + var(--brand-borderWidth-thin));
+  height: var(--brand-borderWidth-thin);
+  background-color: var(--brand-color-text-emphasized);
+  pointer-events: none;
 }
 
 /*
  * Outer container
  */
 .SubdomainNavBar-outer-container {
-  --SubdomainNavBar-height: calc(
-    var(--base-size-64) + var(--base-size-8) + var(--base-size-2) + var(--brand-borderWidth-thin)
-  );
+  --SubdomainNavBar-height: var(--base-size-64);
 
   z-index: 90;
 }
 
-.SubdomainNavBar-outer-container--variant-gridline {
-  --SubdomainNavBar-height: var(--base-size-64);
-}
-
 @media screen and (max-width: 47.99rem) {
-  .SubdomainNavBar-outer-container--variant-gridline {
+  .SubdomainNavBar-outer-container {
     --SubdomainNavBar-height: calc(var(--base-size-64) - var(--base-size-8));
   }
 }
@@ -117,13 +109,6 @@
 .SubdomainNavBar-logo-mark:hover .SubdomainNavBar-back-arrow {
   opacity: 1;
   transform: translateX(0);
-}
-
-.SubdomainNavBar-title-separator {
-  color: var(--brand-color-text-muted);
-  font-weight: var(--base-text-weight-normal);
-  font-size: var(--base-size-32);
-  line-height: 29px;
 }
 
 .SubdomainNavBar-logo-mark svg {
@@ -461,7 +446,6 @@
   min-width: calc(var(--base-size-128) + var(--base-size-32));
 }
 
-.SubdomainNavBar-search-button,
 .SubdomainNavBar-menu-button {
   cursor: pointer;
   appearance: none;
@@ -479,21 +463,12 @@
   gap: 0;
 }
 
-.SubdomainNavBar-search-button svg,
 .SubdomainNavBar-menu-button svg {
   width: 24px;
   height: 24px;
 }
 
 .SubdomainNavBar-search-button.SubdomainNavBar-search-button {
-  background-color: transparent;
-  border: var(--brand-borderWidth-thick) solid transparent;
-  color: var(--brand-color-text-default);
-  -webkit-backdrop-filter: none;
-  backdrop-filter: none;
-}
-
-.SubdomainNavBar-search-button--gridline.SubdomainNavBar-search-button--gridline {
   gap: 0;
   background-color: transparent;
   border-color: transparent;
@@ -502,16 +477,13 @@
   backdrop-filter: none;
 }
 
-.SubdomainNavBar-search-button--gridline.SubdomainNavBar-search-button--gridline:not(
+.SubdomainNavBar-search-button.SubdomainNavBar-search-button:not(
     [disabled],
     [aria-disabled='true'],
     [aria-expanded='true']
   ):hover,
-.SubdomainNavBar-search-button--gridline.SubdomainNavBar-search-button--gridline:not(
-    [disabled],
-    [aria-disabled='true']
-  ):active,
-.SubdomainNavBar-search-button--gridline.SubdomainNavBar-search-button--gridline[aria-expanded='true'] {
+.SubdomainNavBar-search-button.SubdomainNavBar-search-button:not([disabled], [aria-disabled='true']):active,
+.SubdomainNavBar-search-button.SubdomainNavBar-search-button[aria-expanded='true'] {
   background-color: transparent;
   border-color: transparent;
   box-shadow: none;
@@ -636,18 +608,11 @@
 }
 
 @media screen and (min-width: 48rem) {
-  .SubdomainNavBar-search-button.SubdomainNavBar-search-button:not(
-      [disabled],
-      [aria-disabled='true'],
-      [aria-expanded='true']
-    ):hover,
   .SubdomainNavBar-menu-button:hover {
     background-color: transparent;
     border: var(--brand-borderWidth-thick) solid var(--brand-SubdomainNavBar-border-button-hover);
   }
 
-  .SubdomainNavBar-search-button.SubdomainNavBar-search-button:not([disabled], [aria-disabled='true']):active,
-  .SubdomainNavBar-search-button.SubdomainNavBar-search-button[aria-expanded='true'],
   .SubdomainNavBar-menu-button:active {
     background-color: transparent;
     box-shadow: 0 0 0 1px var(--brand-SubdomainNavBar-border-button-hover);
@@ -655,16 +620,6 @@
 
   .SubdomainNavBar-mobile-menu-button {
     display: none;
-  }
-
-  .SubdomainNavBar-search-dialog-control-area .SubdomainNavBar-search-button,
-  .SubdomainNavBar-search-dialog-control-area .SubdomainNavBar-menu-button {
-    display: inline-flex;
-    width: 48px;
-  }
-
-  .SubdomainNavBar-search-button {
-    margin: 0 var(--base-size-16) 0 auto;
   }
 }
 
@@ -717,61 +672,34 @@
   white-space: nowrap;
 }
 
-.SubdomainNavBar--variant-gridline {
-  --SubdomainNavBar-height: var(--base-size-64);
-
-  background: var(--brand-color-canvas-default);
-  border-block-end: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
-  -webkit-backdrop-filter: none;
-  backdrop-filter: none;
-}
-
-.SubdomainNavBar--variant-gridline::after {
-  content: '';
-  position: absolute;
-  inset-inline: 0;
-  inset-block-start: calc(100% + var(--brand-borderWidth-thin));
-  height: var(--brand-borderWidth-thin);
-  background-color: var(--brand-color-text-emphasized);
-  pointer-events: none;
-}
-
-.SubdomainNavBar--variant-gridline .SubdomainNavBar-title-separator {
-  display: none;
-}
-
-.SubdomainNavBar--variant-gridline .SubdomainNavBar-menu-wrapper {
+.SubdomainNavBar .SubdomainNavBar-menu-wrapper {
   top: var(--SubdomainNavBar-height);
   height: calc(100vh - var(--SubdomainNavBar-height) - var(--SubdomainNavBar-menu-offset-block-start, 0px));
 }
 
-.SubdomainNavBar--variant-gridline .SubdomainNavBar-search-dialog-control-area {
-  height: var(--SubdomainNavBar-height);
-}
-
-.SubdomainNavBar--variant-gridline .SubdomainNavBar-inner-container--search-open {
+.SubdomainNavBar .SubdomainNavBar-inner-container--search-open {
   animation: none;
 }
 
 @media screen and (max-width: 47.99rem) {
-  .SubdomainNavBar--variant-gridline {
+  .SubdomainNavBar {
     --SubdomainNavBar-height: calc(var(--base-size-64) - var(--base-size-8));
     --SubdomainNavBar-mobile-control-size: calc(var(--SubdomainNavBar-height) - var(--brand-borderWidth-thin));
   }
 
-  .SubdomainNavBar--variant-gridline .SubdomainNavBar-inner-container {
+  .SubdomainNavBar .SubdomainNavBar-inner-container {
     height: 100%;
     padding: 0;
   }
 
-  .SubdomainNavBar--variant-gridline .SubdomainNavBar-title-area {
+  .SubdomainNavBar .SubdomainNavBar-title-area {
     height: 100%;
     max-width: none;
     gap: 0;
     padding: 0;
   }
 
-  .SubdomainNavBar--variant-gridline .SubdomainNavBar-title-area > li {
+  .SubdomainNavBar .SubdomainNavBar-title-area > li {
     display: flex;
     align-items: center;
     height: 100%;
@@ -779,38 +707,38 @@
     border-inline-end: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
   }
 
-  .SubdomainNavBar--variant-gridline .SubdomainNavBar-title-area > li:first-child {
+  .SubdomainNavBar .SubdomainNavBar-title-area > li:first-child {
     justify-content: center;
     width: var(--base-size-64);
     padding-inline: 0;
   }
 
-  .SubdomainNavBar--variant-gridline .SubdomainNavBar-logo-mark {
+  .SubdomainNavBar .SubdomainNavBar-logo-mark {
     display: inline-flex;
     align-items: center;
     justify-content: center;
   }
 
-  .SubdomainNavBar--variant-gridline .SubdomainNavBar-logo-mark svg {
+  .SubdomainNavBar .SubdomainNavBar-logo-mark svg {
     width: var(--base-size-24);
     height: var(--base-size-24);
   }
 
-  .SubdomainNavBar--variant-gridline .SubdomainNavBar-title {
+  .SubdomainNavBar .SubdomainNavBar-title {
     top: 0;
     padding-inline-end: 0;
   }
 
-  .SubdomainNavBar--variant-gridline .SubdomainNavBar-title > * {
+  .SubdomainNavBar .SubdomainNavBar-title > * {
     font-size: var(--brand-text-size-100);
     line-height: var(--brand-text-lineHeight-100);
   }
 
-  .SubdomainNavBar--variant-gridline .SubdomainNavBar-secondary-nav {
+  .SubdomainNavBar .SubdomainNavBar-secondary-nav {
     height: 100%;
   }
 
-  .SubdomainNavBar--variant-gridline .SubdomainNavBar-search-trigger {
+  .SubdomainNavBar .SubdomainNavBar-search-trigger {
     flex: 0 0 var(--SubdomainNavBar-mobile-control-size);
     justify-content: center;
     width: var(--SubdomainNavBar-mobile-control-size);
@@ -819,8 +747,8 @@
     border-inline-start: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
   }
 
-  .SubdomainNavBar--variant-gridline .SubdomainNavBar-search-button--gridline,
-  .SubdomainNavBar--variant-gridline .SubdomainNavBar-mobile-menu-button {
+  .SubdomainNavBar .SubdomainNavBar-search-button,
+  .SubdomainNavBar .SubdomainNavBar-mobile-menu-button {
     box-sizing: border-box;
     display: inline-flex;
     flex: 0 0 var(--SubdomainNavBar-mobile-control-size);
@@ -831,55 +759,51 @@
     border-radius: 0;
   }
 
-  .SubdomainNavBar--variant-gridline .SubdomainNavBar-mobile-menu-button {
+  .SubdomainNavBar .SubdomainNavBar-mobile-menu-button {
     gap: calc(var(--base-size-4) - var(--brand-borderWidth-thin));
     border-inline-start: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
   }
 
-  .SubdomainNavBar--variant-gridline .SubdomainNavBar-menu-button-bar {
+  .SubdomainNavBar .SubdomainNavBar-menu-button-bar {
     width: var(--base-size-16);
     height: var(--base-size-2);
     margin: 0 auto;
     transform-origin: center;
   }
 
-  .SubdomainNavBar--variant-gridline
-    .SubdomainNavBar-menu-button--close
-    .SubdomainNavBar-menu-button-bar:nth-of-type(1) {
+  .SubdomainNavBar .SubdomainNavBar-menu-button--close .SubdomainNavBar-menu-button-bar:nth-of-type(1) {
     transform: translateY(calc(var(--base-size-6) - var(--brand-borderWidth-thin))) rotate(45deg);
   }
 
-  .SubdomainNavBar--variant-gridline
-    .SubdomainNavBar-menu-button--close
-    .SubdomainNavBar-menu-button-bar:nth-of-type(3) {
+  .SubdomainNavBar .SubdomainNavBar-menu-button--close .SubdomainNavBar-menu-button-bar:nth-of-type(3) {
     transform: translateY(calc(var(--brand-borderWidth-thin) - var(--base-size-6))) rotate(-45deg);
   }
 
-  .SubdomainNavBar--variant-gridline .SubdomainNavBar-menu-wrapper > div:first-child > * {
+  .SubdomainNavBar .SubdomainNavBar-menu-wrapper > div:first-child > * {
     border-block-end: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
   }
 
-  .SubdomainNavBar--variant-gridline .SubdomainNavBar-menu-wrapper .SubdomainNavBar-link {
+  .SubdomainNavBar .SubdomainNavBar-menu-wrapper .SubdomainNavBar-link {
     padding: var(--base-size-16);
     font-size: var(--brand-text-size-100);
     line-height: var(--brand-text-lineHeight-100);
   }
 
-  .SubdomainNavBar--variant-gridline .SubdomainNavBar-menu-wrapper .SubdomainNavBar-link--title {
+  .SubdomainNavBar .SubdomainNavBar-menu-wrapper .SubdomainNavBar-link--title {
     font-size: var(--brand-text-size-100);
     line-height: var(--brand-text-lineHeight-100);
   }
 
-  .SubdomainNavBar--variant-gridline .SubdomainNavBar-menu-wrapper .SubdomainNavBar-button-area-inner {
+  .SubdomainNavBar .SubdomainNavBar-menu-wrapper .SubdomainNavBar-button-area-inner {
     padding-inline: var(--base-size-16);
   }
 
-  .SubdomainNavBar--variant-gridline .SubdomainNavBar-menu-wrapper .SubdomainNavBar-button-area,
-  .SubdomainNavBar--variant-gridline .SubdomainNavBar-menu-wrapper .SubdomainNavBar-trailing-component {
+  .SubdomainNavBar .SubdomainNavBar-menu-wrapper .SubdomainNavBar-button-area,
+  .SubdomainNavBar .SubdomainNavBar-menu-wrapper .SubdomainNavBar-trailing-component {
     border-block-start: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
   }
 
-  .SubdomainNavBar--variant-gridline
+  .SubdomainNavBar
     .SubdomainNavBar-menu-wrapper-footer
     .SubdomainNavBar-button-area
     + .SubdomainNavBar-trailing-component {
@@ -888,20 +812,20 @@
 }
 
 @media screen and (min-width: 48rem) {
-  .SubdomainNavBar--variant-gridline .SubdomainNavBar-inner-container {
+  .SubdomainNavBar .SubdomainNavBar-inner-container {
     height: 100%;
     max-width: none;
     padding: 0;
   }
 
-  .SubdomainNavBar--variant-gridline .SubdomainNavBar-title-area {
+  .SubdomainNavBar .SubdomainNavBar-title-area {
     height: 100%;
     max-width: none;
     gap: 0;
     padding: 0;
   }
 
-  .SubdomainNavBar--variant-gridline .SubdomainNavBar-title-area > li {
+  .SubdomainNavBar .SubdomainNavBar-title-area > li {
     display: flex;
     align-items: center;
     height: 100%;
@@ -909,71 +833,71 @@
     border-inline-end: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
   }
 
-  .SubdomainNavBar--variant-gridline .SubdomainNavBar-title-area > li:first-child {
+  .SubdomainNavBar .SubdomainNavBar-title-area > li:first-child {
     justify-content: center;
     width: var(--base-size-64);
     padding-inline: 0;
   }
 
-  .SubdomainNavBar--variant-gridline .SubdomainNavBar-logo-mark {
+  .SubdomainNavBar .SubdomainNavBar-logo-mark {
     display: inline-flex;
     align-items: center;
     justify-content: center;
   }
 
-  .SubdomainNavBar--variant-gridline .SubdomainNavBar-logo-mark svg {
+  .SubdomainNavBar .SubdomainNavBar-logo-mark svg {
     width: var(--base-size-24);
     height: var(--base-size-24);
   }
 
-  .SubdomainNavBar--variant-gridline .SubdomainNavBar-title {
+  .SubdomainNavBar .SubdomainNavBar-title {
     top: 0;
     padding-inline-end: 0;
   }
 
-  .SubdomainNavBar--variant-gridline .SubdomainNavBar-title > * {
+  .SubdomainNavBar .SubdomainNavBar-title > * {
     font-size: var(--base-size-16);
     line-height: var(--base-size-16);
   }
 
-  .SubdomainNavBar--variant-gridline .SubdomainNavBar-primary-nav,
-  .SubdomainNavBar--variant-gridline .SubdomainNavBar-primary-nav-overflow,
-  .SubdomainNavBar--variant-gridline .SubdomainNavBar-primary-nav-list,
-  .SubdomainNavBar--variant-gridline .SubdomainNavBar-secondary-nav,
-  .SubdomainNavBar--variant-gridline .SubdomainNavBar-button-area,
-  .SubdomainNavBar--variant-gridline .SubdomainNavBar-leading-component,
-  .SubdomainNavBar--variant-gridline .SubdomainNavBar-trailing-component {
+  .SubdomainNavBar .SubdomainNavBar-primary-nav,
+  .SubdomainNavBar .SubdomainNavBar-primary-nav-overflow,
+  .SubdomainNavBar .SubdomainNavBar-primary-nav-list,
+  .SubdomainNavBar .SubdomainNavBar-secondary-nav,
+  .SubdomainNavBar .SubdomainNavBar-button-area,
+  .SubdomainNavBar .SubdomainNavBar-leading-component,
+  .SubdomainNavBar .SubdomainNavBar-trailing-component {
     height: 100%;
   }
 
-  .SubdomainNavBar--variant-gridline .SubdomainNavBar-leading-component,
-  .SubdomainNavBar--variant-gridline .SubdomainNavBar-trailing-component {
+  .SubdomainNavBar .SubdomainNavBar-leading-component,
+  .SubdomainNavBar .SubdomainNavBar-trailing-component {
     padding-inline: var(--base-size-16);
     margin-inline: 0;
   }
 
-  .SubdomainNavBar--variant-gridline .SubdomainNavBar-leading-component {
+  .SubdomainNavBar .SubdomainNavBar-leading-component {
     border-inline-end: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
   }
 
-  .SubdomainNavBar--variant-gridline .SubdomainNavBar-primary-nav-list {
+  .SubdomainNavBar .SubdomainNavBar-primary-nav-list {
     align-items: stretch;
     margin: 0;
     block-size: 100%;
     max-block-size: 100%;
   }
 
-  .SubdomainNavBar--variant-gridline .SubdomainNavBar-primary-nav-overflow {
+  .SubdomainNavBar .SubdomainNavBar-primary-nav-overflow {
     margin: 0;
   }
 
-  .SubdomainNavBar--variant-gridline .SubdomainNavBar-primary-nav-list-item {
+  .SubdomainNavBar .SubdomainNavBar-primary-nav-list-item {
     display: flex;
     align-items: center;
     height: 100%;
   }
 
-  .SubdomainNavBar--variant-gridline .SubdomainNavBar-link {
+  .SubdomainNavBar .SubdomainNavBar-link {
     align-items: center;
     height: 100%;
     padding: 0 var(--base-size-16);
@@ -982,12 +906,12 @@
     line-height: var(--brand-text-lineHeight-200);
   }
 
-  .SubdomainNavBar--variant-gridline .SubdomainNavBar-link-text::after {
+  .SubdomainNavBar .SubdomainNavBar-link-text::after {
     display: none;
   }
 
-  .SubdomainNavBar--variant-gridline .SubdomainNavBar-overflow-menu {
-    animation: fade-in-down-gridline var(--brand-animation-duration-faster);
+  .SubdomainNavBar .SubdomainNavBar-overflow-menu {
+    animation: fade-in-down-overflow var(--brand-animation-duration-faster);
     animation-timing-function: var(--brand-animation-easing-default);
     border: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
     border-start-start-radius: 0;
@@ -999,13 +923,13 @@
     transform: translateY(calc(0px - var(--base-size-4)));
   }
 
-  .SubdomainNavBar--variant-gridline .SubdomainNavBar-overflow-menu-list {
+  .SubdomainNavBar .SubdomainNavBar-overflow-menu-list {
     gap: var(--brand-borderWidth-thin);
     padding: var(--base-size-8);
     width: 100%;
   }
 
-  .SubdomainNavBar--variant-gridline .SubdomainNavBar-overflow-menu-item .SubdomainNavBar-link {
+  .SubdomainNavBar .SubdomainNavBar-overflow-menu-item .SubdomainNavBar-link {
     width: 100%;
     min-height: var(--base-size-40);
     padding: var(--base-size-8) var(--base-size-12);
@@ -1016,23 +940,23 @@
     line-height: var(--brand-text-lineHeight-200);
   }
 
-  .SubdomainNavBar--variant-gridline .SubdomainNavBar-overflow-menu-item .SubdomainNavBar-link:hover,
-  .SubdomainNavBar--variant-gridline .SubdomainNavBar-overflow-menu-item .SubdomainNavBar-link:focus,
-  .SubdomainNavBar--variant-gridline .SubdomainNavBar-overflow-menu-item .SubdomainNavBar-link:focus-visible {
+  .SubdomainNavBar .SubdomainNavBar-overflow-menu-item .SubdomainNavBar-link:hover,
+  .SubdomainNavBar .SubdomainNavBar-overflow-menu-item .SubdomainNavBar-link:focus,
+  .SubdomainNavBar .SubdomainNavBar-overflow-menu-item .SubdomainNavBar-link:focus-visible {
     color: var(--brand-color-text-default);
     background-color: var(--brand-color-canvas-subtle);
   }
 
-  .SubdomainNavBar--variant-gridline .SubdomainNavBar-secondary-nav {
+  .SubdomainNavBar .SubdomainNavBar-secondary-nav {
     border-inline-start: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
   }
 
-  .SubdomainNavBar--variant-gridline .SubdomainNavBar-search-trigger {
+  .SubdomainNavBar .SubdomainNavBar-search-trigger {
     height: 100%;
     padding-inline: var(--base-size-16);
   }
 
-  .SubdomainNavBar--variant-gridline .SubdomainNavBar-search-trigger--input {
+  .SubdomainNavBar .SubdomainNavBar-search-trigger--input {
     --SubdomainNavBar-search-input-width: clamp(
       calc(var(--base-size-128) + var(--base-size-32)),
       28.5vw,
@@ -1042,16 +966,16 @@
     align-self: stretch;
   }
 
-  .SubdomainNavBar--variant-gridline .SubdomainNavBar-search-trigger--has-trailing-item {
+  .SubdomainNavBar .SubdomainNavBar-search-trigger--has-trailing-item {
     border-inline-end: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
   }
 
-  .SubdomainNavBar--variant-gridline .SubdomainNavBar-button-area {
+  .SubdomainNavBar .SubdomainNavBar-button-area {
     align-items: center;
     padding-inline: var(--base-size-16);
   }
 
-  .SubdomainNavBar--variant-gridline .SubdomainNavBar-button-area--has-trailing-item {
+  .SubdomainNavBar .SubdomainNavBar-button-area--has-trailing-item {
     border-inline-end: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
   }
 }
@@ -1106,70 +1030,14 @@
   outline-offset: var(--base-size-2);
 }
 
-.SubdomainNavBar-search-dialog {
-  position: fixed;
-  inset-block-start: 0;
-  inset-inline: 0;
-  z-index: 99;
-  width: 100vw;
-  block-size: calc(var(--SubdomainNavBar-height) - (var(--brand-borderWidth-thin) * 2));
+.SubdomainNavBar-search-dialog-control-area {
+  height: var(--base-size-40);
   max-width: none;
   padding: 0;
   margin: 0;
-  overflow: visible;
-  color: var(--brand-color-text-default);
-  background-color: var(--brand-SubdomainNavBar-canvas-search);
-  border: 0;
-}
-
-.SubdomainNavBar-search-dialog::backdrop {
-  background: transparent;
-}
-
-@media screen and (max-width: 767px) {
-  .SubdomainNavBar-search-dialog {
-    top: 0;
-    left: 0;
-    right: 0;
-    background: var(--brand-SubdomainNavBar-canvas-search);
-    -webkit-backdrop-filter: blur(100px);
-    backdrop-filter: blur(100px);
-    height: 100vh;
-    width: 100vw;
-    animation: fade-in-down var(--brand-animation-duration-fast);
-    animation-timing-function: var(--brand-animation-easing-default);
-  }
-}
-
-@media screen and (min-width: 48rem) {
-  .SubdomainNavBar-search-dialog {
-    inset-block-end: auto;
-    inset-inline-end: auto;
-    background-color: var(--brand-SubdomainNavBar-canvas-search);
-  }
-}
-
-.SubdomainNavBar-search-dialog .SubdomainNavBar-search-trigger .SubdomainNavBar-search-button {
-  margin-right: 0;
-}
-
-.SubdomainNavBar-search-dialog-control-area {
-  height: calc(var(--SubdomainNavBar-height) - (var(--brand-borderWidth-thin) * 2));
-  background: var(--brand-SubdomainNavBar-canvas-default);
-  -webkit-backdrop-filter: blur(16px);
-  backdrop-filter: blur(16px);
-  padding: var(--base-size-12) var(--base-size-28);
   display: flex;
   align-items: center;
-  animation: fade-in-down 500ms;
-  gap: var(--base-size-4);
-}
-
-@media screen and (min-width: 48rem) {
-  .SubdomainNavBar-search-dialog-control-area {
-    max-width: 570px;
-    margin: 0 auto;
-  }
+  background: transparent;
 }
 
 .SubdomainNavBar-search-text-input {
@@ -1270,7 +1138,8 @@
   color: var(--base-color-scale-black-0);
 }
 
-.SubdomainNavBar-search-dialog--gridline {
+.SubdomainNavBar-search-dialog {
+  position: fixed;
   inset-block-start: calc(var(--base-size-64) + var(--base-size-8));
   inset-block-end: auto;
   inset-inline: calc(var(--base-size-64) + var(--base-size-8));
@@ -1284,43 +1153,33 @@
   margin-inline: auto;
   padding: var(--base-size-16) var(--base-size-16) var(--base-size-32);
   overflow: hidden;
+  color: var(--brand-color-text-default);
   background-color: var(--brand-color-canvas-default);
   border: var(--brand-borderWidth-thin) solid var(--brand-color-border-default);
   border-radius: var(--brand-borderRadius-large);
   box-shadow: 0 0 calc(var(--base-size-32) + var(--base-size-2)) var(--brand-SubdomainNavBar-searchDialog-shadowColor);
 }
 
-.SubdomainNavBar-search-dialog--gridline::backdrop {
+.SubdomainNavBar-search-dialog::backdrop {
   background-color: var(--brand-SubdomainNavBar-searchDialog-backdropColor);
   -webkit-backdrop-filter: blur(var(--base-size-24));
   backdrop-filter: blur(var(--base-size-24));
 }
 
-.SubdomainNavBar-search-dialog--gridline .SubdomainNavBar-search-dialog-control-area {
-  height: var(--base-size-40);
-  max-width: none;
-  padding: 0;
-  margin: 0;
-  background: transparent;
-  -webkit-backdrop-filter: none;
-  backdrop-filter: none;
-  animation: none;
-}
-
-.SubdomainNavBar-search-dialog--gridline .SubdomainNavBar-search-input-area {
+.SubdomainNavBar-search-dialog .SubdomainNavBar-search-input-area {
   gap: var(--base-size-16);
 }
 
-.SubdomainNavBar-search-dialog--gridline .SubdomainNavBar-search-form {
+.SubdomainNavBar-search-dialog .SubdomainNavBar-search-form {
   min-width: 0;
 }
 
-.SubdomainNavBar-search-dialog--gridline .SubdomainNavBar-search-form section > span:focus-within {
+.SubdomainNavBar-search-dialog .SubdomainNavBar-search-form section > span:focus-within {
   border-color: transparent;
   box-shadow: none;
 }
 
-.SubdomainNavBar-search-dialog--gridline .SubdomainNavBar-search-text-input {
+.SubdomainNavBar-search-dialog .SubdomainNavBar-search-text-input {
   color: var(--brand-color-text-default);
   font-size: calc(var(--base-size-16) + var(--base-size-2));
   font-weight: var(--base-text-weight-medium);
@@ -1328,17 +1187,17 @@
   letter-spacing: var(--brand-text-letterSpacing-100);
 }
 
-.SubdomainNavBar-search-dialog--gridline .SubdomainNavBar-search-close-button {
+.SubdomainNavBar-search-dialog .SubdomainNavBar-search-close-button {
   background-color: var(--brand-color-border-muted);
 }
 
-.SubdomainNavBar-search-dialog--gridline .SubdomainNavBar-search-results-area--visible {
+.SubdomainNavBar-search-dialog .SubdomainNavBar-search-results-area--visible {
   margin-block-start: var(--base-size-24);
   padding-block-start: var(--base-size-24);
   border-block-start: var(--brand-borderWidth-thin) dashed var(--brand-color-border-muted);
 }
 
-.SubdomainNavBar-search-dialog--gridline .SubdomainNavBar-search-results-container {
+.SubdomainNavBar-search-dialog .SubdomainNavBar-search-results-container {
   width: 100%;
   height: auto;
   max-width: none;
@@ -1352,15 +1211,15 @@
   animation: none;
 }
 
-.SubdomainNavBar-search-dialog--gridline .SubdomainNavBar-search-results {
+.SubdomainNavBar-search-dialog .SubdomainNavBar-search-results {
   height: auto;
   padding: 0;
   margin: 0;
   overflow: visible;
 }
 
-.SubdomainNavBar-search-dialog--gridline .SubdomainNavBar-search-results-heading,
-.SubdomainNavBar-search-dialog--gridline .SubdomainNavBar-search-result-group-heading {
+.SubdomainNavBar-search-dialog .SubdomainNavBar-search-results-heading,
+.SubdomainNavBar-search-dialog .SubdomainNavBar-search-result-group-heading {
   margin-block-end: var(--base-size-20);
   padding: 0;
   color: var(--brand-color-text-muted);
@@ -1369,32 +1228,30 @@
   line-height: var(--brand-text-lineHeight-100);
 }
 
-.SubdomainNavBar-search-dialog--gridline .SubdomainNavBar-search-result-group + .SubdomainNavBar-search-result-group {
+.SubdomainNavBar-search-dialog .SubdomainNavBar-search-result-group + .SubdomainNavBar-search-result-group {
   margin-block-start: var(--base-size-24);
 }
 
-.SubdomainNavBar-search-dialog--gridline .SubdomainNavBar-search-result-item {
+.SubdomainNavBar-search-dialog .SubdomainNavBar-search-result-item {
   padding: var(--base-size-16) var(--base-size-4);
   border-block-end: 0;
   border-block-start: var(--brand-borderWidth-thin) dashed var(--brand-color-border-muted);
 }
 
-.SubdomainNavBar-search-dialog--gridline
+.SubdomainNavBar-search-dialog
   .SubdomainNavBar-search-result-group-list
   > .SubdomainNavBar-search-result-item:first-child,
-.SubdomainNavBar-search-dialog--gridline
-  .SubdomainNavBar-search-results
-  > .SubdomainNavBar-search-result-item:first-child {
+.SubdomainNavBar-search-dialog .SubdomainNavBar-search-results > .SubdomainNavBar-search-result-item:first-child {
   padding-block-start: var(--base-size-12);
   border-block-start: 0;
 }
 
-.SubdomainNavBar-search-dialog--gridline .SubdomainNavBar-search-result-item-container {
+.SubdomainNavBar-search-dialog .SubdomainNavBar-search-result-item-container {
   font-size: var(--brand-text-size-300);
   letter-spacing: var(--brand-text-letterSpacing-100);
 }
 
-.SubdomainNavBar-search-dialog--gridline .SubdomainNavBar-search-result-item-container a {
+.SubdomainNavBar-search-dialog .SubdomainNavBar-search-result-item-container a {
   display: flex;
   align-items: center;
   gap: calc(var(--base-size-8) + var(--base-size-2));
@@ -1407,20 +1264,20 @@
   letter-spacing: var(--brand-text-letterSpacing-100);
 }
 
-.SubdomainNavBar-search-dialog--gridline .SubdomainNavBar-search-result-item-container a span {
+.SubdomainNavBar-search-dialog .SubdomainNavBar-search-result-item-container a span {
   min-width: 0;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
-.SubdomainNavBar-search-dialog--gridline .SubdomainNavBar-search-result-item-desc,
-.SubdomainNavBar-search-dialog--gridline .SubdomainNavBar-search-result-item-meta {
+.SubdomainNavBar-search-dialog .SubdomainNavBar-search-result-item-desc,
+.SubdomainNavBar-search-dialog .SubdomainNavBar-search-result-item-meta {
   display: none;
 }
 
 @media screen and (max-width: 47.99rem) {
-  .SubdomainNavBar-search-dialog--gridline {
+  .SubdomainNavBar-search-dialog {
     inset-block-start: var(--base-size-16);
     inset-block-end: auto;
     inset-inline: var(--base-size-16);
@@ -1452,7 +1309,7 @@
   }
 }
 
-@keyframes fade-in-down-gridline {
+@keyframes fade-in-down-overflow {
   0% {
     opacity: 0;
     transform: translateY(calc(0px - var(--base-size-24)));

@@ -27,8 +27,6 @@ import styles from './SubdomainNavBar.module.css'
 import {useId} from '../hooks/useId'
 import {useSubdomainNavBarLinkContext} from './SubdomainNavBarLinkContext'
 
-export const SubdomainNavBarVariants = ['default', 'gridline'] as const
-export type SubdomainNavBarVariant = (typeof SubdomainNavBarVariants)[number]
 export const SubdomainNavBarSearchVariants = ['icon', 'input'] as const
 export type SubdomainNavBarSearchVariant = (typeof SubdomainNavBarSearchVariants)[number]
 
@@ -62,11 +60,6 @@ export type SubdomainNavBarProps = {
    * Fill the maximum width of the parent container. Defaults to `false`.
    */
   fullWidth?: boolean
-  /**
-   * Apply a visual variant. The default is `default`.
-   * `gridline` adds horizontal and vertical separator lines.
-   */
-  variant?: SubdomainNavBarVariant
   /**
    * Optional content rendered after the title and before navigation links.
    */
@@ -199,7 +192,6 @@ function Root(
     style,
     title,
     titleHref = '/',
-    variant = 'default',
     leadingComponent,
     trailingComponent,
     onNarrowMenuToggle,
@@ -406,7 +398,6 @@ function Root(
         className={clsx(
           styles['SubdomainNavBar-outer-container'],
           fixed && styles['SubdomainNavBar-outer-container--fixed'],
-          variant === 'gridline' && styles['SubdomainNavBar-outer-container--variant-gridline'],
         )}
       >
         <Button
@@ -421,7 +412,7 @@ function Root(
         </Button>
         <header
           ref={headerRef}
-          className={clsx(styles['SubdomainNavBar'], styles[`SubdomainNavBar--variant-${variant}`], className)}
+          className={clsx(styles['SubdomainNavBar'], className)}
           data-testid={testIds.root}
           style={subdomainNavBarStyle}
           {...rest}
@@ -447,11 +438,6 @@ function Root(
                 </li>
                 {title && isSmall && (
                   <>
-                    {variant !== 'gridline' && (
-                      <li role="separator" className={styles['SubdomainNavBar-title-separator']} aria-hidden>
-                        /
-                      </li>
-                    )}
                     <li>
                       <a
                         href={titleHref}
@@ -496,7 +482,6 @@ function Root(
                       ),
                       onSearchOpen: handleSearchOpen,
                       onSearchClose: handleSearchClose,
-                      subdomainNavBarVariant: variant,
                       title,
                       variant: usesInputSearchTrigger ? 'input' : 'icon',
                     })
@@ -740,7 +725,6 @@ export type SubdomainNavBarSearchProps = {
   keyboardShortcut?: string | false
   searchResults?: SubdomainNavBarSearchResults
   searchTerm?: string
-  subdomainNavBarVariant?: SubdomainNavBarVariant
   /**
    * Customizable visible and accessible search text. Unspecified labels use the English defaults.
    */
@@ -815,7 +799,6 @@ const _SearchInternal = forwardRef<HTMLInputElement, SubdomainNavBarSearchProps>
       placeholder,
       shortcutLabel,
       keyboardShortcut = '/',
-      subdomainNavBarVariant,
       variant: searchVariant = 'icon',
       labels,
     },
@@ -823,7 +806,6 @@ const _SearchInternal = forwardRef<HTMLInputElement, SubdomainNavBarSearchProps>
   ) => {
     const dialogRef = useRef<HTMLDialogElement | null>(null)
     const inputRef = useRef<HTMLInputElement | null>(null)
-    const isGridlineVariant = subdomainNavBarVariant === 'gridline'
     const resolvedLabels = {...defaultSearchLabels, ...labels}
     const resolvedPlaceholder =
       placeholder ?? (title ? resolvedLabels.formatSearchWithTitle(title) : resolvedLabels.searchLabel)
@@ -975,9 +957,7 @@ const _SearchInternal = forwardRef<HTMLInputElement, SubdomainNavBarSearchProps>
         <div className={styles['SubdomainNavBar-search-result-item-container']}>
           <a href={result.url}>
             <span>{result.title}</span>
-            {isGridlineVariant && hasGroupedSearchResults && result.isExternal && (
-              <ArrowUpRightIcon size={20} aria-hidden="true" />
-            )}
+            {hasGroupedSearchResults && result.isExternal && <ArrowUpRightIcon size={20} aria-hidden="true" />}
           </a>
         </div>
 
@@ -1036,11 +1016,7 @@ const _SearchInternal = forwardRef<HTMLInputElement, SubdomainNavBarSearchProps>
           ) : (
             <Button
               aria-label={resolvedLabels.searchTriggerLabel}
-              className={
-                isGridlineVariant
-                  ? styles['SubdomainNavBar-search-button--gridline']
-                  : styles['SubdomainNavBar-search-button']
-              }
+              className={styles['SubdomainNavBar-search-button']}
               variant="secondary"
               size="small"
               leadingVisual={<SearchIcon />}
@@ -1053,10 +1029,7 @@ const _SearchInternal = forwardRef<HTMLInputElement, SubdomainNavBarSearchProps>
         <dialog
           ref={dialogRef}
           aria-label={dialogLabel}
-          className={clsx(
-            styles['SubdomainNavBar-search-dialog'],
-            isGridlineVariant && styles['SubdomainNavBar-search-dialog--gridline'],
-          )}
+          className={styles['SubdomainNavBar-search-dialog']}
           onCancel={handleDialogCancel}
           onClick={handleDialogClick}
         >

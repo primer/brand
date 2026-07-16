@@ -102,7 +102,6 @@ describe('SubdomainNavBar', () => {
     searchResults,
     titleHref,
     title = 'Subdomain',
-    variant,
     leadingComponent,
     trailingComponent,
   }: {
@@ -110,7 +109,6 @@ describe('SubdomainNavBar', () => {
     searchResults?: SubdomainNavBarSearchResults
     titleHref?: string
     title?: string
-    variant?: SubdomainNavBarProps['variant']
     leadingComponent?: SubdomainNavBarProps['leadingComponent']
     trailingComponent?: SubdomainNavBarProps['trailingComponent']
   }) => (
@@ -118,7 +116,6 @@ describe('SubdomainNavBar', () => {
       title={title}
       titleHref={titleHref}
       fullWidth={fullWidth}
-      variant={variant}
       leadingComponent={leadingComponent}
       trailingComponent={trailingComponent}
     >
@@ -323,7 +320,7 @@ describe('SubdomainNavBar', () => {
     }
 
     const {getByRole, rerender} = render(
-      <SubdomainNavBar title="Documentación" variant="gridline">
+      <SubdomainNavBar title="Documentación">
         <SubdomainNavBar.Search
           variant="input"
           placeholder="Buscar documentación"
@@ -342,7 +339,7 @@ describe('SubdomainNavBar', () => {
     expect(getByRole('button', {name: 'Cerrar'})).toHaveTextContent('Cerrar')
 
     rerender(
-      <SubdomainNavBar title="Documentación" variant="gridline">
+      <SubdomainNavBar title="Documentación">
         <SubdomainNavBar.Search labels={labels} searchTerm="" onChange={jest.fn} onSubmit={jest.fn()} />
       </SubdomainNavBar>,
     )
@@ -452,13 +449,11 @@ describe('SubdomainNavBar', () => {
     expect(linkEl).toHaveAttribute('href', '/')
   })
 
-  it('removes the default separator and menu title when title is empty', async () => {
+  it('removes the menu title when title is empty', async () => {
     const {container} = render(<Component title="" />)
 
-    const separator = container.querySelector('.SubdomainNavBar-title-separator')
     const menuTitle = container.querySelector('.SubdomainNavBar-title')
 
-    expect(separator).not.toBeInTheDocument()
     expect(menuTitle).not.toBeInTheDocument()
   })
 
@@ -767,7 +762,7 @@ describe('SubdomainNavBar', () => {
     mockUseWindowSize.mockImplementation(() => ({isSmall: true, isMedium: true}))
 
     const {container} = render(
-      <SubdomainNavBar title="Subdomain" variant="gridline">
+      <SubdomainNavBar title="Subdomain">
         <SubdomainNavBar.Link href="#">Docs</SubdomainNavBar.Link>
       </SubdomainNavBar>,
     )
@@ -780,7 +775,7 @@ describe('SubdomainNavBar', () => {
     mockUseWindowSize.mockImplementation(() => ({isSmall: true, isMedium: true}))
 
     const {getByTestId} = render(
-      <SubdomainNavBar title="Subdomain" variant="gridline">
+      <SubdomainNavBar title="Subdomain">
         <SubdomainNavBar.Search searchTerm="docs" onChange={jest.fn} onSubmit={jest.fn()} />
       </SubdomainNavBar>,
     )
@@ -793,7 +788,7 @@ describe('SubdomainNavBar', () => {
     mockUseWindowSize.mockImplementation(() => ({isSmall: true, isMedium: true}))
 
     const {getByTestId} = render(
-      <SubdomainNavBar title="Subdomain" variant="gridline">
+      <SubdomainNavBar title="Subdomain">
         <SubdomainNavBar.Search searchTerm="docs" onChange={jest.fn} onSubmit={jest.fn()} />
         <SubdomainNavBar.PrimaryAction href="#">Primary CTA</SubdomainNavBar.PrimaryAction>
       </SubdomainNavBar>,
@@ -807,7 +802,7 @@ describe('SubdomainNavBar', () => {
     mockUseWindowSize.mockImplementation(() => ({isSmall: true, isMedium: true}))
 
     const {getByTestId} = render(
-      <SubdomainNavBar title="Subdomain" variant="gridline" trailingComponent={<span>Trailing content</span>}>
+      <SubdomainNavBar title="Subdomain" trailingComponent={<span>Trailing content</span>}>
         <SubdomainNavBar.Search searchTerm="docs" onChange={jest.fn} onSubmit={jest.fn()} />
       </SubdomainNavBar>,
     )
@@ -816,11 +811,11 @@ describe('SubdomainNavBar', () => {
     expect(searchTrigger).toHaveClass('SubdomainNavBar-search-trigger--has-trailing-item')
   })
 
-  it('renders the gridline search trigger as an icon-only secondary Button', () => {
+  it('renders the search trigger as an icon-only secondary Button', () => {
     mockUseWindowSize.mockImplementation(() => ({isSmall: true, isMedium: true}))
 
     const {getByTestId} = render(
-      <SubdomainNavBar title="Subdomain" variant="gridline">
+      <SubdomainNavBar title="Subdomain">
         <SubdomainNavBar.Search searchTerm="docs" onChange={jest.fn} onSubmit={jest.fn()} />
       </SubdomainNavBar>,
     )
@@ -830,15 +825,14 @@ describe('SubdomainNavBar', () => {
     expect(searchTrigger).not.toHaveTextContent('Search')
     expect(searchTrigger).toHaveClass('Button--secondary')
     expect(searchTrigger).toHaveClass('Button--size-small')
-    expect(searchTrigger).toHaveClass('SubdomainNavBar-search-button--gridline')
-    expect(searchTrigger).not.toHaveClass('SubdomainNavBar-search-button')
+    expect(searchTrigger).toHaveClass('SubdomainNavBar-search-button')
   })
 
-  it('renders gridline action buttons with the 32px Button size', () => {
+  it('renders action buttons with the 32px Button size', () => {
     mockUseWindowSize.mockImplementation(() => ({isSmall: true, isMedium: true}))
 
     const {getByRole} = render(
-      <SubdomainNavBar title="Subdomain" variant="gridline">
+      <SubdomainNavBar title="Subdomain">
         <SubdomainNavBar.PrimaryAction href="#">Primary CTA</SubdomainNavBar.PrimaryAction>
         <SubdomainNavBar.SecondaryAction href="#">Secondary CTA</SubdomainNavBar.SecondaryAction>
       </SubdomainNavBar>,
@@ -852,7 +846,7 @@ describe('SubdomainNavBar', () => {
     mockUseWindowSize.mockImplementation(() => ({isSmall: true, isMedium: true, isLarge: true}))
 
     const {getByTestId, getByText} = render(
-      <SubdomainNavBar title="Subdomain" variant="gridline">
+      <SubdomainNavBar title="Subdomain">
         <SubdomainNavBar.Search
           variant="input"
           placeholder="Search ..."
@@ -867,7 +861,7 @@ describe('SubdomainNavBar', () => {
     const searchTrigger = getByTestId('toggle-search')
     expect(searchTrigger).toHaveAccessibleName('Search ... search')
     expect(searchTrigger).toHaveClass('SubdomainNavBar-search-input-button')
-    expect(searchTrigger).not.toHaveClass('SubdomainNavBar-search-button--gridline')
+    expect(searchTrigger).not.toHaveClass('SubdomainNavBar-search-button')
     expect(searchTrigger).not.toHaveClass('Button--secondary')
     expect(getByText('Search ...')).toBeInTheDocument()
     expect(getByText('/')).toBeInTheDocument()
@@ -880,7 +874,7 @@ describe('SubdomainNavBar', () => {
     mockUseWindowSize.mockImplementation(() => windowSize)
 
     const {getByTestId, queryByText} = render(
-      <SubdomainNavBar title="Subdomain" variant="gridline">
+      <SubdomainNavBar title="Subdomain">
         <SubdomainNavBar.Search
           variant="input"
           placeholder="Search ..."
@@ -895,7 +889,7 @@ describe('SubdomainNavBar', () => {
     const searchTrigger = getByTestId('toggle-search')
     expect(searchTrigger).toHaveAccessibleName('Toggle search bar')
     expect(searchTrigger).toHaveClass('Button--secondary')
-    expect(searchTrigger).toHaveClass('SubdomainNavBar-search-button--gridline')
+    expect(searchTrigger).toHaveClass('SubdomainNavBar-search-button')
     expect(searchTrigger).not.toHaveClass('SubdomainNavBar-search-input-button')
     expect(queryByText('Search ...')).not.toBeInTheDocument()
     expect(queryByText('/')).not.toBeInTheDocument()
@@ -905,7 +899,7 @@ describe('SubdomainNavBar', () => {
     mockUseWindowSize.mockImplementation(() => ({isSmall: true, isMedium: true, isLarge: true}))
 
     const {getByTestId, getByPlaceholderText, getByRole} = render(
-      <SubdomainNavBar title="Subdomain" variant="gridline">
+      <SubdomainNavBar title="Subdomain">
         <SubdomainNavBar.Search
           variant="input"
           placeholder="Search docs"
@@ -922,11 +916,11 @@ describe('SubdomainNavBar', () => {
     expect(getByPlaceholderText('Search docs')).toBeInTheDocument()
   })
 
-  it('renders the gridline search dialog as a native dialog with a text close button', () => {
+  it('renders the search dialog as a native dialog with a text close button', () => {
     mockUseWindowSize.mockImplementation(() => ({isSmall: true, isMedium: true}))
 
     const {container, getByRole, getByTestId} = render(
-      <SubdomainNavBar title="Subdomain" variant="gridline">
+      <SubdomainNavBar title="Subdomain">
         <SubdomainNavBar.Search searchTerm="docs" onChange={jest.fn} onSubmit={jest.fn()} />
       </SubdomainNavBar>,
     )
@@ -937,15 +931,15 @@ describe('SubdomainNavBar', () => {
     expect(container.querySelector('.SubdomainNavBar-search-backdrop')).not.toBeInTheDocument()
     expect(dialog.tagName).toBe('DIALOG')
     expect(dialog).toHaveAttribute('open')
-    expect(dialog).toHaveClass('SubdomainNavBar-search-dialog--gridline')
+    expect(dialog).toHaveClass('SubdomainNavBar-search-dialog')
     expect(getByRole('button', {name: 'Close'})).toHaveTextContent('Close')
   })
 
-  it('keeps the gridline search dialog open when focus moves outside during initialization', () => {
+  it('keeps the search dialog open when focus moves outside during initialization', () => {
     mockUseWindowSize.mockImplementation(() => ({isSmall: true, isMedium: true}))
 
     const {getByRole, getByTestId} = render(
-      <SubdomainNavBar title="Subdomain" variant="gridline">
+      <SubdomainNavBar title="Subdomain">
         <SubdomainNavBar.Search searchTerm="docs" onChange={jest.fn} onSubmit={jest.fn()} />
       </SubdomainNavBar>,
     )
@@ -956,7 +950,7 @@ describe('SubdomainNavBar', () => {
     expect(getByRole('dialog')).toBeInTheDocument()
   })
 
-  it('closes the gridline search dialog on native cancel when results are visible', () => {
+  it('closes the search dialog on native cancel when results are visible', () => {
     mockUseWindowSize.mockImplementation(() => ({isSmall: true, isMedium: true}))
     const mockResultsData: SubdomainNavBarSearchResults = [
       {
@@ -973,7 +967,7 @@ describe('SubdomainNavBar', () => {
     ]
 
     const {getByRole, getByTestId, queryByRole} = render(
-      <SubdomainNavBar title="Subdomain" variant="gridline">
+      <SubdomainNavBar title="Subdomain">
         <SubdomainNavBar.Search
           searchTerm="docs"
           searchResults={mockResultsData}
@@ -990,11 +984,11 @@ describe('SubdomainNavBar', () => {
     expect(queryByRole('dialog')).not.toBeInTheDocument()
   })
 
-  it('closes the gridline search dialog on native cancel when no results are visible', () => {
+  it('closes the search dialog on native cancel when no results are visible', () => {
     mockUseWindowSize.mockImplementation(() => ({isSmall: true, isMedium: true}))
 
     const {getByRole, getByTestId, queryByRole} = render(
-      <SubdomainNavBar title="Subdomain" variant="gridline">
+      <SubdomainNavBar title="Subdomain">
         <SubdomainNavBar.Search searchTerm="" searchResults={[]} onChange={jest.fn} onSubmit={jest.fn()} />
       </SubdomainNavBar>,
     )
@@ -1009,7 +1003,7 @@ describe('SubdomainNavBar', () => {
 
   it('disables native browser autocomplete on the search combobox', () => {
     const {getByRole, getByTestId} = render(
-      <SubdomainNavBar title="Subdomain" variant="gridline">
+      <SubdomainNavBar title="Subdomain">
         <SubdomainNavBar.Search searchTerm="docs" searchResults={[]} onChange={jest.fn} onSubmit={jest.fn()} />
       </SubdomainNavBar>,
     )
@@ -1025,7 +1019,7 @@ describe('SubdomainNavBar', () => {
     mockUseWindowSize.mockImplementation(() => ({isSmall: true, isMedium: true}))
 
     const {container} = render(
-      <SubdomainNavBar title="Subdomain" variant="gridline" trailingComponent={<span>Trailing content</span>}>
+      <SubdomainNavBar title="Subdomain" trailingComponent={<span>Trailing content</span>}>
         <SubdomainNavBar.PrimaryAction href="#">Primary CTA</SubdomainNavBar.PrimaryAction>
       </SubdomainNavBar>,
     )
@@ -1056,11 +1050,7 @@ describe('SubdomainNavBar', () => {
     mockUseWindowSize.mockImplementation(() => ({isSmall: false, isMedium: false}))
 
     const {container, getByRole, getByTestId, getByText} = render(
-      <Component
-        variant="gridline"
-        leadingComponent={<span>Leading content</span>}
-        trailingComponent={<span>Trailing content</span>}
-      />,
+      <Component leadingComponent={<span>Leading content</span>} trailingComponent={<span>Trailing content</span>} />,
     )
     const header = getByTestId(SubdomainNavBar.testIds.root)
     jest.spyOn(header, 'getBoundingClientRect').mockReturnValue({
@@ -1108,26 +1098,18 @@ describe('SubdomainNavBar', () => {
     expect(headerEl.classList).toContain(mockClass)
   })
 
-  it('renders with default variant by default', () => {
+  it('renders without a variant modifier class', () => {
     const {getByTestId} = render(<Component />)
 
     const headerEl = getByTestId(SubdomainNavBar.testIds.root)
-    expect(headerEl).toHaveClass('SubdomainNavBar--variant-default')
-    expect(headerEl).not.toHaveClass('SubdomainNavBar--variant-gridline')
+    expect(headerEl).toHaveClass('SubdomainNavBar')
+    expect(Array.from(headerEl.classList).some(className => className.includes('variant'))).toBe(false)
   })
 
-  it('renders with gridline variant', () => {
-    const {getByTestId} = render(<Component variant="gridline" />)
-
-    const headerEl = getByTestId(SubdomainNavBar.testIds.root)
-    expect(headerEl).toHaveClass('SubdomainNavBar--variant-gridline')
-    expect(headerEl).not.toHaveClass('SubdomainNavBar--variant-default')
-  })
-
-  it('does not render the title separator with gridline variant', () => {
+  it('does not render a title separator', () => {
     mockUseWindowSize.mockImplementation(() => ({isSmall: true, isMedium: true}))
 
-    const {container} = render(<Component variant="gridline" />)
+    const {container} = render(<Component />)
 
     const separator = container.querySelector('.SubdomainNavBar-title-separator')
     expect(separator).not.toBeInTheDocument()

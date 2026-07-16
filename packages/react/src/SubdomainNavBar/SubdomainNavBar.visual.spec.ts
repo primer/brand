@@ -72,9 +72,9 @@ test.describe('Visual Comparison: SubdomainNavBar', () => {
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
-  test('SubdomainNavBar / Overflow Menu Open (Gridline)', async ({page}) => {
+  test('SubdomainNavBar / Overflow Menu Open', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-subdomainnavbar--overflow-menu-open-gridline&viewMode=story',
+      'http://localhost:6006/iframe.html?args=&id=components-subdomainnavbar--overflow-menu-open&viewMode=story',
       {waitUntil: 'networkidle'},
     )
     await page.locator('body.sb-show-main').waitFor({state: 'visible'})
@@ -236,19 +236,9 @@ test.describe('Visual Comparison: SubdomainNavBar', () => {
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
-  test('SubdomainNavBar / Gridline', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-subdomainnavbar--gridline&viewMode=story', {
-      waitUntil: 'networkidle',
-    })
-    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('SubdomainNavBar / Gridline With Leading', async ({page}) => {
+  test('SubdomainNavBar / Input Search', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-subdomainnavbar--gridline-with-leading&viewMode=story',
+      'http://localhost:6006/iframe.html?args=&id=components-subdomainnavbar--input-search&viewMode=story',
       {waitUntil: 'networkidle'},
     )
     await page.locator('body.sb-show-main').waitFor({state: 'visible'})
@@ -257,9 +247,9 @@ test.describe('Visual Comparison: SubdomainNavBar', () => {
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
-  test('SubdomainNavBar / Gridline With Trailing', async ({page}) => {
+  test('SubdomainNavBar / Grouped Search Results Visible', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-subdomainnavbar--gridline-with-trailing&viewMode=story',
+      'http://localhost:6006/iframe.html?args=&id=components-subdomainnavbar--grouped-search-results-visible&viewMode=story',
       {waitUntil: 'networkidle'},
     )
     await page.locator('body.sb-show-main').waitFor({state: 'visible'})
@@ -268,53 +258,6 @@ test.describe('Visual Comparison: SubdomainNavBar', () => {
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
-  test('SubdomainNavBar / Gridline With Search', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-subdomainnavbar--gridline-with-search&viewMode=story',
-      {waitUntil: 'networkidle'},
-    )
-    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('SubdomainNavBar / Gridline With Input Search', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-subdomainnavbar--gridline-with-input-search&viewMode=story',
-      {waitUntil: 'networkidle'},
-    )
-    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('SubdomainNavBar / Gridline Grouped Search Results Visible', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-subdomainnavbar--gridline-grouped-search-results-visible&viewMode=story',
-      {waitUntil: 'networkidle'},
-    )
-    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  // eslint-disable-next-line i18n-text/no-en
-  test.describe('Mobile viewport test for Mobile Gridline Menu Open', () => {
-    test.use({viewport: {width: 360, height: 800}})
-    test('SubdomainNavBar / Mobile Gridline Menu Open', async ({page}) => {
-      await page.goto(
-        'http://localhost:6006/iframe.html?args=&id=components-subdomainnavbar--mobile-gridline-menu-open&viewMode=story',
-        {waitUntil: 'networkidle'},
-      )
-      await page.locator('body.sb-show-main').waitFor({state: 'visible'})
-
-      await page.waitForTimeout(5500)
-      await expect(page).toHaveScreenshot({fullPage: true})
-    })
-  })
   test('SubdomainNavBar / No Title', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-subdomainnavbar--no-title&viewMode=story', {
       waitUntil: 'networkidle',

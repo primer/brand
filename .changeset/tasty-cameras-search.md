@@ -3,9 +3,8 @@
 '@primer/brand-primitives': patch
 ---
 
-Updated `SubdomainNavBar` with a new visual variant, content slots, search APIs, and responsive navigation behavior.
+Updated `SubdomainNavBar` with a gridline visual design, content slots, search APIs, and responsive navigation behavior.
 
-- Added a `gridline` variant with horizontal and vertical separators.
 - Added `leadingComponent` and `trailingComponent` props for rendering custom content around the navigation links and actions.
 - Added a typed `id` prop for setting an HTML ID on the root element.
 - Added a `style` prop for forwarding custom styles to the root element.
@@ -13,7 +12,6 @@ Updated `SubdomainNavBar` with a new visual variant, content slots, search APIs,
 ```tsx
 <SubdomainNavBar
   title="Subdomain"
-  variant="gridline"
   fullWidth
   leadingComponent={<span>Leading content</span>}
   trailingComponent={<span>Trailing content</span>}

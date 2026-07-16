@@ -45,10 +45,6 @@ const meta = {
     titleHref: {
       control: 'text',
     },
-    variant: {
-      control: 'inline-radio',
-      options: ['default', 'gridline'],
-    },
   },
   parameters: {
     viewport: {
@@ -436,7 +432,7 @@ const mockGroupedSearchData: SubdomainNavBarSearchResults = [
       },
       {
         title: 'Long article name lorem ipsum dolor sit amet using the GitHub CLI across GitHub platforms',
-        description: 'A longer docs result title that truncates in the gridline search modal.',
+        description: 'A longer docs result title that truncates in the search modal.',
         url: '#long-article-name',
         date: '2026-07-01T00:00+02:00',
         isExternal: true,
@@ -755,7 +751,7 @@ const KeyboardShortcutRemapExample = () => {
 
   return (
     <>
-      <SubdomainNavBar title="GitHub Docs" titleHref="/" variant="gridline" fullWidth fixed={false}>
+      <SubdomainNavBar title="GitHub Docs" titleHref="/" fullWidth fixed={false}>
         <SubdomainNavBar.Link href="#guides">Guides</SubdomainNavBar.Link>
         <SubdomainNavBar.Link href="#api">API</SubdomainNavBar.Link>
         <SubdomainNavBar.Link href="#changelog">Changelog</SubdomainNavBar.Link>
@@ -779,7 +775,7 @@ const KeyboardShortcutRemapExample = () => {
   )
 }
 
-type GridlineExampleProps = {
+type SearchExampleProps = {
   leadingComponent?: SubdomainNavBarProps['leadingComponent']
   trailingComponent?: SubdomainNavBarProps['trailingComponent']
   showSearch?: boolean
@@ -788,21 +784,20 @@ type GridlineExampleProps = {
   searchShortcutLabel?: string
 }
 
-const GridlineExample = ({
+const SearchExample = ({
   leadingComponent,
   trailingComponent,
   showSearch = false,
   searchVariant,
   searchPlaceholder,
   searchShortcutLabel,
-}: GridlineExampleProps) => {
+}: SearchExampleProps) => {
   const inputRef = React.useRef<HTMLInputElement | null>(null)
 
   return (
     <SubdomainNavBar
       title="GitHub Docs"
       titleHref="/"
-      variant="gridline"
       fullWidth
       fixed={false}
       leadingComponent={leadingComponent}
@@ -886,22 +881,7 @@ export const KeyboardShortcutRemap: Story = {
 export const OverflowMenuOpen: Story = {
   render: (args: StoryArgs) => <SubdomainNavBarTemplate {...args} />,
   args: {
-    numLinks: 8,
-  },
-  play: async ({canvasElement}) => {
-    const canvas = within(canvasElement)
-    await waitFor(async () => {
-      const overflowMenu = await canvas.getByText('More')
-      await userEvent.click(overflowMenu)
-    })
-  },
-}
-
-export const OverflowMenuOpenGridline: Story = {
-  render: (args: StoryArgs) => <SubdomainNavBarTemplate {...args} />,
-  args: {
     numLinks: 13,
-    variant: 'gridline',
   },
   play: async ({canvasElement}) => {
     const canvas = within(canvasElement)
@@ -910,7 +890,7 @@ export const OverflowMenuOpenGridline: Story = {
     await userEvent.click(canvas.getByRole('button', {name: 'More'}))
     await expect(canvas.getByRole('link', {name: 'Books'})).toBeVisible()
   },
-  name: 'Overflow Menu Open (Gridline)',
+  name: 'Overflow Menu Open',
 }
 
 export const MobileView: Story = {
@@ -1007,35 +987,16 @@ export const WithTrailingComponent: Story = {
   name: 'With Trailing Component',
 }
 
-export const Gridline: Story = {
-  render: () => <GridlineExample />,
-}
-
-export const GridlineWithLeading: Story = {
-  render: () => <GridlineExample leadingComponent={<VersionTokenExample />} />,
-  name: 'Gridline With Leading',
-}
-
-export const GridlineWithTrailing: Story = {
-  render: () => <GridlineExample trailingComponent={<LanguageDropdownExample />} />,
-  name: 'Gridline With Trailing',
-}
-
-export const GridlineWithSearch: Story = {
-  render: () => <GridlineExample showSearch />,
-  name: 'Gridline With Search',
-}
-
-export const GridlineWithInputSearch: Story = {
+export const InputSearch: Story = {
   render: () => (
-    <GridlineExample showSearch searchVariant="input" searchPlaceholder="Search ..." searchShortcutLabel="/" />
+    <SearchExample showSearch searchVariant="input" searchPlaceholder="Search ..." searchShortcutLabel="/" />
   ),
-  name: 'Gridline With Input Search',
+  name: 'Input Search',
 }
 
-export const GridlineGroupedSearchResultsVisible: Story = {
+export const GroupedSearchResultsVisible: Story = {
   render: () => (
-    <GridlineExample showSearch searchVariant="input" searchPlaceholder="Search ..." searchShortcutLabel="/" />
+    <SearchExample showSearch searchVariant="input" searchPlaceholder="Search ..." searchShortcutLabel="/" />
   ),
   play: async ({canvasElement}) => {
     const canvas = within(canvasElement)
@@ -1043,19 +1004,7 @@ export const GridlineGroupedSearchResultsVisible: Story = {
     await expect(canvas.getByRole('dialog')).toBeVisible()
     await expect(canvas.getAllByRole('option')).toHaveLength(7)
   },
-  name: 'Gridline Grouped Search Results Visible',
-}
-
-export const MobileGridlineMenuOpen: Story = {
-  render: () => <GridlineExample showSearch />,
-  globals: {
-    viewport: {value: 'iphonex'},
-  },
-  play: async ({canvasElement}) => {
-    const canvas = within(canvasElement)
-    await userEvent.click(canvas.getByRole('button', {name: 'Menu'}))
-  },
-  name: 'Mobile Gridline Menu Open',
+  name: 'Grouped Search Results Visible',
 }
 
 export const NoTitle: Story = {
