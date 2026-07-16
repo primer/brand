@@ -4,6 +4,7 @@ import {AiModelIcon, ZapIcon} from '@primer/octicons-react'
 import {useTranslation} from 'react-i18next'
 
 import {Image, Link, RiverBreakoutTabs, Section, Text} from '../..'
+import placeholderBg from '../../fixtures/images/dither-bg-landscape-green.png'
 import placeholder1 from '../../fixtures/images/placeholder-1.png'
 import placeholder2 from '../../fixtures/images/placeholder-2.png'
 
@@ -86,6 +87,59 @@ export const WithBackgroundVisual: Story = {
               <Link href="#">{t('open_review_flow_cta')}</Link>
             </RiverBreakoutTabs.Content>
             <RiverBreakoutTabs.Visual imageBackgroundColor="subtle">
+              <Image src={placeholder2} alt={t('alt_placeholder_2')} />
+            </RiverBreakoutTabs.Visual>
+          </RiverBreakoutTabs.Item>
+        </RiverBreakoutTabs>
+      </Section>
+    )
+  },
+}
+
+export const FullBleedBackgroundVisual: Story = {
+  name: 'Full bleed background visual',
+  render: function FullBleedBackgroundVisualRender() {
+    const {t} = useTranslation('RiverBreakoutTabs')
+
+    return (
+      <Section>
+        <RiverBreakoutTabs
+          backgroundVisual={
+            <div
+              style={{
+                position: 'absolute',
+                inset: 0,
+                backgroundImage: `url(${placeholderBg})`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+              }}
+            />
+          }
+          imagePosition="block-end"
+          backgroundVisualFullBleed
+        >
+          <RiverBreakoutTabs.A11yHeading>{t('two_card_layout_a11y')}</RiverBreakoutTabs.A11yHeading>
+
+          <RiverBreakoutTabs.Item>
+            <RiverBreakoutTabs.Icon icon={AiModelIcon} />
+            <RiverBreakoutTabs.Heading>{t('code_quickly_heading')}</RiverBreakoutTabs.Heading>
+            <RiverBreakoutTabs.Content>
+              <Text>{t('code_quickly_body')}</Text>
+              <Link href="#">{t('start_coding_cta')}</Link>
+            </RiverBreakoutTabs.Content>
+            <RiverBreakoutTabs.Visual>
+              <Image src={placeholder1} alt={t('alt_placeholder_1')} />
+            </RiverBreakoutTabs.Visual>
+          </RiverBreakoutTabs.Item>
+
+          <RiverBreakoutTabs.Item>
+            <RiverBreakoutTabs.Icon icon={ZapIcon} />
+            <RiverBreakoutTabs.Heading>{t('review_with_context_heading')}</RiverBreakoutTabs.Heading>
+            <RiverBreakoutTabs.Content>
+              <Text>{t('review_with_context_body')}</Text>
+              <Link href="#">{t('open_review_flow_cta')}</Link>
+            </RiverBreakoutTabs.Content>
+            <RiverBreakoutTabs.Visual>
               <Image src={placeholder2} alt={t('alt_placeholder_2')} />
             </RiverBreakoutTabs.Visual>
           </RiverBreakoutTabs.Item>

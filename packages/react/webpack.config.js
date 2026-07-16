@@ -49,6 +49,10 @@ module.exports = {
             loader: 'ts-loader',
             options: {
               configFile: path.resolve(__dirname, 'tsconfig.build.json'),
+              // We use tsc to emit declaration files. See tsconfig.
+              compilerOptions: {
+                declaration: false,
+              },
             },
           },
         ],

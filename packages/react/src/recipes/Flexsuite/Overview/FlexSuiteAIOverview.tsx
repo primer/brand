@@ -28,6 +28,7 @@ import {
   Tiles,
   Image,
   useTheme,
+  Footnotes,
 } from '../../..'
 import {RedlineBackground} from '../../../component-helpers'
 import placeholderBg from '../../../fixtures/images/dither-bg-landscape-purple.png'
@@ -502,9 +503,11 @@ export function FlexSuiteAIOverviewTemplate({content}: FlexSuiteAIOverviewTempla
         <Box paddingBlockEnd={64}>
           <FAQGroup variant="gridline" defaultSelectedIndex={1}>
             <FAQGroup.Heading>
-              {content.faq.headingLine1}
-              <br />
-              {content.faq.headingLine2}
+              <Box paddingInlineStart="spacious">
+                {content.faq.headingLine1}
+                <br />
+                {content.faq.headingLine2}
+              </Box>
             </FAQGroup.Heading>
             {content.faq.groups.map(group => (
               <FAQ key={group.heading} variant="gridline">
@@ -523,6 +526,27 @@ export function FlexSuiteAIOverviewTemplate({content}: FlexSuiteAIOverviewTempla
             ))}
           </FAQGroup>
         </Box>
+        <footer>
+          <Section as="div" paddingBlockStart="none" paddingBlockEnd="none">
+            <Grid>
+              <Grid.Column>
+                <Box paddingInlineStart={32}>
+                  <Footnotes>
+                    <Footnotes.Item id="economic-impact" href="#economic-impact-ref">
+                      Code review will incur Actions usage.{' '}
+                    </Footnotes.Item>
+                    <Footnotes.Item id="third-party" href="#third-party-ref">
+                      Response times may vary during periods of high usage. Requests may be subject to rate limiting.
+                    </Footnotes.Item>
+                    <Footnotes.Item id="ai" href="#ai-ref">
+                      Flex allotments will vary over time.
+                    </Footnotes.Item>
+                  </Footnotes>
+                </Box>
+              </Grid.Column>
+            </Grid>
+          </Section>
+        </footer>
 
         <RedlineBackground style={{height: 600, display: 'flex', flexDirection: 'column', gap: 'var(--base-size-32)'}}>
           <RedlineBackground
