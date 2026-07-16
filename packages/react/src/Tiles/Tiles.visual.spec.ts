@@ -49,6 +49,17 @@ test.describe('Visual Comparison: Tiles', () => {
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
+  test('Tiles / Gridlines Underfilled Rows', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-tiles-features--gridlines-underfilled-rows&viewMode=story',
+      {waitUntil: 'networkidle'},
+    )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+    await page.waitForTimeout(500)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
   test('Tiles / Compact Layout', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-tiles-features--compact-layout&viewMode=story',

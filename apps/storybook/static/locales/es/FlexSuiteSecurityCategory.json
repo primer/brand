@@ -57,17 +57,17 @@
     "heading": "Protegiendo toda la cadena de suministro de software",
     "cards": {
       "one": {
-        "tag": "SECURITY LAB",
+        "tag": "Security Lab",
         "heading": "Amplía tu estrategia con GitHub Security Lab",
         "description": "Protege el código abierto encontrando vulnerabilidades, creando herramientas como CodeQL e impulsando la investigación en seguridad."
       },
       "two": {
-        "tag": "SECURITY ADVISORY DATABASE",
+        "tag": "Security Advisory Database",
         "heading": "Mantente a la vanguardia con Security Advisory Database",
         "description": "Accede a una base de datos de vulnerabilidades con CVE y avisos de seguridad curados por GitHub procedentes del mundo open source."
       },
       "three": {
-        "tag": "SUPPLY CHAIN SECURITY",
+        "tag": "Supply chain security",
         "heading": "Protege las cadenas de suministro de software de extremo a extremo",
         "description": "Reduce riesgos con actualizaciones automatizadas, seguimiento de dependencias y atestación de compilación para un ciclo de vida seguro."
       }

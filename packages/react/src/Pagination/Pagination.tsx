@@ -26,8 +26,22 @@ export type PaginationProps = {
   showPages?: boolean
   /* The number of pages to show on each side of the current page */
   surroundingPageCount?: number
+  /* Custom text labels for the pagination controls. Use for localization. */
+  labels?: {
+    prev?: string
+    next?: string
+    prevAriaLabel?: string
+    nextAriaLabel?: string
+  }
   'data-testid'?: string
 } & Omit<React.HTMLAttributes<HTMLDivElement>, 'children'>
+
+const defaultPaginationLabels = {
+  prev: 'Previous',
+  next: 'Next',
+  prevAriaLabel: 'Previous Page',
+  nextAriaLabel: 'Next Page',
+}
 
 /**
  * Use Pagination to display a sequence of links that allow navigation to discrete, related pages.
@@ -45,6 +59,7 @@ export const Pagination = memo(
     marginPageCount = 1,
     showPages = true,
     surroundingPageCount = 2,
+    labels,
     'aria-label': ariaLabel,
     'data-testid': testId,
     ...rest
@@ -55,6 +70,11 @@ export const Pagination = memo(
       marginPageCount = 1
       surroundingPageCount = 0
     }
+
+    const prevLabel = labels?.prev ?? defaultPaginationLabels.prev
+    const nextLabel = labels?.next ?? defaultPaginationLabels.next
+    const prevAriaLabel = labels?.prevAriaLabel ?? defaultPaginationLabels.prevAriaLabel
+    const nextAriaLabel = labels?.nextAriaLabel ?? defaultPaginationLabels.nextAriaLabel
 
     const navRef = React.useRef<HTMLElement>(null)
 
@@ -77,6 +97,10 @@ export const Pagination = memo(
             page={page}
             hrefBuilder={hrefBuilder}
             pageAttributesBuilder={pageAttributesBuilder}
+            prevLabel={prevLabel}
+            nextLabel={nextLabel}
+            prevAriaLabel={prevAriaLabel}
+            nextAriaLabel={nextAriaLabel}
             onClick={pageChange(page.num)}
           />
         )
@@ -89,6 +113,10 @@ export const Pagination = memo(
       surroundingPageCount,
       hrefBuilder,
       pageAttributesBuilder,
+      prevLabel,
+      nextLabel,
+      prevAriaLabel,
+      nextAriaLabel,
       pageChange,
     ])
 
@@ -111,10 +139,23 @@ type PaginationItemProps = {
   page: PaginationPageType
   hrefBuilder: (n: number) => string
   pageAttributesBuilder?: (n: number, page: PaginationPageType) => {[key: string]: string}
+  prevLabel: string
+  nextLabel: string
+  prevAriaLabel: string
+  nextAriaLabel: string
   onClick?: React.MouseEventHandler<HTMLAnchorElement>
 }
 
-const PaginationItem = ({page, hrefBuilder, pageAttributesBuilder, onClick}: PaginationItemProps) => {
+const PaginationItem = ({
+  page,
+  hrefBuilder,
+  pageAttributesBuilder,
+  prevLabel,
+  nextLabel,
+  prevAriaLabel,
+  nextAriaLabel,
+  onClick,
+}: PaginationItemProps) => {
   const [isArrowExpanded, setIsArrowExpanded] = React.useState(false)
 
   const baseProps = {
@@ -136,7 +177,7 @@ const PaginationItem = ({page, hrefBuilder, pageAttributesBuilder, onClick}: Pag
           rel="prev"
           href={page.disabled ? undefined : hrefBuilder(page.num)}
           aria-disabled={page.disabled || undefined}
-          aria-label="Previous Page"
+          aria-label={prevAriaLabel}
           {...customAttributes}
           className={clsx(styles.Pagination__controlItem, customClassName)}
           onMouseEnter={() => setIsArrowExpanded(true)}
@@ -158,7 +199,7 @@ const PaginationItem = ({page, hrefBuilder, pageAttributesBuilder, onClick}: Pag
                 className={styles.Pagination__controlArrow}
               />
             </span>
-            <span className={styles.Pagination__controlText}>Previous</span>
+            <span className={styles.Pagination__controlText}>{prevLabel}</span>
           </span>
         </Button>
       )
@@ -171,7 +212,7 @@ const PaginationItem = ({page, hrefBuilder, pageAttributesBuilder, onClick}: Pag
           rel="next"
           href={page.disabled ? undefined : hrefBuilder(page.num)}
           aria-disabled={page.disabled || undefined}
-          aria-label="Next Page"
+          aria-label={nextAriaLabel}
           {...customAttributes}
           className={clsx(styles.Pagination__controlItem, customClassName)}
           onMouseEnter={() => setIsArrowExpanded(true)}
@@ -180,7 +221,7 @@ const PaginationItem = ({page, hrefBuilder, pageAttributesBuilder, onClick}: Pag
           onBlur={() => setIsArrowExpanded(false)}
         >
           <span className={styles.Pagination__controlContent}>
-            <span className={styles.Pagination__controlText}>Next</span>
+            <span className={styles.Pagination__controlText}>{nextLabel}</span>
             <span
               className={clsx(styles.Pagination__controlArrowWrapper, styles['Pagination__controlArrowWrapper--next'])}
             >

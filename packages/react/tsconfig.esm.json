@@ -6,5 +6,6 @@
     "declaration": true,
     "declarationMap": true,
     "emitDeclarationOnly": true
-  }
+  },
+  "include": ["src/index.esm.ts", "src/*.d.ts"]
 }

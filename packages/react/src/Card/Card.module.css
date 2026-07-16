@@ -309,12 +309,12 @@
 }
 
 .Card__heading {
-  margin-block-end: var(--base-size-20);
+  margin-block-end: var(--base-size-12);
   grid-area: heading;
 }
 
 .Card__description {
-  margin-block-end: var(--base-size-32);
+  margin-block-end: var(--base-size-24);
   grid-area: description;
 }
 
@@ -388,7 +388,7 @@
 
   margin-block-start: var(--base-size-20);
   min-height: var(--base-size-40);
-  width: fit-content;
+  width: auto;
   min-inline-size: 0;
   max-inline-size: calc(100% - var(--Card-arrowAction-endInset));
   justify-content: flex-start;

@@ -2,6 +2,7 @@ declare const styles: {
   readonly "SectionIntroStacked": string;
   readonly "SectionIntroStacked--full-width": string;
   readonly "SectionIntroStacked--variant-gridline": string;
+  readonly "SectionIntroStacked-content": string;
   readonly "SectionIntroStacked-description": string;
   readonly "SectionIntroStacked-heading": string;
   readonly "SectionIntroStacked-heading--muted": string;

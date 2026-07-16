@@ -3,19 +3,13 @@ import {CheckIcon, TriangleDownIcon, XIcon} from '@primer/octicons-react'
 import {clsx} from 'clsx'
 import type {ListItemProps} from '../list/ListItem/ListItem'
 import type {BaseProps} from '../component-helpers'
-
-import {
-  Accordion,
-  Button,
-  ButtonBaseProps,
-  Heading as HeadingComponent,
-  HeadingProps,
-  Text,
-  Tooltip,
-  UnorderedList,
-  UnorderedListProps,
-  useWindowSize,
-} from '..'
+import {Accordion} from '../Accordion/Accordion'
+import {Button, type ButtonBaseProps} from '../Button'
+import {Heading as HeadingComponent, type HeadingProps} from '../Heading'
+import {Text} from '../Text'
+import {Tooltip} from '../Tooltip'
+import {useWindowSize} from '../hooks/useWindowSize'
+import {UnorderedList, type UnorderedListProps} from '../list'
 
 /**
  * Design tokens
@@ -528,6 +522,7 @@ const PricingOptionsFeatureList = forwardRef<HTMLDivElement, PricingOptionsFeatu
       >
         <Accordion
           className={styles['PricingOptions__feature-list-accordion']}
+          disableAnimation
           open={shouldBeOpen}
           onToggle={event => {
             setFeatureListUserInteracted(true)

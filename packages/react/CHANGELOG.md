@@ -1,5 +1,290 @@
 # @primer/react-brand
 
+## 0.71.0
+
+### Minor Changes
+
+- [#1370](https://github.com/primer/brand/pull/1370) [`93dcb13`](https://github.com/primer/brand/commit/93dcb134bcf9c6ce96d5aa81591dbcb1f5372747) Thanks [@stefankp](https://github.com/stefankp)! - Added a new JSON-based color map export at `/lib/design-tokens/json/colors.json`, listing color tokens from `@primer/brand-primitives`.
+
+### Patch Changes
+
+- [#1393](https://github.com/primer/brand/pull/1393) [`e9f572f`](https://github.com/primer/brand/commit/e9f572f6e5238089b3bc963c3e6d5bfcf06402e9) Thanks [@rezrah](https://github.com/rezrah)! - Reduced the spacing between the `Card` description and its link from `32px` to `24px`
+
+- [#1389](https://github.com/primer/brand/pull/1389) [`caae8a6`](https://github.com/primer/brand/commit/caae8a620dd5f737c38a6946015259d469cf6b5e) Thanks [@danielguillan](https://github.com/danielguillan)! - Updates compact `Tiles` density so narrow viewports shows four items per row with smaller icons, while medium (tablet) show six items per row.
+
+- [#1393](https://github.com/primer/brand/pull/1393) [`e9f572f`](https://github.com/primer/brand/commit/e9f572f6e5238089b3bc963c3e6d5bfcf06402e9) Thanks [@rezrah](https://github.com/rezrah)! - Updates to the `RiverBreakoutTabs` component:
+
+  - Reduced the spacing above the tab list action on wide breakpoints from `16px` to `12px`
+  - Reduced the gridline outer padding from `64px` to `60px` at the widest breakpoint
+  - Added a `0.3s` transition to the tab heading color
+  - Fixed a shadow-border issue on hovered tab indicators. It now fills the entire parent space using a negative offset.
+
+## 0.70.0
+
+### Minor Changes
+
+- [#1382](https://github.com/primer/brand/pull/1382) [`04e5a9d`](https://github.com/primer/brand/commit/04e5a9dbf4e5aa666978e2631c0f315738e40233) Thanks [@rezrah](https://github.com/rezrah)! - ⚠️ Changes to the files listed in the package: `lib/` (UMD) and `esm/` (ESM) bundles now ship a clean, filtered list of React modules and type declarations (everything exported from `index.ts`). Internal-only modules that were never intended for the package like `recipes/` and Storybook test `fixtures/` — are no longer included:
+
+  ```diff
+  - @primer/react-brand/esm/recipes/**
+  - @primer/react-brand/{lib,esm}/**/fixtures/**
+  - @primer/react-brand/{lib,esm}/**/*.fixtures.d.ts
+  ```
+
+- [#1378](https://github.com/primer/brand/pull/1378) [`c51633e`](https://github.com/primer/brand/commit/c51633e4c0cd18fdd4d90ca499f2a7753c101340) Thanks [@danielguillan](https://github.com/danielguillan)! - Adds the `NavList` component for vertical navigation with groups, nested expandable links, current item states, and custom link support.
+
+  [See docs for usage examples](https://primer.style/brand/components/NavList)
+
+### Patch Changes
+
+- [#1382](https://github.com/primer/brand/pull/1382) [`04e5a9d`](https://github.com/primer/brand/commit/04e5a9dbf4e5aa666978e2631c0f315738e40233) Thanks [@rezrah](https://github.com/rezrah)! - Version-pinned documentation is now bundled in `@primer/react-brand`. Each release now ships Markdown documentation at parity with primer.style/brand under `docs/`, plus an `llms.txt` index. This is to help agents reference documentation that matches their installed version instead relying on the latest version of documentation published to primer.style/brand, which may be ahead of what's locally installed.
+
+- [#1379](https://github.com/primer/brand/pull/1379) [`7497dc7`](https://github.com/primer/brand/commit/7497dc78e646a55d14a6b433189c134c21968055) Thanks [@danielguillan](https://github.com/danielguillan)! - Update `Token` text styles to use sans-serif and remove the uppercase transform.
+
+- [#1385](https://github.com/primer/brand/pull/1385) [`7d7800f`](https://github.com/primer/brand/commit/7d7800fc74e14d3eb387fa2d0669ca55dffe21b1) Thanks [@rezrah](https://github.com/rezrah)! - Reduced the gap between `Footnotes` items from `24px` to `12px`
+
+- [#1384](https://github.com/primer/brand/pull/1384) [`d117f36`](https://github.com/primer/brand/commit/d117f3617e9ee6c5d90629a7bc29e5c2c11bf0b1) Thanks [@rezrah](https://github.com/rezrah)! - Added inert JSDoc annotations to the `Heading` component's `as` and `size` props clarifying that `as` sets only the semantic heading level while `size` controls the visual size.
+
+- [#1384](https://github.com/primer/brand/pull/1384) [`d117f36`](https://github.com/primer/brand/commit/d117f3617e9ee6c5d90629a7bc29e5c2c11bf0b1) Thanks [@rezrah](https://github.com/rezrah)! - Adds a dev-only warning to prevent `center` aligned `Hero` content when `variant="gridline-expressive"`. This should always remain start aligned. We not silently prevent this from happening in the `Hero` component.
+
+  The `primer_brand_review` MCP tool also gains an extendable `invalid-prop-combination` rule that flags unsupported pairings like this.
+
+- [#1385](https://github.com/primer/brand/pull/1385) [`7d7800f`](https://github.com/primer/brand/commit/7d7800fc74e14d3eb387fa2d0669ca55dffe21b1) Thanks [@rezrah](https://github.com/rezrah)! - Adjusted the padding in the `gridline-expressive` variant of `Hero` on narrow viewports
+
+- [#1211](https://github.com/primer/brand/pull/1211) [`06c14a2`](https://github.com/primer/brand/commit/06c14a2d32ba19437173f295b61e4cd76aea6774) Thanks [@rezrah](https://github.com/rezrah)! - Added descriptive labels to `Footnote` return links for an improved screen-reader experience. Return links will now be read aloud as "Back to content {Link label}"
+
+- [#1387](https://github.com/primer/brand/pull/1387) [`af3ac05`](https://github.com/primer/brand/commit/af3ac051b2a837f78f22fa46f582ebf93c530766) Thanks [@danielguillan](https://github.com/danielguillan)! - Adjusted the spacing in the `MediaPlaylist` component on narrow viewports
+
+- [#1387](https://github.com/primer/brand/pull/1387) [`af3ac05`](https://github.com/primer/brand/commit/af3ac051b2a837f78f22fa46f582ebf93c530766) Thanks [@danielguillan](https://github.com/danielguillan)! - Increased the `border-radius` of icons in the `Pillar` component to `12px`
+
+- [#1385](https://github.com/primer/brand/pull/1385) [`7d7800f`](https://github.com/primer/brand/commit/7d7800fc74e14d3eb387fa2d0669ca55dffe21b1) Thanks [@rezrah](https://github.com/rezrah)! - Increased the `border-radius` of icons in the `SectionIntroStacked` component from `8px` to `12px`
+
+- [#1387](https://github.com/primer/brand/pull/1387) [`af3ac05`](https://github.com/primer/brand/commit/af3ac051b2a837f78f22fa46f582ebf93c530766) Thanks [@danielguillan](https://github.com/danielguillan)! - Updated the `Statistic` social proof example to use consistent text colors
+
+- [#1387](https://github.com/primer/brand/pull/1387) [`af3ac05`](https://github.com/primer/brand/commit/af3ac051b2a837f78f22fa46f582ebf93c530766) Thanks [@danielguillan](https://github.com/danielguillan)! - Adjusted the `Tiles` grid to use three columns on tablet viewports
+
+## 0.69.0
+
+### Minor Changes
+
+- [#1375](https://github.com/primer/brand/pull/1375) [`67fff83`](https://github.com/primer/brand/commit/67fff83e9cf5a847fef43fd681fbbdc14e96b6bc) Thanks [@rezrah](https://github.com/rezrah)! - Added a `backgroundVisual` prop to `RiverBreakoutTabs` for rendering a decorative background component. The background persists across tab changes.
+
+  Also added an `imagePosition` prop to inset and align the media over the `backgroundVisual`.
+
+  Also added a `backgroundVisualFullBleed` prop to render the `backgroundVisual` contained (default) or full-bleed to the gridline edges.
+
+  ```tsx
+  <RiverBreakoutTabs backgroundVisual={<MyCustomBackground />} imagePosition="block-end">
+    <RiverBreakoutTabs.A11yHeading>Workflows</RiverBreakoutTabs.A11yHeading>
+    {/* ...items... */}
+  </RiverBreakoutTabs>
+  ```
+
+### Patch Changes
+
+- [#1363](https://github.com/primer/brand/pull/1363) [`f3a70ed`](https://github.com/primer/brand/commit/f3a70ed8e2a160ccb4129e4ef21ecaf34ed113e8) Thanks [@rezrah](https://github.com/rezrah)! - Added the `--base-size-60` and `--base-size-88` base size tokens.
+
+  Also exposed `60` and `88` through React components that use the base size scale, such as `Box` and `Stack`.
+
+  ```tsx
+  <Box padding={60} />
+  <Box padding={88} />
+  <Stack gap={60} />
+  <Stack gap={88} />
+  ```
+
+- [#1364](https://github.com/primer/brand/pull/1364) [`a4e6742`](https://github.com/primer/brand/commit/a4e67425e68e0f7843fd8ef2bd97e549ad8c2a93) Thanks [@danielguillan](https://github.com/danielguillan)! - Hide lateral gridline borders for underfilled `Tiles` rows.
+
+- [#1363](https://github.com/primer/brand/pull/1363) [`f3a70ed`](https://github.com/primer/brand/commit/f3a70ed8e2a160ccb4129e4ef21ecaf34ed113e8) Thanks [@rezrah](https://github.com/rezrah)! - Disabled feature-list accordion animations in `PricingOptions` now that the intrinsic accordion includes a default animation.
+
+- [#1374](https://github.com/primer/brand/pull/1374) [`03fcd31`](https://github.com/primer/brand/commit/03fcd314a5afb8c92e757f0792aeafaf009a07fe) Thanks [@danielguillan](https://github.com/danielguillan)! - Fixes an issue where a `Card` with `ctaVariant="arrow"` and a long `ctaText` overflowed and reflowed its content in Safari.
+
+- [#1376](https://github.com/primer/brand/pull/1376) [`99af142`](https://github.com/primer/brand/commit/99af142ad59cd719801058f11ab61c2eeeefcbaa) Thanks [@danielguillan](https://github.com/danielguillan)! - Add a `small` size variant to `Link`.
+
+- [#1363](https://github.com/primer/brand/pull/1363) [`f3a70ed`](https://github.com/primer/brand/commit/f3a70ed8e2a160ccb4129e4ef21ecaf34ed113e8) Thanks [@rezrah](https://github.com/rezrah)! - - Updated the `Accordion` toggle indicator to use the `TriangleDownIcon` octicon, which rotates anti-clockwise between its open and closed states.
+
+  - Improved `Accordion` content open and close animation so items transition using measured content height.
+
+  - Added a `disableAnimation` prop to `Accordion` now that it includes a default animation, which may not be applicable in all use-cases.
+
+  - Updated `Accordion` to close immediately when reduced motion is preferred.
+
+- [#1363](https://github.com/primer/brand/pull/1363) [`f3a70ed`](https://github.com/primer/brand/commit/f3a70ed8e2a160ccb4129e4ef21ecaf34ed113e8) Thanks [@rezrah](https://github.com/rezrah)! - Adjusted the `Card.Heading` bottom spacing from `20px` to `12px`.
+
+- [#1363](https://github.com/primer/brand/pull/1363) [`f3a70ed`](https://github.com/primer/brand/commit/f3a70ed8e2a160ccb4129e4ef21ecaf34ed113e8) Thanks [@rezrah](https://github.com/rezrah)! - Adjusted the `Hero` action group top spacing from `32px` to `28px` and the expressive trailing content top spacing from `32px` to `20px` on wider viewports.
+
+- [#1363](https://github.com/primer/brand/pull/1363) [`f3a70ed`](https://github.com/primer/brand/commit/f3a70ed8e2a160ccb4129e4ef21ecaf34ed113e8) Thanks [@rezrah](https://github.com/rezrah)! - Updated the `LogoSuite` control hover color in light mode from `gray-2` to `gray-1`.
+
+- [#1363](https://github.com/primer/brand/pull/1363) [`f3a70ed`](https://github.com/primer/brand/commit/f3a70ed8e2a160ccb4129e4ef21ecaf34ed113e8) Thanks [@rezrah](https://github.com/rezrah)! - Updated the `RiverAccordion` toggle indicator to use the `TriangleDownIcon` and `TriangleUpIcon` octicons in place of chevrons, for consistency with the `Accordion` component.
+
+- [#1363](https://github.com/primer/brand/pull/1363) [`f3a70ed`](https://github.com/primer/brand/commit/f3a70ed8e2a160ccb4129e4ef21ecaf34ed113e8) Thanks [@rezrah](https://github.com/rezrah)! - Updated `Tabs` item typography from text size `100` to `200`.
+
+- [#1363](https://github.com/primer/brand/pull/1363) [`f3a70ed`](https://github.com/primer/brand/commit/f3a70ed8e2a160ccb4129e4ef21ecaf34ed113e8) Thanks [@rezrah](https://github.com/rezrah)! - Added `TextCursorAnimation` cursor color tokens. The light mode cursor color now uses `--base-color-scale-green-6`, while dark mode preserves the existing accent color.
+
+## 0.68.0
+
+### Minor Changes
+
+- [#1353](https://github.com/primer/brand/pull/1353) [`d82cfa3`](https://github.com/primer/brand/commit/d82cfa3b47609ecf179356a47b0164741ccbf29b) Thanks [@rezrah](https://github.com/rezrah)! - Added new `MediaPlaylist` component, which can be used for presenting a list of YouTube videos.
+
+  ```tsx
+  <MediaPlaylist>
+    <MediaPlaylist.Heading>Latest videos</MediaPlaylist.Heading>
+    <MediaPlaylist.Item thumbnail={<img src="thumbnail.jpg" alt="" />}>
+      <MediaPlaylist.ItemHeading title="Getting More from Every Copilot Interaction" description="10:57" />
+      <MediaPlaylist.ItemContent>
+        <Text as="p" variant="muted">
+          See workflows for scoping context, choosing the right mode, and getting more focused Copilot answers.
+        </Text>
+      </MediaPlaylist.ItemContent>
+      <MediaPlaylist.ItemMedia>
+        <iframe
+          title="Getting More from Every Copilot Interaction"
+          src="https://www.youtube-nocookie.com/embed/ITxzBiTBZW0"
+        />
+      </MediaPlaylist.ItemMedia>
+    </MediaPlaylist.Item>
+  </MediaPlaylist>
+  ```
+
+  🔗 [See `MediaPlaylist` documentation for more usage examples](https://primer.style/brand/components/MediaPlaylist)
+
+- [#1280](https://github.com/primer/brand/pull/1280) [`97a3f50`](https://github.com/primer/brand/commit/97a3f50e5d2f44d8863c3c785f212ee7c3d46e84) Thanks [@rezrah](https://github.com/rezrah)! - Added ESM library support.
+
+  A new `@primer/react-brand/esm` entry point is now available for modern bundlers (E.g. Vite, Next.js, etc).
+
+  Components imported from this path automatically include the minimum CSS needed. Separate global stylesheet imports are no longer required.
+
+  ```js
+  import {Hero, ThemeProvider} from '@primer/react-brand/esm'
+  ```
+
+  ESM features are opt-in, and the previous UMD bundle (`@primer/react-brand`) and global CSS (`@primer/react-brand/lib/css/main.css`) continue to work as before.
+
+  We recommend switching to ESM as soon as possible, as it will eventually become the default in future.
+
+  🔗 [Get started with ESM](https://primer.style/brand/getting-started/esm)
+
+- [#1340](https://github.com/primer/brand/pull/1340) [`670f3e6`](https://github.com/primer/brand/commit/670f3e6c53980d65ac0cecfc02f5cc3899c2af24) Thanks [@rezrah](https://github.com/rezrah)! - - Visual changes to the `Pillar` component.
+
+  - `Pillar.Icon` now defaults to a fixed green color with corresponding filled background. It now uses the `Icon` component internally for size parity with `Card.Icon`.
+  - ⚠️ Removed the `Pillar.Icon` `color` prop and `PillarIconColors` type export. Pillar icons using the shared background now always render green. Remove `color` from existing `Pillar.Icon` usage.
+  - ⚠️ Removed the `iconColor` field from `FlexTemplate` pillar items because it forwarded to the removed `Pillar.Icon` color prop.
+  - Native SVG icons fit the shared background by default, and `hasBackground={false}` renders custom artwork without the shared background treatment.
+  - ⚠️ Narrowed the `Pillar.Icon` `icon` prop type. It previously accepted arbitrary `ReactNode` values such as `string`, `number`, and `boolean`, but those values didn't render a usable icon. It now only accepts a valid icon component or icon element.
+
+  - Removed the Pillar-specific icon color tokens from the package output.
+
+    ```diff
+    - --brand-Pillar-icon-color-default
+    - --brand-Pillar-icon-color-{blue,coral,green,gray,indigo,lemon,lime,orange,pink,purple,red,teal,yellow}
+    ```
+
+  - Updated bordered Pillars to use a medium border radius.
+
+  - Increased default size of `Pillar.Heading` from `subhead-large` to `6`
+
+  - Increased `Pillar.Icon` default size from `24px` to `32px` and added extra space between it and the subsequent heading.
+
+- [#1344](https://github.com/primer/brand/pull/1344) [`e54a442`](https://github.com/primer/brand/commit/e54a44216f7c67b198dfc2c7d445bc48dbfbd076) Thanks [@rezrah](https://github.com/rezrah)! - Updated Button appearance and API ergonomics:
+
+  - ⚠️ Breaking change: Removed the `accent` Button variant. Use `primary` instead, which now applies the previous `accent` appearance.
+  - Updated `secondary`, and `subtle` variant colors and state styles.
+  - Updated Button hover background colors to use transitionable color values and standardized hover transitions with a 0.2s background color transition. Previously, they would not animate at all.
+  - Updated Button border radius, medium Button sizing, and medium ActionMenu item height to better match the new Figma treatment.
+  - Updated the shared medium control size token from `48px` to `43px`, so medium Button, ActionMenu, TextInput, and Select controls stay aligned.
+  - Updated medium Button label typography to better match the new Figma treatment.
+  - Fixed vertical alignment issues in the `Button` component so labels are centered consistently in browsers like Firefox.
+  - Deprecated the `hasArrow` prop and hid Button arrows by default.
+    - Note: `hasArrow` will be removed entirely in a future release.
+
+- [#1332](https://github.com/primer/brand/pull/1332) [`c4f4634`](https://github.com/primer/brand/commit/c4f463432cb88137a1d2cf0bc50a102c72ede9d8) Thanks [@rezrah](https://github.com/rezrah)! - Updated `CTABanner` with new features and better defaults.
+
+  - Added `CTABanner.Logo` for displaying custom logos.
+
+    ```tsx
+    <CTABanner>
+      <CTABanner.Logo>
+        <svg role="img" viewBox="0 0 45 16">
+          <title>GitHub</title>
+          <path d="..." />
+        </svg>
+      </CTABanner.Logo>
+    </CTABanner>
+    ```
+
+  - Added `CTABanner.Link` for rendering a secondary call-to-action as a text link.
+
+    ```tsx
+    <CTABanner>
+      <CTABanner.Link href="#">Read the customer story</CTABanner.Link>
+    </CTABanner>
+    ```
+
+  - `CTABanner.Heading` now automatically renders at visual size `'6'` in the `minimal` variant when no `size` prop is provided.
+
+  - `CTABanner.Image` now accepts all native `<img>` HTML attributes.
+
+  🔗 [See the documentation for more usage examples](https://primer.style/brand/components/CTABanner)
+
+### Patch Changes
+
+- [#1354](https://github.com/primer/brand/pull/1354) [`2c08abf`](https://github.com/primer/brand/commit/2c08abf79ff352a25529a898991ee162fbb5be27) Thanks [@danielguillan](https://github.com/danielguillan)! - Added `fullWidth` prop to `Pillar`. When set, the component removes its default `max-width` constraint so it can fill the available container width.
+
+  ```tsx
+  <Pillar fullWidth>
+    <Pillar.Heading>Heading</Pillar.Heading>
+    <Pillar.Description>Description</Pillar.Description>
+  </Pillar>
+  ```
+
+- [#1339](https://github.com/primer/brand/pull/1339) [`617e7a3`](https://github.com/primer/brand/commit/617e7a3410975ede69cc700c942d974bee024896) Thanks [@danielguillan](https://github.com/danielguillan)! - Fixed horizontal scrollbar overflow caused by gridlines pseudo-elements in `Tiles`, `River`, `RiverBreakout`, `RiverAccordion`, and `SectionIntroStacked` on systems with classic always-visible scrollbars (Windows, Linux, macOS with "Always show scrollbars").
+
+- [#1353](https://github.com/primer/brand/pull/1353) [`d82cfa3`](https://github.com/primer/brand/commit/d82cfa3b47609ecf179356a47b0164741ccbf29b) Thanks [@rezrah](https://github.com/rezrah)! - Fixed `SubNav` narrow viewport layout and alignment issues:
+
+  - A narrow sub nav without a subheading will keep the heading and menu toggle on one row by hiding the visible current page label.
+  - Active link pills are vertically centered more consistently.
+  - Submenu chevrons now align more closely with their labels and use consistent spacing.
+
+- [#1359](https://github.com/primer/brand/pull/1359) [`9c900e9`](https://github.com/primer/brand/commit/9c900e902b5cd9800ef083457d206490aefdb24a) Thanks [@rezrah](https://github.com/rezrah)! - Adjusted the `Hero.Label` bottom spacing from `16px` to `14px`.
+
+- [#1359](https://github.com/primer/brand/pull/1359) [`9c900e9`](https://github.com/primer/brand/commit/9c900e902b5cd9800ef083457d206490aefdb24a) Thanks [@rezrah](https://github.com/rezrah)! - Updated `Icon` with `hasBackground` to use a 12px border radius.
+
+- [#1359](https://github.com/primer/brand/pull/1359) [`9c900e9`](https://github.com/primer/brand/commit/9c900e902b5cd9800ef083457d206490aefdb24a) Thanks [@rezrah](https://github.com/rezrah)! - Updated `Checkbox` and `Radio` checked, indeterminate, disabled, and hover state styling to match the latest design treatment.
+
+  Form controls now use a dedicated focus color token, with blue-6 in light mode and blue-2 in dark mode.
+
+  Updated form validation icon alignment and success color treatment.
+
+  The checkmark animation now uses the checked foreground color from the start instead of flashing the focus color first.
+
+- [#1353](https://github.com/primer/brand/pull/1353) [`d82cfa3`](https://github.com/primer/brand/commit/d82cfa3b47609ecf179356a47b0164741ccbf29b) Thanks [@rezrah](https://github.com/rezrah)! - Updates to `Pagination` component:
+
+  - Pagination controls now render with the `Button` component for more consistent visual styling.
+  - Inactive controls use subtle styling, while the active page item keeps primary styling.
+  - Removed previous arrow/link-specific styling.
+  - No breaking API changes.
+
+- [#1355](https://github.com/primer/brand/pull/1355) [`56748b7`](https://github.com/primer/brand/commit/56748b7cccc665b9a2b9f49f65e2cff083c0f64d) Thanks [@danielguillan](https://github.com/danielguillan)! - Updated the RiverAccordion gridline variant to include full-bleed visual backgrounds by default. Override `--brand-RiverAccordion-visual-background` to customize the visual background with a color, gradient, or image.
+
+  ```tsx
+  <RiverAccordion variant="gridline">
+    <RiverAccordion.Item>
+      <RiverAccordion.Heading>Heading</RiverAccordion.Heading>
+      <RiverAccordion.Content>Content</RiverAccordion.Content>
+      <RiverAccordion.Visual>
+        <img src="example.png" alt="Example visual" />
+      </RiverAccordion.Visual>
+    </RiverAccordion.Item>
+  </RiverAccordion>
+  ```
+
+- [#1359](https://github.com/primer/brand/pull/1359) [`9c900e9`](https://github.com/primer/brand/commit/9c900e902b5cd9800ef083457d206490aefdb24a) Thanks [@rezrah](https://github.com/rezrah)! - Updated the `LogoSuite` gridline expressive layout to use slightly larger tablet logobar spacing, improving alignment with the overview template design.
+
+  Set `LogoSuite` mobile logo sizing to 32px, matching the tablet presentation and improving consistency across smaller viewports.
+
+  Updated the `LogoSuite` expressive gridline variant on tablet layouts to use fixed 91px inline edge spacing instead of a max-width cap.
+
 ## 0.67.0
 
 ### Minor Changes

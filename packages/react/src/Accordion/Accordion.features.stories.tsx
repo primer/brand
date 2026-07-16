@@ -265,3 +265,23 @@ export const ExclusiveWithoutUsingNameAttribute: StoryObj = {
     )
   },
 }
+
+export const DisableAnimation: StoryObj = {
+  name: 'Disable animation',
+  render: function DisableAnimationComponent() {
+    const {t} = useTranslation('Accordion')
+
+    return (
+      <>
+        {headings.map((heading, index) => (
+          <Accordion key={index} disableAnimation>
+            <Accordion.Heading>{String(t(heading))}</Accordion.Heading>
+            <Accordion.Content>
+              <p>{t('lorem_ipsum')}</p>
+            </Accordion.Content>
+          </Accordion>
+        ))}
+      </>
+    )
+  },
+}

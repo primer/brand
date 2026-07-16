@@ -24,7 +24,7 @@
   background-color: color-mix(
     in srgb,
     var(--brand-color-canvas-subtle) calc((1 - var(--brand-TextCursorAnimation-cursor-progress, 0)) * 100%),
-    var(--brand-color-accent-primary) calc(var(--brand-TextCursorAnimation-cursor-progress, 0) * 100%)
+    var(--brand-TextCursorAnimation-cursor-color) calc(var(--brand-TextCursorAnimation-cursor-progress, 0) * 100%)
   );
 }
 

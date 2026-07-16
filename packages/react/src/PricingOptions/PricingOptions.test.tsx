@@ -314,6 +314,22 @@ describe('PricingOptions', () => {
     expect(accordion).toHaveAttribute('open')
   })
 
+  it('disables animation for feature list accordions', () => {
+    mockUseWindowSize.mockReturnValue(mediumBreakpoint)
+
+    const {getByRole} = render(
+      <PricingOptions.Item>
+        <PricingOptions.FeatureList>
+          <PricingOptions.FeatureListGroupHeading>Features</PricingOptions.FeatureListGroupHeading>
+          <PricingOptions.FeatureListItem>Feature 1</PricingOptions.FeatureListItem>
+        </PricingOptions.FeatureList>
+      </PricingOptions.Item>,
+    )
+
+    const accordion = getByRole('group')
+    expect(accordion).toHaveClass('Accordion--disableAnimation')
+  })
+
   it('respects expanded={false} when explicitly set', () => {
     mockUseWindowSize.mockReturnValue(mediumBreakpoint)
 

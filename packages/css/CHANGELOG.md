@@ -1,5 +1,82 @@
 # @primer/brand-css
 
+## 0.71.0
+
+### Minor Changes
+
+- [#1370](https://github.com/primer/brand/pull/1370) [`93dcb13`](https://github.com/primer/brand/commit/93dcb134bcf9c6ce96d5aa81591dbcb1f5372747) Thanks [@stefankp](https://github.com/stefankp)! - Added a new JSON-based color map export at `/lib/design-tokens/json/colors.json`, listing color tokens from `@primer/brand-primitives`.
+
+## 0.70.0
+
+## 0.69.0
+
+### Patch Changes
+
+- [#1363](https://github.com/primer/brand/pull/1363) [`f3a70ed`](https://github.com/primer/brand/commit/f3a70ed8e2a160ccb4129e4ef21ecaf34ed113e8) Thanks [@rezrah](https://github.com/rezrah)! - Added the `--base-size-60` and `--base-size-88` base size tokens.
+
+  Also exposed `60` and `88` through React components that use the base size scale, such as `Box` and `Stack`.
+
+  ```tsx
+  <Box padding={60} />
+  <Box padding={88} />
+  <Stack gap={60} />
+  <Stack gap={88} />
+  ```
+
+- [#1363](https://github.com/primer/brand/pull/1363) [`f3a70ed`](https://github.com/primer/brand/commit/f3a70ed8e2a160ccb4129e4ef21ecaf34ed113e8) Thanks [@rezrah](https://github.com/rezrah)! - - Updated the `Accordion` toggle indicator to use the `TriangleDownIcon` octicon, which rotates anti-clockwise between its open and closed states.
+
+  - Improved `Accordion` content open and close animation so items transition using measured content height.
+
+  - Added a `disableAnimation` prop to `Accordion` now that it includes a default animation, which may not be applicable in all use-cases.
+
+  - Updated `Accordion` to close immediately when reduced motion is preferred.
+
+- [#1363](https://github.com/primer/brand/pull/1363) [`f3a70ed`](https://github.com/primer/brand/commit/f3a70ed8e2a160ccb4129e4ef21ecaf34ed113e8) Thanks [@rezrah](https://github.com/rezrah)! - Adjusted the `Card.Heading` bottom spacing from `20px` to `12px`.
+
+- [#1363](https://github.com/primer/brand/pull/1363) [`f3a70ed`](https://github.com/primer/brand/commit/f3a70ed8e2a160ccb4129e4ef21ecaf34ed113e8) Thanks [@rezrah](https://github.com/rezrah)! - Adjusted the `Hero` action group top spacing from `32px` to `28px` and the expressive trailing content top spacing from `32px` to `20px` on wider viewports.
+
+- [#1363](https://github.com/primer/brand/pull/1363) [`f3a70ed`](https://github.com/primer/brand/commit/f3a70ed8e2a160ccb4129e4ef21ecaf34ed113e8) Thanks [@rezrah](https://github.com/rezrah)! - Updated the `LogoSuite` control hover color in light mode from `gray-2` to `gray-1`.
+
+- [#1363](https://github.com/primer/brand/pull/1363) [`f3a70ed`](https://github.com/primer/brand/commit/f3a70ed8e2a160ccb4129e4ef21ecaf34ed113e8) Thanks [@rezrah](https://github.com/rezrah)! - Updated `Tabs` item typography from text size `100` to `200`.
+
+- [#1363](https://github.com/primer/brand/pull/1363) [`f3a70ed`](https://github.com/primer/brand/commit/f3a70ed8e2a160ccb4129e4ef21ecaf34ed113e8) Thanks [@rezrah](https://github.com/rezrah)! - Added `TextCursorAnimation` cursor color tokens. The light mode cursor color now uses `--base-color-scale-green-6`, while dark mode preserves the existing accent color.
+
+## 0.68.0
+
+### Minor Changes
+
+- [#1344](https://github.com/primer/brand/pull/1344) [`e54a442`](https://github.com/primer/brand/commit/e54a44216f7c67b198dfc2c7d445bc48dbfbd076) Thanks [@rezrah](https://github.com/rezrah)! - Updated Button appearance and API ergonomics:
+
+  - ⚠️ Breaking change: Removed the `accent` Button variant. Use `primary` instead, which now applies the previous `accent` appearance.
+  - Updated `secondary`, and `subtle` variant colors and state styles.
+  - Updated Button hover background colors to use transitionable color values and standardized hover transitions with a 0.2s background color transition. Previously, they would not animate at all.
+  - Updated Button border radius, medium Button sizing, and medium ActionMenu item height to better match the new Figma treatment.
+  - Updated the shared medium control size token from `48px` to `43px`, so medium Button, ActionMenu, TextInput, and Select controls stay aligned.
+  - Updated medium Button label typography to better match the new Figma treatment.
+  - Fixed vertical alignment issues in the `Button` component so labels are centered consistently in browsers like Firefox.
+  - Deprecated the `hasArrow` prop and hid Button arrows by default.
+    - Note: `hasArrow` will be removed entirely in a future release.
+
+### Patch Changes
+
+- [#1359](https://github.com/primer/brand/pull/1359) [`9c900e9`](https://github.com/primer/brand/commit/9c900e902b5cd9800ef083457d206490aefdb24a) Thanks [@rezrah](https://github.com/rezrah)! - Adjusted the `Hero.Label` bottom spacing from `16px` to `14px`.
+
+- [#1359](https://github.com/primer/brand/pull/1359) [`9c900e9`](https://github.com/primer/brand/commit/9c900e902b5cd9800ef083457d206490aefdb24a) Thanks [@rezrah](https://github.com/rezrah)! - Updated `Icon` with `hasBackground` to use a 12px border radius.
+
+- [#1359](https://github.com/primer/brand/pull/1359) [`9c900e9`](https://github.com/primer/brand/commit/9c900e902b5cd9800ef083457d206490aefdb24a) Thanks [@rezrah](https://github.com/rezrah)! - Updated `Checkbox` and `Radio` checked, indeterminate, disabled, and hover state styling to match the latest design treatment.
+
+  Form controls now use a dedicated focus color token, with blue-6 in light mode and blue-2 in dark mode.
+
+  Updated form validation icon alignment and success color treatment.
+
+  The checkmark animation now uses the checked foreground color from the start instead of flashing the focus color first.
+
+- [#1359](https://github.com/primer/brand/pull/1359) [`9c900e9`](https://github.com/primer/brand/commit/9c900e902b5cd9800ef083457d206490aefdb24a) Thanks [@rezrah](https://github.com/rezrah)! - Updated the `LogoSuite` gridline expressive layout to use slightly larger tablet logobar spacing, improving alignment with the overview template design.
+
+  Set `LogoSuite` mobile logo sizing to 32px, matching the tablet presentation and improving consistency across smaller viewports.
+
+  Updated the `LogoSuite` expressive gridline variant on tablet layouts to use fixed 91px inline edge spacing instead of a max-width cap.
+
 ## 0.67.0
 
 ## 0.66.0

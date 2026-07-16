@@ -96,11 +96,17 @@
 .Stack--gap-48 {
   gap: var(--base-size-48);
 }
+.Stack--gap-60 {
+  gap: var(--base-size-60);
+}
 .Stack--gap-64 {
   gap: var(--base-size-64);
 }
 .Stack--gap-80 {
   gap: var(--base-size-80);
+}
+.Stack--gap-88 {
+  gap: var(--base-size-88);
 }
 .Stack--gap-96 {
   gap: var(--base-size-96);
@@ -180,11 +186,17 @@
 .Stack--padding-48 {
   padding: var(--base-size-48);
 }
+.Stack--padding-60 {
+  padding: var(--base-size-60);
+}
 .Stack--padding-64 {
   padding: var(--base-size-64);
 }
 .Stack--padding-80 {
   padding: var(--base-size-80);
+}
+.Stack--padding-88 {
+  padding: var(--base-size-88);
 }
 .Stack--padding-96 {
   padding: var(--base-size-96);
@@ -248,11 +260,17 @@
 .Stack-narrow--padding-48 {
   padding: var(--base-size-48);
 }
+.Stack-narrow--padding-60 {
+  padding: var(--base-size-60);
+}
 .Stack-narrow--padding-64 {
   padding: var(--base-size-64);
 }
 .Stack-narrow--padding-80 {
   padding: var(--base-size-80);
+}
+.Stack-narrow--padding-88 {
+  padding: var(--base-size-88);
 }
 .Stack-narrow--padding-96 {
   padding: var(--base-size-96);
@@ -300,11 +318,17 @@
 .Stack-narrow--gap-48 {
   gap: var(--base-size-48);
 }
+.Stack-narrow--gap-60 {
+  gap: var(--base-size-60);
+}
 .Stack-narrow--gap-64 {
   gap: var(--base-size-64);
 }
 .Stack-narrow--gap-80 {
   gap: var(--base-size-80);
+}
+.Stack-narrow--gap-88 {
+  gap: var(--base-size-88);
 }
 .Stack-narrow--gap-96 {
   gap: var(--base-size-96);
@@ -369,11 +393,17 @@
   .Stack-regular--gap-48 {
     gap: var(--base-size-48);
   }
+  .Stack-regular--gap-60 {
+    gap: var(--base-size-60);
+  }
   .Stack-regular--gap-64 {
     gap: var(--base-size-64);
   }
   .Stack-regular--gap-80 {
     gap: var(--base-size-80);
+  }
+  .Stack-regular--gap-88 {
+    gap: var(--base-size-88);
   }
   .Stack-regular--gap-96 {
     gap: var(--base-size-96);
@@ -437,11 +467,17 @@
   .Stack-regular--padding-48 {
     padding: var(--base-size-48);
   }
+  .Stack-regular--padding-60 {
+    padding: var(--base-size-60);
+  }
   .Stack-regular--padding-64 {
     padding: var(--base-size-64);
   }
   .Stack-regular--padding-80 {
     padding: var(--base-size-80);
+  }
+  .Stack-regular--padding-88 {
+    padding: var(--base-size-88);
   }
   .Stack-regular--padding-96 {
     padding: var(--base-size-96);
@@ -507,11 +543,17 @@
   .Stack-wide--gap-48 {
     gap: var(--base-size-48);
   }
+  .Stack-wide--gap-60 {
+    gap: var(--base-size-60);
+  }
   .Stack-wide--gap-64 {
     gap: var(--base-size-64);
   }
   .Stack-wide--gap-80 {
     gap: var(--base-size-80);
+  }
+  .Stack-wide--gap-88 {
+    gap: var(--base-size-88);
   }
   .Stack-wide--gap-96 {
     gap: var(--base-size-96);
@@ -575,11 +617,17 @@
   .Stack-wide--padding-48 {
     padding: var(--base-size-48);
   }
+  .Stack-wide--padding-60 {
+    padding: var(--base-size-60);
+  }
   .Stack-wide--padding-64 {
     padding: var(--base-size-64);
   }
   .Stack-wide--padding-80 {
     padding: var(--base-size-80);
+  }
+  .Stack-wide--padding-88 {
+    padding: var(--base-size-88);
   }
   .Stack-wide--padding-96 {
     padding: var(--base-size-96);

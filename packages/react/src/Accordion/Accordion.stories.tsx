@@ -11,6 +11,7 @@ const meta: Meta<AccordionStoryProps> = {
   args: {
     open: false,
     variant: 'default',
+    disableAnimation: false,
     toggleColor: undefined,
   },
   argTypes: {
@@ -24,6 +25,12 @@ const meta: Meta<AccordionStoryProps> = {
       name: 'Variant',
       options: ['default', 'emphasis'],
       control: {type: 'inline-radio'},
+    },
+    disableAnimation: {
+      name: 'Disable animation',
+      control: {
+        type: 'boolean',
+      },
     },
     toggleColor: {
       name: 'Toggle color',
