@@ -44,6 +44,9 @@ jobs:
       - name: Check formatting
         run: npm run format
 
+      - name: Validate docs Figma images
+        run: npm run figma-images:validate --workspace=apps/next-docs
+
       - name: Verify types
         run: npm run check
 

@@ -44,6 +44,32 @@ Good pull requests are a fantastic help. They should remain focused in scope and
    - If the builds fail for any other reason (as they occasionally do), they may need to be manually restarted.
 1. Pat yourself on the back and wait for your pull request to be reviewed.
 
+### Updating docs Figma images
+
+`apps/next-docs` validates Figma-backed docs images in CI with `npm run figma-images:validate --workspace=apps/next-docs`. This validation does **not** require `FIGMA_ACCESS_TOKEN`; it checks that each URL points to a frame in the approved Brand Interface Guidelines file (`kc69gOteR1MsL0aQtLdxLW`) and that its generated PNG and dimensions are committed. URLs from foreign Figma file keys fail with an actionable error that includes the source MDX file and the approved file key.
+
+The validator scans Figma URLs in these MDX locations:
+
+```mdx
+---
+thumbnail: 'https://www.figma.com/design/kc69gOteR1MsL0aQtLdxLW/Brand-Interface-Guidelines?node-id=1804-8382'
+thumbnail_darkMode: 'https://www.figma.com/design/kc69gOteR1MsL0aQtLdxLW/Brand-Interface-Guidelines?node-id=1804-8383'
+---
+
+<FigmaImage
+  src="https://www.figma.com/design/kc69gOteR1MsL0aQtLdxLW/Brand-Interface-Guidelines?node-id=1804-8382"
+  darkModeSrc="https://www.figma.com/design/kc69gOteR1MsL0aQtLdxLW/Brand-Interface-Guidelines?node-id=1804-8383"
+  alt="Describe the image"
+/>
+```
+
+To generate the committed image assets locally:
+
+1. Add `FIGMA_ACCESS_TOKEN=...` to `apps/next-docs/.env.local`.
+1. Run `npm run figma-images:generate --workspace=apps/next-docs`.
+
+The generator rewrites the managed `apps/next-docs/public/images/figma/` directory, including the generated `*.png` files and the `images.json` manifest. If your pull request needs the automation that refreshes these generated files, add the exact pull request label `update figma images`.
+
 Here are a few things you can do that will increase the likelihood of your pull request being accepted:
 
 - Keep your change as focused as possible. If there are multiple changes you would like to make that are not dependent upon each other, consider submitting them as separate pull requests.

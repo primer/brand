@@ -1,0 +1,162 @@
+name: Update next-docs Figma images
+
+on:
+  workflow_dispatch:
+  # schedule:
+  #   - cron: '0 0 * * 1' # weekly on Monday at 00:00 UTC
+
+concurrency:
+  group: ${{ github.workflow }}-main
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  generate:
+    if: ${{ github.repository == 'primer/brand' }}
+    name: Generate image updates
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    outputs:
+      has_changes: ${{ steps.capture.outputs.has_changes }}
+      source_sha: ${{ steps.source-sha.outputs.sha }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+        with:
+          ref: main
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Capture source SHA
+        id: source-sha
+        run: echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+
+      - name: Set up Node
+        uses: actions/setup-node@v6
+        with:
+          node-version: 24.14.1
+
+      - name: Cache dependencies
+        uses: actions/cache@v5
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Generate Figma images
+        run: npm run figma-images:generate --workspace=apps/next-docs
+        env:
+          FIGMA_ACCESS_TOKEN: ${{ secrets.FIGMA_ACCESS_TOKEN }}
+
+      - name: Capture generated image updates
+        id: capture
+        run: |
+          artifact_directory='workflow-artifacts/next-docs-figma-images'
+          mkdir -p "$artifact_directory"
+
+          git ls-files --others --exclude-standard -- apps/next-docs/public/images/figma > "$artifact_directory/untracked-files.txt"
+          if [ -s "$artifact_directory/untracked-files.txt" ]; then
+            while IFS= read -r file; do
+              git add --intent-to-add -- "$file"
+            done < "$artifact_directory/untracked-files.txt"
+          fi
+
+          git diff --name-only --diff-filter=AM -- apps/next-docs/public/images/figma > "$artifact_directory/changed-files.txt"
+          tar -cf "$artifact_directory/updated-files.tar" --files-from /dev/null
+          if [ -s "$artifact_directory/changed-files.txt" ]; then
+            tar -rf "$artifact_directory/updated-files.tar" -T "$artifact_directory/changed-files.txt"
+          fi
+          git diff --binary --full-index --diff-filter=D -- apps/next-docs/public/images/figma > "$artifact_directory/deletions.patch"
+
+          if git diff --quiet -- apps/next-docs/public/images/figma; then
+            echo 'has_changes=false' >> "$GITHUB_OUTPUT"
+            echo 'No next-docs Figma image changes were generated.'
+            exit 0
+          fi
+
+          echo 'has_changes=true' >> "$GITHUB_OUTPUT"
+          git --no-pager diff --name-status -- apps/next-docs/public/images/figma
+
+      - name: Upload generated image updates
+        if: steps.capture.outputs.has_changes == 'true'
+        uses: actions/upload-artifact@v7
+        with:
+          name: next-docs-figma-image-updates
+          path: |
+            workflow-artifacts/next-docs-figma-images/changed-files.txt
+            workflow-artifacts/next-docs-figma-images/updated-files.tar
+            workflow-artifacts/next-docs-figma-images/deletions.patch
+          retention-days: 7
+
+  create-pr:
+    if: ${{ github.repository == 'primer/brand' && needs.generate.outputs.has_changes == 'true' }}
+    name: Create draft update PR
+    needs: generate
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+        with:
+          ref: ${{ needs.generate.outputs.source_sha }}
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Download generated image updates
+        uses: actions/download-artifact@v5
+        with:
+          name: next-docs-figma-image-updates
+          path: workflow-artifacts/next-docs-figma-images
+
+      - name: Apply generated image updates
+        run: |
+          tar -xf workflow-artifacts/next-docs-figma-images/updated-files.tar
+
+          if [ -s workflow-artifacts/next-docs-figma-images/deletions.patch ]; then
+            git apply workflow-artifacts/next-docs-figma-images/deletions.patch
+          fi
+
+          git --no-pager diff --name-status -- apps/next-docs/public/images/figma
+
+      - name: Create GitHub App token
+        id: app-token
+        uses: actions/create-github-app-token@f8d387b68d61c58ab83c6c016672934102569859 # v3.0.0
+        with:
+          app-id: ${{ vars.PRIMER_APP_ID_SHARED }}
+          private-key: ${{ secrets.PRIMER_APP_PRIVATE_KEY_SHARED }}
+
+      - name: Create draft pull request
+        id: create-pull-request
+        # Uses SHA for security hardening
+        uses: peter-evans/create-pull-request@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7
+        with:
+          token: ${{ steps.app-token.outputs.token }}
+          add-paths: |
+            apps/next-docs/public/images/figma
+          author: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>
+          committer: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>
+          branch: github-actions/update-next-docs-figma-images
+          base: main
+          delete-branch: true
+          commit-message: Update next-docs Figma images
+          title: Update next-docs Figma images
+          body: |
+            ## Summary
+            - refresh generated Figma images for `apps/next-docs`
+            - apply additions, modifications, and deletions captured by the read-only generation job
+
+            ## Testing
+            - `npm run figma-images:generate --workspace=apps/next-docs`
+          draft: always-true
+
+      - name: Report pull request
+        if: steps.create-pull-request.outputs.pull-request-url != ''
+        run: echo "Created or updated ${{ steps.create-pull-request.outputs.pull-request-url }}"

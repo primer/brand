@@ -1,0 +1,107 @@
+.FigmaImage {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--base-size-8);
+  inline-size: fit-content;
+  max-inline-size: 100%;
+}
+
+.FigmaImageFillParentWidth {
+  inline-size: 100%;
+}
+
+.PreviewContainer {
+  position: relative;
+  overflow: hidden;
+  inline-size: 100%;
+  border-radius: var(--brand-borderRadius-medium);
+}
+
+.PreviewContainer::after {
+  position: absolute;
+  z-index: 1;
+  background-image: linear-gradient(to bottom left, var(--brand-color-canvas-default) 10%, transparent 80%);
+  content: '';
+  inset: 0;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--brand-animation-duration-faster) var(--brand-animation-easing-default);
+}
+
+.FigmaImage:hover .PreviewContainer::after,
+.FigmaImage:focus-within .PreviewContainer::after {
+  opacity: 1;
+}
+
+.Image {
+  display: block;
+  max-inline-size: 100%;
+  block-size: auto;
+  border: var(--brand-borderWidth-thin) solid var(--borderColor-default);
+  border-radius: var(--brand-borderRadius-medium);
+  background-color: var(--brand-color-canvas-default);
+  transition: opacity var(--brand-animation-duration-faster) var(--brand-animation-easing-default);
+}
+
+.FigmaImage:hover .Image,
+.FigmaImage:focus-within .Image {
+  opacity: 0.8;
+}
+
+.ImageFillParentWidth {
+  inline-size: 100%;
+}
+
+.MissingPreview {
+  display: grid;
+  gap: var(--base-size-8);
+  padding: var(--base-size-16);
+  padding-block-start: var(--base-size-64);
+  border: var(--brand-borderWidth-thin) solid var(--borderColor-default);
+  border-radius: var(--brand-borderRadius-medium);
+  background-color: var(--brand-color-canvas-subtle);
+}
+
+.MissingPreviewTitle {
+  margin: 0;
+  color: var(--brand-color-text-default);
+  font-size: var(--brand-text-size-200);
+  font-weight: var(--brand-text-weight-600);
+  line-height: var(--brand-text-lineHeight-200);
+}
+
+.MissingPreviewBody {
+  margin: 0;
+  color: var(--brand-color-text-muted);
+}
+
+.Caption {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--base-size-8) var(--base-size-12);
+  align-items: baseline;
+  color: var(--brand-color-text-muted);
+  font-size: var(--brand-text-size-100);
+  line-height: var(--brand-text-lineHeight-100);
+}
+
+.CaptionText {
+  min-inline-size: 0;
+}
+
+.EditLink {
+  position: absolute;
+  z-index: 1;
+  inset-block-start: var(--base-size-16);
+  inset-inline-end: var(--base-size-16);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--brand-animation-duration-faster) var(--brand-animation-easing-default);
+}
+
+.FigmaImage:hover .EditLink,
+.EditLink:focus {
+  opacity: 1;
+  pointer-events: auto;
+}

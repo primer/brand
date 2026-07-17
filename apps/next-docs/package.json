@@ -24,11 +24,14 @@
   "scripts": {
     "clean": "rm -rf out .next",
     "dev": "next dev",
-    "check": "tsc --noEmit",
+    "check": "npm run figma-images:validate && tsc --noEmit",
     "build": "rm -rf out .next && next build --webpack",
     "build:prod": "scripts/build",
+    "figma-images:generate": "node --env-file-if-exists=.env.local scripts/figma-images.mjs generate",
+    "figma-images:validate": "node scripts/figma-images.mjs validate",
     "lint": "eslint '**/*.{js,ts,tsx,md,mdx}' --max-warnings=0",
-    "start": "next start"
+    "start": "next start",
+    "test": "node --test scripts/*.test.mjs"
   },
   "dependencies": {
     "@primer/doctocat-nextjs": "0.10.0",
@@ -40,6 +43,7 @@
   "devDependencies": {
     "@github/prettier-config": "^0.0.6",
     "@primer/brand-primitives": "^0.71.0",
+    "@primer/figma-images": "^0.1.18",
     "@primer/react": "38.18.0",
     "@primer/react-brand": "0.71.0",
     "@swc/core": "^1.15.21",
