@@ -4,7 +4,7 @@ import {fileURLToPath} from 'node:url'
 import figmaImages from '@primer/figma-images'
 import {parseFigmaNodeUrl} from '@primer/figma-images/parseFigmaNodeUrl'
 
-export const APPROVED_FIGMA_FILE_KEY = 'kc69gOteR1MsL0aQtLdxLW'
+export const FIGMA_FILE_KEY = 'kc69gOteR1MsL0aQtLdxLW'
 
 const APP_ROOT = fileURLToPath(new URL('..', import.meta.url))
 const CONTENT_DIRECTORY = path.join(APP_ROOT, 'content')
@@ -81,9 +81,9 @@ export function validateFigmaUrl(url, source = 'Figma image') {
     throw new Error(`${source}: "${url}" is not a valid Figma node URL.`)
   }
 
-  if (parsedNode.fileId !== APPROVED_FIGMA_FILE_KEY) {
+  if (parsedNode.fileId !== FIGMA_FILE_KEY) {
     throw new Error(
-      `${source}: Figma file key "${parsedNode.fileId}" is not approved. Use a frame from the Brand Interface Guidelines file (${APPROVED_FIGMA_FILE_KEY}).`,
+      `${source}: Figma file key "${parsedNode.fileId}" is not approved. Use a frame from the Brand Interface Guidelines file (${FIGMA_FILE_KEY}).`,
     )
   }
 

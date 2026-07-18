@@ -5,7 +5,7 @@ import os from 'node:os'
 import path from 'node:path'
 import {afterEach, describe, it} from 'node:test'
 import {
-  APPROVED_FIGMA_FILE_KEY,
+  FIGMA_FILE_KEY,
   discoverFigmaUrls,
   extractFigmaUrls,
   generateFigmaImages,
@@ -17,7 +17,7 @@ import {resolveFigmaPageMapThumbnails} from '../src/components/FigmaImage/FigmaI
 import {getActiveFigmaSource, resolveImageDimensions} from '../src/components/FigmaImage/FigmaImage.utils.ts'
 
 const temporaryDirectories = []
-const approvedUrl = `https://www.figma.com/design/${APPROVED_FIGMA_FILE_KEY}/Brand?node-id=1804-8382`
+const approvedUrl = `https://www.figma.com/design/${FIGMA_FILE_KEY}/Brand?node-id=1804-8382`
 
 afterEach(async () => {
   await Promise.all(temporaryDirectories.splice(0).map(directory => fs.rm(directory, {recursive: true, force: true})))
@@ -27,21 +27,21 @@ describe('extractFigmaUrls', () => {
   it('extracts quoted FigmaImage sources and Figma-backed thumbnails', () => {
     const content = `---
 thumbnail: '${approvedUrl}'
-thumbnail_darkMode: "https://www.figma.com/file/${APPROVED_FIGMA_FILE_KEY}/Brand?node-id=1804%3A8383"
+thumbnail_darkMode: "https://www.figma.com/file/${FIGMA_FILE_KEY}/Brand?node-id=1804%3A8383"
 figma: 'https://www.figma.com/design/foreign-file/metadata?node-id=1-2'
 ---
 
 <FigmaImage
   src="${approvedUrl}"
-  darkModeSrc='https://www.figma.com/board/${APPROVED_FIGMA_FILE_KEY}/Brand?node-id=1804-8384'
+  darkModeSrc='https://www.figma.com/board/${FIGMA_FILE_KEY}/Brand?node-id=1804-8384'
   alt="Example"
 />
 `
 
     assert.deepEqual(extractFigmaUrls(content), [
       approvedUrl,
-      `https://www.figma.com/board/${APPROVED_FIGMA_FILE_KEY}/Brand?node-id=1804-8384`,
-      `https://www.figma.com/file/${APPROVED_FIGMA_FILE_KEY}/Brand?node-id=1804%3A8383`,
+      `https://www.figma.com/board/${FIGMA_FILE_KEY}/Brand?node-id=1804-8384`,
+      `https://www.figma.com/file/${FIGMA_FILE_KEY}/Brand?node-id=1804%3A8383`,
     ])
   })
 
@@ -79,11 +79,10 @@ describe('discoverFigmaUrls', () => {
 
 describe('validateFigmaUrl', () => {
   it('accepts approved design and file URLs', () => {
-    assert.equal(validateFigmaUrl(approvedUrl).fileId, APPROVED_FIGMA_FILE_KEY)
+    assert.equal(validateFigmaUrl(approvedUrl).fileId, FIGMA_FILE_KEY)
     assert.equal(
-      validateFigmaUrl(`https://www.figma.com/file/${APPROVED_FIGMA_FILE_KEY}/Brand?node-id=1804-8382&t=example`)
-        .fileId,
-      APPROVED_FIGMA_FILE_KEY,
+      validateFigmaUrl(`https://www.figma.com/file/${FIGMA_FILE_KEY}/Brand?node-id=1804-8382&t=example`).fileId,
+      FIGMA_FILE_KEY,
     )
   })
 
@@ -93,7 +92,7 @@ describe('validateFigmaUrl', () => {
         validateFigmaUrls([{url: 'https://www.figma.com/design/foreign-file/Other?node-id=1-2', filePath: 'x.mdx'}]),
       error => {
         assert.match(error.message, /foreign-file/)
-        assert.match(error.message, new RegExp(APPROVED_FIGMA_FILE_KEY))
+        assert.match(error.message, new RegExp(FIGMA_FILE_KEY))
         assert.match(error.message, /x\.mdx/)
         return true
       },
@@ -101,12 +100,12 @@ describe('validateFigmaUrl', () => {
   })
 
   it('normalizes colon node IDs while preserving the original edit URL', () => {
-    const originalUrl = `https://www.figma.com/design/${APPROVED_FIGMA_FILE_KEY}/Brand?node-id=1804%3A8382&t=example`
+    const originalUrl = `https://www.figma.com/design/${FIGMA_FILE_KEY}/Brand?node-id=1804%3A8382&t=example`
     const parsed = validateFigmaUrl(originalUrl)
 
     assert.equal(parsed.originalUrl, originalUrl)
     assert.equal(parsed.nodeId, '1804:8382')
-    assert.equal(parsed.basename, `${APPROVED_FIGMA_FILE_KEY}-1804-8382`)
+    assert.equal(parsed.basename, `${FIGMA_FILE_KEY}-1804-8382`)
     assert.match(parsed.canonicalUrl, /node-id=1804-8382/)
     assert.match(parsed.canonicalUrl, /t=example/)
   })
@@ -156,7 +155,7 @@ describe('resolveFigmaPageMapThumbnails', () => {
 
     const resolved = resolveFigmaPageMapThumbnails(pageMap)
 
-    assert.equal(resolved[0].frontMatter.thumbnail, `/images/figma/${APPROVED_FIGMA_FILE_KEY}-1804-8382.png`)
+    assert.equal(resolved[0].frontMatter.thumbnail, `/images/figma/${FIGMA_FILE_KEY}-1804-8382.png`)
     assert.equal(resolved[0].frontMatter.thumbnail_darkMode, '/images/example-dark.png')
   })
 })
