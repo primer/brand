@@ -65,33 +65,123 @@ Resolve exact sizes and weights with `primer_brand_tokens`.
 
 ## Component & element patterns
 
-### Do
+### Hero
 
-- **Heroes** — include relevant media and a label. Prefer a real product shot via `Hero.Image` / `Hero.Video`; use Asset Generator `create_product_landscape` when generating one, or `create_wallpaper` when a product shot does not fit. Keep decorative or illustrative media inside the shared grid with a stable aspect ratio and a token-backed maximum height so it cannot dominate the page or bleed full-width. If needed, place custom media after `Hero`; use `trailingComponent` only when it must live inside the Hero composition.
-- **Rivers** — use `<River variant="gridline" align="start">` throughout a page; omitting `align` also means start.
-- **Repeated panels** — place `Card`, `Pillar`, `Box`, or custom items in a square frame using `<Grid columnGap="none" rowGap="none" enableGutters={false}>`. Draw shared dividers on custom frame/cell wrappers and use `border-radius: 0` there; do not override `Card` or `Pillar` internals. `Pillar` has no grid variant.
-- **CTAs without media** — use the default `CTABanner` with `align="center"` and `hasGridLines`.
-- **CTAs with media** — use `<CTABanner variant="balanced" hasGridLines>` with a direct `CTABanner.Image`. Use Octovisuals for artwork; reserve `CTABanner.Logo` for genuine logos.
-- **Forms** — use a square, zero-gap `Grid` with connected benefits beside a subtle form surface. Use responsive token gutters, Primer Brand form controls, and an enabled `<Button variant="primary" type="submit">`.
-- **FAQs** — use `FAQGroup` navigation for multiple meaningful categories and one `FAQ` directly for a single category.
-- **Section backgrounds** — keep one default background across sections. Use `backgroundColor="subtle"` only to clarify a functional region.
-- **Labels** — use `Hero.Label`, `SectionIntro.Label`, or `EyebrowText`; keep labels intrinsic-width and aligned with their section.
-- **Lists** — use dot bullets without decorative dividers between items.
-- **Buttons** — show enabled controls with a clear primary/secondary hierarchy.
-- **Icons** — keep Octicons at the default green in `Card.Icon`, `Pillar.Icon`, and `Icon` unless there is a deliberate exception.
+**Do**
 
-### Don't
+- Include relevant media and a label. Prefer a real product shot via `Hero.Image` / `Hero.Video`; use Asset Generator `create_product_landscape` when generating one, or `create_wallpaper` when a product shot does not fit.
+- Keep decorative or illustrative media inside the shared grid with a stable aspect ratio and a token-backed maximum height so it cannot dominate the page or bleed full-width.
+- If needed, place custom media after `Hero`; use `trailingComponent` only when it must live inside the Hero composition.
+
+**Don't**
 
 - Add irrelevant hero media or use social templates such as `create_social_square` or `create_landscape` for hero media.
 - Let decorative or illustrative Hero media grow arbitrarily tall or bleed outside the shared grid.
+
+### River
+
+**Do**
+
+- Use `<River variant="gridline" align="start">` throughout a page; omitting `align` also means start.
+- Keep River descriptions to a maximum of 160 characters.
+- Prefer the default `50:50` image-to-text ratio where possible; set `imageTextRatio="60:40"` only when the visual needs more space or emphasis.
+
+**Don't**
+
 - Zigzag gridline Rivers with `align="end"`.
-- Render repeated panels as separate rounded cards, double their shared borders, override `Card` / `Pillar` radius, or invent a grid variant for `Pillar`.
+
+### Repeated panels
+
+**Do**
+
+- Place `Card`, `Pillar`, `Box`, or custom items in a square frame using `<Grid columnGap="none" rowGap="none" enableGutters={false}>`.
+- Draw shared dividers on custom frame/cell wrappers and use `border-radius: 0` there.
+
+**Don't**
+
+- Render repeated panels as separate rounded cards, double their shared borders, or override `Card` / `Pillar` internals.
+- `Pillar` has no grid variant; don't invent one.
+
+### CTABanner
+
+**Do**
+
+- Without media, use the default `CTABanner` with `align="center"` and `hasGridLines`.
+- With media, use `<CTABanner variant="balanced" hasGridLines>` with a direct `CTABanner.Image`. Use Octovisuals for artwork; reserve `CTABanner.Logo` for genuine logos.
+
+**Don't**
+
 - Use `CTABanner variant="balanced"` without a direct `CTABanner.Image`, or use `CTABanner.Logo` for decorative artwork.
+
+### Forms
+
+**Do**
+
+- Use a square, zero-gap `Grid` with connected benefits beside a subtle form surface. Use responsive token gutters, Primer Brand form controls, and an enabled `<Button variant="primary" type="submit">`.
+
+**Don't**
+
 - Use raw form controls or put the form section in a floating rounded panel.
+
+### FAQs
+
+**Do**
+
+- Use `FAQGroup` navigation for multiple meaningful categories and one `FAQ` directly for a single category.
+
+**Don't**
+
 - Show `FAQGroup` navigation for a single category.
+
+### Section backgrounds
+
+**Do**
+
+- Keep one default background across sections. Use `backgroundColor="subtle"` only to clarify a functional region.
+
+**Don't**
+
 - Alternate section background colors merely for decoration.
-- Stretch Label components full-width or hand-style replacements for the label components. Labels should preserve their auto width, don't let the parent stretch them.
-- Use dashes as bullets, make normal controls look disabled, or tint default-green Octicons without a deliberate reason. `Pillar.Icon` has no `color` prop.
+
+### Labels
+
+**Do**
+
+- Use `Hero.Label`, `SectionIntro.Label`, or `EyebrowText`; keep labels intrinsic-width and aligned with their section.
+
+**Don't**
+
+- Stretch Label components full-width or hand-style replacements for the label components. Labels should preserve their auto width; don't let the parent stretch them.
+
+### Lists
+
+**Do**
+
+- Use dot bullets without decorative dividers between items.
+
+**Don't**
+
+- Use dashes as bullets.
+
+### Buttons
+
+**Do**
+
+- Show enabled controls with a clear primary/secondary hierarchy.
+
+**Don't**
+
+- Make normal controls look disabled.
+
+### Icons
+
+**Do**
+
+- Keep Octicons at the default green in `Card.Icon`, `Pillar.Icon`, and `Icon` unless there is a deliberate exception.
+
+**Don't**
+
+- Tint default-green Octicons without a deliberate reason. `Pillar.Icon` has no `color` prop.
 
 ## Visual verification
 
