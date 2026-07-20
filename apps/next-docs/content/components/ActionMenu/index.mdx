@@ -19,6 +19,7 @@ import {
   ActionMenuMenuAlignmentProp,
   ActionMenuMenuSideProp,
   ActionMenuModeProp,
+  ActionMenuButtonVariantsProp,
 } from './react'
 
 ```js
@@ -76,11 +77,6 @@ render(<App />)
 ### Split-button layout
 
 In this `mode`, the `ActionMenu` can be shown as a split button with an action (left) and dropdown button (right) with an additional list of actions.
-
-<Note>
-  In split-button mode, each action must be rendered as a link element using the as="a" prop, including the main button
-  and all menu items.
-</Note>
 
 ```jsx live
 <ActionMenu mode="split-button">
@@ -144,11 +140,14 @@ In this `mode`, the `ActionMenu` can be shown as a split button with an action (
 
 ### ActionMenu.Button <Label>Required</Label>
 
-| name        | type           | default | required | description                        |
-| ----------- | -------------- | ------- | -------- | ---------------------------------- |
-| `className` | `string`       |         |          | Sets a custom class on the element |
-| `children`  | `ReactElement` |         |          |
-| `id`        | `string`       |         |          | Sets a custom `id`                 |
+| name            | type                             | default     | required | description                                      |
+| --------------- | -------------------------------- | ----------- | -------- | ------------------------------------------------ |
+| `className`     | `string`                         |             |          | Sets a custom class on the element               |
+| `children`      | `ReactElement`                   |             |          |                                                  |
+| `id`            | `string`                         |             |          | Sets a custom `id`                               |
+| `variant`       | <ActionMenuButtonVariantsProp /> |             | `false`  | Sets the button styling variation                |
+| `onClick`       | `(event: MouseEvent) => void`    | `undefined` | `false`  | Handles activation of the button                 |
+| `leadingVisual` | `ReactElement`                   | `undefined` | `false`  | Renders a leading visual before the button label |
 
 ### ActionMenu.Overlay <Label>Required</Label>
 
