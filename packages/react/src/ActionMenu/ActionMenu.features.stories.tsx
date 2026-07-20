@@ -61,6 +61,36 @@ export const SingleSelectionSmallOpen = () => {
   )
 }
 
+export const DefaultModeAllVariants = () => {
+  const {t} = useTranslation('ActionMenu')
+
+  return (
+    <Stack direction="horizontal" gap="condensed">
+      {ButtonVariants.map(variant => (
+        <ActionMenu key={variant}>
+          <ActionMenu.Button variant={variant}>{t('open_menu')}</ActionMenu.Button>
+          <ActionMenu.Overlay aria-label={t('actions')}>
+            <ActionMenu.Item value="Copy link">{t('copy_link')}</ActionMenu.Item>
+          </ActionMenu.Overlay>
+        </ActionMenu>
+      ))}
+    </Stack>
+  )
+}
+
+export const DefaultModeLeadingVisual = () => {
+  const {t} = useTranslation('ActionMenu')
+
+  return (
+    <ActionMenu>
+      <ActionMenu.Button leadingVisual={<VisualStudioCodeLogo />}>{t('open_menu')}</ActionMenu.Button>
+      <ActionMenu.Overlay aria-label={t('actions')}>
+        <ActionMenu.Item value="Copy link">{t('copy_link')}</ActionMenu.Item>
+      </ActionMenu.Overlay>
+    </ActionMenu>
+  )
+}
+
 export const SplitButtonMode = () => {
   const {t} = useTranslation('ActionMenu')
 
