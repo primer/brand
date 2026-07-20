@@ -28,6 +28,28 @@ test.describe('Visual Comparison: ActionMenu', () => {
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
+  test('ActionMenu / Default Mode All Variants', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-actionmenu-features--default-mode-all-variants&viewMode=story',
+      {waitUntil: 'networkidle'},
+    )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+    await page.waitForTimeout(500)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
+  test('ActionMenu / Default Mode Leading Visual', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-actionmenu-features--default-mode-leading-visual&viewMode=story',
+      {waitUntil: 'networkidle'},
+    )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+    await page.waitForTimeout(500)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
   test('ActionMenu / Split Button Mode', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-actionmenu-features--split-button-mode&viewMode=story',
