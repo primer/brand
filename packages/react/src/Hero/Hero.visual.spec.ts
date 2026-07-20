@@ -452,6 +452,17 @@ test.describe('Visual Comparison: Hero', () => {
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
+  test('Hero / Expressive variant with ignored center align', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-hero-features-gridline-variants--gridline-expressive-ignores-center-align&viewMode=story',
+      {waitUntil: 'networkidle'},
+    )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+    await page.waitForTimeout(500)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
   test('Hero / Image (left + bottom)', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-hero-features-images-and-videos--with-image-block-end-default&viewMode=story',
