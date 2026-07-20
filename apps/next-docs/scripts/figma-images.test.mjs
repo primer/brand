@@ -24,9 +24,9 @@ afterEach(async () => {
 })
 
 describe('extractFigmaUrls', () => {
-  it('extracts quoted FigmaImage sources and Figma-backed thumbnails', () => {
+  it('extracts static FigmaImage sources and Figma-backed thumbnails', () => {
     const content = `---
-thumbnail: '${approvedUrl}'
+thumbnail: ${approvedUrl} # YAML comments are supported
 thumbnail_darkMode: "https://www.figma.com/file/${FIGMA_FILE_KEY}/Brand?node-id=1804%3A8383"
 figma: 'https://www.figma.com/design/foreign-file/metadata?node-id=1-2'
 ---
@@ -34,7 +34,7 @@ figma: 'https://www.figma.com/design/foreign-file/metadata?node-id=1-2'
 <FigmaImage
   src="${approvedUrl}"
   darkModeSrc='https://www.figma.com/board/${FIGMA_FILE_KEY}/Brand?node-id=1804-8384'
-  alt="Example"
+  alt="Example > detail"
 />
 `
 
@@ -45,15 +45,44 @@ figma: 'https://www.figma.com/design/foreign-file/metadata?node-id=1-2'
     ])
   })
 
-  it('ignores unrelated Figma metadata and component props', () => {
+  it('ignores unrelated Figma metadata, component props, and code examples', () => {
     const content = `---
 figma: '${approvedUrl}'
 ---
 
 <Example src="${approvedUrl}" />
+
+\`\`\`mdx
+<FigmaImage src="${approvedUrl}" alt="Code example" />
+\`\`\`
 `
 
     assert.deepEqual(extractFigmaUrls(content), [])
+  })
+
+  it('rejects dynamic FigmaImage sources with their source location', () => {
+    const content = `<FigmaImage src={figmaUrl} alt="Example" />`
+
+    assert.throws(
+      () => extractFigmaUrls(content, 'example.mdx'),
+      /example\.mdx:1:13: FigmaImage src must be a static quoted URL/,
+    )
+  })
+
+  it('reports malformed MDX with its source file', () => {
+    assert.throws(() => extractFigmaUrls('<FigmaImage src="unterminated', 'broken.mdx'), /broken\.mdx.*parse MDX/)
+  })
+
+  it('reports malformed frontmatter with its source location', () => {
+    const content = `---
+thumbnail: [unterminated
+---
+`
+
+    assert.throws(
+      () => extractFigmaUrls(content, 'broken-frontmatter.mdx'),
+      /broken-frontmatter\.mdx:1:1: unable to parse frontmatter/,
+    )
   })
 })
 
@@ -74,6 +103,18 @@ describe('discoverFigmaUrls', () => {
     assert.equal(discovered.length, 1)
     assert.equal(discovered[0].url, approvedUrl)
     assert.equal(discovered[0].filePath, path.join(contentDirectory, 'components/example.mdx'))
+  })
+
+  it('reports errors from every invalid MDX file', async () => {
+    const contentDirectory = await createTemporaryDirectory()
+    await fs.writeFile(path.join(contentDirectory, 'first.mdx'), '<FigmaImage src={firstUrl} />')
+    await fs.writeFile(path.join(contentDirectory, 'second.mdx'), '<FigmaImage src={secondUrl} />')
+
+    await assert.rejects(discoverFigmaUrls(contentDirectory), error => {
+      assert.match(error.message, /first\.mdx/)
+      assert.match(error.message, /second\.mdx/)
+      return true
+    })
   })
 })
 
@@ -109,6 +150,28 @@ describe('validateFigmaUrl', () => {
     assert.match(parsed.canonicalUrl, /node-id=1804-8382/)
     assert.match(parsed.canonicalUrl, /t=example/)
   })
+
+  it('rejects bare figma.com thumbnail URLs instead of ignoring them', () => {
+    const content = `---
+thumbnail: https://figma.com/design/${FIGMA_FILE_KEY}/Brand?node-id=1804-8382
+---
+`
+    const discovered = extractFigmaUrls(content).map(url => ({url, filePath: 'thumbnail.mdx'}))
+
+    assert.throws(() => validateFigmaUrls(discovered), /must be an https:\/\/www\.figma\.com/)
+  })
+})
+
+describe('validateFigmaUrls', () => {
+  it('deduplicates references to the same node with different query parameters', () => {
+    const validated = validateFigmaUrls([
+      {url: `${approvedUrl}&t=first`, filePath: 'first.mdx'},
+      {url: `${approvedUrl}&t=second`, filePath: 'second.mdx'},
+    ])
+
+    assert.equal(validated.length, 1)
+    assert.equal(validated[0].basename, `${FIGMA_FILE_KEY}-1804-8382`)
+  })
 })
 
 describe('generateFigmaImages', () => {
@@ -137,6 +200,26 @@ describe('verifyFigmaImageAssets', () => {
       verifyFigmaImageAssets([validateFigmaUrl(approvedUrl)], outputDirectory),
       /Generated dimensions are missing/,
     )
+  })
+
+  it('rejects manifest entries for unreferenced Figma images', async () => {
+    const outputDirectory = await createTemporaryDirectory()
+    await fs.writeFile(
+      path.join(outputDirectory, 'images.json'),
+      JSON.stringify({
+        stale: {width: 100, height: 100},
+      }),
+    )
+
+    await assert.rejects(verifyFigmaImageAssets([], outputDirectory), /dimensions remain for unreferenced Figma images/)
+  })
+
+  it('rejects generated files for unreferenced Figma images', async () => {
+    const outputDirectory = await createTemporaryDirectory()
+    await fs.writeFile(path.join(outputDirectory, 'images.json'), '{}')
+    await fs.writeFile(path.join(outputDirectory, 'stale.png'), 'stale')
+
+    await assert.rejects(verifyFigmaImageAssets([], outputDirectory), /files remain for unreferenced Figma images/)
   })
 })
 

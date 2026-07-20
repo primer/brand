@@ -185,7 +185,7 @@ jobs:
           esac
 
       - name: Remove request label
-        if: always() && steps.request-gate.outputs.should_cleanup == 'true'
+        if: always() && steps.request-gate.outputs.should_cleanup == 'true' && (steps.request-gate.outputs.should_process != 'true' || success())
         uses: actions/github-script@v8
         with:
           script: |
