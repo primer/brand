@@ -6,6 +6,9 @@ import {ActionMenuButtonModes} from '../../../../../packages/react/src/ActionMen
 export const ActionMenuSizesProp = () => <PropTableValues values={['small', 'medium']} commaSeparated />
 export const ActionMenuSelectionVariantProp = () => <PropTableValues values={['single', 'none']} commaSeparated />
 export const ActionMenuMenuAlignmentProp = () => <PropTableValues values={['start', 'end']} commaSeparated />
+export const ActionMenuButtonVariantsProp = () => (
+  <PropTableValues values={['primary', 'secondary', 'subtle']} commaSeparated />
+)
 
 export const ActionMenuMenuSideProp = () => (
   <PropTableValues
