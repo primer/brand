@@ -81,6 +81,14 @@
     border-inline-start: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
   }
 
+  .cardGridColumnTabletEndDivider .cardGridItem {
+    border-inline-end: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
+  }
+
+  .cardGridColumnTabletLastCompleteRow .cardGridItem {
+    border-block-end: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
+  }
+
   .cardGridColumnMiddleTabletRow .cardGridItem {
     border-block: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
   }

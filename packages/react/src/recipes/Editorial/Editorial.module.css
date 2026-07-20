@@ -3,8 +3,10 @@
 }
 
 .layout {
+  --editorial-sidebar-width: 18.75rem;
+
   display: grid;
-  grid-template-columns: minmax(var(--base-size-80), 23.4375rem) minmax(0, 1fr);
+  grid-template-columns: var(--editorial-sidebar-width) minmax(0, 1fr);
   width: 100%;
   border-block-start: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
 }
@@ -39,5 +41,11 @@
 
   .sidebar {
     display: none;
+  }
+}
+
+@media screen and (min-width: 90rem) {
+  .layout {
+    --editorial-sidebar-width: 23.4375rem;
   }
 }

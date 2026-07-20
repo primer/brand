@@ -1,6 +1,8 @@
 .layout {
+  --editorial-sidebar-width: 18.75rem;
+
   display: grid;
-  grid-template-columns: minmax(var(--base-size-80), 23.4375rem) minmax(0, 1fr) minmax(var(--base-size-80), 23.4375rem);
+  grid-template-columns: var(--editorial-sidebar-width) minmax(0, 1fr) var(--editorial-sidebar-width);
   width: 100%;
   border-block-start: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
 }
@@ -338,5 +340,11 @@
 
   .codeExampleAside {
     border-block-start: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
+  }
+}
+
+@media screen and (min-width: 90rem) {
+  .layout {
+    --editorial-sidebar-width: 23.4375rem;
   }
 }

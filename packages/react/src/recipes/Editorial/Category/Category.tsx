@@ -139,6 +139,11 @@ function CardGrid({cards, heading, sortLabel, footer}: CardGridProps) {
             styles.cardGridColumn,
             styles.cardGridColumnArrowHover,
             index % 2 === 1 && styles.cardGridColumnTabletDivider,
+            cards.length % 2 === 1 && index === cards.length - 1 && styles.cardGridColumnTabletEndDivider,
+            cards.length % 2 === 1 &&
+              index >= lastTabletRowStartIndex - 2 &&
+              index < lastTabletRowStartIndex &&
+              styles.cardGridColumnTabletLastCompleteRow,
             index % 3 !== 0 && styles.cardGridColumnDesktopStartDivider,
             index > 0 && index < cards.length - 1 && styles.cardGridColumnMiddleMobileRow,
             index >= 2 && index < lastTabletRowStartIndex && styles.cardGridColumnMiddleTabletRow,

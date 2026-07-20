@@ -7,6 +7,8 @@ declare const styles: {
   readonly cardGridColumnMiddleMobileRow: string
   readonly cardGridColumnMiddleTabletRow: string
   readonly cardGridColumnTabletDivider: string
+  readonly cardGridColumnTabletEndDivider: string
+  readonly cardGridColumnTabletLastCompleteRow: string
   readonly cardGridFooterColumn: string
   readonly cardGridItem: string
   readonly featuredSection: string
