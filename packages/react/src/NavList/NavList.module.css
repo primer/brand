@@ -359,6 +359,10 @@
   padding-inline-start: var(--base-size-40);
 }
 
+.NavList__groupList .NavList__item--leaf.NavList__item--level-3 > .NavList__itemContent {
+  padding-inline-start: var(--base-size-16);
+}
+
 .NavList__item--leaf.NavList__item--level-4 > .NavList__itemContent {
   padding-inline-start: calc(var(--base-size-48) + var(--base-size-8));
 }
