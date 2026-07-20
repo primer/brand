@@ -104,53 +104,59 @@ export const NestedDisclosure: Story = {
 
 export const GroupedNestedLevels: Story = {
   render: () => (
-    <NavList aria-label="Grouped nested levels">
-      <NavList.Group title="Level 3 leaf">
-        <NavList.Item defaultExpanded>
-          Level 2 disclosure
-          <NavList.SubNav>
-            <NavList.Item href="#" aria-current="page">
-              Level 3 current leaf
-            </NavList.Item>
-          </NavList.SubNav>
-        </NavList.Item>
-      </NavList.Group>
-      <NavList.Group title="Level 4 leaf">
-        <NavList.Item defaultExpanded>
-          Level 2 disclosure
-          <NavList.SubNav>
-            <NavList.Item defaultExpanded>
-              Level 3 disclosure
-              <NavList.SubNav>
-                <NavList.Item href="#" aria-current="page">
-                  Level 4 current leaf
-                </NavList.Item>
-              </NavList.SubNav>
-            </NavList.Item>
-          </NavList.SubNav>
-        </NavList.Item>
-      </NavList.Group>
-      <NavList.Group title="Level 5 leaf">
-        <NavList.Item defaultExpanded>
-          Level 2 disclosure
-          <NavList.SubNav>
-            <NavList.Item defaultExpanded>
-              Level 3 disclosure
-              <NavList.SubNav>
-                <NavList.Item defaultExpanded>
-                  Level 4 disclosure
-                  <NavList.SubNav>
-                    <NavList.Item href="#" aria-current="page">
-                      Level 5 current leaf
-                    </NavList.Item>
-                  </NavList.SubNav>
-                </NavList.Item>
-              </NavList.SubNav>
-            </NavList.Item>
-          </NavList.SubNav>
-        </NavList.Item>
-      </NavList.Group>
-    </NavList>
+    <>
+      <NavList aria-label="Grouped navigation with a level 3 leaf">
+        <NavList.Group title="Level 3 leaf">
+          <NavList.Item defaultExpanded>
+            Level 2 disclosure
+            <NavList.SubNav>
+              <NavList.Item href="#" aria-current="page">
+                Level 3 current leaf
+              </NavList.Item>
+            </NavList.SubNav>
+          </NavList.Item>
+        </NavList.Group>
+      </NavList>
+      <NavList aria-label="Grouped navigation with a level 4 leaf">
+        <NavList.Group title="Level 4 leaf">
+          <NavList.Item defaultExpanded>
+            Level 2 disclosure
+            <NavList.SubNav>
+              <NavList.Item defaultExpanded>
+                Level 3 disclosure
+                <NavList.SubNav>
+                  <NavList.Item href="#" aria-current="page">
+                    Level 4 current leaf
+                  </NavList.Item>
+                </NavList.SubNav>
+              </NavList.Item>
+            </NavList.SubNav>
+          </NavList.Item>
+        </NavList.Group>
+      </NavList>
+      <NavList aria-label="Grouped navigation with a level 5 leaf">
+        <NavList.Group title="Level 5 leaf">
+          <NavList.Item defaultExpanded>
+            Level 2 disclosure
+            <NavList.SubNav>
+              <NavList.Item defaultExpanded>
+                Level 3 disclosure
+                <NavList.SubNav>
+                  <NavList.Item defaultExpanded>
+                    Level 4 disclosure
+                    <NavList.SubNav>
+                      <NavList.Item href="#" aria-current="page">
+                        Level 5 current leaf
+                      </NavList.Item>
+                    </NavList.SubNav>
+                  </NavList.Item>
+                </NavList.SubNav>
+              </NavList.Item>
+            </NavList.SubNav>
+          </NavList.Item>
+        </NavList.Group>
+      </NavList>
+    </>
   ),
 }
 
