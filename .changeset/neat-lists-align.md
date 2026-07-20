@@ -2,4 +2,4 @@
 '@primer/react-brand': patch
 ---
 
-Fixed `NavList` leaf item indentation within grouped nested disclosures.
+Fixed `NavList` indentation across grouped nested disclosure levels.

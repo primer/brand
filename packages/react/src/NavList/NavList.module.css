@@ -359,6 +359,10 @@
   padding-inline-start: var(--base-size-40);
 }
 
+.NavList__groupList .NavList__item--level-3 > .NavList__itemContent {
+  padding-inline-start: calc(var(--base-size-16) + var(--base-size-2));
+}
+
 .NavList__groupList .NavList__item--leaf.NavList__item--level-3 > .NavList__itemContent {
   padding-inline-start: var(--base-size-16);
 }
@@ -369,6 +373,18 @@
 
 .NavList__item--leaf.NavList__item--level-5 > .NavList__itemContent {
   padding-inline-start: calc(var(--base-size-64) + var(--base-size-8));
+}
+
+.NavList__groupList .NavList__item--level-4 > .NavList__itemContent {
+  padding-inline-start: calc(var(--base-size-32) + var(--base-size-2));
+}
+
+.NavList__groupList .NavList__item--leaf.NavList__item--level-4 > .NavList__itemContent {
+  padding-inline-start: var(--base-size-32);
+}
+
+.NavList__groupList .NavList__item--leaf.NavList__item--level-5 > .NavList__itemContent {
+  padding-inline-start: var(--base-size-48);
 }
 
 .NavList__item:is(.NavList__item--level-2, .NavList__item--level-3, .NavList__item--level-4)
