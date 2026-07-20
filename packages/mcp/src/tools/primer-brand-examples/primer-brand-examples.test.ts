@@ -29,13 +29,13 @@ describe('primer_brand_examples', () => {
 
   it('leads page-level goals with the closest full-page template', async () => {
     const result = await primerBrandExamplesTool.run({goal: 'category page'}, makeContext())
-    expect(result.text).toContain('Full-page template')
+    expect(result.text).toContain('Full-page template — goal-matched recipe source')
     expect(result.text).toContain('category landing page')
   })
 
   it('combines the general page recipe with goal-specific form examples', async () => {
     const result = await primerBrandExamplesTool.run({goal: 'early access form page'}, makeContext())
-    expect(result.text).toContain('Full-page template — general composition reference')
+    expect(result.text).toContain('Full-page template — default FlexSuite overview recipe source')
     expect(result.text).toContain('Product feature overview landing page')
     expect(result.text).toContain('overview recipe source')
     expect(result.text).toContain('### CTAForm')

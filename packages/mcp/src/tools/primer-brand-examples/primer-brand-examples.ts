@@ -16,7 +16,7 @@ const inputSchema = z.object({
 
 type Input = z.infer<typeof inputSchema>
 
-const description = `Get ranked, copy-and-adapt examples of correct Primer Brand usage for a goal. Page goals include a current-brand Flexsuite recipe for overall composition, while independently ranked component examples provide goal-specific detail.
+const description = `Get ranked, copy-and-adapt examples of correct Primer Brand usage for a goal. Page goals include a current-brand full-page recipe for overall composition, while independently ranked component examples provide goal-specific detail.
 Pass a target use-case like "pricing section", "category page", or "education landing page"; unmatched page types use the general overview recipe, while unmatched component goals use a foundational set.
 Examples are real source, so they may carry demo scaffolding (a \`content\` object, internal fixture imports, CSS-module class names, repo-relative imports, \`{...args}\` spreads) — mirror the composition and props, then rebuild with your own content and \`@primer/react-brand\` imports. Don't paste verbatim.`
 
@@ -101,9 +101,9 @@ export const primerBrandExamplesTool: ToolModule<Input> = {
         ? rank(meaningfulGoal, ctx.catalog.recipes, recipeSearchFields).map(entry => entry.item)
         : []
     const defaultRecipe = ctx.catalog.recipes.find(recipe => recipe.name === 'FlexSuiteAIOverview')
-    const usesGeneralRecipe = isPageGoal && specificRecipes.length === 0 && Boolean(defaultRecipe)
+    const useDefaultRecipe = isPageGoal && specificRecipes.length === 0 && Boolean(defaultRecipe)
     const matchedRecipes =
-      specificRecipes.length > 0 ? specificRecipes : usesGeneralRecipe && defaultRecipe ? [defaultRecipe] : []
+      specificRecipes.length > 0 ? specificRecipes : useDefaultRecipe && defaultRecipe ? [defaultRecipe] : []
     const topRecipe = matchedRecipes[0]
 
     const sections = [`# Examples for "${goal}"`]
@@ -114,9 +114,9 @@ export const primerBrandExamplesTool: ToolModule<Input> = {
         : ''
       sections.push(
         [
-          `## Full-page template — ${usesGeneralRecipe ? 'general composition reference' : 'start here'}: ${
-            topRecipe.title
-          }`,
+          `## Full-page template — ${
+            useDefaultRecipe ? 'default FlexSuite overview recipe source' : 'goal-matched recipe source'
+          }: ${topRecipe.title}`,
           `This is the **actual current-brand recipe source** from \`@primer/react-brand\`, wired for our demo harness: a \`content\` object supplies the copy, imagery comes from internal fixtures, styling uses internal CSS-module class names, and imports are repo-relative. Ignore that scaffolding — mirror the page structure and gridline composition, then use the goal-specific component examples below for deeper context.${also}`,
           `\`\`\`tsx\n${topRecipe.source}\n\`\`\``,
         ].join('\n\n'),
