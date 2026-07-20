@@ -117,3 +117,11 @@ export const Gridline: Story = {
     )
   },
 }
+
+export const GridlineTablet: Story = {
+  name: 'Gridline (tablet)',
+  globals: {
+    viewport: {value: 'ipad10p'},
+  },
+  render: Gridline.render,
+}
