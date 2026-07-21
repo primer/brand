@@ -130,7 +130,7 @@ export const Variants: Story = {
           turpis felis nam pulvinar risus elementum.
         </CTABanner.Description>
         <CTABanner.ButtonGroup>
-          <Button variant="primary">Get started for free</Button>
+          <Button>Get started for free</Button>
           <Button>View docs</Button>
         </CTABanner.ButtonGroup>
       </CTABanner>
@@ -142,7 +142,7 @@ export const Variants: Story = {
         </CTABanner.Description>
         <CTABanner.Image src={placeholderImage} alt="Blank image" />
         <CTABanner.ButtonGroup>
-          <Button variant="primary">Get started for free</Button>
+          <Button>Get started for free</Button>
           <Button>View docs</Button>
         </CTABanner.ButtonGroup>
       </CTABanner>
@@ -153,7 +153,7 @@ export const Variants: Story = {
           turpis felis nam pulvinar risus elementum.
         </CTABanner.Description>
         <CTABanner.ButtonGroup>
-          <Button variant="primary">Get started for free</Button>
+          <Button>Get started for free</Button>
           <Button>View docs</Button>
         </CTABanner.ButtonGroup>
       </CTABanner>
@@ -166,7 +166,7 @@ export const WithPrimaryButton: Story = {
     <CTABanner>
       <CTABanner.Heading size="2">Start coding in seconds with Codespaces</CTABanner.Heading>
       <CTABanner.ButtonGroup>
-        <Button variant="primary">Get started for free</Button>
+        <Button>Get started for free</Button>
         <Button>View docs</Button>
       </CTABanner.ButtonGroup>
     </CTABanner>
@@ -543,7 +543,7 @@ export const WithLogo: Story = {
           turpis felis nam pulvinar risus elementum.
         </CTABanner.Description>
         <CTABanner.ButtonGroup>
-          <Button variant="primary">Get started for free</Button>
+          <Button>Get started for free</Button>
           <Button>View docs</Button>
         </CTABanner.ButtonGroup>
       </CTABanner>
@@ -565,7 +565,7 @@ export const WithLogo: Story = {
           turpis felis nam pulvinar risus elementum.
         </CTABanner.Description>
         <CTABanner.ButtonGroup>
-          <Button variant="primary">Get started for free</Button>
+          <Button>Get started for free</Button>
           <Button>View docs</Button>
         </CTABanner.ButtonGroup>
       </CTABanner>
@@ -615,7 +615,7 @@ export const WithDuotoneText: Story = {
           Use <b>duotone emphasis</b> to highlight key parts of your headline. Wrap text in a <code>b</code> tag.
         </CTABanner.Description>
         <CTABanner.ButtonGroup>
-          <Button variant="primary">Get started for free</Button>
+          <Button>Get started for free</Button>
           <Button>View docs</Button>
         </CTABanner.ButtonGroup>
       </CTABanner>
@@ -627,7 +627,7 @@ export const WithDuotoneText: Story = {
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id.
         </CTABanner.Description>
         <CTABanner.ButtonGroup>
-          <Button variant="primary">Get started for free</Button>
+          <Button>Get started for free</Button>
           <Button>View docs</Button>
         </CTABanner.ButtonGroup>
         <CTABanner.Image src={placeholderImage} alt="Blank image" />
@@ -640,7 +640,7 @@ export const WithDuotoneText: Story = {
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id.
         </CTABanner.Description>
         <CTABanner.ButtonGroup>
-          <Button variant="primary">Get started for free</Button>
+          <Button>Get started for free</Button>
           <Button>View docs</Button>
         </CTABanner.ButtonGroup>
       </CTABanner>

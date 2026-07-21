@@ -326,7 +326,7 @@ export const GridlineExpressive: Story = {
         <Button as="a" href="#">
           Get started for free
         </Button>
-        <Button as="a" href="#" variant="secondary">
+        <Button as="a" href="#">
           See plans &amp; pricing
         </Button>
       </Hero.ButtonGroup>
@@ -349,7 +349,7 @@ export const GridlineExpressiveNarrow: Story = {
         <Button as="a" href="#">
           Get started for free
         </Button>
-        <Button as="a" href="#" variant="secondary">
+        <Button as="a" href="#">
           See plans &amp; pricing
         </Button>
       </Hero.ButtonGroup>
@@ -375,7 +375,7 @@ export const GridlineExpressiveBlockEndPadded: Story = {
         <Button as="a" href="#">
           Get started for free
         </Button>
-        <Button as="a" href="#" variant="secondary">
+        <Button as="a" href="#">
           See plans &amp; pricing
         </Button>
       </Hero.ButtonGroup>
@@ -406,7 +406,7 @@ export const GridlineExpressiveBlockEndPaddedTrailingComponent: Story = {
         <Button as="a" href="#">
           Get started for free
         </Button>
-        <Button as="a" href="#" variant="secondary">
+        <Button as="a" href="#">
           See plans &amp; pricing
         </Button>
       </Hero.ButtonGroup>
@@ -434,7 +434,7 @@ export const GridlineExpressiveIgnoresCenterAlign: Story = {
         <Button as="a" href="#">
           Get started for free
         </Button>
-        <Button as="a" href="#" variant="secondary">
+        <Button as="a" href="#">
           See plans &amp; pricing
         </Button>
       </Hero.ButtonGroup>

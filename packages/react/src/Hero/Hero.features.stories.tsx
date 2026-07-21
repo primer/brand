@@ -106,10 +106,10 @@ export const WithPrimaryButton: Story = {
         large projects as tables, boards, or roadmaps, and automate everything with code.
       </Hero.Description>
       <Hero.ButtonGroup>
-        <Button as="a" variant="primary" href="#">
+        <Button as="a" href="#">
           Start using projects
         </Button>
-        <Button as="a" variant="secondary" href="#" trailingVisual={<PlayIcon />}>
+        <Button as="a" href="#" trailingVisual={<PlayIcon />}>
           What is GitHub Issues
         </Button>
       </Hero.ButtonGroup>
@@ -223,7 +223,7 @@ export const WithCustomClassnames: Story = {
         <Button as="a" href="#" className="test-class">
           Primary action
         </Button>
-        <Button as="a" href="#" variant="secondary" className="test-class">
+        <Button as="a" href="#" className="test-class">
           Secondary action
         </Button>
       </Hero.ButtonGroup>
@@ -244,7 +244,7 @@ export const WithCustomHeadingAndDescriptionSizes: Story = {
         <Button as="a" href="#" className="test-class">
           Primary action
         </Button>
-        <Button as="a" href="#" variant="secondary" className="test-class">
+        <Button as="a" href="#" className="test-class">
           Secondary action
         </Button>
       </Hero.ButtonGroup>
@@ -287,7 +287,7 @@ export const NarrowView: Story = {
         <Button as="a" href="#">
           Watch video
         </Button>
-        <Button as="a" href="#" variant="secondary">
+        <Button as="a" href="#">
           Start using project tables
         </Button>
       </Hero.ButtonGroup>
@@ -310,7 +310,7 @@ export const NarrowViewCentered: Story = {
         <Button as="a" href="#">
           Watch video
         </Button>
-        <Button as="a" href="#" variant="secondary">
+        <Button as="a" href="#">
           Start using project tables
         </Button>
       </Hero.ButtonGroup>

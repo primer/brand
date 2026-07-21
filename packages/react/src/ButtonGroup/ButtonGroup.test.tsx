@@ -82,7 +82,7 @@ describe('ButtonGroup', () => {
     expect(buttonEl.classList).toContain(expectedClass)
   })
 
-  it('applies primary variant automatically to the first button and subtle variant to second', () => {
+  it('applies primary variant automatically to the first button and secondary variant to second', () => {
     const {getAllByRole} = render(
       <ButtonGroup>
         <Button>Primary Action</Button>
@@ -91,7 +91,7 @@ describe('ButtonGroup', () => {
     )
     const buttons = getAllByRole('button')
     expect(buttons[0].classList).toContain('Button--primary')
-    expect(buttons[1].classList).toContain('Button--subtle')
+    expect(buttons[1].classList).toContain('Button--secondary')
   })
 
   it('does not render arrows on buttons by default', () => {
@@ -132,7 +132,7 @@ describe('ButtonGroup', () => {
 
     const menuButton = getByRole('button', {name: 'More actions'})
     expect(menuButton).toHaveClass('Button--size-small')
-    expect(menuButton).toHaveClass('Button--subtle')
+    expect(menuButton).toHaveClass('Button--secondary')
 
     fireEvent.click(menuButton)
 
@@ -177,7 +177,7 @@ describe('ButtonGroup', () => {
     )
 
     expect(getByRole('button', {name: 'Primary actions'})).toHaveClass('Button--primary')
-    expect(getByRole('button', {name: 'Secondary actions'})).toHaveClass('Button--subtle')
+    expect(getByRole('button', {name: 'Secondary actions'})).toHaveClass('Button--secondary')
   })
 
   it('allows ActionMenu.Button variants to override automatic variants', () => {

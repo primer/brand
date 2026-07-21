@@ -85,7 +85,7 @@ export const CustomBackgroundBlockEndImage: Story = {
             <Button as="a" href="#">
               Primary action
             </Button>
-            <Button as="a" href="#" variant="secondary">
+            <Button as="a" href="#">
               Secondary action
             </Button>
           </Hero.ButtonGroup>
@@ -120,7 +120,7 @@ export const CustomBackgroundInlineEndPaddedImage: Story = {
           <Button as="a" href="#">
             Primary action
           </Button>
-          <Button as="a" href="#" variant="secondary">
+          <Button as="a" href="#">
             Secondary action
           </Button>
         </Hero.ButtonGroup>
@@ -154,7 +154,7 @@ export const CustomBackgroundBlockEndVideo: Story = {
             <Button as="a" href="#">
               Primary action
             </Button>
-            <Button as="a" href="#" variant="secondary">
+            <Button as="a" href="#">
               Secondary action
             </Button>
           </Hero.ButtonGroup>
@@ -194,7 +194,7 @@ export const CustomBackgroundInlineEndPaddedVideo: Story = {
           <Button as="a" href="#">
             Primary action
           </Button>
-          <Button as="a" href="#" variant="secondary">
+          <Button as="a" href="#">
             Secondary action
           </Button>
         </Hero.ButtonGroup>
@@ -239,7 +239,7 @@ export const WithCards: Story = {
             <Button as="a" href="#">
               Watch video
             </Button>
-            <Button as="a" href="#" variant="secondary">
+            <Button as="a" href="#">
               Start using project tables
             </Button>
           </Hero.ButtonGroup>
@@ -365,7 +365,7 @@ export const GridlineExpressiveBlockEndPaddedTrailingComponent: Story = {
           <Button as="a" href="#">
             Try Copilot now
           </Button>
-          <Button as="a" href="#" variant="secondary">
+          <Button as="a" href="#">
             See plans & pricing
           </Button>
         </Hero.ButtonGroup>
@@ -418,7 +418,7 @@ export const GridlineExpressiveWithImageCarousel: Story = {
             <Button as="a" href="#">
               Watch video
             </Button>
-            <Button as="a" href="#" variant="secondary">
+            <Button as="a" href="#">
               Start using project tables
             </Button>
           </Hero.ButtonGroup>

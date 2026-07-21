@@ -15,7 +15,7 @@ Migrate using the following approach:
 +  <Button as="a" href="#">
 +    Primary action
 +  </Button>
-+  <Button as="a" href="#" variant="secondary">
++  <Button as="a" href="#">
 +    Secondary action
 +  </Button>
 +</Hero.ButtonGroup>

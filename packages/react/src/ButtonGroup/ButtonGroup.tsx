@@ -23,7 +23,7 @@ export const ButtonGroup = forwardRef(
       )
       .slice(0, 2)
       .map((child, index) => {
-        const variant = index === 0 ? 'primary' : 'subtle'
+        const variant = index === 0 ? 'primary' : 'secondary'
 
         if (React.isValidElement<ButtonProps<'button' | 'a'>>(child) && child.type === Button) {
           return React.cloneElement(child, {

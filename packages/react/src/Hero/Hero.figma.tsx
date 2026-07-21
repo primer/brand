@@ -34,7 +34,7 @@ figma.connect(
       secondaryAction: figma.nestedProps('SecondaryAction', {text: figma.string('text')}),
       secondaryActionOpeningTag: figma.nestedProps('ButtonGroup', {
         tag: figma.boolean('secondary?', {
-          true: '<Button as="a" href="#" variant="secondary">',
+          true: '<Button as="a" href="#">',
           false: undefined,
         }),
       }),
