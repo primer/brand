@@ -17,7 +17,7 @@ const meta = {
       description: 'The size of the button elements',
       control: {
         type: 'radio',
-        options: ['medium', 'large'],
+        options: ['small', 'medium', 'large'],
       },
     },
     buttonsAs: {

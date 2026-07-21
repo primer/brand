@@ -34,6 +34,8 @@ This is the default variant for the ButtonGroup component. The first item in the
 
 Explicit `variant` overrides to `Button` or `ActionMenu.Button` will override the default values.
 
+`buttonSize` applies to both child types. Because `ActionMenu` supports only `small` and `medium`, it remains `medium` when `buttonSize="large"`. Set `size` on `ActionMenu` to override the inherited size.
+
 ```jsx live
 <ButtonGroup>
   <Button>Primary action</Button>
@@ -49,7 +51,7 @@ Explicit `variant` overrides to `Button` or `ActionMenu.Button` will override th
 
 ### Sizes
 
-The ButtonGroup component can be rendered in different sizes in `medium` and `large` sizes. The default size is `medium`.
+The ButtonGroup component supports `small`, `medium`, and `large` buttons. The default size is `medium`. ActionMenu children support `small` and `medium`.
 
 ```jsx live
 <ButtonGroup buttonSize="large">

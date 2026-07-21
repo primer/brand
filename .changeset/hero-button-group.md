@@ -2,7 +2,7 @@
 '@primer/react-brand': patch
 ---
 
-Added `Hero.ButtonGroup` for rendering `Button` and `ActionMenu` children. `Hero.ButtonGroup` is now the defacto way to display buttons in the `Hero`.
+Added `Hero.ButtonGroup` for rendering `Button` and `ActionMenu` children. `Hero.ButtonGroup` is now the de facto way to display buttons in the `Hero`.
 
 ⚠️ `Hero.PrimaryAction` and `Hero.SecondaryAction` are now deprecated. Please migrate over to `Hero.ButtonGroup` as they will be removed in a future release.
 

@@ -139,6 +139,25 @@ describe('ButtonGroup', () => {
     expect(getByRole('menu', {name: 'More actions'})).toBeInTheDocument()
   })
 
+  it.each([
+    ['small', 'small'],
+    ['medium', 'medium'],
+    ['large', 'medium'],
+  ] as const)('applies the %s group size to ActionMenu as %s', (buttonSize, expectedSize) => {
+    const {getByRole} = render(
+      <ButtonGroup buttonSize={buttonSize}>
+        <ActionMenu>
+          <ActionMenu.Button>More actions</ActionMenu.Button>
+          <ActionMenu.Overlay aria-label="More actions">
+            <ActionMenu.Item value="Contact sales">Contact sales</ActionMenu.Item>
+          </ActionMenu.Overlay>
+        </ActionMenu>
+      </ButtonGroup>,
+    )
+
+    expect(getByRole('button', {name: 'More actions'})).toHaveClass(`Button--size-${expectedSize}`)
+  })
+
   it('applies variants automatically to ActionMenu children', () => {
     const {getByRole} = render(
       <ButtonGroup>

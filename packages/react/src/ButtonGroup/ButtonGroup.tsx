@@ -34,6 +34,7 @@ export const ButtonGroup = forwardRef(
         }
 
         const actionMenu = child as PrimerBrandActionMenuType
+        const actionMenuSize = buttonSize === 'large' ? 'medium' : buttonSize
         const actionMenuChildren = React.Children.map(actionMenu.props.children, actionMenuChild => {
           if (
             React.isValidElement<React.ComponentProps<typeof ActionMenu.Button>>(actionMenuChild) &&
@@ -46,7 +47,10 @@ export const ButtonGroup = forwardRef(
           return actionMenuChild
         })
 
-        return React.cloneElement(actionMenu, {children: actionMenuChildren})
+        return React.cloneElement(actionMenu, {
+          children: actionMenuChildren,
+          size: actionMenu.props.size ?? actionMenuSize,
+        })
       })
 
     return (
