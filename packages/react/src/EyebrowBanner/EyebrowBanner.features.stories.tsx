@@ -4,7 +4,7 @@ import {EyebrowBanner, EyebrowBannerIconColors, EyebrowBannerLabelColors} from '
 import {Stack} from '../Stack'
 import {MarkGithubIcon, SparkleFillIcon} from '@primer/octicons-react'
 import backgroundImageDark from '../fixtures/images/background-stars.png'
-import backgroundImageLight from '../recipes/FeaturePreviewLPs/fixtures/images/other/light-bg.png'
+import backgroundImageLight from '../fixtures/images/eyebrow-banner-light-bg.png'
 import {ThemeProvider} from '../ThemeProvider'
 import {Box} from '../Box'
 

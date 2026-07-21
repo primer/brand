@@ -1,6 +1,6 @@
 import {z} from 'zod'
 
-import type {CatalogComponent} from '../../catalog/types.js'
+import type {CatalogComponent, CatalogRecipe} from '../../catalog/types.js'
 import {rank} from '../../util/text.js'
 import {componentSearchFields, versionNote} from '../format.js'
 import type {ToolModule, ToolResult} from '../types.js'
@@ -16,8 +16,8 @@ const inputSchema = z.object({
 
 type Input = z.infer<typeof inputSchema>
 
-const description = `Get ranked, copy-and-adapt examples of correct Primer Brand usage for a goal. Component-level snippets come from the library's own tested Storybook stories; for page-level goals you also get a full-page template — the actual current-brand recipe source from \`@primer/react-brand\`.
-Pass a target use-case like "pricing section", "category page", or "education landing page" for the closest matches; with no match you get a default foundational set.
+const description = `Get ranked, copy-and-adapt examples of correct Primer Brand usage for a goal. Page goals include a current-brand full-page recipe for overall composition, while independently ranked component examples provide goal-specific detail.
+Pass a target use-case like "pricing section", "category page", or "education landing page"; unmatched page types use the general overview recipe, while unmatched component goals use a foundational set.
 Examples are real source, so they may carry demo scaffolding (a \`content\` object, internal fixture imports, CSS-module class names, repo-relative imports, \`{...args}\` spreads) — mirror the composition and props, then rebuild with your own content and \`@primer/react-brand\` imports. Don't paste verbatim.`
 
 /** Foundational sections that anchor almost every GitHub landing page, in composition order. */
@@ -35,6 +35,31 @@ export const primerBrandExamplesTool: ToolModule<Input> = {
   annotations: {readOnlyHint: true},
   run(input, ctx): ToolResult {
     const goal = input.goal?.trim() || 'landing page'
+    const genericPageTerms = new Set([
+      'feature',
+      'features',
+      'full',
+      'landing',
+      'lp',
+      'marketing',
+      'page',
+      'pages',
+      'product',
+      'site',
+      'template',
+      'templates',
+      'website',
+    ])
+    const meaningfulGoal = goal
+      .toLowerCase()
+      .split(/\s+/)
+      .map(term => term.replace(/^[^a-z0-9]+|[^a-z0-9-]+$/g, ''))
+      .filter(term => term && !genericPageTerms.has(term))
+      .join(' ')
+    const isPageGoal =
+      !input.goal?.trim() ||
+      /\b(page|pages|landing|homepage|home|website|site|template|lp|overview|category|details?)\b/i.test(goal)
+
     // Only surface components that actually have a tested example — never emit a stub.
     const withExamples = ctx.catalog.components.filter(component => exampleCode(component))
     if (withExamples.length === 0) {
@@ -46,7 +71,7 @@ export const primerBrandExamplesTool: ToolModule<Input> = {
       }
     }
 
-    const matched = rank(goal, withExamples, componentSearchFields)
+    const matched = (meaningfulGoal ? rank(meaningfulGoal, withExamples, componentSearchFields) : [])
       .slice(0, 6)
       .map(entry => entry.item)
     const useDefault = matched.length === 0
@@ -66,9 +91,19 @@ export const primerBrandExamplesTool: ToolModule<Input> = {
 
     // For page-level goals, lead with the closest full-page recipe. It's the real source (single
     // source of truth in @primer/react-brand), so tell the agent to look past its demo scaffolding.
-    const matchedRecipes = rank(goal, ctx.catalog.recipes, recipe => [recipe.title, recipe.keywords.join(' ')]).map(
-      entry => entry.item,
-    )
+    const recipeSearchFields = (recipe: CatalogRecipe): string[] => [
+      recipe.name,
+      recipe.title,
+      recipe.keywords.join(' '),
+    ]
+    const specificRecipes =
+      isPageGoal && meaningfulGoal
+        ? rank(meaningfulGoal, ctx.catalog.recipes, recipeSearchFields).map(entry => entry.item)
+        : []
+    const defaultRecipe = ctx.catalog.recipes.find(recipe => recipe.name === 'FlexSuiteAIOverview')
+    const useDefaultRecipe = isPageGoal && specificRecipes.length === 0 && Boolean(defaultRecipe)
+    const matchedRecipes =
+      specificRecipes.length > 0 ? specificRecipes : useDefaultRecipe && defaultRecipe ? [defaultRecipe] : []
     const topRecipe = matchedRecipes[0]
 
     const sections = [`# Examples for "${goal}"`]
@@ -79,8 +114,10 @@ export const primerBrandExamplesTool: ToolModule<Input> = {
         : ''
       sections.push(
         [
-          `## Full-page template — start here: ${topRecipe.title}`,
-          `This is the **actual current-brand recipe source** from \`@primer/react-brand\`, wired for our demo harness: a \`content\` object supplies the copy, imagery comes from internal fixtures, styling uses internal CSS-module class names, and imports are repo-relative. Ignore that scaffolding — mirror the composition, section order, and component props (e.g. the \`gridline\` / \`gridline-expressive\` variants and the bordered card-grid frame), then rebuild it with your own content, assets, and \`@primer/react-brand\` imports.${also}`,
+          `## Full-page template — ${
+            useDefaultRecipe ? 'default FlexSuite overview recipe source' : 'goal-matched recipe source'
+          }: ${topRecipe.title}`,
+          `This is the **actual current-brand recipe source** from \`@primer/react-brand\`, wired for our demo harness: a \`content\` object supplies the copy, imagery comes from internal fixtures, styling uses internal CSS-module class names, and imports are repo-relative. Ignore that scaffolding — mirror the page structure and gridline composition, then use the goal-specific component examples below for deeper context.${also}`,
           `\`\`\`tsx\n${topRecipe.source}\n\`\`\``,
         ].join('\n\n'),
       )
