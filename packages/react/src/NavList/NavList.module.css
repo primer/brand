@@ -8,13 +8,6 @@
   --brand-NavList-control-paddingInlineStart: var(--base-size-8);
   --brand-NavList-label-paddingInlineStart: var(--base-size-6);
 
-  /* prettier-ignore */
-  --brand-NavList-label-origin: calc(
-    var(--brand-NavList-item-paddingInlineStart-base) +
-    var(--brand-NavList-control-paddingInlineStart) +
-    var(--brand-NavList-label-paddingInlineStart)
-  );
-
   box-sizing: border-box;
   font-family: var(--brand-fontStack-sansSerif);
   color: var(--brand-color-text-default);
@@ -38,10 +31,11 @@
 
 .NavList__list--flat,
 .NavList__groupList {
-  --brand-NavList-label-origin: var(--base-size-16);
+  --brand-NavList-item-paddingInlineStart-base: var(--base-size-2);
 }
 
 .NavList__groupList .NavList__subNav .NavList__item--leaf {
+  --brand-NavList-item-paddingInlineStart-base: 0px;
   --brand-NavList-label-paddingInlineStart: var(--base-size-8);
 }
 
@@ -115,8 +109,7 @@
 .NavList__item:is(.NavList__item--level-2, .NavList__item--level-3, .NavList__item--level-4, .NavList__item--level-5)
   > .NavList__itemContent {
   padding-inline-start: calc(
-    var(--brand-NavList-label-origin) + var(--brand-NavList-item-label-indent) -
-      var(--brand-NavList-control-paddingInlineStart) - var(--brand-NavList-label-paddingInlineStart)
+    var(--brand-NavList-item-paddingInlineStart-base) + var(--brand-NavList-item-label-indent)
   );
 }
 
