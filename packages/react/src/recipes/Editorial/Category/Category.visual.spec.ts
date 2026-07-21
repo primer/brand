@@ -13,7 +13,48 @@ test.describe('Visual Comparison: Category', () => {
     })
     await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
-    await page.waitForTimeout(4000)
+    await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
+  test('Category / Card grid incomplete', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=recipes-editorial-category--card-grid-incomplete&viewMode=story',
+      {waitUntil: 'networkidle'},
+    )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+    await page.waitForTimeout(500)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
+  // eslint-disable-next-line i18n-text/no-en
+  test.describe('Tablet viewport test for Card grid Tablet', () => {
+    test.use({viewport: {width: 834, height: 1112}})
+    test('Category / Card grid Tablet', async ({page}) => {
+      await page.goto(
+        'http://localhost:6006/iframe.html?args=&id=recipes-editorial-category--card-grid-tablet&viewMode=story',
+        {waitUntil: 'networkidle'},
+      )
+      await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+      await page.waitForTimeout(500)
+      await expect(page).toHaveScreenshot({fullPage: true})
+    })
+  })
+
+  // eslint-disable-next-line i18n-text/no-en
+  test.describe('Mobile viewport test for Card grid Narrow', () => {
+    test.use({viewport: {width: 360, height: 800}})
+    test('Category / Card grid Narrow', async ({page}) => {
+      await page.goto(
+        'http://localhost:6006/iframe.html?args=&id=recipes-editorial-category--card-grid-narrow&viewMode=story',
+        {waitUntil: 'networkidle'},
+      )
+      await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+      await page.waitForTimeout(500)
+      await expect(page).toHaveScreenshot({fullPage: true})
+    })
   })
 })

@@ -1,10 +1,8 @@
-import {clsx} from 'clsx'
 import React, {useCallback, useState} from 'react'
 
 import {
   Box,
   Card,
-  Grid,
   Heading,
   Hero,
   MinimalFooter,
@@ -18,6 +16,7 @@ import {
 import {RedlineBackground} from '../../../component-helpers'
 
 import {defaultEditorialCategoryContent, type EditorialCategoryContent} from './Category.content'
+import {EditorialCardGrid} from '../EditorialCardGrid'
 import editorialStyles from '../Editorial.module.css'
 import styles from './Category.module.css'
 
@@ -132,50 +131,28 @@ type CardGridProps = {
 }
 
 function CardGrid({cards, heading, sortLabel, footer}: CardGridProps) {
-  const lastTabletRowStartIndex = cards.length - (cards.length % 2 || 2)
-  const lastDesktopRowStartIndex = cards.length - (cards.length % 3 || 3)
-
   return (
-    <Grid columnGap="none" rowGap="none" enableGutters={false} className={styles.cardGrid}>
-      <Grid.Column span={12} className={styles.sectionHeaderColumn}>
-        <Stack
-          className={styles.sectionHeader}
-          direction={{narrow: 'vertical', regular: 'horizontal'}}
-          gap={24}
-          alignItems={{narrow: 'flex-start', regular: 'flex-end'}}
-          justifyContent="space-between"
-          padding="none"
-        >
-          <Heading as="h2" size="5" weight="normal">
-            {heading}
-          </Heading>
-          {sortLabel ? (
-            <Text size="100" variant="muted" className={styles.sortLabel}>
-              {sortLabel}
-            </Text>
-          ) : null}
-        </Stack>
-      </Grid.Column>
-      {cards.map((card, index) => (
-        <Grid.Column
-          key={card.heading}
-          span={{xsmall: 12, medium: 6, large: 4}}
-          className={clsx(
-            styles.cardGridColumn,
-            styles.cardGridColumnArrowHover,
-            index % 2 === 1 && styles.cardGridColumnTabletDivider,
-            cards.length % 2 === 1 && index === cards.length - 1 && styles.cardGridColumnTabletEndDivider,
-            cards.length % 2 === 1 &&
-              index >= lastTabletRowStartIndex - 2 &&
-              index < lastTabletRowStartIndex &&
-              styles.cardGridColumnTabletLastCompleteRow,
-            index % 3 !== 0 && styles.cardGridColumnDesktopStartDivider,
-            index > 0 && index < cards.length - 1 && styles.cardGridColumnMiddleMobileRow,
-            index >= 2 && index < lastTabletRowStartIndex && styles.cardGridColumnMiddleTabletRow,
-            index >= 3 && index < lastDesktopRowStartIndex && styles.cardGridColumnMiddleDesktopRow,
-          )}
-        >
-          <Box className={styles.cardGridItem}>
+    <div className={styles.cardGrid}>
+      <Stack
+        className={styles.sectionHeader}
+        direction={{narrow: 'vertical', regular: 'horizontal'}}
+        gap={24}
+        alignItems={{narrow: 'flex-start', regular: 'flex-end'}}
+        justifyContent="space-between"
+        padding="none"
+      >
+        <Heading as="h2" size="5" weight="normal">
+          {heading}
+        </Heading>
+        {sortLabel ? (
+          <Text size="100" variant="muted" className={styles.sortLabel}>
+            {sortLabel}
+          </Text>
+        ) : null}
+      </Stack>
+      <EditorialCardGrid layout="responsive">
+        {cards.map(card => (
+          <Box key={card.heading} className={styles.cardGridItem}>
             <Card href={card.href} fullWidth ctaVariant="none" className={styles.resourceCard} backgroundColor="none">
               <Card.Tokens>
                 {card.tokens.map((token, tokenIndex) => (
@@ -186,13 +163,9 @@ function CardGrid({cards, heading, sortLabel, footer}: CardGridProps) {
               <Card.Description>{card.description}</Card.Description>
             </Card>
           </Box>
-        </Grid.Column>
-      ))}
-      {footer ? (
-        <Grid.Column span={12} className={styles.cardGridFooterColumn}>
-          {footer}
-        </Grid.Column>
-      ) : null}
-    </Grid>
+        ))}
+      </EditorialCardGrid>
+      {footer}
+    </div>
   )
 }
