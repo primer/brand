@@ -1,15 +1,9 @@
-.heroSection,
-.featuredSection {
+.heroSection {
   border-bottom: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
 }
 
 .hero {
   --brand-Hero-gridline-padding: var(--base-size-32);
-}
-
-.sectionSpacer {
-  height: var(--base-size-48);
-  border-block-end: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
 }
 
 .sectionHeader {
@@ -26,26 +20,43 @@
 }
 
 .cardGrid {
-  border-inline: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
+  --editorial-cardGrid-border: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
+
+  border-inline: var(--editorial-cardGrid-border);
+}
+
+.cardGridColumn {
+  display: flex;
 }
 
 .cardGridItem {
   --editorial-cardGrid-hover-overlay: color-mix(in srgb, var(--base-color-scale-gray-0) 50%, transparent);
 
+  width: 100%;
+  height: 100%;
+  padding: 0;
   transition: background var(--brand-animation-duration-extended) var(--brand-animation-easing-default);
 }
 
 .cardGridColumnMiddleMobileRow .cardGridItem {
-  border-block: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
+  border-block: var(--editorial-cardGrid-border);
 }
 
-.cardGridItem:is(:hover, :focus-within) {
+.cardGridColumnArrowHover .cardGridItem:is(:hover, :focus-within) {
   background: linear-gradient(to top, var(--editorial-cardGrid-hover-overlay) 0%, transparent 100%),
     var(--brand-color-canvas-default);
 }
 
-[data-color-mode='dark'] .cardGridItem:is(:hover, :focus-within) {
+[data-color-mode='dark'] .cardGridColumnArrowHover .cardGridItem:is(:hover, :focus-within) {
   --editorial-cardGrid-hover-overlay: color-mix(in srgb, var(--base-color-scale-gray-0) 10%, transparent);
+}
+
+.resourceCard {
+  min-height: 100%;
+}
+
+.cardGridItem .resourceCard:hover {
+  transform: none;
 }
 
 .paginationFrame {
@@ -58,19 +69,19 @@
   }
 
   .cardGridColumnTabletDivider .cardGridItem {
-    border-inline-start: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
+    border-inline-start: var(--editorial-cardGrid-border);
   }
 
   .cardGridColumnTabletEndDivider .cardGridItem {
-    border-inline-end: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
+    border-inline-end: var(--editorial-cardGrid-border);
   }
 
   .cardGridColumnTabletLastCompleteRow .cardGridItem {
-    border-block-end: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
+    border-block-end: var(--editorial-cardGrid-border);
   }
 
   .cardGridColumnMiddleTabletRow .cardGridItem {
-    border-block: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
+    border-block: var(--editorial-cardGrid-border);
   }
 }
 
@@ -80,10 +91,10 @@
   }
 
   .cardGridColumnDesktopStartDivider .cardGridItem {
-    border-inline-start: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
+    border-inline-start: var(--editorial-cardGrid-border);
   }
 
   .cardGridColumnMiddleDesktopRow .cardGridItem {
-    border-block: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
+    border-block: var(--editorial-cardGrid-border);
   }
 }

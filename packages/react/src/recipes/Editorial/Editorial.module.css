@@ -22,6 +22,10 @@
   min-width: 0;
 }
 
+.sectionFrame {
+  margin-top: calc(var(--base-size-48) - var(--brand-borderWidth-thin));
+}
+
 .redlineBackground {
   display: flex;
   flex-direction: column;

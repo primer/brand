@@ -3,7 +3,6 @@ declare const styles: {
   readonly "articleColumn": string;
   readonly "articleGrid": string;
   readonly "articleHero": string;
-  readonly "bodySection": string;
   readonly "codeExample": string;
   readonly "codeExampleAside": string;
   readonly "codeExampleBody": string;
@@ -27,7 +26,6 @@ declare const styles: {
   readonly "relatedArticlesHeader": string;
   readonly "relatedCards": string;
   readonly "secondarySidebar": string;
-  readonly "sectionSpacer": string;
   readonly "sidebar": string;
   readonly "step": string;
   readonly "stepContent": string;
@@ -36,4 +34,3 @@ declare const styles: {
   readonly "steps": string;
 };
 export = styles;
-

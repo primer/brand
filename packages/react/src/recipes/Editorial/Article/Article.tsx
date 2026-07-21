@@ -66,36 +66,42 @@ export function ArticleTemplate({content}: ArticleTemplateProps) {
               </Hero>
             </Section>
 
-            <Box className={styles.sectionSpacer} aria-hidden />
+            <Box
+              className={editorialStyles.sectionFrame}
+              borderBlockStartWidth="thin"
+              borderBlockEndWidth="thin"
+              borderColor="muted"
+              borderStyle="solid"
+            >
+              <Section paddingBlockStart="none" paddingBlockEnd="none" fullWidth>
+                <div className={styles.articleBody}>
+                  {content.article.introSections.map(section => (
+                    <ArticleContentBlock key={section.heading} heading={section.heading} body={section.body} />
+                  ))}
 
-            <Section paddingBlockStart="none" paddingBlockEnd="none" fullWidth className={styles.bodySection}>
-              <div className={styles.articleBody}>
-                {content.article.introSections.map(section => (
-                  <ArticleContentBlock key={section.heading} heading={section.heading} body={section.body} />
-                ))}
+                  <Grid columnGap="none" rowGap="none" className={styles.articleGrid}>
+                    <Grid.Column span={12} className={styles.articleColumn}>
+                      <div className={styles.contentBlock}>
+                        <div className={styles.steps}>
+                          {content.article.steps.map(step => (
+                            <ArticleStep key={step.number} step={step} />
+                          ))}
+                        </div>
 
-                <Grid columnGap="none" rowGap="none" className={styles.articleGrid}>
-                  <Grid.Column span={12} className={styles.articleColumn}>
-                    <div className={styles.contentBlock}>
-                      <div className={styles.steps}>
-                        {content.article.steps.map(step => (
-                          <ArticleStep key={step.number} step={step} />
-                        ))}
+                        <CodeExample codeExample={content.article.codeExample} />
+                        <ProTip proTip={content.article.proTip} />
                       </div>
+                    </Grid.Column>
+                  </Grid>
 
-                      <CodeExample codeExample={content.article.codeExample} />
-                      <ProTip proTip={content.article.proTip} />
-                    </div>
-                  </Grid.Column>
-                </Grid>
-
-                <Grid columnGap="none" rowGap="none" className={styles.articleGrid}>
-                  <Grid.Column span={12} className={styles.articleColumn}>
-                    <RelatedArticles related={content.article.related} />
-                  </Grid.Column>
-                </Grid>
-              </div>
-            </Section>
+                  <Grid columnGap="none" rowGap="none" className={styles.articleGrid}>
+                    <Grid.Column span={12} className={styles.articleColumn}>
+                      <RelatedArticles related={content.article.related} />
+                    </Grid.Column>
+                  </Grid>
+                </div>
+              </Section>
+            </Box>
           </article>
 
           <RedlineBackground className={editorialStyles.redlineBackground}>

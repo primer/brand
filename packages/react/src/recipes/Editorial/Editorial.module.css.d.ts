@@ -4,7 +4,7 @@ declare const styles: {
   readonly "page": string;
   readonly "redlineBackground": string;
   readonly "redlineBase": string;
+  readonly "sectionFrame": string;
   readonly "sidebar": string;
 };
 export = styles;
-

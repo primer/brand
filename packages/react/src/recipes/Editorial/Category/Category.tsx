@@ -54,47 +54,58 @@ export function CategoryTemplate({content}: CategoryTemplateProps) {
             </Hero>
           </Section>
 
-          <Box className={styles.sectionSpacer} aria-hidden />
+          <Box
+            className={editorialStyles.sectionFrame}
+            borderBlockStartWidth="thin"
+            borderBlockEndWidth="thin"
+            borderColor="muted"
+            borderStyle="solid"
+          >
+            <Section paddingBlockStart="none" paddingBlockEnd="none" fullWidth>
+              <CardGrid cards={content.featured.cards} heading={content.featured.heading} />
+            </Section>
+          </Box>
 
-          <Section paddingBlockStart="none" paddingBlockEnd="none" fullWidth className={styles.featuredSection}>
-            <CardGrid cards={content.featured.cards} heading={content.featured.heading} />
-          </Section>
+          <Box
+            className={editorialStyles.sectionFrame}
+            borderBlockStartWidth="thin"
+            borderColor="muted"
+            borderStyle="solid"
+          >
+            <Section paddingBlockStart="none" paddingBlockEnd="none" fullWidth>
+              <CardGrid
+                cards={content.resources.cards}
+                heading={content.resources.heading}
+                sortLabel={content.resources.sortLabel}
+                footer={
+                  <Stack
+                    className={styles.paginationFrame}
+                    direction={{
+                      narrow: 'vertical',
+                      wide: 'horizontal',
+                    }}
+                    alignItems="center"
+                    justifyContent={{
+                      narrow: 'center',
+                      wide: 'space-between',
+                    }}
+                    padding="normal"
+                  >
+                    <Text size="100" variant="muted">
+                      Showing 1-12 of 330
+                    </Text>
 
-          <Box className={styles.sectionSpacer} aria-hidden />
-
-          <Section paddingBlockStart="none" paddingBlockEnd="none" fullWidth>
-            <CardGrid
-              cards={content.resources.cards}
-              heading={content.resources.heading}
-              sortLabel={content.resources.sortLabel}
-              footer={
-                <Stack
-                  className={styles.paginationFrame}
-                  direction={{
-                    narrow: 'vertical',
-                    wide: 'horizontal',
-                  }}
-                  alignItems="center"
-                  justifyContent={{
-                    narrow: 'center',
-                    wide: 'space-between',
-                  }}
-                  padding="normal"
-                >
-                  <Text size="100" variant="muted">
-                    Showing 1-12 of 330
-                  </Text>
-
-                  <Pagination
-                    pageCount={10}
-                    currentPage={currentPage}
-                    onPageChange={handlePageChange}
-                    aria-label={content.pagination.ariaLabel}
-                  />
-                </Stack>
-              }
-            />
-          </Section>
+                    <Pagination
+                      pageCount={10}
+                      currentPage={currentPage}
+                      onPageChange={handlePageChange}
+                      aria-label={content.pagination.ariaLabel}
+                    />
+                  </Stack>
+                }
+              />
+            </Section>
+          </Box>
 
           <RedlineBackground className={editorialStyles.redlineBackground}>
             <RedlineBackground className={editorialStyles.redlineBase} />
@@ -150,6 +161,8 @@ function CardGrid({cards, heading, sortLabel, footer}: CardGridProps) {
           key={card.heading}
           span={{xsmall: 12, medium: 6, large: 4}}
           className={clsx(
+            styles.cardGridColumn,
+            styles.cardGridColumnArrowHover,
             index % 2 === 1 && styles.cardGridColumnTabletDivider,
             cards.length % 2 === 1 && index === cards.length - 1 && styles.cardGridColumnTabletEndDivider,
             cards.length % 2 === 1 &&
@@ -162,15 +175,17 @@ function CardGrid({cards, heading, sortLabel, footer}: CardGridProps) {
             index >= 3 && index < lastDesktopRowStartIndex && styles.cardGridColumnMiddleDesktopRow,
           )}
         >
-          <Card href={card.href} fullWidth ctaVariant="none" className={styles.cardGridItem} backgroundColor="none">
-            <Card.Tokens>
-              {card.tokens.map((token, tokenIndex) => (
-                <Token key={`${token}-${tokenIndex}`}>{token}</Token>
-              ))}
-            </Card.Tokens>
-            <Card.Heading size="subhead-medium">{card.heading}</Card.Heading>
-            <Card.Description>{card.description}</Card.Description>
-          </Card>
+          <Box className={styles.cardGridItem}>
+            <Card href={card.href} fullWidth ctaVariant="none" className={styles.resourceCard} backgroundColor="none">
+              <Card.Tokens>
+                {card.tokens.map((token, tokenIndex) => (
+                  <Token key={`${token}-${tokenIndex}`}>{token}</Token>
+                ))}
+              </Card.Tokens>
+              <Card.Heading size="subhead-medium">{card.heading}</Card.Heading>
+              <Card.Description>{card.description}</Card.Description>
+            </Card>
+          </Box>
         </Grid.Column>
       ))}
       {footer ? (

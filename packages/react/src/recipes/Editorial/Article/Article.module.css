@@ -39,15 +39,6 @@
   --brand-Hero-gridline-padding: var(--base-size-32);
 }
 
-.sectionSpacer {
-  block-size: var(--base-size-48);
-  border-block-end: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
-}
-
-.bodySection {
-  border-block-end: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
-}
-
 .articleBody {
   display: flex;
   flex-direction: column;
