@@ -72,6 +72,10 @@
   display: flex;
 }
 
+.paginationFrame {
+  padding-inline: var(--base-size-32);
+}
+
 @media screen and (min-width: 48rem) and (max-width: 63.24rem) {
   .cardGridColumnMiddleMobileRow .cardGridItem {
     border-block: 0;
@@ -113,9 +117,5 @@
   .sectionHeaderWithSort {
     align-items: start;
     flex-direction: column;
-  }
-
-  .paginationFrame {
-    justify-content: center;
   }
 }

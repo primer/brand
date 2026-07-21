@@ -70,9 +70,16 @@ export function CategoryTemplate({content}: CategoryTemplateProps) {
               footer={
                 <Stack
                   className={styles.paginationFrame}
-                  direction="horizontal"
+                  direction={{
+                    narrow: 'vertical',
+                    wide: 'horizontal',
+                  }}
                   alignItems="center"
-                  justifyContent="space-between"
+                  justifyContent={{
+                    narrow: 'center',
+                    wide: 'space-between',
+                  }}
+                  padding="normal"
                 >
                   <Text size="100" variant="muted">
                     Showing 1-12 of 330
@@ -157,7 +164,7 @@ function CardGrid({cards, heading, sortLabel, footer}: CardGridProps) {
                   <Token key={`${token}-${tokenIndex}`}>{token}</Token>
                 ))}
               </Card.Tokens>
-              <Card.Heading size="6">{card.heading}</Card.Heading>
+              <Card.Heading size="subhead-medium">{card.heading}</Card.Heading>
               <Card.Description>{card.description}</Card.Description>
             </Card>
           </Box>
