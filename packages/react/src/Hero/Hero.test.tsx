@@ -4,6 +4,8 @@ import '@testing-library/jest-dom'
 import {Hero} from './Hero'
 import {axe, toHaveNoViolations} from 'jest-axe'
 import {VideoPlayer} from '../VideoPlayer'
+import {Button} from '../Button'
+import {ActionMenu} from '../ActionMenu'
 
 expect.extend(toHaveNoViolations)
 
@@ -31,7 +33,7 @@ describe('Hero', () => {
 
   afterEach(cleanup)
 
-  test('renders correctly into the document', () => {
+  it('renders correctly into the document', () => {
     const {getByText} = render(
       <Hero>
         <Hero.Heading>{mockHeading}</Hero.Heading>
@@ -51,7 +53,7 @@ describe('Hero', () => {
     expect(secondaryActionElement).toBeInTheDocument()
   })
 
-  test('renders without secondary action', () => {
+  it('renders without secondary action', () => {
     const {queryAllByRole} = render(
       <Hero>
         <Hero.Heading>{mockHeading}</Hero.Heading>
@@ -64,7 +66,29 @@ describe('Hero', () => {
     expect(linkElements.length).toBe(1)
   })
 
-  test('renders without description', () => {
+  it('renders a ButtonGroup with Button and ActionMenu children in the expressive layout', () => {
+    const {getByRole, getByTestId} = render(
+      <Hero variant="gridline-expressive">
+        <Hero.Heading>{mockHeading}</Hero.Heading>
+        <Hero.Description>{mockDescription}</Hero.Description>
+        <Hero.ButtonGroup data-testid="hero-button-group">
+          <Button>Primary Action</Button>
+          <ActionMenu>
+            <ActionMenu.Button>More actions</ActionMenu.Button>
+            <ActionMenu.Overlay aria-label="More actions">
+              <ActionMenu.Item value="Contact sales">Contact sales</ActionMenu.Item>
+            </ActionMenu.Overlay>
+          </ActionMenu>
+        </Hero.ButtonGroup>
+      </Hero>,
+    )
+
+    expect(getByTestId('hero-button-group')).toHaveClass('Hero-actions')
+    expect(getByRole('button', {name: 'Primary Action'})).toBeInTheDocument()
+    expect(getByRole('button', {name: 'More actions'})).toBeInTheDocument()
+  })
+
+  it('renders without description', () => {
     const {container} = render(
       <Hero>
         <Hero.Heading>{mockHeading}</Hero.Heading>
@@ -77,7 +101,7 @@ describe('Hero', () => {
     expect(descriptionEl).toBeNull()
   })
 
-  test('renders without description', () => {
+  it('renders without description', () => {
     const mockLabel = 'Label'
 
     const {getByText} = render(
@@ -93,7 +117,7 @@ describe('Hero', () => {
     expect(labelEl).toBeInTheDocument()
   })
 
-  test('renders with an optional image in block end alignment by default', () => {
+  it('renders with an optional image in block end alignment by default', () => {
     const mockAltText = 'placeholder image, blank with gray solid fill'
 
     const {getByAltText} = render(
@@ -108,7 +132,7 @@ describe('Hero', () => {
     expect(imageEl).toHaveClass('Hero-media--pos-block-end')
   })
 
-  test('applies Hero layout classes to the picture element when as="picture"', () => {
+  it('applies Hero layout classes to the picture element when as="picture"', () => {
     const mockAltText = 'placeholder image, blank with gray solid fill'
 
     const {container} = render(
@@ -130,7 +154,7 @@ describe('Hero', () => {
     expect(pictureEl).toHaveClass('Hero-media--pos-block-end')
   })
 
-  test('it has a slot for videos', () => {
+  it('it has a slot for videos', () => {
     const mockTestId = 'hero-video'
     const {getByTestId} = render(
       <Hero>
@@ -144,7 +168,7 @@ describe('Hero', () => {
     expect(videoElSlot.tagName).toBe('DIV')
   })
 
-  test('it can render a native video in block-end alignment by default', () => {
+  it('it can render a native video in block-end alignment by default', () => {
     const mockTestId = 'hero-video'
     const mockTitle = 'Mock title'
     const {getByTitle, getByRole} = render(
@@ -167,7 +191,7 @@ describe('Hero', () => {
     expect(videoEl).toBeInTheDocument()
   })
 
-  test('it can render custom VideoPlayer in block-end alignment by default', () => {
+  it('it can render custom VideoPlayer in block-end alignment by default', () => {
     const mockTestId = 'hero-video'
     const mockTitle = 'Mock title'
     const {getByTitle, getByRole} = render(
@@ -189,7 +213,7 @@ describe('Hero', () => {
     expect(videoEl).toBeInTheDocument()
   })
 
-  test('it can render a Youtube video in block-end alignment by default', () => {
+  it('it can render a Youtube video in block-end alignment by default', () => {
     const mockTestId = 'hero-video'
     const mockTitle = 'Mock title'
     const {getByTitle, getByRole} = render(
@@ -214,7 +238,7 @@ describe('Hero', () => {
     expect(videoEl).toBeInTheDocument()
   })
 
-  test('it can optionally render an image in inline end alignment', () => {
+  it('it can optionally render an image in inline end alignment', () => {
     const mockAltText = 'placeholder image, blank with gray solid fill'
 
     const {getByAltText} = render(
@@ -229,7 +253,7 @@ describe('Hero', () => {
     expect(imageEl).toHaveClass('Hero-media--pos-inline-end')
   })
 
-  test('it can optionally render a video in inline-end alignment', () => {
+  it('it can optionally render a video in inline-end alignment', () => {
     const mockTestId = 'hero-video'
     const mockTitle = 'Mock title'
     const {getByTitle, getByRole} = render(
@@ -252,7 +276,7 @@ describe('Hero', () => {
     expect(videoEl).toBeInTheDocument()
   })
 
-  test('renders with a label', () => {
+  it('renders with a label', () => {
     const mockLabel = 'Label'
 
     const {getByText} = render(
@@ -286,7 +310,7 @@ describe('Hero', () => {
     expect(elTrailing).toBeInTheDocument()
   })
 
-  test('no a11y violations', async () => {
+  it('no a11y violations', async () => {
     const {container} = render(
       <Hero>
         <Hero.Heading>{mockHeading}</Hero.Heading>
@@ -300,7 +324,7 @@ describe('Hero', () => {
     expect(results).toHaveNoViolations()
   })
 
-  test('it prevents rendering multiple media types, preferring images by default', () => {
+  it('it prevents rendering multiple media types, preferring images by default', () => {
     const mockAltText = 'placeholder image, blank with gray solid fill'
     const mockVideoTestId = 'hero-video'
     const mockVideoTitle = 'Mock video title'
@@ -329,7 +353,7 @@ describe('Hero', () => {
     expect(videoEl).not.toBeInTheDocument()
   })
 
-  test('renders with default variant by default', () => {
+  it('renders with default variant by default', () => {
     const mockAltText = 'placeholder image'
 
     const {getByAltText} = render(
@@ -343,7 +367,7 @@ describe('Hero', () => {
     expect(imageEl).not.toHaveClass('Hero-image--contained')
   })
 
-  test('renders with a gridline variant', () => {
+  it('renders with a gridline variant', () => {
     const mockAltText = 'placeholder image'
 
     const {getByAltText, getByRole, getByTestId} = render(
@@ -363,7 +387,7 @@ describe('Hero', () => {
     expect(imageWrapper).toBeInTheDocument()
   })
 
-  test('renders the gridline layout with optional inline layout. Defaults to end.', () => {
+  it('renders the gridline layout with optional inline layout. Defaults to end.', () => {
     const mockAltText = 'placeholder image'
 
     const {getByAltText, getByRole, getByTestId} = render(
@@ -384,7 +408,7 @@ describe('Hero', () => {
     expect(gridEl).toHaveClass('Hero-grid--bordered-inline')
   })
 
-  test('renders the gridline layout with optional inline start layout. ', () => {
+  it('renders the gridline layout with optional inline start layout. ', () => {
     const mockAltText = 'placeholder image'
 
     const {getByAltText, getByRole, getByTestId} = render(
@@ -406,7 +430,7 @@ describe('Hero', () => {
     expect(gridEl).toHaveClass('Hero-grid--bordered-inline')
   })
 
-  test('renders with gridline-expressive variant', () => {
+  it('renders with gridline-expressive variant', () => {
     const {getByRole, getByTestId} = render(
       <Hero variant="gridline-expressive">
         <Hero.Heading>{mockHeading}</Hero.Heading>
@@ -421,7 +445,7 @@ describe('Hero', () => {
     expect(gridEl).toHaveClass('Hero-grid--expressive')
   })
 
-  test('ignores align="center" for the gridline-expressive variant and warns in development', () => {
+  it('ignores align="center" for the gridline-expressive variant and warns in development', () => {
     const warnSpy = jest.spyOn(console, 'warn').mockImplementation(() => {})
     const {getByRole} = render(
       <Hero variant="gridline-expressive" align="center">
@@ -438,7 +462,7 @@ describe('Hero', () => {
     warnSpy.mockRestore()
   })
 
-  test('renders with center alignment', () => {
+  it('renders with center alignment', () => {
     const {getByRole} = render(
       <Hero align="center">
         <Hero.Heading>{mockHeading}</Hero.Heading>
@@ -449,7 +473,7 @@ describe('Hero', () => {
     expect(rootEl).toHaveClass('Hero--align-center')
   })
 
-  test('renders with start alignment by default', () => {
+  it('renders with start alignment by default', () => {
     const {getByRole} = render(
       <Hero>
         <Hero.Heading>{mockHeading}</Hero.Heading>
@@ -460,7 +484,7 @@ describe('Hero', () => {
     expect(rootEl).toHaveClass('Hero--align-start')
   })
 
-  test('renders Hero.Eyebrow correctly', () => {
+  it('renders Hero.Eyebrow correctly', () => {
     const mockEyebrow = 'Eyebrow text'
 
     const {getByText} = render(
@@ -474,7 +498,7 @@ describe('Hero', () => {
     expect(eyebrowEl).toBeInTheDocument()
   })
 
-  test('renders with block-end-padded position', () => {
+  it('renders with block-end-padded position', () => {
     const mockAltText = 'placeholder image'
 
     const {getByRole, getByTestId} = render(
@@ -491,7 +515,7 @@ describe('Hero', () => {
     expect(imageWrapper).toHaveClass('Hero-imageWrapper--block-end-padded')
   })
 
-  test('renders with inline-end-padded position', () => {
+  it('renders with inline-end-padded position', () => {
     const mockAltText = 'placeholder image'
 
     const {getByRole} = render(
@@ -505,7 +529,7 @@ describe('Hero', () => {
     expect(rootEl).toHaveClass('Hero--image-pos-inline-end-padded')
   })
 
-  test('renders with inline-start-padded position', () => {
+  it('renders with inline-start-padded position', () => {
     const mockAltText = 'placeholder image'
 
     const {getByRole} = render(
@@ -519,7 +543,7 @@ describe('Hero', () => {
     expect(rootEl).toHaveClass('Hero--image-pos-inline-start-padded')
   })
 
-  test('renders with default imageBackgroundColor', () => {
+  it('renders with default imageBackgroundColor', () => {
     const mockAltText = 'placeholder image'
 
     const {container} = render(
@@ -533,7 +557,7 @@ describe('Hero', () => {
     expect(imageWrapper).toBeInTheDocument()
   })
 
-  test('renders with subtle imageBackgroundColor', () => {
+  it('renders with subtle imageBackgroundColor', () => {
     const mockAltText = 'placeholder image'
 
     const {container} = render(
@@ -547,7 +571,7 @@ describe('Hero', () => {
     expect(imageWrapper).toBeInTheDocument()
   })
 
-  test('renders with duotone styles when <b> tag is used inside the Hero.Heading', () => {
+  it('renders with duotone styles when <b> tag is used inside the Hero.Heading', () => {
     const {getByText} = render(
       <Hero>
         <Hero.Heading>

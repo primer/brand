@@ -1,13 +1,30 @@
-import {render, cleanup} from '@testing-library/react'
+import {render, cleanup, fireEvent} from '@testing-library/react'
 import '@testing-library/jest-dom'
 
 import {ButtonGroup} from './ButtonGroup'
 import {Button} from '../Button'
+import {ActionMenu} from '../ActionMenu'
 import {axe, toHaveNoViolations} from 'jest-axe'
 
 expect.extend(toHaveNoViolations)
 
 describe('ButtonGroup', () => {
+  beforeAll(() => {
+    Object.defineProperty(window, 'matchMedia', {
+      writable: true,
+      value: jest.fn().mockImplementation(query => ({
+        matches: false,
+        media: query,
+        onchange: null,
+        addListener: jest.fn(),
+        removeListener: jest.fn(),
+        dispatchEvent: jest.fn(),
+        addEventListener: jest.fn(),
+        removeEventListener: jest.fn(),
+      })),
+    })
+  })
+
   afterEach(cleanup)
 
   it('renders correctly into the document', () => {
@@ -98,6 +115,65 @@ describe('ButtonGroup', () => {
     const buttons = getAllByRole('button')
     expect(buttons[0].classList).toContain('Button--primary')
     expect(buttons[1].classList).toContain('Button--secondary')
+  })
+
+  it('renders ActionMenu as valid children', () => {
+    const {getByRole} = render(
+      <ButtonGroup>
+        <Button>Primary Action</Button>
+        <ActionMenu size="small">
+          <ActionMenu.Button>More actions</ActionMenu.Button>
+          <ActionMenu.Overlay aria-label="More actions">
+            <ActionMenu.Item value="Contact sales">Contact sales</ActionMenu.Item>
+          </ActionMenu.Overlay>
+        </ActionMenu>
+      </ButtonGroup>,
+    )
+
+    const menuButton = getByRole('button', {name: 'More actions'})
+    expect(menuButton).toHaveClass('Button--size-small')
+    expect(menuButton).toHaveClass('Button--subtle')
+
+    fireEvent.click(menuButton)
+
+    expect(getByRole('menu', {name: 'More actions'})).toBeInTheDocument()
+  })
+
+  it('applies variants automatically to ActionMenu children', () => {
+    const {getByRole} = render(
+      <ButtonGroup>
+        <ActionMenu>
+          <ActionMenu.Button>Primary actions</ActionMenu.Button>
+          <ActionMenu.Overlay aria-label="Primary actions">
+            <ActionMenu.Item value="Primary action">Primary action</ActionMenu.Item>
+          </ActionMenu.Overlay>
+        </ActionMenu>
+        <ActionMenu>
+          <ActionMenu.Button>Secondary actions</ActionMenu.Button>
+          <ActionMenu.Overlay aria-label="Secondary actions">
+            <ActionMenu.Item value="Secondary action">Secondary action</ActionMenu.Item>
+          </ActionMenu.Overlay>
+        </ActionMenu>
+      </ButtonGroup>,
+    )
+
+    expect(getByRole('button', {name: 'Primary actions'})).toHaveClass('Button--primary')
+    expect(getByRole('button', {name: 'Secondary actions'})).toHaveClass('Button--subtle')
+  })
+
+  it('allows ActionMenu.Button variants to override automatic variants', () => {
+    const {getByRole} = render(
+      <ButtonGroup>
+        <ActionMenu>
+          <ActionMenu.Button variant="secondary">More actions</ActionMenu.Button>
+          <ActionMenu.Overlay aria-label="More actions">
+            <ActionMenu.Item value="Contact sales">Contact sales</ActionMenu.Item>
+          </ActionMenu.Overlay>
+        </ActionMenu>
+      </ButtonGroup>,
+    )
+
+    expect(getByRole('button', {name: 'More actions'})).toHaveClass('Button--secondary')
   })
 
   it('has no axe violations', async () => {

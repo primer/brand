@@ -12,6 +12,7 @@ import {
   HeroLabel,
   HeroHeading,
   HeroDescription,
+  HeroButtonGroup,
   HeroImage,
   HeroVideo,
   HeroEyebrow,
@@ -77,52 +78,63 @@ const Root = forwardRef<HTMLElement, PropsWithChildren<HeroProps>>(
     },
     ref,
   ) => {
-    const {HeroActions, HeroChildren, HeroImageChild, HeroVideoChild, HeroHeaderChildren, HeroDescriptionChild} =
-      useMemo(() => {
-        const result = React.Children.toArray(children).reduce<{
-          HeroActions: React.ReactElement[]
-          HeroImageChild?: React.ReactElement<HeroImageProps>
-          HeroVideoChild?: React.ReactElement<HeroVideoProps>
-          HeroChildren: React.ReactElement[]
-          HeroHeaderChildren: React.ReactElement[]
-          HeroDescriptionChild?: React.ReactElement
-        }>(
-          (acc, child) => {
-            if (React.isValidElement(child)) {
-              if (child.type === HeroPrimaryAction || child.type === HeroSecondaryAction) {
-                acc.HeroActions.push(child)
-              } else if (child.type === HeroImage) {
-                acc.HeroImageChild = child as React.ReactElement<HeroImageProps>
-              } else if (child.type === HeroVideo) {
-                acc.HeroVideoChild = child as React.ReactElement<HeroVideoProps>
-              } else {
-                acc.HeroChildren.push(child)
-                if (child.type === HeroLabel || child.type === HeroEyebrow || child.type === HeroHeading) {
-                  acc.HeroHeaderChildren.push(child)
-                } else if (child.type === HeroDescription) {
-                  acc.HeroDescriptionChild = child
-                }
+    const {
+      HeroActions,
+      HeroButtonGroupChild,
+      HeroChildren,
+      HeroImageChild,
+      HeroVideoChild,
+      HeroHeaderChildren,
+      HeroDescriptionChild,
+    } = useMemo(() => {
+      const result = React.Children.toArray(children).reduce<{
+        HeroActions: React.ReactElement[]
+        HeroButtonGroupChild?: React.ReactElement
+        HeroImageChild?: React.ReactElement<HeroImageProps>
+        HeroVideoChild?: React.ReactElement<HeroVideoProps>
+        HeroChildren: React.ReactElement[]
+        HeroHeaderChildren: React.ReactElement[]
+        HeroDescriptionChild?: React.ReactElement
+      }>(
+        (acc, child) => {
+          if (React.isValidElement(child)) {
+            if (child.type === HeroPrimaryAction || child.type === HeroSecondaryAction) {
+              acc.HeroActions.push(child)
+            } else if (child.type === HeroButtonGroup) {
+              acc.HeroButtonGroupChild = child
+            } else if (child.type === HeroImage) {
+              acc.HeroImageChild = child as React.ReactElement<HeroImageProps>
+            } else if (child.type === HeroVideo) {
+              acc.HeroVideoChild = child as React.ReactElement<HeroVideoProps>
+            } else {
+              acc.HeroChildren.push(child)
+              if (child.type === HeroLabel || child.type === HeroEyebrow || child.type === HeroHeading) {
+                acc.HeroHeaderChildren.push(child)
+              } else if (child.type === HeroDescription) {
+                acc.HeroDescriptionChild = child
               }
             }
-            return acc
-          },
-          {
-            HeroActions: [],
-            HeroChildren: [],
-            HeroImageChild: undefined,
-            HeroVideoChild: undefined,
-            HeroHeaderChildren: [],
-            HeroDescriptionChild: undefined,
-          },
-        )
+          }
+          return acc
+        },
+        {
+          HeroActions: [],
+          HeroButtonGroupChild: undefined,
+          HeroChildren: [],
+          HeroImageChild: undefined,
+          HeroVideoChild: undefined,
+          HeroHeaderChildren: [],
+          HeroDescriptionChild: undefined,
+        },
+      )
 
-        // Prefer Hero.Image - don't show both
-        if (result.HeroImageChild && result.HeroVideoChild) {
-          result.HeroVideoChild = undefined
-        }
+      // Prefer Hero.Image - don't show both
+      if (result.HeroImageChild && result.HeroVideoChild) {
+        result.HeroVideoChild = undefined
+      }
 
-        return result
-      }, [children])
+      return result
+    }, [children])
 
     const mediaPositionProp = HeroImageChild?.props.position || HeroVideoChild?.props.position
 
@@ -179,7 +191,12 @@ const Root = forwardRef<HTMLElement, PropsWithChildren<HeroProps>>(
         </Box>
       )
 
-    const renderActions = () => HeroActions.length > 0 && <div className={styles['Hero-actions']}>{HeroActions}</div>
+    const renderActions = () => (
+      <>
+        {HeroButtonGroupChild}
+        {HeroActions.length > 0 && <div className={styles['Hero-actions']}>{HeroActions}</div>}
+      </>
+    )
 
     return (
       <Tag {...tagProps}>
@@ -330,7 +347,16 @@ const Root = forwardRef<HTMLElement, PropsWithChildren<HeroProps>>(
 export const Hero = Object.assign(Root, {
   Heading: HeroHeading,
   Description: HeroDescription,
+  ButtonGroup: HeroButtonGroup,
+  /**
+   * @deprecated Use `Hero.ButtonGroup` with `Button` or `ActionMenu` children instead.
+   * This component will be removed in a future release.
+   */
   PrimaryAction: HeroPrimaryAction,
+  /**
+   * @deprecated Use `Hero.ButtonGroup` with `Button` or `ActionMenu` children instead.
+   * This component will be removed in a future release.
+   */
   SecondaryAction: HeroSecondaryAction,
   Image: HeroImage,
   Video: HeroVideo,

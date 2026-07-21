@@ -2,6 +2,7 @@ import React from 'react'
 import type {Meta, StoryObj} from '@storybook/react'
 import {GlobeIcon} from '@primer/octovisuals-react'
 import {Button} from '../Button'
+import {ActionMenu} from '../ActionMenu'
 
 import {CTABanner} from './CTABanner'
 import {Grid, InlineLink, Section, Stack, Text, TextCursorAnimation, ThemeProvider} from '../'
@@ -98,6 +99,25 @@ function WithImageExample() {
       </CTABanner>
     </Stack>
   )
+}
+
+export const WithActionMenu: Story = {
+  render: () => (
+    <CTABanner>
+      <CTABanner.Heading>Where the most ambitious teams build great things</CTABanner.Heading>
+      <CTABanner.Description>Get real-time suggestions and ship confidently.</CTABanner.Description>
+      <CTABanner.ButtonGroup>
+        <Button>Get started for free</Button>
+        <ActionMenu>
+          <ActionMenu.Button>More actions</ActionMenu.Button>
+          <ActionMenu.Overlay aria-label="More actions">
+            <ActionMenu.Item value="Contact sales">Contact sales</ActionMenu.Item>
+            <ActionMenu.Item value="View pricing">View pricing</ActionMenu.Item>
+          </ActionMenu.Overlay>
+        </ActionMenu>
+      </CTABanner.ButtonGroup>
+    </CTABanner>
+  ),
 }
 
 export const Variants: Story = {

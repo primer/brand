@@ -18,7 +18,7 @@ import {
 } from './react'
 
 ```js
-import {Hero} from '@primer/react-brand'
+import {ActionMenu, Button, Hero} from '@primer/react-brand'
 ```
 
 ## Examples
@@ -33,8 +33,36 @@ import {Hero} from '@primer/react-brand'
     Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis
     felis nam pulvinar risus elementum.
   </Hero.Description>
-  <Hero.PrimaryAction href="#">Primary action</Hero.PrimaryAction>
-  <Hero.SecondaryAction href="#">Secondary action</Hero.SecondaryAction>
+  <Hero.ButtonGroup>
+    <Button as="a" href="#">
+      Primary action
+    </Button>
+    <Button as="a" href="#" variant="secondary">
+      Secondary action
+    </Button>
+  </Hero.ButtonGroup>
+</Hero>
+```
+
+### Action menus
+
+`Hero.ButtonGroup` accepts up to two `Button` or `ActionMenu` children and applies the primary variant to the first item and the subtle variant to the second. Set `variant` on `Button` or `ActionMenu.Button` to override it.
+
+```jsx live
+<Hero>
+  <Hero.Heading>This is my super sweet hero heading</Hero.Heading>
+  <Hero.ButtonGroup>
+    <Button as="a" href="#">
+      Primary action
+    </Button>
+    <ActionMenu>
+      <ActionMenu.Button>More actions</ActionMenu.Button>
+      <ActionMenu.Overlay aria-label="More actions">
+        <ActionMenu.Item value="contact-sales">Contact sales</ActionMenu.Item>
+        <ActionMenu.Item value="view-pricing">View pricing</ActionMenu.Item>
+      </ActionMenu.Overlay>
+    </ActionMenu>
+  </Hero.ButtonGroup>
 </Hero>
 ```
 
@@ -47,14 +75,22 @@ import {Hero} from '@primer/react-brand'
   <Hero>
     <Hero.Label>Actions</Hero.Label>
     <Hero.Heading>Automate your workflow from idea to production</Hero.Heading>
-    <Hero.PrimaryAction href="#">Get started with Actions</Hero.PrimaryAction>
+    <Hero.ButtonGroup>
+      <Button as="a" href="#">
+        Get started with Actions
+      </Button>
+    </Hero.ButtonGroup>
     <Hero.Image src="/images/placeholder.png" alt="placeholder, blank area with a gray background color" />
   </Hero>
   <br />
   <Hero align="center">
     <Hero.Label>Actions</Hero.Label>
     <Hero.Heading size="2">Automate your workflow from idea to production</Hero.Heading>
-    <Hero.PrimaryAction href="#">Get started with Actions</Hero.PrimaryAction>
+    <Hero.ButtonGroup>
+      <Button as="a" href="#">
+        Get started with Actions
+      </Button>
+    </Hero.ButtonGroup>
     <Hero.Image
       position="inline-end"
       src="/images/placeholder.png"
@@ -78,7 +114,11 @@ The `GridLine` variants all feature a trailing border by default. Use `Box` if y
     Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis
     felis nam pulvinar risus elementum.
   </Hero.Description>
-  <Hero.PrimaryAction href="#">Primary action</Hero.PrimaryAction>
+  <Hero.ButtonGroup>
+    <Button as="a" href="#">
+      Primary action
+    </Button>
+  </Hero.ButtonGroup>
   <Hero.Image src="/images/placeholder.png" alt="placeholder, blank area with a gray background color" />
 </Hero>
 ```
@@ -96,7 +136,11 @@ The `GridLine` variants all feature a trailing border by default. Use `Box` if y
     Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis
     felis nam pulvinar risus elementum.
   </Hero.Description>
-  <Hero.PrimaryAction href="#">Primary action</Hero.PrimaryAction>
+  <Hero.ButtonGroup>
+    <Button as="a" href="#">
+      Primary action
+    </Button>
+  </Hero.ButtonGroup>
   <Hero.Image src="/images/placeholder.png" alt="placeholder, blank area with a gray background color" />
 </Hero>
 ```
@@ -115,7 +159,11 @@ Use [VideoPlayer](/components/VideoPlayer), a native `<video>` element or a YouT
     Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis
     felis nam pulvinar risus elementum.
   </Hero.Description>
-  <Hero.PrimaryAction href="#">Primary action</Hero.PrimaryAction>
+  <Hero.ButtonGroup>
+    <Button as="a" href="#">
+      Primary action
+    </Button>
+  </Hero.ButtonGroup>
   <Hero.Video>
     <iframe
       src="https://www.youtube.com/embed/fHwtrOcLAnI"
@@ -142,7 +190,11 @@ Use [VideoPlayer](/components/VideoPlayer), a native `<video>` element or a YouT
     <br />
     developer environments
   </Hero.Heading>
-  <Hero.PrimaryAction href="#">Primary action</Hero.PrimaryAction>
+  <Hero.ButtonGroup>
+    <Button as="a" href="#">
+      Primary action
+    </Button>
+  </Hero.ButtonGroup>
 </Hero>
 ```
 
@@ -186,7 +238,13 @@ Forwards all props from the [Heading component](/typography/Heading), including 
 
 Forwards `size` and `weight` props from the [Text component](/typography/Text).
 
+### Hero.ButtonGroup
+
+Groups up to two [Button](/components/Button) or [ActionMenu](/components/ActionMenu) children. Forwards all props from the [ButtonGroup component](/components/ButtonGroup).
+
 ### Hero.PrimaryAction
+
+Deprecated. Use `Hero.ButtonGroup` with a `Button` child instead.
 
 | name        | type          | default | description                         |
 | ----------- | ------------- | ------- | ----------------------------------- |
@@ -197,6 +255,8 @@ Forwards `size` and `weight` props from the [Text component](/typography/Text).
 Forwards all props from the [Button component](/components/Button).
 
 ### Hero.SecondaryAction
+
+Deprecated. Use `Hero.ButtonGroup` with a `Button` child instead.
 
 | name        | type          | default | description                         |
 | ----------- | ------------- | ------- | ----------------------------------- |

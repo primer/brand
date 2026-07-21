@@ -1,6 +1,6 @@
 ---
 title: Button group
-description: Use the button group component to group related buttons together.
+description: Use the button group component to group related buttons and action menus together.
 keywords: ['buttons', 'control', 'action', 'group', 'paired']
 show-tabs: true
 tab-label: React
@@ -12,19 +12,38 @@ storybook: '/brand/storybook/?path=/story/components-buttongroup--playground'
 import {ButtonGroupSizesProp, ButtonGroupAsProp} from './react'
 
 ```js
-import {ButtonGroup, Button} from '@primer/react-brand'
+import {ActionMenu, Button, ButtonGroup} from '@primer/react-brand'
 ```
 
 ## Examples
 
 ### Default
 
-This is the default variant for the ButtonGroup component. The first button in the group is the primary button and the second button is the secondary button.
+This is the default variant for the ButtonGroup component. The first item in the group uses the primary button variant and the second uses the subtle button variant.
 
 ```jsx live
 <ButtonGroup>
   <Button>This is one button</Button>
   <Button>This is another button</Button>
+</ButtonGroup>
+```
+
+### Action menus
+
+`ButtonGroup` supports up to two `Button` or `ActionMenu` children and applies a default `variant` to each one.
+
+Explicit `variant` overrides to `Button` or `ActionMenu.Button` will override the default values.
+
+```jsx live
+<ButtonGroup>
+  <Button>Primary action</Button>
+  <ActionMenu>
+    <ActionMenu.Button>More actions</ActionMenu.Button>
+    <ActionMenu.Overlay aria-label="More actions">
+      <ActionMenu.Item value="contact-sales">Contact sales</ActionMenu.Item>
+      <ActionMenu.Item value="view-pricing">View pricing</ActionMenu.Item>
+    </ActionMenu.Overlay>
+  </ActionMenu>
 </ButtonGroup>
 ```
 
