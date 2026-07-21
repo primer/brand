@@ -289,7 +289,7 @@ function RelatedArticles({related}: {related: EditorialArticleContent['article']
                 <Token key={`${token}-${index}`}>{token}</Token>
               ))}
             </Card.Tokens>
-            <Card.Heading size="6">{card.heading}</Card.Heading>
+            <Card.Heading size="subhead-medium">{card.heading}</Card.Heading>
             <Card.Description>{card.description}</Card.Description>
           </Card>
         ))}
