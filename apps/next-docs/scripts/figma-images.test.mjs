@@ -4,6 +4,10 @@ import fs from 'node:fs/promises'
 import os from 'node:os'
 import path from 'node:path'
 import {afterEach, describe, it} from 'node:test'
+
+import {resolveFigmaPageMapThumbnails} from '../src/components/FigmaImage/FigmaImage.server.mjs'
+import {getActiveFigmaSource, resolveImageDimensions} from '../src/components/FigmaImage/FigmaImage.utils.ts'
+
 import {
   FIGMA_FILE_KEY,
   discoverFigmaUrls,
@@ -13,8 +17,6 @@ import {
   validateFigmaUrls,
   verifyFigmaImageAssets,
 } from './figma-images.mjs'
-import {resolveFigmaPageMapThumbnails} from '../src/components/FigmaImage/FigmaImage.server.mjs'
-import {getActiveFigmaSource, resolveImageDimensions} from '../src/components/FigmaImage/FigmaImage.utils.ts'
 
 const temporaryDirectories = []
 const approvedUrl = `https://www.figma.com/design/${FIGMA_FILE_KEY}/Brand?node-id=1804-8382`
@@ -119,6 +121,10 @@ describe('discoverFigmaUrls', () => {
 })
 
 describe('validateFigmaUrl', () => {
+  it('only approves the Brand Interface Guidelines file key', () => {
+    assert.equal(FIGMA_FILE_KEY, 'kc69gOteR1MsL0aQtLdxLW')
+  })
+
   it('accepts approved design and file URLs', () => {
     assert.equal(validateFigmaUrl(approvedUrl).fileId, FIGMA_FILE_KEY)
     assert.equal(
