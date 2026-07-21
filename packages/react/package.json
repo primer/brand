@@ -35,12 +35,12 @@
       "default": "./lib/index.js"
     },
     "./lib/*": "./lib/*",
+    "./esm/*": "./esm/*",
     "./fonts/*": "./fonts/*",
     "./package.json": "./package.json"
   },
   "sideEffects": [
     "**/*.css",
-    "./esm/index.esm.js",
     "./esm/css/stylesheets.js"
   ],
   "files": [
