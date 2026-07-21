@@ -127,7 +127,14 @@ function CardGrid({cards, heading, sortLabel, footer}: CardGridProps) {
   return (
     <Grid columnGap="none" rowGap="none" enableGutters={false} className={styles.cardGrid}>
       <Grid.Column span={12} className={styles.sectionHeaderColumn}>
-        <Box className={clsx(styles.sectionHeader, sortLabel && styles.sectionHeaderWithSort)}>
+        <Stack
+          className={styles.sectionHeader}
+          direction={{narrow: 'vertical', regular: 'horizontal'}}
+          gap={24}
+          alignItems={{narrow: 'flex-start', regular: 'flex-end'}}
+          justifyContent="space-between"
+          padding="none"
+        >
           <Heading as="h2" size="5" weight="normal">
             {heading}
           </Heading>
@@ -136,15 +143,13 @@ function CardGrid({cards, heading, sortLabel, footer}: CardGridProps) {
               {sortLabel}
             </Text>
           ) : null}
-        </Box>
+        </Stack>
       </Grid.Column>
       {cards.map((card, index) => (
         <Grid.Column
           key={card.heading}
           span={{xsmall: 12, medium: 6, large: 4}}
           className={clsx(
-            styles.cardGridColumn,
-            styles.cardGridColumnArrowHover,
             index % 2 === 1 && styles.cardGridColumnTabletDivider,
             cards.length % 2 === 1 && index === cards.length - 1 && styles.cardGridColumnTabletEndDivider,
             cards.length % 2 === 1 &&
@@ -157,17 +162,15 @@ function CardGrid({cards, heading, sortLabel, footer}: CardGridProps) {
             index >= 3 && index < lastDesktopRowStartIndex && styles.cardGridColumnMiddleDesktopRow,
           )}
         >
-          <Box className={styles.cardGridItem}>
-            <Card href={card.href} fullWidth ctaVariant="none" className={styles.resourceCard} backgroundColor="none">
-              <Card.Tokens>
-                {card.tokens.map((token, tokenIndex) => (
-                  <Token key={`${token}-${tokenIndex}`}>{token}</Token>
-                ))}
-              </Card.Tokens>
-              <Card.Heading size="subhead-medium">{card.heading}</Card.Heading>
-              <Card.Description>{card.description}</Card.Description>
-            </Card>
-          </Box>
+          <Card href={card.href} fullWidth ctaVariant="none" className={styles.cardGridItem} backgroundColor="none">
+            <Card.Tokens>
+              {card.tokens.map((token, tokenIndex) => (
+                <Token key={`${token}-${tokenIndex}`}>{token}</Token>
+              ))}
+            </Card.Tokens>
+            <Card.Heading size="subhead-medium">{card.heading}</Card.Heading>
+            <Card.Description>{card.description}</Card.Description>
+          </Card>
         </Grid.Column>
       ))}
       {footer ? (

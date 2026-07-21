@@ -1,4 +1,5 @@
-.heroSection {
+.heroSection,
+.featuredSection {
   border-bottom: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
 }
 
@@ -6,30 +7,18 @@
   --brand-Hero-gridline-padding: var(--base-size-32);
 }
 
-.featuredSection {
-  border-block-end: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
-}
-
 .sectionSpacer {
-  block-size: var(--base-size-48);
+  height: var(--base-size-48);
   border-block-end: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
 }
 
 .sectionHeader {
-  display: flex;
-  align-items: end;
-  justify-content: space-between;
-  min-block-size: 6.875rem;
   padding: var(--base-size-48) var(--base-size-32) var(--base-size-32);
 }
 
 .sectionHeaderColumn,
 .cardGridFooterColumn {
   min-width: 0;
-}
-
-.sectionHeaderWithSort {
-  gap: var(--base-size-24);
 }
 
 .sortLabel {
@@ -41,35 +30,22 @@
 }
 
 .cardGridItem {
-  width: 100%;
-  height: 100%;
+  --editorial-cardGrid-hover-overlay: color-mix(in srgb, var(--base-color-scale-gray-0) 50%, transparent);
+
+  transition: background var(--brand-animation-duration-extended) var(--brand-animation-easing-default);
 }
 
 .cardGridColumnMiddleMobileRow .cardGridItem {
   border-block: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
 }
 
-.cardGridColumnArrowHover .cardGridItem {
-  --editorial-cardGrid-hover-overlay: color-mix(in srgb, var(--base-color-scale-gray-0) 50%, transparent);
-
-  transition: background var(--brand-animation-duration-extended) var(--brand-animation-easing-default);
-}
-
-.cardGridColumnArrowHover .cardGridItem:is(:hover, :focus-within) {
+.cardGridItem:is(:hover, :focus-within) {
   background: linear-gradient(to top, var(--editorial-cardGrid-hover-overlay) 0%, transparent 100%),
     var(--brand-color-canvas-default);
 }
 
-[data-color-mode='dark'] .cardGridColumnArrowHover .cardGridItem:is(:hover, :focus-within) {
+[data-color-mode='dark'] .cardGridItem:is(:hover, :focus-within) {
   --editorial-cardGrid-hover-overlay: color-mix(in srgb, var(--base-color-scale-gray-0) 10%, transparent);
-}
-
-.resourceCard {
-  min-block-size: 100%;
-}
-
-.cardGridColumn {
-  display: flex;
 }
 
 .paginationFrame {
@@ -109,13 +85,5 @@
 
   .cardGridColumnMiddleDesktopRow .cardGridItem {
     border-block: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
-  }
-}
-
-@media screen and (max-width: 47.99rem) {
-  .sectionHeader,
-  .sectionHeaderWithSort {
-    align-items: start;
-    flex-direction: column;
   }
 }
