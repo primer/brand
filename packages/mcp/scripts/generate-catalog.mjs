@@ -4,7 +4,7 @@
  * pages, installed icon packages, and built design tokens.
  */
 import {existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync} from 'node:fs'
-import {dirname, join, resolve} from 'node:path'
+import {dirname, join, relative, resolve} from 'node:path'
 import {fileURLToPath} from 'node:url'
 
 const scriptDir = dirname(fileURLToPath(import.meta.url))
@@ -219,7 +219,7 @@ function exampleContradictsCatalog(code, byName) {
   for (const component of byName.values()) {
     const enumProps = component.props.filter(prop => Array.isArray(prop.enum) && prop.enum.length > 0)
     if (enumProps.length === 0) continue
-    for (const usage of code.matchAll(new RegExp(`<${component.name}\\b[^>]*>`, 'g'))) {
+    for (const usage of code.matchAll(new RegExp(`<${component.name}\\b(?!\\.)[^>]*>`, 'g'))) {
       for (const prop of enumProps) {
         for (const attributeMatch of usage[0].matchAll(new RegExp(`\\b${prop.name}=["']([^"']+)["']`, 'g'))) {
           if (!prop.enum.includes(attributeMatch[1])) return true
@@ -581,8 +581,8 @@ function buildTokens() {
 // Recipes
 // ---------------------------------------------------------------------------
 
-/** Search metadata for the page recipes. The composition itself has one source: the .tsx below. */
-const RECIPE_META = {
+/** An explicit allow-list to help discovery. */
+const RECIPE_SEARCH_OVERRIDES = {
   FlexSuiteAIOverview: {
     title: 'Product feature overview landing page',
     keywords: [
@@ -634,12 +634,18 @@ const RECIPE_META = {
 
 // Copies the full recipe verbatim
 function buildRecipes() {
-  const recipesRoot = join(reactSrc, 'recipes', 'Flexsuite')
+  const recipesRoot = join(reactSrc, 'recipes')
   if (!existsSync(recipesRoot)) {
     // eslint-disable-next-line i18n-text/no-en
-    writeStderrLog('Flexsuite recipes not found; skipping recipe templates')
+    writeStderrLog('no recipes found; skipping recipe catalog.')
     return []
   }
+  const sanitize = value =>
+    value
+      .replace(/([a-z0-9])([A-Z])/g, '$1 $2')
+      .replace(/([A-Z]+)([A-Z][a-z])/g, '$1 $2')
+      .replace(/[-_]+/g, ' ')
+      .trim()
   const recipes = []
   const walk = dir => {
     for (const entry of readdirSync(dir, {withFileTypes: true})) {
@@ -650,7 +656,12 @@ function buildRecipes() {
         const name = entry.name.slice(0, -'.tsx'.length)
         const source = readFileOrNull(fullPath)
         if (!source) continue
-        const meta = RECIPE_META[name] ?? {title: name, keywords: ['page', 'template', 'full page']}
+        const relativeDirectory = relative(recipesRoot, dirname(fullPath))
+        const inferredKeywords = relativeDirectory.split(/[\\/]/).map(sanitize).filter(Boolean)
+        const meta = RECIPE_SEARCH_OVERRIDES[name] ?? {
+          title: sanitize(name),
+          keywords: [...inferredKeywords, 'page', 'template', 'full page'],
+        }
         recipes.push({name, title: meta.title, keywords: meta.keywords, source: source.trim()})
       }
     }
@@ -676,7 +687,7 @@ function main() {
     writeStderrLog('WARNING: 0 design tokens — build @primer/brand-primitives (npm run build:lib) to include them')
   }
   if (recipes.length === 0) {
-    writeStderrLog('Error: 0 recipe templates — check packages/react/src/recipes/Flexsuite')
+    writeStderrLog('Error: 0 recipe templates — check packages/react/src/recipes')
   }
 
   const generatedFromVersion = (() => {
