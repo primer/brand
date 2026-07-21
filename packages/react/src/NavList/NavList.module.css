@@ -360,15 +360,11 @@
 }
 
 .NavList__groupList .NavList__item--level-3 > .NavList__itemContent {
-  padding-inline-start: calc(
-    var(--brand-NavList-item-paddingInlineStart-level-2, var(--base-size-24)) + var(--base-size-16)
-  );
+  padding-inline-start: calc(var(--brand-NavList-item-paddingInlineStart-level-2) + var(--base-size-16));
 }
 
 .NavList__groupList .NavList__item--leaf.NavList__item--level-3 > .NavList__itemContent {
-  padding-inline-start: calc(
-    var(--brand-NavList-alignedLabel-paddingInlineStart, var(--base-size-24)) + var(--base-size-8) + var(--base-size-6)
-  );
+  padding-inline-start: var(--base-size-16);
 }
 
 .NavList__item--leaf.NavList__item--level-4 > .NavList__itemContent {
@@ -380,23 +376,22 @@
 }
 
 .NavList__groupList .NavList__item--level-4 > .NavList__itemContent {
-  padding-inline-start: calc(
-    var(--brand-NavList-item-paddingInlineStart-level-2, var(--base-size-24)) + var(--base-size-32)
-  );
+  padding-inline-start: calc(var(--brand-NavList-item-paddingInlineStart-level-2) + var(--base-size-32));
 }
 
 .NavList__groupList .NavList__item--leaf.NavList__item--level-4 > .NavList__itemContent {
-  padding-inline-start: calc(
-    var(--brand-NavList-alignedLabel-paddingInlineStart, var(--base-size-24)) + var(--base-size-16) + var(--base-size-8) +
-      var(--base-size-6)
-  );
+  padding-inline-start: var(--base-size-32);
 }
 
 .NavList__groupList .NavList__item--leaf.NavList__item--level-5 > .NavList__itemContent {
-  padding-inline-start: calc(
-    var(--brand-NavList-alignedLabel-paddingInlineStart, var(--base-size-24)) + var(--base-size-32) + var(--base-size-8) +
-      var(--base-size-6)
-  );
+  padding-inline-start: var(--base-size-48);
+}
+
+.NavList__groupList
+  .NavList__item--leaf:is(.NavList__item--level-3, .NavList__item--level-4, .NavList__item--level-5)
+  > .NavList__itemContent
+  .NavList__labelArea {
+  padding-inline-start: var(--base-size-8);
 }
 
 .NavList__item:is(.NavList__item--level-2, .NavList__item--level-3, .NavList__item--level-4)
