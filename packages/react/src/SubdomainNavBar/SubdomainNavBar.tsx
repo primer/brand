@@ -241,14 +241,14 @@ function Root(
   })
 
   useEffect(() => {
-    if (isMedium) {
+    if (isLarge) {
       setMenuHidden(true)
       onNarrowMenuToggle?.(false)
     }
-  }, [isMedium, menuHidden, onNarrowMenuToggle])
+  }, [isLarge, menuHidden, onNarrowMenuToggle])
 
   useEffect(() => {
-    if (menuHidden || isMedium) return
+    if (menuHidden || isLarge) return
 
     updateMenuViewportOffsetBlockStart()
 
@@ -259,7 +259,7 @@ function Root(
     resizeObserver.observe(document.documentElement)
 
     return () => resizeObserver.disconnect()
-  }, [isMedium, menuHidden, updateMenuViewportOffsetBlockStart])
+  }, [isLarge, menuHidden, updateMenuViewportOffsetBlockStart])
 
   useEffect(() => {
     const newOverflowState = menuHidden ? 'auto' : 'hidden'
@@ -503,9 +503,12 @@ function Root(
                   data-testid={testIds.menuButton}
                   onClick={handleMobileMenuClick}
                 >
-                  <div className={clsx(styles['SubdomainNavBar-menu-button-bar'])}></div>
-                  <div className={clsx(styles['SubdomainNavBar-menu-button-bar'])}></div>
-                  <div className={clsx(styles['SubdomainNavBar-menu-button-bar'])}></div>
+                  <span className={styles['SubdomainNavBar-menu-button-icon']} aria-hidden="true">
+                    <span className={styles['SubdomainNavBar-menu-button-bar']}></span>
+                    <span className={styles['SubdomainNavBar-menu-button-bar']}></span>
+                    <span className={styles['SubdomainNavBar-menu-button-bar']}></span>
+                  </span>
+                  <span className={styles['SubdomainNavBar-menu-button-label']}>Menu</span>
                 </button>
               )}
 
@@ -524,7 +527,7 @@ function Root(
                 <div className={styles['SubdomainNavBar-trailing-component']}>{trailingComponent}</div>
               )}
 
-              {!isMedium && (
+              {!isLarge && (
                 <div
                   id={narrowMenuID}
                   className={clsx(
@@ -533,7 +536,7 @@ function Root(
                   )}
                 >
                   <div>
-                    {title && titleHref && (
+                    {(!isMedium || !menuHidden) && title && titleHref && (
                       <Text as="p">
                         <a
                           href={titleHref}
@@ -544,18 +547,22 @@ function Root(
                         </a>
                       </Text>
                     )}
-                    {hasLeadingComponent && (
+                    {(!isMedium || !menuHidden) && hasLeadingComponent && (
                       <div className={styles['SubdomainNavBar-leading-component']}>{leadingComponent}</div>
                     )}
-                    {hasLinks && !menuHidden && (
-                      <NavigationVisbilityObserver
-                        className={clsx(styles['SubdomainNavBar-primary-nav-list--visible'])}
-                      >
-                        {menuItems}
-                      </NavigationVisbilityObserver>
-                    )}
+                    {hasLinks &&
+                      !menuHidden &&
+                      (isMedium ? (
+                        <ul className={styles['SubdomainNavBar-primary-nav-list--visible']}>{menuItems}</ul>
+                      ) : (
+                        <NavigationVisbilityObserver
+                          className={clsx(styles['SubdomainNavBar-primary-nav-list--visible'])}
+                        >
+                          {menuItems}
+                        </NavigationVisbilityObserver>
+                      ))}
                   </div>
-                  {(hasActions || hasTrailingComponent) && (
+                  {(!isMedium || !menuHidden) && (hasActions || hasTrailingComponent) && (
                     <div className={styles['SubdomainNavBar-menu-wrapper-footer']}>
                       {hasActions && (
                         <div

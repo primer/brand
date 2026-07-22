@@ -19,6 +19,8 @@ declare const styles: {
   readonly "SubdomainNavBar-menu-button": string;
   readonly "SubdomainNavBar-menu-button--close": string;
   readonly "SubdomainNavBar-menu-button-bar": string;
+  readonly "SubdomainNavBar-menu-button-icon": string;
+  readonly "SubdomainNavBar-menu-button-label": string;
   readonly "SubdomainNavBar-menu-wrapper": string;
   readonly "SubdomainNavBar-menu-wrapper--close": string;
   readonly "SubdomainNavBar-menu-wrapper-footer": string;

@@ -504,6 +504,27 @@ describe('SubdomainNavBar', () => {
     expect(menuButtonEl).toBe(null)
   })
 
+  it('renders a functional menu control with a visible label on tablet viewports', async () => {
+    mockUseWindowSize.mockImplementation(() => ({isSmall: true, isMedium: true, isLarge: false}))
+    const user = userEvent.setup()
+    const {getByRole, getByText} = render(<Component />)
+
+    const menuButton = getByRole('button', {name: 'Menu'})
+    const menuId = menuButton.getAttribute('aria-controls')
+    expect(getByText('Menu')).toHaveClass('SubdomainNavBar-menu-button-label')
+    expect(menuButton).toHaveAttribute('aria-expanded', 'false')
+    expect(menuId).toBeTruthy()
+
+    await user.click(menuButton)
+
+    const menu = document.getElementById(menuId as string)
+    expect(menuButton).toHaveAttribute('aria-expanded', 'true')
+    expect(within(menu as HTMLElement).getByRole('link', {name: 'Collections'})).toBeVisible()
+    expect(within(menu as HTMLElement).getByRole('link', {name: 'Subdomain home'})).toBeVisible()
+    expect(within(menu as HTMLElement).getByRole('link', {name: 'Primary CTA'})).toBeVisible()
+    expect(within(menu as HTMLElement).getByRole('link', {name: 'Secondary CTA'})).toBeVisible()
+  })
+
   it('discloses leading-only mobile content and makes it keyboard reachable', async () => {
     const user = userEvent.setup()
     const {getByRole} = render(

@@ -571,8 +571,19 @@
 }
 
 .SubdomainNavBar-menu-button {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
   align-self: center;
+}
+
+.SubdomainNavBar-menu-button-icon {
+  display: inline-flex;
+  flex-direction: column;
+  gap: calc(var(--base-size-4) - var(--brand-borderWidth-thin));
+}
+
+.SubdomainNavBar-menu-button-label {
+  display: none;
 }
 
 .SubdomainNavBar-menu-button-bar {
@@ -613,7 +624,7 @@
   transform: rotate(45deg) translateY(3px);
 }
 
-@media screen and (min-width: 48rem) {
+@media screen and (min-width: 63.25rem) {
   .SubdomainNavBar-menu-button:hover {
     background-color: transparent;
     border: var(--brand-borderWidth-thick) solid var(--brand-SubdomainNavBar-border-button-hover);
@@ -626,6 +637,149 @@
 
   .SubdomainNavBar-mobile-menu-button {
     display: none;
+  }
+}
+
+@media screen and (min-width: 48rem) and (max-width: 63.24rem) {
+  .SubdomainNavBar .SubdomainNavBar-primary-nav {
+    display: none;
+  }
+
+  .SubdomainNavBar .SubdomainNavBar-secondary-nav {
+    flex: 1 1 auto;
+  }
+
+  .SubdomainNavBar .SubdomainNavBar-mobile-menu-button {
+    order: -1;
+    align-self: stretch;
+    flex: none;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: var(--base-size-8);
+    width: max-content;
+    min-width: max-content;
+    height: 100%;
+    margin-inline-end: auto;
+    padding-inline: var(--base-size-16);
+    color: var(--brand-color-text-default);
+    background-color: transparent;
+    border: 0;
+    border-inline-end: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
+    border-radius: 0;
+    overflow: visible;
+    font-family: var(--brand-body-fontFamily);
+    font-size: var(--brand-text-size-100);
+    line-height: var(--brand-text-lineHeight-100);
+  }
+
+  .SubdomainNavBar .SubdomainNavBar-menu-button-label {
+    display: inline-flex;
+    align-items: center;
+    white-space: nowrap;
+  }
+
+  .SubdomainNavBar .SubdomainNavBar-menu-button-icon {
+    flex: none;
+    align-items: stretch;
+    justify-content: center;
+    width: var(--base-size-16);
+    height: var(--base-size-16);
+    overflow: visible;
+  }
+
+  .SubdomainNavBar .SubdomainNavBar-menu-button-bar {
+    width: var(--base-size-16);
+    height: var(--base-size-2);
+    margin: 0;
+    transform-origin: center;
+  }
+
+  .SubdomainNavBar .SubdomainNavBar-menu-button--close .SubdomainNavBar-menu-button-bar:nth-of-type(1) {
+    transform: translateY(calc(var(--base-size-6) - var(--brand-borderWidth-thin))) rotate(45deg);
+  }
+
+  .SubdomainNavBar .SubdomainNavBar-menu-button--close .SubdomainNavBar-menu-button-bar:nth-of-type(3) {
+    transform: translateY(calc(var(--brand-borderWidth-thin) - var(--base-size-6))) rotate(-45deg);
+  }
+
+  .SubdomainNavBar .SubdomainNavBar-menu-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    overflow-y: auto;
+    position: absolute;
+    inset-inline: 0;
+    top: var(--SubdomainNavBar-height);
+    z-index: 2;
+    width: 100%;
+    height: calc(100vh - var(--SubdomainNavBar-height) - var(--SubdomainNavBar-menu-offset-block-start, 0px));
+    background-color: var(--brand-color-canvas-default);
+    animation: fade-in-down 500ms;
+    animation-timing-function: var(--brand-animation-easing-default);
+  }
+
+  .SubdomainNavBar .SubdomainNavBar-menu-wrapper--close {
+    display: none;
+  }
+
+  .SubdomainNavBar .SubdomainNavBar-primary-nav-list--visible {
+    display: block;
+    margin: 0;
+    padding: 0;
+  }
+
+  .SubdomainNavBar .SubdomainNavBar-menu-wrapper-footer {
+    flex: none;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-block-start: auto;
+  }
+
+  .SubdomainNavBar .SubdomainNavBar-menu-wrapper > div:first-child > * {
+    border-block-end: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
+  }
+
+  .SubdomainNavBar .SubdomainNavBar-menu-wrapper .SubdomainNavBar-link {
+    padding: var(--base-size-16);
+    font-size: var(--brand-text-size-100);
+    line-height: var(--brand-text-lineHeight-100);
+  }
+
+  .SubdomainNavBar .SubdomainNavBar-menu-wrapper .SubdomainNavBar-link--title {
+    font-size: var(--brand-text-size-100);
+    line-height: var(--brand-text-lineHeight-100);
+  }
+
+  .SubdomainNavBar .SubdomainNavBar-menu-wrapper .SubdomainNavBar-leading-component,
+  .SubdomainNavBar .SubdomainNavBar-menu-wrapper .SubdomainNavBar-trailing-component {
+    box-sizing: border-box;
+    flex: none;
+    width: 100%;
+    height: auto;
+    margin-inline: 0;
+    padding: var(--base-size-16);
+  }
+
+  .SubdomainNavBar .SubdomainNavBar-menu-wrapper .SubdomainNavBar-button-area {
+    display: flex;
+    width: 100%;
+    height: auto;
+    padding: 0;
+    border-block-start: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
+  }
+
+  .SubdomainNavBar .SubdomainNavBar-menu-wrapper .SubdomainNavBar-button-area-inner {
+    box-sizing: border-box;
+    flex-direction: column;
+    width: 100%;
+    margin-block: var(--base-size-24);
+    padding-inline: var(--base-size-16);
+  }
+
+  .SubdomainNavBar .SubdomainNavBar-menu-wrapper .SubdomainNavBar-trailing-component {
+    border-block-start: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
   }
 }
 
