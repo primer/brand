@@ -67,6 +67,10 @@
   width: 100%;
 }
 
+.Hero-image > img {
+  border-radius: inherit;
+}
+
 .Hero-mediaContainer {
   width: 100%;
   height: 100%;
