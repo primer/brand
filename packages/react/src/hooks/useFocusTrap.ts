@@ -2,18 +2,21 @@ import React from 'react'
 import {focusTrap} from '@primer/behaviors'
 import {useProvidedRefOrCreate} from './useRef'
 
-export interface FocusTrapHookSettings {
+export interface FocusTrapHookSettings<
+  ContainerElement extends HTMLElement = HTMLElement,
+  InitialFocusElement extends HTMLElement = HTMLElement,
+> {
   /**
    * Ref object that will be used for the trapping container. If not provided, one will
    * be created by this hook and returned.
    */
-  containerRef?: React.RefObject<HTMLElement | null>
+  containerRef?: React.RefObject<ContainerElement | null>
 
   /**
    * Ref object for the element that should receive focus when the focus trap is first enabled.
    * If not provided, one will be created by this hook and returned. Its use is optional.
    */
-  initialFocusRef?: React.RefObject<HTMLElement | null>
+  initialFocusRef?: React.RefObject<InitialFocusElement | null>
 
   /**
    * Set to true to disable the focus trap and clean up listeners. Can be re-enabled at any time.
@@ -31,15 +34,18 @@ export interface FocusTrapHookSettings {
  * that should trap focus.
  * @param settings {FocusTrapHookSettings}
  */
-export function useFocusTrap(
-  settings?: FocusTrapHookSettings,
+export function useFocusTrap<
+  ContainerElement extends HTMLElement = HTMLElement,
+  InitialFocusElement extends HTMLElement = HTMLElement,
+>(
+  settings?: FocusTrapHookSettings<ContainerElement, InitialFocusElement>,
   dependencies: React.DependencyList = [],
 ): {
-  containerRef: React.RefObject<HTMLElement | null>
-  initialFocusRef: React.RefObject<HTMLElement | null>
+  containerRef: React.RefObject<ContainerElement | null>
+  initialFocusRef: React.RefObject<InitialFocusElement | null>
 } {
-  const containerRef = useProvidedRefOrCreate<HTMLElement | null>(settings?.containerRef)
-  const initialFocusRef = useProvidedRefOrCreate<HTMLElement | null>(settings?.initialFocusRef)
+  const containerRef = useProvidedRefOrCreate<ContainerElement | null>(settings?.containerRef)
+  const initialFocusRef = useProvidedRefOrCreate<InitialFocusElement | null>(settings?.initialFocusRef)
   const disabled = settings?.disabled
   const abortController = React.useRef<AbortController | null>(null)
   const previousFocusedElement = React.useRef<Element | null>(null)
@@ -50,8 +56,8 @@ export function useFocusTrap(
     abortController.current?.abort()
     if (settings?.restoreFocusOnCleanUp && previousFocusedElement.current instanceof HTMLElement) {
       previousFocusedElement.current.focus()
-      previousFocusedElement.current = null
     }
+    previousFocusedElement.current = null
   }
 
   React.useEffect(

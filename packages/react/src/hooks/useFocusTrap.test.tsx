@@ -33,8 +33,8 @@ describe('useFocusTrap', () => {
   })
 
   it('preserves provided refs', () => {
-    const containerRef = React.createRef<HTMLElement>()
-    const initialFocusRef = React.createRef<HTMLElement>()
+    const containerRef = React.createRef<HTMLDivElement>()
+    const initialFocusRef = React.createRef<HTMLButtonElement>()
     const {result} = renderHook(() => useFocusTrap({containerRef, initialFocusRef, disabled: true}))
 
     expect(result.current.containerRef).toBe(containerRef)
@@ -43,11 +43,11 @@ describe('useFocusTrap', () => {
 
   it('passes generated ref elements to the focus trap', () => {
     const TestComponent = () => {
-      const {containerRef, initialFocusRef} = useFocusTrap()
+      const {containerRef, initialFocusRef} = useFocusTrap<HTMLDivElement, HTMLButtonElement>()
 
       return (
-        <div ref={containerRef as React.RefObject<HTMLDivElement | null>}>
-          <button ref={initialFocusRef as React.RefObject<HTMLButtonElement | null>} />
+        <div ref={containerRef}>
+          <button ref={initialFocusRef} />
         </div>
       )
     }
@@ -55,5 +55,58 @@ describe('useFocusTrap', () => {
     const {container} = render(<TestComponent />)
 
     expect(mockFocusTrap).toHaveBeenCalledWith(container.querySelector('div'), container.querySelector('button'))
+  })
+
+  it('starts and aborts the focus trap when disabled changes', () => {
+    const abortController = new AbortController()
+    const abortSpy = jest.spyOn(abortController, 'abort')
+    mockFocusTrap.mockReturnValue(abortController)
+
+    const TestComponent = ({disabled}: {disabled: boolean}) => {
+      const {containerRef} = useFocusTrap<HTMLDivElement>({disabled})
+      return <div ref={containerRef} />
+    }
+
+    const {rerender} = render(<TestComponent disabled />)
+
+    expect(mockFocusTrap).not.toHaveBeenCalled()
+
+    rerender(<TestComponent disabled={false} />)
+
+    expect(mockFocusTrap).toHaveBeenCalledTimes(1)
+
+    rerender(<TestComponent disabled />)
+
+    expect(abortSpy).toHaveBeenCalled()
+  })
+
+  it('captures fresh focus after cleaning up a non-HTMLElement active element', () => {
+    const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg')
+    svg.setAttribute('tabindex', '0')
+    document.body.append(svg)
+    svg.focus()
+
+    const nextFocusedElement = document.createElement('button')
+    document.body.append(nextFocusedElement)
+
+    const TestComponent = ({disabled}: {disabled: boolean}) => {
+      const {containerRef} = useFocusTrap<HTMLDivElement>({disabled, restoreFocusOnCleanUp: true})
+      return <div ref={containerRef} />
+    }
+
+    const {rerender} = render(<TestComponent disabled={false} />)
+
+    rerender(<TestComponent disabled />)
+    nextFocusedElement.focus()
+
+    const focusSpy = jest.spyOn(nextFocusedElement, 'focus')
+
+    rerender(<TestComponent disabled={false} />)
+    rerender(<TestComponent disabled />)
+
+    expect(focusSpy).toHaveBeenCalled()
+
+    svg.remove()
+    nextFocusedElement.remove()
   })
 })
