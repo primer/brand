@@ -29,10 +29,17 @@ describe('primer_brand_examples', () => {
 
   it('leads page-level goals with the closest full-page template', async () => {
     const result = await primerBrandExamplesTool.run({goal: 'category page'}, makeContext())
-    expect(result.text).toContain('Full-page template')
+    expect(result.text).toContain('Full-page template — goal-matched recipe source')
     expect(result.text).toContain('category landing page')
-    // Other matching templates are surfaced by name so the agent knows the full set.
-    expect(result.text).toContain('Other full-page templates')
+  })
+
+  it('combines the general page recipe with goal-specific form examples', async () => {
+    const result = await primerBrandExamplesTool.run({goal: 'early access form page'}, makeContext())
+    expect(result.text).toContain('Full-page template — default FlexSuite overview recipe source')
+    expect(result.text).toContain('Product feature overview landing page')
+    expect(result.text).toContain('overview recipe source')
+    expect(result.text).toContain('### CTAForm')
+    expect(result.text).toContain('goal-specific component examples below for deeper context')
   })
 
   it('does not inject a full-page template for a component-level goal', async () => {
