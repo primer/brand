@@ -4,16 +4,16 @@ import {useProvidedRefOrCreate} from './useRef'
 
 export interface FocusTrapHookSettings {
   /**
-   * Ref that will be used for the trapping container. If not provided, one will
+   * Ref object that will be used for the trapping container. If not provided, one will
    * be created by this hook and returned.
    */
-  containerRef?: React.Ref<HTMLElement>
+  containerRef?: React.RefObject<HTMLElement | null>
 
   /**
-   * Ref for the element that should receive focus when the focus trap is first enabled.
+   * Ref object for the element that should receive focus when the focus trap is first enabled.
    * If not provided, one will be created by this hook and returned. Its use is optional.
    */
-  initialFocusRef?: React.Ref<HTMLElement>
+  initialFocusRef?: React.RefObject<HTMLElement | null>
 
   /**
    * Set to true to disable the focus trap and clean up listeners. Can be re-enabled at any time.
@@ -46,7 +46,7 @@ export function useFocusTrap(
 
   // If we are enabling a focus trap and haven't already stored the previously focused element
   // go ahead an do that so we can restore later when the trap is disabled.
-  if (!previousFocusedElement.current && !settings?.disabled) {
+  if (typeof document !== 'undefined' && !previousFocusedElement.current && !settings?.disabled) {
     previousFocusedElement.current = document.activeElement
   }
 
