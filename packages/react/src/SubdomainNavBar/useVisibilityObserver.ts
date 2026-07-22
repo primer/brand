@@ -38,7 +38,11 @@ export function useVisibilityObserver(
       return
     }
 
-    const availableWidth = navigation.clientWidth
+    const navigationStyles = window.getComputedStyle(navigation)
+    const inlinePadding =
+      (Number.parseFloat(navigationStyles.paddingInlineStart) || 0) +
+      (Number.parseFloat(navigationStyles.paddingInlineEnd) || 0)
+    const availableWidth = Math.max(0, navigation.clientWidth - inlinePadding)
     const navItemsWidth = navItems.reduce((width, item) => width + item.offsetWidth, 0)
 
     if (navItemsWidth <= availableWidth) {

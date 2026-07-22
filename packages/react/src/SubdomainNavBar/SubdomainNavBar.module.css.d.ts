@@ -13,6 +13,7 @@ declare const styles: {
   readonly "SubdomainNavBar-leading-component": string;
   readonly "SubdomainNavBar-link": string;
   readonly "SubdomainNavBar-link--title": string;
+  readonly "SubdomainNavBar-link-content": string;
   readonly "SubdomainNavBar-link-text": string;
   readonly "SubdomainNavBar-logo-mark": string;
   readonly "SubdomainNavBar-menu-button": string;

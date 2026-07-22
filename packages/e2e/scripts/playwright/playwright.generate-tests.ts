@@ -156,12 +156,17 @@ const beforeScreenshotLookup: Partial<Record<string, string>> = {
     const overflowMenu = page.locator(\`[id="\${await moreButton.getAttribute('aria-controls')}"]\`)
     await expect(moreButton).toHaveAttribute('aria-expanded', 'true')
     await expect(overflowMenu).toBeVisible()
-    await expect(overflowMenu.getByRole('link', {name: 'Books'})).toBeVisible()
+    await expect(overflowMenu.getByRole('link', {name: 'Resources'})).toBeVisible()
   `,
 }
 
 const screenshotOptionsLookup: Partial<Record<string, string>> = {
   'components-subdomainnavbar--overflow-menu-open': `{animations: 'allow'}`,
+}
+
+const viewportLookup: Partial<Record<string, {width: number; height: number}>> = {
+  'components-subdomainnavbar--desktop-pill-states': {width: 1440, height: 900},
+  'components-subdomainnavbar--overflow-menu-open': {width: 1440, height: 900},
 }
 
 // const skipLocalizationsTestsFor = [
@@ -270,6 +275,7 @@ for (const key of Object.keys(categorisedStories)) {
         )
 
         const requiresTabletViewport = storyName.toLowerCase().includes('tablet')
+        const viewport = viewportLookup[id]
         if (skipTestLookup.includes(id)) {
           return acc
         }
@@ -292,6 +298,16 @@ for (const key of Object.keys(categorisedStories)) {
 
         const languagesToTest = ['en']
         const allLanguageTests = languagesToTest.map(language => generateTestForLanguage(language)).join('')
+
+        if (viewport) {
+          return (acc += `
+          // eslint-disable-next-line i18n-text/no-en
+          test.describe('Custom viewport test for ${storyName}', () => {
+            test.use({ viewport: { width: ${viewport.width}, height: ${viewport.height} } });
+            ${allLanguageTests}
+          });
+          `)
+        }
 
         if (requiresMobileViewport) {
           return (acc += `

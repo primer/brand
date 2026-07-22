@@ -155,6 +155,21 @@ describe('SubdomainNavBar', () => {
     expect(getByRole('banner')).toHaveStyle({opacity: '0.5'})
   })
 
+  it('forwards aria-current to the rendered link', () => {
+    const {getByRole} = render(
+      <SubdomainNavBar title="Subdomain">
+        <SubdomainNavBar.Link href="#collections" aria-current="page">
+          Collections
+        </SubdomainNavBar.Link>
+      </SubdomainNavBar>,
+    )
+
+    const link = getByRole('link', {name: 'Collections'})
+
+    expect(link).toHaveAttribute('aria-current', 'page')
+    expect(link.closest('li')).not.toHaveAttribute('aria-current')
+  })
+
   it('has no a11y violations by default', async () => {
     const {container} = render(<Component />)
 
@@ -603,6 +618,30 @@ describe('SubdomainNavBar', () => {
     )
     expect(within(overflowMenu as HTMLElement).queryByRole('link', {name: 'Collections'})).not.toBeInTheDocument()
     expect(within(overflowMenu as HTMLElement).queryByRole('link', {name: 'Topics'})).not.toBeInTheDocument()
+  })
+
+  it('accounts for inline list padding when measuring desktop navigation overflow', async () => {
+    mockUseWindowSize.mockImplementation(() => ({isSmall: true, isMedium: true}))
+
+    const {container, getByRole} = render(
+      <SubdomainNavBar title="Subdomain">
+        <SubdomainNavBar.Link href="#collections">Collections</SubdomainNavBar.Link>
+        <SubdomainNavBar.Link href="#topics">Topics</SubdomainNavBar.Link>
+        <SubdomainNavBar.Link href="#articles">Articles</SubdomainNavBar.Link>
+      </SubdomainNavBar>,
+    )
+
+    const navList = container.querySelector<HTMLElement>('.SubdomainNavBar-primary-nav-list')
+    if (navList) {
+      navList.style.paddingInlineStart = '16px'
+    }
+
+    await updateNavigationLayout(container, {containerWidth: 150, itemWidth: 45, moreWidth: 30})
+
+    expect(getByRole('button', {name: 'More'})).toBeInTheDocument()
+    expect(container.querySelector('[data-navitemid="0-Collections"]')).not.toHaveAttribute('aria-hidden')
+    expect(container.querySelector('[data-navitemid="1-Topics"]')).not.toHaveAttribute('aria-hidden')
+    expect(container.querySelector('[data-navitemid="2-Articles"]')).toHaveAttribute('aria-hidden', 'true')
   })
 
   it('keeps overflowed desktop navigation links contiguous when later links are shorter', async () => {

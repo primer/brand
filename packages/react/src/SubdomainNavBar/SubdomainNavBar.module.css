@@ -308,6 +308,12 @@
   position: relative;
 }
 
+.SubdomainNavBar-link-content {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--base-size-8);
+}
+
 @media screen and (max-width: 767px) {
   .SubdomainNavBar-link:first-of-type {
     padding-top: var(--base-size-24);
@@ -885,6 +891,7 @@
     margin: 0;
     block-size: 100%;
     max-block-size: 100%;
+    padding-inline-start: var(--base-size-16);
   }
 
   .SubdomainNavBar .SubdomainNavBar-primary-nav-overflow {
@@ -902,8 +909,60 @@
     height: 100%;
     padding: 0 var(--base-size-16);
     color: var(--brand-color-text-muted);
-    font-size: var(--base-size-14);
+    font-size: var(--brand-text-size-100);
     line-height: var(--brand-text-lineHeight-200);
+  }
+
+  .SubdomainNavBar
+    .SubdomainNavBar-primary-nav-list-item:not(.SubdomainNavBar-overflow-menu-item)
+    > .SubdomainNavBar-link,
+  .SubdomainNavBar .SubdomainNavBar-more-link {
+    padding-inline: var(--base-size-4);
+  }
+
+  .SubdomainNavBar
+    .SubdomainNavBar-primary-nav-list-item:not(.SubdomainNavBar-overflow-menu-item)
+    > .SubdomainNavBar-link
+    > .SubdomainNavBar-link-content,
+  .SubdomainNavBar .SubdomainNavBar-more-link > .SubdomainNavBar-link-content {
+    gap: var(--base-size-4);
+    padding: var(--base-size-4) var(--base-size-12);
+    background-color: transparent;
+    border-radius: var(--brand-borderRadius-full);
+  }
+
+  .SubdomainNavBar
+    .SubdomainNavBar-primary-nav-list-item:not(.SubdomainNavBar-overflow-menu-item)
+    > .SubdomainNavBar-link:hover
+    > .SubdomainNavBar-link-content,
+  .SubdomainNavBar
+    .SubdomainNavBar-primary-nav-list-item:not(.SubdomainNavBar-overflow-menu-item)
+    > .SubdomainNavBar-link:active
+    > .SubdomainNavBar-link-content,
+  .SubdomainNavBar
+    .SubdomainNavBar-primary-nav-list-item:not(.SubdomainNavBar-overflow-menu-item)
+    > .SubdomainNavBar-link[aria-current]:not([aria-current='false'])
+    > .SubdomainNavBar-link-content,
+  .SubdomainNavBar .SubdomainNavBar-more-link:hover > .SubdomainNavBar-link-content,
+  .SubdomainNavBar .SubdomainNavBar-more-link:active > .SubdomainNavBar-link-content,
+  .SubdomainNavBar .SubdomainNavBar-more-link[aria-expanded='true'] > .SubdomainNavBar-link-content {
+    background-color: var(--brand-SubNav-color-link-bgColor);
+  }
+
+  .SubdomainNavBar
+    .SubdomainNavBar-primary-nav-list-item:not(.SubdomainNavBar-overflow-menu-item)
+    > .SubdomainNavBar-link:focus-visible,
+  .SubdomainNavBar .SubdomainNavBar-more-link:focus-visible {
+    outline: none;
+  }
+
+  .SubdomainNavBar
+    .SubdomainNavBar-primary-nav-list-item:not(.SubdomainNavBar-overflow-menu-item)
+    > .SubdomainNavBar-link:focus-visible
+    > .SubdomainNavBar-link-content,
+  .SubdomainNavBar .SubdomainNavBar-more-link:focus-visible > .SubdomainNavBar-link-content {
+    outline: var(--brand-borderWidth-thick) solid var(--brand-color-focus);
+    outline-offset: var(--base-size-2);
   }
 
   .SubdomainNavBar .SubdomainNavBar-link-text::after {
@@ -945,6 +1004,16 @@
   .SubdomainNavBar .SubdomainNavBar-overflow-menu-item .SubdomainNavBar-link:focus-visible {
     color: var(--brand-color-text-default);
     background-color: var(--brand-color-canvas-subtle);
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .SubdomainNavBar
+      .SubdomainNavBar-primary-nav-list-item:not(.SubdomainNavBar-overflow-menu-item)
+      > .SubdomainNavBar-link
+      > .SubdomainNavBar-link-content,
+    .SubdomainNavBar .SubdomainNavBar-more-link > .SubdomainNavBar-link-content {
+      transition: background-color var(--brand-animation-duration-fast) var(--brand-animation-easing-default);
+    }
   }
 
   .SubdomainNavBar .SubdomainNavBar-secondary-nav {

@@ -188,8 +188,10 @@ const OverflowButton = forwardRef<HTMLLIElement, OverflowButtonProps>(
           ref={buttonRef}
           tabIndex={visible ? undefined : -1}
         >
-          More
-          <ChevronDownIcon />
+          <span className={styles['SubdomainNavBar-link-content']}>
+            More
+            <ChevronDownIcon />
+          </span>
         </button>
       </li>
     )

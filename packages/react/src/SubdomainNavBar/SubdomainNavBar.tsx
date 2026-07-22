@@ -597,6 +597,7 @@ function Link({
   className,
   children,
   isExternal,
+  'aria-current': ariaCurrent,
   'aria-hidden': ariaHidden,
   tabIndex,
   ...rest
@@ -613,12 +614,15 @@ function Link({
     >
       <a
         href={href}
+        aria-current={ariaCurrent}
         className={styles['SubdomainNavBar-link']}
         onClick={onLinkClick}
         tabIndex={isOverflowed ? -1 : undefined}
       >
-        <span className={styles['SubdomainNavBar-link-text']}>{children}</span>
-        {isExternal && <LinkExternalIcon size={16} aria-label="External link" />}
+        <span className={styles['SubdomainNavBar-link-content']}>
+          <span className={styles['SubdomainNavBar-link-text']}>{children}</span>
+          {isExternal && <LinkExternalIcon size={16} aria-label="External link" />}
+        </span>
       </a>
     </li>
   )

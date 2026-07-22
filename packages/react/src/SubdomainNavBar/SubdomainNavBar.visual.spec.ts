@@ -72,24 +72,43 @@ test.describe('Visual Comparison: SubdomainNavBar', () => {
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
-  test('SubdomainNavBar / Overflow Menu Open', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-subdomainnavbar--overflow-menu-open&viewMode=story',
-      {waitUntil: 'networkidle'},
-    )
-    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+  // eslint-disable-next-line i18n-text/no-en
+  test.describe('Custom viewport test for Overflow Menu Open', () => {
+    test.use({viewport: {width: 1440, height: 900}})
+    test('SubdomainNavBar / Overflow Menu Open', async ({page}) => {
+      await page.goto(
+        'http://localhost:6006/iframe.html?args=&id=components-subdomainnavbar--overflow-menu-open&viewMode=story',
+        {waitUntil: 'networkidle'},
+      )
+      await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
-    await page.waitForTimeout(1500)
-    const moreButton = page.getByRole('button', {name: 'More'})
-    if ((await moreButton.getAttribute('aria-expanded')) !== 'true') {
-      await moreButton.click()
-    }
-    const overflowMenu = page.locator(`[id="${await moreButton.getAttribute('aria-controls')}"]`)
-    await expect(moreButton).toHaveAttribute('aria-expanded', 'true')
-    await expect(overflowMenu).toBeVisible()
-    await expect(overflowMenu.getByRole('link', {name: 'Books'})).toBeVisible()
+      await page.waitForTimeout(1500)
+      const moreButton = page.getByRole('button', {name: 'More'})
+      if ((await moreButton.getAttribute('aria-expanded')) !== 'true') {
+        await moreButton.click()
+      }
+      const overflowMenu = page.locator(`[id="${await moreButton.getAttribute('aria-controls')}"]`)
+      await expect(moreButton).toHaveAttribute('aria-expanded', 'true')
+      await expect(overflowMenu).toBeVisible()
+      await expect(overflowMenu.getByRole('link', {name: 'Resources'})).toBeVisible()
 
-    await expect(page).toHaveScreenshot({animations: 'allow'})
+      await expect(page).toHaveScreenshot({animations: 'allow'})
+    })
+  })
+
+  // eslint-disable-next-line i18n-text/no-en
+  test.describe('Custom viewport test for Desktop Pill States', () => {
+    test.use({viewport: {width: 1440, height: 900}})
+    test('SubdomainNavBar / Desktop Pill States', async ({page}) => {
+      await page.goto(
+        'http://localhost:6006/iframe.html?args=&id=components-subdomainnavbar--desktop-pill-states&viewMode=story',
+        {waitUntil: 'networkidle'},
+      )
+      await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+      await page.waitForTimeout(500)
+      await expect(page).toHaveScreenshot({fullPage: true})
+    })
   })
 
   // eslint-disable-next-line i18n-text/no-en

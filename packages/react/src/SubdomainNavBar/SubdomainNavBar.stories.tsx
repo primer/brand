@@ -23,6 +23,18 @@ type StoryArgs = {
   fullWidth: boolean
 } & SubdomainNavBarProps
 
+const viewports = {
+  ...INITIAL_VIEWPORTS,
+  desktop1440: {
+    name: 'Desktop 1440',
+    styles: {
+      width: '1440px',
+      height: '900px',
+    },
+    type: 'desktop',
+  },
+}
+
 const meta = {
   title: 'Components/SubdomainNavBar',
   component: SubdomainNavBar as Meta<StoryArgs>['component'],
@@ -48,7 +60,7 @@ const meta = {
   },
   parameters: {
     viewport: {
-      viewports: INITIAL_VIEWPORTS,
+      options: viewports,
     },
   },
 } satisfies Meta<StoryArgs>
@@ -883,6 +895,9 @@ export const OverflowMenuOpen: Story = {
   args: {
     numLinks: 13,
   },
+  globals: {
+    viewport: {value: 'desktop1440'},
+  },
   play: async ({canvasElement}) => {
     const canvas = within(canvasElement)
     await document.fonts.ready
@@ -891,6 +906,29 @@ export const OverflowMenuOpen: Story = {
     await expect(canvas.getByRole('link', {name: 'Books'})).toBeVisible()
   },
   name: 'Overflow Menu Open',
+}
+
+export const DesktopPillStates: Story = {
+  render: () => (
+    <SubdomainNavBar title="Site title">
+      <SubdomainNavBar.Link href="#default">Default</SubdomainNavBar.Link>
+      <SubdomainNavBar.Link href="#hover">Hover</SubdomainNavBar.Link>
+      <SubdomainNavBar.Link href="#focus">Focus</SubdomainNavBar.Link>
+      <SubdomainNavBar.Link href="#current" aria-current="page">
+        Current
+      </SubdomainNavBar.Link>
+    </SubdomainNavBar>
+  ),
+  globals: {
+    viewport: {value: 'desktop1440'},
+  },
+  parameters: {
+    pseudo: {
+      hover: ['a[href="#hover"]'],
+      focusVisible: ['a[href="#focus"]'],
+    },
+  },
+  name: 'Desktop Pill States',
 }
 
 export const MobileView: Story = {
