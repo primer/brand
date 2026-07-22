@@ -24,7 +24,7 @@
   "scripts": {
     "clean": "rm -rf out .next",
     "dev": "next dev",
-    "check": "npm run figma-images:validate && tsc --noEmit",
+    "check": "tsc --noEmit && npm run figma-images:validate",
     "build": "rm -rf out .next && next build --webpack",
     "build:prod": "scripts/build",
     "figma-images:generate": "node --env-file-if-exists=.env.local scripts/figma-images.mjs generate",
