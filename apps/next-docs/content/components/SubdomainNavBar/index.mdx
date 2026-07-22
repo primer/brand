@@ -31,61 +31,48 @@ Please refer to our [Storybook examples](https://primer.style/brand/storybook/?p
 ### Basic
 
 ```jsx live
-<SubdomainNavBar title="Subdomain" fixed={false}>
-  <SubdomainNavBar.Link href="#">Collections</SubdomainNavBar.Link>
-  <SubdomainNavBar.Link href="#">Topics</SubdomainNavBar.Link>
-  <SubdomainNavBar.Link href="#">Social</SubdomainNavBar.Link>
-  <SubdomainNavBar.PrimaryAction href="#">Primary CTA</SubdomainNavBar.PrimaryAction>
-  <SubdomainNavBar.SecondaryAction href="#">Secondary CTA</SubdomainNavBar.SecondaryAction>
-</SubdomainNavBar>
+<div style={{width: '100%'}}>
+  <SubdomainNavBar title="Subdomain" fixed={false}>
+    <SubdomainNavBar.Link href="#">Collections</SubdomainNavBar.Link>
+    <SubdomainNavBar.Link href="#">Topics</SubdomainNavBar.Link>
+    <SubdomainNavBar.Link href="#">Social</SubdomainNavBar.Link>
+    <SubdomainNavBar.PrimaryAction href="#">Primary CTA</SubdomainNavBar.PrimaryAction>
+    <SubdomainNavBar.SecondaryAction href="#">Secondary CTA</SubdomainNavBar.SecondaryAction>
+  </SubdomainNavBar>
+</div>
 ```
 
 ### Leading and trailing content
 
 Use `leadingComponent` for content between the title and navigation links. Use `trailingComponent` for content after search and actions. On narrow viewports, both slots move into the menu while preserving that order. Provide accessible names for interactive controls passed to either slot.
 
-```tsx filename="App.tsx"
-import {Button, SubdomainNavBar, Token} from '@primer/react-brand'
-
-export function App() {
-  return (
+```jsx filename="noinline"
+const App = () => (
+  <div style={{width: '100%'}}>
     <SubdomainNavBar
-      title="GitHub Docs"
+      title="Subdomain"
       fixed={false}
-      leadingComponent={<Token>Enterprise Cloud</Token>}
-      trailingComponent={<Button aria-label="Sign in to GitHub">Sign in</Button>}
+      leadingComponent={<Token>Leading</Token>}
+      trailingComponent={<Token>Trailing</Token>}
       style={{borderBlockEndColor: 'var(--brand-color-border-default)'}}
     >
       <SubdomainNavBar.Link href="/en/get-started">Get started</SubdomainNavBar.Link>
       <SubdomainNavBar.Link href="/en/rest">REST API</SubdomainNavBar.Link>
     </SubdomainNavBar>
-  )
-}
+  </div>
+)
+
+render(<App />)
 ```
 
 ### Search
 
-`SubdomainNavBar.Search` opens a search dialog and supports submitted searches or results updated from `onChange`. Its `variant` controls only the closed trigger:
+`SubdomainNavBar` offers an optional search form control that supports both `onSubmit` and `onChange`; use `onChange` to display inline results. The `placeholder` labels the input in the opened dialog and defaults to `Search {title}`, or `Search` when no navigation title is available.
 
-- `icon` is the default icon-only trigger.
-- `input` displays a placeholder and optional shortcut hint at the large breakpoint (1012px and wider). It automatically uses the icon-only trigger below that breakpoint.
+Users can press `/` to open the search dialog, or use `keyboardShortcut` to remap or disable the shortcut. For programmatic control with `openSearch()` and `closeSearch()`, see the [Imperative Search API Storybook example](https://primer.style/brand/storybook/?path=/story/components-subdomainnavbar--imperative-search-api).
 
-The `placeholder` is also used by the input in the opened dialog. If omitted, it defaults to `Search {title}`, or `Search` when no navigation title is available.
-
-By default, users can press `/` to open search. `keyboardShortcut` accepts a single key or a modifier combination such as `Command+Option+k`; set it to `false` to disable the global shortcut. The shortcut is ignored while focus is in an editable control. `shortcutLabel` changes only the visible hint in the input trigger and defaults to the value of `keyboardShortcut`; use an empty string to hide it.
-
-Attach a ref typed as `SubdomainNavBarHandle` to call `openSearch()` or `closeSearch()`. Both methods are no-ops when the nav bar has no `SubdomainNavBar.Search` child.
-
-```tsx filename="SearchNav.tsx"
-import * as React from 'react'
-import {
-  Button,
-  SubdomainNavBar,
-  type SubdomainNavBarHandle,
-  type SubdomainNavBarSearchResults,
-} from '@primer/react-brand'
-
-const groupedResults: SubdomainNavBarSearchResults = [
+```jsx filename="noinline"
+const groupedResults = [
   {
     title: 'Recommended',
     results: [
@@ -113,23 +100,15 @@ const groupedResults: SubdomainNavBarSearchResults = [
   },
 ]
 
-export function SearchNav() {
-  const navRef = React.useRef<SubdomainNavBarHandle | null>(null)
+const SearchNav = () => {
   const [searchTerm, setSearchTerm] = React.useState('')
 
   return (
-    <>
-      <Button onClick={() => navRef.current?.openSearch()}>Open search</Button>
-      <Button variant="secondary" onClick={() => navRef.current?.closeSearch()}>
-        Close search
-      </Button>
-      <SubdomainNavBar ref={navRef} title="GitHub Docs" fixed={false} fullWidth>
+    <div style={{width: '100%'}}>
+      <SubdomainNavBar title="GitHub Docs" fixed={false} fullWidth>
         <SubdomainNavBar.Link href="/en/get-started">Get started</SubdomainNavBar.Link>
         <SubdomainNavBar.Search
-          variant="input"
           placeholder="Search GitHub Docs"
-          keyboardShortcut="Command+Option+k"
-          shortcutLabel="⌘⌥K"
           searchTerm={searchTerm}
           searchResults={searchTerm ? groupedResults : []}
           onChange={event => setSearchTerm(event.currentTarget.value)}
@@ -138,22 +117,21 @@ export function SearchNav() {
           }}
         />
       </SubdomainNavBar>
-    </>
+    </div>
   )
 }
+
+render(<SearchNav />)
 ```
 
-Search results may be a flat `SubdomainNavBarSearchResultProps[]` or a `SubdomainNavBarSearchResultGroupProps[]`. For flat results, the optional `group` field groups items under the same heading. For explicit groups, each object supplies a `title` and `results` array. Do not mix flat result and group objects in the same array.
+Search results can be a flat list or grouped by title. Do not mix both formats in the same array.
 
 ### Localized search
 
-The `labels` prop accepts `Partial<SubdomainNavBarSearchLabels>`. Missing values fall back to English. For a fully localized experience, provide every label and formatter, and localize `placeholder` and `shortcutLabel` when they contain language.
+Use the `labels` prop to localize search text. Any labels you omit fall back to English.
 
-```tsx filename="LocalizedSearch.tsx"
-import * as React from 'react'
-import {SubdomainNavBar, type SubdomainNavBarSearchLabels, type SubdomainNavBarSearchProps} from '@primer/react-brand'
-
-const labels: SubdomainNavBarSearchLabels = {
+```jsx filename="noinline"
+const labels = {
   searchLabel: 'Buscar',
   searchTriggerLabel: 'Abrir búsqueda',
   closeLabel: 'Cerrar',
@@ -166,25 +144,29 @@ const labels: SubdomainNavBarSearchLabels = {
   formatSuggestions: count => `${count} sugerencia${count === 1 ? '' : 's'}.`,
 }
 
-const searchProps: Pick<SubdomainNavBarSearchProps, 'labels' | 'placeholder'> = {
+const searchProps = {
   labels,
   placeholder: 'Buscar documentación',
 }
 
-export function LocalizedSearch() {
+const LocalizedSearch = () => {
   const [searchTerm, setSearchTerm] = React.useState('')
 
   return (
-    <SubdomainNavBar title="Documentación" fixed={false}>
-      <SubdomainNavBar.Search
-        {...searchProps}
-        searchTerm={searchTerm}
-        onChange={event => setSearchTerm(event.currentTarget.value)}
-        onSubmit={event => event.preventDefault()}
-      />
-    </SubdomainNavBar>
+    <div style={{width: '100%'}}>
+      <SubdomainNavBar title="Documentación" fixed={false}>
+        <SubdomainNavBar.Search
+          {...searchProps}
+          searchTerm={searchTerm}
+          onChange={event => setSearchTerm(event.currentTarget.value)}
+          onSubmit={event => event.preventDefault()}
+        />
+      </SubdomainNavBar>
+    </div>
   )
 }
+
+render(<LocalizedSearch />)
 ```
 
 ## Accessibility
