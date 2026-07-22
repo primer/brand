@@ -44,12 +44,6 @@ export function useFocusTrap(
   const abortController = React.useRef<AbortController | null>(null)
   const previousFocusedElement = React.useRef<Element | null>(null)
 
-  // If we are enabling a focus trap and haven't already stored the previously focused element
-  // go ahead an do that so we can restore later when the trap is disabled.
-  if (typeof document !== 'undefined' && !previousFocusedElement.current && !settings?.disabled) {
-    previousFocusedElement.current = document.activeElement
-  }
-
   // This function removes the event listeners that enable the focus trap and restores focus
   // to the previously-focused element (if necessary).
   function disableTrap() {
@@ -64,6 +58,9 @@ export function useFocusTrap(
     () => {
       if (containerRef.current instanceof HTMLElement) {
         if (!disabled) {
+          if (!previousFocusedElement.current) {
+            previousFocusedElement.current = document.activeElement
+          }
           abortController.current = focusTrap(containerRef.current, initialFocusRef.current ?? undefined) ?? null
           return () => {
             disableTrap()
