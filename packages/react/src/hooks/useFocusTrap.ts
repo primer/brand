@@ -1,18 +1,19 @@
 import React from 'react'
 import {focusTrap} from '@primer/behaviors'
+import {useProvidedRefOrCreate} from './useRef'
 
 export interface FocusTrapHookSettings {
   /**
    * Ref that will be used for the trapping container. If not provided, one will
    * be created by this hook and returned.
    */
-  containerRef: React.RefObject<HTMLElement | null>
+  containerRef?: React.Ref<HTMLElement>
 
   /**
    * Ref for the element that should receive focus when the focus trap is first enabled.
    * If not provided, one will be created by this hook and returned. Its use is optional.
    */
-  initialFocusRef?: React.RefObject<HTMLElement | null>
+  initialFocusRef?: React.Ref<HTMLElement>
 
   /**
    * Set to true to disable the focus trap and clean up listeners. Can be re-enabled at any time.
@@ -34,11 +35,11 @@ export function useFocusTrap(
   settings?: FocusTrapHookSettings,
   dependencies: React.DependencyList = [],
 ): {
-  containerRef: React.RefObject<HTMLElement | null> | undefined
-  initialFocusRef: React.RefObject<HTMLElement | null> | undefined
+  containerRef: React.RefObject<HTMLElement | null>
+  initialFocusRef: React.RefObject<HTMLElement | null>
 } {
-  const containerRef = settings?.containerRef
-  const initialFocusRef = settings?.initialFocusRef
+  const containerRef = useProvidedRefOrCreate<HTMLElement | null>(settings?.containerRef)
+  const initialFocusRef = useProvidedRefOrCreate<HTMLElement | null>(settings?.initialFocusRef)
   const disabled = settings?.disabled
   const abortController = React.useRef<AbortController | null>(null)
   const previousFocusedElement = React.useRef<Element | null>(null)
@@ -61,9 +62,9 @@ export function useFocusTrap(
 
   React.useEffect(
     () => {
-      if (containerRef?.current instanceof HTMLElement) {
+      if (containerRef.current instanceof HTMLElement) {
         if (!disabled) {
-          abortController.current = focusTrap(containerRef.current, initialFocusRef?.current ?? undefined) ?? null
+          abortController.current = focusTrap(containerRef.current, initialFocusRef.current ?? undefined) ?? null
           return () => {
             disableTrap()
           }
