@@ -176,25 +176,23 @@ const heroRequiresMedia: Rule = {
 const productShotNeedsDither: Rule = {
   id: 'product-shot-needs-dither',
   run(code) {
-    // Strong "this is real product UI" vocabulary: structural UI plus GitHub product-feature
-    // language (as seen in real alt text like "security overview ... code scanning ... autofix").
+    // Words that mean "this is real product UI" — layout bits plus GitHub feature names.
     const productToken =
       /product[-_ ]?(?:shot|ui|screenshot)|screenshot|dashboard|console|panel|editor|settings|mockup|ui[-_]?shot|app[-_ ]?(?:ui|screenshot)|security|code[-_ ]?scanning|scanning|secrets?|\balerts?\b|autofix|dependabot|codeql|vulnerabilit|pull[-_ ]?request/i
 
-    // Decorative markers that mean "not product UI" even when a product word is nearby — this is
-    // what separates `security-overview.svg` (product) from `overview-illustration.svg` (decorative).
+    // ...and the giveaways that it's just decoration. This is what keeps security-overview.svg
+    // (product) apart from overview-illustration.svg (decorative).
     const decorativeToken =
       /illustration|illustrative|abstract|wallpaper|pattern|decorative|texture|gradient|\blogo\b|logomark|\bicon\b|avatar|headshot/i
 
-    // Map each import binding to its module path, so a shot's filename can inform detection.
+    // Remember each import's path so we can peek at the filename later.
     const importPath = new Map<string, string>()
     for (const match of code.matchAll(/import\s+([A-Za-z_$][\w$]*)\s+from\s+['"]([^'"]+)['"]/gi)) {
       const [, binding, path] = match
       if (binding && path !== undefined) importPath.set(binding, path)
     }
 
-    // CSS classes whose rule paints a dither background, so class-based (CSS Module) dither wrappers
-    // count as covered, not just inline `style={{ backgroundImage }}`.
+    // CSS classes that paint dither, so a CSS Module wrapper counts too — not just inline styles.
     const ditherClasses = new Set<string>()
     for (const match of code.matchAll(/\.(-?[A-Za-z_][\w-]*)\s*\{([^}]*)\}/g)) {
       const [, cls, body] = match
@@ -210,19 +208,26 @@ const productShotNeedsDither: Rule = {
       return [...ditherClasses].some(cls => new RegExp(`\\b${escapeRegExp(cls)}\\b`).test(classValue))
     }
 
-    // Walk open/close tags up to `index` and report whether any still-open ancestor paints dither,
-    // so one correctly layered shot cannot vouch for a bare product shot elsewhere on the page.
+    // Walk the tags once and jot down where each dither wrapper starts and ends.
     const voidElement = /^(?:img|source|br|input|hr|area|col|embed|track|wbr|meta|link)$/i
-    const insideDitherWrapper = (index: number): boolean => {
-      const stack: string[] = []
-      for (const match of code.slice(0, index).matchAll(/<(\/?)([A-Za-z][\w.]*)\b[^>]*?(\/?)>/g)) {
-        const [, closing, name, selfClose] = match
-        if (selfClose === '/' || (name !== undefined && voidElement.test(name))) continue
-        if (closing === '/') stack.pop()
-        else stack.push(match[0])
+    const ditherRanges: Array<[number, number]> = []
+    const openWrappers: Array<{dither: boolean; start: number}> = []
+    for (const match of code.matchAll(/<(\/?)([A-Za-z][\w.]*)\b[^>]*?(\/?)>/g)) {
+      const [, closing, name, selfClose] = match
+      if (selfClose === '/' || (name !== undefined && voidElement.test(name))) continue
+      if (closing === '/') {
+        const opened = openWrappers.pop()
+        if (opened?.dither) ditherRanges.push([opened.start, match.index + match[0].length])
+      } else {
+        openWrappers.push({dither: openTagPaintsDither(match[0]), start: match.index})
       }
-      return stack.some(openTagPaintsDither)
     }
+    // Never closed? Treat it as covering everything after it.
+    for (const opened of openWrappers) {
+      if (opened.dither) ditherRanges.push([opened.start, code.length])
+    }
+    const insideDitherWrapper = (index: number): boolean =>
+      ditherRanges.some(([start, end]) => index > start && index < end)
 
     const altText = (tag: string): string => tag.match(/\balt\s*=\s*["']([^"']*)["']/i)?.[1] ?? ''
     const srcBinding = (tag: string): string => tag.match(/\bsrc\s*=\s*\{([A-Za-z_$][\w$]*)\}/)?.[1] ?? ''
@@ -232,8 +237,7 @@ const productShotNeedsDither: Rule = {
     for (const match of code.matchAll(/<(?:Hero\.Image|Image|img|picture)\b[^>]*>/g)) {
       const tag = match[0]
       const binding = srcBinding(tag)
-      // Judge each image only from what the author wrote about it: its alt text, src binding name,
-      // and imported filename — never unrelated attributes such as className.
+      // Go on what describes the image — alt, src binding, filename — not stray attrs like className.
       const signals = [altText(tag), binding, importPath.get(binding) ?? '', srcLiteral(tag)]
       const looksLikeProduct = signals.some(signal => productToken.test(signal))
       const isDecorative = signals.some(signal => decorativeToken.test(signal))
