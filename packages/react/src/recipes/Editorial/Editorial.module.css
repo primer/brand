@@ -28,6 +28,15 @@
 
 .cardGridCells {
   --editorial-cardGrid-border: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
+
+  border-inline: var(--editorial-cardGrid-border);
+}
+
+.cardGridCells::after {
+  display: none;
+  min-width: 0;
+  pointer-events: none;
+  content: '';
 }
 
 .cardGridCell {
@@ -51,6 +60,17 @@
   .cardGridCells--responsive .cardGridCell:nth-child(n + 3) {
     border-block-start: var(--editorial-cardGrid-border);
   }
+
+  .cardGridCells--responsive:has(> .cardGridCell:last-child:nth-child(odd))::after {
+    display: block;
+    grid-column: auto / span 6;
+    border-block-start: var(--editorial-cardGrid-border);
+    border-inline-start: var(--editorial-cardGrid-border);
+  }
+
+  .cardGridCells--responsive:has(> .cardGridCell:only-child)::after {
+    border-block-start: 0;
+  }
 }
 
 @media screen and (min-width: 48rem) {
@@ -64,6 +84,32 @@
 
   .cardGridCells--threeColumn .cardGridCell:nth-child(n + 4) {
     border-block-start: var(--editorial-cardGrid-border);
+  }
+
+  .cardGridCells--threeColumn:has(> .cardGridCell:last-child:nth-child(3n + 1))::after,
+  .cardGridCells--threeColumn:has(> .cardGridCell:last-child:nth-child(3n + 2))::after {
+    display: block;
+    border-block-start: var(--editorial-cardGrid-border);
+    border-inline-start: var(--editorial-cardGrid-border);
+  }
+
+  .cardGridCells--threeColumn:has(> .cardGridCell:last-child:nth-child(3n + 1))::after {
+    grid-column: auto / span 8;
+    background: linear-gradient(
+      to right,
+      transparent calc(50% - var(--brand-borderWidth-thin)),
+      var(--brand-color-border-muted) calc(50% - var(--brand-borderWidth-thin)),
+      var(--brand-color-border-muted) 50%,
+      transparent 50%
+    );
+  }
+
+  .cardGridCells--threeColumn:has(> .cardGridCell:last-child:nth-child(3n + 2))::after {
+    grid-column: auto / span 4;
+  }
+
+  .cardGridCells--threeColumn:has(> .cardGridCell:nth-child(-n + 2):last-child)::after {
+    border-block-start: 0;
   }
 }
 
@@ -79,6 +125,32 @@
 
   .cardGridCells--responsive .cardGridCell:nth-child(n + 4) {
     border-block-start: var(--editorial-cardGrid-border);
+  }
+
+  .cardGridCells--responsive:has(> .cardGridCell:last-child:nth-child(3n + 1))::after,
+  .cardGridCells--responsive:has(> .cardGridCell:last-child:nth-child(3n + 2))::after {
+    display: block;
+    border-block-start: var(--editorial-cardGrid-border);
+    border-inline-start: var(--editorial-cardGrid-border);
+  }
+
+  .cardGridCells--responsive:has(> .cardGridCell:last-child:nth-child(3n + 1))::after {
+    grid-column: auto / span 8;
+    background: linear-gradient(
+      to right,
+      transparent calc(50% - var(--brand-borderWidth-thin)),
+      var(--brand-color-border-muted) calc(50% - var(--brand-borderWidth-thin)),
+      var(--brand-color-border-muted) 50%,
+      transparent 50%
+    );
+  }
+
+  .cardGridCells--responsive:has(> .cardGridCell:last-child:nth-child(3n + 2))::after {
+    grid-column: auto / span 4;
+  }
+
+  .cardGridCells--responsive:has(> .cardGridCell:nth-child(-n + 2):last-child)::after {
+    border-block-start: 0;
   }
 }
 

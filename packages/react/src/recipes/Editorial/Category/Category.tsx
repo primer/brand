@@ -3,6 +3,7 @@ import React, {useCallback, useState} from 'react'
 import {
   Box,
   Card,
+  Grid,
   Heading,
   Hero,
   MinimalFooter,
@@ -132,40 +133,48 @@ type CardGridProps = {
 
 function CardGrid({cards, heading, sortLabel, footer}: CardGridProps) {
   return (
-    <div className={styles.cardGrid}>
-      <Stack
-        className={styles.sectionHeader}
-        direction={{narrow: 'vertical', regular: 'horizontal'}}
-        gap={24}
-        alignItems={{narrow: 'flex-start', regular: 'flex-end'}}
-        justifyContent="space-between"
-        padding="none"
-      >
-        <Heading as="h2" size="5" weight="normal">
-          {heading}
-        </Heading>
-        {sortLabel ? (
-          <Text size="100" variant="muted" className={styles.sortLabel}>
-            {sortLabel}
-          </Text>
-        ) : null}
-      </Stack>
-      <EditorialCardGrid layout="responsive">
-        {cards.map(card => (
-          <Box key={card.heading} className={styles.cardGridItem}>
-            <Card href={card.href} fullWidth ctaVariant="none" className={styles.resourceCard} backgroundColor="none">
-              <Card.Tokens>
-                {card.tokens.map((token, tokenIndex) => (
-                  <Token key={`${token}-${tokenIndex}`}>{token}</Token>
-                ))}
-              </Card.Tokens>
-              <Card.Heading size="subhead-medium">{card.heading}</Card.Heading>
-              <Card.Description>{card.description}</Card.Description>
-            </Card>
-          </Box>
-        ))}
-      </EditorialCardGrid>
-      {footer}
-    </div>
+    <Grid columnGap="none" rowGap="none" enableGutters={false}>
+      <Grid.Column span={12} className={styles.cardGridFullWidthColumn}>
+        <Stack
+          className={styles.sectionHeader}
+          direction={{narrow: 'vertical', regular: 'horizontal'}}
+          gap={24}
+          alignItems={{narrow: 'flex-start', regular: 'flex-end'}}
+          justifyContent="space-between"
+          padding="none"
+        >
+          <Heading as="h2" size="5" weight="normal">
+            {heading}
+          </Heading>
+          {sortLabel ? (
+            <Text size="100" variant="muted" className={styles.sortLabel}>
+              {sortLabel}
+            </Text>
+          ) : null}
+        </Stack>
+      </Grid.Column>
+      <Grid.Column span={12} className={styles.cardGridFullWidthColumn}>
+        <EditorialCardGrid layout="responsive">
+          {cards.map(card => (
+            <Box key={card.heading} className={styles.cardGridItem}>
+              <Card href={card.href} fullWidth ctaVariant="none" className={styles.resourceCard} backgroundColor="none">
+                <Card.Tokens>
+                  {card.tokens.map((token, tokenIndex) => (
+                    <Token key={`${token}-${tokenIndex}`}>{token}</Token>
+                  ))}
+                </Card.Tokens>
+                <Card.Heading size="subhead-medium">{card.heading}</Card.Heading>
+                <Card.Description>{card.description}</Card.Description>
+              </Card>
+            </Box>
+          ))}
+        </EditorialCardGrid>
+      </Grid.Column>
+      {footer ? (
+        <Grid.Column span={12} className={styles.cardGridFullWidthColumn}>
+          {footer}
+        </Grid.Column>
+      ) : null}
+    </Grid>
   )
 }

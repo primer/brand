@@ -8,14 +8,15 @@
 
 .sectionHeader {
   padding: var(--base-size-48) var(--base-size-32) var(--base-size-32);
+  border-inline: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
 }
 
 .sortLabel {
   flex-shrink: 0;
 }
 
-.cardGrid {
-  border-inline: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
+.cardGridFullWidthColumn {
+  min-width: 0;
 }
 
 .cardGridItem {
@@ -46,4 +47,5 @@
 
 .paginationFrame {
   padding-inline: var(--base-size-32);
+  border-inline: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
 }

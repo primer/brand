@@ -1,5 +1,5 @@
 declare const styles: {
-  readonly cardGrid: string
+  readonly cardGridFullWidthColumn: string
   readonly cardGridItem: string
   readonly hero: string
   readonly heroSection: string
