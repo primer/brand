@@ -71,6 +71,102 @@ describe('primer_brand_review rules', () => {
     expect(ruleIds(findings)).not.toContain('balanced-cta-image')
   })
 
+  it('flags a Hero with no visual media', () => {
+    expect(ruleIds(review('<Hero><Hero.Heading>Build</Hero.Heading></Hero>'))).toContain('hero-requires-media')
+  })
+
+  it.each([
+    '<Hero><Hero.Heading>Build</Hero.Heading><Hero.Image src={image} alt="Product UI" /></Hero>',
+    '<Hero><Hero.Heading>Build</Hero.Heading><Hero.Video src={video} /></Hero>',
+    "import heroDither from './dither.png'\nimport heroShot from './shot-checks.png'\n<Hero><Hero.Heading>Build</Hero.Heading></Hero><div style={{backgroundImage: `url(${heroDither})`}}><img src={heroShot} alt=\"Product UI\" /></div>",
+  ])('allows a Hero with visual media: %s', code => {
+    expect(ruleIds(review(code))).not.toContain('hero-requires-media')
+  })
+
+  it('flags product UI rendered directly in Hero.Image without dither', () => {
+    const code =
+      'import securityOverview from "./security-overview.svg"\n<Hero><Hero.Image src={securityOverview} alt="Security dashboard" /></Hero>'
+    expect(ruleIds(review(code))).toContain('product-shot-needs-dither')
+  })
+
+  it('flags product UI rendered directly in River.Visual without dither', () => {
+    const code =
+      'import securityOverview from "./security-overview.svg"\n<River.Visual><img src={securityOverview} alt="Security dashboard" /></River.Visual>'
+    expect(ruleIds(review(code))).toContain('product-shot-needs-dither')
+  })
+
+  it('allows a product shot layered over a dither background', () => {
+    const code =
+      'import securityOverview from "./security-overview.svg"\nimport heroDither from "./hero-dither.png"\n<Hero><Hero.Heading>Security</Hero.Heading></Hero><div style={{backgroundImage: `url(${heroDither})`}}><img src={securityOverview} alt="Security dashboard" /></div>'
+    expect(ruleIds(review(code))).not.toContain('product-shot-needs-dither')
+  })
+
+  it('does not flag decorative media when only an unrelated attribute contains a product word', () => {
+    const code =
+      'import abstractArt from "./abstract.svg"\n<Hero><Hero.Image src={abstractArt} alt="Abstract illustration" className="product-grid" /></Hero>'
+    expect(ruleIds(review(code))).not.toContain('product-shot-needs-dither')
+  })
+
+  it('does not flag a decorative illustration whose filename contains "overview"', () => {
+    const code =
+      'import overviewGraphic from "./overview-illustration.svg"\n<River.Visual><img src={overviewGraphic} alt="Section illustration" /></River.Visual>'
+    expect(ruleIds(review(code))).not.toContain('product-shot-needs-dither')
+  })
+
+  it('flags product UI detected from the src binding name', () => {
+    const code = 'import productShot from "./hero-2.png"\n<Hero><Hero.Image src={productShot} alt="" /></Hero>'
+    expect(ruleIds(review(code))).toContain('product-shot-needs-dither')
+  })
+
+  it('flags the archived Advanced Security Hero product shot (exact source)', () => {
+    const code =
+      'import securityOverview from "./security-overview.svg"\n<Hero.Image src={securityOverview} alt="GitHub security overview showing code scanning alerts, blocked secrets, and autofix acceptance" />'
+    expect(ruleIds(review(code))).toContain('product-shot-needs-dither')
+  })
+
+  it('flags a bare River product shot even when another Hero shot is correctly dithered', () => {
+    const code = [
+      'import heroDither from "./hero-dither.png"',
+      'import securityOverview from "./security-overview.svg"',
+      'import consoleShot from "./console.svg"',
+      '<Hero>',
+      '  <Hero.Heading>Security</Hero.Heading>',
+      '  <div style={{backgroundImage: `url(${heroDither})`}}>',
+      '    <img src={securityOverview} alt="Security overview with code scanning alerts" />',
+      '  </div>',
+      '</Hero>',
+      '<River>',
+      '  <River.Visual>',
+      '    <img src={consoleShot} alt="Console dashboard showing secret scanning" />',
+      '  </River.Visual>',
+      '</River>',
+    ].join('\n')
+    const productShotFindings = review(code).filter(finding => finding.rule === 'product-shot-needs-dither')
+    expect(productShotFindings).toHaveLength(1)
+    expect(productShotFindings[0]?.evidence).toContain('consoleShot')
+  })
+
+  it('treats a CSS Module class that paints dither as a covered background', () => {
+    const code =
+      'import styles from "./Hero.module.css"\nimport productShot from "./dashboard.png"\n<div className={styles.mediaBand}><img src={productShot} alt="Product dashboard" /></div>\n.mediaBand { background-image: url("./hero-dither.png"); }'
+    expect(ruleIds(review(code))).not.toContain('product-shot-needs-dither')
+  })
+
+  it.each([
+    'import heroDither from \'./assets/hero-dither.png\'\n<Hero.Image src={heroDither} alt="" />',
+    'const riverDither = asset\n<River.Visual><img src={riverDither} alt="" /></River.Visual>',
+  ])('flags dither rendered as image content: %s', code => {
+    const findings = review(code)
+    expect(ruleIds(findings)).toContain('dither-as-image')
+    expect(findings.filter(finding => finding.rule === 'dither-as-image')).toHaveLength(1)
+  })
+
+  it('allows dither as a background behind a separate product shot', () => {
+    const code =
+      'import heroDither from \'./assets/hero-dither.png\'\n<div style={{backgroundImage: `url(${heroDither})`}}><img src={productShot} alt="Product UI" /></div>'
+    expect(ruleIds(review(code))).not.toContain('dither-as-image')
+  })
+
   it('accepts valid, on-brand usage with no errors', () => {
     const findings = review('<Hero align="center"><Hero.Heading>Build</Hero.Heading></Hero>')
     expect(errorsOf(findings)).toHaveLength(0)

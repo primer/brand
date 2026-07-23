@@ -65,17 +65,39 @@ Resolve exact sizes and weights with `primer_brand_tokens`.
 
 ## Component & element patterns
 
+### Generated dither backgrounds
+
+**Always pair dither wallpaper with product UI.** Dither is a supporting background texture, never standalone media or content.
+
+- Use two separate layers for every product UI visual: a dither background and a contained product-shot foreground. Keep them as distinct layers, never one flattened image.
+- Treat a solid subtle/gray surround as placeholder-only. Replace the entire surrounding surface with dither.
+- When no screenshot is provided, proactively create one lightweight, representative product UI mockup to show that product imagery matters and that the user should replace it with their own screenshot.
+- When product UI does not fit the brief, use a relevant non-dither wallpaper, approved illustration, or video.
+- Apply dither only as the background of an outer media wrapper.
+- Never pass dither to `Hero.Image`, `Image`, `<img>`, or `<picture>`, or make it the direct image child of `River.Visual`.
+- Layer the product shot above the dither, leaving dither visible around it.
+- In Hero media, make the dither wrapper span the full viewport width.
+- In River media, make the dither wrapper fill the `River.Visual` cell.
+
 ### Hero
 
 **Do**
 
-- Include relevant media and a label. Prefer a real product shot via `Hero.Image` / `Hero.Video`; use Asset Generator `create_product_landscape` when generating one, or `create_wallpaper` when a product shot does not fit.
+- Every Hero must include relevant visual media and a label unless the brief explicitly requires a text-only Hero.
+- A missing input screenshot is not a reason to omit Hero media.
+- For one non-product media asset, use `Hero.Image` / `Hero.Video`.
+- For product UI, use the two-layer treatment in **Generated dither backgrounds**. Do not render product UI directly through `Hero.Image`.
+- Place a product UI media band immediately after the Hero copy.
+- Constrain only the product-shot foreground to the shared content-grid width; the full-width media band is not permission to make the product shot itself bleed full-width.
+- Use a single flattened, precomposed landscape image only when the brief explicitly requires one.
 - Keep decorative or illustrative media inside the shared grid with a stable aspect ratio and a token-backed maximum height so it cannot dominate the page or bleed full-width.
 - If needed, place custom media after `Hero`; use `trailingComponent` only when it must live inside the Hero composition.
 
 **Don't**
 
-- Add irrelevant hero media or use social templates such as `create_social_square` or `create_landscape` for hero media.
+- Finish a Hero as text and actions only because the brief did not provide an image.
+- Add irrelevant hero media, or use social or open-graph templates for hero media.
+- Put dither behind the Hero copy, inside `Hero.Image`, inside the content grid, or in a flattened product shot. The dither is the full-bleed media-band background; the product shot is the contained foreground.
 - Let decorative or illustrative Hero media grow arbitrarily tall or bleed outside the shared grid.
 
 ### River
@@ -85,10 +107,15 @@ Resolve exact sizes and weights with `primer_brand_tokens`.
 - Use `<River variant="gridline" align="start">` throughout a page; omitting `align` also means start.
 - Keep River descriptions to a maximum of 160 characters.
 - Prefer the default `50:50` image-to-text ratio where possible; set `imageTextRatio="60:40"` only when the visual needs more space or emphasis.
+- When a River explains a product feature, prefer real product UI over a standalone wallpaper.
+- For River product UI, use the two-layer treatment in **Generated dither backgrounds** inside `River.Visual`.
+- Use a standalone non-dither wallpaper only when no meaningful product UI can demonstrate the feature.
 
 **Don't**
 
 - Zigzag gridline Rivers with `align="end"`.
+- Render dither as the direct image child of `River.Visual`; it must cover the full visual cell as the background behind a separate product shot.
+- Use a wallpaper as the only River visual when a product shot would communicate the feature; wallpaper-only product Rivers read as placeholders.
 
 ### Repeated panels
 

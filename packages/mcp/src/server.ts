@@ -26,8 +26,10 @@ CSS together) before you finish.
 
 ${
   assetGenerator.available
-    ? `Use the GitHub Asset Generator MCP tools (\`asset-generator\`) instead of stock photos or AI art. Use Asset Generator
-for wallpapers, hero or river background images, and product shots.`
+    ? `Use the GitHub Asset Generator MCP tools (\`asset-generator\`) instead of stock photos or AI art. For product UI,
+  call create_dither_patterns and create_full_screen_product_shot as a pair, keep the files separate, and render full-width
+  dither behind the contained product shot. Never use dither alone. If no screenshot exists, proactively create one lightweight,
+  representative mockup. Use non-dither media when product UI does not fit. Read primer_brand_page_design for placement.`
     : ''
 }
 `
