@@ -67,7 +67,7 @@ Resolve exact sizes and weights with `primer_brand_tokens`.
 
 ### Generated dither backgrounds
 
-**Always pair dither wallpaper with product UI.** Dither is a supporting background texture, never standalone media or content.
+**Always pair dither with product UI.** Dither is a supporting background texture, never standalone media or content.
 
 - Use two separate layers for every product UI visual: a dither background and a contained product-shot foreground. Keep them as distinct layers, never one flattened image.
 - Treat a solid subtle/gray surround as placeholder-only. Replace the entire surrounding surface with dither.
