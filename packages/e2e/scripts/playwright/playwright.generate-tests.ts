@@ -65,41 +65,11 @@ const waitForTimeoutLookup = {
   'components-box-features--animation': 6000, // for the animation
   'components-ide--playground': 2000, // for the animation
   'components-ide--default': 2000, // for the animation
-  'recipes-seo-article-page--playground': 5000, // for the animation
-  'recipes-seo-article-page--all-headings': 5000, // for the animation
-  'recipes-seo-article-page--ai-theme': 5000, // for the animation
-  'recipes-seo-article-page--collaboration-theme': 5000, // for the animation
-  'recipes-seo-article-page--enterprise-theme': 5000, // for the animation
-  'recipes-seo-article-page--security-theme': 5000, // for the animation
-  'recipes-seo-article-page--productivity-theme': 5000, // for the animation
-  'recipes-seo-article-page--light-hero-image': 5000, // for the animation
-  'recipes-seo-article-page--dark-hero-image': 5000, // for the animation
-  'recipes-solutions-categorypage--light': 4000, // for the animation
-  'recipes-solutions-categorypage--dark': 4000, // for the animation
-  'recipes-solutions-solution-industry--maximum': 3500, // for the animation
-  'recipes-solutions-solution-industry--maximum-dark': 3500, // for the animation
-  'recipes-solutions-solution-industry--minimum': 3500, // for the animation
-  'recipes-solutions-solution-industry--minimum-dark': 3500, // for the animation
-  'recipes-solutions-solution-org-size--maximum': 3500, // for the animation
-  'recipes-solutions-solution-org-size--maximum-dark': 3500, // for the animation
-  'recipes-solutions-solution-org-size--minimum': 3500, // for the animation
-  'recipes-solutions-solution-org-size--minimum-dark': 3500, // for the animation
-  'recipes-solutions-solution-use-case--minimum': 2000, // for the footer logos
-  'recipes-solutions-solution-use-case--minimum-dark': 2000, // for the footer logos
-  'recipes-solutions-solution-use-case--maximum-dark': 2000, // for the footer logos
-  'recipes-solutions-solution-use-case--maximum': 2000, // for the footer logos
-  'recipes-solutions-overview--light': 3500, // for the animation
-  'recipes-solutions-overview--dark': 3500, // for the animation
   'components-riverstoryscroll--default': 3500, // for the animation
   'components-riverstoryscroll-features--with-timeline': 3500, // for the animation
   'components-riverstoryscroll-features--with-timeline-narrow': 3500, // for the animation
   'components-riverstoryscroll-features--enterprise-example': 3500, // for the animation
   'components-riverstoryscroll-features--enterprise-example-narrow': 3500, // for the animation
-  'recipes-feature-previews-level-2--level-two-playground': 4000, // for the animation
-  'recipes-feature-previews-level-2--level-two-point-one': 4000, // for the animation
-  'recipes-feature-previews-level-2--level-two-point-two': 4000, // for the animation
-  'recipes-feature-previews-level-2--level-two-point-three': 4000, // for the animation
-  'recipes-feature-previews-level-2--level-two-point-four': 4000, // for the animation
   'components-textrevealanimation--playground': 3000, // for the animation
   'components-textrevealanimation-examples--with-large-testimonial': 3000, // for the animation
   'components-textrevealanimation-examples--with-hero': 3000, // for the animation
@@ -131,9 +101,7 @@ const waitForTimeoutLookup = {
   'components-videoplayer-features--tooltip-visible-on-focus': 5000, // for video metadata to load
   'components-hero-features-images-and-videos--with-video-block-end-default': 5000, // for video metadata to load
   'components-hero-features-images-and-videos--with-video-inline-end': 5000, // for video metadata to load
-  'recipes-flextemplate-flextemplate--default': 4000, // for video metadata to load
   'components-textcursoranimation--playground': 4000, // for the animation to complete
-  'recipes-flextemplate-flexsection--default': 1000, // longer load time
   'components-subnav-features--delayed-active-link': 2000, // because the story sets an initial delay,
   'components-logosuite-features--grid-line-expressive-kitchen-sink': 3000, // for the animation to complete
   'components-logosuite-features--takeover-button': 3000, // for the animation to complete
@@ -177,7 +145,6 @@ const skipTestLookup = [
   'components-logosuite-features--mixed-width', // animation only
   'components-logosuite-features--following-hero', // animation only
   'components-logosuite-features--stacked', // animation only
-  'recipes-feature-previews-level-1--level-one-side-by-side-enterprise', // video makes this too flakey
   'components-subdomainnavbar--overflow-menu-open', // flakey despite timeout
   'components-ide-features--editor-only', // animation too long
   'components-ide-features--editor-no-replay-button', // animation too long
@@ -187,7 +154,6 @@ const skipTestLookup = [
   'components-ide-features--perspective-example-light', // animation too long
   'components-ide-features--all-glass', // animation too long
   'components-ide-features--editor-custom-icons', // animation too long
-  'recipes-seo-category-page--default', // template contains randomisation
   'components-statistic-features--animations', // animation only
   'components-riverstoryscroll-features--video-narrow', // video makes this too flakey
   'components-riverstoryscroll-features--video', // video makes this too flakey

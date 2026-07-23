@@ -27,6 +27,11 @@ describe('primer_brand_review rules', () => {
     expect(finding?.message).toContain('start')
   })
 
+  it('does not validate subcomponent props against the root component enum', () => {
+    const findings = review('<Hero.PrimaryAction variant="primary">Build</Hero.PrimaryAction>')
+    expect(ruleIds(findings)).not.toContain('invalid-prop-value')
+  })
+
   it('flags align="center" on the gridline-expressive Hero variant', () => {
     const ids = ruleIds(
       review('<Hero variant="gridline-expressive" align="center"><Hero.Heading>Hi</Hero.Heading></Hero>'),
@@ -39,6 +44,31 @@ describe('primer_brand_review rules', () => {
       review('<Hero variant="gridline-expressive" align="start"><Hero.Heading>Hi</Hero.Heading></Hero>'),
     )
     expect(ids).not.toContain('invalid-prop-combination')
+  })
+
+  it('flags align="end" on the gridline River variant', () => {
+    const ids = ruleIds(review('<River variant="gridline" align="end"><River.Content>Hi</River.Content></River>'))
+    expect(ids).toContain('invalid-prop-combination')
+  })
+
+  it.each([
+    '<River variant="gridline" align="start"><River.Content>Hi</River.Content></River>',
+    '<River variant="gridline"><River.Content>Hi</River.Content></River>',
+  ])('allows a gridline River with start or default alignment: %s', code => {
+    expect(ruleIds(review(code))).not.toContain('invalid-prop-combination')
+  })
+
+  it('flags a balanced CTABanner without a direct image child', () => {
+    const findings = review('<CTABanner variant="balanced"><CTABanner.Heading>Build</CTABanner.Heading></CTABanner>')
+    expect(ruleIds(findings)).toContain('balanced-cta-image')
+    expect(errorsOf(findings)).toHaveLength(1)
+  })
+
+  it('allows a balanced CTABanner with its required direct image child', () => {
+    const findings = review(
+      '<CTABanner variant="balanced"><CTABanner.Heading>Build</CTABanner.Heading><CTABanner.Image src={image} alt="" /></CTABanner>',
+    )
+    expect(ruleIds(findings)).not.toContain('balanced-cta-image')
   })
 
   it('accepts valid, on-brand usage with no errors', () => {
@@ -63,6 +93,11 @@ describe('primer_brand_review rules', () => {
     const ids = ruleIds(review('<div className="card">lorem ipsum dolor</div>'))
     expect(ids).toContain('raw-card-div')
     expect(ids).toContain('placeholder-copy')
+  })
+
+  it('allows a semantic form wrapper but flags raw form controls', () => {
+    expect(ruleIds(review('<form><FormControl /></form>'))).not.toContain('raw-form-elements')
+    expect(ruleIds(review('<form><input name="email" /></form>'))).toContain('raw-form-elements')
   })
 
   it('flags off-brand tells: pill radius and purple gradient', () => {
@@ -103,11 +138,14 @@ describe('primer_brand_review over generated canonical examples', () => {
 
   testOrSkip('produces no errors on any catalog example', () => {
     const catalog = JSON.parse(readFileSync(catalogPath, 'utf8')) as Catalog
-    const examples = catalog.components.flatMap(component =>
-      component.examples
-        .filter(example => example.code)
-        .map(example => ({name: component.name, code: example.code as string})),
-    )
+    const examples = [
+      ...catalog.components.flatMap(component =>
+        component.examples
+          .filter(example => example.code)
+          .map(example => ({name: component.name, code: example.code as string})),
+      ),
+      ...catalog.recipes.map(recipe => ({name: recipe.name, code: recipe.source})),
+    ]
     expect(examples.length).toBeGreaterThan(0)
     for (const example of examples) {
       const errors = errorsOf(allRules.flatMap(rule => rule.run(example.code, catalog)))

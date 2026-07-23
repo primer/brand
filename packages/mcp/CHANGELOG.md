@@ -1,5 +1,15 @@
 # @primer/brand-mcp
 
+## 0.71.0
+
+### Patch Changes
+
+- [#1395](https://github.com/primer/brand/pull/1395) [`42b27ee`](https://github.com/primer/brand/commit/42b27ee115bbf4d11ed3d013759a6ef4bac828e0) Thanks [@rezrah](https://github.com/rezrah)! - Expanded the `primer_brand_page_design` guidance with clearer instructions on:
+
+  - containing content within the gridline column
+  - preserving typographic hierarchy
+  - respecting icon color rules
+
 ## 0.70.0
 
 ### Minor Changes
