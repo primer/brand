@@ -13,7 +13,7 @@ type FigmaImagePreviewProps = {
   presentation: boolean
   width?: number
   height?: number
-  fillParentWidth: boolean
+  fullWidth: boolean
 }
 
 export function FigmaImagePreview({
@@ -23,7 +23,7 @@ export function FigmaImagePreview({
   presentation,
   width,
   height,
-  fillParentWidth,
+  fullWidth,
 }: FigmaImagePreviewProps) {
   const {colorMode} = useColorMode()
   const activeSource = getActiveFigmaSource(colorMode, lightSource, darkSource)
@@ -46,7 +46,7 @@ export function FigmaImagePreview({
 
   return (
     <img
-      className={clsx(styles.Image, fillParentWidth && styles.ImageFillParentWidth)}
+      className={clsx(styles.Image, fullWidth && styles.ImageFullWidth)}
       src={activeSource.assetUrl}
       alt={presentation ? '' : alt}
       aria-hidden={presentation ? true : undefined}

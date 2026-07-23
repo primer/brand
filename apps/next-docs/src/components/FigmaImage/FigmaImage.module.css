@@ -7,7 +7,7 @@
   max-inline-size: 100%;
 }
 
-.FigmaImageFillParentWidth {
+.FigmaImageFullWidth {
   inline-size: 100%;
 }
 
@@ -49,7 +49,7 @@
   opacity: 0.8;
 }
 
-.ImageFillParentWidth {
+.ImageFullWidth {
   inline-size: 100%;
 }
 

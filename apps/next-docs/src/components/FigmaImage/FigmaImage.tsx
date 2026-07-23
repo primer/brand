@@ -16,7 +16,7 @@ type FigmaImageProps = {
   children?: ReactNode
   width?: number
   height?: number
-  fillParentWidth?: boolean
+  fullWidth?: boolean
   className?: string
 }
 
@@ -47,7 +47,7 @@ export function FigmaImage({
   children,
   width,
   height,
-  fillParentWidth = false,
+  fullWidth = false,
   className,
 }: FigmaImageProps) {
   const lightSource: ResolvedFigmaImageSource = resolveFigmaImageSource(src)
@@ -59,7 +59,7 @@ export function FigmaImage({
   const figureClassName = clsx(
     'custom-component',
     styles.FigmaImage,
-    fillParentWidth && styles.FigmaImageFillParentWidth,
+    fullWidth && styles.FigmaImageFullWidth,
     className,
   )
 
@@ -90,7 +90,7 @@ export function FigmaImage({
           presentation={accessibleImage.presentation}
           width={width}
           height={height}
-          fillParentWidth={fillParentWidth}
+          fullWidth={fullWidth}
         />
       </div>
       <FigmaImageEditLink lightSource={lightSource} darkSource={darkSource} />
