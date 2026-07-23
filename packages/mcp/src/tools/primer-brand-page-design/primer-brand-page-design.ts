@@ -22,6 +22,13 @@ export const primerPageDesignTool: ToolModule<Input> = {
   annotations: {readOnlyHint: true},
   run(_input, ctx: ToolContext): ToolResult {
     const guidance = readFileSync(guidancePath, 'utf8').trim()
-    return {text: `${guidance}\n\n${versionNote(ctx)}`}
+    const assetGeneratorNote = ctx.assetGenerator.available
+      ? `
+
+## Generating Hero and River media
+
+You have the GitHub Asset Generator MCP tools (\`asset-generator\`) — always use them for the media above instead of stock photos or AI art. For the product-UI dither treatment, call \`create_dither_patterns\` only when a product/UI screenshot is ready to pass immediately to \`create_full_screen_product_shot\`, and keep the two generated files separate. Use \`create_product_landscape\` only when the brief requires a single flattened, precomposed image, and treat its \`full_screen\` output as the product-shot style, not permission to bleed the foreground full-width. Never use social or open-graph templates such as \`create_social_square\` or \`create_landscape\` for Hero or River media.`
+      : ''
+    return {text: `${guidance}${assetGeneratorNote}\n\n${versionNote(ctx)}`}
   },
 }
