@@ -13,6 +13,7 @@ import {Textarea} from '../Textarea'
 import {Radio} from '../Radio'
 import {Text} from '../../Text'
 
+import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/control/colors-with-modes.css'
 import styles from './FormControl.module.css'
 
 export type FormControlProps = BaseProps<HTMLElement> & {
