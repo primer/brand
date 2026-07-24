@@ -38,7 +38,8 @@ export function resolveFigmaImageSource(url, basePath = DOCTOCAT_BASE_PATH) {
     }
 
     const manifestEntry = FIGMA_IMAGE_MANIFEST[parsedNode.basename]
-    const imagePath = path.join(FIGMA_IMAGE_DIRECTORY, parsedNode.filename)
+    const filename = manifestEntry?.filename ?? parsedNode.filename
+    const imagePath = path.join(FIGMA_IMAGE_DIRECTORY, filename)
 
     if (!fs.existsSync(imagePath)) {
       return {
@@ -50,7 +51,7 @@ export function resolveFigmaImageSource(url, basePath = DOCTOCAT_BASE_PATH) {
     }
 
     return {
-      assetUrl: `${basePath}/images/figma/${parsedNode.filename}`,
+      assetUrl: `${basePath}/images/figma/${filename}`,
       editUrl: url,
       width: manifestEntry?.width,
       height: manifestEntry?.height,

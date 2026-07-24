@@ -15,6 +15,7 @@ export const FIGMA_FILE_KEY = 'kc69gOteR1MsL0aQtLdxLW'
 const APP_ROOT = fileURLToPath(new URL('..', import.meta.url))
 const CONTENT_DIRECTORY = path.join(APP_ROOT, 'content')
 const OUTPUT_DIRECTORY = path.join(APP_ROOT, 'public/images/figma')
+const FILENAME_FORMAT = '{nodeName}-{nodeId}'
 const FIGMA_IMAGE_PROPS = new Set(['src', 'darkModeSrc'])
 const FIGMA_THUMBNAIL_FIELDS = new Set(['thumbnail', 'thumbnail_darkMode'])
 const mdxParser = unified().use(remarkParse).use(remarkFrontmatter, ['yaml']).use(remarkMdx)
@@ -151,7 +152,12 @@ export function validateFigmaUrls(discovered) {
   return [...new Map(validated.map(image => [image.basename, image])).values()]
 }
 
-export async function generateFigmaImages(validated, token, outputDirectory = OUTPUT_DIRECTORY) {
+export async function generateFigmaImages(
+  validated,
+  token,
+  outputDirectory = OUTPUT_DIRECTORY,
+  filenameFormat = FILENAME_FORMAT,
+) {
   if (!token) {
     throw new Error(
       'FIGMA_ACCESS_TOKEN is required to generate Figma images. Add it to apps/next-docs/.env.local or the command environment.',
@@ -162,6 +168,7 @@ export async function generateFigmaImages(validated, token, outputDirectory = OU
     nodeURLs: validated.map(image => image.canonicalUrl),
     outputDir: outputDirectory,
     missingImagesLogLevel: 'fail',
+    filenameFormat,
     clean: true,
   })
 
@@ -216,7 +223,21 @@ export async function verifyFigmaImageAssets(validated, outputDirectory = OUTPUT
     throw new Error(`Generated dimensions remain for unreferenced Figma images: ${staleManifestEntries.join(', ')}`)
   }
 
-  const expectedFiles = new Set(validated.map(image => image.filename))
+  const expectedFiles = new Set()
+
+  for (const image of validated) {
+    const manifestEntry = manifest[image.basename]
+    if (
+      !manifestEntry ||
+      !Number.isFinite(manifestEntry.width) ||
+      !Number.isFinite(manifestEntry.height) ||
+      typeof manifestEntry.filename !== 'string'
+    ) {
+      throw new Error(`Generated dimensions or filename are missing for ${image.originalUrl}.`)
+    }
+    expectedFiles.add(manifestEntry.filename)
+  }
+
   const generatedFiles = (await fs.readdir(outputDirectory, {withFileTypes: true}))
     .filter(entry => entry.name !== 'images.json')
     .map(entry => entry.name)
@@ -226,14 +247,11 @@ export async function verifyFigmaImageAssets(validated, outputDirectory = OUTPUT
   }
 
   for (const image of validated) {
-    const dimensions = manifest[image.basename]
-    if (!dimensions || !Number.isFinite(dimensions.width) || !Number.isFinite(dimensions.height)) {
-      throw new Error(`Generated dimensions are missing for ${image.originalUrl}.`)
-    }
+    const manifestEntry = manifest[image.basename]
     try {
-      await fs.access(path.join(outputDirectory, image.filename))
+      await fs.access(path.join(outputDirectory, manifestEntry.filename))
     } catch {
-      throw new Error(`Generated image is missing for ${image.originalUrl}: ${image.filename}`)
+      throw new Error(`Generated image is missing for ${image.originalUrl}: ${manifestEntry.filename}`)
     }
   }
 }

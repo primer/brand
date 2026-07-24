@@ -204,8 +204,24 @@ describe('verifyFigmaImageAssets', () => {
 
     await assert.rejects(
       verifyFigmaImageAssets([validateFigmaUrl(approvedUrl)], outputDirectory),
-      /Generated dimensions are missing/,
+      /Generated dimensions or filename are missing/,
     )
+  })
+
+  it('uses the generated manifest filename for custom filename formats', async () => {
+    const outputDirectory = await createTemporaryDirectory()
+    const image = validateFigmaUrl(approvedUrl)
+    const filename = 'custom-node-name-1804-8382.png'
+
+    await fs.writeFile(
+      path.join(outputDirectory, 'images.json'),
+      JSON.stringify({
+        [image.basename]: {width: 100, height: 100, filename},
+      }),
+    )
+    await fs.writeFile(path.join(outputDirectory, filename), 'image')
+
+    await verifyFigmaImageAssets([image], outputDirectory)
   })
 
   it('rejects manifest entries for unreferenced Figma images', async () => {
@@ -244,7 +260,7 @@ describe('resolveFigmaPageMapThumbnails', () => {
 
     const resolved = resolveFigmaPageMapThumbnails(pageMap)
 
-    assert.equal(resolved[0].frontMatter.thumbnail, `/images/figma/${FIGMA_FILE_KEY}-1804-8382.png`)
+    assert.equal(resolved[0].frontMatter.thumbnail, '/images/figma/anatomy-1804-8382.png')
     assert.equal(resolved[0].frontMatter.thumbnail_darkMode, '/images/example-dark.png')
   })
 })
