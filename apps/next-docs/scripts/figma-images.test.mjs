@@ -5,7 +5,10 @@ import os from 'node:os'
 import path from 'node:path'
 import {afterEach, describe, it} from 'node:test'
 
-import {resolveFigmaPageMapThumbnails} from '../src/components/FigmaImage/FigmaImage.server.mjs'
+import {
+  resolveFigmaImageSource,
+  resolveFigmaPageMapThumbnails,
+} from '../src/components/FigmaImage/FigmaImage.server.mjs'
 import {getActiveFigmaSource, resolveImageDimensions} from '../src/components/FigmaImage/FigmaImage.utils.ts'
 
 import {
@@ -224,6 +227,23 @@ describe('verifyFigmaImageAssets', () => {
     await verifyFigmaImageAssets([image], outputDirectory)
   })
 
+  it('rejects manifest filenames with path segments', async () => {
+    const outputDirectory = await createTemporaryDirectory()
+    const image = validateFigmaUrl(approvedUrl)
+
+    await fs.writeFile(
+      path.join(outputDirectory, 'images.json'),
+      JSON.stringify({
+        [image.basename]: {width: 100, height: 100, filename: '../outside.png'},
+      }),
+    )
+
+    await assert.rejects(
+      verifyFigmaImageAssets([image], outputDirectory),
+      /manifest filename.*must not contain path segments/,
+    )
+  })
+
   it('rejects manifest entries for unreferenced Figma images', async () => {
     const outputDirectory = await createTemporaryDirectory()
     await fs.writeFile(
@@ -245,6 +265,22 @@ describe('verifyFigmaImageAssets', () => {
     await fs.writeFile(path.join(outputDirectory, 'stale.png'), 'stale')
 
     await assert.rejects(verifyFigmaImageAssets([], outputDirectory), /files remain for unreferenced Figma images/)
+  })
+})
+
+describe('resolveFigmaImageSource', () => {
+  it('omits edit links for invalid and non-Figma URLs', () => {
+    assert.equal(resolveFigmaImageSource('javascript:alert(1)').editUrl, undefined)
+    assert.equal(
+      resolveFigmaImageSource(`https://example.com/design/${FIGMA_FILE_KEY}/Brand?node-id=1804-8382`).editUrl,
+      undefined,
+    )
+  })
+
+  it('uses a canonical Figma URL for edit links', () => {
+    const source = resolveFigmaImageSource(`/design/${FIGMA_FILE_KEY}/Brand?node-id=1804%3A8382`)
+
+    assert.equal(source.editUrl, `https://www.figma.com/design/${FIGMA_FILE_KEY}/Brand?node-id=1804-8382`)
   })
 })
 

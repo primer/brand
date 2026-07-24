@@ -235,6 +235,17 @@ export async function verifyFigmaImageAssets(validated, outputDirectory = OUTPUT
     ) {
       throw new Error(`The manifest entry for ${image.originalUrl} must include width, height, and filename.`)
     }
+
+    if (
+      !manifestEntry.filename ||
+      manifestEntry.filename === '.' ||
+      manifestEntry.filename === '..' ||
+      path.basename(manifestEntry.filename) !== manifestEntry.filename ||
+      path.win32.basename(manifestEntry.filename) !== manifestEntry.filename
+    ) {
+      throw new Error(`The manifest filename for ${image.originalUrl} must not contain path segments.`)
+    }
+
     expectedFiles.add(manifestEntry.filename)
   }
 

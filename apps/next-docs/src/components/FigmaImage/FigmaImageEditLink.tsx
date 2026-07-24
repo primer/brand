@@ -14,6 +14,12 @@ type FigmaImageEditLinkProps = {
 
 export function FigmaImageEditLink({lightSource, darkSource}: FigmaImageEditLinkProps) {
   const {colorMode} = useColorMode()
+  const editUrl = getActiveFigmaEditUrl(colorMode, lightSource, darkSource)
+
+  if (!editUrl) {
+    return null
+  }
+
   // eslint-disable-next-line i18n-text/no-en
   const editLinkLabel = 'Edit in Figma'
 
@@ -24,7 +30,7 @@ export function FigmaImageEditLink({lightSource, darkSource}: FigmaImageEditLink
       size="small"
       leadingVisual={PencilIcon}
       className={styles['FigmaImage__edit-link']}
-      href={getActiveFigmaEditUrl(colorMode, lightSource, darkSource)}
+      href={editUrl}
       target="_blank"
       rel="noopener noreferrer"
     >

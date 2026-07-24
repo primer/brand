@@ -17,6 +17,15 @@ function readFigmaImageManifest() {
 
 function normalizeFigmaNodeUrl(url) {
   const parsedUrl = new URL(url, 'https://www.figma.com')
+
+  if (
+    parsedUrl.protocol !== 'https:' ||
+    parsedUrl.hostname !== 'www.figma.com' ||
+    !['design', 'file', 'board'].includes(parsedUrl.pathname.split('/')[1])
+  ) {
+    throw new Error('Invalid Figma node URL')
+  }
+
   const nodeId = parsedUrl.searchParams.get('node-id')
 
   if (nodeId) {
@@ -28,11 +37,11 @@ function normalizeFigmaNodeUrl(url) {
 
 export function resolveFigmaImageSource(url, basePath = DOCTOCAT_BASE_PATH) {
   try {
-    const parsedNode = parseFigmaNodeUrl(normalizeFigmaNodeUrl(url))
+    const editUrl = normalizeFigmaNodeUrl(url)
+    const parsedNode = parseFigmaNodeUrl(editUrl)
 
     if (!parsedNode) {
       return {
-        editUrl: url,
         missingReason: 'The selected Figma frame URL could not be parsed.',
       }
     }
@@ -43,7 +52,7 @@ export function resolveFigmaImageSource(url, basePath = DOCTOCAT_BASE_PATH) {
 
     if (!fs.existsSync(imagePath)) {
       return {
-        editUrl: url,
+        editUrl,
         width: manifestEntry?.width,
         height: manifestEntry?.height,
         missingReason: 'The generated preview image is missing for this Figma frame.',
@@ -52,13 +61,12 @@ export function resolveFigmaImageSource(url, basePath = DOCTOCAT_BASE_PATH) {
 
     return {
       assetUrl: `${basePath}/images/figma/${filename}`,
-      editUrl: url,
+      editUrl,
       width: manifestEntry?.width,
       height: manifestEntry?.height,
     }
   } catch {
     return {
-      editUrl: url,
       missingReason: 'The selected Figma frame URL could not be parsed.',
     }
   }
