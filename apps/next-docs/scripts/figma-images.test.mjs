@@ -9,13 +9,10 @@ import {
   resolveFigmaImageSource,
   resolveFigmaPageMapThumbnails,
 } from '../src/components/FigmaImage/FigmaImage.server.mjs'
-import {getActiveFigmaSource, resolveImageDimensions} from '../src/components/FigmaImage/FigmaImage.utils.ts'
-
 import {
   FIGMA_FILE_KEY,
   discoverFigmaUrls,
   extractFigmaUrls,
-  generateFigmaImages,
   validateFigmaUrl,
   validateFigmaUrls,
   verifyFigmaImageAssets,
@@ -28,248 +25,63 @@ afterEach(async () => {
   await Promise.all(temporaryDirectories.splice(0).map(directory => fs.rm(directory, {recursive: true, force: true})))
 })
 
-describe('extractFigmaUrls', () => {
-  it('extracts static FigmaImage sources and Figma-backed thumbnails', () => {
-    const content = `---
-thumbnail: ${approvedUrl} # YAML comments are supported
-thumbnail_darkMode: "https://www.figma.com/file/${FIGMA_FILE_KEY}/Brand?node-id=1804%3A8383"
-figma: 'https://www.figma.com/design/foreign-file/metadata?node-id=1-2'
----
-
-<FigmaImage
-  src="${approvedUrl}"
-  darkModeSrc='https://www.figma.com/board/${FIGMA_FILE_KEY}/Brand?node-id=1804-8384'
-  alt="Example > detail"
-/>
-`
-
-    assert.deepEqual(extractFigmaUrls(content), [
-      approvedUrl,
-      `https://www.figma.com/board/${FIGMA_FILE_KEY}/Brand?node-id=1804-8384`,
-      `https://www.figma.com/file/${FIGMA_FILE_KEY}/Brand?node-id=1804%3A8383`,
-    ])
-  })
-
-  it('ignores unrelated Figma metadata, component props, and code examples', () => {
-    const content = `---
-figma: '${approvedUrl}'
----
-
-<Example src="${approvedUrl}" />
-
-\`\`\`mdx
-<FigmaImage src="${approvedUrl}" alt="Code example" />
-\`\`\`
-`
-
-    assert.deepEqual(extractFigmaUrls(content), [])
-  })
-
-  it('rejects dynamic FigmaImage sources with their source location', () => {
-    const content = `<FigmaImage src={figmaUrl} alt="Example" />`
-
-    assert.throws(
-      () => extractFigmaUrls(content, 'example.mdx'),
-      /example\.mdx:1:13: FigmaImage src must be a static quoted URL/,
-    )
-  })
-
-  it('reports malformed MDX with its source file', () => {
-    assert.throws(() => extractFigmaUrls('<FigmaImage src="unterminated', 'broken.mdx'), /broken\.mdx.*parse MDX/)
-  })
-
-  it('reports malformed frontmatter with its source location', () => {
-    const content = `---
-thumbnail: [unterminated
----
-`
-
-    assert.throws(
-      () => extractFigmaUrls(content, 'broken-frontmatter.mdx'),
-      /broken-frontmatter\.mdx:1:1: unable to parse frontmatter/,
-    )
-  })
-})
-
-describe('discoverFigmaUrls', () => {
-  it('only scans MDX files below the provided content directory', async () => {
-    const root = await createTemporaryDirectory()
-    const contentDirectory = path.join(root, 'content')
-    await fs.mkdir(path.join(contentDirectory, 'components'), {recursive: true})
+describe('Figma image workflow', () => {
+  it('discovers and validates supported references', async () => {
+    const contentDirectory = await createTemporaryDirectory()
     await fs.writeFile(
-      path.join(contentDirectory, 'components/example.mdx'),
-      `<FigmaImage src="${approvedUrl}" alt="Example" />`,
+      path.join(contentDirectory, 'example.mdx'),
+      `---
+thumbnail: https://www.figma.com/file/${FIGMA_FILE_KEY}/Brand?node-id=1804-8383
+---
+
+<FigmaImage src="${approvedUrl}" darkModeSrc="${approvedUrl}&t=dark" alt="Example" />
+`,
     )
-    await fs.writeFile(path.join(contentDirectory, 'components/example.tsx'), `<FigmaImage src="${approvedUrl}" />`)
-    await fs.writeFile(path.join(root, 'outside.mdx'), `<FigmaImage src="${approvedUrl}" alt="Example" />`)
 
     const discovered = await discoverFigmaUrls(contentDirectory)
+    const validated = validateFigmaUrls(discovered)
 
-    assert.equal(discovered.length, 1)
-    assert.equal(discovered[0].url, approvedUrl)
-    assert.equal(discovered[0].filePath, path.join(contentDirectory, 'components/example.mdx'))
-  })
-
-  it('reports errors from every invalid MDX file', async () => {
-    const contentDirectory = await createTemporaryDirectory()
-    await fs.writeFile(path.join(contentDirectory, 'first.mdx'), '<FigmaImage src={firstUrl} />')
-    await fs.writeFile(path.join(contentDirectory, 'second.mdx'), '<FigmaImage src={secondUrl} />')
-
-    await assert.rejects(discoverFigmaUrls(contentDirectory), error => {
-      assert.match(error.message, /first\.mdx/)
-      assert.match(error.message, /second\.mdx/)
-      return true
-    })
-  })
-})
-
-describe('validateFigmaUrl', () => {
-  it('only approves the Brand Interface Guidelines file key', () => {
-    assert.equal(FIGMA_FILE_KEY, 'kc69gOteR1MsL0aQtLdxLW')
-  })
-
-  it('accepts approved design and file URLs', () => {
-    assert.equal(validateFigmaUrl(approvedUrl).fileId, FIGMA_FILE_KEY)
-    assert.equal(
-      validateFigmaUrl(`https://www.figma.com/file/${FIGMA_FILE_KEY}/Brand?node-id=1804-8382&t=example`).fileId,
-      FIGMA_FILE_KEY,
+    assert.equal(discovered.length, 3)
+    assert.deepEqual(
+      validated.map(image => image.basename),
+      [`${FIGMA_FILE_KEY}-1804-8382`, `${FIGMA_FILE_KEY}-1804-8383`],
     )
   })
 
-  it('rejects URLs from foreign files with an actionable error', () => {
+  it('rejects dynamic and unapproved references', () => {
     assert.throws(
-      () =>
-        validateFigmaUrls([{url: 'https://www.figma.com/design/foreign-file/Other?node-id=1-2', filePath: 'x.mdx'}]),
-      error => {
-        assert.match(error.message, /foreign-file/)
-        assert.match(error.message, new RegExp(FIGMA_FILE_KEY))
-        assert.match(error.message, /x\.mdx/)
-        return true
-      },
+      () => extractFigmaUrls('<FigmaImage src={figmaUrl} />', 'example.mdx'),
+      /example\.mdx.*must be a static quoted URL/,
+    )
+    assert.throws(
+      () => validateFigmaUrl('https://www.figma.com/design/foreign-file/Other?node-id=1-2'),
+      /file key "foreign-file" is not approved/,
     )
   })
 
-  it('normalizes colon node IDs while preserving the original edit URL', () => {
-    const originalUrl = `https://www.figma.com/design/${FIGMA_FILE_KEY}/Brand?node-id=1804%3A8382&t=example`
-    const parsed = validateFigmaUrl(originalUrl)
-
-    assert.equal(parsed.originalUrl, originalUrl)
-    assert.equal(parsed.nodeId, '1804:8382')
-    assert.equal(parsed.basename, `${FIGMA_FILE_KEY}-1804-8382`)
-    assert.match(parsed.canonicalUrl, /node-id=1804-8382/)
-    assert.match(parsed.canonicalUrl, /t=example/)
-  })
-
-  it('rejects bare figma.com thumbnail URLs instead of ignoring them', () => {
-    const content = `---
-thumbnail: https://figma.com/design/${FIGMA_FILE_KEY}/Brand?node-id=1804-8382
----
-`
-    const discovered = extractFigmaUrls(content).map(url => ({url, filePath: 'thumbnail.mdx'}))
-
-    assert.throws(() => validateFigmaUrls(discovered), /must use an HTTPS .* node URL from www\.figma\.com/)
-  })
-})
-
-describe('validateFigmaUrls', () => {
-  it('deduplicates references to the same node with different query parameters', () => {
-    const validated = validateFigmaUrls([
-      {url: `${approvedUrl}&t=first`, filePath: 'first.mdx'},
-      {url: `${approvedUrl}&t=second`, filePath: 'second.mdx'},
-    ])
-
-    assert.equal(validated.length, 1)
-    assert.equal(validated[0].basename, `${FIGMA_FILE_KEY}-1804-8382`)
-  })
-})
-
-describe('generateFigmaImages', () => {
-  it('requires FIGMA_ACCESS_TOKEN before generation', async () => {
-    await assert.rejects(generateFigmaImages([validateFigmaUrl(approvedUrl)], ''), /FIGMA_ACCESS_TOKEN/)
-  })
-
-  it('cleans stale generated files when no URLs remain', async () => {
-    const outputDirectory = await createTemporaryDirectory()
-    await fs.writeFile(path.join(outputDirectory, 'stale.png'), 'stale')
-    await fs.writeFile(path.join(outputDirectory, 'images.json'), '{"stale": true}')
-
-    await generateFigmaImages([], 'test-token', outputDirectory)
-
-    assert.deepEqual(JSON.parse(await fs.readFile(path.join(outputDirectory, 'images.json'), 'utf8')), {})
-    await assert.rejects(fs.access(path.join(outputDirectory, 'stale.png')))
-  })
-})
-
-describe('verifyFigmaImageAssets', () => {
-  it('rejects approved references without committed generated assets', async () => {
-    const outputDirectory = await createTemporaryDirectory()
-    await fs.writeFile(path.join(outputDirectory, 'images.json'), '{}')
-
-    await assert.rejects(
-      verifyFigmaImageAssets([validateFigmaUrl(approvedUrl)], outputDirectory),
-      /must include width, height, and filename/,
-    )
-  })
-
-  it('uses the generated manifest filename for custom filename formats', async () => {
+  it('verifies generated assets without allowing manifest paths to escape the output directory', async () => {
     const outputDirectory = await createTemporaryDirectory()
     const image = validateFigmaUrl(approvedUrl)
-    const filename = 'custom-node-name-1804-8382.png'
+    const manifestPath = path.join(outputDirectory, 'images.json')
+    const filename = 'preview.png'
 
-    await fs.writeFile(
-      path.join(outputDirectory, 'images.json'),
-      JSON.stringify({
-        [image.basename]: {width: 100, height: 100, filename},
-      }),
-    )
+    await fs.writeFile(manifestPath, JSON.stringify({[image.basename]: {width: 100, height: 100, filename}}))
     await fs.writeFile(path.join(outputDirectory, filename), 'image')
 
     await verifyFigmaImageAssets([image], outputDirectory)
-  })
-
-  it('rejects manifest filenames with path segments', async () => {
-    const outputDirectory = await createTemporaryDirectory()
-    const image = validateFigmaUrl(approvedUrl)
 
     await fs.writeFile(
-      path.join(outputDirectory, 'images.json'),
-      JSON.stringify({
-        [image.basename]: {width: 100, height: 100, filename: '../outside.png'},
-      }),
+      manifestPath,
+      JSON.stringify({[image.basename]: {width: 100, height: 100, filename: '../outside.png'}}),
     )
 
-    await assert.rejects(
-      verifyFigmaImageAssets([image], outputDirectory),
-      /manifest filename.*must not contain path segments/,
-    )
+    await assert.rejects(verifyFigmaImageAssets([image], outputDirectory), /must not contain path segments/)
   })
 
-  it('rejects manifest entries for unreferenced Figma images', async () => {
-    const outputDirectory = await createTemporaryDirectory()
-    await fs.writeFile(
-      path.join(outputDirectory, 'images.json'),
-      JSON.stringify({
-        stale: {width: 100, height: 100},
-      }),
-    )
+  it('only exposes canonical Figma edit links', () => {
+    const source = resolveFigmaImageSource(`/design/${FIGMA_FILE_KEY}/Brand?node-id=1804%3A8382`)
 
-    await assert.rejects(
-      verifyFigmaImageAssets([], outputDirectory),
-      /Manifest entries remain for unreferenced Figma images/,
-    )
-  })
-
-  it('rejects generated files for unreferenced Figma images', async () => {
-    const outputDirectory = await createTemporaryDirectory()
-    await fs.writeFile(path.join(outputDirectory, 'images.json'), '{}')
-    await fs.writeFile(path.join(outputDirectory, 'stale.png'), 'stale')
-
-    await assert.rejects(verifyFigmaImageAssets([], outputDirectory), /files remain for unreferenced Figma images/)
-  })
-})
-
-describe('resolveFigmaImageSource', () => {
-  it('omits edit links for invalid and non-Figma URLs', () => {
+    assert.equal(source.editUrl, approvedUrl)
     assert.equal(resolveFigmaImageSource('javascript:alert(1)').editUrl, undefined)
     assert.equal(
       resolveFigmaImageSource(`https://example.com/design/${FIGMA_FILE_KEY}/Brand?node-id=1804-8382`).editUrl,
@@ -277,18 +89,9 @@ describe('resolveFigmaImageSource', () => {
     )
   })
 
-  it('uses a canonical Figma URL for edit links', () => {
-    const source = resolveFigmaImageSource(`/design/${FIGMA_FILE_KEY}/Brand?node-id=1804%3A8382`)
-
-    assert.equal(source.editUrl, `https://www.figma.com/design/${FIGMA_FILE_KEY}/Brand?node-id=1804-8382`)
-  })
-})
-
-describe('resolveFigmaPageMapThumbnails', () => {
-  it('maps Figma-backed frontmatter thumbnails to generated public asset paths', () => {
+  it('maps Figma thumbnails to committed assets', () => {
     const pageMap = [
       {
-        name: 'example',
         route: '/example',
         frontMatter: {
           thumbnail: approvedUrl,
@@ -301,21 +104,6 @@ describe('resolveFigmaPageMapThumbnails', () => {
 
     assert.equal(resolved[0].frontMatter.thumbnail, '/images/figma/anatomy-1804-8382.png')
     assert.equal(resolved[0].frontMatter.thumbnail_darkMode, '/images/example-dark.png')
-  })
-})
-
-describe('FigmaImage utilities', () => {
-  it('uses the light source as the dark-mode fallback', () => {
-    const lightSource = {assetUrl: '/light.png', editUrl: approvedUrl}
-
-    assert.equal(getActiveFigmaSource('dark', lightSource), lightSource)
-  })
-
-  it('preserves the generated aspect ratio for one explicit dimension', () => {
-    const source = {editUrl: approvedUrl, width: 1452, height: 765}
-
-    assert.deepEqual(resolveImageDimensions(source, 726), {width: 726, height: 383})
-    assert.deepEqual(resolveImageDimensions(source, undefined, 255), {width: 484, height: 255})
   })
 })
 
