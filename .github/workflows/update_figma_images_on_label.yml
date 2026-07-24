@@ -1,4 +1,4 @@
-name: Update Figma images on label
+name: Update pull request Figma images
 
 on:
   pull_request_target:

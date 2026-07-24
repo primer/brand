@@ -104,7 +104,7 @@ export function validateFigmaUrl(url, source = 'Figma image') {
     parsedUrl.hostname !== 'www.figma.com' ||
     !['design', 'file', 'board'].includes(parsedUrl.pathname.split('/')[1])
   ) {
-    throw new Error(`${source}: "${url}" must be an https://www.figma.com design, file, or board node URL.`)
+    throw new Error(`${source}: "${url}" must use an HTTPS design, file, or board node URL from www.figma.com.`)
   }
 
   const nodeId = parsedUrl.searchParams.get('node-id')
@@ -160,7 +160,7 @@ export async function generateFigmaImages(
 ) {
   if (!token) {
     throw new Error(
-      'FIGMA_ACCESS_TOKEN is required to generate Figma images. Add it to apps/next-docs/.env.local or the command environment.',
+      'FIGMA_ACCESS_TOKEN is required to generate Figma images. Add it to apps/next-docs/.env.local or your shell environment.',
     )
   }
 
@@ -220,7 +220,7 @@ export async function verifyFigmaImageAssets(validated, outputDirectory = OUTPUT
   const expectedBasenames = new Set(validated.map(image => image.basename))
   const staleManifestEntries = Object.keys(manifest).filter(basename => !expectedBasenames.has(basename))
   if (staleManifestEntries.length > 0) {
-    throw new Error(`Generated dimensions remain for unreferenced Figma images: ${staleManifestEntries.join(', ')}`)
+    throw new Error(`Manifest entries remain for unreferenced Figma images: ${staleManifestEntries.join(', ')}`)
   }
 
   const expectedFiles = new Set()
@@ -233,7 +233,7 @@ export async function verifyFigmaImageAssets(validated, outputDirectory = OUTPUT
       !Number.isFinite(manifestEntry.height) ||
       typeof manifestEntry.filename !== 'string'
     ) {
-      throw new Error(`Generated dimensions or filename are missing for ${image.originalUrl}.`)
+      throw new Error(`The manifest entry for ${image.originalUrl} must include width, height, and filename.`)
     }
     expectedFiles.add(manifestEntry.filename)
   }

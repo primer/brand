@@ -164,7 +164,7 @@ thumbnail: https://figma.com/design/${FIGMA_FILE_KEY}/Brand?node-id=1804-8382
 `
     const discovered = extractFigmaUrls(content).map(url => ({url, filePath: 'thumbnail.mdx'}))
 
-    assert.throws(() => validateFigmaUrls(discovered), /must be an https:\/\/www\.figma\.com/)
+    assert.throws(() => validateFigmaUrls(discovered), /must use an HTTPS .* node URL from www\.figma\.com/)
   })
 })
 
@@ -204,7 +204,7 @@ describe('verifyFigmaImageAssets', () => {
 
     await assert.rejects(
       verifyFigmaImageAssets([validateFigmaUrl(approvedUrl)], outputDirectory),
-      /Generated dimensions or filename are missing/,
+      /must include width, height, and filename/,
     )
   })
 
@@ -233,7 +233,10 @@ describe('verifyFigmaImageAssets', () => {
       }),
     )
 
-    await assert.rejects(verifyFigmaImageAssets([], outputDirectory), /dimensions remain for unreferenced Figma images/)
+    await assert.rejects(
+      verifyFigmaImageAssets([], outputDirectory),
+      /Manifest entries remain for unreferenced Figma images/,
+    )
   })
 
   it('rejects generated files for unreferenced Figma images', async () => {

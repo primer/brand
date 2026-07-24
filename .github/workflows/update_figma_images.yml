@@ -1,4 +1,4 @@
-name: Update next-docs Figma images
+name: Update docs Figma images
 
 on:
   workflow_dispatch:
@@ -58,7 +58,7 @@ jobs:
         run: |
           if [ -z "$(git status --short -- apps/next-docs/public/images/figma)" ]; then
             echo 'has_changes=false' >> "$GITHUB_OUTPUT"
-            echo 'No next-docs Figma image changes were generated.'
+            echo 'No docs Figma image changes were generated.'
             exit 0
           fi
 
@@ -124,8 +124,8 @@ jobs:
           branch: github-actions/update-next-docs-figma-images
           base: main
           delete-branch: true
-          commit-message: Update next-docs Figma images
-          title: Update next-docs Figma images
+          commit-message: Update docs Figma images
+          title: Update docs Figma images
           body: |
             ## Summary
             - refresh generated Figma images for `apps/next-docs`

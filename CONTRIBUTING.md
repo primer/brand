@@ -68,7 +68,7 @@ To update the generated images locally:
 1. Add `FIGMA_ACCESS_TOKEN=...` to `apps/next-docs/.env.local`.
 1. Run `npm run figma-images:generate --workspace=apps/next-docs`.
 
-Files in `apps/next-docs/public/images/figma` are generated artifacts. Do not edit, optimize, recompress, rename, replace, or delete the downloaded images or their manifest directly. Update the Figma references in the docs source and regenerate the files instead.
+Files in `apps/next-docs/public/images/figma` are generated artifacts. Do not edit, optimize, recompress, rename, replace, or delete the generated images or their manifest directly. Update the Figma references in the docs source and regenerate the files instead.
 
 Commit only the changes produced by the generator. To update the images through GitHub Actions instead, add the `update figma images` label to your pull request.
 

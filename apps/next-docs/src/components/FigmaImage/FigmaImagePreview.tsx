@@ -35,9 +35,9 @@ export function FigmaImagePreview({
 
   if (!activeSource.assetUrl) {
     return (
-      <div className={styles.MissingPreview} role="note">
-        <p className={styles.MissingPreviewTitle}>{previewUnavailableText}</p>
-        <p className={styles.MissingPreviewBody}>{previewFallbackText}</p>
+      <div className={styles['FigmaImage__missing-preview']} role="note">
+        <p className={styles['FigmaImage__missing-preview-title']}>{previewUnavailableText}</p>
+        <p className={styles['FigmaImage__missing-preview-body']}>{previewFallbackText}</p>
       </div>
     )
   }
@@ -46,7 +46,7 @@ export function FigmaImagePreview({
 
   return (
     <img
-      className={clsx(styles.Image, fullWidth && styles.ImageFullWidth)}
+      className={clsx(styles.FigmaImage__image, fullWidth && styles['FigmaImage__image--full-width'])}
       src={activeSource.assetUrl}
       alt={presentation ? '' : alt}
       aria-hidden={presentation ? true : undefined}

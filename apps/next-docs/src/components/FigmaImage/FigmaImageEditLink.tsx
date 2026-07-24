@@ -23,7 +23,7 @@ export function FigmaImageEditLink({lightSource, darkSource}: FigmaImageEditLink
       variant="secondary"
       size="small"
       leadingVisual={PencilIcon}
-      className={styles.EditLink}
+      className={styles['FigmaImage__edit-link']}
       href={getActiveFigmaEditUrl(colorMode, lightSource, darkSource)}
       target="_blank"
       rel="noopener noreferrer"

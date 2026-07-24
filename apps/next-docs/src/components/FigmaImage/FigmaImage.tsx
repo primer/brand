@@ -32,7 +32,7 @@ function getAccessibleAlt(alt?: string, role?: 'presentation') {
   }
 
   // eslint-disable-next-line i18n-text/no-en
-  const missingReason = 'Add descriptive alt text or set presentation for decorative Figma images.'
+  const missingReason = 'Add descriptive alt text or set role="presentation" for decorative Figma images.'
 
   return {
     alt: '',
@@ -62,7 +62,7 @@ export function FigmaImage({
   const figureClassName = clsx(
     'custom-component',
     styles.FigmaImage,
-    fullWidth && styles.FigmaImageFullWidth,
+    fullWidth && styles['FigmaImage--full-width'],
     className,
   )
 
@@ -85,7 +85,7 @@ export function FigmaImage({
 
   return (
     <figure className={figureClassName}>
-      <div className={styles.PreviewContainer}>
+      <div className={styles.FigmaImage__preview}>
         <FigmaImagePreview
           lightSource={previewLightSource}
           darkSource={previewDarkSource}
@@ -98,8 +98,8 @@ export function FigmaImage({
       </div>
       <FigmaImageEditLink lightSource={lightSource} darkSource={darkSource} />
       {captionContent ? (
-        <figcaption className={styles.Caption}>
-          <div className={styles.CaptionText}>{captionContent}</div>
+        <figcaption className={styles.FigmaImage__caption}>
+          <div className={styles['FigmaImage__caption-text']}>{captionContent}</div>
         </figcaption>
       ) : null}
     </figure>

@@ -7,18 +7,18 @@
   max-inline-size: 100%;
 }
 
-.FigmaImageFullWidth {
+.FigmaImage--full-width {
   inline-size: 100%;
 }
 
-.PreviewContainer {
+.FigmaImage__preview {
   position: relative;
   overflow: hidden;
   inline-size: 100%;
   border-radius: var(--brand-borderRadius-medium);
 }
 
-.PreviewContainer::after {
+.FigmaImage__preview::after {
   position: absolute;
   z-index: 1;
   background-image: linear-gradient(to bottom left, var(--brand-color-canvas-default) 10%, transparent 80%);
@@ -29,12 +29,12 @@
   transition: opacity var(--brand-animation-duration-faster) var(--brand-animation-easing-default);
 }
 
-.FigmaImage:hover .PreviewContainer::after,
-.FigmaImage:focus-within .PreviewContainer::after {
+.FigmaImage:hover .FigmaImage__preview::after,
+.FigmaImage:focus-within .FigmaImage__preview::after {
   opacity: 1;
 }
 
-.Image {
+.FigmaImage__image {
   display: block;
   max-inline-size: 100%;
   block-size: auto;
@@ -44,16 +44,16 @@
   transition: opacity var(--brand-animation-duration-faster) var(--brand-animation-easing-default);
 }
 
-.FigmaImage:hover .Image,
-.FigmaImage:focus-within .Image {
+.FigmaImage:hover .FigmaImage__image,
+.FigmaImage:focus-within .FigmaImage__image {
   opacity: 0.8;
 }
 
-.ImageFullWidth {
+.FigmaImage__image--full-width {
   inline-size: 100%;
 }
 
-.MissingPreview {
+.FigmaImage__missing-preview {
   display: grid;
   gap: var(--base-size-8);
   padding: var(--base-size-16);
@@ -63,7 +63,7 @@
   background-color: var(--brand-color-canvas-subtle);
 }
 
-.MissingPreviewTitle {
+.FigmaImage__missing-preview-title {
   margin: 0;
   color: var(--brand-color-text-default);
   font-size: var(--brand-text-size-200);
@@ -71,12 +71,12 @@
   line-height: var(--brand-text-lineHeight-200);
 }
 
-.MissingPreviewBody {
+.FigmaImage__missing-preview-body {
   margin: 0;
   color: var(--brand-color-text-muted);
 }
 
-.Caption {
+.FigmaImage__caption {
   display: flex;
   flex-wrap: wrap;
   gap: var(--base-size-8) var(--base-size-12);
@@ -86,11 +86,11 @@
   line-height: var(--brand-text-lineHeight-100);
 }
 
-.CaptionText {
+.FigmaImage__caption-text {
   min-inline-size: 0;
 }
 
-.EditLink {
+.FigmaImage__edit-link {
   position: absolute;
   z-index: 1;
   inset-block-start: var(--base-size-16);
@@ -100,8 +100,8 @@
   transition: opacity var(--brand-animation-duration-faster) var(--brand-animation-easing-default);
 }
 
-.FigmaImage:hover .EditLink,
-.EditLink:focus {
+.FigmaImage:hover .FigmaImage__edit-link,
+.FigmaImage__edit-link:focus {
   opacity: 1;
   pointer-events: auto;
 }
