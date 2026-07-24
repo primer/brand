@@ -31,10 +31,13 @@ function getAccessibleAlt(alt?: string, role?: 'presentation') {
     return {alt: trimmedAlt, presentation: false}
   }
 
+  // eslint-disable-next-line i18n-text/no-en
+  const missingReason = 'Add descriptive alt text or set presentation for decorative Figma images.'
+
   return {
     alt: '',
     presentation: false,
-    missingReason: 'Add descriptive alt text or set presentation for decorative Figma images.',
+    missingReason,
   }
 }
 

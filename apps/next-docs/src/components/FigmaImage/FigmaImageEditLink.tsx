@@ -14,6 +14,8 @@ type FigmaImageEditLinkProps = {
 
 export function FigmaImageEditLink({lightSource, darkSource}: FigmaImageEditLinkProps) {
   const {colorMode} = useColorMode()
+  // eslint-disable-next-line i18n-text/no-en
+  const editLinkLabel = 'Edit in Figma'
 
   return (
     <Button
@@ -24,9 +26,9 @@ export function FigmaImageEditLink({lightSource, darkSource}: FigmaImageEditLink
       className={styles.EditLink}
       href={getActiveFigmaEditUrl(colorMode, lightSource, darkSource)}
       target="_blank"
-      rel="noreferrer"
+      rel="noopener noreferrer"
     >
-      Edit in Figma
+      {editLinkLabel}
     </Button>
   )
 }
