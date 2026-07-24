@@ -5,6 +5,7 @@ import {useProvidedRefOrCreate} from '../../hooks/useRef'
 
 import type {BaseProps} from '../../component-helpers'
 
+import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/control/colors-with-modes.css'
 import styles from './Radio.module.css'
 
 export type RadioProps = {

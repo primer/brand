@@ -6,6 +6,7 @@ import type {BaseProps} from '../../component-helpers'
 import type {FormInputSizes, FormValidationStatus} from '../form-types'
 import {Text} from '../../Text'
 
+import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/control/colors-with-modes.css'
 import styles from './TextInput.module.css'
 import type {Icon} from '@primer/octicons-react'
 
