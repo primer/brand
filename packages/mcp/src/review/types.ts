@@ -12,6 +12,8 @@ export type Finding = {
 
 export type Rule = {
   id: string
+  /** When set, the rule only runs if the GitHub Asset Generator MCP tools are available (internal GitHub use). */
+  requiresAssetGenerator?: boolean
   run(code: string, catalog: Catalog): Finding[]
 }
 

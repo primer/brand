@@ -46,6 +46,31 @@ export const WithImageBlockEndDefault: Story = {
   ),
 }
 
+export const WithPictureBlockEndDefault: Story = {
+  name: 'Picture (left + bottom)',
+  render: () => (
+    <Grid>
+      <Grid.Column>
+        <Hero>
+          <Hero.Label>Label</Hero.Label>
+          <Hero.Heading>This is my super sweet hero heading</Hero.Heading>
+          <Hero.Description>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
+            turpis felis nam pulvinar risus elementum.
+          </Hero.Description>
+          <Hero.PrimaryAction href="#">Primary action</Hero.PrimaryAction>
+          <Hero.Image
+            as="picture"
+            src={placeholderImage}
+            sources={[{srcset: placeholderImage, media: '(min-width: 0)'}]}
+            alt="placeholder image, blank with gray solid fill"
+          />
+        </Hero>
+      </Grid.Column>
+    </Grid>
+  ),
+}
+
 export const WithImageBlockEndCenter: Story = {
   name: 'Image (centered + bottom)',
   render: () => (
