@@ -19,15 +19,17 @@ Use these tools whenever a project builds marketing/landing pages, or depends on
 This is NOT @primer/react (GitHub's product UI library); if you are building application/product UI,
 use the Primer (product) tools instead.
 
-Typical flow: primer_brand_setup once at the start of a new page or project, primer_brand_examples to start
-from correct patterns, primer_brand_component for exact props, primer_brand_tokens / primer_brand_asset for tokens and
-icons, primer_brand_docs for guidance, and primer_brand_review as the final gate over your complete output (JSX and
+Typical flow: \`primer_brand_setup\` once at the start of a new page or project, \`primer_brand_examples\` to start
+from correct patterns, \`primer_brand_component\` for exact props, \`primer_brand_tokens\` / \`primer_brand_asset\` for tokens and
+icons, \`primer_brand_docs\` for guidance, and \`primer_brand_review\` as the final gate over your complete output (JSX and
 CSS together) before you finish.
 
 ${
   assetGenerator.available
-    ? `Use the GitHub Asset Generator MCP tools (\`asset-generator\`) instead of stock photos or AI art. Use Asset Generator
-for wallpapers, hero or river background images, and product shots.`
+    ? `Use the GitHub Asset Generator MCP tools (\`asset-generator\`) instead of stock photos or AI art. For product UI,
+  call \`create_dither_patterns\` and \`create_full_screen_product_shot\` as a pair, keep the files separate, and render full-width
+  dither behind the contained product shot. Never use dither alone. If no screenshot exists, proactively create one lightweight,
+  representative mockup. Use non-dither media when product UI does not fit. Read \`primer_brand_page_design\` for placement.`
     : ''
 }
 `
