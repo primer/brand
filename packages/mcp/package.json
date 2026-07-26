@@ -46,6 +46,7 @@
     "format:fix": "prettier --write '**/*.{js,mjs,ts,json,md}'",
     "lint": "eslint '**/*.ts' --max-warnings=0",
     "lint:fix": "npm run lint -- --fix",
+    "pretest": "npm run generate:catalog",
     "test": "NODE_OPTIONS=--experimental-vm-modules jest",
     "inspect": "npm run build && npx @modelcontextprotocol/inspector node dist/index.js",
     "smoke": "npm run build && node scripts/smoke.mjs",

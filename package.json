@@ -42,7 +42,7 @@
     "start:docs": "npm run build:lib && cd apps/next-docs && npm run dev",
     "start:lib": "npm run start --workspace=packages/react",
     "start:storybook": "npm run build:lib && npm run start --workspace=apps/storybook",
-    "test": "npm run test --workspaces --if-present",
+    "test": "npm run build:lib && npm run test --workspaces --if-present",
     "test:axe": "npm run test:axe --workspace=packages/e2e",
     "test:storybook": "npm run test:storybook --workspace=apps/storybook",
     "test:visual": "npm run test:visual --workspace=packages/e2e --",

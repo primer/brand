@@ -83,15 +83,14 @@ function discoverComponentFiles() {
 /** Sub-components from `Object.assign(Root, {Heading: ...})` and `Name.Sub = ...` assignments. */
 function extractSubcomponents(name, source) {
   const subcomponents = new Set()
+  const propertyPattern = /(?:^|[{,])(?:\s|\/\*[\s\S]*?\*\/|\/\/[^\r\n]*(?:\r?\n|$))*([A-Za-z_$][\w$]*)\s*(?=[:,}])/g
   for (const match of source.matchAll(/Object\.assign\(/g)) {
     const openBraceIndex = source.indexOf('{', match.index)
     if (openBraceIndex === -1) continue
     const assignedObject = captureBalanced(source, openBraceIndex, '{', '}')
     if (!assignedObject) continue
-    // Capture both `Heading: ...` and shorthand `Visual` keys (the latter is a property whose key
-    // is its value, e.g. `Object.assign(Root, {Visual, Content: RiverContent})`).
-    for (const propertyKey of assignedObject.matchAll(/(?:^|[{,])\s*([A-Za-z_$][\w$]*)\s*(?=[:,}])/g))
-      subcomponents.add(`${name}.${propertyKey[1]}`)
+    // Capture `Heading: ...` and shorthand `Visual` keys across intervening comments.
+    for (const propertyKey of assignedObject.matchAll(propertyPattern)) subcomponents.add(`${name}.${propertyKey[1]}`)
   }
   for (const match of source.matchAll(new RegExp(`\\b${name}\\.(\\w+)\\s*=`, 'g'))) {
     subcomponents.add(`${name}.${match[1]}`)
