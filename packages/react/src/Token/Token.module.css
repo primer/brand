@@ -7,8 +7,7 @@
   min-width: 0;
   max-width: 100%;
   padding-inline: var(--base-size-8);
-  padding-block: var(--base-size-6);
-  padding-block-end: var(--base-size-6);
+  padding-block: calc(var(--base-size-4) - var(--brand-borderWidth-thin));
   vertical-align: middle;
 }
 
@@ -75,8 +74,9 @@
   min-width: 0;
   overflow: hidden;
   text-overflow: ellipsis;
+  font-size: var(--base-size-12);
   font-weight: var(--base-text-weight-normal);
-  line-height: var(--brand-text-lineHeight-100);
+  line-height: var(--base-size-16);
   white-space: nowrap;
   letter-spacing: var(--brand-text-letterSpacing-100);
 }

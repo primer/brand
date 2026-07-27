@@ -26,7 +26,7 @@
   width: 100%;
   max-width: 1280px;
   margin-inline: auto;
-  padding: var(--base-size-32);
+  padding: var(--brand-Hero-gridline-padding, var(--base-size-32));
   background-color: var(--brand-Hero-bgColor-gridlineGridInner); /* Unset by default - users can override if needed */
 }
 
@@ -44,7 +44,7 @@
 
 @media screen and (min-width: 63.25rem) {
   .Hero-grid--contained {
-    padding: var(--base-size-64);
+    padding: var(--brand-Hero-gridline-padding, var(--base-size-64));
   }
 
   .Hero-grid--block-end {

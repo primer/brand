@@ -1,0 +1,51 @@
+.heroSection {
+  border-bottom: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
+}
+
+.hero {
+  --brand-Hero-gridline-padding: var(--base-size-32);
+}
+
+.sectionHeader {
+  padding: var(--base-size-48) var(--base-size-32) var(--base-size-32);
+  border-inline: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
+}
+
+.sortLabel {
+  flex-shrink: 0;
+}
+
+.cardGridFullWidthColumn {
+  min-width: 0;
+}
+
+.cardGridItem {
+  --editorial-cardGrid-hover-overlay: color-mix(in srgb, var(--base-color-scale-gray-0) 50%, transparent);
+
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  transition: background var(--brand-animation-duration-extended) var(--brand-animation-easing-default);
+}
+
+.cardGridItem:is(:hover, :focus-within) {
+  background: linear-gradient(to top, var(--editorial-cardGrid-hover-overlay) 0%, transparent 100%),
+    var(--brand-color-canvas-default);
+}
+
+[data-color-mode='dark'] .cardGridItem:is(:hover, :focus-within) {
+  --editorial-cardGrid-hover-overlay: color-mix(in srgb, var(--base-color-scale-gray-0) 10%, transparent);
+}
+
+.resourceCard {
+  min-height: 100%;
+}
+
+.cardGridItem .resourceCard:hover {
+  transform: none;
+}
+
+.paginationFrame {
+  padding-inline: var(--base-size-32);
+  border-inline: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
+}
