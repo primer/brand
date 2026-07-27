@@ -86,6 +86,15 @@ describe('MinimalVideoPlayer', () => {
     })
   }
 
+  const createDeferredPlaybackRequest = () => {
+    let resolve: () => void = () => undefined
+    const promise = new Promise<void>(resolvePromise => {
+      resolve = resolvePromise
+    })
+
+    return {promise, resolve}
+  }
+
   it('renders native video sources and attributes', () => {
     const {getByTitle} = render(
       <MinimalVideoPlayer
@@ -138,6 +147,17 @@ describe('MinimalVideoPlayer', () => {
     const video = getByTitle('Product interface demonstration')
 
     setIntersection(video, 1)
+
+    expect(playMock).toHaveBeenCalledTimes(1)
+  })
+
+  it('autoplays an eligible video when IntersectionObserver is unavailable', () => {
+    Object.defineProperty(window, 'IntersectionObserver', {
+      configurable: true,
+      value: undefined,
+    })
+
+    render(<MinimalVideoPlayer src="/example.mp4" title="Product interface demonstration" />)
 
     expect(playMock).toHaveBeenCalledTimes(1)
   })
@@ -250,11 +270,8 @@ describe('MinimalVideoPlayer', () => {
   })
 
   it('cancels pending autoplay when autoPlay changes to false', async () => {
-    let resolvePlaybackRequest: () => void = () => undefined
-    const playbackRequest = new Promise<void>(resolve => {
-      resolvePlaybackRequest = resolve
-    })
-    playMock.mockReturnValueOnce(playbackRequest)
+    const playbackRequest = createDeferredPlaybackRequest()
+    playMock.mockReturnValueOnce(playbackRequest.promise)
     const {getByRole, getByTitle, rerender} = render(
       <MinimalVideoPlayer src="/example.mp4" title="Product interface demonstration" />,
     )
@@ -271,8 +288,8 @@ describe('MinimalVideoPlayer', () => {
     expect(getByRole('button', {name: 'Play video'})).toBeInTheDocument()
 
     await act(async () => {
-      resolvePlaybackRequest()
-      await playbackRequest
+      playbackRequest.resolve()
+      await playbackRequest.promise
     })
 
     expect(pauseMock).toHaveBeenCalledTimes(3)
@@ -280,11 +297,8 @@ describe('MinimalVideoPlayer', () => {
   })
 
   it('does not cancel pending manual playback when autoPlay changes to false', async () => {
-    let resolvePlaybackRequest: () => void = () => undefined
-    const playbackRequest = new Promise<void>(resolve => {
-      resolvePlaybackRequest = resolve
-    })
-    playMock.mockReturnValueOnce(playbackRequest)
+    const playbackRequest = createDeferredPlaybackRequest()
+    playMock.mockReturnValueOnce(playbackRequest.promise)
     const user = userEvent.setup()
     const {getByRole, getByTitle, rerender} = render(
       <MinimalVideoPlayer src="/example.mp4" title="Product interface demonstration" />,
@@ -297,8 +311,8 @@ describe('MinimalVideoPlayer', () => {
     expect(pauseMock).not.toHaveBeenCalled()
 
     await act(async () => {
-      resolvePlaybackRequest()
-      await playbackRequest
+      playbackRequest.resolve()
+      await playbackRequest.promise
     })
     fireEvent.playing(video)
 
@@ -342,11 +356,8 @@ describe('MinimalVideoPlayer', () => {
   })
 
   it('cancels a pending play request when reduced motion becomes active', async () => {
-    let resolvePlaybackRequest: () => void = () => undefined
-    const playbackRequest = new Promise<void>(resolve => {
-      resolvePlaybackRequest = resolve
-    })
-    playMock.mockReturnValueOnce(playbackRequest)
+    const playbackRequest = createDeferredPlaybackRequest()
+    playMock.mockReturnValueOnce(playbackRequest.promise)
     const {getByRole, getByTitle} = render(
       <MinimalVideoPlayer src="/example.mp4" title="Product interface demonstration" />,
     )
@@ -363,8 +374,8 @@ describe('MinimalVideoPlayer', () => {
     expect(getByRole('button', {name: 'Play video'})).toBeInTheDocument()
 
     await act(async () => {
-      resolvePlaybackRequest()
-      await playbackRequest
+      playbackRequest.resolve()
+      await playbackRequest.promise
     })
 
     expect(pauseMock).toHaveBeenCalledTimes(3)
