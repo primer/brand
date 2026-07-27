@@ -88,6 +88,15 @@
 }
 
 @media screen and (min-width: 48rem) and (max-width: 63.24rem) {
+  .River {
+    max-width: 618px;
+    margin-inline: auto;
+  }
+
+  .River--variant-gridline {
+    border-inline: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
+  }
+
   .River--variant-gridline .River__visual--has-background {
     align-items: flex-end;
     padding-block-end: 0;
@@ -106,7 +115,7 @@
 }
 
 .River__call-to-action {
-  margin-top: var(--base-size-20);
+  margin-top: var(--base-size-24);
 }
 
 .River__text strong,

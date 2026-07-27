@@ -275,7 +275,21 @@ test.describe('Visual Comparison: River', () => {
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
-  test('River / GridLine variant (with background)', async ({page}) => {
+  // eslint-disable-next-line i18n-text/no-en
+  test.describe('Tablet viewport test for GridLine variant (tablet)', () => {
+    test.use({viewport: {width: 834, height: 1112}})
+    test('River / GridLine variant (tablet)', async ({page}) => {
+      await page.goto(
+        'http://localhost:6006/iframe.html?args=&id=components-river-features-gridline-variants--grid-line-tablet&viewMode=story',
+        {waitUntil: 'networkidle'},
+      )
+      await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+      await page.waitForTimeout(500)
+      await expect(page).toHaveScreenshot({fullPage: true})
+    })
+  })
+  test('River / GridLine variant (default background)', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-river-features-gridline-variants--grid-line-with-background&viewMode=story',
       {waitUntil: 'networkidle'},
@@ -286,7 +300,7 @@ test.describe('Visual Comparison: River', () => {
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
-  test('River / GridLine variant (with background, end)', async ({page}) => {
+  test('River / GridLine variant (default background, end)', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-river-features-gridline-variants--grid-line-with-background-end&viewMode=story',
       {waitUntil: 'networkidle'},
@@ -297,7 +311,7 @@ test.describe('Visual Comparison: River', () => {
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
-  test('River / GridLine variant (with background, centered)', async ({page}) => {
+  test('River / GridLine variant (default background, centered)', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-river-features-gridline-variants--grid-line-with-background-center&viewMode=story',
       {waitUntil: 'networkidle'},
@@ -374,7 +388,7 @@ test.describe('Visual Comparison: River', () => {
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
-  test('River / GridLine variant (60:40, with background)', async ({page}) => {
+  test('River / GridLine variant (60:40, default background)', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-river-features-gridline-variants--grid-line-6040-with-background&viewMode=story',
       {waitUntil: 'networkidle'},
@@ -385,7 +399,7 @@ test.describe('Visual Comparison: River', () => {
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
-  test('River / GridLine variant (60:40, with background, end)', async ({page}) => {
+  test('River / GridLine variant (60:40, default background, end)', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-river-features-gridline-variants--grid-line-6040-with-background-end&viewMode=story',
       {waitUntil: 'networkidle'},
@@ -396,7 +410,7 @@ test.describe('Visual Comparison: River', () => {
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
-  test('River / GridLine variant (60:40, with background, centered)', async ({page}) => {
+  test('River / GridLine variant (60:40, default background, centered)', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-river-features-gridline-variants--grid-line-6040-with-background-center&viewMode=story',
       {waitUntil: 'networkidle'},

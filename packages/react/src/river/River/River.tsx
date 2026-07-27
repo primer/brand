@@ -90,6 +90,15 @@ const Root = forwardRef(
       {Visual: null, Content: null},
     )
 
+    const VisualChildWithVariantStyles = VisualChild
+      ? React.cloneElement(VisualChild, {
+          className: clsx(
+            VisualChild.props.className,
+            variant === 'gridline' && styles['River__visual--has-background'],
+          ),
+        })
+      : null
+
     return (
       <section
         ref={ref}
@@ -106,7 +115,7 @@ const Root = forwardRef(
         {...rest}
       >
         {ContentChild}
-        {VisualChild}
+        {VisualChildWithVariantStyles}
       </section>
     )
   },
@@ -240,9 +249,6 @@ export const RiverContent = forwardRef(
   },
 )
 
-export const RiverVisualBackgroundColors = ['default', 'subtle'] as const
-export type RiverVisualBackgroundColor = (typeof RiverVisualBackgroundColors)[number]
-
 export type RiverVisualProps = BaseProps<HTMLDivElement> &
   React.HtmlHTMLAttributes<HTMLDivElement> &
   PropsWithChildren<{
@@ -261,10 +267,6 @@ export type RiverVisualProps = BaseProps<HTMLDivElement> &
      * Can optionally be disabled.
      */
     rounded?: boolean
-    /**
-     * Applies a background color with padding around the media.
-     */
-    imageBackgroundColor?: RiverVisualBackgroundColor
   }>
 
 export const Visual = forwardRef(
@@ -275,7 +277,6 @@ export const Visual = forwardRef(
       className,
       hasShadow = false,
       rounded = true,
-      imageBackgroundColor,
       ...rest
     }: PropsWithChildren<RiverVisualProps>,
     ref: Ref<HTMLDivElement>,
@@ -288,7 +289,6 @@ export const Visual = forwardRef(
           hasShadow && styles['River__visual--has-shadow'],
           fillMedia && styles['River__visual--fill-media'],
           rounded && styles['River__visual--rounded'],
-          imageBackgroundColor === 'subtle' && styles['River__visual--has-background'],
           className,
         )}
         {...rest}

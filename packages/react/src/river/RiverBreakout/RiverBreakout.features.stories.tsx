@@ -124,7 +124,7 @@ export const GridLineWithBackground: Story = {
     <Section>
       <RiverBreakout variant="gridline">
         <RiverBreakout.A11yHeading>Accelerate workflows</RiverBreakout.A11yHeading>
-        <RiverBreakout.Visual imageBackgroundColor="subtle">
+        <RiverBreakout.Visual>
           <img src={placeholderImage} alt="placeholder, blank area with a gray background color" />
         </RiverBreakout.Visual>
         <RiverBreakout.Content
