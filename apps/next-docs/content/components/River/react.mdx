@@ -74,12 +74,12 @@ import {River, RiverBreakout} from '@primer/react-brand'
 
 ### GridLine variant
 
-The `gridline` variant adds lateral padding for bordered layouts. Use `imageBackgroundColor` to add contrast, `position` to align media, and `padding` to control its inset.
+The `gridline` variant adds lateral padding and applies a full-bleed visual background by default. Use `position` to align media and `padding` to control its inset.
 
 ```jsx live
 <Stack style={{width: '100%'}}>
   <River variant="gridline">
-    <River.Visual imageBackgroundColor="subtle">
+    <River.Visual>
       <img src="/images/placeholder.png" alt="placeholder, blank area with a gray background color" />
     </River.Visual>
     <River.Content>
@@ -89,7 +89,7 @@ The `gridline` variant adds lateral padding for bordered layouts. Use `imageBack
     </River.Content>
   </River>
   <River variant="gridline" align="end">
-    <River.Visual imageBackgroundColor="subtle">
+    <River.Visual>
       <img src="/images/placeholder.png" alt="placeholder, blank area with a gray background color" />
     </River.Visual>
     <River.Content>
@@ -99,7 +99,7 @@ The `gridline` variant adds lateral padding for bordered layouts. Use `imageBack
     </River.Content>
   </River>
   <River variant="gridline">
-    <River.Visual imageBackgroundColor="subtle" position="block-end-inline-end">
+    <River.Visual position="block-end-inline-end">
       <img src="/images/placeholder.png" alt="placeholder, blank area with a gray background color" />
     </River.Visual>
     <River.Content>
@@ -108,7 +108,7 @@ The `gridline` variant adds lateral padding for bordered layouts. Use `imageBack
     </River.Content>
   </River>
   <River variant="gridline">
-    <River.Visual imageBackgroundColor="subtle" position="block-end-inline-start">
+    <River.Visual position="block-end-inline-start">
       <img src="/images/placeholder.png" alt="placeholder, blank area with a gray background color" />
     </River.Visual>
     <River.Content>
@@ -117,7 +117,7 @@ The `gridline` variant adds lateral padding for bordered layouts. Use `imageBack
     </River.Content>
   </River>
   <River variant="gridline">
-    <River.Visual imageBackgroundColor="subtle" padding="none">
+    <River.Visual padding="none">
       <img src="/images/placeholder.png" alt="placeholder, blank area with a gray background color" />
     </River.Visual>
     <River.Content>
@@ -264,22 +264,21 @@ The `gridline` variant adds lateral padding for bordered layouts. Use `imageBack
 
 ### River.Visual <Label>Required</Label>
 
-| Name                   | Type                        |   Default   | Description                                                                                                                                                                 |
-| :--------------------- | :-------------------------- | :---------: | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `fillMedia`            | `boolean`                   |    true     | Automatically styles images and video to fill and fit the width of the parent. Disable this setting if you have bespoke styling requirements.                               |
-| `children`             | `ReactElement`              |             | Bring your own component (BYOC) `img` or `ReactElement` (E.g. Next.js `Image` component)                                                                                    |
-| `imageBackgroundColor` | `'default'`, `'subtle'`     |             | Applies a background color around the media independently of visual position and padding controls.                                                                          |
-| `position`             | <RiverVisualPositionProp /> | `'default'` | Positions media within the gridline visual region. Explicit positions remain fixed across viewports; `default` preserves responsive behavior.                               |
-| `padding`              | <RiverVisualPaddingProp />  | `'default'` | Controls media inset within the gridline visual region. `none` fills the visual region and removes corner radius regardless of `rounded`; `all` adds padding on every side. |
-| `hasShadow`            | `boolean`                   |   `false`   | Shadow applied to the `children`. Set be `false` when the child node has a transparent background.                                                                          |
-| `className`            | `string`                    |             | Sets a custom class on the root element                                                                                                                                     |
-| `id`                   | `string`                    |             | Sets a custom id                                                                                                                                                            |
-| `ref`                  | `React.RefObject`           |             | Forward a Ref to the underlying DOM node                                                                                                                                    |
-| `rounded`              | `boolean`                   |   `true`    | Toggle visually rounded corners. Enabled by default.                                                                                                                        |
+| Name        | Type                        |   Default   | Description                                                                                                                                                                 |
+| :---------- | :-------------------------- | :---------: | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `fillMedia` | `boolean`                   |    true     | Automatically styles images and video to fill and fit the width of the parent. Disable this setting if you have bespoke styling requirements.                               |
+| `children`  | `ReactElement`              |             | Bring your own component (BYOC) `img` or `ReactElement` (E.g. Next.js `Image` component)                                                                                    |
+| `position`  | <RiverVisualPositionProp /> | `'default'` | Positions media within the gridline visual region. Explicit positions remain fixed across viewports; `default` preserves responsive behavior.                               |
+| `padding`   | <RiverVisualPaddingProp />  | `'default'` | Controls media inset within the gridline visual region. `none` fills the visual region and removes corner radius regardless of `rounded`; `all` adds padding on every side. |
+| `hasShadow` | `boolean`                   |   `false`   | Shadow applied to the `children`. Set be `false` when the child node has a transparent background.                                                                          |
+| `className` | `string`                    |             | Sets a custom class on the root element                                                                                                                                     |
+| `id`        | `string`                    |             | Sets a custom id                                                                                                                                                            |
+| `ref`       | `React.RefObject`           |             | Forward a Ref to the underlying DOM node                                                                                                                                    |
+| `rounded`   | `boolean`                   |   `true`    | Toggle visually rounded corners. Enabled by default.                                                                                                                        |
 
 ### RiverBreakout.Visual <Label>Required</Label>
 
-`RiverBreakout.Visual` supports the `children`, `fillMedia`, `imageBackgroundColor`, `hasShadow`, `rounded`, and standard HTML props listed above. The `position` and `padding` props are specific to `River.Visual`.
+`RiverBreakout.Visual` supports the `children`, `fillMedia`, `hasShadow`, `rounded`, and standard HTML props listed above. The `position` and `padding` props are specific to `River.Visual`.
 
 ### River.Content and RiverBreakout.Content <Label>Required</Label>
 

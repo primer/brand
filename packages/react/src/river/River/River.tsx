@@ -108,6 +108,15 @@ const Root = forwardRef(
       )
     }
 
+    const VisualChildWithVariantStyles = VisualChild
+      ? React.cloneElement(VisualChild, {
+          className: clsx(
+            VisualChild.props.className,
+            variant === 'gridline' && styles['River__visual--has-background'],
+          ),
+        })
+      : null
+
     return (
       <section
         ref={ref}
@@ -124,7 +133,7 @@ const Root = forwardRef(
         {...rest}
       >
         {ContentChild}
-        {VisualChild}
+        {VisualChildWithVariantStyles}
       </section>
     )
   },
@@ -258,9 +267,6 @@ export const RiverContent = forwardRef(
   },
 )
 
-export const RiverVisualBackgroundColors = ['default', 'subtle'] as const
-export type RiverVisualBackgroundColor = (typeof RiverVisualBackgroundColors)[number]
-
 export const RiverVisualPositionOptions = [
   'default',
   'center',
@@ -291,10 +297,6 @@ export type RiverVisualBaseProps = BaseProps<HTMLDivElement> &
      * Can optionally be disabled.
      */
     rounded?: boolean
-    /**
-     * Applies a background color with padding around the media.
-     */
-    imageBackgroundColor?: RiverVisualBackgroundColor
   }>
 
 export type RiverVisualProps = RiverVisualBaseProps & {
@@ -310,15 +312,7 @@ export type RiverVisualProps = RiverVisualBaseProps & {
 
 export const RiverVisualBase = forwardRef<HTMLDivElement, RiverVisualBaseProps>(
   (
-    {
-      fillMedia = true,
-      children,
-      className,
-      hasShadow = false,
-      rounded = true,
-      imageBackgroundColor,
-      ...rest
-    }: RiverVisualBaseProps,
+    {fillMedia = true, children, className, hasShadow = false, rounded = true, ...rest}: RiverVisualBaseProps,
     ref: Ref<HTMLDivElement>,
   ) => {
     return (
@@ -329,7 +323,6 @@ export const RiverVisualBase = forwardRef<HTMLDivElement, RiverVisualBaseProps>(
           hasShadow && styles['River__visual--has-shadow'],
           fillMedia && styles['River__visual--fill-media'],
           rounded && styles['River__visual--rounded'],
-          imageBackgroundColor === 'subtle' && styles['River__visual--has-background'],
           className,
         )}
         {...rest}

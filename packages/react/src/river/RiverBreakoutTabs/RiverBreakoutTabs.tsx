@@ -59,17 +59,19 @@ export type RiverBreakoutTabsContentProps = React.HTMLAttributes<HTMLDivElement>
 
 export type RiverBreakoutTabsIconProps = IconProps
 
+export type RiverBreakoutTabsVisualProps = RiverVisualBaseProps
+
 type RiverBreakoutTabsItemChild =
   | React.ReactElement<RiverBreakoutTabsIconProps>
   | React.ReactElement<RiverBreakoutTabsHeadingProps>
   | React.ReactElement<RiverBreakoutTabsContentProps>
-  | React.ReactElement<RiverVisualBaseProps>
+  | React.ReactElement<RiverBreakoutTabsVisualProps>
 
 type ExtractedItemParts = {
   icon: React.ReactElement<RiverBreakoutTabsIconProps> | null
   heading: React.ReactElement<RiverBreakoutTabsHeadingProps> | null
   content: React.ReactElement<RiverBreakoutTabsContentProps> | null
-  visual: React.ReactElement<RiverVisualBaseProps> | null
+  visual: React.ReactElement<RiverBreakoutTabsVisualProps> | null
   className?: string
 }
 
@@ -140,9 +142,9 @@ const RiverBreakoutTabsContent = ({children, className, ...props}: RiverBreakout
   )
 }
 
-const RiverBreakoutTabsVisual = forwardRef<HTMLDivElement, RiverVisualBaseProps>(({className, ...props}, ref) => (
-  <RiverVisualBase ref={ref} className={className} {...props} />
-))
+const RiverBreakoutTabsVisual = forwardRef<HTMLDivElement, RiverBreakoutTabsVisualProps>(
+  ({className, ...props}, ref) => <RiverVisualBase ref={ref} className={className} {...props} />,
+)
 
 const isItem = createComponentTypeGuard(RiverBreakoutTabsItem)
 const isA11yHeading = createComponentTypeGuard(RiverBreakoutTabsA11yHeading)
@@ -427,7 +429,7 @@ const RiverBreakoutTabsRoot = forwardRef<HTMLElement, RiverBreakoutTabsProps>(
                     tabIndex={-1}
                     className={styles.RiverBreakoutTabs__sharedVisualPanel}
                   >
-                    {cloneElement(item.visual as React.ReactElement<RiverVisualBaseProps>, {
+                    {cloneElement(item.visual as React.ReactElement<RiverBreakoutTabsVisualProps>, {
                       className: clsx(item.visual?.props.className, styles.RiverBreakoutTabs__sharedVisual),
                     })}
                   </div>
@@ -460,7 +462,7 @@ const RiverBreakoutTabsRoot = forwardRef<HTMLElement, RiverBreakoutTabsProps>(
             {activeAccordionIndex >= 0 && Items[activeAccordionIndex]?.visual && (
               <div className={styles.RiverBreakoutTabs__accordionSharedVisuals}>
                 {BackgroundVisualLayer}
-                {cloneElement(Items[activeAccordionIndex].visual as React.ReactElement<RiverVisualBaseProps>, {
+                {cloneElement(Items[activeAccordionIndex].visual as React.ReactElement<RiverBreakoutTabsVisualProps>, {
                   className: clsx(
                     Items[activeAccordionIndex].visual.props.className,
                     styles.RiverBreakoutTabs__accordionSharedVisual,

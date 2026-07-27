@@ -394,11 +394,11 @@ describe('River', () => {
     expect(visualEl).not.toHaveClass('River__visual--has-background')
   })
 
-  it('optionally renders visual with subtle background color', () => {
+  it('renders gridline visual with background by default', () => {
     const visualId = 'visual-el'
     const {getByTestId} = render(
       <River variant="gridline">
-        <River.Visual data-testid={visualId} imageBackgroundColor="subtle">
+        <River.Visual data-testid={visualId}>
           <MockImage />
         </River.Visual>
         <River.Content>
@@ -411,11 +411,11 @@ describe('River', () => {
     expect(visualEl).toHaveClass('River__visual--has-background')
   })
 
-  it('does not apply background class when imageBackgroundColor is default', () => {
+  it('preserves custom visual className when applying gridline background', () => {
     const visualId = 'visual-el'
     const {getByTestId} = render(
       <River variant="gridline">
-        <River.Visual data-testid={visualId} imageBackgroundColor="default">
+        <River.Visual data-testid={visualId} className="custom-visual">
           <MockImage />
         </River.Visual>
         <River.Content>
@@ -425,7 +425,8 @@ describe('River', () => {
     )
 
     const visualEl = getByTestId(visualId)
-    expect(visualEl).not.toHaveClass('River__visual--has-background')
+    expect(visualEl).toHaveClass('custom-visual')
+    expect(visualEl).toHaveClass('River__visual--has-background')
   })
 
   it.each(['center', 'block-end', 'block-end-inline-start', 'block-end-inline-end'] as const)(
@@ -479,7 +480,7 @@ describe('River', () => {
   it('does not add or forward default visual layout props', () => {
     const {getByTestId} = render(
       <River variant="gridline">
-        <River.Visual data-testid="visual-el" imageBackgroundColor="subtle" position="default" padding="default">
+        <River.Visual data-testid="visual-el" position="default" padding="default">
           <MockImage />
         </River.Visual>
         <River.Content>
@@ -499,7 +500,7 @@ describe('River', () => {
     const warnSpy = jest.spyOn(console, 'warn').mockImplementation(() => {})
     render(
       <River>
-        <River.Visual imageBackgroundColor="subtle" position="block-end-inline-end">
+        <River.Visual position="block-end-inline-end">
           <MockImage />
         </River.Visual>
         <River.Content>

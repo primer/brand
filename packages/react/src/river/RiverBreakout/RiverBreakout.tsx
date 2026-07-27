@@ -1,7 +1,7 @@
 import React, {Ref, forwardRef} from 'react'
 import {clsx} from 'clsx'
 import {RiverProps} from '../River'
-import {RiverVisualBase, RiverContent} from '../River/River'
+import {RiverVisualBase, RiverContent, type RiverVisualBaseProps} from '../River/River'
 import {useAnimation} from '../../animation'
 import findElementInChildren from '../../findElementInChildren'
 import {Heading} from '../../Heading'
@@ -23,6 +23,16 @@ type RiverBreakoutProps = Omit<RiverProps, 'align' | 'imageTextRatio'> & {
 const Root = forwardRef(
   ({animate, className, children, style, variant = 'default', ...rest}: RiverBreakoutProps, ref: Ref<HTMLElement>) => {
     const {classes: animationClasses, styles: animationInlineStyles} = useAnimation(animate)
+
+    const Children = React.Children.map(children, child => {
+      if (React.isValidElement<RiverVisualBaseProps>(child) && child.type === Visual) {
+        return React.cloneElement(child, {
+          className: clsx(child.props.className, variant === 'gridline' && styles['River__visual--has-background']),
+        })
+      }
+
+      return child
+    })
 
     // TODO: when Firefox supports :has() selector, we should use that instead of JS
     const defaultColor =
@@ -51,7 +61,7 @@ const Root = forwardRef(
         style={{...animationInlineStyles, ...style}}
         {...rest}
       >
-        {children}
+        {Children}
       </section>
     )
   },
@@ -63,4 +73,8 @@ const A11yHeading = ({as = 'h3', children}: React.PropsWithChildren<{as?: 'h2' |
   </Heading>
 )
 
-export const RiverBreakout = Object.assign(Root, {Visual: RiverVisualBase, Content: RiverContent, A11yHeading})
+const Visual = forwardRef<HTMLDivElement, RiverVisualBaseProps>(({className, ...props}, ref) => (
+  <RiverVisualBase ref={ref} className={className} {...props} />
+))
+
+export const RiverBreakout = Object.assign(Root, {Visual, Content: RiverContent, A11yHeading})

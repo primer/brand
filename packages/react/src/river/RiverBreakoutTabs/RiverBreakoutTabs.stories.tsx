@@ -1,4 +1,3 @@
-import React from 'react'
 import type {Meta, StoryObj} from '@storybook/react'
 import {AiModelIcon, CloudIcon, ZapIcon} from '@primer/octicons-react'
 import {useTranslation} from 'react-i18next'
@@ -8,31 +7,16 @@ import placeholder1 from '../../fixtures/images/placeholder-1.png'
 import placeholder2 from '../../fixtures/images/placeholder-2.png'
 import placeholder3 from '../../fixtures/images/placeholder-3.png'
 
-type StoryProps = React.ComponentProps<typeof RiverBreakoutTabs> & {
-  hasVisualBackground: boolean
-}
-
 const meta = {
   title: 'Components/RiverBreakoutTabs',
-  component: RiverBreakoutTabs as Meta<StoryProps>['component'],
+  component: RiverBreakoutTabs,
   parameters: {
     layout: 'fullscreen',
   },
   args: {
     defaultSelectedIndex: 0,
-    hasVisualBackground: false,
   },
   argTypes: {
-    hasVisualBackground: {
-      name: 'hasBackground',
-      description: 'Applies imageBackgroundColor="subtle" to all RiverBreakoutTabs.Visual children.',
-      control: {
-        type: 'boolean',
-      },
-      table: {
-        category: 'Visual',
-      },
-    },
     defaultSelectedIndex: {
       control: {
         type: 'number',
@@ -60,17 +44,16 @@ const meta = {
       },
     },
   },
-} satisfies Meta<StoryProps>
+} satisfies Meta<typeof RiverBreakoutTabs>
 
 export default meta
 
-type Story = StoryObj<StoryProps>
+type Story = StoryObj<typeof RiverBreakoutTabs>
 
 export const Default: Story = {
-  render: function DefaultStory({hasVisualBackground, ...args}) {
+  render: function DefaultStory(args) {
     const {t} = useTranslation('RiverBreakoutTabs')
-    const imageBackgroundColor = hasVisualBackground ? 'subtle' : undefined
-    const storyKey = `${args.defaultSelectedIndex ?? 0}-${hasVisualBackground ? 'bg' : 'no-bg'}`
+    const storyKey = String(args.defaultSelectedIndex ?? 0)
 
     return (
       <Section>
@@ -84,7 +67,7 @@ export const Default: Story = {
               <Text>{t('default_item_tasks_body')}</Text>
               <Link href="#">{t('cta_learn_more')}</Link>
             </RiverBreakoutTabs.Content>
-            <RiverBreakoutTabs.Visual imageBackgroundColor={imageBackgroundColor}>
+            <RiverBreakoutTabs.Visual>
               <Image src={placeholder1} alt={t('alt_placeholder_1')} />
             </RiverBreakoutTabs.Visual>
           </RiverBreakoutTabs.Item>
@@ -96,7 +79,7 @@ export const Default: Story = {
               <Text>{t('default_item_review_body')}</Text>
               <Link href="#">{t('cta_explore_reviews')}</Link>
             </RiverBreakoutTabs.Content>
-            <RiverBreakoutTabs.Visual imageBackgroundColor={imageBackgroundColor}>
+            <RiverBreakoutTabs.Visual>
               <Image src={placeholder2} alt={t('alt_placeholder_2')} />
             </RiverBreakoutTabs.Visual>
           </RiverBreakoutTabs.Item>
@@ -108,7 +91,7 @@ export const Default: Story = {
               <Text>{t('default_item_automate_body')}</Text>
               <Link href="#">{t('cta_see_workflows')}</Link>
             </RiverBreakoutTabs.Content>
-            <RiverBreakoutTabs.Visual imageBackgroundColor={imageBackgroundColor}>
+            <RiverBreakoutTabs.Visual>
               <Image src={placeholder3} alt={t('alt_placeholder_3')} />
             </RiverBreakoutTabs.Visual>
           </RiverBreakoutTabs.Item>
