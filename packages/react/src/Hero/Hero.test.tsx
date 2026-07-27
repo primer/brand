@@ -1,4 +1,5 @@
-import React, {render, cleanup} from '@testing-library/react'
+import React from 'react'
+import {render, cleanup} from '@testing-library/react'
 import '@testing-library/jest-dom'
 
 import {Hero} from './Hero'
@@ -387,10 +388,116 @@ describe('Hero', () => {
     expect(imageWrapper).toBeInTheDocument()
   })
 
+  it('removes gridline media padding when requested by the image', () => {
+    const {container, getByAltText} = render(
+      <Hero variant="gridline">
+        <Hero.Heading>{mockHeading}</Hero.Heading>
+        <Hero.Image padding="none" src="mock.png" alt="placeholder image" />
+      </Hero>,
+    )
+
+    expect(container.querySelector('.Hero-imageWrapper-inner')).toHaveClass('Hero-imageWrapper-inner--padding-none')
+    expect(getByAltText('placeholder image')).toHaveClass('Hero-media--padding-none')
+  })
+
+  it('preserves the default gridline media padding', () => {
+    const {container} = render(
+      <Hero variant="gridline">
+        <Hero.Heading>{mockHeading}</Hero.Heading>
+        <Hero.Image padding="default" src="mock.png" alt="placeholder image" />
+      </Hero>,
+    )
+
+    const mediaWrapper = container.querySelector('.Hero-imageWrapper-inner')
+    expect(mediaWrapper).not.toHaveClass('Hero-imageWrapper-inner--padding-none')
+    expect(mediaWrapper).not.toHaveClass('Hero-imageWrapper-inner--padding-all')
+  })
+
+  it('removes expressive gridline media padding when requested by the video', () => {
+    const {container, getByTitle} = render(
+      <Hero variant="gridline-expressive">
+        <Hero.Heading>{mockHeading}</Hero.Heading>
+        <Hero.Video padding="none">
+          <iframe title="Example video" />
+        </Hero.Video>
+      </Hero>,
+    )
+
+    expect(container.querySelector('.Hero-imageWrapper-inner')).toHaveClass('Hero-imageWrapper-inner--padding-none')
+    expect(getByTitle('Example video').parentElement).toHaveClass('Hero-media--padding-none')
+    expect(getByTitle('Example video').parentElement).not.toHaveAttribute('padding')
+  })
+
+  it('does not forward media padding in the default Hero variant', () => {
+    const warnSpy = jest.spyOn(console, 'warn').mockImplementation(() => {})
+    const {container, getByAltText} = render(
+      <Hero>
+        <Hero.Heading>{mockHeading}</Hero.Heading>
+        <Hero.Image padding="none" src="mock.png" alt="placeholder image" />
+      </Hero>,
+    )
+
+    expect(container.querySelector('.Hero-imageWrapper-inner')).not.toBeInTheDocument()
+    expect(getByAltText('placeholder image')).not.toHaveAttribute('padding')
+    expect(warnSpy).toHaveBeenCalledWith(
+      'Hero: media padding is only supported by the "gridline" and "gridline-expressive" variants; ignoring padding="none".',
+    )
+
+    warnSpy.mockRestore()
+  })
+
+  it('warns when padding="all" is used in the default Hero variant', () => {
+    const warnSpy = jest.spyOn(console, 'warn').mockImplementation(() => {})
+    render(
+      <Hero>
+        <Hero.Heading>{mockHeading}</Hero.Heading>
+        <Hero.Video padding="all">
+          <iframe title="Example video" />
+        </Hero.Video>
+      </Hero>,
+    )
+
+    expect(warnSpy).toHaveBeenCalledWith(
+      'Hero: media padding is only supported by the "gridline" and "gridline-expressive" variants; ignoring padding="all".',
+    )
+
+    warnSpy.mockRestore()
+  })
+
+  it('does not warn for supported media padding combinations', () => {
+    const warnSpy = jest.spyOn(console, 'warn').mockImplementation(() => {})
+    const {rerender} = render(
+      <Hero>
+        <Hero.Heading>{mockHeading}</Hero.Heading>
+        <Hero.Image padding="default" src="mock.png" alt="placeholder image" />
+      </Hero>,
+    )
+
+    rerender(
+      <Hero variant="gridline">
+        <Hero.Heading>{mockHeading}</Hero.Heading>
+        <Hero.Image padding="none" src="mock.png" alt="placeholder image" />
+      </Hero>,
+    )
+
+    rerender(
+      <Hero variant="gridline-expressive">
+        <Hero.Heading>{mockHeading}</Hero.Heading>
+        <Hero.Video padding="all">
+          <iframe title="Example video" />
+        </Hero.Video>
+      </Hero>,
+    )
+
+    expect(warnSpy).not.toHaveBeenCalled()
+
+    warnSpy.mockRestore()
+  })
+
   it('renders the gridline layout with optional inline layout. Defaults to end.', () => {
     const mockAltText = 'placeholder image'
 
-    const {getByAltText, getByRole, getByTestId} = render(
+    const {container, getByAltText, getByRole, getByTestId} = render(
       <Hero variant="gridline">
         <Hero.Heading>{mockHeading}</Hero.Heading>
         <Hero.Image position="inline-end" src="mock.png" alt={mockAltText} />
@@ -406,6 +513,7 @@ describe('Hero', () => {
 
     const gridEl = getByTestId('Hero-grid')
     expect(gridEl).toHaveClass('Hero-grid--bordered-inline')
+    expect(container.querySelector('.Hero-imageContainer--inline-padding-all')).not.toBeInTheDocument()
   })
 
   it('renders the gridline layout with optional inline start layout. ', () => {
@@ -498,49 +606,51 @@ describe('Hero', () => {
     expect(eyebrowEl).toBeInTheDocument()
   })
 
-  it('renders with block-end-padded position', () => {
+  it('renders block-end media with padding on all sides', () => {
     const mockAltText = 'placeholder image'
 
-    const {getByRole, getByTestId} = render(
+    const {container, getByRole} = render(
       <Hero variant="gridline">
         <Hero.Heading>{mockHeading}</Hero.Heading>
-        <Hero.Image position="block-end-padded" src="mock.png" alt={mockAltText} />
+        <Hero.Image position="block-end" padding="all" src="mock.png" alt={mockAltText} />
       </Hero>,
     )
 
     const rootEl = getByRole('region')
-    expect(rootEl).toHaveClass('Hero--image-pos-block-end-padded')
-
-    const imageWrapper = getByTestId('Hero-imageWrapper')
-    expect(imageWrapper).toHaveClass('Hero-imageWrapper--block-end-padded')
+    expect(rootEl).toHaveClass('Hero--image-pos-block-end')
+    expect(container.querySelector('.Hero-imageWrapper-inner')).toHaveClass('Hero-imageWrapper-inner--padding-all')
   })
 
-  it('renders with inline-end-padded position', () => {
+  it('renders inline-end media with padding on all sides', () => {
     const mockAltText = 'placeholder image'
 
-    const {getByRole} = render(
+    const {container, getByAltText, getByRole} = render(
       <Hero variant="gridline">
         <Hero.Heading>{mockHeading}</Hero.Heading>
-        <Hero.Image position="inline-end-padded" src="mock.png" alt={mockAltText} />
+        <Hero.Image position="inline-end" padding="all" src="mock.png" alt={mockAltText} />
       </Hero>,
     )
 
     const rootEl = getByRole('region')
-    expect(rootEl).toHaveClass('Hero--image-pos-inline-end-padded')
+    expect(rootEl).toHaveClass('Hero--image-pos-inline-end')
+    expect(container.querySelector('.Hero-imageContainer--inline-padding-all')).toBeInTheDocument()
+    expect(getByAltText(mockAltText)).toHaveClass('Hero-media--padding-all')
   })
 
-  it('renders with inline-start-padded position', () => {
+  it('renders inline-start media with padding on all sides', () => {
     const mockAltText = 'placeholder image'
 
-    const {getByRole} = render(
+    const {container, getByAltText, getByRole} = render(
       <Hero variant="gridline">
         <Hero.Heading>{mockHeading}</Hero.Heading>
-        <Hero.Image position="inline-start-padded" src="mock.png" alt={mockAltText} />
+        <Hero.Image position="inline-start" padding="all" src="mock.png" alt={mockAltText} />
       </Hero>,
     )
 
     const rootEl = getByRole('region')
-    expect(rootEl).toHaveClass('Hero--image-pos-inline-start-padded')
+    expect(rootEl).toHaveClass('Hero--image-pos-inline-start')
+    expect(container.querySelector('.Hero-imageContainer--inline-padding-all')).toBeInTheDocument()
+    expect(getByAltText(mockAltText)).toHaveClass('Hero-media--padding-all')
   })
 
   it('renders with default imageBackgroundColor', () => {

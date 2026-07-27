@@ -124,7 +124,7 @@ export const CustomBackgroundInlineEndPaddedImage: Story = {
             Secondary action
           </Button>
         </Hero.ButtonGroup>
-        <Hero.Image position="inline-end-padded" src={renderUI3} alt="" enableBorder={false} />
+        <Hero.Image position="inline-end" padding="all" src={renderUI3} alt="" enableBorder={false} />
       </Hero>
     )
   },
@@ -198,7 +198,7 @@ export const CustomBackgroundInlineEndPaddedVideo: Story = {
             Secondary action
           </Button>
         </Hero.ButtonGroup>
-        <Hero.Video position="inline-end-padded" enableBorder={false}>
+        <Hero.Video position="inline-end" padding="all" enableBorder={false}>
           <VideoPlayer title="GitHub media player" poster={posterImage}>
             <VideoPlayer.Source src="./example.mp4" type="video/mp4" />
             <VideoPlayer.Track src="./example.vtt" default />

@@ -6,8 +6,8 @@ import {Box} from '../Box'
 import type {BaseProps} from '../component-helpers'
 import {AnimationProvider} from '../animation'
 
-import {HeroContext, heroMediaInlinePositions} from './HeroContext'
-import type {HeroMediaInlinePositions, HeroAlign, HeroVariant} from './HeroContext'
+import {HeroContext, HeroMediaInlinePositionOptions} from './HeroContext'
+import type {HeroMediaInlinePosition, HeroAlign, HeroVariant} from './HeroContext'
 import {
   HeroLabel,
   HeroHeading,
@@ -151,13 +151,23 @@ const Root = forwardRef<HTMLElement, PropsWithChildren<HeroProps>>(
       return mediaPositionProp || 'block-end'
     })()
     const mediaWrapperHasBorder = HeroImageChild?.props.enableBorder ?? HeroVideoChild?.props.enableBorder ?? true
-    const hasInlineMedia = heroMediaInlinePositions.includes(mediaPosition as HeroMediaInlinePositions)
-    const inlineMediaPosition = hasInlineMedia ? mediaPosition : undefined
+    const mediaPadding = HeroImageChild?.props.padding ?? HeroVideoChild?.props.padding ?? 'default'
+    const hasInlineMedia = HeroMediaInlinePositionOptions.includes(mediaPosition as HeroMediaInlinePosition)
     const mediaChild = HeroImageChild || HeroVideoChild
     const isGridline = variant === 'gridline'
     const isGridlineExpressive = variant === 'gridline-expressive'
-    const isBlockEndPosition = mediaPosition === 'block-end' || mediaPosition === 'block-end-padded'
-    const isBlockEndPadded = mediaPosition === 'block-end-padded'
+    const isBlockEndPosition = mediaPosition === 'block-end'
+
+    if (
+      variant === 'default' &&
+      mediaPadding !== 'default' &&
+      (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'test')
+    ) {
+      // eslint-disable-next-line no-console
+      console.warn(
+        `Hero: media padding is only supported by the "gridline" and "gridline-expressive" variants; ignoring padding="${mediaPadding}".`,
+      )
+    }
 
     const isInvalidGridlineAlignment = isGridlineExpressive && alignProp === 'center'
     const align: HeroAlign = isInvalidGridlineAlignment ? 'start' : alignProp
@@ -180,7 +190,7 @@ const Root = forwardRef<HTMLElement, PropsWithChildren<HeroProps>>(
     const useInlineGridline = isGridline && hasInlineMedia
 
     const heroLayoutClass = HeroImageChild ? styles['Hero--layout-image'] : styles['Hero--layout-default']
-    const isInlineStart = mediaPosition === 'inline-start' || mediaPosition === 'inline-start-padded'
+    const isInlineStart = mediaPosition === 'inline-start'
 
     const renderTrailingComponent = (shouldAnimate: boolean) =>
       TrailingComponent && (
@@ -261,8 +271,8 @@ const Root = forwardRef<HTMLElement, PropsWithChildren<HeroProps>>(
                       className={clsx(
                         imageBackgroundColor && styles[`Hero-imageContainer--bg-${imageBackgroundColor}`],
                         useInlineGridline &&
-                          inlineMediaPosition?.includes('padded') &&
-                          styles['Hero-imageContainer--inline-bg-padded'],
+                          mediaPadding === 'all' &&
+                          styles['Hero-imageContainer--inline-padding-all'],
                         useInlineGridline && styles['Hero-imageContainer--inline-bordered'],
                       )}
                     >
@@ -298,8 +308,8 @@ const Root = forwardRef<HTMLElement, PropsWithChildren<HeroProps>>(
                       className={clsx(
                         imageBackgroundColor && styles[`Hero-imageContainer--bg-${imageBackgroundColor}`],
                         useInlineGridline &&
-                          inlineMediaPosition?.includes('padded') &&
-                          styles['Hero-imageContainer--inline-bg-padded'],
+                          mediaPadding === 'all' &&
+                          styles['Hero-imageContainer--inline-padding-all'],
                         useInlineGridline && styles['Hero-imageContainer--inline-bordered'],
                       )}
                     >
@@ -320,7 +330,6 @@ const Root = forwardRef<HTMLElement, PropsWithChildren<HeroProps>>(
                 data-testid={testIds.imageWrapper}
                 className={clsx(
                   styles['Hero-imageWrapper'],
-                  isBlockEndPadded && styles['Hero-imageWrapper--block-end-padded'],
                   imageContainerClassName,
                   imageBackgroundColor && styles[`Hero-imageWrapper--bg-${imageBackgroundColor}`],
                 )}
@@ -329,7 +338,8 @@ const Root = forwardRef<HTMLElement, PropsWithChildren<HeroProps>>(
                 <div
                   className={clsx(
                     styles['Hero-imageWrapper-inner'],
-                    isBlockEndPadded && styles['Hero-imageWrapper-inner--padded'],
+                    mediaPadding === 'all' && styles['Hero-imageWrapper-inner--padding-all'],
+                    mediaPadding === 'none' && styles['Hero-imageWrapper-inner--padding-none'],
                     mediaWrapperHasBorder && styles['Hero-imageWrapper-inner--with-gridline'],
                   )}
                 >
