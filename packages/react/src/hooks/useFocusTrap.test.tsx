@@ -10,7 +10,7 @@ jest.mock('@primer/behaviors', () => ({
 const mockFocusTrap = jest.mocked(focusTrap)
 
 describe('useFocusTrap', () => {
-  const TestComponent = ({
+  const ToggleFocusTrapTestComponent = ({
     disabled,
     restoreFocusOnCleanUp = false,
   }: {
@@ -73,15 +73,15 @@ describe('useFocusTrap', () => {
     const abortSpy = jest.spyOn(abortController, 'abort')
     mockFocusTrap.mockReturnValue(abortController)
 
-    const {rerender} = render(<TestComponent disabled />)
+    const {rerender} = render(<ToggleFocusTrapTestComponent disabled />)
 
     expect(mockFocusTrap).not.toHaveBeenCalled()
 
-    rerender(<TestComponent disabled={false} />)
+    rerender(<ToggleFocusTrapTestComponent disabled={false} />)
 
     expect(mockFocusTrap).toHaveBeenCalledTimes(1)
 
-    rerender(<TestComponent disabled />)
+    rerender(<ToggleFocusTrapTestComponent disabled />)
 
     expect(abortSpy).toHaveBeenCalled()
   })
@@ -95,15 +95,15 @@ describe('useFocusTrap', () => {
     const nextFocusedElement = document.createElement('button')
     document.body.append(nextFocusedElement)
 
-    const {rerender} = render(<TestComponent disabled={false} restoreFocusOnCleanUp />)
+    const {rerender} = render(<ToggleFocusTrapTestComponent disabled={false} restoreFocusOnCleanUp />)
 
-    rerender(<TestComponent disabled restoreFocusOnCleanUp />)
+    rerender(<ToggleFocusTrapTestComponent disabled restoreFocusOnCleanUp />)
     nextFocusedElement.focus()
 
     const focusSpy = jest.spyOn(nextFocusedElement, 'focus')
 
-    rerender(<TestComponent disabled={false} restoreFocusOnCleanUp />)
-    rerender(<TestComponent disabled restoreFocusOnCleanUp />)
+    rerender(<ToggleFocusTrapTestComponent disabled={false} restoreFocusOnCleanUp />)
+    rerender(<ToggleFocusTrapTestComponent disabled restoreFocusOnCleanUp />)
 
     expect(focusSpy).toHaveBeenCalled()
 
