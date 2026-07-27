@@ -15,5 +15,3 @@ Use `padding` to control the distance between the media container boundary and t
 -<Hero.Image position="block-end-padded" src="image.jpg" alt="" />
 +<Hero.Image position="block-end" padding="all" src="image.jpg" alt="" />
 ```
-
-CSS-only consumers should replace the removed `*-padded` position modifiers with the corresponding position and padding modifiers, such as `.Hero-media--pos-block-end.Hero-media--padding-all`.

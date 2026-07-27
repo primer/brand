@@ -86,7 +86,7 @@ describe('RiverBreakoutTabs', () => {
     expect(getByRole('tabpanel')).toHaveAttribute('id', tabs[1].getAttribute('aria-controls'))
   })
 
-  it('does not apply the removed visual background treatment by default', () => {
+  it('does not apply a visual background by default', () => {
     const {getAllByTestId} = render(
       <RiverBreakoutTabs>
         <RiverBreakoutTabs.A11yHeading>Agent workflows</RiverBreakoutTabs.A11yHeading>
