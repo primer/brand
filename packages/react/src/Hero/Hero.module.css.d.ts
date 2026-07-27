@@ -26,8 +26,10 @@ declare const styles: {
   readonly "Hero-imageContainer--bg-subtle": string;
   readonly "Hero-imageContainer--inline-bordered": string;
   readonly "Hero-imageContainer--inline-padding-all": string;
+  readonly "Hero-imageContainer--inline-padding-none": string;
   readonly "Hero-imageWrapper": string;
   readonly "Hero-imageWrapper--bg-subtle": string;
+  readonly "Hero-imageWrapper--padding-none": string;
   readonly "Hero-imageWrapper-inner": string;
   readonly "Hero-imageWrapper-inner--padding-all": string;
   readonly "Hero-imageWrapper-inner--padding-none": string;

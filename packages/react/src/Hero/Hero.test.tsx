@@ -396,8 +396,20 @@ describe('Hero', () => {
       </Hero>,
     )
 
+    expect(container.querySelector('.Hero-imageWrapper')).toHaveClass('Hero-imageWrapper--padding-none')
     expect(container.querySelector('.Hero-imageWrapper-inner')).toHaveClass('Hero-imageWrapper-inner--padding-none')
     expect(getByAltText('placeholder image')).toHaveClass('Hero-media--padding-none')
+  })
+
+  it('does not apply an explicit background when gridline media is full bleed', () => {
+    const {container} = render(
+      <Hero variant="gridline" imageBackgroundColor="subtle">
+        <Hero.Heading>{mockHeading}</Hero.Heading>
+        <Hero.Image padding="none" src="mock.png" alt="placeholder image" />
+      </Hero>,
+    )
+
+    expect(container.querySelector('.Hero-imageWrapper')).not.toHaveClass('Hero-imageWrapper--bg-subtle')
   })
 
   it('preserves the default gridline media padding', () => {
@@ -423,6 +435,7 @@ describe('Hero', () => {
       </Hero>,
     )
 
+    expect(container.querySelector('.Hero-imageWrapper')).toHaveClass('Hero-imageWrapper--padding-none')
     expect(container.querySelector('.Hero-imageWrapper-inner')).toHaveClass('Hero-imageWrapper-inner--padding-none')
     expect(getByTitle('Example video').parentElement).toHaveClass('Hero-media--padding-none')
     expect(getByTitle('Example video').parentElement).not.toHaveAttribute('padding')
@@ -635,6 +648,19 @@ describe('Hero', () => {
     expect(rootEl).toHaveClass('Hero--image-pos-inline-end')
     expect(container.querySelector('.Hero-imageContainer--inline-padding-all')).toBeInTheDocument()
     expect(getByAltText(mockAltText)).toHaveClass('Hero-media--padding-all')
+  })
+
+  it('removes the inline media container background when padding is none', () => {
+    const {container} = render(
+      <Hero variant="gridline">
+        <Hero.Heading>{mockHeading}</Hero.Heading>
+        <Hero.Image position="inline-end" padding="none" src="mock.png" alt="placeholder image" />
+      </Hero>,
+    )
+
+    expect(container.querySelector('.Hero-imageContainer--inline-bordered')).toHaveClass(
+      'Hero-imageContainer--inline-padding-none',
+    )
   })
 
   it('renders inline-start media with padding on all sides', () => {

@@ -269,10 +269,15 @@ const Root = forwardRef<HTMLElement, PropsWithChildren<HeroProps>>(
                       ref={imageContainerRef}
                       span={{large: 6}}
                       className={clsx(
-                        imageBackgroundColor && styles[`Hero-imageContainer--bg-${imageBackgroundColor}`],
+                        imageBackgroundColor &&
+                          mediaPadding !== 'none' &&
+                          styles[`Hero-imageContainer--bg-${imageBackgroundColor}`],
                         useInlineGridline &&
                           mediaPadding === 'all' &&
                           styles['Hero-imageContainer--inline-padding-all'],
+                        useInlineGridline &&
+                          mediaPadding === 'none' &&
+                          styles['Hero-imageContainer--inline-padding-none'],
                         useInlineGridline && styles['Hero-imageContainer--inline-bordered'],
                       )}
                     >
@@ -306,10 +311,15 @@ const Root = forwardRef<HTMLElement, PropsWithChildren<HeroProps>>(
                       ref={imageContainerRef}
                       span={{large: hasInlineMedia ? 6 : 12}}
                       className={clsx(
-                        imageBackgroundColor && styles[`Hero-imageContainer--bg-${imageBackgroundColor}`],
+                        imageBackgroundColor &&
+                          mediaPadding !== 'none' &&
+                          styles[`Hero-imageContainer--bg-${imageBackgroundColor}`],
                         useInlineGridline &&
                           mediaPadding === 'all' &&
                           styles['Hero-imageContainer--inline-padding-all'],
+                        useInlineGridline &&
+                          mediaPadding === 'none' &&
+                          styles['Hero-imageContainer--inline-padding-none'],
                         useInlineGridline && styles['Hero-imageContainer--inline-bordered'],
                       )}
                     >
@@ -331,7 +341,10 @@ const Root = forwardRef<HTMLElement, PropsWithChildren<HeroProps>>(
                 className={clsx(
                   styles['Hero-imageWrapper'],
                   imageContainerClassName,
-                  imageBackgroundColor && styles[`Hero-imageWrapper--bg-${imageBackgroundColor}`],
+                  imageBackgroundColor &&
+                    mediaPadding !== 'none' &&
+                    styles[`Hero-imageWrapper--bg-${imageBackgroundColor}`],
+                  mediaPadding === 'none' && styles['Hero-imageWrapper--padding-none'],
                 )}
                 style={imageContainerStyle}
               >

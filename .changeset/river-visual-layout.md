@@ -1,6 +1,7 @@
 ---
 '@primer/react-brand': minor
 '@primer/brand-css': minor
+'@primer/brand-primitives': minor
 ---
 
 Added opt-in `position` and `padding` controls to `River.Visual` media in the `gridline` variant.

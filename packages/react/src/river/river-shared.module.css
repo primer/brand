@@ -51,16 +51,12 @@
   box-shadow: var(--brand-River-visual-shadow);
 }
 
-.River--variant-gridline .River__visual {
-  --river-visual-media-padding: var(--base-size-32);
-}
-
 .River--variant-gridline .River__visual--has-background {
   display: flex;
   align-items: center;
   justify-content: center;
   background-color: var(--brand-color-canvas-subtle);
-  padding: var(--river-visual-media-padding);
+  padding: var(--brand-River-variant-gridline-visual-padding);
   border-radius: 0;
   margin-inline: calc(-1 * var(--brand-River-variant-gridline-spacing-outerInline));
 }
@@ -207,12 +203,7 @@
     grid-template-rows: unset;
   }
 
-  .River--variant-gridline .River__visual {
-    --river-visual-media-padding: var(--base-size-64);
-  }
-
   .River--variant-gridline .River__visual--has-background {
-    padding: var(--river-visual-media-padding);
     margin: 0;
   }
 
@@ -390,7 +381,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: var(--river-visual-media-padding);
+  padding: var(--brand-River-variant-gridline-visual-padding);
   border-radius: 0;
 }
 
@@ -398,7 +389,7 @@
   display: flex;
   align-items: flex-end;
   justify-content: center;
-  padding: var(--river-visual-media-padding);
+  padding: var(--brand-River-variant-gridline-visual-padding);
   padding-block-end: 0;
   border-radius: 0;
 }
@@ -407,7 +398,7 @@
   display: flex;
   align-items: flex-end;
   justify-content: flex-start;
-  padding: var(--river-visual-media-padding);
+  padding: var(--brand-River-variant-gridline-visual-padding);
   padding-block-end: 0;
   padding-inline-start: 0;
   border-radius: 0;
@@ -417,14 +408,14 @@
   display: flex;
   align-items: flex-end;
   justify-content: flex-end;
-  padding: var(--river-visual-media-padding);
+  padding: var(--brand-River-variant-gridline-visual-padding);
   padding-block-end: 0;
   padding-inline-end: 0;
   border-radius: 0;
 }
 
 .River--variant-gridline .River__visual.River__visual--padding-all {
-  padding: var(--river-visual-media-padding);
+  padding: var(--brand-River-variant-gridline-visual-padding);
 }
 
 .River--variant-gridline .River__visual.River__visual--padding-none {

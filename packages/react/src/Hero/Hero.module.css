@@ -101,9 +101,12 @@
 }
 
 .Hero-imageContainer--inline-bordered {
-  background-color: var(--brand-color-canvas-subtle);
   display: flex;
   align-items: stretch;
+}
+
+.Hero-imageContainer--inline-bordered:not(.Hero-imageContainer--inline-padding-none) {
+  background-color: var(--brand-color-canvas-subtle);
 }
 
 @media screen and (min-width: 63.25rem) {
@@ -148,8 +151,11 @@
 
 .Hero--variant-gridline .Hero-imageWrapper {
   border-block: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
-  background-color: var(--brand-color-canvas-subtle);
   width: 100%;
+}
+
+.Hero--variant-gridline .Hero-imageWrapper:not(.Hero-imageWrapper--padding-none) {
+  background-color: var(--brand-color-canvas-subtle);
 }
 
 .Hero--variant-gridline .Hero-imageWrapper-inner {
@@ -448,8 +454,11 @@
 /* Media wrapper styles for gridline-expressive (same as gridline) */
 .Hero--variant-gridline-expressive .Hero-imageWrapper {
   border-block: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
-  background-color: var(--brand-color-canvas-subtle);
   width: 100%;
+}
+
+.Hero--variant-gridline-expressive .Hero-imageWrapper:not(.Hero-imageWrapper--padding-none) {
+  background-color: var(--brand-color-canvas-subtle);
 }
 
 .Hero--variant-gridline-expressive .Hero-imageWrapper-inner {
