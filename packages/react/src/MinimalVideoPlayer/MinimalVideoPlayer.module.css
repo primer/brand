@@ -30,12 +30,6 @@
   outline-offset: var(--base-size-2);
 }
 
-.MinimalVideoPlayer__control svg {
-  width: var(--base-size-16);
-  height: var(--base-size-16);
-  fill: currentColor;
-}
-
 /* Progressive enhancement that hides the custom control when native controls are visible. */
 .MinimalVideoPlayer__video[controls] + .MinimalVideoPlayer__control {
   display: none;
