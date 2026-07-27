@@ -90,6 +90,24 @@ const Root = forwardRef(
       {Visual: null, Content: null},
     )
 
+    const visualPosition = VisualChild?.props.position ?? 'default'
+    const visualPadding = VisualChild?.props.padding ?? 'default'
+    const hasNonDefaultPosition = visualPosition !== 'default'
+    const hasNonDefaultPadding = visualPadding !== 'default'
+    const hasVisualLayoutOverrides = hasNonDefaultPosition || hasNonDefaultPadding
+    const supportsVisualLayoutOverrides = variant === 'gridline'
+
+    if (
+      hasVisualLayoutOverrides &&
+      !supportsVisualLayoutOverrides &&
+      (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'test')
+    ) {
+      // eslint-disable-next-line no-console
+      console.warn(
+        `River: River.Visual position and padding are only supported when River uses variant="gridline"; ignoring position="${visualPosition}" and padding="${visualPadding}".`,
+      )
+    }
+
     return (
       <section
         ref={ref}
@@ -243,7 +261,19 @@ export const RiverContent = forwardRef(
 export const RiverVisualBackgroundColors = ['default', 'subtle'] as const
 export type RiverVisualBackgroundColor = (typeof RiverVisualBackgroundColors)[number]
 
-export type RiverVisualProps = BaseProps<HTMLDivElement> &
+export const RiverVisualPositionOptions = [
+  'default',
+  'center',
+  'block-end',
+  'block-end-inline-start',
+  'block-end-inline-end',
+] as const
+export type RiverVisualPosition = (typeof RiverVisualPositionOptions)[number]
+
+export const RiverVisualPaddingOptions = ['default', 'none', 'all'] as const
+export type RiverVisualPadding = (typeof RiverVisualPaddingOptions)[number]
+
+export type RiverVisualBaseProps = BaseProps<HTMLDivElement> &
   React.HtmlHTMLAttributes<HTMLDivElement> &
   PropsWithChildren<{
     /**
@@ -267,7 +297,18 @@ export type RiverVisualProps = BaseProps<HTMLDivElement> &
     imageBackgroundColor?: RiverVisualBackgroundColor
   }>
 
-export const Visual = forwardRef(
+export type RiverVisualProps = RiverVisualBaseProps & {
+  /**
+   * Positions media within the visual region in the gridline variant.
+   */
+  position?: RiverVisualPosition
+  /**
+   * Controls media padding within the visual region in the gridline variant.
+   */
+  padding?: RiverVisualPadding
+}
+
+export const RiverVisualBase = forwardRef<HTMLDivElement, RiverVisualBaseProps>(
   (
     {
       fillMedia = true,
@@ -277,7 +318,7 @@ export const Visual = forwardRef(
       rounded = true,
       imageBackgroundColor,
       ...rest
-    }: PropsWithChildren<RiverVisualProps>,
+    }: RiverVisualBaseProps,
     ref: Ref<HTMLDivElement>,
   ) => {
     return (
@@ -297,6 +338,20 @@ export const Visual = forwardRef(
       </div>
     )
   },
+)
+
+const Visual = forwardRef<HTMLDivElement, RiverVisualProps>(
+  ({className, position = 'default', padding = 'default', ...rest}, ref) => (
+    <RiverVisualBase
+      ref={ref}
+      className={clsx(
+        position !== 'default' && styles[`River__visual--position-${position}`],
+        padding !== 'default' && styles[`River__visual--padding-${padding}`],
+        className,
+      )}
+      {...rest}
+    />
+  ),
 )
 
 /**

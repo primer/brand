@@ -1,7 +1,7 @@
 import React, {Ref, forwardRef} from 'react'
 import {clsx} from 'clsx'
 import {RiverProps} from '../River'
-import {Visual as RiverVisual, RiverContent} from '../River/River'
+import {RiverVisualBase, RiverContent} from '../River/River'
 import {useAnimation} from '../../animation'
 import findElementInChildren from '../../findElementInChildren'
 import {Heading} from '../../Heading'
@@ -63,4 +63,4 @@ const A11yHeading = ({as = 'h3', children}: React.PropsWithChildren<{as?: 'h2' |
   </Heading>
 )
 
-export const RiverBreakout = Object.assign(Root, {Visual: RiverVisual, Content: RiverContent, A11yHeading})
+export const RiverBreakout = Object.assign(Root, {Visual: RiverVisualBase, Content: RiverContent, A11yHeading})

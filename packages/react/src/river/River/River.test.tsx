@@ -1,4 +1,5 @@
-import React, {render, cleanup} from '@testing-library/react'
+import React from 'react'
+import {render, cleanup} from '@testing-library/react'
 import '@testing-library/jest-dom'
 
 import {River} from '../'
@@ -425,6 +426,141 @@ describe('River', () => {
 
     const visualEl = getByTestId(visualId)
     expect(visualEl).not.toHaveClass('River__visual--has-background')
+  })
+
+  it.each(['center', 'block-end', 'block-end-inline-start', 'block-end-inline-end'] as const)(
+    'applies the %s visual position in supported gridline Rivers',
+    position => {
+      const {getByTestId} = render(
+        <River variant="gridline">
+          <River.Visual data-testid="visual-el" position={position}>
+            <MockImage />
+          </River.Visual>
+          <River.Content>
+            <Text>{mockText}</Text>
+          </River.Content>
+        </River>,
+      )
+
+      expect(getByTestId('visual-el')).toHaveClass(`River__visual--position-${position}`)
+    },
+  )
+
+  it.each(['none', 'all'] as const)('applies %s visual padding in supported gridline Rivers', padding => {
+    const {getByTestId} = render(
+      <River variant="gridline">
+        <River.Visual data-testid="visual-el" padding={padding}>
+          <MockImage />
+        </River.Visual>
+        <River.Content>
+          <Text>{mockText}</Text>
+        </River.Content>
+      </River>,
+    )
+
+    expect(getByTestId('visual-el')).toHaveClass(`River__visual--padding-${padding}`)
+  })
+
+  it('combines visual position and padding modifiers', () => {
+    const {getByTestId} = render(
+      <River variant="gridline">
+        <River.Visual data-testid="visual-el" position="center" padding="none">
+          <MockImage />
+        </River.Visual>
+        <River.Content>
+          <Text>{mockText}</Text>
+        </River.Content>
+      </River>,
+    )
+
+    expect(getByTestId('visual-el')).toHaveClass('River__visual--position-center', 'River__visual--padding-none')
+  })
+
+  it('does not add or forward default visual layout props', () => {
+    const {getByTestId} = render(
+      <River variant="gridline">
+        <River.Visual data-testid="visual-el" imageBackgroundColor="subtle" position="default" padding="default">
+          <MockImage />
+        </River.Visual>
+        <River.Content>
+          <Text>{mockText}</Text>
+        </River.Content>
+      </River>,
+    )
+
+    const visualEl = getByTestId('visual-el')
+    expect(visualEl.className).not.toContain('River__visual--position-')
+    expect(visualEl.className).not.toContain('River__visual--padding-')
+    expect(visualEl).not.toHaveAttribute('position')
+    expect(visualEl).not.toHaveAttribute('padding')
+  })
+
+  it('warns when custom visual layout is used outside the gridline variant', () => {
+    const warnSpy = jest.spyOn(console, 'warn').mockImplementation(() => {})
+    render(
+      <River>
+        <River.Visual imageBackgroundColor="subtle" position="block-end-inline-end">
+          <MockImage />
+        </River.Visual>
+        <River.Content>
+          <Text>{mockText}</Text>
+        </River.Content>
+      </River>,
+    )
+
+    expect(warnSpy).toHaveBeenCalledWith(
+      'River: River.Visual position and padding are only supported when River uses variant="gridline"; ignoring position="block-end-inline-end" and padding="default".',
+    )
+
+    warnSpy.mockRestore()
+  })
+
+  it('supports visual layout overrides without a background color', () => {
+    const warnSpy = jest.spyOn(console, 'warn').mockImplementation(() => {})
+    const {getByTestId} = render(
+      <River variant="gridline">
+        <River.Visual data-testid="visual-el" position="block-end" padding="none">
+          <MockImage />
+        </River.Visual>
+        <River.Content>
+          <Text>{mockText}</Text>
+        </River.Content>
+      </River>,
+    )
+
+    expect(getByTestId('visual-el')).toHaveClass('River__visual--position-block-end', 'River__visual--padding-none')
+    expect(warnSpy).not.toHaveBeenCalled()
+
+    warnSpy.mockRestore()
+  })
+
+  it('does not warn for supported or default visual layouts', () => {
+    const warnSpy = jest.spyOn(console, 'warn').mockImplementation(() => {})
+    const {rerender} = render(
+      <River>
+        <River.Visual>
+          <MockImage />
+        </River.Visual>
+        <River.Content>
+          <Text>{mockText}</Text>
+        </River.Content>
+      </River>,
+    )
+
+    rerender(
+      <River variant="gridline">
+        <River.Visual position="block-end" padding="all">
+          <MockImage />
+        </River.Visual>
+        <River.Content>
+          <Text>{mockText}</Text>
+        </River.Content>
+      </River>,
+    )
+
+    expect(warnSpy).not.toHaveBeenCalled()
+
+    warnSpy.mockRestore()
   })
 
   it('renders content with center alignment by default', () => {

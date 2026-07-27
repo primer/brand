@@ -83,7 +83,10 @@ function discoverComponentFiles() {
 /** Sub-components from `Object.assign(Root, {Heading: ...})` and `Name.Sub = ...` assignments. */
 function extractSubcomponents(name, source) {
   const subcomponents = new Set()
-  const propertyPattern = /(?:^|[{,])(?:\s|\/\*[\s\S]*?\*\/|\/\/[^\r\n]*(?:\r?\n|$))*([A-Za-z_$][\w$]*)\s*(?=[:,}])/g
+  // Scan block comments between runs of `*` instead of using a lazy wildcard, which can backtrack
+  // exponentially on repeated comment delimiters such as `*//*`.
+  const propertyPattern =
+    /(?:^|[{,])(?:\s|\/\*[^*]*\*+(?:[^/*][^*]*\*+)*\/|\/\/[^\r\n]*(?:\r?\n|$))*([A-Za-z_$][\w$]*)\s*(?=[:,}])/g
   for (const match of source.matchAll(/Object\.assign\(/g)) {
     const openBraceIndex = source.indexOf('{', match.index)
     if (openBraceIndex === -1) continue

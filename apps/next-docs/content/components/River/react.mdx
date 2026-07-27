@@ -11,7 +11,13 @@ storybook: '/brand/storybook/?path=/story/components-river--default'
 ---
 
 import {Label} from '@primer/react'
-import {RiverAlignProp, RiverImageTextRatio, RiverVariantProp} from './react'
+import {
+  RiverAlignProp,
+  RiverImageTextRatio,
+  RiverVariantProp,
+  RiverVisualPositionProp,
+  RiverVisualPaddingProp,
+} from './react'
 
 ```js
 import {River, RiverBreakout} from '@primer/react-brand'
@@ -68,12 +74,12 @@ import {River, RiverBreakout} from '@primer/react-brand'
 
 ### GridLine variant
 
-The `gridline` variant adds lateral padding to the River component, making it suitable for use within bordered grid layouts.
+The `gridline` variant adds lateral padding for bordered layouts. Use `imageBackgroundColor` to add contrast, `position` to align media, and `padding` to control its inset.
 
 ```jsx live
 <Stack style={{width: '100%'}}>
   <River variant="gridline">
-    <River.Visual>
+    <River.Visual imageBackgroundColor="subtle">
       <img src="/images/placeholder.png" alt="placeholder, blank area with a gray background color" />
     </River.Visual>
     <River.Content>
@@ -83,7 +89,7 @@ The `gridline` variant adds lateral padding to the River component, making it su
     </River.Content>
   </River>
   <River variant="gridline" align="end">
-    <River.Visual>
+    <River.Visual imageBackgroundColor="subtle">
       <img src="/images/placeholder.png" alt="placeholder, blank area with a gray background color" />
     </River.Visual>
     <River.Content>
@@ -92,36 +98,31 @@ The `gridline` variant adds lateral padding to the River component, making it su
       <Link href="#">Call to action</Link>
     </River.Content>
   </River>
-</Stack>
-```
-
-### Visual with background
-
-Use the `imageBackgroundColor` prop on `River.Visual` to create a full-bleed container with a background color and the image/video centered inside with padding. This is intended for use with the `gridline` variant.
-
-```jsx live
-<Stack style={{width: '100%'}}>
   <River variant="gridline">
-    <River.Visual imageBackgroundColor="subtle">
+    <River.Visual imageBackgroundColor="subtle" position="block-end-inline-end">
       <img src="/images/placeholder.png" alt="placeholder, blank area with a gray background color" />
     </River.Visual>
     <River.Content>
-      <Heading>Visual with background</Heading>
-      <Text>
-        The imageBackgroundColor prop creates a full-bleed container with a subtle background, centering the media with
-        padding around it.
-      </Text>
-      <Link href="#">Call to action</Link>
+      <Heading>Bottom-right visual</Heading>
+      <Text>The media is flush with the bottom and inline-end edges.</Text>
     </River.Content>
   </River>
-  <River variant="gridline" align="end">
-    <River.Visual imageBackgroundColor="subtle">
+  <River variant="gridline">
+    <River.Visual imageBackgroundColor="subtle" position="block-end-inline-start">
       <img src="/images/placeholder.png" alt="placeholder, blank area with a gray background color" />
     </River.Visual>
     <River.Content>
-      <Heading>Visual with background (end)</Heading>
-      <Text>The imageBackgroundColor prop works with all alignment options.</Text>
-      <Link href="#">Call to action</Link>
+      <Heading>Bottom-left visual</Heading>
+      <Text>The media is flush with the bottom and inline-start edges.</Text>
+    </River.Content>
+  </River>
+  <River variant="gridline">
+    <River.Visual imageBackgroundColor="subtle" padding="none">
+      <img src="/images/placeholder.png" alt="placeholder, blank area with a gray background color" />
+    </River.Visual>
+    <River.Content>
+      <Heading>Full-bleed visual</Heading>
+      <Text>The media fills the visual region without padding or corner radius.</Text>
     </River.Content>
   </River>
 </Stack>
@@ -261,18 +262,24 @@ Use the `imageBackgroundColor` prop on `River.Visual` to create a full-bleed con
 | `id`             | `string`                       |                         | Sets a custom id                                                                                            |
 | `ref`            | `React.RefObject`              |                         | Forward a Ref to the underlying DOM node                                                                    |
 
-### River.Visual and RiverBreakout.Visual <Label>Required</Label>
+### River.Visual <Label>Required</Label>
 
-| Name                   | Type                    | Default | Description                                                                                                                                                                               |
-| :--------------------- | :---------------------- | :-----: | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `fillMedia`            | `boolean`               |  true   | Automatically styles images and video to fill and fit the width of the parent. Disable this setting if you have bespoke styling requirements.                                             |
-| `children`             | `ReactElement`          |         | Bring your own component (BYOC) `img` or `ReactElement` (E.g. Next.js `Image` component)                                                                                                  |
-| `imageBackgroundColor` | `'default'`, `'subtle'` |         | Applies a background color with padding around the media. Use `'subtle'` to create a full-bleed container with the image/video centered inside. Intended for use with `gridline` variant. |
-| `hasShadow`            | `boolean`               | `false` | Shadow applied to the `children`. Set be `false` when the child node has a transparent background.                                                                                        |
-| `className`            | `string`                |         | Sets a custom class on the root element                                                                                                                                                   |
-| `id`                   | `string`                |         | Sets a custom id                                                                                                                                                                          |
-| `ref`                  | `React.RefObject`       |         | Forward a Ref to the underlying DOM node                                                                                                                                                  |
-| `rounded`              | `boolean`               | `true`  | Toggle visually rounded corners. Enabled by default.                                                                                                                                      |
+| Name                   | Type                        |   Default   | Description                                                                                                                                                                 |
+| :--------------------- | :-------------------------- | :---------: | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `fillMedia`            | `boolean`                   |    true     | Automatically styles images and video to fill and fit the width of the parent. Disable this setting if you have bespoke styling requirements.                               |
+| `children`             | `ReactElement`              |             | Bring your own component (BYOC) `img` or `ReactElement` (E.g. Next.js `Image` component)                                                                                    |
+| `imageBackgroundColor` | `'default'`, `'subtle'`     |             | Applies a background color around the media independently of visual position and padding controls.                                                                          |
+| `position`             | <RiverVisualPositionProp /> | `'default'` | Positions media within the gridline visual region. Explicit positions remain fixed across viewports; `default` preserves responsive behavior.                               |
+| `padding`              | <RiverVisualPaddingProp />  | `'default'` | Controls media inset within the gridline visual region. `none` fills the visual region and removes corner radius regardless of `rounded`; `all` adds padding on every side. |
+| `hasShadow`            | `boolean`                   |   `false`   | Shadow applied to the `children`. Set be `false` when the child node has a transparent background.                                                                          |
+| `className`            | `string`                    |             | Sets a custom class on the root element                                                                                                                                     |
+| `id`                   | `string`                    |             | Sets a custom id                                                                                                                                                            |
+| `ref`                  | `React.RefObject`           |             | Forward a Ref to the underlying DOM node                                                                                                                                    |
+| `rounded`              | `boolean`                   |   `true`    | Toggle visually rounded corners. Enabled by default.                                                                                                                        |
+
+### RiverBreakout.Visual <Label>Required</Label>
+
+`RiverBreakout.Visual` supports the `children`, `fillMedia`, `imageBackgroundColor`, `hasShadow`, `rounded`, and standard HTML props listed above. The `position` and `padding` props are specific to `River.Visual`.
 
 ### River.Content and RiverBreakout.Content <Label>Required</Label>
 
