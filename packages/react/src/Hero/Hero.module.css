@@ -67,6 +67,10 @@
   width: 100%;
 }
 
+.Hero-image > img {
+  border-radius: inherit;
+}
+
 .Hero-mediaContainer {
   width: 100%;
   height: 100%;
@@ -380,8 +384,9 @@
 
 /* Header column (eyebrow, heading) */
 .Hero-expressive-header-column {
-  padding: var(--base-size-32);
-  padding-block-end: var(--base-size-24);
+  padding: var(--base-size-36);
+  padding-inline: var(--base-size-20);
+  padding-block-end: var(--base-size-28);
   border-block-end: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
   display: flex;
   align-items: center;
@@ -390,6 +395,7 @@
 /* Body column (description, actions, trailing) */
 .Hero-expressive-body-column {
   padding: var(--base-size-32);
+  padding-inline: var(--base-size-20);
   padding-block-start: var(--base-size-24);
 }
 
@@ -423,7 +429,7 @@
   }
 
   .Hero--variant-gridline-expressive .Hero-actions {
-    margin-block-start: var(--base-size-28);
+    margin-block-start: var(--base-size-24);
   }
 
   .Hero--variant-gridline-expressive .Hero-trailing {

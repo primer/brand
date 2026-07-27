@@ -19,7 +19,7 @@ import dontVisuals from './images/dont-visuals-size.png'
 
 Use rivers to showcase features and introduce topics. Rivers are composed of images or videos paired alongside text content like headings, paragraphs, and links.
 
-A river’s content should be short and concise, no longer than 3 or 4 sentences and in a single paragraph when possible.
+A river’s content should be short and concise, no longer than 160 characters, and contained in a single paragraph when possible.
 
 <DoDontContainer>
   <Do>
@@ -34,20 +34,9 @@ A river’s content should be short and concise, no longer than 3 or 4 sentences
 
 ### Stacked
 
-Two or more rivers can be stacked to guide the user through a set of features. When stacking rivers, alternate between left and right alignments to create a more dynamic reading flow. When alternating alignments, use a `40:60` image to text ratio, otherwise keep the ratio to `50:50`.
+Two or more rivers can be stacked to guide the user through a set of features. Keep rivers in a stack consistently aligned to create a predictable reading flow. For gridline rivers, always use start alignment. Don't use zig-zag layouts.
 
-It is possible to use 2 or more following left or right river to create a simple alignment promoting easy scroll scan.
-
-<DoDontContainer>
-  <Do>
-    <img alt="" src="https://github.com/primer/brand/assets/912236/a7f8bca8-78e6-4e29-a44b-5a305ffeeeae" />
-    <Caption>Alternate rivers with left and right alignments.</Caption>
-  </Do>
-  <Dont>
-    <img alt="" src="https://github.com/primer/brand/assets/6951037/169d5c19-67f4-4f15-8e3b-80c877b34af1" />
-    <Caption>Don't break the flow in a stack of rivers that would otherwise stay aligned.</Caption>
-  </Dont>
-</DoDontContainer>
+Prefer the default 50:50 image-to-text ratio where possible. Use 60:40 only when the visual needs more space or emphasis.
 
 Note that too many rivers can make the design feel repetitive. In that situation, consider introducing a breakout section or break the content with a different component, such as [pillar](/components/Pillar) or [card](/components/Card) to provide a better visual hierarchy and experience. For example, use the river for the top features you want to highlight and then use pillars to showcase the rest.
 
@@ -179,7 +168,7 @@ The image is automatically styled to fit the width of the parent container. If y
 
 - We recommend using a river left as the first river of the flow to start with a visual and avoid stacking text with above section on mobile
 - River components stacks create a unit, the set should be considered to be the main parent section. The parent section should be spaced as a regular section with the largest spacing while internal elements should use smaller spacing
-- If the image is critical for the user to understand the message, default to right aligned. If the text is critical for the user to understand the image, choose left aligned.
+- For a standalone river, choose its alignment based on whether the visual or text needs emphasis. Keep every river in a stack consistently aligned.
 
 ### Link
 

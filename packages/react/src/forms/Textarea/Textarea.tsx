@@ -4,6 +4,7 @@ import {clsx} from 'clsx'
 import type {BaseProps} from '../../component-helpers'
 import type {FormInputSizes, FormValidationStatus} from '../form-types'
 
+import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/control/colors-with-modes.css'
 import styles from './Textarea.module.css'
 
 export const DEFAULT_TEXTAREA_ROWS = 7

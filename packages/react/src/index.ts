@@ -42,6 +42,7 @@ export * from './Bento'
 export * from './EyebrowBanner'
 export * from './PricingOptions'
 export * from './SubNav'
+export * from './NavList'
 export * from './IDE'
 export * from './Breadcrumbs'
 export * from './Pagination'
@@ -58,4 +59,5 @@ export * from './TextCursorAnimation'
 export * from './Tiles'
 
 // hooks
+export * from './hooks/useFocusTrap'
 export * from './hooks/useWindowSize'

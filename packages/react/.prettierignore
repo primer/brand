@@ -2,5 +2,7 @@ src/**/*.css.d.ts
 coverage/
 lib/
 esm/
+docs/
+llms.txt
 src/tokens
 .changeset
