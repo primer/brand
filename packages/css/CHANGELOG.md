@@ -1,5 +1,31 @@
 # @primer/brand-css
 
+## 0.72.0
+
+### Minor Changes
+
+- [#1413](https://github.com/primer/brand/pull/1413) [`6288e69`](https://github.com/primer/brand/commit/6288e690492fc779819e65013f9a5b61bbf2b3b6) Thanks [@rezrah](https://github.com/rezrah)! - ⚠️ Breaking change to `Hero.Image` and `Hero.Video` ⚠️
+
+  Previously combined `padding` and `position` semantics have been separated.
+
+  The `position` prop will now only control layout and positioning relative to the content. It accepts `block-end`, `inline-start`, or `inline-end`.
+
+  ```diff
+  -<Hero.Image position="block-end-padded" src="image.jpg" alt="" />
+  +<Hero.Image position="block-end" padding="all" src="image.jpg" alt="" />
+  ```
+
+- [#1413](https://github.com/primer/brand/pull/1413) [`6288e69`](https://github.com/primer/brand/commit/6288e690492fc779819e65013f9a5b61bbf2b3b6) Thanks [@rezrah](https://github.com/rezrah)! - Added opt-in `position` and `padding` controls to `River.Visual` media in the `gridline` variant.
+
+  🔗 Storybook examples:
+
+  - [Center position](https://stunning-chainsaw-j82glqz.pages.github.io/brand/storybook/?path=/story/components-river-features-gridline-variants--grid-line-visual-position-center)
+  - [Block-end position](https://stunning-chainsaw-j82glqz.pages.github.io/brand/storybook/?path=/story/components-river-features-gridline-variants--grid-line-visual-position-block-end)
+  - [Block-end inline-start position](https://stunning-chainsaw-j82glqz.pages.github.io/brand/storybook/?path=/story/components-river-features-gridline-variants--grid-line-visual-position-block-end-inline-start)
+  - [Block-end inline-end position](https://stunning-chainsaw-j82glqz.pages.github.io/brand/storybook/?path=/story/components-river-features-gridline-variants--grid-line-visual-position-block-end-inline-end)
+  - [No padding](https://stunning-chainsaw-j82glqz.pages.github.io/brand/storybook/?path=/story/components-river-features-gridline-variants--grid-line-visual-padding-none)
+  - [Padding on all sides](https://stunning-chainsaw-j82glqz.pages.github.io/brand/storybook/?path=/story/components-river-features-gridline-variants--grid-line-visual-padding-all)
+
 ## 0.71.0
 
 ### Minor Changes
