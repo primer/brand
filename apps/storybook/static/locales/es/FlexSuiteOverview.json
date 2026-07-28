@@ -24,7 +24,11 @@
     "trailingText": "¿Ya tienes Visual Studio Code?",
     "trailingLinkText": "Abrir ahora",
     "peekAlt": "La mascota de GitHub Copilot asomándose desde la parte inferior del área de cuadrícula",
-    "imageAlt": "GitHub Copilot en modo agente en VS Code"
+    "imageAlt": "GitHub Copilot en modo agente en VS Code",
+    "videoControls": {
+      "play": "Reproducir video",
+      "pause": "Pausar video"
+    }
   },
   "logoSuiteHeading": "Logotipos de socios de GitHub Copilot",
   "resourceCards": {

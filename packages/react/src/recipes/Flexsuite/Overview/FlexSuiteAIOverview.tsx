@@ -14,6 +14,7 @@ import {
   Heading,
   InlineLink,
   LogoSuite,
+  MinimalVideoPlayer,
   Section,
   SectionIntro,
   SubNav,
@@ -37,6 +38,7 @@ import mercardo from '../../../fixtures/images/bento/mercado.png'
 import copilotHeroHead from '../../../fixtures/images/copilot-mascot-head-peeking.png'
 import renderUI3 from '../../../fixtures/images/copilot-vscode-agent-mode-3.png'
 import renderUI3Dark from '../../../fixtures/images/copilot-vscode-agent-mode-3-dark.png'
+import heroAnimation from '../../../fixtures/videos/copilot-agent-mode-hero.mp4'
 import {logos} from '../../../LogoSuite/LogoSuite.fixtures'
 import {tileItems} from '../../../Tiles/Tiles.fixtures'
 
@@ -126,12 +128,14 @@ export function FlexSuiteAIOverviewTemplate({content}: FlexSuiteAIOverviewTempla
             <Hero.Description>{content.hero.description}</Hero.Description>
             <Hero.PrimaryAction href="#">{content.hero.primaryAction}</Hero.PrimaryAction>
             <Hero.SecondaryAction href="#">{content.hero.secondaryAction}</Hero.SecondaryAction>
-            <Hero.Image
-              enableBorder={false}
-              position="block-end"
-              src={colorMode === ColorModesEnum.DARK ? renderUI3Dark : renderUI3}
-              alt={content.hero.imageAlt}
-            />
+            <Hero.Video enableBorder={false} position="block-end">
+              <MinimalVideoPlayer
+                internalAccessibleLabels={content.hero.videoControls}
+                poster={colorMode === ColorModesEnum.DARK ? renderUI3Dark : renderUI3}
+                src={heroAnimation}
+                title={content.hero.imageAlt}
+              />
+            </Hero.Video>
           </Hero>
         </Section>
 
