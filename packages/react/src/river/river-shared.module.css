@@ -34,6 +34,10 @@
   order: 2;
 }
 
+.River__visual :is(img, picture) {
+  display: block;
+}
+
 .River__visual--fill-media img,
 .River__visual--fill-media picture,
 .River__visual--fill-media video {
