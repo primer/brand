@@ -118,45 +118,6 @@ export const GridLine: Story = {
   ),
 }
 
-export const GridLineWithBackground: Story = {
-  name: 'GridLine variant (with background)',
-  render: () => (
-    <Section>
-      <RiverBreakout variant="gridline">
-        <RiverBreakout.A11yHeading>Accelerate workflows</RiverBreakout.A11yHeading>
-        <RiverBreakout.Visual imageBackgroundColor="subtle">
-          <img src={placeholderImage} alt="placeholder, blank area with a gray background color" />
-        </RiverBreakout.Visual>
-        <RiverBreakout.Content
-          trailingComponent={() => (
-            <Stack gap="normal">
-              <Text as="p" variant="muted">
-                <Text variant="default">Deals with your issues.</Text> When assigned issues, GitHub Copilot plans,
-                writes, tests, and iterates.
-              </Text>
-              <Text as="p" variant="muted">
-                <Text variant="default">Codes like an insider.</Text> GitHub Copilot hooks into MCP servers to draw on
-                data from your repositories and external resources.
-              </Text>
-              <Text as="p" variant="muted">
-                <Text variant="default">Human and agent in the loop.</Text> Comment to guide GitHub Copilot, polish your
-                code for merge, or take over locally in your IDE.
-              </Text>
-            </Stack>
-          )}
-          trailingComponentDivider
-        >
-          <Text>
-            Accelerate your workflows and scale your business fast with access to millions of open source projects on
-            GitHub, the largest source code host.
-          </Text>
-          <Link href="#">Call to action</Link>
-        </RiverBreakout.Content>
-      </RiverBreakout>
-    </Section>
-  ),
-}
-
 export const GridLineWithCardsTrailingComponent: Story = {
   name: 'GridLine variant (cards trailing component)',
   render: () => (

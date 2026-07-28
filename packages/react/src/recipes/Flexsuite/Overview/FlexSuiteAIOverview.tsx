@@ -4,6 +4,7 @@ import React, {useEffect} from 'react'
 
 import {
   Box,
+  Button,
   Card,
   ColorModesEnum,
   CTABanner,
@@ -126,8 +127,14 @@ export function FlexSuiteAIOverviewTemplate({content}: FlexSuiteAIOverviewTempla
               {content.hero.headingLine1} <br /> {content.hero.headingLine2}
             </Hero.Heading>
             <Hero.Description>{content.hero.description}</Hero.Description>
-            <Hero.PrimaryAction href="#">{content.hero.primaryAction}</Hero.PrimaryAction>
-            <Hero.SecondaryAction href="#">{content.hero.secondaryAction}</Hero.SecondaryAction>
+            <Hero.ButtonGroup>
+              <Button as="a" href="#" variant="primary">
+                {content.hero.primaryAction}
+              </Button>
+              <Button as="a" href="#" variant="secondary">
+                {content.hero.secondaryAction}
+              </Button>
+            </Hero.ButtonGroup>
             <Hero.Video enableBorder={false} position="block-end">
               <MinimalVideoPlayer
                 internalAccessibleLabels={content.hero.videoControls}
@@ -192,7 +199,6 @@ export function FlexSuiteAIOverviewTemplate({content}: FlexSuiteAIOverviewTempla
                 ref={element => {
                   riverImageRefs.current[0] = element
                 }}
-                imageBackgroundColor="subtle"
               >
                 <picture>
                   <source
@@ -217,7 +223,6 @@ export function FlexSuiteAIOverviewTemplate({content}: FlexSuiteAIOverviewTempla
                 ref={element => {
                   riverImageRefs.current[1] = element
                 }}
-                imageBackgroundColor="subtle"
               >
                 <picture>
                   <source
@@ -242,7 +247,6 @@ export function FlexSuiteAIOverviewTemplate({content}: FlexSuiteAIOverviewTempla
                 ref={element => {
                   riverImageRefs.current[2] = element
                 }}
-                imageBackgroundColor="subtle"
               >
                 <picture>
                   <source

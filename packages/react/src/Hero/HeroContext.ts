@@ -6,17 +6,13 @@ export type HeroAlign = (typeof HeroAlignOptions)[number]
 export const HeroVariantOptions = ['default', 'gridline', 'gridline-expressive'] as const
 export type HeroVariant = (typeof HeroVariantOptions)[number]
 
-export const heroMediaPositions = [
-  'block-end',
-  'block-end-padded',
-  'inline-start',
-  'inline-end',
-  'inline-end-padded',
-  'inline-start-padded',
-] as const
-export const heroMediaInlinePositions = heroMediaPositions.filter(pos => pos.startsWith('inline-'))
-export type HeroMediaPositions = (typeof heroMediaPositions)[number]
-export type HeroMediaInlinePositions = (typeof heroMediaInlinePositions)[number]
+export const HeroMediaPaddingOptions = ['default', 'none', 'all'] as const
+export type HeroMediaPadding = (typeof HeroMediaPaddingOptions)[number]
+
+export const HeroMediaPositionOptions = ['block-end', 'inline-start', 'inline-end'] as const
+export const HeroMediaInlinePositionOptions = ['inline-start', 'inline-end'] as const
+export type HeroMediaPosition = (typeof HeroMediaPositionOptions)[number]
+export type HeroMediaInlinePosition = (typeof HeroMediaInlinePositionOptions)[number]
 
 type HeroContextType = {
   /**
@@ -30,7 +26,7 @@ type HeroContextType = {
   /**
    * Image position within the Hero
    */
-  imagePosition: HeroMediaPositions
+  imagePosition: HeroMediaPosition
   /**
    * Hero.Image is an inline media position
    */

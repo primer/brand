@@ -25,6 +25,7 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 debug-storybook.log
+.playwright-mcp/
 
 # local env files
 .env

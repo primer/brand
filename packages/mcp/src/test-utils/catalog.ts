@@ -14,7 +14,7 @@ export function makeCatalog(overrides: Partial<Catalog> = {}): Catalog {
       {
         name: 'Hero',
         module: '@primer/react-brand',
-        subcomponents: ['Hero.Heading', 'Hero.Description', 'Hero.PrimaryAction'],
+        subcomponents: ['Hero.Heading', 'Hero.Description', 'Hero.ButtonGroup', 'Hero.PrimaryAction'],
         props: [
           {
             name: 'align',
@@ -29,7 +29,12 @@ export function makeCatalog(overrides: Partial<Catalog> = {}): Catalog {
           {
             title: 'Hero example',
             source: 'story',
-            code: '<Hero align="center"><Hero.Heading>Build like the best</Hero.Heading></Hero>',
+            code: `<Hero align="center">
+  <Hero.Heading>Build like the best</Hero.Heading>
+  <Hero.ButtonGroup>
+    <Button>Get started</Button>
+  </Hero.ButtonGroup>
+</Hero>`,
           },
         ],
         description: 'Prominent banner for the top of a landing page',
