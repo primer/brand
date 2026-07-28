@@ -1,5 +1,7 @@
 import {useCallback, useEffect, useRef, useState, type Ref} from 'react'
 
+import {useProvidedRefOrCreate} from '../hooks/useRef'
+
 type UseMinimalVideoPlaybackOptions = {
   autoPlay: boolean
   forwardedRef: Ref<HTMLVideoElement>
@@ -11,24 +13,10 @@ export function useMinimalVideoPlayback({
   forwardedRef,
   prefersReducedMotion,
 }: UseMinimalVideoPlaybackOptions) {
-  const videoRef = useRef<HTMLVideoElement | null>(null)
-  const isPlayingRef = useRef(false)
+  const videoRef = useProvidedRefOrCreate<HTMLVideoElement | null>(forwardedRef)
   const pausedByViewportRef = useRef(false)
-  const initialAutoPlayHandledRef = useRef(!autoPlay || prefersReducedMotion)
+  const initialAutoPlayHandledRef = useRef(false)
   const [isPlaying, setIsPlaying] = useState(false)
-
-  const updatePlayingState = useCallback((nextIsPlaying: boolean) => {
-    isPlayingRef.current = nextIsPlaying
-    setIsPlaying(nextIsPlaying)
-  }, [])
-
-  const setVideoRef = useCallback(
-    (node: HTMLVideoElement | null) => {
-      videoRef.current = node
-      assignRef(forwardedRef, node)
-    },
-    [forwardedRef],
-  )
 
   const requestPlayback = useCallback(async () => {
     const video = videoRef.current
@@ -39,17 +27,17 @@ export function useMinimalVideoPlayback({
       await video.play()
     } catch {
       if (video.paused) {
-        updatePlayingState(false)
+        setIsPlaying(false)
       }
     }
-  }, [updatePlayingState])
+  }, [videoRef])
 
-  const handlePlaybackStarted = useCallback(() => updatePlayingState(true), [updatePlayingState])
-  const handlePlaybackPaused = useCallback(() => updatePlayingState(false), [updatePlayingState])
+  const handlePlaybackStarted = useCallback(() => setIsPlaying(true), [])
+  const handlePlaybackPaused = useCallback(() => setIsPlaying(false), [])
   const handlePlaybackEnded = useCallback(() => {
     pausedByViewportRef.current = false
-    updatePlayingState(false)
-  }, [updatePlayingState])
+    setIsPlaying(false)
+  }, [])
 
   useEffect(() => {
     const video = videoRef.current
@@ -66,14 +54,19 @@ export function useMinimalVideoPlayback({
           return
         }
 
-        if (!initialAutoPlayHandledRef.current) {
+        if (!initialAutoPlayHandledRef.current && prefersReducedMotion) {
+          initialAutoPlayHandledRef.current = true
+          return
+        }
+
+        if (!initialAutoPlayHandledRef.current && autoPlay) {
           initialAutoPlayHandledRef.current = true
           requestPlayback()
         }
         return
       }
 
-      if (isPlayingRef.current) {
+      if (isPlaying) {
         pausedByViewportRef.current = autoPlay && !prefersReducedMotion
         video.pause()
       }
@@ -90,7 +83,7 @@ export function useMinimalVideoPlayback({
 
     observer.observe(video)
     return () => observer.disconnect()
-  }, [autoPlay, prefersReducedMotion, requestPlayback])
+  }, [autoPlay, isPlaying, prefersReducedMotion, requestPlayback, videoRef])
 
   useEffect(() => {
     if (!prefersReducedMotion) return
@@ -98,7 +91,7 @@ export function useMinimalVideoPlayback({
     initialAutoPlayHandledRef.current = true
     pausedByViewportRef.current = false
     videoRef.current?.pause()
-  }, [prefersReducedMotion])
+  }, [prefersReducedMotion, videoRef])
 
   const togglePlayback = useCallback(() => {
     const video = videoRef.current
@@ -108,32 +101,21 @@ export function useMinimalVideoPlayback({
     initialAutoPlayHandledRef.current = true
     pausedByViewportRef.current = false
 
-    if (isPlayingRef.current) {
-      isPlayingRef.current = false
+    if (isPlaying) {
+      setIsPlaying(false)
       video.pause()
       return
     }
 
     requestPlayback()
-  }, [requestPlayback])
+  }, [isPlaying, requestPlayback, videoRef])
 
   return {
     handlePlaybackEnded,
     handlePlaybackPaused,
     handlePlaybackStarted,
     isPlaying,
-    setVideoRef,
     togglePlayback,
+    videoRef,
   }
-}
-
-function assignRef<T>(targetRef: Ref<T> | null | undefined, value: T | null) {
-  if (!targetRef) return
-
-  if (typeof targetRef === 'function') {
-    targetRef(value)
-    return
-  }
-
-  targetRef.current = value
 }

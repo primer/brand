@@ -164,6 +164,23 @@ describe('MinimalVideoPlayer', () => {
     expect(playMock).toHaveBeenCalledTimes(1)
   })
 
+  it('uses the current autoPlay value when visibility is first observed', () => {
+    const {getByTitle, rerender} = render(
+      <MinimalVideoPlayer src="/example.mp4" title="Product interface demonstration" />,
+    )
+    const video = getByTitle('Product interface demonstration')
+
+    rerender(<MinimalVideoPlayer autoPlay={false} src="/example.mp4" title="Product interface demonstration" />)
+    setIntersection(video, 1)
+
+    expect(playMock).not.toHaveBeenCalled()
+
+    rerender(<MinimalVideoPlayer src="/example.mp4" title="Product interface demonstration" />)
+    setIntersection(video, 1)
+
+    expect(playMock).toHaveBeenCalledTimes(1)
+  })
+
   it('pauses fully offscreen playback and resumes it on re-entry', () => {
     const {getByTitle} = render(<MinimalVideoPlayer src="/example.mp4" title="Product interface demonstration" />)
     const video = getByTitle('Product interface demonstration')
@@ -349,7 +366,7 @@ describe('MinimalVideoPlayer', () => {
 
     await user.click(getByRole('button', {name: 'Pause video'}))
     expect(pauseMock).toHaveBeenCalledTimes(1)
-    expect(getByRole('button', {name: 'Pause video'})).toBeInTheDocument()
+    expect(getByRole('button', {name: 'Play video'})).toBeInTheDocument()
 
     fireEvent.pause(video)
     expect(getByRole('button', {name: 'Play video'})).toBeInTheDocument()

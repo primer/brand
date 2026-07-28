@@ -63,7 +63,7 @@ export const _MinimalVideoPlayer = forwardRef<HTMLVideoElement, MinimalVideoPlay
     forwardedRef,
   ) => {
     const prefersReducedMotion = useReducedMotion()
-    const {handlePlaybackEnded, handlePlaybackPaused, handlePlaybackStarted, isPlaying, setVideoRef, togglePlayback} =
+    const {handlePlaybackEnded, handlePlaybackPaused, handlePlaybackStarted, isPlaying, togglePlayback, videoRef} =
       useMinimalVideoPlayback({
         autoPlay,
         forwardedRef,
@@ -74,7 +74,7 @@ export const _MinimalVideoPlayer = forwardRef<HTMLVideoElement, MinimalVideoPlay
       <div className={styles.MinimalVideoPlayer} data-testid={testIds.root}>
         <video
           {...rest}
-          ref={setVideoRef}
+          ref={videoRef}
           autoPlay={false}
           className={clsx(styles.MinimalVideoPlayer__video, className)}
           controls={false}
