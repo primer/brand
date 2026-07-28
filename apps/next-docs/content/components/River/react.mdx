@@ -11,7 +11,13 @@ storybook: '/brand/storybook/?path=/story/components-river--default'
 ---
 
 import {Label} from '@primer/react'
-import {RiverAlignProp, RiverImageTextRatio, RiverVariantProp} from './react'
+import {
+  RiverAlignProp,
+  RiverImageTextRatio,
+  RiverVariantProp,
+  RiverVisualPositionProp,
+  RiverVisualPaddingProp,
+} from './react'
 
 ```js
 import {River, RiverBreakout} from '@primer/react-brand'
@@ -68,7 +74,7 @@ import {River, RiverBreakout} from '@primer/react-brand'
 
 ### GridLine variant
 
-The `gridline` variant adds lateral padding to the River component and applies a full-bleed visual background by default, making it suitable for use within bordered grid layouts.
+The `gridline` variant adds lateral padding and applies a full-bleed visual background by default. Use `position` to align media and `padding` to control its inset.
 
 ```jsx live
 <Stack style={{width: '100%'}}>
@@ -82,14 +88,41 @@ The `gridline` variant adds lateral padding to the River component and applies a
       <Link href="#">Call to action</Link>
     </River.Content>
   </River>
-  <River variant="gridline">
+  <River variant="gridline" align="end">
     <River.Visual>
       <img src="/images/placeholder.png" alt="placeholder, blank area with a gray background color" />
     </River.Visual>
     <River.Content>
       <Heading>GridLine variant</Heading>
-      <Text>Keep adjacent gridline Rivers aligned in the same direction.</Text>
+      <Text>The variant works with all alignment options.</Text>
       <Link href="#">Call to action</Link>
+    </River.Content>
+  </River>
+  <River variant="gridline">
+    <River.Visual position="block-end-inline-end">
+      <img src="/images/placeholder.png" alt="placeholder, blank area with a gray background color" />
+    </River.Visual>
+    <River.Content>
+      <Heading>Bottom-right visual</Heading>
+      <Text>The media is flush with the bottom and inline-end edges.</Text>
+    </River.Content>
+  </River>
+  <River variant="gridline">
+    <River.Visual position="block-end-inline-start">
+      <img src="/images/placeholder.png" alt="placeholder, blank area with a gray background color" />
+    </River.Visual>
+    <River.Content>
+      <Heading>Bottom-left visual</Heading>
+      <Text>The media is flush with the bottom and inline-start edges.</Text>
+    </River.Content>
+  </River>
+  <River variant="gridline">
+    <River.Visual padding="none">
+      <img src="/images/placeholder.png" alt="placeholder, blank area with a gray background color" />
+    </River.Visual>
+    <River.Content>
+      <Heading>Full-bleed visual</Heading>
+      <Text>The media fills the visual region without padding or corner radius.</Text>
     </River.Content>
   </River>
 </Stack>
@@ -229,17 +262,23 @@ The `gridline` variant adds lateral padding to the River component and applies a
 | `id`             | `string`                       |                         | Sets a custom id                                                                                            |
 | `ref`            | `React.RefObject`              |                         | Forward a Ref to the underlying DOM node                                                                    |
 
-### River.Visual and RiverBreakout.Visual <Label>Required</Label>
+### River.Visual <Label>Required</Label>
 
-| Name        | Type              | Default | Description                                                                                                                                   |
-| :---------- | :---------------- | :-----: | :-------------------------------------------------------------------------------------------------------------------------------------------- |
-| `fillMedia` | `boolean`         |  true   | Automatically styles images and video to fill and fit the width of the parent. Disable this setting if you have bespoke styling requirements. |
-| `children`  | `ReactElement`    |         | Bring your own component (BYOC) `img` or `ReactElement` (E.g. Next.js `Image` component)                                                      |
-| `hasShadow` | `boolean`         | `false` | Shadow applied to the `children`. Set be `false` when the child node has a transparent background.                                            |
-| `className` | `string`          |         | Sets a custom class on the root element                                                                                                       |
-| `id`        | `string`          |         | Sets a custom id                                                                                                                              |
-| `ref`       | `React.RefObject` |         | Forward a Ref to the underlying DOM node                                                                                                      |
-| `rounded`   | `boolean`         | `true`  | Toggle visually rounded corners. Enabled by default.                                                                                          |
+| Name        | Type                        |   Default   | Description                                                                                                                                                                 |
+| :---------- | :-------------------------- | :---------: | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `fillMedia` | `boolean`                   |    true     | Automatically styles images and video to fill and fit the width of the parent. Disable this setting if you have bespoke styling requirements.                               |
+| `children`  | `ReactElement`              |             | Bring your own component (BYOC) `img` or `ReactElement` (E.g. Next.js `Image` component)                                                                                    |
+| `position`  | <RiverVisualPositionProp /> | `'default'` | Positions media within the gridline visual region. Explicit positions remain fixed across viewports; `default` preserves responsive behavior.                               |
+| `padding`   | <RiverVisualPaddingProp />  | `'default'` | Controls media inset within the gridline visual region. `none` fills the visual region and removes corner radius regardless of `rounded`; `all` adds padding on every side. |
+| `hasShadow` | `boolean`                   |   `false`   | Shadow applied to the `children`. Set be `false` when the child node has a transparent background.                                                                          |
+| `className` | `string`                    |             | Sets a custom class on the root element                                                                                                                                     |
+| `id`        | `string`                    |             | Sets a custom id                                                                                                                                                            |
+| `ref`       | `React.RefObject`           |             | Forward a Ref to the underlying DOM node                                                                                                                                    |
+| `rounded`   | `boolean`                   |   `true`    | Toggle visually rounded corners. Enabled by default.                                                                                                                        |
+
+### RiverBreakout.Visual <Label>Required</Label>
+
+`RiverBreakout.Visual` supports the `children`, `fillMedia`, `hasShadow`, `rounded`, and standard HTML props listed above. The `position` and `padding` props are specific to `River.Visual`.
 
 ### River.Content and RiverBreakout.Content <Label>Required</Label>
 

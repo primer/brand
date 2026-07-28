@@ -76,8 +76,14 @@ export function FlexSuiteSecurityCategoryTemplate({content}: FlexSuiteSecurityCa
         <Hero align="center">
           <Hero.Label>{content.hero.label}</Hero.Label>
           <Hero.Heading>{content.hero.heading}</Hero.Heading>
-          <Hero.PrimaryAction href="#">{content.hero.primaryAction}</Hero.PrimaryAction>
-          <Hero.SecondaryAction href="#">{content.hero.secondaryAction}</Hero.SecondaryAction>
+          <Hero.ButtonGroup>
+            <Button as="a" href="#" variant="primary">
+              {content.hero.primaryAction}
+            </Button>
+            <Button as="a" href="#" variant="secondary">
+              {content.hero.secondaryAction}
+            </Button>
+          </Hero.ButtonGroup>
         </Hero>
       </Section>
       <Stack justifyContent="center" padding="none" style={{marginTop: 'calc(var(--base-size-64) * -1)'}}>

@@ -1,6 +1,7 @@
 import React from 'react'
 import type {Meta, StoryObj} from '@storybook/react'
 
+import examplePoster from '../../fixtures/images/example-poster.png'
 import placeholderImage from '../../fixtures/images/placeholder.png'
 
 import {River} from '.'
@@ -92,7 +93,7 @@ export const GridLineWithBackground: Story = {
   render: () => (
     <Section>
       <River variant="gridline" align="start">
-        <River.Visual>
+        <River.Visual position="default" padding="default">
           <PlaceholderImage />
         </River.Visual>
         <River.Content>
@@ -139,6 +140,138 @@ export const GridLineWithBackgroundCenter: Story = {
         <River.Content>
           <Heading>GridLine with default background (Centered)</Heading>
           <Text>The gridline visual background works with centered alignment as well.</Text>
+          <Link href="#">Call to action</Link>
+        </River.Content>
+      </River>
+    </Section>
+  ),
+}
+
+export const GridLineVisualPositionCenter: Story = {
+  name: 'GridLine visual position: Center',
+  render: () => (
+    <Section>
+      <River variant="gridline" align="start">
+        <River.Visual position="center">
+          <PlaceholderImage />
+        </River.Visual>
+        <River.Content>
+          <EyebrowText>Feature</EyebrowText>
+          <Heading>Visual centered</Heading>
+          <Text>
+            Visual uses center positioning, which applies padding on all sides by default. A subtle background color
+            adds some contrast.
+          </Text>
+          <Link href="#">Call to action</Link>
+        </River.Content>
+      </River>
+    </Section>
+  ),
+}
+
+export const GridLineVisualPositionBlockEnd: Story = {
+  name: 'GridLine visual position: Block end',
+  render: () => (
+    <Section>
+      <River variant="gridline" align="start">
+        <River.Visual position="block-end">
+          <PlaceholderImage />
+        </River.Visual>
+        <River.Content>
+          <EyebrowText>Feature</EyebrowText>
+          <Heading>Visual aligned to the bottom</Heading>
+          <Text>
+            Visual uses block-end positioning, making it flush to the bottom with padding on the top and sides. A subtle
+            background color adds some contrast.
+          </Text>
+          <Link href="#">Call to action</Link>
+        </River.Content>
+      </River>
+    </Section>
+  ),
+}
+
+export const GridLineVisualPositionBlockEndInlineStart: Story = {
+  name: 'GridLine visual position: Block end, inline start',
+  render: () => (
+    <Section>
+      <River variant="gridline" align="end">
+        <River.Visual position="block-end-inline-start">
+          <PlaceholderImage />
+        </River.Visual>
+        <River.Content>
+          <EyebrowText>Feature</EyebrowText>
+          <Heading>Visual aligned to the bottom left</Heading>
+          <Text>
+            Visual uses block-end, inline-start positioning, making it flush to the bottom and left with padding on the
+            top and right. A subtle background color adds some contrast.
+          </Text>
+          <Link href="#">Call to action</Link>
+        </River.Content>
+      </River>
+    </Section>
+  ),
+}
+
+export const GridLineVisualPositionBlockEndInlineEnd: Story = {
+  name: 'GridLine visual position: Block end, inline end',
+  render: () => (
+    <Section>
+      <River variant="gridline" align="start">
+        <River.Visual position="block-end-inline-end">
+          <PlaceholderImage />
+        </River.Visual>
+        <River.Content>
+          <EyebrowText>Feature</EyebrowText>
+          <Heading>Visual aligned to the bottom right</Heading>
+          <Text>
+            Visual uses block-end, inline-end positioning, making it flush to the bottom and right with padding on the
+            top and left. A subtle background color adds some contrast.
+          </Text>
+          <Link href="#">Call to action</Link>
+        </River.Content>
+      </River>
+    </Section>
+  ),
+}
+
+export const GridLineVisualPaddingNone: Story = {
+  name: 'GridLine visual padding: None',
+  render: () => (
+    <Section>
+      <River variant="gridline" align="start">
+        <River.Visual position="center" padding="none">
+          <img src={examplePoster} alt="Mona looking through binoculars" />
+        </River.Visual>
+        <River.Content>
+          <EyebrowText>Feature</EyebrowText>
+          <Heading>Full-bleed visual</Heading>
+          <Text>
+            Visual uses no padding, making the media fill the full visual region with square corners. A subtle
+            background color sits behind the media.
+          </Text>
+          <Link href="#">Call to action</Link>
+        </River.Content>
+      </River>
+    </Section>
+  ),
+}
+
+export const GridLineVisualPaddingAll: Story = {
+  name: 'GridLine visual padding: All',
+  render: () => (
+    <Section>
+      <River variant="gridline" align="start">
+        <River.Visual padding="all">
+          <PlaceholderImage />
+        </River.Visual>
+        <River.Content>
+          <EyebrowText>Feature</EyebrowText>
+          <Heading>Visual inset on every side</Heading>
+          <Text>
+            Visual uses padding on all sides, keeping the media inset with rounded corners. A subtle background color
+            adds some contrast.
+          </Text>
           <Link href="#">Call to action</Link>
         </River.Content>
       </River>

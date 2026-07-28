@@ -24,6 +24,12 @@ declare const styles: {
   readonly "River__visual--fill-media": string;
   readonly "River__visual--has-background": string;
   readonly "River__visual--has-shadow": string;
+  readonly "River__visual--padding-all": string;
+  readonly "River__visual--padding-none": string;
+  readonly "River__visual--position-block-end": string;
+  readonly "River__visual--position-block-end-inline-end": string;
+  readonly "River__visual--position-block-end-inline-start": string;
+  readonly "River__visual--position-center": string;
   readonly "River__visual--rounded": string;
 };
 export = styles;

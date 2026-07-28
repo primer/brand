@@ -107,11 +107,11 @@ describe('RiverBreakout', () => {
     expect(sectionEl?.className).not.toContain('variant-gridline')
   })
 
-  it('applies the gridline variant and visual background classes when variant="gridline"', () => {
-    const {container, getByTestId} = render(
+  it('applies the gridline variant class when variant="gridline"', () => {
+    const {container} = render(
       <RiverBreakout variant="gridline">
         <RiverBreakout.A11yHeading>{mockHeading}</RiverBreakout.A11yHeading>
-        <RiverBreakout.Visual data-testid="visual-el">
+        <RiverBreakout.Visual>
           <MockImage />
         </RiverBreakout.Visual>
         <RiverBreakout.Content>
@@ -122,23 +122,6 @@ describe('RiverBreakout', () => {
 
     const sectionEl = container.querySelector('section')
     expect(sectionEl?.className).toContain('variant-gridline')
-    expect(getByTestId('visual-el')).toHaveClass('River__visual--has-background')
-  })
-
-  it('does not apply the visual background class to the default variant', () => {
-    const {getByTestId} = render(
-      <RiverBreakout>
-        <RiverBreakout.A11yHeading>{mockHeading}</RiverBreakout.A11yHeading>
-        <RiverBreakout.Visual data-testid="visual-el">
-          <MockImage />
-        </RiverBreakout.Visual>
-        <RiverBreakout.Content>
-          <Text>{mockText}</Text>
-        </RiverBreakout.Content>
-      </RiverBreakout>,
-    )
-
-    expect(getByTestId('visual-el')).not.toHaveClass('River__visual--has-background')
   })
 
   it('has no a11y violations with gridline variant', async () => {
