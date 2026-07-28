@@ -1,5 +1,25 @@
 # @primer/brand-primitives
 
+## 0.72.0
+
+### Minor Changes
+
+- [#1413](https://github.com/primer/brand/pull/1413) [`6288e69`](https://github.com/primer/brand/commit/6288e690492fc779819e65013f9a5b61bbf2b3b6) Thanks [@rezrah](https://github.com/rezrah)! - Added opt-in `position` and `padding` controls to `River.Visual` media in the `gridline` variant.
+
+  🔗 Storybook examples:
+
+  - [Center position](https://stunning-chainsaw-j82glqz.pages.github.io/brand/storybook/?path=/story/components-river-features-gridline-variants--grid-line-visual-position-center)
+  - [Block-end position](https://stunning-chainsaw-j82glqz.pages.github.io/brand/storybook/?path=/story/components-river-features-gridline-variants--grid-line-visual-position-block-end)
+  - [Block-end inline-start position](https://stunning-chainsaw-j82glqz.pages.github.io/brand/storybook/?path=/story/components-river-features-gridline-variants--grid-line-visual-position-block-end-inline-start)
+  - [Block-end inline-end position](https://stunning-chainsaw-j82glqz.pages.github.io/brand/storybook/?path=/story/components-river-features-gridline-variants--grid-line-visual-position-block-end-inline-end)
+  - [No padding](https://stunning-chainsaw-j82glqz.pages.github.io/brand/storybook/?path=/story/components-river-features-gridline-variants--grid-line-visual-padding-none)
+  - [Padding on all sides](https://stunning-chainsaw-j82glqz.pages.github.io/brand/storybook/?path=/story/components-river-features-gridline-variants--grid-line-visual-padding-all)
+
+### Patch Changes
+
+- [#1412](https://github.com/primer/brand/pull/1412) [`6bf33b3`](https://github.com/primer/brand/commit/6bf33b3b17baafcda640de90fa96450427bbbef8) Thanks [@danielguillan](https://github.com/danielguillan)! - - Mapped the light and dark `--brand-color-text-link-rest` values to `blue-6` and `blue-1`.
+  - Updated the light `--brand-color-canvas-muted` value to `#F9FBF9`.
+
 ## 0.71.0
 
 ### Minor Changes
