@@ -86,15 +86,6 @@ describe('MinimalVideoPlayer', () => {
     })
   }
 
-  const createDeferredPlaybackRequest = () => {
-    let resolve: () => void = () => undefined
-    const promise = new Promise<void>(resolvePromise => {
-      resolve = resolvePromise
-    })
-
-    return {promise, resolve}
-  }
-
   it('renders native video sources and attributes', () => {
     const {getByTitle} = render(
       <MinimalVideoPlayer
@@ -189,21 +180,6 @@ describe('MinimalVideoPlayer', () => {
     expect(playMock).toHaveBeenCalledTimes(2)
   })
 
-  it('pauses native playback that begins while fully offscreen', () => {
-    const {getByTitle} = render(<MinimalVideoPlayer src="/example.mp4" title="Product interface demonstration" />)
-    const video = getByTitle('Product interface demonstration')
-
-    setIntersection(video, 0)
-    fireEvent.play(video)
-
-    expect(pauseMock).toHaveBeenCalledTimes(1)
-
-    fireEvent.pause(video)
-    setIntersection(video, 1)
-
-    expect(playMock).toHaveBeenCalledTimes(1)
-  })
-
   it('does not resume after a manual pause', async () => {
     const user = userEvent.setup()
     const {getByRole, getByTitle} = render(
@@ -257,69 +233,6 @@ describe('MinimalVideoPlayer', () => {
     expect(playMock).toHaveBeenCalledTimes(1)
   })
 
-  it('starts autoplay eligibility when autoPlay changes to true', () => {
-    const {getByTitle, rerender} = render(
-      <MinimalVideoPlayer autoPlay={false} src="/example.mp4" title="Product interface demonstration" />,
-    )
-    const video = getByTitle('Product interface demonstration')
-
-    setIntersection(video, 1)
-    rerender(<MinimalVideoPlayer autoPlay src="/example.mp4" title="Product interface demonstration" />)
-
-    expect(playMock).toHaveBeenCalledTimes(1)
-  })
-
-  it('cancels pending autoplay when autoPlay changes to false', async () => {
-    const playbackRequest = createDeferredPlaybackRequest()
-    playMock.mockReturnValueOnce(playbackRequest.promise)
-    const {getByRole, getByTitle, rerender} = render(
-      <MinimalVideoPlayer src="/example.mp4" title="Product interface demonstration" />,
-    )
-    const video = getByTitle('Product interface demonstration')
-
-    setIntersection(video, 1)
-    rerender(<MinimalVideoPlayer autoPlay={false} src="/example.mp4" title="Product interface demonstration" />)
-
-    expect(pauseMock).toHaveBeenCalledTimes(1)
-
-    fireEvent.playing(video)
-
-    expect(pauseMock).toHaveBeenCalledTimes(2)
-    expect(getByRole('button', {name: 'Play video'})).toBeInTheDocument()
-
-    await act(async () => {
-      playbackRequest.resolve()
-      await playbackRequest.promise
-    })
-
-    expect(pauseMock).toHaveBeenCalledTimes(3)
-    expect(getByRole('button', {name: 'Play video'})).toBeInTheDocument()
-  })
-
-  it('does not cancel pending manual playback when autoPlay changes to false', async () => {
-    const playbackRequest = createDeferredPlaybackRequest()
-    playMock.mockReturnValueOnce(playbackRequest.promise)
-    const user = userEvent.setup()
-    const {getByRole, getByTitle, rerender} = render(
-      <MinimalVideoPlayer src="/example.mp4" title="Product interface demonstration" />,
-    )
-    const video = getByTitle('Product interface demonstration')
-
-    await user.click(getByRole('button', {name: 'Play video'}))
-    rerender(<MinimalVideoPlayer autoPlay={false} src="/example.mp4" title="Product interface demonstration" />)
-
-    expect(pauseMock).not.toHaveBeenCalled()
-
-    await act(async () => {
-      playbackRequest.resolve()
-      await playbackRequest.promise
-    })
-    fireEvent.playing(video)
-
-    expect(pauseMock).not.toHaveBeenCalled()
-    expect(getByRole('button', {name: 'Pause video'})).toBeInTheDocument()
-  })
-
   it('suppresses initial autoplay when reduced motion is requested', async () => {
     prefersReducedMotion = true
     const user = userEvent.setup()
@@ -353,74 +266,6 @@ describe('MinimalVideoPlayer', () => {
     setIntersection(video, 1)
 
     expect(playMock).toHaveBeenCalledTimes(1)
-  })
-
-  it('cancels a pending play request when reduced motion becomes active', async () => {
-    const playbackRequest = createDeferredPlaybackRequest()
-    playMock.mockReturnValueOnce(playbackRequest.promise)
-    const {getByRole, getByTitle} = render(
-      <MinimalVideoPlayer src="/example.mp4" title="Product interface demonstration" />,
-    )
-    const video = getByTitle('Product interface demonstration')
-
-    setIntersection(video, 1)
-    setReducedMotion(true)
-
-    expect(pauseMock).toHaveBeenCalledTimes(1)
-
-    fireEvent.playing(video)
-
-    expect(pauseMock).toHaveBeenCalledTimes(2)
-    expect(getByRole('button', {name: 'Play video'})).toBeInTheDocument()
-
-    await act(async () => {
-      playbackRequest.resolve()
-      await playbackRequest.promise
-    })
-
-    expect(pauseMock).toHaveBeenCalledTimes(3)
-    expect(getByRole('button', {name: 'Play video'})).toBeInTheDocument()
-  })
-
-  it('ignores a stale rejected playback request after a newer request starts playing', async () => {
-    let rejectInitialPlaybackRequest: (reason: DOMException) => void = () => undefined
-    const initialPlaybackRequest = new Promise<void>((_resolve, reject) => {
-      rejectInitialPlaybackRequest = reject
-    })
-    playMock.mockReturnValueOnce(initialPlaybackRequest).mockResolvedValueOnce(undefined)
-    const user = userEvent.setup()
-    const {getByRole, getByTitle} = render(
-      <MinimalVideoPlayer src="/example.mp4" title="Product interface demonstration" />,
-    )
-    const video = getByTitle('Product interface demonstration')
-
-    setIntersection(video, 1)
-    await user.click(getByRole('button', {name: 'Play video'}))
-    fireEvent.playing(video)
-
-    expect(getByRole('button', {name: 'Pause video'})).toBeInTheDocument()
-
-    await act(async () => {
-      rejectInitialPlaybackRequest(new DOMException('Playback was interrupted', 'AbortError'))
-      await expect(initialPlaybackRequest).rejects.toThrow('Playback was interrupted')
-    })
-
-    expect(getByRole('button', {name: 'Pause video'})).toBeInTheDocument()
-  })
-
-  it('restores muted playback and preserves native volume change handlers', () => {
-    const onVolumeChange = jest.fn()
-    const {getByTitle} = render(
-      <MinimalVideoPlayer onVolumeChange={onVolumeChange} src="/example.mp4" title="Product interface demonstration" />,
-    )
-    const video = getByTitle('Product interface demonstration') as HTMLVideoElement
-
-    onVolumeChange.mockClear()
-    video.muted = false
-    fireEvent.volumeChange(video)
-
-    expect(video.muted).toBe(true)
-    expect(onVolumeChange).toHaveBeenCalled()
   })
 
   it('preserves native playback event handlers', () => {

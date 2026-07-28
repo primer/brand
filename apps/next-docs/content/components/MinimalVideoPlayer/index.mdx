@@ -14,7 +14,7 @@ thumbnail_darkMode: '/images/thumbnails/minimal-video-player-thumbnail-dark.png'
 import {MinimalVideoPlayer} from '@primer/react-brand'
 ```
 
-Use `MinimalVideoPlayer` for short, silent product demonstrations that need only a play and pause control. Use [VideoPlayer](/components/VideoPlayer) when viewers need audio, captions, seeking, volume, fullscreen controls, branding, or programmatic playback controls.
+Use `MinimalVideoPlayer` for short, silent product demonstrations that need only a play and pause control. Use [VideoPlayer](/components/VideoPlayer) when viewers need audio, captions, seeking, volume, fullscreen controls, branding, or a dedicated programmatic playback API.
 
 ## Examples
 
@@ -90,6 +90,8 @@ Provide localized play and pause labels with `internalAccessibleLabels`. Keep `t
 ## Playback behavior
 
 `MinimalVideoPlayer` is always muted, plays inline, and hides native controls. When `autoPlay` is enabled, it starts only while visible, pauses after leaving the viewport, and resumes after re-entering the viewport unless the viewer paused it manually.
+
+The forwarded ref provides access to the underlying `<video>` element, but the component does not provide a higher-level programmatic playback API.
 
 The component respects the viewer's reduced-motion preference. It suppresses initial automatic playback when reduced motion is requested and pauses playback if that preference becomes active. A viewer can still start the video with the visible play control.
 
