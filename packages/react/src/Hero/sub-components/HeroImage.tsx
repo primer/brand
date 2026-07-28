@@ -1,22 +1,22 @@
-import {forwardRef, PropsWithChildren} from 'react'
+import {forwardRef} from 'react'
 import {clsx} from 'clsx'
 import {Image, ImageProps} from '../../Image'
 import type {BaseProps} from '../../component-helpers'
-import {useHeroContext, type HeroMediaPositions} from '../HeroContext'
+import {useHeroContext, type HeroMediaPadding, type HeroMediaPosition} from '../HeroContext'
 
 import styles from '../Hero.module.css'
 
 export type HeroImageProps = {
-  position?: HeroMediaPositions
+  position?: HeroMediaPosition
+  padding?: HeroMediaPadding
   enableBorder?: boolean
 } & ImageProps &
   BaseProps<HTMLImageElement>
 
 export const HeroImage = forwardRef<HTMLImageElement, HeroImageProps>(
-  ({position = 'block-end', className, enableBorder, ...rest}: PropsWithChildren<HeroImageProps>, ref) => {
+  ({position = 'block-end', padding = 'default', className, enableBorder, ...rest}: HeroImageProps, ref) => {
     const {variant: heroVariant, enableAnimation} = useHeroContext()
     const isInlinePosition = position.startsWith('inline')
-    const isInlinePadded = position.endsWith('-padded')
     return (
       <Image
         animate={
@@ -34,7 +34,8 @@ export const HeroImage = forwardRef<HTMLImageElement, HeroImageProps>(
           styles['Hero-media'],
           styles[`Hero-media--pos-${position}`],
           isInlinePosition && styles['Hero-media--pos-inline'],
-          isInlinePosition && isInlinePadded && styles['Hero-media--pos-inline-padded'],
+          padding === 'all' && styles['Hero-media--padding-all'],
+          padding === 'none' && styles['Hero-media--padding-none'],
           className,
         )}
         {...rest}

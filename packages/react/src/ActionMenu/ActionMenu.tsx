@@ -12,7 +12,9 @@ import React, {
   ReactElement,
   useMemo,
 } from 'react'
-import {Button, ButtonProps, Text, ThemeProvider, useTheme} from '../'
+import {Button, ButtonProps} from '../Button'
+import {Text} from '../Text'
+import {ThemeProvider, useTheme} from '../ThemeProvider'
 import {useAnchoredPosition} from '../hooks/useAnchoredPosition'
 import {useOnClickOutside} from '../hooks/useOnClickOutside'
 import {useKeyboardEscape} from '../hooks/useKeyboardEscape'

@@ -48,6 +48,22 @@ describe('CTABanner', () => {
     expect(ctaBannerEl.classList).toContain(expectedCustomClass)
   })
 
+  it('applies primary and secondary variants to ButtonGroup actions', () => {
+    const {getAllByRole} = render(
+      <CTABanner>
+        <CTABanner.Heading>Where the most ambitious teams build great things</CTABanner.Heading>
+        <CTABanner.ButtonGroup>
+          <Button>Primary Action</Button>
+          <Button>Secondary Action</Button>
+        </CTABanner.ButtonGroup>
+      </CTABanner>,
+    )
+
+    const buttons = getAllByRole('button')
+    expect(buttons[0]).toHaveClass('Button--primary')
+    expect(buttons[1]).toHaveClass('Button--secondary')
+  })
+
   it('renders the correct default heading type', () => {
     const expectedTag = 'h3'
     const headingText = 'This is your heading'

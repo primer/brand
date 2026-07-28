@@ -1,4 +1,4 @@
-import {existsSync, readFileSync} from 'node:fs'
+import {readFileSync} from 'node:fs'
 import {fileURLToPath} from 'node:url'
 
 import type {Catalog} from '../catalog/types.js'
@@ -229,19 +229,31 @@ describe('primer_brand_review rules', () => {
 // errors. A failure here means a rule produces false positives against known-correct code.
 describe('primer_brand_review over generated canonical examples', () => {
   const catalogPath = fileURLToPath(new URL('../../dist/catalog.json', import.meta.url))
-  const hasCatalog = existsSync(catalogPath)
-  const testOrSkip = hasCatalog ? it : it.skip
+  const catalog = JSON.parse(readFileSync(catalogPath, 'utf8')) as Catalog
+  const examples = [
+    ...catalog.components.flatMap(component =>
+      component.examples
+        .filter(example => example.code)
+        .map(example => ({name: component.name, code: example.code as string})),
+    ),
+    ...catalog.recipes.map(recipe => ({name: recipe.name, code: recipe.source})),
+  ]
 
-  testOrSkip('produces no errors on any catalog example', () => {
-    const catalog = JSON.parse(readFileSync(catalogPath, 'utf8')) as Catalog
-    const examples = [
-      ...catalog.components.flatMap(component =>
-        component.examples
-          .filter(example => example.code)
-          .map(example => ({name: component.name, code: example.code as string})),
-      ),
-      ...catalog.recipes.map(recipe => ({name: recipe.name, code: recipe.source})),
-    ]
+  it('includes object-assigned subcomponents separated by comments', () => {
+    const hero = catalog.components.find(component => component.name === 'Hero')
+    expect(hero?.subcomponents).toEqual(
+      expect.arrayContaining(['Hero.ButtonGroup', 'Hero.PrimaryAction', 'Hero.SecondaryAction']),
+    )
+  })
+
+  it('does not recommend deprecated Hero action subcomponents', () => {
+    for (const example of examples) {
+      const deprecatedActions = example.code.match(/<Hero\.(?:PrimaryAction|SecondaryAction)\b/g) ?? []
+      expect({component: example.name, deprecatedActions}).toEqual({component: example.name, deprecatedActions: []})
+    }
+  })
+
+  it('produces no errors on any catalog example', () => {
     expect(examples.length).toBeGreaterThan(0)
     for (const example of examples) {
       const errors = errorsOf(allRules.flatMap(rule => rule.run(example.code, catalog)))

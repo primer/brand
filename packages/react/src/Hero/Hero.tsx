@@ -6,12 +6,13 @@ import {Box} from '../Box'
 import type {BaseProps} from '../component-helpers'
 import {AnimationProvider} from '../animation'
 
-import {HeroContext, heroMediaInlinePositions} from './HeroContext'
-import type {HeroMediaInlinePositions, HeroAlign, HeroVariant} from './HeroContext'
+import {HeroContext, HeroMediaInlinePositionOptions} from './HeroContext'
+import type {HeroMediaInlinePosition, HeroAlign, HeroVariant} from './HeroContext'
 import {
   HeroLabel,
   HeroHeading,
   HeroDescription,
+  HeroButtonGroup,
   HeroImage,
   HeroVideo,
   HeroEyebrow,
@@ -77,52 +78,63 @@ const Root = forwardRef<HTMLElement, PropsWithChildren<HeroProps>>(
     },
     ref,
   ) => {
-    const {HeroActions, HeroChildren, HeroImageChild, HeroVideoChild, HeroHeaderChildren, HeroDescriptionChild} =
-      useMemo(() => {
-        const result = React.Children.toArray(children).reduce<{
-          HeroActions: React.ReactElement[]
-          HeroImageChild?: React.ReactElement<HeroImageProps>
-          HeroVideoChild?: React.ReactElement<HeroVideoProps>
-          HeroChildren: React.ReactElement[]
-          HeroHeaderChildren: React.ReactElement[]
-          HeroDescriptionChild?: React.ReactElement
-        }>(
-          (acc, child) => {
-            if (React.isValidElement(child)) {
-              if (child.type === HeroPrimaryAction || child.type === HeroSecondaryAction) {
-                acc.HeroActions.push(child)
-              } else if (child.type === HeroImage) {
-                acc.HeroImageChild = child as React.ReactElement<HeroImageProps>
-              } else if (child.type === HeroVideo) {
-                acc.HeroVideoChild = child as React.ReactElement<HeroVideoProps>
-              } else {
-                acc.HeroChildren.push(child)
-                if (child.type === HeroLabel || child.type === HeroEyebrow || child.type === HeroHeading) {
-                  acc.HeroHeaderChildren.push(child)
-                } else if (child.type === HeroDescription) {
-                  acc.HeroDescriptionChild = child
-                }
+    const {
+      HeroActions,
+      HeroButtonGroupChild,
+      HeroChildren,
+      HeroImageChild,
+      HeroVideoChild,
+      HeroHeaderChildren,
+      HeroDescriptionChild,
+    } = useMemo(() => {
+      const result = React.Children.toArray(children).reduce<{
+        HeroActions: React.ReactElement[]
+        HeroButtonGroupChild?: React.ReactElement
+        HeroImageChild?: React.ReactElement<HeroImageProps>
+        HeroVideoChild?: React.ReactElement<HeroVideoProps>
+        HeroChildren: React.ReactElement[]
+        HeroHeaderChildren: React.ReactElement[]
+        HeroDescriptionChild?: React.ReactElement
+      }>(
+        (acc, child) => {
+          if (React.isValidElement(child)) {
+            if (child.type === HeroPrimaryAction || child.type === HeroSecondaryAction) {
+              acc.HeroActions.push(child)
+            } else if (child.type === HeroButtonGroup) {
+              acc.HeroButtonGroupChild = child
+            } else if (child.type === HeroImage) {
+              acc.HeroImageChild = child as React.ReactElement<HeroImageProps>
+            } else if (child.type === HeroVideo) {
+              acc.HeroVideoChild = child as React.ReactElement<HeroVideoProps>
+            } else {
+              acc.HeroChildren.push(child)
+              if (child.type === HeroLabel || child.type === HeroEyebrow || child.type === HeroHeading) {
+                acc.HeroHeaderChildren.push(child)
+              } else if (child.type === HeroDescription) {
+                acc.HeroDescriptionChild = child
               }
             }
-            return acc
-          },
-          {
-            HeroActions: [],
-            HeroChildren: [],
-            HeroImageChild: undefined,
-            HeroVideoChild: undefined,
-            HeroHeaderChildren: [],
-            HeroDescriptionChild: undefined,
-          },
-        )
+          }
+          return acc
+        },
+        {
+          HeroActions: [],
+          HeroButtonGroupChild: undefined,
+          HeroChildren: [],
+          HeroImageChild: undefined,
+          HeroVideoChild: undefined,
+          HeroHeaderChildren: [],
+          HeroDescriptionChild: undefined,
+        },
+      )
 
-        // Prefer Hero.Image - don't show both
-        if (result.HeroImageChild && result.HeroVideoChild) {
-          result.HeroVideoChild = undefined
-        }
+      // Prefer Hero.Image - don't show both
+      if (result.HeroImageChild && result.HeroVideoChild) {
+        result.HeroVideoChild = undefined
+      }
 
-        return result
-      }, [children])
+      return result
+    }, [children])
 
     const mediaPositionProp = HeroImageChild?.props.position || HeroVideoChild?.props.position
 
@@ -139,13 +151,23 @@ const Root = forwardRef<HTMLElement, PropsWithChildren<HeroProps>>(
       return mediaPositionProp || 'block-end'
     })()
     const mediaWrapperHasBorder = HeroImageChild?.props.enableBorder ?? HeroVideoChild?.props.enableBorder ?? true
-    const hasInlineMedia = heroMediaInlinePositions.includes(mediaPosition as HeroMediaInlinePositions)
-    const inlineMediaPosition = hasInlineMedia ? mediaPosition : undefined
+    const mediaPadding = HeroImageChild?.props.padding ?? HeroVideoChild?.props.padding ?? 'default'
+    const hasInlineMedia = HeroMediaInlinePositionOptions.includes(mediaPosition as HeroMediaInlinePosition)
     const mediaChild = HeroImageChild || HeroVideoChild
     const isGridline = variant === 'gridline'
     const isGridlineExpressive = variant === 'gridline-expressive'
-    const isBlockEndPosition = mediaPosition === 'block-end' || mediaPosition === 'block-end-padded'
-    const isBlockEndPadded = mediaPosition === 'block-end-padded'
+    const isBlockEndPosition = mediaPosition === 'block-end'
+
+    if (
+      variant === 'default' &&
+      mediaPadding !== 'default' &&
+      (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'test')
+    ) {
+      // eslint-disable-next-line no-console
+      console.warn(
+        `Hero: media padding is only supported by the "gridline" and "gridline-expressive" variants; ignoring padding="${mediaPadding}".`,
+      )
+    }
 
     const isInvalidGridlineAlignment = isGridlineExpressive && alignProp === 'center'
     const align: HeroAlign = isInvalidGridlineAlignment ? 'start' : alignProp
@@ -168,7 +190,7 @@ const Root = forwardRef<HTMLElement, PropsWithChildren<HeroProps>>(
     const useInlineGridline = isGridline && hasInlineMedia
 
     const heroLayoutClass = HeroImageChild ? styles['Hero--layout-image'] : styles['Hero--layout-default']
-    const isInlineStart = mediaPosition === 'inline-start' || mediaPosition === 'inline-start-padded'
+    const isInlineStart = mediaPosition === 'inline-start'
 
     const renderTrailingComponent = (shouldAnimate: boolean) =>
       TrailingComponent && (
@@ -179,7 +201,12 @@ const Root = forwardRef<HTMLElement, PropsWithChildren<HeroProps>>(
         </Box>
       )
 
-    const renderActions = () => HeroActions.length > 0 && <div className={styles['Hero-actions']}>{HeroActions}</div>
+    const renderActions = () => (
+      <>
+        {HeroButtonGroupChild}
+        {HeroActions.length > 0 && <div className={styles['Hero-actions']}>{HeroActions}</div>}
+      </>
+    )
 
     return (
       <Tag {...tagProps}>
@@ -242,10 +269,15 @@ const Root = forwardRef<HTMLElement, PropsWithChildren<HeroProps>>(
                       ref={imageContainerRef}
                       span={{large: 6}}
                       className={clsx(
-                        imageBackgroundColor && styles[`Hero-imageContainer--bg-${imageBackgroundColor}`],
+                        imageBackgroundColor &&
+                          mediaPadding !== 'none' &&
+                          styles[`Hero-imageContainer--bg-${imageBackgroundColor}`],
                         useInlineGridline &&
-                          inlineMediaPosition?.includes('padded') &&
-                          styles['Hero-imageContainer--inline-bg-padded'],
+                          mediaPadding === 'all' &&
+                          styles['Hero-imageContainer--inline-padding-all'],
+                        useInlineGridline &&
+                          mediaPadding === 'none' &&
+                          styles['Hero-imageContainer--inline-padding-none'],
                         useInlineGridline && styles['Hero-imageContainer--inline-bordered'],
                       )}
                     >
@@ -279,10 +311,15 @@ const Root = forwardRef<HTMLElement, PropsWithChildren<HeroProps>>(
                       ref={imageContainerRef}
                       span={{large: hasInlineMedia ? 6 : 12}}
                       className={clsx(
-                        imageBackgroundColor && styles[`Hero-imageContainer--bg-${imageBackgroundColor}`],
+                        imageBackgroundColor &&
+                          mediaPadding !== 'none' &&
+                          styles[`Hero-imageContainer--bg-${imageBackgroundColor}`],
                         useInlineGridline &&
-                          inlineMediaPosition?.includes('padded') &&
-                          styles['Hero-imageContainer--inline-bg-padded'],
+                          mediaPadding === 'all' &&
+                          styles['Hero-imageContainer--inline-padding-all'],
+                        useInlineGridline &&
+                          mediaPadding === 'none' &&
+                          styles['Hero-imageContainer--inline-padding-none'],
                         useInlineGridline && styles['Hero-imageContainer--inline-bordered'],
                       )}
                     >
@@ -303,16 +340,19 @@ const Root = forwardRef<HTMLElement, PropsWithChildren<HeroProps>>(
                 data-testid={testIds.imageWrapper}
                 className={clsx(
                   styles['Hero-imageWrapper'],
-                  isBlockEndPadded && styles['Hero-imageWrapper--block-end-padded'],
                   imageContainerClassName,
-                  imageBackgroundColor && styles[`Hero-imageWrapper--bg-${imageBackgroundColor}`],
+                  imageBackgroundColor &&
+                    mediaPadding !== 'none' &&
+                    styles[`Hero-imageWrapper--bg-${imageBackgroundColor}`],
+                  mediaPadding === 'none' && styles['Hero-imageWrapper--padding-none'],
                 )}
                 style={imageContainerStyle}
               >
                 <div
                   className={clsx(
                     styles['Hero-imageWrapper-inner'],
-                    isBlockEndPadded && styles['Hero-imageWrapper-inner--padded'],
+                    mediaPadding === 'all' && styles['Hero-imageWrapper-inner--padding-all'],
+                    mediaPadding === 'none' && styles['Hero-imageWrapper-inner--padding-none'],
                     mediaWrapperHasBorder && styles['Hero-imageWrapper-inner--with-gridline'],
                   )}
                 >
@@ -330,7 +370,16 @@ const Root = forwardRef<HTMLElement, PropsWithChildren<HeroProps>>(
 export const Hero = Object.assign(Root, {
   Heading: HeroHeading,
   Description: HeroDescription,
+  ButtonGroup: HeroButtonGroup,
+  /**
+   * @deprecated Use `Hero.ButtonGroup` with `Button` or `ActionMenu` children instead.
+   * This component will be removed in a future release.
+   */
   PrimaryAction: HeroPrimaryAction,
+  /**
+   * @deprecated Use `Hero.ButtonGroup` with `Button` or `ActionMenu` children instead.
+   * This component will be removed in a future release.
+   */
   SecondaryAction: HeroSecondaryAction,
   Image: HeroImage,
   Video: HeroVideo,

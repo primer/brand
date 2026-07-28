@@ -2,6 +2,7 @@ import React from 'react'
 import type {Meta, StoryObj} from '@storybook/react'
 import {GlobeIcon} from '@primer/octovisuals-react'
 import {Button} from '../Button'
+import {ActionMenu} from '../ActionMenu'
 
 import {CTABanner} from './CTABanner'
 import {Grid, InlineLink, Section, Stack, Text, TextCursorAnimation, ThemeProvider} from '../'
@@ -100,6 +101,25 @@ function WithImageExample() {
   )
 }
 
+export const WithActionMenu: Story = {
+  render: () => (
+    <CTABanner>
+      <CTABanner.Heading>Where the most ambitious teams build great things</CTABanner.Heading>
+      <CTABanner.Description>Get real-time suggestions and ship confidently.</CTABanner.Description>
+      <CTABanner.ButtonGroup>
+        <Button>Get started for free</Button>
+        <ActionMenu>
+          <ActionMenu.Button>More actions</ActionMenu.Button>
+          <ActionMenu.Overlay aria-label="More actions">
+            <ActionMenu.Item value="Contact sales">Contact sales</ActionMenu.Item>
+            <ActionMenu.Item value="View pricing">View pricing</ActionMenu.Item>
+          </ActionMenu.Overlay>
+        </ActionMenu>
+      </CTABanner.ButtonGroup>
+    </CTABanner>
+  ),
+}
+
 export const Variants: Story = {
   render: () => (
     <Stack direction="vertical" gap="spacious" padding="none">
@@ -110,7 +130,7 @@ export const Variants: Story = {
           turpis felis nam pulvinar risus elementum.
         </CTABanner.Description>
         <CTABanner.ButtonGroup>
-          <Button variant="primary">Get started for free</Button>
+          <Button>Get started for free</Button>
           <Button>View docs</Button>
         </CTABanner.ButtonGroup>
       </CTABanner>
@@ -122,7 +142,7 @@ export const Variants: Story = {
         </CTABanner.Description>
         <CTABanner.Image src={placeholderImage} alt="Blank image" />
         <CTABanner.ButtonGroup>
-          <Button variant="primary">Get started for free</Button>
+          <Button>Get started for free</Button>
           <Button>View docs</Button>
         </CTABanner.ButtonGroup>
       </CTABanner>
@@ -133,7 +153,7 @@ export const Variants: Story = {
           turpis felis nam pulvinar risus elementum.
         </CTABanner.Description>
         <CTABanner.ButtonGroup>
-          <Button variant="primary">Get started for free</Button>
+          <Button>Get started for free</Button>
           <Button>View docs</Button>
         </CTABanner.ButtonGroup>
       </CTABanner>
@@ -146,7 +166,7 @@ export const WithPrimaryButton: Story = {
     <CTABanner>
       <CTABanner.Heading size="2">Start coding in seconds with Codespaces</CTABanner.Heading>
       <CTABanner.ButtonGroup>
-        <Button variant="primary">Get started for free</Button>
+        <Button>Get started for free</Button>
         <Button>View docs</Button>
       </CTABanner.ButtonGroup>
     </CTABanner>
@@ -523,7 +543,7 @@ export const WithLogo: Story = {
           turpis felis nam pulvinar risus elementum.
         </CTABanner.Description>
         <CTABanner.ButtonGroup>
-          <Button variant="primary">Get started for free</Button>
+          <Button>Get started for free</Button>
           <Button>View docs</Button>
         </CTABanner.ButtonGroup>
       </CTABanner>
@@ -545,7 +565,7 @@ export const WithLogo: Story = {
           turpis felis nam pulvinar risus elementum.
         </CTABanner.Description>
         <CTABanner.ButtonGroup>
-          <Button variant="primary">Get started for free</Button>
+          <Button>Get started for free</Button>
           <Button>View docs</Button>
         </CTABanner.ButtonGroup>
       </CTABanner>
@@ -595,7 +615,7 @@ export const WithDuotoneText: Story = {
           Use <b>duotone emphasis</b> to highlight key parts of your headline. Wrap text in a <code>b</code> tag.
         </CTABanner.Description>
         <CTABanner.ButtonGroup>
-          <Button variant="primary">Get started for free</Button>
+          <Button>Get started for free</Button>
           <Button>View docs</Button>
         </CTABanner.ButtonGroup>
       </CTABanner>
@@ -607,7 +627,7 @@ export const WithDuotoneText: Story = {
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id.
         </CTABanner.Description>
         <CTABanner.ButtonGroup>
-          <Button variant="primary">Get started for free</Button>
+          <Button>Get started for free</Button>
           <Button>View docs</Button>
         </CTABanner.ButtonGroup>
         <CTABanner.Image src={placeholderImage} alt="Blank image" />
@@ -620,7 +640,7 @@ export const WithDuotoneText: Story = {
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id.
         </CTABanner.Description>
         <CTABanner.ButtonGroup>
-          <Button variant="primary">Get started for free</Button>
+          <Button>Get started for free</Button>
           <Button>View docs</Button>
         </CTABanner.ButtonGroup>
       </CTABanner>

@@ -7,6 +7,9 @@ export type {HeroHeadingProps} from './HeroHeading'
 export {HeroDescription} from './HeroDescription'
 export type {HeroDescriptionProps} from './HeroDescription'
 
+export {HeroButtonGroup} from './HeroButtonGroup'
+export type {HeroButtonGroupProps} from './HeroButtonGroup'
+
 export {HeroImage} from './HeroImage'
 export type {HeroImageProps} from './HeroImage'
 
