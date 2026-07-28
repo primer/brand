@@ -357,16 +357,17 @@ describe('Testimonial', () => {
     expect(avatarContainer).toHaveClass('Avatar--size-48')
   })
 
-  it('renders logo with img element', () => {
+  it('renders logo with img element and preserves its class name', () => {
     const logoSrc = '/logo.png'
     const logoAlt = 'Company logo'
+    const logoClassName = 'custom-logo'
 
     const {getByRole} = render(
       <Testimonial>
         <Testimonial.Quote>Quote text</Testimonial.Quote>
         <Testimonial.Name>Name</Testimonial.Name>
         <Testimonial.Logo>
-          <img src={logoSrc} alt={logoAlt} />
+          <img src={logoSrc} alt={logoAlt} className={logoClassName} />
         </Testimonial.Logo>
       </Testimonial>,
     )
@@ -374,6 +375,7 @@ describe('Testimonial', () => {
     const logo = getByRole('img', {name: logoAlt})
     expect(logo).toBeInTheDocument()
     expect(logo).toHaveAttribute('src', logoSrc)
+    expect(logo).toHaveClass('Testimonial-logo-image', logoClassName)
   })
 
   it('renders logo container', () => {

@@ -6,4 +6,4 @@ Removed the global `block` layout applied to `img` and `picture` elements to pre
 
 To minimize regressions, `block` has been applied to image elements at a component level instead.
 
-⚠️ If you previously relied on the `block` styling to images via our `reset.css`, please apply them manually yourself in your application code.
+⚠️ If you previously relied on the `display: block` styling from our `reset.css`, please apply it manually in your application code.
