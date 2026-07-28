@@ -553,7 +553,7 @@ export const Stacked: StoryFn<typeof Card> = () => {
           {stackedCardData.map(({headingKey, descriptionKey, href, icon, iconColor, tokens}, id) => {
             return (
               <Grid.Column key={id} span={{xsmall: 12, xlarge: 4}} className={styles.gridColumn}>
-                <Box className={styles.gridItem} padding="normal">
+                <Box className={styles.gridItem}>
                   <Card href={href} fullWidth ctaVariant="arrow">
                     <Card.Icon icon={icon} hasBackground color={iconColor} />
                     <Card.Tokens>
