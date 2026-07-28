@@ -24,6 +24,10 @@ const port = 6006
 
 const defaultTimeout = 500 // Storybook 7 introduced a small delay in loading stories. This is to migigate the spinner showing up in screenshots.
 
+const reducedMotionLookup = [
+  'recipes-flexsuite-overview--ai', // capture the stable video poster instead of a nondeterministic playback frame
+]
+
 /**
  * Manual lookup for tests that need animation or side-effects to complete before tests start
  */
@@ -233,6 +237,7 @@ for (const key of Object.keys(categorisedStories)) {
           const testName = language === 'en' ? base : `${base} (${language})`
 
           return `test('${testName}', async ({page}) => {
+            ${reducedMotionLookup.includes(id) ? `await page.emulateMedia({ reducedMotion: 'reduce' })` : ''}
             await page.goto('http://localhost:${port}/iframe.html?${localeParam}args=&id=${id}&viewMode=story', { waitUntil: 'networkidle' })
             await page.locator('body.sb-show-main').waitFor({ state: 'visible' })
 
