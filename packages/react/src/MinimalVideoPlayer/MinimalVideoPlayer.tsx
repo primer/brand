@@ -71,14 +71,14 @@ export const _MinimalVideoPlayer = forwardRef<HTMLVideoElement, MinimalVideoPlay
       })
 
     return (
-      <div className={styles.MinimalVideoPlayer} data-testid={testIds.root}>
+      <div className={styles.MinimalVideoPlayer} data-testid={testId || testIds.root}>
         <video
           {...rest}
           ref={videoRef}
           autoPlay={false}
           className={clsx(styles.MinimalVideoPlayer__video, className)}
           controls={false}
-          data-testid={testId || testIds.video}
+          data-testid={testIds.video}
           loop={loop}
           muted
           onEnded={event => {

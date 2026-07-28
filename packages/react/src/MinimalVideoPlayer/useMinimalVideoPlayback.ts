@@ -66,7 +66,7 @@ export function useMinimalVideoPlayback({
         return
       }
 
-      if (isPlaying) {
+      if (!video.paused) {
         pausedByViewportRef.current = autoPlay && !prefersReducedMotion
         video.pause()
       }
@@ -83,7 +83,7 @@ export function useMinimalVideoPlayback({
 
     observer.observe(video)
     return () => observer.disconnect()
-  }, [autoPlay, isPlaying, prefersReducedMotion, requestPlayback, videoRef])
+  }, [autoPlay, prefersReducedMotion, requestPlayback, videoRef])
 
   useEffect(() => {
     if (!prefersReducedMotion) return

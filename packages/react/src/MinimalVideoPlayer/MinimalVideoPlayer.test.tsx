@@ -12,10 +12,12 @@ describe('MinimalVideoPlayer', () => {
   let playMock: jest.SpyInstance
   let pauseMock: jest.SpyInstance
   let intersectionObserverCallback: IntersectionObserverCallback
+  let isMediaPaused: boolean
   let motionPreferenceChangeListener: (event: MediaQueryListEvent) => void
   let prefersReducedMotion: boolean
 
   beforeEach(() => {
+    isMediaPaused = true
     prefersReducedMotion = false
     motionPreferenceChangeListener = () => undefined
 
@@ -49,8 +51,14 @@ describe('MinimalVideoPlayer', () => {
       }
     })
 
-    playMock = jest.spyOn(HTMLMediaElement.prototype, 'play').mockResolvedValue()
-    pauseMock = jest.spyOn(HTMLMediaElement.prototype, 'pause').mockReturnValue(undefined)
+    jest.spyOn(HTMLMediaElement.prototype, 'paused', 'get').mockImplementation(() => isMediaPaused)
+    playMock = jest.spyOn(HTMLMediaElement.prototype, 'play').mockImplementation(() => {
+      isMediaPaused = false
+      return Promise.resolve()
+    })
+    pauseMock = jest.spyOn(HTMLMediaElement.prototype, 'pause').mockImplementation(() => {
+      isMediaPaused = true
+    })
   })
 
   afterEach(() => {
@@ -145,6 +153,7 @@ describe('MinimalVideoPlayer', () => {
   it('autoplays an eligible video when IntersectionObserver is unavailable', () => {
     Object.defineProperty(window, 'IntersectionObserver', {
       configurable: true,
+      writable: true,
       value: undefined,
     })
 
@@ -195,6 +204,16 @@ describe('MinimalVideoPlayer', () => {
     setIntersection(video, 1)
 
     expect(playMock).toHaveBeenCalledTimes(2)
+  })
+
+  it('pauses offscreen playback before the playing event updates component state', () => {
+    const {getByTitle} = render(<MinimalVideoPlayer src="/example.mp4" title="Product interface demonstration" />)
+    const video = getByTitle('Product interface demonstration')
+
+    setIntersection(video, 1)
+    setIntersection(video, 0)
+
+    expect(pauseMock).toHaveBeenCalledTimes(1)
   })
 
   it('does not resume after a manual pause', async () => {
@@ -313,12 +332,13 @@ describe('MinimalVideoPlayer', () => {
     expect(onEnded).toHaveBeenCalledTimes(1)
   })
 
-  it('uses a custom video test ID', () => {
+  it('uses a custom root test ID and keeps the video test ID stable', () => {
     const {getByTestId} = render(
       <MinimalVideoPlayer data-testid="custom-video" src="/example.mp4" title="Product interface demonstration" />,
     )
 
-    expect(getByTestId('custom-video')).toHaveAttribute('title', 'Product interface demonstration')
+    expect(getByTestId('custom-video')).toContainElement(getByTestId(MinimalVideoPlayer.testIds.video))
+    expect(getByTestId(MinimalVideoPlayer.testIds.video)).toHaveAttribute('title', 'Product interface demonstration')
   })
 
   it('forwards its ref to the video element', () => {
