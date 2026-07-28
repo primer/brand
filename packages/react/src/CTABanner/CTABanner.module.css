@@ -105,6 +105,10 @@
   margin: 0 auto;
 }
 
+.CTABanner-content :is(img, picture) {
+  display: block;
+}
+
 .CTABanner--variant-minimal .CTABanner-content {
   --CTABanner-content-gap: 0;
 }

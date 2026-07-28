@@ -243,11 +243,14 @@ describe('River', () => {
   })
 
   it('provides an escape hatch to enter leading and trailing custom components', () => {
-    const [mockLeading, mockTrailing] = ['custom-leading', 'custom-trailing']
-    const MockLeadingComponent = () => <div data-testid={mockLeading} />
-    const MockTrailingComponent = () => <div data-testid={mockTrailing} />
+    const MockLeadingComponent = () => (
+      <picture>
+        <img src="leading.jpg" alt="Custom leading" />
+      </picture>
+    )
+    const MockTrailingComponent = () => <img src="trailing.jpg" alt="Custom trailing" />
 
-    const {getByTestId} = render(
+    const {getByRole} = render(
       <River>
         <River.Visual>
           <MockImage />
@@ -258,11 +261,11 @@ describe('River', () => {
       </River>,
     )
 
-    const elLeading = getByTestId(mockLeading)
-    const elTrailing = getByTestId(mockTrailing)
+    const leadingImage = getByRole('img', {name: 'Custom leading'})
+    const trailingImage = getByRole('img', {name: 'Custom trailing'})
 
-    expect(elLeading).toBeInTheDocument()
-    expect(elTrailing).toBeInTheDocument()
+    expect(leadingImage.closest('[class*="River__leadingComponent"]')).toBeInTheDocument()
+    expect(trailingImage.closest('[class*="River__trailingComponent"]')).toBeInTheDocument()
   })
 
   it('renders a h3 Heading by default', () => {

@@ -158,6 +158,11 @@
   line-height: calc(1lh * 1.1);
 }
 
+.River__leadingComponent :is(img, picture),
+.River__trailingComponent :is(img, picture) {
+  display: block;
+}
+
 .River__trailingComponent {
   margin-block-start: var(--brand-River-spacing-inner);
 }

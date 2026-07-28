@@ -102,18 +102,23 @@ describe('BreakoutBanner', () => {
   })
 
   it('provides an escape hatch to render a custom leading visual', () => {
-    const MockLeadingVisual = () => <svg data-testid="mock-svg" aria-label="Mock SVG" />
+    const MockLeadingVisual = () => (
+      <picture>
+        <img src="image.jpg" alt="Mock visual" />
+      </picture>
+    )
 
-    const {getByTestId} = render(
+    const {getByRole} = render(
       <BreakoutBanner leadingVisual={<MockLeadingVisual />}>
         <BreakoutBanner.Heading>This is your heading</BreakoutBanner.Heading>
         <BreakoutBanner.Description>This is your description</BreakoutBanner.Description>
       </BreakoutBanner>,
     )
 
-    const elLeadingVisual = getByTestId('mock-svg')
+    const leadingVisual = getByRole('img', {name: 'Mock visual'})
 
-    expect(elLeadingVisual).toBeInTheDocument()
+    expect(leadingVisual).toBeInTheDocument()
+    expect(leadingVisual.closest('div')).toHaveClass('BreakoutBanner-leadingVisual')
   })
 
   it('provides a way to pass a background image', () => {

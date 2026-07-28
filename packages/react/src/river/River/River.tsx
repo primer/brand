@@ -218,7 +218,7 @@ export const RiverContent = forwardRef(
         )}
 
         {!LabelChild && !EyebrowTextChild && LeadingComponent && (
-          <div>
+          <div className={styles.River__leadingComponent}>
             <LeadingComponent />
           </div>
         )}

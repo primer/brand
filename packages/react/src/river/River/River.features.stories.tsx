@@ -192,6 +192,30 @@ export const CustomTrailingContent: StoryFn<typeof River> = () => (
 )
 CustomTrailingContent.storyName = 'Custom trailing content'
 
+export const CustomMediaContent: StoryFn<typeof River> = () => (
+  <Section>
+    <River>
+      <River.Visual>
+        <PlaceholderImage />
+      </River.Visual>
+      <River.Content
+        leadingComponent={() => (
+          <picture>
+            <img src={placeholderImage} alt="Placeholder leading visual" width={64} height={64} />
+          </picture>
+        )}
+        trailingComponent={() => (
+          <img src={placeholderImage} alt="Placeholder trailing visual" width={64} height={64} />
+        )}
+      >
+        <Heading>Heading</Heading>
+        <Text>Test showing custom images in the slots</Text>
+      </River.Content>
+    </River>
+  </Section>
+)
+CustomMediaContent.storyName = 'Custom media content'
+
 export const CustomTrailingContentWithDivider: StoryFn<typeof River> = () => (
   <Section>
     <River>
