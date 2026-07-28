@@ -61,14 +61,14 @@ export function useMinimalVideoPlayback({
         if (pausedByViewportRef.current) {
           pausedByViewportRef.current = false
           if (autoPlay && !prefersReducedMotion) {
-            void requestPlayback()
+            requestPlayback()
           }
           return
         }
 
         if (!initialAutoPlayHandledRef.current) {
           initialAutoPlayHandledRef.current = true
-          void requestPlayback()
+          requestPlayback()
         }
         return
       }
@@ -114,7 +114,7 @@ export function useMinimalVideoPlayback({
       return
     }
 
-    void requestPlayback()
+    requestPlayback()
   }, [requestPlayback])
 
   return {
