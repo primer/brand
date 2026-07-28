@@ -271,6 +271,22 @@ export const WithLeadingComponent: Story = {
   ),
 }
 
+export const WithMediaComponents: Story = {
+  render: () => (
+    <CTABanner
+      leadingComponent={() => (
+        <picture>
+          <img src={placeholderImage} alt="Placeholder leading visual" width={64} height={64} />
+        </picture>
+      )}
+      trailingComponent={() => <img src={placeholderImage} alt="Placeholder trailing visual" width={64} height={64} />}
+    >
+      <CTABanner.Heading>Where the most ambitious teams build great things</CTABanner.Heading>
+      <CTABanner.Description>Build, scale, and deliver secure software with GitHub.</CTABanner.Description>
+    </CTABanner>
+  ),
+}
+
 export const WithOctovisualLeadingComponent: Story = {
   render: () => (
     <CTABanner

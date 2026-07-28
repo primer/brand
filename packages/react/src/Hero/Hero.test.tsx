@@ -296,19 +296,23 @@ describe('Hero', () => {
   })
 
   it('provides an escape hatch to render a custom trailing component', () => {
-    const trailingText = 'Custom trailing'
-    const MockTrailingComponent = () => <div>{trailingText}</div>
+    const MockTrailingComponent = () => (
+      <picture>
+        <img src="trailing.jpg" alt="Custom trailing" />
+      </picture>
+    )
 
-    const {getByText} = render(
+    const {getByRole} = render(
       <Hero trailingComponent={MockTrailingComponent}>
         <Hero.Heading>{mockHeading}</Hero.Heading>
         <Hero.Description>{mockDescription}</Hero.Description>
       </Hero>,
     )
 
-    const elTrailing = getByText(trailingText)
+    const trailingImage = getByRole('img', {name: 'Custom trailing'})
 
-    expect(elTrailing).toBeInTheDocument()
+    expect(trailingImage).toBeInTheDocument()
+    expect(trailingImage.closest('[class*="Hero-trailing"]')).toBeInTheDocument()
   })
 
   it('no a11y violations', async () => {

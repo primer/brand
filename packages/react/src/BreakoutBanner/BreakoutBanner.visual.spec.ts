@@ -71,6 +71,17 @@ test.describe('Visual Comparison: BreakoutBanner', () => {
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
+  test('BreakoutBanner / Leading Media', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-breakoutbanner-features--leading-media&viewMode=story',
+      {waitUntil: 'networkidle'},
+    )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+    await page.waitForTimeout(500)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
   test('BreakoutBanner / Optional Description', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-breakoutbanner-features--optional-description&viewMode=story',

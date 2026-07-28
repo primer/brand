@@ -315,6 +315,10 @@
   margin-block-start: var(--base-size-32);
 }
 
+.Hero-trailing :is(img, picture) {
+  display: block;
+}
+
 .Hero-eyebrow {
   margin-block-end: var(--base-size-32);
 }
