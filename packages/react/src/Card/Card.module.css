@@ -214,6 +214,12 @@
   text-decoration: underline !important;
 }
 
+.Card--disableAnimation,
+.Card--disableAnimation * {
+  animation: none;
+  transition: none;
+}
+
 /* The focus outline will appear around the entire card, not just the title */
 .Card__link:focus {
   outline: none;
@@ -483,10 +489,6 @@
 
 .Card--ctaVariant-arrow .Card__description {
   margin-bottom: var(--base-size-12);
-}
-
-.Card--ctaVariant-arrow:not(.Card--disableAnimation):hover {
-  transform: none;
 }
 
 .Card--ctaVariant-arrow .Card__action {

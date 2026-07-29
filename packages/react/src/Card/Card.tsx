@@ -60,7 +60,7 @@ export type CardProps = {
     | React.ReactElement<CardHeadingProps>
     | React.ReactElement<CardDescriptionProps>
   /**
-   * Disable the default hover animation
+   * Disable transitions and animations within the Card
    */
   disableAnimation?: boolean
   /**
