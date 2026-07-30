@@ -150,192 +150,56 @@ test.describe('Visual Comparison: MinimalFooter', () => {
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
-  // eslint-disable-next-line i18n-text/no-en
-  test.describe('Fixed viewport test for Gridline variant (1600px)', () => {
-    test.use({viewport: {width: 1600, height: 900}})
-    test('MinimalFooter / Gridline variant (1600px)', async ({page}) => {
-      await page.goto(
-        'http://localhost:6006/iframe.html?args=&id=components-minimalfooter-features-gridline-variants--gridline-1600&viewMode=story',
-        {waitUntil: 'networkidle'},
-      )
-      await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+  test('MinimalFooter / Custom Content', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-minimalfooter-features--custom-content&viewMode=story',
+      {waitUntil: 'networkidle'},
+    )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
-      await page.waitForTimeout(5000)
-      await expect(page).toHaveScreenshot({fullPage: true})
-    })
+    await page.waitForTimeout(500)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
+  test('MinimalFooter / Back To Top', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-minimalfooter-features--back-to-top&viewMode=story',
+      {waitUntil: 'networkidle'},
+    )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+    await page.waitForTimeout(500)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
+  test('MinimalFooter / Back To Top Hover', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-minimalfooter-features--back-to-top-hover&viewMode=story',
+      {waitUntil: 'networkidle'},
+    )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+    await page.waitForTimeout(500)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
+  test('MinimalFooter / Back To Top Dark', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-minimalfooter-features--back-to-top-dark&viewMode=story',
+      {waitUntil: 'networkidle'},
+    )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+    await page.waitForTimeout(500)
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   // eslint-disable-next-line i18n-text/no-en
-  test.describe('Fixed viewport test for Gridline variant (800px)', () => {
-    test.use({viewport: {width: 800, height: 900}})
-    test('MinimalFooter / Gridline variant (800px)', async ({page}) => {
+  test.describe('Fixed viewport test for Responsive medium (834px)', () => {
+    test.use({viewport: {width: 834, height: 900}})
+    test('MinimalFooter / Responsive medium (834px)', async ({page}) => {
       await page.goto(
-        'http://localhost:6006/iframe.html?args=&id=components-minimalfooter-features-gridline-variants--gridline-800&viewMode=story',
-        {waitUntil: 'networkidle'},
-      )
-      await page.locator('body.sb-show-main').waitFor({state: 'visible'})
-
-      await page.waitForTimeout(5000)
-      await expect(page).toHaveScreenshot({fullPage: true})
-    })
-  })
-
-  // eslint-disable-next-line i18n-text/no-en
-  test.describe('Fixed viewport test for Gridline variant (390px)', () => {
-    test.use({viewport: {width: 390, height: 900}})
-    test('MinimalFooter / Gridline variant (390px)', async ({page}) => {
-      await page.goto(
-        'http://localhost:6006/iframe.html?args=&id=components-minimalfooter-features-gridline-variants--gridline-390&viewMode=story',
-        {waitUntil: 'networkidle'},
-      )
-      await page.locator('body.sb-show-main').waitFor({state: 'visible'})
-
-      await page.waitForTimeout(5000)
-      await expect(page).toHaveScreenshot({fullPage: true})
-    })
-  })
-
-  // eslint-disable-next-line i18n-text/no-en
-  test.describe('Fixed viewport test for Gridline variant (dark) (1600px)', () => {
-    test.use({viewport: {width: 1600, height: 900}})
-    test('MinimalFooter / Gridline variant (dark) (1600px)', async ({page}) => {
-      await page.goto(
-        'http://localhost:6006/iframe.html?args=&id=components-minimalfooter-features-gridline-variants--gridline-dark-1600&viewMode=story',
-        {waitUntil: 'networkidle'},
-      )
-      await page.locator('body.sb-show-main').waitFor({state: 'visible'})
-
-      await page.waitForTimeout(5000)
-      await expect(page).toHaveScreenshot({fullPage: true})
-    })
-  })
-
-  // eslint-disable-next-line i18n-text/no-en
-  test.describe('Fixed viewport test for Gridline variant (dark) (800px)', () => {
-    test.use({viewport: {width: 800, height: 900}})
-    test('MinimalFooter / Gridline variant (dark) (800px)', async ({page}) => {
-      await page.goto(
-        'http://localhost:6006/iframe.html?args=&id=components-minimalfooter-features-gridline-variants--gridline-dark-800&viewMode=story',
-        {waitUntil: 'networkidle'},
-      )
-      await page.locator('body.sb-show-main').waitFor({state: 'visible'})
-
-      await page.waitForTimeout(5000)
-      await expect(page).toHaveScreenshot({fullPage: true})
-    })
-  })
-
-  // eslint-disable-next-line i18n-text/no-en
-  test.describe('Fixed viewport test for Gridline variant (dark) (390px)', () => {
-    test.use({viewport: {width: 390, height: 900}})
-    test('MinimalFooter / Gridline variant (dark) (390px)', async ({page}) => {
-      await page.goto(
-        'http://localhost:6006/iframe.html?args=&id=components-minimalfooter-features-gridline-variants--gridline-dark-390&viewMode=story',
-        {waitUntil: 'networkidle'},
-      )
-      await page.locator('body.sb-show-main').waitFor({state: 'visible'})
-
-      await page.waitForTimeout(5000)
-      await expect(page).toHaveScreenshot({fullPage: true})
-    })
-  })
-
-  // eslint-disable-next-line i18n-text/no-en
-  test.describe('Fixed viewport test for Gridline variant (fully populated) (1600px)', () => {
-    test.use({viewport: {width: 1600, height: 900}})
-    test('MinimalFooter / Gridline variant (fully populated) (1600px)', async ({page}) => {
-      await page.goto(
-        'http://localhost:6006/iframe.html?args=&id=components-minimalfooter-features-gridline-variants--gridline-fully-populated-1600&viewMode=story',
-        {waitUntil: 'networkidle'},
-      )
-      await page.locator('body.sb-show-main').waitFor({state: 'visible'})
-
-      await page.waitForTimeout(5000)
-      await expect(page).toHaveScreenshot({fullPage: true})
-    })
-  })
-
-  // eslint-disable-next-line i18n-text/no-en
-  test.describe('Fixed viewport test for Gridline variant (fully populated) (800px)', () => {
-    test.use({viewport: {width: 800, height: 900}})
-    test('MinimalFooter / Gridline variant (fully populated) (800px)', async ({page}) => {
-      await page.goto(
-        'http://localhost:6006/iframe.html?args=&id=components-minimalfooter-features-gridline-variants--gridline-fully-populated-800&viewMode=story',
-        {waitUntil: 'networkidle'},
-      )
-      await page.locator('body.sb-show-main').waitFor({state: 'visible'})
-
-      await page.waitForTimeout(5000)
-      await expect(page).toHaveScreenshot({fullPage: true})
-    })
-  })
-
-  // eslint-disable-next-line i18n-text/no-en
-  test.describe('Fixed viewport test for Gridline variant (fully populated) (390px)', () => {
-    test.use({viewport: {width: 390, height: 900}})
-    test('MinimalFooter / Gridline variant (fully populated) (390px)', async ({page}) => {
-      await page.goto(
-        'http://localhost:6006/iframe.html?args=&id=components-minimalfooter-features-gridline-variants--gridline-fully-populated-390&viewMode=story',
-        {waitUntil: 'networkidle'},
-      )
-      await page.locator('body.sb-show-main').waitFor({state: 'visible'})
-
-      await page.waitForTimeout(5000)
-      await expect(page).toHaveScreenshot({fullPage: true})
-    })
-  })
-
-  // eslint-disable-next-line i18n-text/no-en
-  test.describe('Fixed viewport test for Gridline variant (logo) (1600px)', () => {
-    test.use({viewport: {width: 1600, height: 900}})
-    test('MinimalFooter / Gridline variant (logo) (1600px)', async ({page}) => {
-      await page.goto(
-        'http://localhost:6006/iframe.html?args=&id=components-minimalfooter-features-gridline-variants--gridline-logo&viewMode=story',
-        {waitUntil: 'networkidle'},
-      )
-      await page.locator('body.sb-show-main').waitFor({state: 'visible'})
-
-      await page.waitForTimeout(5000)
-      await expect(page).toHaveScreenshot({fullPage: true})
-    })
-  })
-
-  // eslint-disable-next-line i18n-text/no-en
-  test.describe('Fixed viewport test for Gridline variant (with Content) (1600px)', () => {
-    test.use({viewport: {width: 1600, height: 900}})
-    test('MinimalFooter / Gridline variant (with Content) (1600px)', async ({page}) => {
-      await page.goto(
-        'http://localhost:6006/iframe.html?args=&id=components-minimalfooter-features-gridline-variants--gridline-with-content&viewMode=story',
-        {waitUntil: 'networkidle'},
-      )
-      await page.locator('body.sb-show-main').waitFor({state: 'visible'})
-
-      await page.waitForTimeout(5000)
-      await expect(page).toHaveScreenshot({fullPage: true})
-    })
-  })
-
-  // eslint-disable-next-line i18n-text/no-en
-  test.describe('Fixed viewport test for Gridline variant (with Back to Top) (1600px)', () => {
-    test.use({viewport: {width: 1600, height: 900}})
-    test('MinimalFooter / Gridline variant (with Back to Top) (1600px)', async ({page}) => {
-      await page.goto(
-        'http://localhost:6006/iframe.html?args=&id=components-minimalfooter-features-gridline-variants--gridline-with-back-to-top&viewMode=story',
-        {waitUntil: 'networkidle'},
-      )
-      await page.locator('body.sb-show-main').waitFor({state: 'visible'})
-
-      await page.waitForTimeout(5000)
-      await expect(page).toHaveScreenshot({fullPage: true})
-    })
-  })
-
-  // eslint-disable-next-line i18n-text/no-en
-  test.describe('Fixed viewport test for Gridline variant (no social links) (1600px)', () => {
-    test.use({viewport: {width: 1600, height: 900}})
-    test('MinimalFooter / Gridline variant (no social links) (1600px)', async ({page}) => {
-      await page.goto(
-        'http://localhost:6006/iframe.html?args=&id=components-minimalfooter-features-gridline-variants--gridline-no-social-links&viewMode=story',
+        'http://localhost:6006/iframe.html?args=&id=components-minimalfooter-features--responsive-medium&viewMode=story',
         {waitUntil: 'networkidle'},
       )
       await page.locator('body.sb-show-main').waitFor({state: 'visible'})
@@ -346,31 +210,46 @@ test.describe('Visual Comparison: MinimalFooter', () => {
   })
 
   // eslint-disable-next-line i18n-text/no-en
-  test.describe('Fixed viewport test for Gridline variant (filtered social links) (1600px)', () => {
-    test.use({viewport: {width: 1600, height: 900}})
-    test('MinimalFooter / Gridline variant (filtered social links) (1600px)', async ({page}) => {
+  test.describe('Fixed viewport test for Responsive small (390px)', () => {
+    test.use({viewport: {width: 390, height: 900}})
+    test('MinimalFooter / Responsive small (390px)', async ({page}) => {
       await page.goto(
-        'http://localhost:6006/iframe.html?args=&id=components-minimalfooter-features-gridline-variants--gridline-filtered-social-links&viewMode=story',
+        'http://localhost:6006/iframe.html?args=&id=components-minimalfooter-features--responsive-small&viewMode=story',
         {waitUntil: 'networkidle'},
       )
       await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
-      await page.waitForTimeout(5000)
+      await page.waitForTimeout(500)
       await expect(page).toHaveScreenshot({fullPage: true})
     })
   })
 
   // eslint-disable-next-line i18n-text/no-en
-  test.describe('Fixed viewport test for Gridline variant (empty optional regions) (1600px)', () => {
-    test.use({viewport: {width: 1600, height: 900}})
-    test('MinimalFooter / Gridline variant (empty optional regions) (1600px)', async ({page}) => {
+  test.describe('Fixed viewport test for Responsive medium, no social links (834px)', () => {
+    test.use({viewport: {width: 834, height: 900}})
+    test('MinimalFooter / Responsive medium, no social links (834px)', async ({page}) => {
       await page.goto(
-        'http://localhost:6006/iframe.html?args=&id=components-minimalfooter-features-gridline-variants--gridline-empty-optional-regions&viewMode=story',
+        'http://localhost:6006/iframe.html?args=&id=components-minimalfooter-features--responsive-medium-no-social-links&viewMode=story',
         {waitUntil: 'networkidle'},
       )
       await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
-      await page.waitForTimeout(5000)
+      await page.waitForTimeout(500)
+      await expect(page).toHaveScreenshot({fullPage: true})
+    })
+  })
+
+  // eslint-disable-next-line i18n-text/no-en
+  test.describe('Fixed viewport test for Responsive small, no social links (390px)', () => {
+    test.use({viewport: {width: 390, height: 900}})
+    test('MinimalFooter / Responsive small, no social links (390px)', async ({page}) => {
+      await page.goto(
+        'http://localhost:6006/iframe.html?args=&id=components-minimalfooter-features--responsive-small-no-social-links&viewMode=story',
+        {waitUntil: 'networkidle'},
+      )
+      await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+      await page.waitForTimeout(500)
       await expect(page).toHaveScreenshot({fullPage: true})
     })
   })

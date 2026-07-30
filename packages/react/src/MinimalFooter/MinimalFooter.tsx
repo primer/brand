@@ -1,8 +1,8 @@
-import React, {PropsWithChildren, useCallback} from 'react'
+import React, {forwardRef, PropsWithChildren, useCallback} from 'react'
 import {clsx} from 'clsx'
-import {ArrowUpIcon, LogoGithubIcon, MarkGithubIcon} from '@primer/octicons-react'
+import {ArrowUpIcon, MarkGithubIcon} from '@primer/octicons-react'
 
-import {Button, ColorModesEnum, Stack, Text, useTheme} from '../'
+import {Button, Text} from '../'
 import {BaseProps} from '../component-helpers'
 import {useReducedMotion} from '../hooks/useReducedMotion'
 
@@ -11,10 +11,8 @@ import {useReducedMotion} from '../hooks/useReducedMotion'
  */
 import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/footer/colors-with-modes.css'
 /**
- * `--brand-control-minTarget-coarse` (used by the `gridline` variant's BackToTop hit-area)
- * isn't part of the shared stylesheet bundle. It's already imported transitively via
- * `Stack`, which this component always renders, but it's imported explicitly here too so
- * `MinimalFooter.module.css` doesn't depend on another component's import for its tokens.
+ * `--brand-control-minTarget-coarse` (used by the BackToTop hit-area) isn't part of
+ * the shared stylesheet bundle, so it is imported explicitly here.
  */
 import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/size/size.css'
 
@@ -83,31 +81,7 @@ const socialLinkData = {
 } as const
 
 type SocialLinkName = keyof typeof socialLinkData
-type SocialLink = (typeof socialLinkData)[SocialLinkName]
-
 const socialLinkNames = Object.keys(socialLinkData) as SocialLinkName[]
-
-/**
- * The layout variations available in MinimalFooter.
- * `gridline` groups output into `brand-social`, `content`, and `legal`
- * regions (each marked with a `data-footer-region` attribute), rendering
- * only the regions that have content, in that order, and applies the
- * tokenized `gridline` visual styling (gutters, dividers, typography, gaps,
- * etc.) defined in `MinimalFooter.module.css`. The `content` region is where
- * consumers can approximate the Figma reference's page-level chrome (utility
- * links, language/theme/status controls); see the "Structural scope" note atop
- * the `gridline` section of `MinimalFooter.module.css` for the full rationale.
- */
-export const MinimalFooterVariants = ['default', 'gridline'] as const
-export const defaultMinimalFooterVariant = MinimalFooterVariants[0]
-export type MinimalFooterVariant = (typeof MinimalFooterVariants)[number]
-
-/**
- * The GitHub logo variations available in MinimalFooter.
- */
-export const MinimalFooterLogoVariants = ['logo', 'logomark'] as const
-export const defaultMinimalFooterLogoVariant = MinimalFooterLogoVariants[0]
-export type MinimalFooterLogoVariant = (typeof MinimalFooterLogoVariants)[number]
 
 export type MinimalFooterProps = {
   /**
@@ -123,14 +97,6 @@ export type MinimalFooterProps = {
    * If not provided, the copyright statement will be the default GitHub copyright statement.
    */
   copyrightStatement?: string | React.ReactElement
-  /**
-   * The layout variant of the footer.
-   */
-  variant?: MinimalFooterVariant
-  /**
-   * The GitHub logo variant rendered in the footer.
-   */
-  logoVariant?: MinimalFooterLogoVariant
 } & BaseProps<HTMLElement>
 
 /**
@@ -165,89 +131,70 @@ function parseRootChildren(children: React.ReactNode) {
 }
 
 /**
- * The names of the `gridline` variant's top-level regions, in the approved
- * rendering order. `brand-social` and `legal` are always populated (the logo
- * and copyright are never empty), while `content` is only rendered when a
+ * The footer's top-level regions, in rendering order. `top` and `bottom`
+ * are always populated, while `content` is only rendered when a
  * `MinimalFooter.Content` child is present.
  */
-type FooterRegionName = 'brand-social' | 'content' | 'legal'
+type FooterRegionName = 'top' | 'content' | 'bottom'
 
 function Root({
   className,
   children,
   copyrightStatement,
   logoHref = 'https://github.com',
-  logoVariant = defaultMinimalFooterLogoVariant,
   socialLinks,
-  variant = defaultMinimalFooterVariant,
   ...rest
 }: PropsWithChildren<MinimalFooterProps>) {
   const {footnotes, content, backToTop, links} = parseRootChildren(children)
 
   const currentYear = new Date().getFullYear()
-  const isGridline = variant === 'gridline'
+  const resolvedSocialLinks = socialLinks === undefined ? socialLinkNames : socialLinks
+  const renderedSocialLinks = resolvedSocialLinks === false ? [] : resolvedSocialLinks
+  const hasSocialLinks = renderedSocialLinks.length > 0
 
-  const brandSocialRegion = (
-    <>
-      <SocialLogomarks socialLinks={socialLinks} logoHref={logoHref} logoVariant={logoVariant} />
-      {backToTop}
-    </>
-  )
-
-  const legalRegion = (
-    <section>
-      <div className={styles['Footer__legal-and-links']}>
-        <div className={styles['Footer__container']}>
-          <Stack
-            direction={{narrow: 'vertical', regular: 'horizontal'}}
-            gap={isGridline ? 20 : 'normal'}
-            padding="none"
-            justifyContent={isGridline ? 'flex-start' : 'space-between'}
-          >
-            <Stack
-              padding="none"
-              gap={isGridline ? 20 : 'condensed'}
-              flexWrap={isGridline ? 'wrap' : undefined}
-              justifyContent={{
-                narrow: 'center',
-                regular: 'flex-end',
-              }}
-              direction={{
-                narrow: 'vertical',
-                regular: 'horizontal',
-              }}
-              className={styles['Footer__links']}
-            >
-              <>{links}</>
-            </Stack>
-            <Text as="p" size="200" variant="muted" className={styles['Footer__copyright']}>
-              {copyrightStatement ? copyrightStatement : `\u00A9 ${currentYear} GitHub. All rights reserved.`}
-            </Text>
-          </Stack>
+  const topRegion = (
+    <section className={styles.Footer__top}>
+      <div className={styles.Footer__container}>
+        <div className={styles['Footer__top-row']}>
+          <LogoLink logoHref={logoHref} />
+          {backToTop}
         </div>
       </div>
     </section>
   )
 
-  // Approved region order for the `gridline` variant: brand/social, content, legal.
+  const bottomRegion = (
+    <section className={styles.Footer__bottom} data-footer-layout={hasSocialLinks ? 'social' : 'no-social'}>
+      <div className={styles.Footer__container}>
+        <div className={styles['Footer__bottom-row']}>
+          <div className={styles['Footer__copyright-and-links']}>
+            <Text as="p" size="200" variant="muted" className={styles['Footer__copyright']}>
+              {copyrightStatement ? copyrightStatement : `\u00A9 ${currentYear} GitHub. All rights reserved.`}
+            </Text>
+            <div className={styles['Footer__links']}>{links}</div>
+          </div>
+          {hasSocialLinks ? <SocialLinks socialLinks={renderedSocialLinks} /> : null}
+        </div>
+      </div>
+    </section>
+  )
+
   const regions: {name: FooterRegionName; node: React.ReactNode}[] = [
-    {name: 'brand-social', node: brandSocialRegion},
+    {name: 'top', node: topRegion},
     {name: 'content', node: content},
-    {name: 'legal', node: legalRegion},
+    {name: 'bottom', node: bottomRegion},
   ]
 
   return (
-    <footer className={clsx(styles.Footer, className)} data-variant={variant} {...rest}>
+    <footer className={clsx(styles.Footer, className)} {...rest}>
       {footnotes}
-      {isGridline
-        ? regions
-            .filter(region => Boolean(region.node))
-            .map(region => (
-              <div key={region.name} data-footer-region={region.name}>
-                {region.node}
-              </div>
-            ))
-        : regions.map(region => <React.Fragment key={region.name}>{region.node}</React.Fragment>)}
+      {regions
+        .filter(region => Boolean(region.node))
+        .map(region => (
+          <div key={region.name} data-footer-region={region.name}>
+            {region.node}
+          </div>
+        ))}
     </footer>
   )
 }
@@ -317,49 +264,26 @@ const SocialLink = ({name}: SocialLinkProps) => {
   )
 }
 
-type SocialLogomarksProps = {
-  socialLinks?: SocialLinkName[] | false
-  logoHref?: string
-  logoVariant?: MinimalFooterLogoVariant
+function LogoLink({logoHref}: {logoHref?: string}) {
+  return (
+    <a
+      href={logoHref}
+      className={styles.Footer__logo}
+      data-analytics-event='{"category":"Footer","action":"go to home","label":"text:home"}'
+      aria-label="GitHub"
+    >
+      <MarkGithubIcon size={24} />
+    </a>
+  )
 }
 
-function SocialLogomarks({
-  socialLinks = socialLinkNames,
-  logoHref,
-  logoVariant = defaultMinimalFooterLogoVariant,
-}: SocialLogomarksProps) {
-  const {colorMode} = useTheme()
-  const LogoIcon = logoVariant === 'logomark' ? MarkGithubIcon : LogoGithubIcon
-
+function SocialLinks({socialLinks}: {socialLinks: SocialLinkName[]}) {
   return (
-    <section className={clsx(styles['Footer__logomarks'])}>
-      <div className={styles['Footer__container']}>
-        <Stack
-          alignItems="center"
-          direction={{narrow: 'vertical', regular: 'horizontal'}}
-          gap="normal"
-          padding="none"
-          justifyContent="space-between"
-        >
-          <div>
-            <a
-              href={logoHref}
-              data-analytics-event='{"category":"Footer","action":"go to home","label":"text:home"}'
-              aria-label="GitHub"
-            >
-              <LogoIcon fill={colorMode === ColorModesEnum.DARK ? 'white' : 'black'} size="medium" />
-            </a>
-          </div>
-          {socialLinks ? (
-            <ul className={styles['Footer__social-links']}>
-              {socialLinks.map(name => (
-                <SocialLink key={name} name={name} />
-              ))}
-            </ul>
-          ) : null}
-        </Stack>
-      </div>
-    </section>
+    <ul className={styles['Footer__social-links']}>
+      {socialLinks.map(name => (
+        <SocialLink key={name} name={name} />
+      ))}
+    </ul>
   )
 }
 
@@ -388,8 +312,8 @@ const Link = <C extends React.ElementType = 'a'>({as, children, ...rest}: PropsW
 /**
  * Public prop shape approved for `MinimalFooter.BackToTop` (see `td-92fab6`).
  *
- * - `children` supplies the visible, accessible label (mirrors Button's children-as-label convention)
- *   and defaults to "Back to top" only when omitted, so consumers can localize it.
+ * - `children` supplies the required visible, accessible label (mirrors Button's
+ *   children-as-label convention), so consumers retain localization ownership.
  * - `onClick` runs before any built-in scrolling; built-in scrolling is skipped when
  *   `event.preventDefault()` is called, matching the `Accordion`/`NavList` handler-composition pattern.
  * - `scrollBehavior` lets consumers customize scrolling in the normal-motion case only. It is never
@@ -399,7 +323,7 @@ const Link = <C extends React.ElementType = 'a'>({as, children, ...rest}: PropsW
  *   consistent with `Button`'s prop-forwarding behavior.
  */
 export type MinimalFooterBackToTopProps = {
-  children?: React.ReactNode
+  children: React.ReactNode
   onClick?: React.MouseEventHandler<HTMLButtonElement>
   scrollBehavior?: ScrollBehavior
 } & BaseProps<HTMLButtonElement> &
@@ -416,31 +340,47 @@ export type MinimalFooterBackToTopProps = {
  * uses `behavior: 'auto'`, regardless of `scrollBehavior` - reduced motion can never be overridden
  * to `smooth`. Otherwise, `scrollBehavior` selects the behavior, defaulting to `smooth`.
  */
-function BackToTop({children, onClick, scrollBehavior, ...rest}: MinimalFooterBackToTopProps) {
-  const prefersReducedMotion = useReducedMotion()
+const BackToTop = forwardRef<HTMLButtonElement, MinimalFooterBackToTopProps>(
+  ({children, className, onClick, scrollBehavior, type = 'button', ...rest}, ref) => {
+    const prefersReducedMotion = useReducedMotion()
 
-  const handleClick = useCallback<React.MouseEventHandler<HTMLButtonElement>>(
-    event => {
-      onClick?.(event)
+    const handleClick = useCallback<React.MouseEventHandler<HTMLButtonElement>>(
+      event => {
+        onClick?.(event)
 
-      if (event.defaultPrevented) {
-        return
-      }
+        if (event.defaultPrevented) {
+          return
+        }
 
-      window.scrollTo({
-        top: 0,
-        behavior: prefersReducedMotion ? 'auto' : scrollBehavior ?? 'smooth',
-      })
-    },
-    [onClick, prefersReducedMotion, scrollBehavior],
-  )
+        window.scrollTo({
+          top: 0,
+          behavior: prefersReducedMotion ? 'auto' : scrollBehavior ?? 'smooth',
+        })
+      },
+      [onClick, prefersReducedMotion, scrollBehavior],
+    )
 
-  return (
-    <Button as="button" variant="subtle" size="small" leadingVisual={<ArrowUpIcon />} onClick={handleClick} {...rest}>
-      {children ? children : 'Back to top'}
-    </Button>
-  )
-}
+    return (
+      <Button
+        ref={ref}
+        as="button"
+        type={type}
+        variant="subtle"
+        size="small"
+        className={clsx(styles.Footer__backToTop, className)}
+        onClick={handleClick}
+        {...rest}
+      >
+        <span className={styles['Footer__backToTop-content']}>
+          <span>{children}</span>
+          <span className={styles['Footer__backToTop-icon']} aria-hidden="true">
+            <ArrowUpIcon />
+          </span>
+        </span>
+      </Button>
+    )
+  },
+)
 
 /**
  * Use MinimalFooter to render a global footer on all GitHub pages.

@@ -4,7 +4,7 @@ import userEvent from '@testing-library/user-event'
 import '@testing-library/jest-dom'
 import {axe, toHaveNoViolations} from 'jest-axe'
 import {MinimalFooter} from './MinimalFooter'
-import {Text, ThemeProvider} from '../'
+import {Text} from '../'
 
 expect.extend(toHaveNoViolations)
 
@@ -42,7 +42,7 @@ describe('MinimalFooter', () => {
     expect(results).toHaveNoViolations()
   })
 
-  it('has no accessibility violations in a fully-populated default composition', async () => {
+  it('has no accessibility violations in a fully-populated composition', async () => {
     const {container} = render(
       <MinimalFooter>
         <MinimalFooter.Footnotes>
@@ -51,26 +51,7 @@ describe('MinimalFooter', () => {
         <MinimalFooter.Content>
           <p>Custom content</p>
         </MinimalFooter.Content>
-        <MinimalFooter.BackToTop />
-        <MinimalFooter.Link href="/link1">Link 1</MinimalFooter.Link>
-        <MinimalFooter.Link href="/link2">Link 2</MinimalFooter.Link>
-      </MinimalFooter>,
-    )
-
-    const results = await axe(container)
-    expect(results).toHaveNoViolations()
-  })
-
-  it('has no accessibility violations in a fully-populated gridline composition', async () => {
-    const {container} = render(
-      <MinimalFooter variant="gridline">
-        <MinimalFooter.Footnotes>
-          <Text>Footnote text</Text>
-        </MinimalFooter.Footnotes>
-        <MinimalFooter.Content>
-          <p>Custom content</p>
-        </MinimalFooter.Content>
-        <MinimalFooter.BackToTop />
+        <MinimalFooter.BackToTop>Back to top</MinimalFooter.BackToTop>
         <MinimalFooter.Link href="/link1">Link 1</MinimalFooter.Link>
         <MinimalFooter.Link href="/link2">Link 2</MinimalFooter.Link>
       </MinimalFooter>,
@@ -286,17 +267,9 @@ describe('MinimalFooter', () => {
     )
   })
 
-  it('applies the link-text style hook to the link label in both variants', () => {
-    const {getByText, rerender} = render(
+  it('applies the link-text style hook to the link label', () => {
+    const {getByText} = render(
       <MinimalFooter>
-        <MinimalFooter.Link href="/test">Test Link</MinimalFooter.Link>
-      </MinimalFooter>,
-    )
-
-    expect(getByText('Test Link')).toHaveClass('Footer__link-text')
-
-    rerender(
-      <MinimalFooter variant="gridline">
         <MinimalFooter.Link href="/test">Test Link</MinimalFooter.Link>
       </MinimalFooter>,
     )
@@ -446,13 +419,13 @@ describe('MinimalFooter', () => {
     expect(footnote.tagName).toBe('DIV')
   })
 
-  it('renders social links in correct order', () => {
-    const {getAllByRole} = render(<MinimalFooter socialLinks={['x', 'github', 'linkedin']} />)
+  it('renders social links in the supplied order', () => {
+    const {getAllByRole} = render(<MinimalFooter socialLinks={['linkedin', 'x', 'github']} />)
     const socialLinks = getAllByRole('link', {name: isSocialLink})
 
-    expect(socialLinks[0]).toHaveAttribute('href', 'https://x.com/github')
-    expect(socialLinks[1]).toHaveAttribute('href', 'https://github.com/github')
-    expect(socialLinks[2]).toHaveAttribute('href', 'https://www.linkedin.com/company/github')
+    expect(socialLinks[0]).toHaveAttribute('href', 'https://www.linkedin.com/company/github')
+    expect(socialLinks[1]).toHaveAttribute('href', 'https://x.com/github')
+    expect(socialLinks[2]).toHaveAttribute('href', 'https://github.com/github')
   })
 
   it('renders footnotes above social links and footer links', () => {
@@ -470,8 +443,8 @@ describe('MinimalFooter', () => {
 
     expect(sections[0]).toContainElement(container.querySelector('.Footer__terms'))
 
-    const logomarksSection = container.querySelector('.Footer__logomarks')
-    expect(logomarksSection).toBeInTheDocument()
+    const topRegion = container.querySelector('[data-footer-region="top"]')
+    expect(topRegion).toBeInTheDocument()
   })
 
   it('renders component with only footnotes', () => {
@@ -598,73 +571,15 @@ describe('MinimalFooter', () => {
     expect(validFootnote).toBeInTheDocument()
   })
 
-  it('renders GitHub logo with white fill in dark mode', () => {
-    const {container} = render(
-      <ThemeProvider colorMode="dark">
-        <MinimalFooter />
-      </ThemeProvider>,
-    )
-
-    const logoIcon = container.querySelector('svg')
-    expect(logoIcon).toHaveAttribute('fill', 'white')
-  })
-
-  it('renders GitHub logo with black fill in light mode', () => {
-    const {container} = render(
-      <ThemeProvider colorMode="light">
-        <MinimalFooter />
-      </ThemeProvider>,
-    )
-
-    const logoIcon = container.querySelector('svg')
-    expect(logoIcon).toHaveAttribute('fill', 'black')
-  })
-
-  it('defaults to the default variant', () => {
+  it('uses the semantic logo style hook', () => {
     const {getByRole} = render(<MinimalFooter />)
-    const footer = getByRole('contentinfo')
-    expect(footer).toHaveAttribute('data-variant', 'default')
+    expect(getByRole('link', {name: 'GitHub'})).toHaveClass('Footer__logo')
   })
 
-  it('supports the gridline variant without altering existing markup', () => {
-    const {getByRole, container} = render(<MinimalFooter variant="gridline" />)
-    const footer = getByRole('contentinfo')
-
-    expect(footer).toHaveAttribute('data-variant', 'gridline')
-    expect(footer).toHaveClass('Footer')
-    expect(container.querySelector('.Footer__logomarks')).toBeInTheDocument()
-  })
-
-  it('defaults to the logo variant', () => {
+  it('renders the GitHub logomark', () => {
     const {container} = render(<MinimalFooter />)
-    expect(container.querySelector('svg.octicon-logo-github')).toBeInTheDocument()
-    expect(container.querySelector('svg.octicon-mark-github')).not.toBeInTheDocument()
-  })
-
-  it('supports the logomark variant', () => {
-    const {container} = render(<MinimalFooter logoVariant="logomark" />)
     expect(container.querySelector('svg.octicon-mark-github')).toBeInTheDocument()
     expect(container.querySelector('svg.octicon-logo-github')).not.toBeInTheDocument()
-  })
-
-  it('renders the logomark variant as an accessible, theme-aware link in both color modes', () => {
-    const {getByRole, container, rerender} = render(
-      <ThemeProvider colorMode="light">
-        <MinimalFooter logoVariant="logomark" />
-      </ThemeProvider>,
-    )
-
-    expect(getByRole('link', {name: 'GitHub'})).toBeInTheDocument()
-    expect(container.querySelector('svg.octicon-mark-github')).toHaveAttribute('fill', 'black')
-
-    rerender(
-      <ThemeProvider colorMode="dark">
-        <MinimalFooter logoVariant="logomark" />
-      </ThemeProvider>,
-    )
-
-    expect(getByRole('link', {name: 'GitHub'})).toBeInTheDocument()
-    expect(container.querySelector('svg.octicon-mark-github')).toHaveAttribute('fill', 'white')
   })
 
   it('renders MinimalFooter.Content children', () => {
@@ -776,51 +691,65 @@ describe('MinimalFooter', () => {
     expect(queryByRole('link', {name: 'Link 6'})).not.toBeInTheDocument()
   })
 
-  it('does not mark up regions in the default variant', () => {
-    const {container} = render(
+  it('omits the content region when no Content is provided', () => {
+    const {container} = render(<MinimalFooter />)
+
+    const regions = Array.from(container.querySelectorAll('[data-footer-region]')).map(region =>
+      region.getAttribute('data-footer-region'),
+    )
+
+    expect(regions).toEqual(['top', 'bottom'])
+  })
+
+  it('renders top, content, and bottom regions in the approved order', () => {
+    const {container, getByText} = render(
       <MinimalFooter>
         <MinimalFooter.Content>Custom content</MinimalFooter.Content>
       </MinimalFooter>,
     )
 
-    expect(container.querySelectorAll('[data-footer-region]')).toHaveLength(0)
-  })
-
-  it('omits the content region in the gridline variant when no Content is provided', () => {
-    const {container} = render(<MinimalFooter variant="gridline" />)
-
     const regions = Array.from(container.querySelectorAll('[data-footer-region]')).map(region =>
       region.getAttribute('data-footer-region'),
     )
 
-    expect(regions).toEqual(['brand-social', 'legal'])
+    expect(regions).toEqual(['top', 'content', 'bottom'])
+    expect(container.querySelector('[data-footer-region="top"] .Footer__logo')).toBeInTheDocument()
+    expect(getByText('Custom content').closest('[data-footer-region="bottom"]')).not.toBeInTheDocument()
+    expect(getByText('Custom content').closest('[data-footer-region="content"]')).toBeInTheDocument()
   })
 
-  it('renders brand-social, content, and legal regions in the approved order in the gridline variant', () => {
-    const {container, getByText} = render(
-      <MinimalFooter variant="gridline">
-        <MinimalFooter.Content>Custom content</MinimalFooter.Content>
+  it('places the logomark and Back to Top in the same top row', () => {
+    const {getByRole} = render(
+      <MinimalFooter>
+        <MinimalFooter.BackToTop>Back to top</MinimalFooter.BackToTop>
       </MinimalFooter>,
     )
 
-    const regions = Array.from(container.querySelectorAll('[data-footer-region]')).map(region =>
-      region.getAttribute('data-footer-region'),
+    const logo = getByRole('link', {name: 'GitHub'})
+    const backToTop = getByRole('button', {name: 'Back to top'})
+
+    expect(logo.closest('.Footer__top-row')).toBe(backToTop.closest('.Footer__top-row'))
+  })
+
+  it('places footer links and social links in the bottom region', () => {
+    const {getByRole} = render(
+      <MinimalFooter socialLinks={['x']}>
+        <MinimalFooter.Link href="/test">Test Link</MinimalFooter.Link>
+      </MinimalFooter>,
     )
 
-    expect(regions).toEqual(['brand-social', 'content', 'legal'])
-    expect(container.querySelector('[data-footer-region="brand-social"] .Footer__logomarks')).toBeInTheDocument()
-    expect(getByText('Custom content').closest('[data-footer-region="legal"]')).not.toBeInTheDocument()
-    expect(getByText('Custom content').closest('[data-footer-region="content"]')).toBeInTheDocument()
+    expect(getByRole('link', {name: 'Test Link'}).closest('[data-footer-region="bottom"]')).toBeInTheDocument()
+    expect(getByRole('link', {name: 'GitHub on X'}).closest('[data-footer-region="bottom"]')).toBeInTheDocument()
   })
 
   it('places Footnotes ahead of the mapped regions and preserves full region order when every optional child is present', () => {
     const {getByRole} = render(
-      <MinimalFooter variant="gridline">
+      <MinimalFooter>
         <MinimalFooter.Footnotes>
           <Text>Footnote text</Text>
         </MinimalFooter.Footnotes>
         <MinimalFooter.Content>Custom content</MinimalFooter.Content>
-        <MinimalFooter.BackToTop />
+        <MinimalFooter.BackToTop>Back to top</MinimalFooter.BackToTop>
         <MinimalFooter.Link href="/test">Test Link</MinimalFooter.Link>
       </MinimalFooter>,
     )
@@ -830,12 +759,12 @@ describe('MinimalFooter', () => {
       element => element.getAttribute('data-footer-region') ?? 'footnotes',
     )
 
-    expect(topLevelRegionNames).toEqual(['footnotes', 'brand-social', 'content', 'legal'])
+    expect(topLevelRegionNames).toEqual(['footnotes', 'top', 'content', 'bottom'])
   })
 
-  it('does not impose internal layout on MinimalFooter.Content in the gridline variant', () => {
+  it('does not impose internal layout on MinimalFooter.Content', () => {
     const {getByTestId} = render(
-      <MinimalFooter variant="gridline">
+      <MinimalFooter>
         <MinimalFooter.Content>
           <div data-testid="consumer-layout">
             <span>Consumer-owned markup</span>
@@ -849,52 +778,38 @@ describe('MinimalFooter', () => {
     expect(getByTestId('consumer-layout').parentElement).toHaveClass('Footer__container')
   })
 
-  it('keeps default social links, filtering, and the false opt-out working in the gridline variant', () => {
-    const {queryAllByRole, rerender} = render(<MinimalFooter variant="gridline" />)
+  it('keeps default social links, filtering, and the false opt-out working', () => {
+    const {queryAllByRole, rerender} = render(<MinimalFooter />)
     expect(queryAllByRole('link', {name: isSocialLink})).toHaveLength(8)
 
-    rerender(<MinimalFooter variant="gridline" socialLinks={['x', 'github']} />)
+    rerender(<MinimalFooter socialLinks={['x', 'github']} />)
     expect(queryAllByRole('link', {name: isSocialLink})).toHaveLength(2)
 
-    rerender(<MinimalFooter variant="gridline" socialLinks={false} />)
+    rerender(<MinimalFooter socialLinks={false} />)
     expect(queryAllByRole('link', {name: isSocialLink})).toHaveLength(0)
   })
 
-  it('aligns the legal region into a flush-start, tightly-gapped run in the gridline variant', () => {
+  it('marks the bottom region with stable social and no-social layout hooks', () => {
     const {container, rerender} = render(
       <MinimalFooter>
         <MinimalFooter.Link href="/test">Test Link</MinimalFooter.Link>
       </MinimalFooter>,
     )
 
-    let links = container.querySelector('.Footer__links')
-    let outerStack = links?.parentElement
-    expect(links).toHaveClass('Stack--gap-condensed')
-    expect(links).not.toHaveClass('Stack-flexWrap--wrap')
-    expect(outerStack).toHaveClass('Stack--gap-normal')
-    expect(outerStack).toHaveClass('Stack--justify-content-space-between')
-    expect(outerStack).not.toHaveClass('Stack--justify-content-flex-start')
-
-    rerender(
-      <MinimalFooter variant="gridline">
-        <MinimalFooter.Link href="/test">Test Link</MinimalFooter.Link>
-      </MinimalFooter>,
+    expect(container.querySelector('[data-footer-region="bottom"] section')).toHaveAttribute(
+      'data-footer-layout',
+      'social',
     )
 
-    links = container.querySelector('.Footer__links')
-    outerStack = links?.parentElement
-    expect(links).toHaveClass('Stack--gap-20')
-    expect(links).toHaveClass('Stack-flexWrap--wrap')
-    // The outer stack must switch to `flex-start` (not `space-between`) so copyright and
-    // links form a single flush-start run separated only by the 20px gap, instead of
-    // being pushed to opposite ends of the row.
-    expect(outerStack).toHaveClass('Stack--gap-20')
-    expect(outerStack).toHaveClass('Stack--justify-content-flex-start')
-    expect(outerStack).not.toHaveClass('Stack--justify-content-space-between')
+    rerender(<MinimalFooter socialLinks={false} />)
+    expect(container.querySelector('[data-footer-region="bottom"] section')).toHaveAttribute(
+      'data-footer-layout',
+      'no-social',
+    )
   })
 
-  it('preserves logo href, analytics, accessibility, and theme fill in the gridline variant', () => {
-    const {getByRole, container} = render(<MinimalFooter variant="gridline" logoHref="/custom-home" />)
+  it('preserves logo href, analytics, accessibility, and semantic styling', () => {
+    const {getByRole} = render(<MinimalFooter logoHref="/custom-home" />)
 
     const logoLink = getByRole('link', {name: 'GitHub'})
     expect(logoLink).toHaveAttribute('href', '/custom-home')
@@ -903,8 +818,7 @@ describe('MinimalFooter', () => {
       '{"category":"Footer","action":"go to home","label":"text:home"}',
     )
 
-    const logoIcon = container.querySelector('svg')
-    expect(logoIcon).toHaveAttribute('fill', 'black')
+    expect(logoLink).toHaveClass('Footer__logo')
   })
 
   it('does not render Back to Top unless opted into as a child', () => {
@@ -912,14 +826,36 @@ describe('MinimalFooter', () => {
     expect(queryByRole('button', {name: 'Back to top'})).not.toBeInTheDocument()
   })
 
-  it('renders Back to Top with the default label when no children are supplied', () => {
-    const {getByRole} = render(
+  it('requires consumers to provide a localized Back to Top label', () => {
+    render(
       <MinimalFooter>
+        {/* @ts-expect-error BackToTop requires a consumer-provided label */}
         <MinimalFooter.BackToTop />
       </MinimalFooter>,
     )
+  })
 
-    expect(getByRole('button', {name: 'Back to top'})).toBeInTheDocument()
+  it('defaults Back to Top to type button inside a form', () => {
+    const {getByRole} = render(
+      <form>
+        <MinimalFooter>
+          <MinimalFooter.BackToTop>Back to top</MinimalFooter.BackToTop>
+        </MinimalFooter>
+      </form>,
+    )
+
+    expect(getByRole('button', {name: 'Back to top'})).toHaveAttribute('type', 'button')
+  })
+
+  it('forwards a ref to the Back to Top button', () => {
+    const ref = React.createRef<HTMLButtonElement>()
+    const {getByRole} = render(
+      <MinimalFooter>
+        <MinimalFooter.BackToTop ref={ref}>Back to top</MinimalFooter.BackToTop>
+      </MinimalFooter>,
+    )
+
+    expect(ref.current).toBe(getByRole('button', {name: 'Back to top'}))
   })
 
   it('uses supplied localized children as the visible and accessible label', () => {
@@ -936,7 +872,7 @@ describe('MinimalFooter', () => {
   it('renders an upward-arrow Octicon inside the control', () => {
     const {container} = render(
       <MinimalFooter>
-        <MinimalFooter.BackToTop />
+        <MinimalFooter.BackToTop>Back to top</MinimalFooter.BackToTop>
       </MinimalFooter>,
     )
 
@@ -955,15 +891,15 @@ describe('MinimalFooter', () => {
     expect(queryByRole('button', {name: 'Second'})).not.toBeInTheDocument()
   })
 
-  it('renders Back to Top within the brand-social region in the gridline variant', () => {
+  it('renders Back to Top within the top region', () => {
     const {getByRole} = render(
-      <MinimalFooter variant="gridline">
-        <MinimalFooter.BackToTop />
+      <MinimalFooter>
+        <MinimalFooter.BackToTop>Back to top</MinimalFooter.BackToTop>
       </MinimalFooter>,
     )
 
     const button = getByRole('button', {name: 'Back to top'})
-    expect(button.closest('[data-footer-region="brand-social"]')).toBeInTheDocument()
+    expect(button.closest('[data-footer-region="top"]')).toBeInTheDocument()
   })
 
   it('forwards ARIA, data, analytics, and native button attributes', () => {

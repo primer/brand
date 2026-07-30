@@ -1,7 +1,9 @@
 import React from 'react'
 import type {Meta, StoryObj} from '@storybook/react'
+import {CheckCircleFillIcon} from '@primer/octicons-react'
+import {expect, userEvent, within} from 'storybook/test'
 import {MinimalFooter} from '.'
-import {InlineLink, Text, ThemeProvider} from '..'
+import {InlineLink, Text, ThemeProvider, Token} from '..'
 
 export default {
   title: 'Components/MinimalFooter/Features',
@@ -92,7 +94,7 @@ export const FilteredSocialLinks: Story = {
 
 export const ReversedSocialLinks: Story = {
   render: () => (
-    <MinimalFooter socialLinks={['x', 'github', 'linkedin', 'youtube', 'facebook', 'twitch', 'tiktok', 'instagram']} />
+    <MinimalFooter socialLinks={['instagram', 'tiktok', 'twitch', 'facebook', 'youtube', 'linkedin', 'github', 'x']} />
   ),
 }
 
@@ -127,6 +129,18 @@ export const DefaultNarrow: Story = {
       <MinimalFooter.Link href="https://github.com/enterprise/contact">Email us</MinimalFooter.Link>
     </MinimalFooter>
   ),
+  play: async ({canvasElement}) => {
+    const bottom = canvasElement.querySelector('[data-footer-layout="social"]')
+    const container = bottom?.firstElementChild
+    const socialLinks = bottom?.querySelector('ul')
+
+    if (!container || !socialLinks) {
+      throw new Error('Expected the social footer layout to render')
+    }
+
+    expect(socialLinks.getBoundingClientRect().right).toBeLessThanOrEqual(container.getBoundingClientRect().right)
+    expect(document.documentElement.scrollWidth).toBe(document.documentElement.clientWidth)
+  },
 }
 
 export const DarkTheme: Story = {
@@ -135,4 +149,105 @@ export const DarkTheme: Story = {
       <MinimalFooter />
     </ThemeProvider>
   ),
+}
+
+export const CustomContent: Story = {
+  render: () => (
+    <MinimalFooter>
+      <MinimalFooter.Content>
+        <Token as="a" href="https://www.githubstatus.com" variant="accent" leadingVisual={<CheckCircleFillIcon />}>
+          All systems operational
+        </Token>
+      </MinimalFooter.Content>
+    </MinimalFooter>
+  ),
+}
+
+export const BackToTop: Story = {
+  render: () => (
+    <MinimalFooter>
+      <MinimalFooter.BackToTop>Back to top</MinimalFooter.BackToTop>
+    </MinimalFooter>
+  ),
+}
+
+export const BackToTopHover: Story = {
+  render: () => (
+    <MinimalFooter>
+      <MinimalFooter.BackToTop>Back to top</MinimalFooter.BackToTop>
+    </MinimalFooter>
+  ),
+  play: async ({canvasElement}) => {
+    await userEvent.hover(within(canvasElement).getByRole('button', {name: 'Back to top'}))
+  },
+}
+
+export const BackToTopDark: Story = {
+  render: () => (
+    <ThemeProvider colorMode="dark">
+      <MinimalFooter>
+        <MinimalFooter.BackToTop>Back to top</MinimalFooter.BackToTop>
+      </MinimalFooter>
+    </ThemeProvider>
+  ),
+}
+
+const ResponsiveExample = ({socialLinks = true}: {socialLinks?: boolean}) => (
+  <MinimalFooter
+    copyrightStatement="GitHub, Inc. © 2026. All rights reserved. A Microsoft subsidiary."
+    socialLinks={socialLinks ? undefined : false}
+  >
+    <MinimalFooter.Footnotes>
+      <Text>
+        <sup>1</sup>Additional terms may apply. See the{' '}
+        <InlineLink href="https://docs.github.com/en/site-policy/privacy-policies/github-privacy-statement">
+          GitHub Privacy Statement
+        </InlineLink>
+        .
+      </Text>
+    </MinimalFooter.Footnotes>
+    <MinimalFooter.Content>
+      <Token as="a" href="https://www.githubstatus.com" variant="accent" leadingVisual={<CheckCircleFillIcon />}>
+        All systems operational
+      </Token>
+    </MinimalFooter.Content>
+    <MinimalFooter.BackToTop>Back to top</MinimalFooter.BackToTop>
+    <MinimalFooter.Link href="#">Sitemap</MinimalFooter.Link>
+    <MinimalFooter.Link href="#">What is Git?</MinimalFooter.Link>
+    <MinimalFooter.Link href="#">Manage cookies</MinimalFooter.Link>
+    <MinimalFooter.Link href="#">Do not share or sell my personal information</MinimalFooter.Link>
+    <MinimalFooter.Link href="#">Terms of Service</MinimalFooter.Link>
+  </MinimalFooter>
+)
+
+export const ResponsiveMedium: Story = {
+  name: 'Responsive medium (834px)',
+  globals: {
+    viewport: {value: 'ipad10p'},
+  },
+  render: () => <ResponsiveExample />,
+}
+
+export const ResponsiveSmall: Story = {
+  name: 'Responsive small (390px)',
+  globals: {
+    viewport: {value: 'iphone12'},
+  },
+  render: () => <ResponsiveExample />,
+}
+
+export const ResponsiveMediumNoSocialLinks: Story = {
+  name: 'Responsive medium, no social links (834px)',
+  globals: {
+    viewport: {value: 'ipad10p'},
+  },
+  render: () => <ResponsiveExample socialLinks={false} />,
+}
+
+export const ResponsiveSmallNoSocialLinks: Story = {
+  name: 'Responsive small, no social links (390px)',
+  globals: {
+    viewport: {value: 'iphone12'},
+  },
+  render: () => <ResponsiveExample socialLinks={false} />,
 }

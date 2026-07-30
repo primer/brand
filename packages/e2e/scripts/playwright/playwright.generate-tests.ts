@@ -60,20 +60,6 @@ const waitForTimeoutLookup = {
   'components-minimalfooter-features--filtered-social-links': 5000, // for external social imagery to load
   'components-minimalfooter-features--default-narrow': 5000, // for external social imagery to load
   'components-minimalfooter-features--maximum-links': 5000, // for external social imagery to load
-  'components-minimalfooter-features-gridline-variants--gridline-1600': 5000, // for external social imagery to load
-  'components-minimalfooter-features-gridline-variants--gridline-800': 5000, // for external social imagery to load
-  'components-minimalfooter-features-gridline-variants--gridline-390': 5000, // for external social imagery to load
-  'components-minimalfooter-features-gridline-variants--gridline-dark-1600': 5000, // for external social imagery to load
-  'components-minimalfooter-features-gridline-variants--gridline-dark-800': 5000, // for external social imagery to load
-  'components-minimalfooter-features-gridline-variants--gridline-dark-390': 5000, // for external social imagery to load
-  'components-minimalfooter-features-gridline-variants--gridline-fully-populated-1600': 5000, // for external social imagery to load
-  'components-minimalfooter-features-gridline-variants--gridline-fully-populated-800': 5000, // for external social imagery to load
-  'components-minimalfooter-features-gridline-variants--gridline-fully-populated-390': 5000, // for external social imagery to load
-  'components-minimalfooter-features-gridline-variants--gridline-logo': 5000, // for external social imagery to load
-  'components-minimalfooter-features-gridline-variants--gridline-with-content': 5000, // for external social imagery to load
-  'components-minimalfooter-features-gridline-variants--gridline-with-back-to-top': 5000, // for external social imagery to load
-  'components-minimalfooter-features-gridline-variants--gridline-filtered-social-links': 5000, // for external social imagery to load
-  'components-minimalfooter-features-gridline-variants--gridline-empty-optional-regions': 5000, // for external social imagery to load
   'components-actionmenu-features--disabled-item': 1000, // flakey test,
   'components-actionmenu-features--anchored-positioning': 1000, // for the menu to open
   'components-box-features--animation': 6000, // for the animation

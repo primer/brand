@@ -1,6 +1,7 @@
 .Footer {
   position: relative;
-  background-color: var(--brand-footer-bg-color);
+  border-top: var(--brand-borderWidth-thick) solid var(--brand-color-success-fg);
+  background-color: var(--brand-color-canvas-subtle);
 }
 
 /**
@@ -8,9 +9,21 @@
  */
 .Footer__container {
   max-width: var(--brand-footer-max-width, 1280px);
-  padding: 0 28px; /* should match SubdomainNavBar */
+  padding-inline: var(--base-size-20);
   margin-right: auto;
   margin-left: auto;
+}
+
+@media screen and (min-width: 48rem) {
+  .Footer__container {
+    padding-inline: var(--base-size-88);
+  }
+}
+
+@media screen and (min-width: 80rem) {
+  .Footer__container {
+    padding-inline: 0;
+  }
 }
 
 /**
@@ -36,8 +49,66 @@
 }
 
 /**
- * Footer social and logomarks section
+ * Footer top region
  */
+.Footer__top {
+  padding-top: var(--base-size-48);
+  padding-bottom: var(--base-size-32);
+  border-bottom: var(--brand-borderWidth-thin) solid var(--brand-color-border-subtle);
+}
+
+.Footer__top-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--base-size-24);
+}
+
+.Footer__logo {
+  display: inline-flex;
+  color: var(--brand-color-text-default);
+}
+
+.Footer__bottom {
+  padding-top: var(--base-size-32);
+  padding-bottom: var(--base-size-32);
+}
+
+@media screen and (min-width: 80rem) {
+  .Footer__top {
+    padding-top: var(--base-size-32);
+  }
+}
+
+[data-footer-region='content'] > .Footer__container {
+  padding-top: var(--base-size-32);
+  padding-bottom: var(--base-size-32);
+}
+
+.Footer [data-footer-region='content'] + [data-footer-region='bottom'] {
+  border-top: var(--brand-borderWidth-thin) solid var(--brand-color-border-subtle);
+}
+
+/**
+ * Footer bottom region
+ */
+.Footer__bottom-row,
+.Footer__copyright-and-links {
+  display: flex;
+}
+
+.Footer__bottom-row {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--base-size-24);
+}
+
+.Footer__copyright-and-links {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--base-size-20);
+}
+
 .Footer__social-links {
   display: flex;
   padding: 0;
@@ -48,25 +119,11 @@
   gap: var(--base-size-16);
 }
 
-.Footer__logomarks {
-  border-top: var(--brand-borderWidth-thin) solid var(--brand-color-border-default);
-  border-bottom: var(--brand-borderWidth-thin) solid var(--brand-color-border-default);
-}
-
-.Footer__logomarks,
-.Footer__legal-and-links {
-  padding-top: var(--base-size-48);
-  padding-bottom: var(--base-size-48);
-}
-
 .Footer__social-link {
   position: relative;
-}
-
-.Footer__social-link::before {
-  content: '';
-  display: block;
-  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   min-width: var(--base-size-24);
   min-height: var(--base-size-24);
 }
@@ -77,38 +134,40 @@
 }
 
 .Footer__social-icon {
-  width: 24px;
-  height: auto;
+  width: auto;
+  max-height: var(--base-size-20);
 }
 
 [data-color-mode='light'] .Footer__social-icon {
-  filter: brightness(95%) saturate(100%);
+  /* Approximate --brand-color-text-muted (#58635b) from the hotlinked SVGs' #959da5 fill. */
+  filter: sepia(37%) saturate(152%) hue-rotate(77deg) brightness(57%);
 }
 
-/**
- * Footer legal section
- */
+[data-color-mode='dark'] .Footer__social-icon {
+  /* Approximate --brand-color-text-muted (#a4aea6) from the hotlinked SVGs' #959da5 fill. */
+  filter: saturate(73%) hue-rotate(-89deg) brightness(110%);
+}
 
 .Footer__copyright {
-  display: flex;
-  order: 2;
+  margin: 0;
   padding-bottom: var(--base-size-4);
 }
 
-@media screen and (min-width: 48rem) {
-  .Footer__copyright {
-    order: 1;
-  }
-}
-
 .Footer__links {
-  order: 1;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: var(--base-size-20);
 }
 
-@media screen and (min-width: 48rem) {
-  .Footer__links {
-    order: 2;
-  }
+[data-footer-layout='no-social'] .Footer__copyright-and-links {
+  width: 100%;
+}
+
+[data-footer-layout='no-social'] .Footer__links {
+  width: 100%;
+  justify-content: space-between;
+  order: -1;
 }
 
 .Footer__link {
@@ -132,183 +191,97 @@
 }
 
 /**
- * Footer `gridline` variant
+ * Footer typography
  *
- * Tokenized styling audited against the canonical Figma reference (file
- * hUT1gnfCRTX7iPZSjOg8Vp, "Footer - Minimal" component set 8024:150002) at
- * desktop/tablet/mobile (1600/800/390) in light and dark mode. Everything below is
- * scoped under `[data-variant='gridline']` and/or the `data-footer-region` attributes
- * that only ever exist in gridline markup, so the `default` variant is left untouched.
- *
- * Structural scope: the Figma reference has 3 rows - logo + a top "utility links"
- * row, a middle row (language selector, theme toggle, status pill), then copyright +
- * legal links + social icons. Rows 1-2 are page-level/app chrome, not reusable footer
- * content, so this component intentionally ships only 2 regions - `brand-social`
- * (logo + social icons combined) and `legal` (copyright + legal links, no icons).
- * `MinimalFooter.Content`, rendered between them, is the supported way to
- * approximate the omitted rows - see the "Status" example in the docs.
+ * The copyright and legal links use the compact uppercase treatment from the
+ * canonical MinimalFooter design.
  */
-
-.Footer[data-variant='gridline'] {
-  /*
-   * No semantic color token is mode-exact for this 2px accent in both light and dark
-   * mode (`--brand-color-success-fg`/`--brand-color-text-emphasized` resolve to
-   * green-3 in dark mode, not green-6 as Figma specifies) - binding directly to the
-   * mode-aware base scale token is the documented, approximation-free match.
-   */
-  border-top: var(--brand-borderWidth-thick) solid var(--base-color-scale-green-6);
-  /* Figma calls for canvas-subtle; the shared --brand-footer-bg-color token resolves
-     to the default canvas color, so it's overridden here rather than changed globally. */
-  background-color: var(--brand-color-canvas-subtle);
-}
-
-/*
- * Container side gutters, per breakpoint. Reuses the 48rem/80rem tier breakpoints
- * already used by `Stack`/`Text` (`regular`/`wide`) instead of introducing new ones.
- */
-.Footer[data-variant='gridline'] .Footer__container {
-  /* Mobile (< 48rem): exact match. */
-  padding-inline: var(--base-size-20);
-}
-
-@media screen and (min-width: 48rem) {
-  .Footer[data-variant='gridline'] .Footer__container {
-    /* Tablet: Figma spec is 91px; --base-size-88 is the closest available token
-       (documented ~3px approximation - no exact token exists). */
-    padding-inline: var(--base-size-88);
-  }
-}
-
-@media screen and (min-width: 80rem) {
-  .Footer[data-variant='gridline'] .Footer__container {
-    /* Desktop: Figma's content width (~1178px within a 1600px frame) has no token
-       equivalent. Rather than introduce a mismatched literal, the gutter is produced
-       entirely by the existing shared --brand-footer-max-width (1280px) centering
-       below, yielding a narrower gutter (~160px) than Figma's 212px - documented
-       approximation stemming from the lack of a matching content-width token. */
-    padding-inline: 0;
-  }
-}
-
-/*
- * Vertical row rhythm: 32px bottom padding on every row (brand-social, legal, and
- * Content), replacing the 48px shared with the `default` variant. Top padding is 32px
- * for the legal row and Content at every breakpoint, but the brand-social row keeps a
- * taller 48px top padding below `80rem` (asymmetric 48/32), converging to 32/32 at
- * desktop - see the `80rem` override below.
- */
-.Footer[data-variant='gridline'] .Footer__logomarks,
-.Footer[data-variant='gridline'] .Footer__legal-and-links {
-  padding-bottom: var(--base-size-32);
-}
-
-.Footer[data-variant='gridline'] .Footer__logomarks {
-  padding-top: var(--base-size-48);
-}
-
-.Footer[data-variant='gridline'] .Footer__legal-and-links {
-  padding-top: var(--base-size-32);
-}
-
-@media screen and (min-width: 80rem) {
-  .Footer[data-variant='gridline'] .Footer__logomarks {
-    padding-top: var(--base-size-32);
-  }
-}
-
-.Footer[data-variant='gridline'] [data-footer-region='content'] > .Footer__container {
-  padding-top: var(--base-size-32);
-  padding-bottom: var(--base-size-32);
-}
-
-/*
- * Dividers: 1px subtle border below the brand/social row, and above the legal row
- * only when a Content region sits between them (avoids a doubled border when Content
- * is absent and legal directly follows brand-social).
- */
-.Footer[data-variant='gridline'] .Footer__logomarks {
-  border-top: none;
-  border-bottom: var(--brand-borderWidth-thin) solid var(--brand-color-border-subtle);
-}
-
-.Footer[data-variant='gridline'] [data-footer-region='content'] + [data-footer-region='legal'] {
-  border-top: var(--brand-borderWidth-thin) solid var(--brand-color-border-subtle);
-}
-
-/*
- * The copyright always precedes the legal links, at every breakpoint (no order swap,
- * unlike `default`). The extra attribute selector outweighs the unscoped, media-gated
- * `default` rules above regardless of viewport width.
- */
-.Footer[data-variant='gridline'] .Footer__copyright {
-  order: 1;
-}
-
-.Footer[data-variant='gridline'] .Footer__links {
-  order: 2;
-}
-
-/*
- * Copyright + legal link typography: 12px uppercase mono, composed from primitives
- * since no single existing token/shorthand covers font-family + size + line-height +
- * letter-spacing + transform together. `Footer__link-text` targets the `Text` element
- * inside `MinimalFooter.Link`.
- */
-.Footer[data-variant='gridline'] .Footer__copyright,
-.Footer[data-variant='gridline'] .Footer__link-text {
+.Footer__copyright,
+.Footer__link-text {
   font-family: var(--brand-fontStack-monospace);
-  /* --base-size-12, not --brand-text-caption-size: the latter's source stylesheet
-     (functional/typography/typography.css) is never imported by the shipped bundle. */
   font-size: var(--base-size-12);
   line-height: var(--brand-text-lineHeight-100);
-  /* Closest available token to the ~0.15px Figma spec; documented approximation. */
   letter-spacing: var(--brand-text-letterSpacing-100);
   text-transform: uppercase;
   font-weight: var(--brand-text-weight-medium);
 }
 
 @media screen and (min-width: 80rem) {
-  .Footer[data-variant='gridline'] .Footer__copyright,
-  .Footer[data-variant='gridline'] .Footer__link-text {
+  .Footer__copyright,
+  .Footer__link-text {
     font-weight: var(--brand-text-weight-normal);
   }
 }
 
-/*
- * Social link gap, and the GitHub-specific mark size. Other social icons keep the
- * existing approximate 24px sizing (Figma treats them as "organic"/non-uniform, with
- * no matching token); only the GitHub mark has an exact 20px spec.
- */
-.Footer[data-variant='gridline'] .Footer__social-links {
-  gap: var(--base-size-20);
+@media screen and (min-width: 48rem) {
+  .Footer__social-links {
+    gap: var(--base-size-20);
+  }
 }
 
-.Footer[data-variant='gridline'] [data-social-link='github'] .Footer__social-icon {
-  width: var(--base-size-20);
+@media screen and (min-width: 80rem) {
+  .Footer__bottom-row {
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+  }
+
+  .Footer__copyright-and-links {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  [data-footer-layout='no-social'] .Footer__copyright-and-links {
+    justify-content: space-between;
+  }
+
+  [data-footer-layout='no-social'] .Footer__links {
+    width: auto;
+    justify-content: flex-start;
+    order: initial;
+  }
 }
 
-/*
- * BackToTop control hit-area: bumps the tappable area to the coarse-pointer minimum
- * target size without growing the visible button, via a centered invisible
- * pseudo-element (mirrors the existing `.Footer__social-link::before` technique).
- * Figma's canonical reference has no BackToTop equivalent, so the small margin below
- * is a conservative, token-based spacing choice (not a Figma-derived value) to keep
- * the button clear of the row divider and the container gutter, rather than an
- * unevidenced precise layout.
- */
-.Footer[data-variant='gridline'] [data-footer-region='brand-social'] > button {
-  position: relative;
-  margin: var(--base-size-16) var(--base-size-20);
+.Footer .Footer__backToTop {
+  padding: 0;
+  border-color: transparent;
+  background-color: transparent;
+  backdrop-filter: none;
 }
 
-.Footer[data-variant='gridline'] [data-footer-region='brand-social'] > button::before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
+.Footer .Footer__backToTop.Footer__backToTop:not([disabled], [aria-disabled='true']):hover,
+.Footer .Footer__backToTop.Footer__backToTop:not([disabled], [aria-disabled='true']):active {
+  border-color: transparent;
+  background-color: transparent;
+}
+
+.Footer__backToTop-content {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--base-size-12);
+}
+
+.Footer__backToTop-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: var(--brand-borderWidth-thin) solid var(--brand-button-subtle-borderColor-rest);
+  border-radius: var(--base-size-6);
+  background-color: var(--brand-button-subtle-bgColor-rest);
   min-width: var(--brand-control-minTarget-coarse);
   min-height: var(--brand-control-minTarget-coarse);
-  transform: translate(-50%, -50%);
+  transition: background-color var(--brand-animation-duration-fast) var(--brand-animation-easing-glide),
+    border-color var(--brand-animation-duration-fast) var(--brand-animation-easing-glide);
+}
+
+.Footer__backToTop:hover .Footer__backToTop-icon {
+  border-color: var(--brand-button-subtle-borderColor-hover);
+  background-color: var(--brand-button-subtle-bgColor-hover);
+}
+
+.Footer__backToTop:active .Footer__backToTop-icon {
+  border-color: var(--brand-button-subtle-borderColor-active);
+  background-color: var(--brand-button-subtle-bgColor-active);
 }
 
 /* Remove all animations, transitions and smooth scroll for people that prefer not to see them */

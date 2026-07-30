@@ -1,6 +1,6 @@
 ---
 title: Minimal footer
-description: Use the minimal footer component to provide a global footer featuring legal links, GitHub logomarks and footnotes.
+description: Use the minimal footer component to provide a global footer featuring egal links, social links, and optional footnotes and content.
 keywords: ['legal', 'copyright', 'social', 'links', 'footnotes']
 show-tabs: false
 ready: true
@@ -17,6 +17,19 @@ import {MinimalFooterChildrenProp} from './react'
 import {MinimalFooter} from '@primer/react-brand'
 ```
 
+## Structure and ownership
+
+`MinimalFooter` renders recognized content in this order:
+
+1. optional `MinimalFooter.Footnotes`
+2. a top row with the GitHub logomark and optional `MinimalFooter.BackToTop`
+3. optional consumer-owned `MinimalFooter.Content`
+4. a bottom region with the copyright statement, `MinimalFooter.Link` children, and social links
+
+The default footer includes only the GitHub logomark, the current-year copyright statement, and the supported social links. Footnotes, content, footer links, and Back to top are opt-in.
+
+`MinimalFooter.Link` is the only footer-link child API and always renders in the bottom region. Top navigation is not supported in this iteration and should not be recreated through `MinimalFooter.Content`; render page navigation outside `MinimalFooter`.
+
 ## Examples
 
 ### Default
@@ -26,6 +39,8 @@ import {MinimalFooter} from '@primer/react-brand'
 ```
 
 ### Footer links
+
+Use up to five `MinimalFooter.Link` children for the single link collection in the bottom region. Links can render as anchors or buttons.
 
 ```jsx live
 <MinimalFooter>
@@ -61,7 +76,7 @@ import {MinimalFooter} from '@primer/react-brand'
 
 ### Footer social links
 
-`MinimalFooter` will render all supported social links by default. Social links can be removed however, by passing `socialLinks={false}`. Alternatively, pass an array of valid social links to filter the default list to a subset.
+`MinimalFooter` renders all supported social links in the bottom region by default. Remove them by passing `socialLinks={false}`, or pass an array of valid social links to filter and reorder the default list.
 
 ```jsx live
 <Stack>
@@ -73,34 +88,12 @@ import {MinimalFooter} from '@primer/react-brand'
 </Stack>
 ```
 
-### GitHub logo variant
-
-Pass `logoVariant="logomark"` to render the icon-only GitHub mark instead of the full wordmark logo used by default (`logoVariant="logo"`).
-
-```jsx live
-<Stack>
-  <MinimalFooter logoVariant="logo" socialLinks={false} />
-  <MinimalFooter logoVariant="logomark" socialLinks={false} />
-</Stack>
-```
-
-### Gridline variant
-
-Pass `variant="gridline"` to group the footer's output into `brand-social`, `content`, and `legal` regions, each wrapped in an element marked with a `data-footer-region` attribute. Only regions with content are rendered, and always in that order. The `default` variant (the default value of `variant`) renders the same regions without the region wrappers or `data-footer-region` attributes, so its visuals and structure remain compatible aside from the root element's `data-variant` attribute, which reflects the current variant (`data-variant="default"` or `data-variant="gridline"`) in both cases.
-
-```jsx live
-<MinimalFooter variant="gridline">
-  <MinimalFooter.Link href="https://github.com/enterprise">Enterprise</MinimalFooter.Link>
-  <MinimalFooter.Link href="https://github.com/enterprise/contact">Email us</MinimalFooter.Link>
-</MinimalFooter>
-```
-
 ### Custom content
 
-Use `MinimalFooter.Content` to render an opt-in slot between the logo/social row and the legal row. `MinimalFooter` only positions the slot in the layout (via its own `content` region in the `gridline` variant); the consumer owns everything rendered inside it, including its internal layout. Only the first `MinimalFooter.Content` child is rendered if more than one is provided. `MinimalFooter` itself only ships the `brand-social` and `legal` regions, so use `Content` to approximate page-level chrome that the canonical Figma reference shows in additional rows, such as utility links, a language selector, theme toggle, or status indicator (as in the example below).
+Use `MinimalFooter.Content` to render an opt-in slot between the top row and the bottom region. `MinimalFooter` only positions the slot in the layout; the consumer owns everything rendered inside it, including its internal layout. Only the first `MinimalFooter.Content` child is rendered if more than one is provided. Use `Content` for page-specific controls or information such as a language selector, theme toggle, or status indicator, not to recreate top navigation.
 
 ```jsx live
-<MinimalFooter variant="gridline">
+<MinimalFooter>
   <MinimalFooter.Content>
     <Stack direction="horizontal" gap="condensed" padding="none">
       <Text size="200" variant="muted">
@@ -116,15 +109,15 @@ Use `MinimalFooter.Content` to render an opt-in slot between the logo/social row
 
 ### Back to top
 
-Use `MinimalFooter.BackToTop` to opt into a control that scrolls the document back to the top. It is never rendered unless it is explicitly included as a child, and, like the other single-instance children, only the first instance is recognized when more than one is provided.
+Use `MinimalFooter.BackToTop` to opt into a control in the top row that scrolls the document back to the top. It is never rendered unless it is explicitly included as a child, and, like the other single-instance children, only the first instance is recognized when more than one is provided. Supply a localized label through `children`.
 
 ```jsx live
 <MinimalFooter socialLinks={false}>
-  <MinimalFooter.BackToTop />
+  <MinimalFooter.BackToTop>Back to top</MinimalFooter.BackToTop>
 </MinimalFooter>
 ```
 
-`children` supplies the visible and accessible label, and defaults to "Back to top" only when omitted, so consumers can localize it:
+`children` supplies the required visible and accessible label:
 
 ```jsx live
 <MinimalFooter socialLinks={false}>
@@ -168,22 +161,20 @@ When the user prefers reduced motion, the built-in scroll always uses `behavior:
 
 ### MinimalFooter
 
-| Name                 | Type                                                                                             |                                        Default                                        | Description                                                                      |
-| :------------------- | :----------------------------------------------------------------------------------------------- | :-----------------------------------------------------------------------------------: | :------------------------------------------------------------------------------- |
-| `className`          | `string`                                                                                         |                                                                                       | Sets a custom class on the root element                                          |
-| `children`           | <MinimalFooterChildrenProp />                                                                    |                                      `undefined`                                      | Valid child components                                                           |
-| `copyrightStatement` | `string` \| `ReactElement`                                                                       |                                                                                       | The copyright statement to be displayed in the footer.                           |
-| `logoHref`           | `string`                                                                                         |                                `'https://github.com'`                                 | The href for the GitHub logo.                                                    |
-| `logoVariant`        | `'logo'`, `'logomark'`                                                                           |                                       `'logo'`                                        | Selects the full wordmark (`logo`) or icon-only (`logomark`) GitHub logo.        |
-| `socialLinks`        | `['x', 'github', 'linkedin', 'youtube', 'facebook', 'twitch', 'tiktok', 'instagram']` \| `false` | `['x', 'github', 'linkedin', 'youtube', 'facebook', 'twitch', 'tiktok', 'instagram']` | Array of valid strings, a subset of the default, or `false` to hide all links    |
-| `variant`            | `'default'`, `'gridline'`                                                                        |                                      `'default'`                                      | The layout variant of the footer. `gridline` groups output into region wrappers. |
+| Name                 | Type                                                                                                                |                                        Default                                        | Description                                                   |
+| :------------------- | :------------------------------------------------------------------------------------------------------------------ | :-----------------------------------------------------------------------------------: | :------------------------------------------------------------ |
+| `className`          | `string`                                                                                                            |                                                                                       | Sets a custom class on the root element                       |
+| `children`           | <MinimalFooterChildrenProp />                                                                                       |                                      `undefined`                                      | Valid child components                                        |
+| `copyrightStatement` | `string` \| `ReactElement`                                                                                          |                        Current-year GitHub copyright statement                        | The copyright statement displayed in the bottom region.       |
+| `logoHref`           | `string`                                                                                                            |                                `'https://github.com'`                                 | The href for the GitHub logomark.                             |
+| `socialLinks`        | `Array<'x' \| 'github' \| 'linkedin' \| 'youtube' \| 'facebook' \| 'twitch' \| 'tiktok' \| 'instagram'>` \| `false` | `['x', 'github', 'linkedin', 'youtube', 'facebook', 'twitch', 'tiktok', 'instagram']` | Ordered subset of social links, or `false` to hide all links. |
 
 ### MinimalFooter.Link
 
-| Name       | Type              |   Default   | Description                         |
-| :--------- | :---------------- | :---------: | :---------------------------------- |
-| `as`       | `'a'`, `'button'` |    `'a'`    | Applies the underlying HTML element |
-| `children` | `string`          | `undefined` | Link label text                     |
+| Name       | Type              |   Default   | Description                           |
+| :--------- | :---------------- | :---------: | :------------------------------------ |
+| `as`       | `'a'`, `'button'` |    `'a'`    | Applies the underlying HTML element   |
+| `children` | `string`          | `undefined` | Label for a link in the bottom region |
 
 ### MinimalFooter.Footnotes
 
@@ -202,10 +193,10 @@ All other props, including ARIA and `data-*` attributes, forward to the underlyi
 
 ### MinimalFooter.BackToTop
 
-| Name             | Type                                                 |     Default     | Description                                                                                                                                                                                                                                       |
-| :--------------- | :--------------------------------------------------- | :-------------: | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `children`       | `ReactNode`                                          | `'Back to top'` | The visible and accessible label. Supply localized text to override the default.                                                                                                                                                                  |
-| `onClick`        | `MouseEventHandler`                                  |   `undefined`   | Runs before the built-in scroll. Call `event.preventDefault()` to cancel the built-in scroll entirely.                                                                                                                                            |
-| `scrollBehavior` | `ScrollBehavior` (`'auto'`, `'instant'`, `'smooth'`) |   `'smooth'`    | The DOM [scroll behavior](https://developer.mozilla.org/en-US/docs/Web/API/Element/scroll#behavior) used by the built-in scroll when the user does not prefer reduced motion. Always overridden to `'auto'` when the user prefers reduced motion. |
+| Name             | Type                                                 |   Default   | Description                                                                                                                                                                                                                                       |
+| :--------------- | :--------------------------------------------------- | :---------: | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `children`       | `ReactNode`                                          |  Required   | The consumer-provided visible and accessible localized label.                                                                                                                                                                                     |
+| `onClick`        | `MouseEventHandler`                                  | `undefined` | Runs before the built-in scroll. Call `event.preventDefault()` to cancel the built-in scroll entirely.                                                                                                                                            |
+| `scrollBehavior` | `ScrollBehavior` (`'auto'`, `'instant'`, `'smooth'`) | `'smooth'`  | The DOM [scroll behavior](https://developer.mozilla.org/en-US/docs/Web/API/Element/scroll#behavior) used by the built-in scroll when the user does not prefer reduced motion. Always overridden to `'auto'` when the user prefers reduced motion. |
 
 All other props, including ARIA and `data-*` attributes, forward to the underlying `<button>`.
