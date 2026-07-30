@@ -5,40 +5,8 @@
  */
 import {test, expect} from '@playwright/test'
 
-/* eslint import/no-nodejs-modules: ["error", {"allow": ["path", "fs"]}] */
-import fs from 'fs'
-import path from 'path'
-
 // eslint-disable-next-line i18n-text/no-en
 test.describe('Visual Comparison: MinimalFooter', () => {
-  // Fixture directory lives in the e2e package; resolved relative to this
-  // generated spec's own location (packages/react/src/MinimalFooter/), not the
-  // generator's, since this code only runs when Playwright executes the test.
-  const socialIconFixturesDir = path.join(
-    __dirname,
-    '../../../../packages/e2e/scripts/playwright/fixtures/minimal-footer-social-icons',
-  )
-
-  test.beforeEach(async ({page}) => {
-    await page.route('https://github.githubassets.com/images/modules/site/icons/footer/*.svg', async route => {
-      const iconFile = route.request().url().split('/').pop()?.split('?')[0] ?? ''
-      const fixturePath = path.join(socialIconFixturesDir, iconFile)
-      if (!fs.existsSync(fixturePath)) {
-        // Fail loudly instead of falling back to route.continue(): a silent
-        // fallback to the live network is exactly the flakiness this intercept
-        // exists to prevent, and would only resurface if MinimalFooter's social
-        // icon set drifted from the local fixture set without anyone noticing.
-        throw new Error(
-          `MinimalFooter visual test: no local fixture found for social icon "${iconFile}" (expected at ${fixturePath}). Add a byte-exact local copy under fixtures/minimal-footer-social-icons instead of relying on a live github.githubassets.com fetch. Intercepted URL: ${route
-            .request()
-            .url()}`,
-        )
-      }
-      const body = fs.readFileSync(fixturePath, 'utf-8')
-      await route.fulfill({status: 200, contentType: 'image/svg+xml', body})
-    })
-  })
-
   test('MinimalFooter / Default', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-minimalfooter--default&viewMode=story', {
       waitUntil: 'networkidle',
