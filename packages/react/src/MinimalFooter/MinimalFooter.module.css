@@ -230,14 +230,13 @@
 .Footer .Footer__backToTop {
   padding: 0;
   border-color: transparent;
-  background-color: transparent;
+  background: none !important;
   backdrop-filter: none;
 }
 
 .Footer .Footer__backToTop.Footer__backToTop:not([disabled], [aria-disabled='true']):hover,
 .Footer .Footer__backToTop.Footer__backToTop:not([disabled], [aria-disabled='true']):active {
   border-color: transparent;
-  background-color: transparent;
 }
 
 .Footer__backToTop-content {
