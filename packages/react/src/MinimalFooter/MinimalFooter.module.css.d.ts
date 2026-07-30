@@ -25,3 +25,4 @@ declare const styles: {
   readonly "Footer__top-row": string;
 };
 export = styles;
+
