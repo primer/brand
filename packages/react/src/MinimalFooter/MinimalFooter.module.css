@@ -20,12 +20,6 @@
   }
 }
 
-@media screen and (min-width: 80rem) {
-  .Footer__container {
-    padding-inline: 0;
-  }
-}
-
 /**
  * Footer terms section
  */
