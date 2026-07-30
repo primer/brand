@@ -16,7 +16,7 @@
 
 @media screen and (min-width: 48rem) {
   .Footer__container {
-    padding-inline: var(--base-size-88);
+    padding-inline: var(--base-size-32);
   }
 }
 
