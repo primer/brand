@@ -131,11 +131,11 @@ function parseRootChildren(children: React.ReactNode) {
 }
 
 /**
- * The footer's top-level regions, in rendering order. `top` and `bottom`
+ * The footer's top-level sections, in rendering order. `top` and `bottom`
  * are always populated, while `content` is only rendered when a
  * `MinimalFooter.Content` child is present.
  */
-type FooterRegionName = 'top' | 'content' | 'bottom'
+type FooterSectionName = 'top' | 'content' | 'bottom'
 
 function Root({
   className,
@@ -152,7 +152,7 @@ function Root({
   const renderedSocialLinks = resolvedSocialLinks === false ? [] : resolvedSocialLinks
   const hasSocialLinks = renderedSocialLinks.length > 0
 
-  const topRegion = (
+  const topSection = (
     <section className={styles.Footer__top}>
       <div className={styles.Footer__container}>
         <div className={styles['Footer__top-row']}>
@@ -163,8 +163,8 @@ function Root({
     </section>
   )
 
-  const bottomRegion = (
-    <section className={styles.Footer__bottom} data-footer-layout={hasSocialLinks ? 'social' : 'no-social'}>
+  const bottomSection = (
+    <section className={clsx(styles.Footer__bottom, !hasSocialLinks && styles['Footer__bottom--no-social'])}>
       <div className={styles.Footer__container}>
         <div className={styles['Footer__bottom-row']}>
           <div className={styles['Footer__copyright-and-links']}>
@@ -179,20 +179,28 @@ function Root({
     </section>
   )
 
-  const regions: {name: FooterRegionName; node: React.ReactNode}[] = [
-    {name: 'top', node: topRegion},
-    {name: 'content', node: content},
-    {name: 'bottom', node: bottomRegion},
+  const sections: {name: FooterSectionName; node: React.ReactNode; className: string}[] = [
+    {name: 'top', node: topSection, className: styles.Footer__section},
+    {
+      name: 'content',
+      node: content,
+      className: clsx(styles.Footer__section, styles['Footer__section--content']),
+    },
+    {
+      name: 'bottom',
+      node: bottomSection,
+      className: clsx(styles.Footer__section, styles['Footer__section--bottom']),
+    },
   ]
 
   return (
     <footer className={clsx(styles.Footer, className)} {...rest}>
       {footnotes}
-      {regions
-        .filter(region => Boolean(region.node))
-        .map(region => (
-          <div key={region.name} data-footer-region={region.name}>
-            {region.node}
+      {sections
+        .filter(section => Boolean(section.node))
+        .map(section => (
+          <div key={section.name} className={section.className}>
+            {section.node}
           </div>
         ))}
     </footer>

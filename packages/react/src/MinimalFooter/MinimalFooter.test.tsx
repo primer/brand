@@ -443,8 +443,9 @@ describe('MinimalFooter', () => {
 
     expect(sections[0]).toContainElement(container.querySelector('.Footer__terms'))
 
-    const topRegion = container.querySelector('[data-footer-region="top"]')
-    expect(topRegion).toBeInTheDocument()
+    const topSection = container.querySelector('.Footer__top')?.parentElement
+    expect(topSection).toBeInTheDocument()
+    expect(topSection).toHaveClass('Footer__section')
   })
 
   it('renders component with only footnotes', () => {
@@ -691,31 +692,30 @@ describe('MinimalFooter', () => {
     expect(queryByRole('link', {name: 'Link 6'})).not.toBeInTheDocument()
   })
 
-  it('omits the content region when no Content is provided', () => {
+  it('omits the content section when no Content is provided', () => {
     const {container} = render(<MinimalFooter />)
 
-    const regions = Array.from(container.querySelectorAll('[data-footer-region]')).map(region =>
-      region.getAttribute('data-footer-region'),
-    )
-
-    expect(regions).toEqual(['top', 'bottom'])
+    const footer = container.querySelector('footer')
+    expect(footer?.children[0]).toHaveClass('Footer__section')
+    expect(footer?.children[0]).toContainElement(container.querySelector('.Footer__top'))
+    expect(footer?.children[1]).toHaveClass('Footer__section--bottom')
   })
 
-  it('renders top, content, and bottom regions in the approved order', () => {
+  it('renders top, content, and bottom sections in the approved order', () => {
     const {container, getByText} = render(
       <MinimalFooter>
         <MinimalFooter.Content>Custom content</MinimalFooter.Content>
       </MinimalFooter>,
     )
 
-    const regions = Array.from(container.querySelectorAll('[data-footer-region]')).map(region =>
-      region.getAttribute('data-footer-region'),
-    )
-
-    expect(regions).toEqual(['top', 'content', 'bottom'])
-    expect(container.querySelector('[data-footer-region="top"] .Footer__logo')).toBeInTheDocument()
-    expect(getByText('Custom content').closest('[data-footer-region="bottom"]')).not.toBeInTheDocument()
-    expect(getByText('Custom content').closest('[data-footer-region="content"]')).toBeInTheDocument()
+    const footer = container.querySelector('footer')
+    expect(footer?.children[0]).toHaveClass('Footer__section')
+    expect(footer?.children[0]).toContainElement(container.querySelector('.Footer__top'))
+    expect(footer?.children[1]).toHaveClass('Footer__section--content')
+    expect(footer?.children[2]).toHaveClass('Footer__section--bottom')
+    expect(container.querySelector('.Footer__top .Footer__logo')).toBeInTheDocument()
+    expect(getByText('Custom content').closest('.Footer__section--bottom')).not.toBeInTheDocument()
+    expect(getByText('Custom content').closest('.Footer__section--content')).toBeInTheDocument()
   })
 
   it('places the logomark and Back to Top in the same top row', () => {
@@ -731,18 +731,18 @@ describe('MinimalFooter', () => {
     expect(logo.closest('.Footer__top-row')).toBe(backToTop.closest('.Footer__top-row'))
   })
 
-  it('places footer links and social links in the bottom region', () => {
+  it('places footer links and social links in the bottom section', () => {
     const {getByRole} = render(
       <MinimalFooter socialLinks={['x']}>
         <MinimalFooter.Link href="/test">Test Link</MinimalFooter.Link>
       </MinimalFooter>,
     )
 
-    expect(getByRole('link', {name: 'Test Link'}).closest('[data-footer-region="bottom"]')).toBeInTheDocument()
-    expect(getByRole('link', {name: 'GitHub on X'}).closest('[data-footer-region="bottom"]')).toBeInTheDocument()
+    expect(getByRole('link', {name: 'Test Link'}).closest('.Footer__section--bottom')).toBeInTheDocument()
+    expect(getByRole('link', {name: 'GitHub on X'}).closest('.Footer__section--bottom')).toBeInTheDocument()
   })
 
-  it('places Footnotes ahead of the mapped regions and preserves full region order when every optional child is present', () => {
+  it('places Footnotes ahead of the mapped sections and preserves full section order when every optional child is present', () => {
     const {getByRole} = render(
       <MinimalFooter>
         <MinimalFooter.Footnotes>
@@ -755,11 +755,14 @@ describe('MinimalFooter', () => {
     )
 
     const footer = getByRole('contentinfo')
-    const topLevelRegionNames = Array.from(footer.children).map(
-      element => element.getAttribute('data-footer-region') ?? 'footnotes',
-    )
+    const topLevelSectionNames = Array.from(footer.children).map(element => {
+      if (element.classList.contains('Footer__section--content')) return 'content'
+      if (element.classList.contains('Footer__section--bottom')) return 'bottom'
+      if (element.querySelector('.Footer__top')) return 'top'
+      return 'footnotes'
+    })
 
-    expect(topLevelRegionNames).toEqual(['footnotes', 'top', 'content', 'bottom'])
+    expect(topLevelSectionNames).toEqual(['footnotes', 'top', 'content', 'bottom'])
   })
 
   it('does not impose internal layout on MinimalFooter.Content', () => {
@@ -773,7 +776,7 @@ describe('MinimalFooter', () => {
       </MinimalFooter>,
     )
 
-    // The region wrapper only positions Content within the footer; it does not alter or
+    // The section wrapper only positions Content within the footer; it does not alter or
     // wrap the consumer's own children.
     expect(getByTestId('consumer-layout').parentElement).toHaveClass('Footer__container')
   })
@@ -789,23 +792,17 @@ describe('MinimalFooter', () => {
     expect(queryAllByRole('link', {name: isSocialLink})).toHaveLength(0)
   })
 
-  it('marks the bottom region with stable social and no-social layout hooks', () => {
+  it('applies a no-social modifier class to the bottom section', () => {
     const {container, rerender} = render(
       <MinimalFooter>
         <MinimalFooter.Link href="/test">Test Link</MinimalFooter.Link>
       </MinimalFooter>,
     )
 
-    expect(container.querySelector('[data-footer-region="bottom"] section')).toHaveAttribute(
-      'data-footer-layout',
-      'social',
-    )
+    expect(container.querySelector('.Footer__bottom')).not.toHaveClass('Footer__bottom--no-social')
 
     rerender(<MinimalFooter socialLinks={false} />)
-    expect(container.querySelector('[data-footer-region="bottom"] section')).toHaveAttribute(
-      'data-footer-layout',
-      'no-social',
-    )
+    expect(container.querySelector('.Footer__bottom')).toHaveClass('Footer__bottom--no-social')
   })
 
   it('preserves logo href, analytics, accessibility, and semantic styling', () => {
@@ -891,7 +888,7 @@ describe('MinimalFooter', () => {
     expect(queryByRole('button', {name: 'Second'})).not.toBeInTheDocument()
   })
 
-  it('renders Back to Top within the top region', () => {
+  it('renders Back to Top within the top section', () => {
     const {getByRole} = render(
       <MinimalFooter>
         <MinimalFooter.BackToTop>Back to top</MinimalFooter.BackToTop>
@@ -899,7 +896,7 @@ describe('MinimalFooter', () => {
     )
 
     const button = getByRole('button', {name: 'Back to top'})
-    expect(button.closest('[data-footer-region="top"]')).toBeInTheDocument()
+    expect(button.closest('.Footer__section')).toBeInTheDocument()
   })
 
   it('forwards ARIA, data, analytics, and native button attributes', () => {

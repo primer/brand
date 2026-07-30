@@ -130,11 +130,11 @@ export const DefaultNarrow: Story = {
     </MinimalFooter>
   ),
   play: async ({canvasElement}) => {
-    const bottom = canvasElement.querySelector('[data-footer-layout="social"]')
+    const socialLinks = within(canvasElement).getByRole('list')
+    const bottom = socialLinks.closest('section')
     const container = bottom?.firstElementChild
-    const socialLinks = bottom?.querySelector('ul')
 
-    if (!container || !socialLinks) {
+    if (!container) {
       throw new Error('Expected the social footer layout to render')
     }
 

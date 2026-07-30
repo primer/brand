@@ -77,7 +77,7 @@ Use up to five `MinimalFooter.Link` children. Links can render as anchors or but
 
 ### Custom content
 
-Use `MinimalFooter.Content` to render an opt-in slot between the top and the bottom regions. Use this page-specific controls or information such as a language selector, theme toggle, or status indicator, not to recreate top navigation.
+Use `MinimalFooter.Content` to render an opt-in slot between the top and bottom sections. Use this for page-specific controls or information such as a language selector, theme toggle, or status indicator, not to recreate top navigation.
 
 ```jsx live
 <MinimalFooter>
@@ -124,16 +124,16 @@ Use `scrollBehavior` to customize the DOM [scroll behavior](https://developer.mo
 | :------------------- | :------------------------------------------------------------------------------------------------------------------ | :-----------------------------------------------------------------------------------: | :------------------------------------------------------------ |
 | `className`          | `string`                                                                                                            |                                                                                       | Sets a custom class on the root element                       |
 | `children`           | <MinimalFooterChildrenProp />                                                                                       |                                      `undefined`                                      | Valid child components                                        |
-| `copyrightStatement` | `string` \| `ReactElement`                                                                                          |                        Current-year GitHub copyright statement                        | The copyright statement displayed in the bottom region.       |
+| `copyrightStatement` | `string` \| `ReactElement`                                                                                          |                        Current-year GitHub copyright statement                        | The copyright statement displayed in the bottom section.      |
 | `logoHref`           | `string`                                                                                                            |                                `'https://github.com'`                                 | The href for the GitHub logomark.                             |
 | `socialLinks`        | `Array<'x' \| 'github' \| 'linkedin' \| 'youtube' \| 'facebook' \| 'twitch' \| 'tiktok' \| 'instagram'>` \| `false` | `['x', 'github', 'linkedin', 'youtube', 'facebook', 'twitch', 'tiktok', 'instagram']` | Ordered subset of social links, or `false` to hide all links. |
 
 ### MinimalFooter.Link
 
-| Name       | Type              |   Default   | Description                           |
-| :--------- | :---------------- | :---------: | :------------------------------------ |
-| `as`       | `'a'`, `'button'` |    `'a'`    | Applies the underlying HTML element   |
-| `children` | `string`          | `undefined` | Label for a link in the bottom region |
+| Name       | Type              |   Default   | Description                            |
+| :--------- | :---------------- | :---------: | :------------------------------------- |
+| `as`       | `'a'`, `'button'` |    `'a'`    | Applies the underlying HTML element    |
+| `children` | `string`          | `undefined` | Label for a link in the bottom section |
 
 ### MinimalFooter.Footnotes
 

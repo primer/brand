@@ -4,6 +4,7 @@ declare const styles: {
   readonly "Footer__backToTop-content": string;
   readonly "Footer__backToTop-icon": string;
   readonly "Footer__bottom": string;
+  readonly "Footer__bottom--no-social": string;
   readonly "Footer__bottom-row": string;
   readonly "Footer__container": string;
   readonly "Footer__copyright": string;
@@ -12,6 +13,9 @@ declare const styles: {
   readonly "Footer__link-text": string;
   readonly "Footer__links": string;
   readonly "Footer__logo": string;
+  readonly "Footer__section": string;
+  readonly "Footer__section--bottom": string;
+  readonly "Footer__section--content": string;
   readonly "Footer__social-icon": string;
   readonly "Footer__social-link": string;
   readonly "Footer__social-links": string;
@@ -21,4 +25,3 @@ declare const styles: {
   readonly "Footer__top-row": string;
 };
 export = styles;
-
