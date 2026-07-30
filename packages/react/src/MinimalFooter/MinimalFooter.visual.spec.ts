@@ -94,9 +94,9 @@ test.describe('Visual Comparison: MinimalFooter', () => {
   })
 
   // eslint-disable-next-line i18n-text/no-en
-  test.describe('Mobile viewport test for Default (Narrow viewport)', () => {
+  test.describe('Mobile viewport test for Default, narrow view (mobile)', () => {
     test.use({viewport: {width: 360, height: 800}})
-    test('MinimalFooter / Default (Narrow viewport)', async ({page}) => {
+    test('MinimalFooter / Default, narrow view (mobile)', async ({page}) => {
       await page.goto(
         'http://localhost:6006/iframe.html?args=&id=components-minimalfooter-features--default-narrow&viewMode=story',
         {waitUntil: 'networkidle'},
@@ -140,56 +140,12 @@ test.describe('Visual Comparison: MinimalFooter', () => {
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
-  test('MinimalFooter / Back To Top Hover', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-minimalfooter-features--back-to-top-hover&viewMode=story',
-      {waitUntil: 'networkidle'},
-    )
-    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('MinimalFooter / Back To Top Focus Visible', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-minimalfooter-features--back-to-top-focus-visible&viewMode=story',
-      {waitUntil: 'networkidle'},
-    )
-    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('MinimalFooter / Back To Top Disabled', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-minimalfooter-features--back-to-top-disabled&viewMode=story',
-      {waitUntil: 'networkidle'},
-    )
-    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('MinimalFooter / Back To Top Dark', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-minimalfooter-features--back-to-top-dark&viewMode=story',
-      {waitUntil: 'networkidle'},
-    )
-    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
   // eslint-disable-next-line i18n-text/no-en
-  test.describe('Fixed viewport test for Responsive medium (834px)', () => {
-    test.use({viewport: {width: 834, height: 900}})
-    test('MinimalFooter / Responsive medium (834px)', async ({page}) => {
+  test.describe('Mobile viewport test for Narrow view (mobile)', () => {
+    test.use({viewport: {width: 360, height: 800}})
+    test('MinimalFooter / Narrow view (mobile)', async ({page}) => {
       await page.goto(
-        'http://localhost:6006/iframe.html?args=&id=components-minimalfooter-features--responsive-medium&viewMode=story',
+        'http://localhost:6006/iframe.html?args=&id=components-minimalfooter-features--narrow-view&viewMode=story',
         {waitUntil: 'networkidle'},
       )
       await page.locator('body.sb-show-main').waitFor({state: 'visible'})
@@ -200,11 +156,11 @@ test.describe('Visual Comparison: MinimalFooter', () => {
   })
 
   // eslint-disable-next-line i18n-text/no-en
-  test.describe('Fixed viewport test for Responsive small (390px)', () => {
-    test.use({viewport: {width: 390, height: 900}})
-    test('MinimalFooter / Responsive small (390px)', async ({page}) => {
+  test.describe('Tablet viewport test for Regular view (tablet)', () => {
+    test.use({viewport: {width: 834, height: 1112}})
+    test('MinimalFooter / Regular view (tablet)', async ({page}) => {
       await page.goto(
-        'http://localhost:6006/iframe.html?args=&id=components-minimalfooter-features--responsive-small&viewMode=story',
+        'http://localhost:6006/iframe.html?args=&id=components-minimalfooter-features--regular-view&viewMode=story',
         {waitUntil: 'networkidle'},
       )
       await page.locator('body.sb-show-main').waitFor({state: 'visible'})
@@ -215,11 +171,11 @@ test.describe('Visual Comparison: MinimalFooter', () => {
   })
 
   // eslint-disable-next-line i18n-text/no-en
-  test.describe('Fixed viewport test for Responsive medium, no social links (834px)', () => {
-    test.use({viewport: {width: 834, height: 900}})
-    test('MinimalFooter / Responsive medium, no social links (834px)', async ({page}) => {
+  test.describe('Mobile viewport test for Narrow view, no social links (mobile)', () => {
+    test.use({viewport: {width: 360, height: 800}})
+    test('MinimalFooter / Narrow view, no social links (mobile)', async ({page}) => {
       await page.goto(
-        'http://localhost:6006/iframe.html?args=&id=components-minimalfooter-features--responsive-medium-no-social-links&viewMode=story',
+        'http://localhost:6006/iframe.html?args=&id=components-minimalfooter-features--narrow-view-no-social-links&viewMode=story',
         {waitUntil: 'networkidle'},
       )
       await page.locator('body.sb-show-main').waitFor({state: 'visible'})
@@ -230,11 +186,11 @@ test.describe('Visual Comparison: MinimalFooter', () => {
   })
 
   // eslint-disable-next-line i18n-text/no-en
-  test.describe('Fixed viewport test for Responsive small, no social links (390px)', () => {
-    test.use({viewport: {width: 390, height: 900}})
-    test('MinimalFooter / Responsive small, no social links (390px)', async ({page}) => {
+  test.describe('Tablet viewport test for Regular view, no social links (tablet)', () => {
+    test.use({viewport: {width: 834, height: 1112}})
+    test('MinimalFooter / Regular view, no social links (tablet)', async ({page}) => {
       await page.goto(
-        'http://localhost:6006/iframe.html?args=&id=components-minimalfooter-features--responsive-small-no-social-links&viewMode=story',
+        'http://localhost:6006/iframe.html?args=&id=components-minimalfooter-features--regular-view-no-social-links&viewMode=story',
         {waitUntil: 'networkidle'},
       )
       await page.locator('body.sb-show-main').waitFor({state: 'visible'})

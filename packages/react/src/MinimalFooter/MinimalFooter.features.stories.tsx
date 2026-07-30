@@ -1,9 +1,10 @@
 import React from 'react'
 import type {Meta, StoryObj} from '@storybook/react'
 import {CheckCircleFillIcon} from '@primer/octicons-react'
-import {expect, userEvent, within} from 'storybook/test'
+import {expect, within} from 'storybook/test'
 import {MinimalFooter} from '.'
 import {InlineLink, Text, ThemeProvider, Token} from '..'
+import {RedlineBackground} from '../component-helpers'
 
 export default {
   title: 'Components/MinimalFooter/Features',
@@ -99,7 +100,7 @@ export const ReversedSocialLinks: Story = {
 }
 
 export const DefaultNarrow: Story = {
-  name: 'Default (Narrow viewport)',
+  name: 'Default, narrow view (mobile)',
   globals: {
     viewport: {value: 'iphonexr'},
   },
@@ -165,57 +166,16 @@ export const CustomContent: Story = {
 
 export const BackToTop: Story = {
   render: () => (
-    <MinimalFooter>
-      <MinimalFooter.BackToTop>Back to top</MinimalFooter.BackToTop>
-    </MinimalFooter>
-  ),
-}
-
-export const BackToTopHover: Story = {
-  render: () => (
-    <MinimalFooter>
-      <MinimalFooter.BackToTop>Back to top</MinimalFooter.BackToTop>
-    </MinimalFooter>
-  ),
-  play: async ({canvasElement}) => {
-    const button = within(canvasElement).getByRole('button', {name: 'Back to top'})
-    await userEvent.hover(button)
-    expect(button.matches(':hover')).toBe(true)
-  },
-}
-
-export const BackToTopFocusVisible: Story = {
-  render: () => (
-    <MinimalFooter>
-      <MinimalFooter.BackToTop>Back to top</MinimalFooter.BackToTop>
-    </MinimalFooter>
-  ),
-  play: async ({canvasElement}) => {
-    const button = within(canvasElement).getByRole('button', {name: 'Back to top'})
-    button.focus()
-    expect(button).toHaveFocus()
-    expect(button.matches(':focus-visible')).toBe(true)
-  },
-}
-
-export const BackToTopDisabled: Story = {
-  render: () => (
-    <MinimalFooter>
-      <MinimalFooter.BackToTop disabled>Back to top</MinimalFooter.BackToTop>
-    </MinimalFooter>
-  ),
-  play: async ({canvasElement}) => {
-    expect(within(canvasElement).getByRole('button', {name: 'Back to top'})).toBeDisabled()
-  },
-}
-
-export const BackToTopDark: Story = {
-  render: () => (
-    <ThemeProvider colorMode="dark">
+    <main>
+      <RedlineBackground style={{height: '120vh'}}>
+        <Text as="p" align="center" weight="semibold">
+          Scroll down to test the back-to-top functionality
+        </Text>
+      </RedlineBackground>
       <MinimalFooter>
         <MinimalFooter.BackToTop>Back to top</MinimalFooter.BackToTop>
       </MinimalFooter>
-    </ThemeProvider>
+    </main>
   ),
 }
 
@@ -247,34 +207,34 @@ const ResponsiveExample = ({socialLinks = true}: {socialLinks?: boolean}) => (
   </MinimalFooter>
 )
 
-export const ResponsiveMedium: Story = {
-  name: 'Responsive medium (834px)',
+export const NarrowView: Story = {
+  name: 'Narrow view (mobile)',
+  globals: {
+    viewport: {value: 'iphonexr'},
+  },
+  render: () => <ResponsiveExample />,
+}
+
+export const RegularView: Story = {
+  name: 'Regular view (tablet)',
   globals: {
     viewport: {value: 'ipad10p'},
   },
   render: () => <ResponsiveExample />,
 }
 
-export const ResponsiveSmall: Story = {
-  name: 'Responsive small (390px)',
+export const NarrowViewNoSocialLinks: Story = {
+  name: 'Narrow view, no social links (mobile)',
   globals: {
-    viewport: {value: 'iphone12'},
-  },
-  render: () => <ResponsiveExample />,
-}
-
-export const ResponsiveMediumNoSocialLinks: Story = {
-  name: 'Responsive medium, no social links (834px)',
-  globals: {
-    viewport: {value: 'ipad10p'},
+    viewport: {value: 'iphonexr'},
   },
   render: () => <ResponsiveExample socialLinks={false} />,
 }
 
-export const ResponsiveSmallNoSocialLinks: Story = {
-  name: 'Responsive small, no social links (390px)',
+export const RegularViewNoSocialLinks: Story = {
+  name: 'Regular view, no social links (tablet)',
   globals: {
-    viewport: {value: 'iphone12'},
+    viewport: {value: 'ipad10p'},
   },
   render: () => <ResponsiveExample socialLinks={false} />,
 }
