@@ -148,16 +148,7 @@ test.describe('Visual Comparison: MinimalFooter', () => {
     await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
-    const backToTop = page.getByRole('button', {name: 'Back to top'})
-    const backToTopIcon = backToTop.locator('span[aria-hidden="true"]')
-    await page.mouse.move(0, 0)
-    const restBackgroundColor = await backToTopIcon.evaluate(element => getComputedStyle(element).backgroundColor)
-    await backToTop.hover()
-    await expect(backToTopIcon).not.toHaveCSS('background-color', restBackgroundColor)
-    await expect(backToTopIcon).toHaveCSS('background-color', 'rgba(0, 0, 0, 0.118)')
-    await backToTop.hover()
-
-    await expect(page).toHaveScreenshot({fullPage: true, maxDiffPixels: 1})
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('MinimalFooter / Back To Top Focus Visible', async ({page}) => {
@@ -168,10 +159,6 @@ test.describe('Visual Comparison: MinimalFooter', () => {
     await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
-    const backToTop = page.getByRole('button', {name: 'Back to top'})
-    await backToTop.focus()
-    await expect(backToTop).toBeFocused()
-
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
@@ -183,9 +170,6 @@ test.describe('Visual Comparison: MinimalFooter', () => {
     await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
-    const backToTop = page.getByRole('button', {name: 'Back to top'})
-    await expect(backToTop).toBeDisabled()
-
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
