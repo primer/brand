@@ -45,6 +45,46 @@ describe('Pagination', () => {
     expect(getByRole('button', {name: 'Next Page'}).classList).toContain('Button')
   })
 
+  it('renders custom visible labels for the previous and next controls', () => {
+    const {getByText, queryByText} = render(
+      <Pagination pageCount={5} currentPage={2} labels={{prev: 'Newer', next: 'Older'}} />,
+    )
+
+    expect(getByText('Newer')).toBeInTheDocument()
+    expect(getByText('Older')).toBeInTheDocument()
+    expect(queryByText('Previous')).not.toBeInTheDocument()
+    expect(queryByText('Next')).not.toBeInTheDocument()
+  })
+
+  it('falls back to the default previous and next labels when none are provided', () => {
+    const {getByText} = render(<Pagination pageCount={5} currentPage={2} />)
+
+    expect(getByText('Previous')).toBeInTheDocument()
+    expect(getByText('Next')).toBeInTheDocument()
+  })
+
+  it('falls back to the default labels when a key is explicitly set to undefined', () => {
+    const {getByText} = render(<Pagination pageCount={5} currentPage={2} labels={{prev: undefined, next: undefined}} />)
+
+    expect(getByText('Previous')).toBeInTheDocument()
+    expect(getByText('Next')).toBeInTheDocument()
+  })
+
+  it('renders custom accessible labels for the previous and next controls', () => {
+    const {getByRole, queryByRole} = render(
+      <Pagination
+        pageCount={5}
+        currentPage={2}
+        labels={{prevAriaLabel: 'Go to previous page', nextAriaLabel: 'Go to next page'}}
+      />,
+    )
+
+    expect(getByRole('button', {name: 'Go to previous page'})).toBeInTheDocument()
+    expect(getByRole('button', {name: 'Go to next page'})).toBeInTheDocument()
+    expect(queryByRole('button', {name: 'Previous Page'})).not.toBeInTheDocument()
+    expect(queryByRole('button', {name: 'Next Page'})).not.toBeInTheDocument()
+  })
+
   it('shows ellipsis just before the final item to reduce pagination links on longer lists, where the first item is selected', () => {
     const {getByRole} = render(<Pagination pageCount={10} currentPage={1} />)
     const rootEl = getByRole('navigation')

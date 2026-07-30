@@ -69,17 +69,35 @@ render(<App />)
 />
 ```
 
+### Custom button labels
+
+Use the `labels` prop to customize the visible text of the previous and next controls. When localizing content, remember to also set the matching `prevAriaLabel` and `nextAriaLabel` labels so that the accessible names stay in sync with the visible text.
+
+```jsx live
+<Pagination
+  pageCount={3}
+  currentPage={2}
+  labels={{
+    prev: 'Précédent',
+    next: 'Suivant',
+    prevAriaLabel: 'Page précédente',
+    nextAriaLabel: 'Page suivante',
+  }}
+/>
+```
+
 ## Component props
 
 ### Pagination <Label>Required</Label>
 
-| name                    | type                                                                         | default | required | description                                                                                                             |
-| ----------------------- | ---------------------------------------------------------------------------- | ------- | -------- | ----------------------------------------------------------------------------------------------------------------------- |
-| `pageCount`             | `number`                                                                     |         | `true`   | The total number of pages                                                                                               |
-| `currentPage`           | `number`                                                                     |         | `true`   | The current page number                                                                                                 |
-| `onPageChange`          | `(e: React.MouseEvent, n: number) => void`                                   |         | `false`  | Callback function for when the page changes                                                                             |
-| `hrefBuilder`           | `(n: number) => string`                                                      |         | `false`  | Function to build the href for each page                                                                                |
-| `pageAttributesBuilder` | `(n: number, page: PaginationPageType) => {[attributeName: string]: string}` |         | `false`  | Forward custom attributes to pagination items.                                                                          |
-| `marginPageCount`       | `number`                                                                     |         | `false`  | Defines how many pages are to be displayed on the left and right of the component. Will be reduced on narrow viewports. |
-| `showPages`             | `boolean`                                                                    |         | `false`  | Whether to show the page numbers                                                                                        |
-| `surroundingPageCount`  | `number`                                                                     |         | `false`  | The number of pages to show on each side of the current page. Will be hidden on narrow viewports.                       |
+| name                    | type                                                                             | default | required | description                                                                                                             |
+| ----------------------- | -------------------------------------------------------------------------------- | ------- | -------- | ----------------------------------------------------------------------------------------------------------------------- |
+| `pageCount`             | `number`                                                                         |         | `true`   | The total number of pages                                                                                               |
+| `currentPage`           | `number`                                                                         |         | `true`   | The current page number                                                                                                 |
+| `onPageChange`          | `(e: React.MouseEvent, n: number) => void`                                       |         | `false`  | Callback function for when the page changes                                                                             |
+| `hrefBuilder`           | `(n: number) => string`                                                          |         | `false`  | Function to build the href for each page                                                                                |
+| `pageAttributesBuilder` | `(n: number, page: PaginationPageType) => {[attributeName: string]: string}`     |         | `false`  | Forward custom attributes to pagination items.                                                                          |
+| `marginPageCount`       | `number`                                                                         |         | `false`  | Defines how many pages are to be displayed on the left and right of the component. Will be reduced on narrow viewports. |
+| `showPages`             | `boolean`                                                                        |         | `false`  | Whether to show the page numbers                                                                                        |
+| `surroundingPageCount`  | `number`                                                                         |         | `false`  | The number of pages to show on each side of the current page. Will be hidden on narrow viewports.                       |
+| `labels`                | `{prev?: string; next?: string; prevAriaLabel?: string; nextAriaLabel?: string}` |         | `false`  | Custom text and accessible labels for the previous and next controls. Provide any subset.                               |

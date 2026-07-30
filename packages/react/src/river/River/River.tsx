@@ -90,6 +90,33 @@ const Root = forwardRef(
       {Visual: null, Content: null},
     )
 
+    const visualPosition = VisualChild?.props.position ?? 'default'
+    const visualPadding = VisualChild?.props.padding ?? 'default'
+    const hasNonDefaultPosition = visualPosition !== 'default'
+    const hasNonDefaultPadding = visualPadding !== 'default'
+    const hasVisualLayoutOverrides = hasNonDefaultPosition || hasNonDefaultPadding
+    const supportsVisualLayoutOverrides = variant === 'gridline'
+
+    if (
+      hasVisualLayoutOverrides &&
+      !supportsVisualLayoutOverrides &&
+      (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'test')
+    ) {
+      // eslint-disable-next-line no-console
+      console.warn(
+        `River: River.Visual position and padding are only supported when River uses variant="gridline"; ignoring position="${visualPosition}" and padding="${visualPadding}".`,
+      )
+    }
+
+    const VisualChildWithVariantStyles = VisualChild
+      ? React.cloneElement(VisualChild, {
+          className: clsx(
+            VisualChild.props.className,
+            variant === 'gridline' && styles['River__visual--has-background'],
+          ),
+        })
+      : null
+
     return (
       <section
         ref={ref}
@@ -106,7 +133,7 @@ const Root = forwardRef(
         {...rest}
       >
         {ContentChild}
-        {VisualChild}
+        {VisualChildWithVariantStyles}
       </section>
     )
   },
@@ -191,7 +218,7 @@ export const RiverContent = forwardRef(
         )}
 
         {!LabelChild && !EyebrowTextChild && LeadingComponent && (
-          <div>
+          <div className={styles.River__leadingComponent}>
             <LeadingComponent />
           </div>
         )}
@@ -240,10 +267,19 @@ export const RiverContent = forwardRef(
   },
 )
 
-export const RiverVisualBackgroundColors = ['default', 'subtle'] as const
-export type RiverVisualBackgroundColor = (typeof RiverVisualBackgroundColors)[number]
+export const RiverVisualPositionOptions = [
+  'default',
+  'center',
+  'block-end',
+  'block-end-inline-start',
+  'block-end-inline-end',
+] as const
+export type RiverVisualPosition = (typeof RiverVisualPositionOptions)[number]
 
-export type RiverVisualProps = BaseProps<HTMLDivElement> &
+export const RiverVisualPaddingOptions = ['default', 'none', 'all'] as const
+export type RiverVisualPadding = (typeof RiverVisualPaddingOptions)[number]
+
+export type RiverVisualBaseProps = BaseProps<HTMLDivElement> &
   React.HtmlHTMLAttributes<HTMLDivElement> &
   PropsWithChildren<{
     /**
@@ -261,23 +297,22 @@ export type RiverVisualProps = BaseProps<HTMLDivElement> &
      * Can optionally be disabled.
      */
     rounded?: boolean
-    /**
-     * Applies a background color with padding around the media.
-     */
-    imageBackgroundColor?: RiverVisualBackgroundColor
   }>
 
-export const Visual = forwardRef(
+export type RiverVisualProps = RiverVisualBaseProps & {
+  /**
+   * Positions media within the visual region in the gridline variant.
+   */
+  position?: RiverVisualPosition
+  /**
+   * Controls media padding within the visual region in the gridline variant.
+   */
+  padding?: RiverVisualPadding
+}
+
+export const RiverVisualBase = forwardRef<HTMLDivElement, RiverVisualBaseProps>(
   (
-    {
-      fillMedia = true,
-      children,
-      className,
-      hasShadow = false,
-      rounded = true,
-      imageBackgroundColor,
-      ...rest
-    }: PropsWithChildren<RiverVisualProps>,
+    {fillMedia = true, children, className, hasShadow = false, rounded = true, ...rest}: RiverVisualBaseProps,
     ref: Ref<HTMLDivElement>,
   ) => {
     return (
@@ -288,7 +323,6 @@ export const Visual = forwardRef(
           hasShadow && styles['River__visual--has-shadow'],
           fillMedia && styles['River__visual--fill-media'],
           rounded && styles['River__visual--rounded'],
-          imageBackgroundColor === 'subtle' && styles['River__visual--has-background'],
           className,
         )}
         {...rest}
@@ -297,6 +331,20 @@ export const Visual = forwardRef(
       </div>
     )
   },
+)
+
+const Visual = forwardRef<HTMLDivElement, RiverVisualProps>(
+  ({className, position = 'default', padding = 'default', ...rest}, ref) => (
+    <RiverVisualBase
+      ref={ref}
+      className={clsx(
+        position !== 'default' && styles[`River__visual--position-${position}`],
+        padding !== 'default' && styles[`River__visual--padding-${padding}`],
+        className,
+      )}
+      {...rest}
+    />
+  ),
 )
 
 /**

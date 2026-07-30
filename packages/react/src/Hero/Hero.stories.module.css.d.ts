@@ -7,7 +7,6 @@ declare const styles: {
   readonly "customVideo": string;
   readonly "d-lg-none": string;
   readonly "d-none-d-lg-block": string;
-  readonly "heroWithCardsExample": string;
 };
 export = styles;
 

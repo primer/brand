@@ -2,11 +2,12 @@ import React from 'react'
 import type {Meta, StoryObj} from '@storybook/react'
 import {ButtonGroup} from '.'
 import {Button} from '../Button'
+import {ActionMenu} from '../ActionMenu'
 
 const meta = {
   title: 'Components/ButtonGroup',
   component: ButtonGroup,
-  subcomponents: {Button},
+  subcomponents: {Button, ActionMenu},
   args: {
     buttonSize: 'medium',
     buttonsAs: 'button',
@@ -16,7 +17,7 @@ const meta = {
       description: 'The size of the button elements',
       control: {
         type: 'radio',
-        options: ['medium', 'large'],
+        options: ['small', 'medium', 'large'],
       },
     },
     buttonsAs: {
@@ -54,6 +55,36 @@ export const SingleButtonGroup: Story = {
   render: args => (
     <ButtonGroup {...args}>
       <Button>This is one button</Button>
+    </ButtonGroup>
+  ),
+}
+
+export const WithActionMenu: Story = {
+  render: args => (
+    <ButtonGroup {...args}>
+      <Button>Primary action</Button>
+      <ActionMenu>
+        <ActionMenu.Button>More actions</ActionMenu.Button>
+        <ActionMenu.Overlay aria-label="More actions">
+          <ActionMenu.Item value="Contact sales">Contact sales</ActionMenu.Item>
+          <ActionMenu.Item value="View pricing">View pricing</ActionMenu.Item>
+        </ActionMenu.Overlay>
+      </ActionMenu>
+    </ButtonGroup>
+  ),
+}
+
+export const WithVariantOverrides: Story = {
+  render: args => (
+    <ButtonGroup {...args}>
+      <Button variant="secondary">Secondary override</Button>
+      <ActionMenu>
+        <ActionMenu.Button variant="primary">Primary override</ActionMenu.Button>
+        <ActionMenu.Overlay aria-label="More actions">
+          <ActionMenu.Item value="Contact sales">Contact sales</ActionMenu.Item>
+          <ActionMenu.Item value="View pricing">View pricing</ActionMenu.Item>
+        </ActionMenu.Overlay>
+      </ActionMenu>
     </ButtonGroup>
   ),
 }

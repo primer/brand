@@ -160,6 +160,23 @@ export const CustomIntro: Story = {
   ),
 }
 
+export const MediaComponents: Story = {
+  render: () => (
+    <Statistic
+      variant="boxed"
+      leadingComponent={() => (
+        <picture>
+          <img src={monaAvatar} alt="Placeholder leading visual" width={64} height={64} />
+        </picture>
+      )}
+      trailingComponent={() => <img src={monaAvatar} alt="Placeholder trailing visual" width={64} height={64} />}
+    >
+      <Statistic.Heading>100M+</Statistic.Heading>
+      <Statistic.Description>Developers</Statistic.Description>
+    </Statistic>
+  ),
+}
+
 export const Animations: Story = {
   render: () => (
     <AnimationProvider>

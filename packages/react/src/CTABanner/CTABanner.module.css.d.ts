@@ -5,10 +5,12 @@ declare const styles: {
   readonly "CTABanner--variant-balanced": string;
   readonly "CTABanner--variant-default": string;
   readonly "CTABanner--variant-minimal": string;
+  readonly "CTABanner-buttonGroup": string;
   readonly "CTABanner-container": string;
   readonly "CTABanner-container--background": string;
   readonly "CTABanner-container--border": string;
   readonly "CTABanner-container--border-gridlines": string;
+  readonly "CTABanner-container--rounded": string;
   readonly "CTABanner-content": string;
   readonly "CTABanner-content--center": string;
   readonly "CTABanner-description": string;

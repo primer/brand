@@ -132,7 +132,9 @@
 }
 
 .Footer__social-icon {
+  display: block;
   width: auto;
+  height: auto;
   max-height: var(--base-size-20);
   filter: var(--brand-footer-socialIcon-restFilter);
 }

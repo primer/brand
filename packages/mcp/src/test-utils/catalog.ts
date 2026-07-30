@@ -14,7 +14,7 @@ export function makeCatalog(overrides: Partial<Catalog> = {}): Catalog {
       {
         name: 'Hero',
         module: '@primer/react-brand',
-        subcomponents: ['Hero.Heading', 'Hero.Description', 'Hero.PrimaryAction'],
+        subcomponents: ['Hero.Heading', 'Hero.Description', 'Hero.ButtonGroup', 'Hero.PrimaryAction'],
         props: [
           {
             name: 'align',
@@ -29,7 +29,12 @@ export function makeCatalog(overrides: Partial<Catalog> = {}): Catalog {
           {
             title: 'Hero example',
             source: 'story',
-            code: '<Hero align="center"><Hero.Heading>Build like the best</Hero.Heading></Hero>',
+            code: `<Hero align="center">
+  <Hero.Heading>Build like the best</Hero.Heading>
+  <Hero.ButtonGroup>
+    <Button>Get started</Button>
+  </Hero.ButtonGroup>
+</Hero>`,
           },
         ],
         description: 'Prominent banner for the top of a landing page',
@@ -76,6 +81,24 @@ export function makeCatalog(overrides: Partial<Catalog> = {}): Catalog {
         ],
         description: 'Pricing tiers and plan comparison',
         keywords: ['plans', 'billing'],
+      },
+      {
+        name: 'CTAForm',
+        module: '@primer/react-brand',
+        subcomponents: ['CTAForm.Input', 'CTAForm.Action'],
+        props: [],
+        examples: [
+          {
+            title: 'CTAForm example',
+            source: 'story',
+            code: `<CTAForm>
+  <CTAForm.Input><FormControl><TextInput /></FormControl></CTAForm.Input>
+  <CTAForm.Action>Subscribe</CTAForm.Action>
+</CTAForm>`,
+          },
+        ],
+        description: 'Capture user input with a call to action form.',
+        keywords: ['form', 'input', 'signup'],
       },
     ],
     assets: [

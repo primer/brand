@@ -84,7 +84,11 @@ export function FlexSuiteAIDetailsPlaylistTemplate({content}: FlexSuiteAIDetails
             <br /> <b>{content.hero.headingEmphasis}</b>
           </Hero.Heading>
           <Hero.Description>{content.hero.description}</Hero.Description>
-          <Hero.PrimaryAction href="#">{content.hero.primaryAction}</Hero.PrimaryAction>
+          <Hero.ButtonGroup>
+            <Button as="a" href="#" variant="primary">
+              {content.hero.primaryAction}
+            </Button>
+          </Hero.ButtonGroup>
         </Hero>
       </Box>
 

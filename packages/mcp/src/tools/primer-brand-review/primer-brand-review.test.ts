@@ -21,4 +21,16 @@ describe('primer_brand_review', () => {
     const result = await primerBrandReviewTool.run({code}, makeContext())
     expect(result.text.toLowerCase()).toContain('raw')
   })
+
+  it('does not require Hero media when the Asset Generator is unavailable', async () => {
+    const code = `<Hero><Hero.Heading>Ship faster</Hero.Heading></Hero>\n.hero { color: var(--brand-color-text-default); }`
+    const result = await primerBrandReviewTool.run({code}, makeContext())
+    expect(result.text).not.toContain('hero-requires-media')
+  })
+
+  it('requires Hero media when the Asset Generator is available', async () => {
+    const code = `<Hero><Hero.Heading>Ship faster</Hero.Heading></Hero>\n.hero { color: var(--brand-color-text-default); }`
+    const result = await primerBrandReviewTool.run({code}, makeContext({assetGenerator: {available: true}}))
+    expect(result.text).toContain('hero-requires-media')
+  })
 })
