@@ -310,38 +310,34 @@ const Link = <C extends React.ElementType = 'a'>({as, children, ...rest}: PropsW
 }
 
 /**
- * Public prop shape approved for `MinimalFooter.BackToTop` (see `td-92fab6`).
- *
- * - `children` supplies the required visible, accessible label (mirrors Button's
- *   children-as-label convention), so consumers retain localization ownership.
- * - `onClick` runs before any built-in scrolling; built-in scrolling is skipped when
- *   `event.preventDefault()` is called, matching the `Accordion`/`NavList` handler-composition pattern.
- * - `scrollBehavior` lets consumers customize scrolling in the normal-motion case only. It is never
- *   used to force `smooth` scrolling when the user prefers reduced motion - the reduced-motion
- *   preference always wins.
- * - Rest props (ARIA, `data-*`, `data-analytics-event`, etc.) forward to the underlying `<button>`,
- *   consistent with `Button`'s prop-forwarding behavior.
+ * Props for the optional Back to top control.
  */
 export type MinimalFooterBackToTopProps = {
+  /**
+   * The visible and accessible label.
+   */
   children: React.ReactNode
+  /**
+   * The ID of the semantic top-of-page element that receives focus after keyboard activation.
+   * Defaults to the first `<main>` element.
+   */
+  focusTargetId?: string
+  /**
+   * Runs before the built-in behavior. Call `event.preventDefault()` to cancel scrolling and focus transfer.
+   */
   onClick?: React.MouseEventHandler<HTMLButtonElement>
+  /**
+   * The scrolling behavior used when reduced motion is not preferred.
+   */
   scrollBehavior?: ScrollBehavior
 } & BaseProps<HTMLButtonElement> &
   Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'onClick' | 'children'>
 
 /**
- * Opt-in control that scrolls the document back to the top. Recognized as a `MinimalFooter` child
- * the same way `Footnotes`/`Content`/`Link` are - only the first instance is rendered (see
- * `parseRootChildren`). Not rendered unless a consumer includes it.
- *
- * Consumer `onClick` handlers always run first; calling `event.preventDefault()` inside `onClick`
- * skips the built-in scroll entirely, leaving scrolling fully up to the consumer. Otherwise the
- * document/window is scrolled to the top. When the user prefers reduced motion, the scroll always
- * uses `behavior: 'auto'`, regardless of `scrollBehavior` - reduced motion can never be overridden
- * to `smooth`. Otherwise, `scrollBehavior` selects the behavior, defaulting to `smooth`.
+ * Scrolls to the top and, after keyboard activation, moves focus to the configured top-of-page destination.
  */
 const BackToTop = forwardRef<HTMLButtonElement, MinimalFooterBackToTopProps>(
-  ({children, className, onClick, scrollBehavior, type = 'button', ...rest}, ref) => {
+  ({children, className, focusTargetId, onClick, scrollBehavior, type = 'button', ...rest}, ref) => {
     const prefersReducedMotion = useReducedMotion()
 
     const handleClick = useCallback<React.MouseEventHandler<HTMLButtonElement>>(
@@ -354,10 +350,37 @@ const BackToTop = forwardRef<HTMLButtonElement, MinimalFooterBackToTopProps>(
 
         window.scrollTo({
           top: 0,
-          behavior: prefersReducedMotion ? 'auto' : scrollBehavior ?? 'smooth',
+          behavior: prefersReducedMotion ? 'instant' : scrollBehavior ?? 'smooth',
         })
+
+        if (event.detail === 0) {
+          const focusTarget = focusTargetId
+            ? document.getElementById(focusTargetId)
+            : document.querySelector<HTMLElement>('main')
+
+          if (!focusTarget) {
+            if (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'test') {
+              // eslint-disable-next-line no-console
+              console.warn(
+                focusTargetId
+                  ? `MinimalFooter.BackToTop: No element found with id "${focusTargetId}".`
+                  : 'MinimalFooter.BackToTop: No main element found.',
+              )
+            }
+            return
+          }
+
+          const hadTabIndex = focusTarget.hasAttribute('tabindex')
+
+          if (!hadTabIndex) {
+            focusTarget.tabIndex = -1
+            focusTarget.addEventListener('blur', () => focusTarget.removeAttribute('tabindex'), {once: true})
+          }
+
+          focusTarget.focus({preventScroll: true})
+        }
       },
-      [onClick, prefersReducedMotion, scrollBehavior],
+      [focusTargetId, onClick, prefersReducedMotion, scrollBehavior],
     )
 
     return (

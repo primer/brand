@@ -1,10 +1,11 @@
 ---
+'@primer/brand-primitives': minor
 '@primer/react-brand': minor
 ---
 
 Updated `MinimalFooter` visual design and added new content slot.
 
-- Added an optional `MinimalFooter.Content` region that accepts any custom cobntent.
-- Added an optional `MinimalFooter.BackToTop` control.
-- Replaced the full GitHub logo with the GitHub logomark.
-- Reorganized the footer into top, optional content, and bottom regions.
+- Added optional `MinimalFooter.Content` and `MinimalFooter.BackToTop` regions.
+- Replaced the full GitHub logo with the GitHub logomark and reorganized the footer into top, content, and bottom regions.
+- Added the published `--brand-footer-socialIcon-restFilter` token.
+- Existing prop usage remains compatible, but snapshots and descendant or DOM selectors may need updates for the new output.

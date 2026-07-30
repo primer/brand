@@ -1,6 +1,6 @@
 ---
 title: Minimal footer
-description: Use the minimal footer component to provide a global footer featuring egal links, social links, and optional footnotes and content.
+description: Use the minimal footer component to provide a global footer featuring legal links, social links, and optional footnotes and content.
 keywords: ['legal', 'copyright', 'social', 'links', 'footnotes']
 show-tabs: false
 ready: true
@@ -29,6 +29,8 @@ import {MinimalFooter} from '@primer/react-brand'
 The default footer includes only the GitHub logomark, the current-year copyright statement, and the supported social links. Footnotes, content, footer links, and Back to top are opt-in.
 
 `MinimalFooter.Link` is the only footer-link child API and always renders in the bottom region. Top navigation is not supported in this iteration and should not be recreated through `MinimalFooter.Content`; render page navigation outside `MinimalFooter`.
+
+Existing props remain source-compatible, but the footer's visual output and DOM structure have changed. Update snapshots and any descendant or DOM selectors that depend on the previous structure.
 
 ## Examples
 
@@ -111,6 +113,8 @@ Use `MinimalFooter.Content` to render an opt-in slot between the top row and the
 
 Use `MinimalFooter.BackToTop` to opt into a control in the top row that scrolls the document back to the top. It is never rendered unless it is explicitly included as a child, and, like the other single-instance children, only the first instance is recognized when more than one is provided. Supply a localized label through `children`.
 
+After keyboard activation, focus moves to the first `<main>` element so the next Tab continues from the top of the page. The component temporarily makes the destination programmatically focusable when needed. Use `focusTargetId` to identify a different semantic top-of-page destination. If the specified element is missing, the component warns in development rather than silently choosing another target. Pointer activation scrolls without moving focus.
+
 ```jsx live
 <MinimalFooter socialLinks={false}>
   <MinimalFooter.BackToTop>Back to top</MinimalFooter.BackToTop>
@@ -127,7 +131,7 @@ Use `MinimalFooter.BackToTop` to opt into a control in the top row that scrolls 
 
 All other props - including ARIA and `data-*` attributes - forward to the underlying `<button>`, consistent with `Button`'s prop-forwarding behavior.
 
-An `onClick` handler always runs before the built-in scroll behavior. Call `event.preventDefault()` inside it to cancel the built-in scroll entirely and take full ownership of the behavior:
+An `onClick` handler always runs before the built-in behavior. Call `event.preventDefault()` inside it to cancel scrolling and focus transfer, taking full ownership of the interaction:
 
 ```jsx live
 <MinimalFooter socialLinks={false}>
@@ -136,6 +140,7 @@ An `onClick` handler always runs before the built-in scroll behavior. Call `even
       // Custom handling runs first...
       console.log('Scrolling to top')
       // ...call event.preventDefault() to skip the built-in scroll entirely.
+      event.preventDefault()
     }}
   >
     Back to top
@@ -153,7 +158,7 @@ Use `scrollBehavior` to customize the DOM [scroll behavior](https://developer.mo
 
 <Note>
 
-When the user prefers reduced motion, the built-in scroll always uses `behavior: 'auto'`, regardless of `scrollBehavior` - the reduced motion preference always wins and can never be overridden to `smooth`.
+When the user prefers reduced motion, the built-in scroll always uses the explicitly non-animated `behavior: 'instant'`, regardless of `scrollBehavior`. This prevents root-level smooth scrolling from overriding the reduced-motion behavior.
 
 </Note>
 
@@ -193,10 +198,11 @@ All other props, including ARIA and `data-*` attributes, forward to the underlyi
 
 ### MinimalFooter.BackToTop
 
-| Name             | Type                                                 |   Default   | Description                                                                                                                                                                                                                                       |
-| :--------------- | :--------------------------------------------------- | :---------: | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `children`       | `ReactNode`                                          |  Required   | The consumer-provided visible and accessible localized label.                                                                                                                                                                                     |
-| `onClick`        | `MouseEventHandler`                                  | `undefined` | Runs before the built-in scroll. Call `event.preventDefault()` to cancel the built-in scroll entirely.                                                                                                                                            |
-| `scrollBehavior` | `ScrollBehavior` (`'auto'`, `'instant'`, `'smooth'`) | `'smooth'`  | The DOM [scroll behavior](https://developer.mozilla.org/en-US/docs/Web/API/Element/scroll#behavior) used by the built-in scroll when the user does not prefer reduced motion. Always overridden to `'auto'` when the user prefers reduced motion. |
+| Name             | Type                                                 |   Default   | Description                                                                                                                                                                                                                         |
+| :--------------- | :--------------------------------------------------- | :---------: | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `children`       | `ReactNode`                                          |  Required   | The consumer-provided visible and accessible localized label.                                                                                                                                                                       |
+| `focusTargetId`  | `string`                                             | `undefined` | ID of the semantic top-of-page element that receives focus after keyboard activation. Defaults to the first `<main>` element.                                                                                                       |
+| `onClick`        | `MouseEventHandler`                                  | `undefined` | Runs before the built-in behavior. Call `event.preventDefault()` to cancel scrolling and focus transfer.                                                                                                                            |
+| `scrollBehavior` | `ScrollBehavior` (`'auto'`, `'instant'`, `'smooth'`) | `'smooth'`  | The DOM [scroll behavior](https://developer.mozilla.org/en-US/docs/Web/API/Element/scroll#behavior) used when the user does not prefer reduced motion. Reduced motion always uses the explicitly non-animated `'instant'` behavior. |
 
 All other props, including ARIA and `data-*` attributes, forward to the underlying `<button>`.

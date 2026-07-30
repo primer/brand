@@ -270,6 +270,32 @@ const setupCodeByGroup: Record<string, string> = {
   `,
 }
 
+const interactionCodeByStory: Partial<Record<string, string>> = {
+  'components-minimalfooter-features--back-to-top-hover': `
+    const backToTop = page.getByRole('button', {name: 'Back to top'});
+    const backToTopIcon = backToTop.locator('span[aria-hidden="true"]');
+    await page.mouse.move(0, 0);
+    const restBackgroundColor = await backToTopIcon.evaluate(element => getComputedStyle(element).backgroundColor);
+    await backToTop.hover();
+    await expect(backToTopIcon).not.toHaveCSS('background-color', restBackgroundColor);
+    await expect(backToTopIcon).toHaveCSS('background-color', 'rgba(0, 0, 0, 0.118)');
+    await backToTop.hover();
+  `,
+  'components-minimalfooter-features--back-to-top-focus-visible': `
+    const backToTop = page.getByRole('button', {name: 'Back to top'});
+    await backToTop.focus();
+    await expect(backToTop).toBeFocused();
+  `,
+  'components-minimalfooter-features--back-to-top-disabled': `
+    const backToTop = page.getByRole('button', {name: 'Back to top'});
+    await expect(backToTop).toBeDisabled();
+  `,
+}
+
+const screenshotOptionsByStory: Partial<Record<string, string>> = {
+  'components-minimalfooter-features--back-to-top-hover': '{fullPage: true, maxDiffPixels: 1}',
+}
+
 const categorisedStories = Object.keys((stories as StoryIndex).entries).reduce((acc, key) => {
   const {id, name: storyName, importPath} = stories.entries[key]
 
@@ -342,8 +368,8 @@ for (const key of Object.keys(categorisedStories)) {
             await page.goto('http://localhost:${port}/iframe.html?${localeParam}args=&id=${id}&viewMode=story', { waitUntil: 'networkidle' })
             await page.locator('body.sb-show-main').waitFor({ state: 'visible' })
 
-            ${timeout ? `await page.waitForTimeout(${timeout})` : ''}
-            await expect(page).toHaveScreenshot({ fullPage: true })
+            ${timeout ? `await page.waitForTimeout(${timeout})` : ''}${interactionCodeByStory[id] ?? ''}
+            await expect(page).toHaveScreenshot(${screenshotOptionsByStory[id] ?? '{fullPage: true}'})
           });
 
           `

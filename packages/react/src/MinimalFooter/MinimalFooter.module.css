@@ -136,16 +136,7 @@
 .Footer__social-icon {
   width: auto;
   max-height: var(--base-size-20);
-}
-
-[data-color-mode='light'] .Footer__social-icon {
-  /* Approximate --brand-color-text-muted (#58635b) from the hotlinked SVGs' #959da5 fill. */
-  filter: sepia(37%) saturate(152%) hue-rotate(77deg) brightness(57%);
-}
-
-[data-color-mode='dark'] .Footer__social-icon {
-  /* Approximate --brand-color-text-muted (#a4aea6) from the hotlinked SVGs' #959da5 fill. */
-  filter: saturate(73%) hue-rotate(-89deg) brightness(110%);
+  filter: var(--brand-footer-socialIcon-restFilter);
 }
 
 .Footer__copyright {
@@ -274,12 +265,12 @@
     border-color var(--brand-animation-duration-fast) var(--brand-animation-easing-glide);
 }
 
-.Footer__backToTop:hover .Footer__backToTop-icon {
+.Footer__backToTop:not([disabled], [aria-disabled='true']):hover .Footer__backToTop-icon {
   border-color: var(--brand-button-subtle-borderColor-hover);
   background-color: var(--brand-button-subtle-bgColor-hover);
 }
 
-.Footer__backToTop:active .Footer__backToTop-icon {
+.Footer__backToTop:not([disabled], [aria-disabled='true']):active .Footer__backToTop-icon {
   border-color: var(--brand-button-subtle-borderColor-active);
   background-color: var(--brand-button-subtle-bgColor-active);
 }

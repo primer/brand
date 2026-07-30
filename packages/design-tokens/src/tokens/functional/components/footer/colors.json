@@ -7,6 +7,10 @@
       }
     },
     "socialIcon": {
+      "restFilter": {
+        "value": "sepia(37%) saturate(152%) hue-rotate(77deg) brightness(57%)",
+        "dark": "saturate(73%) hue-rotate(-89deg) brightness(110%)"
+      },
       "hoverFilter": {
         "value": "brightness(0)",
         "dark": "brightness(2)"

@@ -178,7 +178,34 @@ export const BackToTopHover: Story = {
     </MinimalFooter>
   ),
   play: async ({canvasElement}) => {
-    await userEvent.hover(within(canvasElement).getByRole('button', {name: 'Back to top'}))
+    const button = within(canvasElement).getByRole('button', {name: 'Back to top'})
+    await userEvent.hover(button)
+    expect(button.matches(':hover')).toBe(true)
+  },
+}
+
+export const BackToTopFocusVisible: Story = {
+  render: () => (
+    <MinimalFooter>
+      <MinimalFooter.BackToTop>Back to top</MinimalFooter.BackToTop>
+    </MinimalFooter>
+  ),
+  play: async ({canvasElement}) => {
+    const button = within(canvasElement).getByRole('button', {name: 'Back to top'})
+    button.focus()
+    expect(button).toHaveFocus()
+    expect(button.matches(':focus-visible')).toBe(true)
+  },
+}
+
+export const BackToTopDisabled: Story = {
+  render: () => (
+    <MinimalFooter>
+      <MinimalFooter.BackToTop disabled>Back to top</MinimalFooter.BackToTop>
+    </MinimalFooter>
+  ),
+  play: async ({canvasElement}) => {
+    expect(within(canvasElement).getByRole('button', {name: 'Back to top'})).toBeDisabled()
   },
 }
 

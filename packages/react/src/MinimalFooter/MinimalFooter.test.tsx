@@ -1,5 +1,5 @@
 import React from 'react'
-import {render, cleanup} from '@testing-library/react'
+import {act, render, cleanup} from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import '@testing-library/jest-dom'
 import {axe, toHaveNoViolations} from 'jest-axe'
@@ -923,6 +923,27 @@ describe('MinimalFooter', () => {
     expect(button).toHaveAttribute('type', 'button')
   })
 
+  it('does not activate Back to Top when disabled', async () => {
+    const user = userEvent.setup()
+    const scrollToSpy = jest.spyOn(window, 'scrollTo').mockImplementation(() => {})
+    const onClick = jest.fn()
+
+    const {getByRole} = render(
+      <MinimalFooter>
+        <MinimalFooter.BackToTop disabled={true} onClick={onClick}>
+          Back to top
+        </MinimalFooter.BackToTop>
+      </MinimalFooter>,
+    )
+
+    await user.click(getByRole('button', {name: 'Back to top'}))
+
+    expect(onClick).not.toHaveBeenCalled()
+    expect(scrollToSpy).not.toHaveBeenCalled()
+
+    scrollToSpy.mockRestore()
+  })
+
   it('calls the consumer onClick before scrolling', async () => {
     const user = userEvent.setup()
     const scrollToSpy = jest.spyOn(window, 'scrollTo').mockImplementation(() => {})
@@ -943,21 +964,29 @@ describe('MinimalFooter', () => {
     scrollToSpy.mockRestore()
   })
 
-  it('skips the built-in scroll when the consumer calls event.preventDefault()', async () => {
+  it('skips scrolling and focus transfer when the consumer calls event.preventDefault()', async () => {
     const user = userEvent.setup()
     const scrollToSpy = jest.spyOn(window, 'scrollTo').mockImplementation(() => {})
     const onClick = jest.fn(event => event.preventDefault())
 
     const {getByRole} = render(
-      <MinimalFooter>
-        <MinimalFooter.BackToTop onClick={onClick}>Back to top</MinimalFooter.BackToTop>
-      </MinimalFooter>,
+      <>
+        <main>
+          <a href="#content">Content link</a>
+        </main>
+        <MinimalFooter>
+          <MinimalFooter.BackToTop onClick={onClick}>Back to top</MinimalFooter.BackToTop>
+        </MinimalFooter>
+      </>,
     )
 
-    await user.click(getByRole('button', {name: 'Back to top'}))
+    const button = getByRole('button', {name: 'Back to top'})
+    act(() => button.focus())
+    await user.keyboard('{Enter}')
 
     expect(onClick).toHaveBeenCalledTimes(1)
     expect(scrollToSpy).not.toHaveBeenCalled()
+    expect(button).toHaveFocus()
 
     scrollToSpy.mockRestore()
   })
@@ -972,9 +1001,11 @@ describe('MinimalFooter', () => {
       </MinimalFooter>,
     )
 
-    await user.click(getByRole('button', {name: 'Back to top'}))
+    const button = getByRole('button', {name: 'Back to top'})
+    await user.click(button)
 
     expect(scrollToSpy).toHaveBeenCalledWith({top: 0, behavior: 'smooth'})
+    expect(button).toHaveFocus()
 
     scrollToSpy.mockRestore()
   })
@@ -996,9 +1027,10 @@ describe('MinimalFooter', () => {
     scrollToSpy.mockRestore()
   })
 
-  it('always scrolls with behavior: auto when reduced motion is preferred, even if scrollBehavior requests smooth', async () => {
+  it('uses an instant scroll when reduced motion is preferred, even with smooth root scrolling', async () => {
     const matchMediaMock = jest.mocked(window.matchMedia)
     const scrollToSpy = jest.spyOn(window, 'scrollTo').mockImplementation(() => {})
+    document.documentElement.style.scrollBehavior = 'smooth'
 
     await matchMediaMock.withImplementation(
       query => ({
@@ -1021,33 +1053,63 @@ describe('MinimalFooter', () => {
 
         await user.click(getByRole('button', {name: 'Back to top'}))
 
-        expect(scrollToSpy).toHaveBeenCalledWith({top: 0, behavior: 'auto'})
+        expect(scrollToSpy).toHaveBeenCalledWith({top: 0, behavior: 'instant'})
       },
     )
 
+    document.documentElement.style.removeProperty('scroll-behavior')
     scrollToSpy.mockRestore()
   })
 
-  it('is reachable and activatable by keyboard', async () => {
+  it('moves keyboard focus to the main landmark so the next Tab continues from the top', async () => {
     const user = userEvent.setup()
     const scrollToSpy = jest.spyOn(window, 'scrollTo').mockImplementation(() => {})
 
     const {getByRole} = render(
-      <MinimalFooter socialLinks={false}>
-        <MinimalFooter.BackToTop>Back to top</MinimalFooter.BackToTop>
-      </MinimalFooter>,
+      <>
+        <a href="#before-main">Before main</a>
+        <main>
+          <a href="#main-content">Main content</a>
+        </main>
+        <MinimalFooter socialLinks={false}>
+          <MinimalFooter.BackToTop>Back to top</MinimalFooter.BackToTop>
+        </MinimalFooter>
+      </>,
     )
 
     const button = getByRole('button', {name: 'Back to top'})
+    const main = getByRole('main')
 
-    await user.tab()
-    expect(getByRole('link', {name: 'GitHub'})).toHaveFocus()
-
-    await user.tab()
-    expect(button).toHaveFocus()
-
+    act(() => button.focus())
     await user.keyboard('{Enter}')
+
     expect(scrollToSpy).toHaveBeenCalledWith({top: 0, behavior: 'smooth'})
+    expect(main).toHaveFocus()
+
+    await user.tab()
+    expect(getByRole('link', {name: 'Main content'})).toHaveFocus()
+
+    scrollToSpy.mockRestore()
+  })
+
+  it('moves keyboard focus to a custom semantic destination', async () => {
+    const user = userEvent.setup()
+    const scrollToSpy = jest.spyOn(window, 'scrollTo').mockImplementation(() => {})
+
+    const {getByRole} = render(
+      <>
+        <header id="page-start">Page header</header>
+        <main>Main content</main>
+        <MinimalFooter>
+          <MinimalFooter.BackToTop focusTargetId="page-start">Back to top</MinimalFooter.BackToTop>
+        </MinimalFooter>
+      </>,
+    )
+
+    act(() => getByRole('button', {name: 'Back to top'}).focus())
+    await user.keyboard('{Enter}')
+
+    expect(document.getElementById('page-start')).toHaveFocus()
 
     scrollToSpy.mockRestore()
   })
