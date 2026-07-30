@@ -221,7 +221,7 @@ export const BackToTopDark: Story = {
 
 const ResponsiveExample = ({socialLinks = true}: {socialLinks?: boolean}) => (
   <MinimalFooter
-    copyrightStatement="GitHub, Inc. © 2026. All rights reserved. A Microsoft subsidiary."
+    copyrightStatement="GitHub, Inc. © 2026. All rights reserved."
     socialLinks={socialLinks ? undefined : false}
   >
     <MinimalFooter.Footnotes>

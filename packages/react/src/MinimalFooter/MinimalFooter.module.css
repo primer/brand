@@ -181,12 +181,6 @@
   text-decoration: none;
 }
 
-/**
- * Footer typography
- *
- * The copyright and legal links use the compact uppercase treatment from the
- * canonical MinimalFooter design.
- */
 .Footer__copyright,
 .Footer__link-text {
   font-family: var(--brand-fontStack-monospace);
