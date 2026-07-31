@@ -5,6 +5,7 @@ import placeholderImage from '../fixtures/images/placeholder.png'
 import posterImage from '../fixtures/images/example-poster.png'
 
 import {Hero} from '.'
+import {Button} from '../Button'
 import {Grid} from '../Grid'
 import {VideoPlayer} from '../VideoPlayer'
 
@@ -33,8 +34,37 @@ export const WithImageBlockEndDefault: Story = {
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
             turpis felis nam pulvinar risus elementum.
           </Hero.Description>
-          <Hero.PrimaryAction href="#">Primary action</Hero.PrimaryAction>
+          <Hero.ButtonGroup>
+            <Button as="a" href="#">
+              Primary action
+            </Button>
+          </Hero.ButtonGroup>
           <Hero.Image src={placeholderImage} alt="placeholder image, blank with gray solid fill" />
+        </Hero>
+      </Grid.Column>
+    </Grid>
+  ),
+}
+
+export const WithPictureBlockEndDefault: Story = {
+  name: 'Picture (left + bottom)',
+  render: () => (
+    <Grid>
+      <Grid.Column>
+        <Hero>
+          <Hero.Label>Label</Hero.Label>
+          <Hero.Heading>This is my super sweet hero heading</Hero.Heading>
+          <Hero.Description>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
+            turpis felis nam pulvinar risus elementum.
+          </Hero.Description>
+          <Hero.PrimaryAction href="#">Primary action</Hero.PrimaryAction>
+          <Hero.Image
+            as="picture"
+            src={placeholderImage}
+            sources={[{srcset: placeholderImage, media: '(min-width: 0)'}]}
+            alt="placeholder image, blank with gray solid fill"
+          />
         </Hero>
       </Grid.Column>
     </Grid>
@@ -52,7 +82,11 @@ export const WithImageBlockEndCenter: Story = {
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
             turpis felis nam pulvinar risus elementum.
           </Hero.Description>
-          <Hero.PrimaryAction href="#">Primary action</Hero.PrimaryAction>
+          <Hero.ButtonGroup>
+            <Button as="a" href="#">
+              Primary action
+            </Button>
+          </Hero.ButtonGroup>
           <Hero.Image src={placeholderImage} alt="placeholder image, blank with gray solid fill" />
         </Hero>
       </Grid.Column>
@@ -72,7 +106,11 @@ export const WithImageInlineEnd: Story = {
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
             turpis felis nam pulvinar risus elementum.
           </Hero.Description>
-          <Hero.PrimaryAction href="#">Primary action</Hero.PrimaryAction>
+          <Hero.ButtonGroup>
+            <Button as="a" href="#">
+              Primary action
+            </Button>
+          </Hero.ButtonGroup>
           <Hero.Image
             position="inline-end"
             src={placeholderImage}
@@ -96,7 +134,11 @@ export const WithVideoBlockEndDefault: Story = {
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
             turpis felis nam pulvinar risus elementum.
           </Hero.Description>
-          <Hero.PrimaryAction href="#">Primary action</Hero.PrimaryAction>
+          <Hero.ButtonGroup>
+            <Button as="a" href="#">
+              Primary action
+            </Button>
+          </Hero.ButtonGroup>
           <Hero.Video>
             <VideoPlayer title="GitHub media player" poster={posterImage}>
               <VideoPlayer.Source src="./example.mp4" type="video/mp4" />
@@ -121,7 +163,11 @@ export const WithNativeBlockEndDefault: Story = {
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
             turpis felis nam pulvinar risus elementum.
           </Hero.Description>
-          <Hero.PrimaryAction href="#">Primary action</Hero.PrimaryAction>
+          <Hero.ButtonGroup>
+            <Button as="a" href="#">
+              Primary action
+            </Button>
+          </Hero.ButtonGroup>
           <Hero.Video>
             <video title="Example title" controls poster={posterImage} className={styles.customVideo}>
               <source src="./example.mp4" type="video/mp4" />
@@ -147,7 +193,11 @@ export const WithYoutubeVideoBlockEndDefault: Story = {
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
             turpis felis nam pulvinar risus elementum.
           </Hero.Description>
-          <Hero.PrimaryAction href="#">Primary action</Hero.PrimaryAction>
+          <Hero.ButtonGroup>
+            <Button as="a" href="#">
+              Primary action
+            </Button>
+          </Hero.ButtonGroup>
           <Hero.Video>
             <iframe
               src="https://www.youtube.com/embed/EPyyyB23NUU"
@@ -176,7 +226,11 @@ export const WithVideoInlineEnd: Story = {
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
             turpis felis nam pulvinar risus elementum.
           </Hero.Description>
-          <Hero.PrimaryAction href="#">Primary action</Hero.PrimaryAction>
+          <Hero.ButtonGroup>
+            <Button as="a" href="#">
+              Primary action
+            </Button>
+          </Hero.ButtonGroup>
           <Hero.Video position="inline-end">
             <VideoPlayer title="GitHub media player" poster={posterImage}>
               <VideoPlayer.Source src="./example.mp4" type="video/mp4" />
@@ -200,7 +254,11 @@ export const WithYoutubeVideoInlineEnd: Story = {
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
             turpis felis nam pulvinar risus elementum.
           </Hero.Description>
-          <Hero.PrimaryAction href="#">Primary action</Hero.PrimaryAction>
+          <Hero.ButtonGroup>
+            <Button as="a" href="#">
+              Primary action
+            </Button>
+          </Hero.ButtonGroup>
           <Hero.Video position="inline-end">
             <iframe
               src="https://www.youtube.com/embed/EPyyyB23NUU"

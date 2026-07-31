@@ -26,6 +26,7 @@ import {ActionMenu} from '../ActionMenu'
 import {CheckIcon, CopyIcon} from '@primer/octicons-react'
 import {Button} from '../Button'
 import {ThemeProvider} from '../ThemeProvider'
+import {Token} from '../Token'
 
 const meta = {
   title: 'Components/Hero/Examples',
@@ -51,7 +52,11 @@ export const Default: Story = {
         </>
       </Hero.Heading>
       <Hero.Description>Visual Studio Code backed by high performance VMs that start in seconds.</Hero.Description>
-      <Hero.PrimaryAction href="#">Get started</Hero.PrimaryAction>
+      <Hero.ButtonGroup>
+        <Button as="a" href="#">
+          Get started
+        </Button>
+      </Hero.ButtonGroup>
     </Hero>
   ),
 }
@@ -76,8 +81,14 @@ export const CustomBackgroundBlockEndImage: Story = {
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
             turpis felis nam pulvinar risus elementum.
           </Hero.Description>
-          <Hero.PrimaryAction href="#">Primary action</Hero.PrimaryAction>
-          <Hero.SecondaryAction href="#">Secondary action</Hero.SecondaryAction>
+          <Hero.ButtonGroup>
+            <Button as="a" href="#">
+              Primary action
+            </Button>
+            <Button as="a" href="#">
+              Secondary action
+            </Button>
+          </Hero.ButtonGroup>
 
           <Hero.Image src={renderUI3} alt="" enableBorder={false} />
         </Hero>
@@ -105,9 +116,15 @@ export const CustomBackgroundInlineEndPaddedImage: Story = {
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
           turpis felis nam pulvinar risus elementum.
         </Hero.Description>
-        <Hero.PrimaryAction href="#">Primary action</Hero.PrimaryAction>
-        <Hero.SecondaryAction href="#">Secondary action</Hero.SecondaryAction>
-        <Hero.Image position="inline-end-padded" src={renderUI3} alt="" enableBorder={false} />
+        <Hero.ButtonGroup>
+          <Button as="a" href="#">
+            Primary action
+          </Button>
+          <Button as="a" href="#">
+            Secondary action
+          </Button>
+        </Hero.ButtonGroup>
+        <Hero.Image position="inline-end" padding="all" src={renderUI3} alt="" enableBorder={false} />
       </Hero>
     )
   },
@@ -133,8 +150,14 @@ export const CustomBackgroundBlockEndVideo: Story = {
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
             turpis felis nam pulvinar risus elementum.
           </Hero.Description>
-          <Hero.PrimaryAction href="#">Primary action</Hero.PrimaryAction>
-          <Hero.SecondaryAction href="#">Secondary action</Hero.SecondaryAction>
+          <Hero.ButtonGroup>
+            <Button as="a" href="#">
+              Primary action
+            </Button>
+            <Button as="a" href="#">
+              Secondary action
+            </Button>
+          </Hero.ButtonGroup>
 
           <Hero.Video enableBorder={false}>
             <VideoPlayer title="GitHub media player" poster={posterImage}>
@@ -167,9 +190,15 @@ export const CustomBackgroundInlineEndPaddedVideo: Story = {
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
           turpis felis nam pulvinar risus elementum.
         </Hero.Description>
-        <Hero.PrimaryAction href="#">Primary action</Hero.PrimaryAction>
-        <Hero.SecondaryAction href="#">Secondary action</Hero.SecondaryAction>
-        <Hero.Video position="inline-end-padded" enableBorder={false}>
+        <Hero.ButtonGroup>
+          <Button as="a" href="#">
+            Primary action
+          </Button>
+          <Button as="a" href="#">
+            Secondary action
+          </Button>
+        </Hero.ButtonGroup>
+        <Hero.Video position="inline-end" padding="all" enableBorder={false}>
           <VideoPlayer title="GitHub media player" poster={posterImage}>
             <VideoPlayer.Source src="./example.mp4" type="video/mp4" />
             <VideoPlayer.Track src="./example.vtt" default />
@@ -189,25 +218,36 @@ export const WithCards: Story = {
         borderBlockEndWidth="thin"
         borderStyle="solid"
         borderColor="muted"
-        backgroundColor="overlay"
         style={{'--brand-Hero-bgColor-gridlineGridInner': 'var(--brand-color-canvas-default)'} as React.CSSProperties}
-        className={styles.heroWithCardsExample}
       >
-        <Hero align="center" variant="gridline">
+        <Hero
+          align="center"
+          variant="gridline"
+          trailingComponent={() => (
+            <Text variant="muted">
+              Already have Visual Studio Code? <InlineLink href="#">Open now</InlineLink>
+            </Text>
+          )}
+        >
           <Hero.Label>Projects</Hero.Label>
           <Hero.Heading>Project planning for developers</Hero.Heading>
           <Hero.Description>
             Create issues, break them into tasks, track relationships, add custom fields, and have conversations.
             Visualize large projects as spreadsheets or boards, and automate everything with code.
           </Hero.Description>
-          <Hero.PrimaryAction href="#">Watch video</Hero.PrimaryAction>
-          <Hero.SecondaryAction href="#">Start using project tables</Hero.SecondaryAction>
+          <Hero.ButtonGroup>
+            <Button as="a" href="#">
+              Watch video
+            </Button>
+            <Button as="a" href="#">
+              Start using project tables
+            </Button>
+          </Hero.ButtonGroup>
         </Hero>
 
         <Grid style={{paddingInline: 0}}>
           <Grid.Column>
             <Box
-              backgroundColor="var(--customCardsBackgroundColor)"
               borderColor="muted"
               borderStyle="solid"
               borderBlockStartWidth="thin"
@@ -223,6 +263,10 @@ export const WithCards: Story = {
                 <Grid.Column span={{xsmall: 12, large: 4}}>
                   <Box padding={{narrow: 32, regular: 48}}>
                     <Card href="#" variant="minimal" fullWidth>
+                      <Card.Tokens>
+                        <Token>Topic</Token>
+                        <Token variant="outline">Dec 25</Token>
+                      </Card.Tokens>
                       <Card.Heading as="h2">Code search & code view</Card.Heading>
                       <Card.Description>
                         Enables you to rapidly search, navigate, and understand code, right from GitHub.com.
@@ -247,6 +291,10 @@ export const WithCards: Story = {
                     borderInlineStartWidth={{wide: 'thin'}}
                   >
                     <Card href="#" variant="minimal" fullWidth>
+                      <Card.Tokens>
+                        <Token>Topic</Token>
+                        <Token variant="outline">Dec 25</Token>
+                      </Card.Tokens>
                       <Card.Image
                         position="block-end"
                         src={defaultPlaceholderImgae}
@@ -263,6 +311,10 @@ export const WithCards: Story = {
                 <Grid.Column span={{xsmall: 12, large: 4}}>
                   <Box padding={{narrow: 32, regular: 48}}>
                     <Card href="#" variant="minimal" fullWidth>
+                      <Card.Tokens>
+                        <Token>Topic</Token>
+                        <Token variant="outline">Dec 25</Token>
+                      </Card.Tokens>
                       <Card.Image
                         position="block-end"
                         src={defaultPlaceholderImgae}
@@ -309,8 +361,14 @@ export const GridlineExpressiveBlockEndPaddedTrailingComponent: Story = {
         <Hero.Label>GitHub Copilot</Hero.Label>
         <Hero.Heading>Command your craft</Hero.Heading>
         <Hero.Description>Your AI accelerator for every workflow, from the editor to the enterprise.</Hero.Description>
-        <Hero.PrimaryAction href="#">Try Copilot now</Hero.PrimaryAction>
-        <Hero.SecondaryAction href="#">See plans & pricing</Hero.SecondaryAction>
+        <Hero.ButtonGroup>
+          <Button as="a" href="#">
+            Try Copilot now
+          </Button>
+          <Button as="a" href="#">
+            See plans & pricing
+          </Button>
+        </Hero.ButtonGroup>
         <Hero.Image
           enableBorder={false}
           position="block-end"
@@ -346,7 +404,6 @@ export const GridlineExpressiveWithImageCarousel: Story = {
         borderStyle="solid"
         borderColor="muted"
         style={{'--brand-Hero-bgColor-gridlineGridInner': 'var(--brand-color-canvas-default)'} as React.CSSProperties}
-        className={styles.heroWithCardsExample}
       >
         <Hero variant="gridline-expressive" enableAnimation>
           <Hero.Label>Projects</Hero.Label>
@@ -357,14 +414,20 @@ export const GridlineExpressiveWithImageCarousel: Story = {
             Create issues, break them into tasks, track relationships, add custom fields, and have conversations.
             Visualize large projects as spreadsheets or boards, and automate everything with code.
           </Hero.Description>
-          <Hero.PrimaryAction href="#">Watch video</Hero.PrimaryAction>
-          <Hero.SecondaryAction href="#">Start using project tables</Hero.SecondaryAction>
+          <Hero.ButtonGroup>
+            <Button as="a" href="#">
+              Watch video
+            </Button>
+            <Button as="a" href="#">
+              Start using project tables
+            </Button>
+          </Hero.ButtonGroup>
         </Hero>
 
         <Box borderBlockStartWidth="thin" borderStyle="solid" borderColor="muted">
           <Grid style={{paddingInline: 0}}>
             <Grid.Column>
-              <Box ref={imageRef} backgroundColor="var(--customCardsBackgroundColor)" borderColor="muted">
+              <Box ref={imageRef} borderColor="muted">
                 <AnimationProvider autoStaggerChildren={false} animationTrigger="immediate" runOnce>
                   <Stack alignItems="center" padding="none">
                     <Box
@@ -555,7 +618,9 @@ export const WithCustomInput: Story = {
         <>
           <Box paddingBlockStart={16} className={styles['d-lg-none']}>
             <Stack padding="none" gap="condensed" direction={{narrow: 'vertical', regular: 'horizontal'}}>
-              <Hero.PrimaryAction href="#">See documentation</Hero.PrimaryAction>
+              <Button as="a" href="#" variant="primary">
+                See documentation
+              </Button>
             </Stack>
           </Box>
           <Stack direction="vertical" padding="none" className={styles['d-none-d-lg-block']}>

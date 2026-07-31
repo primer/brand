@@ -1,4 +1,12 @@
 .NavList {
+  --brand-NavList-label-indent-level-2: 0px;
+  --brand-NavList-label-indent-level-3: var(--base-size-16);
+  --brand-NavList-label-indent-level-4: var(--base-size-32);
+  --brand-NavList-label-indent-level-5: var(--base-size-48);
+  --brand-NavList-item-paddingInlineStart-base: var(--base-size-24);
+  --brand-NavList-control-paddingInlineStart: var(--base-size-8);
+  --brand-NavList-label-paddingInlineStart: var(--base-size-6);
+
   box-sizing: border-box;
   font-family: var(--brand-fontStack-sansSerif);
   color: var(--brand-color-text-default);
@@ -22,11 +30,12 @@
 
 .NavList__list--flat,
 .NavList__groupList {
-  --brand-NavList-alignedLabel-paddingInlineStart: var(--base-size-2);
+  --brand-NavList-item-paddingInlineStart-base: var(--base-size-2);
 }
 
-.NavList__groupList {
-  --brand-NavList-item-paddingInlineStart-level-2: var(--base-size-2);
+.NavList__groupList .NavList__subNav .NavList__item--leaf {
+  --brand-NavList-item-paddingInlineStart-base: 0px;
+  --brand-NavList-label-paddingInlineStart: var(--base-size-8);
 }
 
 .NavList__item,
@@ -67,6 +76,48 @@
   align-items: center;
   gap: var(--base-size-8);
   min-width: 0;
+}
+
+.NavList__item:is(.NavList__item--level-2, .NavList__item--level-3, .NavList__item--level-4) > .NavList__itemContent {
+  padding-block: calc(var(--base-size-8) + var(--base-size-2));
+  padding-inline-end: var(--base-size-16);
+}
+
+.NavList__item--level-2 {
+  --brand-NavList-item-label-indent: var(--brand-NavList-label-indent-level-2);
+}
+
+.NavList__item--level-3 {
+  --brand-NavList-item-label-indent: var(--brand-NavList-label-indent-level-3);
+}
+
+.NavList__item--level-4 {
+  --brand-NavList-item-label-indent: var(--brand-NavList-label-indent-level-4);
+}
+
+.NavList__item--level-5 {
+  --brand-NavList-item-label-indent: var(--brand-NavList-label-indent-level-5);
+}
+
+.NavList__item--leaf:not(.NavList__item--level-1) > .NavList__itemContent {
+  min-height: var(--base-size-32);
+  padding-block: 0;
+  padding-inline-end: var(--base-size-16);
+}
+
+.NavList__item:is(.NavList__item--level-2, .NavList__item--level-3, .NavList__item--level-4, .NavList__item--level-5)
+  > .NavList__itemContent {
+  padding-inline-start: calc(
+    var(--brand-NavList-item-paddingInlineStart-base) + var(--brand-NavList-item-label-indent)
+  );
+}
+
+.NavList__item:not(.NavList__item--level-1) > .NavList__itemContent :is(.NavList__link, .NavList__accordionButton) {
+  padding-inline-start: var(--brand-NavList-control-paddingInlineStart);
+}
+
+.NavList__item:not(.NavList__item--level-1) > .NavList__itemContent .NavList__labelArea {
+  padding-inline-start: var(--brand-NavList-label-paddingInlineStart);
 }
 
 .NavList__link {
@@ -113,7 +164,6 @@
 .NavList__item:not(.NavList__item--level-1) > .NavList__itemContent .NavList__accordionButton .NavList__labelArea {
   order: 2;
   min-height: var(--base-size-32);
-  padding-inline-start: var(--base-size-6);
 }
 
 .NavList__item:not(.NavList__item--level-1)
@@ -146,7 +196,6 @@
 .NavList__link[aria-current]:not([aria-current='false']) {
   color: var(--brand-color-text-default);
   background-color: var(--brand-color-canvas-subtle);
-  padding-inline-start: var(--base-size-6);
 }
 
 .NavList__item--leaf:not(.NavList__item--level-1) .NavList__link[aria-current]:not([aria-current='false'])::before {
@@ -328,45 +377,6 @@
   margin-inline-start: auto;
 }
 
-.NavList__item:is(.NavList__item--level-2, .NavList__item--level-3, .NavList__item--level-4) > .NavList__itemContent {
-  padding-block: calc(var(--base-size-8) + var(--base-size-2));
-  padding-inline-end: var(--base-size-16);
-}
-
-.NavList__item--level-2 > .NavList__itemContent {
-  padding-inline-start: var(--brand-NavList-item-paddingInlineStart-level-2, var(--base-size-24));
-}
-
-.NavList__item--level-3 > .NavList__itemContent {
-  padding-inline-start: var(--base-size-40);
-}
-
-.NavList__item--level-4 > .NavList__itemContent {
-  padding-inline-start: calc(var(--base-size-48) + var(--base-size-8));
-}
-
-.NavList__item--leaf:not(.NavList__item--level-1) > .NavList__itemContent {
-  min-height: var(--base-size-32);
-  padding-block: 0;
-  padding-inline: var(--base-size-16);
-}
-
-.NavList__item--leaf.NavList__item--level-2 > .NavList__itemContent {
-  padding-inline-start: var(--brand-NavList-alignedLabel-paddingInlineStart, var(--base-size-24));
-}
-
-.NavList__item--leaf.NavList__item--level-3 > .NavList__itemContent {
-  padding-inline-start: var(--base-size-40);
-}
-
-.NavList__item--leaf.NavList__item--level-4 > .NavList__itemContent {
-  padding-inline-start: calc(var(--base-size-48) + var(--base-size-8));
-}
-
-.NavList__item--leaf.NavList__item--level-5 > .NavList__itemContent {
-  padding-inline-start: calc(var(--base-size-64) + var(--base-size-8));
-}
-
 .NavList__item:is(.NavList__item--level-2, .NavList__item--level-3, .NavList__item--level-4)
   > .NavList__itemContent
   .NavList__toggleIcon {
@@ -378,7 +388,6 @@
   .NavList__accordionButton {
   min-height: var(--base-size-32);
   margin-block: calc(-1 * var(--base-size-8));
-  padding-inline-start: var(--base-size-8);
   border-radius: var(--brand-borderRadius-small);
 }
 
@@ -387,7 +396,7 @@
   .NavList__toggleIcon {
   position: absolute;
   inset-block-start: 50%;
-  inset-inline-start: calc(-1 * var(--base-size-8));
+  inset-inline-start: calc(-1 * var(--brand-NavList-control-paddingInlineStart));
   transform: translateY(-50%);
 }
 
@@ -421,19 +430,16 @@
 
 .NavList__item--leaf:not(.NavList__item--level-1) > .NavList__itemContent .NavList__link {
   min-height: var(--base-size-32);
-  padding-inline-start: var(--base-size-8);
   border-radius: var(--brand-borderRadius-small);
 }
 
 .NavList__item--leaf:not(.NavList__item--level-1) > .NavList__itemContent .NavList__labelArea {
   min-height: calc(var(--base-size-32) - var(--brand-borderWidth-thin));
   margin-block-end: var(--brand-borderWidth-thin);
-  padding-inline-start: var(--base-size-6);
 }
 
 .NavList__item--leaf:not(.NavList__item--level-1) .NavList__link[aria-current]:not([aria-current='false']) {
   background-color: transparent;
-  padding-inline-start: var(--base-size-8);
 }
 
 .NavList__item--leaf:not(.NavList__item--level-1) > .NavList__itemContent .NavList__link:hover .NavList__labelArea,
@@ -445,7 +451,6 @@
 
 .NavList__item--leaf:not(.NavList__item--level-1) > .NavList__itemContent .NavList__link:hover {
   background-color: transparent;
-  padding-inline-start: var(--base-size-8);
 }
 
 [data-color-mode='dark'] .NavList {

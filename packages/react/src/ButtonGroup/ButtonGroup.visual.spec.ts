@@ -28,6 +28,28 @@ test.describe('Visual Comparison: ButtonGroup', () => {
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
+  test('ButtonGroup / With Action Menu', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-buttongroup--with-action-menu&viewMode=story',
+      {waitUntil: 'networkidle'},
+    )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+    await page.waitForTimeout(500)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
+  test('ButtonGroup / With Variant Overrides', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-buttongroup--with-variant-overrides&viewMode=story',
+      {waitUntil: 'networkidle'},
+    )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+    await page.waitForTimeout(500)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
   test('ButtonGroup / Large Button Group', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-buttongroup--large-button-group&viewMode=story',

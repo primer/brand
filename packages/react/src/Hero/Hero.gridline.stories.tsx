@@ -9,6 +9,7 @@ import {Hero} from '.'
 import styles from './Hero.stories.module.css'
 import {Text} from '../Text'
 import {InlineLink} from '../InlineLink'
+import {Button} from '../Button'
 
 const meta = {
   title: 'Components/Hero/Features/GridLine variants',
@@ -31,8 +32,37 @@ export const Gridline: Story = {
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis
         felis nam pulvinar risus elementum.
       </Hero.Description>
-      <Hero.PrimaryAction href="#">Primary action</Hero.PrimaryAction>
+      <Hero.ButtonGroup>
+        <Button as="a" href="#">
+          Primary action
+        </Button>
+      </Hero.ButtonGroup>
       <Hero.Image src={placeholderImage} alt="placeholder image, blank with gray solid fill" />
+    </Hero>
+  ),
+}
+
+export const GridlineImageWithoutPadding: Story = {
+  name: 'Gridline default variant: Image without padding',
+  render: () => (
+    <Hero variant="gridline" align="center">
+      <Hero.Label>Label</Hero.Label>
+      <Hero.Heading>This is my super sweet hero heading</Hero.Heading>
+      <Hero.Description>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis
+        felis nam pulvinar risus elementum.
+      </Hero.Description>
+      <Hero.ButtonGroup>
+        <Button as="a" href="#">
+          Primary action
+        </Button>
+      </Hero.ButtonGroup>
+      <Hero.Image
+        position="block-end"
+        padding="none"
+        src={placeholderImage}
+        alt="placeholder image, blank with gray solid fill"
+      />
     </Hero>
   ),
 }
@@ -47,7 +77,11 @@ export const GridlineCentered: Story = {
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis
         felis nam pulvinar risus elementum.
       </Hero.Description>
-      <Hero.PrimaryAction href="#">Primary action</Hero.PrimaryAction>
+      <Hero.ButtonGroup>
+        <Button as="a" href="#">
+          Primary action
+        </Button>
+      </Hero.ButtonGroup>
       <Hero.Image src={placeholderImage} alt="placeholder image, blank with gray solid fill" />
     </Hero>
   ),
@@ -63,7 +97,11 @@ export const GridlineImageInlineEnd: Story = {
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis
         felis nam pulvinar risus elementum.
       </Hero.Description>
-      <Hero.PrimaryAction href="#">Primary action</Hero.PrimaryAction>
+      <Hero.ButtonGroup>
+        <Button as="a" href="#">
+          Primary action
+        </Button>
+      </Hero.ButtonGroup>
       <Hero.Image position="inline-end" src={placeholderImage} alt="placeholder image, blank with gray solid fill" />
     </Hero>
   ),
@@ -79,7 +117,11 @@ export const GridlineImageInlineStart: Story = {
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis
         felis nam pulvinar risus elementum.
       </Hero.Description>
-      <Hero.PrimaryAction href="#">Primary action</Hero.PrimaryAction>
+      <Hero.ButtonGroup>
+        <Button as="a" href="#">
+          Primary action
+        </Button>
+      </Hero.ButtonGroup>
       <Hero.Image position="inline-start" src={placeholderImage} alt="placeholder image, blank with gray solid fill" />
     </Hero>
   ),
@@ -95,9 +137,14 @@ export const GridlineImageInlineEndPadded: Story = {
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis
         felis nam pulvinar risus elementum.
       </Hero.Description>
-      <Hero.PrimaryAction href="#">Primary action</Hero.PrimaryAction>
+      <Hero.ButtonGroup>
+        <Button as="a" href="#">
+          Primary action
+        </Button>
+      </Hero.ButtonGroup>
       <Hero.Image
-        position="inline-end-padded"
+        position="inline-end"
+        padding="all"
         src={placeholderImage}
         alt="placeholder image, blank with gray solid fill"
       />
@@ -115,9 +162,14 @@ export const GridlineImageInlineStartPadded: Story = {
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis
         felis nam pulvinar risus elementum.
       </Hero.Description>
-      <Hero.PrimaryAction href="#">Primary action</Hero.PrimaryAction>
+      <Hero.ButtonGroup>
+        <Button as="a" href="#">
+          Primary action
+        </Button>
+      </Hero.ButtonGroup>
       <Hero.Image
-        position="inline-start-padded"
+        position="inline-start"
+        padding="all"
         src={placeholderImage}
         alt="placeholder image, blank with gray solid fill"
       />
@@ -135,9 +187,14 @@ export const GridlineImageBlockEndPadded: Story = {
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis
         felis nam pulvinar risus elementum.
       </Hero.Description>
-      <Hero.PrimaryAction href="#">Primary action</Hero.PrimaryAction>
+      <Hero.ButtonGroup>
+        <Button as="a" href="#">
+          Primary action
+        </Button>
+      </Hero.ButtonGroup>
       <Hero.Image
-        position="block-end-padded"
+        position="block-end"
+        padding="all"
         src={placeholderImage}
         alt="placeholder image, blank with gray solid fill"
       />
@@ -155,8 +212,48 @@ export const GridlineYoutubeVideoBlockEnd: Story = {
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis
         felis nam pulvinar risus elementum.
       </Hero.Description>
-      <Hero.PrimaryAction href="#">Primary action</Hero.PrimaryAction>
+      <Hero.ButtonGroup>
+        <Button as="a" href="#">
+          Primary action
+        </Button>
+      </Hero.ButtonGroup>
       <Hero.Video
+        poster={posterImage}
+        posterAltText="Mona the Octocat"
+        posterTitle="Introducing the GitHub Copilot coding agent "
+      >
+        <iframe
+          src="https://www.youtube.com/embed/EPyyyB23NUU?autoplay=1"
+          title="YouTube video player"
+          frameBorder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerPolicy="strict-origin-when-cross-origin"
+          allowFullScreen
+          className={styles.customVideo}
+        ></iframe>
+      </Hero.Video>
+    </Hero>
+  ),
+}
+
+export const GridlineYoutubeVideoWithoutPadding: Story = {
+  name: 'Gridline default variant: YouTube video without padding',
+  render: () => (
+    <Hero variant="gridline" align="center">
+      <Hero.Label>Label</Hero.Label>
+      <Hero.Heading>This is my super sweet hero heading</Hero.Heading>
+      <Hero.Description>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis
+        felis nam pulvinar risus elementum.
+      </Hero.Description>
+      <Hero.ButtonGroup>
+        <Button as="a" href="#">
+          Primary action
+        </Button>
+      </Hero.ButtonGroup>
+      <Hero.Video
+        position="block-end"
+        padding="none"
         poster={posterImage}
         posterAltText="Mona the Octocat"
         posterTitle="Introducing the GitHub Copilot coding agent "
@@ -185,7 +282,11 @@ export const GridlineYoutubeVideoInlineEnd: Story = {
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis
         felis nam pulvinar risus elementum.
       </Hero.Description>
-      <Hero.PrimaryAction href="#">Primary action</Hero.PrimaryAction>
+      <Hero.ButtonGroup>
+        <Button as="a" href="#">
+          Primary action
+        </Button>
+      </Hero.ButtonGroup>
       <Hero.Video
         position="inline-end"
         poster={posterImage}
@@ -216,7 +317,11 @@ export const GridlineYoutubeVideoBlockEndWithPoster: Story = {
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis
         felis nam pulvinar risus elementum.
       </Hero.Description>
-      <Hero.PrimaryAction href="#">Primary action</Hero.PrimaryAction>
+      <Hero.ButtonGroup>
+        <Button as="a" href="#">
+          Primary action
+        </Button>
+      </Hero.ButtonGroup>
       <Hero.Video
         poster={posterImage}
         posterAltText="Mona the Octocat"
@@ -246,9 +351,14 @@ export const GridlineYoutubeVideoBlockEndPadded: Story = {
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis
         felis nam pulvinar risus elementum.
       </Hero.Description>
-      <Hero.PrimaryAction href="#">Primary action</Hero.PrimaryAction>
+      <Hero.ButtonGroup>
+        <Button as="a" href="#">
+          Primary action
+        </Button>
+      </Hero.ButtonGroup>
       <Hero.Video
-        position="block-end-padded"
+        position="block-end"
+        padding="all"
         poster={posterImage}
         posterAltText="Mona the Octocat"
         posterTitle="Introducing the GitHub Copilot coding agent "
@@ -277,9 +387,43 @@ export const GridlineExpressive: Story = {
         Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem
         aperiam, quae inventore.
       </Hero.Description>
-      <Hero.PrimaryAction href="#">Get started for free</Hero.PrimaryAction>
-      <Hero.SecondaryAction href="#">See plans & pricing</Hero.SecondaryAction>
+      <Hero.ButtonGroup>
+        <Button as="a" href="#">
+          Get started for free
+        </Button>
+        <Button as="a" href="#">
+          See plans &amp; pricing
+        </Button>
+      </Hero.ButtonGroup>
       <Hero.Image src={placeholderImage} alt="placeholder image, blank with gray solid fill" />
+    </Hero>
+  ),
+}
+
+export const GridlineExpressiveImageWithoutPadding: Story = {
+  name: 'Expressive variant: Image without padding',
+  render: () => (
+    <Hero variant="gridline-expressive">
+      <Hero.Label>Eyebrow</Hero.Label>
+      <Hero.Heading>This is my super sweet hero heading</Hero.Heading>
+      <Hero.Description>
+        Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem
+        aperiam, quae inventore.
+      </Hero.Description>
+      <Hero.ButtonGroup>
+        <Button as="a" href="#">
+          Get started for free
+        </Button>
+        <Button as="a" href="#">
+          See plans &amp; pricing
+        </Button>
+      </Hero.ButtonGroup>
+      <Hero.Image
+        position="block-end"
+        padding="none"
+        src={placeholderImage}
+        alt="placeholder image, blank with gray solid fill"
+      />
     </Hero>
   ),
 }
@@ -294,8 +438,14 @@ export const GridlineExpressiveNarrow: Story = {
         Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem
         aperiam, quae inventore.
       </Hero.Description>
-      <Hero.PrimaryAction href="#">Get started for free</Hero.PrimaryAction>
-      <Hero.SecondaryAction href="#">See plans & pricing</Hero.SecondaryAction>
+      <Hero.ButtonGroup>
+        <Button as="a" href="#">
+          Get started for free
+        </Button>
+        <Button as="a" href="#">
+          See plans &amp; pricing
+        </Button>
+      </Hero.ButtonGroup>
       <Hero.Image src={placeholderImage} alt="placeholder image, blank with gray solid fill" />
     </Hero>
   ),
@@ -314,10 +464,17 @@ export const GridlineExpressiveBlockEndPadded: Story = {
         Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem
         aperiam, quae inventore.
       </Hero.Description>
-      <Hero.PrimaryAction href="#">Get started for free</Hero.PrimaryAction>
-      <Hero.SecondaryAction href="#">See plans & pricing</Hero.SecondaryAction>
+      <Hero.ButtonGroup>
+        <Button as="a" href="#">
+          Get started for free
+        </Button>
+        <Button as="a" href="#">
+          See plans &amp; pricing
+        </Button>
+      </Hero.ButtonGroup>
       <Hero.Image
-        position="block-end-padded"
+        position="block-end"
+        padding="all"
         src={placeholderImage}
         alt="placeholder image, blank with gray solid fill"
       />
@@ -339,10 +496,17 @@ export const GridlineExpressiveBlockEndPaddedTrailingComponent: Story = {
       <Hero.Label>Eyebrow</Hero.Label>
       <Hero.Heading>This is my super sweet hero heading</Hero.Heading>
 
-      <Hero.PrimaryAction href="#">Get started for free</Hero.PrimaryAction>
-      <Hero.SecondaryAction href="#">See plans & pricing</Hero.SecondaryAction>
+      <Hero.ButtonGroup>
+        <Button as="a" href="#">
+          Get started for free
+        </Button>
+        <Button as="a" href="#">
+          See plans &amp; pricing
+        </Button>
+      </Hero.ButtonGroup>
       <Hero.Image
-        position="block-end-padded"
+        position="block-end"
+        padding="all"
         src={placeholderImage}
         alt="placeholder image, blank with gray solid fill"
       />
@@ -361,8 +525,14 @@ export const GridlineExpressiveIgnoresCenterAlign: Story = {
         Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem
         aperiam, quae inventore.
       </Hero.Description>
-      <Hero.PrimaryAction href="#">Get started for free</Hero.PrimaryAction>
-      <Hero.SecondaryAction href="#">See plans & pricing</Hero.SecondaryAction>
+      <Hero.ButtonGroup>
+        <Button as="a" href="#">
+          Get started for free
+        </Button>
+        <Button as="a" href="#">
+          See plans &amp; pricing
+        </Button>
+      </Hero.ButtonGroup>
       <Hero.Image src={placeholderImage} alt="placeholder image, blank with gray solid fill" />
     </Hero>
   ),

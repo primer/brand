@@ -58,44 +58,6 @@ export const TwoItems: Story = {
   },
 }
 
-export const WithBackgroundVisual: Story = {
-  render: function WithBackgroundVisualRender() {
-    const {t} = useTranslation('RiverBreakoutTabs')
-
-    return (
-      <Section>
-        <RiverBreakoutTabs>
-          <RiverBreakoutTabs.A11yHeading>{t('two_card_layout_a11y')}</RiverBreakoutTabs.A11yHeading>
-
-          <RiverBreakoutTabs.Item>
-            <RiverBreakoutTabs.Icon icon={AiModelIcon} />
-            <RiverBreakoutTabs.Heading>{t('code_quickly_heading')}</RiverBreakoutTabs.Heading>
-            <RiverBreakoutTabs.Content>
-              <Text>{t('code_quickly_body')}</Text>
-              <Link href="#">{t('start_coding_cta')}</Link>
-            </RiverBreakoutTabs.Content>
-            <RiverBreakoutTabs.Visual imageBackgroundColor="subtle">
-              <Image src={placeholder1} alt={t('alt_placeholder_1')} />
-            </RiverBreakoutTabs.Visual>
-          </RiverBreakoutTabs.Item>
-
-          <RiverBreakoutTabs.Item>
-            <RiverBreakoutTabs.Icon icon={ZapIcon} />
-            <RiverBreakoutTabs.Heading>{t('review_with_context_heading')}</RiverBreakoutTabs.Heading>
-            <RiverBreakoutTabs.Content>
-              <Text>{t('review_with_context_body')}</Text>
-              <Link href="#">{t('open_review_flow_cta')}</Link>
-            </RiverBreakoutTabs.Content>
-            <RiverBreakoutTabs.Visual imageBackgroundColor="subtle">
-              <Image src={placeholder2} alt={t('alt_placeholder_2')} />
-            </RiverBreakoutTabs.Visual>
-          </RiverBreakoutTabs.Item>
-        </RiverBreakoutTabs>
-      </Section>
-    )
-  },
-}
-
 export const FullBleedBackgroundVisual: Story = {
   name: 'Full bleed background visual',
   render: function FullBleedBackgroundVisualRender() {

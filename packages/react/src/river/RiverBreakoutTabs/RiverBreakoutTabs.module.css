@@ -37,15 +37,6 @@
   border-radius: var(--brand-borderRadius-small);
 }
 
-/* River removes the gridline top spacing when a subtle visual is present
-   (.RiverBreakout--variant-gridline:has(.River__visual--has-background)), bleeding the subtle
-   background up to the top gridline. Restore the top spacing so a non-full-bleed background is
-   inset from the top like the sides — only backgroundVisualFullBleed should reach the
-   top gridline. */
-.RiverBreakoutTabs:has(:global([class*='River__visual--has-background'])) {
-  padding-block-start: var(--brand-RiverBreakout-variant-gridline-spacing-outerBlock);
-}
-
 .RiverBreakoutTabs__accordionSharedVisuals {
   position: relative;
   margin-block-end: var(--base-size-16);

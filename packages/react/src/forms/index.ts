@@ -1,8 +1,3 @@
-/**
- * Shared form (control) design tokens
- */
-import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/control/colors-with-modes.css'
-
 export * from './Checkbox'
 export * from './Textarea'
 export * from './TextInput'

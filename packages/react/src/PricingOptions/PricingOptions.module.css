@@ -405,6 +405,10 @@
   grid-row: leadingComponent;
 }
 
+.PricingOptions__leading-component :is(img, picture) {
+  display: block;
+}
+
 .PricingOptions__label {
   color: var(--brand-color-text-default);
   font-family: var(--brand-fontStack-monospace);

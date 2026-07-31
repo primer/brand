@@ -1,6 +1,10 @@
 /**
  * Variants
  */
+.Statistic :is(img, picture) {
+  display: block;
+}
+
 .Statistic--variant-boxed {
   background-color: var(--brand-color-canvas-subtle);
   border-radius: var(--brand-borderRadius-large);

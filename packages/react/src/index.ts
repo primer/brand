@@ -59,4 +59,5 @@ export * from './TextCursorAnimation'
 export * from './Tiles'
 
 // hooks
+export * from './hooks/useFocusTrap'
 export * from './hooks/useWindowSize'

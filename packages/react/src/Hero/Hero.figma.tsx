@@ -23,25 +23,30 @@ figma.connect(
       heading: figma.string('heading'),
       primaryAction: figma.nestedProps('PrimaryAction', {text: figma.string('text')}),
       primaryActionOpeningTag: figma.boolean('actions?', {
-        true: '<Hero.PrimaryAction href="#">',
+        true: `<Hero.ButtonGroup>
+<Button as="a" href="#">`,
         false: undefined,
       }),
       primaryActionClosingTag: figma.boolean('actions?', {
-        true: '</Hero.PrimaryAction>',
+        true: '</Button>',
         false: undefined,
       }),
       secondaryAction: figma.nestedProps('SecondaryAction', {text: figma.string('text')}),
       secondaryActionOpeningTag: figma.nestedProps('ButtonGroup', {
         tag: figma.boolean('secondary?', {
-          true: '<Hero.SecondaryAction href="#">',
+          true: '<Button as="a" href="#">',
           false: undefined,
         }),
       }),
       secondaryActionClosingTag: figma.nestedProps('ButtonGroup', {
         tag: figma.boolean('secondary?', {
-          true: '</Hero.SecondaryAction>',
+          true: '</Button>',
           false: undefined,
         }),
+      }),
+      buttonGroupClosingTag: figma.boolean('actions?', {
+        true: '</Hero.ButtonGroup>',
+        false: undefined,
       }),
     },
     example: ({
@@ -56,6 +61,7 @@ figma.connect(
       secondaryAction,
       secondaryActionClosingTag,
       secondaryActionOpeningTag,
+      buttonGroupClosingTag,
     }) => (
       <Hero align={align as HeroProps['align']}>
         <Hero.Heading>{heading}</Hero.Heading>
@@ -68,6 +74,7 @@ figma.connect(
         {secondaryActionOpeningTag.tag}
         {secondaryAction.text}
         {secondaryActionClosingTag.tag}
+        {buttonGroupClosingTag}
       </Hero>
     ),
   },

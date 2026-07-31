@@ -3,6 +3,7 @@ import type {Meta, StoryObj} from '@storybook/react'
 import {INITIAL_VIEWPORTS} from 'storybook/viewport'
 
 import {Hero} from '.'
+import {Button} from '../Button'
 
 const meta = {
   title: 'Components/Hero',
@@ -27,7 +28,11 @@ export const Default: Story = {
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis
         felis nam pulvinar risus elementum.
       </Hero.Description>
-      <Hero.PrimaryAction href="#">Primary action</Hero.PrimaryAction>
+      <Hero.ButtonGroup>
+        <Button as="a" href="#">
+          Primary action
+        </Button>
+      </Hero.ButtonGroup>
     </Hero>
   ),
 }
