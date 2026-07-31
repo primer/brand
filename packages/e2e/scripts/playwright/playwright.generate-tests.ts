@@ -213,12 +213,6 @@ for (const key of Object.keys(categorisedStories)) {
     test.describe('Visual Comparison: ${key}', () => {
 
       ${componentStories.reduce((acc, {id, storyName, groupName, timeout}) => {
-        // Story names ending in an exact "(NNNpx)" suffix (e.g. for pixel-precise
-        // comparisons against a design reference) opt into a fixed-width viewport
-        // matching that exact value, taking priority over the generic mobile/tablet
-        // keyword tiers below.
-        const exactViewportMatch = storyName.match(/\((\d+)px\)\s*$/)
-
         const requiresMobileViewport = validNarrowVieportNames.some(viewportName =>
           storyName.toLowerCase().includes(viewportName),
         )
@@ -246,17 +240,6 @@ for (const key of Object.keys(categorisedStories)) {
 
         const languagesToTest = ['en']
         const allLanguageTests = languagesToTest.map(language => generateTestForLanguage(language)).join('')
-
-        if (exactViewportMatch) {
-          const exactWidth = Number(exactViewportMatch[1])
-          return (acc += `
-          // eslint-disable-next-line i18n-text/no-en
-          test.describe('Fixed viewport test for ${storyName}', () => {
-            test.use({ viewport: { width: ${exactWidth}, height: 900 } });
-            ${allLanguageTests}
-          });
-          `)
-        }
 
         if (requiresMobileViewport) {
           return (acc += `
