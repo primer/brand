@@ -141,7 +141,6 @@
 
 .Footer__copyright {
   margin: 0;
-  padding-bottom: var(--base-size-4);
 }
 
 .Footer__links {
@@ -207,13 +206,14 @@
 @media screen and (min-width: 80rem) {
   .Footer__bottom-row {
     flex-direction: row;
-    align-items: flex-start;
+    align-items: center;
     justify-content: space-between;
   }
 
   .Footer__copyright-and-links {
     flex-direction: row;
     flex-wrap: wrap;
+    align-items: center;
   }
 
   .Footer__bottom--no-social .Footer__copyright-and-links {
