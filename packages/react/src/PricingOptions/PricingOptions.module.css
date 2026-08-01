@@ -247,12 +247,6 @@
   border: var(--brand-borderWidth-thin) solid var(--brand-color-border-subtle);
 }
 
-@media (min-width: 63.25rem) {
-  .PricingOptions--layout-default {
-    padding-inline: var(--brand-pricing-options-container-padding-inline);
-  }
-}
-
 .PricingOptions--layout-default .PricingOptions__item {
   --brand-pricing-options-item-padding-inline: var(--base-size-24);
 
@@ -261,52 +255,35 @@
   padding-block: var(--base-size-20);
 }
 
-@media (min-width: 63.25rem) {
-  .PricingOptions--layout-default .PricingOptions__item {
-    --brand-pricing-options-item-padding-inline: 0;
-
-    padding-inline: 0;
-    padding-block: var(--base-size-40);
-  }
-}
-
 /*
- * v2 moves the column gutters from the grid onto the items. Each item and each
- * label cell is then a box with padding and no margin. A background-color on
- * the item fills the full column. The dividers keep their positions, because an
- * item edge is now the center of a gutter.
+ * Default layout: items own their gutters. Each item's box spans the full
+ * column band (gap midpoint, or container edge for outer items). Matched
+ * negative margin and padding keep the content edge where it was, so a
+ * background-color on the item fills the column with no extra bleed.
  */
 @media (min-width: 63.25rem) {
-  .PricingOptions--variant-v2.PricingOptions--layout-default,
-  .PricingOptions--variant-v2.PricingOptions--layout-default .PricingOptions__labels {
-    column-gap: 0;
-    padding-inline: 0;
+  .PricingOptions--layout-default {
+    padding-inline: var(--brand-pricing-options-container-padding-inline);
   }
 
-  .PricingOptions--variant-v2.PricingOptions--layout-default .PricingOptions__labels::after {
-    inset-inline: 0;
+  .PricingOptions--layout-default .PricingOptions__item {
+    --brand-pricing-options-item-padding-inline-start: calc(var(--brand-pricing-options-item-gap) / 2);
+    --brand-pricing-options-item-padding-inline-end: calc(var(--brand-pricing-options-item-gap) / 2);
+
+    margin-inline: calc(var(--brand-pricing-options-item-padding-inline-start) * -1)
+      calc(var(--brand-pricing-options-item-padding-inline-end) * -1);
+    padding-inline: var(--brand-pricing-options-item-padding-inline-start)
+      var(--brand-pricing-options-item-padding-inline-end);
+    padding-block: var(--base-size-40);
   }
 
-  .PricingOptions--variant-v2.PricingOptions--layout-default .PricingOptions__item,
-  .PricingOptions--variant-v2.PricingOptions--layout-default .PricingOptions__label-cell {
-    margin-inline: 0;
-    padding-inline: calc(var(--brand-pricing-options-item-gap) / 2);
+  .PricingOptions--layout-default .PricingOptions__item:first-child,
+  .PricingOptions--layout-default .PricingOptions__labels + .PricingOptions__item {
+    --brand-pricing-options-item-padding-inline-start: var(--brand-pricing-options-container-padding-inline);
   }
 
-  .PricingOptions--variant-v2.PricingOptions--layout-default .PricingOptions__item + .PricingOptions__item::before {
-    margin-inline-start: 0;
-  }
-
-  .PricingOptions--variant-v2.PricingOptions--layout-default
-    .PricingOptions__item:first-child
-    .PricingOptions__feature-list--has-divider::before {
-    inset-inline-start: calc(var(--brand-pricing-options-item-gap) / 2 * -1);
-  }
-
-  .PricingOptions--variant-v2.PricingOptions--layout-default
-    .PricingOptions__item:last-child
-    .PricingOptions__feature-list--has-divider::before {
-    inset-inline-end: calc(var(--brand-pricing-options-item-gap) / 2 * -1);
+  .PricingOptions--layout-default .PricingOptions__item:not(:has(~ .PricingOptions__item)) {
+    --brand-pricing-options-item-padding-inline-end: var(--brand-pricing-options-container-padding-inline);
   }
 }
 
@@ -327,7 +304,6 @@
     width: 1px;
     height: auto;
     margin-block-start: 0;
-    margin-inline-start: calc(var(--brand-pricing-options-item-gap) / 2 * -1);
   }
 
   .PricingOptions--layout-default.PricingOptions--appearance-gradient
@@ -648,38 +624,22 @@
   padding-inline: 0;
 }
 
-/* Edge-to-edge divider above feature list */
+/* Edge-to-edge divider above feature list — offsets by the item's own padding */
 .PricingOptions__feature-list--has-divider::before {
   content: '';
   position: absolute;
   inset-block-start: 0;
-  inset-inline-start: calc(var(--brand-pricing-options-item-padding-inline, 0px) * -1);
-  inset-inline-end: calc(var(--brand-pricing-options-item-padding-inline, 0px) * -1);
+  inset-inline-start: calc(
+    var(--brand-pricing-options-item-padding-inline-start, var(--brand-pricing-options-item-padding-inline, 0px)) * -1
+  );
+  inset-inline-end: calc(
+    var(--brand-pricing-options-item-padding-inline-end, var(--brand-pricing-options-item-padding-inline, 0px)) * -1
+  );
   height: var(--brand-borderWidth-thin);
   background-color: var(--brand-color-border-subtle);
 }
 
-/* Default layout: extend feature list divider into column gap */
 @media (min-width: 63.25rem) {
-  .PricingOptions--layout-default .PricingOptions__feature-list--has-divider::before {
-    inset-inline-start: calc(var(--brand-pricing-options-item-gap, 0px) / 2 * -1);
-    inset-inline-end: calc(var(--brand-pricing-options-item-gap, 0px) / 2 * -1);
-  }
-
-  /* First item: don't overflow past container start */
-  .PricingOptions--layout-default .PricingOptions__item:first-child .PricingOptions__feature-list--has-divider::before,
-  .PricingOptions--layout-default
-    .PricingOptions__labels
-    + .PricingOptions__item
-    .PricingOptions__feature-list--has-divider::before {
-    inset-inline-start: calc(var(--brand-pricing-options-container-padding-inline, 0px) * -1);
-  }
-
-  /* Last item: don't overflow past container end */
-  .PricingOptions--layout-default .PricingOptions__item:last-child .PricingOptions__feature-list--has-divider::before {
-    inset-inline-end: calc(var(--brand-pricing-options-container-padding-inline, 0px) * -1);
-  }
-
   .PricingOptions--layout-default.PricingOptions--appearance-gradient
     .PricingOptions__feature-list--has-divider::before {
     mask-image: var(--brand-PricingOptions-borderMask);
