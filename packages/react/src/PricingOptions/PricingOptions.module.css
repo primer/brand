@@ -44,8 +44,8 @@
   }
 
   /*
-   * column-reverse flips paint order, so the shared divider belongs on the
-   * item's end edge rather than its start edge.
+   * column-reverse changes the paint order. The shared divider must therefore
+   * move to the end edge of the item.
    */
   .PricingOptions--variant-v2.PricingOptions--layout-default .PricingOptions__item + .PricingOptions__item::before {
     inset-block-end: calc(var(--brand-pricing-options-item-gap) * -1);
@@ -256,12 +256,14 @@
 }
 
 /*
- * Items own their gutters. Each item's box spans the full column band — from
- * the midpoint of the column gap (or the container edge for the outer items) on
- * each side — instead of being inset to the text column. Content stays where it
- * was because the negative margin and the padding cancel out, but an item can
- * now paint a background that reaches the vertical dividers, and descendants
- * that need edge-to-edge chrome just offset by the item's own padding.
+ * Items own their gutters. Each item box covers the full column band, not only
+ * the text column. The band ends at the middle of the column gap. For the first
+ * and last items, it ends at the container edge.
+ *
+ * The negative margin and the padding cancel each other, so the content does
+ * not move. An item can now paint a background that reaches the vertical
+ * dividers. A child element that needs an edge-to-edge fill offsets by the
+ * padding of the item.
  */
 @media (min-width: 63.25rem) {
   .PricingOptions--layout-default .PricingOptions__item {
