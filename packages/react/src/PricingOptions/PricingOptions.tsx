@@ -53,7 +53,6 @@ const testIds = {
 
 type PricingOptionsContextValue = {
   align: AlignOptions
-  isV2: boolean
   allFeatureListsExpanded: boolean
   updateFeatureListExpanded: Dispatch<boolean>
   featureListUserInteracted: boolean
@@ -62,18 +61,13 @@ type PricingOptionsContextValue = {
 
 const PricingOptionsContext = React.createContext<PricingOptionsContextValue>({
   align: 'start',
-  isV2: false,
   allFeatureListsExpanded: false,
   featureListUserInteracted: false,
   updateFeatureListExpanded: () => {},
   setFeatureListUserInteracted: () => {},
 })
 
-const PricingOptionsProvider = ({
-  children,
-  align = 'start',
-  isV2 = false,
-}: PropsWithChildren<{align: AlignOptions; isV2?: boolean}>) => {
+const PricingOptionsProvider = ({children, align = 'start'}: PropsWithChildren<{align: AlignOptions}>) => {
   const [allFeatureListsExpanded, setAllFeatureListsExpanded] = React.useState(false)
   const [featureListUserInteracted, setFeatureListUserInteracted] = React.useState(false)
 
@@ -87,7 +81,6 @@ const PricingOptionsProvider = ({
         allFeatureListsExpanded,
         updateFeatureListExpanded,
         align,
-        isV2,
         featureListUserInteracted,
         setFeatureListUserInteracted,
       }}
@@ -100,8 +93,6 @@ const PricingOptionsProvider = ({
 const usePricingOptions = (): PricingOptionsContextValue => {
   return React.useContext(PricingOptionsContext)
 }
-
-const PricingOptionsItemContext = React.createContext({featured: false})
 
 const pricingOptionsDefaultFeatureListHeading = "What's included"
 
@@ -152,7 +143,7 @@ const PricingOptionsRoot = forwardRef(
     const isV2 = variant.endsWith('-v2')
 
     return (
-      <PricingOptionsProvider align={align} isV2={isV2}>
+      <PricingOptionsProvider align={align}>
         <div
           className={clsx(
             styles.PricingOptions,
@@ -313,33 +304,31 @@ const PricingOptionsItem = forwardRef(
     const {Heading, Description, Price, FeatureList, Actions, ActionsMessage, Footnote} = filteredChildren
 
     return (
-      <PricingOptionsItemContext.Provider value={{featured}}>
-        <div
-          className={clsx(
-            styles.PricingOptions__item,
-            leadingComponent && styles['PricingOptions__item--has-leading-component'],
-            styles[`PricingOptions__item--align-${align}`],
-            featured && styles['PricingOptions__item--featured'],
-            className,
-          )}
-          data-testid={testId || testIds.item}
-          ref={ref}
-          {...(rest as HTMLAttributes<HTMLElement>)}
-        >
-          <div className={styles['PricingOptions__header']}>{Heading}</div>
-          {Description}
-          {Price}
-          {leadingComponent && <div className={styles['PricingOptions__leading-component']}>{leadingComponent}</div>}
-          {(Actions.length > 0 || ActionsMessage) && (
-            <div className={styles.PricingOptions__actions}>
-              {Actions}
-              {ActionsMessage}
-            </div>
-          )}
-          {FeatureList}
-          {Footnote}
-        </div>
-      </PricingOptionsItemContext.Provider>
+      <div
+        className={clsx(
+          styles.PricingOptions__item,
+          leadingComponent && styles['PricingOptions__item--has-leading-component'],
+          styles[`PricingOptions__item--align-${align}`],
+          featured && styles['PricingOptions__item--featured'],
+          className,
+        )}
+        data-testid={testId || testIds.item}
+        ref={ref}
+        {...(rest as HTMLAttributes<HTMLElement>)}
+      >
+        <div className={styles['PricingOptions__header']}>{Heading}</div>
+        {Description}
+        {Price}
+        {leadingComponent && <div className={styles['PricingOptions__leading-component']}>{leadingComponent}</div>}
+        {(Actions.length > 0 || ActionsMessage) && (
+          <div className={styles.PricingOptions__actions}>
+            {Actions}
+            {ActionsMessage}
+          </div>
+        )}
+        {FeatureList}
+        {Footnote}
+      </div>
     )
   },
 )
@@ -723,9 +712,6 @@ const PricingOptionsPrimaryAction = forwardRef<
   HTMLAnchorElement | HTMLButtonElement,
   PropsWithChildren<PricingOptionsActionsProps>
 >(({as, children, className, 'data-testid': testId, ...rest}, ref) => {
-  const {isV2} = usePricingOptions()
-  const {featured} = React.useContext(PricingOptionsItemContext)
-
   return (
     <Button
       ref={ref as React.Ref<HTMLButtonElement>}
@@ -733,7 +719,7 @@ const PricingOptionsPrimaryAction = forwardRef<
       data-testid={testId || testIds.primaryAction}
       className={clsx(styles['PricingOptions__primary-action'], className)}
       size="medium"
-      variant={isV2 && !featured ? 'secondary' : 'primary'}
+      variant="primary"
       block
       {...rest}
     >
