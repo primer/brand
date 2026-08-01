@@ -151,6 +151,26 @@ const PricingOptionsRoot = forwardRef(
     const hasHeaderLabels = headerLabels.some(label => label !== null)
     const isV2 = variant.endsWith('-v2')
 
+    // Dual-mount for v2 order: clone so each set is its own instance. Keep
+    // consumer refs/ids on the wide set only to avoid two DOM targets / id clashes.
+    const cloneItemsForOrder = (order: 'wide' | 'narrow') => {
+      const ordered = order === 'narrow' ? [...filteredChildren].reverse() : filteredChildren
+
+      return ordered.map((child, index) => {
+        const key = `${order}-${String(child.key ?? index)}`
+
+        if (order === 'wide') {
+          return React.cloneElement(child, {key})
+        }
+
+        return React.cloneElement(child, {
+          key,
+          ref: null,
+          id: undefined,
+        })
+      })
+    }
+
     return (
       <PricingOptionsProvider align={align} isV2={isV2}>
         <div
@@ -173,8 +193,8 @@ const PricingOptionsRoot = forwardRef(
                * sets hold the same items in opposite order. CSS shows one set
                * and hides the other at the large breakpoint.
                */}
-              <div className={styles['PricingOptions__order--wide']}>{filteredChildren}</div>
-              <div className={styles['PricingOptions__order--narrow']}>{[...filteredChildren].reverse()}</div>
+              <div className={styles['PricingOptions__order--wide']}>{cloneItemsForOrder('wide')}</div>
+              <div className={styles['PricingOptions__order--narrow']}>{cloneItemsForOrder('narrow')}</div>
             </>
           ) : (
             filteredChildren

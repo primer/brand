@@ -154,6 +154,26 @@ describe('PricingOptions', () => {
     expect(getAllByTestId(PricingOptions.testIds.item)).toHaveLength(6)
   })
 
+  it('keeps consumer refs and ids on the wide v2 set only', () => {
+    const itemRef = React.createRef<HTMLDivElement>()
+    const {container, getByTestId} = render(
+      <PricingOptions data-testid={testId} variant="default-v2">
+        <PricingOptions.Item ref={itemRef} id="tier-free">
+          <PricingOptions.Heading>Free</PricingOptions.Heading>
+        </PricingOptions.Item>
+        <PricingOptions.Item featured>
+          <PricingOptions.Heading>Max</PricingOptions.Heading>
+        </PricingOptions.Item>
+      </PricingOptions>,
+    )
+
+    expect(container.querySelectorAll('#tier-free')).toHaveLength(1)
+    expect(itemRef.current).not.toBeNull()
+    expect(itemRef.current).toHaveAttribute('id', 'tier-free')
+    expect(itemRef.current?.closest('[class*="PricingOptions__order--wide"]')).not.toBeNull()
+    expect(getByTestId(testId).querySelector('[class*="PricingOptions__order--narrow"] #tier-free')).toBeNull()
+  })
+
   it('renders a single set of items for variants other than v2', () => {
     const {getByTestId, getAllByTestId} = render(
       <PricingOptions data-testid={testId} variant="default">
