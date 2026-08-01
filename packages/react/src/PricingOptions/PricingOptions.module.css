@@ -32,34 +32,24 @@
   );
 }
 
+/*
+ * v2 renders the items twice, in opposite order. The wrappers must not
+ * become grid items themselves, so that the items stay on the parent grid.
+ */
+.PricingOptions__order--wide,
+.PricingOptions__order--narrow {
+  display: contents;
+}
+
 @media screen and (max-width: 63.24rem) {
   .PricingOptions {
     margin-inline: auto;
     max-width: 488px;
   }
 
-  /*
-   * v2 shows the items in reverse order, so that the featured item is first.
-   * The items stay on the grid and change only their order.
-   */
-  .PricingOptions--variant-v2 .PricingOptions__item:nth-child(1) {
-    order: 4;
-  }
-
-  .PricingOptions--variant-v2 .PricingOptions__item:nth-child(2) {
-    order: 3;
-  }
-
-  .PricingOptions--variant-v2 .PricingOptions__item:nth-child(3) {
-    order: 2;
-  }
-
-  /*
-   * The reverse order changes the paint order. The shared divider must
-   * therefore move to the end edge of the item.
-   */
-  .PricingOptions--variant-v2.PricingOptions--layout-default .PricingOptions__item + .PricingOptions__item::before {
-    inset-block-end: calc(var(--brand-pricing-options-item-gap) * -1);
+  /* v2 keeps the narrow set, which has the featured item first. */
+  .PricingOptions__order--wide {
+    display: none;
   }
 }
 
@@ -69,6 +59,11 @@
     grid-template-columns: repeat(var(--brand-pricing-options-column-count), minmax(0, 1fr));
     column-gap: var(--brand-pricing-options-item-gap, 0);
     row-gap: 0;
+  }
+
+  /* v2 keeps the wide set, which has the items in source order. */
+  .PricingOptions__order--narrow {
+    display: none;
   }
 
   .PricingOptions--items1 {
@@ -306,6 +301,12 @@
     .PricingOptions__item:first-child
     .PricingOptions__feature-list--has-divider::before {
     inset-inline-start: calc(var(--brand-pricing-options-item-gap) / 2 * -1);
+  }
+
+  .PricingOptions--variant-v2.PricingOptions--layout-default
+    .PricingOptions__item:last-child
+    .PricingOptions__feature-list--has-divider::before {
+    inset-inline-end: calc(var(--brand-pricing-options-item-gap) / 2 * -1);
   }
 }
 

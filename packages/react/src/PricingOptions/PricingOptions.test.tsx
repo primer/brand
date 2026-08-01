@@ -109,7 +109,7 @@ describe('PricingOptions', () => {
   })
 
   it('applies v2 and featured classes to experiment chrome', () => {
-    const {getByTestId} = render(
+    const {getByTestId, getAllByTestId} = render(
       <PricingOptions data-testid={testId} variant="default-v2">
         <PricingOptions.Item featured>
           <PricingOptions.Label>Best value</PricingOptions.Label>
@@ -119,8 +119,76 @@ describe('PricingOptions', () => {
     )
 
     expect(getByTestId(testId)).toHaveClass('PricingOptions--variant-v2')
-    expect(getByTestId(PricingOptions.testIds.item)).toHaveClass('PricingOptions__item--featured')
+    for (const item of getAllByTestId(PricingOptions.testIds.item)) {
+      expect(item).toHaveClass('PricingOptions__item--featured')
+    }
     expect(getByTestId(PricingOptions.testIds.label)).toHaveClass('PricingOptions__label-cell--featured')
+  })
+
+  it('renders v2 items twice, in opposite order', () => {
+    const {getByTestId, getAllByTestId} = render(
+      <PricingOptions data-testid={testId} variant="default-v2">
+        <PricingOptions.Item>
+          <PricingOptions.Heading>Free</PricingOptions.Heading>
+        </PricingOptions.Item>
+        <PricingOptions.Item>
+          <PricingOptions.Heading>Pro</PricingOptions.Heading>
+        </PricingOptions.Item>
+        <PricingOptions.Item featured>
+          <PricingOptions.Heading>Max</PricingOptions.Heading>
+        </PricingOptions.Item>
+      </PricingOptions>,
+    )
+
+    const root = getByTestId(testId)
+    const [wide, narrow] = [...root.children].filter(child => child.className.includes('PricingOptions__order--'))
+
+    expect(wide).toHaveClass('PricingOptions__order--wide')
+    expect(narrow).toHaveClass('PricingOptions__order--narrow')
+
+    const headings = (set: Element) =>
+      [...set.querySelectorAll(`[data-testid="${PricingOptions.testIds.heading}"]`)].map(el => el.textContent)
+
+    expect(headings(wide)).toEqual(['Free', 'Pro', 'Max'])
+    expect(headings(narrow)).toEqual(['Max', 'Pro', 'Free'])
+    expect(getAllByTestId(PricingOptions.testIds.item)).toHaveLength(6)
+  })
+
+  it('renders a single set of items for variants other than v2', () => {
+    const {getByTestId, getAllByTestId} = render(
+      <PricingOptions data-testid={testId} variant="default">
+        <PricingOptions.Item>
+          <PricingOptions.Heading>Free</PricingOptions.Heading>
+        </PricingOptions.Item>
+      </PricingOptions>,
+    )
+
+    expect(getByTestId(testId).querySelector('[class*="PricingOptions__order--"]')).toBeNull()
+    expect(getAllByTestId(PricingOptions.testIds.item)).toHaveLength(1)
+  })
+
+  it('has no a11y violations when v2 renders the items twice', async () => {
+    const {container} = render(
+      <PricingOptions variant="default-v2">
+        <PricingOptions.Item>
+          <PricingOptions.Heading>Free</PricingOptions.Heading>
+          <PricingOptions.PrimaryAction as="a" href="#">
+            Start with Free
+          </PricingOptions.PrimaryAction>
+        </PricingOptions.Item>
+        <PricingOptions.Item featured>
+          <PricingOptions.Label>Best value</PricingOptions.Label>
+          <PricingOptions.Heading>Max</PricingOptions.Heading>
+          <PricingOptions.PrimaryAction as="a" href="#">
+            Start with Max
+          </PricingOptions.PrimaryAction>
+        </PricingOptions.Item>
+      </PricingOptions>,
+    )
+
+    const results = await axe(container)
+
+    expect(results).toHaveNoViolations()
   })
 
   it('uses the Brand secondary color for non-featured v2 primary actions', () => {

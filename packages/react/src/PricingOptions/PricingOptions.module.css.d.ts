@@ -41,6 +41,8 @@ declare const styles: {
   readonly "PricingOptions__labels": string;
   readonly "PricingOptions__leading-component": string;
   readonly "PricingOptions__menu-action": string;
+  readonly "PricingOptions__order--narrow": string;
+  readonly "PricingOptions__order--wide": string;
   readonly "PricingOptions__price": string;
   readonly "PricingOptions__price-amount": string;
   readonly "PricingOptions__price-currency-code": string;
@@ -51,3 +53,4 @@ declare const styles: {
   readonly "PricingOptions__price-value": string;
 };
 export = styles;
+

@@ -166,7 +166,19 @@ const PricingOptionsRoot = forwardRef(
           ref={ref}
           {...(rest as HTMLAttributes<HTMLElement>)}
         >
-          {filteredChildren}
+          {isV2 ? (
+            <>
+              {/*
+               * v2 shows the featured item first on small viewports. The two
+               * sets hold the same items in opposite order. CSS shows one set
+               * and hides the other at the large breakpoint.
+               */}
+              <div className={styles['PricingOptions__order--wide']}>{filteredChildren}</div>
+              <div className={styles['PricingOptions__order--narrow']}>{[...filteredChildren].reverse()}</div>
+            </>
+          ) : (
+            filteredChildren
+          )}
 
           {hasHeaderLabels && (
             <div
