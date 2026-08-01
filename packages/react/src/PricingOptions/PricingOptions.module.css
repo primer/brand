@@ -229,6 +229,8 @@
   }
 
   .PricingOptions--variant-v2 .PricingOptions__label-cell--featured {
+    --brand-color-text-emphasized: var(--brand-Label-color-purple);
+
     background-color: var(--brand-pricing-options-featured-bg-color);
   }
 }

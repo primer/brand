@@ -70,10 +70,12 @@ const V2Plans = ({variant}: {variant: 'default-v2' | 'cards-v2'}) => (
 )
 
 export const DefaultV2Variant: Story = {
+  name: 'Default V2 Variant',
   render: () => <V2Plans variant="default-v2" />,
 }
 
 export const CardsV2Variant: Story = {
+  name: 'Cards V2 Variant',
   render: () => <V2Plans variant="cards-v2" />,
 }
 

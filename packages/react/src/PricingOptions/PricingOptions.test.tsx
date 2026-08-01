@@ -123,6 +123,27 @@ describe('PricingOptions', () => {
     expect(getByTestId(PricingOptions.testIds.label)).toHaveClass('PricingOptions__label-cell--featured')
   })
 
+  it('uses the Brand secondary color for non-featured v2 primary actions', () => {
+    const {getAllByTestId} = render(
+      <PricingOptions variant="default-v2">
+        <PricingOptions.Item>
+          <PricingOptions.PrimaryAction as="a" href="#">
+            Start with Pro
+          </PricingOptions.PrimaryAction>
+        </PricingOptions.Item>
+        <PricingOptions.Item featured>
+          <PricingOptions.PrimaryAction as="a" href="#">
+            Start with Max
+          </PricingOptions.PrimaryAction>
+        </PricingOptions.Item>
+      </PricingOptions>,
+    )
+
+    const [nonFeaturedAction, featuredAction] = getAllByTestId(PricingOptions.testIds.primaryAction)
+    expect(nonFeaturedAction).toHaveClass('Button--secondary')
+    expect(featuredAction).toHaveClass('Button--primary')
+  })
+
   it('has no a11y violations', async () => {
     const {container} = render(<PricingOptions />)
 
