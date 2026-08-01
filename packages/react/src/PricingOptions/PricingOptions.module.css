@@ -38,14 +38,25 @@
     max-width: 488px;
   }
 
-  .PricingOptions--variant-v2 {
-    display: flex;
-    flex-direction: column-reverse;
+  /*
+   * v2 shows the items in reverse order, so that the featured item is first.
+   * The items stay on the grid and change only their order.
+   */
+  .PricingOptions--variant-v2 .PricingOptions__item:nth-child(1) {
+    order: 4;
+  }
+
+  .PricingOptions--variant-v2 .PricingOptions__item:nth-child(2) {
+    order: 3;
+  }
+
+  .PricingOptions--variant-v2 .PricingOptions__item:nth-child(3) {
+    order: 2;
   }
 
   /*
-   * column-reverse changes the paint order. The shared divider must therefore
-   * move to the end edge of the item.
+   * The reverse order changes the paint order. The shared divider must
+   * therefore move to the end edge of the item.
    */
   .PricingOptions--variant-v2.PricingOptions--layout-default .PricingOptions__item + .PricingOptions__item::before {
     inset-block-end: calc(var(--brand-pricing-options-item-gap) * -1);
