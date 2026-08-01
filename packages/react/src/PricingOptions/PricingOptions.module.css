@@ -255,12 +255,33 @@
   padding-block: var(--base-size-20);
 }
 
+/*
+ * Items own their gutters. Each item's box spans the full column band — from
+ * the midpoint of the column gap (or the container edge for the outer items) on
+ * each side — instead of being inset to the text column. Content stays where it
+ * was because the negative margin and the padding cancel out, but an item can
+ * now paint a background that reaches the vertical dividers, and descendants
+ * that need edge-to-edge chrome just offset by the item's own padding.
+ */
 @media (min-width: 63.25rem) {
   .PricingOptions--layout-default .PricingOptions__item {
-    --brand-pricing-options-item-padding-inline: 0;
+    --brand-pricing-options-item-padding-inline-start: calc(var(--brand-pricing-options-item-gap) / 2);
+    --brand-pricing-options-item-padding-inline-end: calc(var(--brand-pricing-options-item-gap) / 2);
 
-    padding-inline: 0;
+    margin-inline: calc(var(--brand-pricing-options-item-padding-inline-start) * -1)
+      calc(var(--brand-pricing-options-item-padding-inline-end) * -1);
+    padding-inline: var(--brand-pricing-options-item-padding-inline-start)
+      var(--brand-pricing-options-item-padding-inline-end);
     padding-block: var(--base-size-40);
+  }
+
+  .PricingOptions--layout-default .PricingOptions__item:first-child,
+  .PricingOptions--layout-default .PricingOptions__labels + .PricingOptions__item {
+    --brand-pricing-options-item-padding-inline-start: var(--brand-pricing-options-container-padding-inline);
+  }
+
+  .PricingOptions--layout-default .PricingOptions__item:not(:has(~ .PricingOptions__item)) {
+    --brand-pricing-options-item-padding-inline-end: var(--brand-pricing-options-container-padding-inline);
   }
 }
 
@@ -281,7 +302,6 @@
     width: 1px;
     height: auto;
     margin-block-start: 0;
-    margin-inline-start: calc(var(--brand-pricing-options-item-gap) / 2 * -1);
   }
 
   .PricingOptions--layout-default.PricingOptions--appearance-gradient
@@ -352,38 +372,11 @@
   grid-template-areas: var(--brand-pricing-options-template-areas);
 }
 
-/*
- * Featured column fill. On the default layout the item track is narrower than
- * the gap between columns, so the fill uses the same negative-margin bleed that
- * label cells already use to reach the dividers and the outer border.
- */
+/* Featured column fill. */
 .PricingOptions--variant-v2 .PricingOptions__item--featured,
 .PricingOptions--variant-v2.PricingOptions--layout-cards.PricingOptions--appearance-solid
   .PricingOptions__item--featured {
   background-color: var(--brand-pricing-options-featured-bg-color);
-}
-
-@media (min-width: 63.25rem) {
-  .PricingOptions--variant-v2.PricingOptions--layout-default .PricingOptions__item--featured {
-    margin-inline: calc(var(--brand-pricing-options-item-gap) / 2 * -1);
-    padding-inline: calc(var(--brand-pricing-options-item-gap) / 2);
-  }
-
-  .PricingOptions--variant-v2.PricingOptions--layout-default .PricingOptions__item--featured:first-child {
-    margin-inline-start: calc(var(--brand-pricing-options-container-padding-inline) * -1);
-    padding-inline-start: var(--brand-pricing-options-container-padding-inline);
-  }
-
-  .PricingOptions--variant-v2.PricingOptions--layout-default
-    .PricingOptions__item--featured:not(:has(~ .PricingOptions__item)) {
-    margin-inline-end: calc(var(--brand-pricing-options-container-padding-inline) * -1);
-    padding-inline-end: var(--brand-pricing-options-container-padding-inline);
-  }
-
-  /* The bleed already moved the item edge into the gap the divider sits in. */
-  .PricingOptions--variant-v2.PricingOptions--layout-default .PricingOptions__item--featured::before {
-    margin-inline-start: 0;
-  }
 }
 
 @media (min-width: 63.25rem) {
@@ -634,33 +627,18 @@
   content: '';
   position: absolute;
   inset-block-start: 0;
-  inset-inline-start: calc(var(--brand-pricing-options-item-padding-inline, 0px) * -1);
-  inset-inline-end: calc(var(--brand-pricing-options-item-padding-inline, 0px) * -1);
+  inset-inline-start: calc(
+    var(--brand-pricing-options-item-padding-inline-start, var(--brand-pricing-options-item-padding-inline, 0px)) * -1
+  );
+  inset-inline-end: calc(
+    var(--brand-pricing-options-item-padding-inline-end, var(--brand-pricing-options-item-padding-inline, 0px)) * -1
+  );
   height: var(--brand-borderWidth-thin);
   background-color: var(--brand-color-border-subtle);
 }
 
-/* Default layout: extend feature list divider into column gap */
+/* Default layout: mask the feature list divider in the gradient appearance */
 @media (min-width: 63.25rem) {
-  .PricingOptions--layout-default .PricingOptions__feature-list--has-divider::before {
-    inset-inline-start: calc(var(--brand-pricing-options-item-gap, 0px) / 2 * -1);
-    inset-inline-end: calc(var(--brand-pricing-options-item-gap, 0px) / 2 * -1);
-  }
-
-  /* First item: don't overflow past container start */
-  .PricingOptions--layout-default .PricingOptions__item:first-child .PricingOptions__feature-list--has-divider::before,
-  .PricingOptions--layout-default
-    .PricingOptions__labels
-    + .PricingOptions__item
-    .PricingOptions__feature-list--has-divider::before {
-    inset-inline-start: calc(var(--brand-pricing-options-container-padding-inline, 0px) * -1);
-  }
-
-  /* Last item: don't overflow past container end */
-  .PricingOptions--layout-default .PricingOptions__item:last-child .PricingOptions__feature-list--has-divider::before {
-    inset-inline-end: calc(var(--brand-pricing-options-container-padding-inline, 0px) * -1);
-  }
-
   .PricingOptions--layout-default.PricingOptions--appearance-gradient
     .PricingOptions__feature-list--has-divider::before {
     mask-image: var(--brand-PricingOptions-borderMask);
