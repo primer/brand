@@ -264,6 +264,40 @@
   }
 }
 
+/*
+ * v2 moves the column gutters from the grid onto the items. Each item and each
+ * label cell is then a box with padding and no margin. A background-color on
+ * the item fills the full column. The dividers keep their positions, because an
+ * item edge is now the center of a gutter.
+ */
+@media (min-width: 63.25rem) {
+  .PricingOptions--variant-v2.PricingOptions--layout-default,
+  .PricingOptions--variant-v2.PricingOptions--layout-default .PricingOptions__labels {
+    column-gap: 0;
+    padding-inline: 0;
+  }
+
+  .PricingOptions--variant-v2.PricingOptions--layout-default .PricingOptions__labels::after {
+    inset-inline: 0;
+  }
+
+  .PricingOptions--variant-v2.PricingOptions--layout-default .PricingOptions__item,
+  .PricingOptions--variant-v2.PricingOptions--layout-default .PricingOptions__label-cell {
+    margin-inline: 0;
+    padding-inline: calc(var(--brand-pricing-options-item-gap) / 2);
+  }
+
+  .PricingOptions--variant-v2.PricingOptions--layout-default .PricingOptions__item + .PricingOptions__item::before {
+    margin-inline-start: 0;
+  }
+
+  .PricingOptions--variant-v2.PricingOptions--layout-default
+    .PricingOptions__item:first-child
+    .PricingOptions__feature-list--has-divider::before {
+    inset-inline-start: calc(var(--brand-pricing-options-item-gap) / 2 * -1);
+  }
+}
+
 /* Horizontal divider between items on small viewports */
 .PricingOptions--layout-default .PricingOptions__item + .PricingOptions__item::before {
   content: '';
@@ -357,28 +391,6 @@
 .PricingOptions--variant-v2.PricingOptions--layout-cards.PricingOptions--appearance-solid
   .PricingOptions__item--featured {
   background-color: var(--brand-pricing-options-featured-bg-color);
-}
-
-@media (min-width: 63.25rem) {
-  .PricingOptions--variant-v2.PricingOptions--layout-default .PricingOptions__item--featured {
-    margin-inline: calc(var(--brand-pricing-options-item-gap) / 2 * -1);
-    padding-inline: calc(var(--brand-pricing-options-item-gap) / 2);
-  }
-
-  .PricingOptions--variant-v2.PricingOptions--layout-default .PricingOptions__item--featured:first-child {
-    margin-inline-start: calc(var(--brand-pricing-options-container-padding-inline) * -1);
-    padding-inline-start: var(--brand-pricing-options-container-padding-inline);
-  }
-
-  .PricingOptions--variant-v2.PricingOptions--layout-default
-    .PricingOptions__item--featured:not(:has(~ .PricingOptions__item)) {
-    margin-inline-end: calc(var(--brand-pricing-options-container-padding-inline) * -1);
-    padding-inline-end: var(--brand-pricing-options-container-padding-inline);
-  }
-
-  .PricingOptions--variant-v2.PricingOptions--layout-default .PricingOptions__item--featured::before {
-    margin-inline-start: 0;
-  }
 }
 
 @media (min-width: 63.25rem) {
