@@ -43,18 +43,12 @@
     flex-direction: column-reverse;
   }
 
-  /* Reversing paint order also reverses which side of an item the shared divider belongs on. */
+  /*
+   * column-reverse flips paint order, so the shared divider belongs on the
+   * item's end edge rather than its start edge.
+   */
   .PricingOptions--variant-v2.PricingOptions--layout-default .PricingOptions__item + .PricingOptions__item::before {
-    content: none;
-  }
-
-  .PricingOptions--variant-v2.PricingOptions--layout-default
-    .PricingOptions__item:has(~ .PricingOptions__item)::before {
-    content: '';
-    position: absolute;
-    inset-inline: 0;
-    height: var(--brand-borderWidth-thin);
-    background-color: var(--brand-color-border-subtle);
+    inset-block-end: calc(var(--brand-pricing-options-item-gap) * -1);
   }
 }
 
@@ -359,45 +353,36 @@
 }
 
 /*
- * Featured column fill.
- * Cards paint the item box directly; the default layout bleeds a pseudo-element
- * into the surrounding gap so the fill meets the dividers and outer border.
+ * Featured column fill. On the default layout the item track is narrower than
+ * the gap between columns, so the fill uses the same negative-margin bleed that
+ * label cells already use to reach the dividers and the outer border.
  */
+.PricingOptions--variant-v2 .PricingOptions__item--featured,
 .PricingOptions--variant-v2.PricingOptions--layout-cards.PricingOptions--appearance-solid
   .PricingOptions__item--featured {
   background-color: var(--brand-pricing-options-featured-bg-color);
 }
 
-.PricingOptions--variant-v2.PricingOptions--layout-default .PricingOptions__item--featured {
-  isolation: isolate;
-}
-
-.PricingOptions--variant-v2.PricingOptions--layout-default .PricingOptions__item--featured::after {
-  content: '';
-  position: absolute;
-  z-index: -1;
-  inset: 0 0 calc(var(--brand-pricing-options-item-gap, 0px) * -1);
-  background-color: var(--brand-pricing-options-featured-bg-color);
-}
-
 @media (min-width: 63.25rem) {
-  .PricingOptions--variant-v2.PricingOptions--layout-default .PricingOptions__item--featured::after {
-    inset-block: 0;
-    inset-inline: calc(var(--brand-pricing-options-item-gap, 0px) / 2 * -1);
+  .PricingOptions--variant-v2.PricingOptions--layout-default .PricingOptions__item--featured {
+    margin-inline: calc(var(--brand-pricing-options-item-gap) / 2 * -1);
+    padding-inline: calc(var(--brand-pricing-options-item-gap) / 2);
   }
 
-  .PricingOptions--variant-v2.PricingOptions--layout-default .PricingOptions__item--featured:first-child::after {
-    inset-inline-start: calc(var(--brand-pricing-options-container-padding-inline, 0px) * -1);
+  .PricingOptions--variant-v2.PricingOptions--layout-default .PricingOptions__item--featured:first-child {
+    margin-inline-start: calc(var(--brand-pricing-options-container-padding-inline) * -1);
+    padding-inline-start: var(--brand-pricing-options-container-padding-inline);
   }
 
   .PricingOptions--variant-v2.PricingOptions--layout-default
-    .PricingOptions__item--featured:not(:has(~ .PricingOptions__item))::after {
-    inset-inline-end: calc(var(--brand-pricing-options-container-padding-inline, 0px) * -1);
+    .PricingOptions__item--featured:not(:has(~ .PricingOptions__item)) {
+    margin-inline-end: calc(var(--brand-pricing-options-container-padding-inline) * -1);
+    padding-inline-end: var(--brand-pricing-options-container-padding-inline);
   }
 
-  /* Keep the vertical dividers above the fill that bleeds into the gap. */
-  .PricingOptions--variant-v2.PricingOptions--layout-default .PricingOptions__item + .PricingOptions__item::before {
-    z-index: 1;
+  /* The bleed already moved the item edge into the gap the divider sits in. */
+  .PricingOptions--variant-v2.PricingOptions--layout-default .PricingOptions__item--featured::before {
+    margin-inline-start: 0;
   }
 }
 
