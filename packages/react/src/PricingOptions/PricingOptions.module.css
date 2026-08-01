@@ -260,7 +260,36 @@
  * column band (gap midpoint, or container edge for outer items). Matched
  * negative margin and padding keep the content edge where it was, so a
  * background-color on the item fills the column with no extra bleed.
+ *
+ * On small viewports the former row-gap becomes half-gap padding on each
+ * item so stacked backgrounds meet at the divider.
  */
+@media screen and (max-width: 63.24rem) {
+  .PricingOptions--layout-default {
+    row-gap: 0;
+  }
+
+  .PricingOptions--layout-default .PricingOptions__item {
+    --brand-pricing-options-item-padding-block-start: calc(
+      var(--base-size-20) + var(--brand-pricing-options-item-gap) / 2
+    );
+    --brand-pricing-options-item-padding-block-end: calc(
+      var(--base-size-20) + var(--brand-pricing-options-item-gap) / 2
+    );
+
+    padding-block: var(--brand-pricing-options-item-padding-block-start)
+      var(--brand-pricing-options-item-padding-block-end);
+  }
+
+  .PricingOptions--layout-default .PricingOptions__item:first-child {
+    --brand-pricing-options-item-padding-block-start: var(--base-size-20);
+  }
+
+  .PricingOptions--layout-default .PricingOptions__item:not(:has(~ .PricingOptions__item)) {
+    --brand-pricing-options-item-padding-block-end: var(--base-size-20);
+  }
+}
+
 @media (min-width: 63.25rem) {
   .PricingOptions--layout-default {
     padding-inline: var(--brand-pricing-options-container-padding-inline);
@@ -292,6 +321,7 @@
   content: '';
   position: absolute;
   inset-inline: 0;
+  inset-block-start: 0;
   height: 1px;
   background-color: var(--brand-color-border-subtle);
 }
