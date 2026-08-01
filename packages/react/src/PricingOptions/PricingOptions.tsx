@@ -160,7 +160,6 @@ const PricingOptionsRoot = forwardRef(
             styles[`PricingOptions--items${filteredChildren.length}`],
             styles[`PricingOptions--appearance-${variant.includes('gradient') ? 'gradient' : 'solid'}`],
             isV2 && styles['PricingOptions--variant-v2'],
-            hasHeaderLabels && styles['PricingOptions--has-labels'],
             className,
           )}
           data-testid={testId || testIds.root}
