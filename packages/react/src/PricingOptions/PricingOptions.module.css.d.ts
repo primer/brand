@@ -2,12 +2,14 @@ declare const styles: {
   readonly "PricingOptions": string;
   readonly "PricingOptions--appearance-gradient": string;
   readonly "PricingOptions--appearance-solid": string;
+  readonly "PricingOptions--has-labels": string;
   readonly "PricingOptions--items1": string;
   readonly "PricingOptions--items2": string;
   readonly "PricingOptions--items3": string;
   readonly "PricingOptions--items4": string;
   readonly "PricingOptions--layout-cards": string;
   readonly "PricingOptions--layout-default": string;
+  readonly "PricingOptions--variant-v2": string;
   readonly "PricingOptions__actions": string;
   readonly "PricingOptions__actions-message": string;
   readonly "PricingOptions__actions-message-content": string;
@@ -30,10 +32,12 @@ declare const styles: {
   readonly "PricingOptions__heading": string;
   readonly "PricingOptions__item": string;
   readonly "PricingOptions__item--align-center": string;
+  readonly "PricingOptions__item--featured": string;
   readonly "PricingOptions__item--has-leading-component": string;
   readonly "PricingOptions__label": string;
   readonly "PricingOptions__label-cell": string;
   readonly "PricingOptions__label-cell--empty": string;
+  readonly "PricingOptions__label-cell--featured": string;
   readonly "PricingOptions__label-cell--has-label": string;
   readonly "PricingOptions__labels": string;
   readonly "PricingOptions__leading-component": string;
@@ -48,4 +52,3 @@ declare const styles: {
   readonly "PricingOptions__price-value": string;
 };
 export = styles;
-

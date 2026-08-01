@@ -26,7 +26,7 @@ type AlignOptions = 'start' | 'center'
 
 export type PricingOptionsProps = {
   align?: AlignOptions
-  variant?: 'default' | 'default-gradient' | 'cards' | 'cards-gradient'
+  variant?: 'default' | 'default-gradient' | 'default-v2' | 'cards' | 'cards-gradient' | 'cards-v2'
   ['data-testid']?: string
 } & PropsWithChildren<BaseProps<HTMLDivElement>> &
   HTMLAttributes<HTMLDivElement>
@@ -139,6 +139,7 @@ const PricingOptionsRoot = forwardRef(
     )
 
     const hasHeaderLabels = headerLabels.some(label => label !== null)
+    const isV2 = variant.endsWith('-v2')
 
     return (
       <PricingOptionsProvider align={align}>
@@ -148,6 +149,8 @@ const PricingOptionsRoot = forwardRef(
             styles[`PricingOptions--layout-${variant.includes('default') ? 'default' : 'cards'}`],
             styles[`PricingOptions--items${filteredChildren.length}`],
             styles[`PricingOptions--appearance-${variant.includes('gradient') ? 'gradient' : 'solid'}`],
+            isV2 && styles['PricingOptions--variant-v2'],
+            hasHeaderLabels && styles['PricingOptions--has-labels'],
             className,
           )}
           data-testid={testId || testIds.root}
@@ -168,6 +171,7 @@ const PricingOptionsRoot = forwardRef(
             >
               {headerLabels.map((headerLabel, index) => {
                 const hasLabelContent = Boolean(headerLabel?.props.children)
+                const isFeatured = filteredChildren[index].props.featured
 
                 return (
                   <div
@@ -176,6 +180,7 @@ const PricingOptionsRoot = forwardRef(
                       hasLabelContent
                         ? styles['PricingOptions__label-cell--has-label']
                         : styles['PricingOptions__label-cell--empty'],
+                      isFeatured && styles['PricingOptions__label-cell--featured'],
                     )}
                     data-testid={headerLabel?.props['data-testid'] || testIds.label}
                     key={index}
@@ -197,6 +202,10 @@ const PricingOptionsRoot = forwardRef(
 export type PricingOptionsItem = {
   ['data-testid']?: string
   /**
+   * Highlights this option when used with a v2 variant.
+   */
+  featured?: boolean
+  /**
    * Escape-hatch for inserting custom React components.
    * Warning:
    *   This prop isn't advertised in our docs but remains part of the public API for edge-cases.
@@ -217,7 +226,14 @@ type FilteredChildren = {
 
 const PricingOptionsItem = forwardRef(
   (
-    {'data-testid': testId, children, className, leadingComponent, ...rest}: PropsWithChildren<PricingOptionsItem>,
+    {
+      'data-testid': testId,
+      children,
+      className,
+      featured = false,
+      leadingComponent,
+      ...rest
+    }: PropsWithChildren<PricingOptionsItem>,
     ref: Ref<HTMLDivElement>,
   ) => {
     const {align} = usePricingOptions()
@@ -281,6 +297,7 @@ const PricingOptionsItem = forwardRef(
           styles.PricingOptions__item,
           leadingComponent && styles['PricingOptions__item--has-leading-component'],
           styles[`PricingOptions__item--align-${align}`],
+          featured && styles['PricingOptions__item--featured'],
           className,
         )}
         data-testid={testId || testIds.item}

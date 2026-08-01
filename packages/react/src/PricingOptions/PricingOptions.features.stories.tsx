@@ -25,6 +25,58 @@ export default {
 
 type Story = StoryObj<typeof PricingOptions>
 
+const V2Plans = ({variant}: {variant: 'default-v2' | 'cards-v2'}) => (
+  <PricingOptions variant={variant}>
+    <PricingOptions.Item>
+      <PricingOptions.Heading>Free</PricingOptions.Heading>
+      <PricingOptions.Description>Explore GitHub Copilot at no cost.</PricingOptions.Description>
+      <PricingOptions.Price>0</PricingOptions.Price>
+      <PricingOptions.PrimaryAction as="a" href="#">
+        Get started
+      </PricingOptions.PrimaryAction>
+      <PricingOptions.FeatureList>
+        <PricingOptions.FeatureListItem>2,000 completions per month</PricingOptions.FeatureListItem>
+        <PricingOptions.FeatureListItem>50 chat requests per month</PricingOptions.FeatureListItem>
+      </PricingOptions.FeatureList>
+    </PricingOptions.Item>
+    <PricingOptions.Item>
+      <PricingOptions.Heading>Pro</PricingOptions.Heading>
+      <PricingOptions.Description>Build faster with unlimited completions and chat.</PricingOptions.Description>
+      <PricingOptions.Price trailingText="per month">10</PricingOptions.Price>
+      <PricingOptions.PrimaryAction as="a" href="#">
+        Upgrade to Pro
+      </PricingOptions.PrimaryAction>
+      <PricingOptions.FeatureList>
+        <PricingOptions.FeatureListHeading>Everything in Free, plus:</PricingOptions.FeatureListHeading>
+        <PricingOptions.FeatureListItem>Unlimited completions</PricingOptions.FeatureListItem>
+        <PricingOptions.FeatureListItem>Unlimited chat</PricingOptions.FeatureListItem>
+      </PricingOptions.FeatureList>
+    </PricingOptions.Item>
+    <PricingOptions.Item featured>
+      <PricingOptions.Label>Best value</PricingOptions.Label>
+      <PricingOptions.Heading>Max</PricingOptions.Heading>
+      <PricingOptions.Description>Get maximum model access and premium requests.</PricingOptions.Description>
+      <PricingOptions.Price trailingText="per month">39</PricingOptions.Price>
+      <PricingOptions.PrimaryAction as="a" href="#">
+        Upgrade to Max
+      </PricingOptions.PrimaryAction>
+      <PricingOptions.FeatureList>
+        <PricingOptions.FeatureListHeading>Everything in Pro, plus:</PricingOptions.FeatureListHeading>
+        <PricingOptions.FeatureListItem>Access to all models</PricingOptions.FeatureListItem>
+        <PricingOptions.FeatureListItem>More premium requests</PricingOptions.FeatureListItem>
+      </PricingOptions.FeatureList>
+    </PricingOptions.Item>
+  </PricingOptions>
+)
+
+export const DefaultV2Variant: Story = {
+  render: () => <V2Plans variant="default-v2" />,
+}
+
+export const CardsV2Variant: Story = {
+  render: () => <V2Plans variant="cards-v2" />,
+}
+
 export const CardsVariant: Story = {
   render: () => (
     <PricingOptions variant="cards">

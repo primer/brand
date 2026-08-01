@@ -6,7 +6,7 @@ import userEvent from '@testing-library/user-event'
 
 import {axe, toHaveNoViolations} from 'jest-axe'
 
-import {PricingOptions} from './PricingOptions'
+import {PricingOptions, type PricingOptionsProps} from './PricingOptions'
 import {useWindowSize} from '../hooks/useWindowSize'
 import '../test-utils/mocks/match-media-mock'
 
@@ -68,18 +68,21 @@ describe('PricingOptions', () => {
   it('applies the correct layout classes for each variant', () => {
     const defaultLayout = 'PricingOptions--layout-default'
     const cardsLayout = 'PricingOptions--layout-cards'
+    const variants: Array<[NonNullable<PricingOptionsProps['variant']>, string]> = [
+      ['default', defaultLayout],
+      ['default-gradient', defaultLayout],
+      ['default-v2', defaultLayout],
+      ['cards', cardsLayout],
+      ['cards-gradient', cardsLayout],
+      ['cards-v2', cardsLayout],
+    ]
 
-    const {getByTestId, rerender} = render(<PricingOptions data-testid={testId} variant="default" />)
-    expect(getByTestId(testId).classList).toContain(defaultLayout)
+    const {getByTestId, rerender} = render(<PricingOptions data-testid={testId} />)
 
-    rerender(<PricingOptions data-testid={testId} variant="default-gradient" />)
-    expect(getByTestId(testId).classList).toContain(defaultLayout)
-
-    rerender(<PricingOptions data-testid={testId} variant="cards" />)
-    expect(getByTestId(testId).classList).toContain(cardsLayout)
-
-    rerender(<PricingOptions data-testid={testId} variant="cards-gradient" />)
-    expect(getByTestId(testId).classList).toContain(cardsLayout)
+    for (const [variant, expectedLayout] of variants) {
+      rerender(<PricingOptions data-testid={testId} variant={variant} />)
+      expect(getByTestId(testId).classList).toContain(expectedLayout)
+    }
   })
 
   it('applies the correct appearance classes for each variant', () => {
@@ -97,6 +100,27 @@ describe('PricingOptions', () => {
 
     rerender(<PricingOptions data-testid={testId} variant="cards-gradient" />)
     expect(getByTestId(testId).classList).toContain(gradientVariant)
+
+    rerender(<PricingOptions data-testid={testId} variant="default-v2" />)
+    expect(getByTestId(testId).classList).toContain(solidVariant)
+
+    rerender(<PricingOptions data-testid={testId} variant="cards-v2" />)
+    expect(getByTestId(testId).classList).toContain(solidVariant)
+  })
+
+  it('applies v2 and featured classes to experiment chrome', () => {
+    const {getByTestId} = render(
+      <PricingOptions data-testid={testId} variant="default-v2">
+        <PricingOptions.Item featured>
+          <PricingOptions.Label>Best value</PricingOptions.Label>
+          <PricingOptions.Heading>Max</PricingOptions.Heading>
+        </PricingOptions.Item>
+      </PricingOptions>,
+    )
+
+    expect(getByTestId(testId)).toHaveClass('PricingOptions--variant-v2')
+    expect(getByTestId(PricingOptions.testIds.item)).toHaveClass('PricingOptions__item--featured')
+    expect(getByTestId(PricingOptions.testIds.label)).toHaveClass('PricingOptions__label-cell--featured')
   })
 
   it('has no a11y violations', async () => {
