@@ -74,9 +74,25 @@ export const DefaultV2Variant: Story = {
   render: () => <V2Plans variant="default-v2" />,
 }
 
+export const DefaultV2VariantNarrow: Story = {
+  ...DefaultV2Variant,
+  name: 'Default V2 Variant Narrow',
+  globals: {
+    viewport: {value: 'iphonexr'},
+  },
+}
+
 export const CardsV2Variant: Story = {
   name: 'Cards V2 Variant',
   render: () => <V2Plans variant="cards-v2" />,
+}
+
+export const CardsV2VariantNarrow: Story = {
+  ...CardsV2Variant,
+  name: 'Cards V2 Variant Narrow',
+  globals: {
+    viewport: {value: 'iphonexr'},
+  },
 }
 
 export const CardsVariant: Story = {
