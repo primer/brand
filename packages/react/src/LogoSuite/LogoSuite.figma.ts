@@ -24,17 +24,10 @@ const description = instance.getBoolean('description?')
 
 const showLogoBar = instance.getBoolean('showLogoBar?')
 const logoBar = instance.findInstance('Logobar')
-const logos =
-  showLogoBar && logoBar.type !== 'ERROR'
-    ? logoBar
-        .findLayers(layer => layer.type === 'INSTANCE' && layer.name === 'Logo', {traverseInstances: true})
-        .flatMap(layer => {
-          if (layer.type !== 'INSTANCE') return []
-          const organization = layer.getPropertyValue('Organization')
-          return typeof organization === 'string' ? [organization] : []
-        })
-    : []
-const logoExamples = logos.map(organization => figma.code`<img src="..." alt="${organization}" />`)
+const logoPlaceholder = figma.code`<svg viewBox="0 0 120 32" role="img" aria-label="Logo placeholder">
+  <rect width="120" height="32" rx="4" />
+</svg>`
+const logoExamples = Array.from({length: 4}, () => logoPlaceholder)
 const logobar =
   showLogoBar && logoBar.type !== 'ERROR'
     ? figma.code`<LogoSuite.Logobar${figma.helpers.react.renderProp(
