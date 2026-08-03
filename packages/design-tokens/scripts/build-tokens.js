@@ -341,16 +341,7 @@ const darkJson = require('../src/tokens/base/colors/dark')
   })
 
   /**
-   * Emit a one-dimensional JSON typography map of brand typography custom properties (base type
-   * scale + functional font stacks, body, heading and text tokens) for downstream tooling. The
-   * source files are the same ones brand ships in its CSS (`base/typography/typography.css`,
-   * `functional/typography/typography-responsive.css`); the upstream
-   * `functional/typography/typography.json` is excluded because brand does not import the CSS
-   * built from it, so the `--brand-text-*` text styles and `--brand-fontStack-sansSerifDisplay`
-   * it defines never reach the browser. All values here are legitimate typography tokens (font
-   * family, weight, size, line height, letter spacing, font-feature settings), so no value-shape
-   * filter is needed. Base tokens are emitted without the `brand` prefix to match their CSS
-   * output (`--base-text-*`); functional tokens keep the `brand` prefix.
+   * Build a flat JSON map of global typography tokens.
    */
   buildPrimitives({
     source: [`tokens/base/typography/typography.json`, `tokens/functional/typography/typography-responsive.json`],
@@ -373,16 +364,7 @@ const darkJson = require('../src/tokens/base/colors/dark')
   })
 
   /**
-   * Emit a one-dimensional JSON size map of brand size custom properties (base size scale +
-   * functional size, border and breakpoint tokens) for downstream tooling. The source files are
-   * the same ones brand ships in its CSS (`base/size/size.css`, `functional/size/size.css`,
-   * `functional/size/breakpoints.css`, `functional/size/border.css`); the pointer-specific
-   * `size-fine` / `size-coarse` variants and the `viewport` media-query ranges are excluded
-   * because brand does not import them. Size tokens are additionally selected by inspecting the
-   * emitted value (`isSizeValue`), so non-size values that live alongside sizes (animation
-   * easing/duration, `inset ...` border composites) are dropped. Base tokens are emitted without
-   * the `brand` prefix to match their CSS output (`--base-size-*`); functional tokens keep the
-   * `brand` prefix.
+   * Build a flat JSON map of global size tokens.
    */
   buildPrimitives({
     source: [

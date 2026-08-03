@@ -23,14 +23,17 @@ describe('isSizeValue', () => {
     expect(isSizeValue('calc(48rem - 0.02px)')).toBe(true)
   })
 
-  it('keeps var() references to size tokens', () => {
-    expect(isSizeValue('var(--base-size-16)')).toBe(true)
-    expect(isSizeValue('var(--brand-borderWidth-thin)')).toBe(true)
-  })
-
-  it('excludes var() references into the animation domain', () => {
+  it('excludes unresolved var() references', () => {
+    expect(isSizeValue('var(--base-size-16)')).toBe(false)
+    expect(isSizeValue('var(--brand-borderWidth-thin)')).toBe(false)
     expect(isSizeValue('var(--brand-animation-easing-glide)')).toBe(false)
     expect(isSizeValue('var(--brand-animation-duration-default)')).toBe(false)
+  })
+
+  it('excludes color values', () => {
+    expect(isSizeValue('#000000')).toBe(false)
+    expect(isSizeValue('rgb(0, 0, 0)')).toBe(false)
+    expect(isSizeValue('var(--brand-color-text-default)')).toBe(false)
   })
 
   it('excludes time values', () => {
