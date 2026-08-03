@@ -13,7 +13,7 @@ export default [
     },
   },
   {
-    files: ['src/**/*.figma.{ts,tsx}'],
+    files: ['src/**/*.figma{,.batch}.ts'],
     languageOptions: {
       parserOptions: {
         project: ['./tsconfig.figma.json'],

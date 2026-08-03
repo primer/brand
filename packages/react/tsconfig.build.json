@@ -12,7 +12,7 @@
     "src/**/*.spec.tsx",
     "src/**/*.spec.ts",
     "src/**/*.figma.ts",
-    "src/**/*.figma.tsx",
+    "src/**/*.figma.batch.ts",
     "src/test-utils/**/*",
     "vite.esm.config.ts"
   ]

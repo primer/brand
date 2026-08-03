@@ -1,6 +1,6 @@
 {
   "codeConnect": {
-    "include": ["src/**/*.figma.ts"],
+    "include": ["src/**/*.figma.ts", "src/**/*.figma.batch.json"],
     "label": "React",
     "language": "jsx"
   }
