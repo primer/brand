@@ -24,7 +24,11 @@
     "trailingText": "Already have Visual Studio Code?",
     "trailingLinkText": "Open now",
     "peekAlt": "GitHub Copilot mascot peeking from the bottom of the grid area",
-    "imageAlt": "GitHub Copilot agent mode in VS Code"
+    "imageAlt": "GitHub Copilot agent mode in VS Code",
+    "videoControls": {
+      "play": "Play video",
+      "pause": "Pause video"
+    }
   },
   "logoSuiteHeading": "GitHub Copilot partner logos",
   "resourceCards": {

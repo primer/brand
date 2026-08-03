@@ -24,6 +24,10 @@ const port = 6006
 
 const defaultTimeout = 500 // Storybook 7 introduced a small delay in loading stories. This is to migigate the spinner showing up in screenshots.
 
+const reducedMotionLookup = [
+  'recipes-flexsuite-overview--ai', // capture the stable video poster instead of a nondeterministic playback frame
+]
+
 /**
  * Manual lookup for tests that need animation or side-effects to complete before tests start
  */
@@ -157,6 +161,11 @@ const skipTestLookup = [
   'components-statistic-features--animations', // animation only
   'components-riverstoryscroll-features--video-narrow', // video makes this too flakey
   'components-riverstoryscroll-features--video', // video makes this too flakey
+  'components-minimalvideoplayer--default', // autoplaying video prevents networkidle from settling
+  'components-minimalvideoplayer--playground', // autoplaying video prevents networkidle from settling
+  'components-minimalvideoplayer-features--native-source-element', // autoplaying video prevents networkidle from settling
+  'components-minimalvideoplayer-features--playing', // actively playing video produces nondeterministic frames
+  'components-minimalvideoplayer-features--custom-accessible-labels', // visually duplicates the paused story
   'components-hero-features-images-and-videos--with-native-block-end-default', // for being non-deterministic due to video buffering
   'components-hero-features-images-and-videos--with-youtube-video-block-end-default', // for loading a remote video
   'components-hero-features-images-and-videos--with-youtube-video-inline-end', // for loading a remote video
@@ -228,6 +237,7 @@ for (const key of Object.keys(categorisedStories)) {
           const testName = language === 'en' ? base : `${base} (${language})`
 
           return `test('${testName}', async ({page}) => {
+            ${reducedMotionLookup.includes(id) ? `await page.emulateMedia({ reducedMotion: 'reduce' })` : ''}
             await page.goto('http://localhost:${port}/iframe.html?${localeParam}args=&id=${id}&viewMode=story', { waitUntil: 'networkidle' })
             await page.locator('body.sb-show-main').waitFor({ state: 'visible' })
 

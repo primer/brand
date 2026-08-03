@@ -59,6 +59,10 @@ export type FlexSuiteAIOverviewContent = {
     trailingLinkText: string
     peekAlt: string
     imageAlt: string
+    videoControls: {
+      play: string
+      pause: string
+    }
   }
   logoSuiteHeading: string
   resourceCards: FlexSuiteAIOverviewCardContent[]
@@ -121,6 +125,10 @@ export const defaultFlexSuiteAIOverviewContent: FlexSuiteAIOverviewContent = {
     trailingLinkText: 'Open now',
     peekAlt: 'GitHub Copilot mascot peeking from the bottom of the grid area',
     imageAlt: 'GitHub Copilot agent mode in VS Code',
+    videoControls: {
+      play: 'Play video',
+      pause: 'Pause video',
+    },
   },
   logoSuiteHeading: 'GitHub Copilot partner logos',
   resourceCards: [
@@ -362,6 +370,10 @@ export function getLocalizedFlexSuiteAIOverviewContent(t: Translate): FlexSuiteA
       trailingLinkText: t('hero.trailingLinkText'),
       peekAlt: t('hero.peekAlt'),
       imageAlt: t('hero.imageAlt'),
+      videoControls: {
+        play: t('hero.videoControls.play'),
+        pause: t('hero.videoControls.pause'),
+      },
     },
     logoSuiteHeading: t('logoSuiteHeading'),
     resourceCards: [
