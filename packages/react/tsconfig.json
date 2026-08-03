@@ -22,5 +22,5 @@
     }
   },
   "include": ["src/**/*", "scripts/**/*", "vite.esm.config.ts"],
-  "exclude": ["integration-tests/**/*"]
+  "exclude": ["integration-tests/**/*", "src/**/*.figma.ts", "src/**/*.figma.tsx"]
 }

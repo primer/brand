@@ -1,0 +1,10 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "noEmit": true,
+    "skipLibCheck": true,
+    "types": ["node", "react", "react-dom", "chai", "@figma/code-connect/figma-types-no-require"]
+  },
+  "include": ["src/**/*.figma.ts", "src/**/*.figma.tsx", "src/*.d.ts"],
+  "exclude": []
+}
