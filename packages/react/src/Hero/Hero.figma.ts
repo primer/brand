@@ -18,9 +18,9 @@ const descriptionClosingTag = figma.selectedInstance.getBoolean('description?', 
 })
 const heading = figma.selectedInstance.getString('heading')
 const primaryAction = (function () {
-  const nestedLayer0 = figma.selectedInstance.findInstance('PrimaryAction')
+  const nestedLayer0 = figma.selectedInstance.findInstance('PrimaryAction', {traverseInstances: true})
   return {
-    text: nestedLayer0.type !== 'ERROR' ? nestedLayer0.getString('text') : undefined,
+    text: nestedLayer0.type !== 'ERROR' ? nestedLayer0.findText('Text').__render__() : undefined,
   }
 })()
 const primaryActionOpeningTag = figma.selectedInstance.getBoolean('actions?', {
@@ -32,9 +32,9 @@ const primaryActionClosingTag = figma.selectedInstance.getBoolean('actions?', {
   false: undefined,
 })
 const secondaryAction = (function () {
-  const nestedLayer1 = figma.selectedInstance.findInstance('SecondaryAction')
+  const nestedLayer1 = figma.selectedInstance.findInstance('SecondaryAction', {traverseInstances: true})
   return {
-    text: nestedLayer1.type !== 'ERROR' ? nestedLayer1.getString('text') : undefined,
+    text: nestedLayer1.type !== 'ERROR' ? nestedLayer1.findText('Text').__render__() : undefined,
   }
 })()
 const secondaryActionOpeningTag = (function () {

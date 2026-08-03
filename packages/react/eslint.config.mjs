@@ -13,6 +13,14 @@ export default [
     },
   },
   {
+    files: ['src/**/*.figma.{ts,tsx}'],
+    languageOptions: {
+      parserOptions: {
+        project: ['./tsconfig.figma.json'],
+      },
+    },
+  },
+  {
     files: ['vite.*.config.ts'],
     rules: {
       'import/no-nodejs-modules': 'off',

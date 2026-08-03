@@ -19,16 +19,16 @@ export default {
   id: 'PricingOptions.Item',
   imports: ["import { PricingOptions } from '@primer/react-brand'"],
   example: figma.code`<PricingOptions.Item>
-          <PricingOptions.Heading>${figma.helpers.react.renderChildren(heading)}</PricingOptions.Heading>
-          <PricingOptions.Price${figma.helpers.react.renderProp(
-            'trailingText',
-            trailingText,
-          )}>${figma.helpers.react.renderChildren(value)}</PricingOptions.Price>
-          <PricingOptions.Footnote>${figma.helpers.react.renderChildren(footnotes)}</PricingOptions.Footnote>
-          <PricingOptions.PrimaryAction href="#" as="a">
-            ${figma.helpers.react.renderChildren(primaryAction.text)}
-          </PricingOptions.PrimaryAction>
-          ${figma.helpers.react.renderChildren(featureList)}
-        </PricingOptions.Item>`,
+        <PricingOptions.Heading>${figma.helpers.react.renderChildren(heading)}</PricingOptions.Heading>
+        <PricingOptions.Price${figma.helpers.react.renderProp(
+          'trailingText',
+          trailingText,
+        )}>${figma.helpers.react.renderChildren(value)}</PricingOptions.Price>
+        <PricingOptions.Footnote>${figma.helpers.react.renderChildren(footnotes)}</PricingOptions.Footnote>
+        <PricingOptions.PrimaryAction href="#" as="a">
+          ${figma.helpers.react.renderChildren(primaryAction.text)}
+        </PricingOptions.PrimaryAction>
+        ${figma.helpers.react.renderChildren(featureList)}
+      </PricingOptions.Item>`,
   metadata: {nestable: true},
 }

@@ -52,7 +52,7 @@ const logobarProps = (function () {
 
 export default {
   id: 'LogoSuite',
-  imports: ["import { LogoSuite } from './LogoSuite'"],
+  imports: ["import { LogoSuite } from '@primer/react-brand'"],
   example: figma.code`<LogoSuite${figma.helpers.react.renderProp('align', align)}${figma.helpers.react.renderProp(
     'hasDivider',
     hasDivider,
