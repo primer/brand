@@ -36,12 +36,17 @@ Every full page should be framed top and bottom, unless the user has requested a
 
 ### Contain content within the grid
 
-Body content must sit in one centered, max-width grid framed by the brand's gridlines — it should rarely stretch edge-to-edge.
+Body content must sit in one centered, max-width grid framed by the brand's gridlines — it should rarely stretch edge-to-edge. Treat gridlines as one continuous page structure: every line endpoint must reach the viewport or shared page-grid boundary, or intersect another gridline. Never let a border stop in empty space.
 
 Examples of this are in the Flexsuite recipes.
 
 - **Do** — keep heroes, `River`s, `ComparisonTable` / `PricingOptions`, connected Card or Pillar groups, forms, `CTABanner`s, and prose on the same `Grid` / `Section` column. Draw thin side rules on the column and full-bleed horizontal rules between major sections.
-- **Don't** — give each section a different width, stretch content edge-to-edge, or let a section bleed full-width unless it is a deliberate background band behind the shared grid.
+- **Do** — for connected panels, put block rules on the outer frame, outer inline rules on the centered content container, and internal dividers on zero-gap cell wrappers. Preserve these intersections when max-width or column count changes at responsive breakpoints.
+- **Do** — give a panel frame's block-start and block-end rules the same extent. They may differ only when one rule is also a page-wide section boundary that intersects the frame's inline rules.
+
+- **Don't** — give sections different widths, add gaps between borders that should connect, or put borders on inset wrappers where their endpoints stop in empty space.
+- **Don't** — stretch content edge-to-edge or let a section bleed full-width unless it is a deliberate background band behind the shared grid.
+
 - **Mobile** — use a modest, consistent side inset and make sure nothing overflows the viewport.
 
 Resolve gutter, inset, and gridline (border) values with `primer_brand_tokens`; don't hardcode hex or pixel values.

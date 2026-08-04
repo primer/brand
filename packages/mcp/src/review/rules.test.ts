@@ -253,6 +253,17 @@ describe('primer_brand_review over generated canonical examples', () => {
     }
   })
 
+  it('uses the connected gridline Card example with its companion styles', () => {
+    const card = catalog.components.find(component => component.name === 'Card')
+    const example = card?.examples[0]
+    expect(example?.code).toContain('columnGap="none"')
+    expect(example?.code).toContain('rowGap="none"')
+    expect(example?.code).toContain('enableGutters={false}')
+    expect(example?.styles).toContain('.gridFrame')
+    expect(example?.styles).toContain('.gridItem')
+    expect(example?.code).not.toContain('color="purple"')
+  })
+
   it('produces no errors on any catalog example', () => {
     expect(examples.length).toBeGreaterThan(0)
     for (const example of examples) {

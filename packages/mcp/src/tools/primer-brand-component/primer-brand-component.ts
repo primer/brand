@@ -58,6 +58,7 @@ function describeComponent(component: CatalogComponent, ctx: ToolContext): ToolR
   const example = component.examples.find(entry => entry.code)
   if (example?.code) {
     sections.push(`## Example\n\`\`\`tsx\n${example.code.trim()}\n\`\`\``)
+    if (example.styles) sections.push(`## Example styles\n\`\`\`css\n${example.styles.trim()}\n\`\`\``)
   }
 
   sections.push(versionNote(ctx))
