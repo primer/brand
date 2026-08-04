@@ -28,7 +28,7 @@ export const CardCTAVariants = ['text', 'arrow', 'none'] as const
 export const CardBackgroundColors = ['default', 'subtle', 'none'] as const
 export const CardTokenPositions = ['block-start', 'block-end'] as const
 export const CardLabelVariants = ['token', 'accent-text'] as const
-export const CardImagePaddingOptions = ['default', 'none', 'all'] as const
+export const CardImagePaddingOptions = ['default', 'none'] as const
 
 export const CardIconColors = Colors
 
