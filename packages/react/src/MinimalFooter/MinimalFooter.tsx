@@ -2,7 +2,7 @@ import React, {forwardRef, PropsWithChildren, useCallback} from 'react'
 import {clsx} from 'clsx'
 import {ArrowUpIcon, MarkGithubIcon} from '@primer/octicons-react'
 
-import {Button, Text} from '../'
+import {Text} from '../'
 import {BaseProps} from '../component-helpers'
 import {useReducedMotion} from '../hooks/useReducedMotion'
 
@@ -10,11 +10,7 @@ import {useReducedMotion} from '../hooks/useReducedMotion'
  * Design tokens
  */
 import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/footer/colors-with-modes.css'
-/**
- * `--brand-control-minTarget-coarse` (used by the BackToTop hit-area) isn't part of
- * the shared stylesheet bundle, so it is imported explicitly here.
- */
-import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/size/size.css'
+import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/footer/base.css'
 
 /**
  * Main Stylesheet (as a CSS Module)
@@ -85,6 +81,10 @@ const socialLinkNames = Object.keys(socialLinkData) as SocialLinkName[]
 
 export type MinimalFooterProps = {
   /**
+   * An optional component rendered between the top and bottom sections.
+   */
+  centerComponent?: React.ReactElement
+  /**
    * An array of social links to be displayed in the footer.
    */
   socialLinks?: SocialLinkName[] | false
@@ -99,15 +99,16 @@ export type MinimalFooterProps = {
   copyrightStatement?: string | React.ReactElement
 } & BaseProps<HTMLElement>
 
-/**
- * Recognizes only the first `MinimalFooter.Footnotes`, the first `MinimalFooter.Content`,
- * the first `MinimalFooter.BackToTop`, and up to the first five `MinimalFooter.Link`
- * children. All other children - including duplicates of the single-instance children
- * and any Link children beyond the fifth - are ignored.
- */
-function parseRootChildren(children: React.ReactNode) {
+function Root({
+  centerComponent,
+  className,
+  children,
+  copyrightStatement,
+  logoHref = 'https://github.com',
+  socialLinks,
+  ...rest
+}: PropsWithChildren<MinimalFooterProps>) {
   let footnotes: React.ReactElement | undefined
-  let content: React.ReactElement | undefined
   let backToTop: React.ReactElement | undefined
   const links: React.ReactElement[] = []
 
@@ -118,8 +119,6 @@ function parseRootChildren(children: React.ReactNode) {
 
     if (child.type === Footnotes) {
       footnotes ??= child
-    } else if (child.type === Content) {
-      content ??= child
     } else if (child.type === BackToTop) {
       backToTop ??= child
     } else if (child.type === Link && links.length < 5) {
@@ -127,82 +126,53 @@ function parseRootChildren(children: React.ReactNode) {
     }
   }
 
-  return {footnotes, content, backToTop, links}
-}
-
-/**
- * The footer's top-level sections, in rendering order. `top` and `bottom`
- * are always populated, while `content` is only rendered when a
- * `MinimalFooter.Content` child is present.
- */
-type FooterSectionName = 'top' | 'content' | 'bottom'
-
-function Root({
-  className,
-  children,
-  copyrightStatement,
-  logoHref = 'https://github.com',
-  socialLinks,
-  ...rest
-}: PropsWithChildren<MinimalFooterProps>) {
-  const {footnotes, content, backToTop, links} = parseRootChildren(children)
-
   const currentYear = new Date().getFullYear()
   const resolvedSocialLinks = socialLinks === undefined ? socialLinkNames : socialLinks
   const renderedSocialLinks = resolvedSocialLinks === false ? [] : resolvedSocialLinks
   const hasSocialLinks = renderedSocialLinks.length > 0
 
-  const topSection = (
-    <section className={styles.Footer__top}>
-      <div className={styles.Footer__container}>
-        <div className={styles['Footer__top-row']}>
-          <LogoLink logoHref={logoHref} />
-          {backToTop}
-        </div>
-      </div>
-    </section>
-  )
-
-  const bottomSection = (
-    <section className={clsx(styles.Footer__bottom, !hasSocialLinks && styles['Footer__bottom--no-social'])}>
-      <div className={styles.Footer__container}>
-        <div className={styles['Footer__bottom-row']}>
-          <div className={styles['Footer__copyright-and-links']}>
-            <Text as="p" size="200" variant="muted" className={styles['Footer__copyright']}>
-              {copyrightStatement ? copyrightStatement : `\u00A9 ${currentYear} GitHub. All rights reserved.`}
-            </Text>
-            <div className={styles['Footer__links']}>{links}</div>
-          </div>
-          {hasSocialLinks ? <SocialLinks socialLinks={renderedSocialLinks} /> : null}
-        </div>
-      </div>
-    </section>
-  )
-
-  const sections: {name: FooterSectionName; node: React.ReactNode; className: string}[] = [
-    {name: 'top', node: topSection, className: styles.Footer__section},
-    {
-      name: 'content',
-      node: content,
-      className: clsx(styles.Footer__section, styles['Footer__section--content']),
-    },
-    {
-      name: 'bottom',
-      node: bottomSection,
-      className: clsx(styles.Footer__section, styles['Footer__section--bottom']),
-    },
-  ]
-
   return (
-    <footer className={clsx(styles.Footer, className)} {...rest}>
+    <footer className={clsx(styles.MinimalFooter, className)} {...rest}>
       {footnotes}
-      {sections
-        .filter(section => Boolean(section.node))
-        .map(section => (
-          <div key={section.name} className={section.className}>
-            {section.node}
+      <div className={styles.MinimalFooter__section}>
+        <section className={styles.MinimalFooter__top}>
+          <div className={styles.MinimalFooter__container}>
+            <div className={styles['MinimalFooter__top-row']}>
+              <LogoLink logoHref={logoHref} />
+              {backToTop}
+            </div>
           </div>
-        ))}
+        </section>
+      </div>
+      {centerComponent ? (
+        <div className={clsx(styles.MinimalFooter__section, styles['MinimalFooter__section--center'])}>
+          <section className={styles.MinimalFooter__container}>{centerComponent}</section>
+        </div>
+      ) : null}
+      <div className={clsx(styles.MinimalFooter__section, styles['MinimalFooter__section--bottom'])}>
+        <section
+          className={clsx(styles.MinimalFooter__bottom, !hasSocialLinks && styles['MinimalFooter__bottom--no-social'])}
+        >
+          <div className={styles.MinimalFooter__container}>
+            <div className={styles['MinimalFooter__bottom-row']}>
+              <div className={styles['MinimalFooter__copyright-and-links']}>
+                <Text
+                  as="p"
+                  size="100"
+                  font="monospace"
+                  weight={{narrow: 'medium', wide: 'normal'}}
+                  variant="muted"
+                  className={styles.MinimalFooter__copyright}
+                >
+                  {copyrightStatement ? copyrightStatement : `\u00A9 ${currentYear} GitHub. All rights reserved.`}
+                </Text>
+                <div className={styles.MinimalFooter__links}>{links}</div>
+              </div>
+              {hasSocialLinks ? <SocialLinks socialLinks={renderedSocialLinks} /> : null}
+            </div>
+          </div>
+        </section>
+      </div>
     </footer>
   )
 }
@@ -216,7 +186,7 @@ function Footnotes({children, className}: PropsWithChildren<FootnoteProps>) {
       const overrideProps: Partial<React.ComponentProps<typeof Text>> = {
         variant: 'muted',
         size: '100',
-        className: clsx(styles['Footer__terms-item'], textChild.props.className),
+        className: clsx(styles['MinimalFooter__terms-item'], textChild.props.className),
       }
 
       if (!textChild.props.as) {
@@ -230,18 +200,8 @@ function Footnotes({children, className}: PropsWithChildren<FootnoteProps>) {
   })
 
   return (
-    <section className={styles.Footer__container}>
-      <div className={clsx(styles.Footer__terms, className)}>{styledChildren}</div>
-    </section>
-  )
-}
-
-type MinimalFooterContentProps = React.HTMLAttributes<HTMLElement> & Omit<BaseProps<HTMLElement>, 'animate'>
-
-function Content({children, className, ...rest}: PropsWithChildren<MinimalFooterContentProps>) {
-  return (
-    <section className={clsx(styles.Footer__container, className)} {...rest}>
-      {children}
+    <section className={styles.MinimalFooter__container}>
+      <div className={clsx(styles.MinimalFooter__terms, className)}>{styledChildren}</div>
     </section>
   )
 }
@@ -254,11 +214,11 @@ const SocialLink = ({name}: SocialLinkProps) => {
     <li key={name} data-social-link={name}>
       <a
         href={link.url}
-        className={styles['Footer__social-link']}
+        className={styles['MinimalFooter__social-link']}
         data-analytics-event={`{"category":"Footer","action":"go to ${link.fullName}","label":"text:${name}"}`}
       >
         <img
-          className={styles['Footer__social-icon']}
+          className={styles['MinimalFooter__social-icon']}
           src={link.icon}
           height={link.iconHeight}
           width={link.iconWidth}
@@ -276,7 +236,7 @@ function LogoLink({logoHref}: {logoHref?: string}) {
   return (
     <a
       href={logoHref}
-      className={styles.Footer__logo}
+      className={styles.MinimalFooter__logo}
       data-analytics-event='{"category":"Footer","action":"go to home","label":"text:home"}'
       aria-label="GitHub"
     >
@@ -287,7 +247,7 @@ function LogoLink({logoHref}: {logoHref?: string}) {
 
 function SocialLinks({socialLinks}: {socialLinks: SocialLinkName[]}) {
   return (
-    <ul className={styles['Footer__social-links']}>
+    <ul className={styles['MinimalFooter__social-links']}>
       {socialLinks.map(name => (
         <SocialLink key={name} name={name} />
       ))}
@@ -304,22 +264,19 @@ const Link = <C extends React.ElementType = 'a'>({as, children, ...rest}: PropsW
   const Component = as || 'a'
   return (
     <Component
-      className={styles['Footer__link']}
+      className={styles.MinimalFooter__link}
       data-analytics-event={
         rest['href'] ? `{"category":"Footer","action":"go to ${rest['href']}","label":"text:${children}"}` : undefined
       }
       {...rest}
     >
-      <Text variant="muted" size="200" className={styles['Footer__link-text']}>
+      <Text variant="muted" size="100" font="monospace" weight={{narrow: 'medium', wide: 'normal'}}>
         {children}
       </Text>
     </Component>
   )
 }
 
-/**
- * Props for the optional Back to top control.
- */
 export type MinimalFooterBackToTopProps = {
   /**
    * The visible and accessible label.
@@ -327,17 +284,13 @@ export type MinimalFooterBackToTopProps = {
   children: React.ReactNode
   /**
    * The ID of the semantic top-of-page element that receives focus after keyboard activation.
-   * Defaults to the first `<main>` element.
+   * Defaults to the first `<main>` element, then falls back to `<body>`.
    */
   focusTargetId?: string
   /**
    * Runs before the built-in behavior. Call `event.preventDefault()` to cancel scrolling and focus transfer.
    */
   onClick?: React.MouseEventHandler<HTMLButtonElement>
-  /**
-   * The scrolling behavior used when reduced motion is not preferred.
-   */
-  scrollBehavior?: ScrollBehavior
 } & BaseProps<HTMLButtonElement> &
   Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'onClick' | 'children'>
 
@@ -345,7 +298,7 @@ export type MinimalFooterBackToTopProps = {
  * Scrolls to the top and, after keyboard activation, moves focus to the configured top-of-page destination.
  */
 const BackToTop = forwardRef<HTMLButtonElement, MinimalFooterBackToTopProps>(
-  ({children, className, focusTargetId, onClick, scrollBehavior, type = 'button', ...rest}, ref) => {
+  ({children, className, focusTargetId, onClick, type = 'button', ...rest}, ref) => {
     const prefersReducedMotion = useReducedMotion()
 
     const handleClick = useCallback<React.MouseEventHandler<HTMLButtonElement>>(
@@ -358,22 +311,20 @@ const BackToTop = forwardRef<HTMLButtonElement, MinimalFooterBackToTopProps>(
 
         window.scrollTo({
           top: 0,
-          behavior: prefersReducedMotion ? 'instant' : scrollBehavior ?? 'smooth',
+          behavior: prefersReducedMotion ? 'instant' : 'smooth',
         })
 
         if (event.detail === 0) {
           const focusTarget = focusTargetId
             ? document.getElementById(focusTargetId)
-            : document.querySelector<HTMLElement>('main')
+            : document.querySelector<HTMLElement>('main') ??
+              document.querySelector<HTMLElement>('body') ??
+              document.documentElement
 
           if (!focusTarget) {
             if (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'test') {
               // eslint-disable-next-line no-console
-              console.warn(
-                focusTargetId
-                  ? `MinimalFooter.BackToTop: No element found with id "${focusTargetId}".`
-                  : 'MinimalFooter.BackToTop: No main element found.',
-              )
+              console.warn(`MinimalFooter.BackToTop: No element found with id "${focusTargetId}".`)
             }
             return
           }
@@ -388,27 +339,26 @@ const BackToTop = forwardRef<HTMLButtonElement, MinimalFooterBackToTopProps>(
           focusTarget.focus({preventScroll: true})
         }
       },
-      [focusTargetId, onClick, prefersReducedMotion, scrollBehavior],
+      [focusTargetId, onClick, prefersReducedMotion],
     )
 
     return (
-      <Button
+      <button
         ref={ref}
-        as="button"
         type={type}
-        variant="subtle"
-        size="small"
-        className={clsx(styles.Footer__backToTop, className)}
+        className={clsx(styles.MinimalFooter__backToTop, className)}
         onClick={handleClick}
         {...rest}
       >
-        <span className={styles['Footer__backToTop-content']}>
-          <span>{children}</span>
-          <span className={styles['Footer__backToTop-icon']} aria-hidden="true">
+        <span className={styles['MinimalFooter__backToTop-content']}>
+          <Text as="span" size="100" weight="medium">
+            {children}
+          </Text>
+          <span className={styles['MinimalFooter__backToTop-icon']} aria-hidden="true">
             <ArrowUpIcon />
           </span>
         </span>
-      </Button>
+      </button>
     )
   },
 )
@@ -419,7 +369,6 @@ const BackToTop = forwardRef<HTMLButtonElement, MinimalFooterBackToTopProps>(
  */
 export const MinimalFooter = Object.assign(Root, {
   Footnotes,
-  Content,
   Link,
   BackToTop,
 })

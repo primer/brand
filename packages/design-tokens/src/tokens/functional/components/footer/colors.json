@@ -1,9 +1,43 @@
 {
   "footer": {
+    "borderColor": {
+      "value": "var(--base-color-scale-green-6)",
+      "dark": "var(--base-color-scale-green-3)"
+    },
     "bg": {
       "color": {
         "value": "var(--base-color-scale-white)",
         "dark": "var(--base-color-scale-gray-9)"
+      }
+    },
+    "backToTop": {
+      "borderColor": {
+        "rest": {
+          "value": "var(--base-color-scale-gray-2)",
+          "dark": "var(--base-color-scale-gray-6)"
+        },
+        "hover": {
+          "value": "var(--base-color-scale-gray-2)",
+          "dark": "rgba(255, 255, 255, 0.12)"
+        },
+        "active": {
+          "value": "var(--base-color-scale-gray-2)",
+          "dark": "rgba(255, 255, 255, 0.12)"
+        }
+      },
+      "bgColor": {
+        "rest": {
+          "value": "rgba(0, 0, 0, 0.01)",
+          "dark": "rgba(0, 0, 0, 0.01)"
+        },
+        "hover": {
+          "value": "rgba(0, 0, 0, 0.1164)",
+          "dark": "rgba(255, 255, 255, 0.16)"
+        },
+        "active": {
+          "value": "rgba(0, 0, 0, 0.2104)",
+          "dark": "rgba(255, 255, 255, 0.24)"
+        }
       }
     },
     "socialIcon": {

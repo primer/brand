@@ -1,6 +1,6 @@
 ---
 title: Minimal footer
-description: Use the minimal footer component to provide a global footer featuring legal links, social links, and optional footnotes and content.
+description: Use the minimal footer component to provide a global footer featuring legal links, social links, and optional footnotes.
 keywords: ['legal', 'copyright', 'social', 'links', 'footnotes']
 show-tabs: false
 ready: true
@@ -75,13 +75,13 @@ Use up to five `MinimalFooter.Link` children. Links can render as anchors or but
 </Stack>
 ```
 
-### Custom content
+### Center component
 
-Use `MinimalFooter.Content` to render an opt-in slot between the top and bottom sections. Use this for page-specific controls or information such as a language selector, theme toggle, or status indicator, not to recreate top navigation.
+Use `centerComponent` for an exceptional page-specific control or status indicator between the top and bottom sections.
 
 ```jsx live
-<MinimalFooter>
-  <MinimalFooter.Content>
+<MinimalFooter
+  centerComponent={
     <Stack direction="horizontal" gap="condensed" padding="none">
       <Text size="200" variant="muted">
         Status:
@@ -90,15 +90,15 @@ Use `MinimalFooter.Content` to render an opt-in slot between the top and bottom 
         All systems operational
       </InlineLink>
     </Stack>
-  </MinimalFooter.Content>
-</MinimalFooter>
+  }
+/>
 ```
 
 ### Back to top
 
 Use `MinimalFooter.BackToTop` to opt into a control in the top row that scrolls the document back to the top.
 
-After keyboard activation, focus moves to the first `<main>` element. Use `focusTargetId` to identify a different semantic top-of-page destination.
+After keyboard activation, focus moves to the first `<main>` element, falling back to `<body>` or `<html>` when a main landmark is unavailable. Use `focusTargetId` to identify a different semantic top-of-page destination.
 
 ```jsx live
 <MinimalFooter socialLinks={false}>
@@ -106,27 +106,18 @@ After keyboard activation, focus moves to the first `<main>` element. Use `focus
 </MinimalFooter>
 ```
 
-`children` supplies the required visible and accessible label:
-
-```jsx live
-<MinimalFooter socialLinks={false}>
-  <MinimalFooter.BackToTop>Retour en haut</MinimalFooter.BackToTop>
-</MinimalFooter>
-```
-
-Use `scrollBehavior` to customize the DOM [scroll behavior](https://developer.mozilla.org/en-US/docs/Web/API/Element/scroll#behavior) (`'auto'`, `'instant'`, or `'smooth'`) used when the built-in scroll runs, which defaults to `smooth`.
-
 ## Component props
 
 ### MinimalFooter
 
-| Name                 | Type                                                                                                                |                                        Default                                        | Description                                                   |
-| :------------------- | :------------------------------------------------------------------------------------------------------------------ | :-----------------------------------------------------------------------------------: | :------------------------------------------------------------ |
-| `className`          | `string`                                                                                                            |                                                                                       | Sets a custom class on the root element                       |
-| `children`           | <MinimalFooterChildrenProp />                                                                                       |                                      `undefined`                                      | Valid child components                                        |
-| `copyrightStatement` | `string` \| `ReactElement`                                                                                          |                        Current-year GitHub copyright statement                        | The copyright statement displayed in the bottom section.      |
-| `logoHref`           | `string`                                                                                                            |                                `'https://github.com'`                                 | The href for the GitHub logomark.                             |
-| `socialLinks`        | `Array<'x' \| 'github' \| 'linkedin' \| 'youtube' \| 'facebook' \| 'twitch' \| 'tiktok' \| 'instagram'>` \| `false` | `['x', 'github', 'linkedin', 'youtube', 'facebook', 'twitch', 'tiktok', 'instagram']` | Ordered subset of social links, or `false` to hide all links. |
+| Name                 | Type                                                                                                                |                                        Default                                        | Description                                                        |
+| :------------------- | :------------------------------------------------------------------------------------------------------------------ | :-----------------------------------------------------------------------------------: | :----------------------------------------------------------------- |
+| `className`          | `string`                                                                                                            |                                                                                       | Sets a custom class on the root element                            |
+| `centerComponent`    | `ReactElement`                                                                                                      |                                      `undefined`                                      | Renders an optional component between the top and bottom sections. |
+| `children`           | <MinimalFooterChildrenProp />                                                                                       |                                      `undefined`                                      | Valid child components                                             |
+| `copyrightStatement` | `string` \| `ReactElement`                                                                                          |                        Current-year GitHub copyright statement                        | The copyright statement displayed in the bottom section.           |
+| `logoHref`           | `string`                                                                                                            |                                `'https://github.com'`                                 | The href for the GitHub logomark.                                  |
+| `socialLinks`        | `Array<'x' \| 'github' \| 'linkedin' \| 'youtube' \| 'facebook' \| 'twitch' \| 'tiktok' \| 'instagram'>` \| `false` | `['x', 'github', 'linkedin', 'youtube', 'facebook', 'twitch', 'tiktok', 'instagram']` | Ordered subset of social links, or `false` to hide all links.      |
 
 ### MinimalFooter.Link
 
@@ -141,20 +132,12 @@ Use `scrollBehavior` to customize the DOM [scroll behavior](https://developer.mo
 | :--------- | :----------- | :---------: | :-------------------------------------------------------------------- |
 | `children` | ReactElement | `undefined` | Use Primer Brand `Text` components to benefit from inherited styling. |
 
-### MinimalFooter.Content
-
-| Name        | Type        |   Default   | Description                             |
-| :---------- | :---------- | :---------: | :-------------------------------------- |
-| `className` | `string`    | `undefined` | Sets a custom class on the root element |
-| `children`  | `ReactNode` | `undefined` | Renders custom content inside the slot  |
-
 ### MinimalFooter.BackToTop
 
-| Name             | Type                                                 |   Default   | Description                                                                                                                                            |
-| :--------------- | :--------------------------------------------------- | :---------: | :----------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `children`       | `ReactNode`                                          |  Required   | The visible and accessible localized label.                                                                                                            |
-| `focusTargetId`  | `string`                                             | `undefined` | ID of the semantic top-of-page element that receives. Defaults to the first `<main>` element.                                                          |
-| `onClick`        | `MouseEventHandler`                                  | `undefined` | Runs before the built-in behavior. Call `event.preventDefault()` to cancel scrolling and focus transfer.                                               |
-| `scrollBehavior` | `ScrollBehavior` (`'auto'`, `'instant'`, `'smooth'`) | `'smooth'`  | The DOM [scroll behavior](https://developer.mozilla.org/en-US/docs/Web/API/Element/scroll#behavior) used when the user does not prefer reduced motion. |
+| Name            | Type                |   Default   | Description                                                                                                                                                    |
+| :-------------- | :------------------ | :---------: | :------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `children`      | `ReactNode`         |  Required   | The visible and accessible localized label.                                                                                                                    |
+| `focusTargetId` | `string`            | `undefined` | ID of the semantic top-of-page element that receives focus after keyboard activation. Defaults to the first `<main>`, then falls back to `<body>` or `<html>`. |
+| `onClick`       | `MouseEventHandler` | `undefined` | Runs before the built-in behavior. Call `event.preventDefault()` to cancel scrolling and focus transfer.                                                       |
 
 All other props, including ARIA and `data-*` attributes, forward to the underlying `<button>`.

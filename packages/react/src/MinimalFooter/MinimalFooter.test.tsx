@@ -44,13 +44,10 @@ describe('MinimalFooter', () => {
 
   it('has no accessibility violations in a fully-populated composition', async () => {
     const {container} = render(
-      <MinimalFooter>
+      <MinimalFooter centerComponent={<p>Custom content</p>}>
         <MinimalFooter.Footnotes>
           <Text>Footnote text</Text>
         </MinimalFooter.Footnotes>
-        <MinimalFooter.Content>
-          <p>Custom content</p>
-        </MinimalFooter.Content>
         <MinimalFooter.BackToTop>Back to top</MinimalFooter.BackToTop>
         <MinimalFooter.Link href="/link1">Link 1</MinimalFooter.Link>
         <MinimalFooter.Link href="/link2">Link 2</MinimalFooter.Link>
@@ -104,7 +101,7 @@ describe('MinimalFooter', () => {
   it('allows forwarding of custom classes', () => {
     const {getByRole} = render(<MinimalFooter className="custom-footer" />)
     const footer = getByRole('contentinfo')
-    expect(footer).toHaveClass('Footer')
+    expect(footer).toHaveClass('MinimalFooter')
     expect(footer).toHaveClass('custom-footer')
   })
 
@@ -267,14 +264,14 @@ describe('MinimalFooter', () => {
     )
   })
 
-  it('applies the link-text style hook to the link label', () => {
+  it('uses small monospace text for the link label', () => {
     const {getByText} = render(
       <MinimalFooter>
         <MinimalFooter.Link href="/test">Test Link</MinimalFooter.Link>
       </MinimalFooter>,
     )
 
-    expect(getByText('Test Link')).toHaveClass('Footer__link-text')
+    expect(getByText('Test Link')).toHaveClass('Text--100', 'Text-font--monospace')
   })
 
   it('renders link as button element', () => {
@@ -441,11 +438,11 @@ describe('MinimalFooter', () => {
     const sections = container.querySelectorAll('section')
     expect(sections.length).toBeGreaterThanOrEqual(2)
 
-    expect(sections[0]).toContainElement(container.querySelector('.Footer__terms'))
+    expect(sections[0]).toContainElement(container.querySelector('.MinimalFooter__terms'))
 
-    const topSection = container.querySelector('.Footer__top')?.parentElement
+    const topSection = container.querySelector('.MinimalFooter__top')?.parentElement
     expect(topSection).toBeInTheDocument()
-    expect(topSection).toHaveClass('Footer__section')
+    expect(topSection).toHaveClass('MinimalFooter__section')
   })
 
   it('renders component with only footnotes', () => {
@@ -574,7 +571,7 @@ describe('MinimalFooter', () => {
 
   it('uses the semantic logo style hook', () => {
     const {getByRole} = render(<MinimalFooter />)
-    expect(getByRole('link', {name: 'GitHub'})).toHaveClass('Footer__logo')
+    expect(getByRole('link', {name: 'GitHub'})).toHaveClass('MinimalFooter__logo')
   })
 
   it('renders the GitHub logomark', () => {
@@ -583,67 +580,41 @@ describe('MinimalFooter', () => {
     expect(container.querySelector('svg.octicon-logo-github')).not.toBeInTheDocument()
   })
 
-  it('renders MinimalFooter.Content children', () => {
-    const {getByText} = render(
-      <MinimalFooter>
-        <MinimalFooter.Content>Custom content</MinimalFooter.Content>
-      </MinimalFooter>,
-    )
+  it('renders the centerComponent', () => {
+    const {getByText} = render(<MinimalFooter centerComponent={<div>Custom content</div>} />)
 
     expect(getByText('Custom content')).toBeInTheDocument()
   })
 
-  it('forwards className and HTML attributes on MinimalFooter.Content', () => {
+  it('renders the supplied centerComponent without altering its props', () => {
     const onClick = jest.fn()
     const {getByText} = render(
-      <MinimalFooter>
-        <MinimalFooter.Content
-          id="footer-content-id"
-          className="custom-content"
-          data-testid="footer-content"
-          aria-label="Extra content"
-          role="region"
-          title="Footer content"
-          onClick={onClick}
-        >
-          Custom content
-        </MinimalFooter.Content>
-      </MinimalFooter>,
+      <MinimalFooter
+        centerComponent={
+          <button
+            id="footer-content-id"
+            className="custom-content"
+            data-testid="footer-content"
+            aria-label="Extra content"
+            title="Footer content"
+            onClick={onClick}
+            type="button"
+          >
+            Custom content
+          </button>
+        }
+      />,
     )
 
-    const content = getByText('Custom content').closest('section')
+    const content = getByText('Custom content').closest('button')
     expect(content).toHaveAttribute('id', 'footer-content-id')
     expect(content).toHaveClass('custom-content')
     expect(content).toHaveAttribute('data-testid', 'footer-content')
     expect(content).toHaveAttribute('aria-label', 'Extra content')
-    expect(content).toHaveAttribute('role', 'region')
     expect(content).toHaveAttribute('title', 'Footer content')
 
     content?.click()
     expect(onClick).toHaveBeenCalledTimes(1)
-  })
-
-  it('does not accept the animate prop on MinimalFooter.Content, unlike other BaseProps', () => {
-    const {getByText} = render(
-      <MinimalFooter>
-        {/* @ts-expect-error `animate` is intentionally omitted from MinimalFooter.Content's props */}
-        <MinimalFooter.Content animate="fade-in">Custom content</MinimalFooter.Content>
-      </MinimalFooter>,
-    )
-
-    expect(getByText('Custom content')).toBeInTheDocument()
-  })
-
-  it('recognizes only the first MinimalFooter.Content when multiple are provided', () => {
-    const {getByText, queryByText} = render(
-      <MinimalFooter>
-        <MinimalFooter.Content>First content</MinimalFooter.Content>
-        <MinimalFooter.Content>Second content</MinimalFooter.Content>
-      </MinimalFooter>,
-    )
-
-    expect(getByText('First content')).toBeInTheDocument()
-    expect(queryByText('Second content')).not.toBeInTheDocument()
   })
 
   it('recognizes only the first MinimalFooter.Footnotes when multiple are provided', () => {
@@ -662,15 +633,13 @@ describe('MinimalFooter', () => {
     expect(queryByText('Second footnotes')).not.toBeInTheDocument()
   })
 
-  it('recognizes the first Footnotes, Content, and BackToTop, and the first five Links together, ignoring unsupported children', () => {
+  it('recognizes the first Footnotes and BackToTop and the first five Links together, ignoring unsupported children', () => {
     const {getByText, getByRole, queryByRole, queryByText} = render(
-      <MinimalFooter>
+      <MinimalFooter centerComponent={<div>Center component</div>}>
         <MinimalFooter.Footnotes>
           <Text>Footnote text</Text>
         </MinimalFooter.Footnotes>
         <div>Unsupported child</div>
-        <MinimalFooter.Content>Content text</MinimalFooter.Content>
-        <MinimalFooter.Content>Second content, ignored</MinimalFooter.Content>
         <MinimalFooter.BackToTop>First back to top</MinimalFooter.BackToTop>
         <MinimalFooter.BackToTop>Second back to top, ignored</MinimalFooter.BackToTop>
         <MinimalFooter.Link href="/link1">Link 1</MinimalFooter.Link>
@@ -681,10 +650,9 @@ describe('MinimalFooter', () => {
         <MinimalFooter.Link href="/link6">Link 6</MinimalFooter.Link>
       </MinimalFooter>,
     )
-
     expect(getByText('Footnote text')).toBeInTheDocument()
-    expect(getByText('Content text')).toBeInTheDocument()
-    expect(queryByText('Second content, ignored')).not.toBeInTheDocument()
+    expect(getByText('Footnote text')).toBeInTheDocument()
+    expect(getByText('Center component')).toBeInTheDocument()
     expect(queryByText('Unsupported child')).not.toBeInTheDocument()
     expect(getByRole('button', {name: 'First back to top'})).toBeInTheDocument()
     expect(queryByRole('button', {name: 'Second back to top, ignored'})).not.toBeInTheDocument()
@@ -692,30 +660,26 @@ describe('MinimalFooter', () => {
     expect(queryByRole('link', {name: 'Link 6'})).not.toBeInTheDocument()
   })
 
-  it('omits the content section when no Content is provided', () => {
+  it('omits the center section when centerComponent is not provided', () => {
     const {container} = render(<MinimalFooter />)
 
     const footer = container.querySelector('footer')
-    expect(footer?.children[0]).toHaveClass('Footer__section')
-    expect(footer?.children[0]).toContainElement(container.querySelector('.Footer__top'))
-    expect(footer?.children[1]).toHaveClass('Footer__section--bottom')
+    expect(footer?.children[0]).toHaveClass('MinimalFooter__section')
+    expect(footer?.children[0]).toContainElement(container.querySelector('.MinimalFooter__top'))
+    expect(footer?.children[1]).toHaveClass('MinimalFooter__section--bottom')
   })
 
-  it('renders top, content, and bottom sections in the approved order', () => {
-    const {container, getByText} = render(
-      <MinimalFooter>
-        <MinimalFooter.Content>Custom content</MinimalFooter.Content>
-      </MinimalFooter>,
-    )
+  it('renders top, center, and bottom sections in the approved order', () => {
+    const {container, getByText} = render(<MinimalFooter centerComponent={<div>Custom content</div>} />)
 
     const footer = container.querySelector('footer')
-    expect(footer?.children[0]).toHaveClass('Footer__section')
-    expect(footer?.children[0]).toContainElement(container.querySelector('.Footer__top'))
-    expect(footer?.children[1]).toHaveClass('Footer__section--content')
-    expect(footer?.children[2]).toHaveClass('Footer__section--bottom')
-    expect(container.querySelector('.Footer__top .Footer__logo')).toBeInTheDocument()
-    expect(getByText('Custom content').closest('.Footer__section--bottom')).not.toBeInTheDocument()
-    expect(getByText('Custom content').closest('.Footer__section--content')).toBeInTheDocument()
+    expect(footer?.children[0]).toHaveClass('MinimalFooter__section')
+    expect(footer?.children[0]).toContainElement(container.querySelector('.MinimalFooter__top'))
+    expect(footer?.children[1]).toHaveClass('MinimalFooter__section--center')
+    expect(footer?.children[2]).toHaveClass('MinimalFooter__section--bottom')
+    expect(container.querySelector('.MinimalFooter__top .MinimalFooter__logo')).toBeInTheDocument()
+    expect(getByText('Custom content').closest('.MinimalFooter__section--bottom')).not.toBeInTheDocument()
+    expect(getByText('Custom content').closest('.MinimalFooter__section--center')).toBeInTheDocument()
   })
 
   it('places the logomark and Back to Top in the same top row', () => {
@@ -728,7 +692,7 @@ describe('MinimalFooter', () => {
     const logo = getByRole('link', {name: 'GitHub'})
     const backToTop = getByRole('button', {name: 'Back to top'})
 
-    expect(logo.closest('.Footer__top-row')).toBe(backToTop.closest('.Footer__top-row'))
+    expect(logo.closest('.MinimalFooter__top-row')).toBe(backToTop.closest('.MinimalFooter__top-row'))
   })
 
   it('places footer links and social links in the bottom section', () => {
@@ -738,17 +702,16 @@ describe('MinimalFooter', () => {
       </MinimalFooter>,
     )
 
-    expect(getByRole('link', {name: 'Test Link'}).closest('.Footer__section--bottom')).toBeInTheDocument()
-    expect(getByRole('link', {name: 'GitHub on X'}).closest('.Footer__section--bottom')).toBeInTheDocument()
+    expect(getByRole('link', {name: 'Test Link'}).closest('.MinimalFooter__section--bottom')).toBeInTheDocument()
+    expect(getByRole('link', {name: 'GitHub on X'}).closest('.MinimalFooter__section--bottom')).toBeInTheDocument()
   })
 
   it('places Footnotes ahead of the mapped sections and preserves full section order when every optional child is present', () => {
     const {getByRole} = render(
-      <MinimalFooter>
+      <MinimalFooter centerComponent={<div>Custom content</div>}>
         <MinimalFooter.Footnotes>
           <Text>Footnote text</Text>
         </MinimalFooter.Footnotes>
-        <MinimalFooter.Content>Custom content</MinimalFooter.Content>
         <MinimalFooter.BackToTop>Back to top</MinimalFooter.BackToTop>
         <MinimalFooter.Link href="/test">Test Link</MinimalFooter.Link>
       </MinimalFooter>,
@@ -756,29 +719,27 @@ describe('MinimalFooter', () => {
 
     const footer = getByRole('contentinfo')
     const topLevelSectionNames = Array.from(footer.children).map(element => {
-      if (element.classList.contains('Footer__section--content')) return 'content'
-      if (element.classList.contains('Footer__section--bottom')) return 'bottom'
-      if (element.querySelector('.Footer__top')) return 'top'
+      if (element.classList.contains('MinimalFooter__section--center')) return 'center'
+      if (element.classList.contains('MinimalFooter__section--bottom')) return 'bottom'
+      if (element.querySelector('.MinimalFooter__top')) return 'top'
       return 'footnotes'
     })
 
-    expect(topLevelSectionNames).toEqual(['footnotes', 'top', 'content', 'bottom'])
+    expect(topLevelSectionNames).toEqual(['footnotes', 'top', 'center', 'bottom'])
   })
 
-  it('does not impose internal layout on MinimalFooter.Content', () => {
+  it('does not impose internal layout on centerComponent', () => {
     const {getByTestId} = render(
-      <MinimalFooter>
-        <MinimalFooter.Content>
+      <MinimalFooter
+        centerComponent={
           <div data-testid="consumer-layout">
             <span>Consumer-owned markup</span>
           </div>
-        </MinimalFooter.Content>
-      </MinimalFooter>,
+        }
+      />,
     )
 
-    // The section wrapper only positions Content within the footer; it does not alter or
-    // wrap the consumer's own children.
-    expect(getByTestId('consumer-layout').parentElement).toHaveClass('Footer__container')
+    expect(getByTestId('consumer-layout').parentElement).toHaveClass('MinimalFooter__container')
   })
 
   it('keeps default social links, filtering, and the false opt-out working', () => {
@@ -799,10 +760,10 @@ describe('MinimalFooter', () => {
       </MinimalFooter>,
     )
 
-    expect(container.querySelector('.Footer__bottom')).not.toHaveClass('Footer__bottom--no-social')
+    expect(container.querySelector('.MinimalFooter__bottom')).not.toHaveClass('MinimalFooter__bottom--no-social')
 
     rerender(<MinimalFooter socialLinks={false} />)
-    expect(container.querySelector('.Footer__bottom')).toHaveClass('Footer__bottom--no-social')
+    expect(container.querySelector('.MinimalFooter__bottom')).toHaveClass('MinimalFooter__bottom--no-social')
   })
 
   it('preserves logo href, analytics, accessibility, and semantic styling', () => {
@@ -815,7 +776,7 @@ describe('MinimalFooter', () => {
       '{"category":"Footer","action":"go to home","label":"text:home"}',
     )
 
-    expect(logoLink).toHaveClass('Footer__logo')
+    expect(logoLink).toHaveClass('MinimalFooter__logo')
   })
 
   it('does not render Back to Top unless opted into as a child', () => {
@@ -896,7 +857,7 @@ describe('MinimalFooter', () => {
     )
 
     const button = getByRole('button', {name: 'Back to top'})
-    expect(button.closest('.Footer__section')).toBeInTheDocument()
+    expect(button.closest('.MinimalFooter__section')).toBeInTheDocument()
   })
 
   it('forwards ARIA, data, analytics, and native button attributes', () => {
@@ -1007,23 +968,6 @@ describe('MinimalFooter', () => {
     scrollToSpy.mockRestore()
   })
 
-  it('honors a custom scrollBehavior when motion is not reduced', async () => {
-    const user = userEvent.setup()
-    const scrollToSpy = jest.spyOn(window, 'scrollTo').mockImplementation(() => {})
-
-    const {getByRole} = render(
-      <MinimalFooter>
-        <MinimalFooter.BackToTop scrollBehavior="auto">Back to top</MinimalFooter.BackToTop>
-      </MinimalFooter>,
-    )
-
-    await user.click(getByRole('button', {name: 'Back to top'}))
-
-    expect(scrollToSpy).toHaveBeenCalledWith({top: 0, behavior: 'auto'})
-
-    scrollToSpy.mockRestore()
-  })
-
   it('uses an instant scroll when reduced motion is preferred, even with smooth root scrolling', async () => {
     const matchMediaMock = jest.mocked(window.matchMedia)
     const scrollToSpy = jest.spyOn(window, 'scrollTo').mockImplementation(() => {})
@@ -1044,7 +988,7 @@ describe('MinimalFooter', () => {
         const user = userEvent.setup()
         const {getByRole} = render(
           <MinimalFooter>
-            <MinimalFooter.BackToTop scrollBehavior="smooth">Back to top</MinimalFooter.BackToTop>
+            <MinimalFooter.BackToTop>Back to top</MinimalFooter.BackToTop>
           </MinimalFooter>,
         )
 
@@ -1089,6 +1033,52 @@ describe('MinimalFooter', () => {
     scrollToSpy.mockRestore()
   })
 
+  it('falls back to moving keyboard focus to the body when there is no main landmark', async () => {
+    const user = userEvent.setup()
+    const scrollToSpy = jest.spyOn(window, 'scrollTo').mockImplementation(() => {})
+
+    const {getByRole} = render(
+      <MinimalFooter socialLinks={false}>
+        <MinimalFooter.BackToTop>Back to top</MinimalFooter.BackToTop>
+      </MinimalFooter>,
+    )
+
+    const button = getByRole('button', {name: 'Back to top'})
+
+    act(() => button.focus())
+    await user.keyboard('{Enter}')
+
+    expect(document.body).toHaveFocus()
+    expect(document.body).toHaveAttribute('tabindex', '-1')
+
+    act(() => button.focus())
+    expect(document.body).not.toHaveAttribute('tabindex')
+
+    scrollToSpy.mockRestore()
+  })
+
+  it('falls back to moving keyboard focus to the html element when main and body are unavailable', () => {
+    const scrollToSpy = jest.spyOn(window, 'scrollTo').mockImplementation(() => {})
+    const {getByRole} = render(
+      <MinimalFooter socialLinks={false}>
+        <MinimalFooter.BackToTop>Back to top</MinimalFooter.BackToTop>
+      </MinimalFooter>,
+    )
+    const button = getByRole('button', {name: 'Back to top'})
+    const querySelectorSpy = jest.spyOn(document, 'querySelector').mockReturnValue(null)
+
+    act(() => button.click())
+    querySelectorSpy.mockRestore()
+
+    expect(document.documentElement).toHaveFocus()
+    expect(document.documentElement).toHaveAttribute('tabindex', '-1')
+
+    act(() => button.focus())
+    expect(document.documentElement).not.toHaveAttribute('tabindex')
+
+    scrollToSpy.mockRestore()
+  })
+
   it('moves keyboard focus to a custom semantic destination', async () => {
     const user = userEvent.setup()
     const scrollToSpy = jest.spyOn(window, 'scrollTo').mockImplementation(() => {})
@@ -1108,6 +1098,77 @@ describe('MinimalFooter', () => {
 
     expect(document.getElementById('page-start')).toHaveFocus()
 
+    scrollToSpy.mockRestore()
+  })
+
+  it('preserves an existing tabindex on the custom focus destination', async () => {
+    const user = userEvent.setup()
+    const scrollToSpy = jest.spyOn(window, 'scrollTo').mockImplementation(() => {})
+    const {getByRole} = render(
+      <>
+        <button id="page-start" tabIndex={0} type="button">
+          Page start
+        </button>
+        <MinimalFooter>
+          <MinimalFooter.BackToTop focusTargetId="page-start">Back to top</MinimalFooter.BackToTop>
+        </MinimalFooter>
+      </>,
+    )
+    const button = getByRole('button', {name: 'Back to top'})
+    const focusTarget = document.getElementById('page-start')
+
+    act(() => button.focus())
+    await user.keyboard('{Enter}')
+    act(() => button.focus())
+
+    expect(focusTarget).toHaveAttribute('tabindex', '0')
+
+    scrollToSpy.mockRestore()
+  })
+
+  it('warns and keeps keyboard focus on the control when a custom focus destination is missing', async () => {
+    const user = userEvent.setup()
+    const scrollToSpy = jest.spyOn(window, 'scrollTo').mockImplementation(() => {})
+    const consoleWarnSpy = jest.spyOn(console, 'warn').mockImplementation(() => {})
+    const {getByRole} = render(
+      <MinimalFooter>
+        <MinimalFooter.BackToTop focusTargetId="missing-page-start">Back to top</MinimalFooter.BackToTop>
+      </MinimalFooter>,
+    )
+    const button = getByRole('button', {name: 'Back to top'})
+
+    act(() => button.focus())
+    await user.keyboard('{Enter}')
+
+    expect(consoleWarnSpy).toHaveBeenCalledWith(
+      'MinimalFooter.BackToTop: No element found with id "missing-page-start".',
+    )
+    expect(button).toHaveFocus()
+
+    consoleWarnSpy.mockRestore()
+    scrollToSpy.mockRestore()
+  })
+
+  it('does not warn in production when a custom focus destination is missing', async () => {
+    const user = userEvent.setup()
+    const scrollToSpy = jest.spyOn(window, 'scrollTo').mockImplementation(() => {})
+    const consoleWarnSpy = jest.spyOn(console, 'warn').mockImplementation(() => {})
+    const originalNodeEnv = process.env.NODE_ENV
+    process.env.NODE_ENV = 'production'
+
+    const {getByRole} = render(
+      <MinimalFooter>
+        <MinimalFooter.BackToTop focusTargetId="missing-page-start">Back to top</MinimalFooter.BackToTop>
+      </MinimalFooter>,
+    )
+
+    act(() => getByRole('button', {name: 'Back to top'}).focus())
+    await user.keyboard('{Enter}')
+
+    expect(consoleWarnSpy).not.toHaveBeenCalled()
+
+    process.env.NODE_ENV = originalNodeEnv
+    consoleWarnSpy.mockRestore()
     scrollToSpy.mockRestore()
   })
 })

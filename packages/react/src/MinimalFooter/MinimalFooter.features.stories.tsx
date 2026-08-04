@@ -154,13 +154,13 @@ export const DarkTheme: Story = {
 
 export const CustomContent: Story = {
   render: () => (
-    <MinimalFooter>
-      <MinimalFooter.Content>
+    <MinimalFooter
+      centerComponent={
         <Token as="a" href="https://www.githubstatus.com" variant="accent" leadingVisual={<CheckCircleFillIcon />}>
           All systems operational
         </Token>
-      </MinimalFooter.Content>
-    </MinimalFooter>
+      }
+    />
   ),
 }
 
@@ -181,6 +181,11 @@ export const BackToTop: Story = {
 
 const ResponsiveExample = ({socialLinks = true}: {socialLinks?: boolean}) => (
   <MinimalFooter
+    centerComponent={
+      <Token as="a" href="https://www.githubstatus.com" variant="accent" leadingVisual={<CheckCircleFillIcon />}>
+        All systems operational
+      </Token>
+    }
     copyrightStatement="GitHub, Inc. © 2026. All rights reserved."
     socialLinks={socialLinks ? undefined : false}
   >
@@ -193,11 +198,6 @@ const ResponsiveExample = ({socialLinks = true}: {socialLinks?: boolean}) => (
         .
       </Text>
     </MinimalFooter.Footnotes>
-    <MinimalFooter.Content>
-      <Token as="a" href="https://www.githubstatus.com" variant="accent" leadingVisual={<CheckCircleFillIcon />}>
-        All systems operational
-      </Token>
-    </MinimalFooter.Content>
     <MinimalFooter.BackToTop>Back to top</MinimalFooter.BackToTop>
     <MinimalFooter.Link href="#">Sitemap</MinimalFooter.Link>
     <MinimalFooter.Link href="#">What is Git?</MinimalFooter.Link>
