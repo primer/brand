@@ -121,12 +121,14 @@ Resolve exact sizes and weights with `primer_brand_tokens`.
 
 **Do**
 
-- Place `Card`, `Pillar`, `Box`, or custom items in a square frame using `<Grid columnGap="none" rowGap="none" enableGutters={false}>`.
+- Default to placing `Card`, `Pillar`, `Box`, or custom items in a square frame using `<Grid columnGap="none" rowGap="none" enableGutters={false}>`.
+- When Card images need to stretch to fill the Card width, set `padding="none"` on every `Card.Image` and `hasBorder` on every `Card` to provide visual containment. Place these full-bleed Cards in a regular `Grid` with a clear gap between them; this is a separate visual treatment from gridline Cards. Keep image position and aspect ratio consistent across the group, and retrieve Card examples with `primer_brand_examples` for reference.
 - Draw shared dividers on custom frame/cell wrappers and use `border-radius: 0` there.
 
 **Don't**
 
-- Render repeated panels as separate rounded cards, double their shared borders, or override `Card` / `Pillar` internals.
+- Put native-bordered, full-bleed Cards inside a shared gridline frame, or mix gridline and native-border treatments within one group.
+- Render other repeated panels as separate rounded cards, double their shared borders, or override `Card` / `Pillar` internals.
 - `Pillar` has no grid variant; don't invent one.
 
 ### CTABanner

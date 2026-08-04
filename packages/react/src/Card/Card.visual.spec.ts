@@ -37,6 +37,17 @@ test.describe('Visual Comparison: Card', () => {
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
+  test('Card / Native Borders', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-card-examples--native-borders&viewMode=story',
+      {waitUntil: 'networkidle'},
+    )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+    await page.waitForTimeout(500)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
   test('Card / Related content', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-card-examples--related-content&viewMode=story',
@@ -252,6 +263,28 @@ test.describe('Visual Comparison: Card', () => {
   test('Card / Image Using Picture Element', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-card-features--image-using-picture-element&viewMode=story',
+      {waitUntil: 'networkidle'},
+    )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+    await page.waitForTimeout(500)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
+  test('Card / Image No Padding With Borders', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-card-features--image-no-padding-with-borders&viewMode=story',
+      {waitUntil: 'networkidle'},
+    )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+    await page.waitForTimeout(500)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
+  test('Card / Image No Padding No Borders', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-card-features--image-no-padding-no-borders&viewMode=story',
       {waitUntil: 'networkidle'},
     )
     await page.locator('body.sb-show-main').waitFor({state: 'visible'})

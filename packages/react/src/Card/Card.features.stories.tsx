@@ -485,6 +485,80 @@ export const ImageUsingPictureElement: StoryFn<typeof Card> = () => {
   )
 }
 
+export const ImageNoPaddingWithBorders: StoryFn<typeof Card> = () => {
+  const {t} = useTranslation('Card')
+
+  return (
+    <Grid>
+      <Grid.Column span={4}>
+        <Card
+          href="https://github.com/features/copilot"
+          fullWidth
+          hasBorder
+          ctaVariant="arrow"
+          ctaText={t('learn_more')}
+        >
+          <Card.Icon icon={CopilotIcon} color="green" hasBackground />
+          <Card.Heading>{t('connect_your_ai_tools')}</Card.Heading>
+          <Card.Description>{t('connect_your_ai_tools_description')}</Card.Description>
+          <Card.Image
+            position="block-end"
+            padding="none"
+            src={placeholderImage}
+            alt={t('placeholder_alt')}
+            aspectRatio="4:3"
+          />
+        </Card>
+      </Grid.Column>
+      <Grid.Column span={4}>
+        <Card
+          href="https://github.com/features/copilot"
+          fullWidth
+          hasBorder
+          ctaVariant="arrow"
+          ctaText={t('learn_more')}
+        >
+          <Card.Icon icon={CopilotIcon} color="green" hasBackground />
+          <Card.Heading>{t('connect_your_ai_tools')}</Card.Heading>
+          <Card.Description>{t('connect_your_ai_tools_description')}</Card.Description>
+          <Card.Image padding="none" src={placeholderImage} alt={t('placeholder_alt')} aspectRatio="4:3" />
+        </Card>
+      </Grid.Column>
+    </Grid>
+  )
+}
+
+export const ImageNoPaddingNoBorders: StoryFn<typeof Card> = () => {
+  const {t} = useTranslation('Card')
+
+  return (
+    <Grid>
+      <Grid.Column span={4}>
+        <Card href="https://github.com/features/copilot" fullWidth ctaVariant="arrow" ctaText={t('learn_more')}>
+          <Card.Icon icon={CopilotIcon} color="green" hasBackground />
+          <Card.Heading>{t('connect_your_ai_tools')}</Card.Heading>
+          <Card.Description>{t('connect_your_ai_tools_description')}</Card.Description>
+          <Card.Image
+            position="block-end"
+            padding="none"
+            src={placeholderImage}
+            alt={t('placeholder_alt')}
+            aspectRatio="4:3"
+          />
+        </Card>
+      </Grid.Column>
+      <Grid.Column span={4}>
+        <Card href="https://github.com/features/copilot" fullWidth ctaVariant="arrow" ctaText={t('learn_more')}>
+          <Card.Icon icon={CopilotIcon} color="green" hasBackground />
+          <Card.Heading>{t('connect_your_ai_tools')}</Card.Heading>
+          <Card.Description>{t('connect_your_ai_tools_description')}</Card.Description>
+          <Card.Image padding="none" src={placeholderImage} alt={t('placeholder_alt')} aspectRatio="4:3" />
+        </Card>
+      </Grid.Column>
+    </Grid>
+  )
+}
+
 export const LeadingVisualWithArrowCTA: StoryFn<typeof Card> = () => {
   const {t} = useTranslation('Card')
 

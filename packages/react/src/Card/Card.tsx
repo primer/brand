@@ -28,6 +28,7 @@ export const CardCTAVariants = ['text', 'arrow', 'none'] as const
 export const CardBackgroundColors = ['default', 'subtle', 'none'] as const
 export const CardTokenPositions = ['block-start', 'block-end'] as const
 export const CardLabelVariants = ['token', 'accent-text'] as const
+export const CardImagePaddingOptions = ['default', 'none', 'all'] as const
 
 export const CardIconColors = Colors
 
@@ -40,6 +41,7 @@ export type CardCTAVariant = (typeof CardCTAVariants)[number]
 export type CardTokenPosition = (typeof CardTokenPositions)[number]
 export type CardLabelVariant = (typeof CardLabelVariants)[number]
 export type CardBackgroundColor = (typeof CardBackgroundColors)[number]
+export type CardImagePadding = (typeof CardImagePaddingOptions)[number]
 
 type CardLeadingVisual = React.ReactElement | React.ComponentType<{className?: string}>
 
@@ -277,13 +279,20 @@ function getRenderableLeadingVisual(leadingVisual?: CardLeadingVisual) {
   return null
 }
 
-type CardImageProps = {
+export type CardImageProps = {
   position?: 'block-start' | 'block-end'
+  padding?: CardImagePadding
 } & ImageProps
 
-function CardImage({className, ...rest}: CardImageProps) {
+function CardImage({className, position = 'block-start', padding = 'default', ...rest}: CardImageProps) {
   return (
-    <div className={styles.Card__image}>
+    <div
+      className={clsx(
+        styles.Card__image,
+        styles[`Card__image--position-${position}`],
+        padding === 'none' && styles['Card__image--padding-none'],
+      )}
+    >
       <Image className={className} {...rest} />
     </div>
   )
