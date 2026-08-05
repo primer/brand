@@ -133,7 +133,6 @@ Use the `labels` prop to localize search text. Any labels you omit fall back to 
 ```jsx filename="noinline"
 const labels = {
   searchLabel: 'Buscar',
-  searchTriggerLabel: 'Abrir búsqueda',
   closeLabel: 'Cerrar',
   resultsLabel: 'Resultados',
   searchResultsLabel: 'Resultados de búsqueda',
@@ -205,7 +204,6 @@ render(<LocalizedSearch />)
 | :----------------- | :----------------------------------------------- | :--------------- | :---------------------------------------------------------------------------- |
 | `onSubmit`         | `(event: FormEvent<HTMLFormElement>) => void`    |                  | Required search form submit handler                                           |
 | `onChange`         | `(event: ChangeEvent<HTMLInputElement>) => void` |                  | Required search input change handler                                          |
-| `variant`          | `SubdomainNavBarSearchVariant`                   | `icon`           | Uses an icon trigger, or an input-style trigger at widths of 1012px and wider |
 | `placeholder`      | `string`                                         | `Search {title}` | Text shown in the input trigger and opened search input                       |
 | `shortcutLabel`    | `string`                                         | Shortcut value   | Visible input-trigger hint; pass an empty string to hide it                   |
 | `keyboardShortcut` | `string \| false`                                | `/`              | Global key or modifier combination that opens search; `false` disables it     |
@@ -215,19 +213,18 @@ render(<LocalizedSearch />)
 | `className`        | `string`                                         |                  | Sets a custom class on the search trigger container                           |
 | `ref`              | `React.Ref<HTMLInputElement>`                    |                  | Ref to the input inside the opened search dialog                              |
 
-`SubdomainNavBarSearchProps`, `SubdomainNavBarSearchVariant`, `SubdomainNavBarSearchVariants`, and `SubdomainNavBarSearchLabels` are exported from `@primer/react-brand`.
+`SubdomainNavBarSearchProps` and `SubdomainNavBarSearchLabels` are exported from `@primer/react-brand`.
 
 ### Search labels
 
 | Field                   | Type                              | English default               | Purpose                                                  |
 | :---------------------- | :-------------------------------- | :---------------------------- | :------------------------------------------------------- |
 | `searchLabel`           | `string`                          | `Search`                      | Accessible label for the search input                    |
-| `searchTriggerLabel`    | `string`                          | `Toggle search bar`           | Accessible label for the icon trigger                    |
 | `closeLabel`            | `string`                          | `Close`                       | Visible and accessible close action                      |
 | `resultsLabel`          | `string`                          | `Results`                     | Accessible label for an untitled result group            |
 | `searchResultsLabel`    | `string`                          | `Search results`              | Accessible label for grouped results without a query     |
 | `formatSearchWithTitle` | `(title: string) => string`       | `Search ${title}`             | Formats the default placeholder and dialog label         |
-| `formatSearchTrigger`   | `(placeholder: string) => string` | `${placeholder} search`       | Formats the input-style trigger's accessible label       |
+| `formatSearchTrigger`   | `(placeholder: string) => string` | `${placeholder} search`       | Formats the responsive search trigger's accessible label |
 | `formatResultsHeading`  | `(searchTerm: string) => string`  | `Results for “${searchTerm}”` | Formats the visible heading for ungrouped results        |
 | `formatResultsLabel`    | `(searchTerm: string) => string`  | `Results for ${searchTerm}`   | Formats the accessible label for grouped results         |
 | `formatSuggestions`     | `(count: number) => string`       | `${count} suggestions.`       | Formats the polite live-region result-count announcement |

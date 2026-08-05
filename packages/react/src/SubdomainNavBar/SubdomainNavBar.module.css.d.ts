@@ -39,7 +39,6 @@ declare const styles: {
   readonly "SubdomainNavBar-primary-nav-list-item--overflow": string;
   readonly "SubdomainNavBar-primary-nav-list-item--overflowed": string;
   readonly "SubdomainNavBar-primary-nav-overflow": string;
-  readonly "SubdomainNavBar-search-button": string;
   readonly "SubdomainNavBar-search-close-button": string;
   readonly "SubdomainNavBar-search-dialog": string;
   readonly "SubdomainNavBar-search-dialog-control-area": string;
@@ -63,7 +62,6 @@ declare const styles: {
   readonly "SubdomainNavBar-search-text-input": string;
   readonly "SubdomainNavBar-search-trigger": string;
   readonly "SubdomainNavBar-search-trigger--has-trailing-item": string;
-  readonly "SubdomainNavBar-search-trigger--input": string;
   readonly "SubdomainNavBar-secondary-nav": string;
   readonly "SubdomainNavBar-skip-to-content": string;
   readonly "SubdomainNavBar-title": string;

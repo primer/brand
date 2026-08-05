@@ -27,9 +27,6 @@ import styles from './SubdomainNavBar.module.css'
 import {useId} from '../hooks/useId'
 import {useSubdomainNavBarLinkContext} from './SubdomainNavBarLinkContext'
 
-export const SubdomainNavBarSearchVariants = ['icon', 'input'] as const
-export type SubdomainNavBarSearchVariant = (typeof SubdomainNavBarSearchVariants)[number]
-
 export type SubdomainNavBarProps = {
   /**
    * Valid child elements are `SubdomainNavBar.Link`, `SubdomainNavBar.PrimaryAction`,
@@ -322,7 +319,6 @@ function Root(
     [children],
   )
   const hasSearch = Boolean(searchItem)
-  const usesInputSearchTrigger = searchItem?.props.variant === 'input' && isLarge
   const searchKeyboardShortcut = useMemo(
     () => parseSearchKeyboardShortcut(searchItem?.props.keyboardShortcut ?? '/'),
     [searchItem?.props.keyboardShortcut],
@@ -483,7 +479,6 @@ function Root(
                       onSearchOpen: handleSearchOpen,
                       onSearchClose: handleSearchClose,
                       title,
-                      variant: usesInputSearchTrigger ? 'input' : 'icon',
                     })
                   }
                   return null
@@ -658,10 +653,6 @@ export type SubdomainNavBarSearchLabels = {
    */
   searchLabel: string
   /**
-   * Accessible label for the icon-only search trigger. Defaults to "Toggle search bar".
-   */
-  searchTriggerLabel: string
-  /**
    * Visible and accessible label for the close action. Defaults to "Close".
    */
   closeLabel: string
@@ -678,7 +669,7 @@ export type SubdomainNavBarSearchLabels = {
    */
   formatSearchWithTitle: (title: string) => string
   /**
-   * Formats the accessible label for the input-style search trigger.
+   * Formats the accessible label for the responsive search trigger.
    */
   formatSearchTrigger: (placeholder: string) => string
   /**
@@ -697,7 +688,6 @@ export type SubdomainNavBarSearchLabels = {
 
 const defaultSearchLabels: SubdomainNavBarSearchLabels = {
   searchLabel: 'Search',
-  searchTriggerLabel: 'Toggle search bar',
   closeLabel: 'Close',
   resultsLabel: 'Results',
   searchResultsLabel: 'Search results',
@@ -713,20 +703,16 @@ export type SubdomainNavBarSearchProps = {
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
   active?: boolean
   className?: string
-  /**
-   * Alternative presentation for the search trigger button.
-   */
-  variant?: SubdomainNavBarSearchVariant
   title?: string
   onSearchOpen?: () => void
   onSearchClose?: () => void
   autoComplete?: boolean
   /**
-   * Placeholder text shown in the input-style trigger and the opened search input.
+   * Placeholder text shown in the search trigger and the opened search input.
    */
   placeholder?: string
   /**
-   * Optional keyboard shortcut hint shown in the input-style trigger. Pass an empty string to hide it.
+   * Optional keyboard shortcut hint shown in the search trigger. Pass an empty string to hide it.
    */
   shortcutLabel?: string
   /**
@@ -810,7 +796,6 @@ const _SearchInternal = forwardRef<HTMLInputElement, SubdomainNavBarSearchProps>
       placeholder,
       shortcutLabel,
       keyboardShortcut = '/',
-      variant: searchVariant = 'icon',
       labels,
     },
     forwardedRef,
@@ -1001,40 +986,22 @@ const _SearchInternal = forwardRef<HTMLInputElement, SubdomainNavBarSearchProps>
 
     return (
       <>
-        <div
-          className={clsx(
-            styles['SubdomainNavBar-search-trigger'],
-            searchVariant === 'input' && styles['SubdomainNavBar-search-trigger--input'],
-            className,
-          )}
-        >
-          {searchVariant === 'input' ? (
-            <button
-              aria-label={resolvedLabels.formatSearchTrigger(resolvedPlaceholder)}
-              className={styles['SubdomainNavBar-search-input-button']}
-              onClick={onSearchOpen}
-              data-testid="toggle-search"
-              type="button"
-            >
-              <span className={styles['SubdomainNavBar-search-input-button-placeholder']}>
-                <SearchIcon aria-hidden="true" size={16} />
-                <span>{resolvedPlaceholder}</span>
-              </span>
-              {resolvedShortcutLabel && (
-                <span className={styles['SubdomainNavBar-search-input-button-shortcut']}>{resolvedShortcutLabel}</span>
-              )}
-            </button>
-          ) : (
-            <Button
-              aria-label={resolvedLabels.searchTriggerLabel}
-              className={styles['SubdomainNavBar-search-button']}
-              variant="secondary"
-              size="small"
-              leadingVisual={<SearchIcon />}
-              onClick={onSearchOpen}
-              data-testid="toggle-search"
-            />
-          )}
+        <div className={clsx(styles['SubdomainNavBar-search-trigger'], className)}>
+          <button
+            aria-label={resolvedLabels.formatSearchTrigger(resolvedPlaceholder)}
+            className={styles['SubdomainNavBar-search-input-button']}
+            onClick={onSearchOpen}
+            data-testid="toggle-search"
+            type="button"
+          >
+            <span className={styles['SubdomainNavBar-search-input-button-placeholder']}>
+              <SearchIcon aria-hidden="true" size={16} />
+              <span>{resolvedPlaceholder}</span>
+            </span>
+            {resolvedShortcutLabel && (
+              <span className={styles['SubdomainNavBar-search-input-button-shortcut']}>{resolvedShortcutLabel}</span>
+            )}
+          </button>
         </div>
         {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-noninteractive-element-interactions -- Native dialog keyboard dismissal is handled by onCancel; click only closes backdrop clicks. */}
         <dialog

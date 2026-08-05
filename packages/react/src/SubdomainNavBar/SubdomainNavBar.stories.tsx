@@ -12,7 +12,6 @@ import {
   type SubdomainNavBarHandle,
   type SubdomainNavBarProps,
   type SubdomainNavBarSearchResults,
-  type SubdomainNavBarSearchVariant,
 } from '.'
 import {waitFor} from '@testing-library/dom'
 
@@ -768,7 +767,6 @@ const KeyboardShortcutRemapExample = () => {
         <SubdomainNavBar.Link href="#api">API</SubdomainNavBar.Link>
         <SubdomainNavBar.Link href="#changelog">Changelog</SubdomainNavBar.Link>
         <SubdomainNavBar.Search
-          variant="input"
           placeholder="Search docs"
           keyboardShortcut="Command+Option+k"
           shortcutLabel="⌘+⌥+k"
@@ -791,7 +789,6 @@ type SearchExampleProps = {
   leadingComponent?: SubdomainNavBarProps['leadingComponent']
   trailingComponent?: SubdomainNavBarProps['trailingComponent']
   showSearch?: boolean
-  searchVariant?: SubdomainNavBarSearchVariant
   searchPlaceholder?: string
   searchShortcutLabel?: string
 }
@@ -800,7 +797,6 @@ const SearchExample = ({
   leadingComponent,
   trailingComponent,
   showSearch = false,
-  searchVariant,
   searchPlaceholder,
   searchShortcutLabel,
 }: SearchExampleProps) => {
@@ -821,7 +817,6 @@ const SearchExample = ({
       {showSearch && (
         <SubdomainNavBar.Search
           ref={inputRef}
-          variant={searchVariant}
           placeholder={searchPlaceholder}
           shortcutLabel={searchShortcutLabel}
           searchTerm="How do i"
@@ -863,7 +858,7 @@ export const SearchOpen: Story = {
   },
   play: async ({canvasElement}) => {
     const canvas = within(canvasElement)
-    await userEvent.click(canvas.getByLabelText('Toggle search bar'))
+    await userEvent.click(canvas.getByLabelText('Search Site title search'))
 
     await expect(canvas.getByRole('combobox')).toHaveFocus()
   },
@@ -874,7 +869,7 @@ export const SearchResultsVisible: Story = {
   play: async ({canvasElement}) => {
     const canvas = within(canvasElement)
 
-    await userEvent.click(canvas.getByLabelText('Toggle search bar'))
+    await userEvent.click(canvas.getByLabelText('Search Site title search'))
     await userEvent.type(canvas.getByRole('combobox'), 'devops')
     await expect(canvas.getByRole('combobox')).toHaveFocus()
   },
@@ -969,7 +964,7 @@ export const MobileSearchResultsVisible: Story = {
   play: async ({canvasElement}) => {
     const canvas = within(canvasElement)
 
-    await userEvent.click(canvas.getByLabelText('Toggle search bar'))
+    await userEvent.click(canvas.getByLabelText('Search Site title search'))
     await userEvent.type(canvas.getByRole('combobox'), 'devops')
     await expect(canvas.getByRole('combobox')).toHaveFocus()
   },
@@ -1025,17 +1020,8 @@ export const WithTrailingComponent: Story = {
   name: 'With Trailing Component',
 }
 
-export const InputSearch: Story = {
-  render: () => (
-    <SearchExample showSearch searchVariant="input" searchPlaceholder="Search ..." searchShortcutLabel="/" />
-  ),
-  name: 'Input Search',
-}
-
 export const GroupedSearchResultsVisible: Story = {
-  render: () => (
-    <SearchExample showSearch searchVariant="input" searchPlaceholder="Search ..." searchShortcutLabel="/" />
-  ),
+  render: () => <SearchExample showSearch searchPlaceholder="Search ..." searchShortcutLabel="/" />,
   play: async ({canvasElement}) => {
     const canvas = within(canvasElement)
     await userEvent.click(canvas.getByRole('button', {name: 'Search ... search'}))

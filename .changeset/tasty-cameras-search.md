@@ -22,7 +22,7 @@ Updated `SubdomainNavBar` with a gridline visual design, content slots, search A
 </SubdomainNavBar>
 ```
 
-- Added an input-style search trigger, custom placeholder and shortcut labels, configurable keyboard shortcuts, grouped results, and a `labels` prop for localizing visible and accessible search text. The default `/` shortcut can be remapped or disabled with `keyboardShortcut`.
+- Added a responsive input-style search trigger that collapses to an icon-only button on smaller viewports, custom placeholder and shortcut labels, configurable keyboard shortcuts, grouped results, and a `labels` prop for localizing visible and accessible search text. The default `/` shortcut can be remapped or disabled with `keyboardShortcut`.
 
   Exported `SubdomainNavBarSearchLabels` and `SubdomainNavBarSearchProps` for typed search configuration. The `SubdomainNavBar` ref now exposes `openSearch()` and `closeSearch()` methods.
 
@@ -60,7 +60,6 @@ Updated `SubdomainNavBar` with a gridline visual design, content slots, search A
       formatSuggestions: (count: number) => `${count} sugerencias.`,
     } satisfies Partial<SubdomainNavBarSearchLabels>
     const searchProps: SubdomainNavBarSearchProps = {
-      variant: 'input',
       placeholder: 'Buscar',
       keyboardShortcut: 'Command+Option+k',
       shortcutLabel: '⌘+⌥+k',

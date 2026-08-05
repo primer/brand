@@ -255,17 +255,6 @@ test.describe('Visual Comparison: SubdomainNavBar', () => {
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
-  test('SubdomainNavBar / Input Search', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-subdomainnavbar--input-search&viewMode=story',
-      {waitUntil: 'networkidle'},
-    )
-    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
   test('SubdomainNavBar / Grouped Search Results Visible', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-subdomainnavbar--grouped-search-results-visible&viewMode=story',
