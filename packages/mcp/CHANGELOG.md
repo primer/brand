@@ -1,5 +1,7 @@
 # @primer/brand-mcp
 
+## 0.72.1
+
 ## 0.72.0
 
 ### Patch Changes

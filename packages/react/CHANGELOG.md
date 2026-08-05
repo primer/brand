@@ -1,5 +1,22 @@
 # @primer/react-brand
 
+## 0.72.1
+
+### Patch Changes
+
+- [#1432](https://github.com/primer/brand/pull/1432) [`e8b64f0`](https://github.com/primer/brand/commit/e8b64f0c2ab057d628fad125cc390c4cff665589) Thanks [@rezrah](https://github.com/rezrah)! - Allow `ButtonGroup` to accept conditionally rendered children.
+
+  Example:
+
+  ```jsx
+  <ButtonGroup>
+    <Button>Primary action</Button>
+    {showSecondaryAction ? <Button>Secondary action</Button> : null}
+  </ButtonGroup>
+  ```
+
+- [#1428](https://github.com/primer/brand/pull/1428) [`8ac13c8`](https://github.com/primer/brand/commit/8ac13c8367b8ac99abd6e8ca1aca86aa305ec3a8) Thanks [@danielguillan](https://github.com/danielguillan)! - Updated `Card` responsive spacing, exposed arrow CTA labels on non-hover devices, and removed the hover scale effect.
+
 ## 0.72.0
 
 ### Minor Changes
