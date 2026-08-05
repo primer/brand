@@ -167,6 +167,8 @@ const skipTestLookup = [
   'components-actionmenu-features--menu-alignment', // for the menu to open, too flakey, need to fix layout shift
 ]
 
+const touchTestLookup = ['components-card-features--arrow-cta-long-label']
+
 const categorisedStories = Object.keys((stories as StoryIndex).entries).reduce((acc, key) => {
   const {id, name: storyName, importPath} = stories.entries[key]
 
@@ -212,12 +214,19 @@ for (const key of Object.keys(categorisedStories)) {
     // eslint-disable-next-line i18n-text/no-en
     test.describe('Visual Comparison: ${key}', () => {
 
+      ${
+        componentStories.some(({id}) => touchTestLookup.includes(id))
+          ? `const touchTest = test.extend({hasTouch: true, viewport: {width: 375, height: 812}})`
+          : ''
+      }
+
       ${componentStories.reduce((acc, {id, storyName, groupName, timeout}) => {
         const requiresMobileViewport = validNarrowVieportNames.some(viewportName =>
           storyName.toLowerCase().includes(viewportName),
         )
 
         const requiresTabletViewport = storyName.toLowerCase().includes('tablet')
+        const requiresTouch = touchTestLookup.includes(id)
         if (skipTestLookup.includes(id)) {
           return acc
         }
@@ -227,7 +236,9 @@ for (const key of Object.keys(categorisedStories)) {
           const base = `${groupName} / ${storyName}`
           const testName = language === 'en' ? base : `${base} (${language})`
 
-          return `test('${testName}', async ({page}) => {
+          return `${requiresTouch ? '// eslint-disable-next-line i18n-text/no-en\n          ' : ''}${
+            requiresTouch ? 'touchTest' : 'test'
+          }('${testName}', async ({page}) => {
             await page.goto('http://localhost:${port}/iframe.html?${localeParam}args=&id=${id}&viewMode=story', { waitUntil: 'networkidle' })
             await page.locator('body.sb-show-main').waitFor({ state: 'visible' })
 
