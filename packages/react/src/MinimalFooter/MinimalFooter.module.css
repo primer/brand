@@ -77,6 +77,7 @@
 }
 
 .Footer__social-icon {
+  display: block;
   width: 24px;
   height: auto;
 }

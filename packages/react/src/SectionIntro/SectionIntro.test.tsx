@@ -234,7 +234,13 @@ describe('SectionIntro', () => {
     const mockImage = 'mockImage.png'
 
     const {getByRole, container} = render(
-      <SectionIntro leadingComponent={() => <img src={mockImage} alt="mock" />}>
+      <SectionIntro
+        leadingComponent={() => (
+          <picture>
+            <img src={mockImage} alt="mock" />
+          </picture>
+        )}
+      >
         <SectionIntro.Heading>{mockHeading}</SectionIntro.Heading>
         <SectionIntro.Description>{mockDescription}</SectionIntro.Description>
         <SectionIntro.Link href="#">{mockLinkText}</SectionIntro.Link>
@@ -246,6 +252,6 @@ describe('SectionIntro', () => {
     expect(imgEl).toHaveAttribute('src', mockImage)
 
     const sectionIntroEl = container.firstChild
-    expect(sectionIntroEl?.firstChild).toBe(imgEl)
+    expect(sectionIntroEl?.firstChild).toBe(imgEl.parentElement)
   })
 })

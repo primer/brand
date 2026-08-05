@@ -87,8 +87,8 @@
       },
       "link": {
         "rest": {
-          "value": "#005DD5",
-          "dark": "#8DD6FF"
+          "value": "var(--base-color-scale-blue-6)",
+          "dark": "var(--base-color-scale-blue-1)"
         },
         "pressed": {
           "value": "var(--base-color-scale-blue-8)",
@@ -144,7 +144,7 @@
         "dark": "var(--base-color-scale-gray-8)"
       },
       "muted": {
-        "value": "#FAFAFA",
+        "value": "#F9FBF9",
         "dark": "#090D0A"
       }
     },

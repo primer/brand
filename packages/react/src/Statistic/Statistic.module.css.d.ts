@@ -1,4 +1,5 @@
 declare const styles: {
+  readonly "Statistic": string;
   readonly "Statistic--narrow-padding-condensed": string;
   readonly "Statistic--narrow-padding-none": string;
   readonly "Statistic--narrow-padding-normal": string;

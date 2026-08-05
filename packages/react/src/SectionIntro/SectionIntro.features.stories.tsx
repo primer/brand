@@ -2,6 +2,7 @@ import React from 'react'
 import type {Meta} from '@storybook/react'
 import {SectionIntro} from '.'
 import {CopilotIcon} from '@primer/octicons-react'
+import placeholderImage from '../fixtures/images/placeholder.png'
 
 export default {
   title: 'Components/SectionIntro/Features',
@@ -125,3 +126,18 @@ export const LeadingComponent = () => {
     </SectionIntro>
   )
 }
+
+export const LeadingMedia = () => (
+  <SectionIntro
+    leadingComponent={() => (
+      <picture>
+        <img src={placeholderImage} alt="Placeholder leading visual" width={64} height={64} />
+      </picture>
+    )}
+    align="center"
+  >
+    <SectionIntro.Heading>
+      <b>Expressive headline</b> about an exclusive set of features.
+    </SectionIntro.Heading>
+  </SectionIntro>
+)

@@ -50,7 +50,8 @@ export const primerBrandReviewTool: ToolModule<Input> = {
       return `## ${label}\n${lines.join('\n')}`
     }
 
-    const findings = allRules.flatMap(rule => rule.run(input.code, ctx.catalog))
+    const rules = ctx.assetGenerator.available ? allRules : allRules.filter(rule => !rule.requiresAssetGenerator)
+    const findings = rules.flatMap(rule => rule.run(input.code, ctx.catalog))
     const errors = findings.filter(finding => finding.severity === 'error')
     const warnings = findings.filter(finding => finding.severity === 'warning')
     const used = brandComponentsUsed(input.code, ctx.catalog)

@@ -62,6 +62,10 @@
   margin-block-end: var(--base-size-48);
 }
 
+.BreakoutBanner-leadingVisual :is(img, picture) {
+  display: block;
+}
+
 /* Regular */
 @media screen and (min-width: 48rem) {
   .BreakoutBanner {

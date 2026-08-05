@@ -83,7 +83,7 @@ Components can be imported into any React-based application.
 E.g.
 
 ```js
-import {Hero} from '@primer/react-brand'
+import {Button, Hero} from '@primer/react-brand'
 ```
 
 ```jsx
@@ -94,8 +94,14 @@ import {Hero} from '@primer/react-brand'
     Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis
     felis nam pulvinar risus elementum.
   </Hero.Description>
-  <Hero.PrimaryAction href="#">Primary action</Hero.PrimaryAction>
-  <Hero.SecondaryAction href="#">Secondary action</Hero.SecondaryAction>
+  <Hero.ButtonGroup>
+    <Button as="a" href="#">
+      Primary action
+    </Button>
+    <Button as="a" href="#">
+      Secondary action
+    </Button>
+  </Hero.ButtonGroup>
 </Hero>
 ```
 

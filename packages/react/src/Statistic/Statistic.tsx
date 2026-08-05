@@ -150,7 +150,13 @@ const _Statistic = forwardRef<HTMLDivElement, PropsWithChildren<StatisticProps>>
     return (
       <div
         ref={ref}
-        className={clsx(styles[`Statistic--variant-${variant}`], paddingClasses, animationClasses, className)}
+        className={clsx(
+          styles.Statistic,
+          styles[`Statistic--variant-${variant}`],
+          paddingClasses,
+          animationClasses,
+          className,
+        )}
         style={{...animationInlineStyles, ...style}}
         data-testid={testId || testIds.root}
         {...rest}

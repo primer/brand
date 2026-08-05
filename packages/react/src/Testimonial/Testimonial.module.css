@@ -134,6 +134,10 @@
   margin-top: var(--base-size-24);
 }
 
+.Testimonial-logo-image {
+  display: block;
+}
+
 .Testimonial--size-large .Testimonial__media {
   margin-top: var(--base-size-64);
 }

@@ -6,6 +6,7 @@ import type {BaseProps} from '../../component-helpers'
 import type {FormValidationStatus} from '../form-types'
 import useLayoutEffect from '../../hooks/useIsomorphicLayoutEffect'
 
+import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/control/colors-with-modes.css'
 import styles from './Checkbox.module.css'
 import {useProvidedRefOrCreate} from '../../hooks/useRef'
 

@@ -83,7 +83,7 @@
   padding: var(--base-size-32) var(--base-size-32) 0;
 }
 
-.Hero-imageContainer--inline-bg-padded {
+.Hero-imageContainer--inline-padding-all {
   padding: var(--base-size-32);
   background-color: var(--brand-color-canvas-subtle);
 }
@@ -101,9 +101,12 @@
 }
 
 .Hero-imageContainer--inline-bordered {
-  background-color: var(--brand-color-canvas-subtle);
   display: flex;
   align-items: stretch;
+}
+
+.Hero-imageContainer--inline-bordered:not(.Hero-imageContainer--inline-padding-none) {
+  background-color: var(--brand-color-canvas-subtle);
 }
 
 @media screen and (min-width: 63.25rem) {
@@ -115,7 +118,7 @@
     padding: var(--base-size-64) var(--base-size-64) 0;
   }
 
-  .Hero-imageContainer--inline-bg-padded {
+  .Hero-imageContainer--inline-padding-all {
     padding: var(--base-size-64);
   }
 }
@@ -133,8 +136,12 @@
   overflow: hidden;
 }
 
-.Hero--variant-gridline .Hero-media--pos-block-end {
+.Hero--variant-gridline .Hero-media--pos-block-end:not(.Hero-media--padding-all):not(.Hero-media--padding-none) {
   border-radius: var(--brand-borderRadius-medium) var(--brand-borderRadius-medium) 0 0;
+}
+
+.Hero-media--pos-block-end.Hero-media--padding-all {
+  border-radius: var(--brand-borderRadius-medium);
 }
 
 /* Applied directly to video/iframe elements for block-end position */
@@ -144,8 +151,11 @@
 
 .Hero--variant-gridline .Hero-imageWrapper {
   border-block: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
-  background-color: var(--brand-color-canvas-subtle);
   width: 100%;
+}
+
+.Hero--variant-gridline .Hero-imageWrapper:not(.Hero-imageWrapper--padding-none) {
+  background-color: var(--brand-color-canvas-subtle);
 }
 
 .Hero--variant-gridline .Hero-imageWrapper-inner {
@@ -161,12 +171,8 @@
   }
 }
 
-.Hero--variant-gridline .Hero-imageWrapper-inner--padded {
+.Hero--variant-gridline .Hero-imageWrapper-inner--padding-all {
   padding: var(--base-size-32);
-}
-
-.Hero-media--pos-block-end-padded {
-  border-radius: var(--brand-borderRadius-medium);
 }
 
 @media screen and (min-width: 63.25rem) {
@@ -174,9 +180,13 @@
     padding: var(--base-size-64) var(--base-size-64) 0;
   }
 
-  .Hero--variant-gridline .Hero-imageWrapper-inner--padded {
+  .Hero--variant-gridline .Hero-imageWrapper-inner--padding-all {
     padding: var(--base-size-64);
   }
+}
+
+.Hero--variant-gridline .Hero-imageWrapper-inner--padding-none {
+  padding: 0;
 }
 
 /* GridLine variant with inline (side-by-side) layout */
@@ -219,7 +229,7 @@
 /* Media styling for gridline inline positions */
 
 /* Edge-to-edge inline media (no padding) - remove border radius */
-.Hero--variant-gridline .Hero-media--pos-inline:not(.Hero-media--pos-inline-padded) {
+.Hero--variant-gridline .Hero-media--pos-inline:not(.Hero-media--padding-all) {
   border-radius: 0;
 }
 
@@ -229,7 +239,7 @@
 }
 
 /* Padded inline media - constrain size and center */
-.Hero--variant-gridline .Hero-media--pos-inline-padded {
+.Hero--variant-gridline .Hero-media--pos-inline.Hero-media--padding-all {
   max-width: 100%;
   height: auto;
   align-self: center;
@@ -292,6 +302,10 @@
   gap: var(--base-size-8) var(--base-size-16);
 }
 
+.Hero .Hero-actions > * {
+  flex-grow: 0;
+}
+
 .Hero--variant-gridline-expressive .Hero-actions {
   align-items: stretch;
   gap: var(--base-size-8) var(--base-size-12);
@@ -299,6 +313,10 @@
 
 .Hero-trailing {
   margin-block-start: var(--base-size-32);
+}
+
+.Hero-trailing :is(img, picture) {
+  display: block;
 }
 
 .Hero-eyebrow {
@@ -440,8 +458,11 @@
 /* Media wrapper styles for gridline-expressive (same as gridline) */
 .Hero--variant-gridline-expressive .Hero-imageWrapper {
   border-block: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
-  background-color: var(--brand-color-canvas-subtle);
   width: 100%;
+}
+
+.Hero--variant-gridline-expressive .Hero-imageWrapper:not(.Hero-imageWrapper--padding-none) {
+  background-color: var(--brand-color-canvas-subtle);
 }
 
 .Hero--variant-gridline-expressive .Hero-imageWrapper-inner {
@@ -457,7 +478,7 @@
   }
 }
 
-.Hero--variant-gridline-expressive .Hero-imageWrapper-inner--padded {
+.Hero--variant-gridline-expressive .Hero-imageWrapper-inner--padding-all {
   padding: var(--base-size-32);
 }
 
@@ -466,9 +487,13 @@
     padding: var(--base-size-64) var(--base-size-64) 0;
   }
 
-  .Hero--variant-gridline-expressive .Hero-imageWrapper-inner--padded {
+  .Hero--variant-gridline-expressive .Hero-imageWrapper-inner--padding-all {
     padding: var(--base-size-64);
   }
+}
+
+.Hero--variant-gridline-expressive .Hero-imageWrapper-inner--padding-none {
+  padding: 0;
 }
 
 /* Shared media styles for gridline-expressive */
@@ -479,7 +504,13 @@
   overflow: hidden;
 }
 
-.Hero--variant-gridline-expressive .Hero-media--pos-block-end,
-.Hero--variant-gridline-expressive .Hero-image:not(.Hero-media--pos-block-end-padded) {
+.Hero--variant-gridline-expressive
+  .Hero-media--pos-block-end:not(.Hero-media--padding-all):not(.Hero-media--padding-none) {
   border-radius: var(--brand-borderRadius-medium) var(--brand-borderRadius-medium) 0 0;
+}
+
+.Hero--variant-gridline .Hero-media--padding-none,
+.Hero--variant-gridline-expressive .Hero-media--padding-none {
+  border-radius: 0;
+  max-width: 100%;
 }

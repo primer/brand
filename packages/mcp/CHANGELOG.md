@@ -1,5 +1,16 @@
 # @primer/brand-mcp
 
+## 0.72.0
+
+### Patch Changes
+
+- [#1400](https://github.com/primer/brand/pull/1400) [`29cf9f0`](https://github.com/primer/brand/commit/29cf9f0ec459f1f3d9791073459eef2ae497d96f) Thanks [@rezrah](https://github.com/rezrah)! - Improves guidance and examples delivered through the Primer Brand MCP tools:
+
+  - Improves guidance delivered through the `primer_brand_review` tool.
+  - Cleaner output from the `primer_brand_examples` tool.
+  - Add new page design guidance advising that `River` descriptions are limited to 160 characters and the default `50:50` image-to-text ratio is preferred.
+  - Improved guidance on imagery used in `Hero` and `River` components
+
 ## 0.71.0
 
 ### Patch Changes

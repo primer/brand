@@ -6,6 +6,10 @@
   padding-block: var(--base-size-24);
 }
 
+.SectionIntro :is(img, picture) {
+  display: block;
+}
+
 .SectionIntro-heading--muted {
   color: var(--brand-color-text-muted);
 }
