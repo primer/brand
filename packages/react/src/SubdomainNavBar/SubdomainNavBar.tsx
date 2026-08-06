@@ -25,7 +25,25 @@ import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/compone
 /** * Main Stylesheet (as a CSS Module) */
 import styles from './SubdomainNavBar.module.css'
 import {useId} from '../hooks/useId'
-import {useSubdomainNavBarLinkContext} from './SubdomainNavBarLinkContext'
+import {SubdomainNavBarLinkContext, useSubdomainNavBarLinkContext} from './SubdomainNavBarLinkContext'
+
+export type SubdomainNavBarMenuLabels = {
+  /**
+   * Visible and accessible label for the closed narrow menu control.
+   */
+  menuLabel: string
+  /**
+   * Visible and accessible label for the open narrow menu control.
+   */
+  closeLabel: string
+}
+
+const defaultMenuLabels: SubdomainNavBarMenuLabels = {
+  menuLabel: 'Menu',
+  closeLabel: 'Close',
+}
+
+const SubdomainNavBarActionSizeContext = React.createContext<'small' | 'medium'>('small')
 
 export type SubdomainNavBarProps = {
   /**
@@ -81,6 +99,10 @@ export type SubdomainNavBarProps = {
    * When the menu is opened or closed on narrow viewports, this callback is called with the new open state.
    */
   onNarrowMenuToggle?: (isOpen: boolean) => void
+  /**
+   * Customizable visible and accessible narrow menu labels.
+   */
+  menuLabels?: Partial<SubdomainNavBarMenuLabels>
 }
 
 export type SubdomainNavBarHandle = HTMLElement & {
@@ -192,6 +214,7 @@ function Root(
     leadingComponent,
     trailingComponent,
     onNarrowMenuToggle,
+    menuLabels,
     ...rest
   }: SubdomainNavBarProps,
   forwardedRef: React.ForwardedRef<SubdomainNavBarHandle>,
@@ -199,27 +222,35 @@ function Root(
   const [menuHidden, setMenuHidden] = useState(true)
   const [searchVisible, setSearchVisible] = useState(false)
   const [menuViewportOffsetBlockStart, setMenuViewportOffsetBlockStart] = useState(0)
-  const {isSmall, isMedium, isLarge} = useWindowSize()
+  const {isMedium, isLarge} = useWindowSize()
   const [startOfContentButtonFocused, setStartOfContentButtonFocused] = useState(false)
   const headerRef = useRef<HTMLElement | null>(null)
   const mainElRef = useRef<HTMLElement | null>(null)
   const startOfContentID = useId('start-of-content')
   const narrowMenuID = useId()
+  const resolvedMenuLabels = {...defaultMenuLabels, ...menuLabels}
 
   const updateMenuViewportOffsetBlockStart = useCallback(() => {
     setMenuViewportOffsetBlockStart(Math.max(0, headerRef.current?.getBoundingClientRect().top ?? 0))
   }, [])
 
-  const handleMobileMenuClick = () => {
-    const nextMenuHidden = !menuHidden
+  const closeNarrowMenu = useCallback(() => {
+    if (menuHidden) return
 
-    if (!nextMenuHidden) {
-      updateMenuViewportOffsetBlockStart()
+    setMenuHidden(true)
+    onNarrowMenuToggle?.(false)
+  }, [menuHidden, onNarrowMenuToggle])
+
+  const handleMobileMenuClick = () => {
+    if (!menuHidden) {
+      closeNarrowMenu()
+      return
     }
 
-    setMenuHidden(nextMenuHidden)
-
-    onNarrowMenuToggle?.(!nextMenuHidden)
+    setSearchVisible(false)
+    updateMenuViewportOffsetBlockStart()
+    setMenuHidden(false)
+    onNarrowMenuToggle?.(true)
   }
   const focusTrapRef = useRef<HTMLDivElement | null>(null)
 
@@ -232,17 +263,11 @@ function Root(
   }, [startOfContentID])
 
   useFocusTrap({containerRef: focusTrapRef, restoreFocusOnCleanUp: true, disabled: menuHidden})
-  useKeyboardEscape(() => {
-    setMenuHidden(true)
-    onNarrowMenuToggle?.(false)
-  })
+  useKeyboardEscape(closeNarrowMenu)
 
   useEffect(() => {
-    if (isLarge) {
-      setMenuHidden(true)
-      onNarrowMenuToggle?.(false)
-    }
-  }, [isLarge, menuHidden, onNarrowMenuToggle])
+    if (isLarge) closeNarrowMenu()
+  }, [closeNarrowMenu, isLarge])
 
   useEffect(() => {
     if (menuHidden || isLarge) return
@@ -259,8 +284,14 @@ function Root(
   }, [isLarge, menuHidden, updateMenuViewportOffsetBlockStart])
 
   useEffect(() => {
-    const newOverflowState = menuHidden ? 'auto' : 'hidden'
-    document.body.style.overflow = newOverflowState
+    if (menuHidden) return
+
+    const previousOverflow = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+
+    return () => {
+      document.body.style.overflow = previousOverflow
+    }
   }, [menuHidden])
 
   const setStartOfContentButtonFocusedTrue = useCallback(() => setStartOfContentButtonFocused(true), [])
@@ -308,6 +339,19 @@ function Root(
     [children],
   )
 
+  const narrowActionItems = useMemo(
+    () =>
+      actionItems.map(child =>
+        React.cloneElement(child, {
+          onClick: event => {
+            child.props.onClick?.(event)
+            if (!event.defaultPrevented) closeNarrowMenu()
+          },
+        }),
+      ),
+    [actionItems, closeNarrowMenu],
+  )
+
   const hasActions = actionItems.length > 0
 
   const searchItem = useMemo(
@@ -327,8 +371,9 @@ function Root(
   const handleSearchOpen = useCallback(() => {
     if (!hasSearch) return
 
+    closeNarrowMenu()
     setSearchVisible(true)
-  }, [hasSearch])
+  }, [closeNarrowMenu, hasSearch])
 
   const handleSearchClose = useCallback(() => setSearchVisible(false), [])
 
@@ -382,7 +427,7 @@ function Root(
     leadingComponent !== undefined && leadingComponent !== null && typeof leadingComponent !== 'boolean'
   const hasTrailingComponent =
     trailingComponent !== undefined && trailingComponent !== null && typeof trailingComponent !== 'boolean'
-  const hasNarrowMenuContent = hasLinks || hasLeadingComponent || hasTrailingComponent
+  const hasNarrowMenuContent = hasLinks || hasActions || hasLeadingComponent || hasTrailingComponent
   const subdomainNavBarStyle = {
     ...style,
     '--SubdomainNavBar-menu-offset-block-start': `${menuViewportOffsetBlockStart}px`,
@@ -432,7 +477,7 @@ function Root(
                     <MarkGithubIcon fill="currentColor" size={24} />
                   </a>
                 </li>
-                {title && isSmall && (
+                {title && (
                   <>
                     <li>
                       <a
@@ -449,7 +494,7 @@ function Root(
                 )}
               </ol>
             </nav>
-            {isMedium && hasLeadingComponent && (
+            {isLarge && hasLeadingComponent && (
               <div className={styles['SubdomainNavBar-leading-component']}>{leadingComponent}</div>
             )}
             {hasLinks && (
@@ -473,7 +518,8 @@ function Root(
                       active: searchVisible,
                       className: clsx(
                         child.props.className,
-                        (hasActions || hasTrailingComponent) &&
+                        isLarge &&
+                          (hasActions || hasTrailingComponent) &&
                           styles['SubdomainNavBar-search-trigger--has-trailing-item'],
                       ),
                       onSearchOpen: handleSearchOpen,
@@ -488,7 +534,7 @@ function Root(
               {hasNarrowMenuContent && (
                 <button
                   aria-expanded={!menuHidden}
-                  aria-label="Menu"
+                  aria-label={menuHidden ? resolvedMenuLabels.menuLabel : resolvedMenuLabels.closeLabel}
                   aria-controls={narrowMenuID}
                   className={clsx(
                     styles['SubdomainNavBar-menu-button'],
@@ -503,11 +549,13 @@ function Root(
                     <span className={styles['SubdomainNavBar-menu-button-bar']}></span>
                     <span className={styles['SubdomainNavBar-menu-button-bar']}></span>
                   </span>
-                  <span className={styles['SubdomainNavBar-menu-button-label']}>Menu</span>
+                  <span className={styles['SubdomainNavBar-menu-button-label']}>
+                    {menuHidden ? resolvedMenuLabels.menuLabel : resolvedMenuLabels.closeLabel}
+                  </span>
                 </button>
               )}
 
-              {isMedium && hasActions && (
+              {isLarge && hasActions && (
                 <div
                   className={clsx(
                     styles['SubdomainNavBar-button-area'],
@@ -518,7 +566,7 @@ function Root(
                   <div className={styles['SubdomainNavBar-button-area-inner']}>{actionItems}</div>
                 </div>
               )}
-              {isMedium && hasTrailingComponent && (
+              {isLarge && hasTrailingComponent && (
                 <div className={styles['SubdomainNavBar-trailing-component']}>{trailingComponent}</div>
               )}
 
@@ -530,34 +578,27 @@ function Root(
                     menuHidden && styles['SubdomainNavBar-menu-wrapper--close'],
                   )}
                 >
-                  <div>
-                    {(!isMedium || !menuHidden) && title && titleHref && (
-                      <Text as="p">
-                        <a
-                          href={titleHref}
-                          aria-label={`${title} home`}
-                          className={clsx(styles['SubdomainNavBar-link'], styles['SubdomainNavBar-link--title'])}
-                        >
-                          {title}
-                        </a>
-                      </Text>
-                    )}
-                    {(!isMedium || !menuHidden) && hasLeadingComponent && (
-                      <div className={styles['SubdomainNavBar-leading-component']}>{leadingComponent}</div>
-                    )}
-                    {hasLinks &&
-                      !menuHidden &&
-                      (isMedium ? (
-                        <ul className={styles['SubdomainNavBar-primary-nav-list--visible']}>{menuItems}</ul>
-                      ) : (
-                        <NavigationVisbilityObserver
-                          className={clsx(styles['SubdomainNavBar-primary-nav-list--visible'])}
-                        >
-                          {menuItems}
-                        </NavigationVisbilityObserver>
-                      ))}
-                  </div>
-                  {(!isMedium || !menuHidden) && (hasActions || hasTrailingComponent) && (
+                  {!menuHidden && (
+                    <div>
+                      {hasLeadingComponent && (
+                        <div className={styles['SubdomainNavBar-leading-component']}>{leadingComponent}</div>
+                      )}
+                      {hasLinks && (
+                        <SubdomainNavBarLinkContext.Provider value={{onLinkClick: closeNarrowMenu}}>
+                          {isMedium ? (
+                            <ul className={styles['SubdomainNavBar-primary-nav-list--visible']}>{menuItems}</ul>
+                          ) : (
+                            <NavigationVisbilityObserver
+                              className={clsx(styles['SubdomainNavBar-primary-nav-list--visible'])}
+                            >
+                              {menuItems}
+                            </NavigationVisbilityObserver>
+                          )}
+                        </SubdomainNavBarLinkContext.Provider>
+                      )}
+                    </div>
+                  )}
+                  {!menuHidden && (hasActions || hasTrailingComponent) && (
                     <div className={styles['SubdomainNavBar-menu-wrapper-footer']}>
                       {hasActions && (
                         <div
@@ -566,7 +607,11 @@ function Root(
                             styles['SubdomainNavBar-button-area--visible'],
                           )}
                         >
-                          <div className={styles['SubdomainNavBar-button-area-inner']}>{actionItems}</div>
+                          <div className={styles['SubdomainNavBar-button-area-inner']}>
+                            <SubdomainNavBarActionSizeContext.Provider value={isMedium ? 'small' : 'medium'}>
+                              {narrowActionItems}
+                            </SubdomainNavBarActionSizeContext.Provider>
+                          </div>
                         </div>
                       )}
                       {hasTrailingComponent && (
@@ -1137,13 +1182,15 @@ type CTAActionProps = {
 } & React.HTMLAttributes<HTMLAnchorElement>
 
 function PrimaryAction({children, href, ...rest}: PropsWithChildren<CTAActionProps>) {
+  const size = React.useContext(SubdomainNavBarActionSizeContext)
+
   return (
     <Button
       as="a"
       href={href}
       className={clsx(styles['SubdomainNavBar-cta-button'])}
       variant="primary"
-      size="small"
+      size={size}
       {...rest}
     >
       {children}
@@ -1152,12 +1199,14 @@ function PrimaryAction({children, href, ...rest}: PropsWithChildren<CTAActionPro
 }
 
 function SecondaryAction({children, href, ...rest}: PropsWithChildren<CTAActionProps>) {
+  const size = React.useContext(SubdomainNavBarActionSizeContext)
+
   return (
     <Button
       as="a"
       href={href}
       className={clsx(styles['SubdomainNavBar-cta-button'], styles['SubdomainNavBar-cta-button--secondary'])}
-      size="small"
+      size={size}
       {...rest}
     >
       {children}

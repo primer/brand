@@ -112,6 +112,36 @@ test.describe('Visual Comparison: SubdomainNavBar', () => {
   })
 
   // eslint-disable-next-line i18n-text/no-en
+  test.describe('Custom viewport test for Tablet View', () => {
+    test.use({viewport: {width: 800, height: 900}})
+    test('SubdomainNavBar / Tablet View', async ({page}) => {
+      await page.goto(
+        'http://localhost:6006/iframe.html?args=&id=components-subdomainnavbar--tablet-view&viewMode=story',
+        {waitUntil: 'networkidle'},
+      )
+      await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+      await page.waitForTimeout(500)
+      await expect(page).toHaveScreenshot({fullPage: true})
+    })
+  })
+
+  // eslint-disable-next-line i18n-text/no-en
+  test.describe('Custom viewport test for Tablet Menu Open', () => {
+    test.use({viewport: {width: 800, height: 900}})
+    test('SubdomainNavBar / Tablet Menu Open', async ({page}) => {
+      await page.goto(
+        'http://localhost:6006/iframe.html?args=&id=components-subdomainnavbar--tablet-menu-open&viewMode=story',
+        {waitUntil: 'networkidle'},
+      )
+      await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+      await page.waitForTimeout(5500)
+      await expect(page).toHaveScreenshot({fullPage: true})
+    })
+  })
+
+  // eslint-disable-next-line i18n-text/no-en
   test.describe('Mobile viewport test for Mobile View', () => {
     test.use({viewport: {width: 360, height: 800}})
     test('SubdomainNavBar / Mobile View', async ({page}) => {

@@ -40,6 +40,7 @@ const waitForTimeoutLookup = {
   'components-subdomainnavbar--mobile-search-results-visible': 5500, // for the animation
   'components-subdomainnavbar--mobile-no-links': 5500, // for the animation
   'components-subdomainnavbar--mobile-leading-component-only-menu-open': 5500, // for the animation
+  'components-subdomainnavbar--tablet-menu-open': 5500, // for all staggered animations
   'components-subdomainnavbar--overflow-menu-open': 1500, // wait for responsive overflow measurement
   'components-subdomainnavbar--reversed-button-order-narrow': 5500, // for the animation
   'components-button-features--primary-focus-non-standard-bg': 2000, // for the interaction test
@@ -135,6 +136,8 @@ const screenshotOptionsLookup: Partial<Record<string, string>> = {
 const viewportLookup: Partial<Record<string, {width: number; height: number}>> = {
   'components-subdomainnavbar--desktop-pill-states': {width: 1440, height: 900},
   'components-subdomainnavbar--overflow-menu-open': {width: 1440, height: 900},
+  'components-subdomainnavbar--tablet-menu-open': {width: 800, height: 900},
+  'components-subdomainnavbar--tablet-view': {width: 800, height: 900},
 }
 
 // const skipLocalizationsTestsFor = [

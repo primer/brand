@@ -85,6 +85,7 @@ describe('SubdomainNavBar', () => {
     cleanup()
     jest.clearAllMocks()
     global.ResizeObserver = originalResizeObserver
+    document.body.style.overflow = ''
 
     if (originalDocumentFontsDescriptor) {
       Object.defineProperty(document, 'fonts', originalDocumentFontsDescriptor)
@@ -521,22 +522,212 @@ describe('SubdomainNavBar', () => {
   it('renders a functional menu control with a visible label on tablet viewports', async () => {
     mockUseWindowSize.mockImplementation(() => ({isSmall: true, isMedium: true, isLarge: false}))
     const user = userEvent.setup()
-    const {getByRole, getByText} = render(<Component />)
+    const {getByRole, getByText, queryByRole} = render(<Component />)
 
     const menuButton = getByRole('button', {name: 'Menu'})
     const menuId = menuButton.getAttribute('aria-controls')
     expect(getByText('Menu')).toHaveClass('SubdomainNavBar-menu-button-label')
     expect(menuButton).toHaveAttribute('aria-expanded', 'false')
     expect(menuId).toBeTruthy()
+    expect(queryByRole('link', {name: 'Primary CTA'})).not.toBeInTheDocument()
+    expect(queryByRole('link', {name: 'Secondary CTA'})).not.toBeInTheDocument()
 
     await user.click(menuButton)
 
     const menu = document.getElementById(menuId as string)
     expect(menuButton).toHaveAttribute('aria-expanded', 'true')
+    expect(menuButton).toHaveAccessibleName('Close')
+    expect(getByText('Close')).toHaveClass('SubdomainNavBar-menu-button-label')
+    expect(within(menu as HTMLElement).queryByRole('link', {name: 'Subdomain home'})).not.toBeInTheDocument()
     expect(within(menu as HTMLElement).getByRole('link', {name: 'Collections'})).toBeVisible()
-    expect(within(menu as HTMLElement).getByRole('link', {name: 'Subdomain home'})).toBeVisible()
     expect(within(menu as HTMLElement).getByRole('link', {name: 'Primary CTA'})).toBeVisible()
     expect(within(menu as HTMLElement).getByRole('link', {name: 'Secondary CTA'})).toBeVisible()
+    expect(menu).not.toHaveAttribute('role', 'dialog')
+    expect(menu).not.toHaveAttribute('aria-modal')
+  })
+
+  it.each([
+    {
+      menuLabels: {menuLabel: 'Navigation', closeLabel: 'Dismiss'},
+      expectedMenuLabel: 'Navigation',
+      expectedCloseLabel: 'Dismiss',
+    },
+    {
+      menuLabels: {menuLabel: 'Navigation'},
+      expectedMenuLabel: 'Navigation',
+      expectedCloseLabel: 'Close',
+    },
+    {
+      menuLabels: {closeLabel: 'Dismiss'},
+      expectedMenuLabel: 'Menu',
+      expectedCloseLabel: 'Dismiss',
+    },
+  ])(
+    'uses custom narrow menu labels with English fallbacks',
+    async ({menuLabels, expectedMenuLabel, expectedCloseLabel}) => {
+      const user = userEvent.setup()
+      const {getByRole, getByText} = render(
+        <SubdomainNavBar title="Subdomain" menuLabels={menuLabels}>
+          <SubdomainNavBar.Link href="#">Collections</SubdomainNavBar.Link>
+        </SubdomainNavBar>,
+      )
+
+      const menuButton = getByRole('button', {name: expectedMenuLabel})
+      expect(getByText(expectedMenuLabel)).toBeInTheDocument()
+
+      await user.click(menuButton)
+
+      expect(menuButton).toHaveAccessibleName(expectedCloseLabel)
+      expect(getByText(expectedCloseLabel)).toBeInTheDocument()
+    },
+  )
+
+  it('keeps the title visible on mobile viewports', () => {
+    mockUseWindowSize.mockImplementation(() => ({isSmall: false, isMedium: false, isLarge: false}))
+
+    const {getByRole} = render(<Component />)
+
+    expect(getByRole('link', {name: 'Subdomain home'})).toBeInTheDocument()
+  })
+
+  it('closes the narrow menu when search opens', async () => {
+    mockUseWindowSize.mockImplementation(() => ({isSmall: true, isMedium: true, isLarge: false}))
+    const mockOnNarrowMenuToggle = jest.fn()
+    const user = userEvent.setup()
+    const {getByRole, getByTestId} = render(
+      <SubdomainNavBar title="Subdomain" onNarrowMenuToggle={mockOnNarrowMenuToggle}>
+        <SubdomainNavBar.Link href="#">Collections</SubdomainNavBar.Link>
+        <SubdomainNavBar.Search searchTerm="" onChange={jest.fn} onSubmit={jest.fn()} />
+      </SubdomainNavBar>,
+    )
+
+    const menuButton = getByRole('button', {name: 'Menu'})
+    await user.click(menuButton)
+    await user.click(getByTestId('toggle-search'))
+
+    expect(menuButton).toHaveAttribute('aria-expanded', 'false')
+    expect(getByRole('dialog')).toBeInTheDocument()
+    expect(mockOnNarrowMenuToggle).toHaveBeenNthCalledWith(1, true)
+    expect(mockOnNarrowMenuToggle).toHaveBeenNthCalledWith(2, false)
+  })
+
+  it('closes search before opening the narrow menu', async () => {
+    mockUseWindowSize.mockImplementation(() => ({isSmall: true, isMedium: true, isLarge: false}))
+    const user = userEvent.setup()
+    const {getByRole, getByTestId, queryByRole} = render(<Component />)
+
+    await user.click(getByTestId('toggle-search'))
+    await user.click(getByRole('button', {name: 'Menu'}))
+
+    expect(queryByRole('dialog')).not.toBeInTheDocument()
+    expect(getByRole('button', {name: 'Close'})).toHaveAttribute('aria-expanded', 'true')
+  })
+
+  it('restores body overflow and closes the menu when a narrow navigation link is activated', async () => {
+    mockUseWindowSize.mockImplementation(() => ({isSmall: false, isMedium: false, isLarge: false}))
+    document.body.style.overflow = 'clip'
+    const mockOnNarrowMenuToggle = jest.fn()
+    const user = userEvent.setup()
+    const {getByRole} = render(
+      <SubdomainNavBar title="Subdomain" onNarrowMenuToggle={mockOnNarrowMenuToggle}>
+        <SubdomainNavBar.Link href="#collections">Collections</SubdomainNavBar.Link>
+      </SubdomainNavBar>,
+    )
+
+    const menuButton = getByRole('button', {name: 'Menu'})
+    await user.click(menuButton)
+    expect(document.body.style.overflow).toBe('hidden')
+
+    const menuId = menuButton.getAttribute('aria-controls')
+    const menu = document.getElementById(menuId as string)
+    await user.click(within(menu as HTMLElement).getByRole('link', {name: 'Collections'}))
+
+    expect(menuButton).toHaveAttribute('aria-expanded', 'false')
+    expect(document.body.style.overflow).toBe('clip')
+    expect(mockOnNarrowMenuToggle).toHaveBeenNthCalledWith(1, true)
+    expect(mockOnNarrowMenuToggle).toHaveBeenNthCalledWith(2, false)
+  })
+
+  it('closes the narrow menu and preserves the consumer handler when an action is activated', async () => {
+    mockUseWindowSize.mockImplementation(() => ({isSmall: true, isMedium: true, isLarge: false}))
+    document.body.style.overflow = 'clip'
+    const mockOnClick = jest.fn()
+    const mockOnNarrowMenuToggle = jest.fn()
+    const user = userEvent.setup()
+    const {getByRole} = render(
+      <SubdomainNavBar title="Subdomain" onNarrowMenuToggle={mockOnNarrowMenuToggle}>
+        <SubdomainNavBar.PrimaryAction href="#target" onClick={mockOnClick}>
+          Primary CTA
+        </SubdomainNavBar.PrimaryAction>
+      </SubdomainNavBar>,
+    )
+
+    const menuButton = getByRole('button', {name: 'Menu'})
+    await user.click(menuButton)
+    const menuId = menuButton.getAttribute('aria-controls')
+    const menu = document.getElementById(menuId as string)
+
+    await user.click(within(menu as HTMLElement).getByRole('link', {name: 'Primary CTA'}))
+
+    expect(mockOnClick).toHaveBeenCalledTimes(1)
+    expect(menuButton).toHaveAttribute('aria-expanded', 'false')
+    expect(document.body.style.overflow).toBe('clip')
+    expect(mockOnNarrowMenuToggle).toHaveBeenNthCalledWith(1, true)
+    expect(mockOnNarrowMenuToggle).toHaveBeenNthCalledWith(2, false)
+  })
+
+  it('keeps the narrow menu open when an action prevents navigation', async () => {
+    mockUseWindowSize.mockImplementation(() => ({isSmall: true, isMedium: true, isLarge: false}))
+    const mockOnNarrowMenuToggle = jest.fn()
+    const user = userEvent.setup()
+    const {getByRole} = render(
+      <SubdomainNavBar title="Subdomain" onNarrowMenuToggle={mockOnNarrowMenuToggle}>
+        <SubdomainNavBar.PrimaryAction href="#target" onClick={event => event.preventDefault()}>
+          Primary CTA
+        </SubdomainNavBar.PrimaryAction>
+      </SubdomainNavBar>,
+    )
+
+    const menuButton = getByRole('button', {name: 'Menu'})
+    await user.click(menuButton)
+    const menuId = menuButton.getAttribute('aria-controls')
+    const menu = document.getElementById(menuId as string)
+
+    await user.click(within(menu as HTMLElement).getByRole('link', {name: 'Primary CTA'}))
+
+    expect(menuButton).toHaveAttribute('aria-expanded', 'true')
+    expect(document.body.style.overflow).toBe('hidden')
+    expect(mockOnNarrowMenuToggle).toHaveBeenCalledTimes(1)
+    expect(mockOnNarrowMenuToggle).toHaveBeenCalledWith(true)
+  })
+
+  it('only reports Escape and desktop resize when they close an open narrow menu', () => {
+    let windowSize = {isSmall: true, isMedium: true, isLarge: false}
+    mockUseWindowSize.mockImplementation(() => windowSize)
+    const mockOnNarrowMenuToggle = jest.fn()
+    const {getByRole, rerender} = render(
+      <SubdomainNavBar title="Subdomain" onNarrowMenuToggle={mockOnNarrowMenuToggle}>
+        <SubdomainNavBar.Link href="#">Collections</SubdomainNavBar.Link>
+      </SubdomainNavBar>,
+    )
+
+    fireEvent.keyDown(document, {key: 'Escape'})
+    expect(mockOnNarrowMenuToggle).not.toHaveBeenCalled()
+
+    fireEvent.click(getByRole('button', {name: 'Menu'}))
+    fireEvent.keyDown(document, {key: 'Escape'})
+    expect(mockOnNarrowMenuToggle).toHaveBeenNthCalledWith(1, true)
+    expect(mockOnNarrowMenuToggle).toHaveBeenNthCalledWith(2, false)
+
+    fireEvent.click(getByRole('button', {name: 'Menu'}))
+    windowSize = {isSmall: true, isMedium: true, isLarge: true}
+    rerender(
+      <SubdomainNavBar title="Subdomain" onNarrowMenuToggle={mockOnNarrowMenuToggle}>
+        <SubdomainNavBar.Link href="#">Collections</SubdomainNavBar.Link>
+      </SubdomainNavBar>,
+    )
+    expect(mockOnNarrowMenuToggle).toHaveBeenNthCalledWith(3, true)
+    expect(mockOnNarrowMenuToggle).toHaveBeenNthCalledWith(4, false)
   })
 
   it('discloses leading-only mobile content and makes it keyboard reachable', async () => {
@@ -859,7 +1050,7 @@ describe('SubdomainNavBar', () => {
   })
 
   it('adds a trailing border class to search when actions follow it', () => {
-    mockUseWindowSize.mockImplementation(() => ({isSmall: true, isMedium: true}))
+    mockUseWindowSize.mockImplementation(() => ({isSmall: true, isMedium: true, isLarge: true}))
 
     const {getByTestId} = render(
       <SubdomainNavBar title="Subdomain">
@@ -873,7 +1064,7 @@ describe('SubdomainNavBar', () => {
   })
 
   it('adds a trailing border class to search when a trailing component follows it', () => {
-    mockUseWindowSize.mockImplementation(() => ({isSmall: true, isMedium: true}))
+    mockUseWindowSize.mockImplementation(() => ({isSmall: true, isMedium: true, isLarge: true}))
 
     const {getByTestId} = render(
       <SubdomainNavBar title="Subdomain" trailingComponent={<span>Trailing content</span>}>
@@ -886,7 +1077,7 @@ describe('SubdomainNavBar', () => {
   })
 
   it('renders action buttons with the 32px Button size', () => {
-    mockUseWindowSize.mockImplementation(() => ({isSmall: true, isMedium: true}))
+    mockUseWindowSize.mockImplementation(() => ({isSmall: true, isMedium: true, isLarge: true}))
 
     const {getByRole} = render(
       <SubdomainNavBar title="Subdomain">
@@ -897,6 +1088,25 @@ describe('SubdomainNavBar', () => {
 
     expect(getByRole('link', {name: 'Primary CTA'})).toHaveClass('Button--size-small')
     expect(getByRole('link', {name: 'Secondary CTA'})).toHaveClass('Button--size-small')
+  })
+
+  it.each([
+    ['tablet', true, 'small'],
+    ['mobile', false, 'medium'],
+  ])('renders action buttons with the appropriate Button size on %s', async (_viewport, isMedium, size) => {
+    mockUseWindowSize.mockImplementation(() => ({isSmall: !isMedium, isMedium, isLarge: false}))
+
+    const {getByRole} = render(
+      <SubdomainNavBar title="Subdomain">
+        <SubdomainNavBar.PrimaryAction href="#">Primary CTA</SubdomainNavBar.PrimaryAction>
+        <SubdomainNavBar.SecondaryAction href="#">Secondary CTA</SubdomainNavBar.SecondaryAction>
+      </SubdomainNavBar>,
+    )
+
+    await userEvent.click(getByRole('button', {name: 'Menu'}))
+
+    expect(getByRole('link', {name: 'Primary CTA'})).toHaveClass(`Button--size-${size}`)
+    expect(getByRole('link', {name: 'Secondary CTA'})).toHaveClass(`Button--size-${size}`)
   })
 
   it('renders the search trigger with placeholder and shortcut text', () => {
@@ -1037,7 +1247,7 @@ describe('SubdomainNavBar', () => {
   })
 
   it('adds a trailing border class to the action area when a trailing component follows it', () => {
-    mockUseWindowSize.mockImplementation(() => ({isSmall: true, isMedium: true}))
+    mockUseWindowSize.mockImplementation(() => ({isSmall: true, isMedium: true, isLarge: true}))
 
     const {container} = render(
       <SubdomainNavBar title="Subdomain" trailingComponent={<span>Trailing content</span>}>
@@ -1050,7 +1260,7 @@ describe('SubdomainNavBar', () => {
   })
 
   it('renders leading and trailing components in the expected order', () => {
-    mockUseWindowSize.mockImplementation(() => ({isSmall: true, isMedium: true}))
+    mockUseWindowSize.mockImplementation(() => ({isSmall: true, isMedium: true, isLarge: true}))
 
     const {getByRole, getByText} = render(
       <Component leadingComponent={<span>Leading content</span>} trailingComponent={<span>Trailing content</span>} />,

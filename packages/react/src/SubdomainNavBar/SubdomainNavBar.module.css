@@ -203,11 +203,10 @@
     top: var(--SubdomainNavBar-height);
     left: 0;
     right: 0;
-    bottom: 0;
     z-index: 2;
     background-color: var(--brand-color-canvas-default);
     width: 100%;
-    height: calc(100vh - var(--SubdomainNavBar-height) - var(--SubdomainNavBar-menu-offset-block-start, 0px));
+    max-height: calc(100vh - var(--SubdomainNavBar-height) - var(--SubdomainNavBar-menu-offset-block-start, 0px));
     animation: fade-in-down 500ms;
     animation-timing-function: var(--brand-animation-easing-default);
   }
@@ -221,7 +220,6 @@
     display: flex;
     flex-direction: column;
     width: 100%;
-    margin-block-start: auto;
   }
 }
 
@@ -456,6 +454,7 @@
 }
 
 .SubdomainNavBar-menu-button {
+  position: relative;
   cursor: pointer;
   appearance: none;
   background-color: transparent;
@@ -552,11 +551,11 @@
   line-height: 1.6;
 }
 
-@media screen and (max-width: 63.24rem) {
+@media screen and (max-width: 47.99rem) {
   .SubdomainNavBar-search-trigger {
-    flex: 0 0 var(--base-size-64);
+    flex: 0 0 var(--base-size-48);
     justify-content: center;
-    width: var(--base-size-64);
+    width: var(--base-size-48);
   }
 
   .SubdomainNavBar-search-input-button {
@@ -631,6 +630,20 @@
   transform: rotate(45deg) translateY(3px);
 }
 
+.SubdomainNavBar-mobile-menu-button.SubdomainNavBar-menu-button--close {
+  background-color: var(--brand-color-canvas-muted);
+}
+
+.SubdomainNavBar-mobile-menu-button.SubdomainNavBar-menu-button--close::after {
+  content: '';
+  position: absolute;
+  z-index: 1;
+  inset-inline: 0;
+  inset-block-end: calc(var(--brand-borderWidth-thin) * -2);
+  height: calc(var(--brand-borderWidth-thin) * 2);
+  background-color: var(--brand-color-canvas-muted);
+}
+
 @media screen and (min-width: 63.25rem) {
   .SubdomainNavBar-menu-button:hover {
     background-color: transparent;
@@ -653,11 +666,25 @@
   }
 
   .SubdomainNavBar .SubdomainNavBar-secondary-nav {
-    flex: 1 1 auto;
+    position: relative;
+    flex: 0 0 auto;
+    align-self: stretch;
+  }
+
+  .SubdomainNavBar .SubdomainNavBar-search-trigger {
+    --SubdomainNavBar-tablet-search-width: calc(var(--base-size-128) * 2 + var(--base-size-2));
+
+    flex: 0 0 var(--SubdomainNavBar-tablet-search-width);
+    width: var(--SubdomainNavBar-tablet-search-width);
+    padding-inline: var(--base-size-8);
+    border-inline-start: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
+  }
+
+  .SubdomainNavBar .SubdomainNavBar-search-input-button {
+    width: 100%;
   }
 
   .SubdomainNavBar .SubdomainNavBar-mobile-menu-button {
-    order: -1;
     align-self: stretch;
     flex: none;
     flex-direction: row;
@@ -665,13 +692,12 @@
     justify-content: center;
     gap: var(--base-size-8);
     width: max-content;
-    min-width: max-content;
+    min-width: calc(var(--base-size-64) + var(--base-size-32));
     height: 100%;
-    margin-inline-end: auto;
     padding-inline: var(--base-size-16);
     color: var(--brand-color-text-default);
-    background-color: transparent;
     border: 0;
+    border-inline-start: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
     border-inline-end: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
     border-radius: 0;
     overflow: visible;
@@ -719,9 +745,12 @@
     inset-inline: 0;
     top: var(--SubdomainNavBar-height);
     z-index: 2;
+    box-sizing: border-box;
     width: 100%;
-    height: calc(100vh - var(--SubdomainNavBar-height) - var(--SubdomainNavBar-menu-offset-block-start, 0px));
+    max-height: calc(100vh - var(--SubdomainNavBar-height) - var(--SubdomainNavBar-menu-offset-block-start, 0px));
     background-color: var(--brand-color-canvas-default);
+    border-inline: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
+    border-block-end: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
     animation: fade-in-down 500ms;
     animation-timing-function: var(--brand-animation-easing-default);
   }
@@ -741,7 +770,6 @@
     display: flex;
     flex-direction: column;
     width: 100%;
-    margin-block-start: auto;
   }
 
   .SubdomainNavBar .SubdomainNavBar-menu-wrapper > div:first-child > * {
@@ -749,9 +777,54 @@
   }
 
   .SubdomainNavBar .SubdomainNavBar-menu-wrapper .SubdomainNavBar-link {
+    box-sizing: border-box;
+    width: 100%;
     padding: var(--base-size-16);
     font-size: var(--brand-text-size-100);
     line-height: var(--brand-text-lineHeight-100);
+  }
+
+  .SubdomainNavBar
+    .SubdomainNavBar-menu-wrapper
+    .SubdomainNavBar-primary-nav-list-item:not(.SubdomainNavBar-overflow-menu-item) {
+    width: 100%;
+    height: auto;
+  }
+
+  .SubdomainNavBar
+    .SubdomainNavBar-menu-wrapper
+    .SubdomainNavBar-primary-nav-list-item:not(.SubdomainNavBar-overflow-menu-item)
+    > .SubdomainNavBar-link {
+    padding: var(--base-size-16);
+  }
+
+  .SubdomainNavBar
+    .SubdomainNavBar-menu-wrapper
+    .SubdomainNavBar-primary-nav-list-item:not(.SubdomainNavBar-overflow-menu-item)
+    > .SubdomainNavBar-link
+    > .SubdomainNavBar-link-content {
+    width: 100%;
+    padding: 0;
+    background-color: transparent;
+    border-radius: 0;
+  }
+
+  .SubdomainNavBar
+    .SubdomainNavBar-menu-wrapper
+    .SubdomainNavBar-primary-nav-list-item:not(.SubdomainNavBar-overflow-menu-item)
+    > .SubdomainNavBar-link:hover
+    > .SubdomainNavBar-link-content,
+  .SubdomainNavBar
+    .SubdomainNavBar-menu-wrapper
+    .SubdomainNavBar-primary-nav-list-item:not(.SubdomainNavBar-overflow-menu-item)
+    > .SubdomainNavBar-link:active
+    > .SubdomainNavBar-link-content,
+  .SubdomainNavBar
+    .SubdomainNavBar-menu-wrapper
+    .SubdomainNavBar-primary-nav-list-item:not(.SubdomainNavBar-overflow-menu-item)
+    > .SubdomainNavBar-link[aria-current]:not([aria-current='false'])
+    > .SubdomainNavBar-link-content {
+    background-color: transparent;
   }
 
   .SubdomainNavBar .SubdomainNavBar-menu-wrapper .SubdomainNavBar-link--title {
@@ -841,7 +914,8 @@
 
 .SubdomainNavBar .SubdomainNavBar-menu-wrapper {
   top: var(--SubdomainNavBar-height);
-  height: calc(100vh - var(--SubdomainNavBar-height) - var(--SubdomainNavBar-menu-offset-block-start, 0px));
+  height: auto;
+  max-height: calc(100vh - var(--SubdomainNavBar-height) - var(--SubdomainNavBar-menu-offset-block-start, 0px));
 }
 
 .SubdomainNavBar .SubdomainNavBar-inner-container--search-open {
@@ -851,7 +925,7 @@
 @media screen and (max-width: 47.99rem) {
   .SubdomainNavBar {
     --SubdomainNavBar-height: calc(var(--base-size-64) - var(--base-size-8));
-    --SubdomainNavBar-mobile-control-size: calc(var(--SubdomainNavBar-height) - var(--brand-borderWidth-thin));
+    --SubdomainNavBar-mobile-control-size: var(--base-size-48);
   }
 
   .SubdomainNavBar .SubdomainNavBar-inner-container {

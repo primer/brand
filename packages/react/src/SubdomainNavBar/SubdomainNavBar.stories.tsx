@@ -32,6 +32,14 @@ const viewports = {
     },
     type: 'desktop',
   },
+  tablet800: {
+    name: 'Tablet 800',
+    styles: {
+      width: '800px',
+      height: '900px',
+    },
+    type: 'tablet',
+  },
 }
 
 const meta = {
@@ -926,6 +934,51 @@ export const DesktopPillStates: Story = {
   name: 'Desktop Pill States',
 }
 
+export const TabletView: Story = {
+  render: (args: StoryArgs) => <SubdomainNavBarTemplate {...args} />,
+  globals: {
+    viewport: {value: 'tablet800'},
+  },
+  name: 'Tablet View',
+}
+
+export const TabletMenuOpen: Story = {
+  render: () => (
+    <SearchExample
+      showSearch
+      searchPlaceholder="Search ..."
+      searchShortcutLabel="/"
+      leadingComponent={<VersionTokenExample />}
+      trailingComponent={<LanguageDropdownExample />}
+    />
+  ),
+  globals: {
+    viewport: {value: 'tablet800'},
+  },
+  play: async ({canvasElement}) => {
+    const canvas = within(canvasElement)
+    const searchButton = canvas.getByRole('button', {name: 'Search ... search'})
+    const menuButton = canvas.getByLabelText('Menu')
+    await userEvent.click(menuButton)
+
+    const closeButton = canvas.getByRole('button', {name: 'Close'})
+    const menu = document.getElementById(closeButton.getAttribute('aria-controls') as string)
+    const searchRect = searchButton.parentElement?.getBoundingClientRect()
+    const menuRect = menu?.getBoundingClientRect()
+    const navBarRect = closeButton.closest('header')?.getBoundingClientRect()
+    const menuStyles = menu ? getComputedStyle(menu) : undefined
+
+    await expect(closeButton).toHaveAttribute('aria-expanded', 'true')
+    await expect(Math.abs((menuRect?.left ?? 0) - (searchRect?.left ?? 0))).toBeLessThanOrEqual(1)
+    await expect(Math.abs((menuRect?.right ?? 0) - (navBarRect?.right ?? 0))).toBeLessThanOrEqual(1)
+    await expect(menuStyles?.borderInlineStartWidth).toBe('1px')
+    await expect(menuStyles?.borderInlineEndWidth).toBe('1px')
+    await expect(menuStyles?.borderBlockEndWidth).toBe('1px')
+    await expect(menuStyles?.borderBlockEndColor).toBe(menuStyles?.borderInlineStartColor)
+  },
+  name: 'Tablet Menu Open',
+}
+
 export const MobileView: Story = {
   render: (args: StoryArgs) => <SubdomainNavBarTemplate {...args} />,
   globals: {
@@ -940,7 +993,14 @@ export const MobileMenuOpen: Story = {
   },
   play: async ({canvasElement}) => {
     const canvas = within(canvasElement)
-    await userEvent.click(canvas.getByLabelText('Menu'))
+    const menuButton = canvas.getByLabelText('Menu')
+    await userEvent.click(menuButton)
+
+    const closeButton = canvas.getByRole('button', {name: 'Close'})
+    const menu = document.getElementById(closeButton.getAttribute('aria-controls') as string)
+
+    await expect(closeButton).toHaveAttribute('aria-expanded', 'true')
+    await expect(menu?.getBoundingClientRect().height).toBeGreaterThan(0)
   },
 }
 
