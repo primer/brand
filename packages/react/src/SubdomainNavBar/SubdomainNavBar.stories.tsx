@@ -1,12 +1,18 @@
 import type {Meta, StoryObj} from '@storybook/react'
+import {GlobeIcon} from '@primer/octicons-react'
 import {expect, userEvent, within} from 'storybook/test'
 import {INITIAL_VIEWPORTS} from 'storybook/viewport'
 
 import React, {useEffect, useState} from 'react'
-import {Hero, River, Heading, Text, Link} from '../'
+import {ActionMenu, Button, Hero, River, Heading, Text, Link, Token} from '../'
 import placeholderImage from '../fixtures/images/placeholder.png'
 
-import {SubdomainNavBar, SubdomainNavBarProps} from '.'
+import {
+  SubdomainNavBar,
+  type SubdomainNavBarHandle,
+  type SubdomainNavBarProps,
+  type SubdomainNavBarSearchResults,
+} from '.'
 import {waitFor} from '@testing-library/dom'
 
 type StoryArgs = {
@@ -15,6 +21,26 @@ type StoryArgs = {
   title: string
   fullWidth: boolean
 } & SubdomainNavBarProps
+
+const viewports = {
+  ...INITIAL_VIEWPORTS,
+  desktop1440: {
+    name: 'Desktop 1440',
+    styles: {
+      width: '1440px',
+      height: '900px',
+    },
+    type: 'desktop',
+  },
+  tablet800: {
+    name: 'Tablet 800',
+    styles: {
+      width: '800px',
+      height: '900px',
+    },
+    type: 'tablet',
+  },
+}
 
 const meta = {
   title: 'Components/SubdomainNavBar',
@@ -41,7 +67,7 @@ const meta = {
   },
   parameters: {
     viewport: {
-      viewports: INITIAL_VIEWPORTS,
+      options: viewports,
     },
   },
 } satisfies Meta<StoryArgs>
@@ -375,6 +401,65 @@ const mockSearchData = [
   },
 ]
 
+const mockGroupedSearchData: SubdomainNavBarSearchResults = [
+  {
+    title: 'AI results',
+    results: [
+      {
+        title: 'How do I connect to GitHub with my SSH?',
+        description: 'Learn how to generate and add SSH keys for GitHub authentication.',
+        url: '#ai-ssh',
+        date: '2026-07-01T00:00+02:00',
+      },
+      {
+        title: 'How do I sign commits?',
+        description: 'Learn how to sign commits with GPG or SSH keys.',
+        url: '#ai-sign-commits',
+        date: '2026-07-01T00:00+02:00',
+      },
+      {
+        title: 'How do I create webhooks?',
+        description: 'Learn how to create and configure webhooks.',
+        url: '#ai-webhooks',
+        date: '2026-07-01T00:00+02:00',
+      },
+    ],
+  },
+  {
+    title: 'Docs results',
+    results: [
+      {
+        title: 'Frequently asked questions',
+        description: 'Browse common GitHub Docs questions.',
+        url: '#frequently-asked-questions',
+        date: '2026-07-01T00:00+02:00',
+        isExternal: true,
+      },
+      {
+        title: 'How GitHub works',
+        description: 'Understand GitHub concepts and platform workflows.',
+        url: '#how-github-works',
+        date: '2026-07-01T00:00+02:00',
+        isExternal: true,
+      },
+      {
+        title: 'Using the GitHub CLI across GitHub platforms',
+        description: 'Use the GitHub CLI across GitHub products and workflows.',
+        url: '#using-github-cli',
+        date: '2026-07-01T00:00+02:00',
+        isExternal: true,
+      },
+      {
+        title: 'Long article name lorem ipsum dolor sit amet using the GitHub CLI across GitHub platforms',
+        description: 'A longer docs result title that truncates in the search modal.',
+        url: '#long-article-name',
+        date: '2026-07-01T00:00+02:00',
+        isExternal: true,
+      },
+    ],
+  },
+]
+
 const SubdomainNavBarTemplate = ({showSearch, numLinks, ...args}: StoryArgs) => {
   const inputRef = React.useRef<HTMLInputElement | null>(null)
   const [searchResults, setSearchResults] = React.useState<
@@ -411,7 +496,21 @@ const SubdomainNavBarTemplate = ({showSearch, numLinks, ...args}: StoryArgs) => 
     <>
       <div>
         <SubdomainNavBar {...args} title={args.title}>
-          {['collections', 'topics', 'articles', 'events', 'video', 'social', 'podcasts', 'books', 'guides', 'webcasts']
+          {[
+            'collections',
+            'topics',
+            'articles',
+            'events',
+            'video',
+            'social',
+            'podcasts',
+            'books',
+            'guides',
+            'webcasts',
+            'customer stories',
+            'learning paths',
+            'resources',
+          ]
             .slice(0, numLinks)
             .map(link => {
               return (
@@ -602,6 +701,144 @@ const ExternalLinkExample = () => (
   </SubdomainNavBar>
 )
 
+const LanguageDropdownExample = () => {
+  const [selectedLanguage, setSelectedLanguage] = React.useState('English')
+
+  return (
+    <ActionMenu size="small" onSelect={setSelectedLanguage} selectionVariant="single">
+      <ActionMenu.Button variant="secondary" leadingVisual={<GlobeIcon />}>
+        {selectedLanguage}
+      </ActionMenu.Button>
+      <ActionMenu.Overlay aria-label="Select language">
+        {['English', 'Deutsch', 'Español', 'Français', '日本語'].map(language => (
+          <ActionMenu.Item key={language} value={language} selected={language === selectedLanguage}>
+            {language}
+          </ActionMenu.Item>
+        ))}
+      </ActionMenu.Overlay>
+    </ActionMenu>
+  )
+}
+
+const VersionTokenExample = () => <Token>v1.5.3</Token>
+
+const ImperativeSearchApiExample = () => {
+  const navRef = React.useRef<SubdomainNavBarHandle | null>(null)
+  const [searchTerm, setSearchTerm] = React.useState('docs')
+  const handleOpenThenClose = () => {
+    navRef.current?.openSearch()
+    window.setTimeout(() => navRef.current?.closeSearch(), 1500)
+  }
+
+  return (
+    <>
+      <SubdomainNavBar ref={navRef} title="GitHub Docs" titleHref="/" fixed={false}>
+        <SubdomainNavBar.Link href="#guides">Guides</SubdomainNavBar.Link>
+        <SubdomainNavBar.Link href="#api">API</SubdomainNavBar.Link>
+        <SubdomainNavBar.Link href="#changelog">Changelog</SubdomainNavBar.Link>
+        <SubdomainNavBar.Search
+          searchTerm={searchTerm}
+          onSubmit={event => event.preventDefault()}
+          onChange={event => setSearchTerm(event.currentTarget.value)}
+          searchResults={mockGroupedSearchData}
+        />
+        <SubdomainNavBar.PrimaryAction href="#">Get started</SubdomainNavBar.PrimaryAction>
+      </SubdomainNavBar>
+      <div
+        style={{
+          alignItems: 'center',
+          display: 'flex',
+          flexWrap: 'wrap',
+          gap: 16,
+          inset: 0,
+          justifyContent: 'center',
+          padding: '0 24px',
+          position: 'fixed',
+        }}
+      >
+        <Button onClick={() => navRef.current?.openSearch()}>Open search</Button>
+        <Button variant="secondary" onClick={handleOpenThenClose}>
+          Open then close search
+        </Button>
+      </div>
+    </>
+  )
+}
+
+const KeyboardShortcutRemapExample = () => {
+  const [searchTerm, setSearchTerm] = React.useState('docs')
+
+  return (
+    <>
+      <SubdomainNavBar title="GitHub Docs" titleHref="/" fullWidth fixed={false}>
+        <SubdomainNavBar.Link href="#guides">Guides</SubdomainNavBar.Link>
+        <SubdomainNavBar.Link href="#api">API</SubdomainNavBar.Link>
+        <SubdomainNavBar.Link href="#changelog">Changelog</SubdomainNavBar.Link>
+        <SubdomainNavBar.Search
+          placeholder="Search docs"
+          keyboardShortcut="Command+Option+k"
+          shortcutLabel="⌘+⌥+k"
+          searchTerm={searchTerm}
+          onSubmit={event => event.preventDefault()}
+          onChange={event => setSearchTerm(event.currentTarget.value)}
+          searchResults={mockGroupedSearchData}
+        />
+        <SubdomainNavBar.PrimaryAction href="#">Get started</SubdomainNavBar.PrimaryAction>
+      </SubdomainNavBar>
+      <Text as="p" style={{margin: '32px auto', maxWidth: 1280, padding: '0 24px'}}>
+        Press <kbd style={{fontFamily: 'var(--brand-fontStack-monospace)'}}>⌘+⌥+k</kbd> to open search. The default{' '}
+        <kbd style={{fontFamily: 'var(--brand-fontStack-monospace)'}}>/</kbd> shortcut is disabled for this example.
+      </Text>
+    </>
+  )
+}
+
+type SearchExampleProps = {
+  leadingComponent?: SubdomainNavBarProps['leadingComponent']
+  trailingComponent?: SubdomainNavBarProps['trailingComponent']
+  showSearch?: boolean
+  searchPlaceholder?: string
+  searchShortcutLabel?: string
+}
+
+const SearchExample = ({
+  leadingComponent,
+  trailingComponent,
+  showSearch = false,
+  searchPlaceholder,
+  searchShortcutLabel,
+}: SearchExampleProps) => {
+  const inputRef = React.useRef<HTMLInputElement | null>(null)
+
+  return (
+    <SubdomainNavBar
+      title="GitHub Docs"
+      titleHref="/"
+      fullWidth
+      fixed={false}
+      leadingComponent={leadingComponent}
+      trailingComponent={trailingComponent}
+    >
+      <SubdomainNavBar.Link href="#item-1">Item 1</SubdomainNavBar.Link>
+      <SubdomainNavBar.Link href="#item-2">Item 2</SubdomainNavBar.Link>
+      <SubdomainNavBar.Link href="#item-3">Item 3</SubdomainNavBar.Link>
+      {showSearch && (
+        <SubdomainNavBar.Search
+          ref={inputRef}
+          placeholder={searchPlaceholder}
+          shortcutLabel={searchShortcutLabel}
+          searchTerm="How do i"
+          onSubmit={event => event.preventDefault()}
+          onChange={() => undefined}
+          searchResults={mockGroupedSearchData}
+        />
+      )}
+      <SubdomainNavBar.SecondaryAction href="#">Contact sales</SubdomainNavBar.SecondaryAction>
+      <SubdomainNavBar.PrimaryAction href="#">Get started</SubdomainNavBar.PrimaryAction>
+    </SubdomainNavBar>
+  )
+}
+
 export const Playground: Story = {
   render: (args: StoryArgs) => <SubdomainNavBarTemplate {...args} />,
   parameters: {
@@ -629,7 +866,7 @@ export const SearchOpen: Story = {
   },
   play: async ({canvasElement}) => {
     const canvas = within(canvasElement)
-    await userEvent.click(canvas.getByLabelText('Toggle search bar'))
+    await userEvent.click(canvas.getByLabelText('Search Site title search'))
 
     await expect(canvas.getByRole('combobox')).toHaveFocus()
   },
@@ -640,21 +877,106 @@ export const SearchResultsVisible: Story = {
   play: async ({canvasElement}) => {
     const canvas = within(canvasElement)
 
-    await userEvent.click(canvas.getByLabelText('Toggle search bar'))
+    await userEvent.click(canvas.getByLabelText('Search Site title search'))
     await userEvent.type(canvas.getByRole('combobox'), 'devops')
     await expect(canvas.getByRole('combobox')).toHaveFocus()
   },
 }
 
+export const ImperativeSearchApi: Story = {
+  render: () => <ImperativeSearchApiExample />,
+  name: 'Imperative Search API',
+}
+
+export const KeyboardShortcutRemap: Story = {
+  render: () => <KeyboardShortcutRemapExample />,
+  name: 'Keyboard Shortcut Remap',
+}
+
 export const OverflowMenuOpen: Story = {
   render: (args: StoryArgs) => <SubdomainNavBarTemplate {...args} />,
+  args: {
+    numLinks: 13,
+  },
+  globals: {
+    viewport: {value: 'desktop1440'},
+  },
   play: async ({canvasElement}) => {
     const canvas = within(canvasElement)
-    await waitFor(async () => {
-      const overflowMenu = await canvas.getByText('More')
-      await userEvent.click(overflowMenu)
-    })
+    await document.fonts.ready
+    await waitFor(() => expect(canvas.getByRole('button', {name: 'More'})).toBeVisible())
+    await userEvent.click(canvas.getByRole('button', {name: 'More'}))
+    await expect(canvas.getByRole('link', {name: 'Books'})).toBeVisible()
   },
+  name: 'Overflow Menu Open',
+}
+
+export const DesktopPillStates: Story = {
+  render: () => (
+    <SubdomainNavBar title="Site title">
+      <SubdomainNavBar.Link href="#default">Default</SubdomainNavBar.Link>
+      <SubdomainNavBar.Link href="#hover">Hover</SubdomainNavBar.Link>
+      <SubdomainNavBar.Link href="#focus">Focus</SubdomainNavBar.Link>
+      <SubdomainNavBar.Link href="#current" aria-current="page">
+        Current
+      </SubdomainNavBar.Link>
+    </SubdomainNavBar>
+  ),
+  globals: {
+    viewport: {value: 'desktop1440'},
+  },
+  parameters: {
+    pseudo: {
+      hover: ['a[href="#hover"]'],
+      focusVisible: ['a[href="#focus"]'],
+    },
+  },
+  name: 'Desktop Pill States',
+}
+
+export const TabletView: Story = {
+  render: (args: StoryArgs) => <SubdomainNavBarTemplate {...args} />,
+  globals: {
+    viewport: {value: 'tablet800'},
+  },
+  name: 'Tablet View',
+}
+
+export const TabletMenuOpen: Story = {
+  render: () => (
+    <SearchExample
+      showSearch
+      searchPlaceholder="Search ..."
+      searchShortcutLabel="/"
+      leadingComponent={<VersionTokenExample />}
+      trailingComponent={<LanguageDropdownExample />}
+    />
+  ),
+  globals: {
+    viewport: {value: 'tablet800'},
+  },
+  play: async ({canvasElement}) => {
+    const canvas = within(canvasElement)
+    const searchButton = canvas.getByRole('button', {name: 'Search ... search'})
+    const menuButton = canvas.getByLabelText('Menu')
+    await userEvent.click(menuButton)
+
+    const closeButton = canvas.getByRole('button', {name: 'Close'})
+    const menu = document.getElementById(closeButton.getAttribute('aria-controls') as string)
+    const searchRect = searchButton.parentElement?.getBoundingClientRect()
+    const menuRect = menu?.getBoundingClientRect()
+    const navBarRect = closeButton.closest('header')?.getBoundingClientRect()
+    const menuStyles = menu ? getComputedStyle(menu) : undefined
+
+    await expect(closeButton).toHaveAttribute('aria-expanded', 'true')
+    await expect(Math.abs((menuRect?.left ?? 0) - (searchRect?.left ?? 0))).toBeLessThanOrEqual(1)
+    await expect(Math.abs((menuRect?.right ?? 0) - (navBarRect?.right ?? 0))).toBeLessThanOrEqual(1)
+    await expect(menuStyles?.borderInlineStartWidth).toBe('1px')
+    await expect(menuStyles?.borderInlineEndWidth).toBe('1px')
+    await expect(menuStyles?.borderBlockEndWidth).toBe('1px')
+    await expect(menuStyles?.borderBlockEndColor).toBe(menuStyles?.borderInlineStartColor)
+  },
+  name: 'Tablet Menu Open',
 }
 
 export const MobileView: Story = {
@@ -671,7 +993,14 @@ export const MobileMenuOpen: Story = {
   },
   play: async ({canvasElement}) => {
     const canvas = within(canvasElement)
-    await userEvent.click(canvas.getByLabelText('Menu'))
+    const menuButton = canvas.getByLabelText('Menu')
+    await userEvent.click(menuButton)
+
+    const closeButton = canvas.getByRole('button', {name: 'Close'})
+    const menu = document.getElementById(closeButton.getAttribute('aria-controls') as string)
+
+    await expect(closeButton).toHaveAttribute('aria-expanded', 'true')
+    await expect(menu?.getBoundingClientRect().height).toBeGreaterThan(0)
   },
 }
 
@@ -695,7 +1024,7 @@ export const MobileSearchResultsVisible: Story = {
   play: async ({canvasElement}) => {
     const canvas = within(canvasElement)
 
-    await userEvent.click(canvas.getByLabelText('Toggle search bar'))
+    await userEvent.click(canvas.getByLabelText('Search Site title search'))
     await userEvent.type(canvas.getByRole('combobox'), 'devops')
     await expect(canvas.getByRole('combobox')).toHaveFocus()
   },
@@ -705,6 +1034,17 @@ export const MobileNoLinks: Story = {
   render: () => <MobileNoLinksExample />,
   globals: {
     viewport: {value: 'iphonex'},
+  },
+}
+
+export const MobileLeadingComponentOnlyMenuOpen: Story = {
+  render: () => <SubdomainNavBar title="Subdomain" leadingComponent={<VersionTokenExample />} />,
+  globals: {
+    viewport: {value: 'iphonex'},
+  },
+  play: async ({canvasElement}) => {
+    const canvas = within(canvasElement)
+    await userEvent.click(canvas.getByLabelText('Menu'))
   },
 }
 
@@ -728,6 +1068,27 @@ export const FullWidth: Story = {
   args: {
     fullWidth: true,
   },
+}
+
+export const WithLeadingComponent: Story = {
+  render: (args: StoryArgs) => <SubdomainNavBarTemplate {...args} leadingComponent={<VersionTokenExample />} />,
+  name: 'With Leading Component',
+}
+
+export const WithTrailingComponent: Story = {
+  render: (args: StoryArgs) => <SubdomainNavBarTemplate {...args} trailingComponent={<LanguageDropdownExample />} />,
+  name: 'With Trailing Component',
+}
+
+export const GroupedSearchResultsVisible: Story = {
+  render: () => <SearchExample showSearch searchPlaceholder="Search ..." searchShortcutLabel="/" />,
+  play: async ({canvasElement}) => {
+    const canvas = within(canvasElement)
+    await userEvent.click(canvas.getByRole('button', {name: 'Search ... search'}))
+    await expect(canvas.getByRole('dialog')).toBeVisible()
+    await expect(canvas.getAllByRole('option')).toHaveLength(7)
+  },
+  name: 'Grouped Search Results Visible',
 }
 
 export const NoTitle: Story = {
