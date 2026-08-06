@@ -1,0 +1,33 @@
+{
+  "templateFile": "./PricingOptions.figma.batch.ts",
+  "components": [
+    {
+      "url": "https://www.figma.com/design/BJ95AjraesmRCWsKA013GS/Primer-Brand?node-id=12643-10718&t=hNiuAeHKuuLZeXnj-11",
+      "source": "src/PricingOptions/PricingOptions.tsx",
+      "component": "PricingOptions",
+      "id": "PricingOptions",
+      "type": "root"
+    },
+    {
+      "url": "https://www.figma.com/design/BJ95AjraesmRCWsKA013GS/Primer-Brand?node-id=12709-17402&t=hNiuAeHKuuLZeXnj-11",
+      "source": "src/PricingOptions/PricingOptions.tsx",
+      "component": "PricingOptions.Item",
+      "id": "PricingOptions.Item",
+      "type": "item"
+    },
+    {
+      "url": "https://www.figma.com/design/BJ95AjraesmRCWsKA013GS/Primer-Brand?node-id=12642-10494&t=WdxoBaPDOhrkV5oD-11",
+      "source": "src/PricingOptions/PricingOptions.tsx",
+      "component": "PricingOptions.FeatureList",
+      "id": "PricingOptions.FeatureList",
+      "type": "feature-list"
+    },
+    {
+      "url": "https://www.figma.com/design/BJ95AjraesmRCWsKA013GS/Primer-Brand?node-id=12636-9140&t=WdxoBaPDOhrkV5oD-11",
+      "source": "src/PricingOptions/PricingOptions.tsx",
+      "component": "PricingOptions.FeatureListItem",
+      "id": "PricingOptions.FeatureListItem",
+      "type": "feature-list-item"
+    }
+  ]
+}

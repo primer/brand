@@ -289,10 +289,11 @@ export default tseslint.config(
 
   // Figma code connect files
   {
-    files: ['**/*.figma.tsx'],
+    files: ['**/*.figma{,.batch}.ts'],
     rules: {
       'github/unescaped-html-literal': 'off',
       'i18n-text/no-en': 'off',
+      'import/no-unresolved': ['error', {ignore: ['^figma$']}],
     },
   },
 )

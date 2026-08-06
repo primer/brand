@@ -57,7 +57,8 @@
     "build:css-types": "tcm -p 'src/**/*.css' .",
     "build:types": "tsc --project tsconfig.build.json",
     "bundle:docs": "node scripts/bundle-docs.mjs",
-    "check": "tsc --noEmit",
+    "check": "tsc --noEmit && npm run check:figma",
+    "check:figma": "tsc --noEmit --project tsconfig.figma.json",
     "clean": "rm -rf lib && rm -rf esm && rm -rf fonts && rm -rf docs && rm -f llms.txt",
     "format": "prettier --check '**/*.{js,jsx,ts,tsx,md,mdx,css,json}'",
     "format:fix": "prettier --write '**/*.{js,jsx,ts,tsx,md,mdx,css,json}'",
@@ -75,7 +76,7 @@
     "@primer/behaviors": "^1.8.2"
   },
   "devDependencies": {
-    "@figma/code-connect": "^1.4.3",
+    "@figma/code-connect": "^1.5.1",
     "@juggle/resize-observer": "^3.4.0",
     "@primer/octicons-react": "19.23.1",
     "@primer/octovisuals-react": "0.3.0",
