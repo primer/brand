@@ -66,7 +66,7 @@ export type SubdomainNavBarProps = {
    */
   trailingComponent?: React.ReactNode
   /**
-   * The title or name of the subdomain. Appears adjacent to the logo and is required for communicating content to assisitive technologies.
+   * The title or name of the subdomain. Appears adjacent to the logo and is required for communicating content to assistive technologies.
    */
   title: string
   /**
@@ -706,7 +706,6 @@ export type SubdomainNavBarSearchProps = {
   title?: string
   onSearchOpen?: () => void
   onSearchClose?: () => void
-  autoComplete?: boolean
   /**
    * Placeholder text shown in the search trigger and the opened search input.
    */

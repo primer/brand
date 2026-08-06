@@ -105,7 +105,7 @@ export const NavigationVisbilityObserver = forwardRef<HTMLUListElement, Navigati
       }
     }, [handleClose, showOverflow])
 
-    useOnClickOutside(overflowRef, () => handleClose(), overflowMenuRef)
+    useOnClickOutside(overflowRef, handleClose, overflowMenuRef)
     useKeyboardEscape(handleEscape)
 
     const {position} = useAnchoredPosition(

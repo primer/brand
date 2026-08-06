@@ -20,6 +20,8 @@ const mockUseWindowSize = useWindowSize as jest.Mock
 mockUseWindowSize.mockImplementation(() => ({isSmall: false, isMedium: false}))
 
 let resizeObserverCallbacks: ResizeObserverCallback[] = []
+const originalResizeObserver = global.ResizeObserver
+const originalDocumentFontsDescriptor = Object.getOwnPropertyDescriptor(document, 'fonts')
 
 class MockResizeObserver implements ResizeObserver {
   constructor(callback: ResizeObserverCallback) {
@@ -82,6 +84,13 @@ describe('SubdomainNavBar', () => {
   afterEach(() => {
     cleanup()
     jest.clearAllMocks()
+    global.ResizeObserver = originalResizeObserver
+
+    if (originalDocumentFontsDescriptor) {
+      Object.defineProperty(document, 'fonts', originalDocumentFontsDescriptor)
+    } else {
+      Reflect.deleteProperty(document, 'fonts')
+    }
   })
 
   beforeEach(() => {
