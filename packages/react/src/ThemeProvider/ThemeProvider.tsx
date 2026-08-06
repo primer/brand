@@ -6,7 +6,15 @@ export enum ColorModesEnum {
   AUTO = 'auto',
 }
 
-export type ColorMode = `${ColorModesEnum}`
+export type ColorMode = `${ColorModesEnum}` | (string & {})
+
+/**
+ * Returns the base color scheme ("light" or "dark") for a given color mode.
+ * Any mode containing "dark" maps to the dark scheme; everything else maps to light.
+ */
+export function getColorScheme(mode: string): 'light' | 'dark' {
+  return mode.includes('dark') ? 'dark' : 'light'
+}
 
 export type ThemeContextProps = {
   /*
@@ -50,7 +58,7 @@ export function ThemeProvider({colorMode = defaultMode, children, ...rest}: Prop
 
   return (
     <ThemeContext.Provider value={{colorMode: activeMode, availableColorModes}}>
-      <div data-color-mode={activeMode} {...rest}>
+      <div data-color-mode={activeMode} data-color-scheme={getColorScheme(activeMode)} {...rest}>
         {children}
       </div>
     </ThemeContext.Provider>

@@ -2,7 +2,7 @@ import React, {useContext} from 'react'
 import {render, renderHook, cleanup} from '@testing-library/react'
 import '@testing-library/jest-dom'
 
-import {ColorMode, ThemeContext, ThemeProvider} from './ThemeProvider'
+import {ColorMode, ThemeContext, ThemeProvider, getColorScheme} from './ThemeProvider'
 import {axe, toHaveNoViolations} from 'jest-axe'
 
 expect.extend(toHaveNoViolations)
@@ -42,6 +42,7 @@ describe('ThemeProvider', () => {
 
     expect(rootEl).toBeInTheDocument()
     expect(rootEl).toHaveAttribute('data-color-mode')
+    expect(rootEl).toHaveAttribute('data-color-scheme', 'light')
     expect(childEl).toBeInTheDocument()
   })
 
@@ -53,6 +54,7 @@ describe('ThemeProvider', () => {
     const expectedMode = 'light'
 
     expect(rootEl).toHaveAttribute('data-color-mode', expectedMode)
+    expect(rootEl).toHaveAttribute('data-color-scheme', 'light')
   })
 
   it('can optionally render dark mode', () => {
@@ -63,6 +65,27 @@ describe('ThemeProvider', () => {
     const el = getByTestId(mockId)
 
     expect(el).toHaveAttribute('data-color-mode', mockMode)
+    expect(el).toHaveAttribute('data-color-scheme', 'dark')
+  })
+
+  it('derives dark color scheme for any mode containing "dark"', () => {
+    const mockId = 'theme-provider'
+    const {getByTestId} = render(<ThemeProvider data-testid={mockId} colorMode="dark_dimmed" />)
+
+    const el = getByTestId(mockId)
+
+    expect(el).toHaveAttribute('data-color-mode', 'dark_dimmed')
+    expect(el).toHaveAttribute('data-color-scheme', 'dark')
+  })
+
+  it('derives light color scheme for modes not containing "dark"', () => {
+    const mockId = 'theme-provider'
+    const {getByTestId} = render(<ThemeProvider data-testid={mockId} colorMode="light_high_contrast" />)
+
+    const el = getByTestId(mockId)
+
+    expect(el).toHaveAttribute('data-color-mode', 'light_high_contrast')
+    expect(el).toHaveAttribute('data-color-scheme', 'light')
   })
 
   it('can optionally render dark color scheme in auto mode', () => {
@@ -85,6 +108,7 @@ describe('ThemeProvider', () => {
     const expectedMode = 'dark'
 
     expect(el).toHaveAttribute('data-color-mode', expectedMode)
+    expect(el).toHaveAttribute('data-color-scheme', 'dark')
 
     matchMediaSpy.mockRestore()
   })
@@ -109,6 +133,7 @@ describe('ThemeProvider', () => {
     const expectedMode = 'light'
 
     expect(el).toHaveAttribute('data-color-mode', expectedMode)
+    expect(el).toHaveAttribute('data-color-scheme', 'light')
   })
 
   it('supports nested ThemeProviders', () => {
@@ -129,8 +154,11 @@ describe('ThemeProvider', () => {
     const levelTwoProviderEl = getByTestId(levelTwoProviderId)
 
     expect(rootProviderEl).toHaveAttribute('data-color-mode', 'light')
+    expect(rootProviderEl).toHaveAttribute('data-color-scheme', 'light')
     expect(levelOneProviderEl).toHaveAttribute('data-color-mode', 'dark')
+    expect(levelOneProviderEl).toHaveAttribute('data-color-scheme', 'dark')
     expect(levelTwoProviderEl).toHaveAttribute('data-color-mode', 'light')
+    expect(levelTwoProviderEl).toHaveAttribute('data-color-scheme', 'light')
   })
 
   it('returns all available modes via context', () => {
@@ -150,10 +178,12 @@ describe('ThemeProvider', () => {
     const {getByTestId, rerender} = render(<MockComponent mode={'light'} />)
 
     expect(getByTestId(mockId)).toHaveAttribute('data-color-mode', 'light')
+    expect(getByTestId(mockId)).toHaveAttribute('data-color-scheme', 'light')
 
     rerender(<MockComponent mode={'dark'} />)
 
     expect(getByTestId(mockId)).toHaveAttribute('data-color-mode', 'dark')
+    expect(getByTestId(mockId)).toHaveAttribute('data-color-scheme', 'dark')
   })
 
   test('no a11y violations', async () => {
@@ -161,5 +191,19 @@ describe('ThemeProvider', () => {
     const results = await axe(container)
 
     expect(results).toHaveNoViolations()
+  })
+})
+
+describe('getColorScheme', () => {
+  it('returns "dark" for modes containing "dark"', () => {
+    expect(getColorScheme('dark')).toBe('dark')
+    expect(getColorScheme('dark_dimmed')).toBe('dark')
+    expect(getColorScheme('dark_high_contrast')).toBe('dark')
+  })
+
+  it('returns "light" for modes not containing "dark"', () => {
+    expect(getColorScheme('light')).toBe('light')
+    expect(getColorScheme('light_high_contrast')).toBe('light')
+    expect(getColorScheme('auto')).toBe('light')
   })
 })

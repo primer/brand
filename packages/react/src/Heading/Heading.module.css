@@ -15,7 +15,7 @@
   --condensed-stretch: 90%;
 }
 
-[data-color-mode='dark'] .Heading {
+:is([data-color-mode='dark'], [data-color-scheme='dark']) .Heading {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

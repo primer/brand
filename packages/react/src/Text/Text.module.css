@@ -2,7 +2,7 @@
   font-family: var(--brand-body-fontFamily);
 }
 
-[data-color-mode='dark'] .Text--antialiased {
+:is([data-color-mode='dark'], [data-color-scheme='dark']) .Text--antialiased {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: auto;
 }

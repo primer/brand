@@ -133,7 +133,8 @@ describe('Design tokens', () => {
 
     const expectedOutput = `
 :root,
-[data-color-mode="light"] {
+[data-color-mode="light"],
+[data-color-scheme="light"] {
   --brand-text-color-example: gray;
 }
 
@@ -141,7 +142,8 @@ describe('Design tokens', () => {
   --brand-text-color-example: black;
 }
 
-[data-color-mode="dark"] {
+[data-color-mode="dark"],
+[data-color-scheme="dark"] {
   --brand-text-color-example: white;
 }
 `.trim()
@@ -460,13 +462,15 @@ describe('Design tokens', () => {
 
     const expectedOutput = `
 :root,
-[data-color-mode="light"] {
+[data-color-mode="light"],
+[data-color-scheme="light"] {
   --base-color-scale-gray-0: #f6f8fa;
   --base-color-scale-gray-1: #eaeef2;
   --base-color-scale-gray-2: #b1bac4;
 }
 
-[data-color-mode="dark"] {
+[data-color-mode="dark"],
+[data-color-scheme="dark"] {
   --base-color-scale-gray-0: #f0f6fc;
   --base-color-scale-gray-1: #c9d1d9;
   --base-color-scale-gray-2: #b1bac4;
@@ -476,7 +480,7 @@ describe('Design tokens', () => {
   --base-color-scale-gray-0: #f0f6fc;
   --base-color-scale-gray-1: #c9d1d9;
   --base-color-scale-gray-2: #b1bac4;
-}    
+}
 `.trim()
 
     // remove timestamp and trim

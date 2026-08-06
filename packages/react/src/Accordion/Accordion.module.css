@@ -299,7 +299,7 @@ details[open] > .Accordion__summary .Accordion__summary-toggleIcon {
   display: block;
 }
 
-[data-color-mode='dark'] .Accordion__content {
+:is([data-color-mode='dark'], [data-color-scheme='dark']) .Accordion__content {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: auto;
 }

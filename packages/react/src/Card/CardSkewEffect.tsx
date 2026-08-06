@@ -1,7 +1,7 @@
 import React, {useRef, useEffect, PropsWithChildren} from 'react'
 import {clsx} from 'clsx'
 
-import {useTheme} from '../'
+import {getColorScheme, useTheme} from '../'
 import {BaseProps} from '../component-helpers'
 
 import styles from './Card.module.css'
@@ -21,11 +21,12 @@ export const CardSkewEffect = ({
   ...rest
 }: PropsWithChildren<CardSkewEffectProps>) => {
   const {colorMode} = useTheme()
+  const colorScheme = getColorScheme(colorMode)
   const boundingRef = useRef<HTMLDivElement | null>(null)
   const torchRef = useRef<HTMLDivElement | null>(null)
 
   useEffect(() => {
-    if (colorMode === 'light' || disableSkew) return
+    if (colorScheme === 'light' || disableSkew) return
 
     const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)')
 
@@ -70,7 +71,7 @@ export const CardSkewEffect = ({
       torchElement?.removeEventListener('mousemove', handleMouseMove)
       motionQuery.removeEventListener('change', handleReducedMotionChange)
     }
-  }, [disableSkew, perspective, colorMode])
+  }, [disableSkew, perspective, colorScheme])
 
   return (
     <div ref={boundingRef} className={clsx(styles['Card--skew'], className)} {...rest}>
