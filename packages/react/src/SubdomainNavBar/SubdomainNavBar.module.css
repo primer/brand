@@ -661,17 +661,17 @@
 }
 
 @media screen and (min-width: 48rem) and (max-width: 63.24rem) {
-  .SubdomainNavBar .SubdomainNavBar-primary-nav {
+  .SubdomainNavBar-primary-nav {
     display: none;
   }
 
-  .SubdomainNavBar .SubdomainNavBar-secondary-nav {
+  .SubdomainNavBar-secondary-nav {
     position: relative;
     flex: 0 0 auto;
     align-self: stretch;
   }
 
-  .SubdomainNavBar .SubdomainNavBar-search-trigger {
+  .SubdomainNavBar-search-trigger {
     --SubdomainNavBar-tablet-search-width: calc(var(--base-size-128) * 2 + var(--base-size-2));
 
     flex: 0 0 var(--SubdomainNavBar-tablet-search-width);
@@ -680,11 +680,11 @@
     border-inline-start: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
   }
 
-  .SubdomainNavBar .SubdomainNavBar-search-input-button {
+  .SubdomainNavBar-search-input-button {
     width: 100%;
   }
 
-  .SubdomainNavBar .SubdomainNavBar-mobile-menu-button {
+  .SubdomainNavBar-mobile-menu-button {
     align-self: stretch;
     flex: none;
     flex-direction: row;
@@ -706,13 +706,13 @@
     line-height: var(--brand-text-lineHeight-100);
   }
 
-  .SubdomainNavBar .SubdomainNavBar-menu-button-label {
+  .SubdomainNavBar-menu-button-label {
     display: inline-flex;
     align-items: center;
     white-space: nowrap;
   }
 
-  .SubdomainNavBar .SubdomainNavBar-menu-button-icon {
+  .SubdomainNavBar-menu-button-icon {
     flex: none;
     align-items: stretch;
     justify-content: center;
@@ -721,22 +721,22 @@
     overflow: visible;
   }
 
-  .SubdomainNavBar .SubdomainNavBar-menu-button-bar {
+  .SubdomainNavBar-menu-button-bar {
     width: var(--base-size-16);
     height: var(--base-size-2);
     margin: 0;
     transform-origin: center;
   }
 
-  .SubdomainNavBar .SubdomainNavBar-menu-button--close .SubdomainNavBar-menu-button-bar:nth-of-type(1) {
+  .SubdomainNavBar-menu-button--close .SubdomainNavBar-menu-button-bar:nth-of-type(1) {
     transform: translateY(calc(var(--base-size-6) - var(--brand-borderWidth-thin))) rotate(45deg);
   }
 
-  .SubdomainNavBar .SubdomainNavBar-menu-button--close .SubdomainNavBar-menu-button-bar:nth-of-type(3) {
+  .SubdomainNavBar-menu-button--close .SubdomainNavBar-menu-button-bar:nth-of-type(3) {
     transform: translateY(calc(var(--brand-borderWidth-thin) - var(--base-size-6))) rotate(-45deg);
   }
 
-  .SubdomainNavBar .SubdomainNavBar-menu-wrapper {
+  .SubdomainNavBar-menu-wrapper {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -751,32 +751,33 @@
     background-color: var(--brand-color-canvas-default);
     border-inline: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
     border-block-end: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
-    animation: fade-in-down 500ms;
+    animation: fade-in-down var(--brand-animation-duration-default);
     animation-timing-function: var(--brand-animation-easing-default);
   }
 
-  .SubdomainNavBar .SubdomainNavBar-menu-wrapper--close {
+  .SubdomainNavBar-menu-wrapper--close {
     display: none;
   }
 
-  .SubdomainNavBar .SubdomainNavBar-primary-nav-list--visible {
+  .SubdomainNavBar-primary-nav-list--visible {
     display: block;
     margin: 0;
     padding: 0;
   }
 
-  .SubdomainNavBar .SubdomainNavBar-menu-wrapper-footer {
+  .SubdomainNavBar-menu-wrapper-footer {
     flex: none;
     display: flex;
     flex-direction: column;
     width: 100%;
   }
 
-  .SubdomainNavBar .SubdomainNavBar-menu-wrapper > div:first-child > * {
+  .SubdomainNavBar-menu-wrapper .SubdomainNavBar-leading-component,
+  .SubdomainNavBar-menu-wrapper .SubdomainNavBar-primary-nav-list--visible {
     border-block-end: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
   }
 
-  .SubdomainNavBar .SubdomainNavBar-menu-wrapper .SubdomainNavBar-link {
+  .SubdomainNavBar-menu-wrapper .SubdomainNavBar-link {
     box-sizing: border-box;
     width: 100%;
     padding: var(--base-size-16);
@@ -784,22 +785,18 @@
     line-height: var(--brand-text-lineHeight-100);
   }
 
-  .SubdomainNavBar
-    .SubdomainNavBar-menu-wrapper
-    .SubdomainNavBar-primary-nav-list-item:not(.SubdomainNavBar-overflow-menu-item) {
+  .SubdomainNavBar-menu-wrapper .SubdomainNavBar-primary-nav-list-item:not(.SubdomainNavBar-overflow-menu-item) {
     width: 100%;
     height: auto;
   }
 
-  .SubdomainNavBar
-    .SubdomainNavBar-menu-wrapper
+  .SubdomainNavBar-menu-wrapper
     .SubdomainNavBar-primary-nav-list-item:not(.SubdomainNavBar-overflow-menu-item)
     > .SubdomainNavBar-link {
     padding: var(--base-size-16);
   }
 
-  .SubdomainNavBar
-    .SubdomainNavBar-menu-wrapper
+  .SubdomainNavBar-menu-wrapper
     .SubdomainNavBar-primary-nav-list-item:not(.SubdomainNavBar-overflow-menu-item)
     > .SubdomainNavBar-link
     > .SubdomainNavBar-link-content {
@@ -809,31 +806,28 @@
     border-radius: 0;
   }
 
-  .SubdomainNavBar
-    .SubdomainNavBar-menu-wrapper
+  .SubdomainNavBar-menu-wrapper
     .SubdomainNavBar-primary-nav-list-item:not(.SubdomainNavBar-overflow-menu-item)
     > .SubdomainNavBar-link:hover
     > .SubdomainNavBar-link-content,
-  .SubdomainNavBar
-    .SubdomainNavBar-menu-wrapper
+  .SubdomainNavBar-menu-wrapper
     .SubdomainNavBar-primary-nav-list-item:not(.SubdomainNavBar-overflow-menu-item)
     > .SubdomainNavBar-link:active
     > .SubdomainNavBar-link-content,
-  .SubdomainNavBar
-    .SubdomainNavBar-menu-wrapper
+  .SubdomainNavBar-menu-wrapper
     .SubdomainNavBar-primary-nav-list-item:not(.SubdomainNavBar-overflow-menu-item)
     > .SubdomainNavBar-link[aria-current]:not([aria-current='false'])
     > .SubdomainNavBar-link-content {
     background-color: transparent;
   }
 
-  .SubdomainNavBar .SubdomainNavBar-menu-wrapper .SubdomainNavBar-link--title {
+  .SubdomainNavBar-menu-wrapper .SubdomainNavBar-link--title {
     font-size: var(--brand-text-size-100);
     line-height: var(--brand-text-lineHeight-100);
   }
 
-  .SubdomainNavBar .SubdomainNavBar-menu-wrapper .SubdomainNavBar-leading-component,
-  .SubdomainNavBar .SubdomainNavBar-menu-wrapper .SubdomainNavBar-trailing-component {
+  .SubdomainNavBar-menu-wrapper .SubdomainNavBar-leading-component,
+  .SubdomainNavBar-menu-wrapper .SubdomainNavBar-trailing-component {
     box-sizing: border-box;
     flex: none;
     width: 100%;
@@ -842,7 +836,7 @@
     padding: var(--base-size-16);
   }
 
-  .SubdomainNavBar .SubdomainNavBar-menu-wrapper .SubdomainNavBar-button-area {
+  .SubdomainNavBar-menu-wrapper .SubdomainNavBar-button-area {
     display: flex;
     width: 100%;
     height: auto;
@@ -850,7 +844,7 @@
     border-block-start: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
   }
 
-  .SubdomainNavBar .SubdomainNavBar-menu-wrapper .SubdomainNavBar-button-area-inner {
+  .SubdomainNavBar-menu-wrapper .SubdomainNavBar-button-area-inner {
     box-sizing: border-box;
     flex-direction: column;
     width: 100%;
@@ -858,7 +852,7 @@
     padding-inline: var(--base-size-16);
   }
 
-  .SubdomainNavBar .SubdomainNavBar-menu-wrapper .SubdomainNavBar-trailing-component {
+  .SubdomainNavBar-menu-wrapper .SubdomainNavBar-trailing-component {
     border-block-start: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
   }
 }
@@ -1020,7 +1014,8 @@
     transform: translateY(calc(var(--brand-borderWidth-thin) - var(--base-size-6))) rotate(-45deg);
   }
 
-  .SubdomainNavBar .SubdomainNavBar-menu-wrapper > div:first-child > * {
+  .SubdomainNavBar-menu-wrapper .SubdomainNavBar-leading-component,
+  .SubdomainNavBar-menu-wrapper .SubdomainNavBar-primary-nav-list--visible {
     border-block-end: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
   }
 
@@ -1181,7 +1176,7 @@
   .SubdomainNavBar .SubdomainNavBar-more-link:hover > .SubdomainNavBar-link-content,
   .SubdomainNavBar .SubdomainNavBar-more-link:active > .SubdomainNavBar-link-content,
   .SubdomainNavBar .SubdomainNavBar-more-link[aria-expanded='true'] > .SubdomainNavBar-link-content {
-    background-color: var(--brand-SubNav-color-link-bgColor);
+    background-color: var(--brand-SubdomainNavBar-color-link-bgColor);
   }
 
   .SubdomainNavBar

@@ -28,6 +28,14 @@ module.exports = {
         },
       },
     },
+    color: {
+      link: {
+        bgColor: {
+          value: 'var(--base-color-scale-gray-1)',
+          dark: 'var(--base-color-scale-gray-6)',
+        },
+      },
+    },
     searchDialog: {
       shadowColor: {
         value: 'rgba(0, 0, 0, 0.1)',

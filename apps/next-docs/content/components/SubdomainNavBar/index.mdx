@@ -44,7 +44,7 @@ Please refer to our [Storybook examples](https://primer.style/brand/storybook/?p
 
 ### Leading and trailing content
 
-Use `leadingComponent` for content between the title and navigation links. Use `trailingComponent` for content after search and actions. On narrow viewports, both slots move into the menu while preserving that order. Provide accessible names for interactive controls passed to either slot.
+The `leadingComponent` and `trailingComponent` props are supported composition slots for custom React elements. Use `leadingComponent` for content between the title and navigation links, and `trailingComponent` for content after search and actions. On narrow viewports, both slots move into the menu while preserving that order.
 
 ```jsx filename="noinline"
 const App = () => (
@@ -216,8 +216,8 @@ render(<LocalizedMenu />)
 | `logoHref`           | `string`                             | `https://github.com` | Changes the URL of the GitHub logo                                      |
 | `title`              | `string`                             |                      | Required subdomain name used visibly and by assistive technologies      |
 | `titleHref`          | `string`                             | `/`                  | Links the title to the subdomain root                                   |
-| `leadingComponent`   | `React.ReactNode`                    |                      | Content rendered after the title and before navigation links            |
-| `trailingComponent`  | `React.ReactNode`                    |                      | Content rendered after search and actions                               |
+| `leadingComponent`   | `React.ReactElement`                 |                      | Custom element rendered after the title and before navigation links     |
+| `trailingComponent`  | `React.ReactElement`                 |                      | Custom element rendered after search and actions                        |
 | `menuLabels`         | `Partial<SubdomainNavBarMenuLabels>` | English labels       | Overrides the narrow menu's visible and accessible labels               |
 | `ref`                | `React.Ref<SubdomainNavBarHandle>`   |                      | Ref to the root element with `openSearch()` and `closeSearch()` methods |
 | `onNarrowMenuToggle` | `(isOpen: boolean) => void`          |                      | Called with the new state when the narrow menu opens or closes          |

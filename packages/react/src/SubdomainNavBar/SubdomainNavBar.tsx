@@ -76,13 +76,13 @@ export type SubdomainNavBarProps = {
    */
   fullWidth?: boolean
   /**
-   * Optional content rendered after the title and before navigation links.
+   * Optional React element rendered after the title and before navigation links.
    */
-  leadingComponent?: React.ReactNode
+  leadingComponent?: React.ReactElement
   /**
-   * Optional content rendered after the actions.
+   * Optional React element rendered after the actions.
    */
-  trailingComponent?: React.ReactNode
+  trailingComponent?: React.ReactElement
   /**
    * The title or name of the subdomain. Appears adjacent to the logo and is required for communicating content to assistive technologies.
    */
@@ -423,10 +423,8 @@ function Root(
     }
   }, [handleSearchOpen, hasSearch, searchKeyboardShortcut, searchVisible])
 
-  const hasLeadingComponent =
-    leadingComponent !== undefined && leadingComponent !== null && typeof leadingComponent !== 'boolean'
-  const hasTrailingComponent =
-    trailingComponent !== undefined && trailingComponent !== null && typeof trailingComponent !== 'boolean'
+  const hasLeadingComponent = leadingComponent != null
+  const hasTrailingComponent = trailingComponent != null
   const hasNarrowMenuContent = hasLinks || hasActions || hasLeadingComponent || hasTrailingComponent
   const subdomainNavBarStyle = {
     ...style,

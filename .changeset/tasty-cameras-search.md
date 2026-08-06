@@ -5,6 +5,7 @@
 
 Updated `SubdomainNavBar` with a gridline visual design, content slots, search APIs, and responsive navigation behavior.
 
+- **Migration note:** The opinionated gridline design changes the component's default appearance. After upgrading, manually inspect affected sites, especially existing subdomain sites. If adjustments are needed, override the `--brand-SubdomainNavBar-*` custom properties through the root `className` or `style` props.
 - Added `leadingComponent` and `trailingComponent` props for rendering custom content around the navigation links and actions.
 
 ```tsx
