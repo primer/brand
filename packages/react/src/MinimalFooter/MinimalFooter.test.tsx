@@ -473,13 +473,6 @@ describe('MinimalFooter', () => {
     expect(socialLinks).toHaveLength(1)
   })
 
-  it('identifies each social link with a matching data-social-link attribute', () => {
-    const {container} = render(<MinimalFooter socialLinks={['x', 'github']} />)
-
-    expect(container.querySelector('[data-social-link="x"]')).toBeInTheDocument()
-    expect(container.querySelector('[data-social-link="github"]')).toBeInTheDocument()
-  })
-
   it('renders component with only footer links', () => {
     const {getByRole} = render(
       <MinimalFooter socialLinks={false}>

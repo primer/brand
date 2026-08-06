@@ -81,7 +81,10 @@ const socialLinkNames = Object.keys(socialLinkData) as SocialLinkName[]
 
 export type MinimalFooterProps = {
   /**
-   * An optional component rendered between the top and bottom sections.
+   * Escape-hatch for inserting custom React components.
+   * Warning:
+   *   This prop isn't advertised in our docs but remains part of the public API for edge-cases.
+   *   Need to use this prop? Please check in with #primer-brand first to confirm correct usage.
    */
   centerComponent?: React.ReactElement
   /**
@@ -211,7 +214,7 @@ type SocialLinkProps = {name: SocialLinkName}
 const SocialLink = ({name}: SocialLinkProps) => {
   const link = socialLinkData[name]
   return (
-    <li key={name} data-social-link={name}>
+    <li>
       <a
         href={link.url}
         className={styles['MinimalFooter__social-link']}
