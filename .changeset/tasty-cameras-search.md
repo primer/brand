@@ -6,8 +6,6 @@
 Updated `SubdomainNavBar` with a gridline visual design, content slots, search APIs, and responsive navigation behavior.
 
 - Added `leadingComponent` and `trailingComponent` props for rendering custom content around the navigation links and actions.
-- Added a typed `id` prop for setting an HTML ID on the root element.
-- Added a `style` prop for forwarding custom styles to the root element.
 
 ```tsx
 <SubdomainNavBar
@@ -23,8 +21,8 @@ Updated `SubdomainNavBar` with a gridline visual design, content slots, search A
 ```
 
 - Added a responsive input-style search trigger that collapses to an icon-only button on smaller viewports, custom placeholder and shortcut labels, configurable keyboard shortcuts, grouped results, and a `labels` prop for localizing visible and accessible search text. The default `/` shortcut can be remapped or disabled with `keyboardShortcut`.
-
-  Exported `SubdomainNavBarSearchLabels` and `SubdomainNavBarSearchProps` for typed search configuration. The `SubdomainNavBar` ref now exposes `openSearch()` and `closeSearch()` methods.
+- The `SubdomainNavBar` ref now exposes `openSearch()` and `closeSearch()` methods.
+- Improved desktop overflow handling. Overflowed links are removed from keyboard and assistive technology navigation, and focus returns to the More button when its menu closes.
 
   ```tsx
   import * as React from 'react'
@@ -83,7 +81,3 @@ Updated `SubdomainNavBar` with a gridline visual design, content slots, search A
     )
   }
   ```
-
-- Updated desktop overflow handling so a contiguous set of links moves into the More menu when space is limited and returns when space becomes available. Overflowed links are removed from keyboard and assistive technology navigation, and focus returns to the More button when its menu closes.
-
-- Updated responsive and mobile menu behavior. Mobile navigation stays out of the desktop overflow menu, disclosures remain keyboard accessible when only slot content is present, and each control is associated with its menu. Leading content renders before navigation links, while actions and trailing content render in the menu footer.
