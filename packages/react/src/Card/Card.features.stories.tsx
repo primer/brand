@@ -1,6 +1,7 @@
 import React from 'react'
 import type {Meta, StoryFn} from '@storybook/react'
 import {useTranslation} from 'react-i18next'
+import {expect, userEvent, waitFor, within} from 'storybook/test'
 import {Card, CardIconColors} from '.'
 import {Avatar} from '../Avatar'
 import {Token} from '../Token'
@@ -115,7 +116,17 @@ export const CTAText: StoryFn<typeof Card> = () => {
   )
 }
 
-const ArrowCTALongLabelCard = ({testId}: {testId?: string}) => {
+const getStoryElement = (container: HTMLElement, selector: string) => {
+  const element = container.querySelector<HTMLElement>(selector)
+
+  if (!element) {
+    throw new Error(`Unable to find story element matching ${selector}`)
+  }
+
+  return element
+}
+
+const ArrowCTALongLabelCard = ({testId, disableAnimation = false}: {testId?: string; disableAnimation?: boolean}) => {
   const {t} = useTranslation('Card')
 
   return (
@@ -124,6 +135,7 @@ const ArrowCTALongLabelCard = ({testId}: {testId?: string}) => {
         data-testid={testId}
         href="https://github.com"
         fullWidth
+        disableAnimation={disableAnimation}
         ctaVariant="arrow"
         ctaText={t('read_the_quick_start_guide')}
       >
@@ -139,9 +151,22 @@ const ArrowCTALongLabelCard = ({testId}: {testId?: string}) => {
 }
 
 export const ArrowCTALongLabel: StoryFn<typeof Card> = () => {
-  return <ArrowCTALongLabelCard />
+  return <ArrowCTALongLabelCard testId="non-hover-card" />
 }
 ArrowCTALongLabel.storyName = 'Arrow CTA with long label'
+ArrowCTALongLabel.play = async ({canvasElement}) => {
+  if (!window.matchMedia('(hover: none)').matches) return
+
+  const canvas = within(canvasElement)
+  const card = await canvas.findByTestId('non-hover-card')
+  const action = getStoryElement(card, '[class*="Card__action--arrowOnly"]')
+  const label = getStoryElement(card, '[class*="Card__actionLabel__"]')
+  const labelClip = getStoryElement(card, '[class*="Card__actionLabelClip"]')
+
+  expect(window.getComputedStyle(action).columnGap).toBe('8px')
+  expect(window.getComputedStyle(label).whiteSpace).toBe('normal')
+  expect(window.getComputedStyle(labelClip).display).toBe('contents')
+}
 
 export const ArrowCTALongLabelHover: StoryFn<typeof Card> = () => {
   return <ArrowCTALongLabelCard testId="hover-enabled-card" />
@@ -149,6 +174,28 @@ export const ArrowCTALongLabelHover: StoryFn<typeof Card> = () => {
 ArrowCTALongLabelHover.storyName = 'Arrow CTA with long label hover'
 ArrowCTALongLabelHover.parameters = {
   pseudo: {hover: ['[data-testid="hover-enabled-card"]']},
+}
+
+export const ArrowCTALongLabelFocus: StoryFn<typeof Card> = () => {
+  return <ArrowCTALongLabelCard testId="focus-enabled-card" disableAnimation />
+}
+ArrowCTALongLabelFocus.storyName = 'Arrow CTA with long label focus and animation disabled'
+ArrowCTALongLabelFocus.play = async ({canvasElement}) => {
+  const canvas = within(canvasElement)
+  const card = await canvas.findByTestId('focus-enabled-card')
+  const action = getStoryElement(card, '[class*="Card__action--arrowOnly"]')
+  const labelClip = getStoryElement(card, '[class*="Card__actionLabelClip"]')
+  const arrow = getStoryElement(card, '[class*="Card--expandableArrow"]')
+
+  await userEvent.tab()
+  await waitFor(() => {
+    expect(window.getComputedStyle(action).columnGap).toBe('8px')
+    expect(window.getComputedStyle(labelClip).maxInlineSize).not.toBe('0px')
+  })
+
+  for (const element of [card, action, labelClip, arrow]) {
+    expect(window.getComputedStyle(element).transitionDuration).toBe('0s')
+  }
 }
 
 export const CenterAligned: StoryFn<typeof Card> = () => {
@@ -627,7 +674,7 @@ export const Stacked: StoryFn<typeof Card> = () => {
           {stackedCardData.map(({headingKey, descriptionKey, href, icon, iconColor, tokens}, id) => {
             return (
               <Grid.Column key={id} span={{xsmall: 12, xlarge: 4}} className={styles.gridColumn}>
-                <Box className={styles.gridItem} padding="normal">
+                <Box className={styles.gridItem}>
                   <Card href={href} fullWidth ctaVariant="arrow">
                     <Card.Icon icon={icon} hasBackground color={iconColor} />
                     <Card.Tokens>
