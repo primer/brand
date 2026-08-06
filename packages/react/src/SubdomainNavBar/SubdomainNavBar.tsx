@@ -920,7 +920,7 @@ const _SearchInternal = forwardRef<HTMLInputElement, SubdomainNavBarSearchProps>
         }
 
         if (event.key === 'Enter') {
-          const link = dialog.querySelector(`#subdomainnavbar-search-result-${activeDescendant} a`) as HTMLAnchorElement
+          const link = dialog.querySelector(`#subdomainnavbar-search-result-${activeDescendant}`) as HTMLAnchorElement
           link.click()
         }
       },
@@ -942,15 +942,14 @@ const _SearchInternal = forwardRef<HTMLInputElement, SubdomainNavBarSearchProps>
     }, [searchResultsLength, searchTerm, searchLiveRegion])
 
     const renderSearchResult = ({result, index}: NormalizedSearchResultGroup['results'][number]) => (
-      <li
-        key={`${result.title}-${index}`}
-        id={`subdomainnavbar-search-result-${index}`}
-        className={styles['SubdomainNavBar-search-result-item']}
-        role="option"
-        aria-selected={index === activeDescendant}
-      >
+      <li key={`${result.title}-${index}`} className={styles['SubdomainNavBar-search-result-item']} role="presentation">
         <div className={styles['SubdomainNavBar-search-result-item-container']}>
-          <a href={result.url}>
+          <a
+            id={`subdomainnavbar-search-result-${index}`}
+            href={result.url}
+            role="option"
+            aria-selected={index === activeDescendant}
+          >
             <span>{result.title}</span>
             {hasGroupedSearchResults && result.isExternal && <ArrowUpRightIcon size={20} aria-hidden="true" />}
           </a>

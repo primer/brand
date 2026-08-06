@@ -323,13 +323,20 @@ describe('SubdomainNavBar', () => {
       },
     ]
 
-    const {getByTestId, getByText, getAllByRole} = render(<Component searchResults={mockResultsData} />)
+    const {container, getByTestId, getByText, getAllByRole} = render(<Component searchResults={mockResultsData} />)
 
     fireEvent.click(getByTestId('toggle-search'))
 
     expect(getByText('AI results')).toBeInTheDocument()
     expect(getByText('Docs results')).toBeInTheDocument()
-    expect(getAllByRole('option')).toHaveLength(2)
+    const options = getAllByRole('option')
+    expect(options).toHaveLength(2)
+    expect(options[0].tagName).toBe('A')
+    expect(options[0].closest('li')).toHaveAttribute('role', 'presentation')
+
+    const results = await axe(container)
+
+    expect(results).toHaveNoViolations()
   })
 
   it('uses custom labels for search triggers and dialog controls', () => {
