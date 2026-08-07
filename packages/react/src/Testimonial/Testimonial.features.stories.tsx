@@ -179,11 +179,7 @@ export const VariantsWithoutBorder: Story = {
 
 const ExpressiveExample = () => (
   <Grid>
-    <Grid.Column
-      className={styles.expressiveContainer}
-      span={{xsmall: 12, medium: 10, large: 12}}
-      start={{medium: 2, large: 1}}
-    >
+    <Grid.Column className={styles.expressiveContainer} span={12}>
       <Testimonial variant="expressive" size="large">
         <Testimonial.Quote>
           GitHub Advanced Security <em>empowers our developers</em> to detect and fix vulnerabilities earlier,

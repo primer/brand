@@ -26,7 +26,7 @@
 
 @media screen and (min-width: 48rem) {
   .expressiveContainer {
-    padding-block: var(--base-size-48);
+    padding: var(--base-size-48) var(--base-size-32);
   }
 }
 

@@ -11,4 +11,3 @@ declare const styles: {
   readonly "innerContainer": string;
 };
 export = styles;
-
