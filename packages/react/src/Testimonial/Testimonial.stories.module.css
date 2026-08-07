@@ -18,6 +18,18 @@
   position: relative;
 }
 
+.expressiveContainer {
+  display: flex;
+  justify-content: center;
+  padding-block: var(--base-size-36);
+}
+
+@media screen and (min-width: 48rem) {
+  .expressiveContainer {
+    padding-block: var(--base-size-48);
+  }
+}
+
 .exampleShape {
   position: absolute;
 }
