@@ -181,6 +181,11 @@
   width: 100%;
 }
 
+.Testimonial--variant-expressive .Testimonial-avatar {
+  width: var(--base-size-40);
+  height: var(--base-size-40);
+}
+
 .Testimonial--variant-expressive .Testimonial-caption {
   border-block-start: var(--brand-borderWidth-thin) solid var(--brand-color-border-default);
   padding-block-start: var(--base-size-20);
@@ -294,6 +299,13 @@
   .Testimonial--variant-expressive .Testimonial-link {
     grid-column: 1;
     grid-row: 2;
+  }
+}
+
+@media screen and (min-width: 80rem) {
+  .Testimonial--variant-expressive .Testimonial-avatar {
+    width: var(--base-size-48);
+    height: var(--base-size-48);
   }
 }
 

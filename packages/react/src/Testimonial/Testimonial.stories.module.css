@@ -19,20 +19,14 @@
 }
 
 .expressiveContainer {
-  max-width: 1176px;
-  margin-inline: auto;
-  padding: var(--base-size-36) var(--base-size-20);
+  display: flex;
+  justify-content: center;
+  padding-block: var(--base-size-36);
 }
 
 @media screen and (min-width: 48rem) {
   .expressiveContainer {
-    padding: var(--base-size-48) var(--base-size-40);
-  }
-}
-
-@media screen and (min-width: 63.25rem) {
-  .expressiveContainer {
-    padding-inline: 0;
+    padding-block: var(--base-size-48);
   }
 }
 
