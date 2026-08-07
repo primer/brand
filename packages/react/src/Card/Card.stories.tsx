@@ -89,7 +89,8 @@ const meta = {
       },
     },
     ctaText: {
-      description: 'Visible CTA text when `ctaVariant="text"` is used.',
+      description:
+        'CTA label. With `ctaVariant="arrow"`, it is revealed on hover or focus and remains visible on non-hover devices.',
       control: {
         type: 'text',
       },
@@ -136,14 +137,15 @@ const meta = {
       },
     },
     ctaVariant: {
-      description: 'Presentation of the Card call-to-action.',
+      description:
+        'Presentation of the Card call-to-action. The arrow variant keeps its label visible on non-hover devices.',
       control: {
         type: 'inline-radio',
       },
       options: [...CardCTAVariants],
     },
     disableAnimation: {
-      description: 'Disable the default hover animation.',
+      description: 'Disable transitions and animations within the Card.',
       control: {
         type: 'boolean',
       },

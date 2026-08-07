@@ -7,9 +7,10 @@ import styles from './ButtonGroup.module.css'
 
 export type PrimerBrandButtonType = React.ReactElement<ButtonProps<React.ElementType<'button' | 'a'>>>
 export type PrimerBrandActionMenuType = React.ReactElement<ActionMenuProps>
+export type ButtonGroupChild = PrimerBrandButtonType | PrimerBrandActionMenuType | false | null | undefined
 
 export type ButtonGroupProps = BaseProps<HTMLDivElement> & {
-  children: Array<PrimerBrandButtonType | PrimerBrandActionMenuType> | PrimerBrandButtonType | PrimerBrandActionMenuType
+  children: ButtonGroupChild | ButtonGroupChild[]
   buttonSize?: ButtonProps<'button' | 'a'>['size']
   buttonsAs?: 'button' | 'a'
 }
