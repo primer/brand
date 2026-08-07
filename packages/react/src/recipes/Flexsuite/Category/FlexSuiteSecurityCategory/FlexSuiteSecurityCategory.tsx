@@ -110,9 +110,15 @@ export function FlexSuiteSecurityCategoryTemplate({content}: FlexSuiteSecurityCa
                     fullWidth
                     ctaVariant="arrow"
                     ctaText={content.common.learnMore}
-                    className={styles.resourceCard}
+                    className={clsx(styles.resourceCard, styles.resourceCardWithIcon)}
                   >
-                    <Card.Icon icon={cardIcons[index]} color="green" hasBackground size="medium" />
+                    <Card.Icon
+                      icon={cardIcons[index]}
+                      color="green"
+                      hasBackground
+                      size="medium"
+                      className={styles.resourceCardIcon}
+                    />
                     {card.tag ? (
                       <Card.Tokens>
                         <Token>{card.tag}</Token>
@@ -203,14 +209,8 @@ export function FlexSuiteSecurityCategoryTemplate({content}: FlexSuiteSecurityCa
         </Box>
       </Box>
 
-      <Box
-        paddingInlineStart={48}
-        paddingInlineEnd={48}
-        borderBlockEndWidth="thin"
-        borderColor="muted"
-        borderStyle="solid"
-      >
-        <Section>
+      <Section className={styles.testimonialSection}>
+        <Box className={styles.testimonialContent}>
           <Testimonial variant="expressive" size="large">
             <Testimonial.Quote>
               {content.testimonial.quoteLead} <em>{content.testimonial.quoteEmphasis}</em>{' '}
@@ -220,8 +220,8 @@ export function FlexSuiteSecurityCategoryTemplate({content}: FlexSuiteSecurityCa
             <Testimonial.Avatar src={monaAvatar} alt={content.testimonial.avatarAlt} />
             <Testimonial.Name position={content.testimonial.position}>{content.testimonial.name}</Testimonial.Name>
           </Testimonial>
-        </Section>
-      </Box>
+        </Box>
+      </Section>
 
       <Box borderBlockEndWidth="thin" borderColor="muted" borderStyle="solid">
         <Section paddingBlockEnd="none" paddingBlockStart="none">

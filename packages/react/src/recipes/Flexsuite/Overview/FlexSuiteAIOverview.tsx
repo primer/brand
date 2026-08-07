@@ -156,13 +156,13 @@ export function FlexSuiteAIOverviewTemplate({content}: FlexSuiteAIOverviewTempla
                   span={{xsmall: 12, large: 4}}
                   className={clsx(styles.cardGridColumn, styles.cardGridColumnArrowHover)}
                 >
-                  <Box className={styles.cardGridItem} padding={24}>
+                  <Box className={styles.cardGridItem}>
                     <Card
                       href="#"
                       fullWidth
                       ctaVariant="arrow"
                       ctaText={content.common.learnMore}
-                      className={styles.resourceCard}
+                      className={clsx(styles.resourceCard, styles.resourceCardWithIcon)}
                     >
                       <Card.Icon
                         icon={cardIcons[index]}
@@ -303,7 +303,7 @@ export function FlexSuiteAIOverviewTemplate({content}: FlexSuiteAIOverviewTempla
                       fullWidth
                       ctaVariant="arrow"
                       ctaText={content.common.learnMore}
-                      className={styles.resourceCard}
+                      className={clsx(styles.resourceCard, styles.resourceCardWithIcon)}
                     >
                       <Card.Icon
                         icon={cardIcons[index]}
@@ -483,7 +483,7 @@ export function FlexSuiteAIOverviewTemplate({content}: FlexSuiteAIOverviewTempla
                       fullWidth
                       ctaVariant="arrow"
                       ctaText={content.common.learnMore}
-                      className={styles.resourceCard}
+                      className={clsx(styles.resourceCard, styles.resourceCardWithIcon)}
                     >
                       <Card.Icon
                         icon={cardIcons[index]}
