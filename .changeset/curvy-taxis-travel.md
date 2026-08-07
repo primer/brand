@@ -1,4 +1,5 @@
 ---
+'@primer/brand-primitives': patch
 '@primer/react-brand': patch
 ---
 
