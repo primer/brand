@@ -7,6 +7,9 @@ import {Grid} from '../Grid'
 import {Card} from '../Card'
 import placeholderImage from '../fixtures/images/placeholder.png'
 import {Stack} from '../Stack'
+import {Section} from '../Section'
+import {SectionIntro} from '../SectionIntro'
+import styles from './Statistic.stories.shared.module.css'
 
 type StoryProps = {
   heading: string
@@ -24,6 +27,57 @@ const meta = {
 
 export default meta
 type Story = StoryObj<StoryProps>
+
+export const Gridline: Story = {
+  parameters: {
+    layout: 'fullscreen',
+  },
+  render: () => {
+    const gridlineStatistics = [
+      {heading: '7X', description: 'faster coding'},
+      {heading: '1B+', description: 'improvement in code quality'},
+      {heading: '500%', description: 'had a positive experience'},
+    ] as const
+
+    return (
+      <Section fullWidth paddingBlockStart="condensed" paddingBlockEnd="normal">
+        <Stack direction="vertical" padding="none" gap="spacious">
+          <SectionIntro align="center" fullWidth>
+            <SectionIntro.Heading as="h3" size="3">
+              H3 Heading 100 Characters Max
+            </SectionIntro.Heading>
+          </SectionIntro>
+
+          <Box className={styles.gridFrame}>
+            <Box className={styles.gridContent}>
+              <Grid columnGap="none" rowGap="none" enableGutters={false}>
+                {gridlineStatistics.map(statistic => (
+                  <Grid.Column key={statistic.heading} span={{xsmall: 12, large: 4}} className={styles.gridColumn}>
+                    <Box className={styles.gridItem} padding={{narrow: 32, wide: 48}}>
+                      <Statistic>
+                        <Statistic.Heading
+                          font="monospace"
+                          weight="normal"
+                          size="700"
+                          style={{color: 'var(--brand-color-accent-primary)'}}
+                        >
+                          {statistic.heading}
+                        </Statistic.Heading>
+                        <Statistic.Description font="monospace" size="100">
+                          {statistic.description}
+                        </Statistic.Description>
+                      </Statistic>
+                    </Box>
+                  </Grid.Column>
+                ))}
+              </Grid>
+            </Box>
+          </Box>
+        </Stack>
+      </Section>
+    )
+  },
+}
 
 export const SocialProof: Story = {
   parameters: {

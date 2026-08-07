@@ -18,13 +18,21 @@ type Input = z.infer<typeof inputSchema>
 
 const description = `Get ranked, copy-and-adapt examples of correct Primer Brand usage for a goal. Page goals include a current-brand full-page recipe for overall composition, while independently ranked component examples provide goal-specific detail.
 Pass a target use-case like "pricing section", "category page", or "education landing page"; unmatched page types use the general overview recipe, while unmatched component goals use a foundational set.
-Examples are real source, so they may carry demo scaffolding (a \`content\` object, internal fixture imports, CSS-module class names, repo-relative imports, \`{...args}\` spreads) — mirror the composition and props, then rebuild with your own content and \`@primer/react-brand\` imports. Don't paste verbatim.`
+Examples are real source, so they may carry demo scaffolding (a \`content\` object, internal fixture imports, CSS-module class names, repo-relative imports, \`{...args}\` spreads). Preserve the composition and gridline geometry; adapt the content, assets, and imports. When companion CSS is included, carry its frame and cell rules with the JSX.`
 
 /** Foundational sections that anchor almost every GitHub landing page, in composition order. */
 const DEFAULT_COMPONENTS = ['Hero', 'SectionIntro', 'River', 'Pillar', 'CTABanner']
 
 function exampleCode(component: CatalogComponent): string | undefined {
   return component.examples.find(entry => entry.code)?.code?.trim()
+}
+
+function formatComponentExample(component: CatalogComponent): string {
+  const example = component.examples.find(entry => entry.code)
+  if (!example?.code) return ''
+  const sections = [`### ${component.name}\n\`\`\`tsx\n${example.code.trim()}\n\`\`\``]
+  if (example.styles) sections.push(`\`\`\`css\n${example.styles.trim()}\n\`\`\``)
+  return sections.join('\n\n')
 }
 
 export const primerBrandExamplesTool: ToolModule<Input> = {
@@ -85,9 +93,7 @@ export const primerBrandExamplesTool: ToolModule<Input> = {
       ? `No example matched "${goal}", so here is the default foundational set — compose these in order and adapt the copy and props to your theme.`
       : `Closest tested component examples for "${goal}". Adapt the copy and props to your theme; don't paste verbatim.`
 
-    const componentExamples = shown
-      .map(component => `### ${component.name}\n\`\`\`tsx\n${exampleCode(component)}\n\`\`\``)
-      .join('\n\n')
+    const componentExamples = shown.map(formatComponentExample).join('\n\n')
 
     // For page-level goals, lead with the closest full-page recipe. It's the real source (single
     // source of truth in @primer/react-brand), so tell the agent to look past its demo scaffolding.

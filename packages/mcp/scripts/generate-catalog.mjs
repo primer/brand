@@ -246,11 +246,14 @@ function bestStoryExample(directory, name, byName) {
       return []
     }
     const lowerName = name.toLowerCase()
+    const componentFileNames = lowerName.endsWith('s') ? [lowerName] : [lowerName, `${lowerName}s`]
     const filesWithSuffix = suffix =>
       entries
-        .filter(entry => entry.toLowerCase() === `${lowerName}.${suffix}.stories.tsx`)
+        .filter(entry =>
+          componentFileNames.some(fileName => entry.toLowerCase() === `${fileName}.${suffix}.stories.tsx`),
+        )
         .map(entry => join(storyDir, entry))
-    return [...filesWithSuffix('examples'), ...filesWithSuffix('features')]
+    return [...filesWithSuffix('examples'), ...filesWithSuffix('example'), ...filesWithSuffix('features')]
   }
 
   // Balanced JSX from each top-level story declaration.
@@ -283,6 +286,18 @@ function bestStoryExample(directory, name, byName) {
       .trim()
   }
 
+  const referencedStyles = (file, source, code) => {
+    const stylesheets = []
+    for (const match of source.matchAll(/import\s+(\w+)\s+from\s+['"](.+\.module\.css)['"]/g)) {
+      const [, identifier, importPath] = match
+      if (!code.includes(`${identifier}.`)) continue
+      const stylesheetPath = resolve(dirname(file), importPath)
+      const stylesheet = readFileOrNull(stylesheetPath)?.trim()
+      if (stylesheet) stylesheets.push(`/* ${relative(reactSrc, stylesheetPath)} */\n${stylesheet}`)
+    }
+    return stylesheets.join('\n\n') || undefined
+  }
+
   // Must render the component; sub-composition helps, plumbing/length hurt. -1 rejects.
   const scoreSnippet = (code, fromExamplesFile) => {
     if (!new RegExp(`<${name}(?:\\b|\\.)`).test(code)) return -1
@@ -291,6 +306,9 @@ function bestStoryExample(directory, name, byName) {
     for (const pattern of EXAMPLE_NOISE) total -= (code.match(pattern) || []).length
     if (code.length < 40) total -= 5
     if (code.length > 2200) total -= Math.ceil((code.length - 2200) / 400)
+    if (code.includes('columnGap="none"') && code.includes('rowGap="none"') && code.includes('enableGutters={false}')) {
+      total += 20
+    }
     return total
   }
 
@@ -298,16 +316,16 @@ function bestStoryExample(directory, name, byName) {
   for (const file of storyFiles()) {
     const source = readFileOrNull(file)
     if (!source) continue
-    const fromExamplesFile = /\.examples\.stories\.tsx$/i.test(file)
+    const fromExamplesFile = /\.examples?\.stories\.tsx$/i.test(file)
     for (const capturedJsx of jsxSnippets(source)) {
       const code = dedentJsx(capturedJsx)
       if (code.length > 4000 || exampleContradictsCatalog(code, byName)) continue
       const relevanceScore = scoreSnippet(code, fromExamplesFile)
       if (relevanceScore >= 0 && (!bestExample || relevanceScore > bestExample.score))
-        bestExample = {code, score: relevanceScore}
+        bestExample = {code, styles: referencedStyles(file, source, code), score: relevanceScore}
     }
   }
-  return bestExample?.code
+  return bestExample
 }
 
 // Best curated example from a component's docs page — the fallback when no tested story exists, so
@@ -479,9 +497,16 @@ function buildComponents() {
       component.examples = [{title: `${component.name} example`, code: jsdocCode, source: 'jsdoc'}]
       continue
     }
-    const storyCode = bestStoryExample(dir, component.name, byName)
-    if (storyCode) {
-      component.examples = [{title: `${component.name} example`, code: storyCode, source: 'story'}]
+    const storyExample = bestStoryExample(dir, component.name, byName)
+    if (storyExample) {
+      component.examples = [
+        {
+          title: `${component.name} example`,
+          code: storyExample.code,
+          ...(storyExample.styles ? {styles: storyExample.styles} : {}),
+          source: 'story',
+        },
+      ]
       continue
     }
     const docsDir = docsIndex.get(component.name.toLowerCase())

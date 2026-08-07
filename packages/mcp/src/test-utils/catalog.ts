@@ -35,6 +35,9 @@ export function makeCatalog(overrides: Partial<Catalog> = {}): Catalog {
     <Button>Get started</Button>
   </Hero.ButtonGroup>
 </Hero>`,
+            styles: `.heroFrame {
+  border: var(--brand-borderWidth-thin) solid var(--brand-color-border-default);
+}`,
           },
         ],
         description: 'Prominent banner for the top of a landing page',
