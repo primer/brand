@@ -93,6 +93,7 @@
 
 @media screen and (min-width: 48rem) and (max-width: 63.24rem) {
   .River {
+    width: 100%;
     max-width: 618px;
     margin-inline: auto;
   }
