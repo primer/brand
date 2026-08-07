@@ -1,6 +1,6 @@
 ---
 title: Minimal footer
-description: Use the minimal footer component to provide a global footer featuring legal links, GitHub logomarks and footnotes.
+description: Use the minimal footer component to provide a global footer featuring legal links, social links, and optional footnotes.
 keywords: ['legal', 'copyright', 'social', 'links', 'footnotes']
 show-tabs: false
 ready: true
@@ -26,6 +26,8 @@ import {MinimalFooter} from '@primer/react-brand'
 ```
 
 ### Footer links
+
+Use up to five `MinimalFooter.Link` children. Links can render as anchors or buttons.
 
 ```jsx live
 <MinimalFooter>
@@ -61,7 +63,7 @@ import {MinimalFooter} from '@primer/react-brand'
 
 ### Footer social links
 
-`MinimalFooter` will render all supported social links by default. Social links can be removed however, by passing `socialLinks={false}`. Alteratively, pass an array of valid social links to filter the default list.
+`MinimalFooter` will render all supported social links by default. Social links can be removed however, by passing `socialLinks={false}`. Alternatively, pass an array of valid social links to filter and reorder the default list.
 
 ```jsx live
 <Stack>
@@ -73,27 +75,69 @@ import {MinimalFooter} from '@primer/react-brand'
 </Stack>
 ```
 
+### Center component
+
+Use `centerComponent` for an exceptional page-specific control or status indicator between the top and bottom sections.
+
+```jsx live
+<MinimalFooter
+  centerComponent={
+    <Stack direction="horizontal" gap="condensed" padding="none">
+      <Text size="200" variant="muted">
+        Status:
+      </Text>
+      <InlineLink href="https://www.githubstatus.com" size="200">
+        All systems operational
+      </InlineLink>
+    </Stack>
+  }
+/>
+```
+
+### Back to top
+
+Use `MinimalFooter.BackToTop` to opt into a control in the top row that scrolls the document back to the top.
+
+After keyboard activation, focus moves to the first `<main>` element, falling back to `<body>` or `<html>` when a main landmark is unavailable. Use `focusTargetId` to identify a different semantic top-of-page destination.
+
+```jsx live
+<MinimalFooter socialLinks={false}>
+  <MinimalFooter.BackToTop>Back to top</MinimalFooter.BackToTop>
+</MinimalFooter>
+```
+
 ## Component props
 
 ### MinimalFooter
 
-| Name                 | Type                                                                                             |                                        Default                                        | Description                                            |
-| :------------------- | :----------------------------------------------------------------------------------------------- | :-----------------------------------------------------------------------------------: | :----------------------------------------------------- |
-| `className`          | `string`                                                                                         |                                                                                       | Sets a custom class on the root element                |
-| `children`           | <MinimalFooterChildrenProp />                                                                    |                                      `undefined`                                      | Valid child components                                 |
-| `copyrightStatement` | `string` \| `ReactElement`                                                                       |                                                                                       | The copyright statement to be displayed in the footer. |
-| `logoHref`           | `string`                                                                                         |                                `'https://github.com'`                                 | The href for the GitHub logo.                          |
-| `socialLinks`        | `['x', 'github', 'linkedin', 'youtube', 'facebook', 'twitch', 'tiktok', 'instagram']` \| `false` | `['x', 'github', 'linkedin', 'youtube', 'facebook', 'twitch', 'tiktok', 'instagram']` | Array of valid strings or `false` to hide all links    |
+| Name                 | Type                                                                                                                |                                        Default                                        | Description                                                        |
+| :------------------- | :------------------------------------------------------------------------------------------------------------------ | :-----------------------------------------------------------------------------------: | :----------------------------------------------------------------- |
+| `className`          | `string`                                                                                                            |                                                                                       | Sets a custom class on the root element                            |
+| `centerComponent`    | `ReactElement`                                                                                                      |                                      `undefined`                                      | Renders an optional component between the top and bottom sections. |
+| `children`           | <MinimalFooterChildrenProp />                                                                                       |                                      `undefined`                                      | Valid child components                                             |
+| `copyrightStatement` | `string` \| `ReactElement`                                                                                          |                        Current-year GitHub copyright statement                        | The copyright statement displayed in the bottom section.           |
+| `logoHref`           | `string`                                                                                                            |                                `'https://github.com'`                                 | The href for the GitHub logomark.                                  |
+| `socialLinks`        | `Array<'x' \| 'github' \| 'linkedin' \| 'youtube' \| 'facebook' \| 'twitch' \| 'tiktok' \| 'instagram'>` \| `false` | `['x', 'github', 'linkedin', 'youtube', 'facebook', 'twitch', 'tiktok', 'instagram']` | Ordered subset of social links, or `false` to hide all links.      |
 
 ### MinimalFooter.Link
 
-| Name       | Type              |   Default   | Description                         |
-| :--------- | :---------------- | :---------: | :---------------------------------- |
-| `as`       | `'a'`, `'button'` |    `'a'`    | Applies the underlying HTML element |
-| `children` | `string`          | `undefined` | Link label text                     |
+| Name       | Type              |   Default   | Description                            |
+| :--------- | :---------------- | :---------: | :------------------------------------- |
+| `as`       | `'a'`, `'button'` |    `'a'`    | Applies the underlying HTML element    |
+| `children` | `string`          | `undefined` | Label for a link in the bottom section |
 
 ### MinimalFooter.Footnotes
 
 | Name       | Type         |   Default   | Description                                                           |
 | :--------- | :----------- | :---------: | :-------------------------------------------------------------------- |
 | `children` | ReactElement | `undefined` | Use Primer Brand `Text` components to benefit from inherited styling. |
+
+### MinimalFooter.BackToTop
+
+| Name            | Type                |   Default   | Description                                                                                                                                                    |
+| :-------------- | :------------------ | :---------: | :------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `children`      | `ReactNode`         |  Required   | The visible and accessible localized label.                                                                                                                    |
+| `focusTargetId` | `string`            | `undefined` | ID of the semantic top-of-page element that receives focus after keyboard activation. Defaults to the first `<main>`, then falls back to `<body>` or `<html>`. |
+| `onClick`       | `MouseEventHandler` | `undefined` | Runs before the built-in behavior. Call `event.preventDefault()` to cancel scrolling and focus transfer.                                                       |
+
+All other props, including ARIA and `data-*` attributes, forward to the underlying `<button>`.
