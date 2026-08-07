@@ -74,7 +74,11 @@ Use `ctaVariant="none"` when the card should remain fully clickable without visi
 
 ### Arrow CTA
 
-Use `ctaVariant="arrow"` when the card should present an icon-only call to action instead of the default text-plus-arrow treatment.
+Use `ctaVariant="arrow"` for a compact call to action. On devices that support hover, the label is visually
+hidden until the Card is hovered or focused. On devices without hover, the label remains visible so the call
+to action does not rely on an unavailable interaction.
+
+Set `disableAnimation` to `true` when CTA state changes should occur without animated transitions.
 
 ```jsx live
 <Card href="https://github.com" ctaVariant="arrow">
@@ -234,18 +238,18 @@ Use `Card.Tokens` to display more than one [Token](/components/Token).
 
 ### Card <Label>Required</Label>
 
-| name               | type                                                           | default      | required | description                                                      |
-| ------------------ | -------------------------------------------------------------- | ------------ | -------- | ---------------------------------------------------------------- |
-| `align`            | <PropTableValues values={['start', 'center']} addLineBreaks /> | `'start'`    | `false`  | Aligns the card content                                          |
-| `backgroundColor`  | <CardBackgroundColorsProp />                                   | `'default'`  | `false`  | Optional background color override for the card                  |
-| `ctaText`          | `string`                                                       | `Learn more` | `false`  | Label of the link at the bottom of the card                      |
-| `ctaVariant`       | <CardCTAVariantsProp />                                        | `'text'`     | `false`  | Presentation of the call-to-action area                          |
-| `disableAnimation` | `boolean`                                                      | `false`      | `false`  | A flag to disable the default hover animation effect of the card |
-| `fullWidth`        | `boolean`                                                      | `false`      | `false`  | A flag to optionally fill the width of the parent container      |
-| `hasBorder`        | `boolean`                                                      | `false`      | `false`  | A flag used to provide a border to the card                      |
-| `href`             | `string`                                                       |              | `true`   | URL to the card content                                          |
-| `leadingVisual`    | `ReactElement`                                                 |              | `false`  | Logo or brand mark shown above the card content                  |
-| `variant`          | <CardVariantsProp />                                           | `'default'`  | `false`  | The variant of the card                                          |
+| name               | type                                                           | default      | required | description                                                 |
+| ------------------ | -------------------------------------------------------------- | ------------ | -------- | ----------------------------------------------------------- |
+| `align`            | <PropTableValues values={['start', 'center']} addLineBreaks /> | `'start'`    | `false`  | Aligns the card content                                     |
+| `backgroundColor`  | <CardBackgroundColorsProp />                                   | `'default'`  | `false`  | Optional background color override for the card             |
+| `ctaText`          | `string`                                                       | `Learn more` | `false`  | Label of the link at the bottom of the card                 |
+| `ctaVariant`       | <CardCTAVariantsProp />                                        | `'text'`     | `false`  | Presentation of the call-to-action area                     |
+| `disableAnimation` | `boolean`                                                      | `false`      | `false`  | Disables transitions and animations within the Card         |
+| `fullWidth`        | `boolean`                                                      | `false`      | `false`  | A flag to optionally fill the width of the parent container |
+| `hasBorder`        | `boolean`                                                      | `false`      | `false`  | A flag used to provide a border to the card                 |
+| `href`             | `string`                                                       |              | `true`   | URL to the card content                                     |
+| `leadingVisual`    | `ReactElement`                                                 |              | `false`  | Logo or brand mark shown above the card content             |
+| `variant`          | <CardVariantsProp />                                           | `'default'`  | `false`  | The variant of the card                                     |
 
 ### Card.Image
 
