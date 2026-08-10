@@ -71,6 +71,7 @@
 }
 
 .testimonialContent {
+  padding-block: var(--base-size-40);
   padding-inline: var(--base-size-32);
 }
 
@@ -81,6 +82,7 @@
   }
 
   .testimonialContent {
+    padding-block: var(--base-size-44);
     padding-inline: calc(var(--base-size-128) + var(--base-size-20));
   }
 
@@ -115,6 +117,7 @@
 
 @media screen and (min-width: 63.25rem) {
   .testimonialContent {
+    padding-block: var(--base-size-88);
     padding-inline: calc(var(--base-size-32) + var(--base-size-24));
   }
 

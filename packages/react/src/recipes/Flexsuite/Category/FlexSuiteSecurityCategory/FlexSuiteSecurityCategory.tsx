@@ -209,18 +209,16 @@ export function FlexSuiteSecurityCategoryTemplate({content}: FlexSuiteSecurityCa
         </Box>
       </Box>
 
-      <Section className={styles.testimonialSection}>
-        <Box className={styles.testimonialContent}>
-          <Testimonial variant="expressive" size="large">
-            <Testimonial.Quote>
-              {content.testimonial.quoteLead} <em>{content.testimonial.quoteEmphasis}</em>{' '}
-              {content.testimonial.quoteTrailing}
-            </Testimonial.Quote>
-            <Testimonial.Link href="#">{content.testimonial.linkText}</Testimonial.Link>
-            <Testimonial.Avatar src={monaAvatar} alt={content.testimonial.avatarAlt} />
-            <Testimonial.Name position={content.testimonial.position}>{content.testimonial.name}</Testimonial.Name>
-          </Testimonial>
-        </Box>
+      <Section className={styles.testimonialSection} paddingBlockStart="none" paddingBlockEnd="none">
+        <Testimonial variant="expressive" size="large">
+          <Testimonial.Quote>
+            {content.testimonial.quoteLead} <em>{content.testimonial.quoteEmphasis}</em>{' '}
+            {content.testimonial.quoteTrailing}
+          </Testimonial.Quote>
+          <Testimonial.Link href="#">{content.testimonial.linkText}</Testimonial.Link>
+          <Testimonial.Avatar src={monaAvatar} alt={content.testimonial.avatarAlt} />
+          <Testimonial.Name position={content.testimonial.position}>{content.testimonial.name}</Testimonial.Name>
+        </Testimonial>
       </Section>
 
       <Box borderBlockEndWidth="thin" borderColor="muted" borderStyle="solid">
@@ -230,7 +228,7 @@ export function FlexSuiteSecurityCategoryTemplate({content}: FlexSuiteSecurityCa
             borderInlineEndWidth="thin"
             borderColor="muted"
             borderStyle="solid"
-            padding={{narrow: 24, regular: 48, wide: 64}}
+            padding={{narrow: 20, regular: 48, wide: 64}}
           >
             <Grid columnGap="none" rowGap="none" enableGutters={false}>
               <Grid.Column span={{xsmall: 12, large: 5}}>

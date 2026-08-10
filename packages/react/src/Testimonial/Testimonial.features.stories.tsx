@@ -165,20 +165,20 @@ const VariantsGrid = ({hasBorder}: TestimonialProps) => (
 
 export const Variants: Story = {
   parameters: {
-    layout: 'full',
+    layout: 'fullscreen',
   },
   render: args => <VariantsGrid {...args} />,
 }
 
 export const VariantsWithoutBorder: Story = {
   parameters: {
-    layout: 'full',
+    layout: 'fullscreen',
   },
   render: args => <VariantsGrid hasBorder={false} {...args} />,
 }
 
 const ExpressiveExample = () => (
-  <Grid>
+  <Grid enableGutters={false}>
     <Grid.Column className={styles.expressiveContainer} span={12}>
       <Testimonial variant="expressive" size="large">
         <Testimonial.Quote>
@@ -221,7 +221,7 @@ export const ExpressiveDark: Story = {
   decorators: [
     Story => (
       <ThemeProvider colorMode="dark">
-        <Box backgroundColor="default" padding={64}>
+        <Box backgroundColor="default">
           <Story />
         </Box>
       </ThemeProvider>
