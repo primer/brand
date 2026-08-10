@@ -110,9 +110,15 @@ export function FlexSuiteSecurityCategoryTemplate({content}: FlexSuiteSecurityCa
                     fullWidth
                     ctaVariant="arrow"
                     ctaText={content.common.learnMore}
-                    className={styles.resourceCard}
+                    className={clsx(styles.resourceCard, styles.resourceCardWithIcon)}
                   >
-                    <Card.Icon icon={cardIcons[index]} color="green" hasBackground size="medium" />
+                    <Card.Icon
+                      icon={cardIcons[index]}
+                      color="green"
+                      hasBackground
+                      size="medium"
+                      className={styles.resourceCardIcon}
+                    />
                     {card.tag ? (
                       <Card.Tokens>
                         <Token>{card.tag}</Token>
@@ -203,25 +209,17 @@ export function FlexSuiteSecurityCategoryTemplate({content}: FlexSuiteSecurityCa
         </Box>
       </Box>
 
-      <Box
-        paddingInlineStart={48}
-        paddingInlineEnd={48}
-        borderBlockEndWidth="thin"
-        borderColor="muted"
-        borderStyle="solid"
-      >
-        <Section>
-          <Testimonial variant="expressive" size="large">
-            <Testimonial.Quote>
-              {content.testimonial.quoteLead} <em>{content.testimonial.quoteEmphasis}</em>{' '}
-              {content.testimonial.quoteTrailing}
-            </Testimonial.Quote>
-            <Testimonial.Link href="#">{content.testimonial.linkText}</Testimonial.Link>
-            <Testimonial.Avatar src={monaAvatar} alt={content.testimonial.avatarAlt} />
-            <Testimonial.Name position={content.testimonial.position}>{content.testimonial.name}</Testimonial.Name>
-          </Testimonial>
-        </Section>
-      </Box>
+      <Section className={styles.testimonialSection} paddingBlockStart="none" paddingBlockEnd="none">
+        <Testimonial variant="expressive" size="large">
+          <Testimonial.Quote>
+            {content.testimonial.quoteLead} <em>{content.testimonial.quoteEmphasis}</em>{' '}
+            {content.testimonial.quoteTrailing}
+          </Testimonial.Quote>
+          <Testimonial.Link href="#">{content.testimonial.linkText}</Testimonial.Link>
+          <Testimonial.Avatar src={monaAvatar} alt={content.testimonial.avatarAlt} />
+          <Testimonial.Name position={content.testimonial.position}>{content.testimonial.name}</Testimonial.Name>
+        </Testimonial>
+      </Section>
 
       <Box borderBlockEndWidth="thin" borderColor="muted" borderStyle="solid">
         <Section paddingBlockEnd="none" paddingBlockStart="none">
@@ -230,7 +228,7 @@ export function FlexSuiteSecurityCategoryTemplate({content}: FlexSuiteSecurityCa
             borderInlineEndWidth="thin"
             borderColor="muted"
             borderStyle="solid"
-            padding={{narrow: 24, regular: 48, wide: 64}}
+            padding={{narrow: 20, regular: 48, wide: 64}}
           >
             <Grid columnGap="none" rowGap="none" enableGutters={false}>
               <Grid.Column span={{xsmall: 12, large: 5}}>

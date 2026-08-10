@@ -1,6 +1,7 @@
 declare const styles: {
   readonly "Testimonial": string;
   readonly "Testimonial--border": string;
+  readonly "Testimonial--hasLink": string;
   readonly "Testimonial--size-large": string;
   readonly "Testimonial--variant-default": string;
   readonly "Testimonial--variant-expressive": string;
@@ -10,6 +11,7 @@ declare const styles: {
   readonly "Testimonial-from": string;
   readonly "Testimonial-link": string;
   readonly "Testimonial-logo-image": string;
+  readonly "Testimonial-position": string;
   readonly "Testimonial-quote": string;
   readonly "Testimonial__media": string;
   readonly "Testimonial__quoteMark": string;

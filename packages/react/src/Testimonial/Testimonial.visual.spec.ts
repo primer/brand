@@ -147,6 +147,35 @@ test.describe('Visual Comparison: Testimonial', () => {
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
+  // eslint-disable-next-line i18n-text/no-en
+  test.describe('Tablet viewport test for Expressive Tablet', () => {
+    test.use({viewport: {width: 834, height: 1112}})
+    test('Testimonial / Expressive Tablet', async ({page}) => {
+      await page.goto(
+        'http://localhost:6006/iframe.html?args=&id=components-testimonial-features--expressive-tablet&viewMode=story',
+        {waitUntil: 'networkidle'},
+      )
+      await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+      await page.waitForTimeout(500)
+      await expect(page).toHaveScreenshot({fullPage: true})
+    })
+  })
+
+  // eslint-disable-next-line i18n-text/no-en
+  test.describe('Mobile viewport test for Expressive Mobile', () => {
+    test.use({viewport: {width: 360, height: 800}})
+    test('Testimonial / Expressive Mobile', async ({page}) => {
+      await page.goto(
+        'http://localhost:6006/iframe.html?args=&id=components-testimonial-features--expressive-mobile&viewMode=story',
+        {waitUntil: 'networkidle'},
+      )
+      await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+      await page.waitForTimeout(500)
+      await expect(page).toHaveScreenshot({fullPage: true})
+    })
+  })
   test('Testimonial / Expressive Dark', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-testimonial-features--expressive-dark&viewMode=story',
