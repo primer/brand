@@ -70,20 +70,10 @@
   border-block-end: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
 }
 
-.testimonialContent {
-  padding-block: var(--base-size-40);
-  padding-inline: var(--base-size-32);
-}
-
 @media screen and (min-width: 48rem) and (max-width: 63.24rem) {
   .cardGridContent {
     box-sizing: border-box;
     padding-inline: 91px; /* This is intentionally very specific for Refactor*/
-  }
-
-  .testimonialContent {
-    padding-block: var(--base-size-44);
-    padding-inline: calc(var(--base-size-128) + var(--base-size-20));
   }
 
   .cardGridItem {
@@ -116,11 +106,6 @@
 }
 
 @media screen and (min-width: 63.25rem) {
-  .testimonialContent {
-    padding-block: var(--base-size-88);
-    padding-inline: calc(var(--base-size-32) + var(--base-size-24));
-  }
-
   .cardGridItem {
     padding: var(--base-size-24);
     border-block-start: 0;

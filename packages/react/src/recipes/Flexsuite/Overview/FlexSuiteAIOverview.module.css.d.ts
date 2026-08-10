@@ -14,7 +14,6 @@ declare const styles: {
   readonly "resourceCardWithIcon": string;
   readonly "riverFootstepsGrid": string;
   readonly "riverFootstepsImage": string;
-  readonly "testimonialContent": string;
   readonly "testimonialSection": string;
 };
 export = styles;
