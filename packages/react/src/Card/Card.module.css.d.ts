@@ -25,6 +25,9 @@ declare const styles: {
   readonly "Card__heading": string;
   readonly "Card__icon": string;
   readonly "Card__image": string;
+  readonly "Card__image--padding-none": string;
+  readonly "Card__image--position-block-end": string;
+  readonly "Card__image--position-block-start": string;
   readonly "Card__label": string;
   readonly "Card__leadingVisual": string;
   readonly "Card__leadingVisualItem": string;

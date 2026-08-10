@@ -36,12 +36,17 @@ Every full page should be framed top and bottom, unless the user has requested a
 
 ### Contain content within the grid
 
-Body content must sit in one centered, max-width grid framed by the brand's gridlines — it should rarely stretch edge-to-edge.
+Body content must sit in one centered, max-width grid framed by the brand's gridlines — it should rarely stretch edge-to-edge. Treat gridlines as one continuous page structure: every line endpoint must reach the viewport or shared page-grid boundary, or intersect another gridline. Never let a border stop in empty space.
 
 Examples of this are in the Flexsuite recipes.
 
 - **Do** — keep heroes, `River`s, `ComparisonTable` / `PricingOptions`, connected Card or Pillar groups, forms, `CTABanner`s, and prose on the same `Grid` / `Section` column. Draw thin side rules on the column and full-bleed horizontal rules between major sections.
-- **Don't** — give each section a different width, stretch content edge-to-edge, or let a section bleed full-width unless it is a deliberate background band behind the shared grid.
+- **Do** — for connected panels, put block rules on the outer frame, outer inline rules on the centered content container, and internal dividers on zero-gap cell wrappers. Preserve these intersections when max-width or column count changes at responsive breakpoints.
+- **Do** — give a panel frame's block-start and block-end rules the same extent. They may differ only when one rule is also a page-wide section boundary that intersects the frame's inline rules.
+
+- **Don't** — give sections different widths, add gaps between borders that should connect, or put borders on inset wrappers where their endpoints stop in empty space.
+- **Don't** — stretch content edge-to-edge or let a section bleed full-width unless it is a deliberate background band behind the shared grid.
+
 - **Mobile** — use a modest, consistent side inset and make sure nothing overflows the viewport.
 
 Resolve gutter, inset, and gridline (border) values with `primer_brand_tokens`; don't hardcode hex or pixel values.
@@ -121,12 +126,14 @@ Resolve exact sizes and weights with `primer_brand_tokens`.
 
 **Do**
 
-- Place `Card`, `Pillar`, `Box`, or custom items in a square frame using `<Grid columnGap="none" rowGap="none" enableGutters={false}>`.
+- Default to placing `Card`, `Pillar`, `Box`, or custom items in a square frame using `<Grid columnGap="none" rowGap="none" enableGutters={false}>`.
+- When Card images need to stretch to fill the Card width, set `padding="none"` on every `Card.Image` and `hasBorder` on every `Card` to provide visual containment. Place these full-bleed Cards in a regular `Grid` with a clear gap between them; this is a separate visual treatment from gridline Cards. Keep image position and aspect ratio consistent across the group, and retrieve Card examples with `primer_brand_examples` for reference.
 - Draw shared dividers on custom frame/cell wrappers and use `border-radius: 0` there.
 
 **Don't**
 
-- Render repeated panels as separate rounded cards, double their shared borders, or override `Card` / `Pillar` internals.
+- Put native-bordered, full-bleed Cards inside a shared gridline frame, or mix gridline and native-border treatments within one group.
+- Render other repeated panels as separate rounded cards, double their shared borders, or override `Card` / `Pillar` internals.
 - `Pillar` has no grid variant; don't invent one.
 
 ### CTABanner

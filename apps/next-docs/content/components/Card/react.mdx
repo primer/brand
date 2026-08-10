@@ -15,6 +15,8 @@ import {
   CardVariantsProp,
   CardCTAVariantsProp,
   CardBackgroundColorsProp,
+  CardImagePaddingProp,
+  CardImagePositionsProp,
   CardLabelVariantsProp,
   CardIconColorsProp,
   CardHeadingAsProp,
@@ -161,6 +163,46 @@ Use the `Image` component to add an image to the `Card`. The `Image` component i
 </>
 ```
 
+### Full-bleed images
+
+When an image should stretch to fill the card width, set `padding="none"` on `Card.Image` and add `hasBorder` to the `Card` for visual containment. Display full-bleed cards in a regular `Grid` with clear gaps between them rather than in a shared gridline frame. Keep the image position and aspect ratio consistent across the group.
+
+```jsx live
+<Grid>
+  {[
+    {
+      heading: 'Build with GitHub Copilot',
+      description: 'Write, review, and understand code with AI-powered assistance.',
+      image: '/images/placeholder-1.png',
+    },
+    {
+      heading: 'Automate your workflow',
+      description: 'Keep projects moving with tools that fit the way your team works.',
+      image: '/images/placeholder-2.png',
+    },
+    {
+      heading: 'Ship secure software',
+      description: 'Find and fix vulnerabilities throughout the development lifecycle.',
+      image: '/images/placeholder-3.png',
+    },
+  ].map(card => (
+    <Grid.Column key={card.heading} span={{xsmall: 12, large: 4}}>
+      <Card href="https://github.com" fullWidth hasBorder ctaVariant="arrow">
+        <Card.Heading>{card.heading}</Card.Heading>
+        <Card.Description>{card.description}</Card.Description>
+        <Card.Image
+          position="block-end"
+          padding="none"
+          src={card.image}
+          alt="Abstract gradient illustration"
+          aspectRatio="4:3"
+        />
+      </Card>
+    </Grid.Column>
+  ))}
+</Grid>
+```
+
 ### Tokens
 
 Use `Card.Tokens` to display more than one [Token](/components/Token).
@@ -212,6 +254,11 @@ Use `Card.Tokens` to display more than one [Token](/components/Token).
 ### Card.Image
 
 Forwards all the props from the [Image component](/components/Image), including `src`, `alt`, and `aspectRatio`.
+
+| name       | type                       | default       | required | description                                                       |
+| ---------- | -------------------------- | ------------- | -------- | ----------------------------------------------------------------- |
+| `padding`  | <CardImagePaddingProp />   | `'default'`   | `false`  | Controls spacing around the image within the card                 |
+| `position` | <CardImagePositionsProp /> | `block-start` | `false`  | Places the image at the block-start or block-end edge of the card |
 
 ### Card.Icon
 

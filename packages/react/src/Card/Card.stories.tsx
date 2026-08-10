@@ -1,6 +1,14 @@
 import React from 'react'
 import type {Meta, StoryObj} from '@storybook/react'
-import {Card, CardCTAVariants, CardIconColors, CardLabelVariants, CardTokenPositions, CardVariants} from '.'
+import {
+  Card,
+  CardCTAVariants,
+  CardIconColors,
+  CardImagePaddingOptions,
+  CardLabelVariants,
+  CardTokenPositions,
+  CardVariants,
+} from '.'
 import {CopilotIcon} from '@primer/octicons-react'
 import {useTranslation} from 'react-i18next'
 import {Token} from '../Token'
@@ -25,6 +33,7 @@ type StoryProps = {
   href: string
   iconColor: (typeof CardIconColors)[number]
   iconHasBackground: boolean
+  imagePadding: (typeof CardImagePaddingOptions)[number]
   imagePosition: 'block-start' | 'block-end'
   labelVariant: (typeof CardLabelVariants)[number]
   heading: string
@@ -52,6 +61,7 @@ const meta = {
     href: 'https://github.com',
     iconColor: 'default',
     iconHasBackground: true,
+    imagePadding: 'default',
     imagePosition: 'block-start',
     label: '',
     labelVariant: 'token',
@@ -122,6 +132,16 @@ const meta = {
         type: 'inline-radio',
       },
       options: ['block-start', 'block-end'],
+      table: {
+        category: 'Media',
+      },
+    },
+    imagePadding: {
+      description: 'Controls image padding when image media is selected.',
+      control: {
+        type: 'inline-radio',
+      },
+      options: [...CardImagePaddingOptions],
       table: {
         category: 'Media',
       },
@@ -297,7 +317,12 @@ export const Playground: Story = {
           leadingVisual={args.media === 'leadingVisual' ? <MicrosoftLogo /> : undefined}
         >
           {args.media === 'image' ? (
-            <Card.Image src={placeholderImage} alt={t('placeholder_alt')} position={args.imagePosition} />
+            <Card.Image
+              src={placeholderImage}
+              alt={t('placeholder_alt')}
+              position={args.imagePosition}
+              padding={args.imagePadding}
+            />
           ) : null}
           {args.media === 'icon' ? (
             <Card.Icon hasBackground={args.iconHasBackground} icon={CopilotIcon} color={args.iconColor} />
