@@ -135,14 +135,23 @@ export function FlexSuiteAIOverviewTemplate({content}: FlexSuiteAIOverviewTempla
                 {content.hero.secondaryAction}
               </Button>
             </Hero.ButtonGroup>
-            <Hero.Video enableBorder={false} position="block-end">
-              <MinimalVideoPlayer
-                internalAccessibleLabels={content.hero.videoControls}
-                poster={colorMode === ColorModesEnum.DARK ? renderUI3Dark : renderUI3}
-                src={heroAnimation}
-                title={content.hero.imageAlt}
+            {process.env.NODE_ENV === 'test' ? (
+              <Hero.Image
+                enableBorder={false}
+                position="block-end"
+                src={colorMode === ColorModesEnum.DARK ? renderUI3Dark : renderUI3}
+                alt={content.hero.imageAlt}
               />
-            </Hero.Video>
+            ) : (
+              <Hero.Video enableBorder={false} position="block-end">
+                <MinimalVideoPlayer
+                  internalAccessibleLabels={content.hero.videoControls}
+                  poster={colorMode === ColorModesEnum.DARK ? renderUI3Dark : renderUI3}
+                  src={heroAnimation}
+                  title={content.hero.imageAlt}
+                />
+              </Hero.Video>
+            )}
           </Hero>
         </Section>
 

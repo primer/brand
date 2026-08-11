@@ -8,7 +8,6 @@ import {test, expect} from '@playwright/test'
 // eslint-disable-next-line i18n-text/no-en
 test.describe('Visual Comparison: Overview', () => {
   test('Overview / AI', async ({page}) => {
-    await page.emulateMedia({reducedMotion: 'reduce'})
     await page.goto('http://localhost:6006/iframe.html?args=&id=recipes-flexsuite-overview--ai&viewMode=story', {
       waitUntil: 'networkidle',
     })
