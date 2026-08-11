@@ -157,6 +157,11 @@ const skipTestLookup = [
   'components-statistic-features--animations', // animation only
   'components-riverstoryscroll-features--video-narrow', // video makes this too flakey
   'components-riverstoryscroll-features--video', // video makes this too flakey
+  'components-minimalvideoplayer--default', // autoplaying video prevents networkidle from settling
+  'components-minimalvideoplayer--playground', // autoplaying video prevents networkidle from settling
+  'components-minimalvideoplayer-features--native-source-element', // autoplaying video prevents networkidle from settling
+  'components-minimalvideoplayer-features--playing', // actively playing video produces nondeterministic frames
+  'components-minimalvideoplayer-features--custom-accessible-labels', // visually duplicates the paused story
   'components-hero-features-images-and-videos--with-native-block-end-default', // for being non-deterministic due to video buffering
   'components-hero-features-images-and-videos--with-youtube-video-block-end-default', // for loading a remote video
   'components-hero-features-images-and-videos--with-youtube-video-inline-end', // for loading a remote video
