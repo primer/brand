@@ -14,7 +14,10 @@ thumbnail_darkMode: '/images/thumbnails/minimal-video-player-thumbnail-dark.png'
 import {MinimalVideoPlayer} from '@primer/react-brand'
 ```
 
-Use `MinimalVideoPlayer` for short, silent product demonstrations that need only a play and pause control. Use [VideoPlayer](/components/VideoPlayer) when viewers need audio, captions, seeking, volume, fullscreen controls, branding, or a dedicated programmatic playback API.
+Use `MinimalVideoPlayer` for short, silent product demonstrations that need only a play and pause control.
+
+Use [VideoPlayer](/components/VideoPlayer) when viewers need audio, captions, seeking, volume, fullscreen controls,
+branding, or a dedicated programmatic playback API.
 
 ## Examples
 
@@ -23,15 +26,12 @@ Use `MinimalVideoPlayer` for short, silent product demonstrations that need only
 Pass a native video URL with `src`. The required `title` provides a concise accessible name for the video.
 
 ```jsx live
-<>
-  <p id="product-demo-description">This text describes the important actions and outcomes shown in the video.</p>
-  <MinimalVideoPlayer
-    aria-describedby="product-demo-description"
-    poster="/images/example-poster.png"
-    src="/example.mp4"
-    title="Product interface demonstration"
-  />
-</>
+<MinimalVideoPlayer
+  aria-describedby="product-demo-description"
+  poster="/images/example-poster.png"
+  src="/example.mp4"
+  title="Product interface demonstration"
+/>
 ```
 
 ### Native source element
