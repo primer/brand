@@ -2,8 +2,9 @@ import React from 'react'
 import type {StoryObj} from '@storybook/react'
 
 import {Testimonial, TestimonialProps} from '.'
-import {Box, Stack, ThemeProvider} from '..'
+import {Box, Grid, Stack, ThemeProvider} from '..'
 import monaAvatar from '../fixtures/images/avatar-mona.png'
+import styles from './Testimonial.stories.module.css'
 
 type MetaProps = TestimonialProps
 
@@ -164,21 +165,21 @@ const VariantsGrid = ({hasBorder}: TestimonialProps) => (
 
 export const Variants: Story = {
   parameters: {
-    layout: 'full',
+    layout: 'fullscreen',
   },
   render: args => <VariantsGrid {...args} />,
 }
 
 export const VariantsWithoutBorder: Story = {
   parameters: {
-    layout: 'full',
+    layout: 'fullscreen',
   },
   render: args => <VariantsGrid hasBorder={false} {...args} />,
 }
 
-export const Expressive: Story = {
-  render: () => (
-    <Box style={{maxWidth: 1200}} paddingInlineStart={48} paddingInlineEnd={48}>
+const ExpressiveExample = () => (
+  <Grid enableGutters={false}>
+    <Grid.Column className={styles.expressiveContainer} span={12}>
       <Testimonial variant="expressive" size="large">
         <Testimonial.Quote>
           GitHub Advanced Security <em>empowers our developers</em> to detect and fix vulnerabilities earlier,
@@ -188,31 +189,43 @@ export const Expressive: Story = {
         <Testimonial.Avatar src={monaAvatar} alt="Circular avatar from Michael Spindler's GitHub profile" />
         <Testimonial.Name position="Head of development services and tools">Michael Spindler</Testimonial.Name>
       </Testimonial>
-    </Box>
-  ),
+    </Grid.Column>
+  </Grid>
+)
+
+export const Expressive: Story = {
+  parameters: {
+    layout: 'fullscreen',
+  },
+  render: () => <ExpressiveExample />,
+}
+
+export const ExpressiveTablet: Story = {
+  ...Expressive,
+  globals: {
+    viewport: {value: 'ipad'},
+  },
+}
+
+export const ExpressiveMobile: Story = {
+  ...Expressive,
+  globals: {
+    viewport: {value: 'iphonexr'},
+  },
 }
 
 export const ExpressiveDark: Story = {
+  parameters: {
+    layout: 'fullscreen',
+  },
   decorators: [
     Story => (
       <ThemeProvider colorMode="dark">
-        <Box backgroundColor="default" padding={64}>
+        <Box backgroundColor="default">
           <Story />
         </Box>
       </ThemeProvider>
     ),
   ],
-  render: () => (
-    <Box style={{maxWidth: 1200}}>
-      <Testimonial variant="expressive" size="large">
-        <Testimonial.Quote>
-          GitHub Advanced Security <em>empowers our developers</em> to detect and fix vulnerabilities earlier,
-          accelerating our time to market and boosting developer satisfaction.
-        </Testimonial.Quote>
-        <Testimonial.Link href="#">Read the full story</Testimonial.Link>
-        <Testimonial.Avatar src={monaAvatar} alt="Circular avatar from Michael Spindler's GitHub profile" />
-        <Testimonial.Name position="Head of development services and tools">Michael Spindler</Testimonial.Name>
-      </Testimonial>
-    </Box>
-  ),
+  render: () => <ExpressiveExample />,
 }

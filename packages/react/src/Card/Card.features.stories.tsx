@@ -1,6 +1,7 @@
 import React from 'react'
-import type {Meta, StoryFn} from '@storybook/react'
+import type {Meta, StoryFn, StoryObj} from '@storybook/react'
 import {useTranslation} from 'react-i18next'
+import {expect, userEvent, waitFor, within} from 'storybook/test'
 import {Card, CardIconColors} from '.'
 import {Avatar} from '../Avatar'
 import {Token} from '../Token'
@@ -12,6 +13,8 @@ import {CopilotIcon, GitBranchIcon, RocketIcon, ZapIcon} from '@primer/octicons-
 import {MicrosoftLogo} from '../fixtures/third-party-logos/MicrosoftLogo'
 import type {IconProps} from '../Icon'
 import styles from './Card.stories.shared.module.css'
+
+type Story = StoryObj<typeof Card>
 
 type StackedCardData = {
   href: string
@@ -115,7 +118,17 @@ export const CTAText: StoryFn<typeof Card> = () => {
   )
 }
 
-const ArrowCTALongLabelCard = ({testId}: {testId?: string}) => {
+const getStoryElement = (container: HTMLElement, selector: string) => {
+  const element = container.querySelector<HTMLElement>(selector)
+
+  if (!element) {
+    throw new Error(`Unable to find story element matching ${selector}`)
+  }
+
+  return element
+}
+
+const ArrowCTALongLabelCard = ({testId, disableAnimation = false}: {testId?: string; disableAnimation?: boolean}) => {
   const {t} = useTranslation('Card')
 
   return (
@@ -124,6 +137,7 @@ const ArrowCTALongLabelCard = ({testId}: {testId?: string}) => {
         data-testid={testId}
         href="https://github.com"
         fullWidth
+        disableAnimation={disableAnimation}
         ctaVariant="arrow"
         ctaText={t('read_the_quick_start_guide')}
       >
@@ -139,9 +153,22 @@ const ArrowCTALongLabelCard = ({testId}: {testId?: string}) => {
 }
 
 export const ArrowCTALongLabel: StoryFn<typeof Card> = () => {
-  return <ArrowCTALongLabelCard />
+  return <ArrowCTALongLabelCard testId="non-hover-card" />
 }
 ArrowCTALongLabel.storyName = 'Arrow CTA with long label'
+ArrowCTALongLabel.play = async ({canvasElement}) => {
+  if (!window.matchMedia('(hover: none)').matches) return
+
+  const canvas = within(canvasElement)
+  const card = await canvas.findByTestId('non-hover-card')
+  const action = getStoryElement(card, '[class*="Card__action--arrowOnly"]')
+  const label = getStoryElement(card, '[class*="Card__actionLabel__"]')
+  const labelClip = getStoryElement(card, '[class*="Card__actionLabelClip"]')
+
+  expect(window.getComputedStyle(action).columnGap).toBe('8px')
+  expect(window.getComputedStyle(label).whiteSpace).toBe('normal')
+  expect(window.getComputedStyle(labelClip).display).toBe('contents')
+}
 
 export const ArrowCTALongLabelHover: StoryFn<typeof Card> = () => {
   return <ArrowCTALongLabelCard testId="hover-enabled-card" />
@@ -149,6 +176,28 @@ export const ArrowCTALongLabelHover: StoryFn<typeof Card> = () => {
 ArrowCTALongLabelHover.storyName = 'Arrow CTA with long label hover'
 ArrowCTALongLabelHover.parameters = {
   pseudo: {hover: ['[data-testid="hover-enabled-card"]']},
+}
+
+export const ArrowCTALongLabelFocus: StoryFn<typeof Card> = () => {
+  return <ArrowCTALongLabelCard testId="focus-enabled-card" disableAnimation />
+}
+ArrowCTALongLabelFocus.storyName = 'Arrow CTA with long label focus and animation disabled'
+ArrowCTALongLabelFocus.play = async ({canvasElement}) => {
+  const canvas = within(canvasElement)
+  const card = await canvas.findByTestId('focus-enabled-card')
+  const action = getStoryElement(card, '[class*="Card__action--arrowOnly"]')
+  const labelClip = getStoryElement(card, '[class*="Card__actionLabelClip"]')
+  const arrow = getStoryElement(card, '[class*="Card--expandableArrow"]')
+
+  await userEvent.tab()
+  await waitFor(() => {
+    expect(window.getComputedStyle(action).columnGap).toBe('8px')
+    expect(window.getComputedStyle(labelClip).maxInlineSize).not.toBe('0px')
+  })
+
+  for (const element of [card, action, labelClip, arrow]) {
+    expect(window.getComputedStyle(element).transitionDuration).toBe('0s')
+  }
 }
 
 export const CenterAligned: StoryFn<typeof Card> = () => {
@@ -485,6 +534,115 @@ export const ImageUsingPictureElement: StoryFn<typeof Card> = () => {
   )
 }
 
+export const ImageNoPaddingNarrowViewport: Story = {
+  name: 'Image, no padding (narrow)',
+  globals: {
+    viewport: {value: 'iphonexr'},
+  },
+  render: function ImageNoPaddingNarrowViewportRender() {
+    const {t} = useTranslation('Card')
+
+    return (
+      <Card
+        data-testid="narrow-full-bleed-card"
+        href="https://github.com/features/copilot"
+        fullWidth
+        hasBorder
+        ctaVariant="arrow"
+        ctaText={t('learn_more')}
+      >
+        <Card.Image padding="none" src={placeholderImage} alt={t('placeholder_alt')} aspectRatio="4:3" />
+        <Card.Heading>{t('image_at_the_top')}</Card.Heading>
+        <Card.Description>{t('code_search_description')}</Card.Description>
+      </Card>
+    )
+  },
+  play: async ({canvasElement}) => {
+    const canvas = within(canvasElement)
+    const card = await canvas.findByTestId('narrow-full-bleed-card')
+    const image = getStoryElement(card, '[class*="Card__image"]')
+    const cardBounds = card.getBoundingClientRect()
+    const imageBounds = image.getBoundingClientRect()
+
+    expect(imageBounds.left).toBeGreaterThanOrEqual(cardBounds.left)
+    expect(imageBounds.right).toBeLessThanOrEqual(cardBounds.right)
+  },
+}
+
+export const ImageNoPaddingWithBorders: StoryFn<typeof Card> = () => {
+  const {t} = useTranslation('Card')
+
+  return (
+    <Grid>
+      <Grid.Column span={4}>
+        <Card
+          href="https://github.com/features/copilot"
+          fullWidth
+          hasBorder
+          ctaVariant="arrow"
+          ctaText={t('learn_more')}
+        >
+          <Card.Icon icon={CopilotIcon} color="green" hasBackground />
+          <Card.Heading>{t('connect_your_ai_tools')}</Card.Heading>
+          <Card.Description>{t('connect_your_ai_tools_description')}</Card.Description>
+          <Card.Image
+            position="block-end"
+            padding="none"
+            src={placeholderImage}
+            alt={t('placeholder_alt')}
+            aspectRatio="4:3"
+          />
+        </Card>
+      </Grid.Column>
+      <Grid.Column span={4}>
+        <Card
+          href="https://github.com/features/copilot"
+          fullWidth
+          hasBorder
+          ctaVariant="arrow"
+          ctaText={t('learn_more')}
+        >
+          <Card.Icon icon={CopilotIcon} color="green" hasBackground />
+          <Card.Heading>{t('connect_your_ai_tools')}</Card.Heading>
+          <Card.Description>{t('connect_your_ai_tools_description')}</Card.Description>
+          <Card.Image padding="none" src={placeholderImage} alt={t('placeholder_alt')} aspectRatio="4:3" />
+        </Card>
+      </Grid.Column>
+    </Grid>
+  )
+}
+
+export const ImageNoPaddingNoBorders: StoryFn<typeof Card> = () => {
+  const {t} = useTranslation('Card')
+
+  return (
+    <Grid>
+      <Grid.Column span={4}>
+        <Card href="https://github.com/features/copilot" fullWidth ctaVariant="arrow" ctaText={t('learn_more')}>
+          <Card.Icon icon={CopilotIcon} color="green" hasBackground />
+          <Card.Heading>{t('connect_your_ai_tools')}</Card.Heading>
+          <Card.Description>{t('connect_your_ai_tools_description')}</Card.Description>
+          <Card.Image
+            position="block-end"
+            padding="none"
+            src={placeholderImage}
+            alt={t('placeholder_alt')}
+            aspectRatio="4:3"
+          />
+        </Card>
+      </Grid.Column>
+      <Grid.Column span={4}>
+        <Card href="https://github.com/features/copilot" fullWidth ctaVariant="arrow" ctaText={t('learn_more')}>
+          <Card.Icon icon={CopilotIcon} color="green" hasBackground />
+          <Card.Heading>{t('connect_your_ai_tools')}</Card.Heading>
+          <Card.Description>{t('connect_your_ai_tools_description')}</Card.Description>
+          <Card.Image padding="none" src={placeholderImage} alt={t('placeholder_alt')} aspectRatio="4:3" />
+        </Card>
+      </Grid.Column>
+    </Grid>
+  )
+}
+
 export const LeadingVisualWithArrowCTA: StoryFn<typeof Card> = () => {
   const {t} = useTranslation('Card')
 
@@ -553,7 +711,7 @@ export const Stacked: StoryFn<typeof Card> = () => {
           {stackedCardData.map(({headingKey, descriptionKey, href, icon, iconColor, tokens}, id) => {
             return (
               <Grid.Column key={id} span={{xsmall: 12, xlarge: 4}} className={styles.gridColumn}>
-                <Box className={styles.gridItem} padding="normal">
+                <Box className={styles.gridItem}>
                   <Card href={href} fullWidth ctaVariant="arrow">
                     <Card.Icon icon={icon} hasBackground color={iconColor} />
                     <Card.Tokens>

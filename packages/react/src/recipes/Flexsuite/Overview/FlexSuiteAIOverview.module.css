@@ -66,6 +66,10 @@
   min-block-size: 100%;
 }
 
+.testimonialSection {
+  border-block-end: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
+}
+
 @media screen and (min-width: 48rem) and (max-width: 63.24rem) {
   .cardGridContent {
     box-sizing: border-box;
@@ -73,29 +77,25 @@
   }
 
   .cardGridItem {
-    container-type: inline-size;
     padding: var(--base-size-24);
     border-inline: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
   }
 
-  /* we reassign grid areas at this breakpoint to match designs where the icon is left of the text instead of above */
-  @container (min-width: 30rem) {
-    .resourceCard {
-      grid-template-columns: auto minmax(0, 1fr);
-      grid-template-areas:
-        'icon tokens'
-        'icon label'
-        'icon heading'
-        'icon description'
-        'icon action';
-      grid-template-rows: auto auto auto auto auto;
-      column-gap: var(--base-size-48);
-      align-items: start;
-    }
+  .resourceCardWithIcon {
+    grid-template-columns: auto minmax(0, 1fr);
+    grid-template-areas:
+      'icon tokens'
+      'icon label'
+      'icon heading'
+      'icon description'
+      'icon action';
+    grid-template-rows: auto auto auto auto auto;
+    column-gap: var(--base-size-48);
+    align-items: start;
+  }
 
-    .resourceCardIcon {
-      margin-block-end: 0;
-    }
+  .resourceCardIcon {
+    margin-block-end: 0;
   }
 }
 

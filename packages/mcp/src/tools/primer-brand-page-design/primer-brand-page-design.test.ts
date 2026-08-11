@@ -38,6 +38,8 @@ describe('primer_brand_page_design', () => {
     expect(result.text).toContain('**Do**')
     expect(result.text).toContain("**Don't**")
     expect(result.text).toContain('### Repeated panels')
+    expect(result.text).toContain('Never let a border stop in empty space')
+    expect(result.text).toContain('block-start and block-end rules the same extent')
     expect(result.text).toContain('`Card`, `Pillar`, `Box`, or custom items')
     expect(result.text).toContain('border-radius: 0')
     expect(result.text).toContain('<CTABanner variant="balanced" hasGridLines>')

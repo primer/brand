@@ -41,6 +41,11 @@
   max-height: var(--base-size-44);
 }
 
+.EyebrowBanner__leadingVisual img,
+.EyebrowBanner__leadingVisual picture {
+  display: block;
+}
+
 .EyebrowBanner__trailingVisual {
   display: flex;
 }

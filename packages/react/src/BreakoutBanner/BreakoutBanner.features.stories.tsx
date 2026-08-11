@@ -9,6 +9,7 @@ import lightNarrowBg from '../fixtures/images/light-vertical-banner.png'
 import lightWideBg from '../fixtures/images/light-horizontal-banner.png'
 import darkNarrowBg from '../fixtures/images/dark-vertical-banner.png'
 import darkWideBg from '../fixtures/images/dark-horizontal-banner.png'
+import placeholderImage from '../fixtures/images/placeholder.png'
 
 import {LogoGithubIcon} from '@primer/octicons-react'
 import {ThemeProvider} from '../ThemeProvider'
@@ -96,6 +97,21 @@ export const AlignedCenter = () => (
     <BreakoutBanner.LinkGroup>
       <Link href="#">Primary Action</Link>
       <Link href="#">Secondary Action</Link>
+    </BreakoutBanner.LinkGroup>
+  </BreakoutBanner>
+)
+
+export const LeadingMedia = () => (
+  <BreakoutBanner
+    leadingVisual={
+      <picture>
+        <img src={placeholderImage} alt="Placeholder leading visual" width={64} height={64} />
+      </picture>
+    }
+  >
+    <BreakoutBanner.Heading>Where the most ambitious teams build great things</BreakoutBanner.Heading>
+    <BreakoutBanner.LinkGroup>
+      <Link href="#">Primary action</Link>
     </BreakoutBanner.LinkGroup>
   </BreakoutBanner>
 )

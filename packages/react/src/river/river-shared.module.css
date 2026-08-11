@@ -34,6 +34,10 @@
   order: 2;
 }
 
+.River__visual :is(img, picture) {
+  display: block;
+}
+
 .River__visual--fill-media img,
 .River__visual--fill-media picture,
 .River__visual--fill-media video {
@@ -152,6 +156,11 @@
 
 .River__text:has(code) {
   line-height: calc(1lh * 1.1);
+}
+
+.River__leadingComponent :is(img, picture),
+.River__trailingComponent :is(img, picture) {
+  display: block;
 }
 
 .River__trailingComponent {

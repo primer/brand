@@ -69,6 +69,10 @@
   height: var(--base-size-32);
 }
 
+.LogoSuite__logobar img {
+  display: block;
+}
+
 .LogoSuite__logobar--variant-muted svg,
 .LogoSuite__logobar--variant-muted path {
   fill: var(--brand-LogoSuite-color-logo-muted);

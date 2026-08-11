@@ -5,8 +5,7 @@
   text-decoration: none;
   color: var(--brand-color-text-default);
 
-  transition: transform var(--brand-Card-animation-duration) var(--brand-Card-animation-easing);
-  padding: var(--base-size-32);
+  padding: var(--brand-Card-padding-block) var(--brand-Card-padding-inline);
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-areas:
@@ -25,14 +24,22 @@
   border-radius: var(--brand-borderRadius-medium);
 }
 
+@media screen and (min-width: 64rem) {
+  .Card {
+    --brand-Card-padding-inline: var(--base-size-32);
+  }
+}
+
 .Card--align-center .Card {
+  --brand-Card-padding-block: var(--base-size-64);
+  --brand-Card-padding-inline: var(--base-size-40);
+
   text-align: center;
-  padding: var(--base-size-64) var(--base-size-40);
 }
 
 @media screen and (min-width: 64rem) {
   .Card--align-center .Card {
-    padding: var(--base-size-64) var(--base-size-80);
+    --brand-Card-padding-inline: var(--base-size-80);
   }
 }
 
@@ -145,7 +152,8 @@
 }
 
 .Card--hasLeadingVisual {
-  padding: var(--base-size-64) var(--base-size-40);
+  --brand-Card-padding-block: var(--base-size-64);
+  --brand-Card-padding-inline: var(--base-size-40);
 }
 
 .Card--imagePos-block-end .Card__image {
@@ -244,15 +252,46 @@
   ); /* This value is adjusted so that, when combined with the container's border radius, the total border radius equals `var(--brand-borderRadius-medium)` */
 }
 
-.Card:not(.Card--disableAnimation):hover {
-  transform: scale3d(1.025, 1.025, 1);
-}
-
 .Card__image {
   margin-block-end: var(--base-size-28);
   border-radius: var(--brand-borderRadius-medium);
   overflow: hidden;
   grid-area: image;
+}
+
+.Card__image--padding-none {
+  margin-inline: calc(var(--brand-Card-padding-inline) * -1);
+}
+
+.Card__image--position-block-start.Card__image--padding-none {
+  margin-block-start: calc(var(--brand-Card-padding-block) * -1);
+}
+
+.Card__image--position-block-end.Card__image--padding-none {
+  margin-block-end: calc(var(--brand-Card-padding-block) * -1);
+}
+
+.Card--border .Card__image--position-block-start.Card__image--padding-none {
+  border-end-start-radius: 0;
+  border-end-end-radius: 0;
+}
+
+.Card--border .Card__image--position-block-end.Card__image--padding-none {
+  border-block-start: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
+  border-start-start-radius: 0;
+  border-start-end-radius: 0;
+}
+
+.Card--variant-minimal .Card__image--padding-none {
+  margin-inline: 0;
+}
+
+.Card--variant-minimal .Card__image--position-block-start.Card__image--padding-none {
+  margin-block-start: 0;
+}
+
+.Card--variant-minimal .Card__image--position-block-end.Card__image--padding-none {
+  margin-block-end: 0;
 }
 
 .Card__image img,
@@ -337,9 +376,9 @@
 .Card__actionLabel {
   display: block;
   min-inline-size: 0;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  overflow: visible;
+  text-overflow: clip;
+  white-space: normal;
 }
 
 .Card:not(.Card--ctaVariant-arrow) .Card__action {
@@ -363,20 +402,7 @@
 }
 
 .Card__actionLabelClip {
-  --actionLabelClip-duration: 400ms;
-  display: inline-flex;
-  flex: 1 1 auto;
-  align-items: center;
-  align-self: stretch;
-  min-inline-size: 0;
-  overflow: hidden;
-  max-inline-size: 0;
-  background-color: transparent;
-  opacity: 0;
-  transform: translateX(calc(var(--base-size-12) * -1));
-  transition: max-inline-size var(--actionLabelClip-duration) var(--brand-Card-animation-easing),
-    opacity var(--actionLabelClip-duration) ease-out, transform var(--actionLabelClip-duration) ease-out,
-    margin-inline var(--actionLabelClip-duration) ease-out, padding-inline var(--actionLabelClip-duration) ease-out;
+  display: contents;
 }
 
 .Card--tokensPosition-block-end .Card__action {
@@ -392,16 +418,15 @@
   min-inline-size: 0;
   max-inline-size: calc(100% - var(--Card-arrowAction-endInset));
   justify-content: flex-start;
-  column-gap: 0;
+  column-gap: var(--base-size-8);
   padding-block: var(--base-size-4);
-  padding-inline: 0;
-  border: var(--brand-borderWidth-thin) solid transparent;
+  padding-inline-start: var(--base-size-12);
+  padding-inline-end: var(--base-size-4);
+  border: var(--brand-borderWidth-thin) solid var(--brand-color-border-default);
   border-radius: var(--brand-borderRadius-full);
-  background-color: transparent;
+  background-color: var(--brand-Card-background-overlay);
   flex-shrink: 0;
   overflow: hidden;
-  transition: border-color var(--actionArrow-duration) ease-out, background-color var(--actionArrow-duration) ease-out,
-    column-gap var(--actionArrow-duration) ease-out, padding-inline var(--actionArrow-duration) ease-out;
 }
 
 .Card__actionIcon--arrowOnly {
@@ -479,13 +504,46 @@
   margin-bottom: var(--base-size-12);
 }
 
-.Card--ctaVariant-arrow:not(.Card--disableAnimation):hover {
-  transform: none;
-}
-
 .Card--ctaVariant-arrow .Card__action {
   min-inline-size: 0;
   justify-self: start;
+}
+
+@media (hover: hover) {
+  .Card__action--arrowOnly {
+    column-gap: 0;
+    padding-inline: 0;
+    border-color: transparent;
+    background-color: transparent;
+    transition: border-color var(--actionArrow-duration) ease-out, background-color var(--actionArrow-duration) ease-out,
+      column-gap var(--actionArrow-duration) ease-out, padding-inline var(--actionArrow-duration) ease-out;
+  }
+
+  .Card__actionLabelClip {
+    --actionLabelClip-duration: 400ms;
+
+    display: inline-flex;
+    flex: 1 1 auto;
+    align-items: center;
+    align-self: stretch;
+    min-inline-size: 0;
+    overflow: hidden;
+    max-inline-size: 0;
+    background-color: transparent;
+    opacity: 0;
+    transform: translateX(calc(var(--base-size-12) * -1));
+    margin-inline: 0;
+    padding-inline: 0;
+    transition: max-inline-size var(--actionLabelClip-duration) var(--brand-Card-animation-easing),
+      opacity var(--actionLabelClip-duration) ease-out, transform var(--actionLabelClip-duration) ease-out,
+      margin-inline var(--actionLabelClip-duration) ease-out, padding-inline var(--actionLabelClip-duration) ease-out;
+  }
+
+  .Card--ctaVariant-arrow .Card__actionLabel {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
 }
 
 .Card--align-center .Card--ctaVariant-arrow .Card__action {
@@ -516,6 +574,12 @@
 
 .Card:is(:hover, :focus-within) .Card--expandableArrow path:nth-of-type(2) {
   stroke-dashoffset: 20;
+}
+
+.Card--disableAnimation,
+.Card--disableAnimation * {
+  animation: none;
+  transition: none;
 }
 
 /* Remove all animations, transitions and smooth scroll for people that prefer not to see them */

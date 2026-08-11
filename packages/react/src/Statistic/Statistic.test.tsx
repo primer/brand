@@ -106,18 +106,24 @@ describe('Statistic', () => {
   })
 
   it('renders the Statistic with leading and trailing visuals', async () => {
-    const leadingComponent = () => <div data-testid="leadingComponent">Leading Visual</div>
-    const trailingComponent = () => <div data-testid="trailingComponent">Trailing Visual</div>
+    const leadingComponent = () => (
+      <picture>
+        <img src="leading.jpg" alt="Leading visual" />
+      </picture>
+    )
+    const trailingComponent = () => <img src="trailing.jpg" alt="Trailing visual" />
 
-    const {getByTestId} = render(
+    const {getByRole, getByTestId} = render(
       <Statistic leadingComponent={leadingComponent} trailingComponent={trailingComponent}>
         <Statistic.Heading>{mockHeading}</Statistic.Heading>
         <Statistic.Description>{mockDescription}</Statistic.Description>
       </Statistic>,
     )
-    const leadingComponentElement = getByTestId('leadingComponent')
-    const trailingComponentElement = getByTestId('trailingComponent')
+    const statistic = getByTestId('Statistic')
+    const leadingComponentElement = getByRole('img', {name: 'Leading visual'})
+    const trailingComponentElement = getByRole('img', {name: 'Trailing visual'})
 
+    expect(statistic).toHaveClass('Statistic')
     expect(leadingComponentElement).toBeInTheDocument()
     expect(trailingComponentElement).toBeInTheDocument()
   })

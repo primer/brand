@@ -8,6 +8,7 @@ import {Button} from '../Button'
 import {ActionMenu} from '../ActionMenu'
 import {Grid} from '../Grid'
 import {EyebrowBanner} from '../EyebrowBanner'
+import placeholderImage from '../fixtures/images/placeholder.png'
 
 const meta = {
   title: 'Components/Hero/Features',
@@ -207,6 +208,21 @@ export const WithTrailingComponent: Story = {
         </Hero>
       </Grid.Column>
     </Grid>
+  ),
+}
+
+export const WithMediaTrailingComponent: Story = {
+  render: () => (
+    <Hero
+      trailingComponent={() => (
+        <picture>
+          <img src={placeholderImage} alt="Placeholder trailing visual" width={64} height={64} />
+        </picture>
+      )}
+    >
+      <Hero.Heading>This is my super sweet hero heading</Hero.Heading>
+      <Hero.Description>Build, scale, and deliver secure software with GitHub.</Hero.Description>
+    </Hero>
   ),
 }
 

@@ -622,6 +622,28 @@ describe('PricingOptions', () => {
     expect(getByTestId(PricingOptions.testIds.actionsMessage)).toBeInTheDocument()
   })
 
+  it('renders media in the Item leadingComponent escape hatch', () => {
+    mockUseWindowSize.mockReturnValue(mediumBreakpoint)
+
+    const {getByRole} = render(
+      <PricingOptions>
+        <PricingOptions.Item
+          leadingComponent={
+            <picture>
+              <img src="leading.jpg" alt="Leading visual" />
+            </picture>
+          }
+        >
+          <PricingOptions.Heading>Pro</PricingOptions.Heading>
+        </PricingOptions.Item>
+      </PricingOptions>,
+    )
+
+    const leadingImage = getByRole('img', {name: 'Leading visual'})
+
+    expect(leadingImage.closest('[class*="PricingOptions__leading-component"]')).toBeInTheDocument()
+  })
+
   it('renders PricingOptions.ActionsMessage leadingComponent without modifying its props', () => {
     mockUseWindowSize.mockReturnValue(mediumBreakpoint)
 
