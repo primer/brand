@@ -1,5 +1,48 @@
 # @primer/react-brand
 
+## 0.73.0
+
+### Minor Changes
+
+- [#1425](https://github.com/primer/brand/pull/1425) [`a486555`](https://github.com/primer/brand/commit/a48655575e03ab38ffcb3cb0e3752c5e34f55fae) Thanks [@danielguillan](https://github.com/danielguillan)! - Added the new `MinimalVideoPlayer` component for presenting muted, looping videos with a minimal play and pause control.
+
+  ```tsx
+  <MinimalVideoPlayer poster="/video-poster.jpg" src="/video.webm" title="Product interface demonstration" />
+  ```
+
+  🔗 [See `MinimalVideoPlayer` documentation for more usage examples](https://primer.style/brand/components/MinimalVideoPlayer)
+
+### Patch Changes
+
+- [#1432](https://github.com/primer/brand/pull/1432) [`e8b64f0`](https://github.com/primer/brand/commit/e8b64f0c2ab057d628fad125cc390c4cff665589) Thanks [@rezrah](https://github.com/rezrah)! - Allow `ButtonGroup` to accept conditionally rendered children.
+
+  Example:
+
+  ```jsx
+  <ButtonGroup>
+    <Button>Primary action</Button>
+    {showSecondaryAction ? <Button>Secondary action</Button> : null}
+  </ButtonGroup>
+  ```
+
+- [#1438](https://github.com/primer/brand/pull/1438) [`baa0861`](https://github.com/primer/brand/commit/baa0861d4a05aabd703dd62059b85caf743f97d3) Thanks [@rezrah](https://github.com/rezrah)! - Added configurable `Card.Image` padding, which allows for full-bleed images to be displayed.
+
+  Example:
+
+  ```jsx
+  <Card hasBorder>
+    <Card.Image padding="none" {...rest} />
+  </Card>
+  ```
+
+- [#1439](https://github.com/primer/brand/pull/1439) [`bca51bc`](https://github.com/primer/brand/commit/bca51bc13ddb2df7c3f8b6b17b8812195468d1cb) Thanks [@danielguillan](https://github.com/danielguillan)! - Update expressive `Testimonial` typography, spacing, and responsive composition to match the design.
+
+- [#1439](https://github.com/primer/brand/pull/1439) [`bca51bc`](https://github.com/primer/brand/commit/bca51bc13ddb2df7c3f8b6b17b8812195468d1cb) Thanks [@danielguillan](https://github.com/danielguillan)! - Added `width: 100%` to all `River` components to fix layout regression on tablet viewports
+
+- [#1428](https://github.com/primer/brand/pull/1428) [`8ac13c8`](https://github.com/primer/brand/commit/8ac13c8367b8ac99abd6e8ca1aca86aa305ec3a8) Thanks [@danielguillan](https://github.com/danielguillan)! - Updated `Card` responsive spacing, exposed arrow CTA labels on non-hover devices, and removed the hover scale effect.
+
+- [#1441](https://github.com/primer/brand/pull/1441) [`8040f9a`](https://github.com/primer/brand/commit/8040f9a789a71493c06cf8fbc543aed0d87f70d0) Thanks [@rezrah](https://github.com/rezrah)! - Updated the `FAQ` gridline variant to include inline padding by default for narrow viewports.
+
 ## 0.72.0
 
 ### Minor Changes

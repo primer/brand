@@ -1,5 +1,19 @@
 # @primer/brand-primitives
 
+## 0.73.0
+
+### Patch Changes
+
+- [#1438](https://github.com/primer/brand/pull/1438) [`baa0861`](https://github.com/primer/brand/commit/baa0861d4a05aabd703dd62059b85caf743f97d3) Thanks [@rezrah](https://github.com/rezrah)! - Added configurable `Card.Image` padding, which allows for full-bleed images to be displayed.
+
+  Example:
+
+  ```jsx
+  <Card hasBorder>
+    <Card.Image padding="none" {...rest} />
+  </Card>
+  ```
+
 ## 0.72.0
 
 ### Minor Changes
