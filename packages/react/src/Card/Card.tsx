@@ -62,10 +62,6 @@ export type CardProps = {
     | React.ReactElement<CardHeadingProps>
     | React.ReactElement<CardDescriptionProps>
   /**
-   * Disable transitions and animations within the Card
-   */
-  disableAnimation?: boolean
-  /**
    * The href of the link
    * */
   href: string
@@ -113,7 +109,6 @@ const CardRoot = forwardRef<HTMLDivElement, CardProps>(
       className,
       ctaText = 'Learn more',
       ctaVariant = defaultCardCTAVariant,
-      disableAnimation = false,
       fullWidth = false,
       href,
       hasBorder = false,
@@ -193,7 +188,6 @@ const CardRoot = forwardRef<HTMLDivElement, CardProps>(
         <div
           className={clsx(
             styles.Card,
-            disableAnimation && styles['Card--disableAnimation'],
             renderedLeadingVisual && styles['Card--hasLeadingVisual'],
             ctaVariant === 'arrow' && styles['Card--ctaVariant-arrow'],
             cardTokensBlockEnd && styles['Card--tokensPosition-block-end'],

@@ -6,13 +6,11 @@ declare const styles: {
   readonly "Card--backgroundColor-subtle": string;
   readonly "Card--border": string;
   readonly "Card--ctaVariant-arrow": string;
-  readonly "Card--disableAnimation": string;
   readonly "Card--expandableArrow": string;
   readonly "Card--fullWidth": string;
   readonly "Card--hasLeadingVisual": string;
   readonly "Card--imagePos-block-end": string;
   readonly "Card--maxWidth": string;
-  readonly "Card--skew": string;
   readonly "Card--tokensPosition-block-end": string;
   readonly "Card--variant-minimal": string;
   readonly "Card__action": string;
@@ -33,10 +31,8 @@ declare const styles: {
   readonly "Card__leadingVisualItem": string;
   readonly "Card__link": string;
   readonly "Card__outer": string;
-  readonly "Card__skew-bounding": string;
   readonly "Card__tokens": string;
   readonly "Card__tokens--position-block-end": string;
-  readonly "Card__torch": string;
 };
 export = styles;
 

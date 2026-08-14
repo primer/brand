@@ -36,16 +36,44 @@ Every full page should be framed top and bottom, unless the user has requested a
 
 ### Contain content within the grid
 
-Body content must sit in one centered, max-width grid framed by the brand's gridlines — it should rarely stretch edge-to-edge. Treat gridlines as one continuous page structure: every line endpoint must reach the viewport or shared page-grid boundary, or intersect another gridline. Never let a border stop in empty space.
+Body content must sit in one centered, max-width grid framed by the brand's gridlines — it should rarely stretch edge-to-edge. Treat gridlines as one continuous page structure. A gridline group must not look like an isolated four-sided box floating inside the page gutters.
 
 Examples of this are in the Flexsuite recipes.
 
 - **Do** — keep heroes, `River`s, `ComparisonTable` / `PricingOptions`, connected Card or Pillar groups, forms, `CTABanner`s, and prose on the same `Grid` / `Section` column. Draw thin side rules on the column and full-bleed horizontal rules between major sections.
-- **Do** — for connected panels, put block rules on the outer frame, outer inline rules on the centered content container, and internal dividers on zero-gap cell wrappers. Preserve these intersections when max-width or column count changes at responsive breakpoints.
-- **Do** — give a panel frame's block-start and block-end rules the same extent. They may differ only when one rule is also a page-wide section boundary that intersects the frame's inline rules.
+- **Do** — put a panel group's block-start and block-end rules on a page-width outer frame outside the centered, max-width `Grid` / `Section`. Put outer inline rules on the centered content container and internal dividers on zero-gap cell wrappers.
+- **Do** — make every horizontal rule reach both viewport edges. It may instead end at vertical page-grid rules only when those rules continue beyond the panel into adjacent sections.
+- **Do** — preserve rule intersections when the max-width or column count changes at responsive breakpoints.
 
+- **Don't** — put all four outer borders on a centered, max-width container. This creates a disconnected box with empty margins around it.
+- **Don't** — assume `width: 100%` is full bleed when the element is inside a constrained parent. The outer frame must sit outside that parent or use the page's established full-bleed breakout.
 - **Don't** — give sections different widths, add gaps between borders that should connect, or put borders on inset wrappers where their endpoints stop in empty space.
 - **Don't** — stretch content edge-to-edge or let a section bleed full-width unless it is a deliberate background band behind the shared grid.
+
+Use this structure for repeated panels:
+
+```tsx
+<Box className={styles.gridFrame}>
+  <Box className={styles.gridContent}>
+    <Grid columnGap="none" rowGap="none" enableGutters={false}>
+      {/* Grid.Columns with bordered cell wrappers */}
+    </Grid>
+  </Box>
+</Box>
+```
+
+```css
+.gridFrame {
+  width: 100%;
+  border-block: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
+}
+
+.gridContent {
+  width: 100%;
+  max-width: var(--brand-Section-container-maxWidth);
+  margin-inline: auto;
+}
+```
 
 - **Mobile** — use a modest, consistent side inset and make sure nothing overflows the viewport.
 
@@ -63,7 +91,9 @@ Generous spacing is what lets a layout breathe; the Flexsuite recipes are a good
 
 A page has one clear headline and a calm step-down from there.
 
+- **Do** — use the default `size` of component-owned text such as `Card.Heading`, `Hero.Heading`, and `FAQ.Heading`. Set `size` on standalone `Heading` and `Text`.
 - **Do** — use a single hero heading, make secondary section headings a clear step smaller, and keep body copy regular weight. Left-align long-form copy; reserve centering for short hero or section intros.
+- **Don't** — pass `size` to a component-owned heading, description, label, or other text unless the brief requires an override. Changing `as` for semantic heading order does not require changing `size`.
 - **Don't** — size secondary headings close to the hero, set body text in heavy weights, or center long paragraphs.
 
 Resolve exact sizes and weights with `primer_brand_tokens`.
@@ -126,14 +156,14 @@ Resolve exact sizes and weights with `primer_brand_tokens`.
 
 **Do**
 
-- Default to placing `Card`, `Pillar`, `Box`, or custom items in a square frame using `<Grid columnGap="none" rowGap="none" enableGutters={false}>`.
+- Default to placing `Card`, `Pillar`, `Box`, or custom items in a connected gridline group: a page-width outer frame around a centered `<Grid columnGap="none" rowGap="none" enableGutters={false}>`.
 - When Card images need to stretch to fill the Card width, set `padding="none"` on every `Card.Image` and `hasBorder` on every `Card` to provide visual containment. Place these full-bleed Cards in a regular `Grid` with a clear gap between them; this is a separate visual treatment from gridline Cards. Keep image position and aspect ratio consistent across the group, and retrieve Card examples with `primer_brand_examples` for reference.
 - Draw shared dividers on custom frame/cell wrappers and use `border-radius: 0` there.
 
 **Don't**
 
 - Put native-bordered, full-bleed Cards inside a shared gridline frame, or mix gridline and native-border treatments within one group.
-- Render other repeated panels as separate rounded cards, double their shared borders, or override `Card` / `Pillar` internals.
+- Box a repeated panel group inside the centered content width, render panels as separate rounded cards, double their shared borders, or override `Card` / `Pillar` internals.
 - `Pillar` has no grid variant; don't invent one.
 
 ### CTABanner

@@ -213,10 +213,6 @@
   line-height: calc(1lh * 1.25);
 }
 
-.Card--disableAnimation:hover .Card__link {
-  text-decoration: underline !important;
-}
-
 /* The focus outline will appear around the entire card, not just the title */
 .Card__link:focus {
   outline: none;
@@ -453,40 +449,6 @@
   cursor: inherit;
 }
 
-.Card--skew:focus-within {
-  outline: var(--brand-borderWidth-thick) solid var(--brand-color-focus);
-}
-
-.Card--skew:hover .Card__torch {
-  opacity: 0.85;
-}
-
-.Card__skew-bounding {
-  border-radius: var(--brand-borderRadius-medium);
-  position: relative;
-  overflow: hidden;
-  z-index: 1;
-  height: 100%;
-  background-color: var(--brand-Card-background-default);
-}
-
-.Card__torch {
-  width: 650px;
-  height: 650px;
-  background-color: var(--brand-color-accent-primary);
-  filter: blur(180px);
-  border-radius: 300px;
-  opacity: 0;
-  transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1);
-  mix-blend-mode: soft-light;
-  will-change: transform;
-  pointer-events: none;
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  z-index: -1;
-}
-
 .Card--expandableArrow {
   margin-inline-start: var(--base-size-4);
 }
@@ -574,12 +536,6 @@
 
 .Card:is(:hover, :focus-within) .Card--expandableArrow path:nth-of-type(2) {
   stroke-dashoffset: 20;
-}
-
-.Card--disableAnimation,
-.Card--disableAnimation * {
-  animation: none;
-  transition: none;
 }
 
 /* Remove all animations, transitions and smooth scroll for people that prefer not to see them */

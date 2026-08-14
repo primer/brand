@@ -18,7 +18,7 @@ type Input = z.infer<typeof inputSchema>
 
 const description = `Get ranked, copy-and-adapt examples of correct Primer Brand usage for a goal. Page goals include a current-brand full-page recipe for overall composition, while independently ranked component examples provide goal-specific detail.
 Pass a target use-case like "pricing section", "category page", or "education landing page"; unmatched page types use the general overview recipe, while unmatched component goals use a foundational set.
-Examples are real source, so they may carry demo scaffolding (a \`content\` object, internal fixture imports, CSS-module class names, repo-relative imports, \`{...args}\` spreads). Preserve the composition and gridline geometry; adapt the content, assets, and imports. When companion CSS is included, carry its frame and cell rules with the JSX.`
+Examples are real source, so they may carry demo scaffolding (a \`content\` object, internal fixture imports, CSS-module class names, repo-relative imports, \`{...args}\` spreads). Preserve the composition and gridline geometry; adapt the content, assets, and imports. When companion CSS is included, carry its frame and cell rules with the JSX. Keep horizontal gridline rules on the page-width outer frame, outside centered content.`
 
 /** Foundational sections that anchor almost every GitHub landing page, in composition order. */
 const DEFAULT_COMPONENTS = ['Hero', 'SectionIntro', 'River', 'Pillar', 'CTABanner']

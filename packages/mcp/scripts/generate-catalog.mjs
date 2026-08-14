@@ -264,7 +264,7 @@ function bestStoryExample(directory, name, byName) {
       const declarationBody = source.slice(exportMatches[index].index, exportMatches[index + 1]?.index ?? source.length)
       for (const match of declarationBody.matchAll(/(?:=>|\breturn)\s*\(/g)) {
         const capturedJsx = captureBalanced(declarationBody, match.index + match[0].length - 1, '(', ')')
-        if (capturedJsx && capturedJsx.includes('<')) snippets.push(capturedJsx)
+        if (capturedJsx && capturedJsx.includes('<')) snippets.push({capturedJsx, exportName: exportMatches[index][1]})
       }
     }
     return snippets
@@ -299,9 +299,11 @@ function bestStoryExample(directory, name, byName) {
   }
 
   // Must render the component; sub-composition helps, plumbing/length hurt. -1 rejects.
-  const scoreSnippet = (code, fromExamplesFile) => {
+  const scoreSnippet = (code, fromExamplesFile, exportName) => {
     if (!new RegExp(`<${name}(?:\\b|\\.)`).test(code)) return -1
     let total = fromExamplesFile ? 3 : 0
+    // An exact `Gridline` story is the component's focused canonical composition, not a mixed showcase.
+    if (/^gridline$/i.test(exportName)) total += 10
     total += (code.match(new RegExp(`<${name}\\.`, 'g')) || []).length
     for (const pattern of EXAMPLE_NOISE) total -= (code.match(pattern) || []).length
     if (code.length < 40) total -= 5
@@ -317,10 +319,10 @@ function bestStoryExample(directory, name, byName) {
     const source = readFileOrNull(file)
     if (!source) continue
     const fromExamplesFile = /\.examples?\.stories\.tsx$/i.test(file)
-    for (const capturedJsx of jsxSnippets(source)) {
+    for (const {capturedJsx, exportName} of jsxSnippets(source)) {
       const code = dedentJsx(capturedJsx)
       if (code.length > 4000 || exampleContradictsCatalog(code, byName)) continue
-      const relevanceScore = scoreSnippet(code, fromExamplesFile)
+      const relevanceScore = scoreSnippet(code, fromExamplesFile, exportName)
       if (relevanceScore >= 0 && (!bestExample || relevanceScore > bestExample.score))
         bestExample = {code, styles: referencedStyles(file, source, code), score: relevanceScore}
     }

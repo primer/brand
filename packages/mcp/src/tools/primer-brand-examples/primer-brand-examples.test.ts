@@ -9,6 +9,7 @@ describe('primer_brand_examples', () => {
     expect(result.text).toContain('Hero')
     expect(result.text.toLowerCase()).toContain('adapt')
     expect(result.text).toContain('.heroFrame')
+    expect(primerBrandExamplesTool.description).toContain('page-width outer frame')
   })
 
   it('ranks examples by goal', async () => {

@@ -53,7 +53,10 @@ export const WithImages: Story = {
 
     return (
       <Section>
-        <RiverBreakoutTabs backgroundVisual={<SharedDitherBackdrop />} imagePosition="block-end">
+        <RiverBreakoutTabs
+          backgroundVisual={process.env.NODE_ENV !== 'test' ? <SharedDitherBackdrop /> : null}
+          imagePosition="block-end"
+        >
           <RiverBreakoutTabs.A11yHeading>{t('with_images_a11y_heading')}</RiverBreakoutTabs.A11yHeading>
 
           <RiverBreakoutTabs.Item>
@@ -104,7 +107,10 @@ export const WithVideos: Story = {
 
     return (
       <Section>
-        <RiverBreakoutTabs backgroundVisual={<SharedDitherBackdrop />} imagePosition="block-end">
+        <RiverBreakoutTabs
+          backgroundVisual={process.env.NODE_ENV !== 'test' ? <SharedDitherBackdrop /> : null}
+          imagePosition="block-end"
+        >
           <RiverBreakoutTabs.A11yHeading>{t('with_videos_a11y_heading')}</RiverBreakoutTabs.A11yHeading>
 
           <RiverBreakoutTabs.Item>
@@ -175,7 +181,10 @@ export const WithRivers: Story = {
             </River.Content>
           </River>
 
-          <RiverBreakoutTabs backgroundVisual={<SharedDitherBackdrop />} imagePosition="block-end">
+          <RiverBreakoutTabs
+            backgroundVisual={process.env.NODE_ENV !== 'test' ? <SharedDitherBackdrop /> : null}
+            imagePosition="block-end"
+          >
             <RiverBreakoutTabs.A11yHeading>{t('with_images_a11y_heading')}</RiverBreakoutTabs.A11yHeading>
 
             <RiverBreakoutTabs.Item>

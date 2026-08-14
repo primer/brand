@@ -57,7 +57,6 @@
   "use": "Usa",
   "to_switch_then": "para cambiar y luego",
   "to_execute_in_parallel": "para ejecutar en paralelo o usar varios modelos al mismo tiempo.",
-  "disable_animation_label": "disableAnimation:",
   "minimal_variant_label": "Variante minimal:",
   "center_aligned_with_icon_label": "Centrado con icono:",
   "larger_heading_and_description_label": "Título y descripción más grandes:",

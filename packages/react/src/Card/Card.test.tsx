@@ -568,32 +568,6 @@ describe('Card', () => {
     expect(cardEl.parentElement).toHaveClass('Card--align-start')
   })
 
-  it('renders with disableAnimation class when disableAnimation is true', () => {
-    const mockTestId = 'card'
-
-    const {getByTestId} = render(
-      <Card href={mockHref} data-testid={mockTestId} disableAnimation>
-        <Card.Heading>{mockHeading}</Card.Heading>
-      </Card>,
-    )
-
-    const cardEl = getByTestId(mockTestId)
-    expect(cardEl).toHaveClass('Card--disableAnimation')
-  })
-
-  it('does not render disableAnimation class by default', () => {
-    const mockTestId = 'card'
-
-    const {getByTestId} = render(
-      <Card href={mockHref} data-testid={mockTestId}>
-        <Card.Heading>{mockHeading}</Card.Heading>
-      </Card>,
-    )
-
-    const cardEl = getByTestId(mockTestId)
-    expect(cardEl).not.toHaveClass('Card--disableAnimation')
-  })
-
   it('renders Card.Image in block-end position', () => {
     const testAltText = 'test image'
     const mockTestId = 'card'
