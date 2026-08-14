@@ -130,7 +130,7 @@ export const GridLineWithCardsTrailingComponent: Story = {
         <RiverBreakout.Content
           trailingComponent={() => (
             <Box padding="condensed">
-              <Card href="https://github.com" variant="minimal" fullWidth ctaText="Learn more">
+              <Card href="https://github.com" variant="minimal" fullWidth disableAnimation ctaText="Learn more">
                 <Card.Image src={shopifyLogo} alt="Shopify logo" width={88} />
                 <Card.Heading>Duolingo boosts developer speed by 25% with GitHub Copilot</Card.Heading>
               </Card>

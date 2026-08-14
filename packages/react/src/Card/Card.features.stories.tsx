@@ -128,7 +128,7 @@ const getStoryElement = (container: HTMLElement, selector: string) => {
   return element
 }
 
-const ArrowCTALongLabelCard = ({testId}: {testId?: string}) => {
+const ArrowCTALongLabelCard = ({testId, disableAnimation = false}: {testId?: string; disableAnimation?: boolean}) => {
   const {t} = useTranslation('Card')
 
   return (
@@ -137,6 +137,7 @@ const ArrowCTALongLabelCard = ({testId}: {testId?: string}) => {
         data-testid={testId}
         href="https://github.com"
         fullWidth
+        disableAnimation={disableAnimation}
         ctaVariant="arrow"
         ctaText={t('read_the_quick_start_guide')}
       >
@@ -178,20 +179,25 @@ ArrowCTALongLabelHover.parameters = {
 }
 
 export const ArrowCTALongLabelFocus: StoryFn<typeof Card> = () => {
-  return <ArrowCTALongLabelCard testId="focus-enabled-card" />
+  return <ArrowCTALongLabelCard testId="focus-enabled-card" disableAnimation />
 }
-ArrowCTALongLabelFocus.storyName = 'Arrow CTA with long label focus'
+ArrowCTALongLabelFocus.storyName = 'Arrow CTA with long label focus and animation disabled'
 ArrowCTALongLabelFocus.play = async ({canvasElement}) => {
   const canvas = within(canvasElement)
   const card = await canvas.findByTestId('focus-enabled-card')
   const action = getStoryElement(card, '[class*="Card__action--arrowOnly"]')
   const labelClip = getStoryElement(card, '[class*="Card__actionLabelClip"]')
+  const arrow = getStoryElement(card, '[class*="Card--expandableArrow"]')
 
   await userEvent.tab()
   await waitFor(() => {
     expect(window.getComputedStyle(action).columnGap).toBe('8px')
     expect(window.getComputedStyle(labelClip).maxInlineSize).not.toBe('0px')
   })
+
+  for (const element of [card, action, labelClip, arrow]) {
+    expect(window.getComputedStyle(element).transitionDuration).toBe('0s')
+  }
 }
 
 export const CenterAligned: StoryFn<typeof Card> = () => {
@@ -737,6 +743,17 @@ export const WithInlineCodeElement: StoryFn<typeof Card> = () => {
         <Stack direction="vertical" gap="normal">
           <Text as="p">{t('default_label')}</Text>
           <Card href="https://github.com">
+            <Card.Heading>
+              {t('use_any')} <code>/model</code> {t('parallelize_with')} <code>/fleet</code>
+            </Card.Heading>
+            <Card.Description>
+              {t('use')} <code>/model</code> {t('to_switch_then')} <code>/fleet</code> {t('to_execute_in_parallel')}
+            </Card.Description>
+          </Card>
+        </Stack>
+        <Stack direction="vertical" gap="normal">
+          <Text as="p">{t('disable_animation_label')}</Text>
+          <Card href="https://github.com" disableAnimation>
             <Card.Heading>
               {t('use_any')} <code>/model</code> {t('parallelize_with')} <code>/fleet</code>
             </Card.Heading>

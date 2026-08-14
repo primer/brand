@@ -111,7 +111,7 @@ export const SocialProof: Story = {
               borderStyle="solid"
               style={{height: '100%'}}
             >
-              <Card href="https://github.com" fullWidth variant="minimal">
+              <Card href="https://github.com" fullWidth variant="minimal" disableAnimation>
                 <Card.Label>Resources</Card.Label>
                 <Card.Heading size="5">
                   How Thomson Reuters successfully adopted AI —and how your organization can, too

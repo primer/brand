@@ -29,6 +29,7 @@ type StoryProps = {
   align: 'start' | 'center'
   ctaText: string
   ctaVariant: (typeof CardCTAVariants)[number]
+  disableAnimation: boolean
   href: string
   iconColor: (typeof CardIconColors)[number]
   iconHasBackground: boolean
@@ -56,6 +57,7 @@ const meta = {
     align: 'start',
     ctaText: defaultCTAText,
     ctaVariant: 'text',
+    disableAnimation: false,
     href: 'https://github.com',
     iconColor: 'default',
     iconHasBackground: true,
@@ -161,6 +163,12 @@ const meta = {
         type: 'inline-radio',
       },
       options: [...CardCTAVariants],
+    },
+    disableAnimation: {
+      description: 'Disable transitions and animations within the Card.',
+      control: {
+        type: 'boolean',
+      },
     },
     label: {
       description: 'Optional eyebrow content rendered above the heading.',
@@ -302,6 +310,7 @@ export const Playground: Story = {
           align={args.align}
           ctaText={resolvedCTAText}
           ctaVariant={args.ctaVariant}
+          disableAnimation={args.disableAnimation}
           hasBorder={args.hasBorder}
           fullWidth={args.fullWidth}
           variant={args.variant}

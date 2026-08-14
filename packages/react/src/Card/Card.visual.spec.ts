@@ -126,7 +126,7 @@ test.describe('Visual Comparison: Card', () => {
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
-  test('Card / Arrow CTA with long label focus', async ({page}) => {
+  test('Card / Arrow CTA with long label focus and animation disabled', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-card-features--arrow-cta-long-label-focus&viewMode=story',
       {waitUntil: 'networkidle'},

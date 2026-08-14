@@ -6,6 +6,7 @@ declare const styles: {
   readonly "Card--backgroundColor-subtle": string;
   readonly "Card--border": string;
   readonly "Card--ctaVariant-arrow": string;
+  readonly "Card--disableAnimation": string;
   readonly "Card--expandableArrow": string;
   readonly "Card--fullWidth": string;
   readonly "Card--hasLeadingVisual": string;

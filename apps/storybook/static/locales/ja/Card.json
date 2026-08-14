@@ -57,6 +57,7 @@
   "use": "使用するには",
   "to_switch_then": "で切り替え、その後",
   "to_execute_in_parallel": "で並列実行または複数モデルの同時実行を行います。",
+  "disable_animation_label": "disableAnimation:",
   "minimal_variant_label": "最小バリアント:",
   "center_aligned_with_icon_label": "アイコン付き中央揃え:",
   "larger_heading_and_description_label": "大きめの見出しと説明:",
