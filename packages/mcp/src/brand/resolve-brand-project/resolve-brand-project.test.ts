@@ -1,4 +1,4 @@
-import {mkdirSync, mkdtempSync, rmSync, writeFileSync} from 'node:fs'
+import {mkdirSync, mkdtempSync, realpathSync, rmSync, symlinkSync, writeFileSync} from 'node:fs'
 import {tmpdir} from 'node:os'
 import {join} from 'node:path'
 
@@ -7,7 +7,7 @@ import {resolveBrandProject} from './resolve-brand-project.js'
 describe('resolveBrandProject', () => {
   const directories: string[] = []
   const temporaryWorkspace = () => {
-    const directory = mkdtempSync(join(tmpdir(), 'primer-brand-project-'))
+    const directory = realpathSync(mkdtempSync(join(tmpdir(), 'primer-brand-project-')))
     directories.push(directory)
     return directory
   }
@@ -62,6 +62,19 @@ describe('resolveBrandProject', () => {
     expect(resolveBrandProject(workspace, 'apps/site').reason).toBe('invalid-brand-project')
     expect(resolveBrandProject(workspace, '..').reason).toBe('invalid-brand-project')
     expect(resolveBrandProject(workspace, join(workspace, 'apps', 'site')).reason).toBe('invalid-brand-project')
+  })
+
+  it('rejects a requested package symlink that resolves outside the workspace', () => {
+    const workspace = temporaryWorkspace()
+    const externalPackage = temporaryWorkspace()
+    writePackage(externalPackage, {'@primer/react-brand': '^0.73.0'})
+    mkdirSync(join(workspace, 'apps'), {recursive: true})
+    symlinkSync(externalPackage, join(workspace, 'apps', 'site'), 'dir')
+
+    expect(resolveBrandProject(workspace, 'apps/site')).toMatchObject({
+      projectDir: null,
+      reason: 'invalid-brand-project',
+    })
   })
 
   it('reports when no declaring package or workspace root is available', () => {

@@ -1,4 +1,4 @@
-import {mkdtempSync, readFileSync, rmSync, writeFileSync} from 'node:fs'
+import {existsSync, mkdtempSync, readFileSync, rmSync, symlinkSync, writeFileSync} from 'node:fs'
 import {tmpdir} from 'node:os'
 import {join} from 'node:path'
 
@@ -75,6 +75,27 @@ describe('updateAgentsMd', () => {
     const wrongCaseDir = temporaryProject()
     writeFileSync(join(wrongCaseDir, 'agents.md'), '# Existing')
     expect(updateAgentsMd(wrongCaseDir)).toMatchObject({action: 'skipped', reason: 'incorrect-filename-case'})
+  })
+
+  it('does not read or write AGENTS.md through symbolic links', () => {
+    const projectDir = temporaryProject()
+    const externalDir = temporaryProject()
+    const externalFile = join(externalDir, 'instructions.md')
+    writeFileSync(externalFile, '# External instructions\n')
+    symlinkSync(externalFile, join(projectDir, 'AGENTS.md'))
+
+    expect(updateAgentsMd(projectDir)).toMatchObject({action: 'skipped', reason: 'unsafe-agents-path'})
+    expect(readFileSync(externalFile, 'utf8')).toBe('# External instructions\n')
+  })
+
+  it('does not create an external file through a dangling AGENTS.md symlink', () => {
+    const projectDir = temporaryProject()
+    const externalDir = temporaryProject()
+    const externalFile = join(externalDir, 'future-instructions.md')
+    symlinkSync(externalFile, join(projectDir, 'AGENTS.md'))
+
+    expect(updateAgentsMd(projectDir)).toMatchObject({action: 'skipped', reason: 'unsafe-agents-path'})
+    expect(existsSync(externalFile)).toBe(false)
   })
 
   it('skips when no project root is available', () => {

@@ -1,5 +1,5 @@
-import {readdirSync, readFileSync} from 'node:fs'
-import {isAbsolute, join, relative, resolve} from 'node:path'
+import {readdirSync, readFileSync, realpathSync} from 'node:fs'
+import {isAbsolute, join, relative, resolve, sep} from 'node:path'
 
 export type BrandProjectResolution = {
   projectDir: string | null
@@ -37,15 +37,30 @@ export function resolveBrandProject(workspaceDir: string | null, requestedProjec
 
   if (!workspaceDir) return {projectDir: null, candidates: [], reason: 'no-workspace-root'}
 
+  let canonicalWorkspaceDir: string
+  try {
+    canonicalWorkspaceDir = realpathSync(workspaceDir)
+  } catch {
+    return {projectDir: null, candidates: [], reason: 'no-workspace-root'}
+  }
+
+  const isWithinWorkspace = (candidate: string): boolean => {
+    const relativeCandidate = relative(canonicalWorkspaceDir, candidate)
+    return relativeCandidate !== '..' && !relativeCandidate.startsWith(`..${sep}`) && !isAbsolute(relativeCandidate)
+  }
+
   if (requestedProjectDir) {
     if (isAbsolute(requestedProjectDir)) {
       return {projectDir: null, candidates: [], reason: 'invalid-brand-project'}
     }
-    const candidate = resolve(workspaceDir, requestedProjectDir)
-    const relativeCandidate = relative(workspaceDir, candidate)
-    const isOutsideWorkspace = relativeCandidate.startsWith('..') || isAbsolute(relativeCandidate)
-    return !isOutsideWorkspace && declaresBrand(candidate)
-      ? {projectDir: candidate, candidates: [candidate]}
+    let canonicalCandidate: string
+    try {
+      canonicalCandidate = realpathSync(resolve(canonicalWorkspaceDir, requestedProjectDir))
+    } catch {
+      return {projectDir: null, candidates: [], reason: 'invalid-brand-project'}
+    }
+    return isWithinWorkspace(canonicalCandidate) && declaresBrand(canonicalCandidate)
+      ? {projectDir: canonicalCandidate, candidates: [canonicalCandidate]}
       : {projectDir: null, candidates: [], reason: 'invalid-brand-project'}
   }
 
@@ -64,7 +79,7 @@ export function resolveBrandProject(workspaceDir: string | null, requestedProjec
       visit(join(directory, entry.name))
     }
   }
-  visit(workspaceDir)
+  visit(canonicalWorkspaceDir)
   candidates.sort()
 
   if (candidates.length === 1) return {projectDir: candidates[0] ?? null, candidates}

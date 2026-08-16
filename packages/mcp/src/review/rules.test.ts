@@ -232,6 +232,12 @@ describe('primer_brand_review rules', () => {
     expect(ruleIds(review('<Heading size="4">Heading</Heading>'))).not.toContain('component-text-default-size')
   })
 
+  it('does not apply component-owned text guidance to application components', () => {
+    expect(ruleIds(review('<PricingCard.Heading size="small">Pro</PricingCard.Heading>'))).not.toContain(
+      'component-text-default-size',
+    )
+  })
+
   it('reports which approved brand components were imported', () => {
     const used = brandComponentsUsed("import {Hero, CTABanner} from '@primer/react-brand'", makeCatalog())
     expect(used.map(component => component.name).sort()).toEqual(['CTABanner', 'Hero'])

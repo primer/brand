@@ -61,6 +61,13 @@ export function makeCatalog(overrides: Partial<Catalog> = {}): Catalog {
           },
         ],
       },
+      {
+        name: 'Card',
+        module: '@primer/react-brand',
+        subcomponents: ['Card.Heading', 'Card.Description'],
+        props: [],
+        examples: [],
+      },
       {name: 'Pillar', module: '@primer/react-brand', subcomponents: [], props: [], examples: []},
       {name: 'SectionIntro', module: '@primer/react-brand', subcomponents: [], props: [], examples: []},
       {name: 'River', module: '@primer/react-brand', subcomponents: [], props: [], examples: []},

@@ -1,10 +1,10 @@
-import {existsSync, readFileSync, readdirSync, writeFileSync} from 'node:fs'
-import {join} from 'node:path'
+import {lstatSync, readFileSync, readdirSync, realpathSync, writeFileSync} from 'node:fs'
+import {isAbsolute, join, relative, sep} from 'node:path'
 
 export type AgentsMdUpdateResult = {
   action: 'created' | 'updated' | 'unchanged' | 'skipped'
   path: string | null
-  reason?: 'no-project-root' | 'incorrect-filename-case' | 'malformed-managed-block'
+  reason?: 'no-project-root' | 'incorrect-filename-case' | 'malformed-managed-block' | 'unsafe-agents-path'
 }
 
 /** Create or update the managed Primer Brand instructions in a project's root AGENTS.md. */
@@ -24,15 +24,40 @@ ${endMarker}`
 
   if (!projectDir) return {action: 'skipped', path: null, reason: 'no-project-root'}
 
-  const agentMdCustomSetupPath = join(projectDir, filename)
-  const caseInsensitiveMatch = readdirSync(projectDir).find(entry => entry.toLowerCase() === filename.toLowerCase())
+  let canonicalProjectDir: string
+  try {
+    canonicalProjectDir = realpathSync(projectDir)
+  } catch {
+    return {action: 'skipped', path: null, reason: 'no-project-root'}
+  }
+
+  const agentMdCustomSetupPath = join(canonicalProjectDir, filename)
+  const caseInsensitiveMatch = readdirSync(canonicalProjectDir).find(
+    entry => entry.toLowerCase() === filename.toLowerCase(),
+  )
   if (caseInsensitiveMatch && caseInsensitiveMatch !== filename) {
     return {action: 'skipped', path: agentMdCustomSetupPath, reason: 'incorrect-filename-case'}
   }
 
-  if (!existsSync(agentMdCustomSetupPath)) {
+  const fileStats = lstatSync(agentMdCustomSetupPath, {throwIfNoEntry: false})
+  if (fileStats?.isSymbolicLink()) {
+    return {action: 'skipped', path: agentMdCustomSetupPath, reason: 'unsafe-agents-path'}
+  }
+
+  if (!fileStats) {
     writeFileSync(agentMdCustomSetupPath, `${block}\n`, 'utf8')
     return {action: 'created', path: agentMdCustomSetupPath}
+  }
+
+  let canonicalAgentsPath: string
+  try {
+    canonicalAgentsPath = realpathSync(agentMdCustomSetupPath)
+  } catch {
+    return {action: 'skipped', path: agentMdCustomSetupPath, reason: 'unsafe-agents-path'}
+  }
+  const relativeAgentsPath = relative(canonicalProjectDir, canonicalAgentsPath)
+  if (relativeAgentsPath === '..' || relativeAgentsPath.startsWith(`..${sep}`) || isAbsolute(relativeAgentsPath)) {
+    return {action: 'skipped', path: agentMdCustomSetupPath, reason: 'unsafe-agents-path'}
   }
 
   const existing = readFileSync(agentMdCustomSetupPath, 'utf8')

@@ -168,6 +168,9 @@ function build(id: FrameworkId, ctx: ToolContext, agentsMd: SetupAgentsMdResult)
         if (agentsMd.reason === 'malformed-managed-block') {
           return 'Skipped `AGENTS.md`: the Primer Brand managed markers are malformed or duplicated; repair or remove that block, then rerun setup.'
         }
+        if (agentsMd.reason === 'unsafe-agents-path') {
+          return 'Skipped `AGENTS.md`: the existing path is a symbolic link or resolves outside the selected package. Replace it with a regular file inside the package, then rerun setup.'
+        }
         return 'Skipped `AGENTS.md`: no project root was detected.'
     }
   })()
