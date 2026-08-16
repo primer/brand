@@ -444,7 +444,7 @@ const componentTextDefaultSize: Rule = {
   run(code) {
     const findings: Finding[] = []
     for (const match of code.matchAll(
-      /<([A-Z][A-Za-z0-9]*)\.(Heading|Subheading|Description|Label|Eyebrow|Text)\b[^>]*\bsize\s*=/g,
+      /<([A-Z][A-Za-z0-9]*)\.(Heading|Subheading|Description|Label|Eyebrow|Text)\b[^>]*(?:^|\s)size\s*=/g,
     )) {
       findings.push({
         severity: 'warning',

@@ -225,6 +225,9 @@ describe('primer_brand_review rules', () => {
 
   it('allows component-owned text defaults and standalone typography sizes', () => {
     expect(ruleIds(review('<FAQ.Heading as="h2">Questions</FAQ.Heading>'))).not.toContain('component-text-default-size')
+    expect(ruleIds(review('<Card.Heading data-size="compact">Heading</Card.Heading>'))).not.toContain(
+      'component-text-default-size',
+    )
     expect(ruleIds(review('<Text size="300">Description</Text>'))).not.toContain('component-text-default-size')
     expect(ruleIds(review('<Heading size="4">Heading</Heading>'))).not.toContain('component-text-default-size')
   })

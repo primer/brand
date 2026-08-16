@@ -19,7 +19,9 @@ Pull adaptable component snippets with `primer_brand_examples`.
 `@primer/react-brand` spans multiple generations of GitHub's design language, and many components expose that choice as a variant or prop. **Gridline** is the current brand direction. It's a connected, ruled-line aesthetic, as seen throughout the Flexsuite templates. Bias toward it.
 
 - **Do** — when a component offers a gridline-family option, choose it over the older or default look. "Expressive" gridline options are a more pronounced sub-variant of the same aesthetic, not a competing style; reach for them where a section wants extra emphasis.
+- **Do** — use a component's built-in `gridline` variant, gridline-family variant, or `hasGridLines` prop when available.
 - **Don't** — settle for a component's plainest or legacy variant, or borrow section layouts from an older brand generation, when a gridline equivalent exists.
+- **Don't** — recreate built-in gridlines with custom `Box` wrappers, border props, or CSS.
 
 The gridline look is crucial and literal, not just a set of variants. Gridlines are thin ruled lines that frame the content column and separate sections (see "Contain content within the grid" section below).
 
@@ -41,39 +43,16 @@ Body content must sit in one centered, max-width grid framed by the brand's grid
 Examples of this are in the Flexsuite recipes.
 
 - **Do** — keep heroes, `River`s, `ComparisonTable` / `PricingOptions`, connected Card or Pillar groups, forms, `CTABanner`s, and prose on the same `Grid` / `Section` column. Draw thin side rules on the column and full-bleed horizontal rules between major sections.
-- **Do** — put a panel group's block-start and block-end rules on a page-width outer frame outside the centered, max-width `Grid` / `Section`. Put outer inline rules on the centered content container and internal dividers on zero-gap cell wrappers.
-- **Do** — make every horizontal rule reach both viewport edges. It may instead end at vertical page-grid rules only when those rules continue beyond the panel into adjacent sections.
+- **Do** — for connected `Card` and `Pillar` groups, put block-start and block-end rules on a page-width outer frame outside the centered, max-width `Grid` / `Section`. Put outer inline rules on the centered content container and internal dividers on zero-gap cell wrappers.
+- **Do** — for these custom group frames, make every horizontal rule reach both viewport edges. It may instead end at vertical page-grid rules only when those rules continue beyond the group into adjacent sections.
 - **Do** — preserve rule intersections when the max-width or column count changes at responsive breakpoints.
 
-- **Don't** — put all four outer borders on a centered, max-width container. This creates a disconnected box with empty margins around it.
-- **Don't** — assume `width: 100%` is full bleed when the element is inside a constrained parent. The outer frame must sit outside that parent or use the page's established full-bleed breakout.
+- **Don't** — put all four outer borders for a `Card` or `Pillar` group on a centered, max-width container. This creates a disconnected box with empty margins around it.
+- **Don't** — assume `width: 100%` makes a custom group frame full bleed when it is inside a constrained parent. The outer frame must sit outside that parent or use the page's established full-bleed breakout.
 - **Don't** — give sections different widths, add gaps between borders that should connect, or put borders on inset wrappers where their endpoints stop in empty space.
 - **Don't** — stretch content edge-to-edge or let a section bleed full-width unless it is a deliberate background band behind the shared grid.
 
-Use this structure for repeated panels:
-
-```tsx
-<Box className={styles.gridFrame}>
-  <Box className={styles.gridContent}>
-    <Grid columnGap="none" rowGap="none" enableGutters={false}>
-      {/* Grid.Columns with bordered cell wrappers */}
-    </Grid>
-  </Box>
-</Box>
-```
-
-```css
-.gridFrame {
-  width: 100%;
-  border-block: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
-}
-
-.gridContent {
-  width: 100%;
-  max-width: var(--brand-Section-container-maxWidth);
-  margin-inline: auto;
-}
-```
+Retrieve the canonical grouped `Card` or `Pillar` structure with `primer_brand_examples` and carry its companion CSS with the JSX. Do not reproduce that structure from this prose.
 
 - **Mobile** — use a modest, consistent side inset and make sure nothing overflows the viewport.
 
@@ -156,13 +135,14 @@ Resolve exact sizes and weights with `primer_brand_tokens`.
 
 **Do**
 
-- Default to placing `Card`, `Pillar`, `Box`, or custom items in a connected gridline group: a page-width outer frame around a centered `<Grid columnGap="none" rowGap="none" enableGutters={false}>`.
+- Default to placing connected `Card` or `Pillar` groups in a page-width outer frame around a centered zero-gap `Grid`. Retrieve the current structure and companion CSS with `primer_brand_examples`.
 - When Card images need to stretch to fill the Card width, set `padding="none"` on every `Card.Image` and `hasBorder` on every `Card` to provide visual containment. Place these full-bleed Cards in a regular `Grid` with a clear gap between them; this is a separate visual treatment from gridline Cards. Keep image position and aspect ratio consistent across the group, and retrieve Card examples with `primer_brand_examples` for reference.
 - Draw shared dividers on custom frame/cell wrappers and use `border-radius: 0` there.
 
 **Don't**
 
 - Put native-bordered, full-bleed Cards inside a shared gridline frame, or mix gridline and native-border treatments within one group.
+- Apply the custom Card/Pillar frame pattern to components that already provide a gridline variant or prop.
 - Box a repeated panel group inside the centered content width, render panels as separate rounded cards, double their shared borders, or override `Card` / `Pillar` internals.
 - `Pillar` has no grid variant; don't invent one.
 

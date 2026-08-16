@@ -1,6 +1,6 @@
 import {createLogger} from '../logger.js'
-import type {BrandInstall} from '../brand/resolve-install.js'
-import type {DocsSource} from '../brand/docs-source.js'
+import type {BrandInstall} from '../brand/resolve-install/resolve-install.js'
+import type {DocsSource} from '../brand/docs-source/docs-source.js'
 import type {Catalog} from '../catalog/types.js'
 import type {ToolContext} from '../tools/types.js'
 
@@ -196,6 +196,8 @@ export function makeContext(overrides: Partial<ToolContext> = {}): ToolContext {
   return {
     catalog,
     brand: installedBrand,
+    workspaceDir: null,
+    framework: {id: 'unknown', label: 'a React project', rsc: false, projectDir: null},
     docs: noopDocs,
     logger: createLogger(false),
     assets: catalog.assets,

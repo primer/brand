@@ -1,7 +1,7 @@
 import {existsSync, readdirSync, readFileSync} from 'node:fs'
 import {dirname, join} from 'node:path'
 
-import type {CatalogAsset} from '../catalog/types.js'
+import type {CatalogAsset} from '../../catalog/types.js'
 
 type AssetPackage = {
   module: string

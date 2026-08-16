@@ -2,6 +2,15 @@ import {makeContext} from '../../test-utils/catalog.js'
 import {primerBrandExamplesTool} from './primer-brand-examples.js'
 
 describe('primer_brand_examples', () => {
+  it('describes when to call the tool without duplicating adaptation guidance', () => {
+    expect(primerBrandExamplesTool.description).toContain('ranked, tested Primer Brand examples')
+    expect(primerBrandExamplesTool.description).toContain('component or page goal')
+    expect(primerBrandExamplesTool.description).toContain('primer_brand_component')
+    expect(primerBrandExamplesTool.description).not.toContain('demo scaffolding')
+    expect(primerBrandExamplesTool.description).not.toContain('gridline')
+    expect(primerBrandExamplesTool.description).not.toContain('Card or Pillar')
+  })
+
   it('falls back to the default foundational set when nothing matches the goal', async () => {
     const result = await primerBrandExamplesTool.run({goal: 'zzzz nonexistent zzzz'}, makeContext())
     expect(result.isError).toBeFalsy()
@@ -9,7 +18,9 @@ describe('primer_brand_examples', () => {
     expect(result.text).toContain('Hero')
     expect(result.text.toLowerCase()).toContain('adapt')
     expect(result.text).toContain('.heroFrame')
-    expect(primerBrandExamplesTool.description).toContain('page-width outer frame')
+    expect(result.text).toContain('## How to use these examples')
+    expect(result.text).toContain('Use built-in gridline variants or props')
+    expect(result.text).toContain('grouped Card or Pillar example')
   })
 
   it('ranks examples by goal', async () => {

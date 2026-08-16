@@ -8,7 +8,7 @@ It is a version-aware, `stdio` (local) server which reads the docs and metadata 
 
 | Tool                       | What it does                                                                                                                                         |
 | -------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `primer_brand_setup`       | Configures Primer Brand first-time. Includes `ThemeProvider`, Mona Sans and RSC-directive configuration among other things                           |
+| `primer_brand_setup`       | Configures Primer Brand first-time and maintains a Primer Brand pointer beside the declaring `package.json`.                                         |
 | `primer_brand_page_design` | Page-design conventions (header/footer, hero media, gridline aesthetic, card grids, labels) and the current-brand reference templates to start from. |
 | `primer_brand_component`   | Get a component API information like props, allowed values and named sub-components.                                                                 |
 | `primer_brand_examples`    | Reference examples taken from our Storybook.                                                                                                         |
@@ -34,6 +34,8 @@ Requires Node.js >= 24.
   }
 }
 ```
+
+When an agent calls `primer_brand_setup`, the tool updates `AGENTS.md` only in a package whose `package.json` declares `@primer/react-brand`. Existing instructions are preserved. If several workspace packages declare the dependency, call setup with `projectDir` set to the intended workspace-relative package folder. The pointer routes future agents to the MCP tools and version-matched docs bundled with the installed package.
 
 ### Copilot CLI / other stdio clients
 

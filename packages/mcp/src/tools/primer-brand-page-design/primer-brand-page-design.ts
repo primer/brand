@@ -10,7 +10,10 @@ const inputSchema = z.object({})
 
 type Input = z.infer<typeof inputSchema>
 
-const description = `Page-design patterns to read before building a page: how to structure and style a full marketing/landing page and use components together correctly (frame with \`SubdomainNavBar\` + \`MinimalFooter\`, give heroes media, connect horizontal gridlines to page edges, keep labels auto-width, bias to the gridline aesthetic) plus the current-brand reference templates to start from. Learn individual component APIs with \`primer_brand_docs\` / \`primer_brand_component\` — this is the page-design layer above them. These conventions \`primer_brand_review\` does not enforce.`
+const description = `Read before building a Primer Brand marketing or landing page.
+Returns page-level composition guidance and current-brand reference templates for combining components.
+Use \`primer_brand_docs\` or \`primer_brand_component\` for individual component APIs.
+These visual conventions are not fully enforced by \`primer_brand_review\`.`
 
 const guidancePath = fileURLToPath(new URL('../../../content/page-design.md', import.meta.url))
 
