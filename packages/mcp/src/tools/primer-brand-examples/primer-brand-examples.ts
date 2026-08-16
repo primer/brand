@@ -16,9 +16,9 @@ const inputSchema = z.object({
 
 type Input = z.infer<typeof inputSchema>
 
-const description = `Get ranked, copy-and-adapt examples of correct Primer Brand usage for a goal. Page goals include a current-brand full-page recipe for overall composition, while independently ranked component examples provide goal-specific detail.
-Pass a target use-case like "pricing section", "category page", or "education landing page"; unmatched page types use the general overview recipe, while unmatched component goals use a foundational set.
-Examples are real source, so they may carry demo scaffolding (a \`content\` object, internal fixture imports, CSS-module class names, repo-relative imports, \`{...args}\` spreads). Preserve the composition and gridline geometry; adapt the content, assets, and imports. When companion CSS is included, carry its frame and cell rules with the JSX.`
+const description = `Get ranked, tested Primer Brand examples for a component or page goal.
+Use when you need a starting composition; page goals can include a current-brand full-page reference.
+Use \`primer_brand_component\` for exact component APIs.`
 
 /** Foundational sections that anchor almost every GitHub landing page, in composition order. */
 const DEFAULT_COMPONENTS = ['Hero', 'SectionIntro', 'River', 'Pillar', 'CTABanner']
@@ -42,6 +42,9 @@ export const primerBrandExamplesTool: ToolModule<Input> = {
   inputShape: inputSchema.shape,
   annotations: {readOnlyHint: true},
   run(input, ctx): ToolResult {
+    const adaptationGuidance = `## How to use these examples
+These are real source and may include demo scaffolding such as content objects, fixture imports, CSS-module class names, repo-relative imports, or Storybook argument spreads. Adapt the copy, assets, and imports while preserving component composition and gridline geometry. Use built-in gridline variants or props when available. When a grouped Card or Pillar example includes companion CSS, carry its page-width frame and cell rules with the JSX.`
+
     const goal = input.goal?.trim() || 'landing page'
     const genericPageTerms = new Set([
       'feature',
@@ -112,7 +115,7 @@ export const primerBrandExamplesTool: ToolModule<Input> = {
       specificRecipes.length > 0 ? specificRecipes : useDefaultRecipe && defaultRecipe ? [defaultRecipe] : []
     const topRecipe = matchedRecipes[0]
 
-    const sections = [`# Examples for "${goal}"`]
+    const sections = [`# Examples for "${goal}"`, adaptationGuidance]
     if (topRecipe) {
       const otherRecipes = matchedRecipes.slice(1)
       const also = otherRecipes.length
@@ -123,7 +126,7 @@ export const primerBrandExamplesTool: ToolModule<Input> = {
           `## Full-page template — ${
             useDefaultRecipe ? 'default FlexSuite overview recipe source' : 'goal-matched recipe source'
           }: ${topRecipe.title}`,
-          `This is the **actual current-brand recipe source** from \`@primer/react-brand\`, wired for our demo harness: a \`content\` object supplies the copy, imagery comes from internal fixtures, styling uses internal CSS-module class names, and imports are repo-relative. Ignore that scaffolding — mirror the page structure and gridline composition, then use the goal-specific component examples below for deeper context.${also}`,
+          `This is the **actual current-brand recipe source** from \`@primer/react-brand\`. Use it for overall page composition, then use the goal-specific component examples below for deeper context.${also}`,
           `\`\`\`tsx\n${topRecipe.source}\n\`\`\``,
         ].join('\n\n'),
       )

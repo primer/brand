@@ -14,7 +14,13 @@ const inputSchema = z.object({
 
 type Input = z.infer<typeof inputSchema>
 
-const description = `Primer Brand (@primer/react-brand) component reference for GitHub marketing and landing pages. Omit \`name\` to list every approved component; pass a \`name\` for its import, sub-components, props with allowed values, and a canonical example. The example is a real story snippet, so it may include Storybook \`{...args}\` spreads or imported demo assets to adapt rather than copy verbatim. Use this to avoid invented components or props. This is Primer Brand, not @primer/react product UI.`
+const description = `Primer Brand (@primer/react-brand) component reference for GitHub marketing and landing pages.
+Omit \`name\` to list every approved component.
+Pass a \`name\` for its import, sub-components, props with allowed values, and a canonical example.
+The example is a real story snippet, so it may include Storybook \`{...args}\` spreads
+or imported demo assets to adapt rather than copy verbatim.
+Use this to avoid invented components or props.
+This is Primer Brand, not @primer/react product UI.`
 
 function listComponents(ctx: ToolContext): ToolResult {
   const {components} = ctx.catalog

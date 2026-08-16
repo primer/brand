@@ -3,10 +3,11 @@ import {fileURLToPath} from 'node:url'
 
 import {McpServer} from '@modelcontextprotocol/sdk/server/mcp.js'
 
-import {detectAssetGenerator} from './brand/detect-asset-generator.js'
-import {createDocsSource} from './brand/docs-source.js'
-import {resolveInstalledAssets} from './brand/resolve-assets.js'
-import {looksLikeProductProject, resolveBrandInstall} from './brand/resolve-install.js'
+import {detectAssetGenerator} from './brand/detect-asset-generator/detect-asset-generator.js'
+import {detectFramework} from './brand/detect-framework/detect-framework.js'
+import {createDocsSource} from './brand/docs-source/docs-source.js'
+import {resolveInstalledAssets} from './brand/resolve-assets/resolve-assets.js'
+import {looksLikeProductProject, resolveBrandInstall} from './brand/resolve-install/resolve-install.js'
 import {loadCatalog} from './catalog/load.js'
 import {createLogger} from './logger.js'
 import {registerTools} from './tools/register.js'
@@ -48,6 +49,7 @@ export function createServer(): McpServer {
 
   const catalog = loadCatalog(logger)
   const brand = resolveBrandInstall()
+  const framework = detectFramework()
   if (brand.found) {
     logger.info(`using @primer/react-brand@${brand.version ?? 'unknown'} from ${brand.packageDir}`)
   } else if (looksLikeProductProject()) {
@@ -69,6 +71,16 @@ export function createServer(): McpServer {
   }
 
   const docs = createDocsSource(brand, logger)
-  registerTools(server, {catalog, brand, docs, logger, assets, assetsOrigin, assetGenerator: detectAssetGenerator()})
+  registerTools(server, {
+    catalog,
+    brand,
+    workspaceDir: process.cwd(),
+    framework,
+    docs,
+    logger,
+    assets,
+    assetsOrigin,
+    assetGenerator: detectAssetGenerator(),
+  })
   return server
 }

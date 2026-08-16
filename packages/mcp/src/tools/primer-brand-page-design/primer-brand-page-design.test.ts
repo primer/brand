@@ -2,6 +2,17 @@ import {makeContext} from '../../test-utils/catalog.js'
 import {primerPageDesignTool} from './primer-brand-page-design.js'
 
 describe('primer_brand_page_design', () => {
+  it('describes when to call the tool without duplicating its guidance', () => {
+    expect(primerPageDesignTool.description).toContain('Read before building')
+    expect(primerPageDesignTool.description).toContain('page-level composition guidance')
+    expect(primerPageDesignTool.description).toContain('current-brand reference templates')
+    expect(primerPageDesignTool.description).toContain('primer_brand_component')
+    expect(primerPageDesignTool.description).toContain('primer_brand_review')
+    expect(primerPageDesignTool.description).not.toContain('SubdomainNavBar')
+    expect(primerPageDesignTool.description).not.toContain('gridline')
+    expect(primerPageDesignTool.description).not.toContain('Card/Pillar')
+  })
+
   it('returns the bundled page-design guidance', async () => {
     const result = await primerPageDesignTool.run({}, makeContext())
     expect(result.isError).toBeFalsy()
@@ -38,9 +49,17 @@ describe('primer_brand_page_design', () => {
     expect(result.text).toContain('**Do**')
     expect(result.text).toContain("**Don't**")
     expect(result.text).toContain('### Repeated panels')
-    expect(result.text).toContain('Never let a border stop in empty space')
-    expect(result.text).toContain('block-start and block-end rules the same extent')
-    expect(result.text).toContain('`Card`, `Pillar`, `Box`, or custom items')
+    expect(result.text).toContain('must not look like an isolated four-sided box')
+    expect(result.text).toContain("component's built-in `gridline` variant")
+    expect(result.text).toContain('recreate built-in gridlines with custom `Box` wrappers')
+    expect(result.text).toContain('for connected `Card` and `Pillar` groups')
+    expect(result.text).toContain('make every horizontal rule reach both viewport edges')
+    expect(result.text).toContain('assume `width: 100%` makes a custom group frame full bleed')
+    expect(result.text).toContain('Retrieve the canonical grouped `Card` or `Pillar` structure')
+    expect(result.text).not.toContain('<Box className={styles.gridFrame}>')
+    expect(result.text).not.toContain('.gridFrame {')
+    expect(result.text).toContain('connected `Card` or `Pillar` groups')
+    expect(result.text).toContain('components that already provide a gridline variant or prop')
     expect(result.text).toContain('border-radius: 0')
     expect(result.text).toContain('<CTABanner variant="balanced" hasGridLines>')
     expect(result.text).toContain('multiple meaningful categories')
@@ -56,6 +75,9 @@ describe('primer_brand_page_design', () => {
     expect(result.text).toContain('token-backed maximum height')
     expect(result.text).toContain('place custom media after `Hero`')
     expect(result.text).toContain('use `trailingComponent`')
+    expect(result.text).toContain('use the default `size` of component-owned text')
+    expect(result.text).toContain('Set `size` on standalone `Heading` and `Text`')
+    expect(result.text).toContain('Changing `as` for semantic heading order does not require changing `size`')
     expect(result.text).toContain('catches some code-level mistakes automatically')
     expect(result.text).not.toContain('152px')
   })

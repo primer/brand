@@ -1,8 +1,8 @@
 import {existsSync, readFileSync, realpathSync} from 'node:fs'
 import {dirname, join, normalize, resolve, sep} from 'node:path'
 
-import type {Logger} from '../logger.js'
-import type {BrandInstall} from './resolve-install.js'
+import type {Logger} from '../../logger.js'
+import type {BrandInstall} from '../resolve-install/resolve-install.js'
 
 /**
  * One entry in the documentation table of contents (parsed from `llms.txt`).

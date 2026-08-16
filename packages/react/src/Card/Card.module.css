@@ -453,40 +453,6 @@
   cursor: inherit;
 }
 
-.Card--skew:focus-within {
-  outline: var(--brand-borderWidth-thick) solid var(--brand-color-focus);
-}
-
-.Card--skew:hover .Card__torch {
-  opacity: 0.85;
-}
-
-.Card__skew-bounding {
-  border-radius: var(--brand-borderRadius-medium);
-  position: relative;
-  overflow: hidden;
-  z-index: 1;
-  height: 100%;
-  background-color: var(--brand-Card-background-default);
-}
-
-.Card__torch {
-  width: 650px;
-  height: 650px;
-  background-color: var(--brand-color-accent-primary);
-  filter: blur(180px);
-  border-radius: 300px;
-  opacity: 0;
-  transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1);
-  mix-blend-mode: soft-light;
-  will-change: transform;
-  pointer-events: none;
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  z-index: -1;
-}
-
 .Card--expandableArrow {
   margin-inline-start: var(--base-size-4);
 }

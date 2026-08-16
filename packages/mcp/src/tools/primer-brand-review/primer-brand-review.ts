@@ -16,12 +16,14 @@ const inputSchema = z.object({
 
 type Input = z.infer<typeof inputSchema>
 
-const description = `The final on-brand gate. Before you finish, paste your COMPLETE output in one call — the JSX/TSX AND 
-every stylesheet (App.css, *.module.css, styled blocks) together — because hardcoded sizes/colors and raw HTML most often 
-hide in CSS. Flags non-compliant components or sub-components, invalid prop values, headings left at their oversized default
-(a \`Heading\` with no explicit \`size\`), raw HTML where a brand component exists, hardcoded colors/sizes that should be tokens, 
-and off-brand visual tells (purple gradients, pill buttons, glassmorphism, placeholder copy). Run it on everything you wrote and 
-fix what it reports rather than guessing.`
+const description = `The final on-brand gate.
+Before you finish, paste your COMPLETE output in one call — the JSX/TSX AND every stylesheet
+(App.css, *.module.css, styled blocks) together — because hardcoded sizes/colors and raw HTML most often hide in CSS.
+Flags non-compliant components or sub-components, invalid prop values,
+headings left at their oversized default (a \`Heading\` with no explicit \`size\`),
+raw HTML where a brand component exists, hardcoded colors/sizes that should be tokens,
+and off-brand visual tells (purple gradients, pill buttons, glassmorphism, placeholder copy).
+Run it on everything you wrote and fix what it reports rather than guessing.`
 
 export const primerBrandReviewTool: ToolModule<Input> = {
   name: 'primer_brand_review',

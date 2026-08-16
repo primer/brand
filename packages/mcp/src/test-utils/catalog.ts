@@ -1,6 +1,6 @@
 import {createLogger} from '../logger.js'
-import type {BrandInstall} from '../brand/resolve-install.js'
-import type {DocsSource} from '../brand/docs-source.js'
+import type {BrandInstall} from '../brand/resolve-install/resolve-install.js'
+import type {DocsSource} from '../brand/docs-source/docs-source.js'
 import type {Catalog} from '../catalog/types.js'
 import type {ToolContext} from '../tools/types.js'
 
@@ -60,6 +60,13 @@ export function makeCatalog(overrides: Partial<Catalog> = {}): Catalog {
 </CTABanner>`,
           },
         ],
+      },
+      {
+        name: 'Card',
+        module: '@primer/react-brand',
+        subcomponents: ['Card.Heading', 'Card.Description'],
+        props: [],
+        examples: [],
       },
       {name: 'Pillar', module: '@primer/react-brand', subcomponents: [], props: [], examples: []},
       {name: 'SectionIntro', module: '@primer/react-brand', subcomponents: [], props: [], examples: []},
@@ -196,6 +203,8 @@ export function makeContext(overrides: Partial<ToolContext> = {}): ToolContext {
   return {
     catalog,
     brand: installedBrand,
+    workspaceDir: null,
+    framework: {id: 'unknown', label: 'a React project', rsc: false, projectDir: null},
     docs: noopDocs,
     logger: createLogger(false),
     assets: catalog.assets,
