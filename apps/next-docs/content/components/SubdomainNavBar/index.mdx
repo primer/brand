@@ -131,7 +131,7 @@ Search results can be a flat list or grouped by title. Do not mix both formats i
 Use the `labels` prop to localize search text. Any labels you omit fall back to English.
 
 ```jsx filename="noinline"
-const labels = {
+const searchProps = {
   searchLabel: 'Buscar',
   closeLabel: 'Cerrar',
   resultsLabel: 'Resultados',
@@ -141,10 +141,6 @@ const labels = {
   formatResultsHeading: searchTerm => `Resultados para «${searchTerm}»`,
   formatResultsLabel: searchTerm => `Resultados para ${searchTerm}`,
   formatSuggestions: count => `${count} sugerencia${count === 1 ? '' : 's'}.`,
-}
-
-const searchProps = {
-  labels,
   placeholder: 'Buscar documentación',
 }
 
