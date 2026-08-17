@@ -96,6 +96,8 @@ jobs:
         run: |
           rm ./${{ env.NEXTJS_FOLDER }}/app/page.tsx
           cp ./packages/e2e/integration-tests/nextjs/page.tsx ./${{ env.NEXTJS_FOLDER }}/app
+          mkdir ./${{ env.NEXTJS_FOLDER }}/app/button-only
+          cp ./packages/e2e/integration-tests/nextjs/button-only/page.tsx ./${{ env.NEXTJS_FOLDER }}/app/button-only
           cp ./packages/e2e/cypress.config.js ./${{ env.NEXTJS_FOLDER }}
           mkdir ${{ env.NEXTJS_FOLDER }}/integration-tests
           cp -r ./packages/e2e/integration-tests/fixtures ./${{ env.NEXTJS_FOLDER }}/integration-tests
