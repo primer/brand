@@ -23,7 +23,8 @@ const inputSchema = z.object({
 
 type Input = z.infer<typeof inputSchema>
 
-const description = `Resolve Primer Brand design tokens to CSS variables and values, searching by intent. Use these CSS variables instead of hardcoded hex/px so pages adapt across light and dark themes.`
+const description = `Resolve Primer Brand design tokens to CSS variables and values, searching by intent.
+Use these CSS variables instead of hardcoded hex/px so pages adapt across light and dark themes.`
 
 /**
  * Maps colloquial words to the vocabulary that actually appears in Primer Brand token names, so

@@ -108,6 +108,7 @@ function TestimonialBase(
         styles[`Testimonial--variant-${variant}`],
         size && styles[`Testimonial--size-${size}`],
         hasBorder && styles['Testimonial--border'],
+        variant === 'expressive' && actionChild && styles['Testimonial--hasLink'],
         className,
       )}
       style={{
@@ -120,13 +121,14 @@ function TestimonialBase(
       <div className={styles['Testimonial__quoteWrapper']}>
         {quoteMark}
         {quoteChild}
-        {actionChild}
+        {variant !== 'expressive' && actionChild}
       </div>
       <div className={styles['Testimonial__media']}>
         {avatarChild}
         {logoChild}
         {nameChild}
       </div>
+      {variant === 'expressive' && actionChild}
     </figure>
   )
 }

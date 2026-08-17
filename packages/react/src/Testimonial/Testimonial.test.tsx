@@ -589,7 +589,7 @@ describe('Testimonial', () => {
     expect(media).toBeInTheDocument()
   })
 
-  it('renders Testimonial.Link inside quote section in expressive variant', () => {
+  it('renders one Testimonial.Link after attribution in expressive variant', () => {
     const {getByRole, container} = render(
       <Testimonial variant="expressive">
         <Testimonial.Quote>Quote text</Testimonial.Quote>
@@ -600,6 +600,24 @@ describe('Testimonial', () => {
 
     const link = getByRole('link', {name: /read the full story/i})
     const quote = container.querySelector('.Testimonial__quoteWrapper')
+    const media = container.querySelector('.Testimonial__media')
+
+    expect(quote).not.toContainElement(link)
+    expect(media?.nextElementSibling).toBe(link)
+  })
+
+  it('keeps Testimonial.Link inside quote section in non-expressive variants', () => {
+    const {getByRole, container} = render(
+      <Testimonial>
+        <Testimonial.Quote>Quote text</Testimonial.Quote>
+        <Testimonial.Link href="/story">Read the full story</Testimonial.Link>
+        <Testimonial.Name>Name</Testimonial.Name>
+      </Testimonial>,
+    )
+
+    const link = getByRole('link', {name: /read the full story/i})
+    const quote = container.querySelector('.Testimonial__quoteWrapper')
+
     expect(quote).toContainElement(link)
   })
 

@@ -214,6 +214,30 @@ describe('primer_brand_review rules', () => {
     expect(ruleIds(review('<Hero><Hero.Heading>Big</Hero.Heading></Hero>'))).not.toContain('heading-explicit-size')
   })
 
+  it('flags size overrides on component-owned text', () => {
+    expect(ruleIds(review('<Card.Heading as="h3" size="4">Infrastructure</Card.Heading>'))).toContain(
+      'component-text-default-size',
+    )
+    expect(ruleIds(review('<Hero.Description size="300">Description</Hero.Description>'))).toContain(
+      'component-text-default-size',
+    )
+  })
+
+  it('allows component-owned text defaults and standalone typography sizes', () => {
+    expect(ruleIds(review('<FAQ.Heading as="h2">Questions</FAQ.Heading>'))).not.toContain('component-text-default-size')
+    expect(ruleIds(review('<Card.Heading data-size="compact">Heading</Card.Heading>'))).not.toContain(
+      'component-text-default-size',
+    )
+    expect(ruleIds(review('<Text size="300">Description</Text>'))).not.toContain('component-text-default-size')
+    expect(ruleIds(review('<Heading size="4">Heading</Heading>'))).not.toContain('component-text-default-size')
+  })
+
+  it('does not apply component-owned text guidance to application components', () => {
+    expect(ruleIds(review('<PricingCard.Heading size="small">Pro</PricingCard.Heading>'))).not.toContain(
+      'component-text-default-size',
+    )
+  })
+
   it('reports which approved brand components were imported', () => {
     const used = brandComponentsUsed("import {Hero, CTABanner} from '@primer/react-brand'", makeCatalog())
     expect(used.map(component => component.name).sort()).toEqual(['CTABanner', 'Hero'])
@@ -251,6 +275,30 @@ describe('primer_brand_review over generated canonical examples', () => {
       const deprecatedActions = example.code.match(/<Hero\.(?:PrimaryAction|SecondaryAction)\b/g) ?? []
       expect({component: example.name, deprecatedActions}).toEqual({component: example.name, deprecatedActions: []})
     }
+  })
+
+  it('uses the connected gridline Card example with its companion styles', () => {
+    const card = catalog.components.find(component => component.name === 'Card')
+    const example = card?.examples[0]
+    expect(example?.code).toContain('columnGap="none"')
+    expect(example?.code).toContain('rowGap="none"')
+    expect(example?.code).toContain('enableGutters={false}')
+    expect(example?.styles).toContain('.gridFrame')
+    expect(example?.styles).toContain('.gridItem')
+    expect(example?.code).not.toContain('color="purple"')
+  })
+
+  it('uses the page-width gridline Statistic example with its companion styles', () => {
+    const statistic = catalog.components.find(component => component.name === 'Statistic')
+    const example = statistic?.examples[0]
+    expect(example?.code).toContain('<Box className={styles.gridFrame}>')
+    expect(example?.code).toContain('columnGap="none"')
+    expect(example?.code).toContain('rowGap="none"')
+    expect(example?.code).toContain('enableGutters={false}')
+    expect(example?.styles).toContain('.gridFrame')
+    expect(example?.styles).toContain('border-block-start')
+    expect(example?.styles).toContain('.gridContent')
+    expect(example?.styles).toContain('margin-inline: auto')
   })
 
   it('produces no errors on any catalog example', () => {

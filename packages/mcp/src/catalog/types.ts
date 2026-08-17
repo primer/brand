@@ -17,6 +17,8 @@ export type CatalogExample = {
   title: string
   /** Source snippet (JSX), when one could be extracted. */
   code?: string
+  /** CSS modules referenced by the source snippet, when available. */
+  styles?: string
   /** Where the snippet came from: an authored JSDoc `@example`, a tested Storybook story, or a docs page. */
   source: 'jsdoc' | 'story' | 'docs'
   /** Storybook story id, when the example comes from a story. */

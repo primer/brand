@@ -438,6 +438,28 @@ const headingExplicitSize: Rule = {
   },
 }
 
+/** Compound components provide context-appropriate text sizes; explicit overrides should be exceptional. */
+const componentTextDefaultSize: Rule = {
+  id: 'component-text-default-size',
+  run(code, catalog) {
+    const knownSubcomponents = new Set(catalog.components.flatMap(component => component.subcomponents))
+    const findings: Finding[] = []
+    for (const match of code.matchAll(
+      /<([A-Z][A-Za-z0-9]*)\.(Heading|Subheading|Description|Label|Eyebrow|Text)\b[^>]*(?:^|\s)size\s*=/g,
+    )) {
+      const qualifiedName = `${match[1]}.${match[2]}`
+      if (!knownSubcomponents.has(qualifiedName)) continue
+      findings.push({
+        severity: 'warning',
+        rule: this.id,
+        message: `\`${qualifiedName}\` already has the right default \`size\` for its component. Remove \`size\` unless the brief requires an override.`,
+        evidence: evidence(match[0]),
+      })
+    }
+    return findings
+  },
+}
+
 /** Credit for actually importing approved brand components — surfaced as guidance, not a failure. */
 export function brandComponentsUsed(code: string, catalog: Catalog): CatalogComponent[] {
   const imported = new Set<string>()
@@ -467,4 +489,5 @@ export const allRules: Rule[] = [
   hardcodedValues,
   offBrandTells,
   headingExplicitSize,
+  componentTextDefaultSize,
 ]

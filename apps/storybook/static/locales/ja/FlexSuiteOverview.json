@@ -24,7 +24,11 @@
     "trailingText": "Visual Studio Code はすでにお持ちですか？",
     "trailingLinkText": "今すぐ開く",
     "peekAlt": "グリッド領域の下からのぞく GitHub Copilot のマスコット",
-    "imageAlt": "VS Code でエージェントモードを使う GitHub Copilot"
+    "imageAlt": "VS Code でエージェントモードを使う GitHub Copilot",
+    "videoControls": {
+      "play": "動画を再生",
+      "pause": "動画を一時停止"
+    }
   },
   "logoSuiteHeading": "GitHub Copilot のパートナーロゴ",
   "resourceCards": {

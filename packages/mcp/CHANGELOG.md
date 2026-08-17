@@ -1,5 +1,11 @@
 # @primer/brand-mcp
 
+## 0.73.0
+
+### Patch Changes
+
+- [#1438](https://github.com/primer/brand/pull/1438) [`baa0861`](https://github.com/primer/brand/commit/baa0861d4a05aabd703dd62059b85caf743f97d3) Thanks [@rezrah](https://github.com/rezrah)! - Improved gridline guidance. Also added new example CSS with canonical component examples to the catalog.
+
 ## 0.72.0
 
 ### Patch Changes

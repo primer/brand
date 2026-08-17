@@ -168,9 +168,15 @@ export function FlexSuiteAIDetailsPlaylistTemplate({content}: FlexSuiteAIDetails
                     fullWidth
                     ctaVariant="arrow"
                     ctaText={content.common.learnMore}
-                    className={overviewStyles.resourceCard}
+                    className={clsx(overviewStyles.resourceCard, overviewStyles.resourceCardWithIcon)}
                   >
-                    <Card.Icon icon={cardIcons[index]} color="green" hasBackground size="medium" />
+                    <Card.Icon
+                      icon={cardIcons[index]}
+                      color="green"
+                      hasBackground
+                      size="medium"
+                      className={overviewStyles.resourceCardIcon}
+                    />
                     <Card.Tokens>
                       <Token>{card.tag}</Token>
                     </Card.Tokens>

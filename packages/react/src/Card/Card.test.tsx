@@ -614,6 +614,24 @@ describe('Card', () => {
     )
     const image = getByAltText(testAltText).closest('.Card__image')
     expect(allChildrenEls.at(-1)).toBe(image)
+    expect(getByAltText(testAltText)).not.toHaveAttribute('position')
+  })
+
+  it('renders Card.Image without padding', () => {
+    const testAltText = 'test image'
+    const mockTestId = 'card'
+
+    const {getByAltText, getByTestId} = render(
+      <Card href={mockHref} data-testid={mockTestId}>
+        <Card.Heading>{mockHeading}</Card.Heading>
+        <Card.Image src="mock.png" alt={testAltText} padding="none" />
+      </Card>,
+    )
+
+    const image = getByAltText(testAltText)
+    expect(image.closest('.Card__image')).toHaveClass('Card__image--padding-none')
+    expect(getByTestId(mockTestId)).not.toHaveClass('Card--imagePadding-none')
+    expect(image).not.toHaveAttribute('padding')
   })
 
   it('renders Card.Image in block-start position by default', () => {
