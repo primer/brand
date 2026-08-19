@@ -1,0 +1,14 @@
+{
+  "InlineCode": {
+    "color": {
+      "fg": {
+        "value": "var(--brand-color-text-muted)",
+        "dark": "var(--brand-color-text-muted)"
+      }
+    },
+    "bgColor": {
+      "value": "var(--base-color-scale-gray-1)",
+      "dark": "var(--base-color-scale-gray-7)"
+    }
+  }
+}

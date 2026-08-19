@@ -1,19 +1,22 @@
 import React from 'react'
-import type {StoryFn, Meta} from '@storybook/react'
+import type {Meta, StoryObj} from '@storybook/react'
 import {Pillar, type PillarIconProps} from '.'
-import {Stack} from '..'
+import {InlineCode, Stack} from '..'
 import {CopilotIcon, RocketIcon, GitBranchIcon} from '@primer/octicons-react'
 
 import placeholderImage from '../fixtures/images/placeholder.png'
 import {logos} from '../LogoSuite/LogoSuite.fixtures'
 
-export default {
+const meta = {
   title: 'Components/Pillar/features',
   component: Pillar,
-} as Meta<typeof Pillar>
+} satisfies Meta<typeof Pillar>
 
-export const WithIcon: StoryFn<typeof Pillar> = () => {
-  return (
+export default meta
+type Story = StoryObj<typeof meta>
+
+export const WithIcon: Story = {
+  render: () => (
     <Pillar>
       <Pillar.Icon icon={<RocketIcon />} />
       <Pillar.Heading>Code search & code view</Pillar.Heading>
@@ -21,11 +24,11 @@ export const WithIcon: StoryFn<typeof Pillar> = () => {
         Enables you to rapidly search, navigate, and understand code, right from GitHub.com.
       </Pillar.Description>
     </Pillar>
-  )
+  ),
 }
 
-export const WithImage: StoryFn<typeof Pillar> = () => {
-  return (
+export const WithImage: Story = {
+  render: () => (
     <Pillar>
       <Pillar.Image
         aspectRatio="16:10"
@@ -37,22 +40,75 @@ export const WithImage: StoryFn<typeof Pillar> = () => {
         Enables you to rapidly search, navigate, and understand code, right from GitHub.com.
       </Pillar.Description>
     </Pillar>
-  )
+  ),
 }
 
-export const WithIconSVG = () => (
-  <Pillar>
-    <Pillar.Icon hasBackground={false} icon={logos[4]} />
-    <Pillar.Heading>Code search & code view</Pillar.Heading>
-    <Pillar.Description>
-      Enables you to rapidly search, navigate, and understand code, right from GitHub.com.
-    </Pillar.Description>
-  </Pillar>
-)
-WithIconSVG.storyName = 'Icon (native)'
+export const WithInlineCode: Story = {
+  name: 'With InlineCode',
+  render: () => (
+    <Pillar>
+      <Pillar.Icon icon={<CopilotIcon />} />
+      <Pillar.Heading>
+        Connect your tools with <InlineCode>/mcp</InlineCode>
+      </Pillar.Heading>
+      <Pillar.Description>
+        Run <InlineCode>npm install @primer/react-brand@latest --save-exact</InlineCode> to update Primer Brand.
+      </Pillar.Description>
+    </Pillar>
+  ),
+}
 
-export const Link: StoryFn<typeof Pillar> = () => {
-  return (
+export const InlineCodeStacked: Story = {
+  render: () => (
+    <Stack direction={{narrow: 'vertical', regular: 'horizontal'}} gap="spacious" padding="spacious">
+      <Pillar style={{flex: 1}}>
+        <Pillar.Icon icon={<CopilotIcon />} />
+        <Pillar.Heading>
+          Review designs with <InlineCode>/critique</InlineCode>
+        </Pillar.Heading>
+        <Pillar.Description>
+          Run <InlineCode>/typeset</InlineCode> to refine typography, then use <InlineCode>/polish</InlineCode> for a
+          final pass.
+        </Pillar.Description>
+      </Pillar>
+      <Pillar style={{flex: 1}}>
+        <Pillar.Icon icon={<GitBranchIcon />} />
+        <Pillar.Heading>
+          Connect repositories through <InlineCode>/mcp</InlineCode>
+        </Pillar.Heading>
+        <Pillar.Description>
+          Search <InlineCode>/issues</InlineCode>, inspect <InlineCode>/labels</InlineCode>, and summarize the next
+          task.
+        </Pillar.Description>
+      </Pillar>
+      <Pillar style={{flex: 1}}>
+        <Pillar.Icon icon={<RocketIcon />} />
+        <Pillar.Heading>
+          Ship changes using <InlineCode>/fleet</InlineCode>
+        </Pillar.Heading>
+        <Pillar.Description>
+          Select a model with <InlineCode>/model</InlineCode> and execute independent work in parallel.
+        </Pillar.Description>
+      </Pillar>
+    </Stack>
+  ),
+}
+
+export const WithIconSVG: Story = {
+  name: 'Icon (native)',
+  render: () => (
+    <Pillar>
+      <Pillar.Icon hasBackground={false} icon={logos[4]} />
+      <Pillar.Heading>Code search & code view</Pillar.Heading>
+      <Pillar.Description>
+        Enables you to rapidly search, navigate, and understand code, right from GitHub.com.
+      </Pillar.Description>
+    </Pillar>
+  ),
+}
+
+export const Link: Story = {
+  render: () => (
     <Pillar>
       <Pillar.Heading>Code search & code view</Pillar.Heading>
       <Pillar.Description>
@@ -60,7 +116,7 @@ export const Link: StoryFn<typeof Pillar> = () => {
       </Pillar.Description>
       <Pillar.Link href="https://github.com">Read the documentation</Pillar.Link>
     </Pillar>
-  )
+  ),
 }
 
 const fixtureData: FixtureData = [
@@ -98,8 +154,8 @@ type FixtureData = {
   description: string | React.ReactElement | React.ReactElement[]
 }[]
 
-export const Stacked: StoryFn<typeof Pillar> = () => {
-  return (
+export const Stacked: Story = {
+  render: () => (
     <Stack direction={{narrow: 'vertical', regular: 'horizontal'}} gap="spacious" padding="spacious">
       {fixtureData.map(({heading, description, icon}, id) => {
         return (
@@ -111,11 +167,11 @@ export const Stacked: StoryFn<typeof Pillar> = () => {
         )
       })}
     </Stack>
-  )
+  ),
 }
 
-export const StackedCentered: StoryFn<typeof Pillar> = () => {
-  return (
+export const StackedCentered: Story = {
+  render: () => (
     <Stack direction={{narrow: 'vertical', regular: 'horizontal'}} gap="spacious" padding="spacious">
       {fixtureData.map(({heading, description, icon}, id) => {
         return (
@@ -127,11 +183,11 @@ export const StackedCentered: StoryFn<typeof Pillar> = () => {
         )
       })}
     </Stack>
-  )
+  ),
 }
 
-export const StackedWithLink: StoryFn<typeof Pillar> = () => {
-  return (
+export const StackedWithLink: Story = {
+  render: () => (
     <Stack direction={{narrow: 'vertical', regular: 'horizontal'}} gap="spacious" padding="spacious">
       {fixtureData.map(({heading, description, icon, href}, id) => {
         return (
@@ -144,11 +200,11 @@ export const StackedWithLink: StoryFn<typeof Pillar> = () => {
         )
       })}
     </Stack>
-  )
+  ),
 }
 
-export const FullWidth: StoryFn<typeof Pillar> = () => {
-  return (
+export const FullWidth: Story = {
+  render: () => (
     <Pillar fullWidth>
       <Pillar.Image
         aspectRatio="16:10"
@@ -160,11 +216,11 @@ export const FullWidth: StoryFn<typeof Pillar> = () => {
         Enables you to rapidly search, navigate, and understand code, right from GitHub.com.
       </Pillar.Description>
     </Pillar>
-  )
+  ),
 }
 
-export const WithBorder: StoryFn<typeof Pillar> = () => {
-  return (
+export const WithBorder: Story = {
+  render: () => (
     <Pillar hasBorder>
       <Pillar.Image
         aspectRatio="16:10"
@@ -176,5 +232,5 @@ export const WithBorder: StoryFn<typeof Pillar> = () => {
         Enables you to rapidly search, navigate, and understand code, right from GitHub.com.
       </Pillar.Description>
     </Pillar>
-  )
+  ),
 }

@@ -1,0 +1,21 @@
+.InlineCode {
+  font-family: var(--brand-fontStack-monospace);
+  /* optical resize relative to parent. monospace tends to be a little taller than sans-serif */
+  font-size: calc(1em - 1px);
+  font-weight: var(--base-text-weight-medium);
+  /* Keep the background clear of adjacent lines when large text wraps. */
+  line-height: 1.6;
+  color: var(--brand-InlineCode-color-fg);
+  background-color: var(--brand-InlineCode-bgColor);
+  padding-block: 0;
+  padding-inline: var(--base-size-4);
+  border-radius: var(--base-size-2);
+  white-space: nowrap;
+}
+
+.InlineCode__text {
+  position: relative;
+  inset-block-start: -0.01em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: auto;
+}

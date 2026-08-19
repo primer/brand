@@ -8,6 +8,7 @@ import {Button} from '../Button'
 import {ActionMenu} from '../ActionMenu'
 import {Grid} from '../Grid'
 import {EyebrowBanner} from '../EyebrowBanner'
+import {InlineCode} from '../InlineCode'
 import placeholderImage from '../fixtures/images/placeholder.png'
 
 const meta = {
@@ -51,6 +52,46 @@ export const WithIncreasedContrastDescription: Story = {
       <Hero.ButtonGroup>
         <Button as="a" href="#">
           Primary action
+        </Button>
+      </Hero.ButtonGroup>
+    </Hero>
+  ),
+}
+
+export const WithInlineCode: Story = {
+  name: 'With InlineCode',
+  render: () => (
+    <Hero align="center">
+      <Hero.Label>GitHub Copilot</Hero.Label>
+      <Hero.Heading>Build and debug directly from your terminal</Hero.Heading>
+      <Hero.Description>
+        Use <InlineCode>/mcp</InlineCode> to connect your tools, then run{' '}
+        <InlineCode>npm install @primer/react-brand@latest --save-exact</InlineCode> to update Primer Brand.
+      </Hero.Description>
+      <Hero.ButtonGroup>
+        <Button as="a" href="#">
+          Get started
+        </Button>
+      </Hero.ButtonGroup>
+    </Hero>
+  ),
+}
+
+export const InlineCodeInHeadingAndDescription: Story = {
+  render: () => (
+    <Hero align="start">
+      <Hero.Label>GitHub Copilot</Hero.Label>
+      <Hero.Heading>
+        Review with <InlineCode>/critique</InlineCode>, refine with <InlineCode>/typeset</InlineCode>, and finish with{' '}
+        <InlineCode>/polish</InlineCode>
+      </Hero.Heading>
+      <Hero.Description>
+        Connect <InlineCode>/mcp</InlineCode>, choose a model through <InlineCode>/model</InlineCode>, and delegate
+        parallel tasks with <InlineCode>/fleet</InlineCode>.
+      </Hero.Description>
+      <Hero.ButtonGroup>
+        <Button as="a" href="#">
+          Start building
         </Button>
       </Hero.ButtonGroup>
     </Hero>

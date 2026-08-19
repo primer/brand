@@ -72,6 +72,7 @@ A page has one clear headline and a calm step-down from there.
 
 - **Do** — use the default `size` of component-owned text such as `Card.Heading`, `Hero.Heading`, and `FAQ.Heading`. Set `size` on standalone `Heading` and `Text`.
 - **Do** — use a single hero heading, make secondary section headings a clear step smaller, and keep body copy regular weight. Left-align long-form copy; reserve centering for short hero or section intros.
+- **Do** — use `InlineCode` for short code fragments and code blocks for multiline examples.
 - **Don't** — pass `size` to a component-owned heading, description, label, or other text unless the brief requires an override. Changing `as` for semantic heading order does not require changing `size`.
 - **Don't** — size secondary headings close to the hero, set body text in heavy weights, or center long paragraphs.
 

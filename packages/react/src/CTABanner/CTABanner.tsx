@@ -9,6 +9,7 @@ import {ButtonGroup} from '../ButtonGroup'
 /**
  * Design tokens
  */
+import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/inline-code/colors-with-modes.css'
 import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/cta-banner/colors-with-modes.css'
 
 /** * Main Stylesheet (as a CSS Module) */
@@ -201,10 +202,6 @@ const Root = forwardRef(
 
     const defaultAlign = variant === 'balanced' || variant === 'minimal' ? 'start' : align
 
-    const hasSystemBackgroundColor =
-      typeof backgroundColor === 'string' &&
-      CTABannerBackgroundColors.includes(backgroundColor as (typeof CTABannerBackgroundColors)[number])
-
     if (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'test') {
       if (variant === 'balanced' && !ImageChild) {
         // eslint-disable-next-line no-console
@@ -226,7 +223,6 @@ const Root = forwardRef(
             styles.CTABanner,
             hasShadow && styles['CTABanner--shadow'],
             styles[`CTABanner--variant-${variant}`],
-            hasSystemBackgroundColor && styles[`CTABanner--bgColor-${backgroundColor}`],
             className,
           )}
           style={{...backgroundStyles, ...style}}

@@ -5,7 +5,7 @@ import {expect, userEvent, waitFor, within} from 'storybook/test'
 import {Card, CardIconColors} from '.'
 import {Avatar} from '../Avatar'
 import {Token} from '../Token'
-import {Box, Grid, Section, Stack, Text, ThemeProvider} from '..'
+import {Box, Grid, InlineCode, Section, Stack, Text, ThemeProvider} from '..'
 import avatarMona from '../fixtures/images/avatar-mona.png'
 import darkHorizontalBannerAlt from '../fixtures/images/dark-horizontal-banner-alt.png'
 import placeholderImage from '../fixtures/images/placeholder.png'
@@ -744,10 +744,11 @@ export const WithInlineCodeElement: StoryFn<typeof Card> = () => {
           <Text as="p">{t('default_label')}</Text>
           <Card href="https://github.com">
             <Card.Heading>
-              {t('use_any')} <code>/model</code> {t('parallelize_with')} <code>/fleet</code>
+              {t('use_any')} <InlineCode>/model</InlineCode> {t('parallelize_with')} <InlineCode>/fleet</InlineCode>
             </Card.Heading>
             <Card.Description>
-              {t('use')} <code>/model</code> {t('to_switch_then')} <code>/fleet</code> {t('to_execute_in_parallel')}
+              {t('use')} <InlineCode>/model</InlineCode> {t('to_switch_then')} <InlineCode>/fleet</InlineCode>{' '}
+              {t('to_execute_in_parallel')}
             </Card.Description>
           </Card>
         </Stack>
@@ -755,10 +756,11 @@ export const WithInlineCodeElement: StoryFn<typeof Card> = () => {
           <Text as="p">{t('disable_animation_label')}</Text>
           <Card href="https://github.com" disableAnimation>
             <Card.Heading>
-              {t('use_any')} <code>/model</code> {t('parallelize_with')} <code>/fleet</code>
+              {t('use_any')} <InlineCode>/model</InlineCode> {t('parallelize_with')} <InlineCode>/fleet</InlineCode>
             </Card.Heading>
             <Card.Description>
-              {t('use')} <code>/model</code> {t('to_switch_then')} <code>/fleet</code> {t('to_execute_in_parallel')}
+              {t('use')} <InlineCode>/model</InlineCode> {t('to_switch_then')} <InlineCode>/fleet</InlineCode>{' '}
+              {t('to_execute_in_parallel')}
             </Card.Description>
           </Card>
         </Stack>
@@ -766,10 +768,11 @@ export const WithInlineCodeElement: StoryFn<typeof Card> = () => {
           <Text as="p">{t('minimal_variant_label')}</Text>
           <Card href="https://github.com" variant="minimal">
             <Card.Heading>
-              {t('use_any')} <code>/model</code> {t('parallelize_with')} <code>/fleet</code>
+              {t('use_any')} <InlineCode>/model</InlineCode> {t('parallelize_with')} <InlineCode>/fleet</InlineCode>
             </Card.Heading>
             <Card.Description>
-              {t('use')} <code>/model</code> {t('to_switch_then')} <code>/fleet</code> {t('to_execute_in_parallel')}
+              {t('use')} <InlineCode>/model</InlineCode> {t('to_switch_then')} <InlineCode>/fleet</InlineCode>{' '}
+              {t('to_execute_in_parallel')}
             </Card.Description>
           </Card>
         </Stack>
@@ -780,10 +783,11 @@ export const WithInlineCodeElement: StoryFn<typeof Card> = () => {
           <Card href="https://github.com" hasBorder fullWidth align="center">
             <Card.Icon icon={CopilotIcon} color="purple" hasBackground />
             <Card.Heading>
-              {t('use_any')} <code>/model</code> {t('parallelize_with')} <code>/fleet</code>
+              {t('use_any')} <InlineCode>/model</InlineCode> {t('parallelize_with')} <InlineCode>/fleet</InlineCode>
             </Card.Heading>
             <Card.Description>
-              {t('use')} <code>/model</code> {t('to_switch_then')} <code>/fleet</code> {t('to_execute_in_parallel')}
+              {t('use')} <InlineCode>/model</InlineCode> {t('to_switch_then')} <InlineCode>/fleet</InlineCode>{' '}
+              {t('to_execute_in_parallel')}
             </Card.Description>
           </Card>
         </Stack>
@@ -801,11 +805,12 @@ export const WithInlineCodeElementCustomDescriptionSize: StoryFn<typeof Card> = 
         <Text as="p">{t('larger_heading_and_description_label')}</Text>
         <Card href="https://github.com">
           <Card.Heading size="5">
-            {t('use_any')} <code>/model</code> {t('parallelize_with')} <code>/fleet</code>
+            {t('use_any')} <InlineCode>/model</InlineCode> {t('parallelize_with')} <InlineCode>/fleet</InlineCode>
           </Card.Heading>
           <Card.Description>
             <Text size="400">
-              {t('use')} <code>/model</code> {t('to_switch_then')} <code>/fleet</code> {t('to_execute_in_parallel')}
+              {t('use')} <InlineCode>/model</InlineCode> {t('to_switch_then')} <InlineCode>/fleet</InlineCode>{' '}
+              {t('to_execute_in_parallel')}
             </Text>
           </Card.Description>
         </Card>
@@ -814,11 +819,12 @@ export const WithInlineCodeElementCustomDescriptionSize: StoryFn<typeof Card> = 
         <Text as="p">{t('smaller_heading_and_description_label')}</Text>
         <Card href="https://github.com">
           <Card.Heading size="subhead-medium">
-            {t('use_any')} <code>/model</code> {t('parallelize_with')} <code>/fleet</code>
+            {t('use_any')} <InlineCode>/model</InlineCode> {t('parallelize_with')} <InlineCode>/fleet</InlineCode>
           </Card.Heading>
           <Card.Description>
             <Text size="100">
-              {t('use')} <code>/model</code> {t('to_switch_then')} <code>/fleet</code> {t('to_execute_in_parallel')}
+              {t('use')} <InlineCode>/model</InlineCode> {t('to_switch_then')} <InlineCode>/fleet</InlineCode>{' '}
+              {t('to_execute_in_parallel')}
             </Text>
           </Card.Description>
         </Card>
@@ -827,3 +833,14 @@ export const WithInlineCodeElementCustomDescriptionSize: StoryFn<typeof Card> = 
   )
 }
 WithInlineCodeElementCustomDescriptionSize.storyName = 'With inline code element + non-standard size overrides'
+
+export const WithNativeCodeElement: StoryFn<typeof Card> = () => (
+  <Card href="https://github.com">
+    <Card.Heading>
+      Native <code>/mcp</code> remains supported
+    </Card.Heading>
+    <Card.Description>
+      Existing authored content can continue using the native <code>code</code> element.
+    </Card.Description>
+  </Card>
+)
