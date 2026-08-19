@@ -102,6 +102,7 @@ jobs:
           mkdir ${{ env.NEXTJS_FOLDER }}/integration-tests
           cp -r ./packages/e2e/integration-tests/fixtures ./${{ env.NEXTJS_FOLDER }}/integration-tests
           cp -r ./packages/e2e/integration-tests/tests ./${{ env.NEXTJS_FOLDER }}/integration-tests
+          cp ./packages/e2e/integration-tests/nextjs/check-size-tokens.cy.ts ./${{ env.NEXTJS_FOLDER }}/integration-tests/tests
 
       - name: Excluded cypress tests in-place
         # includes temp workaround for cypress bug. remove when fixed
