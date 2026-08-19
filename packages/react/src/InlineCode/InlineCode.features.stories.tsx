@@ -1,5 +1,6 @@
 import type {Meta, StoryObj} from '@storybook/react'
 import React from 'react'
+import {useTranslation} from 'react-i18next'
 import {
   Box,
   BoxBackgroundColors,
@@ -25,148 +26,180 @@ export default meta
 type Story = StoryObj<typeof InlineCode>
 
 export const InBodyText: Story = {
-  render: () => (
-    <Text as="p">
-      Install Primer Brand with <InlineCode>npm install @primer/react-brand</InlineCode>.
-    </Text>
-  ),
+  render: function InBodyTextStory() {
+    const {t} = useTranslation('InlineCode')
+
+    return (
+      <Text as="p">
+        {t('install_primer_prefix')} <InlineCode>npm install @primer/react-brand</InlineCode>
+        {t('install_primer_suffix')}
+      </Text>
+    )
+  },
 }
 
 export const InHeading: Story = {
-  render: () => (
-    <Heading>
-      Work directly with your GitHub Issues via <InlineCode wrap={false}>/mcp</InlineCode> support
-    </Heading>
-  ),
+  render: function InHeadingStory() {
+    const {t} = useTranslation('InlineCode')
+
+    return (
+      <Heading>
+        {t('issues_support_prefix')} <InlineCode wrap={false}>/mcp</InlineCode> {t('issues_support_suffix')}
+      </Heading>
+    )
+  },
 }
 
 export const TypographicInheritance: Story = {
-  render: () => (
-    <Stack gap="spacious">
-      <Heading size="1">
-        Run <InlineCode wrap={false}>/mcp</InlineCode> from a heading
-      </Heading>
+  render: function TypographicInheritanceStory() {
+    const {t} = useTranslation('InlineCode')
 
-      <Text as="p" size="600">
-        Install Primer Brand with <InlineCode>npm install @primer/react-brand</InlineCode>.
-      </Text>
-
-      <Text as="em">
-        Inline code works with font decorations, like <InlineCode>font-style: italic</InlineCode>.
-      </Text>
-
-      <Text weight="extrabold">
-        It also sits alongside different font <InlineCode>font-weight</InlineCode> values.
-      </Text>
-
-      <UnorderedList>
-        <UnorderedList.Item>
-          Review issues with <InlineCode wrap={false}>/issues</InlineCode>
-        </UnorderedList.Item>
-        <UnorderedList.Item>
-          Refine typography with <InlineCode wrap={false}>/typeset</InlineCode>
-        </UnorderedList.Item>
-        <UnorderedList.Item>
-          Finish with <InlineCode wrap={false}>/polish</InlineCode>
-        </UnorderedList.Item>
-      </UnorderedList>
-
-      <Text as="p">
-        Inline code can be resized by wrapping it in an inner{' '}
-        <Text size="700">
-          <InlineCode>Text</InlineCode>
-        </Text>{' '}
-        component.
-      </Text>
-    </Stack>
-  ),
+    return (
+      <Stack gap="spacious">
+        <Heading size="1">
+          {t('heading_command_prefix')} <InlineCode wrap={false}>/mcp</InlineCode> {t('heading_command_suffix')}
+        </Heading>
+        <Text as="p" size="600">
+          {t('install_primer_prefix')} <InlineCode>npm install @primer/react-brand</InlineCode>
+          {t('install_primer_suffix')}
+        </Text>
+        <Text as="em">
+          {t('font_decoration_prefix')} <InlineCode>font-style: italic</InlineCode>
+          {t('font_decoration_suffix')}
+        </Text>
+        <Text weight="extrabold">
+          {t('font_weight_prefix')} <InlineCode>font-weight</InlineCode> {t('font_weight_suffix')}
+        </Text>
+        <UnorderedList>
+          <UnorderedList.Item>
+            {t('review_issues_prefix')} <InlineCode wrap={false}>/issues</InlineCode>
+          </UnorderedList.Item>
+          <UnorderedList.Item>
+            {t('refine_typography_prefix')} <InlineCode wrap={false}>/typeset</InlineCode>
+          </UnorderedList.Item>
+          <UnorderedList.Item>
+            {t('finish_prefix')} <InlineCode wrap={false}>/polish</InlineCode>
+          </UnorderedList.Item>
+        </UnorderedList>
+        <Text as="p">
+          {t('resize_prefix')}{' '}
+          <Text size="700">
+            <InlineCode>Text</InlineCode>
+          </Text>{' '}
+          {t('resize_suffix')}
+        </Text>
+      </Stack>
+    )
+  },
 }
 
 export const TextScale: Story = {
-  render: () => (
-    <Stack direction="vertical" gap="condensed" padding="none">
-      {TextSizes.map((size, index) => (
-        <Box key={size} borderBlockEndWidth="thin" borderColor="default" borderStyle="solid" padding="normal">
-          <Grid enableGutters={false}>
-            <Grid.Column span={{xsmall: 12, medium: scaleColumnSpans[index]}}>
-              <Text as="p" size={size}>
-                This paragraph uses <InlineCode>{`size="${size}"`}</InlineCode> for its inline code.
-              </Text>
-            </Grid.Column>
-          </Grid>
-        </Box>
-      ))}
-    </Stack>
-  ),
+  render: function TextScaleStory() {
+    const {t} = useTranslation('InlineCode')
+
+    return (
+      <Stack direction="vertical" gap="condensed" padding="none">
+        {TextSizes.map((size, index) => (
+          <Box key={size} borderBlockEndWidth="thin" borderColor="default" borderStyle="solid" padding="normal">
+            <Grid enableGutters={false}>
+              <Grid.Column span={{xsmall: 12, medium: scaleColumnSpans[index]}}>
+                <Text as="p" size={size}>
+                  {t('paragraph_size_prefix')} <InlineCode>{`size="${size}"`}</InlineCode> {t('paragraph_size_suffix')}
+                </Text>
+              </Grid.Column>
+            </Grid>
+          </Box>
+        ))}
+      </Stack>
+    )
+  },
 }
 
 export const HeadingScale: Story = {
-  render: () => (
-    <Stack direction="vertical" gap="condensed" padding="none">
-      {HeadingSizes.map((size, index) => (
-        <Box key={size} borderBlockEndWidth="thin" borderColor="default" borderStyle="solid" padding="normal">
-          <Grid enableGutters={false}>
-            <Grid.Column span={{xsmall: 12, medium: scaleColumnSpans[index]}}>
-              <Heading size={size}>
-                This heading uses <InlineCode>{`size="${size}"`}</InlineCode> for its inline code.
-              </Heading>
-            </Grid.Column>
-          </Grid>
-        </Box>
-      ))}
-    </Stack>
-  ),
+  render: function HeadingScaleStory() {
+    const {t} = useTranslation('InlineCode')
+
+    return (
+      <Stack direction="vertical" gap="condensed" padding="none">
+        {HeadingSizes.map((size, index) => (
+          <Box key={size} borderBlockEndWidth="thin" borderColor="default" borderStyle="solid" padding="normal">
+            <Grid enableGutters={false}>
+              <Grid.Column span={{xsmall: 12, medium: scaleColumnSpans[index]}}>
+                <Heading size={size}>
+                  {t('heading_size_prefix')} <InlineCode>{`size="${size}"`}</InlineCode> {t('heading_size_suffix')}
+                </Heading>
+              </Grid.Column>
+            </Grid>
+          </Box>
+        ))}
+      </Stack>
+    )
+  },
 }
 
 export const Wrapped: Story = {
-  render: () => (
-    <Grid enableGutters={false}>
-      <Grid.Column span={{xsmall: 12, medium: 3}}>
-        <Stack direction="vertical" gap="normal" padding="none">
-          <Text as="p">
-            Long fragments wrap by default, such as{' '}
-            <InlineCode>npm install @primer/react-brand@latest --save-exact</InlineCode>.
-          </Text>
-          <Text as="p">
-            Short fragments can stay together, such as <InlineCode wrap={false}>/mcp</InlineCode>.
-          </Text>
-        </Stack>
-      </Grid.Column>
-    </Grid>
-  ),
+  render: function WrappedStory() {
+    const {t} = useTranslation('InlineCode')
+
+    return (
+      <Grid enableGutters={false}>
+        <Grid.Column span={{xsmall: 12, medium: 3}}>
+          <Stack direction="vertical" gap="normal" padding="none">
+            <Text as="p">
+              {t('long_wrap_prefix')} <InlineCode>npm install @primer/react-brand@latest --save-exact</InlineCode>
+              {t('long_wrap_suffix')}
+            </Text>
+            <Text as="p">
+              {t('short_nowrap_prefix')} <InlineCode wrap={false}>/mcp</InlineCode>
+              {t('short_nowrap_suffix')}
+            </Text>
+          </Stack>
+        </Grid.Column>
+      </Grid>
+    )
+  },
 }
 
 export const ColorModes: Story = {
-  render: () => (
-    <Stack direction="vertical" padding="none">
-      <ThemeProvider colorMode="light">
-        <Box backgroundColor="default" padding="normal">
-          <Text as="p">
-            Use <InlineCode wrap={false}>/mcp</InlineCode> in light mode.
-          </Text>
-        </Box>
-      </ThemeProvider>
-      <ThemeProvider colorMode="dark">
-        <Box backgroundColor="default" padding="normal">
-          <Text as="p">
-            Use <InlineCode wrap={false}>/mcp</InlineCode> in dark mode.
-          </Text>
-        </Box>
-      </ThemeProvider>
-    </Stack>
-  ),
+  render: function ColorModesStory() {
+    const {t} = useTranslation('InlineCode')
+
+    return (
+      <Stack direction="vertical" padding="none">
+        <ThemeProvider colorMode="light">
+          <Box backgroundColor="default" padding="normal">
+            <Text as="p">
+              {t('light_mode_prefix')} <InlineCode wrap={false}>/mcp</InlineCode> {t('light_mode_suffix')}
+            </Text>
+          </Box>
+        </ThemeProvider>
+        <ThemeProvider colorMode="dark">
+          <Box backgroundColor="default" padding="normal">
+            <Text as="p">
+              {t('dark_mode_prefix')} <InlineCode wrap={false}>/mcp</InlineCode> {t('dark_mode_suffix')}
+            </Text>
+          </Box>
+        </ThemeProvider>
+      </Stack>
+    )
+  },
 }
 
 export const BackgroundColors: Story = {
-  render: () => (
-    <Stack direction="vertical" gap="none" padding="none">
-      {BoxBackgroundColors.map(backgroundColor => (
-        <Box key={backgroundColor} backgroundColor={backgroundColor} padding="normal">
-          <Text as="p">
-            {backgroundColor}: Use <InlineCode wrap={false}>/mcp</InlineCode> in your workflow.
-          </Text>
-        </Box>
-      ))}
-    </Stack>
-  ),
+  render: function BackgroundColorsStory() {
+    const {t} = useTranslation('InlineCode')
+
+    return (
+      <Stack direction="vertical" gap="none" padding="none">
+        {BoxBackgroundColors.map(backgroundColor => (
+          <Box key={backgroundColor} backgroundColor={backgroundColor} padding="normal">
+            <Text as="p">
+              {backgroundColor}: {t('workflow_prefix')} <InlineCode wrap={false}>/mcp</InlineCode>{' '}
+              {t('workflow_suffix')}
+            </Text>
+          </Box>
+        ))}
+      </Stack>
+    )
+  },
 }
