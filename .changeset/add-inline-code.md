@@ -6,7 +6,7 @@ Added a new `InlineCode` component for short, in-situ code fragments.
 
 Use it inside other components like `Card`, `CTABanner`, `River`, `Hero` and `Pillar`.
 
-The native `code` elements remain supported in `Card`, `CTABanner` and `River` for backwards compatibility, but it's visual appearance has changed. It no longer features a border and has adjusted typographic spacing.
+The native `code` elements remain supported in `Card`, `CTABanner` and `River` for backwards compatibility, but their visual appearance has changed. They no longer feature a border and have adjusted typographic spacing.
 
 Example usage:
 
@@ -15,7 +15,7 @@ import {InlineCode} from '@primer/react-brand'
 ```
 
 ```jsx
-<InlineCode>git status</InlineCode>
+<InlineCode>npm install @primer/react-brand</InlineCode>
 ```
 
 Migration example for `Card`, `CTABanner` and `River`, which previously used `<code>`

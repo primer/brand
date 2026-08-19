@@ -35,7 +35,7 @@ export const InBodyText: Story = {
 export const InHeading: Story = {
   render: () => (
     <Heading>
-      Work directly with your GitHub Issues via <InlineCode>/mcp</InlineCode> support
+      Work directly with your GitHub Issues via <InlineCode wrap={false}>/mcp</InlineCode> support
     </Heading>
   ),
 }
@@ -44,7 +44,7 @@ export const TypographicInheritance: Story = {
   render: () => (
     <Stack gap="spacious">
       <Heading size="1">
-        Run <InlineCode>/mcp</InlineCode> from a heading
+        Run <InlineCode wrap={false}>/mcp</InlineCode> from a heading
       </Heading>
 
       <Text as="p" size="600">
@@ -61,13 +61,13 @@ export const TypographicInheritance: Story = {
 
       <UnorderedList>
         <UnorderedList.Item>
-          Review issues with <InlineCode>/issues</InlineCode>
+          Review issues with <InlineCode wrap={false}>/issues</InlineCode>
         </UnorderedList.Item>
         <UnorderedList.Item>
-          Refine typography with <InlineCode>/typeset</InlineCode>
+          Refine typography with <InlineCode wrap={false}>/typeset</InlineCode>
         </UnorderedList.Item>
         <UnorderedList.Item>
-          Finish with <InlineCode>/polish</InlineCode>
+          Finish with <InlineCode wrap={false}>/polish</InlineCode>
         </UnorderedList.Item>
       </UnorderedList>
 
@@ -122,10 +122,15 @@ export const Wrapped: Story = {
   render: () => (
     <Grid enableGutters={false}>
       <Grid.Column span={{xsmall: 12, medium: 3}}>
-        <Text as="p">
-          Use <InlineCode>/mcp</InlineCode> to review <InlineCode>/issues</InlineCode>, then run{' '}
-          <InlineCode>/polish</InlineCode> for a final pass.
-        </Text>
+        <Stack direction="vertical" gap="normal" padding="none">
+          <Text as="p">
+            Long fragments wrap by default, such as{' '}
+            <InlineCode>npm install @primer/react-brand@latest --save-exact</InlineCode>.
+          </Text>
+          <Text as="p">
+            Short fragments can stay together, such as <InlineCode wrap={false}>/mcp</InlineCode>.
+          </Text>
+        </Stack>
       </Grid.Column>
     </Grid>
   ),
@@ -137,14 +142,14 @@ export const ColorModes: Story = {
       <ThemeProvider colorMode="light">
         <Box backgroundColor="default" padding="normal">
           <Text as="p">
-            Use <InlineCode>/mcp</InlineCode> in light mode.
+            Use <InlineCode wrap={false}>/mcp</InlineCode> in light mode.
           </Text>
         </Box>
       </ThemeProvider>
       <ThemeProvider colorMode="dark">
         <Box backgroundColor="default" padding="normal">
           <Text as="p">
-            Use <InlineCode>/mcp</InlineCode> in dark mode.
+            Use <InlineCode wrap={false}>/mcp</InlineCode> in dark mode.
           </Text>
         </Box>
       </ThemeProvider>
@@ -158,7 +163,7 @@ export const BackgroundColors: Story = {
       {BoxBackgroundColors.map(backgroundColor => (
         <Box key={backgroundColor} backgroundColor={backgroundColor} padding="normal">
           <Text as="p">
-            {backgroundColor}: Use <InlineCode>/mcp</InlineCode> in your workflow.
+            {backgroundColor}: Use <InlineCode wrap={false}>/mcp</InlineCode> in your workflow.
           </Text>
         </Box>
       ))}

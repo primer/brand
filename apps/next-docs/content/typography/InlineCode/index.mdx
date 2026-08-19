@@ -29,10 +29,26 @@ Use inline code for short code fragments such as commands, filenames, API names,
 
 ```jsx live
 <Heading>
-  Work directly with your GitHub Issues via <InlineCode>/mcp</InlineCode> support
+  Work directly with your GitHub Issues via <InlineCode wrap={false}>/mcp</InlineCode> support
 </Heading>
 ```
 
+### Wrapping
+
+`InlineCode` wraps by default to prevent long fragments from overflowing their container. Use `wrap={false}` only for
+slash commands that must remain together and have a low character count.
+
+```jsx live
+<Text as="p">
+  Long commands wrap when needed: <InlineCode>npm install @primer/react-brand@latest --save-exact</InlineCode>. Short
+  slash commands can remain together: <InlineCode wrap={false}>/mcp</InlineCode>.
+</Text>
+```
+
 ## Component props
+
+| Name   | Type      | Default | Description                                  |
+| :----- | :-------- | :-----: | :------------------------------------------- |
+| `wrap` | `boolean` | `true`  | Controls whether the code fragment can wrap. |
 
 `InlineCode` renders a native `code` element and accepts its standard HTML attributes.

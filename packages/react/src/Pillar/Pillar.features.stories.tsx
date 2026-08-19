@@ -49,7 +49,7 @@ export const WithInlineCode: Story = {
     <Pillar>
       <Pillar.Icon icon={<CopilotIcon />} />
       <Pillar.Heading>
-        Connect your tools with <InlineCode>/mcp</InlineCode>
+        Connect your tools with <InlineCode wrap={false}>/mcp</InlineCode>
       </Pillar.Heading>
       <Pillar.Description>
         Run <InlineCode>npm install @primer/react-brand@latest --save-exact</InlineCode> to update Primer Brand.
@@ -64,30 +64,30 @@ export const InlineCodeStacked: Story = {
       <Pillar style={{flex: 1}}>
         <Pillar.Icon icon={<CopilotIcon />} />
         <Pillar.Heading>
-          Review designs with <InlineCode>/critique</InlineCode>
+          Review designs with <InlineCode wrap={false}>/critique</InlineCode>
         </Pillar.Heading>
         <Pillar.Description>
-          Run <InlineCode>/typeset</InlineCode> to refine typography, then use <InlineCode>/polish</InlineCode> for a
-          final pass.
+          Run <InlineCode wrap={false}>/typeset</InlineCode> to refine typography, then use{' '}
+          <InlineCode wrap={false}>/polish</InlineCode> for a final pass.
         </Pillar.Description>
       </Pillar>
       <Pillar style={{flex: 1}}>
         <Pillar.Icon icon={<GitBranchIcon />} />
         <Pillar.Heading>
-          Connect repositories through <InlineCode>/mcp</InlineCode>
+          Connect repositories through <InlineCode wrap={false}>/mcp</InlineCode>
         </Pillar.Heading>
         <Pillar.Description>
-          Search <InlineCode>/issues</InlineCode>, inspect <InlineCode>/labels</InlineCode>, and summarize the next
-          task.
+          Search <InlineCode wrap={false}>/issues</InlineCode>, inspect <InlineCode wrap={false}>/labels</InlineCode>,
+          and summarize the next task.
         </Pillar.Description>
       </Pillar>
       <Pillar style={{flex: 1}}>
         <Pillar.Icon icon={<RocketIcon />} />
         <Pillar.Heading>
-          Ship changes using <InlineCode>/fleet</InlineCode>
+          Ship changes using <InlineCode wrap={false}>/fleet</InlineCode>
         </Pillar.Heading>
         <Pillar.Description>
-          Select a model with <InlineCode>/model</InlineCode> and execute independent work in parallel.
+          Select a model with <InlineCode wrap={false}>/model</InlineCode> and execute independent work in parallel.
         </Pillar.Description>
       </Pillar>
     </Stack>

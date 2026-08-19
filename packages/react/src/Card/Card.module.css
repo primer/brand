@@ -203,7 +203,10 @@
   padding-block: 0;
   padding-inline: var(--base-size-4);
   border-radius: var(--base-size-2);
-  white-space: nowrap;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
 }
 
 .Card--disableAnimation:hover .Card__link {

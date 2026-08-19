@@ -112,12 +112,12 @@ export const WithInlineCode = () => (
   <SectionIntro>
     <SectionIntro.Label>Agent workflows</SectionIntro.Label>
     <SectionIntro.Heading>
-      Connect with <InlineCode>/mcp</InlineCode>, review with <InlineCode>/critique</InlineCode>, and ship with{' '}
-      <InlineCode>/fleet</InlineCode>
+      Connect with <InlineCode wrap={false}>/mcp</InlineCode>, review with{' '}
+      <InlineCode wrap={false}>/critique</InlineCode>, and ship with <InlineCode wrap={false}>/fleet</InlineCode>
     </SectionIntro.Heading>
     <SectionIntro.Description>
-      Use <InlineCode>/issues</InlineCode> to find work, <InlineCode>/model</InlineCode> to select a model, and{' '}
-      <InlineCode>/polish</InlineCode> for a final pass.
+      Use <InlineCode wrap={false}>/issues</InlineCode> to find work, <InlineCode wrap={false}>/model</InlineCode> to
+      select a model, and <InlineCode wrap={false}>/polish</InlineCode> for a final pass.
     </SectionIntro.Description>
     <SectionIntro.Link href="#">Explore agent workflows</SectionIntro.Link>
   </SectionIntro>
