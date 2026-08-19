@@ -6,6 +6,7 @@ const mediaQueryFormat = require('../src/formats/responsive-media-query')
 const colorModeFormat = require('../src/formats/color-mode-attributes')
 const oneDimensionalFormat = require('../src/formats/json-one-dimensional')
 const isColorValue = require('../src/filters/isColorValue')
+const isSizeValue = require('../src/filters/isSizeValue')
 
 const lightJson = require('../src/tokens/base/colors/light')
 const darkJson = require('../src/tokens/base/colors/dark')
@@ -333,6 +334,57 @@ const darkJson = require('../src/tokens/base/colors/dark')
             destination: `colors.json`,
             format: `json/one-dimensional`,
             filter: token => token.isSource && isColorValue(token.value),
+          },
+        ],
+      },
+    },
+  })
+
+  /**
+   * Build a flat JSON map of global typography tokens.
+   */
+  buildPrimitives({
+    source: [`tokens/base/typography/typography.json`, `tokens/functional/typography/typography-responsive.json`],
+    namespace,
+    platforms: {
+      jsonTypography: {
+        prefix: namespace,
+        addPrefix: token => token.isSource && !token.filePath.replace(/\\/g, '/').includes('/base/typography/'),
+        buildPath: `${outputPath}/json/`,
+        transformGroup: 'css',
+        files: [
+          {
+            destination: `typography.json`,
+            format: `json/one-dimensional`,
+            filter: token => token.isSource,
+          },
+        ],
+      },
+    },
+  })
+
+  /**
+   * Build a flat JSON map of global size tokens.
+   */
+  buildPrimitives({
+    source: [
+      `tokens/base/size/size.json`,
+      `tokens/functional/size/size.json`,
+      `tokens/functional/size/breakpoints.json`,
+      `tokens/functional/size/border.json`,
+    ],
+    namespace,
+    platforms: {
+      jsonSize: {
+        prefix: namespace,
+        addPrefix: token => token.isSource && !token.filePath.replace(/\\/g, '/').includes('/base/size/'),
+        buildPath: `${outputPath}/json/`,
+        transformGroup: 'css',
+        files: [
+          {
+            destination: `size.json`,
+            format: `json/one-dimensional`,
+            filter: token => token.isSource && isSizeValue(token.value),
           },
         ],
       },
