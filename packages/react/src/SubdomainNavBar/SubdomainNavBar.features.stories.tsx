@@ -438,8 +438,17 @@ export const TabletMenuOpen: Story = {
     const menuRect = menu?.getBoundingClientRect()
     const navBarRect = closeButton.closest('header')?.getBoundingClientRect()
     const menuStyles = menu ? getComputedStyle(menu) : undefined
+    const closeIconBars = closeButton.querySelector('[aria-hidden="true"]')?.children
 
     await expect(closeButton).toHaveAttribute('aria-expanded', 'true')
+    await expect(
+      Array.from(closeIconBars ?? []).every(bar => {
+        const barStyles = getComputedStyle(bar)
+        const [originX, originY] = barStyles.transformOrigin.split(' ').map(Number.parseFloat)
+
+        return originX === Number.parseFloat(barStyles.width) / 2 && originY === Number.parseFloat(barStyles.height) / 2
+      }),
+    ).toBe(true)
     await expect(Math.abs((menuRect?.left ?? 0) - (searchRect?.left ?? 0))).toBeLessThanOrEqual(1)
     await expect(Math.abs((menuRect?.right ?? 0) - (navBarRect?.right ?? 0))).toBeLessThanOrEqual(1)
     await expect(menuStyles?.borderInlineStartWidth).toBe('1px')

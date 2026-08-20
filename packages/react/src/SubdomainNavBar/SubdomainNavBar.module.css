@@ -706,7 +706,7 @@
     overflow: visible;
   }
 
-  .SubdomainNavBar-menu-button-bar {
+  .SubdomainNavBar-menu-button-icon .SubdomainNavBar-menu-button-bar {
     width: var(--base-size-16);
     height: var(--base-size-2);
     margin: 0;
