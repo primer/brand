@@ -159,7 +159,12 @@ function Root({
           <div className={styles.MinimalFooter__container}>
             <div className={styles['MinimalFooter__top-row']}>
               <LogoLink logoHref={logoHref} />
-              {backToTop}
+              {hasLinks || backToTop ? (
+                <div className={styles['MinimalFooter__top-actions']}>
+                  {renderedLinks}
+                  {backToTop}
+                </div>
+              ) : null}
             </div>
           </div>
         </section>
@@ -170,30 +175,11 @@ function Root({
         </div>
       ) : null}
       <div className={clsx(styles.MinimalFooter__section, styles['MinimalFooter__section--bottom'])}>
-        <section
-          className={clsx(styles.MinimalFooter__bottom, !hasSocialLinks && styles['MinimalFooter__bottom--no-social'])}
-        >
+        <section className={styles.MinimalFooter__bottom}>
           <div className={styles.MinimalFooter__container}>
-            <div
-              className={clsx(
-                styles['MinimalFooter__bottom-row'],
-                hasSocialLinks && hasLinks && styles['MinimalFooter__bottom-row--stacked-links'],
-              )}
-            >
-              {hasSocialLinks ? (
-                <>
-                  {copyright}
-                  <div className={styles['MinimalFooter__links-and-social']}>
-                    {renderedLinks}
-                    <SocialLinks socialLinks={renderedSocialLinks} />
-                  </div>
-                </>
-              ) : (
-                <div className={styles['MinimalFooter__copyright-and-links']}>
-                  {copyright}
-                  {renderedLinks}
-                </div>
-              )}
+            <div className={styles['MinimalFooter__bottom-row']}>
+              {copyright}
+              {hasSocialLinks ? <SocialLinks socialLinks={renderedSocialLinks} /> : null}
             </div>
           </div>
         </section>

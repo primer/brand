@@ -737,19 +737,19 @@ describe('MinimalFooter', () => {
     expect(logo.closest('.MinimalFooter__top-row')).toBe(backToTop.closest('.MinimalFooter__top-row'))
   })
 
-  it('places footer links and social links in the bottom section', () => {
+  it('places footer links in the top section and social links in the bottom section', () => {
     const {getByRole} = render(
       <MinimalFooter socialLinks={['x']}>
         <MinimalFooter.Link href="/test">Test Link</MinimalFooter.Link>
       </MinimalFooter>,
     )
 
-    expect(getByRole('link', {name: 'Test Link'}).closest('.MinimalFooter__section--bottom')).toBeInTheDocument()
+    expect(getByRole('link', {name: 'Test Link'}).closest('.MinimalFooter__top-row')).toBeInTheDocument()
     expect(getByRole('link', {name: 'GitHub on X'}).closest('.MinimalFooter__section--bottom')).toBeInTheDocument()
   })
 
-  it('groups utility links above social links when both are rendered', () => {
-    const {getByRole, getByText} = render(
+  it('groups utility links with the logo and keeps social links in the bottom row', () => {
+    const {getByRole} = render(
       <MinimalFooter socialLinks={['x']}>
         <MinimalFooter.Link href="/try">Try GitHub</MinimalFooter.Link>
         <MinimalFooter.Link href="/enterprise">Enterprise</MinimalFooter.Link>
@@ -757,14 +757,14 @@ describe('MinimalFooter', () => {
       </MinimalFooter>,
     )
 
-    const utilityLinksGroup = getByRole('link', {name: 'Try GitHub'}).closest('.MinimalFooter__links-and-social')
+    const logo = getByRole('link', {name: 'GitHub'})
+    const utilityLink = getByRole('link', {name: 'Try GitHub'})
+    const utilityLinksGroup = utilityLink.closest('.MinimalFooter__top-actions')
     const socialLinks = getByRole('list')
-    const currentYear = new Date().getFullYear()
-    const copyright = getByText(`© ${currentYear} GitHub. All rights reserved.`)
 
-    expect(utilityLinksGroup).toContainElement(socialLinks)
-    expect(utilityLinksGroup?.firstElementChild).toContainElement(getByRole('link', {name: 'Try GitHub'}))
-    expect(copyright.closest('.MinimalFooter__links-and-social')).toBeNull()
+    expect(logo.closest('.MinimalFooter__top-row')).toBe(utilityLink.closest('.MinimalFooter__top-row'))
+    expect(utilityLinksGroup?.firstElementChild).toContainElement(utilityLink)
+    expect(socialLinks.closest('.MinimalFooter__top-row')).toBeNull()
   })
 
   it('places Footnotes ahead of the mapped sections and preserves full section order when every optional child is present', () => {
@@ -812,19 +812,6 @@ describe('MinimalFooter', () => {
 
     rerender(<MinimalFooter socialLinks={false} />)
     expect(queryAllByRole('link', {name: isSocialLink})).toHaveLength(0)
-  })
-
-  it('applies a no-social modifier class to the bottom section', () => {
-    const {container, rerender} = render(
-      <MinimalFooter>
-        <MinimalFooter.Link href="/test">Test Link</MinimalFooter.Link>
-      </MinimalFooter>,
-    )
-
-    expect(container.querySelector('.MinimalFooter__bottom')).not.toHaveClass('MinimalFooter__bottom--no-social')
-
-    rerender(<MinimalFooter socialLinks={false} />)
-    expect(container.querySelector('.MinimalFooter__bottom')).toHaveClass('MinimalFooter__bottom--no-social')
   })
 
   it('preserves logo href, analytics, accessibility, and semantic styling', () => {
