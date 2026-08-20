@@ -961,7 +961,14 @@ export const SkipToMainTag: Story = {
 
     await userEvent.tab()
 
-    await expect(canvas.getByRole('link', {name: 'Skip to content'})).toHaveFocus()
+    const skipLink = canvas.getByRole('link', {name: 'Skip to content'})
+    const navbar = canvas.getByRole('banner')
+    const skipLinkBounds = skipLink.getBoundingClientRect()
+    const navbarBounds = navbar.getBoundingClientRect()
+
+    await expect(skipLink).toHaveFocus()
+    await expect(skipLinkBounds.left - navbarBounds.left).toBe(16)
+    await expect(skipLinkBounds.top + skipLinkBounds.height / 2).toBe(navbarBounds.top + navbarBounds.height / 2)
   },
 }
 

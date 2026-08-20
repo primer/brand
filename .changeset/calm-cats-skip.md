@@ -2,4 +2,4 @@
 '@primer/react-brand': patch
 ---
 
-Restyled the `SubdomainNavBar` skip-to-content control as a compact top-left link when focused.
+Restyled the focused `SubdomainNavBar` skip-to-content control as a small button centered within the navbar with inline spacing.

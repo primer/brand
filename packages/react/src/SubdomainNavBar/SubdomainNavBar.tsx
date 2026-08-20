@@ -443,6 +443,7 @@ function Root(
           as="a"
           href={`#${mainElRef.current?.id || startOfContentID}`}
           variant="primary"
+          size="small"
           className={clsx(styles['SubdomainNavBar-skip-to-content'], !startOfContentButtonFocused && 'visually-hidden')}
           onFocus={setStartOfContentButtonFocusedTrue}
           onBlur={setStartOfContentButtonFocusedFalse}

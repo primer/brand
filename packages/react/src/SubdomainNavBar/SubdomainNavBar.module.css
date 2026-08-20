@@ -1619,9 +1619,10 @@
 
 .SubdomainNavBar-skip-to-content {
   position: absolute;
-  inset-block-start: 0;
-  inset-inline-start: 0;
+  inset-block-start: calc(var(--SubdomainNavBar-height) / 2);
+  inset-inline-start: var(--base-size-16);
   z-index: 100;
+  transform: translateY(-50%);
 }
 
 /*
