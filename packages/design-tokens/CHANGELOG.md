@@ -1,5 +1,17 @@
 # @primer/brand-primitives
 
+## 0.74.0
+
+### Patch Changes
+
+- [#1394](https://github.com/primer/brand/pull/1394) [`414e53f`](https://github.com/primer/brand/commit/414e53f6a27abc8c6fe8067ccb1477bb01c02677) Thanks [@stefankp](https://github.com/stefankp)! - Added JSON-based typography and size map exports at `@primer/brand-primitives/lib/design-tokens/json/typography.json` and `@primer/brand-primitives/lib/design-tokens/json/size.json`.
+
+- [#1448](https://github.com/primer/brand/pull/1448) [`72fd3a6`](https://github.com/primer/brand/commit/72fd3a696f03f47876f3bf02e6e5187b0e1dc0f1) Thanks [@rezrah](https://github.com/rezrah)! - New tokens available for the `InlineCode` component:
+
+  - `--brand-InlineCode-color-fg-default`
+  - `--brand-InlineCode-color-fg-heading`
+  - `--brand-InlineCode-bgColor`
+
 ## 0.73.0
 
 ### Patch Changes

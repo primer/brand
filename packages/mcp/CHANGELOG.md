@@ -1,5 +1,27 @@
 # @primer/brand-mcp
 
+## 0.74.0
+
+### Minor Changes
+
+- [#1444](https://github.com/primer/brand/pull/1444) [`e61d466`](https://github.com/primer/brand/commit/e61d4664c260e18ce9b6f134a3d0684f339198cc) Thanks [@rezrah](https://github.com/rezrah)! - Updated `primer_brand_setup` to create or update `AGENTS.md` beside a `package.json` that declares `@primer/react-brand`.
+
+  - Preserves existing instructions and appends/replaces only the Primer Brand instructions.
+  - Requires `projectDir` when several workspace packages declare Primer Brand.
+  - Routes future agents to the MCP tools and version-matched local documentation.
+
+### Patch Changes
+
+- [#1444](https://github.com/primer/brand/pull/1444) [`e61d466`](https://github.com/primer/brand/commit/e61d4664c260e18ce9b6f134a3d0684f339198cc) Thanks [@rezrah](https://github.com/rezrah)! - Updated MCP text guidance:
+
+  - Recommended component text defaults in `primer_brand_page_design` and warned about unnecessary `size` props in `primer_brand_review`.
+  - Recommended `InlineCode` for short code fragments in authored React.
+
+- [#1444](https://github.com/primer/brand/pull/1444) [`e61d466`](https://github.com/primer/brand/commit/e61d4664c260e18ce9b6f134a3d0684f339198cc) Thanks [@rezrah](https://github.com/rezrah)! - Updated MCP gridline tools to prevent disconnected, centered border boxes:
+
+  - Updated `primer_brand_page_design` to prefer built-in gridline APIs and scope custom page-width frames to grouped Cards and Pillars.
+  - Updated `primer_brand_examples` to preserve canonical Card/Pillar companion CSS and surface the focused Statistic gridline example.
+
 ## 0.73.0
 
 ### Patch Changes
