@@ -439,6 +439,12 @@ export const TabletMenuOpen: Story = {
     const navBarRect = closeButton.closest('header')?.getBoundingClientRect()
     const menuStyles = menu ? getComputedStyle(menu) : undefined
     const closeIconBars = closeButton.querySelector('[aria-hidden="true"]')?.children
+    const menuContent = menu?.firstElementChild
+    const leadingComponent = menuContent?.firstElementChild
+    const linkList = menuContent?.lastElementChild
+    const menuFooter = menu?.lastElementChild
+    const actionArea = menuFooter?.firstElementChild
+    const trailingComponent = menuFooter?.lastElementChild
 
     await expect(closeButton).toHaveAttribute('aria-expanded', 'true')
     await expect(
@@ -455,6 +461,12 @@ export const TabletMenuOpen: Story = {
     await expect(menuStyles?.borderInlineEndWidth).toBe('1px')
     await expect(menuStyles?.borderBlockEndWidth).toBe('1px')
     await expect(menuStyles?.borderBlockEndColor).toBe(menuStyles?.borderInlineStartColor)
+    await expect(getComputedStyle(leadingComponent as Element).borderBlockEndWidth).toBe('0px')
+    await expect(getComputedStyle(linkList as Element).borderBlockStartWidth).toBe('1px')
+    await expect(getComputedStyle(linkList as Element).borderBlockEndWidth).toBe('0px')
+    await expect(getComputedStyle(menuFooter as Element).borderBlockStartWidth).toBe('1px')
+    await expect(getComputedStyle(actionArea as Element).borderBlockStartWidth).toBe('0px')
+    await expect(getComputedStyle(trailingComponent as Element).borderBlockStartWidth).toBe('1px')
   },
   name: 'Tablet Menu Open',
 }
@@ -518,8 +530,14 @@ export const MobileMenuOpen: Story = {
     await userEvent.click(canvas.getByRole('button', {name: 'Menu'}))
     const closeButton = canvas.getByRole('button', {name: 'Close'})
     const menu = canvasElement.ownerDocument.getElementById(closeButton.getAttribute('aria-controls') as string)
+    const linkList = menu?.firstElementChild?.lastElementChild
+    const menuFooter = menu?.lastElementChild
+    const actionArea = menuFooter?.firstElementChild
     await expect(closeButton).toHaveAttribute('aria-expanded', 'true')
     await expect(menu?.getBoundingClientRect().height).toBeGreaterThan(0)
+    await expect(getComputedStyle(linkList as Element).borderBlockEndWidth).toBe('0px')
+    await expect(getComputedStyle(menuFooter as Element).borderBlockStartWidth).toBe('1px')
+    await expect(getComputedStyle(actionArea as Element).borderBlockStartWidth).toBe('0px')
   },
 }
 

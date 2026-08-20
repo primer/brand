@@ -23,6 +23,7 @@ declare const styles: {
   readonly "SubdomainNavBar-menu-wrapper": string;
   readonly "SubdomainNavBar-menu-wrapper--close": string;
   readonly "SubdomainNavBar-menu-wrapper-footer": string;
+  readonly "SubdomainNavBar-menu-wrapper-footer--has-leading-item": string;
   readonly "SubdomainNavBar-mobile-menu-button": string;
   readonly "SubdomainNavBar-more-link": string;
   readonly "SubdomainNavBar-outer-container": string;

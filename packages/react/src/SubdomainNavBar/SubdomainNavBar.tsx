@@ -594,7 +594,13 @@ function Root(
                     </div>
                   )}
                   {!menuHidden && (hasActions || hasTrailingComponent) && (
-                    <div className={styles['SubdomainNavBar-menu-wrapper-footer']}>
+                    <div
+                      className={clsx(
+                        styles['SubdomainNavBar-menu-wrapper-footer'],
+                        (hasLinks || hasLeadingComponent) &&
+                          styles['SubdomainNavBar-menu-wrapper-footer--has-leading-item'],
+                      )}
+                    >
                       {hasActions && (
                         <div
                           className={clsx(

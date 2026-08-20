@@ -1379,6 +1379,71 @@ describe('SubdomainNavBar', () => {
     ).toBeTruthy()
   })
 
+  it.each([
+    {
+      name: 'links and actions',
+      links: true,
+      leadingComponent: undefined,
+      actions: true,
+      trailingComponent: undefined,
+      hasLeadingItem: true,
+    },
+    {
+      name: 'leading content and actions',
+      links: false,
+      leadingComponent: <span>Leading content</span>,
+      actions: true,
+      trailingComponent: undefined,
+      hasLeadingItem: true,
+    },
+    {
+      name: 'links and trailing content',
+      links: true,
+      leadingComponent: undefined,
+      actions: false,
+      trailingComponent: <span>Trailing content</span>,
+      hasLeadingItem: true,
+    },
+    {
+      name: 'actions and trailing content',
+      links: false,
+      leadingComponent: undefined,
+      actions: true,
+      trailingComponent: <span>Trailing content</span>,
+      hasLeadingItem: false,
+    },
+    {
+      name: 'trailing content only',
+      links: false,
+      leadingComponent: undefined,
+      actions: false,
+      trailingComponent: <span>Trailing content</span>,
+      hasLeadingItem: false,
+    },
+  ])(
+    'marks the narrow footer divider boundary for $name',
+    async ({links, leadingComponent, actions, trailingComponent, hasLeadingItem}) => {
+      mockUseWindowSize.mockImplementation(() => ({isSmall: false, isMedium: false, isLarge: false}))
+      const user = userEvent.setup()
+      const {container, getByRole} = render(
+        <SubdomainNavBar title="Subdomain" leadingComponent={leadingComponent} trailingComponent={trailingComponent}>
+          {links && <SubdomainNavBar.Link href="#">Collections</SubdomainNavBar.Link>}
+          {actions && <SubdomainNavBar.PrimaryAction href="#">Primary CTA</SubdomainNavBar.PrimaryAction>}
+        </SubdomainNavBar>,
+      )
+
+      await user.click(getByRole('button', {name: 'Menu'}))
+
+      const menuFooter = container.querySelector('.SubdomainNavBar-menu-wrapper-footer')
+      expect(menuFooter).toHaveClass('SubdomainNavBar-menu-wrapper-footer')
+      if (hasLeadingItem) {
+        expect(menuFooter).toHaveClass('SubdomainNavBar-menu-wrapper-footer--has-leading-item')
+      } else {
+        expect(menuFooter).not.toHaveClass('SubdomainNavBar-menu-wrapper-footer--has-leading-item')
+      }
+    },
+  )
+
   it('can append a classname to the root element', () => {
     const mockClass = 'custom-class'
     const {getByTestId} = render(<SubdomainNavBar title="Subdomain" className={mockClass} />)

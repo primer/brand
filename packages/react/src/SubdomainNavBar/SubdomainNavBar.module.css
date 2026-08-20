@@ -757,11 +757,6 @@
     width: 100%;
   }
 
-  .SubdomainNavBar-menu-wrapper .SubdomainNavBar-leading-component,
-  .SubdomainNavBar-menu-wrapper .SubdomainNavBar-primary-nav-list--visible {
-    border-block-end: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
-  }
-
   .SubdomainNavBar-menu-wrapper .SubdomainNavBar-link {
     box-sizing: border-box;
     width: 100%;
@@ -826,7 +821,6 @@
     width: 100%;
     height: auto;
     padding: 0;
-    border-block-start: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
   }
 
   .SubdomainNavBar-menu-wrapper .SubdomainNavBar-button-area-inner {
@@ -836,10 +830,18 @@
     margin-block: var(--base-size-24);
     padding-inline: var(--base-size-16);
   }
+}
 
-  .SubdomainNavBar-menu-wrapper .SubdomainNavBar-trailing-component {
-    border-block-start: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
-  }
+.SubdomainNavBar .SubdomainNavBar-menu-wrapper-footer--has-leading-item,
+.SubdomainNavBar
+  .SubdomainNavBar-menu-wrapper
+  .SubdomainNavBar-leading-component
+  + .SubdomainNavBar-primary-nav-list--visible,
+.SubdomainNavBar
+  .SubdomainNavBar-menu-wrapper-footer
+  .SubdomainNavBar-button-area
+  + .SubdomainNavBar-trailing-component {
+  border-block-start: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
 }
 
 .SubdomainNavBar-button-area {
@@ -996,11 +998,6 @@
     transform: translateY(calc(var(--brand-borderWidth-thin) - var(--base-size-6))) rotate(-45deg);
   }
 
-  .SubdomainNavBar-menu-wrapper .SubdomainNavBar-leading-component,
-  .SubdomainNavBar-menu-wrapper .SubdomainNavBar-primary-nav-list--visible {
-    border-block-end: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
-  }
-
   .SubdomainNavBar .SubdomainNavBar-menu-wrapper .SubdomainNavBar-link {
     padding: var(--base-size-16);
     font-size: var(--brand-text-size-100);
@@ -1014,18 +1011,6 @@
 
   .SubdomainNavBar .SubdomainNavBar-menu-wrapper .SubdomainNavBar-button-area-inner {
     padding-inline: var(--base-size-16);
-  }
-
-  .SubdomainNavBar .SubdomainNavBar-menu-wrapper .SubdomainNavBar-button-area,
-  .SubdomainNavBar .SubdomainNavBar-menu-wrapper .SubdomainNavBar-trailing-component {
-    border-block-start: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
-  }
-
-  .SubdomainNavBar
-    .SubdomainNavBar-menu-wrapper-footer
-    .SubdomainNavBar-button-area
-    + .SubdomainNavBar-trailing-component {
-    border-block-start: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
   }
 }
 
