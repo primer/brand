@@ -583,6 +583,11 @@ const PricingOptionsFeatureListGroupHeading = forwardRef<
 type PricingOptionsFeatureListItemProps = PropsWithChildren<BaseProps<HTMLLIElement>> & {
   'data-testid'?: string
   infoTooltip?: string
+  /**
+   * Provides an accessible label for the info tooltip trigger. Use when children is not a string so that repeated
+   * tooltip triggers remain distinguishable.
+   */
+  infoTooltipAriaLabel?: string
   variant?: 'included' | 'excluded'
 } & Omit<ListItemProps, 'variant'>
 
@@ -592,6 +597,7 @@ const PricingOptionsFeatureListItem = forwardRef<HTMLLIElement, PricingOptionsFe
       children,
       className,
       infoTooltip,
+      infoTooltipAriaLabel,
       leadingVisual,
       leadingVisualFill,
       variant = 'included',
@@ -628,7 +634,11 @@ const PricingOptionsFeatureListItem = forwardRef<HTMLLIElement, PricingOptionsFe
             <button
               type="button"
               className={styles['PricingOptions__feature-list-item-info']}
-              aria-label={`More information about ${typeof children === 'string' ? children : 'this feature'}`}
+              aria-label={
+                infoTooltipAriaLabel !== undefined
+                  ? infoTooltipAriaLabel
+                  : `More information about ${typeof children === 'string' ? children : 'this feature'}`
+              }
             >
               <svg viewBox="0 0 4 8" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                 <path
