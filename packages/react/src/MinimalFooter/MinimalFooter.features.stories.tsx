@@ -208,7 +208,7 @@ const ResponsiveExample = ({socialLinks = true}: {socialLinks?: boolean}) => (
     <MinimalFooter.Link href="#">Sitemap</MinimalFooter.Link>
     <MinimalFooter.Link href="#">What is Git?</MinimalFooter.Link>
     <MinimalFooter.Link href="#">Manage cookies</MinimalFooter.Link>
-    <MinimalFooter.Link href="#">Do not share or sell my personal information</MinimalFooter.Link>
+    <MinimalFooter.Link href="#">Privacy choices</MinimalFooter.Link>
     <MinimalFooter.Link href="#">Terms of Service</MinimalFooter.Link>
   </MinimalFooter>
 )
