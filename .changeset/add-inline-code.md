@@ -1,5 +1,5 @@
 ---
-'@primer/react-brand': patch
+'@primer/react-brand': minor
 ---
 
 Added a new `InlineCode` component for short, in-situ code fragments.
