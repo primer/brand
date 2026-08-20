@@ -1312,8 +1312,11 @@ export const WithInfoTooltips: Story = {
         <PricingOptions.Price trailingText="per month / $100 per year">10</PricingOptions.Price>
         <PricingOptions.FeatureList>
           <PricingOptions.FeatureListItem>Code completions</PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem infoTooltip="Interact with Copilot using natural language.">
-            Chat in IDE and Mobile
+          <PricingOptions.FeatureListItem
+            infoTooltip="Interact with Copilot using natural language."
+            infoTooltipAriaLabel="More information about Chat in IDE and Mobile"
+          >
+            <span>Chat in IDE and Mobile</span>
           </PricingOptions.FeatureListItem>
           <PricingOptions.FeatureListItem infoTooltip="Get help directly in your terminal.">
             CLI assistance
