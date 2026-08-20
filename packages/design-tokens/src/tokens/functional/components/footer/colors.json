@@ -6,8 +6,8 @@
     },
     "bg": {
       "color": {
-        "value": "var(--base-color-scale-white)",
-        "dark": "var(--base-color-scale-gray-9)"
+        "value": "var(--brand-color-canvas-subtle)",
+        "dark": "var(--brand-color-canvas-subtle)"
       }
     },
     "backToTop": {

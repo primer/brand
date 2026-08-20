@@ -147,7 +147,13 @@ export const DefaultNarrow: Story = {
 export const DarkTheme: Story = {
   render: () => (
     <ThemeProvider colorMode="dark">
-      <MinimalFooter />
+      <MinimalFooter>
+        <MinimalFooter.Footnotes>
+          <Text>
+            <sup>1</sup>Footnotes remain visually distinct from the footer content in dark mode.
+          </Text>
+        </MinimalFooter.Footnotes>
+      </MinimalFooter>
     </ThemeProvider>
   ),
 }

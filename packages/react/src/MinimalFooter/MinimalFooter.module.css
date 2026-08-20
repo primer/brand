@@ -4,6 +4,10 @@
   background-color: var(--brand-footer-bg-color);
 }
 
+.MinimalFooter--withFootnotes {
+  border-top: 0;
+}
+
 /**
  * MinimalFooter shared styles
  */
@@ -63,6 +67,11 @@
   color: var(--brand-color-text-default);
 }
 
+.MinimalFooter__logo > svg {
+  width: var(--base-size-24);
+  height: var(--base-size-24);
+}
+
 .MinimalFooter__bottom {
   padding-top: var(--base-size-32);
   padding-bottom: var(--base-size-32);
@@ -72,10 +81,20 @@
   .MinimalFooter__top {
     padding-top: var(--base-size-32);
   }
+
+  .MinimalFooter__logo > svg {
+    width: var(--base-size-32);
+    height: var(--base-size-32);
+  }
 }
 
 .MinimalFooter__section {
   min-width: 0;
+}
+
+.MinimalFooter__section--footnotes {
+  border-bottom: var(--brand-borderWidth-thick) solid var(--brand-footer-borderColor);
+  background-color: var(--brand-color-canvas-default);
 }
 
 .MinimalFooter__section--center > .MinimalFooter__container {
@@ -91,7 +110,8 @@
  * MinimalFooter bottom section
  */
 .MinimalFooter__bottom-row,
-.MinimalFooter__copyright-and-links {
+.MinimalFooter__copyright-and-links,
+.MinimalFooter__links-and-social {
   display: flex;
 }
 
@@ -101,10 +121,21 @@
   gap: var(--base-size-24);
 }
 
+.MinimalFooter__bottom-row--stacked-links {
+  gap: var(--base-size-20);
+}
+
 .MinimalFooter__copyright-and-links {
   flex-direction: column;
   align-items: flex-start;
   gap: var(--base-size-20);
+}
+
+.MinimalFooter__links-and-social {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--base-size-24);
+  width: 100%;
 }
 
 .MinimalFooter__social-links {
@@ -144,11 +175,20 @@
   text-transform: uppercase;
 }
 
+/* Keep the size-100 text rhythm, but use the approved 12px size token for footer chrome. */
+.MinimalFooter__metaText {
+  font-size: var(--base-size-12);
+}
+
 .MinimalFooter__links {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   gap: var(--base-size-20);
+}
+
+.MinimalFooter__links-and-social > .MinimalFooter__links {
+  width: 100%;
 }
 
 .MinimalFooter__bottom--no-social .MinimalFooter__copyright-and-links {
@@ -185,7 +225,7 @@
 @media screen and (min-width: 80rem) {
   .MinimalFooter__bottom-row {
     flex-direction: row;
-    align-items: center;
+    align-items: flex-end;
     justify-content: space-between;
   }
 
@@ -193,6 +233,17 @@
     flex-direction: row;
     flex-wrap: wrap;
     align-items: center;
+  }
+
+  .MinimalFooter__links-and-social {
+    align-items: flex-end;
+    gap: var(--base-size-20);
+    width: auto;
+  }
+
+  .MinimalFooter__links-and-social > .MinimalFooter__links {
+    width: auto;
+    justify-content: flex-end;
   }
 
   .MinimalFooter__bottom--no-social .MinimalFooter__copyright-and-links {

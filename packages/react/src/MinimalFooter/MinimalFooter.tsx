@@ -133,9 +133,26 @@ function Root({
   const resolvedSocialLinks = socialLinks === undefined ? socialLinkNames : socialLinks
   const renderedSocialLinks = resolvedSocialLinks === false ? [] : resolvedSocialLinks
   const hasSocialLinks = renderedSocialLinks.length > 0
+  const hasLinks = links.length > 0
+  const renderedLinks = hasLinks ? <div className={styles.MinimalFooter__links}>{links}</div> : null
+  const copyright = (
+    <Text
+      as="p"
+      size="100"
+      font="monospace"
+      weight={{narrow: 'medium', wide: 'normal'}}
+      variant="muted"
+      className={clsx(styles.MinimalFooter__copyright, styles.MinimalFooter__metaText)}
+    >
+      {copyrightStatement ? copyrightStatement : `\u00A9 ${currentYear} GitHub. All rights reserved.`}
+    </Text>
+  )
 
   return (
-    <footer className={clsx(styles.MinimalFooter, className)} {...rest}>
+    <footer
+      className={clsx(styles.MinimalFooter, footnotes && styles['MinimalFooter--withFootnotes'], className)}
+      {...rest}
+    >
       {footnotes}
       <div className={styles.MinimalFooter__section}>
         <section className={styles.MinimalFooter__top}>
@@ -157,21 +174,26 @@ function Root({
           className={clsx(styles.MinimalFooter__bottom, !hasSocialLinks && styles['MinimalFooter__bottom--no-social'])}
         >
           <div className={styles.MinimalFooter__container}>
-            <div className={styles['MinimalFooter__bottom-row']}>
-              <div className={styles['MinimalFooter__copyright-and-links']}>
-                <Text
-                  as="p"
-                  size="100"
-                  font="monospace"
-                  weight={{narrow: 'medium', wide: 'normal'}}
-                  variant="muted"
-                  className={styles.MinimalFooter__copyright}
-                >
-                  {copyrightStatement ? copyrightStatement : `\u00A9 ${currentYear} GitHub. All rights reserved.`}
-                </Text>
-                <div className={styles.MinimalFooter__links}>{links}</div>
-              </div>
-              {hasSocialLinks ? <SocialLinks socialLinks={renderedSocialLinks} /> : null}
+            <div
+              className={clsx(
+                styles['MinimalFooter__bottom-row'],
+                hasSocialLinks && hasLinks && styles['MinimalFooter__bottom-row--stacked-links'],
+              )}
+            >
+              {hasSocialLinks ? (
+                <>
+                  {copyright}
+                  <div className={styles['MinimalFooter__links-and-social']}>
+                    {renderedLinks}
+                    <SocialLinks socialLinks={renderedSocialLinks} />
+                  </div>
+                </>
+              ) : (
+                <div className={styles['MinimalFooter__copyright-and-links']}>
+                  {copyright}
+                  {renderedLinks}
+                </div>
+              )}
             </div>
           </div>
         </section>
@@ -203,9 +225,11 @@ function Footnotes({children, className}: PropsWithChildren<FootnoteProps>) {
   })
 
   return (
-    <section className={styles.MinimalFooter__container}>
-      <div className={clsx(styles.MinimalFooter__terms, className)}>{styledChildren}</div>
-    </section>
+    <div className={clsx(styles.MinimalFooter__section, styles['MinimalFooter__section--footnotes'])}>
+      <section className={styles.MinimalFooter__container}>
+        <div className={clsx(styles.MinimalFooter__terms, className)}>{styledChildren}</div>
+      </section>
+    </div>
   )
 }
 
@@ -273,7 +297,13 @@ const Link = <C extends React.ElementType = 'a'>({as, children, ...rest}: PropsW
       }
       {...rest}
     >
-      <Text variant="muted" size="100" font="monospace" weight={{narrow: 'medium', wide: 'normal'}}>
+      <Text
+        variant="muted"
+        size="100"
+        font="monospace"
+        weight={{narrow: 'medium', wide: 'normal'}}
+        className={styles.MinimalFooter__metaText}
+      >
         {children}
       </Text>
     </Component>
@@ -354,7 +384,7 @@ const BackToTop = forwardRef<HTMLButtonElement, MinimalFooterBackToTopProps>(
         {...rest}
       >
         <span className={styles['MinimalFooter__backToTop-content']}>
-          <Text as="span" size="100" weight="medium">
+          <Text as="span" size="100" weight="medium" className={styles.MinimalFooter__metaText}>
             {children}
           </Text>
           <span className={styles['MinimalFooter__backToTop-icon']} aria-hidden="true">

@@ -271,7 +271,20 @@ describe('MinimalFooter', () => {
       </MinimalFooter>,
     )
 
-    expect(getByText('Test Link')).toHaveClass('Text--100', 'Text-font--monospace')
+    expect(getByText('Test Link')).toHaveClass('Text--100', 'Text-font--monospace', 'MinimalFooter__metaText')
+  })
+
+  it('applies compact footer text styling to component-owned footer chrome', () => {
+    const {getByText} = render(
+      <MinimalFooter>
+        <MinimalFooter.BackToTop>Back to top</MinimalFooter.BackToTop>
+        <MinimalFooter.Link href="/test">Test Link</MinimalFooter.Link>
+      </MinimalFooter>,
+    )
+
+    expect(getByText(/© \d{4} GitHub. All rights reserved./)).toHaveClass('MinimalFooter__metaText')
+    expect(getByText('Test Link')).toHaveClass('MinimalFooter__metaText')
+    expect(getByText('Back to top')).toHaveClass('MinimalFooter__metaText')
   })
 
   it('renders link as button element', () => {
@@ -401,6 +414,20 @@ describe('MinimalFooter', () => {
     expect(footnote.tagName).toBe('P')
   })
 
+  it('keeps footnotes on size-100 typography for legibility', () => {
+    const {getByText} = render(
+      <MinimalFooter>
+        <MinimalFooter.Footnotes>
+          <Text>Footnote text</Text>
+        </MinimalFooter.Footnotes>
+      </MinimalFooter>,
+    )
+
+    const footnote = getByText('Footnote text')
+    expect(footnote).toHaveClass('Text--100')
+    expect(footnote).not.toHaveClass('MinimalFooter__metaText')
+  })
+
   it('overrides Text props in footnotes when provided', () => {
     const {getByText} = render(
       <MinimalFooter>
@@ -438,11 +465,33 @@ describe('MinimalFooter', () => {
     const sections = container.querySelectorAll('section')
     expect(sections.length).toBeGreaterThanOrEqual(2)
 
+    expect(container.querySelector('footer')).toHaveClass('MinimalFooter--withFootnotes')
+    expect(container.querySelector('.MinimalFooter__section--footnotes')).toContainElement(
+      container.querySelector('.MinimalFooter__terms'),
+    )
     expect(sections[0]).toContainElement(container.querySelector('.MinimalFooter__terms'))
 
     const topSection = container.querySelector('.MinimalFooter__top')?.parentElement
     expect(topSection).toBeInTheDocument()
     expect(topSection).toHaveClass('MinimalFooter__section')
+  })
+
+  it('keeps the top border on the footer root only when footnotes are absent', () => {
+    const {container, rerender} = render(<MinimalFooter />)
+
+    expect(container.querySelector('footer')).not.toHaveClass('MinimalFooter--withFootnotes')
+    expect(container.querySelector('.MinimalFooter__section--footnotes')).not.toBeInTheDocument()
+
+    rerender(
+      <MinimalFooter>
+        <MinimalFooter.Footnotes>
+          <Text>Footnote text</Text>
+        </MinimalFooter.Footnotes>
+      </MinimalFooter>,
+    )
+
+    expect(container.querySelector('footer')).toHaveClass('MinimalFooter--withFootnotes')
+    expect(container.querySelector('.MinimalFooter__section--footnotes')).toBeInTheDocument()
   })
 
   it('renders component with only footnotes', () => {
@@ -697,6 +746,25 @@ describe('MinimalFooter', () => {
 
     expect(getByRole('link', {name: 'Test Link'}).closest('.MinimalFooter__section--bottom')).toBeInTheDocument()
     expect(getByRole('link', {name: 'GitHub on X'}).closest('.MinimalFooter__section--bottom')).toBeInTheDocument()
+  })
+
+  it('groups utility links above social links when both are rendered', () => {
+    const {getByRole, getByText} = render(
+      <MinimalFooter socialLinks={['x']}>
+        <MinimalFooter.Link href="/try">Try GitHub</MinimalFooter.Link>
+        <MinimalFooter.Link href="/enterprise">Enterprise</MinimalFooter.Link>
+        <MinimalFooter.Link href="/email">Email us</MinimalFooter.Link>
+      </MinimalFooter>,
+    )
+
+    const utilityLinksGroup = getByRole('link', {name: 'Try GitHub'}).closest('.MinimalFooter__links-and-social')
+    const socialLinks = getByRole('list')
+    const currentYear = new Date().getFullYear()
+    const copyright = getByText(`© ${currentYear} GitHub. All rights reserved.`)
+
+    expect(utilityLinksGroup).toContainElement(socialLinks)
+    expect(utilityLinksGroup?.firstElementChild).toContainElement(getByRole('link', {name: 'Try GitHub'}))
+    expect(copyright.closest('.MinimalFooter__links-and-social')).toBeNull()
   })
 
   it('places Footnotes ahead of the mapped sections and preserves full section order when every optional child is present', () => {
