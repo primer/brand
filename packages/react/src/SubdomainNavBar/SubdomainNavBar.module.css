@@ -92,7 +92,10 @@
   }
 }
 
-.SubdomainNavBar-logo-mark {
+.SubdomainNavBar-logo-mark,
+.SubdomainNavBar-title {
+  display: inline-flex;
+  align-items: center;
   color: var(--brand-color-text-default);
 }
 
@@ -106,9 +109,6 @@
   text-decoration: none;
   padding-right: var(--base-size-16);
   white-space: nowrap;
-  /* Optical alignment with logo */
-  position: relative;
-  top: 1px;
 }
 
 .SubdomainNavBar-title:hover {
@@ -934,8 +934,6 @@
   }
 
   .SubdomainNavBar .SubdomainNavBar-logo-mark {
-    display: inline-flex;
-    align-items: center;
     justify-content: center;
   }
 
@@ -945,7 +943,6 @@
   }
 
   .SubdomainNavBar .SubdomainNavBar-title {
-    top: 0;
     padding-inline-end: 0;
   }
 
@@ -1061,11 +1058,7 @@
   }
 
   .SubdomainNavBar .SubdomainNavBar-logo-mark {
-    display: inline-flex;
-    align-items: center;
     justify-content: center;
-    position: relative;
-    top: -1px;
   }
 
   .SubdomainNavBar .SubdomainNavBar-logo-mark svg {
@@ -1074,7 +1067,6 @@
   }
 
   .SubdomainNavBar .SubdomainNavBar-title {
-    top: 1px; /* Optical correction */
     padding-inline-end: 0;
   }
 
