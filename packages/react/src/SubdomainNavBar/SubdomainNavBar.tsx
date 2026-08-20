@@ -9,7 +9,7 @@ import React, {
   useImperativeHandle,
 } from 'react'
 import {clsx} from 'clsx'
-import {ArrowUpRightIcon, ChevronLeftIcon, LinkExternalIcon, MarkGithubIcon, SearchIcon} from '@primer/octicons-react'
+import {ArrowUpRightIcon, LinkExternalIcon, MarkGithubIcon, SearchIcon} from '@primer/octicons-react'
 
 import {Button, FormControl, Text, TextInput} from '..'
 import {NavigationVisbilityObserver} from './NavigationVisbilityObserver'
@@ -364,7 +364,7 @@ function Root(
   )
   const hasSearch = Boolean(searchItem)
   const searchKeyboardShortcut = useMemo(
-    () => parseSearchKeyboardShortcut(searchItem?.props.keyboardShortcut ?? '/'),
+    () => parseSearchKeyboardShortcut(searchItem?.props.keyboardShortcut ?? false),
     [searchItem?.props.keyboardShortcut],
   )
 
@@ -396,13 +396,13 @@ function Root(
   )
 
   useEffect(() => {
+    if (!searchKeyboardShortcut) return
+
     const handleDocumentKeyDown = (event: KeyboardEvent) => {
       if (
-        !hasSearch ||
         searchVisible ||
         event.defaultPrevented ||
         event.isComposing ||
-        !searchKeyboardShortcut ||
         !keyboardEventMatchesShortcut(event, searchKeyboardShortcut)
       ) {
         return
@@ -421,7 +421,7 @@ function Root(
     return () => {
       document.removeEventListener('keydown', handleDocumentKeyDown)
     }
-  }, [handleSearchOpen, hasSearch, searchKeyboardShortcut, searchVisible])
+  }, [handleSearchOpen, searchKeyboardShortcut, searchVisible])
 
   const hasLeadingComponent = leadingComponent != null
   const hasTrailingComponent = trailingComponent != null
@@ -469,9 +469,6 @@ function Root(
               <ol className={styles['SubdomainNavBar-title-area']}>
                 <li>
                   <a href={logoHref} aria-label="Github Home" className={styles['SubdomainNavBar-logo-mark']}>
-                    <span className={clsx(styles['SubdomainNavBar-back-arrow'])}>
-                      <ChevronLeftIcon fill="currentColor" size={24} />
-                    </span>
                     <MarkGithubIcon fill="currentColor" size={24} />
                   </a>
                 </li>
@@ -758,7 +755,7 @@ export type SubdomainNavBarSearchProps = {
    */
   shortcutLabel?: string
   /**
-   * Keyboard shortcut that opens the search dialog. Pass `false` to disable it.
+   * Optional global keyboard shortcut that opens the search dialog. Omit or pass `false` to disable it.
    * Supports single keys and modifier combinations, such as `/` or `Command+Option+k`.
    */
   keyboardShortcut?: string | false
@@ -837,7 +834,7 @@ const _SearchInternal = forwardRef<HTMLInputElement, SubdomainNavBarSearchProps>
       onChange,
       placeholder,
       shortcutLabel,
-      keyboardShortcut = '/',
+      keyboardShortcut,
       labels,
     },
     forwardedRef,

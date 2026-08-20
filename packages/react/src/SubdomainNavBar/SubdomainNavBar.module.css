@@ -94,21 +94,6 @@
 
 .SubdomainNavBar-logo-mark {
   color: var(--brand-color-text-default);
-  position: relative;
-}
-
-.SubdomainNavBar-back-arrow {
-  position: absolute;
-  left: calc(-32px + 5px);
-  opacity: 0;
-  transition: opacity var(--brand-animation-duration-fast), transform var(--brand-animation-duration-fast) ease;
-  transform: translateX(5px);
-  color: var(--brand-color-text-muted);
-}
-
-.SubdomainNavBar-logo-mark:hover .SubdomainNavBar-back-arrow {
-  opacity: 1;
-  transform: translateX(0);
 }
 
 .SubdomainNavBar-logo-mark svg {
@@ -1079,6 +1064,8 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    position: relative;
+    top: -1px;
   }
 
   .SubdomainNavBar .SubdomainNavBar-logo-mark svg {
@@ -1087,7 +1074,7 @@
   }
 
   .SubdomainNavBar .SubdomainNavBar-title {
-    top: 0;
+    top: 1px; /* Optical correction */
     padding-inline-end: 0;
   }
 

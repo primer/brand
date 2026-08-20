@@ -31,18 +31,18 @@ const waitForTimeoutLookup = {
   'components-faq-features--with-prose': 2000, // for the animation
   'components-faq-features--all-open': 1000, // for the animation
   'components-faq-features--reversed-toggles': 4000, // for the animation
-  'components-subdomainnavbar--search-open': 5500, // for the animation
-  'components-subdomainnavbar--search-results-visible': 5500, // for the animation
-  'components-subdomainnavbar--longer-title': 1500, // for the animation
-  'components-subdomainnavbar--mobile-view': 5500, // for the animation
-  'components-subdomainnavbar--mobile-menu-open': 5500, // for all staggered animations
-  'components-subdomainnavbar--mobile-menu-open-many-items': 5500, // for all staggered animations
-  'components-subdomainnavbar--mobile-search-results-visible': 5500, // for the animation
-  'components-subdomainnavbar--mobile-no-links': 5500, // for the animation
-  'components-subdomainnavbar--mobile-leading-component-only-menu-open': 5500, // for the animation
-  'components-subdomainnavbar--tablet-menu-open': 5500, // for all staggered animations
-  'components-subdomainnavbar--overflow-menu-open': 1500, // wait for responsive overflow measurement
-  'components-subdomainnavbar--reversed-button-order-narrow': 5500, // for the animation
+  'components-subdomainnavbar-features--search-open': 5500, // for the animation
+  'components-subdomainnavbar-features--search-results-visible': 5500, // for the animation
+  'components-subdomainnavbar-features--longer-title': 1500, // for the animation
+  'components-subdomainnavbar-features--mobile-view': 5500, // for the animation
+  'components-subdomainnavbar-features--mobile-menu-open': 5500, // for all staggered animations
+  'components-subdomainnavbar-features--mobile-menu-open-many-items': 5500, // for all staggered animations
+  'components-subdomainnavbar-features--mobile-search-results-visible': 5500, // for the animation
+  'components-subdomainnavbar-features--mobile-no-links': 5500, // for the animation
+  'components-subdomainnavbar-features--mobile-leading-component-only-menu-open': 5500, // for the animation
+  'components-subdomainnavbar-features--tablet-menu-open': 5500, // for all staggered animations
+  'components-subdomainnavbar-features--overflow-menu-open': 1500, // wait for responsive overflow measurement
+  'components-subdomainnavbar-features--reversed-button-order-narrow': 5500, // for the animation
   'components-button-features--primary-focus-non-standard-bg': 2000, // for the interaction test
   'components-button-features--primary-focus': 2000, // for the interaction test
   'components-button-features--with-hover-interaction': 2000, // for the interaction test
@@ -117,7 +117,7 @@ const waitForTimeoutLookup = {
 }
 
 const beforeScreenshotLookup: Partial<Record<string, string>> = {
-  'components-subdomainnavbar--overflow-menu-open': `
+  'components-subdomainnavbar-features--overflow-menu-open': `
     const moreButton = page.getByRole('button', {name: 'More'})
     if ((await moreButton.getAttribute('aria-expanded')) !== 'true') {
       await moreButton.click()
@@ -130,14 +130,14 @@ const beforeScreenshotLookup: Partial<Record<string, string>> = {
 }
 
 const screenshotOptionsLookup: Partial<Record<string, string>> = {
-  'components-subdomainnavbar--overflow-menu-open': `{animations: 'allow'}`,
+  'components-subdomainnavbar-features--overflow-menu-open': `{animations: 'allow'}`,
 }
 
 const viewportLookup: Partial<Record<string, {width: number; height: number}>> = {
-  'components-subdomainnavbar--desktop-pill-states': {width: 1440, height: 900},
-  'components-subdomainnavbar--overflow-menu-open': {width: 1440, height: 900},
-  'components-subdomainnavbar--tablet-menu-open': {width: 800, height: 900},
-  'components-subdomainnavbar--tablet-view': {width: 800, height: 900},
+  'components-subdomainnavbar-features--desktop-pill-states': {width: 1440, height: 900},
+  'components-subdomainnavbar-features--overflow-menu-open': {width: 1440, height: 900},
+  'components-subdomainnavbar-features--tablet-menu-open': {width: 800, height: 900},
+  'components-subdomainnavbar-features--tablet-view': {width: 800, height: 900},
 }
 
 // const skipLocalizationsTestsFor = [

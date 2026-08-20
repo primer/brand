@@ -69,7 +69,7 @@ render(<App />)
 
 `SubdomainNavBar` offers an optional search form control that supports both `onSubmit` and `onChange`; use `onChange` to display inline results. The `placeholder` labels the input in the opened dialog and defaults to `Search {title}`, or `Search` when no navigation title is available.
 
-Users can press `/` to open the search dialog, or use `keyboardShortcut` to remap or disable the shortcut. For programmatic control with `openSearch()` and `closeSearch()`, see the [Imperative Search API Storybook example](https://primer.style/brand/storybook/?path=/story/components-subdomainnavbar--imperative-search-api).
+Keyboard shortcuts are disabled by default. Pass `keyboardShortcut`, such as `keyboardShortcut="/"`, to opt into a global shortcut that opens the search dialog. For programmatic control with `openSearch()` and `closeSearch()`, see the [Imperative Search API Storybook example](https://primer.style/brand/storybook/?path=/story/components-subdomainnavbar-features--imperative-search-api).
 
 ```jsx filename="noinline"
 const groupedResults = [
@@ -109,6 +109,7 @@ const SearchNav = () => {
         <SubdomainNavBar.Link href="/en/get-started">Get started</SubdomainNavBar.Link>
         <SubdomainNavBar.Search
           placeholder="Search GitHub Docs"
+          keyboardShortcut="/"
           searchTerm={searchTerm}
           searchResults={searchTerm ? groupedResults : []}
           onChange={event => setSearchTerm(event.currentTarget.value)}
@@ -194,7 +195,7 @@ render(<LocalizedMenu />)
 - When the menu opens on narrow viewports, hide the rest of the document from screen readers with `inert` or `aria-hidden="true"`. Use `onNarrowMenuToggle` to track the menu state.
 - Ensure interactive content supplied through `leadingComponent` or `trailingComponent` has an accessible name and remains keyboard operable.
 - Localize the narrow menu's visible and accessible labels with `menuLabels`.
-- Choose a `keyboardShortcut` that does not conflict with browser, operating system, or application shortcuts. Always provide another visible way to open search.
+- Only opt into a `keyboardShortcut` that does not conflict with browser, operating system, or application shortcuts. Always provide another visible way to open search.
 - For search, localize its visible text, accessible labels, result headings, and live-region announcements. Supplying only some `labels` values produces a mix of localized text and English defaults.
 
 ## Component props
@@ -229,18 +230,18 @@ render(<LocalizedMenu />)
 
 ### SubdomainNavBar.Search
 
-| Name               | Type                                             | Default          | Description                                                               |
-| :----------------- | :----------------------------------------------- | :--------------- | :------------------------------------------------------------------------ |
-| `onSubmit`         | `(event: FormEvent<HTMLFormElement>) => void`    |                  | Required search form submit handler                                       |
-| `onChange`         | `(event: ChangeEvent<HTMLInputElement>) => void` |                  | Required search input change handler                                      |
-| `placeholder`      | `string`                                         | `Search {title}` | Text shown in the input trigger and opened search input                   |
-| `shortcutLabel`    | `string`                                         | Shortcut value   | Visible input-trigger hint; pass an empty string to hide it               |
-| `keyboardShortcut` | `string \| false`                                | `/`              | Global key or modifier combination that opens search; `false` disables it |
-| `labels`           | `Partial<SubdomainNavBarSearchLabels>`           | English labels   | Overrides visible and accessible search text and formatting functions     |
-| `searchResults`    | `SubdomainNavBarSearchResults`                   |                  | Flat or explicitly grouped results                                        |
-| `searchTerm`       | `string`                                         |                  | Current query used in result headings and accessible labels               |
-| `className`        | `string`                                         |                  | Sets a custom class on the search trigger container                       |
-| `ref`              | `React.Ref<HTMLInputElement>`                    |                  | Ref to the input inside the opened search dialog                          |
+| Name               | Type                                             | Default          | Description                                                           |
+| :----------------- | :----------------------------------------------- | :--------------- | :-------------------------------------------------------------------- |
+| `onSubmit`         | `(event: FormEvent<HTMLFormElement>) => void`    |                  | Required search form submit handler                                   |
+| `onChange`         | `(event: ChangeEvent<HTMLInputElement>) => void` |                  | Required search input change handler                                  |
+| `placeholder`      | `string`                                         | `Search {title}` | Text shown in the input trigger and opened search input               |
+| `shortcutLabel`    | `string`                                         | Shortcut value   | Visible input-trigger hint; pass an empty string to hide it           |
+| `keyboardShortcut` | `string \| false`                                |                  | Optional global key or modifier combination that opens search         |
+| `labels`           | `Partial<SubdomainNavBarSearchLabels>`           | English labels   | Overrides visible and accessible search text and formatting functions |
+| `searchResults`    | `SubdomainNavBarSearchResults`                   |                  | Flat or explicitly grouped results                                    |
+| `searchTerm`       | `string`                                         |                  | Current query used in result headings and accessible labels           |
+| `className`        | `string`                                         |                  | Sets a custom class on the search trigger container                   |
+| `ref`              | `React.Ref<HTMLInputElement>`                    |                  | Ref to the input inside the opened search dialog                      |
 
 `SubdomainNavBarSearchProps` and `SubdomainNavBarSearchLabels` are exported from `@primer/react-brand`.
 

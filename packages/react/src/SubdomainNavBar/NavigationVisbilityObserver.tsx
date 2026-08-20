@@ -1,6 +1,6 @@
 import React, {forwardRef, useCallback, useEffect, useRef, useState, PropsWithChildren} from 'react'
 import {clsx} from 'clsx'
-import {ChevronDownIcon} from '@primer/octicons-react'
+import {TriangleDownIcon, TriangleUpIcon} from '@primer/octicons-react'
 
 import {BaseProps} from '../component-helpers'
 import {useVisibilityObserver} from './useVisibilityObserver'
@@ -190,7 +190,7 @@ const OverflowButton = forwardRef<HTMLLIElement, OverflowButtonProps>(
         >
           <span className={styles['SubdomainNavBar-link-content']}>
             More
-            <ChevronDownIcon />
+            {menuOpen ? <TriangleUpIcon /> : <TriangleDownIcon />}
           </span>
         </button>
       </li>

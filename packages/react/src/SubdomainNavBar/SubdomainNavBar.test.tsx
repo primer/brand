@@ -153,6 +153,14 @@ describe('SubdomainNavBar', () => {
     expect(getAllByRole('navigation').length > 0).toBeTruthy() // <nav>
   })
 
+  it('renders only the GitHub mark in the home link', () => {
+    const {getByRole} = render(<Component />)
+    const logoIcons = getByRole('link', {name: 'Github Home'}).querySelectorAll('svg')
+
+    expect(logoIcons).toHaveLength(1)
+    expect(logoIcons[0]).toHaveClass('octicon-mark-github')
+  })
+
   it('forwards a custom id to the root element', () => {
     const {getByRole} = render(<SubdomainNavBar id="docs-navigation" title="Docs" />)
 
@@ -212,8 +220,20 @@ describe('SubdomainNavBar', () => {
     expect(searchResultsLandmark).toBeInTheDocument()
   })
 
-  it('opens the search dialog with the "/" keyboard shortcut', () => {
-    const {getByRole, queryByRole} = render(<Component />)
+  it('does not enable a keyboard shortcut by default', () => {
+    const {queryByRole} = render(<Component />)
+
+    fireEvent.keyDown(document, {key: '/'})
+
+    expect(queryByRole('dialog')).not.toBeInTheDocument()
+  })
+
+  it('opens the search dialog with an opted-in "/" keyboard shortcut', () => {
+    const {getByRole, queryByRole} = render(
+      <SubdomainNavBar title="Subdomain">
+        <SubdomainNavBar.Search keyboardShortcut="/" searchTerm="docs" onChange={jest.fn} onSubmit={jest.fn()} />
+      </SubdomainNavBar>,
+    )
 
     expect(queryByRole('dialog')).not.toBeInTheDocument()
 
