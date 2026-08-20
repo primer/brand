@@ -408,9 +408,13 @@ export const TabletMenuOpen: Story = {
           </ActionMenu>
         }
       >
-        <SubdomainNavBar.Link href="#item-1">Item 1</SubdomainNavBar.Link>
-        <SubdomainNavBar.Link href="#item-2">Item 2</SubdomainNavBar.Link>
-        <SubdomainNavBar.Link href="#item-3">Item 3</SubdomainNavBar.Link>
+        <SubdomainNavBar.Link href="#default">Default</SubdomainNavBar.Link>
+        <SubdomainNavBar.Link href="#hover">Hover</SubdomainNavBar.Link>
+        <SubdomainNavBar.Link href="#focus">Focus</SubdomainNavBar.Link>
+        <SubdomainNavBar.Link href="#active">Active</SubdomainNavBar.Link>
+        <SubdomainNavBar.Link href="#current" aria-current="page">
+          Current
+        </SubdomainNavBar.Link>
         <SubdomainNavBar.Search
           placeholder="Search ..."
           keyboardShortcut="/"
@@ -426,6 +430,13 @@ export const TabletMenuOpen: Story = {
   },
   globals: {
     viewport: {value: 'tablet800'},
+  },
+  parameters: {
+    pseudo: {
+      hover: ['a[href="#hover"]'],
+      focusVisible: ['a[href="#focus"]'],
+      active: ['a[href="#active"]'],
+    },
   },
   play: async ({canvasElement}) => {
     const canvas = within(canvasElement)

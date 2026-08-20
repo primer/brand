@@ -745,9 +745,10 @@
   }
 
   .SubdomainNavBar-primary-nav-list--visible {
-    display: block;
+    display: grid;
+    gap: var(--brand-borderWidth-thin);
     margin: 0;
-    padding: 0;
+    padding: var(--base-size-8);
   }
 
   .SubdomainNavBar-menu-wrapper-footer {
@@ -757,26 +758,34 @@
     width: 100%;
   }
 
-  .SubdomainNavBar-menu-wrapper .SubdomainNavBar-link {
+  .SubdomainNavBar .SubdomainNavBar-menu-wrapper .SubdomainNavBar-link {
     box-sizing: border-box;
     width: 100%;
-    padding: var(--base-size-16);
+    min-height: var(--base-size-40);
+    padding: var(--base-size-8) var(--base-size-12);
+    color: var(--brand-color-text-muted);
+    background-color: var(--brand-color-canvas-default);
+    border-radius: var(--brand-borderRadius-medium);
     font-size: var(--brand-text-size-100);
-    line-height: var(--brand-text-lineHeight-100);
+    line-height: var(--brand-text-lineHeight-200);
   }
 
-  .SubdomainNavBar-menu-wrapper .SubdomainNavBar-primary-nav-list-item:not(.SubdomainNavBar-overflow-menu-item) {
+  .SubdomainNavBar
+    .SubdomainNavBar-menu-wrapper
+    .SubdomainNavBar-primary-nav-list-item:not(.SubdomainNavBar-overflow-menu-item) {
     width: 100%;
     height: auto;
   }
 
-  .SubdomainNavBar-menu-wrapper
+  .SubdomainNavBar
+    .SubdomainNavBar-menu-wrapper
     .SubdomainNavBar-primary-nav-list-item:not(.SubdomainNavBar-overflow-menu-item)
     > .SubdomainNavBar-link {
-    padding: var(--base-size-16);
+    padding: var(--base-size-8) var(--base-size-12);
   }
 
-  .SubdomainNavBar-menu-wrapper
+  .SubdomainNavBar
+    .SubdomainNavBar-menu-wrapper
     .SubdomainNavBar-primary-nav-list-item:not(.SubdomainNavBar-overflow-menu-item)
     > .SubdomainNavBar-link
     > .SubdomainNavBar-link-content {
@@ -786,24 +795,74 @@
     border-radius: 0;
   }
 
-  .SubdomainNavBar-menu-wrapper
+  .SubdomainNavBar
+    .SubdomainNavBar-menu-wrapper
     .SubdomainNavBar-primary-nav-list-item:not(.SubdomainNavBar-overflow-menu-item)
     > .SubdomainNavBar-link:hover
     > .SubdomainNavBar-link-content,
-  .SubdomainNavBar-menu-wrapper
+  .SubdomainNavBar
+    .SubdomainNavBar-menu-wrapper
+    .SubdomainNavBar-primary-nav-list-item:not(.SubdomainNavBar-overflow-menu-item)
+    > .SubdomainNavBar-link:focus
+    > .SubdomainNavBar-link-content,
+  .SubdomainNavBar
+    .SubdomainNavBar-menu-wrapper
+    .SubdomainNavBar-primary-nav-list-item:not(.SubdomainNavBar-overflow-menu-item)
+    > .SubdomainNavBar-link:focus-visible
+    > .SubdomainNavBar-link-content,
+  .SubdomainNavBar
+    .SubdomainNavBar-menu-wrapper
     .SubdomainNavBar-primary-nav-list-item:not(.SubdomainNavBar-overflow-menu-item)
     > .SubdomainNavBar-link:active
     > .SubdomainNavBar-link-content,
-  .SubdomainNavBar-menu-wrapper
+  .SubdomainNavBar
+    .SubdomainNavBar-menu-wrapper
     .SubdomainNavBar-primary-nav-list-item:not(.SubdomainNavBar-overflow-menu-item)
     > .SubdomainNavBar-link[aria-current]:not([aria-current='false'])
     > .SubdomainNavBar-link-content {
     background-color: transparent;
+    outline: none;
   }
 
-  .SubdomainNavBar-menu-wrapper .SubdomainNavBar-link--title {
+  .SubdomainNavBar
+    .SubdomainNavBar-menu-wrapper
+    .SubdomainNavBar-primary-nav-list-item:not(.SubdomainNavBar-overflow-menu-item)
+    > .SubdomainNavBar-link:hover,
+  .SubdomainNavBar
+    .SubdomainNavBar-menu-wrapper
+    .SubdomainNavBar-primary-nav-list-item:not(.SubdomainNavBar-overflow-menu-item)
+    > .SubdomainNavBar-link:focus,
+  .SubdomainNavBar
+    .SubdomainNavBar-menu-wrapper
+    .SubdomainNavBar-primary-nav-list-item:not(.SubdomainNavBar-overflow-menu-item)
+    > .SubdomainNavBar-link:focus-visible,
+  .SubdomainNavBar
+    .SubdomainNavBar-menu-wrapper
+    .SubdomainNavBar-primary-nav-list-item:not(.SubdomainNavBar-overflow-menu-item)
+    > .SubdomainNavBar-link:active,
+  .SubdomainNavBar
+    .SubdomainNavBar-menu-wrapper
+    .SubdomainNavBar-primary-nav-list-item:not(.SubdomainNavBar-overflow-menu-item)
+    > .SubdomainNavBar-link[aria-current]:not([aria-current='false']) {
+    color: var(--brand-color-text-default);
+    background-color: var(--brand-color-canvas-subtle);
+  }
+
+  .SubdomainNavBar
+    .SubdomainNavBar-menu-wrapper
+    .SubdomainNavBar-primary-nav-list-item:not(.SubdomainNavBar-overflow-menu-item)
+    > .SubdomainNavBar-link:focus,
+  .SubdomainNavBar
+    .SubdomainNavBar-menu-wrapper
+    .SubdomainNavBar-primary-nav-list-item:not(.SubdomainNavBar-overflow-menu-item)
+    > .SubdomainNavBar-link:focus-visible {
+    box-shadow: inset 0 0 0 var(--brand-borderWidth-thick) var(--brand-color-focus);
+    outline: none;
+  }
+
+  .SubdomainNavBar .SubdomainNavBar-menu-wrapper .SubdomainNavBar-link--title {
     font-size: var(--brand-text-size-100);
-    line-height: var(--brand-text-lineHeight-100);
+    line-height: var(--brand-text-lineHeight-200);
   }
 
   .SubdomainNavBar-menu-wrapper .SubdomainNavBar-leading-component,
