@@ -253,6 +253,28 @@ test.describe('Visual Comparison: River', () => {
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
+  test('River / With Inline Code Gridline', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-river-features--with-inline-code-gridline&viewMode=story',
+      {waitUntil: 'networkidle'},
+    )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+    await page.waitForTimeout(500)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
+  test('River / With Native Code Element', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-river-features--with-native-code-element&viewMode=story',
+      {waitUntil: 'networkidle'},
+    )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+    await page.waitForTimeout(500)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
   test('River / GridLine variant', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-river-features-gridline-variants--grid-line&viewMode=story',

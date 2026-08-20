@@ -192,25 +192,21 @@
 
 .Card__link code,
 .Card__description code {
-  font-size: inherit;
   font-family: var(--brand-fontStack-monospace);
-  background-color: var(--brand-color-canvas-subtle);
-  padding: 0 var(--base-size-4) var(--base-size-2);
-  margin-inline: var(--base-size-2);
-  border: var(--brand-borderWidth-thin) solid var(--brand-color-border-default);
-  border-radius: var(--brand-borderRadius-small);
-  box-shadow: var(--brand-borderWidth-thin) var(--brand-borderWidth-thin) 0 0 var(--brand-color-border-default);
-}
-
-.Card__description code {
-  padding: var(--base-size-2) var(--base-size-4) 0;
-}
-.Card__link:has(code) {
-  line-height: calc(1lh * 1.4);
-}
-
-.Card__description.Card__description:has(code) {
-  line-height: calc(1lh * 1.25);
+  /* optical resize relative to parent. monospace tends to be a little taller than sans-serif */
+  font-size: calc(1em - 1px);
+  font-weight: var(--base-text-weight-regular);
+  /* Keep the background clear of adjacent lines when large text wraps. */
+  line-height: 1.6;
+  color: var(--brand-InlineCode-color-fg-default);
+  background-color: var(--brand-InlineCode-bgColor);
+  padding-block: 0;
+  padding-inline: var(--base-size-4);
+  border-radius: var(--base-size-2);
+  white-space: normal;
+  overflow-wrap: anywhere;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
 }
 
 .Card--disableAnimation:hover .Card__link {

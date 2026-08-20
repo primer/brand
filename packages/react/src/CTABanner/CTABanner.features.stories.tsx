@@ -5,7 +5,7 @@ import {Button} from '../Button'
 import {ActionMenu} from '../ActionMenu'
 
 import {CTABanner} from './CTABanner'
-import {Grid, InlineLink, Section, Stack, Text, TextCursorAnimation, ThemeProvider} from '../'
+import {Grid, InlineCode, InlineLink, Section, Stack, Text, TextCursorAnimation, ThemeProvider} from '../'
 
 import lightNarrowBg from '../fixtures/images/light-vertical-banner.png'
 import lightWideBg from '../fixtures/images/light-horizontal-banner.png'
@@ -453,11 +453,12 @@ export const WithInlineCodeElement: Story = {
         <Text as="p">Default variant:</Text>
         <CTABanner>
           <CTABanner.Heading>
-            Use any <code>/model</code> parallelize with <code>/fleet</code>
+            Use any <InlineCode wrap={false}>/model</InlineCode> parallelize with{' '}
+            <InlineCode wrap={false}>/fleet</InlineCode>
           </CTABanner.Heading>
           <CTABanner.Description>
-            Use <code>/model</code> to switch, then <code>/fleet</code> to execute in parallel or run multiple models at
-            once.
+            Use <InlineCode wrap={false}>/model</InlineCode> to switch, then{' '}
+            <InlineCode wrap={false}>/fleet</InlineCode> to execute in parallel or run multiple models at once.
           </CTABanner.Description>
           <CTABanner.ButtonGroup>
             <Button>Get started</Button>
@@ -468,11 +469,12 @@ export const WithInlineCodeElement: Story = {
         <Text as="p">Custom background color:</Text>
         <CTABanner backgroundColor="default" hasBorder>
           <CTABanner.Heading>
-            Use any <code>/model</code> parallelize with <code>/fleet</code>
+            Use any <InlineCode wrap={false}>/model</InlineCode> parallelize with{' '}
+            <InlineCode wrap={false}>/fleet</InlineCode>
           </CTABanner.Heading>
           <CTABanner.Description>
-            Use <code>/model</code> to switch, then <code>/fleet</code> to execute in parallel or run multiple models at
-            once.
+            Use <InlineCode wrap={false}>/model</InlineCode> to switch, then{' '}
+            <InlineCode wrap={false}>/fleet</InlineCode> to execute in parallel or run multiple models at once.
           </CTABanner.Description>
           <CTABanner.ButtonGroup>
             <Button>Get started</Button>
@@ -483,11 +485,12 @@ export const WithInlineCodeElement: Story = {
         <Text as="p">Balanced variant:</Text>
         <CTABanner variant="balanced">
           <CTABanner.Heading>
-            Use any <code>/model</code> parallelize with <code>/fleet</code>
+            Use any <InlineCode wrap={false}>/model</InlineCode> parallelize with{' '}
+            <InlineCode wrap={false}>/fleet</InlineCode>
           </CTABanner.Heading>
           <CTABanner.Description>
-            Use <code>/model</code> to switch, then <code>/fleet</code> to execute in parallel or run multiple models at
-            once.
+            Use <InlineCode wrap={false}>/model</InlineCode> to switch, then{' '}
+            <InlineCode wrap={false}>/fleet</InlineCode> to execute in parallel or run multiple models at once.
           </CTABanner.Description>
           <CTABanner.ButtonGroup>
             <Button>Get started</Button>
@@ -499,11 +502,12 @@ export const WithInlineCodeElement: Story = {
         <Text as="p">Minimal variant:</Text>
         <CTABanner variant="minimal">
           <CTABanner.Heading>
-            Use any <code>/model</code> parallelize with <code>/fleet</code>
+            Use any <InlineCode wrap={false}>/model</InlineCode> parallelize with{' '}
+            <InlineCode wrap={false}>/fleet</InlineCode>
           </CTABanner.Heading>
           <CTABanner.Description>
-            Use <code>/model</code> to switch, then <code>/fleet</code> to execute in parallel or run multiple models at
-            once.
+            Use <InlineCode wrap={false}>/model</InlineCode> to switch, then{' '}
+            <InlineCode wrap={false}>/fleet</InlineCode> to execute in parallel or run multiple models at once.
           </CTABanner.Description>
           <CTABanner.ButtonGroup>
             <Button>Get started</Button>
@@ -516,11 +520,12 @@ export const WithInlineCodeElement: Story = {
           <Section backgroundColor="default">
             <CTABanner>
               <CTABanner.Heading>
-                Use any <code>/model</code> parallelize with <code>/fleet</code>
+                Use any <InlineCode wrap={false}>/model</InlineCode> parallelize with{' '}
+                <InlineCode wrap={false}>/fleet</InlineCode>
               </CTABanner.Heading>
               <CTABanner.Description>
-                Use <code>/model</code> to switch, then <code>/fleet</code> to execute in parallel or run multiple
-                models at once.
+                Use <InlineCode wrap={false}>/model</InlineCode> to switch, then{' '}
+                <InlineCode wrap={false}>/fleet</InlineCode> to execute in parallel or run multiple models at once.
               </CTABanner.Description>
               <CTABanner.ButtonGroup>
                 <Button>Get started</Button>
@@ -533,11 +538,12 @@ export const WithInlineCodeElement: Story = {
         <Text as="p">Start aligned with border:</Text>
         <CTABanner align="start" hasBorder>
           <CTABanner.Heading>
-            Use any <code>/model</code> parallelize with <code>/fleet</code>
+            Use any <InlineCode wrap={false}>/model</InlineCode> parallelize with{' '}
+            <InlineCode wrap={false}>/fleet</InlineCode>
           </CTABanner.Heading>
           <CTABanner.Description>
-            Use <code>/model</code> to switch, then <code>/fleet</code> to execute in parallel or run multiple models at
-            once.
+            Use <InlineCode wrap={false}>/model</InlineCode> to switch, then{' '}
+            <InlineCode wrap={false}>/fleet</InlineCode> to execute in parallel or run multiple models at once.
           </CTABanner.Description>
           <CTABanner.ButtonGroup>
             <Button>Get started</Button>
@@ -545,6 +551,20 @@ export const WithInlineCodeElement: Story = {
         </CTABanner>
       </Stack>
     </Stack>
+  ),
+}
+
+export const WithNativeCodeElement: Story = {
+  render: () => (
+    <CTABanner>
+      <CTABanner.Heading>
+        Native <code>/mcp</code> remains supported
+      </CTABanner.Heading>
+      <CTABanner.Description>
+        Existing authored content can wrap long commands such as{' '}
+        <code>npm install @primer/react-brand@latest --save-exact --ignore-scripts --foreground-scripts</code>.
+      </CTABanner.Description>
+    </CTABanner>
   ),
 }
 
@@ -628,7 +648,8 @@ export const WithDuotoneText: Story = {
           Where the most ambitious teams <b>build great things</b>
         </CTABanner.Heading>
         <CTABanner.Description>
-          Use <b>duotone emphasis</b> to highlight key parts of your headline. Wrap text in a <code>b</code> tag.
+          Use <b>duotone emphasis</b> to highlight key parts of your headline. Wrap text in an{' '}
+          <InlineCode>b</InlineCode> tag.
         </CTABanner.Description>
         <CTABanner.ButtonGroup>
           <Button>Get started for free</Button>

@@ -14,6 +14,7 @@ import {isFragmentElement} from '../utils/isFragmentElement'
 /**
  * Design tokens
  */
+import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/inline-code/colors-with-modes.css'
 import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/card/base.css'
 import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/card/colors-with-modes.css'
 

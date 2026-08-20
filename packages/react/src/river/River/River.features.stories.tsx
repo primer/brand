@@ -1,7 +1,7 @@
 import React from 'react'
 import type {Meta, StoryFn} from '@storybook/react'
 import {River} from '.'
-import {Heading, Label, Link, Section, Stack, Text, ThemeProvider, Box, Timeline} from '../../'
+import {Heading, InlineCode, Label, Link, Section, Stack, Text, ThemeProvider, Box, Timeline} from '../../'
 import placeholderImage from '../../fixtures/images/placeholder.png'
 
 export default {
@@ -309,11 +309,12 @@ export const WithInlineCodeElement: StoryFn<typeof River> = () => (
       </River.Visual>
       <River.Content>
         <Heading>
-          Work directly with your GitHub Issues via <code>/mcp</code> support
+          Work directly with your GitHub Issues via <InlineCode wrap={false}>/mcp</InlineCode> support
         </Heading>
         <Text>
-          Built on GitHub&apos;s native <code>/mcp</code> integration, Copilot can search issues, analyze labels and
-          activity, and summarize scope so you can move from backlog to implementation without context hunting.
+          Built on GitHub&apos;s native <InlineCode wrap={false}>/mcp</InlineCode> integration, Copilot can search
+          issues, analyze labels and activity, and summarize scope so you can move from backlog to implementation
+          without context hunting.
         </Text>
         <Link href="#">Call to action</Link>
       </River.Content>
@@ -324,11 +325,12 @@ export const WithInlineCodeElement: StoryFn<typeof River> = () => (
       </River.Visual>
       <River.Content>
         <Heading>
-          Use any <code>/model</code> parallelize with <code>/fleet</code>
+          Use any <InlineCode wrap={false}>/model</InlineCode> parallelize with{' '}
+          <InlineCode wrap={false}>/fleet</InlineCode>
         </Heading>
         <Text>
-          Use <code>/model</code> to switch, then <code>/fleet</code> to execute in parallel or run multiple models at
-          once.
+          Use <InlineCode wrap={false}>/model</InlineCode> to switch, then <InlineCode wrap={false}>/fleet</InlineCode>{' '}
+          to execute in parallel or run multiple models at once.
         </Text>
         <Link href="#">Call to action</Link>
       </River.Content>
@@ -339,11 +341,12 @@ export const WithInlineCodeElement: StoryFn<typeof River> = () => (
       </River.Visual>
       <River.Content>
         <Heading>
-          Use any <code>/model</code> parallelize with <code>/fleet</code>
+          Use any <InlineCode wrap={false}>/model</InlineCode> parallelize with{' '}
+          <InlineCode wrap={false}>/fleet</InlineCode>
         </Heading>
         <Text>
-          Use <code>/model</code> to switch, then <code>/fleet</code> to execute in parallel or run multiple models at
-          once.
+          Use <InlineCode wrap={false}>/model</InlineCode> to switch, then <InlineCode wrap={false}>/fleet</InlineCode>{' '}
+          to execute in parallel or run multiple models at once.
         </Text>
         <Link href="#">Call to action</Link>
       </River.Content>
@@ -356,11 +359,11 @@ export const WithInlineCodeElement: StoryFn<typeof River> = () => (
           </River.Visual>
           <River.Content>
             <Heading>
-              Work directly with your GitHub Issues via <code>/mcp</code> support
+              Work directly with your GitHub Issues via <InlineCode wrap={false}>/mcp</InlineCode> support
             </Heading>
             <Text>
-              Built on GitHub&apos;s native <code>/mcp</code> integration, Copilot can search issues, analyze labels and
-              activity, and summarize scope.
+              Built on GitHub&apos;s native <InlineCode wrap={false}>/mcp</InlineCode> integration, Copilot can search
+              issues, analyze labels and activity, and summarize scope.
             </Text>
             <Link href="#">Call to action</Link>
           </River.Content>
@@ -378,11 +381,11 @@ export const WithInlineCodeElementCustomSizes: StoryFn<typeof River> = () => (
       </River.Visual>
       <River.Content>
         <Heading size="3">
-          Work directly with your GitHub Issues via <code>/mcp</code> support
+          Work directly with your GitHub Issues via <InlineCode wrap={false}>/mcp</InlineCode> support
         </Heading>
         <Text size="300">
-          Built on GitHub&apos;s native <code>/mcp</code> integration, Copilot can search issues, analyze labels and
-          activity, and summarize scope.
+          Built on GitHub&apos;s native <InlineCode wrap={false}>/mcp</InlineCode> integration, Copilot can search
+          issues, analyze labels and activity, and summarize scope.
         </Text>
         <Link href="#">Call to action</Link>
       </River.Content>
@@ -394,11 +397,12 @@ export const WithInlineCodeElementCustomSizes: StoryFn<typeof River> = () => (
       </River.Visual>
       <River.Content>
         <Heading size="subhead-medium">
-          Use any <code>/model</code> parallelize with <code>/fleet</code>
+          Use any <InlineCode wrap={false}>/model</InlineCode> parallelize with{' '}
+          <InlineCode wrap={false}>/fleet</InlineCode>
         </Heading>
         <Text size="200">
-          Use <code>/model</code> to switch, then <code>/fleet</code> to execute in parallel or run multiple models at
-          once.
+          Use <InlineCode wrap={false}>/model</InlineCode> to switch, then <InlineCode wrap={false}>/fleet</InlineCode>{' '}
+          to execute in parallel or run multiple models at once.
         </Text>
         <Link href="#">Call to action</Link>
       </River.Content>
@@ -406,3 +410,43 @@ export const WithInlineCodeElementCustomSizes: StoryFn<typeof River> = () => (
   </>
 )
 WithInlineCodeElementCustomSizes.storyName = 'With inline code element + non-standard size overrides'
+
+export const WithInlineCodeGridline: StoryFn<typeof River> = () => (
+  <Section>
+    <River variant="gridline" align="start" imageTextRatio="60:40">
+      <River.Visual>
+        <PlaceholderImage />
+      </River.Visual>
+      <River.Content>
+        <Heading>
+          Move from <InlineCode wrap={false}>/issues</InlineCode> to implementation with{' '}
+          <InlineCode wrap={false}>/mcp</InlineCode>
+        </Heading>
+        <Text>
+          Use <InlineCode wrap={false}>/model</InlineCode> to select the right model,{' '}
+          <InlineCode wrap={false}>/fleet</InlineCode> to parallelize work, and{' '}
+          <InlineCode wrap={false}>/polish</InlineCode> before shipping.
+        </Text>
+        <Link href="#">Explore the workflow</Link>
+      </River.Content>
+    </River>
+  </Section>
+)
+
+export const WithNativeCodeElement: StoryFn<typeof River> = () => (
+  <River>
+    <River.Visual>
+      <PlaceholderImage />
+    </River.Visual>
+    <River.Content>
+      <Heading>
+        Native <code>/mcp</code> remains supported
+      </Heading>
+      <Text>
+        Existing authored content can wrap long paths such as{' '}
+        <code>packages/react/src/InlineCode/InlineCode.module.css</code>.
+      </Text>
+      <Link href="#">Call to action</Link>
+    </River.Content>
+  </River>
+)

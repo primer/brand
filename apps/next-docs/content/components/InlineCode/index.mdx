@@ -1,0 +1,54 @@
+---
+title: Inline code
+description: Use InlineCode to render a short inline code fragment.
+keywords: ['code', 'command', 'filename', 'inline']
+show-tabs: false
+source: https://github.com/primer/brand/blob/main/packages/react/src/InlineCode/InlineCode.tsx
+storybook: '/brand/storybook/?path=/story/components-inlinecode--playground'
+---
+
+```js
+import {InlineCode} from '@primer/react-brand'
+```
+
+## Usage
+
+Use inline code for short code fragments such as commands, filenames, API names, configuration keys and values.
+
+## Examples
+
+### Default
+
+```jsx live
+<Text as="p">
+  Install Primer Brand with <InlineCode>npm install @primer/react-brand</InlineCode>.
+</Text>
+```
+
+### In a heading
+
+```jsx live
+<Heading>
+  Work directly with your GitHub Issues via <InlineCode wrap={false}>/mcp</InlineCode> support
+</Heading>
+```
+
+### Wrapping
+
+`InlineCode` wraps by default to prevent long fragments from overflowing their container. Use `wrap={false}` only for
+slash commands that must remain together and have a low character count.
+
+```jsx live
+<Text as="p">
+  Long commands wrap when needed: <InlineCode>npm install @primer/react-brand@latest --save-exact</InlineCode>. Short
+  slash commands can remain together: <InlineCode wrap={false}>/mcp</InlineCode>.
+</Text>
+```
+
+## Component props
+
+| Name   | Type      | Default | Description                                  |
+| :----- | :-------- | :-----: | :------------------------------------------- |
+| `wrap` | `boolean` | `true`  | Controls whether the code fragment can wrap. |
+
+`InlineCode` renders a native `code` element and accepts its standard HTML attributes.
