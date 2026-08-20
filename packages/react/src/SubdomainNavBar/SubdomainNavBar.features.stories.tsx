@@ -379,6 +379,11 @@ export const TabletView: Story = {
   globals: {
     viewport: {value: 'tablet800'},
   },
+  parameters: {
+    pseudo: {
+      focusVisible: ['[data-testid="SubdomainNavBar-menuButton"]'],
+    },
+  },
   name: 'Tablet View',
 }
 
@@ -434,7 +439,7 @@ export const TabletMenuOpen: Story = {
   parameters: {
     pseudo: {
       hover: ['a[href="#hover"]'],
-      focusVisible: ['a[href="#focus"]'],
+      focusVisible: ['a[href="#focus"]', '[data-testid="SubdomainNavBar-menuButton"]'],
       active: ['a[href="#active"]'],
     },
   },
