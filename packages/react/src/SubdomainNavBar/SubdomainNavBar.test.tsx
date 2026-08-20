@@ -153,6 +153,45 @@ describe('SubdomainNavBar', () => {
     expect(getAllByRole('navigation').length > 0).toBeTruthy() // <nav>
   })
 
+  it('reveals the skip link on keyboard focus and hides it on blur', async () => {
+    const user = userEvent.setup()
+    const {getByRole} = render(
+      <>
+        <SubdomainNavBar title="Subdomain" />
+        <main />
+      </>,
+    )
+    const skipLink = getByRole('link', {name: 'Skip to content'})
+    const main = getByRole('main')
+
+    expect(skipLink).toHaveClass('visually-hidden')
+
+    await user.tab()
+
+    expect(skipLink).toHaveFocus()
+    expect(skipLink).not.toHaveClass('visually-hidden')
+    expect(skipLink).toHaveAttribute('href', `#${main.id}`)
+
+    await user.tab()
+
+    expect(skipLink).toHaveClass('visually-hidden')
+  })
+
+  it('preserves an existing main content target id', async () => {
+    const user = userEvent.setup()
+    const {getByRole} = render(
+      <>
+        <SubdomainNavBar title="Subdomain" />
+        <main id="main-content" />
+      </>,
+    )
+    const skipLink = getByRole('link', {name: 'Skip to content'})
+
+    await user.tab()
+
+    expect(skipLink).toHaveAttribute('href', '#main-content')
+  })
+
   it('renders only the GitHub mark in the home link', () => {
     const {getByRole} = render(<Component />)
     const logoIcons = getByRole('link', {name: 'Github Home'}).querySelectorAll('svg')

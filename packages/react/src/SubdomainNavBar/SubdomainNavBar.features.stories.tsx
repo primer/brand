@@ -922,6 +922,13 @@ export const SkipToMainTag: Story = {
       </main>
     </>
   ),
+  play: async ({canvasElement}) => {
+    const canvas = within(canvasElement)
+
+    await userEvent.tab()
+
+    await expect(canvas.getByRole('link', {name: 'Skip to content'})).toHaveFocus()
+  },
 }
 
 export const skipToMainTagWithId: Story = {
@@ -941,4 +948,11 @@ export const skipToMainTagWithId: Story = {
       </main>
     </>
   ),
+  play: async ({canvasElement}) => {
+    const canvas = within(canvasElement)
+
+    await userEvent.tab()
+
+    await expect(canvas.getByRole('link', {name: 'Skip to content'})).toHaveFocus()
+  },
 }
