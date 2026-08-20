@@ -203,3 +203,27 @@ export const BackgroundColors: Story = {
     )
   },
 }
+
+export const Uppercase: Story = {
+  render: function UppercaseStory() {
+    const {t} = useTranslation('InlineCode')
+
+    return (
+      <Stack direction="vertical" gap="condensed" padding="none">
+        {HeadingSizes.map((size, index) => (
+          <Box key={size} borderBlockEndWidth="thin" borderColor="default" borderStyle="solid" padding="normal">
+            <Grid enableGutters={false}>
+              <Grid.Column span={{xsmall: 12, medium: scaleColumnSpans[index]}}>
+                <Heading size={size}>
+                  {t('heading_size_prefix')}{' '}
+                  <InlineCode style={{textTransform: 'uppercase'}}>{`size="${size}"`}</InlineCode>{' '}
+                  {t('heading_size_suffix')}
+                </Heading>
+              </Grid.Column>
+            </Grid>
+          </Box>
+        ))}
+      </Stack>
+    )
+  },
+}

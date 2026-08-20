@@ -2,10 +2,10 @@
   font-family: var(--brand-fontStack-monospace);
   /* optical resize relative to parent. monospace tends to be a little taller than sans-serif */
   font-size: calc(1em - 1px);
-  font-weight: var(--base-text-weight-medium);
+  font-weight: var(--base-text-weight-regular);
   /* Keep the background clear of adjacent lines when large text wraps. */
   line-height: 1.6;
-  color: var(--brand-InlineCode-color-fg);
+  color: var(--brand-InlineCode-color-fg-default);
   background-color: var(--brand-InlineCode-bgColor);
   padding-block: 0;
   padding-inline: var(--base-size-4);
@@ -21,9 +21,18 @@
   overflow-wrap: normal;
 }
 
+:where(h1, h2, h3, h4, h5, h6) .InlineCode {
+  border-radius: var(--base-size-6);
+}
+
+:where(h1, h2, h3, h4, h5, h6) .InlineCode__text {
+  color: var(--brand-InlineCode-color-fg-heading);
+}
+
 .InlineCode__text {
   position: relative;
-  inset-block-start: -0.01em;
+  /* TODO: this is some optical correction, but doesn't work well for uppercase. */
+  inset-block-start: -0.03em;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: auto;
 }

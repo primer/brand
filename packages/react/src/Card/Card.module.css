@@ -195,10 +195,10 @@
   font-family: var(--brand-fontStack-monospace);
   /* optical resize relative to parent. monospace tends to be a little taller than sans-serif */
   font-size: calc(1em - 1px);
-  font-weight: var(--base-text-weight-medium);
+  font-weight: var(--base-text-weight-regular);
   /* Keep the background clear of adjacent lines when large text wraps. */
   line-height: 1.6;
-  color: var(--brand-InlineCode-color-fg);
+  color: var(--brand-InlineCode-color-fg-default);
   background-color: var(--brand-InlineCode-bgColor);
   padding-block: 0;
   padding-inline: var(--base-size-4);
