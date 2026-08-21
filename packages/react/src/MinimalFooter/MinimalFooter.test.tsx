@@ -737,6 +737,27 @@ describe('MinimalFooter', () => {
     expect(logo.closest('.MinimalFooter__top-row')).toBe(backToTop.closest('.MinimalFooter__top-row'))
   })
 
+  it('keeps keyboard focus order aligned with the responsive top layout', async () => {
+    const user = userEvent.setup()
+    const {getByRole} = render(
+      <MinimalFooter socialLinks={false}>
+        <MinimalFooter.BackToTop>Back to top</MinimalFooter.BackToTop>
+        <MinimalFooter.Link href="/try">Try GitHub for free</MinimalFooter.Link>
+        <MinimalFooter.Link href="/enterprise">Enterprise</MinimalFooter.Link>
+        <MinimalFooter.Link href="/email">Email us</MinimalFooter.Link>
+      </MinimalFooter>,
+    )
+
+    await user.tab()
+    expect(getByRole('link', {name: 'GitHub'})).toHaveFocus()
+
+    await user.tab()
+    expect(getByRole('button', {name: 'Back to top'})).toHaveFocus()
+
+    await user.tab()
+    expect(getByRole('link', {name: 'Try GitHub for free'})).toHaveFocus()
+  })
+
   it('places footer links in the top section and social links in the bottom section', () => {
     const {getByRole} = render(
       <MinimalFooter socialLinks={['x']}>

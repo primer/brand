@@ -180,6 +180,11 @@ export const BackToTop: Story = {
       </RedlineBackground>
       <MinimalFooter>
         <MinimalFooter.BackToTop>Back to top</MinimalFooter.BackToTop>
+        <MinimalFooter.Link href="https://github.com/organizations/enterprise_plan">
+          Try GitHub for free
+        </MinimalFooter.Link>
+        <MinimalFooter.Link href="https://github.com/enterprise">Enterprise</MinimalFooter.Link>
+        <MinimalFooter.Link href="https://github.com/enterprise/contact">Email us</MinimalFooter.Link>
       </MinimalFooter>
     </main>
   ),

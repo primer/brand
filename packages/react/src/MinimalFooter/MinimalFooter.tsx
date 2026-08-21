@@ -161,8 +161,8 @@ function Root({
               <LogoLink logoHref={logoHref} />
               {hasLinks || backToTop ? (
                 <div className={styles['MinimalFooter__top-actions']}>
-                  {renderedLinks}
                   {backToTop}
+                  {renderedLinks}
                 </div>
               ) : null}
             </div>
