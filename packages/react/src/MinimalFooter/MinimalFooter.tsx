@@ -1,14 +1,16 @@
-import React, {PropsWithChildren} from 'react'
+import React, {forwardRef, PropsWithChildren, useCallback} from 'react'
 import {clsx} from 'clsx'
-import {LogoGithubIcon} from '@primer/octicons-react'
+import {ArrowUpIcon, MarkGithubIcon} from '@primer/octicons-react'
 
-import {ColorModesEnum, Stack, Text, useTheme} from '../'
+import {Text} from '../'
 import {BaseProps} from '../component-helpers'
+import {useReducedMotion} from '../hooks/useReducedMotion'
 
 /**
  * Design tokens
  */
 import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/footer/colors-with-modes.css'
+import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/footer/base.css'
 
 /**
  * Main Stylesheet (as a CSS Module)
@@ -75,11 +77,16 @@ const socialLinkData = {
 } as const
 
 type SocialLinkName = keyof typeof socialLinkData
-type SocialLink = (typeof socialLinkData)[SocialLinkName]
-
 const socialLinkNames = Object.keys(socialLinkData) as SocialLinkName[]
 
 export type MinimalFooterProps = {
+  /**
+   * Escape-hatch for inserting custom React components.
+   * Warning:
+   *   This prop isn't advertised in our docs but remains part of the public API for edge-cases.
+   *   Need to use this prop? Please check in with #primer-brand first to confirm correct usage.
+   */
+  centerComponent?: React.ReactElement
   /**
    * An array of social links to be displayed in the footer.
    */
@@ -96,6 +103,7 @@ export type MinimalFooterProps = {
 } & BaseProps<HTMLElement>
 
 function Root({
+  centerComponent,
   className,
   children,
   copyrightStatement,
@@ -103,72 +111,79 @@ function Root({
   socialLinks,
   ...rest
 }: PropsWithChildren<MinimalFooterProps>) {
-  // find Footer.Footnotes children
-  const footerFootnoteChild = () => {
-    const footnotes = React.Children.toArray(children).find(child => {
-      if (!React.isValidElement(child)) {
-        return false
-      }
+  let footnotes: React.ReactElement | undefined
+  let backToTop: React.ReactElement | undefined
+  const links: React.ReactElement[] = []
 
-      if (child.type && child.type === Footnotes) {
-        return true
-      }
-    })
-    return footnotes
+  for (const child of React.Children.toArray(children)) {
+    if (!React.isValidElement(child)) {
+      continue
+    }
+
+    if (child.type === Footnotes) {
+      footnotes ??= child
+    } else if (child.type === BackToTop) {
+      backToTop ??= child
+    } else if (child.type === Link && links.length < 5) {
+      links.push(child)
+    }
   }
 
-  /**
-   * Renders a maximum of 5 links.
-   * If more than 5 links are required, we should encourage usage of Footer instead.
-   */
-  const LinkChildren = React.Children.toArray(children)
-    .filter(child => {
-      // if not valid element
-      if (React.isValidElement(child)) {
-        if (child.type === Link) {
-          return child
-        }
-      }
-    })
-    .slice(0, 5)
-
   const currentYear = new Date().getFullYear()
+  const resolvedSocialLinks = socialLinks === undefined ? socialLinkNames : socialLinks
+  const renderedSocialLinks = resolvedSocialLinks === false ? [] : resolvedSocialLinks
+  const hasSocialLinks = renderedSocialLinks.length > 0
+  const hasLinks = links.length > 0
+  const renderedLinks = hasLinks ? <div className={styles.MinimalFooter__links}>{links}</div> : null
+  const copyright = (
+    <Text
+      as="p"
+      size="100"
+      font="monospace"
+      weight={{narrow: 'medium', wide: 'normal'}}
+      variant="muted"
+      className={clsx(styles.MinimalFooter__copyright, styles.MinimalFooter__metaText)}
+    >
+      {copyrightStatement ? copyrightStatement : `\u00A9 ${currentYear} GitHub. All rights reserved.`}
+    </Text>
+  )
 
   return (
-    <footer className={clsx(styles.Footer, className)} {...rest}>
-      {footerFootnoteChild()}
-      <SocialLogomarks socialLinks={socialLinks} logoHref={logoHref} />
-      <section>
-        <div className={styles['Footer__legal-and-links']}>
-          <div className={styles['Footer__container']}>
-            <Stack
-              direction={{narrow: 'vertical', regular: 'horizontal'}}
-              gap="normal"
-              padding="none"
-              justifyContent="space-between"
-            >
-              <Stack
-                padding="none"
-                gap="condensed"
-                justifyContent={{
-                  narrow: 'center',
-                  regular: 'flex-end',
-                }}
-                direction={{
-                  narrow: 'vertical',
-                  regular: 'horizontal',
-                }}
-                className={styles['Footer__links']}
-              >
-                <>{LinkChildren}</>
-              </Stack>
-              <Text as="p" size="200" variant="muted" className={styles['Footer__copyright']}>
-                {copyrightStatement ? copyrightStatement : `\u00A9 ${currentYear} GitHub. All rights reserved.`}
-              </Text>
-            </Stack>
+    <footer
+      className={clsx(styles.MinimalFooter, footnotes && styles['MinimalFooter--withFootnotes'], className)}
+      {...rest}
+    >
+      {footnotes}
+      <div className={styles.MinimalFooter__section}>
+        <section className={styles.MinimalFooter__top}>
+          <div className={styles.MinimalFooter__container}>
+            <div className={styles['MinimalFooter__top-row']}>
+              <LogoLink logoHref={logoHref} />
+              {hasLinks || backToTop ? (
+                <div className={styles['MinimalFooter__top-actions']}>
+                  {backToTop}
+                  {renderedLinks}
+                </div>
+              ) : null}
+            </div>
           </div>
+        </section>
+      </div>
+      {centerComponent ? (
+        <div className={clsx(styles.MinimalFooter__section, styles['MinimalFooter__section--center'])}>
+          <section className={styles.MinimalFooter__container}>{centerComponent}</section>
         </div>
-      </section>
+      ) : null}
+      <div className={clsx(styles.MinimalFooter__section, styles['MinimalFooter__section--bottom'])}>
+        <section className={styles.MinimalFooter__bottom}>
+          <div className={styles.MinimalFooter__container}>
+            <div className={styles['MinimalFooter__bottom-row']}>
+              {copyright}
+              {hasSocialLinks ? <SocialLinks socialLinks={renderedSocialLinks} /> : null}
+            </div>
+          </div>
+        </section>
+      </div>
     </footer>
   )
 }
@@ -182,7 +197,7 @@ function Footnotes({children, className}: PropsWithChildren<FootnoteProps>) {
       const overrideProps: Partial<React.ComponentProps<typeof Text>> = {
         variant: 'muted',
         size: '100',
-        className: clsx(styles['Footer__terms-item'], textChild.props.className),
+        className: clsx(styles['MinimalFooter__terms-item'], textChild.props.className),
       }
 
       if (!textChild.props.as) {
@@ -196,9 +211,11 @@ function Footnotes({children, className}: PropsWithChildren<FootnoteProps>) {
   })
 
   return (
-    <section className={styles.Footer__container}>
-      <div className={clsx(styles.Footer__terms, className)}>{styledChildren}</div>
-    </section>
+    <div className={clsx(styles.MinimalFooter__section, styles['MinimalFooter__section--footnotes'])}>
+      <section className={styles.MinimalFooter__container}>
+        <div className={clsx(styles.MinimalFooter__terms, className)}>{styledChildren}</div>
+      </section>
+    </div>
   )
 }
 
@@ -207,14 +224,14 @@ type SocialLinkProps = {name: SocialLinkName}
 const SocialLink = ({name}: SocialLinkProps) => {
   const link = socialLinkData[name]
   return (
-    <li key={name}>
+    <li>
       <a
         href={link.url}
-        className={styles['Footer__social-link']}
+        className={styles['MinimalFooter__social-link']}
         data-analytics-event={`{"category":"Footer","action":"go to ${link.fullName}","label":"text:${name}"}`}
       >
         <img
-          className={styles['Footer__social-icon']}
+          className={styles['MinimalFooter__social-icon']}
           src={link.icon}
           height={link.iconHeight}
           width={link.iconWidth}
@@ -228,43 +245,26 @@ const SocialLink = ({name}: SocialLinkProps) => {
   )
 }
 
-type SocialLogomarksProps = {
-  socialLinks?: SocialLinkName[] | false
-  logoHref?: string
+function LogoLink({logoHref}: {logoHref?: string}) {
+  return (
+    <a
+      href={logoHref}
+      className={styles.MinimalFooter__logo}
+      data-analytics-event='{"category":"Footer","action":"go to home","label":"text:home"}'
+      aria-label="GitHub"
+    >
+      <MarkGithubIcon size={24} />
+    </a>
+  )
 }
 
-function SocialLogomarks({socialLinks = socialLinkNames, logoHref}: SocialLogomarksProps) {
-  const {colorMode} = useTheme()
-
+function SocialLinks({socialLinks}: {socialLinks: SocialLinkName[]}) {
   return (
-    <section className={clsx(styles['Footer__logomarks'])}>
-      <div className={styles['Footer__container']}>
-        <Stack
-          alignItems="center"
-          direction={{narrow: 'vertical', regular: 'horizontal'}}
-          gap="normal"
-          padding="none"
-          justifyContent="space-between"
-        >
-          <div>
-            <a
-              href={logoHref}
-              data-analytics-event='{"category":"Footer","action":"go to home","label":"text:home"}'
-              aria-label="GitHub"
-            >
-              <LogoGithubIcon fill={colorMode === ColorModesEnum.DARK ? 'white' : 'black'} size="medium" />
-            </a>
-          </div>
-          {socialLinks ? (
-            <ul className={styles['Footer__social-links']}>
-              {socialLinks.map(name => (
-                <SocialLink key={name} name={name} />
-              ))}
-            </ul>
-          ) : null}
-        </Stack>
-      </div>
-    </section>
+    <ul className={styles['MinimalFooter__social-links']}>
+      {socialLinks.map(name => (
+        <SocialLink key={name} name={name} />
+      ))}
+    </ul>
   )
 }
 
@@ -277,18 +277,110 @@ const Link = <C extends React.ElementType = 'a'>({as, children, ...rest}: PropsW
   const Component = as || 'a'
   return (
     <Component
-      className={styles['Footer__link']}
+      className={styles.MinimalFooter__link}
       data-analytics-event={
         rest['href'] ? `{"category":"Footer","action":"go to ${rest['href']}","label":"text:${children}"}` : undefined
       }
       {...rest}
     >
-      <Text variant="muted" size="200">
+      <Text
+        variant="muted"
+        size="100"
+        font="monospace"
+        weight={{narrow: 'medium', wide: 'normal'}}
+        className={styles.MinimalFooter__metaText}
+      >
         {children}
       </Text>
     </Component>
   )
 }
+
+export type MinimalFooterBackToTopProps = {
+  /**
+   * The visible and accessible label.
+   */
+  children: React.ReactNode
+  /**
+   * The ID of the semantic top-of-page element that receives focus after keyboard activation.
+   * Defaults to the first `<main>` element, then falls back to `<body>`.
+   */
+  focusTargetId?: string
+  /**
+   * Runs before the built-in behavior. Call `event.preventDefault()` to cancel scrolling and focus transfer.
+   */
+  onClick?: React.MouseEventHandler<HTMLButtonElement>
+} & BaseProps<HTMLButtonElement> &
+  Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'onClick' | 'children'>
+
+/**
+ * Scrolls to the top and, after keyboard activation, moves focus to the configured top-of-page destination.
+ */
+const BackToTop = forwardRef<HTMLButtonElement, MinimalFooterBackToTopProps>(
+  ({children, className, focusTargetId, onClick, type = 'button', ...rest}, ref) => {
+    const prefersReducedMotion = useReducedMotion()
+
+    const handleClick = useCallback<React.MouseEventHandler<HTMLButtonElement>>(
+      event => {
+        onClick?.(event)
+
+        if (event.defaultPrevented) {
+          return
+        }
+
+        window.scrollTo({
+          top: 0,
+          behavior: prefersReducedMotion ? 'instant' : 'smooth',
+        })
+
+        if (event.detail === 0) {
+          const focusTarget = focusTargetId
+            ? document.getElementById(focusTargetId)
+            : document.querySelector<HTMLElement>('main') ??
+              document.querySelector<HTMLElement>('body') ??
+              document.documentElement
+
+          if (!focusTarget) {
+            if (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'test') {
+              // eslint-disable-next-line no-console
+              console.warn(`MinimalFooter.BackToTop: No element found with id "${focusTargetId}".`)
+            }
+            return
+          }
+
+          const hadTabIndex = focusTarget.hasAttribute('tabindex')
+
+          if (!hadTabIndex) {
+            focusTarget.tabIndex = -1
+            focusTarget.addEventListener('blur', () => focusTarget.removeAttribute('tabindex'), {once: true})
+          }
+
+          focusTarget.focus({preventScroll: true})
+        }
+      },
+      [focusTargetId, onClick, prefersReducedMotion],
+    )
+
+    return (
+      <button
+        ref={ref}
+        type={type}
+        className={clsx(styles.MinimalFooter__backToTop, className)}
+        onClick={handleClick}
+        {...rest}
+      >
+        <span className={styles['MinimalFooter__backToTop-content']}>
+          <Text as="span" size="100" weight="medium" className={styles.MinimalFooter__metaText}>
+            {children}
+          </Text>
+          <span className={styles['MinimalFooter__backToTop-icon']} aria-hidden="true">
+            <ArrowUpIcon />
+          </span>
+        </span>
+      </button>
+    )
+  },
+)
 
 /**
  * Use MinimalFooter to render a global footer on all GitHub pages.
@@ -297,4 +389,5 @@ const Link = <C extends React.ElementType = 'a'>({as, children, ...rest}: PropsW
 export const MinimalFooter = Object.assign(Root, {
   Footnotes,
   Link,
+  BackToTop,
 })
