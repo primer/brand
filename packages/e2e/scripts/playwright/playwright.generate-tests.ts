@@ -31,15 +31,18 @@ const waitForTimeoutLookup = {
   'components-faq-features--with-prose': 2000, // for the animation
   'components-faq-features--all-open': 1000, // for the animation
   'components-faq-features--reversed-toggles': 4000, // for the animation
-  'components-subdomainnavbar--search-open': 5500, // for the animation
-  'components-subdomainnavbar--search-results-visible': 5500, // for the animation
-  'components-subdomainnavbar--longer-title': 1500, // for the animation
-  'components-subdomainnavbar--mobile-view': 5500, // for the animation
-  'components-subdomainnavbar--mobile-menu-open': 5500, // for all staggered animations
-  'components-subdomainnavbar--mobile-menu-open-many-items': 5500, // for all staggered animations
-  'components-subdomainnavbar--mobile-search-results-visible': 5500, // for the animation
-  'components-subdomainnavbar--mobile-no-links': 5500, // for the animation
-  'components-subdomainnavbar--reversed-button-order-narrow': 5500, // for the animation
+  'components-subdomainnavbar-features--search-open': 5500, // for the animation
+  'components-subdomainnavbar-features--search-results-visible': 5500, // for the animation
+  'components-subdomainnavbar-features--longer-title': 1500, // for the animation
+  'components-subdomainnavbar-features--mobile-view': 5500, // for the animation
+  'components-subdomainnavbar-features--mobile-menu-open': 5500, // for all staggered animations
+  'components-subdomainnavbar-features--mobile-menu-open-many-items': 5500, // for all staggered animations
+  'components-subdomainnavbar-features--mobile-search-results-visible': 5500, // for the animation
+  'components-subdomainnavbar-features--mobile-no-links': 5500, // for the animation
+  'components-subdomainnavbar-features--mobile-leading-component-only-menu-open': 5500, // for the animation
+  'components-subdomainnavbar-features--tablet-menu-open': 5500, // for all staggered animations
+  'components-subdomainnavbar-features--overflow-menu-open': 1500, // wait for responsive overflow measurement
+  'components-subdomainnavbar-features--reversed-button-order-narrow': 5500, // for the animation
   'components-button-features--primary-focus-non-standard-bg': 2000, // for the interaction test
   'components-button-features--primary-focus': 2000, // for the interaction test
   'components-button-features--with-hover-interaction': 2000, // for the interaction test
@@ -113,6 +116,30 @@ const waitForTimeoutLookup = {
   'recipes-flexsuite-details--ai': 7000, // for the youtube video posters to load
 }
 
+const beforeScreenshotLookup: Partial<Record<string, string>> = {
+  'components-subdomainnavbar-features--overflow-menu-open': `
+    const moreButton = page.getByRole('button', {name: 'More'})
+    if ((await moreButton.getAttribute('aria-expanded')) !== 'true') {
+      await moreButton.click()
+    }
+    const overflowMenu = page.locator(\`[id="\${await moreButton.getAttribute('aria-controls')}"]\`)
+    await expect(moreButton).toHaveAttribute('aria-expanded', 'true')
+    await expect(overflowMenu).toBeVisible()
+    await expect(overflowMenu.getByRole('link', {name: 'Resources'})).toBeVisible()
+  `,
+}
+
+const screenshotOptionsLookup: Partial<Record<string, string>> = {
+  'components-subdomainnavbar-features--overflow-menu-open': `{animations: 'allow'}`,
+}
+
+const viewportLookup: Partial<Record<string, {width: number; height: number}>> = {
+  'components-subdomainnavbar-features--desktop-pill-states': {width: 1440, height: 900},
+  'components-subdomainnavbar-features--overflow-menu-open': {width: 1440, height: 900},
+  'components-subdomainnavbar-features--tablet-menu-open': {width: 800, height: 900},
+  'components-subdomainnavbar-features--tablet-view': {width: 800, height: 900},
+}
+
 // const skipLocalizationsTestsFor = [
 //   'components-actionmenu-features--disabled-item', // for the menu to open
 //   'components-actionmenu-features--anchored-positioning', // for the menu to open
@@ -145,7 +172,6 @@ const skipTestLookup = [
   'components-logosuite-features--mixed-width', // animation only
   'components-logosuite-features--following-hero', // animation only
   'components-logosuite-features--stacked', // animation only
-  'components-subdomainnavbar--overflow-menu-open', // flakey despite timeout
   'components-ide-features--editor-only', // animation too long
   'components-ide-features--editor-no-replay-button', // animation too long
   'components-ide-features--chat-only', // animation too long
@@ -231,6 +257,7 @@ for (const key of Object.keys(categorisedStories)) {
         )
 
         const requiresTabletViewport = storyName.toLowerCase().includes('tablet')
+        const viewport = viewportLookup[id]
         const requiresTouch = touchTestLookup.includes(id)
         if (skipTestLookup.includes(id)) {
           return acc
@@ -247,8 +274,8 @@ for (const key of Object.keys(categorisedStories)) {
             await page.goto('http://localhost:${port}/iframe.html?${localeParam}args=&id=${id}&viewMode=story', { waitUntil: 'networkidle' })
             await page.locator('body.sb-show-main').waitFor({ state: 'visible' })
 
-            ${timeout ? `await page.waitForTimeout(${timeout})` : ''}
-            await expect(page).toHaveScreenshot({ fullPage: true })
+            ${timeout ? `await page.waitForTimeout(${timeout})` : ''}${beforeScreenshotLookup[id] ?? ''}
+            await expect(page).toHaveScreenshot(${screenshotOptionsLookup[id] ?? '{fullPage: true}'})
           });
 
           `
@@ -256,6 +283,16 @@ for (const key of Object.keys(categorisedStories)) {
 
         const languagesToTest = ['en']
         const allLanguageTests = languagesToTest.map(language => generateTestForLanguage(language)).join('')
+
+        if (viewport) {
+          return (acc += `
+          // eslint-disable-next-line i18n-text/no-en
+          test.describe('Custom viewport test for ${storyName}', () => {
+            test.use({ viewport: { width: ${viewport.width}, height: ${viewport.height} } });
+            ${allLanguageTests}
+          });
+          `)
+        }
 
         if (requiresMobileViewport) {
           return (acc += `

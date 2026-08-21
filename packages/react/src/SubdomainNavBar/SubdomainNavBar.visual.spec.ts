@@ -7,6 +7,16 @@ import {test, expect} from '@playwright/test'
 
 // eslint-disable-next-line i18n-text/no-en
 test.describe('Visual Comparison: SubdomainNavBar', () => {
+  test('SubdomainNavBar / Default', async ({page}) => {
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-subdomainnavbar--default&viewMode=story', {
+      waitUntil: 'networkidle',
+    })
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+    await page.waitForTimeout(500)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
   test('SubdomainNavBar / Playground', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-subdomainnavbar--playground&viewMode=story',
@@ -19,9 +29,10 @@ test.describe('Visual Comparison: SubdomainNavBar', () => {
   })
 
   test('SubdomainNavBar / No Search', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-subdomainnavbar--no-search&viewMode=story', {
-      waitUntil: 'networkidle',
-    })
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-subdomainnavbar-features--no-search&viewMode=story',
+      {waitUntil: 'networkidle'},
+    )
     await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
@@ -30,7 +41,7 @@ test.describe('Visual Comparison: SubdomainNavBar', () => {
 
   test('SubdomainNavBar / Search Open', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-subdomainnavbar--search-open&viewMode=story',
+      'http://localhost:6006/iframe.html?args=&id=components-subdomainnavbar-features--search-open&viewMode=story',
       {waitUntil: 'networkidle'},
     )
     await page.locator('body.sb-show-main').waitFor({state: 'visible'})
@@ -41,7 +52,7 @@ test.describe('Visual Comparison: SubdomainNavBar', () => {
 
   test('SubdomainNavBar / Search Results Visible', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-subdomainnavbar--search-results-visible&viewMode=story',
+      'http://localhost:6006/iframe.html?args=&id=components-subdomainnavbar-features--search-results-visible&viewMode=story',
       {waitUntil: 'networkidle'},
     )
     await page.locator('body.sb-show-main').waitFor({state: 'visible'})
@@ -50,12 +61,114 @@ test.describe('Visual Comparison: SubdomainNavBar', () => {
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
+  test('SubdomainNavBar / Search Keyboard Shortcut', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-subdomainnavbar-features--search-keyboard-shortcut&viewMode=story',
+      {waitUntil: 'networkidle'},
+    )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+    await page.waitForTimeout(500)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
+  test('SubdomainNavBar / Search Custom Keyboard Shortcut', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-subdomainnavbar-features--search-custom-keyboard-shortcut&viewMode=story',
+      {waitUntil: 'networkidle'},
+    )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+    await page.waitForTimeout(500)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
+  test('SubdomainNavBar / Grouped Search Results Visible', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-subdomainnavbar-features--grouped-search-results-visible&viewMode=story',
+      {waitUntil: 'networkidle'},
+    )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+    await page.waitForTimeout(500)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
+  // eslint-disable-next-line i18n-text/no-en
+  test.describe('Custom viewport test for Overflow Menu Open', () => {
+    test.use({viewport: {width: 1440, height: 900}})
+    test('SubdomainNavBar / Overflow Menu Open', async ({page}) => {
+      await page.goto(
+        'http://localhost:6006/iframe.html?args=&id=components-subdomainnavbar-features--overflow-menu-open&viewMode=story',
+        {waitUntil: 'networkidle'},
+      )
+      await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+      await page.waitForTimeout(1500)
+      const moreButton = page.getByRole('button', {name: 'More'})
+      if ((await moreButton.getAttribute('aria-expanded')) !== 'true') {
+        await moreButton.click()
+      }
+      const overflowMenu = page.locator(`[id="${await moreButton.getAttribute('aria-controls')}"]`)
+      await expect(moreButton).toHaveAttribute('aria-expanded', 'true')
+      await expect(overflowMenu).toBeVisible()
+      await expect(overflowMenu.getByRole('link', {name: 'Resources'})).toBeVisible()
+
+      await expect(page).toHaveScreenshot({animations: 'allow'})
+    })
+  })
+
+  // eslint-disable-next-line i18n-text/no-en
+  test.describe('Custom viewport test for Desktop Pill States', () => {
+    test.use({viewport: {width: 1440, height: 900}})
+    test('SubdomainNavBar / Desktop Pill States', async ({page}) => {
+      await page.goto(
+        'http://localhost:6006/iframe.html?args=&id=components-subdomainnavbar-features--desktop-pill-states&viewMode=story',
+        {waitUntil: 'networkidle'},
+      )
+      await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+      await page.waitForTimeout(500)
+      await expect(page).toHaveScreenshot({fullPage: true})
+    })
+  })
+
+  // eslint-disable-next-line i18n-text/no-en
+  test.describe('Custom viewport test for Tablet View', () => {
+    test.use({viewport: {width: 800, height: 900}})
+    test('SubdomainNavBar / Tablet View', async ({page}) => {
+      await page.goto(
+        'http://localhost:6006/iframe.html?args=&id=components-subdomainnavbar-features--tablet-view&viewMode=story',
+        {waitUntil: 'networkidle'},
+      )
+      await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+      await page.waitForTimeout(500)
+      await expect(page).toHaveScreenshot({fullPage: true})
+    })
+  })
+
+  // eslint-disable-next-line i18n-text/no-en
+  test.describe('Custom viewport test for Tablet Menu Open', () => {
+    test.use({viewport: {width: 800, height: 900}})
+    test('SubdomainNavBar / Tablet Menu Open', async ({page}) => {
+      await page.goto(
+        'http://localhost:6006/iframe.html?args=&id=components-subdomainnavbar-features--tablet-menu-open&viewMode=story',
+        {waitUntil: 'networkidle'},
+      )
+      await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+      await page.waitForTimeout(5500)
+      await expect(page).toHaveScreenshot({fullPage: true})
+    })
+  })
+
   // eslint-disable-next-line i18n-text/no-en
   test.describe('Mobile viewport test for Mobile View', () => {
     test.use({viewport: {width: 360, height: 800}})
     test('SubdomainNavBar / Mobile View', async ({page}) => {
       await page.goto(
-        'http://localhost:6006/iframe.html?args=&id=components-subdomainnavbar--mobile-view&viewMode=story',
+        'http://localhost:6006/iframe.html?args=&id=components-subdomainnavbar-features--mobile-view&viewMode=story',
         {waitUntil: 'networkidle'},
       )
       await page.locator('body.sb-show-main').waitFor({state: 'visible'})
@@ -70,7 +183,7 @@ test.describe('Visual Comparison: SubdomainNavBar', () => {
     test.use({viewport: {width: 360, height: 800}})
     test('SubdomainNavBar / Mobile Menu Open', async ({page}) => {
       await page.goto(
-        'http://localhost:6006/iframe.html?args=&id=components-subdomainnavbar--mobile-menu-open&viewMode=story',
+        'http://localhost:6006/iframe.html?args=&id=components-subdomainnavbar-features--mobile-menu-open&viewMode=story',
         {waitUntil: 'networkidle'},
       )
       await page.locator('body.sb-show-main').waitFor({state: 'visible'})
@@ -85,7 +198,7 @@ test.describe('Visual Comparison: SubdomainNavBar', () => {
     test.use({viewport: {width: 360, height: 800}})
     test('SubdomainNavBar / Mobile Menu Open Many Items', async ({page}) => {
       await page.goto(
-        'http://localhost:6006/iframe.html?args=&id=components-subdomainnavbar--mobile-menu-open-many-items&viewMode=story',
+        'http://localhost:6006/iframe.html?args=&id=components-subdomainnavbar-features--mobile-menu-open-many-items&viewMode=story',
         {waitUntil: 'networkidle'},
       )
       await page.locator('body.sb-show-main').waitFor({state: 'visible'})
@@ -100,7 +213,7 @@ test.describe('Visual Comparison: SubdomainNavBar', () => {
     test.use({viewport: {width: 360, height: 800}})
     test('SubdomainNavBar / Mobile Search Results Visible', async ({page}) => {
       await page.goto(
-        'http://localhost:6006/iframe.html?args=&id=components-subdomainnavbar--mobile-search-results-visible&viewMode=story',
+        'http://localhost:6006/iframe.html?args=&id=components-subdomainnavbar-features--mobile-search-results-visible&viewMode=story',
         {waitUntil: 'networkidle'},
       )
       await page.locator('body.sb-show-main').waitFor({state: 'visible'})
@@ -115,7 +228,22 @@ test.describe('Visual Comparison: SubdomainNavBar', () => {
     test.use({viewport: {width: 360, height: 800}})
     test('SubdomainNavBar / Mobile No Links', async ({page}) => {
       await page.goto(
-        'http://localhost:6006/iframe.html?args=&id=components-subdomainnavbar--mobile-no-links&viewMode=story',
+        'http://localhost:6006/iframe.html?args=&id=components-subdomainnavbar-features--mobile-no-links&viewMode=story',
+        {waitUntil: 'networkidle'},
+      )
+      await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+      await page.waitForTimeout(5500)
+      await expect(page).toHaveScreenshot({fullPage: true})
+    })
+  })
+
+  // eslint-disable-next-line i18n-text/no-en
+  test.describe('Mobile viewport test for Mobile Leading Component Only Menu Open', () => {
+    test.use({viewport: {width: 360, height: 800}})
+    test('SubdomainNavBar / Mobile Leading Component Only Menu Open', async ({page}) => {
+      await page.goto(
+        'http://localhost:6006/iframe.html?args=&id=components-subdomainnavbar-features--mobile-leading-component-only-menu-open&viewMode=story',
         {waitUntil: 'networkidle'},
       )
       await page.locator('body.sb-show-main').waitFor({state: 'visible'})
@@ -126,7 +254,7 @@ test.describe('Visual Comparison: SubdomainNavBar', () => {
   })
   test('SubdomainNavBar / No overflow menu (1 link)', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-subdomainnavbar--no-overflow&viewMode=story',
+      'http://localhost:6006/iframe.html?args=&id=components-subdomainnavbar-features--no-overflow&viewMode=story',
       {waitUntil: 'networkidle'},
     )
     await page.locator('body.sb-show-main').waitFor({state: 'visible'})
@@ -137,7 +265,7 @@ test.describe('Visual Comparison: SubdomainNavBar', () => {
 
   test('SubdomainNavBar / Longer Title', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-subdomainnavbar--longer-title&viewMode=story',
+      'http://localhost:6006/iframe.html?args=&id=components-subdomainnavbar-features--longer-title&viewMode=story',
       {waitUntil: 'networkidle'},
     )
     await page.locator('body.sb-show-main').waitFor({state: 'visible'})
@@ -148,7 +276,29 @@ test.describe('Visual Comparison: SubdomainNavBar', () => {
 
   test('SubdomainNavBar / Full Width', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-subdomainnavbar--full-width&viewMode=story',
+      'http://localhost:6006/iframe.html?args=&id=components-subdomainnavbar-features--full-width&viewMode=story',
+      {waitUntil: 'networkidle'},
+    )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+    await page.waitForTimeout(500)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
+  test('SubdomainNavBar / With Leading Component', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-subdomainnavbar-features--with-leading-component&viewMode=story',
+      {waitUntil: 'networkidle'},
+    )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+    await page.waitForTimeout(500)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
+  test('SubdomainNavBar / With Trailing Component', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-subdomainnavbar-features--with-trailing-component&viewMode=story',
       {waitUntil: 'networkidle'},
     )
     await page.locator('body.sb-show-main').waitFor({state: 'visible'})
@@ -158,40 +308,8 @@ test.describe('Visual Comparison: SubdomainNavBar', () => {
   })
 
   test('SubdomainNavBar / No Title', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-subdomainnavbar--no-title&viewMode=story', {
-      waitUntil: 'networkidle',
-    })
-    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('SubdomainNavBar / Conditional Rendering', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-subdomainnavbar--conditional-rendering&viewMode=story',
-      {waitUntil: 'networkidle'},
-    )
-    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('SubdomainNavBar / Skip To Main Tag', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-subdomainnavbar--skip-to-main-tag&viewMode=story',
-      {waitUntil: 'networkidle'},
-    )
-    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('SubdomainNavBar / Skip To Main Tag With Id', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-subdomainnavbar--skip-to-main-tag-with-id&viewMode=story',
+      'http://localhost:6006/iframe.html?args=&id=components-subdomainnavbar-features--no-title&viewMode=story',
       {waitUntil: 'networkidle'},
     )
     await page.locator('body.sb-show-main').waitFor({state: 'visible'})
@@ -202,7 +320,7 @@ test.describe('Visual Comparison: SubdomainNavBar', () => {
 
   test('SubdomainNavBar / External Link', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-subdomainnavbar--external-link&viewMode=story',
+      'http://localhost:6006/iframe.html?args=&id=components-subdomainnavbar-features--external-link&viewMode=story',
       {waitUntil: 'networkidle'},
     )
     await page.locator('body.sb-show-main').waitFor({state: 'visible'})
@@ -213,7 +331,7 @@ test.describe('Visual Comparison: SubdomainNavBar', () => {
 
   test('SubdomainNavBar / Reversed Button Order', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-subdomainnavbar--reversed-button-order&viewMode=story',
+      'http://localhost:6006/iframe.html?args=&id=components-subdomainnavbar-features--reversed-button-order&viewMode=story',
       {waitUntil: 'networkidle'},
     )
     await page.locator('body.sb-show-main').waitFor({state: 'visible'})
@@ -227,7 +345,7 @@ test.describe('Visual Comparison: SubdomainNavBar', () => {
     test.use({viewport: {width: 360, height: 800}})
     test('SubdomainNavBar / Reversed Button Order Narrow', async ({page}) => {
       await page.goto(
-        'http://localhost:6006/iframe.html?args=&id=components-subdomainnavbar--reversed-button-order-narrow&viewMode=story',
+        'http://localhost:6006/iframe.html?args=&id=components-subdomainnavbar-features--reversed-button-order-narrow&viewMode=story',
         {waitUntil: 'networkidle'},
       )
       await page.locator('body.sb-show-main').waitFor({state: 'visible'})
@@ -235,5 +353,48 @@ test.describe('Visual Comparison: SubdomainNavBar', () => {
       await page.waitForTimeout(5500)
       await expect(page).toHaveScreenshot({fullPage: true})
     })
+  })
+  test('SubdomainNavBar / Imperative Search API', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-subdomainnavbar-features--imperative-search-api&viewMode=story',
+      {waitUntil: 'networkidle'},
+    )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+    await page.waitForTimeout(500)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
+  test('SubdomainNavBar / Conditional Rendering', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-subdomainnavbar-features--conditional-rendering&viewMode=story',
+      {waitUntil: 'networkidle'},
+    )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+    await page.waitForTimeout(500)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
+  test('SubdomainNavBar / Skip To Main Tag', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-subdomainnavbar-features--skip-to-main-tag&viewMode=story',
+      {waitUntil: 'networkidle'},
+    )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+    await page.waitForTimeout(500)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
+  test('SubdomainNavBar / Skip To Main Tag With Id', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-subdomainnavbar-features--skip-to-main-tag-with-id&viewMode=story',
+      {waitUntil: 'networkidle'},
+    )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+    await page.waitForTimeout(500)
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 })
