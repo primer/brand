@@ -56,25 +56,26 @@
 }
 
 .MinimalFooter__top-row {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: auto 1fr;
   align-items: center;
-  justify-content: space-between;
   gap: var(--base-size-24);
 }
 
 .MinimalFooter__top-actions {
-  display: flex;
-  flex: 1;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: flex-end;
-  gap: var(--base-size-20);
-  min-width: 0;
+  display: contents;
 }
 
 .MinimalFooter__top-actions > .MinimalFooter__links {
-  justify-content: flex-end;
+  grid-column: 1 / -1;
+  grid-row: 2;
+  justify-content: flex-start;
+}
+
+.MinimalFooter__top-actions > .MinimalFooter__backToTop {
+  grid-column: 2;
+  grid-row: 1;
+  justify-self: flex-end;
 }
 
 .MinimalFooter__logo {
@@ -95,6 +96,25 @@
 @media screen and (min-width: 80rem) {
   .MinimalFooter__top {
     padding-top: var(--base-size-32);
+  }
+
+  .MinimalFooter__top-row {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .MinimalFooter__top-actions {
+    display: flex;
+    flex: 1;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-end;
+    gap: var(--base-size-20);
+    min-width: 0;
+  }
+
+  .MinimalFooter__top-actions > .MinimalFooter__links {
+    justify-content: flex-end;
   }
 
   .MinimalFooter__logo > svg {
