@@ -13,6 +13,7 @@ import type {BaseProps} from '../../component-helpers'
  */
 import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/river/base.css'
 import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/river/river.css'
+import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/inline-code/colors-with-modes.css'
 
 /** * Main Stylesheet (as a CSS Module) */
 import styles from '../river-shared.module.css'
@@ -230,7 +231,6 @@ export const RiverContent = forwardRef(
               as: HeadingChild.props.as || 'h3',
               size: HeadingChild.props.size || '5',
               weight: HeadingChild.props.weight,
-              className: clsx(HeadingChild.props.className, styles['River__heading-inner']),
             })}
           </div>
         )}

@@ -58,6 +58,28 @@ test.describe('Visual Comparison: Pillar', () => {
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
+  test('Pillar / With InlineCode', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-pillar-features--with-inline-code&viewMode=story',
+      {waitUntil: 'networkidle'},
+    )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+    await page.waitForTimeout(500)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
+  test('Pillar / Inline Code Stacked', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-pillar-features--inline-code-stacked&viewMode=story',
+      {waitUntil: 'networkidle'},
+    )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+    await page.waitForTimeout(500)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
   test('Pillar / Icon (native)', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-pillar-features--with-icon-svg&viewMode=story',
