@@ -103,6 +103,11 @@ export type SubdomainNavBarProps = {
    * Customizable visible and accessible narrow menu labels.
    */
   menuLabels?: Partial<SubdomainNavBarMenuLabels>
+  /**
+   * ID of the element that receives focus when the skip-to-content link is activated.
+   * Defaults to the first rendered `main` element that is not hidden from assistive technologies.
+   */
+  skipToContentTargetId?: string
 }
 
 export type SubdomainNavBarHandle = HTMLElement & {
@@ -201,6 +206,21 @@ function keyboardEventMatchesShortcut(event: KeyboardEvent, shortcut: SearchKeyb
   return eventKey === shortcutKey
 }
 
+function isUsableSkipToContentTarget(element: HTMLElement) {
+  if (element.closest('[hidden], [inert], [aria-hidden="true"]')) return false
+
+  for (
+    let currentElement: HTMLElement | null = element;
+    currentElement;
+    currentElement = currentElement.parentElement
+  ) {
+    const computedStyles = window.getComputedStyle(currentElement)
+    if (computedStyles.display === 'none' || computedStyles.visibility === 'hidden') return false
+  }
+
+  return true
+}
+
 function Root(
   {
     children,
@@ -215,6 +235,7 @@ function Root(
     trailingComponent,
     onNarrowMenuToggle,
     menuLabels,
+    skipToContentTargetId,
     ...rest
   }: SubdomainNavBarProps,
   forwardedRef: React.ForwardedRef<SubdomainNavBarHandle>,
@@ -224,9 +245,11 @@ function Root(
   const [menuViewportOffsetBlockStart, setMenuViewportOffsetBlockStart] = useState(0)
   const {isMedium, isLarge} = useWindowSize()
   const [startOfContentButtonFocused, setStartOfContentButtonFocused] = useState(false)
+  const [resolvedSkipToContentTargetId, setResolvedSkipToContentTargetId] = useState<string>()
   const headerRef = useRef<HTMLElement | null>(null)
-  const mainElRef = useRef<HTMLElement | null>(null)
-  const startOfContentID = useId('start-of-content')
+  const fallbackTargetRef = useRef<HTMLDivElement | null>(null)
+  const fallbackTargetID = useId()
+  const generatedMainTargetID = `${fallbackTargetID}-main`
   const narrowMenuID = useId()
   const resolvedMenuLabels = {...defaultMenuLabels, ...menuLabels}
 
@@ -254,13 +277,95 @@ function Root(
   }
   const focusTrapRef = useRef<HTMLDivElement | null>(null)
 
-  useEffect(() => {
-    const mainEl = document.querySelector('main')
-    if (mainEl) {
-      mainEl.id = mainEl.id || startOfContentID
-      mainElRef.current = mainEl
+  const resolveDefaultSkipToContentTarget = useCallback(() => {
+    const mainElement = Array.from(document.querySelectorAll<HTMLElement>('main')).find(isUsableSkipToContentTarget)
+
+    if (mainElement) {
+      if (!mainElement.id) {
+        mainElement.id = document.getElementById('start-of-content') ? generatedMainTargetID : 'start-of-content'
+      }
+      return mainElement
     }
-  }, [startOfContentID])
+
+    return fallbackTargetRef.current
+  }, [generatedMainTargetID])
+
+  const resolveSkipToContentTarget = useCallback(() => {
+    if (skipToContentTargetId) {
+      const explicitTarget = document.getElementById(skipToContentTargetId)
+      if (explicitTarget && isUsableSkipToContentTarget(explicitTarget)) return explicitTarget
+    }
+
+    return resolveDefaultSkipToContentTarget()
+  }, [resolveDefaultSkipToContentTarget, skipToContentTargetId])
+
+  const handleSkipToContentFocus = useCallback(() => {
+    setStartOfContentButtonFocused(true)
+
+    const target = resolveSkipToContentTarget()
+    if (target) setResolvedSkipToContentTargetId(target.id)
+  }, [resolveSkipToContentTarget])
+
+  const handleSkipToContentClick = useCallback(
+    (event: React.MouseEvent<HTMLAnchorElement>) => {
+      if (
+        event.defaultPrevented ||
+        event.button !== 0 ||
+        event.metaKey ||
+        event.ctrlKey ||
+        event.shiftKey ||
+        event.altKey
+      ) {
+        return
+      }
+
+      const explicitTarget = skipToContentTargetId ? document.getElementById(skipToContentTargetId) : null
+      const explicitTargetUnavailable =
+        skipToContentTargetId && (!explicitTarget || !isUsableSkipToContentTarget(explicitTarget))
+      const target = resolveSkipToContentTarget()
+
+      if (explicitTargetUnavailable) {
+        // eslint-disable-next-line no-console
+        console.warn(
+          `SubdomainNavBar could not find the skip-to-content target "${skipToContentTargetId}". Falling back to the page's main content.`,
+        )
+      }
+
+      if (!target) return
+
+      const targetHash = `#${encodeURIComponent(target.id)}`
+      event.currentTarget.setAttribute('href', targetHash)
+      setResolvedSkipToContentTargetId(target.id)
+
+      const addedTabIndex = target.tabIndex < 0 && !target.hasAttribute('tabindex')
+      if (addedTabIndex) {
+        target.tabIndex = -1
+      }
+
+      const previousScrollMarginBlockStart = target.style.scrollMarginBlockStart
+      if (fixed) {
+        const navbarHeight = headerRef.current?.getBoundingClientRect().height ?? 0
+        target.style.scrollMarginBlockStart = `${navbarHeight}px`
+      }
+
+      target.addEventListener(
+        'blur',
+        () => {
+          if (addedTabIndex) target.removeAttribute('tabindex')
+          target.style.scrollMarginBlockStart = previousScrollMarginBlockStart
+        },
+        {once: true},
+      )
+
+      target.focus({preventScroll: true})
+    },
+    [fixed, resolveSkipToContentTarget, skipToContentTargetId],
+  )
+
+  useEffect(() => {
+    const target = resolveSkipToContentTarget()
+    if (target) setResolvedSkipToContentTargetId(target.id)
+  }, [resolveSkipToContentTarget])
 
   useFocusTrap({containerRef: focusTrapRef, restoreFocusOnCleanUp: true, disabled: menuHidden})
   useKeyboardEscape(closeNarrowMenu)
@@ -294,7 +399,6 @@ function Root(
     }
   }, [menuHidden])
 
-  const setStartOfContentButtonFocusedTrue = useCallback(() => setStartOfContentButtonFocused(true), [])
   const setStartOfContentButtonFocusedFalse = useCallback(() => setStartOfContentButtonFocused(false), [])
 
   const hasLinks =
@@ -441,12 +545,13 @@ function Root(
       >
         <Button
           as="a"
-          href={`#${mainElRef.current?.id || startOfContentID}`}
+          href={`#${resolvedSkipToContentTargetId || skipToContentTargetId || fallbackTargetID}`}
           variant="primary"
           size="small"
           className={clsx(styles['SubdomainNavBar-skip-to-content'], !startOfContentButtonFocused && 'visually-hidden')}
-          onFocus={setStartOfContentButtonFocusedTrue}
+          onFocus={handleSkipToContentFocus}
           onBlur={setStartOfContentButtonFocusedFalse}
+          onClick={handleSkipToContentClick}
         >
           Skip to content
         </Button>
@@ -627,7 +732,7 @@ function Root(
           </div>
         </header>
       </div>
-      {!mainElRef.current && <div id={`${startOfContentID}`} tabIndex={-1} />}
+      <div ref={fallbackTargetRef} id={fallbackTargetID} tabIndex={-1} />
     </>
   )
 }

@@ -972,10 +972,10 @@ export const SkipToMainTag: Story = {
   },
 }
 
-export const skipToMainTagWithId: Story = {
+export const SkipToMainTagWithId: Story = {
   render: () => (
     <>
-      <SubdomainNavBar title="Skip to Main Tag with ID" />
+      <SubdomainNavBar title="Skip to Main Tag with ID" skipToContentTargetId="the-main-tag" />
       <main id="the-main-tag" style={{maxWidth: 1280, margin: '100px auto'}}>
         <Hero align="center">
           <Hero.Heading>This is the main content</Hero.Heading>
@@ -994,6 +994,9 @@ export const skipToMainTagWithId: Story = {
 
     await userEvent.tab()
 
-    await expect(canvas.getByRole('link', {name: 'Skip to content'})).toHaveFocus()
+    const skipLink = canvas.getByRole('link', {name: 'Skip to content'})
+
+    await expect(skipLink).toHaveFocus()
+    await expect(skipLink).toHaveAttribute('href', '#the-main-tag')
   },
 }

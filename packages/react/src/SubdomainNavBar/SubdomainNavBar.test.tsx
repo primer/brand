@@ -86,6 +86,7 @@ describe('SubdomainNavBar', () => {
     jest.clearAllMocks()
     global.ResizeObserver = originalResizeObserver
     document.body.style.overflow = ''
+    window.history.replaceState(null, '', window.location.pathname)
 
     if (originalDocumentFontsDescriptor) {
       Object.defineProperty(document, 'fonts', originalDocumentFontsDescriptor)
@@ -190,6 +191,155 @@ describe('SubdomainNavBar', () => {
     await user.tab()
 
     expect(skipLink).toHaveAttribute('href', '#main-content')
+  })
+
+  it('focuses an explicit skip-to-content target and clears the fixed navbar', async () => {
+    const user = userEvent.setup()
+    const {getByRole} = render(
+      <>
+        <SubdomainNavBar title="Subdomain" skipToContentTargetId="main-content" />
+        <main id="main-content" />
+      </>,
+    )
+    const skipLink = getByRole('link', {name: 'Skip to content'})
+    const navbar = getByRole('banner')
+    const main = getByRole('main')
+
+    jest.spyOn(navbar, 'getBoundingClientRect').mockReturnValue({height: 64} as DOMRect)
+
+    await user.tab()
+    await user.keyboard('{Enter}')
+
+    expect(skipLink).toHaveAttribute('href', '#main-content')
+    expect(main).toHaveAttribute('tabindex', '-1')
+    expect(main).toHaveFocus()
+    expect(window.location.hash).toBe('#main-content')
+    expect(main).toHaveStyle({scrollMarginBlockStart: '64px'})
+
+    await user.tab()
+
+    expect(main).not.toHaveAttribute('tabindex')
+    expect(main).not.toHaveStyle({scrollMarginBlockStart: '64px'})
+  })
+
+  it('does not offset the target when the navbar is not fixed', async () => {
+    const user = userEvent.setup()
+    const {getByRole} = render(
+      <>
+        <SubdomainNavBar fixed={false} title="Subdomain" skipToContentTargetId="main-content" />
+        <main id="main-content" />
+      </>,
+    )
+    const main = getByRole('main')
+
+    await user.click(getByRole('link', {name: 'Skip to content'}))
+
+    expect(main.style.scrollMarginBlockStart).toBe('')
+  })
+
+  it('resolves an explicit skip-to-content target when activated', async () => {
+    const user = userEvent.setup()
+    const {getByRole, rerender} = render(
+      <>
+        <SubdomainNavBar title="Subdomain" skipToContentTargetId="main-content" />
+        <main id="main-content" data-version="initial" />
+      </>,
+    )
+
+    rerender(
+      <>
+        <SubdomainNavBar title="Subdomain" skipToContentTargetId="main-content" />
+        <main id="main-content" data-version="replacement" />
+      </>,
+    )
+
+    await user.click(getByRole('link', {name: 'Skip to content'}))
+
+    expect(getByRole('main')).toHaveAttribute('data-version', 'replacement')
+    expect(getByRole('main')).toHaveFocus()
+  })
+
+  it('falls back to main content when the explicit target is unavailable', async () => {
+    const user = userEvent.setup()
+    const consoleWarn = jest.spyOn(console, 'warn').mockImplementation()
+    const {getByRole} = render(
+      <>
+        <SubdomainNavBar title="Subdomain" skipToContentTargetId="missing-content" />
+        <main />
+      </>,
+    )
+
+    await user.click(getByRole('link', {name: 'Skip to content'}))
+
+    expect(getByRole('main')).toHaveFocus()
+    expect(window.location.hash).toBe('#start-of-content')
+    expect(consoleWarn).toHaveBeenCalledWith(
+      'SubdomainNavBar could not find the skip-to-content target "missing-content". Falling back to the page\'s main content.',
+    )
+
+    consoleWarn.mockRestore()
+  })
+
+  it('skips hidden main elements when resolving the default target', async () => {
+    const user = userEvent.setup()
+    const {container, getByRole} = render(
+      <>
+        <SubdomainNavBar title="Subdomain" />
+        <main id="hidden-main-attribute" hidden />
+        <main id="hidden-main-style" style={{display: 'none'}} />
+        <div style={{display: 'none'}}>
+          <main id="hidden-main-ancestor-style" />
+        </div>
+        <div inert>
+          <main id="inert-main" />
+        </div>
+        <div aria-hidden="true">
+          <main id="aria-hidden-main" />
+        </div>
+        <main id="visible-main" />
+      </>,
+    )
+    const skipLink = getByRole('link', {name: 'Skip to content'})
+
+    await user.tab()
+    await user.keyboard('{Enter}')
+
+    expect(skipLink).toHaveAttribute('href', '#visible-main')
+    expect(container.querySelector('#visible-main')).toHaveFocus()
+  })
+
+  it('keeps generated skip-to-content target ids unique', async () => {
+    const user = userEvent.setup()
+    const {container, getByRole} = render(
+      <>
+        <SubdomainNavBar title="Subdomain" />
+        <main />
+      </>,
+    )
+
+    await user.tab()
+
+    const ids = Array.from(container.querySelectorAll<HTMLElement>('[id]')).map(element => element.id)
+
+    expect(getByRole('main')).toHaveAttribute('id', 'start-of-content')
+    expect(getByRole('link', {name: 'Skip to content'})).toHaveAttribute('href', `#${getByRole('main').id}`)
+    expect(new Set(ids).size).toBe(ids.length)
+  })
+
+  it('uses a generated target id when the default id already exists', async () => {
+    const user = userEvent.setup()
+    const {getByRole} = render(
+      <>
+        <SubdomainNavBar title="Subdomain" />
+        <div id="start-of-content" />
+        <main />
+      </>,
+    )
+
+    await user.tab()
+
+    expect(getByRole('main').id).not.toBe('start-of-content')
+    expect(getByRole('link', {name: 'Skip to content'})).toHaveAttribute('href', `#${getByRole('main').id}`)
   })
 
   it('renders only the GitHub mark in the home link', () => {
