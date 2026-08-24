@@ -4,7 +4,7 @@ import {Heading, type HeadingProps} from '../../Heading'
 import {Text, type TextProps} from '../../Text'
 import {Link, type LinkProps} from '../../Link'
 import {Label, type LabelProps} from '../../Label'
-import {EyebrowText} from '../../EyebrowText'
+import {EyebrowText, type EyebrowTextProps} from '../../EyebrowText'
 import {useAnimation} from '../../animation'
 import type {BaseProps} from '../../component-helpers'
 
@@ -140,6 +140,8 @@ const Root = forwardRef(
   },
 )
 
+type RiverContentChild = React.ReactElement<EyebrowTextProps | HeadingProps | TextProps | LinkProps | LabelProps>
+
 export type RiverContentProps = BaseProps<HTMLDivElement> & {
   /**
    * Aligns the content vertically within its container.
@@ -170,7 +172,7 @@ export type RiverContentProps = BaseProps<HTMLDivElement> & {
    * The declarative order of the children will be ignored in the rendered output
    * to enforce correct HTML semantics.
    */
-  children: React.ReactElement<TextProps> | React.ReactElement<HeadingProps | TextProps | LinkProps>[]
+  children: RiverContentChild | RiverContentChild[]
 } & React.HTMLAttributes<HTMLDivElement>
 
 export const RiverContent = forwardRef(

@@ -155,6 +155,7 @@ describe('Bento.Content', () => {
   afterEach(() => {
     cleanup()
     jest.clearAllMocks()
+    jest.restoreAllMocks()
   })
 
   it('renders correctly into the document', () => {

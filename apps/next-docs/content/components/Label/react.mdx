@@ -1,6 +1,6 @@
 ---
 title: Label
-description: Use Label to display short status or metadata attached to an object in product-like UI.
+description: Use label to display short status or metadata attached to an object in product-like UI.
 keywords: ['product UI', 'data table', 'issue metadata', 'status', 'indicator']
 show-tabs: true
 tab-label: React
@@ -31,7 +31,6 @@ The default Label uses the `medium` size and `default` color. Keep it visually a
 
 ```jsx live
 <Stack direction="horizontal" alignItems="center" padding="none">
-  <Text>Issue #123</Text>
   <Label>In progress</Label>
 </Stack>
 ```
@@ -42,19 +41,10 @@ Use the `size` prop to fit the density and emphasis of product UI metadata. Pref
 legible. Do not choose a size based on a nearby heading.
 
 ```jsx live
-<Stack direction="vertical" alignItems="flex-start" padding="none">
-  <Stack direction="horizontal" alignItems="center" padding="none">
-    <Text>Issue #123</Text>
-    <Label size="small">Bug</Label>
-  </Stack>
-  <Stack direction="horizontal" alignItems="center" padding="none">
-    <Text>Issue #456</Text>
-    <Label size="medium">Needs review</Label>
-  </Stack>
-  <Stack direction="horizontal" alignItems="center" padding="none">
-    <Text>Issue #789</Text>
-    <Label size="large">Blocked</Label>
-  </Stack>
+<Stack direction="horizontal" alignItems="center" padding="none">
+  <Label size="small">Small</Label>
+  <Label size="medium">Medium</Label>
+  <Label size="large">Large</Label>
 </Stack>
 ```
 
@@ -64,8 +54,7 @@ Use the `color` prop to distinguish metadata attached to the same record. Do not
 status.
 
 ```jsx live
-<Stack direction="horizontal" alignItems="center" padding="none" style={{flexWrap: 'wrap'}}>
-  <Text>Issue #123</Text>
+<Stack direction="horizontal" alignItems="center" padding="none" flexWrap="wrap">
   <Label color="red">Bug</Label>
   <Label color="orange">High priority</Label>
   <Label color="blue">Needs review</Label>
@@ -79,7 +68,6 @@ that reinforces the metadata meaning.
 
 ```jsx live
 <Stack direction="horizontal" alignItems="center" padding="none">
-  <Text>Issue #123</Text>
   <Label color="yellow" leadingVisual={<StarIcon />}>
     Starred
   </Label>
