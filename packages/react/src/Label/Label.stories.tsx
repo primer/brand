@@ -1,6 +1,7 @@
 import type {Meta, StoryObj} from '@storybook/react'
 import React from 'react'
 import {Label, LabelColors, LabelSizes, defaultLabelColor, defaultLabelSize} from '.'
+import {Stack, Text} from '..'
 
 const meta = {
   title: 'Components/Label',
@@ -8,7 +9,7 @@ const meta = {
   args: {
     color: defaultLabelColor,
     size: defaultLabelSize,
-    children: 'Label',
+    children: 'In progress',
   },
   // overriding default type inference for args with more useful control types
   argTypes: {
@@ -41,9 +42,19 @@ export default meta
 type Story = StoryObj<typeof Label>
 
 export const Default: Story = {
-  render: () => <Label>Default</Label>,
+  render: () => (
+    <Stack direction="horizontal" alignItems="center" padding="none">
+      <Text>Issue #123</Text>
+      <Label>In progress</Label>
+    </Stack>
+  ),
 }
 
 export const Playground: Story = {
-  render: args => <Label {...args} />,
+  render: args => (
+    <Stack direction="horizontal" alignItems="center" padding="none">
+      <Text>Issue #123</Text>
+      <Label {...args} />
+    </Stack>
+  ),
 }

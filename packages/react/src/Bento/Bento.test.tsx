@@ -1,4 +1,5 @@
-import React, {render, cleanup} from '@testing-library/react'
+import React from 'react'
+import {render, cleanup} from '@testing-library/react'
 import '@testing-library/jest-dom'
 import {Bento, ColumnIndex} from './Bento'
 import {Text, Link, ColorModesEnum, Label} from '../'
@@ -11,6 +12,7 @@ describe('Bento', () => {
   afterEach(() => {
     cleanup()
     jest.clearAllMocks()
+    jest.restoreAllMocks()
   })
 
   it('renders correctly into the document', () => {
@@ -178,10 +180,8 @@ describe('Bento.Content', () => {
     const headingText = 'Allowed'
     const textText = 'Allowed 2'
     const linkText = 'Allowed 3'
-    const labelText = 'Allowed 4'
     const {getByText} = render(
       <Bento.Content>
-        <Label>{labelText}</Label>
         <Bento.Heading>{headingText}</Bento.Heading>
         <Text>{textText}</Text>
         <Link href="#">{linkText}</Link>
@@ -191,7 +191,21 @@ describe('Bento.Content', () => {
     expect(getByText(headingText)).toBeInTheDocument()
     expect(getByText(textText)).toBeInTheDocument()
     expect(getByText(linkText)).toBeInTheDocument()
-    expect(getByText(labelText)).toBeInTheDocument()
+  })
+
+  it('renders a legacy standalone Label child and warns', () => {
+    const labelText = 'Legacy label'
+    const warnSpy = jest.spyOn(console, 'warn').mockImplementation(() => undefined)
+    const {getByTestId} = render(
+      <Bento.Content>
+        <Label>{labelText}</Label>
+      </Bento.Content>,
+    )
+
+    expect(getByTestId(Label.testIds.root)).toHaveTextContent(labelText)
+    expect(warnSpy).toHaveBeenCalledWith(
+      'Bento.Content: standalone `Label` children are deprecated. Remove it or migrate from Bento.',
+    )
   })
 
   it('adds the class for padding', () => {

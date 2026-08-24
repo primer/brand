@@ -1,7 +1,7 @@
 ---
 title: Label
-description: Use the label component to add metadata or indicate the status of items.
-keywords: ['badge', 'tag', 'metadata', 'status', 'indicator']
+description: Use Label to display short status or metadata attached to an object in product-like UI.
+keywords: ['product UI', 'data table', 'issue metadata', 'status', 'indicator']
 show-tabs: true
 tab-label: React
 ready: true
@@ -11,62 +11,77 @@ storybook: '/brand/storybook/?path=/story/components-label--playground'
 a11yReviewed: true
 ---
 
-import {StarIcon, CopilotIcon} from '@primer/octicons-react'
+import {StarIcon} from '@primer/octicons-react'
 
 import {LabelColorProp, LabelSizeProp} from './react'
 
 ```js
-import {Label} from '@primer/react-brand'
+import {Label, Stack, Text} from '@primer/react-brand'
 ```
+
+Use Label to display short status or metadata attached to an object in product-like UI, such as a data-table row,
+dashboard item, application workflow, or GitHub issue. Keep it visually attached to the object it describes. Never use
+Label as an isolated eyebrow or pre-heading marker.
 
 ## Examples
 
 ### Default
 
-This is the default variant for the `Label`component. It corresponds to the `medium` size and `default` color.
+The default Label uses the `medium` size and `default` color. Keep it visually attached to the record it describes.
 
 ```jsx live
-<Label>Default</Label>
+<Stack direction="horizontal" alignItems="center" padding="none">
+  <Text>Issue #123</Text>
+  <Label>In progress</Label>
+</Stack>
 ```
 
 ### Sizes
 
-Use the `size` prop to adjust the size of the `Label` component. The `small` size is ideal for body text. The `medium` size is recommended for small headings and `large` is suitable for large headings or section intros.
+Use the `size` prop to fit the density and emphasis of product UI metadata. Prefer the smallest size that remains
+legible. Do not choose a size based on a nearby heading.
 
 ```jsx live
-<Stack direction="horizontal" alignItems="flex-start" padding="none">
-  <Label size="small">Small</Label>
-  <Label size="medium">Medium</Label>
-  <Label size="large">Large</Label>
+<Stack direction="vertical" alignItems="flex-start" padding="none">
+  <Stack direction="horizontal" alignItems="center" padding="none">
+    <Text>Issue #123</Text>
+    <Label size="small">Bug</Label>
+  </Stack>
+  <Stack direction="horizontal" alignItems="center" padding="none">
+    <Text>Issue #456</Text>
+    <Label size="medium">Needs review</Label>
+  </Stack>
+  <Stack direction="horizontal" alignItems="center" padding="none">
+    <Text>Issue #789</Text>
+    <Label size="large">Blocked</Label>
+  </Stack>
 </Stack>
 ```
 
 ### Color
 
-Use the `color` prop to change the color of the `Label` component. The `default` color is recommended for use with neutral backgrounds.
+Use the `color` prop to distinguish metadata attached to the same record. Do not rely on color alone to communicate
+status.
 
 ```jsx live
-<Stack direction="horizontal" alignItems="flex-start" padding="none">
-  <Label color="blue">Blue</Label>
-  <Label color="red">Red</Label>
-  <Label color="green-blue">Green blue</Label>
-  <Label color="red">Red</Label>
-  <Label color="pink-blue">Pink blue</Label>
-  <Label color="orange">Orange</Label>
+<Stack direction="horizontal" alignItems="center" padding="none" style={{flexWrap: 'wrap'}}>
+  <Text>Issue #123</Text>
+  <Label color="red">Bug</Label>
+  <Label color="orange">High priority</Label>
+  <Label color="blue">Needs review</Label>
 </Stack>
 ```
 
 ### Leading visual
 
-You can add a leading icon to enhance the visual context. It is recommended you use an [Octicon](https://primer.style/octicons) here.
+Add a leading icon only when it makes product UI metadata easier to scan. Use an [Octicon](https://primer.style/octicons)
+that reinforces the metadata meaning.
 
 ```jsx live
-<Stack direction="horizontal" alignItems="flex-start" padding="none">
+<Stack direction="horizontal" alignItems="center" padding="none">
+  <Text>Issue #123</Text>
   <Label color="yellow" leadingVisual={<StarIcon />}>
     Starred
-  </Label>
-  <Label color="blue-purple" leadingVisual={<CopilotIcon />}>
-    Copilot
   </Label>
 </Stack>
 ```

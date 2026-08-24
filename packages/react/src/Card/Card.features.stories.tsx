@@ -89,8 +89,10 @@ export const Minimal: StoryFn<typeof Card> = () => {
 
   return (
     <Card href="https://github.com" variant="minimal">
+      <Card.Tokens>
+        <Token>{t('limited')}</Token>
+      </Card.Tokens>
       <Card.Heading>{t('code_search_heading')}</Card.Heading>
-      <Card.Label>{t('limited')}</Card.Label>
       <Card.Description>{t('code_search_description')}</Card.Description>
     </Card>
   )
@@ -306,8 +308,8 @@ export const Label: StoryFn<typeof Card> = () => {
 
   return (
     <Card href="https://github.com">
-      <Card.Heading>{t('code_search_heading')}</Card.Heading>
       <Card.Label>{t('limited')}</Card.Label>
+      <Card.Heading>{t('code_search_heading')}</Card.Heading>
       <Card.Description>{t('code_search_description')}</Card.Description>
     </Card>
   )
@@ -318,8 +320,8 @@ export const AccentTextLabel: StoryFn<typeof Card> = () => {
 
   return (
     <Card href="https://github.com">
-      <Card.Heading>{t('code_search_heading')}</Card.Heading>
       <Card.Label variant="accent-text">{t('limited')}</Card.Label>
+      <Card.Heading>{t('code_search_heading')}</Card.Heading>
       <Card.Description>{t('code_search_description')}</Card.Description>
     </Card>
   )
@@ -366,7 +368,9 @@ export const BackgroundColors: StoryFn<typeof Card> = () => {
             }}
           >
             <Card href="https://github.com" fullWidth backgroundColor="default">
-              <Card.Label>default</Card.Label>
+              <Card.Tokens>
+                <Token>default</Token>
+              </Card.Tokens>
               <Card.Heading>{t('github_actions_cheat_sheet')}</Card.Heading>
               <Card.Description>{t('techtarget_devops_description')}</Card.Description>
             </Card>
@@ -382,7 +386,9 @@ export const BackgroundColors: StoryFn<typeof Card> = () => {
             }}
           >
             <Card href="https://github.com" fullWidth backgroundColor="subtle">
-              <Card.Label>subtle</Card.Label>
+              <Card.Tokens>
+                <Token>subtle</Token>
+              </Card.Tokens>
               <Card.Heading>{t('github_actions_cheat_sheet')}</Card.Heading>
               <Card.Description>{t('techtarget_devops_description')}</Card.Description>
             </Card>
@@ -400,7 +406,9 @@ export const BackgroundColors: StoryFn<typeof Card> = () => {
             }}
           >
             <Card href="https://github.com" fullWidth backgroundColor="none" hasBorder>
-              <Card.Label>none</Card.Label>
+              <Card.Tokens>
+                <Token>none</Token>
+              </Card.Tokens>
               <Card.Heading>{t('github_actions_cheat_sheet')}</Card.Heading>
               <Card.Description>{t('techtarget_devops_description')}</Card.Description>
             </Card>
@@ -462,27 +470,31 @@ export const WithIconSVG = () => {
 }
 WithIconSVG.storyName = 'Icon (native)'
 
-export const IconAndLabel: StoryFn<typeof Card> = () => {
+export const IconAndToken: StoryFn<typeof Card> = () => {
   const {t} = useTranslation('Card')
 
   return (
     <Card href="https://github.com">
       <Card.Icon icon={GitBranchIcon} color="purple" hasBackground />
+      <Card.Tokens>
+        <Token>{t('beta')}</Token>
+      </Card.Tokens>
       <Card.Heading>{t('code_search_heading')}</Card.Heading>
-      <Card.Label>{t('beta')}</Card.Label>
       <Card.Description>{t('code_search_description')}</Card.Description>
     </Card>
   )
 }
 
-export const IconAndLabelWithFragment: StoryFn<typeof Card> = () => {
+export const IconAndTokenWithFragment: StoryFn<typeof Card> = () => {
   const {t} = useTranslation('Card')
 
   return (
     <Card href="https://github.com">
       <>
+        <Card.Tokens>
+          <Token>{t('beta')}</Token>
+        </Card.Tokens>
         <Card.Heading>{t('code_search_heading')}</Card.Heading>
-        <Card.Label>{t('beta')}</Card.Label>
         <Card.Icon icon={ZapIcon} color="purple" hasBackground />
         <Card.Description>{t('code_search_description')}</Card.Description>
       </>
@@ -509,14 +521,16 @@ export const Image: StoryFn<typeof Card> = () => {
   )
 }
 
-export const ImageAndLabel: StoryFn<typeof Card> = () => {
+export const ImageAndToken: StoryFn<typeof Card> = () => {
   const {t} = useTranslation('Card')
 
   return (
     <Card href="https://github.com">
       <Card.Image src={placeholderImage} alt={t('placeholder_alt')} />
+      <Card.Tokens>
+        <Token>{t('beta')}</Token>
+      </Card.Tokens>
       <Card.Heading>{t('code_search_heading')}</Card.Heading>
-      <Card.Label>{t('beta')}</Card.Label>
       <Card.Description>{t('code_search_description')}</Card.Description>
     </Card>
   )

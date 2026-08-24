@@ -460,6 +460,35 @@ const componentTextDefaultSize: Rule = {
   },
 }
 
+/** Standalone Label attaches metadata to an object; it is not an isolated marker for adjacent content. */
+const standaloneLabelContext: Rule = {
+  id: 'standalone-label-context',
+  run(code) {
+    const findings: Finding[] = []
+
+    const pageComponents = ['Card', 'Pillar', 'Hero', 'River', 'Bento', 'SectionIntro', 'CTABanner', 'Statistic']
+    const nearbyPageComponent = new RegExp(`<(?:${pageComponents.join('|')})\\b`)
+
+    for (const match of code.matchAll(/<Label\b[^>]*>/g)) {
+      const contextStart = Math.max(0, match.index - 500)
+      const contextEnd = Math.min(code.length, match.index + match[0].length + 500)
+      const context = code.slice(contextStart, contextEnd)
+      const inPageComposition = nearbyPageComponent.test(context)
+
+      findings.push({
+        severity: inPageComposition ? 'error' : 'warning',
+        rule: this.id,
+        message: inPageComposition
+          ? "Do not use standalone `Label` as an isolated marker inside or alongside Cards, Pillars, Heroes, or Rivers. Use the component's documented label or eyebrow API, or use `Token` for compact metadata that describes or supports adjacent content."
+          : 'Use standalone `Label` only when short status or metadata is attached to a specific object in product-like UI, such as a table row, dashboard item, workflow item, or GitHub issue. Use `Token` for compact metadata that describes or supports adjacent content.',
+        evidence: evidence(match[0]),
+      })
+    }
+
+    return findings
+  },
+}
+
 /** Credit for actually importing approved brand components — surfaced as guidance, not a failure. */
 export function brandComponentsUsed(code: string, catalog: Catalog): CatalogComponent[] {
   const imported = new Set<string>()
@@ -490,4 +519,5 @@ export const allRules: Rule[] = [
   offBrandTells,
   headingExplicitSize,
   componentTextDefaultSize,
+  standaloneLabelContext,
 ]

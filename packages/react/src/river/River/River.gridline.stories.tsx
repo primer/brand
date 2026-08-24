@@ -5,7 +5,7 @@ import examplePoster from '../../fixtures/images/example-poster.png'
 import placeholderImage from '../../fixtures/images/placeholder.png'
 
 import {River} from '.'
-import {EyebrowText, Heading, Label, Link, Section, Text} from '../../'
+import {EyebrowText, Heading, Link, Section, Text} from '../../'
 
 const meta: Meta<typeof River> = {
   title: 'Components/River/Features/GridLine variants',
@@ -291,25 +291,6 @@ export const GridLineWithEyebrowText: Story = {
           <EyebrowText>Feature</EyebrowText>
           <Heading>GridLine with EyebrowText</Heading>
           <Text>Use EyebrowText as a child of River.Content to add a small, uppercase label above the heading.</Text>
-          <Link href="#">Call to action</Link>
-        </River.Content>
-      </River>
-    </Section>
-  ),
-}
-
-export const GridLineWithLabel: Story = {
-  name: 'GridLine variant (with Label)',
-  render: () => (
-    <Section>
-      <River variant="gridline" align="start">
-        <River.Visual>
-          <PlaceholderImage />
-        </River.Visual>
-        <River.Content>
-          <Label color="green">New</Label>
-          <Heading>GridLine with Label</Heading>
-          <Text>You can also use the Label component for colored badges above the heading.</Text>
           <Link href="#">Call to action</Link>
         </River.Content>
       </River>

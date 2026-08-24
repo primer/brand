@@ -188,15 +188,19 @@ Resolve exact sizes and weights with `primer_brand_tokens`.
 
 - Alternate section background colors merely for decoration.
 
-### Labels
+### Tokens and labels
 
 **Do**
 
-- Use `Hero.Label`, `SectionIntro.Label`, or `EyebrowText`; keep labels intrinsic-width and aligned with their section.
+- Use `Token` for compact metadata that describes or supports adjacent content, such as a category, status, date, author, or related topic.
+- Use the standalone `Label` when short status or metadata is attached to a specific object in product-like UI, such as a table row, dashboard item, workflow item, or GitHub issue.
+- Use component-owned APIs such as Token-backed `Card.Label`, `Hero.Label`, `SectionIntro.Label`, or `EyebrowText` according to their documentation; these are distinct from the standalone `Label` component.
+- Keep tokens and component-owned labels intrinsic-width and aligned with their section.
 
 **Don't**
 
-- Stretch Label components full-width or hand-style replacements for the label components. Labels should preserve their auto width; don't let the parent stretch them.
+- Use the standalone `Label` component as an eyebrow or isolated marker above or beside a heading, `Card`, `Pillar`, `Hero`, or `River`. Use the component's documented API or a `Token` that supports adjacent content.
+- Stretch tokens or labels full-width, or hand-style replacements for them. They should preserve their auto width; don't let the parent stretch them.
 
 ### Lists
 
