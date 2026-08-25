@@ -15,7 +15,8 @@
     }
   },
   "hero": {
-    "label": "GitHub Copilot",
+    "label": "Dein KI-Beschleuniger",
+    "initialLabel": "Dein KI-Assistent",
     "headingLine1": "Beherrsche",
     "headingLine2": "dein Handwerk",
     "description": "Dein KI-Beschleuniger für jeden Workflow, vom Editor bis ins Unternehmen.",

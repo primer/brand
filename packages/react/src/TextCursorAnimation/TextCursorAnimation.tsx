@@ -10,6 +10,9 @@ import styles from './TextCursorAnimation.module.css'
 
 export const testIds = {
   root: 'TextCursorAnimation',
+  get text() {
+    return `${this.root}-text`
+  },
   get cursor() {
     return `${this.root}-cursor`
   },
@@ -17,10 +20,13 @@ export const testIds = {
 
 export type TextCursorAnimationProps = {
   /**
-   * Whether to animate the text reveal with a sliding wipe animation
-   * and a cursor that transitions from grey to green.
+   * Whether to animate the text with a typing effect.
    */
   animate?: boolean
+  /**
+   * Optional text to type before transitioning to the final text
+   */
+  initialText?: string
   ['data-testid']?: string
   delay?: number
   waitForPageLoad?: boolean
@@ -31,49 +37,87 @@ export function TextCursorAnimation({
   children,
   className,
   animate,
+  initialText,
   'data-testid': testId,
-  delay = 500,
+  delay,
   waitForPageLoad = true,
   variant = 'muted',
 }: PropsWithChildren<TextCursorAnimationProps>) {
   const text = typeof children === 'string' ? children : ''
-  const {showCursor, progress} = useCursorAnimation({
+  const {showCursor, visibleText, cursorPhase} = useCursorAnimation({
     text,
+    initialText,
     animate,
     delay,
     waitForPageLoad,
   })
 
-  const revealStyle = {
-    '--brand-TextCursorAnimation-reveal-progress': progress,
-    '--brand-TextCursorAnimation-cursor-progress': progress,
-  } as React.CSSProperties
-
-  const staticStyle = {
-    '--brand-TextCursorAnimation-reveal-progress': 1,
-    '--brand-TextCursorAnimation-cursor-progress': 1,
-  } as React.CSSProperties
-
-  const hasAnimation = animate === true && text
-
-  const style = hasAnimation ? revealStyle : staticStyle
+  const hasAnimation = animate === true && text.length > 0
   const content = text || children
+  const cursorPhaseClassName = {
+    initial: styles['TextCursorAnimation__cursor--initial'],
+    correction: styles['TextCursorAnimation__cursor--correction'],
+    final: styles['TextCursorAnimation__cursor--final'],
+    complete: styles['TextCursorAnimation__cursor--complete'],
+  }[hasAnimation ? cursorPhase : 'complete']
 
   return (
     <span className={clsx(styles.TextCursorAnimation, className)} data-testid={testId || testIds.root}>
-      <span className={styles['TextCursorAnimation-inner']} style={style}>
-        <EyebrowText
-          size="100"
-          variant={variant}
-          font="monospace"
-          weight="medium"
-          className={styles['TextCursorAnimation-text']}
-        >
-          {content}
-        </EyebrowText>
-        {(showCursor || !hasAnimation) && (
-          <span className={styles['TextCursorAnimation-cursor']} aria-hidden="true" data-testid={testIds.cursor} />
+      <span className={styles.TextCursorAnimation__inner}>
+        {hasAnimation && (
+          <span className={styles.TextCursorAnimation__sizingContainer}>
+            <EyebrowText
+              size="100"
+              variant={variant}
+              font="monospace"
+              weight="medium"
+              className={clsx(styles.TextCursorAnimation__text, styles.TextCursorAnimation__sizingText)}
+            >
+              {text}
+            </EyebrowText>
+            {initialText && initialText !== text && (
+              <EyebrowText
+                size="100"
+                variant={variant}
+                font="monospace"
+                weight="medium"
+                className={clsx(styles.TextCursorAnimation__text, styles.TextCursorAnimation__sizingText)}
+                aria-hidden="true"
+              >
+                {initialText}
+              </EyebrowText>
+            )}
+          </span>
         )}
+        <span
+          className={clsx(
+            styles.TextCursorAnimation__content,
+            hasAnimation && styles['TextCursorAnimation__content--animated'],
+          )}
+          aria-hidden={hasAnimation ? 'true' : undefined}
+        >
+          <EyebrowText
+            size="100"
+            variant={variant}
+            font="monospace"
+            weight="medium"
+            className={styles.TextCursorAnimation__text}
+            data-testid={testIds.text}
+          >
+            {hasAnimation ? visibleText : content}
+          </EyebrowText>
+          {showCursor && (
+            <span
+              className={clsx(
+                styles.TextCursorAnimation__cursor,
+                hasAnimation && styles['TextCursorAnimation__cursor--animated'],
+                cursorPhaseClassName,
+              )}
+              aria-hidden="true"
+              data-testid={testIds.cursor}
+            />
+          )}
+        </span>
       </span>
     </span>
   )

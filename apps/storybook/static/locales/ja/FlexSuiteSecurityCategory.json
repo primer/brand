@@ -15,7 +15,8 @@
     }
   },
   "hero": {
-    "label": "GitHub Security",
+    "label": "開発者向けセキュリティ",
+    "initialLabel": "アプリケーション セキュリティ",
     "heading": "開発者のために設計された強力なセキュリティ",
     "primaryAction": "無料トライアルを始める",
     "secondaryAction": "営業に問い合わせる"

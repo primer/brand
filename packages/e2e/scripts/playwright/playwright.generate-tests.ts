@@ -28,6 +28,9 @@ const defaultTimeout = 500 // Storybook 7 introduced a small delay in loading st
  * Manual lookup for tests that need animation or side-effects to complete before tests start
  */
 const waitForTimeoutLookup = {
+  'components-hero-examples--default': 4000, // for the label animation
+  'components-hero-examples--gridline-expressive-with-image-carousel': 4000, // for the label animation
+  'components-hero-examples--with-custom-input': 4000, // for the label animation
   'components-faq-features--with-prose': 2000, // for the animation
   'components-faq-features--all-open': 1000, // for the animation
   'components-faq-features--reversed-toggles': 4000, // for the animation
@@ -111,6 +114,8 @@ const waitForTimeoutLookup = {
   'recipes-flexsuite-overview--ai': 4000, // for the animation to complete
   'recipes-flexsuite-category--security': 4000, // for the animation to complete,
   'recipes-flexsuite-details--ai': 7000, // for the youtube video posters to load
+  'components-textcursoranimation-features--animated-with-long-delay': 4000, // for the animation
+  'components-textcursoranimation-features--with-initial-text': 4000, // for the animation
 }
 
 // const skipLocalizationsTestsFor = [
