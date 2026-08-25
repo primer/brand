@@ -34,8 +34,6 @@ const allViolations: Result[] = []
 const hostname = 'http://localhost:6006/iframe.html?viewMode=story'
 const testsToSkip = [
   'components-river--video', // video is an example and not an official primer pattern
-  'components-subdomainnavbar-features--search-results-visible', // has been a11y remediated already,
-  'components-subdomainnavbar-features--mobile-search-results-visible', // has been a11y remediated already,
   'components-videoplayer--default', // video makes this too flakey
   'components-videoplayer-features--with-poster', // video makes this too flakey
   'components-videoplayer-features--without-branding', // video makes this too flakey

@@ -20,11 +20,14 @@ type NavigationLinkProps = SubdomainNavBarLinkProps & {
 }
 
 type NavigationVisibilityObserverProps = PropsWithChildren<
-  BaseProps<HTMLUListElement> & React.HTMLAttributes<HTMLUListElement>
+  BaseProps<HTMLUListElement> &
+    React.HTMLAttributes<HTMLUListElement> & {
+      overflowMenuLabel: string
+    }
 >
 
 export const NavigationVisbilityObserver = forwardRef<HTMLUListElement, NavigationVisibilityObserverProps>(
-  ({children, className, ...rest}, forwardedRef) => {
+  ({children, className, overflowMenuLabel, ...rest}, forwardedRef) => {
     const navRef = useProvidedRefOrCreate<HTMLUListElement>(
       forwardedRef as React.RefObject<HTMLUListElement> | React.RefCallback<HTMLUListElement> | null,
     )
@@ -139,6 +142,7 @@ export const NavigationVisbilityObserver = forwardRef<HTMLUListElement, Navigati
             menuOpen={menuOpen}
             onClick={handleOverflowButtonClick}
             order={overflowOrder}
+            overflowMenuLabel={overflowMenuLabel}
             ref={overflowRef}
             visible={showOverflow}
           />
@@ -164,11 +168,12 @@ type OverflowButtonProps = {
   menuOpen: boolean
   onClick: () => void
   order: number
+  overflowMenuLabel: string
   visible: boolean
 } & BaseProps<HTMLLIElement>
 
 const OverflowButton = forwardRef<HTMLLIElement, OverflowButtonProps>(
-  ({ariaControls, buttonRef, className, menuOpen, onClick, order, visible}, forwardedRef) => {
+  ({ariaControls, buttonRef, className, menuOpen, onClick, order, overflowMenuLabel, visible}, forwardedRef) => {
     const ref = useProvidedRefOrCreate<HTMLLIElement>(
       forwardedRef as React.RefObject<HTMLLIElement> | React.RefCallback<HTMLLIElement> | null,
     )
@@ -189,7 +194,7 @@ const OverflowButton = forwardRef<HTMLLIElement, OverflowButtonProps>(
           tabIndex={visible ? undefined : -1}
         >
           <span className={styles['SubdomainNavBar-link-content']}>
-            More
+            {overflowMenuLabel}
             {menuOpen ? <TriangleUpIcon /> : <TriangleDownIcon />}
           </span>
         </button>

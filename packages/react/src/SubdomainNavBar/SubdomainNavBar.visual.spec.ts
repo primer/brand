@@ -105,16 +105,7 @@ test.describe('Visual Comparison: SubdomainNavBar', () => {
       await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
       await page.waitForTimeout(1500)
-      const moreButton = page.getByRole('button', {name: 'More'})
-      if ((await moreButton.getAttribute('aria-expanded')) !== 'true') {
-        await moreButton.click()
-      }
-      const overflowMenu = page.locator(`[id="${await moreButton.getAttribute('aria-controls')}"]`)
-      await expect(moreButton).toHaveAttribute('aria-expanded', 'true')
-      await expect(overflowMenu).toBeVisible()
-      await expect(overflowMenu.getByRole('link', {name: 'Resources'})).toBeVisible()
-
-      await expect(page).toHaveScreenshot({animations: 'allow'})
+      await expect(page).toHaveScreenshot({fullPage: false})
     })
   })
 

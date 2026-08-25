@@ -362,6 +362,19 @@ describe('SubdomainNavBar', () => {
     expect(getByRole('banner')).toHaveStyle({opacity: '0.5'})
   })
 
+  it('forwards HTML attributes to the root element', () => {
+    const handleClick = jest.fn()
+    const {getByRole} = render(
+      <SubdomainNavBar aria-describedby="navigation-description" onClick={handleClick} title="Docs" />,
+    )
+
+    const root = getByRole('banner')
+    fireEvent.click(root)
+
+    expect(root).toHaveAttribute('aria-describedby', 'navigation-description')
+    expect(handleClick).toHaveBeenCalledTimes(1)
+  })
+
   it('forwards aria-current to the rendered link', () => {
     const {getByRole} = render(
       <SubdomainNavBar title="Subdomain">
@@ -757,7 +770,7 @@ describe('SubdomainNavBar', () => {
 
   it.each([
     {
-      menuLabels: {menuLabel: 'Navigation', closeLabel: 'Dismiss'},
+      menuLabels: {menuLabel: 'Navigation', closeLabel: 'Dismiss', overflowMenuLabel: 'Additional links'},
       expectedMenuLabel: 'Navigation',
       expectedCloseLabel: 'Dismiss',
     },
@@ -790,6 +803,21 @@ describe('SubdomainNavBar', () => {
       expect(getByText(expectedCloseLabel)).toBeInTheDocument()
     },
   )
+
+  it('uses a custom desktop overflow menu label', async () => {
+    mockUseWindowSize.mockImplementation(() => ({isSmall: true, isMedium: true}))
+
+    const {container, getByRole} = render(
+      <SubdomainNavBar title="Subdomain" menuLabels={{overflowMenuLabel: 'Additional links'}}>
+        <SubdomainNavBar.Link href="#collections">Collections</SubdomainNavBar.Link>
+        <SubdomainNavBar.Link href="#topics">Topics</SubdomainNavBar.Link>
+      </SubdomainNavBar>,
+    )
+
+    await updateNavigationLayout(container, {containerWidth: 80})
+
+    expect(getByRole('button', {name: 'Additional links'})).toBeInTheDocument()
+  })
 
   it('keeps the title visible on mobile viewports', () => {
     mockUseWindowSize.mockImplementation(() => ({isSmall: false, isMedium: false, isLarge: false}))
@@ -1443,6 +1471,30 @@ describe('SubdomainNavBar', () => {
     expect(queryByRole('dialog')).not.toBeInTheDocument()
   })
 
+  it('closes the search dialog only when the native dialog backdrop is clicked', () => {
+    const {getByRole, getByTestId, queryByRole} = render(
+      <SubdomainNavBar title="Subdomain">
+        <SubdomainNavBar.Search searchTerm="" onChange={jest.fn} onSubmit={jest.fn()} />
+      </SubdomainNavBar>,
+    )
+
+    fireEvent.click(getByTestId('toggle-search'))
+
+    const dialog = getByRole('dialog')
+    jest.spyOn(dialog, 'getBoundingClientRect').mockReturnValue({
+      top: 100,
+      right: 500,
+      bottom: 300,
+      left: 100,
+    } as DOMRect)
+
+    fireEvent.click(getByRole('combobox'), {clientX: 50, clientY: 50})
+    expect(dialog).toBeInTheDocument()
+
+    fireEvent.click(dialog, {clientX: 50, clientY: 50})
+    expect(queryByRole('dialog')).not.toBeInTheDocument()
+  })
+
   it('disables native browser autocomplete on the search combobox', () => {
     const {getByRole, getByTestId} = render(
       <SubdomainNavBar title="Subdomain">
@@ -1455,6 +1507,44 @@ describe('SubdomainNavBar', () => {
     const combobox = getByRole('combobox')
     expect(combobox).toHaveAttribute('autocomplete', 'off')
     expect(combobox).toHaveAttribute('aria-autocomplete', 'list')
+  })
+
+  it('minimizes scrolling when keyboard navigation changes the active search result', () => {
+    const searchResults: SubdomainNavBarSearchResults = [
+      {
+        title: 'First result',
+        description: 'First description',
+        url: '#first',
+        date: '2026-08-25',
+      },
+      {
+        title: 'Second result',
+        description: 'Second description',
+        url: '#second',
+        date: '2026-08-25',
+      },
+    ]
+    const {getAllByRole, getByRole, getByTestId} = render(
+      <SubdomainNavBar title="Subdomain">
+        <SubdomainNavBar.Search
+          searchTerm="result"
+          searchResults={searchResults}
+          onChange={jest.fn}
+          onSubmit={jest.fn()}
+        />
+      </SubdomainNavBar>,
+    )
+
+    fireEvent.click(getByTestId('toggle-search'))
+
+    const combobox = getByRole('combobox')
+    const [firstResult] = getAllByRole('option')
+    const scrollIntoView = jest.fn()
+    firstResult.scrollIntoView = scrollIntoView
+    fireEvent.keyDown(combobox, {key: 'ArrowDown'})
+
+    expect(combobox).toHaveAttribute('aria-activedescendant', firstResult.id)
+    expect(scrollIntoView).toHaveBeenCalledWith({block: 'nearest'})
   })
 
   it('adds a trailing border class to the action area when a trailing component follows it', () => {

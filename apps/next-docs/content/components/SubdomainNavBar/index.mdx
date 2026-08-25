@@ -165,9 +165,9 @@ const LocalizedSearch = () => {
 render(<LocalizedSearch />)
 ```
 
-### Localized narrow menu
+### Localized menu controls
 
-Use `menuLabels` to localize the narrow menu control. The label changes when the menu opens, and any omitted value falls back to English.
+Use `menuLabels` to localize the narrow menu control and desktop overflow menu. The narrow menu label changes when the menu opens, and any omitted value falls back to English.
 
 ```jsx filename="noinline"
 const LocalizedMenu = () => (
@@ -178,6 +178,7 @@ const LocalizedMenu = () => (
       menuLabels={{
         menuLabel: 'Menú',
         closeLabel: 'Cerrar',
+        overflowMenuLabel: 'Más',
       }}
     >
       <SubdomainNavBar.Link href="/es/get-started">Primeros pasos</SubdomainNavBar.Link>
@@ -196,7 +197,7 @@ render(<LocalizedMenu />)
 - Set `skipToContentTargetId` to the ID of the page's active main content element. Activating the skip link moves focus to that element and clears the fixed navigation bar. When omitted, or if the explicit target is unavailable, the component targets the first rendered `main` that is not hidden from assistive technologies.
 - When the menu opens on narrow viewports, hide the rest of the document from screen readers with `inert` or `aria-hidden="true"`. Use `onNarrowMenuToggle` to track the menu state.
 - Ensure interactive content supplied through `leadingComponent` or `trailingComponent` has an accessible name and remains keyboard operable.
-- Localize the narrow menu's visible and accessible labels with `menuLabels`.
+- Localize the menu controls' visible and accessible labels with `menuLabels`.
 - Only opt into a `keyboardShortcut` that does not conflict with browser, operating system, or application shortcuts. Always provide another visible way to open search.
 - For search, localize its visible text, accessible labels, result headings, and live-region announcements. Supplying only some `labels` values produces a mix of localized text and English defaults.
 
@@ -217,19 +218,20 @@ render(<LocalizedMenu />)
 | `titleHref`             | `string`                             | `/`                  | Links the title to the subdomain root                                   |
 | `leadingComponent`      | `React.ReactElement`                 |                      | Custom element rendered after the title and before navigation links     |
 | `trailingComponent`     | `React.ReactElement`                 |                      | Custom element rendered after search and actions                        |
-| `menuLabels`            | `Partial<SubdomainNavBarMenuLabels>` | English labels       | Overrides the narrow menu's visible and accessible labels               |
+| `menuLabels`            | `Partial<SubdomainNavBarMenuLabels>` | English labels       | Overrides the menu controls' visible and accessible labels              |
 | `skipToContentTargetId` | `string`                             | First visible `main` | ID of the element focused by the skip-to-content link                   |
 | `ref`                   | `React.Ref<SubdomainNavBarHandle>`   |                      | Ref to the root element with `openSearch()` and `closeSearch()` methods |
 | `onNarrowMenuToggle`    | `(isOpen: boolean) => void`          |                      | Called with the new state when the narrow menu opens or closes          |
 
 `SubdomainNavBarProps`, `SubdomainNavBarHandle`, and `SubdomainNavBarMenuLabels` are exported from `@primer/react-brand`.
 
-### Narrow menu labels
+### Menu labels
 
-| Field        | Type     | English default | Purpose                                               |
-| :----------- | :------- | :-------------- | :---------------------------------------------------- |
-| `menuLabel`  | `string` | `Menu`          | Visible and accessible label while the menu is closed |
-| `closeLabel` | `string` | `Close`         | Visible and accessible label while the menu is open   |
+| Field               | Type     | English default | Purpose                                                      |
+| :------------------ | :------- | :-------------- | :----------------------------------------------------------- |
+| `menuLabel`         | `string` | `Menu`          | Visible and accessible label while the narrow menu is closed |
+| `closeLabel`        | `string` | `Close`         | Visible and accessible label while the narrow menu is open   |
+| `overflowMenuLabel` | `string` | `More`          | Visible and accessible label for the desktop overflow menu   |
 
 ### SubdomainNavBar.Search
 

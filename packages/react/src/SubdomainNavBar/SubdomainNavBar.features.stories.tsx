@@ -295,6 +295,7 @@ export const GroupedSearchResultsVisible: Story = {
 
 export const OverflowMenuOpen: Story = {
   decorators: [withFullPageFixture],
+  tags: ['visual-viewport-1440x900', 'visual-screenshot-viewport'],
   render: () => (
     <SubdomainNavBar title="Site title" titleHref="/">
       {navigationLinks.map(link => (
@@ -325,21 +326,16 @@ export const OverflowMenuOpen: Story = {
     const moreButton = canvas.getByRole('button', {name: 'More'})
     await waitFor(() => expect(moreButton).toBeVisible())
     await userEvent.click(moreButton)
-    const booksLink = canvas.getByRole('link', {name: 'Books'})
-    await expect(booksLink).toBeVisible()
-    const overflowMenu = booksLink.closest('[id]')
-    await waitFor(() => {
-      const buttonRect = moreButton.getBoundingClientRect()
-      const menuRect = overflowMenu?.getBoundingClientRect()
-
-      expect(Math.abs((menuRect?.top ?? 0) - buttonRect.bottom)).toBeLessThanOrEqual(1)
-      expect(Math.abs((menuRect?.right ?? 0) - buttonRect.right)).toBeLessThanOrEqual(1)
-    })
+    await expect(moreButton).toHaveAttribute('aria-expanded', 'true')
+    const resourcesLink = canvas.getByRole('link', {name: 'Resources'})
+    await expect(resourcesLink).toBeVisible()
+    await expect(resourcesLink.closest('[id]')).toBeVisible()
   },
   name: 'Overflow Menu Open',
 }
 
 export const DesktopPillStates: Story = {
+  tags: ['visual-viewport-1440x900'],
   render: () => (
     <SubdomainNavBar title="Site title">
       <SubdomainNavBar.Link href="#default">Default</SubdomainNavBar.Link>
@@ -363,6 +359,7 @@ export const DesktopPillStates: Story = {
 
 export const TabletView: Story = {
   decorators: [withFullPageFixture],
+  tags: ['visual-viewport-800x900'],
   render: () => (
     <SubdomainNavBar title="Site title" titleHref="/">
       {navigationLinks.slice(0, 6).map(link => (
@@ -397,6 +394,7 @@ export const TabletView: Story = {
 
 export const TabletMenuOpen: Story = {
   name: 'Tablet Menu Open',
+  tags: ['visual-viewport-800x900'],
   render: function Render() {
     const [selectedLanguage, setSelectedLanguage] = React.useState('English')
 

@@ -11,8 +11,24 @@ type StoryIndex = {
       id: string
       name: string
       importPath: string
+      tags?: string[]
     }
   >
+}
+
+const visualViewportTagPattern = /^visual-viewport-(\d+)x(\d+)$/
+
+function getVisualViewport(tags: string[] = []) {
+  const viewportTag = tags.find(tag => visualViewportTagPattern.test(tag))
+  if (!viewportTag) return
+
+  const match = viewportTag.match(visualViewportTagPattern)
+  if (!match) return
+
+  return {
+    width: Number(match[1]),
+    height: Number(match[2]),
+  }
 }
 
 // eslint-disable-next-line import/no-commonjs, import/extensions
@@ -116,30 +132,6 @@ const waitForTimeoutLookup = {
   'recipes-flexsuite-details--ai': 7000, // for the youtube video posters to load
 }
 
-const beforeScreenshotLookup: Partial<Record<string, string>> = {
-  'components-subdomainnavbar-features--overflow-menu-open': `
-    const moreButton = page.getByRole('button', {name: 'More'})
-    if ((await moreButton.getAttribute('aria-expanded')) !== 'true') {
-      await moreButton.click()
-    }
-    const overflowMenu = page.locator(\`[id="\${await moreButton.getAttribute('aria-controls')}"]\`)
-    await expect(moreButton).toHaveAttribute('aria-expanded', 'true')
-    await expect(overflowMenu).toBeVisible()
-    await expect(overflowMenu.getByRole('link', {name: 'Resources'})).toBeVisible()
-  `,
-}
-
-const screenshotOptionsLookup: Partial<Record<string, string>> = {
-  'components-subdomainnavbar-features--overflow-menu-open': `{animations: 'allow'}`,
-}
-
-const viewportLookup: Partial<Record<string, {width: number; height: number}>> = {
-  'components-subdomainnavbar-features--desktop-pill-states': {width: 1440, height: 900},
-  'components-subdomainnavbar-features--overflow-menu-open': {width: 1440, height: 900},
-  'components-subdomainnavbar-features--tablet-menu-open': {width: 800, height: 900},
-  'components-subdomainnavbar-features--tablet-view': {width: 800, height: 900},
-}
-
 // const skipLocalizationsTestsFor = [
 //   'components-actionmenu-features--disabled-item', // for the menu to open
 //   'components-actionmenu-features--anchored-positioning', // for the menu to open
@@ -201,7 +193,7 @@ const skipTestLookup = [
 const touchTestLookup = ['components-card-features--arrow-cta-long-label']
 
 const categorisedStories = Object.keys((stories as StoryIndex).entries).reduce((acc, key) => {
-  const {id, name: storyName, importPath} = stories.entries[key]
+  const {id, name: storyName, importPath, tags} = stories.entries[key]
 
   const importPathAsArray = importPath.split('/')
   const groupName = importPathAsArray[importPathAsArray.length - 2]
@@ -222,8 +214,10 @@ const categorisedStories = Object.keys((stories as StoryIndex).entries).reduce((
   acc[groupName].stories.push({
     id,
     groupName,
+    fullPage: !tags?.includes('visual-screenshot-viewport'),
     storyName,
     timeout: waitForTimeoutLookup[key] ? waitForTimeoutLookup[key] : defaultTimeout,
+    viewport: getVisualViewport(tags),
   })
 
   return acc
@@ -251,13 +245,12 @@ for (const key of Object.keys(categorisedStories)) {
           : ''
       }
 
-      ${componentStories.reduce((acc, {id, storyName, groupName, timeout}) => {
+      ${componentStories.reduce((acc, {id, storyName, groupName, fullPage, timeout, viewport}) => {
         const requiresMobileViewport = validNarrowVieportNames.some(viewportName =>
           storyName.toLowerCase().includes(viewportName),
         )
 
         const requiresTabletViewport = storyName.toLowerCase().includes('tablet')
-        const viewport = viewportLookup[id]
         const requiresTouch = touchTestLookup.includes(id)
         if (skipTestLookup.includes(id)) {
           return acc
@@ -274,8 +267,8 @@ for (const key of Object.keys(categorisedStories)) {
             await page.goto('http://localhost:${port}/iframe.html?${localeParam}args=&id=${id}&viewMode=story', { waitUntil: 'networkidle' })
             await page.locator('body.sb-show-main').waitFor({ state: 'visible' })
 
-            ${timeout ? `await page.waitForTimeout(${timeout})` : ''}${beforeScreenshotLookup[id] ?? ''}
-            await expect(page).toHaveScreenshot(${screenshotOptionsLookup[id] ?? '{fullPage: true}'})
+            ${timeout ? `await page.waitForTimeout(${timeout})` : ''}
+            await expect(page).toHaveScreenshot({ fullPage: ${fullPage} })
           });
 
           `

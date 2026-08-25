@@ -22,6 +22,7 @@ Updated `SubdomainNavBar` with a gridline visual design, content slots, search A
 ```
 
 - Added a responsive input-style search trigger that collapses to an icon-only button on smaller viewports, custom placeholder and shortcut labels, opt-in keyboard shortcuts, grouped results, and a `labels` prop for localizing visible and accessible search text. Pass `keyboardShortcut`, such as `keyboardShortcut="/"`, to enable a global shortcut.
+- Added a `menuLabels` prop for localizing the narrow and desktop overflow menu controls.
 - The `SubdomainNavBar` ref now exposes `openSearch()` and `closeSearch()` methods.
 - Improved desktop overflow handling. Overflowed links are removed from keyboard and assistive technology navigation, and focus returns to the More button when its menu closes.
 

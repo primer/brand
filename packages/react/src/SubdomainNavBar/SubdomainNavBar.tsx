@@ -26,6 +26,8 @@ import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/compone
 import styles from './SubdomainNavBar.module.css'
 import {useId} from '../hooks/useId'
 import {SubdomainNavBarLinkContext, useSubdomainNavBarLinkContext} from './SubdomainNavBarLinkContext'
+import {useSearchKeyboardShortcut} from './useSearchKeyboardShortcut'
+import {useSearchResults, type NormalizedSearchResultGroup} from './useSearchResults'
 
 export type SubdomainNavBarMenuLabels = {
   /**
@@ -36,16 +38,21 @@ export type SubdomainNavBarMenuLabels = {
    * Visible and accessible label for the open narrow menu control.
    */
   closeLabel: string
+  /**
+   * Visible and accessible label for the desktop overflow menu control.
+   */
+  overflowMenuLabel: string
 }
 
 const defaultMenuLabels: SubdomainNavBarMenuLabels = {
   menuLabel: 'Menu',
   closeLabel: 'Close',
+  overflowMenuLabel: 'More',
 }
 
 const SubdomainNavBarActionSizeContext = React.createContext<'small' | 'medium'>('small')
 
-export type SubdomainNavBarProps = {
+export type SubdomainNavBarProps = Omit<React.HTMLAttributes<HTMLElement>, 'children' | 'title'> & {
   /**
    * Valid child elements are `SubdomainNavBar.Link`, `SubdomainNavBar.PrimaryAction`,
    * `SubdomainNavBar.SecondaryAction` and `SubdomainNavBar.Search`
@@ -55,18 +62,6 @@ export type SubdomainNavBarProps = {
     | React.ReactElement<SubdomainNavBarLinkProps>
     | React.ReactElement<SubdomainNavBarSearchProps>
     | React.ReactElement<CTAActionProps>
-  /**
-   * Forward a custom HTML class attribute
-   */
-  className?: string
-  /**
-   * Forward a custom HTML ID to the root element.
-   */
-  id?: string
-  /**
-   * Forward custom styles to the root element.
-   */
-  style?: React.CSSProperties
   /**
    * Fixes the navigation bar to the top of the viewport. Defaults to `true`.
    */
@@ -100,7 +95,7 @@ export type SubdomainNavBarProps = {
    */
   onNarrowMenuToggle?: (isOpen: boolean) => void
   /**
-   * Customizable visible and accessible narrow menu labels.
+   * Customizable visible and accessible menu labels.
    */
   menuLabels?: Partial<SubdomainNavBarMenuLabels>
   /**
@@ -129,81 +124,6 @@ const testIds = {
   get liveRegion() {
     return `${this.root}-search-live-region`
   },
-}
-
-function isEditableKeyboardTarget(target: EventTarget | Element | null): boolean {
-  if (!(target instanceof Element)) return false
-
-  const editableElement = target.closest(
-    'input, textarea, select, [role="textbox"], [role="combobox"], [role="searchbox"], [contenteditable]',
-  )
-
-  if (!editableElement) return false
-
-  if (editableElement instanceof HTMLElement && editableElement.isContentEditable) return true
-
-  return editableElement.matches('input, textarea, select, [role="textbox"], [role="combobox"], [role="searchbox"]')
-}
-
-type SearchKeyboardShortcut = {
-  key: string
-  altKey: boolean
-  ctrlKey: boolean
-  metaKey: boolean
-  shiftKey: boolean
-}
-
-const searchKeyboardShortcutModifiers = new Set(['alt', 'option', 'ctrl', 'control', 'meta', 'cmd', 'command', 'shift'])
-
-function parseSearchKeyboardShortcut(keyboardShortcut: string | false): SearchKeyboardShortcut | false {
-  if (!keyboardShortcut) return false
-
-  const shortcutParts = keyboardShortcut
-    .split('+')
-    .map(part => part.trim())
-    .filter(Boolean)
-  const key = shortcutParts.pop()
-  if (!key) return false
-
-  const modifiers = shortcutParts.map(part => part.toLowerCase())
-
-  if (!modifiers.every(modifier => searchKeyboardShortcutModifiers.has(modifier))) return false
-
-  return {
-    key,
-    altKey: modifiers.includes('alt') || modifiers.includes('option'),
-    ctrlKey: modifiers.includes('ctrl') || modifiers.includes('control'),
-    metaKey: modifiers.includes('meta') || modifiers.includes('cmd') || modifiers.includes('command'),
-    shiftKey: modifiers.includes('shift'),
-  }
-}
-
-function keyboardEventMatchesShortcut(event: KeyboardEvent, shortcut: SearchKeyboardShortcut): boolean {
-  const shortcutKey = shortcut.key.toLowerCase()
-  const eventKey = event.key.toLowerCase()
-  const eventCode = event.code.toLowerCase()
-
-  if (event.altKey !== shortcut.altKey || event.ctrlKey !== shortcut.ctrlKey || event.metaKey !== shortcut.metaKey) {
-    return false
-  }
-
-  if (/^[^a-z0-9]$/.test(shortcutKey) && eventKey === shortcutKey) {
-    return shortcut.shiftKey ? event.shiftKey : true
-  }
-
-  if (event.shiftKey !== shortcut.shiftKey) {
-    return false
-  }
-
-  if (/^[a-z]$/.test(shortcutKey)) {
-    return eventKey === shortcutKey || eventCode === `key${shortcutKey}`
-  }
-
-  if (/^[0-9]$/.test(shortcutKey)) {
-    return eventKey === shortcutKey || eventCode === `digit${shortcutKey}`
-  }
-
-  return eventKey === shortcutKey
 }
 
 function isUsableSkipToContentTarget(element: HTMLElement) {
@@ -467,10 +387,6 @@ function Root(
     [children],
   )
   const hasSearch = Boolean(searchItem)
-  const searchKeyboardShortcut = useMemo(
-    () => parseSearchKeyboardShortcut(searchItem?.props.keyboardShortcut ?? false),
-    [searchItem?.props.keyboardShortcut],
-  )
 
   const handleSearchOpen = useCallback(() => {
     if (!hasSearch) return
@@ -499,33 +415,11 @@ function Root(
     [handleSearchClose, handleSearchOpen],
   )
 
-  useEffect(() => {
-    if (!searchKeyboardShortcut) return
-
-    const handleDocumentKeyDown = (event: KeyboardEvent) => {
-      if (
-        searchVisible ||
-        event.defaultPrevented ||
-        event.isComposing ||
-        !keyboardEventMatchesShortcut(event, searchKeyboardShortcut)
-      ) {
-        return
-      }
-
-      if (isEditableKeyboardTarget(event.target) || isEditableKeyboardTarget(document.activeElement)) {
-        return
-      }
-
-      event.preventDefault()
-      handleSearchOpen()
-    }
-
-    document.addEventListener('keydown', handleDocumentKeyDown)
-
-    return () => {
-      document.removeEventListener('keydown', handleDocumentKeyDown)
-    }
-  }, [handleSearchOpen, searchKeyboardShortcut, searchVisible])
+  useSearchKeyboardShortcut({
+    disabled: searchVisible,
+    keyboardShortcut: searchItem?.props.keyboardShortcut,
+    onTrigger: handleSearchOpen,
+  })
 
   const hasLeadingComponent = leadingComponent != null
   const hasTrailingComponent = trailingComponent != null
@@ -605,7 +499,10 @@ function Root(
                 className={styles['SubdomainNavBar-primary-nav']}
                 data-testid={testIds.menuLinks}
               >
-                <NavigationVisbilityObserver className={clsx(styles['SubdomainNavBar-primary-nav-list--invisible'])}>
+                <NavigationVisbilityObserver
+                  className={clsx(styles['SubdomainNavBar-primary-nav-list--invisible'])}
+                  overflowMenuLabel={resolvedMenuLabels.overflowMenuLabel}
+                >
                   {menuItems}
                 </NavigationVisbilityObserver>
               </nav>
@@ -691,6 +588,7 @@ function Root(
                           ) : (
                             <NavigationVisbilityObserver
                               className={clsx(styles['SubdomainNavBar-primary-nav-list--visible'])}
+                              overflowMenuLabel={resolvedMenuLabels.overflowMenuLabel}
                             >
                               {menuItems}
                             </NavigationVisbilityObserver>
@@ -879,59 +777,6 @@ export type SubdomainNavBarSearchProps = {
   labels?: Partial<SubdomainNavBarSearchLabels>
 }
 
-type NormalizedSearchResultGroup = {
-  title?: string
-  results: Array<{
-    result: SubdomainNavBarSearchResultProps
-    index: number
-  }>
-}
-
-function isSearchResultGroup(
-  item: SubdomainNavBarSearchResultProps | SubdomainNavBarSearchResultGroupProps,
-): item is SubdomainNavBarSearchResultGroupProps {
-  return 'results' in item
-}
-
-function normalizeSearchResults(searchResults: SubdomainNavBarSearchResults = []): NormalizedSearchResultGroup[] {
-  const groups: NormalizedSearchResultGroup[] = []
-  let resultIndex = 0
-
-  for (const item of searchResults) {
-    if (isSearchResultGroup(item)) {
-      if (item.results.length === 0) continue
-
-      groups.push({
-        title: item.title,
-        results: item.results.map(result => ({
-          result,
-          index: resultIndex++,
-        })),
-      })
-
-      continue
-    }
-
-    const groupTitle = item.group
-    let group = groups.find(existingGroup => existingGroup.title === groupTitle)
-
-    if (!group) {
-      group = {
-        title: groupTitle,
-        results: [],
-      }
-      groups.push(group)
-    }
-
-    group.results.push({
-      result: item,
-      index: resultIndex++,
-    })
-  }
-
-  return groups
-}
-
 const _SearchInternal = forwardRef<HTMLInputElement, SubdomainNavBarSearchProps>(
   (
     {
@@ -958,18 +803,21 @@ const _SearchInternal = forwardRef<HTMLInputElement, SubdomainNavBarSearchProps>
       placeholder ?? (title ? resolvedLabels.formatSearchWithTitle(title) : resolvedLabels.searchLabel)
     const dialogLabel = title ? resolvedLabels.formatSearchWithTitle(title) : resolvedLabels.searchLabel
     const resolvedShortcutLabel = shortcutLabel ?? (keyboardShortcut || '')
-    const normalizedSearchResultGroups = useMemo(() => normalizeSearchResults(searchResults), [searchResults])
-    const hasGroupedSearchResults = normalizedSearchResultGroups.some(group => group.title)
-    const searchResultsLength = normalizedSearchResultGroups.reduce((count, group) => count + group.results.length, 0)
-    const hasSearchResults = searchResultsLength > 0
-
-    const [activeDescendant, setActiveDescendant] = useState<number>(-1)
-    const [liveRegion, setLiveRegion] = useState<boolean>(false)
+    const {
+      activeDescendant,
+      handleSearchResultKeyDown,
+      hasGroupedSearchResults,
+      hasSearchResults,
+      liveRegion,
+      normalizedSearchResultGroups,
+      resetActiveDescendant,
+      searchResultsLength,
+    } = useSearchResults({active, dialogRef, searchResults, searchTerm})
 
     const handleClose = useCallback(() => {
       onSearchClose?.()
-      setActiveDescendant(-1)
-    }, [onSearchClose])
+      resetActiveDescendant()
+    }, [onSearchClose, resetActiveDescendant])
 
     const setInputRef = useCallback(
       (input: HTMLInputElement | null) => {
@@ -1015,11 +863,13 @@ const _SearchInternal = forwardRef<HTMLInputElement, SubdomainNavBarSearchProps>
       }
     }, [active, inputRef])
 
-    const handleDialogClick = useCallback(
-      (event: React.MouseEvent<HTMLDialogElement>) => {
-        if (event.target !== event.currentTarget) return
+    useEffect(() => {
+      const dialog = dialogRef.current
+      if (!dialog) return
 
-        const dialog = event.currentTarget
+      const handleDialogClick = (event: MouseEvent) => {
+        if (event.target !== dialog) return
+
         const dialogRect = dialog.getBoundingClientRect()
         const clickIsInsideDialog =
           event.clientX >= dialogRect.left &&
@@ -1030,9 +880,11 @@ const _SearchInternal = forwardRef<HTMLInputElement, SubdomainNavBarSearchProps>
         if (clickIsInsideDialog) return
 
         handleClose()
-      },
-      [handleClose],
-    )
+      }
+
+      dialog.addEventListener('click', handleDialogClick)
+      return () => dialog.removeEventListener('click', handleDialogClick)
+    }, [handleClose])
 
     const handleDialogCancel = useCallback(
       (event: React.SyntheticEvent<HTMLDialogElement>) => {
@@ -1041,57 +893,6 @@ const _SearchInternal = forwardRef<HTMLInputElement, SubdomainNavBarSearchProps>
       },
       [handleClose],
     )
-
-    const handleAriaFocus = useCallback(
-      (event: React.KeyboardEvent<HTMLInputElement>) => {
-        const supportedKeys = ['ArrowDown', 'ArrowUp', 'Enter']
-        const currentCount = activeDescendant
-        const dialog = dialogRef.current
-        let count
-
-        // Prevent any other keys outside of supported from being prevented.
-        // Only prevent "Enter" if activeDescendant is greater than -1.
-        if (!supportedKeys.includes(event.key) || (event.key === 'Enter' && activeDescendant === -1) || !dialog) {
-          return false
-        }
-
-        event.preventDefault()
-
-        if (event.key === 'ArrowDown') {
-          // If count reaches last search result item, reset to -1
-          count = currentCount < searchResultsLength - 1 ? currentCount + 1 : -1
-          setActiveDescendant(count)
-        } else if (event.key === 'ArrowUp') {
-          // Reset to last search result item if
-          count = currentCount === -1 ? searchResultsLength - 1 : currentCount - 1
-          setActiveDescendant(count)
-        }
-
-        if (['ArrowDown', 'ArrowUp'].includes(event.key)) {
-          dialog.querySelector(`#subdomainnavbar-search-result-${count}`)?.scrollIntoView()
-        }
-
-        if (event.key === 'Enter') {
-          const link = dialog.querySelector(`#subdomainnavbar-search-result-${activeDescendant}`) as HTMLAnchorElement
-          link.click()
-        }
-      },
-      [searchResultsLength, activeDescendant],
-    )
-
-    const searchLiveRegion = useCallback(() => {
-      // Adding a non-breaking space and then removing it will force screen readers to announce the text,
-      // as it thinks that there was a change within the live region.
-      setLiveRegion(true)
-
-      setTimeout(() => {
-        if (active) setLiveRegion(false)
-      }, 200)
-    }, [active])
-
-    useEffect(() => {
-      searchLiveRegion()
-    }, [searchResultsLength, searchTerm, searchLiveRegion])
 
     const renderSearchResult = ({result, index}: NormalizedSearchResultGroup['results'][number]) => (
       <li key={`${result.title}-${index}`} className={styles['SubdomainNavBar-search-result-item']} role="presentation">
@@ -1153,7 +954,6 @@ const _SearchInternal = forwardRef<HTMLInputElement, SubdomainNavBarSearchProps>
             )}
           </button>
         </div>
-        {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-noninteractive-element-interactions -- Native dialog keyboard dismissal is handled by onCancel; click only closes backdrop clicks. */}
         <dialog
           ref={dialogRef}
           aria-label={dialogLabel}
@@ -1162,7 +962,6 @@ const _SearchInternal = forwardRef<HTMLInputElement, SubdomainNavBarSearchProps>
             hasSearchResults && styles['SubdomainNavBar-search-dialog--has-results'],
           )}
           onCancel={handleDialogCancel}
-          onClick={handleDialogClick}
         >
           {active && (
             <>
@@ -1191,7 +990,7 @@ const _SearchInternal = forwardRef<HTMLInputElement, SubdomainNavBarSearchProps>
                         aria-activedescendant={
                           activeDescendant === -1 ? undefined : `subdomainnavbar-search-result-${activeDescendant}`
                         }
-                        onKeyDown={handleAriaFocus}
+                        onKeyDown={handleSearchResultKeyDown}
                       />
                     </FormControl>
                   </form>
