@@ -1157,7 +1157,10 @@ const _SearchInternal = forwardRef<HTMLInputElement, SubdomainNavBarSearchProps>
         <dialog
           ref={dialogRef}
           aria-label={dialogLabel}
-          className={styles['SubdomainNavBar-search-dialog']}
+          className={clsx(
+            styles['SubdomainNavBar-search-dialog'],
+            hasSearchResults && styles['SubdomainNavBar-search-dialog--has-results'],
+          )}
           onCancel={handleDialogCancel}
           onClick={handleDialogClick}
         >

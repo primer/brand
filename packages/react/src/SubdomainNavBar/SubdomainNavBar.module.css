@@ -221,7 +221,7 @@
     display: flex;
     align-items: center;
     flex: 1 1 auto;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     min-width: 0;
     block-size: var(--base-size-48);
     max-block-size: var(--base-size-48);
@@ -754,7 +754,7 @@
     display: grid;
     gap: var(--brand-borderWidth-thin);
     margin: 0;
-    padding: var(--base-size-8);
+    padding: var(--base-size-8) var(--base-size-16);
   }
 
   .SubdomainNavBar-menu-wrapper-footer {
@@ -881,7 +881,7 @@
     padding: var(--base-size-16);
   }
 
-  .SubdomainNavBar-menu-wrapper .SubdomainNavBar-button-area {
+  .SubdomainNavBar .SubdomainNavBar-menu-wrapper .SubdomainNavBar-button-area {
     display: flex;
     width: 100%;
     height: auto;
@@ -1481,13 +1481,17 @@
   max-height: calc(100vh - ((var(--base-size-64) + var(--base-size-8)) * 2));
   height: auto;
   margin-inline: auto;
-  padding: var(--base-size-16) var(--base-size-16) var(--base-size-32);
+  padding: var(--base-size-16);
   overflow: hidden;
   color: var(--brand-color-text-default);
   background-color: var(--brand-color-canvas-default);
   border: var(--brand-borderWidth-thin) solid var(--brand-color-border-default);
   border-radius: var(--brand-borderRadius-large);
   box-shadow: 0 0 calc(var(--base-size-32) + var(--base-size-2)) var(--brand-SubdomainNavBar-searchDialog-shadowColor);
+}
+
+.SubdomainNavBar-search-dialog--has-results {
+  padding-block-end: var(--base-size-32);
 }
 
 .SubdomainNavBar-search-dialog::backdrop {

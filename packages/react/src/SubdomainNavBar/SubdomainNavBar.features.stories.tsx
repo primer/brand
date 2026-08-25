@@ -28,6 +28,14 @@ const meta = {
           },
           type: 'desktop',
         },
+        desktop1024: {
+          name: 'Desktop 1024',
+          styles: {
+            width: '1024px',
+            height: '768px',
+          },
+          type: 'desktop',
+        },
         tablet800: {
           name: 'Tablet 800',
           styles: {
@@ -388,6 +396,7 @@ export const TabletView: Story = {
 }
 
 export const TabletMenuOpen: Story = {
+  name: 'Tablet Menu Open',
   render: function Render() {
     const [selectedLanguage, setSelectedLanguage] = React.useState('English')
 
@@ -484,7 +493,6 @@ export const TabletMenuOpen: Story = {
     await expect(getComputedStyle(actionArea as Element).borderBlockStartWidth).toBe('0px')
     await expect(getComputedStyle(trailingComponent as Element).borderBlockStartWidth).toBe('1px')
   },
-  name: 'Tablet Menu Open',
 }
 
 export const MobileView: Story = {
@@ -755,6 +763,7 @@ export const WithLeadingComponent: Story = {
 }
 
 export const WithTrailingComponent: Story = {
+  name: 'With Trailing Component',
   decorators: [withFullPageFixture],
   render: function Render() {
     const [selectedLanguage, setSelectedLanguage] = React.useState('English')
@@ -798,7 +807,15 @@ export const WithTrailingComponent: Story = {
       </SubdomainNavBar>
     )
   },
-  name: 'With Trailing Component',
+  globals: {
+    viewport: {value: 'desktop1024'},
+  },
+  play: async ({canvasElement}) => {
+    await canvasElement.ownerDocument.fonts.ready
+    const navList = canvasElement.querySelector<HTMLElement>('[data-testid="SubdomainNavBar-menuLinks"] ul')
+
+    await waitFor(() => expect(navList?.scrollHeight).toBeLessThanOrEqual(navList?.clientHeight ?? 0))
+  },
 }
 
 export const NoTitle: Story = {

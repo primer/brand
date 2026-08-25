@@ -1372,6 +1372,7 @@ describe('SubdomainNavBar', () => {
     expect(dialog.tagName).toBe('DIALOG')
     expect(dialog).toHaveAttribute('open')
     expect(dialog).toHaveClass('SubdomainNavBar-search-dialog')
+    expect(dialog).not.toHaveClass('SubdomainNavBar-search-dialog--has-results')
     expect(getByRole('button', {name: 'Close'})).toHaveTextContent('Close')
   })
 
@@ -1419,6 +1420,7 @@ describe('SubdomainNavBar', () => {
 
     fireEvent.click(getByTestId('toggle-search'))
     expect(getByRole('option')).toBeInTheDocument()
+    expect(getByRole('dialog')).toHaveClass('SubdomainNavBar-search-dialog--has-results')
 
     dispatchDialogCancel(getByRole('dialog'))
     expect(queryByRole('dialog')).not.toBeInTheDocument()
