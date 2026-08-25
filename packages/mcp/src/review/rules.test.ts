@@ -238,6 +238,33 @@ describe('primer_brand_review rules', () => {
     )
   })
 
+  it('flags standalone Label in page compositions', () => {
+    const code =
+      '<Grid.Column><Stack><Label color="gray" size="small">Managed</Label><Pillar><Pillar.Heading>Scale</Pillar.Heading></Pillar></Stack></Grid.Column>'
+    const findings = review(code).filter(finding => finding.rule === 'standalone-label-context')
+    expect(findings).toHaveLength(1)
+    expect(findings[0]?.severity).toBe('error')
+    expect(findings[0]?.message).toContain('Token')
+  })
+
+  it('allows the Token-backed Card.Label slot', () => {
+    const findings = review('<Card><Card.Label>Guide</Card.Label><Card.Heading>Build</Card.Heading></Card>')
+    expect(ruleIds(findings)).not.toContain('standalone-label-context')
+  })
+
+  it('warns without erroring when Label may be product-like metadata', () => {
+    const findings = review('<tr><td>Issue #123</td><td><Label size="small">Bug</Label></td></tr>').filter(
+      finding => finding.rule === 'standalone-label-context',
+    )
+    expect(findings).toHaveLength(1)
+    expect(findings[0]?.severity).toBe('warning')
+  })
+
+  it('allows Token in page compositions', () => {
+    const findings = review('<Pillar><Token>Managed</Token><Pillar.Heading>Scale</Pillar.Heading></Pillar>')
+    expect(ruleIds(findings)).not.toContain('standalone-label-context')
+  })
+
   it('reports which approved brand components were imported', () => {
     const used = brandComponentsUsed("import {Hero, CTABanner} from '@primer/react-brand'", makeCatalog())
     expect(used.map(component => component.name).sort()).toEqual(['CTABanner', 'Hero'])
@@ -265,9 +292,17 @@ describe('primer_brand_review over generated canonical examples', () => {
 
   it('includes object-assigned subcomponents separated by comments', () => {
     const hero = catalog.components.find(component => component.name === 'Hero')
-    expect(hero?.subcomponents).toEqual(
-      expect.arrayContaining(['Hero.ButtonGroup', 'Hero.PrimaryAction', 'Hero.SecondaryAction']),
-    )
+    expect(hero?.subcomponents).toEqual(expect.arrayContaining(['Hero.ButtonGroup', 'Hero.Image', 'Hero.Video']))
+  })
+
+  it('does not advertise deprecated compound subcomponents', () => {
+    const hero = catalog.components.find(component => component.name === 'Hero')
+    expect(hero?.subcomponents).not.toEqual(expect.arrayContaining(['Hero.PrimaryAction', 'Hero.SecondaryAction']))
+  })
+
+  it('advertises the supported Card.Label subcomponent', () => {
+    const card = catalog.components.find(component => component.name === 'Card')
+    expect(card?.subcomponents).toContain('Card.Label')
   })
 
   it('does not recommend deprecated Hero action subcomponents', () => {

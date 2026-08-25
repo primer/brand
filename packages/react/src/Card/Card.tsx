@@ -410,7 +410,7 @@ const isCardDescription = createComponentTypeGuard(CardDescription)
 
 /**
  * Card component:
- * {@link https://primer.style/brand/components/Card/ See usage examples}.
+ * @see https://primer.style/brand/components/Card
  */
 export const Card = Object.assign(CardRoot, {
   Image: CardImage,

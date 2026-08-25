@@ -86,14 +86,18 @@ function extractSubcomponents(name, source) {
   // Scan block comments between runs of `*` instead of using a lazy wildcard, which can backtrack
   // exponentially on repeated comment delimiters such as `*//*`.
   const propertyPattern =
-    /(?:^|[{,])(?:\s|\/\*[^*]*\*+(?:[^/*][^*]*\*+)*\/|\/\/[^\r\n]*(?:\r?\n|$))*([A-Za-z_$][\w$]*)\s*(?=[:,}])/g
+    /(?:^|[{,])((?:\s|\/\*[^*]*\*+(?:[^/*][^*]*\*+)*\/|\/\/[^\r\n]*(?:\r?\n|$))*)([A-Za-z_$][\w$]*)\s*(?=[:,}])/g
   for (const match of source.matchAll(/Object\.assign\(/g)) {
     const openBraceIndex = source.indexOf('{', match.index)
     if (openBraceIndex === -1) continue
     const assignedObject = captureBalanced(source, openBraceIndex, '{', '}')
     if (!assignedObject) continue
     // Capture `Heading: ...` and shorthand `Visual` keys across intervening comments.
-    for (const propertyKey of assignedObject.matchAll(propertyPattern)) subcomponents.add(`${name}.${propertyKey[1]}`)
+    for (const propertyKey of assignedObject.matchAll(propertyPattern)) {
+      const leadingComments = propertyKey[1] ?? ''
+      const key = propertyKey[2]
+      if (key && !/@deprecated\b/.test(leadingComments)) subcomponents.add(`${name}.${key}`)
+    }
   }
   for (const match of source.matchAll(new RegExp(`\\b${name}\\.(\\w+)\\s*=`, 'g'))) {
     subcomponents.add(`${name}.${match[1]}`)

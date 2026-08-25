@@ -171,7 +171,7 @@ const meta = {
       },
     },
     label: {
-      description: 'Optional eyebrow content rendered above the heading.',
+      description: 'Optional Card.Label content rendered above the heading.',
       control: {
         type: 'text',
       },
@@ -181,7 +181,7 @@ const meta = {
     },
     labelVariant: {
       name: 'variant',
-      description: 'Presentation of the Card label.',
+      description: 'Presentation of Card.Label.',
       control: {
         type: 'inline-radio',
       },
