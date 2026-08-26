@@ -628,6 +628,7 @@ function Root(
               )}
             </div>
           </div>
+          {!isLarge && !menuHidden && <div className={styles['SubdomainNavBar-menu-backdrop']} aria-hidden="true" />}
         </header>
       </div>
       <div ref={fallbackTargetRef} id={fallbackTargetID} tabIndex={-1} />

@@ -325,6 +325,8 @@ export const OverflowMenuOpen: Story = {
     await canvasElement.ownerDocument.fonts.ready
     const moreButton = canvas.getByRole('button', {name: 'More'})
     await waitFor(() => expect(moreButton).toBeVisible())
+    const firstOverflowedItem = canvasElement.querySelector('[data-navitemid][aria-hidden="true"]')
+    await expect(firstOverflowedItem).not.toBeVisible()
     await userEvent.click(moreButton)
     await expect(moreButton).toHaveAttribute('aria-expanded', 'true')
     const resourcesLink = canvas.getByRole('link', {name: 'Resources'})
@@ -461,6 +463,7 @@ export const TabletMenuOpen: Story = {
     const menuRect = menu?.getBoundingClientRect()
     const navBarRect = closeButton.closest('header')?.getBoundingClientRect()
     const menuStyles = menu ? getComputedStyle(menu) : undefined
+    const closeButtonStyles = getComputedStyle(closeButton)
     const closeIconBars = closeButton.querySelector('[aria-hidden="true"]')?.children
     const menuContent = menu?.firstElementChild
     const leadingComponent = menuContent?.firstElementChild
@@ -468,8 +471,10 @@ export const TabletMenuOpen: Story = {
     const menuFooter = menu?.lastElementChild
     const actionArea = menuFooter?.firstElementChild
     const trailingComponent = menuFooter?.lastElementChild
+    const backdrop = canvasElement.querySelector('.SubdomainNavBar-menu-backdrop')
 
     await expect(closeButton).toHaveAttribute('aria-expanded', 'true')
+    await expect(closeButtonStyles.zIndex).toBe('3')
     await expect(
       Array.from(closeIconBars ?? []).every(bar => {
         const barStyles = getComputedStyle(bar)
@@ -490,6 +495,8 @@ export const TabletMenuOpen: Story = {
     await expect(getComputedStyle(menuFooter as Element).borderBlockStartWidth).toBe('1px')
     await expect(getComputedStyle(actionArea as Element).borderBlockStartWidth).toBe('0px')
     await expect(getComputedStyle(trailingComponent as Element).borderBlockStartWidth).toBe('1px')
+    await expect(backdrop).toBeInTheDocument()
+    await expect(getComputedStyle(backdrop as Element).animationName).toBe('fade-in')
   },
 }
 
@@ -555,11 +562,15 @@ export const MobileMenuOpen: Story = {
     const linkList = menu?.firstElementChild?.lastElementChild
     const menuFooter = menu?.lastElementChild
     const actionArea = menuFooter?.firstElementChild
+    const backdrop = canvasElement.querySelector('.SubdomainNavBar-menu-backdrop')
     await expect(closeButton).toHaveAttribute('aria-expanded', 'true')
+    await expect(getComputedStyle(closeButton).zIndex).toBe('3')
     await expect(menu?.getBoundingClientRect().height).toBeGreaterThan(0)
     await expect(getComputedStyle(linkList as Element).borderBlockEndWidth).toBe('0px')
     await expect(getComputedStyle(menuFooter as Element).borderBlockStartWidth).toBe('1px')
     await expect(getComputedStyle(actionArea as Element).borderBlockStartWidth).toBe('0px')
+    await expect(backdrop).toBeInTheDocument()
+    await expect(getComputedStyle(backdrop as Element).animationName).toBe('fade-in')
   },
 }
 

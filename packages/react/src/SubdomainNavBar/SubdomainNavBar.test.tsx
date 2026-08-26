@@ -865,7 +865,7 @@ describe('SubdomainNavBar', () => {
     document.body.style.overflow = 'clip'
     const mockOnNarrowMenuToggle = jest.fn()
     const user = userEvent.setup()
-    const {getByRole} = render(
+    const {container, getByRole} = render(
       <SubdomainNavBar title="Subdomain" onNarrowMenuToggle={mockOnNarrowMenuToggle}>
         <SubdomainNavBar.Link href="#collections">Collections</SubdomainNavBar.Link>
       </SubdomainNavBar>,
@@ -874,6 +874,7 @@ describe('SubdomainNavBar', () => {
     const menuButton = getByRole('button', {name: 'Menu'})
     await user.click(menuButton)
     expect(document.body.style.overflow).toBe('hidden')
+    expect(container.querySelector('.SubdomainNavBar-menu-backdrop')).toHaveAttribute('aria-hidden', 'true')
 
     const menuId = menuButton.getAttribute('aria-controls')
     const menu = document.getElementById(menuId as string)
@@ -881,6 +882,7 @@ describe('SubdomainNavBar', () => {
 
     expect(menuButton).toHaveAttribute('aria-expanded', 'false')
     expect(document.body.style.overflow).toBe('clip')
+    expect(container.querySelector('.SubdomainNavBar-menu-backdrop')).not.toBeInTheDocument()
     expect(mockOnNarrowMenuToggle).toHaveBeenNthCalledWith(1, true)
     expect(mockOnNarrowMenuToggle).toHaveBeenNthCalledWith(2, false)
   })

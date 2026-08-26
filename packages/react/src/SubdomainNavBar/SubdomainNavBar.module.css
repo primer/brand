@@ -248,6 +248,7 @@
 
 @media screen and (min-width: 48rem) {
   .SubdomainNavBar-primary-nav-list-item--overflowed {
+    visibility: hidden;
     pointer-events: none;
   }
 
@@ -616,7 +617,24 @@
 }
 
 .SubdomainNavBar-mobile-menu-button.SubdomainNavBar-menu-button--close {
+  position: relative;
+  z-index: 3;
   background-color: var(--brand-color-canvas-muted);
+}
+
+.SubdomainNavBar-mobile-menu-button.SubdomainNavBar-menu-button--close:focus-visible {
+  outline: none;
+  box-shadow: none;
+  transition: none;
+}
+
+.SubdomainNavBar-mobile-menu-button.SubdomainNavBar-menu-button--close:focus-visible::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  border: var(--brand-borderWidth-thick) solid var(--brand-color-focus);
 }
 
 .SubdomainNavBar-mobile-menu-button.SubdomainNavBar-menu-button--close::after {
@@ -689,12 +707,6 @@
     font-family: var(--brand-body-fontFamily);
     font-size: var(--brand-text-size-100);
     line-height: var(--brand-text-lineHeight-100);
-  }
-
-  .SubdomainNavBar-mobile-menu-button:focus-visible {
-    outline: none;
-    box-shadow: inset 0 0 0 var(--brand-borderWidth-thick) var(--brand-color-focus);
-    transition: none;
   }
 
   .SubdomainNavBar-menu-button-label {
@@ -962,6 +974,16 @@
   top: var(--SubdomainNavBar-height);
   height: auto;
   max-height: calc(100vh - var(--SubdomainNavBar-height) - var(--SubdomainNavBar-menu-offset-block-start, 0px));
+}
+
+.SubdomainNavBar-menu-backdrop {
+  position: fixed;
+  inset-block-start: calc(var(--SubdomainNavBar-height) + var(--SubdomainNavBar-menu-offset-block-start, 0px));
+  inset-block-end: 0;
+  inset-inline: 0;
+  z-index: 1;
+  background-color: var(--brand-SubdomainNavBar-searchDialog-backdropColor);
+  animation: fade-in var(--brand-animation-duration-fast) var(--brand-animation-easing-glide);
 }
 
 .SubdomainNavBar .SubdomainNavBar-inner-container--search-open {
@@ -1640,6 +1662,15 @@
   100% {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
   }
 }
 

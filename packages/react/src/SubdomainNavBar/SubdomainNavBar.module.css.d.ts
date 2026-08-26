@@ -15,6 +15,7 @@ declare const styles: {
   readonly "SubdomainNavBar-link-content": string;
   readonly "SubdomainNavBar-link-text": string;
   readonly "SubdomainNavBar-logo-mark": string;
+  readonly "SubdomainNavBar-menu-backdrop": string;
   readonly "SubdomainNavBar-menu-button": string;
   readonly "SubdomainNavBar-menu-button--close": string;
   readonly "SubdomainNavBar-menu-button-bar": string;
@@ -69,6 +70,7 @@ declare const styles: {
   readonly "SubdomainNavBar-title-area": string;
   readonly "SubdomainNavBar-trailing-component": string;
   readonly "enlarge-shadow": string;
+  readonly "fade-in": string;
   readonly "fade-in-down": string;
   readonly "fade-in-down-overflow": string;
   readonly "fade-in-down-staggered": string;
