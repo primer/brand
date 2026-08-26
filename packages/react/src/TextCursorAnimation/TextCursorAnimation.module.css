@@ -36,10 +36,8 @@
 }
 
 .TextCursorAnimation__cursor {
-  position: relative;
-  inset-block-start: calc(var(--base-size-2) / -2);
   width: calc(var(--base-size-8) + var(--base-size-2));
-  height: var(--base-size-12);
+  height: calc(var(--base-size-12) - var(--base-size-2) / 2);
   flex: 0 0 calc(var(--base-size-8) + var(--base-size-2));
 }
 

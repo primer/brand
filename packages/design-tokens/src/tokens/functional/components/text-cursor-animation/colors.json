@@ -6,10 +6,12 @@
         "dark": "var(--brand-color-accent-primary)"
       },
       "deleteColor": {
-        "value": "var(--base-color-scale-lemon-4)"
+        "value": "var(--base-color-scale-blue-4)",
+        "dark": "var(--base-color-scale-blue-3)"
       },
       "finalColor": {
-        "value": "var(--base-color-scale-purple-5)"
+        "value": "var(--base-color-scale-purple-5)",
+        "dark": "var(--base-color-scale-purple-3)"
       }
     }
   }

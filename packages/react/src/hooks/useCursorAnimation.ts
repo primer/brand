@@ -1,4 +1,5 @@
 import {useEffect, useState} from 'react'
+import useIsomorphicLayoutEffect from './useIsomorphicLayoutEffect'
 import {useReducedMotion} from './useReducedMotion'
 
 export type CursorAnimationPhase = 'initial' | 'correction' | 'final' | 'complete'
@@ -35,11 +36,14 @@ export function useCursorAnimation({
     cursorPhase: shouldStartHidden ? 'initial' : 'complete',
   })
 
-  useEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     if (!shouldAnimate) {
       setFrame({visibleText: text, showCursor: true, cursorPhase: 'complete'})
-      return
     }
+  }, [shouldAnimate, text])
+
+  useEffect(() => {
+    if (!shouldAnimate) return
 
     const frameDuration = 1000 / 60
     const charactersPerSecond = 30 * (85 / 75)
