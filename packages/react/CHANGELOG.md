@@ -1,5 +1,57 @@
 # @primer/react-brand
 
+## 0.74.0
+
+### Minor Changes
+
+- [#1448](https://github.com/primer/brand/pull/1448) [`72fd3a6`](https://github.com/primer/brand/commit/72fd3a696f03f47876f3bf02e6e5187b0e1dc0f1) Thanks [@rezrah](https://github.com/rezrah)! - Added a new `InlineCode` component for short, in-situ code fragments.
+
+  Use it inside other components like `Card`, `CTABanner`, `River`, `Hero` and `Pillar`.
+
+  The native `code` elements remain supported in `Card`, `CTABanner` and `River` for backwards compatibility, but their visual appearance has changed. They no longer feature a border and have adjusted typographic spacing.
+
+  Example usage:
+
+  ```js
+  import {InlineCode} from '@primer/react-brand'
+  ```
+
+  ```jsx
+  <InlineCode>npm install @primer/react-brand</InlineCode>
+  ```
+
+  Migration example for `Card`, `CTABanner` and `River`, which previously used `<code>`
+
+  ```diff
+  + import {Card, InlineCode} from '@primer/react-brand'
+
+  - <Card.Heading>Run <code>git status</code></Card.Heading>
+  + <Card.Heading>Run <InlineCode>git status</InlineCode></Card.Heading>
+  ```
+
+- [#1429](https://github.com/primer/brand/pull/1429) [`e6d9665`](https://github.com/primer/brand/commit/e6d96657ccd48b0d7f65d20f127f04cc1b107cdd) Thanks [@danielguillan](https://github.com/danielguillan)! - Updated `MinimalFooter` visual design and added a center component prop and back to top control.
+
+  - ⚠️ Manually check `MinimalFooter` on your site to ensure the new opinionated border and background defaults work with your design.
+  - Added the optional `centerComponent` prop for exceptional page-specific content and the optional `MinimalFooter.BackToTop` control.
+  - Replaced the full GitHub logo with the GitHub logomark and reorganized the footer into top, center, and bottom sections.
+
+- [#1444](https://github.com/primer/brand/pull/1444) [`e61d466`](https://github.com/primer/brand/commit/e61d4664c260e18ce9b6f134a3d0684f339198cc) Thanks [@rezrah](https://github.com/rezrah)! - ⚠️ `CardSkewEffect` has been removed from `@primer/react-brand`. The effect has been retired, and no replacement will be issued.
+
+### Patch Changes
+
+- [#1449](https://github.com/primer/brand/pull/1449) [`1aaffc3`](https://github.com/primer/brand/commit/1aaffc3f0d7aff7b2b7f26580ad00b424d785d01) Thanks [@stefankp](https://github.com/stefankp)! - Added `infoTooltipAriaLabel` to `PricingOptions.FeatureListItem` to customize the tooltip trigger's accessible label.
+
+- [#1447](https://github.com/primer/brand/pull/1447) [`5fbbd9d`](https://github.com/primer/brand/commit/5fbbd9d83494f09aed56e046b0614c4ebbffe9c0) Thanks [@rezrah](https://github.com/rezrah)! - Fixed missing size and animation tokens in tree-shaken ESM component bundles like `Button`. Now all control tokens are loaded globally as a side-effect.
+
+- [#1394](https://github.com/primer/brand/pull/1394) [`414e53f`](https://github.com/primer/brand/commit/414e53f6a27abc8c6fe8067ccb1477bb01c02677) Thanks [@stefankp](https://github.com/stefankp)! - Added JSON-based typography and size map exports at `@primer/react-brand/lib/design-tokens/json/typography.json` and `@primer/react-brand/lib/design-tokens/json/size.json`.
+
+- [#1451](https://github.com/primer/brand/pull/1451) [`3b22cb5`](https://github.com/primer/brand/commit/3b22cb592978ab7b32103575909db12cad548c1a) Thanks [@rezrah](https://github.com/rezrah)! - Improved clarity and guidelines for `Token` and `Label` components:
+
+  - Use `Token` for compact metadata that describes or supports adjacent content.
+  - Use `Label` for short status or metadata attached to an object in product-like UI.
+  - Added development warnings for legacy standalone `Label` children in `River.Content` and `Bento.Content`.
+  - Added MCP server instructions to provide errors for the standalone `Label` component used near first-class patterns and components.
+
 ## 0.73.0
 
 ### Minor Changes
