@@ -26,7 +26,7 @@
 .TextCursorAnimation__content {
   display: inline-flex;
   align-items: center;
-  gap: var(--base-size-6);
+  gap: calc(var(--base-size-8) + var(--base-size-2));
 }
 
 .TextCursorAnimation__content--animated {
@@ -36,9 +36,9 @@
 }
 
 .TextCursorAnimation__cursor {
-  width: calc(var(--base-size-8) + var(--base-size-2));
-  height: calc(var(--base-size-12) - var(--base-size-2) / 2);
-  flex: 0 0 calc(var(--base-size-8) + var(--base-size-2));
+  width: calc(var(--base-size-8) + var(--base-size-2) / 2);
+  height: calc(var(--base-size-12) + var(--base-size-2));
+  flex: 0 0 calc(var(--base-size-8) + var(--base-size-2) / 2);
 }
 
 .TextCursorAnimation__cursor--initial {
