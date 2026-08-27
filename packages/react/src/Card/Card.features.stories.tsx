@@ -1,10 +1,11 @@
 import React from 'react'
-import type {Meta, StoryFn} from '@storybook/react'
+import type {Meta, StoryFn, StoryObj} from '@storybook/react'
 import {useTranslation} from 'react-i18next'
+import {expect, userEvent, waitFor, within} from 'storybook/test'
 import {Card, CardIconColors} from '.'
 import {Avatar} from '../Avatar'
 import {Token} from '../Token'
-import {Box, Grid, Section, Stack, Text, ThemeProvider} from '..'
+import {Box, Grid, InlineCode, Section, Stack, Text, ThemeProvider} from '..'
 import avatarMona from '../fixtures/images/avatar-mona.png'
 import darkHorizontalBannerAlt from '../fixtures/images/dark-horizontal-banner-alt.png'
 import placeholderImage from '../fixtures/images/placeholder.png'
@@ -12,6 +13,8 @@ import {CopilotIcon, GitBranchIcon, RocketIcon, ZapIcon} from '@primer/octicons-
 import {MicrosoftLogo} from '../fixtures/third-party-logos/MicrosoftLogo'
 import type {IconProps} from '../Icon'
 import styles from './Card.stories.shared.module.css'
+
+type Story = StoryObj<typeof Card>
 
 type StackedCardData = {
   href: string
@@ -86,8 +89,10 @@ export const Minimal: StoryFn<typeof Card> = () => {
 
   return (
     <Card href="https://github.com" variant="minimal">
+      <Card.Tokens>
+        <Token>{t('limited')}</Token>
+      </Card.Tokens>
       <Card.Heading>{t('code_search_heading')}</Card.Heading>
-      <Card.Label>{t('limited')}</Card.Label>
       <Card.Description>{t('code_search_description')}</Card.Description>
     </Card>
   )
@@ -115,7 +120,17 @@ export const CTAText: StoryFn<typeof Card> = () => {
   )
 }
 
-const ArrowCTALongLabelCard = ({testId}: {testId?: string}) => {
+const getStoryElement = (container: HTMLElement, selector: string) => {
+  const element = container.querySelector<HTMLElement>(selector)
+
+  if (!element) {
+    throw new Error(`Unable to find story element matching ${selector}`)
+  }
+
+  return element
+}
+
+const ArrowCTALongLabelCard = ({testId, disableAnimation = false}: {testId?: string; disableAnimation?: boolean}) => {
   const {t} = useTranslation('Card')
 
   return (
@@ -124,6 +139,7 @@ const ArrowCTALongLabelCard = ({testId}: {testId?: string}) => {
         data-testid={testId}
         href="https://github.com"
         fullWidth
+        disableAnimation={disableAnimation}
         ctaVariant="arrow"
         ctaText={t('read_the_quick_start_guide')}
       >
@@ -139,9 +155,22 @@ const ArrowCTALongLabelCard = ({testId}: {testId?: string}) => {
 }
 
 export const ArrowCTALongLabel: StoryFn<typeof Card> = () => {
-  return <ArrowCTALongLabelCard />
+  return <ArrowCTALongLabelCard testId="non-hover-card" />
 }
 ArrowCTALongLabel.storyName = 'Arrow CTA with long label'
+ArrowCTALongLabel.play = async ({canvasElement}) => {
+  if (!window.matchMedia('(hover: none)').matches) return
+
+  const canvas = within(canvasElement)
+  const card = await canvas.findByTestId('non-hover-card')
+  const action = getStoryElement(card, '[class*="Card__action--arrowOnly"]')
+  const label = getStoryElement(card, '[class*="Card__actionLabel__"]')
+  const labelClip = getStoryElement(card, '[class*="Card__actionLabelClip"]')
+
+  expect(window.getComputedStyle(action).columnGap).toBe('8px')
+  expect(window.getComputedStyle(label).whiteSpace).toBe('normal')
+  expect(window.getComputedStyle(labelClip).display).toBe('contents')
+}
 
 export const ArrowCTALongLabelHover: StoryFn<typeof Card> = () => {
   return <ArrowCTALongLabelCard testId="hover-enabled-card" />
@@ -149,6 +178,28 @@ export const ArrowCTALongLabelHover: StoryFn<typeof Card> = () => {
 ArrowCTALongLabelHover.storyName = 'Arrow CTA with long label hover'
 ArrowCTALongLabelHover.parameters = {
   pseudo: {hover: ['[data-testid="hover-enabled-card"]']},
+}
+
+export const ArrowCTALongLabelFocus: StoryFn<typeof Card> = () => {
+  return <ArrowCTALongLabelCard testId="focus-enabled-card" disableAnimation />
+}
+ArrowCTALongLabelFocus.storyName = 'Arrow CTA with long label focus and animation disabled'
+ArrowCTALongLabelFocus.play = async ({canvasElement}) => {
+  const canvas = within(canvasElement)
+  const card = await canvas.findByTestId('focus-enabled-card')
+  const action = getStoryElement(card, '[class*="Card__action--arrowOnly"]')
+  const labelClip = getStoryElement(card, '[class*="Card__actionLabelClip"]')
+  const arrow = getStoryElement(card, '[class*="Card--expandableArrow"]')
+
+  await userEvent.tab()
+  await waitFor(() => {
+    expect(window.getComputedStyle(action).columnGap).toBe('8px')
+    expect(window.getComputedStyle(labelClip).maxInlineSize).not.toBe('0px')
+  })
+
+  for (const element of [card, action, labelClip, arrow]) {
+    expect(window.getComputedStyle(element).transitionDuration).toBe('0s')
+  }
 }
 
 export const CenterAligned: StoryFn<typeof Card> = () => {
@@ -257,8 +308,8 @@ export const Label: StoryFn<typeof Card> = () => {
 
   return (
     <Card href="https://github.com">
-      <Card.Heading>{t('code_search_heading')}</Card.Heading>
       <Card.Label>{t('limited')}</Card.Label>
+      <Card.Heading>{t('code_search_heading')}</Card.Heading>
       <Card.Description>{t('code_search_description')}</Card.Description>
     </Card>
   )
@@ -269,8 +320,8 @@ export const AccentTextLabel: StoryFn<typeof Card> = () => {
 
   return (
     <Card href="https://github.com">
-      <Card.Heading>{t('code_search_heading')}</Card.Heading>
       <Card.Label variant="accent-text">{t('limited')}</Card.Label>
+      <Card.Heading>{t('code_search_heading')}</Card.Heading>
       <Card.Description>{t('code_search_description')}</Card.Description>
     </Card>
   )
@@ -317,7 +368,9 @@ export const BackgroundColors: StoryFn<typeof Card> = () => {
             }}
           >
             <Card href="https://github.com" fullWidth backgroundColor="default">
-              <Card.Label>default</Card.Label>
+              <Card.Tokens>
+                <Token>default</Token>
+              </Card.Tokens>
               <Card.Heading>{t('github_actions_cheat_sheet')}</Card.Heading>
               <Card.Description>{t('techtarget_devops_description')}</Card.Description>
             </Card>
@@ -333,7 +386,9 @@ export const BackgroundColors: StoryFn<typeof Card> = () => {
             }}
           >
             <Card href="https://github.com" fullWidth backgroundColor="subtle">
-              <Card.Label>subtle</Card.Label>
+              <Card.Tokens>
+                <Token>subtle</Token>
+              </Card.Tokens>
               <Card.Heading>{t('github_actions_cheat_sheet')}</Card.Heading>
               <Card.Description>{t('techtarget_devops_description')}</Card.Description>
             </Card>
@@ -351,7 +406,9 @@ export const BackgroundColors: StoryFn<typeof Card> = () => {
             }}
           >
             <Card href="https://github.com" fullWidth backgroundColor="none" hasBorder>
-              <Card.Label>none</Card.Label>
+              <Card.Tokens>
+                <Token>none</Token>
+              </Card.Tokens>
               <Card.Heading>{t('github_actions_cheat_sheet')}</Card.Heading>
               <Card.Description>{t('techtarget_devops_description')}</Card.Description>
             </Card>
@@ -413,27 +470,31 @@ export const WithIconSVG = () => {
 }
 WithIconSVG.storyName = 'Icon (native)'
 
-export const IconAndLabel: StoryFn<typeof Card> = () => {
+export const IconAndToken: StoryFn<typeof Card> = () => {
   const {t} = useTranslation('Card')
 
   return (
     <Card href="https://github.com">
       <Card.Icon icon={GitBranchIcon} color="purple" hasBackground />
+      <Card.Tokens>
+        <Token>{t('beta')}</Token>
+      </Card.Tokens>
       <Card.Heading>{t('code_search_heading')}</Card.Heading>
-      <Card.Label>{t('beta')}</Card.Label>
       <Card.Description>{t('code_search_description')}</Card.Description>
     </Card>
   )
 }
 
-export const IconAndLabelWithFragment: StoryFn<typeof Card> = () => {
+export const IconAndTokenWithFragment: StoryFn<typeof Card> = () => {
   const {t} = useTranslation('Card')
 
   return (
     <Card href="https://github.com">
       <>
+        <Card.Tokens>
+          <Token>{t('beta')}</Token>
+        </Card.Tokens>
         <Card.Heading>{t('code_search_heading')}</Card.Heading>
-        <Card.Label>{t('beta')}</Card.Label>
         <Card.Icon icon={ZapIcon} color="purple" hasBackground />
         <Card.Description>{t('code_search_description')}</Card.Description>
       </>
@@ -460,14 +521,16 @@ export const Image: StoryFn<typeof Card> = () => {
   )
 }
 
-export const ImageAndLabel: StoryFn<typeof Card> = () => {
+export const ImageAndToken: StoryFn<typeof Card> = () => {
   const {t} = useTranslation('Card')
 
   return (
     <Card href="https://github.com">
       <Card.Image src={placeholderImage} alt={t('placeholder_alt')} />
+      <Card.Tokens>
+        <Token>{t('beta')}</Token>
+      </Card.Tokens>
       <Card.Heading>{t('code_search_heading')}</Card.Heading>
-      <Card.Label>{t('beta')}</Card.Label>
       <Card.Description>{t('code_search_description')}</Card.Description>
     </Card>
   )
@@ -482,6 +545,115 @@ export const ImageUsingPictureElement: StoryFn<typeof Card> = () => {
       <Card.Heading>{t('code_search_heading')}</Card.Heading>
       <Card.Description>{t('code_search_description')}</Card.Description>
     </Card>
+  )
+}
+
+export const ImageNoPaddingNarrowViewport: Story = {
+  name: 'Image, no padding (narrow)',
+  globals: {
+    viewport: {value: 'iphonexr'},
+  },
+  render: function ImageNoPaddingNarrowViewportRender() {
+    const {t} = useTranslation('Card')
+
+    return (
+      <Card
+        data-testid="narrow-full-bleed-card"
+        href="https://github.com/features/copilot"
+        fullWidth
+        hasBorder
+        ctaVariant="arrow"
+        ctaText={t('learn_more')}
+      >
+        <Card.Image padding="none" src={placeholderImage} alt={t('placeholder_alt')} aspectRatio="4:3" />
+        <Card.Heading>{t('image_at_the_top')}</Card.Heading>
+        <Card.Description>{t('code_search_description')}</Card.Description>
+      </Card>
+    )
+  },
+  play: async ({canvasElement}) => {
+    const canvas = within(canvasElement)
+    const card = await canvas.findByTestId('narrow-full-bleed-card')
+    const image = getStoryElement(card, '[class*="Card__image"]')
+    const cardBounds = card.getBoundingClientRect()
+    const imageBounds = image.getBoundingClientRect()
+
+    expect(imageBounds.left).toBeGreaterThanOrEqual(cardBounds.left)
+    expect(imageBounds.right).toBeLessThanOrEqual(cardBounds.right)
+  },
+}
+
+export const ImageNoPaddingWithBorders: StoryFn<typeof Card> = () => {
+  const {t} = useTranslation('Card')
+
+  return (
+    <Grid>
+      <Grid.Column span={4}>
+        <Card
+          href="https://github.com/features/copilot"
+          fullWidth
+          hasBorder
+          ctaVariant="arrow"
+          ctaText={t('learn_more')}
+        >
+          <Card.Icon icon={CopilotIcon} color="green" hasBackground />
+          <Card.Heading>{t('connect_your_ai_tools')}</Card.Heading>
+          <Card.Description>{t('connect_your_ai_tools_description')}</Card.Description>
+          <Card.Image
+            position="block-end"
+            padding="none"
+            src={placeholderImage}
+            alt={t('placeholder_alt')}
+            aspectRatio="4:3"
+          />
+        </Card>
+      </Grid.Column>
+      <Grid.Column span={4}>
+        <Card
+          href="https://github.com/features/copilot"
+          fullWidth
+          hasBorder
+          ctaVariant="arrow"
+          ctaText={t('learn_more')}
+        >
+          <Card.Icon icon={CopilotIcon} color="green" hasBackground />
+          <Card.Heading>{t('connect_your_ai_tools')}</Card.Heading>
+          <Card.Description>{t('connect_your_ai_tools_description')}</Card.Description>
+          <Card.Image padding="none" src={placeholderImage} alt={t('placeholder_alt')} aspectRatio="4:3" />
+        </Card>
+      </Grid.Column>
+    </Grid>
+  )
+}
+
+export const ImageNoPaddingNoBorders: StoryFn<typeof Card> = () => {
+  const {t} = useTranslation('Card')
+
+  return (
+    <Grid>
+      <Grid.Column span={4}>
+        <Card href="https://github.com/features/copilot" fullWidth ctaVariant="arrow" ctaText={t('learn_more')}>
+          <Card.Icon icon={CopilotIcon} color="green" hasBackground />
+          <Card.Heading>{t('connect_your_ai_tools')}</Card.Heading>
+          <Card.Description>{t('connect_your_ai_tools_description')}</Card.Description>
+          <Card.Image
+            position="block-end"
+            padding="none"
+            src={placeholderImage}
+            alt={t('placeholder_alt')}
+            aspectRatio="4:3"
+          />
+        </Card>
+      </Grid.Column>
+      <Grid.Column span={4}>
+        <Card href="https://github.com/features/copilot" fullWidth ctaVariant="arrow" ctaText={t('learn_more')}>
+          <Card.Icon icon={CopilotIcon} color="green" hasBackground />
+          <Card.Heading>{t('connect_your_ai_tools')}</Card.Heading>
+          <Card.Description>{t('connect_your_ai_tools_description')}</Card.Description>
+          <Card.Image padding="none" src={placeholderImage} alt={t('placeholder_alt')} aspectRatio="4:3" />
+        </Card>
+      </Grid.Column>
+    </Grid>
   )
 }
 
@@ -553,7 +725,7 @@ export const Stacked: StoryFn<typeof Card> = () => {
           {stackedCardData.map(({headingKey, descriptionKey, href, icon, iconColor, tokens}, id) => {
             return (
               <Grid.Column key={id} span={{xsmall: 12, xlarge: 4}} className={styles.gridColumn}>
-                <Box className={styles.gridItem} padding="normal">
+                <Box className={styles.gridItem}>
                   <Card href={href} fullWidth ctaVariant="arrow">
                     <Card.Icon icon={icon} hasBackground color={iconColor} />
                     <Card.Tokens>
@@ -586,10 +758,12 @@ export const WithInlineCodeElement: StoryFn<typeof Card> = () => {
           <Text as="p">{t('default_label')}</Text>
           <Card href="https://github.com">
             <Card.Heading>
-              {t('use_any')} <code>/model</code> {t('parallelize_with')} <code>/fleet</code>
+              {t('use_any')} <InlineCode wrap={false}>/model</InlineCode> {t('parallelize_with')}{' '}
+              <InlineCode wrap={false}>/fleet</InlineCode>
             </Card.Heading>
             <Card.Description>
-              {t('use')} <code>/model</code> {t('to_switch_then')} <code>/fleet</code> {t('to_execute_in_parallel')}
+              {t('use')} <InlineCode wrap={false}>/model</InlineCode> {t('to_switch_then')}{' '}
+              <InlineCode wrap={false}>/fleet</InlineCode> {t('to_execute_in_parallel')}
             </Card.Description>
           </Card>
         </Stack>
@@ -597,10 +771,12 @@ export const WithInlineCodeElement: StoryFn<typeof Card> = () => {
           <Text as="p">{t('disable_animation_label')}</Text>
           <Card href="https://github.com" disableAnimation>
             <Card.Heading>
-              {t('use_any')} <code>/model</code> {t('parallelize_with')} <code>/fleet</code>
+              {t('use_any')} <InlineCode wrap={false}>/model</InlineCode> {t('parallelize_with')}{' '}
+              <InlineCode wrap={false}>/fleet</InlineCode>
             </Card.Heading>
             <Card.Description>
-              {t('use')} <code>/model</code> {t('to_switch_then')} <code>/fleet</code> {t('to_execute_in_parallel')}
+              {t('use')} <InlineCode wrap={false}>/model</InlineCode> {t('to_switch_then')}{' '}
+              <InlineCode wrap={false}>/fleet</InlineCode> {t('to_execute_in_parallel')}
             </Card.Description>
           </Card>
         </Stack>
@@ -608,10 +784,12 @@ export const WithInlineCodeElement: StoryFn<typeof Card> = () => {
           <Text as="p">{t('minimal_variant_label')}</Text>
           <Card href="https://github.com" variant="minimal">
             <Card.Heading>
-              {t('use_any')} <code>/model</code> {t('parallelize_with')} <code>/fleet</code>
+              {t('use_any')} <InlineCode wrap={false}>/model</InlineCode> {t('parallelize_with')}{' '}
+              <InlineCode wrap={false}>/fleet</InlineCode>
             </Card.Heading>
             <Card.Description>
-              {t('use')} <code>/model</code> {t('to_switch_then')} <code>/fleet</code> {t('to_execute_in_parallel')}
+              {t('use')} <InlineCode wrap={false}>/model</InlineCode> {t('to_switch_then')}{' '}
+              <InlineCode wrap={false}>/fleet</InlineCode> {t('to_execute_in_parallel')}
             </Card.Description>
           </Card>
         </Stack>
@@ -622,10 +800,12 @@ export const WithInlineCodeElement: StoryFn<typeof Card> = () => {
           <Card href="https://github.com" hasBorder fullWidth align="center">
             <Card.Icon icon={CopilotIcon} color="purple" hasBackground />
             <Card.Heading>
-              {t('use_any')} <code>/model</code> {t('parallelize_with')} <code>/fleet</code>
+              {t('use_any')} <InlineCode wrap={false}>/model</InlineCode> {t('parallelize_with')}{' '}
+              <InlineCode wrap={false}>/fleet</InlineCode>
             </Card.Heading>
             <Card.Description>
-              {t('use')} <code>/model</code> {t('to_switch_then')} <code>/fleet</code> {t('to_execute_in_parallel')}
+              {t('use')} <InlineCode wrap={false}>/model</InlineCode> {t('to_switch_then')}{' '}
+              <InlineCode wrap={false}>/fleet</InlineCode> {t('to_execute_in_parallel')}
             </Card.Description>
           </Card>
         </Stack>
@@ -635,6 +815,46 @@ export const WithInlineCodeElement: StoryFn<typeof Card> = () => {
 }
 
 export const WithInlineCodeElementCustomDescriptionSize: StoryFn<typeof Card> = () => {
+  const {t} = useTranslation('Card')
+
+  return (
+    <Stack direction={{narrow: 'vertical', wide: 'horizontal'}} gap="normal">
+      <Stack direction="vertical" gap="normal">
+        <Text as="p">{t('larger_heading_and_description_label')}</Text>
+        <Card href="https://github.com">
+          <Card.Heading size="5">
+            {t('use_any')} <InlineCode wrap={false}>/model</InlineCode> {t('parallelize_with')}{' '}
+            <InlineCode wrap={false}>/fleet</InlineCode>
+          </Card.Heading>
+          <Card.Description>
+            <Text size="400">
+              {t('use')} <InlineCode wrap={false}>/model</InlineCode> {t('to_switch_then')}{' '}
+              <InlineCode wrap={false}>/fleet</InlineCode> {t('to_execute_in_parallel')}
+            </Text>
+          </Card.Description>
+        </Card>
+      </Stack>
+      <Stack direction="vertical" gap="normal">
+        <Text as="p">{t('smaller_heading_and_description_label')}</Text>
+        <Card href="https://github.com">
+          <Card.Heading size="subhead-medium">
+            {t('use_any')} <InlineCode wrap={false}>/model</InlineCode> {t('parallelize_with')}{' '}
+            <InlineCode wrap={false}>/fleet</InlineCode>
+          </Card.Heading>
+          <Card.Description>
+            <Text size="100">
+              {t('use')} <InlineCode wrap={false}>/model</InlineCode> {t('to_switch_then')}{' '}
+              <InlineCode wrap={false}>/fleet</InlineCode> {t('to_execute_in_parallel')}
+            </Text>
+          </Card.Description>
+        </Card>
+      </Stack>
+    </Stack>
+  )
+}
+WithInlineCodeElementCustomDescriptionSize.storyName = 'With inline code element + non-standard size overrides'
+
+export const WithNativeCodeElement: StoryFn<typeof Card> = () => {
   const {t} = useTranslation('Card')
 
   return (
@@ -668,4 +888,3 @@ export const WithInlineCodeElementCustomDescriptionSize: StoryFn<typeof Card> = 
     </Stack>
   )
 }
-WithInlineCodeElementCustomDescriptionSize.storyName = 'With inline code element + non-standard size overrides'

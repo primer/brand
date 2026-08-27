@@ -1,7 +1,9 @@
 import React from 'react'
 import type {Meta} from '@storybook/react'
 import {SectionIntro} from '.'
+import {InlineCode} from '../InlineCode'
 import {CopilotIcon} from '@primer/octicons-react'
+import placeholderImage from '../fixtures/images/placeholder.png'
 
 export default {
   title: 'Components/SectionIntro/Features',
@@ -106,6 +108,21 @@ export const WithEmphasizedText = () => (
   </SectionIntro>
 )
 
+export const WithInlineCode = () => (
+  <SectionIntro>
+    <SectionIntro.Label>Agent workflows</SectionIntro.Label>
+    <SectionIntro.Heading>
+      Connect with <InlineCode wrap={false}>/mcp</InlineCode>, review with{' '}
+      <InlineCode wrap={false}>/critique</InlineCode>, and ship with <InlineCode wrap={false}>/fleet</InlineCode>
+    </SectionIntro.Heading>
+    <SectionIntro.Description>
+      Use <InlineCode wrap={false}>/issues</InlineCode> to find work, <InlineCode wrap={false}>/model</InlineCode> to
+      select a model, and <InlineCode wrap={false}>/polish</InlineCode> for a final pass.
+    </SectionIntro.Description>
+    <SectionIntro.Link href="#">Explore agent workflows</SectionIntro.Link>
+  </SectionIntro>
+)
+
 export const FullWidth = () => (
   <SectionIntro fullWidth>
     <SectionIntro.Heading>
@@ -125,3 +142,18 @@ export const LeadingComponent = () => {
     </SectionIntro>
   )
 }
+
+export const LeadingMedia = () => (
+  <SectionIntro
+    leadingComponent={() => (
+      <picture>
+        <img src={placeholderImage} alt="Placeholder leading visual" width={64} height={64} />
+      </picture>
+    )}
+    align="center"
+  >
+    <SectionIntro.Heading>
+      <b>Expressive headline</b> about an exclusive set of features.
+    </SectionIntro.Heading>
+  </SectionIntro>
+)

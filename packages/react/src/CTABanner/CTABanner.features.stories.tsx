@@ -2,9 +2,10 @@ import React from 'react'
 import type {Meta, StoryObj} from '@storybook/react'
 import {GlobeIcon} from '@primer/octovisuals-react'
 import {Button} from '../Button'
+import {ActionMenu} from '../ActionMenu'
 
 import {CTABanner} from './CTABanner'
-import {Grid, InlineLink, Section, Stack, Text, TextCursorAnimation, ThemeProvider} from '../'
+import {Grid, InlineCode, InlineLink, Section, Stack, Text, TextCursorAnimation, ThemeProvider} from '../'
 
 import lightNarrowBg from '../fixtures/images/light-vertical-banner.png'
 import lightWideBg from '../fixtures/images/light-horizontal-banner.png'
@@ -100,6 +101,25 @@ function WithImageExample() {
   )
 }
 
+export const WithActionMenu: Story = {
+  render: () => (
+    <CTABanner>
+      <CTABanner.Heading>Where the most ambitious teams build great things</CTABanner.Heading>
+      <CTABanner.Description>Get real-time suggestions and ship confidently.</CTABanner.Description>
+      <CTABanner.ButtonGroup>
+        <Button>Get started for free</Button>
+        <ActionMenu>
+          <ActionMenu.Button>More actions</ActionMenu.Button>
+          <ActionMenu.Overlay aria-label="More actions">
+            <ActionMenu.Item value="Contact sales">Contact sales</ActionMenu.Item>
+            <ActionMenu.Item value="View pricing">View pricing</ActionMenu.Item>
+          </ActionMenu.Overlay>
+        </ActionMenu>
+      </CTABanner.ButtonGroup>
+    </CTABanner>
+  ),
+}
+
 export const Variants: Story = {
   render: () => (
     <Stack direction="vertical" gap="spacious" padding="none">
@@ -110,7 +130,7 @@ export const Variants: Story = {
           turpis felis nam pulvinar risus elementum.
         </CTABanner.Description>
         <CTABanner.ButtonGroup>
-          <Button variant="primary">Get started for free</Button>
+          <Button>Get started for free</Button>
           <Button>View docs</Button>
         </CTABanner.ButtonGroup>
       </CTABanner>
@@ -122,7 +142,7 @@ export const Variants: Story = {
         </CTABanner.Description>
         <CTABanner.Image src={placeholderImage} alt="Blank image" />
         <CTABanner.ButtonGroup>
-          <Button variant="primary">Get started for free</Button>
+          <Button>Get started for free</Button>
           <Button>View docs</Button>
         </CTABanner.ButtonGroup>
       </CTABanner>
@@ -133,7 +153,7 @@ export const Variants: Story = {
           turpis felis nam pulvinar risus elementum.
         </CTABanner.Description>
         <CTABanner.ButtonGroup>
-          <Button variant="primary">Get started for free</Button>
+          <Button>Get started for free</Button>
           <Button>View docs</Button>
         </CTABanner.ButtonGroup>
       </CTABanner>
@@ -146,7 +166,7 @@ export const WithPrimaryButton: Story = {
     <CTABanner>
       <CTABanner.Heading size="2">Start coding in seconds with Codespaces</CTABanner.Heading>
       <CTABanner.ButtonGroup>
-        <Button variant="primary">Get started for free</Button>
+        <Button>Get started for free</Button>
         <Button>View docs</Button>
       </CTABanner.ButtonGroup>
     </CTABanner>
@@ -247,6 +267,22 @@ export const WithLeadingComponent: Story = {
         <Button>Get started for free</Button>
         <Button>View docs</Button>
       </CTABanner.ButtonGroup>
+    </CTABanner>
+  ),
+}
+
+export const WithMediaComponents: Story = {
+  render: () => (
+    <CTABanner
+      leadingComponent={() => (
+        <picture>
+          <img src={placeholderImage} alt="Placeholder leading visual" width={64} height={64} />
+        </picture>
+      )}
+      trailingComponent={() => <img src={placeholderImage} alt="Placeholder trailing visual" width={64} height={64} />}
+    >
+      <CTABanner.Heading>Where the most ambitious teams build great things</CTABanner.Heading>
+      <CTABanner.Description>Build, scale, and deliver secure software with GitHub.</CTABanner.Description>
     </CTABanner>
   ),
 }
@@ -417,11 +453,12 @@ export const WithInlineCodeElement: Story = {
         <Text as="p">Default variant:</Text>
         <CTABanner>
           <CTABanner.Heading>
-            Use any <code>/model</code> parallelize with <code>/fleet</code>
+            Use any <InlineCode wrap={false}>/model</InlineCode> parallelize with{' '}
+            <InlineCode wrap={false}>/fleet</InlineCode>
           </CTABanner.Heading>
           <CTABanner.Description>
-            Use <code>/model</code> to switch, then <code>/fleet</code> to execute in parallel or run multiple models at
-            once.
+            Use <InlineCode wrap={false}>/model</InlineCode> to switch, then{' '}
+            <InlineCode wrap={false}>/fleet</InlineCode> to execute in parallel or run multiple models at once.
           </CTABanner.Description>
           <CTABanner.ButtonGroup>
             <Button>Get started</Button>
@@ -432,11 +469,12 @@ export const WithInlineCodeElement: Story = {
         <Text as="p">Custom background color:</Text>
         <CTABanner backgroundColor="default" hasBorder>
           <CTABanner.Heading>
-            Use any <code>/model</code> parallelize with <code>/fleet</code>
+            Use any <InlineCode wrap={false}>/model</InlineCode> parallelize with{' '}
+            <InlineCode wrap={false}>/fleet</InlineCode>
           </CTABanner.Heading>
           <CTABanner.Description>
-            Use <code>/model</code> to switch, then <code>/fleet</code> to execute in parallel or run multiple models at
-            once.
+            Use <InlineCode wrap={false}>/model</InlineCode> to switch, then{' '}
+            <InlineCode wrap={false}>/fleet</InlineCode> to execute in parallel or run multiple models at once.
           </CTABanner.Description>
           <CTABanner.ButtonGroup>
             <Button>Get started</Button>
@@ -447,11 +485,12 @@ export const WithInlineCodeElement: Story = {
         <Text as="p">Balanced variant:</Text>
         <CTABanner variant="balanced">
           <CTABanner.Heading>
-            Use any <code>/model</code> parallelize with <code>/fleet</code>
+            Use any <InlineCode wrap={false}>/model</InlineCode> parallelize with{' '}
+            <InlineCode wrap={false}>/fleet</InlineCode>
           </CTABanner.Heading>
           <CTABanner.Description>
-            Use <code>/model</code> to switch, then <code>/fleet</code> to execute in parallel or run multiple models at
-            once.
+            Use <InlineCode wrap={false}>/model</InlineCode> to switch, then{' '}
+            <InlineCode wrap={false}>/fleet</InlineCode> to execute in parallel or run multiple models at once.
           </CTABanner.Description>
           <CTABanner.ButtonGroup>
             <Button>Get started</Button>
@@ -463,11 +502,12 @@ export const WithInlineCodeElement: Story = {
         <Text as="p">Minimal variant:</Text>
         <CTABanner variant="minimal">
           <CTABanner.Heading>
-            Use any <code>/model</code> parallelize with <code>/fleet</code>
+            Use any <InlineCode wrap={false}>/model</InlineCode> parallelize with{' '}
+            <InlineCode wrap={false}>/fleet</InlineCode>
           </CTABanner.Heading>
           <CTABanner.Description>
-            Use <code>/model</code> to switch, then <code>/fleet</code> to execute in parallel or run multiple models at
-            once.
+            Use <InlineCode wrap={false}>/model</InlineCode> to switch, then{' '}
+            <InlineCode wrap={false}>/fleet</InlineCode> to execute in parallel or run multiple models at once.
           </CTABanner.Description>
           <CTABanner.ButtonGroup>
             <Button>Get started</Button>
@@ -480,11 +520,12 @@ export const WithInlineCodeElement: Story = {
           <Section backgroundColor="default">
             <CTABanner>
               <CTABanner.Heading>
-                Use any <code>/model</code> parallelize with <code>/fleet</code>
+                Use any <InlineCode wrap={false}>/model</InlineCode> parallelize with{' '}
+                <InlineCode wrap={false}>/fleet</InlineCode>
               </CTABanner.Heading>
               <CTABanner.Description>
-                Use <code>/model</code> to switch, then <code>/fleet</code> to execute in parallel or run multiple
-                models at once.
+                Use <InlineCode wrap={false}>/model</InlineCode> to switch, then{' '}
+                <InlineCode wrap={false}>/fleet</InlineCode> to execute in parallel or run multiple models at once.
               </CTABanner.Description>
               <CTABanner.ButtonGroup>
                 <Button>Get started</Button>
@@ -497,11 +538,12 @@ export const WithInlineCodeElement: Story = {
         <Text as="p">Start aligned with border:</Text>
         <CTABanner align="start" hasBorder>
           <CTABanner.Heading>
-            Use any <code>/model</code> parallelize with <code>/fleet</code>
+            Use any <InlineCode wrap={false}>/model</InlineCode> parallelize with{' '}
+            <InlineCode wrap={false}>/fleet</InlineCode>
           </CTABanner.Heading>
           <CTABanner.Description>
-            Use <code>/model</code> to switch, then <code>/fleet</code> to execute in parallel or run multiple models at
-            once.
+            Use <InlineCode wrap={false}>/model</InlineCode> to switch, then{' '}
+            <InlineCode wrap={false}>/fleet</InlineCode> to execute in parallel or run multiple models at once.
           </CTABanner.Description>
           <CTABanner.ButtonGroup>
             <Button>Get started</Button>
@@ -509,6 +551,20 @@ export const WithInlineCodeElement: Story = {
         </CTABanner>
       </Stack>
     </Stack>
+  ),
+}
+
+export const WithNativeCodeElement: Story = {
+  render: () => (
+    <CTABanner>
+      <CTABanner.Heading>
+        Native <code>/mcp</code> remains supported
+      </CTABanner.Heading>
+      <CTABanner.Description>
+        Existing authored content can wrap long commands such as{' '}
+        <code>npm install @primer/react-brand@latest --save-exact --ignore-scripts --foreground-scripts</code>.
+      </CTABanner.Description>
+    </CTABanner>
   ),
 }
 
@@ -523,7 +579,7 @@ export const WithLogo: Story = {
           turpis felis nam pulvinar risus elementum.
         </CTABanner.Description>
         <CTABanner.ButtonGroup>
-          <Button variant="primary">Get started for free</Button>
+          <Button>Get started for free</Button>
           <Button>View docs</Button>
         </CTABanner.ButtonGroup>
       </CTABanner>
@@ -545,7 +601,7 @@ export const WithLogo: Story = {
           turpis felis nam pulvinar risus elementum.
         </CTABanner.Description>
         <CTABanner.ButtonGroup>
-          <Button variant="primary">Get started for free</Button>
+          <Button>Get started for free</Button>
           <Button>View docs</Button>
         </CTABanner.ButtonGroup>
       </CTABanner>
@@ -592,10 +648,11 @@ export const WithDuotoneText: Story = {
           Where the most ambitious teams <b>build great things</b>
         </CTABanner.Heading>
         <CTABanner.Description>
-          Use <b>duotone emphasis</b> to highlight key parts of your headline. Wrap text in a <code>b</code> tag.
+          Use <b>duotone emphasis</b> to highlight key parts of your headline. Wrap text in an{' '}
+          <InlineCode>b</InlineCode> tag.
         </CTABanner.Description>
         <CTABanner.ButtonGroup>
-          <Button variant="primary">Get started for free</Button>
+          <Button>Get started for free</Button>
           <Button>View docs</Button>
         </CTABanner.ButtonGroup>
       </CTABanner>
@@ -607,7 +664,7 @@ export const WithDuotoneText: Story = {
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id.
         </CTABanner.Description>
         <CTABanner.ButtonGroup>
-          <Button variant="primary">Get started for free</Button>
+          <Button>Get started for free</Button>
           <Button>View docs</Button>
         </CTABanner.ButtonGroup>
         <CTABanner.Image src={placeholderImage} alt="Blank image" />
@@ -620,7 +677,7 @@ export const WithDuotoneText: Story = {
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id.
         </CTABanner.Description>
         <CTABanner.ButtonGroup>
-          <Button variant="primary">Get started for free</Button>
+          <Button>Get started for free</Button>
           <Button>View docs</Button>
         </CTABanner.ButtonGroup>
       </CTABanner>

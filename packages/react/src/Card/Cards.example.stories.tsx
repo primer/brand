@@ -82,7 +82,7 @@ export const Editorial: Story = {
                       span={{xsmall: 12, large: 4}}
                       className={styles.gridColumn}
                     >
-                      <Box className={styles.gridItem} padding="normal">
+                      <Box className={styles.gridItem}>
                         <Card
                           href="https://github.com/resources/articles"
                           fullWidth
@@ -116,6 +116,53 @@ export const Editorial: Story = {
   },
 }
 
+export const NativeBorders: Story = {
+  render: function NativeBorders() {
+    const {t} = useTranslation('Card')
+
+    return (
+      <Section fullWidth paddingBlockStart="condensed" paddingBlockEnd="normal">
+        <Stack direction="vertical" padding="none" gap="spacious">
+          <SectionIntro align="center" fullWidth>
+            <SectionIntro.Heading as="h2" size="3">
+              {t('explore_ai_at_github')}
+            </SectionIntro.Heading>
+          </SectionIntro>
+
+          <Box className={styles.gridContent}>
+            <Grid>
+              {Array.from({length: 3}, (_, index) => {
+                return (
+                  <Grid.Column key={index} span={{xsmall: 12, large: 4}}>
+                    <Card
+                      href="https://github.com/features/copilot"
+                      fullWidth
+                      hasBorder
+                      ctaVariant="arrow"
+                      ctaText={t('learn_more')}
+                    >
+                      <Card.Icon icon={CopilotIcon} color="green" hasBackground />
+                      <Card.Heading>{t('connect_your_ai_tools')}</Card.Heading>
+                      <Card.Description>{t('connect_your_ai_tools_description')}</Card.Description>
+                      <Card.Image
+                        position="block-end"
+                        padding="none"
+                        src={darkHorizontalBannerAlt}
+                        alt={t('placeholder_alt')}
+                        aspectRatio="4:3"
+                      />
+                    </Card>
+                  </Grid.Column>
+                )
+              })}
+            </Grid>
+          </Box>
+        </Stack>
+      </Section>
+    )
+  },
+}
+
 export const RelatedContent: Story = {
   name: 'Related content',
   render: function RelatedContentComponent() {
@@ -140,7 +187,7 @@ export const RelatedContent: Story = {
                       span={{xsmall: 12, large: 4}}
                       className={clsx(styles.gridColumn, styles.gridColumnArrowHover)}
                     >
-                      <Box className={styles.gridItem} padding={24}>
+                      <Box className={styles.gridItem}>
                         <Card href={card.href} fullWidth ctaVariant="arrow" ctaText={t(card.ctaTextKey)}>
                           <Card.Icon icon={card.icon} color="green" hasBackground />
                           <Card.Tokens>
@@ -183,7 +230,7 @@ export const CaseStudies: Story = {
                   span={{xsmall: 12, large: 4}}
                   className={clsx(styles.gridColumn, styles.gridColumnArrowHover)}
                 >
-                  <Box className={styles.gridItem} padding={24} style={{minHeight: '21.125rem'}}>
+                  <Box className={styles.gridItem} style={{minHeight: '21.125rem'}}>
                     <Card
                       href="https://github.com/customer-stories/microsoft"
                       fullWidth
@@ -215,7 +262,7 @@ export const CaseStudies: Story = {
                   span={{xsmall: 12, large: 4}}
                   className={clsx(styles.gridColumn, styles.gridColumnArrowHover)}
                 >
-                  <Box className={styles.gridItem} padding={24} style={{minHeight: '21.125rem'}}>
+                  <Box className={styles.gridItem} style={{minHeight: '21.125rem'}}>
                     <Card
                       href="https://github.com/customer-stories/shopify"
                       fullWidth
@@ -247,7 +294,7 @@ export const CaseStudies: Story = {
                   span={{xsmall: 12, large: 4}}
                   className={clsx(styles.gridColumn, styles.gridColumnArrowHover)}
                 >
-                  <Box className={styles.gridItem} padding={24} style={{minHeight: '21.125rem'}}>
+                  <Box className={styles.gridItem} style={{minHeight: '21.125rem'}}>
                     <Card
                       href="https://github.com/customer-stories/twilio"
                       fullWidth

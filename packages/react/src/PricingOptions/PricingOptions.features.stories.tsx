@@ -1384,6 +1384,39 @@ export const WithInfoTooltips: Story = {
   ),
 }
 
+function PricingOptionsWithCustomTriggerLabel({customContent}: {customContent?: React.ReactNode}) {
+  return (
+    <PricingOptions>
+      <PricingOptions.Item>
+        <PricingOptions.Heading>Copilot Individual</PricingOptions.Heading>
+        <PricingOptions.Description>
+          Code completions, Chat, and more for indie developers and freelancers.
+        </PricingOptions.Description>
+        <PricingOptions.Price trailingText="per month / $100 per year">10</PricingOptions.Price>
+        <PricingOptions.FeatureList>
+          <PricingOptions.FeatureListItem
+            infoTooltip="Interact with Copilot using natural language."
+            infoTooltipAriaLabel="More information about Chat in IDE and Mobile"
+          >
+            <>
+              Chat in IDE and Mobile
+              {customContent ? <Text>{customContent}</Text> : null}
+            </>
+          </PricingOptions.FeatureListItem>
+          <PricingOptions.FeatureListItem>Code completions</PricingOptions.FeatureListItem>
+        </PricingOptions.FeatureList>
+        <PricingOptions.PrimaryAction as="a" href="#">
+          Start a free trial
+        </PricingOptions.PrimaryAction>
+      </PricingOptions.Item>
+    </PricingOptions>
+  )
+}
+
+export const WithInfoTooltipsAndCustomTriggerLabel: Story = {
+  render: () => <PricingOptionsWithCustomTriggerLabel customContent="Custom footnote" />,
+}
+
 export const WithMenuAction: Story = {
   render: () => (
     <PricingOptions>

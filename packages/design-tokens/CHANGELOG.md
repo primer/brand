@@ -1,5 +1,59 @@
 # @primer/brand-primitives
 
+## 0.74.0
+
+### Minor Changes
+
+- [#1429](https://github.com/primer/brand/pull/1429) [`e6d9665`](https://github.com/primer/brand/commit/e6d96657ccd48b0d7f65d20f127f04cc1b107cdd) Thanks [@danielguillan](https://github.com/danielguillan)! - Updated `MinimalFooter` visual design and added a center component prop and back to top control.
+
+  - ⚠️ Manually check `MinimalFooter` on your site to ensure the new opinionated border and background defaults work with your design.
+  - Added the optional `centerComponent` prop for exceptional page-specific content and the optional `MinimalFooter.BackToTop` control.
+  - Replaced the full GitHub logo with the GitHub logomark and reorganized the footer into top, center, and bottom sections.
+
+### Patch Changes
+
+- [#1394](https://github.com/primer/brand/pull/1394) [`414e53f`](https://github.com/primer/brand/commit/414e53f6a27abc8c6fe8067ccb1477bb01c02677) Thanks [@stefankp](https://github.com/stefankp)! - Added JSON-based typography and size map exports at `@primer/brand-primitives/lib/design-tokens/json/typography.json` and `@primer/brand-primitives/lib/design-tokens/json/size.json`.
+
+- [#1448](https://github.com/primer/brand/pull/1448) [`72fd3a6`](https://github.com/primer/brand/commit/72fd3a696f03f47876f3bf02e6e5187b0e1dc0f1) Thanks [@rezrah](https://github.com/rezrah)! - New tokens available for the `InlineCode` component:
+
+  - `--brand-InlineCode-color-fg-default`
+  - `--brand-InlineCode-color-fg-heading`
+  - `--brand-InlineCode-bgColor`
+
+## 0.73.0
+
+### Patch Changes
+
+- [#1438](https://github.com/primer/brand/pull/1438) [`baa0861`](https://github.com/primer/brand/commit/baa0861d4a05aabd703dd62059b85caf743f97d3) Thanks [@rezrah](https://github.com/rezrah)! - Added configurable `Card.Image` padding, which allows for full-bleed images to be displayed.
+
+  Example:
+
+  ```jsx
+  <Card hasBorder>
+    <Card.Image padding="none" {...rest} />
+  </Card>
+  ```
+
+## 0.72.0
+
+### Minor Changes
+
+- [#1413](https://github.com/primer/brand/pull/1413) [`6288e69`](https://github.com/primer/brand/commit/6288e690492fc779819e65013f9a5b61bbf2b3b6) Thanks [@rezrah](https://github.com/rezrah)! - Added opt-in `position` and `padding` controls to `River.Visual` media in the `gridline` variant.
+
+  🔗 Storybook examples:
+
+  - [Center position](https://stunning-chainsaw-j82glqz.pages.github.io/brand/storybook/?path=/story/components-river-features-gridline-variants--grid-line-visual-position-center)
+  - [Block-end position](https://stunning-chainsaw-j82glqz.pages.github.io/brand/storybook/?path=/story/components-river-features-gridline-variants--grid-line-visual-position-block-end)
+  - [Block-end inline-start position](https://stunning-chainsaw-j82glqz.pages.github.io/brand/storybook/?path=/story/components-river-features-gridline-variants--grid-line-visual-position-block-end-inline-start)
+  - [Block-end inline-end position](https://stunning-chainsaw-j82glqz.pages.github.io/brand/storybook/?path=/story/components-river-features-gridline-variants--grid-line-visual-position-block-end-inline-end)
+  - [No padding](https://stunning-chainsaw-j82glqz.pages.github.io/brand/storybook/?path=/story/components-river-features-gridline-variants--grid-line-visual-padding-none)
+  - [Padding on all sides](https://stunning-chainsaw-j82glqz.pages.github.io/brand/storybook/?path=/story/components-river-features-gridline-variants--grid-line-visual-padding-all)
+
+### Patch Changes
+
+- [#1412](https://github.com/primer/brand/pull/1412) [`6bf33b3`](https://github.com/primer/brand/commit/6bf33b3b17baafcda640de90fa96450427bbbef8) Thanks [@danielguillan](https://github.com/danielguillan)! - - Mapped the light and dark `--brand-color-text-link-rest` values to `blue-6` and `blue-1`.
+  - Updated the light `--brand-color-canvas-muted` value to `#F9FBF9`.
+
 ## 0.71.0
 
 ### Minor Changes

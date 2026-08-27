@@ -27,6 +27,17 @@ test.describe('Visual Comparison: Statistic', () => {
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
+  test('Statistic / Gridline', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-statistic-examples--gridline&viewMode=story',
+      {waitUntil: 'networkidle'},
+    )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+    await page.waitForTimeout(500)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
   test('Statistic / Social Proof', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-statistic-examples--social-proof&viewMode=story',
@@ -117,6 +128,17 @@ test.describe('Visual Comparison: Statistic', () => {
   test('Statistic / Custom Intro', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-statistic-features--custom-intro&viewMode=story',
+      {waitUntil: 'networkidle'},
+    )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+    await page.waitForTimeout(500)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
+  test('Statistic / Media Components', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-statistic-features--media-components&viewMode=story',
       {waitUntil: 'networkidle'},
     )
     await page.locator('body.sb-show-main').waitFor({state: 'visible'})

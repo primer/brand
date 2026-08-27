@@ -48,6 +48,22 @@ describe('CTABanner', () => {
     expect(ctaBannerEl.classList).toContain(expectedCustomClass)
   })
 
+  it('applies primary and secondary variants to ButtonGroup actions', () => {
+    const {getAllByRole} = render(
+      <CTABanner>
+        <CTABanner.Heading>Where the most ambitious teams build great things</CTABanner.Heading>
+        <CTABanner.ButtonGroup>
+          <Button>Primary Action</Button>
+          <Button>Secondary Action</Button>
+        </CTABanner.ButtonGroup>
+      </CTABanner>,
+    )
+
+    const buttons = getAllByRole('button')
+    expect(buttons[0]).toHaveClass('Button--primary')
+    expect(buttons[1]).toHaveClass('Button--secondary')
+  })
+
   it('renders the correct default heading type', () => {
     const expectedTag = 'h3'
     const headingText = 'This is your heading'
@@ -127,19 +143,23 @@ describe('CTABanner', () => {
   })
 
   it('provides an escape hatch to render a custom trailing component', () => {
-    const trailingText = 'Custom trailing'
-    const MockTrailingComponent = () => <div>{trailingText}</div>
+    const MockTrailingComponent = () => (
+      <picture>
+        <img src="trailing.jpg" alt="Custom trailing" />
+      </picture>
+    )
 
-    const {getByText} = render(
+    const {getByRole} = render(
       <CTABanner trailingComponent={MockTrailingComponent}>
         <CTABanner.Heading>This is your heading</CTABanner.Heading>
         <CTABanner.Description>This is your description</CTABanner.Description>
       </CTABanner>,
     )
 
-    const elTrailing = getByText(trailingText)
+    const trailingImage = getByRole('img', {name: 'Custom trailing'})
 
-    expect(elTrailing).toBeInTheDocument()
+    expect(trailingImage).toBeInTheDocument()
+    expect(trailingImage.closest('[class*="CTABanner-content"]')).toBeInTheDocument()
   })
 
   it('provides a way to pass a background image', () => {
@@ -417,19 +437,23 @@ describe('CTABanner', () => {
   })
 
   it('provides an escape hatch to render a custom leading component', () => {
-    const leadingText = 'Custom leading'
-    const MockLeadingComponent = () => <div>{leadingText}</div>
+    const MockLeadingComponent = () => (
+      <picture>
+        <img src="leading.jpg" alt="Custom leading" />
+      </picture>
+    )
 
-    const {getByText} = render(
+    const {getByRole} = render(
       <CTABanner leadingComponent={MockLeadingComponent}>
         <CTABanner.Heading>This is your heading</CTABanner.Heading>
         <CTABanner.Description>This is your description</CTABanner.Description>
       </CTABanner>,
     )
 
-    const elLeading = getByText(leadingText)
+    const leadingImage = getByRole('img', {name: 'Custom leading'})
 
-    expect(elLeading).toBeInTheDocument()
+    expect(leadingImage).toBeInTheDocument()
+    expect(leadingImage.closest('[class*="CTABanner-content"]')).toBeInTheDocument()
   })
 
   it('renders leading component before heading and trailing component after children', () => {

@@ -157,6 +157,11 @@ const skipTestLookup = [
   'components-statistic-features--animations', // animation only
   'components-riverstoryscroll-features--video-narrow', // video makes this too flakey
   'components-riverstoryscroll-features--video', // video makes this too flakey
+  'components-minimalvideoplayer--default', // autoplaying video prevents networkidle from settling
+  'components-minimalvideoplayer--playground', // autoplaying video prevents networkidle from settling
+  'components-minimalvideoplayer-features--native-source-element', // autoplaying video prevents networkidle from settling
+  'components-minimalvideoplayer-features--playing', // actively playing video produces nondeterministic frames
+  'components-minimalvideoplayer-features--custom-accessible-labels', // visually duplicates the paused story
   'components-hero-features-images-and-videos--with-native-block-end-default', // for being non-deterministic due to video buffering
   'components-hero-features-images-and-videos--with-youtube-video-block-end-default', // for loading a remote video
   'components-hero-features-images-and-videos--with-youtube-video-inline-end', // for loading a remote video
@@ -166,6 +171,8 @@ const skipTestLookup = [
   'components-actionmenu-features--single-selection-small-open', // for the menu to open, too flakey, need to fix layout shift
   'components-actionmenu-features--menu-alignment', // for the menu to open, too flakey, need to fix layout shift
 ]
+
+const touchTestLookup = ['components-card-features--arrow-cta-long-label']
 
 const categorisedStories = Object.keys((stories as StoryIndex).entries).reduce((acc, key) => {
   const {id, name: storyName, importPath} = stories.entries[key]
@@ -212,12 +219,19 @@ for (const key of Object.keys(categorisedStories)) {
     // eslint-disable-next-line i18n-text/no-en
     test.describe('Visual Comparison: ${key}', () => {
 
+      ${
+        componentStories.some(({id}) => touchTestLookup.includes(id))
+          ? `const touchTest = test.extend({hasTouch: true, viewport: {width: 375, height: 812}})`
+          : ''
+      }
+
       ${componentStories.reduce((acc, {id, storyName, groupName, timeout}) => {
         const requiresMobileViewport = validNarrowVieportNames.some(viewportName =>
           storyName.toLowerCase().includes(viewportName),
         )
 
         const requiresTabletViewport = storyName.toLowerCase().includes('tablet')
+        const requiresTouch = touchTestLookup.includes(id)
         if (skipTestLookup.includes(id)) {
           return acc
         }
@@ -227,7 +241,9 @@ for (const key of Object.keys(categorisedStories)) {
           const base = `${groupName} / ${storyName}`
           const testName = language === 'en' ? base : `${base} (${language})`
 
-          return `test('${testName}', async ({page}) => {
+          return `${requiresTouch ? '// eslint-disable-next-line i18n-text/no-en\n          ' : ''}${
+            requiresTouch ? 'touchTest' : 'test'
+          }('${testName}', async ({page}) => {
             await page.goto('http://localhost:${port}/iframe.html?${localeParam}args=&id=${id}&viewMode=story', { waitUntil: 'networkidle' })
             await page.locator('body.sb-show-main').waitFor({ state: 'visible' })
 

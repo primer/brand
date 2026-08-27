@@ -379,7 +379,9 @@ Use `PricingOptions.FeatureListItem` with `variant="included"` and `variant="exc
 
 ### Info tooltips
 
-Use `infoTooltip` on `PricingOptions.FeatureListItem` to add a supplementary tooltip to a feature.
+Use `infoTooltip` on `PricingOptions.FeatureListItem` to add an optional tooltip to a feature.
+
+An `aria-label` is automatically applied to the tooltip trigger. Use `infoTooltipAriaLabel` to customize it.
 
 ```jsx live
 <PricingOptions>
@@ -402,6 +404,25 @@ Use `infoTooltip` on `PricingOptions.FeatureListItem` to add a supplementary too
     <PricingOptions.PrimaryAction href="/buy">Start a free trial</PricingOptions.PrimaryAction>
   </PricingOptions.Item>
 </PricingOptions>
+```
+
+Use a custom trigger label when conditionally rendered content prevents the feature text from being used as the
+automatically generated label:
+
+```jsx
+function FeatureWithCustomContent({customContent}) {
+  return (
+    <PricingOptions.FeatureListItem
+      infoTooltip="Interact with Copilot using natural language."
+      infoTooltipAriaLabel="More information about Chat in IDE and Mobile"
+    >
+      <>
+        Chat in IDE and Mobile
+        {customContent ? <Text>Custom footnote</Text> : null}
+      </>
+    </PricingOptions.FeatureListItem>
+  )
+}
 ```
 
 ### Actions message
@@ -510,11 +531,12 @@ One item per pricing plan to be displayed. Maximum of 4 items.
 
 ### PricingOptions.FeatureListItem
 
-| Name          | Type                                         |   Default   | required | Description                                               |
-| :------------ | :------------------------------------------- | :---------: | :------: | :-------------------------------------------------------- |
-| `children`    | `ReactNode`                                  | `undefined` |  `true`  | The item of the feature list set                          |
-| `infoTooltip` | `string`                                     | `undefined` | `false`  | Tooltip text shown on hover/focus via an info icon button |
-| `variant`     | <PricingOptionsFeatureListItemVariantProp /> | `included`  | `false`  | The variant of the feature list set                       |
+| Name                   | Type                                         |   Default   | required | Description                                                                         |
+| :--------------------- | :------------------------------------------- | :---------: | :------: | :---------------------------------------------------------------------------------- |
+| `children`             | `ReactNode`                                  | `undefined` |  `true`  | The item of the feature list set                                                    |
+| `infoTooltip`          | `string`                                     | `undefined` | `false`  | Tooltip text shown on hover/focus via an info icon button                           |
+| `infoTooltipAriaLabel` | `string`                                     | `undefined` | `false`  | Overrides the automatically generated accessible label for the info tooltip trigger |
+| `variant`              | <PricingOptionsFeatureListItemVariantProp /> | `included`  | `false`  | The variant of the feature list set                                                 |
 
 ### PricingOptions.MenuAction
 

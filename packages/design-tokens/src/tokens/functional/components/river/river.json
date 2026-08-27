@@ -31,6 +31,16 @@
     },
     "variant": {
       "gridline": {
+        "visual": {
+          "padding": {
+            "value": "var(--base-size-32)",
+            "responsive": {
+              "1012px": {
+                "value": "var(--base-size-64)"
+              }
+            }
+          }
+        },
         "spacing": {
           "outerBlock": {
             "value": "var(--base-size-40)",

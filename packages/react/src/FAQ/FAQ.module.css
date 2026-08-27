@@ -10,11 +10,13 @@
 }
 
 .FAQ__content-wrapper--gridline {
+  padding-inline: var(--base-size-20);
   max-width: var(--brand-FAQ-maxWidth-list);
   margin: 0 auto;
 }
 
 .FAQ__heading-wrapper--gridline {
+  padding-inline: var(--base-size-20);
   border-block-end: var(--brand-color-border-muted) var(--brand-borderWidth-thin) solid;
   margin-block-end: var(--base-size-40);
 }
@@ -69,7 +71,19 @@
   margin: 0;
 }
 
+@media screen and (min-width: 48rem) {
+  .FAQ__content-wrapper--gridline,
+  .FAQ__heading-wrapper--gridline {
+    padding-inline: var(--base-size-36);
+  }
+}
+
 @media screen and (min-width: 63.25rem) {
+  .FAQ__content-wrapper--gridline,
+  .FAQ__heading-wrapper--gridline {
+    padding-inline: 0;
+  }
+
   .FAQ__heading-wrapper--gridline {
     margin-block-end: var(--base-size-48);
   }

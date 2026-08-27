@@ -86,7 +86,7 @@ describe('RiverBreakoutTabs', () => {
     expect(getByRole('tabpanel')).toHaveAttribute('id', tabs[1].getAttribute('aria-controls'))
   })
 
-  it('applies the visual background class when imageBackgroundColor is set', () => {
+  it('does not apply a visual background by default', () => {
     const {getAllByTestId} = render(
       <RiverBreakoutTabs>
         <RiverBreakoutTabs.A11yHeading>Agent workflows</RiverBreakoutTabs.A11yHeading>
@@ -95,7 +95,7 @@ describe('RiverBreakoutTabs', () => {
           <RiverBreakoutTabs.Content>
             <Text>Plan content</Text>
           </RiverBreakoutTabs.Content>
-          <RiverBreakoutTabs.Visual data-testid="visual-el" imageBackgroundColor="subtle">
+          <RiverBreakoutTabs.Visual data-testid="visual-el">
             <MockVisual label="plan visual" />
           </RiverBreakoutTabs.Visual>
         </RiverBreakoutTabs.Item>
@@ -103,7 +103,7 @@ describe('RiverBreakoutTabs', () => {
     )
 
     for (const visual of getAllByTestId('visual-el')) {
-      expect(visual).toHaveClass('River__visual--has-background')
+      expect(visual).not.toHaveClass('River__visual--has-background')
     }
   })
 

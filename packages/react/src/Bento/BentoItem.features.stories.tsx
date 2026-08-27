@@ -1,7 +1,7 @@
 import React from 'react'
 import type {Meta, StoryObj} from '@storybook/react'
 import {Bento} from '.'
-import {Label, Link} from '../'
+import {Link} from '../'
 import placeholderImage from '../fixtures/images/placeholder.png'
 import styles from './Bento.features.stories.module.css'
 
@@ -28,25 +28,6 @@ export const HeadingWithEmphasizedText: Story = {
     <Bento>
       <Bento.Item rowSpan={5} flow="column">
         <Bento.Content>
-          <Bento.Heading size="3">
-            <b>This is my super-sweet</b> bento heading
-          </Bento.Heading>
-          <Link href="#">Call to action</Link>
-        </Bento.Content>
-        <Bento.Visual position="50% 100%">
-          <img alt="placeholder, blank area with an gray background color" src={placeholderImage} />
-        </Bento.Visual>
-      </Bento.Item>
-    </Bento>
-  ),
-}
-
-export const WithLabel: Story = {
-  render: () => (
-    <Bento>
-      <Bento.Item rowSpan={5} flow="column">
-        <Bento.Content>
-          <Label color="red">Label</Label>
           <Bento.Heading size="3">
             <b>This is my super-sweet</b> bento heading
           </Bento.Heading>

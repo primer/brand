@@ -4,6 +4,7 @@ import React, {useEffect} from 'react'
 
 import {
   Box,
+  Button,
   Card,
   ColorModesEnum,
   CTABanner,
@@ -14,6 +15,7 @@ import {
   Heading,
   InlineLink,
   LogoSuite,
+  MinimalVideoPlayer,
   Section,
   SectionIntro,
   SubNav,
@@ -37,6 +39,7 @@ import mercardo from '../../../fixtures/images/bento/mercado.png'
 import copilotHeroHead from '../../../fixtures/images/copilot-mascot-head-peeking.png'
 import renderUI3 from '../../../fixtures/images/copilot-vscode-agent-mode-3.png'
 import renderUI3Dark from '../../../fixtures/images/copilot-vscode-agent-mode-3-dark.png'
+import heroAnimation from '../../../fixtures/videos/copilot-agent-mode-hero.mp4'
 import {logos} from '../../../LogoSuite/LogoSuite.fixtures'
 import {tileItems} from '../../../Tiles/Tiles.fixtures'
 
@@ -124,14 +127,31 @@ export function FlexSuiteAIOverviewTemplate({content}: FlexSuiteAIOverviewTempla
               {content.hero.headingLine1} <br /> {content.hero.headingLine2}
             </Hero.Heading>
             <Hero.Description>{content.hero.description}</Hero.Description>
-            <Hero.PrimaryAction href="#">{content.hero.primaryAction}</Hero.PrimaryAction>
-            <Hero.SecondaryAction href="#">{content.hero.secondaryAction}</Hero.SecondaryAction>
-            <Hero.Image
-              enableBorder={false}
-              position="block-end"
-              src={colorMode === ColorModesEnum.DARK ? renderUI3Dark : renderUI3}
-              alt={content.hero.imageAlt}
-            />
+            <Hero.ButtonGroup>
+              <Button as="a" href="#" variant="primary">
+                {content.hero.primaryAction}
+              </Button>
+              <Button as="a" href="#" variant="secondary">
+                {content.hero.secondaryAction}
+              </Button>
+            </Hero.ButtonGroup>
+            {process.env.NODE_ENV === 'test' ? (
+              <Hero.Image
+                enableBorder={false}
+                position="block-end"
+                src={colorMode === ColorModesEnum.DARK ? renderUI3Dark : renderUI3}
+                alt={content.hero.imageAlt}
+              />
+            ) : (
+              <Hero.Video enableBorder={false} position="block-end">
+                <MinimalVideoPlayer
+                  internalAccessibleLabels={content.hero.videoControls}
+                  poster={colorMode === ColorModesEnum.DARK ? renderUI3Dark : renderUI3}
+                  src={heroAnimation}
+                  title={content.hero.imageAlt}
+                />
+              </Hero.Video>
+            )}
           </Hero>
         </Section>
 
@@ -149,13 +169,13 @@ export function FlexSuiteAIOverviewTemplate({content}: FlexSuiteAIOverviewTempla
                   span={{xsmall: 12, large: 4}}
                   className={clsx(styles.cardGridColumn, styles.cardGridColumnArrowHover)}
                 >
-                  <Box className={styles.cardGridItem} padding={24}>
+                  <Box className={styles.cardGridItem}>
                     <Card
                       href="#"
                       fullWidth
                       ctaVariant="arrow"
                       ctaText={content.common.learnMore}
-                      className={styles.resourceCard}
+                      className={clsx(styles.resourceCard, styles.resourceCardWithIcon)}
                     >
                       <Card.Icon
                         icon={cardIcons[index]}
@@ -188,7 +208,6 @@ export function FlexSuiteAIOverviewTemplate({content}: FlexSuiteAIOverviewTempla
                 ref={element => {
                   riverImageRefs.current[0] = element
                 }}
-                imageBackgroundColor="subtle"
               >
                 <picture>
                   <source
@@ -213,7 +232,6 @@ export function FlexSuiteAIOverviewTemplate({content}: FlexSuiteAIOverviewTempla
                 ref={element => {
                   riverImageRefs.current[1] = element
                 }}
-                imageBackgroundColor="subtle"
               >
                 <picture>
                   <source
@@ -238,7 +256,6 @@ export function FlexSuiteAIOverviewTemplate({content}: FlexSuiteAIOverviewTempla
                 ref={element => {
                   riverImageRefs.current[2] = element
                 }}
-                imageBackgroundColor="subtle"
               >
                 <picture>
                   <source
@@ -299,7 +316,7 @@ export function FlexSuiteAIOverviewTemplate({content}: FlexSuiteAIOverviewTempla
                       fullWidth
                       ctaVariant="arrow"
                       ctaText={content.common.learnMore}
-                      className={styles.resourceCard}
+                      className={clsx(styles.resourceCard, styles.resourceCardWithIcon)}
                     >
                       <Card.Icon
                         icon={cardIcons[index]}
@@ -479,7 +496,7 @@ export function FlexSuiteAIOverviewTemplate({content}: FlexSuiteAIOverviewTempla
                       fullWidth
                       ctaVariant="arrow"
                       ctaText={content.common.learnMore}
-                      className={styles.resourceCard}
+                      className={clsx(styles.resourceCard, styles.resourceCardWithIcon)}
                     >
                       <Card.Icon
                         icon={cardIcons[index]}

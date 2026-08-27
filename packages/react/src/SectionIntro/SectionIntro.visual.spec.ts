@@ -126,6 +126,17 @@ test.describe('Visual Comparison: SectionIntro', () => {
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
+  test('SectionIntro / With Inline Code', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-sectionintro-features--with-inline-code&viewMode=story',
+      {waitUntil: 'networkidle'},
+    )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+    await page.waitForTimeout(500)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
   test('SectionIntro / Full Width', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-sectionintro-features--full-width&viewMode=story',
@@ -140,6 +151,17 @@ test.describe('Visual Comparison: SectionIntro', () => {
   test('SectionIntro / Leading Component', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-sectionintro-features--leading-component&viewMode=story',
+      {waitUntil: 'networkidle'},
+    )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+    await page.waitForTimeout(500)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
+  test('SectionIntro / Leading Media', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-sectionintro-features--leading-media&viewMode=story',
       {waitUntil: 'networkidle'},
     )
     await page.locator('body.sb-show-main').waitFor({state: 'visible'})

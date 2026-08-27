@@ -124,65 +124,11 @@ describe('RiverBreakout', () => {
     expect(sectionEl?.className).toContain('variant-gridline')
   })
 
-  it('renders with imageBackgroundColor on Visual', () => {
-    const {getByTestId} = render(
-      <RiverBreakout>
-        <RiverBreakout.A11yHeading>{mockHeading}</RiverBreakout.A11yHeading>
-        <RiverBreakout.Visual data-testid="visual-el" imageBackgroundColor="subtle">
-          <MockImage />
-        </RiverBreakout.Visual>
-        <RiverBreakout.Content>
-          <Text>{mockText}</Text>
-        </RiverBreakout.Content>
-      </RiverBreakout>,
-    )
-
-    const visualEl = getByTestId('visual-el')
-    expect(visualEl).toHaveClass('River__visual--has-background')
-  })
-
-  it('renders gridline variant with imageBackgroundColor', () => {
-    const {container, getByTestId} = render(
-      <RiverBreakout variant="gridline">
-        <RiverBreakout.A11yHeading>{mockHeading}</RiverBreakout.A11yHeading>
-        <RiverBreakout.Visual data-testid="visual-el" imageBackgroundColor="subtle">
-          <MockImage />
-        </RiverBreakout.Visual>
-        <RiverBreakout.Content>
-          <Text>{mockText}</Text>
-        </RiverBreakout.Content>
-      </RiverBreakout>,
-    )
-
-    const sectionEl = container.querySelector('section')
-    const visualEl = getByTestId('visual-el')
-
-    expect(sectionEl?.className).toContain('variant-gridline')
-    expect(visualEl).toHaveClass('River__visual--has-background')
-  })
-
   it('has no a11y violations with gridline variant', async () => {
     const {container} = render(
       <RiverBreakout variant="gridline">
         <RiverBreakout.A11yHeading>{mockHeading}</RiverBreakout.A11yHeading>
         <RiverBreakout.Visual>
-          <MockImage />
-        </RiverBreakout.Visual>
-        <RiverBreakout.Content>
-          <Text>{mockText}</Text>
-        </RiverBreakout.Content>
-      </RiverBreakout>,
-    )
-    const results = await axe(container)
-
-    expect(results).toHaveNoViolations()
-  })
-
-  it('has no a11y violations with gridline variant and imageBackgroundColor', async () => {
-    const {container} = render(
-      <RiverBreakout variant="gridline">
-        <RiverBreakout.A11yHeading>{mockHeading}</RiverBreakout.A11yHeading>
-        <RiverBreakout.Visual imageBackgroundColor="subtle">
           <MockImage />
         </RiverBreakout.Visual>
         <RiverBreakout.Content>

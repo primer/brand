@@ -84,7 +84,11 @@ export function FlexSuiteAIDetailsPlaylistTemplate({content}: FlexSuiteAIDetails
             <br /> <b>{content.hero.headingEmphasis}</b>
           </Hero.Heading>
           <Hero.Description>{content.hero.description}</Hero.Description>
-          <Hero.PrimaryAction href="#">{content.hero.primaryAction}</Hero.PrimaryAction>
+          <Hero.ButtonGroup>
+            <Button as="a" href="#" variant="primary">
+              {content.hero.primaryAction}
+            </Button>
+          </Hero.ButtonGroup>
         </Hero>
       </Box>
 
@@ -164,9 +168,15 @@ export function FlexSuiteAIDetailsPlaylistTemplate({content}: FlexSuiteAIDetails
                     fullWidth
                     ctaVariant="arrow"
                     ctaText={content.common.learnMore}
-                    className={overviewStyles.resourceCard}
+                    className={clsx(overviewStyles.resourceCard, overviewStyles.resourceCardWithIcon)}
                   >
-                    <Card.Icon icon={cardIcons[index]} color="green" hasBackground size="medium" />
+                    <Card.Icon
+                      icon={cardIcons[index]}
+                      color="green"
+                      hasBackground
+                      size="medium"
+                      className={overviewStyles.resourceCardIcon}
+                    />
                     <Card.Tokens>
                       <Token>{card.tag}</Token>
                     </Card.Tokens>

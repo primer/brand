@@ -1,5 +1,205 @@
 # @primer/react-brand
 
+## 0.74.0
+
+### Minor Changes
+
+- [#1448](https://github.com/primer/brand/pull/1448) [`72fd3a6`](https://github.com/primer/brand/commit/72fd3a696f03f47876f3bf02e6e5187b0e1dc0f1) Thanks [@rezrah](https://github.com/rezrah)! - Added a new `InlineCode` component for short, in-situ code fragments.
+
+  Use it inside other components like `Card`, `CTABanner`, `River`, `Hero` and `Pillar`.
+
+  The native `code` elements remain supported in `Card`, `CTABanner` and `River` for backwards compatibility, but their visual appearance has changed. They no longer feature a border and have adjusted typographic spacing.
+
+  Example usage:
+
+  ```js
+  import {InlineCode} from '@primer/react-brand'
+  ```
+
+  ```jsx
+  <InlineCode>npm install @primer/react-brand</InlineCode>
+  ```
+
+  Migration example for `Card`, `CTABanner` and `River`, which previously used `<code>`
+
+  ```diff
+  + import {Card, InlineCode} from '@primer/react-brand'
+
+  - <Card.Heading>Run <code>git status</code></Card.Heading>
+  + <Card.Heading>Run <InlineCode>git status</InlineCode></Card.Heading>
+  ```
+
+- [#1429](https://github.com/primer/brand/pull/1429) [`e6d9665`](https://github.com/primer/brand/commit/e6d96657ccd48b0d7f65d20f127f04cc1b107cdd) Thanks [@danielguillan](https://github.com/danielguillan)! - Updated `MinimalFooter` visual design and added a center component prop and back to top control.
+
+  - ⚠️ Manually check `MinimalFooter` on your site to ensure the new opinionated border and background defaults work with your design.
+  - Added the optional `centerComponent` prop for exceptional page-specific content and the optional `MinimalFooter.BackToTop` control.
+  - Replaced the full GitHub logo with the GitHub logomark and reorganized the footer into top, center, and bottom sections.
+
+- [#1444](https://github.com/primer/brand/pull/1444) [`e61d466`](https://github.com/primer/brand/commit/e61d4664c260e18ce9b6f134a3d0684f339198cc) Thanks [@rezrah](https://github.com/rezrah)! - ⚠️ `CardSkewEffect` has been removed from `@primer/react-brand`. The effect has been retired, and no replacement will be issued.
+
+### Patch Changes
+
+- [#1449](https://github.com/primer/brand/pull/1449) [`1aaffc3`](https://github.com/primer/brand/commit/1aaffc3f0d7aff7b2b7f26580ad00b424d785d01) Thanks [@stefankp](https://github.com/stefankp)! - Added `infoTooltipAriaLabel` to `PricingOptions.FeatureListItem` to customize the tooltip trigger's accessible label.
+
+- [#1447](https://github.com/primer/brand/pull/1447) [`5fbbd9d`](https://github.com/primer/brand/commit/5fbbd9d83494f09aed56e046b0614c4ebbffe9c0) Thanks [@rezrah](https://github.com/rezrah)! - Fixed missing size and animation tokens in tree-shaken ESM component bundles like `Button`. Now all control tokens are loaded globally as a side-effect.
+
+- [#1394](https://github.com/primer/brand/pull/1394) [`414e53f`](https://github.com/primer/brand/commit/414e53f6a27abc8c6fe8067ccb1477bb01c02677) Thanks [@stefankp](https://github.com/stefankp)! - Added JSON-based typography and size map exports at `@primer/react-brand/lib/design-tokens/json/typography.json` and `@primer/react-brand/lib/design-tokens/json/size.json`.
+
+- [#1451](https://github.com/primer/brand/pull/1451) [`3b22cb5`](https://github.com/primer/brand/commit/3b22cb592978ab7b32103575909db12cad548c1a) Thanks [@rezrah](https://github.com/rezrah)! - Improved clarity and guidelines for `Token` and `Label` components:
+
+  - Use `Token` for compact metadata that describes or supports adjacent content.
+  - Use `Label` for short status or metadata attached to an object in product-like UI.
+  - Added development warnings for legacy standalone `Label` children in `River.Content` and `Bento.Content`.
+  - Added MCP server instructions to provide errors for the standalone `Label` component used near first-class patterns and components.
+
+## 0.73.0
+
+### Minor Changes
+
+- [#1425](https://github.com/primer/brand/pull/1425) [`a486555`](https://github.com/primer/brand/commit/a48655575e03ab38ffcb3cb0e3752c5e34f55fae) Thanks [@danielguillan](https://github.com/danielguillan)! - Added the new `MinimalVideoPlayer` component for presenting muted, looping videos with a minimal play and pause control.
+
+  ```tsx
+  <MinimalVideoPlayer poster="/video-poster.jpg" src="/video.webm" title="Product interface demonstration" />
+  ```
+
+  🔗 [See `MinimalVideoPlayer` documentation for more usage examples](https://primer.style/brand/components/MinimalVideoPlayer)
+
+### Patch Changes
+
+- [#1432](https://github.com/primer/brand/pull/1432) [`e8b64f0`](https://github.com/primer/brand/commit/e8b64f0c2ab057d628fad125cc390c4cff665589) Thanks [@rezrah](https://github.com/rezrah)! - Allow `ButtonGroup` to accept conditionally rendered children.
+
+  Example:
+
+  ```jsx
+  <ButtonGroup>
+    <Button>Primary action</Button>
+    {showSecondaryAction ? <Button>Secondary action</Button> : null}
+  </ButtonGroup>
+  ```
+
+- [#1438](https://github.com/primer/brand/pull/1438) [`baa0861`](https://github.com/primer/brand/commit/baa0861d4a05aabd703dd62059b85caf743f97d3) Thanks [@rezrah](https://github.com/rezrah)! - Added configurable `Card.Image` padding, which allows for full-bleed images to be displayed.
+
+  Example:
+
+  ```jsx
+  <Card hasBorder>
+    <Card.Image padding="none" {...rest} />
+  </Card>
+  ```
+
+- [#1439](https://github.com/primer/brand/pull/1439) [`bca51bc`](https://github.com/primer/brand/commit/bca51bc13ddb2df7c3f8b6b17b8812195468d1cb) Thanks [@danielguillan](https://github.com/danielguillan)! - Update expressive `Testimonial` typography, spacing, and responsive composition to match the design.
+
+- [#1439](https://github.com/primer/brand/pull/1439) [`bca51bc`](https://github.com/primer/brand/commit/bca51bc13ddb2df7c3f8b6b17b8812195468d1cb) Thanks [@danielguillan](https://github.com/danielguillan)! - Added `width: 100%` to all `River` components to fix layout regression on tablet viewports
+
+- [#1428](https://github.com/primer/brand/pull/1428) [`8ac13c8`](https://github.com/primer/brand/commit/8ac13c8367b8ac99abd6e8ca1aca86aa305ec3a8) Thanks [@danielguillan](https://github.com/danielguillan)! - Updated `Card` responsive spacing, exposed arrow CTA labels on non-hover devices, and removed the hover scale effect.
+
+- [#1441](https://github.com/primer/brand/pull/1441) [`8040f9a`](https://github.com/primer/brand/commit/8040f9a789a71493c06cf8fbc543aed0d87f70d0) Thanks [@rezrah](https://github.com/rezrah)! - Updated the `FAQ` gridline variant to include inline padding by default for narrow viewports.
+
+## 0.72.0
+
+### Minor Changes
+
+- [#1401](https://github.com/primer/brand/pull/1401) [`bbbc4b3`](https://github.com/primer/brand/commit/bbbc4b3ef173866927933a31e34d90c5bb70d166) Thanks [@rezrah](https://github.com/rezrah)! - Multiple `ActionMenu` component updates:
+
+  - Calls consumer-provided `onClick` handlers in default and split-button modes.
+  - ⚠️ Breaking change to `ActionMenu.Button` in split-button mode. Custom HTML attributes are now correctly forwarded to the primary action instead of the menu toggle. This was the originally intended behavior.
+  - Forwards the `variant` prop in `default` mode correctly. `ActionMenu` can now render in all available `Button` variants.
+  - Forwards the `leadingVisual` prop in `default` mode.
+
+- [#1427](https://github.com/primer/brand/pull/1427) [`d104c0d`](https://github.com/primer/brand/commit/d104c0d13928f5d163bc35b81cf9c3a69aaba6b3) Thanks [@rezrah](https://github.com/rezrah)! - Removed the global `block` layout applied to `img` and `picture` elements to prevent overriding of default inline behavior.
+
+  To minimize regressions, `block` has been applied to image elements at a component level instead.
+
+  ⚠️ If you previously relied on the `display: block` styling from our `reset.css`, please apply it manually in your application code.
+
+- [#1413](https://github.com/primer/brand/pull/1413) [`6288e69`](https://github.com/primer/brand/commit/6288e690492fc779819e65013f9a5b61bbf2b3b6) Thanks [@rezrah](https://github.com/rezrah)! - ⚠️ Breaking change to `Hero.Image` and `Hero.Video` ⚠️
+
+  Previously combined `padding` and `position` semantics have been separated.
+
+  The `position` prop will now only control layout and positioning relative to the content. It accepts `block-end`, `inline-start`, or `inline-end`.
+
+  ```diff
+  -<Hero.Image position="block-end-padded" src="image.jpg" alt="" />
+  +<Hero.Image position="block-end" padding="all" src="image.jpg" alt="" />
+  ```
+
+- [#1365](https://github.com/primer/brand/pull/1365) [`808df8a`](https://github.com/primer/brand/commit/808df8a6c084a43f7f3d3c43386f3b171dae1c47) Thanks [@danielguillan](https://github.com/danielguillan)! - ⚠️ Breaking change: Removed the `imageBackgroundColor` prop from `River.Visual`, `RiverBreakout.Visual`, and `RiverBreakoutTabs.Visual`.
+
+  The `River` `gridline` variant now applies the full-bleed visual background layout by default. Remove `imageBackgroundColor="subtle"` from `River.Visual` when using the `gridline` variant.
+
+  Remove `imageBackgroundColor` from `RiverBreakout.Visual` and `RiverBreakoutTabs.Visual` without replacement. Their default visual treatments are unchanged.
+
+  The background treatment is not applied to the default `River` variant or either `RiverBreakout` variant.
+
+  Updated the River `gridline` variant tablet layout with a `618px` max-width and lateral gridlines.
+
+- [#1413](https://github.com/primer/brand/pull/1413) [`6288e69`](https://github.com/primer/brand/commit/6288e690492fc779819e65013f9a5b61bbf2b3b6) Thanks [@rezrah](https://github.com/rezrah)! - Added opt-in `position` and `padding` controls to `River.Visual` media in the `gridline` variant.
+
+  🔗 Storybook examples:
+
+  - [Center position](https://stunning-chainsaw-j82glqz.pages.github.io/brand/storybook/?path=/story/components-river-features-gridline-variants--grid-line-visual-position-center)
+  - [Block-end position](https://stunning-chainsaw-j82glqz.pages.github.io/brand/storybook/?path=/story/components-river-features-gridline-variants--grid-line-visual-position-block-end)
+  - [Block-end inline-start position](https://stunning-chainsaw-j82glqz.pages.github.io/brand/storybook/?path=/story/components-river-features-gridline-variants--grid-line-visual-position-block-end-inline-start)
+  - [Block-end inline-end position](https://stunning-chainsaw-j82glqz.pages.github.io/brand/storybook/?path=/story/components-river-features-gridline-variants--grid-line-visual-position-block-end-inline-end)
+  - [No padding](https://stunning-chainsaw-j82glqz.pages.github.io/brand/storybook/?path=/story/components-river-features-gridline-variants--grid-line-visual-padding-none)
+  - [Padding on all sides](https://stunning-chainsaw-j82glqz.pages.github.io/brand/storybook/?path=/story/components-river-features-gridline-variants--grid-line-visual-padding-all)
+
+- [#1420](https://github.com/primer/brand/pull/1420) [`654b881`](https://github.com/primer/brand/commit/654b88113e15c6df7daf727e71d4637ed85b1856) Thanks [@danielguillan](https://github.com/danielguillan)! - Exported `useFocusTrap` from the package root and created stable container and initial-focus refs when they are not provided.
+
+### Patch Changes
+
+- [#1427](https://github.com/primer/brand/pull/1427) [`d104c0d`](https://github.com/primer/brand/commit/d104c0d13928f5d163bc35b81cf9c3a69aaba6b3) Thanks [@rezrah](https://github.com/rezrah)! - Fixed the global reset so smooth scrolling is disabled consistently when users prefer reduced motion.
+
+- [#1417](https://github.com/primer/brand/pull/1417) [`1d59236`](https://github.com/primer/brand/commit/1d5923645edce055bda790053e47c5a615934a5b) Thanks [@stefankp](https://github.com/stefankp)! - Fixed missing styles for ESM form controls, where the dependent design tokens were missing . Affects `TextInput`, `Textarea`, `Select`, `Checkbox`, `Radio`, and `FormControl`.
+
+- [#1412](https://github.com/primer/brand/pull/1412) [`6bf33b3`](https://github.com/primer/brand/commit/6bf33b3b17baafcda640de90fa96450427bbbef8) Thanks [@danielguillan](https://github.com/danielguillan)! - - Mapped the light and dark `--brand-color-text-link-rest` values to `blue-6` and `blue-1`.
+
+  - Updated the light `--brand-color-canvas-muted` value to `#F9FBF9`.
+
+- [#1416](https://github.com/primer/brand/pull/1416) [`9b8ccce`](https://github.com/primer/brand/commit/9b8ccce770d40604c45cdf846506d77b77bb223c) Thanks [@danielguillan](https://github.com/danielguillan)! - Fixed the `Hero` image border radius when rendering a `picture` element.
+
+- [#1413](https://github.com/primer/brand/pull/1413) [`6288e69`](https://github.com/primer/brand/commit/6288e690492fc779819e65013f9a5b61bbf2b3b6) Thanks [@rezrah](https://github.com/rezrah)! - Added `Hero.ButtonGroup` for rendering `Button` and `ActionMenu` children. `Hero.ButtonGroup` is now the de facto way to display buttons in the `Hero`.
+
+  ⚠️ `Hero.PrimaryAction` and `Hero.SecondaryAction` are now deprecated. Please migrate over to `Hero.ButtonGroup` as they will be removed in a future release.
+
+  Migrate using the following approach:
+
+  ```diff
+  -<Hero.PrimaryAction href="#">Primary action</Hero.PrimaryAction>
+  -<Hero.SecondaryAction href="#">Secondary action</Hero.SecondaryAction>
+  +<Hero.ButtonGroup>
+  +  <Button as="a" href="#">
+  +    Primary action
+  +  </Button>
+  +  <Button as="a" href="#">
+  +    Secondary action
+  +  </Button>
+  +</Hero.ButtonGroup>
+  ```
+
+- [#1411](https://github.com/primer/brand/pull/1411) [`3c89bdc`](https://github.com/primer/brand/commit/3c89bdc8c4cc3ae608478c3844122b9fbb038379) Thanks [@danielguillan](https://github.com/danielguillan)! - Fixed `NavList` indentation across grouped nested disclosure levels.
+
+- [#1391](https://github.com/primer/brand/pull/1391) [`930ab18`](https://github.com/primer/brand/commit/930ab18f9f2e002023c5ec36634475e44967ae59) Thanks [@rezrah](https://github.com/rezrah)! - Added a `labels` prop to the `Pagination` component for customizing the user-facing labels of the previous and next controls.
+
+  ```jsx
+  <Pagination
+    pageCount={10}
+    currentPage={2}
+    labels={{prev: 'Précédent', next: 'Suivant', prevAriaLabel: 'Page précédente', nextAriaLabel: 'Page suivante'}}
+  />
+  ```
+
+- [#1365](https://github.com/primer/brand/pull/1365) [`808df8a`](https://github.com/primer/brand/commit/808df8a6c084a43f7f3d3c43386f3b171dae1c47) Thanks [@danielguillan](https://github.com/danielguillan)! - Improve `RiverAccordion` gridline layout on tablet viewports and update its accordion toggle icon from chevrons to triangles.
+
+- [#1388](https://github.com/primer/brand/pull/1388) [`21c954b`](https://github.com/primer/brand/commit/21c954b59cdf71cb4497e59e95e58b0fde82a767) Thanks [@danielguillan](https://github.com/danielguillan)! - Removed the non-functional `VideoPlayer` `showControlsWhenPaused` prop from the public API and documentation.
+
+- [#1362](https://github.com/primer/brand/pull/1362) [`8433cf8`](https://github.com/primer/brand/commit/8433cf800ee82a8d9e173db339c15b50af05372f) Thanks [@danielguillan](https://github.com/danielguillan)! - - Restored rounded corners to `CTABanner` while preserving square edges when grid lines are enabled.
+
+  - Improved `ButtonGroup` to forward custom class names alongside its default styles.
+  - Added native `ActionMenu` child support to `ButtonGroup`, including automatic sizes and positional variants, and the `CTABanner.ButtonGroup` wrapper.
+
+- [#1360](https://github.com/primer/brand/pull/1360) [`5cbb414`](https://github.com/primer/brand/commit/5cbb4149ac98444fd66a8c2b1837a278149e684c) Thanks [@danielguillan](https://github.com/danielguillan)! - Updated `SectionIntroStacked` layout spacing for improved visual alignment.
+
 ## 0.71.0
 
 ### Minor Changes

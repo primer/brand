@@ -1,7 +1,7 @@
 import React, {forwardRef, PropsWithChildren} from 'react'
 import {clsx} from 'clsx'
 import type {BaseProps} from '../../component-helpers'
-import type {HeroMediaPositions} from '../HeroContext'
+import type {HeroMediaPadding, HeroMediaPosition} from '../HeroContext'
 import {useProvidedRefOrCreate} from '../../hooks/useRef'
 
 import styles from '../Hero.module.css'
@@ -10,7 +10,11 @@ import {PlayIcon} from '../../VideoPlayer/components/PlayIcon'
 import {MarkGithubIcon} from '@primer/octicons-react'
 
 type HeroVideoBaseProps = {
-  position?: HeroMediaPositions
+  position?: HeroMediaPosition
+  /**
+   * Controls the padding around media in gridline layouts. `default` preserves the padding recommended for the position.
+   */
+  padding?: HeroMediaPadding
   enableBorder?: boolean
   'data-testid'?: string
 } & PropsWithChildren<BaseProps<HTMLDivElement>>
@@ -28,6 +32,7 @@ export const HeroVideo = forwardRef<HTMLDivElement, HeroVideoProps>(
       className,
       children,
       position = 'block-end',
+      padding = 'default',
       poster,
       posterTitle,
       posterAltText,
@@ -40,14 +45,14 @@ export const HeroVideo = forwardRef<HTMLDivElement, HeroVideoProps>(
     const [showVideo, setShowVideo] = React.useState(poster ? false : true)
     const containerRef = useProvidedRefOrCreate(ref as React.RefObject<HTMLDivElement>)
     const isInlinePosition = position.startsWith('inline')
-    const isInlinePadded = position.endsWith('-padded')
 
     const mediaClasses = clsx(
       styles['Hero-video'],
       styles['Hero-media'],
       styles[`Hero-media--pos-${position}`],
       isInlinePosition && styles['Hero-media--pos-inline'],
-      isInlinePosition && isInlinePadded && styles['Hero-media--pos-inline-padded'],
+      padding === 'all' && styles['Hero-media--padding-all'],
+      padding === 'none' && styles['Hero-media--padding-none'],
       className,
     )
 

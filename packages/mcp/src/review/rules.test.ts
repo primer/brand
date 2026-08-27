@@ -1,4 +1,4 @@
-import {existsSync, readFileSync} from 'node:fs'
+import {readFileSync} from 'node:fs'
 import {fileURLToPath} from 'node:url'
 
 import type {Catalog} from '../catalog/types.js'
@@ -214,6 +214,57 @@ describe('primer_brand_review rules', () => {
     expect(ruleIds(review('<Hero><Hero.Heading>Big</Hero.Heading></Hero>'))).not.toContain('heading-explicit-size')
   })
 
+  it('flags size overrides on component-owned text', () => {
+    expect(ruleIds(review('<Card.Heading as="h3" size="4">Infrastructure</Card.Heading>'))).toContain(
+      'component-text-default-size',
+    )
+    expect(ruleIds(review('<Hero.Description size="300">Description</Hero.Description>'))).toContain(
+      'component-text-default-size',
+    )
+  })
+
+  it('allows component-owned text defaults and standalone typography sizes', () => {
+    expect(ruleIds(review('<FAQ.Heading as="h2">Questions</FAQ.Heading>'))).not.toContain('component-text-default-size')
+    expect(ruleIds(review('<Card.Heading data-size="compact">Heading</Card.Heading>'))).not.toContain(
+      'component-text-default-size',
+    )
+    expect(ruleIds(review('<Text size="300">Description</Text>'))).not.toContain('component-text-default-size')
+    expect(ruleIds(review('<Heading size="4">Heading</Heading>'))).not.toContain('component-text-default-size')
+  })
+
+  it('does not apply component-owned text guidance to application components', () => {
+    expect(ruleIds(review('<PricingCard.Heading size="small">Pro</PricingCard.Heading>'))).not.toContain(
+      'component-text-default-size',
+    )
+  })
+
+  it('flags standalone Label in page compositions', () => {
+    const code =
+      '<Grid.Column><Stack><Label color="gray" size="small">Managed</Label><Pillar><Pillar.Heading>Scale</Pillar.Heading></Pillar></Stack></Grid.Column>'
+    const findings = review(code).filter(finding => finding.rule === 'standalone-label-context')
+    expect(findings).toHaveLength(1)
+    expect(findings[0]?.severity).toBe('error')
+    expect(findings[0]?.message).toContain('Token')
+  })
+
+  it('allows the Token-backed Card.Label slot', () => {
+    const findings = review('<Card><Card.Label>Guide</Card.Label><Card.Heading>Build</Card.Heading></Card>')
+    expect(ruleIds(findings)).not.toContain('standalone-label-context')
+  })
+
+  it('warns without erroring when Label may be product-like metadata', () => {
+    const findings = review('<tr><td>Issue #123</td><td><Label size="small">Bug</Label></td></tr>').filter(
+      finding => finding.rule === 'standalone-label-context',
+    )
+    expect(findings).toHaveLength(1)
+    expect(findings[0]?.severity).toBe('warning')
+  })
+
+  it('allows Token in page compositions', () => {
+    const findings = review('<Pillar><Token>Managed</Token><Pillar.Heading>Scale</Pillar.Heading></Pillar>')
+    expect(ruleIds(findings)).not.toContain('standalone-label-context')
+  })
+
   it('reports which approved brand components were imported', () => {
     const used = brandComponentsUsed("import {Hero, CTABanner} from '@primer/react-brand'", makeCatalog())
     expect(used.map(component => component.name).sort()).toEqual(['CTABanner', 'Hero'])
@@ -229,19 +280,63 @@ describe('primer_brand_review rules', () => {
 // errors. A failure here means a rule produces false positives against known-correct code.
 describe('primer_brand_review over generated canonical examples', () => {
   const catalogPath = fileURLToPath(new URL('../../dist/catalog.json', import.meta.url))
-  const hasCatalog = existsSync(catalogPath)
-  const testOrSkip = hasCatalog ? it : it.skip
+  const catalog = JSON.parse(readFileSync(catalogPath, 'utf8')) as Catalog
+  const examples = [
+    ...catalog.components.flatMap(component =>
+      component.examples
+        .filter(example => example.code)
+        .map(example => ({name: component.name, code: example.code as string})),
+    ),
+    ...catalog.recipes.map(recipe => ({name: recipe.name, code: recipe.source})),
+  ]
 
-  testOrSkip('produces no errors on any catalog example', () => {
-    const catalog = JSON.parse(readFileSync(catalogPath, 'utf8')) as Catalog
-    const examples = [
-      ...catalog.components.flatMap(component =>
-        component.examples
-          .filter(example => example.code)
-          .map(example => ({name: component.name, code: example.code as string})),
-      ),
-      ...catalog.recipes.map(recipe => ({name: recipe.name, code: recipe.source})),
-    ]
+  it('includes object-assigned subcomponents separated by comments', () => {
+    const hero = catalog.components.find(component => component.name === 'Hero')
+    expect(hero?.subcomponents).toEqual(expect.arrayContaining(['Hero.ButtonGroup', 'Hero.Image', 'Hero.Video']))
+  })
+
+  it('does not advertise deprecated compound subcomponents', () => {
+    const hero = catalog.components.find(component => component.name === 'Hero')
+    expect(hero?.subcomponents).not.toEqual(expect.arrayContaining(['Hero.PrimaryAction', 'Hero.SecondaryAction']))
+  })
+
+  it('advertises the supported Card.Label subcomponent', () => {
+    const card = catalog.components.find(component => component.name === 'Card')
+    expect(card?.subcomponents).toContain('Card.Label')
+  })
+
+  it('does not recommend deprecated Hero action subcomponents', () => {
+    for (const example of examples) {
+      const deprecatedActions = example.code.match(/<Hero\.(?:PrimaryAction|SecondaryAction)\b/g) ?? []
+      expect({component: example.name, deprecatedActions}).toEqual({component: example.name, deprecatedActions: []})
+    }
+  })
+
+  it('uses the connected gridline Card example with its companion styles', () => {
+    const card = catalog.components.find(component => component.name === 'Card')
+    const example = card?.examples[0]
+    expect(example?.code).toContain('columnGap="none"')
+    expect(example?.code).toContain('rowGap="none"')
+    expect(example?.code).toContain('enableGutters={false}')
+    expect(example?.styles).toContain('.gridFrame')
+    expect(example?.styles).toContain('.gridItem')
+    expect(example?.code).not.toContain('color="purple"')
+  })
+
+  it('uses the page-width gridline Statistic example with its companion styles', () => {
+    const statistic = catalog.components.find(component => component.name === 'Statistic')
+    const example = statistic?.examples[0]
+    expect(example?.code).toContain('<Box className={styles.gridFrame}>')
+    expect(example?.code).toContain('columnGap="none"')
+    expect(example?.code).toContain('rowGap="none"')
+    expect(example?.code).toContain('enableGutters={false}')
+    expect(example?.styles).toContain('.gridFrame')
+    expect(example?.styles).toContain('border-block-start')
+    expect(example?.styles).toContain('.gridContent')
+    expect(example?.styles).toContain('margin-inline: auto')
+  })
+
+  it('produces no errors on any catalog example', () => {
     expect(examples.length).toBeGreaterThan(0)
     for (const example of examples) {
       const errors = errorsOf(allRules.flatMap(rule => rule.run(example.code, catalog)))

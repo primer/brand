@@ -556,6 +556,53 @@ describe('PricingOptions', () => {
     expect(infoButton).toHaveAttribute('aria-describedby')
   })
 
+  it('uses an explicit info tooltip aria label for ReactNode feature content', () => {
+    mockUseWindowSize.mockReturnValue(mediumBreakpoint)
+
+    const {getByRole} = render(
+      <PricingOptions>
+        <PricingOptions.Item>
+          <PricingOptions.FeatureList>
+            <PricingOptions.FeatureListItem
+              infoTooltip="Interact with Copilot using natural language."
+              infoTooltipAriaLabel="More information about Chat in IDE"
+            >
+              <span>Chat in IDE</span>
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem
+              infoTooltip="Get help directly in your terminal."
+              infoTooltipAriaLabel="More information about CLI assistance"
+            >
+              <span>CLI assistance</span>
+            </PricingOptions.FeatureListItem>
+          </PricingOptions.FeatureList>
+        </PricingOptions.Item>
+      </PricingOptions>,
+    )
+
+    expect(getByRole('button', {name: 'More information about Chat in IDE'})).toBeInTheDocument()
+    expect(getByRole('button', {name: 'More information about CLI assistance'})).toBeInTheDocument()
+  })
+
+  it('uses the existing generic info tooltip aria label for ReactNode feature content by default', () => {
+    mockUseWindowSize.mockReturnValue(mediumBreakpoint)
+
+    const {getByRole} = render(
+      <PricingOptions>
+        <PricingOptions.Item>
+          <PricingOptions.FeatureList>
+            <PricingOptions.FeatureListItem infoTooltip="Interact with Copilot using natural language.">
+              <span>Chat in IDE</span>
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem>Another feature</PricingOptions.FeatureListItem>
+          </PricingOptions.FeatureList>
+        </PricingOptions.Item>
+      </PricingOptions>,
+    )
+
+    expect(getByRole('button', {name: 'More information about this feature'})).toBeInTheDocument()
+  })
+
   it('does not render an info button when infoTooltip is not provided', () => {
     mockUseWindowSize.mockReturnValue(mediumBreakpoint)
 
@@ -620,6 +667,28 @@ describe('PricingOptions', () => {
 
     expect(getByRole('link', {name: 'Upgrade'})).toBeInTheDocument()
     expect(getByTestId(PricingOptions.testIds.actionsMessage)).toBeInTheDocument()
+  })
+
+  it('renders media in the Item leadingComponent escape hatch', () => {
+    mockUseWindowSize.mockReturnValue(mediumBreakpoint)
+
+    const {getByRole} = render(
+      <PricingOptions>
+        <PricingOptions.Item
+          leadingComponent={
+            <picture>
+              <img src="leading.jpg" alt="Leading visual" />
+            </picture>
+          }
+        >
+          <PricingOptions.Heading>Pro</PricingOptions.Heading>
+        </PricingOptions.Item>
+      </PricingOptions>,
+    )
+
+    const leadingImage = getByRole('img', {name: 'Leading visual'})
+
+    expect(leadingImage.closest('[class*="PricingOptions__leading-component"]')).toBeInTheDocument()
   })
 
   it('renders PricingOptions.ActionsMessage leadingComponent without modifying its props', () => {
