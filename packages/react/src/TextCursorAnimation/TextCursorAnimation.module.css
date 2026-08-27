@@ -46,7 +46,8 @@
 }
 
 .TextCursorAnimation__cursor--animated {
-  animation: TextCursorAnimation-cursor-blink 833.333ms steps(1, end) 250ms 3 forwards;
+  animation: TextCursorAnimation-cursor-blink var(--brand-TextCursorAnimation-cursor-animationDuration) steps(1, end)
+    250ms 3 forwards;
 }
 
 .TextCursorAnimation__cursor--correction {

@@ -4,6 +4,7 @@ import {useCursorAnimation} from '../hooks/useCursorAnimation'
 import {EyebrowText} from '../EyebrowText'
 import {TextProps} from '../Text/Text'
 
+import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/text-cursor-animation/base.css'
 import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/text-cursor-animation/colors-with-modes.css'
 
 import styles from './TextCursorAnimation.module.css'

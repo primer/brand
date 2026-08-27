@@ -17,6 +17,7 @@ Animated text types once by default. Pass `initialText` to transition between tw
 
 New tokens:
 
+- `--brand-TextCursorAnimation-cursor-animationDuration`
 - `--brand-TextCursorAnimation-cursor-deleteColor`
 - `--brand-TextCursorAnimation-cursor-finalColor`
 - `--brand-TextCursorAnimation-cursor-color`
