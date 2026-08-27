@@ -141,7 +141,7 @@ function isUsableSkipToContentTarget(element: HTMLElement) {
   return true
 }
 
-function Root(
+const Root = forwardRef<SubdomainNavBarHandle, SubdomainNavBarProps>(function Root(
   {
     children,
     className,
@@ -157,8 +157,8 @@ function Root(
     menuLabels,
     skipToContentTargetId,
     ...rest
-  }: SubdomainNavBarProps,
-  forwardedRef: React.ForwardedRef<SubdomainNavBarHandle>,
+  },
+  forwardedRef,
 ) {
   const [menuHidden, setMenuHidden] = useState(true)
   const [searchVisible, setSearchVisible] = useState(false)
@@ -554,19 +554,19 @@ function Root(
                 </button>
               )}
 
+              {isLarge && hasTrailingComponent && (
+                <div className={styles['SubdomainNavBar-trailing-component']}>{trailingComponent}</div>
+              )}
               {isLarge && hasActions && (
                 <div
                   className={clsx(
                     styles['SubdomainNavBar-button-area'],
                     styles['SubdomainNavBar-button-area--visible'],
-                    hasTrailingComponent && styles['SubdomainNavBar-button-area--has-trailing-item'],
+                    hasTrailingComponent && styles['SubdomainNavBar-button-area--has-leading-item'],
                   )}
                 >
                   <div className={styles['SubdomainNavBar-button-area-inner']}>{actionItems}</div>
                 </div>
-              )}
-              {isLarge && hasTrailingComponent && (
-                <div className={styles['SubdomainNavBar-trailing-component']}>{trailingComponent}</div>
               )}
 
               {!isLarge && (
@@ -606,6 +606,9 @@ function Root(
                           styles['SubdomainNavBar-menu-wrapper-footer--has-leading-item'],
                       )}
                     >
+                      {hasTrailingComponent && (
+                        <div className={styles['SubdomainNavBar-trailing-component']}>{trailingComponent}</div>
+                      )}
                       {hasActions && (
                         <div
                           className={clsx(
@@ -620,9 +623,6 @@ function Root(
                           </div>
                         </div>
                       )}
-                      {hasTrailingComponent && (
-                        <div className={styles['SubdomainNavBar-trailing-component']}>{trailingComponent}</div>
-                      )}
                     </div>
                   )}
                 </div>
@@ -635,7 +635,7 @@ function Root(
       <div ref={fallbackTargetRef} id={fallbackTargetID} tabIndex={-1} />
     </>
   )
-}
+})
 
 export type SubdomainNavBarLinkProps = {
   href: string
@@ -1085,8 +1085,7 @@ const _SearchInternal = forwardRef<HTMLInputElement, SubdomainNavBarSearchProps>
 
 const Search = _SearchInternal
 
-const RootWithRef = forwardRef<SubdomainNavBarHandle, SubdomainNavBarProps>(Root)
-RootWithRef.displayName = 'SubdomainNavBar'
+Root.displayName = 'SubdomainNavBar'
 
 type CTAActionProps = {
   href: string
@@ -1125,7 +1124,7 @@ function SecondaryAction({children, href, ...rest}: PropsWithChildren<CTAActionP
   )
 }
 
-export const SubdomainNavBar = Object.assign(RootWithRef, {
+export const SubdomainNavBar = Object.assign(Root, {
   Link,
   Search,
   PrimaryAction,

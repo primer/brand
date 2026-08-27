@@ -44,7 +44,7 @@ Please refer to our [Storybook examples](https://primer.style/brand/storybook/?p
 
 ### Leading and trailing content
 
-The `leadingComponent` and `trailingComponent` props are supported composition slots for custom React elements. Use `leadingComponent` for content between the title and navigation links, and `trailingComponent` for content after search and actions. On narrow viewports, both slots move into the menu while preserving that order.
+The `leadingComponent` and `trailingComponent` props are supported composition slots for custom React elements. On large viewports, `leadingComponent` appears after the navigation links, and `trailingComponent` appears after search and before the actions. On narrow viewports, `leadingComponent` moves before the navigation links inside the menu, while `trailingComponent` appears before the actions in the menu footer.
 
 ```jsx filename="noinline"
 const App = () => (
@@ -216,8 +216,8 @@ render(<LocalizedMenu />)
 | `logoHref`              | `string`                             | `https://github.com` | Changes the URL of the GitHub logo                                      |
 | `title`                 | `string`                             |                      | Required subdomain name used visibly and by assistive technologies      |
 | `titleHref`             | `string`                             | `/`                  | Links the title to the subdomain root                                   |
-| `leadingComponent`      | `React.ReactElement`                 |                      | Custom element rendered after the title and before navigation links     |
-| `trailingComponent`     | `React.ReactElement`                 |                      | Custom element rendered after search and actions                        |
+| `leadingComponent`      | `React.ReactElement`                 |                      | Custom element rendered after navigation, or before it in narrow menus  |
+| `trailingComponent`     | `React.ReactElement`                 |                      | Custom element rendered after search and before actions                 |
 | `menuLabels`            | `Partial<SubdomainNavBarMenuLabels>` | English labels       | Overrides the menu controls' visible and accessible labels              |
 | `skipToContentTargetId` | `string`                             | First visible `main` | ID of the element focused by the skip-to-content link                   |
 | `ref`                   | `React.Ref<SubdomainNavBarHandle>`   |                      | Ref to the root element with `openSearch()` and `closeSearch()` methods |

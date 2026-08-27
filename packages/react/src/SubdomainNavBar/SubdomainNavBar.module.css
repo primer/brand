@@ -924,8 +924,8 @@
   + .SubdomainNavBar-primary-nav-list--visible,
 .SubdomainNavBar
   .SubdomainNavBar-menu-wrapper-footer
-  .SubdomainNavBar-button-area
-  + .SubdomainNavBar-trailing-component {
+  .SubdomainNavBar-trailing-component
+  + .SubdomainNavBar-button-area {
   border-block-start: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
 }
 
@@ -1319,8 +1319,8 @@
     padding-inline: var(--base-size-16);
   }
 
-  .SubdomainNavBar .SubdomainNavBar-button-area--has-trailing-item {
-    border-inline-end: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
+  .SubdomainNavBar .SubdomainNavBar-button-area--has-leading-item {
+    border-inline-start: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
   }
 }
 

@@ -1558,7 +1558,7 @@ describe('SubdomainNavBar', () => {
     expect(scrollIntoView).toHaveBeenCalledWith({block: 'nearest'})
   })
 
-  it('adds a trailing border class to the action area when a trailing component follows it', () => {
+  it('adds a leading border class to the action area when a trailing component precedes it', () => {
     mockUseWindowSize.mockImplementation(() => ({isSmall: true, isMedium: true, isLarge: true}))
 
     const {container} = render(
@@ -1568,7 +1568,7 @@ describe('SubdomainNavBar', () => {
     )
 
     const actionContainer = container.querySelector('.SubdomainNavBar-button-area')
-    expect(actionContainer).toHaveClass('SubdomainNavBar-button-area--has-trailing-item')
+    expect(actionContainer).toHaveClass('SubdomainNavBar-button-area--has-leading-item')
   })
 
   it('renders leading and trailing components in the expected order', () => {
@@ -1586,10 +1586,10 @@ describe('SubdomainNavBar', () => {
 
     expect(titleLink.compareDocumentPosition(firstLink) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy()
     expect(firstLink.compareDocumentPosition(leadingComponent) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy()
-    expect(secondaryAction.compareDocumentPosition(trailingComponent) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy()
+    expect(trailingComponent.compareDocumentPosition(secondaryAction) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy()
   })
 
-  it('renders mobile leading content before links and groups actions with trailing content at the menu footer', () => {
+  it('renders mobile leading content before links and trailing content before actions in the menu footer', () => {
     mockUseWindowSize.mockImplementation(() => ({isSmall: false, isMedium: false}))
 
     const {container, getByRole, getByTestId, getByText} = render(
@@ -1628,7 +1628,7 @@ describe('SubdomainNavBar', () => {
       (leadingComponent as HTMLElement).compareDocumentPosition(firstLink) & Node.DOCUMENT_POSITION_FOLLOWING,
     ).toBeTruthy()
     expect(
-      primaryAction.compareDocumentPosition(trailingComponent as HTMLElement) & Node.DOCUMENT_POSITION_FOLLOWING,
+      (trailingComponent as HTMLElement).compareDocumentPosition(primaryAction) & Node.DOCUMENT_POSITION_FOLLOWING,
     ).toBeTruthy()
   })
 

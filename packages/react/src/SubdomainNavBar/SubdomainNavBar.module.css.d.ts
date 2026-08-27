@@ -1,7 +1,7 @@
 declare const styles: {
   readonly "SubdomainNavBar": string;
   readonly "SubdomainNavBar-button-area": string;
-  readonly "SubdomainNavBar-button-area--has-trailing-item": string;
+  readonly "SubdomainNavBar-button-area--has-leading-item": string;
   readonly "SubdomainNavBar-button-area--visible": string;
   readonly "SubdomainNavBar-button-area-inner": string;
   readonly "SubdomainNavBar-cta-button": string;

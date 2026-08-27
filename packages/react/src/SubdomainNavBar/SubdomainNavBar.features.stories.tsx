@@ -469,8 +469,8 @@ export const TabletMenuOpen: Story = {
     const leadingComponent = menuContent?.firstElementChild
     const linkList = menuContent?.lastElementChild
     const menuFooter = menu?.lastElementChild
-    const actionArea = menuFooter?.firstElementChild
-    const trailingComponent = menuFooter?.lastElementChild
+    const trailingComponent = menuFooter?.firstElementChild
+    const actionArea = menuFooter?.lastElementChild
     const backdrop = canvasElement.querySelector('.SubdomainNavBar-menu-backdrop')
 
     await expect(closeButton).toHaveAttribute('aria-expanded', 'true')
@@ -493,8 +493,8 @@ export const TabletMenuOpen: Story = {
     await expect(getComputedStyle(linkList as Element).borderBlockStartWidth).toBe('1px')
     await expect(getComputedStyle(linkList as Element).borderBlockEndWidth).toBe('0px')
     await expect(getComputedStyle(menuFooter as Element).borderBlockStartWidth).toBe('1px')
-    await expect(getComputedStyle(actionArea as Element).borderBlockStartWidth).toBe('0px')
-    await expect(getComputedStyle(trailingComponent as Element).borderBlockStartWidth).toBe('1px')
+    await expect(getComputedStyle(trailingComponent as Element).borderBlockStartWidth).toBe('0px')
+    await expect(getComputedStyle(actionArea as Element).borderBlockStartWidth).toBe('1px')
     await expect(backdrop).toBeInTheDocument()
     await expect(getComputedStyle(backdrop as Element).animationName).toBe('fade-in')
   },
