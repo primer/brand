@@ -350,6 +350,15 @@ describe('SubdomainNavBar', () => {
     expect(logoIcons[0]).toHaveClass('octicon-mark-github')
   })
 
+  it('renders GitHub before the subdomain title', () => {
+    const {getByRole} = render(<Component />)
+    const titleLink = getByRole('link', {name: 'Subdomain home'})
+
+    expect(titleLink).toHaveTextContent('GitHub Subdomain')
+    expect(titleLink.querySelector('.SubdomainNavBar-title-prefix')).toHaveTextContent('GitHub')
+    expect(titleLink.querySelector('.SubdomainNavBar-title-label')).toHaveTextContent('Subdomain')
+  })
+
   it('forwards a custom id to the root element', () => {
     const {getByRole} = render(<SubdomainNavBar id="docs-navigation" title="Docs" />)
 
@@ -1575,8 +1584,8 @@ describe('SubdomainNavBar', () => {
     const secondaryAction = getByRole('link', {name: 'Secondary CTA'})
     const trailingComponent = getByText('Trailing content')
 
-    expect(titleLink.compareDocumentPosition(leadingComponent) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy()
-    expect(leadingComponent.compareDocumentPosition(firstLink) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy()
+    expect(titleLink.compareDocumentPosition(firstLink) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy()
+    expect(firstLink.compareDocumentPosition(leadingComponent) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy()
     expect(secondaryAction.compareDocumentPosition(trailingComponent) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy()
   })
 

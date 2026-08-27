@@ -71,7 +71,7 @@ export type SubdomainNavBarProps = Omit<React.HTMLAttributes<HTMLElement>, 'chil
    */
   fullWidth?: boolean
   /**
-   * Optional React element rendered after the title and before navigation links.
+   * Optional React element rendered after the navigation links.
    */
   leadingComponent?: React.ReactElement
   /**
@@ -481,7 +481,8 @@ function Root(
                         className={clsx(styles['SubdomainNavBar-title'])}
                       >
                         <Text size="400" weight="medium">
-                          {title}
+                          <span className={styles['SubdomainNavBar-title-prefix']}>GitHub</span>{' '}
+                          <span className={styles['SubdomainNavBar-title-label']}>{title}</span>
                         </Text>
                       </a>
                     </li>
@@ -489,9 +490,6 @@ function Root(
                 )}
               </ol>
             </nav>
-            {isLarge && hasLeadingComponent && (
-              <div className={styles['SubdomainNavBar-leading-component']}>{leadingComponent}</div>
-            )}
             {hasLinks && (
               <nav
                 id="menu-navigation"
@@ -506,6 +504,9 @@ function Root(
                   {menuItems}
                 </NavigationVisbilityObserver>
               </nav>
+            )}
+            {isLarge && hasLeadingComponent && (
+              <div className={styles['SubdomainNavBar-leading-component']}>{leadingComponent}</div>
             )}
 
             <div className={clsx(styles['SubdomainNavBar-secondary-nav'])}>

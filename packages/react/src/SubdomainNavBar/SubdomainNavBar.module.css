@@ -115,6 +115,14 @@
   text-decoration: none;
 }
 
+.SubdomainNavBar-title-prefix {
+  color: var(--brand-color-text-default);
+}
+
+.SubdomainNavBar-title-label {
+  color: var(--brand-color-text-muted);
+}
+
 .SubdomainNavBar-leading-component,
 .SubdomainNavBar-trailing-component {
   display: inline-flex;
@@ -1012,14 +1020,13 @@
     display: flex;
     align-items: center;
     height: 100%;
-    padding-inline: var(--base-size-16);
-    border-inline-end: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
+    padding-inline: 0 var(--base-size-16);
   }
 
   .SubdomainNavBar .SubdomainNavBar-title-area > li:first-child {
     justify-content: center;
-    width: var(--base-size-64);
-    padding-inline: 0;
+    width: auto;
+    padding-inline: var(--base-size-16) var(--base-size-8);
   }
 
   .SubdomainNavBar .SubdomainNavBar-logo-mark {
@@ -1119,14 +1126,15 @@
     display: flex;
     align-items: center;
     height: 100%;
-    padding-inline: var(--base-size-16);
+    padding-inline: 0 var(--base-size-16);
     border-inline-end: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
   }
 
   .SubdomainNavBar .SubdomainNavBar-title-area > li:first-child {
     justify-content: center;
-    width: var(--base-size-64);
-    padding-inline: 0;
+    width: auto;
+    padding-inline: var(--base-size-16) var(--base-size-8);
+    border-inline-end: 0;
   }
 
   .SubdomainNavBar .SubdomainNavBar-logo-mark {
@@ -1164,7 +1172,7 @@
   }
 
   .SubdomainNavBar .SubdomainNavBar-leading-component {
-    border-inline-end: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
+    border-inline: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
   }
 
   .SubdomainNavBar .SubdomainNavBar-primary-nav-list {
@@ -1295,10 +1303,6 @@
     .SubdomainNavBar .SubdomainNavBar-more-link > .SubdomainNavBar-link-content {
       transition: background-color var(--brand-animation-duration-fast) var(--brand-animation-easing-default);
     }
-  }
-
-  .SubdomainNavBar .SubdomainNavBar-secondary-nav {
-    border-inline-start: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
   }
 
   .SubdomainNavBar .SubdomainNavBar-search-trigger {
