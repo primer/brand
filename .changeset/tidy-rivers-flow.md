@@ -2,7 +2,7 @@
 '@primer/react-brand': patch
 ---
 
-Multipe updates to `RiverAccordion`
+Multiple updates to `RiverAccordion`
 
 - Added `hasBackground` to `RiverAccordion.Visual` to optionally disable the default background color
 - Added `leadingVisual` to `RiverAccordion.Heading` so that icons can be used in the accordion triggers

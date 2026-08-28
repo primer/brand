@@ -166,14 +166,14 @@ Use the `gridline` variant to add horizontal border lines, equal-width columns, 
 </RiverAccordion>
 ```
 
-### Without visual backgrounds
-
 Set `hasBackground={false}` on a `RiverAccordion.Visual` to remove its background and inline start padding.
+
+`leadingVisual` can also be set on `RiverAccordion.Heading` to add optional Octicons to the summary.
 
 ```jsx live
 <RiverAccordion variant="gridline">
   <RiverAccordion.Item>
-    <RiverAccordion.Heading leadingVisual={<Icon icon={CopilotIcon} color="green" />}>Heading 1</RiverAccordion.Heading>
+    <RiverAccordion.Heading leadingVisual={<Icon icon={CopilotIcon} />}>Heading 1</RiverAccordion.Heading>
     <RiverAccordion.Content>
       <Text>This item removes the visual background and padding while preserving the media's aspect ratio.</Text>
       <Link href="#">Call to action</Link>
@@ -184,7 +184,7 @@ Set `hasBackground={false}` on a `RiverAccordion.Visual` to remove its backgroun
   </RiverAccordion.Item>
 
   <RiverAccordion.Item>
-    <RiverAccordion.Heading>Heading 2</RiverAccordion.Heading>
+    <RiverAccordion.Heading leadingVisual={<Icon icon={CopilotIcon} />}>Heading 2</RiverAccordion.Heading>
     <RiverAccordion.Content>
       <Text>The visual is displayed without a background while the accordion interaction stays the same.</Text>
       <Link href="#">Call to action</Link>
@@ -195,7 +195,7 @@ Set `hasBackground={false}` on a `RiverAccordion.Visual` to remove its backgroun
   </RiverAccordion.Item>
 
   <RiverAccordion.Item>
-    <RiverAccordion.Heading>Heading 3</RiverAccordion.Heading>
+    <RiverAccordion.Heading leadingVisual={<Icon icon={CopilotIcon} />}>Heading 3</RiverAccordion.Heading>
     <RiverAccordion.Content>
       <Text>Use this treatment when visuals should appear without a surrounding background panel.</Text>
       <Link href="#">Call to action</Link>

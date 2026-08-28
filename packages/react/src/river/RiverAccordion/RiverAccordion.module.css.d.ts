@@ -14,7 +14,7 @@ declare const styles: {
   readonly "RiverAccordion__leadingVisual": string;
   readonly "RiverAccordion__panel": string;
   readonly "RiverAccordion__trigger": string;
-  readonly "RiverAccordion__trigger--has-leadingVisual": string;
+  readonly "RiverAccordion__trigger--has-leading-visual": string;
   readonly "RiverAccordion__visual": string;
   readonly "RiverAccordion__visual--has-background": string;
   readonly "RiverAccordion__visualsContainer": string;

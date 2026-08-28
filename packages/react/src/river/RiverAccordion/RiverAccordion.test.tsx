@@ -242,8 +242,10 @@ describe('RiverAccordion', () => {
     )
     const accordionRoot = container.firstChild
     const visibleVisuals = container.querySelectorAll('.RiverAccordion__visualsWrapper > .RiverAccordion__visual')
-    const firstHiddenVisual = getByText('Content 1').parentElement?.querySelector('.RiverAccordion__visual')
-    const secondHiddenVisual = getByText('Content 2').parentElement?.querySelector('.RiverAccordion__visual')
+    const firstPanel = getByText('Content 1').parentElement!
+    const secondPanel = getByText('Content 2').parentElement!
+    const firstHiddenVisual = firstPanel.querySelector('.RiverAccordion__visual')!
+    const secondHiddenVisual = secondPanel.querySelector('.RiverAccordion__visual')!
 
     expect(visibleVisuals[0]).not.toHaveClass('RiverAccordion__visual--has-background')
     expect(visibleVisuals[1]).toHaveClass('RiverAccordion__visual--has-background')

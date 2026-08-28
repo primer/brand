@@ -226,7 +226,7 @@ const RiverAccordionHeading = ({
         type="button"
         className={clsx(
           styles.RiverAccordion__trigger,
-          LeadingVisual && styles['RiverAccordion__trigger--has-leadingVisual'],
+          LeadingVisual && styles['RiverAccordion__trigger--has-leading-visual'],
         )}
         onClick={onClick}
         aria-disabled={isOpen}
