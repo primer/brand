@@ -786,9 +786,6 @@ export const WithTrailingComponent: Story = {
       </SubdomainNavBar>
     )
   },
-  globals: {
-    viewport: {value: 'ipad', isRotated: true},
-  },
   play: async ({canvasElement}) => {
     await canvasElement.ownerDocument.fonts.ready
     const navList = canvasElement.querySelector<HTMLElement>('[data-testid="SubdomainNavBar-menuLinks"] ul')
