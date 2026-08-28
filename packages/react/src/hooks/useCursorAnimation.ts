@@ -1,129 +1,200 @@
-import {useState, useEffect, useCallback} from 'react'
+import {useEffect, useState} from 'react'
+import useIsomorphicLayoutEffect from './useIsomorphicLayoutEffect'
 import {useReducedMotion} from './useReducedMotion'
 
-export type UseCursorAnimationOptions = {
-  /**
-   * The text content to animate
-   */
-  text: string
-  /**
-   * Whether to animate the text reveal with a cursor effect
-   */
-  animate?: boolean
-  /**
-   * Duration of the reveal animation in milliseconds
-   */
-  duration?: number
-  /**
-   * Delay to start the animation in milliseconds
-   */
-  delay?: number
-  /**
-   * Loads after the page has fully loaded
-   */
-  waitForPageLoad?: boolean
-}
+export type CursorAnimationPhase = 'initial' | 'correction' | 'final' | 'complete'
 
 export type UseCursorAnimationResult = {
-  /**
-   * Whether the animation is currently running
-   */
-  isAnimating: boolean
-  /**
-   * Whether to show the cursor
-   */
+  visibleText: string
   showCursor: boolean
-  /**
-   * Progress of the animation (0 to 1)
-   */
-  progress: number
+  cursorPhase: CursorAnimationPhase
+}
+
+export type UseCursorAnimationOptions = {
+  text: string
+  initialText?: string
+  animate?: boolean
+  delay?: number
+  waitForPageLoad?: boolean
 }
 
 export function useCursorAnimation({
   text,
+  initialText,
   animate,
-  duration = 500,
   delay = 500,
   waitForPageLoad = true,
 }: UseCursorAnimationOptions): UseCursorAnimationResult {
   const prefersReducedMotion = useReducedMotion()
+
   const shouldAnimate = animate === true && !prefersReducedMotion && text.length > 0
+  const shouldStartHidden = animate === true && text.length > 0
 
-  const [isAnimating, setIsAnimating] = useState(shouldAnimate)
-  const [progress, setProgress] = useState(shouldAnimate ? 0 : 1)
+  const [frame, setFrame] = useState<UseCursorAnimationResult>({
+    visibleText: shouldStartHidden ? '' : text,
+    showCursor: !shouldStartHidden,
+    cursorPhase: shouldStartHidden ? 'initial' : 'complete',
+  })
 
-  const startAnimation = useCallback(() => {
+  useIsomorphicLayoutEffect(() => {
     if (!shouldAnimate) {
-      setProgress(1)
-      setIsAnimating(false)
-      return
+      setFrame({visibleText: text, showCursor: true, cursorPhase: 'complete'})
     }
+  }, [shouldAnimate, text])
 
-    setIsAnimating(true)
-    setProgress(0)
+  useEffect(() => {
+    if (!shouldAnimate) return
 
-    const startTime = performance.now()
+    const frameDuration = 1000 / 60
+    const charactersPerSecond = 30 * (85 / 75)
+    const deleteCharactersPerSecond = 24 * (85 / 75)
+    const correctionPauseDuration = 350 / (85 / 75)
+    const scrambleSymbols = ['>', '*', '=', '&', '+', '-', '%', '^', '_']
 
-    const tick = (currentTime: number) => {
-      const elapsed = currentTime - startTime
-      const newProgress = Math.min(elapsed / duration, 1)
+    setFrame({visibleText: '', showCursor: false, cursorPhase: 'initial'})
 
-      setProgress(newProgress)
+    const candidateInitialText =
+      typeof initialText === 'string' && initialText.length > 0 && initialText !== text ? initialText : undefined
+    let sharedPrefixLength = 0
 
-      if (newProgress < 1) {
-        requestAnimationFrame(tick)
-      } else {
-        setIsAnimating(false)
+    if (candidateInitialText) {
+      while (
+        sharedPrefixLength < candidateInitialText.length &&
+        sharedPrefixLength < text.length &&
+        candidateInitialText[sharedPrefixLength] === text[sharedPrefixLength]
+      ) {
+        sharedPrefixLength += 1
       }
     }
 
-    requestAnimationFrame(tick)
-  }, [shouldAnimate, duration])
+    const hasCorrection = candidateInitialText !== undefined && sharedPrefixLength < candidateInitialText.length
+    const firstText = hasCorrection ? candidateInitialText : text
+    const deletedCharacterCount = hasCorrection ? firstText.length - sharedPrefixLength : 0
+    const firstTypeDuration = (firstText.length / charactersPerSecond) * 1000
+    const correctionStart = firstTypeDuration + (hasCorrection ? correctionPauseDuration : 0)
+    const deleteDuration = (deletedCharacterCount / deleteCharactersPerSecond) * 1000
+    const secondTypeStart = correctionStart + deleteDuration
+    const secondTypeCharacterCount = hasCorrection ? text.length - sharedPrefixLength : 0
+    const secondTypeDuration = (secondTypeCharacterCount / charactersPerSecond) * 1000
+    const typingComplete = secondTypeStart + secondTypeDuration
+    const correctionCursorStart = correctionStart - frameDuration
+    const finalCursorStart = typingComplete - 6 * frameDuration
 
-  useEffect(() => {
-    if (!shouldAnimate) {
-      setProgress(1)
-      setIsAnimating(false)
-      return
+    const getScrambledText = (sourceText: string, characterCount: number) => {
+      let result = ''
+      let visibleCharacterIndex = 0
+
+      for (let index = 0; index < characterCount; index += 1) {
+        const character = sourceText[index]
+
+        if (/\s/.test(character)) {
+          result = `${result}${character}`
+          continue
+        }
+
+        visibleCharacterIndex += 1
+        result = `${result}${character}`
+
+        if (index === characterCount - 1) {
+          result = `${result}${scrambleSymbols[(visibleCharacterIndex - 1) % scrambleSymbols.length]}`
+        }
+      }
+
+      return result
+    }
+
+    const getFrame = (elapsed: number): UseCursorAnimationResult => {
+      let nextText = ''
+
+      if (elapsed > 0 && elapsed < firstTypeDuration) {
+        const typedCharacterCount = Math.floor((elapsed / 1000) * charactersPerSecond)
+        nextText = getScrambledText(firstText, typedCharacterCount)
+      } else if (hasCorrection && elapsed >= firstTypeDuration && elapsed < correctionStart) {
+        nextText = firstText
+      } else if (hasCorrection && elapsed >= correctionStart && elapsed < secondTypeStart) {
+        const deleteElapsed = elapsed - correctionStart
+        const currentDeletedCharacterCount = Math.floor((deleteElapsed / 1000) * deleteCharactersPerSecond)
+        nextText = firstText.slice(0, firstText.length - currentDeletedCharacterCount)
+      } else if (hasCorrection && elapsed >= secondTypeStart && elapsed < typingComplete) {
+        const secondTypeElapsed = elapsed - secondTypeStart
+        const typedCharacterCount = Math.min(
+          text.length,
+          sharedPrefixLength + Math.floor((secondTypeElapsed / 1000) * charactersPerSecond),
+        )
+        nextText = text.slice(0, typedCharacterCount)
+      } else if (elapsed >= typingComplete) {
+        nextText = text
+      }
+
+      let nextCursorPhase: CursorAnimationPhase = 'initial'
+      if (hasCorrection && elapsed >= correctionCursorStart) nextCursorPhase = 'correction'
+      if (elapsed >= finalCursorStart) nextCursorPhase = 'final'
+      if (elapsed >= typingComplete) nextCursorPhase = 'complete'
+
+      return {
+        visibleText: nextText,
+        showCursor: nextText.length > 0,
+        cursorPhase: nextCursorPhase,
+      }
+    }
+
+    let animationFrame: number | undefined
+    let delayTimer: ReturnType<typeof setTimeout> | undefined
+
+    const startAnimation = () => {
+      const startTime = performance.now()
+      let previousFrame: UseCursorAnimationResult = {
+        visibleText: '',
+        showCursor: false,
+        cursorPhase: 'initial',
+      }
+
+      const tick = (currentTime: number) => {
+        const elapsed = currentTime - startTime
+        const nextFrame = getFrame(elapsed)
+
+        if (
+          previousFrame.visibleText !== nextFrame.visibleText ||
+          previousFrame.showCursor !== nextFrame.showCursor ||
+          previousFrame.cursorPhase !== nextFrame.cursorPhase
+        ) {
+          previousFrame = nextFrame
+          setFrame(nextFrame)
+        }
+
+        if (elapsed < typingComplete) {
+          animationFrame = window.requestAnimationFrame(tick)
+        }
+      }
+
+      animationFrame = window.requestAnimationFrame(tick)
     }
 
     const startDelayTimer = () => {
-      return setTimeout(() => {
-        startAnimation()
-      }, delay)
+      delayTimer = setTimeout(startAnimation, delay)
     }
 
-    let delayTimer: ReturnType<typeof setTimeout> | undefined
-
     if (waitForPageLoad && typeof window !== 'undefined') {
-      // Check if page is already loaded
       if (document.readyState === 'complete') {
-        delayTimer = startDelayTimer()
+        startDelayTimer()
       } else {
-        // Wait for page load before starting the delay timer
-        const handleLoad = () => {
-          delayTimer = startDelayTimer()
-        }
+        const handleLoad = () => startDelayTimer()
         window.addEventListener('load', handleLoad)
         return () => {
           window.removeEventListener('load', handleLoad)
-          if (delayTimer) clearTimeout(delayTimer)
+          if (delayTimer !== undefined) clearTimeout(delayTimer)
+          if (animationFrame !== undefined) window.cancelAnimationFrame(animationFrame)
         }
       }
     } else {
-      delayTimer = startDelayTimer()
+      startDelayTimer()
     }
 
     return () => {
-      if (delayTimer) clearTimeout(delayTimer)
+      if (delayTimer !== undefined) clearTimeout(delayTimer)
+      if (animationFrame !== undefined) window.cancelAnimationFrame(animationFrame)
     }
-  }, [startAnimation, delay, shouldAnimate, waitForPageLoad])
+  }, [delay, initialText, shouldAnimate, text, waitForPageLoad])
 
-  const showCursor = !prefersReducedMotion && animate === true
-
-  return {
-    isAnimating,
-    showCursor,
-    progress,
-  }
+  return frame
 }

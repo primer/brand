@@ -43,7 +43,9 @@ export const Default: Story = {
   name: 'Codespaces',
   render: () => (
     <Hero align="center">
-      <Hero.Label>Codespaces</Hero.Label>
+      <Hero.Label animate initialText="Cloud workspaces">
+        Developer environments
+      </Hero.Label>
       <Hero.Heading>
         <>
           Blazing fast cloud
@@ -75,7 +77,9 @@ export const CustomBackgroundBlockEndImage: Story = {
     return (
       <Box paddingBlockEnd={24}>
         <Hero variant="gridline" align="center" imageContainerRef={imageRef} enableAnimation>
-          <Hero.Label>Label</Hero.Label>
+          <Hero.Label animate initialText="Build in the cloud">
+            Ship from anywhere
+          </Hero.Label>
           <Hero.Heading>This is my super sweet hero heading</Hero.Heading>
           <Hero.Description>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
@@ -110,7 +114,9 @@ export const CustomBackgroundInlineEndPaddedImage: Story = {
 
     return (
       <Hero variant="gridline" align="center" imageContainerRef={imageRef} enableAnimation>
-        <Hero.Label>Label</Hero.Label>
+        <Hero.Label animate initialText="Build in the cloud">
+          Ship from anywhere
+        </Hero.Label>
         <Hero.Heading>This is my super sweet hero heading</Hero.Heading>
         <Hero.Description>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
@@ -144,7 +150,9 @@ export const CustomBackgroundBlockEndVideo: Story = {
     return (
       <Box paddingBlockEnd={24}>
         <Hero variant="gridline" align="center" imageContainerRef={imageRef} enableAnimation>
-          <Hero.Label>Label</Hero.Label>
+          <Hero.Label animate initialText="Build in the cloud">
+            Ship from anywhere
+          </Hero.Label>
           <Hero.Heading>This is my super sweet hero heading</Hero.Heading>
           <Hero.Description>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
@@ -184,7 +192,9 @@ export const CustomBackgroundInlineEndPaddedVideo: Story = {
 
     return (
       <Hero variant="gridline" align="center" imageContainerRef={imageRef} enableAnimation>
-        <Hero.Label>Label</Hero.Label>
+        <Hero.Label animate initialText="Build in the cloud">
+          Ship from anywhere
+        </Hero.Label>
         <Hero.Heading>This is my super sweet hero heading</Hero.Heading>
         <Hero.Description>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
@@ -229,7 +239,9 @@ export const WithCards: Story = {
             </Text>
           )}
         >
-          <Hero.Label>Projects</Hero.Label>
+          <Hero.Label animate initialText="Organize your work">
+            Plan with confidence
+          </Hero.Label>
           <Hero.Heading>Project planning for developers</Hero.Heading>
           <Hero.Description>
             Create issues, break them into tasks, track relationships, add custom fields, and have conversations.
@@ -358,7 +370,9 @@ export const GridlineExpressiveBlockEndPaddedTrailingComponent: Story = {
           </Text>
         )}
       >
-        <Hero.Label>GitHub Copilot</Hero.Label>
+        <Hero.Label animate initialText="Your AI assistant">
+          Your AI accelerator
+        </Hero.Label>
         <Hero.Heading>Command your craft</Hero.Heading>
         <Hero.Description>Your AI accelerator for every workflow, from the editor to the enterprise.</Hero.Description>
         <Hero.ButtonGroup>
@@ -406,7 +420,9 @@ export const GridlineExpressiveWithImageCarousel: Story = {
         style={{'--brand-Hero-bgColor-gridlineGridInner': 'var(--brand-color-canvas-default)'} as React.CSSProperties}
       >
         <Hero variant="gridline-expressive" enableAnimation>
-          <Hero.Label>Projects</Hero.Label>
+          <Hero.Label animate initialText="Organize your work">
+            Plan with confidence
+          </Hero.Label>
           <Hero.Heading>
             Project planning <b>for developers</b>
           </Hero.Heading>
@@ -677,7 +693,9 @@ export const WithCustomInput: Story = {
           <Grid>
             <Grid.Column>
               <Hero align="center" trailingComponent={trailingComponent}>
-                <Hero.Label>Public preview</Hero.Label>
+                <Hero.Label animate initialText="Try it early">
+                  Shape what&rsquo;s next
+                </Hero.Label>
                 <Hero.Heading>Your terminal&rsquo;s new sidekick</Hero.Heading>
                 <Hero.Description>
                   GitHub Copilot CLI reads, writes, and runs code where you work. <br />

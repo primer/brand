@@ -15,7 +15,8 @@
     }
   },
   "hero": {
-    "label": "GitHub Copilot",
+    "label": "Votre accélérateur IA",
+    "initialLabel": "Votre assistant IA",
     "headingLine1": "Maîtrisez",
     "headingLine2": "votre art",
     "description": "Votre accélérateur IA pour chaque workflow, de l'éditeur à l'entreprise.",

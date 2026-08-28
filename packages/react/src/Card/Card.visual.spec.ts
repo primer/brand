@@ -231,9 +231,9 @@ test.describe('Visual Comparison: Card', () => {
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
-  test('Card / Icon And Label', async ({page}) => {
+  test('Card / Icon And Token', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-card-features--icon-and-label&viewMode=story',
+      'http://localhost:6006/iframe.html?args=&id=components-card-features--icon-and-token&viewMode=story',
       {waitUntil: 'networkidle'},
     )
     await page.locator('body.sb-show-main').waitFor({state: 'visible'})
@@ -242,9 +242,9 @@ test.describe('Visual Comparison: Card', () => {
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
-  test('Card / Icon And Label With Fragment', async ({page}) => {
+  test('Card / Icon And Token With Fragment', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-card-features--icon-and-label-with-fragment&viewMode=story',
+      'http://localhost:6006/iframe.html?args=&id=components-card-features--icon-and-token-with-fragment&viewMode=story',
       {waitUntil: 'networkidle'},
     )
     await page.locator('body.sb-show-main').waitFor({state: 'visible'})
@@ -263,9 +263,9 @@ test.describe('Visual Comparison: Card', () => {
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
-  test('Card / Image And Label', async ({page}) => {
+  test('Card / Image And Token', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-card-features--image-and-label&viewMode=story',
+      'http://localhost:6006/iframe.html?args=&id=components-card-features--image-and-token&viewMode=story',
       {waitUntil: 'networkidle'},
     )
     await page.locator('body.sb-show-main').waitFor({state: 'visible'})

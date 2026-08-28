@@ -112,5 +112,6 @@ apps/
 - Add Unit Tests for new features which have existing tests files to prevent drops in coverage.
 - Always ensure code is accessible and complies with WCAG 2.1 standards.
 - In `**/*.module.css` files, never hardcode pixel values. Instead use size tokens from `packages/design-tokens/lib/design-tokens/css/tokens/base/size/size.css` after running `npm run build:lib`. Other CSS variables available in ``packages/design-tokens/lib/design-tokens/css/tokens/**`.
+- Prefer CSS Module classes derived from React props or state over data attributes. Reserve data attributes for testing, analytics, and established DOM contracts.
 
 **Trust these instructions** - they are based on verified testing of the actual codebase. Only search for additional information if these instructions are incomplete or proven incorrect.

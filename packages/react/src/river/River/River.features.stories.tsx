@@ -1,7 +1,7 @@
 import React from 'react'
 import type {Meta, StoryFn} from '@storybook/react'
 import {River} from '.'
-import {Heading, InlineCode, Label, Link, Section, Stack, Text, ThemeProvider, Box, Timeline} from '../../'
+import {Heading, InlineCode, Link, Section, Stack, Text, ThemeProvider, Box, Timeline} from '../../'
 import placeholderImage from '../../fixtures/images/placeholder.png'
 
 export default {
@@ -146,21 +146,6 @@ export const AlternativeHeadingSize: StoryFn<typeof River> = () => (
   </Section>
 )
 
-export const WithLabel: StoryFn<typeof River> = () => (
-  <Section>
-    <River>
-      <River.Visual>
-        <PlaceholderImage />
-      </River.Visual>
-      <River.Content>
-        <Label color="green">Label</Label>
-        <Heading size="1">Heading</Heading>
-        <Text>Use alternative heading sizes, while maintaining the default heading level.</Text>
-      </River.Content>
-    </River>
-  </Section>
-)
-
 const ExampleTrailingComponent = () => (
   <Stack direction="vertical" padding="none" gap="spacious" alignItems="flex-start">
     <Timeline>
@@ -287,7 +272,6 @@ export const ContentAlignBlockEnd: StoryFn<typeof River> = () => (
         />
       </River.Visual>
       <River.Content align="block-end">
-        <Label>Label</Label>
         <Heading>Content aligned to block-end</Heading>
         <Text>
           On large viewports, the content aligns to the bottom of its container. This is useful when the visual is

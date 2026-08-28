@@ -4,7 +4,7 @@ import {Heading, type HeadingProps} from '../../Heading'
 import {Text, type TextProps} from '../../Text'
 import {Link, type LinkProps} from '../../Link'
 import {Label, type LabelProps} from '../../Label'
-import {EyebrowText} from '../../EyebrowText'
+import {EyebrowText, type EyebrowTextProps} from '../../EyebrowText'
 import {useAnimation} from '../../animation'
 import type {BaseProps} from '../../component-helpers'
 
@@ -140,6 +140,8 @@ const Root = forwardRef(
   },
 )
 
+type RiverContentChild = React.ReactElement<EyebrowTextProps | HeadingProps | TextProps | LinkProps | LabelProps>
+
 export type RiverContentProps = BaseProps<HTMLDivElement> & {
   /**
    * Aligns the content vertically within its container.
@@ -165,11 +167,12 @@ export type RiverContentProps = BaseProps<HTMLDivElement> & {
   leadingComponent?: React.FunctionComponent
   /**
    * Only valid children are allowed.
-   * These include: `Heading`, `Text` and `Link`.
+   * These include: `EyebrowText`, `Heading`, `Text` and `Link`.
+   * Passing the standalone `Label` component is deprecated; use `EyebrowText` instead.
    * The declarative order of the children will be ignored in the rendered output
    * to enforce correct HTML semantics.
    */
-  children: React.ReactElement<TextProps> | React.ReactElement<HeadingProps | TextProps | LinkProps>[]
+  children: RiverContentChild | RiverContentChild[]
 } & React.HTMLAttributes<HTMLDivElement>
 
 export const RiverContent = forwardRef(
@@ -201,6 +204,12 @@ export const RiverContent = forwardRef(
 
     const EyebrowTextChild = Children.find(child => React.isValidElement(child) && child.type === EyebrowText)
 
+    const usesDeprecatedLabel = React.isValidElement<LabelProps>(LabelChild) && !LeadingComponent
+    if (usesDeprecatedLabel && (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'test')) {
+      // eslint-disable-next-line no-console
+      console.warn('River.Content: standalone `Label` children are deprecated. Use `EyebrowText` instead.')
+    }
+
     return (
       <div
         ref={ref}
@@ -208,7 +217,7 @@ export const RiverContent = forwardRef(
         style={{...animationInlineStyles, ...style}}
         {...rest}
       >
-        {React.isValidElement(LabelChild) && !LeadingComponent && (
+        {usesDeprecatedLabel && (
           <div className={styles.River__label}>
             {React.cloneElement(LabelChild as React.ReactElement<LabelProps>, {})}
           </div>

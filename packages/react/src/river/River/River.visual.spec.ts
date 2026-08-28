@@ -166,16 +166,6 @@ test.describe('Visual Comparison: River', () => {
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
-  test('River / With Label', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-river-features--with-label&viewMode=story', {
-      waitUntil: 'networkidle',
-    })
-    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
   test('River / Custom trailing content', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-river-features--custom-trailing-content&viewMode=story',
@@ -424,17 +414,6 @@ test.describe('Visual Comparison: River', () => {
   test('River / GridLine variant (with EyebrowText)', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-river-features-gridline-variants--grid-line-with-eyebrow-text&viewMode=story',
-      {waitUntil: 'networkidle'},
-    )
-    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('River / GridLine variant (with Label)', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-river-features-gridline-variants--grid-line-with-label&viewMode=story',
       {waitUntil: 'networkidle'},
     )
     await page.locator('body.sb-show-main').waitFor({state: 'visible'})

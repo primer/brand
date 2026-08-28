@@ -25,6 +25,7 @@ export type FlexSuiteSecurityCategoryContent = {
   }
   hero: {
     label: string
+    initialLabel?: string
     heading: string
     primaryAction: string
     secondaryAction: string
@@ -74,7 +75,8 @@ export const defaultFlexSuiteSecurityCategoryContent: FlexSuiteSecurityCategoryC
     links: ['Advanced Security', 'Secret Protection', 'Code Security', 'Supply Chain', 'Resources', 'Plans & pricing'],
   },
   hero: {
-    label: 'GitHub Security',
+    label: 'Developer-first security',
+    initialLabel: 'Application security',
     heading: 'Powerful security, designed for developers',
     primaryAction: 'Start free trial',
     secondaryAction: 'Contact sales',
@@ -222,6 +224,7 @@ export function getLocalizedFlexSuiteSecurityCategoryContent(t: Translate): Flex
     },
     hero: {
       label: t('hero.label'),
+      initialLabel: t('hero.initialLabel'),
       heading: t('hero.heading'),
       primaryAction: t('hero.primaryAction'),
       secondaryAction: t('hero.secondaryAction'),

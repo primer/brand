@@ -9,6 +9,7 @@ import placeholderImage from '../fixtures/images/placeholder.png'
 import {Stack} from '../Stack'
 import {Section} from '../Section'
 import {SectionIntro} from '../SectionIntro'
+import {Token} from '../Token'
 import styles from './Statistic.stories.shared.module.css'
 
 type StoryProps = {
@@ -112,7 +113,9 @@ export const SocialProof: Story = {
               style={{height: '100%'}}
             >
               <Card href="https://github.com" fullWidth variant="minimal" disableAnimation>
-                <Card.Label>Resources</Card.Label>
+                <Card.Tokens>
+                  <Token>Resources</Token>
+                </Card.Tokens>
                 <Card.Heading size="5">
                   How Thomson Reuters successfully adopted AI —and how your organization can, too
                 </Card.Heading>
