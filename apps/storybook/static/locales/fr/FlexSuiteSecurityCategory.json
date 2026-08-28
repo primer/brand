@@ -15,7 +15,8 @@
     }
   },
   "hero": {
-    "label": "GitHub Security",
+    "label": "Sécurité pour les développeurs",
+    "initialLabel": "Sécurité des applications",
     "heading": "Une sécurité puissante, conçue pour les développeurs",
     "primaryAction": "Démarrer l'essai gratuit",
     "secondaryAction": "Contacter l'équipe commerciale"

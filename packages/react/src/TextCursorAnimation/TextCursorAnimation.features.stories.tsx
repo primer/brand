@@ -28,6 +28,15 @@ export const AnimatedWithLongDelay: Story = {
   ),
 }
 
+export const WithInitialText: Story = {
+  name: 'With initial text transition',
+  render: () => (
+    <TextCursorAnimation animate initialText="Your AI assistant">
+      Your AI accelerator
+    </TextCursorAnimation>
+  ),
+}
+
 export const AnimatedExplicitlyDisabled: Story = {
   name: 'Animation explicitly disabled',
   render: () => <TextCursorAnimation animate={false}>Animation is explicitly disabled</TextCursorAnimation>,

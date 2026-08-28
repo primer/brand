@@ -50,6 +50,7 @@ export type FlexSuiteAIOverviewContent = {
   }
   hero: {
     label: string
+    initialLabel?: string
     headingLine1: string
     headingLine2: string
     description: string
@@ -115,7 +116,8 @@ export const defaultFlexSuiteAIOverviewContent: FlexSuiteAIOverviewContent = {
     links: ['Copilot in VS Code', 'Agents on GitHub', 'Copilot CLI', 'For Business', 'Tutorials', 'Plans & Pricing'],
   },
   hero: {
-    label: 'GitHub Copilot',
+    label: 'Your AI accelerator',
+    initialLabel: 'Your AI assistant',
     headingLine1: 'Command',
     headingLine2: 'your craft',
     description: 'Your AI accelerator for every workflow, from the editor to the enterprise.',
@@ -361,6 +363,7 @@ export function getLocalizedFlexSuiteAIOverviewContent(t: Translate): FlexSuiteA
     },
     hero: {
       label: t('hero.label'),
+      initialLabel: t('hero.initialLabel'),
       headingLine1: t('hero.headingLine1'),
       headingLine2: t('hero.headingLine2'),
       description: t('hero.description'),
