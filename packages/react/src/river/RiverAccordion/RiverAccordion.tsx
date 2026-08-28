@@ -1,6 +1,6 @@
 import React, {createContext, forwardRef, useCallback, useContext, useMemo, useState, useRef, useEffect} from 'react'
 import {clsx} from 'clsx'
-import {TriangleDownIcon, TriangleUpIcon} from '@primer/octicons-react'
+import {TriangleDownIcon, TriangleUpIcon, type Icon} from '@primer/octicons-react'
 
 import {Heading, type HeadingProps, Link, Text} from '../..'
 import {useProvidedRefOrCreate} from '../../hooks/useRef'
@@ -88,6 +88,8 @@ const RiverAccordionRoot = forwardRef<HTMLDivElement, RiverAccordionProps>(
     const visuals = accordionComponents.visuals.map((visual, index) =>
       React.cloneElement(visual, {key: index, 'aria-hidden': true}),
     )
+    const activeItemHasBackground =
+      variant === 'gridline' && (accordionComponents.visuals[openIndex]?.props.hasBackground ?? true)
 
     const contextValue = useMemo(
       () => ({
@@ -106,6 +108,7 @@ const RiverAccordionRoot = forwardRef<HTMLDivElement, RiverAccordionProps>(
             styles.RiverAccordion,
             styles[`RiverAccordion__align-${align}`],
             styles[`RiverAccordion--variant-${variant}`],
+            activeItemHasBackground && styles['RiverAccordion--active-item-has-background'],
             variant === 'gridline' && gridlineStyles.gridline,
             className,
           )}
@@ -196,9 +199,18 @@ const RiverAccordionItem = ({className, index, children, ...props}: RiverAccordi
   )
 }
 
-export type RiverAccordionHeadingProps = HeadingProps
+export type RiverAccordionHeadingProps = HeadingProps & {
+  leadingVisual?: React.ReactElement | Icon
+}
 
-const RiverAccordionHeading = ({as = 'h3', children, className, size = '6', ...props}: RiverAccordionHeadingProps) => {
+const RiverAccordionHeading = ({
+  as = 'h3',
+  children,
+  className,
+  leadingVisual: LeadingVisual,
+  size = '6',
+  ...props
+}: RiverAccordionHeadingProps) => {
   const {setOpenIndex} = useRiverAccordionContext()
   const {id, index, isOpen} = useRiverAccordionItemContext()
 
@@ -212,13 +224,21 @@ const RiverAccordionHeading = ({as = 'h3', children, className, size = '6', ...p
     <Heading size={size} as={as} className={clsx(styles.RiverAccordion__heading, className)} {...props}>
       <button
         type="button"
-        className={styles.RiverAccordion__trigger}
+        className={clsx(
+          styles.RiverAccordion__trigger,
+          LeadingVisual && styles['RiverAccordion__trigger--has-leadingVisual'],
+        )}
         onClick={onClick}
         aria-disabled={isOpen}
         aria-controls={id}
         aria-expanded={isOpen}
       >
-        {children}
+        {LeadingVisual && (
+          <span aria-hidden="true" className={styles.RiverAccordion__leadingVisual}>
+            {typeof LeadingVisual === 'function' ? <LeadingVisual /> : LeadingVisual}
+          </span>
+        )}
+        {LeadingVisual ? <span className={styles.RiverAccordion__headingText}>{children}</span> : children}
         <span aria-hidden="true" className={styles.RiverAccordion__icon}>
           {isOpen ? <TriangleUpIcon size={24} /> : <TriangleDownIcon size={24} />}
         </span>
@@ -260,16 +280,22 @@ const RiverAccordionContent = ({className, children, ...props}: RiverAccordionCo
   )
 }
 
-export type RiverAccordionVisualProps = React.HTMLAttributes<HTMLDivElement>
+export type RiverAccordionVisualProps = React.HTMLAttributes<HTMLDivElement> & {
+  /**
+   * Displays a padded background when the parent RiverAccordion uses the gridline variant.
+   * @default true
+   */
+  hasBackground?: boolean
+}
 
-const RiverAccordionVisual = ({className, ...props}: RiverAccordionVisualProps) => {
+const RiverAccordionVisual = ({className, hasBackground = true, ...props}: RiverAccordionVisualProps) => {
   const {variant} = useRiverAccordionContext()
 
   return (
     <div
       className={clsx(
         styles.RiverAccordion__visual,
-        variant === 'gridline' && styles['RiverAccordion__visual--has-background'],
+        variant === 'gridline' && hasBackground && styles['RiverAccordion__visual--has-background'],
         className,
       )}
       {...props}

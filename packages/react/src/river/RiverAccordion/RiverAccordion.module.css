@@ -67,10 +67,10 @@
 }
 
 .RiverAccordion--variant-gridline .RiverAccordion__visualsWrapper {
-  border-radius: var(--brand-borderRadius-medium);
+  border-radius: var(--base-size-6);
 }
 
-.RiverAccordion--variant-gridline:has(.RiverAccordion__visual--has-background) .RiverAccordion__visualsContainer {
+.RiverAccordion--active-item-has-background .RiverAccordion__visualsContainer {
   margin-inline: calc(-1 * var(--brand-RiverAccordion-variant-gridline-spacing-outerInline));
   margin-block-start: calc(-1 * var(--brand-RiverAccordion-variant-gridline-spacing-outerBlock));
 }
@@ -86,7 +86,7 @@
   }
 }
 
-.RiverAccordion--variant-gridline .RiverAccordion__visualsWrapper:has(.RiverAccordion__visual--has-background) {
+.RiverAccordion--active-item-has-background .RiverAccordion__visualsWrapper {
   border-radius: 0;
 }
 
@@ -130,7 +130,7 @@
 }
 
 .RiverAccordion--variant-gridline .RiverAccordion__visualsWrapper > .RiverAccordion__visual > * {
-  border-radius: var(--brand-borderRadius-medium);
+  border-radius: var(--base-size-6);
 }
 
 .RiverAccordion__visualsWrapper > .RiverAccordion__visual img,
@@ -147,7 +147,7 @@
 .RiverAccordion__visualsWrapper > .RiverAccordion__visual > * video {
   display: block;
   width: 100%;
-  height: 100%;
+  height: auto;
   border-radius: inherit;
   object-fit: cover;
 }
@@ -173,19 +173,19 @@
 .RiverAccordion--variant-gridline .RiverAccordion__visualsWrapper > .RiverAccordion__visual--has-background picture,
 .RiverAccordion--variant-gridline .RiverAccordion__visualsWrapper > .RiverAccordion__visual--has-background video {
   max-width: 100%;
-  height: 100%;
+  height: auto;
   border-radius: var(--brand-borderRadius-large);
 }
 
 @media screen and (min-width: 63.25rem) {
-  .RiverAccordion--variant-gridline:has(.RiverAccordion__visual--has-background) {
+  .RiverAccordion--active-item-has-background {
     padding: 0;
     gap: 0;
     align-items: stretch;
     grid-template-columns: 1fr 1fr;
   }
 
-  .RiverAccordion--variant-gridline:has(.RiverAccordion__visual--has-background) .RiverAccordion__accordionContainer {
+  .RiverAccordion--active-item-has-background .RiverAccordion__accordionContainer {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -193,21 +193,19 @@
       var(--brand-RiverAccordion-variant-gridline-spacing-outerInline);
   }
 
-  .RiverAccordion--variant-gridline.RiverAccordion__align-start:has(.RiverAccordion__visual--has-background)
-    .RiverAccordion__accordionContainer {
+  .RiverAccordion__align-start.RiverAccordion--active-item-has-background .RiverAccordion__accordionContainer {
     padding-inline-end: var(--brand-RiverAccordion-variant-gridline-spacing-contentGap);
   }
 
-  .RiverAccordion--variant-gridline.RiverAccordion__align-end:has(.RiverAccordion__visual--has-background)
-    .RiverAccordion__accordionContainer {
+  .RiverAccordion__align-end.RiverAccordion--active-item-has-background .RiverAccordion__accordionContainer {
     padding-inline-start: var(--brand-RiverAccordion-variant-gridline-spacing-contentGap);
   }
 
-  .RiverAccordion--variant-gridline:has(.RiverAccordion__visual--has-background) .RiverAccordion__visualsContainer {
+  .RiverAccordion--active-item-has-background .RiverAccordion__visualsContainer {
     margin: 0;
   }
 
-  .RiverAccordion--variant-gridline .RiverAccordion__visualsWrapper:has(.RiverAccordion__visual--has-background) {
+  .RiverAccordion--active-item-has-background .RiverAccordion__visualsWrapper {
     height: 100%;
   }
 
@@ -288,6 +286,30 @@
   margin: calc(var(--base-size-4) * -1);
 }
 
+.RiverAccordion__trigger--has-leadingVisual {
+  gap: var(--base-size-20);
+  justify-content: flex-start;
+}
+
+.RiverAccordion__leadingVisual {
+  align-items: center;
+  display: flex;
+  flex-shrink: 0;
+  height: var(--base-size-20);
+  justify-content: center;
+  width: var(--base-size-20);
+}
+
+.RiverAccordion__leadingVisual > * {
+  height: 100%;
+  width: 100%;
+}
+
+.RiverAccordion__headingText {
+  flex: 1;
+  min-width: 0;
+}
+
 .RiverAccordion__item--open .RiverAccordion__trigger {
   cursor: initial;
 }
@@ -322,6 +344,10 @@
   align-items: flex-start;
   min-height: 0;
   gap: var(--base-size-20);
+}
+
+.RiverAccordion__item:has(.RiverAccordion__leadingVisual) .RiverAccordion__content {
+  padding-inline-start: calc(var(--base-size-20) + var(--base-size-20));
 }
 
 .RiverAccordion__icon {

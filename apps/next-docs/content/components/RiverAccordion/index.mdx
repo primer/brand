@@ -166,6 +166,47 @@ Use the `gridline` variant to add horizontal border lines, equal-width columns, 
 </RiverAccordion>
 ```
 
+### Without visual backgrounds
+
+Set `hasBackground={false}` on a `RiverAccordion.Visual` to remove its background and inline start padding.
+
+```jsx live
+<RiverAccordion variant="gridline">
+  <RiverAccordion.Item>
+    <RiverAccordion.Heading leadingVisual={<Icon icon={CopilotIcon} color="green" />}>Heading 1</RiverAccordion.Heading>
+    <RiverAccordion.Content>
+      <Text>This item removes the visual background and padding while preserving the media's aspect ratio.</Text>
+      <Link href="#">Call to action</Link>
+    </RiverAccordion.Content>
+    <RiverAccordion.Visual hasBackground={false}>
+      <img src="/images/placeholder-1.png" alt="Visual content for item 1" />
+    </RiverAccordion.Visual>
+  </RiverAccordion.Item>
+
+  <RiverAccordion.Item>
+    <RiverAccordion.Heading>Heading 2</RiverAccordion.Heading>
+    <RiverAccordion.Content>
+      <Text>The visual is displayed without a background while the accordion interaction stays the same.</Text>
+      <Link href="#">Call to action</Link>
+    </RiverAccordion.Content>
+    <RiverAccordion.Visual hasBackground={false}>
+      <img src="/images/placeholder-2.png" alt="Visual content for item 2" />
+    </RiverAccordion.Visual>
+  </RiverAccordion.Item>
+
+  <RiverAccordion.Item>
+    <RiverAccordion.Heading>Heading 3</RiverAccordion.Heading>
+    <RiverAccordion.Content>
+      <Text>Use this treatment when visuals should appear without a surrounding background panel.</Text>
+      <Link href="#">Call to action</Link>
+    </RiverAccordion.Content>
+    <RiverAccordion.Visual hasBackground={false}>
+      <img src="/images/placeholder-3.png" alt="Visual content for item 3" />
+    </RiverAccordion.Visual>
+  </RiverAccordion.Item>
+</RiverAccordion>
+```
+
 ## Component props
 
 ### RiverAccordion <Label>Required</Label>
@@ -188,9 +229,10 @@ Use the `gridline` variant to add horizontal border lines, equal-width columns, 
 
 ### RiverAccordion.Heading <Label>Required</Label>
 
-| Name       | Type     | Default | Description  |
-| :--------- | :------- | :-----: | :----------- |
-| `children` | `string` |         | Heading text |
+| Name            | Type                   | Default | Description                                    |
+| :-------------- | :--------------------- | :-----: | :--------------------------------------------- |
+| `children`      | `string`               |         | Heading text                                   |
+| `leadingVisual` | `ReactElement \| Icon` |         | Decorative visual displayed before the heading |
 
 `RiverAccordion.Heading` extends the [`Heading`](/typography/Heading) component and supports all `Heading` props.
 
@@ -204,8 +246,9 @@ Use the `gridline` variant to add horizontal border lines, equal-width columns, 
 
 ### RiverAccordion.Visual <Label>Required</Label>
 
-| Name       | Type                 | Default | Description                  |
-| :--------- | :------------------- | :-----: | :--------------------------- |
-| `children` | `React.ReactElement` |         | Visual content (e.g., image) |
+| Name            | Type                 | Default | Description                                                    |
+| :-------------- | :------------------- | :-----: | :------------------------------------------------------------- |
+| `children`      | `React.ReactElement` |         | Visual content (e.g., image)                                   |
+| `hasBackground` | `boolean`            | `true`  | Displays a padded background when using the `gridline` variant |
 
 `RiverAccordion.Visual` extends the HTML `div` element and supports all `div` props.
