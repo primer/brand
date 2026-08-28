@@ -2,7 +2,6 @@ import React from 'react'
 import type {Meta, StoryObj} from '@storybook/react'
 import {GlobeIcon} from '@primer/octicons-react'
 import {expect, userEvent, within} from 'storybook/test'
-import {INITIAL_VIEWPORTS} from 'storybook/viewport'
 import {waitFor} from '@testing-library/dom'
 
 import {ActionMenu, Button, Heading, Hero, Link, River, SubdomainNavBar, Text, Token} from '..'
@@ -17,35 +16,6 @@ const meta = {
   component: SubdomainNavBar,
   parameters: {
     layout: 'fullscreen',
-    viewport: {
-      options: {
-        ...INITIAL_VIEWPORTS,
-        desktop1440: {
-          name: 'Desktop 1440',
-          styles: {
-            width: '1440px',
-            height: '900px',
-          },
-          type: 'desktop',
-        },
-        desktop1024: {
-          name: 'Desktop 1024',
-          styles: {
-            width: '1024px',
-            height: '768px',
-          },
-          type: 'desktop',
-        },
-        tablet800: {
-          name: 'Tablet 800',
-          styles: {
-            width: '800px',
-            height: '900px',
-          },
-          type: 'tablet',
-        },
-      },
-    },
   },
 } satisfies Meta<MetaProps>
 
@@ -295,7 +265,7 @@ export const GroupedSearchResultsVisible: Story = {
 
 export const OverflowMenuOpen: Story = {
   decorators: [withFullPageFixture],
-  tags: ['visual-viewport-1440x900', 'visual-screenshot-viewport'],
+  tags: ['visual-viewport-1024x768', 'visual-screenshot-viewport'],
   render: () => (
     <SubdomainNavBar title="Site title" titleHref="/">
       {navigationLinks.map(link => (
@@ -318,7 +288,7 @@ export const OverflowMenuOpen: Story = {
     </SubdomainNavBar>
   ),
   globals: {
-    viewport: {value: 'desktop1440'},
+    viewport: {value: 'ipad', isRotated: true},
   },
   play: async ({canvasElement}) => {
     const canvas = within(canvasElement)
@@ -337,7 +307,7 @@ export const OverflowMenuOpen: Story = {
 }
 
 export const DesktopPillStates: Story = {
-  tags: ['visual-viewport-1440x900'],
+  tags: ['visual-viewport-1024x768'],
   render: () => (
     <SubdomainNavBar title="Site title">
       <SubdomainNavBar.Link href="#default">Default</SubdomainNavBar.Link>
@@ -349,7 +319,7 @@ export const DesktopPillStates: Story = {
     </SubdomainNavBar>
   ),
   globals: {
-    viewport: {value: 'desktop1440'},
+    viewport: {value: 'ipad', isRotated: true},
   },
   parameters: {
     pseudo: {
@@ -361,7 +331,7 @@ export const DesktopPillStates: Story = {
 
 export const TabletView: Story = {
   decorators: [withFullPageFixture],
-  tags: ['visual-viewport-800x900'],
+  tags: ['visual-viewport-768x1024'],
   render: () => (
     <SubdomainNavBar title="Site title" titleHref="/">
       {navigationLinks.slice(0, 6).map(link => (
@@ -384,7 +354,7 @@ export const TabletView: Story = {
     </SubdomainNavBar>
   ),
   globals: {
-    viewport: {value: 'tablet800'},
+    viewport: {value: 'ipad'},
   },
   parameters: {
     pseudo: {
@@ -396,7 +366,7 @@ export const TabletView: Story = {
 
 export const TabletMenuOpen: Story = {
   name: 'Tablet Menu Open',
-  tags: ['visual-viewport-800x900'],
+  tags: ['visual-viewport-768x1024'],
   render: function Render() {
     const [selectedLanguage, setSelectedLanguage] = React.useState('English')
 
@@ -443,7 +413,7 @@ export const TabletMenuOpen: Story = {
     )
   },
   globals: {
-    viewport: {value: 'tablet800'},
+    viewport: {value: 'ipad'},
   },
   parameters: {
     pseudo: {
@@ -817,7 +787,7 @@ export const WithTrailingComponent: Story = {
     )
   },
   globals: {
-    viewport: {value: 'desktop1024'},
+    viewport: {value: 'ipad', isRotated: true},
   },
   play: async ({canvasElement}) => {
     await canvasElement.ownerDocument.fonts.ready

@@ -96,7 +96,7 @@ test.describe('Visual Comparison: SubdomainNavBar', () => {
 
   // eslint-disable-next-line i18n-text/no-en
   test.describe('Custom viewport test for Overflow Menu Open', () => {
-    test.use({viewport: {width: 1440, height: 900}})
+    test.use({viewport: {width: 1024, height: 768}})
     test('SubdomainNavBar / Overflow Menu Open', async ({page}) => {
       await page.goto(
         'http://localhost:6006/iframe.html?args=&id=components-subdomainnavbar-features--overflow-menu-open&viewMode=story',
@@ -111,7 +111,7 @@ test.describe('Visual Comparison: SubdomainNavBar', () => {
 
   // eslint-disable-next-line i18n-text/no-en
   test.describe('Custom viewport test for Desktop Pill States', () => {
-    test.use({viewport: {width: 1440, height: 900}})
+    test.use({viewport: {width: 1024, height: 768}})
     test('SubdomainNavBar / Desktop Pill States', async ({page}) => {
       await page.goto(
         'http://localhost:6006/iframe.html?args=&id=components-subdomainnavbar-features--desktop-pill-states&viewMode=story',
@@ -126,7 +126,7 @@ test.describe('Visual Comparison: SubdomainNavBar', () => {
 
   // eslint-disable-next-line i18n-text/no-en
   test.describe('Custom viewport test for Tablet View', () => {
-    test.use({viewport: {width: 800, height: 900}})
+    test.use({viewport: {width: 768, height: 1024}})
     test('SubdomainNavBar / Tablet View', async ({page}) => {
       await page.goto(
         'http://localhost:6006/iframe.html?args=&id=components-subdomainnavbar-features--tablet-view&viewMode=story',
@@ -141,7 +141,7 @@ test.describe('Visual Comparison: SubdomainNavBar', () => {
 
   // eslint-disable-next-line i18n-text/no-en
   test.describe('Custom viewport test for Tablet Menu Open', () => {
-    test.use({viewport: {width: 800, height: 900}})
+    test.use({viewport: {width: 768, height: 1024}})
     test('SubdomainNavBar / Tablet Menu Open', async ({page}) => {
       await page.goto(
         'http://localhost:6006/iframe.html?args=&id=components-subdomainnavbar-features--tablet-menu-open&viewMode=story',

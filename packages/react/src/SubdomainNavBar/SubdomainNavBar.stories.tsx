@@ -1,6 +1,5 @@
 import React from 'react'
 import type {Meta, StoryObj} from '@storybook/react'
-import {INITIAL_VIEWPORTS} from 'storybook/viewport'
 
 import {Heading, Hero, Link, River, SubdomainNavBar, Text} from '..'
 import placeholderImage from '../fixtures/images/placeholder.png'
@@ -9,20 +8,6 @@ import {navigationLinks, searchResults} from './SubdomainNavBar.stories.fixtures
 type StoryArgs = React.ComponentProps<typeof SubdomainNavBar> & {
   showSearch: boolean
   numLinks: number
-}
-
-const viewports = {
-  ...INITIAL_VIEWPORTS,
-  desktop1440: {
-    name: 'Desktop 1440',
-    styles: {width: '1440px', height: '900px'},
-    type: 'desktop',
-  },
-  tablet800: {
-    name: 'Tablet 800',
-    styles: {width: '800px', height: '900px'},
-    type: 'tablet',
-  },
 }
 
 const meta = {
@@ -46,11 +31,6 @@ const meta = {
     },
     titleHref: {
       control: 'text',
-    },
-  },
-  parameters: {
-    viewport: {
-      options: viewports,
     },
   },
 } satisfies Meta<StoryArgs>
