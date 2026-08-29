@@ -140,7 +140,7 @@
   display: block;
   width: 100%;
   height: auto;
-  border-radius: inherit;
+  border-radius: var(--base-size-6);
   object-fit: cover;
 }
 
