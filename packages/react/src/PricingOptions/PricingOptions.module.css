@@ -123,14 +123,25 @@
     padding-inline-end: var(--brand-pricing-options-container-padding-inline);
   }
 
+  .PricingOptions--layout-default .PricingOptions__item--has-label:first-child .PricingOptions__label-cell {
+    border-inline-start: var(--brand-borderWidth-thin) solid var(--brand-color-border-subtle);
+  }
+
+  .PricingOptions--layout-default .PricingOptions__item--has-label:last-child .PricingOptions__label-cell {
+    border-inline-end: var(--brand-borderWidth-thin) solid var(--brand-color-border-subtle);
+  }
+
   /* Empty cells: transparent bg/borders but structurally visible so dividers show */
   .PricingOptions--layout-default .PricingOptions__label-cell--empty {
     background-color: transparent;
     border-block-start-color: transparent;
   }
 
-  /* Vertical dividers between label cells, centered in the column gap */
-  .PricingOptions--layout-default .PricingOptions__item + .PricingOptions__item .PricingOptions__label-cell::before {
+  /* Only divide adjacent label cells that both contain labels */
+  .PricingOptions--layout-default
+    .PricingOptions__item--has-label
+    + .PricingOptions__item--has-label
+    .PricingOptions__label-cell::before {
     content: '';
     position: absolute;
     inset-block: 0;
@@ -140,8 +151,8 @@
   }
 
   .PricingOptions--layout-default.PricingOptions--appearance-gradient
-    .PricingOptions__item
-    + .PricingOptions__item
+    .PricingOptions__item--has-label
+    + .PricingOptions__item--has-label
     .PricingOptions__label-cell::before {
     mask-image: var(--brand-PricingOptions-borderMask);
   }
@@ -176,10 +187,10 @@
 
 .PricingOptions--layout-default.PricingOptions--appearance-solid {
   border: solid 1px var(--brand-color-border-subtle);
-  background-color: var(--brand-PricingOptions-item-bgColor-solid);
+  border-block-start: 0;
+  background-color: transparent;
 }
 
-.PricingOptions--layout-default.PricingOptions--appearance-gradient,
 .PricingOptions--layout-cards.PricingOptions--appearance-gradient .PricingOptions__item {
   background: linear-gradient(
     180deg,
@@ -199,9 +210,39 @@
   border: var(--brand-borderWidth-thin) solid var(--brand-color-border-subtle);
 }
 
+.PricingOptions--layout-default.PricingOptions--appearance-gradient::before {
+  border-block-start: 0;
+}
+
 @media (min-width: 63.25rem) {
   .PricingOptions--layout-default {
+    --brand-pricing-options-item-padding-block-start: var(--base-size-40);
+
     padding-inline: var(--brand-pricing-options-container-padding-inline);
+  }
+
+  .PricingOptions--layout-default.PricingOptions--appearance-solid {
+    border: 0;
+  }
+
+  .PricingOptions--layout-default.PricingOptions--appearance-solid::before,
+  .PricingOptions--layout-default.PricingOptions--appearance-gradient::before {
+    position: absolute;
+    content: '';
+    grid-column: 1 / -1;
+    grid-row: labels-end / -1;
+    inset-block-start: calc(var(--brand-pricing-options-item-padding-block-start) * -1);
+    inset-block-end: 0;
+    inset-inline: calc(var(--brand-pricing-options-container-padding-inline) * -1);
+    pointer-events: none;
+    border: 0;
+    border-inline: var(--brand-borderWidth-thin) solid var(--brand-color-border-subtle);
+    border-block-end: var(--brand-borderWidth-thin) solid var(--brand-color-border-subtle);
+    z-index: 2;
+  }
+
+  .PricingOptions--layout-default:not(.PricingOptions--has-labels)::before {
+    border-block-start: var(--brand-borderWidth-thin) solid var(--brand-color-border-subtle);
   }
 }
 
@@ -227,11 +268,19 @@
   }
 
   .PricingOptions--layout-default.PricingOptions--appearance-solid .PricingOptions__item {
-    background-color: var(--brand-PricingOptions-item-bgColor-solid);
+    background-color: transparent;
     border: solid var(--brand-borderWidth-thin) var(--brand-color-border-subtle);
   }
 
+  .PricingOptions--layout-default.PricingOptions--appearance-solid .PricingOptions__item--has-label {
+    background-color: var(--brand-PricingOptions-item-bgColor-solid);
+  }
+
   .PricingOptions--layout-default.PricingOptions--appearance-gradient .PricingOptions__item {
+    background: transparent;
+  }
+
+  .PricingOptions--layout-default.PricingOptions--appearance-gradient .PricingOptions__item--has-label {
     background: linear-gradient(
       180deg,
       var(--brand-PricingOptions-item-bgColor-gradient-start) 0%,
@@ -256,6 +305,34 @@
 
     padding-inline: 0;
     padding-block: var(--base-size-40);
+  }
+
+  .PricingOptions--layout-default .PricingOptions__item--has-label::after {
+    content: '';
+    position: absolute;
+    inset-block: 0;
+    inset-inline: calc(var(--brand-pricing-options-item-gap) / 2 * -1);
+    z-index: -1;
+  }
+
+  .PricingOptions--layout-default.PricingOptions--appearance-solid .PricingOptions__item--has-label::after {
+    background-color: var(--brand-PricingOptions-item-bgColor-solid);
+  }
+
+  .PricingOptions--layout-default.PricingOptions--appearance-gradient .PricingOptions__item--has-label::after {
+    background: linear-gradient(
+      180deg,
+      var(--brand-PricingOptions-item-bgColor-gradient-start) 0%,
+      var(--brand-PricingOptions-item-bgColor-gradient-end) 100%
+    );
+  }
+
+  .PricingOptions--layout-default .PricingOptions__item--has-label:first-child::after {
+    inset-inline-start: calc(var(--brand-pricing-options-container-padding-inline) * -1);
+  }
+
+  .PricingOptions--layout-default .PricingOptions__item--has-label:last-child::after {
+    inset-inline-end: calc(var(--brand-pricing-options-container-padding-inline) * -1);
   }
 }
 
@@ -346,6 +423,7 @@
 .PricingOptions__item {
   display: grid;
   grid-template-areas: var(--brand-pricing-options-template-areas);
+  isolation: isolate;
 }
 
 @media (min-width: 63.25rem) {
