@@ -63,6 +63,7 @@ describe('PricingOptions', () => {
 
     const PricingOptionsEl = getByTestId(testId)
     expect(PricingOptionsEl.classList).toContain(expectedClass)
+    expect(PricingOptionsEl).not.toHaveClass('PricingOptions--has-labels')
   })
 
   it('applies the correct layout classes for each variant', () => {
@@ -168,7 +169,7 @@ describe('PricingOptions', () => {
     const firstLabel = 'Most popular'
     const secondLabel = 'Best value'
 
-    const {getAllByTestId} = render(
+    const {getAllByTestId, getByTestId} = render(
       <PricingOptions>
         <PricingOptions.Item>
           <PricingOptions.Label>{firstLabel}</PricingOptions.Label>
@@ -186,7 +187,11 @@ describe('PricingOptions', () => {
 
     const items = getAllByTestId(PricingOptions.testIds.item)
 
+    expect(getByTestId(PricingOptions.testIds.root)).toHaveClass('PricingOptions--has-labels')
     expect(getAllByTestId(PricingOptions.testIds.label)).toHaveLength(3)
+    expect(items[0]).toHaveClass('PricingOptions__item--has-label')
+    expect(items[1]).not.toHaveClass('PricingOptions__item--has-label')
+    expect(items[2]).toHaveClass('PricingOptions__item--has-label')
     expect(within(items[0]).getByText(firstLabel)).toBeInTheDocument()
     expect(within(items[1]).queryByText(firstLabel)).not.toBeInTheDocument()
     expect(within(items[1]).queryByText(secondLabel)).not.toBeInTheDocument()

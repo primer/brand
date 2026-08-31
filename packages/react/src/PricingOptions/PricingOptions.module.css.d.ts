@@ -2,6 +2,7 @@ declare const styles: {
   readonly "PricingOptions": string;
   readonly "PricingOptions--appearance-gradient": string;
   readonly "PricingOptions--appearance-solid": string;
+  readonly "PricingOptions--has-labels": string;
   readonly "PricingOptions--items1": string;
   readonly "PricingOptions--items2": string;
   readonly "PricingOptions--items3": string;
@@ -30,6 +31,7 @@ declare const styles: {
   readonly "PricingOptions__heading": string;
   readonly "PricingOptions__item": string;
   readonly "PricingOptions__item--align-center": string;
+  readonly "PricingOptions__item--has-label": string;
   readonly "PricingOptions__item--has-leading-component": string;
   readonly "PricingOptions__label": string;
   readonly "PricingOptions__label-cell": string;
