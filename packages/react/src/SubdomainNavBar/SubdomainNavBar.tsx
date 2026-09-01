@@ -9,7 +9,7 @@ import React, {
   useImperativeHandle,
 } from 'react'
 import {clsx} from 'clsx'
-import {ArrowUpRightIcon, LinkExternalIcon, MarkGithubIcon, SearchIcon} from '@primer/octicons-react'
+import {ArrowUpRightIcon, ChevronLeftIcon, LinkExternalIcon, MarkGithubIcon, SearchIcon} from '@primer/octicons-react'
 
 import {Button, FormControl, Text, TextInput} from '..'
 import {NavigationVisbilityObserver} from './NavigationVisbilityObserver'
@@ -469,6 +469,9 @@ const Root = forwardRef<SubdomainNavBarHandle, SubdomainNavBarProps>(function Ro
               <ol className={styles['SubdomainNavBar-title-area']}>
                 <li>
                   <a href={logoHref} aria-label="Github Home" className={styles['SubdomainNavBar-logo-mark']}>
+                    <span className={styles['SubdomainNavBar-back-arrow']}>
+                      <ChevronLeftIcon fill="currentColor" size={24} />
+                    </span>
                     <MarkGithubIcon fill="currentColor" size={24} />
                   </a>
                 </li>

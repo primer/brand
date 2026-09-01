@@ -342,12 +342,13 @@ describe('SubdomainNavBar', () => {
     expect(getByRole('link', {name: 'Skip to content'})).toHaveAttribute('href', `#${getByRole('main').id}`)
   })
 
-  it('renders only the GitHub mark in the home link', () => {
+  it('renders a back arrow and the GitHub mark in the home link', () => {
     const {getByRole} = render(<Component />)
     const logoIcons = getByRole('link', {name: 'Github Home'}).querySelectorAll('svg')
 
-    expect(logoIcons).toHaveLength(1)
-    expect(logoIcons[0]).toHaveClass('octicon-mark-github')
+    expect(logoIcons).toHaveLength(2)
+    expect(logoIcons[0]).toHaveClass('octicon-chevron-left')
+    expect(logoIcons[1]).toHaveClass('octicon-mark-github')
   })
 
   it('renders GitHub before the subdomain title', () => {

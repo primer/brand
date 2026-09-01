@@ -99,6 +99,24 @@
   color: var(--brand-color-text-default);
 }
 
+.SubdomainNavBar-logo-mark {
+  position: relative;
+}
+
+.SubdomainNavBar-back-arrow {
+  position: absolute;
+  inset-inline-start: calc(-1 * var(--base-size-24) + var(--base-size-4));
+  color: var(--brand-color-text-muted);
+  opacity: 0;
+  transform: translateX(var(--base-size-4));
+  transition: opacity var(--brand-animation-duration-fast), transform var(--brand-animation-duration-fast) ease;
+}
+
+.SubdomainNavBar-logo-mark:hover .SubdomainNavBar-back-arrow {
+  opacity: 1;
+  transform: translateX(0);
+}
+
 .SubdomainNavBar-logo-mark svg {
   width: 32px;
   height: 32px;
