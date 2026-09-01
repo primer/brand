@@ -109,6 +109,19 @@ const PricingOptionsLabel = ({children}: PricingOptionsLabelProps) => {
   return <>{children}</>
 }
 
+const hasRenderableLabelContent = (children: React.ReactNode): boolean =>
+  React.Children.toArray(children).some(child => {
+    if (typeof child === 'string') {
+      return child.length > 0
+    }
+
+    if (React.isValidElement<{children?: React.ReactNode}>(child) && child.type === React.Fragment) {
+      return hasRenderableLabelContent(child.props.children)
+    }
+
+    return true
+  })
+
 const PricingOptionsRoot = forwardRef(
   (
     {
@@ -134,7 +147,10 @@ const PricingOptionsRoot = forwardRef(
         filteredChildren.some(item =>
           React.Children.toArray(item.props.children).some(
             child =>
-              React.isValidElement(child) && typeof child.type !== 'string' && child.type === PricingOptionsLabel,
+              React.isValidElement<PricingOptionsLabelProps>(child) &&
+              typeof child.type !== 'string' &&
+              child.type === PricingOptionsLabel &&
+              hasRenderableLabelContent(child.props.children),
           ),
         ),
       [filteredChildren],
@@ -249,7 +265,7 @@ const PricingOptionsItem = forwardRef(
 
     const {Heading, Description, Price, FeatureList, Actions, ActionsMessage, Footnote, Label} = filteredChildren
     const labelContent = Label?.props.children
-    const hasLabelContent = Boolean(labelContent)
+    const hasLabelContent = hasRenderableLabelContent(labelContent)
     const shouldRenderLabelCell = hasLabels || hasLabelContent
 
     return (

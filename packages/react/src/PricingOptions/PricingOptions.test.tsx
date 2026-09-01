@@ -198,6 +198,39 @@ describe('PricingOptions', () => {
     expect(within(items[2]).getByText(secondLabel)).toBeInTheDocument()
   })
 
+  it.each([null, false, '', <React.Fragment key="empty-fragment">{false}</React.Fragment>])(
+    'does not enable labeled layout for an empty label containing %p',
+    labelContent => {
+      const {getByTestId, queryAllByTestId} = render(
+        <PricingOptions>
+          <PricingOptions.Item>
+            <PricingOptions.Label>{labelContent}</PricingOptions.Label>
+            <PricingOptions.Heading>Plan</PricingOptions.Heading>
+          </PricingOptions.Item>
+        </PricingOptions>,
+      )
+
+      expect(getByTestId(PricingOptions.testIds.root)).not.toHaveClass('PricingOptions--has-labels')
+      expect(getByTestId(PricingOptions.testIds.item)).not.toHaveClass('PricingOptions__item--has-label')
+      expect(queryAllByTestId(PricingOptions.testIds.label)).toHaveLength(0)
+    },
+  )
+
+  it('renders zero as label content', () => {
+    const {getByTestId, getByText} = render(
+      <PricingOptions>
+        <PricingOptions.Item>
+          <PricingOptions.Label>{0}</PricingOptions.Label>
+          <PricingOptions.Heading>Plan</PricingOptions.Heading>
+        </PricingOptions.Item>
+      </PricingOptions>,
+    )
+
+    expect(getByTestId(PricingOptions.testIds.root)).toHaveClass('PricingOptions--has-labels')
+    expect(getByTestId(PricingOptions.testIds.item)).toHaveClass('PricingOptions__item--has-label')
+    expect(getByText('0')).toBeInTheDocument()
+  })
+
   it('renders PricingOptions.Item markup in the expected order', () => {
     mockUseWindowSize.mockReturnValue(mediumBreakpoint)
 
