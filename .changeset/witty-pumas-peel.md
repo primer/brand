@@ -2,6 +2,9 @@
 '@primer/react-brand': minor
 ---
 
-Fixes `PricingOptions.Label` so labels are visible on mobile viewports, adds mobile label dividers, and restores the label separators on larger viewports.
+Improves `PricingOptions` layouts across desktop, tablet, and mobile:
 
-This includes a breaking change for consumers relying on the `PricingOptions.testIds.labelRow` test ID, which has been removed because labels now render inside each `PricingOptions.Item` instead of a shared label row.
+- Renders labels inside their corresponding items.
+- Highlights only items with labels.
+- Corrects spacing and borders between stacked items.
+- **Breaking:** Removes `PricingOptions.testIds.labelRow`. Use `PricingOptions.testIds.label` within the corresponding item instead.
