@@ -24,7 +24,7 @@
   padding-inline: var(--brand-pricing-options-container-padding-inline);
 }
 
-@media screen and (max-width: 47.99rem) {
+@media screen and (max-width: 63.24rem) {
   .PricingOptions {
     --brand-pricing-options-item-gap: var(--base-size-40);
   }
@@ -255,7 +255,7 @@
   padding-block: var(--base-size-20);
 }
 
-@media screen and (max-width: 47.99rem) {
+@media screen and (max-width: 63.24rem) {
   .PricingOptions--layout-default.PricingOptions--appearance-solid,
   .PricingOptions--layout-default.PricingOptions--appearance-gradient {
     border: 0;
