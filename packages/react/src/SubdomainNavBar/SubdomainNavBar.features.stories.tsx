@@ -265,7 +265,6 @@ export const GroupedSearchResultsVisible: Story = {
 
 export const OverflowMenuOpen: Story = {
   decorators: [withFullPageFixture],
-  tags: ['visual-viewport-1024x768', 'visual-screenshot-viewport'],
   render: () => (
     <SubdomainNavBar title="Site title" titleHref="/">
       {navigationLinks.map(link => (
@@ -309,7 +308,6 @@ export const OverflowMenuOpen: Story = {
 }
 
 export const DesktopPillStates: Story = {
-  tags: ['visual-viewport-1024x768'],
   render: () => (
     <SubdomainNavBar title="Site title">
       <SubdomainNavBar.Link href="#default">Default</SubdomainNavBar.Link>
@@ -333,7 +331,6 @@ export const DesktopPillStates: Story = {
 
 export const TabletView: Story = {
   decorators: [withFullPageFixture],
-  tags: ['visual-viewport-768x1024'],
   render: () => (
     <SubdomainNavBar title="Site title" titleHref="/">
       {navigationLinks.slice(0, 6).map(link => (
@@ -368,7 +365,6 @@ export const TabletView: Story = {
 
 export const TabletMenuOpen: Story = {
   name: 'Tablet Menu Open',
-  tags: ['visual-viewport-768x1024'],
   render: function Render() {
     const [selectedLanguage, setSelectedLanguage] = React.useState('English')
 

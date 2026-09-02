@@ -11,24 +11,8 @@ type StoryIndex = {
       id: string
       name: string
       importPath: string
-      tags?: string[]
     }
   >
-}
-
-const visualViewportTagPattern = /^visual-viewport-(\d+)x(\d+)$/
-
-function getVisualViewport(tags: string[] = []) {
-  const viewportTag = tags.find(tag => visualViewportTagPattern.test(tag))
-  if (!viewportTag) return
-
-  const match = viewportTag.match(visualViewportTagPattern)
-  if (!match) return
-
-  return {
-    width: Number(match[1]),
-    height: Number(match[2]),
-  }
 }
 
 // eslint-disable-next-line import/no-commonjs, import/extensions
@@ -198,7 +182,7 @@ const skipTestLookup = [
 const touchTestLookup = ['components-card-features--arrow-cta-long-label']
 
 const categorisedStories = Object.keys((stories as StoryIndex).entries).reduce((acc, key) => {
-  const {id, name: storyName, importPath, tags} = stories.entries[key]
+  const {id, name: storyName, importPath} = stories.entries[key]
 
   const importPathAsArray = importPath.split('/')
   const groupName = importPathAsArray[importPathAsArray.length - 2]
@@ -219,10 +203,8 @@ const categorisedStories = Object.keys((stories as StoryIndex).entries).reduce((
   acc[groupName].stories.push({
     id,
     groupName,
-    fullPage: !tags?.includes('visual-screenshot-viewport'),
     storyName,
     timeout: waitForTimeoutLookup[key] ? waitForTimeoutLookup[key] : defaultTimeout,
-    viewport: getVisualViewport(tags),
   })
 
   return acc
@@ -250,7 +232,7 @@ for (const key of Object.keys(categorisedStories)) {
           : ''
       }
 
-      ${componentStories.reduce((acc, {id, storyName, groupName, fullPage, timeout, viewport}) => {
+      ${componentStories.reduce((acc, {id, storyName, groupName, timeout}) => {
         const requiresMobileViewport = validNarrowVieportNames.some(viewportName =>
           storyName.toLowerCase().includes(viewportName),
         )
@@ -273,7 +255,7 @@ for (const key of Object.keys(categorisedStories)) {
             await page.locator('body.sb-show-main').waitFor({ state: 'visible' })
 
             ${timeout ? `await page.waitForTimeout(${timeout})` : ''}
-            await expect(page).toHaveScreenshot({ fullPage: ${fullPage} })
+            await expect(page).toHaveScreenshot({ fullPage: true })
           });
 
           `
@@ -281,16 +263,6 @@ for (const key of Object.keys(categorisedStories)) {
 
         const languagesToTest = ['en']
         const allLanguageTests = languagesToTest.map(language => generateTestForLanguage(language)).join('')
-
-        if (viewport) {
-          return (acc += `
-          // eslint-disable-next-line i18n-text/no-en
-          test.describe('Custom viewport test for ${storyName}', () => {
-            test.use({ viewport: { width: ${viewport.width}, height: ${viewport.height} } });
-            ${allLanguageTests}
-          });
-          `)
-        }
 
         if (requiresMobileViewport) {
           return (acc += `
