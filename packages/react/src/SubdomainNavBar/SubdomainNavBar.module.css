@@ -288,7 +288,7 @@
     pointer-events: none;
   }
 
-  .SubdomainNavBar-primary-nav-overflow[data-has-overflow='true'] .SubdomainNavBar-primary-nav-list-item--overflow {
+  .SubdomainNavBar-primary-nav-overflow--has-overflow .SubdomainNavBar-primary-nav-list-item--overflow {
     position: relative;
     visibility: visible;
     pointer-events: auto;

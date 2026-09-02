@@ -41,6 +41,7 @@ declare const styles: {
   readonly "SubdomainNavBar-primary-nav-list-item--overflow": string;
   readonly "SubdomainNavBar-primary-nav-list-item--overflowed": string;
   readonly "SubdomainNavBar-primary-nav-overflow": string;
+  readonly "SubdomainNavBar-primary-nav-overflow--has-overflow": string;
   readonly "SubdomainNavBar-search-close-button": string;
   readonly "SubdomainNavBar-search-dialog": string;
   readonly "SubdomainNavBar-search-dialog--has-results": string;
@@ -80,4 +81,3 @@ declare const styles: {
   readonly "fade-out": string;
 };
 export = styles;
-

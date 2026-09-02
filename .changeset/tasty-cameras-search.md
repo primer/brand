@@ -8,19 +8,6 @@ Updated `SubdomainNavBar` with a gridline visual design, content slots, search A
 - **Migration note:** The opinionated gridline design changes the component's default appearance. After upgrading, manually inspect affected sites, especially existing subdomain sites. If adjustments are needed, override the `--brand-SubdomainNavBar-*` custom properties through the root `className` or `style` props.
 - Added `leadingComponent` and `trailingComponent` props for rendering custom content around the navigation links and actions.
 
-```tsx
-<SubdomainNavBar
-  title="Subdomain"
-  fullWidth
-  leadingComponent={<span>Leading content</span>}
-  trailingComponent={<span>Trailing content</span>}
->
-  <SubdomainNavBar.Link href="/item-1">Item 1</SubdomainNavBar.Link>
-  <SubdomainNavBar.Link href="/item-2">Item 2</SubdomainNavBar.Link>
-  <SubdomainNavBar.PrimaryAction href="/action">Action</SubdomainNavBar.PrimaryAction>
-</SubdomainNavBar>
-```
-
 - Added a responsive input-style search trigger that collapses to an icon-only button on smaller viewports, custom placeholder and shortcut labels, opt-in keyboard shortcuts, grouped results, and a `labels` prop for localizing visible and accessible search text. Pass `keyboardShortcut`, such as `keyboardShortcut="/"`, to enable a global shortcut.
 - Added a `menuLabels` prop for localizing the narrow and desktop overflow menu controls.
 - The `SubdomainNavBar` ref now exposes `openSearch()` and `closeSearch()` methods.

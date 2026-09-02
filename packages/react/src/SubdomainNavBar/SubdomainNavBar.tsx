@@ -336,10 +336,7 @@ const Root = forwardRef<SubdomainNavBarHandle, SubdomainNavBarProps>(function Ro
       React.Children.toArray(children)
         .map((child, index) => {
           if (React.isValidElement<SubdomainNavBarLinkMeasurementProps>(child) && child.type === Link) {
-            const navItemLabel = typeof child.props.children === 'string' ? child.props.children : 'item'
-            const navItemId = `${index}-${navItemLabel}`
             return React.cloneElement(child, {
-              'data-navitemid': navItemId,
               href: child.props.href,
               children: child.props.children,
               style: {
@@ -645,9 +642,7 @@ export type SubdomainNavBarLinkProps = {
   isExternal?: boolean
 } & React.DetailedHTMLProps<React.LiHTMLAttributes<HTMLLIElement>, HTMLLIElement>
 
-type SubdomainNavBarLinkMeasurementProps = SubdomainNavBarLinkProps & {
-  'data-navitemid'?: string
-}
+type SubdomainNavBarLinkMeasurementProps = SubdomainNavBarLinkProps
 
 function Link({
   href,
@@ -813,11 +808,10 @@ const _SearchInternal = forwardRef<HTMLInputElement, SubdomainNavBarSearchProps>
       handleSearchResultKeyDown,
       hasGroupedSearchResults,
       hasSearchResults,
-      liveRegion,
       normalizedSearchResultGroups,
       resetActiveDescendant,
       searchResultsLength,
-    } = useSearchResults({active, dialogRef, searchResults, searchTerm})
+    } = useSearchResults({dialogRef, searchResults})
 
     const handleClose = useCallback(() => {
       onSearchClose?.()
@@ -1075,7 +1069,7 @@ const _SearchInternal = forwardRef<HTMLInputElement, SubdomainNavBarSearchProps>
                 )}
                 <div aria-live="polite" aria-atomic="true" data-testid={testIds.liveRegion} className="visually-hidden">
                   {resolvedLabels.formatSuggestions(searchResultsLength)}
-                  {liveRegion && <span>&nbsp;</span>}
+                  <span>&nbsp;</span>
                 </div>
               </div>
             </>

@@ -15,10 +15,6 @@ import {useWindowSize} from '../hooks/useWindowSize'
 import {useProvidedRefOrCreate} from '../hooks/useRef'
 import {SubdomainNavBarLinkContext} from './SubdomainNavBarLinkContext'
 
-type NavigationLinkProps = SubdomainNavBarLinkProps & {
-  'data-navitemid'?: string
-}
-
 type NavigationVisibilityObserverProps = PropsWithChildren<
   BaseProps<HTMLUListElement> &
     React.HTMLAttributes<HTMLUListElement> & {
@@ -37,8 +33,8 @@ export const NavigationVisbilityObserver = forwardRef<HTMLUListElement, Navigati
     const {isMedium} = useWindowSize()
     const measurementKey = React.Children.toArray(children)
       .map((child, index) => {
-        if (React.isValidElement<NavigationLinkProps>(child)) {
-          return `${index}:${child.props['data-navitemid'] ?? ''}`
+        if (React.isValidElement<SubdomainNavBarLinkProps>(child)) {
+          return `${index}:${typeof child.props.children === 'string' ? child.props.children : ''}`
         }
 
         return `${index}:`
@@ -49,10 +45,9 @@ export const NavigationVisbilityObserver = forwardRef<HTMLUListElement, Navigati
 
     const showOverflow = Object.values(visibilityMap).includes(false)
     const overflowMenuId = React.useId()
-    const firstOverflowedItemIndex = React.Children.toArray(children).findIndex(child => {
-      if (React.isValidElement<NavigationLinkProps>(child)) {
-        const visibilityKey = child.props['data-navitemid']
-        return Boolean(visibilityKey && visibilityMap[visibilityKey] === false)
+    const firstOverflowedItemIndex = React.Children.toArray(children).findIndex((child, index) => {
+      if (React.isValidElement<SubdomainNavBarLinkProps>(child)) {
+        return visibilityMap[index] === false
       }
 
       return false
@@ -61,13 +56,8 @@ export const NavigationVisbilityObserver = forwardRef<HTMLUListElement, Navigati
       firstOverflowedItemIndex === -1 ? React.Children.count(children) * 2 : firstOverflowedItemIndex * 2 - 1
 
     const navItems = React.Children.map(children, (child, index) => {
-      if (React.isValidElement<NavigationLinkProps>(child)) {
-        const visibilityKey = child.props['data-navitemid']
-        if (!visibilityKey) {
-          return child
-        }
-
-        const isOverflowed = isMedium && visibilityMap[visibilityKey] === false
+      if (React.isValidElement<SubdomainNavBarLinkProps>(child)) {
+        const isOverflowed = isMedium && visibilityMap[index] === false
         return (
           <SubdomainNavBarLinkContext.Provider value={{isOverflowed}}>
             {React.cloneElement(child, {
@@ -131,8 +121,11 @@ export const NavigationVisbilityObserver = forwardRef<HTMLUListElement, Navigati
 
     return (
       <div
-        className={clsx(styles['SubdomainNavBar-primary-nav-overflow'], className)}
-        data-has-overflow={showOverflow ? 'true' : undefined}
+        className={clsx(
+          styles['SubdomainNavBar-primary-nav-overflow'],
+          showOverflow && styles['SubdomainNavBar-primary-nav-overflow--has-overflow'],
+          className,
+        )}
       >
         <ul className={styles['SubdomainNavBar-primary-nav-list']} ref={navRef} {...rest}>
           {navItems}
@@ -229,10 +222,9 @@ const OverflowMenu = forwardRef<HTMLDivElement, React.PropsWithChildren<Overflow
         className={clsx(styles['SubdomainNavBar-overflow-menu'], className)}
       >
         <ul className={clsx(styles['SubdomainNavBar-overflow-menu-list'])}>
-          {React.Children.map(children, child => {
-            if (React.isValidElement<NavigationLinkProps>(child)) {
-              const navItemChild = child.props['data-navitemid']
-              if (!navItemChild || visibilityMap[navItemChild]) {
+          {React.Children.map(children, (child, index) => {
+            if (React.isValidElement<SubdomainNavBarLinkProps>(child)) {
+              if (visibilityMap[index] !== false) {
                 return null
               }
 

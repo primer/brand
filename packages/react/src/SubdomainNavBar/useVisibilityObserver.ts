@@ -30,7 +30,7 @@ export function useVisibilityObserver(
     }
 
     const navItems = Array.from(navigation.children).filter(
-      (item): item is HTMLElement => item instanceof HTMLElement && item.hasAttribute('data-navitemid'),
+      (item): item is HTMLElement => item instanceof HTMLElement && item !== overflowRef.current,
     )
 
     if (navItems.length === 0) {
@@ -46,12 +46,8 @@ export function useVisibilityObserver(
     const navItemsWidth = navItems.reduce((width, item) => width + item.offsetWidth, 0)
 
     if (navItemsWidth <= availableWidth) {
-      const nextVisibilityMap = navItems.reduce<VisibilityMap>((nextMap, item) => {
-        const navitemid = item.getAttribute('data-navitemid')
-        if (navitemid) {
-          nextMap[navitemid] = true
-        }
-
+      const nextVisibilityMap = navItems.reduce<VisibilityMap>((nextMap, _item, index) => {
+        nextMap[index] = true
         return nextMap
       }, {})
 
@@ -63,26 +59,22 @@ export function useVisibilityObserver(
     let visibleItemsWidth = 0
     let hasOverflowedItem = false
 
-    const nextVisibilityMap = navItems.reduce<VisibilityMap>((nextMap, item) => {
-      const navitemid = item.getAttribute('data-navitemid')
-      if (navitemid) {
-        if (hasOverflowedItem) {
-          nextMap[navitemid] = false
-          return nextMap
-        }
-
-        const nextVisibleItemsWidth = visibleItemsWidth + item.offsetWidth
-        const isVisible = nextVisibleItemsWidth <= availableWidthWithOverflow
-
-        if (isVisible) {
-          visibleItemsWidth = nextVisibleItemsWidth
-        } else {
-          hasOverflowedItem = true
-        }
-
-        nextMap[navitemid] = isVisible
+    const nextVisibilityMap = navItems.reduce<VisibilityMap>((nextMap, item, index) => {
+      if (hasOverflowedItem) {
+        nextMap[index] = false
+        return nextMap
       }
 
+      const nextVisibleItemsWidth = visibleItemsWidth + item.offsetWidth
+      const isVisible = nextVisibleItemsWidth <= availableWidthWithOverflow
+
+      if (isVisible) {
+        visibleItemsWidth = nextVisibleItemsWidth
+      } else {
+        hasOverflowedItem = true
+      }
+
+      nextMap[index] = isVisible
       return nextMap
     }, {})
 
@@ -114,7 +106,7 @@ export function useVisibilityObserver(
     resizeObserver?.observe(navigation)
 
     for (const item of Array.from(navigation.children)) {
-      if (item instanceof HTMLElement && item.hasAttribute('data-navitemid')) {
+      if (item instanceof HTMLElement && item !== overflowRef.current) {
         resizeObserver?.observe(item)
       }
     }

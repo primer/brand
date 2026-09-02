@@ -295,7 +295,9 @@ export const OverflowMenuOpen: Story = {
     await canvasElement.ownerDocument.fonts.ready
     const moreButton = canvas.getByRole('button', {name: 'More'})
     await waitFor(() => expect(moreButton).toBeVisible())
-    const firstOverflowedItem = canvasElement.querySelector('[data-navitemid][aria-hidden="true"]')
+    const firstOverflowedItem = canvasElement.querySelector(
+      '.SubdomainNavBar-primary-nav-list-item[aria-hidden="true"]',
+    )
     await expect(firstOverflowedItem).not.toBeVisible()
     await userEvent.click(moreButton)
     await expect(moreButton).toHaveAttribute('aria-expanded', 'true')

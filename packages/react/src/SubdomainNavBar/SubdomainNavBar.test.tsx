@@ -37,6 +37,12 @@ const dispatchDialogCancel = (dialog: HTMLElement) => {
   fireEvent(dialog, new Event('cancel', {cancelable: true}))
 }
 
+const getNavigationItem = (container: HTMLElement, href: string) =>
+  container
+    .querySelector<HTMLElement>('.SubdomainNavBar-primary-nav-list')
+    ?.querySelector(`a[href="${href}"]`)
+    ?.closest('li') ?? null
+
 const updateNavigationLayout = async (
   container: HTMLElement,
   {
@@ -47,7 +53,7 @@ const updateNavigationLayout = async (
   }: {containerWidth?: number; itemWidth?: number; itemWidths?: number[]; moreWidth?: number},
 ) => {
   const navList = container.querySelector<HTMLElement>('.SubdomainNavBar-primary-nav-list')
-  const navItems = Array.from(navList?.querySelectorAll<HTMLElement>('[data-navitemid]') ?? [])
+  const navItems = Array.from(navList?.querySelectorAll<HTMLElement>('.SubdomainNavBar-primary-nav-list-item') ?? [])
   const moreMenu = container.querySelector<HTMLElement>('.SubdomainNavBar-primary-nav-list-item--overflow')
 
   if (navList) {
@@ -1114,9 +1120,9 @@ describe('SubdomainNavBar', () => {
     await updateNavigationLayout(container, {containerWidth: 150, itemWidth: 45, moreWidth: 30})
 
     expect(getByRole('button', {name: 'More'})).toBeInTheDocument()
-    expect(container.querySelector('[data-navitemid="0-Collections"]')).not.toHaveAttribute('aria-hidden')
-    expect(container.querySelector('[data-navitemid="1-Topics"]')).not.toHaveAttribute('aria-hidden')
-    expect(container.querySelector('[data-navitemid="2-Articles"]')).toHaveAttribute('aria-hidden', 'true')
+    expect(getNavigationItem(container, '#collections')).not.toHaveAttribute('aria-hidden')
+    expect(getNavigationItem(container, '#topics')).not.toHaveAttribute('aria-hidden')
+    expect(getNavigationItem(container, '#articles')).toHaveAttribute('aria-hidden', 'true')
   })
 
   it('keeps overflowed desktop navigation links contiguous when later links are shorter', async () => {
@@ -1143,10 +1149,10 @@ describe('SubdomainNavBar', () => {
     const overflowMenuId = moreButton.getAttribute('aria-controls')
     const overflowMenu = overflowMenuId ? document.getElementById(overflowMenuId) : null
 
-    expect(container.querySelector('[data-navitemid="0-Collections"]')).not.toHaveAttribute('aria-hidden')
-    expect(container.querySelector('[data-navitemid="1-Enterprise Solutions"]')).toHaveAttribute('aria-hidden', 'true')
-    expect(container.querySelector('[data-navitemid="2-Docs"]')).toHaveAttribute('aria-hidden', 'true')
-    expect(container.querySelector('[data-navitemid="3-Pricing"]')).toHaveAttribute('aria-hidden', 'true')
+    expect(getNavigationItem(container, '#collections')).not.toHaveAttribute('aria-hidden')
+    expect(getNavigationItem(container, '#enterprise')).toHaveAttribute('aria-hidden', 'true')
+    expect(getNavigationItem(container, '#docs')).toHaveAttribute('aria-hidden', 'true')
+    expect(getNavigationItem(container, '#pricing')).toHaveAttribute('aria-hidden', 'true')
 
     expect(within(overflowMenu as HTMLElement).getByRole('link', {name: 'Enterprise Solutions'})).toHaveAttribute(
       'href',
@@ -1225,7 +1231,7 @@ describe('SubdomainNavBar', () => {
 
     await updateNavigationLayout(container, {containerWidth: 130})
 
-    const overflowedLinkItem = container.querySelector('[data-navitemid="2-Articles"]')
+    const overflowedLinkItem = getNavigationItem(container, '#articles')
     const overflowedLink = overflowedLinkItem?.querySelector('a')
 
     expect(overflowedLinkItem).toHaveAttribute('aria-hidden', 'true')
@@ -1247,12 +1253,12 @@ describe('SubdomainNavBar', () => {
     await updateNavigationLayout(container, {containerWidth: 130})
 
     expect(queryByRole('button', {name: 'More'})).toBeInTheDocument()
-    expect(container.querySelector('[data-navitemid="2-Articles"]')).toHaveAttribute('aria-hidden', 'true')
+    expect(getNavigationItem(container, '#articles')).toHaveAttribute('aria-hidden', 'true')
 
     await updateNavigationLayout(container, {containerWidth: 150})
 
     expect(queryByRole('button', {name: 'More'})).not.toBeInTheDocument()
-    expect(container.querySelector('[data-navitemid="2-Articles"]')).not.toHaveAttribute('aria-hidden')
+    expect(getNavigationItem(container, '#articles')).not.toHaveAttribute('aria-hidden')
   })
 
   it('keeps mobile navigation links out of the More menu', () => {

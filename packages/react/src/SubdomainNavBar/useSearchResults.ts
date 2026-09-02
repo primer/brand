@@ -1,4 +1,4 @@
-import {useCallback, useEffect, useMemo, useState, type KeyboardEvent, type RefObject} from 'react'
+import {useCallback, useMemo, useState, type KeyboardEvent, type RefObject} from 'react'
 
 import type {
   SubdomainNavBarSearchResultGroupProps,
@@ -15,10 +15,8 @@ export type NormalizedSearchResultGroup = {
 }
 
 type UseSearchResultsOptions = {
-  active?: boolean
   dialogRef: RefObject<HTMLDialogElement | null>
   searchResults?: SubdomainNavBarSearchResults
-  searchTerm?: string
 }
 
 function isSearchResultGroup(
@@ -66,13 +64,12 @@ function normalizeSearchResults(searchResults: SubdomainNavBarSearchResults = []
   return groups
 }
 
-export function useSearchResults({active, dialogRef, searchResults, searchTerm}: UseSearchResultsOptions) {
+export function useSearchResults({dialogRef, searchResults}: UseSearchResultsOptions) {
   const normalizedSearchResultGroups = useMemo(() => normalizeSearchResults(searchResults), [searchResults])
   const hasGroupedSearchResults = normalizedSearchResultGroups.some(group => group.title)
   const searchResultsLength = normalizedSearchResultGroups.reduce((count, group) => count + group.results.length, 0)
   const hasSearchResults = searchResultsLength > 0
   const [activeDescendant, setActiveDescendant] = useState(-1)
-  const [liveRegion, setLiveRegion] = useState(false)
 
   const resetActiveDescendant = useCallback(() => setActiveDescendant(-1), [])
 
@@ -110,22 +107,11 @@ export function useSearchResults({active, dialogRef, searchResults, searchTerm}:
     [activeDescendant, dialogRef, searchResultsLength],
   )
 
-  useEffect(() => {
-    setLiveRegion(true)
-
-    const timeoutId = window.setTimeout(() => {
-      if (active) setLiveRegion(false)
-    }, 200)
-
-    return () => window.clearTimeout(timeoutId)
-  }, [active, searchResultsLength, searchTerm])
-
   return {
     activeDescendant,
     handleSearchResultKeyDown,
     hasGroupedSearchResults,
     hasSearchResults,
-    liveRegion,
     normalizedSearchResultGroups,
     resetActiveDescendant,
     searchResultsLength,
