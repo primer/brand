@@ -116,7 +116,7 @@
     "ts-loader": "^9.6.2",
     "typed-css-modules": "0.9.1",
     "unified": "^11.0.5",
-    "vite": "^8.2.2",
+    "vite": "8.1.5",
     "vite-plugin-lib-inject-css": "^2.2.2",
     "typescript-plugin-css-modules": "5.2.0",
     "webpack": "5.110.3",
