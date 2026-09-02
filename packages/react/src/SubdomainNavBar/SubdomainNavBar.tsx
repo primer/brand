@@ -1,10 +1,18 @@
-import React, {useState, useCallback, useRef, PropsWithChildren, forwardRef, useMemo, useEffect} from 'react'
+import React, {
+  useState,
+  useCallback,
+  useRef,
+  PropsWithChildren,
+  forwardRef,
+  useMemo,
+  useEffect,
+  useImperativeHandle,
+} from 'react'
 import {clsx} from 'clsx'
-import {ChevronLeftIcon, LinkExternalIcon, MarkGithubIcon, SearchIcon, XIcon} from '@primer/octicons-react'
+import {ArrowUpRightIcon, ChevronLeftIcon, LinkExternalIcon, MarkGithubIcon, SearchIcon} from '@primer/octicons-react'
 
 import {Button, FormControl, Text, TextInput} from '..'
 import {NavigationVisbilityObserver} from './NavigationVisbilityObserver'
-import {useOnClickOutside} from '../hooks/useOnClickOutside'
 import {useFocusTrap} from '../hooks/useFocusTrap'
 import {useKeyboardEscape} from '../hooks/useKeyboardEscape'
 import {useWindowSize} from '../hooks/useWindowSize'
@@ -17,8 +25,34 @@ import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/compone
 /** * Main Stylesheet (as a CSS Module) */
 import styles from './SubdomainNavBar.module.css'
 import {useId} from '../hooks/useId'
+import {SubdomainNavBarLinkContext, useSubdomainNavBarLinkContext} from './SubdomainNavBarLinkContext'
+import {useSearchKeyboardShortcut} from './useSearchKeyboardShortcut'
+import {useSearchResults, type NormalizedSearchResultGroup} from './useSearchResults'
 
-export type SubdomainNavBarProps = {
+export type SubdomainNavBarMenuLabels = {
+  /**
+   * Visible and accessible label for the closed narrow menu control.
+   */
+  menuLabel: string
+  /**
+   * Visible and accessible label for the open narrow menu control.
+   */
+  closeLabel: string
+  /**
+   * Visible and accessible label for the desktop overflow menu control.
+   */
+  overflowMenuLabel: string
+}
+
+const defaultMenuLabels: SubdomainNavBarMenuLabels = {
+  menuLabel: 'Menu',
+  closeLabel: 'Close',
+  overflowMenuLabel: 'More',
+}
+
+const SubdomainNavBarActionSizeContext = React.createContext<'small' | 'medium'>('small')
+
+export type SubdomainNavBarProps = Omit<React.HTMLAttributes<HTMLElement>, 'children' | 'title'> & {
   /**
    * Valid child elements are `SubdomainNavBar.Link`, `SubdomainNavBar.PrimaryAction`,
    * `SubdomainNavBar.SecondaryAction` and `SubdomainNavBar.Search`
@@ -26,12 +60,8 @@ export type SubdomainNavBarProps = {
   children?:
     | React.ReactNode
     | React.ReactElement<SubdomainNavBarLinkProps>
-    | React.ReactElement<SearchProps>
+    | React.ReactElement<SubdomainNavBarSearchProps>
     | React.ReactElement<CTAActionProps>
-  /**
-   * Forward a custom HTML class attribute
-   */
-  className?: string
   /**
    * Fixes the navigation bar to the top of the viewport. Defaults to `true`.
    */
@@ -41,7 +71,15 @@ export type SubdomainNavBarProps = {
    */
   fullWidth?: boolean
   /**
-   * The title or name of the subdomain. Appears adjacent to the logo and is required for communicating content to assisitive technologies.
+   * Optional React element rendered after the navigation links.
+   */
+  leadingComponent?: React.ReactElement
+  /**
+   * Optional React element rendered after the actions.
+   */
+  trailingComponent?: React.ReactElement
+  /**
+   * The title or name of the subdomain. Appears adjacent to the logo and is required for communicating content to assistive technologies.
    */
   title: string
   /**
@@ -56,7 +94,22 @@ export type SubdomainNavBarProps = {
    * When the menu is opened or closed on narrow viewports, this callback is called with the new open state.
    */
   onNarrowMenuToggle?: (isOpen: boolean) => void
+  /**
+   * Customizable visible and accessible menu labels.
+   */
+  menuLabels?: Partial<SubdomainNavBarMenuLabels>
+  /**
+   * ID of the element that receives focus when the skip-to-content link is activated.
+   * Defaults to the first rendered `main` element that is not hidden from assistive technologies.
+   */
+  skipToContentTargetId?: string
 }
+
+export type SubdomainNavBarHandle = HTMLElement & {
+  openSearch: () => void
+  closeSearch: () => void
+}
+
 const testIds = {
   root: 'SubdomainNavBar',
   get innerContainer() {
@@ -73,60 +126,199 @@ const testIds = {
   },
 }
 
-function Root({
-  children,
-  className,
-  fixed = true,
-  fullWidth = false,
-  logoHref = 'https://github.com',
-  title,
-  titleHref = '/',
-  onNarrowMenuToggle,
-  ...rest
-}: SubdomainNavBarProps) {
+function isUsableSkipToContentTarget(element: HTMLElement) {
+  if (element.closest('[hidden], [inert], [aria-hidden="true"]')) return false
+
+  for (
+    let currentElement: HTMLElement | null = element;
+    currentElement;
+    currentElement = currentElement.parentElement
+  ) {
+    const computedStyles = window.getComputedStyle(currentElement)
+    if (computedStyles.display === 'none' || computedStyles.visibility === 'hidden') return false
+  }
+
+  return true
+}
+
+const Root = forwardRef<SubdomainNavBarHandle, SubdomainNavBarProps>(function Root(
+  {
+    children,
+    className,
+    fixed = true,
+    fullWidth = false,
+    logoHref = 'https://github.com',
+    style,
+    title,
+    titleHref = '/',
+    leadingComponent,
+    trailingComponent,
+    onNarrowMenuToggle,
+    menuLabels,
+    skipToContentTargetId,
+    ...rest
+  },
+  forwardedRef,
+) {
   const [menuHidden, setMenuHidden] = useState(true)
   const [searchVisible, setSearchVisible] = useState(false)
-  const {isSmall, isMedium} = useWindowSize()
+  const [menuViewportOffsetBlockStart, setMenuViewportOffsetBlockStart] = useState(0)
+  const {isMedium, isLarge} = useWindowSize()
   const [startOfContentButtonFocused, setStartOfContentButtonFocused] = useState(false)
-  const mainElRef = useRef<HTMLElement | null>(null)
-  const startOfContentID = useId('start-of-content')
+  const [resolvedSkipToContentTargetId, setResolvedSkipToContentTargetId] = useState<string>()
+  const headerRef = useRef<HTMLElement | null>(null)
+  const fallbackTargetRef = useRef<HTMLDivElement | null>(null)
+  const fallbackTargetID = useId()
+  const generatedMainTargetID = `${fallbackTargetID}-main`
+  const narrowMenuID = useId()
+  const resolvedMenuLabels = {...defaultMenuLabels, ...menuLabels}
 
-  const handleMobileMenuClick = () => {
-    const nextMenuHidden = !menuHidden
-    setMenuHidden(nextMenuHidden)
+  const updateMenuViewportOffsetBlockStart = useCallback(() => {
+    setMenuViewportOffsetBlockStart(Math.max(0, headerRef.current?.getBoundingClientRect().top ?? 0))
+  }, [])
 
-    onNarrowMenuToggle?.(!nextMenuHidden)
-  }
-  const handleSearchVisibility = () => setSearchVisible(!searchVisible)
-  const focusTrapRef = useRef<HTMLDivElement | null>(null)
+  const closeNarrowMenu = useCallback(() => {
+    if (menuHidden) return
 
-  useEffect(() => {
-    const mainEl = document.querySelector('main')
-    if (mainEl) {
-      mainEl.id = mainEl.id || startOfContentID
-      mainElRef.current = mainEl
-    }
-  }, [startOfContentID])
-
-  useFocusTrap({containerRef: focusTrapRef, restoreFocusOnCleanUp: true, disabled: menuHidden})
-  useKeyboardEscape(() => {
     setMenuHidden(true)
     onNarrowMenuToggle?.(false)
-  })
+  }, [menuHidden, onNarrowMenuToggle])
 
-  useEffect(() => {
-    if (isMedium) {
-      setMenuHidden(true)
-      onNarrowMenuToggle?.(false)
+  const handleMobileMenuClick = () => {
+    if (!menuHidden) {
+      closeNarrowMenu()
+      return
     }
-  }, [isMedium, menuHidden, onNarrowMenuToggle])
+
+    setSearchVisible(false)
+    updateMenuViewportOffsetBlockStart()
+    setMenuHidden(false)
+    onNarrowMenuToggle?.(true)
+  }
+  const focusTrapRef = useRef<HTMLDivElement | null>(null)
+
+  const resolveDefaultSkipToContentTarget = useCallback(() => {
+    const mainElement = Array.from(document.querySelectorAll<HTMLElement>('main')).find(isUsableSkipToContentTarget)
+
+    if (mainElement) {
+      if (!mainElement.id) {
+        mainElement.id = document.getElementById('start-of-content') ? generatedMainTargetID : 'start-of-content'
+      }
+      return mainElement
+    }
+
+    return fallbackTargetRef.current
+  }, [generatedMainTargetID])
+
+  const resolveSkipToContentTarget = useCallback(() => {
+    if (skipToContentTargetId) {
+      const explicitTarget = document.getElementById(skipToContentTargetId)
+      if (explicitTarget && isUsableSkipToContentTarget(explicitTarget)) return explicitTarget
+    }
+
+    return resolveDefaultSkipToContentTarget()
+  }, [resolveDefaultSkipToContentTarget, skipToContentTargetId])
+
+  const handleSkipToContentFocus = useCallback(() => {
+    setStartOfContentButtonFocused(true)
+
+    const target = resolveSkipToContentTarget()
+    if (target) setResolvedSkipToContentTargetId(target.id)
+  }, [resolveSkipToContentTarget])
+
+  const handleSkipToContentClick = useCallback(
+    (event: React.MouseEvent<HTMLAnchorElement>) => {
+      if (
+        event.defaultPrevented ||
+        event.button !== 0 ||
+        event.metaKey ||
+        event.ctrlKey ||
+        event.shiftKey ||
+        event.altKey
+      ) {
+        return
+      }
+
+      const explicitTarget = skipToContentTargetId ? document.getElementById(skipToContentTargetId) : null
+      const explicitTargetUnavailable =
+        skipToContentTargetId && (!explicitTarget || !isUsableSkipToContentTarget(explicitTarget))
+      const target = resolveSkipToContentTarget()
+
+      if (explicitTargetUnavailable) {
+        // eslint-disable-next-line no-console
+        console.warn(
+          `SubdomainNavBar could not find the skip-to-content target "${skipToContentTargetId}". Falling back to the page's main content.`,
+        )
+      }
+
+      if (!target) return
+
+      const targetHash = `#${encodeURIComponent(target.id)}`
+      event.currentTarget.setAttribute('href', targetHash)
+      setResolvedSkipToContentTargetId(target.id)
+
+      const addedTabIndex = target.tabIndex < 0 && !target.hasAttribute('tabindex')
+      if (addedTabIndex) {
+        target.tabIndex = -1
+      }
+
+      const previousScrollMarginBlockStart = target.style.scrollMarginBlockStart
+      if (fixed) {
+        const navbarHeight = headerRef.current?.getBoundingClientRect().height ?? 0
+        target.style.scrollMarginBlockStart = `${navbarHeight}px`
+      }
+
+      target.addEventListener(
+        'blur',
+        () => {
+          if (addedTabIndex) target.removeAttribute('tabindex')
+          target.style.scrollMarginBlockStart = previousScrollMarginBlockStart
+        },
+        {once: true},
+      )
+
+      target.focus({preventScroll: true})
+    },
+    [fixed, resolveSkipToContentTarget, skipToContentTargetId],
+  )
 
   useEffect(() => {
-    const newOverflowState = menuHidden ? 'auto' : 'hidden'
-    document.body.style.overflow = newOverflowState
+    const target = resolveSkipToContentTarget()
+    if (target) setResolvedSkipToContentTargetId(target.id)
+  }, [resolveSkipToContentTarget])
+
+  useFocusTrap({containerRef: focusTrapRef, restoreFocusOnCleanUp: true, disabled: menuHidden})
+  useKeyboardEscape(closeNarrowMenu)
+
+  useEffect(() => {
+    if (isLarge) closeNarrowMenu()
+  }, [closeNarrowMenu, isLarge])
+
+  useEffect(() => {
+    if (menuHidden || isLarge) return
+
+    updateMenuViewportOffsetBlockStart()
+
+    const resizeObserver = new ResizeObserver(updateMenuViewportOffsetBlockStart)
+    const header = headerRef.current
+
+    if (header) resizeObserver.observe(header)
+    resizeObserver.observe(document.documentElement)
+
+    return () => resizeObserver.disconnect()
+  }, [isLarge, menuHidden, updateMenuViewportOffsetBlockStart])
+
+  useEffect(() => {
+    if (menuHidden) return
+
+    const previousOverflow = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+
+    return () => {
+      document.body.style.overflow = previousOverflow
+    }
   }, [menuHidden])
 
-  const setStartOfContentButtonFocusedTrue = useCallback(() => setStartOfContentButtonFocused(true), [])
   const setStartOfContentButtonFocusedFalse = useCallback(() => setStartOfContentButtonFocused(false), [])
 
   const hasLinks =
@@ -143,10 +335,8 @@ function Root({
     () =>
       React.Children.toArray(children)
         .map((child, index) => {
-          if (React.isValidElement<SubdomainNavBarLinkProps>(child) && child.type === Link) {
-            const navItemId = typeof child.props.children === 'string' ? child.props.children : `${index}`
+          if (React.isValidElement<SubdomainNavBarLinkMeasurementProps>(child) && child.type === Link) {
             return React.cloneElement(child, {
-              'data-navitemid': navItemId,
               href: child.props.href,
               children: child.props.children,
               style: {
@@ -160,15 +350,81 @@ function Root({
     [children],
   )
 
-  const hasAllActions: boolean = useMemo(() => {
-    const primaryAction = React.Children.toArray(children).find(
-      child => React.isValidElement(child) && child.type === PrimaryAction,
-    )
-    const secondaryAction = React.Children.toArray(children).find(
-      child => React.isValidElement(child) && child.type === SecondaryAction,
-    )
-    return !!primaryAction && !!secondaryAction
-  }, [children])
+  const actionItems = useMemo(
+    () =>
+      React.Children.toArray(children).filter(
+        (child): child is React.ReactElement<CTAActionProps> =>
+          React.isValidElement<CTAActionProps>(child) &&
+          (child.type === PrimaryAction || child.type === SecondaryAction),
+      ),
+    [children],
+  )
+
+  const narrowActionItems = useMemo(
+    () =>
+      actionItems.map(child =>
+        React.cloneElement(child, {
+          onClick: event => {
+            child.props.onClick?.(event)
+            if (!event.defaultPrevented) closeNarrowMenu()
+          },
+        }),
+      ),
+    [actionItems, closeNarrowMenu],
+  )
+
+  const hasActions = actionItems.length > 0
+
+  const searchItem = useMemo(
+    () =>
+      React.Children.toArray(children).find(
+        (child): child is React.ReactElement<SubdomainNavBarSearchProps> =>
+          React.isValidElement<SubdomainNavBarSearchProps>(child) && child.type === Search,
+      ),
+    [children],
+  )
+  const hasSearch = Boolean(searchItem)
+
+  const handleSearchOpen = useCallback(() => {
+    if (!hasSearch) return
+
+    closeNarrowMenu()
+    setSearchVisible(true)
+  }, [closeNarrowMenu, hasSearch])
+
+  const handleSearchClose = useCallback(() => setSearchVisible(false), [])
+
+  useImperativeHandle(
+    forwardedRef,
+    () => {
+      if (!headerRef.current) {
+        return {
+          openSearch: handleSearchOpen,
+          closeSearch: handleSearchClose,
+        } as SubdomainNavBarHandle
+      }
+
+      return Object.assign(headerRef.current, {
+        openSearch: handleSearchOpen,
+        closeSearch: handleSearchClose,
+      })
+    },
+    [handleSearchClose, handleSearchOpen],
+  )
+
+  useSearchKeyboardShortcut({
+    disabled: searchVisible,
+    keyboardShortcut: searchItem?.props.keyboardShortcut,
+    onTrigger: handleSearchOpen,
+  })
+
+  const hasLeadingComponent = leadingComponent != null
+  const hasTrailingComponent = trailingComponent != null
+  const hasNarrowMenuContent = hasLinks || hasActions || hasLeadingComponent || hasTrailingComponent
+  const subdomainNavBarStyle = {
+    ...style,
+    '--SubdomainNavBar-menu-offset-block-start': `${menuViewportOffsetBlockStart}px`,
+  } as React.CSSProperties
 
   return (
     <>
@@ -176,20 +432,27 @@ function Root({
         className={clsx(
           styles['SubdomainNavBar-outer-container'],
           fixed && styles['SubdomainNavBar-outer-container--fixed'],
-          hasAllActions && styles['SubdomainNavBar-outer-container--has-actions'],
         )}
       >
         <Button
           as="a"
-          href={`#${mainElRef.current?.id || startOfContentID}`}
+          href={`#${resolvedSkipToContentTargetId || skipToContentTargetId || fallbackTargetID}`}
           variant="primary"
+          size="small"
           className={clsx(styles['SubdomainNavBar-skip-to-content'], !startOfContentButtonFocused && 'visually-hidden')}
-          onFocus={setStartOfContentButtonFocusedTrue}
+          onFocus={handleSkipToContentFocus}
           onBlur={setStartOfContentButtonFocusedFalse}
+          onClick={handleSkipToContentClick}
         >
           Skip to content
         </Button>
-        <header className={clsx(styles['SubdomainNavBar'], className)} data-testid={testIds.root} {...rest}>
+        <header
+          ref={headerRef}
+          className={clsx(styles['SubdomainNavBar'], className)}
+          data-testid={testIds.root}
+          style={subdomainNavBarStyle}
+          {...rest}
+        >
           <div
             ref={focusTrapRef}
             className={clsx(
@@ -203,17 +466,14 @@ function Root({
               <ol className={styles['SubdomainNavBar-title-area']}>
                 <li>
                   <a href={logoHref} aria-label="Github Home" className={styles['SubdomainNavBar-logo-mark']}>
-                    <span className={clsx(styles['SubdomainNavBar-back-arrow'])}>
+                    <span className={styles['SubdomainNavBar-back-arrow']}>
                       <ChevronLeftIcon fill="currentColor" size={24} />
                     </span>
                     <MarkGithubIcon fill="currentColor" size={24} />
                   </a>
                 </li>
-                {title && isSmall && (
+                {title && (
                   <>
-                    <li role="separator" className={styles['SubdomainNavBar-title-separator']} aria-hidden>
-                      /
-                    </li>
                     <li>
                       <a
                         href={titleHref}
@@ -221,7 +481,8 @@ function Root({
                         className={clsx(styles['SubdomainNavBar-title'])}
                       >
                         <Text size="400" weight="medium">
-                          {title}
+                          <span className={styles['SubdomainNavBar-title-prefix']}>GitHub</span>{' '}
+                          <span className={styles['SubdomainNavBar-title-label']}>{title}</span>
                         </Text>
                       </a>
                     </li>
@@ -236,19 +497,32 @@ function Root({
                 className={styles['SubdomainNavBar-primary-nav']}
                 data-testid={testIds.menuLinks}
               >
-                <NavigationVisbilityObserver className={clsx(styles['SubdomainNavBar-primary-nav-list--invisible'])}>
+                <NavigationVisbilityObserver
+                  className={clsx(styles['SubdomainNavBar-primary-nav-list--invisible'])}
+                  overflowMenuLabel={resolvedMenuLabels.overflowMenuLabel}
+                >
                   {menuItems}
                 </NavigationVisbilityObserver>
               </nav>
+            )}
+            {isLarge && hasLeadingComponent && (
+              <div className={styles['SubdomainNavBar-leading-component']}>{leadingComponent}</div>
             )}
 
             <div className={clsx(styles['SubdomainNavBar-secondary-nav'])}>
               {React.Children.toArray(children)
                 .map(child => {
-                  if (React.isValidElement<SearchProps>(child) && child.type === Search) {
+                  if (React.isValidElement<SubdomainNavBarSearchProps>(child) && child.type === Search) {
                     return React.cloneElement(child, {
                       active: searchVisible,
-                      handlerFn: handleSearchVisibility,
+                      className: clsx(
+                        child.props.className,
+                        isLarge &&
+                          (hasActions || hasTrailingComponent) &&
+                          styles['SubdomainNavBar-search-trigger--has-trailing-item'],
+                      ),
+                      onSearchOpen: handleSearchOpen,
+                      onSearchClose: handleSearchClose,
                       title,
                     })
                   }
@@ -256,12 +530,11 @@ function Root({
                 })
                 .filter(Boolean)}
 
-              {hasLinks && (
+              {hasNarrowMenuContent && (
                 <button
                   aria-expanded={!menuHidden}
-                  aria-label="Menu"
-                  aria-controls="menu-navigation"
-                  aria-haspopup="true"
+                  aria-label={menuHidden ? resolvedMenuLabels.menuLabel : resolvedMenuLabels.closeLabel}
+                  aria-controls={narrowMenuID}
                   className={clsx(
                     styles['SubdomainNavBar-menu-button'],
                     styles['SubdomainNavBar-mobile-menu-button'],
@@ -270,105 +543,138 @@ function Root({
                   data-testid={testIds.menuButton}
                   onClick={handleMobileMenuClick}
                 >
-                  <div className={clsx(styles['SubdomainNavBar-menu-button-bar'])}></div>
-                  <div className={clsx(styles['SubdomainNavBar-menu-button-bar'])}></div>
-                  <div className={clsx(styles['SubdomainNavBar-menu-button-bar'])}></div>
+                  <span className={styles['SubdomainNavBar-menu-button-icon']} aria-hidden="true">
+                    <span className={styles['SubdomainNavBar-menu-button-bar']}></span>
+                    <span className={styles['SubdomainNavBar-menu-button-bar']}></span>
+                    <span className={styles['SubdomainNavBar-menu-button-bar']}></span>
+                  </span>
+                  <span className={styles['SubdomainNavBar-menu-button-label']}>
+                    {menuHidden ? resolvedMenuLabels.menuLabel : resolvedMenuLabels.closeLabel}
+                  </span>
                 </button>
               )}
 
-              {isMedium && (
+              {isLarge && hasTrailingComponent && (
+                <div className={styles['SubdomainNavBar-trailing-component']}>{trailingComponent}</div>
+              )}
+              {isLarge && hasActions && (
                 <div
                   className={clsx(
                     styles['SubdomainNavBar-button-area'],
                     styles['SubdomainNavBar-button-area--visible'],
+                    hasTrailingComponent && styles['SubdomainNavBar-button-area--has-leading-item'],
                   )}
                 >
-                  <div className={styles['SubdomainNavBar-button-area-inner']}>
-                    {React.Children.toArray(children)
-                      .map(child => {
-                        if (
-                          React.isValidElement<CTAActionProps>(child) &&
-                          (child.type === PrimaryAction || child.type === SecondaryAction)
-                        ) {
-                          return child
-                        }
-                        return null
-                      })
-                      .filter(Boolean)}
-                  </div>
+                  <div className={styles['SubdomainNavBar-button-area-inner']}>{actionItems}</div>
                 </div>
               )}
 
-              {!isMedium && (
+              {!isLarge && (
                 <div
+                  id={narrowMenuID}
                   className={clsx(
                     styles['SubdomainNavBar-menu-wrapper'],
                     menuHidden && styles['SubdomainNavBar-menu-wrapper--close'],
                   )}
                 >
-                  <div>
-                    {title && titleHref && (
-                      <Text as="p">
-                        <a
-                          href={titleHref}
-                          aria-label={`${title} home`}
-                          className={clsx(styles['SubdomainNavBar-link'], styles['SubdomainNavBar-link--title'])}
-                        >
-                          {title}
-                        </a>
-                      </Text>
-                    )}
-                    {hasLinks && !menuHidden && (
-                      <NavigationVisbilityObserver
-                        className={clsx(styles['SubdomainNavBar-primary-nav-list--visible'])}
-                      >
-                        {menuItems}
-                      </NavigationVisbilityObserver>
-                    )}
-                  </div>
-                  <div
-                    className={clsx(
-                      styles['SubdomainNavBar-button-area'],
-                      styles['SubdomainNavBar-button-area--visible'],
-                    )}
-                  >
-                    <div className={styles['SubdomainNavBar-button-area-inner']}>
-                      {React.Children.toArray(children)
-                        .map(child => {
-                          if (
-                            React.isValidElement<CTAActionProps>(child) &&
-                            (child.type === PrimaryAction || child.type === SecondaryAction)
-                          ) {
-                            return child
-                          }
-                          return null
-                        })
-                        .filter(Boolean)}
+                  {!menuHidden && (
+                    <div>
+                      {hasLeadingComponent && (
+                        <div className={styles['SubdomainNavBar-leading-component']}>{leadingComponent}</div>
+                      )}
+                      {hasLinks && (
+                        <SubdomainNavBarLinkContext.Provider value={{onLinkClick: closeNarrowMenu}}>
+                          {isMedium ? (
+                            <ul className={styles['SubdomainNavBar-primary-nav-list--visible']}>{menuItems}</ul>
+                          ) : (
+                            <NavigationVisbilityObserver
+                              className={clsx(styles['SubdomainNavBar-primary-nav-list--visible'])}
+                              overflowMenuLabel={resolvedMenuLabels.overflowMenuLabel}
+                            >
+                              {menuItems}
+                            </NavigationVisbilityObserver>
+                          )}
+                        </SubdomainNavBarLinkContext.Provider>
+                      )}
                     </div>
-                  </div>
+                  )}
+                  {!menuHidden && (hasActions || hasTrailingComponent) && (
+                    <div
+                      className={clsx(
+                        styles['SubdomainNavBar-menu-wrapper-footer'],
+                        (hasLinks || hasLeadingComponent) &&
+                          styles['SubdomainNavBar-menu-wrapper-footer--has-leading-item'],
+                      )}
+                    >
+                      {hasTrailingComponent && (
+                        <div className={styles['SubdomainNavBar-trailing-component']}>{trailingComponent}</div>
+                      )}
+                      {hasActions && (
+                        <div
+                          className={clsx(
+                            styles['SubdomainNavBar-button-area'],
+                            styles['SubdomainNavBar-button-area--visible'],
+                          )}
+                        >
+                          <div className={styles['SubdomainNavBar-button-area-inner']}>
+                            <SubdomainNavBarActionSizeContext.Provider value={isMedium ? 'small' : 'medium'}>
+                              {narrowActionItems}
+                            </SubdomainNavBarActionSizeContext.Provider>
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  )}
                 </div>
               )}
             </div>
           </div>
+          {!isLarge && !menuHidden && <div className={styles['SubdomainNavBar-menu-backdrop']} aria-hidden="true" />}
         </header>
       </div>
-      {!mainElRef.current && <div id={`${startOfContentID}`} tabIndex={-1} />}
+      <div ref={fallbackTargetRef} id={fallbackTargetID} tabIndex={-1} />
     </>
   )
-}
+})
 
 export type SubdomainNavBarLinkProps = {
   href: string
   isExternal?: boolean
-  'data-navitemid'?: string
 } & React.DetailedHTMLProps<React.LiHTMLAttributes<HTMLLIElement>, HTMLLIElement>
 
-function Link({href, className, children, isExternal, ...rest}: PropsWithChildren<SubdomainNavBarLinkProps>) {
+type SubdomainNavBarLinkMeasurementProps = SubdomainNavBarLinkProps
+
+function Link({
+  href,
+  className,
+  children,
+  isExternal,
+  'aria-current': ariaCurrent,
+  'aria-hidden': ariaHidden,
+  tabIndex,
+  ...rest
+}: PropsWithChildren<SubdomainNavBarLinkProps>) {
+  const {isOverflowed, onLinkClick} = useSubdomainNavBarLinkContext()
+
   return (
-    <li className={clsx(styles['SubdomainNavBar-primary-nav-list-item'], className)} {...rest}>
-      <a href={href} className={styles['SubdomainNavBar-link']}>
-        <span className={styles['SubdomainNavBar-link-text']}>{children}</span>
-        {isExternal && <LinkExternalIcon size={16} aria-label="External link" />}
+    <li
+      {...rest}
+      // Keep overflowed links measurable in layout; removing them would make overflow calculation state-dependent.
+      aria-hidden={isOverflowed ? true : ariaHidden}
+      className={clsx(styles['SubdomainNavBar-primary-nav-list-item'], className)}
+      tabIndex={isOverflowed ? -1 : tabIndex}
+    >
+      <a
+        href={href}
+        aria-current={ariaCurrent}
+        className={styles['SubdomainNavBar-link']}
+        onClick={onLinkClick}
+        tabIndex={isOverflowed ? -1 : undefined}
+      >
+        <span className={styles['SubdomainNavBar-link-content']}>
+          <span className={styles['SubdomainNavBar-link-text']}>{children}</span>
+          {isExternal && <LinkExternalIcon size={16} aria-label="External link" />}
+        </span>
       </a>
     </li>
   )
@@ -380,227 +686,395 @@ export type SubdomainNavBarSearchResultProps = {
   url: string
   date: string
   category?: string
+  group?: string
+  isExternal?: boolean
 }
 
-type HandlerEvent = MouseEvent | TouchEvent | FocusEvent
+export type SubdomainNavBarSearchResultGroupProps = {
+  title: string
+  results: SubdomainNavBarSearchResultProps[]
+}
 
-type SearchProps = {
+export type SubdomainNavBarSearchResults = SubdomainNavBarSearchResultProps[] | SubdomainNavBarSearchResultGroupProps[]
+
+export type SubdomainNavBarSearchLabels = {
+  /**
+   * Accessible label for the search input. Defaults to "Search".
+   */
+  searchLabel: string
+  /**
+   * Visible and accessible label for the close action. Defaults to "Close".
+   */
+  closeLabel: string
+  /**
+   * Accessible label for an untitled search result group. Defaults to "Results".
+   */
+  resultsLabel: string
+  /**
+   * Accessible label for grouped search results without a search term. Defaults to "Search results".
+   */
+  searchResultsLabel: string
+  /**
+   * Formats the default search placeholder and dialog label using the navigation title.
+   */
+  formatSearchWithTitle: (title: string) => string
+  /**
+   * Formats the accessible label for the responsive search trigger.
+   */
+  formatSearchTrigger: (placeholder: string) => string
+  /**
+   * Formats the visible heading for ungrouped search results.
+   */
+  formatResultsHeading: (searchTerm: string) => string
+  /**
+   * Formats the accessible label for grouped search results.
+   */
+  formatResultsLabel: (searchTerm: string) => string
+  /**
+   * Formats the search result count announcement.
+   */
+  formatSuggestions: (count: number) => string
+}
+
+const defaultSearchLabels: SubdomainNavBarSearchLabels = {
+  searchLabel: 'Search',
+  closeLabel: 'Close',
+  resultsLabel: 'Results',
+  searchResultsLabel: 'Search results',
+  formatSearchWithTitle: title => `Search ${title}`,
+  formatSearchTrigger: placeholder => `${placeholder} search`,
+  formatResultsHeading: searchTerm => `Results for “${searchTerm}”`,
+  formatResultsLabel: searchTerm => `Results for ${searchTerm}`,
+  formatSuggestions: count => `${count} suggestions.`,
+}
+
+export type SubdomainNavBarSearchProps = {
   onSubmit: (e: React.FormEvent<HTMLFormElement>) => void
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
-  ref: React.RefObject<HTMLInputElement>
   active?: boolean
+  className?: string
   title?: string
-  handlerFn?: (event: HandlerEvent) => void
-  autoComplete?: boolean
-  searchResults?: SubdomainNavBarSearchResultProps[]
+  onSearchOpen?: () => void
+  onSearchClose?: () => void
+  /**
+   * Placeholder text shown in the search trigger and the opened search input.
+   */
+  placeholder?: string
+  /**
+   * Optional keyboard shortcut hint shown in the search trigger. Pass an empty string to hide it.
+   */
+  shortcutLabel?: string
+  /**
+   * Optional global keyboard shortcut that opens the search dialog. Omit or pass `false` to disable it.
+   * Supports single keys and modifier combinations, such as `/` or `Command+Option+k`.
+   */
+  keyboardShortcut?: string | false
+  searchResults?: SubdomainNavBarSearchResults
   searchTerm?: string
+  /**
+   * Customizable visible and accessible search text. Unspecified labels use the English defaults.
+   */
+  labels?: Partial<SubdomainNavBarSearchLabels>
 }
 
-const _SearchInternal = forwardRef<HTMLDivElement, SearchProps>(
-  ({active, title, searchResults, searchTerm, handlerFn, onSubmit, onChange}, ref) => {
-    const dialogRef = useRef<HTMLDivElement | null>(null)
+const _SearchInternal = forwardRef<HTMLInputElement, SubdomainNavBarSearchProps>(
+  (
+    {
+      active,
+      className,
+      title,
+      searchResults,
+      searchTerm,
+      onSearchOpen,
+      onSearchClose,
+      onSubmit,
+      onChange,
+      placeholder,
+      shortcutLabel,
+      keyboardShortcut,
+      labels,
+    },
+    forwardedRef,
+  ) => {
+    const dialogRef = useRef<HTMLDialogElement | null>(null)
+    const inputRef = useRef<HTMLInputElement | null>(null)
+    const resolvedLabels = {...defaultSearchLabels, ...labels}
+    const resolvedPlaceholder =
+      placeholder ?? (title ? resolvedLabels.formatSearchWithTitle(title) : resolvedLabels.searchLabel)
+    const dialogLabel = title ? resolvedLabels.formatSearchWithTitle(title) : resolvedLabels.searchLabel
+    const resolvedShortcutLabel = shortcutLabel ?? (keyboardShortcut || '')
+    const {
+      activeDescendant,
+      handleSearchResultKeyDown,
+      hasGroupedSearchResults,
+      hasSearchResults,
+      normalizedSearchResultGroups,
+      resetActiveDescendant,
+      searchResultsLength,
+    } = useSearchResults({dialogRef, searchResults})
 
-    useFocusTrap({containerRef: dialogRef, restoreFocusOnCleanUp: true, disabled: !active})
-    useOnClickOutside(dialogRef, handlerFn)
+    const handleClose = useCallback(() => {
+      onSearchClose?.()
+      resetActiveDescendant()
+    }, [onSearchClose, resetActiveDescendant])
 
-    const [activeDescendant, setActiveDescendant] = useState<number>(-1)
-    const [listboxActive, setListboxActive] = useState<boolean>()
-    const [liveRegion, setLiveRegion] = useState<boolean>(false)
+    const setInputRef = useCallback(
+      (input: HTMLInputElement | null) => {
+        inputRef.current = input
 
-    const handleClose = useCallback(
-      (event?: React.MouseEvent<HTMLButtonElement, MouseEvent> | HandlerEvent | null) => {
-        if (handlerFn) handlerFn(event as HandlerEvent)
-        setActiveDescendant(-1)
-      },
-      [handlerFn],
-    )
-
-    useOnClickOutside(dialogRef, handleClose as (event) => void)
-    useKeyboardEscape(() => {
-      // Close the dialog if combobox is already collapsed
-      if (!listboxActive && active) {
-        handleClose()
-        return false
-      }
-
-      setListboxActive(false)
-      setActiveDescendant(-1)
-    })
-
-    const handleAriaFocus = useCallback(
-      event => {
-        const supportedKeys = ['ArrowDown', 'ArrowUp', 'Escape', 'Enter']
-        const currentCount = activeDescendant
-        const searchResultsLength = searchResults ? searchResults.length : 0
-        const dialog = dialogRef.current
-        let count
-
-        // Prevent any other keys outside of supported from being prevented.
-        // Only prevent "Enter" if activeDescendant is greater than -1.
-        if (!supportedKeys.includes(event.key) || (event.key === 'Enter' && activeDescendant === -1) || !dialog) {
-          return false
+        if (typeof forwardedRef === 'function') {
+          forwardedRef(input)
+          return
         }
 
-        event.preventDefault()
-
-        if (event.key === 'ArrowDown') {
-          // If count reaches last search result item, reset to -1
-          count = currentCount < searchResultsLength - 1 ? currentCount + 1 : -1
-          setActiveDescendant(count)
-        } else if (event.key === 'ArrowUp') {
-          // Reset to last search result item if
-          count = currentCount === -1 ? searchResultsLength - 1 : currentCount - 1
-          setActiveDescendant(count)
-        }
-
-        if (['ArrowDown', 'ArrowUp'].includes(event.key)) {
-          dialog.querySelector(`#subdomainnavbar-search-result-${count}`)?.scrollIntoView()
-        }
-
-        if (event.key === 'Enter') {
-          const link = dialog.querySelector(`#subdomainnavbar-search-result-${activeDescendant} a`) as HTMLAnchorElement
-          link.click()
+        if (forwardedRef) {
+          forwardedRef.current = input
         }
       },
-      [searchResults, activeDescendant],
+      [forwardedRef],
     )
-
-    const searchLiveRegion = useCallback(() => {
-      // Adding a non-breaking space and then removing it will force screen readers to announce the text,
-      // as it thinks that there was a change within the live region.
-      setLiveRegion(true)
-
-      setTimeout(() => {
-        if (active) setLiveRegion(false)
-      }, 200)
-    }, [active])
 
     useEffect(() => {
-      // We want to set "listboxActive" when search results are present,
-      // or the user pressed "Escape". We watch for "searchTerm", as we -
-      // want the listbox to become active if they pressed "Escape", and -
-      // adjusted their existing value.
-      const search = searchResults && searchResults.length ? true : false
-      setListboxActive(search)
-      searchLiveRegion()
-    }, [searchResults, searchTerm, searchLiveRegion])
+      const dialog = dialogRef.current
+
+      if (!dialog) return
+
+      if (active) {
+        if (!dialog.open) {
+          if (typeof dialog.showModal === 'function') {
+            dialog.showModal()
+          } else {
+            dialog.setAttribute('open', '')
+          }
+        }
+
+        inputRef.current?.focus()
+
+        return
+      }
+
+      if (dialog.open) {
+        if (typeof dialog.close === 'function') {
+          dialog.close()
+        } else {
+          dialog.removeAttribute('open')
+        }
+      }
+    }, [active, inputRef])
+
+    useEffect(() => {
+      const dialog = dialogRef.current
+      if (!dialog) return
+
+      const handleDialogClick = (event: MouseEvent) => {
+        if (event.target !== dialog) return
+
+        const dialogRect = dialog.getBoundingClientRect()
+        const clickIsInsideDialog =
+          event.clientX >= dialogRect.left &&
+          event.clientX <= dialogRect.right &&
+          event.clientY >= dialogRect.top &&
+          event.clientY <= dialogRect.bottom
+
+        if (clickIsInsideDialog) return
+
+        handleClose()
+      }
+
+      dialog.addEventListener('click', handleDialogClick)
+      return () => dialog.removeEventListener('click', handleDialogClick)
+    }, [handleClose])
+
+    const handleDialogCancel = useCallback(
+      (event: React.SyntheticEvent<HTMLDialogElement>) => {
+        event.preventDefault()
+        handleClose()
+      },
+      [handleClose],
+    )
+
+    const renderSearchResult = ({result, index}: NormalizedSearchResultGroup['results'][number]) => (
+      <li key={`${result.title}-${index}`} className={styles['SubdomainNavBar-search-result-item']} role="presentation">
+        <div className={styles['SubdomainNavBar-search-result-item-container']}>
+          <a
+            id={`subdomainnavbar-search-result-${index}`}
+            href={result.url}
+            role="option"
+            aria-selected={index === activeDescendant}
+          >
+            <span>{result.title}</span>
+            {hasGroupedSearchResults && result.isExternal && <ArrowUpRightIcon size={20} aria-hidden="true" />}
+          </a>
+        </div>
+
+        <Text
+          as="p"
+          size="200"
+          id={`subdomainnavbar-search-result-item-desc${index}`}
+          className={styles['SubdomainNavBar-search-result-item-desc']}
+        >
+          {result.description}
+        </Text>
+        <div className={styles['SubdomainNavBar-search-result-item-meta']}>
+          <Text size="100" className={styles['SubdomainNavBar-search-result-item-desc']}>
+            {result.date}
+          </Text>
+          {result.category && (
+            <>
+              <Text size="100" className={styles['SubdomainNavBar-search-result-item-desc']}>
+                {' '}
+                •{' '}
+              </Text>
+              <Text size="100" className={styles['SubdomainNavBar-search-result-item-desc']}>
+                {result.category}
+              </Text>
+            </>
+          )}
+        </div>
+      </li>
+    )
 
     return (
       <>
-        <div className={clsx(styles['SubdomainNavBar-search-trigger'])}>
+        <div className={clsx(styles['SubdomainNavBar-search-trigger'], className)}>
           <button
-            aria-label="Toggle search bar"
-            className={styles['SubdomainNavBar-search-button']}
-            onClick={handlerFn as (event) => void}
+            aria-label={resolvedLabels.formatSearchTrigger(resolvedPlaceholder)}
+            className={styles['SubdomainNavBar-search-input-button']}
+            onClick={onSearchOpen}
             data-testid="toggle-search"
+            type="button"
           >
-            <SearchIcon aria-label="Search icon" />
+            <span className={styles['SubdomainNavBar-search-input-button-placeholder']}>
+              <SearchIcon aria-hidden="true" size={16} />
+              <span>{resolvedPlaceholder}</span>
+            </span>
+            {resolvedShortcutLabel && (
+              <span className={styles['SubdomainNavBar-search-input-button-shortcut']}>{resolvedShortcutLabel}</span>
+            )}
           </button>
         </div>
-        {active && (
-          <div
-            ref={dialogRef}
-            role="dialog"
-            aria-label={`Search ${title}`}
-            aria-modal="true"
-            tabIndex={-1}
-            className={clsx(styles['SubdomainNavBar-search-dialog'])}
-          >
-            <div className={clsx(styles['SubdomainNavBar-search-dialog-control-area'])}>
-              <form className={clsx(styles['SubdomainNavBar-search-form'])} onSubmit={onSubmit} role="search">
-                <FormControl fullWidth size="medium">
-                  <FormControl.Label visuallyHidden>Search</FormControl.Label>
-                  <TextInput
-                    ref={ref}
-                    className={clsx(styles['SubdomainNavBar-search-text-input'])}
-                    name="search"
-                    role="combobox"
-                    aria-expanded={listboxActive}
-                    aria-controls="listbox-search-results"
-                    placeholder={`Search ${title}`}
-                    onChange={onChange}
-                    defaultValue={searchTerm}
-                    invisible
-                    leadingVisual={<SearchIcon size={16} />}
-                    aria-activedescendant={
-                      activeDescendant === -1 ? undefined : `subdomainnavbar-search-result-${activeDescendant}`
-                    }
-                    onKeyDown={handleAriaFocus}
-                  />
-                </FormControl>
-              </form>
-              <button
-                aria-label="Close"
-                className={clsx(styles['SubdomainNavBar-menu-button'], styles['SubdomainNavBar-menu-button--close'])}
-                onClick={handleClose}
-              >
-                <XIcon size={24} />
-              </button>
-            </div>
-
-            <div id="listbox-search-results">
-              {listboxActive && (
-                <div className={clsx(styles['SubdomainNavBar-search-results-container'])}>
-                  <Text
-                    id="subdomainnavbar-search-results-heading"
-                    className={styles['SubdomainNavBar-search-results-heading']}
+        <dialog
+          ref={dialogRef}
+          aria-label={dialogLabel}
+          className={clsx(
+            styles['SubdomainNavBar-search-dialog'],
+            hasSearchResults && styles['SubdomainNavBar-search-dialog--has-results'],
+          )}
+          onCancel={handleDialogCancel}
+        >
+          {active && (
+            <>
+              <div className={clsx(styles['SubdomainNavBar-search-dialog-control-area'])}>
+                <div className={styles['SubdomainNavBar-search-input-area']}>
+                  <form className={clsx(styles['SubdomainNavBar-search-form'])} onSubmit={onSubmit} role="search">
+                    <FormControl fullWidth size="medium">
+                      <FormControl.Label visuallyHidden>{resolvedLabels.searchLabel}</FormControl.Label>
+                      <TextInput
+                        ref={setInputRef}
+                        className={clsx(styles['SubdomainNavBar-search-text-input'])}
+                        name="search"
+                        role="combobox"
+                        // Suppress the browser's native autocomplete/autofill dropdown. When it is
+                        // open, the browser consumes the first Escape to dismiss it, which would
+                        // otherwise require an extra keypress before the native dialog can close.
+                        autoComplete="off"
+                        aria-autocomplete="list"
+                        aria-expanded={hasSearchResults}
+                        aria-controls="listbox-search-results"
+                        placeholder={resolvedPlaceholder}
+                        onChange={onChange}
+                        defaultValue={searchTerm}
+                        invisible
+                        leadingVisual={<SearchIcon size={16} />}
+                        aria-activedescendant={
+                          activeDescendant === -1 ? undefined : `subdomainnavbar-search-result-${activeDescendant}`
+                        }
+                        onKeyDown={handleSearchResultKeyDown}
+                      />
+                    </FormControl>
+                  </form>
+                  <button
+                    aria-label={resolvedLabels.closeLabel}
+                    className={styles['SubdomainNavBar-search-close-button']}
+                    onClick={handleClose}
+                    type="button"
                   >
-                    Results for &ldquo;{searchTerm}&rdquo;
-                  </Text>
-                  <ul
-                    role="listbox"
-                    tabIndex={0}
-                    aria-labelledby="subdomainnavbar-search-results-heading"
-                    className={clsx(styles['SubdomainNavBar-search-results'])}
-                  >
-                    {searchResults?.map((result, index) => (
-                      <li
-                        key={`${result.title}-${index}`}
-                        id={`subdomainnavbar-search-result-${index}`}
-                        className={styles['SubdomainNavBar-search-result-item']}
-                        role="option"
-                        aria-selected={index === activeDescendant}
-                      >
-                        <div className={styles['SubdomainNavBar-search-result-item-container']}>
-                          <a href={result.url}>{result.title}</a>
-                        </div>
-
-                        <Text
-                          as="p"
-                          size="200"
-                          id={`subdomainnavbar-search-result-item-desc${index}`}
-                          className={styles['SubdomainNavBar-search-result-item-desc']}
-                        >
-                          {result.description}
-                        </Text>
-                        <div>
-                          <Text size="100" className={styles['SubdomainNavBar-search-result-item-desc']}>
-                            {result.date}
-                          </Text>
-                          {result.category && (
-                            <>
-                              <Text size="100" className={styles['SubdomainNavBar-search-result-item-desc']}>
-                                {' '}
-                                •{' '}
-                              </Text>
-                              <Text size="100" className={styles['SubdomainNavBar-search-result-item-desc']}>
-                                {result.category}
-                              </Text>
-                            </>
-                          )}
-                        </div>
-                      </li>
-                    ))}
-                  </ul>
+                    {resolvedLabels.closeLabel}
+                  </button>
                 </div>
-              )}
-              <div aria-live="polite" aria-atomic="true" data-testid={testIds.liveRegion} className="visually-hidden">
-                {`${searchResults?.length} suggestions.`}
-                {liveRegion && <span>&nbsp;</span>}
               </div>
-            </div>
-          </div>
-        )}
+
+              <div
+                id="listbox-search-results"
+                className={clsx(
+                  styles['SubdomainNavBar-search-results-area'],
+                  hasSearchResults && styles['SubdomainNavBar-search-results-area--visible'],
+                )}
+              >
+                {hasSearchResults && (
+                  <div className={clsx(styles['SubdomainNavBar-search-results-container'])}>
+                    {!hasGroupedSearchResults && (
+                      <Text
+                        id="subdomainnavbar-search-results-heading"
+                        className={styles['SubdomainNavBar-search-results-heading']}
+                      >
+                        {resolvedLabels.formatResultsHeading(searchTerm ?? '')}
+                      </Text>
+                    )}
+                    <ul
+                      role="listbox"
+                      tabIndex={0}
+                      aria-labelledby={!hasGroupedSearchResults ? 'subdomainnavbar-search-results-heading' : undefined}
+                      aria-label={
+                        hasGroupedSearchResults
+                          ? searchTerm
+                            ? resolvedLabels.formatResultsLabel(searchTerm)
+                            : resolvedLabels.searchResultsLabel
+                          : undefined
+                      }
+                      className={clsx(styles['SubdomainNavBar-search-results'])}
+                    >
+                      {hasGroupedSearchResults
+                        ? normalizedSearchResultGroups.map((group, groupIndex) => {
+                            const groupHeadingId = `subdomainnavbar-search-result-group-${groupIndex}`
+
+                            return (
+                              <li
+                                key={group.title ?? `ungrouped-${groupIndex}`}
+                                className={styles['SubdomainNavBar-search-result-group']}
+                                role="presentation"
+                              >
+                                {group.title && (
+                                  <Text
+                                    id={groupHeadingId}
+                                    className={styles['SubdomainNavBar-search-result-group-heading']}
+                                  >
+                                    {group.title}
+                                  </Text>
+                                )}
+                                <ul
+                                  className={styles['SubdomainNavBar-search-result-group-list']}
+                                  role="group"
+                                  aria-labelledby={group.title ? groupHeadingId : undefined}
+                                  aria-label={group.title ? undefined : resolvedLabels.resultsLabel}
+                                >
+                                  {group.results.map(renderSearchResult)}
+                                </ul>
+                              </li>
+                            )
+                          })
+                        : normalizedSearchResultGroups.flatMap(group => group.results.map(renderSearchResult))}
+                    </ul>
+                  </div>
+                )}
+                <div aria-live="polite" aria-atomic="true" data-testid={testIds.liveRegion} className="visually-hidden">
+                  {resolvedLabels.formatSuggestions(searchResultsLength)}
+                  <span>&nbsp;</span>
+                </div>
+              </div>
+            </>
+          )}
+        </dialog>
       </>
     )
   },
@@ -608,18 +1082,22 @@ const _SearchInternal = forwardRef<HTMLDivElement, SearchProps>(
 
 const Search = _SearchInternal
 
+Root.displayName = 'SubdomainNavBar'
+
 type CTAActionProps = {
   href: string
 } & React.HTMLAttributes<HTMLAnchorElement>
 
 function PrimaryAction({children, href, ...rest}: PropsWithChildren<CTAActionProps>) {
+  const size = React.useContext(SubdomainNavBarActionSizeContext)
+
   return (
     <Button
       as="a"
       href={href}
       className={clsx(styles['SubdomainNavBar-cta-button'])}
       variant="primary"
-      size="small"
+      size={size}
       {...rest}
     >
       {children}
@@ -628,12 +1106,14 @@ function PrimaryAction({children, href, ...rest}: PropsWithChildren<CTAActionPro
 }
 
 function SecondaryAction({children, href, ...rest}: PropsWithChildren<CTAActionProps>) {
+  const size = React.useContext(SubdomainNavBarActionSizeContext)
+
   return (
     <Button
       as="a"
       href={href}
       className={clsx(styles['SubdomainNavBar-cta-button'], styles['SubdomainNavBar-cta-button--secondary'])}
-      size="small"
+      size={size}
       {...rest}
     >
       {children}
