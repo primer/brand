@@ -117,7 +117,7 @@ export const Editorial: Story = {
 }
 
 export const NativeBorders: Story = {
-  render: function NativeBorders() {
+  render: function NativeBordersStory() {
     const {t} = useTranslation('Card')
 
     return (

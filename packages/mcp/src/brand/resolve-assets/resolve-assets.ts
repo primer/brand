@@ -46,36 +46,46 @@ export function resolveInstalledAssets(fromDir: string = process.cwd()): Install
   /** Collects exported PascalCase const names from a package's `.d.ts` type declarations. */
   const exportedNames = (packageDir: string): string[] => {
     const names = new Set<string>()
-    for (const subDir of ['dist', 'lib', '.']) {
-      let entries: string[]
+    const declarationFiles: string[] = []
+    const collectDeclarationFiles = (directory: string): void => {
+      let entries
       try {
-        entries = readdirSync(join(packageDir, subDir))
+        entries = readdirSync(directory, {withFileTypes: true})
+      } catch {
+        return
+      }
+      for (const entry of entries) {
+        const entryPath = join(directory, entry.name)
+        if (entry.isDirectory()) {
+          collectDeclarationFiles(entryPath)
+        } else if (entry.name.endsWith('.d.ts')) {
+          declarationFiles.push(entryPath)
+        }
+      }
+    }
+
+    collectDeclarationFiles(packageDir)
+    for (const declarationFile of declarationFiles) {
+      let source: string
+      try {
+        source = readFileSync(declarationFile, 'utf8')
       } catch {
         continue
       }
-      for (const entry of entries) {
-        if (!entry.endsWith('.d.ts')) continue
-        let source: string
-        try {
-          source = readFileSync(join(packageDir, subDir, entry), 'utf8')
-        } catch {
-          continue
-        }
-        for (const match of source.matchAll(/(?:export\s+)?declare\s+const\s+([A-Z]\w+)/g)) {
-          if (match[1]) names.add(match[1])
-        }
-        for (const match of source.matchAll(/export\s+const\s+([A-Z]\w+)/g)) {
-          if (match[1]) names.add(match[1])
-        }
-        for (const match of source.matchAll(/export\s*\{([^}]*)\}/g)) {
-          for (const part of (match[1] ?? '').split(',')) {
-            const ident = part
-              .trim()
-              .split(/\s+as\s+/)
-              .pop()
-              ?.trim()
-            if (ident && /^[A-Z]\w+$/.test(ident)) names.add(ident)
-          }
+      for (const match of source.matchAll(/(?:export\s+)?declare\s+const\s+([A-Z]\w+)/g)) {
+        if (match[1]) names.add(match[1])
+      }
+      for (const match of source.matchAll(/export\s+const\s+([A-Z]\w+)/g)) {
+        if (match[1]) names.add(match[1])
+      }
+      for (const match of source.matchAll(/export\s*\{([^}]*)\}/g)) {
+        for (const part of (match[1] ?? '').split(',')) {
+          const ident = part
+            .trim()
+            .split(/\s+as\s+/)
+            .pop()
+            ?.trim()
+          if (ident && /^[A-Z]\w+$/.test(ident)) names.add(ident)
         }
       }
     }

@@ -529,28 +529,38 @@ function buildComponents() {
 function exportedNames(packageName) {
   const packageDir = join(nodeModules, ...packageName.split('/'))
   const names = new Set()
-  for (const subPath of ['dist', 'lib', '.']) {
+  const typeFiles = []
+  const collectTypeFiles = directory => {
     let entries
     try {
-      entries = readdirSync(join(packageDir, subPath))
+      entries = readdirSync(directory, {withFileTypes: true})
     } catch {
-      continue
+      return
     }
     for (const entry of entries) {
-      if (!entry.endsWith('.d.ts')) continue
-      const types = readFileOrNull(join(packageDir, subPath, entry)) ?? ''
-      // `declare const AlertIcon: Icon` (octicons) and `export declare const Foo` (octovisuals).
-      for (const match of types.matchAll(/(?:export\s+)?declare\s+const\s+([A-Z]\w+)/g)) names.add(match[1])
-      for (const match of types.matchAll(/export\s+const\s+([A-Z]\w+)/g)) names.add(match[1])
-      for (const match of types.matchAll(/export\s*\{([^}]*)\}/g)) {
-        for (const specifier of match[1].split(',')) {
-          const identifier = specifier
-            .trim()
-            .split(/\s+as\s+/)
-            .pop()
-            ?.trim()
-          if (identifier && /^[A-Z]\w+$/.test(identifier)) names.add(identifier)
-        }
+      const entryPath = join(directory, entry.name)
+      if (entry.isDirectory()) {
+        collectTypeFiles(entryPath)
+      } else if (entry.name.endsWith('.d.ts')) {
+        typeFiles.push(entryPath)
+      }
+    }
+  }
+
+  collectTypeFiles(packageDir)
+  for (const typeFile of typeFiles) {
+    const types = readFileOrNull(typeFile) ?? ''
+    // `declare const AlertIcon: Icon` (octicons) and `export declare const Foo` (octovisuals).
+    for (const match of types.matchAll(/(?:export\s+)?declare\s+const\s+([A-Z]\w+)/g)) names.add(match[1])
+    for (const match of types.matchAll(/export\s+const\s+([A-Z]\w+)/g)) names.add(match[1])
+    for (const match of types.matchAll(/export\s*\{([^}]*)\}/g)) {
+      for (const specifier of match[1].split(',')) {
+        const identifier = specifier
+          .trim()
+          .split(/\s+as\s+/)
+          .pop()
+          ?.trim()
+        if (identifier && /^[A-Z]\w+$/.test(identifier)) names.add(identifier)
       }
     }
   }

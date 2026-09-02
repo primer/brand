@@ -54,12 +54,12 @@
     "prepack": "npm run build"
   },
   "dependencies": {
-    "@modelcontextprotocol/sdk": "^1.24.0",
-    "zod": "3.25.58"
+    "@modelcontextprotocol/sdk": "^1.30.0",
+    "zod": "3.25.76"
   },
   "devDependencies": {
-    "@modelcontextprotocol/inspector": "^0.16.6",
-    "@types/node": "24.12.0"
+    "@modelcontextprotocol/inspector": "^0.22.0",
+    "@types/node": "24.13.3"
   },
   "engines": {
     "node": ">=24.0.0 <25"
