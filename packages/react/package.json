@@ -100,7 +100,7 @@
     "jest-environment-jsdom": "^30.3.0",
     "mdast-util-to-string": "^4.0.0",
     "mini-css-extract-plugin": "2.10.2",
-    "postcss": "8.5.10",
+    "postcss": "8.5.11",
     "postcss-loader": "8.2.1",
     "postcss-preset-env": "11.2.0",
     "remark-frontmatter": "^5.0.0",
