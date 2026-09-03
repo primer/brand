@@ -40,7 +40,7 @@ export default meta
 type Story = StoryObj<StoryArgs>
 
 export const Default: Story = {
-  render: () => <SubdomainNavBar title="Subdomain" />,
+  render: () => <SubdomainNavBar title="Site title" />,
 }
 
 export const Playground: Story = {

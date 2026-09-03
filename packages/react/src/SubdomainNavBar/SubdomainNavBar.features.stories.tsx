@@ -179,7 +179,7 @@ export const SearchKeyboardShortcut: Story = {
 
     return (
       <>
-        <SubdomainNavBar title="GitHub Docs" titleHref="/" fullWidth fixed={false}>
+        <SubdomainNavBar title="Site title" titleHref="/" fullWidth fixed={false}>
           <SubdomainNavBar.Link href="#guides">Guides</SubdomainNavBar.Link>
           <SubdomainNavBar.Link href="#api">API</SubdomainNavBar.Link>
           <SubdomainNavBar.Link href="#changelog">Changelog</SubdomainNavBar.Link>
@@ -210,7 +210,7 @@ export const SearchCustomKeyboardShortcut: Story = {
 
     return (
       <>
-        <SubdomainNavBar title="GitHub Docs" titleHref="/" fullWidth fixed={false}>
+        <SubdomainNavBar title="Site title" titleHref="/" fullWidth fixed={false}>
           <SubdomainNavBar.Link href="#guides">Guides</SubdomainNavBar.Link>
           <SubdomainNavBar.Link href="#api">API</SubdomainNavBar.Link>
           <SubdomainNavBar.Link href="#changelog">Changelog</SubdomainNavBar.Link>
@@ -238,7 +238,7 @@ export const SearchCustomKeyboardShortcut: Story = {
 
 export const GroupedSearchResultsVisible: Story = {
   render: () => (
-    <SubdomainNavBar title="GitHub Docs" titleHref="/" fullWidth fixed={false}>
+    <SubdomainNavBar title="Site title" titleHref="/" fullWidth fixed={false}>
       <SubdomainNavBar.Link href="#item-1">Item 1</SubdomainNavBar.Link>
       <SubdomainNavBar.Link href="#item-2">Item 2</SubdomainNavBar.Link>
       <SubdomainNavBar.Link href="#item-3">Item 3</SubdomainNavBar.Link>
@@ -370,7 +370,7 @@ export const TabletMenuOpen: Story = {
 
     return (
       <SubdomainNavBar
-        title="GitHub Docs"
+        title="Site title"
         titleHref="/"
         fullWidth
         fixed={false}
@@ -628,14 +628,14 @@ export const MobileSearchResultsVisible: Story = {
 }
 
 export const MobileNoLinks: Story = {
-  render: () => <SubdomainNavBar title="Subdomain" />,
+  render: () => <SubdomainNavBar title="Site title" />,
   globals: {
     viewport: {value: 'iphonex'},
   },
 }
 
 export const MobileLeadingComponentOnlyMenuOpen: Story = {
-  render: () => <SubdomainNavBar title="Subdomain" leadingComponent={<Token>v1.5.3</Token>} />,
+  render: () => <SubdomainNavBar title="Site title" leadingComponent={<Token>v1.5.3</Token>} />,
   globals: {
     viewport: {value: 'iphonex'},
   },
@@ -798,7 +798,7 @@ export const NoTitle: Story = {
 
 export const ExternalLink: Story = {
   render: () => (
-    <SubdomainNavBar title="Subdomain">
+    <SubdomainNavBar title="Site title">
       <SubdomainNavBar.Link href="#Collections">Collections</SubdomainNavBar.Link>
       <SubdomainNavBar.Link href="#Topics" isExternal>
         Topics
@@ -814,7 +814,7 @@ export const ExternalLink: Story = {
 
 export const ReversedButtonOrder: Story = {
   render: () => (
-    <SubdomainNavBar title="Subdomain">
+    <SubdomainNavBar title="Site title">
       <SubdomainNavBar.Link href="#Collections">Collections</SubdomainNavBar.Link>
       <SubdomainNavBar.Link href="#Topics" isExternal>
         Topics
@@ -830,7 +830,7 @@ export const ReversedButtonOrder: Story = {
 
 export const ReversedButtonOrderNarrow: Story = {
   render: () => (
-    <SubdomainNavBar title="Subdomain">
+    <SubdomainNavBar title="Site title">
       <SubdomainNavBar.Link href="#Collections">Collections</SubdomainNavBar.Link>
       <SubdomainNavBar.Link href="#Topics" isExternal>
         Topics
@@ -863,7 +863,7 @@ export const ImperativeSearchApi: Story = {
 
     return (
       <>
-        <SubdomainNavBar ref={navigationRef} title="GitHub Docs" titleHref="/" fixed={false}>
+        <SubdomainNavBar ref={navigationRef} title="Site title" titleHref="/" fixed={false}>
           <SubdomainNavBar.Link href="#guides">Guides</SubdomainNavBar.Link>
           <SubdomainNavBar.Link href="#api">API</SubdomainNavBar.Link>
           <SubdomainNavBar.Link href="#changelog">Changelog</SubdomainNavBar.Link>
