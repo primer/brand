@@ -75,7 +75,6 @@
     "@primer/behaviors": "^1.10.3"
   },
   "devDependencies": {
-    "@figma/code-connect": "^1.5.3",
     "@juggle/resize-observer": "^3.4.0",
     "@primer/octicons-react": "19.33.0",
     "@primer/octovisuals-react": "0.3.1",
