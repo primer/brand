@@ -1,5 +1,98 @@
 # @primer/brand-primitives
 
+## 0.75.0
+
+### Patch Changes
+
+- [#1453](https://github.com/primer/brand/pull/1453) [`4dea1ea`](https://github.com/primer/brand/commit/4dea1ea49c3da5ff7cd82dd7ff96310af76a57b8) Thanks [@rezrah](https://github.com/rezrah)! - Updated `TextCursorAnimation` to use the new typing animation and phased cursor colors.
+
+  Animated text types once by default. Pass `initialText` to transition between two messages with a type, delete, and retype sequence:
+
+  ```jsx
+  <TextCursorAnimation animate initialText="Your AI assistant">
+    Your AI accelerator
+  </TextCursorAnimation>
+  ```
+
+  ⚠️ `--brand-TextCursorAnimation-reveal-progress` and `--brand-TextCursorAnimation-cursor-progress` design tokens are no longer used.
+
+  New tokens:
+
+  - `--brand-TextCursorAnimation-cursor-animationDuration`
+  - `--brand-TextCursorAnimation-cursor-deleteColor`
+  - `--brand-TextCursorAnimation-cursor-finalColor`
+  - `--brand-TextCursorAnimation-cursor-color`
+
+- [#1402](https://github.com/primer/brand/pull/1402) [`c676903`](https://github.com/primer/brand/commit/c676903974876b8e1c817404b823b29059505114) Thanks [@danielguillan](https://github.com/danielguillan)! - Updated `SubdomainNavBar` with a gridline visual design, content slots, search APIs, and responsive navigation behavior.
+
+  - **Migration note:** The opinionated gridline design changes the component's default appearance. After upgrading, manually inspect affected sites, especially existing subdomain sites. If adjustments are needed, override the `--brand-SubdomainNavBar-*` custom properties through the root `className` or `style` props.
+  - Added `leadingComponent` and `trailingComponent` props for rendering custom content around the navigation links and actions.
+
+  - Added a responsive input-style search trigger that collapses to an icon-only button on smaller viewports, custom placeholder and shortcut labels, opt-in keyboard shortcuts, grouped results, and a `labels` prop for localizing visible and accessible search text. Pass `keyboardShortcut`, such as `keyboardShortcut="/"`, to enable a global shortcut.
+  - Added a `menuLabels` prop for localizing the narrow and desktop overflow menu controls.
+  - The `SubdomainNavBar` ref now exposes `openSearch()` and `closeSearch()` methods.
+  - Improved desktop overflow handling. Overflowed links are removed from keyboard and assistive technology navigation, and focus returns to the More button when its menu closes.
+
+    ```tsx
+    import * as React from 'react'
+    import {
+      Button,
+      SubdomainNavBar,
+      type SubdomainNavBarHandle,
+      type SubdomainNavBarSearchLabels,
+      type SubdomainNavBarSearchProps,
+      type SubdomainNavBarSearchResults,
+    } from '@primer/react-brand'
+
+    function Example() {
+      const navRef = React.useRef<SubdomainNavBarHandle | null>(null)
+      const [searchTerm, setSearchTerm] = React.useState('')
+      const searchResults: SubdomainNavBarSearchResults = [
+        {
+          title: 'Group',
+          results: [
+            {
+              title: 'Result',
+              description: 'Result description',
+              url: '/result',
+              date: '2026-01-01',
+            },
+          ],
+        },
+      ]
+      const labels = {
+        searchLabel: 'Buscar',
+        closeLabel: 'Cerrar',
+        formatResultsHeading: (term: string) => `Resultados para “${term}”`,
+        formatSuggestions: (count: number) => `${count} sugerencias.`,
+      } satisfies Partial<SubdomainNavBarSearchLabels>
+      const searchProps: SubdomainNavBarSearchProps = {
+        placeholder: 'Buscar',
+        keyboardShortcut: 'Command+Option+k',
+        shortcutLabel: '⌘+⌥+k',
+        labels,
+        searchResults,
+        searchTerm,
+        onChange: event => setSearchTerm(event.currentTarget.value),
+        onSubmit: event => event.preventDefault(),
+      }
+
+      return (
+        <>
+          <SubdomainNavBar ref={navRef} title="Subdomain">
+            <SubdomainNavBar.Link href="/item">Item</SubdomainNavBar.Link>
+            <SubdomainNavBar.Search {...searchProps} />
+          </SubdomainNavBar>
+
+          <Button onClick={() => navRef.current?.openSearch()}>Open search</Button>
+          <Button onClick={() => navRef.current?.closeSearch()}>Close search</Button>
+        </>
+      )
+    }
+    ```
+
+- [#1462](https://github.com/primer/brand/pull/1462) [`7080a2b`](https://github.com/primer/brand/commit/7080a2b92947b9dfc5ac8973a928e988ec922c13) Thanks [@rezrah](https://github.com/rezrah)! - Updated upstream dependency of `@primer/primitives` to 9.1.2.
+
 ## 0.74.0
 
 ### Minor Changes

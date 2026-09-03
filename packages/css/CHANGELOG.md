@@ -1,5 +1,11 @@
 # @primer/brand-css
 
+## 0.75.0
+
+### Patch Changes
+
+- [#1462](https://github.com/primer/brand/pull/1462) [`7080a2b`](https://github.com/primer/brand/commit/7080a2b92947b9dfc5ac8973a928e988ec922c13) Thanks [@rezrah](https://github.com/rezrah)! - Updated CSS compilation dependencies to their latest compatible minor and patch versions.
+
 ## 0.74.0
 
 ## 0.73.0
