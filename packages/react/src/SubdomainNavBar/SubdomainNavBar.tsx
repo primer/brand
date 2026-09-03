@@ -141,7 +141,7 @@ function isUsableSkipToContentTarget(element: HTMLElement) {
   return true
 }
 
-const Root = forwardRef<SubdomainNavBarHandle, SubdomainNavBarProps>(function Root(
+const Root = forwardRef<SubdomainNavBarHandle, SubdomainNavBarProps>(function RootWithRef(
   {
     children,
     className,

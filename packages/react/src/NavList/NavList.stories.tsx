@@ -22,7 +22,7 @@ export default meta
 type Story = StoryObj<typeof NavList>
 
 export const Default: Story = {
-  render: function Default(args) {
+  render: function DefaultStory(args) {
     const {t} = useTranslation('NavList')
     const {'aria-label': ariaLabel = 'Docs navigation', ...navListArgs} = args
     const articleLabelKeys = [
@@ -47,7 +47,7 @@ export const Default: Story = {
 }
 
 export const Playground: Story = {
-  render: function Playground(args) {
+  render: function PlaygroundStory(args) {
     const {t} = useTranslation('NavList')
     const {'aria-label': ariaLabel = 'Docs navigation', ...navListArgs} = args
 
