@@ -1,5 +1,11 @@
 # @primer/react-brand
 
+## 0.75.1
+
+### Patch Changes
+
+- [#1466](https://github.com/primer/brand/pull/1466) [`9582731`](https://github.com/primer/brand/commit/95827315d4120b0373528690d3921d9ef9c7494f) Thanks [@rezrah](https://github.com/rezrah)! - Restored missing design tokens and global styles in the compiled UMD CSS bundle.
+
 ## 0.75.0
 
 ### Minor Changes
