@@ -1,5 +1,7 @@
 # @primer/brand-css
 
+## 0.75.1
+
 ## 0.75.0
 
 ### Patch Changes
