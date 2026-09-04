@@ -34,7 +34,6 @@ export type PricingOptionsProps = {
 const testIds = {
   root: 'PricingOptions',
   item: 'PricingOptions__item',
-  labelRow: 'PricingOptions__labels',
   heading: 'PricingOptions__heading',
   label: 'PricingOptions__label',
   description: 'PricingOptions__description',
@@ -56,6 +55,7 @@ type PricingOptionsContextValue = {
   updateFeatureListExpanded: Dispatch<boolean>
   featureListUserInteracted: boolean
   setFeatureListUserInteracted: Dispatch<boolean>
+  hasLabels: boolean
 }
 
 const PricingOptionsContext = React.createContext<PricingOptionsContextValue>({
@@ -64,9 +64,14 @@ const PricingOptionsContext = React.createContext<PricingOptionsContextValue>({
   featureListUserInteracted: false,
   updateFeatureListExpanded: () => {},
   setFeatureListUserInteracted: () => {},
+  hasLabels: false,
 })
 
-const PricingOptionsProvider = ({children, align = 'start'}: PropsWithChildren<{align: AlignOptions}>) => {
+const PricingOptionsProvider = ({
+  children,
+  align = 'start',
+  hasLabels = false,
+}: PropsWithChildren<{align: AlignOptions; hasLabels?: boolean}>) => {
   const [allFeatureListsExpanded, setAllFeatureListsExpanded] = React.useState(false)
   const [featureListUserInteracted, setFeatureListUserInteracted] = React.useState(false)
 
@@ -82,6 +87,7 @@ const PricingOptionsProvider = ({children, align = 'start'}: PropsWithChildren<{
         align,
         featureListUserInteracted,
         setFeatureListUserInteracted,
+        hasLabels,
       }}
     >
       {children}
@@ -103,6 +109,19 @@ const PricingOptionsLabel = ({children}: PricingOptionsLabelProps) => {
   return <>{children}</>
 }
 
+const hasRenderableLabelContent = (children: React.ReactNode): boolean =>
+  React.Children.toArray(children).some(child => {
+    if (typeof child === 'string') {
+      return child.length > 0
+    }
+
+    if (React.isValidElement<{children?: React.ReactNode}>(child) && child.type === React.Fragment) {
+      return hasRenderableLabelContent(child.props.children)
+    }
+
+    return true
+  })
+
 const PricingOptionsRoot = forwardRef(
   (
     {
@@ -123,31 +142,29 @@ const PricingOptionsRoot = forwardRef(
       [children],
     ).slice(0, 4)
 
-    const headerLabels = useMemo(
+    const hasLabels = useMemo(
       () =>
-        filteredChildren.map(item => {
-          const labelChild = React.Children.toArray(item.props.children).find(
+        filteredChildren.some(item =>
+          React.Children.toArray(item.props.children).some(
             child =>
-              React.isValidElement(child) && typeof child.type !== 'string' && child.type === PricingOptionsLabel,
-          )
-
-          return (
-            React.isValidElement(labelChild) ? labelChild : null
-          ) as React.ReactElement<PricingOptionsLabelProps> | null
-        }),
+              React.isValidElement<PricingOptionsLabelProps>(child) &&
+              typeof child.type !== 'string' &&
+              child.type === PricingOptionsLabel &&
+              hasRenderableLabelContent(child.props.children),
+          ),
+        ),
       [filteredChildren],
     )
 
-    const hasHeaderLabels = headerLabels.some(label => label !== null)
-
     return (
-      <PricingOptionsProvider align={align}>
+      <PricingOptionsProvider align={align} hasLabels={hasLabels}>
         <div
           className={clsx(
             styles.PricingOptions,
             styles[`PricingOptions--layout-${variant.includes('default') ? 'default' : 'cards'}`],
             styles[`PricingOptions--items${filteredChildren.length}`],
             styles[`PricingOptions--appearance-${variant.includes('gradient') ? 'gradient' : 'solid'}`],
+            hasLabels && styles['PricingOptions--has-labels'],
             className,
           )}
           data-testid={testId || testIds.root}
@@ -155,39 +172,6 @@ const PricingOptionsRoot = forwardRef(
           {...(rest as HTMLAttributes<HTMLElement>)}
         >
           {filteredChildren}
-
-          {hasHeaderLabels && (
-            <div
-              className={styles['PricingOptions__labels']}
-              data-testid={testIds.labelRow}
-              style={
-                {
-                  '--brand-pricing-options-column-count': filteredChildren.length,
-                } as React.CSSProperties
-              }
-            >
-              {headerLabels.map((headerLabel, index) => {
-                const hasLabelContent = Boolean(headerLabel?.props.children)
-
-                return (
-                  <div
-                    className={clsx(
-                      styles['PricingOptions__label-cell'],
-                      hasLabelContent
-                        ? styles['PricingOptions__label-cell--has-label']
-                        : styles['PricingOptions__label-cell--empty'],
-                    )}
-                    data-testid={headerLabel?.props['data-testid'] || testIds.label}
-                    key={index}
-                  >
-                    {headerLabel?.props.children ? (
-                      <span className={styles.PricingOptions__label}>{headerLabel.props.children}</span>
-                    ) : null}
-                  </div>
-                )
-              })}
-            </div>
-          )}
         </div>
       </PricingOptionsProvider>
     )
@@ -213,6 +197,7 @@ type FilteredChildren = {
   Heading: React.ReactElement<PricingOptionsHeadingProps> | null
   Description: React.ReactElement<PricingOptionsDescriptionProps> | null
   Price: React.ReactElement<PricingOptionsPriceProps> | null
+  Label: React.ReactElement<PricingOptionsLabelProps> | null
 }
 
 const PricingOptionsItem = forwardRef(
@@ -220,7 +205,7 @@ const PricingOptionsItem = forwardRef(
     {'data-testid': testId, children, className, leadingComponent, ...rest}: PropsWithChildren<PricingOptionsItem>,
     ref: Ref<HTMLDivElement>,
   ) => {
-    const {align} = usePricingOptions()
+    const {align, hasLabels} = usePricingOptions()
 
     const memoizedChildren = useMemo(() => React.Children.toArray(children), [children])
 
@@ -258,6 +243,10 @@ const PricingOptionsItem = forwardRef(
           if (child.type === PricingOptionsPrice) {
             acc.Price = child as React.ReactElement<PricingOptionsPriceProps>
           }
+
+          if (child.type === PricingOptionsLabel) {
+            acc.Label = child as React.ReactElement<PricingOptionsLabelProps>
+          }
         }
 
         return acc
@@ -270,15 +259,20 @@ const PricingOptionsItem = forwardRef(
         Heading: null,
         Description: null,
         Price: null,
+        Label: null,
       },
     )
 
-    const {Heading, Description, Price, FeatureList, Actions, ActionsMessage, Footnote} = filteredChildren
+    const {Heading, Description, Price, FeatureList, Actions, ActionsMessage, Footnote, Label} = filteredChildren
+    const labelContent = Label?.props.children
+    const hasLabelContent = hasRenderableLabelContent(labelContent)
+    const shouldRenderLabelCell = hasLabels || hasLabelContent
 
     return (
       <div
         className={clsx(
           styles.PricingOptions__item,
+          hasLabelContent && styles['PricingOptions__item--has-label'],
           leadingComponent && styles['PricingOptions__item--has-leading-component'],
           styles[`PricingOptions__item--align-${align}`],
           className,
@@ -287,6 +281,19 @@ const PricingOptionsItem = forwardRef(
         ref={ref}
         {...(rest as HTMLAttributes<HTMLElement>)}
       >
+        {shouldRenderLabelCell && (
+          <div
+            className={clsx(
+              styles['PricingOptions__label-cell'],
+              hasLabelContent
+                ? styles['PricingOptions__label-cell--has-label']
+                : styles['PricingOptions__label-cell--empty'],
+            )}
+            data-testid={Label?.props['data-testid'] || testIds.label}
+          >
+            {hasLabelContent ? <span className={styles.PricingOptions__label}>{labelContent}</span> : null}
+          </div>
+        )}
         <div className={styles['PricingOptions__header']}>{Heading}</div>
         {Description}
         {Price}

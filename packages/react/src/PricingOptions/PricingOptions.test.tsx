@@ -1,5 +1,5 @@
 import React from 'react'
-import {render, cleanup} from '@testing-library/react'
+import {render, cleanup, within} from '@testing-library/react'
 
 import '@testing-library/jest-dom'
 import userEvent from '@testing-library/user-event'
@@ -63,6 +63,7 @@ describe('PricingOptions', () => {
 
     const PricingOptionsEl = getByTestId(testId)
     expect(PricingOptionsEl.classList).toContain(expectedClass)
+    expect(PricingOptionsEl).not.toHaveClass('PricingOptions--has-labels')
   })
 
   it('applies the correct layout classes for each variant', () => {
@@ -164,27 +165,70 @@ describe('PricingOptions', () => {
     expect(getByText(mockFootnote)).toBeInTheDocument()
   })
 
-  it('renders header labels in a dedicated row above items', () => {
+  it('renders labels inside their corresponding PricingOptions.Item', () => {
     const firstLabel = 'Most popular'
     const secondLabel = 'Best value'
 
-    const {getByTestId, getAllByTestId, getByText} = render(
+    const {getAllByTestId, getByTestId} = render(
       <PricingOptions>
         <PricingOptions.Item>
           <PricingOptions.Label>{firstLabel}</PricingOptions.Label>
           <PricingOptions.Heading>First</PricingOptions.Heading>
         </PricingOptions.Item>
         <PricingOptions.Item>
-          <PricingOptions.Label>{secondLabel}</PricingOptions.Label>
           <PricingOptions.Heading>Second</PricingOptions.Heading>
+        </PricingOptions.Item>
+        <PricingOptions.Item>
+          <PricingOptions.Label>{secondLabel}</PricingOptions.Label>
+          <PricingOptions.Heading>Third</PricingOptions.Heading>
         </PricingOptions.Item>
       </PricingOptions>,
     )
 
-    expect(getByTestId(PricingOptions.testIds.labelRow)).toBeInTheDocument()
-    expect(getAllByTestId(PricingOptions.testIds.label)).toHaveLength(2)
-    expect(getByText(firstLabel)).toBeInTheDocument()
-    expect(getByText(secondLabel)).toBeInTheDocument()
+    const items = getAllByTestId(PricingOptions.testIds.item)
+
+    expect(getByTestId(PricingOptions.testIds.root)).toHaveClass('PricingOptions--has-labels')
+    expect(getAllByTestId(PricingOptions.testIds.label)).toHaveLength(3)
+    expect(items[0]).toHaveClass('PricingOptions__item--has-label')
+    expect(items[1]).not.toHaveClass('PricingOptions__item--has-label')
+    expect(items[2]).toHaveClass('PricingOptions__item--has-label')
+    expect(within(items[0]).getByText(firstLabel)).toBeInTheDocument()
+    expect(within(items[1]).queryByText(firstLabel)).not.toBeInTheDocument()
+    expect(within(items[1]).queryByText(secondLabel)).not.toBeInTheDocument()
+    expect(within(items[2]).getByText(secondLabel)).toBeInTheDocument()
+  })
+
+  it.each([null, false, '', <React.Fragment key="empty-fragment">{false}</React.Fragment>])(
+    'does not enable labeled layout for an empty label containing %p',
+    labelContent => {
+      const {getByTestId, queryAllByTestId} = render(
+        <PricingOptions>
+          <PricingOptions.Item>
+            <PricingOptions.Label>{labelContent}</PricingOptions.Label>
+            <PricingOptions.Heading>Plan</PricingOptions.Heading>
+          </PricingOptions.Item>
+        </PricingOptions>,
+      )
+
+      expect(getByTestId(PricingOptions.testIds.root)).not.toHaveClass('PricingOptions--has-labels')
+      expect(getByTestId(PricingOptions.testIds.item)).not.toHaveClass('PricingOptions__item--has-label')
+      expect(queryAllByTestId(PricingOptions.testIds.label)).toHaveLength(0)
+    },
+  )
+
+  it('renders zero as label content', () => {
+    const {getByTestId, getByText} = render(
+      <PricingOptions>
+        <PricingOptions.Item>
+          <PricingOptions.Label>{0}</PricingOptions.Label>
+          <PricingOptions.Heading>Plan</PricingOptions.Heading>
+        </PricingOptions.Item>
+      </PricingOptions>,
+    )
+
+    expect(getByTestId(PricingOptions.testIds.root)).toHaveClass('PricingOptions--has-labels')
+    expect(getByTestId(PricingOptions.testIds.item)).toHaveClass('PricingOptions__item--has-label')
+    expect(getByText('0')).toBeInTheDocument()
   })
 
   it('renders PricingOptions.Item markup in the expected order', () => {
@@ -192,6 +236,7 @@ describe('PricingOptions', () => {
 
     const {getByTestId} = render(
       <PricingOptions.Item data-testid={testId}>
+        <PricingOptions.Label>{mockHeaderLabel}</PricingOptions.Label>
         <PricingOptions.Footnote>{mockFootnote}</PricingOptions.Footnote>
         <PricingOptions.Description>{mockDescription}</PricingOptions.Description>
         <PricingOptions.Heading>{mockHeading}</PricingOptions.Heading>
@@ -205,6 +250,7 @@ describe('PricingOptions', () => {
     const PricingOptionsItemEl = getByTestId(testId)
 
     const expectedOrder = [
+      'PricingOptions__label',
       'PricingOptions__heading',
       'PricingOptions__description',
       'PricingOptions__featureList',
