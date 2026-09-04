@@ -81,3 +81,4 @@ declare const styles: {
   readonly "fade-out": string;
 };
 export = styles;
+

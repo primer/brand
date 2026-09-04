@@ -60,6 +60,7 @@
 /* ---------------------------------------------------------- */
 
 .VideoPlayer__playButtonOverlay {
+  font: inherit;
   position: absolute;
   top: 0;
   left: 0;
@@ -182,6 +183,7 @@
 }
 
 .VideoPlayer__iconControl {
+  font: inherit;
   width: auto;
   background: none;
   border: none;
@@ -284,6 +286,7 @@
 }
 
 .VideoPlayer__rangeInput {
+  font: inherit;
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;

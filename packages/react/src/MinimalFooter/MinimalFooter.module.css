@@ -214,6 +214,10 @@
   text-transform: uppercase;
 }
 
+.MinimalFooter__link:where(button) {
+  font: inherit;
+}
+
 .MinimalFooter__link:hover {
   text-decoration: underline;
 }
@@ -234,6 +238,7 @@
 
 .MinimalFooter__backToTop {
   appearance: none;
+  font: inherit;
   display: inline-flex;
   padding: 0;
   border: 0;

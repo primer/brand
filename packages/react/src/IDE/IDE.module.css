@@ -195,6 +195,7 @@
   padding: var(--base-size-8) var(--base-size-12);
   align-items: center;
   gap: var(--base-size-4);
+  font: inherit;
   font-family: var(--brand-fontStack-monospace);
   font-size: calc(var(--base-size-12) + 2px);
   color: var(--brand-color-text-muted);
