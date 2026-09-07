@@ -401,7 +401,7 @@ export type TabsPanelProps = {
   id?: string
 } & Omit<React.HTMLAttributes<HTMLDivElement>, 'id'>
 
-const TabsPanel = memo(function TabsPanel({
+const TabsPanel = memo(function TabsPanelComponent({
   children,
   animation = false,
   className,

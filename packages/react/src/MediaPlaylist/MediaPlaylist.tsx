@@ -261,16 +261,15 @@ function MediaPlaylistItemContent({children, className, ...props}: MediaPlaylist
 
 export type MediaPlaylistItemMediaProps = React.HTMLAttributes<HTMLDivElement>
 
-const MediaPlaylistItemMedia = forwardRef<HTMLDivElement, MediaPlaylistItemMediaProps>(function MediaPlaylistItemMedia(
-  {children, className, ...props},
-  ref,
-) {
-  return (
-    <div ref={ref} className={clsx(styles.MediaPlaylist__media, className)} {...props}>
-      {children}
-    </div>
-  )
-})
+const MediaPlaylistItemMedia = forwardRef<HTMLDivElement, MediaPlaylistItemMediaProps>(
+  function MediaPlaylistItemMediaWithRef({children, className, ...props}, ref) {
+    return (
+      <div ref={ref} className={clsx(styles.MediaPlaylist__media, className)} {...props}>
+        {children}
+      </div>
+    )
+  },
+)
 
 const mediaPlaylistComponents = {
   Heading: MediaPlaylistHeading,
