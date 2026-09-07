@@ -354,7 +354,7 @@ describe('SubdomainNavBar', () => {
 
   it('renders a back arrow and the GitHub mark in the home link', () => {
     const {getByRole} = render(<Component />)
-    const logoLink = getByRole('link', {name: 'Github Home'})
+    const logoLink = getByRole('link', {name: 'GitHub Home'})
 
     expect(logoLink.querySelector('.SubdomainNavBar-back-arrow svg')).toBeInTheDocument()
     expect(logoLink.querySelector(':scope > svg')).toBeInTheDocument()

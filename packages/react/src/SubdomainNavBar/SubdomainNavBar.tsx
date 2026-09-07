@@ -478,7 +478,7 @@ const Root = forwardRef<SubdomainNavBarHandle, SubdomainNavBarProps>(function Ro
             <nav aria-label="Header logo and title" className={styles['SubdomainNavBar-title-navigation']}>
               <ol className={styles['SubdomainNavBar-title-area']}>
                 <li>
-                  <a href={logoHref} aria-label="Github Home" className={styles['SubdomainNavBar-logo-mark']}>
+                  <a href={logoHref} aria-label="GitHub Home" className={styles['SubdomainNavBar-logo-mark']}>
                     <span className={styles['SubdomainNavBar-back-arrow']}>
                       <ChevronLeftIcon fill="currentColor" size={24} />
                     </span>
