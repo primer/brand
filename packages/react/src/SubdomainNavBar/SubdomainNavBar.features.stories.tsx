@@ -992,11 +992,11 @@ export const SkipToMainTagWithId: Story = {
   },
 }
 
-const ProjectVariantExample = ({withCustomComponents = false}: {withCustomComponents?: boolean}) => (
+const FullVariantExample = ({withCustomComponents = false}: {withCustomComponents?: boolean}) => (
   <SubdomainNavBar
-    title="Project title"
+    title="Site title"
     titleHref="/"
-    variant="project"
+    variant="full"
     fullWidth
     fixed={false}
     leadingComponent={withCustomComponents ? <Token>Public beta</Token> : undefined}
@@ -1018,7 +1018,7 @@ const ProjectVariantExample = ({withCustomComponents = false}: {withCustomCompon
       </SubdomainNavBar.Link>
     ))}
     <SubdomainNavBar.Search
-      placeholder="Search Project title"
+      placeholder="Search Site title"
       keyboardShortcut="/"
       shortcutLabel="/"
       searchTerm=""
@@ -1031,60 +1031,30 @@ const ProjectVariantExample = ({withCustomComponents = false}: {withCustomCompon
   </SubdomainNavBar>
 )
 
-export const ProjectVariant: Story = {
-  render: () => <ProjectVariantExample />,
+export const FullVariant: Story = {
+  render: () => <FullVariantExample />,
   play: async ({canvasElement}) => {
     const canvas = within(canvasElement)
-    const logoLink = canvas.getByRole('link', {name: 'Github Home'})
-    const titleLink = canvas.getByRole('link', {name: 'Project title home'})
-    const titleLabel = titleLink.querySelector('.SubdomainNavBar-title-label')
-    const titleListItem = titleLink.closest('li')
-    const titleArea = titleLink.closest('ol')
+    const titleLink = canvas.getByRole('link', {name: 'Site title home'})
     const divider = canvasElement.querySelector('.SubdomainNavBar-title-separator')
-    const searchTrigger = canvas.getByTestId('toggle-search').parentElement
+    const searchPlaceholder = canvas.getByText('Search Site title')
     const navbar = titleLink.closest('header')
-    const titleAreaRect = titleArea?.getBoundingClientRect()
-    const dividerRect = divider?.getBoundingClientRect()
-    const logoLinkRect = logoLink.getBoundingClientRect()
-    const titleLinkRect = titleLink.getBoundingClientRect()
-    const mutedText = canvasElement.ownerDocument.createElement('span')
-    mutedText.style.color = 'var(--brand-color-text-muted)'
-    canvasElement.append(mutedText)
 
-    await expect(getComputedStyle(titleLabel as Element).color).toBe(getComputedStyle(mutedText).color)
-    await expect(getComputedStyle(titleListItem as Element).borderInlineEndWidth).toBe('1px')
-    await expect(Math.abs((dividerRect?.top ?? 0) - (titleAreaRect?.top ?? 0))).toBeLessThanOrEqual(1)
-    await expect(Math.abs((dividerRect?.bottom ?? 0) - (titleAreaRect?.bottom ?? 0))).toBeLessThanOrEqual(1)
-    await expect(
-      Math.abs((dividerRect?.left ?? 0) - logoLinkRect.right - (titleLinkRect.left - (dividerRect?.right ?? 0))),
-    ).toBeLessThanOrEqual(1)
-    await expect(getComputedStyle(searchTrigger as Element).borderInlineStartWidth).toBe('1px')
-    await expect(Number.parseFloat(getComputedStyle(navbar as Element, '::after').insetBlockStart)).toBeCloseTo(
-      (titleAreaRect?.height ?? 0) + 1,
-    )
-
-    mutedText.remove()
+    await expect(titleLink).toHaveTextContent('GitHub Site title')
+    await expect(navbar).toHaveClass('SubdomainNavBar--variant-full')
+    await expect(divider).not.toBeInTheDocument()
+    await expect(getComputedStyle(searchPlaceholder).display).not.toBe('none')
   },
-  name: 'Project Variant',
+  name: 'Full Variant',
 }
 
-export const ProjectVariantWithLeadingAndTrailingComponents: Story = {
-  render: () => <ProjectVariantExample withCustomComponents />,
-  play: async ({canvasElement}) => {
-    const titleLink = within(canvasElement).getByRole('link', {name: 'Project title home'})
-    const titleListItem = titleLink.closest('li')
-    const leadingComponent = within(canvasElement)
-      .getByText('Public beta')
-      .closest('.SubdomainNavBar-leading-component')
-
-    await expect(getComputedStyle(titleListItem as Element).borderInlineEndWidth).toBe('1px')
-    await expect(getComputedStyle(leadingComponent as Element).borderInlineStartWidth).toBe('0px')
-  },
-  name: 'Project Variant With Leading and Trailing Components',
+export const FullVariantWithLeadingAndTrailingComponents: Story = {
+  render: () => <FullVariantExample withCustomComponents />,
+  name: 'Full Variant With Leading and Trailing Components',
 }
 
-export const ProjectVariantTabletMenuOpen: Story = {
-  render: () => <ProjectVariantExample />,
+export const FullVariantTabletMenuOpen: Story = {
+  render: () => <FullVariantExample />,
   globals: {
     viewport: {value: 'ipad'},
   },
@@ -1095,13 +1065,13 @@ export const ProjectVariantTabletMenuOpen: Story = {
     const menu = canvasElement.ownerDocument.getElementById(closeButton.getAttribute('aria-controls') as string)
 
     await expect(closeButton).toHaveAttribute('aria-expanded', 'true')
-    await expect(menu?.getBoundingClientRect().width).toBeGreaterThanOrEqual(384)
+    await expect(menu).toBeVisible()
   },
-  name: 'Project Variant Tablet Menu Open',
+  name: 'Full Variant Tablet Menu Open',
 }
 
-export const ProjectVariantMobile: Story = {
-  render: () => <ProjectVariantExample />,
+export const FullVariantMobile: Story = {
+  render: () => <FullVariantExample />,
   globals: {
     viewport: {value: 'iphonex'},
   },
@@ -1114,5 +1084,5 @@ export const ProjectVariantMobile: Story = {
 
     await expect(Math.abs(menuButtonRect.right - (innerContainerRect?.right ?? 0))).toBeLessThanOrEqual(1)
   },
-  name: 'Project Variant Mobile',
+  name: 'Full Variant Mobile',
 }

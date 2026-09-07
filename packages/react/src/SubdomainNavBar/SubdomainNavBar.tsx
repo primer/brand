@@ -44,7 +44,7 @@ export type SubdomainNavBarMenuLabels = {
   overflowMenuLabel: string
 }
 
-export type SubdomainNavBarVariant = 'default' | 'project'
+export type SubdomainNavBarVariant = 'default' | 'full'
 
 const defaultMenuLabels: SubdomainNavBarMenuLabels = {
   menuLabel: 'Menu',
@@ -179,7 +179,7 @@ const Root = forwardRef<SubdomainNavBarHandle, SubdomainNavBarProps>(function Ro
   const generatedMainTargetID = `${fallbackTargetID}-main`
   const narrowMenuID = useId()
   const resolvedMenuLabels = {...defaultMenuLabels, ...menuLabels}
-  const isProjectVariant = variant === 'project'
+  const isFullVariant = variant === 'full'
 
   const updateMenuViewportOffsetBlockStart = useCallback(() => {
     setMenuViewportOffsetBlockStart(Math.max(0, headerRef.current?.getBoundingClientRect().top ?? 0))
@@ -458,7 +458,8 @@ const Root = forwardRef<SubdomainNavBarHandle, SubdomainNavBarProps>(function Ro
           ref={headerRef}
           className={clsx(
             styles['SubdomainNavBar'],
-            isProjectVariant && styles['SubdomainNavBar--variant-project'],
+            styles[`SubdomainNavBar--variant-${variant}`],
+            hasLinks && styles['SubdomainNavBar--has-primary-nav'],
             className,
           )}
           data-testid={testIds.root}
@@ -484,14 +485,14 @@ const Root = forwardRef<SubdomainNavBarHandle, SubdomainNavBarProps>(function Ro
                     <MarkGithubIcon fill="currentColor" size={24} />
                   </a>
                 </li>
-                {isProjectVariant && title && (
+                {!isFullVariant && title && (
                   <li className={styles['SubdomainNavBar-title-separator']} aria-hidden="true" />
                 )}
                 {title && (
                   <li>
                     <a href={titleHref} aria-label={`${title} home`} className={styles['SubdomainNavBar-title']}>
                       <Text size="400" variant="muted" weight="medium">
-                        {!isProjectVariant && (
+                        {isFullVariant && (
                           <>
                             <span className={styles['SubdomainNavBar-title-prefix']}>GitHub</span>{' '}
                           </>

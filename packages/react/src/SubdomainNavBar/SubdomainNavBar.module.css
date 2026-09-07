@@ -131,7 +131,7 @@
   text-decoration: none;
 }
 
-.SubdomainNavBar-title-prefix {
+.SubdomainNavBar--variant-full .SubdomainNavBar-title-prefix {
   color: var(--brand-color-text-default);
 }
 
@@ -794,7 +794,7 @@
     animation-timing-function: var(--brand-animation-easing-default);
   }
 
-  .SubdomainNavBar--variant-project .SubdomainNavBar-menu-wrapper {
+  .SubdomainNavBar--variant-default .SubdomainNavBar-menu-wrapper {
     inset-inline-start: auto;
     min-width: calc(var(--base-size-128) * 3);
   }
@@ -1367,51 +1367,55 @@
     align-self: stretch;
   }
 
-  .SubdomainNavBar--variant-project {
+  .SubdomainNavBar--variant-default.SubdomainNavBar--has-primary-nav {
     height: calc(var(--SubdomainNavBar-height) + var(--base-size-48));
   }
 
-  .SubdomainNavBar--variant-project::after {
+  .SubdomainNavBar--variant-default::after {
     inset-block-start: calc(var(--SubdomainNavBar-height) + var(--brand-borderWidth-thin));
   }
 
-  .SubdomainNavBar--variant-project .SubdomainNavBar-inner-container {
+  .SubdomainNavBar--variant-default .SubdomainNavBar-inner-container {
     display: grid;
     grid-template-columns: auto minmax(0, 1fr) auto;
+    grid-template-rows: var(--SubdomainNavBar-height);
+  }
+
+  .SubdomainNavBar--variant-default.SubdomainNavBar--has-primary-nav .SubdomainNavBar-inner-container {
     grid-template-rows: var(--SubdomainNavBar-height) var(--base-size-48);
   }
 
-  .SubdomainNavBar--variant-project .SubdomainNavBar-title-navigation {
+  .SubdomainNavBar--variant-default .SubdomainNavBar-title-navigation {
     grid-column: 1;
     grid-row: 1;
     min-width: 0;
   }
 
-  .SubdomainNavBar--variant-project .SubdomainNavBar-primary-nav {
+  .SubdomainNavBar--variant-default .SubdomainNavBar-primary-nav {
     grid-column: 1 / -1;
     grid-row: 2;
     min-width: 0;
     border-block-start: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
   }
 
-  .SubdomainNavBar--variant-project .SubdomainNavBar-inner-container > .SubdomainNavBar-leading-component {
+  .SubdomainNavBar--variant-default .SubdomainNavBar-inner-container > .SubdomainNavBar-leading-component {
     grid-column: 2;
     grid-row: 1;
     justify-self: start;
     border-inline-start: 0;
   }
 
-  .SubdomainNavBar--variant-project .SubdomainNavBar-inner-container > .SubdomainNavBar-secondary-nav {
+  .SubdomainNavBar--variant-default .SubdomainNavBar-inner-container > .SubdomainNavBar-secondary-nav {
     grid-column: 3;
     grid-row: 1;
   }
 
-  .SubdomainNavBar--variant-project .SubdomainNavBar-search-trigger {
+  .SubdomainNavBar--variant-default .SubdomainNavBar-search-trigger {
     border-inline-start: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
   }
 }
 
-.SubdomainNavBar--variant-project .SubdomainNavBar-search-trigger .SubdomainNavBar-search-input-button {
+.SubdomainNavBar--variant-default .SubdomainNavBar-search-trigger .SubdomainNavBar-search-input-button {
   justify-content: center;
   gap: 0;
   width: var(--base-size-32);
@@ -1419,17 +1423,17 @@
   background-color: transparent;
 }
 
-.SubdomainNavBar--variant-project .SubdomainNavBar-search-trigger .SubdomainNavBar-search-input-button-placeholder {
+.SubdomainNavBar--variant-default .SubdomainNavBar-search-trigger .SubdomainNavBar-search-input-button-placeholder {
   gap: 0;
 }
 
-.SubdomainNavBar--variant-project .SubdomainNavBar-search-trigger .SubdomainNavBar-search-input-button-placeholder span,
-.SubdomainNavBar--variant-project .SubdomainNavBar-search-trigger .SubdomainNavBar-search-input-button-shortcut {
+.SubdomainNavBar--variant-default .SubdomainNavBar-search-trigger .SubdomainNavBar-search-input-button-placeholder span,
+.SubdomainNavBar--variant-default .SubdomainNavBar-search-trigger .SubdomainNavBar-search-input-button-shortcut {
   display: none;
 }
 
 @media screen and (min-width: 48rem) {
-  .SubdomainNavBar--variant-project .SubdomainNavBar-search-trigger {
+  .SubdomainNavBar--variant-default .SubdomainNavBar-search-trigger {
     flex: 0 0 var(--base-size-64);
     width: var(--base-size-64);
     min-width: var(--base-size-64);

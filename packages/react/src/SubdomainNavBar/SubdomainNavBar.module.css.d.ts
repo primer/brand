@@ -1,6 +1,8 @@
 declare const styles: {
   readonly "SubdomainNavBar": string;
-  readonly "SubdomainNavBar--variant-project": string;
+  readonly "SubdomainNavBar--has-primary-nav": string;
+  readonly "SubdomainNavBar--variant-default": string;
+  readonly "SubdomainNavBar--variant-full": string;
   readonly "SubdomainNavBar-back-arrow": string;
   readonly "SubdomainNavBar-button-area": string;
   readonly "SubdomainNavBar-button-area--has-leading-item": string;
