@@ -44,6 +44,8 @@ export type SubdomainNavBarMenuLabels = {
   overflowMenuLabel: string
 }
 
+export type SubdomainNavBarVariant = 'default' | 'project'
+
 const defaultMenuLabels: SubdomainNavBarMenuLabels = {
   menuLabel: 'Menu',
   closeLabel: 'Close',
@@ -70,6 +72,10 @@ export type SubdomainNavBarProps = Omit<React.HTMLAttributes<HTMLElement>, 'chil
    * Fill the maximum width of the parent container. Defaults to `false`.
    */
   fullWidth?: boolean
+  /**
+   * Sets the navigation layout. Defaults to `default`.
+   */
+  variant?: SubdomainNavBarVariant
   /**
    * Optional React element rendered after the navigation links.
    */
@@ -147,6 +153,7 @@ const Root = forwardRef<SubdomainNavBarHandle, SubdomainNavBarProps>(function Ro
     className,
     fixed = true,
     fullWidth = false,
+    variant = 'default',
     logoHref = 'https://github.com',
     style,
     title,
@@ -172,6 +179,7 @@ const Root = forwardRef<SubdomainNavBarHandle, SubdomainNavBarProps>(function Ro
   const generatedMainTargetID = `${fallbackTargetID}-main`
   const narrowMenuID = useId()
   const resolvedMenuLabels = {...defaultMenuLabels, ...menuLabels}
+  const isProjectVariant = variant === 'project'
 
   const updateMenuViewportOffsetBlockStart = useCallback(() => {
     setMenuViewportOffsetBlockStart(Math.max(0, headerRef.current?.getBoundingClientRect().top ?? 0))
@@ -448,7 +456,11 @@ const Root = forwardRef<SubdomainNavBarHandle, SubdomainNavBarProps>(function Ro
         </Button>
         <header
           ref={headerRef}
-          className={clsx(styles['SubdomainNavBar'], className)}
+          className={clsx(
+            styles['SubdomainNavBar'],
+            isProjectVariant && styles['SubdomainNavBar--variant-project'],
+            className,
+          )}
           data-testid={testIds.root}
           style={subdomainNavBarStyle}
           {...rest}
@@ -462,7 +474,7 @@ const Root = forwardRef<SubdomainNavBarHandle, SubdomainNavBarProps>(function Ro
             )}
             data-testid={testIds.innerContainer}
           >
-            <nav aria-label="Header logo and title">
+            <nav aria-label="Header logo and title" className={styles['SubdomainNavBar-title-navigation']}>
               <ol className={styles['SubdomainNavBar-title-area']}>
                 <li>
                   <a href={logoHref} aria-label="Github Home" className={styles['SubdomainNavBar-logo-mark']}>
@@ -472,21 +484,22 @@ const Root = forwardRef<SubdomainNavBarHandle, SubdomainNavBarProps>(function Ro
                     <MarkGithubIcon fill="currentColor" size={24} />
                   </a>
                 </li>
+                {isProjectVariant && title && (
+                  <li className={styles['SubdomainNavBar-title-separator']} aria-hidden="true" />
+                )}
                 {title && (
-                  <>
-                    <li>
-                      <a
-                        href={titleHref}
-                        aria-label={`${title} home`}
-                        className={clsx(styles['SubdomainNavBar-title'])}
-                      >
-                        <Text size="400" weight="medium">
-                          <span className={styles['SubdomainNavBar-title-prefix']}>GitHub</span>{' '}
-                          <span className={styles['SubdomainNavBar-title-label']}>{title}</span>
-                        </Text>
-                      </a>
-                    </li>
-                  </>
+                  <li>
+                    <a href={titleHref} aria-label={`${title} home`} className={styles['SubdomainNavBar-title']}>
+                      <Text size="400" variant="muted" weight="medium">
+                        {!isProjectVariant && (
+                          <>
+                            <span className={styles['SubdomainNavBar-title-prefix']}>GitHub</span>{' '}
+                          </>
+                        )}
+                        <span className={styles['SubdomainNavBar-title-label']}>{title}</span>
+                      </Text>
+                    </a>
+                  </li>
                 )}
               </ol>
             </nav>
@@ -498,7 +511,7 @@ const Root = forwardRef<SubdomainNavBarHandle, SubdomainNavBarProps>(function Ro
                 data-testid={testIds.menuLinks}
               >
                 <NavigationVisbilityObserver
-                  className={clsx(styles['SubdomainNavBar-primary-nav-list--invisible'])}
+                  className={styles['SubdomainNavBar-primary-nav-list--invisible']}
                   overflowMenuLabel={resolvedMenuLabels.overflowMenuLabel}
                 >
                   {menuItems}

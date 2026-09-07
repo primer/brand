@@ -32,6 +32,12 @@ const meta = {
     titleHref: {
       control: 'text',
     },
+    variant: {
+      control: 'select',
+      options: ['default', 'project'],
+      description:
+        'Use `default` for the GitHub-prefixed single-row navigation or `project` for a project title, icon-only search, and a second desktop link row.',
+    },
   },
 } satisfies Meta<StoryArgs>
 

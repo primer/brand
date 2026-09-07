@@ -2,8 +2,6 @@
  * Main styles for the subdomain navigation bar.
  */
 .SubdomainNavBar {
-  --SubdomainNavBar-height: var(--base-size-64);
-
   position: relative;
   z-index: 90;
   font-weight: 550;
@@ -138,7 +136,19 @@
 }
 
 .SubdomainNavBar-title-label {
-  color: var(--brand-color-text-muted);
+  color: inherit;
+}
+
+.SubdomainNavBar .SubdomainNavBar-title-area > .SubdomainNavBar-title-separator {
+  box-sizing: border-box;
+  align-self: center;
+  flex: none;
+  width: var(--brand-borderWidth-thin);
+  height: var(--SubdomainNavBar-height);
+  padding: 0;
+  margin-inline: var(--base-size-8) var(--base-size-16);
+  background-color: var(--brand-color-border-muted);
+  border: 0;
 }
 
 .SubdomainNavBar-leading-component,
@@ -784,6 +794,11 @@
     animation-timing-function: var(--brand-animation-easing-default);
   }
 
+  .SubdomainNavBar--variant-project .SubdomainNavBar-menu-wrapper {
+    inset-inline-start: auto;
+    min-width: calc(var(--base-size-128) * 3);
+  }
+
   .SubdomainNavBar-menu-wrapper--close {
     display: none;
   }
@@ -1018,7 +1033,6 @@
 
 @media screen and (max-width: 47.99rem) {
   .SubdomainNavBar {
-    --SubdomainNavBar-height: calc(var(--base-size-64) - var(--base-size-8));
     --SubdomainNavBar-mobile-control-size: var(--base-size-48);
   }
 
@@ -1351,6 +1365,74 @@
     );
 
     align-self: stretch;
+  }
+
+  .SubdomainNavBar--variant-project {
+    height: calc(var(--SubdomainNavBar-height) + var(--base-size-48));
+  }
+
+  .SubdomainNavBar--variant-project::after {
+    inset-block-start: calc(var(--SubdomainNavBar-height) + var(--brand-borderWidth-thin));
+  }
+
+  .SubdomainNavBar--variant-project .SubdomainNavBar-inner-container {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    grid-template-rows: var(--SubdomainNavBar-height) var(--base-size-48);
+  }
+
+  .SubdomainNavBar--variant-project .SubdomainNavBar-title-navigation {
+    grid-column: 1;
+    grid-row: 1;
+    min-width: 0;
+  }
+
+  .SubdomainNavBar--variant-project .SubdomainNavBar-primary-nav {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    min-width: 0;
+    border-block-start: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
+  }
+
+  .SubdomainNavBar--variant-project .SubdomainNavBar-inner-container > .SubdomainNavBar-leading-component {
+    grid-column: 2;
+    grid-row: 1;
+    justify-self: start;
+    border-inline-start: 0;
+  }
+
+  .SubdomainNavBar--variant-project .SubdomainNavBar-inner-container > .SubdomainNavBar-secondary-nav {
+    grid-column: 3;
+    grid-row: 1;
+  }
+
+  .SubdomainNavBar--variant-project .SubdomainNavBar-search-trigger {
+    border-inline-start: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
+  }
+}
+
+.SubdomainNavBar--variant-project .SubdomainNavBar-search-trigger .SubdomainNavBar-search-input-button {
+  justify-content: center;
+  gap: 0;
+  width: var(--base-size-32);
+  padding: var(--base-size-8);
+  background-color: transparent;
+}
+
+.SubdomainNavBar--variant-project .SubdomainNavBar-search-trigger .SubdomainNavBar-search-input-button-placeholder {
+  gap: 0;
+}
+
+.SubdomainNavBar--variant-project .SubdomainNavBar-search-trigger .SubdomainNavBar-search-input-button-placeholder span,
+.SubdomainNavBar--variant-project .SubdomainNavBar-search-trigger .SubdomainNavBar-search-input-button-shortcut {
+  display: none;
+}
+
+@media screen and (min-width: 48rem) {
+  .SubdomainNavBar--variant-project .SubdomainNavBar-search-trigger {
+    flex: 0 0 var(--base-size-64);
+    width: var(--base-size-64);
+    min-width: var(--base-size-64);
   }
 }
 

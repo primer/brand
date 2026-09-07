@@ -380,4 +380,56 @@ test.describe('Visual Comparison: SubdomainNavBar', () => {
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
   })
+
+  test('SubdomainNavBar / Project Variant', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-subdomainnavbar-features--project-variant&viewMode=story',
+      {waitUntil: 'networkidle'},
+    )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+    await page.waitForTimeout(500)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
+  test('SubdomainNavBar / Project Variant With Leading and Trailing Components', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-subdomainnavbar-features--project-variant-with-leading-and-trailing-components&viewMode=story',
+      {waitUntil: 'networkidle'},
+    )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+    await page.waitForTimeout(500)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
+  // eslint-disable-next-line i18n-text/no-en
+  test.describe('Tablet viewport test for Project Variant Tablet Menu Open', () => {
+    test.use({viewport: {width: 834, height: 1112}})
+    test('SubdomainNavBar / Project Variant Tablet Menu Open', async ({page}) => {
+      await page.goto(
+        'http://localhost:6006/iframe.html?args=&id=components-subdomainnavbar-features--project-variant-tablet-menu-open&viewMode=story',
+        {waitUntil: 'networkidle'},
+      )
+      await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+      await page.waitForTimeout(500)
+      await expect(page).toHaveScreenshot({fullPage: true})
+    })
+  })
+
+  // eslint-disable-next-line i18n-text/no-en
+  test.describe('Mobile viewport test for Project Variant Mobile', () => {
+    test.use({viewport: {width: 360, height: 800}})
+    test('SubdomainNavBar / Project Variant Mobile', async ({page}) => {
+      await page.goto(
+        'http://localhost:6006/iframe.html?args=&id=components-subdomainnavbar-features--project-variant-mobile&viewMode=story',
+        {waitUntil: 'networkidle'},
+      )
+      await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+      await page.waitForTimeout(500)
+      await expect(page).toHaveScreenshot({fullPage: true})
+    })
+  })
 })

@@ -1,5 +1,6 @@
 declare const styles: {
   readonly "SubdomainNavBar": string;
+  readonly "SubdomainNavBar--variant-project": string;
   readonly "SubdomainNavBar-back-arrow": string;
   readonly "SubdomainNavBar-button-area": string;
   readonly "SubdomainNavBar-button-area--has-leading-item": string;
@@ -71,7 +72,9 @@ declare const styles: {
   readonly "SubdomainNavBar-title": string;
   readonly "SubdomainNavBar-title-area": string;
   readonly "SubdomainNavBar-title-label": string;
+  readonly "SubdomainNavBar-title-navigation": string;
   readonly "SubdomainNavBar-title-prefix": string;
+  readonly "SubdomainNavBar-title-separator": string;
   readonly "SubdomainNavBar-trailing-component": string;
   readonly "enlarge-shadow": string;
   readonly "fade-in": string;

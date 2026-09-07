@@ -8,6 +8,7 @@ import {
   type SubdomainNavBarHandle,
   type SubdomainNavBarSearchResults,
   type SubdomainNavBarProps,
+  type SubdomainNavBarVariant,
 } from './SubdomainNavBar'
 import {axe, toHaveNoViolations} from 'jest-axe'
 
@@ -119,6 +120,7 @@ describe('SubdomainNavBar', () => {
     searchResults,
     titleHref,
     title = 'Subdomain',
+    variant,
     leadingComponent,
     trailingComponent,
   }: {
@@ -126,6 +128,7 @@ describe('SubdomainNavBar', () => {
     searchResults?: SubdomainNavBarSearchResults
     titleHref?: string
     title?: string
+    variant?: SubdomainNavBarVariant
     leadingComponent?: SubdomainNavBarProps['leadingComponent']
     trailingComponent?: SubdomainNavBarProps['trailingComponent']
   }) => (
@@ -133,6 +136,7 @@ describe('SubdomainNavBar', () => {
       title={title}
       titleHref={titleHref}
       fullWidth={fullWidth}
+      variant={variant}
       leadingComponent={leadingComponent}
       trailingComponent={trailingComponent}
     >
@@ -350,11 +354,10 @@ describe('SubdomainNavBar', () => {
 
   it('renders a back arrow and the GitHub mark in the home link', () => {
     const {getByRole} = render(<Component />)
-    const logoIcons = getByRole('link', {name: 'Github Home'}).querySelectorAll('svg')
+    const logoLink = getByRole('link', {name: 'Github Home'})
 
-    expect(logoIcons).toHaveLength(2)
-    expect(logoIcons[0]).toHaveClass('octicon-chevron-left')
-    expect(logoIcons[1]).toHaveClass('octicon-mark-github')
+    expect(logoLink.querySelector('.SubdomainNavBar-back-arrow svg')).toBeInTheDocument()
+    expect(logoLink.querySelector(':scope > svg')).toBeInTheDocument()
   })
 
   it('renders GitHub before the subdomain title', () => {
@@ -364,6 +367,34 @@ describe('SubdomainNavBar', () => {
     expect(titleLink).toHaveTextContent('GitHub Subdomain')
     expect(titleLink.querySelector('.SubdomainNavBar-title-prefix')).toHaveTextContent('GitHub')
     expect(titleLink.querySelector('.SubdomainNavBar-title-label')).toHaveTextContent('Subdomain')
+  })
+
+  it.each([undefined, 'default'] as const)('preserves the default title treatment when variant is %s', variant => {
+    const {getByRole, queryByText} = render(<Component variant={variant} />)
+    const titleLink = getByRole('link', {name: 'Subdomain home'})
+
+    expect(titleLink).toHaveTextContent('GitHub Subdomain')
+    expect(queryByText('GitHub')).toBeInTheDocument()
+    expect(titleLink.querySelector('.SubdomainNavBar-title-label')).toHaveTextContent('Subdomain')
+    expect(titleLink.closest('header')).not.toHaveClass('SubdomainNavBar--variant-project')
+  })
+
+  it('renders the project title without the GitHub prefix and with a divider', () => {
+    const {container, getByRole, queryByText} = render(<Component variant="project" />)
+    const titleLink = getByRole('link', {name: 'Subdomain home'})
+
+    expect(titleLink).toHaveTextContent('Subdomain')
+    expect(titleLink).not.toHaveTextContent('GitHub Subdomain')
+    expect(titleLink.querySelector('.SubdomainNavBar-title-label')).toHaveTextContent('Subdomain')
+    expect(queryByText('GitHub')).not.toBeInTheDocument()
+    expect(container.querySelector('.SubdomainNavBar-title-separator')).toHaveAttribute('aria-hidden', 'true')
+  })
+
+  it('does not render a project title divider without a title', () => {
+    const {container, queryByRole} = render(<Component title="" variant="project" />)
+
+    expect(queryByRole('link', {name: / home$/})).not.toBeInTheDocument()
+    expect(container.querySelector('.SubdomainNavBar-title-separator')).not.toBeInTheDocument()
   })
 
   it('forwards a custom id to the root element', () => {
@@ -408,6 +439,14 @@ describe('SubdomainNavBar', () => {
 
   it('has no a11y violations by default', async () => {
     const {container} = render(<Component />)
+
+    const results = await axe(container)
+
+    expect(results).toHaveNoViolations()
+  })
+
+  it('has no a11y violations with the project variant', async () => {
+    const {container} = render(<Component variant="project" />)
 
     const results = await axe(container)
 
@@ -1101,6 +1140,32 @@ describe('SubdomainNavBar', () => {
     expect(within(overflowMenu as HTMLElement).queryByRole('link', {name: 'Topics'})).not.toBeInTheDocument()
   })
 
+  it('preserves desktop navigation overflow in the project second row', async () => {
+    mockUseWindowSize.mockImplementation(() => ({isSmall: true, isMedium: true, isLarge: true}))
+
+    const {container, getByRole} = render(
+      <SubdomainNavBar title="Subdomain" variant="project">
+        <SubdomainNavBar.Link href="#collections">Collections</SubdomainNavBar.Link>
+        <SubdomainNavBar.Link href="#topics">Topics</SubdomainNavBar.Link>
+        <SubdomainNavBar.Link href="#articles">Articles</SubdomainNavBar.Link>
+      </SubdomainNavBar>,
+    )
+
+    await updateNavigationLayout(container, {containerWidth: 130})
+
+    const moreButton = getByRole('button', {name: 'More'})
+    fireEvent.click(moreButton)
+
+    const overflowMenuId = moreButton.getAttribute('aria-controls')
+    const overflowMenu = overflowMenuId ? document.getElementById(overflowMenuId) : null
+
+    expect(getNavigationItem(container, '#articles')).toHaveAttribute('aria-hidden', 'true')
+    expect(within(overflowMenu as HTMLElement).getByRole('link', {name: 'Articles'})).toHaveAttribute(
+      'href',
+      '#articles',
+    )
+  })
+
   it('accounts for inline list padding when measuring desktop navigation overflow', async () => {
     mockUseWindowSize.mockImplementation(() => ({isSmall: true, isMedium: true}))
 
@@ -1382,9 +1447,38 @@ describe('SubdomainNavBar', () => {
     const searchTrigger = getByTestId('toggle-search')
     expect(searchTrigger).toHaveAccessibleName('Search ... search')
     expect(searchTrigger).toHaveClass('SubdomainNavBar-search-input-button')
-    expect(searchTrigger).not.toHaveClass('Button--secondary')
     expect(getByText('Search ...')).toBeInTheDocument()
     expect(getByText('/')).toBeInTheDocument()
+  })
+
+  it.each([
+    ['desktop', {isSmall: true, isMedium: true, isLarge: true}],
+    ['tablet', {isSmall: true, isMedium: true, isLarge: false}],
+    ['mobile', {isSmall: false, isMedium: false, isLarge: false}],
+  ])('renders an accessible icon-only project search trigger on %s', (_viewport, windowSize) => {
+    mockUseWindowSize.mockImplementation(() => windowSize)
+
+    const {getByRole, getByTestId} = render(
+      <SubdomainNavBar title="Subdomain" variant="project">
+        <SubdomainNavBar.Search
+          placeholder="Search projects"
+          shortcutLabel="/"
+          searchTerm="docs"
+          onChange={jest.fn}
+          onSubmit={jest.fn()}
+        />
+      </SubdomainNavBar>,
+    )
+
+    const searchTrigger = getByTestId('toggle-search')
+    expect(searchTrigger.closest('header')).toHaveClass('SubdomainNavBar--variant-project')
+    expect(searchTrigger).toHaveAccessibleName('Search projects search')
+    expect(searchTrigger.querySelector('svg')).toBeInTheDocument()
+
+    fireEvent.click(searchTrigger)
+
+    expect(getByRole('dialog', {name: 'Search Subdomain'})).toHaveAttribute('open')
+    expect(getByRole('combobox')).toHaveFocus()
   })
 
   it('uses the search trigger placeholder for the opened search input', () => {
@@ -1594,6 +1688,58 @@ describe('SubdomainNavBar', () => {
     expect(titleLink.compareDocumentPosition(firstLink) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy()
     expect(firstLink.compareDocumentPosition(leadingComponent) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy()
     expect(trailingComponent.compareDocumentPosition(secondaryAction) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy()
+  })
+
+  it('places project links in the desktop grid while preserving navigation DOM order', () => {
+    mockUseWindowSize.mockImplementation(() => ({isSmall: true, isMedium: true, isLarge: true}))
+
+    const {getByRole, getByTestId, getByText} = render(
+      <Component
+        variant="project"
+        leadingComponent={<span>Leading content</span>}
+        trailingComponent={<span>Trailing content</span>}
+      />,
+    )
+
+    const innerContainer = getByTestId(SubdomainNavBar.testIds.innerContainer)
+    const primaryNavigation = getByTestId(SubdomainNavBar.testIds.menuLinks)
+    const titleLink = getByRole('link', {name: 'Subdomain home'})
+    const leadingComponent = getByText('Leading content')
+    const searchTrigger = getByTestId('toggle-search')
+    const trailingComponent = getByText('Trailing content')
+    const primaryAction = getByRole('link', {name: 'Primary CTA'})
+
+    expect(innerContainer.closest('header')).toHaveClass('SubdomainNavBar--variant-project')
+    expect(titleLink.compareDocumentPosition(primaryNavigation) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy()
+    expect(primaryNavigation.compareDocumentPosition(leadingComponent) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy()
+    expect(primaryNavigation.compareDocumentPosition(searchTrigger) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy()
+    expect(primaryNavigation.compareDocumentPosition(trailingComponent) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy()
+    expect(primaryNavigation.compareDocumentPosition(primaryAction) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy()
+  })
+
+  it('preserves project child ordering in the narrow menu', async () => {
+    mockUseWindowSize.mockImplementation(() => ({isSmall: false, isMedium: false, isLarge: false}))
+    const user = userEvent.setup()
+    const {getByRole} = render(
+      <Component
+        variant="project"
+        leadingComponent={<span>Leading content</span>}
+        trailingComponent={<span>Trailing content</span>}
+      />,
+    )
+
+    const menuButton = getByRole('button', {name: 'Menu'})
+    await user.click(menuButton)
+
+    const menu = document.getElementById(menuButton.getAttribute('aria-controls') as string)
+    const leadingComponent = within(menu as HTMLElement).getByText('Leading content')
+    const firstLink = within(menu as HTMLElement).getByRole('link', {name: 'Collections'})
+    const trailingComponent = within(menu as HTMLElement).getByText('Trailing content')
+    const primaryAction = within(menu as HTMLElement).getByRole('link', {name: 'Primary CTA'})
+
+    expect(leadingComponent.compareDocumentPosition(firstLink) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy()
+    expect(firstLink.compareDocumentPosition(trailingComponent) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy()
+    expect(trailingComponent.compareDocumentPosition(primaryAction) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy()
   })
 
   it('renders mobile leading content before links and trailing content before actions in the menu footer', () => {
