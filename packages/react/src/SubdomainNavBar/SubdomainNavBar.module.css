@@ -1426,7 +1426,7 @@
   }
 }
 
-.SubdomainNavBar--variant-default .SubdomainNavBar-search-trigger .SubdomainNavBar-search-input-button {
+.SubdomainNavBar--variant-default .SubdomainNavBar-search-input-button {
   justify-content: center;
   gap: 0;
   width: var(--base-size-32);
@@ -1434,12 +1434,12 @@
   background-color: transparent;
 }
 
-.SubdomainNavBar--variant-default .SubdomainNavBar-search-trigger .SubdomainNavBar-search-input-button-placeholder {
+.SubdomainNavBar--variant-default .SubdomainNavBar-search-input-button-placeholder {
   gap: 0;
 }
 
-.SubdomainNavBar--variant-default .SubdomainNavBar-search-trigger .SubdomainNavBar-search-input-button-placeholder-text,
-.SubdomainNavBar--variant-default .SubdomainNavBar-search-trigger .SubdomainNavBar-search-input-button-shortcut {
+.SubdomainNavBar--variant-default .SubdomainNavBar-search-input-button-placeholder-text,
+.SubdomainNavBar--variant-default .SubdomainNavBar-search-input-button-shortcut {
   display: none;
 }
 
@@ -1450,11 +1450,11 @@
     min-width: var(--base-size-48);
   }
 
-  .SubdomainNavBar.SubdomainNavBar--variant-default .SubdomainNavBar-search-trigger {
+  .SubdomainNavBar--variant-default .SubdomainNavBar-search-trigger {
     padding-inline: 0;
   }
 
-  .SubdomainNavBar--variant-default .SubdomainNavBar-search-trigger .SubdomainNavBar-search-input-button {
+  .SubdomainNavBar--variant-default .SubdomainNavBar-search-input-button {
     width: 100%;
     block-size: 100%;
     padding-inline: var(--base-size-16);
