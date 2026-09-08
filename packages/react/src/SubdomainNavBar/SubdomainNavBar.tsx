@@ -44,7 +44,7 @@ export type SubdomainNavBarMenuLabels = {
   overflowMenuLabel: string
 }
 
-export type SubdomainNavBarVariant = 'default' | 'full'
+export type SubdomainNavBarVariant = 'default' | 'featured'
 
 const defaultMenuLabels: SubdomainNavBarMenuLabels = {
   menuLabel: 'Menu',
@@ -179,7 +179,7 @@ const Root = forwardRef<SubdomainNavBarHandle, SubdomainNavBarProps>(function Ro
   const generatedMainTargetID = `${fallbackTargetID}-main`
   const narrowMenuID = useId()
   const resolvedMenuLabels = {...defaultMenuLabels, ...menuLabels}
-  const isFullVariant = variant === 'full'
+  const isFeaturedVariant = variant === 'featured'
 
   const updateMenuViewportOffsetBlockStart = useCallback(() => {
     setMenuViewportOffsetBlockStart(Math.max(0, headerRef.current?.getBoundingClientRect().top ?? 0))
@@ -490,7 +490,7 @@ const Root = forwardRef<SubdomainNavBarHandle, SubdomainNavBarProps>(function Ro
                   <li>
                     <a href={titleHref} aria-label={`${title} home`} className={styles['SubdomainNavBar-title']}>
                       <Text size="400" variant="muted" weight="medium">
-                        {isFullVariant && (
+                        {isFeaturedVariant && (
                           <>
                             <span className={styles['SubdomainNavBar-title-prefix']}>GitHub</span>{' '}
                           </>

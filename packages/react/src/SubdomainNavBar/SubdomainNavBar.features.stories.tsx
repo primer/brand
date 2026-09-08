@@ -992,11 +992,11 @@ export const SkipToMainTagWithId: Story = {
   },
 }
 
-const FullVariantExample = ({withCustomComponents = false}: {withCustomComponents?: boolean}) => (
+const FeaturedVariantExample = ({withCustomComponents = false}: {withCustomComponents?: boolean}) => (
   <SubdomainNavBar
     title="Site title"
     titleHref="/"
-    variant="full"
+    variant="featured"
     fullWidth
     fixed={false}
     leadingComponent={withCustomComponents ? <Token>Public beta</Token> : undefined}
@@ -1031,8 +1031,8 @@ const FullVariantExample = ({withCustomComponents = false}: {withCustomComponent
   </SubdomainNavBar>
 )
 
-export const FullVariant: Story = {
-  render: () => <FullVariantExample />,
+export const FeaturedVariant: Story = {
+  render: () => <FeaturedVariantExample />,
   play: async ({canvasElement}) => {
     const canvas = within(canvasElement)
     const titleLink = canvas.getByRole('link', {name: 'Site title home'})
@@ -1040,19 +1040,19 @@ export const FullVariant: Story = {
     const navbar = titleLink.closest('header')
 
     await expect(titleLink).toHaveTextContent('GitHub Site title')
-    await expect(navbar).toHaveClass('SubdomainNavBar--variant-full')
+    await expect(navbar).toHaveClass('SubdomainNavBar--variant-featured')
     await expect(getComputedStyle(searchPlaceholder).display).not.toBe('none')
   },
-  name: 'Full Variant',
+  name: 'Featured Variant',
 }
 
-export const FullVariantWithLeadingAndTrailingComponents: Story = {
-  render: () => <FullVariantExample withCustomComponents />,
-  name: 'Full Variant With Leading and Trailing Components',
+export const FeaturedVariantWithLeadingAndTrailingComponents: Story = {
+  render: () => <FeaturedVariantExample withCustomComponents />,
+  name: 'Featured Variant With Leading and Trailing Components',
 }
 
-export const FullVariantTabletMenuOpen: Story = {
-  render: () => <FullVariantExample />,
+export const FeaturedVariantTabletMenuOpen: Story = {
+  render: () => <FeaturedVariantExample />,
   globals: {
     viewport: {value: 'ipad'},
   },
@@ -1065,11 +1065,11 @@ export const FullVariantTabletMenuOpen: Story = {
     await expect(closeButton).toHaveAttribute('aria-expanded', 'true')
     await expect(menu).toBeVisible()
   },
-  name: 'Full Variant Tablet Menu Open',
+  name: 'Featured Variant Tablet Menu Open',
 }
 
-export const FullVariantMobile: Story = {
-  render: () => <FullVariantExample />,
+export const FeaturedVariantMobile: Story = {
+  render: () => <FeaturedVariantExample />,
   globals: {
     viewport: {value: 'iphonex'},
   },
@@ -1082,5 +1082,5 @@ export const FullVariantMobile: Story = {
 
     await expect(Math.abs(menuButtonRect.right - (innerContainerRect?.right ?? 0))).toBeLessThanOrEqual(1)
   },
-  name: 'Full Variant Mobile',
+  name: 'Featured Variant Mobile',
 }

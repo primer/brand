@@ -3,7 +3,7 @@ declare const styles: {
   readonly "SubdomainNavBar--has-primary-nav": string;
   readonly "SubdomainNavBar--has-title": string;
   readonly "SubdomainNavBar--variant-default": string;
-  readonly "SubdomainNavBar--variant-full": string;
+  readonly "SubdomainNavBar--variant-featured": string;
   readonly "SubdomainNavBar-back-arrow": string;
   readonly "SubdomainNavBar-button-area": string;
   readonly "SubdomainNavBar-button-area--has-leading-item": string;

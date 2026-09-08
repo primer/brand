@@ -381,9 +381,9 @@ test.describe('Visual Comparison: SubdomainNavBar', () => {
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
-  test('SubdomainNavBar / Full Variant', async ({page}) => {
+  test('SubdomainNavBar / Featured Variant', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-subdomainnavbar-features--full-variant&viewMode=story',
+      'http://localhost:6006/iframe.html?args=&id=components-subdomainnavbar-features--featured-variant&viewMode=story',
       {waitUntil: 'networkidle'},
     )
     await page.locator('body.sb-show-main').waitFor({state: 'visible'})
@@ -392,9 +392,9 @@ test.describe('Visual Comparison: SubdomainNavBar', () => {
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
-  test('SubdomainNavBar / Full Variant With Leading and Trailing Components', async ({page}) => {
+  test('SubdomainNavBar / Featured Variant With Leading and Trailing Components', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-subdomainnavbar-features--full-variant-with-leading-and-trailing-components&viewMode=story',
+      'http://localhost:6006/iframe.html?args=&id=components-subdomainnavbar-features--featured-variant-with-leading-and-trailing-components&viewMode=story',
       {waitUntil: 'networkidle'},
     )
     await page.locator('body.sb-show-main').waitFor({state: 'visible'})
@@ -404,11 +404,11 @@ test.describe('Visual Comparison: SubdomainNavBar', () => {
   })
 
   // eslint-disable-next-line i18n-text/no-en
-  test.describe('Tablet viewport test for Full Variant Tablet Menu Open', () => {
+  test.describe('Tablet viewport test for Featured Variant Tablet Menu Open', () => {
     test.use({viewport: {width: 834, height: 1112}})
-    test('SubdomainNavBar / Full Variant Tablet Menu Open', async ({page}) => {
+    test('SubdomainNavBar / Featured Variant Tablet Menu Open', async ({page}) => {
       await page.goto(
-        'http://localhost:6006/iframe.html?args=&id=components-subdomainnavbar-features--full-variant-tablet-menu-open&viewMode=story',
+        'http://localhost:6006/iframe.html?args=&id=components-subdomainnavbar-features--featured-variant-tablet-menu-open&viewMode=story',
         {waitUntil: 'networkidle'},
       )
       await page.locator('body.sb-show-main').waitFor({state: 'visible'})
@@ -419,11 +419,11 @@ test.describe('Visual Comparison: SubdomainNavBar', () => {
   })
 
   // eslint-disable-next-line i18n-text/no-en
-  test.describe('Mobile viewport test for Full Variant Mobile', () => {
+  test.describe('Mobile viewport test for Featured Variant Mobile', () => {
     test.use({viewport: {width: 360, height: 800}})
-    test('SubdomainNavBar / Full Variant Mobile', async ({page}) => {
+    test('SubdomainNavBar / Featured Variant Mobile', async ({page}) => {
       await page.goto(
-        'http://localhost:6006/iframe.html?args=&id=components-subdomainnavbar-features--full-variant-mobile&viewMode=story',
+        'http://localhost:6006/iframe.html?args=&id=components-subdomainnavbar-features--featured-variant-mobile&viewMode=story',
         {waitUntil: 'networkidle'},
       )
       await page.locator('body.sb-show-main').waitFor({state: 'visible'})

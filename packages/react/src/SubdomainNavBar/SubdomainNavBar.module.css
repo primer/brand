@@ -133,7 +133,7 @@
   text-decoration: none;
 }
 
-.SubdomainNavBar--variant-full .SubdomainNavBar-title-prefix {
+.SubdomainNavBar--variant-featured .SubdomainNavBar-title-prefix {
   color: var(--brand-color-text-default);
 }
 

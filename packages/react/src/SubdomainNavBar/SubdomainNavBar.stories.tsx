@@ -34,8 +34,8 @@ const meta = {
     },
     variant: {
       control: 'select',
-      options: ['default', 'full'],
-      description: 'Use `full` for the GitHub-prefixed single-row navigation with an expanded search field.',
+      options: ['default', 'featured'],
+      description: 'Use `featured` for the GitHub-prefixed single-row navigation with an expanded search field.',
     },
   },
 } satisfies Meta<StoryArgs>

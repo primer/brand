@@ -42,9 +42,9 @@ Please refer to our [Storybook examples](https://primer.style/brand/storybook/?p
 </div>
 ```
 
-### Full variant
+### Featured variant
 
-The `full` variant displays the GitHub name alongside the site title and an expanded search field on desktop.
+The `featured` variant displays the GitHub name alongside the site title and an expanded search field on desktop.
 
 <Note>
 
@@ -56,7 +56,7 @@ Please check with the Primer Brand team before using this variant.
 
 ```jsx live
 <div style={{width: '100%'}}>
-  <SubdomainNavBar title="Site title" variant="full" fixed={false} fullWidth>
+  <SubdomainNavBar title="Site title" variant="featured" fixed={false} fullWidth>
     <SubdomainNavBar.Link href="#">Overview</SubdomainNavBar.Link>
     <SubdomainNavBar.Link href="#">Documentation</SubdomainNavBar.Link>
     <SubdomainNavBar.Link href="#">Resources</SubdomainNavBar.Link>
@@ -219,7 +219,7 @@ render(<LocalizedMenu />)
 | `style`                 | `React.CSSProperties`                |                      | Forwards custom inline styles to the root element                       |
 | `fixed`                 | `boolean`                            | `true`               | Fixes the navigation bar to the top of the viewport                     |
 | `fullWidth`             | `boolean`                            | `false`              | Allows the inner content to fill the available width                    |
-| `variant`               | `'default' \| 'full'`                | `'default'`          | Sets the navigation layout                                              |
+| `variant`               | `'default' \| 'featured'`            | `'default'`          | Sets the navigation layout                                              |
 | `logoHref`              | `string`                             | `https://github.com` | Changes the URL of the GitHub logo                                      |
 | `title`                 | `string`                             |                      | Required subdomain name used visibly and by assistive technologies      |
 | `titleHref`             | `string`                             | `/`                  | Links the title to the subdomain root                                   |

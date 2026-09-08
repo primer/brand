@@ -360,14 +360,14 @@ describe('SubdomainNavBar', () => {
     expect(logoLink.querySelector(':scope > svg')).toBeInTheDocument()
   })
 
-  it('renders GitHub before the subdomain title in the full variant', () => {
-    const {getByRole} = render(<Component variant="full" />)
+  it('renders GitHub before the subdomain title in the featured variant', () => {
+    const {getByRole} = render(<Component variant="featured" />)
     const titleLink = getByRole('link', {name: 'Subdomain home'})
 
     expect(titleLink).toHaveTextContent('GitHub Subdomain')
     expect(titleLink.querySelector('.SubdomainNavBar-title-prefix')).toHaveTextContent('GitHub')
     expect(titleLink.querySelector('.SubdomainNavBar-title-label')).toHaveTextContent('Subdomain')
-    expect(titleLink.closest('header')).toHaveClass('SubdomainNavBar--variant-full')
+    expect(titleLink.closest('header')).toHaveClass('SubdomainNavBar--variant-featured')
   })
 
   it.each([undefined, 'default'] as const)('renders the minimal title treatment when variant is %s', variant => {
@@ -451,8 +451,8 @@ describe('SubdomainNavBar', () => {
     expect(results).toHaveNoViolations()
   })
 
-  it('has no a11y violations with the full variant', async () => {
-    const {container} = render(<Component variant="full" />)
+  it('has no a11y violations with the featured variant', async () => {
+    const {container} = render(<Component variant="featured" />)
 
     const results = await axe(container)
 
@@ -1435,11 +1435,11 @@ describe('SubdomainNavBar', () => {
     expect(getByRole('link', {name: 'Secondary CTA'})).toHaveClass(`Button--size-${size}`)
   })
 
-  it('renders the full search trigger with placeholder and shortcut text', () => {
+  it('renders the featured search trigger with placeholder and shortcut text', () => {
     mockUseWindowSize.mockImplementation(() => ({isSmall: true, isMedium: true, isLarge: true}))
 
     const {getByTestId, getByText} = render(
-      <SubdomainNavBar title="Subdomain" variant="full">
+      <SubdomainNavBar title="Subdomain" variant="featured">
         <SubdomainNavBar.Search
           placeholder="Search ..."
           shortcutLabel="/"
