@@ -1,6 +1,7 @@
 declare const styles: {
   readonly "SubdomainNavBar": string;
   readonly "SubdomainNavBar--has-primary-nav": string;
+  readonly "SubdomainNavBar--has-title": string;
   readonly "SubdomainNavBar--variant-default": string;
   readonly "SubdomainNavBar--variant-full": string;
   readonly "SubdomainNavBar-back-arrow": string;
@@ -53,6 +54,7 @@ declare const styles: {
   readonly "SubdomainNavBar-search-input-area": string;
   readonly "SubdomainNavBar-search-input-button": string;
   readonly "SubdomainNavBar-search-input-button-placeholder": string;
+  readonly "SubdomainNavBar-search-input-button-placeholder-text": string;
   readonly "SubdomainNavBar-search-input-button-shortcut": string;
   readonly "SubdomainNavBar-search-result-group": string;
   readonly "SubdomainNavBar-search-result-group-heading": string;
@@ -76,7 +78,6 @@ declare const styles: {
   readonly "SubdomainNavBar-title-label": string;
   readonly "SubdomainNavBar-title-navigation": string;
   readonly "SubdomainNavBar-title-prefix": string;
-  readonly "SubdomainNavBar-title-separator": string;
   readonly "SubdomainNavBar-trailing-component": string;
   readonly "enlarge-shadow": string;
   readonly "fade-in": string;

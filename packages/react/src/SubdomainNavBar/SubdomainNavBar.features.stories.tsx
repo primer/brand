@@ -1036,13 +1036,11 @@ export const FullVariant: Story = {
   play: async ({canvasElement}) => {
     const canvas = within(canvasElement)
     const titleLink = canvas.getByRole('link', {name: 'Site title home'})
-    const divider = canvasElement.querySelector('.SubdomainNavBar-title-separator')
     const searchPlaceholder = canvas.getByText('Search Site title')
     const navbar = titleLink.closest('header')
 
     await expect(titleLink).toHaveTextContent('GitHub Site title')
     await expect(navbar).toHaveClass('SubdomainNavBar--variant-full')
-    await expect(divider).not.toBeInTheDocument()
     await expect(getComputedStyle(searchPlaceholder).display).not.toBe('none')
   },
   name: 'Full Variant',

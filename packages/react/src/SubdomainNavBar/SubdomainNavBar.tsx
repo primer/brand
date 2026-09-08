@@ -459,6 +459,7 @@ const Root = forwardRef<SubdomainNavBarHandle, SubdomainNavBarProps>(function Ro
           className={clsx(
             styles['SubdomainNavBar'],
             styles[`SubdomainNavBar--variant-${variant}`],
+            title && styles['SubdomainNavBar--has-title'],
             hasLinks && styles['SubdomainNavBar--has-primary-nav'],
             className,
           )}
@@ -485,9 +486,6 @@ const Root = forwardRef<SubdomainNavBarHandle, SubdomainNavBarProps>(function Ro
                     <MarkGithubIcon fill="currentColor" size={24} />
                   </a>
                 </li>
-                {!isFullVariant && title && (
-                  <li className={styles['SubdomainNavBar-title-separator']} aria-hidden="true" />
-                )}
                 {title && (
                   <li>
                     <a href={titleHref} aria-label={`${title} home`} className={styles['SubdomainNavBar-title']}>
@@ -960,7 +958,9 @@ const _SearchInternal = forwardRef<HTMLInputElement, SubdomainNavBarSearchProps>
           >
             <span className={styles['SubdomainNavBar-search-input-button-placeholder']}>
               <SearchIcon aria-hidden="true" size={16} />
-              <span>{resolvedPlaceholder}</span>
+              <span className={styles['SubdomainNavBar-search-input-button-placeholder-text']}>
+                {resolvedPlaceholder}
+              </span>
             </span>
             {resolvedShortcutLabel && (
               <span className={styles['SubdomainNavBar-search-input-button-shortcut']}>{resolvedShortcutLabel}</span>

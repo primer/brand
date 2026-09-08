@@ -361,18 +361,17 @@ describe('SubdomainNavBar', () => {
   })
 
   it('renders GitHub before the subdomain title in the full variant', () => {
-    const {container, getByRole} = render(<Component variant="full" />)
+    const {getByRole} = render(<Component variant="full" />)
     const titleLink = getByRole('link', {name: 'Subdomain home'})
 
     expect(titleLink).toHaveTextContent('GitHub Subdomain')
     expect(titleLink.querySelector('.SubdomainNavBar-title-prefix')).toHaveTextContent('GitHub')
     expect(titleLink.querySelector('.SubdomainNavBar-title-label')).toHaveTextContent('Subdomain')
     expect(titleLink.closest('header')).toHaveClass('SubdomainNavBar--variant-full')
-    expect(container.querySelector('.SubdomainNavBar-title-separator')).not.toBeInTheDocument()
   })
 
-  it.each([undefined, 'default'] as const)('renders the compact title treatment when variant is %s', variant => {
-    const {container, getByRole, queryByText} = render(<Component variant={variant} />)
+  it.each([undefined, 'default'] as const)('renders the minimal title treatment when variant is %s', variant => {
+    const {getByRole, queryByText} = render(<Component variant={variant} />)
     const titleLink = getByRole('link', {name: 'Subdomain home'})
 
     expect(titleLink).toHaveTextContent('Subdomain')
@@ -380,14 +379,12 @@ describe('SubdomainNavBar', () => {
     expect(queryByText('GitHub')).not.toBeInTheDocument()
     expect(titleLink.querySelector('.SubdomainNavBar-title-label')).toHaveTextContent('Subdomain')
     expect(titleLink.closest('header')).toHaveClass('SubdomainNavBar--variant-default')
-    expect(container.querySelector('.SubdomainNavBar-title-separator')).toHaveAttribute('aria-hidden', 'true')
   })
 
-  it('does not render a title divider without a title', () => {
-    const {container, queryByRole} = render(<Component title="" />)
+  it('does not render title content when the title is empty', () => {
+    const {queryByRole} = render(<Component title="" />)
 
     expect(queryByRole('link', {name: / home$/})).not.toBeInTheDocument()
-    expect(container.querySelector('.SubdomainNavBar-title-separator')).not.toBeInTheDocument()
   })
 
   it('only enables the default desktop navigation row when links are present', () => {
