@@ -437,7 +437,7 @@
   position: absolute;
   z-index: 100;
   right: auto;
-  background-color: var(--base-color-scale-white-0);
+  background-color: var(--brand-color-canvas-default);
   border-radius: var(--brand-borderRadius-large);
   animation: fade-in-down 0.25s, enlarge-shadow 250ms forwards;
   animation-timing-function: var(--brand-animation-easing-default);
