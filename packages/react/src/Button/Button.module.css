@@ -87,7 +87,7 @@
   border-color: var(--brand-button-primary-borderColor-active);
 }
 
-.Button--label-primary {
+.Button--label.Button--label-primary {
   color: var(--brand-button-primary-fgColor-rest);
 }
 
