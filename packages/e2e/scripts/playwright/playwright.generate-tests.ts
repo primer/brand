@@ -34,15 +34,18 @@ const waitForTimeoutLookup = {
   'components-faq-features--with-prose': 2000, // for the animation
   'components-faq-features--all-open': 1000, // for the animation
   'components-faq-features--reversed-toggles': 4000, // for the animation
-  'components-subdomainnavbar--search-open': 5500, // for the animation
-  'components-subdomainnavbar--search-results-visible': 5500, // for the animation
-  'components-subdomainnavbar--longer-title': 1500, // for the animation
-  'components-subdomainnavbar--mobile-view': 5500, // for the animation
-  'components-subdomainnavbar--mobile-menu-open': 5500, // for all staggered animations
-  'components-subdomainnavbar--mobile-menu-open-many-items': 5500, // for all staggered animations
-  'components-subdomainnavbar--mobile-search-results-visible': 5500, // for the animation
-  'components-subdomainnavbar--mobile-no-links': 5500, // for the animation
-  'components-subdomainnavbar--reversed-button-order-narrow': 5500, // for the animation
+  'components-subdomainnavbar-features--search-open': 5500, // for the animation
+  'components-subdomainnavbar-features--search-results-visible': 5500, // for the animation
+  'components-subdomainnavbar-features--longer-title': 1500, // for the animation
+  'components-subdomainnavbar-features--mobile-view': 5500, // for the animation
+  'components-subdomainnavbar-features--mobile-menu-open': 5500, // for all staggered animations
+  'components-subdomainnavbar-features--mobile-menu-open-many-items': 5500, // for all staggered animations
+  'components-subdomainnavbar-features--mobile-search-results-visible': 5500, // for the animation
+  'components-subdomainnavbar-features--mobile-no-links': 5500, // for the animation
+  'components-subdomainnavbar-features--mobile-leading-component-only-menu-open': 5500, // for the animation
+  'components-subdomainnavbar-features--tablet-menu-open': 5500, // for all staggered animations
+  'components-subdomainnavbar-features--overflow-menu-open': 1500, // wait for responsive overflow measurement
+  'components-subdomainnavbar-features--reversed-button-order-narrow': 5500, // for the animation
   'components-button-features--primary-focus-non-standard-bg': 2000, // for the interaction test
   'components-button-features--primary-focus': 2000, // for the interaction test
   'components-button-features--with-hover-interaction': 2000, // for the interaction test
@@ -150,7 +153,6 @@ const skipTestLookup = [
   'components-logosuite-features--mixed-width', // animation only
   'components-logosuite-features--following-hero', // animation only
   'components-logosuite-features--stacked', // animation only
-  'components-subdomainnavbar--overflow-menu-open', // flakey despite timeout
   'components-ide-features--editor-only', // animation too long
   'components-ide-features--editor-no-replay-button', // animation too long
   'components-ide-features--chat-only', // animation too long

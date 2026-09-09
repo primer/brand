@@ -34,16 +34,14 @@ const allViolations: Result[] = []
 const hostname = 'http://localhost:6006/iframe.html?viewMode=story'
 const testsToSkip = [
   'components-river--video', // video is an example and not an official primer pattern
-  'components-subdomainnavbar--search-results-visible', // has been a11y remediated already,
-  'components-subdomainnavbar--mobile-search-results-visible', // has been a11y remediated already,
   'components-videoplayer--default', // video makes this too flakey
   'components-videoplayer-features--with-poster', // video makes this too flakey
   'components-videoplayer-features--without-branding', // video makes this too flakey
   'components-videoplayer--playground', // video makes this too flakey
   'components-eyebrowbanner-features--on-custom-background-dark', // custom, unrelated background image
   'components-eyebrowbanner-features--on-custom-background-light', // custom, unrelated background image
-  'components-subdomainnavbar--skip-to-main-tag', // contains main tag which is in conflict with the default role="main" element
-  'components-subdomainnavbar--skip-to-main-tag-with-id', // contains main tag which is in conflict with the default role="main" element
+  'components-subdomainnavbar-features--skip-to-main-tag', // contains main tag which is in conflict with the default role="main" element
+  'components-subdomainnavbar-features--skip-to-main-tag-with-id', // contains main tag which is in conflict with the default role="main" element
   'components-ide--default', // presentational component and contains animation
   'components-ide--playground', // presentational component and contains animation
   'components-ide-features--editor-only', // presentational component and contains animation
@@ -163,7 +161,7 @@ async function getViolationsWithRetry(page: Page): Promise<Result[]> {
 }
 
 const testsWithCustomDelay = {
-  'components-subdomainnavbar--mobile-menu-open': 5000, // takes a while for the menu to open
+  'components-subdomainnavbar-features--mobile-menu-open': 5000, // takes a while for the menu to open
   'components-hero-examples--custom-background-inline-end-padded-video': 5000, // recipe / example that features long animation sequence
   'components-hero-examples--custom-background-block-end-video': 5000, // recipe / example that features long animation sequence
   'components-hero-examples--custom-background-inline-end-padded-image': 5000, // recipe / example that features long animation sequence
