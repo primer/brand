@@ -103,7 +103,7 @@ describe('TextCursorAnimation', () => {
     })
 
     const {getByTestId} = render(
-      <TextCursorAnimation animate animationTrigger="on-visible" delay={0} waitForPageLoad={false}>
+      <TextCursorAnimation animate animationTrigger="on-visible" waitForPageLoad={false}>
         {mockText}
       </TextCursorAnimation>,
     )
@@ -114,7 +114,10 @@ describe('TextCursorAnimation', () => {
     act(() => {
       intersectionObserverCallback([{isIntersecting: true} as IntersectionObserverEntry], {} as IntersectionObserver)
     })
-    act(() => jest.runOnlyPendingTimers())
+    act(() => jest.advanceTimersByTime(499))
+    expect(window.requestAnimationFrame).not.toHaveBeenCalled()
+
+    act(() => jest.advanceTimersByTime(1))
     act(() => nextFrame?.(100))
 
     expect(getByTestId(testIds.text)).toHaveTextContent('Hel=')

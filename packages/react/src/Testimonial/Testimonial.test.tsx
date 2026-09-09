@@ -369,7 +369,7 @@ describe('Testimonial', () => {
     act(() => {
       intersectionObserverCallback([{isIntersecting: true} as IntersectionObserverEntry], {} as IntersectionObserver)
     })
-    act(() => jest.advanceTimersByTime(666))
+    act(() => jest.advanceTimersByTime(499))
     expect(window.requestAnimationFrame).not.toHaveBeenCalled()
 
     act(() => jest.advanceTimersByTime(1))

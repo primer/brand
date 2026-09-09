@@ -102,7 +102,16 @@ function TestimonialBase(
   const logoChild = findChild<LogoProps>(Logo)
   const nameChild = findChild<NameProps>(Name)
 
-  const name = nameChild ? React.cloneElement(nameChild, {_variant: variant}) : nameChild
+  const name =
+    nameChild && variant === 'expressive' && typeof nameChild.props.children === 'string'
+      ? React.cloneElement(nameChild, {
+          children: (
+            <TextCursorAnimation animate animationTrigger="on-visible" variant="default">
+              {nameChild.props.children}
+            </TextCursorAnimation>
+          ),
+        })
+      : nameChild
 
   return (
     <figure
@@ -162,31 +171,14 @@ const Quote = forwardRef(QuoteBase)
  */
 type NameProps = {
   position?: string
-  _variant?: TestimonialVariant
 } & React.HTMLAttributes<HTMLElement> &
   BaseProps<HTMLElement>
 
-function _Name({children, className, position, _variant = defaultTestimonialVariant}: NameProps, ref) {
-  const name = typeof children === 'string' ? children : ''
-  const isExpressive = _variant === 'expressive'
-  const shouldAnimate = isExpressive && name.length > 0
-
+function _Name({children, className, position}: NameProps, ref) {
   return (
     <figcaption ref={ref} className={clsx(styles['Testimonial-caption'], className)}>
       <Text size="200" className={styles['Testimonial-from']} font="monospace">
-        {shouldAnimate ? (
-          <TextCursorAnimation
-            animate
-            animationTrigger="on-visible"
-            delay={667}
-            waitForPageLoad={false}
-            variant="default"
-          >
-            {name}
-          </TextCursorAnimation>
-        ) : (
-          children
-        )}
+        {children}
       </Text>
       {position && (
         <Text size="200" className={clsx(styles['Testimonial-position'])} variant="muted">
