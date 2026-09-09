@@ -198,7 +198,7 @@ describe('PricingOptions', () => {
     expect(within(items[2]).getByText(secondLabel)).toBeInTheDocument()
   })
 
-  it.each([null, false, '', <React.Fragment key="empty-fragment">{false}</React.Fragment>])(
+  it.each([null, false, '', ' \n\t ', <React.Fragment key="empty-fragment">{false}</React.Fragment>])(
     'does not enable labeled layout for an empty label containing %p',
     labelContent => {
       const {getByTestId, queryAllByTestId} = render(
