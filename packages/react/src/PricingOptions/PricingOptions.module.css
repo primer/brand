@@ -131,10 +131,9 @@
     background-color: transparent;
   }
 
-  /* Only divide adjacent label cells that both contain labels */
+  /* Continue the item divider through every non-first labeled cell */
   .PricingOptions--layout-default
-    .PricingOptions__item--has-label
-    + .PricingOptions__item--has-label
+    .PricingOptions__item--has-label:not(:first-child)
     .PricingOptions__label-cell::before {
     content: '';
     position: absolute;
@@ -143,10 +142,8 @@
     width: var(--brand-borderWidth-thin);
     background-color: var(--brand-color-border-subtle);
   }
-
   .PricingOptions--layout-default.PricingOptions--appearance-gradient
-    .PricingOptions__item--has-label
-    + .PricingOptions__item--has-label
+    .PricingOptions__item--has-label:not(:first-child)
     .PricingOptions__label-cell::before {
     mask-image: var(--brand-PricingOptions-borderMask);
   }
