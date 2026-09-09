@@ -86,7 +86,6 @@ const waitForTimeoutLookup = {
   'components-testimonial-examples--with-frosted-glass-dark': 4000, // for animation to complete
   'components-testimonial-examples--expressive-with-background': 1500, // for the speaker name animation to complete
   'components-testimonial-features--expressive': 1500, // for the speaker name animation to complete
-  'components-testimonial-features--speaker-name-scrolling-animation': 1500, // for the speaker name animation to complete
   'components-testimonial-features--expressive-tablet': 1500, // for the speaker name animation to complete
   'components-testimonial-features--expressive-mobile': 1500, // for the speaker name animation to complete
   'components-testimonial-features--expressive-dark': 1500, // for the speaker name animation to complete
@@ -186,7 +185,6 @@ const skipTestLookup = [
 ]
 
 const touchTestLookup = ['components-card-features--arrow-cta-long-label']
-const scrollIntoViewLookup = ['components-testimonial-features--speaker-name-scrolling-animation']
 
 const categorisedStories = Object.keys((stories as StoryIndex).entries).reduce((acc, key) => {
   const {id, name: storyName, importPath} = stories.entries[key]
@@ -261,11 +259,6 @@ for (const key of Object.keys(categorisedStories)) {
             await page.goto('http://localhost:${port}/iframe.html?${localeParam}args=&id=${id}&viewMode=story', { waitUntil: 'networkidle' })
             await page.locator('body.sb-show-main').waitFor({ state: 'visible' })
 
-            ${
-              scrollIntoViewLookup.includes(id)
-                ? `await page.locator('[data-testid="TextCursorAnimation"]').scrollIntoViewIfNeeded()`
-                : ''
-            }
             ${timeout ? `await page.waitForTimeout(${timeout})` : ''}
             await expect(page).toHaveScreenshot({ fullPage: true })
           });

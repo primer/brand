@@ -154,8 +154,7 @@ test.describe('Visual Comparison: Testimonial', () => {
     )
     await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
-    await page.locator('[data-testid="TextCursorAnimation"]').scrollIntoViewIfNeeded()
-    await page.waitForTimeout(1500)
+    await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
