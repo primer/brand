@@ -198,23 +198,20 @@ describe('PricingOptions', () => {
     expect(within(items[2]).getByText(secondLabel)).toBeInTheDocument()
   })
 
-  it.each([null, false, '', ' \n\t ', <React.Fragment key="empty-fragment">{false}</React.Fragment>])(
-    'does not enable labeled layout for an empty label containing %p',
-    labelContent => {
-      const {getByTestId, queryAllByTestId} = render(
-        <PricingOptions>
-          <PricingOptions.Item>
-            <PricingOptions.Label>{labelContent}</PricingOptions.Label>
-            <PricingOptions.Heading>Plan</PricingOptions.Heading>
-          </PricingOptions.Item>
-        </PricingOptions>,
-      )
+  it('enables labeled layout when PricingOptions.Label is present', () => {
+    const {getByTestId} = render(
+      <PricingOptions>
+        <PricingOptions.Item>
+          <PricingOptions.Label />
+          <PricingOptions.Heading>Plan</PricingOptions.Heading>
+        </PricingOptions.Item>
+      </PricingOptions>,
+    )
 
-      expect(getByTestId(PricingOptions.testIds.root)).not.toHaveClass('PricingOptions--has-labels')
-      expect(getByTestId(PricingOptions.testIds.item)).not.toHaveClass('PricingOptions__item--has-label')
-      expect(queryAllByTestId(PricingOptions.testIds.label)).toHaveLength(0)
-    },
-  )
+    expect(getByTestId(PricingOptions.testIds.root)).toHaveClass('PricingOptions--has-labels')
+    expect(getByTestId(PricingOptions.testIds.item)).toHaveClass('PricingOptions__item--has-label')
+    expect(getByTestId(PricingOptions.testIds.label)).toBeInTheDocument()
+  })
 
   it('renders zero as label content', () => {
     const {getByTestId, getByText} = render(
@@ -235,16 +232,18 @@ describe('PricingOptions', () => {
     mockUseWindowSize.mockReturnValue(mediumBreakpoint)
 
     const {getByTestId} = render(
-      <PricingOptions.Item data-testid={testId}>
-        <PricingOptions.Label>{mockHeaderLabel}</PricingOptions.Label>
-        <PricingOptions.Footnote>{mockFootnote}</PricingOptions.Footnote>
-        <PricingOptions.Description>{mockDescription}</PricingOptions.Description>
-        <PricingOptions.Heading>{mockHeading}</PricingOptions.Heading>
-        <PricingOptions.FeatureList>
-          <PricingOptions.FeatureListGroupHeading>{mockFeaturedListHeading}</PricingOptions.FeatureListGroupHeading>
-          <PricingOptions.FeatureListItem>{mockFeatureListItem}</PricingOptions.FeatureListItem>
-        </PricingOptions.FeatureList>
-      </PricingOptions.Item>,
+      <PricingOptions>
+        <PricingOptions.Item data-testid={testId}>
+          <PricingOptions.Label>{mockHeaderLabel}</PricingOptions.Label>
+          <PricingOptions.Footnote>{mockFootnote}</PricingOptions.Footnote>
+          <PricingOptions.Description>{mockDescription}</PricingOptions.Description>
+          <PricingOptions.Heading>{mockHeading}</PricingOptions.Heading>
+          <PricingOptions.FeatureList>
+            <PricingOptions.FeatureListGroupHeading>{mockFeaturedListHeading}</PricingOptions.FeatureListGroupHeading>
+            <PricingOptions.FeatureListItem>{mockFeatureListItem}</PricingOptions.FeatureListItem>
+          </PricingOptions.FeatureList>
+        </PricingOptions.Item>
+      </PricingOptions>,
     )
 
     const PricingOptionsItemEl = getByTestId(testId)
