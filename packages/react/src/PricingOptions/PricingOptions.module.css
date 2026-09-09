@@ -153,12 +153,15 @@
   .PricingOptions--layout-cards .PricingOptions__label-cell {
     margin-inline: calc(var(--brand-pricing-options-item-padding-inline) * -1);
     padding-inline: var(--base-size-28);
+    border-block-end: var(--brand-borderWidth-thin) solid var(--brand-color-border-subtle);
+  }
+
+  .PricingOptions--layout-cards.PricingOptions--appearance-gradient .PricingOptions__label-cell {
     border-inline: var(--brand-borderWidth-thin) solid var(--brand-color-border-subtle);
   }
 
   .PricingOptions--layout-cards .PricingOptions__label-cell--empty {
-    opacity: 0;
-    pointer-events: none;
+    display: none;
   }
 
   /* Cards: keep accent border inside the card boundary */
@@ -419,12 +422,21 @@
 
 @media (min-width: 63.25rem) {
   .PricingOptions__item {
-    grid-row: labels / footnote;
+    grid-row: header / footnote;
     grid-template-rows: subgrid;
   }
 
   .PricingOptions__item--has-leading-component {
+    grid-row: leadingComponent / footnote;
+  }
+
+  .PricingOptions--layout-default .PricingOptions__item,
+  .PricingOptions--layout-cards .PricingOptions__item--has-label {
     grid-row: labels / footnote;
+  }
+
+  .PricingOptions--layout-cards.PricingOptions--has-labels .PricingOptions__item:not(.PricingOptions__item--has-label) {
+    margin-block-start: calc(var(--brand-pricing-options-item-padding-block-start) * -1);
   }
 }
 
