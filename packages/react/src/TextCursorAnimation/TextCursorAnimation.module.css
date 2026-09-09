@@ -39,6 +39,8 @@
   width: calc(var(--base-size-8) + var(--base-size-2) / 2);
   height: calc(var(--base-size-12) + var(--base-size-2));
   flex: 0 0 calc(var(--base-size-8) + var(--base-size-2) / 2);
+  position: relative;
+  top: -0.5px; /* optical adjustment*/
 }
 
 .TextCursorAnimation__cursor--initial {

@@ -1,8 +1,9 @@
 import React, {useEffect} from 'react'
-import {render} from '@testing-library/react'
+import {act, render} from '@testing-library/react'
 import '@testing-library/jest-dom'
 import {axe, toHaveNoViolations} from 'jest-axe'
 import {Testimonial} from './Testimonial'
+import {testIds as textCursorAnimationTestIds} from '../TextCursorAnimation'
 
 expect.extend(toHaveNoViolations)
 
@@ -12,6 +13,36 @@ describe('Testimonial', () => {
   const mockPosition = 'Staff Security Engineer'
   const mockAvatarSrc = '/images/avatar-mona.png'
   const mockAvatarAlt = 'David Ross avatar'
+  const originalIntersectionObserver = window.IntersectionObserver
+
+  beforeAll(() => {
+    Object.defineProperty(window, 'matchMedia', {
+      writable: true,
+      value: jest.fn().mockImplementation(query => ({
+        matches: false,
+        media: query,
+        onchange: null,
+        addListener: jest.fn(),
+        removeListener: jest.fn(),
+        dispatchEvent: jest.fn(),
+        addEventListener: jest.fn(),
+        removeEventListener: jest.fn(),
+      })),
+    })
+    window.IntersectionObserver = jest.fn(
+      () => ({disconnect: jest.fn(), observe: jest.fn(), unobserve: jest.fn()} as unknown as IntersectionObserver),
+    )
+  })
+
+  afterAll(() => {
+    window.IntersectionObserver = originalIntersectionObserver
+  })
+
+  afterEach(() => {
+    jest.useRealTimers()
+    jest.restoreAllMocks()
+    jest.clearAllMocks()
+  })
 
   const DefaultTestimonial = () => (
     <Testimonial>
@@ -290,6 +321,63 @@ describe('Testimonial', () => {
     const position = getByText(mockPosition)
     expect(name).toBeInTheDocument()
     expect(position).toBeInTheDocument()
+  })
+
+  it.each(['minimal', 'default', 'subtle'] as const)('does not animate the speaker name in the %s variant', variant => {
+    const intersectionObserver = jest.spyOn(window, 'IntersectionObserver')
+
+    const {getByText, container} = render(
+      <Testimonial variant={variant}>
+        <Testimonial.Quote>Quote text</Testimonial.Quote>
+        <Testimonial.Name>{mockName}</Testimonial.Name>
+      </Testimonial>,
+    )
+
+    expect(getByText(mockName)).toBeVisible()
+    expect(container.querySelector('.TextCursorAnimation')).not.toBeInTheDocument()
+    expect(intersectionObserver).not.toHaveBeenCalled()
+  })
+
+  it('scrambles the speaker name after it appears on screen and the delay elapses', () => {
+    jest.useFakeTimers()
+    jest.spyOn(performance, 'now').mockReturnValue(0)
+
+    let intersectionObserverCallback: IntersectionObserverCallback
+    const disconnect = jest.fn()
+    jest.spyOn(window, 'IntersectionObserver').mockImplementation(callback => {
+      intersectionObserverCallback = callback
+      return {disconnect, observe: jest.fn(), unobserve: jest.fn()} as unknown as IntersectionObserver
+    })
+
+    let nextFrame: FrameRequestCallback | undefined
+    jest.spyOn(window, 'requestAnimationFrame').mockImplementation(callback => {
+      nextFrame = callback
+      return 1
+    })
+
+    const {getByTestId, queryByTestId} = render(
+      <Testimonial variant="expressive">
+        <Testimonial.Quote>Quote text</Testimonial.Quote>
+        <Testimonial.Name>{mockName}</Testimonial.Name>
+      </Testimonial>,
+    )
+    const animatedName = getByTestId(textCursorAnimationTestIds.text)
+
+    expect(animatedName).toHaveTextContent('')
+    expect(queryByTestId(textCursorAnimationTestIds.cursor)).not.toBeInTheDocument()
+
+    act(() => {
+      intersectionObserverCallback([{isIntersecting: true} as IntersectionObserverEntry], {} as IntersectionObserver)
+    })
+    act(() => jest.advanceTimersByTime(666))
+    expect(window.requestAnimationFrame).not.toHaveBeenCalled()
+
+    act(() => jest.advanceTimersByTime(1))
+    act(() => nextFrame?.(100))
+
+    expect(animatedName).toHaveTextContent('Dav=')
+    expect(animatedName.nextElementSibling).toBe(getByTestId(textCursorAnimationTestIds.cursor))
+    expect(disconnect).toHaveBeenCalled()
   })
 
   it('applies custom className to name', () => {

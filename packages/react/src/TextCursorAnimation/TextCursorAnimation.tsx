@@ -1,4 +1,4 @@
-import React, {PropsWithChildren} from 'react'
+import React, {PropsWithChildren, useRef} from 'react'
 import {clsx} from 'clsx'
 import {useCursorAnimation} from '../hooks/useCursorAnimation'
 import {EyebrowText} from '../EyebrowText'
@@ -31,6 +31,7 @@ export type TextCursorAnimationProps = {
   ['data-testid']?: string
   delay?: number
   waitForPageLoad?: boolean
+  animationTrigger?: 'immediate' | 'on-visible'
 } & React.HTMLAttributes<HTMLSpanElement> &
   Omit<TextProps, 'animate' | 'as'>
 
@@ -42,8 +43,10 @@ export function TextCursorAnimation({
   'data-testid': testId,
   delay,
   waitForPageLoad = true,
+  animationTrigger = 'immediate',
   variant = 'muted',
 }: PropsWithChildren<TextCursorAnimationProps>) {
+  const rootRef = useRef<HTMLSpanElement>(null)
   const text = typeof children === 'string' ? children : ''
   const {showCursor, visibleText, cursorPhase} = useCursorAnimation({
     text,
@@ -51,6 +54,8 @@ export function TextCursorAnimation({
     animate,
     delay,
     waitForPageLoad,
+    startOnIntersection: animationTrigger === 'on-visible',
+    intersectionRef: rootRef,
   })
 
   const hasAnimation = animate === true && text.length > 0
@@ -62,8 +67,20 @@ export function TextCursorAnimation({
     complete: styles['TextCursorAnimation__cursor--complete'],
   }[hasAnimation ? cursorPhase : 'complete']
 
+  const cursor = showCursor ? (
+    <span
+      className={clsx(
+        styles.TextCursorAnimation__cursor,
+        hasAnimation && styles['TextCursorAnimation__cursor--animated'],
+        cursorPhaseClassName,
+      )}
+      aria-hidden="true"
+      data-testid={testIds.cursor}
+    />
+  ) : null
+
   return (
-    <span className={clsx(styles.TextCursorAnimation, className)} data-testid={testId || testIds.root}>
+    <span ref={rootRef} className={clsx(styles.TextCursorAnimation, className)} data-testid={testId || testIds.root}>
       <span className={styles.TextCursorAnimation__inner}>
         {hasAnimation && (
           <span className={styles.TextCursorAnimation__sizingContainer}>
@@ -107,17 +124,7 @@ export function TextCursorAnimation({
           >
             {hasAnimation ? visibleText : content}
           </EyebrowText>
-          {showCursor && (
-            <span
-              className={clsx(
-                styles.TextCursorAnimation__cursor,
-                hasAnimation && styles['TextCursorAnimation__cursor--animated'],
-                cursorPhaseClassName,
-              )}
-              aria-hidden="true"
-              data-testid={testIds.cursor}
-            />
-          )}
+          {cursor}
         </span>
       </span>
     </span>

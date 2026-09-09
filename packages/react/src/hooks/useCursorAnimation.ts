@@ -1,4 +1,4 @@
-import {useEffect, useState} from 'react'
+import {useEffect, useState, type RefObject} from 'react'
 import useIsomorphicLayoutEffect from './useIsomorphicLayoutEffect'
 import {useReducedMotion} from './useReducedMotion'
 
@@ -16,6 +16,8 @@ export type UseCursorAnimationOptions = {
   animate?: boolean
   delay?: number
   waitForPageLoad?: boolean
+  startOnIntersection?: boolean
+  intersectionRef?: RefObject<HTMLElement | null>
 }
 
 export function useCursorAnimation({
@@ -24,23 +26,46 @@ export function useCursorAnimation({
   animate,
   delay = 500,
   waitForPageLoad = true,
+  startOnIntersection = false,
+  intersectionRef,
 }: UseCursorAnimationOptions): UseCursorAnimationResult {
   const prefersReducedMotion = useReducedMotion()
-
-  const shouldAnimate = animate === true && !prefersReducedMotion && text.length > 0
+  const [hasIntersected, setHasIntersected] = useState(false)
   const shouldStartHidden = animate === true && text.length > 0
-
-  const [frame, setFrame] = useState<UseCursorAnimationResult>({
+  const motionEnabled = shouldStartHidden && !prefersReducedMotion
+  const shouldAnimate = motionEnabled && (!startOnIntersection || hasIntersected)
+  const [frame, setFrame] = useState<{visibleText: string; cursorPhase: CursorAnimationPhase}>({
     visibleText: shouldStartHidden ? '' : text,
-    showCursor: !shouldStartHidden,
     cursorPhase: shouldStartHidden ? 'initial' : 'complete',
   })
 
-  useIsomorphicLayoutEffect(() => {
-    if (!shouldAnimate) {
-      setFrame({visibleText: text, showCursor: true, cursorPhase: 'complete'})
+  useEffect(() => {
+    if (!startOnIntersection || !motionEnabled || hasIntersected) return
+
+    if (typeof IntersectionObserver === 'undefined') {
+      setHasIntersected(true)
+      return
     }
-  }, [shouldAnimate, text])
+
+    const observedElement = intersectionRef?.current
+    if (!observedElement) return
+
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        setHasIntersected(true)
+        observer.disconnect()
+      }
+    })
+
+    observer.observe(observedElement)
+    return () => observer.disconnect()
+  }, [hasIntersected, intersectionRef, motionEnabled, startOnIntersection])
+
+  useIsomorphicLayoutEffect(() => {
+    if (!motionEnabled) {
+      setFrame({visibleText: text, cursorPhase: 'complete'})
+    }
+  }, [motionEnabled, text])
 
   useEffect(() => {
     if (!shouldAnimate) return
@@ -51,7 +76,7 @@ export function useCursorAnimation({
     const correctionPauseDuration = 350 / (85 / 75)
     const scrambleSymbols = ['>', '*', '=', '&', '+', '-', '%', '^', '_']
 
-    setFrame({visibleText: '', showCursor: false, cursorPhase: 'initial'})
+    setFrame({visibleText: '', cursorPhase: 'initial'})
 
     const candidateInitialText =
       typeof initialText === 'string' && initialText.length > 0 && initialText !== text ? initialText : undefined
@@ -103,7 +128,7 @@ export function useCursorAnimation({
       return result
     }
 
-    const getFrame = (elapsed: number): UseCursorAnimationResult => {
+    const getFrame = (elapsed: number) => {
       let nextText = ''
 
       if (elapsed > 0 && elapsed < firstTypeDuration) {
@@ -131,11 +156,7 @@ export function useCursorAnimation({
       if (elapsed >= finalCursorStart) nextCursorPhase = 'final'
       if (elapsed >= typingComplete) nextCursorPhase = 'complete'
 
-      return {
-        visibleText: nextText,
-        showCursor: nextText.length > 0,
-        cursorPhase: nextCursorPhase,
-      }
+      return {visibleText: nextText, cursorPhase: nextCursorPhase}
     }
 
     let animationFrame: number | undefined
@@ -143,11 +164,7 @@ export function useCursorAnimation({
 
     const startAnimation = () => {
       const startTime = performance.now()
-      let previousFrame: UseCursorAnimationResult = {
-        visibleText: '',
-        showCursor: false,
-        cursorPhase: 'initial',
-      }
+      let previousFrame = {visibleText: '', cursorPhase: 'initial' as CursorAnimationPhase}
 
       const tick = (currentTime: number) => {
         const elapsed = currentTime - startTime
@@ -155,7 +172,6 @@ export function useCursorAnimation({
 
         if (
           previousFrame.visibleText !== nextFrame.visibleText ||
-          previousFrame.showCursor !== nextFrame.showCursor ||
           previousFrame.cursorPhase !== nextFrame.cursorPhase
         ) {
           previousFrame = nextFrame
@@ -196,5 +212,9 @@ export function useCursorAnimation({
     }
   }, [delay, initialText, shouldAnimate, text, waitForPageLoad])
 
-  return frame
+  return {
+    visibleText: frame.visibleText,
+    showCursor: shouldStartHidden ? frame.visibleText.length > 0 : true,
+    cursorPhase: frame.cursorPhase,
+  }
 }

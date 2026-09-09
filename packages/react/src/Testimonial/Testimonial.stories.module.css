@@ -24,6 +24,18 @@
   padding-block: var(--base-size-36);
 }
 
+.speakerNameAnimation {
+  position: relative;
+  padding-block-start: 100dvh;
+}
+
+.speakerNameAnimationPrompt {
+  position: absolute;
+  inset-block-start: 50dvh;
+  inset-inline-start: 50%;
+  transform: translate(-50%, -50%);
+}
+
 @media screen and (min-width: 48rem) {
   .expressiveContainer {
     padding: var(--base-size-48) var(--base-size-32);
