@@ -27,11 +27,6 @@
 @media screen and (max-width: 63.24rem) {
   .PricingOptions {
     --brand-pricing-options-item-gap: var(--base-size-40);
-  }
-}
-
-@media screen and (max-width: 63.24rem) {
-  .PricingOptions {
     margin-inline: auto;
     max-width: 488px;
   }
@@ -131,10 +126,9 @@
     border-inline-end: var(--brand-borderWidth-thin) solid var(--brand-color-border-subtle);
   }
 
-  /* Empty cells: transparent bg/borders but structurally visible so dividers show */
+  /* Keep empty cells in the label row without highlighting their item */
   .PricingOptions--layout-default .PricingOptions__label-cell--empty {
     background-color: transparent;
-    border-block-start-color: transparent;
   }
 
   /* Only divide adjacent label cells that both contain labels */
@@ -542,7 +536,7 @@
   padding-block-end: var(--base-size-8);
 }
 
-@media (max-width: 63.25rem) {
+@media (max-width: 47.99rem) {
   .PricingOptions__price-value,
   .PricingOptions__price-currency-symbol {
     font-size: var(--brand-text-size-900);

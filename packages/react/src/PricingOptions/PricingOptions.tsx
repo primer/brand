@@ -112,7 +112,7 @@ const PricingOptionsLabel = ({children}: PricingOptionsLabelProps) => {
 const hasRenderableLabelContent = (children: React.ReactNode): boolean =>
   React.Children.toArray(children).some(child => {
     if (typeof child === 'string') {
-      return child.length > 0
+      return child.trim().length > 0
     }
 
     if (React.isValidElement<{children?: React.ReactNode}>(child) && child.type === React.Fragment) {
