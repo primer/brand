@@ -15,6 +15,10 @@
   gap: var(--brand-control-medium-gap);
 }
 
+.Button:where(button) {
+  font: inherit;
+}
+
 .Button:hover {
   text-decoration: none;
 }
