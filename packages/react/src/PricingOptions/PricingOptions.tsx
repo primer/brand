@@ -109,19 +109,6 @@ const PricingOptionsLabel = ({children}: PricingOptionsLabelProps) => {
   return <>{children}</>
 }
 
-const hasRenderableLabelContent = (children: React.ReactNode): boolean =>
-  React.Children.toArray(children).some(child => {
-    if (typeof child === 'string') {
-      return child.trim().length > 0
-    }
-
-    if (React.isValidElement<{children?: React.ReactNode}>(child) && child.type === React.Fragment) {
-      return hasRenderableLabelContent(child.props.children)
-    }
-
-    return true
-  })
-
 const PricingOptionsRoot = forwardRef(
   (
     {
@@ -149,8 +136,7 @@ const PricingOptionsRoot = forwardRef(
             child =>
               React.isValidElement<PricingOptionsLabelProps>(child) &&
               typeof child.type !== 'string' &&
-              child.type === PricingOptionsLabel &&
-              hasRenderableLabelContent(child.props.children),
+              child.type === PricingOptionsLabel,
           ),
         ),
       [filteredChildren],
@@ -264,15 +250,13 @@ const PricingOptionsItem = forwardRef(
     )
 
     const {Heading, Description, Price, FeatureList, Actions, ActionsMessage, Footnote, Label} = filteredChildren
-    const labelContent = Label?.props.children
-    const hasLabelContent = hasRenderableLabelContent(labelContent)
-    const shouldRenderLabelCell = hasLabels || hasLabelContent
+    const hasLabel = Label !== null
 
     return (
       <div
         className={clsx(
           styles.PricingOptions__item,
-          hasLabelContent && styles['PricingOptions__item--has-label'],
+          hasLabel && styles['PricingOptions__item--has-label'],
           leadingComponent && styles['PricingOptions__item--has-leading-component'],
           styles[`PricingOptions__item--align-${align}`],
           className,
@@ -281,17 +265,15 @@ const PricingOptionsItem = forwardRef(
         ref={ref}
         {...(rest as HTMLAttributes<HTMLElement>)}
       >
-        {shouldRenderLabelCell && (
+        {hasLabels && (
           <div
             className={clsx(
               styles['PricingOptions__label-cell'],
-              hasLabelContent
-                ? styles['PricingOptions__label-cell--has-label']
-                : styles['PricingOptions__label-cell--empty'],
+              hasLabel ? styles['PricingOptions__label-cell--has-label'] : styles['PricingOptions__label-cell--empty'],
             )}
             data-testid={Label?.props['data-testid'] || testIds.label}
           >
-            {hasLabelContent ? <span className={styles.PricingOptions__label}>{labelContent}</span> : null}
+            {hasLabel ? <span className={styles.PricingOptions__label}>{Label.props.children}</span> : null}
           </div>
         )}
         <div className={styles['PricingOptions__header']}>{Heading}</div>
