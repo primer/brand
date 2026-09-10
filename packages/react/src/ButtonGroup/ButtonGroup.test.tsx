@@ -94,6 +94,24 @@ describe('ButtonGroup', () => {
     expect(buttons[1].classList).toContain('Button--secondary')
   })
 
+  it('supports conditionally rendered children', () => {
+    const ConditionalButtonGroup = ({showOptionalAction}: {showOptionalAction: boolean}) => (
+      <ButtonGroup>
+        <Button>Primary Action</Button>
+        {showOptionalAction && <Button>Optional Action</Button>}
+        <Button>Secondary Action</Button>
+      </ButtonGroup>
+    )
+
+    const {getAllByRole, queryByRole} = render(<ConditionalButtonGroup showOptionalAction={false} />)
+
+    const buttons = getAllByRole('button')
+    expect(queryByRole('button', {name: 'Optional Action'})).not.toBeInTheDocument()
+    expect(buttons).toHaveLength(2)
+    expect(buttons[0]).toHaveClass('Button--primary')
+    expect(buttons[1]).toHaveClass('Button--secondary')
+  })
+
   it('does not render arrows on buttons by default', () => {
     const {container} = render(
       <ButtonGroup>

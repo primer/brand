@@ -15,7 +15,8 @@
     }
   },
   "hero": {
-    "label": "GitHub Security",
+    "label": "Developer-first security",
+    "initialLabel": "Application security",
     "heading": "Powerful security, designed for developers",
     "primaryAction": "Start free trial",
     "secondaryAction": "Contact sales"

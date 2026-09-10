@@ -11,6 +11,7 @@ export type HeroLabelProps = Omit<TextProps, 'as' | 'ref' | 'animate'> &
   Omit<BaseProps<HTMLSpanElement>, 'animate'> & {
     animate?: boolean
     animationDelay?: number
+    initialText?: string
   }
 
 export const HeroLabel = forwardRef<HTMLSpanElement, HeroLabelProps>(
@@ -21,6 +22,7 @@ export const HeroLabel = forwardRef<HTMLSpanElement, HeroLabelProps>(
       variant = 'muted',
       animate = false,
       animationDelay = 1000,
+      initialText,
       ...rest
     }: PropsWithChildren<HeroLabelProps>,
     ref,
@@ -33,7 +35,12 @@ export const HeroLabel = forwardRef<HTMLSpanElement, HeroLabelProps>(
 
     return (
       <span ref={ref} className={clsx(styles['Hero-label'], className)} {...rest}>
-        <TextCursorAnimation variant={variant} animate={shouldAnimate} delay={shouldHaveDelay ? animationDelay : 0}>
+        <TextCursorAnimation
+          variant={variant}
+          animate={shouldAnimate}
+          delay={shouldHaveDelay ? animationDelay : 0}
+          initialText={initialText}
+        >
           {children}
         </TextCursorAnimation>
       </span>

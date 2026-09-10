@@ -15,7 +15,8 @@
     }
   },
   "hero": {
-    "label": "GitHub Copilot",
+    "label": "Seu acelerador de IA",
+    "initialLabel": "Seu assistente de IA",
     "headingLine1": "Comande",
     "headingLine2": "seu ofício",
     "description": "Seu acelerador de IA para todos os fluxos de trabalho, do editor à empresa.",
@@ -24,7 +25,11 @@
     "trailingText": "Já tem o Visual Studio Code?",
     "trailingLinkText": "Abrir agora",
     "peekAlt": "Mascote do GitHub Copilot espiando a partir da parte inferior da área em grade",
-    "imageAlt": "GitHub Copilot no modo agente no VS Code"
+    "imageAlt": "GitHub Copilot no modo agente no VS Code",
+    "videoControls": {
+      "play": "Reproduzir vídeo",
+      "pause": "Pausar vídeo"
+    }
   },
   "logoSuiteHeading": "Logotipos de parceiros do GitHub Copilot",
   "resourceCards": {

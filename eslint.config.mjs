@@ -287,12 +287,4 @@ export default tseslint.config(
     },
   },
 
-  // Figma code connect files
-  {
-    files: ['**/*.figma.tsx'],
-    rules: {
-      'github/unescaped-html-literal': 'off',
-      'i18n-text/no-en': 'off',
-    },
-  },
 )

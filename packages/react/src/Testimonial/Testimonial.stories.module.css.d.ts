@@ -7,6 +7,7 @@ declare const styles: {
   readonly "exampleShape1Light": string;
   readonly "exampleShape2Dark": string;
   readonly "exampleShape2Light": string;
+  readonly "expressiveContainer": string;
   readonly "innerContainer": string;
 };
 export = styles;

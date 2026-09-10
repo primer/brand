@@ -4,6 +4,14 @@
       "value": "420px",
       "$type": "dimension"
     },
+    "padding": {
+      "block": {
+        "value": "var(--base-size-32)"
+      },
+      "inline": {
+        "value": "var(--base-size-20)"
+      }
+    },
     "animation": {
       "duration": {
         "value": "400ms"

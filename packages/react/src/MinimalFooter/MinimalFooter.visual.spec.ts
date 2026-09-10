@@ -94,9 +94,9 @@ test.describe('Visual Comparison: MinimalFooter', () => {
   })
 
   // eslint-disable-next-line i18n-text/no-en
-  test.describe('Mobile viewport test for Default (Narrow viewport)', () => {
+  test.describe('Mobile viewport test for Default, narrow view (mobile)', () => {
     test.use({viewport: {width: 360, height: 800}})
-    test('MinimalFooter / Default (Narrow viewport)', async ({page}) => {
+    test('MinimalFooter / Default, narrow view (mobile)', async ({page}) => {
       await page.goto(
         'http://localhost:6006/iframe.html?args=&id=components-minimalfooter-features--default-narrow&viewMode=story',
         {waitUntil: 'networkidle'},
@@ -116,5 +116,87 @@ test.describe('Visual Comparison: MinimalFooter', () => {
 
     await page.waitForTimeout(5000)
     await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
+  test('MinimalFooter / Custom Content', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-minimalfooter-features--custom-content&viewMode=story',
+      {waitUntil: 'networkidle'},
+    )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+    await page.waitForTimeout(500)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
+  test('MinimalFooter / Back To Top', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-minimalfooter-features--back-to-top&viewMode=story',
+      {waitUntil: 'networkidle'},
+    )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+    await page.waitForTimeout(500)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
+  // eslint-disable-next-line i18n-text/no-en
+  test.describe('Mobile viewport test for Narrow view (mobile)', () => {
+    test.use({viewport: {width: 360, height: 800}})
+    test('MinimalFooter / Narrow view (mobile)', async ({page}) => {
+      await page.goto(
+        'http://localhost:6006/iframe.html?args=&id=components-minimalfooter-features--narrow-view&viewMode=story',
+        {waitUntil: 'networkidle'},
+      )
+      await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+      await page.waitForTimeout(500)
+      await expect(page).toHaveScreenshot({fullPage: true})
+    })
+  })
+
+  // eslint-disable-next-line i18n-text/no-en
+  test.describe('Tablet viewport test for Regular view (tablet)', () => {
+    test.use({viewport: {width: 834, height: 1112}})
+    test('MinimalFooter / Regular view (tablet)', async ({page}) => {
+      await page.goto(
+        'http://localhost:6006/iframe.html?args=&id=components-minimalfooter-features--regular-view&viewMode=story',
+        {waitUntil: 'networkidle'},
+      )
+      await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+      await page.waitForTimeout(500)
+      await expect(page).toHaveScreenshot({fullPage: true})
+    })
+  })
+
+  // eslint-disable-next-line i18n-text/no-en
+  test.describe('Mobile viewport test for Narrow view, no social links (mobile)', () => {
+    test.use({viewport: {width: 360, height: 800}})
+    test('MinimalFooter / Narrow view, no social links (mobile)', async ({page}) => {
+      await page.goto(
+        'http://localhost:6006/iframe.html?args=&id=components-minimalfooter-features--narrow-view-no-social-links&viewMode=story',
+        {waitUntil: 'networkidle'},
+      )
+      await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+      await page.waitForTimeout(500)
+      await expect(page).toHaveScreenshot({fullPage: true})
+    })
+  })
+
+  // eslint-disable-next-line i18n-text/no-en
+  test.describe('Tablet viewport test for Regular view, no social links (tablet)', () => {
+    test.use({viewport: {width: 834, height: 1112}})
+    test('MinimalFooter / Regular view, no social links (tablet)', async ({page}) => {
+      await page.goto(
+        'http://localhost:6006/iframe.html?args=&id=components-minimalfooter-features--regular-view-no-social-links&viewMode=story',
+        {waitUntil: 'networkidle'},
+      )
+      await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+      await page.waitForTimeout(500)
+      await expect(page).toHaveScreenshot({fullPage: true})
+    })
   })
 })

@@ -1,7 +1,7 @@
 import React from 'react'
 import type {Meta} from '@storybook/react'
 import {AnimationProvider} from './AnimationProvider/AnimationProvider'
-import {Label, Image, Text, Stack, Animate, Heading, ThemeProvider, LogoSuite} from '..'
+import {Token, Image, Text, Stack, Animate, Heading, ThemeProvider, LogoSuite} from '..'
 import {CheckCircleFillIcon, RocketIcon} from '@primer/octicons-react'
 
 import styles from './Animation.stories.module.css'
@@ -20,19 +20,18 @@ export const DiscussionsHero = () => (
         alt="Discussions UI"
         src="https://github.githubassets.com/images/modules/site/discussions/overview.png"
       />
-      <Label
+      <Token
         animate={{
           variant: 'scale-in-up',
         }}
         className={clsx(styles.DiscussionsExampleHero__label, styles['DiscussionsExampleHero__label--one'])}
-        color="green-blue"
         leadingVisual={<CheckCircleFillIcon />}
-        size="large"
+        variant="accent"
       >
         <Text variant="muted" size="400" weight="bold">
           17
         </Text>
-      </Label>
+      </Token>
       <Stack
         className={clsx(styles['DiscussionsExampleHero__labelContainer--two'])}
         padding="none"
@@ -40,16 +39,15 @@ export const DiscussionsHero = () => (
           variant: 'scale-in-up',
         }}
       >
-        <Label
+        <Token
           className={clsx(styles.DiscussionsExampleHero__label, styles['DiscussionsExampleHero__label--two'])}
-          color="pink-blue"
           leadingVisual={<RocketIcon />}
-          size="large"
+          variant="accent"
         >
           <Text variant="muted" size="400" weight="bold">
             19
           </Text>
-        </Label>
+        </Token>
       </Stack>
       <Animate
         animate={{
@@ -57,15 +55,14 @@ export const DiscussionsHero = () => (
           delay: 1000,
         }}
       >
-        <Label
+        <Token
           className={clsx(styles.DiscussionsExampleHero__label, styles['DiscussionsExampleHero__label--three'])}
-          color="green"
-          size="large"
+          variant="accent"
         >
           <Text variant="muted" size="400" weight="bold">
             Answered
           </Text>
-        </Label>
+        </Token>
       </Animate>
 
       <video

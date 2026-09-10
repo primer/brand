@@ -1,0 +1,120 @@
+---
+title: Minimal video player
+description: Use MinimalVideoPlayer for muted, looping product demonstrations with a single play and pause control
+keywords: ['playback', 'media', 'video', 'motion']
+show-tabs: false
+ready: true
+source: https://github.com/primer/brand/blob/main/packages/react/src/MinimalVideoPlayer/MinimalVideoPlayer.tsx
+storybook: '/brand/storybook/?path=/story/components-minimalvideoplayer--playground'
+thumbnail: '/images/thumbnails/minimal-video-player-thumbnail.png'
+thumbnail_darkMode: '/images/thumbnails/minimal-video-player-thumbnail-dark.png'
+---
+
+```js
+import {MinimalVideoPlayer} from '@primer/react-brand'
+```
+
+Use `MinimalVideoPlayer` for short, silent product demonstrations that need only a play and pause control.
+
+Use [VideoPlayer](/components/VideoPlayer) when viewers need audio, captions, seeking, volume, fullscreen controls,
+branding, or a dedicated programmatic playback API.
+
+## Examples
+
+### Default
+
+Pass a native video URL with `src`. The required `title` provides a concise accessible name for the video.
+
+```jsx live
+<MinimalVideoPlayer
+  aria-describedby="product-demo-description"
+  poster="/images/example-poster.png"
+  src="/example.mp4"
+  title="Product interface demonstration"
+/>
+```
+
+### Native source element
+
+The component also accepts native `<source>` children.
+
+```jsx live
+<MinimalVideoPlayer poster="/images/example-poster.png" title="Product interface demonstration">
+  <source src="/example.mp4" type="video/mp4" />
+</MinimalVideoPlayer>
+```
+
+### Disable automatic playback
+
+`autoPlay` defaults to `true`, making the video eligible to play when it enters the viewport. Set it to `false` when playback should always begin with an explicit user action.
+
+```jsx live
+<MinimalVideoPlayer
+  autoPlay={false}
+  poster="/images/example-poster.png"
+  src="/example.mp4"
+  title="Product interface demonstration"
+/>
+```
+
+### Disable looping
+
+Videos loop by default. Set `loop` to `false` when the demonstration should stop after one playback.
+
+```jsx live
+<MinimalVideoPlayer
+  loop={false}
+  poster="/images/example-poster.png"
+  src="/example.mp4"
+  title="Product interface demonstration"
+/>
+```
+
+### Customize control labels
+
+Provide localized play and pause labels with `internalAccessibleLabels`. Keep `title` focused on naming the video rather than the control.
+
+```jsx live
+<MinimalVideoPlayer
+  autoPlay={false}
+  internalAccessibleLabels={{
+    play: 'Play product demonstration',
+    pause: 'Pause product demonstration',
+  }}
+  poster="/images/example-poster.png"
+  src="/example.mp4"
+  title="Product interface demonstration"
+/>
+```
+
+## Playback behavior
+
+`MinimalVideoPlayer` is always muted, plays inline, and hides native controls. When `autoPlay` is enabled, it starts only while visible, pauses after leaving the viewport, and resumes after re-entering the viewport unless the viewer paused it manually.
+
+The forwarded ref provides access to the underlying `<video>` element, but the component does not provide a higher-level programmatic playback API.
+
+The component respects the viewer's reduced-motion preference. It suppresses initial automatic playback when reduced motion is requested and pauses playback if that preference becomes active. A viewer can still start the video with the visible play control.
+
+## Accessibility
+
+The `title` prop provides an accessible name for the video. It does not replace a text alternative for meaningful visual content.
+
+For decorative motion or a demonstration that repeats information already communicated by the surrounding content, use a concise `title`. A separate description is not required because the same information is already available on the page.
+
+For a meaningful silent demonstration, provide adjacent text that communicates the important actions and outcomes shown in the video. Associate that text with the video using the native `aria-describedby` attribute, as shown in the [default example](#default).
+
+Use [VideoPlayer](/components/VideoPlayer) instead when the media needs audio, captions, seeking, volume, fullscreen controls, or a standalone viewing experience.
+
+## Component props
+
+`MinimalVideoPlayer` supports standard native `<video>` attributes except the playback attributes controlled by the component.
+
+| Name                       | Type                            |                   Default                    | Required | Description                                                            |
+| :------------------------- | :------------------------------ | :------------------------------------------: | :------: | :--------------------------------------------------------------------- |
+| `autoPlay`                 | `boolean`                       |                    `true`                    | `false`  | Plays automatically while visible when reduced motion is not requested |
+| `children`                 | `React.ReactNode`               |                                              | `false`  | Accepts native `<source>` elements                                     |
+| `internalAccessibleLabels` | `{play: string, pause: string}` | `{play: 'Play video', pause: 'Pause video'}` | `false`  | Sets accessible labels for the play and pause control                  |
+| `loop`                     | `boolean`                       |                    `true`                    | `false`  | Repeats the video after playback ends                                  |
+| `poster`                   | `string`                        |                                              | `false`  | Sets the image shown before playback begins                            |
+| `src`                      | `string`                        |                                              | `false`  | Sets the native video source URL                                       |
+| `title`                    | `string`                        |                                              |  `true`  | Provides an accessible name for the video                              |

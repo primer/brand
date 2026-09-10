@@ -60,7 +60,6 @@ import {River, RiverBreakout} from '@primer/react-brand'
       <img src="/images/placeholder.png" alt="placeholder, blank area with a gray background color" />
     </River.Visual>
     <River.Content>
-      <Label>Label</Label>
       <Heading>Heading</Heading>
       <Text>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis
@@ -282,14 +281,18 @@ The `gridline` variant adds lateral padding and applies a full-bleed visual back
 
 ### River.Content and RiverBreakout.Content <Label>Required</Label>
 
-[`Label`](/components/Label), [`Text`](/typography/Text),[`Heading`](/typography/Heading), [`Link`](/brand/storybook/?path=/story/components-link--default) are the only `children` accepted. They can be composed in any order, but their rendered output will always be in a predetermined order.
+[`EyebrowText`](/brand/storybook/?path=/story/components-eyebrowtext--default), [`Text`](/typography/Text),
+[`Heading`](/typography/Heading), and
+[`Link`](/brand/storybook/?path=/story/components-link--default) are the supported `children`. They can be composed in
+any order, but their rendered output will always be in a predetermined order. Standalone `Label` children remain
+rendered for compatibility, but are deprecated; use `EyebrowText` instead.
 
-| Name        | Type                                                                                                                          | Default | Description                                      |
-| :---------- | :---------------------------------------------------------------------------------------------------------------------------- | :-----: | :----------------------------------------------- |
-| `children`  | [`Text`](/typography/Text),[`Heading`](/typography/Heading), [`Link`](/brand/storybook/?path=/story/components-link--default) |         | Content that corresponds to the adjacent visual. |
-| `className` | `string`                                                                                                                      |         | Sets a custom class on the root element          |
-| `id`        | `string`                                                                                                                      |         | Sets a custom id                                 |
-| `ref`       | `React.RefObject`                                                                                                             |         | Forward a Ref to the underlying DOM node         |
+| Name        | Type                                                                                                                                                                                                           | Default | Description                                      |
+| :---------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :-----: | :----------------------------------------------- |
+| `children`  | [`EyebrowText`](/brand/storybook/?path=/story/components-eyebrowtext--default), [`Text`](/typography/Text), [`Heading`](/typography/Heading), [`Link`](/brand/storybook/?path=/story/components-link--default) |         | Content that corresponds to the adjacent visual. |
+| `className` | `string`                                                                                                                                                                                                       |         | Sets a custom class on the root element          |
+| `id`        | `string`                                                                                                                                                                                                       |         | Sets a custom id                                 |
+| `ref`       | `React.RefObject`                                                                                                                                                                                              |         | Forward a Ref to the underlying DOM node         |
 
 ### RiverBreakout
 

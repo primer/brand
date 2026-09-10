@@ -130,7 +130,7 @@ const _Token = forwardRef<HTMLSpanElement | HTMLAnchorElement, TokenProps>(
 )
 
 /**
- * Use a Token to group short metadata or categories, with optional leading visuals.
- * @see https://primer.style/brand
+ * Use Token to display compact metadata that describes or supports adjacent content.
+ * @see https://primer.style/brand/components/Token
  */
 export const Token = Object.assign(_Token, {testIds})

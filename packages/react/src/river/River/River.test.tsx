@@ -18,6 +18,7 @@ describe('River', () => {
   afterEach(() => {
     cleanup()
     jest.clearAllMocks()
+    jest.restoreAllMocks()
   })
 
   it('renders correctly into the document', () => {
@@ -27,7 +28,6 @@ describe('River', () => {
           <MockImage />
         </River.Visual>
         <River.Content>
-          <Label>{mockLabel}</Label>
           <Text>{mockText}</Text>
           <Link href="#">{mockLinkText}</Link>
         </River.Content>
@@ -35,12 +35,30 @@ describe('River', () => {
     )
 
     const textEl = getByText(mockText)
-    const labelEl = getByText(mockLabel)
     const linkEl = getByText(mockLinkText)
 
     expect(textEl).toBeInTheDocument()
-    expect(labelEl).toBeInTheDocument()
     expect(linkEl).toBeInTheDocument()
+  })
+
+  it('renders a legacy standalone Label child and warns', () => {
+    const warnSpy = jest.spyOn(console, 'warn').mockImplementation(() => undefined)
+    const {getByTestId} = render(
+      <River>
+        <River.Visual>
+          <MockImage />
+        </River.Visual>
+        <River.Content>
+          <Label>{mockLabel}</Label>
+          <Heading>{mockHeading}</Heading>
+        </River.Content>
+      </River>,
+    )
+
+    expect(getByTestId(Label.testIds.root)).toHaveTextContent(mockLabel)
+    expect(warnSpy).toHaveBeenCalledWith(
+      'River.Content: standalone `Label` children are deprecated. Use `EyebrowText` instead.',
+    )
   })
 
   it('renders in 50:50 image ratio mode by default', () => {

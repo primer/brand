@@ -190,7 +190,7 @@ const PillarLink = forwardRef(({className, children, href, ...props}: PillarLink
 
 /**
  * Pillar component:
- * {@link https://primer.style/brand/components/Pillar/ See usage examples}.
+ * @see https://primer.style/brand/components/Pillar
  */
 export const Pillar = Object.assign(PillarRoot, {
   Icon: PillarIcon,

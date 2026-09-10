@@ -1,0 +1,52 @@
+.MinimalVideoPlayer {
+  position: relative;
+  width: 100%;
+}
+
+.MinimalVideoPlayer__video {
+  display: block;
+  width: 100%;
+}
+
+.MinimalVideoPlayer__control {
+  position: absolute;
+  right: var(--base-size-24);
+  bottom: var(--base-size-24);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--base-size-36);
+  height: var(--base-size-36);
+  padding: 0;
+  color: var(--brand-color-text-muted);
+  cursor: pointer;
+  background-color: var(--brand-color-canvas-muted);
+  border: var(--brand-borderWidth-thin) solid var(--brand-color-border-subtle);
+  border-radius: var(--brand-borderRadius-full);
+}
+
+.MinimalVideoPlayer__control:focus-visible {
+  outline: var(--brand-borderWidth-thick) solid var(--brand-color-focus);
+  outline-offset: var(--base-size-2);
+}
+
+/* Progressive enhancement that hides the custom control when native controls are visible. */
+.MinimalVideoPlayer__video[controls] + .MinimalVideoPlayer__control {
+  display: none;
+}
+
+@media (forced-colors: active) {
+  .MinimalVideoPlayer {
+    border: var(--brand-borderWidth-thin) solid CanvasText;
+  }
+
+  .MinimalVideoPlayer__control {
+    color: ButtonText;
+    background-color: ButtonFace;
+    border-color: ButtonText;
+  }
+
+  .MinimalVideoPlayer__control:focus-visible {
+    outline-color: Highlight;
+  }
+}

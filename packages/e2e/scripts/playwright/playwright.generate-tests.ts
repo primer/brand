@@ -28,18 +28,24 @@ const defaultTimeout = 500 // Storybook 7 introduced a small delay in loading st
  * Manual lookup for tests that need animation or side-effects to complete before tests start
  */
 const waitForTimeoutLookup = {
+  'components-hero-examples--default': 4000, // for the label animation
+  'components-hero-examples--gridline-expressive-with-image-carousel': 4000, // for the label animation
+  'components-hero-examples--with-custom-input': 4000, // for the label animation
   'components-faq-features--with-prose': 2000, // for the animation
   'components-faq-features--all-open': 1000, // for the animation
   'components-faq-features--reversed-toggles': 4000, // for the animation
-  'components-subdomainnavbar--search-open': 5500, // for the animation
-  'components-subdomainnavbar--search-results-visible': 5500, // for the animation
-  'components-subdomainnavbar--longer-title': 1500, // for the animation
-  'components-subdomainnavbar--mobile-view': 5500, // for the animation
-  'components-subdomainnavbar--mobile-menu-open': 5500, // for all staggered animations
-  'components-subdomainnavbar--mobile-menu-open-many-items': 5500, // for all staggered animations
-  'components-subdomainnavbar--mobile-search-results-visible': 5500, // for the animation
-  'components-subdomainnavbar--mobile-no-links': 5500, // for the animation
-  'components-subdomainnavbar--reversed-button-order-narrow': 5500, // for the animation
+  'components-subdomainnavbar-features--search-open': 5500, // for the animation
+  'components-subdomainnavbar-features--search-results-visible': 5500, // for the animation
+  'components-subdomainnavbar-features--longer-title': 1500, // for the animation
+  'components-subdomainnavbar-features--mobile-view': 5500, // for the animation
+  'components-subdomainnavbar-features--mobile-menu-open': 5500, // for all staggered animations
+  'components-subdomainnavbar-features--mobile-menu-open-many-items': 5500, // for all staggered animations
+  'components-subdomainnavbar-features--mobile-search-results-visible': 5500, // for the animation
+  'components-subdomainnavbar-features--mobile-no-links': 5500, // for the animation
+  'components-subdomainnavbar-features--mobile-leading-component-only-menu-open': 5500, // for the animation
+  'components-subdomainnavbar-features--tablet-menu-open': 5500, // for all staggered animations
+  'components-subdomainnavbar-features--overflow-menu-open': 1500, // wait for responsive overflow measurement
+  'components-subdomainnavbar-features--reversed-button-order-narrow': 5500, // for the animation
   'components-button-features--primary-focus-non-standard-bg': 2000, // for the interaction test
   'components-button-features--primary-focus': 2000, // for the interaction test
   'components-button-features--with-hover-interaction': 2000, // for the interaction test
@@ -111,6 +117,8 @@ const waitForTimeoutLookup = {
   'recipes-flexsuite-overview--ai': 4000, // for the animation to complete
   'recipes-flexsuite-category--security': 4000, // for the animation to complete,
   'recipes-flexsuite-details--ai': 7000, // for the youtube video posters to load
+  'components-textcursoranimation-features--animated-with-long-delay': 4000, // for the animation
+  'components-textcursoranimation-features--with-initial-text': 4000, // for the animation
 }
 
 // const skipLocalizationsTestsFor = [
@@ -145,7 +153,6 @@ const skipTestLookup = [
   'components-logosuite-features--mixed-width', // animation only
   'components-logosuite-features--following-hero', // animation only
   'components-logosuite-features--stacked', // animation only
-  'components-subdomainnavbar--overflow-menu-open', // flakey despite timeout
   'components-ide-features--editor-only', // animation too long
   'components-ide-features--editor-no-replay-button', // animation too long
   'components-ide-features--chat-only', // animation too long
@@ -157,6 +164,11 @@ const skipTestLookup = [
   'components-statistic-features--animations', // animation only
   'components-riverstoryscroll-features--video-narrow', // video makes this too flakey
   'components-riverstoryscroll-features--video', // video makes this too flakey
+  'components-minimalvideoplayer--default', // autoplaying video prevents networkidle from settling
+  'components-minimalvideoplayer--playground', // autoplaying video prevents networkidle from settling
+  'components-minimalvideoplayer-features--native-source-element', // autoplaying video prevents networkidle from settling
+  'components-minimalvideoplayer-features--playing', // actively playing video produces nondeterministic frames
+  'components-minimalvideoplayer-features--custom-accessible-labels', // visually duplicates the paused story
   'components-hero-features-images-and-videos--with-native-block-end-default', // for being non-deterministic due to video buffering
   'components-hero-features-images-and-videos--with-youtube-video-block-end-default', // for loading a remote video
   'components-hero-features-images-and-videos--with-youtube-video-inline-end', // for loading a remote video
@@ -166,6 +178,8 @@ const skipTestLookup = [
   'components-actionmenu-features--single-selection-small-open', // for the menu to open, too flakey, need to fix layout shift
   'components-actionmenu-features--menu-alignment', // for the menu to open, too flakey, need to fix layout shift
 ]
+
+const touchTestLookup = ['components-card-features--arrow-cta-long-label']
 
 const categorisedStories = Object.keys((stories as StoryIndex).entries).reduce((acc, key) => {
   const {id, name: storyName, importPath} = stories.entries[key]
@@ -212,12 +226,19 @@ for (const key of Object.keys(categorisedStories)) {
     // eslint-disable-next-line i18n-text/no-en
     test.describe('Visual Comparison: ${key}', () => {
 
+      ${
+        componentStories.some(({id}) => touchTestLookup.includes(id))
+          ? `const touchTest = test.extend({hasTouch: true, viewport: {width: 375, height: 812}})`
+          : ''
+      }
+
       ${componentStories.reduce((acc, {id, storyName, groupName, timeout}) => {
         const requiresMobileViewport = validNarrowVieportNames.some(viewportName =>
           storyName.toLowerCase().includes(viewportName),
         )
 
         const requiresTabletViewport = storyName.toLowerCase().includes('tablet')
+        const requiresTouch = touchTestLookup.includes(id)
         if (skipTestLookup.includes(id)) {
           return acc
         }
@@ -227,7 +248,9 @@ for (const key of Object.keys(categorisedStories)) {
           const base = `${groupName} / ${storyName}`
           const testName = language === 'en' ? base : `${base} (${language})`
 
-          return `test('${testName}', async ({page}) => {
+          return `${requiresTouch ? '// eslint-disable-next-line i18n-text/no-en\n          ' : ''}${
+            requiresTouch ? 'touchTest' : 'test'
+          }('${testName}', async ({page}) => {
             await page.goto('http://localhost:${port}/iframe.html?${localeParam}args=&id=${id}&viewMode=story', { waitUntil: 'networkidle' })
             await page.locator('body.sb-show-main').waitFor({ state: 'visible' })
 

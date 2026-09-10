@@ -1,6 +1,12 @@
 import {z} from 'zod'
+import {relative} from 'node:path'
 
-import {detectFramework, type FrameworkId} from '../../brand/detect-framework.js'
+import {detectFramework, type FrameworkId} from '../../brand/detect-framework/detect-framework.js'
+import {
+  resolveBrandProject,
+  type BrandProjectResolution,
+} from '../../brand/resolve-brand-project/resolve-brand-project.js'
+import {updateAgentsMd, type AgentsMdUpdateResult} from '../../brand/update-agents-md/update-agents-md.js'
 import {versionNote} from '../format.js'
 import type {ToolContext, ToolModule, ToolResult} from '../types.js'
 
@@ -12,11 +18,20 @@ const inputSchema = z.object({
     .optional()
     .default('auto')
     .describe('Target framework. "auto" detects it from the project; override if detection is wrong.'),
+  projectDir: z
+    .string()
+    .min(1)
+    .optional()
+    .describe(
+      'Workspace-relative package folder whose package.json declares @primer/react-brand. Set this when several workspace packages declare it.',
+    ),
 })
 
 type Input = z.infer<typeof inputSchema>
 
-const description = `Set up the Primer Brand (@primer/react-brand) foundation that agents routinely forget: the ThemeProvider at the app root, the Mona Sans font import, the correct style import, and the \`'use client'\` boundary for React Server Components. Detects the framework (Next App/Pages, Vite, Astro, Remix) and returns tailored, copy-ready setup. Call this once before building a Primer Brand page.`
+const description = `Set up Primer Brand in an existing React project.
+Call once before building a page; detects or accepts the framework and returns tailored root setup.
+Also updates \`AGENTS.md\` in the package that declares \`@primer/react-brand\` so future agents use Primer Brand tools and local docs.`
 
 const STATIC: Record<FrameworkId, {label: string; rsc: boolean}> = {
   'next-app': {label: 'Next.js (App Router)', rsc: true},
@@ -106,13 +121,59 @@ import {ThemeProvider} from '@primer/react-brand/esm'
   <App />
 </ThemeProvider>`
 
-function build(id: FrameworkId, ctx: ToolContext): string {
+type SetupAgentsMdResult = {
+  action: AgentsMdUpdateResult['action']
+  path: string | null
+  reason?: AgentsMdUpdateResult['reason'] | BrandProjectResolution['reason']
+  candidates?: string[]
+}
+
+function build(id: FrameworkId, ctx: ToolContext, agentsMd: SetupAgentsMdResult): string {
   const {label, rsc} = STATIC[id]
   const snippet = id === 'unknown' ? GENERIC_SNIPPET : ROOT_SNIPPETS[id]
 
   const rscNote = rsc
     ? `\n\n> **RSC boundary:** \`ThemeProvider\` uses React context, so it must live in a \`'use client'\` component (the \`Providers\` wrapper above). It cannot go directly in the server-rendered \`layout.tsx\`.`
     : ''
+
+  const agentsMdResult = (() => {
+    switch (agentsMd.action) {
+      case 'created':
+        return 'Created `AGENTS.md` beside the selected package.json with local docs routing instructions.'
+      case 'updated':
+        return 'Updated the managed Primer Brand instructions beside the selected package.json; existing content was preserved.'
+      case 'unchanged':
+        return 'The selected package already has the current managed Primer Brand instructions in `AGENTS.md`.'
+      case 'skipped':
+        if (agentsMd.reason === 'ambiguous-brand-project') {
+          const candidates = agentsMd.candidates
+            ?.map(candidate => {
+              const relativeCandidate = ctx.workspaceDir ? relative(ctx.workspaceDir, candidate) : candidate
+              return relativeCandidate || '.'
+            })
+            .join(', ')
+          return `Skipped \`AGENTS.md\`: multiple package.json files declare \`@primer/react-brand\`${
+            candidates ? ` (${candidates})` : ''
+          }. Rerun \`primer_brand_setup\` with \`projectDir\` set to the intended package folder.`
+        }
+        if (agentsMd.reason === 'invalid-brand-project') {
+          return 'Skipped `AGENTS.md`: `projectDir` must identify a folder inside the workspace whose package.json declares `@primer/react-brand`.'
+        }
+        if (agentsMd.reason === 'brand-package-not-found') {
+          return 'Skipped `AGENTS.md`: no package.json declaring `@primer/react-brand` was found in the workspace.'
+        }
+        if (agentsMd.reason === 'incorrect-filename-case') {
+          return 'Skipped `AGENTS.md`: rename the existing case-insensitive match to exactly `AGENTS.md`, then rerun setup.'
+        }
+        if (agentsMd.reason === 'malformed-managed-block') {
+          return 'Skipped `AGENTS.md`: the Primer Brand managed markers are malformed or duplicated; repair or remove that block, then rerun setup.'
+        }
+        if (agentsMd.reason === 'unsafe-agents-path') {
+          return 'Skipped `AGENTS.md`: the existing path is a symbolic link or resolves outside the selected package. Replace it with a regular file inside the package, then rerun setup.'
+        }
+        return 'Skipped `AGENTS.md`: no project root was detected.'
+    }
+  })()
 
   return [
     `# Set up Primer Brand — ${label}`,
@@ -122,6 +183,7 @@ function build(id: FrameworkId, ctx: ToolContext): string {
     `## 4. Styles\nImporting components from \`@primer/react-brand/esm\` auto-includes each component's styles. **Do not also import \`@primer/react-brand/lib/css/main.css\`** — that is the non-ESM path, and mixing the two double-loads styles.`,
     `## 5. Build the page\n- \`primer_brand_page_design\` first for page-design patterns and the current-brand reference templates to start from\n- \`primer_brand_examples\` for a correct starting composition, then \`primer_brand_component\` for exact props\n- \`primer_brand_tokens\` / \`primer_brand_asset\` for colors, spacing, and icons\n- \`primer_brand_review\` on your complete output — JSX and CSS together — before you finish`,
     `## 6. Header & footer\nFor a global header use \`SubdomainNavBar\`; for the footer use \`MinimalFooter\`. Don't hand-roll a \`<header>\`, \`<nav>\`, or \`<footer>\` — call \`primer_brand_component\` with "SubdomainNavBar" or "MinimalFooter" for their APIs.`,
+    `## 7. Add/update AGENTS.md pointer\n${agentsMdResult}`,
     versionNote(ctx),
   ].join('\n\n')
 }
@@ -131,9 +193,23 @@ export const primerBrandSetupTool: ToolModule<Input> = {
   title: 'Set up Primer Brand in a project',
   description,
   inputShape: inputSchema.shape,
-  annotations: {readOnlyHint: true},
+  annotations: {readOnlyHint: false, destructiveHint: false, idempotentHint: true, openWorldHint: false},
   run(input, ctx): ToolResult {
-    const id: FrameworkId = input.framework === 'auto' ? detectFramework().id : input.framework
-    return {text: build(id, ctx)}
+    const brandProject = resolveBrandProject(ctx.workspaceDir, input.projectDir)
+    const id: FrameworkId =
+      input.framework === 'auto'
+        ? brandProject.projectDir
+          ? detectFramework(brandProject.projectDir).id
+          : ctx.framework.id
+        : input.framework
+    const agentsMd: SetupAgentsMdResult = brandProject.projectDir
+      ? updateAgentsMd(brandProject.projectDir)
+      : {
+          action: 'skipped',
+          path: null,
+          reason: brandProject.reason,
+          candidates: brandProject.candidates,
+        }
+    return {text: build(id, ctx, agentsMd)}
   },
 }

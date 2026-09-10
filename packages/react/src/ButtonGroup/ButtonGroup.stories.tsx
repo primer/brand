@@ -59,6 +59,26 @@ export const SingleButtonGroup: Story = {
   ),
 }
 
+export const WithConditionalChild: StoryObj<
+  React.ComponentProps<typeof ButtonGroup> & {showSecondaryAction?: boolean}
+> = {
+  args: {
+    showSecondaryAction: true,
+  },
+  argTypes: {
+    showSecondaryAction: {
+      control: 'boolean',
+      description: 'Show the conditionally rendered secondary action',
+    },
+  },
+  render: ({showSecondaryAction, ...args}) => (
+    <ButtonGroup {...args}>
+      <Button>Primary action</Button>
+      {showSecondaryAction && <Button>Secondary action</Button>}
+    </ButtonGroup>
+  ),
+}
+
 export const WithActionMenu: Story = {
   render: args => (
     <ButtonGroup {...args}>

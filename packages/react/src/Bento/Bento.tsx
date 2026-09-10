@@ -4,7 +4,8 @@ import {useWindowSize, BreakpointSize} from '../hooks/useWindowSize'
 import type {BaseProps} from '../component-helpers'
 import findElementInChildren from '../findElementInChildren'
 
-import {Heading, Text, Link, HeadingProps, TextProps, LinkProps, ColorMode as FullColorMode, Image, Label} from '../'
+import {Heading, Text, Link, HeadingProps, TextProps, LinkProps, ColorMode as FullColorMode, Image} from '../'
+import {Label, type LabelProps} from '../Label'
 
 import type {IconProps} from '../Icon'
 
@@ -207,7 +208,7 @@ const Content = ({
   )
 
   const LabelChild = memoizedChildren.find(
-    (child): child is React.ReactElement<TextProps> => React.isValidElement<TextProps>(child) && child.type === Label,
+    (child): child is React.ReactElement<LabelProps> => React.isValidElement<LabelProps>(child) && child.type === Label,
   )
   const TextChild = memoizedChildren.find(
     (child): child is React.ReactElement<TextProps> => React.isValidElement<TextProps>(child) && child.type === Text,
@@ -215,6 +216,13 @@ const Content = ({
   const LinkChild = memoizedChildren.find(
     (child): child is React.ReactElement<LinkProps> => React.isValidElement<LinkProps>(child) && child.type === Link,
   )
+
+  const usesDeprecatedLabel = React.isValidElement<LabelProps>(LabelChild)
+
+  if (usesDeprecatedLabel && (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'test')) {
+    // eslint-disable-next-line no-console
+    console.warn('Bento.Content: standalone `Label` children are deprecated. Remove it or migrate from Bento.')
+  }
 
   return (
     <div className={clsx(styles[`Bento-padding--${padding}`], ...bentoContentClassArray, className)} {...rest}>
@@ -224,8 +232,8 @@ const Content = ({
           size: LeadingVisual.props.size || 44,
         })}
 
-      {React.isValidElement<TextProps>(LabelChild) &&
-        React.cloneElement(LabelChild, {
+      {usesDeprecatedLabel &&
+        React.cloneElement(LabelChild as React.ReactElement<LabelProps>, {
           className: clsx(styles['Bento__Content-label'], LabelChild.props.className),
         })}
 

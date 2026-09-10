@@ -1,5 +1,5 @@
 import React from 'react'
-import {render, cleanup} from '@testing-library/react'
+import {render, cleanup, act} from '@testing-library/react'
 import '@testing-library/jest-dom'
 import {axe, toHaveNoViolations} from 'jest-axe'
 
@@ -26,10 +26,25 @@ describe('TextCursorAnimation', () => {
     })
   })
 
-  afterEach(cleanup)
+  afterEach(() => {
+    cleanup()
+    jest.useRealTimers()
+    jest.restoreAllMocks()
+  })
 
   it('has no a11y violations on initial render', async () => {
     const {container} = render(<TextCursorAnimation>{mockText}</TextCursorAnimation>)
+    const results = await axe(container)
+
+    expect(results).toHaveNoViolations()
+  })
+
+  it('has no a11y violations while animated', async () => {
+    const {container} = render(
+      <TextCursorAnimation animate delay={10000} waitForPageLoad={false}>
+        {mockText}
+      </TextCursorAnimation>,
+    )
     const results = await axe(container)
 
     expect(results).toHaveNoViolations()
@@ -92,32 +107,136 @@ describe('TextCursorAnimation', () => {
     expect(textEl).toHaveClass('Text--default')
   })
 
-  it('animation is disabled by default, with cursor at final position', () => {
-    const {container} = render(<TextCursorAnimation>{mockText}</TextCursorAnimation>)
-    const innerSpan = container.querySelector('.TextCursorAnimation-inner')
+  it('animation is disabled by default, with cursor in the complete phase', () => {
+    const {getByTestId} = render(<TextCursorAnimation>{mockText}</TextCursorAnimation>)
 
-    expect(innerSpan).toHaveStyle({'--brand-TextCursorAnimation-reveal-progress': '1'})
-    expect(innerSpan).toHaveStyle({'--brand-TextCursorAnimation-cursor-progress': '1'})
+    expect(getByTestId(testIds.text)).toHaveTextContent(mockText)
+    expect(getByTestId(testIds.cursor)).not.toHaveClass('TextCursorAnimation__cursor--animated')
+    expect(getByTestId(testIds.cursor)).toHaveClass('TextCursorAnimation__cursor--complete')
   })
 
-  it('cursor is at final position when animate is false', () => {
-    const {container} = render(<TextCursorAnimation animate={false}>{mockText}</TextCursorAnimation>)
-    const innerSpan = container.querySelector('.TextCursorAnimation-inner')
+  it('types the final text once without a correction by default', () => {
+    jest.useFakeTimers()
+    jest.spyOn(performance, 'now').mockReturnValue(0)
 
-    expect(innerSpan).toHaveStyle({'--brand-TextCursorAnimation-reveal-progress': '1'})
-    expect(innerSpan).toHaveStyle({'--brand-TextCursorAnimation-cursor-progress': '1'})
-  })
+    let nextFrame: FrameRequestCallback | undefined
+    let animationFrameId = 0
+    jest.spyOn(window, 'requestAnimationFrame').mockImplementation(callback => {
+      nextFrame = callback
+      animationFrameId += 1
+      return animationFrameId
+    })
 
-  it('cursor is at final position when children is not a string', () => {
-    const {container} = render(
-      <TextCursorAnimation animate={true}>
-        <span>Non-string child</span>
+    const {getByTestId} = render(
+      <TextCursorAnimation animate delay={0} waitForPageLoad={false}>
+        {mockText}
       </TextCursorAnimation>,
     )
-    const innerSpan = container.querySelector('.TextCursorAnimation-inner')
 
-    expect(innerSpan).toHaveStyle({'--brand-TextCursorAnimation-reveal-progress': '1'})
-    expect(innerSpan).toHaveStyle({'--brand-TextCursorAnimation-cursor-progress': '1'})
+    act(() => jest.runOnlyPendingTimers())
+    act(() => nextFrame?.(100))
+
+    expect(getByTestId(testIds.text)).toHaveTextContent('Hel=')
+    expect(getByTestId(testIds.cursor)).toHaveClass('TextCursorAnimation__cursor--animated')
+    expect(getByTestId(testIds.cursor)).toHaveClass('TextCursorAnimation__cursor--initial')
+
+    act(() => nextFrame?.(250))
+
+    expect(getByTestId(testIds.text)).toHaveTextContent('Hello wo%')
+    expect(getByTestId(testIds.cursor)).not.toHaveClass('TextCursorAnimation__cursor--correction')
+
+    act(() => nextFrame?.(500))
+
+    expect(getByTestId(testIds.text)).toHaveTextContent(mockText)
+    expect(getByTestId(testIds.cursor)).toHaveClass('TextCursorAnimation__cursor--complete')
+  })
+
+  it('corrects initialText before typing the final text', () => {
+    jest.useFakeTimers()
+    jest.spyOn(performance, 'now').mockReturnValue(0)
+
+    let nextFrame: FrameRequestCallback | undefined
+    let animationFrameId = 0
+    jest.spyOn(window, 'requestAnimationFrame').mockImplementation(callback => {
+      nextFrame = callback
+      animationFrameId += 1
+      return animationFrameId
+    })
+
+    const {getByTestId} = render(
+      <TextCursorAnimation animate initialText="Hello there" delay={0} waitForPageLoad={false}>
+        {mockText}
+      </TextCursorAnimation>,
+    )
+
+    act(() => jest.runOnlyPendingTimers())
+    act(() => nextFrame?.(500))
+
+    expect(getByTestId(testIds.text)).toHaveTextContent('Hello there')
+    expect(getByTestId(testIds.cursor)).toHaveClass('TextCursorAnimation__cursor--initial')
+
+    act(() => nextFrame?.(700))
+
+    expect(getByTestId(testIds.text)).toHaveTextContent('Hello ther')
+    expect(getByTestId(testIds.cursor)).toHaveClass('TextCursorAnimation__cursor--correction')
+
+    act(() => nextFrame?.(850))
+
+    expect(getByTestId(testIds.text)).toHaveTextContent('Hello w')
+    expect(getByTestId(testIds.cursor)).toHaveClass('TextCursorAnimation__cursor--correction')
+
+    act(() => nextFrame?.(900))
+
+    expect(getByTestId(testIds.cursor)).toHaveClass('TextCursorAnimation__cursor--final')
+
+    act(() => nextFrame?.(1000))
+
+    expect(getByTestId(testIds.text)).toHaveTextContent(mockText)
+    expect(getByTestId(testIds.cursor)).toHaveClass('TextCursorAnimation__cursor--complete')
+  })
+
+  it('cancels an in-progress animation when unmounted', () => {
+    jest.useFakeTimers()
+    jest.spyOn(performance, 'now').mockReturnValue(0)
+
+    let nextFrame: FrameRequestCallback | undefined
+    let animationFrameId = 0
+    jest.spyOn(window, 'requestAnimationFrame').mockImplementation(callback => {
+      nextFrame = callback
+      animationFrameId += 1
+      return animationFrameId
+    })
+    const cancelAnimationFrame = jest.spyOn(window, 'cancelAnimationFrame')
+
+    const {unmount} = render(
+      <TextCursorAnimation animate delay={0} waitForPageLoad={false}>
+        {mockText}
+      </TextCursorAnimation>,
+    )
+
+    act(() => jest.runOnlyPendingTimers())
+    act(() => nextFrame?.(100))
+    unmount()
+
+    expect(cancelAnimationFrame).toHaveBeenCalledWith(2)
+  })
+
+  it('renders the completed state when reduced motion is preferred', () => {
+    jest.spyOn(window, 'matchMedia').mockImplementation(query => ({
+      matches: true,
+      media: query,
+      onchange: null,
+      addListener: jest.fn(),
+      removeListener: jest.fn(),
+      dispatchEvent: jest.fn(),
+      addEventListener: jest.fn(),
+      removeEventListener: jest.fn(),
+    }))
+
+    const {getByTestId} = render(<TextCursorAnimation animate>{mockText}</TextCursorAnimation>)
+
+    expect(getByTestId(testIds.text)).toHaveTextContent(mockText)
+    expect(getByTestId(testIds.cursor)).toHaveClass('TextCursorAnimation__cursor--complete')
   })
 
   it('renders with monospace font', () => {

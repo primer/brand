@@ -11,8 +11,10 @@ declare const styles: {
   readonly "page": string;
   readonly "resourceCard": string;
   readonly "resourceCardIcon": string;
+  readonly "resourceCardWithIcon": string;
   readonly "riverFootstepsGrid": string;
   readonly "riverFootstepsImage": string;
+  readonly "testimonialSection": string;
 };
 export = styles;
 

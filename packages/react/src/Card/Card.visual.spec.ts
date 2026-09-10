@@ -7,6 +7,8 @@ import {test, expect} from '@playwright/test'
 
 // eslint-disable-next-line i18n-text/no-en
 test.describe('Visual Comparison: Card', () => {
+  const touchTest = test.extend({hasTouch: true, viewport: {width: 375, height: 812}})
+
   test('Card / Default', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-card--default&viewMode=story', {
       waitUntil: 'networkidle',
@@ -31,6 +33,17 @@ test.describe('Visual Comparison: Card', () => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-card-examples--editorial&viewMode=story', {
       waitUntil: 'networkidle',
     })
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+    await page.waitForTimeout(500)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
+  test('Card / Native Borders', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-card-examples--native-borders&viewMode=story',
+      {waitUntil: 'networkidle'},
+    )
     await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
@@ -90,7 +103,8 @@ test.describe('Visual Comparison: Card', () => {
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
-  test('Card / Arrow CTA with long label', async ({page}) => {
+  // eslint-disable-next-line i18n-text/no-en
+  touchTest('Card / Arrow CTA with long label', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-card-features--arrow-cta-long-label&viewMode=story',
       {waitUntil: 'networkidle'},
@@ -104,6 +118,17 @@ test.describe('Visual Comparison: Card', () => {
   test('Card / Arrow CTA with long label hover', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-card-features--arrow-cta-long-label-hover&viewMode=story',
+      {waitUntil: 'networkidle'},
+    )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+    await page.waitForTimeout(500)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
+  test('Card / Arrow CTA with long label focus and animation disabled', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-card-features--arrow-cta-long-label-focus&viewMode=story',
       {waitUntil: 'networkidle'},
     )
     await page.locator('body.sb-show-main').waitFor({state: 'visible'})
@@ -206,9 +231,9 @@ test.describe('Visual Comparison: Card', () => {
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
-  test('Card / Icon And Label', async ({page}) => {
+  test('Card / Icon And Token', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-card-features--icon-and-label&viewMode=story',
+      'http://localhost:6006/iframe.html?args=&id=components-card-features--icon-and-token&viewMode=story',
       {waitUntil: 'networkidle'},
     )
     await page.locator('body.sb-show-main').waitFor({state: 'visible'})
@@ -217,9 +242,9 @@ test.describe('Visual Comparison: Card', () => {
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
-  test('Card / Icon And Label With Fragment', async ({page}) => {
+  test('Card / Icon And Token With Fragment', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-card-features--icon-and-label-with-fragment&viewMode=story',
+      'http://localhost:6006/iframe.html?args=&id=components-card-features--icon-and-token-with-fragment&viewMode=story',
       {waitUntil: 'networkidle'},
     )
     await page.locator('body.sb-show-main').waitFor({state: 'visible'})
@@ -238,9 +263,9 @@ test.describe('Visual Comparison: Card', () => {
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
-  test('Card / Image And Label', async ({page}) => {
+  test('Card / Image And Token', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-card-features--image-and-label&viewMode=story',
+      'http://localhost:6006/iframe.html?args=&id=components-card-features--image-and-token&viewMode=story',
       {waitUntil: 'networkidle'},
     )
     await page.locator('body.sb-show-main').waitFor({state: 'visible'})
@@ -252,6 +277,42 @@ test.describe('Visual Comparison: Card', () => {
   test('Card / Image Using Picture Element', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-card-features--image-using-picture-element&viewMode=story',
+      {waitUntil: 'networkidle'},
+    )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+    await page.waitForTimeout(500)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
+  // eslint-disable-next-line i18n-text/no-en
+  test.describe('Mobile viewport test for Image, no padding (narrow)', () => {
+    test.use({viewport: {width: 360, height: 800}})
+    test('Card / Image, no padding (narrow)', async ({page}) => {
+      await page.goto(
+        'http://localhost:6006/iframe.html?args=&id=components-card-features--image-no-padding-narrow-viewport&viewMode=story',
+        {waitUntil: 'networkidle'},
+      )
+      await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+      await page.waitForTimeout(500)
+      await expect(page).toHaveScreenshot({fullPage: true})
+    })
+  })
+  test('Card / Image No Padding With Borders', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-card-features--image-no-padding-with-borders&viewMode=story',
+      {waitUntil: 'networkidle'},
+    )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+    await page.waitForTimeout(500)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
+  test('Card / Image No Padding No Borders', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-card-features--image-no-padding-no-borders&viewMode=story',
       {waitUntil: 'networkidle'},
     )
     await page.locator('body.sb-show-main').waitFor({state: 'visible'})
@@ -316,6 +377,17 @@ test.describe('Visual Comparison: Card', () => {
   test('Card / With inline code element + non-standard size overrides', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-card-features--with-inline-code-element-custom-description-size&viewMode=story',
+      {waitUntil: 'networkidle'},
+    )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+    await page.waitForTimeout(500)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
+  test('Card / With Native Code Element', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-card-features--with-native-code-element&viewMode=story',
       {waitUntil: 'networkidle'},
     )
     await page.locator('body.sb-show-main').waitFor({state: 'visible'})

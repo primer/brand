@@ -1,7 +1,10 @@
 import React from 'react'
 import type {Meta, StoryObj} from '@storybook/react'
+import {CheckCircleFillIcon} from '@primer/octicons-react'
+import {expect, within} from 'storybook/test'
 import {MinimalFooter} from '.'
-import {InlineLink, Text, ThemeProvider} from '..'
+import {InlineLink, Text, ThemeProvider, Token} from '..'
+import {RedlineBackground} from '../component-helpers'
 
 export default {
   title: 'Components/MinimalFooter/Features',
@@ -92,12 +95,12 @@ export const FilteredSocialLinks: Story = {
 
 export const ReversedSocialLinks: Story = {
   render: () => (
-    <MinimalFooter socialLinks={['x', 'github', 'linkedin', 'youtube', 'facebook', 'twitch', 'tiktok', 'instagram']} />
+    <MinimalFooter socialLinks={['instagram', 'tiktok', 'twitch', 'facebook', 'youtube', 'linkedin', 'github', 'x']} />
   ),
 }
 
 export const DefaultNarrow: Story = {
-  name: 'Default (Narrow viewport)',
+  name: 'Default, narrow view (mobile)',
   globals: {
     viewport: {value: 'iphonexr'},
   },
@@ -127,12 +130,120 @@ export const DefaultNarrow: Story = {
       <MinimalFooter.Link href="https://github.com/enterprise/contact">Email us</MinimalFooter.Link>
     </MinimalFooter>
   ),
+  play: async ({canvasElement}) => {
+    const socialLinks = within(canvasElement).getByRole('list')
+    const bottom = socialLinks.closest('section')
+    const container = bottom?.firstElementChild
+
+    if (!container) {
+      throw new Error('Expected the social footer layout to render')
+    }
+
+    expect(socialLinks.getBoundingClientRect().right).toBeLessThanOrEqual(container.getBoundingClientRect().right)
+    expect(document.documentElement.scrollWidth).toBe(document.documentElement.clientWidth)
+  },
 }
 
 export const DarkTheme: Story = {
   render: () => (
     <ThemeProvider colorMode="dark">
-      <MinimalFooter />
+      <MinimalFooter>
+        <MinimalFooter.Footnotes>
+          <Text>
+            <sup>1</sup>Footnotes remain visually distinct from the footer content in dark mode.
+          </Text>
+        </MinimalFooter.Footnotes>
+      </MinimalFooter>
     </ThemeProvider>
   ),
+}
+
+export const CustomContent: Story = {
+  render: () => (
+    <MinimalFooter
+      centerComponent={
+        <Token as="a" href="https://www.githubstatus.com" variant="accent" leadingVisual={<CheckCircleFillIcon />}>
+          All systems operational
+        </Token>
+      }
+    />
+  ),
+}
+
+export const BackToTop: Story = {
+  render: () => (
+    <main>
+      <RedlineBackground style={{height: '120vh'}}>
+        <Text as="p" align="center" weight="semibold">
+          Scroll down to test the back-to-top functionality
+        </Text>
+      </RedlineBackground>
+      <MinimalFooter>
+        <MinimalFooter.BackToTop>Back to top</MinimalFooter.BackToTop>
+        <MinimalFooter.Link href="https://github.com/organizations/enterprise_plan">
+          Try GitHub for free
+        </MinimalFooter.Link>
+        <MinimalFooter.Link href="https://github.com/enterprise">Enterprise</MinimalFooter.Link>
+        <MinimalFooter.Link href="https://github.com/enterprise/contact">Email us</MinimalFooter.Link>
+      </MinimalFooter>
+    </main>
+  ),
+}
+
+const ResponsiveExample = ({socialLinks = true}: {socialLinks?: boolean}) => (
+  <MinimalFooter
+    centerComponent={
+      <Token as="a" href="https://www.githubstatus.com" variant="accent" leadingVisual={<CheckCircleFillIcon />}>
+        All systems operational
+      </Token>
+    }
+    copyrightStatement="GitHub, Inc. © 2026. All rights reserved."
+    socialLinks={socialLinks ? undefined : false}
+  >
+    <MinimalFooter.Footnotes>
+      <Text>
+        <sup>1</sup>Additional terms may apply. See the{' '}
+        <InlineLink href="https://docs.github.com/en/site-policy/privacy-policies/github-privacy-statement">
+          GitHub Privacy Statement
+        </InlineLink>
+        .
+      </Text>
+    </MinimalFooter.Footnotes>
+    <MinimalFooter.BackToTop>Back to top</MinimalFooter.BackToTop>
+    <MinimalFooter.Link href="https://github.com/organizations/enterprise_plan">Try GitHub for free</MinimalFooter.Link>
+    <MinimalFooter.Link href="https://github.com/enterprise">Enterprise</MinimalFooter.Link>
+    <MinimalFooter.Link href="https://github.com/enterprise/contact">Email us</MinimalFooter.Link>
+  </MinimalFooter>
+)
+
+export const NarrowView: Story = {
+  name: 'Narrow view (mobile)',
+  globals: {
+    viewport: {value: 'iphonexr'},
+  },
+  render: () => <ResponsiveExample />,
+}
+
+export const RegularView: Story = {
+  name: 'Regular view (tablet)',
+  globals: {
+    viewport: {value: 'ipad10p'},
+  },
+  render: () => <ResponsiveExample />,
+}
+
+export const NarrowViewNoSocialLinks: Story = {
+  name: 'Narrow view, no social links (mobile)',
+  globals: {
+    viewport: {value: 'iphonexr'},
+  },
+  render: () => <ResponsiveExample socialLinks={false} />,
+}
+
+export const RegularViewNoSocialLinks: Story = {
+  name: 'Regular view, no social links (tablet)',
+  globals: {
+    viewport: {value: 'ipad10p'},
+  },
+  render: () => <ResponsiveExample socialLinks={false} />,
 }

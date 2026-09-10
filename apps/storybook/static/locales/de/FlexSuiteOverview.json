@@ -15,7 +15,8 @@
     }
   },
   "hero": {
-    "label": "GitHub Copilot",
+    "label": "Dein KI-Beschleuniger",
+    "initialLabel": "Dein KI-Assistent",
     "headingLine1": "Beherrsche",
     "headingLine2": "dein Handwerk",
     "description": "Dein KI-Beschleuniger für jeden Workflow, vom Editor bis ins Unternehmen.",
@@ -24,7 +25,11 @@
     "trailingText": "Hast du Visual Studio Code bereits?",
     "trailingLinkText": "Jetzt öffnen",
     "peekAlt": "GitHub-Copilot-Maskottchen schaut unten aus dem Rasterbereich hervor",
-    "imageAlt": "GitHub Copilot im Agent-Modus in VS Code"
+    "imageAlt": "GitHub Copilot im Agent-Modus in VS Code",
+    "videoControls": {
+      "play": "Video abspielen",
+      "pause": "Video pausieren"
+    }
   },
   "logoSuiteHeading": "Partnerlogos von GitHub Copilot",
   "resourceCards": {

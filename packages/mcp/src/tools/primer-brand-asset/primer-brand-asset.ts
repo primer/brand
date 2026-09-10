@@ -14,7 +14,9 @@ const inputSchema = z.object({
 
 type Input = z.infer<typeof inputSchema>
 
-const description = `Find approved Primer Brand visuals as code imports: Octicons (@primer/octicons-react) and Octovisuals (@primer/octovisuals-react). Use these instead of emoji, clip art, or random icon sets - mismatched or emoji icons are off-brand.`
+const description = `Find approved Primer Brand visuals as code imports:
+Octicons (@primer/octicons-react) and Octovisuals (@primer/octovisuals-react).
+Use these instead of emoji, clip art, or random icon sets - mismatched or emoji icons are off-brand.`
 
 export const primerBrandAssetTool: ToolModule<Input> = {
   name: 'primer_brand_asset',

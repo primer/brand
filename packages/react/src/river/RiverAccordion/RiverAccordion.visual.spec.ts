@@ -61,12 +61,38 @@ test.describe('Visual Comparison: RiverAccordion', () => {
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
+  test('RiverAccordion / Gridline without visual background', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-riveraccordion-features-gridline-variants--grid-line-without-visual-background&viewMode=story',
+      {waitUntil: 'networkidle'},
+    )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+    await page.waitForTimeout(500)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
   // eslint-disable-next-line i18n-text/no-en
   test.describe('Tablet viewport test for Gridline (tablet)', () => {
     test.use({viewport: {width: 834, height: 1112}})
     test('RiverAccordion / Gridline (tablet)', async ({page}) => {
       await page.goto(
         'http://localhost:6006/iframe.html?args=&id=components-riveraccordion-features-gridline-variants--gridline-tablet&viewMode=story',
+        {waitUntil: 'networkidle'},
+      )
+      await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+      await page.waitForTimeout(500)
+      await expect(page).toHaveScreenshot({fullPage: true})
+    })
+  })
+
+  // eslint-disable-next-line i18n-text/no-en
+  test.describe('Mobile viewport test for Gridline without visual background (narrow)', () => {
+    test.use({viewport: {width: 360, height: 800}})
+    test('RiverAccordion / Gridline without visual background (narrow)', async ({page}) => {
+      await page.goto(
+        'http://localhost:6006/iframe.html?args=&id=components-riveraccordion-features-gridline-variants--gridline-without-visual-background-narrow&viewMode=story',
         {waitUntil: 'networkidle'},
       )
       await page.locator('body.sb-show-main').waitFor({state: 'visible'})

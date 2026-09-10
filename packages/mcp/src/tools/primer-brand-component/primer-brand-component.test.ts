@@ -19,6 +19,8 @@ describe('primer_brand_component', () => {
     expect(result.text).toContain('Hero.Heading')
     expect(result.text).toContain("'start' | 'center'")
     expect(result.text).toContain('import {Hero}')
+    expect(result.text).toContain('## Example styles')
+    expect(result.text).toContain('.heroFrame')
   })
 
   it('is case-insensitive', async () => {

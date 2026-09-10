@@ -11,7 +11,10 @@ const inputSchema = z.object({
 
 type Input = z.infer<typeof inputSchema>
 
-const description = `Search and read Primer Brand guidance — principles, accessibility, content, and getting started. Prefers the version-pinned docs bundled with the installed @primer/react-brand, falling back to the live site (https://primer.style/brand) for general guidance. This is brand concepts and how-to, not component APIs (use primer_brand_component for those).`
+const description = `Search and read Primer Brand guidance — principles, accessibility, content, and getting started.
+Prefers the version-pinned docs bundled with the installed @primer/react-brand,
+falling back to the live site (https://primer.style/brand) for general guidance.
+This is brand concepts and how-to, not component APIs (use primer_brand_component for those).`
 
 async function readPath(path: string, ctx: ToolContext): Promise<ToolResult> {
   const doc = await ctx.docs.read(path)

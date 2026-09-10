@@ -2,5 +2,8 @@
 import {PropTableValues} from '@primer/doctocat-nextjs/components'
 
 export const MinimalFooterChildrenProp = () => (
-  <PropTableValues values={['MinimalFooter.Link', 'MinimalFooter.Footnotes']} addLineBreaks />
+  <PropTableValues
+    values={['MinimalFooter.Link', 'MinimalFooter.Footnotes', 'MinimalFooter.BackToTop']}
+    addLineBreaks
+  />
 )

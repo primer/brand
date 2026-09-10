@@ -1,6 +1,5 @@
 declare const styles: {
   readonly "CTABanner": string;
-  readonly "CTABanner--bgColor-default": string;
   readonly "CTABanner--shadow": string;
   readonly "CTABanner--variant-balanced": string;
   readonly "CTABanner--variant-default": string;

@@ -6,12 +6,27 @@
  */
 import {Client} from '@modelcontextprotocol/sdk/client/index.js'
 import {StdioClientTransport} from '@modelcontextprotocol/sdk/client/stdio.js'
+import {mkdtempSync, readFileSync, rmSync, writeFileSync} from 'node:fs'
+import {tmpdir} from 'node:os'
+import {dirname, join} from 'node:path'
+import {fileURLToPath} from 'node:url'
 
 function assert(condition, message) {
   if (!condition) throw new Error(message)
 }
 
-const transport = new StdioClientTransport({command: 'node', args: ['dist/index.js']})
+const packageDir = dirname(dirname(fileURLToPath(import.meta.url)))
+const smokeProject = mkdtempSync(join(tmpdir(), 'primer-brand-mcp-smoke-'))
+writeFileSync(
+  join(smokeProject, 'package.json'),
+  JSON.stringify({dependencies: {vite: '^7.0.0', '@primer/react-brand': '^0.73.0'}}),
+)
+
+const transport = new StdioClientTransport({
+  command: 'node',
+  args: [join(packageDir, 'dist', 'index.js')],
+  cwd: smokeProject,
+})
 const client = new Client({name: 'primer-brand-mcp-smoke', version: '0.0.0'})
 
 try {
@@ -32,7 +47,15 @@ try {
     return text
   }
 
-  await call('primer_brand_setup', {framework: 'next-app'})
+  const setup = await call('primer_brand_setup', {framework: 'next-app'})
+  assert(
+    setup.includes('Created `AGENTS.md` beside the selected package.json'),
+    'primer_brand_setup did not report creating AGENTS.md',
+  )
+  assert(
+    readFileSync(join(smokeProject, 'AGENTS.md'), 'utf8').includes('<!-- BEGIN:primer-brand-mcp -->'),
+    'primer_brand_setup did not create the managed AGENTS.md block',
+  )
   await call('primer_brand_page_design', {})
   await call('primer_brand_component', {name: 'Hero'})
   await call('primer_brand_examples', {goal: 'education landing page'})
@@ -60,4 +83,5 @@ try {
   } catch {
     // ignore errors while closing the client
   }
+  rmSync(smokeProject, {recursive: true, force: true})
 }
