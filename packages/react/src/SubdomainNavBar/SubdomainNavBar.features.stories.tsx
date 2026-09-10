@@ -991,3 +991,96 @@ export const SkipToMainTagWithId: Story = {
     await expect(skipLink).toHaveAttribute('href', '#the-main-tag')
   },
 }
+
+const FeaturedVariantExample = ({withCustomComponents = false}: {withCustomComponents?: boolean}) => (
+  <SubdomainNavBar
+    title="Site title"
+    titleHref="/"
+    variant="featured"
+    fullWidth
+    fixed={false}
+    leadingComponent={withCustomComponents ? <Token>Public beta</Token> : undefined}
+    trailingComponent={
+      withCustomComponents ? (
+        <Button as="a" href="#repository" variant="secondary" size="small">
+          View repository
+        </Button>
+      ) : undefined
+    }
+  >
+    {navigationLinks.map(link => (
+      <SubdomainNavBar.Link key={link} href={`#${link}`}>
+        {link
+          .toLowerCase()
+          .split(' ')
+          .map(word => `${word.charAt(0).toUpperCase()}${word.slice(1)}`)
+          .join(' ')}
+      </SubdomainNavBar.Link>
+    ))}
+    <SubdomainNavBar.Search
+      placeholder="Search Site title"
+      keyboardShortcut="/"
+      shortcutLabel="/"
+      searchTerm=""
+      searchResults={[]}
+      onSubmit={event => event.preventDefault()}
+      onChange={() => undefined}
+    />
+    <SubdomainNavBar.SecondaryAction href="#sign-in">Sign in</SubdomainNavBar.SecondaryAction>
+    <SubdomainNavBar.PrimaryAction href="#get-started">Get started</SubdomainNavBar.PrimaryAction>
+  </SubdomainNavBar>
+)
+
+export const FeaturedVariant: Story = {
+  render: () => <FeaturedVariantExample />,
+  play: async ({canvasElement}) => {
+    const canvas = within(canvasElement)
+    const titleLink = canvas.getByRole('link', {name: 'Site title home'})
+    const searchPlaceholder = canvas.getByText('Search Site title')
+    const navbar = titleLink.closest('header')
+
+    await expect(titleLink).toHaveTextContent('GitHub Site title')
+    await expect(navbar).toHaveClass('SubdomainNavBar--variant-featured')
+    await expect(getComputedStyle(searchPlaceholder).display).not.toBe('none')
+  },
+  name: 'Featured Variant',
+}
+
+export const FeaturedVariantWithLeadingAndTrailingComponents: Story = {
+  render: () => <FeaturedVariantExample withCustomComponents />,
+  name: 'Featured Variant With Leading and Trailing Components',
+}
+
+export const FeaturedVariantTabletMenuOpen: Story = {
+  render: () => <FeaturedVariantExample />,
+  globals: {
+    viewport: {value: 'ipad'},
+  },
+  play: async ({canvasElement}) => {
+    const canvas = within(canvasElement)
+    await userEvent.click(canvas.getByRole('button', {name: 'Menu'}))
+    const closeButton = canvas.getByRole('button', {name: 'Close'})
+    const menu = canvasElement.ownerDocument.getElementById(closeButton.getAttribute('aria-controls') as string)
+
+    await expect(closeButton).toHaveAttribute('aria-expanded', 'true')
+    await expect(menu).toBeVisible()
+  },
+  name: 'Featured Variant Tablet Menu Open',
+}
+
+export const FeaturedVariantMobile: Story = {
+  render: () => <FeaturedVariantExample />,
+  globals: {
+    viewport: {value: 'iphonex'},
+  },
+  play: async ({canvasElement}) => {
+    const canvas = within(canvasElement)
+    const menuButton = canvas.getByRole('button', {name: 'Menu'})
+    const innerContainer = menuButton.closest('[data-testid="SubdomainNavBar-inner-container"]')
+    const menuButtonRect = menuButton.getBoundingClientRect()
+    const innerContainerRect = innerContainer?.getBoundingClientRect()
+
+    await expect(Math.abs(menuButtonRect.right - (innerContainerRect?.right ?? 0))).toBeLessThanOrEqual(1)
+  },
+  name: 'Featured Variant Mobile',
+}

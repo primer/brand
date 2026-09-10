@@ -1,5 +1,6 @@
 import React from 'react'
 import type {Meta, StoryObj} from '@storybook/react'
+import {Trans, useTranslation} from 'react-i18next'
 import {FAQ, FAQGroup} from '.'
 import {Prose} from '..'
 import {Container} from '../component-helpers'
@@ -34,65 +35,62 @@ type FixtureData = {
   answer: React.ReactElement | React.ReactElement[]
 }[]
 
-const fixtureData: FixtureData = [
-  {
-    question: 'This is my first super sweet question',
-    answer: (
-      <p>
-        Vestibulum at dolor justo.{' '}
-        <a href="https://copilot.github.com/" target="_blank" rel="noreferrer">
-          Curabitur
-        </a>{' '}
-        dictum feugiat elit, vitae vestibulum orci vestibulum sed. Donec interdum ligula at nisi rhoncus malesuada et
-        non eros.
-      </p>
-    ),
-  },
-  {
-    question: 'This is my second super sweet question',
-    answer: (
-      <React.Fragment>
+const useFixtureData = (): FixtureData => {
+  const {t} = useTranslation('FAQ')
+  const textLink = (
+    <a href="https://copilot.github.com/" target="_blank" rel="noreferrer">
+      {t('here')}
+    </a>
+  )
+
+  return [
+    {
+      question: t('fixture_question_first'),
+      answer: (
         <p>
-          Vestibulum at dolor justo.{' '}
-          <a href="https://copilot.github.com/" target="_blank" rel="noreferrer">
-            Curabitur
-          </a>{' '}
-          dictum feugiat elit, vitae vestibulum orci vestibulum sed. Donec interdum ligula at nisi rhoncus malesuada et
-          non eros.
+          <Trans t={t} i18nKey="fixture_answer" components={{textLink}} />
         </p>
-        <ol>
-          <li>Must be associated with a current GitHub for Startups partner.</li>
-          <li>Self-funded or funded (Seed-Series A)</li>
-          <li>Not a current GitHub Enterprise customer</li>
-          <li>Must not have previously received credits for GitHub Enterprise</li>
-        </ol>
-      </React.Fragment>
-    ),
-  },
-  {
-    question: 'This is my third super sweet question',
-    answer: (
-      <React.Fragment>
-        <p>
-          Vestibulum at dolor justo.{' '}
-          <a href="https://copilot.github.com/" target="_blank" rel="noreferrer">
-            Curabitur
-          </a>{' '}
-          dictum feugiat elit, vitae vestibulum orci vestibulum sed. Donec interdum ligula at nisi rhoncus malesuada et
-          non eros.
-        </p>
-        <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
-      </React.Fragment>
-    ),
-  },
-]
+      ),
+    },
+    {
+      question: t('fixture_question_second'),
+      answer: (
+        <React.Fragment>
+          <p>
+            <Trans t={t} i18nKey="fixture_answer" components={{textLink}} />
+          </p>
+          <ol>
+            <li>{t('must_be_associated')}</li>
+            <li>{t('self_funded')}</li>
+            <li>{t('not_current_customer')}</li>
+            <li>{t('no_previous_credits')}</li>
+          </ol>
+        </React.Fragment>
+      ),
+    },
+    {
+      question: t('fixture_question_third'),
+      answer: (
+        <React.Fragment>
+          <p>
+            <Trans t={t} i18nKey="fixture_answer" components={{textLink}} />
+          </p>
+          <p>{t('fixture_answer_additional')}</p>
+        </React.Fragment>
+      ),
+    },
+  ]
+}
 
 export const AllClosed: Story = {
-  render: () => {
+  render: function AllClosedComponent() {
+    const {t} = useTranslation('FAQ')
+    const fixtureData = useFixtureData()
+
     return (
       <Container>
         <FAQ>
-          <FAQ.Heading>Frequently asked&nbsp;questions</FAQ.Heading>
+          <FAQ.Heading>{t('heading')}</FAQ.Heading>
           <>
             {fixtureData.map(({question, answer}) => {
               return (
@@ -110,11 +108,14 @@ export const AllClosed: Story = {
 }
 
 export const AllOpen: Story = {
-  render: () => {
+  render: function AllOpenComponent() {
+    const {t} = useTranslation('FAQ')
+    const fixtureData = useFixtureData()
+
     return (
       <Container>
         <FAQ>
-          <FAQ.Heading>Frequently asked&nbsp;questions</FAQ.Heading>
+          <FAQ.Heading>{t('heading')}</FAQ.Heading>
           <>
             {fixtureData.map(({question, answer}) => {
               return (
@@ -136,12 +137,38 @@ export const AllOpen: Story = {
   },
 }
 
+export const Localized: Story = {
+  name: 'Localized',
+  globals: {
+    locale: 'ja',
+  },
+  render: function LocalizedContentComponent(args) {
+    const {t} = useTranslation('FAQ')
+
+    return (
+      <Container>
+        <FAQ {...args}>
+          <FAQ.Item open>
+            <FAQ.Question>{t('codespace_question')}</FAQ.Question>
+            <FAQ.Answer>
+              <p>{t('codespace_answer')}</p>
+            </FAQ.Answer>
+          </FAQ.Item>
+        </FAQ>
+      </Container>
+    )
+  },
+}
+
 export const ReversedToggles: Story = {
-  render: () => {
+  render: function ReversedTogglesComponent() {
+    const {t} = useTranslation('FAQ')
+    const fixtureData = useFixtureData()
+
     return (
       <Container>
         <FAQ>
-          <FAQ.Heading>Frequently asked&nbsp;questions</FAQ.Heading>
+          <FAQ.Heading>{t('heading')}</FAQ.Heading>
           <>
             {fixtureData.map(({question, answer}, index) => {
               return (
@@ -164,11 +191,14 @@ export const ReversedToggles: Story = {
 }
 
 export const HeadingLeftAligned: Story = {
-  render: () => {
+  render: function HeadingLeftAlignedComponent() {
+    const {t} = useTranslation('FAQ')
+    const fixtureData = useFixtureData()
+
     return (
       <Container>
         <FAQ>
-          <FAQ.Heading align="start">Frequently asked&nbsp;questions</FAQ.Heading>
+          <FAQ.Heading align="start">{t('heading')}</FAQ.Heading>
           <>
             {fixtureData.map(({question, answer}, index) => {
               return (
@@ -186,12 +216,15 @@ export const HeadingLeftAligned: Story = {
 }
 
 export const WithSubheadings: Story = {
-  render: () => {
+  render: function WithSubheadingsComponent() {
+    const {t} = useTranslation('FAQ')
+    const fixtureData = useFixtureData()
+
     return (
       <Container>
         <FAQ>
-          <FAQ.Heading>Frequently asked&nbsp;questions</FAQ.Heading>
-          <FAQ.Subheading>Group heading</FAQ.Subheading>
+          <FAQ.Heading>{t('heading')}</FAQ.Heading>
+          <FAQ.Subheading>{t('group_label')}</FAQ.Subheading>
           <>
             {fixtureData.map(({question, answer}, index) => {
               return (
@@ -202,7 +235,7 @@ export const WithSubheadings: Story = {
               )
             })}
           </>
-          <FAQ.Subheading>Group heading</FAQ.Subheading>
+          <FAQ.Subheading>{t('group_label')}</FAQ.Subheading>
           <>
             {fixtureData.map(({question, answer}) => {
               return (
@@ -219,98 +252,84 @@ export const WithSubheadings: Story = {
   },
 }
 
-const renderFAQGroupExample = (variant?: 'default' | 'gridline') => (
-  <FAQGroup variant={variant}>
-    <FAQGroup.Heading>
-      Frequently asked
-      <br />
-      questions
-    </FAQGroup.Heading>
-    <FAQ variant={variant}>
-      <FAQ.Heading>Using GitHub Enterprise</FAQ.Heading>
-      <FAQ.Item name="faq-group-1" open>
-        <FAQ.Question>What is GitHub Enterprise?</FAQ.Question>
-        <FAQ.Answer>
-          <p>
-            Lorem ipsum dolor sit amet,{' '}
-            <a href="/" target="_blank" rel="noreferrer">
-              consectetur adipiscing elit
-            </a>
-            . In sapien sit ullamcorper id. Aliquam luctus sed turpis felis nam pulvinar risus elementum.
-          </p>
-        </FAQ.Answer>
-      </FAQ.Item>
-      <FAQ.Item name="faq-group-1">
-        <FAQ.Question>How can GitHub Enterprise be deployed?</FAQ.Question>
-        <FAQ.Answer>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit.{' '}
-            <a href="/" target="_blank" rel="noreferrer">
-              In sapien sit ullamcorper id.
-            </a>{' '}
-            Aliquam luctus sed turpis felis nam pulvinar risus elementum.
-          </p>
-        </FAQ.Answer>
-      </FAQ.Item>
-      <FAQ.Item name="faq-group-1">
-        <FAQ.Question>What is GitHub Enterprise Cloud?</FAQ.Question>
-        <FAQ.Answer>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
-            turpis felis{' '}
-            <a href="/" target="_blank" rel="noreferrer">
-              nam pulvinar risus elementum.
-            </a>
-          </p>
-        </FAQ.Answer>
-      </FAQ.Item>
-    </FAQ>
+const FAQGroupExample = ({variant}: {variant?: 'default' | 'gridline'}) => {
+  const {t} = useTranslation('FAQ')
+  const textLink = (
+    <a href="/" target="_blank" rel="noreferrer">
+      {t('here')}
+    </a>
+  )
 
-    <FAQ variant={variant}>
-      <FAQ.Heading>About GitHub Enterprise</FAQ.Heading>
-      <FAQ.Item name="faq-group-2" open>
-        <FAQ.Question>What is the difference between GitHub and GitHub Enterprise?</FAQ.Question>
-        <FAQ.Answer>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
-            turpis felis nam pulvinar risus elementum.
-          </p>
-        </FAQ.Answer>
-      </FAQ.Item>
-      <FAQ.Item name="faq-group-2">
-        <FAQ.Question>Why should organizations use GitHub Enterprise?</FAQ.Question>
-        <FAQ.Answer>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
-            turpis felis nam pulvinar risus elementum.
-          </p>
-        </FAQ.Answer>
-      </FAQ.Item>
-      <FAQ.Item name="faq-group-2">
-        <FAQ.Question>Who uses GitHub Enterprise?</FAQ.Question>
-        <FAQ.Answer>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
-            turpis felis nam pulvinar risus elementum.
-          </p>
-        </FAQ.Answer>
-      </FAQ.Item>
-    </FAQ>
-  </FAQGroup>
-)
+  return (
+    <FAQGroup variant={variant}>
+      <FAQGroup.Heading>
+        <Trans t={t} i18nKey="group_heading" components={{lineBreak: <br />}} />
+      </FAQGroup.Heading>
+      <FAQ variant={variant}>
+        <FAQ.Heading>{t('using_enterprise')}</FAQ.Heading>
+        <FAQ.Item name="faq-group-1" open>
+          <FAQ.Question>{t('enterprise_question')}</FAQ.Question>
+          <FAQ.Answer>
+            <p>
+              <Trans t={t} i18nKey="enterprise_answer_first" components={{textLink}} />
+            </p>
+          </FAQ.Answer>
+        </FAQ.Item>
+        <FAQ.Item name="faq-group-1">
+          <FAQ.Question>{t('enterprise_deployment_question')}</FAQ.Question>
+          <FAQ.Answer>
+            <p>
+              <Trans t={t} i18nKey="enterprise_answer_second" components={{textLink}} />
+            </p>
+          </FAQ.Answer>
+        </FAQ.Item>
+        <FAQ.Item name="faq-group-1">
+          <FAQ.Question>{t('enterprise_cloud_question')}</FAQ.Question>
+          <FAQ.Answer>
+            <p>
+              <Trans t={t} i18nKey="enterprise_answer_third" components={{textLink}} />
+            </p>
+          </FAQ.Answer>
+        </FAQ.Item>
+      </FAQ>
+
+      <FAQ variant={variant}>
+        <FAQ.Heading>{t('about_enterprise')}</FAQ.Heading>
+        <FAQ.Item name="faq-group-2" open>
+          <FAQ.Question>{t('enterprise_difference_question')}</FAQ.Question>
+          <FAQ.Answer>
+            <p>{t('enterprise_answer_plain')}</p>
+          </FAQ.Answer>
+        </FAQ.Item>
+        <FAQ.Item name="faq-group-2">
+          <FAQ.Question>{t('enterprise_why_question')}</FAQ.Question>
+          <FAQ.Answer>
+            <p>{t('enterprise_answer_plain')}</p>
+          </FAQ.Answer>
+        </FAQ.Item>
+        <FAQ.Item name="faq-group-2">
+          <FAQ.Question>{t('enterprise_users_question')}</FAQ.Question>
+          <FAQ.Answer>
+            <p>{t('enterprise_answer_plain')}</p>
+          </FAQ.Answer>
+        </FAQ.Item>
+      </FAQ>
+    </FAQGroup>
+  )
+}
 
 export const Groups: Story = {
-  render: () => renderFAQGroupExample(),
+  render: () => <FAQGroupExample />,
 }
 
 export const GroupsGridline: Story = {
   name: 'Groups (gridline)',
-  render: () => renderFAQGroupExample('gridline'),
+  render: () => <FAQGroupExample variant="gridline" />,
 }
 
 export const GroupsNarrow: Story = {
   name: 'Group narrow view (mobile)',
-  render: () => renderFAQGroupExample(),
+  render: () => <FAQGroupExample />,
   globals: {
     viewport: {value: 'iphonexr'},
   },
@@ -318,113 +337,100 @@ export const GroupsNarrow: Story = {
 
 export const GroupsNarrowGridline: Story = {
   name: 'Group narrow view (mobile, gridline)',
-  render: () => renderFAQGroupExample('gridline'),
+  render: () => <FAQGroupExample variant="gridline" />,
   globals: {
     viewport: {value: 'iphonexr'},
   },
 }
 
 export const DynamicDataExample: Story = {
-  render: () => {
+  render: function DynamicDataExampleComponent() {
+    const {t} = useTranslation('FAQ')
+
     const faqs = [
       {
-        title: 'Who can apply?',
+        title: t('apply_question'),
         content: (
           <div>
-            <p>
-              Anyone who is a current contributor or maintainer of an open source project on GitHub. You can also apply
-              as a team for a given open source project (max of 3 people).
-            </p>
-            <p>You must also:</p>
+            <p>{t('apply_answer')}</p>
+            <p>{t('apply_requirements')}</p>
 
             <ul>
-              <li>Have an active online profile on GitHub</li>
-              <li>Be located in one of the regions supported by GitHub Sponsors</li>
-              <li>Not be a current employee of GitHub and/or any of its parent/subsidiary companies</li>
+              <li>{t('apply_profile')}</li>
+              <li>{t('apply_region')}</li>
+              <li>{t('apply_employee')}</li>
             </ul>
           </div>
         ),
       },
       {
-        title: 'What are you looking for? Who decides who is selected?',
+        title: t('selection_question'),
         content: (
           <div>
-            <p>
-              All of our applications will be thoroughly evaluated by a selection committee. You&apos;ll be much more
-              likely to be selected if you:
-            </p>
+            <p>{t('selection_answer')}</p>
             <ul>
-              <li>Have an active and growing set of users</li>
-              <li>Understand how you want to grow and maintain your project</li>
-              <li>Wish to pursue open source work full-time</li>
+              <li>{t('selection_users')}</li>
+              <li>{t('selection_growth')}</li>
+              <li>{t('selection_fulltime')}</li>
             </ul>
           </div>
         ),
       },
       {
-        title: "What do I get if I'm selected?",
+        title: t('benefits_question'),
         content: (
           <div>
             <ul>
-              <li>
-                $20,000 stipend per person ($2,000 per week of participation) for the duration of the 10 week program.
-              </li>
-              <li>Dedicated mentors from the open source community and enterprises</li>
+              <li>{t('benefits_stipend')}</li>
+              <li>{t('benefits_mentors')}</li>
             </ul>
           </div>
         ),
       },
       {
-        title: "What do I have to do if I'm selected?",
+        title: t('duties_question'),
         content: (
           <div>
             <ul>
-              <li>Participate in all Accelerator activities during the 10-week program (roughly 10 hours per week)</li>
-              <li>
-                Contribute to the open source resources we have on GitHub so other developers can learn from your
-                experience
-              </li>
+              <li>{t('duties_participation')}</li>
+              <li>{t('duties_resources')}</li>
             </ul>
           </div>
         ),
       },
       {
-        title: 'What are the exact dates of the program? What does Winter 2023 mean?',
-        content: (
-          <p>
-            The program applications are due by December 31, 2022. We will announce the first class of fellows on
-            February 15, 2023. The program itself will run from March 6, 2023 to May 12, 2023.
-          </p>
-        ),
+        title: t('dates_question'),
+        content: <p>{t('dates_answer')}</p>,
       },
 
       {
-        title: `Can I apply if I'm already a sponsorsed developer on GitHub?`,
+        title: t('sponsored_question'),
+        content: (
+          <div>
+            <p>{t('sponsored_answer')}</p>
+          </div>
+        ),
+      },
+      {
+        title: t('help_question'),
         content: (
           <div>
             <p>
-              Yes! We want to help you expand your funding and support as you look to build a full-time career in open
-              source.
+              <Trans t={t} i18nKey="help_answer" components={{email: <a href="mailto:foo@bar.com">foo@bar.com</a>}} />
             </p>
           </div>
         ),
       },
       {
-        title: 'I want to help. How can I get involved?',
+        title: t('contact_question'),
         content: (
           <div>
             <p>
-              Awesome! Email us at <a href="mailto:foo@bar.com">foo@bar.com</a>.
-            </p>
-          </div>
-        ),
-      },
-      {
-        title: 'If I have any questions, what do I do?',
-        content: (
-          <div>
-            <p>
-              Send us an email to <a href="mailto:foo@bar.com">foo@bar.com</a>.
+              <Trans
+                t={t}
+                i18nKey="contact_answer"
+                components={{email: <a href="mailto:foo@bar.com">foo@bar.com</a>}}
+              />
             </p>
           </div>
         ),
@@ -434,7 +440,7 @@ export const DynamicDataExample: Story = {
     return (
       <Container>
         <FAQ>
-          <FAQ.Heading>Frequently asked questions</FAQ.Heading>
+          <FAQ.Heading>{t('heading_plain')}</FAQ.Heading>
           {faqs.map((item, index) => {
             return (
               <FAQ.Item key={index} name="faq" open={index === 0}>
@@ -450,121 +456,61 @@ export const DynamicDataExample: Story = {
 }
 
 export const WithProse: Story = {
-  render: () => {
+  render: function WithProseComponent() {
+    const {t} = useTranslation('FAQ')
+
     return (
       <Container>
         <FAQ>
-          <FAQ.Heading>Frequently asked&nbsp;questions</FAQ.Heading>
+          <FAQ.Heading>{t('heading')}</FAQ.Heading>
           <FAQ.Item name="faq" open={true}>
-            <FAQ.Question>What is GitHub Enterprise?</FAQ.Question>
+            <FAQ.Question>{t('enterprise_question')}</FAQ.Question>
             <FAQ.Answer>
               <Prose
                 html={`
-                <p>
-                  <a href="https://docs.github.com/en/enterprise-server@3.5/admin/overview/about-github-enterprise-server">GitHub Enterprise Server</a> 
-                  is the self-hosted version of GitHub Enterprise. It is installed on-premises or on a private
-                  cloud and provides organizations with a secure and customizable source code management and
-                  collaboration platform.
-                </p>
-
-                <p>
-                  One of the key advantages of GitHub Enterprise Server is that it provides organizations with
-                  complete control over their source code and data. Organizations can choose where to store their
-                  repositories and can control who has access to them. Administrators can also customize the
-                  platform to meet specific needs, such as integrating other tools or implementing custom
-                  workflows.
-                </p>
-
-                <p>
-                  GitHub Enterprise Server also offers enhanced security and compliance features. Organizations
-                  can configure their instance to meet their specific security requirements, such as using LDAP or
-                  SAML for authentication, setting up two-factor authentication, or implementing network security
-                  measures. Compliance features are also included, such as audit logs, access controls, and
-                  vulnerability scanning.
-                </p>
-              `}
+<p>
+  <a href="https://docs.github.com/en/enterprise-server@3.5/admin/overview/about-github-enterprise-server">GitHub Enterprise Server</a>
+  ${t('server_intro')}
+</p>
+<p>${t('server_control')}</p>
+<p>${t('server_compliance')}</p>
+`}
               />
             </FAQ.Answer>
           </FAQ.Item>
           <FAQ.Item name="faq" open={true}>
-            <FAQ.Question>How secure is GitHub Enterprise?</FAQ.Question>
+            <FAQ.Question>{t('enterprise_security_question')}</FAQ.Question>
             <FAQ.Answer className="enterprise-faq-answer">
               <Prose
                 html={`
-                <p>
-                  GitHub Enterprise is designed with security in mind and includes a range of features to help organizations
-                  protect their code and data. Here are some of the key security features that GitHub Enterprise offers:
-                </p>
-                <ol>
-                  <li>
-                    Authentication and access controls: GitHub Enterprise includes two-factor authentication, LDAP and
-                    Active Directory integration, and OAuth authentication. This helps organizations ensure that only
-                    authorized users can access their repositories and data.
-                  </li>
-                  <li>
-                    Encryption: All data in transit between the user&apos;s computer and GitHub Enterprise server is
-                    encrypted using HTTPS. All data at rest uses AES-256 encryption.
-                  </li>
-                  <li>
-                    Vulnerability scanning: GitHub Enterprise includes built-in security scanning features that can detect
-                    known vulnerabilities and alert users.
-                  </li>
-                  <li>
-                    Audit logs: The platform provides detailed audit logs that record all user actions, including repository
-                    access, changes, and deletions. This helps organizations track and monitor user activity and identify
-                    potential security issues.
-                  </li>
-                  <li>
-                    Customizable policies: GitHub Enterprise allows organizations to create custom policies for repository
-                    access. This can help enforce compliance requirements and prevent unauthorized access to sensitive data.
-                  </li>
-                  <li>
-                    Regular security updates: There is also a dedicated security team that provides regular updates,
-                    monitors for potential security threats, and responds quickly to any issues that arise.
-                  </li>
-                </ol>
-              `}
+<p>${t('security_intro')}</p>
+<ol>
+  <li>${t('security_authentication')}</li>
+  <li>${t('security_encryption')}</li>
+  <li>${t('security_scanning')}</li>
+  <li>${t('security_audit')}</li>
+  <li>${t('security_policies')}</li>
+  <li>${t('security_updates')}</li>
+</ol>
+`}
               />
             </FAQ.Answer>
           </FAQ.Item>
           <FAQ.Item name="faq" open={true}>
-            <FAQ.Question>What is GitHub Enterprise Cloud?</FAQ.Question>
+            <FAQ.Question>{t('enterprise_cloud_question')}</FAQ.Question>
             <FAQ.Answer>
               <Prose
                 html={`
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
-                  turpis felis nam pulvinar risus elementum.
-                </p>
-                <ul>
-                  <li>
-                    Authentication and access controls: GitHub Enterprise includes two-factor authentication, LDAP and
-                    Active Directory integration, and OAuth authentication. This helps organizations ensure that only
-                    authorized users can access their repositories and data.
-                  </li>
-                  <li>
-                    Encryption: All data in transit between the user&apos;s computer and GitHub Enterprise server is
-                    encrypted using HTTPS. All data at rest uses AES-256 encryption.
-                  </li>
-                  <li>
-                    Vulnerability scanning: GitHub Enterprise includes built-in security scanning features that can detect
-                    known vulnerabilities and alert users.
-                  </li>
-                  <li>
-                    Audit logs: The platform provides detailed audit logs that record all user actions, including repository
-                    access, changes, and deletions. This helps organizations track and monitor user activity and identify
-                    potential security issues.
-                  </li>
-                  <li>
-                    Customizable policies: GitHub Enterprise allows organizations to create custom policies for repository
-                    access. This can help enforce compliance requirements and prevent unauthorized access to sensitive data.
-                  </li>
-                  <li>
-                    Regular security updates: There is also a dedicated security team that provides regular updates,
-                    monitors for potential security threats, and responds quickly to any issues that arise.
-                  </li>
-                </ul>
-              `}
+<p>${t('enterprise_answer_plain')}</p>
+<ul>
+  <li>${t('security_authentication')}</li>
+  <li>${t('security_encryption')}</li>
+  <li>${t('security_scanning')}</li>
+  <li>${t('security_audit')}</li>
+  <li>${t('security_policies')}</li>
+  <li>${t('security_updates')}</li>
+</ul>
+`}
               />
             </FAQ.Answer>
           </FAQ.Item>
@@ -575,10 +521,13 @@ export const WithProse: Story = {
 }
 
 export const GridlineVariant: Story = {
-  render: () => {
+  render: function GridlineVariantComponent() {
+    const {t} = useTranslation('FAQ')
+    const fixtureData = useFixtureData()
+
     return (
       <FAQ variant="gridline">
-        <FAQ.Heading>Frequently asked&nbsp;questions</FAQ.Heading>
+        <FAQ.Heading>{t('heading')}</FAQ.Heading>
         <>
           {fixtureData.map(({question, answer}, index) => {
             return (

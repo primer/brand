@@ -1,4 +1,6 @@
 {
+  "codespace_question": "Codespace とは何ですか？",
+  "codespace_answer": "Codespace は、クラウドでホストされる開発環境です。リポジトリで開発コンテナーの構成ファイルを設定することで、GitHub Codespaces プロジェクトをカスタマイズできます。これにより、プロジェクトのすべてのユーザーが繰り返し利用できる開発環境を作成できます。",
   "heading": "見出し",
   "description": "説明",
   "github_startups_offer": "GitHub for Startupsオファーには何が含まれていますか？",

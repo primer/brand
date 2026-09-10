@@ -63,10 +63,10 @@ picture {
   max-width: 100%;
 }
 
-/* Inherit fonts for inputs and buttons */
+/* Inherit font families for controls */
 input,
 button,
 textarea,
 select {
-  font: inherit;
+  font-family: inherit;
 }

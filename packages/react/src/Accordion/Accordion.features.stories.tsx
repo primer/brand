@@ -285,3 +285,22 @@ export const DisableAnimation: StoryObj = {
     )
   },
 }
+
+export const Localized: StoryObj<AccordionRootProps> = {
+  name: 'Localized',
+  globals: {
+    locale: 'ja',
+  },
+  render: function LocalizedContentComponent(args) {
+    const {t} = useTranslation('Accordion')
+
+    return (
+      <Accordion {...args} open>
+        <Accordion.Heading>{t('codespace_question')}</Accordion.Heading>
+        <Accordion.Content>
+          <p>{t('codespace_answer')}</p>
+        </Accordion.Content>
+      </Accordion>
+    )
+  },
+}
