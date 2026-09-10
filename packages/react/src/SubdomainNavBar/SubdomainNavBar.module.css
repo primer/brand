@@ -6,7 +6,6 @@
   z-index: 90;
   font-weight: 550;
   background: var(--brand-color-canvas-default);
-  border-block-end: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
   height: var(--SubdomainNavBar-height);
 }
 
@@ -14,7 +13,7 @@
   content: '';
   position: absolute;
   inset-inline: 0;
-  inset-block-start: calc(100% + var(--brand-borderWidth-thin));
+  inset-block-start: 100%;
   height: var(--brand-borderWidth-thin);
   background-color: var(--brand-color-text-emphasized);
   pointer-events: none;
@@ -1375,11 +1374,12 @@
   }
 
   .SubdomainNavBar--variant-default.SubdomainNavBar--has-primary-nav {
+    border-block-end: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
     height: calc(var(--SubdomainNavBar-height) + var(--base-size-48));
   }
 
   .SubdomainNavBar--variant-default::after {
-    inset-block-start: calc(var(--SubdomainNavBar-height) + var(--brand-borderWidth-thin));
+    inset-block-start: var(--SubdomainNavBar-height);
   }
 
   .SubdomainNavBar--variant-default .SubdomainNavBar-inner-container {
