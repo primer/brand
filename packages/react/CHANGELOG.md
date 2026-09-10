@@ -1,5 +1,43 @@
 # @primer/react-brand
 
+## 0.76.0
+
+### Minor Changes
+
+- [#1468](https://github.com/primer/brand/pull/1468) [`d1cfc06`](https://github.com/primer/brand/commit/d1cfc060a133726ce8003d89eb9aa6a19add9547) Thanks [@danielguillan](https://github.com/danielguillan)! - Updated `SubdomainNavBar` with a new minimal visual appearance and layout that replaces the previous default.
+
+  ⚠️ This is a visual and rendered-content breaking change. Please manually verify the update on your pages. The new default no longer applies the GitHub prefix to the site title.
+
+  To preserve the previous appearance, set `variant="featured"`.
+
+### Patch Changes
+
+- [#1465](https://github.com/primer/brand/pull/1465) [`bfabda2`](https://github.com/primer/brand/commit/bfabda2d622cbcaebdf4ddd674bece1712a69570) Thanks [@rezrah](https://github.com/rezrah)! - Updated the global reset for `input`, `button`, `textarea`, and `select` elements to inherit only `font-family` instead of the entire `font` shorthand.
+
+  ```diff
+  input,
+  button,
+  textarea,
+  select {
+  -  font: inherit;
+  +  font-family: inherit;
+  }
+  ```
+
+  ⚠️ Controls now retain their existing `font-size`, `font-style`, `font-weight`, `line-height`, and other `font-*` values.
+
+  Primer Brand control components preserve their previous typography through component-scoped styles.
+
+  You must set these manually going forward if you previously relied on the `font-*` declarations from the `reset.css`.
+
+- [#1469](https://github.com/primer/brand/pull/1469) [`ff0d1b3`](https://github.com/primer/brand/commit/ff0d1b3f17a676fd7077b9cea767bbb7756eb8be) Thanks [@rezrah](https://github.com/rezrah)! - - `Testimonial` component now applies an automatic text scrambling animation for names in the `expressive` variant.
+
+  - `Hero.Label` component has a minor optical adjustment to the trailing cursor.
+
+- [#1474](https://github.com/primer/brand/pull/1474) [`fdec9d1`](https://github.com/primer/brand/commit/fdec9d1e7a1bc7b178b54dd784f4972975317586) Thanks [@rezrah](https://github.com/rezrah)! - Fixed first-line text clipping in accordion content, which is used across multiple components like `FAQ`, `PricingOptions`, and `RiverBreakoutTabs`.
+
+  Also removed the `--brand-Accordion-content-offset` CSS variable as it's no longer required.
+
 ## 0.75.1
 
 ### Patch Changes
