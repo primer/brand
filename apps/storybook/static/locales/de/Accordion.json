@@ -1,4 +1,6 @@
 {
+  "codespace_question": "Was ist ein Codespace?",
+  "codespace_answer": "Ein Codespace ist eine in der Cloud gehostete Entwicklungsumgebung. Du kannst dein GitHub Codespaces-Projekt anpassen, indem du Dev-Container-Dateien in deinem Repository konfigurierst (auch als Configuration-as-Code bezeichnet). Dadurch entsteht eine wiederverwendbare Codespace-Konfiguration für alle Benutzer deines Projekts.",
   "heading": "Überschrift",
   "description": "Eine Beschreibung",
   "github_startups_offer": "Was ist im GitHub für Startups-Angebot enthalten?",
