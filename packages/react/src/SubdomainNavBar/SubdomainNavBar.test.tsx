@@ -8,6 +8,7 @@ import {
   type SubdomainNavBarHandle,
   type SubdomainNavBarSearchResults,
   type SubdomainNavBarProps,
+  type SubdomainNavBarVariant,
 } from './SubdomainNavBar'
 import {axe, toHaveNoViolations} from 'jest-axe'
 
@@ -119,6 +120,7 @@ describe('SubdomainNavBar', () => {
     searchResults,
     titleHref,
     title = 'Subdomain',
+    variant,
     leadingComponent,
     trailingComponent,
   }: {
@@ -126,6 +128,7 @@ describe('SubdomainNavBar', () => {
     searchResults?: SubdomainNavBarSearchResults
     titleHref?: string
     title?: string
+    variant?: SubdomainNavBarVariant
     leadingComponent?: SubdomainNavBarProps['leadingComponent']
     trailingComponent?: SubdomainNavBarProps['trailingComponent']
   }) => (
@@ -133,6 +136,7 @@ describe('SubdomainNavBar', () => {
       title={title}
       titleHref={titleHref}
       fullWidth={fullWidth}
+      variant={variant}
       leadingComponent={leadingComponent}
       trailingComponent={trailingComponent}
     >
@@ -350,20 +354,53 @@ describe('SubdomainNavBar', () => {
 
   it('renders a back arrow and the GitHub mark in the home link', () => {
     const {getByRole} = render(<Component />)
-    const logoIcons = getByRole('link', {name: 'Github Home'}).querySelectorAll('svg')
+    const logoLink = getByRole('link', {name: 'GitHub Home'})
 
-    expect(logoIcons).toHaveLength(2)
-    expect(logoIcons[0]).toHaveClass('octicon-chevron-left')
-    expect(logoIcons[1]).toHaveClass('octicon-mark-github')
+    expect(logoLink.querySelector('.SubdomainNavBar-back-arrow svg')).toBeInTheDocument()
+    expect(logoLink.querySelector(':scope > svg')).toBeInTheDocument()
   })
 
-  it('renders GitHub before the subdomain title', () => {
-    const {getByRole} = render(<Component />)
+  it('renders GitHub before the subdomain title in the featured variant', () => {
+    const {getByRole} = render(<Component variant="featured" />)
     const titleLink = getByRole('link', {name: 'Subdomain home'})
 
     expect(titleLink).toHaveTextContent('GitHub Subdomain')
     expect(titleLink.querySelector('.SubdomainNavBar-title-prefix')).toHaveTextContent('GitHub')
     expect(titleLink.querySelector('.SubdomainNavBar-title-label')).toHaveTextContent('Subdomain')
+    expect(titleLink.closest('header')).toHaveClass('SubdomainNavBar--variant-featured')
+  })
+
+  it.each([undefined, 'default'] as const)('renders the minimal title treatment when variant is %s', variant => {
+    const {getByRole, queryByText} = render(<Component variant={variant} />)
+    const titleLink = getByRole('link', {name: 'Subdomain home'})
+
+    expect(titleLink).toHaveTextContent('Subdomain')
+    expect(titleLink).not.toHaveTextContent('GitHub Subdomain')
+    expect(queryByText('GitHub')).not.toBeInTheDocument()
+    expect(titleLink.querySelector('.SubdomainNavBar-title-label')).toHaveTextContent('Subdomain')
+    expect(titleLink.closest('header')).toHaveClass('SubdomainNavBar--variant-default')
+  })
+
+  it('does not render title content when the title is empty', () => {
+    const {queryByRole} = render(<Component title="" />)
+
+    expect(queryByRole('link', {name: / home$/})).not.toBeInTheDocument()
+  })
+
+  it('only enables the default desktop navigation row when links are present', () => {
+    const withoutLinks = render(<SubdomainNavBar title="Subdomain" />)
+
+    expect(withoutLinks.getByRole('banner')).not.toHaveClass('SubdomainNavBar--has-primary-nav')
+
+    withoutLinks.unmount()
+
+    const withLinks = render(
+      <SubdomainNavBar title="Subdomain">
+        <SubdomainNavBar.Link href="#overview">Overview</SubdomainNavBar.Link>
+      </SubdomainNavBar>,
+    )
+
+    expect(withLinks.getByRole('banner')).toHaveClass('SubdomainNavBar--has-primary-nav')
   })
 
   it('forwards a custom id to the root element', () => {
@@ -408,6 +445,14 @@ describe('SubdomainNavBar', () => {
 
   it('has no a11y violations by default', async () => {
     const {container} = render(<Component />)
+
+    const results = await axe(container)
+
+    expect(results).toHaveNoViolations()
+  })
+
+  it('has no a11y violations with the featured variant', async () => {
+    const {container} = render(<Component variant="featured" />)
 
     const results = await axe(container)
 
@@ -1101,6 +1146,32 @@ describe('SubdomainNavBar', () => {
     expect(within(overflowMenu as HTMLElement).queryByRole('link', {name: 'Topics'})).not.toBeInTheDocument()
   })
 
+  it('preserves desktop navigation overflow in the default second row', async () => {
+    mockUseWindowSize.mockImplementation(() => ({isSmall: true, isMedium: true, isLarge: true}))
+
+    const {container, getByRole} = render(
+      <SubdomainNavBar title="Subdomain">
+        <SubdomainNavBar.Link href="#collections">Collections</SubdomainNavBar.Link>
+        <SubdomainNavBar.Link href="#topics">Topics</SubdomainNavBar.Link>
+        <SubdomainNavBar.Link href="#articles">Articles</SubdomainNavBar.Link>
+      </SubdomainNavBar>,
+    )
+
+    await updateNavigationLayout(container, {containerWidth: 130})
+
+    const moreButton = getByRole('button', {name: 'More'})
+    fireEvent.click(moreButton)
+
+    const overflowMenuId = moreButton.getAttribute('aria-controls')
+    const overflowMenu = overflowMenuId ? document.getElementById(overflowMenuId) : null
+
+    expect(getNavigationItem(container, '#articles')).toHaveAttribute('aria-hidden', 'true')
+    expect(within(overflowMenu as HTMLElement).getByRole('link', {name: 'Articles'})).toHaveAttribute(
+      'href',
+      '#articles',
+    )
+  })
+
   it('accounts for inline list padding when measuring desktop navigation overflow', async () => {
     mockUseWindowSize.mockImplementation(() => ({isSmall: true, isMedium: true}))
 
@@ -1364,11 +1435,11 @@ describe('SubdomainNavBar', () => {
     expect(getByRole('link', {name: 'Secondary CTA'})).toHaveClass(`Button--size-${size}`)
   })
 
-  it('renders the search trigger with placeholder and shortcut text', () => {
+  it('renders the featured search trigger with placeholder and shortcut text', () => {
     mockUseWindowSize.mockImplementation(() => ({isSmall: true, isMedium: true, isLarge: true}))
 
     const {getByTestId, getByText} = render(
-      <SubdomainNavBar title="Subdomain">
+      <SubdomainNavBar title="Subdomain" variant="featured">
         <SubdomainNavBar.Search
           placeholder="Search ..."
           shortcutLabel="/"
@@ -1382,9 +1453,38 @@ describe('SubdomainNavBar', () => {
     const searchTrigger = getByTestId('toggle-search')
     expect(searchTrigger).toHaveAccessibleName('Search ... search')
     expect(searchTrigger).toHaveClass('SubdomainNavBar-search-input-button')
-    expect(searchTrigger).not.toHaveClass('Button--secondary')
     expect(getByText('Search ...')).toBeInTheDocument()
     expect(getByText('/')).toBeInTheDocument()
+  })
+
+  it.each([
+    ['desktop', {isSmall: true, isMedium: true, isLarge: true}],
+    ['tablet', {isSmall: true, isMedium: true, isLarge: false}],
+    ['mobile', {isSmall: false, isMedium: false, isLarge: false}],
+  ])('renders an accessible icon-only default search trigger on %s', (_viewport, windowSize) => {
+    mockUseWindowSize.mockImplementation(() => windowSize)
+
+    const {getByRole, getByTestId} = render(
+      <SubdomainNavBar title="Subdomain">
+        <SubdomainNavBar.Search
+          placeholder="Search projects"
+          shortcutLabel="/"
+          searchTerm="docs"
+          onChange={jest.fn}
+          onSubmit={jest.fn()}
+        />
+      </SubdomainNavBar>,
+    )
+
+    const searchTrigger = getByTestId('toggle-search')
+    expect(searchTrigger.closest('header')).toHaveClass('SubdomainNavBar--variant-default')
+    expect(searchTrigger).toHaveAccessibleName('Search projects search')
+    expect(searchTrigger.querySelector('svg')).toBeInTheDocument()
+
+    fireEvent.click(searchTrigger)
+
+    expect(getByRole('dialog', {name: 'Search Subdomain'})).toHaveAttribute('open')
+    expect(getByRole('combobox')).toHaveFocus()
   })
 
   it('uses the search trigger placeholder for the opened search input', () => {
@@ -1596,6 +1696,50 @@ describe('SubdomainNavBar', () => {
     expect(trailingComponent.compareDocumentPosition(secondaryAction) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy()
   })
 
+  it('places default links in the desktop grid while preserving navigation DOM order', () => {
+    mockUseWindowSize.mockImplementation(() => ({isSmall: true, isMedium: true, isLarge: true}))
+
+    const {getByRole, getByTestId, getByText} = render(
+      <Component leadingComponent={<span>Leading content</span>} trailingComponent={<span>Trailing content</span>} />,
+    )
+
+    const innerContainer = getByTestId(SubdomainNavBar.testIds.innerContainer)
+    const primaryNavigation = getByTestId(SubdomainNavBar.testIds.menuLinks)
+    const titleLink = getByRole('link', {name: 'Subdomain home'})
+    const leadingComponent = getByText('Leading content')
+    const searchTrigger = getByTestId('toggle-search')
+    const trailingComponent = getByText('Trailing content')
+    const primaryAction = getByRole('link', {name: 'Primary CTA'})
+
+    expect(innerContainer.closest('header')).toHaveClass('SubdomainNavBar--variant-default')
+    expect(titleLink.compareDocumentPosition(primaryNavigation) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy()
+    expect(primaryNavigation.compareDocumentPosition(leadingComponent) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy()
+    expect(primaryNavigation.compareDocumentPosition(searchTrigger) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy()
+    expect(primaryNavigation.compareDocumentPosition(trailingComponent) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy()
+    expect(primaryNavigation.compareDocumentPosition(primaryAction) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy()
+  })
+
+  it('preserves default child ordering in the narrow menu', async () => {
+    mockUseWindowSize.mockImplementation(() => ({isSmall: false, isMedium: false, isLarge: false}))
+    const user = userEvent.setup()
+    const {getByRole} = render(
+      <Component leadingComponent={<span>Leading content</span>} trailingComponent={<span>Trailing content</span>} />,
+    )
+
+    const menuButton = getByRole('button', {name: 'Menu'})
+    await user.click(menuButton)
+
+    const menu = document.getElementById(menuButton.getAttribute('aria-controls') as string)
+    const leadingComponent = within(menu as HTMLElement).getByText('Leading content')
+    const firstLink = within(menu as HTMLElement).getByRole('link', {name: 'Collections'})
+    const trailingComponent = within(menu as HTMLElement).getByText('Trailing content')
+    const primaryAction = within(menu as HTMLElement).getByRole('link', {name: 'Primary CTA'})
+
+    expect(leadingComponent.compareDocumentPosition(firstLink) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy()
+    expect(firstLink.compareDocumentPosition(trailingComponent) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy()
+    expect(trailingComponent.compareDocumentPosition(primaryAction) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy()
+  })
+
   it('renders mobile leading content before links and trailing content before actions in the menu footer', () => {
     mockUseWindowSize.mockImplementation(() => ({isSmall: false, isMedium: false}))
 
@@ -1711,23 +1855,6 @@ describe('SubdomainNavBar', () => {
     const headerEl = getByTestId(SubdomainNavBar.testIds.root)
 
     expect(headerEl.classList).toContain(mockClass)
-  })
-
-  it('renders without a variant modifier class', () => {
-    const {getByTestId} = render(<Component />)
-
-    const headerEl = getByTestId(SubdomainNavBar.testIds.root)
-    expect(headerEl).toHaveClass('SubdomainNavBar')
-    expect(Array.from(headerEl.classList).some(className => className.includes('variant'))).toBe(false)
-  })
-
-  it('does not render a title separator', () => {
-    mockUseWindowSize.mockImplementation(() => ({isSmall: true, isMedium: true}))
-
-    const {container} = render(<Component />)
-
-    const separator = container.querySelector('.SubdomainNavBar-title-separator')
-    expect(separator).not.toBeInTheDocument()
   })
 
   it('renders live region when search is active', async () => {

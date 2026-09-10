@@ -2,13 +2,10 @@
  * Main styles for the subdomain navigation bar.
  */
 .SubdomainNavBar {
-  --SubdomainNavBar-height: var(--base-size-64);
-
   position: relative;
   z-index: 90;
   font-weight: 550;
   background: var(--brand-color-canvas-default);
-  border-block-end: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
   height: var(--SubdomainNavBar-height);
 }
 
@@ -16,7 +13,7 @@
   content: '';
   position: absolute;
   inset-inline: 0;
-  inset-block-start: calc(100% + var(--brand-borderWidth-thin));
+  inset-block-start: 100%;
   height: var(--brand-borderWidth-thin);
   background-color: var(--brand-color-text-emphasized);
   pointer-events: none;
@@ -105,16 +102,18 @@
 
 .SubdomainNavBar-back-arrow {
   position: absolute;
+  display: flex;
   inset-inline-start: calc(-1 * var(--base-size-24) + var(--base-size-4));
+  inset-block-start: 50%;
   color: var(--brand-color-text-muted);
   opacity: 0;
-  transform: translateX(var(--base-size-4));
+  transform: translate(var(--base-size-4), -50%);
   transition: opacity var(--brand-animation-duration-fast), transform var(--brand-animation-duration-fast) ease;
 }
 
 .SubdomainNavBar-logo-mark:hover .SubdomainNavBar-back-arrow {
   opacity: 1;
-  transform: translateX(0);
+  transform: translate(0, -50%);
 }
 
 .SubdomainNavBar-logo-mark svg {
@@ -133,12 +132,29 @@
   text-decoration: none;
 }
 
-.SubdomainNavBar-title-prefix {
+.SubdomainNavBar--variant-featured .SubdomainNavBar-title-prefix {
   color: var(--brand-color-text-default);
 }
 
 .SubdomainNavBar-title-label {
-  color: var(--brand-color-text-muted);
+  color: inherit;
+}
+
+.SubdomainNavBar--variant-default.SubdomainNavBar--has-title .SubdomainNavBar-title-area > li:first-child {
+  display: flex;
+  align-items: center;
+  align-self: stretch;
+}
+
+.SubdomainNavBar--variant-default.SubdomainNavBar--has-title .SubdomainNavBar-title-area > li:first-child::after {
+  content: '';
+  box-sizing: border-box;
+  align-self: center;
+  flex: none;
+  width: var(--brand-borderWidth-thin);
+  height: var(--SubdomainNavBar-height);
+  margin-inline: var(--base-size-16);
+  background-color: var(--brand-color-border-muted);
 }
 
 .SubdomainNavBar-leading-component,
@@ -420,7 +436,7 @@
   position: absolute;
   z-index: 100;
   right: auto;
-  background-color: var(--base-color-scale-white-0);
+  background-color: var(--brand-color-canvas-default);
   border-radius: var(--brand-borderRadius-large);
   animation: fade-in-down 0.25s, enlarge-shadow 250ms forwards;
   animation-timing-function: var(--brand-animation-easing-default);
@@ -784,6 +800,11 @@
     animation-timing-function: var(--brand-animation-easing-default);
   }
 
+  .SubdomainNavBar--variant-default .SubdomainNavBar-menu-wrapper {
+    inset-inline-start: auto;
+    min-width: calc(var(--base-size-128) * 3);
+  }
+
   .SubdomainNavBar-menu-wrapper--close {
     display: none;
   }
@@ -1018,7 +1039,6 @@
 
 @media screen and (max-width: 47.99rem) {
   .SubdomainNavBar {
-    --SubdomainNavBar-height: calc(var(--base-size-64) - var(--base-size-8));
     --SubdomainNavBar-mobile-control-size: var(--base-size-48);
   }
 
@@ -1351,6 +1371,93 @@
     );
 
     align-self: stretch;
+  }
+
+  .SubdomainNavBar--variant-default.SubdomainNavBar--has-primary-nav {
+    border-block-end: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
+    height: calc(var(--SubdomainNavBar-height) + var(--base-size-48));
+  }
+
+  .SubdomainNavBar--variant-default::after {
+    inset-block-start: var(--SubdomainNavBar-height);
+  }
+
+  .SubdomainNavBar--variant-default .SubdomainNavBar-inner-container {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    grid-template-rows: var(--SubdomainNavBar-height);
+  }
+
+  .SubdomainNavBar--variant-default.SubdomainNavBar--has-primary-nav .SubdomainNavBar-inner-container {
+    grid-template-rows: var(--SubdomainNavBar-height) var(--base-size-48);
+  }
+
+  .SubdomainNavBar--variant-default .SubdomainNavBar-title-navigation {
+    grid-column: 1;
+    grid-row: 1;
+    min-width: 0;
+  }
+
+  .SubdomainNavBar--variant-default .SubdomainNavBar-primary-nav {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    min-width: 0;
+    border-block-start: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
+  }
+
+  .SubdomainNavBar--variant-default .SubdomainNavBar-primary-nav-list {
+    padding-inline-start: calc(var(--base-size-64) + var(--brand-borderWidth-thin));
+  }
+
+  .SubdomainNavBar--variant-default .SubdomainNavBar-inner-container > .SubdomainNavBar-leading-component {
+    grid-column: 2;
+    grid-row: 1;
+    justify-self: start;
+    border-inline-start: 0;
+  }
+
+  .SubdomainNavBar--variant-default .SubdomainNavBar-inner-container > .SubdomainNavBar-secondary-nav {
+    grid-column: 3;
+    grid-row: 1;
+  }
+
+  .SubdomainNavBar--variant-default .SubdomainNavBar-search-trigger {
+    border-inline-start: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
+  }
+}
+
+.SubdomainNavBar--variant-default .SubdomainNavBar-search-input-button {
+  justify-content: center;
+  gap: 0;
+  width: var(--base-size-32);
+  padding: var(--base-size-8);
+  background-color: transparent;
+}
+
+.SubdomainNavBar--variant-default .SubdomainNavBar-search-input-button-placeholder {
+  gap: 0;
+}
+
+.SubdomainNavBar--variant-default .SubdomainNavBar-search-input-button-placeholder-text,
+.SubdomainNavBar--variant-default .SubdomainNavBar-search-input-button-shortcut {
+  display: none;
+}
+
+@media screen and (min-width: 48rem) {
+  .SubdomainNavBar--variant-default .SubdomainNavBar-search-trigger {
+    flex: 0 0 var(--base-size-48);
+    width: var(--base-size-48);
+    min-width: var(--base-size-48);
+  }
+
+  .SubdomainNavBar--variant-default .SubdomainNavBar-search-trigger {
+    padding-inline: 0;
+  }
+
+  .SubdomainNavBar--variant-default .SubdomainNavBar-search-input-button {
+    width: 100%;
+    block-size: 100%;
+    padding-inline: var(--base-size-16);
   }
 }
 

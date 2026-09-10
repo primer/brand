@@ -32,6 +32,11 @@ const meta = {
     titleHref: {
       control: 'text',
     },
+    variant: {
+      control: 'select',
+      options: ['default', 'featured'],
+      description: 'Use `featured` for the GitHub-prefixed single-row navigation with an expanded search field.',
+    },
   },
 } satisfies Meta<StoryArgs>
 
