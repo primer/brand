@@ -28,7 +28,7 @@
   "duties_resources": "Contribute to the open source resources we have on GitHub so other developers can learn from your experience",
   "dates_question": "What are the exact dates of the program? What does Winter 2023 mean?",
   "dates_answer": "The program applications are due by December 31, 2022. We will announce the first class of fellows on February 15, 2023. The program itself will run from March 6, 2023 to May 12, 2023.",
-  "sponsored_question": "Can I apply if I'm already a sponsorsed developer on GitHub?",
+  "sponsored_question": "Can I apply if I'm already a sponsored developer on GitHub?",
   "sponsored_answer": "Yes! We want to help you expand your funding and support as you look to build a full-time career in open source.",
   "help_question": "I want to help. How can I get involved?",
   "help_answer": "Awesome! Email us at <email>foo@bar.com</email>.",
@@ -69,7 +69,7 @@
   "not_current_customer": "Not a current GitHub Enterprise customer",
   "no_previous_credits": "Must not have previously received credits for GitHub Enterprise",
   "startup_not_eligible": "What if my startup is not eligible? Are there other resources for me?",
-  "startup_not_eligible_answer": "If you're not currently eligible for the GitHub for Startups but would like to try GitHub Enterprise, please feel to sign up for a trial",
+  "startup_not_eligible_answer": "If you're not currently eligible for the GitHub for Startups but would like to try GitHub Enterprise, please feel free to sign up for a trial",
   "become_partner": "How can my organization become a GitHub for Startups partner?",
   "become_partner_answer": "Any investor, accelerator, or startup support organization is eligible to apply for the GitHub for Startups program.",
   "apply_here": "Apply here"

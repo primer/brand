@@ -43,7 +43,7 @@ export const Default = () => {
         <FAQ.Question>{t('startup_not_eligible')}</FAQ.Question>
         <FAQ.Answer>
           <p>
-            {t('startup_not_eligible_answer')}
+            {t('startup_not_eligible_answer')}{' '}
             <a href="https://copilot.github.com/" target="_blank" rel="noreferrer">
               {t('here')}
             </a>

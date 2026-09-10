@@ -139,6 +139,9 @@ export const AllOpen: Story = {
 
 export const Localized: Story = {
   name: 'Localized',
+  globals: {
+    locale: 'ja',
+  },
   render: function LocalizedContentComponent(args) {
     const {t} = useTranslation('FAQ')
 
