@@ -1,4 +1,3 @@
-'use client'
 /*eslint-disable */
 import TestFixture from '../integration-tests/fixtures/KitchenSink'
 
