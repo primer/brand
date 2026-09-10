@@ -270,7 +270,6 @@ details[open] > .Accordion__summary .Accordion__summary-toggleIcon {
 }
 
 .Accordion__content {
-  --brand-Accordion-content-offset: 0px; /* we reference this in JS */
   overflow: hidden;
   max-height: 0;
   transition: max-height var(--brand-animation-duration-fast) var(--brand-animation-easing-glide);
@@ -278,14 +277,12 @@ details[open] > .Accordion__summary .Accordion__summary-toggleIcon {
 }
 
 .Accordion__content-inner {
-  transform: translateY(calc(-1 * var(--brand-Accordion-content-offset)));
   opacity: 0;
   transition: opacity var(--brand-animation-duration-fast) var(--brand-animation-easing-glide);
 }
 
 .Accordion--default > .Accordion__content {
-  --brand-Accordion-content-offset: calc(var(--base-size-24) - var(--base-size-6)); /* we reference this in JS */
-  top: calc(var(--base-size-4) * -1);
+  top: calc(var(--base-size-2) - var(--base-size-24));
 }
 
 .Accordion__summary--default + .Accordion__content > .Accordion__content-inner::before {
