@@ -6,11 +6,11 @@ import {
   Box,
   Button,
   Card,
-  ColorModesEnum,
   CTABanner,
   FAQ,
   FAQGroup,
   Grid,
+  getColorScheme,
   Hero,
   Heading,
   InlineLink,
@@ -60,6 +60,7 @@ export function FlexSuiteAIOverviewTemplate({content}: FlexSuiteAIOverviewTempla
   const heroImageRef = React.useRef<HTMLDivElement>(null)
   const riverImageRefs = React.useRef<Array<HTMLDivElement | null>>([])
   const {colorMode} = useTheme()
+  const colorScheme = getColorScheme(colorMode)
 
   useEffect(() => {
     const cleanups: Array<() => void> = []
@@ -141,14 +142,14 @@ export function FlexSuiteAIOverviewTemplate({content}: FlexSuiteAIOverviewTempla
               <Hero.Image
                 enableBorder={false}
                 position="block-end"
-                src={colorMode === ColorModesEnum.DARK ? renderUI3Dark : renderUI3}
+                src={colorScheme === 'dark' ? renderUI3Dark : renderUI3}
                 alt={content.hero.imageAlt}
               />
             ) : (
               <Hero.Video enableBorder={false} position="block-end">
                 <MinimalVideoPlayer
                   internalAccessibleLabels={content.hero.videoControls}
-                  poster={colorMode === ColorModesEnum.DARK ? renderUI3Dark : renderUI3}
+                  poster={colorScheme === 'dark' ? renderUI3Dark : renderUI3}
                   src={heroAnimation}
                   title={content.hero.imageAlt}
                 />
@@ -212,14 +213,8 @@ export function FlexSuiteAIOverviewTemplate({content}: FlexSuiteAIOverviewTempla
                 }}
               >
                 <picture>
-                  <source
-                    srcSet={colorMode === ColorModesEnum.DARK ? renderUI3Dark : renderUI3}
-                    media="(max-width: 47.99rem)"
-                  />
-                  <img
-                    src={colorMode === ColorModesEnum.DARK ? renderUI3Dark : renderUI3}
-                    alt={content.rivers[0].imageAlt}
-                  />
+                  <source srcSet={colorScheme === 'dark' ? renderUI3Dark : renderUI3} media="(max-width: 47.99rem)" />
+                  <img src={colorScheme === 'dark' ? renderUI3Dark : renderUI3} alt={content.rivers[0].imageAlt} />
                 </picture>
               </River.Visual>
               <River.Content>
@@ -236,14 +231,8 @@ export function FlexSuiteAIOverviewTemplate({content}: FlexSuiteAIOverviewTempla
                 }}
               >
                 <picture>
-                  <source
-                    srcSet={colorMode === ColorModesEnum.DARK ? renderUI3Dark : renderUI3}
-                    media="(max-width: 47.99rem)"
-                  />
-                  <img
-                    src={colorMode === ColorModesEnum.DARK ? renderUI3Dark : renderUI3}
-                    alt={content.rivers[1].imageAlt}
-                  />
+                  <source srcSet={colorScheme === 'dark' ? renderUI3Dark : renderUI3} media="(max-width: 47.99rem)" />
+                  <img src={colorScheme === 'dark' ? renderUI3Dark : renderUI3} alt={content.rivers[1].imageAlt} />
                 </picture>
               </River.Visual>
               <River.Content>
@@ -260,14 +249,8 @@ export function FlexSuiteAIOverviewTemplate({content}: FlexSuiteAIOverviewTempla
                 }}
               >
                 <picture>
-                  <source
-                    srcSet={colorMode === ColorModesEnum.DARK ? renderUI3Dark : renderUI3}
-                    media="(max-width: 47.99rem)"
-                  />
-                  <img
-                    src={colorMode === ColorModesEnum.DARK ? renderUI3Dark : renderUI3}
-                    alt={content.rivers[2].imageAlt}
-                  />
+                  <source srcSet={colorScheme === 'dark' ? renderUI3Dark : renderUI3} media="(max-width: 47.99rem)" />
+                  <img src={colorScheme === 'dark' ? renderUI3Dark : renderUI3} alt={content.rivers[2].imageAlt} />
                 </picture>
               </River.Visual>
               <River.Content>

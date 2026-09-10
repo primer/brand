@@ -21,7 +21,7 @@
   background-color: var(--brand-SubNav-bgColor);
 }
 
-[data-color-mode='dark'] .SubNav {
+:is([data-color-mode='dark'], [data-color-scheme='dark']) .SubNav {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

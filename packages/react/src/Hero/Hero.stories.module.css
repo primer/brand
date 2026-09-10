@@ -4,6 +4,22 @@
   aspect-ratio: 16 / 9;
 }
 
+/**
+* Examples
+* TODO: Replace with functional token when final color is confirmed
+*/
+
+.heroWithCardsExample {
+  --customCardsBackgroundColor: transparent;
+}
+:is([data-color-mode='light'], [data-color-scheme='light']) .heroWithCardsExample {
+  --customCardsBackgroundColor: var(--base-color-scale-gray-1);
+}
+:is([data-color-mode='dark'], [data-color-scheme='dark']) .heroWithCardsExample {
+  --customCardsBackgroundColor: var(--base-color-scale-gray-9);
+}
+
+
 /* Custom input with ActionMenu and code copying */
 
 .customInputExample {
