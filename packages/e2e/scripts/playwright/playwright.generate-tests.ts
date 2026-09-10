@@ -84,6 +84,11 @@ const waitForTimeoutLookup = {
   'components-pillar-features--frosted-glass-effect': 3000, // for image to load
   'components-testimonial-examples--with-frosted-glass': 4000, // for animation to complete
   'components-testimonial-examples--with-frosted-glass-dark': 4000, // for animation to complete
+  'components-testimonial-examples--expressive-with-background': 1500, // for the speaker name animation to complete
+  'components-testimonial-features--expressive': 1500, // for the speaker name animation to complete
+  'components-testimonial-features--expressive-tablet': 1500, // for the speaker name animation to complete
+  'components-testimonial-features--expressive-mobile': 1500, // for the speaker name animation to complete
+  'components-testimonial-features--expressive-dark': 1500, // for the speaker name animation to complete
   'components-prose--playground': 4000, // for videos to load
   'components-prose--default': 4000, // for videos to load,
   'components-hero-examples--custom-background-inline-end-padded-video': 3500, // for animations to complete

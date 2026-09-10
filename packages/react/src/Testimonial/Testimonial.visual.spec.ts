@@ -66,7 +66,7 @@ test.describe('Visual Comparison: Testimonial', () => {
     )
     await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
-    await page.waitForTimeout(500)
+    await page.waitForTimeout(1500)
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
@@ -143,6 +143,17 @@ test.describe('Visual Comparison: Testimonial', () => {
     )
     await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
+    await page.waitForTimeout(1500)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
+  test('Testimonial / Speaker Name Scrolling Animation', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-testimonial-features--speaker-name-scrolling-animation&viewMode=story',
+      {waitUntil: 'networkidle'},
+    )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
   })
@@ -157,7 +168,7 @@ test.describe('Visual Comparison: Testimonial', () => {
       )
       await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
-      await page.waitForTimeout(500)
+      await page.waitForTimeout(1500)
       await expect(page).toHaveScreenshot({fullPage: true})
     })
   })
@@ -172,7 +183,7 @@ test.describe('Visual Comparison: Testimonial', () => {
       )
       await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
-      await page.waitForTimeout(500)
+      await page.waitForTimeout(1500)
       await expect(page).toHaveScreenshot({fullPage: true})
     })
   })
@@ -183,7 +194,7 @@ test.describe('Visual Comparison: Testimonial', () => {
     )
     await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
-    await page.waitForTimeout(500)
+    await page.waitForTimeout(1500)
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 })

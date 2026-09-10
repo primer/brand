@@ -9,6 +9,7 @@ expect.extend(toHaveNoViolations)
 
 describe('TextCursorAnimation', () => {
   const mockText = 'Hello world'
+  const originalIntersectionObserver = window.IntersectionObserver
 
   beforeAll(() => {
     Object.defineProperty(window, 'matchMedia', {
@@ -24,12 +25,20 @@ describe('TextCursorAnimation', () => {
         removeEventListener: jest.fn(),
       })),
     })
+    window.IntersectionObserver = jest.fn(
+      () => ({disconnect: jest.fn(), observe: jest.fn(), unobserve: jest.fn()} as unknown as IntersectionObserver),
+    )
+  })
+
+  afterAll(() => {
+    window.IntersectionObserver = originalIntersectionObserver
   })
 
   afterEach(() => {
     cleanup()
     jest.useRealTimers()
     jest.restoreAllMocks()
+    jest.clearAllMocks()
   })
 
   it('has no a11y violations on initial render', async () => {
@@ -76,6 +85,44 @@ describe('TextCursorAnimation', () => {
     expect(getByTestId(testIds.cursor)).toHaveAttribute('aria-hidden', 'true')
   })
 
+  it('waits until the root is visible before animating when animationTrigger is on-visible', () => {
+    jest.useFakeTimers()
+    jest.spyOn(performance, 'now').mockReturnValue(0)
+
+    let intersectionObserverCallback: IntersectionObserverCallback
+    const observe = jest.fn()
+    jest.spyOn(window, 'IntersectionObserver').mockImplementation(callback => {
+      intersectionObserverCallback = callback
+      return {disconnect: jest.fn(), observe, unobserve: jest.fn()} as unknown as IntersectionObserver
+    })
+
+    let nextFrame: FrameRequestCallback | undefined
+    jest.spyOn(window, 'requestAnimationFrame').mockImplementation(callback => {
+      nextFrame = callback
+      return 1
+    })
+
+    const {getByTestId} = render(
+      <TextCursorAnimation animate animationTrigger="on-visible" waitForPageLoad={false}>
+        {mockText}
+      </TextCursorAnimation>,
+    )
+
+    expect(observe).toHaveBeenCalledWith(getByTestId(testIds.root))
+    expect(getByTestId(testIds.text)).toHaveTextContent('')
+
+    act(() => {
+      intersectionObserverCallback([{isIntersecting: true} as IntersectionObserverEntry], {} as IntersectionObserver)
+    })
+    act(() => jest.advanceTimersByTime(499))
+    expect(window.requestAnimationFrame).not.toHaveBeenCalled()
+
+    act(() => jest.advanceTimersByTime(1))
+    act(() => nextFrame?.(100))
+
+    expect(getByTestId(testIds.text)).toHaveTextContent('Hel=')
+  })
+
   it('applies custom className', () => {
     const customClass = 'custom-class'
     const {getByTestId} = render(<TextCursorAnimation className={customClass}>{mockText}</TextCursorAnimation>)
@@ -84,13 +131,14 @@ describe('TextCursorAnimation', () => {
   })
 
   it('renders non-string children correctly', () => {
-    const {getByText} = render(
-      <TextCursorAnimation>
+    const {getByTestId, getByText} = render(
+      <TextCursorAnimation animate>
         <span>Nested content</span>
       </TextCursorAnimation>,
     )
 
     expect(getByText('Nested content')).toBeInTheDocument()
+    expect(getByTestId(testIds.cursor)).toBeInTheDocument()
   })
 
   it('renders with the muted variant by default', () => {
