@@ -26,7 +26,7 @@
 .TextCursorAnimation__content {
   display: inline-flex;
   align-items: center;
-  gap: calc(var(--base-size-8) + var(--base-size-2));
+  gap: var(--base-size-6);
 }
 
 .TextCursorAnimation__content--animated {
