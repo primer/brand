@@ -44,6 +44,8 @@ Primer Brand supports the following color modes through a dedicated prop by appl
 | Light | `light`                | `data-color-mode="light"` |
 | Dark  | `dark`                 | `data-color-mode="dark"`  |
 
+Derived values such as `dark_dimmed` and `light_high_contrast` resolve internally to `dark` or `light`, which is also the value returned by `useTheme().colorMode` and applied to `data-color-mode`.
+
 The `ThemeProvider` applies the data attributes and handles state-changes internally.
 
 **`ThemeProvider` will apply `light` mode by default if the `colorMode` is not specified. This is recommended for top-level placement.**
