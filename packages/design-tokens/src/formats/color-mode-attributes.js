@@ -32,8 +32,7 @@ function colorModeAttributes({dictionary, file, options}) {
 
   const renderLightMode = () =>
     `:root, 
-    [data-color-mode="${defaultMode}"],
-    [data-color-scheme="light"] { 
+    [data-color-mode="${defaultMode}"] {
       ${allTokens
         .map(createPropertyFormatter({outputReferences, dictionary, format: 'css', formatter: {}, themeable: false}))
         .filter(function (strVal) {
@@ -65,14 +64,8 @@ function colorModeAttributes({dictionary, file, options}) {
 
     const {allTokens: newAllTokens} = newDictionary
 
-    let selector = `[data-color-mode="${mode}"]`
-
-    if (mode === 'dark') {
-      selector = `[data-color-mode="${mode}"], [data-color-scheme="dark"]`
-    }
-
     return `
-    ${selector}  {
+    [data-color-mode="${mode}"]  {
     
     ${newAllTokens
       .map(replaceWithAlternateModeValue)
@@ -93,7 +86,6 @@ function colorModeAttributes({dictionary, file, options}) {
       
     }\n`
   }
-
   const template = `
       ${fileHeader({file})}
  
