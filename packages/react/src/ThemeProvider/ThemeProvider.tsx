@@ -7,13 +7,15 @@ export enum ColorModesEnum {
 }
 
 export type ColorMode = `${ColorModesEnum}` | (string & {})
-export type ResolvedColorMode = 'light' | 'dark'
+export type ResolvedColorMode = ColorModesEnum.LIGHT | ColorModesEnum.DARK
 
 /**
  * Resolves a color mode to the light or dark theme it should use.
  */
 function resolveColorMode(mode: string): ResolvedColorMode {
-  return mode === ColorModesEnum.DARK || mode.startsWith(`${ColorModesEnum.DARK}_`) ? 'dark' : 'light'
+  return mode === ColorModesEnum.DARK || mode.startsWith(`${ColorModesEnum.DARK}_`)
+    ? ColorModesEnum.DARK
+    : ColorModesEnum.LIGHT
 }
 
 export type ThemeContextProps = {

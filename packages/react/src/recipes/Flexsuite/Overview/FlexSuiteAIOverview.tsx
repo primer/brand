@@ -6,6 +6,7 @@ import {
   Box,
   Button,
   Card,
+  ColorModesEnum,
   CTABanner,
   FAQ,
   FAQGroup,
@@ -140,14 +141,14 @@ export function FlexSuiteAIOverviewTemplate({content}: FlexSuiteAIOverviewTempla
               <Hero.Image
                 enableBorder={false}
                 position="block-end"
-                src={colorMode === 'dark' ? renderUI3Dark : renderUI3}
+                src={colorMode === ColorModesEnum.DARK ? renderUI3Dark : renderUI3}
                 alt={content.hero.imageAlt}
               />
             ) : (
               <Hero.Video enableBorder={false} position="block-end">
                 <MinimalVideoPlayer
                   internalAccessibleLabels={content.hero.videoControls}
-                  poster={colorMode === 'dark' ? renderUI3Dark : renderUI3}
+                  poster={colorMode === ColorModesEnum.DARK ? renderUI3Dark : renderUI3}
                   src={heroAnimation}
                   title={content.hero.imageAlt}
                 />
@@ -211,8 +212,14 @@ export function FlexSuiteAIOverviewTemplate({content}: FlexSuiteAIOverviewTempla
                 }}
               >
                 <picture>
-                  <source srcSet={colorMode === 'dark' ? renderUI3Dark : renderUI3} media="(max-width: 47.99rem)" />
-                  <img src={colorMode === 'dark' ? renderUI3Dark : renderUI3} alt={content.rivers[0].imageAlt} />
+                  <source
+                    srcSet={colorMode === ColorModesEnum.DARK ? renderUI3Dark : renderUI3}
+                    media="(max-width: 47.99rem)"
+                  />
+                  <img
+                    src={colorMode === ColorModesEnum.DARK ? renderUI3Dark : renderUI3}
+                    alt={content.rivers[0].imageAlt}
+                  />
                 </picture>
               </River.Visual>
               <River.Content>
@@ -229,8 +236,14 @@ export function FlexSuiteAIOverviewTemplate({content}: FlexSuiteAIOverviewTempla
                 }}
               >
                 <picture>
-                  <source srcSet={colorMode === 'dark' ? renderUI3Dark : renderUI3} media="(max-width: 47.99rem)" />
-                  <img src={colorMode === 'dark' ? renderUI3Dark : renderUI3} alt={content.rivers[1].imageAlt} />
+                  <source
+                    srcSet={colorMode === ColorModesEnum.DARK ? renderUI3Dark : renderUI3}
+                    media="(max-width: 47.99rem)"
+                  />
+                  <img
+                    src={colorMode === ColorModesEnum.DARK ? renderUI3Dark : renderUI3}
+                    alt={content.rivers[1].imageAlt}
+                  />
                 </picture>
               </River.Visual>
               <River.Content>
@@ -247,8 +260,14 @@ export function FlexSuiteAIOverviewTemplate({content}: FlexSuiteAIOverviewTempla
                 }}
               >
                 <picture>
-                  <source srcSet={colorMode === 'dark' ? renderUI3Dark : renderUI3} media="(max-width: 47.99rem)" />
-                  <img src={colorMode === 'dark' ? renderUI3Dark : renderUI3} alt={content.rivers[2].imageAlt} />
+                  <source
+                    srcSet={colorMode === ColorModesEnum.DARK ? renderUI3Dark : renderUI3}
+                    media="(max-width: 47.99rem)"
+                  />
+                  <img
+                    src={colorMode === ColorModesEnum.DARK ? renderUI3Dark : renderUI3}
+                    alt={content.rivers[2].imageAlt}
+                  />
                 </picture>
               </River.Visual>
               <River.Content>
