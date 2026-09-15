@@ -71,6 +71,38 @@ test.describe('Visual Comparison: Section', () => {
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
+  test('Section / Gridline', async ({page}) => {
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-section-features--gridline&viewMode=story', {
+      waitUntil: 'networkidle',
+    })
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+    await page.waitForTimeout(500)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
+  test('Section / Gridline With Full Width Container', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-section-features--gridline-with-full-width-container&viewMode=story',
+      {waitUntil: 'networkidle'},
+    )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+    await page.waitForTimeout(500)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
+  test('Section / Gridline With Background Color', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-section-features--gridline-with-background-color&viewMode=story',
+      {waitUntil: 'networkidle'},
+    )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+    await page.waitForTimeout(500)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
   test('Section / With Full Width Container', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-section-features--with-full-width-container&viewMode=story',
