@@ -81,6 +81,46 @@ export const ResponsivePadding: StoryFn<typeof Section> = () => {
   )
 }
 
+export const Gridline: StoryFn<typeof Section> = () => {
+  return (
+    <Stack direction="vertical" padding="none">
+      <Section variant="gridline">
+        <SectionIntro>
+          <SectionIntro.Heading>Gridline section</SectionIntro.Heading>
+          <SectionIntro.Description>
+            Gridlines span the section and the content area gains responsive lateral padding.
+          </SectionIntro.Description>
+        </SectionIntro>
+      </Section>
+      <Section variant="gridline">
+        <SectionIntro>
+          <SectionIntro.Heading>Another gridline section</SectionIntro.Heading>
+        </SectionIntro>
+      </Section>
+    </Stack>
+  )
+}
+
+export const GridlineWithFullWidthContainer: StoryFn<typeof Section> = () => {
+  return (
+    <Section variant="gridline" fullWidth>
+      <Text as="div" className={styles.paddingInnerItem}>
+        Gridline section with a full width container
+      </Text>
+    </Section>
+  )
+}
+
+export const GridlineWithBackgroundColor: StoryFn<typeof Section> = () => {
+  return (
+    <Section variant="gridline" backgroundColor="subtle">
+      <SectionIntro align="center">
+        <SectionIntro.Heading>A gridline section with a background color</SectionIntro.Heading>
+      </SectionIntro>
+    </Section>
+  )
+}
+
 export const WithFullWidthContainer: StoryFn<typeof Section> = () => {
   return (
     <Section fullWidth className={styles.paddingItem}>

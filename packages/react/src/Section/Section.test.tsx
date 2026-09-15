@@ -32,6 +32,30 @@ describe('Section', () => {
     expect(SectionEl.classList).toContain(expectedClass)
   })
 
+  it('renders with the default variant by default', () => {
+    const {getByTestId} = render(<Section />)
+
+    expect(getByTestId('Section')).toHaveClass('Section--variant-default')
+    expect(getByTestId('Section')).not.toHaveClass('Section--variant-gridline')
+  })
+
+  it('renders with the gridline variant', () => {
+    const {getByTestId} = render(<Section variant="gridline" />)
+
+    expect(getByTestId('Section')).toHaveClass('Section--variant-gridline')
+    expect(getByTestId('Section')).toHaveClass('gridline')
+  })
+
+  it('ignores rounded corners with the gridline variant', () => {
+    const warn = jest.spyOn(console, 'warn').mockImplementation()
+    const {getByTestId} = render(<Section variant="gridline" rounded />)
+
+    expect(getByTestId('Section')).not.toHaveClass('Section--rounded')
+    expect(warn).toHaveBeenCalledWith('Section: rounded is not supported with variant="gridline"; ignoring rounded.')
+
+    warn.mockRestore()
+  })
+
   it('should allow setting the element as a div', () => {
     const {getByTestId} = render(<Section as="div"></Section>)
 
@@ -325,6 +349,14 @@ describe('Section', () => {
 
   it('has no a11y violations', async () => {
     const {container} = render(<Section />)
+
+    const results = await axe(container)
+
+    expect(results).toHaveNoViolations()
+  })
+
+  it('has no a11y violations with the gridline variant', async () => {
+    const {container} = render(<Section variant="gridline" />)
 
     const results = await axe(container)
 

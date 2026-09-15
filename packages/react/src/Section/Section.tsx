@@ -4,11 +4,14 @@ import type {BaseProps} from '../component-helpers'
 
 import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/section/section.css'
 import styles from './Section.module.css'
+import gridlineStyles from '../component-helpers/shared.module.css'
 
 export const SectionPaddingVariants = ['none', 'condensed', 'normal', 'spacious'] as const
 export const SectionBackgroundColors = ['default', 'subtle'] as const
+export const SectionVariants = ['default', 'gridline'] as const
 
 const defaultSectionPadding = SectionPaddingVariants[2]
+const defaultSectionVariant = SectionVariants[0]
 
 type ResponsiveMap<T> = {
   narrow?: T
@@ -23,12 +26,17 @@ type ResponsiveBackgroundImagePositionMap = ResponsiveMap<string | string[]>
 type ResponsiveBackgroundImageSizeMap = ResponsiveMap<string | string[]>
 type ResponsiveBackgroundImageSrcMap = ResponsiveMap<string | string[]>
 type ResponsivePaddingVariantsMap = ResponsiveMap<PaddingVariants>
+type SectionVariant = (typeof SectionVariants)[number]
 
 type SectionProps = {
   /**
    * The HTML element used to render the section.
    */
   as?: 'section' | 'div'
+  /**
+   * The visual variant of the section.
+   */
+  variant?: SectionVariant
   /**
    * The padding applied to the start of the section.
    */
@@ -59,6 +67,7 @@ type SectionProps = {
   fullWidth?: boolean
   /**
    * Adds rounded corners to the top of the section.
+   * Not supported with the `gridline` variant.
    */
   rounded?: boolean
   /**
@@ -80,6 +89,7 @@ export const Section = forwardRef<HTMLDivElement, PropsWithChildren<SectionProps
   (
     {
       as: Component = 'section',
+      variant = defaultSectionVariant,
       paddingBlockStart = defaultSectionPadding,
       paddingBlockEnd = defaultSectionPadding,
       backgroundColor,
@@ -161,14 +171,25 @@ export const Section = forwardRef<HTMLDivElement, PropsWithChildren<SectionProps
       return allStyles
     }, [addStyle, backgroundColor, backgroundImageSrc, backgroundImagePosition, backgroundImageSize])
 
+    if (
+      variant === 'gridline' &&
+      rounded &&
+      (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'test')
+    ) {
+      // eslint-disable-next-line no-console
+      console.warn('Section: rounded is not supported with variant="gridline"; ignoring rounded.')
+    }
+
     return (
       <Component
         ref={ref}
         className={clsx(
           styles.Section,
+          styles[`Section--variant-${variant}`],
+          variant === 'gridline' && gridlineStyles.gridline,
           paddingBlockStartClass,
           paddingBlockEndClass,
-          rounded && styles['Section--rounded'],
+          rounded && variant !== 'gridline' && styles['Section--rounded'],
           className,
         )}
         data-testid={testId || testIds.root}
