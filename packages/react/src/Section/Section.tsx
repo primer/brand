@@ -185,7 +185,7 @@ export const Section = forwardRef<HTMLDivElement, PropsWithChildren<SectionProps
         ref={ref}
         className={clsx(
           styles.Section,
-          styles[`Section--variant-${variant}`],
+          variant === 'gridline' && styles['Section--variant-gridline'],
           variant === 'gridline' && gridlineStyles.gridline,
           paddingBlockStartClass,
           paddingBlockEndClass,

@@ -81,6 +81,35 @@ test.describe('Visual Comparison: Section', () => {
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
+  // eslint-disable-next-line i18n-text/no-en
+  test.describe('Mobile viewport test for Gridline (narrow)', () => {
+    test.use({viewport: {width: 360, height: 800}})
+    test('Section / Gridline (narrow)', async ({page}) => {
+      await page.goto(
+        'http://localhost:6006/iframe.html?args=&id=components-section-features--gridline-narrow&viewMode=story',
+        {waitUntil: 'networkidle'},
+      )
+      await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+      await page.waitForTimeout(500)
+      await expect(page).toHaveScreenshot({fullPage: true})
+    })
+  })
+
+  // eslint-disable-next-line i18n-text/no-en
+  test.describe('Tablet viewport test for Gridline (tablet)', () => {
+    test.use({viewport: {width: 834, height: 1112}})
+    test('Section / Gridline (tablet)', async ({page}) => {
+      await page.goto(
+        'http://localhost:6006/iframe.html?args=&id=components-section-features--gridline-tablet&viewMode=story',
+        {waitUntil: 'networkidle'},
+      )
+      await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+      await page.waitForTimeout(500)
+      await expect(page).toHaveScreenshot({fullPage: true})
+    })
+  })
   test('Section / Gridline With Full Width Container', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-section-features--gridline-with-full-width-container&viewMode=story',

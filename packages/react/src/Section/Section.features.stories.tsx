@@ -1,5 +1,5 @@
 import React from 'react'
-import type {StoryFn, Meta} from '@storybook/react'
+import type {StoryFn, StoryObj, Meta} from '@storybook/react'
 import {Section} from '.'
 import {Hero, Stack, SectionIntro, Text, ThemeProvider} from '..'
 import styles from './Section.features.module.css'
@@ -99,6 +99,22 @@ export const Gridline: StoryFn<typeof Section> = () => {
       </Section>
     </Stack>
   )
+}
+
+export const GridlineNarrow: StoryObj<typeof Section> = {
+  name: 'Gridline (narrow)',
+  globals: {
+    viewport: {value: 'iphonexr'},
+  },
+  render: Gridline,
+}
+
+export const GridlineTablet: StoryObj<typeof Section> = {
+  name: 'Gridline (tablet)',
+  globals: {
+    viewport: {value: 'ipad10p'},
+  },
+  render: Gridline,
 }
 
 export const GridlineWithFullWidthContainer: StoryFn<typeof Section> = () => {

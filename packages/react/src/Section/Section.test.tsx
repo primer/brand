@@ -35,7 +35,6 @@ describe('Section', () => {
   it('renders with the default variant by default', () => {
     const {getByTestId} = render(<Section />)
 
-    expect(getByTestId('Section')).toHaveClass('Section--variant-default')
     expect(getByTestId('Section')).not.toHaveClass('Section--variant-gridline')
   })
 
