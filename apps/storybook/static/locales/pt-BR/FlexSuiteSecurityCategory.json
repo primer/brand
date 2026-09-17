@@ -15,7 +15,8 @@
     }
   },
   "hero": {
-    "label": "GitHub Security",
+    "label": "Segurança para desenvolvedores",
+    "initialLabel": "Segurança de aplicações",
     "heading": "Segurança poderosa, criada para desenvolvedores",
     "primaryAction": "Começar teste gratuito",
     "secondaryAction": "Falar com vendas"

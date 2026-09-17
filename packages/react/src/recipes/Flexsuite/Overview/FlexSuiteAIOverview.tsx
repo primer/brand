@@ -122,7 +122,9 @@ export function FlexSuiteAIOverviewTemplate({content}: FlexSuiteAIOverviewTempla
               </Box>
             )}
           >
-            <Hero.Label>{content.hero.label}</Hero.Label>
+            <Hero.Label animate initialText={content.hero.initialLabel}>
+              {content.hero.label}
+            </Hero.Label>
             <Hero.Heading>
               {content.hero.headingLine1} <br /> {content.hero.headingLine2}
             </Hero.Heading>

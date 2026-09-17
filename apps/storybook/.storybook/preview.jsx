@@ -1,5 +1,6 @@
 import React, {Suspense} from 'react'
 import {I18nextProvider} from 'react-i18next'
+import {useEffect} from 'storybook/preview-api'
 import {INITIAL_VIEWPORTS} from 'storybook/viewport'
 import {ThemeProvider} from '../../../packages/react/src'
 import i18n from './i18n'
@@ -58,8 +59,12 @@ export const globalTypes = {
   },
 }
 
-const withI18next = (Story, context) => {
+const I18nextDecorator = (Story, context) => {
   const {locale} = context.globals
+
+  useEffect(() => {
+    document.documentElement.lang = locale || 'en'
+  }, [locale])
 
   i18n.changeLanguage(locale)
 
@@ -108,7 +113,7 @@ const ThemeProviderDecorator = (Story, context) => {
   )
 }
 
-export const decorators = [ThemeProviderDecorator, withI18next]
+export const decorators = [ThemeProviderDecorator, I18nextDecorator]
 
 export const parameters = {
   viewport: {

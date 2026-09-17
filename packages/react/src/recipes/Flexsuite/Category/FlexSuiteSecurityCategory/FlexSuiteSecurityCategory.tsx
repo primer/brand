@@ -74,7 +74,9 @@ export function FlexSuiteSecurityCategoryTemplate({content}: FlexSuiteSecurityCa
 
       <Section paddingBlockStart="none" paddingBlockEnd="none">
         <Hero align="center">
-          <Hero.Label>{content.hero.label}</Hero.Label>
+          <Hero.Label animate initialText={content.hero.initialLabel}>
+            {content.hero.label}
+          </Hero.Label>
           <Hero.Heading>{content.hero.heading}</Hero.Heading>
           <Hero.ButtonGroup>
             <Button as="a" href="#" variant="primary">

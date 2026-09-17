@@ -30,6 +30,10 @@ export const Playground: Story = {
       control: 'boolean',
       description: 'Whether to animate the text reveal',
     },
+    initialText: {
+      control: 'text',
+      description: 'Text to type before transitioning to the final text',
+    },
     delay: {
       control: 'number',
       description: 'Delay before starting the animation (in milliseconds)',

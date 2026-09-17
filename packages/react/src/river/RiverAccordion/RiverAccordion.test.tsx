@@ -220,6 +220,63 @@ describe('RiverAccordion', () => {
     expect(container.querySelector('.RiverAccordion__visual--has-background')).not.toBeInTheDocument()
   })
 
+  it('supports opt-out bg color for gridline variants', async () => {
+    const user = userEvent.setup()
+    const {container, getByRole, getByText} = render(
+      <RiverAccordion variant="gridline">
+        <RiverAccordion.Item>
+          <RiverAccordion.Heading>Heading 1</RiverAccordion.Heading>
+          <RiverAccordion.Content>Content 1</RiverAccordion.Content>
+          <RiverAccordion.Visual hasBackground={false}>
+            <img src="test-1.png" alt="placeholder 1" />
+          </RiverAccordion.Visual>
+        </RiverAccordion.Item>
+        <RiverAccordion.Item>
+          <RiverAccordion.Heading>Heading 2</RiverAccordion.Heading>
+          <RiverAccordion.Content>Content 2</RiverAccordion.Content>
+          <RiverAccordion.Visual>
+            <img src="test-2.png" alt="placeholder 2" />
+          </RiverAccordion.Visual>
+        </RiverAccordion.Item>
+      </RiverAccordion>,
+    )
+    const accordionRoot = container.firstChild
+    const visibleVisuals = container.querySelectorAll('.RiverAccordion__visualsWrapper > .RiverAccordion__visual')
+    const firstPanel = getByText('Content 1').parentElement!
+    const secondPanel = getByText('Content 2').parentElement!
+    const firstHiddenVisual = firstPanel.querySelector('.RiverAccordion__visual')!
+    const secondHiddenVisual = secondPanel.querySelector('.RiverAccordion__visual')!
+
+    expect(visibleVisuals[0]).not.toHaveClass('RiverAccordion__visual--has-background')
+    expect(visibleVisuals[1]).toHaveClass('RiverAccordion__visual--has-background')
+    expect(firstHiddenVisual).not.toHaveClass('RiverAccordion__visual--has-background')
+    expect(secondHiddenVisual).toHaveClass('RiverAccordion__visual--has-background')
+    expect(accordionRoot).not.toHaveClass('RiverAccordion--active-item-has-background')
+
+    await user.click(getByRole('button', {name: 'Heading 2'}))
+
+    expect(accordionRoot).toHaveClass('RiverAccordion--active-item-has-background')
+  })
+
+  it('renders a decorative leading visual in a heading', () => {
+    const {getByRole, getByTestId} = render(
+      <RiverAccordion>
+        <RiverAccordion.Item>
+          <RiverAccordion.Heading leadingVisual={<svg data-testid="leading-visual" />}>
+            Heading 1
+          </RiverAccordion.Heading>
+          <RiverAccordion.Content>Content 1</RiverAccordion.Content>
+          <RiverAccordion.Visual>
+            <img src="test-1.png" alt="placeholder 1" />
+          </RiverAccordion.Visual>
+        </RiverAccordion.Item>
+      </RiverAccordion>,
+    )
+
+    expect(getByRole('button', {name: 'Heading 1'})).toBeInTheDocument()
+    expect(getByTestId('leading-visual').parentElement).toHaveAttribute('aria-hidden', 'true')
+  })
+
   it('applies the correct class when `align="start"`', () => {
     const {container} = render(<MockRiverAccordion align="start" />)
 

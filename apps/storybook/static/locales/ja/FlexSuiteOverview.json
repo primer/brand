@@ -15,7 +15,8 @@
     }
   },
   "hero": {
-    "label": "GitHub Copilot",
+    "label": "AI アクセラレーター",
+    "initialLabel": "AI アシスタント",
     "headingLine1": "クラフトを",
     "headingLine2": "思いのままに",
     "description": "エディターからエンタープライズまで、あらゆるワークフローを加速する AI アクセラレーター。",

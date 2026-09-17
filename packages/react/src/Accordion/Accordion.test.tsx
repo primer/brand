@@ -637,9 +637,7 @@ describe('Accordion', () => {
     expect(section).toHaveAttribute('data-testid', 'content-test')
   })
 
-  it('restores focus to summary after closing with Escape key', async () => {
-    const user = userEvent.setup()
-
+  it('restores focus to summary after closing with Escape key', () => {
     const {getByRole} = render(
       <Accordion open>
         <Accordion.Heading>Test heading</Accordion.Heading>
@@ -653,7 +651,7 @@ describe('Accordion', () => {
     const summary = getByRole('heading', {name: 'Test heading'}).parentElement as HTMLElement
     const button = getByRole('button', {name: 'Focusable content'})
 
-    await user.tab()
+    button.focus()
     expect(button).toHaveFocus()
 
     fireEvent.keyDown(details, {key: 'Escape'})

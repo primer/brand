@@ -43,6 +43,11 @@ module.exports = {
   module: {
     rules: [
       {
+        // Global stylesheets need to be marked as a side-effect
+        include: path.resolve(__dirname, 'src/css/stylesheets.ts'),
+        sideEffects: true,
+      },
+      {
         test: /\.tsx?$/,
         use: [
           {

@@ -81,10 +81,7 @@ export const AccordionRoot = forwardRef<HTMLDetailsElement, AccordionRootProps>(
         return null
       }
 
-      const contentOffset = parseFloat(getComputedStyle(content).getPropertyValue('--brand-Accordion-content-offset'))
-      const contentHeight = Math.max(0, contentInner.scrollHeight - (Number.isNaN(contentOffset) ? 0 : contentOffset))
-
-      details.style.setProperty('--brand-Accordion-content-height', `${contentHeight}px`)
+      details.style.setProperty('--brand-Accordion-content-height', `${contentInner.scrollHeight}px`)
 
       return content
     }, [])

@@ -2,7 +2,7 @@ import React from 'react'
 import type {StoryObj} from '@storybook/react'
 
 import {Testimonial, TestimonialProps} from '.'
-import {Box, Grid, Stack, ThemeProvider} from '..'
+import {Box, Grid, Stack, Text, ThemeProvider} from '..'
 import monaAvatar from '../fixtures/images/avatar-mona.png'
 import styles from './Testimonial.stories.module.css'
 
@@ -198,6 +198,18 @@ export const Expressive: Story = {
     layout: 'fullscreen',
   },
   render: () => <ExpressiveExample />,
+}
+
+export const SpeakerNameScrollingAnimation: Story = {
+  parameters: {
+    layout: 'fullscreen',
+  },
+  render: () => (
+    <div className={styles.speakerNameAnimation}>
+      <Text className={styles.speakerNameAnimationPrompt}>Scroll down</Text>
+      <ExpressiveExample />
+    </div>
+  ),
 }
 
 export const ExpressiveTablet: Story = {

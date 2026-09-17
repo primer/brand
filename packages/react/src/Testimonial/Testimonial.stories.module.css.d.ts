@@ -9,6 +9,8 @@ declare const styles: {
   readonly "exampleShape2Light": string;
   readonly "expressiveContainer": string;
   readonly "innerContainer": string;
+  readonly "speakerNameAnimation": string;
+  readonly "speakerNameAnimationPrompt": string;
 };
 export = styles;
 

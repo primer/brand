@@ -46,7 +46,7 @@ export function resolveInstalledAssets(fromDir: string = process.cwd()): Install
   /** Collects exported PascalCase const names from a package's `.d.ts` type declarations. */
   const exportedNames = (packageDir: string): string[] => {
     const names = new Set<string>()
-    for (const subDir of ['dist', 'lib', '.']) {
+    for (const subDir of ['dist', 'dist/icons', 'lib', '.']) {
       let entries: string[]
       try {
         entries = readdirSync(join(packageDir, subDir))

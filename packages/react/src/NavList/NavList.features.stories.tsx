@@ -29,7 +29,7 @@ const WrappingLabelKeys = {
 }
 
 export const Groups: Story = {
-  render: function Groups() {
+  render: function GroupsStory() {
     const {t} = useTranslation('NavList')
 
     return (
@@ -68,7 +68,7 @@ export const Groups: Story = {
 }
 
 export const NestedDisclosure: Story = {
-  render: function NestedDisclosure() {
+  render: function NestedDisclosureStory() {
     const {t} = useTranslation('NavList')
 
     return (
@@ -161,7 +161,7 @@ export const GroupedNestedLevels: Story = {
 }
 
 export const MultipleLevels: Story = {
-  render: function MultipleLevels() {
+  render: function MultipleLevelsStory() {
     const {t} = useTranslation('NavList')
 
     return (
@@ -199,7 +199,7 @@ export const MultipleLevels: Story = {
 }
 
 export const CollapsedCurrentDescendant: Story = {
-  render: function CollapsedCurrentDescendant() {
+  render: function CollapsedCurrentDescendantStory() {
     const {t} = useTranslation('NavList')
     const [isActionsExpanded, setIsActionsExpanded] = useState(false)
 
@@ -250,7 +250,7 @@ export const CollapsedCurrentDescendant: Story = {
 }
 
 export const LongLabels: Story = {
-  render: function LongLabels() {
+  render: function LongLabelsStory() {
     const {t} = useTranslation('NavList')
 
     return (
@@ -277,7 +277,7 @@ export const LongLabels: Story = {
 }
 
 export const WithVisuals: Story = {
-  render: function WithVisuals() {
+  render: function WithVisualsStory() {
     const {t} = useTranslation('NavList')
 
     return (
@@ -324,7 +324,7 @@ export const WithVisuals: Story = {
 }
 
 export const OneHundredLinks: Story = {
-  render: function OneHundredLinks() {
+  render: function OneHundredLinksStory() {
     const {t} = useTranslation('NavList')
 
     return (
@@ -341,7 +341,7 @@ export const OneHundredLinks: Story = {
 
 export const FiveExpandedGroups: Story = {
   name: 'Five groups',
-  render: function FiveExpandedGroups() {
+  render: function FiveExpandedGroupsStory() {
     const {t} = useTranslation('NavList')
 
     return (
@@ -369,7 +369,7 @@ export const DarkMode: Story = {
     backgrounds: {default: 'dark'},
     colorMode: 'dark',
   },
-  render: function DarkMode() {
+  render: function DarkModeStory() {
     const {t} = useTranslation('NavList')
 
     return (

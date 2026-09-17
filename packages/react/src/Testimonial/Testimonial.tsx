@@ -11,6 +11,7 @@ import {BaseProps} from '../component-helpers'
 import {Text, Avatar as BaseAvatar, useAnimation} from '../'
 import type {AvatarProps} from '../'
 import {Link, type LinkProps} from '../Link'
+import {TextCursorAnimation} from '../TextCursorAnimation'
 
 import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/testimonial/base.css'
 import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/testimonial/colors-with-modes.css'
@@ -90,14 +91,27 @@ function TestimonialBase(
   )
 
   const childrenArray = React.Children.toArray(children)
-  const findChild = (type: React.ElementType) =>
-    childrenArray.find(child => React.isValidElement(child) && child.type === type)
+  const findChild = <Props,>(type: React.ElementType): React.ReactElement<Props> | undefined =>
+    childrenArray.find(
+      (child): child is React.ReactElement<Props> => React.isValidElement<Props>(child) && child.type === type,
+    )
 
-  const quoteChild = findChild(Quote)
-  const actionChild = findChild(_Link)
-  const avatarChild = findChild(Avatar)
-  const logoChild = findChild(Logo)
-  const nameChild = findChild(Name)
+  const quoteChild = findChild<QuoteProps>(Quote)
+  const actionChild = findChild<LinkProps>(_Link)
+  const avatarChild = findChild<AvatarProps>(Avatar)
+  const logoChild = findChild<LogoProps>(Logo)
+  const nameChild = findChild<NameProps>(Name)
+
+  const name =
+    nameChild && variant === 'expressive' && typeof nameChild.props.children === 'string'
+      ? React.cloneElement(nameChild, {
+          children: (
+            <TextCursorAnimation animate animationTrigger="on-visible" variant="default">
+              {nameChild.props.children}
+            </TextCursorAnimation>
+          ),
+        })
+      : nameChild
 
   return (
     <figure
@@ -126,7 +140,7 @@ function TestimonialBase(
       <div className={styles['Testimonial__media']}>
         {avatarChild}
         {logoChild}
-        {nameChild}
+        {name}
       </div>
       {variant === 'expressive' && actionChild}
     </figure>
@@ -163,7 +177,7 @@ type NameProps = {
 function _Name({children, className, position}: NameProps, ref) {
   return (
     <figcaption ref={ref} className={clsx(styles['Testimonial-caption'], className)}>
-      <Text size="200" className={clsx(styles['Testimonial-from'])} font="monospace">
+      <Text size="200" className={styles['Testimonial-from']} font="monospace">
         {children}
       </Text>
       {position && (

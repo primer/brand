@@ -279,10 +279,13 @@ describe('Hero', () => {
 
   it('renders with a label', () => {
     const mockLabel = 'Label'
+    const mockInitialLabel = 'Lable'
 
     const {getByText} = render(
       <Hero>
-        <Hero.Label>{mockLabel}</Hero.Label>
+        <Hero.Label animate initialText={mockInitialLabel}>
+          {mockLabel}
+        </Hero.Label>
         <Hero.Heading>{mockHeading}</Hero.Heading>
         <Hero.PrimaryAction href={mockPrimaryAction.href}>{mockPrimaryAction.text}</Hero.PrimaryAction>
         <Hero.SecondaryAction href={mockSecondaryAction.href}>{mockSecondaryAction.text}</Hero.SecondaryAction>
@@ -291,6 +294,7 @@ describe('Hero', () => {
     const labelEl = getByText(mockLabel)
 
     expect(labelEl).toBeInTheDocument()
+    expect(getByText(mockInitialLabel)).toBeInTheDocument()
     // The label text is inside TextCursorAnimation, check the parent Text element has Hero-label class
     expect(labelEl.closest('.Hero-label')).toBeInTheDocument()
   })

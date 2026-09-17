@@ -529,7 +529,7 @@ function buildComponents() {
 function exportedNames(packageName) {
   const packageDir = join(nodeModules, ...packageName.split('/'))
   const names = new Set()
-  for (const subPath of ['dist', 'lib', '.']) {
+  for (const subPath of ['dist', 'dist/icons', 'lib', '.']) {
     let entries
     try {
       entries = readdirSync(join(packageDir, subPath))
