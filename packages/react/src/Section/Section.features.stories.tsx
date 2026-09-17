@@ -101,8 +101,15 @@ export const Gridline: StoryFn<typeof Section> = () => {
   )
 }
 
+Gridline.parameters = {
+  layout: 'fullscreen',
+}
+
 export const GridlineNarrow: StoryObj<typeof Section> = {
   name: 'Gridline (narrow)',
+  parameters: {
+    layout: 'fullscreen',
+  },
   globals: {
     viewport: {value: 'iphonexr'},
   },
@@ -111,10 +118,34 @@ export const GridlineNarrow: StoryObj<typeof Section> = {
 
 export const GridlineTablet: StoryObj<typeof Section> = {
   name: 'Gridline (tablet)',
+  parameters: {
+    layout: 'fullscreen',
+  },
   globals: {
     viewport: {value: 'ipad10p'},
   },
   render: Gridline,
+}
+
+export const AdjacentGridlineSections: StoryFn<typeof Section> = () => {
+  return (
+    <Stack direction="vertical" gap="none" padding="none">
+      <Section variant="gridline">
+        <SectionIntro>
+          <SectionIntro.Heading>First gridline section</SectionIntro.Heading>
+        </SectionIntro>
+      </Section>
+      <Section variant="gridline">
+        <SectionIntro>
+          <SectionIntro.Heading>Second gridline section</SectionIntro.Heading>
+        </SectionIntro>
+      </Section>
+    </Stack>
+  )
+}
+
+AdjacentGridlineSections.parameters = {
+  layout: 'fullscreen',
 }
 
 export const GridlineWithFullWidthContainer: StoryFn<typeof Section> = () => {
@@ -127,6 +158,10 @@ export const GridlineWithFullWidthContainer: StoryFn<typeof Section> = () => {
   )
 }
 
+GridlineWithFullWidthContainer.parameters = {
+  layout: 'fullscreen',
+}
+
 export const GridlineWithBackgroundColor: StoryFn<typeof Section> = () => {
   return (
     <Section variant="gridline" backgroundColor="subtle">
@@ -135,6 +170,21 @@ export const GridlineWithBackgroundColor: StoryFn<typeof Section> = () => {
       </SectionIntro>
     </Section>
   )
+}
+
+GridlineWithBackgroundColor.parameters = {
+  layout: 'fullscreen',
+}
+
+export const GridlineWithBackgroundColorNarrow: StoryObj<typeof Section> = {
+  name: 'Gridline with background color (narrow)',
+  parameters: {
+    layout: 'fullscreen',
+  },
+  globals: {
+    viewport: {value: 'iphonexr'},
+  },
+  render: GridlineWithBackgroundColor,
 }
 
 export const WithFullWidthContainer: StoryFn<typeof Section> = () => {
