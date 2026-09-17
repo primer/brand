@@ -1,6 +1,7 @@
 .Section {
   --rounded-padding-overlap-adjustment: 0px;
   --rounded-radius: var(--brand-borderRadius-xlarge);
+  --padding-block-start: var(--brand-Section-padding-normal);
   --padding-block-end: var(--brand-Section-padding-normal);
   --adjusted-padding-block-end: calc(var(--padding-block-end) + var(--rounded-padding-overlap-adjustment));
 
@@ -28,6 +29,18 @@
   max-width: none;
 }
 
+.Section--variant-gridline .Section__container {
+  padding-inline: var(--brand-Section-variant-gridline-paddingInline);
+}
+
+.Section--variant-gridline .Section__container--fullWidth {
+  padding-inline: 0;
+}
+
+.Section.Section--variant-gridline::after {
+  bottom: calc(-1 * var(--brand-borderWidth-thin));
+}
+
 .Section--rounded {
   border-radius: var(--rounded-radius) var(--rounded-radius) 0 0;
   margin-top: calc(-1 * var(--rounded-radius));
@@ -40,20 +53,20 @@
 
 .Section--paddingBlockStart-none,
 .Section-narrow--paddingBlockStart-none {
-  padding-block-start: 0;
+  --padding-block-start: 0;
 }
 
 .Section--paddingBlockStart-condensed,
 .Section-narrow--paddingBlockStart-condensed {
-  padding-block-start: var(--brand-Section-padding-condensed);
+  --padding-block-start: var(--brand-Section-padding-condensed);
 }
 .Section--paddingBlockStart-normal,
 .Section-narrow--paddingBlockStart-normal {
-  padding-block-start: var(--brand-Section-padding-normal);
+  --padding-block-start: var(--brand-Section-padding-normal);
 }
 .Section--paddingBlockStart-spacious,
 .Section-narrow--paddingBlockStart-spacious {
-  padding-block-start: var(--brand-Section-padding-spacious);
+  --padding-block-start: var(--brand-Section-padding-spacious);
 }
 
 .Section--paddingBlockEnd-none,
@@ -86,17 +99,17 @@
   }
 
   .Section-regular--paddingBlockStart-none {
-    padding-block-start: 0;
+    --padding-block-start: 0;
   }
 
   .Section-regular--paddingBlockStart-condensed {
-    padding-block-start: var(--brand-Section-padding-condensed);
+    --padding-block-start: var(--brand-Section-padding-condensed);
   }
   .Section-regular--paddingBlockStart-normal {
-    padding-block-start: var(--brand-Section-padding-normal);
+    --padding-block-start: var(--brand-Section-padding-normal);
   }
   .Section-regular--paddingBlockStart-spacious {
-    padding-block-start: var(--brand-Section-padding-spacious);
+    --padding-block-start: var(--brand-Section-padding-spacious);
   }
 
   .Section-regular--paddingBlockEnd-none {
@@ -127,17 +140,17 @@
   }
 
   .Section-wide--paddingBlockStart-none {
-    padding-block-start: 0;
+    --padding-block-start: 0;
   }
 
   .Section-wide--paddingBlockStart-condensed {
-    padding-block-start: var(--brand-Section-padding-condensed);
+    --padding-block-start: var(--brand-Section-padding-condensed);
   }
   .Section-wide--paddingBlockStart-normal {
-    padding-block-start: var(--brand-Section-padding-normal);
+    --padding-block-start: var(--brand-Section-padding-normal);
   }
   .Section-wide--paddingBlockStart-spacious {
-    padding-block-start: var(--brand-Section-padding-spacious);
+    --padding-block-start: var(--brand-Section-padding-spacious);
   }
 
   .Section-wide--paddingBlockEnd-none {
@@ -152,5 +165,29 @@
   }
   .Section-wide--paddingBlockEnd-spacious {
     --padding-block-end: var(--brand-Section-padding-spacious);
+  }
+
+  .Section--variant-gridline .Section__container:not(.Section__container--fullWidth) {
+    position: relative;
+    border-inline: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
+  }
+
+  .Section--variant-gridline .Section__container:not(.Section__container--fullWidth)::before,
+  .Section--variant-gridline .Section__container:not(.Section__container--fullWidth)::after {
+    content: '';
+    position: absolute;
+    inset-block-start: calc(-1 * var(--padding-block-start));
+    inset-block-end: calc(-1 * var(--adjusted-padding-block-end));
+    width: var(--brand-borderWidth-thin);
+    background-color: var(--brand-color-border-muted);
+    pointer-events: none;
+  }
+
+  .Section--variant-gridline .Section__container:not(.Section__container--fullWidth)::before {
+    inset-inline-start: calc(-1 * var(--brand-borderWidth-thin));
+  }
+
+  .Section--variant-gridline .Section__container:not(.Section__container--fullWidth)::after {
+    inset-inline-end: calc(-1 * var(--brand-borderWidth-thin));
   }
 }
