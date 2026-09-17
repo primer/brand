@@ -483,6 +483,54 @@ describe('SubdomainNavBar', () => {
     expect(searchResultsLandmark).toBeInTheDocument()
   })
 
+  it('renders custom search content inside the dialog', () => {
+    const {getByRole, getByTestId, getByText} = render(
+      <SubdomainNavBar title="Subdomain">
+        <SubdomainNavBar.Search searchTerm="docs" onChange={jest.fn} onSubmit={jest.fn()}>
+          <div data-testid="custom-search-content">
+            <p>Recommended documentation</p>
+            <button type="button">Browse all docs</button>
+          </div>
+        </SubdomainNavBar.Search>
+      </SubdomainNavBar>,
+    )
+
+    fireEvent.click(getByTestId('toggle-search'))
+
+    const dialog = getByRole('dialog')
+    const searchInput = getByRole('combobox')
+    expect(getByText('Recommended documentation')).toBeInTheDocument()
+    expect(getByRole('button', {name: 'Browse all docs'})).toBeInTheDocument()
+    expect(getByTestId('custom-search-content')).toBeInTheDocument()
+    expect(dialog.querySelector('[role="listbox"]')).not.toBeInTheDocument()
+    expect(searchInput).not.toHaveAttribute('aria-controls')
+  })
+
+  it('renders custom search content alongside built-in search results', () => {
+    const searchResults: SubdomainNavBarSearchResults = [
+      {
+        title: 'Getting started',
+        description: 'Learn the basics.',
+        url: '/get-started',
+        date: '2026-09-10',
+      },
+    ]
+    const {getByRole, getByTestId, getByText} = render(
+      <SubdomainNavBar title="Subdomain">
+        <SubdomainNavBar.Search searchTerm="docs" searchResults={searchResults} onChange={jest.fn} onSubmit={jest.fn()}>
+          <p data-testid="custom-search-content">Custom recommendations</p>
+        </SubdomainNavBar.Search>
+      </SubdomainNavBar>,
+    )
+
+    fireEvent.click(getByTestId('toggle-search'))
+
+    expect(getByText('Custom recommendations')).toBeInTheDocument()
+    const listbox = getByRole('listbox')
+    expect(listbox).toBeInTheDocument()
+    expect(getByRole('combobox')).toHaveAttribute('aria-controls', listbox.id)
+  })
+
   it('does not enable a keyboard shortcut by default', () => {
     const {queryByRole} = render(<Component />)
 

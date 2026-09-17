@@ -1529,6 +1529,10 @@
   width: 100%;
 }
 
+.SubdomainNavBar-search-custom-content {
+  width: 100%;
+}
+
 .SubdomainNavBar-search-results-container {
   animation: fade-in-down 500ms;
   padding: var(--base-size-24);

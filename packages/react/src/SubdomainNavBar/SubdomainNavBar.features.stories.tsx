@@ -1,13 +1,21 @@
 import React from 'react'
 import type {Meta, StoryObj} from '@storybook/react'
-import {GlobeIcon} from '@primer/octicons-react'
+import {
+  ArrowUpRightIcon,
+  CopilotIcon,
+  GlobeIcon,
+  PaperAirplaneIcon,
+  TriangleDownIcon,
+  TriangleUpIcon,
+} from '@primer/octicons-react'
 import {expect, userEvent, within} from 'storybook/test'
 import {waitFor} from '@testing-library/dom'
 
-import {ActionMenu, Button, Heading, Hero, Link, River, SubdomainNavBar, Text, Token} from '..'
+import {ActionMenu, Button, Heading, Hero, InlineCode, Link, River, SubdomainNavBar, Text, TextInput, Token} from '..'
 import type {SubdomainNavBarHandle} from '.'
 import placeholderImage from '../fixtures/images/placeholder.png'
 import {groupedSearchResults, navigationLinks, searchResults} from './SubdomainNavBar.stories.fixtures'
+import styles from './SubdomainNavBar.features.stories.module.css'
 
 type MetaProps = React.ComponentProps<typeof SubdomainNavBar>
 
@@ -261,6 +269,179 @@ export const GroupedSearchResultsVisible: Story = {
     await expect(canvas.getAllByRole('option')).toHaveLength(7)
   },
   name: 'Grouped Search Results Visible',
+}
+
+export const SearchCustomContent: Story = {
+  render: () => (
+    <SubdomainNavBar title="GitHub Docs" titleHref="/" fullWidth fixed={false}>
+      <SubdomainNavBar.Link href="#guides">Guides</SubdomainNavBar.Link>
+      <SubdomainNavBar.Link href="#api">API</SubdomainNavBar.Link>
+      <SubdomainNavBar.Search
+        placeholder="Search GitHub Docs"
+        className={styles.designSearch}
+        searchTerm="How do i"
+        searchResults={[]}
+        onSubmit={event => event.preventDefault()}
+        onChange={() => undefined}
+        labels={{closeLabel: 'Close'}}
+      >
+        <div className={styles.searchContent}>
+          <section className={styles.searchSection} aria-labelledby="ai-results-heading">
+            <Heading as="h2" id="ai-results-heading" size="6" className={styles.resultsLabel}>
+              AI results
+            </Heading>
+            <div className={styles.aiResults}>
+              <div className={styles.aiResult}>
+                <div className={styles.resultHeading}>
+                  <Heading as="h3" size="6">
+                    How do I connect to GitHub with my SSH?
+                  </Heading>
+                  <TriangleUpIcon size={16} />
+                </div>
+                <div className={styles.answer}>
+                  <CopilotIcon size={20} />
+                  <div>
+                    <Text as="p" size="200">
+                      1. Make sure you have an SSH key set up:
+                    </Text>
+                    <ul>
+                      <li>
+                        <Text as="span" size="200">
+                          Check for existing keys
+                        </Text>
+                      </li>
+                      <li>
+                        <Text as="span" size="200">
+                          Generate a new SSH key
+                        </Text>
+                      </li>
+                      <li>
+                        <Text as="span" size="200">
+                          Add the public key to your GitHub account
+                        </Text>
+                      </li>
+                    </ul>
+                    <Text as="p" size="200">
+                      2. Open your terminal:
+                    </Text>
+                    <ul>
+                      <li>
+                        <Text as="span" size="200">
+                          macOS or Linux: <InlineCode wrap={false}>Terminal</InlineCode>
+                        </Text>
+                      </li>
+                      <li>
+                        <Text as="span" size="200">
+                          Windows: <InlineCode wrap={false}>Git Bash</InlineCode>
+                        </Text>
+                      </li>
+                    </ul>
+                    <Text as="p" size="200">
+                      3. Test the connection:
+                    </Text>
+                    <InlineCode className={styles.blockCode} wrap={false}>
+                      ssh -T git@github.com
+                    </InlineCode>
+                    <Text as="p" size="200">
+                      the first time, verify the host fingerprint matches{' '}
+                      <Link href="#fingerprints" arrowDirection="none">
+                        GitHub&apos;s public key fingerprints
+                      </Link>
+                      , then type <InlineCode wrap={false}>yes</InlineCode>
+                    </Text>
+                    <Text as="p" size="200">
+                      1. If it works, you should see a message like:
+                    </Text>
+                    <InlineCode className={styles.blockCode}>
+                      hi username! you&apos;ve successfully authenticated, but github does not provide shell access.
+                    </InlineCode>
+                    <Text as="p" size="200">
+                      If you get <InlineCode wrap={false}>permission denied (publickey)</InlineCode>, check{' '}
+                      <Link href="#permission-denied" arrowDirection="none">
+                        Error: Permission denied (publickey)
+                      </Link>
+                      .
+                    </Text>
+                    <Text as="p" size="200">
+                      If port 22 is blocked, you can try SSH over HTTPS port 443:
+                    </Text>
+                    <InlineCode className={styles.blockCode} wrap={false}>
+                      ssh -T -p 443 git@ssh.github.com
+                    </InlineCode>
+                    <Text as="p" size="200">
+                      and then update <InlineCode wrap={false}>~/.ssh/config</InlineCode> as documented in{' '}
+                      <Link href="#https-port" arrowDirection="none">
+                        Using SSH over the HTTPS port
+                      </Link>
+                      .
+                    </Text>
+                    <Text as="p" size="200" variant="muted">
+                      Copilot uses AI. Check for mistakes.
+                    </Text>
+                  </div>
+                </div>
+                <div className={styles.askAnotherQuestion}>
+                  <TextInput
+                    aria-label="Ask another question"
+                    className={styles.askAnotherQuestionInput}
+                    placeholder="Ask another question..."
+                    readOnly
+                    trailingVisual={<PaperAirplaneIcon size={20} />}
+                    fullWidth
+                  />
+                </div>
+              </div>
+              <div className={styles.collapsedResult}>
+                <Heading as="h3" size="6">
+                  How do I sign commits?
+                </Heading>
+                <TriangleDownIcon size={16} />
+              </div>
+              <div className={styles.collapsedResult}>
+                <Heading as="h3" size="6">
+                  How do I create webhooks?
+                </Heading>
+                <TriangleDownIcon size={16} />
+              </div>
+            </div>
+          </section>
+          <section className={styles.searchSection} aria-labelledby="docs-results-heading">
+            <Heading as="h2" id="docs-results-heading" size="6" className={styles.resultsLabel}>
+              Docs results
+            </Heading>
+            <div className={styles.docsResults}>
+              {[
+                'Frequently asked questions',
+                'How GitHub works',
+                'Using the GitHub CLI across GitHub platforms',
+                'How GitHub works',
+                'Long article name lorem ipsum dolor sit amet using the GitHub CLI across GitHub platforms lipsum...',
+              ].map(result => (
+                <div className={styles.docResult} key={result}>
+                  <Text as="span" size="300" weight="semibold">
+                    {result}
+                  </Text>
+                  <ArrowUpRightIcon size={16} />
+                </div>
+              ))}
+            </div>
+            <a className={styles.seeMore} href="#more">
+              See more
+            </a>
+          </section>
+        </div>
+      </SubdomainNavBar.Search>
+    </SubdomainNavBar>
+  ),
+  play: async ({canvasElement}) => {
+    const canvas = within(canvasElement)
+    await userEvent.click(canvas.getByRole('button', {name: 'Search GitHub Docs search'}))
+    await expect(canvas.getByRole('dialog')).toBeVisible()
+    await expect(canvas.getByText('AI results')).toBeVisible()
+    await expect(canvas.getByText('Docs results')).toBeVisible()
+    await expect(canvas.queryByRole('listbox')).not.toBeInTheDocument()
+  },
+  name: 'Search Custom Content',
 }
 
 export const OverflowMenuOpen: Story = {

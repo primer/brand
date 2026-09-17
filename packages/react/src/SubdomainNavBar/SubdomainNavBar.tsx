@@ -763,6 +763,10 @@ const defaultSearchLabels: SubdomainNavBarSearchLabels = {
 export type SubdomainNavBarSearchProps = {
   onSubmit: (e: React.FormEvent<HTMLFormElement>) => void
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
+  /**
+   * Optional custom content rendered below the search input and above built-in search results.
+   */
+  children?: React.ReactNode
   active?: boolean
   className?: string
   title?: string
@@ -794,6 +798,7 @@ const _SearchInternal = forwardRef<HTMLInputElement, SubdomainNavBarSearchProps>
     {
       active,
       className,
+      children,
       title,
       searchResults,
       searchTerm,
@@ -824,6 +829,8 @@ const _SearchInternal = forwardRef<HTMLInputElement, SubdomainNavBarSearchProps>
       resetActiveDescendant,
       searchResultsLength,
     } = useSearchResults({dialogRef, searchResults})
+    const hasCustomContent = children != null
+    const hasSearchContent = hasSearchResults || hasCustomContent
 
     const handleClose = useCallback(() => {
       onSearchClose?.()
@@ -972,7 +979,7 @@ const _SearchInternal = forwardRef<HTMLInputElement, SubdomainNavBarSearchProps>
           aria-label={dialogLabel}
           className={clsx(
             styles['SubdomainNavBar-search-dialog'],
-            hasSearchResults && styles['SubdomainNavBar-search-dialog--has-results'],
+            hasSearchContent && styles['SubdomainNavBar-search-dialog--has-results'],
           )}
           onCancel={handleDialogCancel}
         >
@@ -994,7 +1001,7 @@ const _SearchInternal = forwardRef<HTMLInputElement, SubdomainNavBarSearchProps>
                         autoComplete="off"
                         aria-autocomplete="list"
                         aria-expanded={hasSearchResults}
-                        aria-controls="listbox-search-results"
+                        aria-controls={hasSearchResults ? 'listbox-search-results' : undefined}
                         placeholder={resolvedPlaceholder}
                         onChange={onChange}
                         defaultValue={searchTerm}
@@ -1019,12 +1026,12 @@ const _SearchInternal = forwardRef<HTMLInputElement, SubdomainNavBarSearchProps>
               </div>
 
               <div
-                id="listbox-search-results"
                 className={clsx(
                   styles['SubdomainNavBar-search-results-area'],
-                  hasSearchResults && styles['SubdomainNavBar-search-results-area--visible'],
+                  hasSearchContent && styles['SubdomainNavBar-search-results-area--visible'],
                 )}
               >
+                {hasCustomContent && <div className={styles['SubdomainNavBar-search-custom-content']}>{children}</div>}
                 {hasSearchResults && (
                   <div className={clsx(styles['SubdomainNavBar-search-results-container'])}>
                     {!hasGroupedSearchResults && (
@@ -1036,6 +1043,7 @@ const _SearchInternal = forwardRef<HTMLInputElement, SubdomainNavBarSearchProps>
                       </Text>
                     )}
                     <ul
+                      id="listbox-search-results"
                       role="listbox"
                       tabIndex={0}
                       aria-labelledby={!hasGroupedSearchResults ? 'subdomainnavbar-search-results-heading' : undefined}

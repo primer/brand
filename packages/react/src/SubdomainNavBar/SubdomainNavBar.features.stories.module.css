@@ -1,0 +1,161 @@
+.searchContent {
+  display: flex;
+  flex-direction: column;
+  gap: var(--base-size-24);
+  min-width: 0;
+}
+
+.designSearch + dialog {
+  box-sizing: border-box;
+  width: min(calc(100vw - (var(--base-size-64) * 2)), calc(var(--base-size-128) * 7 + var(--base-size-64)));
+  max-height: calc(100vh - (var(--base-size-64) * 2));
+  padding: var(--base-size-24);
+  overflow: auto;
+}
+
+.designSearch + dialog > [class*='search-dialog-control-area'] {
+  height: var(--base-size-40);
+}
+
+.designSearch + dialog form {
+  position: relative;
+}
+
+.designSearch + dialog > [class*='search-results-area--visible'] {
+  margin-block-start: var(--base-size-48);
+  padding-block-start: var(--base-size-24);
+}
+
+.searchSection {
+  display: flex;
+  flex-direction: column;
+  gap: var(--base-size-8);
+}
+
+.resultsLabel {
+  color: var(--brand-color-text-muted);
+  font-size: var(--brand-text-size-200);
+  font-weight: 400;
+  line-height: var(--brand-text-lineHeight-200);
+}
+
+.aiResults,
+.docsResults {
+  display: flex;
+  flex-direction: column;
+}
+
+.aiResult {
+  padding-block-end: var(--base-size-32);
+}
+
+.resultHeading,
+.collapsedResult,
+.docResult {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--base-size-16);
+}
+
+.resultHeading {
+  padding-block: var(--base-size-8);
+}
+
+.resultHeading h3,
+.collapsedResult h3 {
+  margin: 0;
+  font-size: var(--brand-text-size-300);
+  font-weight: var(--brand-heading-weight-600);
+  line-height: var(--brand-text-lineHeight-300);
+}
+
+.answer {
+  display: grid;
+  grid-template-columns: var(--base-size-24) 1fr;
+  gap: var(--base-size-16);
+  min-width: 0;
+  padding-block-start: var(--base-size-16);
+  color: var(--brand-color-text-default);
+  font-family: var(--brand-body-fontFamily);
+  font-size: var(--brand-text-size-200);
+  line-height: var(--brand-text-lineHeight-200);
+}
+
+.answer p {
+  margin: 0 0 var(--base-size-12);
+}
+
+.answer ul {
+  margin: 0 0 var(--base-size-16);
+  padding-inline-start: var(--base-size-24);
+}
+
+.answer a,
+.seeMore {
+  color: var(--brand-color-text-link);
+}
+
+.blockCode {
+  display: block;
+  max-width: 100%;
+  width: fit-content;
+  margin-block: 0 var(--base-size-12);
+  padding: var(--base-size-6) var(--base-size-8);
+  font-size: var(--brand-text-size-100);
+  overflow-wrap: anywhere;
+  white-space: normal;
+}
+
+.askAnotherQuestion {
+  width: 100%;
+  margin-block-end: var(--base-size-32);
+}
+
+.askAnotherQuestionInput {
+  color: var(--brand-color-text-muted);
+  font-family: var(--brand-body-fontFamily);
+  font-size: var(--brand-text-size-200);
+}
+
+.collapsedResult,
+.docResult {
+  min-block-size: var(--base-size-56);
+  border-block-start: var(--brand-borderWidth-thin) dashed var(--brand-color-border-muted);
+}
+
+.collapsedResult + .collapsedResult {
+  margin-block-start: var(--base-size-16);
+}
+
+.searchSection + .searchSection {
+  padding-block-start: var(--base-size-24);
+}
+
+.docsResults {
+  border-block-end: var(--brand-borderWidth-thin) dashed var(--brand-color-border-muted);
+}
+
+.docResult {
+  padding-inline: var(--base-size-4);
+}
+
+.docResult span {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.seeMore {
+  align-self: flex-start;
+  padding-block-start: var(--base-size-16);
+}
+
+@media screen and (max-width: 47.99rem) {
+  .designSearch + dialog {
+    width: calc(100vw - (var(--base-size-16) * 2));
+    max-height: calc(100vh - (var(--base-size-16) * 2));
+    padding: var(--base-size-16);
+  }
+}

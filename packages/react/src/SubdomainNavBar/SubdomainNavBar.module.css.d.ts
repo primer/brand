@@ -47,6 +47,7 @@ declare const styles: {
   readonly "SubdomainNavBar-primary-nav-overflow": string;
   readonly "SubdomainNavBar-primary-nav-overflow--has-overflow": string;
   readonly "SubdomainNavBar-search-close-button": string;
+  readonly "SubdomainNavBar-search-custom-content": string;
   readonly "SubdomainNavBar-search-dialog": string;
   readonly "SubdomainNavBar-search-dialog--has-results": string;
   readonly "SubdomainNavBar-search-dialog-control-area": string;
