@@ -239,6 +239,17 @@ test.describe('Visual Comparison: SubNav', () => {
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
+  test('SubNav / Desktop Pill States', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-subnav-features--desktop-pill-states&viewMode=story',
+      {waitUntil: 'networkidle'},
+    )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+    await page.waitForTimeout(500)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
   test('SubNav / Forwarded Refs', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-subnav-features--forwarded-refs&viewMode=story',

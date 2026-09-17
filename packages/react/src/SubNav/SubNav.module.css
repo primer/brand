@@ -603,13 +603,18 @@
     text-decoration: none !important; /* dotcom override */
     transition: color 0.2s var(--brand-animation-easing-glide);
     position: relative;
-    padding: var(--base-size-4) var(--base-size-12);
-    border-radius: var(--brand-borderRadius-full);
+    padding: var(--base-size-4);
   }
 
   .SubNav__link-label {
     font-size: var(--brand-text-size-100);
     line-height: var(--brand-text-lineHeight-100);
+    display: inline-flex;
+    align-items: center;
+    padding: var(--base-size-4) var(--base-size-12);
+    border-radius: var(--brand-borderRadius-full);
+    transition: background-color var(--brand-animation-duration-fast) var(--brand-animation-easing-default),
+      color var(--brand-animation-duration-fast) var(--brand-animation-easing-default);
   }
 
   .SubNav__link--has-sub-menu {
@@ -716,10 +721,35 @@
     padding: var(--base-size-12);
   }
 
-  /* Active link pill styling */
-  .SubNav__links-overlay .SubNav__link[aria-current]:not([aria-current='false']) {
+  .SubNav__links-overlay > li > :is(.SubNav__link, .SubNav__link--has-sub-menu > .SubNav__link) > .SubNav__link-label {
+    background-color: transparent;
+  }
+
+  .SubNav__links-overlay
+    > li
+    > :is(.SubNav__link, .SubNav__link--has-sub-menu > .SubNav__link):hover
+    > .SubNav__link-label,
+  .SubNav__links-overlay
+    > li
+    > :is(.SubNav__link, .SubNav__link--has-sub-menu > .SubNav__link):active
+    > .SubNav__link-label,
+  .SubNav__links-overlay
+    > li
+    > :is(.SubNav__link, .SubNav__link--has-sub-menu > .SubNav__link)[aria-current]:not([aria-current='false'])
+    > .SubNav__link-label {
     background-color: var(--brand-SubNav-color-link-bgColor);
-    line-height: 1.1em;
+  }
+
+  .SubNav__links-overlay > li > :is(.SubNav__link, .SubNav__link--has-sub-menu > .SubNav__link):focus-visible {
+    outline: none;
+  }
+
+  .SubNav__links-overlay
+    > li
+    > :is(.SubNav__link, .SubNav__link--has-sub-menu > .SubNav__link):focus-visible
+    > .SubNav__link-label {
+    outline: var(--brand-borderWidth-thick) solid var(--brand-color-focus);
+    outline-offset: var(--base-size-2);
   }
 
   /* Firefox optical alignment fix */

@@ -349,6 +349,29 @@ export const AnchorNavDefaultLinkVariant: Story = {
   ),
 }
 
+export const DesktopPillStates: Story = {
+  render: () => (
+    <SubNav>
+      <SubNav.Heading href="#">Site title</SubNav.Heading>
+      <SubNav.Link href="#default">Default</SubNav.Link>
+      <SubNav.Link href="#hover">Hover</SubNav.Link>
+      <SubNav.Link href="#focus">Focus</SubNav.Link>
+      <SubNav.Link href="#current" aria-current="page">
+        Current
+      </SubNav.Link>
+    </SubNav>
+  ),
+  globals: {
+    viewport: {value: 'ipad', isRotated: true},
+  },
+  parameters: {
+    pseudo: {
+      hover: ['a[href="#hover"]'],
+      focusVisible: ['a[href="#focus"]'],
+    },
+  },
+}
+
 export const ForwardedRefs = () => {
   const subNavRef = React.useRef<HTMLDivElement>(null)
   const [height, setHeight] = React.useState<number | null>(null)
