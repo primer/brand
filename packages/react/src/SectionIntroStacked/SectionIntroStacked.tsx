@@ -229,6 +229,10 @@ const ItemBase = ({className, children, ...rest}: PropsWithChildren<SectionIntro
   const itemClassName = clsx(styles['SectionIntroStackedItem-item'], className)
   const childrenArray = useMemo(() => React.Children.toArray(children), [children])
 
+  const hasIconChild = childrenArray.some(child => React.isValidElement(child) && child.type === ItemIcon)
+  const hasItemContentComponents = childrenArray.some(
+    child => React.isValidElement(child) && (child.type === ItemHeading || child.type === ItemDescription),
+  )
   const hasSubComponents = childrenArray.some(
     child =>
       React.isValidElement(child) &&
@@ -239,11 +243,27 @@ const ItemBase = ({className, children, ...rest}: PropsWithChildren<SectionIntro
     const iconChild = childrenArray.find(child => React.isValidElement(child) && child.type === ItemIcon)
 
     const contentChildren = childrenArray.filter(child => !(React.isValidElement(child) && child.type === ItemIcon))
+    const hasDirectTextWithIcon = hasIconChild && !hasItemContentComponents
 
     return (
       <li className={clsx(itemClassName, !!iconChild && styles['SectionIntroStackedItem-item--with-icon'])} {...rest}>
         {iconChild}
-        <div className={styles['SectionIntroStackedItem__content']}>{contentChildren}</div>
+        <div className={styles['SectionIntroStackedItem__content']}>
+          {hasDirectTextWithIcon ? (
+            <Text
+              as="span"
+              className={clsx(
+                styles['SectionIntroStackedItem__item-text'],
+                styles['SectionIntroStackedItem__item-text--muted'],
+              )}
+              size="350"
+            >
+              {contentChildren}
+            </Text>
+          ) : (
+            contentChildren
+          )}
+        </div>
       </li>
     )
   }

@@ -99,18 +99,15 @@ export const Gridline: Story = {
         <SectionIntroStacked.Items>
           <SectionIntroStacked.Item>
             <SectionIntroStacked.ItemIcon icon={CpuIcon} />
-            <SectionIntroStacked.ItemHeading>{t('item_one_heading')}</SectionIntroStacked.ItemHeading>
-            <SectionIntroStacked.ItemDescription>{t('item_one_description')}</SectionIntroStacked.ItemDescription>
+            <b>{t('item_one_heading')}</b> {t('item_one_description')}
           </SectionIntroStacked.Item>
           <SectionIntroStacked.Item>
             <SectionIntroStacked.ItemIcon icon={LightBulbIcon} />
-            <SectionIntroStacked.ItemHeading>{t('item_two_heading')}</SectionIntroStacked.ItemHeading>
-            <SectionIntroStacked.ItemDescription>{t('item_two_description')}</SectionIntroStacked.ItemDescription>
+            <b>{t('item_two_heading')}</b> {t('item_two_description')}
           </SectionIntroStacked.Item>
           <SectionIntroStacked.Item>
             <SectionIntroStacked.ItemIcon icon={HeartIcon} />
-            <SectionIntroStacked.ItemHeading>{t('item_three_heading')}</SectionIntroStacked.ItemHeading>
-            <SectionIntroStacked.ItemDescription>{t('item_three_description')}</SectionIntroStacked.ItemDescription>
+            <b>{t('item_three_heading')}</b> {t('item_three_description')}
           </SectionIntroStacked.Item>
         </SectionIntroStacked.Items>
       </SectionIntroStacked>

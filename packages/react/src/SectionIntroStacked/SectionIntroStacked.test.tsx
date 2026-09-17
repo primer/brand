@@ -379,6 +379,24 @@ describe('SectionIntroStacked', () => {
     })
 
     describe('sub-component mode (Icon, Heading, Description)', () => {
+      it.each(['default', 'gridline'] as const)('renders direct rich text with an icon in the %s variant', variant => {
+        const {getByText, getByRole} = render(
+          <SectionIntroStacked variant={variant}>
+            <SectionIntroStacked.Items>
+              <SectionIntroStacked.Item>
+                <SectionIntroStacked.ItemIcon icon={CpuIcon} />
+                <b>Feature one</b> with detailed description
+              </SectionIntroStacked.Item>
+            </SectionIntroStacked.Items>
+          </SectionIntroStacked>,
+        )
+
+        const textEl = getByText('Feature one', {exact: false}).closest('span')
+        expect(textEl).toHaveClass('SectionIntroStackedItem__item-text')
+        expect(textEl).toHaveClass('SectionIntroStackedItem__item-text--muted')
+        expect(getByRole('listitem')).toHaveClass('SectionIntroStackedItem-item--with-icon')
+      })
+
       it('renders ItemHeading correctly', () => {
         const itemHeadingText = 'Enhance your technical curriculum'
         const {getByText} = render(
@@ -476,6 +494,22 @@ describe('SectionIntroStacked', () => {
                 <SectionIntroStacked.ItemDescription>
                   Use GitHub Classroom to automate feedback.
                 </SectionIntroStacked.ItemDescription>
+              </SectionIntroStacked.Item>
+            </SectionIntroStacked.Items>
+          </SectionIntroStacked>,
+        )
+
+        const results = await axe(container)
+        expect(results).toHaveNoViolations()
+      })
+
+      it('has no a11y violations with direct rich text and an icon', async () => {
+        const {container} = render(
+          <SectionIntroStacked>
+            <SectionIntroStacked.Items>
+              <SectionIntroStacked.Item>
+                <SectionIntroStacked.ItemIcon icon={CpuIcon} />
+                <b>Feature one</b> with detailed description
               </SectionIntroStacked.Item>
             </SectionIntroStacked.Items>
           </SectionIntroStacked>,
