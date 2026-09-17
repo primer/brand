@@ -1,16 +1,23 @@
 import React from 'react'
 import type {Meta, StoryObj} from '@storybook/react'
 import {SunIcon, MoonIcon} from '@primer/octicons-react'
-import {ThemeProvider} from '.'
-import {useTheme} from '..'
-import {Text} from '../Text'
-
+import {ThemeProvider, type ThemeProviderProps} from '.'
+import {Box, Text, Stack, useTheme} from '..'
 import styles from './ThemeProvider.stories.module.css'
 
 function ActiveColorMode() {
   const {colorMode} = useTheme()
   return <Text>Active global color mode: {colorMode}</Text>
 }
+
+const providerBoxProps = {
+  backgroundColor: 'default',
+  borderColor: 'default',
+  borderRadius: 'xlarge',
+  borderStyle: 'solid',
+  borderWidth: 'thin',
+  padding: 24,
+} as const
 
 function Container({children}: {children: React.ReactNode}) {
   return <section className={styles['active-color-scheme']}>{children}</section>
@@ -24,9 +31,24 @@ function ControlsHint() {
   )
 }
 
+const StorybookColorModes = [
+  'light',
+  'dark',
+  'dark_dimmed',
+  'light_high_contrast',
+  'dark_high_contrast',
+  'auto',
+] satisfies ThemeProviderProps['colorMode'][]
+
 const meta = {
   title: 'Components/ThemeProvider',
   component: ThemeProvider,
+  argTypes: {
+    colorMode: {
+      control: 'select',
+      options: StorybookColorModes,
+    },
+  },
 } satisfies Meta<typeof ThemeProvider>
 
 export default meta
@@ -71,5 +93,44 @@ export const Nested: Story = {
         </>
       </ThemeProvider>
     </div>
+  ),
+}
+
+export const DerivedColorModes: Story = {
+  args: {
+    colorMode: 'auto',
+  },
+  render: args => (
+    <ThemeProvider colorMode={args.colorMode}>
+      <Box {...providerBoxProps}>
+        <Stack gap="normal">
+          <Text>{`Parent provider: ${args.colorMode}`}</Text>
+          <ThemeProvider colorMode="dark_dimmed">
+            <Box {...providerBoxProps}>
+              <Stack gap="normal">
+                <Text font="hubot-sans">Nested provider: dark_dimmed</Text>
+                <Stack direction={{narrow: 'vertical', regular: 'horizontal'}} gap="normal">
+                  <ThemeProvider colorMode="light_high_contrast" style={{flex: '1 1 0', display: 'flex'}}>
+                    <Box {...providerBoxProps} style={{minHeight: '12rem', width: '100%'}}>
+                      <Text font="hubot-sans">Sibling provider: light_high_contrast</Text>
+                    </Box>
+                  </ThemeProvider>
+                  <ThemeProvider colorMode="dark_high_contrast" style={{flex: '1 1 0', display: 'flex'}}>
+                    <Box {...providerBoxProps} style={{minHeight: '12rem', width: '100%'}}>
+                      <Text font="hubot-sans">Sibling provider: dark_high_contrast</Text>
+                    </Box>
+                  </ThemeProvider>
+                  <ThemeProvider colorMode="auto" style={{flex: '1 1 0', display: 'flex'}}>
+                    <Box {...providerBoxProps} style={{minHeight: '12rem', width: '100%'}}>
+                      <Text font="hubot-sans">Sibling provider: auto</Text>
+                    </Box>
+                  </ThemeProvider>
+                </Stack>
+              </Stack>
+            </Box>
+          </ThemeProvider>
+        </Stack>
+      </Box>
+    </ThemeProvider>
   ),
 }

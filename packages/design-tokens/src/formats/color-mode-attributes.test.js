@@ -476,7 +476,7 @@ describe('Design tokens', () => {
   --base-color-scale-gray-0: #f0f6fc;
   --base-color-scale-gray-1: #c9d1d9;
   --base-color-scale-gray-2: #b1bac4;
-}    
+}
 `.trim()
 
     // remove timestamp and trim
