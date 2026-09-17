@@ -30,7 +30,7 @@
 }
 
 .Section--variant-gridline .Section__container {
-  padding-inline: var(--base-size-20);
+  padding-inline: var(--brand-Section-variant-gridline-paddingInline);
 }
 
 .Section--variant-gridline .Section__container--fullWidth {
@@ -125,10 +125,6 @@
   .Section-regular--paddingBlockEnd-spacious {
     --padding-block-end: var(--brand-Section-padding-spacious);
   }
-
-  .Section--variant-gridline .Section__container:not(.Section__container--fullWidth) {
-    padding-inline: var(--base-size-40);
-  }
 }
 
 @media screen and (min-width: 80rem) {
@@ -174,7 +170,6 @@
   .Section--variant-gridline .Section__container:not(.Section__container--fullWidth) {
     position: relative;
     border-inline: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
-    padding-inline: var(--base-size-64);
   }
 
   .Section--variant-gridline .Section__container:not(.Section__container--fullWidth)::before,
