@@ -2,4 +2,4 @@
 '@primer/react-brand': minor
 ---
 
-`ThemeProvider` now supports derived color modes. Modes like `"dark_dimmed"` or `"light_high_contrast"` resolve to the existing `dark` or `light` theme in `useTheme` and `data-color-mode`.
+`ThemeProvider` now resolves in-product appearance modes to Primer Brand's `light` or `dark` defaults. For example, `"dark_dimmed"` resolves to `dark`, and `"light_high_contrast"` resolves to `light`.
