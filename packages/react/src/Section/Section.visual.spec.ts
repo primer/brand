@@ -110,6 +110,17 @@ test.describe('Visual Comparison: Section', () => {
       await expect(page).toHaveScreenshot({fullPage: true})
     })
   })
+  test('Section / Adjacent Gridline Sections', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-section-features--adjacent-gridline-sections&viewMode=story',
+      {waitUntil: 'networkidle'},
+    )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+    await page.waitForTimeout(500)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
   test('Section / Gridline With Full Width Container', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-section-features--gridline-with-full-width-container&viewMode=story',
@@ -132,6 +143,20 @@ test.describe('Visual Comparison: Section', () => {
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
+  // eslint-disable-next-line i18n-text/no-en
+  test.describe('Mobile viewport test for Gridline with background color (narrow)', () => {
+    test.use({viewport: {width: 360, height: 800}})
+    test('Section / Gridline with background color (narrow)', async ({page}) => {
+      await page.goto(
+        'http://localhost:6006/iframe.html?args=&id=components-section-features--gridline-with-background-color-narrow&viewMode=story',
+        {waitUntil: 'networkidle'},
+      )
+      await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+      await page.waitForTimeout(500)
+      await expect(page).toHaveScreenshot({fullPage: true})
+    })
+  })
   test('Section / With Full Width Container', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-section-features--with-full-width-container&viewMode=story',
