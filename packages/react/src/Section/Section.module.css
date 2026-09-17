@@ -37,6 +37,10 @@
   padding-inline: 0;
 }
 
+.Section.Section--variant-gridline::after {
+  bottom: calc(-1 * var(--brand-borderWidth-thin));
+}
+
 .Section--rounded {
   border-radius: var(--rounded-radius) var(--rounded-radius) 0 0;
   margin-top: calc(-1 * var(--rounded-radius));
