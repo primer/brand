@@ -2,6 +2,8 @@ import type {Metadata} from 'next'
 import Theme, {getPageMap} from '@primer/doctocat-nextjs'
 
 import type {FC, ReactNode} from 'react'
+// eslint-disable-next-line import/extensions
+import {resolveFigmaPageMapThumbnails} from '../src/components/FigmaImage/FigmaImage.server.mjs'
 import '@primer/doctocat-nextjs/css/global.css'
 import '../../../packages/react/lib/css/main.css'
 import '../src/global.css'
@@ -52,7 +54,7 @@ const sidebarLinks: ThemeProps['sidebarLinks'] = [
 ]
 
 const RootLayout: FC<{children: ReactNode}> = async ({children}) => {
-  const pageMap = await getPageMap()
+  const pageMap = resolveFigmaPageMapThumbnails(await getPageMap())
 
   return (
     <html

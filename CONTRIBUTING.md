@@ -49,6 +49,31 @@ Here are a few things you can do that will increase the likelihood of your pull 
 - Keep your change as focused as possible. If there are multiple changes you would like to make that are not dependent upon each other, consider submitting them as separate pull requests.
 - Write a [good commit message](http://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html).
 
+### Updating docs Figma images
+
+Docs can use frames from the [Brand Interface Guidelines Figma file](https://www.figma.com/design/kc69gOteR1MsL0aQtLdxLW/-Brand--Interface-guidelines) with the `FigmaImage` component:
+
+```mdx
+<FigmaImage
+  src="https://www.figma.com/design/kc69gOteR1MsL0aQtLdxLW/Brand-Interface-Guidelines?node-id=1804-8382"
+  darkModeSrc="https://www.figma.com/design/kc69gOteR1MsL0aQtLdxLW/Brand-Interface-Guidelines?node-id=1804-8383"
+  alt="Describe the image"
+/>
+```
+
+Figma URLs can also be used for the `thumbnail` and `thumbnail_darkMode` frontmatter fields.
+
+To update the generated images locally:
+
+1. Add `FIGMA_ACCESS_TOKEN=...` to `apps/next-docs/.env.local`.
+1. Run `npm run figma-images:generate --workspace=apps/next-docs`.
+
+Files in `apps/next-docs/public/images/figma` are generated artifacts. Do not edit, optimize, recompress, rename, replace, or delete the generated images or their manifest directly. Update the Figma references in the docs source and regenerate the files instead.
+
+Commit only the changes produced by the generator. To update the images through GitHub Actions instead, add the `update figma images` label to your pull request.
+
+CI runs `npm run figma-images:validate --workspace=apps/next-docs` to check the Figma URLs and generated files. This command does not require a Figma access token.
+
 ## Releasing a new Primer Brand version
 
 See [RELEASING.md](RELEASING.md) for our release process.
