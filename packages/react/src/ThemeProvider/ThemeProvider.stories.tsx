@@ -25,7 +25,7 @@ function Container({children}: {children: React.ReactNode}) {
 
 function ControlsHint() {
   return (
-    <Text as="p" variant="muted">
+    <Text as="p" className={styles.hint}>
       Hint: Use Storybook Controls to alternate between color modes.
     </Text>
   )
@@ -101,38 +101,36 @@ export const DerivedColorModes: Story = {
     colorMode: 'auto',
   },
   render: args => (
-    <Stack gap="normal">
-      <ThemeProvider colorMode={args.colorMode}>
-        <Box {...providerBoxProps}>
-          <Stack gap="normal">
-            <Text>{`Parent provider: ${args.colorMode}`}</Text>
-            <ThemeProvider colorMode="dark_dimmed">
-              <Box {...providerBoxProps}>
-                <Stack gap="normal">
-                  <Text font="hubot-sans">Nested provider: dark_dimmed</Text>
-                  <Stack direction={{narrow: 'vertical', regular: 'horizontal'}} gap="normal">
-                    <ThemeProvider colorMode="light_high_contrast" style={{flex: '1 1 0', display: 'flex'}}>
-                      <Box {...providerBoxProps} style={{minHeight: '12rem', width: '100%'}}>
-                        <Text font="hubot-sans">Sibling provider: light_high_contrast</Text>
-                      </Box>
-                    </ThemeProvider>
-                    <ThemeProvider colorMode="dark_high_contrast" style={{flex: '1 1 0', display: 'flex'}}>
-                      <Box {...providerBoxProps} style={{minHeight: '12rem', width: '100%'}}>
-                        <Text font="hubot-sans">Sibling provider: dark_high_contrast</Text>
-                      </Box>
-                    </ThemeProvider>
-                    <ThemeProvider colorMode="auto" style={{flex: '1 1 0', display: 'flex'}}>
-                      <Box {...providerBoxProps} style={{minHeight: '12rem', width: '100%'}}>
-                        <Text font="hubot-sans">Sibling provider: auto</Text>
-                      </Box>
-                    </ThemeProvider>
-                  </Stack>
+    <ThemeProvider colorMode={args.colorMode}>
+      <Box {...providerBoxProps}>
+        <Stack gap="normal">
+          <Text>{`Parent provider: ${args.colorMode}`}</Text>
+          <ThemeProvider colorMode="dark_dimmed">
+            <Box {...providerBoxProps}>
+              <Stack gap="normal">
+                <Text font="hubot-sans">Nested provider: dark_dimmed</Text>
+                <Stack direction={{narrow: 'vertical', regular: 'horizontal'}} gap="normal">
+                  <ThemeProvider colorMode="light_high_contrast" style={{flex: '1 1 0', display: 'flex'}}>
+                    <Box {...providerBoxProps} style={{minHeight: '12rem', width: '100%'}}>
+                      <Text font="hubot-sans">Sibling provider: light_high_contrast</Text>
+                    </Box>
+                  </ThemeProvider>
+                  <ThemeProvider colorMode="dark_high_contrast" style={{flex: '1 1 0', display: 'flex'}}>
+                    <Box {...providerBoxProps} style={{minHeight: '12rem', width: '100%'}}>
+                      <Text font="hubot-sans">Sibling provider: dark_high_contrast</Text>
+                    </Box>
+                  </ThemeProvider>
+                  <ThemeProvider colorMode="auto" style={{flex: '1 1 0', display: 'flex'}}>
+                    <Box {...providerBoxProps} style={{minHeight: '12rem', width: '100%'}}>
+                      <Text font="hubot-sans">Sibling provider: auto</Text>
+                    </Box>
+                  </ThemeProvider>
                 </Stack>
-              </Box>
-            </ThemeProvider>
-          </Stack>
-        </Box>
-      </ThemeProvider>
-    </Stack>
+              </Stack>
+            </Box>
+          </ThemeProvider>
+        </Stack>
+      </Box>
+    </ThemeProvider>
   ),
 }

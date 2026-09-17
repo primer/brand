@@ -1,4 +1,5 @@
-import React, {useState, useMemo, useEffect, createContext, HTMLAttributes, PropsWithChildren} from 'react'
+import React, {useState, useMemo, createContext, HTMLAttributes, PropsWithChildren} from 'react'
+import useIsomorphicLayoutEffect from '../hooks/useIsomorphicLayoutEffect'
 
 export enum ColorModesEnum {
   LIGHT = 'light',
@@ -48,7 +49,7 @@ export function ThemeProvider({colorMode = defaultMode, children, ...rest}: Prop
   const activeMode = colorMode === ColorModesEnum.AUTO ? autoMode : resolveColorMode(colorMode)
   const availableColorModes = useMemo(() => Object.values(ColorModesEnum), [])
 
-  useEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     if (colorMode !== ColorModesEnum.AUTO) return
 
     setAutoMode(getActiveAutoMode())

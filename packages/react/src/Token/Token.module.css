@@ -26,6 +26,7 @@
   outline: var(--base-size-4) solid var(--brand-color-focus);
   outline-offset: var(--base-size-2);
 }
+
 [data-color-mode='dark'] .Token {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: auto;
