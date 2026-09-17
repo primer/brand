@@ -336,7 +336,7 @@ describe('Section', () => {
     const {getByTestId} = render(<Section fullWidth />)
     const SectionContainerEl = getByTestId('Section__container')
 
-    expect(SectionContainerEl).toHaveClass('Section__container')
+    expect(SectionContainerEl).toHaveClass('Section__container--fullWidth')
   })
 
   it('applies rounded class when rounded prop is true', () => {
