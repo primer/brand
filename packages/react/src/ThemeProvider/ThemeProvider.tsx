@@ -1,4 +1,5 @@
-import React, {useState, useMemo, useEffect, createContext, HTMLAttributes, PropsWithChildren} from 'react'
+import React, {useState, useMemo, createContext, HTMLAttributes, PropsWithChildren} from 'react'
+import useIsomorphicLayoutEffect from '../hooks/useIsomorphicLayoutEffect'
 
 export enum ColorModesEnum {
   LIGHT = 'light',
@@ -6,13 +7,23 @@ export enum ColorModesEnum {
   AUTO = 'auto',
 }
 
-export type ColorMode = `${ColorModesEnum}`
+export type ColorMode = `${ColorModesEnum}` | (string & {})
+export type ResolvedColorMode = ColorModesEnum.LIGHT | ColorModesEnum.DARK
+
+/**
+ * Resolves a color mode to the light or dark theme it should use.
+ */
+function resolveColorMode(mode: string): ResolvedColorMode {
+  return mode === ColorModesEnum.DARK || mode.startsWith(`${ColorModesEnum.DARK}_`)
+    ? ColorModesEnum.DARK
+    : ColorModesEnum.LIGHT
+}
 
 export type ThemeContextProps = {
   /*
    * The active color mode of the parent ThemeProvider.
    */
-  colorMode: ColorMode
+  colorMode: ResolvedColorMode
 
   /*
    * List of available color modes.
@@ -25,7 +36,6 @@ export type ThemeProviderProps = {
 } & HTMLAttributes<HTMLDivElement>
 
 const defaultMode = ColorModesEnum.LIGHT
-
 export const ThemeContext = createContext<ThemeContextProps>({
   colorMode: defaultMode,
   availableColorModes: Object.values(ColorModesEnum),
@@ -35,18 +45,16 @@ export const ThemeContext = createContext<ThemeContextProps>({
  * ThemeProvider is used to provide theme-related context to its child components.
  */
 export function ThemeProvider({colorMode = defaultMode, children, ...rest}: PropsWithChildren<ThemeProviderProps>) {
-  const [activeMode, setActiveMode] = useState(colorMode)
+  const [autoMode, setAutoMode] = useState<ResolvedColorMode>(defaultMode)
+  const activeMode = colorMode === ColorModesEnum.AUTO ? autoMode : resolveColorMode(colorMode)
   const availableColorModes = useMemo(() => Object.values(ColorModesEnum), [])
 
-  useEffect(() => {
-    if (colorMode === ColorModesEnum.AUTO) {
-      setActiveMode(getActiveAutoMode())
-    } else if (activeMode !== colorMode) {
-      setActiveMode(colorMode)
-    }
+  useIsomorphicLayoutEffect(() => {
+    if (colorMode !== ColorModesEnum.AUTO) return
 
-    return handleSystemPreferenceChange(setActiveMode)
-  }, [colorMode, activeMode, setActiveMode])
+    setAutoMode(getActiveAutoMode())
+    return handleSystemPreferenceChange(setAutoMode)
+  }, [colorMode])
 
   return (
     <ThemeContext.Provider value={{colorMode: activeMode, availableColorModes}}>
@@ -59,14 +67,15 @@ export function ThemeProvider({colorMode = defaultMode, children, ...rest}: Prop
 
 const queryBrowserPreference = () => window.matchMedia(`(prefers-color-scheme: ${ColorModesEnum.DARK})`)
 
-const getActiveAutoMode = () => {
+const getActiveAutoMode = (): ResolvedColorMode => {
   const mediaQueryList: MediaQueryList = queryBrowserPreference()
   return mediaQueryList.matches ? ColorModesEnum.DARK : ColorModesEnum.LIGHT
 }
 
-const handleSystemPreferenceChange = callback => {
+const handleSystemPreferenceChange = (callback: (mode: ResolvedColorMode) => void) => {
   const mediaQueryList = queryBrowserPreference()
-  const changeHandler = event => callback(event.matches ? ColorModesEnum.DARK : ColorModesEnum.LIGHT)
+  const changeHandler = (event: MediaQueryListEvent) =>
+    callback(event.matches ? ColorModesEnum.DARK : ColorModesEnum.LIGHT)
   mediaQueryList.addEventListener('change', changeHandler)
   return () => mediaQueryList.removeEventListener('change', changeHandler)
 }
