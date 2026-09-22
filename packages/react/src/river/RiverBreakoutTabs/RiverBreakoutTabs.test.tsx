@@ -199,6 +199,50 @@ describe('RiverBreakoutTabs', () => {
     expect(settledPanels[0]).toHaveClass('RiverBreakoutTabs__visual--current')
   })
 
+  it('keeps narrow visual indexes valid when items load and shrink', () => {
+    Object.defineProperty(window, 'innerWidth', {configurable: true, writable: true, value: 800})
+
+    const renderComponent = (itemNumbers: number[], selectedIndex: number) => (
+      <RiverBreakoutTabs selectedIndex={selectedIndex}>
+        <RiverBreakoutTabs.A11yHeading>Agent workflows</RiverBreakoutTabs.A11yHeading>
+        {itemNumbers.map(itemNumber => (
+          <RiverBreakoutTabs.Item key={itemNumber}>
+            <RiverBreakoutTabs.Heading>Heading {itemNumber}</RiverBreakoutTabs.Heading>
+            <RiverBreakoutTabs.Content>
+              <Text>Content {itemNumber}</Text>
+            </RiverBreakoutTabs.Content>
+            <RiverBreakoutTabs.Visual>
+              <MockVisual label={`visual ${itemNumber}`} />
+            </RiverBreakoutTabs.Visual>
+          </RiverBreakoutTabs.Item>
+        ))}
+      </RiverBreakoutTabs>
+    )
+
+    const {container, rerender} = render(renderComponent([], 2))
+    expect(container.querySelectorAll('.RiverBreakoutTabs__accordionSharedVisualPanel')).toHaveLength(0)
+
+    rerender(renderComponent([1, 2, 3], 2))
+
+    const loadedPanels = container.querySelectorAll('.RiverBreakoutTabs__accordionSharedVisualPanel')
+    expect(loadedPanels).toHaveLength(2)
+    expect(loadedPanels[0]).toHaveClass('RiverBreakoutTabs__visual--exit')
+    expect(loadedPanels[1]).toHaveClass('RiverBreakoutTabs__visual--next')
+    expect(container.querySelectorAll('.RiverBreakoutTabs__accordionItem')[2]).toHaveClass(
+      'RiverBreakoutTabs__item--selected',
+    )
+    fireEvent.animationEnd(loadedPanels[1])
+
+    rerender(renderComponent([1], 2))
+
+    const remainingPanels = container.querySelectorAll('.RiverBreakoutTabs__accordionSharedVisualPanel')
+    expect(remainingPanels).toHaveLength(1)
+    expect(remainingPanels[0]).toHaveClass('RiverBreakoutTabs__visual--current')
+    expect(container.querySelector('.RiverBreakoutTabs__accordionItem')).toHaveClass(
+      'RiverBreakoutTabs__item--selected',
+    )
+  })
+
   it('switches visuals without transition states when reduced motion is preferred', () => {
     mockMatchMedia.mockImplementation(() => ({
       matches: true,

@@ -22,11 +22,6 @@ import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/compone
 /** Main Stylesheet (as a CSS Module) */
 import styles from './RiverBreakoutTabs.module.css'
 
-const createComponentTypeGuard =
-  <T,>(componentType: React.ComponentType<T>) =>
-  (element: unknown): element is React.ReactElement<T> =>
-    React.isValidElement<T>(element) && element.type === componentType
-
 export type RiverBreakoutTabsProps = React.PropsWithChildren<{
   defaultSelectedIndex?: number
   selectedIndex?: number
@@ -155,95 +150,11 @@ const RiverBreakoutTabsVisual = forwardRef<HTMLDivElement, RiverBreakoutTabsVisu
   ({className, ...props}, ref) => <RiverVisualBase ref={ref} className={className} {...props} />,
 )
 
-const isItem = createComponentTypeGuard(RiverBreakoutTabsItem)
-const isA11yHeading = createComponentTypeGuard(RiverBreakoutTabsA11yHeading)
-const isIcon = createComponentTypeGuard(RiverBreakoutTabsIcon)
-const isHeading = createComponentTypeGuard(RiverBreakoutTabsHeading)
-const isContent = createComponentTypeGuard(RiverBreakoutTabsContent)
-const isVisual = createComponentTypeGuard(RiverBreakoutTabsVisual)
-
 const isTextChild = (child: React.ReactNode): child is React.ReactElement<React.ComponentProps<typeof Text>> =>
   React.isValidElement<React.ComponentProps<typeof Text>>(child) && child.type === Text
 
 const isLinkChild = (child: React.ReactNode): child is React.ReactElement<React.ComponentProps<typeof Link>> =>
   React.isValidElement<React.ComponentProps<typeof Link>>(child) && child.type === Link
-
-const extractItemParts = (item: React.ReactElement<RiverBreakoutTabsItemProps>): ExtractedItemParts => {
-  const Children = React.Children.toArray(item.props.children) as RiverBreakoutTabsItemChild[]
-
-  return Children.reduce<ExtractedItemParts>(
-    (acc, child) => {
-      if (isIcon(child)) {
-        acc.icon = child
-      }
-
-      if (isHeading(child)) {
-        acc.heading = child
-      }
-
-      if (isContent(child)) {
-        acc.content = child
-      }
-
-      if (isVisual(child)) {
-        acc.visual = child
-      }
-
-      return acc
-    },
-    {icon: null, heading: null, content: null, visual: null, className: item.props.className},
-  )
-}
-
-const extractWideTabListContentParts = (
-  content: React.ReactElement<RiverBreakoutTabsContentProps> | null,
-): ExtractedContentParts => {
-  if (!content) {
-    return {action: null, body: []}
-  }
-
-  const Children = React.Children.toArray(content.props.children).map(child => {
-    if (isTextChild(child)) {
-      return cloneElement(child, {
-        as: child.props.as ?? 'p',
-        variant: child.props.variant ?? 'muted',
-      })
-    }
-
-    if (isLinkChild(child)) {
-      return cloneElement(child, {
-        className: clsx(child.props.className, styles.RiverBreakoutTabs__link),
-        size: child.props.size ?? 'medium',
-        variant: child.props.variant ?? 'accent',
-      })
-    }
-
-    return child
-  })
-
-  return Children.reduce<ExtractedContentParts>(
-    (acc, child) => {
-      if (isLinkChild(child)) {
-        if (!acc.action) {
-          acc.action = child
-        }
-
-        return acc
-      }
-
-      acc.body.push(child)
-      return acc
-    },
-    {action: null, body: []},
-  )
-}
-
-const clampIndex = (index: number, length: number) => {
-  if (length === 0) return -1
-
-  const normalizedIndex = Number.isFinite(index) ? Math.trunc(index) : 0
-  return Math.min(Math.max(normalizedIndex, 0), length - 1)
-}
 
 const RiverBreakoutTabsRoot = forwardRef<HTMLElement, RiverBreakoutTabsProps>(
   (
@@ -263,13 +174,64 @@ const RiverBreakoutTabsRoot = forwardRef<HTMLElement, RiverBreakoutTabsProps>(
     const instanceId = useId()
     const {isLarge} = useWindowSize()
     const prefersReducedMotion = useReducedMotion()
+    const clampIndex = useCallback((index: number, length: number) => {
+      if (length === 0) return -1
+
+      const normalizedIndex = Number.isFinite(index) ? Math.trunc(index) : 0
+      return Math.min(Math.max(normalizedIndex, 0), length - 1)
+    }, [])
 
     const Children = useMemo(() => React.Children.toArray(children), [children])
 
-    const A11yHeadingChild = Children.find(isA11yHeading) ?? null
-    const Items = Children.filter(isItem)
-      .map(extractItemParts)
-      .filter(item => item.heading && item.content && item.visual)
+    const A11yHeadingChild =
+      Children.find(
+        (child): child is React.ReactElement<RiverBreakoutTabsA11yHeadingProps> =>
+          React.isValidElement<RiverBreakoutTabsA11yHeadingProps>(child) && child.type === RiverBreakoutTabsA11yHeading,
+      ) ?? null
+    const Items = useMemo(
+      () =>
+        Children.filter(
+          (child): child is React.ReactElement<RiverBreakoutTabsItemProps> =>
+            React.isValidElement<RiverBreakoutTabsItemProps>(child) && child.type === RiverBreakoutTabsItem,
+        )
+          .map(item => {
+            const itemChildren = React.Children.toArray(item.props.children) as RiverBreakoutTabsItemChild[]
+
+            return itemChildren.reduce<ExtractedItemParts>(
+              (acc, child) => {
+                if (React.isValidElement<RiverBreakoutTabsIconProps>(child) && child.type === RiverBreakoutTabsIcon) {
+                  acc.icon = child
+                }
+
+                if (
+                  React.isValidElement<RiverBreakoutTabsHeadingProps>(child) &&
+                  child.type === RiverBreakoutTabsHeading
+                ) {
+                  acc.heading = child
+                }
+
+                if (
+                  React.isValidElement<RiverBreakoutTabsContentProps>(child) &&
+                  child.type === RiverBreakoutTabsContent
+                ) {
+                  acc.content = child
+                }
+
+                if (
+                  React.isValidElement<RiverBreakoutTabsVisualProps>(child) &&
+                  child.type === RiverBreakoutTabsVisual
+                ) {
+                  acc.visual = child
+                }
+
+                return acc
+              },
+              {icon: null, heading: null, content: null, visual: null, className: item.props.className},
+            )
+          })
+          .filter(item => item.heading && item.content && item.visual),
+      [Children],
+    )
 
     const defaultActiveIndex = clampIndex(defaultSelectedIndex, Items.length)
     const controlledActiveIndex =
@@ -308,28 +270,31 @@ const RiverBreakoutTabsRoot = forwardRef<HTMLElement, RiverBreakoutTabsProps>(
     const [activeAccordionIndex, setActiveAccordionIndex] = useState(initialActiveIndex)
     const activeVisualIndexRef = useRef(initialActiveIndex)
     const [tabTransition, setTabTransition] = useState<TabTransition | null>(null)
+    const activeItemIndex = clampIndex(activeAccordionIndex, Items.length)
 
     const setActiveVisualIndex = useCallback(
       (nextIndex: number) => {
+        const validNextIndex = clampIndex(nextIndex, Items.length)
         const previousIndex = activeVisualIndexRef.current
 
-        if (nextIndex === previousIndex) {
+        if (validNextIndex === previousIndex) {
+          setActiveAccordionIndex(currentIndex => (currentIndex === validNextIndex ? currentIndex : validNextIndex))
           return
         }
 
         setTabTransition(
-          prefersReducedMotion
+          prefersReducedMotion || previousIndex < 0 || previousIndex >= Items.length || validNextIndex < 0
             ? null
             : {
-                direction: nextIndex > previousIndex ? 'next' : 'prev',
+                direction: validNextIndex > previousIndex ? 'next' : 'prev',
                 fromIndex: previousIndex,
-                toIndex: nextIndex,
+                toIndex: validNextIndex,
               },
         )
-        activeVisualIndexRef.current = nextIndex
-        setActiveAccordionIndex(nextIndex)
+        activeVisualIndexRef.current = validNextIndex
+        setActiveAccordionIndex(validNextIndex)
       },
-      [prefersReducedMotion],
+      [clampIndex, Items.length, prefersReducedMotion],
     )
 
     useEffect(() => {
@@ -339,13 +304,16 @@ const RiverBreakoutTabsRoot = forwardRef<HTMLElement, RiverBreakoutTabsProps>(
     }, [prefersReducedMotion])
 
     useIsomorphicLayoutEffect(() => {
-      if (activeTab === null) return
+      const requestedIndex = activeTab === null ? activeVisualIndexRef.current : Number(activeTab)
+      const nextIndex = clampIndex(requestedIndex, Items.length)
 
-      const nextIndex = Number(activeTab)
-      if (!Number.isNaN(nextIndex)) {
-        setActiveVisualIndex(nextIndex)
+      if (nextIndex >= 0 && activeTab !== String(nextIndex)) {
+        suppressOnTabActivateRef.current = true
+        activateTab(String(nextIndex))
       }
-    }, [activeTab, setActiveVisualIndex])
+
+      setActiveVisualIndex(nextIndex)
+    }, [activateTab, activeTab, clampIndex, Items.length, setActiveVisualIndex])
 
     useIsomorphicLayoutEffect(() => {
       if (controlledActiveIndex === null || controlledActiveIndex < 0) return
@@ -387,7 +355,47 @@ const RiverBreakoutTabsRoot = forwardRef<HTMLElement, RiverBreakoutTabsProps>(
       ? getTabListProps({labelledBy: headingId})
       : getTabListProps({label: 'River breakout tabs'})
     const WideTabListContentParts = useMemo(
-      () => Items.map(item => extractWideTabListContentParts(item.content)),
+      () =>
+        Items.map(item => {
+          if (!item.content) {
+            return {action: null, body: []}
+          }
+
+          const contentChildren = React.Children.toArray(item.content.props.children).map(child => {
+            if (isTextChild(child)) {
+              return cloneElement(child, {
+                as: child.props.as ?? 'p',
+                variant: child.props.variant ?? 'muted',
+              })
+            }
+
+            if (isLinkChild(child)) {
+              return cloneElement(child, {
+                className: clsx(child.props.className, styles.RiverBreakoutTabs__link),
+                size: child.props.size ?? 'medium',
+                variant: child.props.variant ?? 'accent',
+              })
+            }
+
+            return child
+          })
+
+          return contentChildren.reduce<ExtractedContentParts>(
+            (acc, child) => {
+              if (isLinkChild(child)) {
+                if (!acc.action) {
+                  acc.action = child
+                }
+
+                return acc
+              }
+
+              acc.body.push(child)
+              return acc
+            },
+            {action: null, body: []},
+          )
+        }),
       [Items],
     )
 
@@ -398,8 +406,17 @@ const RiverBreakoutTabsRoot = forwardRef<HTMLElement, RiverBreakoutTabsProps>(
         </div>
       ) : null
 
+    const activeTabTransition =
+      tabTransition &&
+      tabTransition.fromIndex >= 0 &&
+      tabTransition.fromIndex < Items.length &&
+      tabTransition.toIndex >= 0 &&
+      tabTransition.toIndex < Items.length
+        ? tabTransition
+        : null
+
     const isVisualVisible = (index: number) =>
-      activeAccordionIndex === index || tabTransition?.fromIndex === index || tabTransition?.toIndex === index
+      activeItemIndex === index || activeTabTransition?.fromIndex === index || activeTabTransition?.toIndex === index
 
     const handleVisualAnimationEnd =
       (index: number): React.AnimationEventHandler<HTMLDivElement> =>
@@ -409,11 +426,10 @@ const RiverBreakoutTabsRoot = forwardRef<HTMLElement, RiverBreakoutTabsProps>(
         }
       }
 
-    const accordionVisualIndexes = tabTransition
-      ? [tabTransition.fromIndex, tabTransition.toIndex]
-      : activeAccordionIndex >= 0
-      ? [activeAccordionIndex]
-      : []
+    const accordionVisualIndexes = [
+      ...(activeTabTransition ? [activeTabTransition.fromIndex, activeTabTransition.toIndex] : []),
+      activeItemIndex,
+    ].filter((index, position, indexes) => index >= 0 && index < Items.length && indexes.indexOf(index) === position)
 
     return (
       <section
@@ -480,7 +496,7 @@ const RiverBreakoutTabsRoot = forwardRef<HTMLElement, RiverBreakoutTabsProps>(
               <div className={styles.RiverBreakoutTabs__visualLayers}>
                 {Items.map((item, index) => {
                   const panelProps = getTabPanelProps(String(index))
-                  const isExiting = tabTransition?.fromIndex === index
+                  const isExiting = activeTabTransition?.fromIndex === index
 
                   return (
                     <div
@@ -494,12 +510,12 @@ const RiverBreakoutTabsRoot = forwardRef<HTMLElement, RiverBreakoutTabsProps>(
                       }}
                       className={clsx(
                         styles.RiverBreakoutTabs__sharedVisualPanel,
-                        tabTransition === null &&
-                          activeAccordionIndex === index &&
+                        activeTabTransition === null &&
+                          activeItemIndex === index &&
                           styles['RiverBreakoutTabs__visual--current'],
-                        tabTransition?.toIndex === index &&
-                          styles[`RiverBreakoutTabs__visual--${tabTransition.direction}`],
-                        tabTransition?.fromIndex === index && styles['RiverBreakoutTabs__visual--exit'],
+                        activeTabTransition?.toIndex === index &&
+                          styles[`RiverBreakoutTabs__visual--${activeTabTransition.direction}`],
+                        activeTabTransition?.fromIndex === index && styles['RiverBreakoutTabs__visual--exit'],
                       )}
                       onAnimationEnd={handleVisualAnimationEnd(index)}
                     >
@@ -540,19 +556,19 @@ const RiverBreakoutTabsRoot = forwardRef<HTMLElement, RiverBreakoutTabsProps>(
                 <div className={styles.RiverBreakoutTabs__visualLayers}>
                   {accordionVisualIndexes.map(index => {
                     const item = Items[index]
-                    const isExiting = tabTransition?.fromIndex === index
+                    const isExiting = activeTabTransition?.fromIndex === index
 
                     return (
                       <div
                         key={index}
                         className={clsx(
                           styles.RiverBreakoutTabs__accordionSharedVisualPanel,
-                          tabTransition === null &&
-                            activeAccordionIndex === index &&
+                          activeTabTransition === null &&
+                            activeItemIndex === index &&
                             styles['RiverBreakoutTabs__visual--current'],
-                          tabTransition?.toIndex === index &&
-                            styles[`RiverBreakoutTabs__visual--${tabTransition.direction}`],
-                          tabTransition?.fromIndex === index && styles['RiverBreakoutTabs__visual--exit'],
+                          activeTabTransition?.toIndex === index &&
+                            styles[`RiverBreakoutTabs__visual--${activeTabTransition.direction}`],
+                          activeTabTransition?.fromIndex === index && styles['RiverBreakoutTabs__visual--exit'],
                         )}
                         aria-hidden={isExiting || undefined}
                         ref={element => {
@@ -580,11 +596,11 @@ const RiverBreakoutTabsRoot = forwardRef<HTMLElement, RiverBreakoutTabsProps>(
                   data-index={index}
                   className={clsx(
                     styles.RiverBreakoutTabs__accordionItem,
-                    index === activeAccordionIndex && styles['RiverBreakoutTabs__item--selected'],
+                    index === activeItemIndex && styles['RiverBreakoutTabs__item--selected'],
                     item.className,
                   )}
                   onToggle={handleAccordionToggle}
-                  open={index === activeAccordionIndex}
+                  open={index === activeItemIndex}
                   handleOpen={handleAccordionOpen(index)}
                 >
                   <Accordion.Heading className={styles.RiverBreakoutTabs__accordionHeading}>

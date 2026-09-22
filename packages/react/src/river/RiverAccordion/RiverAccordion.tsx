@@ -94,9 +94,21 @@ const RiverAccordionRoot = forwardRef<HTMLDivElement, RiverAccordionProps>(
       )
     }, [children])
 
+    const activeIndex =
+      accordionComponents.items.length === 0
+        ? -1
+        : Math.min(Math.max(openIndex, 0), accordionComponents.items.length - 1)
+
+    useEffect(() => {
+      if (openIndex !== activeIndex) {
+        setOpenIndex(activeIndex)
+        setVisualTransition(null)
+      }
+    }, [activeIndex, openIndex])
+
     const handleOpenIndex = useCallback(
       (index: number) => {
-        if (index === openIndex) {
+        if (index === activeIndex) {
           return
         }
 
@@ -104,14 +116,14 @@ const RiverAccordionRoot = forwardRef<HTMLDivElement, RiverAccordionProps>(
           prefersReducedMotion
             ? null
             : {
-                direction: index > openIndex ? 'next' : 'prev',
-                fromIndex: openIndex,
+                direction: index > activeIndex ? 'next' : 'prev',
+                fromIndex: activeIndex,
                 toIndex: index,
               },
         )
         setOpenIndex(index)
       },
-      [openIndex, prefersReducedMotion],
+      [activeIndex, prefersReducedMotion],
     )
 
     useEffect(() => {
@@ -124,7 +136,7 @@ const RiverAccordionRoot = forwardRef<HTMLDivElement, RiverAccordionProps>(
     const visuals = accordionComponents.visuals.map((visual, index) => {
       const isEntering = visualTransition?.toIndex === index
       const isExiting = visualTransition?.fromIndex === index
-      const isCurrent = visualTransition === null && openIndex === index
+      const isCurrent = visualTransition === null && activeIndex === index
 
       return React.cloneElement(visual, {
         key: index,
@@ -151,15 +163,15 @@ const RiverAccordionRoot = forwardRef<HTMLDivElement, RiverAccordionProps>(
       })
     })
     const activeItemHasBackground =
-      variant === 'gridline' && (accordionComponents.visuals[openIndex]?.props.hasBackground ?? true)
+      variant === 'gridline' && (accordionComponents.visuals[activeIndex]?.props.hasBackground ?? true)
 
     const contextValue = useMemo(
       () => ({
-        openIndex,
+        openIndex: activeIndex,
         setOpenIndex: handleOpenIndex,
         variant,
       }),
-      [handleOpenIndex, openIndex, variant],
+      [activeIndex, handleOpenIndex, variant],
     )
 
     return (

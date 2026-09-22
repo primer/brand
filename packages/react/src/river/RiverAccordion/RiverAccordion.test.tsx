@@ -72,6 +72,33 @@ describe('RiverAccordion', () => {
     expect(getByText('Content 3').parentElement).toHaveAttribute('aria-hidden', 'true')
   })
 
+  it('falls back to the last available item when the active item is removed', async () => {
+    const renderAccordion = (itemNumbers: number[]) => (
+      <RiverAccordion>
+        {itemNumbers.map(itemNumber => (
+          <RiverAccordion.Item key={itemNumber}>
+            <RiverAccordion.Heading>Heading {itemNumber}</RiverAccordion.Heading>
+            <RiverAccordion.Content>Content {itemNumber}</RiverAccordion.Content>
+            <RiverAccordion.Visual>
+              <img src={`test-${itemNumber}.png`} alt={`placeholder ${itemNumber}`} />
+            </RiverAccordion.Visual>
+          </RiverAccordion.Item>
+        ))}
+      </RiverAccordion>
+    )
+    const user = userEvent.setup()
+    const {container, getByRole, rerender} = render(renderAccordion([1, 2, 3]))
+
+    await user.click(getByRole('button', {name: 'Heading 3'}))
+    const thirdVisual = container.querySelectorAll('.RiverAccordion__visual--shared')[2]
+    fireEvent.animationEnd(thirdVisual)
+
+    rerender(renderAccordion([1]))
+
+    expect(getByRole('button', {name: 'Heading 1'})).toHaveAttribute('aria-expanded', 'true')
+    expect(container.querySelector('.RiverAccordion__visual--shared')).toHaveClass('RiverAccordion__visual--current')
+  })
+
   it('collapses the expanded item when a collapsed item is clicked', async () => {
     const user = userEvent.setup()
     const {getByRole} = render(<MockRiverAccordion />)
