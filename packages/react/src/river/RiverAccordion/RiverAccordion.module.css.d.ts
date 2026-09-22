@@ -20,6 +20,7 @@ declare const styles: {
   readonly "RiverAccordion__visual": string;
   readonly "RiverAccordion__visual--current": string;
   readonly "RiverAccordion__visual--exit": string;
+  readonly "RiverAccordion__visual--gridline": string;
   readonly "RiverAccordion__visual--has-background": string;
   readonly "RiverAccordion__visual--next": string;
   readonly "RiverAccordion__visual--prev": string;
