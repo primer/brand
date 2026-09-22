@@ -5,6 +5,8 @@ import {Accordion, Heading, Link, Text, type HeadingProps} from '../..'
 import {Icon, type IconProps} from '../../Icon'
 import {RiverVisualBase, type RiverVisualBaseProps} from '../River/River'
 import {useId} from '../../hooks/useId'
+import useIsomorphicLayoutEffect from '../../hooks/useIsomorphicLayoutEffect'
+import {useReducedMotion} from '../../hooks/useReducedMotion'
 import {useTabs} from '../../hooks/useTabs'
 import {useWindowSize} from '../../hooks/useWindowSize'
 import riverStyles from '../river-shared.module.css'
@@ -13,6 +15,7 @@ import gridlineStyles from '../../component-helpers/shared.module.css'
 /**
  * Design tokens
  */
+import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/river-breakout-tabs/base.css'
 import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/river/base.css'
 import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/river/river.css'
 
@@ -78,6 +81,12 @@ type ExtractedItemParts = {
 type ExtractedContentParts = {
   action: React.ReactElement<React.ComponentProps<typeof Link>> | null
   body: React.ReactNode[]
+}
+
+type TabTransition = {
+  direction: 'next' | 'prev'
+  fromIndex: number
+  toIndex: number
 }
 
 const RiverBreakoutTabsItem = ({children}: RiverBreakoutTabsItemProps) => <>{children}</>
@@ -253,6 +262,7 @@ const RiverBreakoutTabsRoot = forwardRef<HTMLElement, RiverBreakoutTabsProps>(
   ) => {
     const instanceId = useId()
     const {isLarge} = useWindowSize()
+    const prefersReducedMotion = useReducedMotion()
 
     const Children = useMemo(() => React.Children.toArray(children), [children])
 
@@ -296,17 +306,48 @@ const RiverBreakoutTabsRoot = forwardRef<HTMLElement, RiverBreakoutTabsProps>(
     })
 
     const [activeAccordionIndex, setActiveAccordionIndex] = useState(initialActiveIndex)
+    const activeVisualIndexRef = useRef(initialActiveIndex)
+    const [tabTransition, setTabTransition] = useState<TabTransition | null>(null)
+
+    const setActiveVisualIndex = useCallback(
+      (nextIndex: number) => {
+        const previousIndex = activeVisualIndexRef.current
+
+        if (nextIndex === previousIndex) {
+          return
+        }
+
+        setTabTransition(
+          prefersReducedMotion
+            ? null
+            : {
+                direction: nextIndex > previousIndex ? 'next' : 'prev',
+                fromIndex: previousIndex,
+                toIndex: nextIndex,
+              },
+        )
+        activeVisualIndexRef.current = nextIndex
+        setActiveAccordionIndex(nextIndex)
+      },
+      [prefersReducedMotion],
+    )
 
     useEffect(() => {
+      if (prefersReducedMotion) {
+        setTabTransition(null)
+      }
+    }, [prefersReducedMotion])
+
+    useIsomorphicLayoutEffect(() => {
       if (activeTab === null) return
 
       const nextIndex = Number(activeTab)
       if (!Number.isNaN(nextIndex)) {
-        setActiveAccordionIndex(nextIndex)
+        setActiveVisualIndex(nextIndex)
       }
-    }, [activeTab])
+    }, [activeTab, setActiveVisualIndex])
 
-    useEffect(() => {
+    useIsomorphicLayoutEffect(() => {
       if (controlledActiveIndex === null || controlledActiveIndex < 0) return
 
       const controlledTab = String(controlledActiveIndex)
@@ -315,8 +356,8 @@ const RiverBreakoutTabsRoot = forwardRef<HTMLElement, RiverBreakoutTabsProps>(
         activateTab(controlledTab)
       }
 
-      setActiveAccordionIndex(controlledActiveIndex)
-    }, [activateTab, activeTab, controlledActiveIndex])
+      setActiveVisualIndex(controlledActiveIndex)
+    }, [activateTab, activeTab, controlledActiveIndex, setActiveVisualIndex])
 
     if (!A11yHeadingChild && (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'test')) {
       // eslint-disable-next-line no-console
@@ -327,7 +368,7 @@ const RiverBreakoutTabsRoot = forwardRef<HTMLElement, RiverBreakoutTabsProps>(
 
     const handleAccordionOpen = (index: number) => (isOpen: boolean) => {
       if (isOpen) {
-        setActiveAccordionIndex(index)
+        setActiveVisualIndex(index)
         if (activeTab !== String(index)) {
           activateTab(String(index))
         }
@@ -356,6 +397,23 @@ const RiverBreakoutTabsRoot = forwardRef<HTMLElement, RiverBreakoutTabsProps>(
           {backgroundVisual}
         </div>
       ) : null
+
+    const isVisualVisible = (index: number) =>
+      activeAccordionIndex === index || tabTransition?.fromIndex === index || tabTransition?.toIndex === index
+
+    const handleVisualAnimationEnd =
+      (index: number): React.AnimationEventHandler<HTMLDivElement> =>
+      event => {
+        if (event.target === event.currentTarget) {
+          setTabTransition(currentTransition => (currentTransition?.toIndex === index ? null : currentTransition))
+        }
+      }
+
+    const accordionVisualIndexes = tabTransition
+      ? [tabTransition.fromIndex, tabTransition.toIndex]
+      : activeAccordionIndex >= 0
+      ? [activeAccordionIndex]
+      : []
 
     return (
       <section
@@ -419,22 +477,39 @@ const RiverBreakoutTabsRoot = forwardRef<HTMLElement, RiverBreakoutTabsProps>(
 
             <div className={styles.RiverBreakoutTabs__sharedVisuals}>
               {BackgroundVisualLayer}
-              {Items.map((item, index) => {
-                const panelProps = getTabPanelProps(String(index))
+              <div className={styles.RiverBreakoutTabs__visualLayers}>
+                {Items.map((item, index) => {
+                  const panelProps = getTabPanelProps(String(index))
+                  const isExiting = tabTransition?.fromIndex === index
 
-                return (
-                  <div
-                    key={index}
-                    {...panelProps}
-                    tabIndex={-1}
-                    className={styles.RiverBreakoutTabs__sharedVisualPanel}
-                  >
-                    {cloneElement(item.visual as React.ReactElement<RiverBreakoutTabsVisualProps>, {
-                      className: clsx(item.visual?.props.className, styles.RiverBreakoutTabs__sharedVisual),
-                    })}
-                  </div>
-                )
-              })}
+                  return (
+                    <div
+                      key={index}
+                      {...panelProps}
+                      hidden={!isVisualVisible(index)}
+                      aria-hidden={isExiting || undefined}
+                      tabIndex={-1}
+                      ref={element => {
+                        element?.toggleAttribute('inert', isExiting)
+                      }}
+                      className={clsx(
+                        styles.RiverBreakoutTabs__sharedVisualPanel,
+                        tabTransition === null &&
+                          activeAccordionIndex === index &&
+                          styles['RiverBreakoutTabs__visual--current'],
+                        tabTransition?.toIndex === index &&
+                          styles[`RiverBreakoutTabs__visual--${tabTransition.direction}`],
+                        tabTransition?.fromIndex === index && styles['RiverBreakoutTabs__visual--exit'],
+                      )}
+                      onAnimationEnd={handleVisualAnimationEnd(index)}
+                    >
+                      {cloneElement(item.visual as React.ReactElement<RiverBreakoutTabsVisualProps>, {
+                        className: clsx(item.visual?.props.className, styles.RiverBreakoutTabs__sharedVisual),
+                      })}
+                    </div>
+                  )
+                })}
+              </div>
             </div>
 
             {WideTabListContentParts.some(content => content.action) && (
@@ -459,15 +534,42 @@ const RiverBreakoutTabsRoot = forwardRef<HTMLElement, RiverBreakoutTabsProps>(
           </div>
         ) : (
           <div className={styles.RiverBreakoutTabs__accordion}>
-            {activeAccordionIndex >= 0 && Items[activeAccordionIndex]?.visual && (
+            {accordionVisualIndexes.length > 0 && (
               <div className={styles.RiverBreakoutTabs__accordionSharedVisuals}>
                 {BackgroundVisualLayer}
-                {cloneElement(Items[activeAccordionIndex].visual as React.ReactElement<RiverBreakoutTabsVisualProps>, {
-                  className: clsx(
-                    Items[activeAccordionIndex].visual.props.className,
-                    styles.RiverBreakoutTabs__accordionSharedVisual,
-                  ),
-                })}
+                <div className={styles.RiverBreakoutTabs__visualLayers}>
+                  {accordionVisualIndexes.map(index => {
+                    const item = Items[index]
+                    const isExiting = tabTransition?.fromIndex === index
+
+                    return (
+                      <div
+                        key={index}
+                        className={clsx(
+                          styles.RiverBreakoutTabs__accordionSharedVisualPanel,
+                          tabTransition === null &&
+                            activeAccordionIndex === index &&
+                            styles['RiverBreakoutTabs__visual--current'],
+                          tabTransition?.toIndex === index &&
+                            styles[`RiverBreakoutTabs__visual--${tabTransition.direction}`],
+                          tabTransition?.fromIndex === index && styles['RiverBreakoutTabs__visual--exit'],
+                        )}
+                        aria-hidden={isExiting || undefined}
+                        ref={element => {
+                          element?.toggleAttribute('inert', isExiting)
+                        }}
+                        onAnimationEnd={handleVisualAnimationEnd(index)}
+                      >
+                        {cloneElement(item.visual as React.ReactElement<RiverBreakoutTabsVisualProps>, {
+                          className: clsx(
+                            item.visual?.props.className,
+                            styles.RiverBreakoutTabs__accordionSharedVisual,
+                          ),
+                        })}
+                      </div>
+                    )
+                  })}
+                </div>
               </div>
             )}
 

@@ -1,4 +1,5 @@
-import React, {render, within} from '@testing-library/react'
+import React from 'react'
+import {fireEvent, render, within} from '@testing-library/react'
 import '@testing-library/jest-dom'
 import userEvent from '@testing-library/user-event'
 
@@ -6,6 +7,17 @@ import {RiverAccordion, RiverAccordionVariants, type RiverAccordionProps} from '
 import {axe, toHaveNoViolations} from 'jest-axe'
 
 expect.extend(toHaveNoViolations)
+
+const mockMatchMedia = jest.fn()
+window.matchMedia = mockMatchMedia
+
+beforeEach(() => {
+  mockMatchMedia.mockImplementation(() => ({
+    matches: false,
+    addEventListener: jest.fn(),
+    removeEventListener: jest.fn(),
+  }))
+})
 
 const MockRiverAccordion = ({align, variant}: RiverAccordionProps) => (
   <RiverAccordion align={align} variant={variant}>
@@ -71,6 +83,45 @@ describe('RiverAccordion', () => {
 
     expect(getByRole('button', {name: 'Heading 1'})).toHaveAttribute('aria-expanded', 'false')
     expect(getByRole('button', {name: 'Heading 2'})).toHaveAttribute('aria-expanded', 'true')
+  })
+
+  it('transitions visuals in the direction of the selected item', async () => {
+    const user = userEvent.setup()
+    const {container, getByRole} = render(<MockRiverAccordion />)
+    const visuals = container.querySelectorAll('.RiverAccordion__visualsWrapper > .RiverAccordion__visual')
+
+    expect(visuals[0]).toHaveClass('RiverAccordion__visual--current')
+
+    await user.click(getByRole('button', {name: 'Heading 3'}))
+
+    expect(visuals[0]).toHaveClass('RiverAccordion__visual--exit')
+    expect(visuals[2]).toHaveClass('RiverAccordion__visual--next')
+
+    fireEvent.animationEnd(visuals[2])
+
+    expect(visuals[2]).toHaveClass('RiverAccordion__visual--current')
+
+    await user.click(getByRole('button', {name: 'Heading 1'}))
+
+    expect(visuals[2]).toHaveClass('RiverAccordion__visual--exit')
+    expect(visuals[0]).toHaveClass('RiverAccordion__visual--prev')
+  })
+
+  it('switches visuals without a transition when reduced motion is preferred', async () => {
+    mockMatchMedia.mockImplementation(() => ({
+      matches: true,
+      addEventListener: jest.fn(),
+      removeEventListener: jest.fn(),
+    }))
+
+    const user = userEvent.setup()
+    const {container, getByRole} = render(<MockRiverAccordion />)
+    const visuals = container.querySelectorAll('.RiverAccordion__visualsWrapper > .RiverAccordion__visual')
+
+    await user.click(getByRole('button', {name: 'Heading 2'}))
+
+    expect(visuals[0]).not.toHaveClass('RiverAccordion__visual--exit')
+    expect(visuals[1]).toHaveClass('RiverAccordion__visual--current')
   })
 
   it('expands a collapsed item when clicked', async () => {
@@ -186,6 +237,22 @@ describe('RiverAccordion', () => {
     expect(visual).toHaveAttribute('aria-hidden', 'true')
   })
 
+  it('applies shared visual styles only to visible visual clones', () => {
+    const {container, getByText} = render(<MockRiverAccordion />)
+    const sharedVisual = container.querySelector('.RiverAccordion__visual--shared')
+    const panel = getByText('Content 1').parentElement
+
+    if (!panel) {
+      throw new Error('Panel not found')
+    }
+
+    const hiddenVisual = panel.querySelector('.RiverAccordion__visual')
+
+    expect(sharedVisual).toHaveClass('RiverAccordion__visual')
+    expect(sharedVisual).not.toHaveClass('RiverAccordion__visual--gridline')
+    expect(hiddenVisual).not.toHaveClass('RiverAccordion__visual--shared')
+  })
+
   it('includes a visually hidden image within the accordion content', () => {
     const {getByText} = render(<MockRiverAccordion />)
     const panel = getByText('Content 1').parentElement
@@ -211,7 +278,9 @@ describe('RiverAccordion', () => {
     const hiddenVisual = panel.querySelector('.RiverAccordion__visual')
 
     expect(visibleVisual).toHaveClass('RiverAccordion__visual--has-background')
+    expect(visibleVisual).toHaveClass('RiverAccordion__visual--gridline')
     expect(hiddenVisual).toHaveClass('RiverAccordion__visual--has-background')
+    expect(hiddenVisual).not.toHaveClass('RiverAccordion__visual--gridline')
   })
 
   it('omits the background class by default', () => {

@@ -9,10 +9,19 @@ import {Link, Text} from '../../'
 
 expect.extend(toHaveNoViolations)
 
+const mockMatchMedia = jest.fn()
+window.matchMedia = mockMatchMedia
+
 describe('RiverBreakoutTabs', () => {
   const MockVisual = ({label}: {label: string}) => <img src="file.jpg" alt={label} />
 
   beforeEach(() => {
+    mockMatchMedia.mockImplementation(() => ({
+      matches: false,
+      addEventListener: jest.fn(),
+      removeEventListener: jest.fn(),
+    }))
+
     Object.defineProperty(window, 'innerWidth', {
       configurable: true,
       writable: true,
@@ -84,6 +93,149 @@ describe('RiverBreakoutTabs', () => {
     expect(tabs[0]).toHaveAttribute('aria-selected', 'false')
     expect(tabs[1]).toHaveAttribute('aria-selected', 'true')
     expect(getByRole('tabpanel')).toHaveAttribute('id', tabs[1].getAttribute('aria-controls'))
+  })
+
+  it('transitions desktop visuals in the direction of the selected tab', () => {
+    const {container, getAllByRole} = render(
+      <RiverBreakoutTabs>
+        <RiverBreakoutTabs.A11yHeading>Agent workflows</RiverBreakoutTabs.A11yHeading>
+        <RiverBreakoutTabs.Item>
+          <RiverBreakoutTabs.Heading>Plan</RiverBreakoutTabs.Heading>
+          <RiverBreakoutTabs.Content>
+            <Text>Plan content</Text>
+          </RiverBreakoutTabs.Content>
+          <RiverBreakoutTabs.Visual>
+            <MockVisual label="plan visual" />
+          </RiverBreakoutTabs.Visual>
+        </RiverBreakoutTabs.Item>
+        <RiverBreakoutTabs.Item>
+          <RiverBreakoutTabs.Heading>Build</RiverBreakoutTabs.Heading>
+          <RiverBreakoutTabs.Content>
+            <Text>Build content</Text>
+          </RiverBreakoutTabs.Content>
+          <RiverBreakoutTabs.Visual>
+            <MockVisual label="build visual" />
+          </RiverBreakoutTabs.Visual>
+        </RiverBreakoutTabs.Item>
+        <RiverBreakoutTabs.Item>
+          <RiverBreakoutTabs.Heading>Review</RiverBreakoutTabs.Heading>
+          <RiverBreakoutTabs.Content>
+            <Text>Review content</Text>
+          </RiverBreakoutTabs.Content>
+          <RiverBreakoutTabs.Visual>
+            <MockVisual label="review visual" />
+          </RiverBreakoutTabs.Visual>
+        </RiverBreakoutTabs.Item>
+      </RiverBreakoutTabs>,
+    )
+    const tabs = getAllByRole('tab')
+    const panels = container.querySelectorAll('.RiverBreakoutTabs__sharedVisualPanel')
+
+    expect(panels[0]).toHaveClass('RiverBreakoutTabs__visual--current')
+
+    fireEvent.click(tabs[2])
+
+    expect(panels[0]).toHaveClass('RiverBreakoutTabs__visual--exit')
+    expect(panels[0]).toHaveAttribute('aria-hidden', 'true')
+    expect(panels[0]).toHaveAttribute('inert')
+    expect(panels[0]).not.toHaveAttribute('hidden')
+    expect(panels[2]).toHaveClass('RiverBreakoutTabs__visual--next')
+
+    fireEvent.animationEnd(panels[2])
+
+    expect(panels[0]).toHaveAttribute('hidden')
+    expect(panels[2]).toHaveClass('RiverBreakoutTabs__visual--current')
+
+    fireEvent.click(tabs[0])
+
+    expect(panels[2]).toHaveClass('RiverBreakoutTabs__visual--exit')
+    expect(panels[0]).toHaveClass('RiverBreakoutTabs__visual--prev')
+  })
+
+  it('transitions narrow visuals while keeping only active layers mounted', () => {
+    Object.defineProperty(window, 'innerWidth', {configurable: true, writable: true, value: 800})
+
+    const renderComponent = (selectedIndex: number) => (
+      <RiverBreakoutTabs selectedIndex={selectedIndex}>
+        <RiverBreakoutTabs.A11yHeading>Agent workflows</RiverBreakoutTabs.A11yHeading>
+        <RiverBreakoutTabs.Item>
+          <RiverBreakoutTabs.Heading>Plan</RiverBreakoutTabs.Heading>
+          <RiverBreakoutTabs.Content>
+            <Text>Plan content</Text>
+          </RiverBreakoutTabs.Content>
+          <RiverBreakoutTabs.Visual>
+            <MockVisual label="plan visual" />
+          </RiverBreakoutTabs.Visual>
+        </RiverBreakoutTabs.Item>
+        <RiverBreakoutTabs.Item>
+          <RiverBreakoutTabs.Heading>Review</RiverBreakoutTabs.Heading>
+          <RiverBreakoutTabs.Content>
+            <Text>Review content</Text>
+          </RiverBreakoutTabs.Content>
+          <RiverBreakoutTabs.Visual>
+            <MockVisual label="review visual" />
+          </RiverBreakoutTabs.Visual>
+        </RiverBreakoutTabs.Item>
+      </RiverBreakoutTabs>
+    )
+
+    const {container, rerender} = render(renderComponent(0))
+
+    expect(container.querySelectorAll('.RiverBreakoutTabs__accordionSharedVisualPanel')).toHaveLength(1)
+
+    rerender(renderComponent(1))
+
+    const transitioningPanels = container.querySelectorAll('.RiverBreakoutTabs__accordionSharedVisualPanel')
+    expect(transitioningPanels).toHaveLength(2)
+    expect(transitioningPanels[0]).toHaveClass('RiverBreakoutTabs__visual--exit')
+    expect(transitioningPanels[0]).toHaveAttribute('aria-hidden', 'true')
+    expect(transitioningPanels[0]).toHaveAttribute('inert')
+    expect(transitioningPanels[1]).toHaveClass('RiverBreakoutTabs__visual--next')
+
+    fireEvent.animationEnd(transitioningPanels[1])
+
+    const settledPanels = container.querySelectorAll('.RiverBreakoutTabs__accordionSharedVisualPanel')
+    expect(settledPanels).toHaveLength(1)
+    expect(settledPanels[0]).toHaveClass('RiverBreakoutTabs__visual--current')
+  })
+
+  it('switches visuals without transition states when reduced motion is preferred', () => {
+    mockMatchMedia.mockImplementation(() => ({
+      matches: true,
+      addEventListener: jest.fn(),
+      removeEventListener: jest.fn(),
+    }))
+
+    const {container, getAllByRole} = render(
+      <RiverBreakoutTabs>
+        <RiverBreakoutTabs.A11yHeading>Agent workflows</RiverBreakoutTabs.A11yHeading>
+        <RiverBreakoutTabs.Item>
+          <RiverBreakoutTabs.Heading>Plan</RiverBreakoutTabs.Heading>
+          <RiverBreakoutTabs.Content>
+            <Text>Plan content</Text>
+          </RiverBreakoutTabs.Content>
+          <RiverBreakoutTabs.Visual>
+            <MockVisual label="plan visual" />
+          </RiverBreakoutTabs.Visual>
+        </RiverBreakoutTabs.Item>
+        <RiverBreakoutTabs.Item>
+          <RiverBreakoutTabs.Heading>Review</RiverBreakoutTabs.Heading>
+          <RiverBreakoutTabs.Content>
+            <Text>Review content</Text>
+          </RiverBreakoutTabs.Content>
+          <RiverBreakoutTabs.Visual>
+            <MockVisual label="review visual" />
+          </RiverBreakoutTabs.Visual>
+        </RiverBreakoutTabs.Item>
+      </RiverBreakoutTabs>,
+    )
+    const panels = container.querySelectorAll('.RiverBreakoutTabs__sharedVisualPanel')
+
+    fireEvent.click(getAllByRole('tab')[1])
+
+    expect(panels[0]).toHaveAttribute('hidden')
+    expect(panels[0]).not.toHaveClass('RiverBreakoutTabs__visual--exit')
+    expect(panels[1]).toHaveClass('RiverBreakoutTabs__visual--current')
   })
 
   it('does not apply a visual background by default', () => {
