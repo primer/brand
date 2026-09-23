@@ -108,3 +108,32 @@ export const MultipleRows: Story = {
     </Section>
   ),
 }
+
+export const BalancedRowsTablet: Story = {
+  name: 'Balanced rows (tablet)',
+  globals: {
+    viewport: {value: 'ipad10p'},
+  },
+  render: () => (
+    <Stack gap="spacious" padding="none">
+      <Section>
+        <Tiles variant="gridlines">
+          {tileItems.slice(0, 6).map(item => (
+            <Tiles.Item key={item.name} name={item.name} href={item.href}>
+              {item.icon}
+            </Tiles.Item>
+          ))}
+        </Tiles>
+      </Section>
+      <Section>
+        <Tiles variant="gridlines" layout="compact">
+          {tileItems.map((item, index) => (
+            <Tiles.Item key={`${item.name}-${index}`} name={item.name} href={item.href}>
+              {item.icon}
+            </Tiles.Item>
+          ))}
+        </Tiles>
+      </Section>
+    </Stack>
+  ),
+}
