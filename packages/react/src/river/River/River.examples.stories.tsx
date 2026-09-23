@@ -7,7 +7,7 @@ import placeholderBg from '../../fixtures/images/dither-bg-landscape-green.png'
 import posterImage from '../../fixtures/images/example-poster.png'
 
 import {River, type RiverProps} from '.'
-import {EyebrowText, Section, Heading, Link, Text} from '../../'
+import {EyebrowText, Section, Heading, Link, Stack, Text} from '../../'
 import {VideoPlayer} from '../../VideoPlayer'
 
 export type MetaProps = RiverProps
@@ -31,6 +31,65 @@ export const CustomBackgroundStart: Story = {
 export const CustomBackgroundEnd: Story = {
   name: 'Custom background (end)',
   render: () => <GridLineWithBackgroundExample align="end" />,
+}
+
+export const CustomBackgroundStartInStackTablet: Story = {
+  name: 'Rivers in a stack (tablet)',
+  globals: {
+    viewport: {value: 'ipad10p'},
+  },
+  render: () => (
+    <Section>
+      <Stack padding="none">
+        <River variant="gridline" align="start">
+          <River.Visual
+            style={{
+              backgroundImage: `url(${placeholderBg})`,
+              backgroundPosition: 'center',
+              backgroundSize: 'cover',
+            }}
+          >
+            <picture>
+              <source srcSet={placeholderImageCropped} media="(max-width: 47.99rem)" />
+              <img src={placeholderImage} alt="GitHub Copilot agent mode in VS Code" />
+            </picture>
+          </River.Visual>
+          <River.Content>
+            <EyebrowText>Feature</EyebrowText>
+            <Heading>GridLine with custom background</Heading>
+            <Text>
+              The gridline variant creates a full-bleed visual container that can be enhanced with a custom animated
+              background using the ref prop on River.Visual.
+            </Text>
+            <Link href="#">Learn more</Link>
+          </River.Content>
+        </River>
+        <River variant="gridline" align="start">
+          <River.Visual
+            style={{
+              backgroundImage: `url(${placeholderBg})`,
+              backgroundPosition: 'center',
+              backgroundSize: 'cover',
+            }}
+          >
+            <picture>
+              <source srcSet={placeholderImageCropped} media="(max-width: 47.99rem)" />
+              <img src={placeholderImage} alt="GitHub Copilot agent mode in VS Code" />
+            </picture>
+          </River.Visual>
+          <River.Content>
+            <EyebrowText>Feature</EyebrowText>
+            <Heading>GridLine with custom background</Heading>
+            <Text>
+              The gridline variant creates a full-bleed visual container that can be enhanced with a custom animated
+              background using the ref prop on River.Visual.
+            </Text>
+            <Link href="#">Learn more</Link>
+          </River.Content>
+        </River>
+      </Stack>
+    </Section>
+  ),
 }
 
 export const CustomBackgroundStartVideo: Story = {
