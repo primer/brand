@@ -92,7 +92,10 @@ const Fixture = ({
         <PricingComparisonTable.Group expanded={expanded}>
           <PricingComparisonTable.GroupHeading>{t('collaboration')}</PricingComparisonTable.GroupHeading>
           <PricingComparisonTable.Row>
-            <PricingComparisonTable.RowHeading infoTooltip={t('private_repositories_tooltip')}>
+            <PricingComparisonTable.RowHeading
+              infoTooltip={t('private_repositories_tooltip')}
+              infoTooltipAriaLabel={t('private_repositories_tooltip_label')}
+            >
               {t('private_repositories')}
             </PricingComparisonTable.RowHeading>
             {visiblePlans.map(plan => (
@@ -257,7 +260,9 @@ export const StickyHeaders: Story = {
   play: async ({canvasElement}) => {
     const canvas = within(canvasElement)
     const isNarrow = !window.matchMedia('(min-width: 48rem)').matches
-    const projection = await canvas.findByTestId(isNarrow ? 'PricingComparisonTable__narrow' : 'PricingComparisonTable__table')
+    const projection = await canvas.findByTestId(
+      isNarrow ? 'PricingComparisonTable__narrow' : 'PricingComparisonTable__table',
+    )
     const control = projection.querySelector<HTMLElement>('[aria-expanded]')!
     const initiallyExpanded = !isNarrow
     await waitFor(() => expect(control).toHaveAttribute('aria-expanded', String(initiallyExpanded)))
