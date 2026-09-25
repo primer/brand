@@ -20,6 +20,48 @@ export default meta
 
 type Story = StoryObj<typeof RiverBreakoutTabs>
 
+export const NoItems: Story = {
+  name: 'No items',
+  render: function NoItemsRender() {
+    const {t} = useTranslation('RiverBreakoutTabs')
+
+    return (
+      <Section>
+        <RiverBreakoutTabs>
+          <RiverBreakoutTabs.A11yHeading>{t('two_card_layout_a11y')}</RiverBreakoutTabs.A11yHeading>
+        </RiverBreakoutTabs>
+      </Section>
+    )
+  },
+}
+
+export const OneItem: Story = {
+  name: 'One item',
+  render: function OneItemRender() {
+    const {t} = useTranslation('RiverBreakoutTabs')
+
+    return (
+      <Section>
+        <RiverBreakoutTabs>
+          <RiverBreakoutTabs.A11yHeading>{t('two_card_layout_a11y')}</RiverBreakoutTabs.A11yHeading>
+
+          <RiverBreakoutTabs.Item>
+            <RiverBreakoutTabs.Icon icon={AiModelIcon} />
+            <RiverBreakoutTabs.Heading>{t('code_quickly_heading')}</RiverBreakoutTabs.Heading>
+            <RiverBreakoutTabs.Content>
+              <Text>{t('code_quickly_body')}</Text>
+              <Link href="#">{t('start_coding_cta')}</Link>
+            </RiverBreakoutTabs.Content>
+            <RiverBreakoutTabs.Visual>
+              <Image src={placeholder1} alt={t('alt_placeholder_1')} />
+            </RiverBreakoutTabs.Visual>
+          </RiverBreakoutTabs.Item>
+        </RiverBreakoutTabs>
+      </Section>
+    )
+  },
+}
+
 export const TwoItems: Story = {
   render: function TwoItemsRender() {
     const {t} = useTranslation('RiverBreakoutTabs')

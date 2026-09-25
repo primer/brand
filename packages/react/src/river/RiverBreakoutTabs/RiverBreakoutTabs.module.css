@@ -30,6 +30,7 @@
 
 .RiverBreakoutTabs__sharedVisuals {
   position: relative;
+  isolation: isolate;
   order: 1;
   margin-block-end: var(--base-size-36);
   width: 100%;
@@ -39,14 +40,72 @@
 
 .RiverBreakoutTabs__accordionSharedVisuals {
   position: relative;
+  isolation: isolate;
   margin-block-end: var(--base-size-16);
   width: 100%;
 }
 
-.RiverBreakoutTabs__sharedVisualPanel {
+.RiverBreakoutTabs__visualLayers {
   position: relative;
   z-index: 1;
+  display: grid;
   min-width: 0;
+  overflow: hidden;
+  border-radius: inherit;
+}
+
+.RiverBreakoutTabs__sharedVisualPanel,
+.RiverBreakoutTabs__accordionSharedVisualPanel {
+  position: relative;
+  grid-column: 1;
+  grid-row: 1;
+  min-width: 0;
+  visibility: hidden;
+}
+
+.RiverBreakoutTabs__sharedVisualPanel.RiverBreakoutTabs__visual--current,
+.RiverBreakoutTabs__sharedVisualPanel.RiverBreakoutTabs__visual--next,
+.RiverBreakoutTabs__sharedVisualPanel.RiverBreakoutTabs__visual--prev,
+.RiverBreakoutTabs__sharedVisualPanel.RiverBreakoutTabs__visual--exit,
+.RiverBreakoutTabs__accordionSharedVisualPanel.RiverBreakoutTabs__visual--current,
+.RiverBreakoutTabs__accordionSharedVisualPanel.RiverBreakoutTabs__visual--next,
+.RiverBreakoutTabs__accordionSharedVisualPanel.RiverBreakoutTabs__visual--prev,
+.RiverBreakoutTabs__accordionSharedVisualPanel.RiverBreakoutTabs__visual--exit {
+  visibility: visible;
+}
+
+.RiverBreakoutTabs__visual--current {
+  z-index: 1;
+}
+
+.RiverBreakoutTabs__visual--next,
+.RiverBreakoutTabs__visual--prev {
+  z-index: 2;
+  will-change: clip-path;
+  animation: RiverBreakoutTabs-visual-reveal var(--brand-animation-duration-faster)
+    var(--brand-RiverBreakoutTabs-animation-easing) both;
+}
+
+.RiverBreakoutTabs__visual--next {
+  --brand-RiverBreakoutTabs-visual-start-clip: inset(0 100% 0 0);
+}
+
+.RiverBreakoutTabs__visual--prev {
+  --brand-RiverBreakoutTabs-visual-start-clip: inset(0 0 0 100%);
+}
+
+.RiverBreakoutTabs__visual--exit {
+  z-index: 1;
+}
+
+@keyframes RiverBreakoutTabs-visual-reveal {
+  from {
+    clip-path: var(--brand-RiverBreakoutTabs-visual-start-clip);
+  }
+
+  to {
+    clip-path: inset(0);
+  }
 }
 
 .RiverBreakoutTabs__backgroundVisual {
@@ -103,6 +162,13 @@
 
 .RiverBreakoutTabs__sharedVisualPanel[hidden] {
   display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .RiverBreakoutTabs__sharedVisualPanel,
+  .RiverBreakoutTabs__accordionSharedVisualPanel {
+    animation: none;
+  }
 }
 
 .RiverBreakoutTabs__tablist {

@@ -3,12 +3,14 @@ import {clsx} from 'clsx'
 import {TriangleDownIcon, TriangleUpIcon, type Icon} from '@primer/octicons-react'
 
 import {Heading, type HeadingProps, Link, Text} from '../..'
+import {useReducedMotion} from '../../hooks/useReducedMotion'
 import {useProvidedRefOrCreate} from '../../hooks/useRef'
 import {useId} from '../../hooks/useId'
 
 /**
  * Design tokens
  */
+import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/river-accordion/base.css'
 import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/river/river.css'
 
 /** Main Stylesheet (as a CSS Module) */
@@ -56,10 +58,18 @@ export type RiverAccordionProps = React.PropsWithChildren<{
 }> &
   React.HTMLAttributes<HTMLDivElement>
 
+type VisualTransition = {
+  direction: 'next' | 'prev'
+  fromIndex: number
+  toIndex: number
+}
+
 const RiverAccordionRoot = forwardRef<HTMLDivElement, RiverAccordionProps>(
   ({align = 'start', variant = 'default', children, className, ...rest}, forwardedRef) => {
     const containerRef = useProvidedRefOrCreate<HTMLDivElement>(forwardedRef as React.RefObject<HTMLDivElement>)
     const [openIndex, setOpenIndex] = useState(0)
+    const [visualTransition, setVisualTransition] = useState<VisualTransition | null>(null)
+    const prefersReducedMotion = useReducedMotion()
 
     const accordionComponents = useMemo(() => {
       return React.Children.toArray(children).reduce<{
@@ -84,20 +94,84 @@ const RiverAccordionRoot = forwardRef<HTMLDivElement, RiverAccordionProps>(
       )
     }, [children])
 
-    const items = accordionComponents.items.map((item, index) => React.cloneElement(item, {key: index, index}))
-    const visuals = accordionComponents.visuals.map((visual, index) =>
-      React.cloneElement(visual, {key: index, 'aria-hidden': true}),
+    const activeIndex =
+      accordionComponents.items.length === 0
+        ? -1
+        : Math.min(Math.max(openIndex, 0), accordionComponents.items.length - 1)
+
+    useEffect(() => {
+      if (openIndex !== activeIndex) {
+        setOpenIndex(activeIndex)
+        setVisualTransition(null)
+      }
+    }, [activeIndex, openIndex])
+
+    const handleOpenIndex = useCallback(
+      (index: number) => {
+        if (index === activeIndex) {
+          return
+        }
+
+        setVisualTransition(
+          prefersReducedMotion
+            ? null
+            : {
+                direction: index > activeIndex ? 'next' : 'prev',
+                fromIndex: activeIndex,
+                toIndex: index,
+              },
+        )
+        setOpenIndex(index)
+      },
+      [activeIndex, prefersReducedMotion],
     )
+
+    useEffect(() => {
+      if (prefersReducedMotion) {
+        setVisualTransition(null)
+      }
+    }, [prefersReducedMotion])
+
+    const items = accordionComponents.items.map((item, index) => React.cloneElement(item, {key: index, index}))
+    const visuals = accordionComponents.visuals.map((visual, index) => {
+      const isEntering = visualTransition?.toIndex === index
+      const isExiting = visualTransition?.fromIndex === index
+      const isCurrent = visualTransition === null && activeIndex === index
+
+      return React.cloneElement(visual, {
+        key: index,
+        'aria-hidden': true,
+        className: clsx(
+          visual.props.className,
+          styles['RiverAccordion__visual--shared'],
+          variant === 'gridline' && styles['RiverAccordion__visual--gridline'],
+          isCurrent && styles['RiverAccordion__visual--current'],
+          isExiting && styles['RiverAccordion__visual--exit'],
+          isEntering && styles[`RiverAccordion__visual--${visualTransition.direction}`],
+        ),
+        onAnimationEnd: isEntering
+          ? event => {
+              visual.props.onAnimationEnd?.(event)
+
+              if (event.target === event.currentTarget) {
+                setVisualTransition(currentTransition =>
+                  currentTransition?.toIndex === index ? null : currentTransition,
+                )
+              }
+            }
+          : visual.props.onAnimationEnd,
+      })
+    })
     const activeItemHasBackground =
-      variant === 'gridline' && (accordionComponents.visuals[openIndex]?.props.hasBackground ?? true)
+      variant === 'gridline' && (accordionComponents.visuals[activeIndex]?.props.hasBackground ?? true)
 
     const contextValue = useMemo(
       () => ({
-        openIndex,
-        setOpenIndex,
+        openIndex: activeIndex,
+        setOpenIndex: handleOpenIndex,
         variant,
       }),
-      [openIndex, setOpenIndex, variant],
+      [activeIndex, handleOpenIndex, variant],
     )
 
     return (

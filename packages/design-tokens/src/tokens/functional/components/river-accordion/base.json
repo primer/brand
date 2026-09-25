@@ -1,0 +1,19 @@
+{
+  "RiverAccordion": {
+    "animation": {
+      "content": {
+        "transition": {
+          "hidden": {
+            "value": "opacity 80ms ease-out"
+          },
+          "visible": {
+            "value": "opacity 140ms 40ms ease-out"
+          }
+        }
+      },
+      "easing": {
+        "value": "cubic-bezier(0.16, 0, 0.54, 0.75)"
+      }
+    }
+  }
+}

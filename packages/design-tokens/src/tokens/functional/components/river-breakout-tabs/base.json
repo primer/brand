@@ -1,0 +1,9 @@
+{
+  "RiverBreakoutTabs": {
+    "animation": {
+      "easing": {
+        "value": "cubic-bezier(0.16, 0, 0.54, 0.75)"
+      }
+    }
+  }
+}
