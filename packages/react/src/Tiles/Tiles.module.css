@@ -17,9 +17,27 @@
   --tiles-columns: 4;
 }
 
+@media screen and (max-width: 47.99rem) {
+  .Tiles--layout-compact .Tiles-grid:has(> .Tiles-item:nth-child(6):last-child) {
+    --tiles-columns: 3;
+  }
+}
+
+@media screen and (max-width: 63.24rem) {
+  .Tiles--layout-compact .Tiles-grid:has(> .Tiles-item:nth-child(8):last-child) {
+    --tiles-columns: 4;
+  }
+}
+
 @media screen and (min-width: 48rem) {
   .Tiles--layout-default .Tiles-grid {
     --tiles-columns: 4;
+  }
+}
+
+@media screen and (min-width: 48rem) and (max-width: 63.24rem) {
+  .Tiles--layout-default .Tiles-grid:has(> .Tiles-item:nth-child(6):last-child) {
+    --tiles-columns: 3;
   }
 }
 
@@ -32,6 +50,10 @@
 @media screen and (min-width: 63.25rem) {
   .Tiles--layout-default .Tiles-grid {
     --tiles-columns: 6;
+  }
+
+  .Tiles--layout-default .Tiles-grid:has(> .Tiles-item:nth-child(8):last-child) {
+    --tiles-columns: 4;
   }
 }
 
