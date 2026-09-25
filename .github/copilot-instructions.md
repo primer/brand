@@ -82,6 +82,12 @@ apps/
    npm run test      # Unit tests
    ```
 
+### Docs Figma images
+
+Files in `apps/next-docs/public/images/figma` are generated artifacts. Never edit, optimize, recompress, rename, replace, or delete these images or their manifest directly.
+
+Update Figma references in the docs source, then regenerate the artifacts with `npm run figma-images:generate --workspace=apps/next-docs` or use the `update figma images` pull request label workflow. Commit only the output produced by the generator or workflow.
+
 ### Component development
 
 - **Location**: `packages/react/src/ComponentName/`

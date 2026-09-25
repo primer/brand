@@ -1,0 +1,211 @@
+name: Update pull request Figma images
+
+on:
+  pull_request_target:
+    types: [labeled]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+  issues: write
+  pull-requests: read
+
+jobs:
+  update-figma-images:
+    if: ${{ github.event.label.name == 'update figma images' }}
+    name: Update Figma images
+    runs-on: ubuntu-latest
+    steps:
+      - name: Verify update request is still valid
+        id: request-gate
+        uses: actions/github-script@v8
+        with:
+          script: |
+            const labelName = 'update figma images'
+            const {owner, repo} = context.repo
+            const pull_number = context.payload.pull_request.number
+
+            const {data: pullRequest} = await github.rest.pulls.get({
+              owner,
+              repo,
+              pull_number,
+            })
+
+            const hasLabel = pullRequest.labels.some((label) => label.name === labelName)
+            const isRepositoryBranch = pullRequest.head.repo.full_name === `${owner}/${repo}`
+            const shouldProcess = pullRequest.state === 'open' && hasLabel && isRepositoryBranch
+            const reason = !hasLabel ? 'label-removed' : pullRequest.state !== 'open' ? 'closed' : !isRepositoryBranch ? 'fork' : 'authorized'
+
+            core.setOutput('base_sha', pullRequest.base.sha)
+            core.setOutput('head_ref', pullRequest.head.ref)
+            core.setOutput('head_sha', pullRequest.head.sha)
+            core.setOutput('head_repo_full_name', pullRequest.head.repo.full_name)
+            core.setOutput('reason', reason)
+            core.setOutput('should_cleanup', hasLabel ? 'true' : 'false')
+            core.setOutput('should_process', shouldProcess ? 'true' : 'false')
+
+            if (shouldProcess) {
+              core.info(`Figma image update is authorized for PR #${pull_number}`)
+              return
+            }
+
+            if (reason === 'fork') {
+              core.info('Skipping because pull requests from forks cannot use repository secrets or push commits back to the branch.')
+              return
+            }
+
+            core.info(`Skipping because PR #${pull_number} is ${pullRequest.state} or missing the \"${labelName}\" label.`)
+
+      - name: Checkout trusted base revision
+        if: steps.request-gate.outputs.should_process == 'true'
+        uses: actions/checkout@v6
+        with:
+          ref: ${{ steps.request-gate.outputs.base_sha }}
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Fetch pull request head revision
+        if: steps.request-gate.outputs.should_process == 'true'
+        env:
+          HEAD_SHA: ${{ steps.request-gate.outputs.head_sha }}
+        run: git fetch --no-tags origin "$HEAD_SHA" --depth=1
+
+      - name: Overlay pull request content as inert input
+        if: steps.request-gate.outputs.should_process == 'true'
+        env:
+          HEAD_SHA: ${{ steps.request-gate.outputs.head_sha }}
+        run: |
+          rm -rf apps/next-docs/content
+          mkdir -p apps/next-docs
+          git archive "$HEAD_SHA" apps/next-docs/content | tar -xf -
+
+      - name: Set up Node
+        if: steps.request-gate.outputs.should_process == 'true'
+        uses: actions/setup-node@v6
+        with:
+          node-version: 24.14.1
+
+      - name: Cache dependencies
+        if: steps.request-gate.outputs.should_process == 'true'
+        uses: actions/cache@v5
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - name: Install trusted dependencies
+        if: steps.request-gate.outputs.should_process == 'true'
+        run: npm ci
+
+      - name: Generate Figma images with trusted code
+        if: steps.request-gate.outputs.should_process == 'true'
+        run: npm run figma-images:generate --workspace=apps/next-docs
+        env:
+          FIGMA_ACCESS_TOKEN: ${{ secrets.FIGMA_ACCESS_TOKEN }}
+
+      - name: Archive generated Figma images
+        if: steps.request-gate.outputs.should_process == 'true'
+        run: |
+          artifact_directory='workflow-artifacts/update-figma-images'
+          mkdir -p "$artifact_directory"
+          tar -cf "$artifact_directory/generated-figma-images.tar" apps/next-docs/public/images/figma
+
+      - name: Checkout pull request head for commit only
+        if: steps.request-gate.outputs.should_process == 'true'
+        uses: actions/checkout@v6
+        with:
+          repository: ${{ steps.request-gate.outputs.head_repo_full_name }}
+          ref: ${{ steps.request-gate.outputs.head_sha }}
+          fetch-depth: 0
+          persist-credentials: false
+          path: pr-head
+
+      - name: Apply generated images to pull request head
+        if: steps.request-gate.outputs.should_process == 'true'
+        run: |
+          rm -rf pr-head/apps/next-docs/public/images/figma
+          mkdir -p pr-head/apps/next-docs/public/images
+          tar -xf workflow-artifacts/update-figma-images/generated-figma-images.tar -C pr-head
+
+      - name: Commit generated images
+        if: steps.request-gate.outputs.should_process == 'true'
+        id: commit-generated-images
+        run: |
+          git -C pr-head add -A apps/next-docs/public/images/figma
+
+          if git -C pr-head diff --cached --quiet; then
+            echo 'created_commit=false' >> "$GITHUB_OUTPUT"
+            echo 'No generated Figma image changes to commit.'
+            exit 0
+          fi
+
+          git -C pr-head config user.name 'github-actions[bot]'
+          git -C pr-head config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git -C pr-head commit -m 'github-actions[bot] Update Figma images'
+          echo 'created_commit=true' >> "$GITHUB_OUTPUT"
+
+      - name: Create GitHub App token
+        if: steps.commit-generated-images.outputs.created_commit == 'true'
+        id: app-token
+        uses: actions/create-github-app-token@f8d387b68d61c58ab83c6c016672934102569859 # v3.0.0
+        with:
+          app-id: ${{ vars.PRIMER_APP_ID_SHARED }}
+          private-key: ${{ secrets.PRIMER_APP_PRIVATE_KEY_SHARED }}
+
+      - name: Push generated images
+        if: steps.commit-generated-images.outputs.created_commit == 'true'
+        env:
+          APP_TOKEN: ${{ steps.app-token.outputs.token }}
+          HEAD_REF: ${{ steps.request-gate.outputs.head_ref }}
+          HEAD_REPOSITORY: ${{ steps.request-gate.outputs.head_repo_full_name }}
+        run: |
+          git -C pr-head remote set-url origin "https://x-access-token:${APP_TOKEN}@github.com/${HEAD_REPOSITORY}.git"
+          git -C pr-head push origin "HEAD:${HEAD_REF}"
+
+      - name: Skip unsupported request
+        if: steps.request-gate.outputs.should_process != 'true'
+        run: |
+          case '${{ steps.request-gate.outputs.reason }}' in
+            fork)
+              echo 'Skipping Figma image update because pull requests from forks cannot use FIGMA_ACCESS_TOKEN or receive generated commits. Recreate the branch in this repository and re-apply the label.'
+              ;;
+            closed)
+              echo 'Skipping Figma image update because the pull request is closed.'
+              ;;
+            label-removed)
+              echo 'Skipping Figma image update because the request label is no longer present.'
+              ;;
+            *)
+              echo 'Skipping Figma image update.'
+              ;;
+          esac
+
+      - name: Remove request label
+        if: always() && steps.request-gate.outputs.should_cleanup == 'true' && (steps.request-gate.outputs.should_process != 'true' || success())
+        uses: actions/github-script@v8
+        with:
+          script: |
+            const labelName = 'update figma images'
+            const {owner, repo} = context.repo
+            const issue_number = context.payload.pull_request.number
+
+            try {
+              await github.rest.issues.removeLabel({
+                owner,
+                repo,
+                issue_number,
+                name: labelName,
+              })
+              core.info(`Removed label \"${labelName}\" from PR #${issue_number}`)
+            } catch (error) {
+              if (error.status === 404) {
+                core.info(`Label \"${labelName}\" was already removed from PR #${issue_number}`)
+                return
+              }
+
+              throw error
+            }
