@@ -522,11 +522,9 @@ export function FlexSuiteAIOverviewTemplate({content}: FlexSuiteAIOverviewTempla
         <Box paddingBlockEnd={64}>
           <FAQGroup variant="gridline" defaultSelectedIndex={1}>
             <FAQGroup.Heading>
-              <Box paddingInlineStart="spacious">
-                {content.faq.headingLine1}
-                <br />
-                {content.faq.headingLine2}
-              </Box>
+              {content.faq.headingLine1}
+              <br />
+              {content.faq.headingLine2}
             </FAQGroup.Heading>
             {content.faq.groups.map(group => (
               <FAQ key={group.heading} variant="gridline">
