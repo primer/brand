@@ -1,5 +1,17 @@
 # @primer/react-brand
 
+## 0.77.0
+
+### Minor Changes
+
+- [#1333](https://github.com/primer/brand/pull/1333) [`1ca3151`](https://github.com/primer/brand/commit/1ca31516d5a30eca38feb8f28407f6d01f0567e2) Thanks [@danielguillan](https://github.com/danielguillan)! - `ThemeProvider` now resolves in-product appearance modes to Primer Brand's `light` or `dark` defaults. For example, `"dark_dimmed"` resolves to `dark`, and `"light_high_contrast"` resolves to `light`.
+
+- [#1477](https://github.com/primer/brand/pull/1477) [`d1a6689`](https://github.com/primer/brand/commit/d1a668949663927a16c158a11ddf7b3355d73bc1) Thanks [@danielguillan](https://github.com/danielguillan)! - Add a `gridline` variant to the `Section` component and a design token for customizing its inline padding.
+
+### Patch Changes
+
+- [#1482](https://github.com/primer/brand/pull/1482) [`f670ae3`](https://github.com/primer/brand/commit/f670ae378cce8f1ca3e81307290a56808758f82a) Thanks [@rezrah](https://github.com/rezrah)! - Fixed `River` components incorrectly shrinking when nested in a `Stack` at medium (tablet) viewport sizes.
+
 ## 0.76.0
 
 ### Minor Changes
