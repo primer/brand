@@ -23,6 +23,7 @@
   "collaboration": "コラボレーション",
   "private_repositories": "プライベートリポジトリ",
   "private_repositories_tooltip": "含まれるプライベートリポジトリの数",
+  "private_repositories_tooltip_label": "プライベートリポジトリの詳細",
   "included": "利用可能",
   "unavailable": "利用不可",
   "advanced_security": "高度なセキュリティ",

@@ -23,6 +23,7 @@
   "collaboration": "Collaboration",
   "private_repositories": "Dépôts privés",
   "private_repositories_tooltip": "Le nombre de dépôts privés inclus",
+  "private_repositories_tooltip_label": "Plus d’informations sur les dépôts privés",
   "included": "Inclus",
   "unavailable": "Indisponible",
   "advanced_security": "Sécurité avancée",

@@ -23,6 +23,7 @@
   "collaboration": "Colaboração",
   "private_repositories": "Repositórios privados",
   "private_repositories_tooltip": "O número de repositórios privados incluídos",
+  "private_repositories_tooltip_label": "Mais informações sobre repositórios privados",
   "included": "Incluído",
   "unavailable": "Indisponível",
   "advanced_security": "Segurança avançada",
