@@ -1,5 +1,11 @@
 # @primer/react-brand
 
+## 0.77.1
+
+### Patch Changes
+
+- [#1478](https://github.com/primer/brand/pull/1478) [`1a64aa2`](https://github.com/primer/brand/commit/1a64aa27990f3c2d4e6e15a7170f5e81ac6d3cc8) Thanks [@rezrah](https://github.com/rezrah)! - Added extra `inline-start` padding to `FAQGroup.Heading` on wide breakpoints to better align it with adjacent content. Only applies to the `gridline` variant.
+
 ## 0.77.0
 
 ### Minor Changes
