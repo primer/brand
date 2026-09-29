@@ -15,7 +15,6 @@
   inset-inline: 0;
   inset-block-start: 100%;
   height: var(--brand-borderWidth-thin);
-  background-color: var(--brand-color-text-emphasized);
   pointer-events: none;
 }
 
