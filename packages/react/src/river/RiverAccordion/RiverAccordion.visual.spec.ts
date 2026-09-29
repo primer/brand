@@ -39,6 +39,17 @@ test.describe('Visual Comparison: RiverAccordion', () => {
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
+  test('RiverAccordion / Multiple items', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-riveraccordion-features--multiple-items&viewMode=story',
+      {waitUntil: 'networkidle'},
+    )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+    await page.waitForTimeout(500)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
   test('RiverAccordion / Gridline variant', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-riveraccordion-features-gridline-variants--grid-line&viewMode=story',

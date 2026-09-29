@@ -6,6 +6,7 @@ import {Icon, Image, Link, RiverAccordion, Section, Text} from '../../'
 import renderUI1 from '../../fixtures/images/copilot-vscode-agent-mode-1.png'
 import renderUI2 from '../../fixtures/images/copilot-vscode-agent-mode-2.png'
 import renderUI3 from '../../fixtures/images/copilot-vscode-agent-mode-3.png'
+import placeholderBg from '../../fixtures/images/dither-bg-landscape-green.png'
 import placeholder1 from '../../fixtures/images/placeholder-1.png'
 import placeholder2 from '../../fixtures/images/placeholder-2.png'
 import placeholder3 from '../../fixtures/images/placeholder-3.png'
@@ -26,7 +27,14 @@ export const GridLine: Story = {
   name: 'Gridline variant',
   render: () => (
     <Section>
-      <RiverAccordion variant="gridline">
+      <RiverAccordion
+        variant="gridline"
+        style={
+          {
+            '--brand-RiverAccordion-visual-background': `url(${placeholderBg}) center / cover`,
+          } as React.CSSProperties
+        }
+      >
         <RiverAccordion.Item>
           <RiverAccordion.Heading>Heading 1</RiverAccordion.Heading>
           <RiverAccordion.Content>
@@ -92,7 +100,15 @@ export const GridLineEnd: Story = {
   name: 'Gridline variant (end)',
   render: () => (
     <Section>
-      <RiverAccordion variant="gridline" align="end">
+      <RiverAccordion
+        variant="gridline"
+        align="end"
+        style={
+          {
+            '--brand-RiverAccordion-visual-background': `url(${placeholderBg}) center / cover`,
+          } as React.CSSProperties
+        }
+      >
         <RiverAccordion.Item>
           <RiverAccordion.Heading>Heading 1</RiverAccordion.Heading>
           <RiverAccordion.Content>

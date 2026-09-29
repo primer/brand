@@ -103,20 +103,74 @@
   grid-template-rows: subgrid;
 }
 
-.RiverAccordion__visualsWrapper > .RiverAccordion__visual {
+.RiverAccordion__visual--shared {
   grid-column: 1;
   grid-row: 1;
   width: 100%;
   height: 100%;
   display: flex;
   align-items: center;
-  opacity: 0;
-  scale: 1.05;
-  transition: opacity var(--brand-animation-duration-default) var(--brand-animation-easing-default),
-    scale var(--brand-animation-duration-default) var(--brand-animation-easing-default);
+  visibility: hidden;
+  transform: scale(1);
+  transform-origin: center;
+  backface-visibility: hidden;
 }
 
-.RiverAccordion__visualsWrapper > .RiverAccordion__visual > * {
+.RiverAccordion__visual.RiverAccordion__visual--current,
+.RiverAccordion__visual.RiverAccordion__visual--next,
+.RiverAccordion__visual.RiverAccordion__visual--prev,
+.RiverAccordion__visual.RiverAccordion__visual--exit {
+  visibility: visible;
+}
+
+.RiverAccordion__visual.RiverAccordion__visual--current {
+  z-index: 1;
+}
+
+.RiverAccordion__visual.RiverAccordion__visual--next,
+.RiverAccordion__visual.RiverAccordion__visual--prev {
+  z-index: 2;
+  will-change: clip-path;
+  animation: RiverAccordion-visual-reveal var(--brand-animation-duration-faster)
+    var(--brand-RiverAccordion-animation-easing) both;
+}
+
+.RiverAccordion__visual.RiverAccordion__visual--next {
+  --brand-RiverAccordion-visual-start-clip: inset(0 100% 0 0);
+}
+
+.RiverAccordion__visual.RiverAccordion__visual--prev {
+  --brand-RiverAccordion-visual-start-clip: inset(0 0 0 100%);
+}
+
+.RiverAccordion__visual.RiverAccordion__visual--exit {
+  z-index: 1;
+  will-change: transform;
+  animation: RiverAccordion-visual-scale var(--brand-animation-duration-faster)
+    var(--brand-RiverAccordion-animation-easing) both;
+}
+
+@keyframes RiverAccordion-visual-reveal {
+  from {
+    clip-path: var(--brand-RiverAccordion-visual-start-clip);
+  }
+
+  to {
+    clip-path: inset(0);
+  }
+}
+
+@keyframes RiverAccordion-visual-scale {
+  from {
+    transform: scale(1);
+  }
+
+  to {
+    transform: scale(1.05);
+  }
+}
+
+.RiverAccordion__visual--shared > * {
   display: block;
   width: 100%;
   height: auto;
@@ -125,9 +179,9 @@
   object-fit: contain;
 }
 
-.RiverAccordion__visualsWrapper > .RiverAccordion__visual img,
-.RiverAccordion__visualsWrapper > .RiverAccordion__visual picture,
-.RiverAccordion__visualsWrapper > .RiverAccordion__visual video {
+.RiverAccordion__visual--shared img,
+.RiverAccordion__visual--shared picture,
+.RiverAccordion__visual--shared video {
   display: block;
   width: 100%;
   height: auto;
@@ -135,8 +189,8 @@
   object-fit: contain;
 }
 
-.RiverAccordion__visualsWrapper > .RiverAccordion__visual > * img,
-.RiverAccordion__visualsWrapper > .RiverAccordion__visual > * video {
+.RiverAccordion__visual--shared > * img,
+.RiverAccordion__visual--shared > * video {
   display: block;
   width: 100%;
   height: auto;
@@ -144,7 +198,7 @@
   object-fit: cover;
 }
 
-.RiverAccordion--variant-gridline .RiverAccordion__visualsWrapper > .RiverAccordion__visual--has-background {
+.RiverAccordion__visual--shared.RiverAccordion__visual--gridline.RiverAccordion__visual--has-background {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -152,7 +206,7 @@
   background: var(--brand-RiverAccordion-visual-background, var(--brand-color-canvas-subtle));
 }
 
-.RiverAccordion--variant-gridline .RiverAccordion__visualsWrapper > .RiverAccordion__visual--has-background > * {
+.RiverAccordion__visual--shared.RiverAccordion__visual--gridline.RiverAccordion__visual--has-background > * {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -161,9 +215,9 @@
   border-radius: var(--base-size-6);
 }
 
-.RiverAccordion--variant-gridline .RiverAccordion__visualsWrapper > .RiverAccordion__visual--has-background img,
-.RiverAccordion--variant-gridline .RiverAccordion__visualsWrapper > .RiverAccordion__visual--has-background picture,
-.RiverAccordion--variant-gridline .RiverAccordion__visualsWrapper > .RiverAccordion__visual--has-background video {
+.RiverAccordion__visual--shared.RiverAccordion__visual--gridline.RiverAccordion__visual--has-background img,
+.RiverAccordion__visual--shared.RiverAccordion__visual--gridline.RiverAccordion__visual--has-background picture,
+.RiverAccordion__visual--shared.RiverAccordion__visual--gridline.RiverAccordion__visual--has-background video {
   max-width: 100%;
   height: auto;
   border-radius: var(--base-size-6);
@@ -201,36 +255,18 @@
     height: 100%;
   }
 
-  .RiverAccordion--variant-gridline .RiverAccordion__visualsWrapper > .RiverAccordion__visual--has-background {
+  .RiverAccordion__visual--shared.RiverAccordion__visual--gridline.RiverAccordion__visual--has-background {
     align-items: center;
     justify-content: center;
     padding: var(--base-size-64);
   }
 
-  .RiverAccordion--variant-gridline .RiverAccordion__visualsWrapper > .RiverAccordion__visual--has-background > *,
-  .RiverAccordion--variant-gridline .RiverAccordion__visualsWrapper > .RiverAccordion__visual--has-background img,
-  .RiverAccordion--variant-gridline .RiverAccordion__visualsWrapper > .RiverAccordion__visual--has-background picture,
-  .RiverAccordion--variant-gridline .RiverAccordion__visualsWrapper > .RiverAccordion__visual--has-background video {
+  .RiverAccordion__visual--shared.RiverAccordion__visual--gridline.RiverAccordion__visual--has-background > *,
+  .RiverAccordion__visual--shared.RiverAccordion__visual--gridline.RiverAccordion__visual--has-background img,
+  .RiverAccordion__visual--shared.RiverAccordion__visual--gridline.RiverAccordion__visual--has-background picture,
+  .RiverAccordion__visual--shared.RiverAccordion__visual--gridline.RiverAccordion__visual--has-background video {
     border-radius: var(--base-size-6);
   }
-}
-
-/* Show the visual when the corresponding accordion item is open */
-.RiverAccordion:has(.RiverAccordion__item--open:nth-child(1)) .RiverAccordion__visualsContainer .RiverAccordion__visual:nth-child(1),
-.RiverAccordion:has(.RiverAccordion__item--open:nth-child(2)) .RiverAccordion__visualsContainer .RiverAccordion__visual:nth-child(2),
-.RiverAccordion:has(.RiverAccordion__item--open:nth-child(3)) .RiverAccordion__visualsContainer .RiverAccordion__visual:nth-child(3),
-.RiverAccordion:has(.RiverAccordion__item--open:nth-child(4)) .RiverAccordion__visualsContainer .RiverAccordion__visual:nth-child(4),
-.RiverAccordion:has(.RiverAccordion__item--open:nth-child(5)) .RiverAccordion__visualsContainer .RiverAccordion__visual:nth-child(5),
-.RiverAccordion:has(.RiverAccordion__item--open:nth-child(6)) .RiverAccordion__visualsContainer .RiverAccordion__visual:nth-child(6),
-.RiverAccordion:has(.RiverAccordion__item--open:nth-child(7)) .RiverAccordion__visualsContainer .RiverAccordion__visual:nth-child(7),
-.RiverAccordion:has(.RiverAccordion__item--open:nth-child(8)) .RiverAccordion__visualsContainer .RiverAccordion__visual:nth-child(8),
-.RiverAccordion:has(.RiverAccordion__item--open:nth-child(9)) .RiverAccordion__visualsContainer .RiverAccordion__visual:nth-child(9),
-.RiverAccordion:has(.RiverAccordion__item--open:nth-child(10)) .RiverAccordion__visualsContainer .RiverAccordion__visual:nth-child(10),
-/* Just in case all accordions are somehow closed, show the first visual */
-.RiverAccordion:not(:has(.RiverAccordion__item--open)) .RiverAccordion__visualsContainer .RiverAccordion__visual:nth-child(1) {
-  opacity: 1;
-  scale: 1;
-  z-index: 1;
 }
 
 /* Visually hide visuals inside the accordion */
@@ -317,9 +353,9 @@
 .RiverAccordion__panel {
   display: grid;
   grid-template-rows: 0fr;
-  transition: grid-template-rows var(--brand-animation-duration-default) var(--brand-animation-easing-default),
-    margin-block-start var(--brand-animation-duration-default) var(--brand-animation-easing-default),
-    padding-block-end var(--brand-animation-duration-default) var(--brand-animation-easing-default);
+  transition: grid-template-rows var(--brand-animation-duration-faster) var(--brand-RiverAccordion-animation-easing),
+    margin-block-start var(--brand-animation-duration-faster) var(--brand-RiverAccordion-animation-easing),
+    padding-block-end var(--brand-animation-duration-faster) var(--brand-RiverAccordion-animation-easing);
   margin-block-start: var(--base-size-32);
   overflow-y: clip;
 }
@@ -336,6 +372,13 @@
   align-items: flex-start;
   min-height: 0;
   gap: var(--base-size-20);
+  opacity: 0;
+  transition: var(--brand-RiverAccordion-animation-content-transition-hidden);
+}
+
+.RiverAccordion__item--open .RiverAccordion__content {
+  opacity: 1;
+  transition: var(--brand-RiverAccordion-animation-content-transition-visible);
 }
 
 .RiverAccordion__item:has(.RiverAccordion__leadingVisual) .RiverAccordion__content {
@@ -351,4 +394,13 @@
 
 .RiverAccordion__item--open .RiverAccordion__icon {
   color: var(--brand-color-text-default);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .RiverAccordion__visual--shared,
+  .RiverAccordion__panel,
+  .RiverAccordion__content {
+    animation: none;
+    transition: none;
+  }
 }
