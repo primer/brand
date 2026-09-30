@@ -641,7 +641,9 @@ const Root = forwardRef<SubdomainNavBarHandle, SubdomainNavBarProps>(function Ro
               )}
             </div>
           </div>
-          {!isLarge && !menuHidden && <div className={styles['SubdomainNavBar-menu-backdrop']} aria-hidden="true" />}
+          {!isLarge && !menuHidden && (
+            <div className={styles['SubdomainNavBar-menu-backdrop']} aria-hidden="true" onClick={closeNarrowMenu} />
+          )}
         </header>
       </div>
       <div ref={fallbackTargetRef} id={fallbackTargetID} tabIndex={-1} />
