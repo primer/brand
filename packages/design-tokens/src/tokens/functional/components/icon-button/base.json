@@ -1,0 +1,30 @@
+{
+  "IconButton": {
+    "control": {
+      "size": {
+        "small": {
+          "value": "{Button.control.size.small}"
+        },
+        "medium": {
+          "value": "{Button.control.size.medium}"
+        },
+        "large": {
+          "value": "{Button.control.size.large}"
+        }
+      }
+    },
+    "icon": {
+      "size": {
+        "small": {
+          "value": "{Button.icon.size.small}"
+        },
+        "medium": {
+          "value": "{Button.icon.size.large}"
+        },
+        "large": {
+          "value": "{Button.icon.size.large}"
+        }
+      }
+    }
+  }
+}

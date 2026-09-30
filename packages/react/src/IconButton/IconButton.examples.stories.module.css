@@ -1,0 +1,55 @@
+.Toolbar {
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+  gap: var(--base-size-16);
+  inline-size: 100%;
+  padding: var(--base-size-24);
+  width: max-content;
+}
+
+.Toolbar__search {
+  flex: 1 1 auto;
+  min-inline-size: 0;
+}
+
+.Toolbar__actions {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: var(--base-size-4);
+  margin-inline-start: auto;
+}
+
+.Toolbar__divider {
+  align-self: stretch;
+  inline-size: var(--base-size-1);
+  background-color: var(--brand-color-border-default);
+}
+
+.Toolbar__notification {
+  position: relative;
+  display: inline-flex;
+}
+
+.Toolbar__notificationIndicator {
+  position: absolute;
+  inset-block-start: calc(var(--base-size-4) * -1);
+  inset-inline-end: calc(var(--base-size-4) * -1);
+  inline-size: var(--base-size-16);
+  block-size: var(--base-size-16);
+  pointer-events: none;
+  background-color: var(--brand-color-accent-primary);
+  border: var(--base-size-2) solid var(--brand-color-canvas-default);
+  border-radius: 50%;
+}
+
+.Toolbar__profile {
+  display: inline-flex;
+  border-radius: 50%;
+}
+
+.Toolbar__profile:focus-visible {
+  outline: var(--base-size-2) solid var(--brand-color-focus);
+  outline-offset: var(--base-size-4);
+}

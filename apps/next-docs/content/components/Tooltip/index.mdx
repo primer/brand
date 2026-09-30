@@ -2,66 +2,80 @@
 title: Tooltip
 description: Use the tooltip component to display a short message when a user hovers or focuses an interactive element.
 keywords: ['tooltip', 'help', 'popup', 'information', 'hint']
-source: https://github.com/primer/brand/blob/main/packages/react/src/Tooltip/Tooltip.tsx
-storybook: '/brand/storybook/?path=/story/components-tooltip--playground'
-show-tabs: false
-ready: true
+show-tabs: true
+tab-label: Guidelines
 thumbnail: '/images/thumbnails/tooltip-thumbnail.png'
 thumbnail_darkMode: '/images/thumbnails/tooltip-thumbnail-dark.png'
 ---
 
-import {ScreenFullIcon} from '@primer/octicons-react'
-import {TooltipDirectionProps, TooltipTypeProps} from './react'
+import doIconOnlyAction from './images/do-icon-only-action.png'
+import dontDuplicateLabel from './images/dont-duplicate-label.png'
+import doConciseContent from './images/do-concise-content.png'
+import dontLongContent from './images/dont-long-content.png'
 
-```js
-import {Tooltip} from '@primer/react-brand'
-```
+## Usage
 
-## Examples
+Use a tooltip to provide a short label or a small amount of supplementary context when someone focuses or points to an interactive control. Reserve tooltips for information that helps in the moment but is not essential to completing a task.
 
-### Default
+Tooltips are hidden until someone interacts with their trigger, and they may be difficult to discover on touch devices or while browsing with a screen reader. Keep essential instructions and information visible on the page.
 
-```jsx live
-<Tooltip text="Sample tooltip content">
-  <Button>Action</Button>
-</Tooltip>
-```
+Use tooltips primarily to clarify familiar icon-only actions. Avoid adding a tooltip when a control already has a clear visible label.
 
-### Custom direction
+<DoDontContainer>
+  <Do>
+    <img src={doIconOnlyAction.src} alt="A full-screen icon button with a tooltip that reads Enter full screen." />
+    <Caption>Use a tooltip to clarify a familiar icon-only action.</Caption>
+  </Do>
+  <Dont>
+    <img src={dontDuplicateLabel.src} alt="A Download report button with a tooltip that repeats Download report." />
+    <Caption>Don't repeat a label that is already visible.</Caption>
+  </Dont>
+</DoDontContainer>
 
-By default, tooltips appear below the element. You can change the direction by passing the `direction` prop with a value of `n`, `e`, `s`, or `w`.
+## Content
 
-As long as there is enough room in the viewport, the tooltip will appear in the specified direction. If there is not enough room, the tooltip will appear in whatever direction it can place the tooltip without overflowing the viewport.
+Keep tooltip text concise and specific. When the tooltip labels an action, begin with a clear verb. When it adds context to an existing label, include only supplementary, non-essential information.
 
-```jsx live
-<Tooltip text="Sample tooltip content" direction="e">
-  <Button>Action</Button>
-</Tooltip>
-```
+Do not use a tooltip for long instructions, structured content, or information that someone must read before continuing.
 
-### Substitute a visible label
+<DoDontContainer>
+  <Do>
+    <img src={doConciseContent.src} alt="A share icon button with a concise tooltip that reads Share." />
+    <Caption>Use short, direct language that describes the action.</Caption>
+  </Do>
+  <Dont>
+    <img
+      src={dontLongContent.src}
+      alt="A share icon button with a long tooltip containing several lines of explanatory text."
+    />
+    <Caption>Don't place long explanations or essential information in a tooltip.</Caption>
+  </Dont>
+</DoDontContainer>
 
-If a ubiquitously understood icon is used in place of a text label, you can use the `type` to provide a text label for assistive technologies such as screen readers.
+## Interaction
 
-Use this with caution. It is generally better to use a visible label for better usability and accessibility.
+A tooltip appears when its trigger receives keyboard focus or when a pointer rests over it. It remains visible while the trigger or tooltip is being pointed at, and it closes when focus or the pointer moves away. Pressing Escape also closes it without moving focus.
 
-```jsx live
-<Tooltip text="Go fullscreen" type="label">
-  <Button>
-    <ScreenFullIcon />
-  </Button>
-</Tooltip>
-```
+Use a longer delay for dense groups of familiar controls when immediate tooltips would be distracting. Keyboard focus should always reveal the tooltip immediately.
 
-## Component props
+## Accessibility
 
-| name        | type                      | default         | required | description                                                                                                                                                                                                |
-| ----------- | ------------------------- | --------------- | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `direction` | <TooltipDirectionProps /> | `'s'`           | `false`  | The side the tooltip appears on                                                                                                                                                                            |
-| `text`      | `string`                  | `undefined`     | `true`   | The text to be displayed in the tooltip                                                                                                                                                                    |
-| `type`      | <TooltipTypeProps />      | `'description'` | `false`  | The type of tooltip. `label` is used for labelling the element that triggers tooltip. `description` is used for describing or adding a supplementary information to the element that triggers the tooltip. |
+- Attach a tooltip only to a control that performs an action or navigation.
+- Do not attach a tooltip to static text or imagery.
+- Do not attach a tooltip to a disabled control because it cannot receive keyboard focus. If an explanation is necessary, keep the control focusable while preventing the unavailable action.
+- Keep labels concise and descriptive of the control's purpose.
+- Keep supplementary descriptions non-essential because not everyone will discover them.
+- Ensure the trigger has a visible focus indicator.
+
+## Placement
+
+Place a tooltip next to its trigger so their relationship is visually clear. Tooltips appear below their trigger by default but may move to another side when space is limited. Do not rely on a specific placement to communicate meaning.
+
+## Alternatives
+
+Before adding a tooltip, consider whether the information can remain visible on the page. Use a dialog for longer or structured content, or a disclosure when people need to reveal and hide supporting information.
 
 ## Related components
 
-- [Popover](/components/Popover): For displaying more complex interactive content that appears when triggered
-- [Button](/components/Button): Often used in conjunction with tooltips
+- [popover](/components/Popover): To display richer interactive content near a trigger.
+- [button](/components/Button): To display an action with a persistent visible label.

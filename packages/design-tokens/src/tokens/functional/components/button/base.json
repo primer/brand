@@ -1,0 +1,30 @@
+{
+  "Button": {
+    "control": {
+      "size": {
+        "small": {
+          "value": "var(--brand-control-small-size)"
+        },
+        "medium": {
+          "value": "var(--brand-control-medium-size)"
+        },
+        "large": {
+          "value": "var(--brand-control-large-size)"
+        }
+      }
+    },
+    "icon": {
+      "size": {
+        "small": {
+          "value": "var(--base-size-16)"
+        },
+        "medium": {
+          "value": "var(--base-size-16)"
+        },
+        "large": {
+          "value": "var(--base-size-20)"
+        }
+      }
+    }
+  }
+}

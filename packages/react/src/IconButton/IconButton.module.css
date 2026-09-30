@@ -1,0 +1,146 @@
+.IconButton {
+  flex: none;
+  gap: 0;
+  padding: 0;
+}
+
+.IconButton.IconButton {
+  min-width: var(--brand-IconButton-control-size-medium);
+  width: var(--brand-IconButton-control-size-medium);
+  height: var(--brand-IconButton-control-size-medium);
+}
+
+.IconButton--small.IconButton--small {
+  min-width: var(--brand-IconButton-control-size-small);
+  width: var(--brand-IconButton-control-size-small);
+  height: var(--brand-IconButton-control-size-small);
+}
+
+.IconButton--large.IconButton--large {
+  min-width: var(--brand-IconButton-control-size-large);
+  width: var(--brand-IconButton-control-size-large);
+  height: var(--brand-IconButton-control-size-large);
+}
+
+.IconButton--rounded.IconButton--rounded {
+  border-radius: var(--brand-borderRadius-full);
+}
+
+.IconButton--variant-danger.IconButton--variant-danger:not([disabled], [aria-disabled='true']) {
+  color: var(--brand-IconButton-danger-fgColor-rest);
+  background-color: var(--brand-IconButton-danger-bgColor-rest);
+  border-color: var(--brand-IconButton-danger-borderColor-rest);
+}
+
+.IconButton--variant-danger.IconButton--variant-danger:not(
+    [disabled],
+    [aria-disabled='true'],
+    [aria-expanded='true']
+  ):hover {
+  color: var(--brand-IconButton-danger-fgColor-hover);
+  background-color: var(--brand-IconButton-danger-bgColor-hover);
+  border-color: var(--brand-IconButton-danger-borderColor-hover);
+}
+
+.IconButton--variant-danger.IconButton--variant-danger:not([disabled], [aria-disabled='true']):active,
+.IconButton--variant-danger.IconButton--variant-danger:not([disabled], [aria-disabled='true'])[aria-expanded='true'] {
+  color: var(--brand-IconButton-danger-fgColor-active);
+  background-color: var(--brand-IconButton-danger-bgColor-active);
+  border-color: var(--brand-IconButton-danger-borderColor-active);
+}
+
+.IconButton--variant-invisible.IconButton--variant-invisible:where(:not(:hover, :active, [aria-expanded='true'])) {
+  background-color: var(--brand-IconButton-invisible-bgColor-rest);
+  border-color: var(--brand-IconButton-invisible-borderColor-rest);
+  backdrop-filter: none;
+}
+
+.IconButton--inactive.IconButton--inactive,
+.IconButton--inactive.IconButton--inactive:hover,
+.IconButton--inactive.IconButton--inactive:active {
+  color: var(--brand-IconButton-inactive-fgColor);
+  cursor: auto;
+  background-color: var(--brand-IconButton-inactive-bgColor);
+  border-color: var(--brand-IconButton-inactive-borderColor);
+  backdrop-filter: none;
+}
+
+.IconButton--inactive .IconButton__icon {
+  color: inherit !important;
+}
+
+.IconButton--variant-danger .IconButton__icon {
+  color: inherit;
+}
+
+.IconButton--small .IconButton__icon {
+  width: var(--brand-IconButton-icon-size-small);
+  height: var(--brand-IconButton-icon-size-small);
+}
+
+.IconButton--medium .IconButton__icon {
+  width: var(--brand-IconButton-icon-size-medium);
+  height: var(--brand-IconButton-icon-size-medium);
+}
+
+.IconButton--large .IconButton__icon {
+  width: var(--brand-IconButton-icon-size-large);
+  height: var(--brand-IconButton-icon-size-large);
+}
+
+.IconButton__loadingIndicator.IconButton__loadingIndicator {
+  display: block;
+  box-sizing: border-box;
+  width: var(--brand-IconButton-icon-size-medium);
+  height: var(--brand-IconButton-icon-size-medium);
+  border: var(--brand-borderWidth-thin) solid currentcolor;
+  border-inline-end-color: transparent;
+  border-radius: 50%;
+  animation: IconButton-spin 0.8s linear infinite;
+}
+
+.IconButton--small .IconButton__loadingIndicator {
+  width: var(--brand-IconButton-icon-size-small);
+  height: var(--brand-IconButton-icon-size-small);
+}
+
+.IconButton--large .IconButton__loadingIndicator {
+  width: var(--brand-IconButton-icon-size-large);
+  height: var(--brand-IconButton-icon-size-large);
+}
+
+.IconButton__loadingAnnouncement {
+  position: absolute;
+  width: var(--base-size-1);
+  height: var(--base-size-1);
+  padding: 0;
+  margin: calc(var(--base-size-1) * -1);
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@keyframes IconButton-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (forced-colors: active) {
+  .IconButton--inactive {
+    color: GrayText;
+    border-color: GrayText;
+  }
+
+  .IconButton__loadingIndicator {
+    border-color: ButtonText;
+    border-inline-end-color: transparent;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .IconButton__loadingIndicator {
+    animation-duration: 1.6s;
+  }
+}
