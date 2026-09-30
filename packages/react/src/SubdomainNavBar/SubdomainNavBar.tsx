@@ -641,7 +641,9 @@ const Root = forwardRef<SubdomainNavBarHandle, SubdomainNavBarProps>(function Ro
               )}
             </div>
           </div>
-          {!isLarge && !menuHidden && <div className={styles['SubdomainNavBar-menu-backdrop']} aria-hidden="true" />}
+          {!isLarge && !menuHidden && (
+            <div className={styles['SubdomainNavBar-menu-backdrop']} aria-hidden="true" onClick={closeNarrowMenu} />
+          )}
         </header>
       </div>
       <div ref={fallbackTargetRef} id={fallbackTargetID} tabIndex={-1} />
@@ -652,7 +654,8 @@ const Root = forwardRef<SubdomainNavBarHandle, SubdomainNavBarProps>(function Ro
 export type SubdomainNavBarLinkProps = {
   href: string
   isExternal?: boolean
-} & React.DetailedHTMLProps<React.LiHTMLAttributes<HTMLLIElement>, HTMLLIElement>
+} & React.DetailedHTMLProps<React.LiHTMLAttributes<HTMLLIElement>, HTMLLIElement> &
+  Pick<React.AnchorHTMLAttributes<HTMLAnchorElement>, 'rel' | 'target'>
 
 type SubdomainNavBarLinkMeasurementProps = SubdomainNavBarLinkProps
 
@@ -663,7 +666,9 @@ function Link({
   isExternal,
   'aria-current': ariaCurrent,
   'aria-hidden': ariaHidden,
+  rel,
   tabIndex,
+  target,
   ...rest
 }: PropsWithChildren<SubdomainNavBarLinkProps>) {
   const {isOverflowed, onLinkClick} = useSubdomainNavBarLinkContext()
@@ -681,7 +686,9 @@ function Link({
         aria-current={ariaCurrent}
         className={styles['SubdomainNavBar-link']}
         onClick={onLinkClick}
+        rel={rel}
         tabIndex={isOverflowed ? -1 : undefined}
+        target={target}
       >
         <span className={styles['SubdomainNavBar-link-content']}>
           <span className={styles['SubdomainNavBar-link-text']}>{children}</span>
