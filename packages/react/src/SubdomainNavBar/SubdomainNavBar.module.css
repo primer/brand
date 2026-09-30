@@ -12,6 +12,7 @@
 .SubdomainNavBar::after {
   content: '';
   position: absolute;
+  z-index: 3;
   inset-inline: 0;
   inset-block-start: 100%;
   height: var(--brand-borderWidth-thin);
@@ -1182,9 +1183,7 @@
     padding-inline-end: 0;
   }
 
-  .SubdomainNavBar--variant-default.SubdomainNavBar--has-title
-    .SubdomainNavBar-title-area
-    > li:first-child::after {
+  .SubdomainNavBar--variant-default.SubdomainNavBar--has-title .SubdomainNavBar-title-area > li:first-child::after {
     margin-inline-end: 0;
   }
 
