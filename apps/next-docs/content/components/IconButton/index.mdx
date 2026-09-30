@@ -1,6 +1,6 @@
 ---
 title: Icon button
-description: Use an icon button for actions represented by an icon instead of a visible text label.
+description: Use an icon button to represent an action with an Octicon instead of a visible text label.
 keywords: ['action', 'button', 'control', 'icon', 'interactive']
 show-tabs: true
 tab-label: Guidelines
@@ -14,14 +14,14 @@ import dontAppearanceLabel from './images/dont-appearance-label.png'
 
 ## Usage
 
-Icon buttons represent an action with an icon instead of a visible text label. Choose a familiar icon whose meaning is clear in context. Otherwise, use a [button](/components/Button) with a visible text label.
+Icon buttons represent an action with an [Octicon](https://primer.style/octicons) instead of a visible text label. Always choose a familiar Octicon whose meaning is clear in context. Otherwise, use a [button](/components/Button) with a visible text label.
 
 Every icon button displays a tooltip on hover and keyboard focus. The tooltip repeats the accessible label by default, helping users confirm the action before activating it.
 
 <DoDontContainer>
   <Do>
     <img src={doFamiliarAction.src} alt="A share icon button with a tooltip that reads Share." />
-    <Caption>Use a familiar icon for a compact action that is clear in context.</Caption>
+    <Caption>Use a familiar Octicon for a compact action that is clear in context.</Caption>
   </Do>
   <Dont>
     <img
@@ -51,25 +51,19 @@ Describe the action rather than the icon's appearance. Keep supplementary toolti
 
 ## Hierarchy and emphasis
 
-Use the default treatment for most icon buttons. Use stronger emphasis only for the highest-priority action in a group, and quieter treatment for familiar secondary actions in compact interfaces.
+Use the default visual appearance for most icon buttons. Only use the stronger accent colors for the highest-priority action in a group.
 
 Reserve danger styling for destructive actions. The icon and accessible name must still communicate the destructive outcome without relying on color alone.
 
-Use the borderless treatment only when the surrounding interface already provides enough structure and the control remains discoverable in every interaction state.
+Use the invisible appearance only when the surrounding interface already provides enough structure and the control remains discoverable in every interaction state.
 
 ## Shape
 
-Use the standard shape for general actions. Use a circular shape only when it matches an established interaction pattern, such as sending a chat message or advancing through media.
+Icon buttons are available in two shapes, with square the default.
+
+Use the standard square shape for most use-cases. Use a rounded shape only when it matches an established interaction pattern, such as sending a chat message or advancing through media quickly
 
 Keep shape consistent among related controls. Do not use shape alone to communicate an action's meaning or state.
-
-## Unavailable actions
-
-Remove an unavailable action when it is not useful to the current task. When it must remain visible, choose its behavior based on whether people need an explanation.
-
-Keep the control focusable and responsive when activating it can explain why the action is unavailable or help resolve the condition. Provide persistent page-level messaging when the limitation affects a larger workflow.
-
-Use a fully disabled control only when it should not receive focus or respond to input. Disabled controls do not display a tooltip, so essential explanations must remain visible elsewhere.
 
 ## Loading
 
@@ -82,7 +76,7 @@ Show progress in place when an action takes time to complete. Keep focus on the 
 - Keep the tooltip available on both pointer hover and keyboard focus.
 - Ensure the control has a visible focus indicator.
 - Maintain at least a 24 by 24 CSS pixel target size and provide enough spacing from nearby controls.
-- Treat the icon as decorative because the accessible name communicates the purpose.
+- Treat the Octicon as decorative because the accessible name communicates the purpose.
 - Do not rely on color, shape, or iconography alone to communicate state.
 
 ## Related components
@@ -90,3 +84,4 @@ Show progress in place when an action takes time to complete. Keep focus on the 
 - [button](/components/Button): For actions with a visible text label.
 - [button group](/components/ButtonGroup): For a set of closely related actions.
 - [tooltip](/components/Tooltip): For guidance on concise labels and supplementary information.
+- [Octicons](https://primer.style/octicons): For the icon library used by icon buttons.
