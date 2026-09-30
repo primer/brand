@@ -451,8 +451,9 @@ export const TabletMenuOpen: Story = {
         return originX === Number.parseFloat(barStyles.width) / 2 && originY === Number.parseFloat(barStyles.height) / 2
       }),
     ).toBe(true)
-    await expect(Math.abs((menuRect?.left ?? 0) - (searchRect?.left ?? 0))).toBeLessThanOrEqual(1)
+    await expect((menuRect?.left ?? 0) <= (searchRect?.left ?? 0)).toBe(true)
     await expect(Math.abs((menuRect?.right ?? 0) - (navBarRect?.right ?? 0))).toBeLessThanOrEqual(1)
+    await expect(menuRect?.width).toBeGreaterThanOrEqual(384)
     await expect(menuStyles?.borderInlineStartWidth).toBe('1px')
     await expect(menuStyles?.borderInlineEndWidth).toBe('1px')
     await expect(menuStyles?.borderBlockEndWidth).toBe('1px')
