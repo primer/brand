@@ -1,5 +1,11 @@
 # @primer/brand-primitives
 
+## 0.77.0
+
+### Patch Changes
+
+- [#1477](https://github.com/primer/brand/pull/1477) [`d1a6689`](https://github.com/primer/brand/commit/d1a668949663927a16c158a11ddf7b3355d73bc1) Thanks [@danielguillan](https://github.com/danielguillan)! - Add a `gridline` variant to the `Section` component and a design token for customizing its inline padding.
+
 ## 0.76.0
 
 ## 0.75.1

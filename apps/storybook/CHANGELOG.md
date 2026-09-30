@@ -1,5 +1,7 @@
 # @primer/brand-storybook
 
+## 0.77.0
+
 ## 0.76.0
 
 ## 0.75.1
