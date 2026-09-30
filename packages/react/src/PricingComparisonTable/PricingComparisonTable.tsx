@@ -1,7 +1,7 @@
 import {CheckIcon, ChevronDownIcon, DashIcon} from '@primer/octicons-react'
 import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/pricing-comparison-table/colors-with-modes.css'
 import {clsx} from 'clsx'
-import React, {forwardRef, PropsWithChildren, useEffect, useLayoutEffect, useMemo, useRef, useState} from 'react'
+import React, {forwardRef, PropsWithChildren, useLayoutEffect, useMemo, useRef, useState} from 'react'
 import {Button, type ButtonBaseProps} from '../Button'
 import {useAnimation} from '../animation'
 import type {BaseProps} from '../component-helpers'
@@ -411,6 +411,7 @@ const PricingComparisonTableRoot = forwardRef<HTMLDivElement, PricingComparisonT
       children,
       className,
       hasStickyHeaders = false,
+      onFocus,
       rowHighlighting = false,
       style,
       'data-testid': testId,
@@ -431,7 +432,6 @@ const PricingComparisonTableRoot = forwardRef<HTMLDivElement, PricingComparisonT
     const narrowGroupControls = useRef<Record<string, HTMLElement | null>>({})
     const tableGroupControls = useRef<Record<string, HTMLButtonElement | null>>({})
     const previousBreakpoint = useRef(breakpoint)
-    const committedGroupStates = useRef<Record<string, GroupState | undefined>>({})
 
     const {heading, items, groups} = useMemo(() => {
       const rootChildren = React.Children.toArray(children)
@@ -549,18 +549,6 @@ const PricingComparisonTableRoot = forwardRef<HTMLDivElement, PricingComparisonT
     }
 
     useLayoutEffect(() => {
-      // Native activation changes open before toggle fires, even when React's open prop has not changed.
-      for (const [identity, state] of Object.entries(disclosureState.groups)) {
-        if (!state || committedGroupStates.current[identity] === state) continue
-        const details = narrowGroupControls.current[identity]?.parentElement
-        if (details instanceof HTMLDetailsElement && details.open !== state.open) {
-          details.open = state.open
-        }
-      }
-      committedGroupStates.current = disclosureState.groups
-    }, [disclosureState])
-
-    useLayoutEffect(() => {
       const previous = previousBreakpoint.current
       previousBreakpoint.current = breakpoint
 
@@ -579,43 +567,38 @@ const PricingComparisonTableRoot = forwardRef<HTMLDivElement, PricingComparisonT
       }
     }, [breakpoint])
 
-    useEffect(() => {
-      const root = rootRef.current
+    const handleFocus = (event: React.FocusEvent<HTMLDivElement>) => {
       const table = tableRef.current
-      if (!hasStickyHeaders || breakpoint === 'narrow' || !root || !table) return
+      const target = event.target
 
-      const handleFocusIn = (event: FocusEvent) => {
-        const target = event.target
-        if (!(target instanceof HTMLElement) || !table.contains(target) || target.closest('thead')) return
-        if (!target.closest('tbody')) return
+      if (hasStickyHeaders && breakpoint !== 'narrow' && table?.contains(target) && !target.closest('thead')) {
+        if (target.closest('tbody')) {
+          const stickyHeaderBottom = Array.from(table.querySelectorAll<HTMLTableCellElement>('thead th')).reduce(
+            (maximumBottom, header) => {
+              const rect = header.getBoundingClientRect()
+              const isVisible = rect.bottom > 0 && rect.top < window.innerHeight
+              return isVisible ? Math.max(maximumBottom, rect.bottom) : maximumBottom
+            },
+            0,
+          )
+          const targetRect = target.getBoundingClientRect()
+          const targetStyles = window.getComputedStyle(target)
+          const focusIndicatorClearance = Math.max(
+            0,
+            (Number.parseFloat(targetStyles.outlineWidth) || 0) + (Number.parseFloat(targetStyles.outlineOffset) || 0),
+          )
 
-        const stickyHeaderBottom = Array.from(table.querySelectorAll<HTMLTableCellElement>('thead th')).reduce(
-          (maximumBottom, header) => {
-            const rect = header.getBoundingClientRect()
-            const isVisible = rect.bottom > 0 && rect.top < window.innerHeight
-            return isVisible ? Math.max(maximumBottom, rect.bottom) : maximumBottom
-          },
-          0,
-        )
-        const targetRect = target.getBoundingClientRect()
-        const targetStyles = window.getComputedStyle(target)
-        const focusIndicatorClearance = Math.max(
-          0,
-          (Number.parseFloat(targetStyles.outlineWidth) || 0) + (Number.parseFloat(targetStyles.outlineOffset) || 0),
-        )
-
-        if (stickyHeaderBottom > 0 && targetRect.bottom > 0 && targetRect.top < stickyHeaderBottom) {
-          window.scrollBy({
-            top: targetRect.top - stickyHeaderBottom - focusIndicatorClearance,
-            behavior: 'instant',
-          })
+          if (stickyHeaderBottom > 0 && targetRect.bottom > 0 && targetRect.top < stickyHeaderBottom) {
+            window.scrollBy({
+              top: targetRect.top - stickyHeaderBottom - focusIndicatorClearance,
+              behavior: 'instant',
+            })
+          }
         }
       }
 
-      root.addEventListener('focusin', handleFocusIn)
-
-      return () => root.removeEventListener('focusin', handleFocusIn)
-    }, [breakpoint, hasStickyHeaders, rootRef])
+      onFocus?.(event)
+    }
 
     if (items.length === 0) return null
 
@@ -654,6 +637,7 @@ const PricingComparisonTableRoot = forwardRef<HTMLDivElement, PricingComparisonT
         ref={rootRef}
         aria-label={ariaLabel}
         aria-labelledby={resolvedRootAriaLabelledBy}
+        onFocus={handleFocus}
         style={{...animationInlineStyles, ...style}}
         {...rest}
       >
@@ -678,15 +662,14 @@ const PricingComparisonTableRoot = forwardRef<HTMLDivElement, PricingComparisonT
                 data-testid={testIds.group}
                 key={group.identity}
                 open={groupOpen}
-                onToggle={event => {
-                  if (event.currentTarget.open !== groupOpen) {
-                    updateGroupOpen(group, event.currentTarget.open)
-                  }
-                }}
               >
                 <summary
                   aria-controls={groupId}
                   aria-expanded={groupOpen}
+                  onClick={event => {
+                    event.preventDefault()
+                    updateGroupOpen(group, !groupOpen)
+                  }}
                   ref={control => {
                     narrowGroupControls.current[group.identity] = control
                   }}

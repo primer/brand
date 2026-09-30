@@ -474,58 +474,6 @@ describe('PricingComparisonTable', () => {
     expect(getByRole('button', {name: 'Features'})).toHaveAttribute('aria-expanded', 'false')
   })
 
-  it.each(['expanded', 'breakpoint', 'unrelated', 'another group'])(
-    'reconciles a pending native toggle with %s updates',
-    async update => {
-      const comparison = (
-        expanded: React.ComponentProps<typeof PricingComparisonTable.Group>['expanded'] = true,
-        otherExpanded = true,
-      ) => (
-        <PricingComparisonTable>
-          {['Free', 'Pro'].map(name => (
-            <PricingComparisonTable.Item key={name}>
-              <PricingComparisonTable.Heading>{name}</PricingComparisonTable.Heading>
-            </PricingComparisonTable.Item>
-          ))}
-          <PricingComparisonTable.Group expanded={expanded}>
-            <PricingComparisonTable.GroupHeading>Features</PricingComparisonTable.GroupHeading>
-          </PricingComparisonTable.Group>
-          <PricingComparisonTable.Group expanded={otherExpanded}>
-            <PricingComparisonTable.GroupHeading>Other features</PricingComparisonTable.GroupHeading>
-          </PricingComparisonTable.Group>
-        </PricingComparisonTable>
-      )
-      const {container, rerender} = render(comparison())
-      const details = container.querySelector('details')!
-      const summary = container.querySelector('summary')!
-      await act(async () => {
-        await new Promise<void>(resolve => details.addEventListener('toggle', () => resolve(), {once: true}))
-      })
-
-      await act(async () => {
-        const toggled = new Promise<void>(resolve => details.addEventListener('toggle', () => resolve(), {once: true}))
-        summary.click()
-        expect(details.open).toBe(false)
-        expect(summary).toHaveAttribute('aria-expanded', 'true')
-        if (update === 'breakpoint') mockUseWindowSize.mockReturnValue(regularBreakpoint)
-        flushSync(() =>
-          rerender(
-            comparison(
-              update === 'expanded' ? {narrow: true, regular: false, wide: false} : true,
-              update !== 'another group',
-            ),
-          ),
-        )
-        await toggled
-      })
-
-      const expectedOpen = update === 'expanded' || update === 'breakpoint'
-      expect(details.open).toBe(expectedOpen)
-      expect(summary).toHaveAttribute('aria-expanded', String(expectedOpen))
-      expect(container.querySelector<HTMLDivElement>('details > div')!.hidden).toBe(!expectedOpen)
-    },
-  )
-
   it('moves focus to the corresponding visible control when projections change', () => {
     const expanded = {narrow: true, regular: true, wide: true}
     const {container, getByRole, rerender} = render(
@@ -650,9 +598,10 @@ describe('PricingComparisonTable', () => {
 
   it('scrolls focused table body controls below visible sticky headers and ignores header controls', () => {
     mockUseWindowSize.mockReturnValue(regularBreakpoint)
+    const onFocus = jest.fn()
     const scrollBy = jest.spyOn(window, 'scrollBy').mockImplementation()
     const {getByTestId} = render(
-      <PricingComparisonTable hasStickyHeaders>
+      <PricingComparisonTable hasStickyHeaders onFocus={onFocus}>
         <PricingComparisonTable.Item>
           <PricingComparisonTable.Heading>Free</PricingComparisonTable.Heading>
           <PricingComparisonTable.PrimaryAction as="a" href="#header-action">
@@ -691,6 +640,55 @@ describe('PricingComparisonTable', () => {
 
     act(() => bodyAction.focus())
     expect(scrollBy).toHaveBeenLastCalledWith({top: -30, behavior: 'instant'})
+    expect(onFocus).toHaveBeenCalledTimes(3)
+  })
+
+  it('protects focused table controls when items are added or restored', () => {
+    mockUseWindowSize.mockReturnValue(regularBreakpoint)
+    const scrollBy = jest.spyOn(window, 'scrollBy').mockImplementation()
+    const comparison = (showItems: boolean) => (
+      <PricingComparisonTable hasStickyHeaders>
+        {showItems ? (
+          <PricingComparisonTable.Item>
+            <PricingComparisonTable.Heading>Free</PricingComparisonTable.Heading>
+          </PricingComparisonTable.Item>
+        ) : null}
+        {showItems ? (
+          <PricingComparisonTable.Group>
+            <PricingComparisonTable.GroupHeading>Features</PricingComparisonTable.GroupHeading>
+          </PricingComparisonTable.Group>
+        ) : null}
+      </PricingComparisonTable>
+    )
+    const {container, getByTestId, rerender} = render(comparison(false))
+
+    expect(container).toBeEmptyDOMElement()
+
+    rerender(comparison(true))
+    let table = getByTestId(PricingComparisonTable.testIds.table)
+    let headers = table.querySelectorAll('thead th')
+    let groupControl = table.querySelector<HTMLButtonElement>('tbody button')!
+
+    jest.spyOn(headers[0], 'getBoundingClientRect').mockReturnValue({...new DOMRect(), top: 0, bottom: 72})
+    jest.spyOn(headers[1], 'getBoundingClientRect').mockReturnValue({...new DOMRect(), top: 0, bottom: 80})
+    jest.spyOn(groupControl, 'getBoundingClientRect').mockReturnValue({...new DOMRect(), top: 40, bottom: 64})
+
+    act(() => groupControl.focus())
+    expect(scrollBy).toHaveBeenLastCalledWith({top: -40, behavior: 'instant'})
+
+    rerender(comparison(false))
+    rerender(comparison(true))
+    table = getByTestId(PricingComparisonTable.testIds.table)
+    headers = table.querySelectorAll('thead th')
+    groupControl = table.querySelector<HTMLButtonElement>('tbody button')!
+
+    jest.spyOn(headers[0], 'getBoundingClientRect').mockReturnValue({...new DOMRect(), top: 0, bottom: 72})
+    jest.spyOn(headers[1], 'getBoundingClientRect').mockReturnValue({...new DOMRect(), top: 0, bottom: 80})
+    jest.spyOn(groupControl, 'getBoundingClientRect').mockReturnValue({...new DOMRect(), top: 40, bottom: 64})
+
+    act(() => groupControl.focus())
+    expect(scrollBy).toHaveBeenLastCalledWith({top: -40, behavior: 'instant'})
+    expect(scrollBy).toHaveBeenCalledTimes(2)
   })
 
   it('does not render a comparison table without any valid items', () => {
