@@ -1182,6 +1182,12 @@
     padding-inline-end: 0;
   }
 
+  .SubdomainNavBar--variant-default.SubdomainNavBar--has-title
+    .SubdomainNavBar-title-area
+    > li:first-child::after {
+    margin-inline-end: 0;
+  }
+
   .SubdomainNavBar--variant-default.SubdomainNavBar--has-title .SubdomainNavBar-title-area > li:nth-child(2) {
     padding-inline: var(--base-size-24);
   }
