@@ -234,6 +234,7 @@
     background-color: var(--brand-color-canvas-default);
     width: 100%;
     max-height: calc(100vh - var(--SubdomainNavBar-height) - var(--SubdomainNavBar-menu-offset-block-start, 0px));
+    border-block-end: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
     animation: fade-in-down 500ms;
     animation-timing-function: var(--brand-animation-easing-default);
   }
