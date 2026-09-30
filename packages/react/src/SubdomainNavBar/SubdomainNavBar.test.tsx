@@ -1909,6 +1909,19 @@ describe('SubdomainNavBar', () => {
     expect(getByRole('img', {name: 'External link'})).toBeInTheDocument()
   })
 
+  it('forwards anchor-specific attributes to the link', () => {
+    const {getByRole} = render(
+      <SubdomainNavBar title="test">
+        <SubdomainNavBar.Link href="https://example.com" isExternal rel="noreferrer" target="_blank">
+          Topics
+        </SubdomainNavBar.Link>
+      </SubdomainNavBar>,
+    )
+
+    expect(getByRole('link', {name: 'Topics External link'})).toHaveAttribute('rel', 'noreferrer')
+    expect(getByRole('link', {name: 'Topics External link'})).toHaveAttribute('target', '_blank')
+  })
+
   it('calls onNarrowMenuToggle when the mobile menu is toggled', async () => {
     mockUseWindowSize.mockImplementation(() => ({isSmall: true, isMedium: false}))
 
