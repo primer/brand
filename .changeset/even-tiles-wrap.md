@@ -2,4 +2,4 @@
 '@primer/react-brand': patch
 ---
 
-Updated `Tiles` wrapping across multiple rows. Tiles are now evenly spaced across rows, leaving no orphans.
+Updated `Tiles` to distribute items as evenly as possible across rows at every viewport.
