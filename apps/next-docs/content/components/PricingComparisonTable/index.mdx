@@ -1,0 +1,241 @@
+---
+title: Pricing comparison table
+description: Use the pricing comparison table to compare features across pricing plans.
+keywords: ['pricing', 'plans', 'comparison', 'features']
+show-tabs: false
+ready: true
+source: https://github.com/primer/brand/blob/main/packages/react/src/PricingComparisonTable/PricingComparisonTable.tsx
+storybook: '/brand/storybook/?path=/story/components-pricingcomparisontable--playground'
+---
+
+import {Label} from '@primer/react'
+
+import {
+  PricingComparisonTableActionAsProp,
+  PricingComparisonTableCellVariantProp,
+  PricingComparisonTableExpandedProp,
+  PricingComparisonTableHeadingAsProp,
+} from './react'
+
+```js
+import {PricingComparisonTable} from '@primer/react-brand'
+```
+
+## Examples
+
+### Default
+
+Use one `Item` for each plan and organize comparison rows into one or more collapsible `Group` components. `PricingComparisonTable` supports two to four plans.
+
+```jsx live
+<PricingComparisonTable>
+  <PricingComparisonTable.Heading>Compare features</PricingComparisonTable.Heading>
+  <PricingComparisonTable.Item>
+    <PricingComparisonTable.Heading>Free</PricingComparisonTable.Heading>
+    <PricingComparisonTable.Description>
+      For individuals and open source maintainers.
+    </PricingComparisonTable.Description>
+    <PricingComparisonTable.Price>$0 per month</PricingComparisonTable.Price>
+    <PricingComparisonTable.PrimaryAction as="a" href="#">
+      Get started
+    </PricingComparisonTable.PrimaryAction>
+  </PricingComparisonTable.Item>
+  <PricingComparisonTable.Item>
+    <PricingComparisonTable.Heading>Team</PricingComparisonTable.Heading>
+    <PricingComparisonTable.Description>
+      For teams collaborating on private projects.
+    </PricingComparisonTable.Description>
+    <PricingComparisonTable.Price>$4 per user / month</PricingComparisonTable.Price>
+    <PricingComparisonTable.PrimaryAction as="a" href="#">
+      Start a free trial
+    </PricingComparisonTable.PrimaryAction>
+    <PricingComparisonTable.SecondaryAction as="a" href="#">
+      Contact sales
+    </PricingComparisonTable.SecondaryAction>
+  </PricingComparisonTable.Item>
+
+  <PricingComparisonTable.Group>
+    <PricingComparisonTable.GroupHeading>Core features</PricingComparisonTable.GroupHeading>
+    <PricingComparisonTable.Row>
+      <PricingComparisonTable.RowHeading infoTooltip="Private repository availability">
+        Private repositories
+      </PricingComparisonTable.RowHeading>
+      <PricingComparisonTable.Cell variant="included" />
+      <PricingComparisonTable.Cell variant="included" />
+    </PricingComparisonTable.Row>
+    <PricingComparisonTable.Row>
+      <PricingComparisonTable.RowHeading>Support</PricingComparisonTable.RowHeading>
+      <PricingComparisonTable.Cell>Community</PricingComparisonTable.Cell>
+      <PricingComparisonTable.Cell>Standard</PricingComparisonTable.Cell>
+    </PricingComparisonTable.Row>
+  </PricingComparisonTable.Group>
+</PricingComparisonTable>
+```
+
+### Label
+
+Use `PricingComparisonTable.Label` to identify a plan with short, scannable text such as "Recommended" or "Best value." The label visually distinguishes the plan and its feature column.
+
+```jsx live
+<PricingComparisonTable>
+  <PricingComparisonTable.Heading>Compare plans</PricingComparisonTable.Heading>
+  <PricingComparisonTable.Item>
+    <PricingComparisonTable.Heading>Free</PricingComparisonTable.Heading>
+    <PricingComparisonTable.Price>$0 per month</PricingComparisonTable.Price>
+    <PricingComparisonTable.PrimaryAction as="a" href="#">
+      Get started
+    </PricingComparisonTable.PrimaryAction>
+  </PricingComparisonTable.Item>
+
+  <PricingComparisonTable.Item>
+    <PricingComparisonTable.Label>Recommended</PricingComparisonTable.Label>
+    <PricingComparisonTable.Heading>Team</PricingComparisonTable.Heading>
+    <PricingComparisonTable.Price>$4 per user / month</PricingComparisonTable.Price>
+    <PricingComparisonTable.PrimaryAction as="a" href="#">
+      Start a free trial
+    </PricingComparisonTable.PrimaryAction>
+  </PricingComparisonTable.Item>
+
+  <PricingComparisonTable.Group>
+    <PricingComparisonTable.GroupHeading>Collaboration</PricingComparisonTable.GroupHeading>
+    <PricingComparisonTable.Row>
+      <PricingComparisonTable.RowHeading>Private repositories</PricingComparisonTable.RowHeading>
+      <PricingComparisonTable.Cell variant="included" />
+      <PricingComparisonTable.Cell variant="included" />
+    </PricingComparisonTable.Row>
+  </PricingComparisonTable.Group>
+</PricingComparisonTable>
+```
+
+### Row highlighting
+
+Set `rowHighlighting` to help users follow values across a dense comparison. It highlights a row on hover or when interactive content within the row receives focus.
+
+```jsx live
+<PricingComparisonTable rowHighlighting>
+  <PricingComparisonTable.Heading>Compare plans</PricingComparisonTable.Heading>
+  <PricingComparisonTable.Item>
+    <PricingComparisonTable.Heading>Team</PricingComparisonTable.Heading>
+  </PricingComparisonTable.Item>
+  <PricingComparisonTable.Item>
+    <PricingComparisonTable.Heading>Enterprise</PricingComparisonTable.Heading>
+  </PricingComparisonTable.Item>
+
+  <PricingComparisonTable.Group>
+    <PricingComparisonTable.GroupHeading>Support</PricingComparisonTable.GroupHeading>
+    <PricingComparisonTable.Row>
+      <PricingComparisonTable.RowHeading>Support channel</PricingComparisonTable.RowHeading>
+      <PricingComparisonTable.Cell>Community</PricingComparisonTable.Cell>
+      <PricingComparisonTable.Cell>24/7 support</PricingComparisonTable.Cell>
+    </PricingComparisonTable.Row>
+    <PricingComparisonTable.Row>
+      <PricingComparisonTable.RowHeading>Response time</PricingComparisonTable.RowHeading>
+      <PricingComparisonTable.Cell>Next business day</PricingComparisonTable.Cell>
+      <PricingComparisonTable.Cell>30 minutes</PricingComparisonTable.Cell>
+    </PricingComparisonTable.Row>
+  </PricingComparisonTable.Group>
+</PricingComparisonTable>
+```
+
+## Cell variants and localization
+
+Use `variant="included"` for a green circled check or `variant="unavailable"` for a muted dash. Cells can also contain text or other custom content. The component supplies the English accessible labels `"Included"` and `"Unavailable"` by default. Use `variantAriaLabel` to provide localized or context-specific text.
+
+`infoTooltipAriaLabel` similarly lets consumers provide a localized accessible label for a row-heading tooltip trigger. If it is omitted, the component derives an English label from string row-heading content.
+
+## Sticky headers
+
+Set `hasStickyHeaders` to keep table headers visible while scrolling. Avoid placing the table inside an ancestor whose `overflow` changes the sticky containing block.
+
+## Component props
+
+### PricingComparisonTable <Label>Required</Label>
+
+| Name               | Type                   | Default | required | Description                                                                 |
+| :----------------- | :--------------------- | :-----: | :------: | :-------------------------------------------------------------------------- |
+| `children`         | `Heading, Item, Group` |         |  `true`  | Defines the title, plan summaries, and grouped comparison rows              |
+| `aria-label`       | `string`               |         | `false`  | Labels the table when a root `Heading` or `aria-labelledby` is not provided |
+| `aria-labelledby`  | `string`               |         | `false`  | References an external element that labels the table                        |
+| `rowHighlighting`  | `boolean`              | `false` | `false`  | Highlights a row on supported hover and focus interactions                  |
+| `hasStickyHeaders` | `boolean`              | `false` | `false`  | Makes regular and wide table headers sticky to their containing block       |
+
+### PricingComparisonTable.Item <Label>Required</Label>
+
+One item per plan. The component renders a maximum of four items.
+
+| Name       | Type                                                                 | Default | required | Description              |
+| :--------- | :------------------------------------------------------------------- | :-----: | :------: | :----------------------- |
+| `children` | `Label, Heading, Description, Price, PrimaryAction, SecondaryAction` |         |  `true`  | Defines the plan summary |
+
+### PricingComparisonTable.Label
+
+| Name       | Type        | Default | required | Description                                             |
+| :--------- | :---------- | :-----: | :------: | :------------------------------------------------------ |
+| `children` | `ReactNode` |         |  `true`  | Labels and visually promotes the associated plan column |
+
+### PricingComparisonTable.Heading
+
+At the root, the heading labels the comparison and appears above the feature column in desktop table layouts. It also supplies the table's accessible name when `aria-label` and `aria-labelledby` are omitted. Inside an `Item`, the same component names that plan.
+
+| Name       | Type                                    |      Default      | required | Description                                       |
+| :--------- | :-------------------------------------- | :---------------: | :------: | :------------------------------------------------ |
+| `as`       | <PricingComparisonTableHeadingAsProp /> | context-dependent | `false`  | Applies the underlying HTML heading level element |
+| `children` | `ReactNode`                             |                   |  `true`  | Names the comparison or plan                      |
+
+### PricingComparisonTable.Description
+
+| Name       | Type        | Default | required | Description        |
+| :--------- | :---------- | :-----: | :------: | :----------------- |
+| `children` | `ReactNode` |         |  `true`  | Describes the plan |
+
+### PricingComparisonTable.Price
+
+| Name       | Type        | Default | required | Description                                                   |
+| :--------- | :---------- | :-----: | :------: | :------------------------------------------------------------ |
+| `children` | `ReactNode` |         |  `true`  | Displays consumer-formatted price and billing-cadence content |
+
+### PricingComparisonTable.PrimaryAction and PricingComparisonTable.SecondaryAction
+
+| Name       | Type                                   | Default | required | Description                                   |
+| :--------- | :------------------------------------- | :-----: | :------: | :-------------------------------------------- |
+| `as`       | <PricingComparisonTableActionAsProp /> |         |  `true`  | Renders the action as an anchor or button     |
+| `children` | `ReactNode`                            |         |  `true`  | Labels the action                             |
+| `href`     | `string`                               |         |  `true`  | Required when the action renders as an anchor |
+
+### PricingComparisonTable.Group <Label>Required</Label>
+
+| Name       | Type                                   |     Default      | required | Description                                                   |
+| :--------- | :------------------------------------- | :--------------: | :------: | :------------------------------------------------------------ |
+| `children` | `GroupHeading, Row`                    |                  |  `true`  | Defines a group heading and its feature rows                  |
+| `expanded` | <PricingComparisonTableExpandedProp /> | layout-dependent | `false`  | Controls the initial expanded state at each responsive layout |
+
+### PricingComparisonTable.GroupHeading <Label>Required</Label>
+
+| Name       | Type                                    | Default | required | Description                                       |
+| :--------- | :-------------------------------------- | :-----: | :------: | :------------------------------------------------ |
+| `as`       | <PricingComparisonTableHeadingAsProp /> |  `h3`   | `false`  | Applies the underlying HTML heading level element |
+| `children` | `ReactNode`                             |         |  `true`  | Labels a group of feature rows                    |
+
+### PricingComparisonTable.Row <Label>Required</Label>
+
+| Name       | Type               | Default | required | Description                               |
+| :--------- | :----------------- | :-----: | :------: | :---------------------------------------- |
+| `children` | `RowHeading, Cell` |         |  `true`  | Defines the feature label and plan values |
+
+### PricingComparisonTable.RowHeading <Label>Required</Label>
+
+| Name                   | Type        | Default | required | Description                                                      |
+| :--------------------- | :---------- | :-----: | :------: | :--------------------------------------------------------------- |
+| `children`             | `ReactNode` |         |  `true`  | Labels the feature row                                           |
+| `infoTooltip`          | `string`    |         | `false`  | Adds explanatory tooltip text                                    |
+| `infoTooltipAriaLabel` | `string`    |         | `false`  | Overrides the generated accessible label for the tooltip trigger |
+
+### PricingComparisonTable.Cell <Label>Required</Label>
+
+Provide one cell per plan. In development, the component warns when a row's cell count does not match its plan count. Missing cells are rendered empty and cells beyond the number of plans are ignored.
+
+| Name               | Type                                      | Default | required | Description                                              |
+| :----------------- | :---------------------------------------- | :-----: | :------: | :------------------------------------------------------- |
+| `children`         | `ReactNode`                               |         | `false`  | Displays a custom feature value                          |
+| `variant`          | <PricingComparisonTableCellVariantProp /> |         | `false`  | Displays an included or unavailable icon                 |
+| `variantAriaLabel` | `string`                                  |         | `false`  | Overrides the variant's default English accessible label |

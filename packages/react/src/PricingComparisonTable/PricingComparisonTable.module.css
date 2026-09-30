@@ -1,0 +1,682 @@
+.PricingComparisonTable {
+  --brand-pricing-comparison-table-item-count: 1;
+  --brand-pricing-comparison-table-feature-column-width: 50%;
+
+  container-type: inline-size;
+  width: 100%;
+  color: var(--brand-color-text-default);
+}
+
+.PricingComparisonTable--items2 {
+  --brand-pricing-comparison-table-item-count: 2;
+}
+
+.PricingComparisonTable--items3 {
+  --brand-pricing-comparison-table-item-count: 3;
+}
+
+.PricingComparisonTable--items4 {
+  --brand-pricing-comparison-table-item-count: 4;
+}
+
+.PricingComparisonTable__narrow {
+  display: block;
+}
+
+.PricingComparisonTable__regularSummary {
+  display: none;
+}
+
+.PricingComparisonTable__table {
+  display: none;
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+.PricingComparisonTable__tableHeading {
+  text-align: start;
+}
+
+.PricingComparisonTable__wideSummary {
+  display: none;
+}
+
+.PricingComparisonTable__group {
+  border-block-end: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
+}
+
+.PricingComparisonTable__group summary {
+  display: flex;
+  align-items: center;
+  gap: var(--base-size-12);
+  cursor: pointer;
+  justify-content: space-between;
+  min-height: var(--base-size-80);
+  padding: var(--base-size-24) var(--base-size-20) var(--base-size-4);
+  list-style: none;
+}
+
+.PricingComparisonTable__group summary::-webkit-details-marker {
+  display: none;
+}
+
+.PricingComparisonTable__chevron {
+  flex-shrink: 0;
+}
+
+.PricingComparisonTable__chevron--expanded {
+  transform: rotate(180deg);
+}
+
+.PricingComparisonTable__row {
+  padding-block: var(--base-size-16);
+}
+
+.PricingComparisonTable__narrow .PricingComparisonTable__row {
+  padding: 0;
+  border-block-start: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
+}
+
+.PricingComparisonTable__narrow .PricingComparisonTable__rowHeading {
+  display: flex;
+  justify-content: space-between;
+  min-height: var(--base-size-48);
+  padding: var(--base-size-12) var(--base-size-20);
+  font-weight: var(--base-text-weight-semibold);
+}
+
+.PricingComparisonTable__narrow .PricingComparisonTable__planName {
+  color: var(--brand-color-text-muted);
+  font-size: var(--brand-text-size-200);
+  font-weight: var(--base-text-weight-normal);
+  line-height: var(--brand-text-lineHeight-200);
+  letter-spacing: var(--brand-text-letterSpacing-200);
+  overflow-wrap: anywhere;
+}
+
+.PricingComparisonTable__narrow .PricingComparisonTable__cell {
+  justify-content: flex-end;
+  text-align: end;
+}
+
+.PricingComparisonTable__narrow .PricingComparisonTable__chevron {
+  width: var(--base-size-16);
+  height: var(--base-size-16);
+  margin-inline: var(--base-size-6);
+}
+
+.PricingComparisonTable--rowHighlighting .PricingComparisonTable__row,
+.PricingComparisonTable--rowHighlighting .PricingComparisonTable__row dt,
+.PricingComparisonTable--rowHighlighting .PricingComparisonTable__row dd {
+  transition: background-color var(--brand-animation-duration-fast) var(--brand-animation-easing-default);
+}
+
+.PricingComparisonTable--rowHighlighting .PricingComparisonTable__row:focus-within {
+  background-color: var(--brand-PricingComparisonTable-rowHighlight-bgColor);
+}
+
+.PricingComparisonTable--rowHighlighting .PricingComparisonTable__row :is(a, button):focus-visible {
+  position: relative;
+  z-index: 1;
+}
+
+.PricingComparisonTable__row dl {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+  margin: 0;
+}
+
+.PricingComparisonTable__row dt,
+.PricingComparisonTable__row dd {
+  margin: 0;
+  min-width: 0;
+  min-height: calc(var(--base-size-28) + var(--base-size-24));
+  padding-block: var(--base-size-12);
+}
+
+.PricingComparisonTable__row dt {
+  padding-inline: var(--base-size-20) var(--base-size-8);
+}
+
+.PricingComparisonTable__row dd {
+  padding-inline: var(--base-size-8) var(--base-size-20);
+  text-align: end;
+}
+
+.PricingComparisonTable__narrow .PricingComparisonTable__info {
+  flex-shrink: 0;
+  width: var(--base-size-16);
+  height: var(--base-size-16);
+  color: var(--brand-color-text-default);
+  background-color: var(--brand-color-canvas-muted);
+  border: 0;
+}
+
+.PricingComparisonTable__rowHeading {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--base-size-8);
+}
+
+.PricingComparisonTable__info {
+  display: inline-grid;
+  width: var(--base-size-20);
+  height: var(--base-size-20);
+  padding: 0;
+  place-items: center;
+  color: var(--brand-color-text-muted);
+  background: transparent;
+  border: var(--brand-borderWidth-thin) solid currentColor;
+  border-radius: 50%;
+}
+
+.PricingComparisonTable__cell {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--base-size-8);
+  max-width: 100%;
+  text-align: center;
+  overflow-wrap: anywhere;
+}
+
+.PricingComparisonTable__status {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 var(--base-size-24);
+  width: var(--base-size-24);
+  height: var(--base-size-24);
+}
+
+.PricingComparisonTable__status--included {
+  color: var(--brand-PricingComparisonTable-includedIndicator-fgColor);
+  background-color: var(--brand-PricingComparisonTable-includedIndicator-bgColor);
+  border-radius: var(--brand-borderRadius-full);
+}
+
+.PricingComparisonTable__item {
+  display: grid;
+  grid-template-rows: repeat(4, auto);
+  align-content: start;
+  border: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
+  text-align: start;
+}
+
+.PricingComparisonTable__itemContent {
+  display: grid;
+  grid-row: 1 / span 4;
+  grid-template-rows: subgrid;
+  row-gap: var(--base-size-12);
+  align-content: start;
+  justify-self: stretch;
+  min-width: 0;
+  padding: var(--base-size-20) var(--base-size-28);
+}
+
+.PricingComparisonTable__labelCell {
+  display: flex;
+  grid-row: 1;
+  align-items: center;
+  justify-self: stretch;
+  padding: var(--base-size-16) var(--base-size-28);
+  border-block-start: var(--brand-borderWidth-thin) solid var(--brand-PricingComparisonTable-label-accentColor);
+  border-block-end: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
+}
+
+.PricingComparisonTable__label {
+  display: inline-block;
+  font-family: var(--brand-fontStack-monospace);
+  font-size: var(--brand-text-size-100);
+  font-weight: var(--brand-text-weight-500);
+  letter-spacing: var(--brand-text-letterSpacing-100);
+  line-height: var(--brand-text-lineHeight-200);
+  text-transform: uppercase;
+}
+
+.PricingComparisonTable__heading {
+  grid-row: 1;
+  align-self: start;
+  overflow-wrap: anywhere;
+}
+
+.PricingComparisonTable__description {
+  grid-row: 2;
+}
+
+.PricingComparisonTable__price {
+  grid-row: 3;
+  margin: 0;
+  text-align: inherit;
+  overflow-wrap: anywhere;
+}
+
+.PricingComparisonTable__itemContent--compact {
+  grid-template-columns: minmax(0, 1fr) fit-content(calc((100% - var(--base-size-8)) / 2));
+  column-gap: var(--base-size-8);
+  row-gap: 0;
+}
+
+.PricingComparisonTable__itemContent--compact .PricingComparisonTable__description {
+  grid-column: 1 / -1;
+  margin-block-start: var(--base-size-12);
+}
+
+.PricingComparisonTable__itemContent--compact .PricingComparisonTable__price {
+  grid-row: 1;
+  grid-column: 2;
+  align-self: start;
+  text-align: end;
+}
+
+.PricingComparisonTable__itemContent--compact .PricingComparisonTable__actions {
+  grid-column: 1 / -1;
+  margin-block-start: var(--base-size-12);
+}
+
+.PricingComparisonTable__actions {
+  display: grid;
+  grid-row: 4;
+  gap: var(--base-size-8);
+  align-self: start;
+  width: 100%;
+}
+
+.PricingComparisonTable__headingGrid--hasLabel {
+  grid-template-rows: repeat(5, auto);
+}
+
+.PricingComparisonTable__item.PricingComparisonTable__headingGrid--hasLabel .PricingComparisonTable__itemContent {
+  grid-row: 2 / span 4;
+}
+
+@media (min-width: 48rem) {
+  .PricingComparisonTable__narrow {
+    display: none;
+  }
+
+  .PricingComparisonTable__table {
+    display: table;
+  }
+
+  .PricingComparisonTable__regularSummary {
+    display: block;
+  }
+
+  .PricingComparisonTable__regularSummary .PricingComparisonTable__itemContent {
+    padding: var(--base-size-36);
+  }
+
+  .PricingComparisonTable__regularSummary .PricingComparisonTable__description {
+    font-size: var(--brand-text-size-100);
+    line-height: var(--brand-text-lineHeight-100);
+  }
+
+  .PricingComparisonTable__regularSummary .PricingComparisonTable__actions {
+    gap: var(--base-size-12);
+  }
+
+  .PricingComparisonTable__summaryRow {
+    display: grid;
+    grid-template-columns: repeat(min(var(--brand-pricing-comparison-table-item-count), 2), minmax(0, 1fr));
+    grid-template-rows: repeat(4, auto);
+  }
+
+  .PricingComparisonTable__summaryRow .PricingComparisonTable__item {
+    grid-row: 1 / span 4;
+    grid-template-rows: subgrid;
+    border-inline-end: 0;
+  }
+
+  .PricingComparisonTable__summaryRow + .PricingComparisonTable__summaryRow .PricingComparisonTable__item {
+    border-block-start: 0;
+  }
+
+  .PricingComparisonTable__summaryRow .PricingComparisonTable__item:last-child {
+    border-inline-end: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
+  }
+
+  .PricingComparisonTable__table th,
+  .PricingComparisonTable__table td {
+    padding: var(--base-size-12) var(--base-size-36);
+    border-block-end: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
+    vertical-align: top;
+  }
+
+  .PricingComparisonTable__table th {
+    text-align: start;
+  }
+
+  .PricingComparisonTable__table :is(th, td):not(:first-child) {
+    padding-inline: var(--base-size-8);
+  }
+
+  .PricingComparisonTable__table td {
+    text-align: center;
+  }
+
+  .PricingComparisonTable__table .PricingComparisonTable__row > th:first-child,
+  .PricingComparisonTable__groupBackground > span:first-child {
+    border-inline-start: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
+  }
+
+  .PricingComparisonTable__table tbody td:first-of-type,
+  .PricingComparisonTable__groupBackground > span:nth-child(2) {
+    border-inline-start: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
+  }
+
+  .PricingComparisonTable__table tbody td:last-of-type,
+  .PricingComparisonTable__groupBackground > span:last-child {
+    border-inline-end: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
+  }
+
+  .PricingComparisonTable--stickyHeaders .PricingComparisonTable__table thead th:nth-child(2) {
+    border-inline-start: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
+  }
+
+  .PricingComparisonTable--stickyHeaders .PricingComparisonTable__table thead th:last-child {
+    border-inline-end: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
+  }
+
+  .PricingComparisonTable__featureColumn {
+    width: var(--brand-pricing-comparison-table-feature-column-width);
+  }
+
+  .PricingComparisonTable__table thead th {
+    border-block-start: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
+  }
+
+  .PricingComparisonTable--stickyHeaders .PricingComparisonTable__table thead th {
+    position: sticky;
+    z-index: 2;
+    inset-block-start: 0;
+    background-color: var(--brand-color-canvas-default);
+    border-block-end: 0;
+  }
+
+  .PricingComparisonTable--stickyHeaders .PricingComparisonTable__table thead th::after {
+    position: absolute;
+    inset: auto 0 0;
+    border-block-end: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
+    content: '';
+    pointer-events: none;
+  }
+
+  .PricingComparisonTable--stickyHeaders .PricingComparisonTable__table thead th:first-child {
+    z-index: 3;
+  }
+
+  .PricingComparisonTable__table tbody > tr > th[colspan] {
+    position: relative;
+    padding-block: var(--base-size-48) var(--base-size-4);
+    text-align: start;
+  }
+
+  .PricingComparisonTable__groupBackground {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    grid-template-columns:
+      minmax(0, var(--brand-pricing-comparison-table-feature-column-width))
+      repeat(var(--brand-pricing-comparison-table-item-count), minmax(0, 1fr));
+    pointer-events: none;
+  }
+
+  .PricingComparisonTable__table tbody > tr > th[colspan] button {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: var(--base-size-12);
+    justify-content: space-between;
+    width: 100%;
+    min-height: calc(var(--base-size-28) + var(--base-size-24));
+    padding: 0;
+    color: inherit;
+    font: inherit;
+    text-align: inherit;
+    background: transparent;
+    border: 0;
+    cursor: pointer;
+  }
+
+  .PricingComparisonTable__table tbody .PricingComparisonTable__chevron {
+    width: var(--base-size-16);
+    height: var(--base-size-16);
+    margin-inline: var(--base-size-6);
+  }
+
+  .PricingComparisonTable--rowHighlighting .PricingComparisonTable__table .PricingComparisonTable__row > * {
+    transition: background-color var(--brand-animation-duration-fast) var(--brand-animation-easing-default);
+  }
+
+  .PricingComparisonTable--rowHighlighting
+    .PricingComparisonTable__table
+    .PricingComparisonTable__row:focus-within
+    > * {
+    background-color: var(--brand-PricingComparisonTable-rowHighlight-bgColor);
+  }
+}
+
+@media (48rem <= width < 80rem) {
+  .PricingComparisonTable__rowHeading {
+    font-weight: var(--base-text-weight-semibold);
+  }
+
+  .PricingComparisonTable:not(.PricingComparisonTable--stickyHeaders) .PricingComparisonTable__table thead th {
+    height: 0;
+    padding: 0;
+    border: 0;
+  }
+
+  .PricingComparisonTable:not(.PricingComparisonTable--stickyHeaders) .PricingComparisonTable__tableHeading {
+    display: none;
+  }
+
+  .PricingComparisonTable:not(.PricingComparisonTable--stickyHeaders) .PricingComparisonTable__compactHeading {
+    position: absolute;
+    width: var(--base-size-2);
+    height: var(--base-size-2);
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+}
+
+@media (min-width: 80rem) {
+  .PricingComparisonTable__promoted,
+  .PricingComparisonTable--stickyHeaders .PricingComparisonTable__table thead th.PricingComparisonTable__promoted {
+    background-color: var(--brand-PricingComparisonTable-highlightedColumn-bgColor);
+  }
+
+  .PricingComparisonTable--rowHighlighting
+    .PricingComparisonTable__table
+    .PricingComparisonTable__row:focus-within
+    > .PricingComparisonTable__promoted {
+    background-color: color-mix(
+      in srgb,
+      var(--brand-PricingComparisonTable-highlightedColumn-bgColor) 50%,
+      var(--brand-PricingComparisonTable-rowHighlight-bgColor)
+    );
+  }
+
+  .PricingComparisonTable--stickyHeaders .PricingComparisonTable__table thead th:nth-child(2),
+  .PricingComparisonTable--stickyHeaders .PricingComparisonTable__table thead th:last-child {
+    border-inline: 0;
+  }
+
+  .PricingComparisonTable__table tbody td:first-of-type,
+  .PricingComparisonTable__groupBackground > span:nth-child(2) {
+    border-inline-start: 0;
+  }
+
+  .PricingComparisonTable {
+    --brand-pricing-comparison-table-feature-column-width: 25%;
+  }
+
+  .PricingComparisonTable__table th,
+  .PricingComparisonTable__table td {
+    padding-inline: var(--base-size-28);
+  }
+
+  .PricingComparisonTable__table tbody > tr > th[colspan] {
+    padding-block: var(--base-size-48) var(--base-size-16);
+  }
+
+  .PricingComparisonTable__table tbody > tr > th[colspan] button {
+    justify-content: flex-start;
+    width: auto;
+    min-height: 0;
+  }
+
+  .PricingComparisonTable__table tbody .PricingComparisonTable__chevron {
+    width: var(--base-size-16);
+    height: var(--base-size-16);
+    margin-inline: 0;
+  }
+
+  .PricingComparisonTable__regularSummary {
+    display: none;
+  }
+
+  .PricingComparisonTable__compactHeading {
+    display: none;
+  }
+
+  .PricingComparisonTable__wideSummary {
+    display: grid;
+    grid-row: 1 / span 4;
+    grid-template-rows: subgrid;
+  }
+
+  .PricingComparisonTable__wideSummary .PricingComparisonTable__item {
+    grid-row: 1 / span 4;
+    grid-template-rows: subgrid;
+    border: 0;
+    border-block-start: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
+    border-inline-start: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
+  }
+
+  .PricingComparisonTable__wideSummary .PricingComparisonTable__item.PricingComparisonTable__promoted {
+    border-block-start: 0;
+  }
+
+  .PricingComparisonTable__table thead {
+    display: grid;
+    width: 100cqw;
+    grid-template-columns:
+      minmax(0, 25%)
+      repeat(var(--brand-pricing-comparison-table-item-count), minmax(0, 1fr));
+    grid-template-rows: repeat(4, auto);
+  }
+
+  .PricingComparisonTable__table thead tr {
+    display: contents;
+  }
+
+  .PricingComparisonTable--stickyHeaders .PricingComparisonTable__table thead {
+    position: sticky;
+    z-index: 2;
+    inset-block-start: 0;
+  }
+
+  .PricingComparisonTable__table thead th {
+    display: grid;
+    grid-row: 1 / span 4;
+    grid-template-rows: subgrid;
+    padding: 0;
+    border-block-start: 0;
+  }
+
+  .PricingComparisonTable__table thead th:first-child {
+    border-block-start: 0;
+    border-inline-start: 0;
+  }
+
+  .PricingComparisonTable__tableHeading {
+    align-self: end;
+    padding: var(--base-size-28);
+  }
+
+  .PricingComparisonTable__table thead th:last-child .PricingComparisonTable__item {
+    border-inline-end: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
+  }
+
+  .PricingComparisonTable__table thead.PricingComparisonTable__headingGrid--hasLabel {
+    grid-template-rows: repeat(5, auto);
+  }
+
+  .PricingComparisonTable__table
+    thead.PricingComparisonTable__headingGrid--hasLabel
+    th:not(.PricingComparisonTable__promoted)
+    .PricingComparisonTable__wideSummary {
+    grid-row-start: 2;
+  }
+
+  .PricingComparisonTable__table
+    thead.PricingComparisonTable__headingGrid--hasLabel
+    .PricingComparisonTable__tableHeading {
+    position: relative;
+    grid-row: 2;
+    align-self: start;
+    padding-block: 0;
+    inset-block-start: var(--base-size-20);
+  }
+
+  .PricingComparisonTable__table thead.PricingComparisonTable__headingGrid--hasLabel th {
+    grid-row-end: span 5;
+  }
+
+  .PricingComparisonTable__table
+    thead.PricingComparisonTable__headingGrid--hasLabel
+    th.PricingComparisonTable__promoted
+    .PricingComparisonTable__wideSummary,
+  .PricingComparisonTable__table
+    thead.PricingComparisonTable__headingGrid--hasLabel
+    th.PricingComparisonTable__promoted
+    .PricingComparisonTable__item {
+    grid-row-end: span 5;
+  }
+
+  .PricingComparisonTable__table :is(th, td):first-child {
+    width: auto;
+  }
+
+  .PricingComparisonTable__table thead th:not(:first-child) {
+    padding-inline: 0;
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .PricingComparisonTable--rowHighlighting .PricingComparisonTable__row:hover {
+    background-color: var(--brand-PricingComparisonTable-rowHighlight-bgColor);
+  }
+}
+
+@media (hover: hover) and (pointer: fine) and (min-width: 48rem) {
+  .PricingComparisonTable--rowHighlighting .PricingComparisonTable__table .PricingComparisonTable__row:hover > * {
+    background-color: var(--brand-PricingComparisonTable-rowHighlight-bgColor);
+  }
+}
+
+@media (hover: hover) and (pointer: fine) and (min-width: 80rem) {
+  .PricingComparisonTable--rowHighlighting
+    .PricingComparisonTable__table
+    .PricingComparisonTable__row:hover
+    > .PricingComparisonTable__promoted {
+    background-color: color-mix(
+      in srgb,
+      var(--brand-PricingComparisonTable-highlightedColumn-bgColor) 50%,
+      var(--brand-PricingComparisonTable-rowHighlight-bgColor)
+    );
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .PricingComparisonTable--rowHighlighting .PricingComparisonTable__row,
+  .PricingComparisonTable--rowHighlighting .PricingComparisonTable__row dt,
+  .PricingComparisonTable--rowHighlighting .PricingComparisonTable__row dd,
+  .PricingComparisonTable--rowHighlighting .PricingComparisonTable__table .PricingComparisonTable__row > * {
+    transition-duration: 0s;
+  }
+}

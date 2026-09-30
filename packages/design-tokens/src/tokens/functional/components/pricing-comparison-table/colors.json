@@ -1,0 +1,32 @@
+{
+  "PricingComparisonTable": {
+    "label": {
+      "accentColor": {
+        "value": "var(--brand-color-text-emphasized)",
+        "dark": "var(--brand-color-text-emphasized)"
+      }
+    },
+    "highlightedColumn": {
+      "bgColor": {
+        "value": "var(--brand-color-canvas-subtle)",
+        "dark": "var(--brand-color-canvas-subtle)"
+      }
+    },
+    "includedIndicator": {
+      "fgColor": {
+        "value": "var(--brand-color-text-emphasized)",
+        "dark": "var(--brand-color-text-emphasized)"
+      },
+      "bgColor": {
+        "value": "color-mix(in srgb, var(--brand-color-text-emphasized) 15%, transparent)",
+        "dark": "color-mix(in srgb, var(--brand-color-text-emphasized) 20%, transparent)"
+      }
+    },
+    "rowHighlight": {
+      "bgColor": {
+        "value": "var(--brand-color-canvas-muted)",
+        "dark": "var(--brand-color-canvas-muted)"
+      }
+    }
+  }
+}
