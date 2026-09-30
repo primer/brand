@@ -195,6 +195,42 @@ describe('Tiles', () => {
     expect(getAllByTestId(Tiles.testIds.item)).toHaveLength(3)
   })
 
+  it('balances columns for seven items at each breakpoint', () => {
+    const {getByTestId} = render(
+      <Tiles>
+        {Array.from({length: 7}, (_, index) => (
+          <Tiles.Item key={index} name={`Item ${index + 1}`}>
+            <svg />
+          </Tiles.Item>
+        ))}
+      </Tiles>,
+    )
+
+    const gridEl = getByTestId(Tiles.testIds.grid)
+    expect(gridEl.style.getPropertyValue('--tiles-columns-xsmall')).toBe('2')
+    expect(gridEl.style.getPropertyValue('--tiles-columns-small')).toBe('3')
+    expect(gridEl.style.getPropertyValue('--tiles-columns-medium')).toBe('4')
+    expect(gridEl.style.getPropertyValue('--tiles-columns-large')).toBe('4')
+  })
+
+  it('balances compact columns for seven items at each breakpoint', () => {
+    const {getByTestId} = render(
+      <Tiles layout="compact">
+        {Array.from({length: 7}, (_, index) => (
+          <Tiles.Item key={index} name={`Item ${index + 1}`}>
+            <svg />
+          </Tiles.Item>
+        ))}
+      </Tiles>,
+    )
+
+    const gridEl = getByTestId(Tiles.testIds.grid)
+    expect(gridEl.style.getPropertyValue('--tiles-columns-xsmall')).toBe('4')
+    expect(gridEl.style.getPropertyValue('--tiles-columns-small')).toBe('3')
+    expect(gridEl.style.getPropertyValue('--tiles-columns-medium')).toBe('4')
+    expect(gridEl.style.getPropertyValue('--tiles-columns-large')).toBe('7')
+  })
+
   it('renders a list with list items', () => {
     const {getByRole, getAllByRole} = render(
       <Tiles>
