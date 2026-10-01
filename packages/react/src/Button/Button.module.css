@@ -101,12 +101,8 @@
   background-color: var(--brand-button-primary-bgColor-disabled);
 }
 
-.Button--primary:disabled .Button-arrow--disabled,
-.Button--primary[aria-disabled='true'] .Button-arrow--disabled,
-.Button--primary.Button--disabled .Button-arrow--disabled,
-.Button--primary:disabled .Button__icon-visual--disabled,
-.Button--primary[aria-disabled='true'] .Button__icon-visual--disabled,
-.Button--primary.Button--disabled .Button__icon-visual--disabled,
+.Button--primary:where(:disabled, [aria-disabled='true'], .Button--disabled)
+  :where(.Button-arrow--disabled, .Button__icon-visual--disabled),
 .Button--label-primary.Button-label--disabled {
   color: var(--brand-button-primary-fgColor-disabled);
 }
@@ -135,12 +131,8 @@
   border-color: var(--brand-button-secondary-fgColor-disabled);
 }
 
-.Button--secondary:disabled .Button-arrow--disabled,
-.Button--secondary[aria-disabled='true'] .Button-arrow--disabled,
-.Button--secondary.Button--disabled .Button-arrow--disabled,
-.Button--secondary:disabled .Button__icon-visual--disabled,
-.Button--secondary[aria-disabled='true'] .Button__icon-visual--disabled,
-.Button--secondary.Button--disabled .Button__icon-visual--disabled,
+.Button--secondary:where(:disabled, [aria-disabled='true'], .Button--disabled)
+  :where(.Button-arrow--disabled, .Button__icon-visual--disabled),
 .Button--label-secondary.Button-label--disabled {
   color: var(--brand-button-secondary-fgColor-disabled);
 }
@@ -170,12 +162,8 @@
   color: var(--brand-button-subtle-fgColor-rest);
 }
 
-.Button--subtle:disabled .Button-arrow--disabled,
-.Button--subtle[aria-disabled='true'] .Button-arrow--disabled,
-.Button--subtle.Button--disabled .Button-arrow--disabled,
-.Button--subtle:disabled .Button__icon-visual--disabled,
-.Button--subtle[aria-disabled='true'] .Button__icon-visual--disabled,
-.Button--subtle.Button--disabled .Button__icon-visual--disabled,
+.Button--subtle:where(:disabled, [aria-disabled='true'], .Button--disabled)
+  :where(.Button-arrow--disabled, .Button__icon-visual--disabled),
 .Button--label-subtle.Button-label--disabled {
   color: var(--brand-button-subtle-fgColor-disabled);
 }

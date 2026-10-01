@@ -25,6 +25,16 @@
           "value": "{Button.icon.size.large}"
         }
       }
+    },
+    "loadingIndicator": {
+      "animationDuration": {
+        "default": {
+          "value": "0.8s"
+        },
+        "reducedMotion": {
+          "value": "1.6s"
+        }
+      }
     }
   }
 }

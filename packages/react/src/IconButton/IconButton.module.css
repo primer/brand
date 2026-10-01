@@ -66,10 +66,6 @@
 }
 
 .IconButton--inactive .IconButton__icon {
-  color: inherit !important;
-}
-
-.IconButton--variant-danger .IconButton__icon {
   color: inherit;
 }
 
@@ -96,7 +92,7 @@
   border: var(--brand-borderWidth-thin) solid currentcolor;
   border-inline-end-color: transparent;
   border-radius: 50%;
-  animation: IconButton-spin 0.8s linear infinite;
+  animation: IconButton-spin var(--brand-IconButton-loadingIndicator-animationDuration-default) linear infinite;
 }
 
 .IconButton--small .IconButton__loadingIndicator {
@@ -141,6 +137,6 @@
 
 @media (prefers-reduced-motion: reduce) {
   .IconButton__loadingIndicator {
-    animation-duration: 1.6s;
+    animation-duration: var(--brand-IconButton-loadingIndicator-animationDuration-reducedMotion);
   }
 }
