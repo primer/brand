@@ -81,11 +81,11 @@
   border-width: var(--brand-borderWidth-thin);
 }
 
-.Button--primary:not(.Button[disabled], .Button[aria-disabled='true'], [aria-expanded='true']):hover {
+.Button--primary:where(:not(.Button[disabled], .Button[aria-disabled='true'], [aria-expanded='true'])):hover {
   background-color: var(--brand-button-primary-bgColor-hover);
 }
 
-.Button--primary:not(.Button[disabled], .Button[aria-disabled='true']):active,
+.Button--primary:where(:not(.Button[disabled], .Button[aria-disabled='true'])):active,
 .Button--primary[aria-expanded='true'] {
   background: var(--brand-button-primary-bgColor-active);
   border-color: var(--brand-button-primary-borderColor-active);
@@ -120,12 +120,12 @@
   backdrop-filter: blur(var(--base-size-20));
 }
 
-.Button--secondary:not(.Button[disabled], .Button[aria-disabled='true'], [aria-expanded='true']):hover {
+.Button--secondary:where(:not(.Button[disabled], .Button[aria-disabled='true'], [aria-expanded='true'])):hover {
   background-color: var(--brand-button-secondary-bgColor-hover);
   border-color: var(--brand-button-secondary-borderColor-hover);
 }
 
-.Button--secondary:not(.Button[disabled], .Button[aria-disabled='true']):active,
+.Button--secondary:where(:not(.Button[disabled], .Button[aria-disabled='true'])):active,
 .Button--secondary[aria-expanded='true'] {
   background-color: var(--brand-button-secondary-bgColor-active);
   border-color: var(--brand-button-secondary-borderColor-active);
@@ -155,12 +155,12 @@
   backdrop-filter: blur(var(--base-size-20));
 }
 
-.Button--subtle:not(.Button[disabled], .Button[aria-disabled='true'], [aria-expanded='true']):hover {
+.Button--subtle:where(:not(.Button[disabled], .Button[aria-disabled='true'], [aria-expanded='true'])):hover {
   background-color: var(--brand-button-subtle-bgColor-hover);
   border-color: var(--brand-button-subtle-borderColor-hover);
 }
 
-.Button--subtle:not(.Button[disabled], .Button[aria-disabled='true']):active,
+.Button--subtle:where(:not(.Button[disabled], .Button[aria-disabled='true'])):active,
 .Button--subtle[aria-expanded='true'] {
   background-color: var(--brand-button-subtle-bgColor-active);
   border-color: var(--brand-button-subtle-borderColor-active);
