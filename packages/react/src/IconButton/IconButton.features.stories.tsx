@@ -4,7 +4,10 @@ import {
   ArrowUpIcon,
   DownloadIcon,
   InboxIcon,
+  KebabHorizontalIcon,
+  RocketIcon,
   SearchIcon,
+  ShareIcon,
   TrashIcon,
   XIcon,
   MarkGithubIcon,
@@ -36,14 +39,11 @@ type Story = StoryObj<typeof meta>
 export const Variants: Story = {
   render: () => (
     <Stack direction="horizontal">
-      {IconButtonVariants.map(variant => (
-        <IconButton
-          key={variant}
-          icon={variant === 'danger' ? TrashIcon : MarkGithubIcon}
-          aria-label={`${variant} variant`}
-          variant={variant}
-        />
-      ))}
+      <IconButton icon={RocketIcon} aria-label="Deploy project" variant="primary" />
+      <IconButton icon={DownloadIcon} aria-label="Download file" variant="secondary" />
+      <IconButton icon={ShareIcon} aria-label="Share project" variant="subtle" />
+      <IconButton icon={TrashIcon} aria-label="Delete project" variant="danger" />
+      <IconButton icon={KebabHorizontalIcon} aria-label="More project actions" variant="invisible" />
     </Stack>
   ),
 }
