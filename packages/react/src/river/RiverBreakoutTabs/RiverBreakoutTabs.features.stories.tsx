@@ -2,11 +2,13 @@ import React, {useState} from 'react'
 import type {Meta, StoryObj} from '@storybook/react'
 import {AiModelIcon, ZapIcon} from '@primer/octicons-react'
 import {useTranslation} from 'react-i18next'
+import {expect, userEvent, waitFor, within} from 'storybook/test'
 
 import {Image, Link, RiverBreakoutTabs, Section, Text} from '../..'
 import placeholderBg from '../../fixtures/images/dither-bg-landscape-green.png'
 import placeholder1 from '../../fixtures/images/placeholder-1.png'
 import placeholder2 from '../../fixtures/images/placeholder-2.png'
+import {MinimalVideoPlayerExample} from './RiverBreakoutTabs.examples.stories'
 
 const meta = {
   title: 'Components/RiverBreakoutTabs/Features',
@@ -306,4 +308,69 @@ export const Tablet: Story = {
       </Section>
     )
   },
+}
+
+export const MinimalVideoPlayerPlaybackTransfer: Story = {
+  name: 'MinimalVideoPlayer playback transfer',
+  render: () => <MinimalVideoPlayerExample />,
+  play: handleMinimalVideoPlayerChange,
+}
+
+export const MinimalVideoPlayerPlaybackTransferNarrow: Story = {
+  name: 'MinimalVideoPlayer playback transfer narrow',
+  render: () => <MinimalVideoPlayerExample />,
+  globals: {
+    viewport: {value: 'iphonexr'},
+  },
+  play: handleMinimalVideoPlayerChange,
+}
+
+/**
+ * The iframe width determines whether RiverBreakoutTabs renders tabs or an accordion.
+ */
+async function handleMinimalVideoPlayerChange({canvasElement}: {canvasElement: HTMLElement}) {
+  const canvas = within(canvasElement)
+  const getVideos = () => Array.from(canvasElement.querySelectorAll('video'))
+
+  if (window.innerWidth >= 1012) {
+    // The component renders the accordion first and upgrades to tabs after measuring the viewport.
+    await waitFor(() => expect(canvas.getAllByRole('tab')).toHaveLength(3))
+    await waitFor(() => expect(getVideos()).toHaveLength(3))
+
+    // Only the video in the visible panel plays; the others sit in `hidden` panels.
+    await waitFor(() => {
+      const videos = getVideos()
+      expect(videos[0].paused).toBe(false)
+      expect(videos[1].paused).toBe(true)
+    })
+
+    await userEvent.click(canvas.getAllByRole('tab')[1])
+
+    await waitFor(() => {
+      const videos = getVideos()
+      expect(videos[0].paused).toBe(true)
+      expect(videos[1].paused).toBe(false)
+    })
+
+    return
+  }
+
+  await waitFor(() => expect(canvasElement.querySelectorAll('details').length).toBeGreaterThan(1))
+  await waitFor(() => expect(getVideos()).toHaveLength(1))
+
+  const initialVideo = getVideos()[0]
+  await waitFor(() => expect(initialVideo.paused).toBe(false))
+
+  const nextTrigger = canvasElement.querySelectorAll('details')[1].querySelector('summary')
+  await expect(nextTrigger).not.toBeNull()
+  await userEvent.click(nextTrigger as HTMLElement)
+
+  // The narrow layout mounts a single visual, so the previous video is unmounted entirely.
+  await waitFor(() => {
+    const videos = getVideos()
+    expect(videos).toHaveLength(1)
+    expect(videos[0]).not.toBe(initialVideo)
+    expect(videos[0].paused).toBe(false)
+  })
+  await expect(initialVideo.isConnected).toBe(false)
 }

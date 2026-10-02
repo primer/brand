@@ -2,7 +2,6 @@ import {useEffect, useState} from 'react'
 import type {Meta, StoryObj} from '@storybook/react'
 import {AiModelIcon, CopilotIcon, ShieldCheckIcon} from '@primer/octicons-react'
 import {useTranslation} from 'react-i18next'
-import {expect, userEvent, waitFor, within} from 'storybook/test'
 
 import {Heading, Image, Link, MinimalVideoPlayer, River, RiverBreakoutTabs, Section, Stack, Text} from '../..'
 import renderUI1 from '../../fixtures/images/copilot-vscode-agent-mode-1.png'
@@ -15,6 +14,7 @@ import {VideoPlayer} from '../../VideoPlayer'
 const meta = {
   title: 'Components/RiverBreakoutTabs/Examples',
   component: RiverBreakoutTabs,
+  excludeStories: ['MinimalVideoPlayerExample'],
   parameters: {
     layout: 'fullscreen',
   },
@@ -164,7 +164,7 @@ export const WithVideos: Story = {
   },
 }
 
-function MinimalVideoPlayerExample({autoPlay = true}: {autoPlay?: boolean}) {
+export function MinimalVideoPlayerExample({autoPlay = true}: {autoPlay?: boolean}) {
   const {t} = useTranslation('RiverBreakoutTabs')
   const internalAccessibleLabels = {
     play: t('video_play_label'),
@@ -237,78 +237,9 @@ function MinimalVideoPlayerExample({autoPlay = true}: {autoPlay?: boolean}) {
   )
 }
 
-/**
- * Matches the `isLarge` breakpoint used by `useWindowSize`, which decides whether
- * `RiverBreakoutTabs` renders the wide tab layout or the narrow accordion layout.
- */
-const wideLayoutMinWidth = 1012
-
-/**
- * Verifies that playback transfers to the newly revealed panel, in whichever layout is
- * rendered. Branching on the real window width (instead of on the DOM) keeps this
- * deterministic when the story is opened directly via `iframe.html`, where the viewport
- * global is not applied.
- */
-const playbackTransferPlay = async ({canvasElement}: {canvasElement: HTMLElement}) => {
-  const canvas = within(canvasElement)
-  const getVideos = () => Array.from(canvasElement.querySelectorAll('video'))
-
-  if (window.innerWidth >= wideLayoutMinWidth) {
-    // The component renders the accordion first and upgrades to tabs after measuring the viewport.
-    await waitFor(() => expect(canvas.getAllByRole('tab')).toHaveLength(3))
-    await waitFor(() => expect(getVideos()).toHaveLength(3))
-
-    // Only the video in the visible panel plays; the others sit in `hidden` panels.
-    await waitFor(() => {
-      const videos = getVideos()
-      expect(videos[0].paused).toBe(false)
-      expect(videos[1].paused).toBe(true)
-    })
-
-    await userEvent.click(canvas.getAllByRole('tab')[1])
-
-    await waitFor(() => {
-      const videos = getVideos()
-      expect(videos[0].paused).toBe(true)
-      expect(videos[1].paused).toBe(false)
-    })
-
-    return
-  }
-
-  await waitFor(() => expect(canvasElement.querySelectorAll('details').length).toBeGreaterThan(1))
-  await waitFor(() => expect(getVideos()).toHaveLength(1))
-
-  const initialVideo = getVideos()[0]
-  await waitFor(() => expect(initialVideo.paused).toBe(false))
-
-  const nextTrigger = canvasElement.querySelectorAll('details')[1].querySelector('summary')
-  await expect(nextTrigger).not.toBeNull()
-  await userEvent.click(nextTrigger as HTMLElement)
-
-  // The narrow layout mounts a single visual, so the previous video is unmounted entirely.
-  await waitFor(() => {
-    const videos = getVideos()
-    expect(videos).toHaveLength(1)
-    expect(videos[0]).not.toBe(initialVideo)
-    expect(videos[0].paused).toBe(false)
-  })
-  await expect(initialVideo.isConnected).toBe(false)
-}
-
 export const WithMinimalVideoPlayers: Story = {
   name: 'With MinimalVideoPlayer',
   render: () => <MinimalVideoPlayerExample />,
-  play: playbackTransferPlay,
-}
-
-export const WithMinimalVideoPlayersNarrow: Story = {
-  name: 'With MinimalVideoPlayer narrow',
-  render: () => <MinimalVideoPlayerExample />,
-  globals: {
-    viewport: {value: 'iphonexr'},
-  },
-  play: playbackTransferPlay,
 }
 
 export const WithRivers: Story = {
