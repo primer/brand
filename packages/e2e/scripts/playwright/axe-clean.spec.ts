@@ -161,6 +161,7 @@ async function getViolationsWithRetry(page: Page): Promise<Result[]> {
 }
 
 const testsWithCustomDelay = {
+  'components-iconbutton-features--long-delayed-tooltip': 2000, // waits for the delayed tooltip to finish opening
   'components-subdomainnavbar-features--mobile-menu-open': 5000, // takes a while for the menu to open
   'components-hero-examples--custom-background-inline-end-padded-video': 5000, // recipe / example that features long animation sequence
   'components-hero-examples--custom-background-block-end-video': 5000, // recipe / example that features long animation sequence

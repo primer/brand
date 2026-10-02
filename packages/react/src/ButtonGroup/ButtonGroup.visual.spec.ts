@@ -50,6 +50,28 @@ test.describe('Visual Comparison: ButtonGroup', () => {
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
+  test('ButtonGroup / With Icon Buttons', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-buttongroup--with-icon-buttons&viewMode=story',
+      {waitUntil: 'networkidle'},
+    )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+    await page.waitForTimeout(500)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
+  test('ButtonGroup / Joined Buttons', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-buttongroup--joined-buttons&viewMode=story',
+      {waitUntil: 'networkidle'},
+    )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+    await page.waitForTimeout(500)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
   test('ButtonGroup / With Variant Overrides', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-buttongroup--with-variant-overrides&viewMode=story',
