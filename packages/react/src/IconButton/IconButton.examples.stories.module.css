@@ -1,14 +1,42 @@
 .Toolbar {
   display: flex;
   align-items: center;
+  justify-content: flex-end;
   flex-wrap: nowrap;
   gap: var(--base-size-16);
+  box-sizing: border-box;
   inline-size: 100%;
   padding: var(--base-size-24);
-  width: max-content;
+  inline-size: max-content;
+  max-inline-size: 100%;
+  margin-inline-start: auto;
 }
 
 .Toolbar__search {
+  flex: 1 1 auto;
+  min-inline-size: 0;
+}
+
+.Toolbar .Toolbar__searchTrigger {
+  display: none;
+}
+
+.Toolbar__searchPopover {
+  position: fixed;
+  inset-inline: 0;
+  inset-block-end: auto;
+  box-sizing: border-box;
+  width: 100%;
+  border: 0;
+}
+
+.Toolbar__searchPopoverContent {
+  display: flex;
+  align-items: center;
+  gap: var(--base-size-8);
+}
+
+.Toolbar__searchPopoverInput {
   flex: 1 1 auto;
   min-inline-size: 0;
 }
@@ -52,4 +80,27 @@
 .Toolbar__profile:focus-visible {
   outline: var(--base-size-2) solid var(--brand-color-focus);
   outline-offset: var(--base-size-4);
+}
+
+@media screen and (max-width: 47.99rem) {
+  .Toolbar {
+    gap: var(--base-size-2);
+    padding: var(--base-size-8);
+  }
+
+  .Toolbar__search {
+    display: none;
+  }
+
+  .Toolbar .Toolbar__searchTrigger {
+    display: inline-flex;
+  }
+
+  .Toolbar__actions {
+    gap: var(--base-size-2);
+  }
+
+  .Toolbar__desktopAction {
+    display: none;
+  }
 }

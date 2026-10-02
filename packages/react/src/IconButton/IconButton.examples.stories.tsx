@@ -21,6 +21,7 @@ import {Avatar} from '../Avatar'
 import {Box} from '../Box'
 import {Button} from '../Button'
 import {ButtonGroup} from '../ButtonGroup'
+import {FormControl} from '../forms/FormControl'
 import {TextInput} from '../forms/TextInput'
 import {Heading} from '../Heading'
 import {Stack} from '../Stack'
@@ -41,9 +42,13 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-export const GitHubToolbar: Story = {
-  name: 'GitHub Toolbar',
-  render: () => (
+function GitHubToolbarExample() {
+  const [isSearchOpen, setIsSearchOpen] = useState(false)
+  const searchTriggerRef = useRef<HTMLButtonElement>(null)
+  const searchInputRef = useRef<HTMLInputElement>(null)
+  const searchPopoverRef = useRef<HTMLDivElement>(null)
+
+  return (
     <Box role="navigation" aria-label="GitHub" backgroundColor="default" className={styles.Toolbar}>
       <div className={styles.Toolbar__search}>
         <TextInput
@@ -57,15 +62,62 @@ export const GitHubToolbar: Story = {
         />
       </div>
 
+      <IconButton
+        ref={searchTriggerRef}
+        className={styles.Toolbar__searchTrigger}
+        size="small"
+        icon={SearchIcon}
+        aria-label="Search GitHub"
+        aria-controls="toolbar-search-popover"
+        aria-expanded={isSearchOpen}
+        aria-haspopup="dialog"
+        onClick={() => searchPopoverRef.current?.togglePopover()}
+      />
+
+      <Box
+        ref={searchPopoverRef}
+        id="toolbar-search-popover"
+        className={styles.Toolbar__searchPopover}
+        popover="auto"
+        role="dialog"
+        aria-label="Search GitHub"
+        padding="condensed"
+        backgroundColor="subtle"
+        onToggle={event => {
+          const open = event.newState === 'open'
+          setIsSearchOpen(open)
+          window.requestAnimationFrame(() =>
+            open ? searchInputRef.current?.focus() : searchTriggerRef.current?.focus(),
+          )
+        }}
+      >
+        <div className={styles.Toolbar__searchPopoverContent}>
+          <div className={styles.Toolbar__searchPopoverInput}>
+            <FormControl fullWidth>
+              <FormControl.Label visuallyHidden>Search GitHub</FormControl.Label>
+              <TextInput
+                ref={searchInputRef}
+                type="search"
+                leadingVisual={<SearchIcon />}
+                placeholder="Search GitHub"
+                fullWidth
+                size="small"
+              />
+            </FormControl>
+          </div>
+          <IconButton icon={XIcon} aria-label="Close search" onClick={() => searchPopoverRef.current?.hidePopover()} />
+        </div>
+      </Box>
+
       <div className={styles.Toolbar__actions}>
         <ActionMenu mode="split-button" size="small">
           <ActionMenu.IconButton as="a" href="#copilot" icon={CopilotIcon} aria-label="Open Copilot" />
           <ActionMenu.Overlay aria-label="Copilot options">
-            <ActionMenu.Item as="a" href="#chat">
+            <ActionMenu.Item as="a" href="#">
               Open chat
             </ActionMenu.Item>
-            <ActionMenu.Item as="a" href="#immersive">
-              Open immersive mode
+            <ActionMenu.Item as="a" href="#">
+              Open app
             </ActionMenu.Item>
           </ActionMenu.Overlay>
         </ActionMenu>
@@ -87,15 +139,30 @@ export const GitHubToolbar: Story = {
           </ActionMenu.Overlay>
         </ActionMenu>
 
-        <IconButton size="small" as="a" href="#issues" icon={IssueOpenedIcon} aria-label="Open issues" />
         <IconButton
           size="small"
+          className={styles.Toolbar__desktopAction}
+          as="a"
+          href="#issues"
+          icon={IssueOpenedIcon}
+          aria-label="Open issues"
+        />
+        <IconButton
+          size="small"
+          className={styles.Toolbar__desktopAction}
           as="a"
           href="#pull-requests"
           icon={GitPullRequestIcon}
           aria-label="Open pull requests"
         />
-        <IconButton size="small" as="a" href="#repositories" icon={RepoIcon} aria-label="Open repositories" />
+        <IconButton
+          size="small"
+          className={styles.Toolbar__desktopAction}
+          as="a"
+          href="#repositories"
+          icon={RepoIcon}
+          aria-label="Open repositories"
+        />
         <span className={styles.Toolbar__notification}>
           <IconButton
             size="small"
@@ -111,7 +178,26 @@ export const GitHubToolbar: Story = {
         </a>
       </div>
     </Box>
-  ),
+  )
+}
+
+export const GitHubToolbar: Story = {
+  name: 'GitHub Toolbar',
+  render: () => <GitHubToolbarExample />,
+  parameters: {
+    layout: 'fullscreen',
+  },
+}
+
+export const GitHubToolbarNarrow: Story = {
+  name: 'GitHub Toolbar (narrow viewport)',
+  render: () => <GitHubToolbarExample />,
+  globals: {
+    viewport: {value: 'iphonex'},
+  },
+  parameters: {
+    layout: 'fullscreen',
+  },
 }
 
 export const RelatedFormattingActions: Story = {

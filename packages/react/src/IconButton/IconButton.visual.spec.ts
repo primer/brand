@@ -38,6 +38,20 @@ test.describe('Visual Comparison: IconButton', () => {
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
+  // eslint-disable-next-line i18n-text/no-en
+  test.describe('Mobile viewport test for GitHub Toolbar (narrow viewport)', () => {
+    test.use({viewport: {width: 360, height: 800}})
+    test('IconButton / GitHub Toolbar (narrow viewport)', async ({page}) => {
+      await page.goto(
+        'http://localhost:6006/iframe.html?args=&id=components-iconbutton-examples--git-hub-toolbar-narrow&viewMode=story',
+        {waitUntil: 'networkidle'},
+      )
+      await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+      await page.waitForTimeout(500)
+      await expect(page).toHaveScreenshot({fullPage: true})
+    })
+  })
   test('IconButton / Related formatting actions', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-iconbutton-examples--related-formatting-actions&viewMode=story',
