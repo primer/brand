@@ -40,7 +40,7 @@ import {IconButton} from '@primer/react-brand'
 IconButton inherits standard variants from Button and adds `danger` and `invisible` variants.
 
 ```jsx live
-<Stack direction="horizontal">
+<Stack direction={{narrow: 'vertical', regular: 'horizontal'}}>
   <IconButton icon={HeartIcon} aria-label="Favorite" variant="primary" />
   <IconButton icon={HeartIcon} aria-label="Favorite" variant="secondary" />
   <IconButton icon={HeartIcon} aria-label="Favorite" variant="subtle" />
@@ -83,35 +83,41 @@ Use `variant="joined"` to display related `IconButton` components.
 
 Use small icon buttons for familiar actions in compact toolbars.
 
-```jsx live
-<Box padding="condensed" backgroundColor="subtle" borderRadius="medium">
-  <Stack direction="horizontal" alignItems="center" gap="condensed">
-    <TextInput
-      type="search"
-      size="small"
-      leadingVisual={<SearchIcon />}
-      placeholder="Search files"
-      aria-label="Search files"
-      fullWidth
-    />
-    <Stack direction="horizontal" alignItems="center" gap={4} padding="none">
-      <ActionMenu mode="split-button" size="small">
-        <ActionMenu.IconButton as="a" href="#new-project" icon={PlusIcon} aria-label="Create project" />
-        <ActionMenu.Overlay aria-label="Creation options">
-          <ActionMenu.Item as="a" href="#new-project">
-            New project
-          </ActionMenu.Item>
-          <ActionMenu.Item as="a" href="#upload-files">
-            Upload files
-          </ActionMenu.Item>
-        </ActionMenu.Overlay>
-      </ActionMenu>
-      <IconButton size="small" icon={ShareIcon} aria-label="Share workspace" />
-      <IconButton size="small" icon={InboxIcon} aria-label="Open notifications" />
-      <Avatar size={32} src="/images/avatar-mona.png" alt="Mona profile" />
-    </Stack>
-  </Stack>
-</Box>
+```jsx filename="noinline"
+const App = () => {
+  const {isMedium} = useWindowSize()
+
+  return (
+    <Box padding="condensed" backgroundColor="subtle" borderRadius="medium">
+      <Stack direction="horizontal" alignItems="center" gap="condensed">
+        {isMedium !== false && (
+          <FormControl fullWidth>
+            <FormControl.Label visuallyHidden>Search files</FormControl.Label>
+            <TextInput type="search" size="small" leadingVisual={<SearchIcon />} placeholder="Search files" fullWidth />
+          </FormControl>
+        )}
+        <Stack direction="horizontal" alignItems="center" gap={4} padding="none">
+          <ActionMenu mode="split-button" size="small">
+            <ActionMenu.IconButton as="a" href="#new-project" icon={PlusIcon} aria-label="Create project" />
+            <ActionMenu.Overlay aria-label="Creation options">
+              <ActionMenu.Item as="a" href="#new-project">
+                New project
+              </ActionMenu.Item>
+              <ActionMenu.Item as="a" href="#upload-files">
+                Upload files
+              </ActionMenu.Item>
+            </ActionMenu.Overlay>
+          </ActionMenu>
+          <IconButton size="small" icon={ShareIcon} aria-label="Share workspace" />
+          <IconButton size="small" icon={InboxIcon} aria-label="Open notifications" />
+          <Avatar size={32} src="/images/avatar-mona.png" alt="Mona profile" />
+        </Stack>
+      </Stack>
+    </Box>
+  )
+}
+
+render(<App />)
 ```
 
 ### In an `ActionMenu`
