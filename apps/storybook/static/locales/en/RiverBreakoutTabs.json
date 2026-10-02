@@ -38,6 +38,8 @@
   "with_videos_item_backlog_body": "Ask Copilot to break down large work items and generate a practical first pass that your team can refine.",
   "with_videos_item_backlog_link": "Read the overview",
   "video_title_planning": "Copilot planning workflow video",
+  "video_play_label": "Play video",
+  "video_pause_label": "Pause video",
   "with_videos_item_workflow_heading": "Watch the end-to-end workflow",
   "with_videos_item_workflow_body": "Show how prompts, edits, and validation fit together in a single continuous coding flow.",
   "with_videos_item_workflow_link": "Watch product walkthrough",

@@ -463,6 +463,8 @@ const RiverBreakoutTabsRoot = forwardRef<HTMLElement, RiverBreakoutTabsProps>(
               <div className={styles.RiverBreakoutTabs__accordionSharedVisuals}>
                 {BackgroundVisualLayer}
                 {cloneElement(Items[activeAccordionIndex].visual as React.ReactElement<RiverBreakoutTabsVisualProps>, {
+                  // Remount the visual so new media autoplays when the active item changes.
+                  key: String(activeAccordionIndex),
                   className: clsx(
                     Items[activeAccordionIndex].visual.props.className,
                     styles.RiverBreakoutTabs__accordionSharedVisual,
