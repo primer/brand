@@ -3,11 +3,11 @@ import type {Meta, StoryObj} from '@storybook/react'
 import {useTranslation} from 'react-i18next'
 import {expect, userEvent, waitFor, within} from 'storybook/test'
 import {Box, Grid} from '..'
-import {PricingComparisonTable} from '.'
+import {FeatureComparisonTable} from '.'
 
 const meta = {
-  title: 'Components/PricingComparisonTable/Features',
-  component: PricingComparisonTable,
+  title: 'Components/FeatureComparisonTable/Features',
+  component: FeatureComparisonTable,
   decorators: [
     Story => (
       <Box backgroundColor="default" paddingBlockStart="spacious" paddingBlockEnd="spacious">
@@ -19,11 +19,11 @@ const meta = {
       </Box>
     ),
   ],
-} satisfies Meta<typeof PricingComparisonTable>
+} satisfies Meta<typeof FeatureComparisonTable>
 
 export default meta
 
-type Story = StoryObj<typeof PricingComparisonTable>
+type Story = StoryObj<typeof FeatureComparisonTable>
 type Plan = {
   description?: string
   label?: string
@@ -55,74 +55,74 @@ const Fixture = ({
   hasStickyHeaders = false,
 }: {
   children?: React.ReactNode
-  expanded?: React.ComponentProps<typeof PricingComparisonTable.Group>['expanded']
+  expanded?: React.ComponentProps<typeof FeatureComparisonTable.Group>['expanded']
   planCount?: number
   rowHighlighting?: boolean
   hasStickyHeaders?: boolean
 }) => {
-  const {t} = useTranslation('PricingComparisonTable')
+  const {t} = useTranslation('FeatureComparisonTable')
   const visiblePlans = plans.slice(0, planCount)
 
   return (
-    <PricingComparisonTable
+    <FeatureComparisonTable
       aria-label={t('plan_comparison', {count: planCount})}
       rowHighlighting={rowHighlighting}
       hasStickyHeaders={hasStickyHeaders}
     >
-      <PricingComparisonTable.Heading>{t('compare_features')}</PricingComparisonTable.Heading>
+      <FeatureComparisonTable.Heading>{t('compare_features')}</FeatureComparisonTable.Heading>
       {visiblePlans.map(plan => (
-        <PricingComparisonTable.Item key={plan.name}>
-          {plan.label ? <PricingComparisonTable.Label>{t(plan.label)}</PricingComparisonTable.Label> : null}
-          <PricingComparisonTable.Heading>{t(plan.name)}</PricingComparisonTable.Heading>
+        <FeatureComparisonTable.Item key={plan.name}>
+          {plan.label ? <FeatureComparisonTable.Label>{t(plan.label)}</FeatureComparisonTable.Label> : null}
+          <FeatureComparisonTable.Heading>{t(plan.name)}</FeatureComparisonTable.Heading>
           {plan.description ? (
-            <PricingComparisonTable.Description>{t(plan.description)}</PricingComparisonTable.Description>
+            <FeatureComparisonTable.Description>{t(plan.description)}</FeatureComparisonTable.Description>
           ) : null}
-          {plan.price ? <PricingComparisonTable.Price>{t(plan.price)}</PricingComparisonTable.Price> : null}
-          <PricingComparisonTable.PrimaryAction as="a" href="#">
+          {plan.price ? <FeatureComparisonTable.Price>{t(plan.price)}</FeatureComparisonTable.Price> : null}
+          <FeatureComparisonTable.PrimaryAction as="a" href="#">
             {t('choose_plan', {plan: t(plan.name)})}
-          </PricingComparisonTable.PrimaryAction>
+          </FeatureComparisonTable.PrimaryAction>
           {plan.name === 'Team' ? (
-            <PricingComparisonTable.SecondaryAction as="button">
+            <FeatureComparisonTable.SecondaryAction as="button">
               {t('contact_sales')}
-            </PricingComparisonTable.SecondaryAction>
+            </FeatureComparisonTable.SecondaryAction>
           ) : null}
-        </PricingComparisonTable.Item>
+        </FeatureComparisonTable.Item>
       ))}
       {children ?? (
-        <PricingComparisonTable.Group expanded={expanded}>
-          <PricingComparisonTable.GroupHeading>{t('collaboration')}</PricingComparisonTable.GroupHeading>
-          <PricingComparisonTable.Row>
-            <PricingComparisonTable.RowHeading
+        <FeatureComparisonTable.Group expanded={expanded}>
+          <FeatureComparisonTable.GroupHeading>{t('collaboration')}</FeatureComparisonTable.GroupHeading>
+          <FeatureComparisonTable.Row>
+            <FeatureComparisonTable.RowHeading
               infoTooltip={t('private_repositories_tooltip')}
               infoTooltipAriaLabel={t('private_repositories_tooltip_label')}
             >
               {t('private_repositories')}
-            </PricingComparisonTable.RowHeading>
+            </FeatureComparisonTable.RowHeading>
             {visiblePlans.map(plan => (
-              <PricingComparisonTable.Cell key={plan.name} variant="included" variantAriaLabel={t('included')} />
+              <FeatureComparisonTable.Cell key={plan.name} variant="included" variantAriaLabel={t('included')} />
             ))}
-          </PricingComparisonTable.Row>
-          <PricingComparisonTable.Row>
-            <PricingComparisonTable.RowHeading>{t('advanced_security')}</PricingComparisonTable.RowHeading>
+          </FeatureComparisonTable.Row>
+          <FeatureComparisonTable.Row>
+            <FeatureComparisonTable.RowHeading>{t('advanced_security')}</FeatureComparisonTable.RowHeading>
             {visiblePlans.map((plan, index) => (
-              <PricingComparisonTable.Cell
+              <FeatureComparisonTable.Cell
                 key={plan.name}
                 variant={index > 1 ? 'included' : 'unavailable'}
                 variantAriaLabel={t(index > 1 ? 'included' : 'unavailable')}
               />
             ))}
-          </PricingComparisonTable.Row>
-          <PricingComparisonTable.Row>
-            <PricingComparisonTable.RowHeading>{t('support')}</PricingComparisonTable.RowHeading>
+          </FeatureComparisonTable.Row>
+          <FeatureComparisonTable.Row>
+            <FeatureComparisonTable.RowHeading>{t('support')}</FeatureComparisonTable.RowHeading>
             {visiblePlans.map((plan, index) => (
-              <PricingComparisonTable.Cell key={plan.name}>
+              <FeatureComparisonTable.Cell key={plan.name}>
                 {t(index > 1 ? 'premium' : index === 1 ? 'standard' : 'community')}
-              </PricingComparisonTable.Cell>
+              </FeatureComparisonTable.Cell>
             ))}
-          </PricingComparisonTable.Row>
-        </PricingComparisonTable.Group>
+          </FeatureComparisonTable.Row>
+        </FeatureComparisonTable.Group>
       )}
-    </PricingComparisonTable>
+    </FeatureComparisonTable>
   )
 }
 
@@ -138,15 +138,15 @@ export const FourPlans: Story = {
   render: () => <Fixture />,
   play: async ({canvasElement, globals}) => {
     const canvas = within(canvasElement)
-    const narrow = await canvas.findByTestId('PricingComparisonTable__narrow')
-    const table = canvas.getByTestId('PricingComparisonTable__table')
+    const narrow = await canvas.findByTestId('FeatureComparisonTable__narrow')
+    const table = canvas.getByTestId('FeatureComparisonTable__table')
     await canvasElement.ownerDocument.fonts.ready
     expect(document.documentElement.scrollWidth).toBeLessThanOrEqual(window.innerWidth)
 
     if (window.matchMedia('(max-width: 47.999rem)').matches) {
       expect(narrow).toBeVisible()
       expect(table).not.toBeVisible()
-      for (const row of within(narrow).getAllByTestId('PricingComparisonTable__row')) {
+      for (const row of within(narrow).getAllByTestId('FeatureComparisonTable__row')) {
         const names = row.querySelectorAll('dt')
         const values = row.querySelectorAll('dd')
         expect(names).toHaveLength(4)
@@ -174,12 +174,12 @@ export const FourPlans: Story = {
 
     const projection = window.matchMedia('(min-width: 80rem)').matches
       ? table
-      : canvas.getByTestId('PricingComparisonTable__regularSummary')
-    const summaries = within(projection).getAllByTestId('PricingComparisonTable__item')
+      : canvas.getByTestId('FeatureComparisonTable__regularSummary')
+    const summaries = within(projection).getAllByTestId('FeatureComparisonTable__item')
     expect(summaries).toHaveLength(4)
     for (const summary of summaries) {
       const heading = within(summary).getByRole('heading')
-      const price = within(summary).getByTestId('PricingComparisonTable__price')
+      const price = within(summary).getByTestId('FeatureComparisonTable__price')
       const headingBox = heading.getBoundingClientRect()
       const priceBox = price.getBoundingClientRect()
       expect(Math.abs(headingBox.top - priceBox.top)).toBeLessThanOrEqual(1)
@@ -225,43 +225,43 @@ export const ResponsiveGroupExpansion: Story = {
 
 export const StickyHeaders: Story = {
   render: function StickyHeadersStory() {
-    const {t} = useTranslation('PricingComparisonTable')
+    const {t} = useTranslation('FeatureComparisonTable')
     return (
-      <PricingComparisonTable hasStickyHeaders aria-label={t('sticky_plan_comparison')}>
+      <FeatureComparisonTable hasStickyHeaders aria-label={t('sticky_plan_comparison')}>
         {plans.slice(0, 2).map(plan => (
-          <PricingComparisonTable.Item key={plan.name}>
-            <PricingComparisonTable.Heading>{t(plan.name)}</PricingComparisonTable.Heading>
-            <PricingComparisonTable.Description>
+          <FeatureComparisonTable.Item key={plan.name}>
+            <FeatureComparisonTable.Heading>{t(plan.name)}</FeatureComparisonTable.Heading>
+            <FeatureComparisonTable.Description>
               {plan.description ? t(plan.description) : null}
-            </PricingComparisonTable.Description>
-            <PricingComparisonTable.PrimaryAction as="a" href={`#choose-${plan.name.toLowerCase()}`}>
+            </FeatureComparisonTable.Description>
+            <FeatureComparisonTable.PrimaryAction as="a" href={`#choose-${plan.name.toLowerCase()}`}>
               {t('choose_plan', {plan: t(plan.name)})}
-            </PricingComparisonTable.PrimaryAction>
-          </PricingComparisonTable.Item>
+            </FeatureComparisonTable.PrimaryAction>
+          </FeatureComparisonTable.Item>
         ))}
         {['collaboration', 'security', 'support'].map(groupName => (
-          <PricingComparisonTable.Group key={groupName}>
-            <PricingComparisonTable.GroupHeading>{t(groupName)}</PricingComparisonTable.GroupHeading>
+          <FeatureComparisonTable.Group key={groupName}>
+            <FeatureComparisonTable.GroupHeading>{t(groupName)}</FeatureComparisonTable.GroupHeading>
             {Array.from({length: 5}, (_, rowIndex) => (
-              <PricingComparisonTable.Row key={`${groupName}-${rowIndex}`}>
-                <PricingComparisonTable.RowHeading>
+              <FeatureComparisonTable.Row key={`${groupName}-${rowIndex}`}>
+                <FeatureComparisonTable.RowHeading>
                   {t('group_feature', {group: t(groupName), number: rowIndex + 1})}
-                </PricingComparisonTable.RowHeading>
+                </FeatureComparisonTable.RowHeading>
                 {plans.slice(0, 2).map(plan => (
-                  <PricingComparisonTable.Cell key={plan.name} variant="included" variantAriaLabel={t('included')} />
+                  <FeatureComparisonTable.Cell key={plan.name} variant="included" variantAriaLabel={t('included')} />
                 ))}
-              </PricingComparisonTable.Row>
+              </FeatureComparisonTable.Row>
             ))}
-          </PricingComparisonTable.Group>
+          </FeatureComparisonTable.Group>
         ))}
-      </PricingComparisonTable>
+      </FeatureComparisonTable>
     )
   },
   play: async ({canvasElement}) => {
     const canvas = within(canvasElement)
     const isNarrow = !window.matchMedia('(min-width: 48rem)').matches
     const projection = await canvas.findByTestId(
-      isNarrow ? 'PricingComparisonTable__narrow' : 'PricingComparisonTable__table',
+      isNarrow ? 'FeatureComparisonTable__narrow' : 'FeatureComparisonTable__table',
     )
     const control = projection.querySelector<HTMLElement>('[aria-expanded]')!
     const initiallyExpanded = !isNarrow
@@ -308,7 +308,7 @@ export const DarkMode: Story = {
 
 export const RowHighlighting: Story = {
   render: function RowHighlightingStory() {
-    const {t} = useTranslation('PricingComparisonTable')
+    const {t} = useTranslation('FeatureComparisonTable')
     const groups = [
       {
         name: 'collaboration',
@@ -345,25 +345,25 @@ export const RowHighlighting: Story = {
     return (
       <Fixture planCount={3} rowHighlighting>
         {groups.map(group => (
-          <PricingComparisonTable.Group key={group.name} expanded>
-            <PricingComparisonTable.GroupHeading>{t(group.name)}</PricingComparisonTable.GroupHeading>
+          <FeatureComparisonTable.Group key={group.name} expanded>
+            <FeatureComparisonTable.GroupHeading>{t(group.name)}</FeatureComparisonTable.GroupHeading>
             {group.rows.map(row => (
-              <PricingComparisonTable.Row key={row.name}>
-                <PricingComparisonTable.RowHeading>{t(row.name)}</PricingComparisonTable.RowHeading>
+              <FeatureComparisonTable.Row key={row.name}>
+                <FeatureComparisonTable.RowHeading>{t(row.name)}</FeatureComparisonTable.RowHeading>
                 {row.values.map((value, index) =>
                   typeof value === 'boolean' ? (
-                    <PricingComparisonTable.Cell
+                    <FeatureComparisonTable.Cell
                       key={plans[index].name}
                       variant={value ? 'included' : 'unavailable'}
                       variantAriaLabel={t(value ? 'included' : 'unavailable')}
                     />
                   ) : (
-                    <PricingComparisonTable.Cell key={plans[index].name}>{value}</PricingComparisonTable.Cell>
+                    <FeatureComparisonTable.Cell key={plans[index].name}>{value}</FeatureComparisonTable.Cell>
                   ),
                 )}
-              </PricingComparisonTable.Row>
+              </FeatureComparisonTable.Row>
             ))}
-          </PricingComparisonTable.Group>
+          </FeatureComparisonTable.Group>
         ))}
       </Fixture>
     )
@@ -372,10 +372,10 @@ export const RowHighlighting: Story = {
     const canvas = within(canvasElement)
     const projection = await canvas.findByTestId(
       window.matchMedia('(min-width: 48rem)').matches
-        ? 'PricingComparisonTable__table'
-        : 'PricingComparisonTable__narrow',
+        ? 'FeatureComparisonTable__table'
+        : 'FeatureComparisonTable__narrow',
     )
-    const rows = within(projection).getAllByTestId('PricingComparisonTable__row')
+    const rows = within(projection).getAllByTestId('FeatureComparisonTable__row')
     expect(rows).toHaveLength(15)
     const row = rows[0]
     const cells = row.querySelectorAll('td, dd')

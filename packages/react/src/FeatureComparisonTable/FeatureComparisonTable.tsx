@@ -1,5 +1,5 @@
 import {CheckIcon, ChevronDownIcon, DashIcon} from '@primer/octicons-react'
-import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/pricing-comparison-table/colors-with-modes.css'
+import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/feature-comparison-table/colors-with-modes.css'
 import {clsx} from 'clsx'
 import React, {forwardRef, PropsWithChildren, useLayoutEffect, useMemo, useRef, useState} from 'react'
 import {Button, type ButtonBaseProps} from '../Button'
@@ -11,9 +11,9 @@ import {Tooltip} from '../Tooltip'
 import {useId} from '../hooks/useId'
 import {useProvidedRefOrCreate} from '../hooks/useRef'
 import {useWindowSize} from '../hooks/useWindowSize'
-import styles from './PricingComparisonTable.module.css'
+import styles from './FeatureComparisonTable.module.css'
 
-export type PricingComparisonTableProps = PropsWithChildren<
+export type FeatureComparisonTableProps = PropsWithChildren<
   BaseProps<HTMLDivElement> &
     React.HTMLAttributes<HTMLDivElement> & {
       'data-testid'?: string
@@ -29,27 +29,27 @@ export type PricingComparisonTableProps = PropsWithChildren<
 type ProjectedBaseProps<T> = Omit<BaseProps<T>, 'animate' | 'id' | 'ref'>
 type AnimatedProjectedBaseProps<T> = Omit<BaseProps<T>, 'id' | 'ref'>
 
-export type PricingComparisonTableItemProps = PropsWithChildren<ProjectedBaseProps<HTMLDivElement>>
-export type PricingComparisonTableLabelProps = PropsWithChildren<ProjectedBaseProps<HTMLSpanElement>>
-export type PricingComparisonTableHeadingProps = PropsWithChildren<Omit<HeadingProps, 'id' | 'ref'>>
-export type PricingComparisonTableDescriptionProps = PropsWithChildren<AnimatedProjectedBaseProps<HTMLParagraphElement>>
-export type PricingComparisonTablePriceProps = PropsWithChildren<AnimatedProjectedBaseProps<HTMLParagraphElement>>
+export type FeatureComparisonTableItemProps = PropsWithChildren<ProjectedBaseProps<HTMLDivElement>>
+export type FeatureComparisonTableLabelProps = PropsWithChildren<ProjectedBaseProps<HTMLSpanElement>>
+export type FeatureComparisonTableHeadingProps = PropsWithChildren<Omit<HeadingProps, 'id' | 'ref'>>
+export type FeatureComparisonTableDescriptionProps = PropsWithChildren<AnimatedProjectedBaseProps<HTMLParagraphElement>>
+export type FeatureComparisonTablePriceProps = PropsWithChildren<AnimatedProjectedBaseProps<HTMLParagraphElement>>
 
-type PricingComparisonTableActionBaseProps = Omit<ButtonBaseProps, 'block' | 'size' | 'variant'>
-type PricingComparisonTableAnchorActionProps = {
+type FeatureComparisonTableActionBaseProps = Omit<ButtonBaseProps, 'block' | 'size' | 'variant'>
+type FeatureComparisonTableAnchorActionProps = {
   as: 'a'
   href: string
-} & PricingComparisonTableActionBaseProps &
+} & FeatureComparisonTableActionBaseProps &
   Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, 'id'>
-type PricingComparisonTableButtonActionProps = {
+type FeatureComparisonTableButtonActionProps = {
   as: 'button'
-} & PricingComparisonTableActionBaseProps &
+} & FeatureComparisonTableActionBaseProps &
   Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'id'>
-export type PricingComparisonTableActionProps = PropsWithChildren<
-  PricingComparisonTableAnchorActionProps | PricingComparisonTableButtonActionProps
+export type FeatureComparisonTableActionProps = PropsWithChildren<
+  FeatureComparisonTableAnchorActionProps | FeatureComparisonTableButtonActionProps
 >
 
-export type PricingComparisonTableGroupProps = PropsWithChildren<
+export type FeatureComparisonTableGroupProps = PropsWithChildren<
   ProjectedBaseProps<HTMLDivElement> & {
     expanded?:
       | boolean
@@ -60,16 +60,16 @@ export type PricingComparisonTableGroupProps = PropsWithChildren<
         }
   }
 >
-export type PricingComparisonTableGroupHeadingProps = PropsWithChildren<Omit<HeadingProps, 'id' | 'ref'>>
-export type PricingComparisonTableRowProps = PropsWithChildren<ProjectedBaseProps<HTMLDivElement>>
-export type PricingComparisonTableRowHeadingProps = PropsWithChildren<
+export type FeatureComparisonTableGroupHeadingProps = PropsWithChildren<Omit<HeadingProps, 'id' | 'ref'>>
+export type FeatureComparisonTableRowProps = PropsWithChildren<ProjectedBaseProps<HTMLDivElement>>
+export type FeatureComparisonTableRowHeadingProps = PropsWithChildren<
   ProjectedBaseProps<HTMLDivElement> & {
     infoTooltip?: string
     infoTooltipAriaLabel?: string
   }
 >
 
-type PricingComparisonTableCellVariantProps =
+type FeatureComparisonTableCellVariantProps =
   | {
       variant?: undefined
       variantAriaLabel?: never
@@ -79,57 +79,57 @@ type PricingComparisonTableCellVariantProps =
       variantAriaLabel?: string
     }
 
-export type PricingComparisonTableCellProps = PropsWithChildren<
-  ProjectedBaseProps<HTMLDivElement> & PricingComparisonTableCellVariantProps
+export type FeatureComparisonTableCellProps = PropsWithChildren<
+  ProjectedBaseProps<HTMLDivElement> & FeatureComparisonTableCellVariantProps
 >
 
 const testIds = {
-  root: 'PricingComparisonTable',
-  heading: 'PricingComparisonTable__heading',
-  narrow: 'PricingComparisonTable__narrow',
-  regularSummary: 'PricingComparisonTable__regularSummary',
-  table: 'PricingComparisonTable__table',
-  item: 'PricingComparisonTable__item',
-  label: 'PricingComparisonTable__label',
-  price: 'PricingComparisonTable__price',
-  group: 'PricingComparisonTable__group',
-  row: 'PricingComparisonTable__row',
-  rowHeading: 'PricingComparisonTable__rowHeading',
-  cell: 'PricingComparisonTable__cell',
+  root: 'FeatureComparisonTable',
+  heading: 'FeatureComparisonTable__heading',
+  narrow: 'FeatureComparisonTable__narrow',
+  regularSummary: 'FeatureComparisonTable__regularSummary',
+  table: 'FeatureComparisonTable__table',
+  item: 'FeatureComparisonTable__item',
+  label: 'FeatureComparisonTable__label',
+  price: 'FeatureComparisonTable__price',
+  group: 'FeatureComparisonTable__group',
+  row: 'FeatureComparisonTable__row',
+  rowHeading: 'FeatureComparisonTable__rowHeading',
+  cell: 'FeatureComparisonTable__cell',
 }
 
-const Item = (_props: PricingComparisonTableItemProps) => null
-const Label = (_props: PricingComparisonTableLabelProps) => null
-const Heading = (_props: PricingComparisonTableHeadingProps) => null
-const Description = (_props: PricingComparisonTableDescriptionProps) => null
-const Price = (_props: PricingComparisonTablePriceProps) => null
-const PrimaryAction = (_props: PricingComparisonTableActionProps) => null
-const SecondaryAction = (_props: PricingComparisonTableActionProps) => null
-const Group = (_props: PricingComparisonTableGroupProps) => null
-const GroupHeading = (_props: PricingComparisonTableGroupHeadingProps) => null
-const Row = (_props: PricingComparisonTableRowProps) => null
-const RowHeading = (_props: PricingComparisonTableRowHeadingProps) => null
-const Cell = (_props: PricingComparisonTableCellProps) => null
+const Item = (_props: FeatureComparisonTableItemProps) => null
+const Label = (_props: FeatureComparisonTableLabelProps) => null
+const Heading = (_props: FeatureComparisonTableHeadingProps) => null
+const Description = (_props: FeatureComparisonTableDescriptionProps) => null
+const Price = (_props: FeatureComparisonTablePriceProps) => null
+const PrimaryAction = (_props: FeatureComparisonTableActionProps) => null
+const SecondaryAction = (_props: FeatureComparisonTableActionProps) => null
+const Group = (_props: FeatureComparisonTableGroupProps) => null
+const GroupHeading = (_props: FeatureComparisonTableGroupHeadingProps) => null
+const Row = (_props: FeatureComparisonTableRowProps) => null
+const RowHeading = (_props: FeatureComparisonTableRowHeadingProps) => null
+const Cell = (_props: FeatureComparisonTableCellProps) => null
 
 type NormalizedItem = {
-  element: React.ReactElement<PricingComparisonTableItemProps>
-  label: React.ReactElement<PricingComparisonTableLabelProps> | null
-  heading: React.ReactElement<PricingComparisonTableHeadingProps> | null
-  description: React.ReactElement<PricingComparisonTableDescriptionProps> | null
-  price: React.ReactElement<PricingComparisonTablePriceProps> | null
-  primaryAction: React.ReactElement<PricingComparisonTableActionProps> | null
-  secondaryAction: React.ReactElement<PricingComparisonTableActionProps> | null
+  element: React.ReactElement<FeatureComparisonTableItemProps>
+  label: React.ReactElement<FeatureComparisonTableLabelProps> | null
+  heading: React.ReactElement<FeatureComparisonTableHeadingProps> | null
+  description: React.ReactElement<FeatureComparisonTableDescriptionProps> | null
+  price: React.ReactElement<FeatureComparisonTablePriceProps> | null
+  primaryAction: React.ReactElement<FeatureComparisonTableActionProps> | null
+  secondaryAction: React.ReactElement<FeatureComparisonTableActionProps> | null
 }
 
 type NormalizedRow = {
-  element: React.ReactElement<PricingComparisonTableRowProps>
-  heading: React.ReactElement<PricingComparisonTableRowHeadingProps> | null
-  cells: Array<React.ReactElement<PricingComparisonTableCellProps> | null>
+  element: React.ReactElement<FeatureComparisonTableRowProps>
+  heading: React.ReactElement<FeatureComparisonTableRowHeadingProps> | null
+  cells: Array<React.ReactElement<FeatureComparisonTableCellProps> | null>
 }
 
 type NormalizedGroup = {
-  element: React.ReactElement<PricingComparisonTableGroupProps>
-  heading: React.ReactElement<PricingComparisonTableGroupHeadingProps> | null
+  element: React.ReactElement<FeatureComparisonTableGroupProps>
+  heading: React.ReactElement<FeatureComparisonTableGroupHeadingProps> | null
   identity: string
   rows: NormalizedRow[]
 }
@@ -141,13 +141,13 @@ type GroupState = {
   open: boolean
 }
 
-const resolveExpanded = (expanded: PricingComparisonTableGroupProps['expanded'], breakpoint: BreakpointCategory) => {
+const resolveExpanded = (expanded: FeatureComparisonTableGroupProps['expanded'], breakpoint: BreakpointCategory) => {
   if (typeof expanded === 'boolean') return expanded
   if (expanded) return expanded[breakpoint]
   return breakpoint !== 'narrow'
 }
 
-const getExpandedSignature = (expanded: PricingComparisonTableGroupProps['expanded']) => {
+const getExpandedSignature = (expanded: FeatureComparisonTableGroupProps['expanded']) => {
   if (typeof expanded === 'boolean') return String(expanded)
   if (!expanded) return 'default'
   return `${expanded.narrow}-${expanded.regular}-${expanded.wide}`
@@ -169,7 +169,7 @@ const renderItemHeading = (
     className,
     id: _id,
     ...rest
-  } = item.heading.props as PricingComparisonTableHeadingProps & {id?: string}
+  } = item.heading.props as FeatureComparisonTableHeadingProps & {id?: string}
   return (
     <HeadingComponent as={as} size={size} {...rest} {...props} className={clsx(className, props?.className)}>
       {children}
@@ -178,7 +178,7 @@ const renderItemHeading = (
 }
 
 const renderTableHeading = (
-  heading: React.ReactElement<PricingComparisonTableHeadingProps>,
+  heading: React.ReactElement<FeatureComparisonTableHeadingProps>,
   id: string,
   className?: string,
 ) => {
@@ -189,7 +189,7 @@ const renderTableHeading = (
     className: headingClassName,
     id: _id,
     ...rest
-  } = heading.props as PricingComparisonTableHeadingProps & {id?: string}
+  } = heading.props as FeatureComparisonTableHeadingProps & {id?: string}
 
   return (
     <HeadingComponent
@@ -212,7 +212,7 @@ const renderDescription = (description: NormalizedItem['description']) => {
     className,
     id: _id,
     ...rest
-  } = description.props as PricingComparisonTableDescriptionProps & {
+  } = description.props as FeatureComparisonTableDescriptionProps & {
     id?: string
   }
   return (
@@ -220,7 +220,7 @@ const renderDescription = (description: NormalizedItem['description']) => {
       as="p"
       size="200"
       variant="muted"
-      className={clsx(styles.PricingComparisonTable__description, className)}
+      className={clsx(styles.FeatureComparisonTable__description, className)}
       {...rest}
     >
       {children}
@@ -230,7 +230,7 @@ const renderDescription = (description: NormalizedItem['description']) => {
 
 const renderPrice = (price: NormalizedItem['price']) => {
   if (!price) return null
-  const {children, className, id: _id, ...rest} = price.props as PricingComparisonTablePriceProps & {id?: string}
+  const {children, className, id: _id, ...rest} = price.props as FeatureComparisonTablePriceProps & {id?: string}
 
   return (
     <Text
@@ -238,7 +238,7 @@ const renderPrice = (price: NormalizedItem['price']) => {
       size="100"
       variant="default"
       weight="semibold"
-      className={clsx(styles.PricingComparisonTable__price, className)}
+      className={clsx(styles.FeatureComparisonTable__price, className)}
       data-testid={testIds.price}
       {...rest}
     >
@@ -248,7 +248,7 @@ const renderPrice = (price: NormalizedItem['price']) => {
 }
 
 const renderAction = (
-  action: React.ReactElement<PricingComparisonTableActionProps> | null,
+  action: React.ReactElement<FeatureComparisonTableActionProps> | null,
   variant: 'primary' | 'secondary',
 ) => {
   if (!action) return null
@@ -258,12 +258,12 @@ const renderAction = (
     className,
     id: _id,
     ...rest
-  } = action.props as PricingComparisonTableActionProps & {
+  } = action.props as FeatureComparisonTableActionProps & {
     id?: string
   }
   return (
     <Button
-      {...(rest as Omit<PricingComparisonTableActionProps, 'as' | 'children'>)}
+      {...(rest as Omit<FeatureComparisonTableActionProps, 'as' | 'children'>)}
       as={as}
       className={className}
       variant={variant}
@@ -283,37 +283,37 @@ const renderItemSummary = (item: NormalizedItem, index: number, projection: 'reg
     className: labelClassName,
     id: _labelId,
     ...labelRest
-  } = (item.label?.props as (PricingComparisonTableLabelProps & {id?: string}) | undefined) ?? {}
+  } = (item.label?.props as (FeatureComparisonTableLabelProps & {id?: string}) | undefined) ?? {}
 
   return (
     <section
       className={clsx(
-        styles.PricingComparisonTable__item,
-        showLabel && styles['PricingComparisonTable__headingGrid--hasLabel'],
-        item.label && styles.PricingComparisonTable__promoted,
+        styles.FeatureComparisonTable__item,
+        showLabel && styles['FeatureComparisonTable__headingGrid--hasLabel'],
+        item.label && styles.FeatureComparisonTable__promoted,
         className,
       )}
       data-projection={projection}
       data-testid={testIds.item}
     >
       {showLabel ? (
-        <div className={styles.PricingComparisonTable__labelCell} data-testid={testIds.label}>
-          <span className={clsx(styles.PricingComparisonTable__label, labelClassName)} {...labelRest}>
+        <div className={styles.FeatureComparisonTable__labelCell} data-testid={testIds.label}>
+          <span className={clsx(styles.FeatureComparisonTable__label, labelClassName)} {...labelRest}>
             {labelChildren}
           </span>
         </div>
       ) : null}
       <div
         className={clsx(
-          styles.PricingComparisonTable__itemContent,
-          styles['PricingComparisonTable__itemContent--compact'],
+          styles.FeatureComparisonTable__itemContent,
+          styles['FeatureComparisonTable__itemContent--compact'],
         )}
       >
-        {renderItemHeading(item, index + 1, {className: styles.PricingComparisonTable__heading})}
+        {renderItemHeading(item, index + 1, {className: styles.FeatureComparisonTable__heading})}
         {renderDescription(item.description)}
         {renderPrice(item.price)}
         {item.primaryAction || item.secondaryAction ? (
-          <div className={styles.PricingComparisonTable__actions}>
+          <div className={styles.FeatureComparisonTable__actions}>
             {renderAction(item.primaryAction, 'primary')}
             {renderAction(item.secondaryAction, 'secondary')}
           </div>
@@ -332,14 +332,14 @@ const renderRowHeading = (heading: NormalizedRow['heading']) => {
     infoTooltip,
     infoTooltipAriaLabel,
     ...rest
-  } = heading.props as PricingComparisonTableRowHeadingProps & {id?: string}
+  } = heading.props as FeatureComparisonTableRowHeadingProps & {id?: string}
 
   return (
     <Text
       as="span"
       size="200"
       variant="muted"
-      className={clsx(styles.PricingComparisonTable__rowHeading, className)}
+      className={clsx(styles.FeatureComparisonTable__rowHeading, className)}
       {...rest}
     >
       {children}
@@ -347,7 +347,7 @@ const renderRowHeading = (heading: NormalizedRow['heading']) => {
         <Tooltip text={infoTooltip} direction="n">
           <button
             type="button"
-            className={styles.PricingComparisonTable__info}
+            className={styles.FeatureComparisonTable__info}
             aria-label={
               infoTooltipAriaLabel ??
               // eslint-disable-next-line i18n-text/no-en
@@ -362,7 +362,7 @@ const renderRowHeading = (heading: NormalizedRow['heading']) => {
   )
 }
 
-const renderCell = (cell: React.ReactElement<PricingComparisonTableCellProps> | null) => {
+const renderCell = (cell: React.ReactElement<FeatureComparisonTableCellProps> | null) => {
   if (!cell) return null
   const {
     children,
@@ -371,7 +371,7 @@ const renderCell = (cell: React.ReactElement<PricingComparisonTableCellProps> | 
     variant,
     variantAriaLabel,
     ...rest
-  } = cell.props as PricingComparisonTableCellProps & {id?: string}
+  } = cell.props as FeatureComparisonTableCellProps & {id?: string}
   const resolvedVariantAriaLabel = variantAriaLabel ?? (variant === 'included' ? 'Included' : 'Unavailable')
 
   return (
@@ -379,7 +379,7 @@ const renderCell = (cell: React.ReactElement<PricingComparisonTableCellProps> | 
       as="div"
       size="200"
       variant="muted"
-      className={clsx(styles.PricingComparisonTable__cell, className)}
+      className={clsx(styles.FeatureComparisonTable__cell, className)}
       data-testid={testIds.cell}
       {...rest}
     >
@@ -387,8 +387,8 @@ const renderCell = (cell: React.ReactElement<PricingComparisonTableCellProps> | 
         <>
           <span
             className={clsx(
-              styles.PricingComparisonTable__status,
-              variant === 'included' && styles['PricingComparisonTable__status--included'],
+              styles.FeatureComparisonTable__status,
+              variant === 'included' && styles['FeatureComparisonTable__status--included'],
             )}
             aria-hidden="true"
           >
@@ -402,7 +402,7 @@ const renderCell = (cell: React.ReactElement<PricingComparisonTableCellProps> | 
   )
 }
 
-const PricingComparisonTableRoot = forwardRef<HTMLDivElement, PricingComparisonTableProps>(
+const FeatureComparisonTableRoot = forwardRef<HTMLDivElement, FeatureComparisonTableProps>(
   (
     {
       animate,
@@ -435,16 +435,16 @@ const PricingComparisonTableRoot = forwardRef<HTMLDivElement, PricingComparisonT
 
     const {heading, items, groups} = useMemo(() => {
       const rootChildren = React.Children.toArray(children)
-      let rootHeading: React.ReactElement<PricingComparisonTableHeadingProps> | null = null
+      let rootHeading: React.ReactElement<FeatureComparisonTableHeadingProps> | null = null
 
       for (const child of rootChildren) {
         if (React.isValidElement(child) && child.type === Heading) {
-          rootHeading = child as React.ReactElement<PricingComparisonTableHeadingProps>
+          rootHeading = child as React.ReactElement<FeatureComparisonTableHeadingProps>
         }
       }
 
       const itemElements = rootChildren.filter(
-        (child): child is React.ReactElement<PricingComparisonTableItemProps> =>
+        (child): child is React.ReactElement<FeatureComparisonTableItemProps> =>
           React.isValidElement(child) && child.type === Item,
       )
 
@@ -461,15 +461,15 @@ const PricingComparisonTableRoot = forwardRef<HTMLDivElement, PricingComparisonT
 
         for (const child of React.Children.toArray(element.props.children)) {
           if (!React.isValidElement(child)) continue
-          if (child.type === Label) item.label = child as React.ReactElement<PricingComparisonTableLabelProps>
-          if (child.type === Heading) item.heading = child as React.ReactElement<PricingComparisonTableHeadingProps>
+          if (child.type === Label) item.label = child as React.ReactElement<FeatureComparisonTableLabelProps>
+          if (child.type === Heading) item.heading = child as React.ReactElement<FeatureComparisonTableHeadingProps>
           if (child.type === Description)
-            item.description = child as React.ReactElement<PricingComparisonTableDescriptionProps>
-          if (child.type === Price) item.price = child as React.ReactElement<PricingComparisonTablePriceProps>
+            item.description = child as React.ReactElement<FeatureComparisonTableDescriptionProps>
+          if (child.type === Price) item.price = child as React.ReactElement<FeatureComparisonTablePriceProps>
           if (child.type === PrimaryAction)
-            item.primaryAction = child as React.ReactElement<PricingComparisonTableActionProps>
+            item.primaryAction = child as React.ReactElement<FeatureComparisonTableActionProps>
           if (child.type === SecondaryAction)
-            item.secondaryAction = child as React.ReactElement<PricingComparisonTableActionProps>
+            item.secondaryAction = child as React.ReactElement<FeatureComparisonTableActionProps>
         }
 
         return item
@@ -477,7 +477,7 @@ const PricingComparisonTableRoot = forwardRef<HTMLDivElement, PricingComparisonT
 
       const normalizedGroups = rootChildren
         .filter(
-          (child): child is React.ReactElement<PricingComparisonTableGroupProps> =>
+          (child): child is React.ReactElement<FeatureComparisonTableGroupProps> =>
             React.isValidElement(child) && child.type === Group,
         )
         .map((element, groupIndex) => {
@@ -491,31 +491,31 @@ const PricingComparisonTableRoot = forwardRef<HTMLDivElement, PricingComparisonT
           for (const child of React.Children.toArray(element.props.children)) {
             if (!React.isValidElement(child)) continue
             if (child.type === GroupHeading) {
-              group.heading = child as React.ReactElement<PricingComparisonTableGroupHeadingProps>
+              group.heading = child as React.ReactElement<FeatureComparisonTableGroupHeadingProps>
             }
             if (child.type === Row) {
-              const rowElement = child as React.ReactElement<PricingComparisonTableRowProps>
+              const rowElement = child as React.ReactElement<FeatureComparisonTableRowProps>
               const row: NormalizedRow = {element: rowElement, heading: null, cells: []}
               const rowChildren = React.Children.toArray(rowElement.props.children)
               const cellElements = rowChildren.filter(
-                (rowChild): rowChild is React.ReactElement<PricingComparisonTableCellProps> =>
+                (rowChild): rowChild is React.ReactElement<FeatureComparisonTableCellProps> =>
                   React.isValidElement(rowChild) && rowChild.type === Cell,
               )
 
               if (process.env.NODE_ENV !== 'production' && cellElements.length !== normalizedItems.length) {
                 // eslint-disable-next-line no-console
                 console.warn(
-                  `PricingComparisonTable.Row: expected ${normalizedItems.length} Cell children to match the number of items, but received ${cellElements.length}. Missing cells render empty and extra cells are ignored.`,
+                  `FeatureComparisonTable.Row: expected ${normalizedItems.length} Cell children to match the number of items, but received ${cellElements.length}. Missing cells render empty and extra cells are ignored.`,
                 )
               }
 
               for (const rowChild of rowChildren) {
                 if (!React.isValidElement(rowChild)) continue
                 if (rowChild.type === RowHeading) {
-                  row.heading = rowChild as React.ReactElement<PricingComparisonTableRowHeadingProps>
+                  row.heading = rowChild as React.ReactElement<FeatureComparisonTableRowHeadingProps>
                 }
                 if (rowChild.type === Cell && row.cells.length < normalizedItems.length) {
-                  row.cells.push(rowChild as React.ReactElement<PricingComparisonTableCellProps>)
+                  row.cells.push(rowChild as React.ReactElement<FeatureComparisonTableCellProps>)
                 }
               }
 
@@ -626,10 +626,10 @@ const PricingComparisonTableRoot = forwardRef<HTMLDivElement, PricingComparisonT
     return (
       <div
         className={clsx(
-          styles.PricingComparisonTable,
-          styles[`PricingComparisonTable--items${items.length}`],
-          hasStickyHeaders && styles['PricingComparisonTable--stickyHeaders'],
-          rowHighlighting && styles['PricingComparisonTable--rowHighlighting'],
+          styles.FeatureComparisonTable,
+          styles[`FeatureComparisonTable--items${items.length}`],
+          hasStickyHeaders && styles['FeatureComparisonTable--stickyHeaders'],
+          rowHighlighting && styles['FeatureComparisonTable--rowHighlighting'],
           animationClasses,
           className,
         )}
@@ -641,7 +641,7 @@ const PricingComparisonTableRoot = forwardRef<HTMLDivElement, PricingComparisonT
         style={{...animationInlineStyles, ...style}}
         {...rest}
       >
-        <div className={styles.PricingComparisonTable__narrow} data-testid={testIds.narrow}>
+        <div className={styles.FeatureComparisonTable__narrow} data-testid={testIds.narrow}>
           {heading ? renderTableHeading(heading, narrowHeadingId, 'visually-hidden') : null}
           {groups.map((group, groupIndex) => {
             const groupId = `${instanceId}-narrow-group-${groupIndex}`
@@ -654,11 +654,11 @@ const PricingComparisonTableRoot = forwardRef<HTMLDivElement, PricingComparisonT
               className: groupHeadingClassName,
               id: _groupHeadingId,
               ...groupHeadingRest
-            } = (headingProps as (PricingComparisonTableGroupHeadingProps & {id?: string}) | undefined) ?? {}
+            } = (headingProps as (FeatureComparisonTableGroupHeadingProps & {id?: string}) | undefined) ?? {}
 
             return (
               <details
-                className={clsx(styles.PricingComparisonTable__group, group.element.props.className)}
+                className={clsx(styles.FeatureComparisonTable__group, group.element.props.className)}
                 data-testid={testIds.group}
                 key={group.identity}
                 open={groupOpen}
@@ -686,15 +686,15 @@ const PricingComparisonTableRoot = forwardRef<HTMLDivElement, PricingComparisonT
                     aria-hidden="true"
                     size={16}
                     className={clsx(
-                      styles.PricingComparisonTable__chevron,
-                      groupOpen && styles['PricingComparisonTable__chevron--expanded'],
+                      styles.FeatureComparisonTable__chevron,
+                      groupOpen && styles['FeatureComparisonTable__chevron--expanded'],
                     )}
                   />
                 </summary>
                 <div id={groupId} hidden={!groupOpen}>
                   {group.rows.map((row, rowIndex) => (
                     <div
-                      className={clsx(styles.PricingComparisonTable__row, row.element.props.className)}
+                      className={clsx(styles.FeatureComparisonTable__row, row.element.props.className)}
                       data-testid={testIds.row}
                       key={`${groupId}-row-${rowIndex}`}
                     >
@@ -702,12 +702,12 @@ const PricingComparisonTableRoot = forwardRef<HTMLDivElement, PricingComparisonT
                       <dl>
                         {items.map((item, itemIndex) => (
                           <React.Fragment key={`${groupId}-row-${rowIndex}-item-${itemIndex}`}>
-                            <dt className={clsx(item.label && styles.PricingComparisonTable__promoted)}>
+                            <dt className={clsx(item.label && styles.FeatureComparisonTable__promoted)}>
                               {renderItemHeading(item, itemIndex + 1, {
-                                className: styles.PricingComparisonTable__planName,
+                                className: styles.FeatureComparisonTable__planName,
                               })}
                             </dt>
-                            <dd className={clsx(item.label && styles.PricingComparisonTable__promoted)}>
+                            <dd className={clsx(item.label && styles.FeatureComparisonTable__promoted)}>
                               {renderCell(row.cells[itemIndex])}
                             </dd>
                           </React.Fragment>
@@ -721,12 +721,12 @@ const PricingComparisonTableRoot = forwardRef<HTMLDivElement, PricingComparisonT
           })}
         </div>
 
-        <div className={styles.PricingComparisonTable__regularSummary} data-testid={testIds.regularSummary}>
+        <div className={styles.FeatureComparisonTable__regularSummary} data-testid={testIds.regularSummary}>
           {Array.from({length: Math.ceil(items.length / 2)}, (_, rowIndex) => {
             const rowItems = items.slice(rowIndex * 2, rowIndex * 2 + 2)
 
             return (
-              <div className={styles.PricingComparisonTable__summaryRow} key={`${instanceId}-summary-row-${rowIndex}`}>
+              <div className={styles.FeatureComparisonTable__summaryRow} key={`${instanceId}-summary-row-${rowIndex}`}>
                 {rowItems.map((item, itemIndex) => {
                   const absoluteItemIndex = rowIndex * 2 + itemIndex
 
@@ -744,37 +744,37 @@ const PricingComparisonTableRoot = forwardRef<HTMLDivElement, PricingComparisonT
         <table
           aria-label={ariaLabel}
           aria-labelledby={resolvedTableAriaLabelledBy}
-          className={styles.PricingComparisonTable__table}
+          className={styles.FeatureComparisonTable__table}
           data-testid={testIds.table}
           ref={tableRef}
         >
           <colgroup>
-            <col className={styles.PricingComparisonTable__featureColumn} />
+            <col className={styles.FeatureComparisonTable__featureColumn} />
             {items.map((_, itemIndex) => (
               <col key={`${instanceId}-item-column-${itemIndex}`} />
             ))}
           </colgroup>
           <thead
-            className={clsx(items.some(item => item.label) && styles['PricingComparisonTable__headingGrid--hasLabel'])}
+            className={clsx(items.some(item => item.label) && styles['FeatureComparisonTable__headingGrid--hasLabel'])}
           >
             <tr>
               <th scope="col">
                 {heading ? (
-                  renderTableHeading(heading, tableHeadingId, styles.PricingComparisonTable__tableHeading)
+                  renderTableHeading(heading, tableHeadingId, styles.FeatureComparisonTable__tableHeading)
                 ) : (
                   <span className="visually-hidden">Feature</span>
                 )}
               </th>
               {items.map((item, itemIndex) => (
                 <th
-                  className={clsx(item.label && styles.PricingComparisonTable__promoted)}
+                  className={clsx(item.label && styles.FeatureComparisonTable__promoted)}
                   scope="col"
                   key={`${instanceId}-item-${itemIndex}`}
                 >
-                  <div className={styles.PricingComparisonTable__compactHeading}>
+                  <div className={styles.FeatureComparisonTable__compactHeading}>
                     {renderItemHeading(item, itemIndex + 1)}
                   </div>
-                  <div className={styles.PricingComparisonTable__wideSummary}>
+                  <div className={styles.FeatureComparisonTable__wideSummary}>
                     {renderItemSummary(item, itemIndex, 'wide')}
                   </div>
                 </th>
@@ -793,19 +793,19 @@ const PricingComparisonTableRoot = forwardRef<HTMLDivElement, PricingComparisonT
               className: groupHeadingClassName,
               id: _groupHeadingId,
               ...groupHeadingRest
-            } = (headingProps as (PricingComparisonTableGroupHeadingProps & {id?: string}) | undefined) ?? {}
+            } = (headingProps as (FeatureComparisonTableGroupHeadingProps & {id?: string}) | undefined) ?? {}
 
             return (
               <React.Fragment key={group.identity}>
                 <tbody>
                   <tr>
                     <th colSpan={items.length + 1} scope="rowgroup">
-                      <div className={styles.PricingComparisonTable__groupBackground} aria-hidden="true">
+                      <div className={styles.FeatureComparisonTable__groupBackground} aria-hidden="true">
                         <span />
                         {items.map((item, itemIndex) => (
                           <span
                             key={itemIndex}
-                            className={clsx(item.label && styles.PricingComparisonTable__promoted)}
+                            className={clsx(item.label && styles.FeatureComparisonTable__promoted)}
                           />
                         ))}
                       </div>
@@ -830,8 +830,8 @@ const PricingComparisonTableRoot = forwardRef<HTMLDivElement, PricingComparisonT
                             aria-hidden="true"
                             size={16}
                             className={clsx(
-                              styles.PricingComparisonTable__chevron,
-                              groupOpen && styles['PricingComparisonTable__chevron--expanded'],
+                              styles.FeatureComparisonTable__chevron,
+                              groupOpen && styles['FeatureComparisonTable__chevron--expanded'],
                             )}
                           />
                         </button>
@@ -847,7 +847,7 @@ const PricingComparisonTableRoot = forwardRef<HTMLDivElement, PricingComparisonT
                 >
                   {group.rows.map((row, rowIndex) => (
                     <tr
-                      className={clsx(styles.PricingComparisonTable__row, row.element.props.className)}
+                      className={clsx(styles.FeatureComparisonTable__row, row.element.props.className)}
                       data-testid={testIds.row}
                       key={`${groupId}-row-${rowIndex}`}
                     >
@@ -856,7 +856,7 @@ const PricingComparisonTableRoot = forwardRef<HTMLDivElement, PricingComparisonT
                       </th>
                       {row.cells.map((cell, cellIndex) => (
                         <td
-                          className={clsx(items[cellIndex].label && styles.PricingComparisonTable__promoted)}
+                          className={clsx(items[cellIndex].label && styles.FeatureComparisonTable__promoted)}
                           key={`${groupId}-row-${rowIndex}-cell-${cellIndex}`}
                         >
                           {renderCell(cell)}
@@ -875,9 +875,9 @@ const PricingComparisonTableRoot = forwardRef<HTMLDivElement, PricingComparisonT
 )
 
 /**
- * Pricing comparison tables compare plan metadata and feature availability across two to four plans.
+ * Feature comparison tables compare plan metadata and feature availability across two to four plans.
  */
-export const PricingComparisonTable = Object.assign(PricingComparisonTableRoot, {
+export const FeatureComparisonTable = Object.assign(FeatureComparisonTableRoot, {
   Item,
   Label,
   Heading,

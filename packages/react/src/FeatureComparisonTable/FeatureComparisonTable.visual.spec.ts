@@ -6,10 +6,10 @@
 import {test, expect} from '@playwright/test'
 
 // eslint-disable-next-line i18n-text/no-en
-test.describe('Visual Comparison: PricingComparisonTable', () => {
-  test('PricingComparisonTable / Default', async ({page}) => {
+test.describe('Visual Comparison: FeatureComparisonTable', () => {
+  test('FeatureComparisonTable / Default', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-pricingcomparisontable--default&viewMode=story',
+      'http://localhost:6006/iframe.html?args=&id=components-featurecomparisontable--default&viewMode=story',
       {waitUntil: 'networkidle'},
     )
     await page.locator('body.sb-show-main').waitFor({state: 'visible'})
@@ -18,9 +18,9 @@ test.describe('Visual Comparison: PricingComparisonTable', () => {
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
-  test('PricingComparisonTable / Playground', async ({page}) => {
+  test('FeatureComparisonTable / Playground', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-pricingcomparisontable--playground&viewMode=story',
+      'http://localhost:6006/iframe.html?args=&id=components-featurecomparisontable--playground&viewMode=story',
       {waitUntil: 'networkidle'},
     )
     await page.locator('body.sb-show-main').waitFor({state: 'visible'})
@@ -29,9 +29,9 @@ test.describe('Visual Comparison: PricingComparisonTable', () => {
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
-  test('PricingComparisonTable / Two Plans', async ({page}) => {
+  test('FeatureComparisonTable / Two Plans', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-pricingcomparisontable-features--two-plans&viewMode=story',
+      'http://localhost:6006/iframe.html?args=&id=components-featurecomparisontable-features--two-plans&viewMode=story',
       {waitUntil: 'networkidle'},
     )
     await page.locator('body.sb-show-main').waitFor({state: 'visible'})
@@ -40,9 +40,9 @@ test.describe('Visual Comparison: PricingComparisonTable', () => {
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
-  test('PricingComparisonTable / Three Plans', async ({page}) => {
+  test('FeatureComparisonTable / Three Plans', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-pricingcomparisontable-features--three-plans&viewMode=story',
+      'http://localhost:6006/iframe.html?args=&id=components-featurecomparisontable-features--three-plans&viewMode=story',
       {waitUntil: 'networkidle'},
     )
     await page.locator('body.sb-show-main').waitFor({state: 'visible'})
@@ -51,9 +51,9 @@ test.describe('Visual Comparison: PricingComparisonTable', () => {
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
-  test('PricingComparisonTable / Four Plans', async ({page}) => {
+  test('FeatureComparisonTable / Four Plans', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-pricingcomparisontable-features--four-plans&viewMode=story',
+      'http://localhost:6006/iframe.html?args=&id=components-featurecomparisontable-features--four-plans&viewMode=story',
       {waitUntil: 'networkidle'},
     )
     await page.locator('body.sb-show-main').waitFor({state: 'visible'})
@@ -65,9 +65,9 @@ test.describe('Visual Comparison: PricingComparisonTable', () => {
   // eslint-disable-next-line i18n-text/no-en
   test.describe('Mobile viewport test for Mobile Viewport', () => {
     test.use({viewport: {width: 360, height: 800}})
-    test('PricingComparisonTable / Mobile Viewport', async ({page}) => {
+    test('FeatureComparisonTable / Mobile Viewport', async ({page}) => {
       await page.goto(
-        'http://localhost:6006/iframe.html?args=&id=components-pricingcomparisontable-features--mobile-viewport&viewMode=story',
+        'http://localhost:6006/iframe.html?args=&id=components-featurecomparisontable-features--mobile-viewport&viewMode=story',
         {waitUntil: 'networkidle'},
       )
       await page.locator('body.sb-show-main').waitFor({state: 'visible'})
@@ -80,9 +80,9 @@ test.describe('Visual Comparison: PricingComparisonTable', () => {
   // eslint-disable-next-line i18n-text/no-en
   test.describe('Tablet viewport test for Tablet Viewport', () => {
     test.use({viewport: {width: 834, height: 1112}})
-    test('PricingComparisonTable / Tablet Viewport', async ({page}) => {
+    test('FeatureComparisonTable / Tablet Viewport', async ({page}) => {
       await page.goto(
-        'http://localhost:6006/iframe.html?args=&id=components-pricingcomparisontable-features--tablet-viewport&viewMode=story',
+        'http://localhost:6006/iframe.html?args=&id=components-featurecomparisontable-features--tablet-viewport&viewMode=story',
         {waitUntil: 'networkidle'},
       )
       await page.locator('body.sb-show-main').waitFor({state: 'visible'})
@@ -91,9 +91,9 @@ test.describe('Visual Comparison: PricingComparisonTable', () => {
       await expect(page).toHaveScreenshot({fullPage: true})
     })
   })
-  test('PricingComparisonTable / Collapsed Groups', async ({page}) => {
+  test('FeatureComparisonTable / Collapsed Groups', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-pricingcomparisontable-features--collapsed-groups&viewMode=story',
+      'http://localhost:6006/iframe.html?args=&id=components-featurecomparisontable-features--collapsed-groups&viewMode=story',
       {waitUntil: 'networkidle'},
     )
     await page.locator('body.sb-show-main').waitFor({state: 'visible'})
@@ -102,9 +102,9 @@ test.describe('Visual Comparison: PricingComparisonTable', () => {
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
-  test('PricingComparisonTable / Responsive Group Expansion', async ({page}) => {
+  test('FeatureComparisonTable / Responsive Group Expansion', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-pricingcomparisontable-features--responsive-group-expansion&viewMode=story',
+      'http://localhost:6006/iframe.html?args=&id=components-featurecomparisontable-features--responsive-group-expansion&viewMode=story',
       {waitUntil: 'networkidle'},
     )
     await page.locator('body.sb-show-main').waitFor({state: 'visible'})
@@ -113,9 +113,9 @@ test.describe('Visual Comparison: PricingComparisonTable', () => {
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
-  test('PricingComparisonTable / Sticky Headers', async ({page}) => {
+  test('FeatureComparisonTable / Sticky Headers', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-pricingcomparisontable-features--sticky-headers&viewMode=story',
+      'http://localhost:6006/iframe.html?args=&id=components-featurecomparisontable-features--sticky-headers&viewMode=story',
       {waitUntil: 'networkidle'},
     )
     await page.locator('body.sb-show-main').waitFor({state: 'visible'})
@@ -124,9 +124,9 @@ test.describe('Visual Comparison: PricingComparisonTable', () => {
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
-  test('PricingComparisonTable / Dark Mode', async ({page}) => {
+  test('FeatureComparisonTable / Dark Mode', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-pricingcomparisontable-features--dark-mode&viewMode=story',
+      'http://localhost:6006/iframe.html?args=&id=components-featurecomparisontable-features--dark-mode&viewMode=story',
       {waitUntil: 'networkidle'},
     )
     await page.locator('body.sb-show-main').waitFor({state: 'visible'})
@@ -135,9 +135,9 @@ test.describe('Visual Comparison: PricingComparisonTable', () => {
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
-  test('PricingComparisonTable / Row Highlighting', async ({page}) => {
+  test('FeatureComparisonTable / Row Highlighting', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-pricingcomparisontable-features--row-highlighting&viewMode=story',
+      'http://localhost:6006/iframe.html?args=&id=components-featurecomparisontable-features--row-highlighting&viewMode=story',
       {waitUntil: 'networkidle'},
     )
     await page.locator('body.sb-show-main').waitFor({state: 'visible'})

@@ -3,58 +3,58 @@
 '@primer/brand-primitives': patch
 ---
 
-Added the new `PricingComparisonTable` component for comparing two to four pricing plans with plan summaries,
+Added the new `FeatureComparisonTable` component for comparing two to four pricing plans with plan summaries,
 actions, and grouped feature availability.
 
 Example usage:
 
 ```js
-import {PricingComparisonTable} from '@primer/react-brand'
+import {FeatureComparisonTable} from '@primer/react-brand'
 ```
 
 ```jsx
-<PricingComparisonTable hasStickyHeaders rowHighlighting>
-  <PricingComparisonTable.Heading>Compare plans</PricingComparisonTable.Heading>
-  <PricingComparisonTable.Item>
-    <PricingComparisonTable.Heading>Free</PricingComparisonTable.Heading>
-    <PricingComparisonTable.Description>For individuals.</PricingComparisonTable.Description>
-    <PricingComparisonTable.Price>$0</PricingComparisonTable.Price>
-    <PricingComparisonTable.PrimaryAction as="a" href="/signup">
+<FeatureComparisonTable hasStickyHeaders rowHighlighting>
+  <FeatureComparisonTable.Heading>Compare plans</FeatureComparisonTable.Heading>
+  <FeatureComparisonTable.Item>
+    <FeatureComparisonTable.Heading>Free</FeatureComparisonTable.Heading>
+    <FeatureComparisonTable.Description>For individuals.</FeatureComparisonTable.Description>
+    <FeatureComparisonTable.Price>$0</FeatureComparisonTable.Price>
+    <FeatureComparisonTable.PrimaryAction as="a" href="/signup">
       Get started
-    </PricingComparisonTable.PrimaryAction>
-  </PricingComparisonTable.Item>
-  <PricingComparisonTable.Item>
-    <PricingComparisonTable.Label>Recommended</PricingComparisonTable.Label>
-    <PricingComparisonTable.Heading>Team</PricingComparisonTable.Heading>
-    <PricingComparisonTable.Description>For growing teams.</PricingComparisonTable.Description>
-    <PricingComparisonTable.Price>$4 per user / month</PricingComparisonTable.Price>
-    <PricingComparisonTable.PrimaryAction as="a" href="/signup/team">
+    </FeatureComparisonTable.PrimaryAction>
+  </FeatureComparisonTable.Item>
+  <FeatureComparisonTable.Item>
+    <FeatureComparisonTable.Label>Recommended</FeatureComparisonTable.Label>
+    <FeatureComparisonTable.Heading>Team</FeatureComparisonTable.Heading>
+    <FeatureComparisonTable.Description>For growing teams.</FeatureComparisonTable.Description>
+    <FeatureComparisonTable.Price>$4 per user / month</FeatureComparisonTable.Price>
+    <FeatureComparisonTable.PrimaryAction as="a" href="/signup/team">
       Choose Team
-    </PricingComparisonTable.PrimaryAction>
-  </PricingComparisonTable.Item>
-  <PricingComparisonTable.Group expanded={{narrow: false, regular: true, wide: true}}>
-    <PricingComparisonTable.GroupHeading>Collaboration</PricingComparisonTable.GroupHeading>
-    <PricingComparisonTable.Row>
-      <PricingComparisonTable.RowHeading>Private repositories</PricingComparisonTable.RowHeading>
-      <PricingComparisonTable.Cell variant="included" />
-      <PricingComparisonTable.Cell variant="included" />
-    </PricingComparisonTable.Row>
-    <PricingComparisonTable.Row>
-      <PricingComparisonTable.RowHeading>Support</PricingComparisonTable.RowHeading>
-      <PricingComparisonTable.Cell>Community</PricingComparisonTable.Cell>
-      <PricingComparisonTable.Cell>Standard</PricingComparisonTable.Cell>
-    </PricingComparisonTable.Row>
-  </PricingComparisonTable.Group>
-</PricingComparisonTable>
+    </FeatureComparisonTable.PrimaryAction>
+  </FeatureComparisonTable.Item>
+  <FeatureComparisonTable.Group expanded={{narrow: false, regular: true, wide: true}}>
+    <FeatureComparisonTable.GroupHeading>Collaboration</FeatureComparisonTable.GroupHeading>
+    <FeatureComparisonTable.Row>
+      <FeatureComparisonTable.RowHeading>Private repositories</FeatureComparisonTable.RowHeading>
+      <FeatureComparisonTable.Cell variant="included" />
+      <FeatureComparisonTable.Cell variant="included" />
+    </FeatureComparisonTable.Row>
+    <FeatureComparisonTable.Row>
+      <FeatureComparisonTable.RowHeading>Support</FeatureComparisonTable.RowHeading>
+      <FeatureComparisonTable.Cell>Community</FeatureComparisonTable.Cell>
+      <FeatureComparisonTable.Cell>Standard</FeatureComparisonTable.Cell>
+    </FeatureComparisonTable.Row>
+  </FeatureComparisonTable.Group>
+</FeatureComparisonTable>
 ```
 
-:link: [See `PricingComparisonTable` documentation for more usage examples](https://primer.style/brand/components/PricingComparisonTable)
+:link: [See `FeatureComparisonTable` documentation for more usage examples](https://primer.style/brand/components/FeatureComparisonTable)
 
 Added light- and dark-mode color tokens in `@primer/brand-primitives` for the label accent, highlighted columns,
 included indicators, and row highlighting:
 
-- `--brand-PricingComparisonTable-label-accentColor`
-- `--brand-PricingComparisonTable-highlightedColumn-bgColor`
-- `--brand-PricingComparisonTable-includedIndicator-fgColor`
-- `--brand-PricingComparisonTable-includedIndicator-bgColor`
-- `--brand-PricingComparisonTable-rowHighlight-bgColor`
+- `--brand-FeatureComparisonTable-label-accentColor`
+- `--brand-FeatureComparisonTable-highlightedColumn-bgColor`
+- `--brand-FeatureComparisonTable-includedIndicator-fgColor`
+- `--brand-FeatureComparisonTable-includedIndicator-bgColor`
+- `--brand-FeatureComparisonTable-rowHighlight-bgColor`

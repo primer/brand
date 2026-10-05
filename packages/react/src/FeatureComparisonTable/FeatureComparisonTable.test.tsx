@@ -5,7 +5,7 @@ import '@testing-library/jest-dom'
 import userEvent from '@testing-library/user-event'
 import {axe, toHaveNoViolations} from 'jest-axe'
 import {useWindowSize} from '../hooks/useWindowSize'
-import {PricingComparisonTable} from './PricingComparisonTable'
+import {FeatureComparisonTable} from './FeatureComparisonTable'
 
 jest.mock('../hooks/useWindowSize')
 
@@ -33,36 +33,36 @@ const mockUseWindowSize = useWindowSize as jest.Mock
 
 const renderTable = () =>
   render(
-    <PricingComparisonTable aria-label="Plan comparison">
-      <PricingComparisonTable.Heading>Compare features</PricingComparisonTable.Heading>
-      <PricingComparisonTable.Item>
-        <PricingComparisonTable.Label>Recommended</PricingComparisonTable.Label>
-        <PricingComparisonTable.Heading>Free</PricingComparisonTable.Heading>
-        <PricingComparisonTable.Description>For individuals</PricingComparisonTable.Description>
-        <PricingComparisonTable.Price>$0 per month</PricingComparisonTable.Price>
-        <PricingComparisonTable.PrimaryAction as="a" href="#free">
+    <FeatureComparisonTable aria-label="Plan comparison">
+      <FeatureComparisonTable.Heading>Compare features</FeatureComparisonTable.Heading>
+      <FeatureComparisonTable.Item>
+        <FeatureComparisonTable.Label>Recommended</FeatureComparisonTable.Label>
+        <FeatureComparisonTable.Heading>Free</FeatureComparisonTable.Heading>
+        <FeatureComparisonTable.Description>For individuals</FeatureComparisonTable.Description>
+        <FeatureComparisonTable.Price>$0 per month</FeatureComparisonTable.Price>
+        <FeatureComparisonTable.PrimaryAction as="a" href="#free">
           Start free
-        </PricingComparisonTable.PrimaryAction>
-      </PricingComparisonTable.Item>
-      <PricingComparisonTable.Item>
-        <PricingComparisonTable.Heading>Pro</PricingComparisonTable.Heading>
-        <PricingComparisonTable.Price>$10</PricingComparisonTable.Price>
-        <PricingComparisonTable.SecondaryAction as="button">Contact sales</PricingComparisonTable.SecondaryAction>
-      </PricingComparisonTable.Item>
-      <PricingComparisonTable.Group expanded>
-        <PricingComparisonTable.GroupHeading>Core features</PricingComparisonTable.GroupHeading>
-        <PricingComparisonTable.Row>
-          <PricingComparisonTable.RowHeading infoTooltip="Feature details">
+        </FeatureComparisonTable.PrimaryAction>
+      </FeatureComparisonTable.Item>
+      <FeatureComparisonTable.Item>
+        <FeatureComparisonTable.Heading>Pro</FeatureComparisonTable.Heading>
+        <FeatureComparisonTable.Price>$10</FeatureComparisonTable.Price>
+        <FeatureComparisonTable.SecondaryAction as="button">Contact sales</FeatureComparisonTable.SecondaryAction>
+      </FeatureComparisonTable.Item>
+      <FeatureComparisonTable.Group expanded>
+        <FeatureComparisonTable.GroupHeading>Core features</FeatureComparisonTable.GroupHeading>
+        <FeatureComparisonTable.Row>
+          <FeatureComparisonTable.RowHeading infoTooltip="Feature details">
             Codespaces
-          </PricingComparisonTable.RowHeading>
-          <PricingComparisonTable.Cell variant="included" />
-          <PricingComparisonTable.Cell>Unlimited</PricingComparisonTable.Cell>
-        </PricingComparisonTable.Row>
-      </PricingComparisonTable.Group>
-    </PricingComparisonTable>,
+          </FeatureComparisonTable.RowHeading>
+          <FeatureComparisonTable.Cell variant="included" />
+          <FeatureComparisonTable.Cell>Unlimited</FeatureComparisonTable.Cell>
+        </FeatureComparisonTable.Row>
+      </FeatureComparisonTable.Group>
+    </FeatureComparisonTable>,
   )
 
-describe('PricingComparisonTable', () => {
+describe('FeatureComparisonTable', () => {
   beforeEach(() => {
     mockUseWindowSize.mockReturnValue(narrowBreakpoint)
   })
@@ -73,7 +73,7 @@ describe('PricingComparisonTable', () => {
 
   it('renders plan summaries and feature values in both responsive layouts', () => {
     const {getByTestId, getByRole} = renderTable()
-    const narrow = within(getByTestId(PricingComparisonTable.testIds.narrow))
+    const narrow = within(getByTestId(FeatureComparisonTable.testIds.narrow))
     const table = getByRole('table', {name: 'Plan comparison'})
 
     expect(narrow.getByRole('heading', {name: 'Free'})).toBeInTheDocument()
@@ -85,7 +85,7 @@ describe('PricingComparisonTable', () => {
     expect(within(table).getByRole('columnheader', {name: 'Compare features'})).toHaveAttribute('scope', 'col')
     expect(within(table).getByRole('rowheader', {name: 'Core features'})).toHaveAttribute('scope', 'rowgroup')
 
-    for (const summary of [getByTestId(PricingComparisonTable.testIds.regularSummary), table]) {
+    for (const summary of [getByTestId(FeatureComparisonTable.testIds.regularSummary), table]) {
       const {getByText, getByRole: getSummaryByRole} = within(summary)
       expect(getByText('For individuals')).toBeInTheDocument()
       expect(getByText('$0 per month')).toBeInTheDocument()
@@ -106,88 +106,88 @@ describe('PricingComparisonTable', () => {
 
   it('uses a root heading as the accessible name when explicit labeling is omitted', () => {
     const {getByTestId, getByRole} = render(
-      <PricingComparisonTable>
-        <PricingComparisonTable.Heading>
+      <FeatureComparisonTable>
+        <FeatureComparisonTable.Heading>
           Compare <span>plans</span>
-        </PricingComparisonTable.Heading>
-        <PricingComparisonTable.Item>
-          <PricingComparisonTable.Heading>Free</PricingComparisonTable.Heading>
-        </PricingComparisonTable.Item>
-      </PricingComparisonTable>,
+        </FeatureComparisonTable.Heading>
+        <FeatureComparisonTable.Item>
+          <FeatureComparisonTable.Heading>Free</FeatureComparisonTable.Heading>
+        </FeatureComparisonTable.Item>
+      </FeatureComparisonTable>,
     )
 
-    expect(getByTestId(PricingComparisonTable.testIds.root)).toHaveAccessibleName('Compare plans')
+    expect(getByTestId(FeatureComparisonTable.testIds.root)).toHaveAccessibleName('Compare plans')
     expect(getByRole('table', {name: 'Compare plans'})).toBeInTheDocument()
   })
 
   it('truncates items, pads missing cells, ignores extra cells, and ignores unsupported children', () => {
     const warn = jest.spyOn(console, 'warn').mockImplementation()
     const {getByTestId, getAllByTestId, queryByText} = render(
-      <PricingComparisonTable>
+      <FeatureComparisonTable>
         <div>Unsupported root child</div>
         {['One', 'Two', 'Three', 'Four', 'Five'].map(name => (
-          <PricingComparisonTable.Item key={name}>
+          <FeatureComparisonTable.Item key={name}>
             <span>Unsupported item child</span>
-            <PricingComparisonTable.Heading>{name}</PricingComparisonTable.Heading>
-          </PricingComparisonTable.Item>
+            <FeatureComparisonTable.Heading>{name}</FeatureComparisonTable.Heading>
+          </FeatureComparisonTable.Item>
         ))}
-        <PricingComparisonTable.Group>
-          <PricingComparisonTable.GroupHeading>Features</PricingComparisonTable.GroupHeading>
-          <PricingComparisonTable.Row>
-            <PricingComparisonTable.RowHeading>Storage</PricingComparisonTable.RowHeading>
-            <PricingComparisonTable.Cell>First</PricingComparisonTable.Cell>
-            <PricingComparisonTable.Cell>Second</PricingComparisonTable.Cell>
-            <PricingComparisonTable.Cell>Third</PricingComparisonTable.Cell>
-            <PricingComparisonTable.Cell>Fourth</PricingComparisonTable.Cell>
-            <PricingComparisonTable.Cell>Ignored extra</PricingComparisonTable.Cell>
-          </PricingComparisonTable.Row>
-          <PricingComparisonTable.Row>
-            <PricingComparisonTable.RowHeading>Support</PricingComparisonTable.RowHeading>
-            <PricingComparisonTable.Cell>Email</PricingComparisonTable.Cell>
-          </PricingComparisonTable.Row>
-        </PricingComparisonTable.Group>
-      </PricingComparisonTable>,
+        <FeatureComparisonTable.Group>
+          <FeatureComparisonTable.GroupHeading>Features</FeatureComparisonTable.GroupHeading>
+          <FeatureComparisonTable.Row>
+            <FeatureComparisonTable.RowHeading>Storage</FeatureComparisonTable.RowHeading>
+            <FeatureComparisonTable.Cell>First</FeatureComparisonTable.Cell>
+            <FeatureComparisonTable.Cell>Second</FeatureComparisonTable.Cell>
+            <FeatureComparisonTable.Cell>Third</FeatureComparisonTable.Cell>
+            <FeatureComparisonTable.Cell>Fourth</FeatureComparisonTable.Cell>
+            <FeatureComparisonTable.Cell>Ignored extra</FeatureComparisonTable.Cell>
+          </FeatureComparisonTable.Row>
+          <FeatureComparisonTable.Row>
+            <FeatureComparisonTable.RowHeading>Support</FeatureComparisonTable.RowHeading>
+            <FeatureComparisonTable.Cell>Email</FeatureComparisonTable.Cell>
+          </FeatureComparisonTable.Row>
+        </FeatureComparisonTable.Group>
+      </FeatureComparisonTable>,
     )
 
-    const table = getByTestId(PricingComparisonTable.testIds.table)
+    const table = getByTestId(FeatureComparisonTable.testIds.table)
     expect(table.querySelectorAll('thead th')).toHaveLength(5)
     expect(table.querySelectorAll('tbody tr:last-child td')).toHaveLength(4)
-    expect(getAllByTestId(PricingComparisonTable.testIds.item)).toHaveLength(8)
+    expect(getAllByTestId(FeatureComparisonTable.testIds.item)).toHaveLength(8)
     expect(queryByText('Five')).not.toBeInTheDocument()
     expect(queryByText('Ignored extra')).not.toBeInTheDocument()
     expect(queryByText('Unsupported root child')).not.toBeInTheDocument()
     expect(queryByText('Unsupported item child')).not.toBeInTheDocument()
     expect(warn).toHaveBeenCalledWith(
-      'PricingComparisonTable.Row: expected 4 Cell children to match the number of items, but received 5. Missing cells render empty and extra cells are ignored.',
+      'FeatureComparisonTable.Row: expected 4 Cell children to match the number of items, but received 5. Missing cells render empty and extra cells are ignored.',
     )
     expect(warn).toHaveBeenCalledWith(
-      'PricingComparisonTable.Row: expected 4 Cell children to match the number of items, but received 1. Missing cells render empty and extra cells are ignored.',
+      'FeatureComparisonTable.Row: expected 4 Cell children to match the number of items, but received 1. Missing cells render empty and extra cells are ignored.',
     )
   })
 
   it('generates unique IDs and connects group controls to their content', () => {
     const {container} = render(
       <>
-        <PricingComparisonTable>
-          <PricingComparisonTable.Item>
-            <PricingComparisonTable.Heading>One</PricingComparisonTable.Heading>
-          </PricingComparisonTable.Item>
-          <PricingComparisonTable.Group>
-            <PricingComparisonTable.GroupHeading>Features</PricingComparisonTable.GroupHeading>
-            <PricingComparisonTable.Row>
-              <PricingComparisonTable.RowHeading>Storage</PricingComparisonTable.RowHeading>
-              <PricingComparisonTable.Cell>Included</PricingComparisonTable.Cell>
-            </PricingComparisonTable.Row>
-          </PricingComparisonTable.Group>
-        </PricingComparisonTable>
-        <PricingComparisonTable>
-          <PricingComparisonTable.Item>
-            <PricingComparisonTable.Heading>Two</PricingComparisonTable.Heading>
-          </PricingComparisonTable.Item>
-          <PricingComparisonTable.Group>
-            <PricingComparisonTable.GroupHeading>Features</PricingComparisonTable.GroupHeading>
-          </PricingComparisonTable.Group>
-        </PricingComparisonTable>
+        <FeatureComparisonTable>
+          <FeatureComparisonTable.Item>
+            <FeatureComparisonTable.Heading>One</FeatureComparisonTable.Heading>
+          </FeatureComparisonTable.Item>
+          <FeatureComparisonTable.Group>
+            <FeatureComparisonTable.GroupHeading>Features</FeatureComparisonTable.GroupHeading>
+            <FeatureComparisonTable.Row>
+              <FeatureComparisonTable.RowHeading>Storage</FeatureComparisonTable.RowHeading>
+              <FeatureComparisonTable.Cell>Included</FeatureComparisonTable.Cell>
+            </FeatureComparisonTable.Row>
+          </FeatureComparisonTable.Group>
+        </FeatureComparisonTable>
+        <FeatureComparisonTable>
+          <FeatureComparisonTable.Item>
+            <FeatureComparisonTable.Heading>Two</FeatureComparisonTable.Heading>
+          </FeatureComparisonTable.Item>
+          <FeatureComparisonTable.Group>
+            <FeatureComparisonTable.GroupHeading>Features</FeatureComparisonTable.GroupHeading>
+          </FeatureComparisonTable.Group>
+        </FeatureComparisonTable>
       </>,
     )
 
@@ -208,14 +208,14 @@ describe('PricingComparisonTable', () => {
 
   it('forwards group classes to both responsive projections', () => {
     const {container} = render(
-      <PricingComparisonTable>
-        <PricingComparisonTable.Item>
-          <PricingComparisonTable.Heading>Free</PricingComparisonTable.Heading>
-        </PricingComparisonTable.Item>
-        <PricingComparisonTable.Group className="custom-group">
-          <PricingComparisonTable.GroupHeading>Features</PricingComparisonTable.GroupHeading>
-        </PricingComparisonTable.Group>
-      </PricingComparisonTable>,
+      <FeatureComparisonTable>
+        <FeatureComparisonTable.Item>
+          <FeatureComparisonTable.Heading>Free</FeatureComparisonTable.Heading>
+        </FeatureComparisonTable.Item>
+        <FeatureComparisonTable.Group className="custom-group">
+          <FeatureComparisonTable.GroupHeading>Features</FeatureComparisonTable.GroupHeading>
+        </FeatureComparisonTable.Group>
+      </FeatureComparisonTable>,
     )
 
     expect(container.querySelector('details')).toHaveClass('custom-group')
@@ -235,14 +235,14 @@ describe('PricingComparisonTable', () => {
     mockUseWindowSize.mockReturnValue(currentBreakpoint)
 
     const {container} = render(
-      <PricingComparisonTable>
-        <PricingComparisonTable.Item>
-          <PricingComparisonTable.Heading>Free</PricingComparisonTable.Heading>
-        </PricingComparisonTable.Item>
-        <PricingComparisonTable.Group expanded={expanded}>
-          <PricingComparisonTable.GroupHeading>Features</PricingComparisonTable.GroupHeading>
-        </PricingComparisonTable.Group>
-      </PricingComparisonTable>,
+      <FeatureComparisonTable>
+        <FeatureComparisonTable.Item>
+          <FeatureComparisonTable.Heading>Free</FeatureComparisonTable.Heading>
+        </FeatureComparisonTable.Item>
+        <FeatureComparisonTable.Group expanded={expanded}>
+          <FeatureComparisonTable.GroupHeading>Features</FeatureComparisonTable.GroupHeading>
+        </FeatureComparisonTable.Group>
+      </FeatureComparisonTable>,
     )
 
     if (expectedOpen) {
@@ -260,17 +260,17 @@ describe('PricingComparisonTable', () => {
     mockUseWindowSize.mockReturnValue(regularBreakpoint)
     const user = userEvent.setup()
     const {container, getByRole} = render(
-      <PricingComparisonTable>
-        <PricingComparisonTable.Item>
-          <PricingComparisonTable.Heading>Free</PricingComparisonTable.Heading>
-        </PricingComparisonTable.Item>
-        <PricingComparisonTable.Group>
-          <PricingComparisonTable.GroupHeading>Core features</PricingComparisonTable.GroupHeading>
-        </PricingComparisonTable.Group>
-        <PricingComparisonTable.Group>
-          <PricingComparisonTable.GroupHeading>Security features</PricingComparisonTable.GroupHeading>
-        </PricingComparisonTable.Group>
-      </PricingComparisonTable>,
+      <FeatureComparisonTable>
+        <FeatureComparisonTable.Item>
+          <FeatureComparisonTable.Heading>Free</FeatureComparisonTable.Heading>
+        </FeatureComparisonTable.Item>
+        <FeatureComparisonTable.Group>
+          <FeatureComparisonTable.GroupHeading>Core features</FeatureComparisonTable.GroupHeading>
+        </FeatureComparisonTable.Group>
+        <FeatureComparisonTable.Group>
+          <FeatureComparisonTable.GroupHeading>Security features</FeatureComparisonTable.GroupHeading>
+        </FeatureComparisonTable.Group>
+      </FeatureComparisonTable>,
     )
 
     const coreButton = getByRole('button', {name: 'Core features'})
@@ -288,18 +288,18 @@ describe('PricingComparisonTable', () => {
   it('opens and closes a narrow disclosure when clicked', async () => {
     const user = userEvent.setup()
     const {container} = render(
-      <PricingComparisonTable>
-        <PricingComparisonTable.Item>
-          <PricingComparisonTable.Heading>Free</PricingComparisonTable.Heading>
-        </PricingComparisonTable.Item>
-        <PricingComparisonTable.Group>
-          <PricingComparisonTable.GroupHeading>Features</PricingComparisonTable.GroupHeading>
-          <PricingComparisonTable.Row>
-            <PricingComparisonTable.RowHeading>Storage</PricingComparisonTable.RowHeading>
-            <PricingComparisonTable.Cell>Included</PricingComparisonTable.Cell>
-          </PricingComparisonTable.Row>
-        </PricingComparisonTable.Group>
-      </PricingComparisonTable>,
+      <FeatureComparisonTable>
+        <FeatureComparisonTable.Item>
+          <FeatureComparisonTable.Heading>Free</FeatureComparisonTable.Heading>
+        </FeatureComparisonTable.Item>
+        <FeatureComparisonTable.Group>
+          <FeatureComparisonTable.GroupHeading>Features</FeatureComparisonTable.GroupHeading>
+          <FeatureComparisonTable.Row>
+            <FeatureComparisonTable.RowHeading>Storage</FeatureComparisonTable.RowHeading>
+            <FeatureComparisonTable.Cell>Included</FeatureComparisonTable.Cell>
+          </FeatureComparisonTable.Row>
+        </FeatureComparisonTable.Group>
+      </FeatureComparisonTable>,
     )
 
     const summary = container.querySelector('summary')!
@@ -322,14 +322,14 @@ describe('PricingComparisonTable', () => {
     const user = userEvent.setup()
     const expanded = {narrow: true, regular: true, wide: false}
     const {getByRole, rerender} = render(
-      <PricingComparisonTable>
-        <PricingComparisonTable.Item>
-          <PricingComparisonTable.Heading>Free</PricingComparisonTable.Heading>
-        </PricingComparisonTable.Item>
-        <PricingComparisonTable.Group expanded={expanded}>
-          <PricingComparisonTable.GroupHeading>Features</PricingComparisonTable.GroupHeading>
-        </PricingComparisonTable.Group>
-      </PricingComparisonTable>,
+      <FeatureComparisonTable>
+        <FeatureComparisonTable.Item>
+          <FeatureComparisonTable.Heading>Free</FeatureComparisonTable.Heading>
+        </FeatureComparisonTable.Item>
+        <FeatureComparisonTable.Group expanded={expanded}>
+          <FeatureComparisonTable.GroupHeading>Features</FeatureComparisonTable.GroupHeading>
+        </FeatureComparisonTable.Group>
+      </FeatureComparisonTable>,
     )
 
     const summary = getByRole('group').querySelector('summary')!
@@ -338,14 +338,14 @@ describe('PricingComparisonTable', () => {
 
     mockUseWindowSize.mockReturnValue(regularBreakpoint)
     rerender(
-      <PricingComparisonTable>
-        <PricingComparisonTable.Item>
-          <PricingComparisonTable.Heading>Free</PricingComparisonTable.Heading>
-        </PricingComparisonTable.Item>
-        <PricingComparisonTable.Group expanded={expanded}>
-          <PricingComparisonTable.GroupHeading>Features</PricingComparisonTable.GroupHeading>
-        </PricingComparisonTable.Group>
-      </PricingComparisonTable>,
+      <FeatureComparisonTable>
+        <FeatureComparisonTable.Item>
+          <FeatureComparisonTable.Heading>Free</FeatureComparisonTable.Heading>
+        </FeatureComparisonTable.Item>
+        <FeatureComparisonTable.Group expanded={expanded}>
+          <FeatureComparisonTable.GroupHeading>Features</FeatureComparisonTable.GroupHeading>
+        </FeatureComparisonTable.Group>
+      </FeatureComparisonTable>,
     )
 
     expect(getByRole('button', {name: 'Features'})).toHaveAttribute('aria-expanded', 'true')
@@ -355,14 +355,14 @@ describe('PricingComparisonTable', () => {
     mockUseWindowSize.mockReturnValue(regularBreakpoint)
     const user = userEvent.setup()
     const renderComparison = () => (
-      <PricingComparisonTable>
-        <PricingComparisonTable.Item>
-          <PricingComparisonTable.Heading>Free</PricingComparisonTable.Heading>
-        </PricingComparisonTable.Item>
-        <PricingComparisonTable.Group>
-          <PricingComparisonTable.GroupHeading>Features</PricingComparisonTable.GroupHeading>
-        </PricingComparisonTable.Group>
-      </PricingComparisonTable>
+      <FeatureComparisonTable>
+        <FeatureComparisonTable.Item>
+          <FeatureComparisonTable.Heading>Free</FeatureComparisonTable.Heading>
+        </FeatureComparisonTable.Item>
+        <FeatureComparisonTable.Group>
+          <FeatureComparisonTable.GroupHeading>Features</FeatureComparisonTable.GroupHeading>
+        </FeatureComparisonTable.Group>
+      </FeatureComparisonTable>
     )
     const {getByRole, rerender} = render(renderComparison())
 
@@ -382,16 +382,16 @@ describe('PricingComparisonTable', () => {
     mockUseWindowSize.mockReturnValue(regularBreakpoint)
     const user = userEvent.setup()
     const renderComparison = (groupNames: string[]) => (
-      <PricingComparisonTable>
-        <PricingComparisonTable.Item>
-          <PricingComparisonTable.Heading>Free</PricingComparisonTable.Heading>
-        </PricingComparisonTable.Item>
+      <FeatureComparisonTable>
+        <FeatureComparisonTable.Item>
+          <FeatureComparisonTable.Heading>Free</FeatureComparisonTable.Heading>
+        </FeatureComparisonTable.Item>
         {groupNames.map(groupName => (
-          <PricingComparisonTable.Group key={groupName}>
-            <PricingComparisonTable.GroupHeading>{groupName}</PricingComparisonTable.GroupHeading>
-          </PricingComparisonTable.Group>
+          <FeatureComparisonTable.Group key={groupName}>
+            <FeatureComparisonTable.GroupHeading>{groupName}</FeatureComparisonTable.GroupHeading>
+          </FeatureComparisonTable.Group>
         ))}
-      </PricingComparisonTable>
+      </FeatureComparisonTable>
     )
     const {getByRole, rerender} = render(renderComparison(['Core features', 'Security features']))
 
@@ -406,14 +406,14 @@ describe('PricingComparisonTable', () => {
     mockUseWindowSize.mockReturnValue(regularBreakpoint)
     const user = userEvent.setup()
     const renderComparison = (expanded: boolean) => (
-      <PricingComparisonTable>
-        <PricingComparisonTable.Item>
-          <PricingComparisonTable.Heading>Free</PricingComparisonTable.Heading>
-        </PricingComparisonTable.Item>
-        <PricingComparisonTable.Group expanded={expanded}>
-          <PricingComparisonTable.GroupHeading>Features</PricingComparisonTable.GroupHeading>
-        </PricingComparisonTable.Group>
-      </PricingComparisonTable>
+      <FeatureComparisonTable>
+        <FeatureComparisonTable.Item>
+          <FeatureComparisonTable.Heading>Free</FeatureComparisonTable.Heading>
+        </FeatureComparisonTable.Item>
+        <FeatureComparisonTable.Group expanded={expanded}>
+          <FeatureComparisonTable.GroupHeading>Features</FeatureComparisonTable.GroupHeading>
+        </FeatureComparisonTable.Group>
+      </FeatureComparisonTable>
     )
     const {getByRole, rerender} = render(renderComparison(true))
 
@@ -441,16 +441,16 @@ describe('PricingComparisonTable', () => {
     }
     const comparison = (expanded = true, blocked = false) => (
       <React.Suspense fallback="Loading comparison">
-        <PricingComparisonTable>
+        <FeatureComparisonTable>
           {['Free', 'Pro'].map(name => (
-            <PricingComparisonTable.Item key={name}>
-              <PricingComparisonTable.Heading>{name}</PricingComparisonTable.Heading>
-            </PricingComparisonTable.Item>
+            <FeatureComparisonTable.Item key={name}>
+              <FeatureComparisonTable.Heading>{name}</FeatureComparisonTable.Heading>
+            </FeatureComparisonTable.Item>
           ))}
-          <PricingComparisonTable.Group key="features" expanded={expanded}>
-            <PricingComparisonTable.GroupHeading>Features</PricingComparisonTable.GroupHeading>
-          </PricingComparisonTable.Group>
-        </PricingComparisonTable>
+          <FeatureComparisonTable.Group key="features" expanded={expanded}>
+            <FeatureComparisonTable.GroupHeading>Features</FeatureComparisonTable.GroupHeading>
+          </FeatureComparisonTable.Group>
+        </FeatureComparisonTable>
         <Suspend blocked={blocked} />
       </React.Suspense>
     )
@@ -477,27 +477,27 @@ describe('PricingComparisonTable', () => {
   it('moves focus to the corresponding visible control when projections change', () => {
     const expanded = {narrow: true, regular: true, wide: true}
     const {container, getByRole, rerender} = render(
-      <PricingComparisonTable>
-        <PricingComparisonTable.Item>
-          <PricingComparisonTable.Heading>Free</PricingComparisonTable.Heading>
-        </PricingComparisonTable.Item>
-        <PricingComparisonTable.Group expanded={expanded}>
-          <PricingComparisonTable.GroupHeading>Features</PricingComparisonTable.GroupHeading>
-        </PricingComparisonTable.Group>
-      </PricingComparisonTable>,
+      <FeatureComparisonTable>
+        <FeatureComparisonTable.Item>
+          <FeatureComparisonTable.Heading>Free</FeatureComparisonTable.Heading>
+        </FeatureComparisonTable.Item>
+        <FeatureComparisonTable.Group expanded={expanded}>
+          <FeatureComparisonTable.GroupHeading>Features</FeatureComparisonTable.GroupHeading>
+        </FeatureComparisonTable.Group>
+      </FeatureComparisonTable>,
     )
 
     container.querySelector('summary')!.focus()
     mockUseWindowSize.mockReturnValue(regularBreakpoint)
     rerender(
-      <PricingComparisonTable>
-        <PricingComparisonTable.Item>
-          <PricingComparisonTable.Heading>Free</PricingComparisonTable.Heading>
-        </PricingComparisonTable.Item>
-        <PricingComparisonTable.Group expanded={expanded}>
-          <PricingComparisonTable.GroupHeading>Features</PricingComparisonTable.GroupHeading>
-        </PricingComparisonTable.Group>
-      </PricingComparisonTable>,
+      <FeatureComparisonTable>
+        <FeatureComparisonTable.Item>
+          <FeatureComparisonTable.Heading>Free</FeatureComparisonTable.Heading>
+        </FeatureComparisonTable.Item>
+        <FeatureComparisonTable.Group expanded={expanded}>
+          <FeatureComparisonTable.GroupHeading>Features</FeatureComparisonTable.GroupHeading>
+        </FeatureComparisonTable.Group>
+      </FeatureComparisonTable>,
     )
 
     expect(getByRole('button', {name: 'Features'})).toHaveFocus()
@@ -511,14 +511,14 @@ describe('PricingComparisonTable', () => {
 
     for (const control of container.querySelectorAll('summary, button[aria-controls]')) {
       expect(control.querySelector('svg')).toHaveAttribute('aria-hidden', 'true')
-      expect(control.querySelector('svg')).toHaveClass('PricingComparisonTable__chevron--expanded')
+      expect(control.querySelector('svg')).toHaveClass('FeatureComparisonTable__chevron--expanded')
     }
 
     await user.click(button)
 
     for (const control of container.querySelectorAll('summary, button[aria-controls]')) {
       expect(control).toHaveAttribute('aria-expanded', 'false')
-      expect(control.querySelector('svg')).not.toHaveClass('PricingComparisonTable__chevron--expanded')
+      expect(control.querySelector('svg')).not.toHaveClass('FeatureComparisonTable__chevron--expanded')
     }
   })
 
@@ -529,23 +529,23 @@ describe('PricingComparisonTable', () => {
     'renders a decorative %s icon with accessible text',
     (variant, variantAriaLabel, expectedLabel, expectedIcon) => {
       const {getAllByTestId} = render(
-        <PricingComparisonTable>
-          <PricingComparisonTable.Item>
-            <PricingComparisonTable.Heading>Free</PricingComparisonTable.Heading>
-          </PricingComparisonTable.Item>
-          <PricingComparisonTable.Group expanded>
-            <PricingComparisonTable.GroupHeading>Features</PricingComparisonTable.GroupHeading>
-            <PricingComparisonTable.Row>
-              <PricingComparisonTable.RowHeading>Storage</PricingComparisonTable.RowHeading>
-              <PricingComparisonTable.Cell variant={variant} variantAriaLabel={variantAriaLabel}>
+        <FeatureComparisonTable>
+          <FeatureComparisonTable.Item>
+            <FeatureComparisonTable.Heading>Free</FeatureComparisonTable.Heading>
+          </FeatureComparisonTable.Item>
+          <FeatureComparisonTable.Group expanded>
+            <FeatureComparisonTable.GroupHeading>Features</FeatureComparisonTable.GroupHeading>
+            <FeatureComparisonTable.Row>
+              <FeatureComparisonTable.RowHeading>Storage</FeatureComparisonTable.RowHeading>
+              <FeatureComparisonTable.Cell variant={variant} variantAriaLabel={variantAriaLabel}>
                 With limits
-              </PricingComparisonTable.Cell>
-            </PricingComparisonTable.Row>
-          </PricingComparisonTable.Group>
-        </PricingComparisonTable>,
+              </FeatureComparisonTable.Cell>
+            </FeatureComparisonTable.Row>
+          </FeatureComparisonTable.Group>
+        </FeatureComparisonTable>,
       )
 
-      for (const cell of getAllByTestId(PricingComparisonTable.testIds.cell)) {
+      for (const cell of getAllByTestId(FeatureComparisonTable.testIds.cell)) {
         expect(cell.querySelector('svg')).toHaveAttribute('aria-hidden', 'true')
         expect(cell.querySelector('svg')).toHaveClass(expectedIcon)
         expect(cell).toHaveTextContent(expectedLabel)
@@ -555,45 +555,45 @@ describe('PricingComparisonTable', () => {
   )
 
   it.each([
-    ['hasStickyHeaders', 'PricingComparisonTable--stickyHeaders'],
-    ['rowHighlighting', 'PricingComparisonTable--rowHighlighting'],
+    ['hasStickyHeaders', 'FeatureComparisonTable--stickyHeaders'],
+    ['rowHighlighting', 'FeatureComparisonTable--rowHighlighting'],
   ] as const)('only applies %s styling when enabled', (prop, expectedClass) => {
     const {getByTestId, rerender} = render(
-      <PricingComparisonTable>
-        <PricingComparisonTable.Item>
-          <PricingComparisonTable.Heading>Free</PricingComparisonTable.Heading>
-        </PricingComparisonTable.Item>
-      </PricingComparisonTable>,
+      <FeatureComparisonTable>
+        <FeatureComparisonTable.Item>
+          <FeatureComparisonTable.Heading>Free</FeatureComparisonTable.Heading>
+        </FeatureComparisonTable.Item>
+      </FeatureComparisonTable>,
     )
 
-    expect(getByTestId(PricingComparisonTable.testIds.root)).not.toHaveClass(expectedClass)
+    expect(getByTestId(FeatureComparisonTable.testIds.root)).not.toHaveClass(expectedClass)
 
     rerender(
-      <PricingComparisonTable {...{[prop]: true}}>
-        <PricingComparisonTable.Item>
-          <PricingComparisonTable.Heading>Free</PricingComparisonTable.Heading>
-        </PricingComparisonTable.Item>
-      </PricingComparisonTable>,
+      <FeatureComparisonTable {...{[prop]: true}}>
+        <FeatureComparisonTable.Item>
+          <FeatureComparisonTable.Heading>Free</FeatureComparisonTable.Heading>
+        </FeatureComparisonTable.Item>
+      </FeatureComparisonTable>,
     )
 
-    expect(getByTestId(PricingComparisonTable.testIds.root)).toHaveClass(expectedClass)
+    expect(getByTestId(FeatureComparisonTable.testIds.root)).toHaveClass(expectedClass)
   })
 
   it('uses Label to promote the aligned plan across both responsive layouts', () => {
     const {getByTestId, getByText} = renderTable()
-    const root = getByTestId(PricingComparisonTable.testIds.root)
-    const table = getByTestId(PricingComparisonTable.testIds.table)
+    const root = getByTestId(FeatureComparisonTable.testIds.root)
+    const table = getByTestId(FeatureComparisonTable.testIds.table)
 
     expect(getByText('Recommended')).toBeInTheDocument()
-    expect(root.querySelector('section[data-projection="regular"]')).toHaveClass('PricingComparisonTable__promoted')
-    expect(root.querySelector('section[data-projection="wide"]')).toHaveClass('PricingComparisonTable__promoted')
-    expect(table.querySelector('thead th:nth-child(2)')).toHaveClass('PricingComparisonTable__promoted')
-    expect(table.querySelector('tbody[id] td:first-of-type')).toHaveClass('PricingComparisonTable__promoted')
-    expect(root.querySelector('details dt:first-of-type')).toHaveClass('PricingComparisonTable__promoted')
-    expect(root.querySelector('details dd:first-of-type')).toHaveClass('PricingComparisonTable__promoted')
+    expect(root.querySelector('section[data-projection="regular"]')).toHaveClass('FeatureComparisonTable__promoted')
+    expect(root.querySelector('section[data-projection="wide"]')).toHaveClass('FeatureComparisonTable__promoted')
+    expect(table.querySelector('thead th:nth-child(2)')).toHaveClass('FeatureComparisonTable__promoted')
+    expect(table.querySelector('tbody[id] td:first-of-type')).toHaveClass('FeatureComparisonTable__promoted')
+    expect(root.querySelector('details dt:first-of-type')).toHaveClass('FeatureComparisonTable__promoted')
+    expect(root.querySelector('details dd:first-of-type')).toHaveClass('FeatureComparisonTable__promoted')
 
-    expect(table.querySelector('thead th:nth-child(3)')).not.toHaveClass('PricingComparisonTable__promoted')
-    expect(table.querySelector('tbody[id] td:nth-of-type(2)')).not.toHaveClass('PricingComparisonTable__promoted')
+    expect(table.querySelector('thead th:nth-child(3)')).not.toHaveClass('FeatureComparisonTable__promoted')
+    expect(table.querySelector('tbody[id] td:nth-of-type(2)')).not.toHaveClass('FeatureComparisonTable__promoted')
   })
 
   it('scrolls focused table body controls below visible sticky headers and ignores header controls', () => {
@@ -601,25 +601,25 @@ describe('PricingComparisonTable', () => {
     const onFocus = jest.fn()
     const scrollBy = jest.spyOn(window, 'scrollBy').mockImplementation()
     const {getByTestId} = render(
-      <PricingComparisonTable hasStickyHeaders onFocus={onFocus}>
-        <PricingComparisonTable.Item>
-          <PricingComparisonTable.Heading>Free</PricingComparisonTable.Heading>
-          <PricingComparisonTable.PrimaryAction as="a" href="#header-action">
+      <FeatureComparisonTable hasStickyHeaders onFocus={onFocus}>
+        <FeatureComparisonTable.Item>
+          <FeatureComparisonTable.Heading>Free</FeatureComparisonTable.Heading>
+          <FeatureComparisonTable.PrimaryAction as="a" href="#header-action">
             Header action
-          </PricingComparisonTable.PrimaryAction>
-        </PricingComparisonTable.Item>
-        <PricingComparisonTable.Group>
-          <PricingComparisonTable.GroupHeading>Features</PricingComparisonTable.GroupHeading>
-          <PricingComparisonTable.Row>
-            <PricingComparisonTable.RowHeading>Storage</PricingComparisonTable.RowHeading>
-            <PricingComparisonTable.Cell>
+          </FeatureComparisonTable.PrimaryAction>
+        </FeatureComparisonTable.Item>
+        <FeatureComparisonTable.Group>
+          <FeatureComparisonTable.GroupHeading>Features</FeatureComparisonTable.GroupHeading>
+          <FeatureComparisonTable.Row>
+            <FeatureComparisonTable.RowHeading>Storage</FeatureComparisonTable.RowHeading>
+            <FeatureComparisonTable.Cell>
               <a href="#body-action">Body action</a>
-            </PricingComparisonTable.Cell>
-          </PricingComparisonTable.Row>
-        </PricingComparisonTable.Group>
-      </PricingComparisonTable>,
+            </FeatureComparisonTable.Cell>
+          </FeatureComparisonTable.Row>
+        </FeatureComparisonTable.Group>
+      </FeatureComparisonTable>,
     )
-    const table = getByTestId(PricingComparisonTable.testIds.table)
+    const table = getByTestId(FeatureComparisonTable.testIds.table)
     const headers = table.querySelectorAll('thead th')
     const headerAction = table.querySelector<HTMLAnchorElement>('thead a')!
     const groupControl = table.querySelector<HTMLButtonElement>('tbody button')!
@@ -647,25 +647,25 @@ describe('PricingComparisonTable', () => {
     mockUseWindowSize.mockReturnValue(regularBreakpoint)
     const scrollBy = jest.spyOn(window, 'scrollBy').mockImplementation()
     const comparison = (showItems: boolean) => (
-      <PricingComparisonTable hasStickyHeaders>
+      <FeatureComparisonTable hasStickyHeaders>
         {showItems ? (
-          <PricingComparisonTable.Item>
-            <PricingComparisonTable.Heading>Free</PricingComparisonTable.Heading>
-          </PricingComparisonTable.Item>
+          <FeatureComparisonTable.Item>
+            <FeatureComparisonTable.Heading>Free</FeatureComparisonTable.Heading>
+          </FeatureComparisonTable.Item>
         ) : null}
         {showItems ? (
-          <PricingComparisonTable.Group>
-            <PricingComparisonTable.GroupHeading>Features</PricingComparisonTable.GroupHeading>
-          </PricingComparisonTable.Group>
+          <FeatureComparisonTable.Group>
+            <FeatureComparisonTable.GroupHeading>Features</FeatureComparisonTable.GroupHeading>
+          </FeatureComparisonTable.Group>
         ) : null}
-      </PricingComparisonTable>
+      </FeatureComparisonTable>
     )
     const {container, getByTestId, rerender} = render(comparison(false))
 
     expect(container).toBeEmptyDOMElement()
 
     rerender(comparison(true))
-    let table = getByTestId(PricingComparisonTable.testIds.table)
+    let table = getByTestId(FeatureComparisonTable.testIds.table)
     let headers = table.querySelectorAll('thead th')
     let groupControl = table.querySelector<HTMLButtonElement>('tbody button')!
 
@@ -678,7 +678,7 @@ describe('PricingComparisonTable', () => {
 
     rerender(comparison(false))
     rerender(comparison(true))
-    table = getByTestId(PricingComparisonTable.testIds.table)
+    table = getByTestId(FeatureComparisonTable.testIds.table)
     headers = table.querySelectorAll('thead th')
     groupControl = table.querySelector<HTMLButtonElement>('tbody button')!
 
@@ -693,11 +693,11 @@ describe('PricingComparisonTable', () => {
 
   it('does not render a comparison table without any valid items', () => {
     const {container} = render(
-      <PricingComparisonTable>
-        <PricingComparisonTable.Group>
-          <PricingComparisonTable.GroupHeading>Features</PricingComparisonTable.GroupHeading>
-        </PricingComparisonTable.Group>
-      </PricingComparisonTable>,
+      <FeatureComparisonTable>
+        <FeatureComparisonTable.Group>
+          <FeatureComparisonTable.GroupHeading>Features</FeatureComparisonTable.GroupHeading>
+        </FeatureComparisonTable.Group>
+      </FeatureComparisonTable>,
     )
 
     expect(container).toBeEmptyDOMElement()

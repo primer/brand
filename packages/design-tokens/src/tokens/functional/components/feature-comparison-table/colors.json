@@ -1,5 +1,5 @@
 {
-  "PricingComparisonTable": {
+  "FeatureComparisonTable": {
     "label": {
       "accentColor": {
         "value": "var(--brand-color-text-emphasized)",
