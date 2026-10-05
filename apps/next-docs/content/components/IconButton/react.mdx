@@ -1,0 +1,204 @@
+---
+title: Icon button
+description: Use an icon button to represent an action with an Octicon instead of a visible text label.
+keywords: ['action', 'button', 'control', 'icon', 'interactive']
+show-tabs: true
+tab-label: React
+ready: true
+a11yReviewed: false
+source: https://github.com/primer/brand/blob/main/packages/react/src/IconButton/IconButton.tsx
+storybook: '/brand/storybook/?path=/story/components-iconbutton--playground'
+---
+
+import {
+  ArrowUpIcon,
+  DownloadIcon,
+  HeartIcon,
+  InboxIcon,
+  KebabHorizontalIcon,
+  PlusIcon,
+  SearchIcon,
+  ShareIcon,
+  TrashIcon,
+} from '@primer/octicons-react'
+import {IconButtonDirectionsProp, IconButtonSizesProp, IconButtonVariantsProp} from './react'
+
+```js
+import {IconButton} from '@primer/react-brand'
+```
+
+## Examples
+
+### Default
+
+```jsx live
+<IconButton icon={HeartIcon} aria-label="Favorite" />
+```
+
+### Variants
+
+IconButton inherits standard variants from Button and adds `danger` and `invisible` variants.
+
+```jsx live
+<Stack direction={{narrow: 'vertical', regular: 'horizontal'}}>
+  <IconButton icon={HeartIcon} aria-label="Favorite" variant="primary" />
+  <IconButton icon={HeartIcon} aria-label="Favorite" variant="secondary" />
+  <IconButton icon={HeartIcon} aria-label="Favorite" variant="subtle" />
+  <IconButton icon={TrashIcon} aria-label="Delete item" variant="danger" />
+  <IconButton icon={HeartIcon} aria-label="Favorite" variant="invisible" />
+</Stack>
+```
+
+### Sizes
+
+```jsx live
+<Stack direction="horizontal" alignItems="center">
+  <IconButton icon={SearchIcon} aria-label="Search" size="small" />
+  <IconButton icon={SearchIcon} aria-label="Search" size="medium" />
+  <IconButton icon={SearchIcon} aria-label="Search" size="large" />
+</Stack>
+```
+
+### Rounded
+
+Use `rounded` for circular controls, such as a chat submit action.
+
+```jsx live
+<IconButton rounded icon={ArrowUpIcon} aria-label="Send message" variant="primary" />
+```
+
+### In a `ButtonGroup`
+
+Use `variant="joined"` to display related `IconButton` components.
+
+```jsx live
+<ButtonGroup variant="joined">
+  <IconButton icon={DownloadIcon} aria-label="Download" />
+  <IconButton icon={ShareIcon} aria-label="Share" />
+  <IconButton icon={KebabHorizontalIcon} aria-label="More actions" />
+</ButtonGroup>
+```
+
+### In a toolbar
+
+Use small icon buttons for familiar actions in compact toolbars.
+
+```jsx filename="noinline"
+const App = () => {
+  const {isMedium} = useWindowSize()
+
+  return (
+    <Box padding="condensed" backgroundColor="subtle" borderRadius="medium">
+      <Stack direction="horizontal" alignItems="center" gap="condensed">
+        {isMedium !== false && (
+          <FormControl fullWidth>
+            <FormControl.Label visuallyHidden>Search files</FormControl.Label>
+            <TextInput type="search" size="small" leadingVisual={<SearchIcon />} placeholder="Search files" fullWidth />
+          </FormControl>
+        )}
+        <Stack direction="horizontal" alignItems="center" gap={4} padding="none">
+          <ActionMenu mode="split-button" size="small">
+            <ActionMenu.IconButton as="a" href="#new-project" icon={PlusIcon} aria-label="Create project" />
+            <ActionMenu.Overlay aria-label="Creation options">
+              <ActionMenu.Item as="a" href="#new-project">
+                New project
+              </ActionMenu.Item>
+              <ActionMenu.Item as="a" href="#upload-files">
+                Upload files
+              </ActionMenu.Item>
+            </ActionMenu.Overlay>
+          </ActionMenu>
+          <IconButton size="small" icon={ShareIcon} aria-label="Share workspace" />
+          <IconButton size="small" icon={InboxIcon} aria-label="Open notifications" />
+          <Avatar size={32} src="/images/avatar-mona.png" alt="Mona profile" />
+        </Stack>
+      </Stack>
+    </Box>
+  )
+}
+
+render(<App />)
+```
+
+### In an `ActionMenu`
+
+Use an icon button as the trigger when a familiar icon clearly communicates that contextual actions are available. The menu label also supplies the accessible name for the generated menu trigger.
+
+```jsx live
+<Stack direction="horizontal" alignItems="center" gap="condensed">
+  <ActionMenu>
+    <ActionMenu.IconButton icon={KebabHorizontalIcon} aria-label="File actions" />
+    <ActionMenu.Overlay aria-label="File actions">
+      <ActionMenu.Item value="Copy link">Copy link</ActionMenu.Item>
+      <ActionMenu.Item value="Rename file">Rename file</ActionMenu.Item>
+      <ActionMenu.Item value="Move to archive">Move to archive</ActionMenu.Item>
+    </ActionMenu.Overlay>
+  </ActionMenu>
+  <ActionMenu mode="split-button">
+    <ActionMenu.IconButton as="a" href="#new-document" icon={PlusIcon} aria-label="Create document" />
+    <ActionMenu.Overlay aria-label="Creation options">
+      <ActionMenu.Item as="a" href="#new-document">
+        New document
+      </ActionMenu.Item>
+      <ActionMenu.Item as="a" href="#upload-file">
+        Upload file
+      </ActionMenu.Item>
+    </ActionMenu.Overlay>
+  </ActionMenu>
+</Stack>
+```
+
+### Description
+
+Use `description` to add supplementary information to the tooltip while keeping `aria-label` as the action name.
+
+```jsx live
+<IconButton icon={InboxIcon} aria-label="Notifications" description="You have unread notifications" />
+```
+
+### Delayed tooltip
+
+Wrap IconButton in Tooltip with `delay="long"` when familiar controls appear in a dense group and immediate pointer tooltips would be distracting. Keyboard focus remains immediate.
+
+```jsx live
+<Tooltip text="Favorite" delay="long">
+  <IconButton icon={HeartIcon} aria-label="Favorite" />
+</Tooltip>
+```
+
+### Loading
+
+```jsx live
+<IconButton loading loadingAnnouncement="Saving favorite" icon={HeartIcon} aria-label="Favorite" />
+```
+
+### Inactive
+
+Inactive controls use the same muted style for every variant and retain focus and activation so they can explain why an action is unavailable. They render with `aria-disabled="true"` and must not perform their normal action.
+
+```jsx live
+<IconButton
+  inactive
+  icon={HeartIcon}
+  aria-label="Favorite"
+  description="Favorites are temporarily unavailable"
+  onClick={() => window.alert('Favorites are temporarily unavailable. Try again later.')}
+/>
+```
+
+## Component props
+
+| Name                  | Type                         |    Default    | Required | Description                                                                             |
+| :-------------------- | :--------------------------- | :-----------: | :------: | :-------------------------------------------------------------------------------------- |
+| `icon`                | `Icon`                       |               |  `true`  | Octicon component rendered in the center of the button                                  |
+| `aria-label`          | `string`                     |               |  `true`  | Required non-empty accessible action name and default tooltip label                     |
+| `variant`             | <IconButtonVariantsProp />   | `'secondary'` | `false`  | Button variants plus IconButton-only `danger` and `invisible` variations                |
+| `size`                | <IconButtonSizesProp />      |  `'medium'`   | `false`  | Control sizes inherited from Button                                                     |
+| `description`         | `string`                     |  `undefined`  | `false`  | Supplementary tooltip description                                                       |
+| `tooltipDirection`    | <IconButtonDirectionsProp /> |     `'s'`     | `false`  | Preferred tooltip direction                                                             |
+| `inactive`            | `boolean`                    |    `false`    | `false`  | Applies variant-independent muted styling while preserving input for required feedback  |
+| `loading`             | `boolean`                    |    `false`    | `false`  | Replaces the icon with a loading indicator and blocks activation without removing focus |
+| `loadingAnnouncement` | `string`                     |  `'Loading'`  | `false`  | Polite live-region message announced while loading                                      |
+| `rounded`             | `boolean`                    |    `false`    | `false`  | Renders the control with a fully circular shape                                         |
+| `disabled`            | `boolean`                    |    `false`    | `false`  | Disables the control using Button's native or polymorphic behavior                      |
+| `as`                  | `React.ElementType`          |  `'button'`   | `false`  | Element rendered by Button; provide `href` when rendering an anchor                     |

@@ -1,16 +1,20 @@
 import React from 'react'
 import type {Meta, StoryObj} from '@storybook/react'
-import {ButtonGroup} from '.'
-import {Button} from '../Button'
+import {ButtonGroup, ButtonGroupVariants, defaultButtonGroupVariant} from '.'
+import {Button, ButtonSizes} from '../Button'
+import {IconButton} from '../IconButton'
 import {ActionMenu} from '../ActionMenu'
+import {Stack} from '../Stack'
+import {DownloadIcon, KebabHorizontalIcon, ShareIcon} from '@primer/octicons-react'
 
 const meta = {
   title: 'Components/ButtonGroup',
   component: ButtonGroup,
-  subcomponents: {Button, ActionMenu},
+  subcomponents: {Button, IconButton, ActionMenu},
   args: {
     buttonSize: 'medium',
     buttonsAs: 'button',
+    variant: defaultButtonGroupVariant,
   },
   argTypes: {
     buttonSize: {
@@ -26,6 +30,11 @@ const meta = {
         type: 'radio',
         options: ['button', 'a'],
       },
+    },
+    variant: {
+      description: 'The visual presentation of the group',
+      control: 'radio',
+      options: [...ButtonGroupVariants],
     },
     children: {
       table: {
@@ -91,6 +100,34 @@ export const WithActionMenu: Story = {
         </ActionMenu.Overlay>
       </ActionMenu>
     </ButtonGroup>
+  ),
+}
+
+export const WithIconButtons: Story = {
+  render: () => (
+    <Stack direction="vertical" alignItems="flex-start">
+      {ButtonSizes.map(size => (
+        <ButtonGroup key={size} buttonSize={size} variant="joined">
+          <IconButton icon={DownloadIcon} aria-label="Download" />
+          <IconButton icon={ShareIcon} aria-label="Share" />
+          <IconButton icon={KebabHorizontalIcon} aria-label="More actions" />
+        </ButtonGroup>
+      ))}
+    </Stack>
+  ),
+}
+
+export const JoinedButtons: Story = {
+  render: () => (
+    <Stack direction="vertical" alignItems="flex-start">
+      {ButtonSizes.map(size => (
+        <ButtonGroup key={size} buttonSize={size} variant="joined">
+          <Button>One</Button>
+          <Button>Two</Button>
+          <Button>Three</Button>
+        </ButtonGroup>
+      ))}
+    </Stack>
   ),
 }
 

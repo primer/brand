@@ -13,11 +13,18 @@ import React, {
   useMemo,
 } from 'react'
 import {Button, ButtonProps} from '../Button'
+import {IconButton, type IconButtonProps} from '../IconButton'
 import {Text} from '../Text'
 import {ThemeProvider, useTheme} from '../ThemeProvider'
 import {useAnchoredPosition} from '../hooks/useAnchoredPosition'
 import {useOnClickOutside} from '../hooks/useOnClickOutside'
 import {useKeyboardEscape} from '../hooks/useKeyboardEscape'
+import {
+  ActionMenuProvider,
+  useActionMenuContext,
+  type ActionMenuButtonModes as ActionMenuButtonMode,
+  type ActionMenuSizes as ActionMenuSize,
+} from './ActionMenuContext'
 
 import {clsx} from 'clsx'
 import {CheckIcon, ChevronDownIcon, type Icon} from '@primer/octicons-react'
@@ -64,21 +71,21 @@ export const actionMenuOverlaySides = [
   'outside-right',
 ] as PositionSettings['side'][]
 
-export const ActionMenuSizes = ['small', 'medium'] as const
-
-export const ActionMenuButtonModes = ['default', 'split-button'] as const
-export type ActionMenuButtonModes = (typeof ActionMenuButtonModes)[number]
-
-export type ActionMenuSizes = (typeof ActionMenuSizes)[number]
+export {ActionMenuButtonModes, ActionMenuProvider, ActionMenuSizes, useActionMenuContext} from './ActionMenuContext'
 
 export type ActionMenuProps = {
   /**
-   * The content of the ActionMenu. Must be an ActionMenu.Button and an ActionMenu.Overlay
+   * The content of the ActionMenu. Must include an ActionMenu.Button or ActionMenu.IconButton and an ActionMenu.Overlay
    */
   children:
     | ReactElement<ActionMenuButtonProps>
+    | ReactElement<ActionMenuIconButtonProps>
     | ReactElement<ActionMenuOverlayProps>
-    | Array<ReactElement<ActionMenuButtonProps> | ReactElement<ActionMenuOverlayProps>>
+    | Array<
+        | ReactElement<ActionMenuButtonProps>
+        | ReactElement<ActionMenuIconButtonProps>
+        | ReactElement<ActionMenuOverlayProps>
+      >
   /**
    * Determines whether the ActionMenu is disabled
    */
@@ -109,7 +116,7 @@ export type ActionMenuProps = {
   /**
    * Size configuratin of the ActionMenu
    */
-  size?: ActionMenuSizes
+  size?: ActionMenuSize
   /*
    * Side the menu overlay appears
    */
@@ -119,32 +126,8 @@ export type ActionMenuProps = {
    * - `default`: The button and menu items behave as a standard button and menu item.
    * - `split-button`: The button behaves as a split button, and the menu items behave as links.
    */
-  mode?: ActionMenuButtonModes
+  mode?: ActionMenuButtonMode
 } & BaseProps<HTMLDivElement>
-
-type ActionMenuContextType = {
-  size?: ActionMenuSizes
-  setSize?: React.Dispatch<React.SetStateAction<ActionMenuSizes | undefined>>
-  onMenuToggle?: () => void
-}
-
-const ActionMenuContext = React.createContext<ActionMenuContextType>({})
-
-export const useActionMenuContext = (): ActionMenuContextType => {
-  return React.useContext(ActionMenuContext)
-}
-
-type ActionMenuProviderProps = ActionMenuProps & Pick<ActionMenuContextType, 'onMenuToggle'>
-
-export const ActionMenuProvider: React.FC<ActionMenuProviderProps> = ({size, children, onMenuToggle}) => {
-  const [currentSize, setSize] = useState(size)
-
-  return (
-    <ActionMenuContext.Provider value={{size: currentSize, setSize, onMenuToggle}}>
-      {children}
-    </ActionMenuContext.Provider>
-  )
-}
 
 const _ActionMenuRoot = memo(
   ({
@@ -277,8 +260,14 @@ const _ActionMenuRoot = memo(
       [showMenu],
     )
 
-    const {Button: SelectButton, Overlay: SelectOverlay} = Children.toArray(children).reduce<{
-      Button?: ReactElement<ActionMenuButtonProps>
+    const childrenArray = Children.toArray(children)
+    const menuLabel = childrenArray.find(
+      (child): child is ReactElement<ActionMenuOverlayProps> =>
+        isValidElement<ActionMenuOverlayProps>(child) && child.type === ActionMenuOverlay,
+    )?.props['aria-label']
+
+    const {Button: SelectButton, Overlay: SelectOverlay} = childrenArray.reduce<{
+      Button?: ReactElement<ActionMenuButtonProps | ActionMenuIconButtonProps>
       Overlay?: ReactElement<ActionMenuOverlayProps>
     }>((acc, child) => {
       if (isValidElement<ActionMenuButtonProps>(child) && child.type === ActionMenuButton) {
@@ -289,7 +278,15 @@ const _ActionMenuRoot = memo(
           disabled,
           id: `${instanceId}-button`,
           size,
-          _mode: mode,
+        })
+      } else if (isValidElement<ActionMenuIconButtonInternalProps>(child) && child.type === ActionMenuIconButton) {
+        acc.Button = cloneElement(child, {
+          ref: anchorElementRef as React.RefObject<HTMLButtonElement>,
+          className: clsx(child.props.className, mode === 'split-button' && styles['ActionMenu__button--split-button']),
+          menuOpen: showMenu,
+          disabled,
+          id: `${instanceId}-button`,
+          size,
         })
       } else if (isValidElement<ActionMenuOverlayProps>(child) && child.type === ActionMenuOverlay) {
         acc.Overlay = cloneElement(child, {
@@ -321,7 +318,7 @@ const _ActionMenuRoot = memo(
     }, {})
 
     return (
-      <ActionMenuProvider size={size} onMenuToggle={toggleMenu}>
+      <ActionMenuProvider size={size} mode={mode} menuLabel={menuLabel} onMenuToggle={toggleMenu}>
         <div
           id={instanceId}
           className={clsx(styles.ActionMenu, disabled && styles['ActionMenu--disabled'])}
@@ -342,8 +339,7 @@ type ActionMenuButtonProps = PropsWithChildren<
   href?: ButtonProps<'a'>['href']
   menuOpen?: boolean
   'data-testid'?: string
-  size?: ActionMenuSizes
-  _mode?: ActionMenuButtonModes
+  size?: ActionMenuSize
   variant?: ButtonProps<'a'>['variant']
   leadingVisual?: ButtonProps<'a'>['leadingVisual']
 }
@@ -360,7 +356,6 @@ const ActionMenuButton = forwardRef<HTMLButtonElement, ActionMenuButtonProps>(
       disabled,
       menuOpen,
       size,
-      _mode = 'default',
       onClick,
       leadingVisual,
       variant,
@@ -368,19 +363,35 @@ const ActionMenuButton = forwardRef<HTMLButtonElement, ActionMenuButtonProps>(
     },
     ref,
   ) => {
-    const {onMenuToggle} = useActionMenuContext()
+    const {menuLabel, mode, onMenuToggle} = useActionMenuContext()
     const handleClick = useCallback(
       (event: React.MouseEvent<HTMLButtonElement>) => {
+        if (disabled) {
+          event.preventDefault()
+          return
+        }
+
         onClick?.(event)
 
         if (!event.defaultPrevented) {
           onMenuToggle?.()
         }
       },
-      [onClick, onMenuToggle],
+      [disabled, onClick, onMenuToggle],
+    )
+    const handlePrimaryActionClick = useCallback(
+      (event: React.MouseEvent<HTMLButtonElement>) => {
+        if (disabled) {
+          event.preventDefault()
+          return
+        }
+
+        onClick?.(event)
+      },
+      [disabled, onClick],
     )
 
-    if (_mode === 'split-button') {
+    if (mode === 'split-button') {
       const splitButtonVariant = variant ?? 'primary'
 
       return (
@@ -390,6 +401,7 @@ const ActionMenuButton = forwardRef<HTMLButtonElement, ActionMenuButtonProps>(
             href={href}
             className={clsx(
               styles['ActionMenu__innerButton--split-button'],
+              styles['ActionMenu__innerButton--split-button-primary'],
               styles[`ActionMenu__innerButton--${splitButtonVariant}`],
               styles[`ActionMenu__innerButton--${size}`],
               disabled && styles['ActionMenu__innerButton--disabled'],
@@ -399,7 +411,7 @@ const ActionMenuButton = forwardRef<HTMLButtonElement, ActionMenuButtonProps>(
             data-testid={testId || testIds.button}
             size={size}
             leadingVisual={leadingVisual}
-            onClick={onClick}
+            onClick={handlePrimaryActionClick}
             {...props}
           >
             <span className={styles['ActionMenu__button-text']}>{children}</span>
@@ -408,10 +420,13 @@ const ActionMenuButton = forwardRef<HTMLButtonElement, ActionMenuButtonProps>(
             ref={ref}
             id={id}
             as="button"
-            className={styles['ActionMenu__innerButton--split-button']}
+            className={clsx(
+              styles['ActionMenu__innerButton--split-button'],
+              styles['ActionMenu__innerButton--split-button-menu'],
+            )}
             variant={splitButtonVariant}
             aria-haspopup="true"
-            aria-label="Menu"
+            aria-label={menuLabel}
             size={size}
             aria-expanded={menuOpen ? 'true' : 'false'}
             onClick={onMenuToggle}
@@ -445,11 +460,135 @@ const ActionMenuButton = forwardRef<HTMLButtonElement, ActionMenuButtonProps>(
   },
 )
 
+export type ActionMenuIconButtonProps<C extends React.ElementType = 'button'> = Omit<IconButtonProps<C>, 'size'> & {
+  'data-testid'?: string
+}
+
+type ActionMenuIconButtonInternalProps = React.PropsWithoutRef<ActionMenuIconButtonProps<React.ElementType>> & {
+  ref?: React.Ref<HTMLButtonElement>
+  menuOpen?: boolean
+  size?: ActionMenuSize
+}
+
+type ActionMenuIconButtonComponent = <C extends React.ElementType = 'button'>(
+  props: ActionMenuIconButtonProps<C> & React.RefAttributes<HTMLButtonElement>,
+) => React.ReactElement | null
+
+const ActionMenuIconButton = forwardRef<HTMLButtonElement, ActionMenuIconButtonInternalProps>(
+  (
+    {
+      as,
+      id,
+      icon,
+      className,
+      'aria-label': ariaLabel,
+      'data-testid': testId,
+      disabled,
+      menuOpen,
+      size,
+      variant,
+      onClick,
+      ...props
+    },
+    ref,
+  ) => {
+    const {menuLabel, mode, onMenuToggle} = useActionMenuContext()
+    const handleClick = useCallback(
+      (event: React.MouseEvent<HTMLButtonElement>) => {
+        if (disabled) {
+          event.preventDefault()
+          return
+        }
+
+        onClick?.(event)
+
+        if (!event.defaultPrevented) {
+          onMenuToggle?.()
+        }
+      },
+      [disabled, onClick, onMenuToggle],
+    )
+    const handlePrimaryActionClick = useCallback(
+      (event: React.MouseEvent<HTMLButtonElement>) => {
+        if (disabled) {
+          event.preventDefault()
+          return
+        }
+
+        onClick?.(event)
+      },
+      [disabled, onClick],
+    )
+
+    if (mode === 'split-button') {
+      const splitButtonVariant = variant ?? 'primary'
+
+      return (
+        <div className={clsx(styles.ActionMenu__button, styles[`ActionMenu__button--${size}`], className)}>
+          <IconButton
+            {...props}
+            as={as}
+            icon={icon}
+            aria-label={ariaLabel}
+            className={clsx(
+              styles['ActionMenu__innerButton--split-button'],
+              styles['ActionMenu__innerButton--split-button-primary'],
+              styles[`ActionMenu__innerButton--${splitButtonVariant}`],
+              styles[`ActionMenu__innerButton--${size}`],
+              disabled && styles['ActionMenu__innerButton--disabled'],
+            )}
+            variant={splitButtonVariant}
+            aria-disabled={disabled}
+            data-testid={testId || testIds.button}
+            size={size}
+            onClick={handlePrimaryActionClick}
+          />
+          <IconButton
+            ref={ref}
+            id={id}
+            icon={ChevronDownIcon}
+            aria-label={menuLabel}
+            className={clsx(
+              styles['ActionMenu__innerButton--split-button'],
+              styles['ActionMenu__innerButton--split-button-menu'],
+            )}
+            variant={splitButtonVariant}
+            aria-haspopup="menu"
+            size={size}
+            aria-expanded={menuOpen ? 'true' : 'false'}
+            onClick={onMenuToggle}
+            disabled={disabled}
+          />
+        </div>
+      )
+    }
+
+    return (
+      <IconButton
+        {...props}
+        ref={ref}
+        as={as}
+        id={id}
+        icon={icon}
+        aria-label={ariaLabel}
+        className={className}
+        aria-haspopup="menu"
+        aria-expanded={menuOpen ? 'true' : 'false'}
+        disabled={disabled}
+        data-testid={testId || testIds.button}
+        size={size}
+        variant={variant}
+        onClick={handleClick}
+      />
+    )
+  },
+) as ActionMenuIconButtonComponent
+
 type ActionMenuItemBaseProps = {
   handler?: (newValue: string) => void
   type?: 'none' | 'single' | 'link'
   disabled?: boolean
-  size?: ActionMenuSizes
+  size?: ActionMenuSize
   leadingVisual?: React.ReactElement | React.ReactNode | Icon
 } & PropsWithChildren<React.HTMLProps<HTMLLIElement>>
 
@@ -626,6 +765,7 @@ const ActionMenuOverlay = forwardRef<HTMLUListElement, ActionMenuOverlayProps>(
  */
 export const ActionMenu = Object.assign(_ActionMenuRoot, {
   Button: ActionMenuButton,
+  IconButton: ActionMenuIconButton,
   Item: ActionMenuItem,
   Overlay: ActionMenuOverlay,
   testIds,

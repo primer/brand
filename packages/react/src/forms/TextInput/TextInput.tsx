@@ -3,7 +3,7 @@ import {clsx} from 'clsx'
 import {useId} from '../../hooks/useId'
 
 import type {BaseProps} from '../../component-helpers'
-import type {FormInputSizes, FormValidationStatus} from '../form-types'
+import type {FormValidationStatus} from '../form-types'
 import {Text} from '../../Text'
 
 import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/control/colors-with-modes.css'
@@ -11,6 +11,9 @@ import styles from './TextInput.module.css'
 import type {Icon} from '@primer/octicons-react'
 
 type VisualType = React.ReactElement | React.ReactNode | Icon
+
+export const TextInputSizes = ['small', 'medium', 'large'] as const
+export type TextInputSize = (typeof TextInputSizes)[number]
 
 export type TextInputProps = {
   /**
@@ -36,7 +39,7 @@ export type TextInputProps = {
   /**
    * Applies alternative sizing to the input
    */
-  size?: FormInputSizes
+  size?: TextInputSize
   /**
    * Applies non-interactive text to end of input.
    */
