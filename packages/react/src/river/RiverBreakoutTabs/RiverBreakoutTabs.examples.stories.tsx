@@ -164,7 +164,7 @@ export const WithVideos: Story = {
   },
 }
 
-export function MinimalVideoPlayerExample({autoPlay = true}: {autoPlay?: boolean}) {
+export function MinimalVideoPlayerExample() {
   const {t} = useTranslation('RiverBreakoutTabs')
   const internalAccessibleLabels = {
     play: t('video_play_label'),
@@ -188,7 +188,6 @@ export function MinimalVideoPlayerExample({autoPlay = true}: {autoPlay?: boolean
           </RiverBreakoutTabs.Content>
           <RiverBreakoutTabs.Visual>
             <MinimalVideoPlayer
-              autoPlay={autoPlay}
               internalAccessibleLabels={internalAccessibleLabels}
               poster={posterImage}
               src="./example.mp4"
@@ -206,7 +205,6 @@ export function MinimalVideoPlayerExample({autoPlay = true}: {autoPlay?: boolean
           </RiverBreakoutTabs.Content>
           <RiverBreakoutTabs.Visual>
             <MinimalVideoPlayer
-              autoPlay={autoPlay}
               internalAccessibleLabels={internalAccessibleLabels}
               poster={posterImage}
               src="./example.mp4"
@@ -224,7 +222,6 @@ export function MinimalVideoPlayerExample({autoPlay = true}: {autoPlay?: boolean
           </RiverBreakoutTabs.Content>
           <RiverBreakoutTabs.Visual>
             <MinimalVideoPlayer
-              autoPlay={autoPlay}
               internalAccessibleLabels={internalAccessibleLabels}
               poster={posterImage}
               src="./example.mp4"

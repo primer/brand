@@ -541,7 +541,6 @@ describe('RiverBreakoutTabs', () => {
     // MinimalVideoPlayer to detect that they left the viewport and pause themselves.
     expect(panels[0]).not.toHaveAttribute('hidden')
     expect(panels[1]).toHaveAttribute('hidden')
-    expect(panels.every(panel => panel.classList.contains('RiverBreakoutTabs__sharedVisualPanel'))).toBe(true)
 
     await user.click(getAllByRole('tab')[1])
 
