@@ -143,7 +143,14 @@ const RiverBreakoutTabsContent = ({children, className, ...props}: RiverBreakout
 }
 
 const RiverBreakoutTabsVisual = forwardRef<HTMLDivElement, RiverBreakoutTabsVisualProps>(
-  ({className, ...props}, ref) => <RiverVisualBase ref={ref} className={className} {...props} />,
+  ({className, rounded = true, ...props}, ref) => (
+    <RiverVisualBase
+      ref={ref}
+      className={clsx(rounded && styles['RiverBreakoutTabs__visual--rounded'], className)}
+      rounded={rounded}
+      {...props}
+    />
+  ),
 )
 
 const isItem = createComponentTypeGuard(RiverBreakoutTabsItem)

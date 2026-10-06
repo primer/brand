@@ -310,14 +310,14 @@ export const Tablet: Story = {
   },
 }
 
-export const MinimalVideoPlayerPlaybackTransfer: Story = {
-  name: 'MinimalVideoPlayer playback transfer',
+export const MinimalVideoPlayerAutoplayOnTabChange: Story = {
+  name: 'MinimalVideoPlayer autoplay on tab change',
   render: () => <MinimalVideoPlayerExample />,
   play: handleMinimalVideoPlayerChange,
 }
 
-export const MinimalVideoPlayerPlaybackTransferNarrow: Story = {
-  name: 'MinimalVideoPlayer playback transfer narrow',
+export const MinimalVideoPlayerAutoplayOnAccordionChange: Story = {
+  name: 'MinimalVideoPlayer autoplay on accordion change',
   render: () => <MinimalVideoPlayerExample />,
   globals: {
     viewport: {value: 'iphonexr'},
@@ -352,6 +352,14 @@ async function handleMinimalVideoPlayerChange({canvasElement}: {canvasElement: H
       expect(videos[1].paused).toBe(false)
     })
 
+    await userEvent.click(canvas.getAllByRole('tab')[0])
+
+    await waitFor(() => {
+      const videos = getVideos()
+      expect(videos[0].paused).toBe(false)
+      expect(videos[1].paused).toBe(true)
+    })
+
     return
   }
 
@@ -373,4 +381,17 @@ async function handleMinimalVideoPlayerChange({canvasElement}: {canvasElement: H
     expect(videos[0].paused).toBe(false)
   })
   await expect(initialVideo.isConnected).toBe(false)
+
+  const secondVideo = getVideos()[0]
+  const initialTrigger = canvasElement.querySelectorAll('details')[0].querySelector('summary')
+  await expect(initialTrigger).not.toBeNull()
+  await userEvent.click(initialTrigger as HTMLElement)
+
+  await waitFor(() => {
+    const videos = getVideos()
+    expect(videos).toHaveLength(1)
+    expect(videos[0]).not.toBe(secondVideo)
+    expect(videos[0].paused).toBe(false)
+  })
+  await expect(secondVideo.isConnected).toBe(false)
 }
