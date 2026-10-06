@@ -125,7 +125,7 @@
 .SubdomainNavBar-title {
   line-height: var(--base-size-32);
   text-decoration: none;
-  padding-right: var(--base-size-16);
+  padding-inline-end: var(--base-size-16);
   white-space: nowrap;
 }
 
@@ -1187,7 +1187,7 @@
     margin-inline-end: 0;
   }
 
-  .SubdomainNavBar--variant-default.SubdomainNavBar--has-title .SubdomainNavBar-title-area > li:nth-child(2) {
+  .SubdomainNavBar--variant-default.SubdomainNavBar--has-title .SubdomainNavBar-title-item {
     padding-inline: var(--base-size-24);
   }
 
@@ -1474,6 +1474,7 @@
     width: 100%;
     block-size: 100%;
     padding-inline: var(--base-size-16);
+    border-radius: 0;
   }
 }
 

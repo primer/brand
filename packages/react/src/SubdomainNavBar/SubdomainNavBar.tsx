@@ -487,7 +487,7 @@ const Root = forwardRef<SubdomainNavBarHandle, SubdomainNavBarProps>(function Ro
                   </a>
                 </li>
                 {title && (
-                  <li>
+                  <li className={styles['SubdomainNavBar-title-item']}>
                     <a href={titleHref} aria-label={`${title} home`} className={styles['SubdomainNavBar-title']}>
                       <Text size="400" variant="muted" weight="medium">
                         {isFeaturedVariant && (
