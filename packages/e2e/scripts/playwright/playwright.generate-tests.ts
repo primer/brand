@@ -174,6 +174,9 @@ const skipTestLookup = [
   'components-minimalvideoplayer-features--native-source-element', // autoplaying video prevents networkidle from settling
   'components-minimalvideoplayer-features--playing', // actively playing video produces nondeterministic frames
   'components-minimalvideoplayer-features--custom-accessible-labels', // visually duplicates the paused story
+  'components-riverbreakouttabs-examples--with-minimal-video-players', // actively playing video produces nondeterministic frames
+  'components-riverbreakouttabs-features--minimal-video-player-autoplay-on-tab-change', // actively playing video produces nondeterministic frames
+  'components-riverbreakouttabs-features--minimal-video-player-autoplay-on-accordion-change', // actively playing video produces nondeterministic frames
   'components-hero-features-images-and-videos--with-native-block-end-default', // for being non-deterministic due to video buffering
   'components-hero-features-images-and-videos--with-youtube-video-block-end-default', // for loading a remote video
   'components-hero-features-images-and-videos--with-youtube-video-inline-end', // for loading a remote video
