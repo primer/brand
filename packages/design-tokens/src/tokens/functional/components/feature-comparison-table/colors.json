@@ -15,11 +15,11 @@
     "includedIndicator": {
       "fgColor": {
         "value": "var(--brand-color-text-emphasized)",
-        "dark": "var(--brand-color-text-emphasized)"
+        "dark": "var(--brand-color-accent-primary)"
       },
       "bgColor": {
-        "value": "color-mix(in srgb, var(--brand-color-text-emphasized) 15%, transparent)",
-        "dark": "color-mix(in srgb, var(--brand-color-text-emphasized) 20%, transparent)"
+        "value": "color-mix(in srgb, var(--brand-color-text-emphasized) 20%, transparent)",
+        "dark": "color-mix(in srgb, var(--brand-color-accent-primary) 20%, transparent)"
       }
     },
     "rowHighlight": {

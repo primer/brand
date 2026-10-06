@@ -96,12 +96,12 @@ describe('FeatureComparisonTable', () => {
       expect(getSummaryByRole('link', {name: 'Start free'})).toHaveAttribute('href', '#free')
       expect(getSummaryByRole('link', {name: 'Start free'})).toHaveClass(
         'Button--primary',
-        'Button--size-medium',
+        'Button--size-small',
         'Button--block',
       )
       expect(getSummaryByRole('button', {name: 'Contact sales'})).toHaveClass(
         'Button--secondary',
-        'Button--size-medium',
+        'Button--size-small',
         'Button--block',
       )
     }
@@ -136,6 +136,36 @@ describe('FeatureComparisonTable', () => {
     for (const planHeading of table.getAllByRole('heading', {name: 'Free'})) {
       expect(planHeading).toHaveClass('Heading--weight-normal')
     }
+  })
+
+  it.each(['included', 'unavailable'] as const)('centers %s status cells without centering text lists', variant => {
+    const {getByTestId} = render(
+      <FeatureComparisonTable>
+        <FeatureComparisonTable.Item>
+          <FeatureComparisonTable.Heading>Free</FeatureComparisonTable.Heading>
+        </FeatureComparisonTable.Item>
+        <FeatureComparisonTable.Item>
+          <FeatureComparisonTable.Heading>Pro</FeatureComparisonTable.Heading>
+        </FeatureComparisonTable.Item>
+        <FeatureComparisonTable.Group expanded>
+          <FeatureComparisonTable.GroupHeading>Features</FeatureComparisonTable.GroupHeading>
+          <FeatureComparisonTable.Row>
+            <FeatureComparisonTable.RowHeading>Purchase additional premium requests</FeatureComparisonTable.RowHeading>
+            <FeatureComparisonTable.Cell variant={variant}>Limited</FeatureComparisonTable.Cell>
+            <FeatureComparisonTable.Cell>
+              <ul>
+                <li>First feature</li>
+                <li>Second feature</li>
+              </ul>
+            </FeatureComparisonTable.Cell>
+          </FeatureComparisonTable.Row>
+        </FeatureComparisonTable.Group>
+      </FeatureComparisonTable>,
+    )
+    const cells = within(getByTestId(FeatureComparisonTable.testIds.table)).getAllByRole('cell')
+
+    expect(cells[0]).toHaveClass('FeatureComparisonTable__statusCell')
+    expect(cells[1]).not.toHaveClass('FeatureComparisonTable__statusCell')
   })
 
   it('uses a root heading as the accessible name when explicit labeling is omitted', () => {

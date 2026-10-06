@@ -276,9 +276,9 @@ const renderAction = (
     <Button
       {...(rest as Omit<FeatureComparisonTableActionProps, 'as' | 'children'>)}
       as={as}
-      className={clsx(styles.FeatureComparisonTable__action, className)}
+      className={className}
       variant={variant}
-      size="medium"
+      size="small"
       block
     >
       {children}
@@ -858,7 +858,10 @@ const FeatureComparisonTableRoot = forwardRef<HTMLDivElement, FeatureComparisonT
                       </th>
                       {row.cells.map((cell, cellIndex) => (
                         <td
-                          className={clsx(items[cellIndex].label && styles.FeatureComparisonTable__promoted)}
+                          className={clsx(
+                            items[cellIndex].label && styles.FeatureComparisonTable__promoted,
+                            cell?.props.variant && styles.FeatureComparisonTable__statusCell,
+                          )}
                           key={`${groupId}-row-${rowIndex}-cell-${cellIndex}`}
                         >
                           {renderCell(cell)}

@@ -207,9 +207,8 @@
   grid-row: 1;
   align-items: center;
   justify-self: stretch;
-  padding: var(--base-size-16) var(--base-size-28);
+  padding: calc(var(--base-size-16) - var(--brand-borderWidth-thin)) var(--base-size-28) var(--base-size-16);
   border-block-start: var(--brand-borderWidth-thin) solid var(--brand-FeatureComparisonTable-label-accentColor);
-  border-block-end: var(--brand-borderWidth-thin) solid var(--brand-color-border-subtle);
   border-inline: var(--brand-borderWidth-thin) solid var(--brand-color-border-subtle);
   margin-inline: calc(var(--brand-borderWidth-thin) * -1);
 }
@@ -272,17 +271,13 @@
   width: 100%;
 }
 
-.FeatureComparisonTable__actions .FeatureComparisonTable__action {
-  min-height: calc(var(--base-size-32) + var(--brand-borderWidth-thin) * 2);
-  padding: 0 var(--base-size-20);
-}
-
 .FeatureComparisonTable__headingGrid--hasLabel {
   grid-template-rows: repeat(5, auto);
 }
 
 .FeatureComparisonTable__item.FeatureComparisonTable__headingGrid--hasLabel .FeatureComparisonTable__itemContent {
   grid-row: 2 / span 4;
+  border-block-start: var(--brand-borderWidth-thin) solid var(--brand-color-border-subtle);
 }
 
 @media (min-width: 48rem) {
@@ -358,6 +353,10 @@
   .FeatureComparisonTable__table td {
     padding-inline: var(--base-size-20);
     text-align: center;
+  }
+
+  .FeatureComparisonTable__table td.FeatureComparisonTable__statusCell {
+    vertical-align: middle;
   }
 
   .FeatureComparisonTable__table thead th:not(:first-child) {
@@ -508,6 +507,10 @@
     --brand-feature-comparison-table-feature-column-width: 25%;
   }
 
+  .FeatureComparisonTable--items4 {
+    --brand-feature-comparison-table-feature-column-width: 20%;
+  }
+
   .FeatureComparisonTable__table th,
   .FeatureComparisonTable__table td {
     padding-inline: var(--base-size-28);
@@ -554,7 +557,7 @@
     display: grid;
     width: 100cqw;
     grid-template-columns:
-      minmax(0, 25%)
+      minmax(0, var(--brand-feature-comparison-table-feature-column-width))
       repeat(var(--brand-feature-comparison-table-item-count), minmax(0, 1fr));
     grid-template-rows: repeat(4, auto);
   }
@@ -610,7 +613,7 @@
     thead.FeatureComparisonTable__headingGrid--hasLabel
     .FeatureComparisonTable__tableHeading {
     position: relative;
-    grid-row: 2;
+    grid-row: 2 / -1;
     align-self: start;
     padding-block: 0;
     inset-block-start: var(--base-size-16);

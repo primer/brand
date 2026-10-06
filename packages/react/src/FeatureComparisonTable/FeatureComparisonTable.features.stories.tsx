@@ -185,6 +185,7 @@ export const FourPlans: Story = {
     for (const cell of table.querySelectorAll('tbody td')) {
       expect(getComputedStyle(cell).paddingInlineStart).toBe(isWide ? '28px' : '20px')
       expect(getComputedStyle(cell).borderInlineStartWidth).toBe('0px')
+      expect(getComputedStyle(cell).verticalAlign).toBe(cell.querySelector('[aria-hidden="true"]') ? 'middle' : 'top')
     }
     for (const header of table.querySelectorAll('th[scope="rowgroup"]')) {
       expect(header.getBoundingClientRect().height).toBeGreaterThanOrEqual(104)
@@ -203,17 +204,23 @@ export const FourPlans: Story = {
       const description = summary.querySelector('p:not([data-testid])')!
       expect(getComputedStyle(description).fontSize).toBe('14px')
       for (const action of summary.querySelectorAll('a, button')) {
-        expect(getComputedStyle(action).paddingInlineStart).toBe('20px')
-        expect(getComputedStyle(action).minHeight).toBe('34px')
-        expect(action.getBoundingClientRect().height).toBeGreaterThanOrEqual(34)
-        const label = action.querySelector('span > span')!
-        expect(getComputedStyle(label).fontSize).toBe('16px')
-        expect(getComputedStyle(label).fontWeight).toBe('500')
-        const labelRange = document.createRange()
-        labelRange.selectNodeContents(label)
-        if (labelRange.getClientRects().length === 1) {
-          expect(action.getBoundingClientRect().height).toBe(34)
+        expect(getComputedStyle(action).minHeight).toBe('32px')
+        const standalone = action.cloneNode(true) as HTMLElement
+        standalone.style.position = 'absolute'
+        standalone.style.visibility = 'hidden'
+        projection.parentElement!.appendChild(standalone)
+        try {
+          for (const property of ['min-height', 'padding', 'background-color', 'color', 'border-radius']) {
+            expect(getComputedStyle(action).getPropertyValue(property)).toBe(
+              getComputedStyle(standalone).getPropertyValue(property),
+            )
+          }
+        } finally {
+          standalone.remove()
         }
+        const label = action.querySelector('span > span')!
+        expect(getComputedStyle(label).fontSize).toBe('14px')
+        expect(getComputedStyle(label).fontWeight).toBe('500')
       }
       expect(Math.abs(headingBox.top - priceBox.top)).toBeLessThanOrEqual(1)
       expect(headingBox.right).toBeLessThan(priceBox.left)
@@ -232,11 +239,39 @@ export const FourPlans: Story = {
       }
     }
     if (isWide) {
+      const summaryHeadingBottom = Math.max(
+        ...summaries.flatMap(summary => [
+          within(summary).getByRole('heading').getBoundingClientRect().bottom,
+          within(summary).getByTestId('FeatureComparisonTable__price').getBoundingClientRect().bottom,
+        ]),
+      )
+      for (const summary of summaries) {
+        const descriptionTop = summary.querySelector('p:not([data-testid])')!.getBoundingClientRect().top
+        expect(Math.abs(descriptionTop - summaryHeadingBottom - 12)).toBeLessThanOrEqual(1)
+      }
+      const expectedColumnWidth = table.getBoundingClientRect().width / 5
+      for (const cell of table.querySelectorAll('thead th, tbody tr[data-testid] > th, tbody td')) {
+        expect(Math.abs(cell.getBoundingClientRect().width - expectedColumnWidth)).toBeLessThanOrEqual(1)
+      }
       const heading = within(table).getByTestId('FeatureComparisonTable__heading')
       expect(getComputedStyle(heading).fontSize).toBe('24px')
       expect(getComputedStyle(heading).fontWeight).toBe('600')
       for (const label of within(table).getAllByTestId('FeatureComparisonTable__label')) {
         expect(getComputedStyle(label.firstElementChild!).fontWeight).toBe('500')
+        expect(label.getBoundingClientRect().height).toBe(53)
+        expect(getComputedStyle(label).borderBottomWidth).toBe('0px')
+        const content = label.nextElementSibling!
+        expect(getComputedStyle(content).borderTopWidth).toBe('1px')
+        for (const summary of summaries) {
+          if (summary.contains(label)) continue
+          expect(Math.abs(content.getBoundingClientRect().top - summary.getBoundingClientRect().top)).toBeLessThan(0.1)
+        }
+      }
+      const promotedHeader = table.querySelector('thead th:nth-child(3)')!
+      const promotedBackground = getComputedStyle(promotedHeader).backgroundColor
+      for (const cell of table.querySelectorAll('thead th:nth-child(3), tbody td:nth-child(3)')) {
+        expect(getComputedStyle(cell).backgroundColor).toBe(promotedBackground)
+        expect(getComputedStyle(cell).backgroundImage).toBe('none')
       }
     }
   },
