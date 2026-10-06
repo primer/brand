@@ -43,6 +43,11 @@
 }
 
 .FeatureComparisonTable__group {
+  border-inline: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
+  border-block-start: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
+}
+
+.FeatureComparisonTable__group:last-child {
   border-block-end: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
 }
 
@@ -78,12 +83,16 @@
   border-block-start: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
 }
 
+.FeatureComparisonTable__narrow .FeatureComparisonTable__group > div > .FeatureComparisonTable__row:first-child {
+  border-block-start: 0;
+}
+
 .FeatureComparisonTable__narrow .FeatureComparisonTable__rowHeading {
   display: flex;
   justify-content: space-between;
   min-height: var(--base-size-48);
   padding: var(--base-size-12) var(--base-size-20);
-  font-weight: var(--base-text-weight-semibold);
+  font-weight: var(--base-text-weight-medium);
 }
 
 .FeatureComparisonTable__narrow .FeatureComparisonTable__planName {
@@ -337,6 +346,20 @@
     border-inline-end: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
   }
 
+  .FeatureComparisonTable--items3
+    .FeatureComparisonTable__summaryRow:last-child
+    .FeatureComparisonTable__item:last-child {
+    border-inline-end: 0;
+  }
+
+  .FeatureComparisonTable--items3 .FeatureComparisonTable__summaryRow:last-child::after {
+    grid-row: 1 / span 4;
+    border-inline-start: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
+    border-inline-end: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
+    border-block-end: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
+    content: '';
+  }
+
   .FeatureComparisonTable__table th,
   .FeatureComparisonTable__table td {
     padding: var(--base-size-12) var(--base-size-36);
@@ -460,7 +483,7 @@
 
 @media (48rem <= width < 80rem) {
   .FeatureComparisonTable__rowHeading {
-    font-weight: var(--base-text-weight-semibold);
+    font-weight: var(--base-text-weight-medium);
   }
 
   .FeatureComparisonTable:not(.FeatureComparisonTable--stickyHeaders) .FeatureComparisonTable__table thead th {
