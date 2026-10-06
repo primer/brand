@@ -7,7 +7,6 @@ import {useAnimation} from '../animation'
 import type {BaseProps} from '../component-helpers'
 import {Heading as HeadingComponent, type HeadingProps} from '../Heading'
 import {Text} from '../Text'
-import {Tooltip} from '../Tooltip'
 import {useId} from '../hooks/useId'
 import {useProvidedRefOrCreate} from '../hooks/useRef'
 import {useWindowSize} from '../hooks/useWindowSize'
@@ -171,7 +170,14 @@ const renderItemHeading = (
     ...rest
   } = item.heading.props as FeatureComparisonTableHeadingProps & {id?: string}
   return (
-    <HeadingComponent as={as} size={size} {...rest} {...props} className={clsx(className, props?.className)}>
+    <HeadingComponent
+      as={as}
+      size={size}
+      weight="semibold"
+      {...rest}
+      {...props}
+      className={clsx(className, props?.className)}
+    >
       {children}
     </HeadingComponent>
   )
@@ -195,7 +201,12 @@ const renderTableHeading = (
     <HeadingComponent
       as={as}
       size={size}
-      className={clsx(headingClassName, className)}
+      weight="semibold"
+      className={clsx(
+        !heading.props.size && styles.FeatureComparisonTable__tableHeadingText,
+        headingClassName,
+        className,
+      )}
       data-testid={testIds.heading}
       id={id}
       {...rest}
@@ -218,7 +229,7 @@ const renderDescription = (description: NormalizedItem['description']) => {
   return (
     <Text
       as="p"
-      size="200"
+      size="100"
       variant="muted"
       className={clsx(styles.FeatureComparisonTable__description, className)}
       {...rest}
@@ -265,9 +276,9 @@ const renderAction = (
     <Button
       {...(rest as Omit<FeatureComparisonTableActionProps, 'as' | 'children'>)}
       as={as}
-      className={className}
+      className={clsx(styles.FeatureComparisonTable__action, className)}
       variant={variant}
-      size="small"
+      size="medium"
       block
     >
       {children}
@@ -329,8 +340,8 @@ const renderRowHeading = (heading: NormalizedRow['heading']) => {
     children,
     className,
     id: _id,
-    infoTooltip,
-    infoTooltipAriaLabel,
+    infoTooltip: _infoTooltip,
+    infoTooltipAriaLabel: _infoTooltipAriaLabel,
     ...rest
   } = heading.props as FeatureComparisonTableRowHeadingProps & {id?: string}
 
@@ -338,26 +349,12 @@ const renderRowHeading = (heading: NormalizedRow['heading']) => {
     <Text
       as="span"
       size="200"
+      weight="medium"
       variant="muted"
       className={clsx(styles.FeatureComparisonTable__rowHeading, className)}
       {...rest}
     >
       {children}
-      {infoTooltip ? (
-        <Tooltip text={infoTooltip} direction="n">
-          <button
-            type="button"
-            className={styles.FeatureComparisonTable__info}
-            aria-label={
-              infoTooltipAriaLabel ??
-              // eslint-disable-next-line i18n-text/no-en
-              `More information about ${typeof children === 'string' ? children : 'this feature'}`
-            }
-          >
-            <span aria-hidden="true">i</span>
-          </button>
-        </Tooltip>
-      ) : null}
     </Text>
   )
 }
@@ -677,6 +674,7 @@ const FeatureComparisonTableRoot = forwardRef<HTMLDivElement, FeatureComparisonT
                   <HeadingComponent
                     as={GroupHeadingTag}
                     size={size}
+                    weight="semibold"
                     className={groupHeadingClassName}
                     {...groupHeadingRest}
                   >
@@ -812,7 +810,11 @@ const FeatureComparisonTableRoot = forwardRef<HTMLDivElement, FeatureComparisonT
                       <HeadingComponent
                         as={GroupHeadingTag}
                         size={size}
-                        className={groupHeadingClassName}
+                        weight="semibold"
+                        className={clsx(
+                          !headingProps?.size && styles.FeatureComparisonTable__groupHeading,
+                          groupHeadingClassName,
+                        )}
                         {...groupHeadingRest}
                       >
                         <button

@@ -143,6 +143,16 @@ export const FourPlans: Story = {
     await canvasElement.ownerDocument.fonts.ready
     expect(document.documentElement.scrollWidth).toBeLessThanOrEqual(window.innerWidth)
 
+    const isWide = window.matchMedia('(min-width: 80rem)').matches
+    const visibleProjection = window.matchMedia('(max-width: 47.999rem)').matches ? narrow : table
+    for (const rowHeading of within(visibleProjection).getAllByTestId('FeatureComparisonTable__rowHeading')) {
+      expect(getComputedStyle(rowHeading.firstElementChild!).fontWeight).toBe('500')
+    }
+    for (const heading of visibleProjection.querySelectorAll('summary h3, th[scope="rowgroup"] h3')) {
+      expect(getComputedStyle(heading).fontWeight).toBe('600')
+      expect(getComputedStyle(heading).fontSize).toBe(visibleProjection === narrow ? '18px' : '20px')
+    }
+
     if (window.matchMedia('(max-width: 47.999rem)').matches) {
       expect(narrow).toBeVisible()
       expect(table).not.toBeVisible()
@@ -172,9 +182,15 @@ export const FourPlans: Story = {
       expect(parseFloat(styles.borderInlineStartWidth)).toBeGreaterThan(0)
     }
 
-    const projection = window.matchMedia('(min-width: 80rem)').matches
-      ? table
-      : canvas.getByTestId('FeatureComparisonTable__regularSummary')
+    for (const cell of table.querySelectorAll('tbody td')) {
+      expect(getComputedStyle(cell).paddingInlineStart).toBe(isWide ? '28px' : '20px')
+      expect(getComputedStyle(cell).borderInlineStartWidth).toBe('0px')
+    }
+    for (const header of table.querySelectorAll('th[scope="rowgroup"]')) {
+      expect(header.getBoundingClientRect().height).toBeGreaterThanOrEqual(104)
+    }
+
+    const projection = isWide ? table : canvas.getByTestId('FeatureComparisonTable__regularSummary')
     const summaries = within(projection).getAllByTestId('FeatureComparisonTable__item')
     expect(summaries).toHaveLength(4)
     for (const summary of summaries) {
@@ -182,6 +198,23 @@ export const FourPlans: Story = {
       const price = within(summary).getByTestId('FeatureComparisonTable__price')
       const headingBox = heading.getBoundingClientRect()
       const priceBox = price.getBoundingClientRect()
+      expect(getComputedStyle(heading).fontWeight).toBe('600')
+      expect(getComputedStyle(heading).fontSize).toBe('16px')
+      const description = summary.querySelector('p:not([data-testid])')!
+      expect(getComputedStyle(description).fontSize).toBe('14px')
+      for (const action of summary.querySelectorAll('a, button')) {
+        expect(getComputedStyle(action).paddingInlineStart).toBe('20px')
+        expect(getComputedStyle(action).minHeight).toBe('34px')
+        expect(action.getBoundingClientRect().height).toBeGreaterThanOrEqual(34)
+        const label = action.querySelector('span > span')!
+        expect(getComputedStyle(label).fontSize).toBe('16px')
+        expect(getComputedStyle(label).fontWeight).toBe('500')
+        const labelRange = document.createRange()
+        labelRange.selectNodeContents(label)
+        if (labelRange.getClientRects().length === 1) {
+          expect(action.getBoundingClientRect().height).toBe(34)
+        }
+      }
       expect(Math.abs(headingBox.top - priceBox.top)).toBeLessThanOrEqual(1)
       expect(headingBox.right).toBeLessThan(priceBox.left)
       expect(priceBox.right).toBeLessThanOrEqual(summary.getBoundingClientRect().right)
@@ -196,6 +229,14 @@ export const FourPlans: Story = {
           range.setEnd(text, match.index + match[0].length)
           expect(range.getClientRects()).toHaveLength(1)
         }
+      }
+    }
+    if (isWide) {
+      const heading = within(table).getByTestId('FeatureComparisonTable__heading')
+      expect(getComputedStyle(heading).fontSize).toBe('24px')
+      expect(getComputedStyle(heading).fontWeight).toBe('600')
+      for (const label of within(table).getAllByTestId('FeatureComparisonTable__label')) {
+        expect(getComputedStyle(label.firstElementChild!).fontWeight).toBe('500')
       }
     }
   },

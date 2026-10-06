@@ -5,6 +5,7 @@ declare const styles: {
   readonly "FeatureComparisonTable--items4": string;
   readonly "FeatureComparisonTable--rowHighlighting": string;
   readonly "FeatureComparisonTable--stickyHeaders": string;
+  readonly "FeatureComparisonTable__action": string;
   readonly "FeatureComparisonTable__actions": string;
   readonly "FeatureComparisonTable__cell": string;
   readonly "FeatureComparisonTable__chevron": string;
@@ -14,9 +15,9 @@ declare const styles: {
   readonly "FeatureComparisonTable__featureColumn": string;
   readonly "FeatureComparisonTable__group": string;
   readonly "FeatureComparisonTable__groupBackground": string;
+  readonly "FeatureComparisonTable__groupHeading": string;
   readonly "FeatureComparisonTable__heading": string;
   readonly "FeatureComparisonTable__headingGrid--hasLabel": string;
-  readonly "FeatureComparisonTable__info": string;
   readonly "FeatureComparisonTable__item": string;
   readonly "FeatureComparisonTable__itemContent": string;
   readonly "FeatureComparisonTable__itemContent--compact": string;
@@ -34,6 +35,7 @@ declare const styles: {
   readonly "FeatureComparisonTable__summaryRow": string;
   readonly "FeatureComparisonTable__table": string;
   readonly "FeatureComparisonTable__tableHeading": string;
+  readonly "FeatureComparisonTable__tableHeadingText": string;
   readonly "FeatureComparisonTable__wideSummary": string;
 };
 export = styles;

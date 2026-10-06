@@ -3,7 +3,7 @@
     "label": {
       "accentColor": {
         "value": "var(--brand-color-text-emphasized)",
-        "dark": "var(--brand-color-text-emphasized)"
+        "dark": "var(--brand-color-accent-primary)"
       }
     },
     "highlightedColumn": {

@@ -87,20 +87,54 @@ describe('FeatureComparisonTable', () => {
 
     for (const summary of [getByTestId(FeatureComparisonTable.testIds.regularSummary), table]) {
       const {getByText, getByRole: getSummaryByRole} = within(summary)
-      expect(getByText('For individuals')).toBeInTheDocument()
+      expect(getByText('For individuals')).toHaveClass('Text--100')
+      for (const heading of within(summary).getAllByRole('heading', {name: 'Free'})) {
+        expect(heading).toHaveClass('Heading--weight-semibold')
+      }
       expect(getByText('$0 per month')).toBeInTheDocument()
       expect(getByText('$10')).toBeInTheDocument()
       expect(getSummaryByRole('link', {name: 'Start free'})).toHaveAttribute('href', '#free')
       expect(getSummaryByRole('link', {name: 'Start free'})).toHaveClass(
         'Button--primary',
-        'Button--size-small',
+        'Button--size-medium',
         'Button--block',
       )
       expect(getSummaryByRole('button', {name: 'Contact sales'})).toHaveClass(
         'Button--secondary',
-        'Button--size-small',
+        'Button--size-medium',
         'Button--block',
       )
+    }
+    expect(within(table).getByText('Codespaces')).toHaveClass('Text--weight-medium')
+    expect(narrow.getByText('Codespaces')).toHaveClass('Text--weight-medium')
+    expect(narrow.getByRole('heading', {name: 'Core features'})).toHaveClass('Heading--weight-semibold')
+  })
+
+  it('preserves explicit heading sizes and weights', () => {
+    const {getByTestId} = render(
+      <FeatureComparisonTable>
+        <FeatureComparisonTable.Heading size="4" weight="normal">
+          Compare plans
+        </FeatureComparisonTable.Heading>
+        <FeatureComparisonTable.Item>
+          <FeatureComparisonTable.Heading weight="normal">Free</FeatureComparisonTable.Heading>
+        </FeatureComparisonTable.Item>
+        <FeatureComparisonTable.Group>
+          <FeatureComparisonTable.GroupHeading size="6" weight="normal">
+            Features
+          </FeatureComparisonTable.GroupHeading>
+        </FeatureComparisonTable.Group>
+      </FeatureComparisonTable>,
+    )
+    const table = within(getByTestId(FeatureComparisonTable.testIds.table))
+    const heading = table.getByRole('heading', {name: 'Compare plans'})
+    expect(heading).toHaveClass('Heading--4', 'Heading--weight-normal')
+    expect(heading).not.toHaveClass('FeatureComparisonTable__tableHeadingText')
+    const groupHeading = table.getByRole('heading', {name: 'Features'})
+    expect(groupHeading).toHaveClass('Heading--6', 'Heading--weight-normal')
+    expect(groupHeading).not.toHaveClass('FeatureComparisonTable__groupHeading')
+    for (const planHeading of table.getAllByRole('heading', {name: 'Free'})) {
+      expect(planHeading).toHaveClass('Heading--weight-normal')
     }
   })
 
@@ -703,10 +737,17 @@ describe('FeatureComparisonTable', () => {
     expect(container).toBeEmptyDOMElement()
   })
 
-  it('renders an accessible tooltip trigger for a row heading', () => {
-    const {getAllByRole} = renderTable()
+  it('omits row info icons and tooltips even when tooltip props are supplied', () => {
+    const {queryByRole, queryByText, getAllByTestId} = renderTable()
 
-    expect(getAllByRole('button', {name: 'More information about Codespaces'})).toHaveLength(2)
+    expect(queryByRole('button', {name: 'More information about Codespaces'})).not.toBeInTheDocument()
+    expect(queryByRole('tooltip', {hidden: true})).not.toBeInTheDocument()
+    expect(queryByText('Feature details')).not.toBeInTheDocument()
+    for (const heading of getAllByTestId(FeatureComparisonTable.testIds.rowHeading)) {
+      expect(heading).toHaveTextContent('Codespaces')
+      expect(heading.querySelector('button')).not.toBeInTheDocument()
+      expect(heading.firstElementChild).not.toHaveAttribute('infoTooltip')
+    }
   })
 
   it.each([
