@@ -5,6 +5,7 @@ import React, {forwardRef, PropsWithChildren, useLayoutEffect, useMemo, useRef, 
 import {Button, type ButtonBaseProps} from '../Button'
 import {useAnimation} from '../animation'
 import type {BaseProps} from '../component-helpers'
+import gridlineStyles from '../component-helpers/shared.module.css'
 import {Heading as HeadingComponent, type HeadingProps} from '../Heading'
 import {Text} from '../Text'
 import {useId} from '../hooks/useId'
@@ -17,7 +18,7 @@ export type FeatureComparisonTableProps = PropsWithChildren<
     React.HTMLAttributes<HTMLDivElement> & {
       'data-testid'?: string
       /**
-       * Keeps regular and wide table headers fixed to the viewport while scrolling.
+       * Keeps wide table headers fixed to the viewport while scrolling.
        * Ancestors must not set overflow in a way that changes the sticky containing block.
        */
       hasStickyHeaders?: boolean
@@ -86,7 +87,6 @@ const testIds = {
   root: 'FeatureComparisonTable',
   heading: 'FeatureComparisonTable__heading',
   narrow: 'FeatureComparisonTable__narrow',
-  regularSummary: 'FeatureComparisonTable__regularSummary',
   table: 'FeatureComparisonTable__table',
   item: 'FeatureComparisonTable__item',
   label: 'FeatureComparisonTable__label',
@@ -286,9 +286,9 @@ const renderAction = (
   )
 }
 
-const renderItemSummary = (item: NormalizedItem, index: number, projection: 'regular' | 'wide') => {
+const renderItemSummary = (item: NormalizedItem, index: number) => {
   const {className} = item.element.props
-  const showLabel = projection === 'wide' && Boolean(item.label)
+  const showLabel = Boolean(item.label)
   const {
     children: labelChildren,
     className: labelClassName,
@@ -304,7 +304,7 @@ const renderItemSummary = (item: NormalizedItem, index: number, projection: 'reg
         item.label && styles.FeatureComparisonTable__promoted,
         className,
       )}
-      data-projection={projection}
+      data-projection="wide"
       data-testid={testIds.item}
     >
       {showLabel ? (
@@ -549,12 +549,12 @@ const FeatureComparisonTableRoot = forwardRef<HTMLDivElement, FeatureComparisonT
       const previous = previousBreakpoint.current
       previousBreakpoint.current = breakpoint
 
-      const changedProjection = (previous === 'narrow') !== (breakpoint === 'narrow')
+      const changedProjection = (previous === 'wide') !== (breakpoint === 'wide')
       if (!changedProjection) return
 
       const activeElement = document.activeElement
-      const previousControls = previous === 'narrow' ? narrowGroupControls.current : tableGroupControls.current
-      const nextControls = breakpoint === 'narrow' ? narrowGroupControls.current : tableGroupControls.current
+      const previousControls = previous === 'wide' ? tableGroupControls.current : narrowGroupControls.current
+      const nextControls = breakpoint === 'wide' ? tableGroupControls.current : narrowGroupControls.current
       const focusedGroupIdentity = Object.entries(previousControls).find(
         ([, control]) => control === activeElement,
       )?.[0]
@@ -568,7 +568,7 @@ const FeatureComparisonTableRoot = forwardRef<HTMLDivElement, FeatureComparisonT
       const table = tableRef.current
       const target = event.target
 
-      if (hasStickyHeaders && breakpoint !== 'narrow' && table?.contains(target) && !target.closest('thead')) {
+      if (hasStickyHeaders && breakpoint === 'wide' && table?.contains(target) && !target.closest('thead')) {
         if (target.closest('tbody')) {
           const stickyHeaderBottom = Array.from(table.querySelectorAll<HTMLTableCellElement>('thead th')).reduce(
             (maximumBottom, header) => {
@@ -602,8 +602,7 @@ const FeatureComparisonTableRoot = forwardRef<HTMLDivElement, FeatureComparisonT
     const narrowHeadingId = `${instanceId}-narrow-heading`
     const tableHeadingId = `${instanceId}-table-heading`
     const resolvedRootAriaLabelledBy =
-      ariaLabelledBy ??
-      (!ariaLabel && heading ? (breakpoint === 'narrow' ? narrowHeadingId : tableHeadingId) : undefined)
+      ariaLabelledBy ?? (!ariaLabel && heading ? (breakpoint === 'wide' ? tableHeadingId : narrowHeadingId) : undefined)
     const resolvedTableAriaLabelledBy = ariaLabelledBy ?? (!ariaLabel && heading ? tableHeadingId : undefined)
 
     const updateGroupOpen = (group: NormalizedGroup, open: boolean) => {
@@ -624,6 +623,7 @@ const FeatureComparisonTableRoot = forwardRef<HTMLDivElement, FeatureComparisonT
       <div
         className={clsx(
           styles.FeatureComparisonTable,
+          gridlineStyles.gridline,
           styles[`FeatureComparisonTable--items${items.length}`],
           hasStickyHeaders && styles['FeatureComparisonTable--stickyHeaders'],
           rowHighlighting && styles['FeatureComparisonTable--rowHighlighting'],
@@ -719,26 +719,6 @@ const FeatureComparisonTableRoot = forwardRef<HTMLDivElement, FeatureComparisonT
           })}
         </div>
 
-        <div className={styles.FeatureComparisonTable__regularSummary} data-testid={testIds.regularSummary}>
-          {Array.from({length: Math.ceil(items.length / 2)}, (_, rowIndex) => {
-            const rowItems = items.slice(rowIndex * 2, rowIndex * 2 + 2)
-
-            return (
-              <div className={styles.FeatureComparisonTable__summaryRow} key={`${instanceId}-summary-row-${rowIndex}`}>
-                {rowItems.map((item, itemIndex) => {
-                  const absoluteItemIndex = rowIndex * 2 + itemIndex
-
-                  return (
-                    <React.Fragment key={`${instanceId}-regular-item-${absoluteItemIndex}`}>
-                      {renderItemSummary(item, absoluteItemIndex, 'regular')}
-                    </React.Fragment>
-                  )
-                })}
-              </div>
-            )
-          })}
-        </div>
-
         <table
           aria-label={ariaLabel}
           aria-labelledby={resolvedTableAriaLabelledBy}
@@ -753,7 +733,11 @@ const FeatureComparisonTableRoot = forwardRef<HTMLDivElement, FeatureComparisonT
             ))}
           </colgroup>
           <thead
-            className={clsx(items.some(item => item.label) && styles['FeatureComparisonTable__headingGrid--hasLabel'])}
+            className={clsx(
+              groups.length > 0 && gridlineStyles.gridline,
+              styles.FeatureComparisonTable__itemDivider,
+              items.some(item => item.label) && styles['FeatureComparisonTable__headingGrid--hasLabel'],
+            )}
           >
             <tr>
               <th scope="col">
@@ -769,12 +753,7 @@ const FeatureComparisonTableRoot = forwardRef<HTMLDivElement, FeatureComparisonT
                   scope="col"
                   key={`${instanceId}-item-${itemIndex}`}
                 >
-                  <div className={styles.FeatureComparisonTable__compactHeading}>
-                    {renderItemHeading(item, itemIndex + 1)}
-                  </div>
-                  <div className={styles.FeatureComparisonTable__wideSummary}>
-                    {renderItemSummary(item, itemIndex, 'wide')}
-                  </div>
+                  <div className={styles.FeatureComparisonTable__wideSummary}>{renderItemSummary(item, itemIndex)}</div>
                 </th>
               ))}
             </tr>
@@ -797,7 +776,14 @@ const FeatureComparisonTableRoot = forwardRef<HTMLDivElement, FeatureComparisonT
               <React.Fragment key={group.identity}>
                 <tbody>
                   <tr>
-                    <th colSpan={items.length + 1} scope="rowgroup">
+                    <th
+                      className={clsx(
+                        groupIndex > 0 && gridlineStyles.gridline,
+                        styles.FeatureComparisonTable__groupDivider,
+                      )}
+                      colSpan={items.length + 1}
+                      scope="rowgroup"
+                    >
                       <div className={styles.FeatureComparisonTable__groupBackground} aria-hidden="true">
                         <span />
                         {items.map((item, itemIndex) => (

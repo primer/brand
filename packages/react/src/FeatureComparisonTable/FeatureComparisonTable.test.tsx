@@ -71,11 +71,34 @@ describe('FeatureComparisonTable', () => {
     jest.restoreAllMocks()
   })
 
+  it('uses shared gridlines after the item summaries and between groups', () => {
+    const {getByTestId} = render(
+      <FeatureComparisonTable>
+        <FeatureComparisonTable.Item>
+          <FeatureComparisonTable.Heading>Free</FeatureComparisonTable.Heading>
+        </FeatureComparisonTable.Item>
+        {['Core', 'Security', 'Support'].map(name => (
+          <FeatureComparisonTable.Group key={name}>
+            <FeatureComparisonTable.GroupHeading>{name}</FeatureComparisonTable.GroupHeading>
+          </FeatureComparisonTable.Group>
+        ))}
+      </FeatureComparisonTable>,
+    )
+    const table = getByTestId(FeatureComparisonTable.testIds.table)
+    expect(table.querySelector('thead')).toHaveClass('gridline', 'FeatureComparisonTable__itemDivider')
+    const headings = table.querySelectorAll('th[scope="rowgroup"]')
+    expect(headings[0]).not.toHaveClass('gridline')
+    for (const heading of Array.from(headings).slice(1)) {
+      expect(heading).toHaveClass('gridline', 'FeatureComparisonTable__groupDivider')
+    }
+  })
+
   it('renders plan summaries and feature values in both responsive layouts', () => {
     const {getByTestId, getByRole} = renderTable()
     const narrow = within(getByTestId(FeatureComparisonTable.testIds.narrow))
     const table = getByRole('table', {name: 'Plan comparison'})
 
+    expect(getByTestId(FeatureComparisonTable.testIds.root)).toHaveClass('gridline')
     expect(narrow.getByRole('heading', {name: 'Free'})).toBeInTheDocument()
     expect(narrow.getByRole('heading', {name: 'Pro'})).toBeInTheDocument()
     expect(narrow.getByText('Codespaces')).toBeInTheDocument()
@@ -85,26 +108,24 @@ describe('FeatureComparisonTable', () => {
     expect(within(table).getByRole('columnheader', {name: 'Compare features'})).toHaveAttribute('scope', 'col')
     expect(within(table).getByRole('rowheader', {name: 'Core features'})).toHaveAttribute('scope', 'rowgroup')
 
-    for (const summary of [getByTestId(FeatureComparisonTable.testIds.regularSummary), table]) {
-      const {getByText, getByRole: getSummaryByRole} = within(summary)
-      expect(getByText('For individuals')).toHaveClass('Text--100')
-      for (const heading of within(summary).getAllByRole('heading', {name: 'Free'})) {
-        expect(heading).toHaveClass('Heading--weight-semibold')
-      }
-      expect(getByText('$0 per month')).toBeInTheDocument()
-      expect(getByText('$10')).toBeInTheDocument()
-      expect(getSummaryByRole('link', {name: 'Start free'})).toHaveAttribute('href', '#free')
-      expect(getSummaryByRole('link', {name: 'Start free'})).toHaveClass(
-        'Button--primary',
-        'Button--size-small',
-        'Button--block',
-      )
-      expect(getSummaryByRole('button', {name: 'Contact sales'})).toHaveClass(
-        'Button--secondary',
-        'Button--size-small',
-        'Button--block',
-      )
+    const {getByText, getByRole: getSummaryByRole} = within(table)
+    expect(getByText('For individuals')).toHaveClass('Text--100')
+    for (const heading of within(table).getAllByRole('heading', {name: 'Free'})) {
+      expect(heading).toHaveClass('Heading--weight-semibold')
     }
+    expect(getByText('$0 per month')).toBeInTheDocument()
+    expect(getByText('$10')).toBeInTheDocument()
+    expect(getSummaryByRole('link', {name: 'Start free'})).toHaveAttribute('href', '#free')
+    expect(getSummaryByRole('link', {name: 'Start free'})).toHaveClass(
+      'Button--primary',
+      'Button--size-small',
+      'Button--block',
+    )
+    expect(getSummaryByRole('button', {name: 'Contact sales'})).toHaveClass(
+      'Button--secondary',
+      'Button--size-small',
+      'Button--block',
+    )
     expect(within(table).getByText('Codespaces')).toHaveClass('Text--weight-medium')
     expect(narrow.getByText('Codespaces')).toHaveClass('Text--weight-medium')
     expect(narrow.getByRole('heading', {name: 'Core features'})).toHaveClass('Heading--weight-semibold')
@@ -168,7 +189,12 @@ describe('FeatureComparisonTable', () => {
     expect(cells[1]).not.toHaveClass('FeatureComparisonTable__statusCell')
   })
 
-  it('uses a root heading as the accessible name when explicit labeling is omitted', () => {
+  it.each([
+    ['narrow', narrowBreakpoint],
+    ['regular', regularBreakpoint],
+    ['wide', wideBreakpoint],
+  ])('uses the visible heading as the accessible name at the %s breakpoint', (_name, currentBreakpoint) => {
+    mockUseWindowSize.mockReturnValue(currentBreakpoint)
     const {getByTestId, getByRole} = render(
       <FeatureComparisonTable>
         <FeatureComparisonTable.Heading>
@@ -180,7 +206,12 @@ describe('FeatureComparisonTable', () => {
       </FeatureComparisonTable>,
     )
 
-    expect(getByTestId(FeatureComparisonTable.testIds.root)).toHaveAccessibleName('Compare plans')
+    const root = getByTestId(FeatureComparisonTable.testIds.root)
+    const projection = getByTestId(
+      currentBreakpoint.isXLarge ? FeatureComparisonTable.testIds.table : FeatureComparisonTable.testIds.narrow,
+    )
+    expect(root).toHaveAccessibleName('Compare plans')
+    expect(projection).toContainElement(document.getElementById(root.getAttribute('aria-labelledby')!))
     expect(getByRole('table', {name: 'Compare plans'})).toBeInTheDocument()
   })
 
@@ -216,7 +247,7 @@ describe('FeatureComparisonTable', () => {
     const table = getByTestId(FeatureComparisonTable.testIds.table)
     expect(table.querySelectorAll('thead th')).toHaveLength(5)
     expect(table.querySelectorAll('tbody tr:last-child td')).toHaveLength(4)
-    expect(getAllByTestId(FeatureComparisonTable.testIds.item)).toHaveLength(8)
+    expect(getAllByTestId(FeatureComparisonTable.testIds.item)).toHaveLength(4)
     expect(queryByText('Five')).not.toBeInTheDocument()
     expect(queryByText('Ignored extra')).not.toBeInTheDocument()
     expect(queryByText('Unsupported root child')).not.toBeInTheDocument()
@@ -540,7 +571,7 @@ describe('FeatureComparisonTable', () => {
 
   it('moves focus to the corresponding visible control when projections change', () => {
     const expanded = {narrow: true, regular: true, wide: true}
-    const {container, getByRole, rerender} = render(
+    const comparison = () => (
       <FeatureComparisonTable>
         <FeatureComparisonTable.Item>
           <FeatureComparisonTable.Heading>Free</FeatureComparisonTable.Heading>
@@ -548,23 +579,27 @@ describe('FeatureComparisonTable', () => {
         <FeatureComparisonTable.Group expanded={expanded}>
           <FeatureComparisonTable.GroupHeading>Features</FeatureComparisonTable.GroupHeading>
         </FeatureComparisonTable.Group>
-      </FeatureComparisonTable>,
+      </FeatureComparisonTable>
     )
+    const {container, getByRole, rerender} = render(comparison())
+    const summary = container.querySelector('summary')!
+    summary.focus()
 
-    container.querySelector('summary')!.focus()
     mockUseWindowSize.mockReturnValue(regularBreakpoint)
-    rerender(
-      <FeatureComparisonTable>
-        <FeatureComparisonTable.Item>
-          <FeatureComparisonTable.Heading>Free</FeatureComparisonTable.Heading>
-        </FeatureComparisonTable.Item>
-        <FeatureComparisonTable.Group expanded={expanded}>
-          <FeatureComparisonTable.GroupHeading>Features</FeatureComparisonTable.GroupHeading>
-        </FeatureComparisonTable.Group>
-      </FeatureComparisonTable>,
-    )
+    rerender(comparison())
+    expect(summary).toHaveFocus()
 
+    mockUseWindowSize.mockReturnValue(wideBreakpoint)
+    rerender(comparison())
     expect(getByRole('button', {name: 'Features'})).toHaveFocus()
+
+    mockUseWindowSize.mockReturnValue(regularBreakpoint)
+    rerender(comparison())
+    expect(summary).toHaveFocus()
+
+    mockUseWindowSize.mockReturnValue(narrowBreakpoint)
+    rerender(comparison())
+    expect(summary).toHaveFocus()
   })
 
   it('renders decorative chevrons that follow disclosure state in both projections', async () => {
@@ -649,7 +684,6 @@ describe('FeatureComparisonTable', () => {
     const table = getByTestId(FeatureComparisonTable.testIds.table)
 
     expect(getByText('Recommended')).toBeInTheDocument()
-    expect(root.querySelector('section[data-projection="regular"]')).toHaveClass('FeatureComparisonTable__promoted')
     expect(root.querySelector('section[data-projection="wide"]')).toHaveClass('FeatureComparisonTable__promoted')
     expect(table.querySelector('thead th:nth-child(2)')).toHaveClass('FeatureComparisonTable__promoted')
     expect(table.querySelector('tbody[id] td:first-of-type')).toHaveClass('FeatureComparisonTable__promoted')
@@ -661,7 +695,7 @@ describe('FeatureComparisonTable', () => {
   })
 
   it('scrolls focused table body controls below visible sticky headers and ignores header controls', () => {
-    mockUseWindowSize.mockReturnValue(regularBreakpoint)
+    mockUseWindowSize.mockReturnValue(wideBreakpoint)
     const onFocus = jest.fn()
     const scrollBy = jest.spyOn(window, 'scrollBy').mockImplementation()
     const {getByTestId} = render(
@@ -708,7 +742,7 @@ describe('FeatureComparisonTable', () => {
   })
 
   it('protects focused table controls when items are added or restored', () => {
-    mockUseWindowSize.mockReturnValue(regularBreakpoint)
+    mockUseWindowSize.mockReturnValue(wideBreakpoint)
     const scrollBy = jest.spyOn(window, 'scrollBy').mockImplementation()
     const comparison = (showItems: boolean) => (
       <FeatureComparisonTable hasStickyHeaders>
