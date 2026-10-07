@@ -19,7 +19,6 @@ declare const styles: {
   readonly "FeatureComparisonTable__headingGrid--hasLabel": string;
   readonly "FeatureComparisonTable__item": string;
   readonly "FeatureComparisonTable__itemContent": string;
-  readonly "FeatureComparisonTable__itemContent--compact": string;
   readonly "FeatureComparisonTable__itemDivider": string;
   readonly "FeatureComparisonTable__label": string;
   readonly "FeatureComparisonTable__labelCell": string;

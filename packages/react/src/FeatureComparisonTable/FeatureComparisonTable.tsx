@@ -277,12 +277,7 @@ const renderItemSummary = (item: NormalizedItem, index: number) => {
           </span>
         </div>
       ) : null}
-      <div
-        className={clsx(
-          styles.FeatureComparisonTable__itemContent,
-          styles['FeatureComparisonTable__itemContent--compact'],
-        )}
-      >
+      <div className={styles.FeatureComparisonTable__itemContent}>
         {renderItemHeading(item, index + 1, {className: styles.FeatureComparisonTable__heading})}
         {renderDescription(item.description)}
         {renderPrice(item.price)}
