@@ -4,6 +4,7 @@ import {ArrowUpRightIcon} from '@primer/octicons-react'
 import type {BaseProps} from '../component-helpers'
 import gridlineStyles from '../component-helpers/shared.module.css'
 import {Text} from '../Text'
+import {isFragmentElement} from '../utils/isFragmentElement'
 
 /** * Design Tokens */
 import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/tiles/base.css'
@@ -61,6 +62,12 @@ const TilesRoot = forwardRef(
     }: PropsWithChildren<TilesProps>,
     ref: Ref<HTMLDivElement>,
   ) => {
+    const getChildCount = (childNodes: React.ReactNode): number =>
+      React.Children.toArray(childNodes).reduce<number>(
+        (count, child) => count + (isFragmentElement(child) ? getChildCount(child.props.children) : 1),
+        0,
+      )
+
     const getBalancedColumnCount = (itemCount: number, maximumTilesPerRow: number) => {
       if (itemCount === 0) return 1
 
@@ -68,7 +75,7 @@ const TilesRoot = forwardRef(
       return Math.ceil(itemCount / fewestRowsNeeded)
     }
 
-    const itemCount = React.Children.toArray(children).length
+    const itemCount = getChildCount(children)
 
     if ((process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'test') && itemCount > 9) {
       // eslint-disable-next-line no-console
