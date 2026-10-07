@@ -1,7 +1,7 @@
 import {CheckIcon, ChevronDownIcon, DashIcon} from '@primer/octicons-react'
 import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/feature-comparison-table/colors-with-modes.css'
 import {clsx} from 'clsx'
-import React, {forwardRef, PropsWithChildren, useLayoutEffect, useMemo, useRef, useState} from 'react'
+import React, {forwardRef, type PropsWithChildren, useLayoutEffect, useMemo, useRef, useState} from 'react'
 import {Button, type ButtonBaseProps} from '../Button'
 import {useAnimation} from '../animation'
 import type {BaseProps} from '../component-helpers'
@@ -9,28 +9,25 @@ import gridlineStyles from '../component-helpers/shared.module.css'
 import {Heading as HeadingComponent, type HeadingProps} from '../Heading'
 import {Text} from '../Text'
 import {useId} from '../hooks/useId'
-import {useProvidedRefOrCreate} from '../hooks/useRef'
 import {useWindowSize} from '../hooks/useWindowSize'
 import styles from './FeatureComparisonTable.module.css'
 
-export type FeatureComparisonTableProps = PropsWithChildren<
-  BaseProps<HTMLDivElement> &
-    Omit<React.HTMLAttributes<HTMLDivElement>, 'aria-label' | 'aria-labelledby'> & {
-      /**
-       * Include a root FeatureComparisonTable.Heading to name the comparison.
-       */
-      children: React.ReactNode
-      'aria-label'?: never
-      'aria-labelledby'?: never
-      'data-testid'?: string
-      /**
-       * Keeps wide table headers fixed to the viewport while scrolling.
-       * Ancestors must not set overflow in a way that changes the sticky containing block.
-       */
-      hasStickyHeaders?: boolean
-      rowHighlighting?: boolean
-    }
->
+export type FeatureComparisonTableProps = BaseProps<HTMLDivElement> &
+  Omit<React.HTMLAttributes<HTMLDivElement>, 'aria-label' | 'aria-labelledby'> & {
+    /**
+     * Include a root FeatureComparisonTable.Heading to name the comparison.
+     */
+    children: React.ReactNode
+    'aria-label'?: never
+    'aria-labelledby'?: never
+    'data-testid'?: string
+    /**
+     * Keeps wide table headers fixed to the viewport while scrolling.
+     * Ancestors must not set overflow in a way that changes the sticky containing block.
+     */
+    hasStickyHeaders?: boolean
+    rowHighlighting?: boolean
+  }
 
 type ProjectedBaseProps<T> = Omit<BaseProps<T>, 'animate' | 'id' | 'ref'>
 type AnimatedProjectedBaseProps<T> = Omit<BaseProps<T>, 'id' | 'ref'>
@@ -146,6 +143,12 @@ type GroupState = {
   open: boolean
 }
 
+const getChildrenOfType = <P,>(children: React.ReactNode[], type: React.JSXElementConstructor<P>) =>
+  children.filter((child): child is React.ReactElement<P> => React.isValidElement<P>(child) && child.type === type)
+
+// Projected children render in both layouts, so consumer IDs must not be duplicated.
+const withoutId = <P,>({id: _id, ...props}: P & {id?: string}) => props
+
 const resolveExpanded = (expanded: FeatureComparisonTableGroupProps['expanded'], breakpoint: BreakpointCategory) => {
   if (typeof expanded === 'boolean') return expanded
   if (expanded) return expanded[breakpoint]
@@ -167,14 +170,7 @@ const renderItemHeading = (
     return <span {...props}>{fallback}</span>
   }
 
-  const {
-    children,
-    as = 'h3',
-    size = 'subhead-medium',
-    className,
-    id: _id,
-    ...rest
-  } = item.heading.props as FeatureComparisonTableHeadingProps & {id?: string}
+  const {children, as = 'h3', size = 'subhead-medium', className, ...rest} = withoutId(item.heading.props)
   return (
     <HeadingComponent
       as={as}
@@ -194,14 +190,7 @@ const renderTableHeading = (
   id: string,
   className?: string,
 ) => {
-  const {
-    children,
-    as = 'h2',
-    size = 'subhead-large',
-    className: headingClassName,
-    id: _id,
-    ...rest
-  } = heading.props as FeatureComparisonTableHeadingProps & {id?: string}
+  const {children, as = 'h2', size = 'subhead-large', className: headingClassName, ...rest} = withoutId(heading.props)
 
   return (
     <HeadingComponent
@@ -224,14 +213,7 @@ const renderTableHeading = (
 
 const renderDescription = (description: NormalizedItem['description']) => {
   if (!description) return null
-  const {
-    children,
-    className,
-    id: _id,
-    ...rest
-  } = description.props as FeatureComparisonTableDescriptionProps & {
-    id?: string
-  }
+  const {children, className, ...rest} = withoutId(description.props)
   return (
     <Text
       as="p"
@@ -247,7 +229,7 @@ const renderDescription = (description: NormalizedItem['description']) => {
 
 const renderPrice = (price: NormalizedItem['price']) => {
   if (!price) return null
-  const {children, className, id: _id, ...rest} = price.props as FeatureComparisonTablePriceProps & {id?: string}
+  const {children, className, ...rest} = withoutId(price.props)
 
   return (
     <Text
@@ -269,38 +251,13 @@ const renderAction = (
   variant: 'primary' | 'secondary',
 ) => {
   if (!action) return null
-  const {
-    as,
-    children,
-    className,
-    id: _id,
-    ...rest
-  } = action.props as FeatureComparisonTableActionProps & {
-    id?: string
-  }
-  return (
-    <Button
-      {...(rest as Omit<FeatureComparisonTableActionProps, 'as' | 'children'>)}
-      as={as}
-      className={className}
-      variant={variant}
-      size="small"
-      block
-    >
-      {children}
-    </Button>
-  )
+  return <Button {...withoutId(action.props)} variant={variant} size="small" block />
 }
 
 const renderItemSummary = (item: NormalizedItem, index: number) => {
   const {className} = item.element.props
   const showLabel = Boolean(item.label)
-  const {
-    children: labelChildren,
-    className: labelClassName,
-    id: _labelId,
-    ...labelRest
-  } = (item.label?.props as (FeatureComparisonTableLabelProps & {id?: string}) | undefined) ?? {}
+  const {children: labelChildren, className: labelClassName, ...labelRest} = withoutId(item.label?.props ?? {})
 
   return (
     <section
@@ -345,11 +302,10 @@ const renderRowHeading = (heading: NormalizedRow['heading']) => {
   const {
     children,
     className,
-    id: _id,
     infoTooltip: _infoTooltip,
     infoTooltipAriaLabel: _infoTooltipAriaLabel,
     ...rest
-  } = heading.props as FeatureComparisonTableRowHeadingProps & {id?: string}
+  } = withoutId(heading.props)
 
   return (
     <Text
@@ -367,14 +323,7 @@ const renderRowHeading = (heading: NormalizedRow['heading']) => {
 
 const renderCell = (cell: React.ReactElement<FeatureComparisonTableCellProps> | null) => {
   if (!cell) return null
-  const {
-    children,
-    className,
-    id: _id,
-    variant,
-    variantAriaLabel,
-    ...rest
-  } = cell.props as FeatureComparisonTableCellProps & {id?: string}
+  const {children, className, variant, variantAriaLabel, ...rest} = withoutId(cell.props)
   const resolvedVariantAriaLabel = variantAriaLabel ?? (variant === 'included' ? 'Included' : 'Unavailable')
 
   return (
@@ -405,6 +354,33 @@ const renderCell = (cell: React.ReactElement<FeatureComparisonTableCellProps> | 
   )
 }
 
+const renderGroupHeading = (heading: NormalizedGroup['heading'], children: React.ReactNode, className?: string) => {
+  const {
+    children: _children,
+    as = 'h3',
+    size = 'subhead-large',
+    className: headingClassName,
+    ...rest
+  } = withoutId(heading?.props ?? {})
+
+  return (
+    <HeadingComponent as={as} size={size} weight="semibold" className={clsx(className, headingClassName)} {...rest}>
+      {children}
+    </HeadingComponent>
+  )
+}
+
+const renderChevron = (expanded: boolean) => (
+  <ChevronDownIcon
+    aria-hidden="true"
+    size={16}
+    className={clsx(
+      styles.FeatureComparisonTable__chevron,
+      expanded && styles['FeatureComparisonTable__chevron--expanded'],
+    )}
+  />
+)
+
 const FeatureComparisonTableRoot = forwardRef<HTMLDivElement, FeatureComparisonTableProps>(
   (
     {
@@ -424,7 +400,6 @@ const FeatureComparisonTableRoot = forwardRef<HTMLDivElement, FeatureComparisonT
     const {classes: animationClasses, styles: animationInlineStyles} = useAnimation(animate)
     const {isMedium, isXLarge} = useWindowSize()
     const breakpoint: BreakpointCategory = isXLarge ? 'wide' : isMedium ? 'regular' : 'narrow'
-    const rootRef = useProvidedRefOrCreate<HTMLDivElement | null>(ref)
     const tableRef = useRef<HTMLTableElement>(null)
     const [disclosureState, setDisclosureState] = useState<{
       breakpoint: BreakpointCategory
@@ -436,99 +411,52 @@ const FeatureComparisonTableRoot = forwardRef<HTMLDivElement, FeatureComparisonT
 
     const {heading, items, groups} = useMemo(() => {
       const rootChildren = React.Children.toArray(children)
-      let rootHeading: React.ReactElement<FeatureComparisonTableHeadingProps> | null = null
-
-      for (const child of rootChildren) {
-        if (React.isValidElement(child) && child.type === Heading) {
-          rootHeading = child as React.ReactElement<FeatureComparisonTableHeadingProps>
-        }
-      }
-
-      const itemElements = rootChildren.filter(
-        (child): child is React.ReactElement<FeatureComparisonTableItemProps> =>
-          React.isValidElement(child) && child.type === Item,
-      )
-
-      const normalizedItems = itemElements.slice(0, 4).map(element => {
-        const item: NormalizedItem = {
-          element,
-          label: null,
-          heading: null,
-          description: null,
-          price: null,
-          primaryAction: null,
-          secondaryAction: null,
-        }
-
-        for (const child of React.Children.toArray(element.props.children)) {
-          if (!React.isValidElement(child)) continue
-          if (child.type === Label) item.label = child as React.ReactElement<FeatureComparisonTableLabelProps>
-          if (child.type === Heading) item.heading = child as React.ReactElement<FeatureComparisonTableHeadingProps>
-          if (child.type === Description)
-            item.description = child as React.ReactElement<FeatureComparisonTableDescriptionProps>
-          if (child.type === Price) item.price = child as React.ReactElement<FeatureComparisonTablePriceProps>
-          if (child.type === PrimaryAction)
-            item.primaryAction = child as React.ReactElement<FeatureComparisonTableActionProps>
-          if (child.type === SecondaryAction)
-            item.secondaryAction = child as React.ReactElement<FeatureComparisonTableActionProps>
-        }
-
-        return item
-      })
-
-      const normalizedGroups = rootChildren
-        .filter(
-          (child): child is React.ReactElement<FeatureComparisonTableGroupProps> =>
-            React.isValidElement(child) && child.type === Group,
-        )
-        .map((element, groupIndex) => {
-          const group: NormalizedGroup = {
+      const normalizedItems: NormalizedItem[] = getChildrenOfType(rootChildren, Item)
+        .slice(0, 4)
+        .map(element => {
+          const itemChildren = React.Children.toArray(element.props.children)
+          return {
             element,
-            heading: null,
-            identity: element.key === null ? `index:${groupIndex}` : `key:${String(element.key)}`,
-            rows: [],
+            label: getChildrenOfType(itemChildren, Label).at(-1) ?? null,
+            heading: getChildrenOfType(itemChildren, Heading).at(-1) ?? null,
+            description: getChildrenOfType(itemChildren, Description).at(-1) ?? null,
+            price: getChildrenOfType(itemChildren, Price).at(-1) ?? null,
+            primaryAction: getChildrenOfType(itemChildren, PrimaryAction).at(-1) ?? null,
+            secondaryAction: getChildrenOfType(itemChildren, SecondaryAction).at(-1) ?? null,
           }
-
-          for (const child of React.Children.toArray(element.props.children)) {
-            if (!React.isValidElement(child)) continue
-            if (child.type === GroupHeading) {
-              group.heading = child as React.ReactElement<FeatureComparisonTableGroupHeadingProps>
-            }
-            if (child.type === Row) {
-              const rowElement = child as React.ReactElement<FeatureComparisonTableRowProps>
-              const row: NormalizedRow = {element: rowElement, heading: null, cells: []}
-              const rowChildren = React.Children.toArray(rowElement.props.children)
-              const cellElements = rowChildren.filter(
-                (rowChild): rowChild is React.ReactElement<FeatureComparisonTableCellProps> =>
-                  React.isValidElement(rowChild) && rowChild.type === Cell,
-              )
-
-              if (process.env.NODE_ENV !== 'production' && cellElements.length !== normalizedItems.length) {
-                // eslint-disable-next-line no-console
-                console.warn(
-                  `FeatureComparisonTable.Row: expected ${normalizedItems.length} Cell children to match the number of items, but received ${cellElements.length}. Missing cells render empty and extra cells are ignored.`,
-                )
-              }
-
-              for (const rowChild of rowChildren) {
-                if (!React.isValidElement(rowChild)) continue
-                if (rowChild.type === RowHeading) {
-                  row.heading = rowChild as React.ReactElement<FeatureComparisonTableRowHeadingProps>
-                }
-                if (rowChild.type === Cell && row.cells.length < normalizedItems.length) {
-                  row.cells.push(rowChild as React.ReactElement<FeatureComparisonTableCellProps>)
-                }
-              }
-
-              while (row.cells.length < normalizedItems.length) row.cells.push(null)
-              group.rows.push(row)
-            }
-          }
-
-          return group
         })
 
-      return {heading: rootHeading, items: normalizedItems, groups: normalizedGroups}
+      const normalizedGroups: NormalizedGroup[] = getChildrenOfType(rootChildren, Group).map((element, groupIndex) => {
+        const groupChildren = React.Children.toArray(element.props.children)
+        return {
+          element,
+          heading: getChildrenOfType(groupChildren, GroupHeading).at(-1) ?? null,
+          identity: element.key === null ? `index:${groupIndex}` : `key:${String(element.key)}`,
+          rows: getChildrenOfType(groupChildren, Row).map(rowElement => {
+            const rowChildren = React.Children.toArray(rowElement.props.children)
+            const cells = getChildrenOfType(rowChildren, Cell)
+
+            if (process.env.NODE_ENV !== 'production' && cells.length !== normalizedItems.length) {
+              // eslint-disable-next-line no-console
+              console.warn(
+                `FeatureComparisonTable.Row: expected ${normalizedItems.length} Cell children to match the number of items, but received ${cells.length}. Missing cells render empty and extra cells are ignored.`,
+              )
+            }
+
+            return {
+              element: rowElement,
+              heading: getChildrenOfType(rowChildren, RowHeading).at(-1) ?? null,
+              cells: normalizedItems.map((_, index) => cells[index] ?? null),
+            }
+          }),
+        }
+      })
+
+      return {
+        heading: getChildrenOfType(rootChildren, Heading).at(-1) ?? null,
+        items: normalizedItems,
+        groups: normalizedGroups,
+      }
     }, [children])
 
     const groupStates = groups.reduce<Record<string, GroupState>>((states, group) => {
@@ -637,7 +565,7 @@ const FeatureComparisonTableRoot = forwardRef<HTMLDivElement, FeatureComparisonT
           className,
         )}
         data-testid={testId || testIds.root}
-        ref={rootRef}
+        ref={ref}
         onFocus={handleFocus}
         style={{...animationInlineStyles, ...style}}
         {...rest}
@@ -651,15 +579,6 @@ const FeatureComparisonTableRoot = forwardRef<HTMLDivElement, FeatureComparisonT
           {groups.map((group, groupIndex) => {
             const groupId = `${instanceId}-narrow-group-${groupIndex}`
             const groupOpen = groupStates[group.identity].open
-            const headingProps = group.heading?.props
-            const {
-              children: groupHeadingChildren,
-              as: GroupHeadingTag = 'h3',
-              size = 'subhead-large',
-              className: groupHeadingClassName,
-              id: _groupHeadingId,
-              ...groupHeadingRest
-            } = (headingProps as (FeatureComparisonTableGroupHeadingProps & {id?: string}) | undefined) ?? {}
 
             return (
               <details
@@ -679,23 +598,8 @@ const FeatureComparisonTableRoot = forwardRef<HTMLDivElement, FeatureComparisonT
                     narrowGroupControls.current[group.identity] = control
                   }}
                 >
-                  <HeadingComponent
-                    as={GroupHeadingTag}
-                    size={size}
-                    weight="semibold"
-                    className={groupHeadingClassName}
-                    {...groupHeadingRest}
-                  >
-                    {groupHeadingChildren}
-                  </HeadingComponent>
-                  <ChevronDownIcon
-                    aria-hidden="true"
-                    size={16}
-                    className={clsx(
-                      styles.FeatureComparisonTable__chevron,
-                      groupOpen && styles['FeatureComparisonTable__chevron--expanded'],
-                    )}
-                  />
+                  {renderGroupHeading(group.heading, group.heading?.props.children)}
+                  {renderChevron(groupOpen)}
                 </summary>
                 <div id={groupId} hidden={!groupOpen}>
                   {group.rows.map((row, rowIndex) => (
@@ -769,15 +673,6 @@ const FeatureComparisonTableRoot = forwardRef<HTMLDivElement, FeatureComparisonT
             const groupControlId = `${instanceId}-table-group-control-${groupIndex}`
             const groupId = `${instanceId}-table-group-${groupIndex}`
             const groupOpen = groupStates[group.identity].open
-            const headingProps = group.heading?.props
-            const {
-              children: groupHeadingChildren,
-              as: GroupHeadingTag = 'h3',
-              size = 'subhead-large',
-              className: groupHeadingClassName,
-              id: _groupHeadingId,
-              ...groupHeadingRest
-            } = (headingProps as (FeatureComparisonTableGroupHeadingProps & {id?: string}) | undefined) ?? {}
 
             return (
               <React.Fragment key={group.identity}>
@@ -800,16 +695,8 @@ const FeatureComparisonTableRoot = forwardRef<HTMLDivElement, FeatureComparisonT
                           />
                         ))}
                       </div>
-                      <HeadingComponent
-                        as={GroupHeadingTag}
-                        size={size}
-                        weight="semibold"
-                        className={clsx(
-                          !headingProps?.size && styles.FeatureComparisonTable__groupHeading,
-                          groupHeadingClassName,
-                        )}
-                        {...groupHeadingRest}
-                      >
+                      {renderGroupHeading(
+                        group.heading,
                         <button
                           aria-controls={groupId}
                           aria-expanded={groupOpen}
@@ -820,17 +707,11 @@ const FeatureComparisonTableRoot = forwardRef<HTMLDivElement, FeatureComparisonT
                           }}
                           type="button"
                         >
-                          {groupHeadingChildren}
-                          <ChevronDownIcon
-                            aria-hidden="true"
-                            size={16}
-                            className={clsx(
-                              styles.FeatureComparisonTable__chevron,
-                              groupOpen && styles['FeatureComparisonTable__chevron--expanded'],
-                            )}
-                          />
-                        </button>
-                      </HeadingComponent>
+                          {group.heading?.props.children}
+                          {renderChevron(groupOpen)}
+                        </button>,
+                        group.heading?.props.size ? undefined : styles.FeatureComparisonTable__groupHeading,
+                      )}
                     </th>
                   </tr>
                 </tbody>

@@ -99,10 +99,12 @@ describe('FeatureComparisonTable', () => {
     expect(table.getByRole('cell', {name: 'Unlimited'})).toBeInTheDocument()
   })
 
-  it('forwards custom classes and attributes to the root', () => {
-    const {getByTestId} = render(<Component data-testid="custom-table" className="custom-class" />)
+  it('forwards custom classes, attributes, and refs to the root', () => {
+    const ref = React.createRef<HTMLDivElement>()
+    const {getByTestId} = render(<Component data-testid="custom-table" className="custom-class" ref={ref} />)
 
     expect(getByTestId('custom-table')).toHaveClass('FeatureComparisonTable', 'custom-class')
+    expect(ref.current).toBe(getByTestId('custom-table'))
   })
 
   it.each([
@@ -268,12 +270,14 @@ describe('FeatureComparisonTable', () => {
     expect(getByRole('cell', {name: expectedLabel})).toBeInTheDocument()
   })
 
-  it('ignores unsupported children', () => {
+  it('ignores unsupported children and uses the last heading', () => {
     const {queryByText} = render(
       <FeatureComparisonTable>
+        <FeatureComparisonTable.Heading>Earlier table heading</FeatureComparisonTable.Heading>
         <FeatureComparisonTable.Heading>Compare plans</FeatureComparisonTable.Heading>
         <div>Unsupported root child</div>
         <FeatureComparisonTable.Item>
+          <FeatureComparisonTable.Heading>Earlier plan heading</FeatureComparisonTable.Heading>
           <FeatureComparisonTable.Heading>Free</FeatureComparisonTable.Heading>
           <span>Unsupported item child</span>
         </FeatureComparisonTable.Item>
@@ -282,6 +286,24 @@ describe('FeatureComparisonTable', () => {
 
     expect(queryByText('Unsupported root child')).not.toBeInTheDocument()
     expect(queryByText('Unsupported item child')).not.toBeInTheDocument()
+    expect(queryByText('Earlier table heading')).not.toBeInTheDocument()
+    expect(queryByText('Earlier plan heading')).not.toBeInTheDocument()
+  })
+
+  it('limits the comparison to four plans', () => {
+    const {getAllByTestId, queryByText} = render(
+      <FeatureComparisonTable>
+        <FeatureComparisonTable.Heading>Compare plans</FeatureComparisonTable.Heading>
+        {['Free', 'Team', 'Enterprise', 'Enterprise Plus', 'Extra plan'].map(name => (
+          <FeatureComparisonTable.Item key={name}>
+            <FeatureComparisonTable.Heading>{name}</FeatureComparisonTable.Heading>
+          </FeatureComparisonTable.Item>
+        ))}
+      </FeatureComparisonTable>,
+    )
+
+    expect(getAllByTestId(FeatureComparisonTable.testIds.item)).toHaveLength(4)
+    expect(queryByText('Extra plan')).not.toBeInTheDocument()
   })
 
   it('does not render without any items', () => {
@@ -294,7 +316,10 @@ describe('FeatureComparisonTable', () => {
     expect(container).toBeEmptyDOMElement()
   })
 
-  it('warns when a row is missing cells and renders empty cells', () => {
+  it.each([
+    {cells: [], expectedText: ''},
+    {cells: ['Included', 'Extra cell'], expectedText: 'Included'},
+  ])('warns and normalizes mismatched row cells: $cells', ({cells, expectedText}) => {
     const warn = jest.spyOn(console, 'warn').mockImplementation()
     const {getByRole} = render(
       <FeatureComparisonTable>
@@ -304,15 +329,19 @@ describe('FeatureComparisonTable', () => {
         </FeatureComparisonTable.Item>
         <FeatureComparisonTable.Group expanded>
           <FeatureComparisonTable.GroupHeading>Features</FeatureComparisonTable.GroupHeading>
-          <FeatureComparisonTable.Row />
+          <FeatureComparisonTable.Row>
+            {cells.map(content => (
+              <FeatureComparisonTable.Cell key={content}>{content}</FeatureComparisonTable.Cell>
+            ))}
+          </FeatureComparisonTable.Row>
         </FeatureComparisonTable.Group>
       </FeatureComparisonTable>,
     )
 
     expect(warn).toHaveBeenCalledWith(
-      'FeatureComparisonTable.Row: expected 1 Cell children to match the number of items, but received 0. Missing cells render empty and extra cells are ignored.',
+      `FeatureComparisonTable.Row: expected 1 Cell children to match the number of items, but received ${cells.length}. Missing cells render empty and extra cells are ignored.`,
     )
-    expect(getByRole('cell')).toBeEmptyDOMElement()
+    expect(getByRole('cell').textContent).toBe(expectedText)
   })
 
   it('warns when the required root heading is missing', () => {
