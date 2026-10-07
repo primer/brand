@@ -26,14 +26,13 @@ export default meta
 type Story = StoryObj<typeof FeatureComparisonTable>
 type Plan = {
   description?: string
-  label?: string
   name: string
   price?: string
 }
 
 const plans: Plan[] = [
   {name: 'Free', description: 'for_individuals', price: 'free_price'},
-  {name: 'Team', description: 'for_teams', label: 'recommended', price: 'team_price'},
+  {name: 'Team', description: 'for_teams', price: 'team_price'},
   {name: 'Enterprise', description: 'for_organizations', price: 'enterprise_price'},
   {name: 'Enterprise Plus', description: 'for_complex_organizations', price: 'enterprise_plus_price'},
 ]
@@ -99,15 +98,46 @@ const expectGridlines = (root: HTMLElement) => {
   }
 }
 
+const expectColumnAlignment = (table: HTMLElement) => {
+  for (const [index, header] of Array.from(table.querySelectorAll('thead th')).entries()) {
+    const bounds = header.getBoundingClientRect()
+    const alignedElements = [
+      ...header.querySelectorAll(
+        'section, [data-testid="FeatureComparisonTable__label"], [data-testid="FeatureComparisonTable__label"] + div',
+      ),
+      ...table.querySelectorAll(
+        `tbody tr[data-testid] > :nth-child(${index + 1}), tbody th[colspan] > [aria-hidden] > span:nth-child(${
+          index + 1
+        })`,
+      ),
+    ]
+    for (const element of alignedElements) {
+      if (!element.getBoundingClientRect().height) continue
+      const actual = element.getBoundingClientRect()
+      expect(Math.abs(actual.left - bounds.left)).toBeLessThan(0.1)
+      expect(Math.abs(actual.right - bounds.right)).toBeLessThan(0.1)
+    }
+  }
+}
+
+const checkColumnAlignment: Story['play'] = async ({canvasElement}) => {
+  const table = await within(canvasElement).findByTestId('FeatureComparisonTable__table')
+  if (window.matchMedia('(min-width: 80rem)').matches) {
+    expectColumnAlignment(table)
+  }
+}
+
 const Fixture = ({
   children,
   expanded = true,
+  featuredPlanIndex = 1,
   planCount = 4,
   rowHighlighting = false,
   hasStickyHeaders = false,
 }: {
   children?: React.ReactNode
   expanded?: React.ComponentProps<typeof FeatureComparisonTable.Group>['expanded']
+  featuredPlanIndex?: number
   planCount?: number
   rowHighlighting?: boolean
   hasStickyHeaders?: boolean
@@ -122,9 +152,11 @@ const Fixture = ({
       hasStickyHeaders={hasStickyHeaders}
     >
       <FeatureComparisonTable.Heading>{t('compare_features')}</FeatureComparisonTable.Heading>
-      {visiblePlans.map(plan => (
+      {visiblePlans.map((plan, index) => (
         <FeatureComparisonTable.Item key={plan.name}>
-          {plan.label ? <FeatureComparisonTable.Label>{t(plan.label)}</FeatureComparisonTable.Label> : null}
+          {index === featuredPlanIndex ? (
+            <FeatureComparisonTable.Label>{t('recommended')}</FeatureComparisonTable.Label>
+          ) : null}
           <FeatureComparisonTable.Heading>{t(plan.name)}</FeatureComparisonTable.Heading>
           {plan.description ? (
             <FeatureComparisonTable.Description>{t(plan.description)}</FeatureComparisonTable.Description>
@@ -180,10 +212,22 @@ const Fixture = ({
 
 export const TwoPlans: Story = {
   render: () => <Fixture planCount={2} />,
+  play: checkColumnAlignment,
 }
 
 export const ThreePlans: Story = {
   render: () => <Fixture planCount={3} />,
+  play: checkColumnAlignment,
+}
+
+export const FeaturedFirstPlan: Story = {
+  render: () => <Fixture featuredPlanIndex={0} />,
+  play: checkColumnAlignment,
+}
+
+export const FeaturedLastPlan: Story = {
+  render: () => <Fixture featuredPlanIndex={3} hasStickyHeaders />,
+  play: checkColumnAlignment,
 }
 
 export const FourPlans: Story = {
@@ -237,10 +281,12 @@ export const FourPlans: Story = {
     )
     expect(rowStarts.length).toBeGreaterThan(0)
     for (const start of rowStarts) {
-      const styles = getComputedStyle(start)
+      expect(getComputedStyle(start).borderInlineStartWidth).toBe('0px')
+      const styles = getComputedStyle(start, '::before')
       expect(styles.borderInlineStartStyle).toBe('solid')
       expect(parseFloat(styles.borderInlineStartWidth)).toBeGreaterThan(0)
     }
+    expectColumnAlignment(table)
 
     for (const cell of table.querySelectorAll('tbody td')) {
       expect(getComputedStyle(cell).paddingInlineStart).toBe('28px')
