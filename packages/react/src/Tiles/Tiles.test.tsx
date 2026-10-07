@@ -195,6 +195,65 @@ describe('Tiles', () => {
     expect(getAllByTestId(Tiles.testIds.item)).toHaveLength(3)
   })
 
+  it('warns when more than nine items are provided', () => {
+    const consoleWarnSpy = jest.spyOn(console, 'warn').mockImplementation(() => {})
+
+    render(
+      <Tiles>
+        {Array.from({length: 10}, (_, index) => (
+          <Tiles.Item key={index} name={`Item ${index + 1}`}>
+            <svg />
+          </Tiles.Item>
+        ))}
+      </Tiles>,
+    )
+
+    expect(consoleWarnSpy).toHaveBeenCalledWith(
+      'Tiles: More than 9 items may not fit on a single row. Consider limiting Tiles to 9 items.',
+    )
+    consoleWarnSpy.mockRestore()
+  })
+
+  it('does not warn when nine items are provided', () => {
+    const consoleWarnSpy = jest.spyOn(console, 'warn').mockImplementation(() => {})
+
+    render(
+      <Tiles>
+        {Array.from({length: 9}, (_, index) => (
+          <Tiles.Item key={index} name={`Item ${index + 1}`}>
+            <svg />
+          </Tiles.Item>
+        ))}
+      </Tiles>,
+    )
+
+    expect(consoleWarnSpy).not.toHaveBeenCalled()
+    consoleWarnSpy.mockRestore()
+  })
+
+  it('does not warn about item count in production', () => {
+    const originalNodeEnv = process.env.NODE_ENV
+    const consoleWarnSpy = jest.spyOn(console, 'warn').mockImplementation(() => {})
+    process.env.NODE_ENV = 'production'
+
+    try {
+      render(
+        <Tiles>
+          {Array.from({length: 10}, (_, index) => (
+            <Tiles.Item key={index} name={`Item ${index + 1}`}>
+              <svg />
+            </Tiles.Item>
+          ))}
+        </Tiles>,
+      )
+
+      expect(consoleWarnSpy).not.toHaveBeenCalled()
+    } finally {
+      process.env.NODE_ENV = originalNodeEnv
+      consoleWarnSpy.mockRestore()
+    }
+  })
+
   it('balances columns for seven items at each breakpoint', () => {
     const {getByTestId} = render(
       <Tiles>

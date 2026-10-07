@@ -69,6 +69,12 @@ const TilesRoot = forwardRef(
     }
 
     const itemCount = React.Children.toArray(children).length
+
+    if ((process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'test') && itemCount > 9) {
+      // eslint-disable-next-line no-console
+      console.warn('Tiles: Use no more than 9 items.')
+    }
+
     const maximumTilesPerRow = maximumTilesPerRowByViewport[layout]
     const gridStyle = {
       '--tiles-columns-xsmall': getBalancedColumnCount(itemCount, maximumTilesPerRow.xsmall),
