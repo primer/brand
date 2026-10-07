@@ -24,6 +24,7 @@ declare const styles: {
   readonly "FeatureComparisonTable__label": string;
   readonly "FeatureComparisonTable__labelCell": string;
   readonly "FeatureComparisonTable__narrow": string;
+  readonly "FeatureComparisonTable__narrowHeading": string;
   readonly "FeatureComparisonTable__planName": string;
   readonly "FeatureComparisonTable__price": string;
   readonly "FeatureComparisonTable__promoted": string;

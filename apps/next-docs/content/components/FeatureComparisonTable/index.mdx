@@ -25,7 +25,7 @@ import {FeatureComparisonTable} from '@primer/react-brand'
 
 ### Default
 
-Use one `Item` for each plan and organize comparison rows into one or more collapsible `Group` components. `FeatureComparisonTable` supports two to four plans.
+Include a root `FeatureComparisonTable.Heading` to name the comparison. Use one `Item` for each plan and organize comparison rows into one or more collapsible `Group` components. `FeatureComparisonTable` supports two to four plans.
 
 ```jsx live
 <FeatureComparisonTable>
@@ -151,13 +151,11 @@ Set `hasStickyHeaders` to keep table headers visible while scrolling. Avoid plac
 
 ### FeatureComparisonTable <Label>Required</Label>
 
-| Name               | Type                   | Default | required | Description                                                                 |
-| :----------------- | :--------------------- | :-----: | :------: | :-------------------------------------------------------------------------- |
-| `children`         | `Heading, Item, Group` |         |  `true`  | Defines the title, plan summaries, and grouped comparison rows              |
-| `aria-label`       | `string`               |         | `false`  | Labels the table when a root `Heading` or `aria-labelledby` is not provided |
-| `aria-labelledby`  | `string`               |         | `false`  | References an external element that labels the table                        |
-| `rowHighlighting`  | `boolean`              | `false` | `false`  | Highlights a row on supported hover and focus interactions                  |
-| `hasStickyHeaders` | `boolean`              | `false` | `false`  | Makes regular and wide table headers sticky to their containing block       |
+| Name               | Type                   | Default | required | Description                                                    |
+| :----------------- | :--------------------- | :-----: | :------: | :------------------------------------------------------------- |
+| `children`         | `Heading, Item, Group` |         |  `true`  | Defines the title, plan summaries, and grouped comparison rows |
+| `rowHighlighting`  | `boolean`              | `false` | `false`  | Highlights a row on supported hover and focus interactions     |
+| `hasStickyHeaders` | `boolean`              | `false` | `false`  | Makes wide table headers sticky to their containing block      |
 
 ### FeatureComparisonTable.Item <Label>Required</Label>
 
@@ -173,9 +171,11 @@ One item per plan. The component renders a maximum of four items.
 | :--------- | :---------- | :-----: | :------: | :------------------------------------------------------ |
 | `children` | `ReactNode` |         |  `true`  | Labels and visually promotes the associated plan column |
 
-### FeatureComparisonTable.Heading
+### FeatureComparisonTable.Heading <Label>Required</Label>
 
-At the root, the heading labels the comparison and appears above the feature column in desktop table layouts. It also supplies the table's accessible name when `aria-label` and `aria-labelledby` are omitted. Inside an `Item`, the same component names that plan.
+A root `Heading` child is required. It appears above the feature column on desktop and in a centered band above the groups on mobile and tablet. The component automatically associates the desktop table with this heading for its accessible name; consumers do not need to provide labeling attributes. Inside an `Item`, the same component names that plan.
+
+The root heading requirement is checked at runtime, not enforced by TypeScript. In development, the component warns when the root heading is missing. Item headings do not satisfy this requirement.
 
 | Name       | Type                                    |      Default      | required | Description                                       |
 | :--------- | :-------------------------------------- | :---------------: | :------: | :------------------------------------------------ |

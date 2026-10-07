@@ -32,10 +32,10 @@ export default meta
 
 type Story = StoryObj<typeof FeatureComparisonTable>
 
-const Comparison = (args: React.ComponentProps<typeof FeatureComparisonTable> = {}) => {
+const Comparison = (args: Omit<React.ComponentProps<typeof FeatureComparisonTable>, 'children'> = {}) => {
   const {t} = useTranslation('FeatureComparisonTable')
   return (
-    <FeatureComparisonTable aria-label={t('copilot_plan_comparison')} {...args}>
+    <FeatureComparisonTable {...args}>
       <FeatureComparisonTable.Heading>{t('compare_features')}</FeatureComparisonTable.Heading>
       <FeatureComparisonTable.Item>
         <FeatureComparisonTable.Heading>{t('Free')}</FeatureComparisonTable.Heading>

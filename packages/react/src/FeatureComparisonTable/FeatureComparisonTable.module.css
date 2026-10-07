@@ -23,6 +23,19 @@
   display: block;
 }
 
+.FeatureComparisonTable__narrowHeading {
+  padding: var(--base-size-60) var(--base-size-20);
+  text-align: center;
+}
+
+.FeatureComparisonTable__narrowHeading::before {
+  content: none;
+}
+
+.FeatureComparisonTable__tableHeadingText {
+  font-size: var(--base-size-24);
+}
+
 .FeatureComparisonTable__table {
   display: none;
   width: 100%;
@@ -539,10 +552,6 @@
   .FeatureComparisonTable__tableHeading {
     align-self: end;
     padding: var(--base-size-28);
-  }
-
-  .FeatureComparisonTable__tableHeadingText {
-    font-size: var(--base-size-24);
   }
 
   .FeatureComparisonTable__table thead th:last-child .FeatureComparisonTable__item::before {

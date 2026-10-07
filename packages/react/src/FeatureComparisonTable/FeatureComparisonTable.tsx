@@ -15,7 +15,13 @@ import styles from './FeatureComparisonTable.module.css'
 
 export type FeatureComparisonTableProps = PropsWithChildren<
   BaseProps<HTMLDivElement> &
-    React.HTMLAttributes<HTMLDivElement> & {
+    Omit<React.HTMLAttributes<HTMLDivElement>, 'aria-label' | 'aria-labelledby'> & {
+      /**
+       * Include a root FeatureComparisonTable.Heading to name the comparison.
+       */
+      children: React.ReactNode
+      'aria-label'?: never
+      'aria-labelledby'?: never
       'data-testid'?: string
       /**
        * Keeps wide table headers fixed to the viewport while scrolling.
@@ -403,8 +409,6 @@ const FeatureComparisonTableRoot = forwardRef<HTMLDivElement, FeatureComparisonT
   (
     {
       animate,
-      'aria-label': ariaLabel,
-      'aria-labelledby': ariaLabelledBy,
       children,
       className,
       hasStickyHeaders = false,
@@ -599,11 +603,13 @@ const FeatureComparisonTableRoot = forwardRef<HTMLDivElement, FeatureComparisonT
 
     if (items.length === 0) return null
 
+    if (!heading && process.env.NODE_ENV !== 'production') {
+      // eslint-disable-next-line no-console
+      console.warn('FeatureComparisonTable: a root FeatureComparisonTable.Heading child is required.')
+    }
+
     const narrowHeadingId = `${instanceId}-narrow-heading`
     const tableHeadingId = `${instanceId}-table-heading`
-    const resolvedRootAriaLabelledBy =
-      ariaLabelledBy ?? (!ariaLabel && heading ? (breakpoint === 'wide' ? tableHeadingId : narrowHeadingId) : undefined)
-    const resolvedTableAriaLabelledBy = ariaLabelledBy ?? (!ariaLabel && heading ? tableHeadingId : undefined)
 
     const updateGroupOpen = (group: NormalizedGroup, open: boolean) => {
       setDisclosureState(previous => {
@@ -632,14 +638,16 @@ const FeatureComparisonTableRoot = forwardRef<HTMLDivElement, FeatureComparisonT
         )}
         data-testid={testId || testIds.root}
         ref={rootRef}
-        aria-label={ariaLabel}
-        aria-labelledby={resolvedRootAriaLabelledBy}
         onFocus={handleFocus}
         style={{...animationInlineStyles, ...style}}
         {...rest}
       >
         <div className={styles.FeatureComparisonTable__narrow} data-testid={testIds.narrow}>
-          {heading ? renderTableHeading(heading, narrowHeadingId, 'visually-hidden') : null}
+          {heading ? (
+            <div className={clsx(styles.FeatureComparisonTable__narrowHeading, gridlineStyles.gridline)}>
+              {renderTableHeading(heading, narrowHeadingId)}
+            </div>
+          ) : null}
           {groups.map((group, groupIndex) => {
             const groupId = `${instanceId}-narrow-group-${groupIndex}`
             const groupOpen = groupStates[group.identity].open
@@ -720,8 +728,7 @@ const FeatureComparisonTableRoot = forwardRef<HTMLDivElement, FeatureComparisonT
         </div>
 
         <table
-          aria-label={ariaLabel}
-          aria-labelledby={resolvedTableAriaLabelledBy}
+          aria-labelledby={heading ? tableHeadingId : undefined}
           className={styles.FeatureComparisonTable__table}
           data-testid={testIds.table}
           ref={tableRef}

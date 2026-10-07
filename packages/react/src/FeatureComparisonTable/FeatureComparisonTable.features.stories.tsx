@@ -92,6 +92,23 @@ const expectGridlines = (root: HTMLElement) => {
       expect(getComputedStyle(cell).borderBottomWidth).toBe('0px')
     }
   } else {
+    const heading = within(projection).queryByTestId('FeatureComparisonTable__heading')
+    if (heading) {
+      expect(heading).toBeVisible()
+      expect(getComputedStyle(heading).fontSize).toBe('24px')
+      const band = heading.parentElement!
+      expect(getComputedStyle(band).textAlign).toBe('center')
+      expect(getComputedStyle(band).paddingBlockStart).toBe('60px')
+      expect(getComputedStyle(band).paddingBlockEnd).toBe('60px')
+      expect(getComputedStyle(band, '::before').content).toBe('none')
+      expect(getComputedStyle(band, '::after').borderTopWidth).toBe('1px')
+      expect(getComputedStyle(band, '::after').borderImageOutset).toBe(`0px ${window.innerWidth}px`)
+      expect(
+        Math.abs(
+          band.getBoundingClientRect().bottom - projection.querySelector('details')!.getBoundingClientRect().top,
+        ),
+      ).toBeLessThan(0.1)
+    }
     const groups = projection.querySelectorAll('details')
     expect(getComputedStyle(groups[0]).borderTopWidth).toBe('0px')
     expect(getComputedStyle(groups[groups.length - 1]).borderBottomWidth).toBe('0px')
@@ -146,11 +163,7 @@ const Fixture = ({
   const visiblePlans = plans.slice(0, planCount)
 
   return (
-    <FeatureComparisonTable
-      aria-label={t('plan_comparison', {count: planCount})}
-      rowHighlighting={rowHighlighting}
-      hasStickyHeaders={hasStickyHeaders}
-    >
+    <FeatureComparisonTable rowHighlighting={rowHighlighting} hasStickyHeaders={hasStickyHeaders}>
       <FeatureComparisonTable.Heading>{t('compare_features')}</FeatureComparisonTable.Heading>
       {visiblePlans.map((plan, index) => (
         <FeatureComparisonTable.Item key={plan.name}>
@@ -411,7 +424,8 @@ export const StickyHeaders: Story = {
   render: function StickyHeadersStory() {
     const {t} = useTranslation('FeatureComparisonTable')
     return (
-      <FeatureComparisonTable hasStickyHeaders aria-label={t('sticky_plan_comparison')}>
+      <FeatureComparisonTable hasStickyHeaders>
+        <FeatureComparisonTable.Heading>{t('compare_features')}</FeatureComparisonTable.Heading>
         {plans.slice(0, 2).map(plan => (
           <FeatureComparisonTable.Item key={plan.name}>
             <FeatureComparisonTable.Heading>{t(plan.name)}</FeatureComparisonTable.Heading>

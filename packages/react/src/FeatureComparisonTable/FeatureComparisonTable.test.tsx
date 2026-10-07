@@ -33,7 +33,7 @@ const mockUseWindowSize = useWindowSize as jest.Mock
 
 const renderTable = () =>
   render(
-    <FeatureComparisonTable aria-label="Plan comparison">
+    <FeatureComparisonTable>
       <FeatureComparisonTable.Heading>Compare features</FeatureComparisonTable.Heading>
       <FeatureComparisonTable.Item>
         <FeatureComparisonTable.Label>Recommended</FeatureComparisonTable.Label>
@@ -74,6 +74,7 @@ describe('FeatureComparisonTable', () => {
   it('uses shared gridlines after the item summaries and between groups', () => {
     const {getByTestId} = render(
       <FeatureComparisonTable>
+        <FeatureComparisonTable.Heading>Compare plans</FeatureComparisonTable.Heading>
         <FeatureComparisonTable.Item>
           <FeatureComparisonTable.Heading>Free</FeatureComparisonTable.Heading>
         </FeatureComparisonTable.Item>
@@ -96,7 +97,7 @@ describe('FeatureComparisonTable', () => {
   it('renders plan summaries and feature values in both responsive layouts', () => {
     const {getByTestId, getByRole} = renderTable()
     const narrow = within(getByTestId(FeatureComparisonTable.testIds.narrow))
-    const table = getByRole('table', {name: 'Plan comparison'})
+    const table = getByRole('table', {name: 'Compare features'})
 
     expect(getByTestId(FeatureComparisonTable.testIds.root)).toHaveClass('gridline')
     expect(narrow.getByRole('heading', {name: 'Free'})).toBeInTheDocument()
@@ -151,6 +152,13 @@ describe('FeatureComparisonTable', () => {
     const heading = table.getByRole('heading', {name: 'Compare plans'})
     expect(heading).toHaveClass('Heading--4', 'Heading--weight-normal')
     expect(heading).not.toHaveClass('FeatureComparisonTable__tableHeadingText')
+    const narrowHeading = within(getByTestId(FeatureComparisonTable.testIds.narrow)).getByRole('heading', {
+      name: 'Compare plans',
+      level: 2,
+    })
+    expect(narrowHeading).toHaveClass('Heading--4', 'Heading--weight-normal')
+    expect(narrowHeading).not.toHaveClass('FeatureComparisonTable__tableHeadingText', 'visually-hidden')
+    expect(narrowHeading.parentElement).toHaveClass('FeatureComparisonTable__narrowHeading', 'gridline')
     const groupHeading = table.getByRole('heading', {name: 'Features'})
     expect(groupHeading).toHaveClass('Heading--6', 'Heading--weight-normal')
     expect(groupHeading).not.toHaveClass('FeatureComparisonTable__groupHeading')
@@ -162,6 +170,7 @@ describe('FeatureComparisonTable', () => {
   it.each(['included', 'unavailable'] as const)('centers %s status cells without centering text lists', variant => {
     const {getByTestId} = render(
       <FeatureComparisonTable>
+        <FeatureComparisonTable.Heading>Compare plans</FeatureComparisonTable.Heading>
         <FeatureComparisonTable.Item>
           <FeatureComparisonTable.Heading>Free</FeatureComparisonTable.Heading>
         </FeatureComparisonTable.Item>
@@ -193,32 +202,62 @@ describe('FeatureComparisonTable', () => {
     ['narrow', narrowBreakpoint],
     ['regular', regularBreakpoint],
     ['wide', wideBreakpoint],
-  ])('uses the visible heading as the accessible name at the %s breakpoint', (_name, currentBreakpoint) => {
-    mockUseWindowSize.mockReturnValue(currentBreakpoint)
-    const {getByTestId, getByRole} = render(
+  ])(
+    'names the table from its heading without labeling the wrapper at the %s breakpoint',
+    (_name, currentBreakpoint) => {
+      mockUseWindowSize.mockReturnValue(currentBreakpoint)
+      const {getByTestId, getByRole} = render(
+        <FeatureComparisonTable>
+          <FeatureComparisonTable.Heading>
+            Compare <span>plans</span>
+          </FeatureComparisonTable.Heading>
+          <FeatureComparisonTable.Item>
+            <FeatureComparisonTable.Heading>Free</FeatureComparisonTable.Heading>
+          </FeatureComparisonTable.Item>
+        </FeatureComparisonTable>,
+      )
+
+      const root = getByTestId(FeatureComparisonTable.testIds.root)
+      const projection = getByTestId(
+        currentBreakpoint.isXLarge ? FeatureComparisonTable.testIds.table : FeatureComparisonTable.testIds.narrow,
+      )
+      expect(root).not.toHaveAttribute('aria-label')
+      expect(root).not.toHaveAttribute('aria-labelledby')
+      expect(within(projection).getByRole('heading', {name: 'Compare plans', level: 2})).not.toHaveClass(
+        'visually-hidden',
+      )
+      const table = getByRole('table', {name: 'Compare plans'})
+      expect(table).not.toHaveAttribute('aria-label')
+      expect(table).toContainElement(document.getElementById(table.getAttribute('aria-labelledby')!))
+    },
+  )
+
+  it('warns when the required root heading is missing even if an item has a heading', () => {
+    const warn = jest.spyOn(console, 'warn').mockImplementation()
+    const {getByTestId} = render(
       <FeatureComparisonTable>
-        <FeatureComparisonTable.Heading>
-          Compare <span>plans</span>
-        </FeatureComparisonTable.Heading>
         <FeatureComparisonTable.Item>
           <FeatureComparisonTable.Heading>Free</FeatureComparisonTable.Heading>
         </FeatureComparisonTable.Item>
+        <FeatureComparisonTable.Group>
+          <FeatureComparisonTable.GroupHeading>Features</FeatureComparisonTable.GroupHeading>
+        </FeatureComparisonTable.Group>
       </FeatureComparisonTable>,
     )
-
-    const root = getByTestId(FeatureComparisonTable.testIds.root)
-    const projection = getByTestId(
-      currentBreakpoint.isXLarge ? FeatureComparisonTable.testIds.table : FeatureComparisonTable.testIds.narrow,
+    const narrow = getByTestId(FeatureComparisonTable.testIds.narrow)
+    expect(warn).toHaveBeenCalledWith(
+      'FeatureComparisonTable: a root FeatureComparisonTable.Heading child is required.',
     )
-    expect(root).toHaveAccessibleName('Compare plans')
-    expect(projection).toContainElement(document.getElementById(root.getAttribute('aria-labelledby')!))
-    expect(getByRole('table', {name: 'Compare plans'})).toBeInTheDocument()
+    expect(within(narrow).queryByTestId(FeatureComparisonTable.testIds.heading)).not.toBeInTheDocument()
+    expect(getByTestId(FeatureComparisonTable.testIds.table)).not.toHaveAttribute('aria-labelledby')
+    expect(narrow.firstElementChild?.tagName).toBe('DETAILS')
   })
 
   it('truncates items, pads missing cells, ignores extra cells, and ignores unsupported children', () => {
     const warn = jest.spyOn(console, 'warn').mockImplementation()
     const {getByTestId, getAllByTestId, queryByText} = render(
       <FeatureComparisonTable>
+        <FeatureComparisonTable.Heading>Compare plans</FeatureComparisonTable.Heading>
         <div>Unsupported root child</div>
         {['One', 'Two', 'Three', 'Four', 'Five'].map(name => (
           <FeatureComparisonTable.Item key={name}>
@@ -264,6 +303,7 @@ describe('FeatureComparisonTable', () => {
     const {container} = render(
       <>
         <FeatureComparisonTable>
+          <FeatureComparisonTable.Heading>Compare plans</FeatureComparisonTable.Heading>
           <FeatureComparisonTable.Item>
             <FeatureComparisonTable.Heading>One</FeatureComparisonTable.Heading>
           </FeatureComparisonTable.Item>
@@ -276,6 +316,7 @@ describe('FeatureComparisonTable', () => {
           </FeatureComparisonTable.Group>
         </FeatureComparisonTable>
         <FeatureComparisonTable>
+          <FeatureComparisonTable.Heading>Compare plans</FeatureComparisonTable.Heading>
           <FeatureComparisonTable.Item>
             <FeatureComparisonTable.Heading>Two</FeatureComparisonTable.Heading>
           </FeatureComparisonTable.Item>
@@ -304,6 +345,7 @@ describe('FeatureComparisonTable', () => {
   it('forwards group classes to both responsive projections', () => {
     const {container} = render(
       <FeatureComparisonTable>
+        <FeatureComparisonTable.Heading>Compare plans</FeatureComparisonTable.Heading>
         <FeatureComparisonTable.Item>
           <FeatureComparisonTable.Heading>Free</FeatureComparisonTable.Heading>
         </FeatureComparisonTable.Item>
@@ -331,6 +373,7 @@ describe('FeatureComparisonTable', () => {
 
     const {container} = render(
       <FeatureComparisonTable>
+        <FeatureComparisonTable.Heading>Compare plans</FeatureComparisonTable.Heading>
         <FeatureComparisonTable.Item>
           <FeatureComparisonTable.Heading>Free</FeatureComparisonTable.Heading>
         </FeatureComparisonTable.Item>
@@ -356,6 +399,7 @@ describe('FeatureComparisonTable', () => {
     const user = userEvent.setup()
     const {container, getByRole} = render(
       <FeatureComparisonTable>
+        <FeatureComparisonTable.Heading>Compare plans</FeatureComparisonTable.Heading>
         <FeatureComparisonTable.Item>
           <FeatureComparisonTable.Heading>Free</FeatureComparisonTable.Heading>
         </FeatureComparisonTable.Item>
@@ -384,6 +428,7 @@ describe('FeatureComparisonTable', () => {
     const user = userEvent.setup()
     const {container} = render(
       <FeatureComparisonTable>
+        <FeatureComparisonTable.Heading>Compare plans</FeatureComparisonTable.Heading>
         <FeatureComparisonTable.Item>
           <FeatureComparisonTable.Heading>Free</FeatureComparisonTable.Heading>
         </FeatureComparisonTable.Item>
@@ -418,6 +463,7 @@ describe('FeatureComparisonTable', () => {
     const expanded = {narrow: true, regular: true, wide: false}
     const {getByRole, rerender} = render(
       <FeatureComparisonTable>
+        <FeatureComparisonTable.Heading>Compare plans</FeatureComparisonTable.Heading>
         <FeatureComparisonTable.Item>
           <FeatureComparisonTable.Heading>Free</FeatureComparisonTable.Heading>
         </FeatureComparisonTable.Item>
@@ -434,6 +480,7 @@ describe('FeatureComparisonTable', () => {
     mockUseWindowSize.mockReturnValue(regularBreakpoint)
     rerender(
       <FeatureComparisonTable>
+        <FeatureComparisonTable.Heading>Compare plans</FeatureComparisonTable.Heading>
         <FeatureComparisonTable.Item>
           <FeatureComparisonTable.Heading>Free</FeatureComparisonTable.Heading>
         </FeatureComparisonTable.Item>
@@ -451,6 +498,7 @@ describe('FeatureComparisonTable', () => {
     const user = userEvent.setup()
     const renderComparison = () => (
       <FeatureComparisonTable>
+        <FeatureComparisonTable.Heading>Compare plans</FeatureComparisonTable.Heading>
         <FeatureComparisonTable.Item>
           <FeatureComparisonTable.Heading>Free</FeatureComparisonTable.Heading>
         </FeatureComparisonTable.Item>
@@ -478,6 +526,7 @@ describe('FeatureComparisonTable', () => {
     const user = userEvent.setup()
     const renderComparison = (groupNames: string[]) => (
       <FeatureComparisonTable>
+        <FeatureComparisonTable.Heading>Compare plans</FeatureComparisonTable.Heading>
         <FeatureComparisonTable.Item>
           <FeatureComparisonTable.Heading>Free</FeatureComparisonTable.Heading>
         </FeatureComparisonTable.Item>
@@ -502,6 +551,7 @@ describe('FeatureComparisonTable', () => {
     const user = userEvent.setup()
     const renderComparison = (expanded: boolean) => (
       <FeatureComparisonTable>
+        <FeatureComparisonTable.Heading>Compare plans</FeatureComparisonTable.Heading>
         <FeatureComparisonTable.Item>
           <FeatureComparisonTable.Heading>Free</FeatureComparisonTable.Heading>
         </FeatureComparisonTable.Item>
@@ -537,6 +587,7 @@ describe('FeatureComparisonTable', () => {
     const comparison = (expanded = true, blocked = false) => (
       <React.Suspense fallback="Loading comparison">
         <FeatureComparisonTable>
+          <FeatureComparisonTable.Heading>Compare plans</FeatureComparisonTable.Heading>
           {['Free', 'Pro'].map(name => (
             <FeatureComparisonTable.Item key={name}>
               <FeatureComparisonTable.Heading>{name}</FeatureComparisonTable.Heading>
@@ -573,6 +624,7 @@ describe('FeatureComparisonTable', () => {
     const expanded = {narrow: true, regular: true, wide: true}
     const comparison = () => (
       <FeatureComparisonTable>
+        <FeatureComparisonTable.Heading>Compare plans</FeatureComparisonTable.Heading>
         <FeatureComparisonTable.Item>
           <FeatureComparisonTable.Heading>Free</FeatureComparisonTable.Heading>
         </FeatureComparisonTable.Item>
@@ -629,6 +681,7 @@ describe('FeatureComparisonTable', () => {
     (variant, variantAriaLabel, expectedLabel, expectedIcon) => {
       const {getAllByTestId} = render(
         <FeatureComparisonTable>
+          <FeatureComparisonTable.Heading>Compare plans</FeatureComparisonTable.Heading>
           <FeatureComparisonTable.Item>
             <FeatureComparisonTable.Heading>Free</FeatureComparisonTable.Heading>
           </FeatureComparisonTable.Item>
@@ -659,6 +712,7 @@ describe('FeatureComparisonTable', () => {
   ] as const)('only applies %s styling when enabled', (prop, expectedClass) => {
     const {getByTestId, rerender} = render(
       <FeatureComparisonTable>
+        <FeatureComparisonTable.Heading>Compare plans</FeatureComparisonTable.Heading>
         <FeatureComparisonTable.Item>
           <FeatureComparisonTable.Heading>Free</FeatureComparisonTable.Heading>
         </FeatureComparisonTable.Item>
@@ -669,6 +723,7 @@ describe('FeatureComparisonTable', () => {
 
     rerender(
       <FeatureComparisonTable {...{[prop]: true}}>
+        <FeatureComparisonTable.Heading>Compare plans</FeatureComparisonTable.Heading>
         <FeatureComparisonTable.Item>
           <FeatureComparisonTable.Heading>Free</FeatureComparisonTable.Heading>
         </FeatureComparisonTable.Item>
@@ -700,6 +755,7 @@ describe('FeatureComparisonTable', () => {
     const scrollBy = jest.spyOn(window, 'scrollBy').mockImplementation()
     const {getByTestId} = render(
       <FeatureComparisonTable hasStickyHeaders onFocus={onFocus}>
+        <FeatureComparisonTable.Heading>Compare plans</FeatureComparisonTable.Heading>
         <FeatureComparisonTable.Item>
           <FeatureComparisonTable.Heading>Free</FeatureComparisonTable.Heading>
           <FeatureComparisonTable.PrimaryAction as="a" href="#header-action">
@@ -746,6 +802,7 @@ describe('FeatureComparisonTable', () => {
     const scrollBy = jest.spyOn(window, 'scrollBy').mockImplementation()
     const comparison = (showItems: boolean) => (
       <FeatureComparisonTable hasStickyHeaders>
+        <FeatureComparisonTable.Heading>Compare plans</FeatureComparisonTable.Heading>
         {showItems ? (
           <FeatureComparisonTable.Item>
             <FeatureComparisonTable.Heading>Free</FeatureComparisonTable.Heading>
@@ -792,6 +849,7 @@ describe('FeatureComparisonTable', () => {
   it('does not render a comparison table without any valid items', () => {
     const {container} = render(
       <FeatureComparisonTable>
+        <FeatureComparisonTable.Heading>Compare plans</FeatureComparisonTable.Heading>
         <FeatureComparisonTable.Group>
           <FeatureComparisonTable.GroupHeading>Features</FeatureComparisonTable.GroupHeading>
         </FeatureComparisonTable.Group>
