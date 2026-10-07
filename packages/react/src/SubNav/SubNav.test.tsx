@@ -65,6 +65,7 @@ const MockSubNavFixtureWithSubMenu = () => (
 )
 
 describe('SubNav', () => {
+  const originalBodyOverflow = document.body.style.overflow
   const originalResizeObserver = global.ResizeObserver
   const originalFontsDescriptor = Object.getOwnPropertyDescriptor(document, 'fonts')
   const anchorViewports = [
@@ -110,6 +111,7 @@ describe('SubNav', () => {
   afterEach(() => {
     cleanup()
     jest.restoreAllMocks()
+    document.body.style.overflow = originalBodyOverflow
     global.ResizeObserver = originalResizeObserver
     if (originalFontsDescriptor) {
       Object.defineProperty(document, 'fonts', originalFontsDescriptor)
@@ -249,6 +251,106 @@ describe('SubNav', () => {
 
     expect(within(getByRole('list')).getAllByRole('link')).toHaveLength(nextLinkData.length)
     expect(queryByRole('button', {name: 'More'})).not.toBeInTheDocument()
+  })
+
+  it('keeps consumer link IDs and refs unique while links overflow and resize', async () => {
+    enableWideMenuMeasurements()
+    availableWidth = 250
+    const linkRef = React.createRef<HTMLAnchorElement>()
+    const {container, getByRole} = render(
+      <SubNav>
+        <SubNav.Link href="#one">Page one</SubNav.Link>
+        <SubNav.Link href="#two">Page two</SubNav.Link>
+        <SubNav.Link href="#three" id="consumer-link" ref={linkRef} aria-describedby="consumer-description">
+          Page three
+        </SubNav.Link>
+      </SubNav>,
+    )
+    const menu = getByRole('list', {name: 'More', hidden: true}).parentElement as HTMLDivElement
+    notifyPopoverToggle(menu, 'open')
+    const link = within(menu).getByRole('link', {name: 'Page three'})
+
+    expect(container.querySelectorAll('#consumer-link')).toHaveLength(1)
+    expect(document.getElementById('consumer-link')).toBe(link)
+    expect(linkRef.current).toBe(link)
+    expect(link).toHaveAttribute('aria-describedby', 'consumer-description')
+    const measurementLink = container.querySelector('.SubNav__link-item--overflowed a[href="#three"]')
+    expect(measurementLink).not.toBeNull()
+    expect(measurementLink).not.toHaveAttribute('aria-describedby')
+
+    availableWidth = 600
+    await resize()
+    const rowLink = getByRole('link', {name: 'Page three'})
+    expect(container.querySelectorAll('#consumer-link')).toHaveLength(1)
+    expect(document.getElementById('consumer-link')).toBe(rowLink)
+    expect(linkRef.current).toBe(rowLink)
+
+    availableWidth = 250
+    await resize()
+    notifyPopoverToggle(menu, 'open')
+    const overflowLink = within(menu).getByRole('link', {name: 'Page three'})
+    expect(container.querySelectorAll('#consumer-link')).toHaveLength(1)
+    expect(linkRef.current).toBe(overflowLink)
+  })
+
+  it('keeps consumer submenu and label identity out of overflow measurement copies', () => {
+    enableWideMenuMeasurements()
+    availableWidth = 250
+    const nestedRef = React.createRef<HTMLAnchorElement>()
+    const labelRef = React.createRef<HTMLSpanElement>()
+    const {container, getByRole} = render(
+      <SubNav>
+        <SubNav.Link href="#one">Page one</SubNav.Link>
+        <SubNav.Link href="#two">Page two</SubNav.Link>
+        <SubNav.Link href="#copilot">
+          <React.Fragment>
+            <span id="consumer-label" ref={labelRef}>
+              Copilot
+            </span>
+          </React.Fragment>
+          <SubNav.SubMenu id="consumer-submenu" aria-labelledby="consumer-label">
+            <SubNav.Link href="#feature" id="consumer-feature" ref={nestedRef} aria-describedby="consumer-description">
+              Copilot feature
+            </SubNav.Link>
+          </SubNav.SubMenu>
+        </SubNav.Link>
+      </SubNav>,
+    )
+    const menu = getByRole('list', {name: 'More', hidden: true}).parentElement as HTMLDivElement
+    notifyPopoverToggle(menu, 'open')
+    const nestedLink = within(menu).getByRole('link', {name: 'Copilot feature'})
+
+    for (const id of ['consumer-label', 'consumer-submenu', 'consumer-feature']) {
+      expect(container.querySelectorAll(`[id="${id}"]`)).toHaveLength(1)
+    }
+    expect(nestedRef.current).toBe(nestedLink)
+    expect(labelRef.current).toBe(within(menu).getByText('Copilot'))
+    expect(nestedLink).toHaveAttribute('aria-describedby', 'consumer-description')
+  })
+
+  it.each([false, true])('preserves body overflow while the menu stays closed (wide: %s)', isLarge => {
+    document.body.style.overflow = 'clip'
+    mockUseWindowSize.mockImplementation(() => ({isLarge}))
+    const {unmount} = render(<MockSubNavFixture />)
+
+    expect(document.body.style.overflow).toBe('clip')
+    unmount()
+    expect(document.body.style.overflow).toBe('clip')
+  })
+
+  it.each(['', 'clip', 'hidden'])('restores the previous body overflow on narrow-menu close: "%s"', async overflow => {
+    document.body.style.overflow = overflow
+    const {getByRole, unmount} = render(<MockSubNavFixture />)
+    const button = getByRole('button', {name: /navigation menu/i})
+    await userEvent.click(button)
+    expect(document.body.style.overflow).toBe('hidden')
+
+    await userEvent.click(button)
+    expect(document.body.style.overflow).toBe(overflow)
+
+    await userEvent.click(button)
+    unmount()
+    expect(document.body.style.overflow).toBe(overflow)
   })
 
   it('links the wide More button to a form-safe auto popover', () => {
@@ -488,14 +590,14 @@ describe('SubNav', () => {
     expect(queryByRole('button', {name: /navigation menu/i})).not.toBeInTheDocument()
     expect(getByRole('button', {name: 'More'})).toHaveAttribute('aria-expanded', 'false')
     expect(getByRole('list', {name: 'More', hidden: true})).not.toBeVisible()
-    expect(document.body.style.overflow).toBe('auto')
+    expect(document.body.style.overflow).toBe(originalBodyOverflow)
     expect(getByRole('navigation').style.getPropertyValue('--subnav-available-height')).toBe('')
 
     mockUseWindowSize.mockImplementation(() => ({isLarge: false}))
     rerender(<MockSubNavFixture />)
 
     expect(getByRole('button', {name: /navigation menu/i})).toHaveAttribute('aria-expanded', 'false')
-    expect(document.body.style.overflow).toBe('auto')
+    expect(document.body.style.overflow).toBe(originalBodyOverflow)
   })
 
   it('supports a translated wide-menu trigger through partial menuLabels', () => {
@@ -623,7 +725,7 @@ describe('SubNav', () => {
     }
 
     expect(button).toHaveAttribute('aria-expanded', 'false')
-    expect(document.body.style.overflow).toBe('auto')
+    expect(document.body.style.overflow).toBe(originalBodyOverflow)
     expect(navigation.style.getPropertyValue('--subnav-available-height')).toBe('')
   })
 
@@ -679,7 +781,7 @@ describe('SubNav', () => {
 
     await userEvent.click(button)
     expect(navigation.style.getPropertyValue('--subnav-available-height')).toBe('')
-    expect(document.body.style.overflow).toBe('auto')
+    expect(document.body.style.overflow).toBe(originalBodyOverflow)
 
     await userEvent.click(button)
     const resizeHandler = addListener.mock.calls.filter(([eventName]) => eventName === 'resize').at(-1)?.[1]
@@ -687,7 +789,7 @@ describe('SubNav', () => {
     unmount()
 
     expect(navigation.style.getPropertyValue('--subnav-available-height')).toBe('')
-    expect(document.body.style.overflow).toBe('auto')
+    expect(document.body.style.overflow).toBe(originalBodyOverflow)
     expect(removeListener).toHaveBeenCalledWith('resize', resizeHandler)
   })
 

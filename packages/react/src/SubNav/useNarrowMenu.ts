@@ -35,7 +35,9 @@ export function useNarrowMenu(isLarge: boolean | undefined) {
 
   // Locks page scrolling and gives the open menu the space it needs.
   useEffect(() => {
+    if (!isNarrowMenuOpen) return
     const navElement = navRef.current
+    const originalOverflow = document.body.style.overflow
 
     // Keeps the menu within the space below the nav.
     const updateAvailableHeight = () => {
@@ -45,19 +47,14 @@ export function useNarrowMenu(isLarge: boolean | undefined) {
       }
     }
 
-    if (isNarrowMenuOpen) {
-      document.body.style.overflow = 'hidden'
-      updateAvailableHeight()
-      // eslint-disable-next-line github/prefer-observers
-      window.addEventListener('resize', updateAvailableHeight)
-    } else {
-      document.body.style.overflow = 'auto'
-      navElement?.style.removeProperty('--subnav-available-height')
-    }
+    document.body.style.overflow = 'hidden'
+    updateAvailableHeight()
+    // eslint-disable-next-line github/prefer-observers
+    window.addEventListener('resize', updateAvailableHeight)
 
     // Puts page scrolling back and removes the resize listener.
     return () => {
-      document.body.style.overflow = 'auto'
+      document.body.style.overflow = originalOverflow
       window.removeEventListener('resize', updateAvailableHeight)
       navElement?.style.removeProperty('--subnav-available-height')
     }

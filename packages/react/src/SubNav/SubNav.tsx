@@ -301,6 +301,35 @@ const SubNavRoot = memo(
         ],
       )
 
+      const measurementCopyProps = {
+        id: undefined,
+        ref: null,
+        'aria-activedescendant': undefined,
+        'aria-controls': undefined,
+        'aria-describedby': undefined,
+        'aria-details': undefined,
+        'aria-flowto': undefined,
+        'aria-labelledby': undefined,
+        'aria-owns': undefined,
+      }
+
+      // Keeps consumer identity on the real links, not their hidden measurement copies.
+      const createMeasurementCopies = (nodes: ReactNode): ReactNode =>
+        Children.map(nodes, child => {
+          if (
+            !isValidElement<PropsWithChildren<React.HTMLAttributes<HTMLElement>> & {ref?: React.Ref<HTMLElement>}>(
+              child,
+            )
+          ) {
+            return child
+          }
+          const childProps = child.type === React.Fragment ? {} : measurementCopyProps
+          return React.cloneElement(child, {
+            ...childProps,
+            ...(child.props.children === undefined ? {} : {children: createMeasurementCopies(child.props.children)}),
+          })
+        })
+
       return (
         <div
           ref={rootRef}
@@ -355,9 +384,18 @@ const SubNavRoot = memo(
                     )}
                     data-testid={testIds.overlay}
                   >
-                    {LinkChildren.map((link, index) =>
-                      React.cloneElement(link, {_isOverflowed: Boolean(isLarge) && index >= visibleLinkCount}),
-                    )}
+                    {LinkChildren.map((link, index) => {
+                      const isOverflowed = Boolean(isLarge) && index >= visibleLinkCount
+                      return React.cloneElement(link, {
+                        _isOverflowed: isOverflowed,
+                        ...(isOverflowed
+                          ? {
+                              ...measurementCopyProps,
+                              children: createMeasurementCopies(link.props.children),
+                            }
+                          : {}),
+                      })
+                    })}
                     <li
                       ref={overflowRef}
                       className={clsx(
