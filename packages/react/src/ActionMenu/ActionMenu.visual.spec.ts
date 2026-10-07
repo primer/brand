@@ -50,9 +50,31 @@ test.describe('Visual Comparison: ActionMenu', () => {
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
+  test('ActionMenu / With Icon Button', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-actionmenu-features--with-icon-button&viewMode=story',
+      {waitUntil: 'networkidle'},
+    )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+    await page.waitForTimeout(500)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
   test('ActionMenu / Split Button Mode', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-actionmenu-features--split-button-mode&viewMode=story',
+      {waitUntil: 'networkidle'},
+    )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+    await page.waitForTimeout(500)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
+  test('ActionMenu / Split Button Mode With Icon Button', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-actionmenu-features--split-button-mode-with-icon-button&viewMode=story',
       {waitUntil: 'networkidle'},
     )
     await page.locator('body.sb-show-main').waitFor({state: 'visible'})

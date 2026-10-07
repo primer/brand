@@ -60,6 +60,28 @@ test.describe('Visual Comparison: Tooltip', () => {
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
+  test('Tooltip / With Medium Delay', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-tooltip-features--with-medium-delay&viewMode=story',
+      {waitUntil: 'networkidle'},
+    )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+    await page.waitForTimeout(500)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
+  test('Tooltip / With Long Delay', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-tooltip-features--with-long-delay&viewMode=story',
+      {waitUntil: 'networkidle'},
+    )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+    await page.waitForTimeout(500)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
   test('Tooltip / Multiline Text', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-tooltip-features--multiline-text&viewMode=story',

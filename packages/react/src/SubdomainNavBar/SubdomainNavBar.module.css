@@ -12,10 +12,11 @@
 .SubdomainNavBar::after {
   content: '';
   position: absolute;
+  z-index: 3;
   inset-inline: 0;
   inset-block-start: 100%;
   height: var(--brand-borderWidth-thin);
-  background-color: var(--brand-color-text-emphasized);
+  background-color: var(--brand-SubdomainNavBar-border-nav-default);
   pointer-events: none;
 }
 
@@ -124,7 +125,7 @@
 .SubdomainNavBar-title {
   line-height: var(--base-size-32);
   text-decoration: none;
-  padding-right: var(--base-size-16);
+  padding-inline-end: var(--base-size-16);
   white-space: nowrap;
 }
 
@@ -234,6 +235,7 @@
     background-color: var(--brand-color-canvas-default);
     width: 100%;
     max-height: calc(100vh - var(--SubdomainNavBar-height) - var(--SubdomainNavBar-menu-offset-block-start, 0px));
+    border-block-end: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
     animation: fade-in-down 500ms;
     animation-timing-function: var(--brand-animation-easing-default);
   }
@@ -802,7 +804,9 @@
 
   .SubdomainNavBar--variant-default .SubdomainNavBar-menu-wrapper {
     inset-inline-start: auto;
-    min-width: calc(var(--base-size-128) * 3);
+    inset-inline-end: 0;
+    width: max(100%, calc(var(--base-size-128) * 3));
+    min-width: 0;
   }
 
   .SubdomainNavBar-menu-wrapper--close {
@@ -1175,6 +1179,18 @@
     border-inline-end: 0;
   }
 
+  .SubdomainNavBar--variant-default.SubdomainNavBar--has-title .SubdomainNavBar-title-area > li:first-child {
+    padding-inline-end: 0;
+  }
+
+  .SubdomainNavBar--variant-default.SubdomainNavBar--has-title .SubdomainNavBar-title-area > li:first-child::after {
+    margin-inline-end: 0;
+  }
+
+  .SubdomainNavBar--variant-default.SubdomainNavBar--has-title .SubdomainNavBar-title-item {
+    padding-inline: var(--base-size-24);
+  }
+
   .SubdomainNavBar .SubdomainNavBar-logo-mark {
     justify-content: center;
   }
@@ -1458,6 +1474,7 @@
     width: 100%;
     block-size: 100%;
     padding-inline: var(--base-size-16);
+    border-radius: 0;
   }
 }
 

@@ -26,6 +26,7 @@ declare const styles: {
   readonly "RiverBreakoutTabs__tab": string;
   readonly "RiverBreakoutTabs__tabHeading": string;
   readonly "RiverBreakoutTabs__tablist": string;
+  readonly "RiverBreakoutTabs__visual--rounded": string;
   readonly "RiverBreakoutTabs__wideTabList": string;
   readonly "RiverBreakoutTabs__wideTabListAction": string;
   readonly "RiverBreakoutTabs__wideTabListActionItem": string;

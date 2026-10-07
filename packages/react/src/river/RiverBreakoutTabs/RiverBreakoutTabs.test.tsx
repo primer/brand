@@ -508,6 +508,88 @@ describe('RiverBreakoutTabs', () => {
     expect(container.querySelector('section')).toHaveClass('RiverBreakoutTabs--background-visual-full-bleed')
   })
 
+  it('keeps non-selected wide panels hidden so their media can pause', async () => {
+    const user = userEvent.setup()
+    const {container, getAllByRole} = render(
+      <RiverBreakoutTabs>
+        <RiverBreakoutTabs.A11yHeading>Agent workflows</RiverBreakoutTabs.A11yHeading>
+        <RiverBreakoutTabs.Item>
+          <RiverBreakoutTabs.Heading>Plan</RiverBreakoutTabs.Heading>
+          <RiverBreakoutTabs.Content>
+            <Text>Plan content</Text>
+          </RiverBreakoutTabs.Content>
+          <RiverBreakoutTabs.Visual>
+            <MockVisual label="plan visual" />
+          </RiverBreakoutTabs.Visual>
+        </RiverBreakoutTabs.Item>
+        <RiverBreakoutTabs.Item>
+          <RiverBreakoutTabs.Heading>Review</RiverBreakoutTabs.Heading>
+          <RiverBreakoutTabs.Content>
+            <Text>Review content</Text>
+          </RiverBreakoutTabs.Content>
+          <RiverBreakoutTabs.Visual>
+            <MockVisual label="review visual" />
+          </RiverBreakoutTabs.Visual>
+        </RiverBreakoutTabs.Item>
+      </RiverBreakoutTabs>,
+    )
+
+    const panels = Array.from(container.querySelectorAll('[role="tabpanel"]'))
+    expect(panels).toHaveLength(2)
+
+    // Media inside a `hidden` panel is display:none, which is what allows components such as
+    // MinimalVideoPlayer to detect that they left the viewport and pause themselves.
+    expect(panels[0]).not.toHaveAttribute('hidden')
+    expect(panels[1]).toHaveAttribute('hidden')
+
+    await user.click(getAllByRole('tab')[1])
+
+    expect(panels[0]).toHaveAttribute('hidden')
+    expect(panels[1]).not.toHaveAttribute('hidden')
+  })
+
+  it('mounts only the selected visual in the narrow accordion layout', () => {
+    Object.defineProperty(window, 'innerWidth', {configurable: true, writable: true, value: 800})
+
+    const renderTree = (selectedIndex: number) => (
+      <RiverBreakoutTabs selectedIndex={selectedIndex}>
+        <RiverBreakoutTabs.A11yHeading>Agent workflows</RiverBreakoutTabs.A11yHeading>
+        <RiverBreakoutTabs.Item>
+          <RiverBreakoutTabs.Heading>Plan</RiverBreakoutTabs.Heading>
+          <RiverBreakoutTabs.Content>
+            <Text>Plan content</Text>
+          </RiverBreakoutTabs.Content>
+          <RiverBreakoutTabs.Visual>
+            <MockVisual label="plan visual" />
+          </RiverBreakoutTabs.Visual>
+        </RiverBreakoutTabs.Item>
+        <RiverBreakoutTabs.Item>
+          <RiverBreakoutTabs.Heading>Review</RiverBreakoutTabs.Heading>
+          <RiverBreakoutTabs.Content>
+            <Text>Review content</Text>
+          </RiverBreakoutTabs.Content>
+          <RiverBreakoutTabs.Visual>
+            <MockVisual label="review visual" />
+          </RiverBreakoutTabs.Visual>
+        </RiverBreakoutTabs.Item>
+      </RiverBreakoutTabs>
+    )
+
+    const {container, getByAltText, queryByAltText, rerender} = render(renderTree(0))
+
+    expect(container.querySelectorAll('img')).toHaveLength(1)
+    const planVisual = getByAltText('plan visual')
+    expect(queryByAltText('review visual')).toBeNull()
+
+    rerender(renderTree(1))
+
+    // Switching items unmounts the previous visual entirely, which stops any media it contained.
+    expect(container.querySelectorAll('img')).toHaveLength(1)
+    expect(planVisual.isConnected).toBe(false)
+    expect(queryByAltText('plan visual')).toBeNull()
+    expect(getByAltText('review visual')).toBeInTheDocument()
+  })
+
   it('renders a single persistent backgroundVisual in the narrow accordion layout', () => {
     Object.defineProperty(window, 'innerWidth', {configurable: true, writable: true, value: 800})
 
