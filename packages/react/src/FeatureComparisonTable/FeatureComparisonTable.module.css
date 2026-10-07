@@ -332,6 +332,10 @@
     pointer-events: none;
   }
 
+  .FeatureComparisonTable__item::before {
+    inset-block-end: var(--brand-borderWidth-thin);
+  }
+
   .FeatureComparisonTable__table .FeatureComparisonTable__row > th::before,
   .FeatureComparisonTable__groupBackground > span:first-child::before,
   .FeatureComparisonTable__item::before {
