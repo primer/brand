@@ -27,8 +27,8 @@ type TilesVariant = 'default' | 'gridlines'
 type TilesLayout = 'default' | 'compact'
 
 const maximumTilesPerRowByViewport = {
-  default: {xsmall: 2, small: 3, medium: 4, large: 6},
-  compact: {xsmall: 4, small: 3, medium: 6, large: 8},
+  default: {xsmall: 2, small: 3, medium: 4, large: 9},
+  compact: {xsmall: 4, small: 3, medium: 6, large: 9},
 } satisfies Record<TilesLayout, Record<'xsmall' | 'small' | 'medium' | 'large', number>>
 
 const TilesContext = createContext<TilesLayout>('default')

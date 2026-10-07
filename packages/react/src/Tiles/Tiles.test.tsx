@@ -208,9 +208,7 @@ describe('Tiles', () => {
       </Tiles>,
     )
 
-    expect(consoleWarnSpy).toHaveBeenCalledWith(
-      'Tiles: More than 9 items may not fit on a single row. Consider limiting Tiles to 9 items.',
-    )
+    expect(consoleWarnSpy).toHaveBeenCalledWith('Tiles: Use no more than 9 items.')
     consoleWarnSpy.mockRestore()
   })
 
@@ -269,7 +267,7 @@ describe('Tiles', () => {
     expect(gridEl.style.getPropertyValue('--tiles-columns-xsmall')).toBe('2')
     expect(gridEl.style.getPropertyValue('--tiles-columns-small')).toBe('3')
     expect(gridEl.style.getPropertyValue('--tiles-columns-medium')).toBe('4')
-    expect(gridEl.style.getPropertyValue('--tiles-columns-large')).toBe('4')
+    expect(gridEl.style.getPropertyValue('--tiles-columns-large')).toBe('7')
   })
 
   it('balances compact columns for seven items at each breakpoint', () => {
@@ -288,6 +286,20 @@ describe('Tiles', () => {
     expect(gridEl.style.getPropertyValue('--tiles-columns-small')).toBe('3')
     expect(gridEl.style.getPropertyValue('--tiles-columns-medium')).toBe('4')
     expect(gridEl.style.getPropertyValue('--tiles-columns-large')).toBe('7')
+  })
+
+  it('fits nine items in one large row for both layouts', () => {
+    const items = Array.from({length: 9}, (_, index) => (
+      <Tiles.Item key={index} name={`Item ${index + 1}`}>
+        <svg />
+      </Tiles.Item>
+    ))
+    const {getByTestId, rerender} = render(<Tiles>{items}</Tiles>)
+
+    expect(getByTestId(Tiles.testIds.grid).style.getPropertyValue('--tiles-columns-large')).toBe('9')
+
+    rerender(<Tiles layout="compact">{items}</Tiles>)
+    expect(getByTestId(Tiles.testIds.grid).style.getPropertyValue('--tiles-columns-large')).toBe('9')
   })
 
   it('renders a list with list items', () => {
