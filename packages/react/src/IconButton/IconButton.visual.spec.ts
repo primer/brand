@@ -238,20 +238,6 @@ test.describe('Visual Comparison: IconButton', () => {
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
-  test('IconButton / Long Delayed Tooltip', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-iconbutton-features--long-delayed-tooltip&viewMode=story',
-      {waitUntil: 'networkidle'},
-    )
-    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
-
-    const tooltip = page.getByRole('tooltip')
-    await expect(tooltip).toBeVisible()
-    await expect(tooltip).toHaveCSS('opacity', '1')
-    await page.waitForTimeout(1000)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
   test('IconButton / With Dialog', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-iconbutton-features--with-dialog&viewMode=story',

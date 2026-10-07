@@ -238,6 +238,33 @@ describe('SubNav', () => {
     expect(queryByRole('button', {name: /navigation menu/i})).not.toBeInTheDocument()
   })
 
+  it('applies the row overlay modifier without leaking it to popup or submenu links', () => {
+    enableWideMenuMeasurements()
+    const {getByRole} = render(
+      <SubNav>
+        <SubNav.Link href="#one" className="consumer-link-class">
+          Page one
+        </SubNav.Link>
+        <SubNav.Link href="#two">Page two</SubNav.Link>
+        <SubNav.Link href="#copilot">
+          Copilot
+          <SubNav.SubMenu>
+            <SubNav.Link href="#feature">Copilot feature</SubNav.Link>
+          </SubNav.SubMenu>
+        </SubNav.Link>
+        <SubNav.Link href="#four">Page four</SubNav.Link>
+      </SubNav>,
+    )
+
+    expect(getByRole('link', {name: 'Page one'})).toHaveClass('consumer-link-class', 'SubNav__link--in-overlay')
+    const popup = getByRole('list', {name: 'More', hidden: true}).parentElement as HTMLDivElement
+    notifyPopoverToggle(popup, 'open')
+
+    for (const name of ['Copilot', 'Copilot feature', 'Page four']) {
+      expect(within(popup).getByRole('link', {name})).not.toHaveClass('SubNav__link--in-overlay')
+    }
+  })
+
   it('keeps wide-menu links visible until the row can be measured', () => {
     enableWideMenuMeasurements()
     availableWidth = 0

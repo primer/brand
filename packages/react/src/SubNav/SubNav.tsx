@@ -386,7 +386,11 @@ const SubNavRoot = memo(
                   >
                     {LinkChildren.map((link, index) => {
                       const isOverflowed = Boolean(isLarge) && index >= visibleLinkCount
+                      const hasSubMenu = Children.toArray(link.props.children).some(
+                        child => isValidElement(child) && child.type === SubMenuBase,
+                      )
                       return React.cloneElement(link, {
+                        className: clsx(link.props.className, !hasSubMenu && styles['SubNav__link--in-overlay']),
                         _isOverflowed: isOverflowed,
                         ...(isOverflowed
                           ? {

@@ -106,7 +106,7 @@
   inset: auto;
   margin: 0;
   padding: 0;
-  z-index: 9999;
+  z-index: 10;
   width: max-content;
   min-width: var(--brand-SubNav-width-overflowMenuMin);
   max-width: calc(100vw - var(--brand-SubNav-width-overflowMenuInset));
@@ -138,8 +138,8 @@
 }
 
 /*
-   * Anchor Nav Submenu
-   */
+ * Anchor Nav Submenu
+ */
 
 .SubNav__anchor-menu-outer-container {
   position: sticky;
@@ -647,7 +647,7 @@
     white-space: nowrap;
   }
 
-  .SubNav__links-overlay > .SubNav__link-item > .SubNav__link {
+  .SubNav__link--in-overlay {
     display: inline-flex;
     align-items: center;
   }

@@ -69,7 +69,6 @@ const waitForTimeoutLookup = {
   'components-actionmenu-features--disabled-item': 1000, // flakey test,
   'components-actionmenu-features--anchored-positioning': 1000, // for the menu to open
   'components-iconbutton-features--tooltip-directions': 1000,
-  'components-iconbutton-features--long-delayed-tooltip': 1000,
   'components-iconbutton-features--focus': 1000,
   'components-box-features--animation': 6000, // for the animation
   'components-ide--playground': 2000, // for the animation
@@ -140,6 +139,7 @@ const waitForTimeoutLookup = {
  * Only add tests here that aren't suitable for visual regression testing
  */
 const skipTestLookup = [
+  'components-iconbutton-features--long-delayed-tooltip', // delayed hover timing is covered by the interaction test
   'components-river--video', // video makes this too flakey
   'components-river--custom-logos', // for external social imagery to load
   'components-actionmenu-features--keyboard-navigation', // interaction test
@@ -266,13 +266,6 @@ for (const key of Object.keys(categorisedStories)) {
             await page.goto('http://localhost:${port}/iframe.html?${localeParam}args=&id=${id}&viewMode=story', { waitUntil: 'networkidle' })
             await page.locator('body.sb-show-main').waitFor({ state: 'visible' })
 
-            ${
-              id === 'components-iconbutton-features--long-delayed-tooltip'
-                ? `const tooltip = page.getByRole('tooltip')
-            await expect(tooltip).toBeVisible()
-            await expect(tooltip).toHaveCSS('opacity', '1')`
-                : ''
-            }
             ${timeout ? `await page.waitForTimeout(${timeout})` : ''}
             await expect(page).toHaveScreenshot({ fullPage: true })
           });
