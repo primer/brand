@@ -189,12 +189,7 @@ const Fixture = ({
         <FeatureComparisonTable.Group expanded={expanded}>
           <FeatureComparisonTable.GroupHeading>{t('collaboration')}</FeatureComparisonTable.GroupHeading>
           <FeatureComparisonTable.Row>
-            <FeatureComparisonTable.RowHeading
-              infoTooltip={t('private_repositories_tooltip')}
-              infoTooltipAriaLabel={t('private_repositories_tooltip_label')}
-            >
-              {t('private_repositories')}
-            </FeatureComparisonTable.RowHeading>
+            <FeatureComparisonTable.RowHeading>{t('private_repositories')}</FeatureComparisonTable.RowHeading>
             {visiblePlans.map(plan => (
               <FeatureComparisonTable.Cell key={plan.name} variant="included" variantAriaLabel={t('included')} />
             ))}
@@ -413,11 +408,32 @@ export const CollapsedGroups: Story = {
   play: async ({canvasElement}) => {
     const root = await within(canvasElement).findByTestId('FeatureComparisonTable')
     expectGridlines(root)
+    if (window.matchMedia('(min-width: 80rem)').matches) return
+
+    const details = root.querySelector('details')!
+    const summary = details.querySelector('summary')!
+    const content = details.querySelector('summary + div')!
+
+    expect(content).not.toHaveAttribute('hidden')
+    details.open = true
+    await waitFor(() => expect(summary).toHaveAttribute('aria-expanded', 'true'))
+    expect(content).toBeVisible()
+    details.open = false
+    await waitFor(() => expect(summary).toHaveAttribute('aria-expanded', 'false'))
+    expect(content).not.toBeVisible()
   },
 }
 
 export const ResponsiveGroupExpansion: Story = {
   render: () => <Fixture expanded={{narrow: true, regular: false, wide: true}} planCount={3} />,
+  play: async ({canvasElement}) => {
+    const root = await within(canvasElement).findByTestId('FeatureComparisonTable')
+    const isWide = window.matchMedia('(min-width: 80rem)').matches
+    const expectedOpen = isWide || !window.matchMedia('(min-width: 48rem)').matches
+    const control = root.querySelector(isWide ? 'button[aria-expanded]' : 'summary')!
+
+    await waitFor(() => expect(control).toHaveAttribute('aria-expanded', String(expectedOpen)))
+  },
 }
 
 export const StickyHeaders: Story = {

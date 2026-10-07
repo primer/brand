@@ -1,38 +1,20 @@
 import React from 'react'
-import {fireEvent, render, within} from '@testing-library/react'
+import {act, fireEvent, render, waitFor, within} from '@testing-library/react'
 import '@testing-library/jest-dom'
 import userEvent from '@testing-library/user-event'
 import {axe, toHaveNoViolations} from 'jest-axe'
-import {useWindowSize} from '../hooks/useWindowSize'
+import '../test-utils/mocks/match-media-mock'
 import {
   FeatureComparisonTable,
   type FeatureComparisonTableGroupProps,
   type FeatureComparisonTableProps,
 } from './FeatureComparisonTable'
 
-jest.mock('../hooks/useWindowSize')
-
 expect.extend(toHaveNoViolations)
 
-const narrowBreakpoint = {
-  isSmall: true,
-  isMedium: false,
-  isXLarge: false,
-}
-
-const regularBreakpoint = {
-  isSmall: true,
-  isMedium: true,
-  isXLarge: false,
-}
-
-const wideBreakpoint = {
-  isSmall: true,
-  isMedium: true,
-  isXLarge: true,
-}
-
-const mockUseWindowSize = useWindowSize as jest.Mock
+const narrowBreakpoint = 'narrow'
+const regularBreakpoint = 'regular'
+const wideBreakpoint = 'wide'
 
 const Component = ({
   expanded,
@@ -66,8 +48,34 @@ const Component = ({
 )
 
 describe('FeatureComparisonTable', () => {
+  let regularQuery: MediaQueryList
+  let wideQuery: MediaQueryList
+
+  const setBreakpoint = (breakpoint: string) => {
+    act(() => {
+      Object.defineProperty(regularQuery, 'matches', {configurable: true, value: breakpoint !== 'narrow'})
+      Object.defineProperty(wideQuery, 'matches', {configurable: true, value: breakpoint === 'wide'})
+      regularQuery.dispatchEvent(new Event('change'))
+      wideQuery.dispatchEvent(new Event('change'))
+    })
+  }
+
   beforeEach(() => {
-    mockUseWindowSize.mockReturnValue(narrowBreakpoint)
+    const createQuery = (media: string) =>
+      Object.assign(new EventTarget(), {
+        media,
+        matches: false,
+        onchange: null,
+        addListener: jest.fn(),
+        removeListener: jest.fn(),
+      })
+    regularQuery = createQuery('(min-width: 48rem)')
+    wideQuery = createQuery('(min-width: 80rem)')
+    jest.spyOn(window, 'matchMedia').mockImplementation(query => {
+      if (query === regularQuery.media) return regularQuery
+      if (query === wideQuery.media) return wideQuery
+      throw new Error(`Unexpected media query: ${query}`)
+    })
   })
 
   afterEach(() => {
@@ -149,7 +157,7 @@ describe('FeatureComparisonTable', () => {
     ['regular responsive', regularBreakpoint, {narrow: true, regular: false, wide: true}, false],
     ['wide responsive', wideBreakpoint, {narrow: true, regular: true, wide: false}, false],
   ])('resolves the %s expanded state', (_name, breakpoint, expanded, expectedOpen) => {
-    mockUseWindowSize.mockReturnValue(breakpoint)
+    setBreakpoint(breakpoint)
     const {getByRole} = render(<Component expanded={expanded} />)
 
     expect(getByRole('group').hasAttribute('open')).toBe(expectedOpen)
@@ -165,14 +173,66 @@ describe('FeatureComparisonTable', () => {
     expect(group).not.toHaveAttribute('open')
 
     await user.click(heading)
+    await waitFor(() => expect(heading.parentElement).toHaveAttribute('aria-expanded', 'true'))
     expect(group).toHaveAttribute('open')
 
     await user.click(heading)
+    await waitFor(() => expect(heading.parentElement).toHaveAttribute('aria-expanded', 'false'))
     expect(group).not.toHaveAttribute('open')
   })
 
+  it('synchronizes native disclosure toggles without hiding the content separately', async () => {
+    const {getByRole} = render(<Component />)
+    const group = getByRole('group')
+    const summary = within(group).getByRole('heading', {name: 'Core features'}).parentElement
+    const content = within(group).getByText('Codespaces')
+    const button = getByRole('button', {name: 'Core features'})
+
+    expect(content.closest('[hidden]')).toBeNull()
+
+    act(() => {
+      group.setAttribute('open', '')
+      fireEvent(group, new Event('toggle'))
+    })
+
+    await waitFor(() => expect(summary).toHaveAttribute('aria-expanded', 'true'))
+    expect(button).toHaveAttribute('aria-expanded', 'true')
+
+    act(() => {
+      group.removeAttribute('open')
+      fireEvent(group, new Event('toggle'))
+    })
+
+    await waitFor(() => expect(summary).toHaveAttribute('aria-expanded', 'false'))
+    expect(button).toHaveAttribute('aria-expanded', 'false')
+  })
+
+  it('uses font-relative media queries rather than the viewport pixel width', () => {
+    jest.replaceProperty(window, 'innerWidth', 1400)
+    setBreakpoint(regularBreakpoint)
+    const {getByRole} = render(<Component expanded={{narrow: true, regular: false, wide: true}} />)
+
+    expect(window.matchMedia).toHaveBeenCalledWith('(min-width: 48rem)')
+    expect(window.matchMedia).toHaveBeenCalledWith('(min-width: 80rem)')
+    expect(getByRole('group')).not.toHaveAttribute('open')
+
+    setBreakpoint(wideBreakpoint)
+    expect(getByRole('group')).toHaveAttribute('open')
+  })
+
+  it('removes media query listeners when unmounted', () => {
+    const removeRegularListener = jest.spyOn(regularQuery, 'removeEventListener')
+    const removeWideListener = jest.spyOn(wideQuery, 'removeEventListener')
+    const {unmount} = render(<Component />)
+
+    unmount()
+
+    expect(removeRegularListener).toHaveBeenCalledWith('change', expect.any(Function))
+    expect(removeWideListener).toHaveBeenCalledWith('change', expect.any(Function))
+  })
+
   it('opens and closes table rows when the group button is clicked', async () => {
-    mockUseWindowSize.mockReturnValue(wideBreakpoint)
+    setBreakpoint(wideBreakpoint)
     const user = userEvent.setup()
     const {getByRole} = render(<Component />)
     const button = getByRole('button', {name: 'Core features'})
@@ -188,7 +248,7 @@ describe('FeatureComparisonTable', () => {
   })
 
   it('resets expanded state when the breakpoint changes', async () => {
-    mockUseWindowSize.mockReturnValue(regularBreakpoint)
+    setBreakpoint(regularBreakpoint)
     const user = userEvent.setup()
     const {getByRole, rerender} = render(<Component />)
     const button = getByRole('button', {name: 'Core features'})
@@ -196,7 +256,7 @@ describe('FeatureComparisonTable', () => {
     await user.click(button)
     expect(button).toHaveAttribute('aria-expanded', 'false')
 
-    mockUseWindowSize.mockReturnValue(wideBreakpoint)
+    setBreakpoint(wideBreakpoint)
     rerender(<Component />)
 
     expect(button).toHaveAttribute('aria-expanded', 'true')
@@ -217,19 +277,34 @@ describe('FeatureComparisonTable', () => {
     const summary = within(getByRole('group')).getByRole('heading', {name: 'Core features'}).parentElement
     summary?.focus()
 
-    mockUseWindowSize.mockReturnValue(wideBreakpoint)
+    setBreakpoint(wideBreakpoint)
     rerender(<Component />)
 
     expect(getByRole('button', {name: 'Core features'})).toHaveFocus()
 
-    mockUseWindowSize.mockReturnValue(narrowBreakpoint)
+    setBreakpoint(narrowBreakpoint)
     rerender(<Component />)
 
     expect(summary).toHaveFocus()
   })
 
+  it('preserves group focus when CSS hides the control before the media query event', () => {
+    const onBlur = jest.fn()
+    const {getByRole} = render(<Component onBlur={onBlur} />)
+    const summary = within(getByRole('group')).getByRole('heading', {name: 'Core features'}).parentElement!
+
+    act(() => {
+      Object.defineProperty(wideQuery, 'matches', {configurable: true, value: true})
+      fireEvent.focusOut(summary)
+      wideQuery.dispatchEvent(new Event('change'))
+    })
+
+    expect(getByRole('button', {name: 'Core features'})).toHaveFocus()
+    expect(onBlur).toHaveBeenCalledTimes(1)
+  })
+
   it('scrolls focused controls below sticky headers', () => {
-    mockUseWindowSize.mockReturnValue(wideBreakpoint)
+    setBreakpoint(wideBreakpoint)
     const scrollBy = jest.spyOn(window, 'scrollBy').mockImplementation()
     const onFocus = jest.fn()
     const {getByRole} = render(<Component hasStickyHeaders onFocus={onFocus} />)
@@ -363,7 +438,7 @@ describe('FeatureComparisonTable', () => {
     ['regular', regularBreakpoint],
     ['wide', wideBreakpoint],
   ])('has no accessibility violations at the %s breakpoint', async (_name, breakpoint) => {
-    mockUseWindowSize.mockReturnValue(breakpoint)
+    setBreakpoint(breakpoint)
     const {container} = render(<Component expanded />)
 
     expect(await axe(container)).toHaveNoViolations()

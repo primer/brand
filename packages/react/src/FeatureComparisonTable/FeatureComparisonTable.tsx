@@ -1,7 +1,7 @@
 import {CheckIcon, ChevronDownIcon, DashIcon} from '@primer/octicons-react'
 import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/feature-comparison-table/colors-with-modes.css'
 import {clsx} from 'clsx'
-import React, {forwardRef, type PropsWithChildren, useLayoutEffect, useMemo, useRef, useState} from 'react'
+import React, {forwardRef, type PropsWithChildren, useEffect, useLayoutEffect, useMemo, useRef, useState} from 'react'
 import {Button, type ButtonBaseProps} from '../Button'
 import {useAnimation} from '../animation'
 import type {BaseProps} from '../component-helpers'
@@ -9,7 +9,6 @@ import gridlineStyles from '../component-helpers/shared.module.css'
 import {Heading as HeadingComponent, type HeadingProps} from '../Heading'
 import {Text} from '../Text'
 import {useId} from '../hooks/useId'
-import {useWindowSize} from '../hooks/useWindowSize'
 import styles from './FeatureComparisonTable.module.css'
 
 export type FeatureComparisonTableProps = BaseProps<HTMLDivElement> &
@@ -65,12 +64,7 @@ export type FeatureComparisonTableGroupProps = PropsWithChildren<
 >
 export type FeatureComparisonTableGroupHeadingProps = PropsWithChildren<Omit<HeadingProps, 'id' | 'ref'>>
 export type FeatureComparisonTableRowProps = PropsWithChildren<ProjectedBaseProps<HTMLDivElement>>
-export type FeatureComparisonTableRowHeadingProps = PropsWithChildren<
-  ProjectedBaseProps<HTMLDivElement> & {
-    infoTooltip?: string
-    infoTooltipAriaLabel?: string
-  }
->
+export type FeatureComparisonTableRowHeadingProps = PropsWithChildren<ProjectedBaseProps<HTMLDivElement>>
 
 type FeatureComparisonTableCellVariantProps =
   | {
@@ -294,13 +288,7 @@ const renderItemSummary = (item: NormalizedItem, index: number) => {
 
 const renderRowHeading = (heading: NormalizedRow['heading']) => {
   if (!heading) return null
-  const {
-    children,
-    className,
-    infoTooltip: _infoTooltip,
-    infoTooltipAriaLabel: _infoTooltipAriaLabel,
-    ...rest
-  } = withoutId(heading.props)
+  const {children, className, ...rest} = withoutId(heading.props)
 
   return (
     <Text
@@ -383,6 +371,7 @@ const FeatureComparisonTableRoot = forwardRef<HTMLDivElement, FeatureComparisonT
       children,
       className,
       hasStickyHeaders = false,
+      onBlur,
       onFocus,
       rowHighlighting = false,
       style,
@@ -393,8 +382,7 @@ const FeatureComparisonTableRoot = forwardRef<HTMLDivElement, FeatureComparisonT
   ) => {
     const instanceId = useId()
     const {classes: animationClasses, styles: animationInlineStyles} = useAnimation(animate)
-    const {isMedium, isXLarge} = useWindowSize()
-    const breakpoint: BreakpointCategory = isXLarge ? 'wide' : isMedium ? 'regular' : 'narrow'
+    const [breakpoint, setBreakpoint] = useState<BreakpointCategory>('narrow')
     const tableRef = useRef<HTMLTableElement>(null)
     const [disclosureState, setDisclosureState] = useState<{
       breakpoint: BreakpointCategory
@@ -403,6 +391,24 @@ const FeatureComparisonTableRoot = forwardRef<HTMLDivElement, FeatureComparisonT
     const narrowGroupControls = useRef<Record<string, HTMLElement | null>>({})
     const tableGroupControls = useRef<Record<string, HTMLButtonElement | null>>({})
     const previousBreakpoint = useRef(breakpoint)
+    const blurredControl = useRef<HTMLElement | null>(null)
+
+    useEffect(() => {
+      const regularQuery = window.matchMedia('(min-width: 48rem)')
+      const wideQuery = window.matchMedia('(min-width: 80rem)')
+      const updateBreakpoint = () => {
+        setBreakpoint(wideQuery.matches ? 'wide' : regularQuery.matches ? 'regular' : 'narrow')
+      }
+
+      updateBreakpoint()
+      regularQuery.addEventListener('change', updateBreakpoint)
+      wideQuery.addEventListener('change', updateBreakpoint)
+
+      return () => {
+        regularQuery.removeEventListener('change', updateBreakpoint)
+        wideQuery.removeEventListener('change', updateBreakpoint)
+      }
+    }, [])
 
     const {heading, items, groups} = useMemo(() => {
       const rootChildren = React.Children.toArray(children)
@@ -479,7 +485,9 @@ const FeatureComparisonTableRoot = forwardRef<HTMLDivElement, FeatureComparisonT
       const changedProjection = (previous === 'wide') !== (breakpoint === 'wide')
       if (!changedProjection) return
 
-      const activeElement = document.activeElement
+      // CSS can hide and blur the control before the media query change reaches React.
+      const activeElement = document.activeElement === document.body ? blurredControl.current : document.activeElement
+      blurredControl.current = null
       const previousControls = previous === 'wide' ? tableGroupControls.current : narrowGroupControls.current
       const nextControls = breakpoint === 'wide' ? tableGroupControls.current : narrowGroupControls.current
       const focusedGroupIdentity = Object.entries(previousControls).find(
@@ -561,6 +569,12 @@ const FeatureComparisonTableRoot = forwardRef<HTMLDivElement, FeatureComparisonT
         )}
         data-testid={testId || testIds.root}
         ref={ref}
+        onBlur={event => {
+          if (window.matchMedia('(min-width: 80rem)').matches !== (breakpoint === 'wide')) {
+            blurredControl.current = event.target
+          }
+          onBlur?.(event)
+        }}
         onFocus={handleFocus}
         style={{...animationInlineStyles, ...style}}
         {...rest}
@@ -581,14 +595,15 @@ const FeatureComparisonTableRoot = forwardRef<HTMLDivElement, FeatureComparisonT
                 data-testid={testIds.group}
                 key={group.identity}
                 open={groupOpen}
+                onToggle={event => {
+                  if (event.currentTarget.open !== groupOpen) {
+                    updateGroupOpen(group, event.currentTarget.open)
+                  }
+                }}
               >
                 <summary
                   aria-controls={groupId}
                   aria-expanded={groupOpen}
-                  onClick={event => {
-                    event.preventDefault()
-                    updateGroupOpen(group, !groupOpen)
-                  }}
                   ref={control => {
                     narrowGroupControls.current[group.identity] = control
                   }}
@@ -596,7 +611,7 @@ const FeatureComparisonTableRoot = forwardRef<HTMLDivElement, FeatureComparisonT
                   {renderGroupHeading(group.heading, group.heading?.props.children)}
                   {renderChevron(groupOpen)}
                 </summary>
-                <div id={groupId} hidden={!groupOpen}>
+                <div id={groupId}>
                   {group.rows.map((row, rowIndex) => (
                     <div
                       className={clsx(styles.FeatureComparisonTable__row, row.element.props.className)}

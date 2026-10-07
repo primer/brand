@@ -27,6 +27,8 @@ import {FeatureComparisonTable} from '@primer/react-brand'
 
 Include a root `FeatureComparisonTable.Heading` to name the comparison. Use one `Item` for each plan and organize comparison rows into one or more collapsible `Group` components. `FeatureComparisonTable` supports two to four plans.
 
+At wide viewports (`80rem` and above), plans appear in a table with summaries and actions. Below `80rem`, collapsible groups list each feature's values by plan; plan descriptions, prices, labels, and actions are not shown.
+
 ```jsx live
 <FeatureComparisonTable>
   <FeatureComparisonTable.Heading>Compare features</FeatureComparisonTable.Heading>
@@ -57,9 +59,7 @@ Include a root `FeatureComparisonTable.Heading` to name the comparison. Use one 
   <FeatureComparisonTable.Group>
     <FeatureComparisonTable.GroupHeading>Core features</FeatureComparisonTable.GroupHeading>
     <FeatureComparisonTable.Row>
-      <FeatureComparisonTable.RowHeading infoTooltip="Private repository availability">
-        Private repositories
-      </FeatureComparisonTable.RowHeading>
+      <FeatureComparisonTable.RowHeading>Private repositories</FeatureComparisonTable.RowHeading>
       <FeatureComparisonTable.Cell variant="included" />
       <FeatureComparisonTable.Cell variant="included" />
     </FeatureComparisonTable.Row>
@@ -141,11 +141,9 @@ Set `rowHighlighting` to help users follow values across a dense comparison. It 
 
 Use `variant="included"` for a green circled check or `variant="unavailable"` for a muted dash. Cells can also contain text or other custom content. The component supplies the English accessible labels `"Included"` and `"Unavailable"` by default. Use `variantAriaLabel` to provide localized or context-specific text.
 
-`infoTooltipAriaLabel` similarly lets consumers provide a localized accessible label for a row-heading tooltip trigger. If it is omitted, the component derives an English label from string row-heading content.
-
 ## Sticky headers
 
-Set `hasStickyHeaders` to keep table headers visible while scrolling. Avoid placing the table inside an ancestor whose `overflow` changes the sticky containing block.
+Set `hasStickyHeaders` to keep table headers visible while scrolling at wide viewports (`80rem` and above). Disclosures below `80rem` are not sticky. Avoid placing the table inside an ancestor whose `overflow` changes the sticky containing block.
 
 ## Component props
 
@@ -204,10 +202,12 @@ The root heading requirement is checked at runtime, not enforced by TypeScript. 
 
 ### FeatureComparisonTable.Group <Label>Required</Label>
 
-| Name       | Type                                   |     Default      | required | Description                                                   |
-| :--------- | :------------------------------------- | :--------------: | :------: | :------------------------------------------------------------ |
-| `children` | `GroupHeading, Row`                    |                  |  `true`  | Defines a group heading and its feature rows                  |
-| `expanded` | <FeatureComparisonTableExpandedProp /> | layout-dependent | `false`  | Controls the initial expanded state at each responsive layout |
+Groups start collapsed below `48rem` and expanded at larger viewports. `expanded` overrides these defaults. Users can then toggle each group; changing the breakpoint category or the `expanded` configuration reapplies its starting state.
+
+| Name       | Type                                   |     Default      | required | Description                                                                              |
+| :--------- | :------------------------------------- | :--------------: | :------: | :--------------------------------------------------------------------------------------- |
+| `children` | `GroupHeading, Row`                    |                  |  `true`  | Defines a group heading and its feature rows                                             |
+| `expanded` | <FeatureComparisonTableExpandedProp /> | layout-dependent | `false`  | Sets the starting state, reapplied when the breakpoint category or configuration changes |
 
 ### FeatureComparisonTable.GroupHeading <Label>Required</Label>
 
@@ -224,11 +224,9 @@ The root heading requirement is checked at runtime, not enforced by TypeScript. 
 
 ### FeatureComparisonTable.RowHeading <Label>Required</Label>
 
-| Name                   | Type        | Default | required | Description                                                      |
-| :--------------------- | :---------- | :-----: | :------: | :--------------------------------------------------------------- |
-| `children`             | `ReactNode` |         |  `true`  | Labels the feature row                                           |
-| `infoTooltip`          | `string`    |         | `false`  | Adds explanatory tooltip text                                    |
-| `infoTooltipAriaLabel` | `string`    |         | `false`  | Overrides the generated accessible label for the tooltip trigger |
+| Name       | Type        | Default | required | Description            |
+| :--------- | :---------- | :-----: | :------: | :--------------------- |
+| `children` | `ReactNode` |         |  `true`  | Labels the feature row |
 
 ### FeatureComparisonTable.Cell <Label>Required</Label>
 

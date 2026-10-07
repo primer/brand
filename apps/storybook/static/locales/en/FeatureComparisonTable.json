@@ -22,8 +22,6 @@
   "contact_sales": "Contact sales",
   "collaboration": "Collaboration",
   "private_repositories": "Private repositories",
-  "private_repositories_tooltip": "The number of private repositories included",
-  "private_repositories_tooltip_label": "More information about Private repositories",
   "included": "Included",
   "unavailable": "Unavailable",
   "advanced_security": "Advanced security",
