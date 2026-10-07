@@ -515,7 +515,7 @@ describe('SubNav', () => {
     availableWidth = 600
     const {getByRole} = render(
       <SubNav>
-        <SubNav.Link href="#copilot" onOverflowLinkActivate={jest.fn()}>
+        <SubNav.Link href="#copilot" _onOverflowLinkActivate={jest.fn()}>
           Copilot
           <SubNav.SubMenu>
             <SubNav.Link href="#feature">Copilot feature</SubNav.Link>

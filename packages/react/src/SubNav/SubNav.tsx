@@ -437,7 +437,7 @@ const SubNavRoot = memo(
                             React.cloneElement(link, {
                               _isOverflowed: false,
                               _isOverflowMenu: true,
-                              onOverflowLinkActivate: closeOverflowMenu,
+                              _onOverflowLinkActivate: closeOverflowMenu,
                             }),
                           )}
                         </ul>
@@ -500,7 +500,7 @@ type LinkBaseProps = {
   _subMenuVariant?: SubMenuVariants
   _isOverflowed?: boolean
   _isOverflowMenu?: boolean
-  onOverflowLinkActivate?: () => void
+  _onOverflowLinkActivate?: () => void
 } & PropsWithChildren<React.HTMLProps<HTMLAnchorElement>> &
   BaseProps<HTMLAnchorElement>
 
@@ -515,7 +515,7 @@ const LinkBaseWithSubmenu = forwardRef<HTMLDivElement, LinkBaseProps>(
       className,
       _subMenuVariant,
       _isOverflowMenu = false,
-      onOverflowLinkActivate,
+      _onOverflowLinkActivate,
       variant,
       ...props
     },
@@ -556,7 +556,7 @@ const LinkBaseWithSubmenu = forwardRef<HTMLDivElement, LinkBaseProps>(
     const [label, subMenuChildren] = children as ReactNode[]
     const subMenu =
       _isOverflowMenu && isValidElement<SubMenuProps>(subMenuChildren) && subMenuChildren.type === SubMenuBase
-        ? React.cloneElement(subMenuChildren, {_isOverflowMenu, onOverflowLinkActivate})
+        ? React.cloneElement(subMenuChildren, {_isOverflowMenu, _onOverflowLinkActivate})
         : subMenuChildren
 
     return (
@@ -584,7 +584,7 @@ const LinkBaseWithSubmenu = forwardRef<HTMLDivElement, LinkBaseProps>(
           {...props}
           onClick={event => {
             props.onClick?.(event)
-            if (!event.defaultPrevented) onOverflowLinkActivate?.()
+            if (!event.defaultPrevented) _onOverflowLinkActivate?.()
           }}
         >
           <Text as="span" size="100" weight="medium" className={styles['SubNav__link-label']}>
@@ -615,7 +615,7 @@ const LinkBaseWithSubmenu = forwardRef<HTMLDivElement, LinkBaseProps>(
 const LinkBase = forwardRef<HTMLAnchorElement | HTMLDivElement, LinkBaseProps>((props, ref) => {
   const [isInView, setIsInView] = useState(false)
   const listItemRef = useRef<HTMLLIElement>(null)
-  const {_isOverflowed, _isOverflowMenu = false, onOverflowLinkActivate, ...linkProps} = props
+  const {_isOverflowed, _isOverflowMenu = false, _onOverflowLinkActivate, ...linkProps} = props
   const childrenArr = Children.toArray(props.children)
 
   // Keeps links moved into overflow out of the row's tab order.
@@ -663,7 +663,7 @@ const LinkBase = forwardRef<HTMLAnchorElement | HTMLDivElement, LinkBaseProps>((
           ref={ref as RefObject<HTMLDivElement>}
           {...linkProps}
           _isOverflowMenu={_isOverflowMenu}
-          onOverflowLinkActivate={onOverflowLinkActivate}
+          _onOverflowLinkActivate={_onOverflowLinkActivate}
           _subMenuVariant={isAnchorVariantSubMenu ? 'anchor' : undefined}
         />
       </li>
@@ -692,7 +692,7 @@ const LinkBase = forwardRef<HTMLAnchorElement | HTMLDivElement, LinkBaseProps>((
         {...rest}
         onClick={event => {
           rest.onClick?.(event)
-          if (!event.defaultPrevented) onOverflowLinkActivate?.()
+          if (!event.defaultPrevented) _onOverflowLinkActivate?.()
         }}
       >
         <Text as="span" size="100" weight="medium" className={styles['SubNav__link-label']}>
@@ -706,7 +706,7 @@ const LinkBase = forwardRef<HTMLAnchorElement | HTMLDivElement, LinkBaseProps>((
 type SubMenuProps = {
   variant?: SubMenuVariants
   _isOverflowMenu?: boolean
-  onOverflowLinkActivate?: () => void
+  _onOverflowLinkActivate?: () => void
 } & React.HTMLAttributes<HTMLUListElement> &
   BaseProps<HTMLUListElement>
 
@@ -716,7 +716,7 @@ function SubMenuBase({
   className,
   variant = 'dropdown',
   _isOverflowMenu = false,
-  onOverflowLinkActivate,
+  _onOverflowLinkActivate,
   ...props
 }: SubMenuProps) {
   const context = React.useContext(SubNavContext)
@@ -761,7 +761,7 @@ function SubMenuBase({
           {React.Children.map(children, child => {
             if (isValidElement<LinkBaseProps>(child) && child.type === LinkBase) {
               return React.cloneElement(child, {
-                ...(_isOverflowMenu ? {_isOverflowMenu, onOverflowLinkActivate} : {}),
+                ...(_isOverflowMenu ? {_isOverflowMenu, _onOverflowLinkActivate} : {}),
                 onClick: e => {
                   child.props.onClick?.(e)
                 },
@@ -782,7 +782,7 @@ function SubMenuBase({
           {_isOverflowMenu
             ? Children.map(children, child =>
                 isValidElement<LinkBaseProps>(child) && child.type === LinkBase
-                  ? React.cloneElement(child, {_isOverflowMenu, onOverflowLinkActivate})
+                  ? React.cloneElement(child, {_isOverflowMenu, _onOverflowLinkActivate})
                   : child,
               )
             : children}
