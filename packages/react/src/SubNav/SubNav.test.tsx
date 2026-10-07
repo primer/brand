@@ -1,5 +1,5 @@
 import React, {HTMLAttributes, useEffect} from 'react'
-import {render, cleanup, within} from '@testing-library/react'
+import {act, render, cleanup, within} from '@testing-library/react'
 import '@testing-library/jest-dom'
 import {axe, toHaveNoViolations} from 'jest-axe'
 
@@ -7,7 +7,13 @@ import {SubNav} from './SubNav'
 import '../test-utils/mocks/match-media-mock'
 import userEvent from '@testing-library/user-event'
 import {useWindowSize} from '../hooks/useWindowSize'
+import {apply} from '@oddbird/popover-polyfill/fn'
 
+jest.mock('@oddbird/popover-polyfill/fn', () => ({
+  apply: jest.fn(),
+  isSupported: jest.fn().mockReturnValue(false),
+  isPolyfilled: jest.fn().mockReturnValue(true),
+}))
 jest.mock('../hooks/useWindowSize')
 const mockUseWindowSize = useWindowSize as jest.Mock
 mockUseWindowSize.mockImplementation(() => ({isLarge: false}))
@@ -59,8 +65,37 @@ const MockSubNavFixtureWithSubMenu = () => (
 )
 
 describe('SubNav', () => {
+  const originalResizeObserver = global.ResizeObserver
+  const originalFontsDescriptor = Object.getOwnPropertyDescriptor(document, 'fonts')
+  const anchorViewports = [
+    {viewport: 'narrow', isLarge: false},
+    {viewport: 'wide', isLarge: true},
+  ]
+  let availableWidth: number
+  let linkWidth: number
+  let observerCallbacks: ResizeObserverCallback[]
+  let resizeObserverMock: {observe: jest.Mock; unobserve: jest.Mock; disconnect: jest.Mock}
+
   beforeEach(() => {
+    availableWidth = 300
+    linkWidth = 100
+    observerCallbacks = []
+    resizeObserverMock = {observe: jest.fn(), unobserve: jest.fn(), disconnect: jest.fn()}
     mockUseWindowSize.mockImplementation(() => ({isLarge: false}))
+
+    jest.mocked(apply).mockImplementation(() => {
+      for (const menu of document.querySelectorAll<HTMLElement>('[popover]')) {
+        if (jest.isMockFunction(menu.hidePopover)) continue
+        menu.hidden = true
+        const matches = menu.matches.bind(menu)
+        jest
+          .spyOn(menu, 'matches')
+          .mockImplementation(selector => (selector === ':popover-open' ? !menu.hidden : matches(selector)))
+        menu.hidePopover = jest.fn(() => {
+          menu.hidden = true
+        })
+      }
+    })
 
     // IntersectionObserver isn't available in test environment
     const mockIntersectionObserver = jest.fn()
@@ -72,13 +107,599 @@ describe('SubNav', () => {
     window.IntersectionObserver = mockIntersectionObserver
   })
 
-  afterEach(cleanup)
+  afterEach(() => {
+    cleanup()
+    jest.restoreAllMocks()
+    global.ResizeObserver = originalResizeObserver
+    if (originalFontsDescriptor) {
+      Object.defineProperty(document, 'fonts', originalFontsDescriptor)
+    } else {
+      Reflect.deleteProperty(document, 'fonts')
+    }
+  })
+
+  const enableWideMenuMeasurements = () => {
+    mockUseWindowSize.mockImplementation(() => ({isLarge: true}))
+    global.ResizeObserver = jest.fn().mockImplementation(callback => {
+      observerCallbacks.push(callback)
+      return resizeObserverMock
+    })
+    jest.spyOn(HTMLElement.prototype, 'clientWidth', 'get').mockImplementation(function (this: HTMLElement) {
+      return this.classList.contains('SubNav__links-overlay') ? availableWidth : 0
+    })
+    jest.spyOn(HTMLElement.prototype, 'getBoundingClientRect').mockImplementation(function (this: HTMLElement) {
+      const width = this.classList.contains('SubNav__overflow-container')
+        ? 80
+        : this.classList.contains('SubNav__action-container')
+        ? 120
+        : linkWidth
+      return new DOMRect(0, 0, width, 60)
+    })
+  }
+
+  const resize = async () => {
+    await act(async () => {
+      for (const callback of observerCallbacks) callback([], resizeObserverMock as unknown as ResizeObserver)
+      await new Promise(resolve => requestAnimationFrame(resolve))
+    })
+  }
+
+  // Reports an open/close event without recreating the browser's interactions.
+  const notifyPopoverToggle = (menu: HTMLElement, newState: 'open' | 'closed') => {
+    act(() => {
+      menu.hidden = newState === 'closed'
+      menu.dispatchEvent(Object.assign(new Event('toggle'), {newState}))
+    })
+  }
+
+  const createEntry = (target: Element, top: number, intersectionRatio: number) =>
+    ({target, boundingClientRect: new DOMRect(0, top, 360, 58), intersectionRatio} as IntersectionObserverEntry)
+
+  const renderAnchorMenu = (isLarge: boolean) => {
+    mockUseWindowSize.mockImplementation(() => ({isLarge}))
+    const observe = jest.fn()
+    const anchorObserver = {observe, unobserve: jest.fn(), disconnect: jest.fn()}
+    const mockIntersectionObserver = window.IntersectionObserver as jest.Mock
+    mockIntersectionObserver.mockReturnValue(anchorObserver)
+    const {unmount} = render(<MockSubNavFixture />)
+    const target = observe.mock.calls[0][0] as HTMLElement
+    const callback = mockIntersectionObserver.mock.calls[0][0] as IntersectionObserverCallback
+    return {target, callback, observer: anchorObserver as unknown as IntersectionObserver, unmount}
+  }
 
   it('renders the root element correctly into the document', () => {
     const {getByRole} = render(<MockSubNavFixture />)
 
     expect(getByRole('navigation')).toBeInTheDocument()
   })
+
+  it.each(anchorViewports)('ignores stale sticky anchor updates at $viewport viewports', ({isLarge}) => {
+    const {target, callback, observer} = renderAnchorMenu(isLarge)
+
+    act(() => callback([createEntry(target, -1, 0), createEntry(target, 120, 1)], observer))
+
+    expect(target).not.toHaveClass('SubNav__anchor-menu-outer-container--stuck')
+  })
+
+  it.each(anchorViewports)('keeps the anchor menu hidden below a $viewport viewport', ({isLarge}) => {
+    const {target, callback, observer} = renderAnchorMenu(isLarge)
+
+    act(() => callback([createEntry(target, 900, 0)], observer))
+
+    expect(target).not.toHaveClass('SubNav__anchor-menu-outer-container--stuck')
+  })
+
+  it.each(anchorViewports)('reveals and resets the sticky anchor menu at $viewport viewports', ({isLarge}) => {
+    const {target, callback, observer} = renderAnchorMenu(isLarge)
+
+    act(() => callback([createEntry(target, 120, 1), createEntry(target, -1, 0.98)], observer))
+    expect(target).toHaveClass('SubNav__anchor-menu-outer-container--stuck')
+
+    act(() => callback([createEntry(target, 120, 1)], observer))
+    expect(target).not.toHaveClass('SubNav__anchor-menu-outer-container--stuck')
+  })
+
+  it.each(anchorViewports)('stops observing the $viewport anchor menu on unmount', ({isLarge}) => {
+    const {target, observer, unmount} = renderAnchorMenu(isLarge)
+
+    unmount()
+
+    expect(observer.unobserve).toHaveBeenCalledWith(target)
+  })
+
+  it.each(anchorViewports)('renders $viewport anchor links into the shared portal', ({isLarge}) => {
+    jest.replaceProperty(window, 'innerWidth', isLarge ? 1280 : 360)
+    mockUseWindowSize.mockImplementation(jest.requireActual('../hooks/useWindowSize').useWindowSize)
+    const {getByRole} = render(
+      <SubNav>
+        <SubNav.Link href="#overview" aria-current="page">
+          Overview
+          <SubNav.SubMenu variant="anchor">
+            <SubNav.Link href="#scale">Scale</SubNav.Link>
+          </SubNav.SubMenu>
+        </SubNav.Link>
+      </SubNav>,
+    )
+    const navigation = getByRole('navigation', {name: 'Sub navigation'})
+
+    expect(navigation.closest('.SubNav__anchor-menu-container')).not.toBeNull()
+    expect(within(navigation).getByRole('link', {name: 'Scale'})).toBeInTheDocument()
+  })
+
+  it('keeps all wide-menu links in the row when their measured widths fit', () => {
+    enableWideMenuMeasurements()
+    availableWidth = 500
+    const {getByRole, queryByRole} = render(<MockSubNavFixture />)
+
+    expect(within(getByRole('list')).getAllByRole('link')).toHaveLength(5)
+    expect(queryByRole('button', {name: 'More'})).not.toBeInTheDocument()
+    expect(queryByRole('button', {name: /navigation menu/i})).not.toBeInTheDocument()
+  })
+
+  it('keeps wide-menu links visible until the row can be measured', () => {
+    enableWideMenuMeasurements()
+    availableWidth = 0
+    const {getByRole, queryByRole, rerender} = render(<MockSubNavFixture />)
+
+    expect(within(getByRole('list')).getAllByRole('link')).toHaveLength(mockLinkData.length)
+    expect(queryByRole('button', {name: 'More'})).not.toBeInTheDocument()
+
+    const nextLinkData = [...mockLinkData, {title: 'page six', href: '#page6'}]
+    rerender(<MockSubNavFixture data={nextLinkData} />)
+
+    expect(within(getByRole('list')).getAllByRole('link')).toHaveLength(nextLinkData.length)
+    expect(queryByRole('button', {name: 'More'})).not.toBeInTheDocument()
+  })
+
+  it('links the wide More button to a form-safe auto popover', () => {
+    enableWideMenuMeasurements()
+    const {getByRole} = render(
+      <form>
+        <MockSubNavFixture />
+      </form>,
+    )
+    const button = getByRole('button', {name: 'More'})
+    const menu = getByRole('list', {name: 'More', hidden: true}).parentElement as HTMLDivElement
+
+    expect(menu).toHaveAttribute('popover', 'auto')
+    expect(button).toHaveAttribute('popovertarget', menu.id)
+    expect(button).toHaveAttribute('type', 'button')
+    expect(menu).not.toBeVisible()
+  })
+
+  it('reserves wide-menu trigger space and overflows only trailing links', () => {
+    enableWideMenuMeasurements()
+    const {getByRole, queryByRole} = render(<MockSubNavFixture />)
+    const row = getByRole('list')
+    expect(
+      within(row)
+        .getAllByRole('link')
+        .map(link => link.textContent),
+    ).toEqual(['page one', 'page two'])
+    expect(queryByRole('button', {name: /navigation menu/i})).not.toBeInTheDocument()
+    expect(getByRole('button', {name: 'More'})).toHaveClass('SubNav__overflow-toggle--active')
+    const rowLinks = within(row)
+      .getAllByRole('link', {hidden: true})
+      .filter(link => !link.closest('[popover]'))
+    for (const link of rowLinks.slice(2)) {
+      expect(link.closest('li')).toHaveAttribute('inert')
+      expect(link.closest('li')).toHaveAttribute('aria-hidden', 'true')
+    }
+
+    const popup = getByRole('list', {name: 'More', hidden: true}).parentElement as HTMLDivElement
+    notifyPopoverToggle(popup, 'open')
+    expect(
+      within(getByRole('list', {name: 'More'}))
+        .getAllByRole('link')
+        .map(link => link.textContent),
+    ).toEqual(['page three', 'page four', 'page five'])
+    expect(document.body.style.overflow).not.toBe('hidden')
+  })
+
+  it('requests native closing when a wide overflow link is selected', async () => {
+    enableWideMenuMeasurements()
+    const {getByRole} = render(<MockSubNavFixture />)
+    const menu = getByRole('list', {name: 'More', hidden: true}).parentElement as HTMLDivElement
+    notifyPopoverToggle(menu, 'open')
+    await userEvent.click(getByRole('link', {name: 'page four'}))
+    expect(menu.hidePopover).toHaveBeenCalledTimes(1)
+  })
+
+  it('has no a11y violations with the wide overflow links open', async () => {
+    enableWideMenuMeasurements()
+    const {getByRole, container} = render(<MockSubNavFixture />)
+    const menu = getByRole('list', {name: 'More', hidden: true}).parentElement as HTMLDivElement
+    notifyPopoverToggle(menu, 'open')
+
+    expect(await axe(container)).toHaveNoViolations()
+  })
+
+  it('requests native closing when focus leaves the wide overflow controls', () => {
+    enableWideMenuMeasurements()
+    const {getByRole} = render(
+      <>
+        <MockSubNavFixture />
+        <button>Outside navigation</button>
+      </>,
+    )
+    const menu = getByRole('list', {name: 'More', hidden: true}).parentElement as HTMLDivElement
+    notifyPopoverToggle(menu, 'open')
+    act(() => getByRole('link', {name: 'page three'}).focus())
+    expect(menu.hidePopover).not.toHaveBeenCalled()
+
+    act(() => getByRole('button', {name: 'Outside navigation'}).focus())
+
+    expect(menu.hidePopover).toHaveBeenCalledTimes(1)
+  })
+
+  it('syncs the wide trigger with native open and close events', () => {
+    enableWideMenuMeasurements()
+    const {getByRole} = render(<MockSubNavFixture />)
+    const button = getByRole('button', {name: 'More'})
+    const menu = getByRole('list', {name: 'More', hidden: true}).parentElement as HTMLDivElement
+    notifyPopoverToggle(menu, 'open')
+    expect(button).toHaveAttribute('aria-expanded', 'true')
+
+    notifyPopoverToggle(menu, 'closed')
+    expect(button).toHaveAttribute('aria-expanded', 'false')
+  })
+
+  it('removes wide-popover positioning listeners on close and unmount', () => {
+    enableWideMenuMeasurements()
+    const addDocumentListener = jest.spyOn(document, 'addEventListener')
+    const removeDocumentListener = jest.spyOn(document, 'removeEventListener')
+    const addWindowListener = jest.spyOn(window, 'addEventListener')
+    const removeWindowListener = jest.spyOn(window, 'removeEventListener')
+    const {getByRole, unmount} = render(<MockSubNavFixture />)
+    const menu = getByRole('list', {name: 'More', hidden: true}).parentElement as HTMLDivElement
+    notifyPopoverToggle(menu, 'open')
+
+    expect(addDocumentListener).toHaveBeenCalledWith('scroll', expect.any(Function), true)
+    expect(addWindowListener).toHaveBeenCalledWith('resize', expect.any(Function))
+
+    notifyPopoverToggle(menu, 'closed')
+
+    expect(removeDocumentListener).toHaveBeenCalledWith('scroll', expect.any(Function), true)
+    expect(removeWindowListener).toHaveBeenCalledWith('resize', expect.any(Function))
+
+    notifyPopoverToggle(menu, 'open')
+    removeDocumentListener.mockClear()
+    removeWindowListener.mockClear()
+    unmount()
+
+    expect(removeDocumentListener).toHaveBeenCalledWith('scroll', expect.any(Function), true)
+    expect(removeWindowListener).toHaveBeenCalledWith('resize', expect.any(Function))
+  })
+
+  it.each([false, true])('preserves wide overflow submenu activation (preventDefault: %s)', async preventDefault => {
+    enableWideMenuMeasurements()
+    const handleActivation = jest.fn((event: React.MouseEvent<HTMLAnchorElement>) => {
+      if (preventDefault) event.preventDefault()
+    })
+    const {getByRole} = render(
+      <SubNav>
+        <SubNav.Link href="#one">Page one</SubNav.Link>
+        <SubNav.Link href="#two">Page two</SubNav.Link>
+        <SubNav.Link href="#three">Page three</SubNav.Link>
+        <SubNav.Link href="#copilot">
+          Copilot
+          <SubNav.SubMenu>
+            <SubNav.Link href="#feature" onClick={handleActivation}>
+              Copilot feature
+            </SubNav.Link>
+          </SubNav.SubMenu>
+        </SubNav.Link>
+      </SubNav>,
+    )
+
+    const popup = getByRole('list', {name: 'More', hidden: true}).parentElement as HTMLDivElement
+    notifyPopoverToggle(popup, 'open')
+    const menu = within(getByRole('list', {name: 'More'}))
+    const submenuLink = menu.getByRole('link', {name: 'Copilot feature'})
+    expect(submenuLink.closest('.SubNav__sub-menu-children')).not.toHaveAttribute('inert')
+    expect(menu.queryByRole('button', {name: 'Copilot submenu'})).not.toBeInTheDocument()
+
+    await userEvent.click(submenuLink)
+    expect(handleActivation).toHaveBeenCalledTimes(1)
+    if (preventDefault) {
+      expect(popup.hidePopover).not.toHaveBeenCalled()
+    } else {
+      expect(popup.hidePopover).toHaveBeenCalledTimes(1)
+    }
+  })
+
+  it('does not infer wide submenu layout from an overflow activation callback', () => {
+    enableWideMenuMeasurements()
+    availableWidth = 600
+    const {getByRole} = render(
+      <SubNav>
+        <SubNav.Link href="#copilot" onOverflowLinkActivate={jest.fn()}>
+          Copilot
+          <SubNav.SubMenu>
+            <SubNav.Link href="#feature">Copilot feature</SubNav.Link>
+          </SubNav.SubMenu>
+        </SubNav.Link>
+      </SubNav>,
+    )
+
+    const toggle = getByRole('button', {name: 'Copilot submenu'})
+    expect(toggle).toHaveAttribute('aria-expanded', 'false')
+    expect(document.getElementById(toggle.getAttribute('aria-controls') ?? '')).toHaveAttribute('inert')
+  })
+
+  it('reserves wide-menu action space without moving the action into More', () => {
+    enableWideMenuMeasurements()
+    availableWidth = 420
+    const {getByRole} = render(
+      <SubNav>
+        {mockLinkData.map(link => (
+          <SubNav.Link key={link.href} href={link.href}>
+            {link.title}
+          </SubNav.Link>
+        ))}
+        <SubNav.Action href="#action">Get started</SubNav.Action>
+      </SubNav>,
+    )
+
+    expect(within(getByRole('list')).getAllByRole('link', {name: /page/})).toHaveLength(2)
+    expect(getByRole('link', {name: 'Get started'})).toBeInTheDocument()
+    expect(getByRole('button', {name: 'More'})).toBeInTheDocument()
+  })
+
+  it('restores wide-menu links and closes More when the container grows', async () => {
+    enableWideMenuMeasurements()
+    const {queryByRole, getByRole} = render(<MockSubNavFixture />)
+    const menu = getByRole('list', {name: 'More', hidden: true}).parentElement as HTMLDivElement
+    notifyPopoverToggle(menu, 'open')
+
+    availableWidth = 600
+    await resize()
+
+    expect(queryByRole('button', {name: 'More'})).not.toBeInTheDocument()
+    expect(menu.hidePopover).toHaveBeenCalled()
+    expect(within(getByRole('list')).getAllByRole('link')).toHaveLength(5)
+
+    availableWidth = 300
+    await resize()
+
+    expect(getByRole('button', {name: 'More'})).toHaveAttribute('aria-expanded', 'false')
+  })
+
+  it('resets both menus when switching between wide and narrow viewports', async () => {
+    enableWideMenuMeasurements()
+    const {getByRole, queryByRole, rerender} = render(<MockSubNavFixture />)
+    const menu = getByRole('list', {name: 'More', hidden: true}).parentElement as HTMLDivElement
+    notifyPopoverToggle(menu, 'open')
+
+    mockUseWindowSize.mockImplementation(() => ({isLarge: false}))
+    rerender(<MockSubNavFixture />)
+
+    expect(queryByRole('button', {name: 'More'})).not.toBeInTheDocument()
+    expect(menu.hidePopover).toHaveBeenCalled()
+    expect(getByRole('button', {name: /navigation menu/i})).toHaveAttribute('aria-expanded', 'false')
+    expect(within(getByRole('list')).getAllByRole('link')).toHaveLength(mockLinkData.length)
+
+    await userEvent.click(getByRole('button', {name: /navigation menu/i}))
+    expect(document.body.style.overflow).toBe('hidden')
+
+    mockUseWindowSize.mockImplementation(() => ({isLarge: true}))
+    rerender(<MockSubNavFixture />)
+
+    expect(queryByRole('button', {name: /navigation menu/i})).not.toBeInTheDocument()
+    expect(getByRole('button', {name: 'More'})).toHaveAttribute('aria-expanded', 'false')
+    expect(getByRole('list', {name: 'More', hidden: true})).not.toBeVisible()
+    expect(document.body.style.overflow).toBe('auto')
+    expect(getByRole('navigation').style.getPropertyValue('--subnav-available-height')).toBe('')
+
+    mockUseWindowSize.mockImplementation(() => ({isLarge: false}))
+    rerender(<MockSubNavFixture />)
+
+    expect(getByRole('button', {name: /navigation menu/i})).toHaveAttribute('aria-expanded', 'false')
+    expect(document.body.style.overflow).toBe('auto')
+  })
+
+  it('supports a translated wide-menu trigger through partial menuLabels', () => {
+    enableWideMenuMeasurements()
+    const {getByRole} = render(<MockSubNavFixture menuLabels={{overflowMenuLabel: 'その他'}} />)
+    expect(getByRole('button', {name: 'その他'})).toBeInTheDocument()
+  })
+
+  it('remeasures wide-menu labels and link counts when children change', () => {
+    enableWideMenuMeasurements()
+    const {rerender, queryByRole} = render(<MockSubNavFixture />)
+    expect(queryByRole('button', {name: 'More'})).toBeInTheDocument()
+
+    rerender(<MockSubNavFixture data={[{title: 'Localized label', href: '#localized'}]} />)
+
+    expect(queryByRole('button', {name: 'More'})).not.toBeInTheDocument()
+  })
+
+  it('remeasures wide-menu links after fonts finish loading', async () => {
+    enableWideMenuMeasurements()
+    linkWidth = 60
+    let finishLoadingFonts: () => void = () => undefined
+    Object.defineProperty(document, 'fonts', {
+      configurable: true,
+      value: {
+        ready: new Promise<void>(resolve => {
+          finishLoadingFonts = resolve
+        }),
+      },
+    })
+    const {queryByRole} = render(<MockSubNavFixture />)
+    expect(queryByRole('button', {name: 'More'})).not.toBeInTheDocument()
+
+    linkWidth = 100
+    await act(async () => {
+      finishLoadingFonts()
+      await Promise.resolve()
+      await new Promise(resolve => requestAnimationFrame(resolve))
+    })
+
+    expect(queryByRole('button', {name: 'More'})).toBeInTheDocument()
+  })
+
+  it('disconnects wide-menu resize observers on unmount', () => {
+    enableWideMenuMeasurements()
+    const {unmount} = render(<MockSubNavFixture />)
+
+    unmount()
+
+    expect(resizeObserverMock.disconnect).toHaveBeenCalledTimes(1)
+  })
+
+  it('cancels a queued wide-menu resize measurement on unmount', () => {
+    enableWideMenuMeasurements()
+    const frameId = 42
+    jest.spyOn(window, 'requestAnimationFrame').mockReturnValue(frameId)
+    const cancelFrame = jest.spyOn(window, 'cancelAnimationFrame')
+    const {unmount} = render(<MockSubNavFixture />)
+
+    act(() => observerCallbacks[0]([], resizeObserverMock as unknown as ResizeObserver))
+    unmount()
+
+    expect(cancelFrame).toHaveBeenCalledWith(frameId)
+    expect(resizeObserverMock.disconnect).toHaveBeenCalledTimes(1)
+  })
+
+  it('ignores wide-menu font readiness after unmount', async () => {
+    enableWideMenuMeasurements()
+    let finishLoadingFonts: () => void = () => undefined
+    Object.defineProperty(document, 'fonts', {
+      configurable: true,
+      value: {
+        ready: new Promise<void>(resolve => {
+          finishLoadingFonts = resolve
+        }),
+      },
+    })
+    const scheduleFrame = jest.spyOn(window, 'requestAnimationFrame')
+    const {unmount} = render(<MockSubNavFixture />)
+    unmount()
+    scheduleFrame.mockClear()
+
+    await act(async () => {
+      finishLoadingFonts()
+      await Promise.resolve()
+    })
+
+    expect(scheduleFrame).not.toHaveBeenCalled()
+  })
+
+  it('remeasures wide-menu links and cleans up the fallback resize listener', async () => {
+    enableWideMenuMeasurements()
+    Reflect.deleteProperty(global, 'ResizeObserver')
+    const addListener = jest.spyOn(window, 'addEventListener')
+    const removeListener = jest.spyOn(window, 'removeEventListener')
+    const {queryByRole, unmount} = render(<MockSubNavFixture />)
+    expect(queryByRole('button', {name: 'More'})).toBeInTheDocument()
+
+    availableWidth = 600
+    await act(async () => {
+      window.dispatchEvent(new Event('resize'))
+      await new Promise(resolve => requestAnimationFrame(resolve))
+    })
+    expect(queryByRole('button', {name: 'More'})).not.toBeInTheDocument()
+
+    const resizeHandler = addListener.mock.calls.find(([eventName]) => eventName === 'resize')?.[1]
+    expect(resizeHandler).toBeDefined()
+    unmount()
+
+    expect(removeListener).toHaveBeenCalledWith('resize', resizeHandler)
+  })
+
+  it.each(['outside click', 'Escape'])('closes the narrow menu and unlocks scrolling on %s', async dismissal => {
+    const {getByRole} = render(<MockSubNavFixture />)
+    const button = getByRole('button', {name: /navigation menu/i})
+    const navigation = getByRole('navigation')
+    await userEvent.click(button)
+    expect(button).toHaveAttribute('aria-expanded', 'true')
+    expect(document.body.style.overflow).toBe('hidden')
+
+    if (dismissal === 'outside click') {
+      await userEvent.click(document.body)
+    } else {
+      await userEvent.keyboard('{escape}')
+    }
+
+    expect(button).toHaveAttribute('aria-expanded', 'false')
+    expect(document.body.style.overflow).toBe('auto')
+    expect(navigation.style.getPropertyValue('--subnav-available-height')).toBe('')
+  })
+
+  it('traps focus in the open narrow menu and releases it on close', async () => {
+    jest.spyOn(HTMLElement.prototype, 'offsetWidth', 'get').mockReturnValue(100)
+    jest.spyOn(HTMLElement.prototype, 'offsetHeight', 'get').mockReturnValue(20)
+    jest.spyOn(HTMLElement.prototype, 'offsetParent', 'get').mockReturnValue(document.body)
+    jest
+      .spyOn(HTMLElement.prototype, 'getClientRects')
+      .mockReturnValue([new DOMRect(0, 0, 100, 20)] as unknown as DOMRectList)
+    const {getByRole} = render(
+      <>
+        <MockSubNavFixture />
+        <button>Outside navigation</button>
+      </>,
+    )
+    const button = getByRole('button', {name: /navigation menu/i})
+    await userEvent.click(button)
+
+    for (const link of mockLinkData) {
+      await userEvent.tab()
+      expect(getByRole('link', {name: link.title})).toHaveFocus()
+    }
+
+    await userEvent.tab()
+    expect(getByRole('link', {name: heading})).toHaveFocus()
+    await userEvent.tab()
+    expect(button).toHaveFocus()
+    await userEvent.tab({shift: true})
+    expect(getByRole('link', {name: heading})).toHaveFocus()
+    await userEvent.tab({shift: true})
+    expect(getByRole('link', {name: 'page five'})).toHaveFocus()
+
+    await userEvent.keyboard('{escape}')
+    await userEvent.tab()
+    expect(getByRole('button', {name: 'Outside navigation'})).toHaveFocus()
+  })
+
+  it('updates narrow-menu height and cleans up on close and unmount', async () => {
+    const viewportHeight = jest.replaceProperty(window, 'innerHeight', 800)
+    const addListener = jest.spyOn(window, 'addEventListener')
+    const removeListener = jest.spyOn(window, 'removeEventListener')
+    const {getByRole, unmount} = render(<MockSubNavFixture />)
+    const navigation = getByRole('navigation')
+    jest.spyOn(navigation, 'getBoundingClientRect').mockReturnValue(new DOMRect(0, 120, 360, 60))
+    const button = getByRole('button', {name: /navigation menu/i})
+    await userEvent.click(button)
+    expect(navigation.style.getPropertyValue('--subnav-available-height')).toBe('680px')
+
+    viewportHeight.replaceValue(900)
+    act(() => window.dispatchEvent(new Event('resize')))
+    expect(navigation.style.getPropertyValue('--subnav-available-height')).toBe('780px')
+
+    await userEvent.click(button)
+    expect(navigation.style.getPropertyValue('--subnav-available-height')).toBe('')
+    expect(document.body.style.overflow).toBe('auto')
+
+    await userEvent.click(button)
+    const resizeHandler = addListener.mock.calls.filter(([eventName]) => eventName === 'resize').at(-1)?.[1]
+    expect(resizeHandler).toBeDefined()
+    unmount()
+
+    expect(navigation.style.getPropertyValue('--subnav-available-height')).toBe('')
+    expect(document.body.style.overflow).toBe('auto')
+    expect(removeListener).toHaveBeenCalledWith('resize', resizeHandler)
+  })
+
+  it('merges custom mobile menu labels with the default desktop label', async () => {
+    const {getByRole} = render(<MockSubNavFixture menuLabels={{menuLabel: 'Navigation', closeLabel: 'Dismiss'}} />)
+    const button = getByRole('button', {name: 'Navigation. Current page: page three'})
+    await userEvent.click(button)
+    expect(button).toHaveAccessibleName('Dismiss. Current page: page three')
+    await userEvent.click(button)
+    expect(button).toHaveAccessibleName('Navigation. Current page: page three')
+  })
+
   it('renders a title as a link', () => {
     const {getByRole} = render(<MockSubNavFixture />)
 
@@ -97,14 +718,13 @@ describe('SubNav', () => {
   it('has a button that opens the menu when clicked', async () => {
     const {getByRole} = render(<MockSubNavFixture />)
 
-    let buttonEl = getByRole('button', {name: 'Navigation menu. Current page: page three'})
+    const buttonEl = getByRole('button', {name: 'Navigation menu. Current page: page three'})
     const overlayEl = getByRole('list')
     expect(overlayEl).not.toHaveClass('SubNav__links-overlay--open')
     expect(buttonEl).toHaveAttribute('aria-expanded', 'false')
 
     await userEvent.click(buttonEl)
 
-    buttonEl = getByRole('button', {name: 'Navigation menu. Current page: page three'})
     expect(overlayEl).toHaveClass('SubNav__links-overlay--open')
     expect(buttonEl).toHaveAttribute('aria-expanded', 'true')
   })
@@ -137,13 +757,11 @@ describe('SubNav', () => {
   it('closes the overlay when button is pressed again', async () => {
     const {getByRole} = render(<MockSubNavFixture />)
 
-    let buttonEl = getByRole('button', {name: 'Navigation menu. Current page: page three'})
+    const buttonEl = getByRole('button', {name: 'Navigation menu. Current page: page three'})
     const overlayEl = getByRole('list')
 
     await userEvent.click(buttonEl)
     expect(overlayEl).toHaveClass('SubNav__links-overlay--open')
-
-    buttonEl = getByRole('button', {name: 'Navigation menu. Current page: page three'})
 
     await userEvent.click(buttonEl)
 

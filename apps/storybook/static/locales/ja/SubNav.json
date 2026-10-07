@@ -1,0 +1,14 @@
+{
+  "ai": "AI",
+  "desktop_app": "デスクトップアプリケーション",
+  "copilot_in_vs_code": "Visual Studio Code の GitHub Copilot",
+  "agents_on_github": "GitHub のエージェント",
+  "copilot_cli": "GitHub Copilot CLI",
+  "copilot_code_review": "GitHub Copilot のコードレビュー",
+  "for_business": "ビジネス向け",
+  "tutorials": "チュートリアル",
+  "plans_pricing": "プランと価格",
+  "menu_label": "ナビゲーションメニュー",
+  "close_label": "閉じる",
+  "overflow_menu_label": "その他"
+}

@@ -245,7 +245,10 @@ test.describe('Visual Comparison: IconButton', () => {
     )
     await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
-    await page.waitForTimeout(500)
+    const tooltip = page.getByRole('tooltip')
+    await expect(tooltip).toBeVisible()
+    await expect(tooltip).toHaveCSS('opacity', '1')
+    await page.waitForTimeout(1000)
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
@@ -266,7 +269,7 @@ test.describe('Visual Comparison: IconButton', () => {
     })
     await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
-    await page.waitForTimeout(500)
+    await page.waitForTimeout(1000)
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
@@ -287,7 +290,7 @@ test.describe('Visual Comparison: IconButton', () => {
     )
     await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
-    await page.waitForTimeout(500)
+    await page.waitForTimeout(1000)
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 

@@ -20,10 +20,12 @@ import {clsx} from 'clsx'
 import {TriangleDownIcon, TriangleUpIcon} from '@primer/octicons-react'
 import {useId} from '../hooks/useId'
 import {useKeyboardEscape} from '../hooks/useKeyboardEscape'
-import {useOnClickOutside} from '../hooks/useOnClickOutside'
-import {useFocusTrap} from '../hooks/useFocusTrap'
 import {useProvidedRefOrCreate} from '../hooks/useRef'
 import {useContainsFocus} from './useContainsFocus'
+
+import {useAnchorMenu} from './useAnchorMenu'
+import {useNarrowMenu} from './useNarrowMenu'
+import {useWideMenu} from './useWideMenu'
 
 import type {BaseProps} from '../component-helpers'
 
@@ -57,6 +59,12 @@ const testIds = {
   get subMenu() {
     return `${this.root}-sub-menu`
   },
+  get overflowButton() {
+    return `${this.root}-overflow-button`
+  },
+  get overflowMenu() {
+    return `${this.root}-overflow-menu`
+  },
 }
 
 export const SubNavSubMenuVariants = ['dropdown', 'anchor'] as const
@@ -77,46 +85,36 @@ export const useSubNavContext = () => {
 }
 
 function SubNavProvider({children}: {children: React.ReactNode}) {
-  const anchoredNavOuterPortalRef = React.useRef<HTMLDivElement>(null)
-  const anchoredNavPortalRef = React.useRef<HTMLDivElement>(null)
+  const {anchorMenuRef, portalRef} = useAnchorMenu()
 
   const value = useMemo(
     () => ({
-      portalRef: anchoredNavPortalRef,
+      portalRef,
     }),
-    [],
+    [portalRef],
   )
-
-  useEffect(() => {
-    const menuContainer = anchoredNavOuterPortalRef.current
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        entry.target.classList.toggle(styles['SubNav__anchor-menu-outer-container--stuck'], entry.intersectionRatio < 1)
-      },
-      {threshold: [1]},
-    )
-
-    if (menuContainer) {
-      observer.observe(menuContainer)
-    }
-
-    return () => {
-      if (menuContainer) {
-        observer.unobserve(menuContainer)
-      }
-    }
-  }, [])
 
   return (
     <SubNavContext.Provider value={value}>
       {children}
 
-      <div className={styles['SubNav__anchor-menu-outer-container']} ref={anchoredNavOuterPortalRef}>
-        <div className={clsx(styles['SubNav__anchor-menu-container'])} ref={anchoredNavPortalRef} />
+      <div className={styles['SubNav__anchor-menu-outer-container']} ref={anchorMenuRef}>
+        <div className={clsx(styles['SubNav__anchor-menu-container'])} ref={portalRef} />
       </div>
     </SubNavContext.Provider>
   )
+}
+
+export type SubNavMenuLabels = {
+  menuLabel: string
+  closeLabel: string
+  overflowMenuLabel: string
+}
+
+const defaultMenuLabels: SubNavMenuLabels = {
+  menuLabel: 'Navigation menu',
+  closeLabel: 'Close navigation menu',
+  overflowMenuLabel: 'More',
 }
 
 export type SubNavProps = {
@@ -129,79 +127,34 @@ export type SubNavProps = {
    * removing any internal padding and guttering.
    */
   fullWidth?: boolean
+  /**
+   * Customizable accessible labels
+   */
+  menuLabels?: Partial<SubNavMenuLabels>
   'data-testid'?: string
 } & PropsWithChildren<BaseProps<HTMLDivElement>>
 
+// Puts the menus, headings, and actions together.
 const SubNavRoot = memo(
   forwardRef<HTMLDivElement, SubNavProps>(
-    ({id, children, className, 'data-testid': testId, fullWidth, hasShadow}, ref) => {
+    ({id, children, className, 'data-testid': testId, fullWidth, hasShadow, menuLabels}, ref) => {
       const rootRef = useProvidedRefOrCreate<HTMLDivElement>(ref as RefObject<HTMLDivElement>)
-      const innerRootRef = React.useRef<HTMLDivElement>(null)
-      const navRef = React.useRef<HTMLElement>(null)
-      const overlayRef = React.useRef<HTMLUListElement>(null)
       const narrowButtonRef = useRef<HTMLButtonElement>(null)
-      const [isOpenAtNarrow, setIsOpenAtNarrow] = useState(false)
       const idForLinkContainer = useId()
+      const overflowMenuId = useId()
       const [hasAnchoredNav, setHasAnchoredNav] = useState(false)
+      const resolvedMenuLabels = {...defaultMenuLabels, ...menuLabels}
 
       const {isLarge} = useWindowSize()
-
-      useFocusTrap({containerRef: innerRootRef, disabled: !isOpenAtNarrow})
-
+      const {navRef, narrowMenuRef, isNarrowMenuOpen, closeNarrowMenu, toggleNarrowMenu} = useNarrowMenu(isLarge)
       const childrenArr = Children.toArray(children)
-
-      const closeMenuCallback = useCallback(() => {
-        if (isLarge) return
-        setIsOpenAtNarrow(false)
-      }, [isLarge])
-
-      const handleMenuToggle = useCallback(() => {
-        if (isLarge) return
-        setIsOpenAtNarrow(prev => !prev)
-      }, [isLarge])
-
-      useOnClickOutside(innerRootRef, closeMenuCallback)
-      useKeyboardEscape(closeMenuCallback)
-
-      useEffect(() => {
-        const navElement = navRef.current
-
-        const updateAvailableHeight = () => {
-          if (navElement) {
-            const navTop = navElement.getBoundingClientRect().top
-            navElement.style.setProperty('--subnav-available-height', `${window.innerHeight - navTop}px`)
-          }
-        }
-
-        if (isOpenAtNarrow && !isLarge) {
-          document.body.style.overflow = 'hidden'
-          updateAvailableHeight()
-          // eslint-disable-next-line github/prefer-observers
-          window.addEventListener('resize', updateAvailableHeight)
-        } else {
-          document.body.style.overflow = 'auto'
-
-          if (navElement) {
-            navElement.style.removeProperty('--subnav-available-height')
-          }
-        }
-
-        return () => {
-          document.body.style.overflow = 'auto'
-          window.removeEventListener('resize', updateAvailableHeight)
-
-          if (navElement) {
-            navElement.style.removeProperty('--subnav-available-height')
-          }
-        }
-      }, [isOpenAtNarrow, isLarge])
 
       const activeLink = childrenArr.find(child => {
         return isValidElement<LinkBaseProps>(child) && Boolean(child.props['aria-current'])
       }) as React.ReactElement<LinkBaseProps> | undefined
 
+      // Checks whether any link comes with an anchor submenu.
       useEffect(() => {
-        // check if there is an anchored nav in the SubNav.SubMenu child
         const hasAnchorVariant = childrenArr.some(child => {
           if (isValidElement<LinkBaseProps>(child) && child.type === LinkBase) {
             const childNodes = Children.toArray(child.props.children)
@@ -219,6 +172,7 @@ const SubNavRoot = memo(
         setHasAnchoredNav(hasAnchorVariant)
       }, [childrenArr])
 
+      // Picks out the headings, links, and action for the layout.
       const {
         heading: HeadingChild,
         subheading: SubHeadingChild,
@@ -251,7 +205,10 @@ const SubNavRoot = memo(
               acc.links.push(
                 React.cloneElement(linkChild, {
                   ...(isAnchorVariant ? {children: [link]} : {}),
-                  onClick: linkChild.props['aria-current'] ? closeMenuCallback : linkChild.props.onClick,
+                  onClick: event => {
+                    linkChild.props.onClick?.(event)
+                    if (!event.defaultPrevented && linkChild.props['aria-current']) closeNarrowMenu()
+                  },
                 }),
               )
             } else if (child.type === ActionBase) {
@@ -263,6 +220,17 @@ const SubNavRoot = memo(
         {heading: undefined, subheading: undefined, links: [], action: undefined},
       )
 
+      const {
+        overlayRef,
+        overflowRef,
+        overflowButtonRef,
+        overflowMenuRef,
+        visibleLinkCount,
+        hasOverflow,
+        isOverflowMenuOpen,
+        closeOverflowMenu,
+        handleOverflowMenuBlur,
+      } = useWideMenu(children, isLarge, LinkChildren.length)
       const activeLinkChildren = activeLink ? Children.toArray(activeLink.props.children) : []
       const activeLinklabel = activeLinkChildren[0]
 
@@ -280,11 +248,18 @@ const SubNavRoot = memo(
         SubHeadingChild.type === SubHeadingBase &&
         Boolean(SubHeadingChild.props['aria-current'])
       const narrowButtonLabel = SubHeadingChild ? activeLinklabel : null
+      const narrowMenuLabel = isNarrowMenuOpen ? resolvedMenuLabels.closeLabel : resolvedMenuLabels.menuLabel
+      const hasActiveOverflow = LinkChildren.slice(visibleLinkCount).some(
+        link => Boolean(link.props['aria-current']) && link.props['aria-current'] !== 'false',
+      )
 
       const NarrowButton = useMemo(
         () => (
           <div
-            className={clsx(styles['SubNav__overlay-toggle'], isOpenAtNarrow && styles['SubNav__overlay-toggle--open'])}
+            className={clsx(
+              styles['SubNav__overlay-toggle'],
+              isNarrowMenuOpen && styles['SubNav__overlay-toggle--open'],
+            )}
           >
             <span
               className={clsx(
@@ -296,17 +271,17 @@ const SubNavRoot = memo(
                 ref={narrowButtonRef}
                 className={styles['SubNav__overlay-toggle-label']}
                 data-testid={testIds.button}
-                onClick={isOpenAtNarrow ? closeMenuCallback : handleMenuToggle}
-                aria-expanded={isOpenAtNarrow ? 'true' : 'false'}
+                onClick={isNarrowMenuOpen ? closeNarrowMenu : toggleNarrowMenu}
+                aria-expanded={isNarrowMenuOpen ? 'true' : 'false'}
                 aria-controls={idForLinkContainer}
-                aria-label={activeLinklabel ? `Navigation menu. Current page: ${activeLinklabel}` : 'Navigation menu'}
+                aria-label={activeLinklabel ? `${narrowMenuLabel}. Current page: ${activeLinklabel}` : narrowMenuLabel}
               >
                 {narrowButtonLabel && (
                   <Text as="span" size="100">
                     {narrowButtonLabel}
                   </Text>
                 )}
-                {isOpenAtNarrow ? (
+                {isNarrowMenuOpen ? (
                   <TriangleUpIcon className={styles['SubNav__overlay-toggle-icon']} size={13} />
                 ) : (
                   <TriangleDownIcon className={styles['SubNav__overlay-toggle-icon']} size={13} />
@@ -315,7 +290,15 @@ const SubNavRoot = memo(
             </span>
           </div>
         ),
-        [activeLinklabel, closeMenuCallback, handleMenuToggle, idForLinkContainer, isOpenAtNarrow, narrowButtonLabel],
+        [
+          activeLinklabel,
+          closeNarrowMenu,
+          toggleNarrowMenu,
+          idForLinkContainer,
+          isNarrowMenuOpen,
+          narrowButtonLabel,
+          narrowMenuLabel,
+        ],
       )
 
       return (
@@ -334,14 +317,14 @@ const SubNavRoot = memo(
               id={id}
               className={clsx(
                 styles.SubNav,
-                isOpenAtNarrow && styles['SubNav--open'],
+                isNarrowMenuOpen && styles['SubNav--open'],
                 hasShadow && styles['SubNav--has-shadow'],
                 fullWidth && styles['SubNav--full-width'],
                 className,
               )}
               data-testid={testId || testIds.root}
             >
-              <div ref={innerRootRef} className={styles['SubNav--header-container-outer']}>
+              <div ref={narrowMenuRef} className={styles['SubNav--header-container-outer']}>
                 <div className={styles['SubNav__header-container']}>
                   {HeadingChild && <div className={styles['SubNav__heading-container']}>{HeadingChild}</div>}
 
@@ -368,11 +351,60 @@ const SubNavRoot = memo(
                     id={idForLinkContainer}
                     className={clsx(
                       styles['SubNav__links-overlay'],
-                      isOpenAtNarrow && styles['SubNav__links-overlay--open'],
+                      isNarrowMenuOpen && styles['SubNav__links-overlay--open'],
                     )}
                     data-testid={testIds.overlay}
                   >
-                    {LinkChildren}
+                    {LinkChildren.map((link, index) =>
+                      React.cloneElement(link, {_isOverflowed: Boolean(isLarge) && index >= visibleLinkCount}),
+                    )}
+                    <li
+                      ref={overflowRef}
+                      className={clsx(
+                        styles['SubNav__overflow-container'],
+                        hasOverflow && styles['SubNav__overflow-container--visible'],
+                      )}
+                      aria-hidden={hasOverflow ? undefined : true}
+                      onBlur={handleOverflowMenuBlur}
+                    >
+                      <button
+                        ref={overflowButtonRef}
+                        type="button"
+                        className={clsx(
+                          styles['SubNav__overflow-toggle'],
+                          hasActiveOverflow && styles['SubNav__overflow-toggle--active'],
+                        )}
+                        data-testid={testIds.overflowButton}
+                        aria-expanded={isOverflowMenuOpen}
+                        aria-controls={overflowMenuId}
+                        tabIndex={hasOverflow ? undefined : -1}
+                      >
+                        <Text as="span" size="100" className={styles['SubNav__link-label']}>
+                          {resolvedMenuLabels.overflowMenuLabel}
+                        </Text>
+                        {isOverflowMenuOpen ? <TriangleUpIcon /> : <TriangleDownIcon />}
+                      </button>
+                      <div
+                        ref={overflowMenuRef}
+                        id={overflowMenuId}
+                        popover="auto"
+                        data-testid={testIds.overflowMenu}
+                        className={styles['SubNav__overflow-menu']}
+                      >
+                        <ul
+                          className={styles['SubNav__overflow-menu-list']}
+                          aria-label={resolvedMenuLabels.overflowMenuLabel}
+                        >
+                          {LinkChildren.slice(visibleLinkCount).map(link =>
+                            React.cloneElement(link, {
+                              _isOverflowed: false,
+                              _isOverflowMenu: true,
+                              onOverflowLinkActivate: closeOverflowMenu,
+                            }),
+                          )}
+                        </ul>
+                      </div>
+                    </li>
                     {ActionChild && <li className={styles['SubNav__action-container']}>{ActionChild}</li>}
                   </ul>
                 )}
@@ -428,12 +460,27 @@ type LinkBaseProps = {
   'data-testid'?: string
   variant?: TextProps['variant']
   _subMenuVariant?: SubMenuVariants
+  _isOverflowed?: boolean
+  _isOverflowMenu?: boolean
+  onOverflowLinkActivate?: () => void
 } & PropsWithChildren<React.HTMLProps<HTMLAnchorElement>> &
   BaseProps<HTMLAnchorElement>
 
+// Handles hover, focus, and toggling for links with submenus.
 const LinkBaseWithSubmenu = forwardRef<HTMLDivElement, LinkBaseProps>(
   (
-    {children, href, 'aria-current': ariaCurrent, 'data-testid': testId, className, _subMenuVariant, variant, ...props},
+    {
+      children,
+      href,
+      'aria-current': ariaCurrent,
+      'data-testid': testId,
+      className,
+      _subMenuVariant,
+      _isOverflowMenu = false,
+      onOverflowLinkActivate,
+      variant,
+      ...props
+    },
     forwardedRef,
   ) => {
     const submenuId = useId()
@@ -456,6 +503,7 @@ const LinkBaseWithSubmenu = forwardRef<HTMLDivElement, LinkBaseProps>(
 
     useKeyboardEscape(collapse)
 
+    // Keeps collapsed desktop submenus out of the tab order.
     useEffect(() => {
       if (subMenuChildrenRef.current) {
         // Workaround to avoid React 18 / 19 type mismatches with the `inert` attribute.
@@ -463,11 +511,15 @@ const LinkBaseWithSubmenu = forwardRef<HTMLDivElement, LinkBaseProps>(
         // TODO: Move back to JSX when React 19 is fully adopted in Dotcom.
         // `inert` removes the collapsed submenu from tab order and the accessibility tree
         // without affecting visual appearance
-        subMenuChildrenRef.current.toggleAttribute('inert', isLarge && !isExpanded)
+        subMenuChildrenRef.current.toggleAttribute('inert', Boolean(isLarge) && !_isOverflowMenu && !isExpanded)
       }
-    }, [isLarge, isExpanded])
+    }, [isLarge, _isOverflowMenu, isExpanded])
 
-    const [label, SubMenuChildren] = children as ReactNode[]
+    const [label, subMenuChildren] = children as ReactNode[]
+    const subMenu =
+      _isOverflowMenu && isValidElement<SubMenuProps>(subMenuChildren) && subMenuChildren.type === SubMenuBase
+        ? React.cloneElement(subMenuChildren, {_isOverflowMenu, onOverflowLinkActivate})
+        : subMenuChildren
 
     return (
       <div
@@ -492,12 +544,16 @@ const LinkBaseWithSubmenu = forwardRef<HTMLDivElement, LinkBaseProps>(
           className={clsx(styles['SubNav__link'], ariaCurrent && styles['SubNav__link--active'], className)}
           aria-current={ariaCurrent}
           {...props}
+          onClick={event => {
+            props.onClick?.(event)
+            if (!event.defaultPrevented) onOverflowLinkActivate?.()
+          }}
         >
           <Text as="span" size="100" weight="medium" className={styles['SubNav__link-label']}>
             {label}
           </Text>
         </a>
-        {isLarge && (
+        {isLarge && !_isOverflowMenu && (
           <button
             className={styles['SubNav__sub-menu-toggle']}
             onClick={toggleExpanded}
@@ -510,16 +566,24 @@ const LinkBaseWithSubmenu = forwardRef<HTMLDivElement, LinkBaseProps>(
         )}
 
         <div id={submenuId} className={styles['SubNav__sub-menu-children']} ref={subMenuChildrenRef}>
-          {SubMenuChildren}
+          {subMenu}
         </div>
       </div>
     )
   },
 )
 
+// Renders a link and tracks its section for anchor navigation.
 const LinkBase = forwardRef<HTMLAnchorElement | HTMLDivElement, LinkBaseProps>((props, ref) => {
   const [isInView, setIsInView] = useState(false)
+  const listItemRef = useRef<HTMLLIElement>(null)
+  const {_isOverflowed, _isOverflowMenu = false, onOverflowLinkActivate, ...linkProps} = props
   const childrenArr = Children.toArray(props.children)
+
+  // Keeps links moved into overflow out of the row's tab order.
+  useEffect(() => {
+    listItemRef.current?.toggleAttribute('inert', Boolean(_isOverflowed))
+  }, [_isOverflowed])
 
   const hasSubMenu = childrenArr.some(child => {
     if (isValidElement(child)) {
@@ -527,6 +591,7 @@ const LinkBase = forwardRef<HTMLAnchorElement | HTMLDivElement, LinkBaseProps>((
     }
   })
 
+  // Marks an anchor link active when its section reaches the top.
   useEffect(() => {
     if (hasSubMenu) return
     const targetId = props.href.replace('#', '')
@@ -551,20 +616,30 @@ const LinkBase = forwardRef<HTMLAnchorElement | HTMLDivElement, LinkBaseProps>((
     })
 
     return (
-      <li>
+      <li
+        ref={listItemRef}
+        aria-hidden={_isOverflowed ? true : undefined}
+        className={clsx(styles['SubNav__link-item'], _isOverflowed && styles['SubNav__link-item--overflowed'])}
+      >
         <LinkBaseWithSubmenu
           ref={ref as RefObject<HTMLDivElement>}
-          {...props}
+          {...linkProps}
+          _isOverflowMenu={_isOverflowMenu}
+          onOverflowLinkActivate={onOverflowLinkActivate}
           _subMenuVariant={isAnchorVariantSubMenu ? 'anchor' : undefined}
         />
       </li>
     )
   }
 
-  const {children, href, 'aria-current': ariaCurrent, 'data-testid': testId, variant, className, ...rest} = props
+  const {children, href, 'aria-current': ariaCurrent, 'data-testid': testId, variant, className, ...rest} = linkProps
 
   return (
-    <li>
+    <li
+      ref={listItemRef}
+      aria-hidden={_isOverflowed ? true : undefined}
+      className={clsx(styles['SubNav__link-item'], _isOverflowed && styles['SubNav__link-item--overflowed'])}
+    >
       <a
         href={href}
         className={clsx(
@@ -577,6 +652,10 @@ const LinkBase = forwardRef<HTMLAnchorElement | HTMLDivElement, LinkBaseProps>((
         data-testid={testId || testIds.link}
         ref={ref as RefObject<HTMLAnchorElement>}
         {...rest}
+        onClick={event => {
+          rest.onClick?.(event)
+          if (!event.defaultPrevented) onOverflowLinkActivate?.()
+        }}
       >
         <Text as="span" size="100" weight="medium" className={styles['SubNav__link-label']}>
           {children}
@@ -588,10 +667,20 @@ const LinkBase = forwardRef<HTMLAnchorElement | HTMLDivElement, LinkBaseProps>((
 
 type SubMenuProps = {
   variant?: SubMenuVariants
+  _isOverflowMenu?: boolean
+  onOverflowLinkActivate?: () => void
 } & React.HTMLAttributes<HTMLUListElement> &
   BaseProps<HTMLUListElement>
 
-function SubMenuBase({children, className, variant = 'dropdown', ...props}: SubMenuProps) {
+// Puts anchor links in the shared portal and keeps dropdown links local.
+function SubMenuBase({
+  children,
+  className,
+  variant = 'dropdown',
+  _isOverflowMenu = false,
+  onOverflowLinkActivate,
+  ...props
+}: SubMenuProps) {
   const context = React.useContext(SubNavContext)
   const navRef = useRef<HTMLElement>(null)
 
@@ -601,6 +690,7 @@ function SubMenuBase({children, className, variant = 'dropdown', ...props}: SubM
    * Effect is needed to prevent the bubbling of onClick events to the overlay trigger.
    * Removing this effect will cause clicks on the anchor nav element to toggle the overlay.
    */
+  // Keeps clicks in the anchor menu from toggling the narrow menu.
   useEffect(() => {
     const handleClick = (e: MouseEvent) => {
       if (navRef.current && !navRef.current.contains(e.target as Node)) {
@@ -633,6 +723,7 @@ function SubMenuBase({children, className, variant = 'dropdown', ...props}: SubM
           {React.Children.map(children, child => {
             if (isValidElement<LinkBaseProps>(child) && child.type === LinkBase) {
               return React.cloneElement(child, {
+                ...(_isOverflowMenu ? {_isOverflowMenu, onOverflowLinkActivate} : {}),
                 onClick: e => {
                   child.props.onClick?.(e)
                 },
@@ -645,12 +736,18 @@ function SubMenuBase({children, className, variant = 'dropdown', ...props}: SubM
       context.portalRef.current,
     )
   } else {
-    const Tag = isLarge ? ThemeProvider : React.Fragment
+    const Tag = isLarge && !_isOverflowMenu ? ThemeProvider : React.Fragment
 
     return (
-      <Tag {...(isLarge ? {colorMode: 'light'} : {})}>
+      <Tag {...(isLarge && !_isOverflowMenu ? {colorMode: 'light'} : {})}>
         <ul className={clsx(styles['SubNav__sub-menu'], styles[`SubNav__sub-menu--${variant}`], className)} {...props}>
-          {children}
+          {_isOverflowMenu
+            ? Children.map(children, child =>
+                isValidElement<LinkBaseProps>(child) && child.type === LinkBase
+                  ? React.cloneElement(child, {_isOverflowMenu, onOverflowLinkActivate})
+                  : child,
+              )
+            : children}
         </ul>
       </Tag>
     )

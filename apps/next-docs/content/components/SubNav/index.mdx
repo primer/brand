@@ -51,6 +51,35 @@ import {SubNav} from '@primer/react-brand'
 </div>
 ```
 
+### Localized menu controls
+
+Internal `SubNav` labels such as the "More" link are rendered in `en` by default. Use `menuLabels` to customize these to different locales.
+
+```jsx live
+<div style={{position: 'relative', height: 360, width: '100%'}}>
+  <SubNav
+    menuLabels={{
+      menuLabel: 'Menú de navegación',
+      closeLabel: 'Cerrar menú de navegación',
+      overflowMenuLabel: 'Más',
+    }}
+  >
+    <SubNav.Heading href="#">AI</SubNav.Heading>
+    <SubNav.SubHeading href="#">GitHub Copilot</SubNav.SubHeading>
+    <SubNav.Link href="#">Aplicación de escritorio</SubNav.Link>
+    <SubNav.Link href="#" aria-current="page">
+      Copilot en VS Code
+    </SubNav.Link>
+    <SubNav.Link href="#">Agentes en GitHub</SubNav.Link>
+    <SubNav.Link href="#">Copilot CLI</SubNav.Link>
+    <SubNav.Link href="#">Revisión de código de Copilot</SubNav.Link>
+    <SubNav.Link href="#">Para empresas</SubNav.Link>
+    <SubNav.Link href="#">Tutoriales</SubNav.Link>
+    <SubNav.Link href="#">Planes y precios</SubNav.Link>
+  </SubNav>
+</div>
+```
+
 ### Optional CTA
 
 ```jsx live
@@ -122,9 +151,20 @@ Ensure that the text of each `SubNav.Link` within the anchor-based submenu fits 
 
 ### SubNav <Label>Required</Label>
 
-| name        | type      | default | required | description                                                                   |
-| ----------- | --------- | ------- | -------- | ----------------------------------------------------------------------------- |
-| `fullWidth` | `boolean` | `false` | `false`  | Allows the SubNav to be used at full width, removing default internal padding |
+| name         | type                        | default        | required | description                                                                   |
+| ------------ | --------------------------- | -------------- | -------- | ----------------------------------------------------------------------------- |
+| `fullWidth`  | `boolean`                   | `false`        | `false`  | Allows the SubNav to be used at full width, removing default internal padding |
+| `menuLabels` | `Partial<SubNavMenuLabels>` | English labels | `false`  | Customizes the menu's accessible labels                                       |
+
+`SubNavMenuLabels` is exported from `@primer/react-brand`.
+
+#### Menu labels
+
+| Field               | Type     | English default         | Purpose                                                    |
+| ------------------- | -------- | ----------------------- | ---------------------------------------------------------- |
+| `menuLabel`         | `string` | `Navigation menu`       | Accessible label while the narrow menu is closed           |
+| `closeLabel`        | `string` | `Close navigation menu` | Accessible label while the narrow menu is open             |
+| `overflowMenuLabel` | `string` | `More`                  | Visible and accessible label for the desktop overflow menu |
 
 ### SubNav.Heading <Label>Required</Label>
 

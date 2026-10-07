@@ -12,6 +12,8 @@ import {Stack} from '../Stack'
 import {expect, userEvent, within} from 'storybook/test'
 import {Button} from '../Button'
 import {waitFor} from '@testing-library/dom'
+import {useTranslation} from 'react-i18next'
+import {MINIMAL_VIEWPORTS} from 'storybook/viewport'
 
 const meta = {
   title: 'Components/SubNav/Features',
@@ -255,6 +257,156 @@ const LongerHeadingTemplate = (args: SubNavProps) => (
 
 export const LongerHeading: Story = {
   render: LongerHeadingTemplate,
+}
+
+export const OverflowMenu: Story = {
+  name: 'Overflow Menu',
+  args: {
+    fullWidth: false,
+  },
+  parameters: {
+    viewport: {
+      options: MINIMAL_VIEWPORTS,
+    },
+  },
+  globals: {
+    viewport: {value: 'desktop'},
+  },
+  render: function RenderOverflowMenu(args) {
+    const {t: translate} = useTranslation('SubNav')
+
+    return (
+      <SubNav
+        {...args}
+        menuLabels={{
+          menuLabel: translate('menu_label'),
+          closeLabel: translate('close_label'),
+          overflowMenuLabel: translate('overflow_menu_label'),
+          ...args.menuLabels,
+        }}
+      >
+        <SubNav.Heading href="#">{translate('ai')}</SubNav.Heading>
+        <SubNav.SubHeading href="#">GitHub Copilot</SubNav.SubHeading>
+        <SubNav.Link href="#">{translate('desktop_app')}</SubNav.Link>
+        <SubNav.Link href="#" aria-current="page">
+          {translate('copilot_in_vs_code')}
+        </SubNav.Link>
+        <SubNav.Link href="#">{translate('agents_on_github')}</SubNav.Link>
+        <SubNav.Link href="#">{translate('copilot_cli')}</SubNav.Link>
+        <SubNav.Link href="#">{translate('copilot_code_review')}</SubNav.Link>
+        <SubNav.Link href="#">{translate('for_business')}</SubNav.Link>
+        <SubNav.Link href="#">{translate('tutorials')}</SubNav.Link>
+        <SubNav.Link href="#">{translate('plans_pricing')}</SubNav.Link>
+      </SubNav>
+    )
+  },
+}
+
+export const OverflowMenuOpen: Story = {
+  name: 'Overflow Menu Open',
+  args: {
+    fullWidth: false,
+  },
+  parameters: {
+    viewport: {
+      options: MINIMAL_VIEWPORTS,
+    },
+  },
+  globals: {
+    viewport: {value: 'desktop'},
+  },
+  render: function RenderOverflowMenuOpen(args) {
+    const {t: translate} = useTranslation('SubNav')
+
+    return (
+      <SubNav
+        {...args}
+        menuLabels={{
+          menuLabel: translate('menu_label'),
+          closeLabel: translate('close_label'),
+          overflowMenuLabel: translate('overflow_menu_label'),
+          ...args.menuLabels,
+        }}
+      >
+        <SubNav.Heading href="#">{translate('ai')}</SubNav.Heading>
+        <SubNav.SubHeading href="#">GitHub Copilot</SubNav.SubHeading>
+        <SubNav.Link href="#">{translate('desktop_app')}</SubNav.Link>
+        <SubNav.Link href="#" aria-current="page">
+          {translate('copilot_in_vs_code')}
+        </SubNav.Link>
+        <SubNav.Link href="#">{translate('agents_on_github')}</SubNav.Link>
+        <SubNav.Link href="#">{translate('copilot_cli')}</SubNav.Link>
+        <SubNav.Link href="#">{translate('copilot_code_review')}</SubNav.Link>
+        <SubNav.Link href="#">{translate('for_business')}</SubNav.Link>
+        <SubNav.Link href="#">{translate('tutorials')}</SubNav.Link>
+        <SubNav.Link href="#">{translate('plans_pricing')}</SubNav.Link>
+      </SubNav>
+    )
+  },
+  play: async ({canvasElement}) => {
+    const canvas = within(canvasElement)
+    await canvasElement.ownerDocument.fonts.ready
+    await waitFor(() => {
+      expect(canvas.getByRole('button')).toBeVisible()
+      expect(canvas.getByRole('button')).toHaveAttribute('popovertarget')
+    })
+    const moreButton = canvas.getByRole('button')
+    await userEvent.click(moreButton)
+
+    const overflowLinks = await canvas.findByRole('list', {name: moreButton.textContent.trim()})
+    const overflowMenu = overflowLinks.closest<HTMLElement>('[popover]')
+    await waitFor(() => {
+      expect(moreButton).toHaveAttribute('aria-expanded', 'true')
+      expect(overflowMenu).toBeVisible()
+      expect(overflowMenu).toHaveAttribute('popover', 'auto')
+      expect(overflowMenu?.matches(':popover-open')).toBe(true)
+      expect(within(overflowLinks).getAllByRole('link').length).toBeGreaterThan(0)
+    })
+  },
+}
+
+export const OverflowMenuLocalized: Story = {
+  name: 'Overflow Menu (Localized)',
+  args: {
+    fullWidth: false,
+  },
+  parameters: {
+    viewport: {
+      options: MINIMAL_VIEWPORTS,
+    },
+  },
+  globals: {
+    viewport: {value: 'desktop'},
+    locale: 'ja',
+  },
+  render: function RenderOverflowMenuLocalized(args) {
+    const {t: translate} = useTranslation('SubNav')
+
+    return (
+      <SubNav
+        {...args}
+        menuLabels={{
+          menuLabel: translate('menu_label'),
+          closeLabel: translate('close_label'),
+          overflowMenuLabel: translate('overflow_menu_label'),
+          ...args.menuLabels,
+        }}
+      >
+        <SubNav.Heading href="#">{translate('ai')}</SubNav.Heading>
+        <SubNav.SubHeading href="#">GitHub Copilot</SubNav.SubHeading>
+        <SubNav.Link href="#">{translate('desktop_app')}</SubNav.Link>
+        <SubNav.Link href="#" aria-current="page">
+          {translate('copilot_in_vs_code')}
+        </SubNav.Link>
+        <SubNav.Link href="#">{translate('agents_on_github')}</SubNav.Link>
+        <SubNav.Link href="#">{translate('copilot_cli')}</SubNav.Link>
+        <SubNav.Link href="#">{translate('copilot_code_review')}</SubNav.Link>
+        <SubNav.Link href="#">{translate('for_business')}</SubNav.Link>
+        <SubNav.Link href="#">{translate('tutorials')}</SubNav.Link>
+        <SubNav.Link href="#">{translate('plans_pricing')}</SubNav.Link>
+      </SubNav>
+    )
+  },
 }
 
 const AnchorNavVariantData = {

@@ -80,7 +80,6 @@ declare const styles: {
   readonly "SubdomainNavBar-title-navigation": string;
   readonly "SubdomainNavBar-title-prefix": string;
   readonly "SubdomainNavBar-trailing-component": string;
-  readonly "enlarge-shadow": string;
   readonly "fade-in": string;
   readonly "fade-in-down": string;
   readonly "fade-in-down-overflow": string;
