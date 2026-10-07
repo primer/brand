@@ -115,6 +115,19 @@ describe('FeatureComparisonTable', () => {
     expect(ref.current).toBe(getByTestId('custom-table'))
   })
 
+  it('uses description-list terms rather than headings for repeated plan names', () => {
+    const {getByTestId} = render(<Component expanded />)
+    const narrow = within(getByTestId(FeatureComparisonTable.testIds.narrow))
+    const table = within(getByTestId(FeatureComparisonTable.testIds.table))
+
+    expect(narrow.getAllByRole('term').map(term => term.textContent)).toEqual(['Free', 'Pro'])
+    expect(narrow.queryByRole('heading', {name: 'Free'})).not.toBeInTheDocument()
+    expect(narrow.queryByRole('heading', {name: 'Pro'})).not.toBeInTheDocument()
+    expect(narrow.getByRole('heading', {name: 'Core features'})).toBeInTheDocument()
+    expect(table.getByRole('heading', {name: 'Free', level: 3})).toBeInTheDocument()
+    expect(table.getByRole('heading', {name: 'Pro', level: 3})).toBeInTheDocument()
+  })
+
   it.each([
     ['hasStickyHeaders', 'FeatureComparisonTable--stickyHeaders'],
     ['rowHighlighting', 'FeatureComparisonTable--rowHighlighting'],

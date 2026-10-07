@@ -97,12 +97,7 @@
   padding: var(--base-size-12) var(--base-size-20);
 }
 
-.FeatureComparisonTable__narrow .FeatureComparisonTable__planName {
-  color: var(--brand-color-text-muted);
-  font-size: var(--brand-text-size-200);
-  font-weight: var(--base-text-weight-normal);
-  line-height: var(--brand-text-lineHeight-200);
-  letter-spacing: var(--brand-text-letterSpacing-200);
+.FeatureComparisonTable__planName {
   overflow-wrap: anywhere;
 }
 
@@ -166,23 +161,24 @@
   border-radius: var(--brand-borderRadius-full);
 }
 
-.FeatureComparisonTable__wideSummary,
+/* Plan summaries */
+
 .FeatureComparisonTable__item {
   display: grid;
   grid-row: 1 / span 4;
   grid-template-rows: subgrid;
-}
-
-/* Plan summaries */
-
-.FeatureComparisonTable__item {
   align-content: start;
   border-block-start: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
   text-align: start;
 }
 
-.FeatureComparisonTable__item.FeatureComparisonTable__promoted {
+.FeatureComparisonTable__item--hasLabel {
+  grid-row-end: span 5;
   border-block-start: 0;
+}
+
+.FeatureComparisonTable__item--offset {
+  grid-row-start: 2;
 }
 
 .FeatureComparisonTable__itemContent {
@@ -256,7 +252,7 @@
   margin-block-start: var(--base-size-12);
 }
 
-.FeatureComparisonTable__item.FeatureComparisonTable__headingGrid--hasLabel .FeatureComparisonTable__itemContent {
+.FeatureComparisonTable__itemContent--hasLabel {
   grid-row: 2 / span 4;
   border-block-start: var(--brand-borderWidth-thin) solid var(--brand-color-border-subtle);
 }
@@ -287,7 +283,7 @@
     font-size: var(--base-size-20);
   }
 
-  .FeatureComparisonTable__table :is(th, td) {
+  .FeatureComparisonTable__table :where(th, td) {
     padding: var(--base-size-12) var(--base-size-28);
     border-block-end: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
     vertical-align: top;
@@ -351,14 +347,14 @@
     width: var(--brand-feature-comparison-table-feature-column-width);
   }
 
-  .FeatureComparisonTable--stickyHeaders .FeatureComparisonTable__table thead th {
+  :where(.FeatureComparisonTable--stickyHeaders) .FeatureComparisonTable__headerCell {
     position: sticky;
     z-index: 2;
     inset-block-start: 0;
     background-color: var(--brand-color-canvas-default);
   }
 
-  .FeatureComparisonTable--stickyHeaders .FeatureComparisonTable__table thead th:first-child {
+  :where(.FeatureComparisonTable--stickyHeaders) .FeatureComparisonTable__headerCell:first-child {
     z-index: 3;
   }
 
@@ -402,7 +398,7 @@
     margin-inline: 0;
   }
 
-  .FeatureComparisonTable__table thead {
+  .FeatureComparisonTable__headingGrid {
     display: grid;
     width: 100cqw;
     grid-template-columns:
@@ -411,17 +407,17 @@
     grid-template-rows: repeat(4, auto);
   }
 
-  .FeatureComparisonTable__table thead tr {
+  .FeatureComparisonTable__headingGrid tr {
     display: contents;
   }
 
-  .FeatureComparisonTable--stickyHeaders .FeatureComparisonTable__table thead {
+  .FeatureComparisonTable--stickyHeaders .FeatureComparisonTable__headingGrid {
     position: sticky;
     z-index: 2;
     inset-block-start: 0;
   }
 
-  .FeatureComparisonTable__table thead th {
+  .FeatureComparisonTable__headerCell {
     display: grid;
     grid-row: 1 / span 4;
     grid-template-rows: subgrid;
@@ -439,17 +435,11 @@
     border-inline-end: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
   }
 
-  thead.FeatureComparisonTable__headingGrid--hasLabel {
+  .FeatureComparisonTable__headingGrid--hasLabel {
     grid-template-rows: repeat(5, auto);
   }
 
-  thead.FeatureComparisonTable__headingGrid--hasLabel
-    th:not(.FeatureComparisonTable__promoted)
-    .FeatureComparisonTable__wideSummary {
-    grid-row-start: 2;
-  }
-
-  thead.FeatureComparisonTable__headingGrid--hasLabel .FeatureComparisonTable__tableHeading {
+  .FeatureComparisonTable__tableHeading--hasLabel {
     position: relative;
     grid-row: 2 / -1;
     align-self: start;
@@ -457,18 +447,11 @@
     inset-block-start: var(--base-size-16);
   }
 
-  thead.FeatureComparisonTable__headingGrid--hasLabel th {
+  .FeatureComparisonTable__headerCell--hasLabel {
     grid-row-end: span 5;
   }
 
-  thead.FeatureComparisonTable__headingGrid--hasLabel
-    th.FeatureComparisonTable__promoted
-    :is(.FeatureComparisonTable__wideSummary, .FeatureComparisonTable__item) {
-    grid-row-end: span 5;
-  }
-
-  .FeatureComparisonTable__promoted,
-  .FeatureComparisonTable--stickyHeaders .FeatureComparisonTable__table thead th.FeatureComparisonTable__promoted {
+  .FeatureComparisonTable__promoted {
     background-color: var(--brand-FeatureComparisonTable-highlightedColumn-bgColor);
   }
 

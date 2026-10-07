@@ -15,10 +15,16 @@ declare const styles: {
   readonly "FeatureComparisonTable__groupBackground": string;
   readonly "FeatureComparisonTable__groupDivider": string;
   readonly "FeatureComparisonTable__groupHeading": string;
+  readonly "FeatureComparisonTable__headerCell": string;
+  readonly "FeatureComparisonTable__headerCell--hasLabel": string;
   readonly "FeatureComparisonTable__heading": string;
+  readonly "FeatureComparisonTable__headingGrid": string;
   readonly "FeatureComparisonTable__headingGrid--hasLabel": string;
   readonly "FeatureComparisonTable__item": string;
+  readonly "FeatureComparisonTable__item--hasLabel": string;
+  readonly "FeatureComparisonTable__item--offset": string;
   readonly "FeatureComparisonTable__itemContent": string;
+  readonly "FeatureComparisonTable__itemContent--hasLabel": string;
   readonly "FeatureComparisonTable__itemDivider": string;
   readonly "FeatureComparisonTable__label": string;
   readonly "FeatureComparisonTable__labelCell": string;
@@ -34,8 +40,8 @@ declare const styles: {
   readonly "FeatureComparisonTable__statusCell": string;
   readonly "FeatureComparisonTable__table": string;
   readonly "FeatureComparisonTable__tableHeading": string;
+  readonly "FeatureComparisonTable__tableHeading--hasLabel": string;
   readonly "FeatureComparisonTable__tableHeadingText": string;
-  readonly "FeatureComparisonTable__wideSummary": string;
 };
 export = styles;
 

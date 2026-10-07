@@ -248,7 +248,7 @@ const renderAction = (
   return <Button {...withoutId(action.props)} variant={variant} size="small" block />
 }
 
-const renderItemSummary = (item: NormalizedItem, index: number) => {
+const renderItemSummary = (item: NormalizedItem, index: number, hasLabels: boolean) => {
   const {className} = item.element.props
   const showLabel = Boolean(item.label)
   const {children: labelChildren, className: labelClassName, ...labelRest} = withoutId(item.label?.props ?? {})
@@ -257,7 +257,8 @@ const renderItemSummary = (item: NormalizedItem, index: number) => {
     <section
       className={clsx(
         styles.FeatureComparisonTable__item,
-        showLabel && styles['FeatureComparisonTable__headingGrid--hasLabel'],
+        showLabel && styles['FeatureComparisonTable__item--hasLabel'],
+        hasLabels && !showLabel && styles['FeatureComparisonTable__item--offset'],
         item.label && styles.FeatureComparisonTable__promoted,
         className,
       )}
@@ -271,7 +272,12 @@ const renderItemSummary = (item: NormalizedItem, index: number) => {
           </span>
         </div>
       ) : null}
-      <div className={styles.FeatureComparisonTable__itemContent}>
+      <div
+        className={clsx(
+          styles.FeatureComparisonTable__itemContent,
+          showLabel && styles['FeatureComparisonTable__itemContent--hasLabel'],
+        )}
+      >
         {renderItemHeading(item, index + 1, {className: styles.FeatureComparisonTable__heading})}
         {renderDescription(item.description)}
         {renderPrice(item.price)}
@@ -541,6 +547,7 @@ const FeatureComparisonTableRoot = forwardRef<HTMLDivElement, FeatureComparisonT
 
     const narrowHeadingId = `${instanceId}-narrow-heading`
     const tableHeadingId = `${instanceId}-table-heading`
+    const hasLabels = items.some(item => item.label)
 
     const updateGroupOpen = (group: NormalizedGroup, open: boolean) => {
       setDisclosureState(previous => {
@@ -623,9 +630,14 @@ const FeatureComparisonTableRoot = forwardRef<HTMLDivElement, FeatureComparisonT
                         {items.map((item, itemIndex) => (
                           <React.Fragment key={`${groupId}-row-${rowIndex}-item-${itemIndex}`}>
                             <dt className={clsx(item.label && styles.FeatureComparisonTable__promoted)}>
-                              {renderItemHeading(item, itemIndex + 1, {
-                                className: styles.FeatureComparisonTable__planName,
-                              })}
+                              <Text
+                                as="div"
+                                size="200"
+                                variant="muted"
+                                className={styles.FeatureComparisonTable__planName}
+                              >
+                                {item.heading ? item.heading.props.children : itemIndex + 1}
+                              </Text>
                             </dt>
                             <dd className={clsx(item.label && styles.FeatureComparisonTable__promoted)}>
                               {renderCell(row.cells[itemIndex])}
@@ -657,24 +669,42 @@ const FeatureComparisonTableRoot = forwardRef<HTMLDivElement, FeatureComparisonT
             className={clsx(
               groups.length > 0 && gridlineStyles.gridline,
               styles.FeatureComparisonTable__itemDivider,
-              items.some(item => item.label) && styles['FeatureComparisonTable__headingGrid--hasLabel'],
+              styles.FeatureComparisonTable__headingGrid,
+              hasLabels && styles['FeatureComparisonTable__headingGrid--hasLabel'],
             )}
           >
             <tr>
-              <th scope="col">
+              <th
+                className={clsx(
+                  styles.FeatureComparisonTable__headerCell,
+                  hasLabels && styles['FeatureComparisonTable__headerCell--hasLabel'],
+                )}
+                scope="col"
+              >
                 {heading ? (
-                  renderTableHeading(heading, tableHeadingId, styles.FeatureComparisonTable__tableHeading)
+                  renderTableHeading(
+                    heading,
+                    tableHeadingId,
+                    clsx(
+                      styles.FeatureComparisonTable__tableHeading,
+                      hasLabels && styles['FeatureComparisonTable__tableHeading--hasLabel'],
+                    ),
+                  )
                 ) : (
                   <span className="visually-hidden">Feature</span>
                 )}
               </th>
               {items.map((item, itemIndex) => (
                 <th
-                  className={clsx(item.label && styles.FeatureComparisonTable__promoted)}
+                  className={clsx(
+                    styles.FeatureComparisonTable__headerCell,
+                    hasLabels && styles['FeatureComparisonTable__headerCell--hasLabel'],
+                    item.label && styles.FeatureComparisonTable__promoted,
+                  )}
                   scope="col"
                   key={`${instanceId}-item-${itemIndex}`}
                 >
-                  <div className={styles.FeatureComparisonTable__wideSummary}>{renderItemSummary(item, itemIndex)}</div>
+                  {renderItemSummary(item, itemIndex, hasLabels)}
                 </th>
               ))}
             </tr>

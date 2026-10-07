@@ -2,7 +2,7 @@ import React from 'react'
 import type {Meta, StoryObj} from '@storybook/react'
 import {useTranslation} from 'react-i18next'
 import {expect, userEvent, waitFor, within} from 'storybook/test'
-import {Box, Grid} from '..'
+import {Box, Grid, InlineLink} from '..'
 import {FeatureComparisonTable} from '.'
 
 const meta = {
@@ -37,187 +37,6 @@ const plans: Plan[] = [
   {name: 'Enterprise Plus', description: 'for_complex_organizations', price: 'enterprise_plus_price'},
 ]
 
-const restoreFocus = (element: Element | null) => {
-  if (!(element instanceof HTMLElement)) return
-  const tabIndex = element.getAttribute('tabindex')
-  element.setAttribute('tabindex', '-1')
-  element.focus({preventScroll: true})
-  if (tabIndex === null) element.removeAttribute('tabindex')
-  else element.setAttribute('tabindex', tabIndex)
-}
-
-const expectGridlines = (root: HTMLElement) => {
-  for (const pseudo of ['::before', '::after']) {
-    const styles = getComputedStyle(root, pseudo)
-    expect(styles.content).toBe('""')
-    expect(styles.borderTopWidth).toBe('1px')
-    expect(styles.borderImageOutset).toBe(`0px ${window.innerWidth}px`)
-  }
-  expect(getComputedStyle(root, '::before').top).toBe('0px')
-  expect(getComputedStyle(root, '::after').bottom).toBe('0px')
-
-  const isWide = window.matchMedia('(min-width: 80rem)').matches
-  const projection = within(root).getByTestId(
-    isWide ? 'FeatureComparisonTable__table' : 'FeatureComparisonTable__narrow',
-  )
-  expect(
-    Math.abs(projection.getBoundingClientRect().top - root.getBoundingClientRect().top - (isWide ? 60 : 0)),
-  ).toBeLessThanOrEqual(1)
-  if (isWide) {
-    const header = projection.querySelector('thead')!
-    expect(getComputedStyle(header, '::before').content).toBe('none')
-    expect(getComputedStyle(header, '::after').borderTopWidth).toBe('1px')
-    expect(getComputedStyle(header, '::after').borderImageOutset).toBe(`0px ${window.innerWidth}px`)
-    for (const cell of header.querySelectorAll('th')) {
-      expect(getComputedStyle(cell).borderBottomWidth).toBe('0px')
-    }
-    const groupHeadings = projection.querySelectorAll('th[scope="rowgroup"]')
-    for (const [index, heading] of Array.from(groupHeadings).entries()) {
-      expect(getComputedStyle(heading, '::after').content).toBe('none')
-      if (index > 0) {
-        expect(getComputedStyle(heading, '::before').borderTopWidth).toBe('1px')
-        expect(getComputedStyle(heading, '::before').borderImageOutset).toBe(`0px ${window.innerWidth}px`)
-      }
-      const content = heading.closest('tbody')!.nextElementSibling!
-      const finalRow =
-        content.hasAttribute('hidden') || !content.children.length ? heading.parentElement! : content.lastElementChild!
-      for (const cell of finalRow.children) {
-        expect(getComputedStyle(cell).borderBottomWidth).toBe('0px')
-      }
-    }
-    const rows = Array.from(projection.querySelectorAll('tbody tr')).filter(
-      row => row.getBoundingClientRect().height > 0,
-    )
-    for (const cell of rows.at(-1)?.children ?? []) {
-      expect(getComputedStyle(cell).borderBottomWidth).toBe('0px')
-    }
-  } else {
-    const heading = within(projection).queryByTestId('FeatureComparisonTable__heading')
-    if (heading) {
-      expect(heading).toBeVisible()
-      expect(getComputedStyle(heading).fontSize).toBe('24px')
-      const band = heading.parentElement!
-      expect(getComputedStyle(band).textAlign).toBe('center')
-      expect(getComputedStyle(band).paddingBlockStart).toBe('60px')
-      expect(getComputedStyle(band).paddingBlockEnd).toBe('60px')
-      expect(getComputedStyle(band, '::before').content).toBe('none')
-      expect(getComputedStyle(band, '::after').borderTopWidth).toBe('1px')
-      expect(getComputedStyle(band, '::after').borderImageOutset).toBe(`0px ${window.innerWidth}px`)
-      expect(
-        Math.abs(
-          band.getBoundingClientRect().bottom - projection.querySelector('details')!.getBoundingClientRect().top,
-        ),
-      ).toBeLessThan(0.1)
-    }
-    const groups = projection.querySelectorAll('details')
-    expect(getComputedStyle(groups[0]).borderTopWidth).toBe('0px')
-    expect(getComputedStyle(groups[groups.length - 1]).borderBottomWidth).toBe('0px')
-  }
-}
-
-const expectColumnAlignment = (table: HTMLElement) => {
-  for (const [index, header] of Array.from(table.querySelectorAll('thead th')).entries()) {
-    const bounds = header.getBoundingClientRect()
-    const alignedElements = [
-      ...header.querySelectorAll(
-        'section, [data-testid="FeatureComparisonTable__label"], [data-testid="FeatureComparisonTable__label"] + div',
-      ),
-      ...table.querySelectorAll(
-        `tbody tr[data-testid] > :nth-child(${index + 1}), tbody th[colspan] > [aria-hidden] > span:nth-child(${
-          index + 1
-        })`,
-      ),
-    ]
-    for (const element of alignedElements) {
-      if (!element.getBoundingClientRect().height) continue
-      const actual = element.getBoundingClientRect()
-      expect(Math.abs(actual.left - bounds.left)).toBeLessThan(0.1)
-      expect(Math.abs(actual.right - bounds.right)).toBeLessThan(0.1)
-    }
-  }
-}
-
-const checkColumnAlignment: Story['play'] = async ({canvasElement}) => {
-  const table = await within(canvasElement).findByTestId('FeatureComparisonTable__table')
-  if (window.matchMedia('(min-width: 80rem)').matches) {
-    expectColumnAlignment(table)
-  }
-}
-
-const Fixture = ({
-  children,
-  expanded = true,
-  featuredPlanIndex = 1,
-  planCount = 4,
-  rowHighlighting = false,
-  hasStickyHeaders = false,
-}: {
-  children?: React.ReactNode
-  expanded?: React.ComponentProps<typeof FeatureComparisonTable.Group>['expanded']
-  featuredPlanIndex?: number
-  planCount?: number
-  rowHighlighting?: boolean
-  hasStickyHeaders?: boolean
-}) => {
-  const {t} = useTranslation('FeatureComparisonTable')
-  const visiblePlans = plans.slice(0, planCount)
-
-  return (
-    <FeatureComparisonTable rowHighlighting={rowHighlighting} hasStickyHeaders={hasStickyHeaders}>
-      <FeatureComparisonTable.Heading>{t('compare_features')}</FeatureComparisonTable.Heading>
-      {visiblePlans.map((plan, index) => (
-        <FeatureComparisonTable.Item key={plan.name}>
-          {index === featuredPlanIndex ? (
-            <FeatureComparisonTable.Label>{t('recommended')}</FeatureComparisonTable.Label>
-          ) : null}
-          <FeatureComparisonTable.Heading>{t(plan.name)}</FeatureComparisonTable.Heading>
-          {plan.description ? (
-            <FeatureComparisonTable.Description>{t(plan.description)}</FeatureComparisonTable.Description>
-          ) : null}
-          {plan.price ? <FeatureComparisonTable.Price>{t(plan.price)}</FeatureComparisonTable.Price> : null}
-          <FeatureComparisonTable.PrimaryAction as="a" href="#">
-            {t('choose_plan', {plan: t(plan.name)})}
-          </FeatureComparisonTable.PrimaryAction>
-          {plan.name === 'Team' ? (
-            <FeatureComparisonTable.SecondaryAction as="button">
-              {t('contact_sales')}
-            </FeatureComparisonTable.SecondaryAction>
-          ) : null}
-        </FeatureComparisonTable.Item>
-      ))}
-      {children ?? (
-        <FeatureComparisonTable.Group expanded={expanded}>
-          <FeatureComparisonTable.GroupHeading>{t('collaboration')}</FeatureComparisonTable.GroupHeading>
-          <FeatureComparisonTable.Row>
-            <FeatureComparisonTable.RowHeading>{t('private_repositories')}</FeatureComparisonTable.RowHeading>
-            {visiblePlans.map(plan => (
-              <FeatureComparisonTable.Cell key={plan.name} variant="included" variantAriaLabel={t('included')} />
-            ))}
-          </FeatureComparisonTable.Row>
-          <FeatureComparisonTable.Row>
-            <FeatureComparisonTable.RowHeading>{t('advanced_security')}</FeatureComparisonTable.RowHeading>
-            {visiblePlans.map((plan, index) => (
-              <FeatureComparisonTable.Cell
-                key={plan.name}
-                variant={index > 1 ? 'included' : 'unavailable'}
-                variantAriaLabel={t(index > 1 ? 'included' : 'unavailable')}
-              />
-            ))}
-          </FeatureComparisonTable.Row>
-          <FeatureComparisonTable.Row>
-            <FeatureComparisonTable.RowHeading>{t('support')}</FeatureComparisonTable.RowHeading>
-            {visiblePlans.map((plan, index) => (
-              <FeatureComparisonTable.Cell key={plan.name}>
-                {t(index > 1 ? 'premium' : index === 1 ? 'standard' : 'community')}
-              </FeatureComparisonTable.Cell>
-            ))}
-          </FeatureComparisonTable.Row>
-        </FeatureComparisonTable.Group>
-      )}
-    </FeatureComparisonTable>
-  )
-}
-
 export const TwoPlans: Story = {
   render: () => <Fixture planCount={2} />,
   play: checkColumnAlignment,
@@ -240,49 +59,30 @@ export const FeaturedLastPlan: Story = {
 
 export const FourPlans: Story = {
   render: () => <Fixture />,
-  play: async ({canvasElement, globals}) => {
+  play: async context => {
+    await checkColumnAlignment(context)
+    if (!window.matchMedia('(min-width: 80rem)').matches) return
+
+    const table = within(context.canvasElement).getByTestId('FeatureComparisonTable__table')
+    const expectedColumnWidth = table.getBoundingClientRect().width / 5
+    for (const cell of table.querySelectorAll('thead th, tbody tr[data-testid] > th, tbody td')) {
+      expect(Math.abs(cell.getBoundingClientRect().width - expectedColumnWidth)).toBeLessThanOrEqual(1)
+    }
+  },
+}
+
+export const FeatureRows: Story = {
+  render: () => <Fixture />,
+  play: async ({canvasElement}) => {
     const canvas = within(canvasElement)
     const narrow = await canvas.findByTestId('FeatureComparisonTable__narrow')
     const table = canvas.getByTestId('FeatureComparisonTable__table')
     await canvasElement.ownerDocument.fonts.ready
     expectGridlines(canvas.getByTestId('FeatureComparisonTable'))
     expect(document.documentElement.scrollWidth).toBeLessThanOrEqual(window.innerWidth)
-
     const isWide = window.matchMedia('(min-width: 80rem)').matches
-    const visibleProjection = isWide ? table : narrow
-    for (const rowHeading of within(visibleProjection).getAllByTestId('FeatureComparisonTable__rowHeading')) {
-      expect(getComputedStyle(rowHeading.firstElementChild!).fontWeight).toBe('500')
-    }
-    for (const heading of visibleProjection.querySelectorAll('summary h3, th[scope="rowgroup"] h3')) {
-      expect(getComputedStyle(heading).fontWeight).toBe('600')
-      expect(getComputedStyle(heading).fontSize).toBe(visibleProjection === narrow ? '18px' : '20px')
-    }
-
-    if (!isWide) {
-      expect(narrow).toBeVisible()
-      expect(table).not.toBeVisible()
-      expect(canvas.queryByTestId('FeatureComparisonTable__regularSummary')).not.toBeInTheDocument()
-      if (window.matchMedia('(min-width: 48rem)').matches) {
-        const bounds = narrow.getBoundingClientRect()
-        const parentBounds = narrow.parentElement!.getBoundingClientRect()
-        expect(bounds.width).toBeLessThanOrEqual(618)
-        expect(Math.abs(bounds.left - parentBounds.left - (parentBounds.right - bounds.right))).toBeLessThanOrEqual(1)
-      }
-      for (const row of within(narrow).getAllByTestId('FeatureComparisonTable__row')) {
-        const names = row.querySelectorAll('dt')
-        const values = row.querySelectorAll('dd')
-        expect(names).toHaveLength(4)
-        expect(values).toHaveLength(4)
-        for (let index = 0; index < names.length; index++) {
-          const name = names[index].getBoundingClientRect()
-          const value = values[index].getBoundingClientRect()
-          expect(Math.abs(name.top - value.top)).toBeLessThanOrEqual(1)
-          expect(Math.abs(name.height - value.height)).toBeLessThanOrEqual(1)
-          expect(name.right).toBeLessThanOrEqual(value.left + 1)
-        }
-      }
-      return
-    }
+    expectFeatureTypography(isWide ? table : narrow)
+    if (!isWide) return
 
     const rowStarts = table.querySelectorAll(
       'tbody th[scope="row"], tbody th[colspan] > [aria-hidden] > span:first-child',
@@ -294,8 +94,6 @@ export const FourPlans: Story = {
       expect(styles.borderInlineStartStyle).toBe('solid')
       expect(parseFloat(styles.borderInlineStartWidth)).toBeGreaterThan(0)
     }
-    expectColumnAlignment(table)
-
     for (const cell of table.querySelectorAll('tbody td')) {
       expect(getComputedStyle(cell).paddingInlineStart).toBe('28px')
       expect(getComputedStyle(cell).borderInlineStartWidth).toBe('0px')
@@ -304,7 +102,15 @@ export const FourPlans: Story = {
     for (const header of table.querySelectorAll('th[scope="rowgroup"]')) {
       expect(header.getBoundingClientRect().height).toBeGreaterThanOrEqual(104)
     }
+  },
+}
 
+export const PlanSummaries: Story = {
+  render: () => <Fixture />,
+  play: async ({canvasElement, globals}) => {
+    if (!window.matchMedia('(min-width: 80rem)').matches) return
+    const table = await within(canvasElement).findByTestId('FeatureComparisonTable__table')
+    await canvasElement.ownerDocument.fonts.ready
     const projection = table
     const summaries = within(projection).getAllByTestId('FeatureComparisonTable__item')
     expect(summaries).toHaveLength(4)
@@ -362,10 +168,6 @@ export const FourPlans: Story = {
       const descriptionTop = summary.querySelector('p:not([data-testid])')!.getBoundingClientRect().top
       expect(Math.abs(descriptionTop - summaryHeadingBottom - 12)).toBeLessThanOrEqual(1)
     }
-    const expectedColumnWidth = table.getBoundingClientRect().width / 5
-    for (const cell of table.querySelectorAll('thead th, tbody tr[data-testid] > th, tbody td')) {
-      expect(Math.abs(cell.getBoundingClientRect().width - expectedColumnWidth)).toBeLessThanOrEqual(1)
-    }
     const heading = within(table).getByTestId('FeatureComparisonTable__heading')
     expect(getComputedStyle(heading).fontSize).toBe('24px')
     expect(getComputedStyle(heading).fontWeight).toBe('600')
@@ -390,14 +192,15 @@ export const FourPlans: Story = {
 }
 
 export const MobileViewport: Story = {
-  ...FourPlans,
+  render: () => <Fixture />,
+  play: checkDisclosureLayout,
   globals: {
     viewport: {value: 'iphonexr'},
   },
 }
 
 export const TabletViewport: Story = {
-  ...FourPlans,
+  ...MobileViewport,
   globals: {
     viewport: {value: 'ipad'},
   },
@@ -497,7 +300,7 @@ export const StickyHeaders: Story = {
         const divider = getComputedStyle(tableHead, '::after')
         expect(divider.content).toBe('""')
         expect(divider.borderTopWidth).toBe('1px')
-        expect(divider.borderImageOutset).toBe(`0px ${window.innerWidth}px`)
+        expect(divider.borderImageOutset.split(' ').map(parseFloat)).toEqual([0, window.innerWidth])
         for (const cell of headers) {
           expect(Number(divider.zIndex)).toBeGreaterThan(Number(getComputedStyle(cell).zIndex))
         }
@@ -584,7 +387,9 @@ export const RowHighlighting: Story = {
                       variantAriaLabel={t(value ? 'included' : 'unavailable')}
                     />
                   ) : (
-                    <FeatureComparisonTable.Cell key={plans[index].name}>{value}</FeatureComparisonTable.Cell>
+                    <FeatureComparisonTable.Cell key={plans[index].name}>
+                      {row.name === 'support' ? <InlineLink href="#support">{value}</InlineLink> : value}
+                    </FeatureComparisonTable.Cell>
                   ),
                 )}
               </FeatureComparisonTable.Row>
@@ -611,12 +416,13 @@ export const RowHighlighting: Story = {
     }
     const rows = within(projection).getAllByTestId('FeatureComparisonTable__row')
     expect(rows).toHaveLength(15)
-    const row = rows[0]
+    const row = rows[rows.length - 1]
     const cells = row.querySelectorAll('td, dd')
-    row.tabIndex = -1
-    row.focus({preventScroll: true})
+    const links = within(row).getAllByRole('link')
+    links[0].focus({preventScroll: true})
+    await userEvent.tab()
     await waitFor(() => {
-      expect(row).toHaveFocus()
+      expect(links[1]).toHaveFocus()
       const ordinaryBackground = getComputedStyle(cells[0]).backgroundColor
       const highlightedBackground = getComputedStyle(cells[1]).backgroundColor
       if (window.matchMedia('(min-width: 80rem)').matches) {
@@ -631,4 +437,241 @@ export const RowHighlighting: Story = {
       expect(getComputedStyle(cells[1]).transitionDuration).toBe('0s')
     }
   },
+}
+
+function Fixture({
+  children,
+  expanded = true,
+  featuredPlanIndex = 1,
+  planCount = 4,
+  rowHighlighting = false,
+  hasStickyHeaders = false,
+}: {
+  children?: React.ReactNode
+  expanded?: React.ComponentProps<typeof FeatureComparisonTable.Group>['expanded']
+  featuredPlanIndex?: number
+  planCount?: number
+  rowHighlighting?: boolean
+  hasStickyHeaders?: boolean
+}) {
+  const {t} = useTranslation('FeatureComparisonTable')
+  const visiblePlans = plans.slice(0, planCount)
+
+  return (
+    <FeatureComparisonTable rowHighlighting={rowHighlighting} hasStickyHeaders={hasStickyHeaders}>
+      <FeatureComparisonTable.Heading>{t('compare_features')}</FeatureComparisonTable.Heading>
+      {visiblePlans.map((plan, index) => (
+        <FeatureComparisonTable.Item key={plan.name}>
+          {index === featuredPlanIndex ? (
+            <FeatureComparisonTable.Label>{t('recommended')}</FeatureComparisonTable.Label>
+          ) : null}
+          <FeatureComparisonTable.Heading>{t(plan.name)}</FeatureComparisonTable.Heading>
+          {plan.description ? (
+            <FeatureComparisonTable.Description>{t(plan.description)}</FeatureComparisonTable.Description>
+          ) : null}
+          {plan.price ? <FeatureComparisonTable.Price>{t(plan.price)}</FeatureComparisonTable.Price> : null}
+          <FeatureComparisonTable.PrimaryAction as="a" href="#">
+            {t('choose_plan', {plan: t(plan.name)})}
+          </FeatureComparisonTable.PrimaryAction>
+          {plan.name === 'Team' ? (
+            <FeatureComparisonTable.SecondaryAction as="button">
+              {t('contact_sales')}
+            </FeatureComparisonTable.SecondaryAction>
+          ) : null}
+        </FeatureComparisonTable.Item>
+      ))}
+      {children ?? (
+        <FeatureComparisonTable.Group expanded={expanded}>
+          <FeatureComparisonTable.GroupHeading>{t('collaboration')}</FeatureComparisonTable.GroupHeading>
+          <FeatureComparisonTable.Row>
+            <FeatureComparisonTable.RowHeading>{t('private_repositories')}</FeatureComparisonTable.RowHeading>
+            {visiblePlans.map(plan => (
+              <FeatureComparisonTable.Cell key={plan.name} variant="included" variantAriaLabel={t('included')} />
+            ))}
+          </FeatureComparisonTable.Row>
+          <FeatureComparisonTable.Row>
+            <FeatureComparisonTable.RowHeading>{t('advanced_security')}</FeatureComparisonTable.RowHeading>
+            {visiblePlans.map((plan, index) => (
+              <FeatureComparisonTable.Cell
+                key={plan.name}
+                variant={index > 1 ? 'included' : 'unavailable'}
+                variantAriaLabel={t(index > 1 ? 'included' : 'unavailable')}
+              />
+            ))}
+          </FeatureComparisonTable.Row>
+          <FeatureComparisonTable.Row>
+            <FeatureComparisonTable.RowHeading>{t('support')}</FeatureComparisonTable.RowHeading>
+            {visiblePlans.map((plan, index) => (
+              <FeatureComparisonTable.Cell key={plan.name}>
+                {t(index > 1 ? 'premium' : index === 1 ? 'standard' : 'community')}
+              </FeatureComparisonTable.Cell>
+            ))}
+          </FeatureComparisonTable.Row>
+        </FeatureComparisonTable.Group>
+      )}
+    </FeatureComparisonTable>
+  )
+}
+
+function restoreFocus(element: Element | null) {
+  if (!(element instanceof HTMLElement)) return
+  const tabIndex = element.getAttribute('tabindex')
+  element.setAttribute('tabindex', '-1')
+  element.focus({preventScroll: true})
+  if (tabIndex === null) element.removeAttribute('tabindex')
+  else element.setAttribute('tabindex', tabIndex)
+}
+
+function expectGridlines(root: HTMLElement) {
+  for (const pseudo of ['::before', '::after']) {
+    const styles = getComputedStyle(root, pseudo)
+    expect(styles.content).toBe('""')
+    expect(styles.borderTopWidth).toBe('1px')
+    expect(styles.borderImageOutset.split(' ').map(parseFloat)).toEqual([0, window.innerWidth])
+  }
+  expect(getComputedStyle(root, '::before').top).toBe('0px')
+  expect(getComputedStyle(root, '::after').bottom).toBe('0px')
+
+  const isWide = window.matchMedia('(min-width: 80rem)').matches
+  const projection = within(root).getByTestId(
+    isWide ? 'FeatureComparisonTable__table' : 'FeatureComparisonTable__narrow',
+  )
+  expect(
+    Math.abs(projection.getBoundingClientRect().top - root.getBoundingClientRect().top - (isWide ? 60 : 0)),
+  ).toBeLessThanOrEqual(1)
+  if (isWide) {
+    const header = projection.querySelector('thead')!
+    expect(getComputedStyle(header, '::before').content).toBe('none')
+    expect(getComputedStyle(header, '::after').borderTopWidth).toBe('1px')
+    expect(getComputedStyle(header, '::after').borderImageOutset.split(' ').map(parseFloat)).toEqual([
+      0,
+      window.innerWidth,
+    ])
+    for (const cell of header.querySelectorAll('th')) {
+      expect(getComputedStyle(cell).borderBottomWidth).toBe('0px')
+    }
+    const groupHeadings = projection.querySelectorAll('th[scope="rowgroup"]')
+    for (const [index, heading] of Array.from(groupHeadings).entries()) {
+      expect(getComputedStyle(heading, '::after').content).toBe('none')
+      if (index > 0) {
+        expect(getComputedStyle(heading, '::before').borderTopWidth).toBe('1px')
+        expect(getComputedStyle(heading, '::before').borderImageOutset.split(' ').map(parseFloat)).toEqual([
+          0,
+          window.innerWidth,
+        ])
+      }
+      const content = heading.closest('tbody')!.nextElementSibling!
+      const finalRow =
+        content.hasAttribute('hidden') || !content.children.length ? heading.parentElement! : content.lastElementChild!
+      for (const cell of finalRow.children) {
+        expect(getComputedStyle(cell).borderBottomWidth).toBe('0px')
+      }
+    }
+    const rows = Array.from(projection.querySelectorAll('tbody tr')).filter(
+      row => row.getBoundingClientRect().height > 0,
+    )
+    for (const cell of rows.at(-1)?.children ?? []) {
+      expect(getComputedStyle(cell).borderBottomWidth).toBe('0px')
+    }
+  } else {
+    const heading = within(projection).queryByTestId('FeatureComparisonTable__heading')
+    if (heading) {
+      expect(heading).toBeVisible()
+      expect(getComputedStyle(heading).fontSize).toBe('24px')
+      const band = heading.parentElement!
+      expect(getComputedStyle(band).textAlign).toBe('center')
+      expect(getComputedStyle(band).paddingBlockStart).toBe('60px')
+      expect(getComputedStyle(band).paddingBlockEnd).toBe('60px')
+      expect(getComputedStyle(band, '::before').content).toBe('none')
+      expect(getComputedStyle(band, '::after').borderTopWidth).toBe('1px')
+      expect(getComputedStyle(band, '::after').borderImageOutset.split(' ').map(parseFloat)).toEqual([
+        0,
+        window.innerWidth,
+      ])
+      expect(
+        Math.abs(
+          band.getBoundingClientRect().bottom - projection.querySelector('details')!.getBoundingClientRect().top,
+        ),
+      ).toBeLessThan(0.1)
+    }
+    const groups = projection.querySelectorAll('details')
+    expect(getComputedStyle(groups[0]).borderTopWidth).toBe('0px')
+    expect(getComputedStyle(groups[groups.length - 1]).borderBottomWidth).toBe('0px')
+  }
+}
+
+function expectColumnAlignment(table: HTMLElement) {
+  for (const [index, header] of Array.from(table.querySelectorAll('thead th')).entries()) {
+    const bounds = header.getBoundingClientRect()
+    const alignedElements = [
+      ...header.querySelectorAll(
+        'section, [data-testid="FeatureComparisonTable__label"], [data-testid="FeatureComparisonTable__label"] + div',
+      ),
+      ...table.querySelectorAll(
+        `tbody tr[data-testid] > :nth-child(${index + 1}), tbody th[colspan] > [aria-hidden] > span:nth-child(${
+          index + 1
+        })`,
+      ),
+    ]
+    for (const element of alignedElements) {
+      if (!element.getBoundingClientRect().height) continue
+      const actual = element.getBoundingClientRect()
+      expect(Math.abs(actual.left - bounds.left)).toBeLessThan(0.1)
+      expect(Math.abs(actual.right - bounds.right)).toBeLessThan(0.1)
+    }
+  }
+}
+
+async function checkColumnAlignment({canvasElement}: Parameters<NonNullable<Story['play']>>[0]) {
+  const table = await within(canvasElement).findByTestId('FeatureComparisonTable__table')
+  await canvasElement.ownerDocument.fonts.ready
+  if (window.matchMedia('(min-width: 80rem)').matches) {
+    expectColumnAlignment(table)
+  }
+}
+
+function expectFeatureTypography(projection: HTMLElement) {
+  for (const rowHeading of within(projection).getAllByTestId('FeatureComparisonTable__rowHeading')) {
+    expect(getComputedStyle(rowHeading.firstElementChild!).fontWeight).toBe('500')
+  }
+  for (const heading of projection.querySelectorAll('summary h3, th[scope="rowgroup"] h3')) {
+    expect(getComputedStyle(heading).fontWeight).toBe('600')
+    expect(getComputedStyle(heading).fontSize).toBe(projection.tagName === 'TABLE' ? '20px' : '18px')
+  }
+}
+
+async function checkDisclosureLayout({canvasElement}: Parameters<NonNullable<Story['play']>>[0]) {
+  const canvas = within(canvasElement)
+  const narrow = await canvas.findByTestId('FeatureComparisonTable__narrow')
+  const table = canvas.getByTestId('FeatureComparisonTable__table')
+  await canvasElement.ownerDocument.fonts.ready
+  expect(narrow).toBeVisible()
+  expect(table).not.toBeVisible()
+  expectGridlines(canvas.getByTestId('FeatureComparisonTable'))
+  expectFeatureTypography(narrow)
+  expect(document.documentElement.scrollWidth).toBeLessThanOrEqual(window.innerWidth)
+
+  if (window.matchMedia('(min-width: 48rem)').matches) {
+    const bounds = narrow.getBoundingClientRect()
+    const parentBounds = narrow.parentElement!.getBoundingClientRect()
+    expect(bounds.width).toBeLessThanOrEqual(618)
+    expect(Math.abs(bounds.left - parentBounds.left - (parentBounds.right - bounds.right))).toBeLessThanOrEqual(1)
+  }
+  for (const row of within(narrow).getAllByTestId('FeatureComparisonTable__row')) {
+    const names = row.querySelectorAll('dt')
+    const values = row.querySelectorAll('dd')
+    expect(names).toHaveLength(4)
+    expect(values).toHaveLength(4)
+    for (let index = 0; index < names.length; index++) {
+      const name = names[index].getBoundingClientRect()
+      const value = values[index].getBoundingClientRect()
+      expect(Math.abs(name.top - value.top)).toBeLessThanOrEqual(1)
+      expect(Math.abs(name.height - value.height)).toBeLessThanOrEqual(1)
+      expect(name.right).toBeLessThanOrEqual(value.left + 1)
+      expect(names[index].querySelector('h1, h2, h3, h4, h5, h6')).toBeNull()
+      const text = getComputedStyle(names[index].firstElementChild!)
+      expect(text.fontSize).toBe('16px')
+      expect(text.fontWeight).toBe('400')
+    }
+  }
 }

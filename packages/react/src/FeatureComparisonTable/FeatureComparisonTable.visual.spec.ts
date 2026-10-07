@@ -29,6 +29,17 @@ test.describe('Visual Comparison: FeatureComparisonTable', () => {
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
+  test('FeatureComparisonTable / Copilot Individual Plans', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-featurecomparisontable-examples--copilot-individual-plans&viewMode=story',
+      {waitUntil: 'networkidle'},
+    )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+    await page.waitForTimeout(500)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
   test('FeatureComparisonTable / Two Plans', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-featurecomparisontable-features--two-plans&viewMode=story',
@@ -76,6 +87,28 @@ test.describe('Visual Comparison: FeatureComparisonTable', () => {
   test('FeatureComparisonTable / Four Plans', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-featurecomparisontable-features--four-plans&viewMode=story',
+      {waitUntil: 'networkidle'},
+    )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+    await page.waitForTimeout(500)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
+  test('FeatureComparisonTable / Feature Rows', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-featurecomparisontable-features--feature-rows&viewMode=story',
+      {waitUntil: 'networkidle'},
+    )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+    await page.waitForTimeout(500)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
+  test('FeatureComparisonTable / Plan Summaries', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-featurecomparisontable-features--plan-summaries&viewMode=story',
       {waitUntil: 'networkidle'},
     )
     await page.locator('body.sb-show-main').waitFor({state: 'visible'})

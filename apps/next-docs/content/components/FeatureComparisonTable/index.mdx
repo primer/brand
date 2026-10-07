@@ -173,6 +173,8 @@ One item per plan. The component renders a maximum of four items.
 
 A root `Heading` child is required. It appears above the feature column on desktop and in a centered band above the groups on mobile and tablet. The component automatically associates the desktop table with this heading for its accessible name; consumers do not need to provide labeling attributes. Inside an `Item`, the same component names that plan.
 
+Item headings appear in the wide plan summaries, where their heading level and styling props apply. In the disclosure layout, their content is repeated as text labels within each feature's description list, not as additional headings.
+
 The root heading requirement is checked at runtime, not enforced by TypeScript. In development, the component warns when the root heading is missing. Item headings do not satisfy this requirement.
 
 | Name       | Type                                    |      Default      | required | Description                                       |
