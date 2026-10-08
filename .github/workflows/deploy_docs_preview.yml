@@ -1,7 +1,9 @@
 name: Deploy
 
 on:
-  pull_request:
+  # Runs on pushes targeting the default branch
+  push:
+    branches: [$default-branch]
 
 permissions:
   checks: write
