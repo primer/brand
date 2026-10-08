@@ -62,7 +62,7 @@ export type FeatureComparisonTableGroupProps = PropsWithChildren<
         }
   }
 >
-export type FeatureComparisonTableGroupHeadingProps = PropsWithChildren<Omit<HeadingProps, 'id' | 'ref'>>
+export type FeatureComparisonTableGroupHeadingProps = PropsWithChildren<Omit<HeadingProps, 'ref'>>
 export type FeatureComparisonTableRowProps = PropsWithChildren<ProjectedBaseProps<HTMLDivElement>>
 export type FeatureComparisonTableRowHeadingProps = PropsWithChildren<ProjectedBaseProps<HTMLDivElement>>
 
@@ -343,7 +343,12 @@ const renderCell = (cell: React.ReactElement<FeatureComparisonTableCellProps> | 
   )
 }
 
-const renderGroupHeading = (heading: NormalizedGroup['heading'], children: React.ReactNode, className?: string) => {
+const renderGroupHeading = (
+  heading: NormalizedGroup['heading'],
+  children: React.ReactNode,
+  className?: string,
+  id?: string,
+) => {
   const {
     children: _children,
     as = 'h3',
@@ -353,7 +358,14 @@ const renderGroupHeading = (heading: NormalizedGroup['heading'], children: React
   } = withoutId(heading?.props ?? {})
 
   return (
-    <HeadingComponent as={as} size={size} weight="semibold" className={clsx(className, headingClassName)} {...rest}>
+    <HeadingComponent
+      as={as}
+      size={size}
+      weight="semibold"
+      className={clsx(className, headingClassName)}
+      {...rest}
+      id={id}
+    >
       {children}
     </HeadingComponent>
   )
@@ -615,7 +627,12 @@ const FeatureComparisonTableRoot = forwardRef<HTMLDivElement, FeatureComparisonT
                     narrowGroupControls.current[group.identity] = control
                   }}
                 >
-                  {renderGroupHeading(group.heading, group.heading?.props.children)}
+                  {renderGroupHeading(
+                    group.heading,
+                    group.heading?.props.children,
+                    undefined,
+                    breakpoint !== 'wide' ? group.heading?.props.id : undefined,
+                  )}
                   {renderChevron(groupOpen)}
                 </summary>
                 <div id={groupId}>
@@ -751,6 +768,7 @@ const FeatureComparisonTableRoot = forwardRef<HTMLDivElement, FeatureComparisonT
                           {renderChevron(groupOpen)}
                         </button>,
                         group.heading?.props.size ? undefined : styles.FeatureComparisonTable__groupHeading,
+                        breakpoint === 'wide' ? group.heading?.props.id : undefined,
                       )}
                     </th>
                   </tr>

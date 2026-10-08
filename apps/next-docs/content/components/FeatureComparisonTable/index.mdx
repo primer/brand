@@ -51,7 +51,7 @@ On smaller screens, features appear in collapsible groups. Plan descriptions, pr
   </FeatureComparisonTable.Item>
 
   <FeatureComparisonTable.Group>
-    <FeatureComparisonTable.GroupHeading>Core features</FeatureComparisonTable.GroupHeading>
+    <FeatureComparisonTable.GroupHeading id="core-features">Core features</FeatureComparisonTable.GroupHeading>
     <FeatureComparisonTable.Row>
       <FeatureComparisonTable.RowHeading>Private repositories</FeatureComparisonTable.RowHeading>
       <FeatureComparisonTable.Cell variant="included" />
@@ -128,10 +128,13 @@ Groups start collapsed below `48rem` and expanded on larger screens.
 
 ### FeatureComparisonTable.GroupHeading <Label>Required</Label>
 
-| Name       | Type                                    | Default | required | Description   |
-| :--------- | :-------------------------------------- | :-----: | :------: | :------------ |
-| `as`       | <FeatureComparisonTableHeadingAsProp /> |  `h3`   | `false`  | Heading level |
-| `children` | `ReactNode`                             |         |  `true`  | Group title   |
+Set `id` to link directly to a group heading, for example with `href="#core-features"`. The ID is assigned only to the heading in the active responsive layout.
+
+| Name       | Type                                    | Default | required | Description                         |
+| :--------- | :-------------------------------------- | :-----: | :------: | :---------------------------------- |
+| `as`       | <FeatureComparisonTableHeadingAsProp /> |  `h3`   | `false`  | Heading level                       |
+| `id`       | `string`                                |         | `false`  | Anchor target for the group heading |
+| `children` | `ReactNode`                             |         |  `true`  | Group title                         |
 
 ### FeatureComparisonTable.Row <Label>Required</Label>
 

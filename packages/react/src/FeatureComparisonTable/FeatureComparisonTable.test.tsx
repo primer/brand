@@ -161,6 +161,52 @@ describe('FeatureComparisonTable', () => {
   })
 
   it.each([
+    ['narrow', narrowBreakpoint],
+    ['regular', regularBreakpoint],
+    ['wide', wideBreakpoint],
+  ])('assigns group anchor IDs only to the active layout at the %s breakpoint', (_name, breakpoint) => {
+    setBreakpoint(breakpoint)
+    const {container, getByTestId} = render(
+      <FeatureComparisonTable>
+        <FeatureComparisonTable.Heading>Compare plans</FeatureComparisonTable.Heading>
+        <FeatureComparisonTable.Item>
+          <FeatureComparisonTable.Heading>Free</FeatureComparisonTable.Heading>
+        </FeatureComparisonTable.Item>
+        <FeatureComparisonTable.Group>
+          <FeatureComparisonTable.GroupHeading id="core-features">Core features</FeatureComparisonTable.GroupHeading>
+        </FeatureComparisonTable.Group>
+      </FeatureComparisonTable>,
+    )
+    const narrowHeading = within(getByTestId(FeatureComparisonTable.testIds.narrow)).getByRole('heading', {
+      name: 'Core features',
+    })
+    const tableHeading = within(getByTestId(FeatureComparisonTable.testIds.table)).getByRole('heading', {
+      name: 'Core features',
+    })
+
+    const expectAnchor = (activeHeading: HTMLElement, inactiveHeading: HTMLElement) => {
+      expect(document.getElementById('core-features')).toBe(activeHeading)
+      expect(inactiveHeading).not.toHaveAttribute('id')
+      expect(container.querySelectorAll('[id="core-features"]')).toHaveLength(1)
+    }
+
+    if (breakpoint === wideBreakpoint) {
+      expectAnchor(tableHeading, narrowHeading)
+    } else {
+      expectAnchor(narrowHeading, tableHeading)
+    }
+
+    setBreakpoint(wideBreakpoint)
+    expectAnchor(tableHeading, narrowHeading)
+
+    setBreakpoint(regularBreakpoint)
+    expectAnchor(narrowHeading, tableHeading)
+
+    setBreakpoint(narrowBreakpoint)
+    expectAnchor(narrowHeading, tableHeading)
+  })
+
+  it.each([
     ['narrow default', narrowBreakpoint, undefined, false],
     ['regular default', regularBreakpoint, undefined, true],
     ['wide default', wideBreakpoint, undefined, true],
