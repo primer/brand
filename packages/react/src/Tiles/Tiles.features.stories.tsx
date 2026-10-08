@@ -95,18 +95,22 @@ export const StaticItems: Story = {
   ),
 }
 
-export const MultipleRows: Story = {
-  render: () => (
-    <Section>
-      <Tiles variant="gridlines">
-        {tileItems.map((item, index) => (
-          <Tiles.Item key={`${item.name}-${index}`} name={item.name} href={item.href}>
-            {item.icon}
-          </Tiles.Item>
-        ))}
-      </Tiles>
-    </Section>
-  ),
+export const MaximumItems: Story = {
+  render: () => {
+    const maximumTileItems = tileItems.concat(tileItems.slice(0, 1))
+
+    return (
+      <Section>
+        <Tiles variant="gridlines">
+          {maximumTileItems.map((item, index) => (
+            <Tiles.Item key={`${item.name}-${index}`} name={item.name} href={item.href}>
+              {item.icon}
+            </Tiles.Item>
+          ))}
+        </Tiles>
+      </Section>
+    )
+  },
 }
 
 export const BalancedRowsTablet: Story = {

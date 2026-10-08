@@ -82,9 +82,9 @@ test.describe('Visual Comparison: Tiles', () => {
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
-  test('Tiles / Multiple Rows', async ({page}) => {
+  test('Tiles / Maximum Items', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-tiles-features--multiple-rows&viewMode=story',
+      'http://localhost:6006/iframe.html?args=&id=components-tiles-features--maximum-items&viewMode=story',
       {waitUntil: 'networkidle'},
     )
     await page.locator('body.sb-show-main').waitFor({state: 'visible'})
