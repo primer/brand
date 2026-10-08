@@ -1,0 +1,16 @@
+{
+  "ai": "IA",
+  "desktop_app": "Aplicación de escritorio",
+  "copilot_in_vs_code": "Copilot en VS Code",
+  "agents_on_github": "Agentes en GitHub",
+  "copilot_cli": "Copilot CLI",
+  "copilot_code_review": "Revisión de código de Copilot",
+  "for_business": "Para empresas",
+  "tutorials": "Tutoriales",
+  "plans_pricing": "Planes y precios",
+  "menu_label": "Menú de navegación",
+  "close_label": "Cerrar menú de navegación",
+  "active_label": "Menú de navegación. Página actual:",
+  "close_active_label": "Cerrar menú de navegación. Página actual:",
+  "overflow_menu_label": "Más"
+}

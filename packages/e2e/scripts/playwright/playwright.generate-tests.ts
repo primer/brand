@@ -68,6 +68,8 @@ const waitForTimeoutLookup = {
   'components-minimalfooter-features--maximum-links': 5000, // for external social imagery to load
   'components-actionmenu-features--disabled-item': 1000, // flakey test,
   'components-actionmenu-features--anchored-positioning': 1000, // for the menu to open
+  'components-iconbutton-features--tooltip-directions': 1000,
+  'components-iconbutton-features--focus': 1000,
   'components-box-features--animation': 6000, // for the animation
   'components-ide--playground': 2000, // for the animation
   'components-ide--default': 2000, // for the animation
@@ -114,6 +116,7 @@ const waitForTimeoutLookup = {
   'components-hero-features-images-and-videos--with-video-inline-end': 5000, // for video metadata to load
   'components-textcursoranimation--playground': 4000, // for the animation to complete
   'components-subnav-features--delayed-active-link': 2000, // because the story sets an initial delay,
+  'components-subnav-features--overflow-menu-open': 1500, // wait for responsive overflow measurement
   'components-logosuite-features--grid-line-expressive-kitchen-sink': 3000, // for the animation to complete
   'components-logosuite-features--takeover-button': 3000, // for the animation to complete
   'components-riverbreakouttabs-examples--with-images': 4000, // for dither bg to complete
@@ -136,6 +139,7 @@ const waitForTimeoutLookup = {
  * Only add tests here that aren't suitable for visual regression testing
  */
 const skipTestLookup = [
+  'components-iconbutton-features--long-delayed-tooltip', // delayed hover timing is covered by the interaction test
   'components-river--video', // video makes this too flakey
   'components-river--custom-logos', // for external social imagery to load
   'components-actionmenu-features--keyboard-navigation', // interaction test
