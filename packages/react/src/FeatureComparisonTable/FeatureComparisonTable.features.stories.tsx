@@ -559,6 +559,20 @@ function Fixture({
               </FeatureComparisonTable.Cell>
             ))}
           </FeatureComparisonTable.Row>
+          <FeatureComparisonTable.Row>
+            <FeatureComparisonTable.RowHeading>{t('collaborators')}</FeatureComparisonTable.RowHeading>
+            {visiblePlans.map(plan => (
+              <FeatureComparisonTable.Cell key={plan.name} variant="unlimited" variantAriaLabel={t('unlimited')} />
+            ))}
+          </FeatureComparisonTable.Row>
+          <FeatureComparisonTable.Row>
+            <FeatureComparisonTable.RowHeading>{t('workflow_minutes')}</FeatureComparisonTable.RowHeading>
+            {visiblePlans.map((plan, index) => (
+              <FeatureComparisonTable.Cell key={plan.name} variant="refresh" variantAriaLabel={t('refresh')}>
+                {t(index > 1 ? 'minutes_enterprise' : index === 1 ? 'minutes_team' : 'minutes_free')}
+              </FeatureComparisonTable.Cell>
+            ))}
+          </FeatureComparisonTable.Row>
         </FeatureComparisonTable.Group>
       )}
     </FeatureComparisonTable>

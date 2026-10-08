@@ -5,7 +5,7 @@ import {HeadingTags} from '../../../../../packages/react/src/'
 export const FeatureComparisonTableActionAsProp = () => <PropTableValues values={['a', 'button']} addLineBreaks />
 
 export const FeatureComparisonTableCellVariantProp = () => (
-  <PropTableValues values={['included', 'unavailable']} addLineBreaks />
+  <PropTableValues values={['included', 'unavailable', 'unlimited', 'refresh']} addLineBreaks />
 )
 
 export const FeatureComparisonTableExpandedProp = () => (

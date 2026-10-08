@@ -28,6 +28,14 @@ export const CopilotIndividualPlans: Story = {
   render: () => <CopilotComparison />,
 }
 
+export const CopilotIndividualPlansDarkMode: Story = {
+  ...CopilotIndividualPlans,
+  parameters: {
+    backgrounds: {default: 'dark'},
+    colorMode: 'dark',
+  },
+}
+
 function CopilotComparison() {
   const {t} = useTranslation('FeatureComparisonTable')
   return (
@@ -70,9 +78,15 @@ function CopilotComparison() {
         <FeatureComparisonTable.GroupHeading>{t('premium_requests')}</FeatureComparisonTable.GroupHeading>
         <FeatureComparisonTable.Row>
           <FeatureComparisonTable.RowHeading>{t('premium_requests')}</FeatureComparisonTable.RowHeading>
-          <FeatureComparisonTable.Cell>{t('requests_free')}</FeatureComparisonTable.Cell>
-          <FeatureComparisonTable.Cell>{t('requests_pro')}</FeatureComparisonTable.Cell>
-          <FeatureComparisonTable.Cell>{t('requests_pro_plus')}</FeatureComparisonTable.Cell>
+          <FeatureComparisonTable.Cell variant="refresh" variantAriaLabel={t('refresh')}>
+            {t('requests_free')}
+          </FeatureComparisonTable.Cell>
+          <FeatureComparisonTable.Cell variant="refresh" variantAriaLabel={t('refresh')}>
+            {t('requests_pro')}
+          </FeatureComparisonTable.Cell>
+          <FeatureComparisonTable.Cell variant="refresh" variantAriaLabel={t('refresh')}>
+            {t('requests_pro_plus')}
+          </FeatureComparisonTable.Cell>
         </FeatureComparisonTable.Row>
         <FeatureComparisonTable.Row>
           <FeatureComparisonTable.RowHeading>{t('additional_requests')}</FeatureComparisonTable.RowHeading>
@@ -86,8 +100,8 @@ function CopilotComparison() {
         <FeatureComparisonTable.Row>
           <FeatureComparisonTable.RowHeading>{t('model_interactions')}</FeatureComparisonTable.RowHeading>
           <FeatureComparisonTable.Cell>{t('requests_free')}</FeatureComparisonTable.Cell>
-          <FeatureComparisonTable.Cell>{t('unlimited')}</FeatureComparisonTable.Cell>
-          <FeatureComparisonTable.Cell>{t('unlimited')}</FeatureComparisonTable.Cell>
+          <FeatureComparisonTable.Cell variant="unlimited" variantAriaLabel={t('unlimited')} />
+          <FeatureComparisonTable.Cell variant="unlimited" variantAriaLabel={t('unlimited')} />
         </FeatureComparisonTable.Row>
         <FeatureComparisonTable.Row>
           <FeatureComparisonTable.RowHeading>{t('available_models')}</FeatureComparisonTable.RowHeading>

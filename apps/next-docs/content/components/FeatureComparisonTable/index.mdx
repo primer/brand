@@ -171,8 +171,8 @@ Add an optional `RowDescription` alongside `RowHeading` inside a `Row`. It rende
 
 Add one cell per plan, in the same order as the items.
 
-| Name               | Type                                      | Default | required | Description                                                         |
-| :----------------- | :---------------------------------------- | :-----: | :------: | :------------------------------------------------------------------ |
-| `children`         | `ReactNode`                               |         | `false`  | Feature value                                                       |
-| `variant`          | <FeatureComparisonTableCellVariantProp /> |         | `false`  | Checkmark (`included`) or dash (`unavailable`)                      |
-| `variantAriaLabel` | `string`                                  |         | `false`  | Accessible icon label. Use to translate "Included" or "Unavailable" |
+| Name               | Type                                      | Default | required | Description                                                                                  |
+| :----------------- | :---------------------------------------- | :-----: | :------: | :------------------------------------------------------------------------------------------- |
+| `children`         | `ReactNode`                               |         | `false`  | Feature value                                                                                |
+| `variant`          | <FeatureComparisonTableCellVariantProp /> |         | `false`  | Included, unavailable, unlimited, or periodically renewed                                    |
+| `variantAriaLabel` | `string`                                  |         | `false`  | Accessible icon label. Use to translate "Included", "Unavailable", "Unlimited", or "Refresh" |

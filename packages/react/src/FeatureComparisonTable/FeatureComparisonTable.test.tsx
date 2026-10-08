@@ -432,8 +432,12 @@ describe('FeatureComparisonTable', () => {
     ['included', undefined, 'Included'],
     ['unavailable', undefined, 'Unavailable'],
     ['unavailable', 'Not offered', 'Not offered'],
+    ['unlimited', undefined, 'Unlimited'],
+    ['unlimited', 'No limits', 'No limits'],
+    ['refresh', undefined, 'Refresh'],
+    ['refresh', 'Resets monthly', 'Resets monthly'],
   ] as const)('renders accessible text for the %s cell variant (%s)', (variant, variantAriaLabel, expectedLabel) => {
-    const {getByRole} = render(
+    const {getByRole, getByTestId} = render(
       <FeatureComparisonTable>
         <FeatureComparisonTable.Heading>Compare plans</FeatureComparisonTable.Heading>
         <FeatureComparisonTable.Item>
@@ -450,6 +454,17 @@ describe('FeatureComparisonTable', () => {
     )
 
     expect(getByRole('cell', {name: expectedLabel})).toBeInTheDocument()
+    for (const testId of [FeatureComparisonTable.testIds.narrow, FeatureComparisonTable.testIds.table]) {
+      const label = within(getByTestId(testId)).getByText(expectedLabel)
+      expect(label).toHaveClass('visually-hidden')
+      const status = label.previousElementSibling
+      expect(status).toHaveAttribute('aria-hidden', 'true')
+      const iconName = {included: 'check', unavailable: 'dash', unlimited: 'infinity', refresh: 'sync'}[variant]
+      expect(status?.querySelector('svg')).toHaveClass(`octicon-${iconName}`)
+      if (variant !== 'unavailable') {
+        expect(status).toHaveClass(`FeatureComparisonTable__status--${variant}`)
+      }
+    }
   })
 
   it('ignores unsupported children and uses the last heading', () => {

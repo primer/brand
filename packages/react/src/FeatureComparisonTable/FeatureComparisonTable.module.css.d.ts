@@ -39,6 +39,8 @@ declare const styles: {
   readonly FeatureComparisonTable__rowHeadingContent: string
   readonly FeatureComparisonTable__status: string
   readonly 'FeatureComparisonTable__status--included': string
+  readonly 'FeatureComparisonTable__status--refresh': string
+  readonly 'FeatureComparisonTable__status--unlimited': string
   readonly FeatureComparisonTable__statusCell: string
   readonly FeatureComparisonTable__table: string
   readonly FeatureComparisonTable__tableHeading: string

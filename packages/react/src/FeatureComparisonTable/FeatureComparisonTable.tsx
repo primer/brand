@@ -1,4 +1,4 @@
-import {CheckIcon, ChevronDownIcon, DashIcon} from '@primer/octicons-react'
+import {CheckIcon, ChevronDownIcon, DashIcon, InfinityIcon, SyncIcon} from '@primer/octicons-react'
 import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/feature-comparison-table/colors-with-modes.css'
 import {clsx} from 'clsx'
 import React, {forwardRef, type PropsWithChildren, useEffect, useLayoutEffect, useMemo, useRef, useState} from 'react'
@@ -73,7 +73,7 @@ type FeatureComparisonTableCellVariantProps =
       variantAriaLabel?: never
     }
   | {
-      variant: 'included' | 'unavailable'
+      variant: 'included' | 'unavailable' | 'unlimited' | 'refresh'
       variantAriaLabel?: string
     }
 
@@ -336,10 +336,18 @@ const renderRowHeading = ({heading, description}: NormalizedRow) => {
   )
 }
 
+const cellVariants = {
+  included: {icon: CheckIcon, label: 'Included'},
+  unavailable: {icon: DashIcon, label: 'Unavailable'},
+  unlimited: {icon: InfinityIcon, label: 'Unlimited'},
+  refresh: {icon: SyncIcon, label: 'Refresh'},
+}
+
 const renderCell = (cell: React.ReactElement<FeatureComparisonTableCellProps> | null) => {
   if (!cell) return null
   const {children, className, variant, variantAriaLabel, ...rest} = withoutId(cell.props)
-  const resolvedVariantAriaLabel = variantAriaLabel ?? (variant === 'included' ? 'Included' : 'Unavailable')
+  const StatusIcon = variant ? cellVariants[variant].icon : null
+  const resolvedVariantAriaLabel = variantAriaLabel ?? (variant ? cellVariants[variant].label : undefined)
 
   return (
     <Text
@@ -356,10 +364,12 @@ const renderCell = (cell: React.ReactElement<FeatureComparisonTableCellProps> | 
             className={clsx(
               styles.FeatureComparisonTable__status,
               variant === 'included' && styles['FeatureComparisonTable__status--included'],
+              variant === 'unlimited' && styles['FeatureComparisonTable__status--unlimited'],
+              variant === 'refresh' && styles['FeatureComparisonTable__status--refresh'],
             )}
             aria-hidden="true"
           >
-            {variant === 'included' ? <CheckIcon size={16} /> : <DashIcon size={16} />}
+            {StatusIcon && <StatusIcon size={16} />}
           </span>
           <span className="visually-hidden">{resolvedVariantAriaLabel}</span>
         </>
