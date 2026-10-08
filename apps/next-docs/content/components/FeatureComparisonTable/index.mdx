@@ -138,15 +138,34 @@ Set `id` to link directly to a group heading, for example with `href="#core-feat
 
 ### FeatureComparisonTable.Row <Label>Required</Label>
 
-| Name       | Type               | Default | required | Description                  |
-| :--------- | :----------------- | :-----: | :------: | :--------------------------- |
-| `children` | `RowHeading, Cell` |         |  `true`  | Feature name and plan values |
+| Name       | Type                               | Default | required | Description                                         |
+| :--------- | :--------------------------------- | :-----: | :------: | :-------------------------------------------------- |
+| `children` | `RowHeading, RowDescription, Cell` |         |  `true`  | Feature name, optional description, and plan values |
 
 ### FeatureComparisonTable.RowHeading <Label>Required</Label>
 
 | Name       | Type        | Default | required | Description  |
 | :--------- | :---------- | :-----: | :------: | :----------- |
 | `children` | `ReactNode` |         |  `true`  | Feature name |
+
+### FeatureComparisonTable.RowDescription
+
+Add an optional `RowDescription` alongside `RowHeading` inside a `Row`. It renders beneath the feature name in small, muted body text in all layouts and supports inline rich text, including links and emphasis.
+
+| Name       | Type        | Default | required | Description         |
+| :--------- | :---------- | :-----: | :------: | :------------------ |
+| `children` | `ReactNode` |         |  `true`  | Feature description |
+
+```jsx
+<FeatureComparisonTable.Row>
+  <FeatureComparisonTable.RowHeading>Codespaces</FeatureComparisonTable.RowHeading>
+  <FeatureComparisonTable.RowDescription>
+    Develop in <strong>the cloud</strong>. <InlineLink href="#codespaces">Learn more</InlineLink>
+  </FeatureComparisonTable.RowDescription>
+  <FeatureComparisonTable.Cell variant="included" />
+  <FeatureComparisonTable.Cell variant="included" />
+</FeatureComparisonTable.Row>
+```
 
 ### FeatureComparisonTable.Cell <Label>Required</Label>
 

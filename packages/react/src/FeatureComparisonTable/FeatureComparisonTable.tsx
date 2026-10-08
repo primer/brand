@@ -65,6 +65,7 @@ export type FeatureComparisonTableGroupProps = PropsWithChildren<
 export type FeatureComparisonTableGroupHeadingProps = PropsWithChildren<Omit<HeadingProps, 'ref'>>
 export type FeatureComparisonTableRowProps = PropsWithChildren<ProjectedBaseProps<HTMLDivElement>>
 export type FeatureComparisonTableRowHeadingProps = PropsWithChildren<ProjectedBaseProps<HTMLDivElement>>
+export type FeatureComparisonTableRowDescriptionProps = PropsWithChildren<ProjectedBaseProps<HTMLParagraphElement>>
 
 type FeatureComparisonTableCellVariantProps =
   | {
@@ -105,6 +106,7 @@ const Group = (_props: FeatureComparisonTableGroupProps) => null
 const GroupHeading = (_props: FeatureComparisonTableGroupHeadingProps) => null
 const Row = (_props: FeatureComparisonTableRowProps) => null
 const RowHeading = (_props: FeatureComparisonTableRowHeadingProps) => null
+const RowDescription = (_props: FeatureComparisonTableRowDescriptionProps) => null
 const Cell = (_props: FeatureComparisonTableCellProps) => null
 
 type NormalizedItem = {
@@ -120,6 +122,7 @@ type NormalizedItem = {
 type NormalizedRow = {
   element: React.ReactElement<FeatureComparisonTableRowProps>
   heading: React.ReactElement<FeatureComparisonTableRowHeadingProps> | null
+  description: React.ReactElement<FeatureComparisonTableRowDescriptionProps> | null
   cells: Array<React.ReactElement<FeatureComparisonTableCellProps> | null>
 }
 
@@ -292,11 +295,11 @@ const renderItemSummary = (item: NormalizedItem, index: number, hasLabels: boole
   )
 }
 
-const renderRowHeading = (heading: NormalizedRow['heading']) => {
+const renderRowHeading = ({heading, description}: NormalizedRow) => {
   if (!heading) return null
   const {children, className, ...rest} = withoutId(heading.props)
 
-  return (
+  const label = (
     <Text
       as="span"
       size="200"
@@ -307,6 +310,29 @@ const renderRowHeading = (heading: NormalizedRow['heading']) => {
     >
       {children}
     </Text>
+  )
+
+  if (!description) return label
+  const {
+    children: descriptionChildren,
+    className: descriptionClassName,
+    ...descriptionRest
+  } = withoutId(description.props)
+
+  return (
+    <div className={styles.FeatureComparisonTable__rowHeadingContent}>
+      {label}
+      <Text
+        as="p"
+        size="100"
+        weight="normal"
+        variant="muted"
+        className={clsx(styles.FeatureComparisonTable__rowDescription, descriptionClassName)}
+        {...descriptionRest}
+      >
+        {descriptionChildren}
+      </Text>
+    </div>
   )
 }
 
@@ -465,6 +491,7 @@ const FeatureComparisonTableRoot = forwardRef<HTMLDivElement, FeatureComparisonT
             return {
               element: rowElement,
               heading: getChildrenOfType(rowChildren, RowHeading).at(-1) ?? null,
+              description: getChildrenOfType(rowChildren, RowDescription).at(-1) ?? null,
               cells: normalizedItems.map((_, index) => cells[index] ?? null),
             }
           }),
@@ -642,7 +669,7 @@ const FeatureComparisonTableRoot = forwardRef<HTMLDivElement, FeatureComparisonT
                       data-testid={testIds.row}
                       key={`${groupId}-row-${rowIndex}`}
                     >
-                      <div data-testid={testIds.rowHeading}>{renderRowHeading(row.heading)}</div>
+                      <div data-testid={testIds.rowHeading}>{renderRowHeading(row)}</div>
                       <dl>
                         {items.map((item, itemIndex) => (
                           <React.Fragment key={`${groupId}-row-${rowIndex}-item-${itemIndex}`}>
@@ -786,7 +813,7 @@ const FeatureComparisonTableRoot = forwardRef<HTMLDivElement, FeatureComparisonT
                       key={`${groupId}-row-${rowIndex}`}
                     >
                       <th scope="row" data-testid={testIds.rowHeading}>
-                        {renderRowHeading(row.heading)}
+                        {renderRowHeading(row)}
                       </th>
                       {row.cells.map((cell, cellIndex) => (
                         <td
@@ -826,6 +853,7 @@ export const FeatureComparisonTable = Object.assign(FeatureComparisonTableRoot, 
   GroupHeading,
   Row,
   RowHeading,
+  RowDescription,
   Cell,
   testIds,
 })

@@ -97,6 +97,15 @@
   padding: var(--base-size-12) var(--base-size-20);
 }
 
+.FeatureComparisonTable__narrow .FeatureComparisonTable__rowHeadingContent {
+  padding: var(--base-size-12) var(--base-size-20);
+}
+
+.FeatureComparisonTable__narrow .FeatureComparisonTable__rowHeadingContent .FeatureComparisonTable__rowHeading {
+  min-height: auto;
+  padding: 0;
+}
+
 .FeatureComparisonTable__planName {
   overflow-wrap: anywhere;
 }
@@ -134,6 +143,10 @@
   display: inline-flex;
   align-items: center;
   gap: var(--base-size-8);
+}
+
+.FeatureComparisonTable__rowDescription {
+  margin-block-start: var(--base-size-8);
 }
 
 .FeatureComparisonTable__cell {

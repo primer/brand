@@ -105,6 +105,8 @@ describe('FeatureComparisonTable', () => {
     expect(narrow.getByText('Unlimited')).toBeInTheDocument()
     expect(table.getByRole('rowheader', {name: 'Codespaces'})).toHaveAttribute('scope', 'row')
     expect(table.getByRole('cell', {name: 'Unlimited'})).toBeInTheDocument()
+    expect(narrow.getByTestId(FeatureComparisonTable.testIds.rowHeading).querySelector('p')).toBeNull()
+    expect(table.getByRole('rowheader', {name: 'Codespaces'}).querySelector('p')).toBeNull()
   })
 
   it('forwards custom classes, attributes, and refs to the root', () => {
@@ -114,6 +116,52 @@ describe('FeatureComparisonTable', () => {
     expect(getByTestId('custom-table')).toHaveClass('FeatureComparisonTable', 'custom-class')
     expect(ref.current).toBe(getByTestId('custom-table'))
   })
+
+  it.each([narrowBreakpoint, regularBreakpoint, wideBreakpoint])(
+    'renders rich row descriptions at the %s breakpoint',
+    breakpoint => {
+      setBreakpoint(breakpoint)
+      const {getByTestId} = render(
+        <FeatureComparisonTable>
+          <FeatureComparisonTable.Heading>Compare features</FeatureComparisonTable.Heading>
+          <FeatureComparisonTable.Item>
+            <FeatureComparisonTable.Heading>Free</FeatureComparisonTable.Heading>
+          </FeatureComparisonTable.Item>
+          <FeatureComparisonTable.Group expanded>
+            <FeatureComparisonTable.GroupHeading>Core features</FeatureComparisonTable.GroupHeading>
+            <FeatureComparisonTable.Row>
+              <FeatureComparisonTable.RowHeading className="custom-heading">
+                Codespaces
+              </FeatureComparisonTable.RowHeading>
+              <FeatureComparisonTable.RowDescription>Replaced description</FeatureComparisonTable.RowDescription>
+              <FeatureComparisonTable.RowDescription className="custom-description" {...{id: 'description-id'}}>
+                Develop in <strong>the cloud</strong>. <a href="#codespaces">Learn more</a>
+              </FeatureComparisonTable.RowDescription>
+              <FeatureComparisonTable.Cell variant="included" />
+            </FeatureComparisonTable.Row>
+          </FeatureComparisonTable.Group>
+        </FeatureComparisonTable>,
+      )
+
+      for (const testId of [FeatureComparisonTable.testIds.narrow, FeatureComparisonTable.testIds.table]) {
+        const projection = within(getByTestId(testId))
+        const heading = projection.getByText('Codespaces')
+        const description = projection.getByText(/Develop in/)
+
+        expect(heading).toHaveClass('custom-heading')
+        expect(heading).not.toHaveAttribute('description')
+        expect(description.tagName).toBe('P')
+        expect(description).toHaveClass('Text--100', 'Text--muted', 'Text--weight-normal')
+        expect(description).toHaveClass('custom-description')
+        expect(description).not.toHaveAttribute('id')
+        expect(projection.queryByText('Replaced description')).not.toBeInTheDocument()
+        expect(within(description).getByText('the cloud').tagName).toBe('STRONG')
+        expect(within(description).getByRole('link', {name: 'Learn more'})).toHaveAttribute('href', '#codespaces')
+        expect(heading.nextElementSibling).toBe(description)
+        expect(description.parentElement?.tagName).toBe('DIV')
+      }
+    },
+  )
 
   it('uses description-list terms rather than headings for repeated plan names', () => {
     const {getByTestId} = render(<Component expanded />)

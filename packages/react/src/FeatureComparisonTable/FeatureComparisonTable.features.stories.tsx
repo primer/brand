@@ -105,6 +105,58 @@ export const FeatureRows: Story = {
   },
 }
 
+export const RowDescriptions: Story = {
+  render: function RowDescriptionsStory() {
+    const {t} = useTranslation('FeatureComparisonTable')
+
+    return (
+      <Fixture planCount={2}>
+        <FeatureComparisonTable.Group expanded>
+          <FeatureComparisonTable.GroupHeading>{t('collaboration')}</FeatureComparisonTable.GroupHeading>
+          <FeatureComparisonTable.Row>
+            <FeatureComparisonTable.RowHeading>{t('private_repositories')}</FeatureComparisonTable.RowHeading>
+            <FeatureComparisonTable.RowDescription>
+              {t('for_individuals')} <InlineLink href="#support">{t('support')}</InlineLink>
+            </FeatureComparisonTable.RowDescription>
+            <FeatureComparisonTable.Cell variant="included" variantAriaLabel={t('included')} />
+            <FeatureComparisonTable.Cell variant="included" variantAriaLabel={t('included')} />
+          </FeatureComparisonTable.Row>
+          <FeatureComparisonTable.Row>
+            <FeatureComparisonTable.RowHeading>{t('advanced_security')}</FeatureComparisonTable.RowHeading>
+            <FeatureComparisonTable.RowDescription>
+              <strong>{t('for_teams')}</strong>
+            </FeatureComparisonTable.RowDescription>
+            <FeatureComparisonTable.Cell variant="unavailable" variantAriaLabel={t('unavailable')} />
+            <FeatureComparisonTable.Cell variant="included" variantAriaLabel={t('included')} />
+          </FeatureComparisonTable.Row>
+          <FeatureComparisonTable.Row>
+            <FeatureComparisonTable.RowHeading>{t('support')}</FeatureComparisonTable.RowHeading>
+            <FeatureComparisonTable.RowDescription>{t('for_organizations')}</FeatureComparisonTable.RowDescription>
+            <FeatureComparisonTable.Cell>{t('community')}</FeatureComparisonTable.Cell>
+            <FeatureComparisonTable.Cell>{t('standard')}</FeatureComparisonTable.Cell>
+          </FeatureComparisonTable.Row>
+        </FeatureComparisonTable.Group>
+      </Fixture>
+    )
+  },
+  play: async ({canvasElement}) => {
+    const projection = await within(canvasElement).findByTestId(
+      window.matchMedia('(min-width: 80rem)').matches
+        ? 'FeatureComparisonTable__table'
+        : 'FeatureComparisonTable__narrow',
+    )
+    for (const rowHeading of within(projection).getAllByTestId('FeatureComparisonTable__rowHeading')) {
+      const label = rowHeading.querySelector('span')!
+      const description = rowHeading.querySelector('p')!
+      expect(getComputedStyle(description).fontSize).toBe('14px')
+      expect(getComputedStyle(description).fontWeight).toBe('400')
+      expect(getComputedStyle(description).color).toBe(getComputedStyle(label).color)
+      expect(description.getBoundingClientRect().top).toBeGreaterThanOrEqual(label.getBoundingClientRect().bottom)
+    }
+    expect(document.documentElement.scrollWidth).toBeLessThanOrEqual(window.innerWidth)
+  },
+}
+
 export const PlanSummaries: Story = {
   render: () => <Fixture />,
   play: async ({canvasElement, globals}) => {
