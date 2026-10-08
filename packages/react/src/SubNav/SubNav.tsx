@@ -84,7 +84,7 @@ export const useSubNavContext = () => {
   return context
 }
 
-function SubNavProvider({children}: {children: React.ReactNode}) {
+function SubNavProvider({children}: PropsWithChildren) {
   const {anchorMenuRef, portalRef} = useAnchorMenu()
 
   const value = useMemo(
@@ -108,12 +108,16 @@ function SubNavProvider({children}: {children: React.ReactNode}) {
 export type SubNavMenuLabels = {
   menuLabel: string
   closeLabel: string
+  activeLabel: string
+  closeActiveLabel: string
   overflowMenuLabel: string
 }
 
 const defaultMenuLabels: SubNavMenuLabels = {
   menuLabel: 'Navigation menu',
   closeLabel: 'Close navigation menu',
+  activeLabel: 'Navigation menu. Current page:',
+  closeActiveLabel: 'Close navigation menu. Current page:',
   overflowMenuLabel: 'More',
 }
 
@@ -248,7 +252,6 @@ const SubNavRoot = memo(
         SubHeadingChild.type === SubHeadingBase &&
         Boolean(SubHeadingChild.props['aria-current'])
       const narrowButtonLabel = SubHeadingChild ? activeLinklabel : null
-      const narrowMenuLabel = isNarrowMenuOpen ? resolvedMenuLabels.closeLabel : resolvedMenuLabels.menuLabel
       const hasActiveOverflow = LinkChildren.slice(visibleLinkCount).some(
         link => Boolean(link.props['aria-current']) && link.props['aria-current'] !== 'false',
       )
@@ -274,7 +277,15 @@ const SubNavRoot = memo(
                 onClick={isNarrowMenuOpen ? closeNarrowMenu : toggleNarrowMenu}
                 aria-expanded={isNarrowMenuOpen ? 'true' : 'false'}
                 aria-controls={idForLinkContainer}
-                aria-label={activeLinklabel ? `${narrowMenuLabel}. Current page: ${activeLinklabel}` : narrowMenuLabel}
+                aria-label={
+                  activeLinklabel
+                    ? `${
+                        isNarrowMenuOpen ? resolvedMenuLabels.closeActiveLabel : resolvedMenuLabels.activeLabel
+                      } ${activeLinklabel}`
+                    : isNarrowMenuOpen
+                    ? resolvedMenuLabels.closeLabel
+                    : resolvedMenuLabels.menuLabel
+                }
               >
                 {narrowButtonLabel && (
                   <Text as="span" size="100">
@@ -291,13 +302,16 @@ const SubNavRoot = memo(
           </div>
         ),
         [
-          activeLinklabel,
           closeNarrowMenu,
           toggleNarrowMenu,
           idForLinkContainer,
           isNarrowMenuOpen,
+          activeLinklabel,
           narrowButtonLabel,
-          narrowMenuLabel,
+          resolvedMenuLabels.closeLabel,
+          resolvedMenuLabels.menuLabel,
+          resolvedMenuLabels.activeLabel,
+          resolvedMenuLabels.closeActiveLabel,
         ],
       )
 
@@ -558,6 +572,10 @@ const LinkBaseWithSubmenu = forwardRef<HTMLDivElement, LinkBaseProps>(
     }, [isLarge, _isOverflowMenu, isExpanded])
 
     const [label, subMenuChildren] = children as ReactNode[]
+    const subMenuLabel =
+      isValidElement<SubMenuProps>(subMenuChildren) && subMenuChildren.type === SubMenuBase
+        ? subMenuChildren.props['aria-label']
+        : undefined
     const subMenu =
       _isOverflowMenu && isValidElement<SubMenuProps>(subMenuChildren) && subMenuChildren.type === SubMenuBase
         ? React.cloneElement(subMenuChildren, {_isOverflowMenu, _onOverflowLinkActivate})
@@ -601,7 +619,7 @@ const LinkBaseWithSubmenu = forwardRef<HTMLDivElement, LinkBaseProps>(
             onClick={toggleExpanded}
             aria-expanded={isExpanded ? 'true' : 'false'}
             aria-controls={submenuId}
-            aria-label={`${label?.toString().trim()} submenu`}
+            aria-label={subMenuLabel ?? `${label?.toString().trim()} submenu`}
           >
             <TriangleDownIcon className={styles['SubNav__sub-menu-icon']} size={16} />
           </button>
@@ -718,6 +736,7 @@ type SubMenuProps = {
 function SubMenuBase({
   children,
   className,
+  'aria-label': ariaLabel = 'Sub navigation',
   variant = 'dropdown',
   _isOverflowMenu = false,
   _onOverflowLinkActivate,
@@ -759,7 +778,7 @@ function SubMenuBase({
         ref={navRef}
         className={clsx(styles['SubNav__sub-menu'], styles['SubNav__sub-menu--anchor'], className)}
         role="navigation"
-        aria-label="Sub navigation"
+        aria-label={ariaLabel}
       >
         <ul className={styles['SubNav__sub-menu-list']} {...props}>
           {React.Children.map(children, child => {
@@ -782,7 +801,11 @@ function SubMenuBase({
 
     return (
       <Tag {...(isLarge && !_isOverflowMenu ? {colorMode: 'light'} : {})}>
-        <ul className={clsx(styles['SubNav__sub-menu'], styles[`SubNav__sub-menu--${variant}`], className)} {...props}>
+        <ul
+          className={clsx(styles['SubNav__sub-menu'], styles[`SubNav__sub-menu--${variant}`], className)}
+          aria-label={ariaLabel}
+          {...props}
+        >
           {_isOverflowMenu
             ? Children.map(children, child =>
                 isValidElement<LinkBaseProps>(child) && child.type === LinkBase

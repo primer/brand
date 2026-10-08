@@ -821,12 +821,103 @@ describe('SubNav', () => {
   })
 
   it('merges custom mobile menu labels with the default desktop label', async () => {
-    const {getByRole} = render(<MockSubNavFixture menuLabels={{menuLabel: 'Navigation', closeLabel: 'Dismiss'}} />)
-    const button = getByRole('button', {name: 'Navigation. Current page: page three'})
+    const {getByRole} = render(
+      <MockSubNavFixture
+        data={[{title: 'page one', href: '#page1'}]}
+        menuLabels={{menuLabel: 'Navigation', closeLabel: 'Dismiss'}}
+      />,
+    )
+    const button = getByRole('button', {name: 'Navigation'})
     await userEvent.click(button)
-    expect(button).toHaveAccessibleName('Dismiss. Current page: page three')
+    expect(button).toHaveAccessibleName('Dismiss')
     await userEvent.click(button)
-    expect(button).toHaveAccessibleName('Navigation. Current page: page three')
+    expect(button).toHaveAccessibleName('Navigation')
+  })
+
+  it('appends only the current page to complete translated narrow-menu prefixes', async () => {
+    const {getByRole} = render(
+      <MockSubNavFixture
+        menuLabels={{
+          activeLabel: 'Navegación. Página actual:',
+          closeActiveLabel: 'Cerrar navegación. Página actual:',
+        }}
+      />,
+    )
+    const button = getByRole('button', {name: 'Navegación. Página actual: page three'})
+    await userEvent.click(button)
+    expect(button).toHaveAccessibleName('Cerrar navegación. Página actual: page three')
+    await userEvent.click(button)
+    expect(button).toHaveAccessibleName('Navegación. Página actual: page three')
+  })
+
+  it.each([
+    {
+      menuLabels: {activeLabel: 'Navegación. Página actual:'},
+      closedLabel: 'Navegación. Página actual: page three',
+      openLabel: 'Close navigation menu. Current page: page three',
+    },
+    {
+      menuLabels: {closeActiveLabel: 'Cerrar navegación. Página actual:'},
+      closedLabel: 'Navigation menu. Current page: page three',
+      openLabel: 'Cerrar navegación. Página actual: page three',
+    },
+  ])(
+    'keeps English defaults only for unspecified narrow-menu labels: $closedLabel',
+    async ({menuLabels, closedLabel, openLabel}) => {
+      const {getByRole} = render(<MockSubNavFixture menuLabels={menuLabels} />)
+      const button = getByRole('button', {name: closedLabel})
+      await userEvent.click(button)
+      expect(button).toHaveAccessibleName(openLabel)
+      await userEvent.click(button)
+      expect(button).toHaveAccessibleName(closedLabel)
+    },
+  )
+
+  it.each([
+    {
+      name: 'the custom submenu aria-label for its toggle and content',
+      ariaLabel: 'Copilot options',
+      toggleLabel: 'Copilot options',
+      contentLabel: 'Copilot options',
+    },
+    {
+      name: 'the default submenu content label when aria-label is unspecified',
+      ariaLabel: undefined,
+      toggleLabel: 'Copilot submenu',
+      contentLabel: 'Sub navigation',
+    },
+  ])('uses $name', ({ariaLabel, toggleLabel, contentLabel}) => {
+    mockUseWindowSize.mockImplementation(() => ({isLarge: true}))
+    const {getByRole} = render(
+      <SubNav>
+        <SubNav.Link href="#copilot">
+          Copilot
+          <SubNav.SubMenu aria-label={ariaLabel}>
+            <SubNav.Link href="#feature">Copilot feature</SubNav.Link>
+          </SubNav.SubMenu>
+        </SubNav.Link>
+      </SubNav>,
+    )
+
+    expect(getByRole('button', {name: toggleLabel})).toHaveAttribute('aria-expanded', 'false')
+    expect(getByRole('list', {name: contentLabel, hidden: true})).toBeInTheDocument()
+  })
+
+  it('uses a custom label for the anchor navigation landmark', () => {
+    jest.replaceProperty(window, 'innerWidth', 360)
+    mockUseWindowSize.mockImplementation(jest.requireActual('../hooks/useWindowSize').useWindowSize)
+    const {getByRole} = render(
+      <SubNav>
+        <SubNav.Link href="#overview" aria-current="page">
+          Overview
+          <SubNav.SubMenu variant="anchor" aria-label="Section navigation">
+            <SubNav.Link href="#scale">Scale</SubNav.Link>
+          </SubNav.SubMenu>
+        </SubNav.Link>
+      </SubNav>,
+    )
+
+    expect(getByRole('navigation', {name: 'Section navigation'})).toBeInTheDocument()
   })
 
   it('renders a title as a link', () => {
@@ -897,14 +988,16 @@ describe('SubNav', () => {
     expect(overlayEl).not.toHaveClass('SubNav__links-overlay--open')
   })
 
-  it('includes the aria-current text in the accessible label of the button', () => {
+  it('announces the current page with the default narrow-menu prefixes', async () => {
     const {getByRole} = render(<MockSubNavFixture />)
 
-    const buttonEl = getByRole('button', {name: 'Navigation menu. Current page: page three'})
-    expect(buttonEl).toBeInTheDocument()
+    const button = getByRole('button', {name: 'Navigation menu. Current page: page three'})
+    expect(getByRole('link', {name: 'page three'})).toHaveAttribute('aria-current', 'page')
+    await userEvent.click(button)
+    expect(button).toHaveAccessibleName('Close navigation menu. Current page: page three')
   })
 
-  it('sets a default accessible label if there are no links with `aria-current="page"` set', () => {
+  it('sets a default accessible label if there are no links with `aria-current="page"` set', async () => {
     const {getByRole} = render(
       <MockSubNavFixture
         data={[
@@ -914,7 +1007,9 @@ describe('SubNav', () => {
       />,
     )
 
-    expect(getByRole('button', {name: 'Navigation menu'})).toBeInTheDocument()
+    const button = getByRole('button', {name: 'Navigation menu'})
+    await userEvent.click(button)
+    expect(button).toHaveAccessibleName('Close navigation menu')
   })
 
   it('hides the aria-current text from the button when no subheading is present', () => {

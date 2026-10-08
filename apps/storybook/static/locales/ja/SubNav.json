@@ -10,5 +10,7 @@
   "plans_pricing": "プランと価格",
   "menu_label": "ナビゲーションメニュー",
   "close_label": "閉じる",
+  "active_label": "ナビゲーションメニュー。現在のページ:",
+  "close_active_label": "閉じる。現在のページ:",
   "overflow_menu_label": "その他"
 }

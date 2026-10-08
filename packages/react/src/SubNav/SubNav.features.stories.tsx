@@ -281,6 +281,8 @@ export const OverflowMenu: Story = {
         menuLabels={{
           menuLabel: translate('menu_label'),
           closeLabel: translate('close_label'),
+          activeLabel: translate('active_label'),
+          closeActiveLabel: translate('close_active_label'),
           overflowMenuLabel: translate('overflow_menu_label'),
           ...args.menuLabels,
         }}
@@ -324,6 +326,8 @@ export const OverflowMenuOpen: Story = {
         menuLabels={{
           menuLabel: translate('menu_label'),
           closeLabel: translate('close_label'),
+          activeLabel: translate('active_label'),
+          closeActiveLabel: translate('close_active_label'),
           overflowMenuLabel: translate('overflow_menu_label'),
           ...args.menuLabels,
         }}
@@ -388,6 +392,8 @@ export const OverflowMenuLocalized: Story = {
         menuLabels={{
           menuLabel: translate('menu_label'),
           closeLabel: translate('close_label'),
+          activeLabel: translate('active_label'),
+          closeActiveLabel: translate('close_active_label'),
           overflowMenuLabel: translate('overflow_menu_label'),
           ...args.menuLabels,
         }}

@@ -61,6 +61,8 @@ Internal `SubNav` labels such as the "More" link are rendered in `en` by default
     menuLabels={{
       menuLabel: 'Menú de navegación',
       closeLabel: 'Cerrar menú de navegación',
+      activeLabel: 'Menú de navegación. Página actual:',
+      closeActiveLabel: 'Cerrar menú de navegación. Página actual:',
       overflowMenuLabel: 'Más',
     }}
   >
@@ -107,7 +109,7 @@ Submenus appear as a dropdown by default.
     <SubNav.Heading href="#">Features</SubNav.Heading>
     <SubNav.Link href="#" aria-current="page">
       Actions
-      <SubNav.SubMenu>
+      <SubNav.SubMenu aria-label="Actions submenu">
         <SubNav.Link href="#">Actions feature one</SubNav.Link>
         <SubNav.Link href="#">Actions feature two</SubNav.Link>
         <SubNav.Link href="#">Actions feature three</SubNav.Link>
@@ -160,11 +162,13 @@ Ensure that the text of each `SubNav.Link` within the anchor-based submenu fits 
 
 #### Menu labels
 
-| Field               | Type     | English default         | Purpose                                                    |
-| ------------------- | -------- | ----------------------- | ---------------------------------------------------------- |
-| `menuLabel`         | `string` | `Navigation menu`       | Accessible label while the narrow menu is closed           |
-| `closeLabel`        | `string` | `Close navigation menu` | Accessible label while the narrow menu is open             |
-| `overflowMenuLabel` | `string` | `More`                  | Visible and accessible label for the desktop overflow menu |
+| Field               | Type     | English default                        | Purpose                                                                       |
+| ------------------- | -------- | -------------------------------------- | ----------------------------------------------------------------------------- |
+| `menuLabel`         | `string` | `Navigation menu`                      | Accessible label while the narrow menu is closed                              |
+| `closeLabel`        | `string` | `Close navigation menu`                | Accessible label while the narrow menu is open                                |
+| `activeLabel`       | `string` | `Navigation menu. Current page:`       | Complete prefix while the narrow menu is closed and a current page is present |
+| `closeActiveLabel`  | `string` | `Close navigation menu. Current page:` | Complete prefix while the narrow menu is open and a current page is present   |
+| `overflowMenuLabel` | `string` | `More`                                 | Visible and accessible label for the desktop overflow menu                    |
 
 ### SubNav.Heading <Label>Required</Label>
 
@@ -196,7 +200,8 @@ Ensure that the text of each `SubNav.Link` within the anchor-based submenu fits 
 
 ### SubNav.SubMenu
 
-| name       | type                         | default     | required | description                           |
-| ---------- | ---------------------------- | ----------- | -------- | ------------------------------------- |
-| `children` | `SubNav.Link`                |             | `false`  | Container for submenu links           |
-| `variant`  | <SubNavSubMenuVariantProp /> | `'default'` | `false`  | Alternative presentation for submenus |
+| name         | type                         | default                      | required | description                                                                                                       |
+| ------------ | ---------------------------- | ---------------------------- | -------- | ----------------------------------------------------------------------------------------------------------------- |
+| `children`   | `SubNav.Link`                |                              | `false`  | Container for submenu links                                                                                       |
+| `variant`    | <SubNavSubMenuVariantProp /> | `'default'`                  | `false`  | Alternative presentation for submenus                                                                             |
+| `aria-label` | `string`                     | `'Sub navigation'` (content) | `false`  | Complete accessible name for the submenu toggle and content; names the navigation landmark for the anchor variant |

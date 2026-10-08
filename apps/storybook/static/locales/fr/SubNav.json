@@ -10,5 +10,7 @@
   "plans_pricing": "Offres et tarifs",
   "menu_label": "Menu de navigation",
   "close_label": "Fermer le menu de navigation",
+  "active_label": "Menu de navigation. Page actuelle :",
+  "close_active_label": "Fermer le menu de navigation. Page actuelle :",
   "overflow_menu_label": "Plus"
 }
