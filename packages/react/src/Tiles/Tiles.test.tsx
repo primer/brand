@@ -195,6 +195,134 @@ describe('Tiles', () => {
     expect(getAllByTestId(Tiles.testIds.item)).toHaveLength(3)
   })
 
+  it('warns when more than nine items are provided', () => {
+    const consoleWarnSpy = jest.spyOn(console, 'warn').mockImplementation(() => {})
+
+    render(
+      <Tiles>
+        {Array.from({length: 10}, (_, index) => (
+          <Tiles.Item key={index} name={`Item ${index + 1}`}>
+            <svg />
+          </Tiles.Item>
+        ))}
+      </Tiles>,
+    )
+
+    expect(consoleWarnSpy).toHaveBeenCalledWith('Tiles: Use no more than 9 items.')
+    consoleWarnSpy.mockRestore()
+  })
+
+  it('does not warn when nine items are provided', () => {
+    const consoleWarnSpy = jest.spyOn(console, 'warn').mockImplementation(() => {})
+
+    render(
+      <Tiles>
+        {Array.from({length: 9}, (_, index) => (
+          <Tiles.Item key={index} name={`Item ${index + 1}`}>
+            <svg />
+          </Tiles.Item>
+        ))}
+      </Tiles>,
+    )
+
+    expect(consoleWarnSpy).not.toHaveBeenCalled()
+    consoleWarnSpy.mockRestore()
+  })
+
+  it('does not warn about item count in production', () => {
+    const originalNodeEnv = process.env.NODE_ENV
+    const consoleWarnSpy = jest.spyOn(console, 'warn').mockImplementation(() => {})
+    process.env.NODE_ENV = 'production'
+
+    try {
+      render(
+        <Tiles>
+          {Array.from({length: 10}, (_, index) => (
+            <Tiles.Item key={index} name={`Item ${index + 1}`}>
+              <svg />
+            </Tiles.Item>
+          ))}
+        </Tiles>,
+      )
+
+      expect(consoleWarnSpy).not.toHaveBeenCalled()
+    } finally {
+      process.env.NODE_ENV = originalNodeEnv
+      consoleWarnSpy.mockRestore()
+    }
+  })
+
+  it('balances columns for seven items at each breakpoint', () => {
+    const {getByTestId} = render(
+      <Tiles>
+        {Array.from({length: 7}, (_, index) => (
+          <Tiles.Item key={index} name={`Item ${index + 1}`}>
+            <svg />
+          </Tiles.Item>
+        ))}
+      </Tiles>,
+    )
+
+    const gridEl = getByTestId(Tiles.testIds.grid)
+    expect(gridEl.style.getPropertyValue('--tiles-columns-xsmall')).toBe('2')
+    expect(gridEl.style.getPropertyValue('--tiles-columns-small')).toBe('3')
+    expect(gridEl.style.getPropertyValue('--tiles-columns-medium')).toBe('4')
+    expect(gridEl.style.getPropertyValue('--tiles-columns-large')).toBe('7')
+  })
+
+  it('balances items grouped in a fragment', () => {
+    const {getAllByTestId, getByTestId} = render(
+      <Tiles>
+        <>
+          {Array.from({length: 7}, (_, index) => (
+            <Tiles.Item key={index} name={`Item ${index + 1}`}>
+              <svg />
+            </Tiles.Item>
+          ))}
+        </>
+      </Tiles>,
+    )
+
+    const gridEl = getByTestId(Tiles.testIds.grid)
+    expect(getAllByTestId(Tiles.testIds.item)).toHaveLength(7)
+    expect(gridEl.style.getPropertyValue('--tiles-columns-xsmall')).toBe('2')
+    expect(gridEl.style.getPropertyValue('--tiles-columns-small')).toBe('3')
+    expect(gridEl.style.getPropertyValue('--tiles-columns-medium')).toBe('4')
+    expect(gridEl.style.getPropertyValue('--tiles-columns-large')).toBe('7')
+  })
+
+  it('balances compact columns for seven items at each breakpoint', () => {
+    const {getByTestId} = render(
+      <Tiles layout="compact">
+        {Array.from({length: 7}, (_, index) => (
+          <Tiles.Item key={index} name={`Item ${index + 1}`}>
+            <svg />
+          </Tiles.Item>
+        ))}
+      </Tiles>,
+    )
+
+    const gridEl = getByTestId(Tiles.testIds.grid)
+    expect(gridEl.style.getPropertyValue('--tiles-columns-xsmall')).toBe('4')
+    expect(gridEl.style.getPropertyValue('--tiles-columns-small')).toBe('3')
+    expect(gridEl.style.getPropertyValue('--tiles-columns-medium')).toBe('4')
+    expect(gridEl.style.getPropertyValue('--tiles-columns-large')).toBe('7')
+  })
+
+  it('fits nine items in one large row for both layouts', () => {
+    const items = Array.from({length: 9}, (_, index) => (
+      <Tiles.Item key={index} name={`Item ${index + 1}`}>
+        <svg />
+      </Tiles.Item>
+    ))
+    const {getByTestId, rerender} = render(<Tiles>{items}</Tiles>)
+
+    expect(getByTestId(Tiles.testIds.grid).style.getPropertyValue('--tiles-columns-large')).toBe('9')
+
+    rerender(<Tiles layout="compact">{items}</Tiles>)
+    expect(getByTestId(Tiles.testIds.grid).style.getPropertyValue('--tiles-columns-large')).toBe('9')
+  })
+
   it('renders a list with list items', () => {
     const {getByRole, getAllByRole} = render(
       <Tiles>
