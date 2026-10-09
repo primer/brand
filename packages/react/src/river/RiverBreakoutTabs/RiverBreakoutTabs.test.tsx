@@ -5,7 +5,7 @@ import '@testing-library/jest-dom'
 import {axe, toHaveNoViolations} from 'jest-axe'
 
 import {RiverBreakoutTabs} from '../'
-import {Link, Text} from '../../'
+import {Button, Link, Text} from '../../'
 
 expect.extend(toHaveNoViolations)
 
@@ -359,6 +359,87 @@ describe('RiverBreakoutTabs', () => {
 
     expect(getAllByRole('link')).toHaveLength(1)
     expect(queryByText('Plan secondary link')).not.toBeInTheDocument()
+  })
+
+  it('keeps Content controls outside desktop tabs without changing selection', async () => {
+    const user = userEvent.setup()
+    const onChange = jest.fn()
+    const {container, getByRole} = render(
+      <RiverBreakoutTabs onChange={onChange}>
+        <RiverBreakoutTabs.A11yHeading>Agent workflows</RiverBreakoutTabs.A11yHeading>
+        <RiverBreakoutTabs.Item>
+          <RiverBreakoutTabs.Heading>Plan</RiverBreakoutTabs.Heading>
+          <RiverBreakoutTabs.Content>
+            <Text>Plan content</Text>
+            <Button>Start planning</Button>
+            <div>
+              <Link href="#">Explore planning</Link>
+            </div>
+          </RiverBreakoutTabs.Content>
+          <RiverBreakoutTabs.Visual>
+            <MockVisual label="plan visual" />
+          </RiverBreakoutTabs.Visual>
+        </RiverBreakoutTabs.Item>
+      </RiverBreakoutTabs>,
+    )
+
+    const tab = getByRole('tab', {name: 'Plan'})
+    const panel = getByRole('tabpanel', {name: 'Plan'})
+    const button = getByRole('button', {name: 'Start planning'})
+    expect(button.closest('[role="tablist"]')).toBeNull()
+    expect(getByRole('link', {name: 'Explore planning'}).closest('[role="tablist"]')).toBeNull()
+    expect(panel).toHaveAttribute('aria-labelledby', tab.id)
+    await user.tab()
+    expect(tab).toHaveFocus()
+    await user.tab()
+    expect(button).toHaveFocus()
+    await user.click(button)
+    expect(onChange).not.toHaveBeenCalled()
+    expect(tab).toHaveAttribute('aria-selected', 'true')
+    expect(await axe(container)).toHaveNoViolations()
+  })
+
+  it('keeps desktop content groups labelled by their corresponding tabs when selection changes', async () => {
+    const user = userEvent.setup()
+    const headings = ['Plan', 'Review']
+    const {getByRole} = render(
+      <RiverBreakoutTabs>
+        <RiverBreakoutTabs.A11yHeading>Agent workflows</RiverBreakoutTabs.A11yHeading>
+        {headings.map(heading => (
+          <RiverBreakoutTabs.Item key={heading}>
+            <RiverBreakoutTabs.Heading>{heading}</RiverBreakoutTabs.Heading>
+            <RiverBreakoutTabs.Content>
+              <Text>{heading} content</Text>
+              <Button>{heading} action</Button>
+            </RiverBreakoutTabs.Content>
+            <RiverBreakoutTabs.Visual>
+              <MockVisual label={`${heading} visual`} />
+            </RiverBreakoutTabs.Visual>
+          </RiverBreakoutTabs.Item>
+        ))}
+      </RiverBreakoutTabs>,
+    )
+
+    for (const selectedHeading of headings) {
+      const selectedTab = getByRole('tab', {name: selectedHeading})
+      await user.click(selectedTab)
+
+      expect(selectedTab).toHaveAttribute('aria-selected', 'true')
+      expect(getByRole('tabpanel', {name: selectedHeading})).toHaveAttribute(
+        'id',
+        selectedTab.getAttribute('aria-controls'),
+      )
+
+      for (const heading of headings) {
+        const tab = getByRole('tab', {name: heading})
+        const group = getByRole('group', {name: heading})
+
+        expect(group).toHaveAttribute('aria-labelledby', tab.id)
+        expect(group).toBeVisible()
+        expect(within(group).getByText(`${heading} content`)).toBeVisible()
+        expect(within(group).getByRole('button', {name: `${heading} action`})).toBeVisible()
+      }
+    }
   })
 
   it('has no critical axe violations for desktop tabs', async () => {
