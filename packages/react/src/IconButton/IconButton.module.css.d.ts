@@ -7,10 +7,9 @@ declare const styles: {
   readonly "IconButton--small": string;
   readonly "IconButton--variant-danger": string;
   readonly "IconButton--variant-invisible": string;
-  readonly "IconButton-spin": string;
   readonly "IconButton__icon": string;
   readonly "IconButton__loadingAnnouncement": string;
-  readonly "IconButton__loadingIndicator": string;
+  readonly "IconButton__spinner": string;
 };
 export = styles;
 

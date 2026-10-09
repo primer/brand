@@ -31,6 +31,12 @@ module.exports = {
         value: 'var(--base-color-scale-blue-6)',
         dark: 'var(--base-color-scale-blue-2)',
       },
+      validation: {
+        error: {
+          value: 'var(--base-color-scale-red-6)',
+          dark: 'var(--base-color-scale-red-2)',
+        },
+      },
     },
     checkbox: {
       bg: {

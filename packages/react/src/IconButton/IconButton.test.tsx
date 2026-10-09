@@ -154,7 +154,7 @@ describe('IconButton', () => {
     expect(button).toHaveAttribute('aria-disabled', 'true')
     expect(button).not.toBeDisabled()
     expect(handleClick).not.toHaveBeenCalled()
-    expect(getByTestId('IconButton-loading-indicator')).toBeInTheDocument()
+    expect(getByTestId('IconButton-spinner')).toHaveClass('Spinner', 'IconButton__spinner')
     expect(getByTestId('IconButton-loading-announcement')).toHaveTextContent('Saving favorite')
   })
 
