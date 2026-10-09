@@ -71,7 +71,7 @@ export const _MinimalVideoPlayer = forwardRef<HTMLVideoElement, MinimalVideoPlay
       })
 
     return (
-      <div className={styles.MinimalVideoPlayer} data-testid={testId || testIds.root}>
+      <div className={styles.MinimalVideoPlayer} data-testid={testId || testIds.root} data-video-player-container>
         <video
           {...rest}
           ref={videoRef}

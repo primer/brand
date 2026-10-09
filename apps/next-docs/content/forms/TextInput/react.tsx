@@ -1,7 +1,7 @@
 'use client'
 import {PropTableValues} from '@primer/doctocat-nextjs/components'
 
-export const TextInputSizeProp = () => <PropTableValues values={['medium', 'large']} addLineBreaks />
+export const TextInputSizeProp = () => <PropTableValues values={['small', 'medium', 'large']} addLineBreaks />
 export const TextInputValidationStatusProp = () => <PropTableValues values={['error', 'success']} addLineBreaks />
 
 export const TextInputChildrenProp = () => (

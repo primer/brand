@@ -8,3 +8,36 @@
 .ButtonGroup > * {
   flex-grow: 1;
 }
+
+.ButtonGroup--variant-joined {
+  gap: 0;
+  flex-wrap: nowrap;
+}
+
+.ButtonGroup--variant-joined .ButtonGroup__item {
+  position: relative;
+  display: flex;
+  flex-grow: 0;
+}
+
+.ButtonGroup--variant-joined .ButtonGroup__item:not(:first-child) {
+  margin-inline-start: calc(var(--brand-borderWidth-thin) * -1);
+}
+
+.ButtonGroup--variant-joined .ButtonGroup__item:focus-within {
+  z-index: 1;
+}
+
+.ButtonGroup__joinedButton.ButtonGroup__joinedButton {
+  border-radius: 0;
+}
+
+.ButtonGroup__item:first-child .ButtonGroup__joinedButton {
+  border-start-start-radius: var(--brand-borderRadius-medium);
+  border-end-start-radius: var(--brand-borderRadius-medium);
+}
+
+.ButtonGroup__item:last-child .ButtonGroup__joinedButton {
+  border-start-end-radius: var(--brand-borderRadius-medium);
+  border-end-end-radius: var(--brand-borderRadius-medium);
+}

@@ -3,6 +3,7 @@ import {render, cleanup, fireEvent, waitFor} from '@testing-library/react'
 import '@testing-library/jest-dom'
 import userEvent from '@testing-library/user-event'
 import {axe, toHaveNoViolations} from 'jest-axe'
+import {KebabHorizontalIcon, MarkGithubIcon} from '@primer/octicons-react'
 
 import {ActionMenu} from './ActionMenu'
 
@@ -59,6 +60,63 @@ describe('ActionMenu', () => {
       </ActionMenu>,
     )
     expect(getByText('Open menu')).toBeInTheDocument()
+  })
+
+  it('renders an accessible icon button trigger', async () => {
+    const {container, getByRole} = render(
+      <ActionMenu>
+        <ActionMenu.IconButton icon={KebabHorizontalIcon} aria-label="Repository actions" />
+        <ActionMenu.Overlay aria-label="Repository actions">
+          <ActionMenu.Item value="Copy link">Copy link</ActionMenu.Item>
+        </ActionMenu.Overlay>
+      </ActionMenu>,
+    )
+    const button = getByRole('button', {name: 'Repository actions'})
+
+    expect(button).toHaveAttribute('aria-haspopup', 'menu')
+    expect(button).toHaveAttribute('aria-expanded', 'false')
+    expect(button.querySelector('svg')).toHaveAttribute('aria-hidden', 'true')
+    expect(await axe(container)).toHaveNoViolations()
+  })
+
+  it('toggles the menu from an icon button trigger', async () => {
+    const {getByRole, queryByRole} = render(
+      <ActionMenu>
+        <ActionMenu.IconButton icon={KebabHorizontalIcon} aria-label="Repository actions" />
+        <ActionMenu.Overlay aria-label="Repository actions">
+          <ActionMenu.Item value="Copy link">Copy link</ActionMenu.Item>
+        </ActionMenu.Overlay>
+      </ActionMenu>,
+    )
+    const button = getByRole('button', {name: 'Repository actions'})
+
+    await userEvent.click(button)
+
+    expect(button).toHaveAttribute('aria-expanded', 'true')
+    expect(queryByRole('menu', {name: 'Repository actions'})).toBeInTheDocument()
+  })
+
+  it('supports keyboard activation and restores focus to the icon button trigger', async () => {
+    const user = userEvent.setup()
+    const {getByRole, queryByRole} = render(
+      <ActionMenu>
+        <ActionMenu.IconButton icon={KebabHorizontalIcon} aria-label="Repository actions" />
+        <ActionMenu.Overlay aria-label="Repository actions">
+          <ActionMenu.Item value="Copy link">Copy link</ActionMenu.Item>
+        </ActionMenu.Overlay>
+      </ActionMenu>,
+    )
+    const button = getByRole('button', {name: 'Repository actions'})
+    await user.tab()
+    expect(button).toHaveFocus()
+
+    await user.keyboard('{Enter}')
+    await waitFor(() => expect(getByRole('menuitem', {name: 'Copy link'})).toHaveFocus())
+
+    await user.keyboard('{Escape}')
+
+    await waitFor(() => expect(button).toHaveFocus())
+    expect(queryByRole('menu')).not.toBeInTheDocument()
   })
 
   it('should not show the menu on load', () => {
@@ -487,7 +545,7 @@ describe('ActionMenu', () => {
   })
 
   it('should render two actions when using split-button mode', () => {
-    const {getByText, getByLabelText} = render(
+    const {getByText, getByRole} = render(
       <ActionMenu mode="split-button">
         <ActionMenu.Button as="a" href="#option1">
           Primary Action
@@ -507,7 +565,64 @@ describe('ActionMenu', () => {
     expect(getByText('Primary Action')).toBeInTheDocument()
 
     // Check dropdown button exists
-    expect(getByLabelText('Menu')).toBeInTheDocument()
+    expect(getByRole('button', {name: 'Additional options'})).toBeInTheDocument()
+  })
+
+  it('renders an icon link and independent menu trigger in split-button mode', async () => {
+    const {container, getByRole, queryByRole} = render(
+      <ActionMenu mode="split-button">
+        <ActionMenu.IconButton as="a" href="#repository" icon={MarkGithubIcon} aria-label="Open repository" />
+        <ActionMenu.Overlay aria-label="Repository actions">
+          <ActionMenu.Item as="a" href="#issues">
+            Issues
+          </ActionMenu.Item>
+        </ActionMenu.Overlay>
+      </ActionMenu>,
+    )
+    const primaryAction = getByRole('link', {name: 'Open repository'})
+    const menuButton = getByRole('button', {name: 'Repository actions'})
+
+    expect(primaryAction.parentElement).toHaveClass('ActionMenu__button--split-button')
+    expect(primaryAction).toHaveAttribute('href', '#repository')
+    expect(menuButton).toHaveAttribute('aria-haspopup', 'menu')
+    expect(menuButton).toHaveAttribute('aria-expanded', 'false')
+    expect(queryByRole('menu')).not.toBeInTheDocument()
+
+    await userEvent.click(menuButton)
+
+    expect(menuButton).toHaveAttribute('aria-expanded', 'true')
+    expect(getByRole('menu', {name: 'Repository actions'})).toBeInTheDocument()
+    await waitFor(() => expect(getByRole('link', {name: 'Issues'})).toHaveFocus())
+    expect(await axe(container)).toHaveNoViolations()
+  })
+
+  it('prevents activation of a disabled icon link in split-button mode', () => {
+    const handleClick = jest.fn()
+    const {getByRole} = render(
+      <ActionMenu mode="split-button" disabled>
+        <ActionMenu.IconButton
+          as="a"
+          href="#repository"
+          icon={MarkGithubIcon}
+          aria-label="Open repository"
+          onClick={handleClick}
+        />
+        <ActionMenu.Overlay aria-label="Repository actions">
+          <ActionMenu.Item as="a" href="#issues">
+            Issues
+          </ActionMenu.Item>
+        </ActionMenu.Overlay>
+      </ActionMenu>,
+    )
+    const primaryAction = getByRole('link', {name: 'Open repository'})
+    const clickEvent = new MouseEvent('click', {bubbles: true, cancelable: true})
+
+    fireEvent(primaryAction, clickEvent)
+
+    expect(primaryAction).toHaveAttribute('aria-disabled', 'true')
+    expect(clickEvent.defaultPrevented).toBe(true)
+    expect(handleClick).not.toHaveBeenCalled()
+    expect(getByRole('button', {name: 'Repository actions'})).toBeDisabled()
   })
 
   it('should render the main button with correct href attribute', () => {
@@ -532,7 +647,7 @@ describe('ActionMenu', () => {
   })
 
   it('should forward custom attributes to the primary action in split-button mode', () => {
-    const {getByRole, getByLabelText} = render(
+    const {getByRole} = render(
       <ActionMenu mode="split-button">
         <ActionMenu.Button as="a" href="#option1" data-attribute="test">
           Primary Action
@@ -546,11 +661,11 @@ describe('ActionMenu', () => {
     )
 
     expect(getByRole('link', {name: 'Primary Action'})).toHaveAttribute('data-attribute', 'test')
-    expect(getByLabelText('Menu')).not.toHaveAttribute('data-attribute')
+    expect(getByRole('button', {name: 'Additional options'})).not.toHaveAttribute('data-attribute')
   })
 
   it('should toggle menu when clicking the chevron button', async () => {
-    const {getByLabelText, queryByLabelText} = render(
+    const {getByRole, queryByRole} = render(
       <ActionMenu mode="split-button">
         <ActionMenu.Button as="a" href="#option1">
           Primary Action
@@ -566,30 +681,30 @@ describe('ActionMenu', () => {
       </ActionMenu>,
     )
 
-    const chevronButton = getByLabelText('Menu')
+    const chevronButton = getByRole('button', {name: 'Additional options'})
 
     // Initially, menu should not be visible
-    expect(queryByLabelText('Additional options')).not.toBeInTheDocument()
+    expect(queryByRole('menu', {name: 'Additional options'})).not.toBeInTheDocument()
 
     // open the menu
     fireEvent.click(chevronButton)
 
     await waitFor(
       () => {
-        expect(queryByLabelText('Additional options')).toBeInTheDocument()
+        expect(queryByRole('menu', {name: 'Additional options'})).toBeInTheDocument()
       },
       {timeout: 100},
     )
 
     expect(chevronButton).toHaveAttribute('aria-expanded', 'true')
-    expect(chevronButton).toHaveAttribute('aria-label', 'Menu')
+    expect(chevronButton).toHaveAttribute('aria-label', 'Additional options')
 
     // close it
     fireEvent.click(chevronButton)
 
     await waitFor(
       () => {
-        expect(queryByLabelText('Additional options')).not.toBeInTheDocument()
+        expect(queryByRole('menu', {name: 'Additional options'})).not.toBeInTheDocument()
       },
       {timeout: 100},
     )
@@ -598,7 +713,7 @@ describe('ActionMenu', () => {
   it('should keep the primary and menu actions independent in split-button mode', async () => {
     const mockOnClick = jest.fn()
     const user = userEvent.setup()
-    const {getByRole, getByLabelText, queryByLabelText} = render(
+    const {getByRole, queryByRole} = render(
       <ActionMenu mode="split-button">
         <ActionMenu.Button onClick={mockOnClick}>Primary Action</ActionMenu.Button>
         <ActionMenu.Overlay aria-label="Additional options">
@@ -613,7 +728,7 @@ describe('ActionMenu', () => {
     fireEvent.click(primaryButton)
 
     expect(mockOnClick).toHaveBeenCalledTimes(1)
-    expect(queryByLabelText('Additional options')).not.toBeInTheDocument()
+    expect(queryByRole('menu', {name: 'Additional options'})).not.toBeInTheDocument()
 
     await user.tab()
     expect(primaryButton).toHaveFocus()
@@ -621,16 +736,16 @@ describe('ActionMenu', () => {
     await user.keyboard(' ')
 
     expect(mockOnClick).toHaveBeenCalledTimes(3)
-    expect(queryByLabelText('Additional options')).not.toBeInTheDocument()
+    expect(queryByRole('menu', {name: 'Additional options'})).not.toBeInTheDocument()
 
-    fireEvent.click(getByLabelText('Menu'))
+    fireEvent.click(getByRole('button', {name: 'Additional options'}))
 
     expect(mockOnClick).toHaveBeenCalledTimes(3)
-    expect(queryByLabelText('Additional options')).toBeInTheDocument()
+    expect(queryByRole('menu', {name: 'Additional options'})).toBeInTheDocument()
   })
 
   it('should render items as links with correct href attribute', async () => {
-    const {getByLabelText, getAllByRole} = render(
+    const {getByRole, getAllByRole} = render(
       <ActionMenu mode="split-button" open>
         <ActionMenu.Button as="a" href="#option1">
           Primary Action
@@ -645,7 +760,7 @@ describe('ActionMenu', () => {
         </ActionMenu.Overlay>
       </ActionMenu>,
     )
-    const menu = getByLabelText('Additional options')
+    const menu = getByRole('menu', {name: 'Additional options'})
     expect(menu).toBeInTheDocument()
 
     const menuItems = getAllByRole('menuitem')
@@ -703,7 +818,7 @@ describe('ActionMenu', () => {
   })
 
   it('should use the primary button variant by default in split-button mode', () => {
-    const {getByRole, getByLabelText} = render(
+    const {getByRole} = render(
       <ActionMenu mode="split-button">
         <ActionMenu.Button as="a" href="#option1">
           Primary Action
@@ -717,11 +832,11 @@ describe('ActionMenu', () => {
     )
 
     expect(getByRole('link', {name: 'Primary Action'})).toHaveClass('Button--primary')
-    expect(getByLabelText('Menu')).toHaveClass('Button--primary')
+    expect(getByRole('button', {name: 'Additional options'})).toHaveClass('Button--primary')
   })
 
   it('should not change main button href when menu is toggled', async () => {
-    const {getByText, getByLabelText} = render(
+    const {getByText, getByRole} = render(
       <ActionMenu mode="split-button">
         <ActionMenu.Button as="a" href="#option1">
           Primary Action
@@ -740,12 +855,12 @@ describe('ActionMenu', () => {
     const mainButton = getByText('Primary Action').closest('a')
     expect(mainButton).toHaveAttribute('href', '#option1')
 
-    const chevronButton = getByLabelText('Menu')
+    const chevronButton = getByRole('button', {name: 'Additional options'})
     fireEvent.click(chevronButton)
 
     await waitFor(
       () => {
-        expect(getByLabelText('Additional options')).toBeInTheDocument()
+        expect(getByRole('menu', {name: 'Additional options'})).toBeInTheDocument()
       },
       {timeout: 100},
     )
@@ -755,7 +870,7 @@ describe('ActionMenu', () => {
   })
 
   it('should support disabled state in split-button mode', () => {
-    const {getByText, getByLabelText} = render(
+    const {getByText, getByRole} = render(
       <ActionMenu mode="split-button" disabled>
         <ActionMenu.Button as="a" href="#option1">
           Primary Action
@@ -775,7 +890,7 @@ describe('ActionMenu', () => {
     expect(mainButtonLink).toHaveAttribute('aria-disabled', 'true')
     expect(mainButtonLink).toHaveClass('Button--disabled')
 
-    const dropdownButton = getByLabelText('Menu')
+    const dropdownButton = getByRole('button', {name: 'Additional options'})
     expect(dropdownButton).toBeDisabled()
   })
 
@@ -783,7 +898,7 @@ describe('ActionMenu', () => {
     const accessibleText = 'Test icon'
     const TestIcon = () => <svg aria-label={accessibleText} />
 
-    const {getByLabelText} = render(
+    const {getByLabelText, getByRole} = render(
       <ActionMenu mode="split-button">
         <ActionMenu.Button as="a" href="#option1" leadingVisual={<TestIcon />}>
           Primary Action
@@ -802,16 +917,16 @@ describe('ActionMenu', () => {
     const buttonIcon = getByLabelText(accessibleText)
     expect(buttonIcon).toBeInTheDocument()
 
-    const chevronButton = getByLabelText('Menu')
+    const chevronButton = getByRole('button', {name: 'Additional options'})
     fireEvent.click(chevronButton)
 
-    const overlay = getByLabelText('Additional options')
+    const overlay = getByRole('menu', {name: 'Additional options'})
     const menuItemIcons = overlay.querySelectorAll(`[aria-label="${accessibleText}"]`)
     expect(menuItemIcons.length).toBe(2)
   })
 
   it('should support keyboard navigation in the menu', async () => {
-    const {getByLabelText, getAllByRole} = render(
+    const {getByRole, getAllByRole} = render(
       <ActionMenu mode="split-button" open>
         <ActionMenu.Button as="a" href="#option1">
           Primary Action
@@ -869,14 +984,14 @@ describe('ActionMenu', () => {
     fireEvent.keyDown(document.activeElement as Element, {key: 'Escape'})
     await waitFor(
       () => {
-        expect(document.activeElement).toBe(getByLabelText('Menu'))
+        expect(document.activeElement).toBe(getByRole('button', {name: 'Additional options'}))
       },
       {timeout: 100},
     )
   })
 
   it('should respect menuAlignment prop in split-button mode', async () => {
-    const {getByLabelText} = render(
+    const {getByRole} = render(
       <ActionMenu mode="split-button" menuAlignment="end" open>
         <ActionMenu.Button as="a" href="#option1">
           Primary Action
@@ -894,7 +1009,7 @@ describe('ActionMenu', () => {
 
     await waitFor(
       () => {
-        const menu = getByLabelText('Additional options')
+        const menu = getByRole('menu', {name: 'Additional options'})
         expect(menu).toHaveClass('ActionMenu__menu--pos-outside-bottom')
       },
       {timeout: 100},

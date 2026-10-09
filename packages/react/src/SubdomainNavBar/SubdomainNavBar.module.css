@@ -12,10 +12,11 @@
 .SubdomainNavBar::after {
   content: '';
   position: absolute;
+  z-index: 3;
   inset-inline: 0;
   inset-block-start: 100%;
   height: var(--brand-borderWidth-thin);
-  background-color: var(--brand-color-text-emphasized);
+  background-color: var(--brand-SubdomainNavBar-border-nav-default);
   pointer-events: none;
 }
 
@@ -124,7 +125,7 @@
 .SubdomainNavBar-title {
   line-height: var(--base-size-32);
   text-decoration: none;
-  padding-right: var(--base-size-16);
+  padding-inline-end: var(--base-size-16);
   white-space: nowrap;
 }
 
@@ -234,6 +235,7 @@
     background-color: var(--brand-color-canvas-default);
     width: 100%;
     max-height: calc(100vh - var(--SubdomainNavBar-height) - var(--SubdomainNavBar-menu-offset-block-start, 0px));
+    border-block-end: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
     animation: fade-in-down 500ms;
     animation-timing-function: var(--brand-animation-easing-default);
   }
@@ -320,9 +322,6 @@
   color: var(--brand-color-text-default);
   font-family: var(--brand-heading-fontFamily);
   font-weight: var(--base-text-weight-normal);
-  font-size: var(--base-size-20);
-  line-height: var(--base-size-20);
-  padding: var(--base-size-8) var(--base-size-16) var(--base-size-16) var(--base-size-28);
   text-decoration: none;
 }
 
@@ -341,82 +340,39 @@
 }
 
 @media screen and (max-width: 767px) {
-  .SubdomainNavBar-link:first-of-type {
-    padding-top: var(--base-size-24);
-  }
-
   .SubdomainNavBar-link--title {
     font-weight: var(--base-text-weight-medium);
   }
 }
 
 @media screen and (min-width: 48rem) {
-  .SubdomainNavBar-link {
-    font-family: var(--brand-heading-fontFamily);
-    font-weight: var(--base-text-weight-normal);
-    font-size: var(--base-size-16);
-    line-height: var(--base-size-16);
-    padding: var(--base-size-16) var(--base-size-16);
-  }
-
-  .SubdomainNavBar-link-text::after {
-    content: '';
-    position: absolute;
-    bottom: -6px;
-    left: 0;
+  .SubdomainNavBar .SubdomainNavBar-overflow-menu-item .SubdomainNavBar-link {
     width: 100%;
-    height: 2px;
-    background-color: var(--brand-SubdomainNavBar-border-nav-default);
-    opacity: 0;
-    transition: opacity var(--brand-animation-duration-fast), transform var(--brand-animation-duration-fast);
-    transform: scale(0);
-    transform-origin: center;
-  }
-
-  .SubdomainNavBar-link:hover .SubdomainNavBar-link-text::after,
-  .SubdomainNavBar-link:focus .SubdomainNavBar-link-text::after {
-    opacity: 1;
-    transform: scale(0.75);
-  }
-
-  .SubdomainNavBar-link:active .SubdomainNavBar-link-text::after {
-    background-color: var(--brand-SubdomainNavBar-border-nav-pressed);
-    transform: scale(0.75);
-  }
-
-  .SubdomainNavBar-overflow-menu-item .SubdomainNavBar-link {
+    min-height: var(--base-size-40);
+    padding: var(--base-size-8) var(--base-size-12);
+    color: var(--brand-color-text-muted);
+    background-color: var(--brand-color-canvas-default);
+    border-radius: var(--brand-borderRadius-medium);
+    font-size: var(--brand-text-size-100);
+    line-height: var(--brand-text-lineHeight-200);
     transition: background-color var(--brand-animation-easing-default) 250ms;
-    background-color: var(--brand-SubdomainNavBar-canvas-overflow-default);
-    color: var(--brand-SubdomainNavBar-fg-overflow-default);
   }
 
-  .SubdomainNavBar-overflow-menu-item .SubdomainNavBar-link .SubdomainNavBar-link-text::after {
-    display: none;
+  .SubdomainNavBar .SubdomainNavBar-overflow-menu-item .SubdomainNavBar-link:hover,
+  .SubdomainNavBar .SubdomainNavBar-overflow-menu-item .SubdomainNavBar-link:focus,
+  .SubdomainNavBar .SubdomainNavBar-overflow-menu-item .SubdomainNavBar-link:focus-visible {
+    color: var(--brand-color-text-default);
+    background-color: var(--brand-color-canvas-subtle);
   }
 
-  .SubdomainNavBar-overflow-menu-item .SubdomainNavBar-link:hover {
-    background-color: var(--brand-SubdomainNavBar-canvas-overflow-hover);
-  }
-
-  .SubdomainNavBar-overflow-menu-item .SubdomainNavBar-link:focus,
-  .SubdomainNavBar-overflow-menu-item .SubdomainNavBar-link:focus-visible {
-    box-shadow: inset 0px 0px 0px 2px var(--brand-color-focus);
+  .SubdomainNavBar .SubdomainNavBar-overflow-menu-item .SubdomainNavBar-link:focus,
+  .SubdomainNavBar .SubdomainNavBar-overflow-menu-item .SubdomainNavBar-link:focus-visible {
+    box-shadow: inset 0 0 0 var(--brand-borderWidth-thick) var(--brand-color-focus);
     outline: none;
   }
 }
 
-@media screen and (min-width: 63.25rem) {
-  .SubdomainNavBar-link {
-    padding: var(--base-size-16) var(--base-size-24);
-  }
-}
-
 .SubdomainNavBar-more-link {
-  display: none;
-}
-
-.SubdomainNavBar-more-link[aria-expanded='true']:hover::after,
-.SubdomainNavBar-more-link[aria-expanded='true']:focus::after {
   display: none;
 }
 
@@ -432,24 +388,30 @@
   }
 }
 
-.SubdomainNavBar-overflow-menu {
+.SubdomainNavBar .SubdomainNavBar-overflow-menu {
   position: absolute;
   z-index: 100;
   right: auto;
   background-color: var(--brand-color-canvas-default);
-  border-radius: var(--brand-borderRadius-large);
-  animation: fade-in-down 0.25s, enlarge-shadow 250ms forwards;
+  border: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
+  border-start-start-radius: 0;
+  border-start-end-radius: 0;
+  border-end-start-radius: var(--brand-borderRadius-medium);
+  border-end-end-radius: var(--brand-borderRadius-medium);
+  animation: fade-in-down-overflow var(--brand-animation-duration-faster);
   animation-timing-function: var(--brand-animation-easing-default);
-  box-shadow: 0px 8px 24px rgba(1, 4, 9, 0.15);
+  min-width: calc(var(--base-size-128) + var(--base-size-32));
+  transform: translateY(calc(0px - var(--base-size-4)));
   overflow: hidden;
 }
 
-.SubdomainNavBar-overflow-menu-list {
+.SubdomainNavBar .SubdomainNavBar-overflow-menu-list {
   display: grid;
+  gap: var(--brand-borderWidth-thin);
   list-style-type: none;
-  padding: 0;
+  padding: var(--base-size-8);
   margin: 0;
-  width: max-content;
+  width: 100%;
 }
 
 /*
@@ -802,7 +764,9 @@
 
   .SubdomainNavBar--variant-default .SubdomainNavBar-menu-wrapper {
     inset-inline-start: auto;
-    min-width: calc(var(--base-size-128) * 3);
+    inset-inline-end: 0;
+    width: max(100%, calc(var(--base-size-128) * 3));
+    min-width: 0;
   }
 
   .SubdomainNavBar-menu-wrapper--close {
@@ -1175,6 +1139,18 @@
     border-inline-end: 0;
   }
 
+  .SubdomainNavBar--variant-default.SubdomainNavBar--has-title .SubdomainNavBar-title-area > li:first-child {
+    padding-inline-end: 0;
+  }
+
+  .SubdomainNavBar--variant-default.SubdomainNavBar--has-title .SubdomainNavBar-title-area > li:first-child::after {
+    margin-inline-end: 0;
+  }
+
+  .SubdomainNavBar--variant-default.SubdomainNavBar--has-title .SubdomainNavBar-title-item {
+    padding-inline: var(--base-size-24);
+  }
+
   .SubdomainNavBar .SubdomainNavBar-logo-mark {
     justify-content: center;
   }
@@ -1290,47 +1266,6 @@
   .SubdomainNavBar .SubdomainNavBar-more-link:focus-visible > .SubdomainNavBar-link-content {
     outline: var(--brand-borderWidth-thick) solid var(--brand-color-focus);
     outline-offset: var(--base-size-2);
-  }
-
-  .SubdomainNavBar .SubdomainNavBar-link-text::after {
-    display: none;
-  }
-
-  .SubdomainNavBar .SubdomainNavBar-overflow-menu {
-    animation: fade-in-down-overflow var(--brand-animation-duration-faster);
-    animation-timing-function: var(--brand-animation-easing-default);
-    border: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
-    border-start-start-radius: 0;
-    border-start-end-radius: 0;
-    border-end-start-radius: var(--brand-borderRadius-medium);
-    border-end-end-radius: var(--brand-borderRadius-medium);
-    box-shadow: none;
-    min-width: calc(var(--base-size-128) + var(--base-size-32));
-    transform: translateY(calc(0px - var(--base-size-4)));
-  }
-
-  .SubdomainNavBar .SubdomainNavBar-overflow-menu-list {
-    gap: var(--brand-borderWidth-thin);
-    padding: var(--base-size-8);
-    width: 100%;
-  }
-
-  .SubdomainNavBar .SubdomainNavBar-overflow-menu-item .SubdomainNavBar-link {
-    width: 100%;
-    min-height: var(--base-size-40);
-    padding: var(--base-size-8) var(--base-size-12);
-    color: var(--brand-color-text-muted);
-    background-color: var(--brand-color-canvas-default);
-    border-radius: var(--brand-borderRadius-medium);
-    font-size: var(--brand-text-size-100);
-    line-height: var(--brand-text-lineHeight-200);
-  }
-
-  .SubdomainNavBar .SubdomainNavBar-overflow-menu-item .SubdomainNavBar-link:hover,
-  .SubdomainNavBar .SubdomainNavBar-overflow-menu-item .SubdomainNavBar-link:focus,
-  .SubdomainNavBar .SubdomainNavBar-overflow-menu-item .SubdomainNavBar-link:focus-visible {
-    color: var(--brand-color-text-default);
-    background-color: var(--brand-color-canvas-subtle);
   }
 
   @media (prefers-reduced-motion: no-preference) {
@@ -1458,6 +1393,7 @@
     width: 100%;
     block-size: 100%;
     padding-inline: var(--base-size-16);
+    border-radius: 0;
   }
 }
 
@@ -1820,17 +1756,6 @@
   }
   100% {
     opacity: 0;
-  }
-}
-
-@keyframes enlarge-shadow {
-  0% {
-    scale: 0.98;
-    box-shadow: 0px 8px 0 rgba(1, 4, 9, 0.15);
-  }
-  100% {
-    scale: 1;
-    box-shadow: 0px 8px 24px rgba(1, 4, 9, 0.15);
   }
 }
 

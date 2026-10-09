@@ -80,6 +80,21 @@
   padding-block-end: 0;
 }
 
+.RiverBreakoutTabs--has-background-visual .RiverBreakoutTabs__sharedVisual:has(> [data-video-player-container]) {
+  border-radius: 0;
+}
+
+.RiverBreakoutTabs--has-background-visual .RiverBreakoutTabs__visual--rounded > [data-video-player-container] {
+  overflow: hidden;
+  border-radius: var(--brand-borderRadius-medium);
+}
+
+.RiverBreakoutTabs--has-background-visual.RiverBreakoutTabs--image-position-block-end
+  .RiverBreakoutTabs__visual--rounded
+  > [data-video-player-container] {
+  border-radius: var(--brand-borderRadius-medium) var(--brand-borderRadius-medium) 0 0;
+}
+
 /* for backgroundVisualFullBleed — extend the backdrop to the gridline edges */
 .RiverBreakoutTabs--background-visual-full-bleed .RiverBreakoutTabs__sharedVisuals {
   overflow: visible;

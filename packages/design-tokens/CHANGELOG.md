@@ -1,5 +1,47 @@
 # @primer/brand-primitives
 
+## 0.78.0
+
+### Minor Changes
+
+- [#1489](https://github.com/primer/brand/pull/1489) [`2dd5b79`](https://github.com/primer/brand/commit/2dd5b791394d59ca56bfda56b8c19c0ab7118e3b) Thanks [@rezrah](https://github.com/rezrah)! - Added `IconButton` for compact, accessible icon-only actions.
+
+  ```jsx
+  <IconButton icon={TrashIcon} aria-label="Delete item" variant="danger" />
+  ```
+
+  🔗 [See `IconButton` documentation for more usage examples](https://primer.style/brand/components/IconButton/react)
+
+- [#1489](https://github.com/primer/brand/pull/1489) [`2dd5b79`](https://github.com/primer/brand/commit/2dd5b791394d59ca56bfda56b8c19c0ab7118e3b) Thanks [@rezrah](https://github.com/rezrah)! - Added icon-only options `ActionMenu`.
+
+  These new options use the new `IconButton` component internally.
+
+  ```jsx
+  <ActionMenu mode="split-button">
+    <ActionMenu.IconButton as="a" href="#repository" icon={MarkGithubIcon} aria-label="Open repository" />
+    <ActionMenu.Overlay aria-label="Repository actions">
+      <ActionMenu.Item as="a" href="#issues">
+        Issues
+      </ActionMenu.Item>
+    </ActionMenu.Overlay>
+  </ActionMenu>
+  ```
+
+  🔗 [See `ActionMenu` documentation for more usage examples](https://primer.style/brand/components/ActionMenu#icon-button-trigger)
+
+### Patch Changes
+
+- [#1490](https://github.com/primer/brand/pull/1490) [`184bd2f`](https://github.com/primer/brand/commit/184bd2f645a0da2d8dd86af949d0adbea8e9d811) Thanks [@danielguillan](https://github.com/danielguillan)! - Updates to `SubdomainNavBar`:
+
+  - Fixed narrow-menu dismissal, responsive layout, component-specific accent border token, title spacing, and link attribute forwarding.
+  - Cleaned up obsolete styles
+
+## 0.77.0
+
+### Patch Changes
+
+- [#1477](https://github.com/primer/brand/pull/1477) [`d1a6689`](https://github.com/primer/brand/commit/d1a668949663927a16c158a11ddf7b3355d73bc1) Thanks [@danielguillan](https://github.com/danielguillan)! - Add a `gridline` variant to the `Section` component and a design token for customizing its inline padding.
+
 ## 0.76.0
 
 ## 0.75.1

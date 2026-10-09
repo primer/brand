@@ -1,0 +1,76 @@
+{
+  "IconButton": {
+    "danger": {
+      "fgColor": {
+        "rest": {
+          "value": "var(--brand-color-danger-fg)",
+          "dark": "var(--brand-color-danger-fg)"
+        },
+        "hover": {
+          "value": "var(--base-color-scale-white-0)",
+          "dark": "var(--base-color-scale-white-0)"
+        },
+        "active": {
+          "value": "var(--base-color-scale-white-0)",
+          "dark": "var(--base-color-scale-white-0)"
+        }
+      },
+      "bgColor": {
+        "rest": {
+          "value": "var(--brand-button-secondary-bgColor-rest)",
+          "dark": "var(--brand-button-secondary-bgColor-rest)"
+        },
+        "hover": {
+          "value": "var(--brand-color-danger-emphasis)",
+          "dark": "var(--brand-color-danger-emphasis)"
+        },
+        "active": {
+          "value": "var(--brand-color-danger-emphasis)",
+          "dark": "var(--brand-color-danger-emphasis)"
+        }
+      },
+      "borderColor": {
+        "rest": {
+          "value": "var(--brand-button-secondary-borderColor-rest)",
+          "dark": "var(--brand-button-secondary-borderColor-rest)"
+        },
+        "hover": {
+          "value": "var(--brand-color-danger-emphasis)",
+          "dark": "var(--brand-color-danger-emphasis)"
+        },
+        "active": {
+          "value": "var(--brand-color-danger-emphasis)",
+          "dark": "var(--brand-color-danger-emphasis)"
+        }
+      }
+    },
+    "inactive": {
+      "fgColor": {
+        "value": "var(--brand-color-text-muted)",
+        "dark": "var(--brand-color-text-muted)"
+      },
+      "bgColor": {
+        "value": "var(--brand-color-canvas-subtle)",
+        "dark": "var(--brand-color-canvas-subtle)"
+      },
+      "borderColor": {
+        "value": "var(--brand-color-canvas-subtle)",
+        "dark": "var(--brand-color-canvas-subtle)"
+      }
+    },
+    "invisible": {
+      "bgColor": {
+        "rest": {
+          "value": "transparent",
+          "dark": "transparent"
+        }
+      },
+      "borderColor": {
+        "rest": {
+          "value": "transparent",
+          "dark": "transparent"
+        }
+      }
+    }
+  }
+}

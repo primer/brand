@@ -37,36 +37,40 @@
   background-color: var(--brand-color-canvas-default);
 }
 
-.ActionMenu__innerButton--split-button:first-child,
-.ActionMenu__innerButton--split-button:first-child:hover {
+.ActionMenu__innerButton--split-button.ActionMenu__innerButton--split-button-primary,
+.ActionMenu__innerButton--split-button.ActionMenu__innerButton--split-button-primary:hover {
   position: relative;
   z-index: 1;
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
 }
 
-.ActionMenu__innerButton--split-button:first-child::before,
-.ActionMenu__innerButton--split-button:hover:first-child::before {
+.ActionMenu__innerButton--split-button.ActionMenu__innerButton--split-button-primary::before,
+.ActionMenu__innerButton--split-button.ActionMenu__innerButton--split-button-primary:hover::before {
   content: '';
   position: absolute;
   top: calc(var(--base-size-2) / -2);
   right: calc(var(--base-size-2) * -1);
   width: var(--brand-borderWidth-thin);
   height: calc(100% + var(--base-size-2));
-  background-color: var(--brand-color-border-muted);
+  background-color: var(--brand-ActionMenu-color-splitButton-divider-default);
 }
 
-.ActionMenu__innerButton--subtle.ActionMenu__innerButton--split-button::before {
+.ActionMenu__innerButton--primary.ActionMenu__innerButton--split-button.ActionMenu__innerButton--split-button-primary::before {
+  background-color: var(--brand-ActionMenu-color-splitButton-divider-primary);
+}
+
+.ActionMenu__innerButton--subtle.ActionMenu__innerButton--split-button.ActionMenu__innerButton--split-button-primary::before {
   top: calc(var(--base-size-2) * -1);
   height: calc(100% + var(--base-size-4));
 }
 
-.ActionMenu__innerButton--subtle.ActionMenu__innerButton--split-button:active:first-child::before {
+.ActionMenu__innerButton--subtle.ActionMenu__innerButton--split-button.ActionMenu__innerButton--split-button-primary:active::before {
   width: 0;
 }
 
 .ActionMenu__innerButton--medium.ActionMenu__innerButton--split-button,
-.ActionMenu__innerButton--split-button:last-child {
+.ActionMenu__innerButton--split-button.ActionMenu__innerButton--split-button-menu {
   padding: var(--brand-control-medium-paddingBlock-condensed) var(--brand-control-medium-paddingInline-normal); /* Override the default button padding */
 }
 
@@ -74,7 +78,7 @@
   vertical-align: middle !important;
 }
 
-.ActionMenu__innerButton--split-button:last-child {
+.ActionMenu__innerButton--split-button.ActionMenu__innerButton--split-button-menu {
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
   position: relative;
