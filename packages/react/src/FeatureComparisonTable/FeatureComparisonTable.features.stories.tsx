@@ -75,14 +75,16 @@ export const FeatureRows: Story = {
   render: () => <Fixture />,
   play: async ({canvasElement}) => {
     const canvas = within(canvasElement)
-    const narrow = await canvas.findByTestId('FeatureComparisonTable__narrow')
-    const table = canvas.getByTestId('FeatureComparisonTable__table')
+    const isWide = window.matchMedia('(min-width: 80rem)').matches
+    const projection = await canvas.findByTestId(
+      isWide ? 'FeatureComparisonTable__table' : 'FeatureComparisonTable__narrow',
+    )
     await canvasElement.ownerDocument.fonts.ready
     expectGridlines(canvas.getByTestId('FeatureComparisonTable'))
     expect(document.documentElement.scrollWidth).toBeLessThanOrEqual(window.innerWidth)
-    const isWide = window.matchMedia('(min-width: 80rem)').matches
-    expectFeatureTypography(isWide ? table : narrow)
+    expectFeatureTypography(projection)
     if (!isWide) return
+    const table = projection
 
     const rowStarts = table.querySelectorAll(
       'tbody th[scope="row"], tbody th[colspan] > [aria-hidden] > span:first-child',
@@ -689,11 +691,10 @@ function expectColumnAlignment(table: HTMLElement) {
 }
 
 async function checkColumnAlignment({canvasElement}: Parameters<NonNullable<Story['play']>>[0]) {
+  if (!window.matchMedia('(min-width: 80rem)').matches) return
   const table = await within(canvasElement).findByTestId('FeatureComparisonTable__table')
   await canvasElement.ownerDocument.fonts.ready
-  if (window.matchMedia('(min-width: 80rem)').matches) {
-    expectColumnAlignment(table)
-  }
+  expectColumnAlignment(table)
 }
 
 function expectFeatureTypography(projection: HTMLElement) {
@@ -709,10 +710,9 @@ function expectFeatureTypography(projection: HTMLElement) {
 async function checkDisclosureLayout({canvasElement}: Parameters<NonNullable<Story['play']>>[0]) {
   const canvas = within(canvasElement)
   const narrow = await canvas.findByTestId('FeatureComparisonTable__narrow')
-  const table = canvas.getByTestId('FeatureComparisonTable__table')
   await canvasElement.ownerDocument.fonts.ready
   expect(narrow).toBeVisible()
-  expect(table).not.toBeVisible()
+  expect(canvas.queryByTestId('FeatureComparisonTable__table')).not.toBeInTheDocument()
   expectGridlines(canvas.getByTestId('FeatureComparisonTable'))
   expectFeatureTypography(narrow)
   expect(document.documentElement.scrollWidth).toBeLessThanOrEqual(window.innerWidth)

@@ -29,6 +29,8 @@ Compare two to four plans. Use an `Item` for each plan and a `Group` for related
 
 On smaller screens, features appear in collapsible groups. Plan descriptions, prices, labels, and actions are shown only at `80rem` and above.
 
+Only the active responsive layout is mounted. Switching across `80rem` remounts custom content, so keep any state that must survive layout changes outside the projected children.
+
 ```jsx live
 <FeatureComparisonTable>
   <FeatureComparisonTable.Heading>Compare features</FeatureComparisonTable.Heading>

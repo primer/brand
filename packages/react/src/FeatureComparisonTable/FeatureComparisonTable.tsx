@@ -143,7 +143,7 @@ type GroupState = {
 const getChildrenOfType = <P,>(children: React.ReactNode[], type: React.JSXElementConstructor<P>) =>
   children.filter((child): child is React.ReactElement<P> => React.isValidElement<P>(child) && child.type === type)
 
-// Projected children render in both layouts, so consumer IDs must not be duplicated.
+// Only GroupHeading supports consumer IDs on projected primitives.
 const withoutId = <P,>({id: _id, ...props}: P & {id?: string}) => props
 
 const resolveExpanded = (expanded: FeatureComparisonTableGroupProps['expanded'], breakpoint: BreakpointCategory) => {
@@ -446,12 +446,26 @@ const FeatureComparisonTableRoot = forwardRef<HTMLDivElement, FeatureComparisonT
     const tableGroupControls = useRef<Record<string, HTMLButtonElement | null>>({})
     const previousBreakpoint = useRef(breakpoint)
     const blurredControl = useRef<HTMLElement | null>(null)
+    const focusedGroupIdentity = useRef<string | undefined>(undefined)
 
     useEffect(() => {
       const regularQuery = window.matchMedia('(min-width: 48rem)')
       const wideQuery = window.matchMedia('(min-width: 80rem)')
       const updateBreakpoint = () => {
-        setBreakpoint(wideQuery.matches ? 'wide' : regularQuery.matches ? 'regular' : 'narrow')
+        const nextBreakpoint = wideQuery.matches ? 'wide' : regularQuery.matches ? 'regular' : 'narrow'
+        const previous = previousBreakpoint.current
+
+        if ((previous === 'wide') !== (nextBreakpoint === 'wide')) {
+          // Capture focus before the previous projection unmounts and clears its refs.
+          const activeElement =
+            document.activeElement === document.body ? blurredControl.current : document.activeElement
+          const previousControls = previous === 'wide' ? tableGroupControls.current : narrowGroupControls.current
+          focusedGroupIdentity.current = Object.entries(previousControls).find(
+            ([, control]) => control !== null && control === activeElement,
+          )?.[0]
+        }
+
+        setBreakpoint(nextBreakpoint)
       }
 
       updateBreakpoint()
@@ -536,21 +550,15 @@ const FeatureComparisonTableRoot = forwardRef<HTMLDivElement, FeatureComparisonT
     useLayoutEffect(() => {
       const previous = previousBreakpoint.current
       previousBreakpoint.current = breakpoint
+      blurredControl.current = null
 
       const changedProjection = (previous === 'wide') !== (breakpoint === 'wide')
       if (!changedProjection) return
 
-      // CSS can hide and blur the control before the media query change reaches React.
-      const activeElement = document.activeElement === document.body ? blurredControl.current : document.activeElement
-      blurredControl.current = null
-      const previousControls = previous === 'wide' ? tableGroupControls.current : narrowGroupControls.current
       const nextControls = breakpoint === 'wide' ? tableGroupControls.current : narrowGroupControls.current
-      const focusedGroupIdentity = Object.entries(previousControls).find(
-        ([, control]) => control === activeElement,
-      )?.[0]
-
-      if (focusedGroupIdentity) {
-        nextControls[focusedGroupIdentity]?.focus()
+      if (focusedGroupIdentity.current) {
+        nextControls[focusedGroupIdentity.current]?.focus()
+        focusedGroupIdentity.current = undefined
       }
     }, [breakpoint])
 
@@ -635,214 +643,216 @@ const FeatureComparisonTableRoot = forwardRef<HTMLDivElement, FeatureComparisonT
         style={{...animationInlineStyles, ...style}}
         {...rest}
       >
-        <div className={styles.FeatureComparisonTable__narrow} data-testid={testIds.narrow}>
-          {heading ? (
-            <div className={clsx(styles.FeatureComparisonTable__narrowHeading, gridlineStyles.gridline)}>
-              {renderTableHeading(heading, narrowHeadingId)}
-            </div>
-          ) : null}
-          {groups.map((group, groupIndex) => {
-            const groupId = `${instanceId}-narrow-group-${groupIndex}`
-            const groupOpen = groupStates[group.identity].open
+        {breakpoint !== 'wide' ? (
+          <div className={styles.FeatureComparisonTable__narrow} data-testid={testIds.narrow}>
+            {heading ? (
+              <div className={clsx(styles.FeatureComparisonTable__narrowHeading, gridlineStyles.gridline)}>
+                {renderTableHeading(heading, narrowHeadingId)}
+              </div>
+            ) : null}
+            {groups.map((group, groupIndex) => {
+              const groupId = `${instanceId}-narrow-group-${groupIndex}`
+              const groupOpen = groupStates[group.identity].open
 
-            return (
-              <details
-                className={clsx(styles.FeatureComparisonTable__group, group.element.props.className)}
-                data-testid={testIds.group}
-                key={group.identity}
-                open={groupOpen}
-                onToggle={event => {
-                  if (event.currentTarget.open !== groupOpen) {
-                    updateGroupOpen(group, event.currentTarget.open)
-                  }
-                }}
-              >
-                <summary
-                  aria-controls={groupId}
-                  aria-expanded={groupOpen}
-                  ref={control => {
-                    narrowGroupControls.current[group.identity] = control
+              return (
+                <details
+                  className={clsx(styles.FeatureComparisonTable__group, group.element.props.className)}
+                  data-testid={testIds.group}
+                  key={group.identity}
+                  open={groupOpen}
+                  onToggle={event => {
+                    if (event.currentTarget.open !== groupOpen) {
+                      updateGroupOpen(group, event.currentTarget.open)
+                    }
                   }}
                 >
-                  {renderGroupHeading(
-                    group.heading,
-                    group.heading?.props.children,
-                    undefined,
-                    breakpoint !== 'wide' ? group.heading?.props.id : undefined,
-                  )}
-                  {renderChevron(groupOpen)}
-                </summary>
-                <div id={groupId}>
-                  {group.rows.map((row, rowIndex) => (
-                    <div
-                      className={clsx(styles.FeatureComparisonTable__row, row.element.props.className)}
-                      data-testid={testIds.row}
-                      key={`${groupId}-row-${rowIndex}`}
-                    >
-                      <div data-testid={testIds.rowHeading}>{renderRowHeading(row)}</div>
-                      <dl>
-                        {items.map((item, itemIndex) => (
-                          <React.Fragment key={`${groupId}-row-${rowIndex}-item-${itemIndex}`}>
-                            <dt className={clsx(item.label && styles.FeatureComparisonTable__promoted)}>
-                              <Text
-                                as="div"
-                                size="200"
-                                variant="muted"
-                                className={styles.FeatureComparisonTable__planName}
-                              >
-                                {item.heading ? item.heading.props.children : itemIndex + 1}
-                              </Text>
-                            </dt>
-                            <dd className={clsx(item.label && styles.FeatureComparisonTable__promoted)}>
-                              {renderCell(row.cells[itemIndex])}
-                            </dd>
-                          </React.Fragment>
-                        ))}
-                      </dl>
-                    </div>
-                  ))}
-                </div>
-              </details>
-            )
-          })}
-        </div>
-
-        <table
-          aria-labelledby={heading ? tableHeadingId : undefined}
-          className={styles.FeatureComparisonTable__table}
-          data-testid={testIds.table}
-          ref={tableRef}
-        >
-          <colgroup>
-            <col className={styles.FeatureComparisonTable__featureColumn} />
-            {items.map((_, itemIndex) => (
-              <col key={`${instanceId}-item-column-${itemIndex}`} />
-            ))}
-          </colgroup>
-          <thead
-            className={clsx(
-              groups.length > 0 && gridlineStyles.gridline,
-              styles.FeatureComparisonTable__itemDivider,
-              styles.FeatureComparisonTable__headingGrid,
-              hasLabels && styles['FeatureComparisonTable__headingGrid--hasLabel'],
-            )}
+                  <summary
+                    aria-controls={groupId}
+                    aria-expanded={groupOpen}
+                    ref={control => {
+                      narrowGroupControls.current[group.identity] = control
+                    }}
+                  >
+                    {renderGroupHeading(
+                      group.heading,
+                      group.heading?.props.children,
+                      undefined,
+                      group.heading?.props.id,
+                    )}
+                    {renderChevron(groupOpen)}
+                  </summary>
+                  <div id={groupId}>
+                    {group.rows.map((row, rowIndex) => (
+                      <div
+                        className={clsx(styles.FeatureComparisonTable__row, row.element.props.className)}
+                        data-testid={testIds.row}
+                        key={`${groupId}-row-${rowIndex}`}
+                      >
+                        <div data-testid={testIds.rowHeading}>{renderRowHeading(row)}</div>
+                        <dl>
+                          {items.map((item, itemIndex) => (
+                            <React.Fragment key={`${groupId}-row-${rowIndex}-item-${itemIndex}`}>
+                              <dt className={clsx(item.label && styles.FeatureComparisonTable__promoted)}>
+                                <Text
+                                  as="div"
+                                  size="200"
+                                  variant="muted"
+                                  className={styles.FeatureComparisonTable__planName}
+                                >
+                                  {item.heading ? item.heading.props.children : itemIndex + 1}
+                                </Text>
+                              </dt>
+                              <dd className={clsx(item.label && styles.FeatureComparisonTable__promoted)}>
+                                {renderCell(row.cells[itemIndex])}
+                              </dd>
+                            </React.Fragment>
+                          ))}
+                        </dl>
+                      </div>
+                    ))}
+                  </div>
+                </details>
+              )
+            })}
+          </div>
+        ) : (
+          <table
+            aria-labelledby={heading ? tableHeadingId : undefined}
+            className={styles.FeatureComparisonTable__table}
+            data-testid={testIds.table}
+            ref={tableRef}
           >
-            <tr>
-              <th
-                className={clsx(
-                  styles.FeatureComparisonTable__headerCell,
-                  hasLabels && styles['FeatureComparisonTable__headerCell--hasLabel'],
-                )}
-                scope="col"
-              >
-                {heading ? (
-                  renderTableHeading(
-                    heading,
-                    tableHeadingId,
-                    clsx(
-                      styles.FeatureComparisonTable__tableHeading,
-                      hasLabels && styles['FeatureComparisonTable__tableHeading--hasLabel'],
-                    ),
-                  )
-                ) : (
-                  <span className="visually-hidden">Feature</span>
-                )}
-              </th>
-              {items.map((item, itemIndex) => (
+            <colgroup>
+              <col className={styles.FeatureComparisonTable__featureColumn} />
+              {items.map((_, itemIndex) => (
+                <col key={`${instanceId}-item-column-${itemIndex}`} />
+              ))}
+            </colgroup>
+            <thead
+              className={clsx(
+                groups.length > 0 && gridlineStyles.gridline,
+                styles.FeatureComparisonTable__itemDivider,
+                styles.FeatureComparisonTable__headingGrid,
+                hasLabels && styles['FeatureComparisonTable__headingGrid--hasLabel'],
+              )}
+            >
+              <tr>
                 <th
                   className={clsx(
                     styles.FeatureComparisonTable__headerCell,
                     hasLabels && styles['FeatureComparisonTable__headerCell--hasLabel'],
-                    item.label && styles.FeatureComparisonTable__promoted,
                   )}
                   scope="col"
-                  key={`${instanceId}-item-${itemIndex}`}
                 >
-                  {renderItemSummary(item, itemIndex, hasLabels)}
+                  {heading ? (
+                    renderTableHeading(
+                      heading,
+                      tableHeadingId,
+                      clsx(
+                        styles.FeatureComparisonTable__tableHeading,
+                        hasLabels && styles['FeatureComparisonTable__tableHeading--hasLabel'],
+                      ),
+                    )
+                  ) : (
+                    <span className="visually-hidden">Feature</span>
+                  )}
                 </th>
-              ))}
-            </tr>
-          </thead>
-          {groups.map((group, groupIndex) => {
-            const groupControlId = `${instanceId}-table-group-control-${groupIndex}`
-            const groupId = `${instanceId}-table-group-${groupIndex}`
-            const groupOpen = groupStates[group.identity].open
+                {items.map((item, itemIndex) => (
+                  <th
+                    className={clsx(
+                      styles.FeatureComparisonTable__headerCell,
+                      hasLabels && styles['FeatureComparisonTable__headerCell--hasLabel'],
+                      item.label && styles.FeatureComparisonTable__promoted,
+                    )}
+                    scope="col"
+                    key={`${instanceId}-item-${itemIndex}`}
+                  >
+                    {renderItemSummary(item, itemIndex, hasLabels)}
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            {groups.map((group, groupIndex) => {
+              const groupControlId = `${instanceId}-table-group-control-${groupIndex}`
+              const groupId = `${instanceId}-table-group-${groupIndex}`
+              const groupOpen = groupStates[group.identity].open
 
-            return (
-              <React.Fragment key={group.identity}>
-                <tbody>
-                  <tr>
-                    <th
-                      className={clsx(
-                        groupIndex > 0 && gridlineStyles.gridline,
-                        styles.FeatureComparisonTable__groupDivider,
-                      )}
-                      colSpan={items.length + 1}
-                      scope="rowgroup"
-                    >
-                      <div className={styles.FeatureComparisonTable__groupBackground} aria-hidden="true">
-                        <span />
-                        {items.map((item, itemIndex) => (
-                          <span
-                            key={itemIndex}
-                            className={clsx(item.label && styles.FeatureComparisonTable__promoted)}
-                          />
-                        ))}
-                      </div>
-                      {renderGroupHeading(
-                        group.heading,
-                        <button
-                          aria-controls={groupId}
-                          aria-expanded={groupOpen}
-                          id={groupControlId}
-                          onClick={() => updateGroupOpen(group, !groupOpen)}
-                          ref={control => {
-                            tableGroupControls.current[group.identity] = control
-                          }}
-                          type="button"
-                        >
-                          {group.heading?.props.children}
-                          {renderChevron(groupOpen)}
-                        </button>,
-                        group.heading?.props.size ? undefined : styles.FeatureComparisonTable__groupHeading,
-                        breakpoint === 'wide' ? group.heading?.props.id : undefined,
-                      )}
-                    </th>
-                  </tr>
-                </tbody>
-                <tbody
-                  aria-labelledby={groupControlId}
-                  className={group.element.props.className}
-                  hidden={!groupOpen}
-                  id={groupId}
-                >
-                  {group.rows.map((row, rowIndex) => (
-                    <tr
-                      className={clsx(styles.FeatureComparisonTable__row, row.element.props.className)}
-                      data-testid={testIds.row}
-                      key={`${groupId}-row-${rowIndex}`}
-                    >
-                      <th scope="row" data-testid={testIds.rowHeading}>
-                        {renderRowHeading(row)}
+              return (
+                <React.Fragment key={group.identity}>
+                  <tbody>
+                    <tr>
+                      <th
+                        className={clsx(
+                          groupIndex > 0 && gridlineStyles.gridline,
+                          styles.FeatureComparisonTable__groupDivider,
+                        )}
+                        colSpan={items.length + 1}
+                        scope="rowgroup"
+                      >
+                        <div className={styles.FeatureComparisonTable__groupBackground} aria-hidden="true">
+                          <span />
+                          {items.map((item, itemIndex) => (
+                            <span
+                              key={itemIndex}
+                              className={clsx(item.label && styles.FeatureComparisonTable__promoted)}
+                            />
+                          ))}
+                        </div>
+                        {renderGroupHeading(
+                          group.heading,
+                          <button
+                            aria-controls={groupId}
+                            aria-expanded={groupOpen}
+                            id={groupControlId}
+                            onClick={() => updateGroupOpen(group, !groupOpen)}
+                            ref={control => {
+                              tableGroupControls.current[group.identity] = control
+                            }}
+                            type="button"
+                          >
+                            {group.heading?.props.children}
+                            {renderChevron(groupOpen)}
+                          </button>,
+                          group.heading?.props.size ? undefined : styles.FeatureComparisonTable__groupHeading,
+                          group.heading?.props.id,
+                        )}
                       </th>
-                      {row.cells.map((cell, cellIndex) => (
-                        <td
-                          className={clsx(
-                            items[cellIndex].label && styles.FeatureComparisonTable__promoted,
-                            cell?.props.variant && styles.FeatureComparisonTable__statusCell,
-                          )}
-                          key={`${groupId}-row-${rowIndex}-cell-${cellIndex}`}
-                        >
-                          {renderCell(cell)}
-                        </td>
-                      ))}
                     </tr>
-                  ))}
-                </tbody>
-              </React.Fragment>
-            )
-          })}
-        </table>
+                  </tbody>
+                  <tbody
+                    aria-labelledby={groupControlId}
+                    className={group.element.props.className}
+                    hidden={!groupOpen}
+                    id={groupId}
+                  >
+                    {group.rows.map((row, rowIndex) => (
+                      <tr
+                        className={clsx(styles.FeatureComparisonTable__row, row.element.props.className)}
+                        data-testid={testIds.row}
+                        key={`${groupId}-row-${rowIndex}`}
+                      >
+                        <th scope="row" data-testid={testIds.rowHeading}>
+                          {renderRowHeading(row)}
+                        </th>
+                        {row.cells.map((cell, cellIndex) => (
+                          <td
+                            className={clsx(
+                              items[cellIndex].label && styles.FeatureComparisonTable__promoted,
+                              cell?.props.variant && styles.FeatureComparisonTable__statusCell,
+                            )}
+                            key={`${groupId}-row-${rowIndex}-cell-${cellIndex}`}
+                          >
+                            {renderCell(cell)}
+                          </td>
+                        ))}
+                      </tr>
+                    ))}
+                  </tbody>
+                </React.Fragment>
+              )
+            })}
+          </table>
+        )}
       </div>
     )
   },
