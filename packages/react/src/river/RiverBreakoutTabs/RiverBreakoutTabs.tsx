@@ -386,16 +386,14 @@ const RiverBreakoutTabsRoot = forwardRef<HTMLElement, RiverBreakoutTabsProps>(
         {A11yHeadingChild && cloneElement(A11yHeadingChild, {id: headingId})}
 
         {isWideTabList ? (
-          <div className={styles.RiverBreakoutTabs__wideTabList}>
-            <div
-              {...tabListProps}
-              className={styles.RiverBreakoutTabs__tablist}
-              style={{'--river-breakout-tabs-columns': String(wideTabListColumns)} as React.CSSProperties}
-            >
+          <div
+            className={styles.RiverBreakoutTabs__wideTabList}
+            style={{'--river-breakout-tabs-columns': String(wideTabListColumns)} as React.CSSProperties}
+          >
+            <div {...tabListProps} className={styles.RiverBreakoutTabs__tablist}>
               {Items.map((item, index) => {
                 const isSelected = activeTab === String(index)
                 const tabProps = getTabProps<HTMLButtonElement>(String(index))
-                const {body} = WideTabListContentParts[index]
 
                 return (
                   <div
@@ -416,8 +414,6 @@ const RiverBreakoutTabsRoot = forwardRef<HTMLElement, RiverBreakoutTabsProps>(
                         cloneElement(item.heading, {
                           className: clsx(item.heading.props.className, styles.RiverBreakoutTabs__tabHeading),
                         })}
-
-                      {body.length > 0 && <div className={styles.RiverBreakoutTabs__wideTabListContent}>{body}</div>}
                     </button>
                   </div>
                 )
@@ -444,11 +440,23 @@ const RiverBreakoutTabsRoot = forwardRef<HTMLElement, RiverBreakoutTabsProps>(
               })}
             </div>
 
+            {WideTabListContentParts.some(({body}) => body.length > 0) && (
+              <div className={styles.RiverBreakoutTabs__wideTabListContentRow}>
+                {WideTabListContentParts.map(({body}, index) => (
+                  <div
+                    key={index}
+                    className={styles.RiverBreakoutTabs__wideTabListContent}
+                    role={body.length > 0 ? 'group' : undefined}
+                    aria-labelledby={body.length > 0 ? getTabProps(String(index)).id : undefined}
+                  >
+                    {body}
+                  </div>
+                ))}
+              </div>
+            )}
+
             {WideTabListContentParts.some(content => content.action) && (
-              <div
-                className={styles.RiverBreakoutTabs__wideTabListActions}
-                style={{'--river-breakout-tabs-columns': String(wideTabListColumns)} as React.CSSProperties}
-              >
+              <div className={styles.RiverBreakoutTabs__wideTabListActions}>
                 {Items.map((_, index) => {
                   const {action} = WideTabListContentParts[index]
 
