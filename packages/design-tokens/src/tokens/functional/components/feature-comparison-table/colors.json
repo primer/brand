@@ -1,0 +1,52 @@
+{
+  "FeatureComparisonTable": {
+    "label": {
+      "accentColor": {
+        "value": "var(--brand-color-text-emphasized)",
+        "dark": "var(--brand-color-accent-primary)"
+      }
+    },
+    "highlightedColumn": {
+      "bgColor": {
+        "value": "var(--brand-color-canvas-subtle)",
+        "dark": "var(--brand-color-canvas-subtle)"
+      }
+    },
+    "includedIndicator": {
+      "fgColor": {
+        "value": "var(--brand-color-text-emphasized)",
+        "dark": "var(--brand-color-accent-primary)"
+      },
+      "bgColor": {
+        "value": "color-mix(in srgb, var(--brand-color-text-emphasized) 20%, transparent)",
+        "dark": "color-mix(in srgb, var(--brand-color-accent-primary) 20%, transparent)"
+      }
+    },
+    "unlimitedIndicator": {
+      "fgColor": {
+        "value": "var(--base-color-scale-green-6)",
+        "dark": "var(--base-color-scale-green-2)"
+      },
+      "bgColor": {
+        "value": "color-mix(in srgb, var(--brand-FeatureComparisonTable-unlimitedIndicator-fgColor) 20%, transparent)",
+        "dark": "color-mix(in srgb, var(--brand-FeatureComparisonTable-unlimitedIndicator-fgColor) 20%, transparent)"
+      }
+    },
+    "refreshIndicator": {
+      "fgColor": {
+        "value": "var(--base-color-scale-purple-5)",
+        "dark": "var(--base-color-scale-purple-2)"
+      },
+      "bgColor": {
+        "value": "color-mix(in srgb, var(--brand-FeatureComparisonTable-refreshIndicator-fgColor) 20%, transparent)",
+        "dark": "color-mix(in srgb, var(--brand-FeatureComparisonTable-refreshIndicator-fgColor) 20%, transparent)"
+      }
+    },
+    "rowHighlight": {
+      "bgColor": {
+        "value": "var(--brand-color-canvas-muted)",
+        "dark": "var(--brand-color-canvas-muted)"
+      }
+    }
+  }
+}
