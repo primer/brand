@@ -1,0 +1,23 @@
+{
+  "Spinner": {
+    "size": {
+      "small": {
+        "value": "var(--base-size-12)"
+      },
+      "medium": {
+        "value": "var(--base-size-16)"
+      },
+      "large": {
+        "value": "var(--base-size-24)"
+      }
+    },
+    "animationDuration": {
+      "default": {
+        "value": "0.8s"
+      },
+      "reducedMotion": {
+        "value": "1.6s"
+      }
+    }
+  }
+}

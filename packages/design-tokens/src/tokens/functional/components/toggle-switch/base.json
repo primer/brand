@@ -1,0 +1,35 @@
+{
+  "ToggleSwitch": {
+    "target": {"minHeight": {"value": "var(--base-size-24)"}},
+    "track": {
+      "width": {"small": {"value": "var(--base-size-28)"}, "medium": {"value": "var(--base-size-44)"}},
+      "height": {"small": {"value": "var(--base-size-16)"}, "medium": {"value": "var(--base-size-24)"}},
+      "borderWidth": {"value": "var(--brand-borderWidth-thin)"},
+      "borderRadius": {"value": "var(--brand-borderRadius-full)"}
+    },
+    "thumb": {
+      "size": {
+        "small": {"value": "var(--base-size-12)"},
+        "medium": {"value": "calc(var(--base-size-20) - var(--base-size-2))"}
+      },
+      "inset": {
+        "small": {"value": "var(--base-size-2)"},
+        "medium": {"value": "calc(var(--base-size-4) - var(--brand-borderWidth-thin))"}
+      },
+      "travel": {"small": {"value": "var(--base-size-12)"}, "medium": {"value": "var(--base-size-20)"}},
+      "borderWidth": {"value": "0.9px"},
+      "borderRadius": {"value": "var(--brand-borderRadius-full)"}
+    },
+    "label": {
+      "gap": {"value": "var(--base-size-12)"},
+      "fontSize": {"value": "var(--brand-text-size-200)"},
+      "lineHeight": {"value": "var(--base-size-16)"}
+    },
+    "focus": {"width": {"value": "var(--base-size-4)"}, "offset": {"value": "var(--base-size-2)"}},
+    "loading": {
+      "size": {"value": "var(--base-size-12)"},
+      "gap": {"value": "var(--base-size-8)"},
+      "duration": {"value": "1s"}
+    }
+  }
+}

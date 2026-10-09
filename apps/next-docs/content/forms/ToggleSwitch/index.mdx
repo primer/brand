@@ -1,0 +1,122 @@
+---
+title: ToggleSwitch
+description: Use a toggle switch for a boolean setting that takes effect immediately.
+source: https://github.com/primer/brand/blob/main/packages/react/src/forms/ToggleSwitch/ToggleSwitch.tsx
+keywords: ['form', 'control', 'switch', 'toggle', 'setting']
+show-tabs: false
+figma: 'https://www.figma.com/design/hUT1gnfCRTX7iPZSjOg8Vp/?node-id=7985-43209'
+storybook: '/brand/storybook/?path=/story/components-forms-toggleswitch--playground'
+---
+
+## Examples
+
+### Default
+
+```jsx live
+<FormControl>
+  <FormControl.Label>Enable notifications</FormControl.Label>
+  <ToggleSwitch />
+</FormControl>
+```
+
+### Uncontrolled
+
+`defaultChecked` sets the initial value. `onChange` receives the next boolean value, not a native change event.
+
+```jsx live
+<FormControl>
+  <FormControl.Label>Automatically watch repositories</FormControl.Label>
+  <ToggleSwitch defaultChecked />
+</FormControl>
+```
+
+### Controlled
+
+```jsx filename="noinline"
+function Example() {
+  const [checked, setChecked] = React.useState(false)
+  return (
+    <FormControl>
+      <FormControl.Label>Automatically watch repositories</FormControl.Label>
+      <ToggleSwitch checked={checked} onChange={setChecked} />
+    </FormControl>
+  )
+}
+
+render(Example)
+```
+
+### Sizes
+
+```jsx live
+<Stack direction="horizontal">
+  <FormControl>
+    <FormControl.Label>Small</FormControl.Label>
+    <ToggleSwitch size="small" />
+  </FormControl>
+  <FormControl>
+    <FormControl.Label>Medium</FormControl.Label>
+    <ToggleSwitch />
+  </FormControl>
+</Stack>
+```
+
+### Disabled
+
+```jsx live
+<FormControl>
+  <FormControl.Label>Enable notifications</FormControl.Label>
+  <ToggleSwitch defaultChecked disabled />
+  <FormControl.Hint>Notification settings are managed by your organization.</FormControl.Hint>
+</FormControl>
+```
+
+### Without `FormControl`
+
+```jsx live
+<Stack direction="horizontal" alignItems="center" gap="normal">
+  <Text as="span" id="notification-setting-label">
+    Enable notifications
+  </Text>
+  <ToggleSwitch aria-labelledby="notification-setting-label" />
+</Stack>
+```
+
+### Visually hidden label with `FormControl`
+
+```jsx live
+<Stack gap="normal" direction="horizontal">
+  <Text as="span" id="visible-notification-label">
+    Enable notifications
+  </Text>
+  <FormControl>
+    <FormControl.Label visuallyHidden>Enable notifications</FormControl.Label>
+    <ToggleSwitch aria-labelledby="visible-notification-label" />
+  </FormControl>
+</Stack>
+```
+
+## Component Props
+
+| Name                | Type                                         | Default     | Description                                                                           |
+| ------------------- | -------------------------------------------- | ----------- | ------------------------------------------------------------------------------------- |
+| `checked`           | `boolean`                                    |             | Controlled on/off value.                                                              |
+| `defaultChecked`    | `boolean`                                    | `false`     | Initial uncontrolled value.                                                           |
+| `onChange`          | `(checked: boolean) => void`                 |             | Called once per accepted activation with the next value.                              |
+| `onClick`           | `React.MouseEventHandler<HTMLButtonElement>` |             | Activation callback receiving the button event.                                       |
+| `disabled`          | `boolean`                                    | `false`     | Blocks activation while retaining keyboard focusability.                              |
+| `loading`           | `boolean`                                    | `false`     | Displays pending feedback and exposes `aria-busy` without blocking interaction.       |
+| `size`              | `'small' \| 'medium'`                        | `'medium'`  | Alternative sizes.                                                                    |
+| `loadingLabel`      | `string`                                     | `'Loading'` | Localized loading announcement.                                                       |
+| `loadingLabelDelay` | `number`                                     | `2000`      | Announcement delay in milliseconds.                                                   |
+| `spinnerPosition`   | `'start' \| 'end'`                           | `'end'`     | Indicator placement beside the switch when no visible FormControl label is available. |
+| `aria-label`        | `string`                                     |             | Explicit accessible name matching equivalent visible labeling.                        |
+| `aria-labelledby`   | `string`                                     |             | IDs of visible labeling elements.                                                     |
+| `aria-describedby`  | `string`                                     |             | Description IDs, combined with FormControl and loading descriptions.                  |
+| `aria-invalid`      | React ARIA attribute                         |             | Validation state of the switch button.                                                |
+| `ref`               | `React.Ref<HTMLButtonElement>`               |             | Ref for the focusable button.                                                         |
+
+## Related Components
+
+- [FormControl](/components/FormControl)
+- [Checkbox](/components/Checkbox)

@@ -12,6 +12,7 @@ import {
 } from '../Button'
 import {Tooltip, TooltipContext, type TooltipDirection} from '../Tooltip'
 import type {BaseProps} from '../component-helpers'
+import {Spinner} from '../Spinner/Spinner'
 
 import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/icon-button/base.css'
 import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/icon-button/colors-with-modes.css'
@@ -44,8 +45,8 @@ export type IconButtonProps<C extends React.ElementType = 'button'> = IconButton
 
 const iconButtonTestIds = {
   root: 'IconButton',
-  get loadingIndicator() {
-    return `${this.root}-loading-indicator`
+  get spinner() {
+    return `${this.root}-spinner`
   },
   get loadingAnnouncement() {
     return `${this.root}-loading-announcement`
@@ -100,7 +101,7 @@ function IconButtonRoot(
   }
 
   const ButtonIcon = isLoading ? (
-    <span className={styles.IconButton__loadingIndicator} data-testid={iconButtonTestIds.loadingIndicator} />
+    <Spinner accessibleLabel={null} className={styles.IconButton__spinner} data-testid={iconButtonTestIds.spinner} />
   ) : (
     <IconComponent className={styles.IconButton__icon} />
   )
