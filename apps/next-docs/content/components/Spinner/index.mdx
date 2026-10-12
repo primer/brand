@@ -25,11 +25,14 @@ Spinner provides visually hidden "Loading" text by default. This describes the v
 
 ### Sizes
 
+Use a named size or a number of CSS pixels for a custom size.
+
 ```jsx live
 <Stack direction="horizontal" alignItems="center" gap="spacious">
   <Spinner size="small" />
   <Spinner size="medium" />
   <Spinner size="large" />
+  <Spinner size={32} />
 </Stack>
 ```
 
@@ -51,8 +54,8 @@ When available, prefer a component's built-in loading behavior. Components such 
 
 ## Component Props
 
-| Name              | Type                             | Default     | Description                                                                      |
-| ----------------- | -------------------------------- | ----------- | -------------------------------------------------------------------------------- |
-| `size`            | `'small' \| 'medium' \| 'large'` | `'medium'`  | Spinner dimensions.                                                              |
-| `accessibleLabel` | `string \| null`                 | `'Loading'` | Visually hidden loading text. Use `null` when loading is communicated elsewhere. |
-| `className`       | `string`                         |             | Class applied to the animated SVG.                                               |
+| Name              | Type                                       | Default     | Description                                                                      |
+| ----------------- | ------------------------------------------ | ----------- | -------------------------------------------------------------------------------- |
+| `size`            | `'small' \| 'medium' \| 'large' \| number` | `'medium'`  | Named size or custom dimensions in CSS pixels.                                   |
+| `accessibleLabel` | `string \| null`                           | `'Loading'` | Visually hidden loading text. Use `null` when loading is communicated elsewhere. |
+| `className`       | `string`                                   |             | Class applied to the animated SVG.                                               |

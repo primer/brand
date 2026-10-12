@@ -37,6 +37,17 @@ test.describe('Visual Comparison: Spinner', () => {
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
+  test('Spinner / Custom Size', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-spinner-features--custom-size&viewMode=story',
+      {waitUntil: 'networkidle'},
+    )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+    await page.waitForTimeout(500)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
   test('Spinner / Dark', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-spinner-features--dark&viewMode=story', {
       waitUntil: 'networkidle',

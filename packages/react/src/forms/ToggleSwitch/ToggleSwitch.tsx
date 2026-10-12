@@ -1,4 +1,4 @@
-import React, {forwardRef, useEffect, useState, type HTMLAttributes, type MouseEventHandler} from 'react'
+import React, {forwardRef, useEffect, useState, type ButtonHTMLAttributes, type MouseEventHandler} from 'react'
 import {clsx} from 'clsx'
 import {useId} from '../../hooks/useId'
 import {Spinner} from '../../Spinner/Spinner'
@@ -10,13 +10,20 @@ import styles from './ToggleSwitch.module.css'
 type ToggleSwitchSize = 'small' | 'medium'
 type ToggleSwitchSpinnerPosition = 'start' | 'end'
 
-export type ToggleSwitchProps = Omit<HTMLAttributes<HTMLDivElement>, 'onChange' | 'onClick' | 'children'> & {
+type ToggleSwitchButtonPropKeysToOmit =
+  | 'aria-busy'
+  | 'aria-checked'
+  | 'aria-disabled'
+  | 'children'
+  | 'onChange'
+  | 'role'
+  | 'type'
+
+export type ToggleSwitchProps = Omit<ButtonHTMLAttributes<HTMLButtonElement>, ToggleSwitchButtonPropKeysToOmit> & {
   'data-testid'?: string
   checked?: boolean
   defaultChecked?: boolean
   onChange?: (checked: boolean) => void
-  onClick?: MouseEventHandler<HTMLButtonElement>
-  disabled?: boolean
   loading?: boolean
   size?: ToggleSwitchSize
   loadingLabel?: string
@@ -104,12 +111,12 @@ const Root: ToggleSwitchComponent = forwardRef<HTMLButtonElement, ToggleSwitchIn
 
   return (
     <div
-      {...rest}
       className={clsx(styles.ToggleSwitch, styles[`ToggleSwitch--${size}`], className)}
       data-testid={testId || testIds.root}
     >
       {spinnerPosition === 'start' && spinnerElement}
       <button
+        {...rest}
         id={uniqueId}
         ref={ref}
         type="button"

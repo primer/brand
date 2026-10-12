@@ -67,6 +67,14 @@ describe('Spinner', () => {
     expect(getByTestId('Spinner')).toHaveClass(`Spinner--${size}`)
   })
 
+  it('renders a custom numeric size in CSS pixels', () => {
+    const {getByTestId} = render(<Spinner size={32} />)
+
+    expect(getByTestId('Spinner')).toHaveAttribute('width', '32')
+    expect(getByTestId('Spinner')).toHaveAttribute('height', '32')
+    expect(getByTestId('Spinner')).not.toHaveClass('Spinner--small', 'Spinner--medium', 'Spinner--large')
+  })
+
   it('preserves consumer styling and test IDs', () => {
     const {getByTestId} = render(<Spinner size="small" className="custom-spinner" data-testid="saving" />)
 

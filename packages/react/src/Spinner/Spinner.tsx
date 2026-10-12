@@ -6,7 +6,7 @@ import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/compone
 import styles from './Spinner.module.css'
 
 export type SpinnerProps = {
-  size?: 'small' | 'medium' | 'large'
+  size?: 'small' | 'medium' | 'large' | number
   accessibleLabel?: string | null
   className?: string
   'data-testid'?: string
@@ -18,14 +18,18 @@ export function Spinner({
   className,
   'data-testid': testId = 'Spinner',
 }: SpinnerProps) {
+  const customSize = typeof size === 'number' ? size : undefined
+
   return (
     <span className={styles.Spinner__box} data-component="Spinner">
       <svg
+        width={customSize}
+        height={customSize}
         viewBox="0 0 16 16"
         fill="none"
         aria-hidden="true"
         focusable="false"
-        className={clsx(styles.Spinner, styles[`Spinner--${size}`], className)}
+        className={clsx(styles.Spinner, typeof size === 'string' && styles[`Spinner--${size}`], className)}
         data-testid={testId}
       >
         <circle

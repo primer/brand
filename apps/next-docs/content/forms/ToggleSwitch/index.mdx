@@ -10,6 +10,10 @@ thumbnail: '/images/thumbnails/toggle-switch-thumbnail.png'
 thumbnail_darkMode: '/images/thumbnails/toggle-switch-thumbnail-dark.png'
 ---
 
+```js
+import {ToggleSwitch} from '@primer/react-brand'
+```
+
 ## Examples
 
 ### Default
@@ -117,6 +121,10 @@ render(Example)
 | `aria-describedby`  | `string`                                     |             | Description IDs, combined with FormControl and loading descriptions.                  |
 | `aria-invalid`      | React ARIA attribute                         |             | Validation state of the switch button.                                                |
 | `ref`               | `React.Ref<HTMLButtonElement>`               |             | Ref for the focusable button.                                                         |
+| `className`         | `string`                                     |             | Class applied to the component wrapper.                                               |
+| `data-testid`       | `string`                                     |             | Test ID applied to the component wrapper.                                             |
+
+Other standard button attributes, including `aria-controls`, `tabIndex`, keyboard handlers, and `style`, apply to the switch button.
 
 ## Related Components
 

@@ -26,6 +26,12 @@ export const Sizes: Story = {
   ),
 }
 
+export const CustomSize: Story = {
+  render: () => (
+    <Spinner size={32} className={process.env.NODE_ENV === 'test' ? styles.Spinner__pauseAnimations : undefined} />
+  ),
+}
+
 export const Dark: Story = {
   parameters: {colorMode: 'dark'},
   render: () => <Spinner className={process.env.NODE_ENV === 'test' ? styles.Spinner__pauseAnimations : undefined} />,

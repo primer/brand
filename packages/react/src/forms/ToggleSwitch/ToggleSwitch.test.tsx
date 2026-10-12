@@ -221,8 +221,9 @@ describe('ToggleSwitch', () => {
     expect(onSubmit).not.toHaveBeenCalled()
   })
 
-  it('forwards button naming, descriptions, validity, id and ref while preserving wrapper attributes', () => {
+  it('forwards native control attributes to the switch and className to the wrapper', () => {
     const ref = createRef<HTMLButtonElement>()
+    const handleKeyDown = jest.fn()
     render(
       <>
         <span id="setting-label">Enable notifications</span>
@@ -232,9 +233,13 @@ describe('ToggleSwitch', () => {
           id="setting"
           aria-labelledby="setting-label"
           aria-describedby="setting-hint"
+          aria-controls="notification-settings"
           aria-invalid
           className="custom-switch"
+          style={{opacity: 0.5}}
+          tabIndex={-1}
           title="Notifications"
+          onKeyDown={handleKeyDown}
           data-testid="custom-test-id"
         />
       </>,
@@ -242,10 +247,15 @@ describe('ToggleSwitch', () => {
     const control = screen.getByRole('switch', {name: 'Enable notifications'})
     expect(ref.current).toBe(control)
     expect(control).toHaveAttribute('id', 'setting')
+    expect(control).toHaveAttribute('aria-controls', 'notification-settings')
     expect(control).toHaveAttribute('aria-invalid', 'true')
     expect(control).toHaveAccessibleDescription('Project updates')
+    expect(control).toHaveStyle({opacity: '0.5'})
+    expect(control).toHaveAttribute('tabindex', '-1')
+    expect(control).toHaveAttribute('title', 'Notifications')
+    control.dispatchEvent(new KeyboardEvent('keydown', {bubbles: true}))
+    expect(handleKeyDown).toHaveBeenCalledTimes(1)
     expect(screen.getByTestId('custom-test-id')).toHaveClass('custom-switch')
-    expect(screen.getByTestId('custom-test-id')).toHaveAttribute('title', 'Notifications')
     expect(screen.getByTestId('custom-test-id')).not.toHaveAttribute('id')
   })
 
