@@ -1,5 +1,7 @@
 ---
 '@primer/react-brand': minor
+'@primer/brand-css': minor
+'@primer/brand-primitives': minor
 ---
 
 Added `ToggleSwitch` for settings that need to take effect immediately.

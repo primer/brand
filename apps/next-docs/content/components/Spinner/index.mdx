@@ -1,0 +1,58 @@
+---
+title: Spinner
+description: Use a spinner to indicate that content or an action is loading.
+source: https://github.com/primer/brand/blob/main/packages/react/src/Spinner/Spinner.tsx
+keywords: ['loading', 'progress', 'status', 'spinner']
+show-tabs: false
+storybook: '/brand/storybook/?path=/story/components-spinner--playground'
+thumbnail: '/images/thumbnails/spinner-thumbnail.png'
+thumbnail_darkMode: '/images/thumbnails/spinner-thumbnail-dark.png'
+---
+
+```js
+import {Spinner} from '@primer/react-brand'
+```
+
+## Examples
+
+### Default
+
+Spinner provides visually hidden "Loading" text by default. This describes the visual indicator to assistive technologies but does not announce changes in loading status by itself.
+
+```jsx live
+<Spinner />
+```
+
+### Sizes
+
+```jsx live
+<Stack direction="horizontal" alignItems="center" gap="spacious">
+  <Spinner size="small" />
+  <Spinner size="medium" />
+  <Spinner size="large" />
+</Stack>
+```
+
+### Custom accessible label
+
+Use a concise label that describes the pending operation. Set `accessibleLabel` to `null` only when a parent component already communicates the loading state to assistive technologies.
+
+```jsx live
+<Spinner accessibleLabel="Loading notification settings" />
+```
+
+## Accessibility
+
+`Spinner` is non-interactive, and its SVG is hidden from assistive technologies. Use `accessibleLabel` to provide equivalent visually hidden loading text.
+
+Do not rely on Spinner alone to communicate loading. It should be used as part of a broader loading state UI, which announces progress through a persistent `role="status"` or `aria-live` region.
+
+When available, prefer a component's built-in loading behavior. Components such as [ToggleSwitch](/components/ToggleSwitch) and [IconButton](/components/IconButton) already provide the appropriate semantics and announcements.
+
+## Component Props
+
+| Name              | Type                             | Default     | Description                                                                      |
+| ----------------- | -------------------------------- | ----------- | -------------------------------------------------------------------------------- |
+| `size`            | `'small' \| 'medium' \| 'large'` | `'medium'`  | Spinner dimensions.                                                              |
+| `accessibleLabel` | `string \| null`                 | `'Loading'` | Visually hidden loading text. Use `null` when loading is communicated elsewhere. |
+| `className`       | `string`                         |             | Class applied to the animated SVG.                                               |
