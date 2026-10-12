@@ -37,6 +37,20 @@ describe('ToggleSwitch', () => {
     expect(onChange).toHaveBeenLastCalledWith(false)
   })
 
+  it('allows onClick to cancel activation', async () => {
+    const user = userEvent.setup()
+    const onChange = jest.fn()
+    const onClick = jest.fn(event => event.preventDefault())
+    render(<ToggleSwitch aria-label="Notifications" onChange={onChange} onClick={onClick} />)
+
+    const control = screen.getByRole('switch')
+    await user.click(control)
+
+    expect(onClick).toHaveBeenCalledTimes(1)
+    expect(onChange).not.toHaveBeenCalled()
+    expect(control).toHaveAttribute('aria-checked', 'false')
+  })
+
   it('uses defaultChecked only for initial uncontrolled state', () => {
     const {rerender} = render(<ToggleSwitch aria-label="Notifications" defaultChecked />)
     expect(screen.getByRole('switch')).toHaveAttribute('aria-checked', 'true')

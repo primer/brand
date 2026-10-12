@@ -91,10 +91,12 @@ const Root: ToggleSwitchComponent = forwardRef<HTMLButtonElement, ToggleSwitchIn
       return
     }
 
+    onClick?.(event)
+    if (event.defaultPrevented) return
+
     const nextChecked = !isChecked
     if (checked === undefined) setInternalChecked(nextChecked)
     onChange?.(nextChecked)
-    onClick?.(event)
   }
 
   const spinnerElement =
