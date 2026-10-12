@@ -38,6 +38,8 @@
   "with_videos_item_backlog_body": "Bitten Sie Copilot, große Arbeitspakete aufzuschlüsseln und einen praktikablen ersten Entwurf zu erstellen, den Ihr Team verfeinern kann.",
   "with_videos_item_backlog_link": "Übersicht lesen",
   "video_title_planning": "Video zum Copilot-Planungsworkflow",
+  "video_play_label": "Video abspielen",
+  "video_pause_label": "Video pausieren",
   "with_videos_item_workflow_heading": "Den End-to-End-Workflow ansehen",
   "with_videos_item_workflow_body": "Zeigen Sie, wie Prompts, Änderungen und Validierung in einem durchgängigen Coding-Flow zusammenpassen.",
   "with_videos_item_workflow_link": "Produktdurchlauf ansehen",

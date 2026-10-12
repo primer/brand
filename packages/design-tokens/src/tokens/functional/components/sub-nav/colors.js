@@ -4,6 +4,44 @@ module.exports = {
       value: 'var(--brand-color-canvas-default)',
       dark: 'var(--brand-color-canvas-default)',
     },
+    overflowMenu: {
+      bgColor: {
+        rest: {
+          value: 'var(--brand-color-canvas-default)',
+          dark: 'var(--brand-color-canvas-default)',
+        },
+        hover: {
+          value: 'var(--brand-color-canvas-subtle)',
+          dark: 'var(--brand-color-canvas-subtle)',
+        },
+      },
+      fgColor: {
+        rest: {
+          value: 'var(--brand-color-text-muted)',
+          dark: 'var(--brand-color-text-muted)',
+        },
+        hover: {
+          value: 'var(--brand-color-text-default)',
+          dark: 'var(--brand-color-text-default)',
+        },
+      },
+      toggle: {
+        bgColor: {
+          rest: {
+            value: 'transparent',
+            dark: 'transparent',
+          },
+          hover: {
+            value: 'var(--base-color-scale-gray-1)',
+            dark: 'var(--base-color-scale-gray-6)',
+          },
+          active: {
+            value: 'var(--base-color-scale-gray-1)',
+            dark: 'var(--base-color-scale-gray-6)',
+          },
+        },
+      },
+    },
     color: {
       link: {
         rest: {

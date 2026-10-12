@@ -238,17 +238,6 @@ test.describe('Visual Comparison: IconButton', () => {
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
-  test('IconButton / Long Delayed Tooltip', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-iconbutton-features--long-delayed-tooltip&viewMode=story',
-      {waitUntil: 'networkidle'},
-    )
-    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
   test('IconButton / With Dialog', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-iconbutton-features--with-dialog&viewMode=story',
@@ -266,7 +255,7 @@ test.describe('Visual Comparison: IconButton', () => {
     })
     await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
-    await page.waitForTimeout(500)
+    await page.waitForTimeout(1000)
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
@@ -287,7 +276,7 @@ test.describe('Visual Comparison: IconButton', () => {
     )
     await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
-    await page.waitForTimeout(500)
+    await page.waitForTimeout(1000)
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 

@@ -1,5 +1,80 @@
 # @primer/react-brand
 
+## 0.78.0
+
+### Minor Changes
+
+- [#1489](https://github.com/primer/brand/pull/1489) [`2dd5b79`](https://github.com/primer/brand/commit/2dd5b791394d59ca56bfda56b8c19c0ab7118e3b) Thanks [@rezrah](https://github.com/rezrah)! - Added `IconButton` for compact, accessible icon-only actions.
+
+  ```jsx
+  <IconButton icon={TrashIcon} aria-label="Delete item" variant="danger" />
+  ```
+
+  🔗 [See `IconButton` documentation for more usage examples](https://primer.style/brand/components/IconButton/react)
+
+- [#1489](https://github.com/primer/brand/pull/1489) [`2dd5b79`](https://github.com/primer/brand/commit/2dd5b791394d59ca56bfda56b8c19c0ab7118e3b) Thanks [@rezrah](https://github.com/rezrah)! - Added diagonal positioning and configurable pointer delays to `Tooltip`.
+
+  ```jsx
+  <Tooltip text="Open settings" direction="ne" delay="long">
+    <Button>Settings</Button>
+  </Tooltip>
+  ```
+
+  🔗 [See `Tooltip` documentation for more usage examples](https://primer.style/brand/components/Tooltip/react)
+
+- [#1489](https://github.com/primer/brand/pull/1489) [`2dd5b79`](https://github.com/primer/brand/commit/2dd5b791394d59ca56bfda56b8c19c0ab7118e3b) Thanks [@rezrah](https://github.com/rezrah)! - Added icon-only options `ActionMenu`.
+
+  These new options use the new `IconButton` component internally.
+
+  ```jsx
+  <ActionMenu mode="split-button">
+    <ActionMenu.IconButton as="a" href="#repository" icon={MarkGithubIcon} aria-label="Open repository" />
+    <ActionMenu.Overlay aria-label="Repository actions">
+      <ActionMenu.Item as="a" href="#issues">
+        Issues
+      </ActionMenu.Item>
+    </ActionMenu.Overlay>
+  </ActionMenu>
+  ```
+
+  🔗 [See `ActionMenu` documentation for more usage examples](https://primer.style/brand/components/ActionMenu#icon-button-trigger)
+
+- [#1489](https://github.com/primer/brand/pull/1489) [`2dd5b79`](https://github.com/primer/brand/commit/2dd5b791394d59ca56bfda56b8c19c0ab7118e3b) Thanks [@rezrah](https://github.com/rezrah)! - Added a joined `ButtonGroup` variant for related button and icon-button controls.
+
+  ```jsx
+  <ButtonGroup variant="joined">
+    <IconButton icon={DownloadIcon} aria-label="Download" />
+    <IconButton icon={ShareIcon} aria-label="Share" />
+  </ButtonGroup>
+  ```
+
+  🔗 [See `ButtonGroup` documentation for more usage examples](https://primer.style/brand/components/ButtonGroup/react#icon-buttons)
+
+### Patch Changes
+
+- [#1489](https://github.com/primer/brand/pull/1489) [`2dd5b79`](https://github.com/primer/brand/commit/2dd5b791394d59ca56bfda56b8c19c0ab7118e3b) Thanks [@rezrah](https://github.com/rezrah)! - Reduced the `Button` components hover and active selector specificity so that custom styles and components that depend on the `Button` can correctly override their values.
+
+- [#1483](https://github.com/primer/brand/pull/1483) [`6a2fe24`](https://github.com/primer/brand/commit/6a2fe246300bcbd057cbe87758c4c23471e4573c) Thanks [@rezrah](https://github.com/rezrah)! - Updated `Tiles` to distribute items as evenly as possible across rows at every viewport.
+
+- [#1495](https://github.com/primer/brand/pull/1495) [`d13ac6e`](https://github.com/primer/brand/commit/d13ac6e9121f7dcd075fb44b3354009505719668) Thanks [@rezrah](https://github.com/rezrah)! - `SubNav` links at wide (desktop) viewports now overflow into an overflow menu if they exceed the space available.
+
+- [#1487](https://github.com/primer/brand/pull/1487) [`ebc1ce1`](https://github.com/primer/brand/commit/ebc1ce1cf43406234004763cc204d69838257894) Thanks [@danielguillan](https://github.com/danielguillan)! - Fixed autoplaying media in `RiverBreakoutTabs` when changing items on narrow viewports.
+
+- [#1490](https://github.com/primer/brand/pull/1490) [`184bd2f`](https://github.com/primer/brand/commit/184bd2f645a0da2d8dd86af949d0adbea8e9d811) Thanks [@danielguillan](https://github.com/danielguillan)! - Updates to `SubdomainNavBar`:
+
+  - Fixed narrow-menu dismissal, responsive layout, component-specific accent border token, title spacing, and link attribute forwarding.
+  - Cleaned up obsolete styles
+
+- [#1489](https://github.com/primer/brand/pull/1489) [`2dd5b79`](https://github.com/primer/brand/commit/2dd5b791394d59ca56bfda56b8c19c0ab7118e3b) Thanks [@rezrah](https://github.com/rezrah)! - Added a small `TextInput` size for compact interfaces.
+
+  ```jsx
+  <TextInput size="small" aria-label="Search" />
+  ```
+
+  🔗 [See `TextInput` documentation for more usage examples](https://primer.style/brand/components/TextInput#sizes)
+
+- [#1478](https://github.com/primer/brand/pull/1478) [`1a64aa2`](https://github.com/primer/brand/commit/1a64aa27990f3c2d4e6e15a7170f5e81ac6d3cc8) Thanks [@rezrah](https://github.com/rezrah)! - Added extra `inline-start` padding to `FAQGroup.Heading` on wide breakpoints to better align it with adjacent content. Only applies to the `gridline` variant.
+
 ## 0.77.0
 
 ### Minor Changes

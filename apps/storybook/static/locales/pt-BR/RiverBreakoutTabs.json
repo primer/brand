@@ -38,6 +38,8 @@
   "with_videos_item_backlog_body": "Peça ao Copilot para quebrar itens grandes e gerar uma primeira versão prática que sua equipe possa refinar.",
   "with_videos_item_backlog_link": "Ler visão geral",
   "video_title_planning": "Vídeo do fluxo de planejamento com Copilot",
+  "video_play_label": "Reproduzir vídeo",
+  "video_pause_label": "Pausar vídeo",
   "with_videos_item_workflow_heading": "Veja o fluxo ponta a ponta",
   "with_videos_item_workflow_body": "Mostre como prompts, edições e validação se encaixam em um único fluxo contínuo de desenvolvimento.",
   "with_videos_item_workflow_link": "Assistir à demonstração do produto",

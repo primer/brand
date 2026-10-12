@@ -143,7 +143,14 @@ const RiverBreakoutTabsContent = ({children, className, ...props}: RiverBreakout
 }
 
 const RiverBreakoutTabsVisual = forwardRef<HTMLDivElement, RiverBreakoutTabsVisualProps>(
-  ({className, ...props}, ref) => <RiverVisualBase ref={ref} className={className} {...props} />,
+  ({className, rounded = true, ...props}, ref) => (
+    <RiverVisualBase
+      ref={ref}
+      className={clsx(rounded && styles['RiverBreakoutTabs__visual--rounded'], className)}
+      rounded={rounded}
+      {...props}
+    />
+  ),
 )
 
 const isItem = createComponentTypeGuard(RiverBreakoutTabsItem)
@@ -463,6 +470,8 @@ const RiverBreakoutTabsRoot = forwardRef<HTMLElement, RiverBreakoutTabsProps>(
               <div className={styles.RiverBreakoutTabs__accordionSharedVisuals}>
                 {BackgroundVisualLayer}
                 {cloneElement(Items[activeAccordionIndex].visual as React.ReactElement<RiverBreakoutTabsVisualProps>, {
+                  // Remount the visual so new media autoplays when the active item changes.
+                  key: String(activeAccordionIndex),
                   className: clsx(
                     Items[activeAccordionIndex].visual.props.className,
                     styles.RiverBreakoutTabs__accordionSharedVisual,

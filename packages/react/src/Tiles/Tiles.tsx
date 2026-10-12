@@ -4,8 +4,10 @@ import {ArrowUpRightIcon} from '@primer/octicons-react'
 import type {BaseProps} from '../component-helpers'
 import gridlineStyles from '../component-helpers/shared.module.css'
 import {Text} from '../Text'
+import {isFragmentElement} from '../utils/isFragmentElement'
 
 /** * Design Tokens */
+import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/tiles/base.css'
 import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/tiles/colors-with-modes.css'
 
 /** * Main Stylesheet (as a CSS Module) */
@@ -24,6 +26,11 @@ const testIds = {
 type TilesVariant = 'default' | 'gridlines'
 
 type TilesLayout = 'default' | 'compact'
+
+const maximumTilesPerRowByViewport = {
+  default: {xsmall: 2, small: 3, medium: 4, large: 9},
+  compact: {xsmall: 4, small: 3, medium: 6, large: 9},
+} satisfies Record<TilesLayout, Record<'xsmall' | 'small' | 'medium' | 'large', number>>
 
 const TilesContext = createContext<TilesLayout>('default')
 
@@ -55,6 +62,34 @@ const TilesRoot = forwardRef(
     }: PropsWithChildren<TilesProps>,
     ref: Ref<HTMLDivElement>,
   ) => {
+    const getChildCount = (childNodes: React.ReactNode): number =>
+      React.Children.toArray(childNodes).reduce<number>(
+        (count, child) => count + (isFragmentElement(child) ? getChildCount(child.props.children) : 1),
+        0,
+      )
+
+    const getBalancedColumnCount = (itemCount: number, maximumTilesPerRow: number) => {
+      if (itemCount === 0) return 1
+
+      const fewestRowsNeeded = Math.ceil(itemCount / maximumTilesPerRow)
+      return Math.ceil(itemCount / fewestRowsNeeded)
+    }
+
+    const itemCount = getChildCount(children)
+
+    if ((process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'test') && itemCount > 9) {
+      // eslint-disable-next-line no-console
+      console.warn('Tiles: Use no more than 9 items.')
+    }
+
+    const maximumTilesPerRow = maximumTilesPerRowByViewport[layout]
+    const gridStyle = {
+      '--tiles-columns-xsmall': getBalancedColumnCount(itemCount, maximumTilesPerRow.xsmall),
+      '--tiles-columns-small': getBalancedColumnCount(itemCount, maximumTilesPerRow.small),
+      '--tiles-columns-medium': getBalancedColumnCount(itemCount, maximumTilesPerRow.medium),
+      '--tiles-columns-large': getBalancedColumnCount(itemCount, maximumTilesPerRow.large),
+    } as React.CSSProperties
+
     return (
       <TilesContext.Provider value={layout}>
         <div
@@ -69,7 +104,7 @@ const TilesRoot = forwardRef(
           data-testid={testId || testIds.root}
           {...rest}
         >
-          <ul className={styles['Tiles-grid']} data-testid={testIds.grid}>
+          <ul className={styles['Tiles-grid']} data-testid={testIds.grid} style={gridStyle}>
             {children}
           </ul>
         </div>

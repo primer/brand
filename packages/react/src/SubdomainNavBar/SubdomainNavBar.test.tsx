@@ -948,6 +948,26 @@ describe('SubdomainNavBar', () => {
     expect(mockOnNarrowMenuToggle).toHaveBeenNthCalledWith(2, false)
   })
 
+  it('closes the narrow menu when the backdrop is clicked', async () => {
+    mockUseWindowSize.mockImplementation(() => ({isSmall: false, isMedium: false, isLarge: false}))
+    const mockOnNarrowMenuToggle = jest.fn()
+    const user = userEvent.setup()
+    const {container, getByRole} = render(
+      <SubdomainNavBar title="Subdomain" onNarrowMenuToggle={mockOnNarrowMenuToggle}>
+        <SubdomainNavBar.Link href="#collections">Collections</SubdomainNavBar.Link>
+      </SubdomainNavBar>,
+    )
+
+    const menuButton = getByRole('button', {name: 'Menu'})
+    await user.click(menuButton)
+    await user.click(container.querySelector('.SubdomainNavBar-menu-backdrop') as HTMLElement)
+
+    expect(menuButton).toHaveAttribute('aria-expanded', 'false')
+    expect(container.querySelector('.SubdomainNavBar-menu-backdrop')).not.toBeInTheDocument()
+    expect(mockOnNarrowMenuToggle).toHaveBeenNthCalledWith(1, true)
+    expect(mockOnNarrowMenuToggle).toHaveBeenNthCalledWith(2, false)
+  })
+
   it('closes the narrow menu and preserves the consumer handler when an action is activated', async () => {
     mockUseWindowSize.mockImplementation(() => ({isSmall: true, isMedium: true, isLarge: false}))
     document.body.style.overflow = 'clip'
@@ -1887,6 +1907,19 @@ describe('SubdomainNavBar', () => {
     )
 
     expect(getByRole('img', {name: 'External link'})).toBeInTheDocument()
+  })
+
+  it('forwards anchor-specific attributes to the link', () => {
+    const {getByRole} = render(
+      <SubdomainNavBar title="test">
+        <SubdomainNavBar.Link href="https://example.com" isExternal rel="noreferrer" target="_blank">
+          Topics
+        </SubdomainNavBar.Link>
+      </SubdomainNavBar>,
+    )
+
+    expect(getByRole('link', {name: 'Topics External link'})).toHaveAttribute('rel', 'noreferrer')
+    expect(getByRole('link', {name: 'Topics External link'})).toHaveAttribute('target', '_blank')
   })
 
   it('calls onNarrowMenuToggle when the mobile menu is toggled', async () => {

@@ -25,10 +25,18 @@ declare const styles: {
   readonly "SubNav__link--expanded": string;
   readonly "SubNav__link--has-active-sub-menu": string;
   readonly "SubNav__link--has-sub-menu": string;
+  readonly "SubNav__link--in-overlay": string;
   readonly "SubNav__link--is-in-view": string;
+  readonly "SubNav__link-item--overflowed": string;
   readonly "SubNav__link-label": string;
   readonly "SubNav__links-overlay": string;
   readonly "SubNav__links-overlay--open": string;
+  readonly "SubNav__overflow-container": string;
+  readonly "SubNav__overflow-container--visible": string;
+  readonly "SubNav__overflow-menu": string;
+  readonly "SubNav__overflow-menu-list": string;
+  readonly "SubNav__overflow-toggle": string;
+  readonly "SubNav__overflow-toggle--active": string;
   readonly "SubNav__overlay-toggle": string;
   readonly "SubNav__overlay-toggle-content": string;
   readonly "SubNav__overlay-toggle-content--end": string;
@@ -44,7 +52,6 @@ declare const styles: {
   readonly "SubNav__subHeading": string;
   readonly "SubNav__subheading-container-active": string;
   readonly "fade-in": string;
-  readonly "fade-in-down": string;
 };
 export = styles;
 

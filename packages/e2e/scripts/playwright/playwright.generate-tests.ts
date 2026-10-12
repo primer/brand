@@ -68,6 +68,8 @@ const waitForTimeoutLookup = {
   'components-minimalfooter-features--maximum-links': 5000, // for external social imagery to load
   'components-actionmenu-features--disabled-item': 1000, // flakey test,
   'components-actionmenu-features--anchored-positioning': 1000, // for the menu to open
+  'components-iconbutton-features--tooltip-directions': 1000,
+  'components-iconbutton-features--focus': 1000,
   'components-box-features--animation': 6000, // for the animation
   'components-ide--playground': 2000, // for the animation
   'components-ide--default': 2000, // for the animation
@@ -114,6 +116,7 @@ const waitForTimeoutLookup = {
   'components-hero-features-images-and-videos--with-video-inline-end': 5000, // for video metadata to load
   'components-textcursoranimation--playground': 4000, // for the animation to complete
   'components-subnav-features--delayed-active-link': 2000, // because the story sets an initial delay,
+  'components-subnav-features--overflow-menu-open': 1500, // wait for responsive overflow measurement
   'components-logosuite-features--grid-line-expressive-kitchen-sink': 3000, // for the animation to complete
   'components-logosuite-features--takeover-button': 3000, // for the animation to complete
   'components-riverbreakouttabs-examples--with-images': 4000, // for dither bg to complete
@@ -136,6 +139,7 @@ const waitForTimeoutLookup = {
  * Only add tests here that aren't suitable for visual regression testing
  */
 const skipTestLookup = [
+  'components-iconbutton-features--long-delayed-tooltip', // delayed hover timing is covered by the interaction test
   'components-river--video', // video makes this too flakey
   'components-river--custom-logos', // for external social imagery to load
   'components-actionmenu-features--keyboard-navigation', // interaction test
@@ -174,6 +178,9 @@ const skipTestLookup = [
   'components-minimalvideoplayer-features--native-source-element', // autoplaying video prevents networkidle from settling
   'components-minimalvideoplayer-features--playing', // actively playing video produces nondeterministic frames
   'components-minimalvideoplayer-features--custom-accessible-labels', // visually duplicates the paused story
+  'components-riverbreakouttabs-examples--with-minimal-video-players', // actively playing video produces nondeterministic frames
+  'components-riverbreakouttabs-features--minimal-video-player-autoplay-on-tab-change', // actively playing video produces nondeterministic frames
+  'components-riverbreakouttabs-features--minimal-video-player-autoplay-on-accordion-change', // actively playing video produces nondeterministic frames
   'components-hero-features-images-and-videos--with-native-block-end-default', // for being non-deterministic due to video buffering
   'components-hero-features-images-and-videos--with-youtube-video-block-end-default', // for loading a remote video
   'components-hero-features-images-and-videos--with-youtube-video-inline-end', // for loading a remote video
