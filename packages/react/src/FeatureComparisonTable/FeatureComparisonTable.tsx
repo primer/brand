@@ -1,13 +1,4 @@
-import React, {
-  createContext,
-  forwardRef,
-  type PropsWithChildren,
-  useContext,
-  useEffect,
-  useLayoutEffect,
-  useRef,
-  useState,
-} from 'react'
+import React, {createContext, forwardRef, type PropsWithChildren, useContext, useEffect, useRef, useState} from 'react'
 import {CheckIcon, ChevronDownIcon, DashIcon, InfinityIcon, SyncIcon} from '@primer/octicons-react'
 import {clsx} from 'clsx'
 import type {BaseProps} from '../component-helpers'
@@ -16,6 +7,7 @@ import {Heading as HeadingComponent, type HeadingProps} from '../Heading'
 import {Text} from '../Text'
 import {useAnimation} from '../animation'
 import {useId} from '../hooks/useId'
+import useIsomorphicLayoutEffect from '../hooks/useIsomorphicLayoutEffect'
 
 /**
  * Design tokens
@@ -161,7 +153,7 @@ const FeatureComparisonTableRoot = forwardRef<HTMLDivElement, FeatureComparisonT
       }
     }, [])
 
-    useLayoutEffect(() => {
+    useIsomorphicLayoutEffect(() => {
       const previous = previousBreakpoint.current
       previousBreakpoint.current = breakpoint
       blurredControl.current = null
@@ -314,14 +306,8 @@ const FeatureComparisonTableRoot = forwardRef<HTMLDivElement, FeatureComparisonT
 )
 export type FeatureComparisonTableHeadingProps = PropsWithChildren<Omit<HeadingProps, 'id' | 'ref'>>
 
-const Heading: React.FC<FeatureComparisonTableHeadingProps> = ({
-  children,
-  as,
-  size,
-  className,
-  id: _id,
-  ...rest
-}: FeatureComparisonTableHeadingProps & {id?: string}) => {
+const Heading = (props: FeatureComparisonTableHeadingProps) => {
+  const {children, as, size, className, id: _id, ...rest}: FeatureComparisonTableHeadingProps & {id?: string} = props
   const {instanceId, breakpoint} = useTableContext()
   const isItem = useContext(ItemIndexContext) > 0
 
@@ -341,60 +327,57 @@ const Heading: React.FC<FeatureComparisonTableHeadingProps> = ({
 }
 export type FeatureComparisonTableLabelProps = PropsWithChildren<FeatureComparisonTableBaseProps<HTMLSpanElement>>
 
-const Label: React.FC<FeatureComparisonTableLabelProps> = ({
-  children,
-  className,
-  id: _id,
-  ...rest
-}: FeatureComparisonTableLabelProps & {id?: string}) => (
-  <div className={styles.FeatureComparisonTable__labelCell} data-testid={testIds.label}>
-    <span className={clsx(styles.FeatureComparisonTable__label, className)} {...rest}>
-      {children}
-    </span>
-  </div>
-)
+const Label = (props: FeatureComparisonTableLabelProps) => {
+  const {children, className, id: _id, ...rest}: FeatureComparisonTableLabelProps & {id?: string} = props
+
+  return (
+    <div className={styles.FeatureComparisonTable__labelCell} data-testid={testIds.label}>
+      <span className={clsx(styles.FeatureComparisonTable__label, className)} {...rest}>
+        {children}
+      </span>
+    </div>
+  )
+}
 export type FeatureComparisonTableDescriptionProps = PropsWithChildren<
   FeatureComparisonTableAnimatedBaseProps<HTMLParagraphElement>
 >
 
-const Description: React.FC<FeatureComparisonTableDescriptionProps> = ({
-  children,
-  className,
-  id: _id,
-  ...rest
-}: FeatureComparisonTableDescriptionProps & {id?: string}) => (
-  <Text
-    as="p"
-    size="100"
-    variant="muted"
-    className={clsx(styles.FeatureComparisonTable__description, className)}
-    {...rest}
-  >
-    {children}
-  </Text>
-)
+const Description = (props: FeatureComparisonTableDescriptionProps) => {
+  const {children, className, id: _id, ...rest}: FeatureComparisonTableDescriptionProps & {id?: string} = props
+
+  return (
+    <Text
+      as="p"
+      size="100"
+      variant="muted"
+      className={clsx(styles.FeatureComparisonTable__description, className)}
+      {...rest}
+    >
+      {children}
+    </Text>
+  )
+}
 export type FeatureComparisonTablePriceProps = PropsWithChildren<
   FeatureComparisonTableAnimatedBaseProps<HTMLParagraphElement>
 >
 
-const Price: React.FC<FeatureComparisonTablePriceProps> = ({
-  children,
-  className,
-  id: _id,
-  ...rest
-}: FeatureComparisonTablePriceProps & {id?: string}) => (
-  <Text
-    as="p"
-    size="100"
-    variant="default"
-    weight="semibold"
-    className={clsx(styles.FeatureComparisonTable__price, className)}
-    data-testid={testIds.price}
-    {...rest}
-  >
-    {children}
-  </Text>
-)
+const Price = (props: FeatureComparisonTablePriceProps) => {
+  const {children, className, id: _id, ...rest}: FeatureComparisonTablePriceProps & {id?: string} = props
+
+  return (
+    <Text
+      as="p"
+      size="100"
+      variant="default"
+      weight="semibold"
+      className={clsx(styles.FeatureComparisonTable__price, className)}
+      data-testid={testIds.price}
+      {...rest}
+    >
+      {children}
+    </Text>
+  )
+}
 
 type FeatureComparisonTableActionBaseProps = Omit<ButtonBaseProps, 'block' | 'size' | 'variant'>
 type FeatureComparisonTableAnchorActionProps = {
@@ -410,15 +393,17 @@ export type FeatureComparisonTableActionProps = PropsWithChildren<
   FeatureComparisonTableAnchorActionProps | FeatureComparisonTableButtonActionProps
 >
 
-const PrimaryAction: React.FC<FeatureComparisonTableActionProps> = ({
-  id: _id,
-  ...props
-}: FeatureComparisonTableActionProps & {id?: string}) => <Button {...props} variant="primary" size="small" block />
+const PrimaryAction = (props: FeatureComparisonTableActionProps) => {
+  const {id: _id, ...rest}: FeatureComparisonTableActionProps & {id?: string} = props
 
-const SecondaryAction: React.FC<FeatureComparisonTableActionProps> = ({
-  id: _id,
-  ...props
-}: FeatureComparisonTableActionProps & {id?: string}) => <Button {...props} variant="secondary" size="small" block />
+  return <Button {...rest} variant="primary" size="small" block />
+}
+
+const SecondaryAction = (props: FeatureComparisonTableActionProps) => {
+  const {id: _id, ...rest}: FeatureComparisonTableActionProps & {id?: string} = props
+
+  return <Button {...rest} variant="secondary" size="small" block />
+}
 
 export type FeatureComparisonTableItemProps = PropsWithChildren<FeatureComparisonTableBaseProps<HTMLDivElement>>
 
@@ -474,44 +459,42 @@ const Item = ({children, className}: FeatureComparisonTableItemProps) => {
 }
 export type FeatureComparisonTableRowHeadingProps = PropsWithChildren<FeatureComparisonTableBaseProps<HTMLDivElement>>
 
-const RowHeading: React.FC<FeatureComparisonTableRowHeadingProps> = ({
-  children,
-  className,
-  id: _id,
-  ...rest
-}: FeatureComparisonTableRowHeadingProps & {id?: string}) => (
-  <Text
-    as="span"
-    size="200"
-    weight="medium"
-    variant="muted"
-    className={clsx(styles.FeatureComparisonTable__rowHeading, className)}
-    {...rest}
-  >
-    {children}
-  </Text>
-)
+const RowHeading = (props: FeatureComparisonTableRowHeadingProps) => {
+  const {children, className, id: _id, ...rest}: FeatureComparisonTableRowHeadingProps & {id?: string} = props
+
+  return (
+    <Text
+      as="span"
+      size="200"
+      weight="medium"
+      variant="muted"
+      className={clsx(styles.FeatureComparisonTable__rowHeading, className)}
+      {...rest}
+    >
+      {children}
+    </Text>
+  )
+}
 export type FeatureComparisonTableRowDescriptionProps = PropsWithChildren<
   FeatureComparisonTableBaseProps<HTMLParagraphElement>
 >
 
-const RowDescription: React.FC<FeatureComparisonTableRowDescriptionProps> = ({
-  children,
-  className,
-  id: _id,
-  ...rest
-}: FeatureComparisonTableRowDescriptionProps & {id?: string}) => (
-  <Text
-    as="p"
-    size="100"
-    weight="normal"
-    variant="muted"
-    className={clsx(styles.FeatureComparisonTable__rowDescription, className)}
-    {...rest}
-  >
-    {children}
-  </Text>
-)
+const RowDescription = (props: FeatureComparisonTableRowDescriptionProps) => {
+  const {children, className, id: _id, ...rest}: FeatureComparisonTableRowDescriptionProps & {id?: string} = props
+
+  return (
+    <Text
+      as="p"
+      size="100"
+      weight="normal"
+      variant="muted"
+      className={clsx(styles.FeatureComparisonTable__rowDescription, className)}
+      {...rest}
+    >
+      {children}
+    </Text>
+  )
+}
 
 const cellVariants = {
   included: {icon: CheckIcon, label: 'Included'},
@@ -534,14 +517,15 @@ export type FeatureComparisonTableCellProps = PropsWithChildren<
   FeatureComparisonTableBaseProps<HTMLDivElement> & FeatureComparisonTableCellVariantProps
 >
 
-const Cell: React.FC<FeatureComparisonTableCellProps> = ({
-  children,
-  className,
-  variant,
-  variantAriaLabel,
-  id: _id,
-  ...rest
-}: FeatureComparisonTableCellProps & {id?: string}) => {
+const Cell = (props: FeatureComparisonTableCellProps) => {
+  const {
+    children,
+    className,
+    variant,
+    variantAriaLabel,
+    id: _id,
+    ...rest
+  }: FeatureComparisonTableCellProps & {id?: string} = props
   const StatusIcon = variant ? cellVariants[variant].icon : null
   const resolvedVariantAriaLabel = variantAriaLabel ?? (variant ? cellVariants[variant].label : undefined)
 

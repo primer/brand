@@ -32,11 +32,17 @@ import {FeatureComparisonTable} from '@primer/react-brand'
 
 :link: [See `FeatureComparisonTable` documentation for more usage examples](https://primer.style/brand/components/FeatureComparisonTable)
 
-Added light- and dark-mode color tokens in `@primer/brand-primitives` for the label accent, highlighted columns,
-included indicators, and row highlighting:
+Added feature-column width tokens and light- and dark-mode color tokens in `@primer/brand-primitives` for the label
+accent, highlighted columns, included, unlimited, and refresh indicators, and row highlighting:
 
+- `--brand-FeatureComparisonTable-default-featureColumnWidth`
+- `--brand-FeatureComparisonTable-fourItems-featureColumnWidth`
 - `--brand-FeatureComparisonTable-label-accentColor`
 - `--brand-FeatureComparisonTable-highlightedColumn-bgColor`
 - `--brand-FeatureComparisonTable-includedIndicator-fgColor`
 - `--brand-FeatureComparisonTable-includedIndicator-bgColor`
+- `--brand-FeatureComparisonTable-unlimitedIndicator-fgColor`
+- `--brand-FeatureComparisonTable-unlimitedIndicator-bgColor`
+- `--brand-FeatureComparisonTable-refreshIndicator-fgColor`
+- `--brand-FeatureComparisonTable-refreshIndicator-bgColor`
 - `--brand-FeatureComparisonTable-rowHighlight-bgColor`
