@@ -1,9 +1,10 @@
 import {clsx} from 'clsx'
 import React, {type PropsWithChildren, type Ref, forwardRef, useCallback, useEffect, useMemo, useState} from 'react'
 import {useReducedMotion} from '../hooks/useReducedMotion'
-import {PauseIcon, PlayIcon} from '@primer/octicons-react'
+import {PauseIcon} from '@primer/octicons-react'
 import type {BaseProps} from '../component-helpers'
 import {Heading, HeadingProps, defaultHeadingTag, Text, TextProps, Grid, Button} from '../'
+import {PlayIcon} from '../PlayIcon'
 
 /**
  * Design tokens
@@ -37,7 +38,7 @@ export type LogoSuiteProps = {
   /**
    * Alternative presentation
    */
-  variant?: 'default' | 'gridline-expressive'
+  variant?: 'default' | 'gridline' | 'gridline-expressive'
 } & BaseProps<HTMLDivElement> &
   React.HTMLAttributes<HTMLDivElement>
 
@@ -72,8 +73,10 @@ const LogoSuiteBase = ({
 
   const isHeadingVisuallyHidden =
     React.isValidElement<LogoSuiteHeadingProps>(HeadingChild) && HeadingChild.props.visuallyHidden
+  const isGridline = variant === 'gridline'
   const isGridlineExpressive = variant === 'gridline-expressive'
-  const hasVisibleTextContent = isGridlineExpressive && ((HeadingChild && !isHeadingVisuallyHidden) || DescriptionChild)
+  const hasGridlineLayout = isGridline || isGridlineExpressive
+  const hasVisibleTextContent = hasGridlineLayout && ((HeadingChild && !isHeadingVisuallyHidden) || DescriptionChild)
 
   return (
     <div
@@ -86,15 +89,18 @@ const LogoSuiteBase = ({
       )}
       data-testid={testId}
     >
-      {isGridlineExpressive ? (
+      {hasGridlineLayout ? (
         <Grid className={styles['LogoSuite__content']}>
           {hasVisibleTextContent && (
-            <Grid.Column span={{large: 3}} className={styles['LogoSuite__textContainer']}>
+            <Grid.Column span={{large: isGridlineExpressive ? 3 : 12}} className={styles['LogoSuite__textContainer']}>
               {HeadingChild}
               {DescriptionChild}
             </Grid.Column>
           )}
-          <Grid.Column span={{large: hasVisibleTextContent ? 9 : 12}} className={styles['LogoSuite__logobarContainer']}>
+          <Grid.Column
+            span={{large: isGridlineExpressive && hasVisibleTextContent ? 9 : 12}}
+            className={styles['LogoSuite__logobarContainer']}
+          >
             {!hasVisibleTextContent && isHeadingVisuallyHidden && HeadingChild}
             {LogobarChild}
           </Grid.Column>
@@ -257,12 +263,17 @@ const _LogoBar = forwardRef(
       }
     }
 
+    const hasLinkedLogos = React.Children.toArray(children).some(
+      child => React.isValidElement(child) && child.type === 'a',
+    )
+
     const defaultProps = {
       ref,
       className: clsx(
         styles['LogoSuite__logobar'],
         styles[`LogoSuite__logobar--variant-${variant}`],
         styles[`LogoSuite__logobar--gap-${gap}`],
+        hasLinkedLogos && styles['LogoSuite__logobar--has-linked-logos'],
         className,
       ),
       ...props,

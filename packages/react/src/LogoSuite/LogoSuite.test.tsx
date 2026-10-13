@@ -1,4 +1,5 @@
-import React, {render, cleanup} from '@testing-library/react'
+import React from 'react'
+import {render, cleanup} from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import '@testing-library/jest-dom'
 
@@ -33,6 +34,7 @@ describe('LogoSuite', () => {
     expect(getByText(mockHeading)).toBeInTheDocument()
     expect(getByText(mockDescription)).toBeInTheDocument()
     expect(getByTestId(testId).children.length).toBe(2)
+    expect(getByTestId(testId)).not.toHaveClass('LogoSuite__logobar--has-linked-logos')
     expect(getByTestId('svg1')).toBeInTheDocument()
     expect(getByTestId('svg2')).toBeInTheDocument()
   })
@@ -56,10 +58,10 @@ describe('LogoSuite', () => {
   })
 
   it('renders logos correctly using anchors', () => {
-    const {getByLabelText, getAllByRole} = render(
+    const {getByLabelText, getAllByRole, getByTestId} = render(
       <LogoSuite>
         <LogoSuite.Heading>{mockHeading}</LogoSuite.Heading>
-        <LogoSuite.Logobar>
+        <LogoSuite.Logobar data-testid="linked-logobar">
           <a href="/" aria-label="Logo 1">
             <svg role="img">
               <title>Logo 1</title>
@@ -80,6 +82,7 @@ describe('LogoSuite', () => {
 
     expect(getAllByRole('link').length).toBe(2)
     expect(getAllByRole('img').length).toBe(2)
+    expect(getByTestId('linked-logobar')).toHaveClass('LogoSuite__logobar--has-linked-logos')
   })
 
   it('can render a heading as visually hidden', () => {
@@ -421,6 +424,31 @@ describe('LogoSuite', () => {
     const expectedClass = 'LogoSuite--gridline-expressive'
 
     expect(rootEl.classList).toContain(expectedClass)
+  })
+
+  it('renders visible text above a full-width logobar in the gridline variant', () => {
+    const {getByText, getByTestId, container} = render(
+      <LogoSuite data-testid="root" variant="gridline">
+        <LogoSuite.Heading>{mockHeading}</LogoSuite.Heading>
+        <LogoSuite.Description>{mockDescription}</LogoSuite.Description>
+        <LogoSuite.Logobar>
+          <svg aria-label="Mock SVG" />
+        </LogoSuite.Logobar>
+      </LogoSuite>,
+    )
+
+    expect(getByTestId('root')).toHaveClass('LogoSuite--gridline')
+    expect(getByText(mockHeading)).toBeInTheDocument()
+    expect(getByText(mockDescription)).toBeInTheDocument()
+
+    const textContainer = container.querySelector('.LogoSuite__textContainer')
+    const logobarContainer = container.querySelector('.LogoSuite__logobarContainer')
+    const contentChildren = container.querySelector('.LogoSuite__content')?.children
+
+    expect(textContainer).toHaveClass('Grid__column--large-span-12')
+    expect(logobarContainer).toHaveClass('Grid__column--large-span-12')
+    expect(contentChildren?.[0]).toBe(textContainer)
+    expect(contentChildren?.[1]).toBe(logobarContainer)
   })
 
   it('renders heading and description in a text column when gridline-expressive has visible text', () => {
