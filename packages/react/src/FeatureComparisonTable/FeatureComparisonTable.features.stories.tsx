@@ -131,7 +131,7 @@ export const StickyHeaders: Story = {
         <FeatureComparisonTable.Heading>{t('compare_features')}</FeatureComparisonTable.Heading>
         {plans.slice(0, 2).map(plan => (
           <FeatureComparisonTable.Item key={plan.name}>
-            <FeatureComparisonTable.Heading>{t(plan.name)}</FeatureComparisonTable.Heading>
+            <FeatureComparisonTable.ItemHeading>{t(plan.name)}</FeatureComparisonTable.ItemHeading>
             <FeatureComparisonTable.Description>
               {plan.description ? t(plan.description) : null}
             </FeatureComparisonTable.Description>
@@ -274,7 +274,7 @@ function FeatureComparisonExample({
           {showPlanSummaries && index === featuredPlanIndex ? (
             <FeatureComparisonTable.Label>{t('recommended')}</FeatureComparisonTable.Label>
           ) : null}
-          <FeatureComparisonTable.Heading>{t(plan.name)}</FeatureComparisonTable.Heading>
+          <FeatureComparisonTable.ItemHeading>{t(plan.name)}</FeatureComparisonTable.ItemHeading>
           {showPlanSummaries && plan.description ? (
             <FeatureComparisonTable.Description>{t(plan.description)}</FeatureComparisonTable.Description>
           ) : null}

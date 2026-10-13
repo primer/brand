@@ -42,7 +42,7 @@ function CopilotComparison() {
     <FeatureComparisonTable hasStickyHeaders>
       <FeatureComparisonTable.Heading>{t('copilot_plan_comparison')}</FeatureComparisonTable.Heading>
       <FeatureComparisonTable.Item>
-        <FeatureComparisonTable.Heading>{t('Free')}</FeatureComparisonTable.Heading>
+        <FeatureComparisonTable.ItemHeading>{t('Free')}</FeatureComparisonTable.ItemHeading>
         <FeatureComparisonTable.Description>{t('for_individuals')}</FeatureComparisonTable.Description>
         <FeatureComparisonTable.Price>{t('free_price')}</FeatureComparisonTable.Price>
         <FeatureComparisonTable.SecondaryAction as="a" href="#">
@@ -51,7 +51,7 @@ function CopilotComparison() {
       </FeatureComparisonTable.Item>
       <FeatureComparisonTable.Item>
         <FeatureComparisonTable.Label>{t('most_popular')}</FeatureComparisonTable.Label>
-        <FeatureComparisonTable.Heading>Pro</FeatureComparisonTable.Heading>
+        <FeatureComparisonTable.ItemHeading>Pro</FeatureComparisonTable.ItemHeading>
         <FeatureComparisonTable.Description>{t('for_daily_development')}</FeatureComparisonTable.Description>
         <FeatureComparisonTable.Price>{t('pro_price')}</FeatureComparisonTable.Price>
         <FeatureComparisonTable.PrimaryAction as="a" href="#">
@@ -59,7 +59,7 @@ function CopilotComparison() {
         </FeatureComparisonTable.PrimaryAction>
       </FeatureComparisonTable.Item>
       <FeatureComparisonTable.Item>
-        <FeatureComparisonTable.Heading>Pro+</FeatureComparisonTable.Heading>
+        <FeatureComparisonTable.ItemHeading>Pro+</FeatureComparisonTable.ItemHeading>
         <FeatureComparisonTable.Description>{t('for_demanding_workflows')}</FeatureComparisonTable.Description>
         <FeatureComparisonTable.Price>{t('pro_plus_price')}</FeatureComparisonTable.Price>
         <FeatureComparisonTable.SecondaryAction as="a" href="#">

@@ -31,7 +31,7 @@ Use an `Item` for each plan and a `Group` for related features. Add one `Cell` p
 <FeatureComparisonTable>
   <FeatureComparisonTable.Heading>Compare features</FeatureComparisonTable.Heading>
   <FeatureComparisonTable.Item>
-    <FeatureComparisonTable.Heading>Free</FeatureComparisonTable.Heading>
+    <FeatureComparisonTable.ItemHeading>Free</FeatureComparisonTable.ItemHeading>
     <FeatureComparisonTable.Description>For individuals.</FeatureComparisonTable.Description>
     <FeatureComparisonTable.Price>$0 per month</FeatureComparisonTable.Price>
     <FeatureComparisonTable.PrimaryAction as="a" href="#">
@@ -40,7 +40,7 @@ Use an `Item` for each plan and a `Group` for related features. Add one `Cell` p
   </FeatureComparisonTable.Item>
   <FeatureComparisonTable.Item>
     <FeatureComparisonTable.Label>Recommended</FeatureComparisonTable.Label>
-    <FeatureComparisonTable.Heading>Team</FeatureComparisonTable.Heading>
+    <FeatureComparisonTable.ItemHeading>Team</FeatureComparisonTable.ItemHeading>
     <FeatureComparisonTable.Description>For teams.</FeatureComparisonTable.Description>
     <FeatureComparisonTable.Price>$4 per user / month</FeatureComparisonTable.Price>
     <FeatureComparisonTable.PrimaryAction as="a" href="#">
@@ -72,10 +72,10 @@ Use `RowDescription` to add context beneath a feature name. Descriptions can inc
 <FeatureComparisonTable>
   <FeatureComparisonTable.Heading>Compare features</FeatureComparisonTable.Heading>
   <FeatureComparisonTable.Item>
-    <FeatureComparisonTable.Heading>Free</FeatureComparisonTable.Heading>
+    <FeatureComparisonTable.ItemHeading>Free</FeatureComparisonTable.ItemHeading>
   </FeatureComparisonTable.Item>
   <FeatureComparisonTable.Item>
-    <FeatureComparisonTable.Heading>Team</FeatureComparisonTable.Heading>
+    <FeatureComparisonTable.ItemHeading>Team</FeatureComparisonTable.ItemHeading>
   </FeatureComparisonTable.Item>
   <FeatureComparisonTable.Group>
     <FeatureComparisonTable.GroupHeading id="codespaces">Codespaces</FeatureComparisonTable.GroupHeading>
@@ -107,7 +107,7 @@ One item per pricing plan to be displayed. Supports two to four plans.
 
 | Name       | Type                                                                 | Default | required | Description  |
 | :--------- | :------------------------------------------------------------------- | :-----: | :------: | :----------- |
-| `children` | `Label, Heading, Description, Price, PrimaryAction, SecondaryAction` |         |  `true`  | Plan content |
+| `children` | `Label, ItemHeading, Description, Price, PrimaryAction, SecondaryAction` |         |  `true`  | Plan content |
 
 ### FeatureComparisonTable.Label
 
@@ -117,12 +117,21 @@ One item per pricing plan to be displayed. Supports two to four plans.
 
 ### FeatureComparisonTable.Heading <Label>Required</Label>
 
-Add a `Heading` to the table and each `Item`.
+Add a `Heading` directly to the table to name the comparison. Its generated ID is used to label the wide table.
 
 | Name       | Type                                    |          Default          | required | Description                                       |
 | :--------- | :-------------------------------------- | :-----------------------: | :------: | :------------------------------------------------ |
-| `as`       | <FeatureComparisonTableHeadingAsProp /> | `h2` (table), `h3` (plan) | `false`  | Heading level for the table title or plan summary |
-| `children` | `ReactNode`                             |                           |  `true`  | Table title or plan name                          |
+| `as`       | <FeatureComparisonTableHeadingAsProp /> | `h2` | `false`  | Heading level for the table title |
+| `children` | `ReactNode`                             |      |  `true`  | Table title                      |
+
+### FeatureComparisonTable.ItemHeading <Label>Required</Label>
+
+Add an `ItemHeading` to each `Item` to name the plan. Plan names appear as headings in the wide layout and description-list terms in feature rows on smaller screens.
+
+| Name       | Type                                   | Default | required | Description                       |
+| :--------- | :------------------------------------- | :-----: | :------: | :-------------------------------- |
+| `as`       | <FeatureComparisonTableHeadingAsProp /> |  `h3`   | `false`  | Heading level for the plan summary |
+| `children` | `ReactNode`                            |         |  `true`  | Plan name                         |
 
 ### FeatureComparisonTable.Description
 

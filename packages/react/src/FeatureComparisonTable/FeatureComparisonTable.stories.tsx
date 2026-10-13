@@ -51,10 +51,10 @@ function Comparison(props: Omit<React.ComponentProps<typeof FeatureComparisonTab
     <FeatureComparisonTable {...props}>
       <FeatureComparisonTable.Heading>{t('compare_features')}</FeatureComparisonTable.Heading>
       <FeatureComparisonTable.Item>
-        <FeatureComparisonTable.Heading>{t('Free')}</FeatureComparisonTable.Heading>
+        <FeatureComparisonTable.ItemHeading>{t('Free')}</FeatureComparisonTable.ItemHeading>
       </FeatureComparisonTable.Item>
       <FeatureComparisonTable.Item>
-        <FeatureComparisonTable.Heading>{t('Team')}</FeatureComparisonTable.Heading>
+        <FeatureComparisonTable.ItemHeading>{t('Team')}</FeatureComparisonTable.ItemHeading>
       </FeatureComparisonTable.Item>
       <FeatureComparisonTable.Group>
         <FeatureComparisonTable.GroupHeading>{t('collaboration')}</FeatureComparisonTable.GroupHeading>

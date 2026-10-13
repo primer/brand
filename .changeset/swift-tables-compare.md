@@ -13,10 +13,10 @@ import {FeatureComparisonTable} from '@primer/react-brand'
 <FeatureComparisonTable>
   <FeatureComparisonTable.Heading>Compare plans</FeatureComparisonTable.Heading>
   <FeatureComparisonTable.Item>
-    <FeatureComparisonTable.Heading>Free</FeatureComparisonTable.Heading>
+    <FeatureComparisonTable.ItemHeading>Free</FeatureComparisonTable.ItemHeading>
   </FeatureComparisonTable.Item>
   <FeatureComparisonTable.Item>
-    <FeatureComparisonTable.Heading>Team</FeatureComparisonTable.Heading>
+    <FeatureComparisonTable.ItemHeading>Team</FeatureComparisonTable.ItemHeading>
   </FeatureComparisonTable.Item>
   <FeatureComparisonTable.Group>
     <FeatureComparisonTable.GroupHeading>Collaboration</FeatureComparisonTable.GroupHeading>

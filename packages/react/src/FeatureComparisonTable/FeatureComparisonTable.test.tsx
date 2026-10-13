@@ -24,7 +24,7 @@ const Component = ({
     <FeatureComparisonTable.Heading>Compare features</FeatureComparisonTable.Heading>
     <FeatureComparisonTable.Item>
       <FeatureComparisonTable.Label>Recommended</FeatureComparisonTable.Label>
-      <FeatureComparisonTable.Heading>Free</FeatureComparisonTable.Heading>
+      <FeatureComparisonTable.ItemHeading>Free</FeatureComparisonTable.ItemHeading>
       <FeatureComparisonTable.Description>For individuals</FeatureComparisonTable.Description>
       <FeatureComparisonTable.Price>$0 per month</FeatureComparisonTable.Price>
       <FeatureComparisonTable.PrimaryAction as="a" href="#free">
@@ -32,7 +32,7 @@ const Component = ({
       </FeatureComparisonTable.PrimaryAction>
     </FeatureComparisonTable.Item>
     <FeatureComparisonTable.Item>
-      <FeatureComparisonTable.Heading>Pro</FeatureComparisonTable.Heading>
+      <FeatureComparisonTable.ItemHeading>Pro</FeatureComparisonTable.ItemHeading>
       <FeatureComparisonTable.Price>$10</FeatureComparisonTable.Price>
       <FeatureComparisonTable.SecondaryAction as="button">Contact sales</FeatureComparisonTable.SecondaryAction>
     </FeatureComparisonTable.Item>
@@ -91,9 +91,9 @@ describe('FeatureComparisonTable', () => {
             <span id="comparison-title">Compare features</span>
           </FeatureComparisonTable.Heading>
           <FeatureComparisonTable.Item>
-            <FeatureComparisonTable.Heading>
+            <FeatureComparisonTable.ItemHeading>
               <span id="plan-title">Free</span>
-            </FeatureComparisonTable.Heading>
+            </FeatureComparisonTable.ItemHeading>
           </FeatureComparisonTable.Item>
           <FeatureComparisonTable.Group expanded>
             <FeatureComparisonTable.GroupHeading id="core-features">
@@ -184,7 +184,7 @@ describe('FeatureComparisonTable', () => {
       <FeatureComparisonTable>
         <FeatureComparisonTable.Heading>Compare features</FeatureComparisonTable.Heading>
         <FeatureComparisonTable.Item>
-          <FeatureComparisonTable.Heading>Free</FeatureComparisonTable.Heading>
+          <FeatureComparisonTable.ItemHeading>Free</FeatureComparisonTable.ItemHeading>
         </FeatureComparisonTable.Item>
         <FeatureComparisonTable.Group expanded>
           <FeatureComparisonTable.GroupHeading>Core features</FeatureComparisonTable.GroupHeading>
@@ -256,7 +256,7 @@ describe('FeatureComparisonTable', () => {
       <FeatureComparisonTable>
         <FeatureComparisonTable.Heading as="h3">Compare plans</FeatureComparisonTable.Heading>
         <FeatureComparisonTable.Item>
-          <FeatureComparisonTable.Heading as="h4">Free</FeatureComparisonTable.Heading>
+          <FeatureComparisonTable.ItemHeading as="h4">Free</FeatureComparisonTable.ItemHeading>
         </FeatureComparisonTable.Item>
         <FeatureComparisonTable.Group>
           <FeatureComparisonTable.GroupHeading as="h4">Features</FeatureComparisonTable.GroupHeading>
@@ -268,6 +268,68 @@ describe('FeatureComparisonTable', () => {
     expect(table.getByRole('heading', {name: 'Compare plans', level: 3})).toBeInTheDocument()
     expect(table.getByRole('heading', {name: 'Free', level: 4})).toBeInTheDocument()
     expect(table.getByRole('heading', {name: 'Features', level: 4})).toBeInTheDocument()
+  })
+
+  it('uses separate defaults for table and item headings', () => {
+    setBreakpoint(wideBreakpoint)
+    const {getByRole, getAllByTestId} = render(<Component />)
+    const heading = getByRole('heading', {name: 'Compare features', level: 2})
+    const itemHeading = getByRole('heading', {name: 'Free', level: 3})
+
+    expect(heading).toHaveClass('Heading--subhead-large', 'FeatureComparisonTable__tableHeadingText')
+    expect(itemHeading).toHaveClass('Heading--subhead-medium')
+    expect(itemHeading).not.toHaveClass('FeatureComparisonTable__tableHeadingText')
+    expect(itemHeading).not.toHaveAttribute('id')
+    expect(getAllByTestId(FeatureComparisonTable.testIds.heading)).toEqual([heading])
+  })
+
+  it('preserves heading size overrides, classes, and native attributes', () => {
+    setBreakpoint(wideBreakpoint)
+    const {getByRole} = render(
+      <FeatureComparisonTable>
+        <FeatureComparisonTable.Heading size="4" className="custom-title" title="Table title">
+          Compare plans
+        </FeatureComparisonTable.Heading>
+        <FeatureComparisonTable.Item>
+          <FeatureComparisonTable.ItemHeading size="5" className="custom-plan" title="Plan title">
+            Free
+          </FeatureComparisonTable.ItemHeading>
+        </FeatureComparisonTable.Item>
+      </FeatureComparisonTable>,
+    )
+    const heading = getByRole('heading', {name: 'Compare plans'})
+    const itemHeading = getByRole('heading', {name: 'Free'})
+
+    expect(heading).toHaveClass('Heading--4', 'custom-title')
+    expect(heading).not.toHaveClass('FeatureComparisonTable__tableHeadingText')
+    expect(heading).toHaveAttribute('title', 'Table title')
+    expect(itemHeading).toHaveClass('Heading--5', 'custom-plan')
+    expect(itemHeading).not.toHaveClass('FeatureComparisonTable__tableHeadingText')
+    expect(itemHeading).toHaveAttribute('title', 'Plan title')
+  })
+
+  it('keeps table heading IDs unique and stable across responsive layouts', () => {
+    const {getAllByRole} = render(
+      <>
+        <Component />
+        <Component />
+      </>,
+    )
+    const headingIds = getAllByRole('heading', {name: 'Compare features'}).map(heading => heading.id)
+    expect(headingIds.every(Boolean)).toBe(true)
+    expect(new Set(headingIds).size).toBe(2)
+
+    for (const breakpoint of [regularBreakpoint, wideBreakpoint, narrowBreakpoint, wideBreakpoint]) {
+      setBreakpoint(breakpoint)
+      expect(getAllByRole('heading', {name: 'Compare features'}).map(heading => heading.id)).toEqual(headingIds)
+      if (breakpoint === wideBreakpoint) {
+        expect(getAllByRole('table', {name: 'Compare features'}).map(table => table.getAttribute('aria-labelledby')))
+          .toEqual(headingIds)
+        for (const itemHeading of getAllByRole('heading', {name: /^(Free|Pro)$/})) {
+          expect(itemHeading).not.toHaveAttribute('id')
+        }
+      }
+    }
   })
 
   it.each([
@@ -500,7 +562,7 @@ describe('FeatureComparisonTable', () => {
       <FeatureComparisonTable>
         <FeatureComparisonTable.Heading>Compare plans</FeatureComparisonTable.Heading>
         <FeatureComparisonTable.Item>
-          <FeatureComparisonTable.Heading>Free</FeatureComparisonTable.Heading>
+          <FeatureComparisonTable.ItemHeading>Free</FeatureComparisonTable.ItemHeading>
         </FeatureComparisonTable.Item>
         <FeatureComparisonTable.Group expanded>
           <FeatureComparisonTable.GroupHeading>Features</FeatureComparisonTable.GroupHeading>
@@ -524,8 +586,8 @@ describe('FeatureComparisonTable', () => {
         <FeatureComparisonTable.Heading>Compare plans</FeatureComparisonTable.Heading>
         <div>Unsupported root child</div>
         <FeatureComparisonTable.Item>
-          <FeatureComparisonTable.Heading>Earlier plan heading</FeatureComparisonTable.Heading>
-          <FeatureComparisonTable.Heading>Free</FeatureComparisonTable.Heading>
+          <FeatureComparisonTable.ItemHeading>Earlier plan heading</FeatureComparisonTable.ItemHeading>
+          <FeatureComparisonTable.ItemHeading>Free</FeatureComparisonTable.ItemHeading>
           <span>Unsupported item child</span>
         </FeatureComparisonTable.Item>
       </FeatureComparisonTable>,
@@ -545,7 +607,7 @@ describe('FeatureComparisonTable', () => {
         <FeatureComparisonTable.Heading>Compare plans</FeatureComparisonTable.Heading>
         {['Free', 'Team', 'Enterprise', 'Enterprise Plus', 'Extra plan'].map(name => (
           <FeatureComparisonTable.Item key={name}>
-            <FeatureComparisonTable.Heading>{name}</FeatureComparisonTable.Heading>
+            <FeatureComparisonTable.ItemHeading>{name}</FeatureComparisonTable.ItemHeading>
           </FeatureComparisonTable.Item>
         ))}
       </FeatureComparisonTable>,
@@ -566,7 +628,7 @@ describe('FeatureComparisonTable', () => {
         <FeatureComparisonTable.Heading>Compare plans</FeatureComparisonTable.Heading>
         {['Free', 'Team', 'Enterprise', 'Enterprise Plus', 'Extra plan'].map(name => (
           <FeatureComparisonTable.Item key={name}>
-            <FeatureComparisonTable.Heading>{name}</FeatureComparisonTable.Heading>
+            <FeatureComparisonTable.ItemHeading>{name}</FeatureComparisonTable.ItemHeading>
           </FeatureComparisonTable.Item>
         ))}
       </FeatureComparisonTable>,
@@ -584,7 +646,7 @@ describe('FeatureComparisonTable', () => {
         <FeatureComparisonTable>
           <FeatureComparisonTable.Heading>Compare plans</FeatureComparisonTable.Heading>
           <FeatureComparisonTable.Item>
-            <FeatureComparisonTable.Heading>Free</FeatureComparisonTable.Heading>
+            <FeatureComparisonTable.ItemHeading>Free</FeatureComparisonTable.ItemHeading>
           </FeatureComparisonTable.Item>
           {names.map(name => (
             <FeatureComparisonTable.Group key={name}>
@@ -630,7 +692,7 @@ describe('FeatureComparisonTable', () => {
       <FeatureComparisonTable>
         <FeatureComparisonTable.Heading>Compare plans</FeatureComparisonTable.Heading>
         <FeatureComparisonTable.Item>
-          <FeatureComparisonTable.Heading>Free</FeatureComparisonTable.Heading>
+          <FeatureComparisonTable.ItemHeading>Free</FeatureComparisonTable.ItemHeading>
         </FeatureComparisonTable.Item>
         <FeatureComparisonTable.Group expanded>
           <FeatureComparisonTable.GroupHeading>Features</FeatureComparisonTable.GroupHeading>

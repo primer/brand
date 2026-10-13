@@ -242,7 +242,7 @@ const FeatureComparisonTableRoot = forwardRef<HTMLDivElement, FeatureComparisonT
             </div>
           ) : (
             <table
-              aria-labelledby={heading ? `${instanceId}-table-heading` : undefined}
+              aria-labelledby={heading ? `${instanceId}-heading` : undefined}
               className={styles.FeatureComparisonTable__table}
               data-testid={testIds.table}
               ref={tableRef}
@@ -307,24 +307,43 @@ const FeatureComparisonTableRoot = forwardRef<HTMLDivElement, FeatureComparisonT
 export type FeatureComparisonTableHeadingProps = PropsWithChildren<Omit<HeadingProps, 'id' | 'ref'>>
 
 const Heading = (props: FeatureComparisonTableHeadingProps) => {
-  const {children, as, size, className, id: _id, ...rest}: FeatureComparisonTableHeadingProps & {id?: string} = props
-  const {instanceId, breakpoint} = useTableContext()
-  const isItem = useContext(ItemIndexContext) > 0
+  const {children, as = 'h2', size, className, id: _id, ...rest}: FeatureComparisonTableHeadingProps & {id?: string} =
+    props
+  const {instanceId} = useTableContext()
 
   return (
     <HeadingComponent
-      as={as ?? (isItem ? 'h3' : 'h2')}
-      size={size ?? (isItem ? 'subhead-medium' : 'subhead-large')}
+      as={as}
+      size={size ?? 'subhead-large'}
       weight="semibold"
-      className={clsx(!isItem && !size && styles.FeatureComparisonTable__tableHeadingText, className)}
-      data-testid={isItem ? undefined : testIds.heading}
-      id={isItem ? undefined : `${instanceId}-${breakpoint === 'wide' ? 'table' : 'narrow'}-heading`}
+      className={clsx(size === undefined && styles.FeatureComparisonTable__tableHeadingText, className)}
+      data-testid={testIds.heading}
+      id={`${instanceId}-heading`}
       {...rest}
     >
       {children}
     </HeadingComponent>
   )
 }
+
+export type FeatureComparisonTableItemHeadingProps = PropsWithChildren<Omit<HeadingProps, 'id' | 'ref'>>
+
+const ItemHeading = (props: FeatureComparisonTableItemHeadingProps) => {
+  const {
+    children,
+    as = 'h3',
+    size = 'subhead-medium',
+    id: _id,
+    ...rest
+  }: FeatureComparisonTableItemHeadingProps & {id?: string} = props
+
+  return (
+    <HeadingComponent as={as} size={size} weight="semibold" {...rest}>
+      {children}
+    </HeadingComponent>
+  )
+}
+
 export type FeatureComparisonTableLabelProps = PropsWithChildren<FeatureComparisonTableBaseProps<HTMLSpanElement>>
 
 const Label = (props: FeatureComparisonTableLabelProps) => {
@@ -412,7 +431,7 @@ const Item = ({children, className}: FeatureComparisonTableItemProps) => {
   const itemIndex = useContext(ItemIndexContext)
   const itemChildren = React.Children.toArray(children)
   const label = getChildrenOfType(itemChildren, Label).at(-1)
-  const heading = getChildrenOfType(itemChildren, Heading).at(-1)
+  const heading = getChildrenOfType(itemChildren, ItemHeading).at(-1)
   const description = getChildrenOfType(itemChildren, Description).at(-1)
   const price = getChildrenOfType(itemChildren, Price).at(-1)
   const primaryAction = getChildrenOfType(itemChildren, PrimaryAction).at(-1)
@@ -613,7 +632,7 @@ const Row = ({children, className}: FeatureComparisonTableRowProps) => {
       <div data-testid={testIds.rowHeading}>{rowHeading}</div>
       <dl className={styles.FeatureComparisonTable__planValues}>
         {items.map((item, index) => {
-          const itemHeading = getChildrenOfType(React.Children.toArray(item.props.children), Heading).at(-1)
+          const itemHeading = getChildrenOfType(React.Children.toArray(item.props.children), ItemHeading).at(-1)
           return (
             <React.Fragment key={item.key}>
               <dt
@@ -789,6 +808,7 @@ export const FeatureComparisonTable = Object.assign(FeatureComparisonTableRoot, 
   Item,
   Label,
   Heading,
+  ItemHeading,
   Description,
   Price,
   PrimaryAction,
