@@ -33,6 +33,7 @@
     "format:fix": "prettier --write '**/*.{js,jsx,ts,tsx,md,mdx,css,json}'",
     "lint": "eslint '**/*.{js,ts,tsx,md,mdx}' --max-warnings=0",
     "test:axe": "playwright test --config=scripts/playwright",
+    "test:browser": "playwright test --config=playwright.browser.config.js",
     "test:visual": "NODE_ENV=test scripts/playwright/run-visual-tests",
     "test:visual:update": "NODE_ENV=test scripts/playwright/update-visual-snapshots",
     "test:visual:generate": "cd ../../apps/storybook && NODE_ENV=test npx storybook build && cd ../../packages/e2e && NODE_ENV=test npx tsx scripts/playwright/playwright.generate-tests.ts"
