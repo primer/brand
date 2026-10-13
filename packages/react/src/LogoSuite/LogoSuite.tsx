@@ -207,6 +207,9 @@ const PlayPauseButton = ({isPlaying = true, onPlayPause}: PlayPauseButtonProps) 
 }
 
 export type LogoSuiteLogoBarProps = BaseProps<HTMLDivElement> & {
+  /**
+   * Logos to display. All logos must use the same interaction mode: either every logo is wrapped in an anchor or none are.
+   */
   children: React.ReactNode | React.ReactNode[]
   /**
    * The gap between logos
@@ -263,14 +266,20 @@ const _LogoBar = forwardRef(
       }
     }
 
-    const containsLinkedLogoAnchor = (nodes: React.ReactNode): boolean =>
-      React.Children.toArray(nodes).some(child => {
-        if (!React.isValidElement<PropsWithChildren>(child)) return false
-        if (child.type === 'a') return true
-        return child.type === React.Fragment && containsLinkedLogoAnchor(child.props.children)
-      })
+    const checkAllLogosAreLinks = (nodes: React.ReactNode): boolean => {
+      const childNodes = React.Children.toArray(nodes)
 
-    const hasLinkedLogos = containsLinkedLogoAnchor(children)
+      return (
+        childNodes.length > 0 &&
+        childNodes.every(child => {
+          if (!React.isValidElement<PropsWithChildren>(child)) return false
+          if (child.type === 'a') return true
+          return child.type === React.Fragment && checkAllLogosAreLinks(child.props.children)
+        })
+      )
+    }
+
+    const hasLinkedLogos = checkAllLogosAreLinks(children)
 
     const defaultProps = {
       ref,

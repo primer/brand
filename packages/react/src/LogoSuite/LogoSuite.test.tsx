@@ -58,10 +58,10 @@ describe('LogoSuite', () => {
   })
 
   it('renders logos correctly using anchors', () => {
-    const {getByLabelText, getAllByRole, getByTestId} = render(
+    const {getAllByRole, getByRole} = render(
       <LogoSuite>
         <LogoSuite.Heading>{mockHeading}</LogoSuite.Heading>
-        <LogoSuite.Logobar data-testid="linked-logobar">
+        <LogoSuite.Logobar>
           <a href="/" aria-label="Logo 1">
             <svg role="img">
               <title>Logo 1</title>
@@ -75,14 +75,14 @@ describe('LogoSuite', () => {
         </LogoSuite.Logobar>
       </LogoSuite>,
     )
-    const logo1Element = getByLabelText('Logo 1')
-    const logo2Element = getByLabelText('Logo 2')
-    expect(logo1Element).toBeInTheDocument()
-    expect(logo2Element).toBeInTheDocument()
+    const logo1Link = getByRole('link', {name: 'Logo 1'})
+    const logo2Link = getByRole('link', {name: 'Logo 2'})
+    expect(logo1Link).toBeInTheDocument()
+    expect(logo2Link).toBeInTheDocument()
 
     expect(getAllByRole('link').length).toBe(2)
     expect(getAllByRole('img').length).toBe(2)
-    expect(getByTestId('linked-logobar')).toHaveClass('LogoSuite__logobar--has-linked-logos')
+    expect(logo1Link.closest('.LogoSuite__logobar')).toHaveClass('LogoSuite__logobar--has-linked-logos')
   })
 
   it('detects linked logos supplied as a fragment expression', () => {
@@ -106,15 +106,37 @@ describe('LogoSuite', () => {
       </>
     )
 
-    const {getAllByRole, getByTestId} = render(
+    const {getAllByRole, getByRole} = render(
       <LogoSuite>
         <LogoSuite.Heading>{mockHeading}</LogoSuite.Heading>
-        <LogoSuite.Logobar data-testid="fragment-linked-logobar">{linkedLogos}</LogoSuite.Logobar>
+        <LogoSuite.Logobar>{linkedLogos}</LogoSuite.Logobar>
       </LogoSuite>,
     )
 
     expect(getAllByRole('link')).toHaveLength(3)
-    expect(getByTestId('fragment-linked-logobar')).toHaveClass('LogoSuite__logobar--has-linked-logos')
+    expect(getByRole('link', {name: 'GitHub'}).closest('.LogoSuite__logobar')).toHaveClass(
+      'LogoSuite__logobar--has-linked-logos',
+    )
+  })
+
+  it('only enables linked-logo presentation when every logo is linked', () => {
+    const {getByRole} = render(
+      <LogoSuite>
+        <LogoSuite.Heading>{mockHeading}</LogoSuite.Heading>
+        <LogoSuite.Logobar>
+          <a href="/github" aria-label="GitHub">
+            <svg role="img">
+              <title>GitHub</title>
+            </svg>
+          </a>
+          <svg role="img" aria-label="Azure" />
+        </LogoSuite.Logobar>
+      </LogoSuite>,
+    )
+
+    expect(getByRole('link', {name: 'GitHub'}).closest('.LogoSuite__logobar')).not.toHaveClass(
+      'LogoSuite__logobar--has-linked-logos',
+    )
   })
 
   it('can render a heading as visually hidden', () => {
