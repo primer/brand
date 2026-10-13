@@ -207,9 +207,6 @@ const PlayPauseButton = ({isPlaying = true, onPlayPause}: PlayPauseButtonProps) 
 }
 
 export type LogoSuiteLogoBarProps = BaseProps<HTMLDivElement> & {
-  /**
-   * Logos to display. All logos must use the same interaction mode: either every logo is wrapped in an anchor or none are.
-   */
   children: React.ReactNode | React.ReactNode[]
   /**
    * The gap between logos
