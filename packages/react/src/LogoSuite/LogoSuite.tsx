@@ -263,9 +263,14 @@ const _LogoBar = forwardRef(
       }
     }
 
-    const hasLinkedLogos = React.Children.toArray(children).some(
-      child => React.isValidElement(child) && child.type === 'a',
-    )
+    const containsLinkedLogoAnchor = (nodes: React.ReactNode): boolean =>
+      React.Children.toArray(nodes).some(child => {
+        if (!React.isValidElement<PropsWithChildren>(child)) return false
+        if (child.type === 'a') return true
+        return child.type === React.Fragment && containsLinkedLogoAnchor(child.props.children)
+      })
+
+    const hasLinkedLogos = containsLinkedLogoAnchor(children)
 
     const defaultProps = {
       ref,

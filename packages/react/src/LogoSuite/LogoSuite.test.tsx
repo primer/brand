@@ -85,6 +85,38 @@ describe('LogoSuite', () => {
     expect(getByTestId('linked-logobar')).toHaveClass('LogoSuite__logobar--has-linked-logos')
   })
 
+  it('detects linked logos supplied as a fragment expression', () => {
+    const linkedLogos = (
+      <>
+        <a href="/github" aria-label="GitHub">
+          <svg role="img">
+            <title>GitHub</title>
+          </svg>
+        </a>
+        <a href="/azure" aria-label="Azure">
+          <svg role="img">
+            <title>Azure</title>
+          </svg>
+        </a>
+        <a href="/copilot" aria-label="GitHub Copilot">
+          <svg role="img">
+            <title>GitHub Copilot</title>
+          </svg>
+        </a>
+      </>
+    )
+
+    const {getAllByRole, getByTestId} = render(
+      <LogoSuite>
+        <LogoSuite.Heading>{mockHeading}</LogoSuite.Heading>
+        <LogoSuite.Logobar data-testid="fragment-linked-logobar">{linkedLogos}</LogoSuite.Logobar>
+      </LogoSuite>,
+    )
+
+    expect(getAllByRole('link')).toHaveLength(3)
+    expect(getByTestId('fragment-linked-logobar')).toHaveClass('LogoSuite__logobar--has-linked-logos')
+  })
+
   it('can render a heading as visually hidden', () => {
     const {getByText} = render(
       <LogoSuite>
