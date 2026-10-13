@@ -5,7 +5,7 @@ import {useTableContext, testIds} from '../FeatureComparisonTableContext'
 export type FeatureComparisonTableHeadingProps = PropsWithChildren<Omit<HeadingProps, 'ref'>>
 
 export const FeatureComparisonTableHeading = (props: FeatureComparisonTableHeadingProps) => {
-  const {children, as = 'h2', size = 'subhead-large', id, ...rest} = props
+  const {children, as = 'h2', size = '6', id, ...rest} = props
   const {instanceId} = useTableContext()
 
   return (

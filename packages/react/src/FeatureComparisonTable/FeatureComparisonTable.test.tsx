@@ -273,7 +273,7 @@ describe('FeatureComparisonTable', () => {
       const heading = getByRole('heading', {name: 'Compare features', level: 2})
       const groupHeading = getByRole('heading', {name: 'Core features', level: 3})
 
-      expect(heading).toHaveClass('Heading--subhead-large')
+      expect(heading).toHaveClass('Heading--6')
       expect(groupHeading).toHaveClass('Heading--subhead-large')
       for (const sizeBasedHeading of [heading, groupHeading]) {
         expect(sizeBasedHeading).not.toHaveClass('Heading--weight-semibold')
