@@ -45,16 +45,16 @@ export const ThreePlans: Story = {
   render: () => <FeatureComparisonExample planCount={3} />,
 }
 
+export const FourPlans: Story = {
+  render: () => <FeatureComparisonExample />,
+}
+
 export const FeaturedFirstPlan: Story = {
   render: () => <FeatureComparisonExample featuredPlanIndex={0} />,
 }
 
 export const FeaturedLastPlan: Story = {
   render: () => <FeatureComparisonExample featuredPlanIndex={3} />,
-}
-
-export const FourPlans: Story = {
-  render: () => <FeatureComparisonExample />,
 }
 
 export const FeatureRows: Story = {
