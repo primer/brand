@@ -160,15 +160,27 @@ Add an optional `RowDescription` alongside `RowHeading` inside a `Row`. It rende
 | :--------- | :---------- | :-----: | :------: | :------------------ |
 | `children` | `ReactNode` |         |  `true`  | Feature description |
 
-```jsx
-<FeatureComparisonTable.Row>
-  <FeatureComparisonTable.RowHeading>Codespaces</FeatureComparisonTable.RowHeading>
-  <FeatureComparisonTable.RowDescription>
-    Develop in <strong>the cloud</strong>. <InlineLink href="#codespaces">Learn more</InlineLink>
-  </FeatureComparisonTable.RowDescription>
-  <FeatureComparisonTable.Cell variant="included" />
-  <FeatureComparisonTable.Cell variant="included" />
-</FeatureComparisonTable.Row>
+```jsx live
+<FeatureComparisonTable>
+  <FeatureComparisonTable.Heading>Compare features</FeatureComparisonTable.Heading>
+  <FeatureComparisonTable.Item>
+    <FeatureComparisonTable.Heading>Free</FeatureComparisonTable.Heading>
+  </FeatureComparisonTable.Item>
+  <FeatureComparisonTable.Item>
+    <FeatureComparisonTable.Heading>Team</FeatureComparisonTable.Heading>
+  </FeatureComparisonTable.Item>
+  <FeatureComparisonTable.Group>
+    <FeatureComparisonTable.GroupHeading id="codespaces">Codespaces</FeatureComparisonTable.GroupHeading>
+    <FeatureComparisonTable.Row>
+      <FeatureComparisonTable.RowHeading>Codespaces</FeatureComparisonTable.RowHeading>
+      <FeatureComparisonTable.RowDescription>
+        Develop in <strong>the cloud</strong>. <InlineLink href="#codespaces">Learn more</InlineLink>
+      </FeatureComparisonTable.RowDescription>
+      <FeatureComparisonTable.Cell variant="included" />
+      <FeatureComparisonTable.Cell variant="included" />
+    </FeatureComparisonTable.Row>
+  </FeatureComparisonTable.Group>
+</FeatureComparisonTable>
 ```
 
 ### FeatureComparisonTable.Cell <Label>Required</Label>

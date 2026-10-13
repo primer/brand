@@ -49,14 +49,18 @@ export type FeatureComparisonTableProps = BaseProps<HTMLDivElement> &
     rowHighlighting?: boolean
   }
 
-type ProjectedBaseProps<T> = Omit<BaseProps<T>, 'animate' | 'id' | 'ref'>
-type AnimatedProjectedBaseProps<T> = Omit<BaseProps<T>, 'id' | 'ref'>
+type FeatureComparisonTableBaseProps<T> = Omit<BaseProps<T>, 'animate' | 'id' | 'ref'>
+type FeatureComparisonTableAnimatedBaseProps<T> = Omit<BaseProps<T>, 'id' | 'ref'>
 
-export type FeatureComparisonTableItemProps = PropsWithChildren<ProjectedBaseProps<HTMLDivElement>>
-export type FeatureComparisonTableLabelProps = PropsWithChildren<ProjectedBaseProps<HTMLSpanElement>>
+export type FeatureComparisonTableItemProps = PropsWithChildren<FeatureComparisonTableBaseProps<HTMLDivElement>>
+export type FeatureComparisonTableLabelProps = PropsWithChildren<FeatureComparisonTableBaseProps<HTMLSpanElement>>
 export type FeatureComparisonTableHeadingProps = PropsWithChildren<Omit<HeadingProps, 'id' | 'ref'>>
-export type FeatureComparisonTableDescriptionProps = PropsWithChildren<AnimatedProjectedBaseProps<HTMLParagraphElement>>
-export type FeatureComparisonTablePriceProps = PropsWithChildren<AnimatedProjectedBaseProps<HTMLParagraphElement>>
+export type FeatureComparisonTableDescriptionProps = PropsWithChildren<
+  FeatureComparisonTableAnimatedBaseProps<HTMLParagraphElement>
+>
+export type FeatureComparisonTablePriceProps = PropsWithChildren<
+  FeatureComparisonTableAnimatedBaseProps<HTMLParagraphElement>
+>
 
 type FeatureComparisonTableActionBaseProps = Omit<ButtonBaseProps, 'block' | 'size' | 'variant'>
 type FeatureComparisonTableAnchorActionProps = {
@@ -73,7 +77,7 @@ export type FeatureComparisonTableActionProps = PropsWithChildren<
 >
 
 export type FeatureComparisonTableGroupProps = PropsWithChildren<
-  ProjectedBaseProps<HTMLDivElement> & {
+  FeatureComparisonTableBaseProps<HTMLDivElement> & {
     expanded?:
       | boolean
       | {
@@ -84,9 +88,11 @@ export type FeatureComparisonTableGroupProps = PropsWithChildren<
   }
 >
 export type FeatureComparisonTableGroupHeadingProps = PropsWithChildren<Omit<HeadingProps, 'ref'>>
-export type FeatureComparisonTableRowProps = PropsWithChildren<ProjectedBaseProps<HTMLDivElement>>
-export type FeatureComparisonTableRowHeadingProps = PropsWithChildren<ProjectedBaseProps<HTMLDivElement>>
-export type FeatureComparisonTableRowDescriptionProps = PropsWithChildren<ProjectedBaseProps<HTMLParagraphElement>>
+export type FeatureComparisonTableRowProps = PropsWithChildren<FeatureComparisonTableBaseProps<HTMLDivElement>>
+export type FeatureComparisonTableRowHeadingProps = PropsWithChildren<FeatureComparisonTableBaseProps<HTMLDivElement>>
+export type FeatureComparisonTableRowDescriptionProps = PropsWithChildren<
+  FeatureComparisonTableBaseProps<HTMLParagraphElement>
+>
 
 type FeatureComparisonTableCellVariantProps =
   | {
@@ -99,7 +105,7 @@ type FeatureComparisonTableCellVariantProps =
     }
 
 export type FeatureComparisonTableCellProps = PropsWithChildren<
-  ProjectedBaseProps<HTMLDivElement> & FeatureComparisonTableCellVariantProps
+  FeatureComparisonTableBaseProps<HTMLDivElement> & FeatureComparisonTableCellVariantProps
 >
 
 const testIds = {
