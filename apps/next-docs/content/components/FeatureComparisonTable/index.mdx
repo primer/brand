@@ -70,6 +70,33 @@ Plan names repeat in each feature row on smaller screens. Avoid fixed IDs in `It
 </FeatureComparisonTable>
 ```
 
+### Row descriptions
+
+Add an optional `RowDescription` alongside `RowHeading` inside a `Row`. It renders beneath the feature name in small, muted body text in all layouts and supports inline rich text, including links and emphasis.
+
+```jsx live
+<FeatureComparisonTable>
+  <FeatureComparisonTable.Heading>Compare features</FeatureComparisonTable.Heading>
+  <FeatureComparisonTable.Item>
+    <FeatureComparisonTable.Heading>Free</FeatureComparisonTable.Heading>
+  </FeatureComparisonTable.Item>
+  <FeatureComparisonTable.Item>
+    <FeatureComparisonTable.Heading>Team</FeatureComparisonTable.Heading>
+  </FeatureComparisonTable.Item>
+  <FeatureComparisonTable.Group>
+    <FeatureComparisonTable.GroupHeading id="codespaces">Codespaces</FeatureComparisonTable.GroupHeading>
+    <FeatureComparisonTable.Row>
+      <FeatureComparisonTable.RowHeading>Codespaces</FeatureComparisonTable.RowHeading>
+      <FeatureComparisonTable.RowDescription>
+        Develop in <strong>the cloud</strong>. <InlineLink href="#codespaces">Learn more</InlineLink>
+      </FeatureComparisonTable.RowDescription>
+      <FeatureComparisonTable.Cell variant="included" />
+      <FeatureComparisonTable.Cell variant="included" />
+    </FeatureComparisonTable.Row>
+  </FeatureComparisonTable.Group>
+</FeatureComparisonTable>
+```
+
 ## Component props
 
 ### FeatureComparisonTable <Label>Required</Label>
@@ -154,34 +181,9 @@ Set `id` to link directly to a group heading, for example with `href="#core-feat
 
 ### FeatureComparisonTable.RowDescription
 
-Add an optional `RowDescription` alongside `RowHeading` inside a `Row`. It renders beneath the feature name in small, muted body text in all layouts and supports inline rich text, including links and emphasis.
-
 | Name       | Type        | Default | required | Description         |
 | :--------- | :---------- | :-----: | :------: | :------------------ |
 | `children` | `ReactNode` |         |  `true`  | Feature description |
-
-```jsx live
-<FeatureComparisonTable>
-  <FeatureComparisonTable.Heading>Compare features</FeatureComparisonTable.Heading>
-  <FeatureComparisonTable.Item>
-    <FeatureComparisonTable.Heading>Free</FeatureComparisonTable.Heading>
-  </FeatureComparisonTable.Item>
-  <FeatureComparisonTable.Item>
-    <FeatureComparisonTable.Heading>Team</FeatureComparisonTable.Heading>
-  </FeatureComparisonTable.Item>
-  <FeatureComparisonTable.Group>
-    <FeatureComparisonTable.GroupHeading id="codespaces">Codespaces</FeatureComparisonTable.GroupHeading>
-    <FeatureComparisonTable.Row>
-      <FeatureComparisonTable.RowHeading>Codespaces</FeatureComparisonTable.RowHeading>
-      <FeatureComparisonTable.RowDescription>
-        Develop in <strong>the cloud</strong>. <InlineLink href="#codespaces">Learn more</InlineLink>
-      </FeatureComparisonTable.RowDescription>
-      <FeatureComparisonTable.Cell variant="included" />
-      <FeatureComparisonTable.Cell variant="included" />
-    </FeatureComparisonTable.Row>
-  </FeatureComparisonTable.Group>
-</FeatureComparisonTable>
-```
 
 ### FeatureComparisonTable.Cell <Label>Required</Label>
 
