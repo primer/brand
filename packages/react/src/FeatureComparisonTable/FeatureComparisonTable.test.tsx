@@ -431,6 +431,25 @@ describe('FeatureComparisonTable', () => {
     expect(rows).toBeVisible()
   })
 
+  it.each(['{Enter}', ' '])('toggles table rows with the %s key', async key => {
+    setBreakpoint(wideBreakpoint)
+    const user = userEvent.setup()
+    const {getByRole} = render(<Component />)
+    const button = getByRole('button', {name: 'Core features'})
+    const rows = getByRole('rowgroup', {name: 'Core features'})
+    button.focus()
+
+    await user.keyboard(key)
+    expect(button).toHaveAttribute('aria-expanded', 'false')
+    expect(rows).not.toBeVisible()
+    expect(button).toHaveFocus()
+
+    await user.keyboard(key)
+    expect(button).toHaveAttribute('aria-expanded', 'true')
+    expect(rows).toBeVisible()
+    expect(button).toHaveFocus()
+  })
+
   it('resets expanded state when the breakpoint changes', async () => {
     setBreakpoint(regularBreakpoint)
     const user = userEvent.setup()

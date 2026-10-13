@@ -1,7 +1,7 @@
 import React from 'react'
 import type {Meta, StoryObj} from '@storybook/react'
 import {useTranslation} from 'react-i18next'
-import {Box, Grid, Stack, Text} from '..'
+import {Box, Grid, InlineLink, Stack, Text} from '..'
 import {FeatureComparisonTable} from '.'
 
 const meta = {
@@ -39,37 +39,68 @@ export const CopilotIndividualPlansDarkMode: Story = {
 function CopilotComparison() {
   const {t} = useTranslation('FeatureComparisonTable')
   return (
-    <FeatureComparisonTable>
-      <FeatureComparisonTable.Heading>{t('compare_features')}</FeatureComparisonTable.Heading>
+    <FeatureComparisonTable hasStickyHeaders>
+      <FeatureComparisonTable.Heading>{t('copilot_plan_comparison')}</FeatureComparisonTable.Heading>
       <FeatureComparisonTable.Item>
         <FeatureComparisonTable.Heading>{t('Free')}</FeatureComparisonTable.Heading>
+        <FeatureComparisonTable.Description>{t('for_individuals')}</FeatureComparisonTable.Description>
         <FeatureComparisonTable.Price>{t('free_price')}</FeatureComparisonTable.Price>
         <FeatureComparisonTable.SecondaryAction as="a" href="#">
-          {t('get_started')}
+          {t('choose_plan', {plan: t('Free')})}
         </FeatureComparisonTable.SecondaryAction>
       </FeatureComparisonTable.Item>
       <FeatureComparisonTable.Item>
         <FeatureComparisonTable.Label>{t('most_popular')}</FeatureComparisonTable.Label>
         <FeatureComparisonTable.Heading>Pro</FeatureComparisonTable.Heading>
+        <FeatureComparisonTable.Description>{t('for_daily_development')}</FeatureComparisonTable.Description>
         <FeatureComparisonTable.Price>{t('pro_price')}</FeatureComparisonTable.Price>
         <FeatureComparisonTable.PrimaryAction as="a" href="#">
-          {t('get_started')}
+          {t('choose_plan', {plan: 'Pro'})}
         </FeatureComparisonTable.PrimaryAction>
       </FeatureComparisonTable.Item>
       <FeatureComparisonTable.Item>
         <FeatureComparisonTable.Heading>Pro+</FeatureComparisonTable.Heading>
+        <FeatureComparisonTable.Description>{t('for_demanding_workflows')}</FeatureComparisonTable.Description>
         <FeatureComparisonTable.Price>{t('pro_plus_price')}</FeatureComparisonTable.Price>
         <FeatureComparisonTable.SecondaryAction as="a" href="#">
-          {t('get_started')}
+          {t('choose_plan', {plan: 'Pro+'})}
         </FeatureComparisonTable.SecondaryAction>
       </FeatureComparisonTable.Item>
-      <FeatureComparisonTable.Group expanded={false}>
+      <FeatureComparisonTable.Group expanded>
         <FeatureComparisonTable.GroupHeading>{t('agent_mode')}</FeatureComparisonTable.GroupHeading>
         <FeatureComparisonTable.Row>
           <FeatureComparisonTable.RowHeading>{t('agent_mode_in_editor')}</FeatureComparisonTable.RowHeading>
+          <FeatureComparisonTable.RowDescription>{t('agent_mode_description')}</FeatureComparisonTable.RowDescription>
           <FeatureComparisonTable.Cell variant="included" variantAriaLabel={t('included')}>
             {t('limited')}
           </FeatureComparisonTable.Cell>
+          <FeatureComparisonTable.Cell variant="included" variantAriaLabel={t('included')} />
+          <FeatureComparisonTable.Cell variant="included" variantAriaLabel={t('included')} />
+        </FeatureComparisonTable.Row>
+        <FeatureComparisonTable.Row>
+          <FeatureComparisonTable.RowHeading>{t('code_suggestions')}</FeatureComparisonTable.RowHeading>
+          <FeatureComparisonTable.RowDescription>
+            {t('code_suggestions_description')}
+          </FeatureComparisonTable.RowDescription>
+          <FeatureComparisonTable.Cell variant="included" variantAriaLabel={t('included')}>
+            {t('limited')}
+          </FeatureComparisonTable.Cell>
+          <FeatureComparisonTable.Cell variant="unlimited" variantAriaLabel={t('unlimited')} />
+          <FeatureComparisonTable.Cell variant="unlimited" variantAriaLabel={t('unlimited')} />
+        </FeatureComparisonTable.Row>
+        <FeatureComparisonTable.Row>
+          <FeatureComparisonTable.RowHeading>{t('next_edit_suggestions')}</FeatureComparisonTable.RowHeading>
+          <FeatureComparisonTable.RowDescription>
+            {t('next_edit_suggestions_description')}
+          </FeatureComparisonTable.RowDescription>
+          <FeatureComparisonTable.Cell variant="unavailable" variantAriaLabel={t('unavailable')} />
+          <FeatureComparisonTable.Cell variant="included" variantAriaLabel={t('included')} />
+          <FeatureComparisonTable.Cell variant="included" variantAriaLabel={t('included')} />
+        </FeatureComparisonTable.Row>
+        <FeatureComparisonTable.Row>
+          <FeatureComparisonTable.RowHeading>{t('code_review')}</FeatureComparisonTable.RowHeading>
+          <FeatureComparisonTable.RowDescription>{t('code_review_description')}</FeatureComparisonTable.RowDescription>
+          <FeatureComparisonTable.Cell variant="unavailable" variantAriaLabel={t('unavailable')} />
           <FeatureComparisonTable.Cell variant="included" variantAriaLabel={t('included')} />
           <FeatureComparisonTable.Cell variant="included" variantAriaLabel={t('included')} />
         </FeatureComparisonTable.Row>
@@ -78,6 +109,9 @@ function CopilotComparison() {
         <FeatureComparisonTable.GroupHeading>{t('premium_requests')}</FeatureComparisonTable.GroupHeading>
         <FeatureComparisonTable.Row>
           <FeatureComparisonTable.RowHeading>{t('premium_requests')}</FeatureComparisonTable.RowHeading>
+          <FeatureComparisonTable.RowDescription>
+            {t('premium_requests_description')}
+          </FeatureComparisonTable.RowDescription>
           <FeatureComparisonTable.Cell variant="refresh" variantAriaLabel={t('refresh')}>
             {t('requests_free')}
           </FeatureComparisonTable.Cell>
@@ -96,7 +130,9 @@ function CopilotComparison() {
         </FeatureComparisonTable.Row>
       </FeatureComparisonTable.Group>
       <FeatureComparisonTable.Group expanded>
-        <FeatureComparisonTable.GroupHeading>{t('models_in_chat')}</FeatureComparisonTable.GroupHeading>
+        <FeatureComparisonTable.GroupHeading id="copilot-chat">
+          {t('models_in_chat')}
+        </FeatureComparisonTable.GroupHeading>
         <FeatureComparisonTable.Row>
           <FeatureComparisonTable.RowHeading>{t('model_interactions')}</FeatureComparisonTable.RowHeading>
           <FeatureComparisonTable.Cell>{t('requests_free')}</FeatureComparisonTable.Cell>
@@ -104,7 +140,28 @@ function CopilotComparison() {
           <FeatureComparisonTable.Cell variant="unlimited" variantAriaLabel={t('unlimited')} />
         </FeatureComparisonTable.Row>
         <FeatureComparisonTable.Row>
+          <FeatureComparisonTable.RowHeading>{t('editor_chat')}</FeatureComparisonTable.RowHeading>
+          <FeatureComparisonTable.RowDescription>{t('editor_chat_description')}</FeatureComparisonTable.RowDescription>
+          <FeatureComparisonTable.Cell variant="included" variantAriaLabel={t('included')}>
+            {t('limited')}
+          </FeatureComparisonTable.Cell>
+          <FeatureComparisonTable.Cell variant="unlimited" variantAriaLabel={t('unlimited')} />
+          <FeatureComparisonTable.Cell variant="unlimited" variantAriaLabel={t('unlimited')} />
+        </FeatureComparisonTable.Row>
+        <FeatureComparisonTable.Row>
+          <FeatureComparisonTable.RowHeading>{t('custom_instructions')}</FeatureComparisonTable.RowHeading>
+          <FeatureComparisonTable.RowDescription>
+            {t('custom_instructions_description')} <InlineLink href="#copilot-chat">{t('models_in_chat')}</InlineLink>
+          </FeatureComparisonTable.RowDescription>
+          <FeatureComparisonTable.Cell variant="included" variantAriaLabel={t('included')} />
+          <FeatureComparisonTable.Cell variant="included" variantAriaLabel={t('included')} />
+          <FeatureComparisonTable.Cell variant="included" variantAriaLabel={t('included')} />
+        </FeatureComparisonTable.Row>
+        <FeatureComparisonTable.Row>
           <FeatureComparisonTable.RowHeading>{t('available_models')}</FeatureComparisonTable.RowHeading>
+          <FeatureComparisonTable.RowDescription>
+            {t('available_models_description')}
+          </FeatureComparisonTable.RowDescription>
           {[
             ['Anthropic Claude Haiku 4.5', 'OpenAI GPT-4.1', 'OpenAI GPT-5 mini', 'Raptor mini (Preview)'],
             [

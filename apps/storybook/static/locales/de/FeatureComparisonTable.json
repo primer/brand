@@ -67,5 +67,19 @@
   "models_in_chat": "Modelle in Copilot Chat",
   "model_interactions": "Interaktionen mit GPT-4.1 und GPT-5 mini",
   "available_models": "Verfügbare Modelle im Chat",
-  "preview": "Vorschau"
+  "preview": "Vorschau",
+  "for_daily_development": "Für die tägliche Entwicklung.",
+  "for_demanding_workflows": "Für anspruchsvolle Workflows.",
+  "agent_mode_description": "Bearbeite mehrere Dateien mit einem Agenten in deinem Editor.",
+  "code_suggestions": "Inline-Codevorschläge",
+  "code_suggestions_description": "Erhalte Vorschläge zur Codevervollständigung während des Schreibens.",
+  "next_edit_suggestions": "Vorschläge für die nächste Änderung",
+  "next_edit_suggestions_description": "Halte zusammengehörige Änderungen mit Vorschlägen für deine nächste Bearbeitung konsistent.",
+  "code_review_description": "Finde Verbesserungsmöglichkeiten für deine Änderungen vor dem Zusammenführen.",
+  "premium_requests_description": "Ein monatliches Kontingent für fortgeschrittene Modelle und Agenten-Workflows.",
+  "editor_chat": "Chat in deinem Editor",
+  "editor_chat_description": "Stelle Fragen, lass dir Code erklären und erkunde Lösungen, ohne das Tool zu wechseln.",
+  "custom_instructions": "Benutzerdefinierte Anweisungen",
+  "custom_instructions_description": "Passe Antworten an die Konventionen deines Projekts an.",
+  "available_models_description": "Wähle ein passendes Modell für deine Aufgabe, von schnellen Antworten bis zu tiefergehenden Überlegungen."
 }
