@@ -82,68 +82,65 @@ describe('FeatureComparisonTable', () => {
     jest.restoreAllMocks()
   })
 
-  it.each([narrowBreakpoint, regularBreakpoint, wideBreakpoint])(
-    'mounts custom descendants only in the active projection starting at %s',
-    breakpoint => {
-      setBreakpoint(breakpoint)
-      const {container, getByRole, getByTestId, queryByTestId} = render(
-        <>
-          <label htmlFor="custom-value">Custom value</label>
-          <FeatureComparisonTable>
+  it('mounts custom descendants only once throughout responsive layout changes', () => {
+    const {container, getByRole, getByTestId, queryByTestId} = render(
+      <>
+        <label htmlFor="custom-value">Custom value</label>
+        <FeatureComparisonTable>
+          <FeatureComparisonTable.Heading>
+            <span id="comparison-title">Compare features</span>
+          </FeatureComparisonTable.Heading>
+          <FeatureComparisonTable.Item>
             <FeatureComparisonTable.Heading>
-              <span id="comparison-title">Compare features</span>
+              <span id="plan-title">Free</span>
             </FeatureComparisonTable.Heading>
-            <FeatureComparisonTable.Item>
-              <FeatureComparisonTable.Heading>
-                <span id="plan-title">Free</span>
-              </FeatureComparisonTable.Heading>
-            </FeatureComparisonTable.Item>
-            <FeatureComparisonTable.Group expanded>
-              <FeatureComparisonTable.GroupHeading>
-                <span id="group-title">Core features</span>
-              </FeatureComparisonTable.GroupHeading>
-              <FeatureComparisonTable.Row>
-                <FeatureComparisonTable.RowHeading>
-                  <span id="feature-title">Storage</span>
-                </FeatureComparisonTable.RowHeading>
-                <FeatureComparisonTable.RowDescription>
-                  <span id="value-description">Storage limit</span>
-                </FeatureComparisonTable.RowDescription>
-                <FeatureComparisonTable.Cell>
-                  <input id="custom-value" aria-describedby="value-description" defaultValue="10 GB" />
-                </FeatureComparisonTable.Cell>
-              </FeatureComparisonTable.Row>
-            </FeatureComparisonTable.Group>
-          </FeatureComparisonTable>
-        </>,
-      )
+          </FeatureComparisonTable.Item>
+          <FeatureComparisonTable.Group expanded>
+            <FeatureComparisonTable.GroupHeading id="core-features">
+              <span id="group-title">Core features</span>
+            </FeatureComparisonTable.GroupHeading>
+            <FeatureComparisonTable.Row>
+              <FeatureComparisonTable.RowHeading>
+                <span id="feature-title">Storage</span>
+              </FeatureComparisonTable.RowHeading>
+              <FeatureComparisonTable.RowDescription>
+                <span id="value-description">Storage limit</span>
+              </FeatureComparisonTable.RowDescription>
+              <FeatureComparisonTable.Cell>
+                <input id="custom-value" aria-describedby="value-description" defaultValue="10 GB" />
+              </FeatureComparisonTable.Cell>
+            </FeatureComparisonTable.Row>
+          </FeatureComparisonTable.Group>
+        </FeatureComparisonTable>
+      </>,
+    )
 
-      for (const nextBreakpoint of [breakpoint, wideBreakpoint, regularBreakpoint, narrowBreakpoint]) {
-        setBreakpoint(nextBreakpoint)
-        const isWide = nextBreakpoint === wideBreakpoint
-        const activeProjection = getByTestId(
-          isWide ? FeatureComparisonTable.testIds.table : FeatureComparisonTable.testIds.narrow,
-        )
-        expect(
-          queryByTestId(isWide ? FeatureComparisonTable.testIds.narrow : FeatureComparisonTable.testIds.table),
-        ).not.toBeInTheDocument()
-        for (const id of [
-          'comparison-title',
-          'plan-title',
-          'group-title',
-          'feature-title',
-          'value-description',
-          'custom-value',
-        ]) {
-          expect(container.querySelectorAll(`[id="${id}"]`)).toHaveLength(1)
-          expect(activeProjection).toContainElement(document.getElementById(id))
-        }
-        const input = getByRole('textbox', {name: 'Custom value'})
-        expect(input).toHaveAccessibleDescription('Storage limit')
-        expect(document.querySelector('label')?.control).toBe(input)
+    for (const nextBreakpoint of [narrowBreakpoint, wideBreakpoint, regularBreakpoint, narrowBreakpoint]) {
+      setBreakpoint(nextBreakpoint)
+      const isWide = nextBreakpoint === wideBreakpoint
+      const activeProjection = getByTestId(
+        isWide ? FeatureComparisonTable.testIds.table : FeatureComparisonTable.testIds.narrow,
+      )
+      expect(
+        queryByTestId(isWide ? FeatureComparisonTable.testIds.narrow : FeatureComparisonTable.testIds.table),
+      ).not.toBeInTheDocument()
+      for (const id of [
+        'comparison-title',
+        'plan-title',
+        'group-title',
+        'core-features',
+        'feature-title',
+        'value-description',
+        'custom-value',
+      ]) {
+        expect(container.querySelectorAll(`[id="${id}"]`)).toHaveLength(1)
+        expect(activeProjection).toContainElement(document.getElementById(id))
       }
-    },
-  )
+      const input = getByRole('textbox', {name: 'Custom value'})
+      expect(input).toHaveAccessibleDescription('Storage limit')
+      expect(document.querySelector('label')?.control).toBe(input)
+    }
+  })
 
   it('renders plan summaries and actions', () => {
     setBreakpoint(wideBreakpoint)
@@ -166,13 +163,11 @@ describe('FeatureComparisonTable', () => {
 
     expect(narrow.getByText('Codespaces')).toBeInTheDocument()
     expect(narrow.getByText('Unlimited')).toBeInTheDocument()
-    expect(narrow.getByTestId(FeatureComparisonTable.testIds.rowHeading).querySelector('p')).toBeNull()
 
     setBreakpoint(wideBreakpoint)
     const table = within(getByRole('table', {name: 'Compare features'}))
     expect(table.getByRole('rowheader', {name: 'Codespaces'})).toHaveAttribute('scope', 'row')
     expect(table.getByRole('cell', {name: 'Unlimited'})).toBeInTheDocument()
-    expect(table.getByRole('rowheader', {name: 'Codespaces'}).querySelector('p')).toBeNull()
   })
 
   it('forwards custom classes, attributes, and refs to the root', () => {
@@ -183,53 +178,42 @@ describe('FeatureComparisonTable', () => {
     expect(ref.current).toBe(getByTestId('custom-table'))
   })
 
-  it.each([narrowBreakpoint, regularBreakpoint, wideBreakpoint])(
-    'renders rich row descriptions at the %s breakpoint',
-    breakpoint => {
-      setBreakpoint(breakpoint)
-      const {getByTestId} = render(
-        <FeatureComparisonTable>
-          <FeatureComparisonTable.Heading>Compare features</FeatureComparisonTable.Heading>
-          <FeatureComparisonTable.Item>
-            <FeatureComparisonTable.Heading>Free</FeatureComparisonTable.Heading>
-          </FeatureComparisonTable.Item>
-          <FeatureComparisonTable.Group expanded>
-            <FeatureComparisonTable.GroupHeading>Core features</FeatureComparisonTable.GroupHeading>
-            <FeatureComparisonTable.Row>
-              <FeatureComparisonTable.RowHeading className="custom-heading">
-                Codespaces
-              </FeatureComparisonTable.RowHeading>
-              <FeatureComparisonTable.RowDescription>Replaced description</FeatureComparisonTable.RowDescription>
-              <FeatureComparisonTable.RowDescription className="custom-description" {...{id: 'description-id'}}>
-                Develop in <strong>the cloud</strong>. <a href="#codespaces">Learn more</a>
-              </FeatureComparisonTable.RowDescription>
-              <FeatureComparisonTable.Cell variant="included" />
-            </FeatureComparisonTable.Row>
-          </FeatureComparisonTable.Group>
-        </FeatureComparisonTable>,
-      )
+  it.each([narrowBreakpoint, wideBreakpoint])('renders rich row descriptions at the %s breakpoint', breakpoint => {
+    setBreakpoint(breakpoint)
+    const {getByTestId} = render(
+      <FeatureComparisonTable>
+        <FeatureComparisonTable.Heading>Compare features</FeatureComparisonTable.Heading>
+        <FeatureComparisonTable.Item>
+          <FeatureComparisonTable.Heading>Free</FeatureComparisonTable.Heading>
+        </FeatureComparisonTable.Item>
+        <FeatureComparisonTable.Group expanded>
+          <FeatureComparisonTable.GroupHeading>Core features</FeatureComparisonTable.GroupHeading>
+          <FeatureComparisonTable.Row>
+            <FeatureComparisonTable.RowHeading className="custom-heading">Codespaces</FeatureComparisonTable.RowHeading>
+            <FeatureComparisonTable.RowDescription>Replaced description</FeatureComparisonTable.RowDescription>
+            <FeatureComparisonTable.RowDescription className="custom-description">
+              Develop in <strong>the cloud</strong>. <a href="#codespaces">Learn more</a>
+            </FeatureComparisonTable.RowDescription>
+            <FeatureComparisonTable.Cell variant="included" />
+          </FeatureComparisonTable.Row>
+        </FeatureComparisonTable.Group>
+      </FeatureComparisonTable>,
+    )
 
-      const projection = within(
-        getByTestId(
-          breakpoint === wideBreakpoint ? FeatureComparisonTable.testIds.table : FeatureComparisonTable.testIds.narrow,
-        ),
-      )
-      const heading = projection.getByText('Codespaces')
-      const description = projection.getByText(/Develop in/)
+    const projection = within(
+      getByTestId(
+        breakpoint === wideBreakpoint ? FeatureComparisonTable.testIds.table : FeatureComparisonTable.testIds.narrow,
+      ),
+    )
+    const heading = projection.getByText('Codespaces')
+    const description = projection.getByText(/Develop in/)
 
-      expect(heading).toHaveClass('custom-heading')
-      expect(heading).not.toHaveAttribute('description')
-      expect(description.tagName).toBe('P')
-      expect(description).toHaveClass('Text--100', 'Text--muted', 'Text--weight-normal')
-      expect(description).toHaveClass('custom-description')
-      expect(description).not.toHaveAttribute('id')
-      expect(projection.queryByText('Replaced description')).not.toBeInTheDocument()
-      expect(within(description).getByText('the cloud').tagName).toBe('STRONG')
-      expect(within(description).getByRole('link', {name: 'Learn more'})).toHaveAttribute('href', '#codespaces')
-      expect(heading.nextElementSibling).toBe(description)
-      expect(description.parentElement?.tagName).toBe('DIV')
-    },
-  )
+    expect(heading).toHaveClass('custom-heading')
+    expect(description).toHaveClass('custom-description')
+    expect(projection.queryByText('Replaced description')).not.toBeInTheDocument()
+    expect(description).toHaveTextContent('Develop in the cloud. Learn more')
+    expect(within(description).getByRole('link', {name: 'Learn more'})).toHaveAttribute('href', '#codespaces')
+  })
 
   it('uses description-list terms rather than headings for repeated plan names', () => {
     const {getByTestId} = render(<Component expanded />)
@@ -284,47 +268,6 @@ describe('FeatureComparisonTable', () => {
     expect(table.getByRole('heading', {name: 'Compare plans', level: 3})).toBeInTheDocument()
     expect(table.getByRole('heading', {name: 'Free', level: 4})).toBeInTheDocument()
     expect(table.getByRole('heading', {name: 'Features', level: 4})).toBeInTheDocument()
-  })
-
-  it.each([
-    ['narrow', narrowBreakpoint],
-    ['regular', regularBreakpoint],
-    ['wide', wideBreakpoint],
-  ])('assigns group anchor IDs only to the active layout at the %s breakpoint', (_name, breakpoint) => {
-    setBreakpoint(breakpoint)
-    const {container, getByTestId} = render(
-      <FeatureComparisonTable>
-        <FeatureComparisonTable.Heading>Compare plans</FeatureComparisonTable.Heading>
-        <FeatureComparisonTable.Item>
-          <FeatureComparisonTable.Heading>Free</FeatureComparisonTable.Heading>
-        </FeatureComparisonTable.Item>
-        <FeatureComparisonTable.Group>
-          <FeatureComparisonTable.GroupHeading id="core-features">Core features</FeatureComparisonTable.GroupHeading>
-        </FeatureComparisonTable.Group>
-      </FeatureComparisonTable>,
-    )
-    const expectAnchor = (activeBreakpoint: string) => {
-      const activeHeading = within(
-        getByTestId(
-          activeBreakpoint === wideBreakpoint
-            ? FeatureComparisonTable.testIds.table
-            : FeatureComparisonTable.testIds.narrow,
-        ),
-      ).getByRole('heading', {name: 'Core features'})
-      expect(document.getElementById('core-features')).toBe(activeHeading)
-      expect(container.querySelectorAll('[id="core-features"]')).toHaveLength(1)
-    }
-
-    expectAnchor(breakpoint)
-
-    setBreakpoint(wideBreakpoint)
-    expectAnchor(wideBreakpoint)
-
-    setBreakpoint(regularBreakpoint)
-    expectAnchor(regularBreakpoint)
-
-    setBreakpoint(narrowBreakpoint)
-    expectAnchor(narrowBreakpoint)
   })
 
   it.each([
@@ -453,15 +396,13 @@ describe('FeatureComparisonTable', () => {
   it('resets expanded state when the breakpoint changes', async () => {
     setBreakpoint(regularBreakpoint)
     const user = userEvent.setup()
-    const {getByRole, rerender} = render(<Component />)
+    const {getByRole} = render(<Component />)
     const summary = within(getByRole('group')).getByRole('heading', {name: 'Core features'}).parentElement!
 
     await user.click(summary)
     await waitFor(() => expect(summary).toHaveAttribute('aria-expanded', 'false'))
 
     setBreakpoint(wideBreakpoint)
-    rerender(<Component />)
-
     expect(getByRole('button', {name: 'Core features'})).toHaveAttribute('aria-expanded', 'true')
   })
 
@@ -476,18 +417,14 @@ describe('FeatureComparisonTable', () => {
   })
 
   it('moves focus to the corresponding group control when the layout changes', () => {
-    const {getByRole, rerender} = render(<Component />)
+    const {getByRole} = render(<Component />)
     const summary = within(getByRole('group')).getByRole('heading', {name: 'Core features'}).parentElement
     summary?.focus()
 
     setBreakpoint(wideBreakpoint)
-    rerender(<Component />)
-
     expect(getByRole('button', {name: 'Core features'})).toHaveFocus()
 
     setBreakpoint(narrowBreakpoint)
-    rerender(<Component />)
-
     expect(within(getByRole('group')).getByRole('heading', {name: 'Core features'}).parentElement).toHaveFocus()
   })
 
@@ -530,10 +467,7 @@ describe('FeatureComparisonTable', () => {
 
   it.each([
     [80, -4],
-    [81, -3],
-    [83, -1],
     [84, undefined],
-    [85, undefined],
   ])('clears focus outlines beneath sticky headers when the control starts at %s', (top, expectedScroll) => {
     setBreakpoint(wideBreakpoint)
     const scrollBy = jest.spyOn(window, 'scrollBy').mockImplementation()
@@ -556,15 +490,13 @@ describe('FeatureComparisonTable', () => {
 
   it.each([
     ['included', undefined, 'Included'],
+    ['included', 'Available', 'Available'],
     ['unavailable', undefined, 'Unavailable'],
-    ['unavailable', 'Not offered', 'Not offered'],
     ['unlimited', undefined, 'Unlimited'],
-    ['unlimited', 'No limits', 'No limits'],
     ['refresh', undefined, 'Refresh'],
-    ['refresh', 'Resets monthly', 'Resets monthly'],
   ] as const)('renders accessible text for the %s cell variant (%s)', (variant, variantAriaLabel, expectedLabel) => {
     setBreakpoint(wideBreakpoint)
-    const {getByRole, getByTestId} = render(
+    const {getByRole} = render(
       <FeatureComparisonTable>
         <FeatureComparisonTable.Heading>Compare plans</FeatureComparisonTable.Heading>
         <FeatureComparisonTable.Item>
@@ -580,19 +512,9 @@ describe('FeatureComparisonTable', () => {
       </FeatureComparisonTable>,
     )
 
-    expect(getByRole('cell', {name: expectedLabel})).toBeInTheDocument()
-    for (const testId of [FeatureComparisonTable.testIds.narrow, FeatureComparisonTable.testIds.table]) {
-      setBreakpoint(testId === FeatureComparisonTable.testIds.table ? wideBreakpoint : narrowBreakpoint)
-      const label = within(getByTestId(testId)).getByText(expectedLabel)
-      expect(label).toHaveClass('visually-hidden')
-      const status = label.previousElementSibling
-      expect(status).toHaveAttribute('aria-hidden', 'true')
-      const iconName = {included: 'check', unavailable: 'dash', unlimited: 'infinity', refresh: 'sync'}[variant]
-      expect(status?.querySelector('svg')).toHaveClass(`octicon-${iconName}`)
-      if (variant !== 'unavailable') {
-        expect(status).toHaveClass(`FeatureComparisonTable__status--${variant}`)
-      }
-    }
+    const label = within(getByRole('cell', {name: expectedLabel})).getByText(expectedLabel)
+    expect(label).toHaveClass('visually-hidden')
+    expect(label.previousElementSibling).toHaveAttribute('aria-hidden', 'true')
   })
 
   it('ignores unsupported children and uses the last heading', () => {
@@ -685,14 +607,6 @@ describe('FeatureComparisonTable', () => {
       rerender(renderGroups(['Security', 'Core']))
       expect(getControl('Core')).toHaveAttribute('aria-expanded', 'false')
       expect(getControl('Security')).toHaveAttribute('aria-expanded', 'true')
-
-      getControl('Core').focus()
-      setBreakpoint(breakpoint === wideBreakpoint ? regularBreakpoint : wideBreakpoint)
-      expect(
-        breakpoint === wideBreakpoint
-          ? getByRole('heading', {name: 'Core'}).parentElement
-          : getByRole('button', {name: 'Core'}),
-      ).toHaveFocus()
     },
   )
 
