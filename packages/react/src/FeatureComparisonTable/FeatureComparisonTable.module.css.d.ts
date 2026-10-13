@@ -20,14 +20,12 @@ declare const styles: {
   readonly "FeatureComparisonTable__groupControl": string;
   readonly "FeatureComparisonTable__groupDivider": string;
   readonly "FeatureComparisonTable__groupHeader": string;
-  readonly "FeatureComparisonTable__groupHeading": string;
   readonly "FeatureComparisonTable__groupRows": string;
+  readonly "FeatureComparisonTable__head": string;
   readonly "FeatureComparisonTable__headerCell": string;
   readonly "FeatureComparisonTable__headerCell--hasLabel": string;
-  readonly "FeatureComparisonTable__heading--defaultSize": string;
   readonly "FeatureComparisonTable__headingGrid": string;
   readonly "FeatureComparisonTable__headingGrid--hasLabel": string;
-  readonly "FeatureComparisonTable__headingRow": string;
   readonly "FeatureComparisonTable__highlightedColumn": string;
   readonly "FeatureComparisonTable__item": string;
   readonly "FeatureComparisonTable__item--hasLabel": string;
