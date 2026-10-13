@@ -276,9 +276,9 @@ describe('FeatureComparisonTable', () => {
     const heading = getByRole('heading', {name: 'Compare features', level: 2})
     const itemHeading = getByRole('heading', {name: 'Free', level: 3})
 
-    expect(heading).toHaveClass('Heading--subhead-large', 'FeatureComparisonTable__tableHeadingText')
-    expect(itemHeading).toHaveClass('Heading--subhead-medium')
-    expect(itemHeading).not.toHaveClass('FeatureComparisonTable__tableHeadingText')
+    expect(heading).toHaveClass('Heading--subhead-large', 'FeatureComparisonTable__heading--defaultSize')
+    expect(itemHeading).toHaveClass('Heading--subhead-medium', 'FeatureComparisonTable__itemHeading')
+    expect(itemHeading).not.toHaveClass('FeatureComparisonTable__heading--defaultSize')
     expect(itemHeading).not.toHaveAttribute('id')
     expect(getAllByTestId(FeatureComparisonTable.testIds.heading)).toEqual([heading])
   })
@@ -301,10 +301,10 @@ describe('FeatureComparisonTable', () => {
     const itemHeading = getByRole('heading', {name: 'Free'})
 
     expect(heading).toHaveClass('Heading--4', 'custom-title')
-    expect(heading).not.toHaveClass('FeatureComparisonTable__tableHeadingText')
+    expect(heading).not.toHaveClass('FeatureComparisonTable__heading--defaultSize')
     expect(heading).toHaveAttribute('title', 'Table title')
     expect(itemHeading).toHaveClass('Heading--5', 'custom-plan')
-    expect(itemHeading).not.toHaveClass('FeatureComparisonTable__tableHeadingText')
+    expect(itemHeading).not.toHaveClass('FeatureComparisonTable__heading--defaultSize')
     expect(itemHeading).toHaveAttribute('title', 'Plan title')
   })
 
@@ -323,8 +323,9 @@ describe('FeatureComparisonTable', () => {
       setBreakpoint(breakpoint)
       expect(getAllByRole('heading', {name: 'Compare features'}).map(heading => heading.id)).toEqual(headingIds)
       if (breakpoint === wideBreakpoint) {
-        expect(getAllByRole('table', {name: 'Compare features'}).map(table => table.getAttribute('aria-labelledby')))
-          .toEqual(headingIds)
+        expect(
+          getAllByRole('table', {name: 'Compare features'}).map(table => table.getAttribute('aria-labelledby')),
+        ).toEqual(headingIds)
         for (const itemHeading of getAllByRole('heading', {name: /^(Free|Pro)$/})) {
           expect(itemHeading).not.toHaveAttribute('id')
         }
@@ -575,8 +576,16 @@ describe('FeatureComparisonTable', () => {
     )
 
     const label = within(getByRole('cell', {name: expectedLabel})).getByText(expectedLabel)
+    expect(getByRole('cell', {name: expectedLabel})).toHaveClass(
+      'FeatureComparisonTable__tableCell',
+      'FeatureComparisonTable__tableCell--hasVariant',
+    )
     expect(label).toHaveClass('visually-hidden')
     expect(label.previousElementSibling).toHaveAttribute('aria-hidden', 'true')
+    expect(label.previousElementSibling).toHaveClass('FeatureComparisonTable__cellIcon')
+    if (variant !== 'unavailable') {
+      expect(label.previousElementSibling).toHaveClass(`FeatureComparisonTable__cellIcon--${variant}`)
+    }
   })
 
   it('ignores unsupported children and uses the last heading', () => {

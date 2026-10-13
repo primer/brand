@@ -214,7 +214,7 @@ const FeatureComparisonTableRoot = forwardRef<HTMLDivElement, FeatureComparisonT
           className={clsx(
             styles.FeatureComparisonTable,
             gridlineStyles.gridline,
-            styles[`FeatureComparisonTable--items${items.length}`],
+            items.length > 1 && styles[`FeatureComparisonTable--items${items.length}`],
             hasStickyHeaders && styles['FeatureComparisonTable--stickyHeaders'],
             rowHighlighting && styles['FeatureComparisonTable--rowHighlighting'],
             animationClasses,
@@ -256,7 +256,6 @@ const FeatureComparisonTableRoot = forwardRef<HTMLDivElement, FeatureComparisonT
               <thead
                 className={clsx(
                   groups.length > 0 && gridlineStyles.gridline,
-                  styles.FeatureComparisonTable__itemDivider,
                   styles.FeatureComparisonTable__headingGrid,
                   hasLabels && styles['FeatureComparisonTable__headingGrid--hasLabel'],
                 )}
@@ -286,7 +285,7 @@ const FeatureComparisonTableRoot = forwardRef<HTMLDivElement, FeatureComparisonT
                       className={clsx(
                         styles.FeatureComparisonTable__headerCell,
                         hasLabels && styles['FeatureComparisonTable__headerCell--hasLabel'],
-                        hasItemLabel(item) && styles.FeatureComparisonTable__promoted,
+                        hasItemLabel(item) && styles.FeatureComparisonTable__highlightedColumn,
                       )}
                       scope="col"
                       key={item.key}
@@ -307,8 +306,14 @@ const FeatureComparisonTableRoot = forwardRef<HTMLDivElement, FeatureComparisonT
 export type FeatureComparisonTableHeadingProps = PropsWithChildren<Omit<HeadingProps, 'id' | 'ref'>>
 
 const Heading = (props: FeatureComparisonTableHeadingProps) => {
-  const {children, as = 'h2', size, className, id: _id, ...rest}: FeatureComparisonTableHeadingProps & {id?: string} =
-    props
+  const {
+    children,
+    as = 'h2',
+    size,
+    className,
+    id: _id,
+    ...rest
+  }: FeatureComparisonTableHeadingProps & {id?: string} = props
   const {instanceId} = useTableContext()
 
   return (
@@ -316,7 +321,7 @@ const Heading = (props: FeatureComparisonTableHeadingProps) => {
       as={as}
       size={size ?? 'subhead-large'}
       weight="semibold"
-      className={clsx(size === undefined && styles.FeatureComparisonTable__tableHeadingText, className)}
+      className={clsx(size === undefined && styles['FeatureComparisonTable__heading--defaultSize'], className)}
       data-testid={testIds.heading}
       id={`${instanceId}-heading`}
       {...rest}
@@ -444,7 +449,7 @@ const Item = ({children, className}: FeatureComparisonTableItemProps) => {
         styles.FeatureComparisonTable__item,
         label && styles['FeatureComparisonTable__item--hasLabel'],
         hasLabels && !label && styles['FeatureComparisonTable__item--offset'],
-        label && styles.FeatureComparisonTable__promoted,
+        label && styles.FeatureComparisonTable__highlightedColumn,
         className,
       )}
       data-projection="wide"
@@ -459,10 +464,10 @@ const Item = ({children, className}: FeatureComparisonTableItemProps) => {
       >
         {heading ? (
           React.cloneElement(heading, {
-            className: clsx(styles.FeatureComparisonTable__heading, heading.props.className),
+            className: clsx(styles.FeatureComparisonTable__itemHeading, heading.props.className),
           })
         ) : (
-          <span className={styles.FeatureComparisonTable__heading}>{itemIndex}</span>
+          <span className={styles.FeatureComparisonTable__itemHeading}>{itemIndex}</span>
         )}
         {description}
         {price}
@@ -545,7 +550,7 @@ const Cell = (props: FeatureComparisonTableCellProps) => {
     id: _id,
     ...rest
   }: FeatureComparisonTableCellProps & {id?: string} = props
-  const StatusIcon = variant ? cellVariants[variant].icon : null
+  const CellIcon = variant ? cellVariants[variant].icon : null
   const resolvedVariantAriaLabel = variantAriaLabel ?? (variant ? cellVariants[variant].label : undefined)
 
   return (
@@ -561,14 +566,14 @@ const Cell = (props: FeatureComparisonTableCellProps) => {
         <>
           <span
             className={clsx(
-              styles.FeatureComparisonTable__status,
-              variant === 'included' && styles['FeatureComparisonTable__status--included'],
-              variant === 'unlimited' && styles['FeatureComparisonTable__status--unlimited'],
-              variant === 'refresh' && styles['FeatureComparisonTable__status--refresh'],
+              styles.FeatureComparisonTable__cellIcon,
+              variant === 'included' && styles['FeatureComparisonTable__cellIcon--included'],
+              variant === 'unlimited' && styles['FeatureComparisonTable__cellIcon--unlimited'],
+              variant === 'refresh' && styles['FeatureComparisonTable__cellIcon--refresh'],
             )}
             aria-hidden="true"
           >
-            {StatusIcon && <StatusIcon size={16} />}
+            {CellIcon && <CellIcon size={16} />}
           </span>
           <span className="visually-hidden">{resolvedVariantAriaLabel}</span>
         </>
@@ -614,9 +619,9 @@ const Row = ({children, className}: FeatureComparisonTableRowProps) => {
         {items.map((item, index) => (
           <td
             className={clsx(
-              styles.FeatureComparisonTable__dataCell,
-              hasItemLabel(item) && styles.FeatureComparisonTable__promoted,
-              cells[index]?.props.variant && styles.FeatureComparisonTable__statusCell,
+              styles.FeatureComparisonTable__tableCell,
+              hasItemLabel(item) && styles.FeatureComparisonTable__highlightedColumn,
+              cells[index]?.props.variant && styles['FeatureComparisonTable__tableCell--hasVariant'],
             )}
             key={item.key}
           >
@@ -638,7 +643,7 @@ const Row = ({children, className}: FeatureComparisonTableRowProps) => {
               <dt
                 className={clsx(
                   styles.FeatureComparisonTable__planTerm,
-                  hasItemLabel(item) && styles.FeatureComparisonTable__promoted,
+                  hasItemLabel(item) && styles.FeatureComparisonTable__highlightedColumn,
                 )}
               >
                 <Text as="div" size="200" variant="muted" className={styles.FeatureComparisonTable__planName}>
@@ -648,7 +653,7 @@ const Row = ({children, className}: FeatureComparisonTableRowProps) => {
               <dd
                 className={clsx(
                   styles.FeatureComparisonTable__planValue,
-                  hasItemLabel(item) && styles.FeatureComparisonTable__promoted,
+                  hasItemLabel(item) && styles.FeatureComparisonTable__highlightedColumn,
                 )}
               >
                 {cells[index]}
@@ -782,7 +787,10 @@ const Group = ({children, className, expanded}: FeatureComparisonTableGroupProps
             <div className={styles.FeatureComparisonTable__groupBackground} aria-hidden="true">
               <span />
               {items.map(item => (
-                <span key={item.key} className={clsx(hasItemLabel(item) && styles.FeatureComparisonTable__promoted)} />
+                <span
+                  key={item.key}
+                  className={clsx(hasItemLabel(item) && styles.FeatureComparisonTable__highlightedColumn)}
+                />
               ))}
             </div>
             {heading ? React.cloneElement(heading, {children: control}) : <GroupHeading>{control}</GroupHeading>}
