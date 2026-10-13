@@ -25,13 +25,7 @@ import {FeatureComparisonTable} from '@primer/react-brand'
 
 ### Default
 
-Compare two to four plans. Use an `Item` for each plan and a `Group` for related features.
-
-On smaller screens, features appear in collapsible groups. Plan descriptions, prices, labels, and actions are shown only at `80rem` and above.
-
-Only the active responsive layout is mounted. Switching across `80rem` remounts custom content, so keep any state that must survive layout changes outside the projected children.
-
-Plan names repeat in each feature row on smaller screens. Avoid fixed IDs in `Item` heading descendants; custom components that need IDs should generate a unique ID per instance with React's `useId`.
+Use an `Item` for each plan and a `Group` for related features. Add one `Cell` per plan to each `Row`, in the same order as the items.
 
 ```jsx live
 <FeatureComparisonTable>
@@ -72,7 +66,7 @@ Plan names repeat in each feature row on smaller screens. Avoid fixed IDs in `It
 
 ### Row descriptions
 
-Add an optional `RowDescription` alongside `RowHeading` inside a `Row`. It renders beneath the feature name in small, muted body text in all layouts and supports inline rich text, including links and emphasis.
+Use `RowDescription` to add context beneath a feature name. Descriptions can include links and emphasis.
 
 ```jsx live
 <FeatureComparisonTable>
@@ -105,9 +99,11 @@ Add an optional `RowDescription` alongside `RowHeading` inside a `Row`. It rende
 | :----------------- | :--------------------- | :-----: | :------: | :-------------------------------------------------------------------- |
 | `children`         | `Heading, Item, Group` |         |  `true`  | Table title, plans, and feature groups                                |
 | `rowHighlighting`  | `boolean`              | `true`  | `false`  | Highlights rows on hover or keyboard focus; set to `false` to disable |
-| `hasStickyHeaders` | `boolean`              | `false` | `false`  | Keeps headers visible while scrolling at `80rem` and above            |
+| `hasStickyHeaders` | `boolean`              | `false` | `false`  | Keeps table headers visible while scrolling on wide screens           |
 
 ### FeatureComparisonTable.Item <Label>Required</Label>
+
+One item per pricing plan to be displayed. Supports two to four plans.
 
 | Name       | Type                                                                 | Default | required | Description  |
 | :--------- | :------------------------------------------------------------------- | :-----: | :------: | :----------- |
@@ -115,9 +111,9 @@ Add an optional `RowDescription` alongside `RowHeading` inside a `Row`. It rende
 
 ### FeatureComparisonTable.Label
 
-| Name       | Type        | Default | required | Description                                                  |
-| :--------- | :---------- | :-----: | :------: | :----------------------------------------------------------- |
-| `children` | `ReactNode` |         |  `true`  | Short label, such as "Recommended", that highlights the plan |
+| Name       | Type        | Default | required | Description                                                                  |
+| :--------- | :---------- | :-----: | :------: | :--------------------------------------------------------------------------- |
+| `children` | `ReactNode` |         |  `true`  | Label text, such as "Recommended". Adding a label highlights the plan column |
 
 ### FeatureComparisonTable.Heading <Label>Required</Label>
 
@@ -150,16 +146,16 @@ Add a `Heading` to the table and each `Item`.
 
 ### FeatureComparisonTable.Group <Label>Required</Label>
 
-Groups start collapsed below `48rem` and expanded on larger screens.
+Use `expanded` to set the initial expanded state of a group. Accepts a boolean or an object for different viewport sizes.
 
-| Name       | Type                                   |  Default   | required | Description                                                      |
-| :--------- | :------------------------------------- | :--------: | :------: | :--------------------------------------------------------------- |
-| `children` | `GroupHeading, Row`                    |            |  `true`  | Group title and feature rows                                     |
-| `expanded` | <FeatureComparisonTableExpandedProp /> | Responsive | `false`  | Initial open state. Resets when the screen-size category changes |
+| Name       | Type                                   |                   Default                    | required | Description                                              |
+| :--------- | :------------------------------------- | :------------------------------------------: | :------: | :------------------------------------------------------- |
+| `children` | `GroupHeading, Row`                    |                                              |  `true`  | Group title and feature rows                             |
+| `expanded` | <FeatureComparisonTableExpandedProp /> | `{narrow: false, regular: true, wide: true}` | `false`  | Initial expanded state, optionally set per viewport size |
 
 ### FeatureComparisonTable.GroupHeading <Label>Required</Label>
 
-Set `id` to link directly to a group heading, for example with `href="#core-features"`. The ID is assigned only to the heading in the active responsive layout.
+Set `id` to link directly to a group heading, for example with `href="#core-features"`.
 
 | Name       | Type                                    | Default | required | Description                         |
 | :--------- | :-------------------------------------- | :-----: | :------: | :---------------------------------- |
