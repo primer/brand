@@ -1,5 +1,3 @@
-import {CheckIcon, ChevronDownIcon, DashIcon, InfinityIcon, SyncIcon} from '@primer/octicons-react'
-import {clsx} from 'clsx'
 import React, {
   createContext,
   forwardRef,
@@ -10,16 +8,26 @@ import React, {
   useRef,
   useState,
 } from 'react'
-import {Button, type ButtonBaseProps} from '../Button'
-import {useAnimation} from '../animation'
+import {CheckIcon, ChevronDownIcon, DashIcon, InfinityIcon, SyncIcon} from '@primer/octicons-react'
+import {clsx} from 'clsx'
 import type {BaseProps} from '../component-helpers'
-import gridlineStyles from '../component-helpers/shared.module.css'
+import {Button, type ButtonBaseProps} from '../Button'
 import {Heading as HeadingComponent, type HeadingProps} from '../Heading'
 import {Text} from '../Text'
+import {useAnimation} from '../animation'
 import {useId} from '../hooks/useId'
+
+/**
+ * Design tokens
+ */
 import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/feature-comparison-table/base.css'
 import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/feature-comparison-table/colors-with-modes.css'
+
+/**
+ * Main stylesheet (as a CSS Module)
+ */
 import styles from './FeatureComparisonTable.module.css'
+import gridlineStyles from '../component-helpers/shared.module.css'
 
 export type FeatureComparisonTableProps = BaseProps<HTMLDivElement> &
   Omit<React.HTMLAttributes<HTMLDivElement>, 'aria-label' | 'aria-labelledby'> & {
