@@ -3,8 +3,7 @@
 '@primer/brand-primitives': patch
 ---
 
-Added the new `FeatureComparisonTable` component for comparing two to four pricing plans with plan summaries,
-actions, and grouped feature availability.
+Added the new `FeatureComparisonTable` component for comparing two to four pricing plans with plan summaries, actions, and grouped feature availability.
 
 ```js
 import {FeatureComparisonTable} from '@primer/react-brand'
@@ -32,8 +31,7 @@ import {FeatureComparisonTable} from '@primer/react-brand'
 
 :link: [See `FeatureComparisonTable` documentation for more usage examples](https://primer.style/brand/components/FeatureComparisonTable)
 
-Added feature-column width tokens and light- and dark-mode color tokens in `@primer/brand-primitives` for the label
-accent, highlighted columns, included, unlimited, and refresh indicators, and row highlighting:
+Added the new `FeatureComparisonTable` component design tokens.
 
 - `--brand-FeatureComparisonTable-default-featureColumnWidth`
 - `--brand-FeatureComparisonTable-fourItems-featureColumnWidth`
