@@ -7,6 +7,7 @@ import {Heading as HeadingComponent, type HeadingProps} from '../Heading'
 import {Text} from '../Text'
 import {useAnimation} from '../animation'
 import {useId} from '../hooks/useId'
+import {useWindowSize} from '../hooks/useWindowSize'
 import useIsomorphicLayoutEffect from '../hooks/useIsomorphicLayoutEffect'
 
 /**
@@ -64,8 +65,8 @@ type TableContextValue = {
   instanceId: string
   breakpoint: BreakpointCategory
   items: Array<React.ReactElement<FeatureComparisonTableItemProps>>
-  narrowGroupControls: React.RefObject<Record<string, HTMLElement | null>>
-  tableGroupControls: React.RefObject<Record<string, HTMLButtonElement | null>>
+  narrowGroupControlsRef: React.RefObject<Record<string, HTMLElement | null>>
+  tableGroupControlsRef: React.RefObject<Record<string, HTMLButtonElement | null>>
 }
 
 const TableContext = createContext<TableContextValue | undefined>(undefined)
@@ -82,7 +83,7 @@ const getChildrenOfType = <P,>(children: React.ReactNode[], type: React.JSXEleme
   children.filter((child): child is React.ReactElement<P> => React.isValidElement<P>(child) && child.type === type)
 
 const hasItemLabel = (item: React.ReactElement<FeatureComparisonTableItemProps>) =>
-  getChildrenOfType(React.Children.toArray(item.props.children), Label).length > 0
+  React.Children.toArray(item.props.children).some(child => React.isValidElement(child) && child.type === Label)
 
 const FeatureComparisonTableRoot = forwardRef<HTMLDivElement, FeatureComparisonTableProps>(
   (
@@ -102,13 +103,14 @@ const FeatureComparisonTableRoot = forwardRef<HTMLDivElement, FeatureComparisonT
   ) => {
     const instanceId = useId()
     const {classes: animationClasses, styles: animationInlineStyles} = useAnimation(animate)
+    const {width, isMedium: isRegular, isXLarge: isWide} = useWindowSize()
     const [breakpoint, setBreakpoint] = useState<BreakpointCategory>('narrow')
     const tableRef = useRef<HTMLTableElement>(null)
-    const narrowGroupControls = useRef<Record<string, HTMLElement | null>>({})
-    const tableGroupControls = useRef<Record<string, HTMLButtonElement | null>>({})
-    const previousBreakpoint = useRef(breakpoint)
-    const blurredControl = useRef<HTMLElement | null>(null)
-    const focusedGroupIdentity = useRef<string | undefined>(undefined)
+    const narrowGroupControlsRef = useRef<Record<string, HTMLElement | null>>({})
+    const tableGroupControlsRef = useRef<Record<string, HTMLButtonElement | null>>({})
+    const previousBreakpointRef = useRef(breakpoint)
+    const blurredElementRef = useRef<HTMLElement | null>(null)
+    const focusedGroupIdentityRef = useRef<string | undefined>(undefined)
     const rootChildren = React.Children.toArray(children)
     const heading = getChildrenOfType(rootChildren, Heading).at(-1)
     const allItems = getChildrenOfType(rootChildren, Item)
@@ -126,42 +128,31 @@ const FeatureComparisonTableRoot = forwardRef<HTMLDivElement, FeatureComparisonT
     }, [allItems.length])
 
     useEffect(() => {
-      const regularQuery = window.matchMedia('(min-width: 48rem)')
-      const wideQuery = window.matchMedia('(min-width: 80rem)')
-      const updateBreakpoint = () => {
-        const nextBreakpoint = wideQuery.matches ? 'wide' : regularQuery.matches ? 'regular' : 'narrow'
-        const previous = previousBreakpoint.current
+      const nextBreakpoint = isWide ? 'wide' : isRegular ? 'regular' : 'narrow'
+      const previous = previousBreakpointRef.current
 
-        if ((previous === 'wide') !== (nextBreakpoint === 'wide')) {
-          // Capture focus before the previous projection unmounts and clears its refs.
-          const activeElement =
-            document.activeElement === document.body ? blurredControl.current : document.activeElement
-          const previousControls = previous === 'wide' ? tableGroupControls.current : narrowGroupControls.current
-          focusedGroupIdentity.current = Object.entries(previousControls).find(
-            ([, control]) => control !== null && control === activeElement,
-          )?.[0]
-        }
-        setBreakpoint(nextBreakpoint)
+      if ((previous === 'wide') !== (nextBreakpoint === 'wide')) {
+        // Capture focus before the previous projection unmounts and clears its refs.
+        const activeElement =
+          document.activeElement === document.body ? blurredElementRef.current : document.activeElement
+        const previousControls = previous === 'wide' ? tableGroupControlsRef.current : narrowGroupControlsRef.current
+        focusedGroupIdentityRef.current = Object.entries(previousControls).find(
+          ([, control]) => control !== null && control === activeElement,
+        )?.[0]
       }
-
-      updateBreakpoint()
-      regularQuery.addEventListener('change', updateBreakpoint)
-      wideQuery.addEventListener('change', updateBreakpoint)
-      return () => {
-        regularQuery.removeEventListener('change', updateBreakpoint)
-        wideQuery.removeEventListener('change', updateBreakpoint)
-      }
-    }, [])
+      blurredElementRef.current = null
+      setBreakpoint(nextBreakpoint)
+    }, [isRegular, isWide, width])
 
     useIsomorphicLayoutEffect(() => {
-      const previous = previousBreakpoint.current
-      previousBreakpoint.current = breakpoint
-      blurredControl.current = null
+      const previous = previousBreakpointRef.current
+      previousBreakpointRef.current = breakpoint
+      blurredElementRef.current = null
       if ((previous === 'wide') === (breakpoint === 'wide')) return
-      const nextControls = breakpoint === 'wide' ? tableGroupControls.current : narrowGroupControls.current
-      if (focusedGroupIdentity.current) {
-        nextControls[focusedGroupIdentity.current]?.focus()
-        focusedGroupIdentity.current = undefined
+      const nextControls = breakpoint === 'wide' ? tableGroupControlsRef.current : narrowGroupControlsRef.current
+      if (focusedGroupIdentityRef.current) {
+        nextControls[focusedGroupIdentityRef.current]?.focus()
+        focusedGroupIdentityRef.current = undefined
       }
     }, [breakpoint])
 
@@ -209,7 +200,7 @@ const FeatureComparisonTableRoot = forwardRef<HTMLDivElement, FeatureComparisonT
     ))
 
     return (
-      <TableContext.Provider value={{instanceId, breakpoint, items, narrowGroupControls, tableGroupControls}}>
+      <TableContext.Provider value={{instanceId, breakpoint, items, narrowGroupControlsRef, tableGroupControlsRef}}>
         <div
           className={clsx(
             styles.FeatureComparisonTable,
@@ -223,8 +214,8 @@ const FeatureComparisonTableRoot = forwardRef<HTMLDivElement, FeatureComparisonT
           data-testid={testId || testIds.root}
           ref={ref}
           onBlur={event => {
-            if (window.matchMedia('(min-width: 80rem)').matches !== (breakpoint === 'wide'))
-              blurredControl.current = event.target
+            if (window.innerWidth !== width || Boolean(isWide) !== (breakpoint === 'wide'))
+              blurredElementRef.current = event.target
             onBlur?.(event)
           }}
           onFocus={handleFocus}
@@ -452,7 +443,6 @@ const Item = ({children, className}: FeatureComparisonTableItemProps) => {
         label && styles.FeatureComparisonTable__highlightedColumn,
         className,
       )}
-      data-projection="wide"
       data-testid={testIds.item}
     >
       {label}
@@ -533,7 +523,7 @@ type FeatureComparisonTableCellVariantProps =
       variantAriaLabel?: never
     }
   | {
-      variant: 'included' | 'unavailable' | 'unlimited' | 'refresh'
+      variant: keyof typeof cellVariants
       variantAriaLabel?: string
     }
 
@@ -638,12 +628,13 @@ const Row = ({children, className}: FeatureComparisonTableRowProps) => {
       <dl className={styles.FeatureComparisonTable__planValues}>
         {items.map((item, index) => {
           const itemHeading = getChildrenOfType(React.Children.toArray(item.props.children), ItemHeading).at(-1)
+          const hasLabel = hasItemLabel(item)
           return (
             <React.Fragment key={item.key}>
               <dt
                 className={clsx(
                   styles.FeatureComparisonTable__planTerm,
-                  hasItemLabel(item) && styles.FeatureComparisonTable__highlightedColumn,
+                  hasLabel && styles.FeatureComparisonTable__highlightedColumn,
                 )}
               >
                 <Text as="div" size="200" variant="muted" className={styles.FeatureComparisonTable__planName}>
@@ -653,7 +644,7 @@ const Row = ({children, className}: FeatureComparisonTableRowProps) => {
               <dd
                 className={clsx(
                   styles.FeatureComparisonTable__planValue,
-                  hasItemLabel(item) && styles.FeatureComparisonTable__highlightedColumn,
+                  hasLabel && styles.FeatureComparisonTable__highlightedColumn,
                 )}
               >
                 {cells[index]}
@@ -706,7 +697,7 @@ export type FeatureComparisonTableGroupProps = PropsWithChildren<
 >
 
 const Group = ({children, className, expanded}: FeatureComparisonTableGroupProps) => {
-  const {instanceId, breakpoint, items, narrowGroupControls, tableGroupControls} = useTableContext()
+  const {instanceId, breakpoint, items, narrowGroupControlsRef, tableGroupControlsRef} = useTableContext()
   const {index, identity} = useContext(GroupContext)
   const groupChildren = React.Children.toArray(children)
   const heading = getChildrenOfType(groupChildren, GroupHeading).at(-1)
@@ -747,7 +738,7 @@ const Group = ({children, className, expanded}: FeatureComparisonTableGroupProps
           aria-controls={groupId}
           aria-expanded={open}
           ref={control => {
-            narrowGroupControls.current[identity] = control
+            narrowGroupControlsRef.current[identity] = control
           }}
         >
           {heading ?? <GroupHeading />}
@@ -766,7 +757,7 @@ const Group = ({children, className, expanded}: FeatureComparisonTableGroupProps
       id={groupControlId}
       onClick={() => setOpen(!open)}
       ref={element => {
-        tableGroupControls.current[identity] = element
+        tableGroupControlsRef.current[identity] = element
       }}
       type="button"
     >

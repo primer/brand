@@ -48,34 +48,19 @@ const Component = ({
 )
 
 describe('FeatureComparisonTable', () => {
-  let regularQuery: MediaQueryList
-  let wideQuery: MediaQueryList
-
   const setBreakpoint = (breakpoint: string) => {
     act(() => {
-      Object.defineProperty(regularQuery, 'matches', {configurable: true, value: breakpoint !== 'narrow'})
-      Object.defineProperty(wideQuery, 'matches', {configurable: true, value: breakpoint === 'wide'})
-      regularQuery.dispatchEvent(new Event('change'))
-      wideQuery.dispatchEvent(new Event('change'))
+      jest.replaceProperty(
+        window,
+        'innerWidth',
+        breakpoint === narrowBreakpoint ? 600 : breakpoint === regularBreakpoint ? 900 : 1400,
+      )
+      fireEvent(window, new Event('resize'))
     })
   }
 
   beforeEach(() => {
-    const createQuery = (media: string) =>
-      Object.assign(new EventTarget(), {
-        media,
-        matches: false,
-        onchange: null,
-        addListener: jest.fn(),
-        removeListener: jest.fn(),
-      })
-    regularQuery = createQuery('(min-width: 48rem)')
-    wideQuery = createQuery('(min-width: 80rem)')
-    jest.spyOn(window, 'matchMedia').mockImplementation(query => {
-      if (query === regularQuery.media) return regularQuery
-      if (query === wideQuery.media) return wideQuery
-      throw new Error(`Unexpected media query: ${query}`)
-    })
+    jest.replaceProperty(window, 'innerWidth', 600)
   })
 
   afterEach(() => {
@@ -397,28 +382,32 @@ describe('FeatureComparisonTable', () => {
     await waitFor(() => expect(summary).toHaveAttribute('aria-expanded', 'false'))
   })
 
-  it('uses font-relative media queries rather than the viewport pixel width', () => {
-    jest.replaceProperty(window, 'innerWidth', 1400)
-    setBreakpoint(regularBreakpoint)
+  it.each([
+    [767, narrowBreakpoint, true],
+    [768, regularBreakpoint, false],
+    [1279, regularBreakpoint, false],
+    [1280, wideBreakpoint, true],
+  ])('uses the standardized %spx breakpoint (%s)', (width, breakpoint, expectedOpen) => {
+    jest.replaceProperty(window, 'innerWidth', width)
     const {getByRole} = render(<Component expanded={{narrow: true, regular: false, wide: true}} />)
 
-    expect(window.matchMedia).toHaveBeenCalledWith('(min-width: 48rem)')
-    expect(window.matchMedia).toHaveBeenCalledWith('(min-width: 80rem)')
-    expect(getByRole('group')).not.toHaveAttribute('open')
-
-    setBreakpoint(wideBreakpoint)
-    expect(getByRole('button', {name: 'Core features'})).toHaveAttribute('aria-expanded', 'true')
+    const control =
+      breakpoint === wideBreakpoint
+        ? getByRole('button', {name: 'Core features'})
+        : within(getByRole('group')).getByRole('heading', {name: 'Core features'}).parentElement
+    expect(control).toHaveAttribute('aria-expanded', String(expectedOpen))
   })
 
-  it('removes media query listeners when unmounted', () => {
-    const removeRegularListener = jest.spyOn(regularQuery, 'removeEventListener')
-    const removeWideListener = jest.spyOn(wideQuery, 'removeEventListener')
+  it('removes the window size listener when unmounted', () => {
+    const addListener = jest.spyOn(window, 'addEventListener')
+    const removeListener = jest.spyOn(window, 'removeEventListener')
     const {unmount} = render(<Component />)
+    const resizeListener = addListener.mock.calls.find(([event]) => event === 'resize')?.[1]
 
+    expect(resizeListener).toEqual(expect.any(Function))
     unmount()
 
-    expect(removeRegularListener).toHaveBeenCalledWith('change', expect.any(Function))
-    expect(removeWideListener).toHaveBeenCalledWith('change', expect.any(Function))
+    expect(removeListener).toHaveBeenCalledWith('resize', resizeListener)
   })
 
   it('opens and closes table rows when the group button is clicked', async () => {
@@ -491,23 +480,48 @@ describe('FeatureComparisonTable', () => {
     expect(within(getByRole('group')).getByRole('heading', {name: 'Core features'}).parentElement).toHaveFocus()
   })
 
-  it.each([false, true])('preserves blurred group focus when both queries change: %s', bothQueriesChange => {
+  it.each([false, true])('preserves group focus when blur follows the resize event: %s', resizeFirst => {
     const onBlur = jest.fn()
     const {getByRole} = render(<Component onBlur={onBlur} />)
     const summary = within(getByRole('group')).getByRole('heading', {name: 'Core features'}).parentElement!
 
     act(() => {
-      Object.defineProperty(wideQuery, 'matches', {configurable: true, value: true})
+      jest.replaceProperty(window, 'innerWidth', 1400)
+      if (resizeFirst) fireEvent(window, new Event('resize'))
       fireEvent.focusOut(summary)
-      if (bothQueriesChange) {
-        Object.defineProperty(regularQuery, 'matches', {configurable: true, value: true})
-        regularQuery.dispatchEvent(new Event('change'))
-      }
-      wideQuery.dispatchEvent(new Event('change'))
+      if (!resizeFirst) fireEvent(window, new Event('resize'))
     })
 
     expect(getByRole('button', {name: 'Core features'})).toHaveFocus()
     expect(onBlur).toHaveBeenCalledTimes(1)
+  })
+
+  it('preserves blurred table group focus when resizing to the narrow layout', () => {
+    setBreakpoint(wideBreakpoint)
+    const {getByRole} = render(<Component />)
+    const button = getByRole('button', {name: 'Core features'})
+
+    act(() => {
+      jest.replaceProperty(window, 'innerWidth', 600)
+      fireEvent.focusOut(button)
+      fireEvent(window, new Event('resize'))
+    })
+
+    expect(within(getByRole('group')).getByRole('heading', {name: 'Core features'}).parentElement).toHaveFocus()
+  })
+
+  it('does not restore previously blurred group focus on a later layout change', () => {
+    const {getByRole} = render(<Component />)
+    const summary = within(getByRole('group')).getByRole('heading', {name: 'Core features'}).parentElement!
+
+    act(() => {
+      jest.replaceProperty(window, 'innerWidth', 700)
+      fireEvent.focusOut(summary)
+      fireEvent(window, new Event('resize'))
+    })
+    setBreakpoint(wideBreakpoint)
+
+    expect(getByRole('button', {name: 'Core features'})).not.toHaveFocus()
   })
 
   it('scrolls focused controls below sticky headers', () => {
