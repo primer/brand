@@ -142,6 +142,16 @@ describe('FeatureComparisonTable', () => {
     expect(getByRole('button', {name: 'Contact sales'})).toBeInTheDocument()
   })
 
+  it('uses size-based text weights for prices and row headings', () => {
+    setBreakpoint(wideBreakpoint)
+    const {getByText} = render(<Component />)
+
+    expect(getByText('$0 per month')).toHaveClass('Text--100')
+    expect(getByText('$0 per month')).not.toHaveClass('Text--weight-semibold')
+    expect(getByText('Codespaces')).toHaveClass('Text--200')
+    expect(getByText('Codespaces')).not.toHaveClass('Text--weight-medium')
+  })
+
   it('renders feature rows in the active responsive layout', () => {
     const {getByTestId, getByRole} = render(<Component expanded />)
     const narrow = within(getByTestId(FeatureComparisonTable.testIds.narrow))
@@ -255,42 +265,72 @@ describe('FeatureComparisonTable', () => {
     expect(table.getByRole('heading', {name: 'Features', level: 4})).toBeInTheDocument()
   })
 
-  it('uses separate defaults for table and item headings', () => {
-    setBreakpoint(wideBreakpoint)
-    const {getByRole, getAllByTestId} = render(<Component />)
-    const heading = getByRole('heading', {name: 'Compare features', level: 2})
-    const itemHeading = getByRole('heading', {name: 'Free', level: 3})
+  it.each([narrowBreakpoint, regularBreakpoint, wideBreakpoint])(
+    'uses size-based heading defaults on %s layouts',
+    breakpoint => {
+      setBreakpoint(breakpoint)
+      const {getByRole, getAllByTestId} = render(<Component />)
+      const heading = getByRole('heading', {name: 'Compare features', level: 2})
+      const groupHeading = getByRole('heading', {name: 'Core features', level: 3})
 
-    expect(heading).toHaveClass('Heading--subhead-large', 'FeatureComparisonTable__heading--defaultSize')
-    expect(itemHeading).toHaveClass('Heading--subhead-medium', 'FeatureComparisonTable__itemHeading')
-    expect(itemHeading).not.toHaveClass('FeatureComparisonTable__heading--defaultSize')
-    expect(itemHeading).not.toHaveAttribute('id')
-    expect(getAllByTestId(FeatureComparisonTable.testIds.heading)).toEqual([heading])
+      expect(heading).toHaveClass('Heading--subhead-large')
+      expect(groupHeading).toHaveClass('Heading--subhead-large')
+      for (const sizeBasedHeading of [heading, groupHeading]) {
+        expect(sizeBasedHeading).not.toHaveClass('Heading--weight-semibold')
+      }
+      if (breakpoint === wideBreakpoint) {
+        const itemHeading = getByRole('heading', {name: 'Free', level: 3})
+        expect(itemHeading).toHaveClass('Heading--subhead-medium', 'FeatureComparisonTable__itemHeading')
+        expect(itemHeading).not.toHaveClass('Heading--weight-semibold')
+        expect(itemHeading).not.toHaveAttribute('id')
+      }
+      expect(getAllByTestId(FeatureComparisonTable.testIds.heading)).toEqual([heading])
+    },
+  )
+
+  it('keeps fallback plan numbers scoped to their items', () => {
+    setBreakpoint(wideBreakpoint)
+    const {getByRole, getAllByTestId} = render(
+      <FeatureComparisonTable>
+        <FeatureComparisonTable.Heading>Compare plans</FeatureComparisonTable.Heading>
+        <FeatureComparisonTable.Item />
+        <FeatureComparisonTable.Item />
+      </FeatureComparisonTable>,
+    )
+
+    expect(getAllByTestId(FeatureComparisonTable.testIds.item).map(item => item.textContent)).toEqual(['1', '2'])
+    expect(getByRole('table', {name: 'Compare plans'})).toBeInTheDocument()
   })
 
-  it('preserves heading size overrides, classes, and native attributes', () => {
+  it('preserves heading size and weight overrides, classes, and native attributes', () => {
     setBreakpoint(wideBreakpoint)
     const {getByRole} = render(
       <FeatureComparisonTable>
-        <FeatureComparisonTable.Heading size="4" className="custom-title" title="Table title">
+        <FeatureComparisonTable.Heading size="4" weight="medium" className="custom-title" title="Table title">
           Compare plans
         </FeatureComparisonTable.Heading>
         <FeatureComparisonTable.Item>
-          <FeatureComparisonTable.ItemHeading size="5" className="custom-plan" title="Plan title">
+          <FeatureComparisonTable.ItemHeading size="5" weight="normal" className="custom-plan" title="Plan title">
             Free
           </FeatureComparisonTable.ItemHeading>
         </FeatureComparisonTable.Item>
+        <FeatureComparisonTable.Group>
+          <FeatureComparisonTable.GroupHeading size="6" weight="bold" className="custom-group" title="Group title">
+            Features
+          </FeatureComparisonTable.GroupHeading>
+        </FeatureComparisonTable.Group>
       </FeatureComparisonTable>,
     )
     const heading = getByRole('heading', {name: 'Compare plans'})
     const itemHeading = getByRole('heading', {name: 'Free'})
+    const groupHeading = getByRole('heading', {name: 'Features'})
 
-    expect(heading).toHaveClass('Heading--4', 'custom-title')
-    expect(heading).not.toHaveClass('FeatureComparisonTable__heading--defaultSize')
+    expect(heading).toHaveClass('Heading--4', 'Heading--weight-medium', 'custom-title')
     expect(heading).toHaveAttribute('title', 'Table title')
-    expect(itemHeading).toHaveClass('Heading--5', 'custom-plan')
-    expect(itemHeading).not.toHaveClass('FeatureComparisonTable__heading--defaultSize')
+    expect(itemHeading).toHaveClass('Heading--5', 'Heading--weight-normal', 'custom-plan')
     expect(itemHeading).toHaveAttribute('title', 'Plan title')
+    expect(groupHeading).toHaveClass('Heading--6', 'Heading--weight-bold', 'custom-group')
+    expect(groupHeading).toHaveAttribute('title', 'Group title')
   })
 
   it('keeps table heading IDs unique and stable across responsive layouts', () => {
@@ -316,6 +356,38 @@ describe('FeatureComparisonTable', () => {
         }
       }
     }
+  })
+
+  it('preserves custom heading IDs and labels the wide table after layout changes', () => {
+    const {getByRole, rerender, container} = render(
+      <FeatureComparisonTable>
+        <FeatureComparisonTable.Heading id="custom-comparison">Compare plans</FeatureComparisonTable.Heading>
+        <FeatureComparisonTable.Item>
+          <FeatureComparisonTable.ItemHeading>Free</FeatureComparisonTable.ItemHeading>
+        </FeatureComparisonTable.Item>
+      </FeatureComparisonTable>,
+    )
+
+    for (const breakpoint of [narrowBreakpoint, wideBreakpoint, regularBreakpoint, wideBreakpoint]) {
+      setBreakpoint(breakpoint)
+      expect(getByRole('heading', {name: 'Compare plans'})).toHaveAttribute('id', 'custom-comparison')
+      expect(container.querySelectorAll('#custom-comparison')).toHaveLength(1)
+      if (breakpoint === wideBreakpoint) {
+        expect(getByRole('table', {name: 'Compare plans'})).toHaveAttribute('aria-labelledby', 'custom-comparison')
+      }
+    }
+
+    rerender(
+      <FeatureComparisonTable>
+        <FeatureComparisonTable.Heading id="updated-comparison">Compare plans</FeatureComparisonTable.Heading>
+        <FeatureComparisonTable.Item>
+          <FeatureComparisonTable.ItemHeading>Free</FeatureComparisonTable.ItemHeading>
+        </FeatureComparisonTable.Item>
+      </FeatureComparisonTable>,
+    )
+    expect(getByRole('heading', {name: 'Compare plans'})).toHaveAttribute('id', 'updated-comparison')
+    expect(getByRole('table', {name: 'Compare plans'})).toHaveAttribute('aria-labelledby', 'updated-comparison')
+    expect(container.querySelector('#custom-comparison')).toBeNull()
   })
 
   it.each([
