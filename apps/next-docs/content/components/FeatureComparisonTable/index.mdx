@@ -105,8 +105,8 @@ Use `RowDescription` to add context beneath a feature name. Descriptions can inc
 
 One item per pricing plan to be displayed. Supports two to four plans.
 
-| Name       | Type                                                                 | Default | required | Description  |
-| :--------- | :------------------------------------------------------------------- | :-----: | :------: | :----------- |
+| Name       | Type                                                                     | Default | required | Description  |
+| :--------- | :----------------------------------------------------------------------- | :-----: | :------: | :----------- |
 | `children` | `Label, ItemHeading, Description, Price, PrimaryAction, SecondaryAction` |         |  `true`  | Plan content |
 
 ### FeatureComparisonTable.Label
@@ -117,21 +117,22 @@ One item per pricing plan to be displayed. Supports two to four plans.
 
 ### FeatureComparisonTable.Heading <Label>Required</Label>
 
-Add a `Heading` directly to the table to name the comparison. Its generated ID is used to label the wide table.
+Add a `Heading` directly to the table to name the comparison. The wide table uses this heading as its accessible label, so do not set `aria-label` or `aria-labelledby` on the root. Set `id` on the heading to use a custom anchor target; otherwise, an ID is generated.
 
-| Name       | Type                                    |          Default          | required | Description                                       |
-| :--------- | :-------------------------------------- | :-----------------------: | :------: | :------------------------------------------------ |
-| `as`       | <FeatureComparisonTableHeadingAsProp /> | `h2` | `false`  | Heading level for the table title |
-| `children` | `ReactNode`                             |      |  `true`  | Table title                      |
+| Name       | Type                                    | Default | required | Description                                  |
+| :--------- | :-------------------------------------- | :-----: | :------: | :------------------------------------------- |
+| `as`       | <FeatureComparisonTableHeadingAsProp /> |  `h2`   | `false`  | Heading level for the table title            |
+| `id`       | `string`                                |         | `false`  | Anchor target and accessible label reference |
+| `children` | `ReactNode`                             |         |  `true`  | Table title                                  |
 
 ### FeatureComparisonTable.ItemHeading <Label>Required</Label>
 
 Add an `ItemHeading` to each `Item` to name the plan. Plan names appear as headings in the wide layout and description-list terms in feature rows on smaller screens.
 
-| Name       | Type                                   | Default | required | Description                       |
-| :--------- | :------------------------------------- | :-----: | :------: | :-------------------------------- |
+| Name       | Type                                    | Default | required | Description                        |
+| :--------- | :-------------------------------------- | :-----: | :------: | :--------------------------------- |
 | `as`       | <FeatureComparisonTableHeadingAsProp /> |  `h3`   | `false`  | Heading level for the plan summary |
-| `children` | `ReactNode`                            |         |  `true`  | Plan name                         |
+| `children` | `ReactNode`                             |         |  `true`  | Plan name                          |
 
 ### FeatureComparisonTable.Description
 
