@@ -39,16 +39,6 @@ import gridlineStyles from '../component-helpers/shared.module.css'
 export type FeatureComparisonTableProps = PropsWithChildren<
   BaseProps<HTMLDivElement> &
     Omit<React.HTMLAttributes<HTMLDivElement>, 'aria-label' | 'aria-labelledby'> & {
-      /**
-       * Use a root FeatureComparisonTable.Heading to name the comparison.
-       * It labels the wide table; aria-label on the wrapper would not label that table.
-       */
-      'aria-label'?: never
-      /**
-       * The wide table is labelled by the root FeatureComparisonTable.Heading.
-       * Use that child instead of setting aria-labelledby on the wrapper.
-       */
-      'aria-labelledby'?: never
       'data-testid'?: string
       /**
        * Keeps wide table headers fixed to the viewport while scrolling.
