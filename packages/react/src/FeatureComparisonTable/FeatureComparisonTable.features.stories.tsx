@@ -38,27 +38,27 @@ const plans: Plan[] = [
 ]
 
 export const TwoPlans: Story = {
-  render: () => <Fixture planCount={2} />,
+  render: () => <FeatureComparisonExample planCount={2} />,
 }
 
 export const ThreePlans: Story = {
-  render: () => <Fixture planCount={3} />,
+  render: () => <FeatureComparisonExample planCount={3} />,
 }
 
 export const FeaturedFirstPlan: Story = {
-  render: () => <Fixture featuredPlanIndex={0} />,
+  render: () => <FeatureComparisonExample featuredPlanIndex={0} />,
 }
 
 export const FeaturedLastPlan: Story = {
-  render: () => <Fixture featuredPlanIndex={3} />,
+  render: () => <FeatureComparisonExample featuredPlanIndex={3} />,
 }
 
 export const FourPlans: Story = {
-  render: () => <Fixture />,
+  render: () => <FeatureComparisonExample />,
 }
 
 export const FeatureRows: Story = {
-  render: () => <Fixture planCount={2} showPlanSummaries={false} />,
+  render: () => <FeatureComparisonExample planCount={2} showPlanSummaries={false} />,
 }
 
 export const RowDescriptions: Story = {
@@ -66,7 +66,7 @@ export const RowDescriptions: Story = {
     const {t} = useTranslation('FeatureComparisonTable')
 
     return (
-      <Fixture planCount={2}>
+      <FeatureComparisonExample planCount={2}>
         <FeatureComparisonTable.Group expanded>
           <FeatureComparisonTable.GroupHeading>{t('collaboration')}</FeatureComparisonTable.GroupHeading>
           <FeatureComparisonTable.Row>
@@ -92,17 +92,17 @@ export const RowDescriptions: Story = {
             <FeatureComparisonTable.Cell>{t('standard')}</FeatureComparisonTable.Cell>
           </FeatureComparisonTable.Row>
         </FeatureComparisonTable.Group>
-      </Fixture>
+      </FeatureComparisonExample>
     )
   },
 }
 
 export const PlanSummaries: Story = {
-  render: () => <Fixture>{null}</Fixture>,
+  render: () => <FeatureComparisonExample showFeatureRows={false} />,
 }
 
 export const MobileViewport: Story = {
-  render: () => <Fixture />,
+  render: () => <FeatureComparisonExample />,
   globals: {
     viewport: {value: 'iphonexr'},
   },
@@ -116,11 +116,11 @@ export const TabletViewport: Story = {
 }
 
 export const CollapsedGroups: Story = {
-  render: () => <Fixture expanded={false} planCount={3} />,
+  render: () => <FeatureComparisonExample expanded={false} planCount={3} />,
 }
 
 export const ResponsiveGroupExpansion: Story = {
-  render: () => <Fixture expanded={{narrow: true, regular: false, wide: true}} planCount={3} />,
+  render: () => <FeatureComparisonExample expanded={{narrow: true, regular: false, wide: true}} planCount={3} />,
 }
 
 export const StickyHeaders: Story = {
@@ -165,7 +165,7 @@ export const DarkMode: Story = {
     backgrounds: {default: 'dark'},
     colorMode: 'dark',
   },
-  render: () => <Fixture planCount={3} />,
+  render: () => <FeatureComparisonExample planCount={3} />,
 }
 
 export const RowHighlighting: Story = {
@@ -205,7 +205,7 @@ export const RowHighlighting: Story = {
     ]
 
     return (
-      <Fixture planCount={3}>
+      <FeatureComparisonExample planCount={3}>
         {groups.map(group => (
           <FeatureComparisonTable.Group key={group.name} expanded>
             <FeatureComparisonTable.GroupHeading>{t(group.name)}</FeatureComparisonTable.GroupHeading>
@@ -229,7 +229,7 @@ export const RowHighlighting: Story = {
             ))}
           </FeatureComparisonTable.Group>
         ))}
-      </Fixture>
+      </FeatureComparisonExample>
     )
   },
   play: async ({canvasElement}) => {
@@ -248,17 +248,19 @@ export const RowHighlighting: Story = {
   },
 }
 
-function Fixture({
+function FeatureComparisonExample({
   children,
   expanded = true,
   featuredPlanIndex = 1,
   planCount = 4,
+  showFeatureRows = true,
   showPlanSummaries = true,
 }: {
   children?: React.ReactNode
   expanded?: React.ComponentProps<typeof FeatureComparisonTable.Group>['expanded']
   featuredPlanIndex?: number
   planCount?: number
+  showFeatureRows?: boolean
   showPlanSummaries?: boolean
 }) {
   const {t} = useTranslation('FeatureComparisonTable')
@@ -291,51 +293,50 @@ function Fixture({
           ) : null}
         </FeatureComparisonTable.Item>
       ))}
-      {children === undefined ? (
-        <FeatureComparisonTable.Group expanded={expanded}>
-          <FeatureComparisonTable.GroupHeading>{t('collaboration')}</FeatureComparisonTable.GroupHeading>
-          <FeatureComparisonTable.Row>
-            <FeatureComparisonTable.RowHeading>{t('private_repositories')}</FeatureComparisonTable.RowHeading>
-            {visiblePlans.map(plan => (
-              <FeatureComparisonTable.Cell key={plan.name} variant="included" variantAriaLabel={t('included')} />
-            ))}
-          </FeatureComparisonTable.Row>
-          <FeatureComparisonTable.Row>
-            <FeatureComparisonTable.RowHeading>{t('advanced_security')}</FeatureComparisonTable.RowHeading>
-            {visiblePlans.map((plan, index) => (
-              <FeatureComparisonTable.Cell
-                key={plan.name}
-                variant={index > 1 ? 'included' : 'unavailable'}
-                variantAriaLabel={t(index > 1 ? 'included' : 'unavailable')}
-              />
-            ))}
-          </FeatureComparisonTable.Row>
-          <FeatureComparisonTable.Row>
-            <FeatureComparisonTable.RowHeading>{t('support')}</FeatureComparisonTable.RowHeading>
-            {visiblePlans.map((plan, index) => (
-              <FeatureComparisonTable.Cell key={plan.name}>
-                {t(index > 1 ? 'premium' : index === 1 ? 'standard' : 'community')}
-              </FeatureComparisonTable.Cell>
-            ))}
-          </FeatureComparisonTable.Row>
-          <FeatureComparisonTable.Row>
-            <FeatureComparisonTable.RowHeading>{t('collaborators')}</FeatureComparisonTable.RowHeading>
-            {visiblePlans.map(plan => (
-              <FeatureComparisonTable.Cell key={plan.name} variant="unlimited" variantAriaLabel={t('unlimited')} />
-            ))}
-          </FeatureComparisonTable.Row>
-          <FeatureComparisonTable.Row>
-            <FeatureComparisonTable.RowHeading>{t('workflow_minutes')}</FeatureComparisonTable.RowHeading>
-            {visiblePlans.map((plan, index) => (
-              <FeatureComparisonTable.Cell key={plan.name} variant="refresh" variantAriaLabel={t('refresh')}>
-                {t(index > 1 ? 'minutes_enterprise' : index === 1 ? 'minutes_team' : 'minutes_free')}
-              </FeatureComparisonTable.Cell>
-            ))}
-          </FeatureComparisonTable.Row>
-        </FeatureComparisonTable.Group>
-      ) : (
-        children
-      )}
+      {children ??
+        (showFeatureRows ? (
+          <FeatureComparisonTable.Group expanded={expanded}>
+            <FeatureComparisonTable.GroupHeading>{t('collaboration')}</FeatureComparisonTable.GroupHeading>
+            <FeatureComparisonTable.Row>
+              <FeatureComparisonTable.RowHeading>{t('private_repositories')}</FeatureComparisonTable.RowHeading>
+              {visiblePlans.map(plan => (
+                <FeatureComparisonTable.Cell key={plan.name} variant="included" variantAriaLabel={t('included')} />
+              ))}
+            </FeatureComparisonTable.Row>
+            <FeatureComparisonTable.Row>
+              <FeatureComparisonTable.RowHeading>{t('advanced_security')}</FeatureComparisonTable.RowHeading>
+              {visiblePlans.map((plan, index) => (
+                <FeatureComparisonTable.Cell
+                  key={plan.name}
+                  variant={index > 1 ? 'included' : 'unavailable'}
+                  variantAriaLabel={t(index > 1 ? 'included' : 'unavailable')}
+                />
+              ))}
+            </FeatureComparisonTable.Row>
+            <FeatureComparisonTable.Row>
+              <FeatureComparisonTable.RowHeading>{t('support')}</FeatureComparisonTable.RowHeading>
+              {visiblePlans.map((plan, index) => (
+                <FeatureComparisonTable.Cell key={plan.name}>
+                  {t(index > 1 ? 'premium' : index === 1 ? 'standard' : 'community')}
+                </FeatureComparisonTable.Cell>
+              ))}
+            </FeatureComparisonTable.Row>
+            <FeatureComparisonTable.Row>
+              <FeatureComparisonTable.RowHeading>{t('collaborators')}</FeatureComparisonTable.RowHeading>
+              {visiblePlans.map(plan => (
+                <FeatureComparisonTable.Cell key={plan.name} variant="unlimited" variantAriaLabel={t('unlimited')} />
+              ))}
+            </FeatureComparisonTable.Row>
+            <FeatureComparisonTable.Row>
+              <FeatureComparisonTable.RowHeading>{t('workflow_minutes')}</FeatureComparisonTable.RowHeading>
+              {visiblePlans.map((plan, index) => (
+                <FeatureComparisonTable.Cell key={plan.name} variant="refresh" variantAriaLabel={t('refresh')}>
+                  {t(index > 1 ? 'minutes_enterprise' : index === 1 ? 'minutes_team' : 'minutes_free')}
+                </FeatureComparisonTable.Cell>
+              ))}
+            </FeatureComparisonTable.Row>
+          </FeatureComparisonTable.Group>
+        ) : null)}
     </FeatureComparisonTable>
   )
 }
