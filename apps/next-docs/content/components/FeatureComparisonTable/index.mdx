@@ -25,7 +25,7 @@ import {FeatureComparisonTable} from '@primer/react-brand'
 
 ### Default
 
-Use an `Item` for each plan and a `Group` for related features. Add one `Cell` per plan to each `Row`, in the same order as the items.
+Use a `FeatureComparisonTable.Item` for each plan and a `FeatureComparisonTable.Group` for related features. Add one `FeatureComparisonTable.Cell` per plan to each `FeatureComparisonTable.Row`, in the same order as the items.
 
 ```jsx live
 <FeatureComparisonTable>
@@ -66,7 +66,7 @@ Use an `Item` for each plan and a `Group` for related features. Add one `Cell` p
 
 ### Row descriptions
 
-Use `RowDescription` to add context beneath a feature name. Descriptions can include links and emphasis.
+Use `FeatureComparisonTable.RowDescription` to add context beneath a feature name. Descriptions can include links and emphasis.
 
 ```jsx live
 <FeatureComparisonTable>
@@ -95,19 +95,19 @@ Use `RowDescription` to add context beneath a feature name. Descriptions can inc
 
 ### FeatureComparisonTable <Label>Required</Label>
 
-| Name               | Type                   | Default | required | Description                                                           |
-| :----------------- | :--------------------- | :-----: | :------: | :-------------------------------------------------------------------- |
-| `children`         | `Heading, Item, Group` |         |  `true`  | Table title, plans, and feature groups                                |
-| `rowHighlighting`  | `boolean`              | `true`  | `false`  | Highlights rows on hover or keyboard focus; set to `false` to disable |
-| `hasStickyHeaders` | `boolean`              | `false` | `false`  | Keeps table headers visible while scrolling on wide screens           |
+| Name               | Type                                                                                        | Default | required | Description                                                           |
+| :----------------- | :------------------------------------------------------------------------------------------ | :-----: | :------: | :-------------------------------------------------------------------- |
+| `children`         | `FeatureComparisonTable.Heading, FeatureComparisonTable.Item, FeatureComparisonTable.Group` |         |  `true`  | Table title, plans, and feature groups                                |
+| `rowHighlighting`  | `boolean`                                                                                   | `true`  | `false`  | Highlights rows on hover or keyboard focus; set to `false` to disable |
+| `hasStickyHeaders` | `boolean`                                                                                   | `false` | `false`  | Keeps table headers visible while scrolling on wide screens           |
 
 ### FeatureComparisonTable.Item <Label>Required</Label>
 
 One item per pricing plan to be displayed. Supports two to four plans.
 
-| Name       | Type                                                                     | Default | required | Description  |
-| :--------- | :----------------------------------------------------------------------- | :-----: | :------: | :----------- |
-| `children` | `Label, ItemHeading, Description, Price, PrimaryAction, SecondaryAction` |         |  `true`  | Plan content |
+| Name       | Type                                                                                                                                                                                                               | Default | required | Description  |
+| :--------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :-----: | :------: | :----------- |
+| `children` | `FeatureComparisonTable.Label, FeatureComparisonTable.ItemHeading, FeatureComparisonTable.Description, FeatureComparisonTable.Price, FeatureComparisonTable.PrimaryAction, FeatureComparisonTable.SecondaryAction` |         |  `true`  | Plan content |
 
 ### FeatureComparisonTable.Label
 
@@ -117,7 +117,7 @@ One item per pricing plan to be displayed. Supports two to four plans.
 
 ### FeatureComparisonTable.Heading <Label>Required</Label>
 
-Add a `Heading` directly to the table to name the comparison. 
+Add a `FeatureComparisonTable.Heading` directly to the table to name the comparison.
 
 | Name       | Type                                    | Default | required | Description                                  |
 | :--------- | :-------------------------------------- | :-----: | :------: | :------------------------------------------- |
@@ -127,7 +127,7 @@ Add a `Heading` directly to the table to name the comparison.
 
 ### FeatureComparisonTable.ItemHeading <Label>Required</Label>
 
-Add an `ItemHeading` to each `Item` to name the plan. Plan names appear as headings in the wide layout and description-list terms in feature rows on smaller screens.
+Add a `FeatureComparisonTable.ItemHeading` to each `FeatureComparisonTable.Item` to name the plan. Plan names appear as headings in the wide layout and description-list terms in feature rows on smaller screens.
 
 | Name       | Type                                    | Default | required | Description                        |
 | :--------- | :-------------------------------------- | :-----: | :------: | :--------------------------------- |
@@ -158,10 +158,10 @@ Add an `ItemHeading` to each `Item` to name the plan. Plan names appear as headi
 
 Use `expanded` to set the initial expanded state of a group. Accepts a boolean or an object for different viewport sizes.
 
-| Name       | Type                                   |                   Default                    | required | Description                                              |
-| :--------- | :------------------------------------- | :------------------------------------------: | :------: | :------------------------------------------------------- |
-| `children` | `GroupHeading, Row`                    |                                              |  `true`  | Group title and feature rows                             |
-| `expanded` | <FeatureComparisonTableExpandedProp /> | `{narrow: false, regular: true, wide: true}` | `false`  | Initial expanded state, optionally set per viewport size |
+| Name       | Type                                                              |                   Default                    | required | Description                                              |
+| :--------- | :---------------------------------------------------------------- | :------------------------------------------: | :------: | :------------------------------------------------------- |
+| `children` | `FeatureComparisonTable.GroupHeading, FeatureComparisonTable.Row` |                                              |  `true`  | Group title and feature rows                             |
+| `expanded` | <FeatureComparisonTableExpandedProp />                            | `{narrow: false, regular: true, wide: true}` | `false`  | Initial expanded state, optionally set per viewport size |
 
 ### FeatureComparisonTable.GroupHeading <Label>Required</Label>
 
@@ -175,9 +175,9 @@ Set `id` to link directly to a group heading, for example with `href="#core-feat
 
 ### FeatureComparisonTable.Row <Label>Required</Label>
 
-| Name       | Type                               | Default | required | Description                                         |
-| :--------- | :--------------------------------- | :-----: | :------: | :-------------------------------------------------- |
-| `children` | `RowHeading, RowDescription, Cell` |         |  `true`  | Feature name, optional description, and plan values |
+| Name       | Type                                                                                                    | Default | required | Description                                         |
+| :--------- | :------------------------------------------------------------------------------------------------------ | :-----: | :------: | :-------------------------------------------------- |
+| `children` | `FeatureComparisonTable.RowHeading, FeatureComparisonTable.RowDescription, FeatureComparisonTable.Cell` |         |  `true`  | Feature name, optional description, and plan values |
 
 ### FeatureComparisonTable.RowHeading <Label>Required</Label>
 
