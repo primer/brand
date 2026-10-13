@@ -31,6 +31,8 @@ On smaller screens, features appear in collapsible groups. Plan descriptions, pr
 
 Only the active responsive layout is mounted. Switching across `80rem` remounts custom content, so keep any state that must survive layout changes outside the projected children.
 
+Plan names repeat in each feature row on smaller screens. Avoid fixed IDs in `Item` heading descendants; custom components that need IDs should generate a unique ID per instance with React's `useId`.
+
 ```jsx live
 <FeatureComparisonTable>
   <FeatureComparisonTable.Heading>Compare features</FeatureComparisonTable.Heading>
@@ -72,11 +74,11 @@ Only the active responsive layout is mounted. Switching across `80rem` remounts 
 
 ### FeatureComparisonTable <Label>Required</Label>
 
-| Name               | Type                   | Default | required | Description                                                |
-| :----------------- | :--------------------- | :-----: | :------: | :--------------------------------------------------------- |
-| `children`         | `Heading, Item, Group` |         |  `true`  | Table title, plans, and feature groups                     |
-| `rowHighlighting`  | `boolean`              | `false` | `false`  | Highlights rows on hover or keyboard focus                 |
-| `hasStickyHeaders` | `boolean`              | `false` | `false`  | Keeps headers visible while scrolling at `80rem` and above |
+| Name               | Type                   | Default | required | Description                                                           |
+| :----------------- | :--------------------- | :-----: | :------: | :-------------------------------------------------------------------- |
+| `children`         | `Heading, Item, Group` |         |  `true`  | Table title, plans, and feature groups                                |
+| `rowHighlighting`  | `boolean`              | `true`  | `false`  | Highlights rows on hover or keyboard focus; set to `false` to disable |
+| `hasStickyHeaders` | `boolean`              | `false` | `false`  | Keeps headers visible while scrolling at `80rem` and above            |
 
 ### FeatureComparisonTable.Item <Label>Required</Label>
 

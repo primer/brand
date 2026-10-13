@@ -426,7 +426,7 @@ export const RowHighlighting: Story = {
     ]
 
     return (
-      <Fixture planCount={3} rowHighlighting>
+      <Fixture planCount={3}>
         {groups.map(group => (
           <FeatureComparisonTable.Group key={group.name} expanded>
             <FeatureComparisonTable.GroupHeading>{t(group.name)}</FeatureComparisonTable.GroupHeading>
@@ -498,7 +498,7 @@ function Fixture({
   expanded = true,
   featuredPlanIndex = 1,
   planCount = 4,
-  rowHighlighting = false,
+  rowHighlighting,
   hasStickyHeaders = false,
 }: {
   children?: React.ReactNode

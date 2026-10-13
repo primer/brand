@@ -1,0 +1,14 @@
+{
+  "FeatureComparisonTable": {
+    "default": {
+      "featureColumnWidth": {
+        "value": "25%"
+      }
+    },
+    "fourItems": {
+      "featureColumnWidth": {
+        "value": "20%"
+      }
+    }
+  }
+}

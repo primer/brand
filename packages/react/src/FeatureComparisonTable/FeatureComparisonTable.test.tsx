@@ -245,17 +245,25 @@ describe('FeatureComparisonTable', () => {
     expect(table.getByRole('heading', {name: 'Pro', level: 3})).toBeInTheDocument()
   })
 
-  it.each([
-    ['hasStickyHeaders', 'FeatureComparisonTable--stickyHeaders'],
-    ['rowHighlighting', 'FeatureComparisonTable--rowHighlighting'],
-  ] as const)('applies the correct class when %s is enabled', (prop, expectedClass) => {
+  it('applies the sticky header class only when enabled', () => {
     const {getByTestId, rerender} = render(<Component />)
 
-    expect(getByTestId(FeatureComparisonTable.testIds.root)).not.toHaveClass(expectedClass)
+    expect(getByTestId(FeatureComparisonTable.testIds.root)).not.toHaveClass('FeatureComparisonTable--stickyHeaders')
 
-    rerender(<Component {...{[prop]: true}} />)
+    rerender(<Component hasStickyHeaders />)
 
-    expect(getByTestId(FeatureComparisonTable.testIds.root)).toHaveClass(expectedClass)
+    expect(getByTestId(FeatureComparisonTable.testIds.root)).toHaveClass('FeatureComparisonTable--stickyHeaders')
+  })
+
+  it('highlights rows by default and supports an explicit opt-out', () => {
+    const {getByTestId, rerender} = render(<Component />)
+    const root = getByTestId(FeatureComparisonTable.testIds.root)
+
+    expect(root).toHaveClass('FeatureComparisonTable--rowHighlighting')
+    rerender(<Component rowHighlighting={false} />)
+    expect(root).not.toHaveClass('FeatureComparisonTable--rowHighlighting')
+    rerender(<Component rowHighlighting />)
+    expect(root).toHaveClass('FeatureComparisonTable--rowHighlighting')
   })
 
   it('allows heading levels to be customized', () => {
@@ -502,6 +510,32 @@ describe('FeatureComparisonTable', () => {
   })
 
   it.each([
+    [80, -4],
+    [81, -3],
+    [83, -1],
+    [84, undefined],
+    [85, undefined],
+  ])('clears focus outlines beneath sticky headers when the control starts at %s', (top, expectedScroll) => {
+    setBreakpoint(wideBreakpoint)
+    const scrollBy = jest.spyOn(window, 'scrollBy').mockImplementation()
+    const {getByRole} = render(<Component hasStickyHeaders />)
+    const header = getByRole('columnheader', {name: 'Compare features'})
+    const button = getByRole('button', {name: 'Core features'})
+    jest.spyOn(header, 'getBoundingClientRect').mockReturnValue(new DOMRect(0, 0, 100, 80))
+    jest.spyOn(button, 'getBoundingClientRect').mockReturnValue(new DOMRect(0, top, 100, 24))
+    button.style.outlineWidth = '2px'
+    button.style.outlineOffset = '2px'
+
+    fireEvent.focus(button)
+
+    if (expectedScroll === undefined) {
+      expect(scrollBy).not.toHaveBeenCalled()
+    } else {
+      expect(scrollBy).toHaveBeenCalledWith({top: expectedScroll, behavior: 'instant'})
+    }
+  })
+
+  it.each([
     ['included', undefined, 'Included'],
     ['unavailable', undefined, 'Unavailable'],
     ['unavailable', 'Not offered', 'Not offered'],
@@ -564,6 +598,7 @@ describe('FeatureComparisonTable', () => {
 
   it('limits the comparison to four plans', () => {
     setBreakpoint(wideBreakpoint)
+    const warn = jest.spyOn(console, 'warn').mockImplementation()
     const {getAllByTestId, queryByText} = render(
       <FeatureComparisonTable>
         <FeatureComparisonTable.Heading>Compare plans</FeatureComparisonTable.Heading>
@@ -577,7 +612,70 @@ describe('FeatureComparisonTable', () => {
 
     expect(getAllByTestId(FeatureComparisonTable.testIds.item)).toHaveLength(4)
     expect(queryByText('Extra plan')).not.toBeInTheDocument()
+    expect(warn).toHaveBeenCalledWith(
+      'FeatureComparisonTable: supports at most 4 Item children, but received 5. Extra items are ignored.',
+    )
   })
+
+  it('does not warn about extra plans in production', () => {
+    jest.replaceProperty(process.env, 'NODE_ENV', 'production')
+    const warn = jest.spyOn(console, 'warn').mockImplementation()
+    render(
+      <FeatureComparisonTable>
+        <FeatureComparisonTable.Heading>Compare plans</FeatureComparisonTable.Heading>
+        {['Free', 'Team', 'Enterprise', 'Enterprise Plus', 'Extra plan'].map(name => (
+          <FeatureComparisonTable.Item key={name}>
+            <FeatureComparisonTable.Heading>{name}</FeatureComparisonTable.Heading>
+          </FeatureComparisonTable.Item>
+        ))}
+      </FeatureComparisonTable>,
+    )
+
+    expect(warn).not.toHaveBeenCalled()
+  })
+
+  it.each([regularBreakpoint, wideBreakpoint])(
+    'preserves independent group state through rerenders and keyed reordering at %s',
+    async breakpoint => {
+      setBreakpoint(breakpoint)
+      const user = userEvent.setup()
+      const renderGroups = (names: string[]) => (
+        <FeatureComparisonTable>
+          <FeatureComparisonTable.Heading>Compare plans</FeatureComparisonTable.Heading>
+          <FeatureComparisonTable.Item>
+            <FeatureComparisonTable.Heading>Free</FeatureComparisonTable.Heading>
+          </FeatureComparisonTable.Item>
+          {names.map(name => (
+            <FeatureComparisonTable.Group key={name}>
+              <FeatureComparisonTable.GroupHeading>{name}</FeatureComparisonTable.GroupHeading>
+            </FeatureComparisonTable.Group>
+          ))}
+        </FeatureComparisonTable>
+      )
+      const {getByRole, rerender} = render(renderGroups(['Core', 'Security']))
+      const getControl = (name: string) =>
+        breakpoint === wideBreakpoint ? getByRole('button', {name}) : getByRole('heading', {name}).parentElement!
+
+      await user.click(getControl('Core'))
+      await waitFor(() => expect(getControl('Core')).toHaveAttribute('aria-expanded', 'false'))
+      expect(getControl('Security')).toHaveAttribute('aria-expanded', 'true')
+
+      rerender(renderGroups(['Core', 'Security']))
+      expect(getControl('Core')).toHaveAttribute('aria-expanded', 'false')
+
+      rerender(renderGroups(['Security', 'Core']))
+      expect(getControl('Core')).toHaveAttribute('aria-expanded', 'false')
+      expect(getControl('Security')).toHaveAttribute('aria-expanded', 'true')
+
+      getControl('Core').focus()
+      setBreakpoint(breakpoint === wideBreakpoint ? regularBreakpoint : wideBreakpoint)
+      expect(
+        breakpoint === wideBreakpoint
+          ? getByRole('heading', {name: 'Core'}).parentElement
+          : getByRole('button', {name: 'Core'}),
+      ).toHaveFocus()
+    },
+  )
 
   it('does not render without any items', () => {
     const {container} = render(

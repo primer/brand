@@ -37,6 +37,10 @@ export const Default: Story = {
 }
 
 export const Playground: Story = {
+  args: {
+    hasStickyHeaders: false,
+    rowHighlighting: true,
+  },
   render: args => <Comparison {...args} />,
 }
 

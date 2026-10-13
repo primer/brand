@@ -9,17 +9,22 @@ declare const styles: {
   readonly FeatureComparisonTable__cell: string
   readonly FeatureComparisonTable__chevron: string
   readonly 'FeatureComparisonTable__chevron--expanded': string
+  readonly FeatureComparisonTable__dataCell: string
   readonly FeatureComparisonTable__description: string
   readonly FeatureComparisonTable__featureColumn: string
   readonly FeatureComparisonTable__group: string
   readonly FeatureComparisonTable__groupBackground: string
+  readonly FeatureComparisonTable__groupControl: string
   readonly FeatureComparisonTable__groupDivider: string
+  readonly FeatureComparisonTable__groupHeader: string
   readonly FeatureComparisonTable__groupHeading: string
+  readonly FeatureComparisonTable__groupRows: string
   readonly FeatureComparisonTable__headerCell: string
   readonly 'FeatureComparisonTable__headerCell--hasLabel': string
   readonly FeatureComparisonTable__heading: string
   readonly FeatureComparisonTable__headingGrid: string
   readonly 'FeatureComparisonTable__headingGrid--hasLabel': string
+  readonly FeatureComparisonTable__headingRow: string
   readonly FeatureComparisonTable__item: string
   readonly 'FeatureComparisonTable__item--hasLabel': string
   readonly 'FeatureComparisonTable__item--offset': string
@@ -31,10 +36,14 @@ declare const styles: {
   readonly FeatureComparisonTable__narrow: string
   readonly FeatureComparisonTable__narrowHeading: string
   readonly FeatureComparisonTable__planName: string
+  readonly FeatureComparisonTable__planTerm: string
+  readonly FeatureComparisonTable__planValue: string
+  readonly FeatureComparisonTable__planValues: string
   readonly FeatureComparisonTable__price: string
   readonly FeatureComparisonTable__promoted: string
   readonly FeatureComparisonTable__row: string
   readonly FeatureComparisonTable__rowDescription: string
+  readonly FeatureComparisonTable__rowHeaderCell: string
   readonly FeatureComparisonTable__rowHeading: string
   readonly FeatureComparisonTable__rowHeadingContent: string
   readonly FeatureComparisonTable__status: string
@@ -42,6 +51,7 @@ declare const styles: {
   readonly 'FeatureComparisonTable__status--refresh': string
   readonly 'FeatureComparisonTable__status--unlimited': string
   readonly FeatureComparisonTable__statusCell: string
+  readonly FeatureComparisonTable__summary: string
   readonly FeatureComparisonTable__table: string
   readonly FeatureComparisonTable__tableHeading: string
   readonly 'FeatureComparisonTable__tableHeading--hasLabel': string
