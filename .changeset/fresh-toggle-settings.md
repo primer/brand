@@ -13,4 +13,4 @@ Added `ToggleSwitch` for settings that need to take effect immediately.
 </FormControl>
 ```
 
-🔗 [See `ToggleSwitch` documentation for more usage examples](https://primer.style/brand/components/ToggleSwitch)
+🔗 [See `ToggleSwitch` documentation for more usage examples](https://primer.style/brand/forms/ToggleSwitch)

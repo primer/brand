@@ -160,6 +160,6 @@ const Root: ToggleSwitchComponent = forwardRef<HTMLButtonElement, ToggleSwitchIn
 
 /**
  * Use ToggleSwitch for settings that take effect immediately.
- * @see https://primer.style/brand/components/ToggleSwitch
+ * @see https://primer.style/brand/forms/ToggleSwitch
  */
 export const ToggleSwitch = Object.assign(Root, {testIds})
