@@ -143,12 +143,11 @@ describe('FeatureComparisonTable', () => {
     expect(getByRole('button', {name: 'Contact sales'})).toBeInTheDocument()
   })
 
-  it('uses size-based text weights for prices and row headings', () => {
+  it('uses semibold prices and size-based row heading weights', () => {
     setBreakpoint(wideBreakpoint)
     const {getByText} = render(<Component />)
 
-    expect(getByText('$0 per month')).toHaveClass('Text--100')
-    expect(getByText('$0 per month')).not.toHaveClass('Text--weight-semibold')
+    expect(getByText('$0 per month')).toHaveClass('Text--100', 'Text--weight-semibold')
     expect(getByText('Codespaces')).toHaveClass('Text--200')
     expect(getByText('Codespaces')).not.toHaveClass('Text--weight-medium')
   })

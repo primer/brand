@@ -16,6 +16,7 @@ export const FeatureComparisonTablePrice = (props: FeatureComparisonTablePricePr
       as="p"
       size="100"
       variant="default"
+      weight="semibold"
       className={clsx(styles.FeatureComparisonTable__price, className)}
       data-testid={testIds.price}
       {...rest}
