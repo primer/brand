@@ -1,5 +1,51 @@
 # @primer/brand-primitives
 
+## 0.79.0
+
+### Patch Changes
+
+- [#1484](https://github.com/primer/brand/pull/1484) [`c5b186e`](https://github.com/primer/brand/commit/c5b186e238cb0e71adfdbb739b7cabc6513005eb) Thanks [@danielguillan](https://github.com/danielguillan)! - Added the new `FeatureComparisonTable` component for comparing two to four pricing plans with plan summaries, actions, and grouped feature availability.
+
+  ```js
+  import {FeatureComparisonTable} from '@primer/react-brand'
+  ```
+
+  ```jsx
+  <FeatureComparisonTable>
+    <FeatureComparisonTable.Heading>Compare plans</FeatureComparisonTable.Heading>
+    <FeatureComparisonTable.Item>
+      <FeatureComparisonTable.ItemHeading>Free</FeatureComparisonTable.ItemHeading>
+    </FeatureComparisonTable.Item>
+    <FeatureComparisonTable.Item>
+      <FeatureComparisonTable.ItemHeading>Team</FeatureComparisonTable.ItemHeading>
+    </FeatureComparisonTable.Item>
+    <FeatureComparisonTable.Group>
+      <FeatureComparisonTable.GroupHeading>Collaboration</FeatureComparisonTable.GroupHeading>
+      <FeatureComparisonTable.Row>
+        <FeatureComparisonTable.RowHeading>Private repositories</FeatureComparisonTable.RowHeading>
+        <FeatureComparisonTable.Cell variant="included" />
+        <FeatureComparisonTable.Cell variant="included" />
+      </FeatureComparisonTable.Row>
+    </FeatureComparisonTable.Group>
+  </FeatureComparisonTable>
+  ```
+
+  :link: [See `FeatureComparisonTable` documentation for more usage examples](https://primer.style/brand/components/FeatureComparisonTable)
+
+  Added the new `FeatureComparisonTable` component design tokens.
+
+  - `--brand-FeatureComparisonTable-default-featureColumnWidth`
+  - `--brand-FeatureComparisonTable-fourItems-featureColumnWidth`
+  - `--brand-FeatureComparisonTable-label-accentColor`
+  - `--brand-FeatureComparisonTable-highlightedColumn-bgColor`
+  - `--brand-FeatureComparisonTable-includedIndicator-fgColor`
+  - `--brand-FeatureComparisonTable-includedIndicator-bgColor`
+  - `--brand-FeatureComparisonTable-unlimitedIndicator-fgColor`
+  - `--brand-FeatureComparisonTable-unlimitedIndicator-bgColor`
+  - `--brand-FeatureComparisonTable-refreshIndicator-fgColor`
+  - `--brand-FeatureComparisonTable-refreshIndicator-bgColor`
+  - `--brand-FeatureComparisonTable-rowHighlight-bgColor`
+
 ## 0.78.0
 
 ### Minor Changes
