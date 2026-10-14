@@ -5,5 +5,5 @@
 
 `LogoSuite` updates:
 
-- `LogoSuite.Logobar` logos rendered as links to retain their full colors.
+- `LogoSuite.Logobar` logos rendered as links now retain their full colors.
 - `LogoSuite` now supports a `gridline` version.

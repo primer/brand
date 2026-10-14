@@ -9,7 +9,17 @@ export const LogoSuiteLogobarGapProp = () => <PropTableValues values={['default'
 export const LogoSuiteLogobarVariantProp = () => <PropTableValues values={['muted', 'emphasis']} addLineBreaks />
 
 export const LogoSuiteLogobarChildrenProp = () => (
-  <PropTableValues values={[`SVGElement`, `SVGElement[]`, `HTMLImageElement`, `HTMLImageElement[]`]} addLineBreaks />
+  <PropTableValues
+    values={[
+      `SVGElement`,
+      `SVGElement[]`,
+      `HTMLImageElement`,
+      `HTMLImageElement[]`,
+      `HTMLAnchorElement`,
+      `HTMLAnchorElement[]`,
+    ]}
+    addLineBreaks
+  />
 )
 
 export const LogoSuiteLogobarMarqueeSpeedProp = () => <PropTableValues values={['slow', 'normal']} addLineBreaks />

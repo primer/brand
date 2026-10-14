@@ -207,6 +207,10 @@ const PlayPauseButton = ({isPlaying = true, onPlayPause}: PlayPauseButtonProps) 
 }
 
 export type LogoSuiteLogoBarProps = BaseProps<HTMLDivElement> & {
+  /**
+   * The logos to display in the LogoBar.
+   * Accepts either SVG/Image elements or logos wrapped with links
+   */
   children: React.ReactNode | React.ReactNode[]
   /**
    * The gap between logos
