@@ -8,17 +8,6 @@ import {FeatureComparisonTable} from '.'
 const meta = {
   title: 'Components/FeatureComparisonTable/Features',
   component: FeatureComparisonTable,
-  decorators: [
-    Story => (
-      <Box backgroundColor="default" paddingBlockStart="spacious" paddingBlockEnd="spacious">
-        <Grid>
-          <Grid.Column span={12}>
-            <Story />
-          </Grid.Column>
-        </Grid>
-      </Box>
-    ),
-  ],
 } satisfies Meta<typeof FeatureComparisonTable>
 
 export default meta
@@ -38,27 +27,75 @@ const plans: Plan[] = [
 ]
 
 export const TwoPlans: Story = {
-  render: () => <FeatureComparisonExample planCount={2} />,
+  render: () => (
+    <Box backgroundColor="default" paddingBlockStart="spacious" paddingBlockEnd="spacious">
+      <Grid>
+        <Grid.Column span={12}>
+          <FeatureComparisonExample planCount={2} />
+        </Grid.Column>
+      </Grid>
+    </Box>
+  ),
 }
 
 export const ThreePlans: Story = {
-  render: () => <FeatureComparisonExample planCount={3} />,
+  render: () => (
+    <Box backgroundColor="default" paddingBlockStart="spacious" paddingBlockEnd="spacious">
+      <Grid>
+        <Grid.Column span={12}>
+          <FeatureComparisonExample planCount={3} />
+        </Grid.Column>
+      </Grid>
+    </Box>
+  ),
 }
 
 export const FourPlans: Story = {
-  render: () => <FeatureComparisonExample />,
+  render: () => (
+    <Box backgroundColor="default" paddingBlockStart="spacious" paddingBlockEnd="spacious">
+      <Grid>
+        <Grid.Column span={12}>
+          <FeatureComparisonExample />
+        </Grid.Column>
+      </Grid>
+    </Box>
+  ),
 }
 
 export const FeaturedFirstPlan: Story = {
-  render: () => <FeatureComparisonExample featuredPlanIndex={0} />,
+  render: () => (
+    <Box backgroundColor="default" paddingBlockStart="spacious" paddingBlockEnd="spacious">
+      <Grid>
+        <Grid.Column span={12}>
+          <FeatureComparisonExample featuredPlanIndex={0} />
+        </Grid.Column>
+      </Grid>
+    </Box>
+  ),
 }
 
 export const FeaturedLastPlan: Story = {
-  render: () => <FeatureComparisonExample featuredPlanIndex={3} />,
+  render: () => (
+    <Box backgroundColor="default" paddingBlockStart="spacious" paddingBlockEnd="spacious">
+      <Grid>
+        <Grid.Column span={12}>
+          <FeatureComparisonExample featuredPlanIndex={3} />
+        </Grid.Column>
+      </Grid>
+    </Box>
+  ),
 }
 
 export const FeatureRows: Story = {
-  render: () => <FeatureComparisonExample planCount={2} showPlanSummaries={false} />,
+  render: () => (
+    <Box backgroundColor="default" paddingBlockStart="spacious" paddingBlockEnd="spacious">
+      <Grid>
+        <Grid.Column span={12}>
+          <FeatureComparisonExample planCount={2} showPlanSummaries={false} />
+        </Grid.Column>
+      </Grid>
+    </Box>
+  ),
 }
 
 export const RowDescriptions: Story = {
@@ -66,43 +103,67 @@ export const RowDescriptions: Story = {
     const {t} = useTranslation('FeatureComparisonTable')
 
     return (
-      <FeatureComparisonExample planCount={2}>
-        <FeatureComparisonTable.Group expanded>
-          <FeatureComparisonTable.GroupHeading>{t('collaboration')}</FeatureComparisonTable.GroupHeading>
-          <FeatureComparisonTable.Row>
-            <FeatureComparisonTable.RowHeading>{t('private_repositories')}</FeatureComparisonTable.RowHeading>
-            <FeatureComparisonTable.RowDescription>
-              {t('for_individuals')} <InlineLink href="#support">{t('support')}</InlineLink>
-            </FeatureComparisonTable.RowDescription>
-            <FeatureComparisonTable.Cell variant="included" variantAriaLabel={t('included')} />
-            <FeatureComparisonTable.Cell variant="included" variantAriaLabel={t('included')} />
-          </FeatureComparisonTable.Row>
-          <FeatureComparisonTable.Row>
-            <FeatureComparisonTable.RowHeading>{t('advanced_security')}</FeatureComparisonTable.RowHeading>
-            <FeatureComparisonTable.RowDescription>
-              <strong>{t('for_teams')}</strong>
-            </FeatureComparisonTable.RowDescription>
-            <FeatureComparisonTable.Cell variant="unavailable" variantAriaLabel={t('unavailable')} />
-            <FeatureComparisonTable.Cell variant="included" variantAriaLabel={t('included')} />
-          </FeatureComparisonTable.Row>
-          <FeatureComparisonTable.Row>
-            <FeatureComparisonTable.RowHeading>{t('support')}</FeatureComparisonTable.RowHeading>
-            <FeatureComparisonTable.RowDescription>{t('for_organizations')}</FeatureComparisonTable.RowDescription>
-            <FeatureComparisonTable.Cell>{t('community')}</FeatureComparisonTable.Cell>
-            <FeatureComparisonTable.Cell>{t('standard')}</FeatureComparisonTable.Cell>
-          </FeatureComparisonTable.Row>
-        </FeatureComparisonTable.Group>
-      </FeatureComparisonExample>
+      <Box backgroundColor="default" paddingBlockStart="spacious" paddingBlockEnd="spacious">
+        <Grid>
+          <Grid.Column span={12}>
+            <FeatureComparisonExample planCount={2}>
+              <FeatureComparisonTable.Group expanded>
+                <FeatureComparisonTable.GroupHeading>{t('collaboration')}</FeatureComparisonTable.GroupHeading>
+                <FeatureComparisonTable.Row>
+                  <FeatureComparisonTable.RowHeading>{t('private_repositories')}</FeatureComparisonTable.RowHeading>
+                  <FeatureComparisonTable.RowDescription>
+                    {t('for_individuals')} <InlineLink href="#support">{t('support')}</InlineLink>
+                  </FeatureComparisonTable.RowDescription>
+                  <FeatureComparisonTable.Cell variant="included" variantAriaLabel={t('included')} />
+                  <FeatureComparisonTable.Cell variant="included" variantAriaLabel={t('included')} />
+                </FeatureComparisonTable.Row>
+                <FeatureComparisonTable.Row>
+                  <FeatureComparisonTable.RowHeading>{t('advanced_security')}</FeatureComparisonTable.RowHeading>
+                  <FeatureComparisonTable.RowDescription>
+                    <strong>{t('for_teams')}</strong>
+                  </FeatureComparisonTable.RowDescription>
+                  <FeatureComparisonTable.Cell variant="unavailable" variantAriaLabel={t('unavailable')} />
+                  <FeatureComparisonTable.Cell variant="included" variantAriaLabel={t('included')} />
+                </FeatureComparisonTable.Row>
+                <FeatureComparisonTable.Row>
+                  <FeatureComparisonTable.RowHeading>{t('support')}</FeatureComparisonTable.RowHeading>
+                  <FeatureComparisonTable.RowDescription>
+                    {t('for_organizations')}
+                  </FeatureComparisonTable.RowDescription>
+                  <FeatureComparisonTable.Cell>{t('community')}</FeatureComparisonTable.Cell>
+                  <FeatureComparisonTable.Cell>{t('standard')}</FeatureComparisonTable.Cell>
+                </FeatureComparisonTable.Row>
+              </FeatureComparisonTable.Group>
+            </FeatureComparisonExample>
+          </Grid.Column>
+        </Grid>
+      </Box>
     )
   },
 }
 
 export const PlanSummaries: Story = {
-  render: () => <FeatureComparisonExample showFeatureRows={false} />,
+  render: () => (
+    <Box backgroundColor="default" paddingBlockStart="spacious" paddingBlockEnd="spacious">
+      <Grid>
+        <Grid.Column span={12}>
+          <FeatureComparisonExample showFeatureRows={false} />
+        </Grid.Column>
+      </Grid>
+    </Box>
+  ),
 }
 
 export const MobileViewport: Story = {
-  render: () => <FeatureComparisonExample />,
+  render: () => (
+    <Box backgroundColor="default" paddingBlockStart="spacious" paddingBlockEnd="spacious">
+      <Grid>
+        <Grid.Column span={12}>
+          <FeatureComparisonExample />
+        </Grid.Column>
+      </Grid>
+    </Box>
+  ),
   globals: {
     viewport: {value: 'iphonexr'},
   },
@@ -116,46 +177,72 @@ export const TabletViewport: Story = {
 }
 
 export const CollapsedGroups: Story = {
-  render: () => <FeatureComparisonExample expanded={false} planCount={3} />,
+  render: () => (
+    <Box backgroundColor="default" paddingBlockStart="spacious" paddingBlockEnd="spacious">
+      <Grid>
+        <Grid.Column span={12}>
+          <FeatureComparisonExample expanded={false} planCount={3} />
+        </Grid.Column>
+      </Grid>
+    </Box>
+  ),
 }
 
 export const ResponsiveGroupExpansion: Story = {
-  render: () => <FeatureComparisonExample expanded={{narrow: true, regular: false, wide: true}} planCount={3} />,
+  render: () => (
+    <Box backgroundColor="default" paddingBlockStart="spacious" paddingBlockEnd="spacious">
+      <Grid>
+        <Grid.Column span={12}>
+          <FeatureComparisonExample expanded={{narrow: true, regular: false, wide: true}} planCount={3} />
+        </Grid.Column>
+      </Grid>
+    </Box>
+  ),
 }
 
 export const StickyHeaders: Story = {
   render: function StickyHeadersStory() {
     const {t} = useTranslation('FeatureComparisonTable')
     return (
-      <FeatureComparisonTable hasStickyHeaders>
-        <FeatureComparisonTable.Heading>{t('compare_features')}</FeatureComparisonTable.Heading>
-        {plans.slice(0, 2).map(plan => (
-          <FeatureComparisonTable.Item key={plan.name}>
-            <FeatureComparisonTable.ItemHeading>{t(plan.name)}</FeatureComparisonTable.ItemHeading>
-            <FeatureComparisonTable.Description>
-              {plan.description ? t(plan.description) : null}
-            </FeatureComparisonTable.Description>
-            <FeatureComparisonTable.PrimaryAction as="a" href={`#choose-${plan.name.toLowerCase()}`}>
-              {t('choose_plan', {plan: t(plan.name)})}
-            </FeatureComparisonTable.PrimaryAction>
-          </FeatureComparisonTable.Item>
-        ))}
-        {['collaboration', 'security', 'support'].map(groupName => (
-          <FeatureComparisonTable.Group key={groupName}>
-            <FeatureComparisonTable.GroupHeading>{t(groupName)}</FeatureComparisonTable.GroupHeading>
-            {Array.from({length: 5}, (_, rowIndex) => (
-              <FeatureComparisonTable.Row key={`${groupName}-${rowIndex}`}>
-                <FeatureComparisonTable.RowHeading>
-                  {t('group_feature', {group: t(groupName), number: rowIndex + 1})}
-                </FeatureComparisonTable.RowHeading>
-                {plans.slice(0, 2).map(plan => (
-                  <FeatureComparisonTable.Cell key={plan.name} variant="included" variantAriaLabel={t('included')} />
-                ))}
-              </FeatureComparisonTable.Row>
-            ))}
-          </FeatureComparisonTable.Group>
-        ))}
-      </FeatureComparisonTable>
+      <Box backgroundColor="default" paddingBlockStart="spacious" paddingBlockEnd="spacious">
+        <Grid>
+          <Grid.Column span={12}>
+            <FeatureComparisonTable>
+              <FeatureComparisonTable.Heading>{t('compare_features')}</FeatureComparisonTable.Heading>
+              {plans.slice(0, 2).map(plan => (
+                <FeatureComparisonTable.Item key={plan.name}>
+                  <FeatureComparisonTable.ItemHeading>{t(plan.name)}</FeatureComparisonTable.ItemHeading>
+                  <FeatureComparisonTable.Description>
+                    {plan.description ? t(plan.description) : null}
+                  </FeatureComparisonTable.Description>
+                  <FeatureComparisonTable.PrimaryAction as="a" href={`#choose-${plan.name.toLowerCase()}`}>
+                    {t('choose_plan', {plan: t(plan.name)})}
+                  </FeatureComparisonTable.PrimaryAction>
+                </FeatureComparisonTable.Item>
+              ))}
+              {['collaboration', 'security', 'support'].map(groupName => (
+                <FeatureComparisonTable.Group key={groupName}>
+                  <FeatureComparisonTable.GroupHeading>{t(groupName)}</FeatureComparisonTable.GroupHeading>
+                  {Array.from({length: 10}, (_, rowIndex) => (
+                    <FeatureComparisonTable.Row key={`${groupName}-${rowIndex}`}>
+                      <FeatureComparisonTable.RowHeading>
+                        {t('group_feature', {group: t(groupName), number: rowIndex + 1})}
+                      </FeatureComparisonTable.RowHeading>
+                      {plans.slice(0, 2).map(plan => (
+                        <FeatureComparisonTable.Cell
+                          key={plan.name}
+                          variant="included"
+                          variantAriaLabel={t('included')}
+                        />
+                      ))}
+                    </FeatureComparisonTable.Row>
+                  ))}
+                </FeatureComparisonTable.Group>
+              ))}
+            </FeatureComparisonTable>
+          </Grid.Column>
+        </Grid>
+      </Box>
     )
   },
 }
@@ -165,7 +252,15 @@ export const DarkMode: Story = {
     backgrounds: {default: 'dark'},
     colorMode: 'dark',
   },
-  render: () => <FeatureComparisonExample planCount={3} />,
+  render: () => (
+    <Box backgroundColor="default" paddingBlockStart="spacious" paddingBlockEnd="spacious">
+      <Grid>
+        <Grid.Column span={12}>
+          <FeatureComparisonExample planCount={3} />
+        </Grid.Column>
+      </Grid>
+    </Box>
+  ),
 }
 
 export const RowHighlighting: Story = {
@@ -205,31 +300,37 @@ export const RowHighlighting: Story = {
     ]
 
     return (
-      <FeatureComparisonExample planCount={3}>
-        {groups.map(group => (
-          <FeatureComparisonTable.Group key={group.name} expanded>
-            <FeatureComparisonTable.GroupHeading>{t(group.name)}</FeatureComparisonTable.GroupHeading>
-            {group.rows.map(row => (
-              <FeatureComparisonTable.Row key={row.name}>
-                <FeatureComparisonTable.RowHeading>{t(row.name)}</FeatureComparisonTable.RowHeading>
-                {row.values.map((value, index) =>
-                  typeof value === 'boolean' ? (
-                    <FeatureComparisonTable.Cell
-                      key={plans[index].name}
-                      variant={value ? 'included' : 'unavailable'}
-                      variantAriaLabel={t(value ? 'included' : 'unavailable')}
-                    />
-                  ) : (
-                    <FeatureComparisonTable.Cell key={plans[index].name}>
-                      {row.name === 'support' ? <InlineLink href="#support">{value}</InlineLink> : value}
-                    </FeatureComparisonTable.Cell>
-                  ),
-                )}
-              </FeatureComparisonTable.Row>
-            ))}
-          </FeatureComparisonTable.Group>
-        ))}
-      </FeatureComparisonExample>
+      <Box backgroundColor="default" paddingBlockStart="spacious" paddingBlockEnd="spacious">
+        <Grid>
+          <Grid.Column span={12}>
+            <FeatureComparisonExample planCount={3}>
+              {groups.map(group => (
+                <FeatureComparisonTable.Group key={group.name} expanded>
+                  <FeatureComparisonTable.GroupHeading>{t(group.name)}</FeatureComparisonTable.GroupHeading>
+                  {group.rows.map(row => (
+                    <FeatureComparisonTable.Row key={row.name}>
+                      <FeatureComparisonTable.RowHeading>{t(row.name)}</FeatureComparisonTable.RowHeading>
+                      {row.values.map((value, index) =>
+                        typeof value === 'boolean' ? (
+                          <FeatureComparisonTable.Cell
+                            key={plans[index].name}
+                            variant={value ? 'included' : 'unavailable'}
+                            variantAriaLabel={t(value ? 'included' : 'unavailable')}
+                          />
+                        ) : (
+                          <FeatureComparisonTable.Cell key={plans[index].name}>
+                            {row.name === 'support' ? <InlineLink href="#support">{value}</InlineLink> : value}
+                          </FeatureComparisonTable.Cell>
+                        ),
+                      )}
+                    </FeatureComparisonTable.Row>
+                  ))}
+                </FeatureComparisonTable.Group>
+              ))}
+            </FeatureComparisonExample>
+          </Grid.Column>
+        </Grid>
+      </Box>
     )
   },
   play: async ({canvasElement}) => {
@@ -245,6 +346,8 @@ export const RowHighlighting: Story = {
     links[0].focus({preventScroll: true})
     await userEvent.tab()
     await waitFor(() => expect(links[1]).toHaveFocus())
+    // Preserve the focused row without leaving sticky headers active in the full-page capture.
+    window.scrollTo({top: 0, left: 0, behavior: 'instant'})
   },
 }
 

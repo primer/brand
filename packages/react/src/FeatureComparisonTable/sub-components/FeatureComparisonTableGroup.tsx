@@ -1,4 +1,4 @@
-import React, {type PropsWithChildren, useState} from 'react'
+import React, {type PropsWithChildren, useCallback, useState} from 'react'
 import {ChevronDownIcon} from '@primer/octicons-react'
 import {clsx} from 'clsx'
 import styles from '../FeatureComparisonTable.module.css'
@@ -50,6 +50,12 @@ export const FeatureComparisonTableGroup = ({children, className, expanded}: Fea
 
   const setOpen = (nextOpen: boolean) =>
     setState(previous => (previous.open === nextOpen ? previous : {...previous, open: nextOpen}))
+  const registerTableGroupControl = useCallback(
+    (element: HTMLButtonElement | null) => {
+      tableGroupControlsRef.current[identity] = element
+    },
+    [identity, tableGroupControlsRef],
+  )
   const isWide = breakpoint === 'wide'
   const groupId = `${instanceId}-${isWide ? 'table' : 'narrow'}-group-${index}`
   const groupControlId = `${instanceId}-table-group-control-${index}`
@@ -97,9 +103,7 @@ export const FeatureComparisonTableGroup = ({children, className, expanded}: Fea
       aria-expanded={open}
       id={groupControlId}
       onClick={() => setOpen(!open)}
-      ref={element => {
-        tableGroupControlsRef.current[identity] = element
-      }}
+      ref={registerTableGroupControl}
       type="button"
     >
       {heading?.props.children}
@@ -109,10 +113,14 @@ export const FeatureComparisonTableGroup = ({children, className, expanded}: Fea
 
   return (
     <>
-      <tbody className={styles.FeatureComparisonTable__groupHeader}>
+      <tbody>
         <tr>
           <th
-            className={clsx(index > 0 && gridlineStyles.gridline, styles.FeatureComparisonTable__groupDivider)}
+            className={clsx(
+              index > 0 && gridlineStyles.gridline,
+              styles.FeatureComparisonTable__groupDivider,
+              (!open || rows.length === 0) && styles['FeatureComparisonTable__groupDivider--noVisibleRows'],
+            )}
             colSpan={items.length + 1}
             scope="rowgroup"
           >
@@ -133,12 +141,7 @@ export const FeatureComparisonTableGroup = ({children, className, expanded}: Fea
           </th>
         </tr>
       </tbody>
-      <tbody
-        aria-labelledby={groupControlId}
-        className={clsx(styles.FeatureComparisonTable__groupRows, className)}
-        hidden={!open}
-        id={groupId}
-      >
+      <tbody aria-labelledby={groupControlId} className={className} hidden={!open} id={groupId}>
         {rows}
       </tbody>
     </>

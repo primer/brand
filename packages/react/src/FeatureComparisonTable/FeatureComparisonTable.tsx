@@ -7,6 +7,7 @@ import {useWindowSize} from '../hooks/useWindowSize'
 import useIsomorphicLayoutEffect from '../hooks/useIsomorphicLayoutEffect'
 import {type BreakpointCategory, type TableContextValue, TableContext, testIds} from './FeatureComparisonTableContext'
 import {getChildrenOfType, hasItemLabel} from './FeatureComparisonTableHelpers'
+import {useFeatureComparisonTableStickyHeaders} from './useFeatureComparisonTableStickyHeaders'
 import {
   FeatureComparisonTableHeading,
   FeatureComparisonTableItem,
@@ -40,34 +41,11 @@ export type FeatureComparisonTableProps = PropsWithChildren<
   BaseProps<HTMLDivElement> &
     Omit<React.HTMLAttributes<HTMLDivElement>, 'aria-label' | 'aria-labelledby'> & {
       'data-testid'?: string
-      /**
-       * Keeps wide table headers fixed to the viewport while scrolling.
-       * Ancestors must not set overflow in a way that changes the sticky containing block.
-       */
-      hasStickyHeaders?: boolean
-      /**
-       * Highlights rows on hover or keyboard focus. Enabled by default.
-       */
-      rowHighlighting?: boolean
     }
 >
 
 const FeatureComparisonTableRoot = forwardRef<HTMLDivElement, FeatureComparisonTableProps>(
-  (
-    {
-      animate,
-      children,
-      className,
-      hasStickyHeaders = false,
-      onBlur,
-      onFocus,
-      rowHighlighting = true,
-      style,
-      'data-testid': testId,
-      ...rest
-    },
-    ref,
-  ) => {
+  ({animate, children, className, onBlur, onFocus, style, 'data-testid': testId, ...rest}, ref) => {
     const instanceId = useId()
     const {classes: animationClasses, styles: animationInlineStyles} = useAnimation(animate)
     const {width, isMedium: isRegular, isXLarge: isWide} = useWindowSize()
@@ -84,6 +62,7 @@ const FeatureComparisonTableRoot = forwardRef<HTMLDivElement, FeatureComparisonT
     const items = allItems.slice(0, 4)
     const groups = getChildrenOfType(rootChildren, FeatureComparisonTableGroup)
     const hasLabels = items.some(hasItemLabel)
+    const hasStickyHeaders = useFeatureComparisonTableStickyHeaders(tableRef, breakpoint === 'wide', items.length > 0)
 
     useEffect(() => {
       if (process.env.NODE_ENV !== 'production' && allItems.length > 4) {
@@ -187,7 +166,6 @@ const FeatureComparisonTableRoot = forwardRef<HTMLDivElement, FeatureComparisonT
             gridlineStyles.gridline,
             items.length > 1 && styles[`FeatureComparisonTable--items${items.length}`],
             hasStickyHeaders && styles['FeatureComparisonTable--stickyHeaders'],
-            rowHighlighting && styles['FeatureComparisonTable--rowHighlighting'],
             animationClasses,
             className,
           )}

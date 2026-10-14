@@ -25,8 +25,6 @@ import {FeatureComparisonTable} from '@primer/react-brand'
 
 ### Default
 
-Use a `FeatureComparisonTable.Item` for each plan and a `FeatureComparisonTable.Group` for related features. Add one `FeatureComparisonTable.Cell` per plan to each `FeatureComparisonTable.Row`, in the same order as the items.
-
 ```jsx live
 <FeatureComparisonTable>
   <FeatureComparisonTable.Heading>Compare features</FeatureComparisonTable.Heading>
@@ -95,11 +93,11 @@ Use `FeatureComparisonTable.RowDescription` to add context beneath a feature nam
 
 ### FeatureComparisonTable <Label>Required</Label>
 
-| Name               | Type                                                                                        | Default | required | Description                                                           |
-| :----------------- | :------------------------------------------------------------------------------------------ | :-----: | :------: | :-------------------------------------------------------------------- |
-| `children`         | `FeatureComparisonTable.Heading, FeatureComparisonTable.Item, FeatureComparisonTable.Group` |         |  `true`  | Table title, plans, and feature groups                                |
-| `rowHighlighting`  | `boolean`                                                                                   | `true`  | `false`  | Highlights rows on hover or keyboard focus; set to `false` to disable |
-| `hasStickyHeaders` | `boolean`                                                                                   | `false` | `false`  | Keeps table headers visible while scrolling on wide screens           |
+Rows highlight on hover or keyboard focus. On wide screens, headers automatically stay visible while scrolling when the table is taller than the viewport and the headers leave room for feature rows. Avoid ancestor overflow styles that change the sticky containing block.
+
+| Name       | Type                                                                                        | Default | required | Description                            |
+| :--------- | :------------------------------------------------------------------------------------------ | :-----: | :------: | :------------------------------------- |
+| `children` | `FeatureComparisonTable.Heading, FeatureComparisonTable.Item, FeatureComparisonTable.Group` |         |  `true`  | Table title, plans, and feature groups |
 
 ### FeatureComparisonTable.Item <Label>Required</Label>
 

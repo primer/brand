@@ -274,19 +274,19 @@
   margin-block-start: var(--base-size-12);
 }
 
-.FeatureComparisonTable--rowHighlighting .FeatureComparisonTable__row,
-.FeatureComparisonTable--rowHighlighting .FeatureComparisonTable__planTerm,
-.FeatureComparisonTable--rowHighlighting .FeatureComparisonTable__planValue,
-.FeatureComparisonTable--rowHighlighting .FeatureComparisonTable__rowHeaderCell,
-.FeatureComparisonTable--rowHighlighting .FeatureComparisonTable__tableCell {
+.FeatureComparisonTable__row,
+.FeatureComparisonTable__planTerm,
+.FeatureComparisonTable__planValue,
+.FeatureComparisonTable__rowHeaderCell,
+.FeatureComparisonTable__tableCell {
   transition: background-color var(--brand-animation-duration-fast) var(--brand-animation-easing-default);
 }
 
-.FeatureComparisonTable--rowHighlighting .FeatureComparisonTable__row:focus-within {
+.FeatureComparisonTable__row:focus-within {
   background-color: var(--brand-FeatureComparisonTable-rowHighlight-bgColor);
 }
 
-.FeatureComparisonTable--rowHighlighting .FeatureComparisonTable__row :is(a, button):focus-visible {
+.FeatureComparisonTable__row :is(a, button):focus-visible {
   position: relative;
   z-index: 1;
 }
@@ -325,8 +325,7 @@
   }
 
   .FeatureComparisonTable__row:last-child > *,
-  .FeatureComparisonTable__groupHeader:has(+ .FeatureComparisonTable__groupRows:is([hidden], :empty))
-    .FeatureComparisonTable__groupDivider {
+  .FeatureComparisonTable__groupDivider--noVisibleRows {
     border-block-end: 0;
   }
 
@@ -475,29 +474,29 @@
     background-color: var(--brand-FeatureComparisonTable-highlightedColumn-bgColor);
   }
 
-  .FeatureComparisonTable--rowHighlighting .FeatureComparisonTable__row:focus-within > * {
+  .FeatureComparisonTable__row:focus-within > * {
     background-color: var(--brand-FeatureComparisonTable-rowHighlight-bgColor);
   }
 }
 
 @media (hover: hover) and (pointer: fine) {
-  .FeatureComparisonTable--rowHighlighting .FeatureComparisonTable__row:hover {
+  .FeatureComparisonTable__row:hover {
     background-color: var(--brand-FeatureComparisonTable-rowHighlight-bgColor);
   }
 }
 
 @media (hover: hover) and (pointer: fine) and (min-width: 80rem) {
-  .FeatureComparisonTable--rowHighlighting .FeatureComparisonTable__row:hover > * {
+  .FeatureComparisonTable__row:hover > * {
     background-color: var(--brand-FeatureComparisonTable-rowHighlight-bgColor);
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .FeatureComparisonTable--rowHighlighting .FeatureComparisonTable__row,
-  .FeatureComparisonTable--rowHighlighting .FeatureComparisonTable__planTerm,
-  .FeatureComparisonTable--rowHighlighting .FeatureComparisonTable__planValue,
-  .FeatureComparisonTable--rowHighlighting .FeatureComparisonTable__rowHeaderCell,
-  .FeatureComparisonTable--rowHighlighting .FeatureComparisonTable__tableCell {
+  .FeatureComparisonTable__row,
+  .FeatureComparisonTable__planTerm,
+  .FeatureComparisonTable__planValue,
+  .FeatureComparisonTable__rowHeaderCell,
+  .FeatureComparisonTable__tableCell {
     transition-duration: 0s;
   }
 }

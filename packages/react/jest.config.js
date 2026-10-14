@@ -13,7 +13,6 @@ module.exports = {
     '!src/test-utils/**/*',
     '!**/*.stories.{js,jsx,ts,tsx}',
     '!**/*.visual.spec.{js,jsx,ts,tsx}',
-    '!**/*.browser.spec.{js,jsx,ts,tsx}',
     '!**/*.d.ts',
   ],
   maxWorkers: '50%',

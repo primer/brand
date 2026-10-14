@@ -3,7 +3,6 @@ declare const styles: {
   readonly "FeatureComparisonTable--items2": string;
   readonly "FeatureComparisonTable--items3": string;
   readonly "FeatureComparisonTable--items4": string;
-  readonly "FeatureComparisonTable--rowHighlighting": string;
   readonly "FeatureComparisonTable--stickyHeaders": string;
   readonly "FeatureComparisonTable__actions": string;
   readonly "FeatureComparisonTable__cell": string;
@@ -19,8 +18,7 @@ declare const styles: {
   readonly "FeatureComparisonTable__groupBackground": string;
   readonly "FeatureComparisonTable__groupControl": string;
   readonly "FeatureComparisonTable__groupDivider": string;
-  readonly "FeatureComparisonTable__groupHeader": string;
-  readonly "FeatureComparisonTable__groupRows": string;
+  readonly "FeatureComparisonTable__groupDivider--noVisibleRows": string;
   readonly "FeatureComparisonTable__head": string;
   readonly "FeatureComparisonTable__headerCell": string;
   readonly "FeatureComparisonTable__headerCell--hasLabel": string;

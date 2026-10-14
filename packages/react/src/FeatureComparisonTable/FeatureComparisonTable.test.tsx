@@ -61,6 +61,7 @@ describe('FeatureComparisonTable', () => {
 
   beforeEach(() => {
     jest.replaceProperty(window, 'innerWidth', 600)
+    jest.replaceProperty(window, 'innerHeight', 768)
   })
 
   afterEach(() => {
@@ -224,25 +225,210 @@ describe('FeatureComparisonTable', () => {
     expect(table.getByRole('heading', {name: 'Pro', level: 3})).toBeInTheDocument()
   })
 
-  it('applies the sticky header class only when enabled', () => {
-    const {getByTestId, rerender} = render(<Component />)
+  it('does not expose sticky-header or row-highlighting options', () => {
+    const optionsAreAutomatic: Extract<
+      keyof FeatureComparisonTableProps,
+      'stickyHeaders' | 'hasStickyHeaders' | 'rowHighlighting'
+    > extends never
+      ? true
+      : false = true
 
-    expect(getByTestId(FeatureComparisonTable.testIds.root)).not.toHaveClass('FeatureComparisonTable--stickyHeaders')
-
-    rerender(<Component hasStickyHeaders />)
-
-    expect(getByTestId(FeatureComparisonTable.testIds.root)).toHaveClass('FeatureComparisonTable--stickyHeaders')
+    expect(optionsAreAutomatic).toBe(true)
   })
 
-  it('highlights rows by default and supports an explicit opt-out', () => {
-    const {getByTestId, rerender} = render(<Component />)
-    const root = getByTestId(FeatureComparisonTable.testIds.root)
+  it.each([narrowBreakpoint, wideBreakpoint])(
+    'renders rows with unconditional highlight styles at the %s breakpoint',
+    breakpoint => {
+      setBreakpoint(breakpoint)
+      const {getByTestId, getAllByTestId} = render(<Component expanded />)
 
-    expect(root).toHaveClass('FeatureComparisonTable--rowHighlighting')
-    rerender(<Component rowHighlighting={false} />)
-    expect(root).not.toHaveClass('FeatureComparisonTable--rowHighlighting')
-    rerender(<Component rowHighlighting />)
-    expect(root).toHaveClass('FeatureComparisonTable--rowHighlighting')
+      expect(getByTestId(FeatureComparisonTable.testIds.root)).not.toHaveClass(
+        'FeatureComparisonTable--rowHighlighting',
+      )
+      for (const row of getAllByTestId(FeatureComparisonTable.testIds.row)) {
+        expect(row).toHaveClass('FeatureComparisonTable__row')
+      }
+    },
+  )
+
+  describe('automatic sticky headers', () => {
+    const originalResizeObserver = global.ResizeObserver
+    let tableHeight: number
+    let headerHeight: number
+    let observers: MockResizeObserver[]
+
+    class MockResizeObserver implements ResizeObserver {
+      observe = jest.fn()
+      unobserve = jest.fn()
+      disconnect = jest.fn()
+      callback: ResizeObserverCallback
+
+      constructor(callback: ResizeObserverCallback) {
+        this.callback = callback
+        observers.push(this)
+      }
+
+      resize() {
+        this.callback([], this)
+      }
+    }
+
+    beforeEach(() => {
+      tableHeight = 1000
+      headerHeight = 200
+      observers = []
+      global.ResizeObserver = MockResizeObserver
+      jest
+        .spyOn(HTMLTableElement.prototype, 'getBoundingClientRect')
+        .mockImplementation(() => new DOMRect(0, 0, 1000, tableHeight))
+      jest
+        .spyOn(HTMLTableSectionElement.prototype, 'getBoundingClientRect')
+        .mockImplementation(() => new DOMRect(0, 0, 1000, headerHeight))
+    })
+
+    afterEach(() => {
+      global.ResizeObserver = originalResizeObserver
+    })
+
+    it('activates only for overflowing wide tables and resets on responsive round trips', () => {
+      const {getByTestId, queryByRole} = render(<Component />)
+      const root = getByTestId(FeatureComparisonTable.testIds.root)
+
+      expect(root).not.toHaveClass('FeatureComparisonTable--stickyHeaders')
+      expect(observers).toHaveLength(0)
+      setBreakpoint(regularBreakpoint)
+      expect(root).not.toHaveClass('FeatureComparisonTable--stickyHeaders')
+      setBreakpoint(wideBreakpoint)
+      expect(root).toHaveClass('FeatureComparisonTable--stickyHeaders')
+      expect(observers[0].observe).toHaveBeenCalledWith(queryByRole('table'))
+      expect(observers[0].observe).toHaveBeenCalledWith(queryByRole('table')?.querySelector('thead'))
+
+      setBreakpoint(narrowBreakpoint)
+      expect(root).not.toHaveClass('FeatureComparisonTable--stickyHeaders')
+      expect(queryByRole('table')).not.toBeInTheDocument()
+      expect(observers[0].disconnect).toHaveBeenCalledTimes(1)
+
+      tableHeight = 600
+      setBreakpoint(wideBreakpoint)
+      expect(root).not.toHaveClass('FeatureComparisonTable--stickyHeaders')
+      expect(observers).toHaveLength(2)
+    })
+
+    it('activates and deactivates as the viewport height changes without a width change', () => {
+      setBreakpoint(wideBreakpoint)
+      const {getByTestId} = render(<Component />)
+      const root = getByTestId(FeatureComparisonTable.testIds.root)
+
+      expect(root).toHaveClass('FeatureComparisonTable--stickyHeaders')
+      act(() => {
+        jest.replaceProperty(window, 'innerHeight', 1000)
+        fireEvent(window, new Event('resize'))
+      })
+      expect(root).not.toHaveClass('FeatureComparisonTable--stickyHeaders')
+      act(() => {
+        jest.replaceProperty(window, 'innerHeight', 800)
+        fireEvent(window, new Event('resize'))
+      })
+      expect(root).toHaveClass('FeatureComparisonTable--stickyHeaders')
+    })
+
+    it('remeasures table content and leaves space below the header', () => {
+      setBreakpoint(wideBreakpoint)
+      tableHeight = 768
+      const {getByTestId} = render(<Component />)
+      const root = getByTestId(FeatureComparisonTable.testIds.root)
+
+      expect(root).not.toHaveClass('FeatureComparisonTable--stickyHeaders')
+      act(() => {
+        tableHeight = 1000
+        observers[0].resize()
+      })
+      expect(root).toHaveClass('FeatureComparisonTable--stickyHeaders')
+      act(() => {
+        headerHeight = 768
+        observers[0].resize()
+      })
+      expect(root).not.toHaveClass('FeatureComparisonTable--stickyHeaders')
+      act(() => {
+        headerHeight = 200
+        observers[0].resize()
+      })
+      expect(root).toHaveClass('FeatureComparisonTable--stickyHeaders')
+      act(() => {
+        tableHeight = 500
+        observers[0].resize()
+      })
+      expect(root).not.toHaveClass('FeatureComparisonTable--stickyHeaders')
+    })
+
+    it('remeasures disclosure content changes even without ResizeObserver', async () => {
+      Reflect.deleteProperty(global, 'ResizeObserver')
+      setBreakpoint(wideBreakpoint)
+      const {getByTestId, getByRole} = render(<Component />)
+      const root = getByTestId(FeatureComparisonTable.testIds.root)
+      const control = getByRole('button', {name: 'Core features'})
+
+      expect(root).toHaveClass('FeatureComparisonTable--stickyHeaders')
+      tableHeight = 500
+      fireEvent.click(control)
+      await waitFor(() => expect(root).not.toHaveClass('FeatureComparisonTable--stickyHeaders'))
+
+      tableHeight = 1000
+      fireEvent.click(control)
+      await waitFor(() => expect(root).toHaveClass('FeatureComparisonTable--stickyHeaders'))
+      expect(observers).toHaveLength(0)
+    })
+
+    it('remeasures changed consumer content without remounting the table', async () => {
+      setBreakpoint(wideBreakpoint)
+      tableHeight = 500
+      const comparison = (title: string) => (
+        <FeatureComparisonTable>
+          <FeatureComparisonTable.Heading>{title}</FeatureComparisonTable.Heading>
+          <FeatureComparisonTable.Item />
+        </FeatureComparisonTable>
+      )
+      const {getByTestId, getByRole, rerender} = render(comparison('Compare features'))
+      const root = getByTestId(FeatureComparisonTable.testIds.root)
+      const table = getByRole('table')
+
+      expect(root).not.toHaveClass('FeatureComparisonTable--stickyHeaders')
+      tableHeight = 1000
+      rerender(comparison('Compare all available features'))
+      await waitFor(() => expect(root).toHaveClass('FeatureComparisonTable--stickyHeaders'))
+      expect(getByRole('table')).toBe(table)
+
+      tableHeight = 500
+      rerender(comparison('Compare features'))
+      await waitFor(() => expect(root).not.toHaveClass('FeatureComparisonTable--stickyHeaders'))
+    })
+
+    it('starts observing when items are added to an initially empty table', () => {
+      setBreakpoint(wideBreakpoint)
+      const {queryByRole, getByTestId, rerender} = render(
+        <FeatureComparisonTable>
+          <FeatureComparisonTable.Heading>Compare features</FeatureComparisonTable.Heading>
+        </FeatureComparisonTable>,
+      )
+      expect(queryByRole('table')).not.toBeInTheDocument()
+      expect(observers).toHaveLength(0)
+
+      rerender(<Component />)
+      expect(getByTestId(FeatureComparisonTable.testIds.root)).toHaveClass('FeatureComparisonTable--stickyHeaders')
+      expect(observers).toHaveLength(1)
+    })
+
+    it('disconnects observers and removes viewport listeners on unmount', () => {
+      setBreakpoint(wideBreakpoint)
+      const removeEventListener = jest.spyOn(window, 'removeEventListener')
+      const disconnect = jest.spyOn(MutationObserver.prototype, 'disconnect')
+      const {unmount} = render(<Component />)
+      unmount()
+
+      expect(observers[0].disconnect).toHaveBeenCalledTimes(1)
+      expect(disconnect).toHaveBeenCalledTimes(1)
+      expect(removeEventListener).toHaveBeenCalledWith('resize', expect.any(Function))
+    })
   })
 
   it('allows heading levels to be customized', () => {
@@ -488,14 +674,45 @@ describe('FeatureComparisonTable', () => {
     const {getByRole} = render(<Component />)
     const button = getByRole('button', {name: 'Core features'})
     const rows = getByRole('rowgroup', {name: 'Core features'})
+    const divider = button.closest('th')
+
+    expect(divider).not.toHaveClass('FeatureComparisonTable__groupDivider--noVisibleRows')
 
     await user.click(button)
     expect(button).toHaveAttribute('aria-expanded', 'false')
     expect(rows).not.toBeVisible()
+    expect(divider).toHaveClass('FeatureComparisonTable__groupDivider--noVisibleRows')
 
     await user.click(button)
     expect(button).toHaveAttribute('aria-expanded', 'true')
     expect(rows).toBeVisible()
+    expect(divider).not.toHaveClass('FeatureComparisonTable__groupDivider--noVisibleRows')
+  })
+
+  it.each([false, true])('omits the empty group divider border when expanded is %s', async expanded => {
+    setBreakpoint(wideBreakpoint)
+    const user = userEvent.setup()
+    const {getByRole} = render(
+      <FeatureComparisonTable>
+        <FeatureComparisonTable.Heading>Compare features</FeatureComparisonTable.Heading>
+        <FeatureComparisonTable.Item>
+          <FeatureComparisonTable.ItemHeading>Free</FeatureComparisonTable.ItemHeading>
+        </FeatureComparisonTable.Item>
+        <FeatureComparisonTable.Group expanded={expanded}>
+          <FeatureComparisonTable.GroupHeading>Empty group</FeatureComparisonTable.GroupHeading>
+        </FeatureComparisonTable.Group>
+      </FeatureComparisonTable>,
+    )
+    const button = getByRole('button', {name: 'Empty group'})
+    const divider = button.closest('th')
+
+    expect(button).toHaveAttribute('aria-expanded', String(expanded))
+    expect(divider).toHaveClass('FeatureComparisonTable__groupDivider--noVisibleRows')
+
+    await user.click(button)
+
+    expect(button).toHaveAttribute('aria-expanded', String(!expanded))
+    expect(divider).toHaveClass('FeatureComparisonTable__groupDivider--noVisibleRows')
   })
 
   it.each(['{Enter}', ' '])('toggles table rows with the %s key', async key => {
@@ -552,6 +769,34 @@ describe('FeatureComparisonTable', () => {
     expect(within(getByRole('group')).getByRole('heading', {name: 'Core features'}).parentElement).toHaveFocus()
   })
 
+  it('preserves the focused keyed group through wide rerenders, reordering, and layout changes', () => {
+    setBreakpoint(wideBreakpoint)
+    const comparison = (names: string[]) => (
+      <FeatureComparisonTable>
+        <FeatureComparisonTable.Heading>Compare features</FeatureComparisonTable.Heading>
+        <FeatureComparisonTable.Item />
+        {names.map(name => (
+          <FeatureComparisonTable.Group key={name}>
+            <FeatureComparisonTable.GroupHeading>{name}</FeatureComparisonTable.GroupHeading>
+          </FeatureComparisonTable.Group>
+        ))}
+      </FeatureComparisonTable>
+    )
+    const {getByRole, rerender} = render(comparison(['Core', 'Security']))
+    getByRole('button', {name: 'Core'}).focus()
+
+    rerender(comparison(['Core', 'Security']))
+    expect(getByRole('button', {name: 'Core'})).toHaveFocus()
+    rerender(comparison(['Security', 'Core']))
+    expect(getByRole('button', {name: 'Core'})).toHaveFocus()
+
+    setBreakpoint(narrowBreakpoint)
+    expect(getByRole('heading', {name: 'Core'}).parentElement).toHaveFocus()
+    expect(getByRole('heading', {name: 'Security'}).parentElement).not.toHaveFocus()
+    setBreakpoint(wideBreakpoint)
+    expect(getByRole('button', {name: 'Core'})).toHaveFocus()
+  })
+
   it.each([false, true])('preserves group focus when blur follows the resize event: %s', resizeFirst => {
     const onBlur = jest.fn()
     const {getByRole} = render(<Component onBlur={onBlur} />)
@@ -598,9 +843,10 @@ describe('FeatureComparisonTable', () => {
 
   it('scrolls focused controls below sticky headers', () => {
     setBreakpoint(wideBreakpoint)
+    jest.spyOn(HTMLTableElement.prototype, 'getBoundingClientRect').mockReturnValue(new DOMRect(0, 0, 1000, 2000))
     const scrollBy = jest.spyOn(window, 'scrollBy').mockImplementation()
     const onFocus = jest.fn()
-    const {getByRole} = render(<Component hasStickyHeaders onFocus={onFocus} />)
+    const {getByRole} = render(<Component onFocus={onFocus} />)
     const header = getByRole('columnheader', {name: 'Compare features'})
     const button = getByRole('button', {name: 'Core features'})
     jest.spyOn(header, 'getBoundingClientRect').mockReturnValue(new DOMRect(0, 0, 100, 80))
@@ -614,13 +860,31 @@ describe('FeatureComparisonTable', () => {
     expect(onFocus).toHaveBeenCalledTimes(2)
   })
 
+  it('preserves focus handlers without correcting focus when the table fits the viewport', () => {
+    setBreakpoint(wideBreakpoint)
+    jest.spyOn(HTMLTableElement.prototype, 'getBoundingClientRect').mockReturnValue(new DOMRect(0, 0, 1000, 500))
+    const scrollBy = jest.spyOn(window, 'scrollBy').mockImplementation()
+    const onFocus = jest.fn()
+    const {getByRole} = render(<Component onFocus={onFocus} />)
+    const header = getByRole('columnheader', {name: 'Compare features'})
+    const button = getByRole('button', {name: 'Core features'})
+    jest.spyOn(header, 'getBoundingClientRect').mockReturnValue(new DOMRect(0, 0, 100, 80))
+    jest.spyOn(button, 'getBoundingClientRect').mockReturnValue(new DOMRect(0, 40, 100, 24))
+
+    fireEvent.focus(button)
+
+    expect(scrollBy).not.toHaveBeenCalled()
+    expect(onFocus).toHaveBeenCalledTimes(1)
+  })
+
   it.each([
     [80, -4],
     [84, undefined],
   ])('clears focus outlines beneath sticky headers when the control starts at %s', (top, expectedScroll) => {
     setBreakpoint(wideBreakpoint)
+    jest.spyOn(HTMLTableElement.prototype, 'getBoundingClientRect').mockReturnValue(new DOMRect(0, 0, 1000, 2000))
     const scrollBy = jest.spyOn(window, 'scrollBy').mockImplementation()
-    const {getByRole} = render(<Component hasStickyHeaders />)
+    const {getByRole} = render(<Component />)
     const header = getByRole('columnheader', {name: 'Compare features'})
     const button = getByRole('button', {name: 'Core features'})
     jest.spyOn(header, 'getBoundingClientRect').mockReturnValue(new DOMRect(0, 0, 100, 80))
