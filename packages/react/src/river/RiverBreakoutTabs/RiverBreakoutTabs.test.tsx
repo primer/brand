@@ -364,7 +364,7 @@ describe('RiverBreakoutTabs', () => {
   it('keeps Content controls outside desktop tabs without changing selection', async () => {
     const user = userEvent.setup()
     const onChange = jest.fn()
-    const {container, getByRole} = render(
+    const {container, getAllByRole, getByRole} = render(
       <RiverBreakoutTabs onChange={onChange}>
         <RiverBreakoutTabs.A11yHeading>Agent workflows</RiverBreakoutTabs.A11yHeading>
         <RiverBreakoutTabs.Item>
@@ -380,23 +380,69 @@ describe('RiverBreakoutTabs', () => {
             <MockVisual label="plan visual" />
           </RiverBreakoutTabs.Visual>
         </RiverBreakoutTabs.Item>
+        <RiverBreakoutTabs.Item>
+          <RiverBreakoutTabs.Heading>Review</RiverBreakoutTabs.Heading>
+          <RiverBreakoutTabs.Content>
+            <Text>Review content</Text>
+            <Button>Start reviewing</Button>
+            <Link href="#">Explore reviews</Link>
+          </RiverBreakoutTabs.Content>
+          <RiverBreakoutTabs.Visual>
+            <MockVisual label="review visual" />
+          </RiverBreakoutTabs.Visual>
+        </RiverBreakoutTabs.Item>
       </RiverBreakoutTabs>,
     )
 
-    const tab = getByRole('tab', {name: 'Plan'})
-    const panel = getByRole('tabpanel', {name: 'Plan'})
-    const button = getByRole('button', {name: 'Start planning'})
-    expect(button.closest('[role="tablist"]')).toBeNull()
+    const tabs = getAllByRole('tab')
+    const buttons = [getByRole('button', {name: 'Start planning'}), getByRole('button', {name: 'Start reviewing'})]
+    expect(buttons.every(button => button.closest('[role="tablist"]') === null)).toBe(true)
     expect(getByRole('link', {name: 'Explore planning'}).closest('[role="tablist"]')).toBeNull()
-    expect(panel).toHaveAttribute('aria-labelledby', tab.id)
+    expect(getByRole('link', {name: 'Explore reviews'}).closest('[role="tablist"]')).toBeNull()
+    expect(getByRole('tabpanel', {name: 'Plan'})).toHaveAttribute('aria-labelledby', tabs[0].id)
+
+    await user.click(tabs[1])
+    expect(tabs[1]).toHaveAttribute('aria-selected', 'true')
     await user.tab()
-    expect(tab).toHaveFocus()
+    expect(buttons[0]).toHaveFocus()
+    await user.keyboard('{Enter}')
+    expect(tabs[1]).toHaveAttribute('aria-selected', 'true')
     await user.tab()
-    expect(button).toHaveFocus()
-    await user.click(button)
-    expect(onChange).not.toHaveBeenCalled()
-    expect(tab).toHaveAttribute('aria-selected', 'true')
+    expect(getByRole('link', {name: 'Explore planning'})).toHaveFocus()
+    await user.tab()
+    expect(buttons[1]).toHaveFocus()
+    await user.keyboard('{Enter}')
+    expect(tabs[1]).toHaveAttribute('aria-selected', 'true')
+    expect(onChange).toHaveBeenCalledTimes(1)
     expect(await axe(container)).toHaveNoViolations()
+  })
+
+  it('renders all items when more than three are provided', () => {
+    const headings = ['Plan', 'Review', 'Ship', 'Launch']
+    const {getAllByRole, getByRole} = render(
+      <RiverBreakoutTabs>
+        <RiverBreakoutTabs.A11yHeading>Agent workflows</RiverBreakoutTabs.A11yHeading>
+        {headings.map(heading => (
+          <RiverBreakoutTabs.Item key={heading}>
+            <RiverBreakoutTabs.Heading>{heading}</RiverBreakoutTabs.Heading>
+            <RiverBreakoutTabs.Content>
+              <Text>{`${heading} content`}</Text>
+              <Button>{`${heading} action`}</Button>
+            </RiverBreakoutTabs.Content>
+            <RiverBreakoutTabs.Visual>
+              <MockVisual label={`${heading} visual`} />
+            </RiverBreakoutTabs.Visual>
+          </RiverBreakoutTabs.Item>
+        ))}
+      </RiverBreakoutTabs>,
+    )
+
+    expect(getAllByRole('tab')).toHaveLength(4)
+    for (const heading of headings) {
+      expect(getByRole('tab', {name: heading})).toBeInTheDocument()
+      expect(getByRole('group', {name: heading})).toBeVisible()
+      expect(getByRole('button', {name: `${heading} action`})).toBeVisible()
+    }
   })
 
   it('keeps desktop content groups labelled by their corresponding tabs when selection changes', async () => {

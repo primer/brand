@@ -92,20 +92,6 @@ export const WithButtons: Story = {
       </Section>
     )
   },
-  play: async ({canvasElement}) => {
-    const canvas = within(canvasElement)
-    await waitFor(() => expect(canvas.getAllByRole('tab')).toHaveLength(2))
-    const tabs = canvas.getAllByRole('tab')
-
-    await userEvent.click(tabs[1])
-    for (const button of canvas.getAllByRole('button')) {
-      expect(button.closest('[role="tablist"]')).toBeNull()
-      await userEvent.tab()
-      expect(button).toHaveFocus()
-      await userEvent.keyboard('{Enter}')
-      expect(tabs[1]).toHaveAttribute('aria-selected', 'true')
-    }
-  },
 }
 
 export const FullBleedBackgroundVisual: Story = {
