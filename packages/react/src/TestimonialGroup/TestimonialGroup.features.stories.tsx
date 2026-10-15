@@ -3,6 +3,7 @@ import type {Meta, StoryObj} from '@storybook/react'
 import {TestimonialGroup} from './TestimonialGroup'
 import {Testimonial} from '../Testimonial'
 import monaAvatar from '../fixtures/images/avatar-mona.png'
+import hubotAvatar from '../fixtures/images/avatar-hubot.png'
 
 const meta = {
   title: 'Components/TestimonialGroup/Features',
@@ -23,7 +24,7 @@ export const Minimal: Story = {
           to our customers.
         </Testimonial.Quote>
         <Testimonial.Avatar src={monaAvatar} alt="" />
-        <Testimonial.Name position="Chief Octocat, GitHub">Mona Lisa</Testimonial.Name>
+        <Testimonial.Name position="Chief Octocat">Mona Lisa</Testimonial.Name>
       </Testimonial>
       <Testimonial variant="minimal">
         <Testimonial.Quote>
@@ -31,8 +32,8 @@ export const Minimal: Story = {
           requests and automated checks in the same workflow, our teams can review work earlier, resolve issues
           together, and release with greater confidence.
         </Testimonial.Quote>
-        <Testimonial.Avatar src={monaAvatar} alt="" />
-        <Testimonial.Name position="Principal Software Engineer, GitHub">Reza Rahman</Testimonial.Name>
+        <Testimonial.Avatar src={hubotAvatar} alt="" />
+        <Testimonial.Name position="Mona's Sidekick">Hubot</Testimonial.Name>
       </Testimonial>
     </TestimonialGroup>
   ),
@@ -48,7 +49,7 @@ export const DefaultVariant: Story = {
           to our customers.
         </Testimonial.Quote>
         <Testimonial.Avatar src={monaAvatar} alt="" />
-        <Testimonial.Name position="Chief Octocat, GitHub">Mona Lisa</Testimonial.Name>
+        <Testimonial.Name position="Chief Octocat">Mona Lisa</Testimonial.Name>
       </Testimonial>
       <Testimonial variant="default">
         <Testimonial.Quote>
@@ -56,8 +57,8 @@ export const DefaultVariant: Story = {
           requests and automated checks in the same workflow, our teams can review work earlier, resolve issues
           together, and release with greater confidence.
         </Testimonial.Quote>
-        <Testimonial.Avatar src={monaAvatar} alt="" />
-        <Testimonial.Name position="Principal Software Engineer, GitHub">Reza Rahman</Testimonial.Name>
+        <Testimonial.Avatar src={hubotAvatar} alt="" />
+        <Testimonial.Name position="Mona's Sidekick">Hubot</Testimonial.Name>
       </Testimonial>
     </TestimonialGroup>
   ),
@@ -73,7 +74,7 @@ export const Subtle: Story = {
           to our customers.
         </Testimonial.Quote>
         <Testimonial.Avatar src={monaAvatar} alt="" />
-        <Testimonial.Name position="Chief Octocat, GitHub">Mona Lisa</Testimonial.Name>
+        <Testimonial.Name position="Chief Octocat">Mona Lisa</Testimonial.Name>
       </Testimonial>
       <Testimonial variant="subtle">
         <Testimonial.Quote>
@@ -81,8 +82,8 @@ export const Subtle: Story = {
           requests and automated checks in the same workflow, our teams can review work earlier, resolve issues
           together, and release with greater confidence.
         </Testimonial.Quote>
-        <Testimonial.Avatar src={monaAvatar} alt="" />
-        <Testimonial.Name position="Staff Systems Designer, GitHub">Dani Guillan</Testimonial.Name>
+        <Testimonial.Avatar src={hubotAvatar} alt="" />
+        <Testimonial.Name position="Mona's Sidekick">Hubot</Testimonial.Name>
       </Testimonial>
     </TestimonialGroup>
   ),
@@ -97,15 +98,15 @@ export const Expressive: Story = {
           accelerating our time to market and boosting developer satisfaction.
         </Testimonial.Quote>
         <Testimonial.Avatar src={monaAvatar} alt="" />
-        <Testimonial.Name position="Chief Octocat, GitHub">Mona Lisa</Testimonial.Name>
+        <Testimonial.Name position="Chief Octocat">Mona Lisa</Testimonial.Name>
       </Testimonial>
       <Testimonial variant="expressive" size="large">
         <Testimonial.Quote>
           <b>GitHub helps us ensure that we have our security controls baked into our pipelines</b> all the way from the
           first line of code we&apos;re writing.
         </Testimonial.Quote>
-        <Testimonial.Avatar src={monaAvatar} alt="" />
-        <Testimonial.Name position="Principal Software Engineer, GitHub">Reza Rahman</Testimonial.Name>
+        <Testimonial.Avatar src={hubotAvatar} alt="" />
+        <Testimonial.Name position="Mona's Sidekick">Hubot</Testimonial.Name>
       </Testimonial>
     </TestimonialGroup>
   ),
@@ -121,7 +122,7 @@ export const ManualNavigation: Story = {
           to our customers.
         </Testimonial.Quote>
         <Testimonial.Avatar src={monaAvatar} alt="" />
-        <Testimonial.Name position="Chief Octocat, GitHub">Mona Lisa</Testimonial.Name>
+        <Testimonial.Name position="Chief Octocat">Mona Lisa</Testimonial.Name>
       </Testimonial>
       <Testimonial>
         <Testimonial.Quote>
@@ -129,8 +130,8 @@ export const ManualNavigation: Story = {
           requests and automated checks in the same workflow, our teams can review work earlier, resolve issues
           together, and release with greater confidence.
         </Testimonial.Quote>
-        <Testimonial.Avatar src={monaAvatar} alt="" />
-        <Testimonial.Name position="Principal Software Engineer, GitHub">Reza Rahman</Testimonial.Name>
+        <Testimonial.Avatar src={hubotAvatar} alt="" />
+        <Testimonial.Name position="Mona's Sidekick">Hubot</Testimonial.Name>
       </Testimonial>
     </TestimonialGroup>
   ),
@@ -145,7 +146,7 @@ export const SingleTestimonial: Story = {
           the details of the customer experience instead of rebuilding the same patterns for every project.
         </Testimonial.Quote>
         <Testimonial.Avatar src={monaAvatar} alt="" />
-        <Testimonial.Name position="Chief Octocat, GitHub">Mona Lisa</Testimonial.Name>
+        <Testimonial.Name position="Chief Octocat">Mona Lisa</Testimonial.Name>
       </Testimonial>
     </TestimonialGroup>
   ),
@@ -162,7 +163,7 @@ export const Narrow: Story = {
           to our customers.
         </Testimonial.Quote>
         <Testimonial.Avatar src={monaAvatar} alt="" />
-        <Testimonial.Name position="Chief Octocat, GitHub">Mona Lisa</Testimonial.Name>
+        <Testimonial.Name position="Chief Octocat">Mona Lisa</Testimonial.Name>
       </Testimonial>
       <Testimonial>
         <Testimonial.Quote>
@@ -170,8 +171,8 @@ export const Narrow: Story = {
           requests and automated checks in the same workflow, our teams can review work earlier, resolve issues
           together, and release with greater confidence.
         </Testimonial.Quote>
-        <Testimonial.Avatar src={monaAvatar} alt="" />
-        <Testimonial.Name position="Principal Software Engineer, GitHub">Reza Rahman</Testimonial.Name>
+        <Testimonial.Avatar src={hubotAvatar} alt="" />
+        <Testimonial.Name position="Mona's Sidekick">Hubot</Testimonial.Name>
       </Testimonial>
     </TestimonialGroup>
   ),
@@ -188,15 +189,15 @@ export const Dark: Story = {
           to our customers.
         </Testimonial.Quote>
         <Testimonial.Avatar src={monaAvatar} alt="" />
-        <Testimonial.Name position="Chief Octocat, GitHub">Mona Lisa</Testimonial.Name>
+        <Testimonial.Name position="Chief Octocat">Mona Lisa</Testimonial.Name>
       </Testimonial>
       <Testimonial>
         <Testimonial.Quote>
           Shared components give us a consistent foundation without limiting what our teams can build. We can focus on
           the details of the customer experience instead of rebuilding the same patterns for every project.
         </Testimonial.Quote>
-        <Testimonial.Avatar src={monaAvatar} alt="" />
-        <Testimonial.Name position="Staff Systems Designer, GitHub">Dani Guillan</Testimonial.Name>
+        <Testimonial.Avatar src={hubotAvatar} alt="" />
+        <Testimonial.Name position="Mona's Sidekick">Hubot</Testimonial.Name>
       </Testimonial>
     </TestimonialGroup>
   ),

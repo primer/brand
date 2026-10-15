@@ -100,7 +100,7 @@ const Root = forwardRef<HTMLDivElement, TestimonialGroupProps>(
     const controller = useRef<{
       changeTo: (index: number, manual?: boolean) => void
     } | null>(null)
-    const timer = useTestimonialGroupTimer({
+    const {timer, isHoverPaused} = useTestimonialGroupTimer({
       rootRef,
       slidesRef,
       itemCount: testimonials.length,
@@ -110,6 +110,7 @@ const Root = forwardRef<HTMLDivElement, TestimonialGroupProps>(
       activeIndex: view.index,
       onElapsed: () => controller.current?.changeTo((viewRef.current.index + 1) % testimonials.length),
     })
+    const isPlaybackPaused = isPaused || isHoverPaused
     const labels = {
       controlsPrev: labelsProp?.controlsPrev ?? defaultLabels.controlsPrev,
       controlsNext: labelsProp?.controlsNext ?? defaultLabels.controlsNext,
@@ -272,7 +273,7 @@ const Root = forwardRef<HTMLDivElement, TestimonialGroupProps>(
                   variant="secondary"
                   icon={
                     // TODO: Replace with the internal PlayIcon component when it becomes available
-                    isPaused ? (
+                    isPlaybackPaused ? (
                       <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path
                           d="M13.3777 6.94756C14.2069 7.40341 14.2069 8.59489 13.3777 9.05073L5.37808 13.4483C4.57834 13.8879 3.60001 13.3093 3.60001 12.3967L3.60001 3.60161C3.60001 2.689 4.57834 2.1104 5.37808 2.55003L13.3777 6.94756Z"
@@ -283,8 +284,15 @@ const Root = forwardRef<HTMLDivElement, TestimonialGroupProps>(
                       PauseIcon
                     )
                   }
-                  aria-label={isPaused ? labels.controlsPlay : labels.controlsPause}
-                  onClick={() => setIsPaused(paused => !paused)}
+                  aria-label={isPlaybackPaused ? labels.controlsPlay : labels.controlsPause}
+                  onClick={() => {
+                    if (isPlaybackPaused) {
+                      setIsPaused(false)
+                      timer.play()
+                    } else {
+                      setIsPaused(true)
+                    }
+                  }}
                 />
               )}
               <CarouselPagination

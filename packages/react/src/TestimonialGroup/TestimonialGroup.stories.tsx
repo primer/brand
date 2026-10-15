@@ -3,6 +3,7 @@ import type {Meta, StoryObj} from '@storybook/react'
 import {TestimonialGroup} from './TestimonialGroup'
 import {Testimonial} from '../Testimonial'
 import monaAvatar from '../fixtures/images/avatar-mona.png'
+import hubotAvatar from '../fixtures/images/avatar-hubot.png'
 
 const meta = {
   title: 'Components/TestimonialGroup',
@@ -29,7 +30,7 @@ export const Default: Story = {
           to our customers.
         </Testimonial.Quote>
         <Testimonial.Avatar src={monaAvatar} alt="" />
-        <Testimonial.Name position="Chief Octocat, GitHub">Mona Lisa</Testimonial.Name>
+        <Testimonial.Name position="Chief Octocat">Mona Lisa</Testimonial.Name>
       </Testimonial>
       <Testimonial>
         <Testimonial.Quote>
@@ -37,8 +38,8 @@ export const Default: Story = {
           requests and automated checks in the same workflow, our teams can review work earlier, resolve issues
           together, and release with greater confidence.
         </Testimonial.Quote>
-        <Testimonial.Avatar src={monaAvatar} alt="" />
-        <Testimonial.Name position="Principal Software Engineer, GitHub">Reza Rahman</Testimonial.Name>
+        <Testimonial.Avatar src={hubotAvatar} alt="" />
+        <Testimonial.Name position="Mona's Sidekick">Hubot</Testimonial.Name>
       </Testimonial>
       <Testimonial>
         <Testimonial.Quote>
@@ -46,7 +47,7 @@ export const Default: Story = {
           the details of the customer experience instead of rebuilding the same patterns for every project.
         </Testimonial.Quote>
         <Testimonial.Avatar src={monaAvatar} alt="" />
-        <Testimonial.Name position="Staff Systems Designer, GitHub">Dani Guillan</Testimonial.Name>
+        <Testimonial.Name position="Chief Octocat">Mona Lisa</Testimonial.Name>
       </Testimonial>
     </TestimonialGroup>
   ),
@@ -63,7 +64,7 @@ export const Playground: Story = {
           to our customers.
         </Testimonial.Quote>
         <Testimonial.Avatar src={monaAvatar} alt="" />
-        <Testimonial.Name position="Chief Octocat, GitHub">Mona Lisa</Testimonial.Name>
+        <Testimonial.Name position="Chief Octocat">Mona Lisa</Testimonial.Name>
       </Testimonial>
       <Testimonial>
         <Testimonial.Quote>
@@ -71,8 +72,8 @@ export const Playground: Story = {
           requests and automated checks in the same workflow, our teams can review work earlier, resolve issues
           together, and release with greater confidence.
         </Testimonial.Quote>
-        <Testimonial.Avatar src={monaAvatar} alt="" />
-        <Testimonial.Name position="Principal Software Engineer, GitHub">Reza Rahman</Testimonial.Name>
+        <Testimonial.Avatar src={hubotAvatar} alt="" />
+        <Testimonial.Name position="Mona's Sidekick">Hubot</Testimonial.Name>
       </Testimonial>
       <Testimonial>
         <Testimonial.Quote>
@@ -80,7 +81,7 @@ export const Playground: Story = {
           the details of the customer experience instead of rebuilding the same patterns for every project.
         </Testimonial.Quote>
         <Testimonial.Avatar src={monaAvatar} alt="" />
-        <Testimonial.Name position="Staff Systems Designer, GitHub">Dani Guillan</Testimonial.Name>
+        <Testimonial.Name position="Chief Octocat">Mona Lisa</Testimonial.Name>
       </Testimonial>
     </TestimonialGroup>
   ),

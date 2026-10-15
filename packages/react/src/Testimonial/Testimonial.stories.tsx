@@ -10,6 +10,7 @@ import {
   defaultTestimonialVariant,
 } from '.'
 import monaAvatar from '../fixtures/images/avatar-mona.png'
+import hubotAvatar from '../fixtures/images/avatar-hubot.png'
 
 type StoryArgs = {
   type: string
@@ -87,8 +88,8 @@ export const Default: Story = {
         GitHub is one of the de facto tools that engineers want to use, and because of that, we don&apos;t have long,
         expensive onboarding periods or productivity gaps.
       </Testimonial.Quote>
-      <Testimonial.Avatar src={monaAvatar} alt="" />
-      <Testimonial.Name position="Principal Software Engineer, GitHub">Reza Rahman</Testimonial.Name>
+      <Testimonial.Avatar src={hubotAvatar} alt="" />
+      <Testimonial.Name position="Mona's Sidekick">Hubot</Testimonial.Name>
     </Testimonial>
   ),
 }

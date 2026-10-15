@@ -1,4 +1,4 @@
-import {useEffect, useMemo, useRef, type RefObject} from 'react'
+import {useEffect, useMemo, useRef, useState, type RefObject} from 'react'
 import useIsomorphicLayoutEffect from '../hooks/useIsomorphicLayoutEffect'
 import styles from './TestimonialGroup.module.css'
 
@@ -23,11 +23,13 @@ export function useTestimonialGroupTimer({
   activeIndex,
   onElapsed,
 }: TestimonialGroupTimerOptions) {
+  const [isHoverPaused, setIsHoverPaused] = useState(false)
   const optionsRef = useRef({isPaused, isTransitioningOut, onElapsed})
   const controller = useRef<{
     stop: (holdProgress?: boolean) => void
     reset: () => void
     resume: () => void
+    play: () => void
     sync: () => void
   } | null>(null)
   const timer = useMemo(
@@ -35,6 +37,7 @@ export function useTestimonialGroupTimer({
       stop: (holdProgress = false) => controller.current?.stop(holdProgress),
       reset: () => controller.current?.reset(),
       resume: () => controller.current?.resume(),
+      play: () => controller.current?.play(),
     }),
     [],
   )
@@ -52,6 +55,7 @@ export function useTestimonialGroupTimer({
     let suspended = false
     let hovered = root.matches(':hover')
     let nextTimerStart = 0
+    setIsHoverPaused(hovered)
 
     const getRing = () =>
       root.querySelector<HTMLElement>(
@@ -124,16 +128,23 @@ export function useTestimonialGroupTimer({
         if (nextTimerStart >= 360) nextTimerStart = 0
         sync()
       },
+      play: () => {
+        hovered = false
+        setIsHoverPaused(false)
+        sync()
+      },
       sync,
     }
 
     const onVisibilityChange = () => sync()
     const onMouseEnter = () => {
       hovered = true
+      setIsHoverPaused(true)
       sync()
     }
     const onMouseLeave = () => {
       hovered = false
+      setIsHoverPaused(false)
       sync()
     }
     const onPageHide = () => {
@@ -177,5 +188,5 @@ export function useTestimonialGroupTimer({
     controller.current?.sync()
   }, [activeIndex, isPaused, isTransitioningOut])
 
-  return timer
+  return {timer, isHoverPaused}
 }

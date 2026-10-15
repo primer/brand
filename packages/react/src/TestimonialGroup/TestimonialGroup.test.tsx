@@ -360,12 +360,24 @@ describe('TestimonialGroup', () => {
       expect(getByRole('button', {name: 'Pause testimonials'})).toHaveFocus()
       await user.hover(getByRole('region', {name: 'Testimonials'}))
       expect(animations[0].pause).toHaveBeenCalled()
+      expect(getByRole('button', {name: 'Play testimonials'})).toBeInTheDocument()
       await user.unhover(getByRole('region', {name: 'Testimonials'}))
       expect(animations[0].play).toHaveBeenCalled()
+      expect(getByRole('button', {name: 'Pause testimonials'})).toBeInTheDocument()
+
+      await user.hover(getByRole('region', {name: 'Testimonials'}))
+      animations[0].play.mockClear()
+      await user.click(getByRole('button', {name: 'Play testimonials'}))
+      expect(animations[0].play).toHaveBeenCalled()
+      expect(getByRole('button', {name: 'Pause testimonials'})).toBeInTheDocument()
+      await user.unhover(getByRole('region', {name: 'Testimonials'}))
       animations[0].pause.mockClear()
       animations[0].play.mockClear()
-      await user.click(getByRole('button', {name: 'Pause testimonials'}))
+      await user.keyboard('{Enter}')
       expect(animations[0].pause).toHaveBeenCalled()
+      await user.hover(getByRole('region', {name: 'Testimonials'}))
+      await user.unhover(getByRole('region', {name: 'Testimonials'}))
+      expect(animations[0].play).not.toHaveBeenCalled()
       const playButton = getByRole('button', {name: 'Play testimonials'})
       const playIcon = playButton.querySelector('svg')
       expect(playIcon).toHaveAttribute('width', '16')
@@ -376,8 +388,6 @@ describe('TestimonialGroup', () => {
         'M13.3777 6.94756C14.2069 7.40341 14.2069 8.59489 13.3777 9.05073L5.37808 13.4483C4.57834 13.8879 3.60001 13.3093 3.60001 12.3967L3.60001 3.60161C3.60001 2.689 4.57834 2.1104 5.37808 2.55003L13.3777 6.94756Z',
       )
       await user.click(playButton)
-      expect(animations[0].play).not.toHaveBeenCalled()
-      await user.unhover(getByRole('region', {name: 'Testimonials'}))
       expect(animations[0].play).toHaveBeenCalled()
       act(() => animations[0].onfinish?.())
       act(() => jest.advanceTimersByTime(370))
@@ -423,7 +433,6 @@ describe('TestimonialGroup', () => {
       await user.click(getByRole('button', {name: 'Next testimonial'}))
       await user.click(getByRole('button', {name: 'Previous testimonial'}))
       await user.click(getByRole('button', {name: 'Play testimonials'}))
-      await user.unhover(getByRole('region', {name: 'Testimonials'}))
       expect(HTMLElement.prototype.animate).toHaveBeenLastCalledWith(
         [{'--brand-TestimonialGroup-ring-progress': '180deg'}, {'--brand-TestimonialGroup-ring-progress': '360deg'}],
         expect.objectContaining({duration: 3500}),
