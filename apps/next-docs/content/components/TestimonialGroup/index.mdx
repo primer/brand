@@ -1,0 +1,97 @@
+---
+title: Testimonial group
+description: Display a collection of testimonials with carousel controls and optional automatic playback.
+keywords: ['testimonial', 'quote', 'carousel', 'customer', 'social proof']
+show-tabs: false
+tab-label: React
+ready: true
+source: https://github.com/primer/brand/blob/main/packages/react/src/TestimonialGroup/TestimonialGroup.tsx
+storybook: '/brand/storybook/?path=/story/components-testimonialgroup--playground'
+---
+
+```js
+import {Testimonial, TestimonialGroup} from '@primer/react-brand'
+```
+
+## Examples
+
+### Default
+
+```jsx live
+<TestimonialGroup aria-label="Customer testimonials">
+  <Testimonial>
+    <Testimonial.Quote>Our team spends more time solving problems and less time on repetitive work.</Testimonial.Quote>
+    <Testimonial.Avatar src="/images/avatar-mona.png" alt="" />
+    <Testimonial.Name position="Chief Octocat">Mona Lisa</Testimonial.Name>
+  </Testimonial>
+  <Testimonial>
+    <Testimonial.Quote>We build better software when everyone can contribute.</Testimonial.Quote>
+    <Testimonial.Avatar src="/images/avatar-hubot.png" alt="" />
+    <Testimonial.Name position="Mona's Sidekick">Hubot</Testimonial.Name>
+  </Testimonial>
+</TestimonialGroup>
+```
+
+### Manual navigation
+
+Disable the automatic carousel using `autoPlay={false}`.
+
+```jsx live
+<TestimonialGroup autoPlay={false} aria-label="Team testimonials">
+  <Testimonial>
+    <Testimonial.Quote>Our tools help the whole team work together.</Testimonial.Quote>
+    <Testimonial.Name position="Chief Octocat">Mona Lisa</Testimonial.Name>
+  </Testimonial>
+  <Testimonial>
+    <Testimonial.Quote>Shared patterns give us more time to focus on the experience.</Testimonial.Quote>
+    <Testimonial.Name position="Mona's Sidekick">Hubot</Testimonial.Name>
+  </Testimonial>
+</TestimonialGroup>
+```
+
+### Testimonial variants
+
+`TestimonialGroup` supports all available [`Testimonial`](/components/Testimonial/react) variants. Always use the same `variant`. Do not mix them.
+
+```jsx live
+<TestimonialGroup autoPlay={false} aria-label="Customer testimonials">
+  <Testimonial variant="expressive">
+    <Testimonial.Quote>Our team can focus on building the right experience.</Testimonial.Quote>
+    <Testimonial.Avatar src="/images/avatar-mona.png" alt="" />
+    <Testimonial.Name position="Chief Octocat">Mona Lisa</Testimonial.Name>
+  </Testimonial>
+  <Testimonial variant="expressive">
+    <Testimonial.Quote>Consistent tools help us turn ideas into working software.</Testimonial.Quote>
+    <Testimonial.Avatar src="/images/avatar-hubot.png" alt="" />
+    <Testimonial.Name position="Mona's Sidekick">Hubot</Testimonial.Name>
+  </Testimonial>
+</TestimonialGroup>
+```
+
+## Component props
+
+| Name                 | Type                            | Default          | Description                                             |
+| :------------------- | :------------------------------ | :--------------- | :------------------------------------------------------ |
+| `children`           | `ReactNode`                     |                  | Direct `Testimonial` children.                          |
+| `autoPlay`           | `boolean`                       | `true`           | Automatically advances testimonials.                    |
+| `defaultActiveIndex` | `number`                        | `0`              | Initial testimonial: 0 for the first, 1 for the second. |
+| `onChange`           | `(activeIndex: number) => void` |                  | Called after selection changes; the first index is 0.   |
+| `labels`             | `object`                        | English labels   | Accessible control labels and slide announcements.      |
+| `aria-label`         | `string`                        | `'Testimonials'` | Accessible name for the carousel.                       |
+| `className`          | `string`                        |                  | Custom root class.                                      |
+| `id`                 | `string`                        |                  | Custom root ID.                                         |
+| `ref`                | `React.Ref<HTMLDivElement>`     |                  | Ref to the root element.                                |
+
+### Labels
+
+Provide partial overrides through `labels`. Unspecified fields keep their English defaults.
+
+| Name             | Default                  | Description                                 |
+| :--------------- | :----------------------- | :------------------------------------------ |
+| `controlsPrev`   | `'Previous testimonial'` | Previous control label.                     |
+| `controlsNext`   | `'Next testimonial'`     | Next control label.                         |
+| `controlsPause`  | `'Pause testimonials'`   | Pause control label.                        |
+| `controlsPlay`   | `'Play testimonials'`    | Resume control label.                       |
+| `indicator`      | `'Go to testimonial'`    | Item selector prefix, followed by a number. |
+| `testimonial`    | `'Testimonial'`          | Slide and announcement prefix.              |
+| `countSeparator` | `'of'`                   | Separator between position and total.       |

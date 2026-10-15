@@ -28,7 +28,7 @@ export type IconButtonSize = (typeof IconButtonSizes)[number]
 type IconButtonBaseProps<C extends React.ElementType> = Omit<BaseProps<C>, 'ref'> & {
   as?: C
   variant?: IconButtonVariant
-  icon: Icon
+  icon: Icon | React.ReactElement<React.SVGProps<SVGSVGElement>>
   'aria-label': string
   description?: string
   inactive?: boolean
@@ -101,6 +101,11 @@ function IconButtonRoot(
 
   const ButtonIcon = isLoading ? (
     <span className={styles.IconButton__loadingIndicator} data-testid={iconButtonTestIds.loadingIndicator} />
+  ) : React.isValidElement<React.SVGProps<SVGSVGElement>>(IconComponent) ? (
+    // convert custom svgs to react elements
+    React.cloneElement(IconComponent, {
+      className: clsx(IconComponent.props.className, styles.IconButton__icon),
+    })
   ) : (
     <IconComponent className={styles.IconButton__icon} />
   )

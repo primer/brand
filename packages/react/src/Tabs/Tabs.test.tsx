@@ -340,6 +340,7 @@ describe('Tabs', () => {
     const nextButton = getByRole('button', {name: 'Next tab'})
 
     expect(tabOne).toHaveAttribute('aria-selected', 'true')
+    expect(prevButton).toHaveAttribute('aria-disabled', 'true')
     expect(tabTwo).toHaveAttribute('aria-selected', 'false')
     expect(tabThree).toHaveAttribute('aria-selected', 'false')
 
@@ -356,13 +357,39 @@ describe('Tabs', () => {
     expect(tabOne).toHaveAttribute('aria-selected', 'false')
     expect(tabTwo).toHaveAttribute('aria-selected', 'false')
     expect(tabThree).toHaveAttribute('aria-selected', 'true')
+    expect(getByRole('button', {name: 'Next tab'})).toHaveAttribute('aria-disabled', 'true')
 
-    await user.click(prevButton)
+    await user.click(getByRole('button', {name: 'Previous tab'}))
     expect(mockChangeHandler).toHaveBeenCalledTimes(3)
     expect(mockChangeHandler.mock.lastCall[0]).toBe('1')
     expect(tabOne).toHaveAttribute('aria-selected', 'false')
     expect(tabTwo).toHaveAttribute('aria-selected', 'true')
     expect(tabThree).toHaveAttribute('aria-selected', 'false')
+  })
+
+  it('activates a tab directly through CarouselPagination', async () => {
+    const user = userEvent.setup()
+    const onChange = jest.fn()
+    const {getByRole} = render(
+      <Tabs aria-label="Test tabs" onChange={onChange}>
+        <Tabs.Item>Tab one</Tabs.Item>
+        <Tabs.Item>Tab two</Tabs.Item>
+        <Tabs.Item>Tab three</Tabs.Item>
+        <Tabs.Panel>Panel one</Tabs.Panel>
+        <Tabs.Panel>Panel two</Tabs.Panel>
+        <Tabs.Panel>Panel three</Tabs.Panel>
+      </Tabs>,
+    )
+
+    await user.click(getByRole('button', {name: 'Go to tab 3'}))
+    expect(getByRole('tab', {name: 'Tab three'})).toHaveAttribute('aria-selected', 'true')
+    expect(getByRole('button', {name: 'Go to tab 3'})).toHaveAttribute('aria-current', 'true')
+    expect(getByRole('button', {name: 'Next tab'})).toHaveAttribute('aria-disabled', 'true')
+    expect(getByRole('button', {name: 'Go to tab 3'})).toHaveAttribute(
+      'aria-controls',
+      getByRole('tab', {name: 'Tab three'}).getAttribute('aria-controls'),
+    )
+    expect(onChange.mock.lastCall[0]).toBe('2')
   })
 
   it('supports custom internal accessible labels for l10n', () => {

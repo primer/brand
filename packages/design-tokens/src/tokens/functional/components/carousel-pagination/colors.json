@@ -1,0 +1,20 @@
+{
+  "CarouselPagination": {
+    "background": {
+      "value": "var(--brand-color-canvas-subtle)",
+      "dark": "var(--brand-color-canvas-subtle)"
+    },
+    "indicatorColor": {
+      "value": "var(--base-color-scale-gray-3)",
+      "dark": "var(--base-color-scale-gray-3)"
+    },
+    "controlBorderColor": {
+      "value": "var(--base-color-scale-gray-2)",
+      "dark": "var(--base-color-scale-gray-6)"
+    },
+    "indicatorActiveColor": {
+      "value": "var(--base-color-scale-gray-6)",
+      "dark": "#77827a"
+    }
+  }
+}

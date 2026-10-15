@@ -8,16 +8,13 @@ import React, {
   useRef,
   useEffect,
   HTMLAttributes,
-  useCallback,
 } from 'react'
 import {clsx} from 'clsx'
-import {ChevronLeftIcon, ChevronRightIcon} from '@primer/octicons-react'
 import {useTabs} from '../hooks/useTabs'
 import {useProvidedRefOrCreate} from '../hooks/useRef'
 import {BaseProps} from '../component-helpers'
 import {Animate, AnimationProvider, AnimationVariants} from '../animation'
-import {Text} from '../Text'
-import {Stack} from '../Stack'
+import {CarouselPagination} from '../CarouselPagination/CarouselPagination'
 
 /**
  * Design tokens
@@ -83,6 +80,8 @@ export type TabsProps = {
   internalAccessibleLabels?: {
     controlsNext: string
     controlsPrev: string
+    controlsIndicator?: string
+    controlsNavigation?: string
   }
 } & LabelOrLabelledBy &
   BaseProps<HTMLDivElement> &
@@ -91,6 +90,8 @@ export type TabsProps = {
 const defaultInternalAccessibleLabels = {
   controlsNext: 'Next tab',
   controlsPrev: 'Previous tab',
+  controlsIndicator: 'Go to tab',
+  controlsNavigation: 'Tab navigation',
 }
 
 const _TabsRoot = forwardRef<HTMLDivElement, TabsProps>(
@@ -257,18 +258,6 @@ const _TabsRoot = forwardRef<HTMLDivElement, TabsProps>(
     const accessibleLabel = typeof ariaLabel === 'string' ? {label: ariaLabel} : {labelledBy: ariaLabelledBy}
     const tabListProps = getTabListProps(accessibleLabel)
 
-    const handleNextTabControl = useCallback(() => {
-      if (activeTab && activeTab !== String(tabs.length - 1)) {
-        activateTab(String(Number(activeTab) + 1))
-      }
-    }, [activeTab, activateTab, tabs])
-
-    const handlePrevTabControl = useCallback(() => {
-      if (activeTab && activeTab !== '0') {
-        activateTab(String(Number(activeTab) - 1))
-      }
-    }, [activeTab, activateTab])
-
     const hasMoreThanTwoTabs = tabs.length >= 3
     const isLastTabActive = String(tabs.length - 1) === activeTab
 
@@ -287,39 +276,20 @@ const _TabsRoot = forwardRef<HTMLDivElement, TabsProps>(
         {/* Narrow only indicators and controls */}
         {tabs.length >= 3 && (
           <div className={styles.Tabs__controls} data-testid={testIds.indicators}>
-            <Stack direction="horizontal" padding="none" justifyContent="space-between">
-              <button
-                onClick={handlePrevTabControl}
-                className={styles.Tabs__control}
-                aria-label={internalAccessibleLabels.controlsPrev}
-              >
-                <Text size="100">
-                  <ChevronLeftIcon size={16} className={styles['Tabs__control-icon']} />
-                </Text>
-              </button>
-              <Stack direction="horizontal" gap={4} padding="none" justifyContent="space-between" alignItems="center">
-                {tabs.map((_, index) => {
-                  return (
-                    <div
-                      key={index}
-                      className={clsx(
-                        styles.Tabs__indicator,
-                        activeTab && Number(activeTab) === index && styles['Tabs__indicator--active'],
-                      )}
-                    />
-                  )
-                })}
-              </Stack>
-              <button
-                onClick={handleNextTabControl}
-                className={styles.Tabs__control}
-                aria-label={internalAccessibleLabels.controlsNext}
-              >
-                <Text size="100">
-                  <ChevronRightIcon size={16} className={styles['Tabs__control-icon']} />
-                </Text>
-              </button>
-            </Stack>
+            <CarouselPagination
+              itemCount={tabs.length}
+              activeIndex={Number(activeTab ?? 0)}
+              aria-label={
+                internalAccessibleLabels.controlsNavigation ?? defaultInternalAccessibleLabels.controlsNavigation
+              }
+              labels={{
+                previous: internalAccessibleLabels.controlsPrev,
+                next: internalAccessibleLabels.controlsNext,
+                item: internalAccessibleLabels.controlsIndicator ?? defaultInternalAccessibleLabels.controlsIndicator,
+              }}
+              itemAttributesBuilder={index => ({'aria-controls': tabs[index].props['aria-controls']})}
+              onChange={index => activateTab(String(index))}
+            />
           </div>
         )}
 
