@@ -4,7 +4,7 @@ import {AiModelIcon, ZapIcon} from '@primer/octicons-react'
 import {useTranslation} from 'react-i18next'
 import {expect, userEvent, waitFor, within} from 'storybook/test'
 
-import {Image, Link, RiverBreakoutTabs, Section, Text} from '../..'
+import {Button, Image, Link, RiverBreakoutTabs, Section, Text} from '../..'
 import placeholderBg from '../../fixtures/images/dither-bg-landscape-green.png'
 import placeholder1 from '../../fixtures/images/placeholder-1.png'
 import placeholder2 from '../../fixtures/images/placeholder-2.png'
@@ -49,6 +49,40 @@ export const TwoItems: Story = {
             <RiverBreakoutTabs.Content>
               <Text>{t('review_with_context_body')}</Text>
               <Link href="#">{t('open_review_flow_cta')}</Link>
+            </RiverBreakoutTabs.Content>
+            <RiverBreakoutTabs.Visual>
+              <Image src={placeholder2} alt={t('alt_placeholder_2')} />
+            </RiverBreakoutTabs.Visual>
+          </RiverBreakoutTabs.Item>
+        </RiverBreakoutTabs>
+      </Section>
+    )
+  },
+}
+
+export const WithButtons: Story = {
+  render: function WithButtonsRender() {
+    const {t} = useTranslation('RiverBreakoutTabs')
+
+    return (
+      <Section>
+        <RiverBreakoutTabs>
+          <RiverBreakoutTabs.A11yHeading>{t('two_card_layout_a11y')}</RiverBreakoutTabs.A11yHeading>
+          <RiverBreakoutTabs.Item>
+            <RiverBreakoutTabs.Heading>{t('code_quickly_heading')}</RiverBreakoutTabs.Heading>
+            <RiverBreakoutTabs.Content>
+              <Text>{t('code_quickly_body')}</Text>
+              <Button>{t('start_coding_cta')}</Button>
+            </RiverBreakoutTabs.Content>
+            <RiverBreakoutTabs.Visual>
+              <Image src={placeholder1} alt={t('alt_placeholder_1')} />
+            </RiverBreakoutTabs.Visual>
+          </RiverBreakoutTabs.Item>
+          <RiverBreakoutTabs.Item>
+            <RiverBreakoutTabs.Heading>{t('review_with_context_heading')}</RiverBreakoutTabs.Heading>
+            <RiverBreakoutTabs.Content>
+              <Text>{t('review_with_context_body')}</Text>
+              <Button>{t('open_review_flow_cta')}</Button>
             </RiverBreakoutTabs.Content>
             <RiverBreakoutTabs.Visual>
               <Image src={placeholder2} alt={t('alt_placeholder_2')} />

@@ -120,7 +120,8 @@
   display: none;
 }
 
-.RiverBreakoutTabs__tablist {
+.RiverBreakoutTabs__tablist,
+.RiverBreakoutTabs__wideTabListContentRow {
   order: 2;
   display: grid;
   grid-template-columns: repeat(var(--river-breakout-tabs-columns), minmax(0, 1fr));
@@ -128,7 +129,7 @@
 }
 
 .RiverBreakoutTabs__wideTabListActions {
-  order: 3;
+  order: 4;
   display: grid;
   grid-template-columns: repeat(var(--river-breakout-tabs-columns), minmax(0, 1fr));
   gap: var(--base-size-40);
@@ -191,6 +192,7 @@
   font: inherit;
   text-align: left;
   padding-block-start: var(--base-size-28);
+  padding-block-end: 0;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -211,6 +213,11 @@
 /* 20px below the icon — only applies when an icon precedes the heading */
 .RiverBreakoutTabs__tab > * + .RiverBreakoutTabs__tabHeading {
   margin-block-start: var(--base-size-20);
+}
+
+.RiverBreakoutTabs__wideTabListContentRow {
+  order: 3;
+  padding-block-end: calc(var(--base-size-2) / 2);
 }
 
 .RiverBreakoutTabs__wideTabListContent {
