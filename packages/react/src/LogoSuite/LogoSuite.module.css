@@ -73,7 +73,7 @@
   display: block;
 }
 
-.LogoSuite__logobar--has-linked-logos :where(a svg) {
+.LogoSuite__logobar--has-linked-logos :where(a) {
   color: var(--brand-color-text-default);
 }
 
