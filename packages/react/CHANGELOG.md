@@ -1,5 +1,41 @@
 # @primer/react-brand
 
+## 0.80.0
+
+### Minor Changes
+
+- [#1497](https://github.com/primer/brand/pull/1497) [`7ea7779`](https://github.com/primer/brand/commit/7ea777930c4311c024bea467dc98a17cec07db6d) Thanks [@rezrah](https://github.com/rezrah)! - Added `Spinner` for indeterminate loading states.
+
+  ```jsx
+  <Spinner accessibleLabel="Loading notification settings" />
+  ```
+
+  🔗 [See `Spinner` documentation for more usage examples](https://primer.style/brand/components/Spinner)
+
+- [#1497](https://github.com/primer/brand/pull/1497) [`7ea7779`](https://github.com/primer/brand/commit/7ea777930c4311c024bea467dc98a17cec07db6d) Thanks [@rezrah](https://github.com/rezrah)! - Added `ToggleSwitch` for settings that need to take effect immediately.
+
+  ```jsx
+  <FormControl>
+    <FormControl.Label>Enable notifications</FormControl.Label>
+    <ToggleSwitch />
+  </FormControl>
+  ```
+
+  🔗 [See `ToggleSwitch` documentation for more usage examples](https://primer.style/brand/forms/ToggleSwitch)
+
+### Patch Changes
+
+- [#1497](https://github.com/primer/brand/pull/1497) [`7ea7779`](https://github.com/primer/brand/commit/7ea777930c4311c024bea467dc98a17cec07db6d) Thanks [@rezrah](https://github.com/rezrah)! - Fixed `FormControl` error validation message contrast.
+
+- [#1499](https://github.com/primer/brand/pull/1499) [`cf99b08`](https://github.com/primer/brand/commit/cf99b0887ce136f8e6624434a9cf5c7da979a5dc) Thanks [@rezrah](https://github.com/rezrah)! - Updated the play icon in `LogoSuite.Logobar` when `marquee` is enabled
+
+- [#1499](https://github.com/primer/brand/pull/1499) [`cf99b08`](https://github.com/primer/brand/commit/cf99b0887ce136f8e6624434a9cf5c7da979a5dc) Thanks [@rezrah](https://github.com/rezrah)! - `LogoSuite` updates:
+
+  - `LogoSuite.Logobar` logos rendered as links now retain their full colors.
+  - `LogoSuite` now supports a `gridline` version.
+
+- [#1496](https://github.com/primer/brand/pull/1496) [`1820cf0`](https://github.com/primer/brand/commit/1820cf0c90d1f432fb2eb9a28917602c967c6376) Thanks [@danielguillan](https://github.com/danielguillan)! - Render `RiverBreakoutTabs.Content` outside desktop tab buttons so nested controls remain independently accessible.
+
 ## 0.79.0
 
 ### Minor Changes

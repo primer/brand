@@ -1,5 +1,39 @@
 # @primer/brand-primitives
 
+## 0.80.0
+
+### Minor Changes
+
+- [#1497](https://github.com/primer/brand/pull/1497) [`7ea7779`](https://github.com/primer/brand/commit/7ea777930c4311c024bea467dc98a17cec07db6d) Thanks [@rezrah](https://github.com/rezrah)! - ⚠️ Breaking change: Renamed CSS variables associated with the `IconButton` component to reflect newer naming conventions.
+
+  Update any custom token overrides if you previously relied on these tokens.
+
+  ```diff
+  - --brand-IconButton-loadingIndicator-animationDuration-default
+  - --brand-IconButton-loadingIndicator-animationDuration-reducedMotion
+  + --brand-IconButton-spinner-animationDuration-default
+  + --brand-IconButton-spinner-animationDuration-reducedMotion
+  ```
+
+- [#1497](https://github.com/primer/brand/pull/1497) [`7ea7779`](https://github.com/primer/brand/commit/7ea777930c4311c024bea467dc98a17cec07db6d) Thanks [@rezrah](https://github.com/rezrah)! - Added `Spinner` for indeterminate loading states.
+
+  ```jsx
+  <Spinner accessibleLabel="Loading notification settings" />
+  ```
+
+  🔗 [See `Spinner` documentation for more usage examples](https://primer.style/brand/components/Spinner)
+
+- [#1497](https://github.com/primer/brand/pull/1497) [`7ea7779`](https://github.com/primer/brand/commit/7ea777930c4311c024bea467dc98a17cec07db6d) Thanks [@rezrah](https://github.com/rezrah)! - Added `ToggleSwitch` for settings that need to take effect immediately.
+
+  ```jsx
+  <FormControl>
+    <FormControl.Label>Enable notifications</FormControl.Label>
+    <ToggleSwitch />
+  </FormControl>
+  ```
+
+  🔗 [See `ToggleSwitch` documentation for more usage examples](https://primer.style/brand/forms/ToggleSwitch)
+
 ## 0.79.0
 
 ### Patch Changes
