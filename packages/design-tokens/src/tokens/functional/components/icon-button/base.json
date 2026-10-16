@@ -26,7 +26,7 @@
         }
       }
     },
-    "loadingIndicator": {
+    "spinner": {
       "animationDuration": {
         "default": {
           "value": "0.8s"
