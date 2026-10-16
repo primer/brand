@@ -77,21 +77,21 @@
   color: var(--brand-color-text-default);
 }
 
-.LogoSuite__logobar--variant-muted:not(.LogoSuite__logobar--has-linked-logos) svg,
-.LogoSuite__logobar--variant-muted:not(.LogoSuite__logobar--has-linked-logos) path {
+.LogoSuite__logobar--variant-muted:where(:not(.LogoSuite__logobar--has-linked-logos)) svg,
+.LogoSuite__logobar--variant-muted:where(:not(.LogoSuite__logobar--has-linked-logos)) path {
   fill: var(--brand-LogoSuite-color-logo-muted);
 }
 
-.LogoSuite__logobar--variant-muted:not(.LogoSuite__logobar--has-linked-logos) img {
+.LogoSuite__logobar--variant-muted:where(:not(.LogoSuite__logobar--has-linked-logos)) img {
   filter: var(--brand-LogoSuite-color-logo-filter-muted);
 }
 
-.LogoSuite__logobar--variant-emphasis:not(.LogoSuite__logobar--has-linked-logos) svg,
-.LogoSuite__logobar--variant-emphasis:not(.LogoSuite__logobar--has-linked-logos) path {
+.LogoSuite__logobar--variant-emphasis:where(:not(.LogoSuite__logobar--has-linked-logos)) svg,
+.LogoSuite__logobar--variant-emphasis:where(:not(.LogoSuite__logobar--has-linked-logos)) path {
   fill: var(--brand-LogoSuite-color-logo-emphasis);
 }
 
-.LogoSuite__logobar--variant-emphasis:not(.LogoSuite__logobar--has-linked-logos) img {
+.LogoSuite__logobar--variant-emphasis:where(:not(.LogoSuite__logobar--has-linked-logos)) img {
   filter: var(--brand-LogoSuite-color-logo-filter-emphasis);
 }
 
