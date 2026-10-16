@@ -194,7 +194,7 @@ export const VisuallyHiddenLabel: Story = {
   ),
 }
 
-export const LongLabel: Story = {
+export const LongLabelNarrow: Story = {
   render: () => (
     <FormControl fullWidth>
       <FormControl.Label>
@@ -204,6 +204,9 @@ export const LongLabel: Story = {
       <FormControl.Hint>Optional hint text below a wrapping label.</FormControl.Hint>
     </FormControl>
   ),
+  globals: {
+    viewport: {value: 'iphonexr'},
+  },
 }
 
 export const RightToLeft: Story = {

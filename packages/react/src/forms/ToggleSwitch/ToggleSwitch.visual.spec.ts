@@ -194,17 +194,20 @@ test.describe('Visual Comparison: ToggleSwitch', () => {
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
-  test('ToggleSwitch / Long Label', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-forms-toggleswitch-features--long-label&viewMode=story',
-      {waitUntil: 'networkidle'},
-    )
-    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+  // eslint-disable-next-line i18n-text/no-en
+  test.describe('Mobile viewport test for Long Label Narrow', () => {
+    test.use({viewport: {width: 360, height: 800}})
+    test('ToggleSwitch / Long Label Narrow', async ({page}) => {
+      await page.goto(
+        'http://localhost:6006/iframe.html?args=&id=components-forms-toggleswitch-features--long-label-narrow&viewMode=story',
+        {waitUntil: 'networkidle'},
+      )
+      await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
+      await page.waitForTimeout(500)
+      await expect(page).toHaveScreenshot({fullPage: true})
+    })
   })
-
   test('ToggleSwitch / Right To Left', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-forms-toggleswitch-features--right-to-left&viewMode=story',
