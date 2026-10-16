@@ -32,6 +32,7 @@ declare const styles: {
   readonly "RiverBreakoutTabs__wideTabListActionItem": string;
   readonly "RiverBreakoutTabs__wideTabListActions": string;
   readonly "RiverBreakoutTabs__wideTabListContent": string;
+  readonly "RiverBreakoutTabs__wideTabListContentRow": string;
 };
 export = styles;
 
