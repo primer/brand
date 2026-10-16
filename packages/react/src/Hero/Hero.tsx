@@ -60,312 +60,308 @@ export type HeroProps = BaseProps<HTMLElement> & {
   'data-testid'?: string
 }
 
-const Root = forwardRef<HTMLElement, PropsWithChildren<HeroProps>>(
-  (
-    {
-      className,
-      align: alignProp = 'start',
-      children,
-      imageContainerClassName,
-      imageContainerStyle,
-      imageContainerRef,
-      imageBackgroundColor,
-      variant = 'default',
-      trailingComponent: TrailingComponent,
-      enableAnimation = false,
-      'data-testid': testId,
-      ...rest
-    },
-    ref,
-  ) => {
-    const {
-      HeroActions,
-      HeroButtonGroupChild,
-      HeroChildren,
-      HeroImageChild,
-      HeroVideoChild,
-      HeroHeaderChildren,
-      HeroDescriptionChild,
-    } = useMemo(() => {
-      const result = React.Children.toArray(children).reduce<{
-        HeroActions: React.ReactElement[]
-        HeroButtonGroupChild?: React.ReactElement
-        HeroImageChild?: React.ReactElement<HeroImageProps>
-        HeroVideoChild?: React.ReactElement<HeroVideoProps>
-        HeroChildren: React.ReactElement[]
-        HeroHeaderChildren: React.ReactElement[]
-        HeroDescriptionChild?: React.ReactElement
-      }>(
-        (acc, child) => {
-          if (React.isValidElement(child)) {
-            if (child.type === HeroPrimaryAction || child.type === HeroSecondaryAction) {
-              acc.HeroActions.push(child)
-            } else if (child.type === HeroButtonGroup) {
-              acc.HeroButtonGroupChild = child
-            } else if (child.type === HeroImage) {
-              acc.HeroImageChild = child as React.ReactElement<HeroImageProps>
-            } else if (child.type === HeroVideo) {
-              acc.HeroVideoChild = child as React.ReactElement<HeroVideoProps>
-            } else {
-              acc.HeroChildren.push(child)
-              if (child.type === HeroLabel || child.type === HeroEyebrow || child.type === HeroHeading) {
-                acc.HeroHeaderChildren.push(child)
-              } else if (child.type === HeroDescription) {
-                acc.HeroDescriptionChild = child
-              }
+function HeroBase(
+  {
+    className,
+    align: alignProp = 'start',
+    children,
+    imageContainerClassName,
+    imageContainerStyle,
+    imageContainerRef,
+    imageBackgroundColor,
+    variant = 'default',
+    trailingComponent: TrailingComponent,
+    enableAnimation = false,
+    'data-testid': testId,
+    ...rest
+  }: PropsWithChildren<HeroProps>,
+  ref: React.ForwardedRef<HTMLElement>,
+) {
+  const {
+    HeroActions,
+    HeroButtonGroupChild,
+    HeroChildren,
+    HeroImageChild,
+    HeroVideoChild,
+    HeroHeaderChildren,
+    HeroDescriptionChild,
+  } = useMemo(() => {
+    const result = React.Children.toArray(children).reduce<{
+      HeroActions: React.ReactElement[]
+      HeroButtonGroupChild?: React.ReactElement
+      HeroImageChild?: React.ReactElement<HeroImageProps>
+      HeroVideoChild?: React.ReactElement<HeroVideoProps>
+      HeroChildren: React.ReactElement[]
+      HeroHeaderChildren: React.ReactElement[]
+      HeroDescriptionChild?: React.ReactElement
+    }>(
+      (acc, child) => {
+        if (React.isValidElement(child)) {
+          if (child.type === HeroPrimaryAction || child.type === HeroSecondaryAction) {
+            acc.HeroActions.push(child)
+          } else if (child.type === HeroButtonGroup) {
+            acc.HeroButtonGroupChild = child
+          } else if (child.type === HeroImage) {
+            acc.HeroImageChild = child as React.ReactElement<HeroImageProps>
+          } else if (child.type === HeroVideo) {
+            acc.HeroVideoChild = child as React.ReactElement<HeroVideoProps>
+          } else {
+            acc.HeroChildren.push(child)
+            if (child.type === HeroLabel || child.type === HeroEyebrow || child.type === HeroHeading) {
+              acc.HeroHeaderChildren.push(child)
+            } else if (child.type === HeroDescription) {
+              acc.HeroDescriptionChild = child
             }
           }
-          return acc
-        },
-        {
-          HeroActions: [],
-          HeroButtonGroupChild: undefined,
-          HeroChildren: [],
-          HeroImageChild: undefined,
-          HeroVideoChild: undefined,
-          HeroHeaderChildren: [],
-          HeroDescriptionChild: undefined,
-        },
-      )
-
-      // Prefer Hero.Image - don't show both
-      if (result.HeroImageChild && result.HeroVideoChild) {
-        result.HeroVideoChild = undefined
-      }
-
-      return result
-    }, [children])
-
-    const mediaPositionProp = HeroImageChild?.props.position || HeroVideoChild?.props.position
-
-    const mediaPosition = (() => {
-      if (variant === 'gridline-expressive' && mediaPositionProp?.startsWith('inline-')) {
-        if (process.env.NODE_ENV !== 'production') {
-          // eslint-disable-next-line no-console
-          console.warn(
-            `Hero: "gridline-expressive" variant does not support "${mediaPositionProp}" position. Defaulting to "block-end".`,
-          )
         }
-        return 'block-end'
+        return acc
+      },
+      {
+        HeroActions: [],
+        HeroButtonGroupChild: undefined,
+        HeroChildren: [],
+        HeroImageChild: undefined,
+        HeroVideoChild: undefined,
+        HeroHeaderChildren: [],
+        HeroDescriptionChild: undefined,
+      },
+    )
+
+    // Prefer Hero.Image - don't show both
+    if (result.HeroImageChild && result.HeroVideoChild) {
+      result.HeroVideoChild = undefined
+    }
+
+    return result
+  }, [children])
+
+  const mediaPositionProp = HeroImageChild?.props.position || HeroVideoChild?.props.position
+
+  const mediaPosition = (() => {
+    if (variant === 'gridline-expressive' && mediaPositionProp?.startsWith('inline-')) {
+      if (process.env.NODE_ENV !== 'production') {
+        // eslint-disable-next-line no-console
+        console.warn(
+          `Hero: "gridline-expressive" variant does not support "${mediaPositionProp}" position. Defaulting to "block-end".`,
+        )
       }
-      return mediaPositionProp || 'block-end'
-    })()
-    const mediaWrapperHasBorder = HeroImageChild?.props.enableBorder ?? HeroVideoChild?.props.enableBorder ?? true
-    const mediaPadding = HeroImageChild?.props.padding ?? HeroVideoChild?.props.padding ?? 'default'
-    const hasInlineMedia = HeroMediaInlinePositionOptions.includes(mediaPosition as HeroMediaInlinePosition)
-    const mediaChild = HeroImageChild || HeroVideoChild
-    const isGridline = variant === 'gridline'
-    const isGridlineExpressive = variant === 'gridline-expressive'
-    const isBlockEndPosition = mediaPosition === 'block-end'
-
-    if (
-      variant === 'default' &&
-      mediaPadding !== 'default' &&
-      (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'test')
-    ) {
-      // eslint-disable-next-line no-console
-      console.warn(
-        `Hero: media padding is only supported by the "gridline" and "gridline-expressive" variants; ignoring padding="${mediaPadding}".`,
-      )
+      return 'block-end'
     }
+    return mediaPositionProp || 'block-end'
+  })()
+  const mediaWrapperHasBorder = HeroImageChild?.props.enableBorder ?? HeroVideoChild?.props.enableBorder ?? true
+  const mediaPadding = HeroImageChild?.props.padding ?? HeroVideoChild?.props.padding ?? 'default'
+  const hasInlineMedia = HeroMediaInlinePositionOptions.includes(mediaPosition as HeroMediaInlinePosition)
+  const mediaChild = HeroImageChild || HeroVideoChild
+  const isGridline = variant === 'gridline'
+  const isGridlineExpressive = variant === 'gridline-expressive'
+  const isBlockEndPosition = mediaPosition === 'block-end'
 
-    const isInvalidGridlineAlignment = isGridlineExpressive && alignProp === 'center'
-    const align: HeroAlign = isInvalidGridlineAlignment ? 'start' : alignProp
+  if (
+    variant === 'default' &&
+    mediaPadding !== 'default' &&
+    (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'test')
+  ) {
+    // eslint-disable-next-line no-console
+    console.warn(
+      `Hero: media padding is only supported by the "gridline" and "gridline-expressive" variants; ignoring padding="${mediaPadding}".`,
+    )
+  }
 
-    if (isInvalidGridlineAlignment && (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'test')) {
-      // eslint-disable-next-line no-console
-      console.warn('Hero: the "gridline-expressive" variant does not support align="center"; using "start" instead.')
-    }
+  const isInvalidGridlineAlignment = isGridlineExpressive && alignProp === 'center'
+  const align: HeroAlign = isInvalidGridlineAlignment ? 'start' : alignProp
 
-    const Tag = (isGridline || isGridlineExpressive) && enableAnimation ? AnimationProvider : Fragment
-    const tagProps =
-      (isGridline || isGridlineExpressive) && enableAnimation
-        ? {
-            autoStaggerChildren: false,
-            animationTrigger: 'immediate' as const,
-          }
-        : {}
+  if (isInvalidGridlineAlignment && (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'test')) {
+    // eslint-disable-next-line no-console
+    console.warn('Hero: the "gridline-expressive" variant does not support align="center"; using "start" instead.')
+  }
 
-    const useContainedLayout = (isGridline || isGridlineExpressive) && isBlockEndPosition
-    const useInlineGridline = isGridline && hasInlineMedia
+  const Tag = (isGridline || isGridlineExpressive) && enableAnimation ? AnimationProvider : Fragment
+  const tagProps =
+    (isGridline || isGridlineExpressive) && enableAnimation
+      ? {
+          autoStaggerChildren: false,
+          animationTrigger: 'immediate' as const,
+        }
+      : {}
 
-    const heroLayoutClass = HeroImageChild ? styles['Hero--layout-image'] : styles['Hero--layout-default']
-    const isInlineStart = mediaPosition === 'inline-start'
+  const useContainedLayout = (isGridline || isGridlineExpressive) && isBlockEndPosition
+  const useInlineGridline = isGridline && hasInlineMedia
 
-    const renderTrailingComponent = (shouldAnimate: boolean) =>
-      TrailingComponent && (
-        <Box animate={shouldAnimate ? {variant: 'slide-in-up' as const, delay: 1000, duration: 1000} : undefined}>
-          <div className={styles['Hero-trailing']}>
-            <TrailingComponent />
-          </div>
-        </Box>
-      )
+  const heroLayoutClass = HeroImageChild ? styles['Hero--layout-image'] : styles['Hero--layout-default']
+  const isInlineStart = mediaPosition === 'inline-start'
 
-    const renderActions = () => (
-      <>
-        {HeroButtonGroupChild}
-        {HeroActions.length > 0 && <div className={styles['Hero-actions']}>{HeroActions}</div>}
-      </>
+  const renderTrailingComponent = (shouldAnimate: boolean) =>
+    TrailingComponent && (
+      <Box animate={shouldAnimate ? {variant: 'slide-in-up' as const, delay: 1000, duration: 1000} : undefined}>
+        <div className={styles['Hero-trailing']}>
+          <TrailingComponent />
+        </div>
+      </Box>
     )
 
-    return (
-      <Tag {...tagProps}>
-        <HeroContext.Provider value={{imagePosition: mediaPosition, variant, align, hasInlineMedia, enableAnimation}}>
-          <section
+  const renderActions = () => (
+    <>
+      {HeroButtonGroupChild}
+      {HeroActions.length > 0 && <div className={styles['Hero-actions']}>{HeroActions}</div>}
+    </>
+  )
+
+  return (
+    <Tag {...tagProps}>
+      <HeroContext.Provider value={{imagePosition: mediaPosition, variant, align, hasInlineMedia, enableAnimation}}>
+        <section
+          className={clsx(
+            styles.Hero,
+            styles[`Hero--variant-${variant}`],
+            !hasInlineMedia && styles[`Hero--align-${align}`],
+            heroLayoutClass,
+            (HeroImageChild || HeroVideoChild) && styles[`Hero--image-pos-${mediaPosition}`],
+            (HeroImageChild || HeroVideoChild) && hasInlineMedia && styles['Hero--image-pos-inline'],
+            useInlineGridline && styles['Hero--variant-inline-gridline'],
+            className,
+          )}
+          ref={ref}
+          aria-labelledby="hero-section-brand-heading"
+          data-testid={testId || testIds.root}
+          {...rest}
+        >
+          <Grid
+            fullWidth={!useContainedLayout && !useInlineGridline}
+            data-testid={testIds.grid}
             className={clsx(
-              styles.Hero,
-              styles[`Hero--variant-${variant}`],
-              !hasInlineMedia && styles[`Hero--align-${align}`],
-              heroLayoutClass,
-              (HeroImageChild || HeroVideoChild) && styles[`Hero--image-pos-${mediaPosition}`],
-              (HeroImageChild || HeroVideoChild) && hasInlineMedia && styles['Hero--image-pos-inline'],
-              useInlineGridline && styles['Hero--variant-inline-gridline'],
-              className,
+              styles['Hero-grid'],
+              styles[`Hero-grid--${mediaPosition}`],
+              useContainedLayout && !isGridlineExpressive && styles['Hero-grid--contained'],
+              useInlineGridline && styles['Hero-grid--bordered-inline'],
+              isGridlineExpressive && styles['Hero-grid--expressive'],
             )}
-            ref={ref}
-            aria-labelledby="hero-section-brand-heading"
-            data-testid={testId || testIds.root}
-            {...rest}
           >
-            <Grid
-              fullWidth={!useContainedLayout && !useInlineGridline}
-              data-testid={testIds.grid}
-              className={clsx(
-                styles['Hero-grid'],
-                styles[`Hero-grid--${mediaPosition}`],
-                useContainedLayout && !isGridlineExpressive && styles['Hero-grid--contained'],
-                useInlineGridline && styles['Hero-grid--bordered-inline'],
-                isGridlineExpressive && styles['Hero-grid--expressive'],
-              )}
-            >
-              {isGridlineExpressive ? (
-                <>
-                  {/* Expressive variant: header column (left) */}
-                  <Grid.Column
-                    span={{medium: 12, large: HeroDescriptionChild ? 7 : 6}}
-                    className={styles['Hero-expressive-header-column']}
-                  >
-                    <Stack direction="vertical" gap="none" padding="none" alignItems="flex-start">
-                      {HeroHeaderChildren}
-                    </Stack>
-                  </Grid.Column>
-                  {/* Expressive variant: body column (right) */}
-                  <Grid.Column
-                    span={{medium: 12, large: HeroDescriptionChild ? 5 : 6}}
-                    className={styles['Hero-expressive-body-column']}
-                  >
-                    <Stack direction="vertical" gap="none" padding="none" alignItems="flex-start">
-                      {HeroDescriptionChild}
-                      {renderActions()}
-                      {renderTrailingComponent(enableAnimation)}
-                    </Stack>
-                  </Grid.Column>
-                </>
-              ) : (
-                <>
-                  {/* Standard GridLine variant: text column */}
-                  {isInlineStart && mediaChild && !useContainedLayout && (
-                    <Grid.Column
-                      ref={imageContainerRef}
-                      span={{large: 6}}
-                      className={clsx(
-                        imageBackgroundColor &&
-                          mediaPadding !== 'none' &&
-                          styles[`Hero-imageContainer--bg-${imageBackgroundColor}`],
-                        useInlineGridline &&
-                          mediaPadding === 'all' &&
-                          styles['Hero-imageContainer--inline-padding-all'],
-                        useInlineGridline &&
-                          mediaPadding === 'none' &&
-                          styles['Hero-imageContainer--inline-padding-none'],
-                        useInlineGridline && styles['Hero-imageContainer--inline-bordered'],
-                      )}
-                    >
-                      <div
-                        className={clsx(styles['Hero-mediaContainer'], imageContainerClassName)}
-                        style={imageContainerStyle}
-                      >
-                        {mediaChild}
-                      </div>
-                    </Grid.Column>
-                  )}
-                  <Grid.Column span={{large: mediaChild && hasInlineMedia ? 6 : 12}}>
-                    <Stack
-                      className={clsx(
-                        useInlineGridline && styles['Hero-text-column--inline-gridline'],
-                        useInlineGridline && styles['Hero-contentColumn--bordered-inline'],
-                      )}
-                      direction="vertical"
-                      gap="none"
-                      padding="none"
-                      alignItems={hasInlineMedia ? 'flex-start' : align === 'start' ? 'flex-start' : 'center'}
-                      justifyContent={hasInlineMedia ? undefined : align === 'start' ? 'flex-start' : 'center'}
-                    >
-                      {HeroChildren}
-                      {renderActions()}
-                      {renderTrailingComponent(isGridline && enableAnimation)}
-                    </Stack>
-                  </Grid.Column>
-                  {!isInlineStart && mediaChild && !useContainedLayout && (
-                    <Grid.Column
-                      ref={imageContainerRef}
-                      span={{large: hasInlineMedia ? 6 : 12}}
-                      className={clsx(
-                        imageBackgroundColor &&
-                          mediaPadding !== 'none' &&
-                          styles[`Hero-imageContainer--bg-${imageBackgroundColor}`],
-                        useInlineGridline &&
-                          mediaPadding === 'all' &&
-                          styles['Hero-imageContainer--inline-padding-all'],
-                        useInlineGridline &&
-                          mediaPadding === 'none' &&
-                          styles['Hero-imageContainer--inline-padding-none'],
-                        useInlineGridline && styles['Hero-imageContainer--inline-bordered'],
-                      )}
-                    >
-                      <div
-                        className={clsx(styles['Hero-mediaContainer'], imageContainerClassName)}
-                        style={imageContainerStyle}
-                      >
-                        {mediaChild}
-                      </div>
-                    </Grid.Column>
-                  )}
-                </>
-              )}
-            </Grid>
-            {mediaChild && useContainedLayout && (
-              <div
-                ref={imageContainerRef}
-                data-testid={testIds.imageWrapper}
-                className={clsx(
-                  styles['Hero-imageWrapper'],
-                  imageContainerClassName,
-                  imageBackgroundColor &&
-                    mediaPadding !== 'none' &&
-                    styles[`Hero-imageWrapper--bg-${imageBackgroundColor}`],
-                  mediaPadding === 'none' && styles['Hero-imageWrapper--padding-none'],
-                )}
-                style={imageContainerStyle}
-              >
-                <div
-                  className={clsx(
-                    styles['Hero-imageWrapper-inner'],
-                    mediaPadding === 'all' && styles['Hero-imageWrapper-inner--padding-all'],
-                    mediaPadding === 'none' && styles['Hero-imageWrapper-inner--padding-none'],
-                    mediaWrapperHasBorder && styles['Hero-imageWrapper-inner--with-gridline'],
-                  )}
+            {isGridlineExpressive ? (
+              <>
+                {/* Expressive variant: header column (left) */}
+                <Grid.Column
+                  span={{medium: 12, large: HeroDescriptionChild ? 7 : 6}}
+                  className={styles['Hero-expressive-header-column']}
                 >
-                  {mediaChild}
-                </div>
-              </div>
+                  <Stack direction="vertical" gap="none" padding="none" alignItems="flex-start">
+                    {HeroHeaderChildren}
+                  </Stack>
+                </Grid.Column>
+                {/* Expressive variant: body column (right) */}
+                <Grid.Column
+                  span={{medium: 12, large: HeroDescriptionChild ? 5 : 6}}
+                  className={styles['Hero-expressive-body-column']}
+                >
+                  <Stack direction="vertical" gap="none" padding="none" alignItems="flex-start">
+                    {HeroDescriptionChild}
+                    {renderActions()}
+                    {renderTrailingComponent(enableAnimation)}
+                  </Stack>
+                </Grid.Column>
+              </>
+            ) : (
+              <>
+                {/* Standard GridLine variant: text column */}
+                {isInlineStart && mediaChild && !useContainedLayout && (
+                  <Grid.Column
+                    ref={imageContainerRef}
+                    span={{large: 6}}
+                    className={clsx(
+                      imageBackgroundColor &&
+                        mediaPadding !== 'none' &&
+                        styles[`Hero-imageContainer--bg-${imageBackgroundColor}`],
+                      useInlineGridline && mediaPadding === 'all' && styles['Hero-imageContainer--inline-padding-all'],
+                      useInlineGridline &&
+                        mediaPadding === 'none' &&
+                        styles['Hero-imageContainer--inline-padding-none'],
+                      useInlineGridline && styles['Hero-imageContainer--inline-bordered'],
+                    )}
+                  >
+                    <div
+                      className={clsx(styles['Hero-mediaContainer'], imageContainerClassName)}
+                      style={imageContainerStyle}
+                    >
+                      {mediaChild}
+                    </div>
+                  </Grid.Column>
+                )}
+                <Grid.Column span={{large: mediaChild && hasInlineMedia ? 6 : 12}}>
+                  <Stack
+                    className={clsx(
+                      useInlineGridline && styles['Hero-text-column--inline-gridline'],
+                      useInlineGridline && styles['Hero-contentColumn--bordered-inline'],
+                    )}
+                    direction="vertical"
+                    gap="none"
+                    padding="none"
+                    alignItems={hasInlineMedia ? 'flex-start' : align === 'start' ? 'flex-start' : 'center'}
+                    justifyContent={hasInlineMedia ? undefined : align === 'start' ? 'flex-start' : 'center'}
+                  >
+                    {HeroChildren}
+                    {renderActions()}
+                    {renderTrailingComponent(isGridline && enableAnimation)}
+                  </Stack>
+                </Grid.Column>
+                {!isInlineStart && mediaChild && !useContainedLayout && (
+                  <Grid.Column
+                    ref={imageContainerRef}
+                    span={{large: hasInlineMedia ? 6 : 12}}
+                    className={clsx(
+                      imageBackgroundColor &&
+                        mediaPadding !== 'none' &&
+                        styles[`Hero-imageContainer--bg-${imageBackgroundColor}`],
+                      useInlineGridline && mediaPadding === 'all' && styles['Hero-imageContainer--inline-padding-all'],
+                      useInlineGridline &&
+                        mediaPadding === 'none' &&
+                        styles['Hero-imageContainer--inline-padding-none'],
+                      useInlineGridline && styles['Hero-imageContainer--inline-bordered'],
+                    )}
+                  >
+                    <div
+                      className={clsx(styles['Hero-mediaContainer'], imageContainerClassName)}
+                      style={imageContainerStyle}
+                    >
+                      {mediaChild}
+                    </div>
+                  </Grid.Column>
+                )}
+              </>
             )}
-          </section>
-        </HeroContext.Provider>
-      </Tag>
-    )
-  },
-)
+          </Grid>
+          {mediaChild && useContainedLayout && (
+            <div
+              ref={imageContainerRef}
+              data-testid={testIds.imageWrapper}
+              className={clsx(
+                styles['Hero-imageWrapper'],
+                imageContainerClassName,
+                imageBackgroundColor &&
+                  mediaPadding !== 'none' &&
+                  styles[`Hero-imageWrapper--bg-${imageBackgroundColor}`],
+                mediaPadding === 'none' && styles['Hero-imageWrapper--padding-none'],
+              )}
+              style={imageContainerStyle}
+            >
+              <div
+                className={clsx(
+                  styles['Hero-imageWrapper-inner'],
+                  mediaPadding === 'all' && styles['Hero-imageWrapper-inner--padding-all'],
+                  mediaPadding === 'none' && styles['Hero-imageWrapper-inner--padding-none'],
+                  mediaWrapperHasBorder && styles['Hero-imageWrapper-inner--with-gridline'],
+                )}
+              >
+                {mediaChild}
+              </div>
+            </div>
+          )}
+        </section>
+      </HeroContext.Provider>
+    </Tag>
+  )
+}
+
+const Root = forwardRef<HTMLElement, PropsWithChildren<HeroProps>>(HeroBase)
 
 export const Hero = Object.assign(Root, {
   Heading: HeroHeading,

@@ -22,7 +22,7 @@ import {Colors, BiColorGradients} from '../constants'
 type TestimonialSize = 'small' | 'large'
 
 export const TestimonialQuoteMarkColors = [...Colors, ...BiColorGradients] as const
-export const defaultQuoteMarkColor = TestimonialQuoteMarkColors[0]
+export const defaultQuoteMarkColor = 'green'
 
 export const TestimonialVariants = ['subtle', 'default', 'minimal', 'expressive'] as const
 type TestimonialVariant = (typeof TestimonialVariants)[number]
@@ -52,6 +52,10 @@ export type TestimonialProps = {
   size?: TestimonialSize
   /** Sets the color of the quote mark */
   quoteMarkColor?: (typeof TestimonialQuoteMarkColors)[number]
+  /** Class applied to the quote mark. */
+  quoteMarkClassName?: string
+  /** Class applied to the attribution wrapper. */
+  mediaClassName?: string
 } & BaseProps<HTMLElement> &
   React.HTMLAttributes<HTMLElement>
 
@@ -61,11 +65,13 @@ export type TestimonialProps = {
  */
 function TestimonialBase(
   {
-    quoteMarkColor,
+    quoteMarkColor = defaultQuoteMarkColor,
+    quoteMarkClassName,
+    mediaClassName,
     animate,
     className,
     children,
-    variant = 'minimal',
+    variant = defaultTestimonialVariant,
     hasBorder = true,
     size,
     style,
@@ -75,15 +81,13 @@ function TestimonialBase(
 ) {
   const {classes: animationClasses, styles: animationInlineStyles} = useAnimation(animate)
 
-  const resolvedQuoteMarkColor = quoteMarkColor ?? (variant === 'expressive' ? 'green' : 'default')
-
   const quoteMark = (
     <div
       aria-hidden="true"
       className={clsx(
         styles['Testimonial__quoteMark'],
-        styles[`Testimonial__quoteMark--${resolvedQuoteMarkColor}`],
-        variant === 'expressive' && styles['Testimonial__quoteMark--hasBackground'],
+        styles[`Testimonial__quoteMark--${quoteMarkColor}`],
+        quoteMarkClassName,
       )}
     >
       <span className={styles['Testimonial__quoteMarkGlyph']}>&ldquo;</span>
@@ -128,7 +132,7 @@ function TestimonialBase(
       style={{
         ...animationInlineStyles,
         ...style,
-        ['--testimonial-accent-color' as keyof CSSProperties]: resolvedQuoteMarkColor,
+        ['--testimonial-accent-color' as keyof CSSProperties]: quoteMarkColor,
       }}
       {...rest}
     >
@@ -137,7 +141,7 @@ function TestimonialBase(
         {quoteChild}
         {variant !== 'expressive' && actionChild}
       </div>
-      <div className={styles['Testimonial__media']}>
+      <div className={clsx(styles['Testimonial__media'], mediaClassName)}>
         {avatarChild}
         {logoChild}
         {name}
@@ -227,8 +231,8 @@ const Logo = forwardRef(_Logo)
  * <Testimonial.Avatar>
  */
 
-function _Avatar({size, ...rest}: AvatarProps) {
-  return <BaseAvatar className={clsx(styles['Testimonial-avatar'])} size={48} {...rest} />
+function _Avatar({size, className, ...rest}: AvatarProps) {
+  return <BaseAvatar className={clsx(styles['Testimonial-avatar'], className)} size={48} {...rest} />
 }
 
 const Avatar = _Avatar

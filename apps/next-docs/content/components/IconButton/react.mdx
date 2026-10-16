@@ -1,6 +1,6 @@
 ---
 title: Icon button
-description: Use an icon button to represent an action with an Octicon instead of a visible text label.
+description: Use an icon button to represent an action with an icon instead of a visible text label.
 keywords: ['action', 'button', 'control', 'icon', 'interactive']
 show-tabs: true
 tab-label: React
@@ -33,6 +33,24 @@ import {IconButton} from '@primer/react-brand'
 
 ```jsx live
 <IconButton icon={HeartIcon} aria-label="Favorite" />
+```
+
+### Custom icons
+
+Pass an SVG element to use a custom icon.
+
+```jsx live
+<IconButton
+  aria-label="Play"
+  icon={
+    <svg viewBox="0 0 16 16" fill="none">
+      <path
+        d="M13.3777 6.94756C14.2069 7.40341 14.2069 8.59489 13.3777 9.05073L5.37808 13.4483C4.57834 13.8879 3.60001 13.3093 3.60001 12.3967L3.60001 3.60161C3.60001 2.689 4.57834 2.1104 5.37808 2.55003L13.3777 6.94756Z"
+        fill="currentColor"
+      />
+    </svg>
+  }
+/>
 ```
 
 ### Variants
@@ -190,7 +208,7 @@ Inactive controls use the same muted style for every variant and retain focus an
 
 | Name                  | Type                         |    Default    | Required | Description                                                                             |
 | :-------------------- | :--------------------------- | :-----------: | :------: | :-------------------------------------------------------------------------------------- |
-| `icon`                | `Icon`                       |               |  `true`  | Octicon component rendered in the center of the button                                  |
+| `icon`                | `Icon \| ReactElement`       |               |  `true`  | Octicon component or custom SVG element rendered in the center of the button            |
 | `aria-label`          | `string`                     |               |  `true`  | Required non-empty accessible action name and default tooltip label                     |
 | `variant`             | <IconButtonVariantsProp />   | `'secondary'` | `false`  | Button variants plus IconButton-only `danger` and `invisible` variations                |
 | `size`                | <IconButtonSizesProp />      |  `'medium'`   | `false`  | Control sizes inherited from Button                                                     |

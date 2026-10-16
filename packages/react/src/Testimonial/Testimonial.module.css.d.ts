@@ -5,6 +5,7 @@ declare const styles: {
   readonly "Testimonial--size-large": string;
   readonly "Testimonial--variant-default": string;
   readonly "Testimonial--variant-expressive": string;
+  readonly "Testimonial--variant-minimal": string;
   readonly "Testimonial--variant-subtle": string;
   readonly "Testimonial-avatar": string;
   readonly "Testimonial-caption": string;
@@ -22,7 +23,6 @@ declare const styles: {
   readonly "Testimonial__quoteMark--gray": string;
   readonly "Testimonial__quoteMark--green": string;
   readonly "Testimonial__quoteMark--green-blue": string;
-  readonly "Testimonial__quoteMark--hasBackground": string;
   readonly "Testimonial__quoteMark--indigo": string;
   readonly "Testimonial__quoteMark--lemon": string;
   readonly "Testimonial__quoteMark--lime": string;

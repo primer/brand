@@ -1,0 +1,169 @@
+@property --brand-TestimonialGroup-ring-progress {
+  syntax: '<angle>';
+  inherits: true;
+  initial-value: 0deg;
+}
+
+.TestimonialGroup {
+  width: 100%;
+  min-width: 0;
+  padding-block: var(--brand-TestimonialGroup-paddingBlockNarrow);
+  padding-inline: var(--brand-TestimonialGroup-paddingInlineNarrow);
+}
+
+.TestimonialGroup__content {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.TestimonialGroup__slides {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+}
+
+.TestimonialGroup__slide {
+  position: absolute;
+  width: 100%;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.TestimonialGroup__slide--active {
+  position: relative;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.TestimonialGroup__testimonial .TestimonialGroup__avatar {
+  --brand-TestimonialGroup-ring-progress: 360deg;
+  position: relative;
+  flex: none;
+  border-radius: 50%;
+  background: var(--brand-color-border-muted);
+}
+
+.TestimonialGroup__avatar img {
+  clip-path: circle(var(--brand-TestimonialGroup-avatarImageRadius) at center);
+  mask: radial-gradient(
+    circle,
+    var(--base-color-scale-black-0)
+      calc(var(--brand-TestimonialGroup-avatarImageRadius) - var(--brand-borderWidth-thin)),
+    transparent var(--brand-TestimonialGroup-avatarImageRadius)
+  );
+}
+
+.TestimonialGroup__avatar::before {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  content: '';
+  pointer-events: none;
+  border-radius: 50%;
+  background: conic-gradient(
+    var(--brand-Testimonial-quoteMarkColor-green) var(--brand-TestimonialGroup-ring-progress, 360deg),
+    transparent 0deg
+  );
+  mask: radial-gradient(
+    farthest-side,
+    transparent calc(100% - var(--brand-TestimonialGroup-ringMaskOuterInset)),
+    var(--base-color-scale-black-0) calc(100% - var(--brand-TestimonialGroup-ringMaskInnerInset))
+  );
+}
+
+.TestimonialGroup__avatar::after {
+  position: absolute;
+  z-index: 2;
+  inset: 0;
+  content: '';
+  pointer-events: none;
+  border-radius: 50%;
+  background: radial-gradient(circle closest-side, var(--brand-Testimonial-quoteMarkColor-green) 100%, transparent 100%)
+    center top / var(--brand-TestimonialGroup-ringWidth) var(--brand-TestimonialGroup-ringWidth) no-repeat;
+  transform: rotate(var(--brand-TestimonialGroup-ring-progress, 360deg));
+}
+
+.TestimonialGroup__quoteMark,
+.TestimonialGroup__quote,
+.TestimonialGroup__media {
+  transition: opacity var(--brand-TestimonialGroup-fadeInDuration) ease-in-out;
+}
+
+.TestimonialGroup__testimonial--out .TestimonialGroup__quoteMark {
+  opacity: 0;
+  transition: opacity var(--brand-TestimonialGroup-fadeOutDuration) ease-in-out 120ms;
+}
+
+.TestimonialGroup__testimonial--out .TestimonialGroup__quote {
+  opacity: 0;
+  transition: opacity var(--brand-TestimonialGroup-fadeOutDuration) ease-in-out 80ms;
+}
+
+.TestimonialGroup__testimonial--out .TestimonialGroup__media {
+  opacity: 0;
+  transition: opacity var(--brand-TestimonialGroup-fadeOutDuration) ease-in-out 40ms;
+}
+
+.TestimonialGroup__testimonial--in .TestimonialGroup__quote {
+  transition-delay: 100ms;
+}
+
+.TestimonialGroup__testimonial--in .TestimonialGroup__media {
+  transition-delay: var(--brand-animation-duration-faster);
+}
+
+.TestimonialGroup__controls {
+  display: flex;
+  flex: none;
+  order: 1;
+  align-items: center;
+  gap: var(--base-size-8);
+  margin-block-start: var(--brand-TestimonialGroup-controlsGap);
+  padding-block-start: var(--brand-TestimonialGroup-controlsPadding);
+}
+
+.TestimonialGroup__content--expressive .TestimonialGroup__controls {
+  margin-block-start: 0;
+}
+
+.TestimonialGroup__controls .TestimonialGroup__playback {
+  order: 1;
+  width: calc(var(--base-size-28) + var(--base-size-2));
+  min-width: calc(var(--base-size-28) + var(--base-size-2));
+  height: calc(var(--base-size-28) + var(--base-size-2));
+  min-height: calc(var(--base-size-28) + var(--base-size-2));
+  padding: 0;
+}
+
+.TestimonialGroup__controls .TestimonialGroup__playback svg {
+  width: var(--base-size-16);
+  height: var(--base-size-16);
+}
+
+.TestimonialGroup__announcement {
+  position: absolute;
+  width: var(--brand-borderWidth-thin);
+  height: var(--brand-borderWidth-thin);
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .TestimonialGroup__quoteMark,
+  .TestimonialGroup__quote,
+  .TestimonialGroup__media {
+    transition: none;
+  }
+}
+
+@media screen and (min-width: 63.25rem) {
+  .TestimonialGroup {
+    padding-block: var(--brand-TestimonialGroup-paddingBlock);
+    padding-inline: var(--brand-TestimonialGroup-paddingInline);
+  }
+}
