@@ -26,6 +26,11 @@ export type ThemeContextProps = {
   colorMode: ResolvedColorMode
 
   /*
+   * The colorMode prop before its resolved to a valid theme.
+   */
+  originalColorMode?: ColorMode
+
+  /*
    * List of available color modes.
    */
   availableColorModes: ColorModesEnum[]
@@ -38,6 +43,7 @@ export type ThemeProviderProps = {
 const defaultMode = ColorModesEnum.LIGHT
 export const ThemeContext = createContext<ThemeContextProps>({
   colorMode: defaultMode,
+  originalColorMode: defaultMode,
   availableColorModes: Object.values(ColorModesEnum),
 })
 
@@ -50,32 +56,23 @@ export function ThemeProvider({colorMode = defaultMode, children, ...rest}: Prop
   const availableColorModes = useMemo(() => Object.values(ColorModesEnum), [])
 
   useIsomorphicLayoutEffect(() => {
-    if (colorMode !== ColorModesEnum.AUTO) return
+    if (colorMode !== ColorModesEnum.AUTO || typeof window.matchMedia !== 'function') return
 
-    setAutoMode(getActiveAutoMode())
-    return handleSystemPreferenceChange(setAutoMode)
+    const preference = window.matchMedia(`(prefers-color-scheme: ${ColorModesEnum.DARK})`)
+    const handlePreferenceChange = (event: MediaQueryListEvent) => {
+      setAutoMode(event.matches ? ColorModesEnum.DARK : ColorModesEnum.LIGHT)
+    }
+
+    preference.addEventListener('change', handlePreferenceChange)
+    setAutoMode(preference.matches ? ColorModesEnum.DARK : ColorModesEnum.LIGHT)
+    return () => preference.removeEventListener('change', handlePreferenceChange)
   }, [colorMode])
 
   return (
-    <ThemeContext.Provider value={{colorMode: activeMode, availableColorModes}}>
-      <div data-color-mode={activeMode} {...rest}>
+    <ThemeContext.Provider value={{colorMode: activeMode, originalColorMode: colorMode, availableColorModes}}>
+      <div data-color-mode={colorMode === ColorModesEnum.AUTO ? ColorModesEnum.AUTO : activeMode} {...rest}>
         {children}
       </div>
     </ThemeContext.Provider>
   )
-}
-
-const queryBrowserPreference = () => window.matchMedia(`(prefers-color-scheme: ${ColorModesEnum.DARK})`)
-
-const getActiveAutoMode = (): ResolvedColorMode => {
-  const mediaQueryList: MediaQueryList = queryBrowserPreference()
-  return mediaQueryList.matches ? ColorModesEnum.DARK : ColorModesEnum.LIGHT
-}
-
-const handleSystemPreferenceChange = (callback: (mode: ResolvedColorMode) => void) => {
-  const mediaQueryList = queryBrowserPreference()
-  const changeHandler = (event: MediaQueryListEvent) =>
-    callback(event.matches ? ColorModesEnum.DARK : ColorModesEnum.LIGHT)
-  mediaQueryList.addEventListener('change', changeHandler)
-  return () => mediaQueryList.removeEventListener('change', changeHandler)
 }

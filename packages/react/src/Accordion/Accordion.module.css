@@ -301,6 +301,13 @@ details[open] > .Accordion__summary .Accordion__summary-toggleIcon {
   -moz-osx-font-smoothing: auto;
 }
 
+@media (prefers-color-scheme: dark) {
+  [data-color-mode='auto'] .Accordion__content {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: auto;
+  }
+}
+
 .Accordion__content p:not(:first-child) {
   margin-block-start: var(--base-size-16);
 }

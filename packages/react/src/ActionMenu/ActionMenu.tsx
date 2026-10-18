@@ -745,9 +745,9 @@ type ActionMenuOverlayProps = PropsWithChildren<
 
 const ActionMenuOverlay = forwardRef<HTMLUListElement, ActionMenuOverlayProps>(
   ({children, className, 'data-testid': testId, menuOpen, ...rest}, ref) => {
-    const {colorMode: defaultColorMode} = useTheme()
+    const {originalColorMode, colorMode: defaultColorMode} = useTheme()
 
-    const colorMode = className?.includes('ActionMenu__menu--split') ? 'light' : defaultColorMode
+    const colorMode = className?.includes('ActionMenu__menu--split') ? 'light' : originalColorMode ?? defaultColorMode
 
     return (
       <ThemeProvider colorMode={colorMode}>

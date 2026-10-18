@@ -133,7 +133,8 @@ describe('Design tokens', () => {
 
     const expectedOutput = `
 :root,
-[data-color-mode="light"] {
+[data-color-mode="light"],
+[data-color-mode="auto"] {
   --brand-text-color-example: gray;
 }
 
@@ -143,6 +144,12 @@ describe('Design tokens', () => {
 
 [data-color-mode="dark"] {
   --brand-text-color-example: white;
+}
+
+@media (prefers-color-scheme: dark) {
+  [data-color-mode="auto"] {
+    --brand-text-color-example: white;
+  }
 }
 `.trim()
 
@@ -460,7 +467,8 @@ describe('Design tokens', () => {
 
     const expectedOutput = `
 :root,
-[data-color-mode="light"] {
+[data-color-mode="light"],
+[data-color-mode="auto"] {
   --base-color-scale-gray-0: #f6f8fa;
   --base-color-scale-gray-1: #eaeef2;
   --base-color-scale-gray-2: #b1bac4;
@@ -476,6 +484,14 @@ describe('Design tokens', () => {
   --base-color-scale-gray-0: #f0f6fc;
   --base-color-scale-gray-1: #c9d1d9;
   --base-color-scale-gray-2: #b1bac4;
+}
+
+@media (prefers-color-scheme: dark) {
+  [data-color-mode="auto"] {
+    --base-color-scale-gray-0: #f0f6fc;
+    --base-color-scale-gray-1: #c9d1d9;
+    --base-color-scale-gray-2: #b1bac4;
+  }
 }
 `.trim()
 

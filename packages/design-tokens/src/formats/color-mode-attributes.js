@@ -22,6 +22,7 @@ function colorModeAttributes({dictionary, file, options}) {
     'dark_tritanopia',
   ]
   const defaultMode = supportedModes[0]
+  const automaticModeSelector = '[data-color-mode="auto"]'
 
   const {outputReferences} = options
   let {allTokens} = dictionary
@@ -32,7 +33,8 @@ function colorModeAttributes({dictionary, file, options}) {
 
   const renderLightMode = () =>
     `:root, 
-    [data-color-mode="${defaultMode}"] {
+    [data-color-mode="${defaultMode}"],
+    ${automaticModeSelector} {
       ${allTokens
         .map(createPropertyFormatter({outputReferences, dictionary, format: 'css', formatter: {}, themeable: false}))
         .filter(function (strVal) {
@@ -44,7 +46,7 @@ function colorModeAttributes({dictionary, file, options}) {
   /**
    * Returns alternate color mode tokens by replacing the contents of value with said mode
    */
-  const renderAlternateColorMode = mode => {
+  const renderAlternateColorMode = (mode, selector = `[data-color-mode="${mode}"]`) => {
     if (mode === defaultMode) return renderLightMode()
 
     const replaceWithAlternateModeValue = token => {
@@ -65,7 +67,7 @@ function colorModeAttributes({dictionary, file, options}) {
     const {allTokens: newAllTokens} = newDictionary
 
     return `
-    [data-color-mode="${mode}"]  {
+    ${selector} {
     
     ${newAllTokens
       .map(replaceWithAlternateModeValue)
@@ -90,6 +92,10 @@ function colorModeAttributes({dictionary, file, options}) {
       ${fileHeader({file})}
  
     ${supportedModes.map(mode => renderAlternateColorMode(mode)).join('')}
+
+    @media (prefers-color-scheme: dark) {
+      ${renderAlternateColorMode('dark', automaticModeSelector)}
+    }
     
     \n`
 

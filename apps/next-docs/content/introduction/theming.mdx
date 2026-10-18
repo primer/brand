@@ -43,6 +43,7 @@ Primer Brand supports the following color modes through a dedicated prop by appl
 | ----- | ---------------------- | ------------------------- |
 | Light | `light`                | `data-color-mode="light"` |
 | Dark  | `dark`                 | `data-color-mode="dark"`  |
+| Auto  | `auto`                 | `data-color-mode="auto"`  |
 
 In-product appearance modes such as `dark_dimmed` and `light_high_contrast` resolve internally to Primer Brand's `dark` or `light` defaults. The resolved value is returned by `useTheme().colorMode` and applied to `data-color-mode`.
 
@@ -84,6 +85,18 @@ const Example = () => {
 
 render(Example)
 ```
+
+### Following the system preference
+
+Use `colorMode="auto"` to use the browser's system preference:
+
+```jsx
+<ThemeProvider colorMode="auto">
+  <App />
+</ThemeProvider>
+```
+
+`useTheme()` returns a `colorMode` property with a resolved light or dark value. `originalColorMode` is also returned, which can be helpful for forwarding or persisting the unresolved value.
 
 ### Locking the color mode
 

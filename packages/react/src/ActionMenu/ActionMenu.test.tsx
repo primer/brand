@@ -6,6 +6,7 @@ import {axe, toHaveNoViolations} from 'jest-axe'
 import {KebabHorizontalIcon, MarkGithubIcon} from '@primer/octicons-react'
 
 import {ActionMenu} from './ActionMenu'
+import {ColorModesEnum, ThemeContext, ThemeProvider} from '../ThemeProvider'
 
 expect.extend(toHaveNoViolations)
 
@@ -60,6 +61,61 @@ describe('ActionMenu', () => {
       </ActionMenu>,
     )
     expect(getByText('Open menu')).toBeInTheDocument()
+  })
+
+  it('preserves automatic mode when forwarding the theme to the overlay', async () => {
+    const {getByRole} = render(
+      <ThemeProvider colorMode="auto">
+        <ActionMenu>
+          <ActionMenu.Button>Open menu</ActionMenu.Button>
+          <ActionMenu.Overlay aria-label="Repository actions">
+            <ActionMenu.Item value="copy">Copy link</ActionMenu.Item>
+          </ActionMenu.Overlay>
+        </ActionMenu>
+      </ThemeProvider>,
+    )
+
+    await userEvent.click(getByRole('button', {name: 'Open menu'}))
+
+    expect(getByRole('menu', {name: 'Repository actions'}).parentElement).toHaveAttribute('data-color-mode', 'auto')
+  })
+
+  it('keeps split-button overlays explicitly light inside automatic mode', async () => {
+    const {getByRole} = render(
+      <ThemeProvider colorMode="auto">
+        <ActionMenu mode="split-button">
+          <ActionMenu.Button as="a" href="#repository">
+            Open repository
+          </ActionMenu.Button>
+          <ActionMenu.Overlay aria-label="Repository actions">
+            <ActionMenu.Item as="a" href="#copy">
+              Copy link
+            </ActionMenu.Item>
+          </ActionMenu.Overlay>
+        </ActionMenu>
+      </ThemeProvider>,
+    )
+
+    await userEvent.click(getByRole('button', {name: 'Repository actions'}))
+
+    expect(getByRole('menu', {name: 'Repository actions'}).parentElement).toHaveAttribute('data-color-mode', 'light')
+  })
+
+  it('supports theme context without an original mode', async () => {
+    const {getByRole} = render(
+      <ThemeContext.Provider value={{colorMode: ColorModesEnum.DARK, availableColorModes: []}}>
+        <ActionMenu>
+          <ActionMenu.Button>Open menu</ActionMenu.Button>
+          <ActionMenu.Overlay aria-label="Repository actions">
+            <ActionMenu.Item value="copy">Copy link</ActionMenu.Item>
+          </ActionMenu.Overlay>
+        </ActionMenu>
+      </ThemeContext.Provider>,
+    )
+
+    await userEvent.click(getByRole('button', {name: 'Open menu'}))
+
+    expect(getByRole('menu', {name: 'Repository actions'}).parentElement).toHaveAttribute('data-color-mode', 'dark')
   })
 
   it('renders an accessible icon button trigger', async () => {
