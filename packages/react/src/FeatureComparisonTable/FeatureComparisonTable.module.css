@@ -385,7 +385,6 @@
     inset: 0;
     height: auto;
     border: 0;
-    /* Match the gridline's viewport-wide paint without creating horizontal overflow. */
     border-image: linear-gradient(var(--brand-color-canvas-default), var(--brand-color-canvas-default)) fill 0;
     border-image-outset: 0 100vw;
     z-index: -1;
