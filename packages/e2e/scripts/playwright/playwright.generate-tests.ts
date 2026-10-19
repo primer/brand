@@ -118,6 +118,7 @@ const waitForTimeoutLookup = {
   'components-subnav-features--delayed-active-link': 2000, // because the story sets an initial delay,
   'components-subnav-features--overflow-menu-open': 1500, // wait for responsive overflow measurement
   'components-logosuite-features--grid-line-expressive-kitchen-sink': 3000, // for the animation to complete
+  'components-logosuite-features--grid-line-kitchen-sink': 3000, // for the animation to complete
   'components-logosuite-features--takeover-button': 3000, // for the animation to complete
   'components-riverbreakouttabs-examples--with-images': 4000, // for dither bg to complete
   'components-riverbreakouttabs-examples--with-videos': 4000, // for dither bg to complete

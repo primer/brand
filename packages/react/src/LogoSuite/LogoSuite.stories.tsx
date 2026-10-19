@@ -58,7 +58,7 @@ const meta = {
     },
     variant: {
       control: 'radio',
-      options: [undefined, 'default', 'gridline-expressive'],
+      options: [undefined, 'default', 'gridline', 'gridline-expressive'],
       table: {
         category: 'LogoSuite',
       },
