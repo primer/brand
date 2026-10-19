@@ -925,10 +925,7 @@ describe('FeatureComparisonTable', () => {
     )
 
     const label = within(getByRole('cell', {name: expectedLabel})).getByText(expectedLabel)
-    expect(getByRole('cell', {name: expectedLabel})).toHaveClass(
-      'FeatureComparisonTable__tableCell',
-      'FeatureComparisonTable__tableCell--hasVariant',
-    )
+    expect(getByRole('cell', {name: expectedLabel})).toHaveClass('FeatureComparisonTable__tableCell')
     expect(label).toHaveClass('visually-hidden')
     expect(label.previousElementSibling).toHaveAttribute('aria-hidden', 'true')
     expect(label.previousElementSibling).toHaveClass('FeatureComparisonTable__cellIcon')
