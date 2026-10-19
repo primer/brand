@@ -1,0 +1,41 @@
+.Spinner__box {
+  display: inline-flex;
+}
+
+.Spinner {
+  display: block;
+  box-sizing: border-box;
+  overflow: visible;
+  color: var(--brand-Spinner-fgColor);
+  animation-name: Spinner-spin;
+  animation-duration: var(--brand-Spinner-animationDuration-default);
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+.Spinner--small {
+  width: var(--brand-Spinner-size-small);
+  height: var(--brand-Spinner-size-small);
+}
+
+.Spinner--medium {
+  width: var(--brand-Spinner-size-medium);
+  height: var(--brand-Spinner-size-medium);
+}
+
+.Spinner--large {
+  width: var(--brand-Spinner-size-large);
+  height: var(--brand-Spinner-size-large);
+}
+
+@keyframes Spinner-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .Spinner {
+    animation-duration: var(--brand-Spinner-animationDuration-reducedMotion);
+  }
+}

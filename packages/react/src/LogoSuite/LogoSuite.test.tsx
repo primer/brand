@@ -1,4 +1,5 @@
-import React, {render, cleanup} from '@testing-library/react'
+import React from 'react'
+import {render, cleanup} from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import '@testing-library/jest-dom'
 
@@ -33,6 +34,7 @@ describe('LogoSuite', () => {
     expect(getByText(mockHeading)).toBeInTheDocument()
     expect(getByText(mockDescription)).toBeInTheDocument()
     expect(getByTestId(testId).children.length).toBe(2)
+    expect(getByTestId(testId)).not.toHaveClass('LogoSuite__logobar--has-linked-logos')
     expect(getByTestId('svg1')).toBeInTheDocument()
     expect(getByTestId('svg2')).toBeInTheDocument()
   })
@@ -56,7 +58,7 @@ describe('LogoSuite', () => {
   })
 
   it('renders logos correctly using anchors', () => {
-    const {getByLabelText, getAllByRole} = render(
+    const {getAllByRole, getByRole} = render(
       <LogoSuite>
         <LogoSuite.Heading>{mockHeading}</LogoSuite.Heading>
         <LogoSuite.Logobar>
@@ -73,13 +75,68 @@ describe('LogoSuite', () => {
         </LogoSuite.Logobar>
       </LogoSuite>,
     )
-    const logo1Element = getByLabelText('Logo 1')
-    const logo2Element = getByLabelText('Logo 2')
-    expect(logo1Element).toBeInTheDocument()
-    expect(logo2Element).toBeInTheDocument()
+    const logo1Link = getByRole('link', {name: 'Logo 1'})
+    const logo2Link = getByRole('link', {name: 'Logo 2'})
+    expect(logo1Link).toBeInTheDocument()
+    expect(logo2Link).toBeInTheDocument()
 
     expect(getAllByRole('link').length).toBe(2)
     expect(getAllByRole('img').length).toBe(2)
+    expect(logo1Link.closest('.LogoSuite__logobar')).toHaveClass('LogoSuite__logobar--has-linked-logos')
+  })
+
+  it('detects linked logos supplied as a fragment expression', () => {
+    const linkedLogos = (
+      <>
+        <a href="/github" aria-label="GitHub">
+          <svg role="img">
+            <title>GitHub</title>
+          </svg>
+        </a>
+        <a href="/azure" aria-label="Azure">
+          <svg role="img">
+            <title>Azure</title>
+          </svg>
+        </a>
+        <a href="/copilot" aria-label="GitHub Copilot">
+          <svg role="img">
+            <title>GitHub Copilot</title>
+          </svg>
+        </a>
+      </>
+    )
+
+    const {getAllByRole, getByRole} = render(
+      <LogoSuite>
+        <LogoSuite.Heading>{mockHeading}</LogoSuite.Heading>
+        <LogoSuite.Logobar>{linkedLogos}</LogoSuite.Logobar>
+      </LogoSuite>,
+    )
+
+    expect(getAllByRole('link')).toHaveLength(3)
+    expect(getByRole('link', {name: 'GitHub'}).closest('.LogoSuite__logobar')).toHaveClass(
+      'LogoSuite__logobar--has-linked-logos',
+    )
+  })
+
+  it('only enables linked-logo presentation when every logo is linked', () => {
+    const {getByRole} = render(
+      <LogoSuite>
+        <LogoSuite.Heading>{mockHeading}</LogoSuite.Heading>
+        <LogoSuite.Logobar>
+          <a href="/github" aria-label="GitHub">
+            <svg role="img">
+              <title>GitHub</title>
+            </svg>
+          </a>
+          <svg role="img" aria-label="Azure" />
+        </LogoSuite.Logobar>
+      </LogoSuite>,
+    )
+
+    expect(getByRole('link', {name: 'GitHub'}).closest('.LogoSuite__logobar')).not.toHaveClass(
+      'LogoSuite__logobar--has-linked-logos',
+    )
   })
 
   it('can render a heading as visually hidden', () => {
@@ -421,6 +478,31 @@ describe('LogoSuite', () => {
     const expectedClass = 'LogoSuite--gridline-expressive'
 
     expect(rootEl.classList).toContain(expectedClass)
+  })
+
+  it('renders visible text above a full-width logobar in the gridline variant', () => {
+    const {getByText, getByTestId, container} = render(
+      <LogoSuite data-testid="root" variant="gridline">
+        <LogoSuite.Heading>{mockHeading}</LogoSuite.Heading>
+        <LogoSuite.Description>{mockDescription}</LogoSuite.Description>
+        <LogoSuite.Logobar>
+          <svg aria-label="Mock SVG" />
+        </LogoSuite.Logobar>
+      </LogoSuite>,
+    )
+
+    expect(getByTestId('root')).toHaveClass('LogoSuite--gridline')
+    expect(getByText(mockHeading)).toBeInTheDocument()
+    expect(getByText(mockDescription)).toBeInTheDocument()
+
+    const textContainer = container.querySelector('.LogoSuite__textContainer')
+    const logobarContainer = container.querySelector('.LogoSuite__logobarContainer')
+    const contentChildren = container.querySelector('.LogoSuite__content')?.children
+
+    expect(textContainer).toHaveClass('Grid__column--large-span-12')
+    expect(logobarContainer).toHaveClass('Grid__column--large-span-12')
+    expect(contentChildren?.[0]).toBe(textContainer)
+    expect(contentChildren?.[1]).toBe(logobarContainer)
   })
 
   it('renders heading and description in a text column when gridline-expressive has visible text', () => {
