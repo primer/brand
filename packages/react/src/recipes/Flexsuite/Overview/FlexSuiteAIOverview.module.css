@@ -58,6 +58,13 @@
     var(--brand-color-canvas-default);
 }
 
+@media (prefers-color-scheme: dark) {
+  [data-color-mode='auto'] .cardGridColumnArrowHover .cardGridItem:is(:hover, :focus-within) {
+    background: linear-gradient(180deg, rgba(242, 245, 243, 0.1) 0%, rgba(242, 245, 243, 0) 100%),
+      var(--brand-color-canvas-default);
+  }
+}
+
 .cardGridColumn:first-child .cardGridItem {
   border-block-start: 0;
 }
