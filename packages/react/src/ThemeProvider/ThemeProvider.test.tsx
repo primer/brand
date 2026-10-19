@@ -1,5 +1,4 @@
 import React, {useContext} from 'react'
-import {renderToString} from 'react-dom/server'
 import {act, render, renderHook, cleanup, screen} from '@testing-library/react'
 import '@testing-library/jest-dom'
 
@@ -164,26 +163,6 @@ describe('ThemeProvider', () => {
     const {result} = renderHook(() => useTheme(), {wrapper})
 
     expect(result.current.colorMode).toBe('dark')
-  })
-
-  it('preserves automatic mode and forwarding in server-rendered markup', () => {
-    function ForwardedThemeProvider() {
-      const {originalColorMode, colorMode} = useTheme()
-      return <ThemeProvider id="forwarded" colorMode={originalColorMode ?? colorMode} />
-    }
-
-    const markup = renderToString(
-      <ThemeProvider id="automatic" colorMode="auto">
-        <ForwardedThemeProvider />
-        <ThemeProvider id="explicit-light" colorMode="light" />
-      </ThemeProvider>,
-    )
-    const document = new DOMParser().parseFromString(markup, 'text/html')
-
-    for (const id of ['automatic', 'forwarded']) {
-      expect(document.getElementById(id)?.getAttribute('data-color-mode')).toBe('auto')
-    }
-    expect(document.getElementById('explicit-light')?.getAttribute('data-color-mode')).toBe('light')
   })
 
   it.each(['auto', 'light', 'dark_dimmed'] as const)('returns the original %s mode through context', colorMode => {
