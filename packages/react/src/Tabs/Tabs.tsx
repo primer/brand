@@ -76,6 +76,8 @@ export type TabsProps = {
    * @param internalAccessibleLabels - Customizable labels for screen readers to improve accessibility. These are applied internally using the aria-label attribute.
    * @param internalAccessibleLabels.controlsNext - Label for the "next tab" control button, used by screen readers. Default is "Next tab".
    * @param internalAccessibleLabels.controlsPrev - Label for the "previous tab" control button, used by screen readers. Default is "Previous tab".
+   * @param internalAccessibleLabels.controlsIndicator - Complete selector label using {current}. Default is "Go to tab {current}".
+   * @param internalAccessibleLabels.controlsNavigation - Label for the complete mobile control group. Default is "Tab navigation".
    */
   internalAccessibleLabels?: {
     controlsNext: string
@@ -90,7 +92,7 @@ export type TabsProps = {
 const defaultInternalAccessibleLabels = {
   controlsNext: 'Next tab',
   controlsPrev: 'Previous tab',
-  controlsIndicator: 'Go to tab',
+  controlsIndicator: 'Go to tab {current}',
   controlsNavigation: 'Tab navigation',
 }
 
@@ -285,9 +287,7 @@ const _TabsRoot = forwardRef<HTMLDivElement, TabsProps>(
               labels={{
                 previous: internalAccessibleLabels.controlsPrev,
                 next: internalAccessibleLabels.controlsNext,
-                item: `${
-                  internalAccessibleLabels.controlsIndicator ?? defaultInternalAccessibleLabels.controlsIndicator
-                } {current}`,
+                item: internalAccessibleLabels.controlsIndicator ?? defaultInternalAccessibleLabels.controlsIndicator,
               }}
               itemAttributesBuilder={index => ({'aria-controls': tabs[index].props['aria-controls']})}
               onChange={index => activateTab(String(index))}

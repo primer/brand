@@ -396,9 +396,10 @@ describe('Tabs', () => {
     const customLabels = {
       controlsNext: 'Go to next tab',
       controlsPrev: 'Go to previous tab',
+      controlsIndicator: '第{current}タブに移動',
     }
 
-    const {getByRole} = render(
+    const {getByRole, queryByRole} = render(
       <Tabs aria-label="Test tabs" internalAccessibleLabels={customLabels}>
         <Tabs.Item>Tab one</Tabs.Item>
         <Tabs.Item>Tab two</Tabs.Item>
@@ -414,6 +415,8 @@ describe('Tabs', () => {
 
     expect(prevButton).toBeInTheDocument()
     expect(nextButton).toBeInTheDocument()
+    expect(getByRole('button', {name: '第2タブに移動'})).toBeInTheDocument()
+    expect(queryByRole('button', {name: '第2タブに移動 2'})).not.toBeInTheDocument()
   })
 
   it('applies custom className if needed', () => {
