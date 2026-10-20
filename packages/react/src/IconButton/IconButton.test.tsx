@@ -61,17 +61,17 @@ describe('IconButton', () => {
     expect(await axe(container)).toHaveNoViolations()
   })
 
-  it('replaces a custom SVG with the loading indicator and restores it afterward', () => {
+  it('replaces a custom SVG with the spinner and restores it afterward', () => {
     const icon = <svg viewBox="0 0 16 16" className="custom-icon" />
     const {getByRole, getByTestId, queryByTestId, rerender} = render(<IconButton icon={icon} aria-label="Preview" />)
     expect(getByRole('button').querySelector('svg')).toHaveClass('custom-icon')
 
     rerender(<IconButton loading icon={icon} aria-label="Preview" />)
-    expect(getByTestId('IconButton-loading-indicator')).toBeInTheDocument()
+    expect(getByTestId('IconButton-spinner')).toBeInTheDocument()
     expect(getByRole('button').querySelector('.custom-icon')).not.toBeInTheDocument()
 
     rerender(<IconButton icon={icon} aria-label="Preview" />)
-    expect(queryByTestId('IconButton-loading-indicator')).not.toBeInTheDocument()
+    expect(queryByTestId('IconButton-spinner')).not.toBeInTheDocument()
     expect(getByRole('button').querySelector('svg')).toHaveClass('custom-icon', 'IconButton__icon')
     expect(icon.props.className).toBe('custom-icon')
   })
@@ -198,7 +198,7 @@ describe('IconButton', () => {
     expect(button).toHaveAttribute('aria-disabled', 'true')
     expect(button).not.toBeDisabled()
     expect(handleClick).not.toHaveBeenCalled()
-    expect(getByTestId('IconButton-loading-indicator')).toBeInTheDocument()
+    expect(getByTestId('IconButton-spinner')).toHaveClass('Spinner', 'IconButton__spinner')
     expect(getByTestId('IconButton-loading-announcement')).toHaveTextContent('Saving favorite')
   })
 

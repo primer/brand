@@ -1,0 +1,160 @@
+.ToggleSwitch {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: var(--brand-ToggleSwitch-loading-gap);
+  vertical-align: middle;
+}
+
+.ToggleSwitch-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: var(--brand-ToggleSwitch-target-minHeight);
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  appearance: none;
+}
+
+.ToggleSwitch-button:focus-visible {
+  outline: none;
+}
+
+.ToggleSwitch-button:focus-visible .ToggleSwitch-track {
+  outline: var(--brand-ToggleSwitch-focus-width) solid var(--brand-color-focus);
+  outline-offset: var(--brand-ToggleSwitch-focus-offset);
+}
+
+.ToggleSwitch-button--unavailable {
+  cursor: not-allowed;
+}
+
+.ToggleSwitch-track {
+  position: relative;
+  display: block;
+  box-sizing: border-box;
+  border: var(--brand-ToggleSwitch-track-borderWidth) solid var(--brand-ToggleSwitch-track-borderColor);
+  border-radius: var(--brand-ToggleSwitch-track-borderRadius);
+  background: var(--brand-ToggleSwitch-track-bgColor);
+}
+
+.ToggleSwitch-thumb {
+  position: absolute;
+  top: 50%;
+  box-sizing: border-box;
+  border: var(--brand-ToggleSwitch-thumb-borderWidth) solid var(--brand-ToggleSwitch-thumb-borderColor);
+  border-radius: var(--brand-ToggleSwitch-thumb-borderRadius);
+  background: var(--brand-ToggleSwitch-thumb-off-bgColor-rest);
+  transform: translateY(-50%);
+  transition: inset-inline-start var(--brand-animation-duration-faster) var(--brand-animation-easing-default);
+}
+
+.ToggleSwitch-thumb--checked {
+  background: var(--brand-ToggleSwitch-thumb-on-bgColor-rest);
+}
+
+.ToggleSwitch-button:not(.ToggleSwitch-button--unavailable):hover .ToggleSwitch-thumb {
+  background: var(--brand-ToggleSwitch-thumb-off-bgColor-hover);
+}
+
+.ToggleSwitch-button:not(.ToggleSwitch-button--unavailable):hover .ToggleSwitch-thumb--checked {
+  background: var(--brand-ToggleSwitch-thumb-on-bgColor-hover);
+}
+
+.ToggleSwitch-thumb--disabled {
+  background: var(--brand-ToggleSwitch-thumb-disabled-bgColor);
+}
+
+.ToggleSwitch--medium .ToggleSwitch-track {
+  width: var(--brand-ToggleSwitch-track-width-medium);
+  height: var(--brand-ToggleSwitch-track-height-medium);
+}
+
+.ToggleSwitch--small .ToggleSwitch-track {
+  width: var(--brand-ToggleSwitch-track-width-small);
+  height: var(--brand-ToggleSwitch-track-height-small);
+}
+
+.ToggleSwitch--medium .ToggleSwitch-thumb {
+  inset-inline-start: calc(var(--brand-ToggleSwitch-thumb-inset-medium) - var(--brand-ToggleSwitch-track-borderWidth));
+  width: var(--brand-ToggleSwitch-thumb-size-medium);
+  height: var(--brand-ToggleSwitch-thumb-size-medium);
+}
+
+.ToggleSwitch--small .ToggleSwitch-thumb {
+  inset-inline-start: calc(var(--brand-ToggleSwitch-thumb-inset-small) - var(--brand-ToggleSwitch-track-borderWidth));
+  width: var(--brand-ToggleSwitch-thumb-size-small);
+  height: var(--brand-ToggleSwitch-thumb-size-small);
+}
+
+.ToggleSwitch--medium .ToggleSwitch-thumb--checked {
+  inset-inline-start: calc(
+    var(--brand-ToggleSwitch-thumb-inset-medium) - var(--brand-ToggleSwitch-track-borderWidth) +
+      var(--brand-ToggleSwitch-thumb-travel-medium)
+  );
+}
+
+.ToggleSwitch--small .ToggleSwitch-thumb--checked {
+  inset-inline-start: calc(
+    var(--brand-ToggleSwitch-thumb-inset-small) - var(--brand-ToggleSwitch-track-borderWidth) +
+      var(--brand-ToggleSwitch-thumb-travel-small)
+  );
+}
+
+.ToggleSwitch-spinnerSlot {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 var(--brand-ToggleSwitch-loading-size);
+  width: var(--brand-ToggleSwitch-loading-size);
+  height: var(--brand-ToggleSwitch-loading-size);
+  pointer-events: none;
+}
+
+.ToggleSwitch-spinner {
+  color: var(--brand-ToggleSwitch-loading-fgColor);
+  animation-duration: var(--brand-ToggleSwitch-loading-duration);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ToggleSwitch-thumb {
+    transition: none;
+  }
+
+  .ToggleSwitch-spinner {
+    animation: none;
+  }
+}
+
+@media (forced-colors: active) {
+  .ToggleSwitch-track {
+    border-color: ButtonText;
+    background: Canvas;
+  }
+
+  .ToggleSwitch-thumb,
+  .ToggleSwitch-button:not(.ToggleSwitch-button--unavailable):hover .ToggleSwitch-thumb {
+    forced-color-adjust: none;
+    border-color: ButtonText;
+    background: ButtonText;
+  }
+
+  .ToggleSwitch-thumb--checked,
+  .ToggleSwitch-button:not(.ToggleSwitch-button--unavailable):hover .ToggleSwitch-thumb--checked {
+    background: Highlight;
+  }
+
+  .ToggleSwitch-thumb--disabled {
+    background: GrayText;
+  }
+
+  .ToggleSwitch-button:focus-visible .ToggleSwitch-track {
+    outline-color: Highlight;
+  }
+
+  .ToggleSwitch-spinner {
+    color: CanvasText;
+  }
+}

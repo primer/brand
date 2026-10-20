@@ -84,23 +84,19 @@
   height: var(--brand-IconButton-icon-size-large);
 }
 
-.IconButton__loadingIndicator.IconButton__loadingIndicator {
+.IconButton__spinner.IconButton__spinner {
   display: block;
-  box-sizing: border-box;
   width: var(--brand-IconButton-icon-size-medium);
   height: var(--brand-IconButton-icon-size-medium);
-  border: var(--brand-borderWidth-thin) solid currentcolor;
-  border-inline-end-color: transparent;
-  border-radius: 50%;
-  animation: IconButton-spin var(--brand-IconButton-loadingIndicator-animationDuration-default) linear infinite;
+  animation-duration: var(--brand-IconButton-spinner-animationDuration-default);
 }
 
-.IconButton--small .IconButton__loadingIndicator {
+.IconButton--small .IconButton__spinner {
   width: var(--brand-IconButton-icon-size-small);
   height: var(--brand-IconButton-icon-size-small);
 }
 
-.IconButton--large .IconButton__loadingIndicator {
+.IconButton--large .IconButton__spinner {
   width: var(--brand-IconButton-icon-size-large);
   height: var(--brand-IconButton-icon-size-large);
 }
@@ -117,26 +113,19 @@
   border: 0;
 }
 
-@keyframes IconButton-spin {
-  to {
-    transform: rotate(360deg);
-  }
-}
-
 @media (forced-colors: active) {
   .IconButton--inactive {
     color: GrayText;
     border-color: GrayText;
   }
 
-  .IconButton__loadingIndicator {
-    border-color: ButtonText;
-    border-inline-end-color: transparent;
+  .IconButton__spinner {
+    color: ButtonText;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .IconButton__loadingIndicator {
-    animation-duration: var(--brand-IconButton-loadingIndicator-animationDuration-reducedMotion);
+  .IconButton__spinner {
+    animation-duration: var(--brand-IconButton-spinner-animationDuration-reducedMotion);
   }
 }

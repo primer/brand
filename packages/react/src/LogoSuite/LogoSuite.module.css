@@ -73,21 +73,25 @@
   display: block;
 }
 
-.LogoSuite__logobar--variant-muted svg,
-.LogoSuite__logobar--variant-muted path {
+.LogoSuite__logobar--has-linked-logos :where(a) {
+  color: var(--brand-color-text-default);
+}
+
+.LogoSuite__logobar--variant-muted:where(:not(.LogoSuite__logobar--has-linked-logos)) svg,
+.LogoSuite__logobar--variant-muted:where(:not(.LogoSuite__logobar--has-linked-logos)) path {
   fill: var(--brand-LogoSuite-color-logo-muted);
 }
 
-.LogoSuite__logobar--variant-muted img {
+.LogoSuite__logobar--variant-muted:where(:not(.LogoSuite__logobar--has-linked-logos)) img {
   filter: var(--brand-LogoSuite-color-logo-filter-muted);
 }
 
-.LogoSuite__logobar--variant-emphasis svg,
-.LogoSuite__logobar--variant-emphasis path {
+.LogoSuite__logobar--variant-emphasis:where(:not(.LogoSuite__logobar--has-linked-logos)) svg,
+.LogoSuite__logobar--variant-emphasis:where(:not(.LogoSuite__logobar--has-linked-logos)) path {
   fill: var(--brand-LogoSuite-color-logo-emphasis);
 }
 
-.LogoSuite__logobar--variant-emphasis img {
+.LogoSuite__logobar--variant-emphasis:where(:not(.LogoSuite__logobar--has-linked-logos)) img {
   filter: var(--brand-LogoSuite-color-logo-filter-emphasis);
 }
 
@@ -222,45 +226,88 @@
   fill: var(--brand-color-text-muted);
 }
 
-/* Gridline expressive variant styles */
+/* Shared gridline variant styles */
+.LogoSuite--gridline,
 .LogoSuite--gridline-expressive {
   padding: 0;
 }
 
+.LogoSuite--gridline .LogoSuite__content,
 .LogoSuite--gridline-expressive .LogoSuite__content {
   padding-inline: 0;
   gap: 0;
 }
 
-.LogoSuite--gridline-expressive .LogoSuite__textContainer {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: var(--base-size-20);
-}
-
-.LogoSuite--gridline-expressive .LogoSuite__logobar {
-  margin-block-start: auto;
-}
+.LogoSuite--gridline .LogoSuite__textContainer,
+.LogoSuite--gridline-expressive .LogoSuite__textContainer,
+.LogoSuite--gridline .LogoSuite__logobarContainer,
 .LogoSuite--gridline-expressive .LogoSuite__logobarContainer {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: var(--base-size-32) var(--base-size-20) var(--base-size-32);
 }
 
-.LogoSuite--gridline-expressive .LogoSuite__logobar,
-.LogoSuite--gridline-expressive .LogoSuite__logobar--has-marquee {
-  max-width: none;
-  width: 100%;
+.LogoSuite--gridline .LogoSuite__logobar,
+.LogoSuite--gridline-expressive .LogoSuite__logobar {
+  margin-block-start: auto;
+  padding-block-start: 0;
 }
 
+.LogoSuite--gridline .LogoSuite__heading + .LogoSuite__description,
 .LogoSuite--gridline-expressive .LogoSuite__heading + .LogoSuite__description {
   padding-block-start: var(--base-size-8);
 }
 
-.LogoSuite--gridline-expressive .LogoSuite__logobar {
-  padding-block-start: 0;
+.LogoSuite--gridline .LogoSuite__logobar,
+.LogoSuite--gridline .LogoSuite__logobar--has-marquee,
+.LogoSuite--gridline-expressive .LogoSuite__logobar,
+.LogoSuite--gridline-expressive .LogoSuite__logobar--has-marquee {
+  width: 100%;
+  max-width: none;
+}
+
+/* Gridline variant styles */
+.LogoSuite--gridline .LogoSuite__textContainer {
+  padding: var(--base-size-40) var(--base-size-20) 0;
+}
+
+.LogoSuite--gridline .LogoSuite__logobarContainer {
+  padding: var(--base-size-40) var(--base-size-20) var(--base-size-48);
+}
+
+@media screen and (min-width: 48rem) {
+  .LogoSuite--gridline .LogoSuite__textContainer {
+    padding: var(--base-size-48) var(--base-size-40) 0;
+  }
+
+  .LogoSuite--gridline .LogoSuite__logobarContainer {
+    padding: var(--base-size-40) var(--base-size-40) var(--base-size-64);
+  }
+}
+
+@media screen and (min-width: 64rem) {
+  .LogoSuite--gridline .LogoSuite__textContainer {
+    padding: var(--base-size-48) var(--base-size-64) 0;
+  }
+
+  .LogoSuite--gridline .LogoSuite__logobarContainer {
+    padding: var(--base-size-48) var(--base-size-64) var(--base-size-64);
+  }
+}
+
+@media screen and (min-width: 80rem) {
+  .LogoSuite--gridline .LogoSuite__content {
+    border-inline: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
+  }
+}
+
+/* Gridline expressive variant styles */
+.LogoSuite--gridline-expressive .LogoSuite__textContainer {
+  padding: var(--base-size-20);
+}
+
+.LogoSuite--gridline-expressive .LogoSuite__logobarContainer {
+  padding: var(--base-size-32) var(--base-size-20) var(--base-size-32);
 }
 
 @media screen and (min-width: 48rem) {
