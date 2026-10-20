@@ -63,7 +63,9 @@ describe('TestimonialGroup', () => {
   })
 
   it('renders one accessible slide and keeps inactive links out of the tab order', () => {
-    const {getAllByRole, getByRole, queryByRole, getByText} = render(<TestimonialGroup>{children}</TestimonialGroup>)
+    const {container, getAllByRole, getByRole, queryByRole, getByText} = render(
+      <TestimonialGroup>{children}</TestimonialGroup>,
+    )
     expect(getByRole('region', {name: 'Testimonials'})).toHaveAttribute('aria-roledescription', 'carousel')
     expect(getByRole('region', {name: 'Testimonials'})).toHaveAttribute('data-testid', TestimonialGroup.testIds.root)
     expect(
@@ -72,6 +74,10 @@ describe('TestimonialGroup', () => {
     expect(getByRole('group', {name: 'Testimonial 1 of 3'})).toBeInTheDocument()
     expect(queryByRole('link', {name: 'Read story'})).not.toBeInTheDocument()
     expect(getByText('Read story').closest('[inert]')).not.toBeNull()
+    const slides = container.querySelectorAll('.TestimonialGroup__slide')
+    expect(slides[0]).not.toHaveAttribute('inert')
+    expect(slides[1]).toHaveAttribute('inert')
+    expect(slides[2]).toHaveAttribute('inert')
     expect(getByText('Second quote').closest('figure')).toHaveClass('TestimonialGroup__testimonial--out')
   })
 

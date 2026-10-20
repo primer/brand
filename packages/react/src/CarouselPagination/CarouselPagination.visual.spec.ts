@@ -76,17 +76,21 @@ test.describe('Visual Comparison: CarouselPagination', () => {
       await expect(page).toHaveScreenshot({fullPage: true})
     })
   })
-  test('CarouselPagination / Many Items', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-carouselpagination-features--many-items&viewMode=story',
-      {waitUntil: 'networkidle'},
-    )
-    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
+  // eslint-disable-next-line i18n-text/no-en
+  test.describe('Mobile viewport test for Many Items Narrow', () => {
+    test.use({viewport: {width: 360, height: 800}})
+    test('CarouselPagination / Many Items Narrow', async ({page}) => {
+      await page.goto(
+        'http://localhost:6006/iframe.html?args=&id=components-carouselpagination-features--many-items-narrow&viewMode=story',
+        {waitUntil: 'networkidle'},
+      )
+      await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+      await page.waitForTimeout(500)
+      await expect(page).toHaveScreenshot({fullPage: true})
+    })
   })
-
   test('CarouselPagination / Custom Labels', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-carouselpagination-features--custom-labels&viewMode=story',

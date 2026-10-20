@@ -140,6 +140,17 @@ const Root = forwardRef<HTMLDivElement, TestimonialGroupProps>(
     }, [testimonials, view.index])
 
     useEffect(() => {
+      const slides = slidesRef.current?.children
+      if (!slides) return
+
+      for (const [index, slide] of Array.from(slides).entries()) {
+        // Workaround to avoid React 18 / 19 type and rendering mismatches with the `inert` attribute.
+        // TODO: Move back to JSX when React 19 is fully adopted in Dotcom.
+        slide.toggleAttribute('inert', index !== view.index)
+      }
+    }, [testimonials.length, view.index])
+
+    useEffect(() => {
       const root = rootRef.current
       if (!root || testimonials.length === 0) return
       let announceOnCommit = false
@@ -283,7 +294,6 @@ const Root = forwardRef<HTMLDivElement, TestimonialGroupProps>(
                 aria-roledescription={slideRoleDescription}
                 aria-label={formatLabel(slideLabel, {current: index + 1, total: testimonials.length})}
                 aria-hidden={index !== view.index || undefined}
-                inert={index !== view.index}
               >
                 {cloneElement(testimonial, {
                   variant: testimonial.props.variant ?? 'minimal',

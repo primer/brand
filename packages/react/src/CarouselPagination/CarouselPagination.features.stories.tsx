@@ -56,7 +56,7 @@ export const Narrow: Story = {
   },
 }
 
-export const ManyItems: Story = {
+export const ManyItemsNarrow: Story = {
   globals: {viewport: {value: 'iphone5'}},
   render: function Render() {
     const [activeIndex, setActiveIndex] = React.useState(0)
