@@ -16,10 +16,17 @@ const testIds = {
   root: 'CarouselPagination',
 }
 
-type ItemAttributes = Omit<
+export type CarouselPaginationItemAttributes = Omit<
   React.ButtonHTMLAttributes<HTMLButtonElement>,
   'type' | 'disabled' | 'aria-disabled' | 'aria-current'
 > & {[attribute: `data-${string}`]: string | number | boolean | undefined}
+
+export type CarouselPaginationLabels = {
+  previous?: string
+  next?: string
+  /** Complete selector label using {current} and {total}. */
+  item?: string
+}
 
 export type CarouselPaginationProps = BaseProps<HTMLDivElement> &
   Omit<React.HTMLAttributes<HTMLDivElement>, 'children' | 'onChange'> & {
@@ -32,14 +39,9 @@ export type CarouselPaginationProps = BaseProps<HTMLDivElement> &
     /** Enables looping navigation between the first and last items. */
     loop?: boolean
     /** Accessible control labels for localization. */
-    labels?: {
-      previous?: string
-      next?: string
-      /** Prefix for numbered item labels. */
-      item?: string
-    }
+    labels?: CarouselPaginationLabels
     /** Builds attributes for each item selector. */
-    itemAttributesBuilder?: (index: number) => ItemAttributes
+    itemAttributesBuilder?: (index: number) => CarouselPaginationItemAttributes
     /** Accessible name for the controls. */
     'aria-label': string
     'data-testid'?: string
@@ -48,7 +50,7 @@ export type CarouselPaginationProps = BaseProps<HTMLDivElement> &
 const defaultLabels = {
   previous: 'Previous item',
   next: 'Next item',
-  item: 'Go to item',
+  item: 'Go to item {current}',
 }
 
 function CarouselPaginationBase(
@@ -67,6 +69,10 @@ function CarouselPaginationBase(
 ) {
   const indicatorsRef = useRef<HTMLDivElement>(null)
   const currentIndex = Math.max(0, Math.min(Number.isInteger(activeIndex) ? activeIndex : 0, itemCount - 1))
+  const formatItemLabel = (template: string, index: number) =>
+    template.replace(/\{(current|total)\}/g, (placeholder, name) =>
+      String(name === 'current' ? index + 1 : name === 'total' ? itemCount : placeholder),
+    )
 
   useIsomorphicLayoutEffect(() => {
     const indicators = indicatorsRef.current
@@ -137,8 +143,8 @@ function CarouselPaginationBase(
         rounded
         inactive={previousUnavailable}
         className={clsx(
-          styles.CarouselPagination__control,
-          styles[`CarouselPagination__control--${previousUnavailable ? 'inactive' : 'available'}`],
+          styles.CarouselPagination__arrowButton,
+          styles[`CarouselPagination__arrowButton--${previousUnavailable ? 'inactive' : 'available'}`],
         )}
         aria-label={labels?.previous ?? defaultLabels.previous}
         onClick={() => {
@@ -165,7 +171,7 @@ function CarouselPaginationBase(
                 isActive && styles['CarouselPagination__indicator--active'],
                 itemClassName,
               )}
-              aria-label={itemAttributes['aria-label'] ?? `${labels?.item ?? defaultLabels.item} ${index + 1}`}
+              aria-label={itemAttributes['aria-label'] ?? formatItemLabel(labels?.item ?? defaultLabels.item, index)}
               aria-current={isActive ? 'true' : undefined}
               aria-disabled={isActive || undefined}
               onClick={event => {
@@ -184,8 +190,8 @@ function CarouselPaginationBase(
         rounded
         inactive={nextUnavailable}
         className={clsx(
-          styles.CarouselPagination__control,
-          styles[`CarouselPagination__control--${nextUnavailable ? 'inactive' : 'available'}`],
+          styles.CarouselPagination__arrowButton,
+          styles[`CarouselPagination__arrowButton--${nextUnavailable ? 'inactive' : 'available'}`],
         )}
         aria-label={labels?.next ?? defaultLabels.next}
         onClick={() => {
@@ -199,8 +205,7 @@ function CarouselPaginationBase(
 const Root = forwardRef<HTMLDivElement, CarouselPaginationProps>(CarouselPaginationBase)
 
 /**
- * @internal
- * Use the CarouselPagination to create a pagination control for carousels.
- * Currently a private component and not publicly documented.
+ * Use CarouselPagination to navigate a collection of items.
+ * @see https://primer.style/brand/components/CarouselPagination/
  */
 export const CarouselPagination = Object.assign(Root, {testIds})

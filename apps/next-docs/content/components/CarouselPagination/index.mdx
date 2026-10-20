@@ -1,0 +1,98 @@
+---
+title: Carousel pagination
+description: Use carousel pagination to navigate a collection of items.
+keywords: ['carousel', 'pagination', 'navigation', 'controls']
+show-tabs: false
+tab-label: React
+ready: true
+source: https://github.com/primer/brand/blob/main/packages/react/src/CarouselPagination/CarouselPagination.tsx
+storybook: '/brand/storybook/?path=/story/components-carouselpagination--playground'
+---
+
+```js
+import {CarouselPagination} from '@primer/react-brand'
+```
+
+## Examples
+
+### Default
+
+```jsx filename="noinline"
+const App = () => {
+  const [activeIndex, setActiveIndex] = React.useState(0)
+
+  return (
+    <CarouselPagination
+      aria-label="Choose featured story"
+      itemCount={5}
+      activeIndex={activeIndex}
+      onChange={setActiveIndex}
+    />
+  )
+}
+
+render(<App />)
+```
+
+### Looping navigation
+
+Use `loop` to let the previous and next controls wrap between the first and last items.
+
+```jsx filename="noinline"
+const App = () => {
+  const [activeIndex, setActiveIndex] = React.useState(0)
+
+  return (
+    <CarouselPagination
+      aria-label="Choose featured story"
+      itemCount={5}
+      activeIndex={activeIndex}
+      loop
+      onChange={setActiveIndex}
+    />
+  )
+}
+
+render(<App />)
+```
+
+### Accessible labels
+
+Provide translated labels for both arrow controls and the numbered item selectors.
+
+```jsx filename="noinline"
+const App = () => {
+  const [activeIndex, setActiveIndex] = React.useState(0)
+
+  return (
+    <CarouselPagination
+      aria-label="Elegir testimonio"
+      itemCount={3}
+      activeIndex={activeIndex}
+      labels={{
+        previous: 'Testimonio anterior',
+        next: 'Testimonio siguiente',
+        item: 'Testimonio {current} de {total}',
+      }}
+      onChange={setActiveIndex}
+    />
+  )
+}
+
+render(<App />)
+```
+
+## Component props
+
+| Name                    | Type                                                  | Default | Description                                                                |
+| :---------------------- | :---------------------------------------------------- | :------ | :------------------------------------------------------------------------- |
+| `itemCount`             | `number`                                              |         | Total number of carousel items. Controls are hidden when fewer than two.   |
+| `activeIndex`           | `number`                                              |         | Zero-based active item index.                                              |
+| `onChange`              | `(activeIndex: number) => void`                       |         | Requests a new active index. The parent remains responsible for selection. |
+| `loop`                  | `boolean`                                             | `false` | Wraps previous and next navigation at the collection boundaries.           |
+| `labels`                | `CarouselPaginationLabels`                            | English | Accessible labels for arrow controls and the numbered selectors.           |
+| `itemAttributesBuilder` | `(index: number) => CarouselPaginationItemAttributes` |         | Adds attributes or a composed click handler to an item selector.           |
+| `aria-label`            | `string`                                              |         | Required accessible name for the complete control group.                   |
+| `className`             | `string`                                              |         | Custom root class.                                                         |
+| `id`                    | `string`                                              |         | Custom root ID.                                                            |
+| `ref`                   | `React.Ref<HTMLDivElement>`                           |         | Ref to the root element.                                                   |

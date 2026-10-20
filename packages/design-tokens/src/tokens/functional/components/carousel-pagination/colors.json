@@ -5,18 +5,18 @@
       "dark": "var(--brand-color-canvas-subtle)"
     },
     "indicator": {
-      "fgColor": {
+      "bgColor": {
         "value": "var(--base-color-scale-gray-3)",
-        "dark": "var(--base-color-scale-gray-3)"
+        "dark": "var(--base-color-scale-gray-4)"
       },
       "active": {
-        "fgColor": {
+        "bgColor": {
           "value": "var(--base-color-scale-gray-6)",
           "dark": "#77827a"
         }
       }
     },
-    "control": {
+    "arrowButton": {
       "fgColor": {
         "value": "var(--base-color-scale-black-0)",
         "dark": "var(--brand-color-text-default)"
@@ -24,6 +24,12 @@
       "borderColor": {
         "value": "var(--base-color-scale-gray-2)",
         "dark": "var(--base-color-scale-gray-6)"
+      },
+      "inactive": {
+        "fgColor": {
+          "value": "var(--base-color-scale-gray-3)",
+          "dark": "var(--base-color-scale-gray-3)"
+        }
       }
     }
   }

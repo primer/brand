@@ -14,7 +14,7 @@ import {useTabs} from '../hooks/useTabs'
 import {useProvidedRefOrCreate} from '../hooks/useRef'
 import {BaseProps} from '../component-helpers'
 import {Animate, AnimationProvider, AnimationVariants} from '../animation'
-import {CarouselPagination} from '../CarouselPagination/CarouselPagination'
+import {CarouselPagination} from '../CarouselPagination'
 
 /**
  * Design tokens
@@ -285,7 +285,9 @@ const _TabsRoot = forwardRef<HTMLDivElement, TabsProps>(
               labels={{
                 previous: internalAccessibleLabels.controlsPrev,
                 next: internalAccessibleLabels.controlsNext,
-                item: internalAccessibleLabels.controlsIndicator ?? defaultInternalAccessibleLabels.controlsIndicator,
+                item: `${
+                  internalAccessibleLabels.controlsIndicator ?? defaultInternalAccessibleLabels.controlsIndicator
+                } {current}`,
               }}
               itemAttributesBuilder={index => ({'aria-controls': tabs[index].props['aria-controls']})}
               onChange={index => activateTab(String(index))}

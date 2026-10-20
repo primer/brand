@@ -74,7 +74,11 @@ export const CustomLabels: Story = {
         aria-label="Choose testimonial"
         itemCount={5}
         activeIndex={activeIndex}
-        labels={{previous: 'Previous testimonial', next: 'Next testimonial', item: 'Choose testimonial'}}
+        labels={{
+          previous: 'Previous testimonial',
+          next: 'Next testimonial',
+          item: 'Testimonial {current} of {total}',
+        }}
         onChange={setActiveIndex}
       />
     )

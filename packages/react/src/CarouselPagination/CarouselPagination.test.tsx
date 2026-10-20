@@ -192,7 +192,11 @@ describe('CarouselPagination', () => {
         itemCount={3}
         activeIndex={0}
         onChange={onChange}
-        labels={{previous: 'Previous testimonial', next: 'Next testimonial', item: 'Choose testimonial'}}
+        labels={{
+          previous: 'Previous testimonial',
+          next: 'Next testimonial',
+          item: 'Testimonial {current} of {total}',
+        }}
         itemAttributesBuilder={index => ({
           'aria-controls': `testimonial-${index}`,
           'data-analytics-index': index,
@@ -201,7 +205,7 @@ describe('CarouselPagination', () => {
         })}
       />,
     )
-    const indicator = getByRole('button', {name: 'Choose testimonial 2'})
+    const indicator = getByRole('button', {name: 'Testimonial 2 of 3'})
     expect(indicator).toHaveAttribute('aria-controls', 'testimonial-1')
     expect(indicator).toHaveAttribute('data-analytics-index', '1')
     expect(indicator).toHaveClass('custom-indicator')
@@ -209,6 +213,20 @@ describe('CarouselPagination', () => {
     expect(onClick).toHaveBeenCalledTimes(1)
     expect(onChange).toHaveBeenLastCalledWith(1)
     expect(getByRole('button', {name: 'Previous testimonial'})).toHaveAttribute('aria-disabled', 'true')
+  })
+
+  it('formats complete item labels with reordered and repeated placeholders', () => {
+    const {getByRole} = render(
+      <CarouselPagination
+        aria-label="Choose item"
+        itemCount={3}
+        activeIndex={0}
+        labels={{item: '{total} items; choose {current}; repeat {current}; {unknown}'}}
+        onChange={jest.fn()}
+      />,
+    )
+
+    expect(getByRole('button', {name: '3 items; choose 2; repeat 2; {unknown}'})).toBeInTheDocument()
   })
 
   it('forwards root attributes and refs without introducing a navigation landmark', async () => {

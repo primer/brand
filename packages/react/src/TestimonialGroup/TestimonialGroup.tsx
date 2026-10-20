@@ -1,7 +1,7 @@
 import React, {Children, cloneElement, forwardRef, isValidElement, useEffect, useMemo, useRef, useState} from 'react'
 import {clsx} from 'clsx'
 import {Testimonial, type TestimonialProps} from '../Testimonial'
-import {CarouselPagination} from '../CarouselPagination/CarouselPagination'
+import {CarouselPagination} from '../CarouselPagination'
 import {useReducedMotion} from '../hooks/useReducedMotion'
 import {useProvidedRefOrCreate} from '../hooks/useRef'
 import useIsomorphicLayoutEffect from '../hooks/useIsomorphicLayoutEffect'

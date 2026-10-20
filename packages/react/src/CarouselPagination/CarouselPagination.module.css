@@ -11,35 +11,35 @@
   background: var(--brand-CarouselPagination-bgColor);
 }
 
-.CarouselPagination .CarouselPagination__control {
+.CarouselPagination .CarouselPagination__arrowButton {
   width: calc(var(--base-size-28) + var(--base-size-2));
   min-width: calc(var(--base-size-28) + var(--base-size-2));
   height: calc(var(--base-size-28) + var(--base-size-2));
   min-height: calc(var(--base-size-28) + var(--base-size-2));
   padding: 0;
-  color: var(--brand-CarouselPagination-control-fgColor);
+  color: var(--brand-CarouselPagination-arrowButton-fgColor);
   background: var(--brand-color-canvas-default);
-  border: var(--brand-borderWidth-thin) solid var(--brand-CarouselPagination-control-borderColor);
+  border: var(--brand-borderWidth-thin) solid var(--brand-CarouselPagination-arrowButton-borderColor);
   box-shadow: none;
   backdrop-filter: none;
 }
 
-.CarouselPagination .CarouselPagination__control--inactive,
-.CarouselPagination .CarouselPagination__control--inactive:hover {
-  color: var(--brand-CarouselPagination-indicator-fgColor);
+.CarouselPagination .CarouselPagination__arrowButton--inactive,
+.CarouselPagination .CarouselPagination__arrowButton--inactive:hover {
+  color: var(--brand-CarouselPagination-arrowButton-inactive-fgColor);
   background: var(--brand-color-canvas-default);
   border-color: transparent;
 }
 
-.CarouselPagination .CarouselPagination__control svg {
+.CarouselPagination .CarouselPagination__arrowButton svg {
   width: var(--base-size-16);
   height: var(--base-size-16);
 }
 
 @media (hover: hover) and (pointer: fine) {
-  .CarouselPagination .CarouselPagination__control--available:hover {
+  .CarouselPagination .CarouselPagination__arrowButton--available:hover {
     background: var(--brand-CarouselPagination-bgColor);
-    border-color: var(--brand-CarouselPagination-control-borderColor);
+    border-color: var(--brand-CarouselPagination-arrowButton-borderColor);
     box-shadow: none;
   }
 }
@@ -64,7 +64,7 @@
   padding: 0;
   border: 0;
   border-radius: var(--brand-borderRadius-full);
-  background: var(--brand-CarouselPagination-indicator-fgColor);
+  background: var(--brand-CarouselPagination-indicator-bgColor);
   cursor: pointer;
   transition: width var(--brand-animation-duration-fast) cubic-bezier(0.4, 0, 0.2, 1),
     background-color var(--brand-animation-duration-fast) cubic-bezier(0.4, 0, 0.2, 1);
@@ -82,7 +82,7 @@
 
 .CarouselPagination__indicator--active {
   width: calc(var(--base-size-6) * 2.5);
-  background: var(--brand-CarouselPagination-indicator-active-fgColor);
+  background: var(--brand-CarouselPagination-indicator-active-bgColor);
 }
 
 .CarouselPagination__indicator:focus-visible {
@@ -90,7 +90,7 @@
   outline-offset: var(--base-size-4);
 }
 
-.CarouselPagination__control:focus-visible {
+.CarouselPagination__arrowButton:focus-visible {
   outline: var(--brand-borderWidth-thick) solid var(--brand-color-focus);
   outline-offset: var(--base-size-2);
 }

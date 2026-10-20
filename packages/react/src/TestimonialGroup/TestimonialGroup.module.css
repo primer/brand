@@ -1,7 +1,7 @@
 .TestimonialGroup {
   width: 100%;
   min-width: 0;
-  padding-block: 56px;
+  padding-block: calc(var(--base-size-48) + var(--base-size-8));
   padding-inline: var(--base-size-32);
 }
 
