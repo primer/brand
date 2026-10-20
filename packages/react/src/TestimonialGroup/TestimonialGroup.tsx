@@ -148,7 +148,7 @@ const Root = forwardRef<HTMLDivElement, TestimonialGroupProps>(
         // TODO: Move back to JSX when React 19 is fully adopted in Dotcom.
         slide.toggleAttribute('inert', index !== view.index)
       }
-    }, [testimonials.length, view.index])
+    }, [testimonials, view.index])
 
     useEffect(() => {
       const root = rootRef.current

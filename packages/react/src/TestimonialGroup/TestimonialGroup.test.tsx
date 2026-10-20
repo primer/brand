@@ -81,23 +81,6 @@ describe('TestimonialGroup', () => {
     expect(getByText('Second quote').closest('figure')).toHaveClass('TestimonialGroup__testimonial--out')
   })
 
-  it('configures child classes without replacing consumer classes', () => {
-    const {getByRole} = render(
-      <TestimonialGroup>
-        <Testimonial className="custom-testimonial">
-          <Testimonial.Quote>First quote</Testimonial.Quote>
-          <Testimonial.Name>First author</Testimonial.Name>
-        </Testimonial>
-      </TestimonialGroup>,
-    )
-
-    expect(getByRole('figure')).toHaveClass(
-      'Testimonial--variant-minimal',
-      'TestimonialGroup__testimonial',
-      'custom-testimonial',
-    )
-  })
-
   it('supports label overrides and preserves unspecified defaults', async () => {
     mockUseReducedMotion.mockReturnValue(true)
     const user = userEvent.setup()
@@ -138,6 +121,23 @@ describe('TestimonialGroup', () => {
     expect(getByRole('figure')).toHaveClass(`Testimonial--variant-${variant}`)
     expect(getByRole('region').firstElementChild?.classList.contains('TestimonialGroup__content--expressive')).toBe(
       variant === 'expressive',
+    )
+  })
+
+  it('forwards custom classes correctly', () => {
+    const {getByRole} = render(
+      <TestimonialGroup>
+        <Testimonial className="custom-testimonial">
+          <Testimonial.Quote>First quote</Testimonial.Quote>
+          <Testimonial.Name>First author</Testimonial.Name>
+        </Testimonial>
+      </TestimonialGroup>,
+    )
+
+    expect(getByRole('figure')).toHaveClass(
+      'Testimonial--variant-minimal',
+      'TestimonialGroup__testimonial',
+      'custom-testimonial',
     )
   })
 
@@ -186,6 +186,20 @@ describe('TestimonialGroup', () => {
       expect(getByRole('button', {name: 'Go to testimonial 2'})).toBeInTheDocument()
     },
   )
+
+  it('updates inert slides when keyed testimonials are reordered', () => {
+    const {getByText, rerender} = render(<TestimonialGroup>{children}</TestimonialGroup>)
+    const firstSlide = getByText('First quote').closest('[aria-roledescription="slide"]')
+    const secondSlide = getByText('Second quote').closest('[aria-roledescription="slide"]')
+
+    expect(firstSlide).not.toHaveAttribute('inert')
+    expect(secondSlide).toHaveAttribute('inert')
+
+    rerender(<TestimonialGroup>{[children[1], children[0], children[2]]}</TestimonialGroup>)
+
+    expect(secondSlide).not.toHaveAttribute('inert')
+    expect(firstSlide).toHaveAttribute('inert')
+  })
 
   it.each([undefined, '', <em key="author">Second author</em>])(
     'announces the complete slide phrase when the author is not plain text: %s',
