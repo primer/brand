@@ -30,6 +30,18 @@ code.hljs {
   color: var(--base-color-scale-pink-2) !important;
 }
 
+@media (prefers-color-scheme: dark) {
+  [data-color-mode='auto'] .hljs-doctag,
+  [data-color-mode='auto'] .hljs-keyword,
+  [data-color-mode='auto'] .hljs-meta .hljs-keyword,
+  [data-color-mode='auto'] .hljs-template-tag,
+  [data-color-mode='auto'] .hljs-template-variable,
+  [data-color-mode='auto'] .hljs-type,
+  [data-color-mode='auto'] .hljs-variable.language_ {
+    color: var(--base-color-scale-pink-2) !important;
+  }
+}
+
 [data-color-mode='light'] .hljs-doctag,
 [data-color-mode='light'] .hljs-keyword,
 [data-color-mode='light'] .hljs-meta .hljs-keyword,
@@ -41,6 +53,18 @@ code.hljs {
   color: var(--base-color-scale-pink-5) !important;
 }
 
+@media (prefers-color-scheme: light) {
+  [data-color-mode='auto'] .hljs-doctag,
+  [data-color-mode='auto'] .hljs-keyword,
+  [data-color-mode='auto'] .hljs-meta .hljs-keyword,
+  [data-color-mode='auto'] .hljs-template-tag,
+  [data-color-mode='auto'] .hljs-template-variable,
+  [data-color-mode='auto'] .hljs-type,
+  [data-color-mode='auto'] .hljs-variable.language_ {
+    color: var(--base-color-scale-pink-5) !important;
+  }
+}
+
 [data-color-mode='dark'] .hljs-title,
 [data-color-mode='dark'] .hljs-title.class_,
 [data-color-mode='dark'] .hljs-title.class_.inherited__,
@@ -49,12 +73,30 @@ code.hljs {
   color: var(--base-color-scale-yellow-0) !important;
 }
 
+@media (prefers-color-scheme: dark) {
+  [data-color-mode='auto'] .hljs-title,
+  [data-color-mode='auto'] .hljs-title.class_,
+  [data-color-mode='auto'] .hljs-title.class_.inherited__,
+  [data-color-mode='auto'] .hljs-title.function_ {
+    color: var(--base-color-scale-yellow-0) !important;
+  }
+}
+
 [data-color-mode='light'] .hljs-title,
 [data-color-mode='light'] .hljs-title.class_,
 [data-color-mode='light'] .hljs-title.class_.inherited__,
 [data-color-mode='light'] .hljs-title.function_ {
   /* prettylights-syntax-entity */
   color: var(--base-color-scale-yellow-3) !important;
+}
+
+@media (prefers-color-scheme: light) {
+  [data-color-mode='auto'] .hljs-title,
+  [data-color-mode='auto'] .hljs-title.class_,
+  [data-color-mode='auto'] .hljs-title.class_.inherited__,
+  [data-color-mode='auto'] .hljs-title.function_ {
+    color: var(--base-color-scale-yellow-3) !important;
+  }
 }
 
 [data-color-mode='dark'] .hljs-attr,
@@ -71,6 +113,21 @@ code.hljs {
   color: var(--base-color-scale-blue-3) !important;
 }
 
+@media (prefers-color-scheme: dark) {
+  [data-color-mode='auto'] .hljs-attr,
+  [data-color-mode='auto'] .hljs-attribute,
+  [data-color-mode='auto'] .hljs-literal,
+  [data-color-mode='auto'] .hljs-meta,
+  [data-color-mode='auto'] .hljs-number,
+  [data-color-mode='auto'] .hljs-operator,
+  [data-color-mode='auto'] .hljs-variable,
+  [data-color-mode='auto'] .hljs-selector-attr,
+  [data-color-mode='auto'] .hljs-selector-class,
+  [data-color-mode='auto'] .hljs-selector-id {
+    color: var(--base-color-scale-blue-3) !important;
+  }
+}
+
 [data-color-mode='light'] .hljs-attr,
 [data-color-mode='light'] .hljs-attribute,
 [data-color-mode='light'] .hljs-literal,
@@ -85,6 +142,21 @@ code.hljs {
   color: var(--base-color-scale-blue-5) !important;
 }
 
+@media (prefers-color-scheme: light) {
+  [data-color-mode='auto'] .hljs-attr,
+  [data-color-mode='auto'] .hljs-attribute,
+  [data-color-mode='auto'] .hljs-literal,
+  [data-color-mode='auto'] .hljs-meta,
+  [data-color-mode='auto'] .hljs-number,
+  [data-color-mode='auto'] .hljs-operator,
+  [data-color-mode='auto'] .hljs-variable,
+  [data-color-mode='auto'] .hljs-selector-attr,
+  [data-color-mode='auto'] .hljs-selector-class,
+  [data-color-mode='auto'] .hljs-selector-id {
+    color: var(--base-color-scale-blue-5) !important;
+  }
+}
+
 [data-color-mode='dark'] .hljs-regexp,
 [data-color-mode='dark'] .hljs-string,
 [data-color-mode='dark'] .hljs-meta .hljs-string {
@@ -92,11 +164,27 @@ code.hljs {
   color: var(--base-color-scale-teal-2) !important;
 }
 
+@media (prefers-color-scheme: dark) {
+  [data-color-mode='auto'] .hljs-regexp,
+  [data-color-mode='auto'] .hljs-string,
+  [data-color-mode='auto'] .hljs-meta .hljs-string {
+    color: var(--base-color-scale-teal-2) !important;
+  }
+}
+
 [data-color-mode='light'] .hljs-regexp,
 [data-color-mode='light'] .hljs-string,
 [data-color-mode='light'] .hljs-meta .hljs-string {
   /* prettylights-syntax-string */
   color: var(--base-color-scale-teal-5) !important;
+}
+
+@media (prefers-color-scheme: light) {
+  [data-color-mode='auto'] .hljs-regexp,
+  [data-color-mode='auto'] .hljs-string,
+  [data-color-mode='auto'] .hljs-meta .hljs-string {
+    color: var(--base-color-scale-teal-5) !important;
+  }
 }
 
 .hljs-built_in,

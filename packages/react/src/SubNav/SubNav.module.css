@@ -26,6 +26,13 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+@media (prefers-color-scheme: dark) {
+  [data-color-mode='auto'] .SubNav {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
 .SubNav__heading,
 .SubNav__subHeading {
   display: block;
