@@ -55,7 +55,7 @@
 .Testimonial--variant-default .Testimonial__quoteWrapper {
   display: flex;
   flex-direction: column;
-  gap: var(--base-size-16);
+  gap: calc(var(--base-size-24) + var(--base-size-16));
 }
 
 .Testimonial__quoteMark {
@@ -381,7 +381,7 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: var(--base-size-16);
+  gap: calc(var(--base-size-24) + var(--base-size-16));
 }
 
 .Testimonial--variant-minimal.Testimonial--size-large .Testimonial__quoteWrapper {
@@ -407,7 +407,7 @@
 
 .Testimonial--variant-minimal .Testimonial__media {
   gap: var(--base-size-16);
-  margin-block-start: var(--base-size-24);
+  margin-block-start: calc(var(--base-size-32) + var(--base-size-8));
   padding-block-start: 0;
 }
 
@@ -432,11 +432,17 @@
 }
 
 .Testimonial--variant-minimal .Testimonial-avatar {
-  width: var(--base-size-48);
-  height: var(--base-size-48);
+  width: var(--base-size-64);
+  height: var(--base-size-64);
 }
 
 @media screen and (min-width: 63.25rem) {
+  .Testimonial--variant-subtle .Testimonial__quoteWrapper,
+  .Testimonial--variant-default .Testimonial__quoteWrapper,
+  .Testimonial--variant-minimal .Testimonial__quoteWrapper {
+    gap: var(--base-size-48);
+  }
+
   .Testimonial--variant-minimal.Testimonial--size-large .Testimonial-quote {
     font-size: var(--brand-Testimonial-minimal-quote-fontSize-large);
   }
