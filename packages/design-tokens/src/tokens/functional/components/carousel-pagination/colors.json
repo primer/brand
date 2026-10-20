@@ -6,13 +6,13 @@
     },
     "indicator": {
       "bgColor": {
-        "value": "var(--base-color-scale-gray-3)",
-        "dark": "var(--base-color-scale-gray-4)"
+        "value": "var(--base-color-scale-gray-6)",
+        "dark": "var(--base-color-scale-gray-3)"
       },
       "active": {
         "bgColor": {
-          "value": "var(--base-color-scale-gray-6)",
-          "dark": "#77827a"
+          "value": "var(--base-color-scale-gray-7)",
+          "dark": "var(--base-color-scale-gray-2)"
         }
       }
     },
