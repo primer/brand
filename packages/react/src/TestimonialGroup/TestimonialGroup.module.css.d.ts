@@ -6,7 +6,6 @@ declare const styles: {
   readonly "TestimonialGroup__content--expressive": string;
   readonly "TestimonialGroup__controls": string;
   readonly "TestimonialGroup__media": string;
-  readonly "TestimonialGroup__playback": string;
   readonly "TestimonialGroup__quote": string;
   readonly "TestimonialGroup__quoteMark": string;
   readonly "TestimonialGroup__slide": string;

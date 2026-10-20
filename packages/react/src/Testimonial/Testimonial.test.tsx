@@ -2,7 +2,7 @@ import React, {useEffect} from 'react'
 import {act, render} from '@testing-library/react'
 import '@testing-library/jest-dom'
 import {axe, toHaveNoViolations} from 'jest-axe'
-import {Testimonial} from './Testimonial'
+import {Testimonial, TestimonialQuoteMarkColors, type TestimonialProps} from './Testimonial'
 import {testIds as textCursorAnimationTestIds} from '../TextCursorAnimation'
 
 expect.extend(toHaveNoViolations)
@@ -222,6 +222,22 @@ describe('Testimonial', () => {
     expect(quoteMark).toHaveClass('Testimonial__quoteMark')
   })
 
+  it.each(['blue-purple', 'green-blue', 'pink-blue', 'purple-red', 'red-orange', 'unsupported'])(
+    'falls back to solid green for the unsupported quote mark color %s',
+    quoteMarkColor => {
+      const {container, getByRole} = render(
+        <Testimonial quoteMarkColor={quoteMarkColor as TestimonialProps['quoteMarkColor']}>
+          <Testimonial.Quote>Customer quote</Testimonial.Quote>
+          <Testimonial.Name>Mona Lisa</Testimonial.Name>
+        </Testimonial>,
+      )
+
+      expect(TestimonialQuoteMarkColors).not.toContain(quoteMarkColor)
+      expect(container.querySelector('[aria-hidden="true"]')).toHaveClass('Testimonial__quoteMark--green')
+      expect(getByRole('figure')).toHaveStyle({'--testimonial-accent-color': 'green'})
+    },
+  )
+
   it.each(['minimal', 'default', 'subtle', 'expressive'] as const)(
     'uses the shared green quote mark presentation for the %s variant',
     variant => {
@@ -237,7 +253,7 @@ describe('Testimonial', () => {
     },
   )
 
-  it.each(['blue', 'blue-purple', 'default'] as const)('preserves an explicit %s quote mark color', quoteMarkColor => {
+  it.each(TestimonialQuoteMarkColors)('preserves an explicit %s quote mark color', quoteMarkColor => {
     const {container} = render(
       <Testimonial variant="subtle" quoteMarkColor={quoteMarkColor}>
         <Testimonial.Quote>Quote text</Testimonial.Quote>

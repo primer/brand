@@ -31,6 +31,30 @@ describe('TestimonialGroup', () => {
 
   beforeEach(() => {
     mockUseReducedMotion.mockReturnValue(false)
+    const getComputedStyle = window.getComputedStyle
+    jest.spyOn(window, 'getComputedStyle').mockImplementation((element, pseudoElement) => {
+      const computedStyle = getComputedStyle(element, pseudoElement)
+      if (
+        !(element instanceof HTMLElement) ||
+        !element.matches('.TestimonialGroup__quoteMark, .TestimonialGroup__quote, .TestimonialGroup__media')
+      )
+        return computedStyle
+
+      const root = element.closest<HTMLElement>('.TestimonialGroup')
+      const outgoing = element.closest('.TestimonialGroup__testimonial--out') !== null
+      const quoteMark = element.classList.contains('TestimonialGroup__quoteMark')
+      const quote = element.classList.contains('TestimonialGroup__quote')
+      const duration = root?.style.getPropertyValue(
+        outgoing ? '--brand-TestimonialGroup-fadeOutDuration' : '--brand-TestimonialGroup-fadeInDuration',
+      )
+      const delay = outgoing ? (quoteMark ? 120 : quote ? 80 : 40) : quoteMark ? 0 : quote ? 100 : 200
+      Object.defineProperties(computedStyle, {
+        transitionProperty: {value: 'opacity'},
+        transitionDuration: {value: duration || (outgoing ? '250ms' : '475ms')},
+        transitionDelay: {value: `${delay}ms`},
+      })
+      return computedStyle
+    })
   })
 
   afterEach(() => {
@@ -39,9 +63,7 @@ describe('TestimonialGroup', () => {
   })
 
   it('renders one accessible slide and keeps inactive links out of the tab order', () => {
-    const {getAllByRole, getByRole, queryByRole, getByText} = render(
-      <TestimonialGroup autoPlay={false}>{children}</TestimonialGroup>,
-    )
+    const {getAllByRole, getByRole, queryByRole, getByText} = render(<TestimonialGroup>{children}</TestimonialGroup>)
     expect(getByRole('region', {name: 'Testimonials'})).toHaveAttribute('aria-roledescription', 'carousel')
     expect(getByRole('region', {name: 'Testimonials'})).toHaveAttribute('data-testid', TestimonialGroup.testIds.root)
     expect(
@@ -55,7 +77,7 @@ describe('TestimonialGroup', () => {
 
   it('configures child classes without replacing consumer classes', () => {
     const {getByRole} = render(
-      <TestimonialGroup autoPlay={false}>
+      <TestimonialGroup>
         <Testimonial className="custom-testimonial">
           <Testimonial.Quote>First quote</Testimonial.Quote>
           <Testimonial.Name>First author</Testimonial.Name>
@@ -75,28 +97,31 @@ describe('TestimonialGroup', () => {
     const user = userEvent.setup()
     const {getByRole} = render(
       <TestimonialGroup
-        autoPlay={false}
+        aria-label="Customer testimonials"
         labels={{
           controlsPrev: 'Earlier quote',
-          indicator: 'Choose quote',
-          testimonial: 'Customer quote',
-          countSeparator: 'out of',
+          controlsNext: undefined,
+          indicator: 'Choose quote {current}',
+          slide: 'Customer quote {current} out of {total}',
+          announcement: 'Customer quote {current} out of {total}: {author}',
         }}
       >
         {children}
       </TestimonialGroup>,
     )
 
+    expect(getByRole('region', {name: 'Customer testimonials'})).toHaveAttribute('aria-roledescription', 'carousel')
+    expect(getByRole('group', {name: 'Customer testimonials navigation'})).toBeInTheDocument()
     expect(getByRole('button', {name: 'Earlier quote'})).toBeInTheDocument()
     expect(getByRole('button', {name: 'Next testimonial'})).toBeInTheDocument()
     await user.click(getByRole('button', {name: 'Choose quote 2'}))
-    expect(getByRole('group', {name: 'Customer quote 2 out of 3'})).toBeInTheDocument()
+    expect(getByRole('group', {name: 'Customer quote 2 out of 3'})).toHaveAttribute('aria-roledescription', 'slide')
     expect(getByRole('status')).toHaveTextContent('Customer quote 2 out of 3: Second author')
   })
 
   it.each(['default', 'subtle', 'minimal', 'expressive'] as const)('preserves the %s child variant', variant => {
     const {getByRole} = render(
-      <TestimonialGroup autoPlay={false}>
+      <TestimonialGroup>
         <Testimonial variant={variant}>
           <Testimonial.Quote>First quote</Testimonial.Quote>
           <Testimonial.Name>First author</Testimonial.Name>
@@ -110,8 +135,97 @@ describe('TestimonialGroup', () => {
     )
   })
 
+  it('localizes complete phrases with reordered numbers and author names', async () => {
+    mockUseReducedMotion.mockReturnValue(true)
+    const user = userEvent.setup()
+    const {getByRole} = render(
+      <TestimonialGroup
+        labels={{
+          carousel: 'お客様の声',
+          controlsPrev: '前の体験談',
+          controlsNext: '次の体験談',
+          controlsNavigation: '{carousel}の操作',
+          carouselRoleDescription: 'カルーセル',
+          slideRoleDescription: 'スライド',
+          indicator: '{current}件目の体験談を表示',
+          slide: '全{total}件中{current}件目の体験談',
+          announcement: '{author}の体験談。全{total}件中{current}件目',
+        }}
+      >
+        {children}
+      </TestimonialGroup>,
+    )
+
+    expect(getByRole('region', {name: 'お客様の声'})).toHaveAttribute('aria-roledescription', 'カルーセル')
+    expect(getByRole('group', {name: 'お客様の声の操作'})).toBeInTheDocument()
+    expect(getByRole('button', {name: '前の体験談'})).toBeInTheDocument()
+    expect(getByRole('button', {name: '2件目の体験談を表示'})).toBeInTheDocument()
+    await user.click(getByRole('button', {name: '次の体験談'}))
+    expect(getByRole('group', {name: '全3件中2件目の体験談'})).toHaveAttribute('aria-roledescription', 'スライド')
+    expect(getByRole('status')).toHaveTextContent('Second authorの体験談。全3件中2件目')
+  })
+
+  it.each([undefined, 'Platform customer stories'])(
+    'uses the carousel label unless aria-label overrides it with %s',
+    ariaLabel => {
+      const {getByRole} = render(
+        <TestimonialGroup aria-label={ariaLabel} labels={{carousel: 'Customer stories'}}>
+          {children}
+        </TestimonialGroup>,
+      )
+
+      const expectedName = ariaLabel ?? 'Customer stories'
+      expect(getByRole('region', {name: expectedName})).toBeInTheDocument()
+      expect(getByRole('group', {name: `${expectedName} navigation`})).toBeInTheDocument()
+      expect(getByRole('button', {name: 'Go to testimonial 2'})).toBeInTheDocument()
+    },
+  )
+
+  it.each([undefined, '', <em key="author">Second author</em>])(
+    'announces the complete slide phrase when the author is not plain text: %s',
+    author => {
+      mockUseReducedMotion.mockReturnValue(true)
+      const {getByRole} = render(
+        <TestimonialGroup
+          labels={{slide: 'Quote {current} / {total}', announcement: '{author}: quote {current} / {total}'}}
+        >
+          {children[0]}
+          <Testimonial>
+            <Testimonial.Quote>Second quote</Testimonial.Quote>
+            {author !== undefined && <Testimonial.Name>{author}</Testimonial.Name>}
+          </Testimonial>
+        </TestimonialGroup>,
+      )
+
+      act(() => getByRole('button', {name: 'Go to testimonial 2'}).click())
+      expect(getByRole('status')).toHaveTextContent('Quote 2 / 2')
+    },
+  )
+
+  it('replaces repeated placeholders without interpreting replacement text or unknown placeholders', async () => {
+    mockUseReducedMotion.mockReturnValue(true)
+    const user = userEvent.setup()
+    const {getByRole} = render(
+      <TestimonialGroup
+        labels={{
+          indicator: '{current} / {total}; repeat {current}',
+          announcement: '{author}; {current}/{total}; {unknown}',
+        }}
+      >
+        {children[0]}
+        <Testimonial>
+          <Testimonial.Quote>Second quote</Testimonial.Quote>
+          <Testimonial.Name>{'Author $& {total}'}</Testimonial.Name>
+        </Testimonial>
+      </TestimonialGroup>,
+    )
+
+    await user.click(getByRole('button', {name: '2 / 2; repeat 2'}))
+    expect(getByRole('status')).toHaveTextContent('Author $& {total}; 2/2; {unknown}')
+  })
+
   it('applies parent-owned CSS Module classes to testimonial parts', () => {
-    const {getByRole} = render(<TestimonialGroup autoPlay={false}>{children}</TestimonialGroup>)
+    const {getByRole} = render(<TestimonialGroup>{children}</TestimonialGroup>)
     const slide = getByRole('group', {name: 'Testimonial 1 of 3'})
     expect(slide.querySelector('.TestimonialGroup__quoteMark')).toHaveClass('Testimonial__quoteMark')
     expect(slide.querySelector('.TestimonialGroup__quote')).toHaveClass('Testimonial-quote')
@@ -120,11 +234,7 @@ describe('TestimonialGroup', () => {
   })
 
   it.each([NaN, Infinity, -Infinity, 0.5])('normalizes an invalid initial index of %s', defaultActiveIndex => {
-    const {getByRole} = render(
-      <TestimonialGroup autoPlay={false} defaultActiveIndex={defaultActiveIndex}>
-        {children}
-      </TestimonialGroup>,
-    )
+    const {getByRole} = render(<TestimonialGroup defaultActiveIndex={defaultActiveIndex}>{children}</TestimonialGroup>)
     expect(getByRole('group', {name: 'Testimonial 1 of 3'})).toBeInTheDocument()
   })
 
@@ -133,34 +243,35 @@ describe('TestimonialGroup', () => {
     const user = userEvent.setup({advanceTimers: jest.advanceTimersByTime})
     const previousOnChange = jest.fn()
     const nextOnChange = jest.fn()
-    const {getByRole, rerender} = render(
-      <TestimonialGroup autoPlay={false} onChange={previousOnChange}>
-        {children}
-      </TestimonialGroup>,
-    )
+    const {getByRole, rerender} = render(<TestimonialGroup onChange={previousOnChange}>{children}</TestimonialGroup>)
 
     await user.click(getByRole('button', {name: 'Next testimonial'}))
     act(() => jest.advanceTimersByTime(200))
-    rerender(
-      <TestimonialGroup autoPlay={false} onChange={nextOnChange}>
-        {children}
-      </TestimonialGroup>,
-    )
+    rerender(<TestimonialGroup onChange={nextOnChange}>{children}</TestimonialGroup>)
     act(() => jest.advanceTimersByTime(170))
     expect(getByRole('group', {name: 'Testimonial 2 of 3'})).toBeInTheDocument()
     expect(previousOnChange).not.toHaveBeenCalled()
     expect(nextOnChange).toHaveBeenCalledWith(1)
   })
 
+  it('clears an announcement when its selected testimonial is removed', async () => {
+    mockUseReducedMotion.mockReturnValue(true)
+    const user = userEvent.setup()
+    const {getByRole, rerender} = render(<TestimonialGroup>{children}</TestimonialGroup>)
+
+    await user.click(getByRole('button', {name: 'Next testimonial'}))
+    expect(getByRole('status')).toHaveTextContent('Testimonial 2 of 3: Second author')
+    rerender(<TestimonialGroup>{children[0]}</TestimonialGroup>)
+
+    expect(getByRole('group', {name: 'Testimonial 1 of 1'})).toBeInTheDocument()
+    expect(getByRole('status')).toBeEmptyDOMElement()
+  })
+
   it('commits after the prototype fade-out and finishes the fade-in', async () => {
     jest.useFakeTimers()
     const user = userEvent.setup({advanceTimers: jest.advanceTimersByTime})
     const onChange = jest.fn()
-    const {getByRole, getByText} = render(
-      <TestimonialGroup autoPlay={false} onChange={onChange}>
-        {children}
-      </TestimonialGroup>,
-    )
+    const {getByRole, getByText} = render(<TestimonialGroup onChange={onChange}>{children}</TestimonialGroup>)
     await user.click(getByRole('button', {name: 'Next testimonial'}))
     expect(getByText('First quote').closest('figure')).toHaveClass('TestimonialGroup__testimonial--out')
     expect(getByRole('button', {name: 'Go to testimonial 2'})).toHaveAttribute('aria-current', 'true')
@@ -175,10 +286,48 @@ describe('TestimonialGroup', () => {
     expect(getByText('Second quote').closest('figure')).toHaveClass('TestimonialGroup__testimonial--idle')
   })
 
+  it.each([
+    ['900ms', '1.2s', 1020, 1400],
+    ['0.08s', '50ms', 200, 250],
+    ['0ms', '0s', 120, 200],
+  ] as const)(
+    'synchronizes slide changes with custom fade durations of %s and %s',
+    async (fadeOutDuration, fadeInDuration, fadeOutTotal, fadeInTotal) => {
+      jest.useFakeTimers()
+      const user = userEvent.setup({advanceTimers: jest.advanceTimersByTime})
+      const onChange = jest.fn()
+      const {getByRole, getByText} = render(
+        <TestimonialGroup
+          onChange={onChange}
+          style={
+            {
+              '--brand-TestimonialGroup-fadeOutDuration': fadeOutDuration,
+              '--brand-TestimonialGroup-fadeInDuration': fadeInDuration,
+            } as React.CSSProperties
+          }
+        >
+          {children}
+        </TestimonialGroup>,
+      )
+
+      await user.click(getByRole('button', {name: 'Next testimonial'}))
+      act(() => jest.advanceTimersByTime(fadeOutTotal - 1))
+      expect(getByRole('group', {name: 'Testimonial 1 of 3'})).toBeInTheDocument()
+      expect(onChange).not.toHaveBeenCalled()
+      act(() => jest.advanceTimersByTime(1))
+      expect(getByRole('group', {name: 'Testimonial 2 of 3'})).toBeInTheDocument()
+      expect(onChange).toHaveBeenCalledWith(1)
+      act(() => jest.advanceTimersByTime(fadeInTotal - 1))
+      expect(getByText('Second quote').closest('figure')).toHaveClass('TestimonialGroup__testimonial--in')
+      act(() => jest.advanceTimersByTime(1))
+      expect(getByText('Second quote').closest('figure')).toHaveClass('TestimonialGroup__testimonial--idle')
+    },
+  )
+
   it('uses the latest target during rapid navigation and can cancel a pending change', async () => {
     jest.useFakeTimers()
     const user = userEvent.setup({advanceTimers: jest.advanceTimersByTime})
-    const {getByRole} = render(<TestimonialGroup autoPlay={false}>{children}</TestimonialGroup>)
+    const {getByRole} = render(<TestimonialGroup>{children}</TestimonialGroup>)
     await user.click(getByRole('button', {name: 'Next testimonial'}))
     await user.click(getByRole('button', {name: 'Next testimonial'}))
     act(() => jest.advanceTimersByTime(370))
@@ -189,15 +338,31 @@ describe('TestimonialGroup', () => {
     expect(getByRole('group', {name: 'Testimonial 3 of 3'})).toBeInTheDocument()
   })
 
+  it('retargets an outgoing slide without restarting its fade', async () => {
+    jest.useFakeTimers()
+    const user = userEvent.setup({advanceTimers: jest.advanceTimersByTime})
+    const onChange = jest.fn()
+    const {getByRole} = render(<TestimonialGroup onChange={onChange}>{children}</TestimonialGroup>)
+
+    await user.click(getByRole('button', {name: 'Next testimonial'}))
+    act(() => jest.advanceTimersByTime(200))
+    await user.click(getByRole('button', {name: 'Next testimonial'}))
+    act(() => jest.advanceTimersByTime(169))
+    expect(getByRole('group', {name: 'Testimonial 1 of 3'})).toBeInTheDocument()
+    act(() => jest.advanceTimersByTime(1))
+    expect(getByRole('group', {name: 'Testimonial 3 of 3'})).toBeInTheDocument()
+    expect(onChange).toHaveBeenCalledTimes(1)
+    expect(onChange).toHaveBeenCalledWith(2)
+  })
+
   it('wraps in both directions and switches immediately with reduced motion', async () => {
     mockUseReducedMotion.mockReturnValue(true)
     const user = userEvent.setup()
-    const {getByRole, queryByRole} = render(<TestimonialGroup>{children}</TestimonialGroup>)
+    const {getByRole} = render(<TestimonialGroup>{children}</TestimonialGroup>)
     await user.click(getByRole('button', {name: 'Previous testimonial'}))
     expect(getByRole('group', {name: 'Testimonial 3 of 3'})).toBeInTheDocument()
     await user.click(getByRole('button', {name: 'Next testimonial'}))
     expect(getByRole('group', {name: 'Testimonial 1 of 3'})).toBeInTheDocument()
-    expect(queryByRole('button', {name: 'Pause testimonials'})).not.toBeInTheDocument()
   })
 
   it('reserves the tallest slide separately from navigation and remeasures resized content', async () => {
@@ -220,7 +385,7 @@ describe('TestimonialGroup', () => {
     })
 
     try {
-      const {getByRole, rerender} = render(<TestimonialGroup autoPlay={false}>{children}</TestimonialGroup>)
+      const {getByRole, rerender} = render(<TestimonialGroup>{children}</TestimonialGroup>)
       const slidesContainer = getByRole('group', {name: 'Testimonial 1 of 3'}).parentElement as HTMLElement
       const navigation = getByRole('group', {name: 'Testimonials navigation'})
       expect(slidesContainer).toHaveClass('TestimonialGroup__slides')
@@ -241,7 +406,7 @@ describe('TestimonialGroup', () => {
       act(() => resizeCallbacks.get(slidesContainer)?.([], {} as ResizeObserver))
       expect(slidesContainer).toHaveStyle({minHeight: '210px'})
 
-      rerender(<TestimonialGroup autoPlay={false}>{children[0]}</TestimonialGroup>)
+      rerender(<TestimonialGroup>{children[0]}</TestimonialGroup>)
       expect(slidesContainer).toHaveStyle({minHeight: '150px'})
     } finally {
       global.ResizeObserver = originalResizeObserver
@@ -282,7 +447,7 @@ describe('TestimonialGroup', () => {
 
     try {
       const {getByRole} = render(
-        <TestimonialGroup autoPlay={false}>
+        <TestimonialGroup>
           {React.cloneElement(children[0], {variant: 'expressive'})}
           {children[1]}
         </TestimonialGroup>,
@@ -316,143 +481,51 @@ describe('TestimonialGroup', () => {
     expect(container).toBeEmptyDOMElement()
   })
 
-  it('pauses and resumes visible autoplay without announcing automatic changes', async () => {
+  it('changes slides only when a navigation control is activated', async () => {
     jest.useFakeTimers()
-    const animations: {
-      onfinish: (() => void) | null
-      playState: string
-      pause: jest.Mock
-      play: jest.Mock
-      cancel: jest.Mock
-    }[] = []
-    const originalAnimate = HTMLElement.prototype.animate
-    HTMLElement.prototype.animate = jest.fn(() => {
-      const animation = {onfinish: null, playState: 'running', pause: jest.fn(), play: jest.fn(), cancel: jest.fn()}
-      animation.pause.mockImplementation(() => {
-        animation.playState = 'paused'
-      })
-      animation.play.mockImplementation(() => {
-        animation.playState = 'running'
-      })
-      animations.push(animation)
-      return animation as unknown as Animation
-    })
-    const originalObserver = global.IntersectionObserver
-    const intersectionCallbacks: ((entries: {intersectionRatio: number}[]) => void)[] = []
-    const disconnectObserver = jest.fn()
-    global.IntersectionObserver = jest.fn(callback => {
-      intersectionCallbacks.push(callback)
-      return {
-        observe: () => callback([{intersectionRatio: 1}], {}),
-        disconnect: disconnectObserver,
-      }
-    }) as unknown as typeof IntersectionObserver
-    try {
-      const user = userEvent.setup({advanceTimers: jest.advanceTimersByTime})
-      const {getByRole, unmount} = render(<TestimonialGroup>{children}</TestimonialGroup>)
-      expect(HTMLElement.prototype.animate).toHaveBeenCalledWith(
-        expect.anything(),
-        expect.objectContaining({duration: 7000}),
-      )
-      const avatar = getByRole('group', {name: 'Testimonial 1 of 3'}).querySelector('.TestimonialGroup__avatar')
-      expect((HTMLElement.prototype.animate as jest.Mock).mock.contexts[0]).toBe(avatar)
-      await user.tab()
-      expect(getByRole('button', {name: 'Pause testimonials'})).toHaveFocus()
-      await user.hover(getByRole('region', {name: 'Testimonials'}))
-      expect(animations[0].pause).toHaveBeenCalled()
-      expect(getByRole('button', {name: 'Play testimonials'})).toBeInTheDocument()
-      await user.unhover(getByRole('region', {name: 'Testimonials'}))
-      expect(animations[0].play).toHaveBeenCalled()
-      expect(getByRole('button', {name: 'Pause testimonials'})).toBeInTheDocument()
+    const user = userEvent.setup({advanceTimers: jest.advanceTimersByTime})
+    const onChange = jest.fn()
+    const onFocusCapture = jest.fn()
+    const {getAllByRole, getByRole} = render(
+      <TestimonialGroup onChange={onChange} onFocusCapture={onFocusCapture}>
+        {children}
+      </TestimonialGroup>,
+    )
 
-      await user.hover(getByRole('region', {name: 'Testimonials'}))
-      animations[0].play.mockClear()
-      await user.click(getByRole('button', {name: 'Play testimonials'}))
-      expect(animations[0].play).toHaveBeenCalled()
-      expect(getByRole('button', {name: 'Pause testimonials'})).toBeInTheDocument()
-      await user.unhover(getByRole('region', {name: 'Testimonials'}))
-      animations[0].pause.mockClear()
-      animations[0].play.mockClear()
-      await user.keyboard('{Enter}')
-      expect(animations[0].pause).toHaveBeenCalled()
-      await user.hover(getByRole('region', {name: 'Testimonials'}))
-      await user.unhover(getByRole('region', {name: 'Testimonials'}))
-      expect(animations[0].play).not.toHaveBeenCalled()
-      const playButton = getByRole('button', {name: 'Play testimonials'})
-      const playIcon = playButton.querySelector('svg')
-      expect(playIcon).toHaveAttribute('width', '16')
-      expect(playIcon).toHaveAttribute('height', '16')
-      expect(playIcon).toHaveAttribute('viewBox', '0 0 16 16')
-      expect(playIcon?.querySelector('path')).toHaveAttribute(
-        'd',
-        'M13.3777 6.94756C14.2069 7.40341 14.2069 8.59489 13.3777 9.05073L5.37808 13.4483C4.57834 13.8879 3.60001 13.3093 3.60001 12.3967L3.60001 3.60161C3.60001 2.689 4.57834 2.1104 5.37808 2.55003L13.3777 6.94756Z',
-      )
-      await user.click(playButton)
-      expect(animations[0].play).toHaveBeenCalled()
-      act(() => animations[0].onfinish?.())
-      act(() => jest.advanceTimersByTime(370))
-      expect(getByRole('group', {name: 'Testimonial 2 of 3'})).toBeInTheDocument()
-      expect(getByRole('status')).toBeEmptyDOMElement()
+    expect(getAllByRole('button')).toHaveLength(5)
+    act(() => jest.advanceTimersByTime(60000))
+    expect(getByRole('group', {name: 'Testimonial 1 of 3'})).toBeInTheDocument()
+    expect(onChange).not.toHaveBeenCalled()
+    expect(getByRole('status')).toBeEmptyDOMElement()
 
-      const activeAnimation = animations.at(-1)!
-      act(() => intersectionCallbacks[0]([{intersectionRatio: 0}]))
-      expect(activeAnimation.pause).toHaveBeenCalled()
-      act(() => intersectionCallbacks[0]([{intersectionRatio: 1}]))
-      expect(activeAnimation.play).toHaveBeenCalled()
+    await user.tab()
+    expect(getByRole('button', {name: 'Previous testimonial'})).toHaveFocus()
+    expect(onFocusCapture).toHaveBeenCalled()
+    await user.keyboard('{Enter}')
+    act(() => jest.advanceTimersByTime(370))
+    expect(getByRole('group', {name: 'Testimonial 3 of 3'})).toBeInTheDocument()
+    expect(getByRole('status')).toHaveTextContent('Testimonial 3 of 3: Third author')
 
-      activeAnimation.pause.mockClear()
-      activeAnimation.play.mockClear()
-      act(() => window.dispatchEvent(new Event('pagehide')))
-      expect(activeAnimation.pause).toHaveBeenCalled()
-      act(() => window.dispatchEvent(new Event('pageshow')))
-      expect(activeAnimation.play).toHaveBeenCalled()
+    act(() => jest.advanceTimersByTime(60000))
+    expect(getByRole('group', {name: 'Testimonial 3 of 3'})).toBeInTheDocument()
+    expect(onChange).toHaveBeenCalledTimes(1)
+    expect(onChange).toHaveBeenCalledWith(2)
+  })
 
-      const hidden = jest.spyOn(document, 'hidden', 'get').mockReturnValue(true)
-      activeAnimation.pause.mockClear()
-      activeAnimation.play.mockClear()
-      act(() => document.dispatchEvent(new Event('visibilitychange')))
-      expect(activeAnimation.pause).toHaveBeenCalled()
-      hidden.mockReturnValue(false)
-      act(() => document.dispatchEvent(new Event('visibilitychange')))
-      expect(activeAnimation.play).toHaveBeenCalled()
+  it('cancels a pending transition when unmounted', async () => {
+    jest.useFakeTimers()
+    const user = userEvent.setup({advanceTimers: jest.advanceTimersByTime})
+    const onChange = jest.fn()
+    const {getByRole, unmount} = render(<TestimonialGroup onChange={onChange}>{children}</TestimonialGroup>)
 
-      act(() => activeAnimation.onfinish?.())
-      act(() => jest.advanceTimersByTime(370))
-      const slideWithoutAvatar = getByRole('group', {name: 'Testimonial 3 of 3'})
-      expect(slideWithoutAvatar.querySelector('.TestimonialGroup__avatar')).not.toBeInTheDocument()
-      expect((HTMLElement.prototype.animate as jest.Mock).mock.contexts.at(-1)).toBe(slideWithoutAvatar)
-      act(() => animations.at(-1)?.onfinish?.())
-      act(() => jest.advanceTimersByTime(370))
-      expect(getByRole('group', {name: 'Testimonial 1 of 3'})).toBeInTheDocument()
-      expect(getByRole('status')).toBeEmptyDOMElement()
-
-      const ring = getByRole('group', {name: 'Testimonial 1 of 3'}).querySelector(
-        '.TestimonialGroup__avatar',
-      ) as HTMLElement
-      ring.style.setProperty('--brand-TestimonialGroup-ring-progress', '180deg')
-      await user.click(getByRole('button', {name: 'Next testimonial'}))
-      await user.click(getByRole('button', {name: 'Previous testimonial'}))
-      await user.click(getByRole('button', {name: 'Play testimonials'}))
-      expect(HTMLElement.prototype.animate).toHaveBeenLastCalledWith(
-        [{'--brand-TestimonialGroup-ring-progress': '180deg'}, {'--brand-TestimonialGroup-ring-progress': '360deg'}],
-        expect.objectContaining({duration: 3500}),
-      )
-
-      const resumedAnimation = animations.at(-1)!
-      unmount()
-      expect(resumedAnimation.cancel).toHaveBeenCalled()
-      expect(disconnectObserver).toHaveBeenCalled()
-      resumedAnimation.play.mockClear()
-      act(() => window.dispatchEvent(new Event('pageshow')))
-      expect(resumedAnimation.play).not.toHaveBeenCalled()
-    } finally {
-      HTMLElement.prototype.animate = originalAnimate
-      global.IntersectionObserver = originalObserver
-    }
+    await user.click(getByRole('button', {name: 'Next testimonial'}))
+    unmount()
+    act(() => jest.advanceTimersByTime(10000))
+    expect(onChange).not.toHaveBeenCalled()
   })
 
   it('has no accessibility violations', async () => {
-    const {container} = render(<TestimonialGroup autoPlay={false}>{children}</TestimonialGroup>)
+    const {container} = render(<TestimonialGroup>{children}</TestimonialGroup>)
     expect(await axe(container)).toHaveNoViolations()
   })
 })

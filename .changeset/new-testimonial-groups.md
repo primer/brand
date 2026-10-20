@@ -3,7 +3,7 @@
 '@primer/brand-primitives': minor
 ---
 
-Added `TestimonialGroup` for testimonial carousels with autoplay.
+Added `TestimonialGroup` for automatically presenting multiple testimonials in a carousel.
 
 ```jsx
 <TestimonialGroup>

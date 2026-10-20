@@ -102,7 +102,6 @@ function IconButtonRoot(
   const ButtonIcon = isLoading ? (
     <span className={styles.IconButton__loadingIndicator} data-testid={iconButtonTestIds.loadingIndicator} />
   ) : React.isValidElement<React.SVGProps<SVGSVGElement>>(IconComponent) ? (
-    // convert custom svgs to react elements
     React.cloneElement(IconComponent, {
       className: clsx(IconComponent.props.className, styles.IconButton__icon),
     })

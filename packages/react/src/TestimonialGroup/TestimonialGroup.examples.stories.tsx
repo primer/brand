@@ -16,7 +16,7 @@ type Story = StoryObj<typeof TestimonialGroup>
 
 export const CustomerTestimonials: Story = {
   render: () => (
-    <TestimonialGroup autoPlay={process.env.NODE_ENV !== 'test'} aria-label="Customer testimonials">
+    <TestimonialGroup aria-label="Customer testimonials">
       <Testimonial size="large">
         <Testimonial.Quote>
           With the time savings Copilot unlocks, our developers are empowered to spend more time on the tasks they enjoy

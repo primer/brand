@@ -1,14 +1,11 @@
 import React, {Children, cloneElement, forwardRef, isValidElement, useEffect, useMemo, useRef, useState} from 'react'
 import {clsx} from 'clsx'
-import {PauseIcon} from '@primer/octicons-react'
 import {Testimonial, type TestimonialProps} from '../Testimonial'
 import {CarouselPagination} from '../CarouselPagination/CarouselPagination'
-import {IconButton} from '../IconButton'
 import {useReducedMotion} from '../hooks/useReducedMotion'
 import {useProvidedRefOrCreate} from '../hooks/useRef'
 import useIsomorphicLayoutEffect from '../hooks/useIsomorphicLayoutEffect'
 import type {BaseProps} from '../component-helpers'
-import {useTestimonialGroupTimer} from './useTestimonialGroupTimer'
 
 import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/testimonial-group/base.css'
 import styles from './TestimonialGroup.module.css'
@@ -17,15 +14,8 @@ const testIds = {
   root: 'TestimonialGroup',
 }
 
-const testimonialGroupTimings = {
-  fadeOut: 370,
-  fadeIn: 675,
-} as const
-
 export type TestimonialGroupProps = BaseProps<HTMLDivElement> &
   Omit<React.HTMLAttributes<HTMLDivElement>, 'onChange'> & {
-    /** Automatically advances testimonials every seven seconds. */
-    autoPlay?: boolean
     'data-testid'?: string
     /** Initial testimonial: 0 for the first, 1 for the second. */
     defaultActiveIndex?: number
@@ -33,39 +23,42 @@ export type TestimonialGroupProps = BaseProps<HTMLDivElement> &
     onChange?: (activeIndex: number) => void
     /** Overrides accessible control labels and slide announcements. */
     labels?: {
+      carousel?: string
       controlsPrev?: string
       controlsNext?: string
-      controlsPause?: string
-      controlsPlay?: string
+      controlsNavigation?: string
+      carouselRoleDescription?: string
+      slideRoleDescription?: string
+      /** Complete selector label using {current} and {total}. */
       indicator?: string
-      testimonial?: string
-      countSeparator?: string
+      /** Complete slide label using {current} and {total}. */
+      slide?: string
+      /** Complete announcement using {current}, {total}, and {author}. */
+      announcement?: string
     }
   }
 
 type TestimonialGroupView = {index: number; targetIndex: number; phase: 'idle' | 'out' | 'in'}
-
-const defaultLabels = {
-  controlsPrev: 'Previous testimonial',
-  controlsNext: 'Next testimonial',
-  controlsPause: 'Pause testimonials',
-  controlsPlay: 'Play testimonials',
-  indicator: 'Go to testimonial',
-  testimonial: 'Testimonial',
-  countSeparator: 'of',
-}
 
 const Root = forwardRef<HTMLDivElement, TestimonialGroupProps>(
   (
     {
       children,
       className,
-      autoPlay = true,
       defaultActiveIndex = 0,
       onChange,
-      labels: labelsProp,
-      onFocusCapture,
-      'aria-label': ariaLabel = 'Testimonials',
+      labels: {
+        carousel = 'Testimonials',
+        controlsPrev = 'Previous testimonial',
+        controlsNext = 'Next testimonial',
+        controlsNavigation = '{carousel} navigation',
+        carouselRoleDescription = 'carousel',
+        slideRoleDescription = 'slide',
+        indicator = 'Go to testimonial {current}',
+        slide: slideLabel = 'Testimonial {current} of {total}',
+        announcement: announcementLabel = 'Testimonial {current} of {total}: {author}',
+      } = {},
+      'aria-label': ariaLabel = carousel,
       'data-testid': testId,
       ...props
     },
@@ -92,34 +85,20 @@ const Root = forwardRef<HTMLDivElement, TestimonialGroupProps>(
     const rootRef = useProvidedRefOrCreate<HTMLDivElement | null>(forwardedRef)
     const slidesRef = useRef<HTMLDivElement>(null)
     const controlsRef = useRef<HTMLDivElement>(null)
-    const playbackRef = useRef<HTMLButtonElement>(null)
     const onChangeRef = useRef(onChange)
-    const [isPaused, setIsPaused] = useState(false)
     const [announcementIndex, setAnnouncementIndex] = useState<number | null>(null)
     const prefersReducedMotion = useReducedMotion()
     const controller = useRef<{
-      changeTo: (index: number, manual?: boolean) => void
+      changeTo: (index: number) => void
+      finishPhase: () => void
     } | null>(null)
-    const {timer, isHoverPaused} = useTestimonialGroupTimer({
-      rootRef,
-      slidesRef,
-      itemCount: testimonials.length,
-      enabled: autoPlay && !prefersReducedMotion,
-      isPaused,
-      isTransitioningOut: view.phase === 'out',
-      activeIndex: view.index,
-      onElapsed: () => controller.current?.changeTo((viewRef.current.index + 1) % testimonials.length),
-    })
-    const isPlaybackPaused = isPaused || isHoverPaused
-    const labels = {
-      controlsPrev: labelsProp?.controlsPrev ?? defaultLabels.controlsPrev,
-      controlsNext: labelsProp?.controlsNext ?? defaultLabels.controlsNext,
-      controlsPause: labelsProp?.controlsPause ?? defaultLabels.controlsPause,
-      controlsPlay: labelsProp?.controlsPlay ?? defaultLabels.controlsPlay,
-      indicator: labelsProp?.indicator ?? defaultLabels.indicator,
-      testimonial: labelsProp?.testimonial ?? defaultLabels.testimonial,
-      countSeparator: labelsProp?.countSeparator ?? defaultLabels.countSeparator,
-    }
+    const formatLabel = (
+      template: string,
+      values: {current?: number; total?: number; author?: string; carousel?: string},
+    ) =>
+      template.replace(/\{(current|total|author|carousel)\}/g, (placeholder, name: keyof typeof values) =>
+        String(values[name] ?? placeholder),
+      )
 
     useIsomorphicLayoutEffect(() => {
       onChangeRef.current = onChange
@@ -163,7 +142,6 @@ const Root = forwardRef<HTMLDivElement, TestimonialGroupProps>(
     useEffect(() => {
       const root = rootRef.current
       if (!root || testimonials.length === 0) return
-      let transitionTimer: ReturnType<typeof setTimeout> | undefined
       let announceOnCommit = false
       let current = viewRef.current
       const count = testimonials.length
@@ -179,56 +157,73 @@ const Root = forwardRef<HTMLDivElement, TestimonialGroupProps>(
         if (announceOnCommit) setAnnouncementIndex(nextIndex)
         announceOnCommit = false
         if (changed) onChangeRef.current?.(nextIndex)
-        timer.reset()
       }
-      const finishTransition = () => {
-        transitionTimer = undefined
-        updateView({...current, phase: 'idle'})
-      }
-      const changeTo = (nextIndex: number, manual = false) => {
+      const changeTo = (nextIndex: number) => {
         if (nextIndex < 0 || nextIndex >= count) return
         if (nextIndex === current.index && current.phase !== 'out') {
-          if (manual) setAnnouncementIndex(nextIndex)
+          setAnnouncementIndex(nextIndex)
           return
         }
-        timer.stop(true)
-        announceOnCommit ||= manual
+        announceOnCommit = true
         const wasOutgoing = current.phase === 'out'
         updateView({...current, targetIndex: nextIndex})
         if (prefersReducedMotion) {
-          clearTimeout(transitionTimer)
           commit()
           return
         }
         if (wasOutgoing) {
           if (nextIndex === current.index) {
-            clearTimeout(transitionTimer)
             updateView({...current, phase: 'in'})
-            if (announceOnCommit) setAnnouncementIndex(current.index)
+            setAnnouncementIndex(current.index)
             announceOnCommit = false
-            timer.resume()
-            transitionTimer = setTimeout(finishTransition, testimonialGroupTimings.fadeIn)
           }
           return
         }
-        clearTimeout(transitionTimer)
         updateView({...current, phase: 'out'})
-        transitionTimer = setTimeout(() => {
-          commit()
-          transitionTimer = setTimeout(finishTransition, testimonialGroupTimings.fadeIn)
-        }, testimonialGroupTimings.fadeOut)
       }
-      controller.current = {changeTo}
+      controller.current = {
+        changeTo,
+        finishPhase: () => {
+          if (current.phase === 'out') commit()
+          else if (current.phase === 'in') updateView({...current, phase: 'idle'})
+        },
+      }
       if (current.index >= count || current.targetIndex >= count) {
         updateView({index: count - 1, targetIndex: count - 1, phase: 'idle'})
       } else if (current.phase !== 'idle') {
         commit()
       }
       return () => {
-        clearTimeout(transitionTimer)
         controller.current = null
       }
-    }, [autoPlay, prefersReducedMotion, testimonials.length, rootRef, timer])
+    }, [prefersReducedMotion, testimonials.length, rootRef])
+
+    useEffect(() => {
+      if (view.phase === 'idle' || prefersReducedMotion) return
+      const activeSlide = slidesRef.current?.children[view.index]
+      if (!activeSlide) return
+      const toMilliseconds = (value: string) => {
+        const duration = Number.parseFloat(value)
+        return Number.isFinite(duration) ? duration * (value.trim().endsWith('ms') ? 1 : 1000) : 0
+      }
+      let completionTime = 0
+      const parts = activeSlide.querySelectorAll<HTMLElement>(
+        [styles.TestimonialGroup__quoteMark, styles.TestimonialGroup__quote, styles.TestimonialGroup__media]
+          .map(partClassName => `.${partClassName}`)
+          .join(','),
+      )
+      for (const part of parts) {
+        const computedStyle = getComputedStyle(part)
+        const durations = computedStyle.transitionDuration.split(',').map(toMilliseconds)
+        const delays = computedStyle.transitionDelay.split(',').map(toMilliseconds)
+        for (const [index, property] of computedStyle.transitionProperty.split(',').entries()) {
+          if (property.trim() !== 'opacity' && property.trim() !== 'all') continue
+          completionTime = Math.max(completionTime, durations[index % durations.length] + delays[index % delays.length])
+        }
+      }
+      const transitionTimer = setTimeout(() => controller.current?.finishPhase(), completionTime)
+      return () => clearTimeout(transitionTimer)
+    }, [prefersReducedMotion, view.index, view.phase])
 
     if (testimonials.length === 0) return null
 
@@ -239,20 +234,17 @@ const Root = forwardRef<HTMLDivElement, TestimonialGroupProps>(
         (child): child is React.ReactElement<{children?: React.ReactNode}> =>
           isValidElement(child) && child.type === Testimonial.Name,
       )?.props.children
+    const hasAnnouncedName = typeof announcedName === 'string' && announcedName.trim().length > 0
 
     return (
       <div
         {...props}
         ref={rootRef}
         role="region"
-        aria-roledescription="carousel"
+        aria-roledescription={carouselRoleDescription}
         aria-label={ariaLabel}
         data-testid={testId || testIds.root}
         className={clsx(styles.TestimonialGroup, className)}
-        onFocusCapture={event => {
-          onFocusCapture?.(event)
-          if (!playbackRef.current?.contains(event.target)) setIsPaused(true)
-        }}
       >
         <div
           className={clsx(
@@ -263,49 +255,19 @@ const Root = forwardRef<HTMLDivElement, TestimonialGroupProps>(
         >
           {testimonials.length > 1 && (
             <div ref={controlsRef} className={styles.TestimonialGroup__controls}>
-              {autoPlay && !prefersReducedMotion && (
-                <IconButton
-                  ref={playbackRef}
-                  className={styles.TestimonialGroup__playback}
-                  type="button"
-                  rounded
-                  size="small"
-                  variant="secondary"
-                  icon={
-                    // TODO: Replace with the internal PlayIcon component when it becomes available
-                    isPlaybackPaused ? (
-                      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path
-                          d="M13.3777 6.94756C14.2069 7.40341 14.2069 8.59489 13.3777 9.05073L5.37808 13.4483C4.57834 13.8879 3.60001 13.3093 3.60001 12.3967L3.60001 3.60161C3.60001 2.689 4.57834 2.1104 5.37808 2.55003L13.3777 6.94756Z"
-                          fill="currentColor"
-                        />
-                      </svg>
-                    ) : (
-                      PauseIcon
-                    )
-                  }
-                  aria-label={isPlaybackPaused ? labels.controlsPlay : labels.controlsPause}
-                  onClick={() => {
-                    if (isPlaybackPaused) {
-                      setIsPaused(false)
-                      timer.play()
-                    } else {
-                      setIsPaused(true)
-                    }
-                  }}
-                />
-              )}
               <CarouselPagination
                 loop
                 itemCount={testimonials.length}
                 activeIndex={view.targetIndex}
-                aria-label={`${ariaLabel} navigation`}
+                aria-label={formatLabel(controlsNavigation, {carousel: ariaLabel})}
                 labels={{
-                  previous: labels.controlsPrev,
-                  next: labels.controlsNext,
-                  item: labels.indicator,
+                  previous: controlsPrev,
+                  next: controlsNext,
                 }}
-                onChange={index => controller.current?.changeTo(index, true)}
+                itemAttributesBuilder={index => ({
+                  'aria-label': formatLabel(indicator, {current: index + 1, total: testimonials.length}),
+                })}
+                onChange={index => controller.current?.changeTo(index)}
               />
             </div>
           )}
@@ -318,8 +280,8 @@ const Root = forwardRef<HTMLDivElement, TestimonialGroupProps>(
                   index === view.index && styles['TestimonialGroup__slide--active'],
                 )}
                 role="group"
-                aria-roledescription="slide"
-                aria-label={`${labels.testimonial} ${index + 1} ${labels.countSeparator} ${testimonials.length}`}
+                aria-roledescription={slideRoleDescription}
+                aria-label={formatLabel(slideLabel, {current: index + 1, total: testimonials.length})}
                 aria-hidden={index !== view.index || undefined}
                 inert={index !== view.index}
               >
@@ -354,9 +316,12 @@ const Root = forwardRef<HTMLDivElement, TestimonialGroupProps>(
         </div>
         <span className={styles.TestimonialGroup__announcement} role="status" aria-live="polite" aria-atomic="true">
           {announcementIndex !== null &&
-            `${labels.testimonial} ${announcementIndex + 1} ${labels.countSeparator} ${testimonials.length}${
-              typeof announcedName === 'string' ? `: ${announcedName}` : ''
-            }`}
+            announcedTestimonial &&
+            formatLabel(hasAnnouncedName ? announcementLabel : slideLabel, {
+              current: announcementIndex + 1,
+              total: testimonials.length,
+              author: hasAnnouncedName ? announcedName : undefined,
+            })}
         </span>
       </div>
     )

@@ -83,9 +83,9 @@ test.describe('Visual Comparison: TestimonialGroup', () => {
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
-  test('TestimonialGroup / Manual Navigation', async ({page}) => {
+  test('TestimonialGroup / Localized Labels', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-testimonialgroup-features--manual-navigation&viewMode=story',
+      'http://localhost:6006/iframe.html?args=&id=components-testimonialgroup-features--localized-labels&viewMode=story',
       {waitUntil: 'networkidle'},
     )
     await page.locator('body.sb-show-main').waitFor({state: 'visible'})

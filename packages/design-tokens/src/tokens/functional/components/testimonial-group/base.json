@@ -1,16 +1,10 @@
 {
   "TestimonialGroup": {
-    "paddingBlock": {"value": "{base.size.60}"},
-    "paddingInline": {"value": "{base.size.60}"},
-    "paddingBlockNarrow": {"value": "56px"},
-    "paddingInlineNarrow": {"value": "{base.size.32}"},
-    "controlsGap": {"value": "{base.size.32}"},
-    "controlsPadding": {"value": "{base.size.16}"},
-    "avatarImageRadius": {"value": "22px"},
-    "ringWidth": {"value": "2px"},
-    "ringMaskOuterInset": {"value": "2.5px"},
-    "ringMaskInnerInset": {"value": "1.5px"},
-    "fadeInDuration": {"value": "475ms"},
-    "fadeOutDuration": {"value": "250ms"}
+    "fadeInDuration": {
+      "value": "475ms"
+    },
+    "fadeOutDuration": {
+      "value": "250ms"
+    }
   }
 }

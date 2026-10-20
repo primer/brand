@@ -16,7 +16,7 @@ type Story = StoryObj<typeof TestimonialGroup>
 
 export const Minimal: Story = {
   render: () => (
-    <TestimonialGroup autoPlay={process.env.NODE_ENV !== 'test'}>
+    <TestimonialGroup>
       <Testimonial variant="minimal">
         <Testimonial.Quote>
           GitHub brings our code, conversations, and security checks into one place. Our developers spend less time
@@ -41,7 +41,7 @@ export const Minimal: Story = {
 
 export const DefaultVariant: Story = {
   render: () => (
-    <TestimonialGroup autoPlay={process.env.NODE_ENV !== 'test'}>
+    <TestimonialGroup>
       <Testimonial variant="default">
         <Testimonial.Quote>
           GitHub brings our code, conversations, and security checks into one place. Our developers spend less time
@@ -66,7 +66,7 @@ export const DefaultVariant: Story = {
 
 export const Subtle: Story = {
   render: () => (
-    <TestimonialGroup autoPlay={process.env.NODE_ENV !== 'test'}>
+    <TestimonialGroup>
       <Testimonial variant="subtle">
         <Testimonial.Quote>
           GitHub brings our code, conversations, and security checks into one place. Our developers spend less time
@@ -91,7 +91,7 @@ export const Subtle: Story = {
 
 export const Expressive: Story = {
   render: () => (
-    <TestimonialGroup autoPlay={process.env.NODE_ENV !== 'test'}>
+    <TestimonialGroup>
       <Testimonial variant="expressive" size="large">
         <Testimonial.Quote>
           GitHub Advanced Security <em>empowers our developers</em> to detect and fix vulnerabilities earlier,
@@ -112,23 +112,35 @@ export const Expressive: Story = {
   ),
 }
 
-export const ManualNavigation: Story = {
+export const LocalizedLabels: Story = {
   render: () => (
-    <TestimonialGroup autoPlay={false}>
+    <TestimonialGroup
+      lang="es"
+      labels={{
+        carousel: 'Testimonios',
+        controlsPrev: 'Anterior',
+        controlsNext: 'Siguiente',
+        controlsNavigation: 'Controles de {carousel}',
+        carouselRoleDescription: 'carrusel',
+        slideRoleDescription: 'testimonio',
+        indicator: 'Ver testimonio {current}',
+        slide: 'Testimonio {current} de {total}',
+        announcement: '{author}: testimonio {current} de {total}',
+      }}
+    >
       <Testimonial>
         <Testimonial.Quote>
-          GitHub brings our code, conversations, and security checks into one place. Our developers spend less time
-          switching between tools and more time reviewing changes, sharing knowledge, and building features that matter
-          to our customers.
+          GitHub une nuestro trabajo en un solo lugar. Podemos revisar cambios, compartir contexto y colaborar con todo
+          el equipo. Esto nos permite dedicar nuestro tiempo a crear software que aporta valor a nuestros clientes.
         </Testimonial.Quote>
         <Testimonial.Avatar src={monaAvatar} alt="" />
         <Testimonial.Name position="Chief Octocat">Mona Lisa</Testimonial.Name>
       </Testimonial>
       <Testimonial>
         <Testimonial.Quote>
-          We used to lose valuable time waiting for feedback and tracking down the context behind a change. With pull
-          requests and automated checks in the same workflow, our teams can review work earlier, resolve issues
-          together, and release with greater confidence.
+          Los componentes compartidos nos ofrecen una base que todos podemos usar para crear nuevas experiencias.
+          Nuestro equipo puede centrarse en las necesidades de los clientes en lugar de repetir el mismo trabajo en cada
+          proyecto.
         </Testimonial.Quote>
         <Testimonial.Avatar src={hubotAvatar} alt="" />
         <Testimonial.Name position="Mona's Sidekick">Hubot</Testimonial.Name>
@@ -139,7 +151,7 @@ export const ManualNavigation: Story = {
 
 export const SingleTestimonial: Story = {
   render: () => (
-    <TestimonialGroup autoPlay={process.env.NODE_ENV !== 'test'}>
+    <TestimonialGroup>
       <Testimonial>
         <Testimonial.Quote>
           Shared components give us a consistent foundation without limiting what our teams can build. We can focus on
@@ -155,7 +167,7 @@ export const SingleTestimonial: Story = {
 export const Narrow: Story = {
   globals: {viewport: {value: 'iphonexr'}},
   render: () => (
-    <TestimonialGroup autoPlay={false}>
+    <TestimonialGroup>
       <Testimonial>
         <Testimonial.Quote>
           GitHub brings our code, conversations, and security checks into one place. Our developers spend less time
@@ -181,7 +193,7 @@ export const Narrow: Story = {
 export const Dark: Story = {
   parameters: {colorMode: 'dark'},
   render: () => (
-    <TestimonialGroup autoPlay={false}>
+    <TestimonialGroup>
       <Testimonial>
         <Testimonial.Quote>
           GitHub brings our code, conversations, and security checks into one place. Our developers spend less time

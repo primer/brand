@@ -1,14 +1,8 @@
-@property --brand-TestimonialGroup-ring-progress {
-  syntax: '<angle>';
-  inherits: true;
-  initial-value: 0deg;
-}
-
 .TestimonialGroup {
   width: 100%;
   min-width: 0;
-  padding-block: var(--brand-TestimonialGroup-paddingBlockNarrow);
-  padding-inline: var(--brand-TestimonialGroup-paddingInlineNarrow);
+  padding-block: 56px;
+  padding-inline: var(--base-size-32);
 }
 
 .TestimonialGroup__content {
@@ -39,51 +33,9 @@
 }
 
 .TestimonialGroup__testimonial .TestimonialGroup__avatar {
-  --brand-TestimonialGroup-ring-progress: 360deg;
-  position: relative;
   flex: none;
+  border: var(--base-size-2) solid var(--brand-Testimonial-quoteMarkColor-green);
   border-radius: 50%;
-  background: var(--brand-color-border-muted);
-}
-
-.TestimonialGroup__avatar img {
-  clip-path: circle(var(--brand-TestimonialGroup-avatarImageRadius) at center);
-  mask: radial-gradient(
-    circle,
-    var(--base-color-scale-black-0)
-      calc(var(--brand-TestimonialGroup-avatarImageRadius) - var(--brand-borderWidth-thin)),
-    transparent var(--brand-TestimonialGroup-avatarImageRadius)
-  );
-}
-
-.TestimonialGroup__avatar::before {
-  position: absolute;
-  z-index: 1;
-  inset: 0;
-  content: '';
-  pointer-events: none;
-  border-radius: 50%;
-  background: conic-gradient(
-    var(--brand-Testimonial-quoteMarkColor-green) var(--brand-TestimonialGroup-ring-progress, 360deg),
-    transparent 0deg
-  );
-  mask: radial-gradient(
-    farthest-side,
-    transparent calc(100% - var(--brand-TestimonialGroup-ringMaskOuterInset)),
-    var(--base-color-scale-black-0) calc(100% - var(--brand-TestimonialGroup-ringMaskInnerInset))
-  );
-}
-
-.TestimonialGroup__avatar::after {
-  position: absolute;
-  z-index: 2;
-  inset: 0;
-  content: '';
-  pointer-events: none;
-  border-radius: 50%;
-  background: radial-gradient(circle closest-side, var(--brand-Testimonial-quoteMarkColor-green) 100%, transparent 100%)
-    center top / var(--brand-TestimonialGroup-ringWidth) var(--brand-TestimonialGroup-ringWidth) no-repeat;
-  transform: rotate(var(--brand-TestimonialGroup-ring-progress, 360deg));
 }
 
 .TestimonialGroup__quoteMark,
@@ -120,27 +72,12 @@
   flex: none;
   order: 1;
   align-items: center;
-  gap: var(--base-size-8);
-  margin-block-start: var(--brand-TestimonialGroup-controlsGap);
-  padding-block-start: var(--brand-TestimonialGroup-controlsPadding);
+  margin-block-start: var(--base-size-32);
+  padding-block-start: var(--base-size-16);
 }
 
 .TestimonialGroup__content--expressive .TestimonialGroup__controls {
   margin-block-start: 0;
-}
-
-.TestimonialGroup__controls .TestimonialGroup__playback {
-  order: 1;
-  width: calc(var(--base-size-28) + var(--base-size-2));
-  min-width: calc(var(--base-size-28) + var(--base-size-2));
-  height: calc(var(--base-size-28) + var(--base-size-2));
-  min-height: calc(var(--base-size-28) + var(--base-size-2));
-  padding: 0;
-}
-
-.TestimonialGroup__controls .TestimonialGroup__playback svg {
-  width: var(--base-size-16);
-  height: var(--base-size-16);
 }
 
 .TestimonialGroup__announcement {
@@ -163,7 +100,7 @@
 
 @media screen and (min-width: 63.25rem) {
   .TestimonialGroup {
-    padding-block: var(--brand-TestimonialGroup-paddingBlock);
-    padding-inline: var(--brand-TestimonialGroup-paddingInline);
+    padding-block: var(--base-size-60);
+    padding-inline: var(--base-size-60);
   }
 }

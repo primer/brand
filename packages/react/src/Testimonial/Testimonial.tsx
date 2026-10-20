@@ -17,11 +17,11 @@ import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/compone
 import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/testimonial/colors-with-modes.css'
 
 import styles from './Testimonial.module.css'
-import {Colors, BiColorGradients} from '../constants'
+import {Colors} from '../constants'
 
 type TestimonialSize = 'small' | 'large'
 
-export const TestimonialQuoteMarkColors = [...Colors, ...BiColorGradients] as const
+export const TestimonialQuoteMarkColors = [...Colors] as const
 export const defaultQuoteMarkColor = 'green'
 
 export const TestimonialVariants = ['subtle', 'default', 'minimal', 'expressive'] as const
@@ -80,17 +80,20 @@ function TestimonialBase(
   ref,
 ) {
   const {classes: animationClasses, styles: animationInlineStyles} = useAnimation(animate)
+  const resolvedQuoteMarkColor = TestimonialQuoteMarkColors.includes(quoteMarkColor)
+    ? quoteMarkColor
+    : defaultQuoteMarkColor
 
   const quoteMark = (
     <div
       aria-hidden="true"
       className={clsx(
         styles['Testimonial__quoteMark'],
-        styles[`Testimonial__quoteMark--${quoteMarkColor}`],
+        styles[`Testimonial__quoteMark--${resolvedQuoteMarkColor}`],
         quoteMarkClassName,
       )}
     >
-      <span className={styles['Testimonial__quoteMarkGlyph']}>&ldquo;</span>
+      <span className={styles.Testimonial__quoteMarkGlyph}>&ldquo;</span>
     </div>
   )
 
@@ -132,7 +135,7 @@ function TestimonialBase(
       style={{
         ...animationInlineStyles,
         ...style,
-        ['--testimonial-accent-color' as keyof CSSProperties]: quoteMarkColor,
+        ['--testimonial-accent-color' as keyof CSSProperties]: resolvedQuoteMarkColor,
       }}
       {...rest}
     >

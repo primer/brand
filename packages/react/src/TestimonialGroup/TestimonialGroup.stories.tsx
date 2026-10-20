@@ -10,7 +10,6 @@ const meta = {
   component: TestimonialGroup,
   parameters: {layout: 'fullscreen'},
   argTypes: {
-    autoPlay: {control: 'boolean'},
     defaultActiveIndex: {control: {type: 'number', min: 0, max: 2}},
     children: {control: false},
     labels: {control: 'object'},
@@ -22,7 +21,7 @@ type Story = StoryObj<typeof TestimonialGroup>
 
 export const Default: Story = {
   render: () => (
-    <TestimonialGroup autoPlay={process.env.NODE_ENV !== 'test'}>
+    <TestimonialGroup>
       <Testimonial>
         <Testimonial.Quote>
           GitHub brings our code, conversations, and security checks into one place. Our developers spend less time
@@ -54,9 +53,22 @@ export const Default: Story = {
 }
 
 export const Playground: Story = {
-  args: {autoPlay: true, defaultActiveIndex: 0, 'aria-label': 'Team testimonials'},
+  args: {
+    defaultActiveIndex: 0,
+    labels: {
+      carousel: 'Team testimonials',
+      controlsPrev: 'Previous testimonial',
+      controlsNext: 'Next testimonial',
+      controlsNavigation: '{carousel} navigation',
+      carouselRoleDescription: 'carousel',
+      slideRoleDescription: 'slide',
+      indicator: 'Go to testimonial {current}',
+      slide: 'Testimonial {current} of {total}',
+      announcement: 'Testimonial {current} of {total}: {author}',
+    },
+  },
   render: args => (
-    <TestimonialGroup {...args} autoPlay={process.env.NODE_ENV === 'test' ? false : args.autoPlay}>
+    <TestimonialGroup {...args}>
       <Testimonial>
         <Testimonial.Quote>
           GitHub brings our code, conversations, and security checks into one place. Our developers spend less time
