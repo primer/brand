@@ -48,7 +48,6 @@ export const FeatureComparisonTableRow = ({children, className}: FeatureComparis
             className={clsx(
               styles.FeatureComparisonTable__tableCell,
               hasItemLabel(item) && styles.FeatureComparisonTable__highlightedColumn,
-              cells[index]?.props.variant && styles['FeatureComparisonTable__tableCell--hasVariant'],
             )}
             key={item.key}
           >

@@ -48,7 +48,6 @@ declare const styles: {
   readonly "FeatureComparisonTable__summary": string;
   readonly "FeatureComparisonTable__table": string;
   readonly "FeatureComparisonTable__tableCell": string;
-  readonly "FeatureComparisonTable__tableCell--hasVariant": string;
   readonly "FeatureComparisonTable__tableHeading": string;
   readonly "FeatureComparisonTable__tableHeading--hasLabel": string;
 };

@@ -156,11 +156,26 @@ export const CopilotIndividualPlans: Story = {
               {t('available_models_description')}
             </FeatureComparisonTable.RowDescription>
             {[
-              ['Anthropic Claude Haiku 4.5', 'OpenAI GPT-4.1', 'OpenAI GPT-5 mini', 'Raptor mini (Preview)'],
+              [
+                'Anthropic Claude Haiku 4.5',
+                '-',
+                '-',
+                '-',
+                '-',
+                '-',
+                '-',
+                'OpenAI GPT-4.1',
+                '-',
+                '-',
+                'OpenAI GPT-5 mini',
+                'Raptor mini (Preview)',
+              ],
               [
                 'Anthropic Claude Haiku 4.5',
                 'Anthropic Claude Sonnet 4.5',
                 'Anthropic Claude Sonnet 4',
+                '-',
+                '-',
                 'Google Gemini 2.5 Pro',
                 'Google Gemini 3 Pro (Preview)',
                 'OpenAI GPT-4.1',
@@ -186,8 +201,8 @@ export const CopilotIndividualPlans: Story = {
             ].map((models, index) => (
               <FeatureComparisonTable.Cell key={index}>
                 <Stack direction="vertical" gap="none" padding="none" alignItems="center">
-                  {models.map(model => (
-                    <Text key={model} size="100" variant="muted">
+                  {models.map((model, modelIndex) => (
+                    <Text key={modelIndex} size="100" variant="muted">
                       {model.replace('(Preview)', `(${t('preview')})`)}
                     </Text>
                   ))}
