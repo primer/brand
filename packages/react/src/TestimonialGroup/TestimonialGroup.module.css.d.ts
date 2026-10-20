@@ -11,7 +11,6 @@ declare const styles: {
   readonly "TestimonialGroup__slide": string;
   readonly "TestimonialGroup__slide--active": string;
   readonly "TestimonialGroup__slides": string;
-  readonly "TestimonialGroup__testimonial": string;
   readonly "TestimonialGroup__testimonial--in": string;
   readonly "TestimonialGroup__testimonial--out": string;
 };

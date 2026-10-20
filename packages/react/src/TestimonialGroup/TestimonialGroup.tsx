@@ -316,7 +316,6 @@ const Root = forwardRef<HTMLDivElement, TestimonialGroupProps>(
                   }),
                   className: clsx(
                     testimonial.props.className,
-                    styles.TestimonialGroup__testimonial,
                     styles[`TestimonialGroup__testimonial--${index === view.index ? view.phase : 'out'}`],
                   ),
                 })}

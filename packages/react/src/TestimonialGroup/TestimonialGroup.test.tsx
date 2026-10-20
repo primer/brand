@@ -134,11 +134,7 @@ describe('TestimonialGroup', () => {
       </TestimonialGroup>,
     )
 
-    expect(getByRole('figure')).toHaveClass(
-      'Testimonial--variant-minimal',
-      'TestimonialGroup__testimonial',
-      'custom-testimonial',
-    )
+    expect(getByRole('figure')).toHaveClass('Testimonial--variant-minimal', 'custom-testimonial')
   })
 
   it('localizes complete phrases with reordered numbers and author names', async () => {

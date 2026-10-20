@@ -32,7 +32,7 @@
   pointer-events: auto;
 }
 
-.TestimonialGroup__testimonial .TestimonialGroup__avatar {
+.TestimonialGroup__avatar {
   flex: none;
   border: var(--base-size-2) solid var(--brand-Testimonial-quoteMarkColor-green);
   border-radius: 50%;
