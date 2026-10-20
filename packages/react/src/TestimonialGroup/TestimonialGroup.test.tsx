@@ -247,6 +247,24 @@ describe('TestimonialGroup', () => {
     expect(slide.querySelector('.TestimonialGroup__quote')).toHaveClass('Testimonial-quote')
     expect(slide.querySelector('.TestimonialGroup__media')).toHaveClass('Testimonial__media')
     expect(slide.querySelector('.TestimonialGroup__avatar')).toHaveClass('Testimonial-avatar', 'Avatar')
+    expect(slide.querySelector('.TestimonialGroup__avatar')).not.toHaveClass('TestimonialGroup__avatar--size-large')
+  })
+
+  it('applies the large avatar modifier to large grouped testimonials', () => {
+    const {getByRole} = render(
+      <TestimonialGroup>
+        <Testimonial size="large">
+          <Testimonial.Quote>First quote</Testimonial.Quote>
+          <Testimonial.Avatar src="first.png" alt="" />
+          <Testimonial.Name>First author</Testimonial.Name>
+        </Testimonial>
+        {children[1]}
+      </TestimonialGroup>,
+    )
+
+    expect(getByRole('group', {name: 'Testimonial 1 of 2'}).querySelector('.TestimonialGroup__avatar')).toHaveClass(
+      'TestimonialGroup__avatar--size-large',
+    )
   })
 
   it.each([NaN, Infinity, -Infinity, 0.5])('normalizes an invalid initial index of %s', defaultActiveIndex => {

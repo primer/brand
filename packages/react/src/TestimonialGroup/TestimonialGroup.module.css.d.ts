@@ -2,6 +2,7 @@ declare const styles: {
   readonly "TestimonialGroup": string;
   readonly "TestimonialGroup__announcement": string;
   readonly "TestimonialGroup__avatar": string;
+  readonly "TestimonialGroup__avatar--size-large": string;
   readonly "TestimonialGroup__content": string;
   readonly "TestimonialGroup__content--expressive": string;
   readonly "TestimonialGroup__controls": string;

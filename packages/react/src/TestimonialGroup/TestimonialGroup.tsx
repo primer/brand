@@ -309,7 +309,11 @@ const Root = forwardRef<HTMLDivElement, TestimonialGroupProps>(
                     }
                     if (child.type === Testimonial.Avatar) {
                       return cloneElement(child, {
-                        className: clsx(child.props.className, styles.TestimonialGroup__avatar),
+                        className: clsx(
+                          child.props.className,
+                          styles.TestimonialGroup__avatar,
+                          testimonial.props.size === 'large' && styles['TestimonialGroup__avatar--size-large'],
+                        ),
                       })
                     }
                     return child

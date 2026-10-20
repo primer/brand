@@ -38,6 +38,11 @@
   border-radius: 50%;
 }
 
+.TestimonialGroup__avatar.TestimonialGroup__avatar--size-large {
+  width: var(--base-size-48);
+  height: var(--base-size-48);
+}
+
 .TestimonialGroup__quoteMark,
 .TestimonialGroup__quote,
 .TestimonialGroup__media {
