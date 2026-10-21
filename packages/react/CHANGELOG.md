@@ -1,5 +1,123 @@
 # @primer/react-brand
 
+## 0.80.0
+
+### Minor Changes
+
+- [#1497](https://github.com/primer/brand/pull/1497) [`7ea7779`](https://github.com/primer/brand/commit/7ea777930c4311c024bea467dc98a17cec07db6d) Thanks [@rezrah](https://github.com/rezrah)! - Added `Spinner` for indeterminate loading states.
+
+  ```jsx
+  <Spinner accessibleLabel="Loading notification settings" />
+  ```
+
+  🔗 [See `Spinner` documentation for more usage examples](https://primer.style/brand/components/Spinner)
+
+- [#1497](https://github.com/primer/brand/pull/1497) [`7ea7779`](https://github.com/primer/brand/commit/7ea777930c4311c024bea467dc98a17cec07db6d) Thanks [@rezrah](https://github.com/rezrah)! - Added `ToggleSwitch` for settings that need to take effect immediately.
+
+  ```jsx
+  <FormControl>
+    <FormControl.Label>Enable notifications</FormControl.Label>
+    <ToggleSwitch />
+  </FormControl>
+  ```
+
+  🔗 [See `ToggleSwitch` documentation for more usage examples](https://primer.style/brand/forms/ToggleSwitch)
+
+- [#1504](https://github.com/primer/brand/pull/1504) [`066019e`](https://github.com/primer/brand/commit/066019e8cd6cbceb0f5ad51f91ed080c7ab59d5e) Thanks [@rezrah](https://github.com/rezrah)! - Added `TestimonialGroup` for automatically presenting multiple testimonials in a carousel.
+
+  ```jsx
+  <TestimonialGroup>
+    /* Testimonial 1 */
+    <Testimonial>
+      <Testimonial.Quote>Our team spends more time solving problems and less time switching tools.</Testimonial.Quote>
+      <Testimonial.Name>Mona</Testimonial.Name>
+    </Testimonial>
+    /* Testimonial 2 */
+    <Testimonial>
+      <Testimonial.Quote>
+        Shared workflows help us review changes earlier and release with greater confidence.
+      </Testimonial.Quote>
+      <Testimonial.Name>Hubot</Testimonial.Name>
+    </Testimonial>
+  </TestimonialGroup>
+  ```
+
+  [See `TestimonialGroup` documentation for more usage examples](https://primer.style/brand/components/TestimonialGroup/)
+
+- [#1504](https://github.com/primer/brand/pull/1504) [`066019e`](https://github.com/primer/brand/commit/066019e8cd6cbceb0f5ad51f91ed080c7ab59d5e) Thanks [@rezrah](https://github.com/rezrah)! - Added `CarouselPagination` for controlled and compact carousel navigation component.
+
+  ```jsx
+  <CarouselPagination
+    aria-label="Choose featured story"
+    itemCount={5}
+    activeIndex={activeIndex}
+    onChange={setActiveIndex}
+  />
+  ```
+
+  [See the `CarouselPagination` documentation for more usage examples](https://primer.style/brand/components/CarouselPagination/)
+
+- [#1504](https://github.com/primer/brand/pull/1504) [`066019e`](https://github.com/primer/brand/commit/066019e8cd6cbceb0f5ad51f91ed080c7ab59d5e) Thanks [@rezrah](https://github.com/rezrah)! - Removed gradient quote-mark colors from `Testimonial`.
+
+  - Please replace `blue-purple`, `green-blue`, `pink-blue`, `purple-red`, and `red-orange` with a solid `quoteMarkColor`, or omit the prop to use green.
+  - Retired values will fall back to solid green.
+
+- [#1507](https://github.com/primer/brand/pull/1507) [`6df49ae`](https://github.com/primer/brand/commit/6df49ae56da76b5ada3dbb37d9a0285ddbdf3504) Thanks [@rezrah](https://github.com/rezrah)! - Improved `auto` support in `ThemeProvider`
+
+  System preferences now render before hydration in SSR contexts.
+
+  - ⚠️ `ThemeProvider` with `colorMode="auto"` now passes through `data-color-mode="auto"` instead of resolving to `light` or `dark`.
+    Use `colorMode` from `useTheme()` for the resolved value.
+
+  - Adds `originalColorMode` to `useTheme` return value to preserve the original mode when forwarding themes.
+
+### Patch Changes
+
+- [#1497](https://github.com/primer/brand/pull/1497) [`7ea7779`](https://github.com/primer/brand/commit/7ea777930c4311c024bea467dc98a17cec07db6d) Thanks [@rezrah](https://github.com/rezrah)! - Updates to `IconButton`.
+
+  - Added support for custom SVG elements.
+  - **Breaking change:** Renamed CSS variables to reflect newer naming conventions.
+
+  Update any custom token overrides if you previously relied on these tokens.
+
+  ```diff
+  - --brand-IconButton-loadingIndicator-animationDuration-default
+  - --brand-IconButton-loadingIndicator-animationDuration-reducedMotion
+  + --brand-IconButton-spinner-animationDuration-default
+  + --brand-IconButton-spinner-animationDuration-reducedMotion
+  ```
+
+- [#1504](https://github.com/primer/brand/pull/1504) [`066019e`](https://github.com/primer/brand/commit/066019e8cd6cbceb0f5ad51f91ed080c7ab59d5e) Thanks [@rezrah](https://github.com/rezrah)! - Updated mobile `Tabs` with compact carousel controls, improved keyboard focus, and customizable accessible labels.
+
+  ```jsx
+  <Tabs
+    aria-label="Features"
+    internalAccessibleLabels={{
+      controlsPrev: 'Previous tab',
+      controlsNext: 'Next tab',
+      controlsNavigation: 'Tab navigation',
+      controlsIndicator: 'Go to tab {current}',
+    }}
+  >
+    {/* Tabs.Item and Tabs.Panel children */}
+  </Tabs>
+  ```
+
+- [#1497](https://github.com/primer/brand/pull/1497) [`7ea7779`](https://github.com/primer/brand/commit/7ea777930c4311c024bea467dc98a17cec07db6d) Thanks [@rezrah](https://github.com/rezrah)! - Fixed `FormControl` error validation message contrast.
+
+- [#1499](https://github.com/primer/brand/pull/1499) [`cf99b08`](https://github.com/primer/brand/commit/cf99b0887ce136f8e6624434a9cf5c7da979a5dc) Thanks [@rezrah](https://github.com/rezrah)! - Updated the play icon in `LogoSuite.Logobar` when `marquee` is enabled
+
+- [#1511](https://github.com/primer/brand/pull/1511) [`f27fc4b`](https://github.com/primer/brand/commit/f27fc4b34717459554aa607426ccf9667a9b54bb) Thanks [@rezrah](https://github.com/rezrah)! - Fixed overflowing dividers on the final `PricingOptions.Item` on wide viewports.
+
+- [#1499](https://github.com/primer/brand/pull/1499) [`cf99b08`](https://github.com/primer/brand/commit/cf99b0887ce136f8e6624434a9cf5c7da979a5dc) Thanks [@rezrah](https://github.com/rezrah)! - `LogoSuite` updates:
+
+  - `LogoSuite.Logobar` logos rendered as links now retain their full colors.
+  - `LogoSuite` now supports a `gridline` version.
+
+- [#1496](https://github.com/primer/brand/pull/1496) [`1820cf0`](https://github.com/primer/brand/commit/1820cf0c90d1f432fb2eb9a28917602c967c6376) Thanks [@danielguillan](https://github.com/danielguillan)! - Render `RiverBreakoutTabs.Content` outside desktop tab buttons so nested controls remain independently accessible.
+
+- [#1508](https://github.com/primer/brand/pull/1508) [`c309493`](https://github.com/primer/brand/commit/c309493bb3fdfc70e8db9b1f996f2b225fdb6d20) Thanks [@danielguillan](https://github.com/danielguillan)! - Fix cell alignment and sticky header gutters in `FeatureComparisonTable`.
+
 ## 0.79.0
 
 ### Minor Changes
