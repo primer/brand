@@ -32,6 +32,50 @@ describe('IconButton', () => {
     expect(getByTestId('IconButton')).toBe(button)
   })
 
+  it('preserves custom SVG attributes and classes while keeping the icon decorative', async () => {
+    const {getByRole, queryByRole, container} = render(
+      <IconButton
+        aria-label="Preview"
+        icon={
+          <svg
+            viewBox="0 0 16 16"
+            className="custom-icon"
+            role="img"
+            aria-label="Decorative symbol"
+            aria-hidden="false"
+            focusable="true"
+          >
+            <circle cx="8" cy="8" r="5" fill="none" stroke="currentColor" />
+          </svg>
+        }
+      />,
+    )
+    const icon = getByRole('button', {name: 'Preview'}).querySelector('svg')
+
+    expect(icon).toHaveClass('custom-icon', 'IconButton__icon')
+    expect(icon).toHaveAttribute('viewBox', '0 0 16 16')
+    expect(icon).toHaveAttribute('aria-hidden', 'true')
+    expect(icon).toHaveAttribute('focusable', 'false')
+    expect(icon?.querySelector('circle')).toHaveAttribute('stroke', 'currentColor')
+    expect(queryByRole('img')).not.toBeInTheDocument()
+    expect(await axe(container)).toHaveNoViolations()
+  })
+
+  it('replaces a custom SVG with the spinner and restores it afterward', () => {
+    const icon = <svg viewBox="0 0 16 16" className="custom-icon" />
+    const {getByRole, getByTestId, queryByTestId, rerender} = render(<IconButton icon={icon} aria-label="Preview" />)
+    expect(getByRole('button').querySelector('svg')).toHaveClass('custom-icon')
+
+    rerender(<IconButton loading icon={icon} aria-label="Preview" />)
+    expect(getByTestId('IconButton-spinner')).toBeInTheDocument()
+    expect(getByRole('button').querySelector('.custom-icon')).not.toBeInTheDocument()
+
+    rerender(<IconButton icon={icon} aria-label="Preview" />)
+    expect(queryByTestId('IconButton-spinner')).not.toBeInTheDocument()
+    expect(getByRole('button').querySelector('svg')).toHaveClass('custom-icon', 'IconButton__icon')
+    expect(icon.props.className).toBe('custom-icon')
+  })
+
   it.each(ButtonVariants)('inherits the %s variant from Button', variant => {
     const {getByRole} = render(<IconButton icon={HeartIcon} aria-label="Favorite" variant={variant} />)
     expect(getByRole('button')).toHaveClass(`Button--${variant}`)

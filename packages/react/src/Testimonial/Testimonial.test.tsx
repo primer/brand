@@ -2,7 +2,7 @@ import React, {useEffect} from 'react'
 import {act, render} from '@testing-library/react'
 import '@testing-library/jest-dom'
 import {axe, toHaveNoViolations} from 'jest-axe'
-import {Testimonial} from './Testimonial'
+import {Testimonial, TestimonialQuoteMarkColors, type TestimonialProps} from './Testimonial'
 import {testIds as textCursorAnimationTestIds} from '../TextCursorAnimation'
 
 expect.extend(toHaveNoViolations)
@@ -74,11 +74,13 @@ describe('Testimonial', () => {
     expect(avatar).toBeInTheDocument()
   })
 
-  it('renders quote mark with default color', () => {
+  it('renders the default minimal presentation with a green quote mark', () => {
     const {container} = render(<DefaultTestimonial />)
 
     const quoteMark = container.querySelector('[aria-hidden="true"]')
-    expect(quoteMark).toHaveClass('Testimonial__quoteMark--default')
+    expect(quoteMark).toHaveClass('Testimonial__quoteMark--green')
+    expect(quoteMark).toHaveClass('Testimonial__quoteMark')
+    expect(container.querySelector('figure')).toHaveClass('Testimonial--variant-minimal')
   })
 
   it('allows forwarding of custom classes', () => {
@@ -92,6 +94,20 @@ describe('Testimonial', () => {
     const figure = getByRole('figure')
     expect(figure).toHaveClass('custom-testimonial')
     expect(figure).toHaveClass('Testimonial')
+  })
+
+  it('merges part classes without replacing built-in styling classes', () => {
+    const {container, getByRole} = render(
+      <Testimonial quoteMarkClassName="custom-quote-mark" mediaClassName="custom-media">
+        <Testimonial.Quote>Customer quote</Testimonial.Quote>
+        <Testimonial.Avatar src={mockAvatarSrc} alt={mockAvatarAlt} className="custom-avatar" />
+        <Testimonial.Name>Mona Lisa</Testimonial.Name>
+      </Testimonial>,
+    )
+
+    expect(container.querySelector('.custom-quote-mark')).toHaveClass('Testimonial__quoteMark')
+    expect(container.querySelector('.custom-media')).toHaveClass('Testimonial__media')
+    expect(getByRole('img', {name: mockAvatarAlt}).parentElement).toHaveClass('Testimonial-avatar', 'custom-avatar')
   })
 
   it('supports RefObject for the root Testimonial component', () => {
@@ -194,7 +210,7 @@ describe('Testimonial', () => {
     expect(figure).toHaveStyle({'--testimonial-accent-color': 'blue'})
   })
 
-  it('does not apply background class to quote mark by default', () => {
+  it('applies the quote mark tile without requiring a testimonial group', () => {
     const {container} = render(
       <Testimonial>
         <Testimonial.Quote>Quote text</Testimonial.Quote>
@@ -203,7 +219,52 @@ describe('Testimonial', () => {
     )
 
     const quoteMark = container.querySelector('[aria-hidden="true"]')
-    expect(quoteMark).not.toHaveClass('Testimonial__quoteMark--hasBackground')
+    expect(quoteMark).toHaveClass('Testimonial__quoteMark')
+  })
+
+  it.each(['blue-purple', 'green-blue', 'pink-blue', 'purple-red', 'red-orange', 'unsupported'])(
+    'falls back to solid green for the unsupported quote mark color %s',
+    quoteMarkColor => {
+      const {container, getByRole} = render(
+        <Testimonial quoteMarkColor={quoteMarkColor as TestimonialProps['quoteMarkColor']}>
+          <Testimonial.Quote>Customer quote</Testimonial.Quote>
+          <Testimonial.Name>Mona Lisa</Testimonial.Name>
+        </Testimonial>,
+      )
+
+      expect(TestimonialQuoteMarkColors).not.toContain(quoteMarkColor)
+      expect(container.querySelector('[aria-hidden="true"]')).toHaveClass('Testimonial__quoteMark--green')
+      expect(getByRole('figure')).toHaveStyle({'--testimonial-accent-color': 'green'})
+    },
+  )
+
+  it.each(['minimal', 'default', 'subtle', 'expressive'] as const)(
+    'uses the shared green quote mark presentation for the %s variant',
+    variant => {
+      const {container} = render(
+        <Testimonial variant={variant}>
+          <Testimonial.Quote>Quote text</Testimonial.Quote>
+          <Testimonial.Name>Name</Testimonial.Name>
+        </Testimonial>,
+      )
+
+      const quoteMark = container.querySelector('[aria-hidden="true"]')
+      expect(quoteMark).toHaveClass('Testimonial__quoteMark', 'Testimonial__quoteMark--green')
+    },
+  )
+
+  it.each(TestimonialQuoteMarkColors)('preserves an explicit %s quote mark color', quoteMarkColor => {
+    const {container} = render(
+      <Testimonial variant="subtle" quoteMarkColor={quoteMarkColor}>
+        <Testimonial.Quote>Quote text</Testimonial.Quote>
+        <Testimonial.Name>Name</Testimonial.Name>
+      </Testimonial>,
+    )
+
+    expect(container.querySelector('[aria-hidden="true"]')).toHaveClass(
+      'Testimonial__quoteMark',
+      `Testimonial__quoteMark--${quoteMarkColor}`,
+    )
   })
 
   it('renders quote in blockquote element', () => {
@@ -651,7 +712,7 @@ describe('Testimonial', () => {
     expect(quoteMark).not.toHaveClass('Testimonial__quoteMark--green')
   })
 
-  it('applies hasBackground class to quote mark in expressive variant', () => {
+  it('uses the shared quote mark tile in the expressive variant', () => {
     const {container} = render(
       <Testimonial variant="expressive">
         <Testimonial.Quote>Quote text</Testimonial.Quote>
@@ -660,7 +721,7 @@ describe('Testimonial', () => {
     )
 
     const quoteMark = container.querySelector('[aria-hidden="true"]')
-    expect(quoteMark).toHaveClass('Testimonial__quoteMark--hasBackground')
+    expect(quoteMark).toHaveClass('Testimonial__quoteMark', 'Testimonial__quoteMark--green')
   })
 
   it('renders quote section and attribution section in expressive variant', () => {

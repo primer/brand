@@ -1,5 +1,17 @@
 {
   "Testimonial": {
+    "minimal": {
+      "quote": {
+        "fontSize": {
+          "large": {
+            "value": "2rem"
+          }
+        },
+        "lineHeight": {
+          "value": "1.35"
+        }
+      }
+    },
     "quote": {
       "fontSize": {
         "default": {

@@ -1,0 +1,154 @@
+---
+title: Testimonial group
+description: Display a collection of testimonials with carousel navigation.
+keywords: ['testimonial', 'quote', 'carousel', 'customer', 'social proof']
+show-tabs: false
+tab-label: React
+ready: true
+source: https://github.com/primer/brand/blob/main/packages/react/src/TestimonialGroup/TestimonialGroup.tsx
+storybook: '/brand/storybook/?path=/story/components-testimonialgroup--playground'
+---
+
+```js
+import {Testimonial, TestimonialGroup} from '@primer/react-brand'
+```
+
+## Examples
+
+### Default
+
+```jsx live
+<TestimonialGroup labels={{carousel: 'Customer testimonials'}}>
+  <Testimonial>
+    <Testimonial.Quote>Our team spends more time solving problems and less time on repetitive work.</Testimonial.Quote>
+    <Testimonial.Avatar src="/images/avatar-mona.png" alt="" />
+    <Testimonial.Name position="Chief Octocat">Mona Lisa</Testimonial.Name>
+  </Testimonial>
+  <Testimonial>
+    <Testimonial.Quote>We build better software when everyone can contribute.</Testimonial.Quote>
+    <Testimonial.Avatar src="/images/avatar-hubot.png" alt="" />
+    <Testimonial.Name position="Mona's Sidekick">Hubot</Testimonial.Name>
+  </Testimonial>
+</TestimonialGroup>
+```
+
+### Without avatars
+
+```jsx live
+<TestimonialGroup aria-label="Team testimonials">
+  <Testimonial>
+    <Testimonial.Quote>Our tools help the whole team work together.</Testimonial.Quote>
+    <Testimonial.Name position="Chief Octocat">Mona Lisa</Testimonial.Name>
+  </Testimonial>
+  <Testimonial>
+    <Testimonial.Quote>Shared patterns give us more time to focus on the experience.</Testimonial.Quote>
+    <Testimonial.Name position="Mona's Sidekick">Hubot</Testimonial.Name>
+  </Testimonial>
+</TestimonialGroup>
+```
+
+### Testimonial variants
+
+`TestimonialGroup` supports all available [`Testimonial`](/components/Testimonial/react) variants. Always use the same `variant`. Do not mix them.
+
+```jsx live
+<TestimonialGroup aria-label="Customer testimonials">
+  <Testimonial variant="expressive">
+    <Testimonial.Quote>Our team can focus on building the right experience.</Testimonial.Quote>
+    <Testimonial.Avatar src="/images/avatar-mona.png" alt="" />
+    <Testimonial.Name position="Chief Octocat">Mona Lisa</Testimonial.Name>
+  </Testimonial>
+  <Testimonial variant="expressive">
+    <Testimonial.Quote>Consistent tools help us turn ideas into working software.</Testimonial.Quote>
+    <Testimonial.Avatar src="/images/avatar-hubot.png" alt="" />
+    <Testimonial.Name position="Mona's Sidekick">Hubot</Testimonial.Name>
+  </Testimonial>
+</TestimonialGroup>
+```
+
+### Localization
+
+Provide complete phrases through `labels` so translations can control word order and punctuation. An explicit `aria-label` overrides `labels.carousel`.
+
+```jsx live
+<TestimonialGroup
+  lang="es"
+  labels={{
+    carousel: 'Testimonios',
+    controlsPrev: 'Anterior',
+    controlsNext: 'Siguiente',
+    controlsNavigation: 'Controles de {carousel}',
+    carouselRoleDescription: 'carrusel',
+    slideRoleDescription: 'testimonio',
+    indicator: 'Ver testimonio {current}',
+    slide: 'Testimonio {current} de {total}',
+    announcement: '{author}: testimonio {current} de {total}',
+  }}
+>
+  <Testimonial>
+    <Testimonial.Quote>
+      Nuestro equipo puede crear software con confianza y colaborar en un solo lugar.
+    </Testimonial.Quote>
+    <Testimonial.Avatar src="/images/avatar-mona.png" alt="" />
+    <Testimonial.Name position="Chief Octocat">Mona Lisa</Testimonial.Name>
+  </Testimonial>
+  <Testimonial>
+    <Testimonial.Quote>
+      Los componentes compartidos nos permiten trabajar juntos y mejorar cada experiencia.
+    </Testimonial.Quote>
+    <Testimonial.Avatar src="/images/avatar-hubot.png" alt="" />
+    <Testimonial.Name position="Mona's Sidekick">Hubot</Testimonial.Name>
+  </Testimonial>
+</TestimonialGroup>
+```
+
+## Component props
+
+| Name                 | Type                            | Default           | Description                                             |
+| :------------------- | :------------------------------ | :---------------- | :------------------------------------------------------ |
+| `children`           | `ReactNode`                     |                   | Direct `Testimonial` children.                          |
+| `defaultActiveIndex` | `number`                        | `0`               | Initial testimonial: 0 for the first, 1 for the second. |
+| `onChange`           | `(activeIndex: number) => void` |                   | Called after selection changes; the first index is 0.   |
+| `labels`             | `object`                        | English labels    | Accessible control labels and slide announcements.      |
+| `aria-label`         | `string`                        | `labels.carousel` | Accessible name override for the carousel.              |
+| `className`          | `string`                        |                   | Custom root class.                                      |
+| `id`                 | `string`                        |                   | Custom root ID.                                         |
+| `ref`                | `React.Ref<HTMLDivElement>`     |                   | Ref to the root element.                                |
+
+### Labels
+
+Provide partial overrides through `labels`. Unspecified fields keep their English defaults.
+
+| Name                      | Default                                        | Description                                  |
+| :------------------------ | :--------------------------------------------- | :------------------------------------------- |
+| `carousel`                | `'Testimonials'`                               | Carousel name when `aria-label` is omitted.  |
+| `controlsPrev`            | `'Previous testimonial'`                       | Previous control label.                      |
+| `controlsNext`            | `'Next testimonial'`                           | Next control label.                          |
+| `controlsNavigation`      | `'{carousel} navigation'`                      | Accessible name for the pagination controls. |
+| `carouselRoleDescription` | `'carousel'`                                   | Localized carousel role description.         |
+| `slideRoleDescription`    | `'slide'`                                      | Localized slide role description.            |
+| `indicator`               | `'Go to testimonial {current}'`                | Complete item selector label.                |
+| `slide`                   | `'Testimonial {current} of {total}'`           | Complete slide label.                        |
+| `announcement`            | `'Testimonial {current} of {total}: {author}'` | Complete announcement with an author.        |
+
+Templates use simple placeholder replacement, not ICU message syntax. Select translated templates and plural forms through your application's localization system.
+
+| Placeholder  | Available in                         | Value                                                                    |
+| :----------- | :----------------------------------- | :----------------------------------------------------------------------- |
+| `{carousel}` | `controlsNavigation`                 | The resolved carousel name, including an explicit `aria-label` override. |
+| `{current}`  | `indicator`, `slide`, `announcement` | One-based testimonial position.                                          |
+| `{total}`    | `indicator`, `slide`, `announcement` | Total number of testimonials.                                            |
+| `{author}`   | `announcement`                       | The selected testimonial's plain-text `Testimonial.Name`.                |
+
+When the selected testimonial has no nonempty plain-text name, its complete `slide` phrase is announced instead. Unknown placeholders remain unchanged. Testimonial content is not translated automatically.
+
+## Animation timing
+
+Override these CSS custom properties on `TestimonialGroup` or an ancestor to customize the fades. Use valid CSS durations such as `350ms` or `0.7s`.
+
+| Token                                      | Default | Description                    |
+| :----------------------------------------- | :------ | :----------------------------- |
+| `--brand-TestimonialGroup-fadeInDuration`  | `475ms` | Duration of the incoming fade. |
+| `--brand-TestimonialGroup-fadeOutDuration` | `250ms` | Duration of the outgoing fade. |
+
+Slide changes wait for the rendered fades, including their stagger delays. Reduced-motion preferences still make navigation immediate. Spacing and avatar geometry are not component-specific token overrides.

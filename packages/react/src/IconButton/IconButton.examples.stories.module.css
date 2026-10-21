@@ -5,7 +5,6 @@
   flex-wrap: nowrap;
   gap: var(--base-size-16);
   box-sizing: border-box;
-  inline-size: 100%;
   padding: var(--base-size-24);
   inline-size: max-content;
   max-inline-size: 100%;

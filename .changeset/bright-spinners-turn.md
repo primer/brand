@@ -1,8 +1,12 @@
 ---
+'@primer/react-brand': patch
 '@primer/brand-primitives': minor
 ---
 
-⚠️ Breaking change: Renamed CSS variables associated with the `IconButton` component to reflect newer naming conventions.
+Updates to `IconButton`.
+
+- Added support for custom SVG elements.
+- **Breaking change:** Renamed CSS variables to reflect newer naming conventions.
 
 Update any custom token overrides if you previously relied on these tokens.
 

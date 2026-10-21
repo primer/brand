@@ -1,0 +1,117 @@
+.CarouselPagination {
+  display: inline-flex;
+  flex: 0 1 auto;
+  min-width: 0;
+  align-items: center;
+  gap: calc(var(--base-size-8) + var(--base-size-2));
+  width: max-content;
+  max-width: 100%;
+  padding: var(--base-size-6);
+  border-radius: var(--brand-borderRadius-full);
+  background: var(--brand-CarouselPagination-bgColor);
+}
+
+.CarouselPagination .CarouselPagination__arrowButton {
+  width: calc(var(--base-size-28) + var(--base-size-2));
+  min-width: calc(var(--base-size-28) + var(--base-size-2));
+  height: calc(var(--base-size-28) + var(--base-size-2));
+  min-height: calc(var(--base-size-28) + var(--base-size-2));
+  padding: 0;
+  color: var(--brand-CarouselPagination-arrowButton-fgColor);
+  background: var(--brand-color-canvas-default);
+  border: var(--brand-borderWidth-thin) solid var(--brand-CarouselPagination-arrowButton-borderColor);
+  box-shadow: none;
+  backdrop-filter: none;
+}
+
+.CarouselPagination .CarouselPagination__arrowButton--inactive,
+.CarouselPagination .CarouselPagination__arrowButton--inactive:hover {
+  color: var(--brand-CarouselPagination-arrowButton-inactive-fgColor);
+  background: var(--brand-color-canvas-default);
+  border-color: transparent;
+}
+
+.CarouselPagination .CarouselPagination__arrowButton svg {
+  width: var(--base-size-16);
+  height: var(--base-size-16);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .CarouselPagination .CarouselPagination__arrowButton--available:hover {
+    background: var(--brand-CarouselPagination-bgColor);
+    border-color: var(--brand-CarouselPagination-arrowButton-borderColor);
+    box-shadow: none;
+  }
+}
+
+.CarouselPagination__indicators {
+  display: flex;
+  align-items: center;
+  gap: var(--base-size-6);
+  width: calc(var(--base-size-6) * (var(--carousel-pagination-item-count) * 2 + 0.5));
+  min-width: 0;
+  height: calc(var(--base-size-28) + var(--base-size-2));
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+}
+
+.CarouselPagination__indicator {
+  position: relative;
+  flex: none;
+  width: var(--base-size-6);
+  height: var(--base-size-6);
+  padding: 0;
+  border: 0;
+  border-radius: var(--brand-borderRadius-full);
+  background: var(--brand-CarouselPagination-indicator-bgColor);
+  cursor: pointer;
+  transition: width var(--brand-animation-duration-fast) cubic-bezier(0.4, 0, 0.2, 1),
+    background-color var(--brand-animation-duration-fast) cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.CarouselPagination__indicator::before {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: calc(100% + var(--base-size-6));
+  height: calc(var(--base-size-28) + var(--base-size-2));
+  content: '';
+  transform: translate(-50%, -50%);
+}
+
+.CarouselPagination__indicator--active {
+  width: calc(var(--base-size-6) * 2.5);
+  background: var(--brand-CarouselPagination-indicator-active-bgColor);
+}
+
+.CarouselPagination__indicator:focus-visible {
+  outline: var(--brand-borderWidth-thick) solid var(--brand-color-focus);
+  outline-offset: var(--base-size-4);
+}
+
+.CarouselPagination__arrowButton:focus-visible {
+  outline: var(--brand-borderWidth-thick) solid var(--brand-color-focus);
+  outline-offset: var(--base-size-2);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .CarouselPagination__indicators {
+    scroll-behavior: auto;
+  }
+
+  .CarouselPagination__indicator {
+    transition: none;
+  }
+}
+
+@media (forced-colors: active) {
+  .CarouselPagination__indicator {
+    background: ButtonText;
+  }
+
+  .CarouselPagination__indicator--active {
+    background: Highlight;
+    forced-color-adjust: none;
+  }
+}

@@ -128,6 +128,17 @@ test.describe('Visual Comparison: IconButton', () => {
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
+  test('IconButton / Custom Icon', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-iconbutton-features--custom-icon&viewMode=story',
+      {waitUntil: 'networkidle'},
+    )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+    await page.waitForTimeout(500)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
   test('IconButton / Kitchen Sink', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-iconbutton-features--kitchen-sink&viewMode=story',
