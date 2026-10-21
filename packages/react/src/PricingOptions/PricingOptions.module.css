@@ -596,7 +596,9 @@
   }
 
   /* Last item: don't overflow past container end */
-  .PricingOptions--layout-default .PricingOptions__item:last-child .PricingOptions__feature-list--has-divider::before {
+  .PricingOptions--layout-default
+    .PricingOptions__item:not(:has(~ .PricingOptions__item))
+    .PricingOptions__feature-list--has-divider::before {
     inset-inline-end: calc(var(--brand-pricing-options-container-padding-inline, 0px) * -1);
   }
 
