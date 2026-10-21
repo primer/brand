@@ -1,5 +1,42 @@
 # @primer/brand-css
 
+## 0.80.0
+
+### Minor Changes
+
+- [#1497](https://github.com/primer/brand/pull/1497) [`7ea7779`](https://github.com/primer/brand/commit/7ea777930c4311c024bea467dc98a17cec07db6d) Thanks [@rezrah](https://github.com/rezrah)! - Added `Spinner` for indeterminate loading states.
+
+  ```jsx
+  <Spinner accessibleLabel="Loading notification settings" />
+  ```
+
+  🔗 [See `Spinner` documentation for more usage examples](https://primer.style/brand/components/Spinner)
+
+- [#1497](https://github.com/primer/brand/pull/1497) [`7ea7779`](https://github.com/primer/brand/commit/7ea777930c4311c024bea467dc98a17cec07db6d) Thanks [@rezrah](https://github.com/rezrah)! - Added `ToggleSwitch` for settings that need to take effect immediately.
+
+  ```jsx
+  <FormControl>
+    <FormControl.Label>Enable notifications</FormControl.Label>
+    <ToggleSwitch />
+  </FormControl>
+  ```
+
+  🔗 [See `ToggleSwitch` documentation for more usage examples](https://primer.style/brand/forms/ToggleSwitch)
+
+- [#1504](https://github.com/primer/brand/pull/1504) [`066019e`](https://github.com/primer/brand/commit/066019e8cd6cbceb0f5ad51f91ed080c7ab59d5e) Thanks [@rezrah](https://github.com/rezrah)! - Removed gradient quote-mark colors from `Testimonial`.
+
+  - Please replace `blue-purple`, `green-blue`, `pink-blue`, `purple-red`, and `red-orange` with a solid `quoteMarkColor`, or omit the prop to use green.
+  - Retired values will fall back to solid green.
+
+### Patch Changes
+
+- [#1499](https://github.com/primer/brand/pull/1499) [`cf99b08`](https://github.com/primer/brand/commit/cf99b0887ce136f8e6624434a9cf5c7da979a5dc) Thanks [@rezrah](https://github.com/rezrah)! - `LogoSuite` updates:
+
+  - `LogoSuite.Logobar` logos rendered as links now retain their full colors.
+  - `LogoSuite` now supports a `gridline` version.
+
+- [#1508](https://github.com/primer/brand/pull/1508) [`c309493`](https://github.com/primer/brand/commit/c309493bb3fdfc70e8db9b1f996f2b225fdb6d20) Thanks [@danielguillan](https://github.com/danielguillan)! - Fix cell alignment and sticky header gutters in `FeatureComparisonTable`.
+
 ## 0.79.0
 
 ## 0.78.0

@@ -1,5 +1,108 @@
 # @primer/brand-primitives
 
+## 0.80.0
+
+### Minor Changes
+
+- [#1497](https://github.com/primer/brand/pull/1497) [`7ea7779`](https://github.com/primer/brand/commit/7ea777930c4311c024bea467dc98a17cec07db6d) Thanks [@rezrah](https://github.com/rezrah)! - Updates to `IconButton`.
+
+  - Added support for custom SVG elements.
+  - **Breaking change:** Renamed CSS variables to reflect newer naming conventions.
+
+  Update any custom token overrides if you previously relied on these tokens.
+
+  ```diff
+  - --brand-IconButton-loadingIndicator-animationDuration-default
+  - --brand-IconButton-loadingIndicator-animationDuration-reducedMotion
+  + --brand-IconButton-spinner-animationDuration-default
+  + --brand-IconButton-spinner-animationDuration-reducedMotion
+  ```
+
+- [#1497](https://github.com/primer/brand/pull/1497) [`7ea7779`](https://github.com/primer/brand/commit/7ea777930c4311c024bea467dc98a17cec07db6d) Thanks [@rezrah](https://github.com/rezrah)! - Added `Spinner` for indeterminate loading states.
+
+  ```jsx
+  <Spinner accessibleLabel="Loading notification settings" />
+  ```
+
+  🔗 [See `Spinner` documentation for more usage examples](https://primer.style/brand/components/Spinner)
+
+- [#1497](https://github.com/primer/brand/pull/1497) [`7ea7779`](https://github.com/primer/brand/commit/7ea777930c4311c024bea467dc98a17cec07db6d) Thanks [@rezrah](https://github.com/rezrah)! - Added `ToggleSwitch` for settings that need to take effect immediately.
+
+  ```jsx
+  <FormControl>
+    <FormControl.Label>Enable notifications</FormControl.Label>
+    <ToggleSwitch />
+  </FormControl>
+  ```
+
+  🔗 [See `ToggleSwitch` documentation for more usage examples](https://primer.style/brand/forms/ToggleSwitch)
+
+- [#1504](https://github.com/primer/brand/pull/1504) [`066019e`](https://github.com/primer/brand/commit/066019e8cd6cbceb0f5ad51f91ed080c7ab59d5e) Thanks [@rezrah](https://github.com/rezrah)! - Added `TestimonialGroup` for automatically presenting multiple testimonials in a carousel.
+
+  ```jsx
+  <TestimonialGroup>
+    /* Testimonial 1 */
+    <Testimonial>
+      <Testimonial.Quote>Our team spends more time solving problems and less time switching tools.</Testimonial.Quote>
+      <Testimonial.Name>Mona</Testimonial.Name>
+    </Testimonial>
+    /* Testimonial 2 */
+    <Testimonial>
+      <Testimonial.Quote>
+        Shared workflows help us review changes earlier and release with greater confidence.
+      </Testimonial.Quote>
+      <Testimonial.Name>Hubot</Testimonial.Name>
+    </Testimonial>
+  </TestimonialGroup>
+  ```
+
+  [See `TestimonialGroup` documentation for more usage examples](https://primer.style/brand/components/TestimonialGroup/)
+
+- [#1504](https://github.com/primer/brand/pull/1504) [`066019e`](https://github.com/primer/brand/commit/066019e8cd6cbceb0f5ad51f91ed080c7ab59d5e) Thanks [@rezrah](https://github.com/rezrah)! - Added `CarouselPagination` for controlled and compact carousel navigation component.
+
+  ```jsx
+  <CarouselPagination
+    aria-label="Choose featured story"
+    itemCount={5}
+    activeIndex={activeIndex}
+    onChange={setActiveIndex}
+  />
+  ```
+
+  [See the `CarouselPagination` documentation for more usage examples](https://primer.style/brand/components/CarouselPagination/)
+
+- [#1504](https://github.com/primer/brand/pull/1504) [`066019e`](https://github.com/primer/brand/commit/066019e8cd6cbceb0f5ad51f91ed080c7ab59d5e) Thanks [@rezrah](https://github.com/rezrah)! - Removed gradient quote-mark colors from `Testimonial`.
+
+  - Please replace `blue-purple`, `green-blue`, `pink-blue`, `purple-red`, and `red-orange` with a solid `quoteMarkColor`, or omit the prop to use green.
+  - Retired values will fall back to solid green.
+
+### Patch Changes
+
+- [#1504](https://github.com/primer/brand/pull/1504) [`066019e`](https://github.com/primer/brand/commit/066019e8cd6cbceb0f5ad51f91ed080c7ab59d5e) Thanks [@rezrah](https://github.com/rezrah)! - Updated mobile `Tabs` with compact carousel controls, improved keyboard focus, and customizable accessible labels.
+
+  ```jsx
+  <Tabs
+    aria-label="Features"
+    internalAccessibleLabels={{
+      controlsPrev: 'Previous tab',
+      controlsNext: 'Next tab',
+      controlsNavigation: 'Tab navigation',
+      controlsIndicator: 'Go to tab {current}',
+    }}
+  >
+    {/* Tabs.Item and Tabs.Panel children */}
+  </Tabs>
+  ```
+
+- [#1507](https://github.com/primer/brand/pull/1507) [`6df49ae`](https://github.com/primer/brand/commit/6df49ae56da76b5ada3dbb37d9a0285ddbdf3504) Thanks [@rezrah](https://github.com/rezrah)! - Improved `auto` support in `ThemeProvider`
+
+  System preferences now render before hydration in SSR contexts.
+
+  - ⚠️ `ThemeProvider` with `colorMode="auto"` now passes through `data-color-mode="auto"` instead of resolving to `light` or `dark`.
+    Use `colorMode` from `useTheme()` for the resolved value.
+
+  - Adds `originalColorMode` to `useTheme` return value to preserve the original mode when forwarding themes.
+
 ## 0.79.0
 
 ### Patch Changes
