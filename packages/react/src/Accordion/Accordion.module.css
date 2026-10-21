@@ -282,6 +282,10 @@ details[open] > .Accordion__summary .Accordion__summary-toggleIcon {
 }
 
 .Accordion--default > .Accordion__content {
+  /* Important: we use negative space to ensure overflow content (like link underlines) don't get clipped */
+  box-sizing: content-box;
+  padding-block-end: var(--base-size-12);
+  margin-block-end: calc(var(--base-size-12) * -1);
   top: calc(var(--base-size-2) - var(--base-size-24));
 }
 

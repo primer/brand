@@ -2,7 +2,7 @@ import React from 'react'
 import type {Meta, StoryObj} from '@storybook/react'
 import {Trans, useTranslation} from 'react-i18next'
 import {FAQ, FAQGroup} from '.'
-import {Prose} from '..'
+import {InlineLink, Prose} from '..'
 import {Container} from '../component-helpers'
 
 const meta = {
@@ -75,7 +75,9 @@ const useFixtureData = (): FixtureData => {
           <p>
             <Trans t={t} i18nKey="fixture_answer" components={{textLink}} />
           </p>
-          <p>{t('fixture_answer_additional')}</p>
+          <p>
+            {t('fixture_answer_additional')} <InlineLink href="#">{t('here')}</InlineLink>
+          </p>
         </React.Fragment>
       ),
     },
