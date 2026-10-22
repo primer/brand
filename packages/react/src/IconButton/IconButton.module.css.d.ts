@@ -1,7 +1,10 @@
 declare const styles: {
   readonly "IconButton": string;
   readonly "IconButton--inactive": string;
+  readonly "IconButton--large": string;
+  readonly "IconButton--medium": string;
   readonly "IconButton--rounded": string;
+  readonly "IconButton--small": string;
   readonly "IconButton--variant-danger": string;
   readonly "IconButton--variant-invisible": string;
   readonly "IconButton--variant-secondary": string;

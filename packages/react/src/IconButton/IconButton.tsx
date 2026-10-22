@@ -88,15 +88,16 @@ function IconButtonRoot(
   const shouldRenderTooltip = !disabled && !externalTooltipId
   const tooltipText = description || ariaLabel
   const buttonVariant: ButtonVariant = variant === 'danger' ? 'secondary' : variant === 'invisible' ? 'subtle' : variant
-  const isCustomSize = typeof size === 'number'
-  const buttonSize = isCustomSize ? defaultIconButtonSize : size
-  const controlSize = isCustomSize ? `${size}px` : `var(--brand-IconButton-control-size-${size})`
-  const iconSize = isCustomSize ? `${size / 2}px` : `var(--brand-IconButton-icon-size-${size})`
-  const buttonStyle = {
-    ['--brand-IconButton-control-size' as string]: controlSize,
-    ['--brand-IconButton-icon-size' as string]: iconSize,
-    ...style,
-  }
+  const customSize = typeof size === 'number' ? size : undefined
+  const buttonSize = customSize === undefined ? size : defaultIconButtonSize
+  const buttonStyle =
+    customSize === undefined
+      ? style
+      : {
+          ['--brand-IconButton-control-size' as string]: `${customSize}px`,
+          ['--brand-IconButton-icon-size' as string]: `${customSize / 2}px`,
+          ...style,
+        }
 
   if (process.env.NODE_ENV !== 'production') {
     if (!ariaLabel.trim()) {
@@ -135,6 +136,7 @@ function IconButtonRoot(
       aria-label={!shouldRenderTooltip || description ? ariaLabel : undefined}
       className={clsx(
         styles.IconButton,
+        typeof size === 'string' && styles[`IconButton--${size}`],
         styles[`IconButton--variant-${variant}`],
         isInactive && styles['IconButton--inactive'],
         rounded && styles['IconButton--rounded'],

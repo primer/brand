@@ -111,11 +111,9 @@ describe('IconButton', () => {
     const {getByRole} = render(<IconButton icon={HeartIcon} aria-label="Favorite" size={size} />)
     const button = getByRole('button')
 
-    expect(button).toHaveClass(`Button--size-${size}`)
-    expect(button).toHaveStyle({
-      '--brand-IconButton-control-size': `var(--brand-IconButton-control-size-${size})`,
-      '--brand-IconButton-icon-size': `var(--brand-IconButton-icon-size-${size})`,
-    })
+    expect(button).toHaveClass(`Button--size-${size}`, `IconButton--${size}`)
+    expect(button.style.getPropertyValue('--brand-IconButton-control-size')).toBe('')
+    expect(button.style.getPropertyValue('--brand-IconButton-icon-size')).toBe('')
   })
 
   it('renders a custom numeric size in CSS pixels', () => {
@@ -123,6 +121,7 @@ describe('IconButton', () => {
     const button = getByRole('button')
 
     expect(button).toHaveClass('Button--size-medium')
+    expect(button).not.toHaveClass('IconButton--small', 'IconButton--medium', 'IconButton--large')
     expect(button).toHaveStyle({
       '--brand-IconButton-control-size': '112px',
       '--brand-IconButton-icon-size': '56px',

@@ -1,6 +1,7 @@
 ---
 '@primer/react-brand': patch
 '@primer/brand-primitives': patch
+'@primer/brand-css': patch
 ---
 
 Updated `IconButton` sizing and icon colors.

@@ -11,6 +11,21 @@
   height: var(--brand-IconButton-control-size);
 }
 
+.IconButton--small.IconButton--small {
+  --brand-IconButton-control-size: var(--brand-IconButton-control-size-small);
+  --brand-IconButton-icon-size: var(--brand-IconButton-icon-size-small);
+}
+
+.IconButton--medium.IconButton--medium {
+  --brand-IconButton-control-size: var(--brand-IconButton-control-size-medium);
+  --brand-IconButton-icon-size: var(--brand-IconButton-icon-size-medium);
+}
+
+.IconButton--large.IconButton--large {
+  --brand-IconButton-control-size: var(--brand-IconButton-control-size-large);
+  --brand-IconButton-icon-size: var(--brand-IconButton-icon-size-large);
+}
+
 .IconButton--variant-secondary.IconButton--variant-secondary {
   color: var(--brand-IconButton-secondary-fgColor);
 }
