@@ -1,5 +1,5 @@
 import React from 'react'
-import type {Meta, StoryObj} from '@storybook/react'
+import type {Meta, StoryContext, StoryObj} from '@storybook/react'
 import {expect, userEvent, within} from 'storybook/test'
 
 import {AnchorNav, AnchorNavProps} from '.'
@@ -74,8 +74,9 @@ const meta = {
 export default meta
 type Story = StoryObj<ComponentAndStoryProps>
 
-const renderTemplate = (args: ComponentAndStoryProps) => {
+const renderTemplate = (args: ComponentAndStoryProps, {parameters}: StoryContext<ComponentAndStoryProps>) => {
   const storyData = Object.entries(args.data) as [string, string][]
+  const linkIntersectionRootMargin = parameters.linkIntersectionRootMargin === 'start' ? 'start' : 'middle'
   return (
     <div style={{backgroundColor: 'var(--brand-color-canvas-default)'}}>
       <RedlineBackground height={args.offset}>
@@ -90,7 +91,7 @@ const renderTemplate = (args: ComponentAndStoryProps) => {
       </RedlineBackground>
       <AnchorNav {...args}>
         {storyData.map(([key, value]) => (
-          <AnchorNav.Link href={value} key={value}>
+          <AnchorNav.Link href={value} key={value} intersectionOptions={{rootMargin: linkIntersectionRootMargin}}>
             {key}
           </AnchorNav.Link>
         ))}
@@ -159,6 +160,9 @@ export const ShorterLabels: Story = {
 export const LongerLabels: Story = {
   name: 'Longer labels',
   render: renderTemplate,
+  parameters: {
+    linkIntersectionRootMargin: 'start',
+  },
   args: {
     data: {
       ['Donec ultricies euismod']: 'donecultricieseuismodporttitor',

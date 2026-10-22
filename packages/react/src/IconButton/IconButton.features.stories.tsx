@@ -62,6 +62,25 @@ export const Sizes: Story = {
   ),
 }
 
+export const CustomSizes: Story = {
+  render: () => (
+    <>
+      <Stack direction="horizontal" alignItems="center">
+        <IconButton icon={SearchIcon} aria-label={`${24}px size`} size={24} />
+        <IconButton icon={SearchIcon} aria-label={`${24}px size`} size={24} rounded />
+      </Stack>
+      <Stack direction="horizontal" alignItems="center">
+        <IconButton icon={SearchIcon} aria-label={`${48}px size`} size={48} />
+        <IconButton icon={SearchIcon} aria-label={`${48}px size`} size={48} rounded />
+      </Stack>
+      <Stack direction="horizontal" alignItems="center">
+        <IconButton icon={SearchIcon} aria-label={`${112}px size`} size={112} />
+        <IconButton icon={SearchIcon} aria-label={`${112}px size`} size={112} rounded />
+      </Stack>
+    </>
+  ),
+}
+
 export const Rounded: Story = {
   render: () => (
     <Stack direction="horizontal" alignItems="center">

@@ -1,5 +1,17 @@
 {
   "IconButton": {
+    "secondary": {
+      "fgColor": {
+        "value": "var(--brand-color-text-muted)",
+        "dark": "var(--brand-color-text-muted)"
+      }
+    },
+    "subtle": {
+      "fgColor": {
+        "value": "var(--brand-color-text-muted)",
+        "dark": "var(--brand-color-text-muted)"
+      }
+    },
     "danger": {
       "fgColor": {
         "rest": {
@@ -59,6 +71,10 @@
       }
     },
     "invisible": {
+      "fgColor": {
+        "value": "var(--brand-color-text-muted)",
+        "dark": "var(--brand-color-text-muted)"
+      },
       "bgColor": {
         "rest": {
           "value": "transparent",

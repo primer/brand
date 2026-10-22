@@ -24,7 +24,7 @@ export const defaultIconButtonVariant = defaultButtonVariant
 export const defaultIconButtonSize = defaultButtonSize
 
 export type IconButtonVariant = (typeof IconButtonVariants)[number]
-export type IconButtonSize = (typeof IconButtonSizes)[number]
+export type IconButtonSize = (typeof IconButtonSizes)[number] | number
 
 type IconButtonBaseProps<C extends React.ElementType> = Omit<BaseProps<C>, 'ref'> & {
   as?: C
@@ -77,6 +77,7 @@ function IconButtonRoot(
     'aria-expanded': ariaExpanded,
     'aria-haspopup': ariaHasPopup,
     'data-testid': testId,
+    style,
     ...props
   }: React.PropsWithoutRef<IconButtonProps<React.ElementType>>,
   ref: Ref<HTMLButtonElement>,
@@ -87,6 +88,15 @@ function IconButtonRoot(
   const shouldRenderTooltip = !disabled && !externalTooltipId
   const tooltipText = description || ariaLabel
   const buttonVariant: ButtonVariant = variant === 'danger' ? 'secondary' : variant === 'invisible' ? 'subtle' : variant
+  const isCustomSize = typeof size === 'number'
+  const buttonSize = isCustomSize ? defaultIconButtonSize : size
+  const controlSize = isCustomSize ? `${size}px` : `var(--brand-IconButton-control-size-${size})`
+  const iconSize = isCustomSize ? `${size / 2}px` : `var(--brand-IconButton-icon-size-${size})`
+  const buttonStyle = {
+    ['--brand-IconButton-control-size' as string]: controlSize,
+    ['--brand-IconButton-icon-size' as string]: iconSize,
+    ...style,
+  }
 
   if (process.env.NODE_ENV !== 'production') {
     if (!ariaLabel.trim()) {
@@ -116,7 +126,8 @@ function IconButtonRoot(
       ref={shouldRenderTooltip ? undefined : ref}
       as={as}
       variant={buttonVariant}
-      size={size}
+      size={buttonSize}
+      style={buttonStyle}
       disabled={disabled}
       aria-disabled={isLoading || isInactive ? true : ariaDisabled}
       aria-expanded={ariaExpanded}
@@ -124,7 +135,6 @@ function IconButtonRoot(
       aria-label={!shouldRenderTooltip || description ? ariaLabel : undefined}
       className={clsx(
         styles.IconButton,
-        styles[`IconButton--${size}`],
         styles[`IconButton--variant-${variant}`],
         isInactive && styles['IconButton--inactive'],
         rounded && styles['IconButton--rounded'],

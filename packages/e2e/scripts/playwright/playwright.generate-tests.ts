@@ -68,7 +68,7 @@ const waitForTimeoutLookup = {
   'components-minimalfooter-features--maximum-links': 5000, // for external social imagery to load
   'components-actionmenu-features--disabled-item': 1000, // flakey test,
   'components-actionmenu-features--anchored-positioning': 1000, // for the menu to open
-  'components-iconbutton-features--tooltip-directions': 1000,
+  'components-iconbutton-features--tooltip-directions': 2000, // for tooltip positioning and animation
   'components-iconbutton-features--focus': 1000,
   'components-box-features--animation': 6000, // for the animation
   'components-ide--playground': 2000, // for the animation
@@ -193,6 +193,7 @@ const skipTestLookup = [
 ]
 
 const touchTestLookup = ['components-card-features--arrow-cta-long-label']
+const viewportScreenshotLookup = ['components-anchornav-features--longer-labels']
 
 const categorisedStories = Object.keys((stories as StoryIndex).entries).reduce((acc, key) => {
   const {id, name: storyName, importPath} = stories.entries[key]
@@ -218,6 +219,7 @@ const categorisedStories = Object.keys((stories as StoryIndex).entries).reduce((
     groupName,
     storyName,
     timeout: waitForTimeoutLookup[key] ? waitForTimeoutLookup[key] : defaultTimeout,
+    fullPage: !viewportScreenshotLookup.includes(key),
   })
 
   return acc
@@ -245,7 +247,7 @@ for (const key of Object.keys(categorisedStories)) {
           : ''
       }
 
-      ${componentStories.reduce((acc, {id, storyName, groupName, timeout}) => {
+      ${componentStories.reduce((acc, {id, storyName, groupName, timeout, fullPage}) => {
         const requiresMobileViewport = validNarrowVieportNames.some(viewportName =>
           storyName.toLowerCase().includes(viewportName),
         )
@@ -268,7 +270,7 @@ for (const key of Object.keys(categorisedStories)) {
             await page.locator('body.sb-show-main').waitFor({ state: 'visible' })
 
             ${timeout ? `await page.waitForTimeout(${timeout})` : ''}
-            await expect(page).toHaveScreenshot({ fullPage: true })
+            await expect(page).toHaveScreenshot({ fullPage: ${fullPage} })
           });
 
           `

@@ -81,6 +81,12 @@ describe('IconButton', () => {
     expect(getByRole('button')).toHaveClass(`Button--${variant}`)
   })
 
+  it.each(['secondary', 'subtle'] as const)('applies IconButton styling to the %s variant', variant => {
+    const {getByRole} = render(<IconButton icon={HeartIcon} aria-label="Favorite" variant={variant} />)
+
+    expect(getByRole('button')).toHaveClass(`IconButton--variant-${variant}`)
+  })
+
   it('maps the danger variant to Button secondary structure', () => {
     const {getByRole} = render(<IconButton icon={HeartIcon} aria-label="Remove favorite" variant="danger" />)
 
@@ -103,7 +109,24 @@ describe('IconButton', () => {
 
   it.each(IconButtonSizes)('inherits the %s size from Button', size => {
     const {getByRole} = render(<IconButton icon={HeartIcon} aria-label="Favorite" size={size} />)
-    expect(getByRole('button')).toHaveClass(`Button--size-${size}`)
+    const button = getByRole('button')
+
+    expect(button).toHaveClass(`Button--size-${size}`)
+    expect(button).toHaveStyle({
+      '--brand-IconButton-control-size': `var(--brand-IconButton-control-size-${size})`,
+      '--brand-IconButton-icon-size': `var(--brand-IconButton-icon-size-${size})`,
+    })
+  })
+
+  it('renders a custom numeric size in CSS pixels', () => {
+    const {getByRole} = render(<IconButton icon={HeartIcon} aria-label="Favorite" size={112} />)
+    const button = getByRole('button')
+
+    expect(button).toHaveClass('Button--size-medium')
+    expect(button).toHaveStyle({
+      '--brand-IconButton-control-size': '112px',
+      '--brand-IconButton-icon-size': '56px',
+    })
   })
 
   it('renders with a fully rounded shape', () => {

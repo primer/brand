@@ -5,21 +5,22 @@
 }
 
 .IconButton.IconButton {
-  min-width: var(--brand-IconButton-control-size-medium);
-  width: var(--brand-IconButton-control-size-medium);
-  height: var(--brand-IconButton-control-size-medium);
+  min-width: var(--brand-IconButton-control-size);
+  width: var(--brand-IconButton-control-size);
+  min-height: var(--brand-IconButton-control-size);
+  height: var(--brand-IconButton-control-size);
 }
 
-.IconButton--small.IconButton--small {
-  min-width: var(--brand-IconButton-control-size-small);
-  width: var(--brand-IconButton-control-size-small);
-  height: var(--brand-IconButton-control-size-small);
+.IconButton--variant-secondary.IconButton--variant-secondary {
+  color: var(--brand-IconButton-secondary-fgColor);
 }
 
-.IconButton--large.IconButton--large {
-  min-width: var(--brand-IconButton-control-size-large);
-  width: var(--brand-IconButton-control-size-large);
-  height: var(--brand-IconButton-control-size-large);
+.IconButton--variant-subtle.IconButton--variant-subtle {
+  color: var(--brand-IconButton-subtle-fgColor);
+}
+
+.IconButton--variant-invisible.IconButton--variant-invisible {
+  color: var(--brand-IconButton-invisible-fgColor);
 }
 
 .IconButton--rounded.IconButton--rounded {
@@ -69,36 +70,16 @@
   color: inherit;
 }
 
-.IconButton--small .IconButton__icon {
-  width: var(--brand-IconButton-icon-size-small);
-  height: var(--brand-IconButton-icon-size-small);
-}
-
-.IconButton--medium .IconButton__icon {
-  width: var(--brand-IconButton-icon-size-medium);
-  height: var(--brand-IconButton-icon-size-medium);
-}
-
-.IconButton--large .IconButton__icon {
-  width: var(--brand-IconButton-icon-size-large);
-  height: var(--brand-IconButton-icon-size-large);
+.IconButton .IconButton__icon {
+  width: var(--brand-IconButton-icon-size);
+  height: var(--brand-IconButton-icon-size);
 }
 
 .IconButton__spinner.IconButton__spinner {
   display: block;
-  width: var(--brand-IconButton-icon-size-medium);
-  height: var(--brand-IconButton-icon-size-medium);
+  width: var(--brand-IconButton-icon-size);
+  height: var(--brand-IconButton-icon-size);
   animation-duration: var(--brand-IconButton-spinner-animationDuration-default);
-}
-
-.IconButton--small .IconButton__spinner {
-  width: var(--brand-IconButton-icon-size-small);
-  height: var(--brand-IconButton-icon-size-small);
-}
-
-.IconButton--large .IconButton__spinner {
-  width: var(--brand-IconButton-icon-size-large);
-  height: var(--brand-IconButton-icon-size-large);
 }
 
 .IconButton__loadingAnnouncement {

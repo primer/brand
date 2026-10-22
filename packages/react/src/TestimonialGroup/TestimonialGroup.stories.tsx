@@ -8,7 +8,6 @@ import hubotAvatar from '../fixtures/images/avatar-hubot.png'
 const meta = {
   title: 'Components/TestimonialGroup',
   component: TestimonialGroup,
-  parameters: {layout: 'fullscreen'},
   argTypes: {
     defaultActiveIndex: {control: {type: 'number', min: 0, max: 2}},
     children: {control: false},

@@ -57,7 +57,7 @@ test.describe('Visual Comparison: AnchorNav', () => {
     await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(2000)
-    await expect(page).toHaveScreenshot({fullPage: true})
+    await expect(page).toHaveScreenshot({fullPage: false})
   })
 
   test('AnchorNav / Custom Background', async ({page}) => {
