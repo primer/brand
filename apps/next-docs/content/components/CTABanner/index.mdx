@@ -12,9 +12,11 @@ thumbnail_darkMode: '/images/thumbnails/cta-banner-thumbnail-dark.png'
 
 ![An image showing the CTA banner anatomy with a heading, a description and a button group.](https://github.com/primer/brand/assets/6951037/a33f3b89-1a4d-4bd3-8533-99b0cd2275e8)
 
+- Octovisual: Our expressive icon set as an optional visual
 - Heading: The main title of the CTA banner. It should be short and concise.
 - Description: Short text that extends the information provided by the heading.
 - Button group: The call to actions available to users
+- Optional description: A short callout that might include an inline link
 
 ## Usage
 
@@ -48,7 +50,7 @@ The CTA banner elements can be aligned to the start or center of the page. By de
 
 #### Background
 
-The CTA banner uses a solid background color by default. This is the recommended style for most cases. However, the background can be removed to allow the content to blend with the background of the page.
+The CTA banner always uses a solid background the canvas/muted color for both light and dark mode. Don't use color backgrounds for the CTA banner
 
 <DoDontContainer>
   <Do>
@@ -61,24 +63,9 @@ The CTA banner uses a solid background color by default. This is the recommended
   </Dont>
 </DoDontContainer>
 
-Avoid using noisy or textured images that will make the content hard to read. Make sure that the combination of background and foreground guarantees compliance with WCAG contrast guidelines. Use an [online contrast checker](https://webaim.org/resources/contrastchecker/) or a [Figma plugin](https://primer.style/accessibility/tools-and-resources/#contrast-plugin) to test your contrast.
+#### Grid
 
-<DoDontContainer>
-  <Do>
-    <img src="https://github.com/primer/brand/assets/912236/db46a0b4-5bf9-4024-8788-6227762510a9" alt="" />
-    <Caption>
-      Use background images or colors that guarantee optimal contrast between the background and the foreground.
-    </Caption>
-  </Do>
-  <Dont>
-    <img src="https://github.com/primer/brand/assets/912236/dfc50baa-9b2a-4dc5-8412-20548cf2e7ed" alt="" />
-    <Caption>Don't use images that interfere with the legibility of the content.</Caption>
-  </Dont>
-</DoDontContainer>
-
-#### Shadow
-
-The CTA banner has a shadow around the component to give it a sense of depth and separation from the background.
+The CTA banner is contained by horizontal grid lines that extend the full width of the page and left and right borders.
 
 <DoDontContainer>
   <Do>
@@ -97,23 +84,6 @@ The CTA banner has a shadow around the component to give it a sense of depth and
   </Dont>
 </DoDontContainer>
 
-#### Border
-
-The CTA banner can render a border around the component giving further separation between the foreground and background. This is especially useful when there is no shadow present on the background.
-
-<DoDontContainer>
-  <Do>
-    <img src="https://github.com/primer/brand/assets/912236/583528ad-e3ab-4bf1-a34a-e0f9bf17d0a1" alt="" />
-    <Caption>Use the border only when there is no shadow present on the background.</Caption>
-  </Do>
-  <Dont>
-    <img src="https://github.com/primer/brand/assets/912236/845ee118-3575-4db8-b7ea-1ac248678005" alt="" />
-    <Caption>
-      Don't use the border when there is a shadow present on the background. The shadow will provide enough separation
-      between the foreground and background.
-    </Caption>
-  </Dont>
-</DoDontContainer>
 
 ## Related components
 
