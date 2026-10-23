@@ -1,5 +1,8 @@
 {
   "IconButton": {
+    "control-size": {
+      "value": "{Button.control.size.medium}"
+    },
     "control": {
       "size": {
         "small": {
@@ -12,6 +15,9 @@
           "value": "{Button.control.size.large}"
         }
       }
+    },
+    "icon-size": {
+      "value": "{Button.icon.size.large}"
     },
     "icon": {
       "size": {

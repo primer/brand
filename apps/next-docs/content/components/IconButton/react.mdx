@@ -74,6 +74,7 @@ IconButton inherits standard variants from Button and adds `danger` and `invisib
   <IconButton icon={SearchIcon} aria-label="Search" size="small" />
   <IconButton icon={SearchIcon} aria-label="Search" size="medium" />
   <IconButton icon={SearchIcon} aria-label="Search" size="large" />
+  <IconButton icon={SearchIcon} aria-label="Search" size={80} />
 </Stack>
 ```
 
@@ -211,7 +212,7 @@ Inactive controls use the same muted style for every variant and retain focus an
 | `icon`                | `Icon \| ReactElement`       |               |  `true`  | Octicon component or custom SVG element rendered in the center of the button            |
 | `aria-label`          | `string`                     |               |  `true`  | Required non-empty accessible action name and default tooltip label                     |
 | `variant`             | <IconButtonVariantsProp />   | `'secondary'` | `false`  | Button variants plus IconButton-only `danger` and `invisible` variations                |
-| `size`                | <IconButtonSizesProp />      |  `'medium'`   | `false`  | Control sizes inherited from Button                                                     |
+| `size`                | <IconButtonSizesProp />      |  `'medium'`   | `false`  | Named size or custom control dimensions in CSS pixels                                   |
 | `description`         | `string`                     |  `undefined`  | `false`  | Supplementary tooltip description                                                       |
 | `tooltipDirection`    | <IconButtonDirectionsProp /> |     `'s'`     | `false`  | Preferred tooltip direction                                                             |
 | `inactive`            | `boolean`                    |    `false`    | `false`  | Applies variant-independent muted styling while preserving input for required feedback  |

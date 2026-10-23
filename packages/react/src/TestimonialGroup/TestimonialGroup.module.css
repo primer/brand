@@ -1,8 +1,6 @@
 .TestimonialGroup {
   width: 100%;
   min-width: 0;
-  padding-block: calc(var(--base-size-48) + var(--base-size-8));
-  padding-inline: var(--base-size-32);
 }
 
 .TestimonialGroup__content {
@@ -100,12 +98,5 @@
   .TestimonialGroup__quote,
   .TestimonialGroup__media {
     transition: none;
-  }
-}
-
-@media screen and (min-width: 63.25rem) {
-  .TestimonialGroup {
-    padding-block: var(--base-size-60);
-    padding-inline: var(--base-size-60);
   }
 }

@@ -117,6 +117,17 @@ test.describe('Visual Comparison: IconButton', () => {
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
+  test('IconButton / Custom Sizes', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-iconbutton-features--custom-sizes&viewMode=story',
+      {waitUntil: 'networkidle'},
+    )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+    await page.waitForTimeout(500)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
   test('IconButton / Rounded', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-iconbutton-features--rounded&viewMode=story',
@@ -287,7 +298,7 @@ test.describe('Visual Comparison: IconButton', () => {
     )
     await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
-    await page.waitForTimeout(1000)
+    await page.waitForTimeout(2000)
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 

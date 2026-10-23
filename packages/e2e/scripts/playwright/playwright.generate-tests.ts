@@ -68,7 +68,7 @@ const waitForTimeoutLookup = {
   'components-minimalfooter-features--maximum-links': 5000, // for external social imagery to load
   'components-actionmenu-features--disabled-item': 1000, // flakey test,
   'components-actionmenu-features--anchored-positioning': 1000, // for the menu to open
-  'components-iconbutton-features--tooltip-directions': 1000,
+  'components-iconbutton-features--tooltip-directions': 2000, // for tooltip positioning and animation
   'components-iconbutton-features--focus': 1000,
   'components-box-features--animation': 6000, // for the animation
   'components-ide--playground': 2000, // for the animation

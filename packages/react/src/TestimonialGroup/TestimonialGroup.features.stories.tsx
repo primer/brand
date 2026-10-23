@@ -8,7 +8,6 @@ import hubotAvatar from '../fixtures/images/avatar-hubot.png'
 const meta = {
   title: 'Components/TestimonialGroup/Features',
   component: TestimonialGroup,
-  parameters: {layout: 'fullscreen'},
 } satisfies Meta<typeof TestimonialGroup>
 
 export default meta

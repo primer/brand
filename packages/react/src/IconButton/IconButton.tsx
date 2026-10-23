@@ -24,7 +24,7 @@ export const defaultIconButtonVariant = defaultButtonVariant
 export const defaultIconButtonSize = defaultButtonSize
 
 export type IconButtonVariant = (typeof IconButtonVariants)[number]
-export type IconButtonSize = (typeof IconButtonSizes)[number]
+export type IconButtonSize = (typeof IconButtonSizes)[number] | number
 
 type IconButtonBaseProps<C extends React.ElementType> = Omit<BaseProps<C>, 'ref'> & {
   as?: C
@@ -77,6 +77,7 @@ function IconButtonRoot(
     'aria-expanded': ariaExpanded,
     'aria-haspopup': ariaHasPopup,
     'data-testid': testId,
+    style,
     ...props
   }: React.PropsWithoutRef<IconButtonProps<React.ElementType>>,
   ref: Ref<HTMLButtonElement>,
@@ -87,6 +88,16 @@ function IconButtonRoot(
   const shouldRenderTooltip = !disabled && !externalTooltipId
   const tooltipText = description || ariaLabel
   const buttonVariant: ButtonVariant = variant === 'danger' ? 'secondary' : variant === 'invisible' ? 'subtle' : variant
+  const customSize = typeof size === 'number' ? size : undefined
+  const buttonSize = customSize === undefined ? size : defaultIconButtonSize
+  const buttonStyle =
+    customSize === undefined
+      ? style
+      : {
+          ['--brand-IconButton-control-size' as string]: `${customSize}px`,
+          ['--brand-IconButton-icon-size' as string]: `${customSize / 2}px`,
+          ...style,
+        }
 
   if (process.env.NODE_ENV !== 'production') {
     if (!ariaLabel.trim()) {
@@ -116,7 +127,8 @@ function IconButtonRoot(
       ref={shouldRenderTooltip ? undefined : ref}
       as={as}
       variant={buttonVariant}
-      size={size}
+      size={buttonSize}
+      style={buttonStyle}
       disabled={disabled}
       aria-disabled={isLoading || isInactive ? true : ariaDisabled}
       aria-expanded={ariaExpanded}
@@ -124,7 +136,7 @@ function IconButtonRoot(
       aria-label={!shouldRenderTooltip || description ? ariaLabel : undefined}
       className={clsx(
         styles.IconButton,
-        styles[`IconButton--${size}`],
+        typeof size === 'string' && styles[`IconButton--${size}`],
         styles[`IconButton--variant-${variant}`],
         isInactive && styles['IconButton--inactive'],
         rounded && styles['IconButton--rounded'],
