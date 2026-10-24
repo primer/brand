@@ -500,7 +500,7 @@ describe('PricingOptions', () => {
     expect(accordion).toHaveAttribute('open')
   })
 
-  it('synchronizes all feature lists when one is toggled', async () => {
+  it('toggles only the feature list that received the interaction', async () => {
     mockUseWindowSize.mockReturnValue(mediumBreakpoint)
 
     const user = userEvent.setup()
@@ -531,7 +531,7 @@ describe('PricingOptions', () => {
     await user.click(firstSummary)
 
     expect(accordionOne).not.toHaveAttribute('open')
-    expect(accordionTwo).not.toHaveAttribute('open')
+    expect(accordionTwo).toHaveAttribute('open')
   })
 
   it('renders an info tooltip button when infoTooltip is provided', () => {
