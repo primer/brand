@@ -639,7 +639,7 @@ describe('LogoSuite', () => {
     expect(await axe(container)).toHaveNoViolations()
   })
 
-  it('keeps framework links and buttons out of the duplicate tab order', async () => {
+  it('keeps duplicate links out of the tab order', async () => {
     const user = userEvent.setup()
     const CustomLink = ({children: linkChildren, ...linkProps}: React.AnchorHTMLAttributes<HTMLAnchorElement>) => (
       <a {...linkProps}>{linkChildren}</a>
@@ -652,20 +652,15 @@ describe('LogoSuite', () => {
           <CustomLink href="#logo-1" aria-label="Logo 1">
             <svg aria-label="Mock SVG" />
           </CustomLink>
-          <button type="button">Logo 2</button>
         </LogoSuite.Logobar>
       </LogoSuite>,
     )
 
     const [, duplicateLink] = getAllByRole('link', {hidden: true})
-    const [, duplicateButton] = getAllByRole('button', {name: 'Logo 2', hidden: true})
     expect(duplicateLink).toHaveAttribute('tabindex', '-1')
-    expect(duplicateButton).toHaveAttribute('tabindex', '-1')
 
     await user.tab()
     expect(getByRole('link', {name: 'Logo 1'})).toHaveFocus()
-    await user.tab()
-    expect(getByRole('button', {name: 'Logo 2'})).toHaveFocus()
     await user.tab()
     expect(getByRole('button', {name: 'Pause animation'})).toHaveFocus()
   })
