@@ -158,8 +158,7 @@
   }
 }
 
-.LogoSuite__logobar-marquee:hover .LogoSuite__logobar-marqueeGroup,
-.LogoSuite__logobar-marquee:focus-within .LogoSuite__logobar-marqueeGroup {
+.LogoSuite__logobar-marquee:hover .LogoSuite__logobar-marqueeGroup {
   animation-play-state: paused;
 }
 
@@ -186,7 +185,7 @@
   animation-play-state: paused !important;
 }
 
-.LogoSuite__logobar-marquee--focused .LogoSuite__logobar-marqueeGroup {
+.LogoSuite__logobar-marquee:has(:focus-visible) .LogoSuite__logobar-marqueeGroup {
   animation-name: none;
 }
 
