@@ -1,16 +1,6 @@
 import {clsx} from 'clsx'
-import React, {
-  type PropsWithChildren,
-  type Ref,
-  forwardRef,
-  useCallback,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from 'react'
+import React, {type PropsWithChildren, type Ref, forwardRef, useCallback, useEffect, useMemo, useState} from 'react'
 import {useReducedMotion} from '../hooks/useReducedMotion'
-import useIsomorphicLayoutEffect from '../hooks/useIsomorphicLayoutEffect'
 import {PauseIcon} from '@primer/octicons-react'
 import type {BaseProps} from '../component-helpers'
 import {Heading, HeadingProps, defaultHeadingTag, Text, TextProps, Grid, Button} from '../'
@@ -292,31 +282,14 @@ const _LogoBar = forwardRef(
 
     const hasLinkedLogos = checkAllLogosAreLinks(children)
 
-    const duplicateGroupRef = useRef<HTMLDivElement>(null)
-
-    // The duplicate group is aria-hidden, so none of its focusable content may be in the tab order
-    useIsomorphicLayoutEffect(() => {
-      const duplicateGroup = duplicateGroupRef.current
-      if (!marquee || !duplicateGroup) return
-
-      const removeFromTabOrder = () => {
-        for (const element of duplicateGroup.querySelectorAll<HTMLElement>(
-          'a[href], area[href], button, input, select, textarea, iframe, summary, audio[controls], video[controls], [tabindex], [contenteditable]:not([contenteditable="false"])',
-        )) {
-          if (element.getAttribute('tabindex') !== '-1') element.tabIndex = -1
+    const renderDuplicateLogos = (nodes: React.ReactNode): React.ReactNode =>
+      React.Children.map(nodes, child => {
+        if (!React.isValidElement<PropsWithChildren<{tabIndex?: number}>>(child)) return child
+        if (child.type === React.Fragment) {
+          return React.cloneElement(child, {children: renderDuplicateLogos(child.props.children)})
         }
-      }
-
-      removeFromTabOrder()
-      const observer = new MutationObserver(removeFromTabOrder)
-      observer.observe(duplicateGroup, {
-        childList: true,
-        subtree: true,
-        attributes: true,
-        attributeFilter: ['href', 'tabindex', 'contenteditable', 'controls'],
+        return React.cloneElement(child, {tabIndex: -1})
       })
-      return () => observer.disconnect()
-    }, [marquee, children])
 
     const defaultProps = {
       ref,
@@ -370,7 +343,6 @@ const _LogoBar = forwardRef(
               {children}
             </div>
             <div
-              ref={duplicateGroupRef}
               aria-hidden="true"
               onPointerDown={event => event.preventDefault()}
               className={clsx(
@@ -378,7 +350,7 @@ const _LogoBar = forwardRef(
                 styles[`LogoSuite__logobar-marqueeGroup--speed-${marqueeSpeed}`],
               )}
             >
-              {children}
+              {renderDuplicateLogos(children)}
             </div>
           </div>
           <PlayPauseButton onPlayPause={setIsPlaying} isPlaying={isPlaying} />

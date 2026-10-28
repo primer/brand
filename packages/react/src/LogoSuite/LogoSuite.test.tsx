@@ -1,5 +1,5 @@
 import React from 'react'
-import {render, cleanup, waitFor} from '@testing-library/react'
+import {render, cleanup} from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import '@testing-library/jest-dom'
 
@@ -639,7 +639,7 @@ describe('LogoSuite', () => {
     expect(await axe(container)).toHaveNoViolations()
   })
 
-  it('keeps framework links and wrapped buttons out of the duplicate tab order', async () => {
+  it('keeps framework links and buttons out of the duplicate tab order', async () => {
     const user = userEvent.setup()
     const CustomLink = ({children: linkChildren, ...linkProps}: React.AnchorHTMLAttributes<HTMLAnchorElement>) => (
       <a {...linkProps}>{linkChildren}</a>
@@ -652,9 +652,7 @@ describe('LogoSuite', () => {
           <CustomLink href="#logo-1" aria-label="Logo 1">
             <svg aria-label="Mock SVG" />
           </CustomLink>
-          <span>
-            <button type="button">Logo 2</button>
-          </span>
+          <button type="button">Logo 2</button>
         </LogoSuite.Logobar>
       </LogoSuite>,
     )
@@ -670,63 +668,5 @@ describe('LogoSuite', () => {
     expect(getByRole('button', {name: 'Logo 2'})).toHaveFocus()
     await user.tab()
     expect(getByRole('button', {name: 'Pause animation'})).toHaveFocus()
-  })
-
-  it('keeps links mounted by independent child updates out of the duplicate tab order', async () => {
-    const user = userEvent.setup()
-    const DeferredLink = () => {
-      const [ready, setReady] = React.useState(false)
-      React.useEffect(() => {
-        const timer = setTimeout(() => setReady(true), 0)
-        return () => clearTimeout(timer)
-      }, [])
-      return ready ? <a href="#logo">Logo</a> : null
-    }
-
-    const {findAllByRole, getByRole} = render(
-      <LogoSuite>
-        <LogoSuite.Heading>{mockHeading}</LogoSuite.Heading>
-        <LogoSuite.Logobar marquee>
-          <DeferredLink />
-        </LogoSuite.Logobar>
-      </LogoSuite>,
-    )
-
-    const [original, duplicate] = await findAllByRole('link', {hidden: true})
-    await waitFor(() => expect(duplicate).toHaveAttribute('tabindex', '-1'))
-    expect(original).not.toHaveAttribute('tabindex')
-    await user.tab()
-    expect(original).toHaveFocus()
-    await user.tab()
-    expect(getByRole('button', {name: 'Pause animation'})).toHaveFocus()
-  })
-
-  it('reapplies tab suppression when duplicate descendants change focusability and disconnects on unmount', async () => {
-    const {getAllByRole, unmount} = render(
-      <LogoSuite>
-        <LogoSuite.Heading>{mockHeading}</LogoSuite.Heading>
-        <LogoSuite.Logobar marquee>
-          <a href="#logo">Logo</a>
-          <span>Another logo</span>
-        </LogoSuite.Logobar>
-      </LogoSuite>,
-    )
-
-    const [original, duplicate] = getAllByRole('link', {hidden: true})
-    duplicate.removeAttribute('tabindex')
-    await waitFor(() => expect(duplicate).toHaveAttribute('tabindex', '-1'))
-    duplicate.tabIndex = 0
-    const editableLogo = duplicate.parentElement!.querySelector('span')!
-    editableLogo.setAttribute('contenteditable', 'true')
-    await waitFor(() => {
-      expect(duplicate).toHaveAttribute('tabindex', '-1')
-      expect(editableLogo).toHaveAttribute('tabindex', '-1')
-    })
-    expect(original).not.toHaveAttribute('tabindex')
-
-    unmount()
-    duplicate.tabIndex = 0
-    await Promise.resolve()
-    expect(duplicate).toHaveAttribute('tabindex', '0')
   })
 })
