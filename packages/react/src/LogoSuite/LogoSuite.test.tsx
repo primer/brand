@@ -1,5 +1,5 @@
 import React from 'react'
-import {render, cleanup} from '@testing-library/react'
+import {render, cleanup, waitFor} from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import '@testing-library/jest-dom'
 
@@ -591,50 +591,142 @@ describe('LogoSuite', () => {
     consoleWarnSpy.mockRestore()
   })
 
-  it('applies the focused class to the marquee when a link inside receives focus', async () => {
+  it('keeps duplicate links clickable but hidden from screen readers and keyboard navigation', async () => {
     const user = userEvent.setup()
+    const onClick = jest.fn(event => event.preventDefault())
 
-    const {container} = render(
+    const {container, getAllByRole, getByRole} = render(
       <LogoSuite>
         <LogoSuite.Heading>{mockHeading}</LogoSuite.Heading>
         <LogoSuite.Logobar marquee>
-          <a href="/" aria-label="Logo 1">
-            <svg aria-label="Mock SVG" />
-          </a>
+          <>
+            <a href="#logo-1" target="_blank" rel="noreferrer" tabIndex={0} onClick={onClick} aria-label="Logo 1">
+              <svg aria-label="Mock SVG" />
+            </a>
+            <>
+              <a href="#logo-2" aria-label="Logo 2">
+                <svg aria-label="Mock SVG" />
+              </a>
+            </>
+          </>
         </LogoSuite.Logobar>
       </LogoSuite>,
     )
 
-    await user.tab()
-    await user.tab()
+    const links = getAllByRole('link')
+    const allLinks = getAllByRole('link', {hidden: true})
+    expect(links).toHaveLength(2)
+    expect(allLinks).toHaveLength(4)
+    expect(links[0]).toHaveAttribute('tabindex', '0')
+    expect(allLinks[2]).toHaveAttribute('tabindex', '-1')
+    expect(allLinks[3]).toHaveAttribute('tabindex', '-1')
+    expect(allLinks[2]).toHaveAttribute('href', '#logo-1')
+    expect(allLinks[2]).toHaveAttribute('target', '_blank')
+    expect(allLinks[2]).toHaveAttribute('rel', 'noreferrer')
+    expect(allLinks[2].closest('[aria-hidden]')).not.toHaveAttribute('inert')
 
-    const marqueeEl = container.querySelector('.LogoSuite__logobar-marquee')
-    expect(marqueeEl?.classList).toContain('LogoSuite__logobar-marquee--focused')
+    await user.click(allLinks[2])
+    expect(onClick).toHaveBeenCalledTimes(1)
+    expect(allLinks[2]).not.toHaveFocus()
+
+    await user.tab()
+    expect(links[0]).toHaveFocus()
+    await user.tab()
+    expect(links[1]).toHaveFocus()
+    await user.tab()
+    expect(getByRole('button', {name: 'Pause animation'})).toHaveFocus()
+
+    expect(await axe(container)).toHaveNoViolations()
   })
 
-  it('removes the focused class from the marquee when focus leaves entirely', async () => {
+  it('keeps framework links and wrapped buttons out of the duplicate tab order', async () => {
     const user = userEvent.setup()
+    const CustomLink = ({children: linkChildren, ...linkProps}: React.AnchorHTMLAttributes<HTMLAnchorElement>) => (
+      <a {...linkProps}>{linkChildren}</a>
+    )
 
-    const {container} = render(
+    const {getAllByRole, getByRole} = render(
       <LogoSuite>
         <LogoSuite.Heading>{mockHeading}</LogoSuite.Heading>
         <LogoSuite.Logobar marquee>
-          <a href="/" aria-label="Logo 1">
+          <CustomLink href="#logo-1" aria-label="Logo 1">
             <svg aria-label="Mock SVG" />
-          </a>
+          </CustomLink>
+          <span>
+            <button type="button">Logo 2</button>
+          </span>
         </LogoSuite.Logobar>
       </LogoSuite>,
     )
 
-    await user.tab()
-    await user.tab()
+    const [, duplicateLink] = getAllByRole('link', {hidden: true})
+    const [, duplicateButton] = getAllByRole('button', {name: 'Logo 2', hidden: true})
+    expect(duplicateLink).toHaveAttribute('tabindex', '-1')
+    expect(duplicateButton).toHaveAttribute('tabindex', '-1')
 
-    const marqueeEl = container.querySelector('.LogoSuite__logobar-marquee')
-    expect(marqueeEl?.classList).toContain('LogoSuite__logobar-marquee--focused')
-
     await user.tab()
+    expect(getByRole('link', {name: 'Logo 1'})).toHaveFocus()
     await user.tab()
+    expect(getByRole('button', {name: 'Logo 2'})).toHaveFocus()
+    await user.tab()
+    expect(getByRole('button', {name: 'Pause animation'})).toHaveFocus()
+  })
 
-    expect(marqueeEl?.classList).not.toContain('LogoSuite__logobar-marquee--focused')
+  it('keeps links mounted by independent child updates out of the duplicate tab order', async () => {
+    const user = userEvent.setup()
+    const DeferredLink = () => {
+      const [ready, setReady] = React.useState(false)
+      React.useEffect(() => {
+        const timer = setTimeout(() => setReady(true), 0)
+        return () => clearTimeout(timer)
+      }, [])
+      return ready ? <a href="#logo">Logo</a> : null
+    }
+
+    const {findAllByRole, getByRole} = render(
+      <LogoSuite>
+        <LogoSuite.Heading>{mockHeading}</LogoSuite.Heading>
+        <LogoSuite.Logobar marquee>
+          <DeferredLink />
+        </LogoSuite.Logobar>
+      </LogoSuite>,
+    )
+
+    const [original, duplicate] = await findAllByRole('link', {hidden: true})
+    await waitFor(() => expect(duplicate).toHaveAttribute('tabindex', '-1'))
+    expect(original).not.toHaveAttribute('tabindex')
+    await user.tab()
+    expect(original).toHaveFocus()
+    await user.tab()
+    expect(getByRole('button', {name: 'Pause animation'})).toHaveFocus()
+  })
+
+  it('reapplies tab suppression when duplicate descendants change focusability and disconnects on unmount', async () => {
+    const {getAllByRole, unmount} = render(
+      <LogoSuite>
+        <LogoSuite.Heading>{mockHeading}</LogoSuite.Heading>
+        <LogoSuite.Logobar marquee>
+          <a href="#logo">Logo</a>
+          <span>Another logo</span>
+        </LogoSuite.Logobar>
+      </LogoSuite>,
+    )
+
+    const [original, duplicate] = getAllByRole('link', {hidden: true})
+    duplicate.removeAttribute('tabindex')
+    await waitFor(() => expect(duplicate).toHaveAttribute('tabindex', '-1'))
+    duplicate.tabIndex = 0
+    const editableLogo = duplicate.parentElement!.querySelector('span')!
+    editableLogo.setAttribute('contenteditable', 'true')
+    await waitFor(() => {
+      expect(duplicate).toHaveAttribute('tabindex', '-1')
+      expect(editableLogo).toHaveAttribute('tabindex', '-1')
+    })
+    expect(original).not.toHaveAttribute('tabindex')
+
+    unmount()
+    duplicate.tabIndex = 0
+    await Promise.resolve()
+    expect(duplicate).toHaveAttribute('tabindex', '0')
   })
 })

@@ -1,6 +1,16 @@
 import {clsx} from 'clsx'
-import React, {type PropsWithChildren, type Ref, forwardRef, useCallback, useEffect, useMemo, useState} from 'react'
+import React, {
+  type PropsWithChildren,
+  type Ref,
+  forwardRef,
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react'
 import {useReducedMotion} from '../hooks/useReducedMotion'
+import useIsomorphicLayoutEffect from '../hooks/useIsomorphicLayoutEffect'
 import {PauseIcon} from '@primer/octicons-react'
 import type {BaseProps} from '../component-helpers'
 import {Heading, HeadingProps, defaultHeadingTag, Text, TextProps, Grid, Button} from '../'
@@ -282,6 +292,32 @@ const _LogoBar = forwardRef(
 
     const hasLinkedLogos = checkAllLogosAreLinks(children)
 
+    const duplicateGroupRef = useRef<HTMLDivElement>(null)
+
+    // The duplicate group is aria-hidden, so none of its focusable content may be in the tab order
+    useIsomorphicLayoutEffect(() => {
+      const duplicateGroup = duplicateGroupRef.current
+      if (!marquee || !duplicateGroup) return
+
+      const removeFromTabOrder = () => {
+        for (const element of duplicateGroup.querySelectorAll<HTMLElement>(
+          'a[href], area[href], button, input, select, textarea, iframe, summary, audio[controls], video[controls], [tabindex], [contenteditable]:not([contenteditable="false"])',
+        )) {
+          if (element.getAttribute('tabindex') !== '-1') element.tabIndex = -1
+        }
+      }
+
+      removeFromTabOrder()
+      const observer = new MutationObserver(removeFromTabOrder)
+      observer.observe(duplicateGroup, {
+        childList: true,
+        subtree: true,
+        attributes: true,
+        attributeFilter: ['href', 'tabindex', 'contenteditable', 'controls'],
+      })
+      return () => observer.disconnect()
+    }, [marquee, children])
+
     const defaultProps = {
       ref,
       className: clsx(
@@ -293,18 +329,6 @@ const _LogoBar = forwardRef(
       ),
       ...props,
     }
-
-    const [isFocusWithin, setIsFocusWithin] = useState(false)
-
-    const handleFocus = useCallback(() => {
-      setIsFocusWithin(true)
-    }, [])
-
-    const handleBlur = useCallback((event: React.FocusEvent) => {
-      if (!event.currentTarget.contains(event.relatedTarget as Node)) {
-        setIsFocusWithin(false)
-      }
-    }, [])
 
     const renderTakeoverButton = () => {
       if (!takeoverButton) return null
@@ -335,14 +359,7 @@ const _LogoBar = forwardRef(
             shouldPause && styles['LogoSuite__logobar--paused'],
           )}
         >
-          <div
-            className={clsx(
-              styles['LogoSuite__logobar-marquee'],
-              isFocusWithin && styles['LogoSuite__logobar-marquee--focused'],
-            )}
-            onFocus={handleFocus}
-            onBlur={handleBlur}
-          >
+          <div className={styles['LogoSuite__logobar-marquee']}>
             <div
               className={clsx(
                 styles['LogoSuite__logobar-marqueeGroup'],
@@ -353,8 +370,9 @@ const _LogoBar = forwardRef(
               {children}
             </div>
             <div
-              inert
+              ref={duplicateGroupRef}
               aria-hidden="true"
+              onPointerDown={event => event.preventDefault()}
               className={clsx(
                 styles['LogoSuite__logobar-marqueeGroup'],
                 styles[`LogoSuite__logobar-marqueeGroup--speed-${marqueeSpeed}`],
