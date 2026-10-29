@@ -11,13 +11,65 @@ expect.extend(toHaveNoViolations)
 describe('ToggleSwitch', () => {
   afterEach(() => jest.useRealTimers())
 
-  it('renders an unchecked named switch without visible state text', () => {
-    render(<ToggleSwitch aria-label="Enable notifications" />)
+  it('renders an unchecked named switch without visible state text when opted out', () => {
+    render(<ToggleSwitch aria-label="Enable notifications" hasStatusLabel={false} />)
     const control = screen.getByRole('switch', {name: 'Enable notifications'})
     expect(control).toHaveAttribute('aria-checked', 'false')
     expect(control).not.toHaveAttribute('aria-pressed')
     expect(control).toHaveAttribute('type', 'button')
     expect(screen.queryByText(/^(On|Off)$/)).not.toBeInTheDocument()
+  })
+
+  it('shows the status text by default and updates it with the current state', async () => {
+    const user = userEvent.setup()
+    render(<ToggleSwitch aria-label="Enable notifications" />)
+    const control = screen.getByRole('switch', {name: 'Enable notifications'})
+
+    expect(screen.getByText('Off')).not.toHaveClass('ToggleSwitch-statusLabelText--hidden')
+    expect(screen.getByText('On')).toHaveClass('ToggleSwitch-statusLabelText--hidden')
+
+    await user.click(screen.getByText('Off'))
+
+    expect(control).toHaveAttribute('aria-checked', 'true')
+    expect(screen.getByText('On')).not.toHaveClass('ToggleSwitch-statusLabelText--hidden')
+    expect(screen.getByText('Off')).toHaveClass('ToggleSwitch-statusLabelText--hidden')
+  })
+
+  it('accepts custom status text without changing the accessible name', () => {
+    render(<ToggleSwitch aria-label="Beta features" defaultChecked statusLabelOn="Enabled" statusLabelOff="Disabled" />)
+    expect(screen.getByRole('switch', {name: 'Beta features'})).toBeInTheDocument()
+    expect(screen.getByText('Enabled')).not.toHaveClass('ToggleSwitch-statusLabelText--hidden')
+    expect(screen.getByText('Disabled')).toHaveClass('ToggleSwitch-statusLabelText--hidden')
+  })
+
+  it.each(['start', 'end'] as const)('places the status text at the %s of the track', position => {
+    render(<ToggleSwitch aria-label="Enable notifications" statusLabelPosition={position} />)
+    const control = screen.getByRole('switch')
+    const statusLabel = screen.getByTestId(ToggleSwitch.testIds.statusLabel)
+    expect(statusLabel).toHaveClass(`ToggleSwitch-statusLabel--${position}`)
+    expect(position === 'start' ? control.firstElementChild : control.lastElementChild).toBe(statusLabel)
+  })
+
+  it('omits the status text when hasStatusLabel is false', () => {
+    render(<ToggleSwitch aria-label="Enable notifications" hasStatusLabel={false} />)
+    expect(screen.queryByTestId(ToggleSwitch.testIds.statusLabel)).not.toBeInTheDocument()
+    expect(screen.queryByText(/^(On|Off)$/)).not.toBeInTheDocument()
+  })
+
+  it('styles the visible status text for disabled switches', () => {
+    render(<ToggleSwitch aria-label="Enable notifications" disabled />)
+    expect(screen.getByTestId(ToggleSwitch.testIds.statusLabel)).toHaveClass('ToggleSwitch-statusLabel--disabled')
+  })
+
+  it('keeps the FormControl label as the accessible name when status text is visible', async () => {
+    const {container} = render(
+      <FormControl>
+        <FormControl.Label>Notifications</FormControl.Label>
+        <ToggleSwitch defaultChecked />
+      </FormControl>,
+    )
+    expect(screen.getByRole('switch', {name: 'Notifications'})).toBeInTheDocument()
+    expect(await axe(container)).toHaveNoViolations()
   })
 
   it('updates uncontrolled state once per activation', async () => {
@@ -36,6 +88,52 @@ describe('ToggleSwitch', () => {
     expect(onChange).toHaveBeenCalledTimes(2)
     expect(onChange).toHaveBeenLastCalledWith(false)
   })
+
+  it.each(['small', 'medium'] as const)('shows decorative I/O symbols for both %s states', async size => {
+    const user = userEvent.setup()
+    render(<ToggleSwitch size={size} aria-label="Notifications" />)
+    const control = screen.getByRole('switch', {name: 'Notifications'})
+    const icon = control.querySelector('svg')
+    const offPath = icon?.querySelector('path')?.getAttribute('d')
+
+    expect(icon).toHaveAttribute('width', size === 'small' ? '12' : '16')
+    expect(icon).toHaveAttribute('height', size === 'small' ? '12' : '16')
+    expect(icon).toHaveAttribute('focusable', 'false')
+    expect(icon?.parentElement).toHaveAttribute('aria-hidden', 'true')
+    expect(icon).not.toHaveClass('ToggleSwitch-icon--checked')
+    expect(offPath).toBe('M8 12.5a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9ZM8 14A6 6 0 1 0 8 2a6 6 0 0 0 0 12Z')
+
+    await user.click(control)
+
+    expect(icon).toHaveClass('ToggleSwitch-icon--checked')
+    expect(icon?.querySelector('path')).toHaveAttribute(
+      'd',
+      'M8 2a.75.75 0 0 1 .75.75v11.5a.75.75 0 0 1-1.5 0V2.75A.75.75 0 0 1 8 2Z',
+    )
+    expect(control).toHaveAccessibleName('Notifications')
+    expect(control).toHaveAttribute('aria-checked', 'true')
+
+    await user.click(control)
+
+    expect(icon).not.toHaveClass('ToggleSwitch-icon--checked')
+    expect(icon?.querySelector('path')).toHaveAttribute('d', offPath)
+    expect(control).toHaveAttribute('aria-checked', 'false')
+  })
+
+  it.each([{disabled: true}, {loading: true}, {checked: true, disabled: true}, {checked: true, loading: true}])(
+    'retains the state symbol with %j',
+    props => {
+      render(<ToggleSwitch {...props} aria-label="Notifications" />)
+      const icon = screen.getByRole('switch').querySelector('svg')
+      expect(icon).toBeInTheDocument()
+      expect(icon?.parentElement).toHaveAttribute('aria-hidden', 'true')
+      if (props.checked) {
+        expect(icon).toHaveClass('ToggleSwitch-icon--checked')
+      } else {
+        expect(icon).not.toHaveClass('ToggleSwitch-icon--checked')
+      }
+    },
+  )
 
   it('allows onClick to cancel activation', async () => {
     const user = userEvent.setup()
@@ -207,7 +305,12 @@ describe('ToggleSwitch', () => {
   it('supports a leading spinner for standalone switches', () => {
     render(<ToggleSwitch aria-label="Notifications" loading spinnerPosition="start" />)
     const indicator = screen.getByTestId(ToggleSwitch.testIds.spinner)
-    expect(indicator.parentElement?.parentElement?.nextElementSibling).toBe(screen.getByRole('switch'))
+    const spinnerSlot = indicator.parentElement?.parentElement
+    const control = screen.getByRole('switch')
+    const statusLabel = screen.getByTestId(ToggleSwitch.testIds.statusLabel)
+    expect(spinnerSlot?.nextElementSibling).toBe(control)
+    expect(control.firstElementChild).toBe(statusLabel)
+    expect(statusLabel.nextElementSibling).toHaveClass('ToggleSwitch-track')
   })
 
   it('keeps the same focused node when entering and leaving loading', () => {

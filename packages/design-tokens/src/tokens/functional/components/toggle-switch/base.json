@@ -25,6 +25,11 @@
       "fontSize": {"value": "var(--brand-text-size-200)"},
       "lineHeight": {"value": "var(--base-size-16)"}
     },
+    "statusLabel": {
+      "gap": {"value": "var(--base-size-8)"},
+      "fontSize": {"small": {"value": "var(--brand-text-size-100)"}, "medium": {"value": "var(--brand-text-size-200)"}},
+      "lineHeight": {"value": "var(--base-size-20)"}
+    },
     "focus": {"width": {"value": "var(--base-size-4)"}, "offset": {"value": "var(--base-size-2)"}},
     "loading": {
       "size": {"value": "var(--base-size-12)"},
