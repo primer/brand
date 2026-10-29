@@ -184,23 +184,6 @@ const Root: ToggleSwitchComponent = forwardRef<HTMLButtonElement, ToggleSwitchIn
       >
         {statusLabelPosition === 'start' && statusLabelElement}
         <span className={styles['ToggleSwitch-track']} aria-hidden="true">
-          <svg
-            className={clsx(styles['ToggleSwitch-icon'], isChecked && styles['ToggleSwitch-icon--checked'])}
-            width={size === 'small' ? 10 : 14}
-            height={size === 'small' ? 10 : 14}
-            viewBox="0 0 16 16"
-            fill="currentColor"
-            focusable="false"
-          >
-            <path
-              fillRule="evenodd"
-              d={
-                isChecked
-                  ? 'M8 2a.75.75 0 0 1 .75.75v11.5a.75.75 0 0 1-1.5 0V2.75A.75.75 0 0 1 8 2Z'
-                  : 'M8 12.5a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9ZM8 14A6 6 0 1 0 8 2a6 6 0 0 0 0 12Z'
-              }
-            />
-          </svg>
           <span
             className={clsx(
               styles['ToggleSwitch-thumb'],

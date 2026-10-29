@@ -10,12 +10,6 @@
         "dark": "var(--base-color-scale-gray-2)"
       }
     },
-    "icon": {
-      "fgColor": {
-        "value": "var(--base-color-scale-gray-7)",
-        "dark": "var(--base-color-scale-gray-2)"
-      }
-    },
     "statusLabel": {
       "fgColor": {
         "rest": {

@@ -36,10 +36,6 @@ describe.each(['light', 'dark'])('ToggleSwitch %s non-text contrast', mode => {
     expect(contrast(border, canvas)).toBeGreaterThanOrEqual(3)
   })
 
-  it('distinguishes the state symbols from the track at 3:1', () => {
-    expect(contrast(resolveColor(colors.icon.fgColor, mode), track)).toBeGreaterThanOrEqual(3)
-  })
-
   it.each([
     ['on', 'rest'],
     ['on', 'hover'],

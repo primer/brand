@@ -127,52 +127,6 @@ describe('ToggleSwitch', () => {
     expect(onChange).toHaveBeenLastCalledWith(false)
   })
 
-  it.each(['small', 'medium'] as const)('shows decorative I/O symbols for both %s states', async size => {
-    const user = userEvent.setup()
-    render(<ToggleSwitch size={size} aria-label="Notifications" />)
-    const control = screen.getByRole('switch', {name: 'Notifications'})
-    const icon = control.querySelector('svg')
-    const offPath = icon?.querySelector('path')?.getAttribute('d')
-
-    expect(icon).toHaveAttribute('width', size === 'small' ? '10' : '14')
-    expect(icon).toHaveAttribute('height', size === 'small' ? '10' : '14')
-    expect(icon).toHaveAttribute('focusable', 'false')
-    expect(icon?.parentElement).toHaveAttribute('aria-hidden', 'true')
-    expect(icon).not.toHaveClass('ToggleSwitch-icon--checked')
-    expect(offPath).toBe('M8 12.5a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9ZM8 14A6 6 0 1 0 8 2a6 6 0 0 0 0 12Z')
-
-    await user.click(control)
-
-    expect(icon).toHaveClass('ToggleSwitch-icon--checked')
-    expect(icon?.querySelector('path')).toHaveAttribute(
-      'd',
-      'M8 2a.75.75 0 0 1 .75.75v11.5a.75.75 0 0 1-1.5 0V2.75A.75.75 0 0 1 8 2Z',
-    )
-    expect(control).toHaveAccessibleName('Notifications')
-    expect(control).toHaveAttribute('aria-checked', 'true')
-
-    await user.click(control)
-
-    expect(icon).not.toHaveClass('ToggleSwitch-icon--checked')
-    expect(icon?.querySelector('path')).toHaveAttribute('d', offPath)
-    expect(control).toHaveAttribute('aria-checked', 'false')
-  })
-
-  it.each([{disabled: true}, {loading: true}, {checked: true, disabled: true}, {checked: true, loading: true}])(
-    'retains the state symbol with %j',
-    props => {
-      render(<ToggleSwitch {...props} aria-label="Notifications" />)
-      const icon = screen.getByRole('switch').querySelector('svg')
-      expect(icon).toBeInTheDocument()
-      expect(icon?.parentElement).toHaveAttribute('aria-hidden', 'true')
-      if (props.checked) {
-        expect(icon).toHaveClass('ToggleSwitch-icon--checked')
-      } else {
-        expect(icon).not.toHaveClass('ToggleSwitch-icon--checked')
-      }
-    },
-  )
-
   it('allows onClick to cancel activation', async () => {
     const user = userEvent.setup()
     const onChange = jest.fn()

@@ -41,23 +41,6 @@
   background: var(--brand-ToggleSwitch-track-bgColor);
 }
 
-.ToggleSwitch-icon {
-  position: absolute;
-  top: 50%;
-  inset-inline-end: var(--brand-ToggleSwitch-icon-inset);
-  color: var(--brand-ToggleSwitch-icon-fgColor);
-  transform: translateY(-50%);
-}
-
-.ToggleSwitch-icon--checked {
-  inset-inline-start: var(--brand-ToggleSwitch-icon-inset);
-  inset-inline-end: auto;
-}
-
-.ToggleSwitch-button--unavailable .ToggleSwitch-icon {
-  color: var(--brand-ToggleSwitch-thumb-disabled-bgColor);
-}
-
 .ToggleSwitch-statusLabel {
   display: grid;
   font-family: var(--brand-body-fontFamily);
@@ -123,19 +106,11 @@
 }
 
 .ToggleSwitch--medium .ToggleSwitch-track {
-  --brand-ToggleSwitch-icon-inset: calc(
-    var(--brand-ToggleSwitch-thumb-inset-medium) - var(--brand-ToggleSwitch-track-borderWidth)
-  );
-
   width: var(--brand-ToggleSwitch-track-width-medium);
   height: var(--brand-ToggleSwitch-track-height-medium);
 }
 
 .ToggleSwitch--small .ToggleSwitch-track {
-  --brand-ToggleSwitch-icon-inset: calc(
-    var(--brand-ToggleSwitch-thumb-inset-small) - var(--brand-ToggleSwitch-track-borderWidth)
-  );
-
   width: var(--brand-ToggleSwitch-track-width-small);
   height: var(--brand-ToggleSwitch-track-height-small);
 }
@@ -192,14 +167,6 @@
 }
 
 @media (forced-colors: active) {
-  .ToggleSwitch-icon {
-    color: ButtonText;
-  }
-
-  .ToggleSwitch-button--unavailable .ToggleSwitch-icon {
-    color: GrayText;
-  }
-
   .ToggleSwitch-track {
     border-color: ButtonText;
     background: Canvas;

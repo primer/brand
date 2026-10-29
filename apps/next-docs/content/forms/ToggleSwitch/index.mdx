@@ -155,13 +155,13 @@ Other standard button attributes, including `aria-controls`, `tabIndex`, keyboar
 
 ## Accessibility
 
-The switch communicates its state through visible On/Off status text, thumb position, and an I/O symbol in the exposed track: a line means on and a circle means off. These cues remain visible in both sizes, light and dark modes, and forced-colors mode. The status text and symbols supplement color and do not change the switch's accessible name.
+The switch communicates its state through visible On/Off status text and thumb position. These cues remain visible in both sizes, light and dark modes, and forced-colors mode. The status text supplements color and does not change the switch's accessible name.
 
 The status text is part of the switch's click target. The default On/Off text is hidden from assistive technology, which already announces the state through `aria-checked`. When `statusLabelOn` or `statusLabelOff` changes the text, the current text becomes the switch's description, so screen readers announce it after the state, for example "Make repository public, switch, off, Private". Most screen readers announce only the new state after a toggle and read the updated description when focus returns to the switch. Translated On/Off text also becomes a description, which repeats the state in that language. Both labels reserve the same width, so toggling does not shift the layout. Keep `hasStatusLabel` enabled unless the surrounding interface already shows the state in text.
 
-The switch exposes its state to assistive technology through `role="switch"` and `aria-checked`. Provide a descriptive visible label with `FormControl.Label` or `aria-labelledby`; the status text and symbols do not replace the setting label.
+The switch exposes its state to assistive technology through `role="switch"` and `aria-checked`. Provide a descriptive visible label with `FormControl.Label` or `aria-labelledby`; the status text does not replace the setting label.
 
-The default track border, state symbols, and enabled thumb meet the 3:1 non-text contrast requirement against the track and default canvas in light and dark modes. ToggleSwitch uses existing Brand palette colors without changing shared palette tokens. Recheck contrast when overriding its colors or placing it on a custom background.
+The default track border and enabled thumb meet the 3:1 non-text contrast requirement against the track and default canvas in light and dark modes. ToggleSwitch uses existing Brand palette colors without changing shared palette tokens. Recheck contrast when overriding its colors or placing it on a custom background.
 
 ## Related Components
 
