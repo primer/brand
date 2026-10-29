@@ -234,7 +234,7 @@
 
 .MediaPlaylist__tab:focus-visible {
   outline: var(--brand-borderWidth-thick) solid var(--brand-color-focus);
-  outline-offset: var(--base-size-4);
+  outline-offset: calc(-1 * var(--base-size-4));
 }
 
 .MediaPlaylist__content {

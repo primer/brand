@@ -73,7 +73,7 @@
  * Narrow viewport-only styles
 */
 @media screen and (max-width: 34rem) {
-  .ComparisonTable thead .ComparisonTable-cell-heading {
+  .ComparisonTable thead .ComparisonTable-cell-heading:not(:where(th.ComparisonTable-cell-heading--first)) {
     display: none;
   }
 
@@ -165,7 +165,7 @@
     position: relative;
     padding-left: 25px;
   }
-  :global(.ComparisonTable--default) .ComparisonTable-cell::before {
+  :global(.ComparisonTable--default) .ComparisonTable-cell:not(:where(.ComparisonTable-cell-heading--first))::before {
     content: '';
     position: absolute;
     top: 0;

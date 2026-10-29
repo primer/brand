@@ -1,6 +1,7 @@
 import React from 'react'
 import type {Meta, StoryObj} from '@storybook/react'
 import {INITIAL_VIEWPORTS} from 'storybook/viewport'
+import {expect, within} from 'storybook/test'
 
 import {Text, InlineLink} from '../'
 import {ComparisonTable} from '.'
@@ -119,6 +120,10 @@ export const PlaygroundMobile: Story = {
     viewport: {value: 'iphonex'},
   },
   name: 'Playground (mobile)',
+  play: async ({canvasElement}) => {
+    const canvas = within(canvasElement)
+    await expect(canvas.getByRole('columnheader', {name: 'Use case'})).toBeVisible()
+  },
 }
 
 export const Minimal: Story = {
