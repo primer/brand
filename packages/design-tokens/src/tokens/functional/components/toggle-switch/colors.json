@@ -1,36 +1,68 @@
 {
   "ToggleSwitch": {
     "track": {
-      "bgColor": {"value": "var(--base-color-scale-gray-0)", "dark": "var(--base-color-scale-gray-7)"},
-      "borderColor": {"value": "var(--base-color-scale-gray-6)", "dark": "var(--base-color-scale-gray-3)"}
+      "bgColor": {
+        "value": "var(--base-color-scale-gray-0)",
+        "dark": "var(--base-color-scale-gray-7)"
+      },
+      "borderColor": {
+        "value": "var(--base-color-scale-gray-7)",
+        "dark": "var(--base-color-scale-gray-2)"
+      }
+    },
+    "statusLabel": {
+      "fgColor": {
+        "rest": {
+          "value": "var(--brand-color-text-default)",
+          "dark": "var(--brand-color-text-default)"
+        },
+        "disabled": {
+          "value": "var(--brand-color-text-muted)",
+          "dark": "var(--brand-color-text-muted)"
+        }
+      }
     },
     "thumb": {
-      "borderColor": {"value": "rgba(0, 0, 0, 0.08)", "dark": "rgba(0, 0, 0, 0.08)"},
+      "borderColor": {
+        "value": "rgba(0, 0, 0, 0.08)",
+        "dark": "rgba(0, 0, 0, 0.08)"
+      },
       "on": {
         "bgColor": {
-          "rest": {"value": "var(--brand-color-text-emphasized)", "dark": "var(--base-color-scale-green-2)"},
+          "rest": {
+            "value": "var(--base-color-scale-green-7)",
+            "dark": "var(--base-color-scale-green-2)"
+          },
           "hover": {
-            "value": "color-mix(in srgb, var(--brand-color-text-emphasized), black 16%)",
-            "dark": "color-mix(in srgb, var(--base-color-scale-green-2), black 16%)"
+            "value": "var(--base-color-scale-green-8)",
+            "dark": "var(--base-color-scale-green-1)"
           }
         }
       },
       "off": {
         "bgColor": {
           "rest": {
-            "value": "color-mix(in srgb, var(--base-color-scale-gray-6), black 4%)",
-            "dark": "color-mix(in srgb, var(--base-color-scale-gray-3), white 4%)"
+            "value": "var(--base-color-scale-gray-7)",
+            "dark": "var(--base-color-scale-gray-2)"
           },
           "hover": {
-            "value": "color-mix(in srgb, var(--base-color-scale-gray-6), black 8%)",
-            "dark": "color-mix(in srgb, var(--base-color-scale-gray-3), white 8%)"
+            "value": "var(--base-color-scale-gray-8)",
+            "dark": "var(--base-color-scale-gray-1)"
           }
         }
       },
       "disabled": {
-        "bgColor": {"value": "var(--base-color-scale-gray-4)", "dark": "var(--base-color-scale-gray-5)"}
+        "bgColor": {
+          "value": "var(--base-color-scale-gray-4)",
+          "dark": "var(--base-color-scale-gray-5)"
+        }
       }
     },
-    "loading": {"fgColor": {"value": "var(--brand-color-text-muted)", "dark": "var(--brand-color-text-muted)"}}
+    "loading": {
+      "fgColor": {
+        "value": "var(--brand-color-text-muted)",
+        "dark": "var(--brand-color-text-muted)"
+      }
+    }
   }
 }

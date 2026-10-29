@@ -208,6 +208,39 @@ test.describe('Visual Comparison: ToggleSwitch', () => {
       await expect(page).toHaveScreenshot({fullPage: true})
     })
   })
+  test('ToggleSwitch / Status Label', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-forms-toggleswitch-features--status-label&viewMode=story',
+      {waitUntil: 'networkidle'},
+    )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+    await page.waitForTimeout(500)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
+  test('ToggleSwitch / Status Label Dark', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-forms-toggleswitch-features--status-label-dark&viewMode=story',
+      {waitUntil: 'networkidle'},
+    )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+    await page.waitForTimeout(500)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
+  test('ToggleSwitch / Status Label Right To Left', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-forms-toggleswitch-features--status-label-right-to-left&viewMode=story',
+      {waitUntil: 'networkidle'},
+    )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+    await page.waitForTimeout(500)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
   test('ToggleSwitch / Right To Left', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-forms-toggleswitch-features--right-to-left&viewMode=story',

@@ -9,6 +9,7 @@ import styles from './ToggleSwitch.module.css'
 
 type ToggleSwitchSize = 'small' | 'medium'
 type ToggleSwitchSpinnerPosition = 'start' | 'end'
+type ToggleSwitchStatusLabelPosition = 'start' | 'end'
 
 type ToggleSwitchButtonPropKeysToOmit =
   | 'aria-busy'
@@ -29,6 +30,10 @@ export type ToggleSwitchProps = Omit<ButtonHTMLAttributes<HTMLButtonElement>, To
   loadingLabel?: string
   loadingLabelDelay?: number
   spinnerPosition?: ToggleSwitchSpinnerPosition
+  hasStatusLabel?: boolean
+  statusLabelPosition?: ToggleSwitchStatusLabelPosition
+  statusLabelOn?: string
+  statusLabelOff?: string
 }
 
 export type ToggleSwitchInternalProps = ToggleSwitchProps & {
@@ -39,6 +44,7 @@ const testIds = {
   root: 'ToggleSwitch',
   spinner: 'ToggleSwitch-spinner',
   loadingAnnouncement: 'ToggleSwitch-loading-announcement',
+  statusLabel: 'ToggleSwitch-status-label',
 }
 
 type ToggleSwitchComponent = React.ForwardRefExoticComponent<ToggleSwitchProps & React.RefAttributes<HTMLButtonElement>>
@@ -55,6 +61,10 @@ const Root: ToggleSwitchComponent = forwardRef<HTMLButtonElement, ToggleSwitchIn
     loadingLabel = 'Loading',
     loadingLabelDelay = 2000,
     spinnerPosition = 'end',
+    hasStatusLabel = true,
+    statusLabelPosition = 'start',
+    statusLabelOn = 'On',
+    statusLabelOff = 'Off',
     toggleSwitchSpinnerInLabel = false,
     id,
     className,
@@ -69,9 +79,12 @@ const Root: ToggleSwitchComponent = forwardRef<HTMLButtonElement, ToggleSwitchIn
 ) {
   const uniqueId = useId(id)
   const loadingId = `${uniqueId}-loading`
+  const statusDescriptionId = `${uniqueId}-status`
   const [internalChecked, setInternalChecked] = useState(defaultChecked)
   const [announceLoading, setAnnounceLoading] = useState(false)
   const isChecked = checked ?? internalChecked
+  // aria-checked already announces On/Off, so only custom wording needs to be exposed as a description.
+  const hasStatusDescription = hasStatusLabel && (statusLabelOn !== 'On' || statusLabelOff !== 'Off')
 
   useEffect(() => {
     setAnnounceLoading(false)
@@ -82,7 +95,13 @@ const Root: ToggleSwitchComponent = forwardRef<HTMLButtonElement, ToggleSwitchIn
   }, [loading, loadingLabelDelay])
 
   const describedBy =
-    [ariaDescribedBy, loading && announceLoading && loadingLabel && loadingId].filter(Boolean).join(' ') || undefined
+    [
+      hasStatusDescription && statusDescriptionId,
+      ariaDescribedBy,
+      loading && announceLoading && loadingLabel && loadingId,
+    ]
+      .filter(Boolean)
+      .join(' ') || undefined
 
   const handleClick: MouseEventHandler<HTMLButtonElement> = event => {
     if (disabled) {
@@ -111,6 +130,36 @@ const Root: ToggleSwitchComponent = forwardRef<HTMLButtonElement, ToggleSwitchIn
       </span>
     ) : null
 
+  // Both labels share one grid cell so the wider label reserves space and state changes do not shift layout.
+  const statusLabelElement = hasStatusLabel ? (
+    <span
+      className={clsx(
+        styles['ToggleSwitch-statusLabel'],
+        styles[`ToggleSwitch-statusLabel--${statusLabelPosition}`],
+        disabled && styles['ToggleSwitch-statusLabel--disabled'],
+      )}
+      aria-hidden="true"
+      data-testid={testIds.statusLabel}
+    >
+      <span
+        className={clsx(
+          styles['ToggleSwitch-statusLabelText'],
+          !isChecked && styles['ToggleSwitch-statusLabelText--hidden'],
+        )}
+      >
+        {statusLabelOn}
+      </span>
+      <span
+        className={clsx(
+          styles['ToggleSwitch-statusLabelText'],
+          isChecked && styles['ToggleSwitch-statusLabelText--hidden'],
+        )}
+      >
+        {statusLabelOff}
+      </span>
+    </span>
+  ) : null
+
   return (
     <div
       className={clsx(styles.ToggleSwitch, styles[`ToggleSwitch--${size}`], className)}
@@ -133,6 +182,7 @@ const Root: ToggleSwitchComponent = forwardRef<HTMLButtonElement, ToggleSwitchIn
         className={clsx(styles['ToggleSwitch-button'], disabled && styles['ToggleSwitch-button--unavailable'])}
         onClick={handleClick}
       >
+        {statusLabelPosition === 'start' && statusLabelElement}
         <span className={styles['ToggleSwitch-track']} aria-hidden="true">
           <span
             className={clsx(
@@ -142,8 +192,14 @@ const Root: ToggleSwitchComponent = forwardRef<HTMLButtonElement, ToggleSwitchIn
             )}
           />
         </span>
+        {statusLabelPosition === 'end' && statusLabelElement}
       </button>
       {spinnerPosition === 'end' && spinnerElement}
+      {hasStatusDescription ? (
+        <span id={statusDescriptionId} className="visually-hidden">
+          {isChecked ? statusLabelOn : statusLabelOff}
+        </span>
+      ) : null}
       <span
         id={loadingId}
         role="status"

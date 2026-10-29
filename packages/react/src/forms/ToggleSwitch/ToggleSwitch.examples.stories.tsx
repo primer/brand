@@ -71,6 +71,7 @@ export const SettingsPanel: Story = {
                 checked={emailNotifications}
                 loading={pendingSaves.email > 0}
                 spinnerPosition="start"
+                hasStatusLabel
                 loadingLabel="Saving email notifications"
                 onChange={async nextChecked => {
                   setEmailNotifications(nextChecked)
@@ -103,6 +104,7 @@ export const SettingsPanel: Story = {
                 checked={webNotifications}
                 loading={pendingSaves.web > 0}
                 spinnerPosition="start"
+                hasStatusLabel={false}
                 loadingLabel="Saving web notifications"
                 onChange={async nextChecked => {
                   setWebNotifications(nextChecked)
@@ -135,6 +137,7 @@ export const SettingsPanel: Story = {
                 checked={releaseNotifications}
                 loading={pendingSaves.releases > 0}
                 spinnerPosition="start"
+                hasStatusLabel={false}
                 loadingLabel="Saving release notifications"
                 onChange={async nextChecked => {
                   setReleaseNotifications(nextChecked)
@@ -172,6 +175,7 @@ export const OptimisticUpdate: Story = {
           checked={email}
           loading={pendingSaves > 0}
           loadingLabel="Saving email preferences"
+          hasStatusLabel={false}
           onChange={handleEmailChange}
         />
       </FormControl>
@@ -212,6 +216,7 @@ export const OptimisticUpdateFailure: Story = {
           checked={email}
           loading={saving}
           loadingLabel="Saving email preferences"
+          hasStatusLabel={false}
           onChange={handleEmailChange}
         />
         <FormControl.Validation aria-live="polite" aria-atomic="true">

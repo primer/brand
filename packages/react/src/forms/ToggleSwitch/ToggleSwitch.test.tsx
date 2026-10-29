@@ -1,5 +1,5 @@
 import React, {createRef} from 'react'
-import {act, render, screen} from '@testing-library/react'
+import {act, render, screen, within} from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import '@testing-library/jest-dom'
 import {axe, toHaveNoViolations} from 'jest-axe'
@@ -11,13 +11,103 @@ expect.extend(toHaveNoViolations)
 describe('ToggleSwitch', () => {
   afterEach(() => jest.useRealTimers())
 
-  it('renders an unchecked named switch without visible state text', () => {
-    render(<ToggleSwitch aria-label="Enable notifications" />)
+  it('renders an unchecked named switch without visible state text when opted out', () => {
+    render(<ToggleSwitch aria-label="Enable notifications" hasStatusLabel={false} />)
     const control = screen.getByRole('switch', {name: 'Enable notifications'})
     expect(control).toHaveAttribute('aria-checked', 'false')
     expect(control).not.toHaveAttribute('aria-pressed')
     expect(control).toHaveAttribute('type', 'button')
     expect(screen.queryByText(/^(On|Off)$/)).not.toBeInTheDocument()
+  })
+
+  it('shows the status text by default and updates it with the current state', async () => {
+    const user = userEvent.setup()
+    render(<ToggleSwitch aria-label="Enable notifications" />)
+    const control = screen.getByRole('switch', {name: 'Enable notifications'})
+
+    expect(screen.getByText('Off')).not.toHaveClass('ToggleSwitch-statusLabelText--hidden')
+    expect(screen.getByText('On')).toHaveClass('ToggleSwitch-statusLabelText--hidden')
+
+    await user.click(screen.getByText('Off'))
+
+    expect(control).toHaveAttribute('aria-checked', 'true')
+    expect(screen.getByText('On')).not.toHaveClass('ToggleSwitch-statusLabelText--hidden')
+    expect(screen.getByText('Off')).toHaveClass('ToggleSwitch-statusLabelText--hidden')
+  })
+
+  it('accepts custom status text without changing the accessible name', () => {
+    render(<ToggleSwitch aria-label="Beta features" defaultChecked statusLabelOn="Enabled" statusLabelOff="Disabled" />)
+    expect(screen.getByRole('switch', {name: 'Beta features'})).toBeInTheDocument()
+    const statusLabel = within(screen.getByTestId(ToggleSwitch.testIds.statusLabel))
+    expect(statusLabel.getByText('Enabled')).not.toHaveClass('ToggleSwitch-statusLabelText--hidden')
+    expect(statusLabel.getByText('Disabled')).toHaveClass('ToggleSwitch-statusLabelText--hidden')
+  })
+
+  it('describes the switch with custom status text that follows the current state', async () => {
+    const user = userEvent.setup()
+    render(
+      <ToggleSwitch
+        id="visibility"
+        aria-label="Repository visibility"
+        aria-describedby="hint"
+        statusLabelOn="Public"
+        statusLabelOff="Private"
+      />,
+    )
+    const control = screen.getByRole('switch', {name: 'Repository visibility'})
+    expect(control).toHaveAttribute('aria-describedby', 'visibility-status hint')
+    expect(control).toHaveAccessibleDescription('Private')
+
+    await user.click(control)
+
+    expect(control).toHaveAccessibleDescription('Public')
+  })
+
+  it('does not describe the switch with the default status text', () => {
+    render(<ToggleSwitch aria-label="Enable notifications" />)
+    expect(screen.getByRole('switch')).not.toHaveAttribute('aria-describedby')
+  })
+
+  it('does not describe the switch with custom status text when the status label is hidden', () => {
+    render(
+      <ToggleSwitch
+        aria-label="Repository visibility"
+        hasStatusLabel={false}
+        statusLabelOn="Public"
+        statusLabelOff="Private"
+      />,
+    )
+    expect(screen.getByRole('switch')).not.toHaveAttribute('aria-describedby')
+  })
+
+  it.each(['start', 'end'] as const)('places the status text at the %s of the track', position => {
+    render(<ToggleSwitch aria-label="Enable notifications" statusLabelPosition={position} />)
+    const control = screen.getByRole('switch')
+    const statusLabel = screen.getByTestId(ToggleSwitch.testIds.statusLabel)
+    expect(statusLabel).toHaveClass(`ToggleSwitch-statusLabel--${position}`)
+    expect(position === 'start' ? control.firstElementChild : control.lastElementChild).toBe(statusLabel)
+  })
+
+  it('omits the status text when hasStatusLabel is false', () => {
+    render(<ToggleSwitch aria-label="Enable notifications" hasStatusLabel={false} />)
+    expect(screen.queryByTestId(ToggleSwitch.testIds.statusLabel)).not.toBeInTheDocument()
+    expect(screen.queryByText(/^(On|Off)$/)).not.toBeInTheDocument()
+  })
+
+  it('styles the visible status text for disabled switches', () => {
+    render(<ToggleSwitch aria-label="Enable notifications" disabled />)
+    expect(screen.getByTestId(ToggleSwitch.testIds.statusLabel)).toHaveClass('ToggleSwitch-statusLabel--disabled')
+  })
+
+  it('keeps the FormControl label as the accessible name when status text is visible', async () => {
+    const {container} = render(
+      <FormControl>
+        <FormControl.Label>Notifications</FormControl.Label>
+        <ToggleSwitch defaultChecked />
+      </FormControl>,
+    )
+    expect(screen.getByRole('switch', {name: 'Notifications'})).toBeInTheDocument()
+    expect(await axe(container)).toHaveNoViolations()
   })
 
   it('updates uncontrolled state once per activation', async () => {
@@ -207,7 +297,12 @@ describe('ToggleSwitch', () => {
   it('supports a leading spinner for standalone switches', () => {
     render(<ToggleSwitch aria-label="Notifications" loading spinnerPosition="start" />)
     const indicator = screen.getByTestId(ToggleSwitch.testIds.spinner)
-    expect(indicator.parentElement?.parentElement?.nextElementSibling).toBe(screen.getByRole('switch'))
+    const spinnerSlot = indicator.parentElement?.parentElement
+    const control = screen.getByRole('switch')
+    const statusLabel = screen.getByTestId(ToggleSwitch.testIds.statusLabel)
+    expect(spinnerSlot?.nextElementSibling).toBe(control)
+    expect(control.firstElementChild).toBe(statusLabel)
+    expect(statusLabel.nextElementSibling).toHaveClass('ToggleSwitch-track')
   })
 
   it('keeps the same focused node when entering and leaving loading', () => {

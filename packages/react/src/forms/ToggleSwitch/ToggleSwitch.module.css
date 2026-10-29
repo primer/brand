@@ -11,6 +11,7 @@
   align-items: center;
   justify-content: center;
   min-height: var(--brand-ToggleSwitch-target-minHeight);
+  gap: var(--brand-ToggleSwitch-statusLabel-gap);
   padding: 0;
   border: 0;
   background: transparent;
@@ -38,6 +39,43 @@
   border: var(--brand-ToggleSwitch-track-borderWidth) solid var(--brand-ToggleSwitch-track-borderColor);
   border-radius: var(--brand-ToggleSwitch-track-borderRadius);
   background: var(--brand-ToggleSwitch-track-bgColor);
+}
+
+.ToggleSwitch-statusLabel {
+  display: grid;
+  font-family: var(--brand-body-fontFamily);
+  font-weight: var(--base-text-weight-normal);
+  line-height: var(--brand-ToggleSwitch-statusLabel-lineHeight);
+  color: var(--brand-ToggleSwitch-statusLabel-fgColor-rest);
+  white-space: nowrap;
+}
+
+.ToggleSwitch-statusLabel--start {
+  justify-items: end;
+}
+
+.ToggleSwitch-statusLabel--end {
+  justify-items: start;
+}
+
+.ToggleSwitch-statusLabel--disabled {
+  color: var(--brand-ToggleSwitch-statusLabel-fgColor-disabled);
+}
+
+.ToggleSwitch-statusLabelText {
+  grid-area: 1 / 1;
+}
+
+.ToggleSwitch-statusLabelText--hidden {
+  visibility: hidden;
+}
+
+.ToggleSwitch--medium .ToggleSwitch-statusLabel {
+  font-size: var(--brand-ToggleSwitch-statusLabel-fontSize-medium);
+}
+
+.ToggleSwitch--small .ToggleSwitch-statusLabel {
+  font-size: var(--brand-ToggleSwitch-statusLabel-fontSize-small);
 }
 
 .ToggleSwitch-thumb {
@@ -156,5 +194,13 @@
 
   .ToggleSwitch-spinner {
     color: CanvasText;
+  }
+
+  .ToggleSwitch-statusLabel {
+    color: ButtonText;
+  }
+
+  .ToggleSwitch-statusLabel--disabled {
+    color: GrayText;
   }
 }

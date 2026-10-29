@@ -10,6 +10,8 @@ const meta = {
     size: {control: 'radio', options: ['small', 'medium']},
     loadingLabelDelay: {control: {type: 'number', min: 0}},
     spinnerPosition: {control: 'radio', options: ['start', 'end']},
+    hasStatusLabel: {control: 'boolean'},
+    statusLabelPosition: {control: 'radio', options: ['start', 'end']},
     onChange: {action: 'changed'},
     onClick: {action: 'clicked'},
   },
@@ -31,6 +33,9 @@ export const Playground: Story = {
     loadingLabel: 'Loading',
     loadingLabelDelay: 2000,
     spinnerPosition: 'end',
+    statusLabelPosition: 'start',
+    statusLabelOn: 'On',
+    statusLabelOff: 'Off',
   },
   render: args => <ToggleSwitch {...args} />,
 }
