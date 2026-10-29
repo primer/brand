@@ -79,9 +79,12 @@ const Root: ToggleSwitchComponent = forwardRef<HTMLButtonElement, ToggleSwitchIn
 ) {
   const uniqueId = useId(id)
   const loadingId = `${uniqueId}-loading`
+  const statusDescriptionId = `${uniqueId}-status`
   const [internalChecked, setInternalChecked] = useState(defaultChecked)
   const [announceLoading, setAnnounceLoading] = useState(false)
   const isChecked = checked ?? internalChecked
+  // aria-checked already announces On/Off, so only custom wording needs to be exposed as a description.
+  const hasStatusDescription = hasStatusLabel && (statusLabelOn !== 'On' || statusLabelOff !== 'Off')
 
   useEffect(() => {
     setAnnounceLoading(false)
@@ -92,7 +95,13 @@ const Root: ToggleSwitchComponent = forwardRef<HTMLButtonElement, ToggleSwitchIn
   }, [loading, loadingLabelDelay])
 
   const describedBy =
-    [ariaDescribedBy, loading && announceLoading && loadingLabel && loadingId].filter(Boolean).join(' ') || undefined
+    [
+      hasStatusDescription && statusDescriptionId,
+      ariaDescribedBy,
+      loading && announceLoading && loadingLabel && loadingId,
+    ]
+      .filter(Boolean)
+      .join(' ') || undefined
 
   const handleClick: MouseEventHandler<HTMLButtonElement> = event => {
     if (disabled) {
@@ -177,8 +186,8 @@ const Root: ToggleSwitchComponent = forwardRef<HTMLButtonElement, ToggleSwitchIn
         <span className={styles['ToggleSwitch-track']} aria-hidden="true">
           <svg
             className={clsx(styles['ToggleSwitch-icon'], isChecked && styles['ToggleSwitch-icon--checked'])}
-            width={size === 'small' ? 12 : 16}
-            height={size === 'small' ? 12 : 16}
+            width={size === 'small' ? 10 : 14}
+            height={size === 'small' ? 10 : 14}
             viewBox="0 0 16 16"
             fill="currentColor"
             focusable="false"
@@ -203,6 +212,11 @@ const Root: ToggleSwitchComponent = forwardRef<HTMLButtonElement, ToggleSwitchIn
         {statusLabelPosition === 'end' && statusLabelElement}
       </button>
       {spinnerPosition === 'end' && spinnerElement}
+      {hasStatusDescription ? (
+        <span id={statusDescriptionId} className="visually-hidden">
+          {isChecked ? statusLabelOn : statusLabelOff}
+        </span>
+      ) : null}
       <span
         id={loadingId}
         role="status"

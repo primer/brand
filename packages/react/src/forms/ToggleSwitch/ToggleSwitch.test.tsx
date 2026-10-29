@@ -1,5 +1,5 @@
 import React, {createRef} from 'react'
-import {act, render, screen} from '@testing-library/react'
+import {act, render, screen, within} from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import '@testing-library/jest-dom'
 import {axe, toHaveNoViolations} from 'jest-axe'
@@ -38,8 +38,46 @@ describe('ToggleSwitch', () => {
   it('accepts custom status text without changing the accessible name', () => {
     render(<ToggleSwitch aria-label="Beta features" defaultChecked statusLabelOn="Enabled" statusLabelOff="Disabled" />)
     expect(screen.getByRole('switch', {name: 'Beta features'})).toBeInTheDocument()
-    expect(screen.getByText('Enabled')).not.toHaveClass('ToggleSwitch-statusLabelText--hidden')
-    expect(screen.getByText('Disabled')).toHaveClass('ToggleSwitch-statusLabelText--hidden')
+    const statusLabel = within(screen.getByTestId(ToggleSwitch.testIds.statusLabel))
+    expect(statusLabel.getByText('Enabled')).not.toHaveClass('ToggleSwitch-statusLabelText--hidden')
+    expect(statusLabel.getByText('Disabled')).toHaveClass('ToggleSwitch-statusLabelText--hidden')
+  })
+
+  it('describes the switch with custom status text that follows the current state', async () => {
+    const user = userEvent.setup()
+    render(
+      <ToggleSwitch
+        id="visibility"
+        aria-label="Repository visibility"
+        aria-describedby="hint"
+        statusLabelOn="Public"
+        statusLabelOff="Private"
+      />,
+    )
+    const control = screen.getByRole('switch', {name: 'Repository visibility'})
+    expect(control).toHaveAttribute('aria-describedby', 'visibility-status hint')
+    expect(control).toHaveAccessibleDescription('Private')
+
+    await user.click(control)
+
+    expect(control).toHaveAccessibleDescription('Public')
+  })
+
+  it('does not describe the switch with the default status text', () => {
+    render(<ToggleSwitch aria-label="Enable notifications" />)
+    expect(screen.getByRole('switch')).not.toHaveAttribute('aria-describedby')
+  })
+
+  it('does not describe the switch with custom status text when the status label is hidden', () => {
+    render(
+      <ToggleSwitch
+        aria-label="Repository visibility"
+        hasStatusLabel={false}
+        statusLabelOn="Public"
+        statusLabelOff="Private"
+      />,
+    )
+    expect(screen.getByRole('switch')).not.toHaveAttribute('aria-describedby')
   })
 
   it.each(['start', 'end'] as const)('places the status text at the %s of the track', position => {
@@ -96,8 +134,8 @@ describe('ToggleSwitch', () => {
     const icon = control.querySelector('svg')
     const offPath = icon?.querySelector('path')?.getAttribute('d')
 
-    expect(icon).toHaveAttribute('width', size === 'small' ? '12' : '16')
-    expect(icon).toHaveAttribute('height', size === 'small' ? '12' : '16')
+    expect(icon).toHaveAttribute('width', size === 'small' ? '10' : '14')
+    expect(icon).toHaveAttribute('height', size === 'small' ? '10' : '14')
     expect(icon).toHaveAttribute('focusable', 'false')
     expect(icon?.parentElement).toHaveAttribute('aria-hidden', 'true')
     expect(icon).not.toHaveClass('ToggleSwitch-icon--checked')
