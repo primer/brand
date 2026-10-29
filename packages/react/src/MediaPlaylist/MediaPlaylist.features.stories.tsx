@@ -1,8 +1,10 @@
 import React from 'react'
 import type {Meta, StoryObj} from '@storybook/react'
+import {expect, userEvent, within} from 'storybook/test'
 
 import {Box, Image, Prose} from '..'
 import {MediaPlaylist} from './MediaPlaylist'
+import placeholderImage from '../fixtures/images/placeholder.png'
 import styles from './MediaPlaylist.stories.module.css'
 
 const meta = {
@@ -236,6 +238,66 @@ export const LargePlaylist: Story = {
         ))}
       </MediaPlaylist>
     )
+  },
+}
+
+export const FirstItemKeyboardFocus: Story = {
+  name: 'First item keyboard focus',
+  render: () => (
+    <MediaPlaylist>
+      <MediaPlaylist.Heading>Latest videos</MediaPlaylist.Heading>
+      {youtubeVideos.map(video => (
+        <MediaPlaylist.Item key={video.id} thumbnail={<Image src={placeholderImage} alt="" aspectRatio="16:9" />}>
+          <MediaPlaylist.ItemHeading title={video.title} description={video.duration} />
+          <MediaPlaylist.ItemContent>
+            <p>{video.summary}</p>
+          </MediaPlaylist.ItemContent>
+          <MediaPlaylist.ItemMedia>
+            <Image src={placeholderImage} alt="" aspectRatio="16:9" />
+          </MediaPlaylist.ItemMedia>
+        </MediaPlaylist.Item>
+      ))}
+    </MediaPlaylist>
+  ),
+  play: async ({canvasElement}) => {
+    await canvasElement.ownerDocument.fonts.ready
+    const tabs = within(canvasElement).getAllByRole('tab')
+    await userEvent.tab()
+    await expect(tabs[0]).toHaveFocus()
+  },
+}
+
+export const LastItemKeyboardFocus: Story = {
+  ...FirstItemKeyboardFocus,
+  name: 'Last item keyboard focus',
+  parameters: {
+    layout: 'padded',
+  },
+  play: async ({canvasElement}) => {
+    await canvasElement.ownerDocument.fonts.ready
+    const tabs = within(canvasElement).getAllByRole('tab')
+    await userEvent.tab()
+    await userEvent.keyboard('{End}')
+    await expect(tabs[tabs.length - 1]).toHaveFocus()
+  },
+}
+
+export const FirstItemKeyboardFocusNarrow: Story = {
+  ...FirstItemKeyboardFocus,
+  name: 'First item keyboard focus (narrow)',
+  globals: {
+    viewport: {value: 'iphonexr'},
+  },
+}
+
+export const LastItemKeyboardFocusNarrow: Story = {
+  ...LastItemKeyboardFocus,
+  name: 'Last item keyboard focus (narrow)',
+  parameters: {
+    layout: 'fullscreen',
+  },
+  globals: {
+    viewport: {value: 'iphonexr'},
   },
 }
 
