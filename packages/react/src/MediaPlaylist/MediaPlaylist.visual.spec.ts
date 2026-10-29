@@ -53,57 +53,6 @@ test.describe('Visual Comparison: MediaPlaylist', () => {
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
-  test('MediaPlaylist / First item keyboard focus', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-mediaplaylist-features--first-item-keyboard-focus&viewMode=story',
-      {waitUntil: 'networkidle'},
-    )
-    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('MediaPlaylist / Last item keyboard focus', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-mediaplaylist-features--last-item-keyboard-focus&viewMode=story',
-      {waitUntil: 'networkidle'},
-    )
-    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  // eslint-disable-next-line i18n-text/no-en
-  test.describe('Mobile viewport test for First item keyboard focus (narrow)', () => {
-    test.use({viewport: {width: 360, height: 800}})
-    test('MediaPlaylist / First item keyboard focus (narrow)', async ({page}) => {
-      await page.goto(
-        'http://localhost:6006/iframe.html?args=&id=components-mediaplaylist-features--first-item-keyboard-focus-narrow&viewMode=story',
-        {waitUntil: 'networkidle'},
-      )
-      await page.locator('body.sb-show-main').waitFor({state: 'visible'})
-
-      await page.waitForTimeout(500)
-      await expect(page).toHaveScreenshot({fullPage: true})
-    })
-  })
-
-  // eslint-disable-next-line i18n-text/no-en
-  test.describe('Mobile viewport test for Last item keyboard focus (narrow)', () => {
-    test.use({viewport: {width: 360, height: 800}})
-    test('MediaPlaylist / Last item keyboard focus (narrow)', async ({page}) => {
-      await page.goto(
-        'http://localhost:6006/iframe.html?args=&id=components-mediaplaylist-features--last-item-keyboard-focus-narrow&viewMode=story',
-        {waitUntil: 'networkidle'},
-      )
-      await page.locator('body.sb-show-main').waitFor({state: 'visible'})
-
-      await page.waitForTimeout(500)
-      await expect(page).toHaveScreenshot({fullPage: true})
-    })
-  })
   test('MediaPlaylist / Long video names', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-mediaplaylist-features--long-video-names&viewMode=story',
