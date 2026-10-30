@@ -97,7 +97,7 @@ function CustomPanels() {
   }, [])
 
   return (
-    <Stack alignItems="center">
+    <Stack alignItems="center" style={{width: '100%', minWidth: 0}}>
       <Tabs onChange={handleTabChange} aria-label="Lifecycle tabs">
         <Tabs.Item id="tab-1" aria-controls="panel-1">
           Code
