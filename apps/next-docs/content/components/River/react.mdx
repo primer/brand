@@ -20,7 +20,7 @@ import {
 } from './react'
 
 ```js
-import {River, RiverBreakout} from '@primer/react-brand'
+import {MinimalVideoPlayer, River, RiverBreakout} from '@primer/react-brand'
 ```
 
 ## Examples
@@ -158,18 +158,13 @@ The `gridline` variant adds lateral padding and applies a full-bleed visual back
 
 ### Video
 
-Give informative videos an accessible name. This example uses `aria-labelledby` to name the video from its related heading. Keep playback controls available.
+Use `MinimalVideoPlayer` for videos with keyboard-accessible playback controls. Give informative videos a descriptive `title`.
 
 ```jsx live
 <River style={{width: '100%'}} imageTextRatio="60:40">
   <River.Visual hasShadow={false}>
-    <video
-      aria-labelledby="river-video-heading"
-      controls
-      loop
-      playsInline
-      autoPlay
-      muted
+    <MinimalVideoPlayer
+      title="Break issues into actionable tasks"
       poster="https://github.githubassets.com/images/modules/site/issues/issue-tasks-progress-placeholder.png"
     >
       <source
@@ -180,10 +175,10 @@ Give informative videos an accessible name. This example uses `aria-labelledby` 
         type="video/mp4; codecs=avc1.4D401E,mp4a.40.2"
         src="https://github.githubassets.com/images/modules/site/issues/issue-tasks-progress.h264.mp4"
       />
-    </video>
+    </MinimalVideoPlayer>
   </River.Visual>
   <River.Content>
-    <Heading id="river-video-heading">Break issues into actionable tasks</Heading>
+    <Heading>Break issues into actionable tasks</Heading>
     <Text>
       Tackle complex issues with task lists and track their status with new progress indicators. Convert tasks into
       their own issues and navigate your work hierarchy.
