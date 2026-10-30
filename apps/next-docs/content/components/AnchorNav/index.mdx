@@ -24,6 +24,8 @@ import {AnchorNav} from '@primer/react-brand'
 
 `AnchorNav` is designed to fix to the top of the viewport, and requires markup outside of the scope of the component to behave correctly.
 
+The inline examples use layout containment to keep their navigation inside each preview, separate from the documentation header.
+
 Please refer to our [Storybook examples](https://primer.style/brand/storybook/?path=/story/components-anchornav--playground) to see the component in a full-screen context as originally intended.
 
 </Note>
@@ -31,7 +33,7 @@ Please refer to our [Storybook examples](https://primer.style/brand/storybook/?p
 ### Basic
 
 ```jsx live
-<div style={{position: 'relative', overflowX: 'scroll', width: '100%'}}>
+<div style={{position: 'relative', overflowX: 'scroll', width: '100%', contain: 'layout'}}>
   <AnchorNav>
     <AnchorNav.Link href="#basic-section1">Section one</AnchorNav.Link>
     <AnchorNav.Link href="#basic-section2">Section two</AnchorNav.Link>
@@ -98,7 +100,7 @@ Please refer to our [Storybook examples](https://primer.style/brand/storybook/?p
 `AnchorNav` can also feature secondary actions. When two actions are present, the first will be presented as the `primary` variant.
 
 ```jsx live
-<div style={{position: 'relative', overflowX: 'scroll', width: '100%'}}>
+<div style={{position: 'relative', overflowX: 'scroll', width: '100%', contain: 'layout'}}>
   <AnchorNav>
     <AnchorNav.Link href="#fewer-links-section1">Section one</AnchorNav.Link>
     <AnchorNav.Link href="#fewer-links-section2">Section two</AnchorNav.Link>
@@ -144,7 +146,7 @@ Please refer to our [Storybook examples](https://primer.style/brand/storybook/?p
 `AnchorNav` implementations with fewer than `5` links, will automatically align links to the `start`.
 
 ```jsx live
-<div style={{position: 'relative', overflowX: 'scroll', width: '100%'}}>
+<div style={{position: 'relative', overflowX: 'scroll', width: '100%', contain: 'layout'}}>
   <AnchorNav>
     <AnchorNav.Link href="#fewer-links-section1">Section one</AnchorNav.Link>
     <AnchorNav.Link href="#fewer-links-section2">Section two</AnchorNav.Link>
