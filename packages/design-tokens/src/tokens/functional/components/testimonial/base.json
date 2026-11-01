@@ -12,6 +12,72 @@
         }
       }
     },
+    "expressive": {
+      "maxWidth": {
+        "value": "1176px",
+        "responsive": {
+          "768px": {
+            "value": "618px"
+          },
+          "1012px": {
+            "value": "1176px"
+          }
+        }
+      },
+      "quote": {
+        "maxWidth": {
+          "value": "744px"
+        },
+        "fontSize": {
+          "value": "1.5rem",
+          "responsive": {
+            "768px": {
+              "value": "1.625rem"
+            },
+            "1012px": {
+              "value": "2rem"
+            }
+          }
+        },
+        "fontWeight": {
+          "value": 425
+        },
+        "letterSpacing": {
+          "value": "-0.01em",
+          "responsive": {
+            "768px": {
+              "value": "-0.02em"
+            }
+          }
+        }
+      },
+      "name": {
+        "letterSpacing": {
+          "value": "0.0107em"
+        }
+      },
+      "position": {
+        "lineHeight": {
+          "value": "1.6"
+        },
+        "letterSpacing": {
+          "value": "0.01em"
+        }
+      },
+      "media": {
+        "width": {
+          "value": "100%",
+          "responsive": {
+            "768px": {
+              "value": "356px"
+            },
+            "1012px": {
+              "value": "312px"
+            }
+          }
+        }
+      }
+    },
     "quote": {
       "fontSize": {
         "default": {

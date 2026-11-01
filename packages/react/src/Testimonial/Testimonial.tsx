@@ -1,23 +1,21 @@
-import React, {
-  HTMLAttributes,
-  PropsWithChildren,
-  forwardRef,
-  SVGProps,
-  CSSProperties,
-  ComponentPropsWithRef,
-} from 'react'
+import React, {HTMLAttributes, forwardRef, SVGProps, CSSProperties, ComponentPropsWithRef} from 'react'
 import {clsx} from 'clsx'
 import {BaseProps} from '../component-helpers'
-import {Text, Avatar as BaseAvatar, useAnimation} from '../'
+import {Text, Avatar, useAnimation} from '../'
 import type {AvatarProps} from '../'
 import {Link, type LinkProps} from '../Link'
 import {TextCursorAnimation} from '../TextCursorAnimation'
+import {Colors} from '../constants'
+
+/**
+ * Design tokens
+ */
 
 import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/testimonial/base.css'
 import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/testimonial/colors-with-modes.css'
 
+/** * Main Stylesheet (as a CSS Module) */
 import styles from './Testimonial.module.css'
-import {Colors} from '../constants'
 
 type TestimonialSize = 'small' | 'large'
 
@@ -28,9 +26,22 @@ export const TestimonialVariants = ['subtle', 'default', 'minimal', 'expressive'
 type TestimonialVariant = (typeof TestimonialVariants)[number]
 export const defaultTestimonialVariant: TestimonialVariant = 'minimal'
 
+const testIds = {
+  root: 'Testimonial',
+  get quoteMark() {
+    return `${this.root}__quoteMark`
+  },
+  get quoteWrapper() {
+    return `${this.root}__quoteWrapper`
+  },
+  get media() {
+    return `${this.root}__media`
+  },
+}
+
 export type TestimonialProps = {
   /**
-   * Sets alternative appearance for the testimonial
+   * Sets alternative visual appearance
    */
   variant?: TestimonialVariant
   /**
@@ -38,14 +49,9 @@ export type TestimonialProps = {
    */
   hasBorder?: boolean
   /**
-   * Valid children include Testimonial.Name, Testimonial.Avatar, and Testimonial.Name
+   * Valid children
    */
-  children:
-    | React.ReactNode
-    | React.ReactElement<QuoteProps>
-    | React.ReactElement<NameProps>
-    | React.ReactElement<AvatarProps>
-    | React.ReactElement<LogoProps>[]
+  children: React.ReactNode
   /**
    * Sets the testimonial text size
    */
@@ -56,6 +62,7 @@ export type TestimonialProps = {
   quoteMarkClassName?: string
   /** Class applied to the attribution wrapper. */
   mediaClassName?: string
+  ['data-testid']?: string
 } & BaseProps<HTMLElement> &
   React.HTMLAttributes<HTMLElement>
 
@@ -63,7 +70,7 @@ export type TestimonialProps = {
  * Testimonial parent element
  * <Testimonial>
  */
-function TestimonialBase(
+function TestimonialRootBase(
   {
     quoteMarkColor = defaultQuoteMarkColor,
     quoteMarkClassName,
@@ -75,9 +82,10 @@ function TestimonialBase(
     hasBorder = true,
     size,
     style,
+    'data-testid': testId,
     ...rest
-  }: PropsWithChildren<TestimonialProps>,
-  ref,
+  }: TestimonialProps,
+  ref: React.ForwardedRef<HTMLElement>,
 ) {
   const {classes: animationClasses, styles: animationInlineStyles} = useAnimation(animate)
   const resolvedQuoteMarkColor = TestimonialQuoteMarkColors.includes(quoteMarkColor)
@@ -87,6 +95,7 @@ function TestimonialBase(
   const quoteMark = (
     <div
       aria-hidden="true"
+      data-testid={testIds.quoteMark}
       className={clsx(
         styles['Testimonial__quoteMark'],
         styles[`Testimonial__quoteMark--${resolvedQuoteMarkColor}`],
@@ -103,11 +112,11 @@ function TestimonialBase(
       (child): child is React.ReactElement<Props> => React.isValidElement<Props>(child) && child.type === type,
     )
 
-  const quoteChild = findChild<QuoteProps>(Quote)
-  const actionChild = findChild<LinkProps>(_Link)
-  const avatarChild = findChild<AvatarProps>(Avatar)
-  const logoChild = findChild<LogoProps>(Logo)
-  const nameChild = findChild<NameProps>(Name)
+  const quoteChild = findChild<TestimonialQuoteProps>(TestimonialQuote)
+  const actionChild = findChild<LinkProps>(TestimonialLink)
+  const avatarChild = findChild<AvatarProps>(TestimonialAvatar)
+  const logoChild = findChild<TestimonialLogoProps>(TestimonialLogo)
+  const nameChild = findChild<TestimonialNameProps>(TestimonialName)
 
   const name =
     nameChild && variant === 'expressive' && typeof nameChild.props.children === 'string'
@@ -123,6 +132,7 @@ function TestimonialBase(
   return (
     <figure
       ref={ref}
+      data-testid={testId || testIds.root}
       className={clsx(
         animationClasses,
         styles['Testimonial'],
@@ -139,12 +149,12 @@ function TestimonialBase(
       }}
       {...rest}
     >
-      <div className={styles['Testimonial__quoteWrapper']}>
+      <div className={styles['Testimonial__quoteWrapper']} data-testid={testIds.quoteWrapper}>
         {quoteMark}
         {quoteChild}
         {variant !== 'expressive' && actionChild}
       </div>
-      <div className={clsx(styles['Testimonial__media'], mediaClassName)}>
+      <div className={clsx(styles['Testimonial__media'], mediaClassName)} data-testid={testIds.media}>
         {avatarChild}
         {logoChild}
         {name}
@@ -154,36 +164,40 @@ function TestimonialBase(
   )
 }
 
-const Root = forwardRef(TestimonialBase)
+const TestimonialRoot = forwardRef(TestimonialRootBase)
 
 /**
  * Testimonial quote child element
  * <Testimonial.Quote>
  */
-type QuoteProps = React.HTMLAttributes<HTMLElement> & BaseProps<HTMLElement>
-
-function QuoteBase({children, className}: QuoteProps, ref) {
+type TestimonialQuoteProps = React.HTMLAttributes<HTMLElement> & BaseProps<HTMLElement>
+function TestimonialQuoteBase(
+  {children, className, ...rest}: TestimonialQuoteProps,
+  ref: React.ForwardedRef<HTMLElement>,
+) {
   return (
-    <blockquote ref={ref}>
+    <blockquote {...rest} ref={ref as React.Ref<HTMLQuoteElement>}>
       <Text className={clsx(styles['Testimonial-quote'], className)}>{children}</Text>
     </blockquote>
   )
 }
-
-const Quote = forwardRef(QuoteBase)
+const TestimonialQuote = forwardRef(TestimonialQuoteBase)
 
 /**
  * Testimonial name child element
  * <Testimonial.Name>
  */
-type NameProps = {
+type TestimonialNameProps = {
   position?: string
 } & React.HTMLAttributes<HTMLElement> &
   BaseProps<HTMLElement>
 
-function _Name({children, className, position}: NameProps, ref) {
+function TestimonialNameBase(
+  {children, className, position, ...rest}: TestimonialNameProps,
+  ref: React.ForwardedRef<HTMLElement>,
+) {
   return (
-    <figcaption ref={ref} className={clsx(styles['Testimonial-caption'], className)}>
+    <figcaption {...rest} ref={ref} className={clsx(styles['Testimonial-caption'], className)}>
       <Text size="200" className={styles['Testimonial-from']} font="monospace">
         {children}
       </Text>
@@ -195,69 +209,70 @@ function _Name({children, className, position}: NameProps, ref) {
     </figcaption>
   )
 }
-
-const Name = forwardRef(_Name)
+const TestimonialName = forwardRef(TestimonialNameBase)
 
 /**
  * Testimonial logo child element
  * <Testimonial.Logo>
  */
-type LogoProps = {
+type TestimonialLogoProps = {
   children: React.ReactElement<SVGProps<SVGSVGElement>> | React.ReactElement<HTMLAttributes<HTMLImageElement>>
 } & React.HTMLAttributes<HTMLImageElement> &
   BaseProps<HTMLImageElement>
 
-function _Logo({children, ...rest}: LogoProps, ref) {
+function TestimonialLogoBase({children, ...rest}: TestimonialLogoProps, ref: React.ForwardedRef<unknown>) {
   return (
     <div className={styles['Testimonial-logo']} {...rest}>
       {React.Children.map(children, child => {
-        if (React.isValidElement(child)) {
-          if (child.type === 'img') {
-            const imageChild = child as React.ReactElement<ComponentPropsWithRef<'img'>>
-            const imageProps: ComponentPropsWithRef<'img'> = {
-              className: clsx(styles['Testimonial-logo-image'], imageChild.props.className),
-              ref: ref as ComponentPropsWithRef<'img'>['ref'],
-            }
+        if (React.isValidElement<ComponentPropsWithRef<'img'>>(child) && child.type === 'img') {
+          return React.cloneElement(child, {
+            className: clsx(styles['Testimonial-logo-image'], child.props.className),
+            ref: ref as ComponentPropsWithRef<'img'>['ref'],
+          })
+        }
 
-            return React.cloneElement(imageChild, imageProps)
-          }
+        if (React.isValidElement<SVGProps<SVGSVGElement>>(child)) {
+          return React.cloneElement(child, {
+            className: clsx(styles['Testimonial-logo-image'], child.props.className),
+            ref: ref as React.Ref<SVGSVGElement>,
+          })
         }
       })}
     </div>
   )
 }
-
-const Logo = forwardRef(_Logo)
+const TestimonialLogo = forwardRef(TestimonialLogoBase)
 
 /**
  * Testimonial avatar child element
  * <Testimonial.Avatar>
  */
 
-function _Avatar({size, className, ...rest}: AvatarProps) {
-  return <BaseAvatar className={clsx(styles['Testimonial-avatar'], className)} size={48} {...rest} />
+function TestimonialAvatarBase({size, className, ...rest}: AvatarProps, ref: React.ForwardedRef<HTMLImageElement>) {
+  return <Avatar ref={ref} className={clsx(styles['Testimonial-avatar'], className)} size={48} {...rest} />
 }
-
-const Avatar = _Avatar
+const TestimonialAvatar = forwardRef(TestimonialAvatarBase)
 
 /**
  * Testimonial link child element
  * <Testimonial.Link>
  */
-function _LinkBase({className, ...rest}: LinkProps, _ref) {
-  return <Link className={clsx(styles['Testimonial-link'], className)} {...rest} size="medium" variant="accent" />
+function TestimonialLinkBase({className, ...rest}: LinkProps, ref: React.ForwardedRef<HTMLAnchorElement>) {
+  return (
+    <Link ref={ref} className={clsx(styles['Testimonial-link'], className)} {...rest} size="medium" variant="accent" />
+  )
 }
-
-const _Link = forwardRef(_LinkBase)
+const TestimonialLink = forwardRef(TestimonialLinkBase)
 
 /**
  * Use Testimonial to display a quote from a customer or user.
  * @see https://primer.style/brand/components/Testimonial
  */
-export const Testimonial = Object.assign(Root, {
-  Quote,
-  Name,
-  Avatar,
-  Logo,
-  Link: _Link,
+export const Testimonial = Object.assign(TestimonialRoot, {
+  Quote: TestimonialQuote,
+  Name: TestimonialName,
+  Avatar: TestimonialAvatar,
+  Logo: TestimonialLogo,
+  Link: TestimonialLink,
+  testIds,
 })
