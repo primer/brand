@@ -55,7 +55,7 @@ These are the Primer Brand maintainers' coding preferences. Follow these guideli
 ### Accessibility
 
 - Follow WAI-ARIA conventions and guidance by default
-- Preserve screen-reader announcements when localizing components. For simple labels, prefer complete strings with defaults over formatter callbacks.
+- Expose component-generated text and accessible labels as localizable props with English defaults. Preserve screen-reader announcements; prefer complete string props over formatter callbacks for simple labels.
 - Use English fixtures in unit tests unless the test specifically checks localization.
 
 ### Content And Assets
@@ -63,7 +63,7 @@ These are the Primer Brand maintainers' coding preferences. Follow these guideli
 - Use the repository's Mona Sans fonts, Octicons for UI icons, and `@primer/octovisuals-react` for GitHub illustrative icons rather than copied font or icon exports.
 - Prefer fictional GitHub users or mascots such as Hubot (Chief Automation Officer) for quotes in Storybook and docs. Follow [Hubot's official character](https://hubot.github.com/). Do not attribute spoken quotes to Mona.
 - Use representative content with realistic lengths. Preserve maintainer-authored copy unless the task requires changing it.
-- Support at least one non-English locale in every English-default Storybook story, covering its example text and accessible labels. Use the existing locale selector; custom Playground text remains user-provided. Do not add localized visual snapshots.
+- Support at least one non-English locale in every English-default Storybook story, including text and accessible labels generated inside the component. Use the existing locale selector and check the rendered text and accessible names. Keep custom Playground text user-provided. Do not add localized visual snapshots.
 
 ## Stories, Tests, And Documentation
 

@@ -16,10 +16,10 @@
       "maxWidth": {
         "value": "1176px",
         "responsive": {
-          "768px": {
+          "48rem": {
             "value": "618px"
           },
-          "1012px": {
+          "63.25rem": {
             "value": "1176px"
           }
         }
@@ -31,10 +31,10 @@
         "fontSize": {
           "value": "1.5rem",
           "responsive": {
-            "768px": {
+            "48rem": {
               "value": "1.625rem"
             },
-            "1012px": {
+            "63.25rem": {
               "value": "2rem"
             }
           }
@@ -45,7 +45,7 @@
         "letterSpacing": {
           "value": "-0.01em",
           "responsive": {
-            "768px": {
+            "48rem": {
               "value": "-0.02em"
             }
           }
@@ -68,10 +68,10 @@
         "width": {
           "value": "100%",
           "responsive": {
-            "768px": {
+            "48rem": {
               "value": "356px"
             },
-            "1012px": {
+            "63.25rem": {
               "value": "312px"
             }
           }

@@ -631,6 +631,58 @@ describe('Testimonial', () => {
     expect(logoContainer).toBeInTheDocument()
   })
 
+  it('preserves an image child object ref when no Logo ref is supplied', () => {
+    const refObject = React.createRef<HTMLImageElement>()
+    const {getByRole, unmount} = render(
+      <Testimonial.Logo>
+        <img ref={refObject} src="/logo.png" alt="Company logo" />
+      </Testimonial.Logo>,
+    )
+
+    expect(refObject.current).toBe(getByRole('img', {name: 'Company logo'}))
+    unmount()
+    expect(refObject.current).toBeNull()
+  })
+
+  it('preserves an image child callback ref when no Logo ref is supplied', () => {
+    const handleRef = jest.fn()
+    const {getByRole, unmount} = render(
+      <Testimonial.Logo>
+        <img ref={handleRef} src="/logo.png" alt="Company logo" />
+      </Testimonial.Logo>,
+    )
+
+    expect(handleRef).toHaveBeenCalledWith(getByRole('img', {name: 'Company logo'}))
+    unmount()
+    expect(handleRef.mock.lastCall?.[0]).toBeNull()
+  })
+
+  it('preserves an SVG child object ref when no Logo ref is supplied', () => {
+    const refObject = React.createRef<SVGSVGElement>()
+    const {getByRole, unmount} = render(
+      <Testimonial.Logo>
+        <svg ref={refObject} role="img" aria-label="Company logo" />
+      </Testimonial.Logo>,
+    )
+
+    expect(refObject.current).toBe(getByRole('img', {name: 'Company logo'}))
+    unmount()
+    expect(refObject.current).toBeNull()
+  })
+
+  it('preserves an SVG child callback ref when no Logo ref is supplied', () => {
+    const handleRef = jest.fn()
+    const {getByRole, unmount} = render(
+      <Testimonial.Logo>
+        <svg ref={handleRef} role="img" aria-label="Company logo" />
+      </Testimonial.Logo>,
+    )
+
+    expect(handleRef).toHaveBeenCalledWith(getByRole('img', {name: 'Company logo'}))
+    unmount()
+    expect(handleRef.mock.lastCall?.[0]).toBeNull()
+  })
+
   it('renders an SVG logo, preserves its attributes and class, and forwards an object ref', () => {
     const refObject = React.createRef<SVGSVGElement>()
     const {getByRole} = render(

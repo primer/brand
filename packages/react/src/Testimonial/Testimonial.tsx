@@ -227,14 +227,14 @@ function TestimonialLogoBase({children, ...rest}: TestimonialLogoProps, ref: Rea
         if (React.isValidElement<ComponentPropsWithRef<'img'>>(child) && child.type === 'img') {
           return React.cloneElement(child, {
             className: clsx(styles['Testimonial-logo-image'], child.props.className),
-            ref: ref as ComponentPropsWithRef<'img'>['ref'],
+            ...(ref ? {ref: ref as ComponentPropsWithRef<'img'>['ref']} : {}),
           })
         }
 
         if (React.isValidElement<SVGProps<SVGSVGElement>>(child)) {
           return React.cloneElement(child, {
             className: clsx(styles['Testimonial-logo-image'], child.props.className),
-            ref: ref as React.Ref<SVGSVGElement>,
+            ...(ref ? {ref: ref as React.Ref<SVGSVGElement>} : {}),
           })
         }
       })}
