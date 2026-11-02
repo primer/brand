@@ -17,6 +17,8 @@ module.exports = [
     import: '{ Button }',
     modifyEsbuildConfig(config) {
       config.external = ['react', 'react-dom']
+      // esbuild retains CSS from unused barrel exports so we need to mark CSS as empty to avoid including it in the bundle size.
+      config.loader = {...config.loader, '.css': 'empty'}
       return config
     },
   },
@@ -26,6 +28,8 @@ module.exports = [
     import: '{ ActionMenu }',
     modifyEsbuildConfig(config) {
       config.external = ['react', 'react-dom']
+      // esbuild retains CSS from unused barrel exports so we need to mark CSS as empty to avoid including it in the bundle size.
+      config.loader = {...config.loader, '.css': 'empty'}
       return config
     },
   },
