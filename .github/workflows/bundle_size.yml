@@ -3,16 +3,23 @@ name: Check bundle size
 on:
   pull_request:
 
+permissions:
+  contents: read
+
 jobs:
   size:
-    if: ${{ github.repository == 'primer/brand' }}
+    if: ${{ github.repository == 'primer/brand' && github.event.pull_request.head.repo.full_name == github.repository }}
     name: Report bundle size
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
     steps:
       - name: Checkout PR branch
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          persist-credentials: false
 
       - name: Create main branch worktree
         run: git worktree add /tmp/main ${{ github.event.pull_request.base.sha }}
@@ -53,12 +60,14 @@ jobs:
         id: size-report
         run: |
           REPORT=$(node packages/repo-configs/scripts/bundle-size-report.js /tmp/pr-sizes.json /tmp/main-sizes.json)
-          echo "comment-body<<EOF" >> "$GITHUB_OUTPUT"
-          echo "$REPORT" >> "$GITHUB_OUTPUT"
-          echo "EOF" >> "$GITHUB_OUTPUT"
+          {
+            echo "comment-body<<EOF"
+            echo "$REPORT"
+            echo "EOF"
+          } >> "$GITHUB_OUTPUT"
 
       - name: Add or update bundle size comment
-        uses: phulsechinmay/rewritable-pr-comment@v0.3.0
+        uses: phulsechinmay/rewritable-pr-comment@a1b041997fa84ec3e524ee9dee5ba0b5f4e73604 # v0.3.0
         with:
           message: ${{ steps.size-report.outputs.comment-body }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

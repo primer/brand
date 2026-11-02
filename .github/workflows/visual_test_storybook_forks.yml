@@ -1,0 +1,75 @@
+name: Visual test (forks)
+
+on:
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  visual-test:
+    if: ${{ github.repository == 'primer/brand' && github.event.pull_request.head.repo.full_name != github.repository }}
+    name: Storybook (fork)
+    runs-on: macos-latest-xlarge
+    timeout-minutes: 30
+    env:
+      NODE_ENV: test
+      PLAYWRIGHT_CHROME_PATH: /Applications/Google Chrome.app/Contents/MacOS/Google Chrome
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+
+      - name: Set up Node
+        uses: actions/setup-node@v6
+        with:
+          node-version: 24.14.1
+
+      - name: Cache dependencies
+        uses: actions/cache@v5
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run visual tests
+        id: playwright-step
+        run: npm run test:visual --workspace=packages/e2e
+        continue-on-error: true
+
+      - name: Upload error screenshots
+        uses: actions/upload-artifact@v7
+        if: steps.playwright-step.outcome != 'success'
+        with:
+          name: playwright-test-results
+          path: packages/e2e/playwright-test-results
+
+      - name: Upload test results
+        uses: actions/upload-artifact@v7
+        if: ${{ !cancelled() }}
+        with:
+          name: playwright-report
+          path: packages/e2e/playwright-report/
+          retention-days: 30
+
+      - name: Summarize visual test results
+        if: ${{ !cancelled() }}
+        env:
+          VISUAL_TEST_OUTCOME: ${{ steps.playwright-step.outcome }}
+        run: |
+          if [[ "$VISUAL_TEST_OUTCOME" == 'success' ]]; then
+            echo 'Visual tests passed. No visual differences found.' >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo 'Visual tests did not pass. Review the playwright-report artifact before merging.' >> "$GITHUB_STEP_SUMMARY"
+            echo 'This check is nonblocking; a successful job does not mean the visual tests passed.' >> "$GITHUB_STEP_SUMMARY"
+            echo '::warning::Visual tests did not pass. Review the playwright-report artifact.'
+          fi

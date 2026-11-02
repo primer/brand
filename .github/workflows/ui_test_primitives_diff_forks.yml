@@ -1,0 +1,73 @@
+name: UI test (forks)
+
+on:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    if: ${{ github.repository == 'primer/brand' && github.event.pull_request.head.repo.full_name != github.repository }}
+    name: Primitives diff (fork)
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+
+      - name: Checkout reference branch
+        uses: actions/checkout@v6
+        with:
+          ref: ${{ github.base_ref }}
+          path: temp-main
+          persist-credentials: false
+
+      - name: Set up Node
+        uses: actions/setup-node@v6
+        with:
+          node-version: 24.14.1
+
+      - name: Cache dependencies
+        uses: actions/cache@v5
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - name: Install dependencies (reference)
+        run: pushd temp-main; npm ci; popd
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build (reference)
+        run: pushd temp-main; npm run build --workspace=packages/design-tokens; popd
+
+      - name: Build
+        run: npm run build --workspace=packages/design-tokens
+
+      - name: Export diff
+        run: |
+          diff -r -y --width=300 -B -I 'Generated' --suppress-common-lines temp-main/packages/design-tokens/lib/design-tokens/css packages/design-tokens/lib/design-tokens/css  | tail -n +2 > diff.txt
+          npm exec -- tsx packages/design-tokens/scripts/ci-check-diff.ts
+
+      - name: Summarize design token changes
+        run: |
+          if [[ -s diff.md ]]; then
+            cat diff.md >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo 'No design token changes found.' >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+      - name: Upload design token report
+        uses: actions/upload-artifact@v7
+        with:
+          name: design-token-diff
+          path: |
+            diff.md
+            diff.txt
+          retention-days: 14

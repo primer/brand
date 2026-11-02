@@ -8,15 +8,20 @@ on:
   pull_request:
     types: [labeled]
 
+permissions:
+  contents: read
+
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
   update-snapshots:
-    if: ${{ github.event.label.name == 'update snapshots' }}
+    if: ${{ github.repository == 'primer/brand' && github.event.pull_request.head.repo.full_name == github.repository && github.event.label.name == 'update snapshots' && github.event.pull_request.state == 'open' }}
     name: Update snapshots
     runs-on: macos-latest-xlarge
+    permissions:
+      contents: write
     steps:
       - name: Checkout repository
         uses: actions/checkout@v6
