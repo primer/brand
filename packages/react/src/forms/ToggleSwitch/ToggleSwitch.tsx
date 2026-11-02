@@ -141,22 +141,28 @@ const Root: ToggleSwitchComponent = forwardRef<HTMLButtonElement, ToggleSwitchIn
       aria-hidden="true"
       data-testid={testIds.statusLabel}
     >
-      <span
+      <Text
+        as="span"
+        size="100"
+        variant={disabled ? 'muted' : 'default'}
         className={clsx(
           styles['ToggleSwitch-statusLabelText'],
           !isChecked && styles['ToggleSwitch-statusLabelText--hidden'],
         )}
       >
         {statusLabelOn}
-      </span>
-      <span
+      </Text>
+      <Text
+        as="span"
+        size="100"
+        variant={disabled ? 'muted' : 'default'}
         className={clsx(
           styles['ToggleSwitch-statusLabelText'],
           isChecked && styles['ToggleSwitch-statusLabelText--hidden'],
         )}
       >
         {statusLabelOff}
-      </span>
+      </Text>
     </span>
   ) : null
 
