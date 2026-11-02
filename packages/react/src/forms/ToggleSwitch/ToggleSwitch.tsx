@@ -1,4 +1,4 @@
-import React, {forwardRef, useEffect, useState, type ButtonHTMLAttributes, type MouseEventHandler} from 'react'
+import React, {forwardRef, useEffect, useRef, useState, type ButtonHTMLAttributes, type MouseEventHandler} from 'react'
 import {clsx} from 'clsx'
 import {useId} from '../../hooks/useId'
 import {Spinner} from '../../Spinner/Spinner'
@@ -45,6 +45,7 @@ const testIds = {
   root: 'ToggleSwitch',
   spinner: 'ToggleSwitch-spinner',
   loadingAnnouncement: 'ToggleSwitch-loading-announcement',
+  statusAnnouncement: 'ToggleSwitch-status-announcement',
   statusLabel: 'ToggleSwitch-status-label',
 }
 
@@ -79,13 +80,26 @@ const Root: ToggleSwitchComponent = forwardRef<HTMLButtonElement, ToggleSwitchIn
   ref,
 ) {
   const uniqueId = useId(id)
+  const statusDescriptionId = useId()
   const loadingId = `${uniqueId}-loading`
-  const statusDescriptionId = `${uniqueId}-status`
   const [internalChecked, setInternalChecked] = useState(defaultChecked)
   const [announceLoading, setAnnounceLoading] = useState(false)
+  const [statusAnnouncement, setStatusAnnouncement] = useState('')
   const isChecked = checked ?? internalChecked
-  // aria-checked already announces On/Off, so only custom wording needs to be exposed as a description.
-  const hasStatusDescription = hasStatusLabel && (statusLabelOn !== 'On' || statusLabelOff !== 'Off')
+  const activeStatusLabel = isChecked ? statusLabelOn : statusLabelOff
+  const defaultStatusLabel = isChecked ? 'On' : 'Off'
+  const hasCustomStatusLabels = statusLabelOn !== 'On' || statusLabelOff !== 'Off'
+  const hasStatusDescription = hasStatusLabel && activeStatusLabel !== defaultStatusLabel
+  const previousChecked = useRef(isChecked)
+
+  useEffect(() => {
+    const stateChanged = previousChecked.current !== isChecked
+    previousChecked.current = isChecked
+
+    setStatusAnnouncement(
+      stateChanged && hasStatusDescription && activeStatusLabel !== defaultStatusLabel ? activeStatusLabel : '',
+    )
+  }, [activeStatusLabel, defaultStatusLabel, hasStatusDescription, isChecked])
 
   useEffect(() => {
     setAnnounceLoading(false)
@@ -165,7 +179,12 @@ const Root: ToggleSwitchComponent = forwardRef<HTMLButtonElement, ToggleSwitchIn
 
   return (
     <div
-      className={clsx(styles.ToggleSwitch, styles[`ToggleSwitch--${size}`], className)}
+      className={clsx(
+        styles.ToggleSwitch,
+        styles[`ToggleSwitch--${size}`],
+        hasStatusLabel && styles['ToggleSwitch--withStatusLabel'],
+        className,
+      )}
       data-testid={testId || testIds.root}
     >
       {spinnerPosition === 'start' && spinnerElement}
@@ -200,7 +219,18 @@ const Root: ToggleSwitchComponent = forwardRef<HTMLButtonElement, ToggleSwitchIn
       {spinnerPosition === 'end' && spinnerElement}
       {hasStatusDescription ? (
         <span id={statusDescriptionId} className="visually-hidden">
-          {isChecked ? statusLabelOn : statusLabelOff}
+          {activeStatusLabel}
+        </span>
+      ) : null}
+      {hasStatusLabel && hasCustomStatusLabels ? (
+        <span
+          role="status"
+          aria-live="polite"
+          aria-atomic="true"
+          className="visually-hidden"
+          data-testid={testIds.statusAnnouncement}
+        >
+          {statusAnnouncement}
         </span>
       ) : null}
       <span

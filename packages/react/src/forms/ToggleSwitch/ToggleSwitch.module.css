@@ -19,6 +19,17 @@
   appearance: none;
 }
 
+.ToggleSwitch--withStatusLabel {
+  min-inline-size: 0;
+  max-inline-size: 100%;
+  flex-shrink: 1;
+}
+
+.ToggleSwitch--withStatusLabel .ToggleSwitch-button {
+  min-inline-size: 0;
+  max-inline-size: 100%;
+}
+
 .ToggleSwitch-button:focus-visible {
   outline: none;
 }
@@ -39,11 +50,14 @@
   border: var(--brand-ToggleSwitch-track-borderWidth) solid var(--brand-ToggleSwitch-track-borderColor);
   border-radius: var(--brand-ToggleSwitch-track-borderRadius);
   background: var(--brand-ToggleSwitch-track-bgColor);
+  flex: 0 0 auto;
 }
 
 .ToggleSwitch-statusLabel {
   display: grid;
-  white-space: nowrap;
+  min-inline-size: 0;
+  max-inline-size: 100%;
+  overflow-wrap: anywhere;
 }
 
 .ToggleSwitch-statusLabel--start {

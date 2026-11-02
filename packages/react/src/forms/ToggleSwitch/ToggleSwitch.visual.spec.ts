@@ -241,6 +241,52 @@ test.describe('Visual Comparison: ToggleSwitch', () => {
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
+  test('ToggleSwitch / Status Label Narrow', async ({page}) => {
+    await page.setViewportSize({width: 320, height: 640})
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-forms-toggleswitch-features--status-label-narrow&viewMode=story',
+      {waitUntil: 'networkidle'},
+    )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+    const layout = await page.evaluate(() => ({
+      viewportWidth: window.innerWidth,
+      documentWidth: document.documentElement.scrollWidth,
+      controls: Array.from(document.querySelectorAll('[data-testid="ToggleSwitch"]')).map(root => {
+        const button = root.querySelector('button[role="switch"]')!
+        const track = button.querySelector('[class*="ToggleSwitch-track"]')!
+        const statusLabel = button.querySelector('[data-testid="ToggleSwitch-status-label"]')!
+        const settingLabel = root.closest('section')!.querySelector('label')!
+        const bounds = (element: Element) => {
+          const {left, right, width} = element.getBoundingClientRect()
+          return {left, right, width}
+        }
+
+        return {
+          root: bounds(root),
+          button: bounds(button),
+          track: bounds(track),
+          statusLabel: bounds(statusLabel),
+          settingLabel: bounds(settingLabel),
+          size: root.className.includes('ToggleSwitch--small') ? 'small' : 'medium',
+        }
+      }),
+    }))
+
+    expect(layout.documentWidth).toBeLessThanOrEqual(layout.viewportWidth)
+    expect(layout.controls).toHaveLength(2)
+    for (const {root, button, track, statusLabel, settingLabel, size} of layout.controls) {
+      expect(root.right).toBeLessThanOrEqual(layout.viewportWidth)
+      expect(track.width).toBe(size === 'small' ? 28 : 44)
+      expect(track.width).toBeLessThanOrEqual(button.width)
+      expect(statusLabel.width).toBeGreaterThan(0)
+      expect(statusLabel.right).toBeLessThanOrEqual(button.right)
+      expect(settingLabel.width).toBeGreaterThan(0)
+    }
+
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
   test('ToggleSwitch / Right To Left', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-forms-toggleswitch-features--right-to-left&viewMode=story',

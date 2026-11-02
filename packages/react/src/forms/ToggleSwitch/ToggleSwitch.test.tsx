@@ -67,12 +67,55 @@ describe('ToggleSwitch', () => {
       />,
     )
     const control = screen.getByRole('switch', {name: 'Repository visibility'})
-    expect(control).toHaveAttribute('aria-describedby', 'visibility-status hint')
+    const [statusDescriptionId] = control.getAttribute('aria-describedby')!.split(' ')
+    expect(statusDescriptionId).not.toBe('visibility-status')
+    expect(control).toHaveAttribute('aria-describedby', `${statusDescriptionId} hint`)
     expect(control).toHaveAccessibleDescription('Private')
+    expect(screen.getByTestId(ToggleSwitch.testIds.statusAnnouncement)).toBeEmptyDOMElement()
 
     await user.click(control)
 
     expect(control).toHaveAccessibleDescription('Public')
+    expect(screen.getByTestId(ToggleSwitch.testIds.statusAnnouncement)).toHaveTextContent('Public')
+  })
+
+  it('does not collide with caller-provided label IDs', () => {
+    render(
+      <>
+        <span id="visibility-status">Make repository public</span>
+        <ToggleSwitch
+          id="visibility"
+          aria-labelledby="visibility-status"
+          hasStatusLabel
+          statusLabelOn="Public"
+          statusLabelOff="Private"
+        />
+      </>,
+    )
+
+    const control = screen.getByRole('switch', {name: 'Make repository public'})
+    expect(document.querySelectorAll('[id="visibility-status"]')).toHaveLength(1)
+    expect(control).toHaveAccessibleDescription('Private')
+  })
+
+  it('announces only the custom wording for the state that uses it', async () => {
+    const user = userEvent.setup()
+    render(<ToggleSwitch aria-label="Make repository public" defaultChecked hasStatusLabel statusLabelOff="Private" />)
+    const control = screen.getByRole('switch')
+    const announcement = screen.getByTestId(ToggleSwitch.testIds.statusAnnouncement)
+
+    expect(control).not.toHaveAttribute('aria-describedby')
+    expect(announcement).toBeEmptyDOMElement()
+
+    await user.click(control)
+
+    expect(control).toHaveAccessibleDescription('Private')
+    expect(announcement).toHaveTextContent('Private')
+
+    await user.click(control)
+
+    expect(control).not.toHaveAttribute('aria-describedby')
+    expect(announcement).toBeEmptyDOMElement()
   })
 
   it('does not describe the switch with the default status text', () => {
@@ -113,7 +156,9 @@ describe('ToggleSwitch', () => {
         />
       </>,
     )
-    expect(control).toHaveAttribute('aria-describedby', 'visibility-status hint')
+    const [statusDescriptionId] = control.getAttribute('aria-describedby')!.split(' ')
+    expect(statusDescriptionId).not.toBe('visibility-status')
+    expect(control).toHaveAttribute('aria-describedby', `${statusDescriptionId} hint`)
     expect(control).toHaveAccessibleDescription('Private Visibility setting')
 
     rerender(
@@ -129,7 +174,7 @@ describe('ToggleSwitch', () => {
     )
     expect(control).toHaveAttribute('aria-describedby', 'hint')
     expect(control).toHaveAccessibleDescription('Visibility setting')
-    expect(document.getElementById('visibility-status')).not.toBeInTheDocument()
+    expect(document.getElementById(statusDescriptionId)).not.toBeInTheDocument()
   })
 
   it.each(['start', 'end'] as const)('places the status text at the %s of the track', position => {

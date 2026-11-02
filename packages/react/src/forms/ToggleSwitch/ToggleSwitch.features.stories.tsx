@@ -274,6 +274,27 @@ export const StatusLabelRightToLeft: Story = {
   ),
 }
 
+export const StatusLabelNarrow: Story = {
+  render: () => (
+    <Stack padding="none" gap="normal">
+      {(['medium', 'small'] as const).map(size => (
+        <FormControl key={size} fullWidth>
+          <FormControl.Label>{size} setting</FormControl.Label>
+          <ToggleSwitch
+            size={size}
+            hasStatusLabel
+            statusLabelOn="Für die gesamte Organisation aktiviert"
+            statusLabelOff="Für die gesamte Organisation deaktiviert"
+          />
+        </FormControl>
+      ))}
+    </Stack>
+  ),
+  globals: {
+    viewport: {value: 'iphone5'},
+  },
+}
+
 export const RightToLeft: Story = {
   render: () => (
     <div dir="rtl">

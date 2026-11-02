@@ -2,6 +2,7 @@ declare const styles: {
   readonly "ToggleSwitch": string;
   readonly "ToggleSwitch--medium": string;
   readonly "ToggleSwitch--small": string;
+  readonly "ToggleSwitch--withStatusLabel": string;
   readonly "ToggleSwitch-button": string;
   readonly "ToggleSwitch-button--unavailable": string;
   readonly "ToggleSwitch-spinner": string;

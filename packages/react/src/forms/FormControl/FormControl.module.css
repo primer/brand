@@ -134,6 +134,28 @@
   animation: 170ms FormControlValidationFadeIn cubic-bezier(0.44, 0.74, 0.36, 1);
 }
 
+@media screen and (max-width: 47.99rem) {
+  .FormControl--toggle-switch-with-status-label {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .FormControl--toggle-switch-with-status-label .FormControl-label--toggle-switch {
+    grid-column: 1;
+  }
+
+  .FormControl--toggle-switch-with-status-label .FormControl-control--toggle-switch {
+    grid-column: 1;
+    grid-row: 2;
+    min-inline-size: 0;
+    max-inline-size: 100%;
+  }
+
+  .FormControl--toggle-switch-with-status-label .FormControl-hint,
+  .FormControl--toggle-switch-with-status-label .FormControl-validation {
+    grid-column: 1;
+  }
+}
+
 @keyframes FormControlValidationFadeIn {
   0% {
     opacity: 0;

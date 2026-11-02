@@ -4,6 +4,7 @@ declare const styles: {
   readonly "FormControl--checkbox": string;
   readonly "FormControl--fullWidth": string;
   readonly "FormControl--toggle-switch": string;
+  readonly "FormControl--toggle-switch-with-status-label": string;
   readonly "FormControl-control--radio": string;
   readonly "FormControl-control--toggle-switch": string;
   readonly "FormControl-hint": string;
