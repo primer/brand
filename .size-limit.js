@@ -32,8 +32,7 @@ module.exports = checks.map(check => ({
       use: [MiniCssExtractPlugin.loader, {loader: require.resolve('css-loader'), options: {modules: false}}],
     })
     config.plugins.push(new MiniCssExtractPlugin(), {
-      // Minify like a consumer's production build. Unminified, the build timestamps in the design token
-      // banners of lib/css/main.css change the size between two otherwise identical builds
+      // We need to minify after because token files include a non-deterministic timestamp comment
       apply(compiler) {
         const {Compilation, sources} = compiler.webpack
         compiler.hooks.compilation.tap('minify-css', compilation => {
