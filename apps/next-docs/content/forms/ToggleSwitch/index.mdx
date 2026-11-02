@@ -69,23 +69,23 @@ render(Example)
 
 ### Status label
 
-ToggleSwitch shows On/Off status text before the track by default, increasing the control width. Use `statusLabelPosition` to move it after the track, `statusLabelOn` and `statusLabelOff` to localize or reword it, or `hasStatusLabel={false}` to keep the previous width when nearby text already shows the state.
+Use `hasStatusLabel` to show On/Off status text beside the switch. The text appears before the track by default. Use `statusLabelPosition` to move it after the track, and `statusLabelOn` and `statusLabelOff` to localize or reword it. The status text increases the control width.
 
-Custom status text supplements the setting label; it does not replace it. Screen readers always announce the state as on or off, so the setting label must make sense with on and off. For example, use "Make repository public" rather than "Repository visibility" with "Public" and "Private" status text.
+Custom status text supplements the setting label; it does not replace it. The switch exposes its state as on or off to assistive technology, so the setting label must make sense with on and off. For example, use "Make repository public" rather than "Repository visibility" with "Public" and "Private" status text.
 
 ```jsx live
 <Stack>
   <FormControl>
     <FormControl.Label>Status label at end</FormControl.Label>
-    <ToggleSwitch statusLabelPosition="end" defaultChecked />
+    <ToggleSwitch hasStatusLabel statusLabelPosition="end" defaultChecked />
   </FormControl>
   <FormControl>
     <FormControl.Label>Custom status labels</FormControl.Label>
-    <ToggleSwitch statusLabelOn="Enabled" statusLabelOff="Disabled" />
+    <ToggleSwitch hasStatusLabel statusLabelOn="Enabled" statusLabelOff="Disabled" />
   </FormControl>
   <FormControl>
     <FormControl.Label>Without status label</FormControl.Label>
-    <ToggleSwitch hasStatusLabel={false} />
+    <ToggleSwitch />
   </FormControl>
 </Stack>
 ```
@@ -139,10 +139,10 @@ Custom status text supplements the setting label; it does not replace it. Screen
 | `loadingLabel`        | `string`                                     | `'Loading'` | Localized loading announcement.                                                       |
 | `loadingLabelDelay`   | `number`                                     | `2000`      | Announcement delay in milliseconds.                                                   |
 | `spinnerPosition`     | `'start' \| 'end'`                           | `'end'`     | Indicator placement beside the switch when no visible FormControl label is available. |
-| `hasStatusLabel`      | `boolean`                                    | `true`      | Shows visible On/Off status text beside the track.                                    |
+| `hasStatusLabel`      | `boolean`                                    | `false`     | Shows visible On/Off status text beside the track.                                    |
 | `statusLabelPosition` | `'start' \| 'end'`                           | `'start'`   | Status text placement relative to the track.                                          |
-| `statusLabelOn`       | `string`                                     | `'On'`      | Status text for the on state. Custom text also describes the switch.                  |
-| `statusLabelOff`      | `string`                                     | `'Off'`     | Status text for the off state. Custom text also describes the switch.                 |
+| `statusLabelOn`       | `string`                                     | `'On'`      | Status text for the on state. Custom text describes the switch when shown.            |
+| `statusLabelOff`      | `string`                                     | `'Off'`     | Status text for the off state. Custom text describes the switch when shown.           |
 | `aria-label`          | `string`                                     |             | Explicit accessible name matching equivalent visible labeling.                        |
 | `aria-labelledby`     | `string`                                     |             | IDs of visible labeling elements.                                                     |
 | `aria-describedby`    | `string`                                     |             | Description IDs, combined with status, FormControl, and loading descriptions.         |
@@ -155,13 +155,13 @@ Other standard button attributes, including `aria-controls`, `tabIndex`, keyboar
 
 ## Accessibility
 
-The switch communicates its state through visible On/Off status text and thumb position. These cues remain visible in both sizes, light and dark modes, and forced-colors mode. The status text supplements color and does not change the switch's accessible name.
+The switch communicates its state through thumb position as well as color. Use `hasStatusLabel` to make the state explicit with visible On/Off text. These cues remain visible in both sizes, light and dark modes, and forced-colors mode. The status text does not change the switch's accessible name.
 
-The status text is part of the switch's click target. The default On/Off text is hidden from assistive technology, which already announces the state through `aria-checked`. When `statusLabelOn` or `statusLabelOff` changes the text, the current text becomes the switch's description, so screen readers announce it after the state, for example "Make repository public, switch, off, Private". Most screen readers announce only the new state after a toggle and read the updated description when focus returns to the switch. Translated On/Off text also becomes a description, which repeats the state in that language. Both labels reserve the same width, so toggling does not shift the layout. Keep `hasStatusLabel` enabled unless the surrounding interface already shows the state in text.
+The status text is part of the switch's click target. The default On/Off text is hidden from assistive technology, which already receives the state through `aria-checked`. When `statusLabelOn` or `statusLabelOff` changes the visible text, the current text becomes the switch's accessible description. For example, a screen reader can announce "Make repository public, switch, off, Private" when the switch receives focus. A state change does not guarantee a repeat announcement of the updated description. Translated On/Off text also becomes a description, which repeats the state in that language. Both labels reserve the same width, so toggling does not shift the layout.
 
 The switch exposes its state to assistive technology through `role="switch"` and `aria-checked`. Provide a descriptive visible label with `FormControl.Label` or `aria-labelledby`; the status text does not replace the setting label.
 
-The default track border and enabled thumb meet the 3:1 non-text contrast requirement against the track and default canvas in light and dark modes. ToggleSwitch uses existing Brand palette colors without changing shared palette tokens. Recheck contrast when overriding its colors or placing it on a custom background.
+In light and dark modes, the default track border contrasts at least 3:1 with the track and default canvas. The enabled thumb also contrasts at least 3:1 with the track. ToggleSwitch uses existing Brand palette colors without changing shared palette tokens. Recheck contrast when overriding its colors or placing it on a custom background.
 
 ## Related Components
 

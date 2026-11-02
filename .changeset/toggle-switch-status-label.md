@@ -1,13 +1,12 @@
 ---
-'@primer/react-brand': minor
-'@primer/brand-primitives': patch
+'@primer/react-brand': patch
 '@primer/brand-css': patch
 ---
 
-ToggleSwitch now shows visible On/Off status text by default, so its state does not rely on color or thumb position alone. The text is hidden from assistive technology and reserves a stable width. Existing switches render wider by default; set `hasStatusLabel={false}` to keep the previous width.
+ToggleSwitch supports optional visible On/Off status text. Set `hasStatusLabel` to make the current state explicit. The text reserves a stable width and does not change the switch's accessible name.
 
-Use the new `statusLabelPosition` (`'start'` or `'end'`), `statusLabelOn`, and `statusLabelOff` props to position, localize, or reword the text, or set `hasStatusLabel={false}` to hide it. Custom status text also becomes the switch's accessible description, so screen readers announce it after the on or off state.
+Use `statusLabelPosition` (`'start'` or `'end'`), `statusLabelOn`, and `statusLabelOff` to position, localize, or reword the text. Custom status text also becomes the switch's accessible description.
 
 ```jsx
-<ToggleSwitch aria-label="Notifications" statusLabelPosition="end" statusLabelOn="Activé" statusLabelOff="Désactivé" />
+<ToggleSwitch aria-label="Notifications" hasStatusLabel statusLabelPosition="end" statusLabelOn="Activé" statusLabelOff="Désactivé" />
 ```

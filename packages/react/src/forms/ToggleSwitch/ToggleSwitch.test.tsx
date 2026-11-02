@@ -11,20 +11,23 @@ expect.extend(toHaveNoViolations)
 describe('ToggleSwitch', () => {
   afterEach(() => jest.useRealTimers())
 
-  it('renders an unchecked named switch without visible state text when opted out', () => {
-    render(<ToggleSwitch aria-label="Enable notifications" hasStatusLabel={false} />)
+  it('renders an unchecked named switch without visible state text by default', () => {
+    render(<ToggleSwitch aria-label="Enable notifications" />)
     const control = screen.getByRole('switch', {name: 'Enable notifications'})
     expect(control).toHaveAttribute('aria-checked', 'false')
     expect(control).not.toHaveAttribute('aria-pressed')
     expect(control).toHaveAttribute('type', 'button')
+    expect(screen.queryByTestId(ToggleSwitch.testIds.statusLabel)).not.toBeInTheDocument()
     expect(screen.queryByText(/^(On|Off)$/)).not.toBeInTheDocument()
   })
 
-  it('shows the status text by default and updates it with the current state', async () => {
+  it('shows opted-in status text and updates it with the current state', async () => {
     const user = userEvent.setup()
-    render(<ToggleSwitch aria-label="Enable notifications" />)
+    render(<ToggleSwitch aria-label="Enable notifications" hasStatusLabel />)
     const control = screen.getByRole('switch', {name: 'Enable notifications'})
 
+    expect(screen.getByTestId(ToggleSwitch.testIds.statusLabel)).toHaveAttribute('aria-hidden', 'true')
+    expect(screen.getByText('Off')).toHaveClass('Text--100', 'Text--muted')
     expect(screen.getByText('Off')).not.toHaveClass('ToggleSwitch-statusLabelText--hidden')
     expect(screen.getByText('On')).toHaveClass('ToggleSwitch-statusLabelText--hidden')
 
@@ -36,7 +39,15 @@ describe('ToggleSwitch', () => {
   })
 
   it('accepts custom status text without changing the accessible name', () => {
-    render(<ToggleSwitch aria-label="Beta features" defaultChecked statusLabelOn="Enabled" statusLabelOff="Disabled" />)
+    render(
+      <ToggleSwitch
+        aria-label="Beta features"
+        defaultChecked
+        hasStatusLabel
+        statusLabelOn="Enabled"
+        statusLabelOff="Disabled"
+      />,
+    )
     expect(screen.getByRole('switch', {name: 'Beta features'})).toBeInTheDocument()
     const statusLabel = within(screen.getByTestId(ToggleSwitch.testIds.statusLabel))
     expect(statusLabel.getByText('Enabled')).not.toHaveClass('ToggleSwitch-statusLabelText--hidden')
@@ -50,6 +61,7 @@ describe('ToggleSwitch', () => {
         id="visibility"
         aria-label="Repository visibility"
         aria-describedby="hint"
+        hasStatusLabel
         statusLabelOn="Public"
         statusLabelOff="Private"
       />,
@@ -64,24 +76,64 @@ describe('ToggleSwitch', () => {
   })
 
   it('does not describe the switch with the default status text', () => {
-    render(<ToggleSwitch aria-label="Enable notifications" />)
+    render(<ToggleSwitch aria-label="Enable notifications" hasStatusLabel />)
     expect(screen.getByRole('switch')).not.toHaveAttribute('aria-describedby')
   })
 
   it('does not describe the switch with custom status text when the status label is hidden', () => {
-    render(
-      <ToggleSwitch
-        aria-label="Repository visibility"
-        hasStatusLabel={false}
-        statusLabelOn="Public"
-        statusLabelOff="Private"
-      />,
-    )
+    render(<ToggleSwitch aria-label="Repository visibility" statusLabelOn="Public" statusLabelOff="Private" />)
     expect(screen.getByRole('switch')).not.toHaveAttribute('aria-describedby')
   })
 
+  it('adds and removes the custom description when the status label is toggled', () => {
+    const {rerender} = render(
+      <>
+        <span id="hint">Visibility setting</span>
+        <ToggleSwitch
+          id="visibility"
+          aria-label="Repository visibility"
+          aria-describedby="hint"
+          statusLabelOff="Private"
+        />
+      </>,
+    )
+    const control = screen.getByRole('switch')
+    expect(control).toHaveAttribute('aria-describedby', 'hint')
+    expect(control).toHaveAccessibleDescription('Visibility setting')
+
+    rerender(
+      <>
+        <span id="hint">Visibility setting</span>
+        <ToggleSwitch
+          id="visibility"
+          aria-label="Repository visibility"
+          aria-describedby="hint"
+          hasStatusLabel
+          statusLabelOff="Private"
+        />
+      </>,
+    )
+    expect(control).toHaveAttribute('aria-describedby', 'visibility-status hint')
+    expect(control).toHaveAccessibleDescription('Private Visibility setting')
+
+    rerender(
+      <>
+        <span id="hint">Visibility setting</span>
+        <ToggleSwitch
+          id="visibility"
+          aria-label="Repository visibility"
+          aria-describedby="hint"
+          statusLabelOff="Private"
+        />
+      </>,
+    )
+    expect(control).toHaveAttribute('aria-describedby', 'hint')
+    expect(control).toHaveAccessibleDescription('Visibility setting')
+    expect(document.getElementById('visibility-status')).not.toBeInTheDocument()
+  })
+
   it.each(['start', 'end'] as const)('places the status text at the %s of the track', position => {
-    render(<ToggleSwitch aria-label="Enable notifications" statusLabelPosition={position} />)
+    render(<ToggleSwitch aria-label="Enable notifications" hasStatusLabel statusLabelPosition={position} />)
     const control = screen.getByRole('switch')
     const statusLabel = screen.getByTestId(ToggleSwitch.testIds.statusLabel)
     expect(statusLabel).toHaveClass(`ToggleSwitch-statusLabel--${position}`)
@@ -94,16 +146,17 @@ describe('ToggleSwitch', () => {
     expect(screen.queryByText(/^(On|Off)$/)).not.toBeInTheDocument()
   })
 
-  it('styles the visible status text for disabled switches', () => {
-    render(<ToggleSwitch aria-label="Enable notifications" disabled />)
-    expect(screen.getByTestId(ToggleSwitch.testIds.statusLabel)).toHaveClass('ToggleSwitch-statusLabel--disabled')
+  it('uses muted status text for disabled switches', () => {
+    render(<ToggleSwitch aria-label="Enable notifications" disabled hasStatusLabel />)
+    expect(screen.getByRole('switch')).toHaveAttribute('aria-disabled', 'true')
+    expect(screen.getByText('Off')).toHaveClass('Text--100', 'Text--muted')
   })
 
   it('keeps the FormControl label as the accessible name when status text is visible', async () => {
     const {container} = render(
       <FormControl>
         <FormControl.Label>Notifications</FormControl.Label>
-        <ToggleSwitch defaultChecked />
+        <ToggleSwitch defaultChecked hasStatusLabel />
       </FormControl>,
     )
     expect(screen.getByRole('switch', {name: 'Notifications'})).toBeInTheDocument()
@@ -295,7 +348,7 @@ describe('ToggleSwitch', () => {
   })
 
   it('supports a leading spinner for standalone switches', () => {
-    render(<ToggleSwitch aria-label="Notifications" loading spinnerPosition="start" />)
+    render(<ToggleSwitch aria-label="Notifications" loading spinnerPosition="start" hasStatusLabel />)
     const indicator = screen.getByTestId(ToggleSwitch.testIds.spinner)
     const spinnerSlot = indicator.parentElement?.parentElement
     const control = screen.getByRole('switch')

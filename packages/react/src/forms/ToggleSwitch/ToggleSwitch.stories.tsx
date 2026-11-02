@@ -33,6 +33,7 @@ export const Playground: Story = {
     loadingLabel: 'Loading',
     loadingLabelDelay: 2000,
     spinnerPosition: 'end',
+    hasStatusLabel: false,
     statusLabelPosition: 'start',
     statusLabelOn: 'On',
     statusLabelOff: 'Off',

@@ -16,7 +16,7 @@ export const WithFormControl: Story = {
   render: () => (
     <FormControl>
       <FormControl.Label>With FormControl</FormControl.Label>
-      <ToggleSwitch hasStatusLabel={false} />
+      <ToggleSwitch />
       <FormControl.Hint>Optional hint text</FormControl.Hint>
     </FormControl>
   ),
@@ -26,7 +26,7 @@ export const Checked: Story = {
   render: () => (
     <FormControl>
       <FormControl.Label>Checked</FormControl.Label>
-      <ToggleSwitch defaultChecked hasStatusLabel={false} />
+      <ToggleSwitch defaultChecked />
     </FormControl>
   ),
 }
@@ -36,11 +36,11 @@ export const Disabled: Story = {
     <Stack padding="none" gap="normal">
       <FormControl>
         <FormControl.Label>Disabled</FormControl.Label>
-        <ToggleSwitch disabled hasStatusLabel={false} />
+        <ToggleSwitch disabled />
       </FormControl>
       <FormControl>
         <FormControl.Label>Checked + disabled</FormControl.Label>
-        <ToggleSwitch defaultChecked disabled hasStatusLabel={false} />
+        <ToggleSwitch defaultChecked disabled />
       </FormControl>
     </Stack>
   ),
@@ -51,11 +51,11 @@ export const Sizes: Story = {
     <Stack padding="none" gap="normal">
       <FormControl>
         <FormControl.Label>Small</FormControl.Label>
-        <ToggleSwitch size="small" hasStatusLabel={false} />
+        <ToggleSwitch size="small" />
       </FormControl>
       <FormControl>
         <FormControl.Label>Medium</FormControl.Label>
-        <ToggleSwitch hasStatusLabel={false} />
+        <ToggleSwitch />
       </FormControl>
     </Stack>
   ),
@@ -69,13 +69,8 @@ export const ControlHeightComparison: Story = {
           <Text as="span" size="100" className={styles.ComparisonLabel}>
             {size}
           </Text>
-          <ToggleSwitch size={size} hasStatusLabel={false} aria-label={`${size} unchecked toggle switch`} />
-          <ToggleSwitch
-            size={size}
-            defaultChecked
-            hasStatusLabel={false}
-            aria-label={`${size} checked toggle switch`}
-          />
+          <ToggleSwitch size={size} aria-label={`${size} unchecked toggle switch`} />
+          <ToggleSwitch size={size} defaultChecked aria-label={`${size} checked toggle switch`} />
           <IconButton rounded icon={ArrowUpIcon} aria-label={`${size} rounded icon button`} size={size} />
           <IconButton icon={SearchIcon} aria-label={`${size} icon button`} size={size} />
           <Button leadingVisual={<SearchIcon />} size={size}>
@@ -96,19 +91,19 @@ export const Dark: Story = {
     <Stack padding="none" gap="normal">
       <FormControl>
         <FormControl.Label>Unchecked</FormControl.Label>
-        <ToggleSwitch hasStatusLabel={false} />
+        <ToggleSwitch />
       </FormControl>
       <FormControl>
         <FormControl.Label>Checked</FormControl.Label>
-        <ToggleSwitch defaultChecked hasStatusLabel={false} />
+        <ToggleSwitch defaultChecked />
       </FormControl>
       <FormControl>
         <FormControl.Label>Checked + disabled</FormControl.Label>
-        <ToggleSwitch disabled defaultChecked hasStatusLabel={false} />
+        <ToggleSwitch disabled defaultChecked />
       </FormControl>
       <FormControl>
         <FormControl.Label>Small + checked</FormControl.Label>
-        <ToggleSwitch size="small" defaultChecked hasStatusLabel={false} />
+        <ToggleSwitch size="small" defaultChecked />
       </FormControl>
     </Stack>
   ),
@@ -120,7 +115,7 @@ export const Controlled: Story = {
     return (
       <FormControl>
         <FormControl.Label>Controlled</FormControl.Label>
-        <ToggleSwitch checked={checked} onChange={setChecked} hasStatusLabel={false} />
+        <ToggleSwitch checked={checked} onChange={setChecked} />
         <FormControl.Hint>Optional hint text</FormControl.Hint>
       </FormControl>
     )
@@ -132,19 +127,19 @@ export const LoadingWithFormControls: Story = {
     <Stack padding="none" gap="normal">
       <FormControl>
         <FormControl.Label>Loading</FormControl.Label>
-        <ToggleSwitch loading hasStatusLabel={false} />
+        <ToggleSwitch loading />
       </FormControl>
       <FormControl>
         <FormControl.Label>Checked + loading</FormControl.Label>
-        <ToggleSwitch loading defaultChecked hasStatusLabel={false} />
+        <ToggleSwitch loading defaultChecked />
       </FormControl>
       <FormControl>
         <FormControl.Label>Small + loading</FormControl.Label>
-        <ToggleSwitch size="small" loading hasStatusLabel={false} />
+        <ToggleSwitch size="small" loading />
       </FormControl>
       <FormControl>
         <FormControl.Label>Small + checked + loading</FormControl.Label>
-        <ToggleSwitch size="small" loading defaultChecked hasStatusLabel={false} />
+        <ToggleSwitch size="small" loading defaultChecked />
       </FormControl>
     </Stack>
   ),
@@ -157,19 +152,13 @@ export const StandaloneLoadingPositions: Story = {
         <Text as="span" id="leading-loading-label">
           Spinner at start
         </Text>
-        <ToggleSwitch loading spinnerPosition="start" hasStatusLabel={false} aria-labelledby="leading-loading-label" />
+        <ToggleSwitch loading spinnerPosition="start" aria-labelledby="leading-loading-label" />
       </Stack>
       <Stack direction="horizontal" alignItems="center" gap="normal" padding="none">
         <Text as="span" id="trailing-loading-label">
           Spinner at end + checked
         </Text>
-        <ToggleSwitch
-          loading
-          defaultChecked
-          spinnerPosition="end"
-          hasStatusLabel={false}
-          aria-labelledby="trailing-loading-label"
-        />
+        <ToggleSwitch loading defaultChecked spinnerPosition="end" aria-labelledby="trailing-loading-label" />
       </Stack>
     </Stack>
   ),
@@ -179,7 +168,7 @@ export const Validation: Story = {
   render: () => (
     <FormControl validationStatus="error">
       <FormControl.Label>Validation error</FormControl.Label>
-      <ToggleSwitch hasStatusLabel={false} />
+      <ToggleSwitch />
       <FormControl.Validation>Could not save this setting. Try again.</FormControl.Validation>
     </FormControl>
   ),
@@ -191,7 +180,7 @@ export const ExternalLabel: Story = {
       <Text as="span" id="external-toggle-label">
         External label
       </Text>
-      <ToggleSwitch hasStatusLabel={false} aria-labelledby="external-toggle-label" />
+      <ToggleSwitch aria-labelledby="external-toggle-label" />
     </Stack>
   ),
 }
@@ -200,7 +189,7 @@ export const VisuallyHiddenLabel: Story = {
   render: () => (
     <FormControl>
       <FormControl.Label visuallyHidden>Visually hidden FormControl label</FormControl.Label>
-      <ToggleSwitch hasStatusLabel={false} />
+      <ToggleSwitch />
     </FormControl>
   ),
 }
@@ -211,7 +200,7 @@ export const LongLabelNarrow: Story = {
       <FormControl.Label>
         A long toggle switch label that wraps onto multiple lines when the available width is limited
       </FormControl.Label>
-      <ToggleSwitch hasStatusLabel={false} />
+      <ToggleSwitch />
       <FormControl.Hint>Optional hint text below a wrapping label.</FormControl.Hint>
     </FormControl>
   ),
@@ -225,40 +214,40 @@ export const StatusLabel: Story = {
     <Stack padding="none" gap="normal">
       <FormControl>
         <FormControl.Label>Status label at start (default)</FormControl.Label>
-        <ToggleSwitch defaultChecked />
+        <ToggleSwitch defaultChecked hasStatusLabel />
       </FormControl>
       <FormControl>
         <FormControl.Label>Status label at end</FormControl.Label>
-        <ToggleSwitch statusLabelPosition="end" />
+        <ToggleSwitch hasStatusLabel statusLabelPosition="end" />
       </FormControl>
       <FormControl>
         <FormControl.Label>Custom status labels</FormControl.Label>
-        <ToggleSwitch statusLabelOn="Enabled" statusLabelOff="Disabled" />
+        <ToggleSwitch hasStatusLabel statusLabelOn="Enabled" statusLabelOff="Disabled" />
       </FormControl>
       <FormControl>
         <FormControl.Label>Small with status label</FormControl.Label>
-        <ToggleSwitch size="small" defaultChecked />
+        <ToggleSwitch size="small" defaultChecked hasStatusLabel />
       </FormControl>
       <FormControl>
         <FormControl.Label>Without status label</FormControl.Label>
-        <ToggleSwitch hasStatusLabel={false} />
+        <ToggleSwitch />
       </FormControl>
       <FormControl>
         <FormControl.Label>Disabled</FormControl.Label>
-        <ToggleSwitch disabled />
+        <ToggleSwitch disabled hasStatusLabel />
       </FormControl>
       <FormControl validationStatus="error">
         <FormControl.Label>Validation error</FormControl.Label>
-        <ToggleSwitch />
+        <ToggleSwitch hasStatusLabel />
         <FormControl.Validation>Could not save this setting. Try again.</FormControl.Validation>
       </FormControl>
       <FormControl>
         <FormControl.Label>Loading with spinner at start</FormControl.Label>
-        <ToggleSwitch loading spinnerPosition="start" />
+        <ToggleSwitch loading spinnerPosition="start" hasStatusLabel />
       </FormControl>
       <FormControl>
         <FormControl.Label>Loading with spinner at end</FormControl.Label>
-        <ToggleSwitch loading spinnerPosition="end" />
+        <ToggleSwitch loading spinnerPosition="end" hasStatusLabel />
       </FormControl>
     </Stack>
   ),
@@ -269,7 +258,7 @@ export const StatusLabelDark: Story = {
   render: () => (
     <FormControl>
       <FormControl.Label>Notifications</FormControl.Label>
-      <ToggleSwitch defaultChecked />
+      <ToggleSwitch defaultChecked hasStatusLabel />
     </FormControl>
   ),
 }
@@ -279,7 +268,7 @@ export const StatusLabelRightToLeft: Story = {
     <div dir="rtl">
       <FormControl>
         <FormControl.Label>Notifications</FormControl.Label>
-        <ToggleSwitch defaultChecked />
+        <ToggleSwitch defaultChecked hasStatusLabel />
       </FormControl>
     </div>
   ),
@@ -291,11 +280,11 @@ export const RightToLeft: Story = {
       <Stack padding="none" gap="normal">
         <FormControl>
           <FormControl.Label>Checked</FormControl.Label>
-          <ToggleSwitch defaultChecked hasStatusLabel={false} />
+          <ToggleSwitch defaultChecked />
         </FormControl>
         <FormControl>
           <FormControl.Label>Small + checked</FormControl.Label>
-          <ToggleSwitch size="small" defaultChecked hasStatusLabel={false} />
+          <ToggleSwitch size="small" defaultChecked />
         </FormControl>
       </Stack>
     </div>
@@ -306,7 +295,7 @@ export const Focus: Story = {
   render: () => (
     <FormControl>
       <FormControl.Label>Focus visible</FormControl.Label>
-      <ToggleSwitch hasStatusLabel={false} />
+      <ToggleSwitch />
     </FormControl>
   ),
   parameters: {pseudo: {focusVisible: true}},

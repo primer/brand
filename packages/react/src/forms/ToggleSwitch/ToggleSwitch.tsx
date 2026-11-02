@@ -2,6 +2,7 @@ import React, {forwardRef, useEffect, useState, type ButtonHTMLAttributes, type 
 import {clsx} from 'clsx'
 import {useId} from '../../hooks/useId'
 import {Spinner} from '../../Spinner/Spinner'
+import {Text} from '../../Text/Text'
 
 import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/toggle-switch/base.css'
 import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/toggle-switch/colors-with-modes.css'
@@ -61,7 +62,7 @@ const Root: ToggleSwitchComponent = forwardRef<HTMLButtonElement, ToggleSwitchIn
     loadingLabel = 'Loading',
     loadingLabelDelay = 2000,
     spinnerPosition = 'end',
-    hasStatusLabel = true,
+    hasStatusLabel = false,
     statusLabelPosition = 'start',
     statusLabelOn = 'On',
     statusLabelOff = 'Off',
@@ -133,18 +134,14 @@ const Root: ToggleSwitchComponent = forwardRef<HTMLButtonElement, ToggleSwitchIn
   // Both labels share one grid cell so the wider label reserves space and state changes do not shift layout.
   const statusLabelElement = hasStatusLabel ? (
     <span
-      className={clsx(
-        styles['ToggleSwitch-statusLabel'],
-        styles[`ToggleSwitch-statusLabel--${statusLabelPosition}`],
-        disabled && styles['ToggleSwitch-statusLabel--disabled'],
-      )}
+      className={clsx(styles['ToggleSwitch-statusLabel'], styles[`ToggleSwitch-statusLabel--${statusLabelPosition}`])}
       aria-hidden="true"
       data-testid={testIds.statusLabel}
     >
       <Text
         as="span"
         size="100"
-        variant={disabled ? 'muted' : 'default'}
+        variant="muted"
         className={clsx(
           styles['ToggleSwitch-statusLabelText'],
           !isChecked && styles['ToggleSwitch-statusLabelText--hidden'],
@@ -155,7 +152,7 @@ const Root: ToggleSwitchComponent = forwardRef<HTMLButtonElement, ToggleSwitchIn
       <Text
         as="span"
         size="100"
-        variant={disabled ? 'muted' : 'default'}
+        variant="muted"
         className={clsx(
           styles['ToggleSwitch-statusLabelText'],
           isChecked && styles['ToggleSwitch-statusLabelText--hidden'],

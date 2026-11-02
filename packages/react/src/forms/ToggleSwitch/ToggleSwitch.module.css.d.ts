@@ -7,7 +7,6 @@ declare const styles: {
   readonly "ToggleSwitch-spinner": string;
   readonly "ToggleSwitch-spinnerSlot": string;
   readonly "ToggleSwitch-statusLabel": string;
-  readonly "ToggleSwitch-statusLabel--disabled": string;
   readonly "ToggleSwitch-statusLabel--end": string;
   readonly "ToggleSwitch-statusLabel--start": string;
   readonly "ToggleSwitch-statusLabelText": string;

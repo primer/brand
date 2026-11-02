@@ -10,18 +10,6 @@
         "dark": "var(--base-color-scale-gray-2)"
       }
     },
-    "statusLabel": {
-      "fgColor": {
-        "rest": {
-          "value": "var(--brand-color-text-default)",
-          "dark": "var(--brand-color-text-default)"
-        },
-        "disabled": {
-          "value": "var(--brand-color-text-muted)",
-          "dark": "var(--brand-color-text-muted)"
-        }
-      }
-    },
     "thumb": {
       "borderColor": {
         "value": "rgba(0, 0, 0, 0.08)",
@@ -30,11 +18,11 @@
       "on": {
         "bgColor": {
           "rest": {
-            "value": "var(--base-color-scale-green-7)",
+            "value": "var(--brand-color-text-emphasized)",
             "dark": "var(--base-color-scale-green-2)"
           },
           "hover": {
-            "value": "var(--base-color-scale-green-8)",
+            "value": "color-mix(in srgb, var(--brand-color-text-emphasized), black 16%)",
             "dark": "var(--base-color-scale-green-1)"
           }
         }
