@@ -4,9 +4,7 @@
   vertical-align: middle;
   align-items: center;
   justify-content: center;
-  transition:
-    background-color 0.2s,
-    border-color 0.2s;
+  transition: background-color 0.2s, border-color 0.2s;
   text-decoration: none;
   border-radius: var(--base-size-6);
   cursor: pointer;
@@ -83,20 +81,12 @@
   border-width: var(--brand-borderWidth-thin);
 }
 
-.Button--primary:where(
-    :not(
-      .Button[disabled],
-      .Button[aria-disabled="true"],
-      [aria-expanded="true"]
-    )
-  ):hover {
+.Button--primary:where(:not(.Button[disabled], .Button[aria-disabled='true'], [aria-expanded='true'])):hover {
   background-color: var(--brand-button-primary-bgColor-hover);
 }
 
-.Button--primary:where(
-    :not(.Button[disabled], .Button[aria-disabled="true"])
-  ):active,
-.Button--primary[aria-expanded="true"] {
+.Button--primary:where(:not(.Button[disabled], .Button[aria-disabled='true'])):active,
+.Button--primary[aria-expanded='true'] {
   background: var(--brand-button-primary-bgColor-active);
   border-color: var(--brand-button-primary-borderColor-active);
 }
@@ -106,12 +96,12 @@
 }
 
 .Button--primary:disabled,
-.Button--primary[aria-disabled="true"],
+.Button--primary[aria-disabled='true'],
 .Button--primary.Button--disabled {
   background-color: var(--brand-button-primary-bgColor-disabled);
 }
 
-.Button--primary:where(:disabled, [aria-disabled="true"], .Button--disabled)
+.Button--primary:where(:disabled, [aria-disabled='true'], .Button--disabled)
   :where(.Button-arrow--disabled, .Button__icon-visual--disabled),
 .Button--label-primary.Button-label--disabled {
   color: var(--brand-button-primary-fgColor-disabled);
@@ -126,21 +116,13 @@
   backdrop-filter: blur(var(--base-size-20));
 }
 
-.Button--secondary:where(
-    :not(
-      .Button[disabled],
-      .Button[aria-disabled="true"],
-      [aria-expanded="true"]
-    )
-  ):hover {
+.Button--secondary:where(:not(.Button[disabled], .Button[aria-disabled='true'], [aria-expanded='true'])):hover {
   background-color: var(--brand-button-secondary-bgColor-hover);
   border-color: var(--brand-button-secondary-borderColor-hover);
 }
 
-.Button--secondary:where(
-    :not(.Button[disabled], .Button[aria-disabled="true"])
-  ):active,
-.Button--secondary[aria-expanded="true"] {
+.Button--secondary:where(:not(.Button[disabled], .Button[aria-disabled='true'])):active,
+.Button--secondary[aria-expanded='true'] {
   background-color: var(--brand-button-secondary-bgColor-active);
   border-color: var(--brand-button-secondary-borderColor-active);
 }
@@ -149,7 +131,7 @@
   border-color: var(--brand-button-secondary-fgColor-disabled);
 }
 
-.Button--secondary:where(:disabled, [aria-disabled="true"], .Button--disabled)
+.Button--secondary:where(:disabled, [aria-disabled='true'], .Button--disabled)
   :where(.Button-arrow--disabled, .Button__icon-visual--disabled),
 .Button--label-secondary.Button-label--disabled {
   color: var(--brand-button-secondary-fgColor-disabled);
@@ -165,21 +147,13 @@
   backdrop-filter: blur(var(--base-size-20));
 }
 
-.Button--subtle:where(
-    :not(
-      .Button[disabled],
-      .Button[aria-disabled="true"],
-      [aria-expanded="true"]
-    )
-  ):hover {
+.Button--subtle:where(:not(.Button[disabled], .Button[aria-disabled='true'], [aria-expanded='true'])):hover {
   background-color: var(--brand-button-subtle-bgColor-hover);
   border-color: var(--brand-button-subtle-borderColor-hover);
 }
 
-.Button--subtle:where(
-    :not(.Button[disabled], .Button[aria-disabled="true"])
-  ):active,
-.Button--subtle[aria-expanded="true"] {
+.Button--subtle:where(:not(.Button[disabled], .Button[aria-disabled='true'])):active,
+.Button--subtle[aria-expanded='true'] {
   background-color: var(--brand-button-subtle-bgColor-active);
   border-color: var(--brand-button-subtle-borderColor-active);
 }
@@ -188,7 +162,7 @@
   color: var(--brand-button-subtle-fgColor-rest);
 }
 
-.Button--subtle:where(:disabled, [aria-disabled="true"], .Button--disabled)
+.Button--subtle:where(:disabled, [aria-disabled='true'], .Button--disabled)
   :where(.Button-arrow--disabled, .Button__icon-visual--disabled),
 .Button--label-subtle.Button-label--disabled {
   color: var(--brand-button-subtle-fgColor-disabled);
@@ -203,14 +177,12 @@
 
 .Button--size-medium {
   min-height: var(--brand-Button-control-size-medium);
-  padding: var(--brand-control-medium-paddingBlock-condensed)
-    var(--base-size-20);
+  padding: var(--brand-control-medium-paddingBlock-condensed) var(--base-size-20);
 }
 
 .Button--size-large {
   min-height: var(--brand-Button-control-size-large);
-  padding: var(--brand-control-large-paddingBlock-condensed)
-    var(--brand-control-large-paddingInline-spacious);
+  padding: var(--brand-control-large-paddingBlock-condensed) var(--brand-control-large-paddingInline-spacious);
 }
 
 /* Keep visual sizing overridable by composed controls such as IconButton. */
