@@ -1,71 +1,69 @@
-import {clsx} from 'clsx'
-import React, {forwardRef, useCallback, type Ref, ReactElement} from 'react'
-import type {Icon} from '@primer/octicons-react'
+import { clsx } from "clsx";
+import React, { forwardRef, useCallback, type Ref, ReactElement } from "react";
+import type { Icon } from "@primer/octicons-react";
 
-import {ExpandableArrow} from '../ExpandableArrow'
-import {Text} from '../Text'
-import type {BaseProps} from '../component-helpers'
+import { ExpandableArrow } from "../ExpandableArrow";
+import { Text } from "../Text";
+import type { BaseProps } from "../component-helpers";
 
-import {useAnimation} from '../animation'
+import { useAnimation } from "../animation";
 
-import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/button/base.css'
-import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/button/colors-with-modes.css'
-import styles from './Button.module.css'
+import "@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/button/base.css";
+import "@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/button/colors-with-modes.css";
+import styles from "./Button.module.css";
 
-export const ButtonVariants = ['primary', 'secondary', 'subtle'] as const
-export const ButtonSizes = ['small', 'medium', 'large'] as const
+export const ButtonVariants = ["primary", "secondary", "subtle"] as const;
+export const ButtonSizes = ["small", "medium", "large"] as const;
 
-export const defaultButtonVariant = ButtonVariants[1]
-export const defaultButtonSize = ButtonSizes[1]
+export const defaultButtonVariant = ButtonVariants[1];
+export const defaultButtonSize = ButtonSizes[1];
 
-export type ButtonVariant = (typeof ButtonVariants)[number]
-export type ButtonSize = (typeof ButtonSizes)[number]
+export type ButtonVariant = (typeof ButtonVariants)[number];
+export type ButtonSize = (typeof ButtonSizes)[number];
 
 export type ButtonBaseProps = {
-  /**
-   * The leading visual appears before the button content
-   */
-  leadingVisual?: ReactElement | Icon
+  leadingVisual?: ReactElement | Icon;
   /**
    * The trailing visual appears after the button content
    */
-  trailingVisual?: ReactElement | Icon
+  trailingVisual?: ReactElement | Icon;
   /**
    * The styling variations available in Button
    */
-  variant?: ButtonVariant
+  variant?: ButtonVariant;
   /**
    * The size variations available in Button
    */
-  size?: ButtonSize
+  size?: ButtonSize;
   /**
    * A flag to show/hide the arrow icon
    * @deprecated The hasArrow prop is deprecated and will be removed in a future release.
    */
-  hasArrow?: boolean
+  hasArrow?: boolean;
   /**
    * The Button spans the full width
    */
-  block?: boolean
-}
+  block?: boolean;
+};
 
-export type ButtonProps<C extends React.ElementType = 'button'> = BaseProps<C> & {
-  as?: C
-} & ButtonBaseProps &
-  React.ComponentPropsWithoutRef<C>
+export type ButtonProps<C extends React.ElementType = "button"> =
+  BaseProps<C> & {
+    as?: C;
+  } & ButtonBaseProps &
+    React.ComponentPropsWithoutRef<C>;
 
 const testIds = {
-  root: 'Button',
+  root: "Button",
   get leadingVisual() {
-    return `${this.root}-leading-visual`
+    return `${this.root}-leading-visual`;
   },
   get trailingVisual() {
-    return `${this.root}-trailing-visual`
+    return `${this.root}-trailing-visual`;
   },
   get expandableArrow() {
-    return `${this.root}-expandable-arrow`
+    return `${this.root}-expandable-arrow`;
   },
-}
+};
 
 export const _Button = forwardRef(
   <C extends React.ElementType>(
@@ -79,7 +77,7 @@ export const _Button = forwardRef(
       className,
       children,
       disabled,
-      'aria-disabled': ariaDisabled,
+      "aria-disabled": ariaDisabled,
       onMouseEnter,
       onMouseLeave,
       onFocus,
@@ -91,69 +89,73 @@ export const _Button = forwardRef(
     }: ButtonProps<C>,
     ref: Ref<HTMLButtonElement>,
   ) => {
-    const [isHovered, setIsHovered] = React.useState(false)
-    const [isFocused, setIsFocused] = React.useState(false)
-    const Component = as || 'button'
-    const isDisabled = Boolean(disabled)
-    const isAriaDisabled = ariaDisabled === 'true' || ariaDisabled === true
-    const hasDisabledAppearance = isDisabled || isAriaDisabled
+    const [isHovered, setIsHovered] = React.useState(false);
+    const [isFocused, setIsFocused] = React.useState(false);
+    const Component = as || "button";
+    const isDisabled = Boolean(disabled);
+    const isAriaDisabled = ariaDisabled === "true" || ariaDisabled === true;
+    const hasDisabledAppearance = isDisabled || isAriaDisabled;
 
-    const {classes: animationClasses, styles: animationInlineStyles} = useAnimation(animate)
+    const { classes: animationClasses, styles: animationInlineStyles } =
+      useAnimation(animate);
 
-    const showArrow = Boolean(hasArrow)
+    const showArrow = Boolean(hasArrow);
 
-    const returnValidComponent = useCallback((component?: ReactElement | Icon) => {
-      if (React.isValidElement(component)) {
-        return component
-      }
+    const returnValidComponent = useCallback(
+      (component?: ReactElement | Icon) => {
+        if (React.isValidElement(component)) {
+          return component;
+        }
 
-      if (typeof component === 'function') {
-        return React.createElement(component)
-      }
-    }, [])
+        if (typeof component === "function") {
+          return React.createElement(component);
+        }
+      },
+      [],
+    );
 
-    const LeadingVisualComponent = returnValidComponent(LeadingVisual)
-    const TrailingVisualComponent = returnValidComponent(TrailingVisual)
+    const LeadingVisualComponent = returnValidComponent(LeadingVisual);
+    const TrailingVisualComponent = returnValidComponent(TrailingVisual);
 
     const handleOnMouseEnter = useCallback(
-      event => {
+      (event) => {
         if (!isDisabled) {
-          setIsHovered(true)
-          onMouseEnter?.(event)
+          setIsHovered(true);
+          onMouseEnter?.(event);
         }
       },
       [isDisabled, onMouseEnter],
-    )
+    );
 
     const handleOnMouseLeave = useCallback(
-      event => {
+      (event) => {
         if (!isDisabled) {
-          setIsHovered(false)
-          onMouseLeave?.(event)
+          setIsHovered(false);
+          onMouseLeave?.(event);
         }
       },
       [isDisabled, onMouseLeave],
-    )
+    );
 
     const handleOnFocus = useCallback(
-      event => {
+      (event) => {
         if (!isDisabled) {
-          setIsFocused(true)
-          onFocus?.(event)
+          setIsFocused(true);
+          onFocus?.(event);
         }
       },
       [isDisabled, onFocus],
-    )
+    );
 
     const handleOnBlur = useCallback(
-      event => {
+      (event) => {
         if (!isDisabled) {
-          setIsFocused(false)
-          onBlur?.(event)
+          setIsFocused(false);
+          onBlur?.(event);
         }
       },
       [isDisabled, onBlur],
-    )
+    );
 
     return (
       <Component
@@ -162,8 +164,8 @@ export const _Button = forwardRef(
           styles.Button,
           styles[`Button--${variant}`],
           styles[`Button--size-${size}`],
-          block && styles['Button--block'],
-          hasDisabledAppearance && styles['Button--disabled'],
+          block && styles["Button--block"],
+          hasDisabledAppearance && styles["Button--disabled"],
           animationClasses,
           className,
         )}
@@ -171,38 +173,48 @@ export const _Button = forwardRef(
         onMouseLeave={handleOnMouseLeave}
         onFocus={handleOnFocus}
         onBlur={handleOnBlur}
-        disabled={(isDisabled && Component === 'button') || undefined}
-        aria-disabled={isAriaDisabled || (isDisabled && Component !== 'button') || undefined}
-        style={{...animationInlineStyles, ...style}}
+        disabled={(isDisabled && Component === "button") || undefined}
+        aria-disabled={
+          isAriaDisabled || (isDisabled && Component !== "button") || undefined
+        }
+        style={{ ...animationInlineStyles, ...style }}
         {...props}
       >
-        {React.isValidElement<{className?: string; ['aria-hidden']?: string; focusable?: string}>(
-          LeadingVisualComponent,
-        ) && (
-          <span className={styles['Button__leading-visual']} data-testid={testIds.leadingVisual}>
+        {React.isValidElement<{
+          className?: string;
+          ["aria-hidden"]?: string;
+          focusable?: string;
+        }>(LeadingVisualComponent) && (
+          <span
+            className={styles["Button__leading-visual"]}
+            data-testid={testIds.leadingVisual}
+          >
             {React.cloneElement(LeadingVisualComponent, {
               className: clsx(
                 LeadingVisualComponent.props.className,
-                styles['Button__icon-visual'],
-                hasDisabledAppearance && styles['Button__icon-visual--disabled'],
+                styles["Button__icon-visual"],
+                hasDisabledAppearance &&
+                  styles["Button__icon-visual--disabled"],
               ),
-              ['aria-hidden']: 'true',
-              focusable: 'false',
+              ["aria-hidden"]: "true",
+              focusable: "false",
             })}
           </span>
         )}
 
         {children && (
-          <span className={styles['Button__text']}>
+          <span className={styles["Button__text"]}>
             <Text
               as="span"
-              size={size === 'small' ? '100' : size === 'medium' ? '200' : '400'}
+              size={
+                size === "small" ? "100" : size === "medium" ? "200" : "400"
+              }
               weight="medium"
               className={clsx(
-                styles['Button--label'],
+                styles["Button--label"],
                 styles[`Button--label-${size}`],
                 styles[`Button--label-${variant}`],
-                hasDisabledAppearance && styles['Button-label--disabled'],
+                hasDisabledAppearance && styles["Button-label--disabled"],
               )}
             >
               {children}
@@ -211,33 +223,42 @@ export const _Button = forwardRef(
         )}
 
         {!TrailingVisual && showArrow && (
-          <span className={clsx(styles['Button__trailing-visual'])}>
+          <span className={clsx(styles["Button__trailing-visual"])}>
             <ExpandableArrow
               hidden
-              className={clsx(styles['Button-arrow'], hasDisabledAppearance && styles['Button-arrow--disabled'])}
+              className={clsx(
+                styles["Button-arrow"],
+                hasDisabledAppearance && styles["Button-arrow--disabled"],
+              )}
               expanded={!hasDisabledAppearance && (isHovered || isFocused)}
               data-testid={testIds.expandableArrow}
             />
           </span>
         )}
-        {React.isValidElement<{className?: string; ['aria-hidden']?: string; focusable?: string}>(
-          TrailingVisualComponent,
-        ) && (
-          <span className={clsx(styles['Button__trailing-visual'])} data-testid={testIds.trailingVisual}>
+        {React.isValidElement<{
+          className?: string;
+          ["aria-hidden"]?: string;
+          focusable?: string;
+        }>(TrailingVisualComponent) && (
+          <span
+            className={clsx(styles["Button__trailing-visual"])}
+            data-testid={testIds.trailingVisual}
+          >
             {React.cloneElement(TrailingVisualComponent, {
               className: clsx(
                 TrailingVisualComponent.props.className,
-                styles['Button__icon-visual'],
-                hasDisabledAppearance && styles['Button__icon-visual--disabled'],
+                styles["Button__icon-visual"],
+                hasDisabledAppearance &&
+                  styles["Button__icon-visual--disabled"],
               ),
-              ['aria-hidden']: 'true',
-              focusable: 'false',
+              ["aria-hidden"]: "true",
+              focusable: "false",
             })}
           </span>
         )}
       </Component>
-    )
+    );
   },
-)
+);
 
-export const Button = Object.assign(_Button, {testIds})
+export const Button = Object.assign(_Button, { testIds });
