@@ -1,17 +1,21 @@
-import React, {useState} from 'react'
-import {render, cleanup, fireEvent, waitFor} from '@testing-library/react'
+import React, {createRef, useState} from 'react'
+import {act, render, cleanup, fireEvent, waitFor} from '@testing-library/react'
 import '@testing-library/jest-dom'
 import userEvent from '@testing-library/user-event'
 import {axe, toHaveNoViolations} from 'jest-axe'
 import {KebabHorizontalIcon, MarkGithubIcon} from '@primer/octicons-react'
 
-import {ActionMenu} from './ActionMenu'
+import {ActionMenu, ActionMenuProvider} from './ActionMenu'
 import {ColorModesEnum, ThemeContext, ThemeProvider} from '../ThemeProvider'
 
 expect.extend(toHaveNoViolations)
 
 describe('ActionMenu', () => {
-  afterEach(cleanup)
+  afterEach(() => {
+    cleanup()
+    jest.restoreAllMocks()
+    jest.useRealTimers()
+  })
 
   beforeAll(() => {
     Object.defineProperty(window, 'matchMedia', {
@@ -622,6 +626,188 @@ describe('ActionMenu', () => {
 
     // Check dropdown button exists
     expect(getByRole('button', {name: 'Additional options'})).toBeInTheDocument()
+  })
+
+  it('shows the split-button menu label on hover and focus and dismisses it on leave and blur', () => {
+    jest.useFakeTimers()
+    const {getByRole, getByText} = render(
+      <ActionMenu mode="split-button">
+        <ActionMenu.Button>Download</ActionMenu.Button>
+        <ActionMenu.Overlay aria-label="Alternative actions">
+          <ActionMenu.Item as="a" href="#zip">
+            Download ZIP
+          </ActionMenu.Item>
+        </ActionMenu.Overlay>
+      </ActionMenu>,
+    )
+    const trigger = getByRole('button', {name: 'Alternative actions'})
+    const tooltip = getByText('Alternative actions')
+    let open = false
+    jest.spyOn(tooltip, 'matches').mockImplementation(selector => selector === ':popover-open' && open)
+    const showPopover = jest.fn(() => {
+      open = true
+    })
+    const hidePopover = jest.fn(() => {
+      open = false
+    })
+    Object.defineProperties(tooltip, {
+      showPopover: {value: showPopover, configurable: true},
+      hidePopover: {value: hidePopover, configurable: true},
+    })
+
+    expect(trigger).toHaveAttribute('aria-label', 'Alternative actions')
+    expect(trigger).toHaveAttribute('aria-describedby', tooltip.id)
+    expect(trigger).toHaveAccessibleName('Alternative actions')
+    expect(tooltip).toHaveAttribute('role', 'tooltip')
+    expect(showPopover).not.toHaveBeenCalled()
+
+    fireEvent.mouseEnter(trigger)
+    act(() => jest.advanceTimersByTime(50))
+    expect(showPopover).toHaveBeenCalledTimes(1)
+
+    fireEvent.mouseLeave(trigger)
+    act(() => jest.advanceTimersByTime(200))
+    expect(hidePopover).toHaveBeenCalledTimes(1)
+
+    act(() => trigger.focus())
+    expect(showPopover).toHaveBeenCalledTimes(2)
+    expect(trigger).toHaveAccessibleName('Alternative actions')
+
+    act(() => getByRole('button', {name: 'Download'}).focus())
+    act(() => jest.advanceTimersByTime(200))
+    expect(hidePopover).toHaveBeenCalledTimes(2)
+
+    fireEvent.mouseEnter(trigger)
+    fireEvent.mouseLeave(trigger)
+    act(() => jest.advanceTimersByTime(200))
+    expect(showPopover).toHaveBeenCalledTimes(2)
+  })
+
+  it('preserves split-button keyboard navigation, dismissal, and trigger focus with a tooltip', async () => {
+    const user = userEvent.setup()
+    const {getByRole, queryByRole} = render(
+      <ActionMenu mode="split-button">
+        <ActionMenu.Button as="a" href="#download">
+          Download
+        </ActionMenu.Button>
+        <ActionMenu.Overlay aria-label="Alternative actions">
+          <ActionMenu.Item as="a" href="#zip">
+            Download ZIP
+          </ActionMenu.Item>
+          <ActionMenu.Item as="a" href="#tar">
+            Download TAR
+          </ActionMenu.Item>
+        </ActionMenu.Overlay>
+      </ActionMenu>,
+    )
+    const trigger = getByRole('button', {name: 'Alternative actions'})
+
+    await user.tab()
+    expect(getByRole('link', {name: 'Download'})).toHaveFocus()
+    await user.tab()
+    expect(trigger).toHaveFocus()
+
+    await user.keyboard('{Enter}')
+    expect(trigger).toHaveAttribute('aria-expanded', 'true')
+    await waitFor(() => expect(getByRole('link', {name: 'Download ZIP'})).toHaveFocus())
+    await user.keyboard('{ArrowDown}')
+    expect(getByRole('link', {name: 'Download TAR'})).toHaveFocus()
+
+    await user.keyboard('{Escape}')
+    expect(queryByRole('menu')).not.toBeInTheDocument()
+    expect(trigger).toHaveFocus()
+    expect(trigger).toHaveAttribute('aria-expanded', 'false')
+    expect(trigger).toHaveAccessibleName('Alternative actions')
+
+    await user.keyboard(' ')
+    await waitFor(() => expect(getByRole('link', {name: 'Download ZIP'})).toHaveFocus())
+    await user.click(getByRole('link', {name: 'Download'}))
+    expect(queryByRole('menu')).not.toBeInTheDocument()
+  })
+
+  it.each(['object', 'callback'] as const)('preserves the %s ref target of a provider-backed split-button', refType => {
+    const ref = createRef<HTMLButtonElement>()
+    const callbackRef = jest.fn()
+    const onMenuToggle = jest.fn()
+    const renderButton = (disabled = false, mode: 'default' | 'split-button' = 'split-button') => (
+      <ActionMenuProvider mode={mode} menuLabel="Alternative actions" onMenuToggle={onMenuToggle}>
+        <ActionMenu.Button ref={refType === 'object' ? ref : callbackRef} disabled={disabled}>
+          Download
+        </ActionMenu.Button>
+      </ActionMenuProvider>
+    )
+    const {getByRole, rerender, unmount, queryByText} = render(renderButton())
+    const trigger = getByRole('button', {name: 'Alternative actions'})
+
+    if (refType === 'object') {
+      expect(ref.current).toBe(trigger)
+    } else {
+      expect(callbackRef).toHaveBeenCalledWith(trigger)
+    }
+
+    fireEvent.click(trigger)
+    expect(onMenuToggle).toHaveBeenCalledTimes(1)
+
+    rerender(renderButton())
+    if (refType === 'callback') {
+      expect(callbackRef).toHaveBeenCalledTimes(1)
+    }
+
+    for (const disabled of [true, false]) {
+      rerender(renderButton(disabled))
+      const currentTrigger = getByRole('button', {name: 'Alternative actions'})
+      expect(currentTrigger).toHaveProperty('disabled', disabled)
+      if (disabled) {
+        expect(queryByText('Alternative actions')).not.toBeInTheDocument()
+      }
+      if (refType === 'object') {
+        expect(ref.current).toBe(currentTrigger)
+      } else {
+        expect(callbackRef).toHaveBeenLastCalledWith(currentTrigger)
+      }
+    }
+
+    rerender(renderButton(false, 'default'))
+    if (refType === 'object') {
+      expect(ref.current).toBe(getByRole('button', {name: 'Download'}))
+    } else {
+      expect(callbackRef).toHaveBeenLastCalledWith(getByRole('button', {name: 'Download'}))
+    }
+
+    rerender(renderButton())
+    if (refType === 'object') {
+      expect(ref.current).toBe(getByRole('button', {name: 'Alternative actions'}))
+    } else {
+      expect(callbackRef).toHaveBeenLastCalledWith(getByRole('button', {name: 'Alternative actions'}))
+    }
+    unmount()
+
+    if (refType === 'object') {
+      expect(ref.current).toBeNull()
+    } else {
+      expect(callbackRef).toHaveBeenLastCalledWith(null)
+    }
+  })
+
+  it('updates callback refs when a provider-backed split-button changes ref owners', () => {
+    const firstRef = jest.fn()
+    const nextRef = jest.fn()
+    const renderButton = (ref: React.Ref<HTMLButtonElement>) => (
+      <ActionMenuProvider mode="split-button" menuLabel="Alternative actions">
+        <ActionMenu.Button ref={ref}>Download</ActionMenu.Button>
+      </ActionMenuProvider>
+    )
+    const {getByRole, rerender, unmount} = render(renderButton(firstRef))
+    const trigger = getByRole('button', {name: 'Alternative actions'})
+
+    expect(firstRef).toHaveBeenLastCalledWith(trigger)
+    rerender(renderButton(nextRef))
+    expect(firstRef).toHaveBeenLastCalledWith(null)
+    expect(nextRef).toHaveBeenLastCalledWith(trigger)
+
+    unmount()
+    expect(nextRef).toHaveBeenLastCalledWith(null)
+    expect(firstRef).toHaveBeenCalledTimes(2)
   })
 
   it('renders an icon link and independent menu trigger in split-button mode', async () => {

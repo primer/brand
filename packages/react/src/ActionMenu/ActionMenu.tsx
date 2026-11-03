@@ -11,10 +11,12 @@ import React, {
   memo,
   ReactElement,
   useMemo,
+  useImperativeHandle,
 } from 'react'
 import {Button, ButtonProps} from '../Button'
 import {IconButton, type IconButtonProps} from '../IconButton'
 import {Text} from '../Text'
+import {Tooltip} from '../Tooltip'
 import {ThemeProvider, useTheme} from '../ThemeProvider'
 import {useAnchoredPosition} from '../hooks/useAnchoredPosition'
 import {useOnClickOutside} from '../hooks/useOnClickOutside'
@@ -364,6 +366,13 @@ const ActionMenuButton = forwardRef<HTMLButtonElement, ActionMenuButtonProps>(
     ref,
   ) => {
     const {menuLabel, mode, onMenuToggle} = useActionMenuContext()
+    const menuButtonRef = useRef<HTMLButtonElement>(null)
+    // Keep consumer callback ref changes independent of Tooltip's internal trigger ref.
+    useImperativeHandle(
+      mode === 'split-button' && !disabled ? ref : null,
+      () => menuButtonRef.current as HTMLButtonElement,
+      [],
+    )
     const handleClick = useCallback(
       (event: React.MouseEvent<HTMLButtonElement>) => {
         if (disabled) {
@@ -393,6 +402,26 @@ const ActionMenuButton = forwardRef<HTMLButtonElement, ActionMenuButtonProps>(
 
     if (mode === 'split-button') {
       const splitButtonVariant = variant ?? 'primary'
+      const menuButton = (
+        <Button
+          ref={disabled ? ref : undefined}
+          id={id}
+          as="button"
+          className={clsx(
+            styles['ActionMenu__innerButton--split-button'],
+            styles['ActionMenu__innerButton--split-button-menu'],
+          )}
+          variant={splitButtonVariant}
+          aria-haspopup="true"
+          aria-label={menuLabel}
+          size={size}
+          aria-expanded={menuOpen ? 'true' : 'false'}
+          onClick={onMenuToggle}
+          disabled={disabled}
+        >
+          <ChevronDownIcon className={styles['ActionMenu__inner-button-dropdown-icon']} />
+        </Button>
+      )
 
       return (
         <div className={clsx(styles.ActionMenu__button, styles[`ActionMenu__button--${size}`], className)}>
@@ -416,24 +445,13 @@ const ActionMenuButton = forwardRef<HTMLButtonElement, ActionMenuButtonProps>(
           >
             <span className={styles['ActionMenu__button-text']}>{children}</span>
           </Button>
-          <Button
-            ref={ref}
-            id={id}
-            as="button"
-            className={clsx(
-              styles['ActionMenu__innerButton--split-button'],
-              styles['ActionMenu__innerButton--split-button-menu'],
-            )}
-            variant={splitButtonVariant}
-            aria-haspopup="true"
-            aria-label={menuLabel}
-            size={size}
-            aria-expanded={menuOpen ? 'true' : 'false'}
-            onClick={onMenuToggle}
-            disabled={disabled}
-          >
-            <ChevronDownIcon className={styles['ActionMenu__inner-button-dropdown-icon']} />
-          </Button>
+          {disabled ? (
+            menuButton
+          ) : (
+            <Tooltip ref={menuButtonRef} text={menuLabel}>
+              {menuButton}
+            </Tooltip>
+          )}
         </div>
       )
     }

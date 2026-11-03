@@ -112,6 +112,19 @@ describe('MinimalFooter', () => {
     expect(socialLinks).toHaveLength(8)
   })
 
+  it('keeps every default social link in keyboard focus order', async () => {
+    const user = userEvent.setup()
+    const {getByRole} = render(<MinimalFooter />)
+
+    await user.tab()
+    expect(getByRole('link', {name: 'GitHub'})).toHaveFocus()
+
+    for (const name of socialLinkAccessibleNames) {
+      await user.tab()
+      expect(getByRole('link', {name})).toHaveFocus()
+    }
+  })
+
   it('can optionally render a subset of social links', () => {
     const {getByRole} = render(<MinimalFooter socialLinks={['x', 'github', 'linkedin']} />)
     const xLink = getByRole('link', {name: 'GitHub on X'})
