@@ -67,6 +67,9 @@ export const _ComparisonTable = forwardRef(
                     styles[`ComparisonTable-cell-heading`],
                     styles[`ComparisonTable-cell-heading--${variant}`],
                     rowChildIndex === 0 && styles[`ComparisonTable-cell-heading--first`],
+                    (rowChildIndex !== 0 || !rowChild.props.children) &&
+                      styles['ComparisonTable-cell-heading--hidden-on-narrow'],
+                    variant === 'default' && rowChildIndex !== 0 && styles['ComparisonTable-cell--bordered-on-narrow'],
                     isFeatured && styles[`ComparisonTable-cell-heading--featured`],
                     child.props.className,
                   ),
@@ -118,6 +121,7 @@ export const _ComparisonTable = forwardRef(
                 className={clsx(
                   styles['ComparisonTable-cell'],
                   styles[`ComparisonTable-cell--${variant}`],
+                  variant === 'default' && styles['ComparisonTable-cell--bordered-on-narrow'],
                   cellIndex === 0 && styles[`ComparisonTable-cell-heading`],
                   cellIndex === 0 && styles[`ComparisonTable-cell-heading--${variant}`],
                   cellIndex === featuredColumn && styles[`ComparisonTable-cell--featured`],
