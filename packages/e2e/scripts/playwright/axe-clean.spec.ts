@@ -206,6 +206,15 @@ for (const story of storybookRoutes) {
       console.info(`Navigating to ${route}`)
       await page.goto(route)
       await page.waitForTimeout(testsWithCustomDelay[story.id] ? testsWithCustomDelay[story.id] : defaultDelay)
+      if (story.id === 'components-forms-toggleswitch-examples--optimistic-update-failure') {
+        // Wait for the simulated error and its fade-in before checking contrast.
+        const validation = page.locator('[id$="-validation"]')
+        await expect(validation).toContainText(/\S/)
+        await expect(validation).toBeVisible()
+        await validation.evaluate(async element => {
+          await Promise.all(element.getAnimations().map(animation => animation.finished))
+        })
+      }
       await injectAxe(page)
       // inject github house rules
       const configSrc = fs.readFileSync(
