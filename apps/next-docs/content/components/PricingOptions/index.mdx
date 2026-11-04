@@ -412,7 +412,7 @@ automatically generated label:
 ```jsx
 function FeatureWithCustomContent({customContent}) {
   return (
-    <UnorderedList variant="checked">
+    <PricingOptions.FeatureList>
       <PricingOptions.FeatureListItem
         infoTooltip="Interact with Copilot using natural language."
         infoTooltipAriaLabel="More information about Chat in IDE and Mobile"
@@ -422,7 +422,7 @@ function FeatureWithCustomContent({customContent}) {
           {customContent ? <Text>Custom footnote</Text> : null}
         </>
       </PricingOptions.FeatureListItem>
-    </UnorderedList>
+    </PricingOptions.FeatureList>
   )
 }
 ```
