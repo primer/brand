@@ -12,6 +12,7 @@ const meta = {
     spinnerPosition: {control: 'radio', options: ['start', 'end']},
     hasStatusLabel: {control: 'boolean'},
     statusLabelPosition: {control: 'radio', options: ['start', 'end']},
+    labels: {control: 'object'},
     onChange: {action: 'changed'},
     onClick: {action: 'clicked'},
   },
@@ -35,8 +36,7 @@ export const Playground: Story = {
     spinnerPosition: 'end',
     hasStatusLabel: false,
     statusLabelPosition: 'start',
-    statusLabelOn: 'On',
-    statusLabelOff: 'Off',
+    labels: {on: 'On', off: 'Off'},
   },
   render: args => <ToggleSwitch {...args} />,
 }

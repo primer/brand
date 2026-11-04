@@ -69,7 +69,7 @@ render(Example)
 
 ### Status label
 
-Use `hasStatusLabel` to show On/Off status text beside the switch. The text appears before the track by default. Use `statusLabelPosition` to move it after the track, and `statusLabelOn` and `statusLabelOff` to localize or reword it. The status text increases the control width.
+Enable `hasStatusLabel` when space permits to make the current state easier to understand. The text appears before the track by default. Use `statusLabelPosition` to move it after the track, and `labels` to localize or reword it. The status text increases the control width.
 
 Custom status text supplements the setting label; it does not replace it. The switch exposes its state as on or off to assistive technology, so the setting label must make sense with on and off. For example, use "Make repository public" rather than "Repository visibility" with "Public" and "Private" status text.
 
@@ -81,7 +81,7 @@ Custom status text supplements the setting label; it does not replace it. The sw
   </FormControl>
   <FormControl>
     <FormControl.Label>Custom status labels</FormControl.Label>
-    <ToggleSwitch hasStatusLabel statusLabelOn="Enabled" statusLabelOff="Disabled" />
+    <ToggleSwitch hasStatusLabel labels={{on: 'Enabled', off: 'Disabled'}} />
   </FormControl>
   <FormControl>
     <FormControl.Label>Without status label</FormControl.Label>
@@ -127,29 +127,28 @@ Custom status text supplements the setting label; it does not replace it. The sw
 
 ## Component Props
 
-| Name                  | Type                                         | Default     | Description                                                                           |
-| --------------------- | -------------------------------------------- | ----------- | ------------------------------------------------------------------------------------- |
-| `checked`             | `boolean`                                    |             | Controlled on/off value.                                                              |
-| `defaultChecked`      | `boolean`                                    | `false`     | Initial uncontrolled value.                                                           |
-| `onChange`            | `(checked: boolean) => void`                 |             | Called once per accepted activation with the next value.                              |
-| `onClick`             | `React.MouseEventHandler<HTMLButtonElement>` |             | Activation callback receiving the button event.                                       |
-| `disabled`            | `boolean`                                    | `false`     | Blocks activation while retaining keyboard focusability.                              |
-| `loading`             | `boolean`                                    | `false`     | Displays pending feedback and exposes `aria-busy` without blocking interaction.       |
-| `size`                | `'small' \| 'medium'`                        | `'medium'`  | Alternative sizes.                                                                    |
-| `loadingLabel`        | `string`                                     | `'Loading'` | Localized loading announcement.                                                       |
-| `loadingLabelDelay`   | `number`                                     | `2000`      | Announcement delay in milliseconds.                                                   |
-| `spinnerPosition`     | `'start' \| 'end'`                           | `'end'`     | Indicator placement beside the switch when no visible FormControl label is available. |
-| `hasStatusLabel`      | `boolean`                                    | `false`     | Shows visible On/Off status text beside the track.                                    |
-| `statusLabelPosition` | `'start' \| 'end'`                           | `'start'`   | Status text placement relative to the track.                                          |
-| `statusLabelOn`       | `string`                                     | `'On'`      | Status text for the on state. Custom text describes the switch when shown.            |
-| `statusLabelOff`      | `string`                                     | `'Off'`     | Status text for the off state. Custom text describes the switch when shown.           |
-| `aria-label`          | `string`                                     |             | Explicit accessible name matching equivalent visible labeling.                        |
-| `aria-labelledby`     | `string`                                     |             | IDs of visible labeling elements.                                                     |
-| `aria-describedby`    | `string`                                     |             | Description IDs, combined with status, FormControl, and loading descriptions.         |
-| `aria-invalid`        | React ARIA attribute                         |             | Validation state of the switch button.                                                |
-| `ref`                 | `React.Ref<HTMLButtonElement>`               |             | Ref for the focusable button.                                                         |
-| `className`           | `string`                                     |             | Class applied to the component wrapper.                                               |
-| `data-testid`         | `string`                                     |             | Test ID applied to the component wrapper.                                             |
+| Name                  | Type                                         | Default      | Description                                                                           |
+| --------------------- | -------------------------------------------- | ------------ | ------------------------------------------------------------------------------------- |
+| `checked`             | `boolean`                                    |              | Controlled on/off value.                                                              |
+| `defaultChecked`      | `boolean`                                    | `false`      | Initial uncontrolled value.                                                           |
+| `onChange`            | `(checked: boolean) => void`                 |              | Called once per accepted activation with the next value.                              |
+| `onClick`             | `React.MouseEventHandler<HTMLButtonElement>` |              | Activation callback receiving the button event.                                       |
+| `disabled`            | `boolean`                                    | `false`      | Blocks activation while retaining keyboard focusability.                              |
+| `loading`             | `boolean`                                    | `false`      | Displays pending feedback and exposes `aria-busy` without blocking interaction.       |
+| `size`                | `'small' \| 'medium'`                        | `'medium'`   | Alternative sizes.                                                                    |
+| `loadingLabel`        | `string`                                     | `'Loading'`  | Localized loading announcement.                                                       |
+| `loadingLabelDelay`   | `number`                                     | `2000`       | Announcement delay in milliseconds.                                                   |
+| `spinnerPosition`     | `'start' \| 'end'`                           | `'end'`      | Indicator placement beside the switch when no visible FormControl label is available. |
+| `hasStatusLabel`      | `boolean`                                    | `false`      | Shows visible On/Off status text beside the track.                                    |
+| `statusLabelPosition` | `'start' \| 'end'`                           | `'start'`    | Status text placement relative to the track.                                          |
+| `labels`              | `{on?: string; off?: string}`                | `On` / `Off` | Visible status text for each state. Custom text describes the switch when shown.      |
+| `aria-label`          | `string`                                     |              | Explicit accessible name matching equivalent visible labeling.                        |
+| `aria-labelledby`     | `string`                                     |              | IDs of visible labeling elements.                                                     |
+| `aria-describedby`    | `string`                                     |              | Description IDs, combined with status, FormControl, and loading descriptions.         |
+| `aria-invalid`        | React ARIA attribute                         |              | Validation state of the switch button.                                                |
+| `ref`                 | `React.Ref<HTMLButtonElement>`               |              | Ref for the focusable button.                                                         |
+| `className`           | `string`                                     |              | Class applied to the component wrapper.                                               |
+| `data-testid`         | `string`                                     |              | Test ID applied to the component wrapper.                                             |
 
 Other standard button attributes, including `aria-controls`, `tabIndex`, keyboard handlers, and `style`, apply to the switch button.
 
@@ -157,7 +156,7 @@ Other standard button attributes, including `aria-controls`, `tabIndex`, keyboar
 
 The switch communicates its state through thumb position as well as color. Use `hasStatusLabel` to make the state explicit with visible On/Off text. These cues remain visible in both sizes, light and dark modes, and forced-colors mode. The status text does not change the switch's accessible name.
 
-The status text is part of the switch's click target. The default On/Off text is hidden from assistive technology, which already receives the state through `aria-checked`. When the current `statusLabelOn` or `statusLabelOff` uses custom text, that text becomes the switch's accessible description, and custom wording is announced politely when the state changes. For example, a screen reader can announce "Make repository public, switch, off, Private" when the switch receives focus. Translated On/Off text also becomes a description and can repeat the state in that language. Both labels reserve the same width, so toggling does not shift the layout. At narrow viewports, a `FormControl` with a status label places its setting label above the switch so longer translations can wrap without horizontal scrolling.
+The status text is part of the switch's click target. The default On/Off text is hidden from assistive technology, which already receives the state through `aria-checked`. When the current `labels.on` or `labels.off` value uses custom text, that text becomes the switch's accessible description. Immediate changes from activating the switch also announce the custom text politely. Later controlled updates change the description without an announcement. For example, a screen reader can announce "Make repository public, switch, off, Private" when the switch receives focus. Translated On/Off text also becomes a description and can repeat the state in that language. Both labels reserve the same width, so toggling does not shift the layout. At narrow viewports or in narrow containers, a `FormControl` with a status label places its setting label above the switch so longer translations can wrap without horizontal scrolling.
 
 The switch exposes its state to assistive technology through `role="switch"` and `aria-checked`. Provide a descriptive visible label with `FormControl.Label` or `aria-labelledby`; the status text does not replace the setting label.
 

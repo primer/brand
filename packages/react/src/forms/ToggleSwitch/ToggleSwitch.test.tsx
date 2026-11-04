@@ -1,5 +1,6 @@
 import React, {createRef} from 'react'
-import {act, render, screen, within} from '@testing-library/react'
+import {flushSync} from 'react-dom'
+import {act, fireEvent, render, screen, within} from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import '@testing-library/jest-dom'
 import {axe, toHaveNoViolations} from 'jest-axe'
@@ -44,8 +45,7 @@ describe('ToggleSwitch', () => {
         aria-label="Beta features"
         defaultChecked
         hasStatusLabel
-        statusLabelOn="Enabled"
-        statusLabelOff="Disabled"
+        labels={{on: 'Enabled', off: 'Disabled'}}
       />,
     )
     expect(screen.getByRole('switch', {name: 'Beta features'})).toBeInTheDocument()
@@ -62,8 +62,7 @@ describe('ToggleSwitch', () => {
         aria-label="Repository visibility"
         aria-describedby="hint"
         hasStatusLabel
-        statusLabelOn="Public"
-        statusLabelOff="Private"
+        labels={{on: 'Public', off: 'Private'}}
       />,
     )
     const control = screen.getByRole('switch', {name: 'Repository visibility'})
@@ -79,6 +78,182 @@ describe('ToggleSwitch', () => {
     expect(screen.getByTestId(ToggleSwitch.testIds.statusAnnouncement)).toHaveTextContent('Public')
   })
 
+  it('announces immediate controlled changes from pointer and keyboard activation', async () => {
+    const user = userEvent.setup()
+    function ControlledSwitch() {
+      const [checked, setChecked] = React.useState(false)
+      return (
+        <ToggleSwitch
+          aria-label="Enable beta features"
+          checked={checked}
+          onChange={setChecked}
+          hasStatusLabel
+          labels={{on: 'Enabled', off: 'Disabled'}}
+        />
+      )
+    }
+
+    render(
+      <React.StrictMode>
+        <ControlledSwitch />
+      </React.StrictMode>,
+    )
+    const control = screen.getByRole('switch')
+    const announcement = screen.getByTestId(ToggleSwitch.testIds.statusAnnouncement)
+
+    await user.click(control)
+    expect(control).toHaveAccessibleDescription('Enabled')
+    expect(announcement).toHaveTextContent('Enabled')
+
+    await user.keyboard(' ')
+    expect(control).toHaveAccessibleDescription('Disabled')
+    expect(announcement).toHaveTextContent('Disabled')
+  })
+
+  it('announces a controlled change flushed during activation', async () => {
+    const user = userEvent.setup()
+    function ControlledSwitch() {
+      const [checked, setChecked] = React.useState(false)
+      return (
+        <ToggleSwitch
+          aria-label="Enable beta features"
+          checked={checked}
+          onChange={nextChecked => {
+            flushSync(() => setChecked(nextChecked))
+          }}
+          hasStatusLabel
+          labels={{on: 'Enabled', off: 'Disabled'}}
+        />
+      )
+    }
+
+    render(<ControlledSwitch />)
+    await user.click(screen.getByRole('switch'))
+    expect(screen.getByRole('switch')).toHaveAccessibleDescription('Enabled')
+    expect(screen.getByTestId(ToggleSwitch.testIds.statusAnnouncement)).toHaveTextContent('Enabled')
+  })
+
+  it('updates the description without announcing external controlled changes', async () => {
+    const user = userEvent.setup()
+    const onChange = jest.fn()
+    const {rerender} = render(
+      <ToggleSwitch
+        aria-label="Enable beta features"
+        checked={false}
+        onChange={onChange}
+        hasStatusLabel
+        labels={{on: 'Enabled', off: 'Disabled'}}
+      />,
+    )
+    const control = screen.getByRole('switch')
+    const announcement = screen.getByTestId(ToggleSwitch.testIds.statusAnnouncement)
+
+    await user.click(control)
+    expect(onChange).toHaveBeenCalledWith(true)
+    expect(announcement).toBeEmptyDOMElement()
+
+    rerender(
+      <ToggleSwitch
+        aria-label="Enable beta features"
+        checked
+        onChange={onChange}
+        hasStatusLabel
+        labels={{on: 'Enabled', off: 'Disabled'}}
+      />,
+    )
+    expect(control).toHaveAccessibleDescription('Enabled')
+    expect(announcement).toBeEmptyDOMElement()
+  })
+
+  it('does not announce a delayed controlled change while the switch remains focused', () => {
+    jest.useFakeTimers()
+
+    function DelayedSwitch() {
+      const [checked, setChecked] = React.useState(false)
+      return (
+        <ToggleSwitch
+          aria-label="Enable beta features"
+          checked={checked}
+          onChange={nextChecked => {
+            setTimeout(() => setChecked(nextChecked), 100)
+          }}
+          hasStatusLabel
+          labels={{on: 'Enabled', off: 'Disabled'}}
+        />
+      )
+    }
+
+    render(<DelayedSwitch />)
+    const control = screen.getByRole('switch')
+    const announcement = screen.getByTestId(ToggleSwitch.testIds.statusAnnouncement)
+    control.focus()
+    fireEvent.click(control)
+    expect(announcement).toBeEmptyDOMElement()
+
+    act(() => jest.advanceTimersByTime(100))
+    expect(control).toHaveFocus()
+    expect(control).toHaveAccessibleDescription('Enabled')
+    expect(announcement).toBeEmptyDOMElement()
+  })
+
+  it('does not announce a controlled change deferred to a microtask', async () => {
+    const user = userEvent.setup()
+
+    function DeferredSwitch() {
+      const [checked, setChecked] = React.useState(false)
+      return (
+        <ToggleSwitch
+          aria-label="Enable beta features"
+          checked={checked}
+          onChange={async nextChecked => {
+            await Promise.resolve()
+            setChecked(nextChecked)
+          }}
+          hasStatusLabel
+          labels={{on: 'Enabled', off: 'Disabled'}}
+        />
+      )
+    }
+
+    render(<DeferredSwitch />)
+    const control = screen.getByRole('switch')
+    const announcement = screen.getByTestId(ToggleSwitch.testIds.statusAnnouncement)
+
+    await user.click(control)
+    expect(control).toHaveAccessibleDescription('Enabled')
+    expect(announcement).toBeEmptyDOMElement()
+  })
+
+  it('clears an earlier announcement after an external state change', async () => {
+    const user = userEvent.setup()
+    let updateChecked: React.Dispatch<React.SetStateAction<boolean>> = () => {}
+
+    function ControlledSwitch() {
+      const [checked, setChecked] = React.useState(false)
+      updateChecked = setChecked
+      return (
+        <ToggleSwitch
+          aria-label="Enable beta features"
+          checked={checked}
+          onChange={setChecked}
+          hasStatusLabel
+          labels={{on: 'Enabled', off: 'Disabled'}}
+        />
+      )
+    }
+
+    render(<ControlledSwitch />)
+    const control = screen.getByRole('switch')
+    const announcement = screen.getByTestId(ToggleSwitch.testIds.statusAnnouncement)
+
+    await user.click(control)
+    expect(announcement).toHaveTextContent('Enabled')
+
+    act(() => updateChecked(false))
+    expect(control).toHaveAccessibleDescription('Disabled')
+    expect(announcement).toBeEmptyDOMElement()
+  })
+
   it('does not collide with caller-provided label IDs', () => {
     render(
       <>
@@ -87,8 +262,7 @@ describe('ToggleSwitch', () => {
           id="visibility"
           aria-labelledby="visibility-status"
           hasStatusLabel
-          statusLabelOn="Public"
-          statusLabelOff="Private"
+          labels={{on: 'Public', off: 'Private'}}
         />
       </>,
     )
@@ -100,7 +274,7 @@ describe('ToggleSwitch', () => {
 
   it('announces only the custom wording for the state that uses it', async () => {
     const user = userEvent.setup()
-    render(<ToggleSwitch aria-label="Make repository public" defaultChecked hasStatusLabel statusLabelOff="Private" />)
+    render(<ToggleSwitch aria-label="Make repository public" defaultChecked hasStatusLabel labels={{off: 'Private'}} />)
     const control = screen.getByRole('switch')
     const announcement = screen.getByTestId(ToggleSwitch.testIds.statusAnnouncement)
 
@@ -124,7 +298,7 @@ describe('ToggleSwitch', () => {
   })
 
   it('does not describe the switch with custom status text when the status label is hidden', () => {
-    render(<ToggleSwitch aria-label="Repository visibility" statusLabelOn="Public" statusLabelOff="Private" />)
+    render(<ToggleSwitch aria-label="Repository visibility" labels={{on: 'Public', off: 'Private'}} />)
     expect(screen.getByRole('switch')).not.toHaveAttribute('aria-describedby')
   })
 
@@ -136,7 +310,7 @@ describe('ToggleSwitch', () => {
           id="visibility"
           aria-label="Repository visibility"
           aria-describedby="hint"
-          statusLabelOff="Private"
+          labels={{off: 'Private'}}
         />
       </>,
     )
@@ -152,7 +326,7 @@ describe('ToggleSwitch', () => {
           aria-label="Repository visibility"
           aria-describedby="hint"
           hasStatusLabel
-          statusLabelOff="Private"
+          labels={{off: 'Private'}}
         />
       </>,
     )
@@ -168,7 +342,7 @@ describe('ToggleSwitch', () => {
           id="visibility"
           aria-label="Repository visibility"
           aria-describedby="hint"
-          statusLabelOff="Private"
+          labels={{off: 'Private'}}
         />
       </>,
     )
@@ -392,13 +566,13 @@ describe('ToggleSwitch', () => {
     expect(control.nextElementSibling).toHaveAttribute('role', 'status')
   })
 
-  it('supports a leading spinner for standalone switches', () => {
-    render(<ToggleSwitch aria-label="Notifications" loading spinnerPosition="start" hasStatusLabel />)
+  it.each(['start', 'end'] as const)('supports a spinner at the %s of standalone switches', position => {
+    render(<ToggleSwitch aria-label="Notifications" loading spinnerPosition={position} hasStatusLabel />)
     const indicator = screen.getByTestId(ToggleSwitch.testIds.spinner)
     const spinnerSlot = indicator.parentElement?.parentElement
     const control = screen.getByRole('switch')
     const statusLabel = screen.getByTestId(ToggleSwitch.testIds.statusLabel)
-    expect(spinnerSlot?.nextElementSibling).toBe(control)
+    expect(position === 'start' ? spinnerSlot?.nextElementSibling : spinnerSlot?.previousElementSibling).toBe(control)
     expect(control.firstElementChild).toBe(statusLabel)
     expect(statusLabel.nextElementSibling).toHaveClass('ToggleSwitch-track')
   })

@@ -11,6 +11,10 @@ import styles from './ToggleSwitch.module.css'
 type ToggleSwitchSize = 'small' | 'medium'
 type ToggleSwitchSpinnerPosition = 'start' | 'end'
 type ToggleSwitchStatusLabelPosition = 'start' | 'end'
+type ToggleSwitchLabels = {
+  on?: string
+  off?: string
+}
 
 type ToggleSwitchButtonPropKeysToOmit =
   | 'aria-busy'
@@ -33,8 +37,7 @@ export type ToggleSwitchProps = Omit<ButtonHTMLAttributes<HTMLButtonElement>, To
   spinnerPosition?: ToggleSwitchSpinnerPosition
   hasStatusLabel?: boolean
   statusLabelPosition?: ToggleSwitchStatusLabelPosition
-  statusLabelOn?: string
-  statusLabelOff?: string
+  labels?: ToggleSwitchLabels
 }
 
 export type ToggleSwitchInternalProps = ToggleSwitchProps & {
@@ -65,8 +68,7 @@ const Root: ToggleSwitchComponent = forwardRef<HTMLButtonElement, ToggleSwitchIn
     spinnerPosition = 'end',
     hasStatusLabel = false,
     statusLabelPosition = 'start',
-    statusLabelOn = 'On',
-    statusLabelOff = 'Off',
+    labels: {on: statusLabelOn = 'On', off: statusLabelOff = 'Off'} = {},
     toggleSwitchSpinnerInLabel = false,
     id,
     className,
@@ -85,6 +87,7 @@ const Root: ToggleSwitchComponent = forwardRef<HTMLButtonElement, ToggleSwitchIn
   const [internalChecked, setInternalChecked] = useState(defaultChecked)
   const [announceLoading, setAnnounceLoading] = useState(false)
   const [statusAnnouncement, setStatusAnnouncement] = useState('')
+  const [pendingStatusChange, setPendingStatusChange] = useState<boolean | null>(null)
   const isChecked = checked ?? internalChecked
   const activeStatusLabel = isChecked ? statusLabelOn : statusLabelOff
   const defaultStatusLabel = isChecked ? 'On' : 'Off'
@@ -96,10 +99,14 @@ const Root: ToggleSwitchComponent = forwardRef<HTMLButtonElement, ToggleSwitchIn
     const stateChanged = previousChecked.current !== isChecked
     previousChecked.current = isChecked
 
-    setStatusAnnouncement(
-      stateChanged && hasStatusDescription && activeStatusLabel !== defaultStatusLabel ? activeStatusLabel : '',
-    )
-  }, [activeStatusLabel, defaultStatusLabel, hasStatusDescription, isChecked])
+    if (stateChanged) {
+      setStatusAnnouncement(pendingStatusChange === isChecked && hasStatusDescription ? activeStatusLabel : '')
+    } else {
+      setStatusAnnouncement(current => (hasStatusDescription && current === activeStatusLabel ? current : ''))
+    }
+
+    if (pendingStatusChange !== null) setPendingStatusChange(null)
+  }, [activeStatusLabel, hasStatusDescription, isChecked, pendingStatusChange])
 
   useEffect(() => {
     setAnnounceLoading(false)
@@ -129,6 +136,7 @@ const Root: ToggleSwitchComponent = forwardRef<HTMLButtonElement, ToggleSwitchIn
     if (event.defaultPrevented) return
 
     const nextChecked = !isChecked
+    if (hasStatusLabel && hasCustomStatusLabels) setPendingStatusChange(nextChecked)
     if (checked === undefined) setInternalChecked(nextChecked)
     onChange?.(nextChecked)
   }

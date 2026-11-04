@@ -104,6 +104,7 @@ export const SettingsPanel: Story = {
                 checked={webNotifications}
                 loading={pendingSaves.web > 0}
                 spinnerPosition="start"
+                hasStatusLabel
                 loadingLabel="Saving web notifications"
                 onChange={async nextChecked => {
                   setWebNotifications(nextChecked)
@@ -136,6 +137,7 @@ export const SettingsPanel: Story = {
                 checked={releaseNotifications}
                 loading={pendingSaves.releases > 0}
                 spinnerPosition="start"
+                hasStatusLabel
                 loadingLabel="Saving release notifications"
                 onChange={async nextChecked => {
                   setReleaseNotifications(nextChecked)
@@ -181,6 +183,7 @@ export const OptimisticUpdate: Story = {
 }
 
 export const OptimisticUpdateFailure: Story = {
+  parameters: {axe: {waitForPlay: true}},
   render: function Render() {
     const savedEmail = false
     const [email, setEmail] = useState(savedEmail)
@@ -222,15 +225,22 @@ export const OptimisticUpdateFailure: Story = {
     )
   },
   play: async ({canvasElement}) => {
+    canvasElement.removeAttribute('data-axe-ready')
     const canvas = within(canvasElement)
     const email = canvas.getByRole('switch', {name: 'Email notifications'})
     await userEvent.click(email)
     await expect(email).toHaveAttribute('aria-checked', 'true')
     await expect(email).toHaveAttribute('aria-busy', 'true')
     await expect(email).not.toHaveAttribute('aria-disabled')
-    await canvas.findByText('Could not save email notifications. Previous setting restored.', {}, {timeout: 3000})
+    const validation = await canvas.findByText(
+      'Could not save email notifications. Previous setting restored.',
+      {},
+      {timeout: 10000},
+    )
+    await Promise.all(validation.getAnimations().map(animation => animation.finished))
     await expect(email).toHaveAttribute('aria-checked', 'false')
     await expect(email).toHaveAttribute('aria-invalid', 'true')
     await expect(email).not.toHaveAttribute('aria-busy')
+    canvasElement.setAttribute('data-axe-ready', 'true')
   },
 }

@@ -4,4 +4,4 @@
 '@primer/brand-css': patch
 ---
 
-Strengthen the ToggleSwitch border and thumb contrast using existing Brand palette colors. Preserve the track dimensions, accessible name, and interaction behavior.
+Improve `ToggleSwitch` state clarity with optional On/Off labels and stronger border and thumb contrast.

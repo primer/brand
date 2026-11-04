@@ -68,6 +68,14 @@
   justify-items: start;
 }
 
+.ToggleSwitch-statusLabel--start .ToggleSwitch-statusLabelText {
+  text-align: end;
+}
+
+.ToggleSwitch-statusLabel--end .ToggleSwitch-statusLabelText {
+  text-align: start;
+}
+
 .ToggleSwitch-statusLabelText {
   grid-area: 1 / 1;
 }

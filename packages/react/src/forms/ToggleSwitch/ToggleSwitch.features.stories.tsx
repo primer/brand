@@ -152,13 +152,19 @@ export const StandaloneLoadingPositions: Story = {
         <Text as="span" id="leading-loading-label">
           Spinner at start
         </Text>
-        <ToggleSwitch loading spinnerPosition="start" aria-labelledby="leading-loading-label" />
+        <ToggleSwitch loading spinnerPosition="start" hasStatusLabel aria-labelledby="leading-loading-label" />
       </Stack>
       <Stack direction="horizontal" alignItems="center" gap="normal" padding="none">
         <Text as="span" id="trailing-loading-label">
           Spinner at end + checked
         </Text>
-        <ToggleSwitch loading defaultChecked spinnerPosition="end" aria-labelledby="trailing-loading-label" />
+        <ToggleSwitch
+          loading
+          defaultChecked
+          spinnerPosition="end"
+          hasStatusLabel
+          aria-labelledby="trailing-loading-label"
+        />
       </Stack>
     </Stack>
   ),
@@ -222,7 +228,7 @@ export const StatusLabel: Story = {
       </FormControl>
       <FormControl>
         <FormControl.Label>Custom status labels</FormControl.Label>
-        <ToggleSwitch hasStatusLabel statusLabelOn="Enabled" statusLabelOff="Disabled" />
+        <ToggleSwitch hasStatusLabel labels={{on: 'Enabled', off: 'Disabled'}} />
       </FormControl>
       <FormControl>
         <FormControl.Label>Small with status label</FormControl.Label>
@@ -242,12 +248,8 @@ export const StatusLabel: Story = {
         <FormControl.Validation>Could not save this setting. Try again.</FormControl.Validation>
       </FormControl>
       <FormControl>
-        <FormControl.Label>Loading with spinner at start</FormControl.Label>
-        <ToggleSwitch loading spinnerPosition="start" hasStatusLabel />
-      </FormControl>
-      <FormControl>
-        <FormControl.Label>Loading with spinner at end</FormControl.Label>
-        <ToggleSwitch loading spinnerPosition="end" hasStatusLabel />
+        <FormControl.Label>Loading with status label</FormControl.Label>
+        <ToggleSwitch loading hasStatusLabel />
       </FormControl>
     </Stack>
   ),
@@ -283,9 +285,12 @@ export const StatusLabelNarrow: Story = {
           <ToggleSwitch
             size={size}
             hasStatusLabel
-            statusLabelOn="Für die gesamte Organisation aktiviert"
-            statusLabelOff="Für die gesamte Organisation deaktiviert"
+            labels={{
+              on: 'Enabled for the entire organization',
+              off: 'Disabled for the entire organization',
+            }}
           />
+          <FormControl.Hint>Optional hint text.</FormControl.Hint>
         </FormControl>
       ))}
     </Stack>
@@ -293,6 +298,16 @@ export const StatusLabelNarrow: Story = {
   globals: {
     viewport: {value: 'iphone5'},
   },
+}
+
+export const StatusLabelLocalized: Story = {
+  globals: {locale: 'de'},
+  render: () => (
+    <FormControl>
+      <FormControl.Label>Benachrichtigungen</FormControl.Label>
+      <ToggleSwitch hasStatusLabel labels={{on: 'Aktiviert', off: 'Deaktiviert'}} />
+    </FormControl>
+  ),
 }
 
 export const RightToLeft: Story = {
