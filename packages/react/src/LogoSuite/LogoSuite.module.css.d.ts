@@ -2,6 +2,7 @@ declare const styles: {
   readonly "LogoSuite": string;
   readonly "LogoSuite--center": string;
   readonly "LogoSuite--default": string;
+  readonly "LogoSuite--gridline": string;
   readonly "LogoSuite--gridline-expressive": string;
   readonly "LogoSuite--hasDivider": string;
   readonly "LogoSuite--justify": string;
@@ -13,6 +14,7 @@ declare const styles: {
   readonly "LogoSuite__logobar": string;
   readonly "LogoSuite__logobar--gap-condensed": string;
   readonly "LogoSuite__logobar--gap-default": string;
+  readonly "LogoSuite__logobar--has-linked-logos": string;
   readonly "LogoSuite__logobar--has-marquee": string;
   readonly "LogoSuite__logobar--has-takeover": string;
   readonly "LogoSuite__logobar--paused": string;

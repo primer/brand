@@ -7,6 +7,13 @@
   -moz-osx-font-smoothing: auto;
 }
 
+@media (prefers-color-scheme: dark) {
+  [data-color-mode='auto'] .Text--antialiased {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: auto;
+  }
+}
+
 .Text--default {
   color: var(--brand-color-text-default);
 }

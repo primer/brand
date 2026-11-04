@@ -1,5 +1,6 @@
 import React, {render, cleanup} from '@testing-library/react'
 import '@testing-library/jest-dom'
+import userEvent from '@testing-library/user-event'
 
 import {Card} from './Card'
 import {axe, toHaveNoViolations} from 'jest-axe'
@@ -35,9 +36,9 @@ describe('Card', () => {
   const mockDescription = 'This is a mock description'
   const mockIcon = <GitMergeIcon aria-label="Git merge icon" />
 
-  it('no a11y violations', async () => {
+  it.each(['text', 'arrow'] as const)('no a11y violations with the %s CTA variant', async ctaVariant => {
     const {container} = render(
-      <Card href={mockHref}>
+      <Card href={mockHref} ctaVariant={ctaVariant}>
         <Card.Heading>{mockHeading}</Card.Heading>
         <Card.Description>{mockDescription}</Card.Description>
       </Card>,
@@ -181,6 +182,38 @@ describe('Card', () => {
     expect(linkTextEl).toBeInTheDocument()
   })
 
+  it.each(['text', 'arrow'] as const)(
+    'renders the %s CTA label as regular text without adding a tab stop',
+    async ctaVariant => {
+      const user = userEvent.setup()
+      const ctaText = 'Explore Startup Partners'
+      const {getByText, getByRole, getAllByRole} = render(
+        <>
+          <Card href={mockHref} ctaVariant={ctaVariant} ctaText={ctaText}>
+            <Card.Heading>{mockHeading}</Card.Heading>
+            <Card.Description>{mockDescription}</Card.Description>
+          </Card>
+          <button>After card</button>
+        </>,
+      )
+
+      const actionLabel = getByText(ctaText)
+      const headingLink = getByRole('link', {name: mockHeading})
+
+      expect(actionLabel.tagName).toBe('SPAN')
+      expect(actionLabel.closest('a, button, [role], [tabindex]')).toBeNull()
+      expect(actionLabel.tabIndex).toBe(-1)
+      expect(getAllByRole('link')).toEqual([headingLink])
+      expect(headingLink).toHaveAttribute('href', mockHref)
+      expect(headingLink.closest('h3')).toBeInTheDocument()
+
+      await user.tab()
+      expect(headingLink).toHaveFocus()
+      await user.tab()
+      expect(getByRole('button', {name: 'After card'})).toHaveFocus()
+    },
+  )
+
   it('renders the label correctly into the document', () => {
     const mockTestId = 'label'
     const classToCheck = 'Card__label'
@@ -218,10 +251,9 @@ describe('Card', () => {
     )
 
     expect(getByText('Learn more')).toBeInTheDocument()
-    expect(container.querySelector('.Card__action--arrowOnly')).toHaveAttribute('aria-hidden', 'true')
     expect(container.querySelector('.Card__actionLabelClip')).toBeInTheDocument()
     expect(container.querySelector('.Card__actionIcon--arrowOnly')).toBeInTheDocument()
-    expect(container.querySelector('.ExpandableArrow')).toBeInTheDocument()
+    expect(container.querySelector('.ExpandableArrow')).toHaveAttribute('aria-hidden', 'true')
   })
 
   it('can hide the cta affordance while keeping the card link', () => {

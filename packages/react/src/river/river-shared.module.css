@@ -95,6 +95,7 @@
   .River {
     max-width: 618px;
     margin-inline: auto;
+    width: 100%;
   }
 
   .River--variant-gridline {

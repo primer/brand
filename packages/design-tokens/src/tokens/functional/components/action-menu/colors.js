@@ -1,6 +1,18 @@
 module.exports = {
   ActionMenu: {
     color: {
+      splitButton: {
+        divider: {
+          default: {
+            value: 'var(--brand-color-border-muted)',
+            dark: 'var(--brand-color-border-muted)',
+          },
+          primary: {
+            value: 'var(--base-color-scale-green-7)',
+            dark: 'var(--brand-color-border-muted)',
+          },
+        },
+      },
       item: {
         hover: {
           value: 'var(--base-color-scale-gray-1)',

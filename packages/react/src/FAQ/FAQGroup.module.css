@@ -155,6 +155,10 @@
     max-width: 100%;
   }
 
+  .FAQGroup__heading-wrapper--gridline .FAQGroup__heading {
+    padding-inline-start: var(--base-size-44);
+  }
+
   .FAQGroup__heading-wrapper {
     padding-block-end: var(--base-size-64);
   }

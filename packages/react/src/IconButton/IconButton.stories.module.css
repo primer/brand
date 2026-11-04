@@ -1,0 +1,7 @@
+.IconButton__pauseAnimations * {
+  animation-play-state: paused;
+}
+
+.IconButton__tooltipDirections {
+  min-height: 100dvh;
+}

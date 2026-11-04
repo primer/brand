@@ -1,0 +1,192 @@
+---
+title: Feature comparison table
+description: Use the feature comparison table to compare features across pricing plans.
+keywords: ['pricing', 'plans', 'comparison', 'features']
+show-tabs: false
+ready: true
+source: https://github.com/primer/brand/blob/main/packages/react/src/FeatureComparisonTable/FeatureComparisonTable.tsx
+storybook: '/brand/storybook/?path=/story/components-featurecomparisontable--playground'
+---
+
+import {Label} from '@primer/react'
+
+import {
+  FeatureComparisonTableActionAsProp,
+  FeatureComparisonTableCellVariantProp,
+  FeatureComparisonTableExpandedProp,
+  FeatureComparisonTableHeadingAsProp,
+} from './react'
+
+```js
+import {FeatureComparisonTable} from '@primer/react-brand'
+```
+
+## Examples
+
+### Default
+
+```jsx live
+<FeatureComparisonTable>
+  <FeatureComparisonTable.Heading>Compare features</FeatureComparisonTable.Heading>
+  <FeatureComparisonTable.Item>
+    <FeatureComparisonTable.ItemHeading>Free</FeatureComparisonTable.ItemHeading>
+    <FeatureComparisonTable.Description>For individuals.</FeatureComparisonTable.Description>
+    <FeatureComparisonTable.Price>$0 per month</FeatureComparisonTable.Price>
+    <FeatureComparisonTable.PrimaryAction as="a" href="#">
+      Get started
+    </FeatureComparisonTable.PrimaryAction>
+  </FeatureComparisonTable.Item>
+  <FeatureComparisonTable.Item>
+    <FeatureComparisonTable.Label>Recommended</FeatureComparisonTable.Label>
+    <FeatureComparisonTable.ItemHeading>Team</FeatureComparisonTable.ItemHeading>
+    <FeatureComparisonTable.Description>For teams.</FeatureComparisonTable.Description>
+    <FeatureComparisonTable.Price>$4 per user / month</FeatureComparisonTable.Price>
+    <FeatureComparisonTable.PrimaryAction as="a" href="#">
+      Start a free trial
+    </FeatureComparisonTable.PrimaryAction>
+  </FeatureComparisonTable.Item>
+
+  <FeatureComparisonTable.Group>
+    <FeatureComparisonTable.GroupHeading id="core-features">Core features</FeatureComparisonTable.GroupHeading>
+    <FeatureComparisonTable.Row>
+      <FeatureComparisonTable.RowHeading>Private repositories</FeatureComparisonTable.RowHeading>
+      <FeatureComparisonTable.Cell variant="included" />
+      <FeatureComparisonTable.Cell variant="included" />
+    </FeatureComparisonTable.Row>
+    <FeatureComparisonTable.Row>
+      <FeatureComparisonTable.RowHeading>Support</FeatureComparisonTable.RowHeading>
+      <FeatureComparisonTable.Cell>Community</FeatureComparisonTable.Cell>
+      <FeatureComparisonTable.Cell>Standard</FeatureComparisonTable.Cell>
+    </FeatureComparisonTable.Row>
+  </FeatureComparisonTable.Group>
+</FeatureComparisonTable>
+```
+
+### Row descriptions
+
+Use `FeatureComparisonTable.RowDescription` to add context beneath a feature name. Descriptions can include links and emphasis.
+
+```jsx live
+<FeatureComparisonTable>
+  <FeatureComparisonTable.Heading>Compare features</FeatureComparisonTable.Heading>
+  <FeatureComparisonTable.Item>
+    <FeatureComparisonTable.ItemHeading>Free</FeatureComparisonTable.ItemHeading>
+  </FeatureComparisonTable.Item>
+  <FeatureComparisonTable.Item>
+    <FeatureComparisonTable.ItemHeading>Team</FeatureComparisonTable.ItemHeading>
+  </FeatureComparisonTable.Item>
+  <FeatureComparisonTable.Group>
+    <FeatureComparisonTable.GroupHeading id="codespaces">Codespaces</FeatureComparisonTable.GroupHeading>
+    <FeatureComparisonTable.Row>
+      <FeatureComparisonTable.RowHeading>Codespaces</FeatureComparisonTable.RowHeading>
+      <FeatureComparisonTable.RowDescription>
+        Develop in <strong>the cloud</strong>. <InlineLink href="#codespaces">Learn more</InlineLink>
+      </FeatureComparisonTable.RowDescription>
+      <FeatureComparisonTable.Cell variant="included" />
+      <FeatureComparisonTable.Cell variant="included" />
+    </FeatureComparisonTable.Row>
+  </FeatureComparisonTable.Group>
+</FeatureComparisonTable>
+```
+
+## Component props
+
+### FeatureComparisonTable <Label>Required</Label>
+
+| Name       | Type                                                                                        | Default | required | Description                            |
+| :--------- | :------------------------------------------------------------------------------------------ | :-----: | :------: | :------------------------------------- |
+| `children` | `FeatureComparisonTable.Heading, FeatureComparisonTable.Item, FeatureComparisonTable.Group` |         |  `true`  | Table title, plans, and feature groups |
+
+### FeatureComparisonTable.Item <Label>Required</Label>
+
+One item per pricing plan to be displayed. Supports two to four plans.
+
+| Name       | Type                                                                                                                                                                                                               | Default | required | Description  |
+| :--------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :-----: | :------: | :----------- |
+| `children` | `FeatureComparisonTable.Label, FeatureComparisonTable.ItemHeading, FeatureComparisonTable.Description, FeatureComparisonTable.Price, FeatureComparisonTable.PrimaryAction, FeatureComparisonTable.SecondaryAction` |         |  `true`  | Plan content |
+
+### FeatureComparisonTable.Label
+
+| Name       | Type        | Default | required | Description                                                                  |
+| :--------- | :---------- | :-----: | :------: | :--------------------------------------------------------------------------- |
+| `children` | `ReactNode` |         |  `true`  | Label text, such as "Recommended". Adding a label highlights the plan column |
+
+### FeatureComparisonTable.Heading <Label>Required</Label>
+
+| Name       | Type                                    | Default | required | Description                                  |
+| :--------- | :-------------------------------------- | :-----: | :------: | :------------------------------------------- |
+| `as`       | <FeatureComparisonTableHeadingAsProp /> |  `h2`   | `false`  | Heading level for the table title            |
+| `id`       | `string`                                |         | `false`  | Anchor target and accessible label reference |
+| `children` | `ReactNode`                             |         |  `true`  | Table title                                  |
+
+### FeatureComparisonTable.ItemHeading <Label>Required</Label>
+
+Plan name, shown alongside feature values on smaller screens.
+
+| Name       | Type                                    | Default | required | Description                        |
+| :--------- | :-------------------------------------- | :-----: | :------: | :--------------------------------- |
+| `as`       | <FeatureComparisonTableHeadingAsProp /> |  `h3`   | `false`  | Heading level for the plan summary |
+| `children` | `ReactNode`                             |         |  `true`  | Plan name                          |
+
+### FeatureComparisonTable.Description
+
+| Name       | Type        | Default | required | Description      |
+| :--------- | :---------- | :-----: | :------: | :--------------- |
+| `children` | `ReactNode` |         |  `true`  | Plan description |
+
+### FeatureComparisonTable.Price
+
+| Name       | Type        | Default | required | Description                        |
+| :--------- | :---------- | :-----: | :------: | :--------------------------------- |
+| `children` | `ReactNode` |         |  `true`  | Price text, such as "$4 per month" |
+
+### FeatureComparisonTable.PrimaryAction and FeatureComparisonTable.SecondaryAction
+
+| Name       | Type                                   | Default | required | Description                              |
+| :--------- | :------------------------------------- | :-----: | :------: | :--------------------------------------- |
+| `as`       | <FeatureComparisonTableActionAsProp /> |         |  `true`  | Link or button element                   |
+| `children` | `ReactNode`                            |         |  `true`  | Action label                             |
+| `href`     | `string`                               |         | `false`  | Link destination. Required when `as="a"` |
+
+### FeatureComparisonTable.Group <Label>Required</Label>
+
+| Name       | Type                                                              |                   Default                    | required | Description                                              |
+| :--------- | :---------------------------------------------------------------- | :------------------------------------------: | :------: | :------------------------------------------------------- |
+| `children` | `FeatureComparisonTable.GroupHeading, FeatureComparisonTable.Row` |                                              |  `true`  | Group title and feature rows                             |
+| `expanded` | <FeatureComparisonTableExpandedProp />                            | `{narrow: false, regular: true, wide: true}` | `false`  | Initial expanded state, optionally set per viewport size |
+
+### FeatureComparisonTable.GroupHeading <Label>Required</Label>
+
+| Name       | Type                                    | Default | required | Description                         |
+| :--------- | :-------------------------------------- | :-----: | :------: | :---------------------------------- |
+| `as`       | <FeatureComparisonTableHeadingAsProp /> |  `h3`   | `false`  | Heading level                       |
+| `id`       | `string`                                |         | `false`  | Anchor target for the group heading |
+| `children` | `ReactNode`                             |         |  `true`  | Group title                         |
+
+### FeatureComparisonTable.Row <Label>Required</Label>
+
+| Name       | Type                                                                                                    | Default | required | Description                                         |
+| :--------- | :------------------------------------------------------------------------------------------------------ | :-----: | :------: | :-------------------------------------------------- |
+| `children` | `FeatureComparisonTable.RowHeading, FeatureComparisonTable.RowDescription, FeatureComparisonTable.Cell` |         |  `true`  | Feature name, optional description, and plan values |
+
+### FeatureComparisonTable.RowHeading <Label>Required</Label>
+
+| Name       | Type        | Default | required | Description  |
+| :--------- | :---------- | :-----: | :------: | :----------- |
+| `children` | `ReactNode` |         |  `true`  | Feature name |
+
+### FeatureComparisonTable.RowDescription
+
+| Name       | Type        | Default | required | Description         |
+| :--------- | :---------- | :-----: | :------: | :------------------ |
+| `children` | `ReactNode` |         |  `true`  | Feature description |
+
+### FeatureComparisonTable.Cell <Label>Required</Label>
+
+Add one cell per plan, in the same order as the items.
+
+| Name               | Type                                      | Default | required | Description                                                                                  |
+| :----------------- | :---------------------------------------- | :-----: | :------: | :------------------------------------------------------------------------------------------- |
+| `children`         | `ReactNode`                               |         | `false`  | Feature value                                                                                |
+| `variant`          | <FeatureComparisonTableCellVariantProp /> |         | `false`  | Included, unavailable, unlimited, or periodically renewed                                    |
+| `variantAriaLabel` | `string`                                  |         | `false`  | Accessible icon label. Use to translate "Included", "Unavailable", "Unlimited", or "Refresh" |

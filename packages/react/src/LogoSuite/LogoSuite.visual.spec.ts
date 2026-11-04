@@ -28,6 +28,17 @@ test.describe('Visual Comparison: LogoSuite', () => {
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
+  test('LogoSuite / With Linked Icons', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-logosuite-examples--with-linked-icons&viewMode=story',
+      {waitUntil: 'networkidle'},
+    )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+    await page.waitForTimeout(500)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
   test('LogoSuite / Align Start', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-logosuite-features--align-start&viewMode=story',
@@ -190,6 +201,17 @@ test.describe('Visual Comparison: LogoSuite', () => {
     await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
+  test('LogoSuite / GridLine kitchen sink', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-logosuite-features--grid-line-kitchen-sink&viewMode=story',
+      {waitUntil: 'networkidle'},
+    )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+    await page.waitForTimeout(3000)
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 

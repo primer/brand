@@ -59,6 +59,40 @@ import {RiverBreakoutTabs} from '@primer/react-brand'
 </Section>
 ```
 
+### Buttons in content
+
+Place action buttons inside `RiverBreakoutTabs.Content`. They remain outside the desktop tab controls, so people can focus and activate them independently.
+
+```jsx live
+<Section>
+  <RiverBreakoutTabs>
+    <RiverBreakoutTabs.A11yHeading>Plan and review work</RiverBreakoutTabs.A11yHeading>
+
+    <RiverBreakoutTabs.Item>
+      <RiverBreakoutTabs.Heading>Plan</RiverBreakoutTabs.Heading>
+      <RiverBreakoutTabs.Content>
+        <Text>Break large issues into practical implementation steps.</Text>
+        <Button>Start planning</Button>
+      </RiverBreakoutTabs.Content>
+      <RiverBreakoutTabs.Visual>
+        <img src="/images/placeholder-1.png" alt="Planning workflow in editor" />
+      </RiverBreakoutTabs.Visual>
+    </RiverBreakoutTabs.Item>
+
+    <RiverBreakoutTabs.Item>
+      <RiverBreakoutTabs.Heading>Review</RiverBreakoutTabs.Heading>
+      <RiverBreakoutTabs.Content>
+        <Text>Keep discussion, suggestions, and diffs together while you review.</Text>
+        <Button>Start reviewing</Button>
+      </RiverBreakoutTabs.Content>
+      <RiverBreakoutTabs.Visual>
+        <img src="/images/placeholder-2.png" alt="Review workflow with shared context" />
+      </RiverBreakoutTabs.Visual>
+    </RiverBreakoutTabs.Item>
+  </RiverBreakoutTabs>
+</Section>
+```
+
 ### With an optional background and inset media
 
 ```jsx live

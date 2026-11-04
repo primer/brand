@@ -5,7 +5,7 @@ import '@testing-library/jest-dom'
 import {axe, toHaveNoViolations} from 'jest-axe'
 
 import {RiverBreakoutTabs} from '../'
-import {Link, Text} from '../../'
+import {Button, Link, Text} from '../../'
 
 expect.extend(toHaveNoViolations)
 
@@ -361,6 +361,133 @@ describe('RiverBreakoutTabs', () => {
     expect(queryByText('Plan secondary link')).not.toBeInTheDocument()
   })
 
+  it('keeps Content controls outside desktop tabs without changing selection', async () => {
+    const user = userEvent.setup()
+    const onChange = jest.fn()
+    const {container, getAllByRole, getByRole} = render(
+      <RiverBreakoutTabs onChange={onChange}>
+        <RiverBreakoutTabs.A11yHeading>Agent workflows</RiverBreakoutTabs.A11yHeading>
+        <RiverBreakoutTabs.Item>
+          <RiverBreakoutTabs.Heading>Plan</RiverBreakoutTabs.Heading>
+          <RiverBreakoutTabs.Content>
+            <Text>Plan content</Text>
+            <Button>Start planning</Button>
+            <div>
+              <Link href="#">Explore planning</Link>
+            </div>
+          </RiverBreakoutTabs.Content>
+          <RiverBreakoutTabs.Visual>
+            <MockVisual label="plan visual" />
+          </RiverBreakoutTabs.Visual>
+        </RiverBreakoutTabs.Item>
+        <RiverBreakoutTabs.Item>
+          <RiverBreakoutTabs.Heading>Review</RiverBreakoutTabs.Heading>
+          <RiverBreakoutTabs.Content>
+            <Text>Review content</Text>
+            <Button>Start reviewing</Button>
+            <Link href="#">Explore reviews</Link>
+          </RiverBreakoutTabs.Content>
+          <RiverBreakoutTabs.Visual>
+            <MockVisual label="review visual" />
+          </RiverBreakoutTabs.Visual>
+        </RiverBreakoutTabs.Item>
+      </RiverBreakoutTabs>,
+    )
+
+    const tabs = getAllByRole('tab')
+    const buttons = [getByRole('button', {name: 'Start planning'}), getByRole('button', {name: 'Start reviewing'})]
+    expect(buttons.every(button => button.closest('[role="tablist"]') === null)).toBe(true)
+    expect(getByRole('link', {name: 'Explore planning'}).closest('[role="tablist"]')).toBeNull()
+    expect(getByRole('link', {name: 'Explore reviews'}).closest('[role="tablist"]')).toBeNull()
+    expect(getByRole('tabpanel', {name: 'Plan'})).toHaveAttribute('aria-labelledby', tabs[0].id)
+
+    await user.click(tabs[1])
+    expect(tabs[1]).toHaveAttribute('aria-selected', 'true')
+    await user.tab()
+    expect(buttons[0]).toHaveFocus()
+    await user.keyboard('{Enter}')
+    expect(tabs[1]).toHaveAttribute('aria-selected', 'true')
+    await user.tab()
+    expect(getByRole('link', {name: 'Explore planning'})).toHaveFocus()
+    await user.tab()
+    expect(buttons[1]).toHaveFocus()
+    await user.keyboard('{Enter}')
+    expect(tabs[1]).toHaveAttribute('aria-selected', 'true')
+    expect(onChange).toHaveBeenCalledTimes(1)
+    expect(await axe(container)).toHaveNoViolations()
+  })
+
+  it('renders all items when more than three are provided', () => {
+    const headings = ['Plan', 'Review', 'Ship', 'Launch']
+    const {getAllByRole, getByRole} = render(
+      <RiverBreakoutTabs>
+        <RiverBreakoutTabs.A11yHeading>Agent workflows</RiverBreakoutTabs.A11yHeading>
+        {headings.map(heading => (
+          <RiverBreakoutTabs.Item key={heading}>
+            <RiverBreakoutTabs.Heading>{heading}</RiverBreakoutTabs.Heading>
+            <RiverBreakoutTabs.Content>
+              <Text>{`${heading} content`}</Text>
+              <Button>{`${heading} action`}</Button>
+            </RiverBreakoutTabs.Content>
+            <RiverBreakoutTabs.Visual>
+              <MockVisual label={`${heading} visual`} />
+            </RiverBreakoutTabs.Visual>
+          </RiverBreakoutTabs.Item>
+        ))}
+      </RiverBreakoutTabs>,
+    )
+
+    expect(getAllByRole('tab')).toHaveLength(4)
+    for (const heading of headings) {
+      expect(getByRole('tab', {name: heading})).toBeInTheDocument()
+      expect(getByRole('group', {name: heading})).toBeVisible()
+      expect(getByRole('button', {name: `${heading} action`})).toBeVisible()
+    }
+  })
+
+  it('keeps desktop content groups labelled by their corresponding tabs when selection changes', async () => {
+    const user = userEvent.setup()
+    const headings = ['Plan', 'Review']
+    const {getByRole} = render(
+      <RiverBreakoutTabs>
+        <RiverBreakoutTabs.A11yHeading>Agent workflows</RiverBreakoutTabs.A11yHeading>
+        {headings.map(heading => (
+          <RiverBreakoutTabs.Item key={heading}>
+            <RiverBreakoutTabs.Heading>{heading}</RiverBreakoutTabs.Heading>
+            <RiverBreakoutTabs.Content>
+              <Text>{heading} content</Text>
+              <Button>{heading} action</Button>
+            </RiverBreakoutTabs.Content>
+            <RiverBreakoutTabs.Visual>
+              <MockVisual label={`${heading} visual`} />
+            </RiverBreakoutTabs.Visual>
+          </RiverBreakoutTabs.Item>
+        ))}
+      </RiverBreakoutTabs>,
+    )
+
+    for (const selectedHeading of headings) {
+      const selectedTab = getByRole('tab', {name: selectedHeading})
+      await user.click(selectedTab)
+
+      expect(selectedTab).toHaveAttribute('aria-selected', 'true')
+      expect(getByRole('tabpanel', {name: selectedHeading})).toHaveAttribute(
+        'id',
+        selectedTab.getAttribute('aria-controls'),
+      )
+
+      for (const heading of headings) {
+        const tab = getByRole('tab', {name: heading})
+        const group = getByRole('group', {name: heading})
+
+        expect(group).toHaveAttribute('aria-labelledby', tab.id)
+        expect(group).toBeVisible()
+        expect(within(group).getByText(`${heading} content`)).toBeVisible()
+        expect(within(group).getByRole('button', {name: `${heading} action`})).toBeVisible()
+      }
+    }
+  })
+
   it('has no critical axe violations for desktop tabs', async () => {
     const {container} = render(
       <RiverBreakoutTabs>
@@ -506,6 +633,88 @@ describe('RiverBreakoutTabs', () => {
     )
 
     expect(container.querySelector('section')).toHaveClass('RiverBreakoutTabs--background-visual-full-bleed')
+  })
+
+  it('keeps non-selected wide panels hidden so their media can pause', async () => {
+    const user = userEvent.setup()
+    const {container, getAllByRole} = render(
+      <RiverBreakoutTabs>
+        <RiverBreakoutTabs.A11yHeading>Agent workflows</RiverBreakoutTabs.A11yHeading>
+        <RiverBreakoutTabs.Item>
+          <RiverBreakoutTabs.Heading>Plan</RiverBreakoutTabs.Heading>
+          <RiverBreakoutTabs.Content>
+            <Text>Plan content</Text>
+          </RiverBreakoutTabs.Content>
+          <RiverBreakoutTabs.Visual>
+            <MockVisual label="plan visual" />
+          </RiverBreakoutTabs.Visual>
+        </RiverBreakoutTabs.Item>
+        <RiverBreakoutTabs.Item>
+          <RiverBreakoutTabs.Heading>Review</RiverBreakoutTabs.Heading>
+          <RiverBreakoutTabs.Content>
+            <Text>Review content</Text>
+          </RiverBreakoutTabs.Content>
+          <RiverBreakoutTabs.Visual>
+            <MockVisual label="review visual" />
+          </RiverBreakoutTabs.Visual>
+        </RiverBreakoutTabs.Item>
+      </RiverBreakoutTabs>,
+    )
+
+    const panels = Array.from(container.querySelectorAll('[role="tabpanel"]'))
+    expect(panels).toHaveLength(2)
+
+    // Media inside a `hidden` panel is display:none, which is what allows components such as
+    // MinimalVideoPlayer to detect that they left the viewport and pause themselves.
+    expect(panels[0]).not.toHaveAttribute('hidden')
+    expect(panels[1]).toHaveAttribute('hidden')
+
+    await user.click(getAllByRole('tab')[1])
+
+    expect(panels[0]).toHaveAttribute('hidden')
+    expect(panels[1]).not.toHaveAttribute('hidden')
+  })
+
+  it('mounts only the selected visual in the narrow accordion layout', () => {
+    Object.defineProperty(window, 'innerWidth', {configurable: true, writable: true, value: 800})
+
+    const renderTree = (selectedIndex: number) => (
+      <RiverBreakoutTabs selectedIndex={selectedIndex}>
+        <RiverBreakoutTabs.A11yHeading>Agent workflows</RiverBreakoutTabs.A11yHeading>
+        <RiverBreakoutTabs.Item>
+          <RiverBreakoutTabs.Heading>Plan</RiverBreakoutTabs.Heading>
+          <RiverBreakoutTabs.Content>
+            <Text>Plan content</Text>
+          </RiverBreakoutTabs.Content>
+          <RiverBreakoutTabs.Visual>
+            <MockVisual label="plan visual" />
+          </RiverBreakoutTabs.Visual>
+        </RiverBreakoutTabs.Item>
+        <RiverBreakoutTabs.Item>
+          <RiverBreakoutTabs.Heading>Review</RiverBreakoutTabs.Heading>
+          <RiverBreakoutTabs.Content>
+            <Text>Review content</Text>
+          </RiverBreakoutTabs.Content>
+          <RiverBreakoutTabs.Visual>
+            <MockVisual label="review visual" />
+          </RiverBreakoutTabs.Visual>
+        </RiverBreakoutTabs.Item>
+      </RiverBreakoutTabs>
+    )
+
+    const {container, getByAltText, queryByAltText, rerender} = render(renderTree(0))
+
+    expect(container.querySelectorAll('img')).toHaveLength(1)
+    const planVisual = getByAltText('plan visual')
+    expect(queryByAltText('review visual')).toBeNull()
+
+    rerender(renderTree(1))
+
+    // Switching items unmounts the previous visual entirely, which stops any media it contained.
+    expect(container.querySelectorAll('img')).toHaveLength(1)
+    expect(planVisual.isConnected).toBe(false)
+    expect(queryByAltText('plan visual')).toBeNull()
+    expect(getByAltText('review visual')).toBeInTheDocument()
   })
 
   it('renders a single persistent backgroundVisual in the narrow accordion layout', () => {

@@ -38,6 +38,8 @@
   "with_videos_item_backlog_body": "Copilot に大きな作業項目を分解させ、チームで改善できる実践的な初稿を作成します。",
   "with_videos_item_backlog_link": "概要を読む",
   "video_title_planning": "Copilot 計画ワークフロー動画",
+  "video_play_label": "動画を再生",
+  "video_pause_label": "動画を一時停止",
   "with_videos_item_workflow_heading": "エンドツーエンドのフローを見る",
   "with_videos_item_workflow_body": "プロンプト、編集、検証がひと続きの開発フローとしてどうつながるかを示します。",
   "with_videos_item_workflow_link": "製品ウォークスルーを見る",

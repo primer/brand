@@ -1,5 +1,5 @@
 import React from 'react'
-import type {StoryFn, Meta} from '@storybook/react'
+import type {StoryFn, StoryObj, Meta} from '@storybook/react'
 import {Section} from '.'
 import {Hero, Stack, SectionIntro, Text, ThemeProvider} from '..'
 import styles from './Section.features.module.css'
@@ -79,6 +79,112 @@ export const ResponsivePadding: StoryFn<typeof Section> = () => {
       </Section>
     </>
   )
+}
+
+export const Gridline: StoryFn<typeof Section> = () => {
+  return (
+    <Stack direction="vertical" padding="none">
+      <Section variant="gridline">
+        <SectionIntro>
+          <SectionIntro.Heading>Gridline section</SectionIntro.Heading>
+          <SectionIntro.Description>
+            Gridlines span the section and the content area gains responsive lateral padding.
+          </SectionIntro.Description>
+        </SectionIntro>
+      </Section>
+      <Section variant="gridline">
+        <SectionIntro>
+          <SectionIntro.Heading>Another gridline section</SectionIntro.Heading>
+        </SectionIntro>
+      </Section>
+    </Stack>
+  )
+}
+
+Gridline.parameters = {
+  layout: 'fullscreen',
+}
+
+export const GridlineNarrow: StoryObj<typeof Section> = {
+  name: 'Gridline (narrow)',
+  parameters: {
+    layout: 'fullscreen',
+  },
+  globals: {
+    viewport: {value: 'iphonexr'},
+  },
+  render: Gridline,
+}
+
+export const GridlineTablet: StoryObj<typeof Section> = {
+  name: 'Gridline (tablet)',
+  parameters: {
+    layout: 'fullscreen',
+  },
+  globals: {
+    viewport: {value: 'ipad10p'},
+  },
+  render: Gridline,
+}
+
+export const AdjacentGridlineSections: StoryFn<typeof Section> = () => {
+  return (
+    <Stack direction="vertical" gap="none" padding="none">
+      <Section variant="gridline">
+        <SectionIntro>
+          <SectionIntro.Heading>First gridline section</SectionIntro.Heading>
+        </SectionIntro>
+      </Section>
+      <Section variant="gridline">
+        <SectionIntro>
+          <SectionIntro.Heading>Second gridline section</SectionIntro.Heading>
+        </SectionIntro>
+      </Section>
+    </Stack>
+  )
+}
+
+AdjacentGridlineSections.parameters = {
+  layout: 'fullscreen',
+}
+
+export const GridlineWithFullWidthContainer: StoryFn<typeof Section> = () => {
+  return (
+    <Section variant="gridline" fullWidth>
+      <Text as="div" className={styles.paddingInnerItem}>
+        Gridline section with a full width container
+      </Text>
+    </Section>
+  )
+}
+
+GridlineWithFullWidthContainer.parameters = {
+  layout: 'fullscreen',
+}
+
+export const GridlineWithBackgroundColor: StoryFn<typeof Section> = () => {
+  return (
+    <Section variant="gridline" backgroundColor="subtle">
+      <SectionIntro align="center">
+        <SectionIntro.Heading>A gridline section with a background color</SectionIntro.Heading>
+      </SectionIntro>
+    </Section>
+  )
+}
+
+GridlineWithBackgroundColor.parameters = {
+  layout: 'fullscreen',
+}
+
+export const GridlineWithBackgroundColorNarrow: StoryObj<typeof Section> = {
+  name: 'Gridline with background color (narrow)',
+  parameters: {
+    layout: 'fullscreen',
+  },
+  globals: {
+    viewport: {value: 'iphonexr'},
+  },
+  render: GridlineWithBackgroundColor,
 }
 
 export const WithFullWidthContainer: StoryFn<typeof Section> = () => {

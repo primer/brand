@@ -44,11 +44,17 @@ const _Avatar = forwardRef<HTMLImageElement, AvatarProps>(
 
     return (
       <span
-        ref={ref}
         className={clsx(styles.Avatar, sizeClass, styles[`Avatar--shape-${shape}`], className)}
         data-testid={testId || testIds.root}
       >
-        <img className={clsx(styles.Avatar__image)} src={src} alt={alt} data-testid={testIds.image} {...props} />
+        <img
+          ref={ref}
+          className={clsx(styles.Avatar__image)}
+          src={src}
+          alt={alt}
+          data-testid={testIds.image}
+          {...props}
+        />
       </span>
     )
   },

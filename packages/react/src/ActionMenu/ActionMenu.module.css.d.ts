@@ -9,7 +9,10 @@ declare const styles: {
   readonly "ActionMenu__inner-button-dropdown-icon": string;
   readonly "ActionMenu__innerButton--disabled": string;
   readonly "ActionMenu__innerButton--medium": string;
+  readonly "ActionMenu__innerButton--primary": string;
   readonly "ActionMenu__innerButton--split-button": string;
+  readonly "ActionMenu__innerButton--split-button-menu": string;
+  readonly "ActionMenu__innerButton--split-button-primary": string;
   readonly "ActionMenu__innerButton--subtle": string;
   readonly "ActionMenu__item": string;
   readonly "ActionMenu__item--medium": string;

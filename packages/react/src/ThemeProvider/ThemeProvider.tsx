@@ -1,4 +1,5 @@
-import React, {useState, useMemo, useEffect, createContext, HTMLAttributes, PropsWithChildren} from 'react'
+import React, {useState, useMemo, createContext, HTMLAttributes, PropsWithChildren} from 'react'
+import useIsomorphicLayoutEffect from '../hooks/useIsomorphicLayoutEffect'
 
 export enum ColorModesEnum {
   LIGHT = 'light',
@@ -6,13 +7,28 @@ export enum ColorModesEnum {
   AUTO = 'auto',
 }
 
-export type ColorMode = `${ColorModesEnum}`
+export type ColorMode = `${ColorModesEnum}` | (string & {})
+export type ResolvedColorMode = ColorModesEnum.LIGHT | ColorModesEnum.DARK
+
+/**
+ * Resolves a color mode to the light or dark theme it should use.
+ */
+function resolveColorMode(mode: string): ResolvedColorMode {
+  return mode === ColorModesEnum.DARK || mode.startsWith(`${ColorModesEnum.DARK}_`)
+    ? ColorModesEnum.DARK
+    : ColorModesEnum.LIGHT
+}
 
 export type ThemeContextProps = {
   /*
    * The active color mode of the parent ThemeProvider.
    */
-  colorMode: ColorMode
+  colorMode: ResolvedColorMode
+
+  /*
+   * The colorMode prop before its resolved to a valid theme.
+   */
+  originalColorMode?: ColorMode
 
   /*
    * List of available color modes.
@@ -25,9 +41,9 @@ export type ThemeProviderProps = {
 } & HTMLAttributes<HTMLDivElement>
 
 const defaultMode = ColorModesEnum.LIGHT
-
 export const ThemeContext = createContext<ThemeContextProps>({
   colorMode: defaultMode,
+  originalColorMode: defaultMode,
   availableColorModes: Object.values(ColorModesEnum),
 })
 
@@ -35,38 +51,28 @@ export const ThemeContext = createContext<ThemeContextProps>({
  * ThemeProvider is used to provide theme-related context to its child components.
  */
 export function ThemeProvider({colorMode = defaultMode, children, ...rest}: PropsWithChildren<ThemeProviderProps>) {
-  const [activeMode, setActiveMode] = useState(colorMode)
+  const [autoMode, setAutoMode] = useState<ResolvedColorMode>(defaultMode)
+  const activeMode = colorMode === ColorModesEnum.AUTO ? autoMode : resolveColorMode(colorMode)
   const availableColorModes = useMemo(() => Object.values(ColorModesEnum), [])
 
-  useEffect(() => {
-    if (colorMode === ColorModesEnum.AUTO) {
-      setActiveMode(getActiveAutoMode())
-    } else if (activeMode !== colorMode) {
-      setActiveMode(colorMode)
+  useIsomorphicLayoutEffect(() => {
+    if (colorMode !== ColorModesEnum.AUTO || typeof window.matchMedia !== 'function') return
+
+    const preference = window.matchMedia(`(prefers-color-scheme: ${ColorModesEnum.DARK})`)
+    const handlePreferenceChange = (event: MediaQueryListEvent) => {
+      setAutoMode(event.matches ? ColorModesEnum.DARK : ColorModesEnum.LIGHT)
     }
 
-    return handleSystemPreferenceChange(setActiveMode)
-  }, [colorMode, activeMode, setActiveMode])
+    preference.addEventListener('change', handlePreferenceChange)
+    setAutoMode(preference.matches ? ColorModesEnum.DARK : ColorModesEnum.LIGHT)
+    return () => preference.removeEventListener('change', handlePreferenceChange)
+  }, [colorMode])
 
   return (
-    <ThemeContext.Provider value={{colorMode: activeMode, availableColorModes}}>
-      <div data-color-mode={activeMode} {...rest}>
+    <ThemeContext.Provider value={{colorMode: activeMode, originalColorMode: colorMode, availableColorModes}}>
+      <div data-color-mode={colorMode === ColorModesEnum.AUTO ? ColorModesEnum.AUTO : activeMode} {...rest}>
         {children}
       </div>
     </ThemeContext.Provider>
   )
-}
-
-const queryBrowserPreference = () => window.matchMedia(`(prefers-color-scheme: ${ColorModesEnum.DARK})`)
-
-const getActiveAutoMode = () => {
-  const mediaQueryList: MediaQueryList = queryBrowserPreference()
-  return mediaQueryList.matches ? ColorModesEnum.DARK : ColorModesEnum.LIGHT
-}
-
-const handleSystemPreferenceChange = callback => {
-  const mediaQueryList = queryBrowserPreference()
-  const changeHandler = event => callback(event.matches ? ColorModesEnum.DARK : ColorModesEnum.LIGHT)
-  mediaQueryList.addEventListener('change', changeHandler)
-  return () => mediaQueryList.removeEventListener('change', changeHandler)
 }

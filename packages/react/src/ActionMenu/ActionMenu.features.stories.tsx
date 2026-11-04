@@ -1,4 +1,4 @@
-import type {Meta} from '@storybook/react'
+import type {Meta, StoryObj} from '@storybook/react'
 import React from 'react'
 import {expect, userEvent, within, waitFor} from 'storybook/test'
 import {ActionMenu, actionMenuOverlaySides, ActionMenuProps, ActionMenuSizes} from './ActionMenu'
@@ -11,6 +11,7 @@ import {VisualStudioCodeLogo} from '../fixtures/third-party-logos/VisualStudioCo
 import {VisualStudioLogo} from '../fixtures/third-party-logos/VisualStudioLogo'
 import {JetBrainsLogo} from '../fixtures/third-party-logos/JetBrainsLogo'
 import {NeoVimLogo} from '../fixtures/third-party-logos/NeoVimLogo'
+import {KebabHorizontalIcon, MarkGithubIcon} from '@primer/octicons-react'
 
 export default {
   title: 'Components/ActionMenu/Features',
@@ -91,6 +92,23 @@ export const DefaultModeLeadingVisual = () => {
   )
 }
 
+export const WithIconButton: StoryObj<typeof ActionMenu> = {
+  render: () => (
+    <Stack direction="horizontal" alignItems="center">
+      {ActionMenuSizes.map(size => (
+        <ActionMenu key={size} size={size}>
+          <ActionMenu.IconButton icon={KebabHorizontalIcon} aria-label="Repository actions" />
+          <ActionMenu.Overlay aria-label="Repository actions">
+            <ActionMenu.Item value="Copy link">Copy link</ActionMenu.Item>
+            <ActionMenu.Item value="Edit repository">Edit repository</ActionMenu.Item>
+            <ActionMenu.Item value="Delete repository">Delete repository</ActionMenu.Item>
+          </ActionMenu.Overlay>
+        </ActionMenu>
+      ))}
+    </Stack>
+  ),
+}
+
 export const SplitButtonMode = () => {
   const {t} = useTranslation('ActionMenu')
 
@@ -115,6 +133,26 @@ export const SplitButtonMode = () => {
       </ActionMenu.Overlay>
     </ActionMenu>
   )
+}
+
+export const SplitButtonModeWithIconButton: StoryObj<typeof ActionMenu> = {
+  render: () => (
+    <Stack direction="horizontal" alignItems="center">
+      {ActionMenuSizes.map(size => (
+        <ActionMenu key={size} mode="split-button" size={size}>
+          <ActionMenu.IconButton as="a" href="#repository" icon={MarkGithubIcon} aria-label="Open repository" />
+          <ActionMenu.Overlay aria-label="Repository actions">
+            <ActionMenu.Item as="a" href="#issues">
+              Issues
+            </ActionMenu.Item>
+            <ActionMenu.Item as="a" href="#pull-requests">
+              Pull requests
+            </ActionMenu.Item>
+          </ActionMenu.Overlay>
+        </ActionMenu>
+      ))}
+    </Stack>
+  ),
 }
 
 export const SplitButtonModeDisabled = () => {

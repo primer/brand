@@ -9,10 +9,11 @@ source: https://github.com/primer/brand/blob/main/packages/react/src/ButtonGroup
 storybook: '/brand/storybook/?path=/story/components-buttongroup--playground'
 ---
 
-import {ButtonGroupSizesProp, ButtonGroupAsProp} from './react'
+import {ButtonGroupSizesProp, ButtonGroupAsProp, ButtonGroupVariantsProp} from './react'
+import {DownloadIcon, KebabHorizontalIcon, ShareIcon} from '@primer/octicons-react'
 
 ```js
-import {ActionMenu, Button, ButtonGroup} from '@primer/react-brand'
+import {ActionMenu, Button, ButtonGroup, IconButton} from '@primer/react-brand'
 ```
 
 ## Examples
@@ -28,9 +29,28 @@ This is the default variant for the ButtonGroup component. The first item in the
 </ButtonGroup>
 ```
 
+### Joined buttons and icon buttons
+
+Set `variant="joined"` to connect any number of `Button` and `IconButton` children. Joined controls use the `secondary` variant by default so they share one visual hierarchy; explicit child variants override that default.
+
+```jsx live
+<Stack direction="vertical" alignItems="flex-start" gap="condensed">
+  <ButtonGroup variant="joined">
+    <Button>Previous</Button>
+    <Button>Today</Button>
+    <Button>Next</Button>
+  </ButtonGroup>
+  <ButtonGroup variant="joined">
+    <IconButton icon={DownloadIcon} aria-label="Download" />
+    <IconButton icon={ShareIcon} aria-label="Share" />
+    <IconButton icon={KebabHorizontalIcon} aria-label="More actions" />
+  </ButtonGroup>
+</Stack>
+```
+
 ### Action menus
 
-`ButtonGroup` supports up to two `Button` or `ActionMenu` children and applies a default `variant` to each one.
+The default ButtonGroup variant supports up to two children and applies `primary` to the first action and `secondary` to the second. Joined groups support any number of `Button` and `IconButton` children. `ActionMenu` is supported only by the default variant.
 
 Explicit `variant` overrides to `Button` or `ActionMenu.Button` will override the default values.
 
@@ -79,7 +99,8 @@ The `Button` component can render as a `button` or `a` HTML element. By default,
 
 ### ButtonGroup
 
-| Name         | Type                     |  Default   | Description                             |
-| :----------- | :----------------------- | :--------: | :-------------------------------------- |
-| `buttonSize` | <ButtonGroupSizesProp /> | `'medium'` | The size variations available in Button |
-| `buttonsAs`  | <ButtonGroupAsProp />    | `'button'` | The HTML variations available in Button |
+| Name         | Type                        |   Default   | Description                             |
+| :----------- | :-------------------------- | :---------: | :-------------------------------------- |
+| `buttonSize` | <ButtonGroupSizesProp />    | `'medium'`  | The size variations available in Button |
+| `buttonsAs`  | <ButtonGroupAsProp />       | `'button'`  | The HTML variations available in Button |
+| `variant`    | <ButtonGroupVariantsProp /> | `'default'` | The visual presentation of the group    |

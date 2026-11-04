@@ -53,7 +53,7 @@
 .Button__icon-visual {
   display: flex;
   align-self: center;
-  height: var(--base-size-16);
+  height: var(--brand-Button-icon-size-medium);
   width: auto;
   fill: currentcolor;
 }
@@ -81,11 +81,11 @@
   border-width: var(--brand-borderWidth-thin);
 }
 
-.Button--primary:not(.Button[disabled], .Button[aria-disabled='true'], [aria-expanded='true']):hover {
+.Button--primary:where(:not(.Button[disabled], .Button[aria-disabled='true'], [aria-expanded='true'])):hover {
   background-color: var(--brand-button-primary-bgColor-hover);
 }
 
-.Button--primary:not(.Button[disabled], .Button[aria-disabled='true']):active,
+.Button--primary:where(:not(.Button[disabled], .Button[aria-disabled='true'])):active,
 .Button--primary[aria-expanded='true'] {
   background: var(--brand-button-primary-bgColor-active);
   border-color: var(--brand-button-primary-borderColor-active);
@@ -101,12 +101,8 @@
   background-color: var(--brand-button-primary-bgColor-disabled);
 }
 
-.Button--primary:disabled .Button-arrow--disabled,
-.Button--primary[aria-disabled='true'] .Button-arrow--disabled,
-.Button--primary.Button--disabled .Button-arrow--disabled,
-.Button--primary:disabled .Button__icon-visual--disabled,
-.Button--primary[aria-disabled='true'] .Button__icon-visual--disabled,
-.Button--primary.Button--disabled .Button__icon-visual--disabled,
+.Button--primary:where(:disabled, [aria-disabled='true'], .Button--disabled)
+  :where(.Button-arrow--disabled, .Button__icon-visual--disabled),
 .Button--label-primary.Button-label--disabled {
   color: var(--brand-button-primary-fgColor-disabled);
 }
@@ -120,12 +116,12 @@
   backdrop-filter: blur(var(--base-size-20));
 }
 
-.Button--secondary:not(.Button[disabled], .Button[aria-disabled='true'], [aria-expanded='true']):hover {
+.Button--secondary:where(:not(.Button[disabled], .Button[aria-disabled='true'], [aria-expanded='true'])):hover {
   background-color: var(--brand-button-secondary-bgColor-hover);
   border-color: var(--brand-button-secondary-borderColor-hover);
 }
 
-.Button--secondary:not(.Button[disabled], .Button[aria-disabled='true']):active,
+.Button--secondary:where(:not(.Button[disabled], .Button[aria-disabled='true'])):active,
 .Button--secondary[aria-expanded='true'] {
   background-color: var(--brand-button-secondary-bgColor-active);
   border-color: var(--brand-button-secondary-borderColor-active);
@@ -135,12 +131,8 @@
   border-color: var(--brand-button-secondary-fgColor-disabled);
 }
 
-.Button--secondary:disabled .Button-arrow--disabled,
-.Button--secondary[aria-disabled='true'] .Button-arrow--disabled,
-.Button--secondary.Button--disabled .Button-arrow--disabled,
-.Button--secondary:disabled .Button__icon-visual--disabled,
-.Button--secondary[aria-disabled='true'] .Button__icon-visual--disabled,
-.Button--secondary.Button--disabled .Button__icon-visual--disabled,
+.Button--secondary:where(:disabled, [aria-disabled='true'], .Button--disabled)
+  :where(.Button-arrow--disabled, .Button__icon-visual--disabled),
 .Button--label-secondary.Button-label--disabled {
   color: var(--brand-button-secondary-fgColor-disabled);
 }
@@ -155,12 +147,12 @@
   backdrop-filter: blur(var(--base-size-20));
 }
 
-.Button--subtle:not(.Button[disabled], .Button[aria-disabled='true'], [aria-expanded='true']):hover {
+.Button--subtle:where(:not(.Button[disabled], .Button[aria-disabled='true'], [aria-expanded='true'])):hover {
   background-color: var(--brand-button-subtle-bgColor-hover);
   border-color: var(--brand-button-subtle-borderColor-hover);
 }
 
-.Button--subtle:not(.Button[disabled], .Button[aria-disabled='true']):active,
+.Button--subtle:where(:not(.Button[disabled], .Button[aria-disabled='true'])):active,
 .Button--subtle[aria-expanded='true'] {
   background-color: var(--brand-button-subtle-bgColor-active);
   border-color: var(--brand-button-subtle-borderColor-active);
@@ -170,12 +162,8 @@
   color: var(--brand-button-subtle-fgColor-rest);
 }
 
-.Button--subtle:disabled .Button-arrow--disabled,
-.Button--subtle[aria-disabled='true'] .Button-arrow--disabled,
-.Button--subtle.Button--disabled .Button-arrow--disabled,
-.Button--subtle:disabled .Button__icon-visual--disabled,
-.Button--subtle[aria-disabled='true'] .Button__icon-visual--disabled,
-.Button--subtle.Button--disabled .Button__icon-visual--disabled,
+.Button--subtle:where(:disabled, [aria-disabled='true'], .Button--disabled)
+  :where(.Button-arrow--disabled, .Button__icon-visual--disabled),
 .Button--label-subtle.Button-label--disabled {
   color: var(--brand-button-subtle-fgColor-disabled);
 }
@@ -183,24 +171,32 @@
 /* size */
 
 .Button--size-small {
-  min-height: var(--brand-control-small-size);
+  min-height: var(--brand-Button-control-size-small);
   padding-inline: var(--brand-control-small-paddingInline-normal);
 }
 
 .Button--size-medium {
-  min-height: var(--brand-control-medium-size);
+  min-height: var(--brand-Button-control-size-medium);
   padding: var(--brand-control-medium-paddingBlock-condensed) var(--base-size-20);
 }
 
 .Button--size-large {
-  min-height: var(--brand-control-large-size);
+  min-height: var(--brand-Button-control-size-large);
   padding: var(--brand-control-large-paddingBlock-condensed) var(--brand-control-large-paddingInline-spacious);
 }
 
-.Button--size-large .Button__icon-visual,
-.Button--size-large .Button-arrow {
-  height: var(--base-size-20);
-  width: var(--base-size-20);
+/* Keep visual sizing overridable by composed controls such as IconButton. */
+.Button--size-small :where(.Button__icon-visual) {
+  height: var(--brand-Button-icon-size-small);
+}
+
+.Button--size-medium :where(.Button__icon-visual) {
+  height: var(--brand-Button-icon-size-medium);
+}
+
+.Button--size-large :where(.Button__icon-visual, .Button-arrow) {
+  height: var(--brand-Button-icon-size-large);
+  width: var(--brand-Button-icon-size-large);
 }
 
 .Button--label-medium {

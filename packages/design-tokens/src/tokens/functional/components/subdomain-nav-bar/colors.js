@@ -49,8 +49,8 @@ module.exports = {
     border: {
       nav: {
         default: {
-          value: 'var(--base-color-scale-gray-9)',
-          dark: 'var(--base-color-scale-gray-3)',
+          value: 'var(--base-color-scale-green-6)',
+          dark: 'var(--base-color-scale-green-3)',
         },
         pressed: {
           value: 'var(--base-color-scale-black-0)',

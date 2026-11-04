@@ -11,7 +11,7 @@ thumbnail_darkMode: '/images/thumbnails/tooltip-thumbnail-dark.png'
 ---
 
 import {ScreenFullIcon} from '@primer/octicons-react'
-import {TooltipDirectionProps, TooltipTypeProps} from './react'
+import {TooltipDelayProps, TooltipDirectionProps, TooltipTypeProps} from './react'
 
 ```js
 import {Tooltip} from '@primer/react-brand'
@@ -29,7 +29,8 @@ import {Tooltip} from '@primer/react-brand'
 
 ### Custom direction
 
-By default, tooltips appear below the element. You can change the direction by passing the `direction` prop with a value of `n`, `e`, `s`, or `w`.
+By default, tooltips appear below the element. You can change the direction by passing the `direction` prop with a cardinal or diagonal direction.
+Supported values are `n`, `ne`, `e`, `se`, `s`, `sw`, `w`, and `nw`.
 
 As long as there is enough room in the viewport, the tooltip will appear in the specified direction. If there is not enough room, the tooltip will appear in whatever direction it can place the tooltip without overflowing the viewport.
 
@@ -39,29 +40,39 @@ As long as there is enough room in the viewport, the tooltip will appear in the 
 </Tooltip>
 ```
 
-### Substitute a visible label
+### Delay
 
-If a ubiquitously understood icon is used in place of a text label, you can use the `type` to provide a text label for assistive technologies such as screen readers.
+Tooltips use a short pointer delay by default to avoid appearing while the pointer passes over a trigger. Use `medium` or `long` for groups of familiar controls where immediate tooltips would be distracting. Keyboard focus always opens the tooltip immediately.
+
+```jsx live
+<Tooltip text="Sample tooltip content" delay="long">
+  <Button>Long delay</Button>
+</Tooltip>
+```
+
+### With an icon button
+
+Use `IconButton` when a familiar Octicon can replace a visible text label. Its required `aria-label` provides the accessible name and automatically appears in a tooltip on hover and keyboard focus, so it does not need to be wrapped in `Tooltip`.
 
 Use this with caution. It is generally better to use a visible label for better usability and accessibility.
 
 ```jsx live
-<Tooltip text="Go fullscreen" type="label">
-  <Button>
-    <ScreenFullIcon />
-  </Button>
-</Tooltip>
+<IconButton icon={ScreenFullIcon} aria-label="Go fullscreen" />
 ```
+
+For other custom icon-only controls, use `type="label"` to make the tooltip text the trigger's accessible name.
 
 ## Component props
 
-| name        | type                      | default         | required | description                                                                                                                                                                                                |
-| ----------- | ------------------------- | --------------- | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `direction` | <TooltipDirectionProps /> | `'s'`           | `false`  | The side the tooltip appears on                                                                                                                                                                            |
-| `text`      | `string`                  | `undefined`     | `true`   | The text to be displayed in the tooltip                                                                                                                                                                    |
-| `type`      | <TooltipTypeProps />      | `'description'` | `false`  | The type of tooltip. `label` is used for labelling the element that triggers tooltip. `description` is used for describing or adding a supplementary information to the element that triggers the tooltip. |
+| name        | type                      | default         | required | description                                                                                                                                                                              |
+| ----------- | ------------------------- | --------------- | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `direction` | <TooltipDirectionProps /> | `'s'`           | `false`  | The side the tooltip appears on                                                                                                                                                          |
+| `delay`     | <TooltipDelayProps />     | `'short'`       | `false`  | Pointer hover delay: `short` (50ms), `medium` (400ms), or `long` (1200ms). Keyboard focus is immediate.                                                                                  |
+| `text`      | `string`                  | `undefined`     | `true`   | The text to be displayed in the tooltip                                                                                                                                                  |
+| `type`      | <TooltipTypeProps />      | `'description'` | `false`  | The tooltip's semantic relationship to its trigger. `label` provides the accessible name, while `description` provides supplementary information alongside the trigger's existing label. |
 
 ## Related components
 
 - [Popover](/components/Popover): For displaying more complex interactive content that appears when triggered
 - [Button](/components/Button): Often used in conjunction with tooltips
+- [Icon button](/components/IconButton): For familiar icon-only actions with automatic tooltips

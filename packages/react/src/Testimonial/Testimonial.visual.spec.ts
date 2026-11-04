@@ -7,6 +7,16 @@ import {test, expect} from '@playwright/test'
 
 // eslint-disable-next-line i18n-text/no-en
 test.describe('Visual Comparison: Testimonial', () => {
+  test('Testimonial / Default', async ({page}) => {
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-testimonial--default&viewMode=story', {
+      waitUntil: 'networkidle',
+    })
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+    await page.waitForTimeout(500)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
   test('Testimonial / Playground', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-testimonial--playground&viewMode=story', {
       waitUntil: 'networkidle',

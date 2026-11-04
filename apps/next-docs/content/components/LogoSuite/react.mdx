@@ -94,6 +94,184 @@ import {LogoSuite} from '@primer/react-brand'
 </LogoSuite>
 ```
 
+### Linked logos
+
+Wrap every logo in a native `<a>` element to add links and preserve its original colors. Do not mix linked and unlinked logos or use custom link components.
+
+```jsx live
+<LogoSuite>
+  <LogoSuite.Heading visuallyHidden>Featured logos</LogoSuite.Heading>
+  <LogoSuite.Logobar>
+    <a href="/microsoft" aria-label="Microsoft">
+      <svg role="img" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg" focusable="false">
+        <title>Microsoft</title>
+        <path fill="#F1511B" d="M121.666 121.666H0V0h121.666z" />
+        <path fill="#80CC28" d="M256 121.666H134.335V0H256z" />
+        <path fill="#00ADEF" d="M121.663 256.002H0V134.336h121.663z" />
+        <path fill="#FBBC09" d="M256 256.002H134.335V134.336H256z" />
+      </svg>
+    </a>
+    <a href="/azure" aria-label="Azure">
+      <svg role="img" viewBox="0 0 96 96" xmlns="http://www.w3.org/2000/svg" focusable="false">
+        <title>Azure</title>
+        <defs>
+          <linearGradient
+            id="azureGradientA"
+            x1="-1032.17"
+            x2="-1059.21"
+            y1="145.31"
+            y2="65.43"
+            gradientTransform="matrix(1 0 0 -1 1075 158)"
+            gradientUnits="userSpaceOnUse"
+          >
+            <stop offset="0" stopColor="#114a8b" />
+            <stop offset="1" stopColor="#0669bc" />
+          </linearGradient>
+          <linearGradient
+            id="azureGradientB"
+            x1="-1023.73"
+            x2="-1029.98"
+            y1="108.08"
+            y2="105.97"
+            gradientTransform="matrix(1 0 0 -1 1075 158)"
+            gradientUnits="userSpaceOnUse"
+          >
+            <stop offset="0" stopOpacity=".3" />
+            <stop offset=".07" stopOpacity=".2" />
+            <stop offset=".32" stopOpacity=".1" />
+            <stop offset=".62" stopOpacity=".05" />
+            <stop offset="1" stopOpacity="0" />
+          </linearGradient>
+          <linearGradient
+            id="azureGradientC"
+            x1="-1027.16"
+            x2="-997.48"
+            y1="147.64"
+            y2="68.56"
+            gradientTransform="matrix(1 0 0 -1 1075 158)"
+            gradientUnits="userSpaceOnUse"
+          >
+            <stop offset="0" stopColor="#3ccbf4" />
+            <stop offset="1" stopColor="#2892df" />
+          </linearGradient>
+        </defs>
+        <path
+          fill="url(#azureGradientA)"
+          d="M33.34 6.54h26.04l-27.03 80.1a4.15 4.15 0 0 1-3.94 2.81H8.15a4.14 4.14 0 0 1-3.93-5.47L29.4 9.38a4.15 4.15 0 0 1 3.94-2.83z"
+        />
+        <path
+          fill="#0078d4"
+          d="M71.17 60.26H29.88a1.91 1.91 0 0 0-1.3 3.31l26.53 24.76a4.17 4.17 0 0 0 2.85 1.13h23.38z"
+        />
+        <path
+          fill="url(#azureGradientB)"
+          d="M33.34 6.54a4.12 4.12 0 0 0-3.95 2.88L4.25 83.92a4.14 4.14 0 0 0 3.91 5.54h20.79a4.44 4.44 0 0 0 3.4-2.9l5.02-14.78 17.91 16.7a4.24 4.24 0 0 0 2.67.97h23.29L71.02 60.26H41.24L59.47 6.55z"
+        />
+        <path
+          fill="url(#azureGradientC)"
+          d="M66.6 9.36a4.14 4.14 0 0 0-3.93-2.82H33.65a4.15 4.15 0 0 1 3.93 2.82l25.18 74.62a4.15 4.15 0 0 1-3.93 5.48h29.02a4.15 4.15 0 0 0 3.93-5.48z"
+        />
+      </svg>
+    </a>
+    <a href="/microsoft-copilot" aria-label="Microsoft Copilot">
+      <svg role="img" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="2 4 43.998 40" focusable="false">
+        <title>Microsoft Copilot</title>
+        <defs>
+          <radialGradient
+            id="copilotGradientA"
+            cx="0"
+            cy="0"
+            r="1"
+            gradientTransform="matrix(-10.96051 -13.38922 12.59013 -10.30637 38.005 20.514)"
+            gradientUnits="userSpaceOnUse"
+          >
+            <stop offset=".096" stopColor="#00AEFF" />
+            <stop offset=".773" stopColor="#2253CE" />
+            <stop offset="1" stopColor="#0736C4" />
+          </radialGradient>
+          <radialGradient
+            id="copilotGradientB"
+            cx="0"
+            cy="0"
+            r="1"
+            gradientTransform="rotate(51.84 -28.201 27.85) scale(15.9912 15.5119)"
+            gradientUnits="userSpaceOnUse"
+          >
+            <stop stopColor="#FFB657" />
+            <stop offset=".634" stopColor="#FF5F3D" />
+            <stop offset=".923" stopColor="#C02B3C" />
+          </radialGradient>
+          <radialGradient
+            id="copilotGradientE"
+            cx="0"
+            cy="0"
+            r="1"
+            gradientTransform="rotate(109.274 16.301 20.802) scale(38.3873 45.9867)"
+            gradientUnits="userSpaceOnUse"
+          >
+            <stop offset=".066" stopColor="#8C48FF" />
+            <stop offset=".5" stopColor="#F2598A" />
+            <stop offset=".896" stopColor="#FFB152" />
+          </radialGradient>
+          <linearGradient
+            id="copilotGradientC"
+            x1="12.5"
+            x2="14.788"
+            y1="7.5"
+            y2="33.975"
+            gradientUnits="userSpaceOnUse"
+          >
+            <stop offset=".156" stopColor="#0D91E1" />
+            <stop offset=".487" stopColor="#52B471" />
+            <stop offset=".652" stopColor="#98BD42" />
+            <stop offset=".937" stopColor="#FFC800" />
+          </linearGradient>
+          <linearGradient id="copilotGradientD" x1="14.5" x2="15.75" y1="4" y2="32.885" gradientUnits="userSpaceOnUse">
+            <stop stopColor="#3DCBFF" />
+            <stop offset=".247" stopColor="#0588F7" stopOpacity="0" />
+          </linearGradient>
+          <linearGradient
+            id="copilotGradientF"
+            x1="42.586"
+            x2="42.569"
+            y1="13.346"
+            y2="21.215"
+            gradientUnits="userSpaceOnUse"
+          >
+            <stop offset=".058" stopColor="#F8ADFA" />
+            <stop offset=".708" stopColor="#A86EDD" stopOpacity="0" />
+          </linearGradient>
+        </defs>
+        <path
+          fill="url(#copilotGradientA)"
+          d="M34.142 7.325A4.63 4.63 0 0 0 29.7 4h-1.35a4.63 4.63 0 0 0-4.554 3.794L21.48 20.407l.575-1.965a4.63 4.63 0 0 1 4.444-3.33h7.853l3.294 1.282 3.175-1.283h-.926a4.63 4.63 0 0 1-4.443-3.325l-1.31-4.461z"
+        />
+        <path
+          fill="url(#copilotGradientB)"
+          d="M14.33 40.656A4.63 4.63 0 0 0 18.779 44h2.87a4.63 4.63 0 0 0 4.629-4.51l.312-12.163-.654 2.233a4.63 4.63 0 0 1-4.443 3.329h-7.919l-2.823-1.532-3.057 1.532h.912a4.63 4.63 0 0 1 4.447 3.344l1.279 4.423z"
+        />
+        <path
+          fill="url(#copilotGradientC)"
+          d="M29.5 4H13.46c-4.583 0-7.332 6.057-9.165 12.113C2.123 23.29-.72 32.885 7.503 32.885h6.925a4.63 4.63 0 0 0 4.456-3.358 2078.617 2078.617 0 0 1 4.971-17.156c.843-2.843 1.544-5.284 2.621-6.805C27.08 4.714 28.086 4 29.5 4z"
+        />
+        <path
+          fill="url(#copilotGradientD)"
+          d="M29.5 4H13.46c-4.583 0-7.332 6.057-9.165 12.113C2.123 23.29-.72 32.885 7.503 32.885h6.925a4.63 4.63 0 0 0 4.456-3.358 2078.617 2078.617 0 0 1 4.971-17.156c.843-2.843 1.544-5.284 2.621-6.805C27.08 4.714 28.086 4 29.5 4z"
+        />
+        <path
+          fill="url(#copilotGradientE)"
+          d="M18.498 44h16.04c4.582 0 7.332-6.058 9.165-12.115 2.171-7.177 5.013-16.775-3.208-16.775h-6.926a4.63 4.63 0 0 0-4.455 3.358 2084.036 2084.036 0 0 1-4.972 17.16c-.842 2.843-1.544 5.285-2.62 6.806-.604.852-1.61 1.566-3.024 1.566z"
+        />
+        <path
+          fill="url(#copilotGradientF)"
+          d="M18.498 44h16.04c4.582 0 7.332-6.058 9.165-12.115 2.171-7.177 5.013-16.775-3.208-16.775h-6.926a4.63 4.63 0 0 0-4.455 3.358 2084.036 2084.036 0 0 1-4.972 17.16c-.842 2.843-1.544 5.285-2.62 6.806-.604.852-1.61 1.566-3.024 1.566z"
+        />
+      </svg>
+    </a>
+  </LogoSuite.Logobar>
+</LogoSuite>
+```
+
 ### Optional heading and description
 
 ```jsx live
@@ -458,6 +636,30 @@ Logobars using the `emphasis` variant will appear with relatively higher contras
 </Stack>
 ```
 
+### Gridline variant
+
+The `gridline` variant displays the heading and description above the logos in a single-column layout.
+
+```jsx live
+<LogoSuite variant="gridline">
+  <LogoSuite.Heading>Trusted by the world's leading organizations</LogoSuite.Heading>
+  <LogoSuite.Logobar marquee>
+    <svg role="img" viewBox="0 0 300 100">
+      <title>Placeholder logo</title>
+      <rect width="100%" height="100%" />
+    </svg>
+    <svg role="img" viewBox="0 0 300 100">
+      <title>Placeholder logo</title>
+      <rect width="100%" height="100%" />
+    </svg>
+    <svg role="img" viewBox="0 0 300 100">
+      <title>Placeholder logo</title>
+      <rect width="100%" height="100%" />
+    </svg>
+  </LogoSuite.Logobar>
+</LogoSuite>
+```
+
 ### Gridline expressive variant
 
 The `gridline-expressive` variant displays the logo suite in a side-by-side layout with heading/description on the left and logos on the right, separated by a vertical border.
@@ -672,11 +874,11 @@ Forwards all props from the [Text component](/typography/Text), including `as`, 
 
 ### LogoSuite.Logobar
 
-| Name             | Type                                   | Default     | Description                                                                                   |
-| :--------------- | :------------------------------------- | :---------- | :-------------------------------------------------------------------------------------------- |
-| `children`       | <LogoSuiteLogobarChildrenProp />       | `undefined` | Logobar requires SVG or Image elements to render correctly                                    |
-| `marquee`        | `boolean`                              | `false`     | Enables an optional marquee effect.                                                           |
-| `marqueeSpeed`   | <LogoSuiteLogobarMarqueeSpeedProp />   | `'normal'`  | The speed of the marquee effect.                                                              |
-| `gap`            | <LogoSuiteLogobarGapProp />            | `'default'` | The gap between logos.                                                                        |
-| `variant`        | <LogoSuiteLogobarVariantProp />        | `undefined` | The stylistic variant of the LogoBar.                                                         |
-| `takeoverButton` | <LogoSuiteLogobarTakeoverButtonProp /> | `undefined` | Displays a takeover button on hover/focus. Cannot be used with `marquee`. Requires a `label`. |
+| Name             | Type                                   | Default     | Description                                                                                                       |
+| :--------------- | :------------------------------------- | :---------- | :---------------------------------------------------------------------------------------------------------------- |
+| `children`       | <LogoSuiteLogobarChildrenProp />       | `undefined` | SVG/Image elements, either all unlinked or all wrapped in native anchors. Custom link components are unsupported. |
+| `marquee`        | `boolean`                              | `false`     | Enables an optional marquee effect.                                                                               |
+| `marqueeSpeed`   | <LogoSuiteLogobarMarqueeSpeedProp />   | `'normal'`  | The speed of the marquee effect.                                                                                  |
+| `gap`            | <LogoSuiteLogobarGapProp />            | `'default'` | The gap between logos.                                                                                            |
+| `variant`        | <LogoSuiteLogobarVariantProp />        | `undefined` | The stylistic variant of the LogoBar.                                                                             |
+| `takeoverButton` | <LogoSuiteLogobarTakeoverButtonProp /> | `undefined` | Displays a takeover button on hover/focus. Cannot be used with `marquee`. Requires a `label`.                     |

@@ -32,6 +32,13 @@
   -moz-osx-font-smoothing: auto;
 }
 
+@media (prefers-color-scheme: dark) {
+  [data-color-mode='auto'] .Token {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: auto;
+  }
+}
+
 .Token--variant-default {
   background-color: var(--brand-Token-bgColor-default);
   color: var(--brand-Token-fgColor-default);

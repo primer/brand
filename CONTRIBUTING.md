@@ -25,11 +25,15 @@ Guidelines for bug reports:
 
 ## Pull requests
 
-Good pull requests are a fantastic help. They should remain focused in scope and avoid containing code and commits unrelated to the problem or feature you're adding.
+Good pull requests are focused in scope and avoid containing code and commits unrelated to the problem or feature you're adding.
 
 **Please ask first** before embarking on any significant pull request (e.g. implementing features, refactoring code, porting to a different language), otherwise you risk spending a lot of time working on something that the project's developers might not want to merge into the project.
 
 ### Updating Primer Brand
+
+Please read the [authoring guidelines](contributor-docs/authoring-guidelines.md) for preferred component / codebase authoring conventions.
+
+Agent-led contributions should refer to [AGENTS.md](AGENTS.md).
 
 1. Clone [this repository](https://github.com/primer/brand).
 1. Create a new feature branch: `git checkout -b my-handle/my-branch-name`.

@@ -11,10 +11,14 @@ import {Select} from '../Select'
 import {TextInput} from '../TextInput'
 import {Textarea} from '../Textarea'
 import {Radio} from '../Radio'
+import {ToggleSwitch} from '../ToggleSwitch'
+import type {ToggleSwitchInternalProps} from '../ToggleSwitch/ToggleSwitch'
+import {Spinner} from '../../Spinner/Spinner'
 import {Text} from '../../Text'
 
 import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/control/colors-with-modes.css'
 import styles from './FormControl.module.css'
+import toggleSwitchStyles from '../ToggleSwitch/ToggleSwitch.module.css'
 
 export type FormControlProps = BaseProps<HTMLElement> & {
   /**
@@ -69,14 +73,21 @@ const Root = ({
   const uniqueId = useId(id)
   const childrenArr = React.Children.toArray(children)
 
-  const isInlineControl = childrenArr.some(
+  const isCheckboxOrRadio = childrenArr.some(
     child => React.isValidElement(child) && (child.type === Checkbox || child.type === Radio),
   )
-
-  const containsHint = childrenArr.some(child => React.isValidElement(child) && child.type === FormControlHint)
-  const containsValidation = childrenArr.some(
-    child => React.isValidElement(child) && child.type === FormControlValidation,
-  )
+  const toggleSwitchElement = childrenArr.find(child => React.isValidElement(child) && child.type === ToggleSwitch) as
+    | React.ReactElement<ToggleSwitchInternalProps>
+    | undefined
+  const isToggleSwitch = Boolean(toggleSwitchElement)
+  const describedBy =
+    [
+      childrenArr.some(child => React.isValidElement(child) && child.type === FormControlHint) && `${uniqueId}-hint`,
+      childrenArr.some(child => React.isValidElement(child) && child.type === FormControlValidation) &&
+        `${uniqueId}-validation`,
+    ]
+      .filter(Boolean)
+      .join(' ') || undefined
 
   return (
     <section
@@ -84,7 +95,8 @@ const Root = ({
       className={clsx(
         styles.FormControl,
         fullWidth && styles[`FormControl--fullWidth`],
-        isInlineControl && styles['FormControl--checkbox'],
+        isCheckboxOrRadio && styles['FormControl--checkbox'],
+        isToggleSwitch && styles['FormControl--toggle-switch'],
         hasBorder && styles['FormControl--border'],
         className,
       )}
@@ -92,11 +104,6 @@ const Root = ({
     >
       {React.Children.map(children, child => {
         if (!React.isValidElement(child)) return child
-
-        const describedBy =
-          [containsHint && `${uniqueId}-hint`, containsValidation && `${uniqueId}-validation`]
-            .filter(Boolean)
-            .join(' ') || undefined
 
         if (child.type === TextInput) {
           const element = child as React.ReactElement<React.ComponentProps<typeof TextInput>>
@@ -155,7 +162,7 @@ const Root = ({
         if (child.type === Radio) {
           const element = child as React.ReactElement<React.ComponentProps<typeof Radio>>
           return React.cloneElement(element, {
-            className: clsx(isInlineControl && styles['FormControl-control--radio'], element.props.className),
+            className: clsx(isCheckboxOrRadio && styles['FormControl-control--radio'], element.props.className),
             id: uniqueId,
             name: element.props.name,
             required: element.props.required || required,
@@ -163,23 +170,60 @@ const Root = ({
           })
         }
 
+        if (child.type === ToggleSwitch) {
+          const element = child as React.ReactElement<ToggleSwitchInternalProps>
+          const descriptions = [element.props['aria-describedby'], describedBy].filter(Boolean).join(' ')
+          return React.cloneElement(element, {
+            className: clsx(styles['FormControl-control--toggle-switch'], element.props.className),
+            id: uniqueId,
+            toggleSwitchSpinnerInLabel: childrenArr.some(
+              labelChild =>
+                React.isValidElement<React.ComponentProps<typeof FormControlLabel>>(labelChild) &&
+                labelChild.type === FormControlLabel &&
+                !labelChild.props.visuallyHidden,
+            ),
+            'aria-describedby': descriptions ? [...new Set(descriptions.split(/\s+/))].join(' ') : undefined,
+            'aria-invalid': element.props['aria-invalid'] ?? (validationStatus === 'error' ? true : undefined),
+          })
+        }
+
         if (child.type === FormControlLabel) {
           const element = child as React.ReactElement<React.ComponentProps<typeof FormControlLabel>>
           return React.cloneElement(element, {
-            className: clsx(isInlineControl && styles['FormControl-label--checkbox'], element.props.className),
+            className: clsx(
+              isCheckboxOrRadio && styles['FormControl-label--checkbox'],
+              isToggleSwitch && styles['FormControl-label--toggle-switch'],
+              element.props.className,
+            ),
             htmlFor: uniqueId,
-            children: element.props.children,
-            required,
+            children:
+              toggleSwitchElement?.props.loading && !element.props.visuallyHidden
+                ? [
+                    ...React.Children.toArray(element.props.children),
+                    <span
+                      key="toggleSwitch-spinner"
+                      aria-hidden="true"
+                      className={styles['FormControl-toggleSwitch-spinnerSlot']}
+                    >
+                      <Spinner
+                        size="small"
+                        accessibleLabel={null}
+                        className={toggleSwitchStyles['ToggleSwitch-spinner']}
+                        data-testid={ToggleSwitch.testIds.spinner}
+                      />
+                    </span>,
+                  ]
+                : element.props.children,
+            required: isToggleSwitch ? false : required,
             validationStatus,
             size,
-            showRequiredIndicator: isInlineControl ? false : element.props.showRequiredIndicator,
+            showRequiredIndicator: isCheckboxOrRadio ? false : element.props.showRequiredIndicator,
           })
         }
 
         if (child.type === FormControlValidation) {
           const element = child as React.ReactElement<React.ComponentProps<typeof FormControlValidation>>
           return React.cloneElement(element, {
-            className: clsx(isInlineControl && styles['FormControl-validation-checkbox'], element.props.className),
             validationStatus,
             id: `${uniqueId}-validation`,
           })

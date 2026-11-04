@@ -1,5 +1,223 @@
 # @primer/brand-primitives
 
+## 0.80.1
+
+### Patch Changes
+
+- [#1514](https://github.com/primer/brand/pull/1514) [`741a759`](https://github.com/primer/brand/commit/741a7593761d277fcee31efd9c14f75c4e709cff) Thanks [@rezrah](https://github.com/rezrah)! - Updated `IconButton` sizing and icon colors.
+
+  - `size` now supports arbitrary `number` values for granular control. Icon sizes scale automatically with the size of the button.
+
+  ```jsx
+  <IconButton icon={SearchIcon} aria-label="Search" size={80} />
+  ```
+
+  - `secondary`, `subtle`, and `invisible` variants now use muted icon colors by default for a softer visual appearance.
+
+    You can customize the color or revert to the previous color by overriding the new, dedicated CSS variables:
+
+  ```jsx
+  <IconButton
+    icon={SearchIcon}
+    aria-label="Search"
+    variant="secondary"
+    style={{'--brand-IconButton-secondary-fgColor': 'var(--brand-color-text-default)'}}
+  />
+  ```
+
+  🔗 [See `IconButton` documentation for more usage examples](https://primer.style/brand/components/IconButton/react)
+
+## 0.80.0
+
+### Minor Changes
+
+- [#1497](https://github.com/primer/brand/pull/1497) [`7ea7779`](https://github.com/primer/brand/commit/7ea777930c4311c024bea467dc98a17cec07db6d) Thanks [@rezrah](https://github.com/rezrah)! - Updates to `IconButton`.
+
+  - Added support for custom SVG elements.
+  - **Breaking change:** Renamed CSS variables to reflect newer naming conventions.
+
+  Update any custom token overrides if you previously relied on these tokens.
+
+  ```diff
+  - --brand-IconButton-loadingIndicator-animationDuration-default
+  - --brand-IconButton-loadingIndicator-animationDuration-reducedMotion
+  + --brand-IconButton-spinner-animationDuration-default
+  + --brand-IconButton-spinner-animationDuration-reducedMotion
+  ```
+
+- [#1497](https://github.com/primer/brand/pull/1497) [`7ea7779`](https://github.com/primer/brand/commit/7ea777930c4311c024bea467dc98a17cec07db6d) Thanks [@rezrah](https://github.com/rezrah)! - Added `Spinner` for indeterminate loading states.
+
+  ```jsx
+  <Spinner accessibleLabel="Loading notification settings" />
+  ```
+
+  🔗 [See `Spinner` documentation for more usage examples](https://primer.style/brand/components/Spinner)
+
+- [#1497](https://github.com/primer/brand/pull/1497) [`7ea7779`](https://github.com/primer/brand/commit/7ea777930c4311c024bea467dc98a17cec07db6d) Thanks [@rezrah](https://github.com/rezrah)! - Added `ToggleSwitch` for settings that need to take effect immediately.
+
+  ```jsx
+  <FormControl>
+    <FormControl.Label>Enable notifications</FormControl.Label>
+    <ToggleSwitch />
+  </FormControl>
+  ```
+
+  🔗 [See `ToggleSwitch` documentation for more usage examples](https://primer.style/brand/forms/ToggleSwitch)
+
+- [#1504](https://github.com/primer/brand/pull/1504) [`066019e`](https://github.com/primer/brand/commit/066019e8cd6cbceb0f5ad51f91ed080c7ab59d5e) Thanks [@rezrah](https://github.com/rezrah)! - Added `TestimonialGroup` for automatically presenting multiple testimonials in a carousel.
+
+  ```jsx
+  <TestimonialGroup>
+    /* Testimonial 1 */
+    <Testimonial>
+      <Testimonial.Quote>Our team spends more time solving problems and less time switching tools.</Testimonial.Quote>
+      <Testimonial.Name>Mona</Testimonial.Name>
+    </Testimonial>
+    /* Testimonial 2 */
+    <Testimonial>
+      <Testimonial.Quote>
+        Shared workflows help us review changes earlier and release with greater confidence.
+      </Testimonial.Quote>
+      <Testimonial.Name>Hubot</Testimonial.Name>
+    </Testimonial>
+  </TestimonialGroup>
+  ```
+
+  [See `TestimonialGroup` documentation for more usage examples](https://primer.style/brand/components/TestimonialGroup/)
+
+- [#1504](https://github.com/primer/brand/pull/1504) [`066019e`](https://github.com/primer/brand/commit/066019e8cd6cbceb0f5ad51f91ed080c7ab59d5e) Thanks [@rezrah](https://github.com/rezrah)! - Added `CarouselPagination` for controlled and compact carousel navigation component.
+
+  ```jsx
+  <CarouselPagination
+    aria-label="Choose featured story"
+    itemCount={5}
+    activeIndex={activeIndex}
+    onChange={setActiveIndex}
+  />
+  ```
+
+  [See the `CarouselPagination` documentation for more usage examples](https://primer.style/brand/components/CarouselPagination/)
+
+- [#1504](https://github.com/primer/brand/pull/1504) [`066019e`](https://github.com/primer/brand/commit/066019e8cd6cbceb0f5ad51f91ed080c7ab59d5e) Thanks [@rezrah](https://github.com/rezrah)! - Removed gradient quote-mark colors from `Testimonial`.
+
+  - Please replace `blue-purple`, `green-blue`, `pink-blue`, `purple-red`, and `red-orange` with a solid `quoteMarkColor`, or omit the prop to use green.
+  - Retired values will fall back to solid green.
+
+### Patch Changes
+
+- [#1504](https://github.com/primer/brand/pull/1504) [`066019e`](https://github.com/primer/brand/commit/066019e8cd6cbceb0f5ad51f91ed080c7ab59d5e) Thanks [@rezrah](https://github.com/rezrah)! - Updated mobile `Tabs` with compact carousel controls, improved keyboard focus, and customizable accessible labels.
+
+  ```jsx
+  <Tabs
+    aria-label="Features"
+    internalAccessibleLabels={{
+      controlsPrev: 'Previous tab',
+      controlsNext: 'Next tab',
+      controlsNavigation: 'Tab navigation',
+      controlsIndicator: 'Go to tab {current}',
+    }}
+  >
+    {/* Tabs.Item and Tabs.Panel children */}
+  </Tabs>
+  ```
+
+- [#1507](https://github.com/primer/brand/pull/1507) [`6df49ae`](https://github.com/primer/brand/commit/6df49ae56da76b5ada3dbb37d9a0285ddbdf3504) Thanks [@rezrah](https://github.com/rezrah)! - Improved `auto` support in `ThemeProvider`
+
+  System preferences now render before hydration in SSR contexts.
+
+  - ⚠️ `ThemeProvider` with `colorMode="auto"` now passes through `data-color-mode="auto"` instead of resolving to `light` or `dark`.
+    Use `colorMode` from `useTheme()` for the resolved value.
+
+  - Adds `originalColorMode` to `useTheme` return value to preserve the original mode when forwarding themes.
+
+## 0.79.0
+
+### Patch Changes
+
+- [#1484](https://github.com/primer/brand/pull/1484) [`c5b186e`](https://github.com/primer/brand/commit/c5b186e238cb0e71adfdbb739b7cabc6513005eb) Thanks [@danielguillan](https://github.com/danielguillan)! - Added the new `FeatureComparisonTable` component for comparing two to four pricing plans with plan summaries, actions, and grouped feature availability.
+
+  ```js
+  import {FeatureComparisonTable} from '@primer/react-brand'
+  ```
+
+  ```jsx
+  <FeatureComparisonTable>
+    <FeatureComparisonTable.Heading>Compare plans</FeatureComparisonTable.Heading>
+    <FeatureComparisonTable.Item>
+      <FeatureComparisonTable.ItemHeading>Free</FeatureComparisonTable.ItemHeading>
+    </FeatureComparisonTable.Item>
+    <FeatureComparisonTable.Item>
+      <FeatureComparisonTable.ItemHeading>Team</FeatureComparisonTable.ItemHeading>
+    </FeatureComparisonTable.Item>
+    <FeatureComparisonTable.Group>
+      <FeatureComparisonTable.GroupHeading>Collaboration</FeatureComparisonTable.GroupHeading>
+      <FeatureComparisonTable.Row>
+        <FeatureComparisonTable.RowHeading>Private repositories</FeatureComparisonTable.RowHeading>
+        <FeatureComparisonTable.Cell variant="included" />
+        <FeatureComparisonTable.Cell variant="included" />
+      </FeatureComparisonTable.Row>
+    </FeatureComparisonTable.Group>
+  </FeatureComparisonTable>
+  ```
+
+  :link: [See `FeatureComparisonTable` documentation for more usage examples](https://primer.style/brand/components/FeatureComparisonTable)
+
+  Added the new `FeatureComparisonTable` component design tokens.
+
+  - `--brand-FeatureComparisonTable-default-featureColumnWidth`
+  - `--brand-FeatureComparisonTable-fourItems-featureColumnWidth`
+  - `--brand-FeatureComparisonTable-label-accentColor`
+  - `--brand-FeatureComparisonTable-highlightedColumn-bgColor`
+  - `--brand-FeatureComparisonTable-includedIndicator-fgColor`
+  - `--brand-FeatureComparisonTable-includedIndicator-bgColor`
+  - `--brand-FeatureComparisonTable-unlimitedIndicator-fgColor`
+  - `--brand-FeatureComparisonTable-unlimitedIndicator-bgColor`
+  - `--brand-FeatureComparisonTable-refreshIndicator-fgColor`
+  - `--brand-FeatureComparisonTable-refreshIndicator-bgColor`
+  - `--brand-FeatureComparisonTable-rowHighlight-bgColor`
+
+## 0.78.0
+
+### Minor Changes
+
+- [#1489](https://github.com/primer/brand/pull/1489) [`2dd5b79`](https://github.com/primer/brand/commit/2dd5b791394d59ca56bfda56b8c19c0ab7118e3b) Thanks [@rezrah](https://github.com/rezrah)! - Added `IconButton` for compact, accessible icon-only actions.
+
+  ```jsx
+  <IconButton icon={TrashIcon} aria-label="Delete item" variant="danger" />
+  ```
+
+  🔗 [See `IconButton` documentation for more usage examples](https://primer.style/brand/components/IconButton/react)
+
+- [#1489](https://github.com/primer/brand/pull/1489) [`2dd5b79`](https://github.com/primer/brand/commit/2dd5b791394d59ca56bfda56b8c19c0ab7118e3b) Thanks [@rezrah](https://github.com/rezrah)! - Added icon-only options `ActionMenu`.
+
+  These new options use the new `IconButton` component internally.
+
+  ```jsx
+  <ActionMenu mode="split-button">
+    <ActionMenu.IconButton as="a" href="#repository" icon={MarkGithubIcon} aria-label="Open repository" />
+    <ActionMenu.Overlay aria-label="Repository actions">
+      <ActionMenu.Item as="a" href="#issues">
+        Issues
+      </ActionMenu.Item>
+    </ActionMenu.Overlay>
+  </ActionMenu>
+  ```
+
+  🔗 [See `ActionMenu` documentation for more usage examples](https://primer.style/brand/components/ActionMenu#icon-button-trigger)
+
+### Patch Changes
+
+- [#1490](https://github.com/primer/brand/pull/1490) [`184bd2f`](https://github.com/primer/brand/commit/184bd2f645a0da2d8dd86af949d0adbea8e9d811) Thanks [@danielguillan](https://github.com/danielguillan)! - Updates to `SubdomainNavBar`:
+
+  - Fixed narrow-menu dismissal, responsive layout, component-specific accent border token, title spacing, and link attribute forwarding.
+  - Cleaned up obsolete styles
+
+## 0.77.0
+
+### Patch Changes
+
+- [#1477](https://github.com/primer/brand/pull/1477) [`d1a6689`](https://github.com/primer/brand/commit/d1a668949663927a16c158a11ddf7b3355d73bc1) Thanks [@danielguillan](https://github.com/danielguillan)! - Add a `gridline` variant to the `Section` component and a design token for customizing its inline padding.
+
 ## 0.76.0
 
 ## 0.75.1

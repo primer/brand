@@ -95,16 +95,49 @@ export const StaticItems: Story = {
   ),
 }
 
-export const MultipleRows: Story = {
+export const MaximumItems: Story = {
+  render: () => {
+    const maximumTileItems = tileItems.concat(tileItems.slice(0, 1))
+
+    return (
+      <Section>
+        <Tiles variant="gridlines">
+          {maximumTileItems.map((item, index) => (
+            <Tiles.Item key={`${item.name}-${index}`} name={item.name} href={item.href}>
+              {item.icon}
+            </Tiles.Item>
+          ))}
+        </Tiles>
+      </Section>
+    )
+  },
+}
+
+export const BalancedRowsTablet: Story = {
+  name: 'Balanced rows (tablet)',
+  globals: {
+    viewport: {value: 'ipad10p'},
+  },
   render: () => (
-    <Section>
-      <Tiles variant="gridlines">
-        {tileItems.map((item, index) => (
-          <Tiles.Item key={`${item.name}-${index}`} name={item.name} href={item.href}>
-            {item.icon}
-          </Tiles.Item>
-        ))}
-      </Tiles>
-    </Section>
+    <Stack gap="spacious" padding="none">
+      <Section>
+        <Tiles variant="gridlines">
+          {tileItems.slice(0, 6).map(item => (
+            <Tiles.Item key={item.name} name={item.name} href={item.href}>
+              {item.icon}
+            </Tiles.Item>
+          ))}
+        </Tiles>
+      </Section>
+      <Section>
+        <Tiles variant="gridlines" layout="compact">
+          {tileItems.map((item, index) => (
+            <Tiles.Item key={`${item.name}-${index}`} name={item.name} href={item.href}>
+              {item.icon}
+            </Tiles.Item>
+          ))}
+        </Tiles>
+      </Section>
+    </Stack>
   ),
 }

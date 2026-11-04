@@ -56,26 +56,6 @@
       "yellow": {
         "value": "var(--base-color-scale-yellow-0)",
         "dark": "var(--base-color-scale-yellow-8)"
-      },
-      "blue-purple": {
-        "value": "var(--base-color-scale-blue-0)",
-        "dark": "var(--base-color-scale-blue-8)"
-      },
-      "green-blue": {
-        "value": "var(--base-color-scale-green-0)",
-        "dark": "var(--base-color-scale-green-8)"
-      },
-      "pink-blue": {
-        "value": "var(--base-color-scale-pink-0)",
-        "dark": "var(--base-color-scale-pink-8)"
-      },
-      "purple-red": {
-        "value": "var(--base-color-scale-purple-0)",
-        "dark": "var(--base-color-scale-purple-8)"
-      },
-      "red-orange": {
-        "value": "var(--base-color-scale-red-0)",
-        "dark": "var(--base-color-scale-red-8)"
       }
     },
     "borderMask": {
@@ -97,16 +77,6 @@
         "value": "var(--base-color-scale-blue-5)",
         "dark": "var(--base-color-scale-blue-2)"
       },
-      "blue-purple": {
-        "start": {
-          "value": "var(--base-color-scale-blue-5)",
-          "dark": "var(--base-color-scale-blue-2)"
-        },
-        "end": {
-          "value": "var(--base-color-scale-purple-5)",
-          "dark": "var(--base-color-scale-purple-2)"
-        }
-      },
       "coral": {
         "value": "var(--base-color-scale-coral-5)",
         "dark": "var(--base-color-scale-coral-2)"
@@ -114,16 +84,6 @@
       "green": {
         "value": "var(--base-color-scale-green-6)",
         "dark": "var(--base-color-scale-green-2)"
-      },
-      "green-blue": {
-        "start": {
-          "value": "var(--base-color-scale-green-6)",
-          "dark": "var(--base-color-scale-green-2)"
-        },
-        "end": {
-          "value": "var(--base-color-scale-blue-5)",
-          "dark": "var(--base-color-scale-blue-2)"
-        }
       },
       "gray": {
         "value": "var(--base-color-scale-gray-5)",
@@ -149,43 +109,13 @@
         "value": "var(--base-color-scale-pink-5)",
         "dark": "var(--base-color-scale-pink-2)"
       },
-      "pink-blue": {
-        "start": {
-          "value": "var(--base-color-scale-pink-5)",
-          "dark": "var(--base-color-scale-pink-2)"
-        },
-        "end": {
-          "value": "var(--base-color-scale-blue-5)",
-          "dark": "var(--base-color-scale-blue-2)"
-        }
-      },
       "purple": {
         "value": "var(--base-color-scale-purple-5)",
         "dark": "var(--base-color-scale-purple-2)"
       },
-      "purple-red": {
-        "start": {
-          "value": "var(--base-color-scale-purple-5)",
-          "dark": "var(--base-color-scale-purple-2)"
-        },
-        "end": {
-          "value": "var(--base-color-scale-red-5)",
-          "dark": "var(--base-color-scale-red-2)"
-        }
-      },
       "red": {
         "value": "var(--base-color-scale-red-5)",
         "dark": "var(--base-color-scale-red-2)"
-      },
-      "red-orange": {
-        "start": {
-          "value": "var(--base-color-scale-red-5)",
-          "dark": "var(--base-color-scale-red-2)"
-        },
-        "end": {
-          "value": "var(--base-color-scale-orange-5)",
-          "dark": "var(--base-color-scale-orange-2)"
-        }
       },
       "teal": {
         "value": "var(--base-color-scale-teal-5)",
