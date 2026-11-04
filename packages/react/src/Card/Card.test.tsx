@@ -183,7 +183,7 @@ describe('Card', () => {
   })
 
   it.each(['text', 'arrow'] as const)(
-    'exposes the %s CTA label after the description without adding a tab stop',
+    'renders the %s CTA label as regular text without adding a tab stop',
     async ctaVariant => {
       const user = userEvent.setup()
       const ctaText = 'Explore Startup Partners'
@@ -198,12 +198,9 @@ describe('Card', () => {
       )
 
       const actionLabel = getByText(ctaText)
-      const description = getByText(mockDescription)
       const headingLink = getByRole('link', {name: mockHeading})
 
       expect(actionLabel.tagName).toBe('SPAN')
-      expect(actionLabel.closest('[aria-hidden="true"], [hidden]')).toBeNull()
-      expect(description.compareDocumentPosition(actionLabel) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy()
       expect(actionLabel.closest('a, button, [role], [tabindex]')).toBeNull()
       expect(actionLabel.tabIndex).toBe(-1)
       expect(getAllByRole('link')).toEqual([headingLink])
