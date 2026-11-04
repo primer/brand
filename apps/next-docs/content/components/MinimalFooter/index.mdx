@@ -22,7 +22,7 @@ import {MinimalFooter} from '@primer/react-brand'
 ### Default
 
 ```jsx live
-<div style={{width: '100%', minWidth: 0}}>
+<div style={{width: '100%'}}>
   <MinimalFooter />
 </div>
 ```
@@ -32,7 +32,7 @@ import {MinimalFooter} from '@primer/react-brand'
 Use up to five `MinimalFooter.Link` children. Links can render as anchors or buttons.
 
 ```jsx live
-<div style={{width: '100%', minWidth: 0}}>
+<div style={{width: '100%'}}>
   <MinimalFooter>
     <MinimalFooter.Link href="https://github.com/organizations/enterprise_plan">Try GitHub for free</MinimalFooter.Link>
     <MinimalFooter.Link href="https://github.com/enterprise">Enterprise</MinimalFooter.Link>
@@ -44,7 +44,7 @@ Use up to five `MinimalFooter.Link` children. Links can render as anchors or but
 ### Footnotes
 
 ```jsx live
-<div style={{width: '100%', minWidth: 0}}>
+<div style={{width: '100%'}}>
   <MinimalFooter>
     <MinimalFooter.Footnotes>
       <Text>
@@ -72,7 +72,7 @@ Use up to five `MinimalFooter.Link` children. Links can render as anchors or but
 `MinimalFooter` will render all supported social links by default. Social links can be removed however, by passing `socialLinks={false}`. Alternatively, pass an array of valid social links to filter and reorder the default list.
 
 ```jsx live
-<Stack style={{width: '100%', minWidth: 0}}>
+<Stack style={{width: '100%'}}>
   Hide all social links:
   <MinimalFooter socialLinks={false} />
   <br />
@@ -86,7 +86,7 @@ Use up to five `MinimalFooter.Link` children. Links can render as anchors or but
 Use `centerComponent` for an exceptional page-specific control or status indicator between the top and bottom sections.
 
 ```jsx live
-<div style={{width: '100%', minWidth: 0}}>
+<div style={{width: '100%'}}>
   <MinimalFooter
     centerComponent={
       <Stack direction="horizontal" gap="condensed" padding="none">
@@ -109,7 +109,7 @@ Use `MinimalFooter.BackToTop` to opt into a control in the top row that scrolls 
 After keyboard activation, focus moves to the first `<main>` element, falling back to `<body>` or `<html>` when a main landmark is unavailable. Use `focusTargetId` to identify a different semantic top-of-page destination.
 
 ```jsx live
-<div style={{width: '100%', minWidth: 0}}>
+<div style={{width: '100%'}}>
   <MinimalFooter socialLinks={false}>
     <MinimalFooter.BackToTop>Back to top</MinimalFooter.BackToTop>
   </MinimalFooter>
