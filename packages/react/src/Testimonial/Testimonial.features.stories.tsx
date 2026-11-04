@@ -1,9 +1,10 @@
 import React from 'react'
 import type {StoryObj} from '@storybook/react'
+import {Trans, useTranslation} from 'react-i18next'
 
 import {Testimonial, TestimonialProps} from '.'
 import {Box, Grid, Stack, Text, ThemeProvider} from '..'
-import monaAvatar from '../fixtures/images/avatar-mona.png'
+import hubotAvatar from '../fixtures/images/avatar-hubot.png'
 import styles from './Testimonial.stories.module.css'
 
 type MetaProps = TestimonialProps
@@ -14,215 +15,352 @@ export default meta
 type Story = StoryObj<MetaProps>
 
 export const Avatar: Story = {
-  render: () => (
-    <div style={{width: 400, maxWidth: '100%'}}>
-      <Testimonial>
-        <Testimonial.Quote>
-          GitHub helps us ensure that we have our security controls baked into our pipelines all the way from the first
-          line of code we&apos;re writing.
-        </Testimonial.Quote>
-        <Testimonial.Name position="Staff Security Engineer">David Ross</Testimonial.Name>
-        <Testimonial.Avatar src={monaAvatar} alt="Circular avatar from David Ross's GitHub profile" />
-      </Testimonial>
-    </div>
-  ),
+  render: function AvatarExample() {
+    const {t} = useTranslation('Testimonial')
+
+    return (
+      <div style={{width: 400, maxWidth: '100%'}}>
+        <Testimonial>
+          <Testimonial.Quote>{t('automationQuote')}</Testimonial.Quote>
+          <Testimonial.Name position={t('position')}>Hubot</Testimonial.Name>
+          <Testimonial.Avatar src={hubotAvatar} alt={t('avatarAlt', {name: 'Hubot'})} />
+        </Testimonial>
+      </div>
+    )
+  },
 }
 
 export const ColoredQuoteMark: Story = {
   args: {
     quoteMarkColor: 'blue',
   },
-  render: args => (
-    <div style={{width: 400, maxWidth: '100%'}}>
-      <Testimonial {...args}>
-        <Testimonial.Quote>
-          GitHub helps us ensure that we have our security controls baked into our pipelines all the way from the first
-          line of code we&apos;re writing.
-        </Testimonial.Quote>
-        <Testimonial.Name position="Staff Security Engineer">David Ross</Testimonial.Name>
-        <Testimonial.Avatar src={monaAvatar} alt="Circular avatar from David Ross's GitHub profile" />
-      </Testimonial>
-    </div>
-  ),
+  render: function ColoredQuoteMarkExample(args) {
+    const {t} = useTranslation('Testimonial')
+
+    return (
+      <div style={{width: 400, maxWidth: '100%'}}>
+        <Testimonial {...args}>
+          <Testimonial.Quote>{t('lunchQuote')}</Testimonial.Quote>
+          <Testimonial.Name position={t('position')}>Hubot</Testimonial.Name>
+          <Testimonial.Avatar src={hubotAvatar} alt={t('avatarAlt', {name: 'Hubot'})} />
+        </Testimonial>
+      </div>
+    )
+  },
 }
 
 export const Large: Story = {
   args: {
     size: 'large',
   },
-  render: args => (
-    <div style={{width: 720, maxWidth: '100%'}}>
-      <Testimonial {...args}>
-        <Testimonial.Quote>
-          GitHub helps us ensure that we have our security controls baked into our pipelines all the way from the first
-          line of code we&apos;re writing.
-        </Testimonial.Quote>
-        <Testimonial.Name position="Staff Security Engineer">David Ross</Testimonial.Name>
-        <Testimonial.Avatar src={monaAvatar} alt="Circular avatar from David Ross's GitHub profile" />
-      </Testimonial>
-    </div>
-  ),
+  render: function LargeExample(args) {
+    const {t} = useTranslation('Testimonial')
+
+    return (
+      <div style={{width: 720, maxWidth: '100%'}}>
+        <Testimonial {...args}>
+          <Testimonial.Quote>{t('automationQuote')}</Testimonial.Quote>
+          <Testimonial.Name position={t('position')}>Hubot</Testimonial.Name>
+          <Testimonial.Avatar src={hubotAvatar} alt={t('avatarAlt', {name: 'Hubot'})} />
+        </Testimonial>
+      </div>
+    )
+  },
 }
 
 export const LargeHighlightedPortion: Story = {
   args: {
     size: 'large',
   },
-  render: args => (
-    <div style={{width: 720, maxWidth: '100%'}}>
-      <Testimonial {...args}>
-        <Testimonial.Quote>
-          <b>GitHub helps us ensure that we have our security controls baked into our pipelines</b> all the way from the
-          first line of code we&apos;re writing.
-        </Testimonial.Quote>
-        <Testimonial.Name position="Staff Security Engineer">David Ross</Testimonial.Name>
-        <Testimonial.Avatar src={monaAvatar} alt="Circular avatar from David Ross's GitHub profile" />
-      </Testimonial>
-    </div>
-  ),
+  render: function LargeHighlightedPortionExample(args) {
+    const {t} = useTranslation('Testimonial')
+
+    return (
+      <div style={{width: 720, maxWidth: '100%'}}>
+        <Testimonial {...args}>
+          <Testimonial.Quote>
+            <Trans t={t} i18nKey="automationHighlighted" components={{highlight: <b />}} />
+          </Testimonial.Quote>
+          <Testimonial.Name position={t('position')}>Hubot</Testimonial.Name>
+          <Testimonial.Avatar src={hubotAvatar} alt={t('avatarAlt', {name: 'Hubot'})} />
+        </Testimonial>
+      </div>
+    )
+  },
 }
-
-const VariantsGrid = ({hasBorder}: TestimonialProps) => (
-  <Stack
-    direction={{
-      narrow: 'vertical',
-      wide: 'horizontal',
-    }}
-    padding="none"
-    gap="none"
-  >
-    <ThemeProvider colorMode="dark">
-      <Box
-        backgroundColor="default"
-        paddingBlockStart={128}
-        paddingBlockEnd={128}
-        paddingInlineStart={48}
-        paddingInlineEnd={48}
-      >
-        <Testimonial variant="subtle" hasBorder={hasBorder}>
-          <Testimonial.Quote>
-            <b>GitHub helps us ensure that we have our security controls baked into our pipelines</b> all the way from
-            the first line of code we&apos;re writing.
-          </Testimonial.Quote>
-          <Testimonial.Name position="Staff Security Engineer">David Ross</Testimonial.Name>
-          <Testimonial.Avatar src={monaAvatar} alt="Circular avatar from David Ross's GitHub profile" />
-        </Testimonial>
-      </Box>
-      <Box
-        backgroundColor="subtle"
-        paddingBlockStart={128}
-        paddingBlockEnd={128}
-        paddingInlineStart={48}
-        paddingInlineEnd={48}
-      >
-        <Testimonial variant="default" hasBorder={hasBorder}>
-          <Testimonial.Quote>
-            <b>GitHub helps us ensure that we have our security controls baked into our pipelines</b> all the way from
-            the first line of code we&apos;re writing.
-          </Testimonial.Quote>
-          <Testimonial.Name position="Staff Security Engineer">David Ross</Testimonial.Name>
-          <Testimonial.Avatar src={monaAvatar} alt="Circular avatar from David Ross's GitHub profile" />
-        </Testimonial>
-      </Box>
-    </ThemeProvider>
-
-    <ThemeProvider>
-      <Box
-        backgroundColor="default"
-        paddingBlockStart={128}
-        paddingBlockEnd={128}
-        paddingInlineStart={48}
-        paddingInlineEnd={48}
-      >
-        <Testimonial variant="subtle" hasBorder={hasBorder}>
-          <Testimonial.Quote>
-            <b>GitHub helps us ensure that we have our security controls baked into our pipelines</b> all the way from
-            the first line of code we&apos;re writing.
-          </Testimonial.Quote>
-          <Testimonial.Name position="Staff Security Engineer">David Ross</Testimonial.Name>
-          <Testimonial.Avatar src={monaAvatar} alt="Circular avatar from David Ross's GitHub profile" />
-        </Testimonial>
-      </Box>
-      <Box
-        backgroundColor="subtle"
-        paddingBlockStart={128}
-        paddingBlockEnd={128}
-        paddingInlineStart={48}
-        paddingInlineEnd={48}
-      >
-        <Testimonial variant="default" hasBorder={hasBorder}>
-          <Testimonial.Quote>
-            <b>GitHub helps us ensure that we have our security controls baked into our pipelines</b> all the way from
-            the first line of code we&apos;re writing.
-          </Testimonial.Quote>
-          <Testimonial.Name position="Staff Security Engineer">David Ross</Testimonial.Name>
-          <Testimonial.Avatar src={monaAvatar} alt="Circular avatar from David Ross's GitHub profile" />
-        </Testimonial>
-      </Box>
-    </ThemeProvider>
-  </Stack>
-)
 
 export const Variants: Story = {
   parameters: {
     layout: 'fullscreen',
   },
-  render: args => <VariantsGrid {...args} />,
+  render: function VariantsExample({hasBorder}) {
+    const {t} = useTranslation('Testimonial')
+
+    return (
+      <Stack
+        direction={{
+          narrow: 'vertical',
+          wide: 'horizontal',
+        }}
+        padding="none"
+        gap="none"
+      >
+        <ThemeProvider colorMode="dark">
+          <Box
+            backgroundColor="default"
+            paddingBlockStart={128}
+            paddingBlockEnd={128}
+            paddingInlineStart={48}
+            paddingInlineEnd={48}
+          >
+            <Testimonial variant="subtle" hasBorder={hasBorder}>
+              <Testimonial.Quote>
+                <Trans t={t} i18nKey="automationHighlighted" components={{highlight: <b />}} />
+              </Testimonial.Quote>
+              <Testimonial.Name position={t('position')}>Hubot</Testimonial.Name>
+              <Testimonial.Avatar src={hubotAvatar} alt={t('avatarAlt', {name: 'Hubot'})} />
+            </Testimonial>
+          </Box>
+          <Box
+            backgroundColor="subtle"
+            paddingBlockStart={128}
+            paddingBlockEnd={128}
+            paddingInlineStart={48}
+            paddingInlineEnd={48}
+          >
+            <Testimonial variant="default" hasBorder={hasBorder}>
+              <Testimonial.Quote>
+                <Trans t={t} i18nKey="automationHighlighted" components={{highlight: <b />}} />
+              </Testimonial.Quote>
+              <Testimonial.Name position={t('position')}>Hubot</Testimonial.Name>
+              <Testimonial.Avatar src={hubotAvatar} alt={t('avatarAlt', {name: 'Hubot'})} />
+            </Testimonial>
+          </Box>
+        </ThemeProvider>
+        <ThemeProvider>
+          <Box
+            backgroundColor="default"
+            paddingBlockStart={128}
+            paddingBlockEnd={128}
+            paddingInlineStart={48}
+            paddingInlineEnd={48}
+          >
+            <Testimonial variant="subtle" hasBorder={hasBorder}>
+              <Testimonial.Quote>
+                <Trans t={t} i18nKey="automationHighlighted" components={{highlight: <b />}} />
+              </Testimonial.Quote>
+              <Testimonial.Name position={t('position')}>Hubot</Testimonial.Name>
+              <Testimonial.Avatar src={hubotAvatar} alt={t('avatarAlt', {name: 'Hubot'})} />
+            </Testimonial>
+          </Box>
+          <Box
+            backgroundColor="subtle"
+            paddingBlockStart={128}
+            paddingBlockEnd={128}
+            paddingInlineStart={48}
+            paddingInlineEnd={48}
+          >
+            <Testimonial variant="default" hasBorder={hasBorder}>
+              <Testimonial.Quote>
+                <Trans t={t} i18nKey="automationHighlighted" components={{highlight: <b />}} />
+              </Testimonial.Quote>
+              <Testimonial.Name position={t('position')}>Hubot</Testimonial.Name>
+              <Testimonial.Avatar src={hubotAvatar} alt={t('avatarAlt', {name: 'Hubot'})} />
+            </Testimonial>
+          </Box>
+        </ThemeProvider>
+      </Stack>
+    )
+  },
 }
 
 export const VariantsWithoutBorder: Story = {
   parameters: {
     layout: 'fullscreen',
   },
-  render: args => <VariantsGrid hasBorder={false} {...args} />,
-}
+  render: function VariantsWithoutBorderExample({hasBorder = false}) {
+    const {t} = useTranslation('Testimonial')
 
-const ExpressiveExample = () => (
-  <Grid enableGutters={false}>
-    <Grid.Column className={styles.expressiveContainer} span={12}>
-      <Testimonial variant="expressive" size="large">
-        <Testimonial.Quote>
-          GitHub Advanced Security <em>empowers our developers</em> to detect and fix vulnerabilities earlier,
-          accelerating our time to market and boosting developer satisfaction.
-        </Testimonial.Quote>
-        <Testimonial.Link href="#">Read the full story</Testimonial.Link>
-        <Testimonial.Avatar src={monaAvatar} alt="Circular avatar from Michael Spindler's GitHub profile" />
-        <Testimonial.Name position="Head of development services and tools">Michael Spindler</Testimonial.Name>
-      </Testimonial>
-    </Grid.Column>
-  </Grid>
-)
+    return (
+      <Stack
+        direction={{
+          narrow: 'vertical',
+          wide: 'horizontal',
+        }}
+        padding="none"
+        gap="none"
+      >
+        <ThemeProvider colorMode="dark">
+          <Box
+            backgroundColor="default"
+            paddingBlockStart={128}
+            paddingBlockEnd={128}
+            paddingInlineStart={48}
+            paddingInlineEnd={48}
+          >
+            <Testimonial variant="subtle" hasBorder={hasBorder}>
+              <Testimonial.Quote>
+                <Trans t={t} i18nKey="automationHighlighted" components={{highlight: <b />}} />
+              </Testimonial.Quote>
+              <Testimonial.Name position={t('position')}>Hubot</Testimonial.Name>
+              <Testimonial.Avatar src={hubotAvatar} alt={t('avatarAlt', {name: 'Hubot'})} />
+            </Testimonial>
+          </Box>
+          <Box
+            backgroundColor="subtle"
+            paddingBlockStart={128}
+            paddingBlockEnd={128}
+            paddingInlineStart={48}
+            paddingInlineEnd={48}
+          >
+            <Testimonial variant="default" hasBorder={hasBorder}>
+              <Testimonial.Quote>
+                <Trans t={t} i18nKey="automationHighlighted" components={{highlight: <b />}} />
+              </Testimonial.Quote>
+              <Testimonial.Name position={t('position')}>Hubot</Testimonial.Name>
+              <Testimonial.Avatar src={hubotAvatar} alt={t('avatarAlt', {name: 'Hubot'})} />
+            </Testimonial>
+          </Box>
+        </ThemeProvider>
+        <ThemeProvider>
+          <Box
+            backgroundColor="default"
+            paddingBlockStart={128}
+            paddingBlockEnd={128}
+            paddingInlineStart={48}
+            paddingInlineEnd={48}
+          >
+            <Testimonial variant="subtle" hasBorder={hasBorder}>
+              <Testimonial.Quote>
+                <Trans t={t} i18nKey="automationHighlighted" components={{highlight: <b />}} />
+              </Testimonial.Quote>
+              <Testimonial.Name position={t('position')}>Hubot</Testimonial.Name>
+              <Testimonial.Avatar src={hubotAvatar} alt={t('avatarAlt', {name: 'Hubot'})} />
+            </Testimonial>
+          </Box>
+          <Box
+            backgroundColor="subtle"
+            paddingBlockStart={128}
+            paddingBlockEnd={128}
+            paddingInlineStart={48}
+            paddingInlineEnd={48}
+          >
+            <Testimonial variant="default" hasBorder={hasBorder}>
+              <Testimonial.Quote>
+                <Trans t={t} i18nKey="automationHighlighted" components={{highlight: <b />}} />
+              </Testimonial.Quote>
+              <Testimonial.Name position={t('position')}>Hubot</Testimonial.Name>
+              <Testimonial.Avatar src={hubotAvatar} alt={t('avatarAlt', {name: 'Hubot'})} />
+            </Testimonial>
+          </Box>
+        </ThemeProvider>
+      </Stack>
+    )
+  },
+}
 
 export const Expressive: Story = {
   parameters: {
     layout: 'fullscreen',
   },
-  render: () => <ExpressiveExample />,
+  render: function ExpressiveExample() {
+    const {t} = useTranslation('Testimonial')
+
+    return (
+      <Grid enableGutters={false}>
+        <Grid.Column className={styles.expressiveContainer} span={12}>
+          <Testimonial variant="expressive" size="large">
+            <Testimonial.Quote>
+              <Trans t={t} i18nKey="picturesHighlighted" components={{highlight: <em />}} />
+            </Testimonial.Quote>
+            <Testimonial.Link href="#">{t('readStory')}</Testimonial.Link>
+            <Testimonial.Avatar src={hubotAvatar} alt={t('avatarAlt', {name: 'Hubot'})} />
+            <Testimonial.Name position={t('position')}>Hubot</Testimonial.Name>
+          </Testimonial>
+        </Grid.Column>
+      </Grid>
+    )
+  },
 }
 
 export const SpeakerNameScrollingAnimation: Story = {
   parameters: {
     layout: 'fullscreen',
   },
-  render: () => (
-    <div className={styles.speakerNameAnimation}>
-      <Text className={styles.speakerNameAnimationPrompt}>Scroll down</Text>
-      <ExpressiveExample />
-    </div>
-  ),
+  render: function SpeakerNameScrollingAnimationExample() {
+    const {t} = useTranslation('Testimonial')
+
+    return (
+      <div className={styles.speakerNameAnimation}>
+        <Text className={styles.speakerNameAnimationPrompt}>{t('scrollDown')}</Text>
+        <Grid enableGutters={false}>
+          <Grid.Column className={styles.expressiveContainer} span={12}>
+            <Testimonial variant="expressive" size="large">
+              <Testimonial.Quote>
+                <Trans t={t} i18nKey="picturesHighlighted" components={{highlight: <em />}} />
+              </Testimonial.Quote>
+              <Testimonial.Link href="#">{t('readStory')}</Testimonial.Link>
+              <Testimonial.Avatar src={hubotAvatar} alt={t('avatarAlt', {name: 'Hubot'})} />
+              <Testimonial.Name position={t('position')}>Hubot</Testimonial.Name>
+            </Testimonial>
+          </Grid.Column>
+        </Grid>
+      </div>
+    )
+  },
 }
 
 export const ExpressiveTablet: Story = {
-  ...Expressive,
+  parameters: {
+    layout: 'fullscreen',
+  },
   globals: {
     viewport: {value: 'ipad'},
+  },
+  render: function ExpressiveTabletExample() {
+    const {t} = useTranslation('Testimonial')
+
+    return (
+      <Grid enableGutters={false}>
+        <Grid.Column className={styles.expressiveContainer} span={12}>
+          <Testimonial variant="expressive" size="large">
+            <Testimonial.Quote>
+              <Trans t={t} i18nKey="picturesHighlighted" components={{highlight: <em />}} />
+            </Testimonial.Quote>
+            <Testimonial.Link href="#">{t('readStory')}</Testimonial.Link>
+            <Testimonial.Avatar src={hubotAvatar} alt={t('avatarAlt', {name: 'Hubot'})} />
+            <Testimonial.Name position={t('position')}>Hubot</Testimonial.Name>
+          </Testimonial>
+        </Grid.Column>
+      </Grid>
+    )
   },
 }
 
 export const ExpressiveMobile: Story = {
-  ...Expressive,
+  parameters: {
+    layout: 'fullscreen',
+  },
   globals: {
     viewport: {value: 'iphonexr'},
+  },
+  render: function ExpressiveMobileExample() {
+    const {t} = useTranslation('Testimonial')
+
+    return (
+      <Grid enableGutters={false}>
+        <Grid.Column className={styles.expressiveContainer} span={12}>
+          <Testimonial variant="expressive" size="large">
+            <Testimonial.Quote>
+              <Trans t={t} i18nKey="picturesHighlighted" components={{highlight: <em />}} />
+            </Testimonial.Quote>
+            <Testimonial.Link href="#">{t('readStory')}</Testimonial.Link>
+            <Testimonial.Avatar src={hubotAvatar} alt={t('avatarAlt', {name: 'Hubot'})} />
+            <Testimonial.Name position={t('position')}>Hubot</Testimonial.Name>
+          </Testimonial>
+        </Grid.Column>
+      </Grid>
+    )
   },
 }
 
@@ -239,5 +377,22 @@ export const ExpressiveDark: Story = {
       </ThemeProvider>
     ),
   ],
-  render: () => <ExpressiveExample />,
+  render: function ExpressiveDarkExample() {
+    const {t} = useTranslation('Testimonial')
+
+    return (
+      <Grid enableGutters={false}>
+        <Grid.Column className={styles.expressiveContainer} span={12}>
+          <Testimonial variant="expressive" size="large">
+            <Testimonial.Quote>
+              <Trans t={t} i18nKey="picturesHighlighted" components={{highlight: <em />}} />
+            </Testimonial.Quote>
+            <Testimonial.Link href="#">{t('readStory')}</Testimonial.Link>
+            <Testimonial.Avatar src={hubotAvatar} alt={t('avatarAlt', {name: 'Hubot'})} />
+            <Testimonial.Name position={t('position')}>Hubot</Testimonial.Name>
+          </Testimonial>
+        </Grid.Column>
+      </Grid>
+    )
+  },
 }

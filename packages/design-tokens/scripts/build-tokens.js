@@ -172,6 +172,7 @@ const darkJson = require('../src/tokens/base/colors/dark')
     `tokens/functional/components/pricing-options/pricing-options.json`,
     `tokens/functional/components/section/section.json`,
     `tokens/functional/components/logosuite/base.json`,
+    `tokens/functional/components/testimonial/base.json`,
   ]
 
   for (const path of filesForResponsiveTokens) {

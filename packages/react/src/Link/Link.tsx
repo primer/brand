@@ -1,5 +1,5 @@
 import {clsx} from 'clsx'
-import React, {useCallback} from 'react'
+import React, {forwardRef, useCallback} from 'react'
 import {ExpandableArrow} from '../ExpandableArrow'
 import {LinkExternalIcon} from '@primer/octicons-react'
 import {Text} from '../Text'
@@ -46,19 +46,22 @@ export type LinkProps = {
  * Links connect users to related content.
  * These are not intended to be used as a call-to-action.
  */
-export function Link({
-  size = 'medium',
-  variant = 'default',
-  className,
-  children,
-  isExternal,
-  onMouseEnter,
-  onMouseLeave,
-  onFocus,
-  onBlur,
-  arrowDirection = 'end',
-  ...props
-}: LinkProps) {
+function LinkBase(
+  {
+    size = 'medium',
+    variant = 'default',
+    className,
+    children,
+    isExternal,
+    onMouseEnter,
+    onMouseLeave,
+    onFocus,
+    onBlur,
+    arrowDirection = 'end',
+    ...props
+  }: LinkProps,
+  ref: React.ForwardedRef<HTMLAnchorElement>,
+) {
   const [isHovered, setIsHovered] = React.useState(false)
   const [isFocused, setIsFocused] = React.useState(false)
 
@@ -96,6 +99,7 @@ export function Link({
 
   return (
     <a
+      ref={ref}
       className={clsx(
         styles.Link,
         styles[`Link--${size}`],
@@ -125,3 +129,5 @@ export function Link({
     </a>
   )
 }
+
+export const Link = forwardRef(LinkBase)

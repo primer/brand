@@ -1,4 +1,5 @@
-import React, {render, cleanup} from '@testing-library/react'
+import React from 'react'
+import {render, cleanup} from '@testing-library/react'
 import '@testing-library/jest-dom'
 
 import {Avatar, AvatarSizes} from './Avatar'
@@ -22,6 +23,20 @@ describe('Avatar', () => {
 
     const AvatarEl = getByTestId(Avatar.testIds.root)
     expect(AvatarEl.classList).toContain(expectedClass)
+  })
+
+  it('forwards an object ref to the image', () => {
+    const refObject = React.createRef<HTMLImageElement>()
+    const {getByRole} = render(<Avatar ref={refObject} src={mockImageSrc} alt={mockAltText} />)
+
+    expect(refObject.current).toBe(getByRole('img', {name: mockAltText}))
+  })
+
+  it('forwards a callback ref to the image', () => {
+    const handleRef = jest.fn()
+    const {getByRole} = render(<Avatar ref={handleRef} src={mockImageSrc} alt={mockAltText} />)
+
+    expect(handleRef).toHaveBeenCalledWith(getByRole('img', {name: mockAltText}))
   })
 
   it('renders the correct default shape', () => {
