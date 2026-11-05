@@ -1,5 +1,17 @@
 # @primer/brand-css
 
+## 0.81.0
+
+### Patch Changes
+
+- [#1522](https://github.com/primer/brand/pull/1522) [`53faca0`](https://github.com/primer/brand/commit/53faca0b926e322dc037f953ecf1a1534767b9dd) Thanks [@danielguillan](https://github.com/danielguillan)! - Kept the first-column heading in `ComparisonTable` visible in narrow layouts.
+
+- [#1522](https://github.com/primer/brand/pull/1522) [`53faca0`](https://github.com/primer/brand/commit/53faca0b926e322dc037f953ecf1a1534767b9dd) Thanks [@danielguillan](https://github.com/danielguillan)! - Fixed `MediaPlaylist` keyboard focus outlines being clipped by the playlist's overflow containers.
+
+- [#1522](https://github.com/primer/brand/pull/1522) [`53faca0`](https://github.com/primer/brand/commit/53faca0b926e322dc037f953ecf1a1534767b9dd) Thanks [@danielguillan](https://github.com/danielguillan)! - Fixed `MinimalFooter` social links overflowing narrow layouts by allowing them to wrap.
+
+- [#1519](https://github.com/primer/brand/pull/1519) [`e19919a`](https://github.com/primer/brand/commit/e19919aadfe4cbb94f9ec7e8d901193303166c69) Thanks [@danielguillan](https://github.com/danielguillan)! - Fix duplicate `LogoSuite` links and prevent pointer clicks from resetting the marquee.
+
 ## 0.80.1
 
 ### Patch Changes
