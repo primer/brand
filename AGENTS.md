@@ -30,6 +30,12 @@ Use the Node and npm versions declared in [package.json](package.json) and [.nvm
 - For new or substantial component changes, show the implementation for manual review before expensive builds or VRT, unless full verification is requested. Complete deferred checks after review.
 - Before a requested commit, run `npm run lint` (zero warnings), `npm run format`, `npm run check`, and `npm run test`. [CI](.github/workflows/ci.yml) also runs MCP smoke tests and docs-bundle verification. Report failed or unrun checks.
 
+## Docs Figma images
+
+Files in `apps/next-docs/public/images/figma` are generated artifacts. Never edit, optimize, recompress, rename, replace, or delete these images or their manifest directly.
+
+Update Figma references in the docs source, then regenerate the artifacts with `npm run figma-images:generate --workspace=apps/next-docs` or use the `update figma images` pull request label workflow. Commit only the output produced by the generator or workflow.
+
 ## Persisting user preferences
 
 When the user asks to add a preference to the codebase guidelines:

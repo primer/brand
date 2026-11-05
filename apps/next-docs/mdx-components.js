@@ -20,6 +20,8 @@ import {
 import NextLink from 'next/link'
 
 // eslint-disable-next-line import/extensions
+import {FigmaImage} from './src/components/FigmaImage/FigmaImage.tsx'
+// eslint-disable-next-line import/extensions
 import {Pre} from './src/components/Pre/Pre.tsx'
 
 const isInternalRoute = href =>
@@ -56,6 +58,7 @@ export function useMDXComponents(customComponents) {
     CodeBlock,
     PropTableValues,
     TableWrapper,
+    FigmaImage,
     Link,
     a: Link,
     h2: props => <HeadingLink tag="h2" {...props} />,
