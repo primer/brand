@@ -42,7 +42,7 @@ import {Testimonial} from '@primer/react-brand'
 For an alternative visual appearance and layout, without altering semantic meaning.
 
 ```jsx live
-<Stack direction="horizontal" gap="spacious" padding="none">
+<Stack direction={{narrow: 'vertical', regular: 'horizontal'}} gap="spacious" padding="none">
   <Testimonial variant="default">
     <Testimonial.Quote>
       GitHub helps us ensure that we have our security controls baked into our pipelines all the way from the first line
@@ -100,7 +100,7 @@ Use `size` to alternate the text size. Available options are `small` (default) a
 Use `Stack` to help position multiple, adjacent Testimonials alongside one another.
 
 ```jsx live
-<Stack direction="horizontal" gap="spacious" padding="spacious">
+<Stack direction={{narrow: 'vertical', regular: 'horizontal'}} gap="spacious" padding="spacious">
   <Testimonial>
     <Testimonial.Quote>
       GitHub helps us ensure that we have our security controls baked into our pipelines all the way from the first line
