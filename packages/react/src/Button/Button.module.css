@@ -20,7 +20,7 @@
 }
 
 .Button:hover {
-  text-decoration: none;
+  text-decoration: underline;
 }
 
 .Button:focus-visible {
