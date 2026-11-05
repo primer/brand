@@ -7,6 +7,7 @@ import {Result} from 'axe-core'
 import {chromium, Browser, Page} from 'playwright'
 import {test, expect} from '@playwright/test'
 import {injectAxe, getViolations} from 'axe-playwright'
+import {waitForStoryReady} from './wait-for-story-ready'
 // Don't remove the import/no-unresolved, this is needed to avoid breaking CI
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
@@ -205,6 +206,7 @@ for (const story of storybookRoutes) {
       // eslint-disable-next-line no-console
       console.info(`Navigating to ${route}`)
       await page.goto(route)
+      await waitForStoryReady(page, story.id)
       await page.waitForTimeout(testsWithCustomDelay[story.id] ? testsWithCustomDelay[story.id] : defaultDelay)
       await injectAxe(page)
       // inject github house rules

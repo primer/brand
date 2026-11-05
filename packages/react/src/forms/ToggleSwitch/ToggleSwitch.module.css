@@ -11,11 +11,23 @@
   align-items: center;
   justify-content: center;
   min-height: var(--brand-ToggleSwitch-target-minHeight);
+  gap: var(--base-size-8);
   padding: 0;
   border: 0;
   background: transparent;
   cursor: pointer;
   appearance: none;
+}
+
+.ToggleSwitch--withStatusLabel {
+  min-inline-size: 0;
+  max-inline-size: 100%;
+  flex-shrink: 1;
+}
+
+.ToggleSwitch--withStatusLabel .ToggleSwitch-button {
+  min-inline-size: 0;
+  max-inline-size: 100%;
 }
 
 .ToggleSwitch-button:focus-visible {
@@ -38,6 +50,38 @@
   border: var(--brand-ToggleSwitch-track-borderWidth) solid var(--brand-ToggleSwitch-track-borderColor);
   border-radius: var(--brand-ToggleSwitch-track-borderRadius);
   background: var(--brand-ToggleSwitch-track-bgColor);
+  flex: 0 0 auto;
+}
+
+.ToggleSwitch-statusLabel {
+  display: grid;
+  min-inline-size: 0;
+  max-inline-size: 100%;
+  overflow-wrap: anywhere;
+}
+
+.ToggleSwitch-statusLabel--start {
+  justify-items: end;
+}
+
+.ToggleSwitch-statusLabel--end {
+  justify-items: start;
+}
+
+.ToggleSwitch-statusLabel--start .ToggleSwitch-statusLabelText {
+  text-align: end;
+}
+
+.ToggleSwitch-statusLabel--end .ToggleSwitch-statusLabelText {
+  text-align: start;
+}
+
+.ToggleSwitch-statusLabelText {
+  grid-area: 1 / 1;
+}
+
+.ToggleSwitch-statusLabelText--hidden {
+  visibility: hidden;
 }
 
 .ToggleSwitch-thumb {
@@ -156,5 +200,13 @@
 
   .ToggleSwitch-spinner {
     color: CanvasText;
+  }
+
+  .ToggleSwitch-statusLabelText {
+    color: ButtonText;
+  }
+
+  .ToggleSwitch-button--unavailable .ToggleSwitch-statusLabelText {
+    color: GrayText;
   }
 }

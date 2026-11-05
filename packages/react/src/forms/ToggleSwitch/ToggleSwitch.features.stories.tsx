@@ -152,13 +152,19 @@ export const StandaloneLoadingPositions: Story = {
         <Text as="span" id="leading-loading-label">
           Spinner at start
         </Text>
-        <ToggleSwitch loading spinnerPosition="start" aria-labelledby="leading-loading-label" />
+        <ToggleSwitch loading spinnerPosition="start" hasStatusLabel aria-labelledby="leading-loading-label" />
       </Stack>
       <Stack direction="horizontal" alignItems="center" gap="normal" padding="none">
         <Text as="span" id="trailing-loading-label">
           Spinner at end + checked
         </Text>
-        <ToggleSwitch loading defaultChecked spinnerPosition="end" aria-labelledby="trailing-loading-label" />
+        <ToggleSwitch
+          loading
+          defaultChecked
+          spinnerPosition="end"
+          hasStatusLabel
+          aria-labelledby="trailing-loading-label"
+        />
       </Stack>
     </Stack>
   ),
@@ -207,6 +213,101 @@ export const LongLabelNarrow: Story = {
   globals: {
     viewport: {value: 'iphonexr'},
   },
+}
+
+export const StatusLabel: Story = {
+  render: () => (
+    <Stack padding="none" gap="normal">
+      <FormControl>
+        <FormControl.Label>Status label at start (default)</FormControl.Label>
+        <ToggleSwitch defaultChecked hasStatusLabel />
+      </FormControl>
+      <FormControl>
+        <FormControl.Label>Status label at end</FormControl.Label>
+        <ToggleSwitch hasStatusLabel statusLabelPosition="end" />
+      </FormControl>
+      <FormControl>
+        <FormControl.Label>Custom status labels</FormControl.Label>
+        <ToggleSwitch hasStatusLabel labels={{on: 'Enabled', off: 'Disabled'}} />
+      </FormControl>
+      <FormControl>
+        <FormControl.Label>Small with status label</FormControl.Label>
+        <ToggleSwitch size="small" defaultChecked hasStatusLabel />
+      </FormControl>
+      <FormControl>
+        <FormControl.Label>Without status label</FormControl.Label>
+        <ToggleSwitch />
+      </FormControl>
+      <FormControl>
+        <FormControl.Label>Disabled</FormControl.Label>
+        <ToggleSwitch disabled hasStatusLabel />
+      </FormControl>
+      <FormControl validationStatus="error">
+        <FormControl.Label>Validation error</FormControl.Label>
+        <ToggleSwitch hasStatusLabel />
+        <FormControl.Validation>Could not save this setting. Try again.</FormControl.Validation>
+      </FormControl>
+      <FormControl>
+        <FormControl.Label>Loading with status label</FormControl.Label>
+        <ToggleSwitch loading hasStatusLabel />
+      </FormControl>
+    </Stack>
+  ),
+}
+
+export const StatusLabelDark: Story = {
+  parameters: {colorMode: 'dark'},
+  render: () => (
+    <FormControl>
+      <FormControl.Label>Notifications</FormControl.Label>
+      <ToggleSwitch defaultChecked hasStatusLabel />
+    </FormControl>
+  ),
+}
+
+export const StatusLabelRightToLeft: Story = {
+  render: () => (
+    <div dir="rtl">
+      <FormControl>
+        <FormControl.Label>Notifications</FormControl.Label>
+        <ToggleSwitch defaultChecked hasStatusLabel />
+      </FormControl>
+    </div>
+  ),
+}
+
+export const StatusLabelNarrow: Story = {
+  render: () => (
+    <Stack padding="none" gap="normal">
+      {(['medium', 'small'] as const).map(size => (
+        <FormControl key={size} fullWidth>
+          <FormControl.Label>{size} setting</FormControl.Label>
+          <ToggleSwitch
+            size={size}
+            hasStatusLabel
+            labels={{
+              on: 'Enabled for the entire organization',
+              off: 'Disabled for the entire organization',
+            }}
+          />
+          <FormControl.Hint>Optional hint text.</FormControl.Hint>
+        </FormControl>
+      ))}
+    </Stack>
+  ),
+  globals: {
+    viewport: {value: 'iphone5'},
+  },
+}
+
+export const StatusLabelLocalized: Story = {
+  globals: {locale: 'de'},
+  render: () => (
+    <FormControl>
+      <FormControl.Label>Benachrichtigungen</FormControl.Label>
+      <ToggleSwitch hasStatusLabel labels={{on: 'Aktiviert', off: 'Deaktiviert'}} />
+    </FormControl>
+  ),
 }
 
 export const RightToLeft: Story = {

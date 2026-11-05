@@ -80,6 +80,7 @@ const Root = ({
     | React.ReactElement<ToggleSwitchInternalProps>
     | undefined
   const isToggleSwitch = Boolean(toggleSwitchElement)
+  const hasToggleSwitchStatusLabel = Boolean(toggleSwitchElement?.props.hasStatusLabel)
   const describedBy =
     [
       childrenArr.some(child => React.isValidElement(child) && child.type === FormControlHint) && `${uniqueId}-hint`,
@@ -97,6 +98,7 @@ const Root = ({
         fullWidth && styles[`FormControl--fullWidth`],
         isCheckboxOrRadio && styles['FormControl--checkbox'],
         isToggleSwitch && styles['FormControl--toggle-switch'],
+        hasToggleSwitchStatusLabel && styles['FormControl--toggle-switch-with-status-label'],
         hasBorder && styles['FormControl--border'],
         className,
       )}
