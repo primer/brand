@@ -43,7 +43,7 @@ Agent-led contributions should refer to [AGENTS.md](AGENTS.md).
    - See [changesets/changesets](https://github.com/changesets/changesets) for more information.
 1. Push your branch and open a pull request. **Please use the supplied pull request template**.
 1. Wait for CI tests to complete.
-   - If the tests pass, you should see a status check advising you that a canary build of `@primer/react-brand` has been published, and ready to test in-app.
+   - If the tests pass, review the results and wait for maintainer review.
    - If the tests fail, review the logs and address any issues.
    - If the builds fail for any other reason (as they occasionally do), they may need to be manually restarted.
 1. Pat yourself on the back and wait for your pull request to be reviewed.
@@ -52,6 +52,12 @@ Here are a few things you can do that will increase the likelihood of your pull 
 
 - Keep your change as focused as possible. If there are multiple changes you would like to make that are not dependent upon each other, consider submitting them as separate pull requests.
 - Write a [good commit message](http://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html).
+
+### Reviewing fork pull requests
+
+Fork contributions run as untrusted code for dependency installation, builds and tests. Approving CI permits that code to run and should only be done by maintainers after the proposed code has been manually verified.
+
+See GitHub's guidance on [approving fork workflows](https://docs.github.com/en/actions/how-tos/manage-workflow-runs/approve-runs-from-forks)
 
 ## Releasing a new Primer Brand version
 

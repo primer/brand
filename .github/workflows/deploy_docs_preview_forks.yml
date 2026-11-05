@@ -1,19 +1,19 @@
-name: Deploy
+name: Deploy base preview for forks
 
 on:
   pull_request_target:
 
 permissions:
-  checks: write
   contents: read
-  deployments: write
-  pages: write
-  id-token: write
 
 jobs:
   deploy:
-    if: ${{ github.repository != github.event.pull_request.head.repo.full_name }}
-    name: Preview
+    if: ${{ github.repository == 'primer/brand' && github.event.pull_request.head.repo.full_name != github.repository }}
+    name: Base preview
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
     # SHA for security hardening. Points at 2.4.0 release
     uses: primer/.github/.github/workflows/deploy_preview.yml@2bbbbf004e8281856e08f6607eb46a7ee59e65ed # v2.4.0
     with:
