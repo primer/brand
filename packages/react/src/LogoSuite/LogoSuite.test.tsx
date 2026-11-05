@@ -591,50 +591,77 @@ describe('LogoSuite', () => {
     consoleWarnSpy.mockRestore()
   })
 
-  it('applies the focused class to the marquee when a link inside receives focus', async () => {
+  it('keeps duplicate links clickable but hidden from screen readers and keyboard navigation', async () => {
     const user = userEvent.setup()
+    const onClick = jest.fn(event => event.preventDefault())
 
-    const {container} = render(
+    const {container, getAllByRole, getByRole} = render(
       <LogoSuite>
         <LogoSuite.Heading>{mockHeading}</LogoSuite.Heading>
         <LogoSuite.Logobar marquee>
-          <a href="/" aria-label="Logo 1">
-            <svg aria-label="Mock SVG" />
-          </a>
+          <>
+            <a href="#logo-1" target="_blank" rel="noreferrer" tabIndex={0} onClick={onClick} aria-label="Logo 1">
+              <svg aria-label="Mock SVG" />
+            </a>
+            <>
+              <a href="#logo-2" aria-label="Logo 2">
+                <svg aria-label="Mock SVG" />
+              </a>
+            </>
+          </>
         </LogoSuite.Logobar>
       </LogoSuite>,
     )
 
-    await user.tab()
-    await user.tab()
+    const links = getAllByRole('link')
+    const allLinks = getAllByRole('link', {hidden: true})
+    expect(links).toHaveLength(2)
+    expect(allLinks).toHaveLength(4)
+    expect(links[0]).toHaveAttribute('tabindex', '0')
+    expect(allLinks[2]).toHaveAttribute('tabindex', '-1')
+    expect(allLinks[3]).toHaveAttribute('tabindex', '-1')
+    expect(allLinks[2]).toHaveAttribute('href', '#logo-1')
+    expect(allLinks[2]).toHaveAttribute('target', '_blank')
+    expect(allLinks[2]).toHaveAttribute('rel', 'noreferrer')
+    expect(allLinks[2].closest('[aria-hidden]')).not.toHaveAttribute('inert')
 
-    const marqueeEl = container.querySelector('.LogoSuite__logobar-marquee')
-    expect(marqueeEl?.classList).toContain('LogoSuite__logobar-marquee--focused')
+    await user.click(allLinks[2])
+    expect(onClick).toHaveBeenCalledTimes(1)
+    expect(allLinks[2]).not.toHaveFocus()
+
+    await user.tab()
+    expect(links[0]).toHaveFocus()
+    await user.tab()
+    expect(links[1]).toHaveFocus()
+    await user.tab()
+    expect(getByRole('button', {name: 'Pause animation'})).toHaveFocus()
+
+    expect(await axe(container)).toHaveNoViolations()
   })
 
-  it('removes the focused class from the marquee when focus leaves entirely', async () => {
+  it('keeps duplicate links out of the tab order', async () => {
     const user = userEvent.setup()
+    const CustomLink = ({children: linkChildren, ...linkProps}: React.AnchorHTMLAttributes<HTMLAnchorElement>) => (
+      <a {...linkProps}>{linkChildren}</a>
+    )
 
-    const {container} = render(
+    const {getAllByRole, getByRole} = render(
       <LogoSuite>
         <LogoSuite.Heading>{mockHeading}</LogoSuite.Heading>
         <LogoSuite.Logobar marquee>
-          <a href="/" aria-label="Logo 1">
+          <CustomLink href="#logo-1" aria-label="Logo 1">
             <svg aria-label="Mock SVG" />
-          </a>
+          </CustomLink>
         </LogoSuite.Logobar>
       </LogoSuite>,
     )
 
-    await user.tab()
-    await user.tab()
-
-    const marqueeEl = container.querySelector('.LogoSuite__logobar-marquee')
-    expect(marqueeEl?.classList).toContain('LogoSuite__logobar-marquee--focused')
+    const [, duplicateLink] = getAllByRole('link', {hidden: true})
+    expect(duplicateLink).toHaveAttribute('tabindex', '-1')
 
     await user.tab()
+    expect(getByRole('link', {name: 'Logo 1'})).toHaveFocus()
     await user.tab()
-
-    expect(marqueeEl?.classList).not.toContain('LogoSuite__logobar-marquee--focused')
+    expect(getByRole('button', {name: 'Pause animation'})).toHaveFocus()
   })
 })
