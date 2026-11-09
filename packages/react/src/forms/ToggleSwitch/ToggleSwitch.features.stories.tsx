@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
 import type {Meta, StoryObj} from '@storybook/react'
+import {expect, within} from 'storybook/test'
 import {ArrowUpIcon, SearchIcon} from '@primer/octicons-react'
 import {ToggleSwitch} from './ToggleSwitch'
 import {FormControl} from '../FormControl'
@@ -216,6 +217,7 @@ export const LongLabelNarrow: Story = {
 }
 
 export const StatusLabel: Story = {
+  parameters: {axe: {waitForPlay: true}},
   render: () => (
     <Stack padding="none" gap="normal">
       <FormControl>
@@ -253,6 +255,27 @@ export const StatusLabel: Story = {
       </FormControl>
     </Stack>
   ),
+  play: async ({canvasElement}) => {
+    canvasElement.removeAttribute('data-axe-ready')
+    const canvas = within(canvasElement)
+    const control = canvas.getByRole('switch', {name: 'Validation error'})
+    const section = control.closest('section')
+    const toggle = control.closest<HTMLElement>(`[data-testid="${ToggleSwitch.testIds.root}"]`)
+    const validation = section?.querySelector<HTMLElement>('[id$="-validation"]')
+    if (!section || !toggle || !validation) throw new Error('The validation example is missing a required element')
+
+    const originalWidth = section.style.inlineSize
+    await Promise.all(validation.getAnimations().map(animation => animation.finished))
+    try {
+      section.style.inlineSize = '160px'
+      const bounds = validation.getBoundingClientRect()
+      expect(bounds.top).toBeGreaterThanOrEqual(toggle.getBoundingClientRect().bottom - 1)
+      expect(bounds.right).toBeLessThanOrEqual(section.getBoundingClientRect().right + 1)
+    } finally {
+      section.style.inlineSize = originalWidth
+    }
+    canvasElement.setAttribute('data-axe-ready', 'true')
+  },
 }
 
 export const StatusLabelDark: Story = {
@@ -277,6 +300,7 @@ export const StatusLabelRightToLeft: Story = {
 }
 
 export const StatusLabelNarrow: Story = {
+  parameters: {axe: {waitForPlay: true}},
   render: () => (
     <Stack padding="none" gap="normal">
       {(['medium', 'small'] as const).map(size => (
@@ -297,6 +321,78 @@ export const StatusLabelNarrow: Story = {
   ),
   globals: {
     viewport: {value: 'iphone5'},
+  },
+  play: ({canvasElement}) => {
+    canvasElement.removeAttribute('data-axe-ready')
+    const canvas = within(canvasElement)
+    const examples = (['medium', 'small'] as const).map(size => {
+      const control = canvas.getByRole('switch', {name: `${size} setting`})
+      const section = control.closest('section')
+      const container = section?.parentElement
+      const label = section?.querySelector('label')
+      const toggle = control.closest<HTMLElement>(`[data-testid="${ToggleSwitch.testIds.root}"]`)
+      const track = control.querySelector<HTMLElement>('[class*="ToggleSwitch-track"]')
+      const status = control.querySelector<HTMLElement>(`[data-testid="${ToggleSwitch.testIds.statusLabel}"]`)
+      const hint = section?.querySelector<HTMLElement>('[id$="-hint"]')
+      if (!section || !container || !label || !toggle || !track || !status || !hint) {
+        throw new Error('The narrow switch example is missing a required element')
+      }
+
+      return {
+        size,
+        control,
+        section,
+        container,
+        label,
+        toggle,
+        track,
+        status,
+        hint,
+        originalWidth: section.style.inlineSize,
+      }
+    })
+    const originalDirection = canvasElement.getAttribute('dir')
+    const previousFocus = document.activeElement
+
+    try {
+      for (const direction of ['ltr', 'rtl']) {
+        canvasElement.setAttribute('dir', direction)
+        for (const width of [160, 200, 320]) {
+          for (const example of examples) {
+            const {size, control, section, container, label, toggle, track, status, hint} = example
+            expect(container.clientWidth).toBeGreaterThan(0)
+            section.style.inlineSize = `${Math.min(width, container.clientWidth)}px`
+
+            const sectionBounds = section.getBoundingClientRect()
+            const labelBounds = label.getBoundingClientRect()
+            const toggleBounds = toggle.getBoundingClientRect()
+            const controlBounds = control.getBoundingClientRect()
+            const statusBounds = status.getBoundingClientRect()
+            expect(labelBounds.width).toBeGreaterThanOrEqual(Math.min(sectionBounds.width, 96) - 1)
+            expect(toggleBounds.left).toBeGreaterThanOrEqual(sectionBounds.left - 1)
+            expect(toggleBounds.right).toBeLessThanOrEqual(sectionBounds.right + 1)
+            expect(track.getBoundingClientRect().width).toBe(size === 'medium' ? 44 : 28)
+            expect(statusBounds.width).toBeGreaterThan(0)
+            expect(statusBounds.left).toBeGreaterThanOrEqual(controlBounds.left - 1)
+            expect(statusBounds.right).toBeLessThanOrEqual(controlBounds.right + 1)
+            expect(hint.getBoundingClientRect().top).toBeGreaterThanOrEqual(toggleBounds.bottom - 1)
+            expect(document.documentElement.scrollWidth).toBeLessThanOrEqual(window.innerWidth)
+            const labelsOverlap =
+              labelBounds.left < toggleBounds.right &&
+              labelBounds.right > toggleBounds.left &&
+              labelBounds.top < toggleBounds.bottom &&
+              labelBounds.bottom > toggleBounds.top
+            expect(labelsOverlap).toBe(false)
+          }
+        }
+      }
+    } finally {
+      for (const {section, originalWidth} of examples) section.style.inlineSize = originalWidth
+      if (originalDirection === null) canvasElement.removeAttribute('dir')
+      else canvasElement.setAttribute('dir', originalDirection)
+    }
+    expect(document.activeElement).toBe(previousFocus)
+    canvasElement.setAttribute('data-axe-ready', 'true')
   },
 }
 

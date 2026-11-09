@@ -125,6 +125,14 @@ Custom status text supplements the setting label; it does not replace it. The sw
 </Stack>
 ```
 
+## Accessibility
+
+`ToggleSwitch` exposes its state with `role="switch"` and `aria-checked`. Give it a descriptive setting label with `FormControl.Label` or `aria-labelledby`. The label describes the setting; status text does not replace it or change the switch's accessible name. The thumb position also communicates state, beyond color.
+
+Enable `hasStatusLabel` when space permits. The visible On/Off text is part of the switch's click target and stays visible in both sizes, light and dark modes, and forced-colors mode. Default On/Off text is hidden from assistive technology because `aria-checked` already exposes the state. With `hasStatusLabel`, custom `labels.on` and `labels.off` text becomes the accessible description. Immediate activation changes politely announce custom text; later controlled updates change the description without an announcement. Translated labels can repeat the state. Both labels reserve the same width to prevent layout shifts. In narrow containers, `FormControl` places the setting label above the switch so longer labels can wrap without horizontal scrolling.
+
+The default track border and enabled thumb each meet 3:1 contrast against adjacent colors in light and dark modes. ToggleSwitch uses existing Brand palette colors. Recheck contrast if you override its colors or place it on a custom background.
+
 ## Component Props
 
 | Name                  | Type                                         | Default      | Description                                                                           |
@@ -151,16 +159,6 @@ Custom status text supplements the setting label; it does not replace it. The sw
 | `data-testid`         | `string`                                     |              | Test ID applied to the component wrapper.                                             |
 
 Other standard button attributes, including `aria-controls`, `tabIndex`, keyboard handlers, and `style`, apply to the switch button.
-
-## Accessibility
-
-The switch communicates its state through thumb position as well as color. Use `hasStatusLabel` to make the state explicit with visible On/Off text. These cues remain visible in both sizes, light and dark modes, and forced-colors mode. The status text does not change the switch's accessible name.
-
-The status text is part of the switch's click target. The default On/Off text is hidden from assistive technology, which already receives the state through `aria-checked`. When the current `labels.on` or `labels.off` value uses custom text, that text becomes the switch's accessible description. Immediate changes from activating the switch also announce the custom text politely. Later controlled updates change the description without an announcement. For example, a screen reader can announce "Make repository public, switch, off, Private" when the switch receives focus. Translated On/Off text also becomes a description and can repeat the state in that language. Both labels reserve the same width, so toggling does not shift the layout. At narrow viewports or in narrow containers, a `FormControl` with a status label places its setting label above the switch so longer translations can wrap without horizontal scrolling.
-
-The switch exposes its state to assistive technology through `role="switch"` and `aria-checked`. Provide a descriptive visible label with `FormControl.Label` or `aria-labelledby`; the status text does not replace the setting label.
-
-In light and dark modes, the default track border contrasts at least 3:1 with the track and default canvas. The enabled thumb also contrasts at least 3:1 with the track. ToggleSwitch uses existing Brand palette colors without changing shared palette tokens. Recheck contrast when overriding its colors or placing it on a custom background.
 
 ## Related Components
 

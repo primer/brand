@@ -192,6 +192,87 @@ const storybookRoutes = Object.values((IndexData as StoryIndex).entries)
 
 describe.configure({mode: 'parallel'})
 
+// eslint-disable-next-line i18n-text/no-en
+describe('Story readiness', () => {
+  const storyId = 'readiness-fixture'
+
+  async function prepareStory(page: Page, waitForPlay: boolean, phase: string) {
+    await page.goto('about:blank')
+    await page.evaluate(
+      ({fixtureId, shouldWait, initialPhase}) => {
+        const canvas = document.createElement('div')
+        canvas.id = 'readiness-canvas'
+        canvas.setAttribute('data-story-id', fixtureId)
+        canvas.setAttribute('data-story-loaded', 'true')
+        canvas.setAttribute('data-phase', initialPhase)
+        document.body.appendChild(canvas)
+        document.body.classList.add('sb-show-main')
+        Object.assign(window, {
+          __STORYBOOK_PREVIEW__: {
+            storyRenders: [
+              {
+                get id() {
+                  return canvas.getAttribute('data-story-id')
+                },
+                get phase() {
+                  return canvas.getAttribute('data-phase')
+                },
+                canvasElement: canvas,
+                get story() {
+                  return canvas.hasAttribute('data-story-loaded')
+                    ? {parameters: {axe: {waitForPlay: shouldWait}}}
+                    : undefined
+                },
+              },
+            ],
+          },
+        })
+      },
+      {fixtureId: storyId, shouldWait: waitForPlay, initialPhase: phase},
+    )
+  }
+
+  test('waits for an opted-in interaction to finish', async ({page}) => {
+    await prepareStory(page, true, 'playing')
+    const canvas = page.locator('#readiness-canvas')
+    await canvas.evaluate(element => element.setAttribute('data-axe-ready', 'true'))
+    await expect(waitForStoryReady(page, storyId, 500)).rejects.toThrow(/Timeout/)
+    await canvas.evaluate(element => element.setAttribute('data-phase', 'finished'))
+    await waitForStoryReady(page, storyId)
+  })
+
+  test('requires a success marker from opted-in interactions', async ({page}) => {
+    await prepareStory(page, true, 'finished')
+    const canvas = page.locator('#readiness-canvas')
+    await expect(waitForStoryReady(page, storyId, 500)).rejects.toThrow(/Timeout/)
+    await canvas.evaluate(element => {
+      element.textContent = 'Content'
+    })
+    await expect(waitForStoryReady(page, storyId, 500)).rejects.toThrow(/Timeout/)
+    await canvas.evaluate(element => element.setAttribute('data-axe-ready', 'true'))
+    await waitForStoryReady(page, storyId)
+  })
+
+  test('does not require a success marker for other stories', async ({page}) => {
+    await prepareStory(page, false, 'rendering')
+    await waitForStoryReady(page, storyId)
+  })
+
+  test('waits for the requested story to register', async ({page}) => {
+    await prepareStory(page, false, 'rendering')
+    const canvas = page.locator('#readiness-canvas')
+    await canvas.evaluate(element => {
+      element.setAttribute('data-story-id', 'another-story')
+      element.removeAttribute('data-story-loaded')
+    })
+    await expect(waitForStoryReady(page, storyId, 500)).rejects.toThrow(/Timeout/)
+    await canvas.evaluate((element, id) => element.setAttribute('data-story-id', id), storyId)
+    await expect(waitForStoryReady(page, storyId, 500)).rejects.toThrow(/Timeout/)
+    await canvas.evaluate(element => element.setAttribute('data-story-loaded', 'true'))
+    await waitForStoryReady(page, storyId)
+  })
+})
+
 for (const story of storybookRoutes) {
   // eslint-disable-next-line i18n-text/no-en
   describe(`Web page accessibility test for ${story.name} - ${story.story}`, () => {

@@ -4,6 +4,7 @@
  * Regenerate using: npm run test:visual:generate
  */
 import {test, expect} from '@playwright/test'
+import {waitForStoryReady} from '../../../../e2e/scripts/playwright/wait-for-story-ready'
 
 // eslint-disable-next-line i18n-text/no-en
 test.describe('Visual Comparison: ToggleSwitch', () => {
@@ -56,7 +57,7 @@ test.describe('Visual Comparison: ToggleSwitch', () => {
       'http://localhost:6006/iframe.html?args=&id=components-forms-toggleswitch-examples--optimistic-update-failure&viewMode=story',
       {waitUntil: 'networkidle'},
     )
-    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+    await waitForStoryReady(page, 'components-forms-toggleswitch-examples--optimistic-update-failure')
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -213,7 +214,7 @@ test.describe('Visual Comparison: ToggleSwitch', () => {
       'http://localhost:6006/iframe.html?args=&id=components-forms-toggleswitch-features--status-label&viewMode=story',
       {waitUntil: 'networkidle'},
     )
-    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+    await waitForStoryReady(page, 'components-forms-toggleswitch-features--status-label')
 
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot({fullPage: true})
@@ -249,7 +250,7 @@ test.describe('Visual Comparison: ToggleSwitch', () => {
         'http://localhost:6006/iframe.html?args=&id=components-forms-toggleswitch-features--status-label-narrow&viewMode=story',
         {waitUntil: 'networkidle'},
       )
-      await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+      await waitForStoryReady(page, 'components-forms-toggleswitch-features--status-label-narrow')
 
       await page.waitForTimeout(500)
       await expect(page).toHaveScreenshot({fullPage: true})
