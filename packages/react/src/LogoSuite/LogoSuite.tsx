@@ -282,6 +282,15 @@ const _LogoBar = forwardRef(
 
     const hasLinkedLogos = checkAllLogosAreLinks(children)
 
+    const renderDuplicateLogos = (nodes: React.ReactNode): React.ReactNode =>
+      React.Children.map(nodes, child => {
+        if (!React.isValidElement<PropsWithChildren<{tabIndex?: number}>>(child)) return child
+        if (child.type === React.Fragment) {
+          return React.cloneElement(child, {children: renderDuplicateLogos(child.props.children)})
+        }
+        return React.cloneElement(child, {tabIndex: -1})
+      })
+
     const defaultProps = {
       ref,
       className: clsx(
@@ -293,18 +302,6 @@ const _LogoBar = forwardRef(
       ),
       ...props,
     }
-
-    const [isFocusWithin, setIsFocusWithin] = useState(false)
-
-    const handleFocus = useCallback(() => {
-      setIsFocusWithin(true)
-    }, [])
-
-    const handleBlur = useCallback((event: React.FocusEvent) => {
-      if (!event.currentTarget.contains(event.relatedTarget as Node)) {
-        setIsFocusWithin(false)
-      }
-    }, [])
 
     const renderTakeoverButton = () => {
       if (!takeoverButton) return null
@@ -335,14 +332,7 @@ const _LogoBar = forwardRef(
             shouldPause && styles['LogoSuite__logobar--paused'],
           )}
         >
-          <div
-            className={clsx(
-              styles['LogoSuite__logobar-marquee'],
-              isFocusWithin && styles['LogoSuite__logobar-marquee--focused'],
-            )}
-            onFocus={handleFocus}
-            onBlur={handleBlur}
-          >
+          <div className={styles['LogoSuite__logobar-marquee']}>
             <div
               className={clsx(
                 styles['LogoSuite__logobar-marqueeGroup'],
@@ -353,14 +343,14 @@ const _LogoBar = forwardRef(
               {children}
             </div>
             <div
-              inert
               aria-hidden="true"
+              onPointerDown={event => event.preventDefault()}
               className={clsx(
                 styles['LogoSuite__logobar-marqueeGroup'],
                 styles[`LogoSuite__logobar-marqueeGroup--speed-${marqueeSpeed}`],
               )}
             >
-              {children}
+              {renderDuplicateLogos(children)}
             </div>
           </div>
           <PlayPauseButton onPlayPause={setIsPlaying} isPlaying={isPlaying} />

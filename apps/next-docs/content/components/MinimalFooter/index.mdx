@@ -22,7 +22,9 @@ import {MinimalFooter} from '@primer/react-brand'
 ### Default
 
 ```jsx live
-<MinimalFooter />
+<div style={{width: '100%'}}>
+  <MinimalFooter />
+</div>
 ```
 
 ### Footer links
@@ -30,35 +32,39 @@ import {MinimalFooter} from '@primer/react-brand'
 Use up to five `MinimalFooter.Link` children. Links can render as anchors or buttons.
 
 ```jsx live
-<MinimalFooter>
-  <MinimalFooter.Link href="https://github.com/organizations/enterprise_plan">Try GitHub for free</MinimalFooter.Link>
-  <MinimalFooter.Link href="https://github.com/enterprise">Enterprise</MinimalFooter.Link>
-  <MinimalFooter.Link href="https://github.com/enterprise/contact">Email us</MinimalFooter.Link>
-</MinimalFooter>
+<div style={{width: '100%'}}>
+  <MinimalFooter>
+    <MinimalFooter.Link href="https://github.com/organizations/enterprise_plan">Try GitHub for free</MinimalFooter.Link>
+    <MinimalFooter.Link href="https://github.com/enterprise">Enterprise</MinimalFooter.Link>
+    <MinimalFooter.Link href="https://github.com/enterprise/contact">Email us</MinimalFooter.Link>
+  </MinimalFooter>
+</div>
 ```
 
 ### Footnotes
 
 ```jsx live
-<MinimalFooter>
-  <MinimalFooter.Footnotes>
-    <Text>
-      <sup>1</sup>By signing up, GitHub may use your information to personalize and measure the effectiveness of
-      enterprise business ads, including those you see off of GitHub, promotional communications or marketing you
-      receive related to the Enterprise Marketing Pages. We will send you relevant emails and promotional information
-      based on your GitHub profile and any additional information provided in the sign-up form. If you change your mind,
-      you can unsubscribe at any time (an unsubscribe link is provided in every email). For more information on how
-      GitHub uses your personal information, please see the{' '}
-      <InlineLink
-        href="https://docs.github.com/en/site-policy/privacy-policies/github-privacy-statement"
-        target="_blank"
-      >
-        GitHub Privacy Statement
-      </InlineLink>
-      .
-    </Text>
-  </MinimalFooter.Footnotes>
-</MinimalFooter>
+<div style={{width: '100%'}}>
+  <MinimalFooter>
+    <MinimalFooter.Footnotes>
+      <Text>
+        <sup>1</sup>By signing up, GitHub may use your information to personalize and measure the effectiveness of
+        enterprise business ads, including those you see off of GitHub, promotional communications or marketing you
+        receive related to the Enterprise Marketing Pages. We will send you relevant emails and promotional information
+        based on your GitHub profile and any additional information provided in the sign-up form. If you change your
+        mind, you can unsubscribe at any time (an unsubscribe link is provided in every email). For more information on
+        how GitHub uses your personal information, please see the{' '}
+        <InlineLink
+          href="https://docs.github.com/en/site-policy/privacy-policies/github-privacy-statement"
+          target="_blank"
+        >
+          GitHub Privacy Statement
+        </InlineLink>
+        .
+      </Text>
+    </MinimalFooter.Footnotes>
+  </MinimalFooter>
+</div>
 ```
 
 ### Footer social links
@@ -66,7 +72,7 @@ Use up to five `MinimalFooter.Link` children. Links can render as anchors or but
 `MinimalFooter` will render all supported social links by default. Social links can be removed however, by passing `socialLinks={false}`. Alternatively, pass an array of valid social links to filter and reorder the default list.
 
 ```jsx live
-<Stack>
+<Stack style={{width: '100%'}}>
   Hide all social links:
   <MinimalFooter socialLinks={false} />
   <br />
@@ -80,18 +86,20 @@ Use up to five `MinimalFooter.Link` children. Links can render as anchors or but
 Use `centerComponent` for an exceptional page-specific control or status indicator between the top and bottom sections.
 
 ```jsx live
-<MinimalFooter
-  centerComponent={
-    <Stack direction="horizontal" gap="condensed" padding="none">
-      <Text size="200" variant="muted">
-        Status:
-      </Text>
-      <InlineLink href="https://www.githubstatus.com" size="200">
-        All systems operational
-      </InlineLink>
-    </Stack>
-  }
-/>
+<div style={{width: '100%'}}>
+  <MinimalFooter
+    centerComponent={
+      <Stack direction="horizontal" gap="condensed" padding="none">
+        <Text size="200" variant="muted">
+          Status:
+        </Text>
+        <InlineLink href="https://www.githubstatus.com" size="200">
+          All systems operational
+        </InlineLink>
+      </Stack>
+    }
+  />
+</div>
 ```
 
 ### Back to top
@@ -101,9 +109,11 @@ Use `MinimalFooter.BackToTop` to opt into a control in the top row that scrolls 
 After keyboard activation, focus moves to the first `<main>` element, falling back to `<body>` or `<html>` when a main landmark is unavailable. Use `focusTargetId` to identify a different semantic top-of-page destination.
 
 ```jsx live
-<MinimalFooter socialLinks={false}>
-  <MinimalFooter.BackToTop>Back to top</MinimalFooter.BackToTop>
-</MinimalFooter>
+<div style={{width: '100%'}}>
+  <MinimalFooter socialLinks={false}>
+    <MinimalFooter.BackToTop>Back to top</MinimalFooter.BackToTop>
+  </MinimalFooter>
+</div>
 ```
 
 ## Component props

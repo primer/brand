@@ -1,5 +1,38 @@
 # @primer/react-brand
 
+## 0.81.0
+
+### Minor Changes
+
+- [#1523](https://github.com/primer/brand/pull/1523) [`030dbfe`](https://github.com/primer/brand/commit/030dbfef74af964f2c122fc4aa04ac4daf53dfb4) Thanks [@rezrah](https://github.com/rezrah)! - Fixed `Avatar` refs to point to the rendered image, matching the declared `HTMLImageElement` type.
+
+- [#1523](https://github.com/primer/brand/pull/1523) [`030dbfe`](https://github.com/primer/brand/commit/030dbfef74af964f2c122fc4aa04ac4daf53dfb4) Thanks [@rezrah](https://github.com/rezrah)! - Updates to `Testimonial` component:
+
+  - Adds `Testimonial.testIds`
+  - Refines TypeScript ref types for the root, quote, and name.
+  - Forwards avatar refs to the image and link refs to the anchor.
+  - Forwards HTML attributes, styles, and event handlers from `Testimonial.Quote` and `Testimonial.Name`.
+  - Supports SVG logo children alongside image logos.
+  - `Testimonial.Link` refs now use `HTMLAnchorElement` instead of `HTMLElement`
+  - Localizes Storybook example text and accessible labels while preserving custom Playground text.
+  - Adds responsive tokens for custom expressive typography and layout values without changing the design.
+
+### Patch Changes
+
+- [#1522](https://github.com/primer/brand/pull/1522) [`53faca0`](https://github.com/primer/brand/commit/53faca0b926e322dc037f953ecf1a1534767b9dd) Thanks [@danielguillan](https://github.com/danielguillan)! - Added a hover and focus tooltip to the `ActionMenu.Button` split-button menu trigger while preserving its accessible name.
+
+- [#1528](https://github.com/primer/brand/pull/1528) [`6c2046c`](https://github.com/primer/brand/commit/6c2046c861f1b17e6f2a14be9c5470abd93c8720) Thanks [@danielguillan](https://github.com/danielguillan)! - Expose Card action-label text to screen readers after the description without adding a tab stop.
+
+- [#1522](https://github.com/primer/brand/pull/1522) [`53faca0`](https://github.com/primer/brand/commit/53faca0b926e322dc037f953ecf1a1534767b9dd) Thanks [@danielguillan](https://github.com/danielguillan)! - Kept the first-column heading in `ComparisonTable` visible in narrow layouts.
+
+- [#1523](https://github.com/primer/brand/pull/1523) [`030dbfe`](https://github.com/primer/brand/commit/030dbfef74af964f2c122fc4aa04ac4daf53dfb4) Thanks [@rezrah](https://github.com/rezrah)! - Added ref forwarding to `Link` so object and callback refs resolve to its anchor element.
+
+- [#1522](https://github.com/primer/brand/pull/1522) [`53faca0`](https://github.com/primer/brand/commit/53faca0b926e322dc037f953ecf1a1534767b9dd) Thanks [@danielguillan](https://github.com/danielguillan)! - Fixed `MediaPlaylist` keyboard focus outlines being clipped by the playlist's overflow containers.
+
+- [#1522](https://github.com/primer/brand/pull/1522) [`53faca0`](https://github.com/primer/brand/commit/53faca0b926e322dc037f953ecf1a1534767b9dd) Thanks [@danielguillan](https://github.com/danielguillan)! - Fixed `MinimalFooter` social links overflowing narrow layouts by allowing them to wrap.
+
+- [#1519](https://github.com/primer/brand/pull/1519) [`e19919a`](https://github.com/primer/brand/commit/e19919aadfe4cbb94f9ec7e8d901193303166c69) Thanks [@danielguillan](https://github.com/danielguillan)! - Fix duplicate `LogoSuite` links and prevent pointer clicks from resetting the marquee.
+
 ## 0.80.1
 
 ### Patch Changes
