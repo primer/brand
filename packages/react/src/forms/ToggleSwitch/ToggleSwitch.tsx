@@ -1,7 +1,8 @@
-import React, {forwardRef, useEffect, useState, type ButtonHTMLAttributes, type MouseEventHandler} from 'react'
+import React, {forwardRef, useEffect, useRef, useState, type ButtonHTMLAttributes, type MouseEventHandler} from 'react'
 import {clsx} from 'clsx'
 import {useId} from '../../hooks/useId'
 import {Spinner} from '../../Spinner/Spinner'
+import {Text} from '../../Text/Text'
 
 import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/toggle-switch/base.css'
 import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/toggle-switch/colors-with-modes.css'
@@ -9,6 +10,11 @@ import styles from './ToggleSwitch.module.css'
 
 type ToggleSwitchSize = 'small' | 'medium'
 type ToggleSwitchSpinnerPosition = 'start' | 'end'
+type ToggleSwitchStatusLabelPosition = 'start' | 'end'
+type ToggleSwitchLabels = {
+  on?: string
+  off?: string
+}
 
 type ToggleSwitchButtonPropKeysToOmit =
   | 'aria-busy'
@@ -29,6 +35,9 @@ export type ToggleSwitchProps = Omit<ButtonHTMLAttributes<HTMLButtonElement>, To
   loadingLabel?: string
   loadingLabelDelay?: number
   spinnerPosition?: ToggleSwitchSpinnerPosition
+  hasStatusLabel?: boolean
+  statusLabelPosition?: ToggleSwitchStatusLabelPosition
+  labels?: ToggleSwitchLabels
 }
 
 export type ToggleSwitchInternalProps = ToggleSwitchProps & {
@@ -39,6 +48,8 @@ const testIds = {
   root: 'ToggleSwitch',
   spinner: 'ToggleSwitch-spinner',
   loadingAnnouncement: 'ToggleSwitch-loading-announcement',
+  statusAnnouncement: 'ToggleSwitch-status-announcement',
+  statusLabel: 'ToggleSwitch-status-label',
 }
 
 type ToggleSwitchComponent = React.ForwardRefExoticComponent<ToggleSwitchProps & React.RefAttributes<HTMLButtonElement>>
@@ -55,6 +66,9 @@ const Root: ToggleSwitchComponent = forwardRef<HTMLButtonElement, ToggleSwitchIn
     loadingLabel = 'Loading',
     loadingLabelDelay = 2000,
     spinnerPosition = 'end',
+    hasStatusLabel = false,
+    statusLabelPosition = 'start',
+    labels: {on: statusLabelOn = 'On', off: statusLabelOff = 'Off'} = {},
     toggleSwitchSpinnerInLabel = false,
     id,
     className,
@@ -68,10 +82,31 @@ const Root: ToggleSwitchComponent = forwardRef<HTMLButtonElement, ToggleSwitchIn
   ref,
 ) {
   const uniqueId = useId(id)
+  const statusDescriptionId = useId()
   const loadingId = `${uniqueId}-loading`
   const [internalChecked, setInternalChecked] = useState(defaultChecked)
   const [announceLoading, setAnnounceLoading] = useState(false)
+  const [statusAnnouncement, setStatusAnnouncement] = useState('')
+  const [pendingStatusChange, setPendingStatusChange] = useState<boolean | null>(null)
   const isChecked = checked ?? internalChecked
+  const activeStatusLabel = isChecked ? statusLabelOn : statusLabelOff
+  const defaultStatusLabel = isChecked ? 'On' : 'Off'
+  const hasCustomStatusLabels = statusLabelOn !== 'On' || statusLabelOff !== 'Off'
+  const hasStatusDescription = hasStatusLabel && activeStatusLabel !== defaultStatusLabel
+  const previousChecked = useRef(isChecked)
+
+  useEffect(() => {
+    const stateChanged = previousChecked.current !== isChecked
+    previousChecked.current = isChecked
+
+    if (stateChanged) {
+      setStatusAnnouncement(pendingStatusChange === isChecked && hasStatusDescription ? activeStatusLabel : '')
+    } else {
+      setStatusAnnouncement(current => (hasStatusDescription && current === activeStatusLabel ? current : ''))
+    }
+
+    if (pendingStatusChange !== null) setPendingStatusChange(null)
+  }, [activeStatusLabel, hasStatusDescription, isChecked, pendingStatusChange])
 
   useEffect(() => {
     setAnnounceLoading(false)
@@ -82,7 +117,13 @@ const Root: ToggleSwitchComponent = forwardRef<HTMLButtonElement, ToggleSwitchIn
   }, [loading, loadingLabelDelay])
 
   const describedBy =
-    [ariaDescribedBy, loading && announceLoading && loadingLabel && loadingId].filter(Boolean).join(' ') || undefined
+    [
+      hasStatusDescription && statusDescriptionId,
+      ariaDescribedBy,
+      loading && announceLoading && loadingLabel && loadingId,
+    ]
+      .filter(Boolean)
+      .join(' ') || undefined
 
   const handleClick: MouseEventHandler<HTMLButtonElement> = event => {
     if (disabled) {
@@ -95,6 +136,7 @@ const Root: ToggleSwitchComponent = forwardRef<HTMLButtonElement, ToggleSwitchIn
     if (event.defaultPrevented) return
 
     const nextChecked = !isChecked
+    if (hasStatusLabel && hasCustomStatusLabels) setPendingStatusChange(nextChecked)
     if (checked === undefined) setInternalChecked(nextChecked)
     onChange?.(nextChecked)
   }
@@ -111,9 +153,46 @@ const Root: ToggleSwitchComponent = forwardRef<HTMLButtonElement, ToggleSwitchIn
       </span>
     ) : null
 
+  // Both labels share one grid cell so the wider label reserves space and state changes do not shift layout.
+  const statusLabelElement = hasStatusLabel ? (
+    <span
+      className={clsx(styles['ToggleSwitch-statusLabel'], styles[`ToggleSwitch-statusLabel--${statusLabelPosition}`])}
+      aria-hidden="true"
+      data-testid={testIds.statusLabel}
+    >
+      <Text
+        as="span"
+        size="100"
+        variant="muted"
+        className={clsx(
+          styles['ToggleSwitch-statusLabelText'],
+          !isChecked && styles['ToggleSwitch-statusLabelText--hidden'],
+        )}
+      >
+        {statusLabelOn}
+      </Text>
+      <Text
+        as="span"
+        size="100"
+        variant="muted"
+        className={clsx(
+          styles['ToggleSwitch-statusLabelText'],
+          isChecked && styles['ToggleSwitch-statusLabelText--hidden'],
+        )}
+      >
+        {statusLabelOff}
+      </Text>
+    </span>
+  ) : null
+
   return (
     <div
-      className={clsx(styles.ToggleSwitch, styles[`ToggleSwitch--${size}`], className)}
+      className={clsx(
+        styles.ToggleSwitch,
+        styles[`ToggleSwitch--${size}`],
+        hasStatusLabel && styles['ToggleSwitch--withStatusLabel'],
+        className,
+      )}
       data-testid={testId || testIds.root}
     >
       {spinnerPosition === 'start' && spinnerElement}
@@ -133,6 +212,7 @@ const Root: ToggleSwitchComponent = forwardRef<HTMLButtonElement, ToggleSwitchIn
         className={clsx(styles['ToggleSwitch-button'], disabled && styles['ToggleSwitch-button--unavailable'])}
         onClick={handleClick}
       >
+        {statusLabelPosition === 'start' && statusLabelElement}
         <span className={styles['ToggleSwitch-track']} aria-hidden="true">
           <span
             className={clsx(
@@ -142,8 +222,25 @@ const Root: ToggleSwitchComponent = forwardRef<HTMLButtonElement, ToggleSwitchIn
             )}
           />
         </span>
+        {statusLabelPosition === 'end' && statusLabelElement}
       </button>
       {spinnerPosition === 'end' && spinnerElement}
+      {hasStatusDescription ? (
+        <span id={statusDescriptionId} className="visually-hidden">
+          {activeStatusLabel}
+        </span>
+      ) : null}
+      {hasStatusLabel && hasCustomStatusLabels ? (
+        <span
+          role="status"
+          aria-live="polite"
+          aria-atomic="true"
+          className="visually-hidden"
+          data-testid={testIds.statusAnnouncement}
+        >
+          {statusAnnouncement}
+        </span>
+      ) : null}
       <span
         id={loadingId}
         role="status"

@@ -24,6 +24,12 @@ const port = 6006
 
 const defaultTimeout = 500 // Storybook 7 introduced a small delay in loading stories. This is to migigate the spinner showing up in screenshots.
 
+const storiesWaitingForPlay = new Set([
+  'components-forms-toggleswitch-features--status-label',
+  'components-forms-toggleswitch-features--status-label-narrow',
+  'components-forms-toggleswitch-examples--optimistic-update-failure',
+])
+
 /**
  * Manual lookup for tests that need animation or side-effects to complete before tests start
  */
@@ -225,6 +231,9 @@ const categorisedStories = Object.keys((stories as StoryIndex).entries).reduce((
 
 for (const key of Object.keys(categorisedStories)) {
   const {stories: componentStories, storyFolder} = categorisedStories[key]
+  const storyReadinessModule = componentStories.some(({id}) => storiesWaitingForPlay.has(id))
+    ? path.relative(storyFolder, path.resolve(__dirname, './wait-for-story-ready')).split(path.sep).join('/')
+    : null
 
   const validNarrowVieportNames = ['mobile', 'narrow']
 
@@ -235,6 +244,7 @@ for (const key of Object.keys(categorisedStories)) {
     * Regenerate using: npm run test:visual:generate
     */
     import {test, expect} from '@playwright/test'
+    ${storyReadinessModule ? `import {waitForStoryReady} from '${storyReadinessModule}'` : ''}
 
     // eslint-disable-next-line i18n-text/no-en
     test.describe('Visual Comparison: ${key}', () => {
@@ -265,7 +275,11 @@ for (const key of Object.keys(categorisedStories)) {
             requiresTouch ? 'touchTest' : 'test'
           }('${testName}', async ({page}) => {
             await page.goto('http://localhost:${port}/iframe.html?${localeParam}args=&id=${id}&viewMode=story', { waitUntil: 'networkidle' })
-            await page.locator('body.sb-show-main').waitFor({ state: 'visible' })
+            ${
+              storiesWaitingForPlay.has(id)
+                ? `await waitForStoryReady(page, '${id}')`
+                : `await page.locator('body.sb-show-main').waitFor({ state: 'visible' })`
+            }
 
             ${timeout ? `await page.waitForTimeout(${timeout})` : ''}
             await expect(page).toHaveScreenshot({ fullPage: true })
