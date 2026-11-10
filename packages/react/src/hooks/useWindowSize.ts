@@ -1,5 +1,6 @@
 import {useState, useEffect} from 'react'
-import breakpoints from '@primer/brand-primitives/lib/design-tokens/ts/tokens/functional/size/breakpoints'
+// eslint-disable-next-line import/extensions -- JSON imports require an explicit extension.
+import {breakpoint} from '@primer/brand-primitives/src/tokens/functional/size/breakpoints.json'
 
 export enum BreakpointSize {
   XSMALL = 'xsmall',
@@ -38,7 +39,7 @@ export function useWindowSize() {
 
   useEffect(() => {
     const sizes = Object.values(BreakpointSize)
-    const mediaQueries = sizes.map(size => window.matchMedia(`(min-width: ${breakpoints.brand.breakpoint[size]})`))
+    const mediaQueries = sizes.map(size => window.matchMedia(`(min-width: ${breakpoint[size].$value})`))
 
     function handleResize() {
       const matches = mediaQueries.map(query => query.matches)

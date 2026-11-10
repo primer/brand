@@ -1,7 +1,7 @@
 {
   "breakpoint": {
     "xsmall": {
-      "$value": "320px",
+      "$value": "20rem",
       "$type": "dimension",
       "$extensions": {
         "org.primer.figma": {
@@ -11,7 +11,7 @@
       }
     },
     "small": {
-      "$value": "544px",
+      "$value": "34rem",
       "$type": "dimension",
       "$extensions": {
         "org.primer.figma": {
@@ -21,7 +21,7 @@
       }
     },
     "medium": {
-      "$value": "768px",
+      "$value": "48rem",
       "$type": "dimension",
       "$extensions": {
         "org.primer.figma": {
@@ -31,7 +31,7 @@
       }
     },
     "large": {
-      "$value": "1012px",
+      "$value": "63.25rem",
       "$type": "dimension",
       "$extensions": {
         "org.primer.figma": {
@@ -41,7 +41,7 @@
       }
     },
     "xlarge": {
-      "$value": "1280px",
+      "$value": "80rem",
       "$type": "dimension",
       "$extensions": {
         "org.primer.figma": {
@@ -51,7 +51,7 @@
       }
     },
     "xxlarge": {
-      "$value": "1400px",
+      "$value": "87.5rem",
       "$type": "dimension",
       "$extensions": {
         "org.primer.figma": {
