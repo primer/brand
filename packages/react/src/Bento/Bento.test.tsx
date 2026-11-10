@@ -1,6 +1,7 @@
 import React from 'react'
 import {render, cleanup} from '@testing-library/react'
 import '@testing-library/jest-dom'
+import '../test-utils/mocks/match-media-mock'
 import {Bento, ColumnIndex} from './Bento'
 import {Text, Link, ColorModesEnum, Label} from '../'
 import {axe, toHaveNoViolations} from 'jest-axe'

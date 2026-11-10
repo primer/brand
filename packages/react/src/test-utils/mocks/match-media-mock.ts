@@ -7,7 +7,10 @@
 Object.defineProperty(window, 'matchMedia', {
   writable: true,
   value: jest.fn().mockImplementation(query => ({
-    matches: false,
+    get matches() {
+      const minWidth = /^\(min-width: ([\d.]+)rem\)$/.exec(query)
+      return minWidth ? window.innerWidth >= Number(minWidth[1]) * 16 : false
+    },
     media: query,
     onchange: null,
     addListener: jest.fn(), // deprecated
