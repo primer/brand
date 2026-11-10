@@ -502,7 +502,10 @@ const RiverBreakoutTabsRoot = forwardRef<HTMLElement, RiverBreakoutTabsProps>(
                   open={index === activeAccordionIndex}
                   handleOpen={handleAccordionOpen(index)}
                 >
-                  <Accordion.Heading className={styles.RiverBreakoutTabs__accordionHeading}>
+                  <Accordion.Heading
+                    as={item.heading?.props.as ?? 'h3'}
+                    className={styles.RiverBreakoutTabs__accordionHeading}
+                  >
                     <span className={styles.RiverBreakoutTabs__accordionHeadingInner}>
                       {item.icon &&
                         cloneElement(item.icon, {
