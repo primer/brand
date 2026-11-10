@@ -53,7 +53,9 @@ describe('RiverBreakoutTabs', () => {
     expect(getAllByText('Review content').length).toBeGreaterThan(0)
   })
 
-  it.each([undefined, ...HeadingTags])('forwards the %s heading level correctly', as => {
+  it.each([undefined, ...HeadingTags])('forwards the %s heading level correctly on narrow viewports', as => {
+    window.innerWidth = 800
+
     const {getByRole} = render(
       <RiverBreakoutTabs>
         <RiverBreakoutTabs.A11yHeading>Agent workflows</RiverBreakoutTabs.A11yHeading>
