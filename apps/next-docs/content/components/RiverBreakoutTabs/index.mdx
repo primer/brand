@@ -9,6 +9,7 @@ storybook: '/brand/storybook/?path=/story/components-riverbreakouttabs--default'
 ---
 
 import {Label} from '@primer/react'
+import {RiverBreakoutTabsHeadingAsProp} from './react'
 
 ```js
 import {RiverBreakoutTabs} from '@primer/react-brand'
@@ -175,9 +176,10 @@ Place action buttons inside `RiverBreakoutTabs.Content`. They remain outside the
 
 ### RiverBreakoutTabs.Heading <Label>Required</Label>
 
-| Name       | Type        | Default | Description       |
-| :--------- | :---------- | :-----: | :---------------- |
-| `children` | `ReactNode` |         | Item heading text |
+| Name       | Type                               | Default | Description            |
+| :--------- | :--------------------------------- | :-----: | :--------------------- |
+| `children` | `ReactNode`                        |         | Item heading text      |
+| `as`       | <RiverBreakoutTabsHeadingAsProp /> | `'h3'`  | Semantic heading level |
 
 `RiverBreakoutTabs.Heading` extends the [`Heading`](/typography/Heading) component.
 

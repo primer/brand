@@ -5,7 +5,7 @@ import '@testing-library/jest-dom'
 import {axe, toHaveNoViolations} from 'jest-axe'
 
 import {RiverBreakoutTabs} from '../'
-import {Button, Link, Text} from '../../'
+import {Button, HeadingTags, Link, Text} from '../../'
 
 expect.extend(toHaveNoViolations)
 
@@ -51,6 +51,27 @@ describe('RiverBreakoutTabs', () => {
     expect(tabs[1]).toHaveAttribute('aria-selected', 'false')
     expect(getAllByText('Plan content').length).toBeGreaterThan(0)
     expect(getAllByText('Review content').length).toBeGreaterThan(0)
+  })
+
+  it.each([undefined, ...HeadingTags])('forwards the %s heading level correctly on narrow viewports', as => {
+    window.innerWidth = 800
+
+    const {getByRole} = render(
+      <RiverBreakoutTabs>
+        <RiverBreakoutTabs.A11yHeading>Agent workflows</RiverBreakoutTabs.A11yHeading>
+        <RiverBreakoutTabs.Item>
+          <RiverBreakoutTabs.Heading as={as}>Plan</RiverBreakoutTabs.Heading>
+          <RiverBreakoutTabs.Content>
+            <Text>Plan content</Text>
+          </RiverBreakoutTabs.Content>
+          <RiverBreakoutTabs.Visual>
+            <MockVisual label="plan visual" />
+          </RiverBreakoutTabs.Visual>
+        </RiverBreakoutTabs.Item>
+      </RiverBreakoutTabs>,
+    )
+
+    expect(getByRole('heading', {name: 'Plan'}).tagName).toBe((as ?? 'h3').toUpperCase())
   })
 
   it('changes the selected tab when a different card is clicked', () => {
