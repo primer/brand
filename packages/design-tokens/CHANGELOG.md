@@ -1,5 +1,11 @@
 # @primer/brand-primitives
 
+## 0.81.1
+
+### Patch Changes
+
+- [#1521](https://github.com/primer/brand/pull/1521) [`0332ac7`](https://github.com/primer/brand/commit/0332ac7164ab13defa66414bc907d57a5fdb889a) Thanks [@janmaarten-a11y](https://github.com/janmaarten-a11y)! - Improve `ToggleSwitch` state clarity with optional On/Off labels and stronger border and thumb contrast.
+
 ## 0.81.0
 
 ### Patch Changes

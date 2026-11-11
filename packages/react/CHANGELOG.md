@@ -1,5 +1,13 @@
 # @primer/react-brand
 
+## 0.81.1
+
+### Patch Changes
+
+- [#1533](https://github.com/primer/brand/pull/1533) [`09c4185`](https://github.com/primer/brand/commit/09c4185d4bbb579d63fd12d3c7b730ee28c62e1c) Thanks [@rezrah](https://github.com/rezrah)! - Fix `RiverBreakoutTabs.Heading` to correctly forward the `as` prop to its underlying accordion heading.
+
+- [#1521](https://github.com/primer/brand/pull/1521) [`0332ac7`](https://github.com/primer/brand/commit/0332ac7164ab13defa66414bc907d57a5fdb889a) Thanks [@janmaarten-a11y](https://github.com/janmaarten-a11y)! - Improve `ToggleSwitch` state clarity with optional On/Off labels and stronger border and thumb contrast.
+
 ## 0.81.0
 
 ### Minor Changes
