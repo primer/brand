@@ -186,10 +186,10 @@ describe('MediaPlaylist', () => {
     expect(getByTestId('media')).toHaveAttribute('aria-label', 'Plan media')
   })
 
-  it('supports vertical APG keyboard behavior', async () => {
+  it.each([3, 5])('supports vertical APG keyboard behavior with %i items', async itemCount => {
     const user = userEvent.setup()
 
-    const {getAllByRole} = renderExample({itemCount: 3})
+    const {getAllByRole} = renderExample({itemCount})
     const tabs = getAllByRole('tab')
     const [tabOne, tabTwo, tabThree] = tabs
 
@@ -207,6 +207,14 @@ describe('MediaPlaylist', () => {
     expect(tabOne).toHaveFocus()
     expect(tabOne).toHaveAttribute('aria-selected', 'true')
     expect(tabTwo).toHaveAttribute('aria-selected', 'false')
+
+    await user.keyboard('{End}')
+    expect(tabs[itemCount - 1]).toHaveFocus()
+    expect(tabs[itemCount - 1]).toHaveAttribute('aria-selected', 'true')
+
+    await user.keyboard('{Home}')
+    expect(tabOne).toHaveFocus()
+    expect(tabOne).toHaveAttribute('aria-selected', 'true')
   })
 
   it('updates the heading counter when the selected tab changes', () => {

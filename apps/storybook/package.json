@@ -1,6 +1,6 @@
 {
   "name": "@primer/brand-storybook",
-  "version": "0.80.1",
+  "version": "0.81.0",
   "private": true,
   "type": "module",
   "description": "Primer Brand Storybook",

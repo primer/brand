@@ -35,6 +35,32 @@
   overflow-wrap: anywhere;
 }
 
+.FormControl--toggle-switch-with-status-label {
+  display: flex;
+  flex-flow: row-reverse wrap;
+  justify-content: flex-end;
+}
+
+.FormControl--toggle-switch-with-status-label
+  .FormControl-label--toggle-switch:not(.FormControl-label--visually-hidden) {
+  flex: 1 1 0;
+  min-inline-size: min(100%, var(--base-size-96));
+  order: 0;
+}
+
+.FormControl--toggle-switch-with-status-label .FormControl-control--toggle-switch {
+  flex: 0 1 auto;
+  min-inline-size: 0;
+  max-inline-size: 100%;
+  order: 1;
+}
+
+.FormControl--toggle-switch-with-status-label .FormControl-hint,
+.FormControl--toggle-switch-with-status-label .FormControl-validation {
+  flex-basis: 100%;
+  order: 2;
+}
+
 .FormControl-label--medium.FormControl-label--toggle-switch {
   font-size: var(--brand-ToggleSwitch-label-fontSize);
   line-height: max(var(--brand-ToggleSwitch-label-lineHeight), var(--brand-ToggleSwitch-target-minHeight));
@@ -132,6 +158,28 @@
 
 .FormControl-validation--animate-in {
   animation: 170ms FormControlValidationFadeIn cubic-bezier(0.44, 0.74, 0.36, 1);
+}
+
+@media screen and (max-width: 47.99rem) {
+  .FormControl--toggle-switch-with-status-label {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .FormControl--toggle-switch-with-status-label
+    .FormControl-label--toggle-switch:not(.FormControl-label--visually-hidden) {
+    flex: initial;
+    min-inline-size: 0;
+  }
+
+  .FormControl--toggle-switch-with-status-label .FormControl-control--toggle-switch {
+    flex: initial;
+  }
+
+  .FormControl--toggle-switch-with-status-label .FormControl-hint,
+  .FormControl--toggle-switch-with-status-label .FormControl-validation {
+    flex: initial;
+  }
 }
 
 @keyframes FormControlValidationFadeIn {

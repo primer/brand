@@ -55,7 +55,7 @@
 .Testimonial--variant-default .Testimonial__quoteWrapper {
   display: flex;
   flex-direction: column;
-  gap: calc(var(--base-size-24) + var(--base-size-16));
+  gap: var(--base-size-40);
 }
 
 .Testimonial__quoteMark {
@@ -70,9 +70,9 @@
   color: var(--brand-Testimonial-quoteMarkColor, currentColor);
   background-color: var(--brand-Testimonial-quoteMarkBackground, var(--base-color-scale-gray-0));
   font-family: var(--brand-fontStack-monospace);
-  font-size: 4rem;
+  font-size: 4rem; /* TODO: Optical quote-glyph sizing is independent of the text scale. */
   font-weight: var(--base-text-weight-normal);
-  line-height: 1;
+  line-height: 1; /* TODO: Keep the quote glyph's line box independent of text leading. */
 }
 
 .Testimonial__quoteMarkGlyph {
@@ -85,7 +85,7 @@
   width: var(--base-size-40);
   height: var(--base-size-40);
   border-radius: var(--base-size-8);
-  font-size: 3rem;
+  font-size: 3rem; /* TODO: Optical quote-glyph sizing for the smaller mark tile. */
 }
 
 .Testimonial--variant-default .Testimonial__quoteMarkGlyph,
@@ -98,7 +98,7 @@
   font-size: var(--brand-Testimonial-quote-fontSize-default);
   font-weight: var(--brand-Testimonial-quote-fontWeight-default);
   letter-spacing: var(--brand-Testimonial-quote-letterSpacing-default);
-  line-height: 1.2; /* requires custom line-height */
+  line-height: var(--brand-text-lineHeight-700);
   display: block;
 }
 
@@ -150,7 +150,7 @@
   flex-direction: column;
   gap: var(--base-size-36);
   width: 100%;
-  max-width: 1176px;
+  max-width: var(--brand-Testimonial-expressive-maxWidth);
   padding-inline: var(--base-size-20);
   padding-block: var(--base-size-40);
 }
@@ -168,7 +168,7 @@
   align-items: flex-start;
   gap: var(--base-size-28);
   margin-block-start: 0;
-  width: 100%;
+  width: var(--brand-Testimonial-expressive-media-width);
 }
 
 .Testimonial--variant-expressive .Testimonial-avatar {
@@ -187,10 +187,6 @@
   .Testimonial--variant-expressive .Testimonial__quoteWrapper {
     gap: var(--base-size-40);
   }
-
-  .Testimonial--variant-expressive .Testimonial__media {
-    width: 356px;
-  }
 }
 
 .Testimonial--variant-expressive .Testimonial-from {
@@ -201,21 +197,21 @@
   font-weight: var(--brand-heading-weight-500);
   line-height: var(--brand-text-lineHeight-100);
   text-transform: uppercase;
-  letter-spacing: 0.0107em;
+  letter-spacing: var(--brand-Testimonial-expressive-name-letterSpacing);
 }
 
 .Testimonial--variant-expressive .Testimonial-position {
   font-size: var(--brand-text-size-200);
   font-weight: var(--base-text-weight-normal);
-  line-height: 1.6;
-  letter-spacing: 0.01em;
+  line-height: var(--brand-Testimonial-expressive-position-lineHeight);
+  letter-spacing: var(--brand-Testimonial-expressive-position-letterSpacing);
 }
 
 .Testimonial--variant-expressive .Testimonial-quote {
   font-family: var(--brand-fontStack-monospace);
-  font-size: 1.5rem;
-  font-weight: 425;
-  letter-spacing: -0.01em;
+  font-size: var(--brand-Testimonial-expressive-quote-fontSize);
+  font-weight: var(--brand-Testimonial-expressive-quote-fontWeight);
+  letter-spacing: var(--brand-Testimonial-expressive-quote-letterSpacing);
   line-height: var(--brand-text-lineHeight-100);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -223,24 +219,20 @@
 
 @media screen and (min-width: 48rem) {
   .Testimonial--variant-expressive {
-    max-width: 618px;
     margin-inline: auto;
     padding-inline: var(--base-size-36);
     padding-block: var(--base-size-44);
-  }
-  .Testimonial--variant-expressive .Testimonial-quote {
-    font-size: 1.625rem;
-    letter-spacing: -0.02em;
   }
 }
 
 @media screen and (min-width: 63.25rem) {
   .Testimonial--variant-expressive {
     display: grid;
-    grid-template-columns: minmax(0, 744px) 312px;
+    grid-template-columns: minmax(0, var(--brand-Testimonial-expressive-quote-maxWidth)) var(
+        --brand-Testimonial-expressive-media-width
+      );
     column-gap: calc(var(--base-size-96) + var(--base-size-24));
     align-items: end;
-    max-width: 1176px;
     margin-inline: auto;
     padding-inline: var(--base-size-48);
     padding-block: var(--base-size-88);
@@ -259,7 +251,6 @@
   .Testimonial--variant-expressive .Testimonial__media {
     grid-column: 2;
     grid-row: 1;
-    width: 312px;
     gap: var(--base-size-32);
   }
 
@@ -269,10 +260,6 @@
 
   .Testimonial--variant-expressive .Testimonial-caption {
     padding-block-start: var(--base-size-24);
-  }
-
-  .Testimonial--variant-expressive .Testimonial-quote {
-    font-size: 2rem;
   }
 
   .Testimonial--variant-expressive .Testimonial-link {
@@ -381,7 +368,7 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: calc(var(--base-size-24) + var(--base-size-16));
+  gap: var(--base-size-40);
 }
 
 .Testimonial--variant-minimal.Testimonial--size-large .Testimonial__quoteWrapper {
@@ -395,8 +382,8 @@
 .Testimonial--variant-minimal .Testimonial-quote {
   font-size: var(--brand-Testimonial-quote-fontSize-default);
   font-weight: var(--brand-Testimonial-quote-fontWeight-default);
-  line-height: 1.2;
-  letter-spacing: 0;
+  line-height: var(--brand-text-lineHeight-700);
+  letter-spacing: var(--brand-text-letterSpacing-400);
 }
 
 .Testimonial--variant-minimal.Testimonial--size-large .Testimonial-quote {
@@ -407,7 +394,7 @@
 
 .Testimonial--variant-minimal .Testimonial__media {
   gap: var(--base-size-16);
-  margin-block-start: calc(var(--base-size-32) + var(--base-size-8));
+  margin-block-start: var(--base-size-40);
   padding-block-start: 0;
 }
 

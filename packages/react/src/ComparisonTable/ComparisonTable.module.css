@@ -73,7 +73,7 @@
  * Narrow viewport-only styles
 */
 @media screen and (max-width: 34rem) {
-  .ComparisonTable thead .ComparisonTable-cell-heading {
+  .ComparisonTable-cell-heading--hidden-on-narrow {
     display: none;
   }
 
@@ -165,7 +165,7 @@
     position: relative;
     padding-left: 25px;
   }
-  :global(.ComparisonTable--default) .ComparisonTable-cell::before {
+  .ComparisonTable-cell--bordered-on-narrow::before {
     content: '';
     position: absolute;
     top: 0;
