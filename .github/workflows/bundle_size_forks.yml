@@ -47,12 +47,12 @@ jobs:
         working-directory: /tmp/main
         run: |
           npm ci
-          cp ${{ github.workspace }}/.size-limit.js .size-limit.js
           npm run build:lib
 
       - name: Measure bundle size (main branch)
-        working-directory: /tmp/main
-        run: npx size-limit --json > /tmp/main-sizes.json 2>/dev/null || echo "[]" > /tmp/main-sizes.json
+        env:
+          SIZE_LIMIT_ROOT: /tmp/main
+        run: npx size-limit --json > /tmp/main-sizes.json
 
       - name: Generate size report
         run: |
