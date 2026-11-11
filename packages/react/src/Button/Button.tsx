@@ -22,9 +22,6 @@ export type ButtonVariant = (typeof ButtonVariants)[number]
 export type ButtonSize = (typeof ButtonSizes)[number]
 
 export type ButtonBaseProps = {
-  /**
-   * The leading visual appears before the button content
-   */
   leadingVisual?: ReactElement | Icon
   /**
    * The trailing visual appears after the button content
