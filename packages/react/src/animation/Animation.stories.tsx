@@ -1,6 +1,6 @@
 import React from 'react'
 import type {Meta} from '@storybook/react'
-import {AnimationProvider, AnimationVariants} from '.'
+import {Animate, AnimationProvider, AnimationVariants} from '.'
 import {Text, Stack} from '..'
 
 import styles from './Animation.stories.module.css'
@@ -39,3 +39,16 @@ Playground.argTypes = {
     },
   },
 }
+
+export const NumericVisibilityThreshold = () => (
+  <AnimationProvider visibilityOptions={0.5} autoStaggerChildren={false}>
+    <Text as="p">Scroll until at least half of the outlined area is visible to reveal its content.</Text>
+    <div style={{height: '100vh'}} aria-hidden="true" />
+    <div style={{outline: '1px dashed currentColor'}}>
+      <Animate animate="fade-in" style={{height: '200px'}}>
+        <Text as="p">At least half of this element is visible.</Text>
+      </Animate>
+    </div>
+    <div style={{height: '100vh'}} aria-hidden="true" />
+  </AnimationProvider>
+)
