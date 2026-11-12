@@ -43,7 +43,7 @@ describe('useWindowSize', () => {
     jest.restoreAllMocks()
   })
 
-  it.each([16, 20])('matches inclusive CSS boundaries with a %spx browser default font', fontSize => {
+  it.each([16, 20, 32])('matches inclusive CSS boundaries with a %spx browser default font', fontSize => {
     defaultFontSize = fontSize
     const {result} = renderHook(useWindowSize)
 
@@ -54,7 +54,7 @@ describe('useWindowSize', () => {
           jest.replaceProperty(window, 'innerWidth', width)
           window.dispatchEvent(new Event('resize'))
         })
-        let expectedBreakpoint = BreakpointSize.XXLARGE
+        let expectedBreakpoint = BreakpointSize.XSMALL
         for (const [index, flag] of flags.entries()) {
           const matches = width >= thresholds[index] * fontSize
           expect(result.current[flag]).toBe(matches)
@@ -86,7 +86,7 @@ describe('useWindowSize', () => {
     }
   })
 
-  it('updates media matches when browser preferences change without a resize', () => {
+  it('updates matches on media-query change events without a resize', () => {
     const {result} = renderHook(useWindowSize)
     expect(result.current.isXLarge).toBe(true)
 
@@ -114,11 +114,16 @@ describe('useWindowSize', () => {
     })
   })
 
-  it('preserves the existing below-xsmall fallback', () => {
-    jest.replaceProperty(window, 'innerWidth', 300)
+  it.each([
+    {fontSize: 16, width: 300},
+    {fontSize: 20, width: 375},
+    {fontSize: 32, width: 375},
+  ])('uses the smallest responsive range below xsmall with a $fontSize px browser default', ({fontSize, width}) => {
+    defaultFontSize = fontSize
+    jest.replaceProperty(window, 'innerWidth', width)
     const {result} = renderHook(useWindowSize)
     for (const flag of flags) expect(result.current[flag]).toBe(false)
-    expect(result.current.currentBreakpointSize).toBe(BreakpointSize.XXLARGE)
+    expect(result.current.currentBreakpointSize).toBe(BreakpointSize.XSMALL)
   })
 
   it('cleans up resize and media-query listeners, including StrictMode effect replay', () => {

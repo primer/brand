@@ -54,7 +54,7 @@ export function useWindowSize() {
         isLarge,
         isXLarge,
         isXXLarge,
-        currentBreakpointSize: sizes[matches.lastIndexOf(true)] ?? BreakpointSize.XXLARGE,
+        currentBreakpointSize: sizes[matches.lastIndexOf(true)] ?? BreakpointSize.XSMALL,
       })
     }
 
