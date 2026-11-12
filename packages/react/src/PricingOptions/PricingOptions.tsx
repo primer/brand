@@ -1,4 +1,4 @@
-import React, {forwardRef, HTMLAttributes, PropsWithChildren, useMemo, Ref, Dispatch} from 'react'
+import React, {forwardRef, HTMLAttributes, PropsWithChildren, useMemo, Ref} from 'react'
 import {CheckIcon, TriangleDownIcon, XIcon} from '@primer/octicons-react'
 import {clsx} from 'clsx'
 import type {ListItemProps} from '../list/ListItem/ListItem'
@@ -52,41 +52,14 @@ const testIds = {
 
 type PricingOptionsContextValue = {
   align: AlignOptions
-  allFeatureListsExpanded: boolean
-  updateFeatureListExpanded: Dispatch<boolean>
-  featureListUserInteracted: boolean
-  setFeatureListUserInteracted: Dispatch<boolean>
 }
 
 const PricingOptionsContext = React.createContext<PricingOptionsContextValue>({
   align: 'start',
-  allFeatureListsExpanded: false,
-  featureListUserInteracted: false,
-  updateFeatureListExpanded: () => {},
-  setFeatureListUserInteracted: () => {},
 })
 
 const PricingOptionsProvider = ({children, align = 'start'}: PropsWithChildren<{align: AlignOptions}>) => {
-  const [allFeatureListsExpanded, setAllFeatureListsExpanded] = React.useState(false)
-  const [featureListUserInteracted, setFeatureListUserInteracted] = React.useState(false)
-
-  const updateFeatureListExpanded = (newValue: boolean) => {
-    setAllFeatureListsExpanded(() => newValue)
-  }
-
-  return (
-    <PricingOptionsContext.Provider
-      value={{
-        allFeatureListsExpanded,
-        updateFeatureListExpanded,
-        align,
-        featureListUserInteracted,
-        setFeatureListUserInteracted,
-      }}
-    >
-      {children}
-    </PricingOptionsContext.Provider>
-  )
+  return <PricingOptionsContext.Provider value={{align}}>{children}</PricingOptionsContext.Provider>
 }
 
 const usePricingOptions = (): PricingOptionsContextValue => {
@@ -441,23 +414,18 @@ type ValidFeatureListChildren = {
 
 const PricingOptionsFeatureList = forwardRef<HTMLDivElement, PricingOptionsFeatureListProps>(
   ({children, className, 'data-testid': testId, hasDivider = true, expanded, accordionAs = 'h4', ...rest}, ref) => {
-    const {
-      allFeatureListsExpanded,
-      updateFeatureListExpanded,
-      featureListUserInteracted,
-      setFeatureListUserInteracted,
-    } = usePricingOptions()
+    const [localOpen, setLocalOpen] = React.useState<boolean | null>(null)
     const {isMedium: isRegular, isXLarge: isWide, isSmall: isNarrow} = useWindowSize()
 
     React.useEffect(() => {
       if (expanded === undefined || typeof expanded === 'object') {
-        setFeatureListUserInteracted(false)
+        setLocalOpen(null)
       }
-    }, [isRegular, isWide, isNarrow, setFeatureListUserInteracted, expanded])
+    }, [isRegular, isWide, isNarrow, expanded])
 
     const shouldBeOpen = React.useMemo(() => {
-      if (featureListUserInteracted) {
-        return allFeatureListsExpanded
+      if (localOpen !== null) {
+        return localOpen
       }
 
       // Important: Fixes layout shift by ensuring that explicit values are preserved.
@@ -476,7 +444,7 @@ const PricingOptionsFeatureList = forwardRef<HTMLDivElement, PricingOptionsFeatu
       if (isWide) return wide
       if (isRegular) return regular
       return narrow
-    }, [expanded, allFeatureListsExpanded, isRegular, isWide, featureListUserInteracted])
+    }, [expanded, isRegular, isWide, localOpen])
 
     let FeatureListHeading = (
       <PricingOptions.FeatureListHeading>{pricingOptionsDefaultFeatureListHeading}</PricingOptions.FeatureListHeading>
@@ -525,8 +493,7 @@ const PricingOptionsFeatureList = forwardRef<HTMLDivElement, PricingOptionsFeatu
           disableAnimation
           open={shouldBeOpen}
           onToggle={event => {
-            setFeatureListUserInteracted(true)
-            updateFeatureListExpanded(event.currentTarget.open)
+            setLocalOpen(event.currentTarget.open)
           }}
         >
           <Accordion.Heading as={accordionAs} className={styles['PricingOptions__feature-list-accordion-heading']}>
