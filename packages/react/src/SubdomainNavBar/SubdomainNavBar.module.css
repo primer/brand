@@ -190,7 +190,7 @@
   list-style-type: none;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 47.99rem) {
   .SubdomainNavBar-primary-nav-list {
     display: none;
   }
@@ -280,7 +280,7 @@
   white-space: nowrap;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 47.99rem) {
   .SubdomainNavBar-primary-nav-list-item {
     animation-name: fade-in-down-staggered;
     animation-duration: 500ms;
@@ -339,7 +339,7 @@
   gap: var(--base-size-8);
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 47.99rem) {
   .SubdomainNavBar-link--title {
     font-weight: var(--base-text-weight-medium);
   }
