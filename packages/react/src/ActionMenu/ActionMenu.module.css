@@ -61,12 +61,7 @@
 }
 
 .ActionMenu__innerButton--subtle.ActionMenu__innerButton--split-button.ActionMenu__innerButton--split-button-primary::before {
-  top: calc(var(--base-size-2) * -1);
-  height: calc(100% + var(--base-size-4));
-}
-
-.ActionMenu__innerButton--subtle.ActionMenu__innerButton--split-button.ActionMenu__innerButton--split-button-primary:active::before {
-  width: 0;
+  content: none;
 }
 
 .ActionMenu__innerButton--medium.ActionMenu__innerButton--split-button,
