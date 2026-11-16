@@ -248,7 +248,7 @@
   </Tooltip>
   ```
 
-  🔗 [See `Tooltip` documentation for more usage examples](https://primer.style/brand/components/Tooltip/react)
+  🔗 [See `Tooltip` documentation for more usage examples](https://primer.style/brand/components/Tooltip/)
 
 - [#1489](https://github.com/primer/brand/pull/1489) [`2dd5b79`](https://github.com/primer/brand/commit/2dd5b791394d59ca56bfda56b8c19c0ab7118e3b) Thanks [@rezrah](https://github.com/rezrah)! - Added icon-only options `ActionMenu`.
 
@@ -299,7 +299,7 @@
   <TextInput size="small" aria-label="Search" />
   ```
 
-  🔗 [See `TextInput` documentation for more usage examples](https://primer.style/brand/components/TextInput#sizes)
+  🔗 [See `TextInput` documentation for more usage examples](https://primer.style/brand/forms/TextInput/#sizes)
 
 - [#1478](https://github.com/primer/brand/pull/1478) [`1a64aa2`](https://github.com/primer/brand/commit/1a64aa27990f3c2d4e6e15a7170f5e81ac6d3cc8) Thanks [@rezrah](https://github.com/rezrah)! - Added extra `inline-start` padding to `FAQGroup.Heading` on wide breakpoints to better align it with adjacent content. Only applies to the `gridline` variant.
 
@@ -2567,7 +2567,7 @@
   </CheckboxGroup>
   ```
 
-  🔗 [Read the documentation for more `CheckboxGroup` examples](https://primer.style/brand/components/RadioGroup/react)
+  🔗 [Read the documentation for more `CheckboxGroup` examples](https://primer.style/brand/forms/CheckboxGroup/react/)
 
   `RadioGroup`:
 
@@ -2589,7 +2589,7 @@
   </RadioGroup>
   ```
 
-  🔗 [Read the documentation for more `RadioGroup` examples](https://primer.style/brand/components/RadioGroup/react)
+  🔗 [Read the documentation for more `RadioGroup` examples](https://primer.style/brand/forms/RadioGroup/react/)
 
 - [#824](https://github.com/primer/brand/pull/824) [`6e398ba7`](https://github.com/primer/brand/commit/6e398ba7272d53e4fc8e00f4b4fd46b29a4bc666) Thanks [@rezrah](https://github.com/rezrah)! - Updates to `SubNav` component
 
@@ -4048,7 +4048,7 @@
   </>
   ```
 
-  :link: [See the documentation for more details, options and usage examples.](https://primer.style/brand/components/Box)
+  :link: [See the documentation for more details, options and usage examples.](https://primer.style/brand/layout/Box/)
 
 ### Patch Changes
 
@@ -4169,7 +4169,7 @@
   </AnimationProvider>
   ```
 
-  - [Read the documentation for more examples](https://primer.style/brand/getting-started/animation)
+  - [Read the documentation for more examples](https://primer.style/brand/introduction/animation/)
 
 ### Patch Changes
 
@@ -4353,7 +4353,7 @@
   </Grid>
   ```
 
-  :link: [See the documentation for more details and usage examples.](https://primer.style/brand/components/Grid)
+  :link: [See the documentation for more details and usage examples.](https://primer.style/brand/layout/Grid/)
 
 * [#229](https://github.com/primer/brand/pull/229) [`2359c0c`](https://github.com/primer/brand/commit/2359c0c87ec8c419ef156e8ff78eb4fcdd24b4f3) Thanks [@JoshBowdenConcepts](https://github.com/JoshBowdenConcepts)! - Added `Image` component
 
@@ -4811,11 +4811,11 @@
 
 * [#155](https://github.com/primer/brand/pull/155) [`516f828`](https://github.com/primer/brand/commit/516f82865444bba4118c7eeef715770c503401a7) Thanks [@rezrah](https://github.com/rezrah)! - Added `weight` prop to `Heading` component to allow fine-grained control over default `font-weight`.
 
-  [See docs for usage examples](https://primer.style/brand/components/Heading/#weight)
+  [See docs for usage examples](https://primer.style/brand/typography/Heading/react/#weight)
 
 - [#157](https://github.com/primer/brand/pull/157) [`1c3f665`](https://github.com/primer/brand/commit/1c3f665a59b995106b72ef05a5e27b0e8595628f) Thanks [@rezrah](https://github.com/rezrah)! - Added `weight` prop to `Text` component to allow fine-grained control over default `font-weight`.
 
-  [See docs for usage examples](https://primer.style/brand/components/Text/#weight)
+  [See docs for usage examples](https://primer.style/brand/typography/Text/#weight)
 
 * [#161](https://github.com/primer/brand/pull/161) [`c6acd92`](https://github.com/primer/brand/commit/c6acd922da801080d9f36a6db8526110c3628c88) Thanks [@rezrah](https://github.com/rezrah)! - Added a `visually-hidden` utility class to the global stylesheet
 
@@ -5027,7 +5027,7 @@
   </>
   ```
 
-  :link: [See the documentation for more details and usage examples.](https://primer.style/brand/components/Radio)
+  :link: [See the documentation for more details and usage examples.](https://primer.style/brand/forms/Radio/)
 
 - [#117](https://github.com/primer/brand/pull/117) [`68d649f`](https://github.com/primer/brand/commit/68d649fd141c4cc158e0b5a47394d25aa0cc0ccf) Thanks [@rezrah](https://github.com/rezrah)! - New Textarea component available
 
@@ -5041,7 +5041,7 @@
   <Textarea>Enter multiline text here</Textarea>
   ```
 
-  :link: [See the documentation for more details and usage examples.](https://primer.style/brand/components/Textarea)
+  :link: [See the documentation for more details and usage examples.](https://primer.style/brand/forms/TextArea/)
 
 ### Patch Changes
 
@@ -5281,13 +5281,13 @@
 
   **Read the Technical Previews for usage examples:**
 
-  [🔗 FormControl](https://primer.style/brand/components/FormControl)
+  [🔗 FormControl](https://primer.style/brand/forms/FormControl/)
 
-  [🔗 Checkbox](https://primer.style/brand/components/Checkbox)
+  [🔗 Checkbox](https://primer.style/brand/forms/Checkbox/)
 
-  [🔗 TextInput](https://primer.style/brand/components/TextInput)
+  [🔗 TextInput](https://primer.style/brand/forms/TextInput/)
 
-  [🔗 Select](https://primer.style/brand/components/Select)
+  [🔗 Select](https://primer.style/brand/forms/Select/)
 
 ## 0.3.1
 
