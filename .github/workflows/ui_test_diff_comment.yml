@@ -5,21 +5,31 @@ on:
     paths:
       - 'packages/react/**'
       - '.github/workflows/ui_test_diff_comment.yml'
+      - '.github/workflows/ui_test_diff_comment_forks.yml'
+
+permissions:
+  contents: read
 
 jobs:
   coverage-diff:
+    if: ${{ github.repository == 'primer/brand' && github.event.pull_request.head.repo.full_name == github.repository }}
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
     steps:
       - name: Checkout current branch
         uses: actions/checkout@v6
         with:
           path: current
+          persist-credentials: false
 
       - name: Checkout main branch
         uses: actions/checkout@v6
         with:
           ref: main
           path: main
+          persist-credentials: false
 
       - name: Set up Node
         uses: actions/setup-node@v6
