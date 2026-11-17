@@ -43,7 +43,7 @@
 @media screen and (min-width: 63.25rem) {
   .RiverAccordion--variant-gridline {
     --gap-width: var(--brand-RiverAccordion-variant-gridline-spacing-contentGap);
-    --half-column: calc(50% - var(--gap-width) / 2);
+    --half-column: 50%;
 
     gap: var(--gap-width);
     align-items: center;
