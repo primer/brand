@@ -1,9 +1,9 @@
 import React from 'react'
-import type {Meta, StoryFn} from '@storybook/react'
-import {TextInput} from '.'
+import type {Meta, StoryObj} from '@storybook/react'
+import {TextInput, TextInputSizes} from '.'
 import {CheckIcon, SearchIcon} from '@primer/octicons-react'
 
-export default {
+const meta = {
   title: 'Components/Forms/TextInput',
   component: TextInput,
   argTypes: {
@@ -24,11 +24,9 @@ export default {
       },
     },
     size: {
-      options: [0, 1],
-      mapping: ['medium', 'large'],
+      options: TextInputSizes,
       control: {
         type: 'inline-radio',
-        labels: ['medium', 'large'],
       },
       table: {
         category: 'Input',
@@ -87,15 +85,19 @@ export default {
       },
     },
   },
-} as Meta<typeof TextInput>
+} satisfies Meta<typeof TextInput>
 
-export const Playground: StoryFn<typeof TextInput> = args => (
-  <TextInput
-    aria-label="Standalone text input"
-    {...args}
-    leadingVisual={args.leadingVisual ? <CheckIcon aria-label="Check" /> : undefined}
-    trailingVisual={args.trailingVisual ? <SearchIcon aria-label="Search" /> : undefined}
-  />
-)
+export default meta
+type Story = StoryObj<typeof meta>
 
-Playground.storyName = 'TextInput - Playground'
+export const Playground: Story = {
+  name: 'TextInput - Playground',
+  render: args => (
+    <TextInput
+      aria-label="Standalone text input"
+      {...args}
+      leadingVisual={args.leadingVisual ? <CheckIcon aria-label="Check" /> : undefined}
+      trailingVisual={args.trailingVisual ? <SearchIcon aria-label="Search" /> : undefined}
+    />
+  ),
+}

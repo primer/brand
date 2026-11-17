@@ -2,12 +2,16 @@
 import {PropTableValues} from '@primer/doctocat-nextjs/components'
 
 import {ActionMenuButtonModes} from '../../../../../packages/react/src/ActionMenu/ActionMenu'
+import {IconButtonVariants} from '../../../../../packages/react/src/IconButton/IconButton'
 
 export const ActionMenuSizesProp = () => <PropTableValues values={['small', 'medium']} commaSeparated />
 export const ActionMenuSelectionVariantProp = () => <PropTableValues values={['single', 'none']} commaSeparated />
 export const ActionMenuMenuAlignmentProp = () => <PropTableValues values={['start', 'end']} commaSeparated />
 export const ActionMenuButtonVariantsProp = () => (
   <PropTableValues values={['primary', 'secondary', 'subtle']} commaSeparated />
+)
+export const ActionMenuIconButtonVariantsProp = () => (
+  <PropTableValues values={[...IconButtonVariants]} commaSeparated />
 )
 
 export const ActionMenuMenuSideProp = () => (

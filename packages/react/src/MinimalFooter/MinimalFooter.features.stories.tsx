@@ -139,7 +139,17 @@ export const DefaultNarrow: Story = {
       throw new Error('Expected the social footer layout to render')
     }
 
-    expect(socialLinks.getBoundingClientRect().right).toBeLessThanOrEqual(container.getBoundingClientRect().right)
+    const bounds = container.getBoundingClientRect()
+    const containerStyle = getComputedStyle(container)
+    const contentLeft = bounds.left + parseFloat(containerStyle.paddingLeft)
+    const contentRight = bounds.right - parseFloat(containerStyle.paddingRight)
+
+    for (const link of within(socialLinks).getAllByRole('link')) {
+      const linkBounds = link.getBoundingClientRect()
+      expect(linkBounds.left).toBeGreaterThanOrEqual(contentLeft)
+      expect(linkBounds.right).toBeLessThanOrEqual(contentRight)
+    }
+
     expect(document.documentElement.scrollWidth).toBe(document.documentElement.clientWidth)
   },
 }

@@ -1,5 +1,87 @@
 # @primer/brand-css
 
+## 0.81.0
+
+### Patch Changes
+
+- [#1522](https://github.com/primer/brand/pull/1522) [`53faca0`](https://github.com/primer/brand/commit/53faca0b926e322dc037f953ecf1a1534767b9dd) Thanks [@danielguillan](https://github.com/danielguillan)! - Kept the first-column heading in `ComparisonTable` visible in narrow layouts.
+
+- [#1522](https://github.com/primer/brand/pull/1522) [`53faca0`](https://github.com/primer/brand/commit/53faca0b926e322dc037f953ecf1a1534767b9dd) Thanks [@danielguillan](https://github.com/danielguillan)! - Fixed `MediaPlaylist` keyboard focus outlines being clipped by the playlist's overflow containers.
+
+- [#1522](https://github.com/primer/brand/pull/1522) [`53faca0`](https://github.com/primer/brand/commit/53faca0b926e322dc037f953ecf1a1534767b9dd) Thanks [@danielguillan](https://github.com/danielguillan)! - Fixed `MinimalFooter` social links overflowing narrow layouts by allowing them to wrap.
+
+- [#1519](https://github.com/primer/brand/pull/1519) [`e19919a`](https://github.com/primer/brand/commit/e19919aadfe4cbb94f9ec7e8d901193303166c69) Thanks [@danielguillan](https://github.com/danielguillan)! - Fix duplicate `LogoSuite` links and prevent pointer clicks from resetting the marquee.
+
+## 0.80.1
+
+### Patch Changes
+
+- [#1514](https://github.com/primer/brand/pull/1514) [`741a759`](https://github.com/primer/brand/commit/741a7593761d277fcee31efd9c14f75c4e709cff) Thanks [@rezrah](https://github.com/rezrah)! - Updated `IconButton` sizing and icon colors.
+
+  - `size` now supports arbitrary `number` values for granular control. Icon sizes scale automatically with the size of the button.
+
+  ```jsx
+  <IconButton icon={SearchIcon} aria-label="Search" size={80} />
+  ```
+
+  - `secondary`, `subtle`, and `invisible` variants now use muted icon colors by default for a softer visual appearance.
+
+    You can customize the color or revert to the previous color by overriding the new, dedicated CSS variables:
+
+  ```jsx
+  <IconButton
+    icon={SearchIcon}
+    aria-label="Search"
+    variant="secondary"
+    style={{'--brand-IconButton-secondary-fgColor': 'var(--brand-color-text-default)'}}
+  />
+  ```
+
+  🔗 [See `IconButton` documentation for more usage examples](https://primer.style/brand/components/IconButton/react)
+
+## 0.80.0
+
+### Minor Changes
+
+- [#1497](https://github.com/primer/brand/pull/1497) [`7ea7779`](https://github.com/primer/brand/commit/7ea777930c4311c024bea467dc98a17cec07db6d) Thanks [@rezrah](https://github.com/rezrah)! - Added `Spinner` for indeterminate loading states.
+
+  ```jsx
+  <Spinner accessibleLabel="Loading notification settings" />
+  ```
+
+  🔗 [See `Spinner` documentation for more usage examples](https://primer.style/brand/components/Spinner)
+
+- [#1497](https://github.com/primer/brand/pull/1497) [`7ea7779`](https://github.com/primer/brand/commit/7ea777930c4311c024bea467dc98a17cec07db6d) Thanks [@rezrah](https://github.com/rezrah)! - Added `ToggleSwitch` for settings that need to take effect immediately.
+
+  ```jsx
+  <FormControl>
+    <FormControl.Label>Enable notifications</FormControl.Label>
+    <ToggleSwitch />
+  </FormControl>
+  ```
+
+  🔗 [See `ToggleSwitch` documentation for more usage examples](https://primer.style/brand/forms/ToggleSwitch)
+
+- [#1504](https://github.com/primer/brand/pull/1504) [`066019e`](https://github.com/primer/brand/commit/066019e8cd6cbceb0f5ad51f91ed080c7ab59d5e) Thanks [@rezrah](https://github.com/rezrah)! - Removed gradient quote-mark colors from `Testimonial`.
+
+  - Please replace `blue-purple`, `green-blue`, `pink-blue`, `purple-red`, and `red-orange` with a solid `quoteMarkColor`, or omit the prop to use green.
+  - Retired values will fall back to solid green.
+
+### Patch Changes
+
+- [#1499](https://github.com/primer/brand/pull/1499) [`cf99b08`](https://github.com/primer/brand/commit/cf99b0887ce136f8e6624434a9cf5c7da979a5dc) Thanks [@rezrah](https://github.com/rezrah)! - `LogoSuite` updates:
+
+  - `LogoSuite.Logobar` logos rendered as links now retain their full colors.
+  - `LogoSuite` now supports a `gridline` version.
+
+- [#1508](https://github.com/primer/brand/pull/1508) [`c309493`](https://github.com/primer/brand/commit/c309493bb3fdfc70e8db9b1f996f2b225fdb6d20) Thanks [@danielguillan](https://github.com/danielguillan)! - Fix cell alignment and sticky header gutters in `FeatureComparisonTable`.
+
+## 0.79.0
+
+## 0.78.0
+
+## 0.77.0
+
 ## 0.76.0
 
 ## 0.75.1

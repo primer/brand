@@ -1,0 +1,15 @@
+{
+  "automationQuote": "Automaticé el trabajo repetitivo. Después automaticé contarle a todo el mundo que había automatizado el trabajo repetitivo. Ahora Mona me ha pedido que automatice ser un poco más modesto.",
+  "automationHighlighted": "<highlight>Automaticé el trabajo repetitivo.</highlight> Después automaticé contarle a todo el mundo que había automatizado el trabajo repetitivo. Ahora Mona me ha pedido que automatice ser un poco más modesto.",
+  "lunchQuote": "Puedo publicar un sitio web en segundos. Conseguir que todos se pongan de acuerdo sobre el almuerzo sigue siendo un proceso manual.",
+  "picturesQuote": "Me encargaron mejorar la eficiencia del personal. El equipo me pide imágenes casi siempre. Supongo que son esenciales para su trabajo.",
+  "picturesHighlighted": "Me encargaron mejorar la eficiencia del personal. <highlight>El equipo me pide imágenes casi siempre.</highlight> Supongo que son esenciales para su trabajo.",
+  "position": "Director de Automatización",
+  "avatarAlt": "Avatar de {{name}}",
+  "readStory": "Leer la historia completa",
+  "scrollDown": "Desplazarse hacia abajo",
+  "scrollableContent": "Contenido desplazable",
+  "startingShape": "Forma inicial",
+  "endingShape": "Forma final",
+  "logoAlt": "Logotipo de GitHub"
+}

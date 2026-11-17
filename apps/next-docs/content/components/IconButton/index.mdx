@@ -1,0 +1,153 @@
+---
+title: Icon button
+description: Use an icon button to represent an action with an Octicon instead of a visible text label.
+keywords: ['action', 'button', 'control', 'icon', 'interactive']
+show-tabs: true
+tab-label: Guidelines
+ready: true
+thumbnail: '/images/thumbnails/icon-button-thumbnail.png'
+thumbnail_darkMode: '/images/thumbnails/icon-button-thumbnail-dark.png'
+---
+
+import header from './images/header.png'
+import toolbar from './images/toolbar.png'
+import doMatchingAction from './images/do-matching-action.png'
+import dontMismatchedAction from './images/dont-mismatched-action.png'
+import doActionLabel from './images/do-action-label.png'
+import dontAppearanceLabel from './images/dont-appearance-label.png'
+import doConsistentShape from './images/do-consistent-shape.png'
+import dontConsistentShape from './images/dont-consistent-shape.png'
+import doRelatedGroup from './images/do-related-group.png'
+import dontRelatedGroup from './images/dont-related-group.png'
+import doLoading from './images/do-loading.png'
+import dontLoading from './images/dont-loading.png'
+
+<img
+  src={header.src}
+  alt="Icon buttons showing primary, secondary, subtle, danger, and invisible visual appearances."
+/>
+
+## Usage
+
+Icon buttons represent an action with an [Octicon](https://primer.style/octicons) instead of a visible text label. Always choose a familiar Octicon whose meaning is clear in context. Otherwise, use a [button](/components/Button) with a visible text label.
+
+Every icon button displays a tooltip on hover and keyboard focus. The tooltip repeats the accessible label by default, helping users confirm the action before activating it.
+
+<DoDontContainer>
+  <Do>
+    <img src={doMatchingAction.src} alt="A share icon button with a tooltip that reads Share." />
+    <Caption>Use an Octicon that clearly represents the action.</Caption>
+  </Do>
+  <Dont>
+    <img
+      src={dontMismatchedAction.src}
+      alt="A share icon button with an unrelated tooltip that reads Resolve dependency graph."
+    />
+    <Caption>Don't pair a familiar Octicon with an unrelated action.</Caption>
+  </Dont>
+</DoDontContainer>
+
+## Labels
+
+Every icon button needs a concise name that describes what happens when someone activates it. Begin with a clear verb when possible, such as Search, Share, Close, or Delete item.
+
+Describe the action rather than the icon's appearance. Keep supplementary tooltip text short and non-essential.
+
+<DoDontContainer>
+  <Do>
+    <img src={doActionLabel.src} alt="A delete icon button with a tooltip that reads Delete item." />
+    <Caption>Describe the action the button performs.</Caption>
+  </Do>
+  <Dont>
+    <img src={dontAppearanceLabel.src} alt="A delete icon button with a tooltip that reads Trash can icon." />
+    <Caption>Don't describe the icon's appearance.</Caption>
+  </Dont>
+</DoDontContainer>
+
+## Hierarchy and emphasis
+
+Use the default visual appearance for most icon buttons. Only use the stronger accent colors for the highest-priority action in a group.
+
+<img
+  src={toolbar.src}
+  alt="A compact toolbar with a split action and familiar icon buttons for creating, reviewing, discussing, and opening notifications."
+/>
+
+Reserve danger styling for destructive actions. The icon and accessible name must still communicate the destructive outcome without relying on color alone.
+
+Use the invisible appearance only when the surrounding interface already provides enough structure and the control remains discoverable in every interaction state.
+
+## Grouping
+
+Join closely related peer actions so their relationship is visually clear. Keep unrelated actions separate and provide enough space between their targets.
+
+<DoDontContainer>
+  <Do>
+    <img src={doRelatedGroup.src} alt="Bold, italic, and bulleted list icon buttons joined into one group." />
+    <Caption>Join closely related icon buttons into one group.</Caption>
+  </Do>
+  <Dont>
+    <img
+      src={dontRelatedGroup.src}
+      alt="Bold, italic, and bulleted list icon buttons presented as separate controls."
+    />
+    <Caption>Don't separate icon buttons that represent one related set of actions.</Caption>
+  </Dont>
+</DoDontContainer>
+
+## Shape
+
+Icon buttons are available in two shapes, with square the default.
+
+Use the standard square shape for most use-cases. Use a rounded shape only when it matches an established interaction pattern, such as sending a chat message or advancing through media quickly.
+
+Keep shape consistent among related controls. Do not use shape alone to communicate an action's meaning or state.
+
+<DoDontContainer>
+  <Do>
+    <img src={doConsistentShape.src} alt="Three related icon buttons using a consistent square shape." />
+    <Caption>Use a consistent shape for related icon buttons.</Caption>
+  </Do>
+  <Dont>
+    <img
+      src={dontConsistentShape.src}
+      alt="Three related icon buttons that mix square and circular shapes without meaning."
+    />
+    <Caption>Don't mix shapes unless the difference communicates an established pattern.</Caption>
+  </Dont>
+</DoDontContainer>
+
+## Loading
+
+Show progress in place when an action takes time to complete. Keep focus on the control, prevent repeated activation, and announce that work is in progress. Use a specific announcement when the surrounding context does not make the operation clear.
+
+<DoDontContainer>
+  <Do>
+    <img src={doLoading.src} alt="An icon button showing a loading indicator beside the text Saving changes." />
+    <Caption>Replace the Octicon with a loading indicator while the action is in progress.</Caption>
+  </Do>
+  <Dont>
+    <img
+      src={dontLoading.src}
+      alt="A disabled download icon button beside the text Saving changes without a loading indicator."
+    />
+    <Caption>Don't use only disabled styling to communicate that an action is in progress.</Caption>
+  </Dont>
+</DoDontContainer>
+
+## Accessibility
+
+- Give every icon button an accessible name, even when the icon seems self-explanatory.
+- Ensure the name describes the action and remains accurate when the button's state changes.
+- Keep the tooltip available on both pointer hover and keyboard focus.
+- Ensure the control has a visible focus indicator.
+- Maintain at least a 24x24 pixel target size and provide enough spacing from nearby controls.
+- Treat the Octicon as decorative because the accessible name communicates the purpose.
+- Do not rely on color, shape, or iconography alone to communicate state.
+
+## Related components
+
+- [Button](/components/Button): For actions with a visible text label.
+- [Button group](/components/ButtonGroup): For a set of closely related actions.
+- [Tooltip](/components/Tooltip): For guidance on concise labels and supplementary information.
+- [Octicons](https://primer.style/octicons): For the icon library used by icon buttons.

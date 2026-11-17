@@ -9,6 +9,7 @@ storybook: '/brand/storybook/?path=/story/components-riverbreakouttabs--default'
 ---
 
 import {Label} from '@primer/react'
+import {RiverBreakoutTabsHeadingAsProp} from './react'
 
 ```js
 import {RiverBreakoutTabs} from '@primer/react-brand'
@@ -53,6 +54,40 @@ import {RiverBreakoutTabs} from '@primer/react-brand'
       </RiverBreakoutTabs.Content>
       <RiverBreakoutTabs.Visual>
         <img src="/images/placeholder-3.png" alt="Merge flow with checks" />
+      </RiverBreakoutTabs.Visual>
+    </RiverBreakoutTabs.Item>
+  </RiverBreakoutTabs>
+</Section>
+```
+
+### Buttons in content
+
+Place action buttons inside `RiverBreakoutTabs.Content`. They remain outside the desktop tab controls, so people can focus and activate them independently.
+
+```jsx live
+<Section>
+  <RiverBreakoutTabs>
+    <RiverBreakoutTabs.A11yHeading>Plan and review work</RiverBreakoutTabs.A11yHeading>
+
+    <RiverBreakoutTabs.Item>
+      <RiverBreakoutTabs.Heading>Plan</RiverBreakoutTabs.Heading>
+      <RiverBreakoutTabs.Content>
+        <Text>Break large issues into practical implementation steps.</Text>
+        <Button>Start planning</Button>
+      </RiverBreakoutTabs.Content>
+      <RiverBreakoutTabs.Visual>
+        <img src="/images/placeholder-1.png" alt="Planning workflow in editor" />
+      </RiverBreakoutTabs.Visual>
+    </RiverBreakoutTabs.Item>
+
+    <RiverBreakoutTabs.Item>
+      <RiverBreakoutTabs.Heading>Review</RiverBreakoutTabs.Heading>
+      <RiverBreakoutTabs.Content>
+        <Text>Keep discussion, suggestions, and diffs together while you review.</Text>
+        <Button>Start reviewing</Button>
+      </RiverBreakoutTabs.Content>
+      <RiverBreakoutTabs.Visual>
+        <img src="/images/placeholder-2.png" alt="Review workflow with shared context" />
       </RiverBreakoutTabs.Visual>
     </RiverBreakoutTabs.Item>
   </RiverBreakoutTabs>
@@ -141,9 +176,10 @@ import {RiverBreakoutTabs} from '@primer/react-brand'
 
 ### RiverBreakoutTabs.Heading <Label>Required</Label>
 
-| Name       | Type        | Default | Description       |
-| :--------- | :---------- | :-----: | :---------------- |
-| `children` | `ReactNode` |         | Item heading text |
+| Name       | Type                               | Default | Description            |
+| :--------- | :--------------------------------- | :-----: | :--------------------- |
+| `children` | `ReactNode`                        |         | Item heading text      |
+| `as`       | <RiverBreakoutTabsHeadingAsProp /> | `'h3'`  | Semantic heading level |
 
 `RiverBreakoutTabs.Heading` extends the [`Heading`](/typography/Heading) component.
 

@@ -1,0 +1,10 @@
+{
+  "TestimonialGroup": {
+    "fadeInDuration": {
+      "value": "475ms"
+    },
+    "fadeOutDuration": {
+      "value": "250ms"
+    }
+  }
+}

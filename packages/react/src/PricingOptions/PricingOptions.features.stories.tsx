@@ -291,6 +291,9 @@ export const ActionsMessage: Story = {
           >
             Access to GitHub Spark
           </PricingOptions.FeatureListItem>
+          <PricingOptions.FeatureListItem>
+            Premium support. <InlineLink href="#">Learn more about Premium Support</InlineLink>
+          </PricingOptions.FeatureListItem>
         </PricingOptions.FeatureList>
       </PricingOptions.Item>
     </PricingOptions>

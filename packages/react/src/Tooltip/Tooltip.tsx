@@ -11,9 +11,13 @@ import styles from './Tooltip.module.css'
 import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/tooltip/colors-with-modes.css'
 import {BaseProps} from '../component-helpers'
 
-type TooltipDirection = 'n' | 'e' | 's' | 'w'
+export const TooltipDirections = ['nw', 'n', 'ne', 'e', 'se', 's', 'sw', 'w'] as const
+export const TooltipDelays = ['short', 'medium', 'long'] as const
+export type TooltipDirection = (typeof TooltipDirections)[number]
+export type TooltipDelay = (typeof TooltipDelays)[number]
 export type TooltipProps = {
   direction?: TooltipDirection
+  delay?: TooltipDelay
   text: string
   type?: 'label' | 'description'
   children?: React.ReactNode
@@ -32,18 +36,32 @@ export type TriggerPropsType = {
 
 // map tooltip direction to anchoredPosition props
 const directionToPosition: Record<TooltipDirection, {side: AnchorSide; align: AnchorAlignment}> = {
+  nw: {side: 'outside-top', align: 'end'},
   n: {side: 'outside-top', align: 'center'},
+  ne: {side: 'outside-top', align: 'start'},
   e: {side: 'outside-right', align: 'center'},
+  se: {side: 'outside-bottom', align: 'start'},
   s: {side: 'outside-bottom', align: 'center'},
+  sw: {side: 'outside-bottom', align: 'end'},
   w: {side: 'outside-left', align: 'center'},
 }
 
 // map anchoredPosition props to tooltip direction
 const positionToDirection: Record<string, TooltipDirection> = {
+  'outside-top-end': 'nw',
   'outside-top-center': 'n',
+  'outside-top-start': 'ne',
   'outside-right-center': 'e',
+  'outside-bottom-start': 'se',
   'outside-bottom-center': 's',
+  'outside-bottom-end': 'sw',
   'outside-left-center': 'w',
+}
+
+const tooltipDelayMap: Record<TooltipDelay, number> = {
+  short: 50,
+  medium: 400,
+  long: 1200,
 }
 
 // The list is from GitHub's custom-axe-rules https://github.com/github/github/blob/master/app/assets/modules/github/axe-custom-rules.ts#L3
@@ -65,11 +83,15 @@ const isInteractive = (element: HTMLElement) => {
 export const TooltipContext = React.createContext<{tooltipId?: string}>({})
 
 export const Tooltip = React.forwardRef(
-  ({direction = 's', text, type = 'description', children, id, className, ...rest}: TooltipProps, forwardedRef) => {
+  (
+    {direction = 's', delay = 'short', text, type = 'description', children, id, className, ...rest}: TooltipProps,
+    forwardedRef,
+  ) => {
     const tooltipId = useId(id)
     const child = (Children.only(children) as React.ReactElement<TriggerPropsType> | null) ?? null
     const triggerRef = useProvidedRefOrCreate(forwardedRef as React.RefObject<HTMLElement | null> | null)
     const tooltipElRef = useRef<HTMLDivElement>(null)
+    const openTooltipTimeoutRef = useRef<NodeJS.Timeout | null>(null)
     // Used to delay the closing of the tooltip to make sure the user can move the mouse from the trigger to the tooltip
     const closeTooltipTimeoutRef = useRef<NodeJS.Timeout | null>(null)
     const tooltipCloseTimeout = 200
@@ -77,19 +99,57 @@ export const Tooltip = React.forwardRef(
     const [calculatedDirection, setCalculatedDirection] = useState<TooltipDirection>(direction)
 
     const openTooltip = React.useCallback(() => {
+      if (openTooltipTimeoutRef.current) {
+        clearTimeout(openTooltipTimeoutRef.current)
+        openTooltipTimeoutRef.current = null
+      }
+
+      const ariaHasPopup = triggerRef.current?.getAttribute('aria-haspopup')
+      const hasActivePopup =
+        triggerRef.current?.getAttribute('aria-expanded') === 'true' &&
+        ariaHasPopup !== null &&
+        ariaHasPopup !== 'false'
+      if (hasActivePopup) return
+
       if (closeTooltipTimeoutRef.current) {
         clearTimeout(closeTooltipTimeoutRef.current)
         closeTooltipTimeoutRef.current = null
       }
 
-      if (tooltipElRef.current && triggerRef.current && !tooltipElRef.current.matches(':popover-open')) {
+      if (
+        tooltipElRef.current &&
+        triggerRef.current &&
+        typeof tooltipElRef.current.showPopover === 'function' &&
+        !tooltipElRef.current.matches(':popover-open')
+      ) {
         tooltipElRef.current.showPopover()
       }
     }, [tooltipElRef, triggerRef])
 
+    const openTooltipWithDelay = React.useCallback(() => {
+      if (openTooltipTimeoutRef.current) {
+        clearTimeout(openTooltipTimeoutRef.current)
+      }
+
+      openTooltipTimeoutRef.current = setTimeout(() => {
+        openTooltipTimeoutRef.current = null
+        openTooltip()
+      }, tooltipDelayMap[delay])
+    }, [delay, openTooltip])
+
     const closeTooltip = React.useCallback(() => {
+      if (openTooltipTimeoutRef.current) {
+        clearTimeout(openTooltipTimeoutRef.current)
+        openTooltipTimeoutRef.current = null
+      }
+
       closeTooltipTimeoutRef.current = setTimeout(() => {
-        if (tooltipElRef.current && triggerRef.current && tooltipElRef.current.matches(':popover-open')) {
+        if (
+          tooltipElRef.current &&
+          triggerRef.current &&
+          typeof tooltipElRef.current.hidePopover === 'function' &&
+          tooltipElRef.current.matches(':popover-open')
+        ) {
           tooltipElRef.current.hidePopover()
         }
       }, tooltipCloseTimeout)
@@ -97,6 +157,9 @@ export const Tooltip = React.forwardRef(
 
     useEffect(() => {
       return () => {
+        if (openTooltipTimeoutRef.current) {
+          clearTimeout(openTooltipTimeoutRef.current)
+        }
         if (closeTooltipTimeoutRef.current) {
           clearTimeout(closeTooltipTimeoutRef.current)
         }
@@ -167,6 +230,18 @@ export const Tooltip = React.forwardRef(
 
         tooltip.style.top = `${top}px`
         tooltip.style.left = `${left}px`
+
+        const tooltipRect = tooltip.getBoundingClientRect()
+        const triggerRect = trigger.getBoundingClientRect()
+        const isVerticalPlacement = anchorSide === 'outside-top' || anchorSide === 'outside-bottom'
+        const caretPosition = isVerticalPlacement
+          ? triggerRect.left + triggerRect.width / 2 - tooltipRect.left
+          : triggerRect.top + triggerRect.height / 2 - tooltipRect.top
+        const tooltipSize = isVerticalPlacement ? tooltipRect.width : tooltipRect.height
+        const constrainedCaretPosition = Math.max(0, Math.min(caretPosition, tooltipSize))
+
+        tooltip.style.setProperty('--p', `${constrainedCaretPosition}px`)
+
         // This is required to make sure the popover is positioned correctly i.e. when there is not enough space on the specified direction, we set a new direction to position the ::after
         const calculatedDirectionString = positionToDirection[`${anchorSide}-${anchorAlign}` as string]
         setCalculatedDirection(calculatedDirectionString)
@@ -197,7 +272,7 @@ export const Tooltip = React.forwardRef(
               child.props.onFocus?.(event)
             },
             onMouseEnter: (event: React.MouseEvent) => {
-              openTooltip()
+              openTooltipWithDelay()
               child.props.onMouseEnter?.(event)
             },
             onMouseLeave: (event: React.MouseEvent) => {

@@ -60,6 +60,20 @@ test.describe('Visual Comparison: River', () => {
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
+  // eslint-disable-next-line i18n-text/no-en
+  test.describe('Tablet viewport test for Rivers in a stack (tablet)', () => {
+    test.use({viewport: {width: 834, height: 1112}})
+    test('River / Rivers in a stack (tablet)', async ({page}) => {
+      await page.goto(
+        'http://localhost:6006/iframe.html?args=&id=components-river-examples--custom-background-start-in-stack-tablet&viewMode=story',
+        {waitUntil: 'networkidle'},
+      )
+      await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+      await page.waitForTimeout(500)
+      await expect(page).toHaveScreenshot({fullPage: true})
+    })
+  })
   test('River / Custom background (start, video)', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-river-examples--custom-background-start-video&viewMode=story',

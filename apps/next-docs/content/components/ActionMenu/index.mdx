@@ -12,6 +12,7 @@ thumbnail_darkMode: '/images/thumbnails/action-menu-thumbnail-dark.png'
 ---
 
 import {Label} from '@primer/react'
+import {KebabHorizontalIcon, PlusIcon} from '@primer/octicons-react'
 
 import {
   ActionMenuSizesProp,
@@ -20,6 +21,7 @@ import {
   ActionMenuMenuSideProp,
   ActionMenuModeProp,
   ActionMenuButtonVariantsProp,
+  ActionMenuIconButtonVariantsProp,
 } from './react'
 
 ```js
@@ -39,6 +41,23 @@ import {ActionMenu} from '@primer/react-brand'
     </ActionMenu.Item>
     <ActionMenu.Item value="Codespaces">Codespaces</ActionMenu.Item>
     <ActionMenu.Item value="CodeQL">CodeQL</ActionMenu.Item>
+  </ActionMenu.Overlay>
+</ActionMenu>
+```
+
+### Icon button trigger-only
+
+Use `ActionMenu.IconButton` when a familiar icon clearly communicates that contextual actions are available. Always provide a concise, context-specific `aria-label`, which also supplies content for the visible tooltip.
+
+Prefer `ActionMenu.Button` when the icon would be ambiguous without a visible label.
+
+```jsx live
+<ActionMenu>
+  <ActionMenu.IconButton icon={KebabHorizontalIcon} aria-label="File actions" />
+  <ActionMenu.Overlay aria-label="File actions">
+    <ActionMenu.Item value="Copy link">Copy link</ActionMenu.Item>
+    <ActionMenu.Item value="Rename file">Rename file</ActionMenu.Item>
+    <ActionMenu.Item value="Move to archive">Move to archive</ActionMenu.Item>
   </ActionMenu.Overlay>
 </ActionMenu>
 ```
@@ -76,28 +95,43 @@ render(<App />)
 
 ### Split-button layout
 
-In this `mode`, the `ActionMenu` can be shown as a split button with an action (left) and dropdown button (right) with an additional list of actions.
+In this `mode`, the `ActionMenu` can be shown as a split button with an action on the left and a dropdown button with additional actions on the right.
+
+The primary action may use a visible label or a familiar icon. For an icon-only primary action, ensure that its `aria-label` names the action, while the required `ActionMenu.Overlay` label names the generated menu trigger.
 
 ```jsx live
-<ActionMenu mode="split-button">
-  <ActionMenu.Button variant="subtle" as="a" href="#location-for-link" leadingVisual={<StarIcon />}>
-    Action 1
-  </ActionMenu.Button>
-  <ActionMenu.Overlay aria-label="Alternative actions">
-    <ActionMenu.Item as="a" href="#location-for-link" leadingVisual={<StarIcon />}>
+<Stack direction="horizontal" alignItems="center" gap="condensed">
+  <ActionMenu mode="split-button">
+    <ActionMenu.Button variant="subtle" as="a" href="#location-for-link" leadingVisual={<StarIcon />}>
       Action 1
-    </ActionMenu.Item>
-    <ActionMenu.Item as="a" href="#location-for-link-2" leadingVisual={<StarIcon />}>
-      Action 2
-    </ActionMenu.Item>
-    <ActionMenu.Item as="a" href="#location-for-link-3" leadingVisual={<StarIcon />}>
-      Action 3
-    </ActionMenu.Item>
-    <ActionMenu.Item as="a" href="#location-for-link-4" leadingVisual={<StarIcon />}>
-      Action 4
-    </ActionMenu.Item>
-  </ActionMenu.Overlay>
-</ActionMenu>
+    </ActionMenu.Button>
+    <ActionMenu.Overlay aria-label="Alternative actions">
+      <ActionMenu.Item as="a" href="#location-for-link" leadingVisual={<StarIcon />}>
+        Action 1
+      </ActionMenu.Item>
+      <ActionMenu.Item as="a" href="#location-for-link-2" leadingVisual={<StarIcon />}>
+        Action 2
+      </ActionMenu.Item>
+      <ActionMenu.Item as="a" href="#location-for-link-3" leadingVisual={<StarIcon />}>
+        Action 3
+      </ActionMenu.Item>
+      <ActionMenu.Item as="a" href="#location-for-link-4" leadingVisual={<StarIcon />}>
+        Action 4
+      </ActionMenu.Item>
+    </ActionMenu.Overlay>
+  </ActionMenu>
+  <ActionMenu mode="split-button">
+    <ActionMenu.IconButton as="a" href="#new-document" icon={PlusIcon} aria-label="Create document" />
+    <ActionMenu.Overlay aria-label="Creation options">
+      <ActionMenu.Item as="a" href="#new-document">
+        New document
+      </ActionMenu.Item>
+      <ActionMenu.Item as="a" href="#upload-file">
+        Upload file
+      </ActionMenu.Item>
+    </ActionMenu.Overlay>
+  </ActionMenu>
+</Stack>
 ```
 
 ### Sizes
@@ -148,6 +182,20 @@ In this `mode`, the `ActionMenu` can be shown as a split button with an action (
 | `variant`       | <ActionMenuButtonVariantsProp /> |             | `false`  | Sets the button styling variation                |
 | `onClick`       | `(event: MouseEvent) => void`    | `undefined` | `false`  | Handles activation of the button                 |
 | `leadingVisual` | `ReactElement`                   | `undefined` | `false`  | Renders a leading visual before the button label |
+
+### ActionMenu.IconButton
+
+| name               | type                                 | default       | required | description                                                   |
+| ------------------ | ------------------------------------ | ------------- | -------- | ------------------------------------------------------------- |
+| `icon`             | `Icon`                               |               | `true`   | Icon that represents the menu trigger                         |
+| `aria-label`       | `string`                             |               | `true`   | Action-oriented accessible label and visible tooltip text     |
+| `as`               | `ElementType`                        | `'button'`    | `false`  | Element rendered for the primary action                       |
+| `href`             | `string`                             | `undefined`   | `false`  | Link destination when the primary action renders as an anchor |
+| `variant`          | <ActionMenuIconButtonVariantsProp /> | `'secondary'` | `false`  | Sets the icon button styling variation                        |
+| `description`      | `string`                             | `undefined`   | `false`  | Supplies supplementary tooltip text                           |
+| `tooltipDirection` | `TooltipDirection`                   | `'s'`         | `false`  | Preferred direction for the automatic tooltip                 |
+| `rounded`          | `boolean`                            | `false`       | `false`  | Uses a fully rounded shape                                    |
+| `onClick`          | `(event: MouseEvent) => void`        | `undefined`   | `false`  | Handles activation; toggles the menu only in default mode     |
 
 ### ActionMenu.Overlay <Label>Required</Label>
 

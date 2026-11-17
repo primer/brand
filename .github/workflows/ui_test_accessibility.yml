@@ -6,6 +6,9 @@ on:
       - main
   pull_request:
 
+permissions:
+  contents: read
+
 jobs:
   accessibility:
     if: ${{ github.repository == 'primer/brand' }}
@@ -15,6 +18,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v6
+        with:
+          persist-credentials: false
 
       - name: Set up Node
         uses: actions/setup-node@v6

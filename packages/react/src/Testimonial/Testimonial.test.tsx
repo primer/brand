@@ -1,8 +1,8 @@
 import React, {useEffect} from 'react'
-import {act, render} from '@testing-library/react'
+import {act, fireEvent, render} from '@testing-library/react'
 import '@testing-library/jest-dom'
 import {axe, toHaveNoViolations} from 'jest-axe'
-import {Testimonial} from './Testimonial'
+import {Testimonial, TestimonialQuoteMarkColors, type TestimonialProps} from './Testimonial'
 import {testIds as textCursorAnimationTestIds} from '../TextCursorAnimation'
 
 expect.extend(toHaveNoViolations)
@@ -74,11 +74,24 @@ describe('Testimonial', () => {
     expect(avatar).toBeInTheDocument()
   })
 
-  it('renders quote mark with default color', () => {
-    const {container} = render(<DefaultTestimonial />)
+  it.each([undefined, '', 'custom-testimonial'])('uses the expected root test ID for %p', testId => {
+    const {getByTestId, getByRole} = render(
+      <Testimonial data-testid={testId}>
+        <Testimonial.Quote>Quote text</Testimonial.Quote>
+        <Testimonial.Name>Name</Testimonial.Name>
+      </Testimonial>,
+    )
 
-    const quoteMark = container.querySelector('[aria-hidden="true"]')
-    expect(quoteMark).toHaveClass('Testimonial__quoteMark--default')
+    expect(getByTestId(testId || Testimonial.testIds.root)).toBe(getByRole('figure'))
+  })
+
+  it('renders the default minimal presentation with a green quote mark', () => {
+    const {getByTestId, getByRole} = render(<DefaultTestimonial />)
+
+    const quoteMark = getByTestId(Testimonial.testIds.quoteMark)
+    expect(quoteMark).toHaveClass('Testimonial__quoteMark--green')
+    expect(quoteMark).toHaveClass('Testimonial__quoteMark')
+    expect(getByRole('figure')).toHaveClass('Testimonial--variant-minimal')
   })
 
   it('allows forwarding of custom classes', () => {
@@ -92,6 +105,20 @@ describe('Testimonial', () => {
     const figure = getByRole('figure')
     expect(figure).toHaveClass('custom-testimonial')
     expect(figure).toHaveClass('Testimonial')
+  })
+
+  it('merges part classes without replacing built-in styling classes', () => {
+    const {getByTestId, getByRole} = render(
+      <Testimonial quoteMarkClassName="custom-quote-mark" mediaClassName="custom-media">
+        <Testimonial.Quote>Customer quote</Testimonial.Quote>
+        <Testimonial.Avatar src={mockAvatarSrc} alt={mockAvatarAlt} className="custom-avatar" />
+        <Testimonial.Name>Mona Lisa</Testimonial.Name>
+      </Testimonial>,
+    )
+
+    expect(getByTestId(Testimonial.testIds.quoteMark)).toHaveClass('Testimonial__quoteMark', 'custom-quote-mark')
+    expect(getByTestId(Testimonial.testIds.media)).toHaveClass('Testimonial__media', 'custom-media')
+    expect(getByRole('img', {name: mockAvatarAlt}).parentElement).toHaveClass('Testimonial-avatar', 'custom-avatar')
   })
 
   it('supports RefObject for the root Testimonial component', () => {
@@ -180,30 +207,75 @@ describe('Testimonial', () => {
   })
 
   it('applies custom quote mark color', () => {
-    const {getByRole, container} = render(
+    const {getByRole, getByTestId} = render(
       <Testimonial quoteMarkColor="blue">
         <Testimonial.Quote>Quote text</Testimonial.Quote>
         <Testimonial.Name>Name</Testimonial.Name>
       </Testimonial>,
     )
 
-    const quoteMark = container.querySelector('[aria-hidden="true"]')
+    const quoteMark = getByTestId(Testimonial.testIds.quoteMark)
     expect(quoteMark).toHaveClass('Testimonial__quoteMark--blue')
     const figure = getByRole('figure')
 
     expect(figure).toHaveStyle({'--testimonial-accent-color': 'blue'})
   })
 
-  it('does not apply background class to quote mark by default', () => {
-    const {container} = render(
+  it('applies the quote mark tile without requiring a testimonial group', () => {
+    const {getByTestId} = render(
       <Testimonial>
         <Testimonial.Quote>Quote text</Testimonial.Quote>
         <Testimonial.Name>Name</Testimonial.Name>
       </Testimonial>,
     )
 
-    const quoteMark = container.querySelector('[aria-hidden="true"]')
-    expect(quoteMark).not.toHaveClass('Testimonial__quoteMark--hasBackground')
+    const quoteMark = getByTestId(Testimonial.testIds.quoteMark)
+    expect(quoteMark).toHaveClass('Testimonial__quoteMark')
+  })
+
+  it.each(['blue-purple', 'green-blue', 'pink-blue', 'purple-red', 'red-orange', 'unsupported'])(
+    'falls back to solid green for the unsupported quote mark color %s',
+    quoteMarkColor => {
+      const {getByTestId, getByRole} = render(
+        <Testimonial quoteMarkColor={quoteMarkColor as TestimonialProps['quoteMarkColor']}>
+          <Testimonial.Quote>Customer quote</Testimonial.Quote>
+          <Testimonial.Name>Mona Lisa</Testimonial.Name>
+        </Testimonial>,
+      )
+
+      expect(TestimonialQuoteMarkColors).not.toContain(quoteMarkColor)
+      expect(getByTestId(Testimonial.testIds.quoteMark)).toHaveClass('Testimonial__quoteMark--green')
+      expect(getByRole('figure')).toHaveStyle({'--testimonial-accent-color': 'green'})
+    },
+  )
+
+  it.each(['minimal', 'default', 'subtle', 'expressive'] as const)(
+    'uses the shared green quote mark presentation for the %s variant',
+    variant => {
+      const {getByTestId} = render(
+        <Testimonial variant={variant}>
+          <Testimonial.Quote>Quote text</Testimonial.Quote>
+          <Testimonial.Name>Name</Testimonial.Name>
+        </Testimonial>,
+      )
+
+      const quoteMark = getByTestId(Testimonial.testIds.quoteMark)
+      expect(quoteMark).toHaveClass('Testimonial__quoteMark', 'Testimonial__quoteMark--green')
+    },
+  )
+
+  it.each(TestimonialQuoteMarkColors)('preserves an explicit %s quote mark color', quoteMarkColor => {
+    const {getByTestId} = render(
+      <Testimonial variant="subtle" quoteMarkColor={quoteMarkColor}>
+        <Testimonial.Quote>Quote text</Testimonial.Quote>
+        <Testimonial.Name>Name</Testimonial.Name>
+      </Testimonial>,
+    )
+
+    expect(getByTestId(Testimonial.testIds.quoteMark)).toHaveClass(
+      'Testimonial__quoteMark',
+      `Testimonial__quoteMark--${quoteMarkColor}`,
+    )
   })
 
   it('renders quote in blockquote element', () => {
@@ -216,6 +288,32 @@ describe('Testimonial', () => {
 
     const blockquote = getByText(mockQuote).closest('blockquote')
     expect(blockquote).toBeInTheDocument()
+  })
+
+  it('forwards attributes and event handlers to the quote element', () => {
+    const handleActivate = jest.fn()
+    const {getByText} = render(
+      <Testimonial>
+        <Testimonial.Quote
+          id="customer-quote"
+          lang="en"
+          aria-label="Customer statement"
+          style={{opacity: 0.5}}
+          onClick={handleActivate}
+        >
+          Customer quote
+        </Testimonial.Quote>
+        <Testimonial.Name>Name</Testimonial.Name>
+      </Testimonial>,
+    )
+    const quote = getByText('Customer quote').closest('blockquote')
+
+    expect(quote).toHaveAttribute('id', 'customer-quote')
+    expect(quote).toHaveAttribute('lang', 'en')
+    expect(quote).toHaveAttribute('aria-label', 'Customer statement')
+    expect(quote).toHaveStyle({opacity: 0.5})
+    fireEvent.click(getByText('Customer quote'))
+    expect(handleActivate).toHaveBeenCalledTimes(1)
   })
 
   it('renders bold text within the quote', () => {
@@ -293,6 +391,32 @@ describe('Testimonial', () => {
 
     const figcaption = getByText(mockName).closest('figcaption')
     expect(figcaption).toBeInTheDocument()
+  })
+
+  it('forwards attributes and event handlers to the name element', () => {
+    const handleActivate = jest.fn()
+    const {getByText} = render(
+      <Testimonial>
+        <Testimonial.Quote>Customer quote</Testimonial.Quote>
+        <Testimonial.Name
+          id="customer-name"
+          lang="en"
+          aria-label="Customer attribution"
+          style={{opacity: 0.5}}
+          onClick={handleActivate}
+        >
+          Hubot
+        </Testimonial.Name>
+      </Testimonial>,
+    )
+    const name = getByText('Hubot').closest('figcaption')
+
+    expect(name).toHaveAttribute('id', 'customer-name')
+    expect(name).toHaveAttribute('lang', 'en')
+    expect(name).toHaveAttribute('aria-label', 'Customer attribution')
+    expect(name).toHaveStyle({opacity: 0.5})
+    fireEvent.click(getByText('Hubot'))
+    expect(handleActivate).toHaveBeenCalledTimes(1)
   })
 
   it('renders name without position', () => {
@@ -432,6 +556,32 @@ describe('Testimonial', () => {
     expect(avatar).toHaveAttribute('src', mockAvatarSrc)
   })
 
+  it('forwards an object ref to the avatar image', () => {
+    const refObject = React.createRef<HTMLImageElement>()
+    const {getByRole} = render(
+      <Testimonial>
+        <Testimonial.Quote>Quote text</Testimonial.Quote>
+        <Testimonial.Name>Name</Testimonial.Name>
+        <Testimonial.Avatar ref={refObject} src={mockAvatarSrc} alt={mockAvatarAlt} />
+      </Testimonial>,
+    )
+
+    expect(refObject.current).toBe(getByRole('img', {name: mockAvatarAlt}))
+  })
+
+  it('forwards a callback ref to the avatar image', () => {
+    const handleRef = jest.fn()
+    const {getByRole} = render(
+      <Testimonial>
+        <Testimonial.Quote>Quote text</Testimonial.Quote>
+        <Testimonial.Name>Name</Testimonial.Name>
+        <Testimonial.Avatar ref={handleRef} src={mockAvatarSrc} alt={mockAvatarAlt} />
+      </Testimonial>,
+    )
+
+    expect(handleRef).toHaveBeenCalledWith(getByRole('img', {name: mockAvatarAlt}))
+  })
+
   it('renders the avatar with a size of 48px, regardless of the passed "size" prop', () => {
     const {getByAltText} = render(
       <Testimonial>
@@ -479,6 +629,95 @@ describe('Testimonial', () => {
 
     const logoContainer = getByRole('img', {name: 'Logo'}).closest('div')
     expect(logoContainer).toBeInTheDocument()
+  })
+
+  it('preserves an image child object ref when no Logo ref is supplied', () => {
+    const refObject = React.createRef<HTMLImageElement>()
+    const {getByRole, unmount} = render(
+      <Testimonial.Logo>
+        <img ref={refObject} src="/logo.png" alt="Company logo" />
+      </Testimonial.Logo>,
+    )
+
+    expect(refObject.current).toBe(getByRole('img', {name: 'Company logo'}))
+    unmount()
+    expect(refObject.current).toBeNull()
+  })
+
+  it('preserves an image child callback ref when no Logo ref is supplied', () => {
+    const handleRef = jest.fn()
+    const {getByRole, unmount} = render(
+      <Testimonial.Logo>
+        <img ref={handleRef} src="/logo.png" alt="Company logo" />
+      </Testimonial.Logo>,
+    )
+
+    expect(handleRef).toHaveBeenCalledWith(getByRole('img', {name: 'Company logo'}))
+    unmount()
+    expect(handleRef.mock.lastCall?.[0]).toBeNull()
+  })
+
+  it('preserves an SVG child object ref when no Logo ref is supplied', () => {
+    const refObject = React.createRef<SVGSVGElement>()
+    const {getByRole, unmount} = render(
+      <Testimonial.Logo>
+        <svg ref={refObject} role="img" aria-label="Company logo" />
+      </Testimonial.Logo>,
+    )
+
+    expect(refObject.current).toBe(getByRole('img', {name: 'Company logo'}))
+    unmount()
+    expect(refObject.current).toBeNull()
+  })
+
+  it('preserves an SVG child callback ref when no Logo ref is supplied', () => {
+    const handleRef = jest.fn()
+    const {getByRole, unmount} = render(
+      <Testimonial.Logo>
+        <svg ref={handleRef} role="img" aria-label="Company logo" />
+      </Testimonial.Logo>,
+    )
+
+    expect(handleRef).toHaveBeenCalledWith(getByRole('img', {name: 'Company logo'}))
+    unmount()
+    expect(handleRef.mock.lastCall?.[0]).toBeNull()
+  })
+
+  it('renders an SVG logo, preserves its attributes and class, and forwards an object ref', () => {
+    const refObject = React.createRef<SVGSVGElement>()
+    const {getByRole} = render(
+      <Testimonial>
+        <Testimonial.Quote>Quote text</Testimonial.Quote>
+        <Testimonial.Name>Name</Testimonial.Name>
+        <Testimonial.Logo ref={refObject}>
+          <svg role="img" aria-label="Company logo" viewBox="0 0 24 24" className="custom-logo">
+            <title>Company logo</title>
+          </svg>
+        </Testimonial.Logo>
+      </Testimonial>,
+    )
+    const logo = getByRole('img', {name: 'Company logo'})
+
+    expect(logo).toHaveAttribute('viewBox', '0 0 24 24')
+    expect(logo).toHaveClass('Testimonial-logo-image', 'custom-logo')
+    expect(refObject.current).toBe(logo)
+  })
+
+  it('forwards a callback ref to an SVG logo', () => {
+    const handleRef = jest.fn()
+    const {getByRole} = render(
+      <Testimonial>
+        <Testimonial.Quote>Quote text</Testimonial.Quote>
+        <Testimonial.Name>Name</Testimonial.Name>
+        <Testimonial.Logo ref={handleRef}>
+          <svg role="img" aria-label="Company logo">
+            <title>Company logo</title>
+          </svg>
+        </Testimonial.Logo>
+      </Testimonial>,
+    )
+
+    expect(handleRef).toHaveBeenCalledWith(getByRole('img', {name: 'Company logo'}))
   })
 
   it('supports RefObject for Testimonial.Logo component', () => {
@@ -542,9 +781,9 @@ describe('Testimonial', () => {
   })
 
   it('hides quote mark from screen readers', () => {
-    const {container} = render(<DefaultTestimonial />)
+    const {getByTestId} = render(<DefaultTestimonial />)
 
-    const quoteMark = container.querySelector('[aria-hidden="true"]')
+    const quoteMark = getByTestId(Testimonial.testIds.quoteMark)
     expect(quoteMark).toHaveAttribute('aria-hidden', 'true')
   })
 
@@ -627,58 +866,58 @@ describe('Testimonial', () => {
   })
 
   it('defaults quote mark color to green in expressive variant', () => {
-    const {container} = render(
+    const {getByTestId} = render(
       <Testimonial variant="expressive">
         <Testimonial.Quote>Quote text</Testimonial.Quote>
         <Testimonial.Name>Name</Testimonial.Name>
       </Testimonial>,
     )
 
-    const quoteMark = container.querySelector('[aria-hidden="true"]')
+    const quoteMark = getByTestId(Testimonial.testIds.quoteMark)
     expect(quoteMark).toHaveClass('Testimonial__quoteMark--green')
   })
 
   it('allows overriding the default quote mark color in expressive variant', () => {
-    const {container} = render(
+    const {getByTestId} = render(
       <Testimonial variant="expressive" quoteMarkColor="blue">
         <Testimonial.Quote>Quote text</Testimonial.Quote>
         <Testimonial.Name>Name</Testimonial.Name>
       </Testimonial>,
     )
 
-    const quoteMark = container.querySelector('[aria-hidden="true"]')
+    const quoteMark = getByTestId(Testimonial.testIds.quoteMark)
     expect(quoteMark).toHaveClass('Testimonial__quoteMark--blue')
     expect(quoteMark).not.toHaveClass('Testimonial__quoteMark--green')
   })
 
-  it('applies hasBackground class to quote mark in expressive variant', () => {
-    const {container} = render(
+  it('uses the shared quote mark tile in the expressive variant', () => {
+    const {getByTestId} = render(
       <Testimonial variant="expressive">
         <Testimonial.Quote>Quote text</Testimonial.Quote>
         <Testimonial.Name>Name</Testimonial.Name>
       </Testimonial>,
     )
 
-    const quoteMark = container.querySelector('[aria-hidden="true"]')
-    expect(quoteMark).toHaveClass('Testimonial__quoteMark--hasBackground')
+    const quoteMark = getByTestId(Testimonial.testIds.quoteMark)
+    expect(quoteMark).toHaveClass('Testimonial__quoteMark', 'Testimonial__quoteMark--green')
   })
 
   it('renders quote section and attribution section in expressive variant', () => {
-    const {container} = render(
+    const {getByTestId} = render(
       <Testimonial variant="expressive">
         <Testimonial.Quote>Quote text</Testimonial.Quote>
         <Testimonial.Name>Name</Testimonial.Name>
       </Testimonial>,
     )
 
-    const quote = container.querySelector('.Testimonial__quoteWrapper')
-    const media = container.querySelector('.Testimonial__media')
+    const quote = getByTestId(Testimonial.testIds.quoteWrapper)
+    const media = getByTestId(Testimonial.testIds.media)
     expect(quote).toBeInTheDocument()
     expect(media).toBeInTheDocument()
   })
 
   it('renders one Testimonial.Link after attribution in expressive variant', () => {
-    const {getByRole, container} = render(
+    const {getByRole, getByTestId} = render(
       <Testimonial variant="expressive">
         <Testimonial.Quote>Quote text</Testimonial.Quote>
         <Testimonial.Link href="/story">Read the full story</Testimonial.Link>
@@ -687,15 +926,15 @@ describe('Testimonial', () => {
     )
 
     const link = getByRole('link', {name: /read the full story/i})
-    const quote = container.querySelector('.Testimonial__quoteWrapper')
-    const media = container.querySelector('.Testimonial__media')
+    const quote = getByTestId(Testimonial.testIds.quoteWrapper)
+    const media = getByTestId(Testimonial.testIds.media)
 
     expect(quote).not.toContainElement(link)
-    expect(media?.nextElementSibling).toBe(link)
+    expect(media.nextElementSibling).toBe(link)
   })
 
   it('keeps Testimonial.Link inside quote section in non-expressive variants', () => {
-    const {getByRole, container} = render(
+    const {getByRole, getByTestId} = render(
       <Testimonial>
         <Testimonial.Quote>Quote text</Testimonial.Quote>
         <Testimonial.Link href="/story">Read the full story</Testimonial.Link>
@@ -704,7 +943,7 @@ describe('Testimonial', () => {
     )
 
     const link = getByRole('link', {name: /read the full story/i})
-    const quote = container.querySelector('.Testimonial__quoteWrapper')
+    const quote = getByTestId(Testimonial.testIds.quoteWrapper)
 
     expect(quote).toContainElement(link)
   })
@@ -722,62 +961,89 @@ describe('Testimonial', () => {
     expect(results).toHaveNoViolations()
   })
 
-  describe('Testimonial.Link', () => {
-    it('renders an anchor element with the provided href', () => {
-      const {getByRole} = render(
-        <Testimonial variant="expressive">
-          <Testimonial.Quote>Quote text</Testimonial.Quote>
-          <Testimonial.Link href="/story">Read the full story</Testimonial.Link>
-          <Testimonial.Name>Name</Testimonial.Name>
-        </Testimonial>,
-      )
+  it('renders Testimonial.Link as an anchor with the provided href', () => {
+    const {getByRole} = render(
+      <Testimonial variant="expressive">
+        <Testimonial.Quote>Quote text</Testimonial.Quote>
+        <Testimonial.Link href="/story">Read the full story</Testimonial.Link>
+        <Testimonial.Name>Name</Testimonial.Name>
+      </Testimonial>,
+    )
 
-      const link = getByRole('link', {name: /read the full story/i})
-      expect(link).toBeInTheDocument()
-      expect(link).toHaveAttribute('href', '/story')
-    })
+    const link = getByRole('link', {name: /read the full story/i})
+    expect(link).toBeInTheDocument()
+    expect(link).toHaveAttribute('href', '/story')
+  })
 
-    it('renders an arrow via the ExpandableArrow component', () => {
-      const {getByRole} = render(
-        <Testimonial variant="expressive">
-          <Testimonial.Quote>Quote text</Testimonial.Quote>
-          <Testimonial.Link href="/story">Read the full story</Testimonial.Link>
-          <Testimonial.Name>Name</Testimonial.Name>
-        </Testimonial>,
-      )
+  it('renders an arrow in Testimonial.Link via the ExpandableArrow component', () => {
+    const {getByRole} = render(
+      <Testimonial variant="expressive">
+        <Testimonial.Quote>Quote text</Testimonial.Quote>
+        <Testimonial.Link href="/story">Read the full story</Testimonial.Link>
+        <Testimonial.Name>Name</Testimonial.Name>
+      </Testimonial>,
+    )
 
-      const link = getByRole('link', {name: /read the full story/i})
-      // ExpandableArrow renders an SVG inside the anchor
-      const arrow = link.querySelector('svg')
-      expect(arrow).toBeInTheDocument()
-    })
+    const link = getByRole('link', {name: /read the full story/i})
+    const arrow = link.querySelector('svg')
+    expect(arrow).toBeInTheDocument()
+  })
 
-    it('applies the Testimonial-link class', () => {
-      const {getByRole} = render(
-        <Testimonial variant="expressive">
-          <Testimonial.Quote>Quote text</Testimonial.Quote>
-          <Testimonial.Link href="/story">Read the full story</Testimonial.Link>
-          <Testimonial.Name>Name</Testimonial.Name>
-        </Testimonial>,
-      )
+  it('applies the Testimonial-link class', () => {
+    const {getByRole} = render(
+      <Testimonial variant="expressive">
+        <Testimonial.Quote>Quote text</Testimonial.Quote>
+        <Testimonial.Link href="/story">Read the full story</Testimonial.Link>
+        <Testimonial.Name>Name</Testimonial.Name>
+      </Testimonial>,
+    )
 
-      const link = getByRole('link', {name: /read the full story/i})
-      expect(link).toHaveClass('Testimonial-link')
-    })
+    const link = getByRole('link', {name: /read the full story/i})
+    expect(link).toHaveClass('Testimonial-link')
+  })
 
-    it('allows forwarding a custom className', () => {
-      const {getByRole} = render(
-        <Testimonial variant="expressive">
-          <Testimonial.Quote>Quote text</Testimonial.Quote>
-          <Testimonial.Link href="/story" className="custom-link">
-            Read more
-          </Testimonial.Link>
-          <Testimonial.Name>Name</Testimonial.Name>
-        </Testimonial>,
-      )
+  it('allows forwarding a custom className to Testimonial.Link', () => {
+    const {getByRole} = render(
+      <Testimonial variant="expressive">
+        <Testimonial.Quote>Quote text</Testimonial.Quote>
+        <Testimonial.Link href="/story" className="custom-link">
+          Read more
+        </Testimonial.Link>
+        <Testimonial.Name>Name</Testimonial.Name>
+      </Testimonial>,
+    )
 
-      const link = getByRole('link', {name: /read more/i})
-      expect(link).toHaveClass('custom-link')
-    })
+    const link = getByRole('link', {name: /read more/i})
+    expect(link).toHaveClass('custom-link')
+  })
+
+  it('forwards an object ref to the Testimonial.Link anchor', () => {
+    const refObject = React.createRef<HTMLAnchorElement>()
+    const {getByRole} = render(
+      <Testimonial>
+        <Testimonial.Quote>Quote text</Testimonial.Quote>
+        <Testimonial.Link ref={refObject} href="/story">
+          Read the full story
+        </Testimonial.Link>
+        <Testimonial.Name>Name</Testimonial.Name>
+      </Testimonial>,
+    )
+
+    expect(refObject.current).toBe(getByRole('link', {name: 'Read the full story'}))
+  })
+
+  it('forwards a callback ref to the Testimonial.Link anchor', () => {
+    const handleRef = jest.fn()
+    const {getByRole} = render(
+      <Testimonial>
+        <Testimonial.Quote>Quote text</Testimonial.Quote>
+        <Testimonial.Link ref={handleRef} href="/story">
+          Read the full story
+        </Testimonial.Link>
+        <Testimonial.Name>Name</Testimonial.Name>
+      </Testimonial>,
+    )
+
+    expect(handleRef).toHaveBeenCalledWith(getByRole('link', {name: 'Read the full story'}))
   })
 })

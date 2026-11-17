@@ -1,6 +1,7 @@
 import React from 'react'
 import type {Meta, StoryObj} from '@storybook/react'
 import {INITIAL_VIEWPORTS} from 'storybook/viewport'
+import {useTranslation} from 'react-i18next'
 import {
   Testimonial,
   TestimonialProps,
@@ -9,7 +10,7 @@ import {
   defaultQuoteMarkColor,
   defaultTestimonialVariant,
 } from '.'
-import monaAvatar from '../fixtures/images/avatar-mona.png'
+import hubotAvatar from '../fixtures/images/avatar-hubot.png'
 
 type StoryArgs = {
   type: string
@@ -24,10 +25,10 @@ const meta = {
   component: Testimonial as Meta<StoryArgs>['component'],
   args: {
     quoteMarkColor: defaultQuoteMarkColor,
-    name: 'David Ross',
-    position: 'Staff Security Engineer',
+    name: 'Hubot',
+    position: 'Chief Automation Officer',
     quote:
-      'GitHub helps us ensure that we have our security controls baked into our pipelines all the way from the first line of code we’re writing.',
+      'I automated the repetitive work. Then I automated telling everyone that I automated the repetitive work. Mona has now asked me to automate being a little more modest.',
     size: 'small',
     type: 'avatar',
     width: 400,
@@ -80,30 +81,43 @@ export default meta
 
 type Story = StoryObj<StoryArgs>
 
-const PlaygroundExample = (args: StoryArgs) => {
-  const {type, width, name, position, quote} = args
-  return (
-    <div style={{width, maxWidth: '100%'}}>
-      <Testimonial {...args}>
-        <Testimonial.Quote>{quote}</Testimonial.Quote>
-        {type === 'avatar' && (
-          <Testimonial.Avatar src={monaAvatar} alt={`Circular avatar from ${name}'s GitHub profile`} />
-        )}
-        {type === 'logo' && (
-          <Testimonial.Logo>
-            <img
-              alt="GitHub Logo"
-              src="https://github.githubassets.com/images/modules/logos_page/GitHub-Logo.png"
-              width={60}
-            />
-          </Testimonial.Logo>
-        )}
-        <Testimonial.Name position={position}>{name}</Testimonial.Name>
+export const Default: Story = {
+  render: function DefaultExample() {
+    const {t} = useTranslation('Testimonial')
+
+    return (
+      <Testimonial>
+        <Testimonial.Quote>{t('automationQuote')}</Testimonial.Quote>
+        <Testimonial.Avatar src={hubotAvatar} alt={t('avatarAlt', {name: 'Hubot'})} />
+        <Testimonial.Name position={t('position')}>Hubot</Testimonial.Name>
       </Testimonial>
-    </div>
-  )
+    )
+  },
 }
 
 export const Playground: Story = {
-  render: args => <PlaygroundExample {...args} />,
+  render: function PlaygroundExample({type, width, name, position, quote, ...args}) {
+    const {t} = useTranslation('Testimonial')
+    const resolvedQuote = quote === meta.args.quote ? t('automationQuote') : quote
+    const resolvedPosition = position === meta.args.position ? t('position') : position
+
+    return (
+      <div style={{width, maxWidth: '100%'}}>
+        <Testimonial {...args}>
+          <Testimonial.Quote>{resolvedQuote}</Testimonial.Quote>
+          {type === 'avatar' && <Testimonial.Avatar src={hubotAvatar} alt={t('avatarAlt', {name})} />}
+          {type === 'logo' && (
+            <Testimonial.Logo>
+              <img
+                alt={t('logoAlt')}
+                src="https://github.githubassets.com/images/modules/logos_page/GitHub-Logo.png"
+                width={60}
+              />
+            </Testimonial.Logo>
+          )}
+          <Testimonial.Name position={resolvedPosition}>{name}</Testimonial.Name>
+        </Testimonial>
+      </div>
+    )
+  },
 }

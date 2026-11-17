@@ -108,6 +108,27 @@ describe('Button', () => {
     expect(linkEl).not.toHaveAttribute('disabled')
   })
 
+  it('keeps aria-disabled buttons focusable and interactive', async () => {
+    const handleFocus = jest.fn()
+    const handleClick = jest.fn()
+
+    const {getByRole} = render(
+      <Button aria-disabled="true" onFocus={handleFocus} onClick={handleClick}>
+        Unavailable action
+      </Button>,
+    )
+    const button = getByRole('button')
+
+    await userEvent.tab()
+    await userEvent.click(button)
+
+    expect(button).toHaveFocus()
+    expect(button).toHaveAttribute('aria-disabled', 'true')
+    expect(button).not.toBeDisabled()
+    expect(handleFocus).toHaveBeenCalledTimes(1)
+    expect(handleClick).toHaveBeenCalledTimes(1)
+  })
+
   it('triggers focus event if not disabled and aria-disabled equals false', async () => {
     const consoleSpy = jest.spyOn(global.console, 'log').mockImplementation()
 
@@ -268,6 +289,12 @@ describe('Button', () => {
 
     expect(leadingIconSlot).not.toBeInTheDocument()
     expect(trailingIconSlot).not.toBeInTheDocument()
+  })
+
+  it('does not render an empty text slot without children', () => {
+    const {getByRole} = render(<Button aria-label="Icon-only action" />)
+
+    expect(getByRole('button')).not.toContainHTML('Button__text')
   })
 
   it('can optionally render a leading visual', () => {

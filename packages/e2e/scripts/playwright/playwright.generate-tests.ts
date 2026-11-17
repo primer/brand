@@ -24,6 +24,12 @@ const port = 6006
 
 const defaultTimeout = 500 // Storybook 7 introduced a small delay in loading stories. This is to migigate the spinner showing up in screenshots.
 
+const storiesWaitingForPlay = new Set([
+  'components-forms-toggleswitch-features--status-label',
+  'components-forms-toggleswitch-features--status-label-narrow',
+  'components-forms-toggleswitch-examples--optimistic-update-failure',
+])
+
 /**
  * Manual lookup for tests that need animation or side-effects to complete before tests start
  */
@@ -68,6 +74,8 @@ const waitForTimeoutLookup = {
   'components-minimalfooter-features--maximum-links': 5000, // for external social imagery to load
   'components-actionmenu-features--disabled-item': 1000, // flakey test,
   'components-actionmenu-features--anchored-positioning': 1000, // for the menu to open
+  'components-iconbutton-features--tooltip-directions': 2000, // for tooltip positioning and animation
+  'components-iconbutton-features--focus': 1000,
   'components-box-features--animation': 6000, // for the animation
   'components-ide--playground': 2000, // for the animation
   'components-ide--default': 2000, // for the animation
@@ -114,7 +122,9 @@ const waitForTimeoutLookup = {
   'components-hero-features-images-and-videos--with-video-inline-end': 5000, // for video metadata to load
   'components-textcursoranimation--playground': 4000, // for the animation to complete
   'components-subnav-features--delayed-active-link': 2000, // because the story sets an initial delay,
+  'components-subnav-features--overflow-menu-open': 1500, // wait for responsive overflow measurement
   'components-logosuite-features--grid-line-expressive-kitchen-sink': 3000, // for the animation to complete
+  'components-logosuite-features--grid-line-kitchen-sink': 3000, // for the animation to complete
   'components-logosuite-features--takeover-button': 3000, // for the animation to complete
   'components-riverbreakouttabs-examples--with-images': 4000, // for dither bg to complete
   'components-riverbreakouttabs-examples--with-videos': 4000, // for dither bg to complete
@@ -136,6 +146,7 @@ const waitForTimeoutLookup = {
  * Only add tests here that aren't suitable for visual regression testing
  */
 const skipTestLookup = [
+  'components-iconbutton-features--long-delayed-tooltip', // delayed hover timing is covered by the interaction test
   'components-river--video', // video makes this too flakey
   'components-river--custom-logos', // for external social imagery to load
   'components-actionmenu-features--keyboard-navigation', // interaction test
@@ -174,6 +185,9 @@ const skipTestLookup = [
   'components-minimalvideoplayer-features--native-source-element', // autoplaying video prevents networkidle from settling
   'components-minimalvideoplayer-features--playing', // actively playing video produces nondeterministic frames
   'components-minimalvideoplayer-features--custom-accessible-labels', // visually duplicates the paused story
+  'components-riverbreakouttabs-examples--with-minimal-video-players', // actively playing video produces nondeterministic frames
+  'components-riverbreakouttabs-features--minimal-video-player-autoplay-on-tab-change', // actively playing video produces nondeterministic frames
+  'components-riverbreakouttabs-features--minimal-video-player-autoplay-on-accordion-change', // actively playing video produces nondeterministic frames
   'components-hero-features-images-and-videos--with-native-block-end-default', // for being non-deterministic due to video buffering
   'components-hero-features-images-and-videos--with-youtube-video-block-end-default', // for loading a remote video
   'components-hero-features-images-and-videos--with-youtube-video-inline-end', // for loading a remote video
@@ -217,6 +231,9 @@ const categorisedStories = Object.keys((stories as StoryIndex).entries).reduce((
 
 for (const key of Object.keys(categorisedStories)) {
   const {stories: componentStories, storyFolder} = categorisedStories[key]
+  const storyReadinessModule = componentStories.some(({id}) => storiesWaitingForPlay.has(id))
+    ? path.relative(storyFolder, path.resolve(__dirname, './wait-for-story-ready')).split(path.sep).join('/')
+    : null
 
   const validNarrowVieportNames = ['mobile', 'narrow']
 
@@ -227,6 +244,7 @@ for (const key of Object.keys(categorisedStories)) {
     * Regenerate using: npm run test:visual:generate
     */
     import {test, expect} from '@playwright/test'
+    ${storyReadinessModule ? `import {waitForStoryReady} from '${storyReadinessModule}'` : ''}
 
     // eslint-disable-next-line i18n-text/no-en
     test.describe('Visual Comparison: ${key}', () => {
@@ -257,7 +275,11 @@ for (const key of Object.keys(categorisedStories)) {
             requiresTouch ? 'touchTest' : 'test'
           }('${testName}', async ({page}) => {
             await page.goto('http://localhost:${port}/iframe.html?${localeParam}args=&id=${id}&viewMode=story', { waitUntil: 'networkidle' })
-            await page.locator('body.sb-show-main').waitFor({ state: 'visible' })
+            ${
+              storiesWaitingForPlay.has(id)
+                ? `await waitForStoryReady(page, '${id}')`
+                : `await page.locator('body.sb-show-main').waitFor({ state: 'visible' })`
+            }
 
             ${timeout ? `await page.waitForTimeout(${timeout})` : ''}
             await expect(page).toHaveScreenshot({ fullPage: true })

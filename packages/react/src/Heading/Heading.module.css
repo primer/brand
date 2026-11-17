@@ -20,6 +20,13 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+@media (prefers-color-scheme: dark) {
+  [data-color-mode='auto'] .Heading {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
 .Heading-font--mona-sans {
   font-family: var(--brand-heading-fontFamily);
 }

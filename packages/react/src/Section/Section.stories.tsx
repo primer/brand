@@ -9,6 +9,7 @@ const meta = {
   args: {
     paddingBlockStart: 'normal',
     paddingBlockEnd: 'normal',
+    variant: 'default',
     backgroundColor: undefined,
     backgroundImageSrc: undefined,
     backgroundImagePosition: undefined,
@@ -25,6 +26,10 @@ const meta = {
     paddingBlockEnd: {
       control: 'inline-radio',
       options: ['none', 'condensed', 'normal', 'spacious'],
+    },
+    variant: {
+      control: 'inline-radio',
+      options: ['default', 'gridline'],
     },
     backgroundColor: {
       control: 'text',

@@ -219,10 +219,7 @@ const CardRoot = forwardRef<HTMLDivElement, CardProps>(
           {imagePosition === 'block-end' ? cardImage : null}
 
           {ctaVariant !== 'none' ? (
-            <div
-              className={clsx(styles.Card__action, ctaVariant === 'arrow' && styles['Card__action--arrowOnly'])}
-              aria-hidden={ctaVariant === 'arrow' ? true : undefined}
-            >
+            <div className={clsx(styles.Card__action, ctaVariant === 'arrow' && styles['Card__action--arrowOnly'])}>
               <span className={clsx(ctaVariant === 'arrow' && styles.Card__actionLabelClip)}>
                 <Text as="span" size="200" className={clsx(stylesLink['Link--label'], styles.Card__actionLabel)}>
                   {ctaText}

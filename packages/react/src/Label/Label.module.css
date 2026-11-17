@@ -37,6 +37,13 @@
   -moz-osx-font-smoothing: auto;
 }
 
+@media (prefers-color-scheme: dark) {
+  [data-color-mode='auto'] .Label {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: auto;
+  }
+}
+
 .Label::before {
   content: '';
   position: absolute;

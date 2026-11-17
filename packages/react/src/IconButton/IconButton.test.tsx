@@ -1,0 +1,290 @@
+import React, {createRef} from 'react'
+import {act, cleanup, render} from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
+import '@testing-library/jest-dom'
+import {axe, toHaveNoViolations} from 'jest-axe'
+import {HeartIcon} from '@primer/octicons-react'
+
+import {ButtonSizes, ButtonVariants, defaultButtonSize, defaultButtonVariant} from '../Button'
+import {Tooltip} from '../Tooltip'
+import {defaultIconButtonSize, defaultIconButtonVariant, IconButton, IconButtonSizes, IconButtonVariants} from '.'
+
+expect.extend(toHaveNoViolations)
+
+describe('IconButton', () => {
+  afterEach(() => {
+    cleanup()
+    jest.restoreAllMocks()
+  })
+
+  it('renders a square Button with a decorative icon and no text slot', () => {
+    const {getByRole, getByTestId} = render(<IconButton icon={HeartIcon} aria-label="Favorite" />)
+    const button = getByRole('button', {name: 'Favorite'})
+    const icon = button.querySelector('svg')
+
+    expect(button).toHaveClass('Button--secondary', 'Button--size-medium', 'IconButton')
+    expect(button).not.toHaveAttribute('type')
+    expect(button).toHaveProperty('type', 'submit')
+    expect(button).not.toContainHTML('Button__text')
+    expect(icon).toHaveClass('IconButton__icon')
+    expect(icon).toHaveAttribute('aria-hidden', 'true')
+    expect(icon).toHaveAttribute('focusable', 'false')
+    expect(getByTestId('IconButton')).toBe(button)
+  })
+
+  it('preserves custom SVG attributes and classes while keeping the icon decorative', async () => {
+    const {getByRole, queryByRole, container} = render(
+      <IconButton
+        aria-label="Preview"
+        icon={
+          <svg
+            viewBox="0 0 16 16"
+            className="custom-icon"
+            role="img"
+            aria-label="Decorative symbol"
+            aria-hidden="false"
+            focusable="true"
+          >
+            <circle cx="8" cy="8" r="5" fill="none" stroke="currentColor" />
+          </svg>
+        }
+      />,
+    )
+    const icon = getByRole('button', {name: 'Preview'}).querySelector('svg')
+
+    expect(icon).toHaveClass('custom-icon', 'IconButton__icon')
+    expect(icon).toHaveAttribute('viewBox', '0 0 16 16')
+    expect(icon).toHaveAttribute('aria-hidden', 'true')
+    expect(icon).toHaveAttribute('focusable', 'false')
+    expect(icon?.querySelector('circle')).toHaveAttribute('stroke', 'currentColor')
+    expect(queryByRole('img')).not.toBeInTheDocument()
+    expect(await axe(container)).toHaveNoViolations()
+  })
+
+  it('replaces a custom SVG with the spinner and restores it afterward', () => {
+    const icon = <svg viewBox="0 0 16 16" className="custom-icon" />
+    const {getByRole, getByTestId, queryByTestId, rerender} = render(<IconButton icon={icon} aria-label="Preview" />)
+    expect(getByRole('button').querySelector('svg')).toHaveClass('custom-icon')
+
+    rerender(<IconButton loading icon={icon} aria-label="Preview" />)
+    expect(getByTestId('IconButton-spinner')).toBeInTheDocument()
+    expect(getByRole('button').querySelector('.custom-icon')).not.toBeInTheDocument()
+
+    rerender(<IconButton icon={icon} aria-label="Preview" />)
+    expect(queryByTestId('IconButton-spinner')).not.toBeInTheDocument()
+    expect(getByRole('button').querySelector('svg')).toHaveClass('custom-icon', 'IconButton__icon')
+    expect(icon.props.className).toBe('custom-icon')
+  })
+
+  it.each(ButtonVariants)('inherits the %s variant from Button', variant => {
+    const {getByRole} = render(<IconButton icon={HeartIcon} aria-label="Favorite" variant={variant} />)
+    expect(getByRole('button')).toHaveClass(`Button--${variant}`)
+  })
+
+  it.each(['secondary', 'subtle'] as const)('applies IconButton styling to the %s variant', variant => {
+    const {getByRole} = render(<IconButton icon={HeartIcon} aria-label="Favorite" variant={variant} />)
+
+    expect(getByRole('button')).toHaveClass(`IconButton--variant-${variant}`)
+  })
+
+  it('maps the danger variant to Button secondary structure', () => {
+    const {getByRole} = render(<IconButton icon={HeartIcon} aria-label="Remove favorite" variant="danger" />)
+
+    expect(ButtonVariants).not.toContain('danger')
+    expect(getByRole('button')).toHaveClass('Button--secondary', 'IconButton--variant-danger')
+  })
+
+  it('maps the invisible variant to Button subtle styling', () => {
+    const {getByRole} = render(<IconButton icon={HeartIcon} aria-label="Favorite" variant="invisible" />)
+
+    expect(getByRole('button')).toHaveClass('Button--subtle', 'IconButton--variant-invisible')
+  })
+
+  it('publishes IconButton-owned sizes, variants, and defaults derived from Button', () => {
+    expect(IconButtonSizes).toEqual(ButtonSizes)
+    expect(IconButtonVariants).toEqual([...ButtonVariants, 'danger', 'invisible'])
+    expect(defaultIconButtonSize).toBe(defaultButtonSize)
+    expect(defaultIconButtonVariant).toBe(defaultButtonVariant)
+  })
+
+  it.each(IconButtonSizes)('inherits the %s size from Button', size => {
+    const {getByRole} = render(<IconButton icon={HeartIcon} aria-label="Favorite" size={size} />)
+    const button = getByRole('button')
+
+    expect(button).toHaveClass(`Button--size-${size}`, `IconButton--${size}`)
+    expect(button.style.getPropertyValue('--brand-IconButton-control-size')).toBe('')
+    expect(button.style.getPropertyValue('--brand-IconButton-icon-size')).toBe('')
+  })
+
+  it('renders a custom numeric size in CSS pixels', () => {
+    const {getByRole} = render(<IconButton icon={HeartIcon} aria-label="Favorite" size={112} />)
+    const button = getByRole('button')
+
+    expect(button).toHaveClass('Button--size-medium')
+    expect(button).not.toHaveClass('IconButton--small', 'IconButton--medium', 'IconButton--large')
+    expect(button).toHaveStyle({
+      '--brand-IconButton-control-size': '112px',
+      '--brand-IconButton-icon-size': '56px',
+    })
+  })
+
+  it('renders with a fully rounded shape', () => {
+    const {getByRole} = render(<IconButton rounded icon={HeartIcon} aria-label="Send message" />)
+
+    expect(getByRole('button')).toHaveClass('IconButton--rounded')
+  })
+
+  it('forwards refs, classes, styles, and native attributes', () => {
+    const ref = createRef<HTMLButtonElement>()
+    const {getByRole} = render(
+      <IconButton
+        ref={ref}
+        icon={HeartIcon}
+        aria-label="Favorite"
+        className="custom-class"
+        style={{opacity: 0.5}}
+        name="favorite"
+      />,
+    )
+    const button = getByRole('button')
+
+    expect(ref.current).toBe(button)
+    expect(button).toHaveClass('custom-class')
+    expect(button).toHaveStyle({opacity: '0.5'})
+    expect(button).toHaveAttribute('name', 'favorite')
+  })
+
+  it('renders as an anchor', () => {
+    const {getByRole} = render(
+      <IconButton as="a" href="https://github.com" icon={HeartIcon} aria-label="Visit GitHub" />,
+    )
+
+    expect(getByRole('link', {name: 'Visit GitHub'})).toHaveAttribute('href', 'https://github.com')
+  })
+
+  it('does not add an automatic tooltip when disabled', () => {
+    const {getByRole, queryByText} = render(<IconButton disabled icon={HeartIcon} aria-label="Favorite" />)
+
+    expect(getByRole('button', {name: 'Favorite'})).toBeDisabled()
+    expect(queryByText('Favorite')).not.toBeInTheDocument()
+  })
+
+  it('keeps inactive controls enabled and interactive', async () => {
+    const handleClick = jest.fn()
+    const {getByRole} = render(
+      <IconButton inactive icon={HeartIcon} aria-label="Explain availability" onClick={handleClick} />,
+    )
+    const button = getByRole('button', {name: 'Explain availability'})
+
+    await userEvent.click(button)
+
+    expect(button).toHaveClass('Button--disabled', 'IconButton--inactive')
+    expect(button).toHaveAttribute('aria-disabled', 'true')
+    expect(button).not.toBeDisabled()
+    expect(handleClick).toHaveBeenCalledTimes(1)
+  })
+
+  it('gives disabled precedence over inactive', () => {
+    const consoleSpy = jest.spyOn(console, 'warn').mockImplementation()
+    const {getByRole} = render(<IconButton disabled inactive icon={HeartIcon} aria-label="Favorite" />)
+    const button = getByRole('button')
+
+    expect(button).toBeDisabled()
+    expect(button).toHaveClass('Button--disabled')
+    expect(button).not.toHaveAttribute('aria-disabled')
+    expect(consoleSpy).toHaveBeenCalledWith(
+      'IconButton has conflicting props for `disabled`, `loading`, or `inactive` states.',
+    )
+  })
+
+  it('keeps focus, blocks activation, and announces loading', async () => {
+    const handleClick = jest.fn()
+    const {getByRole, getByTestId, rerender} = render(
+      <IconButton icon={HeartIcon} aria-label="Favorite" onClick={handleClick} />,
+    )
+    const button = getByRole('button', {name: 'Favorite'})
+    act(() => button.focus())
+
+    rerender(
+      <IconButton
+        loading
+        loadingAnnouncement="Saving favorite"
+        icon={HeartIcon}
+        aria-label="Favorite"
+        onClick={handleClick}
+      />,
+    )
+    await userEvent.click(button)
+
+    expect(button).toHaveFocus()
+    expect(button).toHaveAttribute('aria-disabled', 'true')
+    expect(button).not.toBeDisabled()
+    expect(handleClick).not.toHaveBeenCalled()
+    expect(getByTestId('IconButton-spinner')).toHaveClass('Spinner', 'IconButton__spinner')
+    expect(getByTestId('IconButton-loading-announcement')).toHaveTextContent('Saving favorite')
+  })
+
+  it('prevents native anchor navigation while loading', () => {
+    const {getByRole} = render(
+      <IconButton loading as="a" href="https://github.com" icon={HeartIcon} aria-label="Visit GitHub" />,
+    )
+    const clickEvent = new MouseEvent('click', {bubbles: true, cancelable: true})
+
+    act(() => getByRole('link').dispatchEvent(clickEvent))
+
+    expect(clickEvent.defaultPrevented).toBe(true)
+  })
+
+  it('uses description as supplementary tooltip content', () => {
+    const {getByRole, getByText} = render(
+      <IconButton icon={HeartIcon} aria-label="Notifications" description="You have unread notifications" />,
+    )
+    const button = getByRole('button', {name: 'Notifications'})
+    const tooltip = getByText('You have unread notifications')
+
+    expect(button).toHaveAttribute('aria-describedby', tooltip.id)
+    expect(tooltip).toHaveAttribute('role', 'tooltip')
+  })
+
+  it('does not add a second tooltip when wrapped in Tooltip', () => {
+    const {getAllByText, queryByText} = render(
+      <Tooltip text="External favorite description">
+        <IconButton icon={HeartIcon} aria-label="Favorite" />
+      </Tooltip>,
+    )
+
+    expect(getAllByText('External favorite description')).toHaveLength(1)
+    expect(queryByText('Favorite')).not.toBeInTheDocument()
+  })
+
+  it('keeps the automatic tooltip closed while an associated popup is open', async () => {
+    const showPopover = jest.fn()
+    const originalShowPopover = HTMLElement.prototype.showPopover
+    Object.defineProperty(HTMLElement.prototype, 'showPopover', {configurable: true, value: showPopover})
+    const {getByRole} = render(
+      <IconButton icon={HeartIcon} aria-label="Favorite" aria-haspopup="dialog" aria-expanded="true" />,
+    )
+
+    await userEvent.hover(getByRole('button'))
+
+    expect(showPopover).not.toHaveBeenCalled()
+    Object.defineProperty(HTMLElement.prototype, 'showPopover', {
+      configurable: true,
+      value: originalShowPopover,
+    })
+  })
+
+  it('warns when aria-label is empty', () => {
+    const consoleSpy = jest.spyOn(console, 'warn').mockImplementation()
+    render(<IconButton icon={HeartIcon} aria-label="" />)
+
+    expect(consoleSpy).toHaveBeenCalledWith('IconButton requires a non-empty `aria-label`.')
+  })
+
+  it('has no accessibility violations', async () => {
+    const {container} = render(<IconButton icon={HeartIcon} aria-label="Favorite" />)
+    const results = await act(async () => axe(container))
+
+    expect(results).toHaveNoViolations()
+  })
+})

@@ -7,6 +7,14 @@ import {TextInput} from '../'
 describe('TextInput', () => {
   afterEach(cleanup)
 
+  it('supports a small size', () => {
+    const {getByRole} = render(<TextInput size="small" aria-label="Small input" />)
+    const input = getByRole('textbox', {name: 'Small input'})
+
+    expect(input).toHaveClass('TextInput--small')
+    expect(input.parentElement).toHaveClass('TextInput-wrapper--small')
+  })
+
   it('should associate leadingText and trailingText to input', async () => {
     const {getByText, getByRole} = render(<TextInput leadingText="Hello" trailingText="World" />)
 

@@ -64,7 +64,9 @@
 }
 
 /* Directional styles */
-.Tooltip[data-direction='n'] {
+.Tooltip[data-direction='n'],
+.Tooltip[data-direction='ne'],
+.Tooltip[data-direction='nw'] {
   border-image: conic-gradient(var(--c) 0 0) fill 0 / var(--r) calc(100% - var(--p) - var(--b) / 2) 0
     calc(var(--p) - var(--b) / 2) / 0 0 var(--h) 0;
   clip-path: polygon(
@@ -78,7 +80,9 @@
   );
 }
 
-.Tooltip[data-direction='s'] {
+.Tooltip[data-direction='s'],
+.Tooltip[data-direction='se'],
+.Tooltip[data-direction='sw'] {
   border-image: conic-gradient(var(--c) 0 0) fill 0/ 0 calc(100% - var(--p) - var(--b) / 2) var(--r) calc(
       var(--p) - var(--b) / 2
     ) / var(--h) 0 0 0;
@@ -121,11 +125,25 @@
   );
 }
 
-.Tooltip[data-direction='n']::after {
+.Tooltip[data-direction='ne'],
+.Tooltip[data-direction='se'] {
+  --p: 25%;
+}
+
+.Tooltip[data-direction='nw'],
+.Tooltip[data-direction='sw'] {
+  --p: 75%;
+}
+
+.Tooltip[data-direction='n']::after,
+.Tooltip[data-direction='ne']::after,
+.Tooltip[data-direction='nw']::after {
   top: 100%;
 }
 
-.Tooltip[data-direction='s']::after {
+.Tooltip[data-direction='s']::after,
+.Tooltip[data-direction='se']::after,
+.Tooltip[data-direction='sw']::after {
   bottom: 100%;
 }
 

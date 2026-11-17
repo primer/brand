@@ -40,6 +40,21 @@
         "value": "1280px",
         "$type": "dimension"
       }
+    },
+    "variant": {
+      "gridline": {
+        "paddingInline": {
+          "value": "var(--base-size-20)",
+          "responsive": {
+            "768px": {
+              "value": "var(--base-size-40)"
+            },
+            "1280px": {
+              "value": "var(--base-size-64)"
+            }
+          }
+        }
+      }
     }
   }
 }

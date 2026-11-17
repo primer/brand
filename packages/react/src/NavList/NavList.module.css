@@ -458,6 +458,13 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+@media (prefers-color-scheme: dark) {
+  [data-color-mode='auto'] .NavList {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .NavList,
   .NavList::before,

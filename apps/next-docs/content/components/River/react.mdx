@@ -20,7 +20,7 @@ import {
 } from './react'
 
 ```js
-import {River, RiverBreakout} from '@primer/react-brand'
+import {MinimalVideoPlayer, River, RiverBreakout} from '@primer/react-brand'
 ```
 
 ## Examples
@@ -161,11 +161,8 @@ The `gridline` variant adds lateral padding and applies a full-bleed visual back
 ```jsx live
 <River style={{width: '100%'}} imageTextRatio="60:40">
   <River.Visual hasShadow={false}>
-    <video
-      loop
-      playsInline
-      autoPlay
-      muted
+    <MinimalVideoPlayer
+      title="Break issues into actionable tasks"
       poster="https://github.githubassets.com/images/modules/site/issues/issue-tasks-progress-placeholder.png"
     >
       <source
@@ -176,7 +173,7 @@ The `gridline` variant adds lateral padding and applies a full-bleed visual back
         type="video/mp4; codecs=avc1.4D401E,mp4a.40.2"
         src="https://github.githubassets.com/images/modules/site/issues/issue-tasks-progress.h264.mp4"
       />
-    </video>
+    </MinimalVideoPlayer>
   </River.Visual>
   <River.Content>
     <Heading>Break issues into actionable tasks</Heading>

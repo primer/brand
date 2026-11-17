@@ -1,0 +1,10 @@
+{
+  "Tiles": {
+    "item": {
+      "maxSize": {
+        "value": "184px",
+        "$type": "dimension"
+      }
+    }
+  }
+}

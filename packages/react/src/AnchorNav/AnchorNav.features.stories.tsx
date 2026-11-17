@@ -160,6 +160,8 @@ export const LongerLabels: Story = {
   name: 'Longer labels',
   render: renderTemplate,
   args: {
+    offset: 200,
+    sectionHeight: 0,
     data: {
       ['Donec ultricies euismod']: 'donecultricieseuismodporttitor',
       ['Pellentesque eleifend metus']: 'pellentesqueeleifendmetus',

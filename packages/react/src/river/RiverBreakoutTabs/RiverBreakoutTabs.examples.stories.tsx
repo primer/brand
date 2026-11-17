@@ -3,7 +3,7 @@ import type {Meta, StoryObj} from '@storybook/react'
 import {AiModelIcon, CopilotIcon, ShieldCheckIcon} from '@primer/octicons-react'
 import {useTranslation} from 'react-i18next'
 
-import {Heading, Image, Link, River, RiverBreakoutTabs, Section, Stack, Text} from '../..'
+import {Heading, Image, Link, MinimalVideoPlayer, River, RiverBreakoutTabs, Section, Stack, Text} from '../..'
 import renderUI1 from '../../fixtures/images/copilot-vscode-agent-mode-1.png'
 import renderUI2 from '../../fixtures/images/copilot-vscode-agent-mode-2.png'
 import renderUI3 from '../../fixtures/images/copilot-vscode-agent-mode-3.png'
@@ -14,6 +14,7 @@ import {VideoPlayer} from '../../VideoPlayer'
 const meta = {
   title: 'Components/RiverBreakoutTabs/Examples',
   component: RiverBreakoutTabs,
+  excludeStories: ['MinimalVideoPlayerExample'],
   parameters: {
     layout: 'fullscreen',
   },
@@ -161,6 +162,81 @@ export const WithVideos: Story = {
       </Section>
     )
   },
+}
+
+export function MinimalVideoPlayerExample() {
+  const {t} = useTranslation('RiverBreakoutTabs')
+  const internalAccessibleLabels = {
+    play: t('video_play_label'),
+    pause: t('video_pause_label'),
+  }
+
+  return (
+    <Section>
+      <RiverBreakoutTabs
+        backgroundVisual={process.env.NODE_ENV !== 'test' ? <SharedDitherBackdrop /> : null}
+        imagePosition="block-end"
+      >
+        <RiverBreakoutTabs.A11yHeading>{t('with_videos_a11y_heading')}</RiverBreakoutTabs.A11yHeading>
+
+        <RiverBreakoutTabs.Item>
+          <RiverBreakoutTabs.Icon icon={AiModelIcon} color="green" />
+          <RiverBreakoutTabs.Heading>{t('with_videos_item_backlog_heading')}</RiverBreakoutTabs.Heading>
+          <RiverBreakoutTabs.Content>
+            <Text>{t('with_videos_item_backlog_body')}</Text>
+            <Link href="https://github.com/features/copilot">{t('with_videos_item_backlog_link')}</Link>
+          </RiverBreakoutTabs.Content>
+          <RiverBreakoutTabs.Visual>
+            <MinimalVideoPlayer
+              internalAccessibleLabels={internalAccessibleLabels}
+              poster={posterImage}
+              src="./example.mp4"
+              title={t('video_title_planning')}
+            />
+          </RiverBreakoutTabs.Visual>
+        </RiverBreakoutTabs.Item>
+
+        <RiverBreakoutTabs.Item>
+          <RiverBreakoutTabs.Icon icon={CopilotIcon} color="green" />
+          <RiverBreakoutTabs.Heading>{t('with_videos_item_workflow_heading')}</RiverBreakoutTabs.Heading>
+          <RiverBreakoutTabs.Content>
+            <Text>{t('with_videos_item_workflow_body')}</Text>
+            <Link href="https://github.com/features/copilot/chat">{t('with_videos_item_workflow_link')}</Link>
+          </RiverBreakoutTabs.Content>
+          <RiverBreakoutTabs.Visual>
+            <MinimalVideoPlayer
+              internalAccessibleLabels={internalAccessibleLabels}
+              poster={posterImage}
+              src="./example.mp4"
+              title={t('video_title_coding')}
+            />
+          </RiverBreakoutTabs.Visual>
+        </RiverBreakoutTabs.Item>
+
+        <RiverBreakoutTabs.Item>
+          <RiverBreakoutTabs.Icon icon={ShieldCheckIcon} color="green" />
+          <RiverBreakoutTabs.Heading>{t('with_videos_item_confidence_heading')}</RiverBreakoutTabs.Heading>
+          <RiverBreakoutTabs.Content>
+            <Text>{t('with_videos_item_confidence_body')}</Text>
+            <Link href="https://github.com/features/copilot/plans">{t('with_videos_item_confidence_link')}</Link>
+          </RiverBreakoutTabs.Content>
+          <RiverBreakoutTabs.Visual>
+            <MinimalVideoPlayer
+              internalAccessibleLabels={internalAccessibleLabels}
+              poster={posterImage}
+              src="./example.mp4"
+              title={t('video_title_merge_confidence')}
+            />
+          </RiverBreakoutTabs.Visual>
+        </RiverBreakoutTabs.Item>
+      </RiverBreakoutTabs>
+    </Section>
+  )
+}
+
+export const WithMinimalVideoPlayers: Story = {
+  name: 'With MinimalVideoPlayer',
+  render: () => <MinimalVideoPlayerExample />,
 }
 
 export const WithRivers: Story = {

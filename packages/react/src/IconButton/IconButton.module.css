@@ -1,0 +1,127 @@
+.IconButton {
+  flex: none;
+  gap: 0;
+  padding: 0;
+}
+
+.IconButton.IconButton {
+  min-width: var(--brand-IconButton-control-size);
+  width: var(--brand-IconButton-control-size);
+  min-height: var(--brand-IconButton-control-size);
+  height: var(--brand-IconButton-control-size);
+}
+
+.IconButton--small.IconButton--small {
+  --brand-IconButton-control-size: var(--brand-IconButton-control-size-small);
+  --brand-IconButton-icon-size: var(--brand-IconButton-icon-size-small);
+}
+
+.IconButton--medium.IconButton--medium {
+  --brand-IconButton-control-size: var(--brand-IconButton-control-size-medium);
+  --brand-IconButton-icon-size: var(--brand-IconButton-icon-size-medium);
+}
+
+.IconButton--large.IconButton--large {
+  --brand-IconButton-control-size: var(--brand-IconButton-control-size-large);
+  --brand-IconButton-icon-size: var(--brand-IconButton-icon-size-large);
+}
+
+.IconButton--variant-secondary.IconButton--variant-secondary {
+  color: var(--brand-IconButton-secondary-fgColor);
+}
+
+.IconButton--variant-subtle.IconButton--variant-subtle {
+  color: var(--brand-IconButton-subtle-fgColor);
+}
+
+.IconButton--variant-invisible.IconButton--variant-invisible {
+  color: var(--brand-IconButton-invisible-fgColor);
+}
+
+.IconButton--rounded.IconButton--rounded {
+  border-radius: var(--brand-borderRadius-full);
+}
+
+.IconButton--variant-danger.IconButton--variant-danger:not([disabled], [aria-disabled='true']) {
+  color: var(--brand-IconButton-danger-fgColor-rest);
+  background-color: var(--brand-IconButton-danger-bgColor-rest);
+  border-color: var(--brand-IconButton-danger-borderColor-rest);
+}
+
+.IconButton--variant-danger.IconButton--variant-danger:not(
+    [disabled],
+    [aria-disabled='true'],
+    [aria-expanded='true']
+  ):hover {
+  color: var(--brand-IconButton-danger-fgColor-hover);
+  background-color: var(--brand-IconButton-danger-bgColor-hover);
+  border-color: var(--brand-IconButton-danger-borderColor-hover);
+}
+
+.IconButton--variant-danger.IconButton--variant-danger:not([disabled], [aria-disabled='true']):active,
+.IconButton--variant-danger.IconButton--variant-danger:not([disabled], [aria-disabled='true'])[aria-expanded='true'] {
+  color: var(--brand-IconButton-danger-fgColor-active);
+  background-color: var(--brand-IconButton-danger-bgColor-active);
+  border-color: var(--brand-IconButton-danger-borderColor-active);
+}
+
+.IconButton--variant-invisible.IconButton--variant-invisible:where(:not(:hover, :active, [aria-expanded='true'])) {
+  background-color: var(--brand-IconButton-invisible-bgColor-rest);
+  border-color: var(--brand-IconButton-invisible-borderColor-rest);
+  backdrop-filter: none;
+}
+
+.IconButton--inactive.IconButton--inactive,
+.IconButton--inactive.IconButton--inactive:hover,
+.IconButton--inactive.IconButton--inactive:active {
+  color: var(--brand-IconButton-inactive-fgColor);
+  cursor: auto;
+  background-color: var(--brand-IconButton-inactive-bgColor);
+  border-color: var(--brand-IconButton-inactive-borderColor);
+  backdrop-filter: none;
+}
+
+.IconButton--inactive .IconButton__icon {
+  color: inherit;
+}
+
+.IconButton .IconButton__icon {
+  width: var(--brand-IconButton-icon-size);
+  height: var(--brand-IconButton-icon-size);
+}
+
+.IconButton__spinner.IconButton__spinner {
+  display: block;
+  width: var(--brand-IconButton-icon-size);
+  height: var(--brand-IconButton-icon-size);
+  animation-duration: var(--brand-IconButton-spinner-animationDuration-default);
+}
+
+.IconButton__loadingAnnouncement {
+  position: absolute;
+  width: var(--base-size-1);
+  height: var(--base-size-1);
+  padding: 0;
+  margin: calc(var(--base-size-1) * -1);
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (forced-colors: active) {
+  .IconButton--inactive {
+    color: GrayText;
+    border-color: GrayText;
+  }
+
+  .IconButton__spinner {
+    color: ButtonText;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .IconButton__spinner {
+    animation-duration: var(--brand-IconButton-spinner-animationDuration-reducedMotion);
+  }
+}

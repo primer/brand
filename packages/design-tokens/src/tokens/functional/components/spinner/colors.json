@@ -1,0 +1,8 @@
+{
+  "Spinner": {
+    "fgColor": {
+      "value": "var(--brand-color-text-muted)",
+      "dark": "var(--brand-color-text-muted)"
+    }
+  }
+}

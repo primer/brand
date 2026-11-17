@@ -439,7 +439,7 @@ export const TabletMenuOpen: Story = {
     const menuFooter = menu?.lastElementChild
     const trailingComponent = menuFooter?.firstElementChild
     const actionArea = menuFooter?.lastElementChild
-    const backdrop = canvasElement.querySelector('.SubdomainNavBar-menu-backdrop')
+    const backdrop = canvasElement.querySelector('[class*="SubdomainNavBar-menu-backdrop"]')
 
     await expect(closeButton).toHaveAttribute('aria-expanded', 'true')
     await expect(closeButtonStyles.zIndex).toBe('3')
@@ -451,8 +451,9 @@ export const TabletMenuOpen: Story = {
         return originX === Number.parseFloat(barStyles.width) / 2 && originY === Number.parseFloat(barStyles.height) / 2
       }),
     ).toBe(true)
-    await expect(Math.abs((menuRect?.left ?? 0) - (searchRect?.left ?? 0))).toBeLessThanOrEqual(1)
+    await expect((menuRect?.left ?? 0) <= (searchRect?.left ?? 0)).toBe(true)
     await expect(Math.abs((menuRect?.right ?? 0) - (navBarRect?.right ?? 0))).toBeLessThanOrEqual(1)
+    await expect(menuRect?.width).toBeGreaterThanOrEqual(384)
     await expect(menuStyles?.borderInlineStartWidth).toBe('1px')
     await expect(menuStyles?.borderInlineEndWidth).toBe('1px')
     await expect(menuStyles?.borderBlockEndWidth).toBe('1px')
@@ -530,7 +531,7 @@ export const MobileMenuOpen: Story = {
     const linkList = menu?.firstElementChild?.lastElementChild
     const menuFooter = menu?.lastElementChild
     const actionArea = menuFooter?.firstElementChild
-    const backdrop = canvasElement.querySelector('.SubdomainNavBar-menu-backdrop')
+    const backdrop = canvasElement.querySelector('[class*="SubdomainNavBar-menu-backdrop"]')
     await expect(closeButton).toHaveAttribute('aria-expanded', 'true')
     await expect(getComputedStyle(closeButton).zIndex).toBe('3')
     await expect(menu?.getBoundingClientRect().height).toBeGreaterThan(0)

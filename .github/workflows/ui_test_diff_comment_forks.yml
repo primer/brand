@@ -1,0 +1,81 @@
+name: Unit test coverage diff (forks)
+
+on:
+  pull_request:
+    paths:
+      - 'packages/react/**'
+      - '.github/workflows/ui_test_diff_comment.yml'
+      - '.github/workflows/ui_test_diff_comment_forks.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  coverage-diff:
+    if: ${{ github.repository == 'primer/brand' && github.event.pull_request.head.repo.full_name != github.repository }}
+    name: Coverage diff (fork)
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout current branch
+        uses: actions/checkout@v6
+        with:
+          path: current
+          persist-credentials: false
+
+      - name: Checkout main branch
+        uses: actions/checkout@v6
+        with:
+          ref: main
+          path: main
+          persist-credentials: false
+
+      - name: Set up Node
+        uses: actions/setup-node@v6
+        with:
+          node-version: 24.14.1
+
+      - name: Cache dependencies (current)
+        uses: actions/cache@v5
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-current-${{ hashFiles('current/**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-current-
+
+      - name: Cache dependencies (main)
+        uses: actions/cache@v5
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-main-${{ hashFiles('main/**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-main-
+
+      - name: Install dependencies (current branch)
+        working-directory: current
+        run: npm ci
+
+      - name: Install dependencies (main branch)
+        working-directory: main
+        run: npm ci
+
+      - name: Run tests with coverage (current branch)
+        working-directory: current/packages/react
+        run: npm run test -- --coverage --coverageReporters=json-summary --coverageReporters=json --passWithNoTests --watchAll=false
+
+      - name: Run tests with coverage (main branch)
+        working-directory: main/packages/react
+        run: npm run test -- --coverage --coverageReporters=json-summary --coverageReporters=json --passWithNoTests --watchAll=false
+
+      - name: Generate coverage report
+        working-directory: current
+        run: |
+          npm exec -- tsx packages/repo-configs/scripts/get-coverage.ts > coverage-diff.md
+          cat coverage-diff.md >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload coverage report
+        uses: actions/upload-artifact@v7
+        with:
+          name: coverage-diff
+          path: current/coverage-diff.md
+          retention-days: 14

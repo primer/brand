@@ -172,6 +172,7 @@ const darkJson = require('../src/tokens/base/colors/dark')
     `tokens/functional/components/pricing-options/pricing-options.json`,
     `tokens/functional/components/section/section.json`,
     `tokens/functional/components/logosuite/base.json`,
+    `tokens/functional/components/testimonial/base.json`,
   ]
 
   for (const path of filesForResponsiveTokens) {
@@ -247,7 +248,9 @@ const darkJson = require('../src/tokens/base/colors/dark')
   })
 
   const filesForColorModes = [
+    `tokens/functional/components/carousel-pagination/colors.json`,
     `tokens/functional/components/button/colors.js`,
+    `tokens/functional/components/icon-button/colors.json`,
     `tokens/functional/components/accordion/colors.js`,
     `tokens/functional/components/faq/colors.json`,
     `tokens/functional/components/card/colors.json`,
@@ -257,6 +260,8 @@ const darkJson = require('../src/tokens/base/colors/dark')
     `tokens/functional/components/inline-link/colors.json`,
     `tokens/functional/components/inline-code/colors.json`,
     `tokens/functional/components/control/colors.js`,
+    `tokens/functional/components/spinner/colors.json`,
+    `tokens/functional/components/toggle-switch/colors.json`,
     `tokens/functional/components/subdomain-nav-bar/colors.js`,
     `tokens/functional/components/comparison-table/colors.js`,
     `tokens/functional/components/anchor-nav/colors.js`,
@@ -277,6 +282,7 @@ const darkJson = require('../src/tokens/base/colors/dark')
     `tokens/functional/components/tooltip/colors.json`,
     `tokens/functional/components/river-story-scroll/colors.js`,
     `tokens/functional/components/pricing-options/colors.json`,
+    `tokens/functional/components/feature-comparison-table/colors.js`,
     `tokens/functional/components/icon/colors.json`,
     `tokens/functional/components/frosted-glass-vfx/colors.js`,
     `tokens/functional/components/tabs/colors.json`,

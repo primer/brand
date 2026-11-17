@@ -3,8 +3,10 @@ import '@testing-library/jest-dom'
 
 import {ButtonGroup} from './ButtonGroup'
 import {Button} from '../Button'
+import {IconButton} from '../IconButton'
 import {ActionMenu} from '../ActionMenu'
 import {axe, toHaveNoViolations} from 'jest-axe'
+import {DownloadIcon, KebabHorizontalIcon, ShareIcon} from '@primer/octicons-react'
 
 expect.extend(toHaveNoViolations)
 
@@ -92,6 +94,102 @@ describe('ButtonGroup', () => {
     const buttons = getAllByRole('button')
     expect(buttons[0].classList).toContain('Button--primary')
     expect(buttons[1].classList).toContain('Button--secondary')
+  })
+
+  it('joins any number of IconButton children as secondary actions when requested', async () => {
+    const {container, getAllByRole, getByTestId} = render(
+      <ButtonGroup data-testid="icon-button-group" buttonSize="small" variant="joined">
+        <IconButton icon={DownloadIcon} aria-label="Download" />
+        <IconButton icon={ShareIcon} aria-label="Share" />
+        <IconButton icon={KebabHorizontalIcon} aria-label="More actions" />
+      </ButtonGroup>,
+    )
+    const group = getByTestId('icon-button-group')
+    const buttons = getAllByRole('button')
+
+    expect(group).toHaveClass('ButtonGroup--variant-joined')
+    expect(group.children).toHaveLength(3)
+    for (const button of buttons) {
+      expect(button).toHaveClass('Button--secondary', 'Button--size-small', 'ButtonGroup__joinedButton')
+    }
+    expect(await axe(container)).toHaveNoViolations()
+  })
+
+  it('preserves explicit variants in a joined IconButton group', () => {
+    const {getAllByRole} = render(
+      <ButtonGroup variant="joined">
+        <IconButton icon={DownloadIcon} aria-label="Download" variant="primary" />
+        <IconButton icon={ShareIcon} aria-label="Share" />
+      </ButtonGroup>,
+    )
+    const buttons = getAllByRole('button')
+
+    expect(buttons[0]).toHaveClass('Button--primary')
+    expect(buttons[1]).toHaveClass('Button--secondary')
+  })
+
+  it('uses the default variant for IconButton children', () => {
+    const {getAllByRole, getByTestId} = render(
+      <ButtonGroup data-testid="icon-button-group">
+        <IconButton icon={DownloadIcon} aria-label="Download" />
+        <IconButton icon={ShareIcon} aria-label="Share" />
+        <IconButton icon={KebabHorizontalIcon} aria-label="More actions" />
+      </ButtonGroup>,
+    )
+    const buttons = getAllByRole('button')
+
+    expect(getByTestId('icon-button-group')).not.toHaveClass('ButtonGroup--variant-joined')
+    expect(buttons).toHaveLength(2)
+    expect(buttons[0]).toHaveClass('Button--primary')
+    expect(buttons[1]).toHaveClass('Button--secondary')
+  })
+
+  it('joins regular Button children with a uniform secondary variant', () => {
+    const {getAllByRole, getByTestId} = render(
+      <ButtonGroup data-testid="button-group" variant="joined">
+        <Button>One</Button>
+        <Button>Two</Button>
+        <Button>Three</Button>
+      </ButtonGroup>,
+    )
+    const buttons = getAllByRole('button')
+
+    expect(getByTestId('button-group')).toHaveClass('ButtonGroup--variant-joined')
+    expect(buttons).toHaveLength(3)
+    for (const button of buttons) {
+      expect(button).toHaveClass('Button--secondary', 'ButtonGroup__joinedButton')
+    }
+  })
+
+  it('joins mixed Button and IconButton children when requested', () => {
+    const {getAllByRole, getByTestId} = render(
+      <ButtonGroup data-testid="mixed-button-group" variant="joined">
+        <Button>Download</Button>
+        <IconButton icon={ShareIcon} aria-label="Share" />
+        <Button>More details</Button>
+      </ButtonGroup>,
+    )
+    const buttons = getAllByRole('button')
+
+    expect(getByTestId('mixed-button-group')).toHaveClass('ButtonGroup--variant-joined')
+    expect(buttons).toHaveLength(3)
+    for (const button of buttons) {
+      expect(button).toHaveClass('Button--secondary', 'ButtonGroup__joinedButton')
+    }
+  })
+
+  it('supports IconButton in a mixed non-joined group', () => {
+    const {getAllByRole, getByTestId} = render(
+      <ButtonGroup data-testid="mixed-button-group">
+        <Button>Download</Button>
+        <IconButton icon={ShareIcon} aria-label="Share" />
+      </ButtonGroup>,
+    )
+    const buttons = getAllByRole('button')
+
+    expect(getByTestId('mixed-button-group')).not.toHaveClass('ButtonGroup--variant-joined')
+    expect(buttons[0]).toHaveClass('Button--primary')
+    expect(buttons[1]).toHaveClass('Button--secondary')
   })
 
   it('supports conditionally rendered children', () => {

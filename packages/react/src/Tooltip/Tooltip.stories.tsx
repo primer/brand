@@ -1,7 +1,7 @@
 import React from 'react'
 import type {Meta, StoryObj} from '@storybook/react'
 import {Button, Box} from '..'
-import {Tooltip} from './'
+import {Tooltip, TooltipDelays, TooltipDirections} from './'
 
 /* Tooltip v1 */
 
@@ -35,13 +35,18 @@ export const Playground: Story = {
   args: {
     text: 'This is the tooltip text',
     direction: 's',
+    delay: 'short',
     type: 'description',
   },
   argTypes: {
     text: {control: {type: 'text'}},
     direction: {
       control: {type: 'radio'},
-      options: ['n', 'e', 's', 'w'],
+      options: [...TooltipDirections],
+    },
+    delay: {
+      control: {type: 'radio'},
+      options: [...TooltipDelays],
     },
     type: {
       table: {

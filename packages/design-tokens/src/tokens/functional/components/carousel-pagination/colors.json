@@ -1,0 +1,36 @@
+{
+  "CarouselPagination": {
+    "bgColor": {
+      "value": "var(--brand-color-canvas-subtle)",
+      "dark": "var(--brand-color-canvas-subtle)"
+    },
+    "indicator": {
+      "bgColor": {
+        "value": "var(--base-color-scale-gray-6)",
+        "dark": "var(--base-color-scale-gray-3)"
+      },
+      "active": {
+        "bgColor": {
+          "value": "var(--base-color-scale-gray-7)",
+          "dark": "var(--base-color-scale-gray-2)"
+        }
+      }
+    },
+    "arrowButton": {
+      "fgColor": {
+        "value": "var(--base-color-scale-black-0)",
+        "dark": "var(--brand-color-text-default)"
+      },
+      "borderColor": {
+        "value": "var(--base-color-scale-gray-2)",
+        "dark": "var(--base-color-scale-gray-6)"
+      },
+      "inactive": {
+        "fgColor": {
+          "value": "var(--base-color-scale-gray-3)",
+          "dark": "var(--base-color-scale-gray-3)"
+        }
+      }
+    }
+  }
+}

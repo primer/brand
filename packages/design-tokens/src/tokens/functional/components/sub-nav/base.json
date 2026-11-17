@@ -4,6 +4,30 @@
       "subMenu": {
         "value": "300px",
         "$type": "dimension"
+      },
+      "overflowMenuInset": {
+        "value": "32px",
+        "$type": "dimension"
+      },
+      "overflowMenuMin": {
+        "value": "160px",
+        "$type": "dimension"
+      }
+    },
+    "height": {
+      "overflowMenuInset": {
+        "value": "128px",
+        "$type": "dimension"
+      },
+      "overflowMenuItemMin": {
+        "value": "40px",
+        "$type": "dimension"
+      }
+    },
+    "offset": {
+      "overflowMenu": {
+        "value": "4px",
+        "$type": "dimension"
       }
     }
   }

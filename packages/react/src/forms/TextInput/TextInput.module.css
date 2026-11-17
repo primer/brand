@@ -33,6 +33,16 @@
  * Sizes
  */
 
+.TextInput-wrapper--small {
+  height: var(--brand-control-small-size);
+}
+
+.TextInput--small {
+  font-weight: var(--brand-text-weight-100);
+  font-size: var(--brand-text-size-100);
+  padding: var(--brand-control-small-paddingBlock) var(--brand-control-small-paddingInline-condensed);
+}
+
 .TextInput-wrapper--medium {
   height: var(--brand-control-medium-size);
 }
@@ -125,6 +135,12 @@
 /*
  * TextInput visuals
  */
+.TextInput--has-leading-visual--small {
+  padding-inline-start: calc(
+    var(--brand-control-small-paddingInline-condensed) + var(--base-size-16) + var(--brand-control-small-gap)
+  );
+}
+
 .TextInput--has-leading-visual--medium {
   padding-inline-start: calc(
     var(--brand-control-medium-paddingInline-condensed) + var(--base-size-16) + var(--brand-control-medium-gap)
@@ -134,6 +150,12 @@
 .TextInput--has-leading-visual--large {
   padding-inline-start: calc(
     var(--brand-control-large-paddingInline-condensed) + var(--base-size-20) + var(--brand-control-large-gap)
+  );
+}
+
+.TextInput--has-trailing-visual--small {
+  padding-inline-end: calc(
+    var(--brand-control-small-paddingInline-condensed) + var(--base-size-16) + var(--brand-control-small-gap)
   );
 }
 
@@ -171,6 +193,14 @@
   right: var(--brand-control-medium-paddingInline-condensed);
 }
 
+.TextInput-leading-visual--small {
+  left: var(--brand-control-small-paddingInline-condensed);
+}
+
+.TextInput-trailing-visual--small {
+  right: var(--brand-control-small-paddingInline-condensed);
+}
+
 .TextInput-leading-visual--large {
   left: var(--brand-control-large-paddingInline-condensed);
 }
@@ -180,6 +210,11 @@
 }
 
 .TextInput-leading-visual-icon--medium {
+  width: var(--base-size-16);
+  height: var(--base-size-16);
+}
+
+.TextInput-leading-visual-icon--small {
   width: var(--base-size-16);
   height: var(--base-size-16);
 }
@@ -229,6 +264,11 @@
 .TextInput-leading-text-inner--medium,
 .TextInput-trailing-text-inner--medium {
   padding-inline: var(--brand-control-medium-paddingInline-condensed);
+}
+
+.TextInput-leading-text-inner--small,
+.TextInput-trailing-text-inner--small {
+  padding-inline: var(--brand-control-small-paddingInline-condensed);
 }
 
 .TextInput-leading-text-inner--large,
