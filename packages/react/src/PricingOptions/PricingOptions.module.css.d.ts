@@ -2,6 +2,7 @@ declare const styles: {
   readonly "PricingOptions": string;
   readonly "PricingOptions--appearance-gradient": string;
   readonly "PricingOptions--appearance-solid": string;
+  readonly "PricingOptions--has-gridlines": string;
   readonly "PricingOptions--has-labels": string;
   readonly "PricingOptions--items1": string;
   readonly "PricingOptions--items2": string;

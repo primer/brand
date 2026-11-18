@@ -118,12 +118,18 @@
     padding-inline-end: var(--brand-pricing-options-container-padding-inline);
   }
 
-  /* Continue the outer frame through the label row */
-  .PricingOptions--layout-default .PricingOptions__item:first-child .PricingOptions__label-cell {
+  /* Frame labeled edge cells, or every edge cell in gridline layouts */
+  .PricingOptions--layout-default .PricingOptions__item--has-label:first-child .PricingOptions__label-cell,
+  .PricingOptions--layout-default.PricingOptions--has-gridlines
+    .PricingOptions__item:first-child
+    .PricingOptions__label-cell {
     border-inline-start: var(--brand-borderWidth-thin) solid var(--brand-color-border-subtle);
   }
 
-  .PricingOptions--layout-default .PricingOptions__item:last-child .PricingOptions__label-cell {
+  .PricingOptions--layout-default .PricingOptions__item--has-label:last-child .PricingOptions__label-cell,
+  .PricingOptions--layout-default.PricingOptions--has-gridlines
+    .PricingOptions__item:last-child
+    .PricingOptions__label-cell {
     border-inline-end: var(--brand-borderWidth-thin) solid var(--brand-color-border-subtle);
   }
 

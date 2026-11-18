@@ -26,6 +26,11 @@ type AlignOptions = 'start' | 'center'
 
 export type PricingOptionsProps = {
   align?: AlignOptions
+  /**
+   * Continues the outer side borders through the label row in gridline layouts.
+   * Applies to the `default` and `default-gradient` variants.
+   */
+  hasGridLines?: boolean
   variant?: 'default' | 'default-gradient' | 'cards' | 'cards-gradient'
   ['data-testid']?: string
 } & PropsWithChildren<BaseProps<HTMLDivElement>> &
@@ -116,6 +121,7 @@ const PricingOptionsRoot = forwardRef(
       children,
       className,
       'data-testid': testId,
+      hasGridLines = false,
       variant = 'default',
       ...rest
     }: PropsWithChildren<PricingOptionsProps>,
@@ -151,6 +157,7 @@ const PricingOptionsRoot = forwardRef(
             styles[`PricingOptions--items${filteredChildren.length}`],
             styles[`PricingOptions--appearance-${variant.includes('gradient') ? 'gradient' : 'solid'}`],
             hasLabels && styles['PricingOptions--has-labels'],
+            hasGridLines && styles['PricingOptions--has-gridlines'],
             className,
           )}
           data-testid={testId || testIds.root}

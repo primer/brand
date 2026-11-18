@@ -64,6 +64,13 @@ describe('PricingOptions', () => {
     const PricingOptionsEl = getByTestId(testId)
     expect(PricingOptionsEl.classList).toContain(expectedClass)
     expect(PricingOptionsEl).not.toHaveClass('PricingOptions--has-labels')
+    expect(PricingOptionsEl).not.toHaveClass('PricingOptions--has-gridlines')
+  })
+
+  it('applies the gridlines class when hasGridLines is set', () => {
+    const {getByTestId} = render(<PricingOptions data-testid={testId} hasGridLines />)
+
+    expect(getByTestId(testId)).toHaveClass('PricingOptions--has-gridlines')
   })
 
   it('applies the correct layout classes for each variant', () => {
