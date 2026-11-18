@@ -60,6 +60,10 @@
   background-color: var(--brand-ActionMenu-color-splitButton-divider-primary);
 }
 
+.ActionMenu__innerButton--subtle.ActionMenu__innerButton--split-button.ActionMenu__innerButton--split-button-primary {
+  border-inline-end-width: 0;
+}
+
 .ActionMenu__innerButton--subtle.ActionMenu__innerButton--split-button.ActionMenu__innerButton--split-button-primary::before {
   content: none;
 }
