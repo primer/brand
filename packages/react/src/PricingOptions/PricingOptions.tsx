@@ -383,7 +383,7 @@ const PricingOptionsPrice = forwardRef<HTMLParagraphElement, PricingOptionsPrice
 
         {originalPrice && (
           <del className={styles['PricingOptions__price-original-price']}>
-            <Text size="400" variant="muted" weight="normal">
+            <Text size="300" variant="muted" weight="normal">
               {currencySymbol}
             </Text>
             <Text

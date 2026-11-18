@@ -118,11 +118,12 @@
     padding-inline-end: var(--brand-pricing-options-container-padding-inline);
   }
 
-  .PricingOptions--layout-default .PricingOptions__item--has-label:first-child .PricingOptions__label-cell {
+  /* Continue the outer frame through the label row */
+  .PricingOptions--layout-default .PricingOptions__item:first-child .PricingOptions__label-cell {
     border-inline-start: var(--brand-borderWidth-thin) solid var(--brand-color-border-subtle);
   }
 
-  .PricingOptions--layout-default .PricingOptions__item--has-label:last-child .PricingOptions__label-cell {
+  .PricingOptions--layout-default .PricingOptions__item:last-child .PricingOptions__label-cell {
     border-inline-end: var(--brand-borderWidth-thin) solid var(--brand-color-border-subtle);
   }
 
@@ -141,11 +142,6 @@
     inset-inline-start: 0;
     width: var(--brand-borderWidth-thin);
     background-color: var(--brand-color-border-subtle);
-  }
-  .PricingOptions--layout-default.PricingOptions--appearance-gradient
-    .PricingOptions__item--has-label:not(:first-child)
-    .PricingOptions__label-cell::before {
-    mask-image: var(--brand-PricingOptions-borderMask);
   }
 
   /* ---- Cards layout labels ---- */
@@ -200,8 +196,11 @@
   inset: 0;
   pointer-events: none;
   border-radius: inherit;
-  mask-image: var(--brand-PricingOptions-borderMask);
   border: var(--brand-borderWidth-thin) solid var(--brand-color-border-subtle);
+}
+
+.PricingOptions--layout-cards.PricingOptions--appearance-gradient .PricingOptions__item::before {
+  mask-image: var(--brand-PricingOptions-borderMask);
 }
 
 .PricingOptions--layout-default.PricingOptions--appearance-gradient::before {
@@ -287,7 +286,6 @@
     content: '';
     inset: 0;
     pointer-events: none;
-    mask-image: var(--brand-PricingOptions-borderMask);
     border: var(--brand-borderWidth-thin) solid var(--brand-color-border-subtle);
   }
 }
@@ -350,10 +348,18 @@
     margin-inline-start: calc(var(--brand-pricing-options-item-gap) / 2 * -1);
   }
 
-  .PricingOptions--layout-default.PricingOptions--appearance-gradient
-    .PricingOptions__item
+  /* Start below the label row, unless the divider is the trailing edge of a labeled cell */
+  .PricingOptions--layout-default.PricingOptions--has-labels .PricingOptions__item + .PricingOptions__item::before {
+    grid-row-start: labels-end;
+    grid-row-end: auto;
+    inset-block-start: calc(var(--brand-pricing-options-item-padding-block-start) * -1);
+  }
+
+  .PricingOptions--layout-default.PricingOptions--has-labels
+    .PricingOptions__item--has-label
     + .PricingOptions__item::before {
-    mask-image: var(--brand-PricingOptions-borderMask);
+    grid-row-start: auto;
+    inset-block-start: 0;
   }
 }
 
@@ -445,7 +451,8 @@
 }
 
 .PricingOptions__item--align-center .PricingOptions__price,
-.PricingOptions__item--align-center .PricingOptions__description {
+.PricingOptions__item--align-center .PricingOptions__description,
+.PricingOptions__item--align-center .PricingOptions__footnote {
   text-align: center;
   justify-content: center;
 }
@@ -538,7 +545,7 @@
 .PricingOptions__price {
   display: flex;
   flex-wrap: wrap;
-  align-items: flex-start;
+  align-items: baseline;
   grid-row: price;
   inline-size: 100%;
   padding-block-start: var(--base-size-20);
@@ -572,7 +579,7 @@
 
 .PricingOptions__price-original-price {
   display: inline-flex;
-  align-self: center;
+  align-items: baseline;
   text-decoration: none;
   margin-inline-start: var(--base-size-8);
 }
@@ -653,7 +660,9 @@
 .PricingOptions__footnote {
   grid-row: footnote;
   display: block;
-  margin-block-start: var(--base-size-8);
+  inline-size: 100%;
+  margin-block-start: var(--base-size-20);
+  padding-block-start: var(--base-size-40);
 }
 
 /* ---------------------------------------------------------- */
@@ -682,12 +691,14 @@
 
 /* Edge-to-edge dividers */
 .PricingOptions__price,
-.PricingOptions__feature-list--has-divider {
+.PricingOptions__feature-list--has-divider,
+.PricingOptions__footnote {
   position: relative;
 }
 
 .PricingOptions__price::before,
-.PricingOptions__feature-list--has-divider::before {
+.PricingOptions__feature-list--has-divider::before,
+.PricingOptions__footnote::before {
   content: '';
   position: absolute;
   inset-block-start: 0;
@@ -699,7 +710,8 @@
 
 /* Default layout: extend dividers into column gap */
 @media (min-width: 63.25rem) {
-  .PricingOptions--layout-default :is(.PricingOptions__price, .PricingOptions__feature-list--has-divider)::before {
+  .PricingOptions--layout-default
+    :is(.PricingOptions__price, .PricingOptions__feature-list--has-divider, .PricingOptions__footnote)::before {
     inset-inline-start: calc(var(--brand-pricing-options-item-gap, 0px) / 2 * -1);
     inset-inline-end: calc(var(--brand-pricing-options-item-gap, 0px) / 2 * -1);
   }
@@ -707,20 +719,15 @@
   /* First item: don't overflow past container start */
   .PricingOptions--layout-default
     .PricingOptions__item:first-child
-    :is(.PricingOptions__price, .PricingOptions__feature-list--has-divider)::before {
+    :is(.PricingOptions__price, .PricingOptions__feature-list--has-divider, .PricingOptions__footnote)::before {
     inset-inline-start: calc(var(--brand-pricing-options-container-padding-inline, 0px) * -1);
   }
 
   /* Last item: don't overflow past container end */
   .PricingOptions--layout-default
     .PricingOptions__item:not(:has(~ .PricingOptions__item))
-    :is(.PricingOptions__price, .PricingOptions__feature-list--has-divider)::before {
+    :is(.PricingOptions__price, .PricingOptions__feature-list--has-divider, .PricingOptions__footnote)::before {
     inset-inline-end: calc(var(--brand-pricing-options-container-padding-inline, 0px) * -1);
-  }
-
-  .PricingOptions--layout-default.PricingOptions--appearance-gradient
-    :is(.PricingOptions__price, .PricingOptions__feature-list--has-divider)::before {
-    mask-image: var(--brand-PricingOptions-borderMask);
   }
 }
 

@@ -93,7 +93,6 @@ export const Default = () => (
           </PricingOptions.Item>
 
           <PricingOptions.Item>
-            <PricingOptions.Label>Available Feb 2024</PricingOptions.Label>
             <PricingOptions.Heading>Copilot Enterprise</PricingOptions.Heading>
             <PricingOptions.Description>
               Copilot personalized to your organization throughout the software development lifecycle. Requires GitHub
