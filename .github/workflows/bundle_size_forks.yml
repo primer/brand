@@ -1,0 +1,67 @@
+name: Check bundle size (forks)
+
+on:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  size:
+    if: ${{ github.repository == 'primer/brand' && github.event.pull_request.head.repo.full_name != github.repository }}
+    name: Report bundle size (fork)
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout PR branch
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Create main branch worktree
+        run: git worktree add /tmp/main ${{ github.event.pull_request.base.sha }}
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+
+      - name: Caching dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - name: Install and build (PR)
+        run: |
+          npm ci
+          npm run build:lib
+
+      - name: Measure bundle size (PR)
+        run: npx size-limit --json > /tmp/pr-sizes.json
+
+      - name: Install and build (main branch)
+        working-directory: /tmp/main
+        run: |
+          npm ci
+          npm run build:lib
+
+      - name: Measure bundle size (main branch)
+        env:
+          SIZE_LIMIT_ROOT: /tmp/main
+        run: npx size-limit --json > /tmp/main-sizes.json
+
+      - name: Generate size report
+        run: |
+          node packages/repo-configs/scripts/bundle-size-report.js /tmp/pr-sizes.json /tmp/main-sizes.json > bundle-size-report.md
+          cat bundle-size-report.md >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload bundle size report
+        uses: actions/upload-artifact@v7
+        with:
+          name: bundle-size-report
+          path: bundle-size-report.md
+          retention-days: 14

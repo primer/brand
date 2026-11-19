@@ -3,21 +3,29 @@ name: Visual test
 on:
   pull_request:
 
+permissions:
+  contents: read
+
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
   visual-test:
-    if: ${{ github.repository == 'primer/brand' }}
+    if: ${{ github.repository == 'primer/brand' && github.event.pull_request.head.repo.full_name == github.repository }}
     name: Storybook
     runs-on: macos-latest-xlarge
+    permissions:
+      contents: read
+      pull-requests: write
     env:
       NODE_ENV: test
       PLAYWRIGHT_CHROME_PATH: /Applications/Google Chrome.app/Contents/MacOS/Google Chrome # Use local Chrome instead of downaloading
     steps:
       - name: Checkout repository
         uses: actions/checkout@v6
+        with:
+          persist-credentials: false
 
       - name: Set up Node
         uses: actions/setup-node@v6

@@ -3,20 +3,29 @@ name: UI test
 on:
   pull_request:
 
+permissions:
+  contents: read
+
 jobs:
   test:
-    if: ${{ github.repository == 'primer/brand' }}
+    if: ${{ github.repository == 'primer/brand' && github.event.pull_request.head.repo.full_name == github.repository }}
     name: Primitives diff
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
     steps:
       - name: Checkout repository
         uses: actions/checkout@v6
+        with:
+          persist-credentials: false
 
       - name: Checkout reference branch
         uses: actions/checkout@v6
         with:
           ref: ${{ github.base_ref }}
           path: temp-main
+          persist-credentials: false
 
       - name: Set up Node
         uses: actions/setup-node@v6
