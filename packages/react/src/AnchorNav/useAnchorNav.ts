@@ -44,7 +44,7 @@ export function useAnchorNav(
 
       for (const href of hrefs) {
         const section = document.getElementById(href.replace(/^#/, ''))
-        if (!section) continue
+        if (!section || section.getClientRects().length === 0) continue
         const {top, bottom} = section.getBoundingClientRect()
         const isVisible = top < innerHeight && bottom > navBottom
         // Leaves room for the section's scroll-margin-top and sub-pixel scroll positions.
@@ -77,8 +77,17 @@ export function useAnchorNav(
     // eslint-disable-next-line github/prefer-observers -- Viewport resizing can move sections without a scroll.
     window.addEventListener('resize', handleChange)
 
+    const resizeObserver = typeof ResizeObserver !== 'undefined' ? new ResizeObserver(handleChange) : undefined
+    resizeObserver?.observe(nav)
+    resizeObserver?.observe(document.body)
+    for (const href of hrefs) {
+      const section = document.getElementById(href.replace(/^#/, ''))
+      if (section) resizeObserver?.observe(section)
+    }
+
     return () => {
       updateRef.current = undefined
+      resizeObserver?.disconnect()
       window.removeEventListener('scroll', handleChange)
       window.removeEventListener('resize', handleChange)
     }

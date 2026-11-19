@@ -208,6 +208,7 @@ function AnchorNavBase({
                   )}
                 >
                   {React.cloneElement(link, {
+                    id: isOverflowed ? undefined : link.props.id,
                     _isActive: !isOverflowed && link.props.href === activeHref,
                     _onActivate: () => {
                       selectSection(link.props.href)

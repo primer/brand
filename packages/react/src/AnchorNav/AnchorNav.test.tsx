@@ -40,7 +40,7 @@ const MockAnchorNavFixture = ({
       <AnchorNav data-testid={AnchorNav.testIds.root} {...rest}>
         {data.map(item => {
           return (
-            <AnchorNav.Link key={item.id} href={`#${item.id}`} onClick={onLinkClick}>
+            <AnchorNav.Link key={item.id} id={`link-${item.id}`} href={`#${item.id}`} onClick={onLinkClick}>
               {item.title}
             </AnchorNav.Link>
           )
@@ -83,10 +83,19 @@ describe('AnchorNav', () => {
     const spy = jest.spyOn(HTMLElement.prototype, 'getBoundingClientRect')
     const measure = spy.getMockImplementation()
     spy.mockImplementation(function (this: HTMLElement) {
-      if (this.id in sectionTops) return new DOMRect(0, sectionTops[this.id], 0, sectionHeight)
+      if (this.id in sectionTops) {
+        return this.hidden ? new DOMRect() : new DOMRect(0, sectionTops[this.id], 0, sectionHeight)
+      }
       if (this.tagName === 'NAV') return new DOMRect(0, 0, 0, 60)
       return measure ? measure.call(this) : new DOMRect()
     })
+    for (const section of document.querySelectorAll<HTMLElement>('section[id]')) {
+      if (!(section.id in sectionTops)) continue
+      jest.spyOn(section, 'getClientRects').mockImplementation(() => {
+        const rects = section.hidden ? [] : [section.getBoundingClientRect()]
+        return Object.assign(rects, {item: (index: number) => rects[index] ?? null})
+      })
+    }
     act(() => {
       setScrollPosition(scrollY)
       void triggerScrollEvent()
@@ -324,6 +333,72 @@ describe('AnchorNav', () => {
     ).toEqual(['Section three'])
   })
 
+  it.each([0, 200])('ignores hidden targets while tracking rendered targets with height %ipx', sectionHeight => {
+    mockUseWindowSize.mockImplementation(() => ({isSmall: false}))
+    const {getByRole, getByText} = render(<MockAnchorNavFixture />)
+    getByText('Section five', {selector: 'section'}).hidden = true
+
+    scrollSections(240, {section1: -240, section2: -40, section3: 160, section4: 360, section5: 0}, sectionHeight)
+
+    expect(getByRole('link', {current: true})).toHaveTextContent('Section two')
+    expect(getByRole('button', {name: /Currently selected: Section two/})).toBeInTheDocument()
+  })
+
+  it.each(['section', 'page'])('updates the active section after a %s resize without scrolling', source => {
+    jest.useFakeTimers()
+    mockUseWindowSize.mockImplementation(() => ({isSmall: false}))
+    const observers: {
+      callback: ResizeObserverCallback
+      observer: ResizeObserver
+      targets: Element[]
+      disconnect: jest.Mock
+    }[] = []
+    global.ResizeObserver = jest.fn().mockImplementation((callback: ResizeObserverCallback) => {
+      const targets: Element[] = []
+      const disconnect = jest.fn()
+      const observer: ResizeObserver = {
+        observe: target => targets.push(target),
+        unobserve: jest.fn(),
+        disconnect,
+      }
+      observers.push({callback, observer, targets, disconnect})
+      return observer
+    })
+    const {getByRole, getByText, unmount} = render(<MockAnchorNavFixture />)
+    const sectionTwo = getByText('Section two', {selector: 'section'})
+    const resizeTarget = source === 'section' ? sectionTwo : document.body
+    const notifyResize = () => {
+      act(() => {
+        for (const {callback, observer, targets, disconnect} of [...observers]) {
+          if (targets.includes(resizeTarget) && disconnect.mock.calls.length === 0) callback([], observer)
+        }
+      })
+    }
+    const sectionTops = {section1: -400, section2: -200, section3: 0, section4: 200, section5: 400}
+    scrollSections(400, sectionTops)
+    expect(getByRole('link', {current: true})).toHaveTextContent('Section three')
+
+    if (source === 'section') {
+      sectionTwo.getBoundingClientRect = jest.fn(() => new DOMRect(0, -200, 0, 500))
+      Object.assign(sectionTops, {section3: 300, section4: 500, section5: 700})
+    } else {
+      Object.assign(sectionTops, {section1: -100, section2: 100, section3: 300, section4: 500, section5: 700})
+    }
+    notifyResize()
+
+    expect(getByRole('link', {current: true})).toHaveTextContent('Section two')
+    expect(getByRole('button', {name: /Currently selected: Section two/})).toBeInTheDocument()
+
+    fireEvent.click(getByRole('link', {name: 'Section four'}))
+    notifyResize()
+    expect(getByRole('link', {current: true})).toHaveTextContent('Section four')
+    act(() => jest.runOnlyPendingTimers())
+    expect(getByRole('link', {current: true})).toHaveTextContent('Section two')
+
+    unmount()
+    for (const {disconnect} of observers) expect(disconnect).toHaveBeenCalledTimes(1)
+  })
+
   it('marks a selected link active straight away and keeps it active while the page scrolls to its section', () => {
     jest.useFakeTimers()
     const {getByRole} = render(<MockAnchorNavFixture />)
@@ -477,6 +552,25 @@ describe('AnchorNav', () => {
     expect(
       within(getByTestId(AnchorNav.testIds.menuLinks)).getAllByRole('link', {current: true, hidden: true}),
     ).toHaveLength(1)
+  })
+
+  it('keeps the consumer ID only on the interactive link when entering and leaving overflow', () => {
+    enableOverflowMeasurements()
+    const {getByRole, getByTestId, rerender} = render(<MockAnchorNavFixture />)
+    const overflowMenu = getByTestId(AnchorNav.testIds.overflowMenu)
+    notifyPopoverToggle(overflowMenu, 'open')
+
+    const overflowLink = within(overflowMenu).getByRole('link', {name: 'Section four'})
+    expect(document.querySelectorAll('[id="link-section4"]')).toHaveLength(1)
+    expect(document.getElementById('link-section4')).toBe(overflowLink)
+
+    mockUseWindowSize.mockImplementation(() => ({isSmall: false}))
+    rerender(<MockAnchorNavFixture />)
+
+    const rowLink = getByRole('link', {name: 'Section four'})
+    expect(document.querySelectorAll('[id="link-section4"]')).toHaveLength(1)
+    expect(document.getElementById('link-section4')).toBe(rowLink)
+    expect(overflowMenu).not.toContainElement(rowLink)
   })
 
   it('moves the active underline to the active link, or only the More label when that link is in its menu', () => {
