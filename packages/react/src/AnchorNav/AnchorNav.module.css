@@ -1,31 +1,30 @@
 /*
  * AnchorNav
  *
- * 1. AnchorNav root and inner bounding containers
- * 2. AnchorNav links
- * 3. AnchorNav link labels
- * 4. AnchorNav menu toggle button (narrow)
- * 5. AnchorNav action
- * 6. Custom animations
+ * 1. Root and inner container
+ * 2. Narrow menu button
+ * 3. Links
+ * 4. Overflow menu (wide)
+ * 5. Action
+ * 6. Overlay (narrow)
+ * 7. Animations
  */
 
 /*
- * 1. AnchorNav root and inner bounding containers
+ * 1. Root and inner container
  */
 .AnchorNav {
-  display: flex;
-  position: -webkit-sticky;
   position: sticky;
-  top: 0;
-  left: 0;
-  right: 0;
-  padding: var(--base-size-12) var(--base-size-16);
+  inset-block-start: 0;
+  inset-inline: 0;
   z-index: 91; /* must be higher than subdomain nav bar */
+  background-color: var(--brand-color-canvas-default);
+  border-block-end: var(--brand-borderWidth-thin) solid var(--brand-color-border-subtle);
 }
 
 .AnchorNav--no-bg-scroll {
   overflow: hidden;
-  height: 100vh;
+  block-size: 100vh;
 }
 
 .AnchorNav--hide-until-sticky:not(.AnchorNav--stuck) {
@@ -40,368 +39,356 @@
   visibility: visible;
 }
 
-.AnchorNav--with-default-background-color {
-  background-color: var(--brand-color-canvas-default);
-}
-
 .AnchorNav--stuck {
-  box-shadow: 0 3px 6px rgba(140, 149, 159, 0.15), 0 1px 1px rgba(0, 0, 0, 0.1); /* TODO: replace with a global token */
   position: fixed;
 }
 
 .AnchorNav--expanded {
   transform-style: preserve-3d;
-  z-index: 91;
-}
-
-.AnchorNav-link-container {
-  display: flex;
-  width: 100%;
-  position: relative;
 }
 
 .AnchorNav-inner-container {
-  max-width: 1280px;
-  width: 100%;
   position: relative;
   z-index: 91; /* must be higher than subdomain nav bar */
-  max-height: calc(100vh - var(--base-size-12) * 2);
-}
-
-.AnchorNav--with-default-background-color .AnchorNav-inner-container {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-areas: 'button action';
+  align-items: center;
+  column-gap: var(--base-size-16);
+  min-block-size: var(--brand-AnchorNav-height);
+  padding-inline: var(--base-size-16);
   background-color: var(--brand-color-canvas-default);
 }
 
-/* Up to large breakpoint */
-@media screen and (max-width: 63.25rem) {
-  .AnchorNav:not(.AnchorNav--expanded) .AnchorNav-inner-container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-
-  .AnchorNav {
-    background-color: var(--brand-color-canvas-default);
-  }
-
-  .AnchorNav-inner-container--expanded {
-    height: auto;
-  }
-
-  .AnchorNav-link-container {
-    display: none;
-    padding-left: var(--base-size-16);
-  }
-
-  .AnchorNav--expanded .AnchorNav-link-container {
-    display: flex;
-    flex-direction: column;
-  }
-}
-
-@media screen and (min-width: 40rem) and (max-width: 63.25rem) {
-  .AnchorNav__actionsContainer:not(.AnchorNav__actionsContainer--no-offset) {
-    position: absolute;
-    top: var(--base-size-8);
-    right: 0;
-  }
-}
-
-/* Large breakpoint and up */
-@media screen and (min-width: 63.25rem) {
-  .AnchorNav {
-    padding: var(--base-size-12) var(--base-size-40);
-    height: 75px; /* same as subdomain nav bar */
-  }
-
-  .AnchorNav--with-default-background-color {
-    background-color: var(--brand-color-canvas-default);
-  }
-
-  .AnchorNav--stuck {
-    background-color: var(--brand-color-canvas-default);
-  }
-  .AnchorNav-inner-container {
-    margin: 0 auto;
-    display: flex;
-    align-items: center;
-  }
+.AnchorNav-inner-container--expanded {
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: var(--brand-AnchorNav-height) auto auto;
+  grid-template-areas:
+    'button'
+    'links'
+    'action';
+  align-content: start;
+  max-block-size: 100vh; /* Keep as fallback */
+  max-block-size: 100dvh;
+  overflow-y: auto;
 }
 
 /*
- * 2. AnchorNav links
+ * 2. Narrow menu button
  */
-.AnchorNav-link {
-  display: flex;
-  width: 100%;
-  text-decoration: none;
-  height: 48px;
+.AnchorNav-menu-button {
+  grid-area: button;
+  justify-self: start;
+  display: inline-flex;
   align-items: center;
-  justify-items: flex-start;
+  gap: var(--base-size-6);
+  max-inline-size: 100%;
+  margin: 0;
+  padding-block: var(--base-size-8);
+  padding-inline: 0;
+  font-family: var(--brand-body-fontFamily);
+  font-size: var(--brand-text-size-100);
+  font-weight: 450; /* TODO: Reuse a brand text weight token if one is added for 450. */
+  line-height: 1.2; /* TODO: Reuse a brand text line-height token if one is added for 1.2 at size 100. */
+  color: var(--brand-color-text-default);
+  text-align: start;
+  background: none;
+  border: 0;
+  border-radius: var(--brand-borderRadius-small);
+  cursor: pointer;
 }
 
-.AnchorNav-link:hover {
+.AnchorNav-menu-button .AnchorNav-link-label {
+  position: relative;
+  min-inline-size: 0;
+  padding-block: var(--base-size-4) var(--base-size-6);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.AnchorNav-menu-button-arrow {
+  flex-shrink: 0;
+}
+
+/*
+ * 3. Links
+ */
+.AnchorNav-link-container {
+  grid-area: links;
+  display: none;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.AnchorNav-inner-container--expanded .AnchorNav-link-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--base-size-16);
+  padding-block: var(--base-size-24) var(--base-size-16);
+}
+
+.AnchorNav-link {
+  display: inline-flex;
+  align-items: center;
+  padding-block: var(--base-size-4) var(--base-size-6);
+  padding-inline: 0;
+  font-family: var(--brand-body-fontFamily);
+  font-size: var(--brand-text-size-100);
+  font-weight: 450; /* TODO: Replace with a global token eventually. */
+  line-height: 1.2; /* TODO: Replace with a global token eventually. */
+  color: var(--brand-color-text-muted);
   text-decoration: none;
+  border-radius: var(--brand-borderRadius-small);
+  transition: color var(--brand-animation-duration-faster) var(--brand-animation-easing-glide);
 }
 
-.AnchorNav--expanded .AnchorNav-link {
-  margin: 0 0 2px; /* allow space for focus border */
+.AnchorNav-link--is-active {
+  color: var(--brand-color-text-default);
+}
+
+.AnchorNav-inner-container--expanded .AnchorNav-link {
+  color: var(--brand-color-text-default);
   animation: fade-in 1s;
   animation-timing-function: var(--brand-animation-easing-glide);
 }
 
-/* Up to large breakpoint */
-@media screen and (max-width: 63.25rem) {
-  .AnchorNav-link {
-    position: absolute;
-    left: 0;
-    padding: 0 0 0 var(--base-size-16);
-  }
-
-  .AnchorNav-link::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    width: 2px;
-    height: 50%;
-    background-color: var(--brand-AnchorNav-link-underline-default);
-    transition: opacity var(--brand-animation-duration-fast), transform var(--brand-animation-duration-fast);
-    opacity: 1;
-    transform: scale(0);
-    transform-origin: left;
-  }
-
-  .AnchorNav--expanded .AnchorNav-link--is-active::before {
-    transform: scale(1);
-  }
+/* Wide links use AnchorNav-active-indicator so it can slide; the narrow toggle label marks the current link. */
+.AnchorNav-menu-button .AnchorNav-link-label::after {
+  content: '';
+  position: absolute;
+  inset-inline: 0;
+  inset-block-end: 0;
+  block-size: var(--brand-borderWidth-thick);
+  background-color: var(--brand-AnchorNav-link-underline-default);
 }
 
-/* Large breakpoint and up */
-@media screen and (min-width: 63.25rem) {
-  .AnchorNav-link {
-    position: relative;
-    margin: 0 1px; /* to provide space for focus border */
-  }
+/* Declared after the expanded and active rules so hover always applies. */
+.AnchorNav-link:hover {
+  color: var(--brand-color-text-muted);
+  text-decoration: none;
+}
 
-  .AnchorNav-link--center {
-    justify-content: center;
-  }
-
-  .AnchorNav-link--start {
-    justify-content: flex-start;
-    width: auto;
-    margin-right: var(--base-size-48);
-  }
+.AnchorNav-link:focus-visible,
+.AnchorNav-menu-button:focus-visible {
+  outline: var(--brand-borderWidth-thick) solid var(--brand-color-focus);
+  outline-offset: var(--base-size-2);
 }
 
 /*
- * 3. AnchorNav link labels
+ * 4. Overflow menu (wide)
  */
-.AnchorNav-link-label {
-  font-weight: var(--brand-text-weight-400);
-  font-size: var(--brand-text-size-200);
-  line-height: var(--brand-text-lineHeight-200);
-  font-family: var(--brand-heading-fontFamily);
-  letter-spacing: var(--brand-heading-letterSpacing-200);
-  color: var(--brand-color-text-default);
-  transition: color var(--brand-animation-easing-glide) var(--brand-animation-duration-faster);
-  position: relative;
-}
-
-.AnchorNav--with-default-background-color .AnchorNav-link-label {
-  background-color: var(--brand-color-canvas-default);
-}
-
-/* Up to large breakpoint */
-@media screen and (max-width: 63.25rem) {
-  .AnchorNav-link-label {
-    background-color: var(--brand-color-canvas-default);
-  }
-
-  .AnchorNav--expanded .AnchorNav-link-label--is-active {
-    color: var(--brand-color-focus);
-  }
-
-  .AnchorNav-link:not(.AnchorNav-link[data-active='true']) {
-    visibility: hidden;
-  }
-
-  .AnchorNav--stuck .AnchorNav-link[data-active='false'][data-first='true'] {
-    visibility: visible;
-  }
-
-  .AnchorNav .AnchorNav-link[data-active='false'][data-first='true'] {
-    visibility: visible;
-  }
-
-  .AnchorNav-inner-container--expanded .AnchorNav-link {
-    visibility: visible !important;
-    display: flex;
-    position: relative;
-    left: auto;
-    right: auto;
-    top: auto;
-    flex-direction: column;
-    text-align: left;
-    justify-content: center;
-    align-items: flex-start;
-  }
-}
-
-/* Large breakpoint and up */
-@media screen and (min-width: 63.25rem) {
-  .AnchorNav-link-label {
-    white-space: nowrap;
-  }
-
-  .AnchorNav-link-label::after {
-    content: '';
-    position: absolute;
-    bottom: -6px;
-    left: 0;
-    width: 100%;
-    height: 2px;
-    background-color: var(--brand-AnchorNav-link-underline-default);
-    transition: opacity var(--brand-animation-duration-fast), transform var(--brand-animation-duration-fast),
-      background-color var(--brand-animation-duration-fast);
-    opacity: 1;
-    transform: scale(0);
-    transform-origin: center;
-  }
-
-  .AnchorNav-link:hover .AnchorNav-link-label::after,
-  .AnchorNav-link:focus .AnchorNav-link-label::after,
-  .AnchorNav-link[data-active='true'] .AnchorNav-link-label::after {
-    opacity: 1;
-    transform: translate3d(0, 0.2em, 0);
-    transform: scale(0.8, 1);
-  }
-
-  .AnchorNav-link:active .AnchorNav-link-label::after {
-    background-color: var(--brand-AnchorNav-link-underline-pressed);
-    transform: scale(0.9, 1);
-  }
-
-  .AnchorNav-link[data-active='true'] .AnchorNav-link-label::after {
-    background-color: var(--brand-AnchorNav-link-underline-pressed);
-    opacity: 1;
-  }
-
-  .AnchorNav-link:focus-visible .AnchorNav-link-label::after {
-    opacity: 0;
-  }
-}
-
-/*
- * 4. AnchorNav menu toggle button (narrow)
- */
-.AnchorNav-menu-button {
+.AnchorNav-overflow {
   display: none;
 }
 
-/* Up to large breakpoint */
-@media screen and (max-width: 63.25rem) {
-  .AnchorNav-menu-button {
-    all: unset;
-    display: inline-flex;
-    cursor: pointer;
-    padding: var(--base-size-8) var(--base-size-16);
-    padding-left: 0; /* space for focus */
-    align-items: center;
-    height: var(--base-size-32);
-    z-index: 2;
-    border-radius: var(--brand-borderRadius-small);
-  }
+.AnchorNav-overflow-menu {
+  position: absolute;
+  inset: auto;
+  z-index: 10;
+  inline-size: max-content;
+  min-inline-size: 160px; /* TODO: Reuse a shared menu minimum width; prevents overly narrow popovers. */
+  max-inline-size: calc(100vw - var(--base-size-32));
+  max-block-size: calc(100dvh - var(--base-size-128));
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  background-color: var(--brand-color-canvas-default);
+  border: var(--brand-borderWidth-thin) solid var(--brand-color-border-subtle);
+  border-start-start-radius: 0;
+  border-start-end-radius: 0;
+  border-end-start-radius: var(--brand-borderRadius-medium);
+  border-end-end-radius: var(--brand-borderRadius-medium);
+  box-shadow: none;
+  animation: fade-in var(--brand-animation-duration-faster) var(--brand-animation-easing-default);
+}
 
-  .AnchorNav-menu-button-arrow {
-    padding: 0 calc(var(--base-size-12) / 2);
-    width: 32px;
-    height: 32px;
-    color: var(--brand-color-text-default);
-  }
+.AnchorNav-overflow-menu::backdrop {
+  background-color: transparent;
+}
 
-  .AnchorNav-menu-button:focus-visible {
-    border-color: var(--brand-color-focus);
-    outline: none;
-    box-shadow: 0 0 0 2px var(--brand-color-focus);
-  }
+.AnchorNav-overflow-menu-list {
+  display: grid;
+  gap: var(--brand-borderWidth-thin);
+  inline-size: 100%;
+  margin: 0;
+  padding: var(--base-size-8);
+  list-style: none;
+}
 
-  .AnchorNav-overlay--expanded {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: -3;
-    width: 100%;
-    height: 100vh; /* Keep as fallback */
-    height: 100dvh;
-    /* replace with overlay-backdrop-bgColor */
-    background: #00000080;
-    transform: translateZ(-1px);
-    animation: fade-in 0.5s;
-    animation-timing-function: var(--brand-animation-easing-glide);
-    cursor: pointer;
-  }
+.AnchorNav-overflow-menu .AnchorNav-link {
+  display: flex;
+  inline-size: 100%;
+  min-block-size: var(--base-size-40);
+  padding: var(--base-size-8) var(--base-size-12);
+  line-height: var(--brand-text-lineHeight-100);
+  color: var(--brand-color-text-muted);
+  white-space: normal;
+  overflow-wrap: anywhere;
+  background-color: var(--brand-color-canvas-default);
+  border-radius: var(--brand-borderRadius-medium);
+}
+
+.AnchorNav-overflow-menu .AnchorNav-link:hover,
+.AnchorNav-overflow-menu .AnchorNav-link:focus-visible,
+.AnchorNav-overflow-menu .AnchorNav-link--is-active {
+  color: var(--brand-color-text-default);
+  background-color: var(--brand-color-canvas-subtle);
+}
+
+.AnchorNav-overflow-menu .AnchorNav-link:focus-visible {
+  outline: none;
+  box-shadow: inset 0 0 0 var(--brand-borderWidth-thick) var(--brand-color-focus);
+}
+
+.AnchorNav-active-indicator {
+  display: none;
 }
 
 /*
- * 5. AnchorNav action
+ * 5. Action
  */
-
 .AnchorNav__actionsContainer {
+  grid-area: action;
+  justify-self: end;
   display: flex;
-  gap: var(--base-size-8);
+}
+
+/* Keeps the folded action measurable without showing it in the closed narrow bar. */
+.AnchorNav__actionsContainer--hidden {
+  position: absolute;
+  inset-inline-end: var(--base-size-16);
+  visibility: hidden;
+  pointer-events: none;
 }
 
 .AnchorNav-action {
-  z-index: 1;
-  display: flex;
-  margin-left: auto;
   white-space: nowrap;
-  padding-inline: var(--base-size-24);
 }
 
-.AnchorNav--expanded .AnchorNav-action {
-  align-self: flex-start;
+.AnchorNav-inner-container--expanded .AnchorNav__actionsContainer {
+  justify-self: stretch;
+  padding-block-end: var(--base-size-16);
 }
 
-@media screen and (max-width: 40rem) {
-  .AnchorNav {
-    padding: 0;
+.AnchorNav-inner-container--expanded .AnchorNav-action {
+  inline-size: 100%;
+}
+
+/*
+ * 6. Overlay (narrow)
+ */
+.AnchorNav-overlay--expanded {
+  position: absolute;
+  inset-block-start: 0;
+  inset-inline: 0;
+  z-index: -3;
+  inline-size: 100%;
+  block-size: 100vh; /* Keep as fallback */
+  block-size: 100dvh;
+  background: #00000080; /* TODO: replace with an overlay backdrop token */
+  transform: translateZ(-1px);
+  animation: fade-in 0.5s;
+  animation-timing-function: var(--brand-animation-easing-glide);
+  cursor: pointer;
+}
+
+/* Small breakpoint and up */
+@media screen and (min-width: 34rem) {
+  .AnchorNav-inner-container {
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+    grid-template-areas: '. links action';
+    column-gap: var(--base-size-28);
   }
 
-  .AnchorNav-action {
+  .AnchorNav-menu-button {
     display: none;
   }
 
-  .AnchorNav__actionsContainer {
-    flex-direction: column;
-  }
-
-  .AnchorNav--expanded .AnchorNav-action {
+  .AnchorNav-link-container {
+    position: relative;
     display: flex;
-    width: 100%;
-    margin-top: var(--base-size-8);
+    align-self: stretch;
+    gap: var(--base-size-28);
   }
 
-  .AnchorNav-inner-container {
-    overflow-y: auto;
-    padding: var(--base-size-12) var(--base-size-16);
+  .AnchorNav-link-item {
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    white-space: nowrap;
+  }
+
+  .AnchorNav-link-item--overflowed {
+    position: absolute;
+    inset-block-start: 0;
+    inset-inline-start: 0;
+    inline-size: max-content;
+    visibility: hidden;
+    pointer-events: none;
+  }
+
+  .AnchorNav-overflow {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    visibility: hidden;
+    pointer-events: none;
+  }
+
+  .AnchorNav-overflow--visible {
+    position: relative;
+    visibility: visible;
+    pointer-events: auto;
+  }
+
+  .AnchorNav-overflow-toggle {
+    gap: var(--base-size-6);
+    margin: 0;
+    background: none;
+    border: 0;
+    cursor: pointer;
+  }
+
+  .AnchorNav-overflow-toggle--open {
+    color: var(--brand-color-text-default);
+  }
+
+  /* Positioned from the active link's measurements in useAnchorNavWideMenu. */
+  .AnchorNav-active-indicator {
+    position: absolute;
+    inset-block-start: 0;
+    inset-inline-start: 0;
+    display: block;
+    inline-size: var(--anchorNav-indicator-size, 0);
+    block-size: var(--brand-borderWidth-thick);
+    background-color: var(--brand-AnchorNav-link-underline-default);
+    opacity: 0;
+    pointer-events: none;
+    transform: translate(var(--anchorNav-indicator-x, 0), var(--anchorNav-indicator-y, 0));
+    transition: opacity var(--brand-animation-duration-fast) var(--brand-animation-easing-glide),
+      transform var(--brand-animation-duration-fast) var(--brand-animation-easing-glide),
+      inline-size var(--brand-animation-duration-fast) var(--brand-animation-easing-glide);
+  }
+
+  .AnchorNav-active-indicator--visible {
+    opacity: 1;
   }
 }
 
-@media screen and (min-width: 40rem) {
-  .AnchorNav__actionsContainer {
-    gap: var(--base-size-16);
-  }
-
-  .AnchorNav__actionsContainer--multiple {
-    margin-inline-start: var(--base-size-16);
+/* Large breakpoint and up */
+@media screen and (min-width: 63.25rem) {
+  /* Matches SubNav's inline inset so stacked actions align. */
+  .AnchorNav-inner-container {
+    padding-inline: var(--base-size-32);
   }
 }
 
 /*
- * 6. Custom animations
+ * 7. Animations
  */
 @keyframes fade-in {
   0% {

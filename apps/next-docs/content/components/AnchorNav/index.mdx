@@ -4,7 +4,6 @@ description: Use the anchor nav component for prompt navigation to different sec
 keywords: ['navigation', 'menu', 'sticky', 'links', 'sections']
 show-tabs: false
 ready: true
-figma: https://www.figma.com/file/BJ95AjraesmRCWsKA013GS/Primer-Brand?node-id=3359%3A30494&t=7vT79cAF1kbiMd2j-4
 source: https://github.com/primer/brand/blob/main/packages/react/src/AnchorNav/AnchorNav.tsx
 storybook: '/brand/storybook/?path=/story/components-anchornav--playground'
 thumbnail: '/images/thumbnails/anchor-nav-thumbnail.png'
@@ -93,21 +92,20 @@ Please refer to our [Storybook examples](https://primer.style/brand/storybook/?p
 </div>
 ```
 
-### Secondary action
-
-`AnchorNav` can also feature secondary actions. When two actions are present, the first will be presented as the `primary` variant.
+### Call to action
 
 ```jsx live
 <div style={{position: 'relative', overflowX: 'scroll', width: '100%', contain: 'layout'}}>
   <AnchorNav>
-    <AnchorNav.Link href="#fewer-links-section1">Section one</AnchorNav.Link>
-    <AnchorNav.Link href="#fewer-links-section2">Section two</AnchorNav.Link>
-    <AnchorNav.Link href="#fewer-links-section3">Section three</AnchorNav.Link>
-    <AnchorNav.Action href="#">Sign up</AnchorNav.Action>
-    <AnchorNav.SecondaryAction href="#">Learn more</AnchorNav.SecondaryAction>
+    <AnchorNav.Link href="#primary-action-section1">Section one</AnchorNav.Link>
+    <AnchorNav.Link href="#primary-action-section2">Section two</AnchorNav.Link>
+    <AnchorNav.Link href="#primary-action-section3">Section three</AnchorNav.Link>
+    <AnchorNav.Action href="#" variant="primary">
+      Get started
+    </AnchorNav.Action>
   </AnchorNav>
   <section
-    id="fewer-links-section1"
+    id="primary-action-section1"
     style={{
       padding: '100px 2rem',
       backgroundColor: 'var(--base-color-scale-lemon-0)',
@@ -117,7 +115,7 @@ Please refer to our [Storybook examples](https://primer.style/brand/storybook/?p
     Section 1
   </section>
   <section
-    id="fewer-links-section2"
+    id="primary-action-section2"
     style={{
       padding: '100px 2rem',
       backgroundColor: 'var(--base-color-scale-yellow-0)',
@@ -127,7 +125,7 @@ Please refer to our [Storybook examples](https://primer.style/brand/storybook/?p
     Section 2
   </section>
   <section
-    id="fewer-links-section3"
+    id="primary-action-section3"
     style={{
       padding: '100px 2rem',
       backgroundColor: 'var(--base-color-scale-lime-0)',
@@ -139,48 +137,51 @@ Please refer to our [Storybook examples](https://primer.style/brand/storybook/?p
 </div>
 ```
 
-### Fewer links
+### More links
 
-`AnchorNav` implementations with fewer than `5` links, will automatically align links to the `start`.
+`AnchorNav` implementations on wide viewports with fewer than `9` links, will automatically move into an overflow menu if space is limited.
 
 ```jsx live
-<div style={{position: 'relative', overflowX: 'scroll', width: '100%', contain: 'layout'}}>
+<div style={{position: 'relative', overflowX: 'scroll', width: '100%', contain: 'layout', minHeight: 360}}>
   <AnchorNav>
-    <AnchorNav.Link href="#fewer-links-section1">Section one</AnchorNav.Link>
-    <AnchorNav.Link href="#fewer-links-section2">Section two</AnchorNav.Link>
-    <AnchorNav.Link href="#fewer-links-section3">Section three</AnchorNav.Link>
-    <AnchorNav.Action href="#">Sign up</AnchorNav.Action>
+    <AnchorNav.Link href="#more-links-overview">Overview</AnchorNav.Link>
+    <AnchorNav.Link href="#more-links-supply-chain">Software supply chain security</AnchorNav.Link>
+    <AnchorNav.Link href="#more-links-code-review">Code review and collaboration</AnchorNav.Link>
+    <AnchorNav.Link href="#more-links-ci">Continuous integration and delivery</AnchorNav.Link>
+    <AnchorNav.Link href="#more-links-admin">Enterprise administration and compliance</AnchorNav.Link>
+    <AnchorNav.Link href="#more-links-productivity">Developer productivity</AnchorNav.Link>
+    <AnchorNav.Link href="#more-links-pricing">Pricing</AnchorNav.Link>
+    <AnchorNav.Link href="#more-links-resources">Resources</AnchorNav.Link>
+    <AnchorNav.Link href="#more-links-faq">FAQ</AnchorNav.Link>
+    <AnchorNav.Action href="#">Get started</AnchorNav.Action>
   </AnchorNav>
-  <section
-    id="fewer-links-section1"
-    style={{
-      padding: '100px 2rem',
-      backgroundColor: 'var(--base-color-scale-lemon-0)',
-      color: 'var(--base-color-scale-black-0)',
+</div>
+```
+
+### Localized menu labels
+
+Internal `AnchorNav` labels, such as the navigation landmark name and the **More** button, are rendered in English by default. Use `menuLabels` to localize them. An `aria-label` on `AnchorNav` takes precedence over `menuLabels.navigationLabel`.
+
+```jsx live
+<div style={{position: 'relative', overflowX: 'scroll', width: '100%', contain: 'layout', minHeight: 360}}>
+  <AnchorNav
+    menuLabels={{
+      activeLabel: 'Menú de navegación de anclaje. Seleccionado actualmente:',
+      navigationLabel: 'Navegación de anclaje',
+      overflowMenuLabel: 'Más',
     }}
   >
-    Section 1
-  </section>
-  <section
-    id="fewer-links-section2"
-    style={{
-      padding: '100px 2rem',
-      backgroundColor: 'var(--base-color-scale-yellow-0)',
-      color: 'var(--base-color-scale-black-0)',
-    }}
-  >
-    Section 2
-  </section>
-  <section
-    id="fewer-links-section3"
-    style={{
-      padding: '100px 2rem',
-      backgroundColor: 'var(--base-color-scale-lime-0)',
-      color: 'var(--base-color-scale-black-0)',
-    }}
-  >
-    Section 3
-  </section>
+    <AnchorNav.Link href="#localized-overview">Descripción general</AnchorNav.Link>
+    <AnchorNav.Link href="#localized-features">Funcionalidades</AnchorNav.Link>
+    <AnchorNav.Link href="#localized-security">Seguridad</AnchorNav.Link>
+    <AnchorNav.Link href="#localized-integrations">Integraciones</AnchorNav.Link>
+    <AnchorNav.Link href="#localized-pricing">Precios</AnchorNav.Link>
+    <AnchorNav.Link href="#localized-customers">Clientes</AnchorNav.Link>
+    <AnchorNav.Link href="#localized-resources">Recursos</AnchorNav.Link>
+    <AnchorNav.Link href="#localized-support">Soporte</AnchorNav.Link>
+    <AnchorNav.Link href="#localized-faq">Preguntas frecuentes</AnchorNav.Link>
+    <AnchorNav.Action href="#">Registrarse</AnchorNav.Action>
+  </AnchorNav>
 </div>
 ```
 
@@ -188,14 +189,24 @@ Please refer to our [Storybook examples](https://primer.style/brand/storybook/?p
 
 ### AnchorNav <Label>Required</Label>
 
-| Name                   | Type                      | Default | Description                                                             |
-| :--------------------- | :------------------------ | :-----: | :---------------------------------------------------------------------- |
-| `children`             | <AnchorNavChildrenProp /> |         | Valid child nodes                                                       |
-| `className`            | `string`                  |         | Sets a custom class                                                     |
-| `enableDefaultBgColor` | `boolean`                 | `false` | Enable the idle state background color, which is transparent by default |
-| `hideUntilSticky`      | `boolean`                 | `false` | When true, the anchor nav will hide until it is sticky.                 |
-| `id`                   | `string`                  |         | Sets a custom id                                                        |
-| `ref`                  | `React.RefObject`         |         | Forward a Ref to the underlying DOM node                                |
+| Name              | Type                           |    Default     | Description                                             |
+| :---------------- | :----------------------------- | :------------: | :------------------------------------------------------ |
+| `children`        | <AnchorNavChildrenProp />      |                | Up to nine `AnchorNav.Link` and one `AnchorNav.Action`  |
+| `className`       | `string`                       |                | Sets a custom class                                     |
+| `hideUntilSticky` | `boolean`                      |    `false`     | When true, the anchor nav will hide until it is sticky. |
+| `id`              | `string`                       |                | Sets a custom id                                        |
+| `menuLabels`      | `Partial<AnchorNavMenuLabels>` | English labels | Customizes the labels that `AnchorNav` generates        |
+| `ref`             | `React.RefObject`              |                | Forward a Ref to the underlying DOM node                |
+
+`AnchorNavMenuLabels` is exported from `@primer/react-brand`.
+
+#### Menu labels
+
+| Field               | Type     | English default                               | Purpose                                                                |
+| :------------------ | :------- | :-------------------------------------------- | :--------------------------------------------------------------------- |
+| `activeLabel`       | `string` | `Anchor navigation menu. Currently selected:` | Announced before the current link label on the narrow menu button      |
+| `navigationLabel`   | `string` | `Anchored navigation`                         | Accessible name for the navigation landmark. `aria-label` overrides it |
+| `overflowMenuLabel` | `string` | `More`                                        | Visible and accessible label for the wide overflow menu                |
 
 ### AnchorNav.Link <Label>Required</Label>
 
@@ -207,35 +218,21 @@ Please refer to our [Storybook examples](https://primer.style/brand/storybook/?p
 | `className` | `string`          |         | Applies a custom class                              |
 | `href`      | `string`          |         | Required. Local identifier for the anchored element |
 | `id`        | `string`          |         | Sets a custom id                                    |
-| `isActive`  | `boolean`         | `false` | Manually indicate that the link is active           |
 | `ref`       | `React.RefObject` |         | Forward a Ref to the underlying DOM node            |
 
 Additional props can be passed to the `<a>` element. [See MDN for a list of props](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#attributes) accepted by the `<anchor>` element.
 
 ### AnchorNav.Action
 
-`AnchorNav.Action` is the primary call to action for the AnchorNav
+`AnchorNav.Action` is the call to action for the AnchorNav. It always uses the small button size.
 
-| Name        | Type              | Default | Description                                         |
-| :---------- | :---------------- | :-----: | :-------------------------------------------------- |
-| `children`  | `string`          |         | Required. Label text                                |
-| `className` | `string`          |         | Applies a custom class                              |
-| `href`      | `string`          |         | Required. Local identifier for the anchored element |
-| `id`        | `string`          |         | Sets a custom id                                    |
-| `ref`       | `React.RefObject` |         | Forward a Ref to the underlying DOM node            |
-
-Additional props can be passed to the `<a>` element. Refer to [Button](/components/Button) for more details or [MDN for a list of props](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#attributes) accepted by the `<anchor>` element.
-
-### AnchorNav.SecondaryAction
-
-`AnchorNav.SecondaryAction` is an alternative call to action available for the AnchorNav
-
-| Name        | Type              | Default | Description                                         |
-| :---------- | :---------------- | :-----: | :-------------------------------------------------- |
-| `children`  | `string`          |         | Required. Label text                                |
-| `className` | `string`          |         | Applies a custom class                              |
-| `href`      | `string`          |         | Required. Local identifier for the anchored element |
-| `id`        | `string`          |         | Sets a custom id                                    |
-| `ref`       | `React.RefObject` |         | Forward a Ref to the underlying DOM node            |
+| Name        | Type              |   Default   | Description                                         |
+| :---------- | :---------------- | :---------: | :-------------------------------------------------- |
+| `children`  | `string`          |             | Required. Label text                                |
+| `className` | `string`          |             | Applies a custom class                              |
+| `href`      | `string`          |             | Required. Local identifier for the anchored element |
+| `id`        | `string`          |             | Sets a custom id                                    |
+| `ref`       | `React.RefObject` |             | Forward a Ref to the underlying DOM node            |
+| `variant`   | `string`          | `secondary` | Sets the [Button](/components/Button) variant       |
 
 Additional props can be passed to the `<a>` element. Refer to [Button](/components/Button) for more details or [MDN for a list of props](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#attributes) accepted by the `<anchor>` element.

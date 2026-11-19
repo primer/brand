@@ -1,16 +1,13 @@
 import React from 'react'
 import type {Meta, StoryObj} from '@storybook/react'
-import {expect, userEvent, within} from 'storybook/test'
+import {expect, userEvent, waitFor, within} from 'storybook/test'
+import {useTranslation} from 'react-i18next'
+import {MINIMAL_VIEWPORTS} from 'storybook/viewport'
 
 import {AnchorNav, AnchorNavProps} from '.'
-import {Heading, Text, Stack} from '../'
+import {Heading, SubNav, Text} from '../'
 import {RedlineBackground} from '../component-helpers'
-
-type ComponentAndStoryProps = AnchorNavProps & {
-  data: {[key: string]: string}
-  sectionHeight: number
-  offset: number
-}
+import styles from './AnchorNav.stories.module.css'
 
 const meta = {
   title: 'Components/AnchorNav/Features',
@@ -18,216 +15,521 @@ const meta = {
   parameters: {
     layout: 'fullscreen',
   },
-  args: {
-    enableDefaultBgColor: true,
-    data: {
-      ['GitHub vs Jenkins']: 'githubvsjenkins',
-      ['GitHub vs GitLab']: 'githubvsgitlab',
-      ['GitHub vs CircleCI']: 'githubvscircleci',
-      ['GitHub vs BitBucket']: 'githubvsvsbitbucket',
-      ['GitHub vs TravisCI']: 'githubvsvstravis',
-    },
-    sectionHeight: 1000,
-    offset: 100,
-  },
-  argTypes: {
-    data: {
-      name: 'Data',
-      description: 'Test data',
-      control: {
-        type: 'object',
-      },
-      table: {
-        category: 'Story customization',
-      },
-    },
-    sectionHeight: {
-      name: 'Section height',
-      description: 'Section height',
-      control: {
-        type: 'number',
-      },
-      table: {
-        category: 'Story customization',
-      },
-    },
-    offset: {
-      name: 'Offset',
-      description: 'Offset from the top of the page',
-      control: {
-        type: 'number',
-      },
-      table: {
-        category: 'Story customization',
-      },
-    },
-    enableDefaultBgColor: {
-      description: 'Enable default background color',
-      control: {type: 'boolean'},
-      table: {
-        category: 'AnchorNav',
-      },
-    },
-  },
-} satisfies Meta<ComponentAndStoryProps>
+} satisfies Meta<typeof AnchorNav>
 
 export default meta
-type Story = StoryObj<ComponentAndStoryProps>
-
-const renderTemplate = (args: ComponentAndStoryProps) => {
-  const storyData = Object.entries(args.data) as [string, string][]
-  return (
-    <div style={{backgroundColor: 'var(--brand-color-canvas-default)'}}>
-      <RedlineBackground height={args.offset}>
-        <Stack direction="vertical" gap="none" justifyContent="center" style={{textAlign: 'center'}}>
-          <Heading as="h1" size="6">
-            Offset {args.offset}px from top
-          </Heading>
-          <Text as="p" variant="muted" size="200">
-            (configure me using Storybook Controls)
-          </Text>
-        </Stack>
-      </RedlineBackground>
-      <AnchorNav {...args}>
-        {storyData.map(([key, value]) => (
-          <AnchorNav.Link href={value} key={value}>
-            {key}
-          </AnchorNav.Link>
-        ))}
-        <AnchorNav.Action href="#">Get started</AnchorNav.Action>
-        <AnchorNav.SecondaryAction href="#">Compare plans</AnchorNav.SecondaryAction>
-      </AnchorNav>
-      {/**
-       *  The following markup is provided for demonstration purposes only.
-       *  It is not part of the AnchorNav component.
-       */}
-      <Stack
-        direction="vertical"
-        justifyContent="space-around"
-        gap="none"
-        style={{marginBottom: '100px'}}
-        padding="none"
-      >
-        {storyData.map(([key, value]) => (
-          <RedlineBackground key={key}>
-            <Stack
-              key={value}
-              id={value}
-              direction="vertical"
-              style={{
-                padding: `${args.sectionHeight / 2}px var(--base-size-24)`,
-              }}
-            >
-              <Heading>{key}</Heading>
-              <Text as="p">
-                AnchorNav is a component that allows users to navigate to different sections of a page.
-              </Text>
-            </Stack>
-          </RedlineBackground>
-        ))}
-      </Stack>
-    </div>
-  )
-}
+type Story = StoryObj<AnchorNavProps>
 
 export const FewerAnchorLinks: Story = {
   name: 'Fewer anchor links',
-  render: renderTemplate,
-  args: {
-    data: {
-      ['GitHub vs Jenkins']: 'githubvsjenkins',
-      ['GitHub vs GitLab']: 'githubvsgitlab',
-      ['GitHub vs CircleCI']: 'githubvscircleci',
-    },
+  render: function RenderFewerAnchorLinks(args) {
+    const {t: translate} = useTranslation('AnchorNav')
+    const sections = ['overview', 'features', 'pricing']
+
+    return (
+      <>
+        <AnchorNav
+          {...args}
+          menuLabels={{
+            activeLabel: translate('active_label'),
+            navigationLabel: translate('navigation_label'),
+            overflowMenuLabel: translate('overflow_menu_label'),
+            ...args.menuLabels,
+          }}
+        >
+          {sections.map(section => (
+            <AnchorNav.Link key={section} href={`#${section}`} target="_self">
+              {translate(section)}
+            </AnchorNav.Link>
+          ))}
+          <AnchorNav.Action href="#" target="_self">
+            {translate('sign_up')}
+          </AnchorNav.Action>
+        </AnchorNav>
+        {sections.map(section => (
+          <section key={section} id={section} className={styles.section}>
+            <Heading as="h2" size="5">
+              {translate(section)}
+            </Heading>
+            <Text as="p">{translate('section_body')}</Text>
+          </section>
+        ))}
+      </>
+    )
+  },
+}
+
+export const WithSubNav: Story = {
+  name: 'With SubNav',
+  render: function RenderWithSubNav(args) {
+    const {t: translate} = useTranslation('AnchorNav')
+    const {t: translateSubNav} = useTranslation('SubNav')
+    const sections = ['overview', 'features', 'security', 'pricing', 'faq']
+
+    return (
+      <>
+        <div className={styles.subNavContainer}>
+          <SubNav
+            menuLabels={{
+              menuLabel: translateSubNav('menu_label'),
+              closeLabel: translateSubNav('close_label'),
+              activeLabel: translateSubNav('active_label'),
+              closeActiveLabel: translateSubNav('close_active_label'),
+              overflowMenuLabel: translateSubNav('overflow_menu_label'),
+            }}
+          >
+            <SubNav.Heading href="#" target="_self">
+              {translateSubNav('ai')}
+            </SubNav.Heading>
+            <SubNav.Link href="#" target="_self" aria-current="page">
+              {translateSubNav('copilot_in_vs_code')}
+            </SubNav.Link>
+            <SubNav.Link href="#" target="_self">
+              {translateSubNav('agents_on_github')}
+            </SubNav.Link>
+            <SubNav.Link href="#" target="_self">
+              {translateSubNav('copilot_cli')}
+            </SubNav.Link>
+            <SubNav.Action href="#" target="_self">
+              {translate('sign_up')}
+            </SubNav.Action>
+          </SubNav>
+        </div>
+        <AnchorNav
+          {...args}
+          menuLabels={{
+            activeLabel: translate('active_label'),
+            navigationLabel: translate('navigation_label'),
+            overflowMenuLabel: translate('overflow_menu_label'),
+            ...args.menuLabels,
+          }}
+        >
+          {sections.map(section => (
+            <AnchorNav.Link key={section} href={`#${section}`} target="_self">
+              {translate(section)}
+            </AnchorNav.Link>
+          ))}
+          <AnchorNav.Action href="#" target="_self">
+            {translate('sign_up')}
+          </AnchorNav.Action>
+        </AnchorNav>
+        {sections.map(section => (
+          <section key={section} id={section} className={styles.section}>
+            <Heading as="h2" size="5">
+              {translate(section)}
+            </Heading>
+            <Text as="p">{translate('section_body')}</Text>
+          </section>
+        ))}
+      </>
+    )
   },
 }
 
 export const ShorterLabels: Story = {
   name: 'Shorter labels',
-  render: renderTemplate,
-  args: {
-    data: {
-      ['Foo']: 'foo',
-      ['Bar']: 'bar',
-      ['Baz']: 'baz',
-      ['Qux']: 'qux',
-      ['Quux']: 'quux',
-    },
+  render: function RenderShorterLabels(args) {
+    const {t: translate} = useTranslation('AnchorNav')
+    const sections = ['ai', 'docs', 'plans', 'teams', 'faq']
+
+    return (
+      <>
+        <AnchorNav
+          {...args}
+          menuLabels={{
+            activeLabel: translate('active_label'),
+            navigationLabel: translate('navigation_label'),
+            overflowMenuLabel: translate('overflow_menu_label'),
+            ...args.menuLabels,
+          }}
+        >
+          {sections.map(section => (
+            <AnchorNav.Link key={section} href={`#${section}`} target="_self">
+              {translate(section)}
+            </AnchorNav.Link>
+          ))}
+          <AnchorNav.Action href="#" target="_self">
+            {translate('sign_up')}
+          </AnchorNav.Action>
+        </AnchorNav>
+        {sections.map(section => (
+          <section key={section} id={section} className={styles.section}>
+            <Heading as="h2" size="5">
+              {translate(section)}
+            </Heading>
+            <Text as="p">{translate('section_body')}</Text>
+          </section>
+        ))}
+      </>
+    )
   },
 }
 
 export const LongerLabels: Story = {
   name: 'Longer labels',
-  render: renderTemplate,
-  args: {
-    offset: 200,
-    sectionHeight: 0,
-    data: {
-      ['Donec ultricies euismod']: 'donecultricieseuismodporttitor',
-      ['Pellentesque eleifend metus']: 'pellentesqueeleifendmetus',
-      ['Vestibulum consequat at']: 'vestibulumconsequatat',
-    },
+  render: function RenderLongerLabels(args) {
+    const {t: translate} = useTranslation('AnchorNav')
+    const sections = ['supply_chain_security', 'code_review', 'continuous_integration']
+
+    return (
+      <>
+        <AnchorNav
+          {...args}
+          menuLabels={{
+            activeLabel: translate('active_label'),
+            navigationLabel: translate('navigation_label'),
+            overflowMenuLabel: translate('overflow_menu_label'),
+            ...args.menuLabels,
+          }}
+        >
+          {sections.map(section => (
+            <AnchorNav.Link key={section} href={`#${section}`} target="_self">
+              {translate(section)}
+            </AnchorNav.Link>
+          ))}
+          <AnchorNav.Action href="#" target="_self">
+            {translate('get_started')}
+          </AnchorNav.Action>
+        </AnchorNav>
+        {sections.map(section => (
+          <section key={section} id={section} className={styles.section}>
+            <Heading as="h2" size="5">
+              {translate(section)}
+            </Heading>
+            <Text as="p">{translate('section_body')}</Text>
+          </section>
+        ))}
+      </>
+    )
   },
 }
 
-export const CustomBackground: Story = {
-  render: ({data, ...args}: ComponentAndStoryProps) => {
+export const WithoutAction: Story = {
+  name: 'Without action',
+  render: function RenderWithoutAction(args) {
+    const {t: translate} = useTranslation('AnchorNav')
+    const sections = ['overview', 'features', 'security', 'pricing', 'faq']
+
     return (
-      <div style={{backgroundColor: 'var(--base-color-scale-green-0)', paddingTop: args.offset}}>
-        <AnchorNav {...args}>
-          {Object.entries(data).map(([key, value]) => (
-            <AnchorNav.Link href={value} key={value}>
-              {key}
+      <>
+        <AnchorNav
+          {...args}
+          menuLabels={{
+            activeLabel: translate('active_label'),
+            navigationLabel: translate('navigation_label'),
+            overflowMenuLabel: translate('overflow_menu_label'),
+            ...args.menuLabels,
+          }}
+        >
+          {sections.map(section => (
+            <AnchorNav.Link key={section} href={`#${section}`} target="_self">
+              {translate(section)}
             </AnchorNav.Link>
           ))}
-          <AnchorNav.Action href="#">Sign up</AnchorNav.Action>
         </AnchorNav>
-        {/**
-         *  The following markup is provided for demonstration purposes only.
-         *  It is not part of the AnchorNav component.
-         */}
-        <Stack
-          direction="vertical"
-          justifyContent="space-around"
-          gap="none"
-          style={{marginBottom: '100px'}}
-          padding="none"
-        >
-          {Object.entries(data).map(([key, value]) => (
-            <Stack
-              key={value}
-              id={value}
-              direction="vertical"
-              style={{
-                padding: '500px var(--base-size-24)',
-              }}
-            >
-              <Heading>{key}</Heading>
-              <Text as="p">
-                AnchorNav is a component that allows users to navigate to different sections of a page.
-              </Text>
-            </Stack>
-          ))}
-        </Stack>
-      </div>
+        {sections.map(section => (
+          <section key={section} id={section} className={styles.section}>
+            <Heading as="h2" size="5">
+              {translate(section)}
+            </Heading>
+            <Text as="p">{translate('section_body')}</Text>
+          </section>
+        ))}
+      </>
     )
   },
-  args: {
-    enableDefaultBgColor: false,
+}
+
+export const MaximumLinks: Story = {
+  name: 'Maximum links',
+  render: function RenderMaximumLinks(args) {
+    const {t: translate} = useTranslation('AnchorNav')
+    const sections = [
+      'overview',
+      'features',
+      'security',
+      'integrations',
+      'pricing',
+      'customers',
+      'resources',
+      'support',
+      'faq',
+    ]
+
+    return (
+      <>
+        <AnchorNav
+          {...args}
+          menuLabels={{
+            activeLabel: translate('active_label'),
+            navigationLabel: translate('navigation_label'),
+            overflowMenuLabel: translate('overflow_menu_label'),
+            ...args.menuLabels,
+          }}
+        >
+          {sections.map(section => (
+            <AnchorNav.Link key={section} href={`#${section}`} target="_self">
+              {translate(section)}
+            </AnchorNav.Link>
+          ))}
+          <AnchorNav.Action href="#" target="_self">
+            {translate('sign_up')}
+          </AnchorNav.Action>
+        </AnchorNav>
+        {sections.map(section => (
+          <section key={section} id={section} className={styles.section}>
+            <Heading as="h2" size="5">
+              {translate(section)}
+            </Heading>
+            <Text as="p">{translate('section_body')}</Text>
+          </section>
+        ))}
+      </>
+    )
+  },
+}
+
+export const MaximumLinksLocalizedTablet: Story = {
+  name: 'Maximum links (localized)',
+  parameters: {
+    viewport: {
+      options: MINIMAL_VIEWPORTS,
+    },
+  },
+  globals: {
+    viewport: {value: 'tablet'},
+    locale: 'de',
+  },
+  render: function RenderMaximumLinksLocalized(args) {
+    const {t: translate} = useTranslation('AnchorNav')
+    const sections = [
+      'overview',
+      'features',
+      'security',
+      'integrations',
+      'pricing',
+      'customers',
+      'resources',
+      'support',
+      'faq',
+    ]
+
+    return (
+      <>
+        <AnchorNav
+          {...args}
+          menuLabels={{
+            activeLabel: translate('active_label'),
+            navigationLabel: translate('navigation_label'),
+            overflowMenuLabel: translate('overflow_menu_label'),
+            ...args.menuLabels,
+          }}
+        >
+          {sections.map(section => (
+            <AnchorNav.Link key={section} href={`#${section}`} target="_self">
+              {translate(section)}
+            </AnchorNav.Link>
+          ))}
+          <AnchorNav.Action href="#" target="_self">
+            {translate('sign_up')}
+          </AnchorNav.Action>
+        </AnchorNav>
+        {sections.map(section => (
+          <section key={section} id={section} className={styles.section}>
+            <Heading as="h2" size="5">
+              {translate(section)}
+            </Heading>
+            <Text as="p">{translate('section_body')}</Text>
+          </section>
+        ))}
+      </>
+    )
+  },
+}
+
+export const OverflowMenu: Story = {
+  name: 'Overflow menu',
+  parameters: {
+    viewport: {
+      options: MINIMAL_VIEWPORTS,
+    },
+  },
+  globals: {
+    viewport: {value: 'desktop'},
+  },
+  render: function RenderOverflowMenu(args) {
+    const {t: translate} = useTranslation('AnchorNav')
+    const sections = [
+      'overview',
+      'supply_chain_security',
+      'code_review',
+      'continuous_integration',
+      'enterprise_administration',
+      'developer_productivity',
+      'pricing',
+      'resources',
+      'faq',
+    ]
+
+    return (
+      <>
+        <AnchorNav
+          {...args}
+          menuLabels={{
+            activeLabel: translate('active_label'),
+            navigationLabel: translate('navigation_label'),
+            overflowMenuLabel: translate('overflow_menu_label'),
+            ...args.menuLabels,
+          }}
+        >
+          {sections.map(section => (
+            <AnchorNav.Link key={section} href={`#${section}`} target="_self">
+              {translate(section)}
+            </AnchorNav.Link>
+          ))}
+          <AnchorNav.Action href="#" target="_self">
+            {translate('get_started')}
+          </AnchorNav.Action>
+        </AnchorNav>
+        {sections.map(section => (
+          <section key={section} id={section} className={styles.section}>
+            <Heading as="h2" size="5">
+              {translate(section)}
+            </Heading>
+            <Text as="p">{translate('section_body')}</Text>
+          </section>
+        ))}
+      </>
+    )
+  },
+}
+
+export const OverflowMenuOpen: Story = {
+  name: 'Overflow menu open',
+  parameters: {
+    axe: {waitForPlay: true},
+    viewport: {
+      options: MINIMAL_VIEWPORTS,
+    },
+  },
+  globals: {
+    viewport: {value: 'desktop'},
+  },
+  render: function RenderOverflowMenuOpen(args) {
+    const {t: translate} = useTranslation('AnchorNav')
+    const sections = [
+      'overview',
+      'supply_chain_security',
+      'code_review',
+      'continuous_integration',
+      'enterprise_administration',
+      'developer_productivity',
+      'pricing',
+      'resources',
+      'faq',
+    ]
+
+    return (
+      <>
+        <AnchorNav
+          {...args}
+          menuLabels={{
+            activeLabel: translate('active_label'),
+            navigationLabel: translate('navigation_label'),
+            overflowMenuLabel: translate('overflow_menu_label'),
+            ...args.menuLabels,
+          }}
+        >
+          {sections.map(section => (
+            <AnchorNav.Link key={section} href={`#${section}`} target="_self">
+              {translate(section)}
+            </AnchorNav.Link>
+          ))}
+          <AnchorNav.Action href="#" target="_self">
+            {translate('get_started')}
+          </AnchorNav.Action>
+        </AnchorNav>
+        {sections.map(section => (
+          <section key={section} id={section} className={styles.section}>
+            <Heading as="h2" size="5">
+              {translate(section)}
+            </Heading>
+            <Text as="p">{translate('section_body')}</Text>
+          </section>
+        ))}
+      </>
+    )
+  },
+  play: async ({canvasElement}) => {
+    canvasElement.removeAttribute('data-axe-ready')
+    const canvas = within(canvasElement)
+    await canvasElement.ownerDocument.fonts.ready
+    // Waits for the story's translations to load before the nav renders.
+    const overflowButton = await canvas.findByTestId(AnchorNav.testIds.overflowButton)
+    await waitFor(() => {
+      expect(overflowButton).toBeVisible()
+      expect(overflowButton).toHaveAttribute('popovertarget')
+    })
+    await userEvent.click(overflowButton)
+
+    const overflowMenu = canvas.getByTestId(AnchorNav.testIds.overflowMenu)
+    const nav = canvas.getByRole('navigation')
+    await waitFor(() => {
+      expect(overflowButton).toHaveAttribute('aria-expanded', 'true')
+      expect(overflowMenu.matches(':popover-open')).toBe(true)
+      expect(within(overflowMenu).getAllByRole('link').length).toBeGreaterThan(0)
+      // The menu's top border sits on the bar's bottom border.
+      const navBorderTop = nav.getBoundingClientRect().bottom - parseFloat(getComputedStyle(nav).borderBlockEndWidth)
+      expect(overflowMenu.getBoundingClientRect().top).toBeCloseTo(navBorderTop, 0)
+    })
+    canvasElement.setAttribute('data-axe-ready', 'true')
   },
 }
 
 export const NarrowView: Story = {
   name: 'Narrow view, menu closed (mobile)',
-  render: renderTemplate,
   globals: {
     viewport: {value: 'iphonexr'},
+  },
+  render: function RenderNarrowView(args) {
+    const {t: translate} = useTranslation('AnchorNav')
+    const sections = ['overview', 'features', 'security', 'pricing', 'faq']
+
+    return (
+      <>
+        <AnchorNav
+          {...args}
+          menuLabels={{
+            activeLabel: translate('active_label'),
+            navigationLabel: translate('navigation_label'),
+            overflowMenuLabel: translate('overflow_menu_label'),
+            ...args.menuLabels,
+          }}
+        >
+          {sections.map(section => (
+            <AnchorNav.Link key={section} href={`#${section}`} target="_self">
+              {translate(section)}
+            </AnchorNav.Link>
+          ))}
+          <AnchorNav.Action href="#" target="_self">
+            {translate('sign_up')}
+          </AnchorNav.Action>
+        </AnchorNav>
+        {sections.map(section => (
+          <section key={section} id={section} className={styles.section}>
+            <Heading as="h2" size="5">
+              {translate(section)}
+            </Heading>
+            <Text as="p">{translate('section_body')}</Text>
+          </section>
+        ))}
+      </>
+    )
   },
 }
 
 export const NarrowViewMenuOpen: Story = {
   name: 'Narrow view, menu open (mobile)',
-  render: renderTemplate,
   globals: {
     viewport: {value: 'iphonexr'},
   },
@@ -236,144 +538,349 @@ export const NarrowViewMenuOpen: Story = {
       timeout: 5000,
     },
   },
+  render: function RenderNarrowViewMenuOpen(args) {
+    const {t: translate} = useTranslation('AnchorNav')
+    const sections = ['overview', 'features', 'security', 'pricing', 'faq']
+
+    return (
+      <>
+        <AnchorNav
+          {...args}
+          menuLabels={{
+            activeLabel: translate('active_label'),
+            navigationLabel: translate('navigation_label'),
+            overflowMenuLabel: translate('overflow_menu_label'),
+            ...args.menuLabels,
+          }}
+        >
+          {sections.map(section => (
+            <AnchorNav.Link key={section} href={`#${section}`} target="_self">
+              {translate(section)}
+            </AnchorNav.Link>
+          ))}
+          <AnchorNav.Action href="#" target="_self">
+            {translate('sign_up')}
+          </AnchorNav.Action>
+        </AnchorNav>
+        {sections.map(section => (
+          <section key={section} id={section} className={styles.section}>
+            <Heading as="h2" size="5">
+              {translate(section)}
+            </Heading>
+            <Text as="p">{translate('section_body')}</Text>
+          </section>
+        ))}
+      </>
+    )
+  },
   play: async ({canvasElement}) => {
     const canvas = within(canvasElement)
-    const menubar = canvas.getByTestId(AnchorNav.testIds.menuLinks)
-
-    await userEvent.click(canvas.getByTestId(AnchorNav.testIds.menuButton))
-    await expect(menubar).toBeVisible()
+    await userEvent.click(await canvas.findByTestId(AnchorNav.testIds.menuButton))
+    await expect(canvas.getByTestId(AnchorNav.testIds.menuLinks)).toBeVisible()
   },
 }
 
-export const RegularView: Story = {
-  name: 'Regular view, menu closed (tablet)',
-  render: renderTemplate,
+export const NarrowViewMaximumLinksMenuOpen: Story = {
+  name: 'Narrow view, maximum links, menu open (mobile)',
   globals: {
-    viewport: {value: 'ipad10p'},
-  },
-}
-
-export const RegularViewMenuOpen: Story = {
-  name: 'Regular view, menu open (tablet)',
-  render: renderTemplate,
-  globals: {
-    viewport: {value: 'ipad10p'},
+    viewport: {value: 'iphonexr'},
   },
   parameters: {
     axe: {
       timeout: 5000,
     },
   },
+  render: function RenderNarrowViewMaximumLinksMenuOpen(args) {
+    const {t: translate} = useTranslation('AnchorNav')
+    const sections = [
+      'overview',
+      'features',
+      'security',
+      'integrations',
+      'pricing',
+      'customers',
+      'resources',
+      'support',
+      'faq',
+    ]
+
+    return (
+      <>
+        <AnchorNav
+          {...args}
+          menuLabels={{
+            activeLabel: translate('active_label'),
+            navigationLabel: translate('navigation_label'),
+            overflowMenuLabel: translate('overflow_menu_label'),
+            ...args.menuLabels,
+          }}
+        >
+          {sections.map(section => (
+            <AnchorNav.Link key={section} href={`#${section}`} target="_self">
+              {translate(section)}
+            </AnchorNav.Link>
+          ))}
+          <AnchorNav.Action href="#" target="_self">
+            {translate('sign_up')}
+          </AnchorNav.Action>
+        </AnchorNav>
+        {sections.map(section => (
+          <section key={section} id={section} className={styles.section}>
+            <Heading as="h2" size="5">
+              {translate(section)}
+            </Heading>
+            <Text as="p">{translate('section_body')}</Text>
+          </section>
+        ))}
+      </>
+    )
+  },
   play: async ({canvasElement}) => {
     const canvas = within(canvasElement)
-    const menubar = canvas.getByTestId(AnchorNav.testIds.menuLinks)
+    await userEvent.click(await canvas.findByTestId(AnchorNav.testIds.menuButton))
+    await expect(canvas.getByTestId(AnchorNav.testIds.menuLinks)).toBeVisible()
+  },
+}
 
-    await userEvent.click(canvas.getByTestId(AnchorNav.testIds.menuButton))
-    await expect(menubar).toBeVisible()
+export const NarrowViewActionFolded: Story = {
+  name: 'Narrow view, action folded (mobile)',
+  globals: {
+    viewport: {value: 'iphonexr'},
+  },
+  render: function RenderNarrowViewActionFolded(args) {
+    const {t: translate} = useTranslation('AnchorNav')
+    const sections = ['supply_chain_security', 'code_review', 'continuous_integration', 'developer_productivity']
+
+    return (
+      <>
+        <AnchorNav
+          {...args}
+          menuLabels={{
+            activeLabel: translate('active_label'),
+            navigationLabel: translate('navigation_label'),
+            overflowMenuLabel: translate('overflow_menu_label'),
+            ...args.menuLabels,
+          }}
+        >
+          {sections.map(section => (
+            <AnchorNav.Link key={section} href={`#${section}`} target="_self">
+              {translate(section)}
+            </AnchorNav.Link>
+          ))}
+          <AnchorNav.Action href="#" target="_self">
+            {translate('start_free_trial')}
+          </AnchorNav.Action>
+        </AnchorNav>
+        {sections.map(section => (
+          <section key={section} id={section} className={styles.section}>
+            <Heading as="h2" size="5">
+              {translate(section)}
+            </Heading>
+            <Text as="p">{translate('section_body')}</Text>
+          </section>
+        ))}
+      </>
+    )
+  },
+}
+
+export const RegularView: Story = {
+  name: 'Regular view (tablet)',
+  globals: {
+    viewport: {value: 'ipad10p'},
+  },
+  render: function RenderRegularView(args) {
+    const {t: translate} = useTranslation('AnchorNav')
+    const sections = ['overview', 'features', 'security', 'pricing', 'faq']
+
+    return (
+      <>
+        <AnchorNav
+          {...args}
+          menuLabels={{
+            activeLabel: translate('active_label'),
+            navigationLabel: translate('navigation_label'),
+            overflowMenuLabel: translate('overflow_menu_label'),
+            ...args.menuLabels,
+          }}
+        >
+          {sections.map(section => (
+            <AnchorNav.Link key={section} href={`#${section}`} target="_self">
+              {translate(section)}
+            </AnchorNav.Link>
+          ))}
+          <AnchorNav.Action href="#" target="_self">
+            {translate('sign_up')}
+          </AnchorNav.Action>
+        </AnchorNav>
+        {sections.map(section => (
+          <section key={section} id={section} className={styles.section}>
+            <Heading as="h2" size="5">
+              {translate(section)}
+            </Heading>
+            <Text as="p">{translate('section_body')}</Text>
+          </section>
+        ))}
+      </>
+    )
+  },
+}
+
+export const RegularViewOverflowMenuLocalized: Story = {
+  name: 'Regular view, localized overflow menu open (tablet)',
+  globals: {
+    viewport: {value: 'ipad10p'},
+    locale: 'de',
+  },
+  render: function RenderRegularViewOverflowMenuLocalized(args) {
+    const {t: translate} = useTranslation('AnchorNav')
+    const sections = [
+      'overview',
+      'features',
+      'security',
+      'integrations',
+      'pricing',
+      'customers',
+      'resources',
+      'support',
+      'faq',
+    ]
+
+    return (
+      <>
+        <AnchorNav
+          {...args}
+          menuLabels={{
+            activeLabel: translate('active_label'),
+            navigationLabel: translate('navigation_label'),
+            overflowMenuLabel: translate('overflow_menu_label'),
+            ...args.menuLabels,
+          }}
+        >
+          {sections.map(section => (
+            <AnchorNav.Link key={section} href={`#${section}`} target="_self">
+              {translate(section)}
+            </AnchorNav.Link>
+          ))}
+          <AnchorNav.Action href="#" target="_self">
+            {translate('sign_up')}
+          </AnchorNav.Action>
+        </AnchorNav>
+        {sections.map(section => (
+          <section key={section} id={section} className={styles.section}>
+            <Heading as="h2" size="5">
+              {translate(section)}
+            </Heading>
+            <Text as="p">{translate('section_body')}</Text>
+          </section>
+        ))}
+      </>
+    )
+  },
+  play: async ({canvasElement}) => {
+    canvasElement.removeAttribute('data-axe-ready')
+    const canvas = within(canvasElement)
+    await canvasElement.ownerDocument.fonts.ready
+    // Waits for the story's translations to load before the nav renders.
+    const overflowButton = await canvas.findByTestId(AnchorNav.testIds.overflowButton)
+    await waitFor(() => {
+      expect(overflowButton).toBeVisible()
+      expect(overflowButton).toHaveAttribute('popovertarget')
+    })
+    await userEvent.click(overflowButton)
+
+    const overflowMenu = canvas.getByTestId(AnchorNav.testIds.overflowMenu)
+    const nav = canvas.getByRole('navigation')
+    await waitFor(() => {
+      expect(overflowButton).toHaveAttribute('aria-expanded', 'true')
+      expect(overflowMenu.matches(':popover-open')).toBe(true)
+      expect(within(overflowMenu).getAllByRole('link').length).toBeGreaterThan(0)
+      // The menu's top border sits on the bar's bottom border.
+      const navBorderTop = nav.getBoundingClientRect().bottom - parseFloat(getComputedStyle(nav).borderBlockEndWidth)
+      expect(overflowMenu.getBoundingClientRect().top).toBeCloseTo(navBorderTop, 0)
+    })
+    canvasElement.setAttribute('data-axe-ready', 'true')
   },
 }
 
 export const HideUntilSticky: Story = {
   name: 'Hide until sticky',
-  render: renderTemplate,
   args: {
     hideUntilSticky: true,
+  },
+  render: function RenderHideUntilSticky(args) {
+    const {t: translate} = useTranslation('AnchorNav')
+    const sections = ['overview', 'features', 'security', 'pricing', 'faq']
+
+    return (
+      <>
+        <RedlineBackground height={100} />
+        <AnchorNav
+          {...args}
+          menuLabels={{
+            activeLabel: translate('active_label'),
+            navigationLabel: translate('navigation_label'),
+            overflowMenuLabel: translate('overflow_menu_label'),
+            ...args.menuLabels,
+          }}
+        >
+          {sections.map(section => (
+            <AnchorNav.Link key={section} href={`#${section}`} target="_self">
+              {translate(section)}
+            </AnchorNav.Link>
+          ))}
+          <AnchorNav.Action href="#" target="_self">
+            {translate('sign_up')}
+          </AnchorNav.Action>
+        </AnchorNav>
+        {sections.map(section => (
+          <section key={section} id={section} className={styles.section}>
+            <Heading as="h2" size="5">
+              {translate(section)}
+            </Heading>
+            <Text as="p">{translate('section_body')}</Text>
+          </section>
+        ))}
+      </>
+    )
   },
 }
 
 export const AnchorNavPrimaryActions: Story = {
   name: 'With optional primary CTA',
-  render: () => {
-    const data = ['link1', 'link2', 'link3']
-    return (
-      <div style={{backgroundColor: 'var(--brand-color-canvas-default)'}}>
-        <RedlineBackground height={75}></RedlineBackground>
-        <AnchorNav>
-          {data.map((link, index) => (
-            <AnchorNav.Link href={link} key={index}>
-              {link}
-            </AnchorNav.Link>
-          ))}
-          <AnchorNav.Action variant="primary" href="#">
-            Get started
-          </AnchorNav.Action>
-        </AnchorNav>
-        <Stack
-          direction="vertical"
-          justifyContent="space-around"
-          gap="none"
-          style={{marginBottom: '100px'}}
-          padding="none"
-        >
-          {data.map(key => (
-            <RedlineBackground key={key}>
-              <Stack
-                key={key}
-                id={key}
-                direction="vertical"
-                style={{
-                  padding: `${1000 / 2}px var(--base-size-24)`,
-                }}
-              >
-                <Heading>First action as primary</Heading>
-                <Text as="p">
-                  AnchorNav is a component that allows users to navigate to different sections of a page.
-                </Text>
-              </Stack>
-            </RedlineBackground>
-          ))}
-        </Stack>
-      </div>
-    )
-  },
-}
+  render: function RenderAnchorNavPrimaryActions(args) {
+    const {t: translate} = useTranslation('AnchorNav')
+    const sections = ['overview', 'features', 'pricing']
 
-export const AnchorNavLargerActions: Story = {
-  name: 'With larger CTAs',
-  render: () => {
-    const data = ['link1', 'link2', 'link3']
     return (
-      <div style={{backgroundColor: 'var(--brand-color-canvas-default)'}}>
-        <RedlineBackground height={75}></RedlineBackground>
-        <AnchorNav>
-          {data.map((link, index) => (
-            <AnchorNav.Link href={link} key={index}>
-              {link}
+      <>
+        <AnchorNav
+          {...args}
+          menuLabels={{
+            activeLabel: translate('active_label'),
+            navigationLabel: translate('navigation_label'),
+            overflowMenuLabel: translate('overflow_menu_label'),
+            ...args.menuLabels,
+          }}
+        >
+          {sections.map(section => (
+            <AnchorNav.Link key={section} href={`#${section}`} target="_self">
+              {translate(section)}
             </AnchorNav.Link>
           ))}
-          <AnchorNav.Action size="medium" href="#">
-            Primary action
+          <AnchorNav.Action variant="primary" href="#" target="_self">
+            {translate('get_started')}
           </AnchorNav.Action>
-          <AnchorNav.SecondaryAction size="medium" href="#">
-            Secondary action
-          </AnchorNav.SecondaryAction>
         </AnchorNav>
-        <Stack
-          direction="vertical"
-          justifyContent="space-around"
-          gap="none"
-          style={{marginBottom: '100px'}}
-          padding="none"
-        >
-          {data.map(key => (
-            <RedlineBackground key={key}>
-              <Stack
-                key={key}
-                id={key}
-                direction="vertical"
-                style={{
-                  padding: `${1000 / 2}px var(--base-size-24)`,
-                }}
-              >
-                <Heading>First action as primary</Heading>
-                <Text as="p">
-                  AnchorNav is a component that allows users to navigate to different sections of a page.
-                </Text>
-              </Stack>
-            </RedlineBackground>
-          ))}
-        </Stack>
-      </div>
+        {sections.map(section => (
+          <section key={section} id={section} className={styles.section}>
+            <Heading as="h2" size="5">
+              {translate(section)}
+            </Heading>
+            <Text as="p">{translate('section_body')}</Text>
+          </section>
+        ))}
+      </>
     )
   },
 }

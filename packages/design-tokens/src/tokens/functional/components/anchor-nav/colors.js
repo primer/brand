@@ -3,8 +3,8 @@ module.exports = {
     link: {
       underline: {
         default: {
-          value: 'var(--base-color-scale-gray-4)',
-          dark: 'var(--base-color-scale-gray-3)',
+          value: 'var(--base-color-scale-green-5)',
+          dark: 'var(--base-color-scale-green-5)',
         },
         pressed: {
           value: 'var(--base-color-scale-black-0)',

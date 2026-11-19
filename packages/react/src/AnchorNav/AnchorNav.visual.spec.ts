@@ -4,6 +4,7 @@
  * Regenerate using: npm run test:visual:generate
  */
 import {test, expect} from '@playwright/test'
+import {waitForStoryReady} from '../../../e2e/scripts/playwright/wait-for-story-ready'
 
 // eslint-disable-next-line i18n-text/no-en
 test.describe('Visual Comparison: AnchorNav', () => {
@@ -14,7 +15,7 @@ test.describe('Visual Comparison: AnchorNav', () => {
     await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
+    await expect(page).toHaveScreenshot({fullPage: false})
   })
 
   test('AnchorNav / Playground', async ({page}) => {
@@ -24,7 +25,7 @@ test.describe('Visual Comparison: AnchorNav', () => {
     await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(2000)
-    await expect(page).toHaveScreenshot({fullPage: true})
+    await expect(page).toHaveScreenshot({fullPage: false})
   })
 
   test('AnchorNav / Fewer anchor links', async ({page}) => {
@@ -35,7 +36,18 @@ test.describe('Visual Comparison: AnchorNav', () => {
     await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(2000)
-    await expect(page).toHaveScreenshot({fullPage: true})
+    await expect(page).toHaveScreenshot({fullPage: false})
+  })
+
+  test('AnchorNav / With SubNav', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-anchornav-features--with-sub-nav&viewMode=story',
+      {waitUntil: 'networkidle'},
+    )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+    await page.waitForTimeout(500)
+    await expect(page).toHaveScreenshot({fullPage: false})
   })
 
   test('AnchorNav / Shorter labels', async ({page}) => {
@@ -46,7 +58,7 @@ test.describe('Visual Comparison: AnchorNav', () => {
     await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(2000)
-    await expect(page).toHaveScreenshot({fullPage: true})
+    await expect(page).toHaveScreenshot({fullPage: false})
   })
 
   test('AnchorNav / Longer labels', async ({page}) => {
@@ -57,18 +69,51 @@ test.describe('Visual Comparison: AnchorNav', () => {
     await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(2000)
-    await expect(page).toHaveScreenshot({fullPage: true})
+    await expect(page).toHaveScreenshot({fullPage: false})
   })
 
-  test('AnchorNav / Custom Background', async ({page}) => {
+  test('AnchorNav / Without action', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-anchornav-features--custom-background&viewMode=story',
+      'http://localhost:6006/iframe.html?args=&id=components-anchornav-features--without-action&viewMode=story',
       {waitUntil: 'networkidle'},
     )
     await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(2000)
-    await expect(page).toHaveScreenshot({fullPage: true})
+    await expect(page).toHaveScreenshot({fullPage: false})
+  })
+
+  test('AnchorNav / Maximum links', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-anchornav-features--maximum-links&viewMode=story',
+      {waitUntil: 'networkidle'},
+    )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+    await page.waitForTimeout(2000)
+    await expect(page).toHaveScreenshot({fullPage: false})
+  })
+
+  test('AnchorNav / Overflow menu', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-anchornav-features--overflow-menu&viewMode=story',
+      {waitUntil: 'networkidle'},
+    )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+    await page.waitForTimeout(2000)
+    await expect(page).toHaveScreenshot({fullPage: false})
+  })
+
+  test('AnchorNav / Overflow menu open', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-anchornav-features--overflow-menu-open&viewMode=story',
+      {waitUntil: 'networkidle'},
+    )
+    await waitForStoryReady(page, 'components-anchornav-features--overflow-menu-open')
+
+    await page.waitForTimeout(500)
+    await expect(page).toHaveScreenshot({fullPage: false})
   })
 
   // eslint-disable-next-line i18n-text/no-en
@@ -82,7 +127,7 @@ test.describe('Visual Comparison: AnchorNav', () => {
       await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
       await page.waitForTimeout(2000)
-      await expect(page).toHaveScreenshot({fullPage: true})
+      await expect(page).toHaveScreenshot({fullPage: false})
     })
   })
 
@@ -97,14 +142,44 @@ test.describe('Visual Comparison: AnchorNav', () => {
       await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
       await page.waitForTimeout(2000)
-      await expect(page).toHaveScreenshot({fullPage: true})
+      await expect(page).toHaveScreenshot({fullPage: false})
     })
   })
 
   // eslint-disable-next-line i18n-text/no-en
-  test.describe('Tablet viewport test for Regular view, menu closed (tablet)', () => {
+  test.describe('Mobile viewport test for Narrow view, maximum links, menu open (mobile)', () => {
+    test.use({viewport: {width: 360, height: 800}})
+    test('AnchorNav / Narrow view, maximum links, menu open (mobile)', async ({page}) => {
+      await page.goto(
+        'http://localhost:6006/iframe.html?args=&id=components-anchornav-features--narrow-view-maximum-links-menu-open&viewMode=story',
+        {waitUntil: 'networkidle'},
+      )
+      await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+      await page.waitForTimeout(2000)
+      await expect(page).toHaveScreenshot({fullPage: false})
+    })
+  })
+
+  // eslint-disable-next-line i18n-text/no-en
+  test.describe('Mobile viewport test for Narrow view, action folded (mobile)', () => {
+    test.use({viewport: {width: 360, height: 800}})
+    test('AnchorNav / Narrow view, action folded (mobile)', async ({page}) => {
+      await page.goto(
+        'http://localhost:6006/iframe.html?args=&id=components-anchornav-features--narrow-view-action-folded&viewMode=story',
+        {waitUntil: 'networkidle'},
+      )
+      await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+      await page.waitForTimeout(2000)
+      await expect(page).toHaveScreenshot({fullPage: false})
+    })
+  })
+
+  // eslint-disable-next-line i18n-text/no-en
+  test.describe('Tablet viewport test for Regular view (tablet)', () => {
     test.use({viewport: {width: 834, height: 1112}})
-    test('AnchorNav / Regular view, menu closed (tablet)', async ({page}) => {
+    test('AnchorNav / Regular view (tablet)', async ({page}) => {
       await page.goto(
         'http://localhost:6006/iframe.html?args=&id=components-anchornav-features--regular-view&viewMode=story',
         {waitUntil: 'networkidle'},
@@ -112,22 +187,7 @@ test.describe('Visual Comparison: AnchorNav', () => {
       await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
       await page.waitForTimeout(2000)
-      await expect(page).toHaveScreenshot({fullPage: true})
-    })
-  })
-
-  // eslint-disable-next-line i18n-text/no-en
-  test.describe('Tablet viewport test for Regular view, menu open (tablet)', () => {
-    test.use({viewport: {width: 834, height: 1112}})
-    test('AnchorNav / Regular view, menu open (tablet)', async ({page}) => {
-      await page.goto(
-        'http://localhost:6006/iframe.html?args=&id=components-anchornav-features--regular-view-menu-open&viewMode=story',
-        {waitUntil: 'networkidle'},
-      )
-      await page.locator('body.sb-show-main').waitFor({state: 'visible'})
-
-      await page.waitForTimeout(2000)
-      await expect(page).toHaveScreenshot({fullPage: true})
+      await expect(page).toHaveScreenshot({fullPage: false})
     })
   })
   test('AnchorNav / Hide until sticky', async ({page}) => {
@@ -138,7 +198,7 @@ test.describe('Visual Comparison: AnchorNav', () => {
     await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
+    await expect(page).toHaveScreenshot({fullPage: false})
   })
 
   test('AnchorNav / With optional primary CTA', async ({page}) => {
@@ -149,17 +209,6 @@ test.describe('Visual Comparison: AnchorNav', () => {
     await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
-  })
-
-  test('AnchorNav / With larger CTAs', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-anchornav-features--anchor-nav-larger-actions&viewMode=story',
-      {waitUntil: 'networkidle'},
-    )
-    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
-
-    await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: true})
+    await expect(page).toHaveScreenshot({fullPage: false})
   })
 })
