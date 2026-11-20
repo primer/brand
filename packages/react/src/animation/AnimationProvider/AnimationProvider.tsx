@@ -50,7 +50,7 @@ type AnimationProviderProps = {
   animationTrigger?: AnimationTrigger
   /**
    * Controls the intersection observer options for the animation.
-   * One of `bottom-of-screen`, `middle-of-screen`, `about-to-leave`, or a number between 0 and 1.
+   * One of `bottom-of-screen`, `middle-of-screen`, `about-to-leave`, or a visible fraction of the element between 0 and 1.
    */
   visibilityOptions?: IntersectionVisibilityeOptions
   /**
@@ -94,7 +94,7 @@ function getIntersectionObserverOptions(animationOptions: AnimationProviderProps
       return typeof visibilityOptions === 'number'
         ? {
             rootMargin: '0px',
-            threshold: visibilityOptions / 100,
+            threshold: visibilityOptions,
           }
         : {
             rootMargin: '0px',
@@ -171,7 +171,10 @@ export function AnimationProvider({
       const observer = new IntersectionObserver(
         entries => {
           for (const entry of entries) {
-            if (entry.isIntersecting && entry.target.classList.contains(styles.Animation)) {
+            const meetsVisibilityThreshold =
+              typeof visibilityOptions !== 'number' || entry.intersectionRatio >= visibilityOptions
+
+            if (entry.isIntersecting && meetsVisibilityThreshold && entry.target.classList.contains(styles.Animation)) {
               entry.target.classList.add(styles['Animation--active'])
             } else {
               if (!runOnce) {
