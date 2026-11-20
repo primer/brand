@@ -1,5 +1,13 @@
 # @primer/brand-css
 
+## 0.81.1
+
+### Patch Changes
+
+- [#1535](https://github.com/primer/brand/pull/1535) [`4f8a804`](https://github.com/primer/brand/commit/4f8a8047d3537a5ba41cccb9623ad15619312ce2) Thanks [@rezrah](https://github.com/rezrah)! - Fixed `ActionMenu` missing border in `subtle` variants drop down control.
+
+- [#1521](https://github.com/primer/brand/pull/1521) [`0332ac7`](https://github.com/primer/brand/commit/0332ac7164ab13defa66414bc907d57a5fdb889a) Thanks [@janmaarten-a11y](https://github.com/janmaarten-a11y)! - Improve `ToggleSwitch` state clarity with optional On/Off labels and stronger border and thumb contrast.
+
 ## 0.81.0
 
 ### Patch Changes
