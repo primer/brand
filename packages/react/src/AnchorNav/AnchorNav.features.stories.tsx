@@ -449,14 +449,13 @@ export const OverflowMenuOpen: Story = {
             {translate('get_started')}
           </AnchorNav.Action>
         </AnchorNav>
-        {sections.map(section => (
-          <section key={section} id={section} className={styles.section}>
-            <Heading as="h2" size="5">
-              {translate(section)}
-            </Heading>
-            <Text as="p">{translate('section_body')}</Text>
-          </section>
-        ))}
+        {/* A single section keeps the page within the viewport, so full-page screenshots don't resize it and close the menu. */}
+        <section id={sections[0]} className={styles.section}>
+          <Heading as="h2" size="5">
+            {translate(sections[0])}
+          </Heading>
+          <Text as="p">{translate('section_body')}</Text>
+        </section>
       </>
     )
   },
@@ -728,6 +727,9 @@ export const RegularView: Story = {
 
 export const RegularViewOverflowMenuLocalized: Story = {
   name: 'Regular view, localized overflow menu open (tablet)',
+  parameters: {
+    axe: {waitForPlay: true},
+  },
   globals: {
     viewport: {value: 'ipad10p'},
     locale: 'de',

@@ -333,6 +333,27 @@ describe('AnchorNav', () => {
     ).toEqual(['Section three'])
   })
 
+  it.each([
+    {sectionTops: undefined, current: 'Section one'},
+    {
+      sectionTops: {section1: -400, section2: -200, section3: 0, section4: 200, section5: 400},
+      current: 'Section three',
+    },
+  ])('marks the menu button link as current in the open narrow menu ($current)', async ({sectionTops, current}) => {
+    mockUseWindowSize.mockImplementation(() => ({isSmall: false}))
+    const user = userEvent.setup()
+    const {getByRole, getByTestId} = render(<MockAnchorNavFixture />)
+    if (sectionTops) scrollSections(400, sectionTops)
+
+    await user.click(getByRole('button', {name: `Anchor navigation menu. Currently selected: ${current}`}))
+
+    expect(
+      within(getByTestId(AnchorNav.testIds.menuLinks))
+        .getAllByRole('link', {current: true})
+        .map(link => link.textContent),
+    ).toEqual([current])
+  })
+
   it.each([0, 200])('ignores hidden targets while tracking rendered targets with height %ipx', sectionHeight => {
     mockUseWindowSize.mockImplementation(() => ({isSmall: false}))
     const {getByRole, getByText} = render(<MockAnchorNavFixture />)

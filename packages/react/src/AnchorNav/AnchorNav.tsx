@@ -127,15 +127,15 @@ function AnchorNavBase({
     isWide,
   )
   const activeIndex = links.findIndex(link => link.props.href === activeHref)
-  // Shows the first link until a section scrolls into view.
-  const activeLabel = links.length > 0 ? links[Math.max(activeIndex, 0)].props.children : null
+  const narrowActiveIndex = Math.max(activeIndex, 0)
+  const activeLabel = links.length > 0 ? links[narrowActiveIndex].props.children : null
 
-  const wideMenu = useAnchorNavWideMenu(children, isWide, links.length, activeIndex, innerContainerRef, actionRef)
   const {
     linksRef,
     overflowRef,
     overflowButtonRef,
     overflowMenuRef,
+    indicatorRef,
     visibleLinkCount,
     hasOverflow,
     hasActiveOverflow,
@@ -143,7 +143,7 @@ function AnchorNavBase({
     isOverflowMenuOpen,
     closeOverflowMenu,
     handleOverflowMenuBlur,
-  } = wideMenu
+  } = useAnchorNavWideMenu(children, isWide, links.length, activeIndex, innerContainerRef, actionRef)
 
   return (
     <div ref={wrapperRef}>
@@ -209,7 +209,9 @@ function AnchorNavBase({
                 >
                   {React.cloneElement(link, {
                     id: isOverflowed ? undefined : link.props.id,
-                    _isActive: !isOverflowed && link.props.href === activeHref,
+                    _isActive:
+                      !isOverflowed &&
+                      (narrowMenu.isExpanded ? index === narrowActiveIndex : link.props.href === activeHref),
                     _onActivate: () => {
                       selectSection(link.props.href)
                       narrowMenu.closeMenu()
@@ -269,7 +271,7 @@ function AnchorNavBase({
             </li>
           </ul>
           <span
-            ref={wideMenu.indicatorRef}
+            ref={indicatorRef}
             className={clsx(
               styles['AnchorNav-active-indicator'],
               activeItemIndex !== undefined && styles['AnchorNav-active-indicator--visible'],

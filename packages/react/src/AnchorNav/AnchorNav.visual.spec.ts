@@ -15,7 +15,7 @@ test.describe('Visual Comparison: AnchorNav', () => {
     await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: false})
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('AnchorNav / Playground', async ({page}) => {
@@ -25,7 +25,7 @@ test.describe('Visual Comparison: AnchorNav', () => {
     await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(2000)
-    await expect(page).toHaveScreenshot({fullPage: false})
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('AnchorNav / Fewer anchor links', async ({page}) => {
@@ -36,7 +36,7 @@ test.describe('Visual Comparison: AnchorNav', () => {
     await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(2000)
-    await expect(page).toHaveScreenshot({fullPage: false})
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('AnchorNav / With SubNav', async ({page}) => {
@@ -47,7 +47,7 @@ test.describe('Visual Comparison: AnchorNav', () => {
     await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: false})
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('AnchorNav / Shorter labels', async ({page}) => {
@@ -58,7 +58,7 @@ test.describe('Visual Comparison: AnchorNav', () => {
     await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(2000)
-    await expect(page).toHaveScreenshot({fullPage: false})
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('AnchorNav / Longer labels', async ({page}) => {
@@ -69,7 +69,7 @@ test.describe('Visual Comparison: AnchorNav', () => {
     await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(2000)
-    await expect(page).toHaveScreenshot({fullPage: false})
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('AnchorNav / Without action', async ({page}) => {
@@ -80,7 +80,7 @@ test.describe('Visual Comparison: AnchorNav', () => {
     await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(2000)
-    await expect(page).toHaveScreenshot({fullPage: false})
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('AnchorNav / Maximum links', async ({page}) => {
@@ -91,7 +91,7 @@ test.describe('Visual Comparison: AnchorNav', () => {
     await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(2000)
-    await expect(page).toHaveScreenshot({fullPage: false})
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('AnchorNav / Overflow menu', async ({page}) => {
@@ -102,7 +102,7 @@ test.describe('Visual Comparison: AnchorNav', () => {
     await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(2000)
-    await expect(page).toHaveScreenshot({fullPage: false})
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('AnchorNav / Overflow menu open', async ({page}) => {
@@ -113,7 +113,7 @@ test.describe('Visual Comparison: AnchorNav', () => {
     await waitForStoryReady(page, 'components-anchornav-features--overflow-menu-open')
 
     await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: false})
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   // eslint-disable-next-line i18n-text/no-en
@@ -127,7 +127,7 @@ test.describe('Visual Comparison: AnchorNav', () => {
       await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
       await page.waitForTimeout(2000)
-      await expect(page).toHaveScreenshot({fullPage: false})
+      await expect(page).toHaveScreenshot({fullPage: true})
     })
   })
 
@@ -142,7 +142,7 @@ test.describe('Visual Comparison: AnchorNav', () => {
       await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
       await page.waitForTimeout(2000)
-      await expect(page).toHaveScreenshot({fullPage: false})
+      await expect(page).toHaveScreenshot({fullPage: true})
     })
   })
 
@@ -157,7 +157,7 @@ test.describe('Visual Comparison: AnchorNav', () => {
       await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
       await page.waitForTimeout(2000)
-      await expect(page).toHaveScreenshot({fullPage: false})
+      await expect(page).toHaveScreenshot({fullPage: true})
     })
   })
 
@@ -172,7 +172,7 @@ test.describe('Visual Comparison: AnchorNav', () => {
       await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
       await page.waitForTimeout(2000)
-      await expect(page).toHaveScreenshot({fullPage: false})
+      await expect(page).toHaveScreenshot({fullPage: true})
     })
   })
 
@@ -187,7 +187,7 @@ test.describe('Visual Comparison: AnchorNav', () => {
       await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
       await page.waitForTimeout(2000)
-      await expect(page).toHaveScreenshot({fullPage: false})
+      await expect(page).toHaveScreenshot({fullPage: true})
     })
   })
   test('AnchorNav / Hide until sticky', async ({page}) => {
@@ -198,7 +198,7 @@ test.describe('Visual Comparison: AnchorNav', () => {
     await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: false})
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 
   test('AnchorNav / With optional primary CTA', async ({page}) => {
@@ -209,6 +209,6 @@ test.describe('Visual Comparison: AnchorNav', () => {
     await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
     await page.waitForTimeout(500)
-    await expect(page).toHaveScreenshot({fullPage: false})
+    await expect(page).toHaveScreenshot({fullPage: true})
   })
 })

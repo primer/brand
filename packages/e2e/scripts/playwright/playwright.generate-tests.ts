@@ -206,9 +206,6 @@ const skipTestLookup = [
 
 const touchTestLookup = ['components-card-features--arrow-cta-long-label']
 
-// Full-page capture resizes the page, changing AnchorNav's active section and closing its native popover.
-const viewportOnlyGroupLookup = ['AnchorNav']
-
 const categorisedStories = Object.keys((stories as StoryIndex).entries).reduce((acc, key) => {
   const {id, name: storyName, importPath} = stories.entries[key]
 
@@ -291,7 +288,7 @@ for (const key of Object.keys(categorisedStories)) {
             }
 
             ${timeout ? `await page.waitForTimeout(${timeout})` : ''}
-            await expect(page).toHaveScreenshot({ fullPage: ${!viewportOnlyGroupLookup.includes(groupName)} })
+            await expect(page).toHaveScreenshot({ fullPage: true })
           });
 
           `
