@@ -328,12 +328,18 @@ const darkJson = require('../src/tokens/base/colors/dark')
    * (`--base-color-scale-*`); functional and component tokens keep the `brand` prefix.
    */
   buildPrimitives({
-    source: [`tokens/base/colors/color-scales.json`, `tokens/functional/colors/global.json`, ...filesForColorModes],
+    source: [
+      `tokens/base/colors/color-scales.json`,
+      `tokens/base/size/size.json`,
+      `tokens/functional/colors/global.json`,
+      `tokens/functional/size/border.json`,
+      ...filesForColorModes,
+    ],
     namespace,
     platforms: {
       jsonColors: {
         prefix: namespace,
-        addPrefix: token => token.isSource && !token.filePath.replace(/\\/g, '/').includes('/base/colors/'),
+        addPrefix: token => token.isSource && !token.filePath.replace(/\\/g, '/').includes('/base/'),
         buildPath: `${outputPath}/json/`,
         transformGroup: 'css',
         files: [
@@ -341,6 +347,12 @@ const darkJson = require('../src/tokens/base/colors/dark')
             destination: `colors.json`,
             format: `json/one-dimensional`,
             filter: token => token.isSource && isColorValue(token.value),
+          },
+          {
+            destination: `colors-with-modes.json`,
+            format: `json/one-dimensional`,
+            filter: token => token.isSource,
+            options: {colorModes: true, preserveReferences: true},
           },
         ],
       },
@@ -364,6 +376,15 @@ const darkJson = require('../src/tokens/base/colors/dark')
             destination: `typography.json`,
             format: `json/one-dimensional`,
             filter: token => token.isSource,
+          },
+          {
+            destination: `typography-with-modes.json`,
+            format: `json/one-dimensional`,
+            filter: token => token.isSource,
+            options: {
+              preserveReferences: true,
+              responsiveModes: {narrow: 0, medium: 768, large: 1012},
+            },
           },
         ],
       },
@@ -392,6 +413,12 @@ const darkJson = require('../src/tokens/base/colors/dark')
             destination: `size.json`,
             format: `json/one-dimensional`,
             filter: token => token.isSource && isSizeValue(token.value),
+          },
+          {
+            destination: `dimensions-with-modes.json`,
+            format: `json/one-dimensional`,
+            filter: token => token.isSource && ['base', 'borderWidth', 'borderRadius'].includes(token.path[0]),
+            options: {colorModes: true, preserveReferences: true},
           },
         ],
       },
