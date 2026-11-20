@@ -458,12 +458,13 @@ Use `PricingOptions.ActionsMessage` to render status, billing, or upgrade notes 
 
 ### PricingOptions <Label>Required</Label>
 
-| Name       | Type                          |  Default  | required | Description                         |
-| :--------- | :---------------------------- | :-------: | :------: | :---------------------------------- |
-| `as`       | <PricingOptionsAsProp />      | `section` | `false`  | Applies the underlying HTML element |
-| `children` | `PricingOptions.Item`         |           |  `true`  | Applies the underlying HTML element |
-| `variant`  | <PricingOptionsVariantProp /> |           | `false`  | Sets the style variant              |
-| `style`    | `React.CSSProperties`         |           | `false`  | Inline CSS overrides                |
+| Name           | Type                          |  Default  | required | Description                                                                                                             |
+| :------------- | :---------------------------- | :-------: | :------: | :---------------------------------------------------------------------------------------------------------------------- |
+| `as`           | <PricingOptionsAsProp />      | `section` | `false`  | Applies the underlying HTML element                                                                                     |
+| `children`     | `PricingOptions.Item`         |           |  `true`  | Applies the underlying HTML element                                                                                     |
+| `hasGridLines` | `boolean`                     |  `false`  | `false`  | Continues the outer side borders through the label row in gridline layouts. Applies to `default` and `default-gradient` |
+| `variant`      | <PricingOptionsVariantProp /> |           | `false`  | Sets the style variant                                                                                                  |
+| `style`        | `React.CSSProperties`         |           | `false`  | Inline CSS overrides                                                                                                    |
 
 ### PricingOptions.Item <Label>Required</Label>
 
@@ -481,6 +482,8 @@ One item per pricing plan to be displayed. Maximum of 4 items.
 | `children` | `ReactNode`                     | `undefined` |  `true`  | The heading of the item                           |
 
 ### PricingOptions.Label
+
+Use a label on one item at most to highlight a single option.
 
 | Name       | Type        |   Default   | required | Description                          |
 | :--------- | :---------- | :---------: | :------: | :----------------------------------- |

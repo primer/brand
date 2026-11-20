@@ -154,7 +154,7 @@ export const WithGridLines: Story = {
         <Box backgroundColor="default" borderBlockEndWidth="thin" borderColor="subtle" borderStyle="solid">
           <Grid>
             <Grid.Column span={12}>
-              <PricingOptions style={{marginBlock: 'calc(var(--brand-borderWidth-thin) * -1)'}}>
+              <PricingOptions hasGridLines style={{marginBlock: 'calc(var(--brand-borderWidth-thin) * -1)'}}>
                 <PricingOptions.Item>
                   <PricingOptions.Heading>Free</PricingOptions.Heading>
                   <PricingOptions.Description>

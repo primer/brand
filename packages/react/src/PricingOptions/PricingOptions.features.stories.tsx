@@ -86,7 +86,6 @@ export const CardsVariant: Story = {
         </PricingOptions.FeatureList>
       </PricingOptions.Item>
       <PricingOptions.Item>
-        <PricingOptions.Label>Available Feb 2024</PricingOptions.Label>
         <PricingOptions.Heading>Max</PricingOptions.Heading>
         <PricingOptions.Description>
           Copilot personalized to your organization throughout the software development lifecycle.
@@ -473,7 +472,6 @@ export const ThreeOptions: Story = {
       </PricingOptions.Item>
 
       <PricingOptions.Item>
-        <PricingOptions.Label>Available Feb 2024</PricingOptions.Label>
         <PricingOptions.Heading>Copilot Enterprise</PricingOptions.Heading>
         <PricingOptions.Description>
           Copilot personalized to your organization throughout the software development lifecycle. Requires GitHub
@@ -558,7 +556,6 @@ export const FourOptions: Story = {
         </PricingOptions.FeatureList>
       </PricingOptions.Item>
       <PricingOptions.Item>
-        <PricingOptions.Label>Available Feb 2024</PricingOptions.Label>
         <PricingOptions.Heading>Copilot Enterprise</PricingOptions.Heading>
         <PricingOptions.Description>
           Copilot personalized to your organization throughout the software development lifecycle. Requires GitHub
@@ -634,7 +631,6 @@ export const WithFeatureSets: Story = {
       </PricingOptions.Item>
 
       <PricingOptions.Item>
-        <PricingOptions.Label>Available Feb 2024</PricingOptions.Label>
         <PricingOptions.Heading>Copilot Enterprise</PricingOptions.Heading>
         <PricingOptions.Description>
           Copilot personalized to your organization throughout the software development lifecycle. Requires GitHub
@@ -729,7 +725,6 @@ export const WithIncludedAndExcludedFeatures: Story = {
       </PricingOptions.Item>
 
       <PricingOptions.Item>
-        <PricingOptions.Label>Available Feb 2024</PricingOptions.Label>
         <PricingOptions.Heading>Copilot Enterprise</PricingOptions.Heading>
         <PricingOptions.Description>
           Copilot personalized to your organization throughout the software development lifecycle. Requires GitHub
@@ -781,7 +776,6 @@ export const WithoutFeatures: Story = {
       </PricingOptions.Item>
 
       <PricingOptions.Item>
-        <PricingOptions.Label>Available Feb 2024</PricingOptions.Label>
         <PricingOptions.Heading>Copilot Enterprise</PricingOptions.Heading>
         <PricingOptions.Description>
           Copilot personalized to your organization throughout the software development lifecycle. Requires GitHub
@@ -817,6 +811,9 @@ export const CenterAligned: Story = {
           <PricingOptions.FeatureListItem>Comments to code</PricingOptions.FeatureListItem>
           <PricingOptions.FeatureListItem>Fine-tuned models (coming soon)</PricingOptions.FeatureListItem>
         </PricingOptions.FeatureList>
+        <PricingOptions.Footnote>
+          Free for verified students, teachers, and maintainers of popular open source projects.
+        </PricingOptions.Footnote>
         <PricingOptions.PrimaryAction as="a" href="#">
           Start a free trial
         </PricingOptions.PrimaryAction>
@@ -845,7 +842,6 @@ export const CenterAligned: Story = {
       </PricingOptions.Item>
 
       <PricingOptions.Item>
-        <PricingOptions.Label>Available Feb 2024</PricingOptions.Label>
         <PricingOptions.Heading>Copilot Enterprise</PricingOptions.Heading>
         <PricingOptions.Description>
           Copilot personalized to your organization throughout the software development lifecycle. Requires GitHub
@@ -922,7 +918,6 @@ export const CollapsedFeatures: Story = {
       </PricingOptions.Item>
 
       <PricingOptions.Item>
-        <PricingOptions.Label>Available Feb 2024</PricingOptions.Label>
         <PricingOptions.Heading>Copilot Enterprise</PricingOptions.Heading>
         <PricingOptions.Description>
           Copilot personalized to your organization throughout the software development lifecycle. Requires GitHub
@@ -995,7 +990,6 @@ export const WithCustomFeatureListHeading: Story = {
       </PricingOptions.Item>
 
       <PricingOptions.Item>
-        <PricingOptions.Label>Available Feb 2024</PricingOptions.Label>
         <PricingOptions.Heading>Copilot Enterprise</PricingOptions.Heading>
         <PricingOptions.Description>
           Copilot personalized to your organization throughout the software development lifecycle. Requires GitHub
@@ -1026,7 +1020,7 @@ export const WithCustomFeatureListItemLeadingVisual: Story = {
           Code completions, Chat, and more for indie developers and freelancers.
         </PricingOptions.Description>
         <PricingOptions.Price trailingText="per month / $100 per year">10</PricingOptions.Price>
-        <PricingOptions.FeatureList hasDivider={false}>
+        <PricingOptions.FeatureList>
           <PricingOptions.FeatureListItem
             leadingVisual={SparkleFillIcon}
             leadingVisualFill="var(--base-color-scale-purple-5)"
@@ -1069,7 +1063,7 @@ export const WithCustomFeatureListItemLeadingVisual: Story = {
           Buy now
         </PricingOptions.PrimaryAction>
 
-        <PricingOptions.FeatureList hasDivider={false}>
+        <PricingOptions.FeatureList>
           <PricingOptions.FeatureListItem
             leadingVisual={SparkleFillIcon}
             leadingVisualFill="var(--base-color-scale-purple-5)"
@@ -1170,7 +1164,6 @@ export const CollapsedFeaturesNoDividers: Story = {
       </PricingOptions.Item>
 
       <PricingOptions.Item>
-        <PricingOptions.Label>Available Feb 2024</PricingOptions.Label>
         <PricingOptions.Heading>Copilot Enterprise</PricingOptions.Heading>
         <PricingOptions.Description>
           Copilot personalized to your organization throughout the software development lifecycle. Requires GitHub
@@ -1238,7 +1231,6 @@ export const ExpandedNarrow: Story = {
       </PricingOptions.Item>
 
       <PricingOptions.Item>
-        <PricingOptions.Label>Available Feb 2024</PricingOptions.Label>
         <PricingOptions.Heading>Copilot Enterprise</PricingOptions.Heading>
         <PricingOptions.Description>
           Copilot personalized to your organization throughout the software development lifecycle. Requires GitHub
@@ -1361,7 +1353,6 @@ export const WithInfoTooltips: Story = {
       </PricingOptions.Item>
 
       <PricingOptions.Item>
-        <PricingOptions.Label>Available Feb 2024</PricingOptions.Label>
         <PricingOptions.Heading>Copilot Enterprise</PricingOptions.Heading>
         <PricingOptions.Description>
           Copilot personalized to your organization throughout the software development lifecycle.

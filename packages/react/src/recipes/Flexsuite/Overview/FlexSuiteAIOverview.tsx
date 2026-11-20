@@ -358,6 +358,7 @@ export function FlexSuiteAIOverviewTemplate({content}: FlexSuiteAIOverviewTempla
                 <Grid>
                   <Grid.Column span={12}>
                     <PricingOptions
+                      hasGridLines
                       style={{marginBlock: 'calc(var(--brand-borderWidth-thin) * -1)'}}
                       variant="default-gradient"
                     >
