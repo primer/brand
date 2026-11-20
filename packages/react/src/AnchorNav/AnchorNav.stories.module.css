@@ -1,0 +1,16 @@
+.subNavContainer {
+  position: relative;
+  z-index: 92; /* Keep SubNav's menu above AnchorNav. */
+  /* Reserve the absolutely positioned SubNav bar, including its borders. */
+  min-block-size: calc(var(--base-size-60) + var(--brand-borderWidth-thin) * 2);
+}
+
+.section {
+  min-block-size: 75vh;
+  padding: var(--base-size-128) var(--base-size-24);
+  border-block-end: var(--brand-borderWidth-thin) solid var(--brand-color-border-subtle);
+}
+
+.playgroundSection {
+  min-block-size: 75vh;
+}

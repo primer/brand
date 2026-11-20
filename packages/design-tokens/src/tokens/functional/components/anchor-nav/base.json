@@ -1,0 +1,13 @@
+{
+  "AnchorNav": {
+    "height": {
+      "value": "59px",
+      "$type": "dimension",
+      "responsive": {
+        "34rem": {
+          "value": "61px"
+        }
+      }
+    }
+  }
+}
