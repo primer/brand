@@ -55,7 +55,6 @@ export function useAnchorNavNarrowMenu(
       setIsActionFolded(false)
       return
     }
-    // The expanded layout stacks the action, so keep the last closed measurement.
     if (isExpanded) return
 
     const containerStyles = getComputedStyle(container)

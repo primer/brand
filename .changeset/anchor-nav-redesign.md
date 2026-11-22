@@ -12,6 +12,7 @@ Additional changes:
 - `AnchorNav` always has a solid background and no longer shows a shadow when stuck.
 - `AnchorNav` now spans the full page like `SubNav`.
 - Supports up to nine `AnchorNav.Link` components.
+- On narrow viewports, `AnchorNav.Action` stays beside the menu button and moves into the open menu only when it doesn't fit.
 - `AnchorNav.Action` always uses the small button size.
 - Added a responsive `brand-AnchorNav-height` design token.
 - New `menuLabels` prop to localize the generated labels, including the navigation landmark name. `AnchorNavMenuLabels` is exported from `@primer/react-brand`.

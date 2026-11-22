@@ -61,16 +61,24 @@
 }
 
 .AnchorNav-inner-container--expanded {
+  grid-template-rows: var(--brand-AnchorNav-height) auto;
+  grid-template-areas:
+    'button action'
+    'links links';
+  align-content: start;
+  max-block-size: 100vh; /* Keep as fallback */
+  max-block-size: 100dvh;
+  overflow-y: auto;
+}
+
+/* Only a folded action moves into the open menu. Otherwise it stays in the bar. */
+.AnchorNav-inner-container--folded-action {
   grid-template-columns: minmax(0, 1fr);
   grid-template-rows: var(--brand-AnchorNav-height) auto auto;
   grid-template-areas:
     'button'
     'links'
     'action';
-  align-content: start;
-  max-block-size: 100vh; /* Keep as fallback */
-  max-block-size: 100dvh;
-  overflow-y: auto;
 }
 
 /*
@@ -272,12 +280,12 @@
   white-space: nowrap;
 }
 
-.AnchorNav-inner-container--expanded .AnchorNav__actionsContainer {
+.AnchorNav-inner-container--folded-action .AnchorNav__actionsContainer {
   justify-self: stretch;
   padding-block-end: var(--base-size-16);
 }
 
-.AnchorNav-inner-container--expanded .AnchorNav-action {
+.AnchorNav-inner-container--folded-action .AnchorNav-action {
   inline-size: 100%;
 }
 

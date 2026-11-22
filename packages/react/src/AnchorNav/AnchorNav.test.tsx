@@ -645,7 +645,7 @@ describe('AnchorNav', () => {
     {actionWidth: 220, isFolded: true},
     {actionWidth: 100, isFolded: false},
   ])(
-    'folds the action into the narrow menu only when it does not fit (action width: $actionWidth)',
+    'moves the action into the open narrow menu only when it does not fit (action width: $actionWidth)',
     async ({actionWidth, isFolded}) => {
       mockUseWindowSize.mockImplementation(() => ({isSmall: false}))
       jest.spyOn(HTMLElement.prototype, 'clientWidth', 'get').mockImplementation(function (this: HTMLElement) {
@@ -666,12 +666,14 @@ describe('AnchorNav', () => {
       const user = userEvent.setup()
       const {getByRole, getByTestId} = render(<MockAnchorNavFixture />)
       const actionContainer = getByRole('link', {name: 'Action'}).parentElement
+      const innerContainer = actionContainer?.parentElement
 
       expect(actionContainer?.classList.contains('AnchorNav__actionsContainer--hidden')).toBe(isFolded)
 
       await user.click(getByTestId(AnchorNav.testIds.menuButton))
 
       expect(actionContainer).not.toHaveClass('AnchorNav__actionsContainer--hidden')
+      expect(innerContainer?.classList.contains('AnchorNav-inner-container--folded-action')).toBe(isFolded)
     },
   )
 

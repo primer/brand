@@ -165,6 +165,7 @@ function AnchorNavBase({
           className={clsx(
             styles['AnchorNav-inner-container'],
             narrowMenu.isExpanded && styles['AnchorNav-inner-container--expanded'],
+            narrowMenu.isExpanded && narrowMenu.isActionFolded && styles['AnchorNav-inner-container--folded-action'],
           )}
         >
           <button

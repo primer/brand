@@ -162,9 +162,9 @@ test.describe('Visual Comparison: AnchorNav', () => {
   })
 
   // eslint-disable-next-line i18n-text/no-en
-  test.describe('Mobile viewport test for Narrow view, action folded (mobile)', () => {
+  test.describe('Mobile viewport test for Narrow view, action folded, menu open (mobile)', () => {
     test.use({viewport: {width: 360, height: 800}})
-    test('AnchorNav / Narrow view, action folded (mobile)', async ({page}) => {
+    test('AnchorNav / Narrow view, action folded, menu open (mobile)', async ({page}) => {
       await page.goto(
         'http://localhost:6006/iframe.html?args=&id=components-anchornav-features--narrow-view-action-folded&viewMode=story',
         {waitUntil: 'networkidle'},

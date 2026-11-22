@@ -642,7 +642,7 @@ export const NarrowViewMaximumLinksMenuOpen: Story = {
 }
 
 export const NarrowViewActionFolded: Story = {
-  name: 'Narrow view, action folded (mobile)',
+  name: 'Narrow view, action folded, menu open (mobile)',
   globals: {
     viewport: {value: 'iphonexr'},
   },
@@ -680,6 +680,11 @@ export const NarrowViewActionFolded: Story = {
         ))}
       </>
     )
+  },
+  play: async ({canvasElement}) => {
+    const canvas = within(canvasElement)
+    await userEvent.click(await canvas.findByTestId(AnchorNav.testIds.menuButton))
+    await expect(canvas.getByTestId(AnchorNav.testIds.menuLinks)).toBeVisible()
   },
 }
 
