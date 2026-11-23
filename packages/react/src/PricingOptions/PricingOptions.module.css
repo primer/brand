@@ -614,11 +614,10 @@
   align-items: flex-start;
   inline-size: 100%;
   max-inline-size: 100%;
-  padding: var(--base-size-12);
-  border-block: var(--brand-borderWidth-thin) solid var(--brand-PricingOptions-actionsMessage-borderColor);
-  border-inline: 0;
-  border-radius: 0;
-  background-color: var(--brand-PricingOptions-actionsMessage-bgColor);
+}
+
+.PricingOptions__actions > * + .PricingOptions__actions-message {
+  margin-block-start: var(--base-size-24);
 }
 
 .PricingOptions__actions-message-leading-component {

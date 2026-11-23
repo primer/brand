@@ -11,7 +11,6 @@ thumbnail_darkMode: '/images/thumbnails/pricing-options-thumbnail-dark.png'
 ---
 
 import {Label} from '@primer/react'
-import {InfoIcon} from '@primer/octicons-react'
 
 import {
   PricingOptionsAsProp,
@@ -429,8 +428,9 @@ function FeatureWithCustomContent({customContent}) {
 
 ### Actions message
 
-Use `PricingOptions.ActionsMessage` to render status, billing, or upgrade notes in the actions area. Add
-`leadingComponent` when you want to show a supporting icon.
+Use `PricingOptions.ActionsMessage` to render status, billing, or upgrade notes in the actions area. Use
+`Text` with `as="p"`, `size="200"`, and `variant="muted"` for the message content. Add `leadingComponent` to show
+an optional supporting icon.
 
 ```jsx live
 <PricingOptions variant="cards">
@@ -440,9 +440,9 @@ Use `PricingOptions.ActionsMessage` to render status, billing, or upgrade notes 
     <PricingOptions.Description>Accelerate workflows with GitHub Copilot.</PricingOptions.Description>
     <PricingOptions.Price trailingText="per user / month">10</PricingOptions.Price>
     <PricingOptions.PrimaryAction disabled>Upgrade now</PricingOptions.PrimaryAction>
-    <PricingOptions.ActionsMessage leadingComponent={<InfoIcon />}>
-      <Text as="p" size="100">
-        <strong>Upgrades are temporarily paused.</strong> We are rolling out a more flexible billing experience.
+    <PricingOptions.ActionsMessage>
+      <Text as="p" size="200" variant="muted">
+        Upgrades are temporarily paused. We are rolling out a more flexible billing experience.
       </Text>
     </PricingOptions.ActionsMessage>
     <PricingOptions.FeatureList hasDivider={false}>

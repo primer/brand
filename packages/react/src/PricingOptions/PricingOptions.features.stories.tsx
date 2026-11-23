@@ -239,13 +239,10 @@ export const ActionsMessage: Story = {
         <PricingOptions.Heading>Pro</PricingOptions.Heading>
         <PricingOptions.Description>Accelerate workflows with GitHub Copilot.</PricingOptions.Description>
         <PricingOptions.Price trailingText="per user / month">10</PricingOptions.Price>
-        <PricingOptions.ActionsMessage leadingComponent={<InfoIcon />}>
-          <Text as="p" size="100">
-            <Text as="strong" size="100" weight="semibold">
-              Upgrades are paused as we roll out a flexible billing experience.
-            </Text>{' '}
-            We know this interrupts your flow and appreciate your patience while we get this right.{' '}
-            <InlineLink href="#">Learn more</InlineLink>
+        <PricingOptions.ActionsMessage>
+          <Text as="p" size="200" variant="muted">
+            Upgrades are paused as we roll out a flexible billing experience. We know this interrupts your flow and
+            appreciate your patience while we get this right. <InlineLink href="#">Learn more</InlineLink>
           </Text>
         </PricingOptions.ActionsMessage>
         <PricingOptions.FeatureList>
@@ -267,13 +264,10 @@ export const ActionsMessage: Story = {
         <PricingOptions.Heading>Pro+</PricingOptions.Heading>
         <PricingOptions.Description>Scale with agents and more models.</PricingOptions.Description>
         <PricingOptions.Price trailingText="per user / month">39</PricingOptions.Price>
-        <PricingOptions.ActionsMessage leadingComponent={<InfoIcon />}>
-          <Text as="p" size="100">
-            <Text as="strong" size="100" weight="semibold">
-              Upgrades are paused as we roll out a flexible billing experience.
-            </Text>{' '}
-            We know this interrupts your flow and appreciate your patience while we get this right.{' '}
-            <InlineLink href="#">Learn more</InlineLink>
+        <PricingOptions.ActionsMessage>
+          <Text as="p" size="200" variant="muted">
+            Upgrades are paused as we roll out a flexible billing experience. We know this interrupts your flow and
+            appreciate your patience while we get this right. <InlineLink href="#">Learn more</InlineLink>
           </Text>
         </PricingOptions.ActionsMessage>
         <PricingOptions.FeatureList>
@@ -329,12 +323,9 @@ export const ActionsMessageWithActions: Story = {
           Upgrade now
         </PricingOptions.PrimaryAction>
         <PricingOptions.ActionsMessage leadingComponent={<InfoIcon />}>
-          <Text as="p" size="100">
-            <Text as="strong" size="100" weight="semibold">
-              Upgrades are paused as we roll out a flexible billing experience.
-            </Text>{' '}
-            We know this interrupts your flow and appreciate your patience while we get this right.{' '}
-            <InlineLink href="#">Learn more</InlineLink>
+          <Text as="p" size="200" variant="muted">
+            Upgrades are paused as we roll out a flexible billing experience. We know this interrupts your flow and
+            appreciate your patience while we get this right. <InlineLink href="#">Learn more</InlineLink>
           </Text>
         </PricingOptions.ActionsMessage>
         <PricingOptions.FeatureList hasDivider={false}>
