@@ -241,6 +241,8 @@
   }
 
   .PricingOptions--layout-default:not(.PricingOptions--has-labels)::before {
+    grid-row-start: 1;
+    inset-block-start: 0;
     border-block-start: var(--brand-borderWidth-thin) solid var(--brand-color-border-subtle);
   }
 }
@@ -261,8 +263,7 @@
     background: transparent;
   }
 
-  .PricingOptions--layout-default.PricingOptions--appearance-gradient::before,
-  .PricingOptions--layout-default .PricingOptions__item + .PricingOptions__item::before {
+  .PricingOptions--layout-default.PricingOptions--appearance-gradient::before {
     content: none;
   }
 
@@ -334,23 +335,15 @@
   }
 }
 
-/* Horizontal divider between items on small viewports */
-.PricingOptions--layout-default .PricingOptions__item + .PricingOptions__item::before {
-  content: '';
-  position: absolute;
-  inset-inline: 0;
-  height: 1px;
-  background-color: var(--brand-color-border-subtle);
-}
-
 /* Vertical divider between items on larger viewports */
 @media (min-width: 63.25rem) {
   .PricingOptions--layout-default .PricingOptions__item + .PricingOptions__item::before {
+    content: '';
+    position: absolute;
     inset-inline: 0;
     inset-block: 0;
-    width: 1px;
-    height: auto;
-    margin-block-start: 0;
+    width: var(--brand-borderWidth-thin);
+    background-color: var(--brand-color-border-subtle);
     margin-inline-start: calc(var(--brand-pricing-options-item-gap) / 2 * -1);
   }
 
@@ -608,6 +601,10 @@
   padding-block: var(--base-size-20) var(--base-size-28);
 }
 
+.PricingOptions__actions:has(+ .PricingOptions__feature-list--has-divider, + .PricingOptions__footnote) {
+  padding-block-end: 0;
+}
+
 .PricingOptions__actions-message {
   display: flex;
   gap: var(--base-size-12);
@@ -668,6 +665,12 @@
   inline-size: 100%;
   margin-block-start: var(--base-size-20);
   padding-block-start: var(--base-size-40);
+}
+
+@media screen and (max-width: 63.24rem) {
+  .PricingOptions__footnote {
+    padding-block-start: var(--brand-pricing-options-item-padding-block-start);
+  }
 }
 
 /* ---------------------------------------------------------- */
@@ -829,6 +832,13 @@
   padding-inline-end: 0 !important;
   margin-block-start: calc(var(--base-size-16) * -1);
   margin-block-end: var(--base-size-8);
+}
+
+.PricingOptions__feature-list--has-divider
+  .PricingOptions__feature-list-accordion:not([open])
+  > .PricingOptions__feature-list-accordion-heading {
+  padding-block: var(--base-size-12);
+  margin-block-end: var(--base-size-4);
 }
 
 /* Accordion heading styling */
