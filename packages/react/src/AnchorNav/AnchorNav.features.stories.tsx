@@ -732,9 +732,6 @@ export const RegularView: Story = {
 
 export const RegularViewOverflowMenuLocalized: Story = {
   name: 'Regular view, localized overflow menu open (tablet)',
-  parameters: {
-    axe: {waitForPlay: true},
-  },
   globals: {
     viewport: {value: 'ipad10p'},
     locale: 'de',
@@ -785,7 +782,6 @@ export const RegularViewOverflowMenuLocalized: Story = {
     )
   },
   play: async ({canvasElement}) => {
-    canvasElement.removeAttribute('data-axe-ready')
     const canvas = within(canvasElement)
     await canvasElement.ownerDocument.fonts.ready
     // Waits for the story's translations to load before the nav renders.
@@ -806,7 +802,6 @@ export const RegularViewOverflowMenuLocalized: Story = {
       const navBorderTop = nav.getBoundingClientRect().bottom - parseFloat(getComputedStyle(nav).borderBlockEndWidth)
       expect(overflowMenu.getBoundingClientRect().top).toBeCloseTo(navBorderTop, 0)
     })
-    canvasElement.setAttribute('data-axe-ready', 'true')
   },
 }
 

@@ -221,8 +221,12 @@ export function useAnchorNavWideMenu(
       typeof ResizeObserver !== 'undefined' ? new ResizeObserver(() => moveIndicator(false)) : undefined
     resizeObserver?.observe(container)
     resizeObserver?.observe(links)
+    for (const item of Array.from(links.children)) {
+      const label = item.firstElementChild?.firstElementChild
+      if (label) resizeObserver?.observe(label)
+    }
     return () => resizeObserver?.disconnect()
-  }, [activeItemIndex, innerContainerRef])
+  }, [activeItemIndex, children, innerContainerRef])
 
   return {
     linksRef,

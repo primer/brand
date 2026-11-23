@@ -35,6 +35,7 @@ export function useAnchorNav(
     const update = () => {
       const {scrollY, innerHeight} = window
       const navBottom = Math.max(0, nav.getBoundingClientRect().bottom)
+      const scrollPaddingTop = Number.parseFloat(getComputedStyle(document.documentElement).scrollPaddingTop) || 0
       const isAtBottom = scrollY > 0 && Math.ceil(scrollY + innerHeight) >= document.documentElement.scrollHeight - 1
       let reachedHref: string | undefined
       let reachedTop = -Infinity
@@ -47,8 +48,8 @@ export function useAnchorNav(
         if (!section || section.getClientRects().length === 0) continue
         const {top, bottom} = section.getBoundingClientRect()
         const isVisible = top < innerHeight && bottom > navBottom
-        // Leaves room for the section's scroll-margin-top and sub-pixel scroll positions.
-        if (top <= navBottom + 64 && top > reachedTop) {
+        const scrollMarginTop = Number.parseFloat(getComputedStyle(section).scrollMarginTop) || 0
+        if (top <= Math.max(navBottom, scrollPaddingTop + scrollMarginTop) + 1 && top > reachedTop) {
           reachedHref = href
           reachedTop = top
         }
@@ -72,8 +73,8 @@ export function useAnchorNav(
 
     if (settleTimeoutRef.current === undefined) update()
     updateRef.current = update
-    // eslint-disable-next-line github/prefer-observers -- Section positions change on every scroll.
-    window.addEventListener('scroll', handleChange)
+    // eslint-disable-next-line github/prefer-observers -- Section positions change on every scroll, including nested scroll containers.
+    window.addEventListener('scroll', handleChange, true)
     // eslint-disable-next-line github/prefer-observers -- Viewport resizing can move sections without a scroll.
     window.addEventListener('resize', handleChange)
 
@@ -88,7 +89,7 @@ export function useAnchorNav(
     return () => {
       updateRef.current = undefined
       resizeObserver?.disconnect()
-      window.removeEventListener('scroll', handleChange)
+      window.removeEventListener('scroll', handleChange, true)
       window.removeEventListener('resize', handleChange)
     }
   }, [hrefs, isPaused, rootRef, holdUntilScrollSettles])

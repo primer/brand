@@ -221,6 +221,7 @@ describe('AnchorNav', () => {
   afterEach(() => {
     cleanup()
 
+    document.documentElement.removeAttribute('style')
     global.ResizeObserver = originalResizeObserver
 
     jest.useRealTimers()
@@ -403,7 +404,7 @@ describe('AnchorNav', () => {
       sectionTwo.getBoundingClientRect = jest.fn(() => new DOMRect(0, -200, 0, 500))
       Object.assign(sectionTops, {section3: 300, section4: 500, section5: 700})
     } else {
-      Object.assign(sectionTops, {section1: -100, section2: 100, section3: 300, section4: 500, section5: 700})
+      Object.assign(sectionTops, {section1: -160, section2: 40, section3: 240, section4: 440, section5: 640})
     }
     notifyResize()
 
@@ -418,6 +419,23 @@ describe('AnchorNav', () => {
 
     unmount()
     for (const {disconnect} of observers) expect(disconnect).toHaveBeenCalledTimes(1)
+  })
+
+  it('updates the active section when a nested scroll container scrolls', () => {
+    jest.mocked(window.addEventListener).mockRestore()
+    jest.mocked(window.removeEventListener).mockRestore()
+    const {getByRole, getByTestId} = render(
+      <div data-testid="scroller">
+        <MockAnchorNavFixture />
+      </div>,
+    )
+
+    scrollSections(0, {section1: -400, section2: -200, section3: 0, section4: 200, section5: 400})
+    act(() => {
+      getByTestId('scroller').dispatchEvent(new Event('scroll'))
+    })
+
+    expect(getByRole('link', {current: true})).toHaveTextContent('Section three')
   })
 
   it('marks a selected link active straight away and keeps it active while the page scrolls to its section', () => {
@@ -443,6 +461,35 @@ describe('AnchorNav', () => {
     expect(getByRole('link', {name: 'Section three'})).toHaveAttribute('aria-current', 'true')
   })
 
+  it.each([
+    {landing: 'a large scroll margin', margin: '160px', padding: '', height: 200, tops: [-440, -240, -40, 160, 360]},
+    {
+      landing: 'a large page scroll padding',
+      margin: '',
+      padding: '160px',
+      height: 200,
+      tops: [-440, -240, -40, 160, 360],
+    },
+    {
+      landing: 'a scroll margin just above a short section',
+      margin: '60px',
+      padding: '',
+      height: 40,
+      tops: [-60, -20, 20, 60, 100],
+    },
+  ])('keeps a selected link active once its section settles at $landing', ({margin, padding, height, tops}) => {
+    jest.useFakeTimers()
+    const {getByRole} = render(<MockAnchorNavFixture />)
+    document.documentElement.style.scrollPaddingTop = padding
+    for (const section of document.querySelectorAll<HTMLElement>('section[id]')) section.style.scrollMarginTop = margin
+
+    fireEvent.click(getByRole('link', {name: 'Section four'}))
+    scrollSections(1000, Object.fromEntries(tops.map((top, index) => [`section${index + 1}`, top])), height)
+    act(() => jest.runOnlyPendingTimers())
+
+    expect(getByRole('link', {current: true})).toHaveTextContent('Section four')
+  })
+
   it('prefers the selected section, then the last visible section, at the bottom of the page', () => {
     jest.useFakeTimers()
     jest.spyOn(document.documentElement, 'scrollHeight', 'get').mockReturnValue(1000 + window.innerHeight)
@@ -456,7 +503,7 @@ describe('AnchorNav', () => {
     act(() => jest.runOnlyPendingTimers())
     expect(getByRole('link', {name: 'Section four'})).toHaveAttribute('aria-current', 'true')
 
-    scrollSections(900, {section1: -332, section2: -132, section3: 68, section4: 268, section5: 468})
+    scrollSections(960, {section1: -392, section2: -192, section3: 8, section4: 208, section5: 408})
     expect(getByRole('link', {name: 'Section three'})).toHaveAttribute('aria-current', 'true')
 
     scrollSections(1000, bottomSectionTops)
@@ -620,6 +667,55 @@ describe('AnchorNav', () => {
     expect(indicator?.style.getPropertyValue('--anchorNav-indicator-x')).toBe('360px')
     expect(indicator?.style.getPropertyValue('--anchorNav-indicator-y')).toBe('40px')
     expect(indicator?.style.getPropertyValue('--anchorNav-indicator-size')).toBe('50px')
+  })
+
+  it('moves the active underline when link labels change without resizing the row', () => {
+    enableOverflowMeasurements()
+    const measure = jest.mocked(HTMLElement.prototype.getBoundingClientRect).getMockImplementation()
+    const labelRects: Partial<Record<string, [left: number, width: number]>> = {
+      'Section two': [120, 90],
+      'Section 2': [100, 110],
+    }
+    jest.spyOn(HTMLElement.prototype, 'getBoundingClientRect').mockImplementation(function (this: HTMLElement) {
+      const rect = labelRects[this.textContent]
+      if (rect && this.tagName === 'A') return new DOMRect(rect[0], 16, rect[1], 24)
+      if (rect && this.classList.contains('AnchorNav-link-label')) return new DOMRect(rect[0], 20, rect[1], 14)
+      return measure ? measure.call(this) : new DOMRect()
+    })
+    const observers: {callback: ResizeObserverCallback; observer: ResizeObserver; targets: Element[]}[] = []
+    global.ResizeObserver = jest.fn().mockImplementation((callback: ResizeObserverCallback) => {
+      const targets: Element[] = []
+      const observer: ResizeObserver = {
+        observe: target => targets.push(target),
+        unobserve: jest.fn(),
+        disconnect: () => targets.splice(0),
+      }
+      observers.push({callback, observer, targets})
+      return observer
+    })
+    const {getByText, rerender} = render(<MockAnchorNavFixture />)
+    const indicator = document.querySelector<HTMLElement>('.AnchorNav-active-indicator')
+    scrollSections(200, {section1: -200, section2: 0, section3: 200, section4: 400, section5: 600})
+    expect(indicator?.style.getPropertyValue('--anchorNav-indicator-x')).toBe('120px')
+    expect(indicator?.style.getPropertyValue('--anchorNav-indicator-size')).toBe('90px')
+
+    rerender(
+      <MockAnchorNavFixture
+        data={mockData.map(item => (item.id === 'section2' ? {...item, title: 'Section 2'} : item))}
+      />,
+    )
+    expect(indicator?.style.getPropertyValue('--anchorNav-indicator-x')).toBe('100px')
+    expect(indicator?.style.getPropertyValue('--anchorNav-indicator-size')).toBe('110px')
+
+    labelRects['Section 2'] = [140, 70]
+    const precedingLabel = getByText('Section one', {selector: '.AnchorNav-link-label'})
+    act(() => {
+      for (const {callback, observer, targets} of observers) {
+        if (targets.includes(precedingLabel)) callback([], observer)
+      }
+    })
+    expect(indicator?.style.getPropertyValue('--anchorNav-indicator-x')).toBe('140px')
+    expect(indicator?.style.getPropertyValue('--anchorNav-indicator-size')).toBe('70px')
   })
 
   it('closes the More menu when one of its links is selected', async () => {
