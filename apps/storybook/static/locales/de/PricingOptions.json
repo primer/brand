@@ -1,0 +1,16 @@
+{
+  "actionsMessage": "Upgrades sind pausiert, während wir eine flexiblere Abrechnung einführen. Wir wissen, dass dies deinen Arbeitsablauf unterbricht, und danken dir für deine Geduld.",
+  "learnMore": "Mehr erfahren",
+  "verifiedStudentsFootnote": "Kostenlos für verifizierte Studierende, Lehrkräfte und Maintainer bekannter Open-Source-Projekte.",
+  "freePlan": "Kostenlos",
+  "freePlanDescription": "Ein schneller Einstieg in GitHub Copilot.",
+  "openInYourIde": "In deiner IDE öffnen",
+  "moreOptions": "Weitere Optionen",
+  "openInVsCode": "In VS Code öffnen",
+  "openInJetBrains": "In JetBrains öffnen",
+  "codeCompletions": "Codevervollständigungen",
+  "chatInIdeAndMobile": "Chat in IDE und auf Mobilgeräten",
+  "proPlan": "Pro",
+  "proPlanDescription": "Beschleunige deine Arbeitsabläufe mit GitHub Copilot.",
+  "startFreeTrial": "Kostenlos testen"
+}

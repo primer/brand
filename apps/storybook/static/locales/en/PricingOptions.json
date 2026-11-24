@@ -1,0 +1,16 @@
+{
+  "actionsMessage": "Upgrades are paused as we roll out a flexible billing experience. We know this interrupts your flow and appreciate your patience while we get this right.",
+  "learnMore": "Learn more",
+  "verifiedStudentsFootnote": "Free for verified students, teachers, and maintainers of popular open source projects.",
+  "freePlan": "Free",
+  "freePlanDescription": "A fast way to get started with GitHub Copilot.",
+  "openInYourIde": "Open in your IDE",
+  "moreOptions": "More options",
+  "openInVsCode": "Open in VS Code",
+  "openInJetBrains": "Open in JetBrains",
+  "codeCompletions": "Code completions",
+  "chatInIdeAndMobile": "Chat in IDE and Mobile",
+  "proPlan": "Pro",
+  "proPlanDescription": "Accelerate workflows with GitHub Copilot.",
+  "startFreeTrial": "Start a free trial"
+}

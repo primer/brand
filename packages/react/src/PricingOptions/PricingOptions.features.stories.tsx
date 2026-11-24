@@ -1,6 +1,7 @@
 import React from 'react'
 import type {Meta, StoryObj} from '@storybook/react'
 import {SparkleFillIcon} from '@primer/octicons-react'
+import {useTranslation} from 'react-i18next'
 
 import {PricingOptions} from '.'
 import {ActionMenu, Box, Grid, InlineLink, Stack, Text} from '..'
@@ -213,6 +214,21 @@ export const LeadingComponent: Story = {
   },
 }
 
+function PricingOptionsActionMessageCopy() {
+  const {t} = useTranslation('PricingOptions')
+
+  return (
+    <Text as="p" size="200" variant="muted">
+      {t('actionsMessage')} <InlineLink href="#">{t('learnMore')}</InlineLink>
+    </Text>
+  )
+}
+
+function PricingOptionsVerifiedStudentsFootnote() {
+  const {t} = useTranslation('PricingOptions')
+  return <>{t('verifiedStudentsFootnote')}</>
+}
+
 export const ActionsMessage: Story = {
   render: () => (
     <PricingOptions>
@@ -240,10 +256,7 @@ export const ActionsMessage: Story = {
         <PricingOptions.Description>Accelerate workflows with GitHub Copilot.</PricingOptions.Description>
         <PricingOptions.Price trailingText="per user / month">10</PricingOptions.Price>
         <PricingOptions.ActionsMessage>
-          <Text as="p" size="200" variant="muted">
-            Upgrades are paused as we roll out a flexible billing experience. We know this interrupts your flow and
-            appreciate your patience while we get this right. <InlineLink href="#">Learn more</InlineLink>
-          </Text>
+          <PricingOptionsActionMessageCopy />
         </PricingOptions.ActionsMessage>
         <PricingOptions.FeatureList>
           <PricingOptions.FeatureListHeading>Everything in Free and:</PricingOptions.FeatureListHeading>
@@ -265,10 +278,7 @@ export const ActionsMessage: Story = {
         <PricingOptions.Description>Scale with agents and more models.</PricingOptions.Description>
         <PricingOptions.Price trailingText="per user / month">39</PricingOptions.Price>
         <PricingOptions.ActionsMessage>
-          <Text as="p" size="200" variant="muted">
-            Upgrades are paused as we roll out a flexible billing experience. We know this interrupts your flow and
-            appreciate your patience while we get this right. <InlineLink href="#">Learn more</InlineLink>
-          </Text>
+          <PricingOptionsActionMessageCopy />
         </PricingOptions.ActionsMessage>
         <PricingOptions.FeatureList>
           <PricingOptions.FeatureListHeading>Everything in Pro and:</PricingOptions.FeatureListHeading>
@@ -323,10 +333,7 @@ export const ActionsMessageWithActions: Story = {
           Upgrade now
         </PricingOptions.PrimaryAction>
         <PricingOptions.ActionsMessage>
-          <Text as="p" size="200" variant="muted">
-            Upgrades are paused as we roll out a flexible billing experience. We know this interrupts your flow and
-            appreciate your patience while we get this right. <InlineLink href="#">Learn more</InlineLink>
-          </Text>
+          <PricingOptionsActionMessageCopy />
         </PricingOptions.ActionsMessage>
         <PricingOptions.FeatureList hasDivider={false}>
           <PricingOptions.FeatureListHeading>Everything in Free and:</PricingOptions.FeatureListHeading>
@@ -803,7 +810,7 @@ export const CenterAligned: Story = {
           <PricingOptions.FeatureListItem>Fine-tuned models (coming soon)</PricingOptions.FeatureListItem>
         </PricingOptions.FeatureList>
         <PricingOptions.Footnote>
-          Free for verified students, teachers, and maintainers of popular open source projects.
+          <PricingOptionsVerifiedStudentsFootnote />
         </PricingOptions.Footnote>
         <PricingOptions.PrimaryAction as="a" href="#">
           Start a free trial
@@ -1403,32 +1410,44 @@ export const WithInfoTooltipsAndCustomTriggerLabel: Story = {
 }
 
 export const WithMenuAction: Story = {
-  render: () => (
-    <PricingOptions>
-      <PricingOptions.Item>
-        <PricingOptions.Heading>Free</PricingOptions.Heading>
-        <PricingOptions.Description>A fast way to get started with GitHub Copilot.</PricingOptions.Description>
-        <PricingOptions.Price>0</PricingOptions.Price>
-        <PricingOptions.MenuAction>
-          <ActionMenu mode="split-button">
-            <ActionMenu.Button variant="secondary" as="a" href="#" leadingVisual={<VisualStudioCodeLogo />}>
-              Open in your IDE
-            </ActionMenu.Button>
-            <ActionMenu.Overlay aria-label="More options">
-              <ActionMenu.Item as="a" href="#">
-                Open in VS Code
-              </ActionMenu.Item>
-              <ActionMenu.Item as="a" href="#">
-                Open in JetBrains
-              </ActionMenu.Item>
-            </ActionMenu.Overlay>
-          </ActionMenu>
-        </PricingOptions.MenuAction>
-        <PricingOptions.FeatureList expanded={false} hasDivider={false}>
-          <PricingOptions.FeatureListItem>Code completions</PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem>Chat in IDE and Mobile</PricingOptions.FeatureListItem>
-        </PricingOptions.FeatureList>
-      </PricingOptions.Item>
-    </PricingOptions>
-  ),
+  render: function WithMenuActionExample() {
+    const {t} = useTranslation('PricingOptions')
+
+    return (
+      <PricingOptions>
+        <PricingOptions.Item>
+          <PricingOptions.Heading>{t('freePlan')}</PricingOptions.Heading>
+          <PricingOptions.Description>{t('freePlanDescription')}</PricingOptions.Description>
+          <PricingOptions.Price>0</PricingOptions.Price>
+          <PricingOptions.MenuAction>
+            <ActionMenu mode="split-button">
+              <ActionMenu.Button variant="secondary" as="a" href="#" leadingVisual={<VisualStudioCodeLogo />}>
+                {t('openInYourIde')}
+              </ActionMenu.Button>
+              <ActionMenu.Overlay aria-label={t('moreOptions')}>
+                <ActionMenu.Item as="a" href="#">
+                  {t('openInVsCode')}
+                </ActionMenu.Item>
+                <ActionMenu.Item as="a" href="#">
+                  {t('openInJetBrains')}
+                </ActionMenu.Item>
+              </ActionMenu.Overlay>
+            </ActionMenu>
+          </PricingOptions.MenuAction>
+          <PricingOptions.FeatureList expanded={false} hasDivider={false}>
+            <PricingOptions.FeatureListItem>{t('codeCompletions')}</PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem>{t('chatInIdeAndMobile')}</PricingOptions.FeatureListItem>
+          </PricingOptions.FeatureList>
+        </PricingOptions.Item>
+        <PricingOptions.Item>
+          <PricingOptions.Heading>{t('proPlan')}</PricingOptions.Heading>
+          <PricingOptions.Description>{t('proPlanDescription')}</PricingOptions.Description>
+          <PricingOptions.Price>10</PricingOptions.Price>
+          <PricingOptions.PrimaryAction as="a" href="#">
+            {t('startFreeTrial')}
+          </PricingOptions.PrimaryAction>
+        </PricingOptions.Item>
+      </PricingOptions>
+    )
+  },
 }

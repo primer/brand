@@ -1,0 +1,16 @@
+{
+  "actionsMessage": "より柔軟な請求方法への移行に伴い、アップグレードを一時停止しています。ご利用の流れを中断してしまうことを承知しており、お待ちいただいていることに感謝します。",
+  "learnMore": "詳しく見る",
+  "verifiedStudentsFootnote": "認証済みの学生、教職員、人気のオープンソースプロジェクトのメンテナーは無料で利用できます。",
+  "freePlan": "無料",
+  "freePlanDescription": "GitHub Copilot をすぐに始めるためのプランです。",
+  "openInYourIde": "IDE で開く",
+  "moreOptions": "その他のオプション",
+  "openInVsCode": "VS Code で開く",
+  "openInJetBrains": "JetBrains で開く",
+  "codeCompletions": "コード補完",
+  "chatInIdeAndMobile": "IDE とモバイルでのチャット",
+  "proPlan": "Pro",
+  "proPlanDescription": "GitHub Copilot で開発ワークフローを効率化します。",
+  "startFreeTrial": "無料トライアルを開始"
+}

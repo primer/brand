@@ -1,0 +1,16 @@
+{
+  "actionsMessage": "Las actualizaciones están pausadas mientras implementamos una experiencia de facturación más flexible. Sabemos que esto interrumpe tu flujo de trabajo y agradecemos tu paciencia mientras lo mejoramos.",
+  "learnMore": "Más información",
+  "verifiedStudentsFootnote": "Gratis para estudiantes y docentes verificados y para mantenedores de proyectos populares de código abierto.",
+  "freePlan": "Gratis",
+  "freePlanDescription": "Una forma rápida de empezar a usar GitHub Copilot.",
+  "openInYourIde": "Abrir en tu IDE",
+  "moreOptions": "Más opciones",
+  "openInVsCode": "Abrir en VS Code",
+  "openInJetBrains": "Abrir en JetBrains",
+  "codeCompletions": "Autocompletado de código",
+  "chatInIdeAndMobile": "Chat en el IDE y en dispositivos móviles",
+  "proPlan": "Pro",
+  "proPlanDescription": "Agiliza tus flujos de trabajo con GitHub Copilot.",
+  "startFreeTrial": "Iniciar una prueba gratuita"
+}

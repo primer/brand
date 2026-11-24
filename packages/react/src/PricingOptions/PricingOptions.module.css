@@ -425,6 +425,10 @@
   isolation: isolate;
 }
 
+.PricingOptions__item:has(.PricingOptions__menu-action [role='menu']) {
+  z-index: 1;
+}
+
 @media (min-width: 63.25rem) {
   .PricingOptions__item {
     grid-row: header / footnote;
