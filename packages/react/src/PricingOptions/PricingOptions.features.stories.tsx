@@ -1288,7 +1288,6 @@ export const HideFeatureListOnNarrowAndRegularNarrow = {
 }
 
 export const WithInfoTooltips: Story = {
-  tags: ['!dev', '!autodocs'],
   render: () => (
     <PricingOptions>
       <PricingOptions.Item>
@@ -1400,7 +1399,6 @@ function PricingOptionsWithCustomTriggerLabel({customContent}: {customContent?: 
 }
 
 export const WithInfoTooltipsAndCustomTriggerLabel: Story = {
-  tags: ['!dev', '!autodocs'],
   render: () => <PricingOptionsWithCustomTriggerLabel customContent="Custom footnote" />,
 }
 
