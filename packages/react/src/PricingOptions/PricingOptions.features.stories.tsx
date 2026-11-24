@@ -1,6 +1,6 @@
 import React from 'react'
 import type {Meta, StoryObj} from '@storybook/react'
-import {InfoIcon, SparkleFillIcon} from '@primer/octicons-react'
+import {SparkleFillIcon} from '@primer/octicons-react'
 
 import {PricingOptions} from '.'
 import {ActionMenu, Box, Grid, InlineLink, Stack, Text} from '..'
@@ -322,7 +322,7 @@ export const ActionsMessageWithActions: Story = {
         <PricingOptions.PrimaryAction as="button" variant="primary" disabled>
           Upgrade now
         </PricingOptions.PrimaryAction>
-        <PricingOptions.ActionsMessage leadingComponent={<InfoIcon />}>
+        <PricingOptions.ActionsMessage>
           <Text as="p" size="200" variant="muted">
             Upgrades are paused as we roll out a flexible billing experience. We know this interrupts your flow and
             appreciate your patience while we get this right. <InlineLink href="#">Learn more</InlineLink>
