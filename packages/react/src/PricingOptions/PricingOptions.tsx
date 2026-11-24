@@ -75,8 +75,8 @@ const PricingOptionsContext = React.createContext<PricingOptionsContextValue>({
 const PricingOptionsProvider = ({
   children,
   align = 'start',
-  hasLabels = false,
-}: PropsWithChildren<{align: AlignOptions; hasLabels?: boolean}>) => {
+  hasLabels,
+}: PropsWithChildren<{align: AlignOptions; hasLabels: boolean}>) => {
   const [allFeatureListsExpanded, setAllFeatureListsExpanded] = React.useState(false)
   const [featureListUserInteracted, setFeatureListUserInteracted] = React.useState(false)
 
