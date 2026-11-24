@@ -1,6 +1,6 @@
 ---
 '@primer/react-brand': minor
-'@primer/brand-css': patch
+'@primer/brand-css': minor
 ---
 
 Improves `PricingOptions` layouts across desktop, tablet, and mobile:
@@ -14,3 +14,4 @@ Improves `PricingOptions` layouts across desktop, tablet, and mobile:
 - Adds `hasGridLines` to continue the outer side borders through the label row in gridline layouts.
 - Removes the background and borders from `PricingOptions.ActionsMessage` and updates its spacing. Use `<Text as="p" size="200" variant="muted">` for the message.
 - **Breaking:** Removes `PricingOptions.testIds.labelRow` because the shared wrapper for all labels no longer exists. Use `PricingOptions.testIds.label` within the corresponding item instead.
+- **Breaking for `@primer/brand-css` consumers:** Move each label cell inside its corresponding `.PricingOptions__item`. The shared `.PricingOptions__labels` wrapper is no longer rendered.
