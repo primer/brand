@@ -428,8 +428,7 @@ function FeatureWithCustomContent({customContent}) {
 
 ### Actions message
 
-Use `PricingOptions.ActionsMessage` to render status, billing, or upgrade notes in the actions area. Use
-`Text` with `as="p"`, `size="200"`, and `variant="muted"` for the message content.
+Use `PricingOptions.ActionsMessage` to render status, billing, or upgrade notes in the actions area.
 
 ```jsx live
 <PricingOptions variant="cards">
@@ -457,13 +456,13 @@ Use `PricingOptions.ActionsMessage` to render status, billing, or upgrade notes 
 
 ### PricingOptions <Label>Required</Label>
 
-| Name           | Type                          |  Default  | required | Description                                                                                                             |
-| :------------- | :---------------------------- | :-------: | :------: | :---------------------------------------------------------------------------------------------------------------------- |
-| `as`           | <PricingOptionsAsProp />      | `section` | `false`  | Applies the underlying HTML element                                                                                     |
-| `children`     | `PricingOptions.Item`         |           |  `true`  | Applies the underlying HTML element                                                                                     |
-| `hasGridLines` | `boolean`                     |  `false`  | `false`  | Continues the outer side borders through the label row in gridline layouts. Applies to `default` and `default-gradient` |
-| `variant`      | <PricingOptionsVariantProp /> |           | `false`  | Sets the style variant                                                                                                  |
-| `style`        | `React.CSSProperties`         |           | `false`  | Inline CSS overrides                                                                                                    |
+| Name           | Type                          |  Default  | required | Description                                                                              |
+| :------------- | :---------------------------- | :-------: | :------: | :--------------------------------------------------------------------------------------- |
+| `as`           | <PricingOptionsAsProp />      | `section` | `false`  | Applies the underlying HTML element                                                      |
+| `children`     | `PricingOptions.Item`         |           |  `true`  | Applies the underlying HTML element                                                      |
+| `hasGridLines` | `boolean`                     |  `false`  | `false`  | Enables optional gridlines appearance for the `default` and `default-gradient` variants. |
+| `variant`      | <PricingOptionsVariantProp /> |           | `false`  | Sets the style variant                                                                   |
+| `style`        | `React.CSSProperties`         |           | `false`  | Inline CSS overrides                                                                     |
 
 ### PricingOptions.Item <Label>Required</Label>
 
