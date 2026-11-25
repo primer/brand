@@ -132,10 +132,13 @@
   --spacing: var(--base-size-24);
 }
 
+.Prose--editorial :is(h1, h2, h3) {
+  max-inline-size: none;
+}
+
 .Prose--editorial h2 {
   font-size: var(--brand-text-size-500);
   line-height: var(--brand-text-lineHeight-500);
-  max-inline-size: none;
 }
 
 .Prose--editorial h3 {
@@ -260,7 +263,7 @@
   background-color: transparent;
 }
 
-.Prose :not(pre) > code {
+.Prose code:not(pre code) {
   letter-spacing: -0.01em;
   padding-block: 0 1px;
   padding-inline: var(--base-size-4);
@@ -272,7 +275,7 @@
   box-decoration-break: clone;
 }
 
-.Prose--editorial :not(pre) > code {
+.Prose--editorial code:not(pre code) {
   font-size: var(--brand-text-size-200);
 }
 
