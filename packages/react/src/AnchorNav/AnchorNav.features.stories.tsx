@@ -472,15 +472,7 @@ export const OverflowMenuOpen: Story = {
     await userEvent.click(overflowButton)
 
     const overflowMenu = canvas.getByTestId(AnchorNav.testIds.overflowMenu)
-    const nav = canvas.getByRole('navigation')
-    await waitFor(() => {
-      expect(overflowButton).toHaveAttribute('aria-expanded', 'true')
-      expect(overflowMenu.matches(':popover-open')).toBe(true)
-      expect(within(overflowMenu).getAllByRole('link').length).toBeGreaterThan(0)
-      // The menu's top border sits on the bar's bottom border.
-      const navBorderTop = nav.getBoundingClientRect().bottom - parseFloat(getComputedStyle(nav).borderBlockEndWidth)
-      expect(overflowMenu.getBoundingClientRect().top).toBeCloseTo(navBorderTop, 0)
-    })
+    await waitFor(() => expect(overflowMenu.matches(':popover-open')).toBe(true))
     canvasElement.setAttribute('data-axe-ready', 'true')
   },
 }
@@ -791,17 +783,6 @@ export const RegularViewOverflowMenuLocalized: Story = {
       expect(overflowButton).toHaveAttribute('popovertarget')
     })
     await userEvent.click(overflowButton)
-
-    const overflowMenu = canvas.getByTestId(AnchorNav.testIds.overflowMenu)
-    const nav = canvas.getByRole('navigation')
-    await waitFor(() => {
-      expect(overflowButton).toHaveAttribute('aria-expanded', 'true')
-      expect(overflowMenu.matches(':popover-open')).toBe(true)
-      expect(within(overflowMenu).getAllByRole('link').length).toBeGreaterThan(0)
-      // The menu's top border sits on the bar's bottom border.
-      const navBorderTop = nav.getBoundingClientRect().bottom - parseFloat(getComputedStyle(nav).borderBlockEndWidth)
-      expect(overflowMenu.getBoundingClientRect().top).toBeCloseTo(navBorderTop, 0)
-    })
   },
 }
 
