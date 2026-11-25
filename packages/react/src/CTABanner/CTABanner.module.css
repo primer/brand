@@ -146,10 +146,6 @@
   text-align: center;
 }
 
-.CTABanner-description {
-  margin-bottom: var(--base-size-16);
-}
-
 /* Medium breakpoint and up */
 @media screen and (min-width: 48rem) {
   .CTABanner-container {
@@ -298,7 +294,25 @@
   box-decoration-break: clone;
 }
 
-.CTABanner-buttonGroup {
-  margin-block-start: calc(-1 * var(--CTABanner-content-gap, 0px));
+.CTABanner-buttonGroup,
+.CTABanner-link {
+  margin-block-start: var(--base-size-16);
+}
+
+@media screen and (min-width: 63.25rem) {
+  .CTABanner--variant-balanced :is(.CTABanner-buttonGroup, .CTABanner-link) {
+    margin-block-start: 0;
+  }
+}
+
+.CTABanner--variant-minimal .CTABanner-description {
+  margin-block-end: var(--base-size-16);
+}
+
+.CTABanner--variant-minimal :is(.CTABanner-buttonGroup, .CTABanner-link) {
+  margin-block-start: 0;
+}
+
+.CTABanner--variant-minimal .CTABanner-buttonGroup {
   padding-block-start: var(--base-size-12);
 }

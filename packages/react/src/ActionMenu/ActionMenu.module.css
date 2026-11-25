@@ -60,13 +60,12 @@
   background-color: var(--brand-ActionMenu-color-splitButton-divider-primary);
 }
 
-.ActionMenu__innerButton--subtle.ActionMenu__innerButton--split-button.ActionMenu__innerButton--split-button-primary::before {
-  top: calc(var(--base-size-2) * -1);
-  height: calc(100% + var(--base-size-4));
+.ActionMenu__innerButton--subtle.ActionMenu__innerButton--split-button.ActionMenu__innerButton--split-button-primary {
+  border-inline-end-width: 0;
 }
 
-.ActionMenu__innerButton--subtle.ActionMenu__innerButton--split-button.ActionMenu__innerButton--split-button-primary:active::before {
-  width: 0;
+.ActionMenu__innerButton--subtle.ActionMenu__innerButton--split-button.ActionMenu__innerButton--split-button-primary::before {
+  content: none;
 }
 
 .ActionMenu__innerButton--medium.ActionMenu__innerButton--split-button,
