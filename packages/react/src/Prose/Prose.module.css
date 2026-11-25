@@ -22,11 +22,13 @@
   font-size: var(--brand-text-size-200);
   line-height: var(--brand-text-lineHeight-200);
   color: var(--brand-color-text-default);
+  overflow-wrap: break-word;
 }
 
 .Prose--editorial {
   font-size: var(--brand-text-size-300);
-  line-height: 1.7;
+  line-height: 1.6; /* TODO: no global exists, add one later */
+  font-variant-ligatures: none;
 }
 
 /* ---------------------------------------------------------- */
@@ -40,7 +42,7 @@
 }
 
 .Prose--editorial * + * {
-  --spacing: var(--base-size-40);
+  --spacing: var(--base-size-48);
 }
 
 /* ---------------------------------------------------------- */
@@ -48,7 +50,11 @@
 /* ---------------------------------------------------------- */
 
 .Prose--lineLength {
-  max-width: var(--brand-Prose-lineLength);
+  max-inline-size: var(--brand-Prose-lineLength);
+}
+
+.Prose--editorial.Prose--lineLength {
+  max-inline-size: var(--brand-Prose-editorial-lineLength);
 }
 
 /* ---------------------------------------------------------- */
@@ -64,7 +70,7 @@
 }
 
 .Prose--lineLength h1 {
-  max-width: 22ch;
+  max-inline-size: 22ch;
 }
 
 .Prose h2 {
@@ -76,19 +82,19 @@
 }
 
 .Prose--lineLength h2 {
-  max-width: 26ch;
+  max-inline-size: 26ch;
 }
 
 .Prose h3 {
-  font-weight: var(--brand-heading-weight-400);
+  font-weight: var(--brand-heading-weight-600);
   font-size: var(--brand-text-size-400);
   line-height: var(--brand-heading-lineHeight-400);
   font-family: var(--brand-heading-fontFamily);
   letter-spacing: var(--brand-heading-letterSpacing-400);
 }
 
-.Prose--lineLength h1 {
-  max-width: 32ch;
+.Prose--lineLength h3 {
+  max-inline-size: 32ch;
 }
 
 .Prose h4 {
@@ -126,6 +132,16 @@
   --spacing: var(--base-size-24);
 }
 
+.Prose--editorial h2 {
+  font-size: var(--brand-text-size-500);
+  line-height: var(--brand-text-lineHeight-500);
+  max-inline-size: none;
+}
+
+.Prose--editorial h3 {
+  line-height: var(--brand-text-lineHeight-400);
+}
+
 /* ---------------------------------------------------------- */
 /* 5. Paragraphs                                              */
 /* ---------------------------------------------------------- */
@@ -135,7 +151,23 @@
 }
 
 .Prose--editorial p {
-  --spacing: var(--base-size-40);
+  --spacing: var(--base-size-48);
+}
+
+.Prose--editorial :is(p, li) {
+  letter-spacing: var(--brand-text-letterSpacing-300);
+}
+
+.Prose--editorial p + :is(p, ul, ol) {
+  --spacing: var(--base-size-28);
+}
+
+.Prose--editorial :is(h1, h2, h3, h4, h5, h6) {
+  --spacing: calc(var(--base-size-48) + var(--base-size-8));
+}
+
+.Prose--editorial :is(h1, h2, h3, h4, h5, h6) + * {
+  --spacing: var(--base-size-24);
 }
 
 /* ---------------------------------------------------------- */
@@ -156,13 +188,17 @@
 .Prose--editorial ul,
 .Prose--editorial ol {
   --spacing: var(--base-size-48);
-  gap: var(--base-size-16);
-  line-height: 1.7;
+  gap: var(--base-size-12);
+  margin-inline-start: var(--base-size-28);
+  line-height: inherit;
+}
+
+.Prose--editorial :is(h1, h2, h3, h4, h5, h6) + :is(ul, ol) {
+  --spacing: var(--base-size-24);
 }
 
 .Prose ul {
-  list-style-type: image;
-  list-style-image: var(--brand-Prose-unorderedList-imageUrl);
+  list-style: disc;
 }
 
 .Prose li {
@@ -175,9 +211,7 @@
 
 .Prose strong,
 .Prose b {
-  font-weight: var(
-    --brand-text-weight-heavy
-  ) !important; /* Overrides Primer product styles in dotcom. Should compute to 550 */
+  font-weight: var(--brand-heading-weight-600) !important; /* Overrides Primer product styles in dotcom */
 }
 
 .Prose em {
@@ -189,8 +223,9 @@
   color: var(--brand-InlineLink-color-rest);
   text-decoration: underline;
   text-decoration-color: var(--brand-InlineLink-color-rest);
-  text-decoration-thickness: var(--brand-borderWidth-thin);
-  text-underline-position: under;
+  text-decoration-thickness: from-font;
+  text-decoration-skip-ink: none;
+  text-underline-position: from-font;
   transition: var(--brand-InlineLink-transition-timing) text-decoration;
   position: relative;
 }
@@ -207,19 +242,49 @@
   font-family: var(--brand-fontStack-monospace);
   font-size: var(--brand-text-size-100);
   white-space: break-spaces;
-  padding: var(--base-size-4) var(--base-size-8);
-  border-radius: var(--brand-borderRadius-small);
-  background-color: var(--brand-Prose-code-bgColor);
 }
 
 .Prose pre {
   padding: var(--base-size-16);
   border-radius: var(--brand-borderRadius-medium);
-  background-color: var(--brand-Prose-code-bgColor);
+  font-family: var(--brand-fontStack-monospace);
+  letter-spacing: -0.01em;
+  border: var(--brand-borderWidth-thin) solid var(--brand-color-border-subtle);
+  background-color: var(--brand-color-canvas-subtle);
+  box-shadow: 1px 1px 0 var(--brand-color-border-subtle);
+  overflow-x: auto;
 }
 
 .Prose pre code {
   padding: 0;
+  background-color: transparent;
+}
+
+.Prose :not(pre) > code {
+  letter-spacing: -0.01em;
+  padding-block: 0 1px;
+  padding-inline: var(--base-size-4);
+  border: var(--brand-borderWidth-thin) solid var(--brand-color-border-subtle);
+  border-radius: 3px; /* TODO: no global radius token resolves to 3px */
+  background-color: var(--brand-color-canvas-subtle);
+  box-shadow: 1px 1px 0 var(--brand-color-border-subtle);
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+
+.Prose--editorial :not(pre) > code {
+  font-size: var(--brand-text-size-200);
+}
+
+.Prose--editorial pre {
+  font-size: 15px; /* TODO: consider replacing with 16px. 15px is currently used in the design */
+  line-height: inherit;
+  padding-block: var(--base-size-24);
+  padding-inline: var(--base-size-28);
+}
+
+.Prose--editorial pre code {
+  font-size: inherit;
 }
 
 /* ---------------------------------------------------------- */
@@ -229,17 +294,18 @@
 .Prose img {
   --spacing: var(--brand-Prose-img-spacing);
   display: block;
-  max-width: 100%;
-  height: auto;
-  margin-left: auto;
-  margin-right: auto;
+  max-inline-size: 100%;
+  block-size: auto;
+  margin-inline: auto;
   margin-block-end: var(--spacing);
+}
+
+.Prose figure img {
+  border-radius: var(--brand-borderRadius-medium);
 }
 
 .Prose--editorial figure img {
   margin-block-end: 0;
-  border-radius: var(--brand-borderRadius-medium);
-  display: block;
 }
 
 /* ---------------------------------------------------------- */
@@ -251,74 +317,57 @@
   position: relative;
   font-size: var(--brand-text-size-400);
   line-height: var(--brand-text-lineHeight-400);
-  padding-top: var(--base-size-48);
-  padding-bottom: var(--base-size-8);
-  margin-bottom: var(--spacing);
-}
-
-.Prose--default blockquote {
-  padding-left: var(--base-size-40);
+  font-weight: var(--brand-heading-weight-600);
+  padding-block-start: calc(var(--base-size-64) * 1.08);
+  padding-block-end: var(--base-size-8);
+  margin-block-end: var(--spacing);
 }
 
 .Prose--editorial blockquote {
+  --spacing: var(--base-size-48);
   font-size: var(--brand-text-size-500);
   line-height: var(--brand-text-lineHeight-500);
-  font-weight: var(--brand-text-weight-500);
-  padding-top: var(--base-size-64);
+  margin-block-end: 0;
 }
 
-@media screen and (min-width: 87.5rem) {
-  .Prose--editorial blockquote {
-    margin-block: var(--base-size-40);
-  }
+.Prose--editorial blockquote p {
+  letter-spacing: normal;
 }
 
 .Prose blockquote::before {
   content: '“';
-  font-size: var(--base-size-48);
-  line-height: var(--base-size-64);
-  font-weight: var(--base-text-weight-extrabold);
   position: absolute;
-  top: 0;
-}
-
-.Prose--editorial blockquote::before {
-  color: var(--brand-color-accent-primary);
+  inset-block-start: 0;
+  color: var(--brand-color-text-emphasized);
+  font-family: var(--brand-heading-fontFamily);
   font-size: var(--base-size-64);
-  line-height: var(--base-size-64);
+  font-weight: var(--brand-heading-weight-600);
+  line-height: 1.08;
 }
 
-.Prose--default blockquote::after {
-  content: '';
-  display: block;
-  position: absolute;
-  width: var(--brand-borderWidth-thick);
-  height: 100%;
-  top: 0;
-  left: 0;
-  background-color: var(--base-color-scale-indigo-5);
-  background-image: linear-gradient(180deg, var(--base-color-scale-blue-5), var(--base-color-scale-purple-5));
-}
-
-.Prose figure figcaption {
+.Prose figcaption {
   --spacing: var(--base-size-24);
   font-family: var(--brand-fontStack-monospace);
   font-size: var(--brand-text-size-100);
   line-height: var(--brand-text-lineHeight-100);
+  font-weight: var(--brand-heading-weight-600);
   color: var(--brand-color-text-muted);
 }
 
-.Prose--editorial figcaption {
-  font-size: var(--brand-text-size-100);
-  line-height: var(--brand-text-lineHeight-100);
-  font-weight: var(--brand-text-weight-100);
+.Prose blockquote figcaption {
+  letter-spacing: 0.15px; /* TODO: no global letter-spacing token resolves to 0.15px */
+}
+
+.Prose hr {
+  block-size: 0;
+  margin-block-start: var(--spacing, 1em);
+  margin-block-end: var(--spacing, 1em);
+  border: 0;
+  border-block-start: var(--brand-borderWidth-thin) solid var(--brand-color-border-subtle);
 }
 
 .Prose--editorial hr {
-  --spacing: var(--base-size-64);
-  margin-block-start: var(--spacing);
-  margin-block-end: var(--spacing);
-  border: 1px solid var(--brand-color-border-muted);
+  --spacing: var(--base-size-60);
 }
 
 .Prose video,
@@ -329,20 +378,19 @@
 
   border-radius: var(--brand-borderRadius-medium);
   display: block;
-  height: auto;
-  margin-left: auto;
-  margin-right: auto;
+  block-size: auto;
+  margin-inline: auto;
   margin-block-end: var(--spacing);
 }
 
 .Prose video {
-  max-width: 100%;
+  max-inline-size: 100%;
 }
 
 .Prose iframe[src*='youtube.com'],
 .Prose iframe[src*='youtu.be'],
 .Prose iframe[src*='youtube-nocookie.com'] {
-  width: 100%;
+  inline-size: 100%;
   aspect-ratio: 16 / 9;
 }
 
@@ -360,7 +408,7 @@
 
 .Prose table {
   --spacing: var(--base-size-32);
-  width: 100%;
+  inline-size: 100%;
   border-collapse: collapse;
   border-spacing: 0;
   font-size: var(--brand-text-size-200);
@@ -368,7 +416,7 @@
 }
 
 .Prose table caption {
-  text-align: left;
+  text-align: start;
   padding-block-end: var(--base-size-24);
   font-size: var(--brand-text-size-100);
   font-weight: var(--brand-text-weight-100);
@@ -378,18 +426,11 @@
 
 .Prose table th,
 .Prose table td {
-  padding-block: var(--base-size-16);
-  padding-inline: var(--base-size-12);
-  text-align: left;
+  padding-block: var(--base-size-20);
+  padding-inline: 0 var(--base-size-16);
+  text-align: start;
   vertical-align: top;
-  border-bottom: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
-}
-
-.Prose table th:first-child,
-.Prose table td:first-child,
-.Prose table th:last-child,
-.Prose table td:last-child {
-  padding-inline: 0;
+  border-block-end: var(--brand-borderWidth-thin) solid var(--brand-color-border-subtle);
 }
 
 .Prose table th {
@@ -400,15 +441,20 @@
 }
 
 .Prose table thead th {
-  border-bottom: var(--brand-borderWidth-thick) solid var(--brand-color-border-default);
+  padding-block-start: 0;
+  font-weight: var(--brand-heading-weight-600);
 }
 
 .Prose table tbody tr:last-child td {
-  border-bottom: none;
+  border-block-end: none;
 }
 
 .Prose--editorial table {
-  --spacing: var(--base-size-48);
+  --spacing: calc(var(--base-size-48) + var(--base-size-8));
+}
+
+.Prose--editorial table + * {
+  --spacing: calc(var(--base-size-48) + var(--base-size-8));
 }
 
 .Prose td > ul:first-child,
@@ -417,28 +463,8 @@
 }
 
 @media screen and (min-width: 48rem) {
-  .Prose table th,
-  .Prose table td {
-    padding: var(--base-size-16) var(--base-size-8);
-  }
-
-  .Prose table th:not(:first-child):not(:last-child),
-  .Prose table td:not(:first-child):not(:last-child) {
-    padding-inline: var(--base-size-16);
-  }
-
-  .Prose table th:first-child,
-  .Prose table td:first-child {
-    padding-inline-start: 0;
-  }
-
-  .Prose table th:last-child,
-  .Prose table td:last-child {
-    padding-inline-end: 0;
-  }
-
-  .Prose table tbody tr:hover {
-    background-color: var(--brand-color-canvas-subtle);
+  .Prose table tbody tr:last-child td {
+    border-block-end: var(--brand-borderWidth-thin) solid var(--brand-color-border-subtle);
   }
 }
 
@@ -446,7 +472,7 @@
   .Prose table:has(td[data-label]) {
     border-collapse: separate;
     border-spacing: 0;
-    width: 100%;
+    inline-size: 100%;
     background: none;
     box-shadow: none;
     font-size: var(--brand-text-size-200); /* inherit from Prose */
@@ -455,16 +481,17 @@
   /* Visually hidden only */
   .Prose table:has(td[data-label]) thead {
     position: absolute;
-    left: -9999px;
-    width: 1px;
-    height: 1px;
+    inline-size: 1px;
+    block-size: 1px;
     overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
   }
 
   .Prose table:has(td[data-label]) tbody,
   .Prose table:has(td[data-label]) tr {
     display: block;
-    width: 100%;
+    inline-size: 100%;
   }
 
   .Prose table:has(td[data-label]) th:not(:first-child):not(:last-child),
@@ -481,9 +508,10 @@
   .Prose td[data-label] {
     display: flex;
     flex-direction: column;
-    width: 100%;
+    inline-size: 100%;
     padding: 0;
-    margin: 0 0 var(--base-size-16, 16px) 0;
+    margin-block: 0 var(--base-size-16, 16px);
+    margin-inline: 0;
     border: none;
     align-items: flex-start;
   }
@@ -497,13 +525,13 @@
     content: attr(data-label);
     color: var(--brand-color-text-muted);
     margin-block-end: var(--base-size-4);
-    text-align: left;
+    text-align: start;
     font-weight: var(--brand-text-weight-400);
   }
 
   .Prose table:has(td[data-label]) td:not([data-label]) {
     display: block;
-    width: 100%;
+    inline-size: 100%;
     padding: 0;
     margin-block-end: var(--base-size-16);
     border: none;

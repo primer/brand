@@ -89,6 +89,41 @@ export const RegularViewFullWidth: Story = {
   },
 }
 
+const EditorialHtmlMarkup = (t: (key: string) => string) => `
+    <h2>${t('heading_level_2')}</h2>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut tempor lectus ipsum, consectetur convallis diam pretium quis. Proin ut felis ut eros tristique tincidunt.</p>
+    <p>Integer pellentesque pretium nulla viverra molestie. Praesent quis pretium sapien. Sed convallis eget lectus et pulvinar. Vivamus eu risus nec lectus consequat rutrum at vel lacus.</p>
+    <figure>
+      <img src="${placeholderImage}" alt="${t('placeholder_alt_text')}" />
+    </figure>
+    <p>
+      ${t('secure_code_paragraph')} <a href="/#">${t('learn_more_here')}.</a>
+    </p>
+    <p>Nunc velit odio, posuere eu felis eget, consectetur fermentum nisi. Aenean tempor odio id ornare ultrices. Quisque blandit condimentum tellus, semper efficitur sapien dapibus nec.</p>
+`
+
+export const Editorial: Story = {
+  name: 'Editorial variant',
+  render: function EditorialComponent() {
+    const {t} = useTranslation('Prose')
+    return <Prose html={EditorialHtmlMarkup(t)} variant="editorial" />
+  },
+}
+
+export const EditorialDark: Story = {
+  name: 'Editorial variant (dark)',
+  render: function EditorialDarkComponent() {
+    const {t} = useTranslation('Prose')
+    return (
+      <ThemeProvider colorMode="dark">
+        <Box backgroundColor="default">
+          <Prose html={EditorialHtmlMarkup(t)} variant="editorial" />
+        </Box>
+      </ThemeProvider>
+    )
+  },
+}
+
 const UnorderedListHtmlMarkup = `
 <ul>
   <li>

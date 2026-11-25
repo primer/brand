@@ -3,6 +3,11 @@
     "lineLength": {
       "value": "68ch"
     },
+    "editorial": {
+      "lineLength": {
+        "value": "62ch"
+      }
+    },
     "img": {
       "spacing": {
         "value": "var(--base-size-48)"
