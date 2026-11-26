@@ -73,8 +73,8 @@ module.exports = {
       },
     },
     borderColor: {
-      value: 'var(--brand-color-border-muted);',
-      dark: '#171d22;',
+      value: 'var(--brand-color-border-muted)',
+      dark: '#171d22',
     },
     autoSuggest: {
       bgColor: {
