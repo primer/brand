@@ -11,7 +11,6 @@ thumbnail_darkMode: '/images/thumbnails/pricing-options-thumbnail-dark.png'
 ---
 
 import {Label} from '@primer/react'
-import {InfoIcon} from '@primer/octicons-react'
 
 import {
   PricingOptionsAsProp,
@@ -429,8 +428,7 @@ function FeatureWithCustomContent({customContent}) {
 
 ### Actions message
 
-Use `PricingOptions.ActionsMessage` to render status, billing, or upgrade notes in the actions area. Add
-`leadingComponent` when you want to show a supporting icon.
+Use `PricingOptions.ActionsMessage` to render status, billing, or upgrade notes in the actions area.
 
 ```jsx live
 <PricingOptions variant="cards">
@@ -440,9 +438,9 @@ Use `PricingOptions.ActionsMessage` to render status, billing, or upgrade notes 
     <PricingOptions.Description>Accelerate workflows with GitHub Copilot.</PricingOptions.Description>
     <PricingOptions.Price trailingText="per user / month">10</PricingOptions.Price>
     <PricingOptions.PrimaryAction disabled>Upgrade now</PricingOptions.PrimaryAction>
-    <PricingOptions.ActionsMessage leadingComponent={<InfoIcon />}>
-      <Text as="p" size="100">
-        <strong>Upgrades are temporarily paused.</strong> We are rolling out a more flexible billing experience.
+    <PricingOptions.ActionsMessage>
+      <Text as="p" size="200" variant="muted">
+        Upgrades are temporarily paused. We are rolling out a more flexible billing experience.
       </Text>
     </PricingOptions.ActionsMessage>
     <PricingOptions.FeatureList hasDivider={false}>
@@ -458,12 +456,13 @@ Use `PricingOptions.ActionsMessage` to render status, billing, or upgrade notes 
 
 ### PricingOptions <Label>Required</Label>
 
-| Name       | Type                          |  Default  | required | Description                         |
-| :--------- | :---------------------------- | :-------: | :------: | :---------------------------------- |
-| `as`       | <PricingOptionsAsProp />      | `section` | `false`  | Applies the underlying HTML element |
-| `children` | `PricingOptions.Item`         |           |  `true`  | Applies the underlying HTML element |
-| `variant`  | <PricingOptionsVariantProp /> |           | `false`  | Sets the style variant              |
-| `style`    | `React.CSSProperties`         |           | `false`  | Inline CSS overrides                |
+| Name           | Type                          |  Default  | required | Description                                                                              |
+| :------------- | :---------------------------- | :-------: | :------: | :--------------------------------------------------------------------------------------- |
+| `as`           | <PricingOptionsAsProp />      | `section` | `false`  | Applies the underlying HTML element                                                      |
+| `children`     | `PricingOptions.Item`         |           |  `true`  | Applies the underlying HTML element                                                      |
+| `hasGridLines` | `boolean`                     |  `false`  | `false`  | Enables optional gridlines appearance for the `default` and `default-gradient` variants. |
+| `variant`      | <PricingOptionsVariantProp /> |           | `false`  | Sets the style variant                                                                   |
+| `style`        | `React.CSSProperties`         |           | `false`  | Inline CSS overrides                                                                     |
 
 ### PricingOptions.Item <Label>Required</Label>
 
@@ -481,6 +480,8 @@ One item per pricing plan to be displayed. Maximum of 4 items.
 | `children` | `ReactNode`                     | `undefined` |  `true`  | The heading of the item                           |
 
 ### PricingOptions.Label
+
+Use a label on one item at most to highlight a single option.
 
 | Name       | Type        |   Default   | required | Description                          |
 | :--------- | :---------- | :---------: | :------: | :----------------------------------- |
